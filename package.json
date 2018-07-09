@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@meepshop/meep-lerna",
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^2.11.0",
+    "lerna-changelog": "^0.8.0",
+    "lint-staged": "^7.2.0"
+  },
+  "engines": {
+    "node": ">=8.6.0",
+    "npm": ">=5.3.0"
+  }
+}
