@@ -3,12 +3,14 @@
   "name": "@meepshop/meep-lerna",
   "license": "MIT",
   "scripts": {
+    "postinstall": "patch-package",
     "clean:all": "make clean-all",
     "precommit": "lint-staged",
     "install:all": "npm install && lerna bootstrap",
     "lint": "esw --cache --ext .js",
     "prettier": "prettier",
     "prod": "NODE_ENV=production make babel-all",
+    "release": "make release",
     "test": "NODE_ENV=test jest --silent"
   },
   "devDependencies": {
@@ -45,6 +47,7 @@
     "lerna": "^2.11.0",
     "lerna-changelog": "^0.8.0",
     "lint-staged": "^7.2.0",
+    "patch-package": "^5.1.1",
     "prettier": "^1.13.5"
   },
   "engines": {

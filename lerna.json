@@ -1,7 +1,7 @@
 {
   "version": "0.1.0",
   "changelog": {
-    "repo": "cat-org/cat-core",
+    "repo": "meepshop/meep-lerna",
     "cacheDir": ".changelog",
     "labels": {
       "PR: Breaking Change :boom:": ":boom: Breaking Change",

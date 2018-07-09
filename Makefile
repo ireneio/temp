@@ -9,6 +9,15 @@ babel-all:
 babel-clean:
 	rm -rf ./lib ./packages/**/lib
 
+release:
+	@yarn lerna publish --skip-npm --skip-git --repo-version ${VERSION}
+	@yarn lerna-changelog && \
+		read -p "Input any word..." && \
+		vim CHANGELOG.md && \
+		git add . && \
+		git commit -m "chore(release): v${VERSION} [skip ci]" && \
+		git tag -a v${VERSION} -m "v${VERSION}"
+
 clean-all:
 	@make babel-clean
 	rm -rf ./node_modules ./packages/**/node_modules

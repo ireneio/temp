@@ -1,0 +1,113 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/node:8.11.1
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Install packages
+          command: npm run install:all
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Check code style
+          command: npm run lint -- .
+
+      # TODO
+      #- run:
+      #    name: Test pacakges
+      #    command: npm run test
+      #- store_artifacts:
+      #    path: coverage
+      #    prefix: coverage
+
+  deploy-npm:
+    docker:
+      - image: circleci/node:8.11.1
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Install packages
+          command: npm run install:all
+
+      - run:
+          name: Pre publish
+          command: npm run prod
+
+      - run:
+          name: Publish
+          command: |
+            yarn lerna publish \
+              --skip-git \
+              --force-publish=@meepshop/meep-ui \
+              --repo-version ${CIRCLE_TAG} \
+              --yes
+
+  deploy-docker:
+    docker:
+      - image: circleci/node:8.11.1
+
+    working_directory: ~/repo
+
+    steps:
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Install packages
+          command: npm run install:all
+
+      - run:
+          name: Pre publish
+          command: npm run prod
+
+      - setup_remote_docker
+      - run: bin/build_docker.sh ${CIRCLE_TAG} ./Dockerfile
+      - run: bin/deploy_k8s.sh ${CIRCLE_TAG}
+
+workflows:
+  version: 2
+  test-and-deploy:
+    jobs:
+      - test:
+          filters:
+            tags:
+              only: /.*/
+      - deploy-npm:
+          context: org-global
+          requires:
+            - test
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
+      - deploy-docker:
+          context: org-global
+          requires:
+            - deploy-npm
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
