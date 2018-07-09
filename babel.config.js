@@ -60,16 +60,6 @@ module.exports = {
       {
         extensions: ['.less'],
         generateScopedName: '[path][name]__[local]',
-        ...(process.env.NODE_ENV === 'test'
-          ? {}
-          : {
-              keepImport: true,
-              extractCss: {
-                dir: './lib/',
-                relativeRoot: './src/',
-                filename: '[path]/[name].less',
-              },
-            }),
       },
     ],
   ],
@@ -87,6 +77,19 @@ module.exports = {
             alias: {
               __toolMeepUI__: './',
               tool: './tool',
+            },
+          },
+        ],
+        [
+          'css-modules-transform',
+          {
+            extensions: ['.less'],
+            generateScopedName: '[path][name]__[local]',
+            keepImport: process.env.NODE_ENV === 'production',
+            extractCss: {
+              dir: './packages/meep-ui/lib',
+              relativeRoot: './packages/meep-ui/src',
+              filename: '[path]/[name].less',
             },
           },
         ],
