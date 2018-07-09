@@ -1,0 +1,57 @@
+import image from 'image';
+import iframe from 'iframe';
+import googlemap from 'googleMap';
+import carousel from 'carousel';
+import divider from 'divider';
+import facebookWall from 'facebookWall';
+import landingPage from 'landingPage';
+import socialThumbs from 'socialThumbs';
+import imagetext from 'imageText';
+import socailMedia from 'socialMedia';
+import thankYouPage from 'thankYouPage';
+import videoCore from 'videoCore';
+import productCollections from 'productCollection';
+import productCarousell from 'productCarousel';
+import productInfo from 'productInfo';
+import fixedTop from 'fixedTop';
+import secondTop from 'secondTop';
+import products from 'productList';
+import productQA from 'productQA';
+import draftText from 'draftText';
+import activity from 'activity';
+import checkout from 'checkout';
+import menu from 'menu';
+import productSet from 'productSet';
+import forgotPassword from 'forgotPassword';
+import UnavailableComp from 'unavailableComp';
+
+export default {
+  image,
+  iframe,
+  googlemap,
+  carousel,
+  divider,
+  'facebook-wall': facebookWall,
+  'landing-page': landingPage,
+  'live-video': UnavailableComp,
+  'live-video-comments': UnavailableComp,
+  'product-html': iframe, // data of `htmlCode` from `componentProdutList -> info -> zh_TW`
+  'social-thumbs': socialThumbs,
+  imagetext,
+  'social-media': socailMedia,
+  'thank-you-page': thankYouPage,
+  'video-core': videoCore,
+  'product-collections': productCollections,
+  'product-carousell': productCarousell,
+  'product-info': productInfo,
+  'fixed-top': fixedTop,
+  'second-top': secondTop,
+  products,
+  'product-service': productQA,
+  'draft-text': draftText,
+  activity,
+  checkout,
+  menu,
+  product: productSet,
+  'forgot-password': forgotPassword,
+};

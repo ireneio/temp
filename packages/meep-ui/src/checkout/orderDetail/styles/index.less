@@ -1,0 +1,106 @@
+@import "./../../../styles";
+
+.root {
+  display: flex;
+
+  @media @PHONE_MEDIA {
+    display: block;
+    padding: 60px 0px 0px;
+  }
+}
+
+/** phone size style */
+.phoneSizeHeader {
+  display: none;
+
+  @media @PHONE_MEDIA {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    z-index: 10;
+  }
+}
+
+.headerButton {
+  padding: 15px;
+  cursor: pointer;
+}
+
+.headerIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.phoneSizeInfo {
+  display: none;
+
+  @media @PHONE_MEDIA {
+    display: block;
+    font-size: 20px;
+  }
+}
+
+.phoneSizeWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0px 40px;
+  padding: 20px 0px;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/** default style */
+.fields {
+  display: flex;
+  width: calc(100% - 560px);
+}
+
+.wrapper {
+  margin: 40px auto;
+  width: 60%;
+
+  @media @PHONE_MEDIA {
+    width: calc(100% - 25px * 2);
+  }
+}
+
+.block {
+  margin: 0px 0px 60px;
+}
+
+.title {
+  font-size: 18px;
+  margin: 0px 0px 5px;
+  padding: 0px 3px;
+}
+
+.formItem {
+  margin: 0px;
+  padding: 7px 3px;
+  width: 100%;
+}
+
+.points {
+  margin: 13px 0px 0px;
+  padding: 14px 16px;
+  border-radius: 2px;
+}
+
+.submitButtonRoot {
+  width: 150px;
+
+  @media @PHONE_MEDIA {
+    display: none;
+  }
+}
+
+.submitButton {
+  width: 100%;
+  height: 50px;
+}

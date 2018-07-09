@@ -5,7 +5,7 @@ module.exports = {
     'airbnb',
     'plugin:prettier/recommended',
   ],
-  global: {
+  globals: {
     FB: true,
   },
   parser: 'babel-eslint',
@@ -14,9 +14,7 @@ module.exports = {
     node: true,
     jest: true,
   },
-  plugins: [
-    'import',
-  ],
+  plugins: ['import'],
   settings: {
     'import/resolver': {
       node: {},
@@ -26,12 +24,16 @@ module.exports = {
   rules: {
     'max-len': 'off',
     'no-console': 'off',
-    'no-warning-comments': ['warn', {
-      terms: ['todo', 'fixme'],
-      location: 'anywhere',
-    }],
+    'no-warning-comments': [
+      'warn',
+      {
+        terms: ['todo', 'fixme'],
+        location: 'anywhere',
+      },
+    ],
 
     'react/jsx-filename-extension': 'off',
+    'react/jsx-indent': 'off',
 
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',

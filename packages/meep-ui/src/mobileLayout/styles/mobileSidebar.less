@@ -1,0 +1,99 @@
+@SIDEBAR_WIDTH: 280px;
+
+.root {
+  display: flex;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: calc(100% + @SIDEBAR_WIDTH);
+  height: 100%;
+  z-index: 991;
+  animation: x 0.3s ease-in-out;
+
+  &.show {
+    @keyframes sidebar-show-animation {
+      from {
+        transform: translateX(calc(-1 * @SIDEBAR_WIDTH));
+      }
+      to {
+        transform: translateX(0px);
+      }
+    }
+
+    transform: translateX(0px);
+    animation-name: sidebar-show-animation;
+  }
+
+  &.hide {
+    @keyframes sidebar-hide-animation {
+      from {
+        transform: translateX(0px);
+      }
+      to {
+        transform: translateX(calc(-1 * @SIDEBAR_WIDTH));
+      }
+    }
+
+    transform: translateX(calc(-1 * @SIDEBAR_WIDTH));
+    animation-name: sidebar-hide-animation;
+  }
+}
+
+.sidebar {
+  width: @SIDEBAR_WIDTH;
+  height: 100%;
+  min-height: initial;
+  overflow: scroll;
+}
+
+.iconWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:first-child {
+    margin: 0px 0px 0px 25px;
+  }
+
+  &> svg {
+    padding: 20px;
+    width: 65px;
+    height: 65px;
+    cursor: pointer;
+  }
+}
+
+.hideBlock {
+  width: calc(100% - @SIDEBAR_WIDTH);
+  height: 100%;
+  cursor: pointer;
+  animation: x 0.3s ease-in-out;
+
+  &.show {
+    @keyframes hideBlock-show-animation {
+      from {
+        background: rgba(0, 0, 0, 0);
+      }
+      to {
+        background: rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    background: rgba(0, 0, 0, 0.2);
+    animation-name: hideBlock-show-animation;
+  }
+
+  &.hide {
+    @keyframes hideBlock-hide-animation {
+      from {
+        background: rgba(0, 0, 0, 0.2);
+      }
+      to {
+        background: rgba(0, 0, 0, 0);
+      }
+    }
+
+    background: rgba(0, 0, 0, 0);
+    animation-name: hideBlock-hide-animation;
+  }
+}

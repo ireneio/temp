@@ -1,0 +1,144 @@
+@import "./../../../styles";
+
+.root {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  width: calc(100vw + 560px);
+  height: 100%;
+  animation: x 0.3s ease-in-out;
+  overflow: hidden;
+  z-index: 991;
+  @media @PHONE_MEDIA {
+    width: 200vw;
+  }
+
+  &.show {
+    @keyframes root-show-animation {
+      from {
+        transform: translateX(0px);
+        background: rgba(0, 0, 0, 0);
+      }
+      to {
+        transform: translateX(-560px);
+        background: rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    transform: translateX(-560px);
+    background: rgba(0, 0, 0, 0.2);
+    animation-name: root-show-animation;
+    @media @PHONE_MEDIA {
+      @keyframes root-phone-show-animation {
+        from {
+          transform: translateX(0px);
+          background: rgba(0, 0, 0, 0);
+        }
+        to {
+          transform: translateX(-100vw);
+          background: rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      transform: translateX(-100vw);
+      background: rgba(0, 0, 0, 0.2);
+      animation-name: root-phone-show-animation;
+    }
+  }
+
+  &.hide {
+    @keyframes root-hide-animation {
+      from {
+        transform: translateX(-560px);
+        background: rgba(0, 0, 0, 0.2);
+      }
+      to {
+        transform: translateX(0px);
+        background: rgba(0, 0, 0, 0);
+      }
+    }
+
+    transform: translateX(0px);
+    background: rgba(0, 0, 0, 0);
+    animation-name: root-hide-animation;
+    @media @PHONE_MEDIA {
+      @keyframes root-phone-hide-animation {
+        from {
+          transform: translateX(-100vw);
+          background: rgba(0, 0, 0, 0.2);
+        }
+        to {
+          transform: translateX(0px);
+          background: rgba(0, 0, 0, 0);
+        }
+      }
+
+      transform: translateX(0px);
+      background: rgba(0, 0, 0, 0);
+      animation-name: root-phone-hide-animation;
+    }
+  }
+}
+
+.background {
+  position: relative;
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.angleRightIcon {
+  position: absolute;
+  top: calc(50% - 35px);
+  right: 0px;
+  padding: 0px 0px 0px 10px;
+  width: 35px;
+  height: 70px;
+  border-radius: 70px 0 0 70px;
+  cursor: pointer;
+}
+
+.sidebar {
+  width: 560px;
+  height: 100%;
+  box-shadow: 0px 0px 8px 0px rgba(100, 100, 100, 0.5);
+  cursor: initial;
+  overflow-y: scroll;
+  @media @PHONE_MEDIA {
+    width: 100vw;
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  &.hasMinHeight {
+    min-height: 600px;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 25px;
+  padding: 20px 0px;
+  @media @PHONE_MEDIA {
+    margin: 0px;
+    padding: 20px 10px;
+  }
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
