@@ -64,7 +64,11 @@ export default class Category extends React.Component {
               }
             >
               {items.map((item, index) => (
-                <Select.Option key={item.id} value={index}>
+                <Select.Option
+                  key={item.id}
+                  value={index}
+                  title={transformLocale(item.data.title)}
+                >
                   {transformLocale(item.data.title)}
                 </Select.Option>
               ))}

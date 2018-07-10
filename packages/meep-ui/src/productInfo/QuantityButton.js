@@ -96,7 +96,7 @@ export default class QuantityButton extends React.Component {
         return (
           <Select
             showSearch
-            style={{ width: 200 }}
+            dropdownMatchSelectWidth={false}
             dropdownClassName={name}
             value={quantity}
             onChange={onChangeQuantity}
@@ -133,6 +133,7 @@ export default class QuantityButton extends React.Component {
 
       return (
         <Select
+          dropdownMatchSelectWidth={false}
           dropdownClassName={name}
           onChange={onChangeQuantity}
           value={quantity}
