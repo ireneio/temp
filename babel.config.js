@@ -95,16 +95,5 @@ module.exports = {
         ],
       ],
     },
-    {
-      test: './packages/store',
-      presets: ['next/babel'],
-      plugins: [
-        'module-resolver',
-        {
-          root: ['./packages/store/src'],
-          cwd: process.cwd(),
-        },
-      ],
-    },
   ],
 };

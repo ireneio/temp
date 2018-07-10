@@ -4,9 +4,9 @@
   "version": "0.0.1",
   "description": "store for meepshop",
   "scripts": {
-    "dev": "node src/server/server.js",
     "postinstall": "patch-package",
-    "build": "next build ./src",
+    "dev": "node src/server/server.js",
+    "prod": "next build ./src",
     "start": "NODE_ENV=production node src/server/server.js"
   },
   "keywords": [

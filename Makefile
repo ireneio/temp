@@ -10,8 +10,8 @@ babel-clean:
 	rm -rf ./lib ./packages/**/lib
 
 release:
-	@yarn lerna publish --skip-npm --skip-git --repo-version ${VERSION}
-	@yarn lerna-changelog && \
+	@npm run lerna publish --skip-npm --skip-git --repo-version ${VERSION}
+	@npm run lerna-changelog && \
 		read -p "Input any word..." && \
 		vim CHANGELOG.md && \
 		git add . && \
@@ -25,6 +25,7 @@ clean-all:
 	rm -rf ./.eslintcache
 	rm -rf ./.changelog
 	rm -rf ./*.log
+	rm -rf ./packages/**/src/.next
 
 define babel-build
 	yarn babel $(1)/src --out-dir $(1)/lib

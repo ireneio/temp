@@ -9,7 +9,9 @@
     "install:all": "npm install && lerna bootstrap",
     "lint": "esw --cache --ext .js",
     "prettier": "prettier",
-    "prod": "NODE_ENV=production make babel-all",
+    "lerna": "lerna",
+    "lerna-changelog": "lerna-changelog",
+    "prod": "NODE_ENV=production make babel-all && lerna run prod",
     "release": "make release",
     "test": "NODE_ENV=test jest --silent"
   },

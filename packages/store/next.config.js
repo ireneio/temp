@@ -46,6 +46,9 @@ module.exports = withSourceMaps(
               reportFilename: '../../analyzer/client.html',
             },
           },
+          lessLoaderOptions: {
+            javascriptEnabled: true,
+          },
           webpack: (config, { dev }) => {
             if (!dev) {
               config.devtool = 'source-map'; // eslint-disable-line
