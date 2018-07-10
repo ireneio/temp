@@ -4,6 +4,10 @@ export const root = {
 };
 
 export const Style = {
+  '*': {
+    wordBreak: 'break-all',
+  },
+
   p: {
     marginBottom: 0,
   },

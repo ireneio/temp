@@ -1,3 +1,25 @@
+export const COLORS = [
+  'black',
+  'white',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'blue',
+  'purple',
+];
+
+export const HEX_COLORS = [
+  '#000000',
+  '#ffffff',
+  '#ff0000',
+  '#ffa500',
+  '#ffff00',
+  '#008000',
+  '#0000ff',
+  '#800080',
+];
+
 export const FONTFAMILY = [
   'Arial',
   'Arial Black',

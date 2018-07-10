@@ -6,7 +6,7 @@ import areEqual from 'fbjs/lib/areEqual';
 
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 
-import { FONTFAMILY } from './constants';
+import { COLORS, HEX_COLORS, FONTFAMILY } from './constants';
 
 import * as styles from './styles';
 
@@ -39,31 +39,37 @@ export default class DraftText extends React.Component {
           switch (block.type) {
             case 'align-left':
               newBlock.data = { 'text-align': 'left' };
-              delete newBlock.type;
+              newBlock.type = 'unstyled';
               break;
             case 'align-center':
               newBlock.data = { 'text-align': 'center' };
-              delete newBlock.type;
+              newBlock.type = 'unstyled';
               break;
             case 'align-right':
               newBlock.data = { 'text-align': 'right' };
-              delete newBlock.type;
+              newBlock.type = 'unstyled';
+              break;
+            case 'unstyled':
+              newBlock.type = '';
               break;
             default:
-              newBlock.data = {};
           }
           rawContent.blocks[blockIndex] = newBlock;
 
           block.inlineStyleRanges.forEach((inline, inlineIndex) => {
             let newStyle = inline.style;
+            if (newStyle.startsWith('#') && newStyle.length === 7) {
+              newStyle = `color-${newStyle.substr(0, 7)}`;
+            }
+            const colorIndex = COLORS.indexOf(newStyle);
+            if (colorIndex > -1) {
+              newStyle = `color-${HEX_COLORS[colorIndex]}`;
+            }
             if (FONTFAMILY.indexOf(newStyle) > -1) {
               newStyle = `fontfamily-${newStyle}`;
             }
             if (newStyle.startsWith('FONTSIZE-')) {
               newStyle = newStyle.toLowerCase();
-            }
-            if (newStyle.startsWith('#') && newStyle.length === 7) {
-              newStyle = `color-${newStyle.substr(0, 7)}`;
             }
             rawContent.blocks[blockIndex].inlineStyleRanges[
               inlineIndex
