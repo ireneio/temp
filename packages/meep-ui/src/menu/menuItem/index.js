@@ -76,21 +76,24 @@ export default class MenuItem extends React.PureComponent {
     isClicked: false,
   };
 
-  click = () => {
-    const { toggleCart, action, menuItemClick } = this.props;
+  click = subItemPages => () => {
+    const { toggleCart, action, menuItemClick, expandSubItem } = this.props;
     const { isClicked } = this.state;
     const bodyDOM = document.querySelector('body');
 
     if (action !== 5) {
-      if (!isClicked) {
-        menuItemClick();
-        this.setState({ isClicked: true });
-        if (PHONE_MEDIA_WIDTH > bodyDOM.offsetWidth) {
-          bodyDOM.style.overflow = 'hidden';
+      if (!expandSubItem && subItemPages.length !== 0) {
+        if (!isClicked) {
+          menuItemClick();
+          this.setState({ isClicked: true });
+          if (PHONE_MEDIA_WIDTH > bodyDOM.offsetWidth) {
+            bodyDOM.style.overflow = 'hidden';
+          }
+        } else if (PHONE_MEDIA_WIDTH > bodyDOM.offsetWidth) {
+          bodyDOM.style.overflow = 'initial';
         }
-      } else if (PHONE_MEDIA_WIDTH > bodyDOM.offsetWidth) {
-        bodyDOM.style.overflow = 'initial';
       }
+
       return;
     }
 
@@ -122,7 +125,7 @@ export default class MenuItem extends React.PureComponent {
         style={styles.root(expandSubItem, height)}
         onMouseEnter={() => this.setState({ isHover: true })}
         onMouseLeave={() => this.setState({ isHover: false, isClicked: false })}
-        onClick={this.click}
+        onClick={this.click(subItemPages)}
       >
         <Link
           href={url}

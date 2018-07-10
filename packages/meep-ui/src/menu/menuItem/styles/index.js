@@ -10,10 +10,13 @@ export const root = (isExpandSubItem, minHeight) => [
 
   isExpandSubItem
     ? {
-        maxWidth: 200,
+        maxWidth: '200px',
         padding: '15px 20px',
         textAlign: 'left',
         lineHeight: 1.5,
+        [PHONE_MEDIA]: {
+          flex: '1 1 0px',
+        },
       }
     : {
         display: 'flex',
