@@ -95,6 +95,7 @@ export default class QuantityButton extends React.Component {
 
         return (
           <Select
+            style={{ minWidth: '60px' }}
             showSearch
             dropdownMatchSelectWidth={false}
             dropdownClassName={name}
@@ -112,7 +113,11 @@ export default class QuantityButton extends React.Component {
               <Select.Option value={result}>{result}</Select.Option>
             ) : (
               vision.concat([
-                <Select.Option key="MORE" disabled>
+                <Select.Option
+                  key="MORE"
+                  title={transformLocale(LOCALE.MORE_OPTIONS)}
+                  disabled
+                >
                   {transformLocale(LOCALE.MORE_OPTIONS)}
                 </Select.Option>,
               ])

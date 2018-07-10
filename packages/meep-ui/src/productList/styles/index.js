@@ -24,9 +24,10 @@ export const listStyle = colors => ({
     color: colors[3],
   },
   '.ant-select-dropdown-menu': {
-    backgroundColor: colors[0],
+    borderRadius: '4px',
   },
   '.ant-select-dropdown-menu li': {
+    backgroundColor: colors[0],
     color: colors[3],
   },
   '.ant-select-dropdown-menu-item:hover': {

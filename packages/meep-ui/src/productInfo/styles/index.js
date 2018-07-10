@@ -16,8 +16,14 @@ export const infoStyle = colors => ({
   '.ant-select-selection__rendered': {
     overflow: 'hidden',
   },
+  '.ant-select-search--inline': {
+    width: 'calc(100% - 12px)',
+  },
   '.ant-select-arrow': {
     color: colors[3],
+  },
+  '.ant-select-dropdown-menu': {
+    borderRadius: '4px',
   },
   '.ant-select-dropdown-menu li': {
     backgroundColor: colors[0],
