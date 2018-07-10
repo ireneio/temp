@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: next-store
+  labels:
+    app: next-store
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: next-store
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: next-store
+        image: asia.gcr.io/instant-matter-785/next-store:{{ build.tag }}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 14401
+          initialDelaySeconds: 15
+          periodSeconds: 3
+        resources:
+          limits:
+            cpu: "0.2"
+            memory: "300Mi"
+          requests:
+            cpu: "0.1"
+            memory: "150Mi"
+        env:
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: cm-store
+              key: node.env
+        - name: API_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: cm-store
+              key: api.host
+        - name: API_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: cm-store
+              key: api.port
+        ports:
+        - containerPort: 14401
+          name: http-port

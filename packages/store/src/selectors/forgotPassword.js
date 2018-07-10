@@ -1,0 +1,72 @@
+import { createSelector } from 'reselect';
+import { sidebar, fixedtop, secondtop, fixedbottom } from 'template';
+import {
+  getMenus,
+  getLogoUrl,
+  getMobileLogoUrl,
+  getLocaleItemsTemplate,
+  getCurrencyItemsTemplate,
+  getJoinedPage,
+} from './index';
+
+const getForgotPasswordPage = (state, props) => {
+  const { token } = props;
+  return {
+    id: 'page-forgot-password',
+    title: {
+      en_US: 'Reset Password',
+      zh_TW: '重置密碼',
+    },
+    container: 'TwoTopsContainer',
+    blocks: [
+      {
+        id: 'block-forgot-password',
+        width: 100,
+        componentWidth: 0,
+        padding: 0,
+        widgets: [
+          {
+            widgets: [
+              {
+                id: 'forgot-password',
+                module: 'forgot-password',
+                token,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    fixedtop,
+    secondtop,
+    fixedbottom,
+    sidebar,
+  };
+};
+
+export const getJoinedForgotPasswordPage = createSelector(
+  [
+    getForgotPasswordPage,
+    getMenus,
+    getLogoUrl,
+    getMobileLogoUrl,
+    getLocaleItemsTemplate,
+    getCurrencyItemsTemplate,
+  ],
+  (
+    page,
+    menus,
+    logoUrl,
+    mobileLogoUrl,
+    localeItemsTemplate,
+    currencyItemsTemplate,
+  ) =>
+    getJoinedPage(
+      page,
+      menus,
+      logoUrl,
+      mobileLogoUrl,
+      localeItemsTemplate,
+      currencyItemsTemplate,
+    ),
+);

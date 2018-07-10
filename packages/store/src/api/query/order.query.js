@@ -1,0 +1,209 @@
+const _productsQuery = `{
+  id
+  type
+  productId
+  variantId
+  quantity
+  discountId
+  title {
+    zh_TW
+    en_US
+  }
+  specs {
+    title {
+      zh_TW
+    }
+  }
+  sku
+  vendorSku
+  warehouseNumber
+  listPrice
+  retailPrice
+  cost
+  stock
+  quantity
+  weight {
+    weight
+    unit
+  }
+  size {
+    width
+    height
+    depth
+    unit
+  }
+  galleryInfo {
+    media
+    mainId
+  }
+  orderStatus
+  shippedCount
+  _error
+}`;
+
+const _recipientQuery = `{
+  name
+  mobile
+  tel
+  comment
+  email
+  receiverStoreID
+  receiverStoreName
+  receiverStoreAddress
+  address {
+    country
+    streetAddress
+    postalCode
+    yahooCode {
+      country
+      city
+      county
+    }
+  }
+}`;
+
+const _paymentsQuery = `{
+  paymentId
+  template
+  name
+  price
+  description
+}`;
+
+const _shipmenstQuery = `{
+  shipmentId
+  template
+  name
+  description
+  priceRule {
+    method
+    fix
+  }
+}`;
+
+const orderQuery = `{
+  id
+  orderNo
+  status
+  userInfo {
+    name
+    email
+    mobile
+    tel
+  }
+  categories {
+    id
+    tag
+    products ${_productsQuery}
+    payments ${_paymentsQuery}
+    shipments ${_shipmenstQuery}
+  }
+  shipmentInfo {
+    list {
+      name
+      number
+      description
+      shipmentId
+      recipient ${_recipientQuery}
+      storeShipmentDetails {
+        id
+        searchLink
+      }
+    }
+    status
+  }
+  paymentInfo {
+    list {
+      id
+      paymentId
+      name
+      template
+      description
+      accountInfo {
+        allpay {
+          ChoosePayment
+        }
+        gmo {
+          paymentType
+          contractCode
+        }
+        ezpay {
+          merchantNumber
+          ezpayPaymentType
+        }
+      }
+      memo {
+        allpay {
+          BankCode
+          vAccount
+          ExpireDate
+          PaymentNo
+          Barcode1
+          Barcode2
+          Barcode3
+        }
+        ezpay {
+          storeName
+          merchantNumber
+          orderNumber
+          amount
+          paycode
+          paymentType
+          error
+          expireDate
+        }
+      }
+    }
+    status
+  }
+  environment {
+    userAgent {
+      browserName
+      browserVersion
+      os
+      deviceModel
+      deviceType
+    }
+    domain
+    locale
+    currency
+    exchangeRate
+  }
+  activityInfo {
+    plugin
+    discountPrice
+    id
+    title {
+      zh_TW
+      en_US
+    }
+  }
+  priceInfo {
+    currency
+    discount
+    orderDiscount
+    productDiscount
+    productPrice
+    paymentFee
+    shipmentFee
+    total
+    cost
+  }
+  invoiceInfo{
+    invoiceType
+    invoiceTitle
+    invoiceVAT
+    donateUnit
+    streetAddress
+    vehicleType
+    citizenDigitalCertificate
+    mobileBarcode
+  }
+  note
+  paidMessage {
+    note
+  }
+  createdOn
+}`;
+
+export default orderQuery;
