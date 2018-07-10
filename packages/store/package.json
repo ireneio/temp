@@ -5,9 +5,7 @@
   "description": "store for meepshop",
   "scripts": {
     "dev": "node src/server/server.js",
-    "postinstall": "cp -r ./node_modules/@meepshop/meep-ui/patches/* ./patches/ && patch-package",
-    "lint": "eslint --cache ./ --ext .js",
-    "lint:watch": "esw --cache ./ --ext .js -w --color",
+    "postinstall": "patch-package",
     "build": "next build ./src",
     "start": "NODE_ENV=production node src/server/server.js"
   },
@@ -29,7 +27,6 @@
     "express": "^4.16.3",
     "htmlescape": "^1.1.1",
     "isomorphic-unfetch": "^2.0.0",
-    "less": "^3.0.4",
     "next": "^6.0.3",
     "next-images": "^0.10.2",
     "next-redux-saga": "^3.0.0-beta.1",
@@ -48,7 +45,7 @@
   },
   "devDependencies": {
     "@zeit/next-bundle-analyzer": "^0.1.1",
-    "moment-locales-webpack-plugin": "^1.0.5",
-    "patch-package": "^5.1.1"
+    "less": "^3.0.4",
+    "moment-locales-webpack-plugin": "^1.0.5"
   }
 }

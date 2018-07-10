@@ -17,3 +17,6 @@ coverage
 
 # lerna-changelog
 .changelog
+
+# next
+.next
