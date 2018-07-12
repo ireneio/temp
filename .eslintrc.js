@@ -4,6 +4,7 @@ module.exports = {
     'plugin:react/recommended',
     'airbnb',
     'plugin:prettier/recommended',
+    'prettier/react',
   ],
   globals: {
     FB: true,

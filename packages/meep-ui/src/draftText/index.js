@@ -27,6 +27,8 @@ export default class DraftText extends React.Component {
     super(props);
 
     this.getFormattedEditorState = value => {
+      if (value.indexOf('entityMap') < 0) return null;
+
       let editorState;
       if (value) {
         editorState = EditorState.createWithContent(
@@ -108,12 +110,20 @@ export default class DraftText extends React.Component {
   }
 
   render() {
-    const { plainText, style } = this.props;
+    const { value, plainText, style } = this.props;
     const { editorState } = this.state;
-    const html = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-    const text = editorState.getCurrentContent().getPlainText();
 
-    if (plainText) return <div>{text}</div>;
+    if (plainText) {
+      const text = editorState
+        ? editorState.getCurrentContent().getPlainText()
+        : value.replace(/<(?:.|\n)*?>/gm, '');
+      return <div>{text}</div>;
+    }
+
+    const html = editorState
+      ? draftToHtml(convertToRaw(editorState.getCurrentContent()))
+      : value;
+
     return (
       <div className="draft-text" style={[styles.root, style]}>
         <Style scopeSelector=".draft-text" rules={styles.Style} />
