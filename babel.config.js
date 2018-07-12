@@ -60,6 +60,12 @@ module.exports = {
       {
         extensions: ['.less'],
         generateScopedName: '[path][name]__[local]',
+        keepImport: process.env.NODE_ENV !== 'test',
+        extractCss: {
+          dir: './lib',
+          relativeRoot: './src',
+          filename: '[path]/[name].less',
+        },
       },
     ],
   ],
@@ -67,33 +73,11 @@ module.exports = {
   overrides: [
     {
       test: './packages/meep-ui',
-      plugins: [
-        '@babel/plugin-proposal-export-default-from',
-        [
-          'module-resolver',
-          {
-            root: ['./packages/meep-ui/src'],
-            cwd: process.cwd(),
-            alias: {
-              __toolMeepUI__: './',
-              tool: './tool',
-            },
-          },
-        ],
-        [
-          'css-modules-transform',
-          {
-            extensions: ['.less'],
-            generateScopedName: '[path][name]__[local]',
-            keepImport: process.env.NODE_ENV === 'production',
-            extractCss: {
-              dir: './lib',
-              relativeRoot: './src',
-              filename: '[path]/[name].less',
-            },
-          },
-        ],
-      ],
+      plugins: ['@babel/plugin-proposal-export-default-from'],
+    },
+    {
+      test: './packages/store',
+      presets: ['next/babel'],
     },
   ],
 };

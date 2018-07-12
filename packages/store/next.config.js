@@ -49,13 +49,21 @@ module.exports = withSourceMaps(
           lessLoaderOptions: {
             javascriptEnabled: true,
           },
+          /* eslint-disable no-param-reassign */
           webpack: (config, { dev }) => {
             if (!dev) {
-              config.devtool = 'source-map'; // eslint-disable-line
+              config.devtool = 'source-map';
             }
+
+            config.module.rules.find(
+              ({ use: { loader } }) => loader === 'next-babel-loader',
+            ).use.options.configFile =
+              '../../babel.config.js';
+
             config.plugins.push(new MomentLocalesPlugin());
             return config;
           },
+          /* eslint-enable no-param-reassign */
         }),
       ),
     ),

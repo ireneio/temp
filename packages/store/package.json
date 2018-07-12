@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "description": "store for meepshop",
   "scripts": {
+    "postinstall": "patch-package",
     "dev": "node src/server/server.js",
     "prod": "next build ./src",
     "start": "NODE_ENV=production node src/server/server.js"
@@ -39,7 +40,6 @@
     "@zeit/next-css": "^0.2.0",
     "@zeit/next-less": "^0.3.0",
     "@zeit/next-source-maps": "0.0.2",
-    "moment-locales-webpack-plugin": "^1.0.5",
-    "next": "^6.0.3"
+    "moment-locales-webpack-plugin": "^1.0.5"
   }
 }

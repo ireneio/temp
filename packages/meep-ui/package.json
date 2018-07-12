@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "meep-ui for meepshop",
   "scripts": {
+    "dev": "rm -rf ./lib && mkdir ./lib && yarn prod && babel src -d lib --config-file ../../babel.config.js -w",
     "prod": "cp ./src/styles.less ./lib/"
   },
   "keywords": [
