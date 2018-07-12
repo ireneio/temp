@@ -1,6 +1,8 @@
 export const PLEASE_SELECT_ACTIVITY = {
   zh_TW: '請選擇適用的折扣活動',
-  en_US: '',
+  en_US: 'Activity not found',
+  ja_JP: 'エラーが発生しました',
+  vi_VN: 'Bị lỗi',
 };
 
 /**  Product */

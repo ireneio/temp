@@ -87,7 +87,7 @@ export const SUBMIT = {
 };
 
 export const NAME_IS_REQUIRED = {
-  zh_TW: '請輸入名稱',
+  zh_TW: '請輸入姓名',
   en_US: 'Full Name is required.',
   ja_JP: '氏名を入力してください',
   vi_VN: 'Xin nhập họ tên',
@@ -96,12 +96,16 @@ export const NAME_IS_REQUIRED = {
 
 export const AREA_IS_REQUIRED = {
   zh_TW: '請選擇地區',
-  en_US: '',
+  en_US: 'Country is required.',
+  ja_JP: '国または地域を選んでください',
+  vi_VN: 'Vui lòng chọn khu vực',
   TODO_LOCALE: true,
 };
 
 export const STREET_IS_REQUIRED = {
-  zh_TW: '請輸入街道',
-  en_US: 'Please enter street.',
+  zh_TW: '請輸入地址',
+  en_US: 'Address is required.',
+  ja_JP: 'ご住所を入力してください',
+  vi_VN: 'Vui lòng nhập địa chỉ',
   TODO_LOCALE: true,
 };
