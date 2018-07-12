@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import moment from 'moment';
-import { enhancer } from 'layout/DecoratorsRoot';
+import { enhancer } from 'layout';
 import { Table } from 'antd';
 
 import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
@@ -129,7 +129,12 @@ export default class MemberPoints extends React.PureComponent {
       transformLocale,
       transformCurrency,
     } = this.props;
-    const total = userPoints.reduce((pre, cur) => pre + cur.points, 0);
+    const nowTime = parseInt(new Date() / 1000, 10);
+    const total = userPoints.reduce((pre, cur) => {
+      const { endTime, points } = cur;
+      if (endTime && endTime <= nowTime) return pre;
+      return pre + points;
+    }, 0);
 
     return (
       <StyleRoot className="member-points" style={styles.root}>
