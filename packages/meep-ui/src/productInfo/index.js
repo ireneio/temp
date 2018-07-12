@@ -5,7 +5,7 @@ import warning from 'fbjs/lib/warning';
 import areEqual from 'fbjs/lib/areEqual';
 import { Modal } from 'antd';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER, NOTLOGIN, ISADMIN } from 'constants/isLogin';
 import buildVariantsTree from 'utils/buildVariantsTree';

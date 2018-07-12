@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import areEqual from 'fbjs/lib/areEqual';
 import moment from 'moment';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 
 import { TIME_FORMAT } from './constants';
 import * as LOCALE from './locale';

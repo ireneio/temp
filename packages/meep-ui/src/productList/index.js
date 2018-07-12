@@ -5,7 +5,7 @@ import areEqual from 'fbjs/lib/areEqual';
 import queryString from 'query-string';
 import { Modal, Pagination, Select, Icon } from 'antd';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import {
   ID_TYPE,
   COLOR_TYPE,

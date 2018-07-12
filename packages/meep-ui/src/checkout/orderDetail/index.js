@@ -7,7 +7,7 @@ import ChevronLeftIcon from 'react-icons/lib/md/chevron-left';
 import ChevronRightIcon from 'react-icons/lib/md/chevron-right';
 import transformColor from 'color';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import {
   COLOR_TYPE,
   COUNTRY_TYPE,

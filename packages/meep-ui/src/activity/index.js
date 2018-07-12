@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import areEqual from 'fbjs/lib/areEqual';
 
 import { ID_TYPE } from 'constants/propTypes';

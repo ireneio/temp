@@ -4,7 +4,7 @@ import radium, { Style, StyleRoot } from 'radium';
 import { Form, Button, Divider, notification } from 'antd';
 import moment from 'moment';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import CreditCardFormItem from 'creditCardFormItem';
 import {
   ID_TYPE,

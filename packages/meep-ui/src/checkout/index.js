@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { LOCATION_TYPE } from 'constants/propTypes';
 import findDOMTop from 'utils/findDOMTop';
 

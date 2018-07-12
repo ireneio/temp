@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
 import { COLOR_TYPE, ISLOGIN_TYPE, LOCATION_TYPE } from 'constants/propTypes';
 import { PHONE_MEDIA_WIDTH } from 'constants/media';

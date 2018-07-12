@@ -4,7 +4,7 @@ import radium, { Style, StyleRoot } from 'radium';
 import { Table, Input, Select, Button, message } from 'antd';
 import moment from 'moment';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
 import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
 

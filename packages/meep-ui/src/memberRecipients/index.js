@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { Row, Form, Table, Input, Button, Divider } from 'antd';
 
 import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';

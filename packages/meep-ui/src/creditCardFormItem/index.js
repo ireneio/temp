@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import EditIcon from 'react-icons/lib/fa/edit';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, PAYMENT_TEMPLATE_TYPE } from 'constants/propTypes';
 
 import Form from './Form';

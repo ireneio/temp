@@ -4,7 +4,7 @@ import radium from 'radium';
 import AngleRightIcon from 'react-icons/lib/fa/angle-right';
 import AngleDownIcon from 'react-icons/lib/fa/angle-down';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
 import { ISLOGIN_TYPE, LOCATION_TYPE, COLOR_TYPE } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';

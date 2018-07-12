@@ -10,8 +10,6 @@ import ContainerSwitch from './ContainerSwitch';
 import { SPECIAL_HIDE_FOOTER } from './constants';
 import * as styles from './styles';
 
-export { enhancer } from './DecoratorsRoot';
-
 @radium
 export default class Layout extends React.PureComponent {
   /*

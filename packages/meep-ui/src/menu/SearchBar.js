@@ -4,7 +4,7 @@ import radium from 'radium';
 import { Input } from 'antd';
 import SearchIcon from 'react-icons/lib/md/search';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 
 import { FONTSIZE_TYPE } from './constants';
 import * as styles from './styles/searchBar';

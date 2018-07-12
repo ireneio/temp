@@ -5,7 +5,7 @@ import { Modal, Divider, Icon, message } from 'antd';
 import moment from 'moment';
 import warning from 'fbjs/lib/warning';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
 import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
 import createFormData from 'utils/createFormData';

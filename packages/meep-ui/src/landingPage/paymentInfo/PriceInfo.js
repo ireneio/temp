@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, POSITIVE_NUMBER_TYPE } from 'constants/propTypes';
 
 import * as LOCALE from './locale';

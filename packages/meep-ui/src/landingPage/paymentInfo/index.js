@@ -4,7 +4,7 @@ import { Form, Select, InputNumber, Cascader } from 'antd';
 import getElementPosition from 'fbjs/lib/getElementPosition';
 import uuid from 'uuid';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import PaymentDefaultFormItem from 'paymentDefaultFormItem';
 import {
   ID_TYPE,

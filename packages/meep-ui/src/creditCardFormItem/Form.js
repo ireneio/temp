@@ -6,7 +6,7 @@ import moment from 'moment';
 import isInt from 'validator/lib/isInt';
 import isCreditCard from 'validator/lib/isCreditCard';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { ONE_OF_LOCALE_TYPE } from 'constants/propTypes';
 
 import CreditCardInput from './CreditCardInput';

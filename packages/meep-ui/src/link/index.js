@@ -4,7 +4,7 @@ import radium from 'radium';
 import URL from 'url-parse';
 import queryString from 'query-string';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { URL_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles';

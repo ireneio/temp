@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input } from 'antd';
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 
 import { ID_TYPE } from 'constants/propTypes';
 

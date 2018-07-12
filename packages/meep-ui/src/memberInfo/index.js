@@ -13,7 +13,7 @@ import {
 } from 'antd';
 import moment from 'moment';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import AddressCascader from '../addressCascader';
 import { USER_TYPE } from './constants';
 import * as LOCALE from './locale';

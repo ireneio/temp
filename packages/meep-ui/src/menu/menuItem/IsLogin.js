@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import PersonIcon from 'react-icons/lib/md/person';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { USER_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles/isLogin';

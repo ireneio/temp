@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Cascader } from 'antd';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { COUNTRY_TYPE } from 'constants/propTypes';
 import removeContextTpyesFromProps from 'utils/removeContextTpyesFromProps';
 

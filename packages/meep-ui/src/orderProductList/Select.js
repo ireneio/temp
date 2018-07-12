@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium, { Style } from 'radium';
 import { Select as AntdSelect } from 'antd';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import {
   ID_TYPE,
   COLOR_TYPE,

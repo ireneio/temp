@@ -6,7 +6,7 @@ import LockIcon from 'react-icons/lib/md/lock';
 import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart';
 import FacebookIcon from 'react-icons/lib/fa/facebook';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
 import TaiwansoapLogin from './special/TaiwansoapLogin';

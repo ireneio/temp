@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import areEqual from 'fbjs/lib/areEqual';
 import radium from 'radium';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles/cartCount';

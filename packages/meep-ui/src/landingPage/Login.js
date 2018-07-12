@@ -5,7 +5,7 @@ import { Form, Input, Button, Modal, notification } from 'antd';
 
 import LockIcon from 'react-icons/lib/md/lock';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
 import * as LOCALE from './locale';

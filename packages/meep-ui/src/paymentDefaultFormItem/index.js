@@ -5,7 +5,7 @@ import UserAgent from 'fbjs/lib/UserAgent';
 import radium from 'radium';
 import { Form, Select, Collapse } from 'antd';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
 
 import Coupon from './coupon';

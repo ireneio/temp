@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import areEqual from 'fbjs/lib/areEqual';
 import radium, { Style } from 'radium';
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { Modal } from 'antd';
 
 import {

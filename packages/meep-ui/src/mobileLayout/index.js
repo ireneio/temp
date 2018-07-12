@@ -4,7 +4,7 @@ import areEqual from 'fbjs/lib/areEqual';
 import radium, { StyleRoot } from 'radium';
 import BarsIcon from 'react-icons/lib/fa/bars';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import MenuItem from 'menu/menuItem';
 import Image from 'image';
 import { COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';

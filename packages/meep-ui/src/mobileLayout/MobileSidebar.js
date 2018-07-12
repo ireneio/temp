@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CloseIcon from 'react-icons/lib/fa/close';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
 import Sidebar from 'sidebar';
 import { COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';

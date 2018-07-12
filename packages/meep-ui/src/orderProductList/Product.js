@@ -4,7 +4,7 @@ import radium from 'radium';
 import RemoveIcon from 'react-icons/lib/md/close';
 import TagIcon from 'react-icons/lib/fa/tag';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
 import {
   ID_TYPE,

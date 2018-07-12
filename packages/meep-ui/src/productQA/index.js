@@ -5,7 +5,7 @@ import { Form, List, Input, Button, message } from 'antd';
 import { subdirectoryArrowRight as ArrowRightIcon } from 'react-icons/md';
 import moment from 'moment';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, ISLOGIN_TYPE, COLOR_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 

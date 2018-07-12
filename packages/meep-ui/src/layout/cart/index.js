@@ -7,7 +7,7 @@ import AngleRightIcon from 'react-icons/lib/fa/angle-right';
 import ArrowLeftIcon from 'react-icons/lib/md/keyboard-backspace';
 import CloseIcon from 'react-icons/lib/md/close';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
 import CartSwitch from './CartSwitch';

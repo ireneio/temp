@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Select } from 'antd';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 
 import { INVOICE_E_INVOICE, INVOICE_SEARCH_LINK } from './constants';
 import * as LOCALE from './locale';

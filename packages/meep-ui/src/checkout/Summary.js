@@ -7,7 +7,7 @@ import EditIcon from 'react-icons/lib/fa/edit';
 import TagIcon from 'react-icons/lib/fa/tag';
 import ArrowRightIcon from 'react-icons/lib/fa/arrow-right';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import OrderShowTotal from 'orderShowTotal';
 import {
   ISLOGIN_TYPE,

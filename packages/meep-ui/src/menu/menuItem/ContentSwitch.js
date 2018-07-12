@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { NOTLOGIN } from 'constants/isLogin';
 import { LOCALE_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 

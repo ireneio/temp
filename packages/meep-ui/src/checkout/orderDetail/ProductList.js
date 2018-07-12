@@ -4,7 +4,7 @@ import radium, { StyleRoot } from 'radium';
 import { Button } from 'antd';
 import CloseIcon from 'react-icons/lib/md/close';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 import { PHONE_MEDIA } from 'constants/media';
 import { loadAnimation } from 'utils/addAnimation';

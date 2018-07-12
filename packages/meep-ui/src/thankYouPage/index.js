@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { Progress, Button, message } from 'antd';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, LOCATION_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles';

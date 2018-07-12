@@ -6,7 +6,7 @@ import { Form, Input, Button } from 'antd';
 import uuid from 'uuid';
 import queryString from 'query-string';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import {
   ID_TYPE,
   LOCATION_TYPE,
