@@ -1,10 +1,10 @@
-BABEL_PACKAGES=meep-ui
+BABEL_IGNORE_PACKAGES=@meepshop/store
 
 babel-all:
 	@make babel-clean
-	@for package in $(BABEL_PACKAGES); do \
-	  $(call babel-build, ./packages/$$package); \
-		done
+	@yarn lerna exec --parallel \
+		--ignore ${BABEL_IGNORE_PACKAGES} \
+		"babel src -d lib --config-file ../../babel.config.js"
 
 babel-clean:
 	rm -rf ./lib ./packages/**/lib
@@ -26,7 +26,3 @@ clean-all:
 	rm -rf ./.changelog
 	rm -rf ./*.log
 	rm -rf ./packages/**/src/.next
-
-define babel-build
-	yarn babel $(1)/src --out-dir $(1)/lib
-endef

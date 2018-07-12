@@ -87,8 +87,8 @@ module.exports = {
             generateScopedName: '[path][name]__[local]',
             keepImport: process.env.NODE_ENV === 'production',
             extractCss: {
-              dir: './packages/meep-ui/lib',
-              relativeRoot: './packages/meep-ui/src',
+              dir: './lib',
+              relativeRoot: './src',
               filename: '[path]/[name].less',
             },
           },
