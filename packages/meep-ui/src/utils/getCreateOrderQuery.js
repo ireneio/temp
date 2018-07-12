@@ -94,7 +94,11 @@ export default ({
                 ? ''
                 : `cardHolderName: "${creditCardOwnerName}"`
             }
-            ${!creditCardNumber ? '' : `cardNumber: "${creditCardNumber}"`}
+            ${
+              !creditCardNumber
+                ? ''
+                : `cardNumber: "${creditCardNumber.join('')}"`
+            }
             ${
               !creditCardSecurityCode
                 ? ''
@@ -104,7 +108,7 @@ export default ({
               !creditCardExpiration
                 ? ''
                 : creditCardExpiration
-                    .format('YYYY-MM')
+                    .format('YYYY-M')
                     .split(/-/)
                     .map(
                       (text, index) =>
