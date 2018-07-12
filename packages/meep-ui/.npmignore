@@ -1,12 +1,1 @@
 src
-lib/bin
-docs
-.babelrc
-.eslint*
-.circleci
-__tests__
-jest.*.js
-*coverage
-.storybook
-stories
-test-data.json
