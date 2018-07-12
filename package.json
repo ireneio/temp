@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@meepshop/meep-lerna",
-  "license": "MIT",
+  "license": "ISC",
   "scripts": {
     "postinstall": "patch-package",
     "clean:all": "make clean-all",
@@ -53,6 +53,7 @@
     "jest": "^23.1.0",
     "lerna": "^2.11.0",
     "lerna-changelog": "^0.8.0",
+    "less": "^3.5.0-beta.7",
     "lint-staged": "^7.2.0",
     "patch-package": "^5.1.1",
     "prettier": "^1.13.5"

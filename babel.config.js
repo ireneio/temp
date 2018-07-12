@@ -18,13 +18,6 @@ module.exports = {
       },
     ],
     [
-      'module-resolver',
-      {
-        root: ['./src'],
-        cwd: process.cwd(),
-      },
-    ],
-    [
       'transform-imports',
       {
         /* eslint-disable no-template-curly-in-string */
@@ -53,6 +46,13 @@ module.exports = {
       {
         libraryName: 'antd',
         style: process.env.NODE_ENV !== 'test',
+      },
+    ],
+    [
+      'module-resolver',
+      {
+        root: ['./src'],
+        cwd: process.cwd(),
       },
     ],
     [
