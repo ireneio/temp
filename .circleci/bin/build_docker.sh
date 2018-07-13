@@ -8,8 +8,14 @@ function check_prerequisite {
 }
 
 check_prerequisite
+dependencies=$(${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/addOtherDependencies.js)
 
-docker build -f $2 -t asia.gcr.io/instant-matter-785/next-store:latest .
+# replace Dockerfile version with git commit sha
+sed -i "" "s/{{ build.tag }}/${1}/" "$(pwd)/Dockerfile"
+# replace Dockerfile dependencies
+sed -i "" "s/{{ dependencies }}/${dependencies}/" "$(pwd)/Dockerfile"
+
+docker build -t asia.gcr.io/instant-matter-785/next-store:latest .
 docker tag asia.gcr.io/instant-matter-785/next-store:latest \
   asia.gcr.io/instant-matter-785/next-store:$1
 docker login -u _json_key -p "$GCLOUD_SERVICE_KEY" https://asia.gcr.io

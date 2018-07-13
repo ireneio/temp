@@ -3,16 +3,14 @@ FROM node:9.11.1
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-# Install app dependencies
+# Add app dependencies
+# modify dependencies in .circleci/bin/addOtherDependencies.js
 COPY . .
+RUN npm install {{ dependencies }} @meepshop/meep-ui@latest
 RUN npm install
-# fix by patch-package
-RUN npm run postinstall
 
-RUN npm run build
 EXPOSE 14401
-
-ENV REPO_VERSION=0.0.252
+ENV REPO_VERSION={{ build.tag }}
 ENV NODE_ENV=production
 ENV API_HOST=api.stage.meepcloud.com
 CMD ["node", "src/server/server.js"]

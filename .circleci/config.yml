@@ -2,7 +2,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/node:8.11.1
+      - image: circleci/node:9.11.1
 
     working_directory: ~/repo
 
@@ -34,7 +34,7 @@ jobs:
 
   deploy-npm:
     docker:
-      - image: circleci/node:8.11.1
+      - image: circleci/node:9.11.1
 
     working_directory: ~/repo
 
@@ -55,7 +55,7 @@ jobs:
           command: npm run prod
 
       - run:
-          name: Publish
+          name: Publish npm
           command: |
             npm run lerna -- publish \
               --skip-git \
@@ -63,27 +63,20 @@ jobs:
               --repo-version ${CIRCLE_TAG} \
               --yes
 
-  deploy-docker:
-    docker:
-      - image: circleci/node:8.11.1
-
-    working_directory: ~/repo
-
-    steps:
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-      - run:
-          name: Install packages
-          command: npm run install:all
-
-      - run:
-          name: Pre publish
-          command: npm run prod
-
       - setup_remote_docker
-      - run: bin/build_docker.sh ${CIRCLE_TAG} ./Dockerfile
-      - run: bin/deploy_k8s.sh ${CIRCLE_TAG}
+      - run:
+          name: Deploy docker
+          command: |
+            npm run lerna -- exec \
+              "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/build_docker.sh ${CIRCLE_TAG}" \
+              --parallel \
+              --stream \
+              --ignore @meepshop/meep-ui
+            npm run lerna -- exec \
+              "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/deploy_k8s.sh ${CIRCLE_TAG}" \
+              --parallel \
+              --stream \
+              --ignore @meepshop/meep-ui
 
 workflows:
   version: 2
@@ -93,19 +86,10 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - deploy-npm:
+      - deploy:
           context: org-global
           requires:
             - test
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
-      - deploy-docker:
-          context: org-global
-          requires:
-            - deploy-npm
           filters:
             branches:
               ignore: /.*/
