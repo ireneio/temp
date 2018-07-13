@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
-import { enhancer } from 'layout';
+import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
 import {
   URL_TYPE,
