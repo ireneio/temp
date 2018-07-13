@@ -21,7 +21,7 @@ mv ./kubectl /tmp/
 /tmp/kubectl config use-context default-cluster --kubeconfig=/tmp/kubeconfig
 
 # replace deploy.yml version with git commit sha
-sed -i "s/{{\ build\.tag\ }}/${1}/" ./k8s_config/deploy.yaml
+sed -i "s/{{ build.tag }}/${1}/" ./k8s_config/deploy.yaml
 
 # kubernetes deploy
 /tmp/kubectl apply --force -f ./k8s_config/deploy.yaml --kubeconfig=/tmp/kubeconfig
