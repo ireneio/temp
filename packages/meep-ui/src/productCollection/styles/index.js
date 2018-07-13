@@ -6,7 +6,9 @@ export const root = align => ({
     ? {
         padding: '30px 0 0 30px',
       }
-    : {}),
+    : {
+        paddingTop: '30px',
+      }),
 });
 
 export const imgWrapper = align => ({

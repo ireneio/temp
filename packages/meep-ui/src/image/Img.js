@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import radium from 'radium';
+import radium, { StyleRoot } from 'radium';
 
-import { enhancer } from 'layout/DecoratorsRoot';
+import { enhancer } from 'layout';
 import Link from 'link';
 import {
   URL_TYPE,
@@ -32,7 +32,7 @@ export default class Img extends React.PureComponent {
     width: PropTypes.number,
     rootStyle: PropTypes.shape({}),
     style: PropTypes.shape({}),
-    mode: PropTypes.oneOf(['background', 'img']),
+    mode: PropTypes.oneOf(['background', 'img', 'collection']),
     alt: PropTypes.string,
   };
 
@@ -111,8 +111,8 @@ export default class Img extends React.PureComponent {
     const href = this.generateUrl();
 
     return (
-      <div style={[styles.root(alignment), rootStyle]}>
-        <div style={styles.wrapper(contentWidth)}>
+      <StyleRoot style={[styles.root(alignment), rootStyle]}>
+        <div style={styles.wrapper(contentWidth, mode)}>
           <Link
             href={href}
             target={newWindow ? '_blank' : '_self'}
@@ -138,7 +138,7 @@ export default class Img extends React.PureComponent {
             )}
           </Link>
         </div>
-      </div>
+      </StyleRoot>
     );
   }
 }

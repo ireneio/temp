@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
-import { enhancer } from 'layout/DecoratorsRoot';
+import { enhancer } from 'layout';
 import Image from 'image';
 import { URL_TYPE, LOCALE_TYPE } from 'constants/propTypes';
 
@@ -16,10 +16,15 @@ export default class ProductCollection extends React.PureComponent {
     files: PropTypes.arrayOf(URL_TYPE).isRequired,
     align: PropTypes.oneOf(['original', 'side']).isRequired,
     title: LOCALE_TYPE.isRequired,
+    width: PropTypes.number,
+  };
+
+  static defaultProps = {
+    width: 70,
   };
 
   render() {
-    const { transformLocale, files, align, title } = this.props;
+    const { transformLocale, files, align, title, width } = this.props;
     const productName = transformLocale(title);
 
     return (
@@ -36,10 +41,11 @@ export default class ProductCollection extends React.PureComponent {
                 files={{
                   image: url,
                 }}
-                contentWidth={100}
+                contentWidth={width || 70}
                 alignment="center"
                 newWindow={false}
                 alt={productName}
+                mode="collection"
               />
             </div>
           </div>

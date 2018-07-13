@@ -1,3 +1,5 @@
+import { PHONE_MEDIA } from 'constants/media';
+
 export const root = alignment => {
   const defaultStyle = {
     display: 'flex',
@@ -26,8 +28,13 @@ export const root = alignment => {
   }
 };
 
-export const wrapper = contentWidth => ({
+export const wrapper = (contentWidth, mode) => ({
   width: `${contentWidth}%`,
+  ...(mode === 'collection' && {
+    [PHONE_MEDIA]: {
+      width: '100%',
+    },
+  }),
 });
 
 export const link = {
