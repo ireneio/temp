@@ -8,6 +8,9 @@ const withSourceMaps = require('@zeit/next-source-maps');
 const protocal = process.env.API_PROTOCAL || 'https';
 const production = process.env.NODE_ENV === 'production';
 
+const FONT_FAMILY =
+  '"PingFang TC", "Microsoft JhengHei", "Helvetica Neue", "Helvetica", "source-han-sans-traditional", "Arial", "sans-serif"';
+
 // fix: prevents error when .css files are required by node
 if (typeof require !== 'undefined') {
   require.extensions['.less'] = () => {};
@@ -48,6 +51,10 @@ module.exports = withSourceMaps(
           },
           lessLoaderOptions: {
             javascriptEnabled: true,
+            modifyVars: {
+              'font-family': FONT_FAMILY,
+              'font-family-no-number': FONT_FAMILY,
+            },
           },
           /* eslint-disable no-param-reassign */
           webpack: (config, { dev }) => {
