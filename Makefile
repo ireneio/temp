@@ -1,19 +1,21 @@
-BABEL_PACKAGES=@meepshop/meep-ui
-BABEL_IGNORE_PACKAGES=@meepshop/store
+BABEL_PACKAGES=--scope @meepshop/meep-ui
+BABEL_IGNORE_PACKAGES=--scope @meepshop/store
 
 babel-all:
 	@make babel-clean
-	@npm run lerna -- exec --parallel \
-		--scope ${BABEL_PACKAGES} \
-		"babel src -d lib --config-file ../../babel.config.js"
+	@npm run lerna -- exec \
+		--parallel \
+		--stream \
+		"babel src -d lib --config-file ../../babel.config.js" \
+		${BABEL_PACKAGES}
 
 babel-clean:
 	rm -rf ./lib ./packages/**/lib
 
 prod:
 	@NODE_ENV=production make babel-all
-	@npm run lerna -- run prod --scope ${BABEL_PACKAGES} --stream --parallel
-	@npm run lerna -- run prod --scope ${BABEL_IGNORE_PACKAGES} --stream --parallel
+	@npm run lerna -- run prod --stream --parallel ${BABEL_PACKAGES}
+	@npm run lerna -- run prod --stream --parallel ${BABEL_IGNORE_PACKAGES}
 
 release:
 	@npm run lerna -- publish --skip-npm --skip-git --repo-version ${VERSION}
