@@ -57,7 +57,7 @@ jobs:
       - run:
           name: Publish
           command: |
-            yarn lerna publish \
+            npm run lerna -- publish \
               --skip-git \
               --force-publish=@meepshop/meep-ui \
               --repo-version ${CIRCLE_TAG} \
