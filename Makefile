@@ -14,14 +14,25 @@ babel-clean:
 
 prod:
 	@NODE_ENV=production make babel-all
-	@npm run lerna -- run prod --stream --parallel ${BABEL_PACKAGES}
-	@npm run lerna -- run prod --stream --parallel ${BABEL_IGNORE_PACKAGES}
+	@npm run lerna -- run prod \
+		--stream \
+		--parallel \
+		${BABEL_PACKAGES}
+	@npm run lerna -- run prod \
+		--stream \
+		--parallel \
+		${BABEL_IGNORE_PACKAGES}
 
 release:
-	@npm run lerna -- publish --skip-npm --skip-git --repo-version ${VERSION}
+	@npm run lerna -- publish \
+		--skip-npm \
+		--skip-git \
+		--repo-version ${VERSION} \
+		${RELEASE_SCOPE}
 	@npm run lerna-changelog && \
-		read -p "Input any word..." && \
-		vim CHANGELOG.md && \
+		echo "\nContinue or exit with 'ctrl + c'..." && \
+		read -p ""
+	@vim CHANGELOG.md && \
 		git add . && \
 		git commit -m "chore(release): v${VERSION} [skip ci]" && \
 		git tag -a v${VERSION} -m "v${VERSION}"
