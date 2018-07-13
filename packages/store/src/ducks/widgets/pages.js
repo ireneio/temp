@@ -1,7 +1,6 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import * as R from 'ramda';
 import * as Utils from 'utils';
-import { modifyWidgetDataInClient } from 'lib';
 import * as Api from 'api';
 
 /* ********************************** 取得頁面資料 ********************************** */
@@ -47,7 +46,7 @@ function* getPagesFlow({ payload }) {
           width: [0, null].includes(width) ? 100 : width,
           componentWidth: componentWidth === null ? 0 : componentWidth,
           // 整理及過濾Client-side rendering時的module資料，未來有可能在api server就幫前端整理好
-          widgets: modifyWidgetDataInClient(widgets, query),
+          widgets: Utils.modifyWidgetDataInClient(widgets, query),
         }));
       return R.assocPath(['blocks'], blocks, page);
     });

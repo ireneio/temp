@@ -1,4 +1,4 @@
-import postGraphql from 'lib/postGraphql';
+import postGraphql from 'utils/postGraphql';
 import {
   pageQuery,
   storeAppQuery,

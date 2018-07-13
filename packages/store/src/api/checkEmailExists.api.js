@@ -1,4 +1,4 @@
-import postGraphql from 'lib/postGraphql';
+import postGraphql from 'utils/postGraphql';
 import { getIn } from 'utils';
 
 export default async function({ email }) {

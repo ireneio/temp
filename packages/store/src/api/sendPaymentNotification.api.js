@@ -1,4 +1,4 @@
-import postGraphql from 'lib/postGraphql';
+import postGraphql from 'utils/postGraphql';
 
 export default async function({ id, paidMessage }) {
   const variables = {

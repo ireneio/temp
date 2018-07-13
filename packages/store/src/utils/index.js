@@ -10,6 +10,8 @@ import getCookie from './getCookie';
 import setDefaultValueForMenuDesign from './setDefaultValueForMenuDesign';
 import getJoinedModule from './getJoinedModue';
 import execTrackingCode from './execTrackingCode';
+import modifyWidgetDataInServer from './modifyWidgetDataInServer';
+import modifyWidgetDataInClient from './modifyWidgetDataInClient';
 
 export {
   getStateError,
@@ -24,4 +26,6 @@ export {
   setDefaultValueForMenuDesign,
   getJoinedModule,
   execTrackingCode,
+  modifyWidgetDataInServer,
+  modifyWidgetDataInClient,
 };

@@ -2,7 +2,6 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 import * as R from 'ramda';
 import * as Utils from 'utils';
 import * as Api from 'api';
-import { modifyWidgetDataInClient } from 'lib';
 import { getPagesSuccess } from './pages';
 
 /* ********************************* 取得單筆商品資料 及 該商品對應的頁面資料 ********************************* */
@@ -78,7 +77,7 @@ function* getProductFlow({ payload }) {
             width: [0, null].includes(width) ? 100 : width,
             componentWidth: componentWidth === null ? 0 : componentWidth,
             // 整理及過濾Client-side rendering時的module資料，未來有可能在api server就幫前端整理好
-            widgets: modifyWidgetDataInClient(widgets, query),
+            widgets: Utils.modifyWidgetDataInClient(widgets, query),
           }));
         return R.assocPath(['blocks'], blocks, page);
       });

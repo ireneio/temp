@@ -1,4 +1,4 @@
-import postGraphql from 'lib/postGraphql';
+import postGraphql from 'utils/postGraphql';
 import { pageAdTrackQuery, webTrackQuery } from './query';
 
 export default async function({ isServer = true, XMeepshopDomain }) {

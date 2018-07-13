@@ -1,4 +1,4 @@
-import postGraphql from 'lib/postGraphql';
+import postGraphql from 'utils/postGraphql';
 import orderApplyQuery from './query/orderApply.query';
 
 export default async function(order) {
