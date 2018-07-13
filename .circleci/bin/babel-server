@@ -1,7 +1,0 @@
-#!/bin/sh
-
-rm -rf build/**
-
-babel server -d build/server
-
-cp -a assets build/assets
