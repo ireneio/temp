@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# check need publish
+if [ $($CIRCLE_WORKING_DIRECTORY/.circleci/bin/checkNeedPublish.js) != true ]; then
+  echo "not need to publish: ${1}"
+  exit 1
+fi
+
 # install kubectl
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.7.3/bin/linux/amd64/kubectl
 chmod +x ./kubectl

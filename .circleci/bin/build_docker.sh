@@ -1,13 +1,17 @@
 #!/bin/bash
 
-function check_prerequisite {
-  if ! [ -x "$(command -v docker)" ]; then
-    echo "docker doesn't exists in your system"
-    exit 1
-  fi
-}
+# check need publish
+if [ $($CIRCLE_WORKING_DIRECTORY/.circleci/bin/checkNeedPublish.js) != true ]; then
+  echo "not need to publish: ${1}"
+  exit 1
+fi
 
-check_prerequisite
+# check docker
+if ! [ -x "$(command -v docker)" ]; then
+  echo "docker doesn't exists in your system"
+  exit 1
+fi
+
 dependencies=$(${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/addOtherDependencies.js)
 
 # replace Dockerfile version with git commit sha

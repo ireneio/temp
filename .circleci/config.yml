@@ -57,11 +57,13 @@ jobs:
       - run:
           name: Publish npm
           command: |
-            npm run lerna -- publish \
+            test $(.circleci/bin/checkNeedPublish.js) == true && \
+              npm run lerna -- publish \
               --skip-git \
               --force-publish=@meepshop/meep-ui \
               --repo-version ${CIRCLE_TAG} \
-              --yes
+              --yes || \
+              echo "not publish @meepshop/meep-ui@${CIRCLE_TAG}"
 
       - setup_remote_docker
       - run:
