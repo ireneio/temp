@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # check need publish
-if [ $($CIRCLE_WORKING_DIRECTORY/.circleci/bin/checkNeedPublish.js) != true ]; then
+if [ $(node ../../.circleci/bin/checkNeedPublish.js) != true ]; then
   echo "not need to publish: ${1}"
   exit 1
 fi
@@ -12,12 +12,12 @@ if ! [ -x "$(command -v docker)" ]; then
   exit 1
 fi
 
-dependencies=$(${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/addOtherDependencies.js)
+dependencies=$(node ../../.circleci/bin/addOtherDependencies.js)
 
 # replace Dockerfile version with git commit sha
-sed -i "" "s/{{ build.tag }}/${1}/" "$(pwd)/Dockerfile"
+sed -i "s/{{ build.tag }}/${1}/" "$(pwd)/Dockerfile"
 # replace Dockerfile dependencies
-sed -i "" "s/{{ dependencies }}/${dependencies}/" "$(pwd)/Dockerfile"
+sed -i "s/{{ dependencies }}/${dependencies}/" "$(pwd)/Dockerfile"
 
 docker build -t asia.gcr.io/instant-matter-785/next-store:latest .
 docker tag asia.gcr.io/instant-matter-785/next-store:latest \

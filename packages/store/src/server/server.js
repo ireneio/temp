@@ -30,7 +30,7 @@ app.prepare().then(() => {
   server.use(cookieParser());
 
   server.get('/healthz', (req, res) => {
-    res.status(200).send(`Welcome to MeepShop-Store v${VERSION}`);
+    res.status(200).send(`Welcome to MeepShop-Store ${VERSION}`);
   });
 
   server.post('/signin', async (req, res) => {

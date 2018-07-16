@@ -13,4 +13,4 @@ const { version } = require(path.resolve(
 
 invariant(process.env.CIRCLE_TAG, `CIRCLE_TAG can not be undefined.`);
 
-console.log(version === process.env.CIRCLE_TAG);
+console.log(`v${version}` === process.env.CIRCLE_TAG);

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # check need publish
-if [ $($CIRCLE_WORKING_DIRECTORY/.circleci/bin/checkNeedPublish.js) != true ]; then
+if [ $(node ../../.circleci/bin/checkNeedPublish.js) != true ]; then
   echo "not need to publish: ${1}"
   exit 1
 fi
