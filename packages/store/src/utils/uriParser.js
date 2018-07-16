@@ -1,20 +1,26 @@
-import * as R from 'ramda';
-
 export default ({ XMeepshopDomain, url, userAgent }) => {
-  const pathname = url.asPath.split('?')[0];
-  const rest = R.split('?')(url.asPath)[1] || '';
-  const search = `${R.isEmpty(rest) ? '' : '?'}${R.split('#')(rest)[0]}`;
-  const hash = R.split('#')(rest)[1] || '';
-  return {
-    host: XMeepshopDomain,
-    href: `${XMeepshopDomain}${url.asPath}`,
-    userAgent,
-    path: url.asPath,
-    pathname,
-    // Avoid no dispaly selected color for menu
-    // when coming back from choosing store at landing page.
-    search: search.includes('tradeNo') ? '' : search,
-    hash,
-    query: url.query,
-  };
+  try {
+    const regex = /^(([^\/?:]+)(:(\d+))?)?(\/?([^\/?#][^?#]*)?)?(\?([^#]+))?(#(.*))?/; // eslint-disable-line
+    const matches = regex.exec(url.asPath);
+
+    if (matches == null) throw new Error('No valid path');
+
+    const search = matches[7] || '';
+    const hash = matches[9] || '';
+    return {
+      host: XMeepshopDomain,
+      href: `${XMeepshopDomain}${url.asPath}`,
+      userAgent,
+      path: url.asPath,
+      pathname: matches[5],
+      // Avoid no dispaly selected color for menu
+      // when coming back from choosing store at landing page.
+      search: search.includes('tradeNo') ? '' : search,
+      hash,
+      query: url.query,
+    };
+  } catch (error) {
+    console.error(error);
+    return {};
+  }
 };

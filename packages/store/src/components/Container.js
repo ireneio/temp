@@ -6,9 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { isBrowser } from 'fbjs/lib/UserAgent';
 import Layout from '@meepshop/meep-ui/lib/layout';
-import Block from '@meepshop/meep-ui/lib/block';
 import { Spinner } from 'components';
-import modules from 'utils/module';
 import { getJoinedUser, getStoreAppList } from 'selectors';
 import * as Actions from 'ducks/actions';
 

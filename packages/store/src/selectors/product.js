@@ -18,11 +18,30 @@ import {
 } from './index';
 
 const getProductList = state => state.productsReducer;
-const getProductId = (state, props) => props.pId;
+const getProductId = (_, props) => props.pId;
 
 export const getProduct = createSelector(
   [getProductList, getProductId],
   (productList, pId) => R.find(R.propEq('id', pId))(productList),
+);
+
+export const getProductDescription = createSelector(
+  [getProduct],
+  ({ description }) => {
+    const descTw = getIn(['zh_TW'])(description) || '';
+    if (descTw === '') {
+      return '';
+    } else if (descTw.match(/entityMap/gm)) {
+      // DraftJS type
+      const productDescriptionObj =
+        descTw && JSON.parse(getIn(['zh_TW'])(description));
+      return productDescriptionObj.blocks.reduce(
+        (_description, block) => `${_description} ${block.text}`,
+        '',
+      );
+    }
+    return '';
+  },
 );
 
 const getPageIdByProduct = createSelector(
@@ -34,7 +53,10 @@ const getPageIdByProduct = createSelector(
 
 const getPageById = createSelector(
   [getPageIdByProduct, getPages],
-  (id, pages) => R.find(R.propEq('id', id))(pages),
+  (id, pages) => {
+    if (!id) return R.find(R.propEq('pageType', 'template'))(pages);
+    return R.find(R.propEq('id', id))(pages);
+  },
 );
 
 const getProductCombinedPage = createSelector(

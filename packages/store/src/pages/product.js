@@ -6,7 +6,11 @@ import { connect } from 'react-redux';
 import * as Utils from 'utils';
 import { Container, TrackingCodeHead, Error } from 'components';
 import ProductDiscontinued from 'components/ProductDiscontinued';
-import { getProduct, getJoinedPageInProductRoute } from 'selectors/product';
+import {
+  getProduct,
+  getProductDescription,
+  getJoinedPageInProductRoute,
+} from 'selectors/product';
 import * as Actions from 'ducks/actions';
 
 class Product extends React.Component {
@@ -30,11 +34,20 @@ class Product extends React.Component {
       if (R.isNil(product)) {
         store.dispatch(Actions.getProduct({ id: pId, query }));
       } else {
-        const { templateId, pageId } = Utils.getIn(['design'])(product);
-        const _id = templateId || pageId;
-        if (R.isNil(R.find(R.propEq('id', _id))(pagesReducer))) {
-          store.dispatch(Actions.getPages({ id: _id, query }));
+        // FIXME: fix it
+        /* eslint-disable */
+        if (!Utils.getIn(['design'])(product)) {
+          if (R.isNil(R.find(R.propEq('pageType', 'template'))(pagesReducer))) {
+            store.dispatch(Actions.getPages({ pageType: 'template', query }));
+          }
+        } else {
+          const { templateId, pageId } = Utils.getIn(['design'])(product);
+          const _id = templateId || pageId;
+          if (R.isNil(R.find(R.propEq('id', _id))(pagesReducer))) {
+            store.dispatch(Actions.getPages({ id: _id, query }));
+          }
         }
+        /* eslint-enable */
       }
     }
     return { pId, userAgent, XMeepshopDomain };
@@ -65,6 +78,7 @@ class Product extends React.Component {
       facebookID: PropTypes.string,
     }).isRequired,
     fbAppId: PropTypes.string.isRequired,
+    productDescription: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -86,31 +100,45 @@ class Product extends React.Component {
       page,
       product: {
         status,
+        galleryInfo,
         title: { zh_TW: productName },
       },
+      productDescription,
       pageAdTrackIDs,
       fbAppId,
     } = this.props;
     const url = host + pathname;
+    const productImage = Utils.getIn(['media', 0])(galleryInfo) || '';
     const { keywords, description, image } = page.seo || {};
 
     return (
       <React.Fragment>
         <Head>
-          <title>{storeName}</title>
-          <meta name="description" content={description} />
+          <title>{productName || storeName}</title>
+          <meta
+            name="description"
+            content={description || productDescription}
+          />
           <meta name="keywords" content={keywords} />
           <link rel="icon" type="image/png" href={`//${faviconUrl}`} />
           <link rel="apple-touch-icon" href={`//${faviconUrl}`} />
 
           {/* <!-- Facebook Open Graph --> */}
           <meta property="og:type" content="website" />
-          <meta property="og:url" content={`//${url}`} />
-          <meta property="og:title" content={storeName} />
-          <meta property="og:image" content={`//${image}`} />
-          <meta property="og:description" content={description} />
+          <meta property="og:url" content={`https://${url}`} />
+          <meta property="og:title" content={productName || storeName} />
+          <meta
+            property="og:image"
+            content={`https://${image || productImage || faviconUrl}?w=400`}
+          />
+          <meta property="og:image:width" content="400" />
+          <meta property="og:image:height" content="300" />
+          <meta
+            property="og:description"
+            content={description || productDescription}
+          />
           <meta property="og:site_name" content={storeName} />
-          <meta property="og:locale" content="zh_TW" />
+          <meta property="og:locale" content={locale} />
           {/* <!-- End - Facebook Open Graph --> */}
         </Head>
         <TrackingCodeHead
@@ -142,6 +170,7 @@ const mapStateToProps = (state, props) => {
     page: getJoinedPageInProductRoute(state, props),
     // !!Note: product page ONLY
     product: getProduct(state, props),
+    productDescription: getProductDescription(state, props),
   };
 };
 

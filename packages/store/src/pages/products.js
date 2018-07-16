@@ -55,19 +55,20 @@ class Products extends React.Component {
     if (this.props.error) return <Error error={this.props.error} />;
 
     const {
-      storeSetting: { storeName, faviconUrl },
+      storeSetting: { storeName, faviconUrl, locale },
       location: { host, pathname },
       page,
       pageAdTrackIDs,
       fbAppId,
     } = this.props;
     const url = host + pathname;
+    const { addressTitle = '' } = page;
     const { keywords, description, image } = page.seo || {};
 
     return (
       <div>
         <Head>
-          <title>{storeName}</title>
+          <title>{addressTitle || storeName}</title>
           <meta name="description" content={description} />
           <meta name="keywords" content={keywords} />
           <link rel="icon" type="image/png" href={`//${faviconUrl}`} />
@@ -75,12 +76,17 @@ class Products extends React.Component {
 
           {/* <!-- Facebook Open Graph --> */}
           <meta property="og:type" content="website" />
-          <meta property="og:url" content={`//${url}`} />
-          <meta property="og:title" content={storeName} />
-          <meta property="og:image" content={`//${image}`} />
+          <meta property="og:url" content={`https://${url}`} />
+          <meta property="og:title" content={addressTitle || storeName} />
+          <meta
+            property="og:image"
+            content={`https://${image || faviconUrl}?w=400`}
+          />
+          <meta property="og:image:width" content="400" />
+          <meta property="og:image:height" content="300" />
           <meta property="og:description" content={description} />
           <meta property="og:site_name" content={storeName} />
-          <meta property="og:locale" content="zh_TW" />
+          <meta property="og:locale" content={locale} />
           {/* <!-- End - Facebook Open Graph --> */}
         </Head>
         <TrackingCodeHead

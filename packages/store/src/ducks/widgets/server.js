@@ -145,7 +145,6 @@ function* serverProductInitialFlow({ payload }) {
         cookie,
         id: pId,
       });
-      console.log('>>>>', computeOrderData);
       const activities =
         Utils.getIn([
           'data',
@@ -160,13 +159,22 @@ function* serverProductInitialFlow({ payload }) {
 
       // FIXME: Join activities in corresponding product
       yield put(Actions.getProductSuccess({ ...product, activities }));
-      const { templateId, pageId } = Utils.getIn(['design'])(product);
-      const id = templateId || pageId;
-      const pagesData = yield call(Api.getPages, {
-        isServer: true,
-        XMeepshopDomain,
-        id,
-      });
+      let pagesData;
+      if (!Utils.getIn(['design'])(product)) {
+        pagesData = yield call(Api.getPages, {
+          pageType: 'template',
+          isServer: true,
+          XMeepshopDomain,
+        });
+      } else {
+        const { templateId, pageId } = Utils.getIn(['design'])(product);
+        const id = templateId || pageId;
+        pagesData = yield call(Api.getPages, {
+          id,
+          isServer: true,
+          XMeepshopDomain,
+        });
+      }
       const page = Utils.getIn(['data', 'getPageList', 'data', 0])(pagesData);
       let modifiedPage;
       if (page) {

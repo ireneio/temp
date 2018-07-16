@@ -25,7 +25,10 @@ export default class MyDocument extends Document {
       <html lang="en">
         <Head>
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=no"
+          />
           {/* TODO: check if the browser needs babel-polyfill */}
           <script
             defer

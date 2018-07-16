@@ -8,6 +8,7 @@ import * as Template from 'template';
 import { Container, TrackingCodeHead, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
 import MemberOrderDetails from '@meepshop/meep-ui/lib/memberOrderDetails';
+import OrderNotFound from 'components/OrderNotFound';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
 import * as TITLE from 'locales';
@@ -79,7 +80,11 @@ class MemberOrder extends Component {
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
           <MemberHeader title={title} goBackToOrders colors={colors}>
-            <MemberOrderDetails orderDetails={orderDetails} />
+            {orderDetails ? (
+              <MemberOrderDetails orderDetails={orderDetails} />
+            ) : (
+              <OrderNotFound />
+            )}
           </MemberHeader>
         </Container>
       </React.Fragment>

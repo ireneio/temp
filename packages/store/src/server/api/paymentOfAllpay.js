@@ -37,7 +37,6 @@ async function paymentOfAllpay(req, res) {
 
   try {
     const returnJson = await response.json();
-    console.log('returnJson: ', returnJson);
     res.send(returnJson);
   } catch (error) {
     console.error(error);

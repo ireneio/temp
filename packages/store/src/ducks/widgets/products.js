@@ -39,7 +39,6 @@ function* getProductFlow({ payload }) {
         ...payload,
         variantId: Utils.getIn(['variants', 0, 'id'])(product) || '',
       });
-      console.log('>>>>', computeOrderData);
       const activities =
         Utils.getIn([
           'data',
@@ -54,14 +53,20 @@ function* getProductFlow({ payload }) {
 
       // FIXME: Join activities in corresponding product
       yield put(getProductSuccess({ ...product, activities }));
-      const { templateId, pageId } = Utils.getIn(['design'])(product);
-      const id = templateId || pageId;
-      const { isServer, XMeepshopDomain } = payload;
-      const pagesData = yield call(Api.getPages, {
-        id,
-        isServer,
-        XMeepshopDomain,
-      });
+      let pagesData;
+      if (!Utils.getIn(['design'])(product)) {
+        const { isServer, XMeepshopDomain } = payload;
+        pagesData = yield call(Api.getPages, {
+          pageType: 'template',
+          isServer,
+          XMeepshopDomain,
+        });
+      } else {
+        const { templateId, pageId } = Utils.getIn(['design'])(product);
+        const id = templateId || pageId;
+        const { isServer, XMeepshopDomain } = payload;
+        pagesData = yield call(Api.getPages, { id, isServer, XMeepshopDomain });
+      }
 
       // 整理data為了符合Layout Component結構，未來有可能在api server就幫前端整理好
       let newPages = Utils.getIn(['data', 'getPageList', 'data'])(pagesData);

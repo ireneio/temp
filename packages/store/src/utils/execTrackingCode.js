@@ -13,7 +13,6 @@ const _getSpecsName = specs => {
 };
 
 export default function(eventName, options = {}) {
-  console.log(eventName, options);
   switch (eventName) {
     case 'AddToCart-EC': {
       const { cart, payload, pageAdTrackIDs } = options;

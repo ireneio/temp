@@ -4,12 +4,12 @@ import Head from 'next/head';
 import * as R from 'ramda';
 import { connect } from 'react-redux';
 import * as Utils from 'utils';
-import { Container, TrackingCodeHead, Error } from 'components';
+import { TrackingCodeHead, Error } from 'components';
 import { getJoinedHomePage } from 'selectors';
 import * as Actions from 'ducks/actions';
 import * as CONST from 'constants';
 
-class Index extends React.Component {
+class TestIndex extends React.Component {
   static getInitialProps = async context => {
     const {
       isServer,
@@ -106,7 +106,16 @@ class Index extends React.Component {
           pageAdTrackIDs={pageAdTrackIDs}
           fbAppId={fbAppId}
         />
-        <Container {...this.props} />
+        {/* <Container {...this.props} > */}
+        <div>
+          Test Page
+          <div style={{ display: 'none' }}>
+            {/* eslint-disable */}
+            <a href="/_testProducts" />
+            {/* eslint-enable */}
+          </div>
+        </div>
+        {/* </Container> */}
       </div>
     );
   }
@@ -127,4 +136,4 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps)(Index);
+export default connect(mapStateToProps)(TestIndex);

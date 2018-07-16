@@ -110,9 +110,11 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
           return {
             id: widget.id,
             module: widget.module,
+            contentWidth: widget.contentWidth,
             align: widget.align || 'original',
             title: widget.title,
             files: [],
+            width: widget.width,
           };
         }
         /* 產品語法嵌入 */
@@ -280,7 +282,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
           return {
             id: widget.id,
             module: widget.module,
-            value: widget.value,
+            value: widget.value || '',
           };
         }
         /* 折扣活動 */
