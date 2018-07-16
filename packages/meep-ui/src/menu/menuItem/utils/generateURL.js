@@ -33,9 +33,13 @@ export default (page, isLogin) => {
 
       if (pageId === 'Home') {
         return '/';
-      } else if (pageId && path) {
+      }
+
+      if (pageId && path) {
         return `/pages/${path}`;
-      } else if (pageId) {
+      }
+
+      if (pageId) {
         return `/page/${pageId}`;
       }
       return null;

@@ -1,6 +1,6 @@
 import * as LOCALE from 'locale/country';
 
-import { DEFAULT_COUNTRY } from './../constants';
+import { DEFAULT_COUNTRY } from '../constants';
 
 export default ({ transformLocale, lockedCountry }) => {
   const selectedCountry =

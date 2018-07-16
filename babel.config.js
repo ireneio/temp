@@ -52,7 +52,6 @@ module.exports = {
       'module-resolver',
       {
         root: ['./src'],
-        cwd: process.cwd(),
       },
     ],
     [

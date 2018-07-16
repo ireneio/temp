@@ -8,7 +8,7 @@ import { DEFAULT_URL } from './constants';
 import * as styles from './styles';
 
 @radium
-export default class SocialThumbs extends React.Component {
+export default class SocialThumbs extends React.PureComponent {
   static propTypes = {
     href: URL_TYPE,
     alignment: ALIGNMENT_TYPE.isRequired,
@@ -17,13 +17,6 @@ export default class SocialThumbs extends React.Component {
   static defaultProps = {
     href: DEFAULT_URL,
   };
-
-  shouldComponentUpdate(nextProps) {
-    return (
-      this.props.href !== nextProps.href ||
-      this.props.alignment !== nextProps.alignment
-    );
-  }
 
   render() {
     const { href, alignment } = this.props;

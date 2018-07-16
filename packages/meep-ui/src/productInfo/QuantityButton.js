@@ -149,17 +149,22 @@ export default class QuantityButton extends React.Component {
           {options}
         </Select>
       );
-    } else if (orderable === OUT_OF_STOCK) {
+    }
+
+    if (orderable === OUT_OF_STOCK) {
       return (
         <div style={styles.overStock}>
           {transformLocale(LOCALE.OUT_OF_STOCK)}
         </div>
       );
-    } else if (orderable === LIMITED) {
+    }
+
+    if (orderable === LIMITED) {
       return (
         <div style={styles.overStock}>{transformLocale(LOCALE.OVER_STOCK)}</div>
       );
     }
+
     return null;
   };
 

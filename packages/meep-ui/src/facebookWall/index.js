@@ -9,7 +9,7 @@ import * as styles from './styles';
 import { DEFAULT_FACEBOOK_URL } from './constants';
 
 @radium
-export default class FacebookWall extends React.Component {
+export default class FacebookWall extends React.PureComponent {
   static propTypes = {
     href: URL_TYPE,
     alignment: ALIGNMENT_TYPE.isRequired,
@@ -31,19 +31,6 @@ export default class FacebookWall extends React.Component {
   componentDidMount() {
     this.resize();
     window.addEventListener('resize', this.resize);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      this.props.href !== nextProps.href ||
-      this.props.alignment !== nextProps.alignment ||
-      this.props.showPosts !== nextProps.showPosts ||
-      this.props.showFacepile !== nextProps.showFacepile ||
-      this.props.smallHeader !== nextProps.smallHeader ||
-      this.props.hideCover !== nextProps.hideCover ||
-      this.props.hideCta !== nextProps.hideCta ||
-      this.state.width !== nextState.width
-    );
   }
 
   componentWillUnmount() {

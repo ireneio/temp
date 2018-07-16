@@ -6,6 +6,8 @@ import Input from 'antd/lib/input';
 import * as styles from './styles/creditCardInput';
 
 export default class CreditCardInput extends React.PureComponent {
+  creditCardInputRef = React.createRef();
+
   static propTypes = {
     onChange: PropTypes.func,
     value: PropTypes.arrayOf(PropTypes.string.isRequired), // eslint-disable-line react/require-default-props
@@ -16,12 +18,14 @@ export default class CreditCardInput extends React.PureComponent {
   };
 
   state = {
+    // eslint-disable-next-line react/destructuring-assignment
     value: this.props.value || ['', '', '', ''],
   };
 
   onChange = index => ({ target }) => {
     const { onChange } = this.props;
-    const value = [...this.state.value];
+    const { value: prevValue } = this.state;
+    const value = [...prevValue];
     const { value: inputValue } = target;
 
     value[index] = inputValue;
@@ -57,12 +61,11 @@ export default class CreditCardInput extends React.PureComponent {
     const { value } = this.state;
 
     if (value[index] === '') return index;
-    else if (index > 3) return false;
+
+    if (index > 3) return false;
 
     return this.findEmptyInputIndex(index + 1);
   };
-
-  creditCardInputRef = React.createRef();
 
   render() {
     const { value } = this.state;

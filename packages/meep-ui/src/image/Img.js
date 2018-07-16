@@ -92,7 +92,8 @@ export default class Img extends React.PureComponent {
     const { pathname } = location;
 
     if (/^#/.test(href)) return `${pathname}${href}`;
-    else if (href && !/(^\/)|(^http)/.test(href)) return `//${href}`;
+
+    if (href && !/(^\/)|(^http)/.test(href)) return `//${href}`;
 
     return href;
   };

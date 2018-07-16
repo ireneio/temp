@@ -18,12 +18,21 @@ import createFormData from 'utils/createFormData';
 import { SHIPMENT_STORE_FIELDS, ALLPAY_LINK, EZSHIP_LINK } from './constants';
 import * as LOCALE from './locale';
 import * as styles from './styles/chooseShipmentStore';
+import getDefaultStoreData from './utils/getDefaultStoreData';
 
 const { Item: FormItem } = Form;
 
 @enhancer
 @radium
 export default class ChooseShipmentStore extends React.PureComponent {
+  formRef = React.createRef();
+
+  rootDOM = document.querySelector('body');
+
+  formDOM = document.createElement('div');
+
+  storeData = getDefaultStoreData.js(this.props);
+
   static propTypes = {
     /** context */
     location: LOCATION_TYPE.isRequired,
@@ -69,7 +78,8 @@ export default class ChooseShipmentStore extends React.PureComponent {
   }
 
   componentDidUpdate() {
-    if (!this.state.tradeNo) this.getFormArguments();
+    const { tradeNo } = this.state;
+    if (!tradeNo) this.getFormArguments();
   }
 
   componentWillUnmount() {
@@ -160,24 +170,6 @@ export default class ChooseShipmentStore extends React.PureComponent {
 
     this.formRef.current.submit();
   };
-
-  formRef = React.createRef();
-  rootDOM = document.querySelector('body');
-  formDOM = document.createElement('div');
-  storeData = (() => {
-    const { transformLocale, form } = this.props;
-    const { getFieldsValue } = form;
-    const data = getFieldsValue(SHIPMENT_STORE_FIELDS);
-
-    return Object.keys(data).map(
-      (key, index) =>
-        !data[key]
-          ? null
-          : `${transformLocale(
-              [LOCALE.STORE_NAME, LOCALE.STORE_ADDRESS, LOCALE.STORE_ID][index],
-            )}：${data[key]}`,
-    );
-  })();
 
   render() {
     const {

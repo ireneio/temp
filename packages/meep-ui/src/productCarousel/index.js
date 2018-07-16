@@ -40,7 +40,9 @@ export default class ProductCarousel extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.thumbsPosition !== this.props.thumbsPosition) this.getRef();
+    const { thumbsPosition } = this.props;
+
+    if (prevProps.thumbsPosition !== thumbsPosition) this.getRef();
   }
 
   getRef = () => {

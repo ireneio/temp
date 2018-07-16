@@ -29,6 +29,8 @@ const getDefaultIsModify = ({ form }) => {
 @enhancer
 @radium
 class CreditCardFormItem extends React.PureComponent {
+  isGetingData = false;
+
   static propTypes = {
     /** context */
     transformLocale: PropTypes.func.isRequired,
@@ -77,7 +79,9 @@ class CreditCardFormItem extends React.PureComponent {
   }
 
   componentDidUpdate() {
-    if (!this.state.userInfo && !this.isGetingData) this.getCreditUser();
+    const { userInfo } = this.state;
+
+    if (!userInfo && !this.isGetingData) this.getCreditUser();
   }
 
   componentWillUnmount() {
@@ -108,8 +112,6 @@ class CreditCardFormItem extends React.PureComponent {
     this.isGetingData = false;
     this.setState({ userInfo });
   };
-
-  isGetingData = false;
 
   render() {
     const {

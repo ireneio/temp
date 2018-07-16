@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
-import areEqual from 'fbjs/lib/areEqual';
 import ChevronLeftIcon from 'react-icons/lib/fa/chevron-left';
 import ChevronRightIcon from 'react-icons/lib/fa/chevron-right';
 
@@ -11,7 +10,9 @@ import { CONTENT_WIDTH_TYPE } from 'constants/propTypes';
 import * as styles from './styles';
 
 @radium
-export default class Carousel extends React.Component {
+export default class Carousel extends React.PureComponent {
+  touchStartCoordinate = {};
+
   static propTypes = {
     files: PropTypes.arrayOf(PropTypes.shape({}).isRequired),
     contentWidth: CONTENT_WIDTH_TYPE.isRequired,
@@ -30,20 +31,9 @@ export default class Carousel extends React.Component {
   };
 
   componentDidMount() {
-    if (this.props.enableAutoplay) this.play();
-  }
+    const { enableAutoplay } = this.props;
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      this.props.contentWidth !== nextProps.contentWidth ||
-      this.props.enableAutoplay !== nextProps.enableAutoplay ||
-      this.props.enableIndicators !== nextProps.enableIndicators ||
-      this.props.enableControls !== nextProps.enableControls ||
-      this.props.pauseWhenHover !== nextProps.pauseWhenHover ||
-      !areEqual(this.props.files, nextProps.files) ||
-      this.state.imageIndex !== nextState.imageIndex ||
-      !areEqual(this.state._radiumStyleState, nextState._radiumStyleState) // eslint-disable-line no-underscore-dangle
-    );
+    if (enableAutoplay) this.play();
   }
 
   componentWillUnmount() {
@@ -57,8 +47,6 @@ export default class Carousel extends React.Component {
       ? [null, null, null, null, null]
       : files;
   };
-
-  touchStartCoordinate = {};
 
   play = () => {
     clearInterval(this.carouselInterval);

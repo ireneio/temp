@@ -16,9 +16,12 @@ export default Component =>
     };
 
     state = {
+      // eslint-disable-next-line react/destructuring-assignment
       orderInfo: this.props.orderInfo,
       cacheProps: {
+        // eslint-disable-next-line react/destructuring-assignment
         isLogin: this.props.isLogin,
+        // eslint-disable-next-line react/destructuring-assignment
         isShowCart: this.props.isShowCart,
       },
     };

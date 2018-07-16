@@ -9,7 +9,7 @@ import * as styles from './styles/icon';
 import * as icons from './icons';
 
 @radium
-export default class Icon extends React.Component {
+export default class Icon extends React.PureComponent {
   static propTypes = {
     font: PropTypes.oneOf(['', ...Object.keys(icons)]),
     image: URL_TYPE,
@@ -22,15 +22,6 @@ export default class Icon extends React.Component {
     font: null,
     image: null,
   };
-
-  shouldComponentUpdate(nextProps) {
-    return (
-      this.props.font !== nextProps.font ||
-      this.props.image !== nextProps.image ||
-      this.props.direction !== nextProps.direction ||
-      this.props.title !== nextProps.title
-    );
-  }
 
   render() {
     const { font, image, direction, title } = this.props;

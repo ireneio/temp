@@ -11,7 +11,7 @@ import * as styles from './styles/searchBar';
 
 @enhancer
 @radium
-export default class SearchBar extends React.Component {
+export default class SearchBar extends React.PureComponent {
   static propTypes = {
     adTrack: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
@@ -27,17 +27,9 @@ export default class SearchBar extends React.Component {
 
   state = {
     value: '',
+    // eslint-disable-next-line react/destructuring-assignment
     open: this.props.type === 'sidebar',
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      this.props.type !== nextProps.type ||
-      this.props.style !== nextProps.style ||
-      this.state.open !== nextState.open ||
-      this.state.value !== nextState.value
-    );
-  }
 
   onPressEnter = () => {
     const { goTo, adTrack } = this.props;

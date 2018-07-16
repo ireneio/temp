@@ -36,8 +36,10 @@ export default class QA extends React.PureComponent {
   };
 
   toggleShowReply = () => {
+    const { showReply } = this.state;
+
     this.setState({
-      showReply: !this.state.showReply,
+      showReply: !showReply,
     });
   };
 

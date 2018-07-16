@@ -3,14 +3,10 @@ import PropTypes from 'prop-types';
 
 import * as styles from './styles';
 
-export default class Iframe extends React.Component {
+export default class Iframe extends React.PureComponent {
   static propTypes = {
     htmlCode: PropTypes.string.isRequired,
   };
-
-  shouldComponentUpdate(nextProps) {
-    return this.props.htmlCode !== nextProps.htmlCode;
-  }
 
   render() {
     const { htmlCode } = this.props;

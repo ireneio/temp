@@ -93,12 +93,15 @@ export default class DraftText extends React.Component {
     };
 
     this.state = {
+      // eslint-disable-next-line react/destructuring-assignment
       editorState: this.getFormattedEditorState(this.props.value),
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.value !== nextProps.value) {
+    const { value } = this.props;
+
+    if (value !== nextProps.value) {
       this.setState({
         editorState: this.getFormattedEditorState(nextProps.value),
       });
@@ -106,7 +109,9 @@ export default class DraftText extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return !areEqual(this.state.editorState, nextState.editorState);
+    const { editorState } = this.state;
+
+    return !areEqual(editorState, nextState.editorState);
   }
 
   render() {

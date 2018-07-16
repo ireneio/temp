@@ -5,10 +5,10 @@ import radium from 'radium';
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, POSITIVE_NUMBER_TYPE } from 'constants/propTypes';
 
+import { formItem as formItemStyle } from '../styles';
+
 import * as LOCALE from './locale';
 import * as styles from './styles/priceInfo';
-
-import { formItem as formItemStyle } from './../styles';
 
 @enhancer
 @radium

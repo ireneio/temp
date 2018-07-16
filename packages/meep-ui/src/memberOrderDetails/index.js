@@ -16,6 +16,8 @@ import { paymentShowMemo } from './constants';
 @enhancer
 @radium
 export default class MemberOrderDetails extends React.PureComponent {
+  name = 'member-order-details';
+
   static propTypes = {
     orderDetails: PropTypes.shape({
       id: ID_TYPE.isRequired,
@@ -36,8 +38,6 @@ export default class MemberOrderDetails extends React.PureComponent {
     transformLocale: PropTypes.func.isRequired,
     transformCurrency: PropTypes.func.isRequired,
   };
-
-  name = 'member-order-details';
 
   generateColumns = () => {
     const { transformLocale, transformCurrency } = this.props;
@@ -429,9 +429,11 @@ export default class MemberOrderDetails extends React.PureComponent {
 
   renderSpecs = value => {
     if (!value) return null;
+    const { transformLocale } = this.state;
+
     return value.reduce(
       (prev, curr, index) =>
-        `${prev}${index ? '／' : ''}${this.props.transformLocale(curr.title)}`,
+        `${prev}${index ? '／' : ''}${transformLocale(curr.title)}`,
       '',
     );
   };

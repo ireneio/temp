@@ -24,10 +24,16 @@ export default class LoginForm extends React.PureComponent {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+
+    const {
+      form: { validateFields },
+      dispatchAction,
+    } = this.props;
+
+    validateFields((err, values) => {
       if (!err) {
         const { email, password } = values;
-        this.props.dispatchAction('login', { email, password });
+        dispatchAction('login', { email, password });
       }
     });
   };

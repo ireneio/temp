@@ -23,8 +23,8 @@ export const WIDGETSETTING_TYPE = PropTypes.shape({
 });
 
 export const BLOCKS_TYPE = {
-  isRequired: (props, propName, componentName) => {
-    const value = props[propName];
+  isRequired: (prevProps, propName, componentName) => {
+    const value = prevProps[propName];
 
     if (value && value.length === 0) {
       return new Error(
@@ -43,7 +43,7 @@ export const BLOCKS_TYPE = {
           }).isRequired,
         ).isRequired,
       },
-      props,
+      prevProps,
       'blocks',
       componentName,
     );

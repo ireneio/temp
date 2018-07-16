@@ -61,7 +61,14 @@ export default class MemberInfo extends React.PureComponent {
     if (e) {
       e.preventDefault();
     }
-    this.props.form.validateFieldsAndScroll((err, values) => {
+
+    const {
+      form: { validateFieldsAndScroll },
+      member,
+      dispatchAction,
+    } = this.props;
+
+    validateFieldsAndScroll((err, values) => {
       if (!err) {
         const {
           name = null,
@@ -80,8 +87,9 @@ export default class MemberInfo extends React.PureComponent {
           month = +birthday.format('M');
           day = +birthday.format('D');
         }
-        const member = {
-          id: this.props.member.id,
+
+        dispatchAction('updateUser', {
+          id: member.id,
           name,
           gender,
           birthday: {
@@ -101,8 +109,7 @@ export default class MemberInfo extends React.PureComponent {
               },
             },
           },
-        };
-        this.props.dispatchAction('updateUser', { user: member });
+        });
       }
     });
   };

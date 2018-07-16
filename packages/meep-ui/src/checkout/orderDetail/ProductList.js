@@ -17,6 +17,8 @@ import * as styles from './styles/productList';
 @enhancer
 @radium
 export default class ProductList extends React.PureComponent {
+  isComponentMounted = false;
+
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -64,8 +66,6 @@ export default class ProductList extends React.PureComponent {
 
     updateProducts(newProducts);
   };
-
-  isComponentMounted = false;
 
   render() {
     const {

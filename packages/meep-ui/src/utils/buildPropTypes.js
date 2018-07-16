@@ -2,17 +2,24 @@ import PropTypes from 'prop-types';
 import isInt from 'validator/lib/isInt';
 
 const buildPropTypes = (type, validator) => {
-  const checkPropTypeFunc = isRequired => (props, propName, componentName) => {
+  const checkPropTypeFunc = isRequired => (
+    prevProps,
+    propName,
+    componentName,
+  ) => {
     const value =
-      ![null, undefined].includes(props[propName]) && props[propName].toString
-        ? props[propName].toString()
-        : props[propName];
+      ![null, undefined].includes(prevProps[propName]) &&
+      prevProps[propName].toString
+        ? prevProps[propName].toString()
+        : prevProps[propName];
 
-    if (value && !validator(value, props, propName, componentName)) {
+    if (value && !validator(value, prevProps, propName, componentName)) {
       return new Error(
         `Invalid prop \`${propName}\` of type \`${type}\` supplied to \`${componentName}\`, expected \`${type}\``,
       );
-    } else if (!value && isRequired) {
+    }
+
+    if (!value && isRequired) {
       return new Error(
         `The prop \`${propName}\` is marked as required in \`${componentName}\`, but its value is \`${value}\`.`,
       );
@@ -94,10 +101,11 @@ export const buildD3TreeTypes = (dataName, nodeType, dataType) => {
     );
   };
   const checkPropTypeFunc = isRequired => (
-    props = {},
+    prevProps = {},
     propName,
     componentName,
-  ) => checkD3TreeType(isRequired)(props[propName], propName, componentName);
+  ) =>
+    checkD3TreeType(isRequired)(prevProps[propName], propName, componentName);
   const outputFunc = checkPropTypeFunc();
 
   outputFunc.isRequired = checkPropTypeFunc(true);

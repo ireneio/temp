@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { enhancer } from 'layout/DecoratorsRoot';
-import areEqual from 'fbjs/lib/areEqual';
 
 import { ID_TYPE } from 'constants/propTypes';
 
@@ -12,7 +11,7 @@ import { PLEASE_SELECT_ACTIVITY } from './locale';
 
 @enhancer
 @radium
-export default class Activity extends React.Component {
+export default class Activity extends React.PureComponent {
   static propTypes = {
     background: PropTypes.string,
     activity: PropTypes.shape({
@@ -35,13 +34,6 @@ export default class Activity extends React.Component {
     activity: null,
     cart: null,
   };
-
-  shouldComponentUpdate(nextProps) {
-    return (
-      !areEqual(this.props.activity, nextProps.activity) ||
-      this.state.background !== nextProps.background
-    );
-  }
 
   render() {
     const {

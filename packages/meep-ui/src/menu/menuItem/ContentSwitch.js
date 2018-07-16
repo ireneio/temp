@@ -5,9 +5,10 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import { NOTLOGIN } from 'constants/isLogin';
 import { LOCALE_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 
+import { ACTION_TYPE } from '../constants';
+
 import Icon from './Icon';
 import IsLogin from './IsLogin';
-import { ACTION_TYPE } from './../constants';
 import { PARAMS_TYPE } from './constants';
 
 const ContentSwitch = ({
@@ -22,7 +23,9 @@ const ContentSwitch = ({
 }) => {
   if (action === 8 && isLogin !== NOTLOGIN) {
     return <IsLogin type={type} {...props} {...params} />;
-  } else if (icon && icon.use) {
+  }
+
+  if (icon && icon.use) {
     return <Icon {...icon} title={transformLocale(title)} />;
   }
 

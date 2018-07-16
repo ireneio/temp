@@ -14,6 +14,8 @@ import * as styles from './styles';
 @enhancer
 @radium
 export default class OrderProductList extends React.PureComponent {
+  orderProductListRef = React.createRef();
+
   static propTypes = {
     /** context */
     transformLocale: PropTypes.func.isRequired,
@@ -41,8 +43,6 @@ export default class OrderProductList extends React.PureComponent {
     activityInfo: null,
     isChoosenSipment: false,
   };
-
-  orderProductListRef = React.createRef();
 
   render() {
     const {

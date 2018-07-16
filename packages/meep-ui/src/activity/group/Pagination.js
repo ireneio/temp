@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import areEqual from 'fbjs/lib/areEqual';
 
 import { POSITIVE_NUMBER_TYPE } from 'constants/propTypes';
 
@@ -10,7 +9,7 @@ import { Pagination as AntdPagination } from 'antd';
 import * as styles from './styles/pagination';
 
 @radium
-export default class Pagination extends React.Component {
+export default class Pagination extends React.PureComponent {
   static propTypes = {
     params: PropTypes.shape({
       limit: POSITIVE_NUMBER_TYPE.isRequired,
@@ -22,16 +21,9 @@ export default class Pagination extends React.Component {
   };
 
   state = {
+    // eslint-disable-next-line react/destructuring-assignment
     current: this.props.params.offset / this.props.params.limit + 1,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      !areEqual(this.props.params, nextProps.params) ||
-      this.props.total !== nextProps.total ||
-      this.state.current !== nextState.current
-    );
-  }
 
   onChange = page => {
     const { params, scrollToTop, getProductsData } = this.props;

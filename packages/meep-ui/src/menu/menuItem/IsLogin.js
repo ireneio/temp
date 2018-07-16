@@ -11,7 +11,7 @@ import * as locale from './locale';
 
 @enhancer
 @radium
-export default class IsLogin extends React.Component {
+export default class IsLogin extends React.PureComponent {
   static propTypes = {
     transformLocale: PropTypes.func.isRequired,
     user: USER_TYPE.isRequired,
@@ -22,13 +22,6 @@ export default class IsLogin extends React.Component {
   static defaultProps = {
     type: '',
   };
-
-  shouldComponentUpdate(nextProps) {
-    return (
-      this.props.displayMemberGroup !== nextProps.displayMemberGroup ||
-      this.props.type !== nextProps.type
-    );
-  }
 
   render() {
     const { transformLocale, user, displayMemberGroup, type } = this.props;

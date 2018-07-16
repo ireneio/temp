@@ -14,7 +14,7 @@ import {
   ONE_OF_CURRENCY_TYPE,
 } from 'constants/propTypes';
 
-import { FONTSIZE_TYPE } from './../constants';
+import { FONTSIZE_TYPE } from '../constants';
 import { PARAMS_TYPE } from './constants';
 import * as styles from './styles/subItem';
 import generateURL from './utils/generateURL';
@@ -22,6 +22,8 @@ import generateURL from './utils/generateURL';
 @enhancer
 @radium
 export default class SubItem extends React.PureComponent {
+  subItemRef = React.createRef();
+
   static propTypes = {
     /** context */
     transformLocale: PropTypes.func.isRequired,
@@ -109,8 +111,6 @@ export default class SubItem extends React.PureComponent {
         break;
     }
   };
-
-  subItemRef = React.createRef();
 
   render() {
     const {

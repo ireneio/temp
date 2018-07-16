@@ -18,14 +18,14 @@ import getComputeOrderQuery from 'utils/getComputeOrderQuery';
 import PaymentDefaultFormItem from 'paymentDefaultFormItem';
 import CreditCardFormItem from 'creditCardFormItem';
 
+import StepHeader from '../StepHeader';
+
 import UserInfo from './UserInfo';
 import ReceiverInfo from './ReceiverInfo';
 import ProductList from './ProductList';
 import * as LOCALE from './locale';
 import styles from './styles/index.less';
 import { modifyAntdStyle, formItem as formItemStyle } from './styles';
-
-import StepHeader from './../StepHeader';
 
 const { Item: FormItem } = Form;
 
@@ -53,6 +53,8 @@ const { Item: FormItem } = Form;
 @enhancer
 @radium
 export default class OrderDetail extends React.PureComponent {
+  isEmptyCart = false;
+
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -85,12 +87,16 @@ export default class OrderDetail extends React.PureComponent {
       paymentList: [],
       shipmentList: [],
     },
+    // eslint-disable-next-line react/destructuring-assignment
     products: this.props.products,
     choosePayment: null,
     chooseShipment: null,
     productHasError: false,
+    // eslint-disable-next-line react/destructuring-assignment
     creditCardIsRegistered: this.props.creditCardIsRegistered,
+    // eslint-disable-next-line react/destructuring-assignment
     isSynchronizeUserInfo: this.props.isSynchronizeUserInfo,
+    // eslint-disable-next-line react/destructuring-assignment
     isSaveAsReceiverTemplate: this.props.isSaveAsReceiverTemplate,
     isChecking: false,
   };
@@ -255,8 +261,6 @@ export default class OrderDetail extends React.PureComponent {
       },
     );
   };
-
-  isEmptyCart = false;
 
   render() {
     const {

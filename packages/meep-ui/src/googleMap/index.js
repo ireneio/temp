@@ -7,7 +7,7 @@ import * as styles from './styles';
 import { DEFAULT_LATITUDE_AND_LONGITUDE } from './constants';
 
 @radium
-export default class GoogleMap extends React.Component {
+export default class GoogleMap extends React.PureComponent {
   static propTypes = {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
@@ -19,21 +19,13 @@ export default class GoogleMap extends React.Component {
   };
 
   state = {
+    // eslint-disable-next-line react/destructuring-assignment
     height: this.props.height,
   };
 
   componentDidMount() {
     this.resize(this.props);
     window.addEventListener('resize', this.resize);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      this.props.width !== nextProps.width ||
-      this.props.height !== nextProps.height ||
-      this.props.href !== nextProps.href ||
-      this.state.height !== nextState.height
-    );
   }
 
   componentWillUnmount() {

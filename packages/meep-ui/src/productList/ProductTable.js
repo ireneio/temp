@@ -126,6 +126,7 @@ const ProductTable = ({
                 !(memberSeePrice && isLogin !== ISUSER) && (
                   <button
                     key={`${product.id}-button`}
+                    type="button"
                     data-id={product.id}
                     disabled={!orderable}
                     style={styles.productAddToCart(colors)}

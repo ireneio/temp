@@ -30,6 +30,8 @@ const { Option } = Select;
 @enhancer
 @radium
 export default class ReceiverInfo extends React.PureComponent {
+  storeSaveAsTemplate = false;
+
   static propTypes = {
     /** context */
     user: USER_TYPE,
@@ -107,8 +109,6 @@ export default class ReceiverInfo extends React.PureComponent {
     this.storeSaveAsTemplate = saveAsTemplate;
     return saveAsTemplate;
   };
-
-  storeSaveAsTemplate = false;
 
   render() {
     const {

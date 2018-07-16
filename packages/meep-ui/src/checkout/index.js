@@ -28,6 +28,7 @@ export default class Checkout extends React.Component {
 
   state = {
     isSummary: false,
+    // eslint-disable-next-line react/destructuring-assignment
     orderInfo: this.props.orderInfo,
     orderOtherDetailInfo: null,
   };
@@ -46,7 +47,9 @@ export default class Checkout extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state.isSummary !== nextState.isSummary;
+    const { isSummary } = this.state;
+
+    return isSummary !== nextState.isSummary;
   }
 
   goToInCheckout = (info, otherDetailInfo) => {

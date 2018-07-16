@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 import { enhancer } from 'layout/DecoratorsRoot';
-import areEqual from 'fbjs/lib/areEqual';
 
 import { ID_TYPE, COLOR_TYPE, LOCALE_TYPE } from 'constants/propTypes';
 
@@ -16,7 +15,7 @@ import * as styles from './styles';
 
 @enhancer
 @radium
-export default class Group extends React.Component {
+export default class Group extends React.PureComponent {
   static propTypes = {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     getData: PropTypes.func.isRequired,
@@ -51,18 +50,12 @@ export default class Group extends React.Component {
   };
 
   componentDidMount() {
-    const ids = this.props.group.products.map(product => product.productId);
-    this.getProductsData({ ...this.state.params, ids });
-  }
+    const { group } = this.props;
+    const { params } = this.state;
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      !areEqual(this.props.group, nextProps.group) ||
-      !areEqual(this.props.cart, nextProps.cart) ||
-      !areEqual(this.state.params, nextState.params) ||
-      !areEqual(this.state.products, nextState.products) ||
-      this.state.total !== nextState.total
-    );
+    const ids = group.products.map(product => product.productId);
+
+    this.getProductsData({ ...params, ids });
   }
 
   getProductsData = async params => {
@@ -150,9 +143,11 @@ export default class Group extends React.Component {
       }
     `;
 
+    const { getData } = this.props;
     const {
       data: { computeProductList },
-    } = await this.props.getData(query, variables);
+    } = await getData(query, variables);
+
     this.setState({
       products: /* istanbul ignore next */ process.env.STORYBOOK_DOCS
         ? computeProductList.data.computeProductList.data
@@ -202,7 +197,7 @@ export default class Group extends React.Component {
               style={styles.sort}
               onClick={() =>
                 this.getProductsData({
-                  ...this.state.params,
+                  ...params,
                   sort: sort === 'asc' ? 'desc' : 'asc',
                 })
               }

@@ -41,6 +41,7 @@ export default class Coupon extends React.PureComponent {
   };
 
   state = {
+    // eslint-disable-next-line react/destructuring-assignment
     checking: Boolean(this.props.form.getFieldValue('coupon')),
     validateStatus: 'success',
     help: '',

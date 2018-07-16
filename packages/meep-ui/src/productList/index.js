@@ -26,6 +26,10 @@ import * as LOCALE from './locale';
 @enhancer
 @radium
 export default class ProductList extends React.PureComponent {
+  root = React.createRef();
+
+  name = 'product-list';
+
   static propTypes = {
     /* eslint-disable react/no-unused-prop-types */
     products: PropTypes.shape({
@@ -178,10 +182,6 @@ export default class ProductList extends React.PureComponent {
   componentDidUpdate() {
     this.resolveProducts();
   }
-
-  root = React.createRef();
-
-  name = 'product-list';
 
   resolveProducts = () => {
     const { isLoading, products } = this.state;

@@ -17,6 +17,10 @@ import * as LOCALE from './locale';
 @enhancer
 @radium
 export default class MemberOrderList extends React.PureComponent {
+  name = 'member-order-list';
+
+  formRef = React.createRef();
+
   static propTypes = {
     orderList: PropTypes.arrayOf(
       PropTypes.shape({
@@ -45,16 +49,14 @@ export default class MemberOrderList extends React.PureComponent {
   };
 
   componentDidUpdate() {
-    if (this.state.formData) this.formRef.current.submit();
+    const { formData } = this.state;
+
+    if (formData) this.formRef.current.submit();
   }
 
   componentWillUnmount() {
     this.isUnmounted = true;
   }
-
-  name = 'member-order-list';
-
-  formRef = React.createRef();
 
   handleCancel = () => {
     this.setState({
@@ -63,8 +65,12 @@ export default class MemberOrderList extends React.PureComponent {
   };
 
   handlePayAgain = async order => {
-    if (this.state.isLoading) return;
+    const { isLoading } = this.state;
+
+    if (isLoading) return;
+
     await this.setState({ isLoading: true });
+
     const { getData, transformLocale } = this.props;
 
     try {
@@ -272,7 +278,7 @@ export default class MemberOrderList extends React.PureComponent {
 
   render() {
     const { orderList, colors, transformLocale } = this.props;
-    const { formData } = this.state;
+    const { formData, visible, order } = this.state;
     const { name, formRef, generateActions } = this;
 
     return (
@@ -300,12 +306,12 @@ export default class MemberOrderList extends React.PureComponent {
         <StyleRoot style={styles.wrapper}>
           <Modal
             className={`${name}-modal`}
-            visible={this.state.visible}
+            visible={visible}
             onCancel={this.handleCancel}
             footer={null}
             closable={false}
           >
-            {generateActions(this.state.order)}
+            {generateActions(order)}
           </Modal>
           <div style={styles.table}>
             <div style={[styles.row(colors), styles.thead]}>
@@ -326,48 +332,50 @@ export default class MemberOrderList extends React.PureComponent {
                 {transformLocale(LOCALE.ACTION)}
               </div>
             </div>
-            {orderList.map(order => (
-              <div style={styles.row(colors)} key={order.id}>
+            {orderList.map(orderItem => (
+              <div style={styles.row(colors)} key={orderItem.id}>
                 <div style={styles.main}>
                   <div style={styles.column}>
-                    {moment.unix(order.createdOn).format('YYYY/MM/DD')}
+                    {moment.unix(orderItem.createdOn).format('YYYY/MM/DD')}
                   </div>
                   <div style={[styles.column, styles.orderNo]}>
-                    <Link href={`/order/${order.id}`}>
+                    <Link href={`/order/${orderItem.id}`}>
                       <span style={styles.showOnMobile}>
                         {transformLocale(LOCALE.ORDER_NO)}：
                       </span>
-                      {order.orderNo}
+                      {orderItem.orderNo}
                     </Link>
                   </div>
                   <div style={styles.status}>
                     <span style={styles.showOnMobile}>
                       <Icon type="pay-circle-o" />
                     </span>
-                    {transformLocale(LOCALE.PAYMENT(order.paymentInfo.status))}
+                    {transformLocale(
+                      LOCALE.PAYMENT(orderItem.paymentInfo.status),
+                    )}
                   </div>
                   <div style={styles.status}>
                     <span style={styles.showOnMobile}>
                       <Icon type="inbox" />
                     </span>
                     {transformLocale(
-                      LOCALE.SHIPMENT(order.shipmentInfo.status),
+                      LOCALE.SHIPMENT(orderItem.shipmentInfo.status),
                     )}
                   </div>
                   <div style={styles.status}>
                     <span style={styles.showOnMobile}>
                       <Icon type="profile" />
                     </span>
-                    {transformLocale(LOCALE.STATUS(order.status))}
+                    {transformLocale(LOCALE.STATUS(orderItem.status))}
                   </div>
                   <div style={[styles.column, styles.panel]}>
-                    {generateActions(order, true)}
+                    {generateActions(orderItem, true)}
                   </div>
                 </div>
                 <div
                   style={styles.shadow}
                   onClick={() => {
-                    this.showModal(order);
+                    this.showModal(orderItem);
                   }}
                 />
               </div>

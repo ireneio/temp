@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import areEqual from 'fbjs/lib/areEqual';
 import radium from 'radium';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -10,7 +9,7 @@ import * as styles from './styles/cartCount';
 
 @enhancer
 @radium
-export default class CartCount extends React.Component {
+export default class CartCount extends React.PureComponent {
   static propTypes = {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     products: PropTypes.arrayOf(
@@ -21,13 +20,6 @@ export default class CartCount extends React.Component {
     ).isRequired,
     expandSubItem: PropTypes.bool.isRequired,
   };
-
-  shouldComponentUpdate(nextProps) {
-    return (
-      !areEqual(this.props.products, nextProps.products) ||
-      this.props.expandSubItem !== nextProps.expandSubItem
-    );
-  }
 
   render() {
     const { colors, products, expandSubItem } = this.props;

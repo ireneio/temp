@@ -23,6 +23,7 @@ export default class Login extends React.PureComponent {
     isFBLoginInstalled: PropTypes.bool.isRequired,
     dispatchAction: PropTypes.func.isRequired,
   };
+
   state = {
     options: LOGIN,
   };

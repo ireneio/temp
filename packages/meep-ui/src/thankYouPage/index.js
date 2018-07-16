@@ -13,6 +13,8 @@ import * as LOCALE from './locale';
 @enhancer
 @radium
 export default class ThankYouPage extends React.PureComponent {
+  checking = false;
+
   static propTypes = {
     /** context */
     location: LOCATION_TYPE.isRequired,
@@ -48,7 +50,9 @@ export default class ThankYouPage extends React.PureComponent {
         else dispatchAction('getOrder', { orderId });
 
         return this.setState({ percent: 100 });
-      } else if (!this.checking && percent < 100) this.checkExist();
+      }
+
+      if (!this.checking && percent < 100) this.checkExist();
 
       return this.setState({ percent: percent + 1 });
     }, (3 * 1000) / 100);
@@ -75,7 +79,7 @@ export default class ThankYouPage extends React.PureComponent {
     const { percent, orderExist } = this.state;
 
     if (percent < 100) return 'checking';
-    else if (!orderExist) return 'fail';
+    if (!orderExist) return 'fail';
 
     return 'success';
   };
@@ -105,8 +109,6 @@ export default class ThankYouPage extends React.PureComponent {
     if (this.isUnmounted) return;
     if (result.getOrderList.total === 1) this.setState({ orderExist: true });
   };
-
-  checking = false;
 
   render() {
     const { location, transformLocale, goTo, orderId } = this.props;

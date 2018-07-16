@@ -12,7 +12,7 @@ import {
   ACTION_TYPE,
   PAGES_TYPE,
   HEIGHT_TYPE,
-} from './../constants';
+} from '../constants';
 
 import CartCount from './CartCount';
 import SubItem from './SubItem';

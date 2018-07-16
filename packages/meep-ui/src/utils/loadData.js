@@ -2,18 +2,20 @@ import React from 'react';
 import { Spin } from 'antd';
 import { Style } from 'radium';
 
-const mockPromiseData = (props, fields) =>
+const mockPromiseData = (prevProps, fields) =>
   fields.reduce(
     (defaultState, fieldKey) => ({
       ...defaultState,
       [fieldKey]:
-        props[fieldKey] instanceof Promise ? undefined : props[fieldKey],
+        prevProps[fieldKey] instanceof Promise
+          ? undefined
+          : prevProps[fieldKey],
     }),
     {},
   );
 
-const checkPromiseExist = (props, fields) =>
-  fields.some(fieldKey => props[fieldKey] instanceof Promise);
+const checkPromiseExist = (prevProps, fields) =>
+  fields.some(fieldKey => prevProps[fieldKey] instanceof Promise);
 
 const styles = {
   '.ant-spin-nested-loading > div > .ant-spin': {
@@ -41,6 +43,7 @@ export default fields => Component =>
         const fieldData = await Promise.all(
           fields.map(async key => ({
             key,
+            // eslint-disable-next-line react/destructuring-assignment
             data: await this.props[key],
           })),
         );

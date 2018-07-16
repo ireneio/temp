@@ -15,18 +15,18 @@ import {
 import getComputeOrderQuery from 'utils/getComputeOrderQuery';
 import removeContextTpyesFromProps from 'utils/removeContextTpyesFromProps';
 
+import { ADDITION_TYPE } from '../constants';
+import {
+  block as blockStyle,
+  title as titleStyle,
+  formItem as formItemStyle,
+} from '../styles';
+
 import PriceInfo from './PriceInfo';
 import { VARIANTS_TYPE, VARIANTS_TREE_TYPE } from './constants';
 import * as LOCALE from './locale';
 import getVariantOptions from './utils/getVariantOptions';
 import mockPaymentInfoRef from './utils/mockPaymentInfoRef';
-
-import { ADDITION_TYPE } from './../constants';
-import {
-  block as blockStyle,
-  title as titleStyle,
-  formItem as formItemStyle,
-} from './../styles';
 
 const { Item: FormItem } = Form;
 const { Option } = Select;
@@ -34,6 +34,12 @@ const { Option } = Select;
 @enhancer
 @mockPaymentInfoRef
 class PayemntInfo extends React.PureComponent {
+  isTracked = false;
+
+  checkQuantityTimeout = null;
+
+  trackTimeout = null;
+
   static propTypes = {
     /** context */
     storeSetting: STORE_SETTING_TYPE.isRequired,
@@ -103,7 +109,9 @@ class PayemntInfo extends React.PureComponent {
   }
 
   componentDidUpdate(preProps, preState) {
-    if (this.state.productId !== preState.productId) this.fetchFirst();
+    const { productId } = this.state;
+
+    if (preState.productId !== productId) this.fetchFirst();
   }
 
   componentWillUnmount() {
@@ -247,10 +255,6 @@ class PayemntInfo extends React.PureComponent {
       }, 1000);
     }
   };
-
-  isTracked = false;
-  checkQuantityTimeout = null;
-  trackTimeout = null;
 
   render() {
     const {

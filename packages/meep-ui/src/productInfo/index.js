@@ -28,6 +28,8 @@ import { calculateOrderable, reformatVariant } from './utils';
 @buildVariantsTree('productData')
 @radium
 export default class ProductInfo extends React.PureComponent {
+  name = 'product-info';
+
   static propTypes = {
     productData: PRODUCT_TYPE.isRequired,
     activityData: ACTIVITY_TYPE,
@@ -184,15 +186,16 @@ export default class ProductInfo extends React.PureComponent {
     this.setState({ quantity: value });
   };
 
-  name = 'product-info';
-
   addToCart = () => {
+    const { addCartItems, productData } = this.props;
+    const { variantInfo, quantity } = this.state;
+
     this.setState({ isAddingItem: true });
-    this.props.addCartItems([
+    addCartItems([
       {
-        productId: this.props.productData.id,
-        variantId: this.state.variantInfo.id,
-        quantity: this.state.quantity,
+        productId: productData.id,
+        variantId: variantInfo.id,
+        quantity,
       },
     ]);
   };
@@ -226,12 +229,15 @@ export default class ProductInfo extends React.PureComponent {
       case NOTLOGIN:
         this.setState({ isModalOpen: true });
         break;
-      case ISUSER:
+      case ISUSER: {
+        const { variantInfo } = this.state;
+
         this.setState({ isAddingItem: true });
         dispatchAction('addToNotificationList', {
-          variantId: this.state.variantInfo.id,
+          variantId: variantInfo.id,
         });
         break;
+      }
       default:
         break;
     }

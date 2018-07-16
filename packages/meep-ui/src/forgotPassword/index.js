@@ -25,19 +25,28 @@ export default class ForgotPswForm extends React.PureComponent {
   state = { status: 'INITIAL' };
 
   componentDidUpdate() {
-    if (this.state.status === 'COMPLETED') {
+    const { goTo } = this.props;
+    const { status } = this.state;
+
+    if (status === 'COMPLETED') {
       setTimeout(() => {
-        this.props.goTo({ pathname: '/login' });
+        goTo({ pathname: '/login' });
       }, 3000);
     }
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    const {
+      form: { validateFields },
+      token,
+      dispatchAction,
+    } = this.props;
+
+    validateFields((err, values) => {
       if (!err) {
-        const { token, dispatchAction } = this.props;
         const { password } = values;
+
         dispatchAction('resetPassword', { password, token });
       }
     });

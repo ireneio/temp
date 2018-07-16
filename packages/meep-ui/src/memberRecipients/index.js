@@ -83,10 +83,14 @@ export default class MemberRecipients extends React.PureComponent {
   };
 
   editRecipient = index => {
+    const {
+      form: { resetFields },
+    } = this.props;
+
     this.setState({
       selectedIndex: index,
     });
-    this.props.form.resetFields();
+    resetFields();
   };
 
   deleteRecipient = index => {

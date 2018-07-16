@@ -14,6 +14,8 @@ import * as LOCALE from './locale';
 @enhancer
 @radium
 export default class MemberOrderApply extends React.PureComponent {
+  name = 'member-order-apply';
+
   static propTypes = {
     type: PropTypes.oneOf(['return', 'replace']).isRequired,
     orderDetails: PropTypes.shape({
@@ -75,8 +77,6 @@ export default class MemberOrderApply extends React.PureComponent {
       address: shipmentInfo.list[0].recipient.address.streetAddress,
     };
   }
-
-  name = 'member-order-apply';
 
   handleSelectChange = select => {
     this.setState({ select });
@@ -176,6 +176,8 @@ export default class MemberOrderApply extends React.PureComponent {
 
   generateColumns = () => {
     const { type, transformLocale, transformCurrency } = this.props;
+    const { step } = this.state;
+
     return [
       {
         dataIndex: 'galleryInfo',
@@ -192,10 +194,7 @@ export default class MemberOrderApply extends React.PureComponent {
               newWindow={false}
               style={styles.img}
             />
-            <div
-              className="show-on-mobile"
-              style={styles.reason(this.state.step)}
-            >
+            <div className="show-on-mobile" style={styles.reason(step)}>
               {this.renderReason(record.reason, record)}
             </div>
           </StyleRoot>
@@ -261,15 +260,21 @@ export default class MemberOrderApply extends React.PureComponent {
 
   renderSpecs = value => {
     if (!value) return null;
+
+    const { transformLocale } = this.props;
+
     return value.reduce(
       (prev, curr, index) =>
-        `${prev}${index ? '／' : ''}${this.props.transformLocale(curr.title)}`,
+        `${prev}${index ? '／' : ''}${transformLocale(curr.title)}`,
       '',
     );
   };
 
   renderQuantity = (value, record) => {
-    if (this.state.step) return value || record.quantity;
+    const { step } = this.state;
+
+    if (step) return value || record.quantity;
+
     const options = [];
     for (let index = 1; index <= record.quantity; index += 1) {
       options.push(
@@ -299,7 +304,9 @@ export default class MemberOrderApply extends React.PureComponent {
   };
 
   renderReason = (value, record, index) => {
-    if (this.state.step) {
+    const { step } = this.state;
+
+    if (step) {
       return (
         <div style={index !== undefined ? { width: '360px' } : {}}>
           {value || ''}

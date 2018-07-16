@@ -27,6 +27,7 @@ export default class AddressCascader extends React.PureComponent {
   state = {
     popupVisible: false,
     shouldPopupVisible: false,
+    // eslint-disable-next-line react/destructuring-assignment
     value: this.props.defaultValue || this.props.value || [],
     areaList: getDefaultAreaList(this.props),
   };
@@ -35,7 +36,9 @@ export default class AddressCascader extends React.PureComponent {
     const { value } = props;
 
     if (value) return { value };
-    else if (state.value.length !== 0) return { value: [] };
+
+    if (state.value.length !== 0) return { value: [] };
+
     return null;
   }
 
@@ -91,7 +94,10 @@ export default class AddressCascader extends React.PureComponent {
       value,
       isLeaf: selectedItems.length === 2,
     }));
-    this.setState({ areaList: [...this.state.areaList] });
+
+    const { areaList } = this.state;
+
+    this.setState({ areaList: [...areaList] });
   };
   /* eslint-enable no-param-reassign */
 
@@ -100,14 +106,16 @@ export default class AddressCascader extends React.PureComponent {
 
     if (value.length === 0)
       return this.setState({ popupVisible: shouldPopupVisible });
-    else if (!areaList && value[index]) return this.loadData(preAreaItem);
+
+    if (!areaList && value[index]) return this.loadData(preAreaItem);
 
     const area = areaList.find(
       ({ value: areaValue }) => areaValue === value[index],
     );
 
     if (!area && preAreaItem.length !== 0) return this.loadData(preAreaItem);
-    else if (value[index + 1]) {
+
+    if (value[index + 1]) {
       return this.checkValueIsInAreaList(area.children, index + 1, [
         ...preAreaItem,
         area,

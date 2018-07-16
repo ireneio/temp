@@ -29,14 +29,20 @@ export default class MemberOrderPayNotification extends React.PureComponent {
 
   state = {
     message:
+      // eslint-disable-next-line react/destructuring-assignment
       this.props.orderDetails.paidMessage &&
+      // eslint-disable-next-line react/destructuring-assignment
       this.props.orderDetails.paidMessage.length > 0
-        ? this.props.orderDetails.paidMessage[
+        ? // eslint-disable-next-line react/destructuring-assignment
+          this.props.orderDetails.paidMessage[
+            // eslint-disable-next-line react/destructuring-assignment
             this.props.orderDetails.paidMessage.length - 1
           ].note
         : DEFAULT_MESSAGE,
     disabled:
+      // eslint-disable-next-line react/destructuring-assignment
       this.props.orderDetails.paidMessage &&
+      // eslint-disable-next-line react/destructuring-assignment
       this.props.orderDetails.paidMessage.length > 0,
     modal: { visible: false, content: '' },
   };

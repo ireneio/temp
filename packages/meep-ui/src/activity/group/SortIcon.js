@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import areEqual from 'fbjs/lib/areEqual';
 import radium from 'radium';
 
 @radium
-export default class SortIcon extends React.Component {
+export default class SortIcon extends React.PureComponent {
   static propTypes = {
     sort: PropTypes.oneOf(['asc', 'desc']).isRequired,
     style: PropTypes.shape({}),
@@ -15,13 +14,6 @@ export default class SortIcon extends React.Component {
     style: null,
     onClick: null,
   };
-
-  shouldComponentUpdate(nextProps) {
-    return (
-      this.props.sort !== nextProps.sort ||
-      !areEqual(this.props.style, nextProps.style)
-    );
-  }
 
   render() {
     const { sort, style, onClick } = this.props;

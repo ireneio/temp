@@ -74,7 +74,8 @@ export default class ImageText extends React.PureComponent {
     const { href } = files ? files[0] : '';
 
     if (/^#/.test(href)) return `${pathname}${href}`;
-    else if (href && !/(^\/)|(^http)/.test(href)) return `//${href}`;
+
+    if (href && !/(^\/)|(^http)/.test(href)) return `//${href}`;
 
     return href;
   };

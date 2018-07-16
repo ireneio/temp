@@ -47,6 +47,8 @@ const getDefaultHeaderHeight = ({ pages, design }) => {
 @enhancer
 @radium
 export default class FixedTop extends React.PureComponent {
+  headerRef = React.createRef();
+
   static propTypes = {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     logo: URL_TYPE,
@@ -78,6 +80,7 @@ export default class FixedTop extends React.PureComponent {
   };
 
   state = {
+    // eslint-disable-next-line react/destructuring-assignment
     headerHeight: getDefaultHeaderHeight(this.props.menu),
   };
 
@@ -93,8 +96,6 @@ export default class FixedTop extends React.PureComponent {
   resizeHeight = () => {
     this.setState({ headerHeight: this.headerRef.current.offsetHeight });
   };
-
-  headerRef = React.createRef();
 
   render() {
     const { colors, logo, menu, ...props } = this.props;

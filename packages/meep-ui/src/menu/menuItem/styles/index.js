@@ -1,6 +1,6 @@
 import { PHONE_MEDIA } from 'constants/media';
 
-import { DEFAULT_COLOR_WITH_PATTERN } from './../../constants';
+import { DEFAULT_COLOR_WITH_PATTERN } from '../../constants';
 
 export const root = (isExpandSubItem, minHeight) => [
   {

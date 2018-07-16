@@ -10,7 +10,7 @@ import * as styles from './styles/placeholder';
 
 @enhancer
 @radium
-export default class Placeholder extends React.Component {
+export default class Placeholder extends React.PureComponent {
   static propTypes = {
     location: LOCATION_TYPE.isRequired,
     href: URL_TYPE,
@@ -40,13 +40,6 @@ export default class Placeholder extends React.Component {
     window.addEventListener('resize', this.resize);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      this.state.width !== nextState.width ||
-      this.state.height !== nextState.height
-    );
-  }
-
   componentWillUnmount() {
     window.removeEventListener('resize', this.resize);
   }
@@ -62,7 +55,8 @@ export default class Placeholder extends React.Component {
     const { pathname } = location;
 
     if (/^#/.test(href)) return `${pathname}${href}`;
-    else if (href && !/^\//.test(href)) return `//${href}`;
+
+    if (href && !/^\//.test(href)) return `//${href}`;
 
     return href;
   };

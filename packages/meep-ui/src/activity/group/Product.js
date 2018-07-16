@@ -16,12 +16,13 @@ import Link from 'link';
 import ProductCarousel from 'productCarousel';
 import ProductInfo from 'productInfo';
 
+import { PURCHASE, SELECT_SPEC } from '../locale';
+
 import * as styles from './styles/product';
-import { PURCHASE, SELECT_SPEC } from './../locale';
 
 @enhancer
 @radium
-export default class Product extends React.Component {
+export default class Product extends React.PureComponent {
   static propTypes = {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     transformLocale: PropTypes.func.isRequired,
@@ -65,24 +66,20 @@ export default class Product extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (!areEqual(this.props.cart, nextProps.cart)) {
+    const { cart } = this.props;
+
+    if (!areEqual(cart, nextProps.cart)) {
       this.setState({
         openModal: false,
       });
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      !areEqual(this.props.product, nextProps.product) ||
-      !areEqual(this.props.cart, nextProps.cart) ||
-      this.state.openModal !== nextState.openModal
-    );
-  }
-
   toggleModal = () => {
+    const { openModal } = this.state;
+
     this.setState({
-      openModal: !this.state.openModal,
+      openModal: !openModal,
     });
   };
 

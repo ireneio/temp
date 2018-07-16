@@ -52,6 +52,16 @@ import * as styles from './styles';
 })
 @radium
 export default class LandingPage extends React.PureComponent {
+  paymentInfoRef = React.createRef();
+
+  formRef = React.createRef();
+
+  /** just for adTrack, not use in state */
+  storeComputeOrderList = null;
+
+  // eslint-disable-next-line react/destructuring-assignment
+  needToTrackViewProduct = this.props.location.hash !== 'choose-shipment-store';
+
   static propTypes = {
     /** context */
     user: USER_TYPE,
@@ -116,6 +126,7 @@ export default class LandingPage extends React.PureComponent {
 
   componentDidUpdate() {
     const { adTrack, productData } = this.props;
+    const { formData } = this.state;
 
     if (productData && this.needToTrackViewProduct) {
       setTimeout(() => {
@@ -124,7 +135,7 @@ export default class LandingPage extends React.PureComponent {
       }, 5000);
     }
 
-    if (this.state.formData) this.formRef.current.submit();
+    if (formData) this.formRef.current.submit();
   }
 
   componentWillUnmount() {
@@ -213,7 +224,9 @@ export default class LandingPage extends React.PureComponent {
                     dispatchAction('emptyCart');
                     goTo({ pathname: `/ezpay/cvcode/${id}` });
                     return;
-                  } else if (formData.type === 'GET') {
+                  }
+
+                  if (formData.type === 'GET') {
                     window.location = formData.url;
                     return;
                   }
@@ -235,12 +248,6 @@ export default class LandingPage extends React.PureComponent {
       },
     );
   };
-
-  paymentInfoRef = React.createRef();
-  formRef = React.createRef();
-  /** just for adTrack, not use in state */
-  storeComputeOrderList = null;
-  needToTrackViewProduct = this.props.location.hash !== 'choose-shipment-store';
 
   render() {
     const {

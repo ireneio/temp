@@ -23,8 +23,10 @@ export default class SignupForm extends React.PureComponent {
   };
 
   handleConfirmBlur = e => {
+    const { confirmDirty } = this.state;
+
     this.setState({
-      confirmDirty: this.state.confirmDirty || !!e.target.value,
+      confirmDirty: confirmDirty || !!e.target.value,
     });
   };
 
@@ -39,7 +41,9 @@ export default class SignupForm extends React.PureComponent {
 
   validateToNextPassword = (rule, value, callback) => {
     const { form } = this.props;
-    if (value && this.state.confirmDirty) {
+    const { confirmDirty } = this.state;
+
+    if (value && confirmDirty) {
       form.validateFields(['confirmPassword'], { force: true });
     }
     callback();
@@ -47,11 +51,17 @@ export default class SignupForm extends React.PureComponent {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+
+    const {
+      form: { validateFields },
+      dispatchAction,
+    } = this.props;
+
+    validateFields((err, values) => {
       if (!err) {
         console.log('Recived values: ', values);
         const { email, newPassword: password, code: registeredCode } = values;
-        this.props.dispatchAction('signup', {
+        dispatchAction('signup', {
           email,
           password,
           registeredCode,
@@ -66,6 +76,7 @@ export default class SignupForm extends React.PureComponent {
       transformLocale,
       colors,
     } = this.props;
+
     return (
       <Form className="signup-form" onSubmit={this.handleSubmit}>
         <Row type="flex" justify="center" gutter={24}>

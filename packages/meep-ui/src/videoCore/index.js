@@ -7,7 +7,7 @@ import { CONTENT_WIDTH_TYPE, URL_TYPE } from 'constants/propTypes';
 import { ASPECT_TYPE, RATIOS, DEFAULT_VIDEO_URL } from './constants';
 
 @radium
-export default class VideoCore extends React.Component {
+export default class VideoCore extends React.PureComponent {
   static propTypes = {
     href: URL_TYPE,
     aspect: ASPECT_TYPE.isRequired,
@@ -25,15 +25,6 @@ export default class VideoCore extends React.Component {
   componentDidMount() {
     this.resize();
     window.addEventListener('resize', this.resize);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      this.props.contentWidth !== nextProps.contentWidth ||
-      this.props.href !== nextProps.href ||
-      this.props.aspect !== nextProps.aspect ||
-      this.state.height !== nextState.height
-    );
   }
 
   componentWillUnmount() {

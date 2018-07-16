@@ -83,7 +83,9 @@ export const item = (
 
   if (expandSubItem) {
     return { ...defaultStyle };
-  } else if (isActive) {
+  }
+
+  if (isActive) {
     return {
       ...defaultStyle,
       ...patternStyle,

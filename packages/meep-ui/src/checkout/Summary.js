@@ -27,6 +27,117 @@ import * as styles from './styles/summary';
 @enhancer
 @radium
 export default class Summary extends React.Component {
+  formRef = React.createRef();
+
+  productColumns = [
+    {
+      title: 'Img',
+      dataIndex: 'galleryInfo',
+      render: value => {
+        const url = !value ? '' : value.media[0];
+
+        return (
+          <StyleRoot style={styles.imgWrapper}>
+            <img style={styles.img} alt={url} src={`//${url}`} />
+          </StyleRoot>
+        );
+      },
+    },
+    {
+      title: 'Title',
+      dataIndex: 'title',
+      width: '50%',
+      render: (value, { activityInfo, specs }) => {
+        const { transformLocale } = this.props;
+
+        return (
+          <React.Fragment>
+            <div>{transformLocale(value)}</div>
+
+            <StyleRoot style={[styles.phoneSpec, styles.activityRoot]}>
+              {(specs || [])
+                .map(({ title }) => transformLocale(title))
+                .join('/')}
+            </StyleRoot>
+
+            {(activityInfo || []).length === 0 ? null : (
+              <div style={styles.activityRoot}>
+                {activityInfo.map(({ id, title, plugin }) => (
+                  <div key={id} style={styles.activity}>
+                    <TagIcon style={styles.tagIcon} />
+
+                    {transformLocale(
+                      plugin === 'usePoints' ? LOCALE.REWARD_POINTS : title,
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </React.Fragment>
+        );
+      },
+    },
+    {
+      title: 'Specs',
+      dataIndex: 'specs',
+      width: '50%',
+      className: 'hide-in-phone',
+      render: value => {
+        const { transformLocale } = this.props;
+
+        return (
+          <StyleRoot style={styles.hideInPhone}>
+            {(value || []).map(({ title }) => transformLocale(title)).join('/')}
+          </StyleRoot>
+        );
+      },
+    },
+    {
+      title: 'Quantity',
+      dataIndex: 'quantity',
+      align: 'right',
+      className: 'not-break',
+    },
+    {
+      title: 'RetailPrice',
+      dataIndex: 'retailPrice',
+      align: 'right',
+      className: 'not-break hide-in-phone',
+      render: (value, { type }) => {
+        const { transformCurrency } = this.props;
+
+        if (type === 'gift') return '';
+
+        return (
+          <StyleRoot style={styles.hideInPhone}>
+            {transformCurrency(value)}
+          </StyleRoot>
+        );
+      },
+    },
+    {
+      title: 'TotalPrice',
+      dataIndex: 'totalPrice',
+      align: 'right',
+      className: 'not-break',
+      render: (value, { stock, type, error }) => {
+        const { colors, transformLocale, transformCurrency } = this.props;
+
+        if (type === 'gift') {
+          return (
+            <div style={!error && stock > 0 ? {} : styles.giftError(colors)}>
+              {transformLocale(
+                !error && stock > 0 ? LOCALE.GIFT : LOCALE.GIFT_ERROR,
+              )}
+            </div>
+          );
+        }
+
+        return transformCurrency(value);
+      },
+    },
+  ];
+
   static propTypes = {
     /** context */
     user: USER_TYPE,
@@ -60,14 +171,18 @@ export default class Summary extends React.Component {
   };
 
   shouldComponentUpdate(nextProps, nextState) {
+    const { formData, isSubmitting } = this.state;
+
     return (
-      !areEqual(this.state.formData, nextState.formData) ||
-      this.state.isSubmitting !== nextState.isSubmitting
+      !areEqual(formData, nextState.formData) ||
+      isSubmitting !== nextState.isSubmitting
     );
   }
 
   componentDidUpdate() {
-    if (this.state.formData) this.formRef.current.submit();
+    const { formData } = this.state;
+
+    if (formData) this.formRef.current.submit();
   }
 
   componentWillUnmount() {
@@ -190,7 +305,9 @@ export default class Summary extends React.Component {
                 dispatchAction('emptyCart');
                 goTo({ pathname: `/ezpay/cvcode/${id}` });
                 return;
-              } else if (formData.type === 'GET') {
+              }
+
+              if (formData.type === 'GET') {
                 window.location = formData.url;
                 return;
               }
@@ -224,116 +341,6 @@ export default class Summary extends React.Component {
       );
     }
   };
-
-  formRef = React.createRef();
-  productColumns = [
-    {
-      title: 'Img',
-      dataIndex: 'galleryInfo',
-      render: value => {
-        const url = !value ? '' : value.media[0];
-
-        return (
-          <StyleRoot style={styles.imgWrapper}>
-            <img style={styles.img} alt={url} src={`//${url}`} />
-          </StyleRoot>
-        );
-      },
-    },
-    {
-      title: 'Title',
-      dataIndex: 'title',
-      width: '50%',
-      render: (value, { activityInfo, specs }) => {
-        const { transformLocale } = this.props;
-
-        return (
-          <React.Fragment>
-            <div>{transformLocale(value)}</div>
-
-            <StyleRoot style={[styles.phoneSpec, styles.activityRoot]}>
-              {(specs || [])
-                .map(({ title }) => transformLocale(title))
-                .join('/')}
-            </StyleRoot>
-
-            {(activityInfo || []).length === 0 ? null : (
-              <div style={styles.activityRoot}>
-                {activityInfo.map(({ id, title, plugin }) => (
-                  <div key={id} style={styles.activity}>
-                    <TagIcon style={styles.tagIcon} />
-
-                    {transformLocale(
-                      plugin === 'usePoints' ? LOCALE.REWARD_POINTS : title,
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
-          </React.Fragment>
-        );
-      },
-    },
-    {
-      title: 'Specs',
-      dataIndex: 'specs',
-      width: '50%',
-      className: 'hide-in-phone',
-      render: value => {
-        const { transformLocale } = this.props;
-
-        return (
-          <StyleRoot style={styles.hideInPhone}>
-            {(value || []).map(({ title }) => transformLocale(title)).join('/')}
-          </StyleRoot>
-        );
-      },
-    },
-    {
-      title: 'Quantity',
-      dataIndex: 'quantity',
-      align: 'right',
-      className: 'not-break',
-    },
-    {
-      title: 'RetailPrice',
-      dataIndex: 'retailPrice',
-      align: 'right',
-      className: 'not-break hide-in-phone',
-      render: (value, { type }) => {
-        const { transformCurrency } = this.props;
-
-        if (type === 'gift') return '';
-
-        return (
-          <StyleRoot style={styles.hideInPhone}>
-            {transformCurrency(value)}
-          </StyleRoot>
-        );
-      },
-    },
-    {
-      title: 'TotalPrice',
-      dataIndex: 'totalPrice',
-      align: 'right',
-      className: 'not-break',
-      render: (value, { stock, type, error }) => {
-        const { colors, transformLocale, transformCurrency } = this.props;
-
-        if (type === 'gift') {
-          return (
-            <div style={!error && stock > 0 ? {} : styles.giftError(colors)}>
-              {transformLocale(
-                !error && stock > 0 ? LOCALE.GIFT : LOCALE.GIFT_ERROR,
-              )}
-            </div>
-          );
-        }
-
-        return transformCurrency(value);
-      },
-    },
-  ];
 
   render() {
     const {
