@@ -57,7 +57,7 @@ jobs:
       - run:
           name: Publish npm
           command: |
-            test $(.circleci/bin/checkNeedPublish.js) == true && \
+            test $(.circleci/bin/checkNeedPublish.js ./packages/meep-ui) == true && \
               npm run lerna -- publish \
               --skip-git \
               --force-publish=@meepshop/meep-ui \

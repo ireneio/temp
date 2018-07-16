@@ -4,7 +4,13 @@
  */
 
 const path = require('path');
+const invariant = require('fbjs/lib/invariant');
 
-const { version } = require(path.resolve(process.cwd(), './package.json'));
+const { version } = require(path.resolve(
+  process.argv[2] || process.cwd(),
+  './package.json',
+));
+
+invariant(process.env.CIRCLE_TAG, `CIRCLE_TAG can not be undefined.`);
 
 console.log(version === process.env.CIRCLE_TAG);
