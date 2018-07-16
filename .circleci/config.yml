@@ -22,7 +22,9 @@ jobs:
 
       - run:
           name: Check code style
-          command: npm run lint -- .
+          command: |
+            make babel-prod
+            npm run lint -- .
 
       # TODO
       #- run:

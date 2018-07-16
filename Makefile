@@ -9,15 +9,18 @@ babel-all:
 		"babel src -d lib --config-file ../../babel.config.js" \
 		${BABEL_PACKAGES}
 
-babel-clean:
-	rm -rf ./lib ./packages/**/lib
-
-prod:
+babel-prod:
 	@NODE_ENV=production make babel-all
 	@npm run lerna -- run prod \
 		--stream \
 		--parallel \
 		${BABEL_PACKAGES}
+
+babel-clean:
+	rm -rf ./lib ./packages/**/lib
+
+prod:
+	@make babel-prod
 	@npm run lerna -- run prod \
 		--stream \
 		--parallel \
