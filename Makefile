@@ -38,7 +38,8 @@ release:
 	@vim CHANGELOG.md && \
 		git add . && \
 		git commit -m "chore(release): v${VERSION} [skip ci]" && \
-		git tag -a v${VERSION} -m "v${VERSION}"
+		git tag -a v${VERSION} -m "v${VERSION}" && \
+		git push origin master --follow-tags
 
 clean-all:
 	@make babel-clean
