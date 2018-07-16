@@ -77,7 +77,6 @@ export default class MobileSidebar extends React.PureComponent {
                 pattern: 0,
                 showLogo: false,
                 showSearchbar: true,
-                opacity: 0,
                 hover: {
                   color: 'inherit',
                   background: 'inherit',
