@@ -48,7 +48,7 @@ const initialState = {
   settings: {},
 };
 
-const _getPageAdTrackIds = data => {
+const getPageAdTrackIds = data => {
   const pageAdTrack = Utils.getIn(['getPageAdTrack', 'data'])(data);
   const webTrackList = Utils.getIn(['getWebTrackList', 'data'])(data);
   let facebookID = null;
@@ -139,7 +139,7 @@ export default function(state = initialState, { type, payload }) {
       const storeSettings = Utils.getIn(['getStoreList', 'data', 0, 'setting'])(
         data,
       );
-      const pageAdTrackIDs = _getPageAdTrackIds(data);
+      const pageAdTrackIDs = getPageAdTrackIds(data);
       const fxSetup = Utils.getIn(['getExchangeRateList', 'data'])(data);
       const {
         locale: localeOptions,

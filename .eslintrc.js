@@ -53,6 +53,7 @@ module.exports = {
         groups: {
           lifecycle: [
             'displayName',
+            'getInitialProps',
             'propTypes',
             'contextTypes',
             'childContextTypes',
@@ -91,4 +92,17 @@ module.exports = {
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'jsx-a11y/mouse-events-have-key-events': 'off',
   },
+  overrides: [
+    {
+      files: ['packages/store/src/server/server.js'],
+      rules: {
+        'no-underscore-dangle': [
+          'error',
+          {
+            allow: ['_headers', '_error'],
+          },
+        ],
+      },
+    },
+  ],
 };

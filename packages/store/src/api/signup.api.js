@@ -1,5 +1,5 @@
 import postGraphql from 'utils/postGraphql';
-import { getIn } from 'utils';
+import getIn from 'utils/getIn';
 
 /**
  * @description 註冊

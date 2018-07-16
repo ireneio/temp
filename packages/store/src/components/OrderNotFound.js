@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { enhancer } from '@meepshop/meep-ui/lib/layout';
+import { enhancer } from '@meepshop/meep-ui/lib/layout/DecoratorsRoot';
 
 @enhancer
 export default class extends React.Component {
   static propTypes = {
     user: PropTypes.shape({ id: PropTypes.string.isRequired }).isRequired,
   };
+
   render() {
     const { user } = this.props;
     return (

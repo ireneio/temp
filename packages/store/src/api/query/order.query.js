@@ -1,4 +1,4 @@
-const _productsQuery = `{
+const productsQuery = `{
   id
   type
   productId
@@ -41,7 +41,7 @@ const _productsQuery = `{
   _error
 }`;
 
-const _recipientQuery = `{
+const recipientQuery = `{
   name
   mobile
   tel
@@ -62,7 +62,7 @@ const _recipientQuery = `{
   }
 }`;
 
-const _paymentsQuery = `{
+const paymentsQuery = `{
   paymentId
   template
   name
@@ -70,7 +70,7 @@ const _paymentsQuery = `{
   description
 }`;
 
-const _shipmenstQuery = `{
+const shipmenstQuery = `{
   shipmentId
   template
   name
@@ -94,9 +94,9 @@ const orderQuery = `{
   categories {
     id
     tag
-    products ${_productsQuery}
-    payments ${_paymentsQuery}
-    shipments ${_shipmenstQuery}
+    products ${productsQuery}
+    payments ${paymentsQuery}
+    shipments ${shipmenstQuery}
   }
   shipmentInfo {
     list {
@@ -104,7 +104,7 @@ const orderQuery = `{
       number
       description
       shipmentId
-      recipient ${_recipientQuery}
+      recipient ${recipientQuery}
       storeShipmentDetails {
         id
         searchLink

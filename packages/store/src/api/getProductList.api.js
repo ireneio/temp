@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 import postGraphql from 'utils/postGraphql';
-import { productQuery } from '../api/query';
+import { productQuery } from './query';
 
 export default async function(args = {}) {
   const {

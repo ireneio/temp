@@ -8,10 +8,8 @@ import getPageWithModifyWidget from './getPageWithModifyWidget';
 import getReqArgs from './getReqArgs';
 import getCookie from './getCookie';
 import setDefaultValueForMenuDesign from './setDefaultValueForMenuDesign';
-import getJoinedModule from './getJoinedModue';
+import getJoinedModule from './getJoinedModule';
 import execTrackingCode from './execTrackingCode';
-import modifyWidgetDataInServer from './modifyWidgetDataInServer';
-import modifyWidgetDataInClient from './modifyWidgetDataInClient';
 
 export {
   getStateError,
@@ -26,6 +24,4 @@ export {
   setDefaultValueForMenuDesign,
   getJoinedModule,
   execTrackingCode,
-  modifyWidgetDataInServer,
-  modifyWidgetDataInClient,
 };

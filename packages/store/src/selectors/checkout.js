@@ -10,7 +10,7 @@ import {
   getCurrencyItemsTemplate,
 } from './index';
 
-const getCheckoutPage = (state, props) => ({
+const getCheckoutPage = (state, prevProps) => ({
   id: 'page-checkout',
   title: {
     en_US: 'Checkout',
@@ -33,7 +33,7 @@ const getCheckoutPage = (state, props) => ({
                 getIn(['memberReducer', 'cart', 'categories', 'products'])(
                   state,
                 ) || [],
-              orderInfo: props.orderInfo, // 超商門市
+              orderInfo: prevProps.orderInfo, // 超商門市
               // 鎖國家:存的資料（一邊中文一邊英文）與landing page不同
               countries: state.storeReducer.settings.lockedCountry.map(
                 c => (c === 'Taiwan' ? '台灣' : c),

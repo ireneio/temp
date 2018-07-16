@@ -41,20 +41,26 @@ class ForgotPassword extends Component {
   static defaultProps = { error: null };
 
   componentDidMount() {
-    if (this.props.isLogin === 'ISUSER') {
+    const { isLogin } = this.props;
+
+    if (isLogin === 'ISUSER') {
       Router.pushRoute('/');
     }
   }
 
   componentDidUpdate() {
-    if (this.props.isLogin === 'ISUSER') {
+    const { isLogin } = this.props;
+
+    if (isLogin === 'ISUSER') {
       Router.pushRoute('/');
     }
   }
 
   render() {
+    const { error } = this.props;
+
     /* Display Error View */
-    if (this.props.error) return <Error error={this.props.error} />;
+    if (error) return <Error error={error} />;
 
     const {
       isLogin,

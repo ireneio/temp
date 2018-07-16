@@ -1,4 +1,4 @@
-const _getSpecsName = specs => {
+const getSpecsName = specs => {
   let specsName = '';
   if (specs && specs.length > 0) {
     specsName = specs.reduce(
@@ -31,7 +31,7 @@ export default function(eventName, options = {}) {
           product =>
             product.productId === productId && product.variantId === variantId,
         );
-        const specsName = _getSpecsName(theProduct.specs);
+        const specsName = getSpecsName(theProduct.specs);
         window.gtag('event', 'add_to_cart', {
           items: [
             {
@@ -63,7 +63,7 @@ export default function(eventName, options = {}) {
       }
       /* Google Enhanced Ecommerce */
       if (window.gtag && pageAdTrackIDs.gaID) {
-        const specsName = _getSpecsName(variant.specs);
+        const specsName = getSpecsName(variant.specs);
         window.gtag('event', 'add_to_cart', {
           items: [
             {
@@ -210,7 +210,7 @@ export default function(eventName, options = {}) {
         const items = products
           .filter(product => product.type === 'product')
           .map(product => {
-            const specsName = _getSpecsName(product.specs);
+            const specsName = getSpecsName(product.specs);
             return {
               id: product.sku,
               name: `${product.title.zh_TW} ${specsName}`,

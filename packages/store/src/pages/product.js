@@ -40,9 +40,10 @@ class Product extends React.Component {
         store.dispatch(Actions.getPages({ pageType: 'template', query }));
       } else {
         const { templateId, pageId } = Utils.getIn(['design'])(product);
-        const _id = templateId || pageId;
-        if (R.isNil(R.find(R.propEq('id', _id))(pagesReducer))) {
-          store.dispatch(Actions.getPages({ id: _id, query }));
+        const id = templateId || pageId;
+
+        if (R.isNil(R.find(R.propEq('id', id))(pagesReducer))) {
+          store.dispatch(Actions.getPages({ id, query }));
         }
       }
     }
@@ -87,8 +88,10 @@ class Product extends React.Component {
   }
 
   render() {
+    const { error } = this.props;
+
     /* Display Error View */
-    if (this.props.error) return <Error error={this.props.error} />;
+    if (error) return <Error error={error} />;
 
     const {
       storeSetting: { storeName, faviconUrl, locale },

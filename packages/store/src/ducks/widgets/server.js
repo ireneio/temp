@@ -2,7 +2,11 @@ import { takeEvery, put, call } from 'redux-saga/effects';
 import * as R from 'ramda';
 import * as Utils from 'utils';
 import * as Api from 'api';
-import * as Actions from 'ducks/actions';
+
+import { getStoreSuccess, getStoreFailure } from './store';
+import { getPagesSuccess } from './pages';
+import { getAuthSuccess } from './member';
+import { getProductSuccess } from './products';
 
 /* *********************************** Get data at /index for SSR *********************************** */
 const SERVER_INDEX_INITIAL = 'SERVER_INDEX_INITIAL';
@@ -25,8 +29,8 @@ function* serverIndexInitialFlow({ payload }) {
     const locale = Utils.getCookie('locale', cookie);
     const customerCurrency = Utils.getCookie('currency', cookie);
 
-    yield put(Actions.getStoreSuccess({ ...data, locale, customerCurrency }));
-    yield put(Actions.getAuthSuccess(data));
+    yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
+    yield put(getAuthSuccess(data));
     const homePageId = Utils.getIn([
       'data',
       'getStoreList',
@@ -48,10 +52,10 @@ function* serverIndexInitialFlow({ payload }) {
     } else {
       throw new Error('Index page is not found.');
     }
-    yield put(Actions.getPagesSuccess(modifiedPage));
+    yield put(getPagesSuccess(modifiedPage));
   } catch (error) {
     console.error(error);
-    yield put(Actions.getStoreFailure(error.message));
+    yield put(getStoreFailure(error.message));
   }
 }
 export function* watchServerIndexInitialFlow() {
@@ -81,8 +85,8 @@ function* serverPagesInitialFlow({ payload }) {
     const locale = Utils.getCookie('locale', cookie);
     const customerCurrency = Utils.getCookie('currency', cookie);
 
-    yield put(Actions.getStoreSuccess({ ...data, locale, customerCurrency }));
-    yield put(Actions.getAuthSuccess(data));
+    yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
+    yield put(getAuthSuccess(data));
     const page = Utils.getIn(['data', 'getPageList', 'data', 0])(data);
     let modifiedPage;
     if (page) {
@@ -95,10 +99,10 @@ function* serverPagesInitialFlow({ payload }) {
     } else {
       throw new Error('The page is not found.');
     }
-    yield put(Actions.getPagesSuccess(modifiedPage));
+    yield put(getPagesSuccess(modifiedPage));
   } catch (error) {
     console.error(error);
-    yield put(Actions.getStoreFailure(error.message));
+    yield put(getStoreFailure(error.message));
   }
 }
 export function* watchServerPagesInitialFlow() {
@@ -128,8 +132,8 @@ function* serverProductInitialFlow({ payload }) {
     const locale = Utils.getCookie('locale', cookie);
     const customerCurrency = Utils.getCookie('currency', cookie);
 
-    yield put(Actions.getStoreSuccess({ ...data, locale, customerCurrency }));
-    yield put(Actions.getAuthSuccess(data));
+    yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
+    yield put(getAuthSuccess(data));
     const product = Utils.getIn(['data', 'computeProductList', 'data', 0])(
       data,
     );
@@ -158,7 +162,7 @@ function* serverProductInitialFlow({ payload }) {
         ])(computeOrderData) || [];
 
       // FIXME: Join activities in corresponding product
-      yield put(Actions.getProductSuccess({ ...product, activities }));
+      yield put(getProductSuccess({ ...product, activities }));
       let pagesData;
       if (!Utils.getIn(['design'])(product)) {
         pagesData = yield call(Api.getPages, {
@@ -187,11 +191,11 @@ function* serverProductInitialFlow({ payload }) {
       } else {
         throw new Error('Product page is not found.');
       }
-      yield put(Actions.getPagesSuccess(modifiedPage));
+      yield put(getPagesSuccess(modifiedPage));
     }
   } catch (error) {
     console.error(error);
-    yield put(Actions.getStoreFailure(error.message));
+    yield put(getStoreFailure(error.message));
   }
 }
 export function* watchServerProductInitialFlow() {
@@ -218,8 +222,8 @@ function* serverProductsInitialFlow({ payload }) {
     const locale = Utils.getCookie('locale', cookie);
     const customerCurrency = Utils.getCookie('currency', cookie);
 
-    yield put(Actions.getStoreSuccess({ ...data, locale, customerCurrency }));
-    yield put(Actions.getAuthSuccess(data));
+    yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
+    yield put(getAuthSuccess(data));
     const page = Utils.getIn(['data', 'getPageList', 'data', 0])(data);
     let modifiedPage;
     if (page) {
@@ -232,10 +236,10 @@ function* serverProductsInitialFlow({ payload }) {
     } else {
       throw new Error('Products page is not found.');
     }
-    yield put(Actions.getPagesSuccess(modifiedPage));
+    yield put(getPagesSuccess(modifiedPage));
   } catch (error) {
     console.error(error);
-    yield put(Actions.getStoreFailure(error.message));
+    yield put(getStoreFailure(error.message));
   }
 }
 export function* watchServerProductsInitialFlow() {
@@ -262,11 +266,11 @@ function* serverOthersInitialFlow({ payload }) {
     const locale = Utils.getCookie('locale', cookie);
     const customerCurrency = Utils.getCookie('currency', cookie);
 
-    yield put(Actions.getStoreSuccess({ ...data, locale, customerCurrency }));
-    yield put(Actions.getAuthSuccess(data));
+    yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
+    yield put(getAuthSuccess(data));
   } catch (error) {
     console.error(error);
-    yield put(Actions.getStoreFailure(error.message));
+    yield put(getStoreFailure(error.message));
   }
 }
 export function* watchServerOthersInitialFlow() {

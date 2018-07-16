@@ -17,7 +17,7 @@ import {
   getWishList,
 } from './index';
 
-const getPagePath = (state, props) => props.path;
+const getPagePath = (state, { path }) => path;
 
 export const getPageByPath = createSelector(
   [getPagePath, getPages],

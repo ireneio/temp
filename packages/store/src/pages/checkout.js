@@ -89,8 +89,10 @@ class Checkout extends React.Component {
   }
 
   render() {
+    const { error } = this.props;
+
     /* Display Error View */
-    if (this.props.error) return <Error error={this.props.error} />;
+    if (error) return <Error error={error} />;
 
     const {
       location: { pathname },

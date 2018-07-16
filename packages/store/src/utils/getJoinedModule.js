@@ -1,6 +1,7 @@
 import * as R from 'ramda';
-import * as Utils from 'utils';
 import { MEMBER_ITEMS_TMPL } from 'template';
+
+import getIn from './getIn';
 
 const getJoinedModule = (
   widgets,
@@ -25,7 +26,7 @@ const getJoinedModule = (
           let menu =
             R.find(R.propEq('id', menuId))(menus) ||
             R.find(R.propEq('menuType', menuId))(menus);
-          let menuPages = Utils.getIn(['pages'])(menu) || [];
+          let menuPages = getIn(['pages'])(menu) || [];
           if (menuPages.length > 0) {
             menuPages = menuPages.map(menuPage => {
               let newMenuPage = menuPage;

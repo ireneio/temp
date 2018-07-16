@@ -1,5 +1,5 @@
 import postGraphql from 'utils/postGraphql';
-import { productQuery } from '../api/query';
+import { productQuery } from './query';
 
 export default async function({ id, isServer, XMeepshopDomain, cookie }) {
   const variables = {

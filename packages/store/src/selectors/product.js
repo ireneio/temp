@@ -17,8 +17,8 @@ import {
   getQuery,
 } from './index';
 
-const getProductList = state => state.productsReducer;
-const getProductId = (_, props) => props.pId;
+const getProductList = ({ productsReducer }) => productsReducer;
+const getProductId = (_, { pId }) => pId;
 
 export const getProduct = createSelector(
   [getProductList, getProductId],
@@ -31,7 +31,9 @@ export const getProductDescription = createSelector(
     const descTw = getIn(['zh_TW'])(description) || '';
     if (descTw === '') {
       return '';
-    } else if (descTw.match(/entityMap/gm)) {
+    }
+
+    if (descTw.match(/entityMap/gm)) {
       // DraftJS type
       const productDescriptionObj =
         descTw && JSON.parse(getIn(['zh_TW'])(description));

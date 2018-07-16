@@ -117,10 +117,15 @@ export default class EzpayView extends React.Component {
           </div>
 
           <div className="ezpay_buttonWrapper">
-            <button className="ezpay_printBtn" onClick={() => window.print()}>
+            <button
+              type="button"
+              className="ezpay_printBtn"
+              onClick={() => window.print()}
+            >
               列印此頁
             </button>
             <button
+              type="button"
               className="ezpay_backBtn"
               onClick={() =>
                 Utils.goTo({ pathname: `/checkout/thank-you-page/${order.id}` })

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import * as R from 'ramda';
 import { connect } from 'react-redux';
 import * as Utils from 'utils';
 import { Container, TrackingCodeHead, Error } from 'components';
@@ -51,8 +50,10 @@ class Products extends React.Component {
   static defaultProps = { error: null };
 
   render() {
+    const { error } = this.props;
+
     /* Display Error View */
-    if (this.props.error) return <Error error={this.props.error} />;
+    if (error) return <Error error={error} />;
 
     const {
       storeSetting: { storeName, faviconUrl, locale },

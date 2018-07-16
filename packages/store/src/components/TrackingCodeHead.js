@@ -19,9 +19,11 @@ export default class extends React.Component {
   componentDidMount() {
     /* Google Tag Manager (noscript) */
     if (!window.meepShopStore.gtmIsInstalled) {
+      const { pageAdTrackIDs } = this.props;
       const gtmNoscript = document.createElement('noscript');
+
       gtmNoscript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=${
-        this.props.pageAdTrackIDs.gtmID
+        pageAdTrackIDs.gtmID
       }"
       height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
       document.body.appendChild(gtmNoscript);
@@ -56,7 +58,7 @@ export default class extends React.Component {
               xfbml      : true,
               version    : 'v2.11'
             });
-            FB.AppEvents.logPageView();   
+            FB.AppEvents.logPageView();
           };
           (function(d, s, id){
             var js, fjs = d.getElementsByTagName(s)[0];

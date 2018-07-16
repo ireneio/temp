@@ -21,13 +21,16 @@ export default class SignupForm extends React.PureComponent {
   };
 
   handleConfirmBlur = e => {
+    const { confirmDirty } = this.state;
+
     this.setState({
-      confirmDirty: this.state.confirmDirty || !!e.target.value,
+      confirmDirty: confirmDirty || !!e.target.value,
     });
   };
 
   compareToFirstPassword = (_, value, callback) => {
     const { form, transformLocale } = this.props;
+
     if (value && value !== form.getFieldValue('newPassword')) {
       callback(transformLocale(LOCALE.PASSWORD_IS_NO_MATCH));
     } else {
@@ -37,7 +40,9 @@ export default class SignupForm extends React.PureComponent {
 
   validateToNextPassword = (_, value, callback) => {
     const { form } = this.props;
-    if (value && this.state.confirmDirty) {
+    const { confirmDirty } = this.state;
+
+    if (value && confirmDirty) {
       form.validateFields(['confirmPassword'], { force: true });
     }
     callback();
@@ -45,15 +50,21 @@ export default class SignupForm extends React.PureComponent {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    const {
+      form: { validateFields },
+      dispatchAction,
+      handleTypeChange,
+    } = this.props;
+
+    validateFields((err, values) => {
       if (!err) {
         console.log('Recived values: ', values);
         const { email, newPassword: password, code: registeredCode } = values;
-        this.props.dispatchAction('signup', {
+        dispatchAction('signup', {
           email,
           password,
           registeredCode,
-          callback: this.props.handleTypeChange({ options: 'LOGIN' }),
+          callback: handleTypeChange({ options: 'LOGIN' }),
         });
       }
     });
@@ -65,6 +76,7 @@ export default class SignupForm extends React.PureComponent {
       transformLocale,
       colors,
     } = this.props;
+
     return (
       <Form className="loginView-common-form" onSubmit={this.handleSubmit}>
         <h3>{transformLocale(LOCALE.SIGNUP)}</h3>

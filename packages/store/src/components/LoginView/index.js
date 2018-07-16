@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Radio } from 'antd';
-import { enhancer } from '@meepshop/meep-ui/lib/layout';
+import { enhancer } from '@meepshop/meep-ui/lib/layout/DecoratorsRoot';
 
 import * as LOCALE from './locale';
 import './styles/index.less';
@@ -19,6 +19,7 @@ export default class Login extends React.PureComponent {
     dispatchAction: PropTypes.func.isRequired,
     transformLocale: PropTypes.func.isRequired,
   };
+
   state = {
     options: LOGIN,
   };

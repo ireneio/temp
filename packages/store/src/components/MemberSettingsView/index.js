@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { enhancer } from '@meepshop/meep-ui/lib/layout';
+import { enhancer } from '@meepshop/meep-ui/lib/layout/DecoratorsRoot';
 import { Form, Input, Button, Select, DatePicker, Popconfirm } from 'antd';
 import moment from 'moment';
 
@@ -61,7 +61,14 @@ export default class MemberSettingsView extends React.PureComponent {
     if (e) {
       e.preventDefault();
     }
-    this.props.form.validateFieldsAndScroll((err, values) => {
+
+    const {
+      form: { validateFieldsAndScroll },
+      dispatchAction,
+      member,
+    } = this.props;
+
+    validateFieldsAndScroll((err, values) => {
       if (!err) {
         const {
           name = null,
@@ -80,29 +87,31 @@ export default class MemberSettingsView extends React.PureComponent {
           month = +birthday.format('M');
           day = +birthday.format('D');
         }
-        const member = {
-          id: this.props.member.id,
-          name,
-          gender,
-          birthday: {
-            year,
-            month,
-            day,
-          },
-          additionalInfo: {
-            tel,
-            mobile,
-            address: {
-              yahooCode: {
-                country: address[0],
-                city: address[1],
-                county: address[2],
-                street,
+
+        dispatchAction('updateUser', {
+          user: {
+            id: member.id,
+            name,
+            gender,
+            birthday: {
+              year,
+              month,
+              day,
+            },
+            additionalInfo: {
+              tel,
+              mobile,
+              address: {
+                yahooCode: {
+                  country: address[0],
+                  city: address[1],
+                  county: address[2],
+                  street,
+                },
               },
             },
           },
-        };
-        this.props.dispatchAction('updateUser', { user: member });
+        });
       }
     });
   };

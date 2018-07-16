@@ -48,8 +48,10 @@ class Ezpay extends React.Component {
   static defaultProps = { error: null };
 
   render() {
+    const { error } = this.props;
+
     /* Display Error View */
-    if (this.props.error) return <Error error={this.props.error} />;
+    if (error) return <Error error={error} />;
 
     const {
       location: { pathname },
@@ -65,15 +67,15 @@ class Ezpay extends React.Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state, prevProps) => {
   /* Handle error */
   const error = Utils.getStateError(state);
   if (error) return { error };
 
   return {
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
-    location: Utils.uriParser(props),
-    order: R.find(R.propEq('id', props.orderId))(
+    location: Utils.uriParser(prevProps),
+    order: R.find(R.propEq('id', prevProps.orderId))(
       Utils.getIn(['memberReducer', 'orders'])(state),
     ),
   };

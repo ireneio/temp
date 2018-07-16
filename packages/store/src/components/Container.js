@@ -6,9 +6,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { isBrowser } from 'fbjs/lib/UserAgent';
 import Layout from '@meepshop/meep-ui/lib/layout';
-import { Spinner } from 'components';
 import { getJoinedUser, getStoreAppList } from 'selectors';
 import * as Actions from 'ducks/actions';
+
+import Spinner from './Spinner';
 
 class Container extends React.Component {
   static propTypes = {
@@ -96,19 +97,25 @@ class Container extends React.Component {
   }
 
   setLocale = id => {
+    const { setLocale } = this.props;
+
     document.cookie = `locale=${id}`;
-    this.props.setLocale(id);
+    setLocale(id);
   };
 
   setCustomerCurrency = id => {
+    const { setCustomerCurrency } = this.props;
+
     document.cookie = `currency=${id}`;
-    this.props.setCustomerCurrency(id);
+    setCustomerCurrency(id);
   };
 
   handleAdTracking = (eventName, options, callback) => {
+    const { pageAdTrackIDs } = this.props;
+
     Utils.execTrackingCode(eventName, {
       ...options,
-      pageAdTrackIDs: this.props.pageAdTrackIDs,
+      pageAdTrackIDs,
     });
     if (callback) {
       callback();
@@ -116,7 +123,7 @@ class Container extends React.Component {
   };
 
   handleFacebookLogin = ({ from }) => {
-    const { pageAdTrackIDs, getAuth, userAgent } = this.props;
+    const { pageAdTrackIDs, fbAppId, getAuth, userAgent } = this.props;
 
     if (!userAgent.match(/Line/gm) && !userAgent.match(/Instagram/gm)) {
       // Not Line in-app browser
@@ -160,14 +167,12 @@ class Container extends React.Component {
         } catch (error) {
           console.error(error);
         }
-      } else if (this.props.fbAppId) {
+      } else if (fbAppId) {
         alert('未設定FB app ID'); // eslint-disable-line
       }
     } else {
       // Line in-app browser
-      window.location.href = `https://www.facebook.com/v3.0/dialog/oauth?client_id=${
-        this.props.fbAppId
-      }&redirect_uri=https://${
+      window.location.href = `https://www.facebook.com/v3.0/dialog/oauth?client_id=${fbAppId}&redirect_uri=https://${
         window.meepShopStore.XMeepshopDomain
       }/fbAuthForLine&scope=email&state=meepShopNextStore${from}`;
     }

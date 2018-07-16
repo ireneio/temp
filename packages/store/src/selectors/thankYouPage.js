@@ -9,7 +9,7 @@ import {
   getCurrencyItemsTemplate,
 } from './index';
 
-const getThankYouPage = (state, props) => ({
+const getThankYouPage = (state, prevProps) => ({
   id: 'page-thank-you-page',
   title: {
     en_US: 'Checkout',
@@ -28,7 +28,7 @@ const getThankYouPage = (state, props) => ({
             {
               id: 'thank-you-page',
               module: 'thank-you-page',
-              orderId: props.orderId,
+              orderId: prevProps.orderId,
             },
           ],
         },

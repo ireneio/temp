@@ -40,20 +40,26 @@ class Wishlist extends Component {
   static defaultProps = { error: null };
 
   componentDidMount() {
-    if (this.props.isLogin === 'NOTLOGIN') {
+    const { isLogin } = this.props;
+
+    if (isLogin === 'NOTLOGIN') {
       Router.pushRoute('/login');
     }
   }
 
   componentDidUpdate() {
-    if (this.props.isLogin === 'NOTLOGIN') {
+    const { isLogin } = this.props;
+
+    if (isLogin === 'NOTLOGIN') {
       Router.pushRoute('/login');
     }
   }
 
   render() {
+    const { error } = this.props;
+
     /* Display Error View */
-    if (this.props.error) return <Error error={this.props.error} />;
+    if (error) return <Error error={error} />;
 
     const {
       isLogin,

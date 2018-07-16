@@ -821,7 +821,7 @@ export const addRecipient = payload => ({
  * @description data related member
  */
 
-const _getUser = _user => {
+const getUser = _user => {
   const id = _user.id || '';
   const name = _user.name || '';
   const gender = _user.gender == null ? null : _user.gender;
@@ -872,13 +872,13 @@ const _getUser = _user => {
   };
 };
 
-const _getMemberData = payload => {
+const getMemberData = payload => {
   const { data } = payload;
   const checkLogin = Utils.getIn(['isLogin', 'isLogin'])(data);
   const isLogin = checkLogin ? ISUSER : NOTLOGIN;
 
-  const _user = Utils.getIn(['getUserList', 'data', 0])(data);
-  const user = _user ? _getUser(_user) : null;
+  const dataUser = Utils.getIn(['getUserList', 'data', 0])(data);
+  const user = dataUser ? getUser(dataUser) : null;
 
   let cart = Utils.getIn(['getCartList', 'data', 0])(data) || null;
   // TODO: 暫時由前端整理資料，以後需改為後端處理
@@ -935,7 +935,7 @@ export default function(state = initialState, { type, payload }) {
         loadingTip: AUTH_REQUEST,
       };
     case AUTH_SUCCESS: {
-      return _getMemberData(payload);
+      return getMemberData(payload);
     }
     case AUTH_FAILURE: {
       return {
@@ -953,7 +953,7 @@ export default function(state = initialState, { type, payload }) {
         loadingTip: LOGIN_REQUEST,
       };
     case LOGIN_SUCCESS: {
-      return _getMemberData(payload);
+      return getMemberData(payload);
     }
     case LOGIN_FAILURE: {
       return {
@@ -970,7 +970,7 @@ export default function(state = initialState, { type, payload }) {
         loadingTip: SIGNOUT_REQUEST,
       };
     case SIGNOUT_SUCCESS: {
-      return _getMemberData(payload);
+      return getMemberData(payload);
     }
     case SIGNOUT_FAILURE: {
       return {
@@ -1098,10 +1098,11 @@ export default function(state = initialState, { type, payload }) {
     }
     case UPDATE_USER_SUCCESS: {
       const { data } = payload;
-      const _user = Utils.getIn(['updateUserList', 0])(data);
+      const user = Utils.getIn(['updateUserList', 0])(data);
+
       return {
         ...state,
-        user: _getUser(_user),
+        user: getUser(user),
         loading: false,
         loadingTip: '',
       };

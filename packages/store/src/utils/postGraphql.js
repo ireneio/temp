@@ -1,5 +1,6 @@
 import getConfig from 'next/config';
-import * as Utils from 'utils';
+
+import getCookie from './getCookie';
 
 const {
   publicRuntimeConfig: { API_HOST },
@@ -9,7 +10,7 @@ const fetchApi = async ({ graphql, isServer, XMeepshopDomain, cookie }) => {
   let response;
   let data;
   if (isServer) {
-    const XMeepshopDomainToken = Utils.getCookie(
+    const XMeepshopDomainToken = getCookie(
       'x-meepshop-authorization-token',
       cookie,
     );

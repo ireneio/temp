@@ -3,8 +3,8 @@ const next = require('next');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
-const routes = require('./routes');
 const fetch = require('isomorphic-unfetch');
+const routes = require('./routes');
 const { publicRuntimeConfig } = require('../../next.config');
 const { paymentOfHitrust, paymentOfAllpay } = require('./api');
 

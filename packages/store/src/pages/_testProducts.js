@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import * as Api from 'api';
 import { connect } from 'react-redux';
