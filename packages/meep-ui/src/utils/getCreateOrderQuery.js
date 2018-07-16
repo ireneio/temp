@@ -149,7 +149,7 @@ export default ({
               ? ''
               : `
             address: {
-              streetAddress: "${address.join(' / ')} ${addressDetail}"
+              streetAddress: "${address.join('')} ${addressDetail}"
               yahooCode: {
                 country: "${address[0]}"
                 city: "${address[1] || ''}"
