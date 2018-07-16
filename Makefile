@@ -43,9 +43,12 @@ release:
 
 clean-all:
 	@make babel-clean
+	@npm run lerna -- run clean \
+		--stream \
+		--parallel \
+		${BABEL_IGNORE_PACKAGES}
 	rm -rf ./node_modules ./packages/**/node_modules
 	rm -rf ./coverage
 	rm -rf ./.eslintcache
 	rm -rf ./.changelog
 	rm -rf ./*.log
-	rm -rf ./packages/**/src/.next
