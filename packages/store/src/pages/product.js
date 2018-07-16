@@ -33,21 +33,17 @@ class Product extends React.Component {
       const product = R.find(R.propEq('id', pId))(productsReducer);
       if (R.isNil(product)) {
         store.dispatch(Actions.getProduct({ id: pId, query }));
+      } else if (
+        !Utils.getIn(['design'])(product) &&
+        R.isNil(R.find(R.propEq('pageType', 'template'))(pagesReducer))
+      ) {
+        store.dispatch(Actions.getPages({ pageType: 'template', query }));
       } else {
-        // FIXME: fix it
-        /* eslint-disable */
-        if (!Utils.getIn(['design'])(product)) {
-          if (R.isNil(R.find(R.propEq('pageType', 'template'))(pagesReducer))) {
-            store.dispatch(Actions.getPages({ pageType: 'template', query }));
-          }
-        } else {
-          const { templateId, pageId } = Utils.getIn(['design'])(product);
-          const _id = templateId || pageId;
-          if (R.isNil(R.find(R.propEq('id', _id))(pagesReducer))) {
-            store.dispatch(Actions.getPages({ id: _id, query }));
-          }
+        const { templateId, pageId } = Utils.getIn(['design'])(product);
+        const _id = templateId || pageId;
+        if (R.isNil(R.find(R.propEq('id', _id))(pagesReducer))) {
+          store.dispatch(Actions.getPages({ id: _id, query }));
         }
-        /* eslint-enable */
       }
     }
     return { pId, userAgent, XMeepshopDomain };
