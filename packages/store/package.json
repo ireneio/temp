@@ -5,7 +5,7 @@
   "description": "store for meepshop",
   "scripts": {
     "postinstall": "patch-package",
-    "dev": "node src/server/server.js",
+    "dev": "node --inspect src/server/server.js",
     "prod": "next build ./src",
     "clean": "rm -rf ./src/.next",
     "start": "NODE_ENV=production node src/server/server.js"
