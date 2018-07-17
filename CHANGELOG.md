@@ -1,0 +1,8 @@
+## Unreleased (2018-07-17)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#6](https://github.com/meepshop/meep-lerna/pull/6) fix landingPage, checkout ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
