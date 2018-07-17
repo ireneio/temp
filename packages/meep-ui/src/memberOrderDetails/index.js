@@ -429,7 +429,7 @@ export default class MemberOrderDetails extends React.PureComponent {
 
   renderSpecs = value => {
     if (!value) return null;
-    const { transformLocale } = this.state;
+    const { transformLocale } = this.props;
 
     return value.reduce(
       (prev, curr, index) =>
