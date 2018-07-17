@@ -33,7 +33,7 @@ release:
 		--repo-version ${VERSION} \
 		${RELEASE_SCOPE}
 	@npm run lerna-changelog && \
-		echo "\nContinue or exit with 'ctrl + c'..." && \
+		echo "\nContinue with Enter or exit with 'ctrl + c'..." && \
 		read -p ""
 	@vim CHANGELOG.md && \
 		git add . && \
