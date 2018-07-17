@@ -72,7 +72,18 @@ module.exports = {
   overrides: [
     {
       test: './packages/meep-ui',
-      plugins: ['@babel/plugin-proposal-export-default-from'],
+      plugins: [
+        '@babel/plugin-proposal-export-default-from',
+        [
+          '@babel/plugin-transform-runtime',
+          {
+            helpers: false,
+            polyfill: false,
+            regenerator: true,
+            moduleName: '@babel/runtime',
+          },
+        ],
+      ],
     },
     {
       test: './packages/store',
