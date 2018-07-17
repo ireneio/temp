@@ -1,6 +1,6 @@
 {
   "name": "@meepshop/meep-ui",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "meep-ui for meepshop",
   "scripts": {
     "dev": "rm -rf ./lib && mkdir ./lib && npm run prod && babel src -d lib --config-file ../../babel.config.js -w",
