@@ -31,7 +31,7 @@ export default class ChooseShipmentStore extends React.PureComponent {
 
   formDOM = document.createElement('div');
 
-  storeData = getDefaultStoreData.js(this.props);
+  storeData = getDefaultStoreData(this.props);
 
   static propTypes = {
     /** context */
