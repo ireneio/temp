@@ -295,6 +295,16 @@ app.prepare().then(() => {
           { expires: new Date(Date.now() + 9000000), httpOnly: true },
         );
       }
+      /* Log create order error */
+      if (
+        req.body &&
+        req.body.query &&
+        req.body.query.match(/createOrderList/gm) &&
+        !data.data
+      ) {
+        console.log(`N058>>>${XMeepshopDomain}`, data, req.body);
+      }
+      /* Log create order error - End */
       res.json(data);
     } catch (error) {
       res.json({ error: error.message });
