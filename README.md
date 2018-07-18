@@ -4,12 +4,18 @@
 The repo combined store, admin & mepp-ui.<br>
 
 ## How to use
+### Install
+```bash
+$ npm run install:all
+```
+
 ### Development
 ```bash
 $ npm run dev
 ```
+
 ### Build
-```js
+```bash
 $ npm run prod
 ```
 Build with Bundle Analyzer
@@ -17,4 +23,18 @@ Build with Bundle Analyzer
 $ BUNDLE_ANALYZE=both npm run prod
 $ BUNDLE_ANALYZE=server npm run prod
 $ BUNDLE_ANALYZE=browser npm run prod
+```
+
+### Lint
+```bash
+$ npm run lint .
+```
+Watch files with lint
+```bash
+$ npm run lint:watch -w .
+```
+
+### Clean all building files
+```bash
+$ npm run clean:all
 ```

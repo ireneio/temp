@@ -1,4 +1,4 @@
-## v0.2.3 (2018-07-18)
+## 0.2.3 (2018-07-18)
 
 #### :bug: Bug Fix
 * `meep-ui`
@@ -7,7 +7,7 @@
 #### Committers: 1
 - Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
 
-## v0.2.2 (2018-07-17)
+## 0.2.2 (2018-07-17)
 
 #### :bug: Bug Fix
 * `meep-ui`
