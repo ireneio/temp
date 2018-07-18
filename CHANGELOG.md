@@ -1,3 +1,8 @@
+## 0.2.9 (2018-07-18)
+#### :bug: Bug Fix
+* `store`
+  * log create order error
+
 ## 0.2.6 (2018-07-18)
 
 #### :bug: Bug Fix
