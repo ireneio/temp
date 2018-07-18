@@ -32,7 +32,6 @@ jobs:
       #    command: npm run test
       #- store_artifacts:
       #    path: coverage
-      #    prefix: coverage
 
   deploy:
     docker:
@@ -55,6 +54,10 @@ jobs:
       - run:
           name: Pre publish
           command: npm run prod
+      - store_artifacts:
+          path: packages/meep-ui/lib
+      - store_artifacts:
+          path: packages/store/src
 
       - run:
           name: Publish npm
