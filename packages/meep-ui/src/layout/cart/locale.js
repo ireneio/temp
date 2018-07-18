@@ -98,9 +98,9 @@ export const FB_LOGIN = {
 
 /** forget password */
 export const SEND_PASSWORD = {
-  zh_TW: '重設密碼',
+  zh_TW: '寄送重設密碼信',
   en_US: 'Reset Password',
-  ja_JP: 'パスワード再設定',
-  vi_VN: 'tái lập mật khẩu',
+  ja_JP: 'パスワード再設定メールを送信',
+  vi_VN: 'Gửi thư cài đặt lại mật khẩu',
   TODO_LOCALE: true,
 };
