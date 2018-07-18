@@ -28,6 +28,6 @@ export default async function(query, variables) {
   } catch (error) {
     console.error(error);
     notification.error({ message: '發生錯誤', description: error.message });
-    return { error: error.message };
+    return { errors: error.message };
   }
 }
