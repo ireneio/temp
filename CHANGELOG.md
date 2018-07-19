@@ -1,7 +1,11 @@
-## 0.2.12 (2018-07-19)
+## 0.2.14 (2018-07-19)
+
 #### :bug: Bug Fix
-* `store`
-  * log create order error
+* `meep-ui`
+  * [#18](https://github.com/meepshop/meep-lerna/pull/18) fix(meep-ui): 修正結帳備註輸入多行時導致結帳失敗 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
 
 ## 0.2.6 (2018-07-18)
 
