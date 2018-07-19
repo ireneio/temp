@@ -51,7 +51,7 @@ app.prepare().then(() => {
       if (response.status === 200) {
         data = await response.json();
       } else {
-        throw new Error(`${response.status}: ${response.statusText}(api)(api)`);
+        throw new Error(`${response.status}: ${response.statusText}(api)`);
       }
       if (data.error) throw new Error(data.error);
       res.cookie('x-meepshop-authorization-token', data.token, {
@@ -81,7 +81,7 @@ app.prepare().then(() => {
         data = { msg: 'logout success' };
       } else {
         data = { msg: 'logout fails.' };
-        throw new Error(`${response.status}: ${response.statusText}(api)(api)`);
+        throw new Error(`${response.status}: ${response.statusText}(api)`);
       }
       res.cookie('x-meepshop-authorization-token', '', { httpOnly: true });
       res.json(data);
@@ -295,21 +295,18 @@ app.prepare().then(() => {
           { expires: new Date(Date.now() + 9000000), httpOnly: true },
         );
       }
-      /* Log create order error */
-      if (
-        req.body &&
-        req.body.query &&
-        req.body.query.match(/createOrderList/gm) &&
-        !data.data
-      ) {
-        console.log(`N058>>>${XMeepshopDomain}`, data, req.body);
-      }
-      /* Log create order error - End */
       res.json(data);
     } catch (error) {
       res.json({ error: error.message });
       console.error(error);
     }
+  });
+
+  server.post('/log', (req, res) => {
+    const XMeepshopDomain = req.headers.host;
+    const { number = '000', data } = req.body;
+    console.log(`${number}(${XMeepshopDomain}) >>>  ${JSON.stringify(data)}`);
+    res.status(200).end();
   });
 
   server.post('/payment/hitrust/:id', paymentOfHitrust);
