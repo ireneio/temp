@@ -145,6 +145,7 @@ export default function(state = initialState, { type, payload }) {
         locale: localeOptions,
         currency: currencyOptions,
         activityVersion,
+        lockedCountry,
       } = storeSettings;
       const invoice = Utils.getIn(['invoice'])(storeSettings) || {
         donate: { status: false, units: null },
@@ -166,6 +167,7 @@ export default function(state = initialState, { type, payload }) {
         homePageId: store.homePageId,
         locale: locale || 'zh_TW',
         localeOptions: localeOptions || ['zh_TW'], // 用於語系選單
+        lockedCountry: lockedCountry || [],
         storeCurrency: store.currency || 'TWD', // 幣值轉換欲轉換成的幣值
         customerCurrency: customerCurrency || 'TWD', // 前台顯示的幣值
         fxSetup, // 用於匯率轉換 customerCurrency ==> storeCurrency

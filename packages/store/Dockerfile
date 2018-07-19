@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 # Add app dependencies
 # modify dependencies in .circleci/bin/addOtherDependencies.js
 COPY . .
-RUN npm install {{ dependencies }} @meepshop/meep-ui@latest
+RUN npm install {{ dependencies }}
 RUN npm install
 
 EXPOSE 14401

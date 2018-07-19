@@ -94,6 +94,14 @@ class Container extends React.Component {
       resizeEvent.initUIEvent('resize', true, false, window, 0);
       window.dispatchEvent(resizeEvent);
     }
+    // Fix iOS checkout/lp 選完超商後未跳回收件人資料區塊
+    if (
+      window.location.search.match(/shipmentTemplate=/g) &&
+      window.location.search.match(/tradeNo=/g) &&
+      window.location.hash === ''
+    ) {
+      Utils.goTo({ params: { hash: '#choose-shipment-store' } });
+    }
   }
 
   setLocale = id => {

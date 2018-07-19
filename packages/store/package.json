@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@meepshop/store",
-  "version": "0.2.2",
+  "version": "0.2.9",
   "description": "store for meepshop",
   "scripts": {
     "postinstall": "patch-package",
@@ -17,7 +17,7 @@
   "author": "meepshop <admin@meepshop.com>",
   "license": "ISC",
   "dependencies": {
-    "@meepshop/meep-ui": "^0.2.2",
+    "@meepshop/meep-ui": "^0.2.6",
     "body-parser": "^1.18.2",
     "compression": "^1.7.2",
     "cookie-parser": "^1.4.3",
