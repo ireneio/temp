@@ -260,11 +260,24 @@ export default class Summary extends React.Component {
       result || { createOrderList: [{}] }
     ).createOrderList;
 
-    if (error || errors) {
+    if (error || errors || !id /* fix */) {
       notification.error({
         message: transformLocale(LOCALE.PAY_FILE),
         description: error || '',
       });
+
+      // FIXME: remove it when solving N058
+      /* eslint-disable */
+      if (!id) {
+        fetch('/log', {
+          method: 'post',
+          headers: { 'content-type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ data: orderData }),
+        });
+      }
+      /* eslint-enable */
+      /* remove it when solving N058 - End */
 
       this.setState({ isSubmitting: false });
     } else {

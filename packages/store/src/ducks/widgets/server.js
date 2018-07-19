@@ -138,6 +138,7 @@ function* serverProductInitialFlow({ payload }) {
       data,
     );
     if (product == null) {
+      console.error(`${XMeepshopDomain}: pId>>${pId}`);
       throw new Error('There is no product of the id.');
     } else {
       // Get activities from computeOrderList
