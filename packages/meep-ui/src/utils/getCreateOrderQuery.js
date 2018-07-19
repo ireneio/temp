@@ -132,7 +132,7 @@ export default ({
           saveRecipient: ${isSaveAsReceiverTemplate}
           ${!userEmail ? '' : `email: "${userEmail}"`}
           ${!mobile ? '' : `mobile: "${mobile}"`}
-          ${!notes ? '' : `comment: "${notes}"`}
+          ${!notes ? '' : `comment: "${notes.replace(/\n/g, '\\n')}"`}
           ${!idNumber ? '' : `idNumber: "${idNumber}"`}
           ${!CVSStoreID ? '' : `receiverStoreID: "${CVSStoreID}"`}
           ${
