@@ -5,9 +5,14 @@ WORKDIR /usr/src/app
 
 # Add app dependencies
 # modify dependencies in .circleci/bin/addOtherDependencies.js
-COPY . .
+COPY ./store/src ./src
+COPY ./store/package.json ./package.json
+COPY ./store/next.config.js ./next.config.js
 RUN npm install {{ dependencies }}
-RUN npm install
+RUN npm install --production
+
+# copy @meepshop/meep-ui
+COPY ./meep-ui ./node_modules/@meepshop/meep-ui
 
 EXPOSE 14401
 ENV REPO_VERSION={{ build.tag }}

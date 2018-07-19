@@ -19,7 +19,7 @@ sed -i "s/{{ build.tag }}/${1}/" "$(pwd)/Dockerfile"
 # replace Dockerfile dependencies
 sed -i "s/{{ dependencies }}/${dependencies}/" "$(pwd)/Dockerfile"
 
-docker build -t asia.gcr.io/instant-matter-785/next-store:latest .
+docker build -t asia.gcr.io/instant-matter-785/next-store:latest -f $(pwd)/Dockerfile ..
 docker tag asia.gcr.io/instant-matter-785/next-store:latest \
   asia.gcr.io/instant-matter-785/next-store:$1
 docker login -u _json_key -p "$GCLOUD_SERVICE_KEY" https://asia.gcr.io

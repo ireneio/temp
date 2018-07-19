@@ -56,19 +56,6 @@ jobs:
           command: npm run prod
       - store_artifacts:
           path: packages/meep-ui/lib
-      - store_artifacts:
-          path: packages/store/src
-
-      - run:
-          name: Publish npm
-          command: |
-            test $(.circleci/bin/checkNeedPublish.js ./packages/meep-ui) = true && \
-              npm run lerna -- publish \
-              --skip-git \
-              --force-publish=@meepshop/meep-ui \
-              --repo-version ${CIRCLE_TAG} \
-              --yes || \
-              echo "not publish @meepshop/meep-ui@${CIRCLE_TAG}"
 
       - setup_remote_docker
       - run:
