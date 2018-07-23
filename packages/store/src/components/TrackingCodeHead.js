@@ -56,7 +56,7 @@ export default class extends React.Component {
               appId      : ${fbAppId},
               cookie     : true,
               xfbml      : true,
-              version    : 'v2.11'
+              version    : 'v3.0'
             });
             FB.AppEvents.logPageView();
           };
