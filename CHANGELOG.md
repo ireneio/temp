@@ -1,3 +1,12 @@
+## 0.2.16 (2018-07-23)
+
+#### :bug: Bug Fix
+* `store`
+  * [#32](https://github.com/meepshop/meep-lerna/pull/32) fix: 調整error page UI ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6
+
 ## 0.2.15 (2018-07-23)
 
 #### :bug: Bug Fix
