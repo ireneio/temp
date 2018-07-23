@@ -52,5 +52,5 @@ export const logo = {
   width: '150px',
   height: HEADEER_HEIGHT,
   backgroundSize: 'contain',
-  backgroundPosition: 'top',
+  backgroundPosition: 'center',
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import CloseIcon from 'react-icons/lib/fa/close';
+import CloseIcon from 'react-icons/lib/md/close';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';

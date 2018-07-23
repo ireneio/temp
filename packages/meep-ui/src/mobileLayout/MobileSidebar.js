@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CloseIcon from 'react-icons/lib/fa/close';
+import CloseIcon from 'react-icons/lib/md/close';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
@@ -54,13 +54,14 @@ export default class MobileSidebar extends React.PureComponent {
                   width: '150px',
                   height: '60px',
                   backgroundSize: 'contain',
-                  backgroundPosition: 'left top',
+                  backgroundPosition: 'left center',
                 }}
                 files={{ image: mobileLogoUrl, href: '/' }}
                 contentWidth={100}
                 newWindow={false}
                 mode="background"
                 alignment="center"
+                width={150}
               />
             </div>
 

@@ -142,6 +142,7 @@ export default class MobileLayout extends React.PureComponent {
                     newWindow={false}
                     mode="background"
                     alignment="center"
+                    width={150}
                   />
                 </div>
               )}
