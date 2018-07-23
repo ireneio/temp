@@ -7,6 +7,7 @@ import Router from 'next/router';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import { notification } from 'antd';
+import { Error } from 'components';
 import configureStore from 'ducks/store';
 import '../static/global.less';
 import '../static/nprogress.less';
@@ -55,21 +56,13 @@ class MyApp extends App {
 
   componentDidCatch(error, errorInfo) {
     this.setState({ error, errorInfo });
-    super.componentDidCatch(error, errorInfo);
   }
 
   render() {
     const { Component, pageProps, router, store } = this.props;
     const url = { asPath: router.asPath, query: router.query };
     return this.state.error ? (
-      <div>
-        <h2>Something went wrong.</h2>
-        <details style={{ whiteSpace: 'pre-wrap' }}>
-          {this.state.error && this.state.error.toString()}
-          <br />
-          {this.state.errorInfo.componentStack}
-        </details>
-      </div>
+      <Error error={this.state.error} errorInfo={this.state.errorInfo} />
     ) : (
       <Container>
         <Provider store={store}>

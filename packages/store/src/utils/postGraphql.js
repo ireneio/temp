@@ -39,11 +39,18 @@ const fetchApi = async ({ graphql, isServer, XMeepshopDomain, cookie }) => {
     data = await response.json();
   } else {
     data = await response.json();
-    throw new Error(
-      `${response.status}: ${response.statusText} - ${data.errors[0].msg ||
-        data.errors[0].message ||
-        ''}`,
-    );
+    if (data.errors[0].msg) {
+      throw new Error(
+        `${response.status}: ${response.statusText} - ${XMeepshopDomain}: ${
+          data.errors[0].msg
+        }`,
+      );
+    } else {
+      throw new Error(
+        `${response.status}: ${response.statusText} - ${data.errors[0]
+          .message || ''}`,
+      );
+    }
   }
   if (data.errors) {
     // FIXME: fix getWebTrackList unsense error from not installing app store
