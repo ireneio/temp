@@ -55,7 +55,7 @@ app.prepare().then(() => {
       }
       if (data.error) throw new Error(data.error);
       res.cookie('x-meepshop-authorization-token', data.token, {
-        expires: new Date(Date.now() + 9000000),
+        expires: new Date(Date.now() + 86380000 * 7),
         httpOnly: true,
       });
       res.json({ isLoginSuccess: true });
@@ -119,7 +119,7 @@ app.prepare().then(() => {
       res.cookie(
         'x-meepshop-authorization-token',
         response.headers._headers['x-meepshop-authorization-token'][0],
-        { expires: new Date(Date.now() + 9000000), httpOnly: true },
+        { expires: new Date(Date.now() + 86380000 * 7), httpOnly: true },
       );
       res.json(data);
     } catch (error) {
@@ -240,13 +240,14 @@ app.prepare().then(() => {
       }
 
       if (dataApi.code === 200 || dataApi.code === 201) {
-        const newXMeepshopDomainToken =
-          responseApi.headers._headers['x-meepshop-authorization-token'] &&
-          responseApi.headers._headers['x-meepshop-authorization-token'][0];
-        res.cookie('x-meepshop-authorization-token', newXMeepshopDomainToken, {
-          expires: new Date(Date.now() + 9000000),
-          httpOnly: true,
-        });
+        res.cookie(
+          'x-meepshop-authorization-token',
+          responseApi.headers.get('x-meepshop-authorization-token'),
+          {
+            expires: new Date(Date.now() + 86380000 * 7),
+            httpOnly: true,
+          },
+        );
       } else {
         throw new Error(`${dataApi.code}-${dataApi._error}`);
       }
@@ -291,8 +292,8 @@ app.prepare().then(() => {
       if (!XMeepshopDomainToken) {
         res.cookie(
           'x-meepshop-authorization-token',
-          response.headers._headers['x-meepshop-authorization-token'][0],
-          { expires: new Date(Date.now() + 9000000), httpOnly: true },
+          response.headers.get('x-meepshop-authorization-token'),
+          { expires: new Date(Date.now() + 86380000 * 7), httpOnly: true },
         );
       }
       res.json(data);
