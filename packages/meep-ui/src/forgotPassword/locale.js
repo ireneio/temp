@@ -15,10 +15,10 @@ export const PASSWORD_PLACEHOLDER = {
 };
 
 export const RESET_PASSWORD = {
-  zh_TW: '重設密碼',
-  en_US: 'Reset Password',
-  ja_JP: 'パスワード再設定',
-  vi_VN: 'tái lập mật khẩu',
+  zh_TW: '確認重設',
+  en_US: 'Reset',
+  ja_JP: 'パスワード再設定確認',
+  vi_VN: 'xác nhận',
   TODO_LOCALE: true,
 };
 
