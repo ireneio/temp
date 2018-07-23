@@ -456,8 +456,6 @@ export default class MemberOrderDetails extends React.PureComponent {
       status,
     } = orderDetails;
 
-    console.log('>>>', shipmentInfo.list[0].recipient.comment.match(/.*\n/gm));
-
     return (
       <div style={styles.root(colors)} className={this.name}>
         <Style scopeSelector={`.${this.name}`} rules={styles.Style(colors)} />
