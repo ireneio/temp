@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, Input, Row, Col } from 'antd';
-import { StyleRoot } from 'radium';
+import { Button, Form, Input } from 'antd';
 
-import { COLOR_TYPE } from 'constants/propTypes';
-import * as styles from './styles';
+import styles from './styles/index.less';
 import * as LOCALE from './locale';
 
 const FormItem = Form.Item;
@@ -12,19 +10,18 @@ const FormItem = Form.Item;
 @Form.create()
 export default class LoginForm extends React.PureComponent {
   static propTypes = {
-    colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
+    colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     toggleToSignup: PropTypes.func.isRequired,
     toggleToForgetPassword: PropTypes.func.isRequired,
-    transformLocale: PropTypes.func.isRequired,
     form: PropTypes.objectOf(PropTypes.func).isRequired,
     dispatchAction: PropTypes.func.isRequired,
     fbLogin: PropTypes.func.isRequired,
-    isFBLoginInstalled: PropTypes.bool.isRequired,
+    hasStoreAppPlugin: PropTypes.func.isRequired,
+    transformLocale: PropTypes.func.isRequired,
   };
 
   handleSubmit = e => {
     e.preventDefault();
-
     const {
       form: { validateFields },
       dispatchAction,
@@ -33,6 +30,7 @@ export default class LoginForm extends React.PureComponent {
     validateFields((err, values) => {
       if (!err) {
         const { email, password } = values;
+
         dispatchAction('login', { email, password });
       }
     });
@@ -43,136 +41,86 @@ export default class LoginForm extends React.PureComponent {
       form: { getFieldDecorator },
       toggleToSignup,
       toggleToForgetPassword,
-      transformLocale,
       fbLogin,
-      isFBLoginInstalled,
+      hasStoreAppPlugin,
+      transformLocale,
       colors,
     } = this.props;
     return (
-      <Form className="login-form" onSubmit={this.handleSubmit}>
-        <Row type="flex" justify="center" gutter={24}>
-          <Col
-            lg={{ span: 10 }}
-            md={{ span: 12 }}
-            sm={{ span: 14 }}
-            xs={{ span: 20 }}
+      <Form className={styles.commonForm} onSubmit={this.handleSubmit}>
+        <h3>{transformLocale(LOCALE.LOGIN)}</h3>
+        <FormItem>
+          {getFieldDecorator('email', {
+            rules: [
+              {
+                required: true,
+                message: transformLocale(LOCALE.EMAIL_IS_REQUIRED),
+              },
+              {
+                type: 'email',
+                message: transformLocale(LOCALE.IS_INVALID_EMAIL),
+              },
+            ],
+          })(
+            <Input
+              className="login-form-email-input"
+              placeholder={transformLocale(LOCALE.EMAIL_PLACEHOLDER)}
+              size="large"
+            />,
+          )}
+        </FormItem>
+        <FormItem>
+          {getFieldDecorator('password', {
+            rules: [
+              {
+                required: true,
+                message: transformLocale(LOCALE.PASSWORD_IS_REQUIRED),
+              },
+            ],
+          })(
+            <Input
+              className={styles.loginFormPasswordInput}
+              type="password"
+              placeholder={transformLocale(LOCALE.PASSWORD_PLACEHOLDER)}
+              size="large"
+            />,
+          )}
+        </FormItem>
+        <div className={styles.loginFormOptionsWrapper}>
+          <div
+            className="loginForm-forgetPassword-link"
+            style={{ cursor: 'pointer' }}
+            onClick={toggleToForgetPassword}
           >
-            <h3>{transformLocale(LOCALE.LOGIN)}</h3>
-          </Col>
-        </Row>
-        <Row type="flex" justify="center" gutter={24}>
-          <Col
-            lg={{ span: 10 }}
-            md={{ span: 12 }}
-            sm={{ span: 14 }}
-            xs={{ span: 20 }}
+            {transformLocale(LOCALE.FORGET_PASSWORD)}
+          </div>
+          <div
+            className="loginForm-signup-link"
+            style={{ cursor: 'pointer' }}
+            onClick={toggleToSignup}
           >
-            <FormItem>
-              {getFieldDecorator('email', {
-                rules: [
-                  {
-                    required: true,
-                    message: transformLocale(LOCALE.EMAIL_IS_REQUIRED),
-                  },
-                  {
-                    type: 'email',
-                    message: transformLocale(LOCALE.IS_INVALID_EMAIL),
-                  },
-                ],
-              })(
-                <Input
-                  className="login-form-email-input"
-                  placeholder={transformLocale(LOCALE.EMAIL_PLACEHOLDER)}
-                  size="large"
-                />,
-              )}
-            </FormItem>
-          </Col>
-        </Row>
-        <Row type="flex" justify="center" gutter={24}>
-          <Col
-            lg={{ span: 10 }}
-            md={{ span: 12 }}
-            sm={{ span: 14 }}
-            xs={{ span: 20 }}
+            {transformLocale(LOCALE.JOIN_US)}
+          </div>
+        </div>
+        <div className={styles.commonLoginBtnWrapper}>
+          <Button
+            className={styles.commonSubmitButton}
+            style={{ borderColor: colors[5] }}
+            htmlType="submit"
+            size="large"
           >
-            <FormItem>
-              {getFieldDecorator('password', {
-                rules: [
-                  {
-                    required: true,
-                    message: transformLocale(LOCALE.PASSWORD_IS_REQUIRED),
-                  },
-                ],
-              })(
-                <Input
-                  className="login-form-password-input"
-                  type="password"
-                  placeholder={transformLocale(LOCALE.PASSWORD_PLACEHOLDER)}
-                  size="large"
-                />,
-              )}
-            </FormItem>
-          </Col>
-        </Row>
-        <Row type="flex" justify="center" gutter={24}>
-          <Col
-            lg={{ span: 10 }}
-            md={{ span: 12 }}
-            sm={{ span: 14 }}
-            xs={{ span: 20 }}
-          >
-            <div style={styles.optionsWrapper}>
-              <div
-                className="login-form-forget-password-link"
-                style={{ cursor: 'pointer' }}
-                onClick={toggleToForgetPassword}
-              >
-                {transformLocale(LOCALE.FORGET_PASSWORD)}
-              </div>
-              <div
-                className="login-form-signup-link"
-                style={{ cursor: 'pointer' }}
-                onClick={toggleToSignup}
-              >
-                {transformLocale(LOCALE.JOIN_US)}
-              </div>
-            </div>
-          </Col>
-        </Row>
-        <Row type="flex" justify="center" gutter={24}>
-          <Col
-            lg={{ span: 10 }}
-            md={{ span: 12 }}
-            sm={{ span: 14 }}
-            xs={{ span: 20 }}
-          >
-            <StyleRoot style={styles.loginBtnWrapper}>
-              <div style={styles.loginBtn}>
-                <Button
-                  className="login-form-submit-button"
-                  style={{ width: '100%', borderColor: colors[5] }}
-                  htmlType="submit"
-                  size="large"
-                >
-                  {transformLocale(LOCALE.LOGIN)}
-                </Button>
-              </div>
-              {isFBLoginInstalled && (
-                <div style={styles.loginBtn}>
-                  <Button
-                    className="login-form-submit-button"
-                    style={{ width: '100%' }}
-                    size="large"
-                    onClick={fbLogin}
-                  >
-                    {transformLocale(LOCALE.FB_LOGIN)}
-                  </Button>
-                </div>
-              )}
-            </StyleRoot>
-          </Col>
-        </Row>
+            {transformLocale(LOCALE.LOGIN)}
+          </Button>
+          {hasStoreAppPlugin('fbLogin') && (
+            <Button
+              className={styles.loginFormFbLoginButton}
+              size="large"
+              onClick={fbLogin}
+            >
+              {transformLocale(LOCALE.FB_LOGIN)}
+            </Button>
+          )}
+        </div>
       </Form>
     );
   }

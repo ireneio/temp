@@ -1,35 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Radio } from 'antd';
-import radium from 'radium';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
 import * as LOCALE from './locale';
-import * as styles from './styles';
+import styles from './styles/index.less';
 import LoginForm from './loginForm';
 import SignupForm from './signupForm';
 import SendResetPswMailForm from './sendResetPswMailForm';
 import { LOGIN, SIGNUP, FORGET_PSW } from './constants';
 
 @enhancer
-@radium
 export default class Login extends React.PureComponent {
   static propTypes = {
-    colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired,
     fbLogin: PropTypes.func.isRequired,
-    isFBLoginInstalled: PropTypes.bool.isRequired,
+    colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
+    hasStoreAppPlugin: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
+    transformLocale: PropTypes.func.isRequired,
   };
 
   state = {
     options: LOGIN,
   };
 
-  handleSizeChange = e => {
-    this.setState({ options: e.target.value });
+  handleTypeChange = ({ target, options }) => {
+    if (options === LOGIN) {
+      this.setState({ options });
+    } else {
+      this.setState({ options: target.value });
+    }
   };
 
   toggleToSignup = () => {
@@ -42,11 +44,11 @@ export default class Login extends React.PureComponent {
 
   render() {
     const {
-      transformLocale,
       fbLogin,
-      isFBLoginInstalled,
-      dispatchAction,
       colors,
+      hasStoreAppPlugin,
+      dispatchAction,
+      transformLocale,
     } = this.props;
     const { options } = this.state;
     let optionsComp = null;
@@ -56,11 +58,11 @@ export default class Login extends React.PureComponent {
           <LoginForm
             dispatchAction={dispatchAction}
             fbLogin={fbLogin}
-            isFBLoginInstalled={isFBLoginInstalled}
+            hasStoreAppPlugin={hasStoreAppPlugin}
             colors={colors}
+            transformLocale={transformLocale}
             toggleToSignup={this.toggleToSignup}
             toggleToForgetPassword={this.toggleToForgetPassword}
-            transformLocale={transformLocale}
           />
         );
         break;
@@ -68,9 +70,10 @@ export default class Login extends React.PureComponent {
       case SIGNUP: {
         optionsComp = (
           <SignupForm
-            dispatchAction={dispatchAction}
             colors={colors}
             transformLocale={transformLocale}
+            dispatchAction={dispatchAction}
+            handleTypeChange={this.handleTypeChange}
           />
         );
         break;
@@ -78,9 +81,9 @@ export default class Login extends React.PureComponent {
       case FORGET_PSW: {
         optionsComp = (
           <SendResetPswMailForm
-            dispatchAction={dispatchAction}
             colors={colors}
             transformLocale={transformLocale}
+            dispatchAction={dispatchAction}
           />
         );
         break;
@@ -90,8 +93,8 @@ export default class Login extends React.PureComponent {
     }
     return (
       <div style={{ paddingTop: '5vh', paddingBottom: '5vh' }}>
-        <div style={styles.radioGroupWrapper}>
-          <Radio.Group value={options} onChange={this.handleSizeChange}>
+        <div className={styles.radioGroupWrapper}>
+          <Radio.Group value={options} onChange={this.handleTypeChange}>
             <Radio.Button style={{ color: '#000' }} value={SIGNUP}>
               {transformLocale(LOCALE.SIGNUP)}
             </Radio.Button>
@@ -100,7 +103,7 @@ export default class Login extends React.PureComponent {
             </Radio.Button>
           </Radio.Group>
         </div>
-        <div>{optionsComp}</div>
+        <div className={styles.formWrapper}>{optionsComp}</div>
       </div>
     );
   }

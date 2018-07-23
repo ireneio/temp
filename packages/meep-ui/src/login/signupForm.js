@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, Input, Row, Col } from 'antd';
-import { StyleRoot } from 'radium';
-
+import { Button, Form, Input } from 'antd';
 import { COLOR_TYPE } from 'constants/propTypes';
-import * as styles from './styles';
 import * as LOCALE from './locale';
+import styles from './styles/index.less';
 
 const FormItem = Form.Item;
 
@@ -16,6 +14,7 @@ export default class SignupForm extends React.PureComponent {
     transformLocale: PropTypes.func.isRequired,
     form: PropTypes.objectOf(PropTypes.func).isRequired,
     dispatchAction: PropTypes.func.isRequired,
+    handleTypeChange: PropTypes.func.isRequired,
   };
 
   state = {
@@ -30,8 +29,9 @@ export default class SignupForm extends React.PureComponent {
     });
   };
 
-  compareToFirstPassword = (rule, value, callback) => {
+  compareToFirstPassword = (_, value, callback) => {
     const { form, transformLocale } = this.props;
+
     if (value && value !== form.getFieldValue('newPassword')) {
       callback(transformLocale(LOCALE.PASSWORD_IS_NO_MATCH));
     } else {
@@ -39,7 +39,7 @@ export default class SignupForm extends React.PureComponent {
     }
   };
 
-  validateToNextPassword = (rule, value, callback) => {
+  validateToNextPassword = (_, value, callback) => {
     const { form } = this.props;
     const { confirmDirty } = this.state;
 
@@ -51,10 +51,10 @@ export default class SignupForm extends React.PureComponent {
 
   handleSubmit = e => {
     e.preventDefault();
-
     const {
       form: { validateFields },
       dispatchAction,
+      handleTypeChange,
     } = this.props;
 
     validateFields((err, values) => {
@@ -65,6 +65,7 @@ export default class SignupForm extends React.PureComponent {
           email,
           password,
           registeredCode,
+          callback: handleTypeChange({ options: 'LOGIN' }),
         });
       }
     });
@@ -78,147 +79,91 @@ export default class SignupForm extends React.PureComponent {
     } = this.props;
 
     return (
-      <Form className="signup-form" onSubmit={this.handleSubmit}>
-        <Row type="flex" justify="center" gutter={24}>
-          <Col
-            lg={{ span: 10 }}
-            md={{ span: 12 }}
-            sm={{ span: 14 }}
-            xs={{ span: 20 }}
+      <Form className={styles.commonForm} onSubmit={this.handleSubmit}>
+        <h3>{transformLocale(LOCALE.SIGNUP)}</h3>
+        <FormItem>
+          {getFieldDecorator('email', {
+            rules: [
+              {
+                required: true,
+                message: transformLocale(LOCALE.EMAIL_IS_REQUIRED),
+              },
+              {
+                type: 'email',
+                message: transformLocale(LOCALE.IS_INVALID_EMAIL),
+              },
+            ],
+          })(
+            <Input
+              className="loginView-signupForm-email-input"
+              placeholder={transformLocale(LOCALE.EMAIL_PLACEHOLDER)}
+              size="large"
+            />,
+          )}
+        </FormItem>
+        <FormItem>
+          {getFieldDecorator('newPassword', {
+            rules: [
+              {
+                required: true,
+                message: transformLocale(LOCALE.PASSWORD_IS_REQUIRED),
+              },
+              {
+                validator: this.validateToNextPassword,
+              },
+            ],
+          })(
+            <Input
+              className="loginView-signupForm-newPassword-input"
+              type="password"
+              placeholder={transformLocale(LOCALE.PASSWORD)}
+              size="large"
+              onBlur={this.handleConfirmBlur}
+            />,
+          )}
+        </FormItem>
+        <FormItem>
+          {getFieldDecorator('confirmPassword', {
+            rules: [
+              {
+                required: true,
+                message: transformLocale(LOCALE.PASSWORD_IS_REQUIRED),
+              },
+              {
+                validator: this.compareToFirstPassword,
+              },
+            ],
+          })(
+            <Input
+              className="loginView-signupForm-confirmPassword-input"
+              type="password"
+              placeholder={transformLocale(LOCALE.CONFIRM_PASSWORD)}
+              size="large"
+            />,
+          )}
+        </FormItem>
+        <FormItem>
+          {getFieldDecorator('code', {
+            rules: [],
+          })(
+            <Input
+              className="loginView-signupForm-code-input"
+              type="text"
+              placeholder={transformLocale(LOCALE.PROMOTION_CODE)}
+              size="large"
+            />,
+          )}
+        </FormItem>
+        <div className={styles.commonLoginBtnWrapper}>
+          <Button
+            className={styles.commonSubmitButton}
+            style={{ borderColor: colors[5] }}
+            htmlType="submit"
+            size="large"
           >
-            <h3>{transformLocale(LOCALE.SIGNUP)}</h3>
-          </Col>
-        </Row>
-        <Row type="flex" justify="center" gutter={24}>
-          <Col
-            lg={{ span: 10 }}
-            md={{ span: 12 }}
-            sm={{ span: 14 }}
-            xs={{ span: 20 }}
-          >
-            <FormItem>
-              {getFieldDecorator('email', {
-                rules: [
-                  {
-                    required: true,
-                    message: transformLocale(LOCALE.EMAIL_IS_REQUIRED),
-                  },
-                  {
-                    type: 'email',
-                    message: transformLocale(LOCALE.IS_INVALID_EMAIL),
-                  },
-                ],
-              })(
-                <Input
-                  className="signup-form-email-input"
-                  placeholder={transformLocale(LOCALE.EMAIL_PLACEHOLDER)}
-                  size="large"
-                />,
-              )}
-            </FormItem>
-          </Col>
-        </Row>
-        <Row type="flex" justify="center" gutter={24}>
-          <Col
-            lg={{ span: 10 }}
-            md={{ span: 12 }}
-            sm={{ span: 14 }}
-            xs={{ span: 20 }}
-          >
-            <FormItem>
-              {getFieldDecorator('newPassword', {
-                rules: [
-                  {
-                    required: true,
-                    message: transformLocale(LOCALE.PASSWORD_IS_REQUIRED),
-                  },
-                  {
-                    validator: this.validateToNextPassword,
-                  },
-                ],
-              })(
-                <Input
-                  className="signup-form-new-password-input"
-                  type="password"
-                  placeholder={transformLocale(LOCALE.PASSWORD)}
-                  size="large"
-                  onBlur={this.handleConfirmBlur}
-                />,
-              )}
-            </FormItem>
-          </Col>
-        </Row>
-        <Row type="flex" justify="center" gutter={24}>
-          <Col
-            lg={{ span: 10 }}
-            md={{ span: 12 }}
-            sm={{ span: 14 }}
-            xs={{ span: 20 }}
-          >
-            <FormItem>
-              {getFieldDecorator('confirmPassword', {
-                rules: [
-                  {
-                    required: true,
-                    message: transformLocale(LOCALE.PASSWORD_IS_REQUIRED),
-                  },
-                  {
-                    validator: this.compareToFirstPassword,
-                  },
-                ],
-              })(
-                <Input
-                  className="signup-form-confirm-password-input"
-                  type="password"
-                  placeholder={transformLocale(LOCALE.CONFIRM_PASSWORD)}
-                  size="large"
-                />,
-              )}
-            </FormItem>
-          </Col>
-        </Row>
-        <Row type="flex" justify="center" gutter={24}>
-          <Col
-            lg={{ span: 10 }}
-            md={{ span: 12 }}
-            sm={{ span: 14 }}
-            xs={{ span: 20 }}
-          >
-            <FormItem>
-              {getFieldDecorator('code', {
-                rules: [],
-              })(
-                <Input
-                  className="signup-form-code-input"
-                  type="text"
-                  placeholder={transformLocale(LOCALE.PROMOTION_CODE)}
-                  size="large"
-                />,
-              )}
-            </FormItem>
-          </Col>
-        </Row>
-        <Row type="flex" justify="center" gutter={24}>
-          <Col
-            lg={{ span: 10 }}
-            md={{ span: 12 }}
-            sm={{ span: 14 }}
-            xs={{ span: 20 }}
-          >
-            <StyleRoot style={styles.loginBtnWrapper}>
-              <div style={styles.loginBtn}>
-                <Button
-                  className="signup-form-submit-button"
-                  style={{ width: '100%', borderColor: colors[5] }}
-                  htmlType="submit"
-                  size="large"
-                >
-                  {transformLocale(LOCALE.JOIN)}
-                </Button>
-              </div>
-            </StyleRoot>
-          </Col>
-        </Row>
+            {transformLocale(LOCALE.JOIN)}
+          </Button>
+        </div>
       </Form>
     );
   }

@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, Input, Row, Col } from 'antd';
-import { StyleRoot } from 'radium';
-
+import { Button, Form, Input } from 'antd';
 import { COLOR_TYPE } from 'constants/propTypes';
-import * as styles from './styles';
+import styles from './styles/index.less';
 import * as LOCALE from './locale';
 
 const FormItem = Form.Item;
@@ -20,7 +18,6 @@ export default class SendResetPswMailForm extends React.PureComponent {
 
   handleSubmit = e => {
     e.preventDefault();
-
     const {
       form: { validateFields },
       dispatchAction,
@@ -29,6 +26,7 @@ export default class SendResetPswMailForm extends React.PureComponent {
     validateFields((err, values) => {
       if (!err) {
         const { email } = values;
+
         dispatchAction('forgetPassword', { email });
       }
     });
@@ -41,67 +39,38 @@ export default class SendResetPswMailForm extends React.PureComponent {
       colors,
     } = this.props;
     return (
-      <Form className="send-reset-password-form" onSubmit={this.handleSubmit}>
-        <Row type="flex" justify="center" gutter={24}>
-          <Col
-            lg={{ span: 10 }}
-            md={{ span: 12 }}
-            sm={{ span: 14 }}
-            xs={{ span: 20 }}
+      <Form className={styles.commonForm} onSubmit={this.handleSubmit}>
+        <h3>{transformLocale(LOCALE.FORGET_PASSWORD)}</h3>
+        <FormItem>
+          {getFieldDecorator('email', {
+            rules: [
+              {
+                required: true,
+                message: transformLocale(LOCALE.EMAIL_IS_REQUIRED),
+              },
+              {
+                type: 'email',
+                message: transformLocale(LOCALE.IS_INVALID_EMAIL),
+              },
+            ],
+          })(
+            <Input
+              className="loginView-sendResetPasswordForm-email-input"
+              placeholder={transformLocale(LOCALE.EMAIL_PLACEHOLDER)}
+              size="large"
+            />,
+          )}
+        </FormItem>
+        <div className={styles.commonLoginBtnWrapper}>
+          <Button
+            className={styles.commonSubmitButton}
+            style={{ borderColor: colors[5] }}
+            htmlType="submit"
+            size="large"
           >
-            <h3>{transformLocale(LOCALE.FORGET_PASSWORD)}</h3>
-          </Col>
-        </Row>
-        <Row type="flex" justify="center" gutter={24}>
-          <Col
-            lg={{ span: 10 }}
-            md={{ span: 12 }}
-            sm={{ span: 14 }}
-            xs={{ span: 20 }}
-          >
-            <FormItem>
-              {getFieldDecorator('email', {
-                rules: [
-                  {
-                    required: true,
-                    message: transformLocale(LOCALE.EMAIL_IS_REQUIRED),
-                  },
-                  {
-                    type: 'email',
-                    message: transformLocale(LOCALE.IS_INVALID_EMAIL),
-                  },
-                ],
-              })(
-                <Input
-                  className="send-reset-password-form-email-input"
-                  placeholder={transformLocale(LOCALE.EMAIL_PLACEHOLDER)}
-                  size="large"
-                />,
-              )}
-            </FormItem>
-          </Col>
-        </Row>
-        <Row type="flex" justify="center" gutter={24}>
-          <Col
-            lg={{ span: 10 }}
-            md={{ span: 12 }}
-            sm={{ span: 14 }}
-            xs={{ span: 20 }}
-          >
-            <StyleRoot style={styles.loginBtnWrapper}>
-              <div style={styles.loginBtn}>
-                <Button
-                  className="send-reset-password-form-submit-button"
-                  style={{ width: '100%', borderColor: colors[5] }}
-                  htmlType="submit"
-                  size="large"
-                >
-                  {transformLocale(LOCALE.SEND_RESET_PASSWORD_MAIL)}
-                </Button>
-              </div>
-            </StyleRoot>
-          </Col>
-        </Row>
+            {transformLocale(LOCALE.SEND_RESET_PASSWORD_MAIL)}
+          </Button>
+        </div>
       </Form>
     );
   }

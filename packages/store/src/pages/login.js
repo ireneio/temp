@@ -10,7 +10,7 @@ import {
   LoadingPageFromLogin,
   Error,
 } from 'components';
-import LoginView from 'components/LoginView';
+import LoginView from '@meepshop/meep-ui/lib/login';
 import { getJoinedLoginPage } from 'selectors/login';
 import * as Actions from 'ducks/actions';
 
