@@ -6,7 +6,7 @@ export default function setDefaultValueForMenuDesign(_menus) {
       showLogo: (menu.design && menu.design.showLogo) || false,
       height: (menu.design && menu.design.height) || 60,
       showSearchbar: (menu.design && menu.design.showSearchbar) || false,
-      font: (menu.design && menu.design.font) || '標楷體',
+      font: (menu.design && menu.design.font) || '黑體',
       fontSize: (menu.design && menu.design.fontSize) || 14,
       opacity: (menu.design && menu.design.opacity) || 1,
       expandSubItem: (menu.design && menu.design.expandSubItem) || false,
