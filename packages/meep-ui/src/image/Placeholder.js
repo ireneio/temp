@@ -67,7 +67,11 @@ export default class Placeholder extends React.PureComponent {
     const href = this.generateUrl();
 
     return (
-      <Link href={href} target={newWindow ? '_blank' : '_self'}>
+      <Link
+        href={href}
+        target={newWindow ? '_blank' : '_self'}
+        style={{ width: '100%' /* TODO remove */ }}
+      >
         <div ref={this.placeholder} style={styles.root(height)}>
           {this.placeholder.current
             ? `${Math.floor(this.placeholder.current.offsetWidth)} x ${height}`

@@ -6,7 +6,7 @@ import Img from './Img';
 
 /* ImageSwitch */
 const Image = ({ files, ...props }) =>
-  !files ? (
+  !files || (files instanceof Array && files.length === 0) ? (
     <Placeholder {...props} />
   ) : (
     <Img {...props} {...(files instanceof Array ? files[0] : files)} />

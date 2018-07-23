@@ -52,6 +52,7 @@ export default class Link extends React.PureComponent {
     const { href, style, target, children } = this.props;
 
     if (!href) {
+      // TODO remove
       return <span style={[styles.link, style]}>{children}</span>;
     }
 
