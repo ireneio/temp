@@ -13,6 +13,17 @@ $ npm run install:all
 ```bash
 $ npm run dev
 ```
+Change Domain
+```bash
+$ export TEST_DOMAIN=test.stage.meepcloud.com
+$ npm run dev
+```
+Use production domain
+```bash
+$ export TEST_DOMAIN=test.com
+$ export TEST_API=api.meepshop.com
+$ npm run dev
+```
 
 ### Build
 ```bash

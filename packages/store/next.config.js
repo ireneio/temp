@@ -7,6 +7,8 @@ const withSourceMaps = require('@zeit/next-source-maps');
 
 const protocal = process.env.API_PROTOCAL || 'https';
 const production = process.env.NODE_ENV === 'production';
+const domain = process.env.TEST_DOMAIN || 'bellatest.stage.meepcloud.com';
+const api = process.env.TEST_API || 'api.stage.meepcloud.com';
 
 const FONT_FAMILY =
   '"PingFang TC", "Microsoft JhengHei", "Helvetica Neue", "Helvetica", "source-han-sans-traditional", "Arial", "sans-serif"';
@@ -27,11 +29,11 @@ module.exports = withSourceMaps(
             VERSION: process.env.REPO_VERSION || +new Date(),
             API_HOST: production
               ? 'http://meepshop-api:15265'
-              : `${protocal}://api.stage.meepcloud.com`,
+              : `${protocal}://${api}`,
             EXTERNAL_API_HOST: production
               ? `${protocal}://${process.env.API_HOST}`
-              : `${protocal}://api.stage.meepcloud.com`,
-            DOMAIN: 'bellatest.stage.meepcloud.com',
+              : `${protocal}://${api}`,
+            DOMAIN: domain,
           },
           analyzeServer: ['server', 'both'].includes(
             process.env.BUNDLE_ANALYZE,

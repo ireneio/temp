@@ -4,5 +4,5 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
 process.on('unhandledRejection', error => {
-  throw new Error(error);
+  throw error;
 });
