@@ -191,9 +191,15 @@ export const orderDetailTitle = colors => ({
 
 export const orderItem = {
   flexGrow: 1,
+  width: '100%',
   [PHONE_MEDIA]: {
     margin: '0px 0px 40px',
   },
+};
+
+export const noteContent = {
+  padding: '0px 10px 0px 0px',
+  wordBreak: 'break-all',
 };
 
 export const buttonRoot = {

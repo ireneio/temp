@@ -484,7 +484,12 @@ export default class Summary extends React.Component {
               {transformLocale(LOCALE.NOTES)}
             </h4>
 
-            <div>{notes}</div>
+            <div
+              style={styles.noteContent}
+              dangerouslySetInnerHTML={{
+                __html: notes?.replace(/\n/g, '<br />'),
+              }}
+            />
           </div>
 
           <div style={styles.buttonRoot}>
