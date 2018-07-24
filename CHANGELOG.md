@@ -1,3 +1,12 @@
+## 0.2.18 (2018-07-24)
+
+#### :bug: Bug Fix
+* `store`
+  * [#38](https://github.com/meepshop/meep-lerna/pull/38) FB登入: 修正登入錯誤 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.17 (2018-07-24)
 
 #### :rocket: New Feature
