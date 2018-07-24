@@ -68,7 +68,6 @@ export default class Widget extends React.PureComponent {
               id={id}
               widgetSetting={{
                 ...widgetSetting,
-                width: 100,
                 level: level + 1,
               }}
             />

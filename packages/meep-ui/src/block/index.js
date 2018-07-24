@@ -24,12 +24,12 @@ export default class Block extends React.PureComponent {
     const { width: maxWidth, blocks } = this.props;
 
     return (
-      <React.Fragment>
+      <div style={styles.root(maxWidth)}>
         {blocks.map(({ id, widgets, width, componentWidth, padding }) => (
           <div
             key={id}
             id={`block-${id}`}
-            style={styles.root(padding, maxWidth)}
+            style={styles.block(width, componentWidth, padding)}
           >
             {(widgets || []).map(({ id: widgetId, ...data }, index) => (
               <Widget
@@ -37,7 +37,6 @@ export default class Block extends React.PureComponent {
                 key={widgetId || `${id}-${index}`}
                 id={widgetId}
                 widgetSetting={{
-                  width,
                   componentWidth,
                   padding,
                   level: 1,
@@ -46,7 +45,7 @@ export default class Block extends React.PureComponent {
             ))}
           </div>
         ))}
-      </React.Fragment>
+      </div>
     );
   }
 }
