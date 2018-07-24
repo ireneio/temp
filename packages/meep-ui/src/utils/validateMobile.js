@@ -1,6 +1,8 @@
 const NOT_PHONE = {
-  zh_TW: '非手機',
-  en_US: '',
+  zh_TW: '手機格式有誤',
+  en_US: 'Invalid mobile number',
+  ja_JP: '携帯電話番号が正しくありません',
+  vi_VN: 'Định dạng điện thoại không hợp lệ',
   TODO_LOCALE: true,
 };
 

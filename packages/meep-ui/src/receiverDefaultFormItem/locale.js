@@ -9,7 +9,7 @@ export const MOBILE = {
 };
 
 export const NOT_MOBILE = {
-  zh_TW: '非手機',
+  zh_TW: '手機格式有誤',
   en_US: 'Invalid mobile number',
   ja_JP: '携帯電話番号が正しくありません',
   vi_VN: 'Định dạng điện thoại không hợp lệ',
@@ -25,7 +25,7 @@ export const ID_NUMBER = {
 };
 
 export const NOT_ID_NUMBER = {
-  zh_TW: '非身分證字號',
+  zh_TW: '身分證字號格式有誤',
   en_US: 'Invalid ID number',
   ja_JP: '身分証明書番号に誤りがあります',
   vi_VN: 'Định dạng số CMND không hợp lệ',
