@@ -1,5 +1,6 @@
 export const root = maxWidth => ({
   display: 'flex',
+  margin: '0px auto',
   width: '100%',
   maxWidth: !maxWidth ? '100%' : `${maxWidth}px`,
   flexWrap: 'wrap',
