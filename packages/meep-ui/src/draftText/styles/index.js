@@ -3,7 +3,7 @@ export const root = {
   padding: '15px 5px',
 };
 
-export const Style = {
+export const Style = colors => ({
   '*': {
     wordBreak: 'break-all',
   },
@@ -11,4 +11,8 @@ export const Style = {
   p: {
     marginBottom: 0,
   },
-};
+
+  'a, a:hover, a:active, a:focus, a:visited': {
+    color: colors[3],
+  },
+});
