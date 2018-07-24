@@ -1,3 +1,12 @@
+## 0.2.19 (2018-07-24)
+
+#### :bug: Bug Fix
+* `store`
+  * [#39](https://github.com/meepshop/meep-lerna/pull/39) FB登入：修正FB登入不需帶token ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.18 (2018-07-24)
 
 #### :bug: Bug Fix
