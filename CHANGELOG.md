@@ -1,3 +1,27 @@
+## 0.2.17 (2018-07-24)
+
+#### :rocket: New Feature
+* `meep-ui`
+  * [#35](https://github.com/meepshop/meep-lerna/pull/35) 更新翻譯 ([@friderika62](https://github.com/friderika62))
+* `meep-ui`, `store`
+  * [#25](https://github.com/meepshop/meep-lerna/pull/25) 臉書牆元件: 使用新版plugin ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#36](https://github.com/meepshop/meep-lerna/pull/36) 修正群組未置中 ([@HsuTing](https://github.com/HsuTing))
+  * [#34](https://github.com/meepshop/meep-lerna/pull/34) 文字元件：修正連結失效 ([@yuhsu1004](https://github.com/yuhsu1004))
+  * [#12](https://github.com/meepshop/meep-lerna/pull/12) 修正群組無法並排問題 ([@HsuTing](https://github.com/HsuTing))
+* `meep-ui`, `store`
+  * [#25](https://github.com/meepshop/meep-lerna/pull/25) 臉書牆元件：修正臉書牆未正確RWD ([@HsuTing](https://github.com/HsuTing))
+* `store`
+  * [#29](https://github.com/meepshop/meep-lerna/pull/29) 修改預設字體為黑體（原標楷體） ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 4
+- Ariel Hsu ([@yuhsu1004](https://github.com/yuhsu1004))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@friderika62](https://github.com/friderika62)
+
 ## 0.2.16 (2018-07-23)
 
 #### :bug: Bug Fix
@@ -5,7 +29,7 @@
   * [#32](https://github.com/meepshop/meep-lerna/pull/32) fix: 調整error page UI ([@barrypeng6](https://github.com/barrypeng6))
 
 #### Committers: 1
-- [@barrypeng6](https://github.com/barrypeng6
+- [@barrypeng6](https://github.com/barrypeng6)
 
 ## 0.2.15 (2018-07-23)
 
