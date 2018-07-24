@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 import { createSelector } from 'reselect';
-import { getIn, getJoinedModule } from 'utils';
+import { getIn, getJoinedModule, setDefaultValueForMenuDesign } from 'utils';
 import {
   LOCALE_ITEMS_TMPL,
   CURRENCY_ITEMS_TMPL,
@@ -82,7 +82,8 @@ export const getJoinedPage = (
     }
     let menu =
       R.find(R.propEq('id', menuId))(menus) ||
-      R.find(R.propEq('menuType', menuId || ele))(menus);
+      R.find(R.propEq('menuType', menuId || ele))(menus) ||
+      setDefaultValueForMenuDesign([]);
     let menuPages = getIn(['pages'])(menu) || [];
     if (menuPages.length > 0) {
       menuPages = menuPages.map(menuPage => {

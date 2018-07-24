@@ -2,6 +2,7 @@ import * as R from 'ramda';
 import { MEMBER_ITEMS_TMPL } from 'template';
 
 import getIn from './getIn';
+import setDefaultValueForMenuDesign from './setDefaultValueForMenuDesign';
 
 const getJoinedModule = (
   widgets,
@@ -25,7 +26,8 @@ const getJoinedModule = (
           const { menuId } = widget;
           let menu =
             R.find(R.propEq('id', menuId))(menus) ||
-            R.find(R.propEq('menuType', menuId))(menus);
+            R.find(R.propEq('menuType', menuId))(menus) ||
+            setDefaultValueForMenuDesign([]);
           let menuPages = getIn(['pages'])(menu) || [];
           if (menuPages.length > 0) {
             menuPages = menuPages.map(menuPage => {

@@ -126,8 +126,8 @@ export default function(state = initialState, { type, payload }) {
     case GET_STORE_SUCCESS: {
       const { data, locale, customerCurrency } = payload;
       const activities = Utils.getIn(['getActivityList', 'data'])(data);
-      const menus = Utils.setDefaultValueForMenuDesign(
-        Utils.getIn(['getMenuList', 'data'])(data),
+      const menus = (Utils.getIn(['getMenuList', 'data'])(data) || []).map(
+        menu => Utils.setDefaultValueForMenuDesign(menu),
       );
       const colorPlan =
         Utils.getIn(['getColorList', 'data', 0])(data) || DEFAULT_COLORS;
