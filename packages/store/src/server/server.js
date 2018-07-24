@@ -118,7 +118,7 @@ app.prepare().then(() => {
       }
       res.cookie(
         'x-meepshop-authorization-token',
-        response.headers._headers['x-meepshop-authorization-token'][0],
+        response.headers.get('x-meepshop-authorization-token'),
         { expires: new Date(Date.now() + 86380000 * 7), httpOnly: true },
       );
       res.json(data);
