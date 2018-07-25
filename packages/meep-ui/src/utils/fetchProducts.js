@@ -83,7 +83,6 @@ export default (params, getData) => {
       ],
       showVariants: true,
       showMainFile: true,
-      showCartlockQty: true,
     },
   };
 
