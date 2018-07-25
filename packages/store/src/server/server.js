@@ -93,6 +93,7 @@ app.prepare().then(() => {
 
   server.post('/fbAuth', async (req, res) => {
     const XMeepshopDomain = PRODUCTION ? req.headers.host : DOMAIN;
+    const XMeepshopDomainToken = req.cookies['x-meepshop-authorization-token'];
     try {
       const response = await fetch(
         `${API_HOST}/facebook/fbLogin?domain=${encodeURIComponent(
@@ -103,6 +104,7 @@ app.prepare().then(() => {
           headers: {
             'Content-Type': 'application/json',
             'x-meepshop-domain': XMeepshopDomain,
+            'x-meepshop-authorization-token': XMeepshopDomainToken,
           },
           credentials: 'include',
           body: JSON.stringify(req.body),
@@ -130,6 +132,8 @@ app.prepare().then(() => {
     try {
       /* Get FB app secret */
       const XMeepshopDomain = PRODUCTION ? req.headers.host : DOMAIN;
+      const XMeepshopDomainToken =
+        req.cookies['x-meepshop-authorization-token'];
       const query = `
           query Root {
             getAppLoginList {
@@ -221,6 +225,7 @@ app.prepare().then(() => {
           headers: {
             'Content-Type': 'application/json',
             'x-meepshop-domain': XMeepshopDomain,
+            'x-meepshop-authorization-token': XMeepshopDomainToken,
           },
           credentials: 'include',
           body: JSON.stringify({ accessToken: dataFromFB.access_token }),
