@@ -5,6 +5,14 @@ export const SPECIAL_HIDE_FOOTER = [
   'queenwed',
   'roomee-tw',
   'palmsmaru',
+  'pimgo',
+  'top-shop',
+  'amadana',
+  'tata',
+  'doctorair',
+  'negiliving',
+  'eoil',
+  'fitbit',
 ];
 
 export const STORE_APP_PLUGINS = [
