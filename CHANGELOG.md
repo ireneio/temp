@@ -1,3 +1,18 @@
+## 0.2.20 (2018-07-25)
+
+#### :rocket: New Feature
+* `meep-ui`
+  * [#16](https://github.com/meepshop/meep-lerna/pull/16) feat(meep-ui): remove showCartlockQty in productList ([@HsuTing](https://github.com/HsuTing))
+  * [#41](https://github.com/meepshop/meep-lerna/pull/41) 更新隱藏頁腳白名單 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :bug: Bug Fix
+* `store`
+  * [#40](https://github.com/meepshop/meep-lerna/pull/40) FB登入：改回帶token ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.19 (2018-07-24)
 
 #### :bug: Bug Fix
