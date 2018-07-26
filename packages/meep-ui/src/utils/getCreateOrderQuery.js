@@ -52,10 +52,6 @@ export default ({
       environment: {
         domain: "${domain}"
         ${!sourcePage ? '' : `sourcePage: ${sourcePage}`}
-        userAgent: {
-          # FIXME
-          deviceType: ""
-        }
       }
       idempotentKey: "${uuid.v4()}"
       isPayment: ${isPayment}
