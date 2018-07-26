@@ -39,6 +39,7 @@ export default class DecoratorsRoot extends React.Component {
     storeSetting: STORE_SETTING_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     locale: ONE_OF_LOCALE_TYPE.isRequired,
+    customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
     location: LOCATION_TYPE.isRequired,
     storeAppList: PropTypes.arrayOf(
       PropTypes.shape({
@@ -65,7 +66,6 @@ export default class DecoratorsRoot extends React.Component {
 
     /** variables for DecoratorsRoot func */
     storeCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
-    customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
     fxSetup: PropTypes.shape({
       timestamp: PropTypes.number.isRequired,
       base: ONE_OF_CURRENCY_TYPE.isRequired,
@@ -105,6 +105,7 @@ export default class DecoratorsRoot extends React.Component {
       storeSetting,
       colors,
       locale,
+      customerCurrency,
       location,
 
       /** context func from props */
@@ -135,6 +136,7 @@ export default class DecoratorsRoot extends React.Component {
       storeSetting,
       colors,
       locale,
+      customerCurrency,
       location,
 
       /** context func from props */

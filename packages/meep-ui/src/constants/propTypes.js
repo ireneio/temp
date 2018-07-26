@@ -141,6 +141,7 @@ export const CONTEXT_TYPES = {
   storeSetting: STORE_SETTING_TYPE.isRequired,
   colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
   locale: ONE_OF_LOCALE_TYPE.isRequired,
+  customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
   location: LOCATION_TYPE.isRequired,
 
   /** context func from props */

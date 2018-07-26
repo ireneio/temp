@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CloseIcon from 'react-icons/lib/md/close';
+import { close as CloseIcon } from 'react-icons/md';
+import { areEqual } from 'fbjs';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
 import Sidebar from 'sidebar';
-import { COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
+import {
+  ONE_OF_LOCALE_TYPE,
+  ONE_OF_CURRENCY_TYPE,
+  LOCATION_TYPE,
+  COLOR_TYPE,
+  STORE_SETTING_TYPE,
+} from 'constants/propTypes';
 
 import styles from './styles/mobileSidebar.less';
 
@@ -14,6 +21,9 @@ export default class MobileSidebar extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
+    locale: ONE_OF_LOCALE_TYPE.isRequired,
+    customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
+    location: LOCATION_TYPE.isRequired,
     storeSetting: STORE_SETTING_TYPE.isRequired,
 
     /** props */
@@ -24,7 +34,29 @@ export default class MobileSidebar extends React.PureComponent {
 
   state = {
     isOpened: true,
+    changeToCloseSidebar: {
+      // eslint-disable-next-line react/destructuring-assignment
+      locale: this.props.locale,
+      // eslint-disable-next-line react/destructuring-assignment
+      customerCurrency: this.props.customerCurrency,
+      // eslint-disable-next-line react/destructuring-assignment
+      location: this.props.location,
+    },
   };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { locale, customerCurrency, location } = nextProps;
+    const changeToCloseSidebar = { locale, customerCurrency, location };
+
+    if (!areEqual(changeToCloseSidebar, prevState.changeToCloseSidebar)) {
+      return {
+        isOpened: false,
+        changeToCloseSidebar,
+      };
+    }
+
+    return null;
+  }
 
   render() {
     const { colors, storeSetting, design, pages, toggleSidebar } = this.props;
