@@ -9,6 +9,7 @@ import withReduxSaga from 'next-redux-saga';
 import { notification } from 'antd';
 import { Error } from 'components';
 import configureStore from 'ducks/store';
+import getConfig from 'next/config';
 import '../static/global.less';
 import '../static/nprogress.less';
 
@@ -31,6 +32,10 @@ Router.onRouteChangeComplete = () => {
 };
 Router.onRouteChangeError = () => NProgress.done();
 
+const {
+  publicRuntimeConfig: { API_HOST },
+} = getConfig();
+
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
@@ -38,6 +43,44 @@ class MyApp extends App {
       ctx.isServer,
       ctx.req,
     );
+    /* Check 401 error */
+    if (ctx.isServer) {
+      const XMeepshopDomainToken = Utils.getCookie(
+        'x-meepshop-authorization-token',
+        cookie,
+      );
+      const response = await fetch(`${API_HOST}/graphql`, {
+        method: 'post',
+        headers: {
+          'content-type': 'application/json',
+          'x-meepshop-domain': XMeepshopDomain,
+          'x-meepshop-authorization-token': XMeepshopDomainToken,
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          query: `query checkStore {
+          getStoreList {
+            data {
+              cname
+            }
+          }
+        }`,
+        }),
+      });
+      if (response.status === 401) {
+        console.warn(`${response.status} - ${XMeepshopDomain}`);
+        ctx.res.cookie('x-meepshop-authorization-token', '', {
+          httpOnly: true,
+        });
+        ctx.res.writeHead(302, {
+          Location: `//${ctx.req.headers.host}`,
+        });
+        ctx.res.end();
+        ctx.res.finished = true;
+        return {};
+      }
+    } /* Check 401 error - End */
+
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({
         ...ctx,
