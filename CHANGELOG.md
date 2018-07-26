@@ -1,3 +1,19 @@
+## Unreleased (2018-07-26)
+
+#### :rocket: New Feature
+* `meep-ui`
+  * [#44](https://github.com/meepshop/meep-lerna/pull/44) 由後端解析 user-agent 字串 ([@HsuTing](https://github.com/HsuTing))
+  * [#42](https://github.com/meepshop/meep-lerna/pull/42) 手機版選單： 點擊選單後需關閉 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+* `store`
+  * [#48](https://github.com/meepshop/meep-lerna/pull/48) hotfix 401 token verify failed error ([@barrypeng6](https://github.com/barrypeng6))
+  * [#45](https://github.com/meepshop/meep-lerna/pull/45) fix(store): fix error compoenent ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.20 (2018-07-25)
 
 #### :rocket: New Feature
