@@ -256,9 +256,7 @@ export default class Summary extends React.Component {
 
     if (this.isUnmounted) return;
 
-    const [{ id, orderNo, error, formData }] = (
-      result || { createOrderList: [{}] }
-    ).createOrderList;
+    const { id, orderNo, error, formData } = result?.createOrderList?.[0] || {};
 
     if (error || errors || !id /* fix */) {
       notification.error({
