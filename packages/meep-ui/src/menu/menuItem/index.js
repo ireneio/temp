@@ -1,10 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
+import { areEqual } from 'fbjs';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
-import { COLOR_TYPE, ISLOGIN_TYPE, LOCATION_TYPE } from 'constants/propTypes';
+import {
+  COLOR_TYPE,
+  ISLOGIN_TYPE,
+  ONE_OF_LOCALE_TYPE,
+  ONE_OF_CURRENCY_TYPE,
+  LOCATION_TYPE,
+} from 'constants/propTypes';
 import { PHONE_MEDIA_WIDTH } from 'constants/media';
 
 import {
@@ -27,8 +34,10 @@ import getSubItemPages from './utils/getSubItemPages';
 export default class MenuItem extends React.PureComponent {
   static propTypes = {
     isLogin: ISLOGIN_TYPE.isRequired,
-    location: LOCATION_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
+    locale: ONE_OF_LOCALE_TYPE.isRequired,
+    customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
+    location: LOCATION_TYPE.isRequired,
     toggleCart: PropTypes.func.isRequired,
     carts: PropTypes.shape({
       categories: PropTypes.shape({
@@ -74,7 +83,31 @@ export default class MenuItem extends React.PureComponent {
   state = {
     isHover: false,
     isClicked: false,
+    changeToCloseMenu: {
+      // eslint-disable-next-line react/destructuring-assignment
+      locale: this.props.locale,
+      // eslint-disable-next-line react/destructuring-assignment
+      customerCurrency: this.props.customerCurrency,
+      // eslint-disable-next-line react/destructuring-assignment
+      location: this.props.location,
+    },
   };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { locale, customerCurrency, location, menuItemClick } = nextProps;
+    const changeToCloseMenu = { locale, customerCurrency, location };
+
+    if (!areEqual(changeToCloseMenu, prevState.changeToCloseMenu)) {
+      menuItemClick(-1);
+      return {
+        isClicked: false,
+        isHover: false,
+        changeToCloseMenu,
+      };
+    }
+
+    return null;
+  }
 
   click = subItemPages => () => {
     const { toggleCart, action, menuItemClick, expandSubItem } = this.props;
