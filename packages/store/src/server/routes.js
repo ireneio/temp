@@ -49,4 +49,7 @@ module.exports = routes
   .add('forgotPassword', '/forgotPassword/:token', 'forgotPassword')
 
   // 藍星金流 付款頁面
-  .add('ezpay', '/ezpay/cvcode/:orderId', 'ezpay');
+  .add('ezpay', '/ezpay/cvcode/:orderId', 'ezpay')
+
+  // sitemaps(products): for crawler
+  .add('sitemaps/v1', '/sitemaps/v1', 'sitemaps/v1');
