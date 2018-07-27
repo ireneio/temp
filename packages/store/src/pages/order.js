@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import * as Utils from 'utils';
@@ -32,6 +33,10 @@ class MemberOrder extends Component {
   static propTypes = {
     error: PropTypes.string,
     isLogin: PropTypes.string.isRequired,
+    storeSetting: PropTypes.shape({
+      storeName: PropTypes.string.isRequired,
+      faviconUrl: PropTypes.string.isRequired,
+    }).isRequired,
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
@@ -72,6 +77,7 @@ class MemberOrder extends Component {
 
     const {
       isLogin,
+      storeSetting: { storeName, faviconUrl },
       location: { pathname },
       pageAdTrackIDs,
       colors,
@@ -83,6 +89,11 @@ class MemberOrder extends Component {
       <div>未登入</div>
     ) : (
       <React.Fragment>
+        <Head>
+          <title>{storeName}</title>
+          <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
+          <link rel="apple-touch-icon" href={`https://${faviconUrl}`} />
+        </Head>
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
           <MemberHeader title={title} goBackToOrders colors={colors}>
@@ -150,6 +161,7 @@ const mapStateToProps = (state, props) => {
   const locale = Utils.getIn(['storeReducer', 'settings', 'locale'])(state);
 
   return {
+    storeSetting: state.storeReducer.settings,
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),

@@ -26,6 +26,10 @@ class Login extends Component {
   static propTypes = {
     error: PropTypes.string,
     isLogin: PropTypes.string.isRequired,
+    storeSetting: PropTypes.shape({
+      storeName: PropTypes.string.isRequired,
+      faviconUrl: PropTypes.string.isRequired,
+    }).isRequired,
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
@@ -58,6 +62,7 @@ class Login extends Component {
     const {
       isLogin,
       fbAppId,
+      storeSetting: { storeName, faviconUrl },
       location: { pathname },
       pageAdTrackIDs,
     } = this.props;
@@ -67,7 +72,9 @@ class Login extends Component {
     ) : (
       <React.Fragment>
         <Head>
-          <title>Login page</title>
+          <title>{storeName}</title>
+          <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
+          <link rel="apple-touch-icon" href={`https://${faviconUrl}`} />
         </Head>
         <TrackingCodeHead
           pathname={pathname}
@@ -88,6 +95,7 @@ const mapStateToProps = (state, props) => {
   if (error) return { error };
 
   return {
+    storeSetting: state.storeReducer.settings,
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
