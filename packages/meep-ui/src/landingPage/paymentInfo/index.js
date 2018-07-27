@@ -191,6 +191,7 @@ class PayemntInfo extends React.PureComponent {
       paymentFilter,
       shipmentFilter,
       updateComputeOrderList,
+      addition,
     } = this.props;
     const { productId } = this.state;
     const { getFieldValue } = form;
@@ -208,7 +209,13 @@ class PayemntInfo extends React.PureComponent {
         coupon,
         paymentId,
         shipmentId,
-        products: [{ productId, variantId, quantity }],
+        products: [
+          {
+            productId,
+            variantId,
+            quantity: addition.includes('quantity') ? quantity : 1,
+          },
+        ],
       }),
     );
 
