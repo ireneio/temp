@@ -1,3 +1,17 @@
+## 0.2.23 (2018-07-27)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#64](https://github.com/meepshop/meep-lerna/pull/64) 選單元件（手機版）：點擊之後未關閉 ([@HsuTing](https://github.com/HsuTing))
+  * [#68](https://github.com/meepshop/meep-lerna/pull/68) 手機版選單搜尋欄：輸入的文字被切到 ([@HsuTing](https://github.com/HsuTing))
+  * [#54](https://github.com/meepshop/meep-lerna/pull/54) fix(meep-ui): fix error without showing summary error ([@HsuTing](https://github.com/HsuTing))
+* `store`
+  * [#63](https://github.com/meepshop/meep-lerna/pull/63) 圖文元件：修正後台顏色覆蓋關掉時，hover仍然會有黑色覆蓋 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.22 (2018-07-27)
 
 #### :rocket: New Feature
