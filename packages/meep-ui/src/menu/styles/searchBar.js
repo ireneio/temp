@@ -9,7 +9,7 @@ export const searchbarInput = fontSize => ({
   margin: 'auto',
   padding: '0px 0px 0px 5px',
   width: '100px',
-  height: fontSize,
+  height: `calc(${fontSize}px + 5px * 2)`,
   lineHeight: `${fontSize}px`,
   fontSize: `${fontSize}px`,
   color: 'inherit',
