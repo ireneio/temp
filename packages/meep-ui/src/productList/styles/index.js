@@ -183,9 +183,7 @@ export const productDescription = colors => ({
   overflow: 'hidden',
   fontSize: '13px',
   marginBottom: '10px',
-  color: color(colors[3])
-    .alpha(0.8)
-    .string(),
+  color: color(colors[3]).alpha(0.8),
 });
 
 export const productPrice = {
@@ -195,9 +193,7 @@ export const productPrice = {
 export const otherPrice = colors => ({
   fontSize: '12px',
   marginBottom: '2px',
-  color: color(colors[3])
-    .alpha(0.6)
-    .string(),
+  color: color(colors[3]).alpha(0.6),
 });
 
 export const thePrice = {
@@ -218,17 +214,11 @@ export const productAddToCart = colors => ({
   outline: 'none',
   backgroundColor: 'transparent',
   ':hover': {
-    backgroundColor: color(colors[3])
-      .alpha(0.6)
-      .string(),
+    backgroundColor: color(colors[3]).alpha(0.6),
   },
   ':disabled': {
-    border: `1px solid ${color(colors[3])
-      .alpha(0.4)
-      .string()}`,
-    color: color(colors[3])
-      .alpha(0.4)
-      .string(),
+    border: `1px solid ${color(colors[3]).alpha(0.4)}`,
+    color: color(colors[3]).alpha(0.4),
     cursor: 'not-allowed',
   },
 });
