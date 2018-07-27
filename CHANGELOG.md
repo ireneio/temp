@@ -1,4 +1,22 @@
-## Unreleased (2018-07-26)
+## 0.2.22 (2018-07-27)
+
+#### :rocket: New Feature
+* `store`
+  * [#46](https://github.com/meepshop/meep-lerna/pull/46) 新增商品列表sitemap(用於SEO) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#49](https://github.com/meepshop/meep-lerna/pull/49) 一頁式購物車：修正「商品數量」欄位關閉，無法顯示金額 ([@HsuTing](https://github.com/HsuTing))
+  * [#52](https://github.com/meepshop/meep-lerna/pull/52) 修正color套件版本問題 ([@piovischioh](https://github.com/piovischioh))
+* `store`
+  * [#50](https://github.com/meepshop/meep-lerna/pull/50) 修正會員頁title顯示商店名稱 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 3
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@piovischioh](https://github.com/piovischioh)
+
+## 0.2.21 (2018-07-26)
 
 #### :rocket: New Feature
 * `meep-ui`
