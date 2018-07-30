@@ -21,6 +21,7 @@ export default ({
   // TODO not used birthday,
   idNumber,
   mobile,
+  postalCode,
   address,
   addressDetail,
   notes,
@@ -145,7 +146,10 @@ export default ({
               ? ''
               : `
             address: {
-              streetAddress: "${address.join('')} ${addressDetail}"
+              ${!postalCode ? '' : `postalCode: "${postalCode}"`}
+              streetAddress: "${
+                !postalCode ? '' : `${postalCode} `
+              }${address.join('')} ${addressDetail}"
               yahooCode: {
                 country: "${address[0]}"
                 city: "${address[1] || ''}"

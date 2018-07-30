@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { Table, Button, notification } from 'antd';
-import areEqual from 'fbjs/lib/areEqual';
 import EditIcon from 'react-icons/lib/fa/edit';
 import TagIcon from 'react-icons/lib/fa/tag';
 import ArrowRightIcon from 'react-icons/lib/fa/arrow-right';
@@ -18,6 +17,7 @@ import {
 import { NOTLOGIN } from 'constants/isLogin';
 import getCreateOrderQuery from 'utils/getCreateOrderQuery';
 import createFormData from 'utils/createFormData';
+import fetchStreamName from 'utils/fetchStreamName';
 
 import StepHeader from './StepHeader';
 import { INVOICE_FIELDS } from './constants';
@@ -26,7 +26,7 @@ import * as styles from './styles/summary';
 
 @enhancer
 @radium
-export default class Summary extends React.Component {
+export default class Summary extends React.PureComponent {
   formRef = React.createRef();
 
   productColumns = [
@@ -168,15 +168,21 @@ export default class Summary extends React.Component {
   state = {
     formData: null,
     isSubmitting: false,
+    postalCode: '',
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
-    const { formData, isSubmitting } = this.state;
+  componentDidMount() {
+    const {
+      orderInfo: {
+        info: { address },
+      },
+    } = this.props;
 
-    return (
-      !areEqual(formData, nextState.formData) ||
-      isSubmitting !== nextState.isSubmitting
-    );
+    if (['台灣', 'Taiwan'].includes(address[0])) {
+      fetchStreamName(address).then(({ zip: postalCode }) => {
+        this.setState({ postalCode });
+      });
+    }
   }
 
   componentDidUpdate() {
@@ -227,6 +233,7 @@ export default class Summary extends React.Component {
       orderInfo,
       orderOtherDetailInfo,
     } = this.props;
+    const { postalCode } = this.state;
 
     this.setState({ isSubmitting: true });
 
@@ -240,6 +247,7 @@ export default class Summary extends React.Component {
     const { userEmail, userPassword, ...fieldValue } = orderInfo.info;
     const orderData = {
       ...fieldValue,
+      postalCode,
       domain,
       userEmail: userEmail || user.email,
       userPassword,
@@ -361,7 +369,7 @@ export default class Summary extends React.Component {
       orderInfo,
       orderOtherDetailInfo,
     } = this.props;
-    const { formData, isSubmitting } = this.state;
+    const { formData, isSubmitting, postalCode } = this.state;
 
     const {
       products,
@@ -456,7 +464,7 @@ export default class Summary extends React.Component {
             <div>{mobile}</div>
 
             <div>
-              {(address || []).join(' / ')} {addressDetail}
+              {postalCode} {(address || []).join(' / ')} {addressDetail}
             </div>
           </div>
 

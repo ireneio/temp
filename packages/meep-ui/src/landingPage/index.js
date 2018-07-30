@@ -20,6 +20,7 @@ import buildVariantsTree from 'utils/buildVariantsTree';
 import getCreateOrderQuery from 'utils/getCreateOrderQuery';
 import createFormData from 'utils/createFormData';
 import findDOMTop from 'utils/findDOMTop';
+import fetchStreamName from 'utils/fetchStreamName';
 
 import PaymentInfo from './paymentInfo';
 import ReceiverInfo from './ReceiverInfo';
@@ -149,10 +150,13 @@ export default class LandingPage extends React.PureComponent {
     const { validateFields } = form;
 
     validateFields(
-      async (err, { quantity, variant, userEmail, ...filedsValue }) => {
+      async (
+        err,
+        { quantity, variant, userEmail, address, ...filedsValue },
+      ) => {
         if (!err) {
           const {
-            location,
+            location: { host: domain, pathname },
             user,
             cname,
             transformLocale,
@@ -166,7 +170,6 @@ export default class LandingPage extends React.PureComponent {
 
           this.setState({ isSubmitting: true });
 
-          const { host: domain } = location;
           const { choosePayment, creditCardIsRegistered } = this.state;
           const { id: productId } = productData || {};
           const [variantId] = variant.slice(-1);
@@ -184,6 +187,10 @@ export default class LandingPage extends React.PureComponent {
             ],
             creditCardIsRegistered,
             choosePayment,
+            address,
+            postalCode: !['台灣', 'Taiwan'].includes(address[0])
+              ? ''
+              : await fetchStreamName(address).then(({ zip }) => zip),
           };
 
           const { data: result, errors } = await getData(
@@ -238,7 +245,7 @@ export default class LandingPage extends React.PureComponent {
                 updateOrderInfo({}, true);
                 this.setState({ isSubmitting: false });
 
-                if (location.pathname === redirectPage)
+                if (pathname === redirectPage)
                   this.paymentInfoRef.current.computeOrderList();
                 else goTo({ pathname: redirectPage });
               },

@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Cascader } from 'antd';
+import { areEqual } from 'fbjs';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COUNTRY_TYPE } from 'constants/propTypes';
 import removeContextTpyesFromProps from 'utils/removeContextTpyesFromProps';
+import fetchStreamName from 'utils/fetchStreamName';
 
 import getDefaultAreaList from './utils/getDefaultAreaList';
 
 @enhancer
 export default class AddressCascader extends React.PureComponent {
+  prevLoadItem = [];
+
   static propTypes = {
     transformLocale: PropTypes.func.isRequired,
     defaultValue: PropTypes.arrayOf(PropTypes.string.isRequired),
@@ -74,20 +78,21 @@ export default class AddressCascader extends React.PureComponent {
 
     if (selectedItem.loading) return;
 
-    const link = `//street-name.meepstage.com/list/${selectedItems
-      // FIXME
-      .map(({ value }) =>
-        encodeURIComponent(value === 'Taiwan' ? '台灣' : value),
-      )
-      .join('/')}`;
+    if (areEqual(this.prevLoadItem, selectedItems)) {
+      const { onChange } = this.props;
+
+      onChange([selectedItems[0].value]);
+      return;
+    }
 
     selectedItem.loading = true;
 
     // TODO: modified street API
-    const data = await fetch(link).then(res => res.json());
+    const data = await fetchStreamName(selectedItems.map(({ value }) => value));
 
     if (this.isUnmounted) return;
 
+    this.prevLoadItem = selectedItems;
     selectedItem.loading = false;
     selectedItem.children = data.map(value => ({
       label: value,
