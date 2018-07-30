@@ -1,3 +1,16 @@
+## 0.2.25 (2018-07-30)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#67](https://github.com/meepshop/meep-lerna/pull/67) 修正：地址「郵遞區號」欄位消失 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+* `meep-ui`
+  * [#70](https://github.com/meepshop/meep-lerna/pull/70) Add meep ui tool ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.2.24 (2018-07-27)
 
 #### :bug: Bug Fix
