@@ -1,3 +1,12 @@
+## 0.2.26 (2018-07-30)
+
+#### :bug: Bug Fix
+* `store`
+  * [#71](https://github.com/meepshop/meep-lerna/pull/71) 更改FB sdk version to 3.1 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.25 (2018-07-30)
 
 #### :bug: Bug Fix
