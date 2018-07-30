@@ -1,19 +1,16 @@
 import PropTypes from 'prop-types';
 import isInt from 'validator/lib/isInt';
 
-const buildPropTypes = (type, validator) => {
-  const checkPropTypeFunc = isRequired => (
-    prevProps,
-    propName,
-    componentName,
-  ) => {
-    const value =
-      ![null, undefined].includes(prevProps[propName]) &&
-      prevProps[propName].toString
-        ? prevProps[propName].toString()
-        : prevProps[propName];
+const buildPropTypes = (type, validator, valueType = 'string') => {
+  const checkPropType = isRequired => (prevProps, propName, componentName) => {
+    const value = prevProps[propName]?.toString();
 
-    if (value && !validator(value, prevProps, propName, componentName)) {
+    if (
+      value &&
+      (!validator(value, prevProps, propName, componentName) ||
+        // eslint-disable-next-line  valid-typeof
+        typeof prevProps[propName] !== valueType)
+    ) {
       return new Error(
         `Invalid prop \`${propName}\` of type \`${type}\` supplied to \`${componentName}\`, expected \`${type}\``,
       );
@@ -27,9 +24,9 @@ const buildPropTypes = (type, validator) => {
 
     return null;
   };
-  const outputFunc = checkPropTypeFunc();
+  const outputFunc = checkPropType();
 
-  outputFunc.isRequired = checkPropTypeFunc(true);
+  outputFunc.isRequired = checkPropType(true);
 
   return outputFunc;
 };

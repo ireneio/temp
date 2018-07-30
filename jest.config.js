@@ -1,21 +1,21 @@
-// TODO
-
-// eslint-disable-next-line import/no-unresolved
-const getFilesTree = require('./lib/__tool__/bin/core/getFilesTree').default;
+const fs = require('fs');
+const path = require('path');
 
 module.exports = {
   setupFiles: ['./jest.setup'],
-  testPathIgnorePatterns: getFilesTree()
-    .children.filter(
-      ({ data }) => !['utils', 'context', 'constants'].includes(data.name),
+  testPathIgnorePatterns: fs
+    .readdirSync(path.resolve(__dirname, './packages/meep-ui/src'))
+    .filter(
+      fileName =>
+        !['utils', 'context', 'constants', 'locale'].includes(fileName),
     )
-    .map(({ data }) => `src/${data.name}/__tests__/[a-zA-Z0-9]*.js`),
+    .map(fileName => `src/${fileName}/__tests__/[a-zA-Z0-9]*.js`),
   collectCoverage: true,
   coverageDirectory: 'coverage',
   collectCoverageFrom: [
-    'src/**/*.js',
-    '!**/__story__/*.js',
-    '!**/__tests__/*.js',
+    'packages/**/src/**/*.js',
+    '!packages/meep-ui/src/**/__story__/*.js',
+    '!packages/meep-ui/src/**/__tests__/*.js',
   ],
   coverageReporters: ['html', 'text'],
 };

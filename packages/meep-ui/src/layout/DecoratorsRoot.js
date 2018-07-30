@@ -1,5 +1,6 @@
 // Only important functions can be added to the `Context`.
 // Use enhancer with those functions.
+// TODO remove
 
 import React from 'react';
 import PropTypes from 'prop-types';

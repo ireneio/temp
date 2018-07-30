@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
-import isUUID from 'validator/lib/isUUID';
-import isURL from 'validator/lib/isURL';
-import isHexColor from 'validator/lib/isHexColor';
-import isInt from 'validator/lib/isInt';
-import isFloat from 'validator/lib/isFloat';
-import isEmail from 'validator/lib/isEmail';
+import {
+  isUUID,
+  isNumeric,
+  isURL,
+  isHexColor,
+  isInt,
+  isFloat,
+  isEmail,
+} from 'validator';
 
 import * as COUNTRY_LOCALE from 'locale/country';
 import buildPropTypes from 'utils/buildPropTypes';
@@ -14,37 +17,111 @@ import CURRENCY from './currency';
 import INVOICE from './invoice';
 import * as ISLOGIN from './isLogin';
 
-/**
- * normal propTypes
- *
- * Do not use "buildPropTypes('id', validator)",
- * because "validator" maybe have options.
- */
+/** normal propTypes */
+
+/** test uuid */
 export const ID_TYPE = buildPropTypes('id', value => isUUID(value));
-export const FB_ID_TYPE = buildPropTypes('fb id', value =>
-  /[0-9_]+/.test(value),
+
+/** test fbID */
+export const FB_ID_TYPE = buildPropTypes(
+  'fb id',
+  value => isNumeric(value),
+  'number',
 );
+
+/** test
+ * https://www.meepshop.com/,
+ * www.meepshop.com,
+ * /path
+ */
 export const URL_TYPE = buildPropTypes('url', value =>
   isURL(value, { require_host: false }),
 );
+
+/** test #hashTag */
+export const HASH_TYPE = buildPropTypes('hash', value => /^#/.test(value));
+
+/** test test@meepshop.com */
 export const EMAIL_TYPE = buildPropTypes('email', value => isEmail(value));
+
+/** testRandom
+ * picsum.photos/600/300,
+ * picsum.photos/200/550,
+ * picsum.photos/400/600
+ */
+export const IMAGE_TYPE = buildPropTypes('url', value =>
+  isURL(value, { require_host: false }),
+);
+
+/** testRandom
+ * #ffffff,
+ * #000000,
+ * #99FF99,
+ * inherit,
+ * initial
+ */
 export const COLOR_TYPE = buildPropTypes(
   'color',
   value => ['inherit', 'initial'].includes(value) || isHexColor(value),
 );
-export const OPACITY_TYPE = buildPropTypes('range', value =>
-  isFloat(value, { min: 0, max: 1 }),
+
+/** testRandom 0, 0.5, 1 */
+export const OPACITY_TYPE = buildPropTypes(
+  'range',
+  value => isFloat(value, { min: 0, max: 1 }),
+  'float',
 );
-export const CONTENT_WIDTH_TYPE = buildPropTypes('content width', value =>
-  isInt(value, { min: 0, max: 100 }),
+
+/** testRandom
+ * 100,
+ * 90,
+ * 80,
+ * 70,
+ * 60,
+ * 50,
+ * 40,
+ * 30,
+ * 20,
+ * 10
+ */
+export const CONTENT_WIDTH_TYPE = buildPropTypes(
+  'content width',
+  value => isInt(value, { gt: 0, max: 100 }),
+  'number',
 );
-export const PURCHASE_ITEMS_TYPE = buildPropTypes('purchase items', value =>
-  isInt(value, { min: 0, max: 999 }),
+
+/** testRandom
+ * 999,
+ * 150,
+ * 100,
+ * 50,
+ * 10,
+ * 0
+ */
+export const PURCHASE_ITEMS_TYPE = buildPropTypes(
+  'purchase items',
+  value => isInt(value, { min: 0, max: 999 }),
+  'number',
 );
-export const POSITIVE_NUMBER_TYPE = buildPropTypes('positive number', value =>
-  isFloat(value, { min: 0 }),
+
+/** testRandom
+ * 1000,
+ * 500,
+ * 100,
+ * 50,
+ * 10,
+ * 0
+ */
+export const POSITIVE_NUMBER_TYPE = buildPropTypes(
+  'positive number',
+  value => isFloat(value, { min: 0 }),
+  'float',
 );
+
+/** test oneOfLocale */
 export const ONE_OF_LOCALE_TYPE = PropTypes.oneOf(LOCALE);
+
+/** test oneOfCurrency */
 export const ONE_OF_CURRENCY_TYPE = PropTypes.oneOf(CURRENCY);
 
 export const FB_ACCOUNT_TYPE = PropTypes.oneOf(['fanPageId', 'personal']);
@@ -68,6 +145,14 @@ export const SHIPMENT_TEMPLATE_TYPE = PropTypes.oneOf([
   'others',
 ]);
 
+/**
+ * testJSON [{
+ *   "en_US": "en_US",
+ *   "zh_TW": "zh_TW",
+ *   "ja_JP": "ja_JP",
+ *   "vi_VN": "vi_VN"
+ * }]
+ */
 export const COUNTRY_TYPE = PropTypes.oneOf(
   Object.keys(COUNTRY_LOCALE).map(key => COUNTRY_LOCALE[key].zh_TW),
 );
@@ -133,6 +218,7 @@ export const STORE_SETTING_TYPE = PropTypes.shape({
   storeName: PropTypes.string.isRequired,
 });
 
+/** TODO remove */
 export const CONTEXT_TYPES = {
   /** context variables from props */
   user: USER_TYPE,

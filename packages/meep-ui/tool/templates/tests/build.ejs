@@ -1,0 +1,17 @@
+it('mount with props', () => {
+  expect(() => {
+    try {
+      mount(
+        <Context
+          {...contextProps}
+          {...contextFunc}
+        >
+          <<%= displayName %> {...componentProps} />
+        </Context>
+      );
+    } catch (e) {
+      console.log(e);
+      throw new Error(`Error props: ${JSON.stringify(componentProps)}`);
+    }
+  }).not.toThrow();
+});

@@ -104,5 +104,23 @@ module.exports = {
         ],
       },
     },
+    {
+      files: ['packages/meep-ui/**'],
+      rules: {
+        'react/prop-types': [
+          'error',
+          {
+            /** use to ignore context props, lib props */
+            ignore: [
+              /** context props */
+              'colors',
+
+              /** lib props */
+              'form',
+            ],
+          },
+        ],
+      },
+    },
   ],
 };

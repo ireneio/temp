@@ -26,12 +26,11 @@ jobs:
             make babel-prod
             npm run lint -- .
 
-      # TODO
-      #- run:
-      #    name: Test pacakges
-      #    command: npm run test
-      #- store_artifacts:
-      #    path: coverage
+      - run:
+          name: Test pacakges
+          command: npm run test
+      - store_artifacts:
+          path: coverage
 
   deploy:
     docker:

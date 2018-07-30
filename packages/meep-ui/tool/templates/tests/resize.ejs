@@ -1,0 +1,80 @@
+describe('resize', () => {
+  const wrapper = mount(
+    <Context
+      {...contextProps}
+      {...contextFunc}
+    >
+      <<%= displayName %> {...componentProps} />
+    </Context>
+  );
+
+  const reszieComponents = [
+<% componentPaths.forEach((path, index) => { -%>
+    {
+      reszieComponent: wrapper<%- path.replace(/\/([a-zA-Z0-9]*)/g, `.find('$1')`)%>,
+      mockData: <%- JSON.stringify(mockData[index])
+        .replace(/"?<ComponentProps>\.(\w*)"?/g, 'componentProps.$1')
+        .replace(/"\/|\/"/g, '')
+      %>,
+    },
+<% }) -%>
+  ].filter(({ reszieComponent }) => reszieComponent.exists());
+
+  if (reszieComponents.length === 0) {
+    it('no resize components found', () => {
+      expect(wrapper.find('<%= displayName %>').exists())
+        .toBeTruthy();
+    });
+    return;
+  }
+
+  it('resize after component mount', () => {
+    expect(() => {
+      try {
+        let testTimes = 0;
+        jest.runOnlyPendingTimers();
+
+        while (testTimes !== -1) {
+          reszieComponents.forEach(({ reszieComponent, mockData }) => {
+            const nowMockData = mockData[testTimes];
+
+            Object.keys(nowMockData || {})
+              .forEach((mockDataName) => {
+                reszieComponent.instance()[mockDataName] = nowMockData[mockDataName];
+              });
+          });
+
+          global.dispatchEvent(new Event('resize'));
+          jest.runOnlyPendingTimers();
+          testTimes += 1;
+
+          const shouldTest = reszieComponents.reduce(
+            (result, { mockData }) => result || mockData[testTimes],
+            false
+          );
+
+          if (!shouldTest) break;
+        }
+      } catch (e) {
+        console.log(e);
+        throw new Error('resize errror: <%= displayName %> resize fail');
+      }
+    }).not.toThrow();
+  });
+
+  it('resize after component unmount', () => {
+    expect(() => {
+      try {
+        global.dispatchEvent(new Event('resize'));
+        wrapper.unmount();
+        jest.runOnlyPendingTimers();
+      } catch (e) {
+        console.log(e);
+        throw new Error('resize errror: <%= displayName %> unmount fail');
+      }
+    }).not.toThrow();
+
+    expect(wrapper.find('<%= displayName %>').exists())
+      .toBeFalsy();
+  });
+});

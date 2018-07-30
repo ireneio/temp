@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   presets: [
     [
@@ -59,12 +61,16 @@ module.exports = {
       {
         extensions: ['.less'],
         generateScopedName: '[path][name]__[local]',
-        keepImport: process.env.NODE_ENV !== 'test',
-        extractCss: {
-          dir: './lib',
-          relativeRoot: './src',
-          filename: '[path]/[name].less',
-        },
+        ...(process.env.NODE_ENV === 'test'
+          ? {}
+          : {
+              keepImport: true,
+              extractCss: {
+                dir: './lib',
+                relativeRoot: './src',
+                filename: '[path]/[name].less',
+              },
+            }),
       },
     ],
   ],
@@ -81,6 +87,39 @@ module.exports = {
             polyfill: false,
             regenerator: true,
             moduleName: '@babel/runtime',
+          },
+        ],
+        [
+          'module-resolver',
+          {
+            root: ['./src'],
+            cwd: path.resolve(__dirname, './packages/meep-ui'),
+            alias: {
+              __toolMeepUI__: './',
+              tool: './tool',
+            },
+          },
+        ],
+      ],
+    },
+    {
+      test: './packages/meep-ui/tool',
+      plugins: [
+        [
+          'css-modules-transform',
+          {
+            extensions: ['.less'],
+            generateScopedName: '[path][name]__[local]',
+            ...(process.env.NODE_ENV === 'test'
+              ? {}
+              : {
+                  keepImport: true,
+                  extractCss: {
+                    dir: './lib/__tool__',
+                    relativeRoot: './tool',
+                    filename: '[path]/[name].less',
+                  },
+                }),
           },
         ],
       ],

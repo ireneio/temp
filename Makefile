@@ -6,7 +6,7 @@ babel-all:
 	@npm run lerna -- exec \
 		--parallel \
 		--stream \
-		"babel src -d lib --config-file ../../babel.config.js" \
+		"babel src -d lib --config-file ../../babel.config.js --verbose" \
 		${BABEL_PACKAGES}
 
 babel-prod:
@@ -45,8 +45,7 @@ clean-all:
 	@make babel-clean
 	@npm run lerna -- run clean \
 		--stream \
-		--parallel \
-		${BABEL_IGNORE_PACKAGES}
+		--parallel
 	rm -rf ./node_modules ./packages/**/node_modules
 	rm -rf ./coverage
 	rm -rf ./.eslintcache

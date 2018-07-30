@@ -1,3 +1,5 @@
+// TODO remove
+
 /**
  * @param {Object} backgroundImage - getPageList
  * @param {Array} colors -> getColorList -> themes[selected].colors
