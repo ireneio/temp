@@ -56,15 +56,16 @@ export default class extends React.Component {
               appId      : ${fbAppId},
               cookie     : true,
               xfbml      : true,
-              version    : 'v3.1'
+              version    : 'v3.0'
             });
+            console.log('FB initialized')
             FB.AppEvents.logPageView();
           };
           (function(d, s, id){
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) {return;}
             js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            js.src = "https://connect.facebook.net/en_US/all.js";
             fjs.parentNode.insertBefore(js, fjs);
           }(document, 'script', 'facebook-jssdk'));
           `,
