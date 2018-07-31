@@ -29,10 +29,38 @@ export default class extends React.Component {
       document.body.appendChild(gtmNoscript);
       window.meepShopStore.gtmIsInstalled = true;
     } /* Google Tag Manager (noscript) - End */
+
+    if (!window.meepShopStore.fbSdkIsInstalled) {
+      const { fbAppId = null } = this.props;
+      /* eslint-disable */
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: fbAppId,
+          cookie: true,
+          xfbml: true,
+          version: 'v3.0',
+        });
+        console.log('FB initialized');
+        FB.AppEvents.logPageView();
+      };
+      (function(d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+          return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      })(document, 'script', 'facebook-jssdk');
+      /* eslint-enable */
+      window.meepShopStore.fbSdkIsInstalled = true;
+    }
   }
 
   render() {
-    const { pathname, pageAdTrackIDs, fbAppId = null } = this.props;
+    const { pathname, pageAdTrackIDs } = this.props;
     const {
       gaID = null,
       gtmID = null,
@@ -47,7 +75,7 @@ export default class extends React.Component {
           <meta name="google-site-verification" content={`${webMasterID}`} />
         )}
 
-        {fbAppId && (
+        {/* fbAppId && (
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -58,21 +86,21 @@ export default class extends React.Component {
               xfbml      : true,
               version    : 'v3.0'
             });
-            console.log('FB initialized')
             FB.AppEvents.logPageView();
           };
           (function(d, s, id){
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) {return;}
             js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/all.js";
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
           }(document, 'script', 'facebook-jssdk'));
           `,
             }}
           />
-        )}
+        ) */}
 
+        {/* eslint-disable react/no-danger */}
         {/* <!-- Facebook Pixel Code --> */}
         {facebookID && (
           <script
