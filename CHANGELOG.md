@@ -1,3 +1,15 @@
+## 0.2.28 (2018-07-31)
+
+#### :bug: Bug Fix
+* `store`
+  * [#78](https://github.com/meepshop/meep-lerna/pull/78) 修正FB init: move init code to mount ([@barrypeng6](https://github.com/barrypeng6))
+* `meep-ui`
+  * [#66](https://github.com/meepshop/meep-lerna/pull/66) 圖片元件（手機版）：圖片解析度不足 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.27 (2018-07-31)
 
 #### :bug: Bug Fix
