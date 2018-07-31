@@ -178,7 +178,7 @@ export default class Summary extends React.PureComponent {
       },
     } = this.props;
 
-    if (['台灣', 'Taiwan'].includes(address[0])) {
+    if (['台灣', 'Taiwan'].includes(address?.[0])) {
       fetchStreamName(address).then(({ zip: postalCode }) => {
         this.setState({ postalCode });
       });

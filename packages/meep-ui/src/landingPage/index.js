@@ -188,7 +188,7 @@ export default class LandingPage extends React.PureComponent {
             creditCardIsRegistered,
             choosePayment,
             address,
-            postalCode: !['台灣', 'Taiwan'].includes(address[0])
+            postalCode: !['台灣', 'Taiwan'].includes(address?.[0])
               ? ''
               : await fetchStreamName(address).then(({ zip }) => zip),
           };
