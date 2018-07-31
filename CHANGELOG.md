@@ -1,3 +1,18 @@
+## 0.2.27 (2018-07-31)
+
+#### :bug: Bug Fix
+* `store`
+  * [#76](https://github.com/meepshop/meep-lerna/pull/76) 修正FB init: change sdk.js to all.js ([@barrypeng6](https://github.com/barrypeng6))
+* `meep-ui`
+  * [#75](https://github.com/meepshop/meep-lerna/pull/75) 確認訂單頁面：修正undefined address ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+* [#72](https://github.com/meepshop/meep-lerna/pull/72) feat(root): add checking not to use keyword with lint-staged ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.26 (2018-07-30)
 
 #### :bug: Bug Fix
