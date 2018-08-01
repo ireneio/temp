@@ -1,22 +1,22 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import FacebookWall from '..';
+import SocialThumbs from '..';
 
 export default (Context, contextProps, componentProps) => {
   it('build without FB', () => {
     const wrapper = mount(
       <Context {...contextProps}>
-        <FacebookWall {...componentProps} />
+        <SocialThumbs {...componentProps} />
       </Context>,
     );
 
-    expect(wrapper.find('FacebookWall').exists()).toBeTruthy();
+    expect(wrapper.find('SocialThumbs').exists()).toBeTruthy();
     wrapper
-      .find('FacebookWall')
+      .find('SocialThumbs')
       .instance()
       .componentDidUpdate();
-    expect(wrapper.find('FacebookWall').exists()).toBeTruthy();
+    expect(wrapper.find('SocialThumbs').exists()).toBeTruthy();
   });
 
   it('build with FB', () => {
@@ -27,13 +27,13 @@ export default (Context, contextProps, componentProps) => {
 
     const wrapper = mount(
       <Context {...contextProps}>
-        <FacebookWall {...componentProps} />
+        <SocialThumbs {...componentProps} />
       </Context>,
     );
 
     expect(mockParse).toHaveBeenCalledTimes(1);
     wrapper
-      .find('FacebookWall')
+      .find('SocialThumbs')
       .instance()
       .componentDidUpdate();
     expect(mockParse).toHaveBeenCalledTimes(2);

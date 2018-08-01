@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import * as styles from './styles';
+import styles from './styles/index.less';
 
 export default class Iframe extends React.PureComponent {
   static propTypes = {
+    /**
+     * props | test
+     * <div_style="color:red">iframe_with_normal_tag</div>,
+     * &lt;div_style="color:blue"&gt;iframe_with_string_tag&lt;/div&gt;
+     */
     htmlCode: PropTypes.string.isRequired,
   };
 
@@ -13,9 +18,8 @@ export default class Iframe extends React.PureComponent {
 
     return (
       <div
-        style={styles.root}
+        className={styles.root}
         dangerouslySetInnerHTML={{
-          // eslint-disable-line react/no-danger
           __html: htmlCode.replace(/&lt;/g, '<').replace(/&gt;/g, '>'),
         }}
       />

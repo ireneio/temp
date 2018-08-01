@@ -1,21 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import radium from 'radium';
 
-import * as styles from './styles';
+import { POSITIVE_NUMBER_TYPE } from 'constants/propTypes';
 
 import { DEFAULT_LATITUDE_AND_LONGITUDE } from './constants';
+import styles from './styles/index.less';
 
-@radium
 export default class GoogleMap extends React.PureComponent {
+  googleMapRef = React.createRef();
+
+  resizeTimeout = null;
+
   static propTypes = {
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
+    /**
+     * props | test
+     * no_match,
+     * <iframe_src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14463.733701272171!2d121.50845089999999!3d25.002378049999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a9dc34df02cd%3A0x1a9da81d691e83d4!2z5rC45a6J5biC5aC056uZ!5e0!3m2!1szh-TW!2stw!4v1520331378116"_width="600"_height="450"_frameborder="0"_style="border:0"_allowfullscreen></iframe>,
+     * !1m18!1m12!1m3!1d14463.733701272171!2d121.50845089999999!3d25.002378049999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a9dc34df02cd%3A0x1a9da81d691e83d4!2z5rC45a6J5biC5aC056uZ!5e0!3m2!1szh-TW!2stw!4v1520331378116
+     */
     href: PropTypes.string,
+    width: POSITIVE_NUMBER_TYPE.isRequired,
+    height: POSITIVE_NUMBER_TYPE.isRequired,
   };
 
   static defaultProps = {
-    href: DEFAULT_LATITUDE_AND_LONGITUDE,
+    /** props */
+    href: null,
   };
 
   state = {
@@ -24,32 +34,46 @@ export default class GoogleMap extends React.PureComponent {
   };
 
   componentDidMount() {
-    this.resize(this.props);
+    this.resize();
     window.addEventListener('resize', this.resize);
   }
 
   componentWillUnmount() {
+    this.isUnmounted = true;
     window.removeEventListener('resize', this.resize);
   }
 
+  /**
+   * resize | testJSON [{
+   *   "googleMapRef": {
+   *     "current": {
+   *       "offsetWidth": 99,
+   *       "offsetHeight": 0
+   *     }
+   *   }
+   * }, {
+   *   "googleMapRef": {
+   *     "current": {
+   *       "offsetWidth": "/<ComponentProps>.width/",
+   *       "offsetHeight": "/<ComponentProps>.height/"
+   *     }
+   *   }
+   * }]
+   */
   resize = () => {
-    const { width, height } = this.props;
+    clearTimeout(this.resizeTimeout);
+    this.resizeTimeout = setTimeout(() => {
+      if (this.isUnmounted) return;
 
-    /**
-     * Ignore reason: Because offsetWidth and offsetHeight are always 0, this will not be triggered.
-     * In the browser, width and height will change after `componentDidMount`.
-     */
-    /* istanbul ignore next */
-    if (
-      this.googleMap.offsetWidth === width &&
-      this.googleMap.offsetHeight === height
-    ) {
-      return;
-    }
+      const { width, height } = this.props;
+      const { offsetWidth, offsetHeight } = this.googleMapRef.current;
 
-    this.setState({
-      height: (height * this.googleMap.offsetWidth) / width,
-    });
+      if (width === offsetWidth && height === offsetHeight) return;
+
+      this.setState({
+        height: (height * offsetWidth) / width,
+      });
+    }, 100);
   };
 
   render() {
@@ -58,14 +82,18 @@ export default class GoogleMap extends React.PureComponent {
 
     return (
       <iframe
-        ref={node => {
-          this.googleMap = node;
+        ref={this.googleMapRef}
+        className={styles.root}
+        style={{
+          maxWidth: `${width}px`,
+          height: `${height}px`,
         }}
         title="google map"
-        src={`https://www.google.com/maps/embed?pb=${href.match(
-          /(!([\w.-]|%3)+)+/g,
-        )}`}
-        style={styles.root(width, height)}
+        src={`https://www.google.com/maps/embed?pb=${
+          (href || DEFAULT_LATITUDE_AND_LONGITUDE).match(
+            /(!([\w.-]|%3)+)+/g,
+          )?.[0]
+        }`}
         allowFullScreen
       />
     );

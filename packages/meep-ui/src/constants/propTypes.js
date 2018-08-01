@@ -114,8 +114,8 @@ export const PURCHASE_ITEMS_TYPE = buildPropTypes(
  */
 export const POSITIVE_NUMBER_TYPE = buildPropTypes(
   'positive number',
-  value => isFloat(value, { min: 0 }),
-  'float',
+  value => isInt(value, { min: 0 }),
+  'number',
 );
 
 /** test oneOfLocale */

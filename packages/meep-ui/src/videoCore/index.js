@@ -1,21 +1,32 @@
 import React from 'react';
-import radium from 'radium';
 import ReactPlayer from 'react-player';
 
 import { CONTENT_WIDTH_TYPE, URL_TYPE } from 'constants/propTypes';
 
-import { ASPECT_TYPE, RATIOS, DEFAULT_VIDEO_URL } from './constants';
+import { ASPECT_TYPE } from './propTypes';
+import { RATIOS, DEFAULT_VIDEO_URL } from './constants';
+import styles from './styles/index.less';
 
-@radium
 export default class VideoCore extends React.PureComponent {
+  videoCoreRef = React.createRef();
+
+  resizeTimeout = null;
+
   static propTypes = {
+    /** props | test
+     * https://www.youtube.com/watch?v=br\_2Na02Q4Q,
+     * https://www.youtube.com/watch?time\_continue=24&v=L8FK64bLJKE,
+     * https://www.facebook.com/meepshop/videos/792790224167669/,
+     * https://www.twitch.tv/videos/210513306
+     */
     href: URL_TYPE,
     aspect: ASPECT_TYPE.isRequired,
     contentWidth: CONTENT_WIDTH_TYPE.isRequired,
   };
 
   static defaultProps = {
-    href: DEFAULT_VIDEO_URL,
+    /** props */
+    href: null,
   };
 
   state = {
@@ -28,15 +39,32 @@ export default class VideoCore extends React.PureComponent {
   }
 
   componentWillUnmount() {
+    this.isUnmounted = true;
     window.removeEventListener('resize', this.resize);
   }
 
+  /**
+   * resize | testJSON [{
+   *   "videoCoreRef": {
+   *     "current": {
+   *       "wrapper": {
+   *         "offsetWidth": 1000
+   *       }
+   *     }
+   *   }
+   * }]
+   */
   resize = () => {
-    const { aspect } = this.props;
+    clearTimeout(this.resizeTimeout);
+    this.resizeTimeout = setTimeout(() => {
+      if (this.isUnmounted) return;
 
-    this.setState({
-      height: this.videoCore.wrapper.offsetWidth * RATIOS[aspect],
-    });
+      const { aspect } = this.props;
+
+      this.setState({
+        height: this.videoCoreRef.current.wrapper.offsetWidth * RATIOS[aspect],
+      });
+    }, 100);
   };
 
   render() {
@@ -45,12 +73,11 @@ export default class VideoCore extends React.PureComponent {
 
     return (
       <ReactPlayer
-        url={href}
-        ref={node => {
-          this.videoCore = node;
-        }}
+        ref={this.videoCoreRef}
+        className={styles.root}
+        url={href || DEFAULT_VIDEO_URL}
         width={`${contentWidth}%`}
-        height={height}
+        height={`${height}px`}
         controls
       />
     );

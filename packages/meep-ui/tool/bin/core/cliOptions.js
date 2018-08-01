@@ -9,6 +9,12 @@ const MODE = ['storybook', 'test'];
 const DEFAULT_MODULES = [
   // TODO: parse src
   'facebookWall',
+  'googleMap',
+  'iframe',
+  'socialMedia',
+  'socialThumbs',
+  'unavailableComp',
+  'videoCore',
 ];
 
 const pkgPath = findUp.sync('package.json');

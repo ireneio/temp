@@ -1,24 +1,33 @@
+import {
+  facebook as FacebookIcon,
+  twitter as TwitterIcon,
+  wechat as WeChatIcon,
+  whatsapp as WhatsAppIcon,
+} from 'react-icons/fa';
+
+import LineIcon from './LineIcon';
+
 export const DEFAULT_URL = 'http://www.google.com.tw';
 
 export const BRANDS = {
   facebook: {
-    color: '#3b5998',
     url: 'http://www.facebook.com/share.php?u=',
+    Icon: FacebookIcon,
   },
   line: {
-    color: '#00c300',
     url: 'http://line.naver.jp/R/msg/text/?',
+    Icon: LineIcon,
   },
   twitter: {
-    color: '#1da1f2',
     url: 'https://twitter.com/intent/tweet?text=',
+    Icon: TwitterIcon,
   },
   weChat: {
-    color: '#2dc100',
     url: 'http://api.addthis.com/oexchange/0.8/forward/wechat/offer?url=',
+    Icon: WeChatIcon,
   },
   whatsApp: {
-    color: '#4dc247',
     url: 'whatsapp://send?text=',
+    Icon: WhatsAppIcon,
   },
 };
