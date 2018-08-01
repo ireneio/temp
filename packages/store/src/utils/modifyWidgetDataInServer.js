@@ -327,6 +327,7 @@ export default async function modifyWidgetDataInServer(
               textColor: widget.textColor,
               showOverlay: !!widget.overlayBackgroundColor /* 等admin修好showOverlay的bug */,
               files: widget.files,
+              newWindow: widget.newWindow,
             };
           }
           /* 文字 */
