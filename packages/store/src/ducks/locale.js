@@ -239,16 +239,16 @@ export const SEND_PAYMENT_NOTIFICATION_FAILURE_MESSAGE = {
 
 export const CHANGE_PASSWORD_SUCCESS = {
   zh_TW: '更改密碼成功',
-  en_US: '',
-  ja_JP: '',
-  vi_VN: '',
+  en_US: 'Successfully updated',
+  ja_JP: '更新しました',
+  vi_VN: 'Hoàn tất',
 };
 
 export const CHANGE_PASSWORD_FAILURE_MESSAGE = {
   zh_TW: '更改密碼：發生錯誤',
-  en_US: '',
-  ja_JP: '',
-  vi_VN: '',
+  en_US: 'Change Password: Error occurred',
+  ja_JP: 'エラーが発生しました',
+  vi_VN: 'Xảy ra lỗi',
 };
 
 export const INVALID_PASSWORD = {

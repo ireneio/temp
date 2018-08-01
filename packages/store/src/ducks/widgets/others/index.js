@@ -1,6 +1,7 @@
-import { takeEvery, call } from 'redux-saga/effects';
+import { takeEvery, call, select } from 'redux-saga/effects';
 import { notification } from 'antd';
 import * as Api from 'api';
+import * as LOCALE from '../../locale';
 
 /* ********************************* 更改顧客密碼 ********************************* */
 const CHANGE_PASSWORD_REQUEST = 'CHANGE_PASSWORD_REQUEST';
@@ -11,17 +12,26 @@ export const changePassword = payload => ({
 });
 
 function* changePasswordFlow({ payload }) {
+  const {
+    storeReducer: {
+      settings: { locale },
+    },
+  } = yield select();
   try {
     const { data } = yield call(Api.changePassword, payload);
     if (data) {
       const { status } = data.changeUserPassword;
       switch (status) {
         case 0: {
-          notification.success({ message: '更改密碼：發生錯誤' });
+          notification.success({
+            message: LOCALE.CHANGE_PASSWORD_SUCCESS[locale],
+          });
           break;
         }
         default:
-          notification.error({ message: '更改密碼：發生錯誤' });
+          notification.error({
+            message: LOCALE.CHANGE_PASSWORD_FAILURE_MESSAGE[locale],
+          });
           break;
       }
     }
