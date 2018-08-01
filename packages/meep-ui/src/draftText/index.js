@@ -65,15 +65,14 @@ export default class DraftText extends React.Component {
     }
     const html = editorState
       ? draftToHtml(convertToRaw(editorState.getCurrentContent()))
-      : null;
+      : value;
 
     return (
       <div className="draft-text" style={[styles.root, style]}>
         <Style scopeSelector=".draft-text" rules={styles.Style(colors)} />
         {html && (
           <div
-            dangerouslySetInnerHTML={{
-              // eslint-disable-line react/no-danger
+            dangerouslySetInnerHTML={{ // eslint-disable-line
               __html: html,
             }}
           />
