@@ -61,6 +61,7 @@ module.exports = {
       {
         extensions: ['.less'],
         generateScopedName: '[path][name]__[local]',
+        devMode: process.env.NODE_ENV !== 'development',
         ...(process.env.NODE_ENV === 'test'
           ? {}
           : {
@@ -110,6 +111,7 @@ module.exports = {
           {
             extensions: ['.less'],
             generateScopedName: '[path][name]__[local]',
+            devMode: process.env.NODE_ENV !== 'development',
             ...(process.env.NODE_ENV === 'test'
               ? {}
               : {

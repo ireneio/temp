@@ -15,7 +15,8 @@ dev:
 		-w
 
 prod:
-	cp ./src/styles.less ./lib/
+	test -e ./lib/constants/ || mkdir ./lib/constants
+	cp ./src/constants/styles.less ./lib/constants
 
 clean:
 	rm -rf ./.storybook/.cache/
