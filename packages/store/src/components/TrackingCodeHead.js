@@ -40,7 +40,7 @@ export default class extends React.Component {
           xfbml: true,
           version: 'v3.0',
         });
-        console.log('FB initialized');
+        window.meepShopStore.fbSdkIsInstalled = true;
         FB.AppEvents.logPageView();
       };
       (function(d, s, id) {
@@ -55,7 +55,6 @@ export default class extends React.Component {
         fjs.parentNode.insertBefore(js, fjs);
       })(document, 'script', 'facebook-jssdk');
       /* eslint-enable */
-      window.meepShopStore.fbSdkIsInstalled = true;
     }
   }
 

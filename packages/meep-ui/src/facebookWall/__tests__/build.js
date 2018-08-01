@@ -20,11 +20,9 @@ export default (Context, contextProps, componentProps) => {
   });
 
   it('build with FB', () => {
-    const mockParse = jest.fn(() => {});
-
-    global.FB = {
-      XFBML: { parse: mockParse },
-    };
+    const mockParse = jest.fn();
+    global.window.FB = { XFBML: { parse: mockParse } };
+    global.window.meepShopStore = { fbSdkIsInstalled: true };
 
     const wrapper = mount(
       <Context {...contextProps}>

@@ -35,7 +35,7 @@ export default class FacebookWall extends React.PureComponent {
   };
 
   componentDidMount() {
-    if (global.window?.FB) {
+    if (window.FB && window.meepShopStore.fbSdkIsInstalled) {
       /**
        * Owing to the server rendering, remove the Attribute of the DOM.
        *
@@ -53,7 +53,7 @@ export default class FacebookWall extends React.PureComponent {
   }
 
   componentDidUpdate() {
-    if (global.window?.FB)
+    if (window.FB && window.meepShopStore.fbSdkIsInstalled)
       FB.XFBML.parse(this.facebookWallRef.current.parentNode);
   }
 
