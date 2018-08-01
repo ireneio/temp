@@ -1,3 +1,23 @@
+## Unreleased (2018-08-01)
+
+#### :bug: Bug Fix
+* `meep-ui`, `store`
+  * [#83](https://github.com/meepshop/meep-lerna/pull/83) fix FB initialized(Error: init not called with valid version) ([@barrypeng6](https://github.com/barrypeng6))
+* `store`
+  * [#84](https://github.com/meepshop/meep-lerna/pull/84) 臉書牆元件：修正props ([@barrypeng6](https://github.com/barrypeng6))
+  * [#79](https://github.com/meepshop/meep-lerna/pull/79) 圖文元件：新增newWindow props ([@barrypeng6](https://github.com/barrypeng6))
+* `meep-ui`
+  * [#82](https://github.com/meepshop/meep-lerna/pull/82) 產品資訊：顯示HTML產品敘述 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+* `meep-ui`
+  * [#80](https://github.com/meepshop/meep-lerna/pull/80) fix(root): fix less files hot load ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.2.28 (2018-07-31)
 
 #### :bug: Bug Fix
