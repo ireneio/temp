@@ -224,11 +224,12 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
             module: widget.module,
             href: widget.href,
             alignment: widget.alignment,
-            showPosts: !!widget.showPosts,
-            showFacepile: !!widget.showFacepile,
-            smallHeader: !!widget.smallHeader,
-            hideCover: !!widget.hideCover,
-            hideCta: !!widget.hideCta,
+            showPosts: !!widget.show_posts,
+            showFacepile: !!widget.show_facepile,
+            smallHeader: !!widget.small_header,
+            hideCover: !!widget.hide_cover,
+            hideCta: !!widget.hide_cta,
+            adaptContainerWidth: !!widget.adapt_container_width,
           };
         }
         /* 一頁式購物車 */
