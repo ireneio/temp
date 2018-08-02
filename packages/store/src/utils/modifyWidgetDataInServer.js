@@ -194,6 +194,7 @@ export default async function modifyWidgetDataInServer(
               enableControls: widget.enableControls,
               pauseWhenHover: widget.pauseWhenHover,
               files: widget.files,
+              newWindow: widget.newWindow,
             };
           }
           /* 分隔線 */

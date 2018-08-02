@@ -175,6 +175,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
             enableControls: widget.enableControls,
             pauseWhenHover: widget.pauseWhenHover,
             files: widget.files,
+            newWindow: widget.newWindow,
           };
         }
         /* 分隔線 */
