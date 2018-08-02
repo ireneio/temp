@@ -165,13 +165,20 @@ export default function(state = initialState, { type, payload }) {
         logoUrl: Utils.getIn(['logoFileInfo', 'image'])(store),
         mobileLogoUrl: Utils.getIn(['mobileLogoFileInfo', 'image'])(store),
         homePageId: store.homePageId,
-        locale: locale || (localeOptions && localeOptions[0]) || 'zh_TW',
+        /* FIXME: how to decide default locale */
+        locale:
+          locale ||
+          (localeOptions && localeOptions.length === 1 && localeOptions[0]) ||
+          'zh_TW',
         localeOptions: localeOptions || ['zh_TW'], // 用於語系選單
         lockedCountry: lockedCountry || [],
         storeCurrency: store.currency || 'TWD', // 幣值轉換欲轉換成的幣值
+        /* FIXME: how to decide default currency */
         customerCurrency:
           customerCurrency ||
-          (customerCurrency && customerCurrency[0]) ||
+          (currencyOptions &&
+            currencyOptions.length === 1 &&
+            currencyOptions[0]) ||
           'TWD', // 前台顯示的幣值
         fxSetup, // 用於匯率轉換 customerCurrency ==> storeCurrency
         currencyOptions: currencyOptions || ['TWD'], // 用於幣值選單
