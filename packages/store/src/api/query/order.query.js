@@ -153,8 +153,6 @@ const orderQuery = `{
           expireDate
         }
       }
-      expireDate
-      paymentCode
     }
     status
   }
