@@ -1,3 +1,17 @@
+## Unreleased (2018-08-02)
+
+#### :rocket: New Feature
+* `meep-ui`
+  * [#95](https://github.com/meepshop/meep-lerna/pull/95)[#96](https://github.com/meepshop/meep-lerna/pull/96) 輪播元件：新增開新視窗功能 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+* `store`
+  * [#97](https://github.com/meepshop/meep-lerna/pull/97)[#93](https://github.com/meepshop/meep-lerna/pull/93) 修正預設語言＆幣值 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 2
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.2.31 (2018-08-02)
 
 #### :house: Internal
