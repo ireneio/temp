@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import AngleRightIcon from 'react-icons/lib/fa/angle-right';
-import AngleDownIcon from 'react-icons/lib/fa/angle-down';
+import {
+  angleRight as AngleRightIcon,
+  angleDown as AngleDownIcon,
+} from 'react-icons/fa';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
@@ -59,7 +61,7 @@ export default class SidebarItem extends React.PureComponent {
     const { isHover, expand } = this.state;
     const { pathname, search } = location;
     const { action, newWindow, pages } = page;
-    const { expandSubItem } = design;
+    const { expandSubItem, fontSize } = design;
 
     const url = generateURL(page, isLogin);
     const isActive =
@@ -92,8 +94,14 @@ export default class SidebarItem extends React.PureComponent {
               />
             </div>
           </Link>
+
           {subItemPages.length === 0 || expandSubItem ? null : (
-            <ExpandIcon onClick={() => this.setState({ expand: !expand })} />
+            <ExpandIcon
+              style={{
+                fontSize: `${fontSize * 1.5}px`,
+              }}
+              onClick={() => this.setState({ expand: !expand })}
+            />
           )}
         </div>
 
