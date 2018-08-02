@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
-import ChevronLeftIcon from 'react-icons/lib/fa/chevron-left';
-import ChevronRightIcon from 'react-icons/lib/fa/chevron-right';
+import {
+  chevronLeft as ChevronLeftIcon,
+  chevronRight as ChevronRightIcon,
+} from 'react-icons/fa';
 
 import Image from 'image';
 import { CONTENT_WIDTH_TYPE } from 'constants/propTypes';
@@ -15,6 +17,7 @@ export default class Carousel extends React.PureComponent {
 
   static propTypes = {
     files: PropTypes.arrayOf(PropTypes.shape({}).isRequired),
+    newWindow: PropTypes.bool,
     contentWidth: CONTENT_WIDTH_TYPE.isRequired,
     enableAutoplay: PropTypes.bool.isRequired,
     enableIndicators: PropTypes.bool.isRequired,
@@ -24,6 +27,7 @@ export default class Carousel extends React.PureComponent {
 
   static defaultProps = {
     files: null,
+    newWindow: false,
   };
 
   state = {
@@ -111,6 +115,7 @@ export default class Carousel extends React.PureComponent {
 
   render() {
     const {
+      newWindow,
       contentWidth,
       enableAutoplay,
       enableIndicators,
@@ -147,7 +152,7 @@ export default class Carousel extends React.PureComponent {
               <Image
                 files={file}
                 contentWidth={100}
-                newWindow={false}
+                newWindow={newWindow}
                 alignment="center"
               />
             </div>
