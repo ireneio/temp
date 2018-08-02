@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import moment from 'moment';
-import { Table } from 'antd';
+import { Table, Divider } from 'antd';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
@@ -11,7 +11,6 @@ import Link from 'link';
 
 import * as styles from './styles';
 import * as LOCALE from './locale';
-import { paymentShowMemo } from './constants';
 
 @enhancer
 @radium
@@ -173,128 +172,163 @@ export default class MemberOrderDetails extends React.PureComponent {
     const paymentInfo = paymentInfos.list[0];
     const { template, accountInfo, memo, description } = paymentInfo;
 
-    const paymentMemoData = memo ? memo[0][template] : {};
-
-    const allpayChoosePayment =
-      accountInfo && accountInfo[template].ChoosePayment;
-    const ezpayPaymentType =
-      accountInfo && accountInfo[template].ezpayPaymentType;
-    const GMOContractCode = accountInfo && accountInfo[template].contractCode;
-
     let paymentDescription = [];
 
-    switch (template) {
-      case 'allpay':
-        if (paymentShowMemo[template][allpayChoosePayment]) {
-          paymentDescription = paymentDescription.concat([
-            allpayChoosePayment === 'ATM' && (
-              <React.Fragment key="ATM">
-                <span>
-                  {transformLocale(LOCALE.BANK_CODE) + paymentMemoData.BankCode}
-                </span>
-                <span>
-                  {transformLocale(LOCALE.VIRTUAL_ACCOUNT) +
-                    paymentMemoData.vAccount}
-                </span>
-                <span>
-                  {transformLocale(LOCALE.EXPIRE_DATE) +
-                    paymentMemoData.ExpireDate}
-                </span>
-              </React.Fragment>
-            ),
-            allpayChoosePayment === 'CVS' && (
-              <React.Fragment key="CVS">
-                <span>
-                  {transformLocale(LOCALE.CVS_PAYMENT_NO) +
-                    paymentMemoData.PaymentNo}
-                </span>
-                <span>
-                  {transformLocale(LOCALE.EXPIRE_DATE) +
-                    paymentMemoData.ExpireDate}
-                </span>
-              </React.Fragment>
-            ),
-            allpayChoosePayment === 'BARCODE' && (
-              <React.Fragment key="BARCODE">
-                <span>
-                  {`
-                    ${transformLocale(LOCALE.BARCODE)}${
-                    paymentMemoData.Barcode1
-                  } ${paymentMemoData.Barcode2} ${paymentMemoData.Barcode3}
-                  `}
-                </span>
-                <span>
-                  {transformLocale(LOCALE.EXPIRE_DATE) +
-                    paymentMemoData.ExpireDate}
-                </span>
-              </React.Fragment>
-            ),
-            description && <hr key="0" style={styles.hr(colors)} />,
-          ]);
-        }
-        break;
-      case 'ezpay':
-        if (paymentShowMemo[template][ezpayPaymentType]) {
-          paymentDescription = paymentDescription.concat([
-            ezpayPaymentType === 'MMK' && (
-              <React.Fragment key="MMK">
-                <span>
-                  {transformLocale(LOCALE.CVS_PAYMENT_NO) +
-                    paymentMemoData.paycode}
-                </span>
-                <span>
-                  {transformLocale(LOCALE.EXPIRE_DATE) +
-                    moment.unix(paymentMemoData.expireDate).format('YYYY/M/D')}
-                </span>
-              </React.Fragment>
-            ),
-            description && <hr key="1" style={styles.hr(colors)} />,
-          ]);
-        }
-        break;
-      case 'gmo':
-        if (GMOContractCode) {
-          paymentDescription = paymentDescription.concat([
-            <span key="GMO">
-              {transformLocale(LOCALE.GMO_STORE_CODE) + GMOContractCode}
-            </span>,
-            description && <hr key="2" style={styles.hr(colors)} />,
-          ]);
-        }
-        break;
-      default:
-        break;
-    }
+    if (template === 'allpay') {
+      /* 綠界 */
 
-    if (paidMessage && paidMessage.length) {
+      const paymentType = accountInfo && accountInfo[template].ChoosePayment;
+      const paymentMemo = memo ? memo[0][template] : {};
+      const {
+        PaymentNo = '',
+        ExpireDate = '',
+        Barcode1 = '',
+        Barcode2 = '',
+        Barcode3 = '',
+        BankCode = '',
+        vAccount = '',
+      } = paymentMemo;
+
+      switch (paymentType) {
+        case 'Credit':
+          /* 信用卡 */
+          break;
+        case 'WebATM':
+          /* 網路ATM轉帳 */
+          break;
+        case 'CVS':
+          /* 超商代碼 */
+          paymentDescription = paymentDescription.concat([
+            <React.Fragment key="CVS">
+              <span>{transformLocale(LOCALE.CVS_PAYMENT_NO) + PaymentNo}</span>
+              <span>{transformLocale(LOCALE.EXPIRE_DATE) + ExpireDate}</span>
+            </React.Fragment>,
+          ]);
+          break;
+        case 'BARCODE':
+          /* 超商條碼 */
+          paymentDescription = paymentDescription.concat([
+            <React.Fragment key="BARCODE">
+              <span>
+                {`${transformLocale(
+                  LOCALE.BARCODE,
+                )}${Barcode1} ${Barcode2} ${Barcode3}`}
+              </span>
+              <span>{transformLocale(LOCALE.EXPIRE_DATE) + ExpireDate}</span>
+            </React.Fragment>,
+          ]);
+          break;
+        case 'ATM':
+          /* 自動櫃員機 */
+          paymentDescription = paymentDescription.concat([
+            <React.Fragment key="ATM">
+              <span>{transformLocale(LOCALE.BANK_CODE) + BankCode}</span>
+              <span>{transformLocale(LOCALE.VIRTUAL_ACCOUNT) + vAccount}</span>
+              <span>{transformLocale(LOCALE.EXPIRE_DATE) + ExpireDate}</span>
+            </React.Fragment>,
+          ]);
+          break;
+        default:
+          break;
+      }
+    } else if (template === 'hitrust') {
+      /* 網際威信 */
+    } else if (template === 'gmo') {
+      /* GMO */
+
+      const paymentType = accountInfo && accountInfo[template].paymentType;
+      const { paymentCode = '', expireDate: expireDateUnix } = paymentInfo;
+      const expireDate = expireDateUnix
+        ? moment.unix(expireDateUnix).format('YYYY/MM/DD HH:mm:ss')
+        : '';
+
+      switch (paymentType) {
+        case 'Credit':
+          /* 信用卡(含定期購) */
+          break;
+        case 'KIOSK':
+          /* 超商代碼 */
+          paymentDescription = paymentDescription.concat([
+            <React.Fragment key="KIOSK">
+              <span>
+                {transformLocale(LOCALE.CVS_PAYMENT_NO) + paymentCode}
+              </span>
+              <span>{transformLocale(LOCALE.EXPIRE_DATE) + expireDate}</span>
+            </React.Fragment>,
+          ]);
+          break;
+        case 'ATM':
+          /* 自動櫃員機 */
+          paymentDescription = paymentDescription.concat([
+            <React.Fragment key="ATM">
+              <span>
+                {transformLocale(LOCALE.VIRTUAL_ACCOUNT) + paymentCode}
+              </span>
+              <span>{transformLocale(LOCALE.EXPIRE_DATE) + expireDate}</span>
+            </React.Fragment>,
+          ]);
+          break;
+        default:
+          break;
+      }
+    } else if (template === 'ezpay') {
+      /* 藍新 */
+
+      const paymentType = accountInfo && accountInfo[template].ezpayPaymentType;
+      const paymentMemo = memo ? memo[0][template] : {};
+      const { paycode = '', expireDate: expireDateUnix } = paymentMemo;
+      const expireDate = expireDateUnix
+        ? moment.unix(expireDateUnix).format('YYYY/MM/DD HH:mm:ss')
+        : '';
+
+      switch (paymentType) {
+        case 'Credit':
+          /* 信用卡 */
+          break;
+        case 'WEBATM':
+          /* 網路ATM轉帳 */
+          break;
+        case 'MMK':
+          /* 超商代碼 */
+          paymentDescription = paymentDescription.concat([
+            <React.Fragment key="MMK">
+              <span>{transformLocale(LOCALE.CVS_PAYMENT_NO) + paycode}</span>
+              <span>{transformLocale(LOCALE.EXPIRE_DATE) + expireDate}</span>
+            </React.Fragment>,
+          ]);
+          break;
+        case 'CS':
+          /* 超商條碼 */
+          break;
+        case 'ATM':
+          /* 虛擬帳號轉帳 */
+          break;
+        default:
+          break;
+      }
+    } else if (template === 'custom' && paidMessage && paidMessage.length) {
+      /* 自訂金流 */
       paymentDescription = paymentDescription.concat([
         ...paidMessage[paidMessage.length - 1].note
           .split('\n')
-          .map(i => <span key={i}>{i}</span>),
-        description && <hr key="3" style={styles.hr(colors)} />,
-      ]);
-    }
-    if (description) {
-      paymentDescription = paymentDescription.concat([
-        ...description.split('\n').map(i => <span key={i}>{i}</span>),
+          .map((note, i) => (
+            <span key={`paidMessage_${i}`}>{note}</span> // eslint-disable-line react/no-array-index-key
+          )),
       ]);
     }
 
-    return (
-      <div style={styles.block}>
-        <div style={styles.blockTitle}>
-          {transformLocale(LOCALE.PAYMENT_TYPE)}
-        </div>
-        <div>
-          <span style={styles.blockStatus(colors)}>{paymentInfo.name}</span>
-        </div>
-        {paymentDescription.length ? (
-          <div style={styles.blockDescription(colors)}>
-            {paymentDescription}
-          </div>
-        ) : null}
-      </div>
-    );
+    if (description) {
+      paymentDescription = paymentDescription.concat([
+        paymentDescription.length !== 0 && (
+          <Divider key="Divider" style={styles.hr(colors)} />
+        ),
+        ...description.split('\n').map(
+          (note, i) => <span key={`description_${i}`}>{note}</span>, // eslint-disable-line react/no-array-index-key
+        ),
+      ]);
+    }
+
+    return paymentDescription;
   };
 
   generateShipmentInfo = () => {
@@ -309,7 +343,9 @@ export default class MemberOrderDetails extends React.PureComponent {
           {transformLocale(LOCALE.SHIPMENT_NUMBER)}
           {shipmentInfo.number}
         </span>,
-        shipmentInfo.description && <hr key="0" style={styles.hr(colors)} />,
+        shipmentInfo.description && (
+          <Divider key="0" style={styles.hr(colors)} />
+        ),
       ]);
     }
     if (shipmentInfo.recipient.receiverStoreName) {
@@ -322,7 +358,9 @@ export default class MemberOrderDetails extends React.PureComponent {
           {transformLocale(LOCALE.RECEIVER_STORE_ADDRESS)}
           {shipmentInfo.recipient.receiverStoreAddress}
         </span>,
-        shipmentInfo.description && <hr key="1" style={styles.hr(colors)} />,
+        shipmentInfo.description && (
+          <Divider key="1" style={styles.hr(colors)} />
+        ),
       ]);
     }
     if (shipmentInfo.description) {
@@ -558,7 +596,19 @@ export default class MemberOrderDetails extends React.PureComponent {
                 </span>
               </div>
             </div>
-            {this.generatePaymentInfo()}
+            <div style={styles.block}>
+              <div style={styles.blockTitle}>
+                {transformLocale(LOCALE.PAYMENT_TYPE)}
+              </div>
+              <div>
+                <span style={styles.blockStatus(colors)}>
+                  {paymentInfo.list[0].name}
+                </span>
+              </div>
+              <div style={styles.blockDescription(colors)}>
+                {this.generatePaymentInfo()}
+              </div>
+            </div>
             {this.generateShipmentInfo()}
             {this.generateInvoiceInfo()}
             <div style={styles.block}>
