@@ -26,7 +26,7 @@ export const CANCEL = {
 
 /** Description */
 export const LIST_PRICE = {
-  zh_TW: '定價 ',
+  zh_TW: '定價',
   en_US: 'List Price',
   ja_JP: '定価',
   vi_VN: 'Định giá',
@@ -34,7 +34,7 @@ export const LIST_PRICE = {
 };
 
 export const SUGGESTED_PRICE = {
-  zh_TW: '建議售價 ',
+  zh_TW: '建議售價',
   en_US: 'MSRP',
   ja_JP: '希望小売価格',
   vi_VN: 'Giá bán đề nghị',

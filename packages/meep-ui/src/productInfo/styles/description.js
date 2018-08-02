@@ -52,6 +52,7 @@ export const otherPrice = {
 
 export const strike = {
   fontSize: 15,
+  marginLeft: '5px',
 };
 
 export const thePrice = {

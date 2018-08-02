@@ -196,6 +196,10 @@ export const otherPrice = colors => ({
   color: color(colors[3]).alpha(0.6),
 });
 
+export const strike = {
+  marginLeft: '5px',
+};
+
 export const thePrice = {
   fontSize: '15px',
   fontWeight: 'bold',
