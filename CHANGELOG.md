@@ -1,3 +1,12 @@
+## 0.2.31 (2018-08-02)
+
+#### :house: Internal
+* [#89](https://github.com/meepshop/meep-lerna/pull/89) Upgrade react & next version ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.30 (2018-08-02)
 
 #### :rocket: New Feature
@@ -7,10 +16,8 @@
 
 #### :bug: Bug Fix
 * `meep-ui`
-  * [#53](https://github.com/meepshop/meep-lerna/pull/53) GMO超商代碼/虛擬帳號：前台訂單明細沒有顯示繳費期限與繳款編號 - 480 ([@piovischioh](https://github.com/piovischioh))
   * [#88](https://github.com/meepshop/meep-lerna/pull/88) 產品資訊元件：修正定價與價格之間的空格 ([@piovischioh](https://github.com/piovischioh))
 * `store`
-  * [#47](https://github.com/meepshop/meep-lerna/pull/47) 加api欄位，同[#53] ([@barrypeng6](https://github.com/barrypeng6))
   * [#81](https://github.com/meepshop/meep-lerna/pull/81) 更改密碼頁：修正提示訊息的錯誤 ([@barrypeng6](https://github.com/barrypeng6))
 
 #### Committers: 3
