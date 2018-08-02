@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form, Input } from 'antd';
 import { COLOR_TYPE } from 'constants/propTypes';
-import styles from './styles/index.less';
 import * as LOCALE from './locale';
 
 const FormItem = Form.Item;
@@ -39,8 +38,9 @@ export default class SendResetPswMailForm extends React.PureComponent {
       colors,
     } = this.props;
     return (
-      <Form className={styles.commonForm} onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <h3>{transformLocale(LOCALE.FORGET_PASSWORD)}</h3>
+
         <FormItem>
           {getFieldDecorator('email', {
             rules: [
@@ -55,15 +55,14 @@ export default class SendResetPswMailForm extends React.PureComponent {
             ],
           })(
             <Input
-              className="loginView-sendResetPasswordForm-email-input"
               placeholder={transformLocale(LOCALE.EMAIL_PLACEHOLDER)}
               size="large"
             />,
           )}
         </FormItem>
-        <div className={styles.commonLoginBtnWrapper}>
+
+        <div className="button-group">
           <Button
-            className={styles.commonSubmitButton}
             style={{ borderColor: colors[5] }}
             htmlType="submit"
             size="large"

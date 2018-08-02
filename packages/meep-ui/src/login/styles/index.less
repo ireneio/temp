@@ -1,77 +1,41 @@
-.radioGroupWrapper {
+@import "../../constants/styles.less";
+
+.root {
   display: flex;
   justify-content: center;
-}
+  flex-direction: column;
+  margin: 0px auto;
+  padding: 5vh 15px;
+  width: 530px;
 
-.formWrapper {
-  display: flex;
-  justify-content: center;
-};
-
-.commonSubmitButton {
-  margin: 0 5px 0 5px;
-};
-
-.commonForm {
-  width: 500px;
-}
-
-.commonLoginBtnWrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-};
-
-.loginFormOptionsWrapper {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20;
-};
-
-.loginFormPasswordInput {
-  margin-bottom: 7.5px;
-}
-
-.loginFormFbLoginButton {
-  color: #FFF;
-  display: inline-block;
-  background: linear-gradient(#4c69ba, #3b55a0);
-  border: 1px solid #4c69ba;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 -1px 0 #354c8c;
-  -moz-box-shadow: 0 -1px 0 #354c8c;
-  box-shadow: 0 -1px 0 #354c8c;
-  cursor: pointer;
-  font-family: Helvetica neue;
-  font-size: 14px;
-  font-weight: bold;
-  min-width: 88px;
-  padding: 0 15px;
-  box-sizing: border-box;
-  vertical-align: middle;
-}
-
-@media (max-width: 767px) {
-  .commonSubmitButton {
-    width: 100%;
-    margin: 0 0 10px 0;
-  }
-
-  .commonLoginBtnWrapper {
-    display: block;
-  }
-
-  .formWrapper {
+  @media @PHONE_MEDIA {
     width: 100%;
   }
 
-  .commonForm {
-    width: 100%;
-    padding: 0 15px;
+  :global(.ant-radio-group) {
+    margin: auto;
   }
 
-  .loginFormFbLoginButton {
-    width: 100%;
-    margin-top: 10px;
+  :global(.button-group) {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0px 0px;
+
+    @media @PHONE_MEDIA {
+      flex-direction: column;
+    }
+  }
+
+  :global(.ant-btn) {
+    margin: 0px 5px;
+
+    @media @PHONE_MEDIA {
+      width: 100%;
+      margin: 0px;
+
+      &:not(:last-child) {
+        margin: 0px 0px 20px;
+      }
+    }
   }
 }

@@ -7,9 +7,9 @@ import { COLOR_TYPE } from 'constants/propTypes';
 
 import * as LOCALE from './locale';
 import styles from './styles/index.less';
-import LoginForm from './loginForm';
-import SignupForm from './signupForm';
-import SendResetPswMailForm from './sendResetPswMailForm';
+import LoginForm from './LoginForm';
+import SignupForm from './SignupForm';
+import SendResetPswMailForm from './SendResetPswMailForm';
 import { LOGIN, SIGNUP, FORGET_PSW } from './constants';
 
 @enhancer
@@ -52,6 +52,7 @@ export default class Login extends React.PureComponent {
     } = this.props;
     const { options } = this.state;
     let optionsComp = null;
+
     switch (options) {
       case LOGIN: {
         optionsComp = (
@@ -91,19 +92,20 @@ export default class Login extends React.PureComponent {
       default:
         break;
     }
+
     return (
-      <div style={{ paddingTop: '5vh', paddingBottom: '5vh' }}>
-        <div className={styles.radioGroupWrapper}>
-          <Radio.Group value={options} onChange={this.handleTypeChange}>
-            <Radio.Button style={{ color: '#000' }} value={SIGNUP}>
-              {transformLocale(LOCALE.SIGNUP)}
-            </Radio.Button>
-            <Radio.Button style={{ color: '#000' }} value={LOGIN}>
-              {transformLocale(LOCALE.LOGIN)}
-            </Radio.Button>
-          </Radio.Group>
-        </div>
-        <div className={styles.formWrapper}>{optionsComp}</div>
+      <div className={styles.root}>
+        <Radio.Group value={options} onChange={this.handleTypeChange}>
+          <Radio.Button style={{ color: '#000' }} value={SIGNUP}>
+            {transformLocale(LOCALE.SIGNUP)}
+          </Radio.Button>
+
+          <Radio.Button style={{ color: '#000' }} value={LOGIN}>
+            {transformLocale(LOCALE.LOGIN)}
+          </Radio.Button>
+        </Radio.Group>
+
+        {optionsComp}
       </div>
     );
   }

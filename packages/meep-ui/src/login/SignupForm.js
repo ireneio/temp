@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Button, Form, Input } from 'antd';
 import { COLOR_TYPE } from 'constants/propTypes';
 import * as LOCALE from './locale';
-import styles from './styles/index.less';
 
 const FormItem = Form.Item;
 
@@ -79,8 +78,9 @@ export default class SignupForm extends React.PureComponent {
     } = this.props;
 
     return (
-      <Form className={styles.commonForm} onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <h3>{transformLocale(LOCALE.SIGNUP)}</h3>
+
         <FormItem>
           {getFieldDecorator('email', {
             rules: [
@@ -95,12 +95,12 @@ export default class SignupForm extends React.PureComponent {
             ],
           })(
             <Input
-              className="loginView-signupForm-email-input"
               placeholder={transformLocale(LOCALE.EMAIL_PLACEHOLDER)}
               size="large"
             />,
           )}
         </FormItem>
+
         <FormItem>
           {getFieldDecorator('newPassword', {
             rules: [
@@ -114,7 +114,6 @@ export default class SignupForm extends React.PureComponent {
             ],
           })(
             <Input
-              className="loginView-signupForm-newPassword-input"
               type="password"
               placeholder={transformLocale(LOCALE.PASSWORD)}
               size="large"
@@ -122,6 +121,7 @@ export default class SignupForm extends React.PureComponent {
             />,
           )}
         </FormItem>
+
         <FormItem>
           {getFieldDecorator('confirmPassword', {
             rules: [
@@ -135,28 +135,27 @@ export default class SignupForm extends React.PureComponent {
             ],
           })(
             <Input
-              className="loginView-signupForm-confirmPassword-input"
               type="password"
               placeholder={transformLocale(LOCALE.CONFIRM_PASSWORD)}
               size="large"
             />,
           )}
         </FormItem>
+
         <FormItem>
           {getFieldDecorator('code', {
             rules: [],
           })(
             <Input
-              className="loginView-signupForm-code-input"
               type="text"
               placeholder={transformLocale(LOCALE.PROMOTION_CODE)}
               size="large"
             />,
           )}
         </FormItem>
-        <div className={styles.commonLoginBtnWrapper}>
+
+        <div className="button-group">
           <Button
-            className={styles.commonSubmitButton}
             style={{ borderColor: colors[5] }}
             htmlType="submit"
             size="large"

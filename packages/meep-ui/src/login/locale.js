@@ -78,6 +78,14 @@ export const FB_LOGIN = {
   TODO_LOCALE: true,
 };
 
+export const GO_BACK = {
+  zh_TW: '返回',
+  en_US: '',
+  ja_JP: '',
+  vi_VN: '',
+  TODO_LOCALE: true,
+};
+
 export const PASSWORD_IS_NO_MATCH = {
   zh_TW: '密碼不一致',
   en_US: 'Please retype your password here',
