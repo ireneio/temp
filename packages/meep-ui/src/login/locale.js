@@ -71,7 +71,7 @@ export const JOIN_US = {
 };
 
 export const FB_LOGIN = {
-  zh_TW: 'FB登入',
+  zh_TW: 'Facebook登入',
   en_US: 'Sign in with Facebook',
   ja_JP: 'Facebookでログイン',
   vi_VN: 'đăng nhập facebook',
@@ -80,9 +80,9 @@ export const FB_LOGIN = {
 
 export const GO_BACK = {
   zh_TW: '返回',
-  en_US: '',
-  ja_JP: '',
-  vi_VN: '',
+  en_US: 'Back',
+  ja_JP: '戻る',
+  vi_VN: 'Phản Hồi',
   TODO_LOCALE: true,
 };
 
