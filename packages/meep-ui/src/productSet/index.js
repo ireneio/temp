@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
+import { enhancer } from 'layout/DecoratorsRoot';
 import ProductInfo from 'productInfo';
 import ProductCarousel from 'productCarousel';
 import ProductCollection from 'productCollection';
@@ -9,6 +10,7 @@ import ProductCollection from 'productCollection';
 import { PRODUCT_TYPE, ACTIVITY_TYPE, LIST_TYPE } from './constants';
 import * as styles from './styles';
 
+@enhancer // FIX: unnecessary with new context api
 @radium
 export default class ProductSet extends React.PureComponent {
   static propTypes = {
