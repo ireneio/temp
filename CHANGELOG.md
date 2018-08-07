@@ -1,4 +1,22 @@
-## Unreleased (2018-08-02)
+## 0.2.33 (2018-08-07)
+
+#### :rocket: New Feature
+* `meep-ui`
+  * [#102](https://github.com/meepshop/meep-lerna/pull/102)  更新登入頁翻譯 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#98](https://github.com/meepshop/meep-lerna/pull/98) 產品組合元件：更改語系或幣值時該元件未改變 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+* `meep-ui`, `store`
+  * [#105](https://github.com/meepshop/meep-lerna/pull/105) perf(store): catch uncaught error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
+## 0.2.32 (2018-08-02)
 
 #### :rocket: New Feature
 * `meep-ui`
