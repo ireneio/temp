@@ -102,6 +102,22 @@ class Container extends React.Component {
     ) {
       Utils.goTo({ params: { hash: '#choose-shipment-store' } });
     }
+
+    window.addEventListener('unhandledrejection', event => {
+      fetch('/log', {
+        method: 'post',
+        headers: { 'content-type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+          data: {
+            message: event.reason.message,
+            stack: event.reason.stack,
+            // eslint-disable-next-line no-restricted-globals
+            domain: location.href,
+          },
+        }),
+      });
+    });
   }
 
   setLocale = id => {

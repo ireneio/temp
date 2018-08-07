@@ -239,10 +239,12 @@ export default class DecoratorsRoot extends React.Component {
       const { TODO_LOCALE, ...textObj } = strings || {};
       const { locale } = this.props;
 
-      warning(
-        textObj[locale] || textObj[locale] === '' || textObj[locale] === null,
-        `${locale} is not defined in ${JSON.stringify(textObj)}.`,
-      );
+      if (TODO_LOCALE) {
+        warning(
+          textObj[locale],
+          `${locale} is not defined in ${JSON.stringify(textObj)}.`,
+        );
+      }
 
       /** TODO: can not transform from data */
       if (!TODO_LOCALE) return textObj.zh_TW;
