@@ -34,7 +34,9 @@ class Product extends React.Component {
       if (R.isNil(product)) {
         store.dispatch(Actions.getProduct({ id: pId, query }));
       } else if (
-        !Utils.getIn(['design'])(product) &&
+        (!Utils.getIn(['design'])(product) ||
+          (!Utils.getIn(['design', 'pageId'])(product) &&
+            !Utils.getIn(['design', 'templateId'])(product))) &&
         R.isNil(R.find(R.propEq('pageType', 'template'))(pagesReducer))
       ) {
         store.dispatch(Actions.getPages({ pageType: 'template', query }));

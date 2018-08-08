@@ -165,7 +165,11 @@ function* serverProductInitialFlow({ payload }) {
       // FIXME: Join activities in corresponding product
       yield put(getProductSuccess({ ...product, activities }));
       let pagesData;
-      if (!Utils.getIn(['design'])(product)) {
+      if (
+        !Utils.getIn(['design'])(product) ||
+        (!Utils.getIn(['design', 'pageId'])(product) &&
+          !Utils.getIn(['design', 'templateId'])(product))
+      ) {
         pagesData = yield call(Api.getPages, {
           pageType: 'template',
           isServer: true,
