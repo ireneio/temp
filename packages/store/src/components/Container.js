@@ -103,21 +103,31 @@ class Container extends React.Component {
       Utils.goTo({ params: { hash: '#choose-shipment-store' } });
     }
 
-    window.addEventListener('unhandledrejection', event => {
-      fetch('/log', {
-        method: 'post',
-        headers: { 'content-type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({
-          data: {
-            message: event.reason.message,
-            stack: event.reason.stack,
-            // eslint-disable-next-line no-restricted-globals
-            domain: location.href,
-          },
-        }),
-      });
-    });
+    window.addEventListener(
+      'unhandledrejection',
+      ({ reason: { message, stack } }) => {
+        if (
+          /(Failed to fetch)|(The person is not logged into this app or we are unable to tell.)/.test(
+            message,
+          )
+        )
+          return;
+
+        fetch('/log', {
+          method: 'post',
+          headers: { 'content-type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({
+            data: {
+              message,
+              stack,
+              // eslint-disable-next-line no-restricted-globals
+              pathname: location.pathname,
+            },
+          }),
+        });
+      },
+    );
   }
 
   setLocale = id => {
