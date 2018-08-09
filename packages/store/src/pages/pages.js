@@ -73,7 +73,7 @@ class Pages extends React.Component {
     const { keywords, description, image } = page.seo || {};
 
     return (
-      <div>
+      <React.Fragment>
         <Head>
           <title>{addressTitle || storeName}</title>
           <meta name="description" content={description} />
@@ -102,7 +102,7 @@ class Pages extends React.Component {
           fbAppId={fbAppId}
         />
         <Container {...this.props} />
-      </div>
+      </React.Fragment>
     );
   }
 }

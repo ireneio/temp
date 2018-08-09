@@ -54,7 +54,7 @@ class ThankYouPage extends React.Component {
     } = this.props;
 
     return (
-      <div>
+      <React.Fragment>
         <Head>
           <title>{storeName}</title>
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
@@ -62,7 +62,7 @@ class ThankYouPage extends React.Component {
         </Head>
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props} />
-      </div>
+      </React.Fragment>
     );
   }
 }

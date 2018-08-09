@@ -80,7 +80,7 @@ class Index extends React.Component {
     const { keywords, description, image } = page.seo || {};
 
     return (
-      <div>
+      <React.Fragment>
         <Head>
           <title>{storeName}</title>
           <meta name="description" content={description} />
@@ -109,7 +109,10 @@ class Index extends React.Component {
           fbAppId={fbAppId}
         />
         <Container {...this.props} />
-      </div>
+        {/* eslint-disable */}
+        <a href="/sitemaps/v1" />
+        {/* eslint-enable */}
+      </React.Fragment>
     );
   }
 }
