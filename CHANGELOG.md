@@ -1,3 +1,12 @@
+## 0.2.37 (2018-08-10)
+
+#### :bug: Bug Fix
+* `store`
+  * [#116](https://github.com/meepshop/meep-lerna/pull/116) 產品列表（products-controlled）：修正加入購物車modal的錯誤 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.36 (2018-08-10)
 
 #### :bug: Bug Fix
