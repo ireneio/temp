@@ -1,24 +1,40 @@
 version: 2
+defaults: &defaults
+  docker:
+    - image: circleci/node:9.11.1
+  working_directory: ~/repo
+
+restore-cache: &restore-cache
+  keys:
+    - v1-dependencies-{{ checksum "lerna-package.json" }}
+
+save-cache: &save-cache
+  key: v1-dependencies-{{ checksum "lerna-package.json" }}
+  paths:
+    - node_modules
+    - packages/meep-ui/node_modules
+    - packages/store/node_modules
+    - packages/test-prod-server/node_modules
+
 jobs:
-  test:
-    docker:
-      - image: circleci/node:9.11.1
-
-    working_directory: ~/repo
-
+  install:
+    <<: *defaults
     steps:
       - checkout
+      - run: ./.circleci/bin/makePkg.sh
+      - restore_cache: *restore-cache
 
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Install packages
           command: npm run install:all
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+      - save_cache: *save-cache
+
+  lint-and-test:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: ./.circleci/bin/makePkg.sh
+      - restore_cache: *restore-cache
 
       - run:
           name: Check code style
@@ -32,27 +48,39 @@ jobs:
       - store_artifacts:
           path: coverage
 
-  deploy:
-    docker:
-      - image: circleci/node:9.11.1
-
-    working_directory: ~/repo
-
+  check-website-work:
+    <<: *defaults
     steps:
       - checkout
+      - run: ./.circleci/bin/makePkg.sh
+      - restore_cache: *restore-cache
 
-      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+      - run: ./.circleci/bin/installPuppeteerPkg.sh
+      - run:
+          name: Check website work
+          command: |
+            npm run prod
+            make babel-test-tool TEST_SCOPE=@meepshop/test-prod-server
+            npm run lerna -- run test:ci \
+              --scope @meepshop/test-prod-server \
+              --stream
 
+      - save_cache:
+          key: prod-{{ .Environment.CIRCLE_TAG }}
+          paths:
+            - packages/meep-ui/lib
+            - packages/store/src/.next
+            - packages/store/lib
+
+  deploy:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: ./.circleci/bin/makePkg.sh
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-      - run:
-          name: Install packages
-          command: npm run install:all
+            - prod-{{ .Environment.CIRCLE_TAG }}
 
-      - run:
-          name: Pre publish
-          command: npm run prod
       - store_artifacts:
           path: packages/meep-ui/lib
 
@@ -64,25 +92,43 @@ jobs:
               "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/build_docker.sh ${CIRCLE_TAG}" \
               --parallel \
               --stream \
-              --ignore @meepshop/meep-ui
+              --ignore @meepshop/meep-ui \
+              --ignore @meepshop/test-*
             npm run lerna -- exec \
               "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/deploy_k8s.sh ${CIRCLE_TAG}" \
               --parallel \
               --stream \
-              --ignore @meepshop/meep-ui
+              --ignore @meepshop/meep-ui \
+              --ignore @meepshop/test-*
 
 workflows:
   version: 2
   test-and-deploy:
     jobs:
-      - test:
+      - install:
           filters:
             tags:
               only: /.*/
+
+      - lint-and-test:
+          requires:
+            - install
+          filters:
+            tags:
+              only: /.*/
+
+      - check-website-work:
+          requires:
+            - install
+          filters:
+            tags:
+              only: /.*/
+
       - deploy:
           context: org-global
           requires:
-            - test
+            - lint-and-test
+            - check-website-work
           filters:
             branches:
               ignore: /.*/

@@ -16,6 +16,7 @@ module.exports = {
     'packages/**/src/**/*.js',
     '!packages/meep-ui/src/**/__story__/*.js',
     '!packages/meep-ui/src/**/__tests__/*.js',
+    '!packages/test-prod-server/**/*.js',
   ],
   coverageReporters: ['html', 'text'],
 };

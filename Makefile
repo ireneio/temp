@@ -1,13 +1,13 @@
 BABEL_PACKAGES=--scope @meepshop/meep-ui
 BABEL_IGNORE_PACKAGES=--scope @meepshop/store
 
+TEST_SCOPE=@meepshop/test-*
+babel-test-tool:
+	@$(call babel-build, --scope ${TEST_SCOPE})
+
 babel-all:
 	@make babel-clean
-	@npm run lerna -- exec \
-		--parallel \
-		--stream \
-		"babel src -d lib --config-file ../../babel.config.js --verbose" \
-		${BABEL_PACKAGES}
+	@$(call babel-build, ${BABEL_PACKAGES})
 
 babel-prod:
 	@NODE_ENV=production make babel-all
@@ -51,3 +51,11 @@ clean-all:
 	rm -rf ./.eslintcache
 	rm -rf ./.changelog
 	rm -rf ./*.log
+
+define babel-build
+  npm run lerna -- exec \
+		"babel src -d lib --config-file ../../babel.config.js --verbose" \
+		--parallel \
+		--stream \
+		$(1)
+endef

@@ -18,7 +18,7 @@ const { plugins } = require('./babel.config');
     'Object.values',
     "from 'antd/lib",
     ...Object.values(options).map(
-      ({ transform }) => `from '${transform.replace(/\/\${member}/, '')}`,
+      ({ transform }) => `from '${transform.replace(/\/\${member}/, "[^']")}`,
     ),
   ].join('\\|');
 

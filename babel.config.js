@@ -1,5 +1,15 @@
 const path = require('path');
 
+const babelRuntime = [
+  '@babel/plugin-transform-runtime',
+  {
+    helpers: false,
+    polyfill: false,
+    regenerator: true,
+    moduleName: '@babel/runtime',
+  },
+];
+
 module.exports = {
   presets: [
     [
@@ -81,15 +91,7 @@ module.exports = {
       test: './packages/meep-ui',
       plugins: [
         '@babel/plugin-proposal-export-default-from',
-        [
-          '@babel/plugin-transform-runtime',
-          {
-            helpers: false,
-            polyfill: false,
-            regenerator: true,
-            moduleName: '@babel/runtime',
-          },
-        ],
+        babelRuntime,
         [
           'module-resolver',
           {
@@ -129,6 +131,10 @@ module.exports = {
     {
       test: './packages/store',
       presets: ['next/babel'],
+    },
+    {
+      test: ['./packages/test-prod-server'],
+      plugins: [babelRuntime],
     },
   ],
 };

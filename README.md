@@ -50,6 +50,23 @@ $ npm run lint:watch -w .
 $ npm run clean:all
 ```
 
+### Test
+```bash
+$ npm run test
+```
+
+#### Use test tool
+```bash
+$ make babel-test-tool TEST_SCOPE="@meepshop/test-..."
+# or build all test tool
+$ make babel-test-tool
+
+$ npm run lerna -- run test --scope @meepshop/test-...
+```
+
+## Add new package
+Need to add the `node_modules` of the new package to `save-cache` in `.circleci/config.yml`.
+
 [circleci-image]: https://circleci.com/gh/meepshop/meep-lerna.svg?style=svg&circle-token=e54a3d5ceee3a9f2139527c7614c8209ea772f90
 [circleci-url]: https://circleci.com/gh/meepshop/meep-lerna
 [lerna-image]: https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg
