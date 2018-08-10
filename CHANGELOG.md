@@ -1,3 +1,26 @@
+## 0.2.34 (2018-08-10)
+
+#### :rocket: New Feature
+* `meep-ui`
+  * [#107](https://github.com/meepshop/meep-lerna/pull/107) 結帳頁：超過折抵金額，需顯示提示紅框 ([@HsuTing](https://github.com/HsuTing))
+* `store`
+  * [#113](https://github.com/meepshop/meep-lerna/pull/113) 優化SEO: 新增/sitemaps/v1連結 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :bug: Bug Fix
+* `store`
+  * [#110](https://github.com/meepshop/meep-lerna/pull/110) 處理當此頁面無pageId & templateId的意外情況 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :house: Internal
+* `store`, `test-prod-server`
+  * [#101](https://github.com/meepshop/meep-lerna/pull/101) test(test-prod-server): new testing tool ([@HsuTing](https://github.com/HsuTing))
+* `store`
+  * [#109](https://github.com/meepshop/meep-lerna/pull/109) perf(store): ignore offline to log ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.2.33 (2018-08-07)
 
 #### :rocket: New Feature
