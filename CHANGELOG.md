@@ -1,3 +1,12 @@
+## 0.2.36 (2018-08-10)
+
+#### :bug: Bug Fix
+* `store`
+  * [#115](https://github.com/meepshop/meep-lerna/pull/115) 修正使用 default group 排版錯誤 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.2.35 (2018-08-10)
 
 #### :bug: Bug Fix
