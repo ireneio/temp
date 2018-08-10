@@ -1,3 +1,11 @@
+## 0.2.35 (2018-08-10)
+
+#### :bug: Bug Fix
+* [#114](https://github.com/meepshop/meep-lerna/pull/114) fix(root): fix circleci deploy fail ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.2.34 (2018-08-10)
 
 #### :rocket: New Feature
