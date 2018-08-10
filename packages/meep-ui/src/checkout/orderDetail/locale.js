@@ -123,11 +123,19 @@ export const REWARD_POINTS = {
   TODO_LOCALE: true,
 };
 
-export const REWARD_POINTS_CAN_USE = (points, canUsePoints) => ({
-  zh_TW: `您目前的購物金為 ${points} 元，折抵金額上限為 ${canUsePoints} 元`,
-  en_US: `You have ${points} reward points. The maximum amount you can redeem is ${canUsePoints}. `,
-  ja_JP: `お客様の保有ポイントは${points}元分です。最大で${canUsePoints}元をご利用いただけます`,
-  vi_VN: `Số tiền hiện tại của bạn là ${points} tệ，Số tiền chiết khấu tối đa là  ${canUsePoints} tệ`,
+export const POINTS_LIMIT = canUsePoints => ({
+  zh_TW: `折抵金額上限為 ${canUsePoints} 元`,
+  en_US: `The maximum amount you can redeem is ${canUsePoints}. `,
+  ja_JP: `最大で${canUsePoints}元をご利用いただけます`,
+  vi_VN: `Số tiền chiết khấu tối đa là  ${canUsePoints} tệ`,
+  TODO_LOCALE: true,
+});
+
+export const REWARD_POINTS_CAN_USE = points => ({
+  zh_TW: `您目前的購物金為 ${points} 元，`,
+  en_US: `You have ${points} reward points. `,
+  ja_JP: `お客様の保有ポイントは${points}元分です。`,
+  vi_VN: `Số tiền hiện tại của bạn là ${points} tệ，`,
   TODO_LOCALE: true,
 });
 

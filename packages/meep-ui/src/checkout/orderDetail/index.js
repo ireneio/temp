@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { Form, InputNumber, Button, Modal } from 'antd';
 import uuid from 'uuid';
-import ChevronLeftIcon from 'react-icons/lib/md/chevron-left';
-import ChevronRightIcon from 'react-icons/lib/md/chevron-right';
+import {
+  chevronLeft as ChevronLeftIcon,
+  chevronRight as ChevronRightIcon,
+} from 'react-icons/md';
 import transformColor from 'color';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -286,7 +288,12 @@ export default class OrderDetail extends React.PureComponent {
     } = this.state;
 
     const { storeName } = storeSetting;
-    const { getFieldDecorator, getFieldsError, validateFieldsAndScroll } = form;
+    const {
+      getFieldDecorator,
+      getFieldsError,
+      getFieldValue,
+      validateFieldsAndScroll,
+    } = form;
     const {
       total,
       paymentList,
@@ -320,11 +327,11 @@ export default class OrderDetail extends React.PureComponent {
 
           <div className={styles.headerButton} onClick={this.submit}>
             {isChecking ? null : (
-              <React.Fragment>
+              <>
                 {transformLocale(LOCALE.NEXT)}
 
                 <ChevronRightIcon className={styles.headerIcon} />
-              </React.Fragment>
+              </>
             )}
           </div>
         </div>
@@ -365,7 +372,7 @@ export default class OrderDetail extends React.PureComponent {
                   {getFieldDecorator('points')(
                     <InputNumber
                       min={0}
-                      max={userPoints}
+                      max={canUsePointsLimit || 0}
                       placeholder={transformLocale(LOCALE.REWARD_POINTS)}
                       onBlur={({ target }) =>
                         this.computeOrderList({
@@ -383,11 +390,21 @@ export default class OrderDetail extends React.PureComponent {
                     }}
                   >
                     {transformLocale(
-                      LOCALE.REWARD_POINTS_CAN_USE(
-                        userPoints || 0,
-                        canUsePointsLimit || 0,
-                      ),
+                      LOCALE.REWARD_POINTS_CAN_USE(userPoints || 0),
                     )}
+
+                    <font
+                      style={{
+                        color:
+                          getFieldValue('points') > canUsePointsLimit || 0
+                            ? 'red'
+                            : 'inherit',
+                      }}
+                    >
+                      {transformLocale(
+                        LOCALE.POINTS_LIMIT(canUsePointsLimit || 0),
+                      )}
+                    </font>
                   </div>
                 </FormItem>
               )}
