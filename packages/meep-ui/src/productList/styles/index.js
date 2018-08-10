@@ -1,7 +1,7 @@
 import color from 'color';
 import { PHONE_MEDIA } from 'constants/media';
 
-export const listStyle = colors => ({
+export const listStyle = (colors, isGrid) => ({
   // ant-pagination
   '.ant-pagination-item': {
     backgroundColor: 'transparent',
@@ -48,6 +48,32 @@ export const listStyle = colors => ({
   },
   '.ant-spin-dot i': {
     backgroundColor: colors[3],
+  },
+
+  // loaders
+  mediaQueries: {
+    [PHONE_MEDIA.substring(7)]: {
+      '.ant-pagination': {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+      },
+      '.ant-pagination-item, .ant-pagination-jump-prev, .ant-pagination-jump-next': {
+        marginRight: '3px',
+      },
+      '.ant-pagination-prev, .ant-pagination-next': {
+        margin: '0',
+        width: '100vw',
+        height: 'auto',
+        padding: '10px',
+      },
+      '.loaders': {
+        width: `${isGrid ? '50%' : '100%'} !important`,
+        margin: '0 !important',
+        padding: '10px',
+      },
+    },
   },
 });
 
@@ -99,7 +125,7 @@ export const root = {
 export const wrapper = {
   padding: '20px 30px',
   [PHONE_MEDIA]: {
-    padding: '20px 10px',
+    padding: '20px 0px',
   },
 };
 
@@ -156,7 +182,6 @@ export const paginationLink = {
 
 export const productCard = (colors, isGrid) => ({
   color: colors[3],
-  transition: '0.3s',
   [PHONE_MEDIA]: {
     width: isGrid ? '50%' : '100%',
     margin: '0',

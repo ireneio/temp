@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
-import { Spin } from 'antd';
 
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 import Image from 'image';
 import DraftText from 'draftText';
 
+import ProductCard from './ProductCard';
 import { PRODUCT_TYPE } from './constants';
 import * as styles from './styles';
 import * as LOCALE from './locale';
 
 const ProductTable = ({
   products,
+  limit,
   isGrid,
   handleModalOpen,
 
@@ -44,8 +45,19 @@ const ProductTable = ({
         },
       ]}
     >
-      {products instanceof Promise ? (
-        <Spin size="large" />
+      {products instanceof Promise || !products ? (
+        <ProductCard
+          limit={limit}
+          productWidth={productWidth}
+          isGrid={isGrid}
+          alignment={alignment}
+          padding={padding}
+          showTitle={showTitle}
+          showDescription={showDescription}
+          showPrice={showPrice}
+          cartButton={cartButton}
+          colors={colors}
+        />
       ) : (
         products.data.map(product => {
           const image =
@@ -149,7 +161,8 @@ const ProductTable = ({
 ProductTable.propTypes = {
   products: PropTypes.shape({
     data: PropTypes.arrayOf(PRODUCT_TYPE),
-  }).isRequired,
+  }),
+  limit: PropTypes.number.isRequired,
   isGrid: PropTypes.bool.isRequired,
   handleModalOpen: PropTypes.func.isRequired,
   alignment: PropTypes.string.isRequired,
@@ -168,5 +181,9 @@ ProductTable.propTypes = {
   memberSeePrice: PropTypes.bool.isRequired,
 };
 /* eslint-enable react/no-typos */
+
+ProductTable.defaultProps = {
+  products: null,
+};
 
 export default radium(ProductTable);

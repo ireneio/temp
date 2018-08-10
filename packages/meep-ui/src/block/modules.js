@@ -15,7 +15,7 @@ import productCarousell from 'productCarousel';
 import productInfo from 'productInfo';
 import fixedTop from 'fixedTop';
 import secondTop from 'secondTop';
-import products from 'productList';
+import productList from 'productList';
 import productQA from 'productQA';
 import draftText from 'draftText';
 import activity from 'activity';
@@ -46,7 +46,8 @@ export default {
   'product-info': productInfo,
   'fixed-top': fixedTop,
   'second-top': secondTop,
-  products,
+  products: productList.Default,
+  'products-controlled': productList.Controlled,
   'product-service': productQA,
   'draft-text': draftText,
   activity,

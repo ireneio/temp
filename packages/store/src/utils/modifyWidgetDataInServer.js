@@ -25,7 +25,6 @@ export default async function modifyWidgetDataInServer(
           case 'products': {
             const {
               id,
-              module,
               contentWidth,
               params: {
                 ids,
@@ -48,25 +47,12 @@ export default async function modifyWidgetDataInServer(
               showPrice,
               showTitle,
               showSort,
+              notBeDeleted,
             } = widget;
-            const products = await Api.getProductList({
-              isServer: true,
-              XMeepshopDomain,
-              cookie,
-              ids: query.ids || ids,
-              includedAllTags: query.includedAllTags || includedAllTags,
-              limit: query.limit || limit,
-              offset: query.offset || offset,
-              price: query.price || price,
-              search: query.search || search,
-              sort: query.sort || sort,
-              tags: query.tags || tags,
-            });
             return {
               id,
-              module,
+              module: notBeDeleted ? 'products' : 'products-controlled',
               contentWidth,
-              products,
               params: {
                 ids: query.ids || ids,
                 includedAllTags: query.includedAllTags || includedAllTags,
