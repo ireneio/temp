@@ -72,7 +72,8 @@ const getJoinedModule = (
             cart,
           };
         }
-        case 'products': {
+        case 'products':
+        case 'products-controlled': {
           return {
             ...widget,
             params: {
