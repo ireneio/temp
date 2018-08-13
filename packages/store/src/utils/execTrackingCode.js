@@ -19,7 +19,7 @@ export default function(eventName, options = {}) {
       const { products } = cart.categories;
       const { productId, variantId, quantity } = payload.items[0];
       /* FB Pixel */
-      if (window.fbq && pageAdTrackIDs.facebookID) {
+      if (window.fbq && pageAdTrackIDs.fbPixelId) {
         window.fbq('track', 'AddToCart', {
           content_ids: [productId],
           content_type: 'product',
@@ -55,7 +55,7 @@ export default function(eventName, options = {}) {
         pageAdTrackIDs,
       } = options;
       /* FB Pixel */
-      if (window.fbq && pageAdTrackIDs.facebookID) {
+      if (window.fbq && pageAdTrackIDs.fbPixelId) {
         window.fbq('track', 'AddToCart', {
           content_ids: [productId],
           content_type: 'product',
@@ -81,7 +81,7 @@ export default function(eventName, options = {}) {
     case 'ViewProduct': {
       const { pageAdTrackIDs, product } = options;
       /* FB Pixel */
-      if (window.fbq && pageAdTrackIDs.facebookID) {
+      if (window.fbq && pageAdTrackIDs.fbPixelId) {
         window.fbq('track', 'ViewContent', {
           content_ids: [product.id],
           content_type: 'product',
@@ -103,7 +103,7 @@ export default function(eventName, options = {}) {
     case 'Search': {
       const { products, pageAdTrackIDs, searchString } = options;
       /* FB Pixel */
-      if (window.fbq && pageAdTrackIDs.facebookID && !products) {
+      if (window.fbq && pageAdTrackIDs.fbPixelId && !products) {
         window.fbq('track', 'Search', { search_string: searchString });
       }
       /* Google Enhanced Ecommerce */
@@ -120,7 +120,7 @@ export default function(eventName, options = {}) {
     case 'AddToWishlist': {
       const { pageAdTrackIDs } = options;
       /* FB Pixel */
-      if (window.fbq && pageAdTrackIDs.facebookID) {
+      if (window.fbq && pageAdTrackIDs.fbPixelId) {
         window.fbq('track', 'AddToWishlist');
       }
       /* No corresponding Google Enhanced Ecommerce */
@@ -128,20 +128,18 @@ export default function(eventName, options = {}) {
     }
     case 'CompleteRegistration': {
       const { pageAdTrackIDs } = options;
-      if (window.fbq && pageAdTrackIDs.facebookID) {
+      if (window.fbq && pageAdTrackIDs.fbPixelId) {
         window.fbq('track', 'CompleteRegistration');
       }
       /* No corresponding Google Enhanced Ecommerce */
       /* Adwords conversion */
       if (
         window.gtag &&
-        pageAdTrackIDs.conversionID &&
-        pageAdTrackIDs.adwordsSignup
+        pageAdTrackIDs.googleAdsConversionID &&
+        pageAdTrackIDs.googleAdsSignupLabel
       ) {
         window.gtag('event', 'conversion', {
-          send_to: `AW-${pageAdTrackIDs.conversionID}/${
-            pageAdTrackIDs.adwordsSignup
-          }`,
+          send_to: `${pageAdTrackIDs.googleAdsSignupLabel}`,
         });
       }
       break;
@@ -149,7 +147,7 @@ export default function(eventName, options = {}) {
     case 'BeginCheckout': {
       const { pageAdTrackIDs } = options;
       /* FB Pixel */
-      if (window.fbq && pageAdTrackIDs.facebookID) {
+      if (window.fbq && pageAdTrackIDs.fbPixelId) {
         window.fbq('track', 'InitiateCheckout');
       }
       /* Google Enhanced Ecommerce */
@@ -162,13 +160,11 @@ export default function(eventName, options = {}) {
       /* Adwords conversion */
       if (
         window.gtag &&
-        pageAdTrackIDs.conversionID &&
-        pageAdTrackIDs.adwordsCheckout
+        pageAdTrackIDs.googleAdsConversionID &&
+        pageAdTrackIDs.googleAdsCheckoutLabel
       ) {
         window.gtag('event', 'conversion', {
-          send_to: `AW-${pageAdTrackIDs.conversionID}/${
-            pageAdTrackIDs.adwordsCheckout
-          }`,
+          send_to: `${pageAdTrackIDs.googleAdsCheckoutLabel}`,
         });
       }
       break;
@@ -176,7 +172,7 @@ export default function(eventName, options = {}) {
     case 'AddPaymentInfo': {
       const { pageAdTrackIDs } = options;
       /* FB Pixel */
-      if (window.fbq && pageAdTrackIDs.facebookID) {
+      if (window.fbq && pageAdTrackIDs.fbPixelId) {
         window.fbq('track', 'AddPaymentInfo');
       }
       /* Google Enhanced Ecommerce */
@@ -195,7 +191,7 @@ export default function(eventName, options = {}) {
         pageAdTrackIDs,
       } = options;
       /* FB Pixel */
-      if (window.fbq && pageAdTrackIDs.facebookID) {
+      if (window.fbq && pageAdTrackIDs.fbPixelId) {
         const productIds = products.map(product => product.productId);
         window.fbq('track', 'Purchase', {
           content_ids: productIds,
@@ -213,7 +209,7 @@ export default function(eventName, options = {}) {
             const specsName = getSpecsName(product.specs);
             return {
               id: product.sku,
-              name: `${product.title.zh_TW} ${specsName}`,
+              name: `${product.title.zh_TW}`,
               variant: specsName,
               price: product.totalPrice / product.quantity,
               quantity: product.quantity,
@@ -230,13 +226,11 @@ export default function(eventName, options = {}) {
       /* Adwords conversion */
       if (
         window.gtag &&
-        pageAdTrackIDs.conversionID &&
-        pageAdTrackIDs.adwordsCompletedOrder
+        pageAdTrackIDs.googleAdsConversionID &&
+        pageAdTrackIDs.googleAdsCompleteOrderLabel
       ) {
         window.gtag('event', 'conversion', {
-          send_to: `AW-${pageAdTrackIDs.conversionID}/${
-            pageAdTrackIDs.adwordsCompletedOrder
-          }`,
+          send_to: `${pageAdTrackIDs.googleAdsCompleteOrderLabel}`,
         });
       }
       break;

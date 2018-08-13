@@ -65,7 +65,7 @@ class Checkout extends React.Component {
     }).isRequired,
     pageAdTrackIDs: PropTypes.shape({
       gaID: PropTypes.string,
-      facebookID: PropTypes.string,
+      fbPixelId: PropTypes.string,
     }).isRequired,
     orderInfo: PropTypes.shape({
       info: PropTypes.object,

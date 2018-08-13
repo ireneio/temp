@@ -74,7 +74,7 @@ class Product extends React.Component {
     locale: PropTypes.string.isRequired,
     pageAdTrackIDs: PropTypes.shape({
       gaID: PropTypes.string,
-      facebookID: PropTypes.string,
+      fbPixelId: PropTypes.string,
     }).isRequired,
     fbAppId: PropTypes.string.isRequired,
     productDescription: PropTypes.string.isRequired,

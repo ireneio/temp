@@ -7,7 +7,7 @@ export default class extends React.Component {
     pathname: PropTypes.string.isRequired,
     pageAdTrackIDs: PropTypes.shape({
       gaID: PropTypes.string,
-      facebookID: PropTypes.string,
+      fbPixelId: PropTypes.string,
       gtmID: PropTypes.string,
       webMasterID: PropTypes.string,
     }).isRequired,
@@ -64,8 +64,8 @@ export default class extends React.Component {
       gaID = null,
       gtmID = null,
       webMasterID = null,
-      facebookID = null,
-      conversionID = null,
+      fbPixelId = null,
+      googleAdsConversionID = null,
     } = pageAdTrackIDs;
     return (
       <Head>
@@ -101,7 +101,7 @@ export default class extends React.Component {
 
         {/* eslint-disable react/no-danger */}
         {/* <!-- Facebook Pixel Code --> */}
-        {facebookID && (
+        {fbPixelId && (
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -110,18 +110,18 @@ export default class extends React.Component {
             n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
             t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
             document,'script','https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '${facebookID}');
+            fbq('init', '${fbPixelId}');
             fbq('track', "PageView");
           `,
             }}
           />
         )}
-        {facebookID && (
+        {fbPixelId && (
           <noscript
             dangerouslySetInnerHTML={{
               __html: `
             <img height="1" width="1" style="display:none"
-              src="https://www.facebook.com/tr?id=${facebookID}&ev=PageView&noscript=1"
+              src="https://www.facebook.com/tr?id=${fbPixelId}&ev=PageView&noscript=1"
             />
           `,
             }}
@@ -130,14 +130,14 @@ export default class extends React.Component {
         {/* <!-- End - Facebook Pixel Code --> */}
 
         {/* <!-- Global site tag (gtag.js) - Google Analytics / Google Adwords --> */}
-        {(gaID || conversionID) && (
+        {(gaID || googleAdsConversionID) && (
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${gaID ||
-              conversionID}`}
+              googleAdsConversionID}`}
           />
         )}
-        {(gaID || conversionID) && (
+        {(gaID || googleAdsConversionID) && (
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -149,7 +149,11 @@ export default class extends React.Component {
                 ? `gtag('config', '${gaID}', {page_path: '${pathname}'});`
                 : ''
             }
-            ${conversionID ? `gtag('config', 'AW-${conversionID}');` : ''}
+            ${
+              googleAdsConversionID
+                ? `gtag('config', '${googleAdsConversionID}');`
+                : ''
+            }
           `,
             }}
           />

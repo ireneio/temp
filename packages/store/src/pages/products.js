@@ -42,7 +42,7 @@ class Products extends React.Component {
     }).isRequired,
     pageAdTrackIDs: PropTypes.shape({
       gaID: PropTypes.string,
-      facebookID: PropTypes.string,
+      fbPixelId: PropTypes.string,
     }).isRequired,
     fbAppId: PropTypes.string.isRequired,
   };

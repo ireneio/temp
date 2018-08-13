@@ -49,75 +49,93 @@ const initialState = {
 };
 
 const getPageAdTrackIds = data => {
-  const pageAdTrack = Utils.getIn(['getPageAdTrack', 'data'])(data);
+  /* FB Pixel */
+  const fbPixelId =
+    (Utils.getIn(['getFbPixel', 'active'])(data) &&
+      Utils.getIn(['getFbPixel', 'pixelId'])(data)) ||
+    null;
+
+  const gtagList = Utils.getIn(['getGtagList'])(data) || [];
+  /* Google analytics */
+  const gaData = gtagList.find(
+    ({ type, eventName }) =>
+      type === 'google_analytics' && eventName === 'analytics_config',
+  );
+  const gaID = (gaData && gaData.code) || null;
+  /* Google Ads conversion ID */
+  const googleAdsConfigData = gtagList.find(
+    ({ type, eventName }) =>
+      type === 'google_adwords' && eventName === 'adwords_config',
+  );
+  const googleAdsConversionID =
+    (googleAdsConfigData &&
+      googleAdsConfigData.active &&
+      typeof googleAdsConfigData.code === 'string' &&
+      googleAdsConfigData.code.match(/AW-[0-9]*(?='\);)/gm) &&
+      googleAdsConfigData.code.match(/AW-[0-9]*(?='\);)/gm)[0]) ||
+    null;
+  /* Google Ads conversion Label - Signup */
+  const googleAdsSignupData = gtagList.find(
+    ({ type, eventName }) =>
+      type === 'google_adwords' && eventName === 'sign_up',
+  );
+  const googleAdsSignupLabel =
+    (googleAdsSignupData &&
+      googleAdsSignupData.active &&
+      typeof googleAdsSignupData.code === 'string' &&
+      googleAdsSignupData.code.match(/AW-.*(?='}\);)/gm) &&
+      googleAdsSignupData.code.match(/AW-.*(?='}\);)/gm)[0]) ||
+    null;
+  /* Google Ads conversion Label - Checkout */
+  const googleAdsCheckoutData = gtagList.find(
+    ({ type, eventName }) =>
+      type === 'google_adwords' && eventName === 'begin_checkout',
+  );
+  const googleAdsCheckoutLabel =
+    (googleAdsCheckoutData &&
+      googleAdsCheckoutData.active &&
+      typeof googleAdsCheckoutData.code === 'string' &&
+      googleAdsCheckoutData.code.match(/AW-.*(?='}\);)/gm) &&
+      googleAdsCheckoutData.code.match(/AW-.*(?='}\);)/gm)[0]) ||
+    null;
+  /* Google Ads conversion Label - CompleteOrder */
+  const googleAdsCompleteOrderData = gtagList.find(
+    ({ type, eventName }) =>
+      type === 'google_adwords' && eventName === 'purchase',
+  );
+  const googleAdsCompleteOrderLabel =
+    (googleAdsCompleteOrderData &&
+      googleAdsCompleteOrderData.active &&
+      typeof googleAdsCompleteOrderData.code === 'string' &&
+      googleAdsCompleteOrderData.code.match(/AW-.*(?='}\);)/gm) &&
+      googleAdsCompleteOrderData.code.match(/AW-.*(?='}\);)/gm)[0]) ||
+    null;
+
   const webTrackList = Utils.getIn(['getWebTrackList', 'data'])(data);
-  let facebookID = null;
-  let gaID = null;
   let webMasterID = null;
   let gtmID = null;
-  let conversionID = null;
-  let adwordsSignup = null;
-  let adwordsCheckout = null;
-  let adwordsCompletedOrder = null;
-  if (pageAdTrack) {
-    /* eslint-disable */
-    const gaMatchedVal =
-      pageAdTrack.google_analytics &&
-      pageAdTrack.google_analytics
-        .replace(/ /gm, '')
-        .match(/ga\('create','(.*?)(?=','auto'\);)/gm);
-    gaID = gaMatchedVal && gaMatchedVal[0].split("'")[3];
-    const fbMatchedVal =
-      pageAdTrack.facebook_ads &&
-      pageAdTrack.facebook_ads
-        .replace(/ /gm, '')
-        .match(/fbq\('init','(.*?)(?='\);fbq)/gm);
-    facebookID = fbMatchedVal && fbMatchedVal[0].split("'")[3];
-    /* eslint-enable */
-  }
   if (webTrackList) {
     webTrackList.forEach(webTrack => {
       const { trackType } = webTrack;
       if (trackType === 'google_webmaster') {
         webMasterID = webTrack.trackId;
       } else if (trackType === 'google_tag_manager') {
-        gtmID = Utils.getIn(['trackPage', 0, 'codeInfo', 'id'])(webTrack);
-      } else if (trackType === 'google_adwords') {
-        conversionID = Utils.getIn(['trackPage', 0, 'codeInfo', 'id'])(
-          webTrack,
-        );
-        const strAdwordsSignup =
-          webTrack.trackPage[1].trackCode &&
-          webTrack.trackPage[1].trackCode
-            .replace(/ /gm, '')
-            .match(/google_conversion_label="(.*?)(?=";)/gm);
-        adwordsSignup = strAdwordsSignup && strAdwordsSignup[0].split('"')[1];
-        const strAdwordsCheckout =
-          webTrack.trackPage[2].trackCode &&
-          webTrack.trackPage[2].trackCode
-            .replace(/ /gm, '')
-            .match(/google_conversion_label="(.*?)(?=";)/gm);
-        adwordsCheckout =
-          strAdwordsCheckout && strAdwordsCheckout[0].split('"')[1];
-        const strAdwordsCompletedOrder =
-          webTrack.trackPage[3].trackCode &&
-          webTrack.trackPage[3].trackCode
-            .replace(/ /gm, '')
-            .match(/google_conversion_label="(.*?)(?=";)/gm);
-        adwordsCompletedOrder =
-          strAdwordsCompletedOrder && strAdwordsCompletedOrder[0].split('"')[1];
+        gtmID =
+          (Utils.getIn(['trackPage', 'status'])(webTrack) &&
+            Utils.getIn(['trackPage', 0, 'codeInfo', 'id'])(webTrack)) ||
+          null;
       }
     });
   }
   return {
-    facebookID,
+    fbPixelId,
     gaID,
     webMasterID,
     gtmID,
-    conversionID,
-    adwordsSignup,
-    adwordsCheckout,
-    adwordsCompletedOrder,
+    googleAdsConversionID,
+    googleAdsSignupLabel,
+    googleAdsCheckoutLabel,
+    googleAdsCompleteOrderLabel,
   };
 };
 

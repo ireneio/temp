@@ -35,7 +35,7 @@ class Login extends Component {
     }).isRequired,
     pageAdTrackIDs: PropTypes.shape({
       gaID: PropTypes.string,
-      facebookID: PropTypes.string,
+      fbPixelId: PropTypes.string,
     }).isRequired,
     fbAppId: PropTypes.string,
   };

@@ -1,10 +1,9 @@
 import postGraphql from 'utils/postGraphql';
-import { pageAdTrackQuery, webTrackQuery } from './query';
+import { webTrackQuery } from './query';
 
 export default async function({ isServer = true, XMeepshopDomain }) {
   const variables = {
-    keys:
-      '$webTrackSearch: searchInputObjectType, $adTrackSearch: PageAdTrackInfoInput',
+    keys: '$webTrackSearch: searchInputObjectType',
     type: 'query getTrackingCode',
     values: {
       webTrackSearch: {
@@ -18,31 +17,28 @@ export default async function({ isServer = true, XMeepshopDomain }) {
             {
               type: 'exact',
               field: 'trackType',
-              query: 'google_adwords',
-            },
-            {
-              type: 'exact',
-              field: 'trackType',
               query: 'google_tag_manager',
             },
           ],
         },
       },
-      adTrackSearch: {
-        page: 'initCode',
-      },
     },
   };
 
   const query = `
+    getFbPixel {
+      active
+      pixelId
+    }
+    getGtagList {
+      type
+      eventName
+      active
+      code
+    }
     getWebTrackList(search: $webTrackSearch) {
       data {
         ${webTrackQuery}
-      }
-    }
-    getPageAdTrack(getPageAdTrack: $adTrackSearch) {
-      data {
-        ${pageAdTrackQuery}
       }
     }
   `;

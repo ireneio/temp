@@ -35,7 +35,7 @@ class ThankYouPage extends React.Component {
     }).isRequired,
     pageAdTrackIDs: PropTypes.shape({
       gaID: PropTypes.string,
-      facebookID: PropTypes.string,
+      fbPixelId: PropTypes.string,
     }).isRequired,
   };
 

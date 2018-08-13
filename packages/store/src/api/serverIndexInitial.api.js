@@ -12,7 +12,6 @@ import {
   orderQuery,
   pointsQuery,
   orderApplyQuery,
-  pageAdTrackQuery,
   webTrackQuery,
   orderQAQuery,
   stockNotificationQuery,
@@ -22,7 +21,7 @@ export default async function({ XMeepshopDomain, cookie }) {
   const isServer = true;
   const variables = {
     keys:
-      '$pageSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $wishlistSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $pageAdTrackSearch: PageAdTrackInfoInput, $webTrackSearch: searchInputObjectType, $orderQASearch: searchInputObjectType',
+      '$pageSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $wishlistSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType, $orderQASearch: searchInputObjectType',
     type: 'query serverIndexInitial',
     values: {
       pageSearch: {
@@ -182,9 +181,6 @@ export default async function({ XMeepshopDomain, cookie }) {
       },
       hasUseablePoints: true,
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
-      pageAdTrackSearch: {
-        page: 'initCode',
-      },
       webTrackSearch: {
         filter: {
           or: [
@@ -192,11 +188,6 @@ export default async function({ XMeepshopDomain, cookie }) {
               type: 'exact',
               field: 'trackType',
               query: 'google_webmaster',
-            },
-            {
-              type: 'exact',
-              field: 'trackType',
-              query: 'google_adwords',
             },
             {
               type: 'exact',
@@ -333,10 +324,15 @@ export default async function({ XMeepshopDomain, cookie }) {
     getExpireSoonUserPointList(expireBy: $expireBy) {
       total
     }
-    getPageAdTrack(getPageAdTrack: $pageAdTrackSearch) {
-      data {
-        ${pageAdTrackQuery}
-      }
+    getFbPixel {
+      active
+      pixelId
+    }
+    getGtagList {
+      type
+      eventName
+      active
+      code
     }
     getWebTrackList(search: $webTrackSearch) {
       data {

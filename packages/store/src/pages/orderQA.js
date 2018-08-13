@@ -41,7 +41,7 @@ class OrderQA extends Component {
     }).isRequired,
     pageAdTrackIDs: PropTypes.shape({
       gaID: PropTypes.string,
-      facebookID: PropTypes.string,
+      fbPixelId: PropTypes.string,
     }).isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,

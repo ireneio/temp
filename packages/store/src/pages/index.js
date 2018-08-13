@@ -55,7 +55,7 @@ class Index extends React.Component {
     }).isRequired,
     pageAdTrackIDs: PropTypes.shape({
       gaID: PropTypes.string,
-      facebookID: PropTypes.string,
+      fbPixelId: PropTypes.string,
     }).isRequired,
     fbAppId: PropTypes.string.isRequired,
     page: PropTypes.shape(CONST.PAGE_TYPE).isRequired,

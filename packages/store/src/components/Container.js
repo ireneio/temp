@@ -22,14 +22,14 @@ class Container extends React.Component {
       invoice: PropTypes.object.isRequired,
     }).isRequired,
     pageAdTrackIDs: PropTypes.shape({
-      facebookID: PropTypes.string.isRequired,
+      fbPixelId: PropTypes.string.isRequired,
       gaID: PropTypes.string.isRequired,
       webMasterID: PropTypes.string.isRequired,
       gtmID: PropTypes.string.isRequired,
-      conversionID: PropTypes.string.isRequired,
-      adwordsSignup: PropTypes.string.isRequired,
-      adwordsCheckout: PropTypes.string.isRequired,
-      adwordsCompletedOrder: PropTypes.string.isRequired,
+      googleAdsConversionID: PropTypes.string.isRequired,
+      googleAdsSignupLabel: PropTypes.string.isRequired,
+      googleAdsCheckoutLabel: PropTypes.string.isRequired,
+      googleAdsCompleteOrderLabel: PropTypes.string.isRequired,
     }).isRequired,
     /* may chnage */
     isLogin: PropTypes.string.isRequired,
@@ -188,9 +188,10 @@ class Container extends React.Component {
                 }
                 /* Handle login after FB response - End */
               } else {
+                /* eslint-disable no-alert */
                 alert(
                   'The person is not logged into this app or we are unable to tell. ',
-                ); // eslint-disable-line
+                ); /* eslint-enable no-alert */
                 throw new Error(
                   'The person is not logged into this app or we are unable to tell. ',
                 );
@@ -202,7 +203,7 @@ class Container extends React.Component {
           console.error(error);
         }
       } else if (fbAppId) {
-        alert('未設定FB app ID'); // eslint-disable-line
+        alert('未設定FB app ID'); // eslint-disable-line no-alert
       }
     } else {
       // Line in-app browser

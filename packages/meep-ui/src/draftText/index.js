@@ -72,7 +72,8 @@ export default class DraftText extends React.Component {
         <Style scopeSelector=".draft-text" rules={styles.Style(colors)} />
         {html && (
           <div
-            dangerouslySetInnerHTML={{ // eslint-disable-line
+            dangerouslySetInnerHTML={{
+              // eslint-disable-line
               __html: html,
             }}
           />
