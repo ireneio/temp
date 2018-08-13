@@ -1,3 +1,12 @@
+## 0.2.38 (2018-08-13)
+
+#### :rocket: New Feature
+* `meep-ui`, `store`
+  * [#51](https://github.com/meepshop/meep-lerna/pull/51) Replace adTrack API  by new API(fbPixel, gtagList) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.37 (2018-08-10)
 
 #### :bug: Bug Fix
