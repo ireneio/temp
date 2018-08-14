@@ -1,3 +1,21 @@
+## 0.2.40 (2018-08-14)
+
+#### :rocket: New Feature
+* `meep-ui`, `store`
+  * [#123](https://github.com/meepshop/meep-lerna/pull/123) refactor(store, meep-ui): Move memberSettings to ui ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :bug: Bug Fix
+* `meep-ui`, `store`
+  * [#106](https://github.com/meepshop/meep-lerna/pull/106) 結帳頁：修正多個結帳問題(N058, N100) ([@HsuTing](https://github.com/HsuTing))
+* `store`
+  * [#125](https://github.com/meepshop/meep-lerna/pull/125) 圖文元件：showOverlay ([@barrypeng6](https://github.com/barrypeng6))
+  * [#124](https://github.com/meepshop/meep-lerna/pull/124) 修正擷取GTM Id status ([@barrypeng6](https://github.com/barrypeng6))
+  * [#122](https://github.com/meepshop/meep-lerna/pull/122) Remove adTrack API ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.39 (2018-08-14)
 
 #### :bug: Bug Fix
