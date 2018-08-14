@@ -71,7 +71,6 @@ export default class extends React.Component {
   static defaultProps = { error: null };
 
   render() {
-    console.log(this.props);
     const { groups, pages } = this.props;
     return (
       <div>
