@@ -57,7 +57,6 @@ const PRODUCT_QUERY = `{
 }`;
 
 export default (params, getData) => {
-  console.log('fetch: ', params);
   const { offset, limit, includedAllTags, search, sort } = params;
   let { ids, tags, price } = params;
 

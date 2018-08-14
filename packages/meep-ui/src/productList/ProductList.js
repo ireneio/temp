@@ -124,7 +124,7 @@ export default class ProductList extends React.PureComponent {
         isLogin,
         cart,
         stockNotificationList,
-        // fetchProducts when login status has change
+        // fetchProducts when login status changed
         ...(isLogin !== prevIsLogin && {
           products: fetchProducts(params, getData),
           isLoading: true,
@@ -191,11 +191,26 @@ export default class ProductList extends React.PureComponent {
   };
 
   resolveProducts = async () => {
-    const { products } = this.state;
+    const {
+      products,
+      params: { ids },
+    } = this.state;
 
-    const resolvedProducts = await products.then(
+    let resolvedProducts = await products.then(
       ({ data }) => data.computeProductList,
     );
+
+    // FIXME: 不該由前端排序
+    if (ids) {
+      const order = String(ids).split(',');
+      resolvedProducts = {
+        ...resolvedProducts,
+        data: resolvedProducts.data.sort(
+          (a, b) => order.indexOf(a.id) - order.indexOf(b.id),
+        ),
+      };
+    }
+
     this.setState(prevState => ({
       products: resolvedProducts,
       cache: {
