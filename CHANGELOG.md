@@ -1,3 +1,17 @@
+## 0.2.39 (2018-08-14)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#118](https://github.com/meepshop/meep-lerna/pull/118) 產品列表：修正第一頁商品的自訂排序 ([@piovischioh](https://github.com/piovischioh))
+  * [#119](https://github.com/meepshop/meep-lerna/pull/119) 結帳頁面：修正選擇ezShip超取，無法跳頁至ezShip ([@HsuTing](https://github.com/HsuTing))
+* `store`
+  * [#120](https://github.com/meepshop/meep-lerna/pull/120) fix(store): remove log at sitemaps/v1 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 3
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.2.38 (2018-08-13)
 
 #### :rocket: New Feature
