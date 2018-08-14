@@ -49,4 +49,4 @@ export const ALLPAY_LINK =
     ? 'https://logistics.ecpay.com.tw/Express/map'
     : 'https://logistics-stage.ecpay.com.tw/Express/map';
 
-export const EZSHIP_LINK = 'http://map.ezship.com.tw/ezship_map_web.jsp';
+export const EZSHIP_LINK = 'https://map.ezship.com.tw/ezship_map_web.jsp';
