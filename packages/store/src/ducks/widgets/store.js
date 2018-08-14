@@ -121,7 +121,7 @@ const getPageAdTrackIds = data => {
         webMasterID = webTrack.trackId;
       } else if (trackType === 'google_tag_manager') {
         gtmID =
-          (Utils.getIn(['trackPage', 'status'])(webTrack) &&
+          (Utils.getIn(['trackPage', 0, 'status'])(webTrack) &&
             Utils.getIn(['trackPage', 0, 'codeInfo', 'id'])(webTrack)) ||
           null;
       }
