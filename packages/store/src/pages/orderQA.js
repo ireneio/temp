@@ -49,6 +49,7 @@ class OrderQA extends Component {
       id: PropTypes.string.isRequired,
     }).isRequired,
     orderQA: PropTypes.arrayOf(PropTypes.object).isRequired,
+    fbAppId: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -84,6 +85,7 @@ class OrderQA extends Component {
       title,
       orderDetails,
       orderQA,
+      fbAppId,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -95,7 +97,11 @@ class OrderQA extends Component {
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
           <link rel="apple-touch-icon" href={`https://${faviconUrl}`} />
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
+        <TrackingCodeHead
+          pathname={pathname}
+          pageAdTrackIDs={pageAdTrackIDs}
+          fbAppId={fbAppId}
+        />
         <Container {...this.props}>
           <MemberHeader title={title} goBackToOrders colors={colors}>
             <MemberOrderQA orderDetails={orderDetails} orderQA={orderQA} />
@@ -177,6 +183,8 @@ const mapStateToProps = (state, props) => {
     title: TITLE.ORDER_QA[locale],
     orderDetails: getOrderDetails(state, props),
     orderQA: getOrderQA(state, props),
+    fbAppId:
+      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 

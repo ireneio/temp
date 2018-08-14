@@ -38,6 +38,7 @@ class PasswordChange extends Component {
     }).isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,
+    fbAppId: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -71,6 +72,7 @@ class PasswordChange extends Component {
       pageAdTrackIDs,
       colors,
       title,
+      fbAppId,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -82,7 +84,11 @@ class PasswordChange extends Component {
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
           <link rel="apple-touch-icon" href={`https://${faviconUrl}`} />
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
+        <TrackingCodeHead
+          pathname={pathname}
+          pageAdTrackIDs={pageAdTrackIDs}
+          fbAppId={fbAppId}
+        />
         <Container {...this.props}>
           <MemberHeader title={title} colors={colors}>
             <MemberChangePassword />
@@ -145,6 +151,8 @@ const mapStateToProps = (state, props) => {
     page: getPage(state, props),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
     title: TITLE.CHANGE_PASSWORD[locale],
+    fbAppId:
+      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 

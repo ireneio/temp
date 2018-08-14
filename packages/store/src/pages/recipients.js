@@ -43,6 +43,7 @@ class Recipients extends Component {
     }).isRequired,
     lockedBirthday: PropTypes.bool.isRequired,
     lockedCountry: PropTypes.arrayOf(PropTypes.string).isRequired,
+    fbAppId: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -79,6 +80,7 @@ class Recipients extends Component {
       user,
       lockedBirthday,
       lockedCountry,
+      fbAppId,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -90,7 +92,11 @@ class Recipients extends Component {
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
           <link rel="apple-touch-icon" href={`https://${faviconUrl}`} />
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
+        <TrackingCodeHead
+          pathname={pathname}
+          pageAdTrackIDs={pageAdTrackIDs}
+          fbAppId={fbAppId}
+        />
         <Container {...this.props}>
           <MemberHeader title={title} colors={colors}>
             <MemberRecipients
@@ -161,6 +167,8 @@ const mapStateToProps = (state, props) => {
     lockedBirthday:
       Utils.getIn(['storeReducer', 'lockedBirthday'])(state) || false,
     lockedCountry: Utils.getIn(['storeReducer', 'lockedCountry'])(state) || [],
+    fbAppId:
+      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 

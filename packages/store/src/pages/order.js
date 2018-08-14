@@ -49,6 +49,7 @@ class MemberOrder extends Component {
     orderDetails: PropTypes.shape({
       id: PropTypes.string.isRequired,
     }).isRequired,
+    fbAppId: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -83,6 +84,7 @@ class MemberOrder extends Component {
       colors,
       title,
       orderDetails,
+      fbAppId,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -94,7 +96,11 @@ class MemberOrder extends Component {
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
           <link rel="apple-touch-icon" href={`https://${faviconUrl}`} />
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
+        <TrackingCodeHead
+          pathname={pathname}
+          pageAdTrackIDs={pageAdTrackIDs}
+          fbAppId={fbAppId}
+        />
         <Container {...this.props}>
           <MemberHeader title={title} goBackToOrders colors={colors}>
             {orderDetails ? (
@@ -169,6 +175,8 @@ const mapStateToProps = (state, props) => {
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
     title: TITLE.ORDER[locale],
     orderDetails: getOrderDetails(state, props),
+    fbAppId:
+      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 

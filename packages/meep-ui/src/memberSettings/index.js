@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { enhancer } from '@meepshop/meep-ui/lib/layout/DecoratorsRoot';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { Form, Input, Button, Select, DatePicker, Popconfirm } from 'antd';
 import moment from 'moment';
 
-import AddressCascader from '@meepshop/meep-ui/lib/addressCascader';
+import AddressCascader from 'addressCascader';
 import * as LOCALE from './locale';
-import './styles/index.less';
+import styles from './styles/index.less';
 
 const { Option } = Select;
 
@@ -140,13 +140,10 @@ export default class MemberSettingsView extends React.PureComponent {
     const { showPopConfirm } = this.state;
 
     return (
-      <div className="member_settings_view_form_wrapper">
-        <Form
-          className="member_settings_view_form"
-          onSubmit={this.handleSubmit}
-        >
-          <div className="member_settings_view_form_row">
-            <div className="member_settings_view_form_name_input">
+      <div className={styles.wrapper}>
+        <Form className={styles.form} onSubmit={this.handleSubmit}>
+          <div className={styles.row}>
+            <div className={styles.nameInput}>
               {getFieldDecorator('name', {
                 initialValue: name == null ? undefined : name,
               })(
@@ -156,7 +153,7 @@ export default class MemberSettingsView extends React.PureComponent {
                 />,
               )}
             </div>
-            <div className="member_settings_view_form_gender_input">
+            <div className={styles.genderInput}>
               {getFieldDecorator('gender', {
                 initialValue: gender == null ? undefined : gender,
               })(
@@ -171,7 +168,7 @@ export default class MemberSettingsView extends React.PureComponent {
               )}
             </div>
           </div>
-          <div className="member_settings_view_form_row">
+          <div className={styles.row}>
             {getFieldDecorator('email', {
               initialValue: email == null ? undefined : email,
             })(
@@ -182,8 +179,8 @@ export default class MemberSettingsView extends React.PureComponent {
               />,
             )}
           </div>
-          <div className="member_settings_view_form_row">
-            <div className="member_settings_view_form_tel_input">
+          <div className={styles.row}>
+            <div className={styles.telInput}>
               {getFieldDecorator('tel', {
                 initialValue: tel == null ? undefined : tel,
               })(
@@ -193,7 +190,7 @@ export default class MemberSettingsView extends React.PureComponent {
                 />,
               )}
             </div>
-            <div className="member_settings_view_form_mobile_input">
+            <div className={styles.mobileInput}>
               {getFieldDecorator('mobile', {
                 initialValue: mobile == null ? undefined : mobile,
               })(
@@ -204,7 +201,7 @@ export default class MemberSettingsView extends React.PureComponent {
               )}
             </div>
           </div>
-          <div className="member_settings_view_form_row">
+          <div className={styles.row}>
             {getFieldDecorator('birthday', {
               initialValue:
                 day == null || month == null || year == null
@@ -227,7 +224,7 @@ export default class MemberSettingsView extends React.PureComponent {
               />,
             )}
           </div>
-          <div className="member_settings_view_form_row">
+          <div className={styles.row}>
             {getFieldDecorator('address', {
               initialValue: country ? [country, city, county] : [],
             })(
@@ -242,7 +239,7 @@ export default class MemberSettingsView extends React.PureComponent {
               />,
             )}
           </div>
-          <div className="member_settings_view_form_row">
+          <div className={styles.row}>
             {getFieldDecorator('street', {
               initialValue: street == null ? undefined : street,
             })(
@@ -266,7 +263,7 @@ export default class MemberSettingsView extends React.PureComponent {
               onConfirm={this.handleSubmit}
             >
               <Button
-                className="member_settings_view_form_submit_button"
+                className={styles.submitButton}
                 style={{ color: colors[3], borderColor: colors[3] }}
                 size="large"
                 type="primary"

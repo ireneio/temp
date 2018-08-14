@@ -8,7 +8,7 @@ import * as Selectors from 'selectors';
 import * as Template from 'template';
 import { Container, TrackingCodeHead, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
-import MemberSettingsView from 'components/MemberSettingsView';
+import MemberSettingsView from '@meepshop/meep-ui/lib/memberSettings';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
 import * as TITLE from 'locales';
@@ -43,6 +43,7 @@ class Settings extends Component {
     }).isRequired,
     lockedBirthday: PropTypes.bool.isRequired,
     lockedCountry: PropTypes.arrayOf(PropTypes.string).isRequired,
+    fbAppId: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -79,6 +80,7 @@ class Settings extends Component {
       user,
       lockedBirthday,
       lockedCountry,
+      fbAppId,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -90,7 +92,11 @@ class Settings extends Component {
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
           <link rel="apple-touch-icon" href={`https://${faviconUrl}`} />
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
+        <TrackingCodeHead
+          pathname={pathname}
+          pageAdTrackIDs={pageAdTrackIDs}
+          fbAppId={fbAppId}
+        />
         <Container {...this.props}>
           <MemberHeader title={title} colors={colors}>
             <MemberSettingsView
@@ -161,6 +167,8 @@ const mapStateToProps = (state, props) => {
     lockedBirthday:
       Utils.getIn(['storeReducer', 'lockedBirthday'])(state) || false,
     lockedCountry: Utils.getIn(['storeReducer', 'lockedCountry'])(state) || [],
+    fbAppId:
+      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 

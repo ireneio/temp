@@ -39,6 +39,7 @@ class RewardPoints extends Component {
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,
     userPoints: PropTypes.arrayOf(PropTypes.object).isRequired,
+    fbAppId: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -73,6 +74,7 @@ class RewardPoints extends Component {
       colors,
       title,
       userPoints,
+      fbAppId,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -84,7 +86,11 @@ class RewardPoints extends Component {
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
           <link rel="apple-touch-icon" href={`https://${faviconUrl}`} />
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
+        <TrackingCodeHead
+          pathname={pathname}
+          pageAdTrackIDs={pageAdTrackIDs}
+          fbAppId={fbAppId}
+        />
         <Container {...this.props}>
           <MemberHeader title={title} colors={colors}>
             <MemberPoints userPoints={userPoints} />
@@ -148,6 +154,8 @@ const mapStateToProps = (state, props) => {
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
     title: TITLE.REWARD_POINTS[locale],
     userPoints: Utils.getIn(['memberReducer', 'userPoints'])(state),
+    fbAppId:
+      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 

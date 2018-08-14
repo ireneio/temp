@@ -49,6 +49,7 @@ class OrderRefund extends Component {
       id: PropTypes.string.isRequired,
     }).isRequired,
     orderApply: PropTypes.arrayOf(PropTypes.object).isRequired,
+    fbAppId: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -84,6 +85,7 @@ class OrderRefund extends Component {
       title,
       orderDetails,
       orderApply,
+      fbAppId,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -95,7 +97,11 @@ class OrderRefund extends Component {
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
           <link rel="apple-touch-icon" href={`https://${faviconUrl}`} />
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
+        <TrackingCodeHead
+          pathname={pathname}
+          pageAdTrackIDs={pageAdTrackIDs}
+          fbAppId={fbAppId}
+        />
         <Container {...this.props}>
           <MemberHeader title={title} goBackToOrders colors={colors}>
             <MemberOrderApply
@@ -182,6 +188,8 @@ const mapStateToProps = (state, props) => {
     title: TITLE.ORDER_REFUND[locale],
     orderDetails: getOrderDetails(state, props),
     orderApply: getOrderApply(state, props),
+    fbAppId:
+      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 
