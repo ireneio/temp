@@ -17,14 +17,10 @@ export const modifyAntdStyle = colors => ({
     width: '100%',
   },
 
-  '.ant-list-item-meta-description': {
+  '.ant-list-item-meta-description > pre': {
     color: '#000000',
-    wordBreak: 'break-word',
-  },
-
-  '.ant-list-item-content': {
-    flexGrow: 0,
-    flexBasis: '140px',
+    whiteSpace: 'pre-wrap',
+    wordWrap: 'break-word',
   },
 
   'textarea.ant-input': {

@@ -14,7 +14,7 @@ import {
 import { NOTLOGIN } from 'constants/isLogin';
 
 import Login from './Login';
-import { ADDITION_TYPE, REQUIRED_TYPE } from './constants';
+import { CHECK_USER_EMAIL, ADDITION_TYPE, REQUIRED_TYPE } from './constants';
 import * as LOCALE from './locale';
 import * as styles from './styles/receiverInfo';
 import {
@@ -59,6 +59,10 @@ export default class ReceiverInfo extends React.PureComponent {
     showLogin: false,
   };
 
+  componentWillUnmount() {
+    this.isUnmounted = true;
+  }
+
   checkUserEmail = async ({ target }) => {
     const { getData, form } = this.props;
     const { getFieldError } = form;
@@ -66,29 +70,11 @@ export default class ReceiverInfo extends React.PureComponent {
 
     if (getFieldError('email') || email === '') return;
 
-    const { data: result } = await getData(`
-      query {
-        checkUserInfo(search: {
-          filter: {
-            and: [{
-              type: "exact"
-              field: "email"
-              query: "${email}"
-            }, {
-              type: "exact"
-              field: "type"
-              query: "shopper"
-            }]
-          }
-        }) {
-          exists
-        }
-      }
-    `);
-    const { checkUserInfo } = result;
-    const { exists } = checkUserInfo;
+    const result = await getData(CHECK_USER_EMAIL, { email });
 
-    if (exists) this.setState({ showLogin: true });
+    if (this.isUnmounted) return;
+
+    if (result?.data?.checkUserInfo.exists) this.setState({ showLogin: true });
   };
 
   render() {

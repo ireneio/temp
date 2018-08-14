@@ -19,6 +19,15 @@ export default class GlobalStyles extends React.PureComponent {
           button > span {
             color: inherit;
           }
+
+          pre {
+            font-family: inherit;
+            font-size: inherit;
+          }
+
+          .ant-cascader-picker-label {
+            color: rgba(0,0,0,.65);
+          }
         `}
       </style>
     );

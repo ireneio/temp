@@ -8,6 +8,7 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, LOCATION_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles';
+import { GET_ORDER } from './constants';
 import * as LOCALE from './locale';
 
 @enhancer
@@ -89,25 +90,12 @@ export default class ThankYouPage extends React.PureComponent {
 
     this.checking = true;
 
-    const { data: result } = await getData(`
-      query {
-        getOrderList(search: {
-          filter: {
-            and: [{
-              type: "ids"
-              ids: ["${orderId}"]
-            }]
-          }
-        }) {
-          total
-        }
-      }
-    `);
+    const { data: result } = await getData(GET_ORDER, { orderId });
 
     this.checking = false;
 
     if (this.isUnmounted) return;
-    if (result.getOrderList.total === 1) this.setState({ orderExist: true });
+    if (result?.getOrderList.total === 1) this.setState({ orderExist: true });
   };
 
   render() {

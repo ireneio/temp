@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { Table, Button, notification } from 'antd';
-import EditIcon from 'react-icons/lib/fa/edit';
-import TagIcon from 'react-icons/lib/fa/tag';
-import ArrowRightIcon from 'react-icons/lib/fa/arrow-right';
+import {
+  edit as EditIcon,
+  tag as TagIcon,
+  arrowRight as ArrowRightIcon,
+} from 'react-icons/fa';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import OrderShowTotal from 'orderShowTotal';
@@ -258,32 +260,18 @@ export default class Summary extends React.PureComponent {
       isSaveAsReceiverTemplate,
     };
 
-    const { data: result, errors } = await getData(
-      getCreateOrderQuery(orderData),
-    );
+    const result = await getData(...getCreateOrderQuery(orderData));
 
     if (this.isUnmounted) return;
 
-    const { id, orderNo, error, formData } = result?.createOrderList?.[0] || {};
+    const { id, orderNo, error, formData } =
+      result?.data?.createOrderList?.[0] || {};
 
-    if (error || errors || !id /* fix */) {
+    if (!id) {
       notification.error({
         message: transformLocale(LOCALE.PAY_FILE),
         description: error || '',
       });
-
-      // FIXME: remove it when solving N058
-      /* eslint-disable */
-      if (!id) {
-        fetch('/log', {
-          method: 'post',
-          headers: { 'content-type': 'application/json' },
-          credentials: 'include',
-          body: JSON.stringify({ data: orderData }),
-        });
-      }
-      /* eslint-enable */
-      /* remove it when solving N058 - End */
 
       this.setState({ isSubmitting: false });
     } else {
@@ -322,7 +310,10 @@ export default class Summary extends React.PureComponent {
               ) {
                 addRecipient();
                 dispatchAction('emptyCart');
-                goTo({ pathname: `/ezpay/cvcode/${id}` });
+                setTimeout(
+                  () => goTo({ pathname: `/ezpay/cvcode/${id}` }),
+                  1000,
+                );
                 return;
               }
 
@@ -490,12 +481,7 @@ export default class Summary extends React.PureComponent {
               {transformLocale(LOCALE.NOTES)}
             </h4>
 
-            <div
-              style={styles.noteContent}
-              dangerouslySetInnerHTML={{
-                __html: notes?.replace(/\n/g, '<br />'),
-              }}
-            />
+            <pre style={styles.noteContent}>{notes}</pre>
           </div>
 
           <div style={styles.buttonRoot}>

@@ -1,6 +1,6 @@
 import uuid from 'uuid';
+import moment from 'moment';
 
-/* eslint-disable indent */
 export default ({
   domain,
   sourcePage,
@@ -26,6 +26,7 @@ export default ({
   addressDetail,
   notes,
   CVSStoreID,
+  CVSStoreName,
   CVSAddress,
 
   invoice,
@@ -47,152 +48,10 @@ export default ({
   products,
   creditCardIsRegistered,
   choosePayment,
-}) => `
-  mutation {
-    createOrderList(createOrderList: [{
-      environment: {
-        domain: "${domain}"
-        ${!sourcePage ? '' : `sourcePage: ${sourcePage}`}
-      }
-      idempotentKey: "${uuid.v4()}"
-      isPayment: ${isPayment}
-      products: [
-        ${products
-          .filter(({ type }) => type !== 'gift')
-          .map(
-            ({ productId, variantId, quantity }) => `{
-          productId: "${productId}"
-          variantId: "${variantId}"
-          ${!quantity ? '' : `quantity: ${quantity}`}
-        }`,
-          )
-          .join(' ')}
-      ]
-      ${!coupon ? '' : `coupon: "${coupon}"`}
-      ${!points ? '' : `points: ${points}`}
-      payments: [{
-        paymentId: "${paymentId}"
-        ${
-          choosePayment.template !== 'gmo'
-            ? ''
-            : `
-          gmo: {
-            isRegistered: ${creditCardIsRegistered}
-            changeCardNumber: ${Boolean(
-              creditCardIsRegistered &&
-                creditCardOwnerName &&
-                creditCardNumber &&
-                creditCardSecurityCode &&
-                creditCardExpiration &&
-                creditCardInstallment,
-            )}
-            ${
-              !creditCardOwnerName
-                ? ''
-                : `cardHolderName: "${creditCardOwnerName}"`
-            }
-            ${
-              !creditCardNumber
-                ? ''
-                : `cardNumber: "${creditCardNumber.join('')}"`
-            }
-            ${
-              !creditCardSecurityCode
-                ? ''
-                : `securityCode: "${creditCardSecurityCode}"`
-            }
-            ${
-              !creditCardExpiration
-                ? ''
-                : creditCardExpiration
-                    .format('YYYY-M')
-                    .split(/-/)
-                    .map(
-                      (text, index) =>
-                        `${['expireYear', 'expireMonth'][index]}: "${text}"`,
-                    )
-                    .join(' ')
-            }
-            ${
-              !creditCardInstallment
-                ? ''
-                : `installmentCode: "${creditCardInstallment.join('-')}"`
-            }
-          }
-        `
-        }
-      }]
-      shipments: [{
-        shipmentId: "${shipmentId}"
-        recipient: {
-          name: "${name}"
-          saveRecipient: ${isSaveAsReceiverTemplate}
-          ${!userEmail ? '' : `email: "${userEmail}"`}
-          ${!mobile ? '' : `mobile: "${mobile}"`}
-          ${!notes ? '' : `comment: "${notes.replace(/\n/g, '\\n')}"`}
-          ${!idNumber ? '' : `idNumber: "${idNumber}"`}
-          ${!CVSStoreID ? '' : `receiverStoreID: "${CVSStoreID}"`}
-          ${
-            !CVSAddress
-              ? ''
-              : `
-            address: {
-              streetAddress: "${CVSAddress}"
-            }
-          `
-          }
-          ${
-            !address
-              ? ''
-              : `
-            address: {
-              ${!postalCode ? '' : `postalCode: "${postalCode}"`}
-              streetAddress: "${
-                !postalCode ? '' : `${postalCode} `
-              }${address.join('')} ${addressDetail}"
-              yahooCode: {
-                country: "${address[0]}"
-                city: "${address[1] || ''}"
-                county: "${address[2] || ''}"
-                street: "${addressDetail}"
-              }
-            }
-          `
-          }
-        }
-      }]
-      userInfo: {
-        name: "${userName || name}"
-        ${!userEmail ? '' : `email: "${userEmail}"`}
-        ${!userMobile || !mobile ? '' : `mobile: "${userMobile || mobile}"`}
-        ${!userPassword ? '' : `password: "${userPassword}"`}
-      }
-      ${
-        !invoice
-          ? ''
-          : `invoiceInfo: {
-        invoiceType: ${invoice}
-        # invoiceType = 2
-        ${!invoiceAddress ? '' : `streetAddress: "${invoiceAddress}"`}
-        ${!invoiceTitle ? '' : `invoiceTitle: "${invoiceTitle}"`}
-        ${!invoiceVAT ? '' : `invoiceVAT: "${invoiceVAT}"`}
-        # invoiceType = 3
-        ${!invoiceEInvoice ? '' : `vehicleType: ${invoiceEInvoice}`}
-        ${
-          !invoiceEInvoiceNumber || invoiceEInvoice !== 2
-            ? ''
-            : `mobileBarcode: "${invoiceEInvoiceNumber}"`
-        }
-        ${
-          !invoiceEInvoiceNumber || invoiceEInvoice !== 3
-            ? ''
-            : `citizenDigitalCertificate: "${invoiceEInvoiceNumber}"`
-        }
-        # invoiceType = 4
-        ${!invoiceDonate ? '' : `donateUnit: "${invoiceDonate}"`}
-      }`
-      }
-    }]) {
+}) => [
+  `
+  mutation createOrderList($createOrderList: [NewOrder]){
+    createOrderList(createOrderList: $createOrderList) {
       id
       orderNo
       error: _error
@@ -264,4 +123,129 @@ export default ({
       }
     }
   }
-`;
+`,
+  {
+    createOrderList: {
+      environment: {
+        domain,
+        ...(!sourcePage ? {} : { sourcePage }),
+      },
+      idempotentKey: uuid.v4(),
+      isPayment,
+      products: products
+        .filter(({ type }) => type !== 'gift')
+        .map(({ productId, variantId, quantity }) => ({
+          productId,
+          variantId,
+          ...(!quantity ? {} : { quantity }),
+        })),
+      ...(!coupon ? {} : { coupon }),
+      ...(!points ? {} : { points }),
+      payments: [
+        {
+          paymentId,
+          ...(choosePayment.template !== 'gmo'
+            ? {}
+            : {
+                gmo: {
+                  isRegistered: creditCardIsRegistered,
+                  changeCardNumber: Boolean(
+                    creditCardIsRegistered &&
+                      creditCardOwnerName &&
+                      creditCardNumber &&
+                      creditCardSecurityCode &&
+                      creditCardExpiration &&
+                      creditCardInstallment,
+                  ),
+                  ...(!creditCardOwnerName
+                    ? {}
+                    : { cardHolderName: creditCardOwnerName }),
+                  ...(!creditCardNumber
+                    ? {}
+                    : { cardNumber: creditCardNumber.join('') }),
+                  ...(!creditCardSecurityCode
+                    ? {}
+                    : { securityCode: creditCardSecurityCode }),
+                  ...(!creditCardExpiration
+                    ? {}
+                    : moment(creditCardExpiration)
+                        .toArray()
+                        .slice(0, 2)
+                        .reduce((result, val, index) => {
+                          if (index === 0)
+                            return { ...result, expireYear: val };
+                          return { ...result, expireMonth: val };
+                        }, {})),
+                  ...(!creditCardInstallment
+                    ? {}
+                    : { installmentCode: creditCardInstallment.join('-') }),
+                },
+              }),
+        },
+      ],
+      shipments: [
+        {
+          shipmentId,
+          recipient: {
+            name,
+            saveRecipient: isSaveAsReceiverTemplate,
+            ...(!userEmail ? {} : { email: userEmail }),
+            ...(!mobile ? {} : { mobile }),
+            ...(!notes ? {} : { comment: notes }),
+            ...(!idNumber ? {} : { idNumber }),
+            ...(!CVSStoreID
+              ? {}
+              : {
+                  receiverStoreID: CVSStoreID,
+                  receiverStoreName: CVSStoreName,
+                  receiverStoreAddress: CVSAddress,
+                }),
+            ...(!address
+              ? {}
+              : {
+                  address: {
+                    ...(!postalCode ? {} : { postalCode }),
+                    streetAddress: `${
+                      !postalCode ? '' : `${postalCode} `
+                    }${address.join('')} ${addressDetail}`,
+                    yahooCode: {
+                      country: address[0],
+                      city: address[1] || '',
+                      county: address[2] || '',
+                      street: addressDetail,
+                    },
+                  },
+                }),
+          },
+        },
+      ],
+      userInfo: {
+        name: userName || name,
+        ...(!userEmail ? {} : { email: userEmail }),
+        ...(!userMobile || !mobile ? {} : { mobile: userMobile || mobile }),
+        ...(!userPassword ? {} : { password: userPassword }),
+      },
+      ...(!invoice
+        ? {}
+        : {
+            invoiceInfo: {
+              invoiceType: invoice,
+              // invoiceType = 2
+              ...(!invoiceAddress ? {} : { streetAddress: invoiceAddress }),
+              ...(!invoiceTitle ? {} : { invoiceTitle }),
+              ...(!invoiceVAT ? {} : { invoiceVAT }),
+              // invoiceType = 3
+              ...(!invoiceEInvoice ? {} : { vehicleType: invoiceEInvoice }),
+              ...(!invoiceEInvoiceNumber || invoiceEInvoice !== 2
+                ? {}
+                : { mobileBarcode: invoiceEInvoiceNumber }),
+              ...(!invoiceEInvoiceNumber || invoiceEInvoice !== 3
+                ? {}
+                : { citizenDigitalCertificate: invoiceEInvoiceNumber }),
+              // invoiceType = 4
+              ...(!invoiceDonate ? {} : { donateUnit: invoiceDonate }),
+            },
+          }),
+    },
+  },
+];

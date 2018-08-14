@@ -10,6 +10,7 @@ import { ID_TYPE, ISLOGIN_TYPE, COLOR_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 
 import * as LOCALE from './locale';
+import { GET_PRODUCT_QA_LIST, CREATE_PRODUCT_QA } from './constants';
 import * as styles from './styles';
 
 const { Item: FormItem } = Form;
@@ -47,31 +48,9 @@ export default class PrdoductQA extends React.PureComponent {
   getQAList = async () => {
     const { getData, productId } = this.props;
 
-    const { data: result } = await getData(`
-      query {
-        getProductQAList(search: {
-          filter: {
-            and: [{
-              field: "productId"
-              query: "${productId}"
-              type: "exact"
-            }]
-          }
-          sort: {
-            field: "createdOn"
-            order: "desc"
-          }
-        }) {
-          data {
-            userEmail
-            qa {
-              question
-              createdOn
-            }
-          }
-        }
-      }
-    `);
+    const { data: result } = await getData(GET_PRODUCT_QA_LIST, {
+      productId,
+    });
 
     this.setState({ QAList: result.getProductQAList.data });
   };
@@ -84,23 +63,17 @@ export default class PrdoductQA extends React.PureComponent {
 
     validateFields(async (err, { userEmail, question }) => {
       if (!err) {
-        const { data: result } = await getData(`
-          mutation {
-            createProductQA(createProductQA: [{
-              productId: "${productId}"
-              qa: [{
-                question: "${question}"
-              }]
-              ${!userEmail ? '' : `userEmail: "${userEmail}"`}
-            }]) {
-              userEmail
-              qa {
-                question
-                createdOn
-              }
-            }
-          }
-        `);
+        const { data: result } = await getData(CREATE_PRODUCT_QA, {
+          createProductQA: {
+            productId,
+            qa: [
+              {
+                question,
+              },
+            ],
+            ...(!userEmail ? {} : { userEmail }),
+          },
+        });
 
         if (result) {
           const { QAList } = this.state;
@@ -137,7 +110,7 @@ export default class PrdoductQA extends React.PureComponent {
               <ListItem
                 extra={
                   qa.length === 1 ? null : (
-                    <React.Fragment>
+                    <>
                       <div
                         style={styles.replay(colors)}
                         onClick={() =>
@@ -152,12 +125,13 @@ export default class PrdoductQA extends React.PureComponent {
 
                       {showQAIndex !== index ? null : (
                         <div style={styles.replayContent(colors)}>
-                          {replay.question} ({moment(
-                            replay.createdOn * 1000,
-                          ).format('YYYY/MM/DD HH:mm:ss')})
+                          <pre>{replay.question}</pre>
+                          ({moment(replay.createdOn * 1000).format(
+                            'YYYY/MM/DD HH:mm:ss',
+                          )})
                         </div>
                       )}
-                    </React.Fragment>
+                    </>
                   )
                 }
                 actions={[
@@ -165,7 +139,7 @@ export default class PrdoductQA extends React.PureComponent {
                   moment(createdOn * 1000).format('YYYY/MM/DD HH:mm:ss'),
                 ]}
               >
-                <ListItemMeta description={question} />
+                <ListItemMeta description={<pre>{question}</pre>} />
               </ListItem>
             );
           }}

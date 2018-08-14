@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import EditIcon from 'react-icons/lib/fa/edit';
+import { edit as EditIcon } from 'react-icons/fa';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, PAYMENT_TEMPLATE_TYPE } from 'constants/propTypes';
 
 import Form from './Form';
 import * as LOCALE from './locale';
+import { GET_GMO_USER } from './constants';
 import * as styles from './styles';
 
 const getDefaultIsModify = ({ form }) => {
@@ -92,21 +93,11 @@ class CreditCardFormItem extends React.PureComponent {
     this.isGetingData = true;
 
     const { getData, changeCreditCardIsRegistered, paymentId } = this.props;
-    const { data: result } = await getData(`
-      query {
-        userInfo: getGMOUser(getGMOUser: {
-          storePaymentId: "${paymentId}"
-        }) {
-          exist
-          cardNumberFront
-          cardNumberLater
-        }
-      }
-    `);
+    const result = await getData(GET_GMO_USER, { storePaymentId: paymentId });
 
     if (this.isUnmounted) return;
 
-    const { userInfo } = result;
+    const { userInfo } = result?.data || {};
 
     changeCreditCardIsRegistered(userInfo.exist);
     this.isGetingData = false;

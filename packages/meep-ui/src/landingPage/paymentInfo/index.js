@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Select, InputNumber, Cascader } from 'antd';
-import getElementPosition from 'fbjs/lib/getElementPosition';
+import { getElementPosition } from 'fbjs';
 import uuid from 'uuid';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -205,7 +205,7 @@ class PayemntInfo extends React.PureComponent {
     const [variantId] = variant.slice(-1);
 
     const { data: result } = await getData(
-      getComputeOrderQuery({
+      ...getComputeOrderQuery({
         coupon,
         paymentId,
         shipmentId,

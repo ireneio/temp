@@ -193,18 +193,19 @@ export default class LandingPage extends React.PureComponent {
               : await fetchStreamName(address).then(({ zip }) => zip),
           };
 
-          const { data: result, errors } = await getData(
-            getCreateOrderQuery(orderData),
-          );
-          const [{ id, orderNo, error, formData }] = (
-            result || { createOrderList: [{}] }
-          ).createOrderList;
+          const result = await getData(...getCreateOrderQuery(orderData));
 
-          if (error || errors) {
+          if (this.isUnmounted) return;
+
+          const { id, orderNo, error, formData } =
+            result?.data?.createOrderList?.[0] || {};
+
+          if (!id) {
             notification.error({
               message: transformLocale(LOCALE.PAY_FILE),
               description: error || '',
             });
+
             this.setState({ isSubmitting: false });
           } else {
             notification.success({

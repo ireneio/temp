@@ -10,6 +10,7 @@ import { NOTLOGIN } from 'constants/isLogin';
 import validateMobile from 'utils/validateMobile';
 
 import * as LOCALE from './locale';
+import { CHECK_USER_EMAIL } from './constants';
 
 import {
   block as blockStyle,
@@ -43,32 +44,11 @@ export default class UserInfo extends React.PureComponent {
     if (getFieldError('userEmail')) return;
 
     const { value: email } = target;
-    const { data: result } = await getData(`
-      query {
-        checkUserInfo(search: {
-          filter: {
-            and: [{
-              type: "exact"
-              field: "email"
-              query: "${email}"
-            }, {
-              type: "exact"
-              field: "type"
-              query: "shopper"
-            }]
-          }
-        }) {
-          exists
-        }
-      }
-    `);
+    const result = await getData(CHECK_USER_EMAIL, { email });
 
     if (this.isUnmounted) return;
 
-    const { checkUserInfo } = result;
-    const { exists } = checkUserInfo;
-
-    if (exists) {
+    if (result?.data?.checkUserInfo.exists) {
       setFields({
         userEmail: {
           value: email,

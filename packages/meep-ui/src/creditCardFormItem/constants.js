@@ -1,5 +1,17 @@
 import * as LOCALE from './locale';
 
+export const GET_GMO_USER = `
+  query getGMOUser($storePaymentId: ID!) {
+    userInfo: getGMOUser(getGMOUser: {
+      storePaymentId: $storePaymentId
+    }) {
+      exist
+      cardNumberFront
+      cardNumberLater
+    }
+  }
+`;
+
 export const BANKS_INSTALLMENT = [
   {
     code: '1',

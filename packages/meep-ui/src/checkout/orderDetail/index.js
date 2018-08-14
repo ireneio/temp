@@ -173,7 +173,7 @@ export default class OrderDetail extends React.PureComponent {
     this.setState({ isChecking: true });
 
     const { data: result } = await getData(
-      getComputeOrderQuery({
+      ...getComputeOrderQuery({
         coupon,
         points,
         paymentId,

@@ -37,6 +37,10 @@ export const globalStyles = colors => ({
   'button > span': {
     color: 'inherit',
   },
+  pre: {
+    fontFamily: 'inherit',
+    fontSize: 'inherit',
+  },
 });
 
 export const meepshopFooter = {

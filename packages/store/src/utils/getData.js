@@ -7,9 +7,9 @@ import { notification } from 'antd';
  * @param query
  * @param variables
  */
-export default async function(query, variables) {
+export default async (query, variables) => {
   try {
-    const response = await fetch('/api', {
+    const res = await fetch('/api', {
       method: 'post',
       headers: {
         'content-type': 'application/json',
@@ -18,16 +18,17 @@ export default async function(query, variables) {
       credentials: 'include',
       body: JSON.stringify({ query, variables }),
     });
-    let data;
-    if (response.status === 200) {
-      data = await response.json();
-    } else {
-      throw new Error(`${response.status}: ${response.statusText}`);
-    }
+
+    if (res.status !== 200) throw new Error(`${res.status}: ${res.statusText}`);
+
+    const { error, ...data } = await res.json();
+
+    if (error) return null;
+
     return data;
   } catch (error) {
-    console.error(error);
     notification.error({ message: '發生錯誤', description: error.message });
-    return { errors: error.message };
+
+    return null;
   }
-}
+};
