@@ -264,7 +264,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
             overlayBackgroundColor: widget.overlayBackgroundColor,
             position: widget.position,
             textColor: widget.textColor,
-            showOverlay: !!widget.overlayBackgroundColor /* 等admin修好showOverlay的bug */,
+            showOverlay: widget.showOverlay,
             files: widget.files,
             newWindow: widget.newWindow,
           };
