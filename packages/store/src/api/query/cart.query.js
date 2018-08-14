@@ -62,10 +62,6 @@ const cartQuery = `
       template
     }
   }
-  adTrack{
-    facebook_ads
-    google_analytics
-  }
   activityInfo {
     id
     title {
