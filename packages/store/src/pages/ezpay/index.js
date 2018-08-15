@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import * as R from 'ramda';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Utils from 'utils';
 import { TrackingCodeHead, Error } from 'components';
@@ -43,19 +44,60 @@ class Ezpay extends React.Component {
     }).isRequired,
     order: PropTypes.shape({
       id: PropTypes.string.isRequired,
-    }).isRequired,
+    }),
     pageAdTrackIDs: PropTypes.shape({
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
     }).isRequired,
     fbAppId: PropTypes.string.isRequired,
+    orderId: PropTypes.string.isRequired,
+    getOrder: PropTypes.func.isRequired,
   };
 
-  static defaultProps = { error: null };
+  static defaultProps = { error: null, order: null };
+
+  state = { count: 0 }; // retry getOrder: throw error over 5 times
+
+  componentDidMount() {
+    const { orderId, order, getOrder } = this.props;
+    if (!order) {
+      this.timmer = setInterval(async () => {
+        const { count } = this.state;
+        const isOrderExsits = await this.checkOrderExsits(orderId);
+        if (isOrderExsits) {
+          getOrder({ orderId });
+          return clearInterval(this.timmer);
+        }
+        if (!isOrderExsits && count > 4) return clearInterval(this.timmer);
+        return this.setState({ count: count + 1 });
+      }, 1000);
+    }
+  }
+
+  checkOrderExsits = async orderId => {
+    const { data } = await Utils.getData(
+      `
+    query getOrderInEzpayPage($orderId: [String]) {
+      getOrderList(search: {
+        filter: {
+          and: [{
+            type: "ids"
+            ids: $orderId
+          }]
+        }
+      }) {
+        total
+      }
+    }
+    `,
+      { orderId },
+    );
+    if (data?.getOrderList.total === 1) return true;
+    return false;
+  };
 
   render() {
     const { error } = this.props;
-
     /* Display Error View */
     if (error) return <Error error={error} />;
 
@@ -66,6 +108,10 @@ class Ezpay extends React.Component {
       order,
       fbAppId,
     } = this.props;
+
+    const { count } = this.state;
+    if (!order && count === 5) console.error('Ezpay cannot get order data.');
+
     return (
       <React.Fragment>
         <Head>
@@ -78,7 +124,13 @@ class Ezpay extends React.Component {
           pageAdTrackIDs={pageAdTrackIDs}
           fbAppId={fbAppId}
         />
-        <EzpayView order={order} />
+        {order ? (
+          <EzpayView order={order} />
+        ) : (
+          <div style={{ textAlign: 'center', marginTop: '100px' }}>
+            Loading...
+          </div>
+        )}
       </React.Fragment>
     );
   }
@@ -101,4 +153,11 @@ const mapStateToProps = (state, prevProps) => {
   };
 };
 
-export default connect(mapStateToProps)(Ezpay);
+const mapDispatchToProps = dispatch => ({
+  getOrder: bindActionCreators(Actions.getOrder, dispatch),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Ezpay);

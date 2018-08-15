@@ -310,10 +310,7 @@ export default class Summary extends React.PureComponent {
               ) {
                 addRecipient();
                 dispatchAction('emptyCart');
-                setTimeout(
-                  () => goTo({ pathname: `/ezpay/cvcode/${id}` }),
-                  1000,
-                );
+                goTo({ pathname: `/ezpay/cvcode/${id}` });
                 return;
               }
 
