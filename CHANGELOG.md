@@ -1,3 +1,12 @@
+## 0.2.41 (2018-08-15)
+
+#### :bug: Bug Fix
+* `meep-ui`, `store`
+  * [#126](https://github.com/meepshop/meep-lerna/pull/126) ezpay頁面：處理 ES同步訂單問題 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.40 (2018-08-14)
 
 #### :rocket: New Feature
