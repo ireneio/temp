@@ -36,6 +36,14 @@ export const modifyAntdStyle = colors => ({
       '.ant-list-item': {
         display: 'block',
       },
+
+      '.ant-list-item-main': {
+        display: 'block',
+      },
+
+      '.ant-list-item-action': {
+        textAlign: 'right',
+      },
     },
   },
 });
