@@ -51,9 +51,9 @@ export const COMMA = {
 /** coupon success */
 export const THIS_CODE_CAN_DISCOUNT = discount => ({
   zh_TW: `此優惠代碼可折扣 ${discount}`,
-  en_US: '',
-  ja_JP: '',
-  vi_VN: '',
+  en_US: `This coupon code can be redeemed for ${discount}`,
+  ja_JP: `このクーポンコードは${discount}分としてご利用いただけます`,
+  vi_VN: `Mã khuyến mãi này có thể giảm ${discount}`,
   TODO_LOCALE: true,
 });
 
