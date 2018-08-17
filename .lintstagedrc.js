@@ -15,7 +15,7 @@ const { plugins } = require('./babel.config');
       pluginName instanceof Array && pluginName[0] === 'transform-imports',
   )[1];
   const KEYWORDS = [
-    'Object.values',
+    'React.Fragment',
     "from 'antd/lib",
     ...Object.values(options).map(
       ({ transform }) => `from '${transform.replace(/\/\${member}/, "[^']")}`,
@@ -26,12 +26,13 @@ const { plugins } = require('./babel.config');
     checkKeywordPath,
     `#!/bin/bash
 
-findKeyword=\`grep -rin "${KEYWORDS}" --exclude="**/node_modules/**" --exclude=".lintstagedrc.js" --include="*.js" $@\`
+findKeyword=\`grep -rin "${KEYWORDS}" --exclude="**/node_modules/**" --exclude=".lintstagedrc.js" --exclude="**/tool/bin/core/**" --include="*.js" $@\`
 whiteSpace='      '
 info="\nFind keywords:
 $findKeyword
 
 Example:
+- React.Fragment -> <>...</>
 - Object.values -> Object.keys(Object).map(value => value)
 \${whiteSpace}↪ IE 10 do not support Object.values.
 - import module from 'antd/lib/module' -> import { module } from 'antd'
