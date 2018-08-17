@@ -171,11 +171,13 @@ export default ({
                     : moment(creditCardExpiration)
                         .toArray()
                         .slice(0, 2)
-                        .reduce((result, val, index) => {
-                          if (index === 0)
-                            return { ...result, expireYear: val };
-                          return { ...result, expireMonth: val };
-                        }, {})),
+                        .reduce(
+                          (result, val, index) =>
+                            index === 0
+                              ? { ...result, expireYear: val }
+                              : { ...result, expireMonth: val + 1 },
+                          {},
+                        )),
                   ...(!creditCardInstallment
                     ? {}
                     : { installmentCode: creditCardInstallment.join('-') }),
