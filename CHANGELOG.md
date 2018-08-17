@@ -1,3 +1,11 @@
+## 0.2.43 (2018-08-17)
+
+#### :bug: Bug Fix
+* [#135](https://github.com/meepshop/meep-lerna/pull/135) fix(root): hotfix babel ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.2.42 (2018-08-17)
 
 #### :bug: Bug Fix
