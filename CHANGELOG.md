@@ -1,3 +1,17 @@
+## 0.2.42 (2018-08-17)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#134](https://github.com/meepshop/meep-lerna/pull/134) 修正GMO刷卡無自動對帳完成 ([@HsuTing](https://github.com/HsuTing))
+  * [#128](https://github.com/meepshop/meep-lerna/pull/128) 訂單問答：修正手機版排版 ([@HsuTing](https://github.com/HsuTing))
+  * [#121](https://github.com/meepshop/meep-lerna/pull/121) 更新翻譯 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+* [#133](https://github.com/meepshop/meep-lerna/pull/133) perf(root): use @babel/preset-env to include polyfill files ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.2.41 (2018-08-15)
 
 #### :bug: Bug Fix
