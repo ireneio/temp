@@ -1,8 +1,7 @@
-/* eslint-disable */
-
 import React from 'react';
-import getProducts from './api/getProducts.api';
 import * as Utils from 'utils';
+import { Link } from '../../server/routes';
+import getProducts from './api/getProducts.api';
 
 const LIMIT = 90;
 const NUMBER_ITEM = 30;
@@ -71,13 +70,13 @@ export default class extends React.Component {
   static defaultProps = { error: null };
 
   render() {
-    const { groups, pages } = this.props;
+    const { groups, pages } = this.props; // eslint-disable-line
     return (
       <div>
         <div style={styles.title}>所有商品</div>
         <div style={styles.content}>
           <div style={styles.groups}>
-            {groups.colA.map((product, idx) => (
+            {groups.colA.map(product => (
               <div key={product.id} style={styles.links}>
                 <a href={`/product/${product.id}`} title={product.title.zh_TW}>
                   {product.title.zh_TW}
@@ -86,7 +85,7 @@ export default class extends React.Component {
             ))}
           </div>
           <div style={styles.groups}>
-            {groups.colB.map((product, idx) => (
+            {groups.colB.map(product => (
               <div key={product.id} style={styles.links}>
                 <a href={`/product/${product.id}`} title={product.title.zh_TW}>
                   {product.title.zh_TW}
@@ -95,7 +94,7 @@ export default class extends React.Component {
             ))}
           </div>
           <div style={styles.groups}>
-            {groups.colC.map((product, idx) => (
+            {groups.colC.map(product => (
               <div key={product.id} style={styles.links}>
                 <a href={`/product/${product.id}`} title={product.title.zh_TW}>
                   {product.title.zh_TW}
@@ -107,18 +106,19 @@ export default class extends React.Component {
         {/* pagination */}
         <div style={styles.pagination}>
           <div>
-            {pages.map((page, id) => (
-              <a
-                key={id}
+            {pages.map((_, id) => (
+              <Link
+                key={id} // eslint-disable-line
+                route={`/sitemaps/v1?page=${id + 1}`}
                 href={`/sitemaps/v1?page=${id + 1}`}
-                style={{
-                  margin: '0 5px',
-                  pointerEvents: `${page.active && 'none'}`,
-                  color: `${page.active && 'grey'}`,
-                }}
               >
-                {id + 1}
-              </a>
+                <a
+                  href={`/sitemaps/v1?page=${id + 1}`}
+                  style={{ margin: '0 5px' }}
+                >
+                  {id + 1}
+                </a>
+              </Link>
             ))}
           </div>
         </div>
