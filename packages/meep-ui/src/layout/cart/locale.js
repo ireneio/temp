@@ -11,7 +11,7 @@ export const BILL = {
   zh_TW: '前往結帳',
   en_US: 'Checkout',
   ja_JP: 'レジに進む',
-  vi_VN: 'đến đăng xuất',
+  vi_VN: 'đến thanh toán',
   TODO_LOCALE: true,
 };
 
