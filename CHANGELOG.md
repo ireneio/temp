@@ -1,3 +1,21 @@
+## 0.2.46 (2018-08-20)
+
+#### :rocket: New Feature
+* `meep-ui`
+  * [#99](https://github.com/meepshop/meep-lerna/pull/99) 置底選單: 優化（N095） ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#138](https://github.com/meepshop/meep-lerna/pull/138) 修正GMO 刷卡無自動對帳完成（N058） ([@HsuTing](https://github.com/HsuTing))
+  * [#140](https://github.com/meepshop/meep-lerna/pull/140) 語系: 新增前往結帳的越南文（N109） ([@HsuTing](https://github.com/HsuTing))
+* `store`
+  * [#142](https://github.com/meepshop/meep-lerna/pull/142) 會員管理列表：修正英/日/越 翻譯（N110） ([@HsuTing](https://github.com/HsuTing))
+  * [#141](https://github.com/meepshop/meep-lerna/pull/141) fix(store): use Link for pagination ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.45 (2018-08-20)
 
 #### :bug: Bug Fix
