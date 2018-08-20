@@ -1,0 +1,54 @@
+@import "../../constants/styles.less";
+
+.root {
+  min-width: 140px;
+  padding: 0px 0px 0px 10px;
+  border-left: 1px solid #dddddd;
+
+  @media @PHONE_MEDIA {
+    position: relative;
+    padding: 15px 35px 15px 25px;
+    width: 100%;
+    border-left: 0px;
+    border-top: 1px solid #dddddd;
+
+    &:last-child {
+      border-bottom: 1px solid #dddddd;
+    }
+  }
+
+  &> svg {
+    display: none;
+
+    @media @PHONE_MEDIA {
+      display: block;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      color: #dddddd;
+    }
+  }
+}
+
+.title {
+  cursor: pointer;
+  font-weight: bold;
+
+  @media @PHONE_MEDIA {
+    font-weight: normal;
+  }
+
+  &.subItem {
+    font-weight: normal;
+
+    @media @PHONE_MEDIA {
+      padding: 14px 0px 0px 5px;
+    }
+  }
+}
+
+.subItemRoot {
+  @media @PHONE_MEDIA {
+    display: none;
+  }
+}

@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import radium, { StyleRoot } from 'radium';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, ID_TYPE } from 'constants/propTypes';
 
-import BottomItem from './BottomItem';
-import * as styles from './styles';
+import Item from './Item';
 import { FONT_SIZE_TYPE } from './constants';
+import styles from './styles/index.less';
 
 @enhancer
-@radium
 export default class Bottom extends React.PureComponent {
   static propTypes = {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -30,26 +28,29 @@ export default class Bottom extends React.PureComponent {
   };
 
   render() {
-    const { colors, menu, ...props } = this.props;
-
-    const { pages, design } = menu;
-    const { color, background, fontSize, useBottom } = design;
+    const {
+      colors,
+      menu: {
+        pages,
+        design: { color, background, fontSize, useBottom },
+      },
+      ...props
+    } = this.props;
 
     if (!useBottom) return null;
 
     return (
-      <StyleRoot
-        style={styles.root({ color: color || colors[3], background, fontSize })}
+      <div
+        className={styles.root}
+        style={{
+          color: color || colors[3],
+          background,
+        }}
       >
         {(pages || []).map(page => (
-          <BottomItem
-            key={page.id}
-            {...props}
-            fontSize={fontSize}
-            page={page}
-          />
+          <Item key={page.id} {...props} fontSize={fontSize} page={page} />
         ))}
-      </StyleRoot>
+      </div>
     );
   }
 }
