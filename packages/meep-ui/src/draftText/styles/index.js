@@ -9,6 +9,7 @@ export const Style = colors => ({
   },
 
   p: {
+    whiteSpace: 'pre-wrap',
     marginBottom: 0,
   },
 
