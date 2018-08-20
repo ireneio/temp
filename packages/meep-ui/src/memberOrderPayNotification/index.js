@@ -4,7 +4,7 @@ import radium, { StyleRoot } from 'radium';
 import { Input, Button, Modal } from 'antd';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import { COLOR_TYPE } from 'constants/propTypes';
+import { COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles';
 import * as locale from './locale';
@@ -14,6 +14,7 @@ import { DEFAULT_MESSAGE } from './constants';
 @radium
 export default class MemberOrderPayNotification extends React.PureComponent {
   static propTypes = {
+    storeSetting: STORE_SETTING_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     transformLocale: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
@@ -30,15 +31,10 @@ export default class MemberOrderPayNotification extends React.PureComponent {
   state = {
     message:
       // eslint-disable-next-line react/destructuring-assignment
-      this.props.orderDetails.paidMessage &&
+      this.props.orderDetails.paidMessage?.slice(-1)[0].note ||
       // eslint-disable-next-line react/destructuring-assignment
-      this.props.orderDetails.paidMessage.length > 0
-        ? // eslint-disable-next-line react/destructuring-assignment
-          this.props.orderDetails.paidMessage[
-            // eslint-disable-next-line react/destructuring-assignment
-            this.props.orderDetails.paidMessage.length - 1
-          ].note
-        : DEFAULT_MESSAGE,
+      this.props.storeSetting.paidMessage ||
+      DEFAULT_MESSAGE,
     disabled:
       // eslint-disable-next-line react/destructuring-assignment
       this.props.orderDetails.paidMessage &&
