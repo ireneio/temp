@@ -174,8 +174,11 @@ export default ({
                         .reduce(
                           (result, val, index) =>
                             index === 0
-                              ? { ...result, expireYear: val }
-                              : { ...result, expireMonth: val + 1 },
+                              ? { ...result, expireYear: val.toString() }
+                              : {
+                                  ...result,
+                                  expireMonth: (val + 1).toString(),
+                                },
                           {},
                         )),
                   ...(!creditCardInstallment
@@ -206,7 +209,9 @@ export default ({
               ? {}
               : {
                   address: {
-                    ...(!postalCode ? {} : { postalCode }),
+                    ...(!postalCode
+                      ? {}
+                      : { postalCode: postalCode.toString() }),
                     streetAddress: `${
                       !postalCode ? '' : `${postalCode} `
                     }${address.join('')} ${addressDetail}`,
