@@ -3,6 +3,7 @@ export const PRODUCT_IS_DISCONTINUED = {
   en_US: 'Oops! This product has been discontinued.',
   ja_JP: 'この商品は販売を終了しました',
   vi_VN: 'hàng đã được gởi đi',
+  TODO_LOCALE: true,
 };
 
 export const BACK_TO_HOMEPAGE = {
@@ -10,4 +11,5 @@ export const BACK_TO_HOMEPAGE = {
   en_US: 'Back to the homepage',
   ja_JP: 'ホームへ',
   vi_VN: 'Trở về trang chủ',
+  TODO_LOCALE: true,
 };

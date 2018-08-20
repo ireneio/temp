@@ -4,6 +4,7 @@ export const AUTH_FAILURE = {
   en_US: '(Member Information) User authentication failed',
   ja_JP: '（会員情報）検証エラーが発生しました',
   vi_VN: '(Thông tin hội viên) Xảy ra lỗi khi xác nhận',
+  TODO_LOCALE: true,
 };
 
 export const LOGIN_SUCCESS = {
@@ -11,6 +12,7 @@ export const LOGIN_SUCCESS = {
   en_US: 'Sign in successful',
   ja_JP: 'ログインに成功しました',
   vi_VN: 'Đăng nhập thành công',
+  TODO_LOCALE: true,
 };
 
 export const INVALID_EMAIL_OR_PASSWORD = {
@@ -18,6 +20,7 @@ export const INVALID_EMAIL_OR_PASSWORD = {
   en_US: 'Password or email error',
   ja_JP: '入力したメールアドレスかパスワードに誤りがあります',
   vi_VN: 'Hộp thư hoặc mật khẩu không chính xác',
+  TODO_LOCALE: true,
 };
 
 export const EXPIRED_POINTS_MESSAGE = {
@@ -25,6 +28,7 @@ export const EXPIRED_POINTS_MESSAGE = {
   en_US: 'Reminder',
   ja_JP: 'リマインダー',
   vi_VN: 'Nhắc nhở',
+  TODO_LOCALE: true,
 };
 
 export const EXPIRED_POINTS_DESCRIPTION_1 = {
@@ -32,6 +36,7 @@ export const EXPIRED_POINTS_DESCRIPTION_1 = {
   en_US: 'You have',
   ja_JP: 'あなたの',
   vi_VN: 'Bạn có',
+  TODO_LOCALE: true,
 };
 
 export const EXPIRED_POINTS_DESCRIPTION_2 = {
@@ -39,6 +44,7 @@ export const EXPIRED_POINTS_DESCRIPTION_2 = {
   en_US: 'reward points that will expire soon',
   ja_JP: 'ポイントがもうすぐ有効期限が切れます',
   vi_VN: 'Khoản tiền mua sắm sắp hết hạn',
+  TODO_LOCALE: true,
 };
 
 export const SIGNOUT_SUCCESS = {
@@ -46,6 +52,7 @@ export const SIGNOUT_SUCCESS = {
   en_US: 'You are signed out.',
   ja_JP: 'ログアウトしました',
   vi_VN: 'Đã đăng xuất',
+  TODO_LOCALE: true,
 };
 
 export const SIGNOUT_FAILURE_MESSAGE = {
@@ -53,6 +60,7 @@ export const SIGNOUT_FAILURE_MESSAGE = {
   en_US: 'Sign out: Error occurred',
   ja_JP: 'ログアウト：エラーが発生しました',
   vi_VN: 'Đăng xuất : Xảy ra lỗi',
+  TODO_LOCALE: true,
 };
 
 export const EMAIL_ALREADY_EXISTS = {
@@ -60,6 +68,7 @@ export const EMAIL_ALREADY_EXISTS = {
   en_US: 'This email address is already registered',
   ja_JP: 'このメールアドレスはすでに使われています',
   vi_VN: 'Hộp thư này đã được đăng ký',
+  TODO_LOCALE: true,
 };
 
 export const SIGNUP_SUCCESS = {
@@ -67,6 +76,7 @@ export const SIGNUP_SUCCESS = {
   en_US: 'Registration complete',
   ja_JP: '会員登録が完了しました',
   vi_VN: 'Đã hoàn thành đăng ký',
+  TODO_LOCALE: true,
 };
 
 export const SIGNUP_FAILURE_MESSAGE = {
@@ -74,6 +84,7 @@ export const SIGNUP_FAILURE_MESSAGE = {
   en_US: 'Sign up: Error occurred',
   ja_JP: '新規登録：エラーが発生しました',
   vi_VN: 'Đăng ký : Xảy ra lỗi',
+  TODO_LOCALE: true,
 };
 
 export const FORGET_PASSWORD_SUCCESS = {
@@ -81,6 +92,7 @@ export const FORGET_PASSWORD_SUCCESS = {
   en_US: 'Reset password link has been sent. Please check your inbox.',
   ja_JP: 'メールボックスへ送信されました',
   vi_VN: 'Đã gửi đến hộp thư',
+  TODO_LOCALE: true,
 };
 
 export const FORGET_PASSWORD_FAILURE_MESSAGE = {
@@ -88,6 +100,7 @@ export const FORGET_PASSWORD_FAILURE_MESSAGE = {
   en_US: 'Forget Password: Error occurred',
   ja_JP: 'パスワード忘れ：エラーが発生しました',
   vi_VN: 'Quên mật khẩu : Xảy ra lỗi',
+  TODO_LOCALE: true,
 };
 
 export const ADD_CART_ITEMS_SUCCESS = {
@@ -95,6 +108,7 @@ export const ADD_CART_ITEMS_SUCCESS = {
   en_US: 'The item has been added to your cart.',
   ja_JP: '商品をカートに入れました',
   vi_VN: 'Đã được thêm vào giỏ hàng',
+  TODO_LOCALE: true,
 };
 
 export const ADD_CART_ITEMS_FAILURE_MESSAGE = {
@@ -102,6 +116,7 @@ export const ADD_CART_ITEMS_FAILURE_MESSAGE = {
   en_US: 'Add to cart: Error occurred',
   ja_JP: 'カートに入れる：エラーが発生しました',
   vi_VN: 'Thêm vào giỏ hàng : Xảy ra lỗi',
+  TODO_LOCALE: true,
 };
 
 export const UPDATE_CART_ITEMS_SUCCESS = {
@@ -109,6 +124,7 @@ export const UPDATE_CART_ITEMS_SUCCESS = {
   en_US: 'The items in cart have been updated.',
   ja_JP: 'カート内の商品数量を変更しました',
   vi_VN: 'Hoàn tất cập nhật giỏ hàng',
+  TODO_LOCALE: true,
 };
 
 export const UPDATE_CART_ITEMS_FAILURE_MESSAGE = {
@@ -116,6 +132,7 @@ export const UPDATE_CART_ITEMS_FAILURE_MESSAGE = {
   en_US: 'Update cart: Error occurred',
   ja_JP: 'カート内の商品数量の変更：エラーが発生しました',
   vi_VN: 'Cập nhật giỏ hàng : Xảy ra lỗi',
+  TODO_LOCALE: true,
 };
 
 export const REMOVE_CART_ITEMS_SUCCESS = {
@@ -123,6 +140,7 @@ export const REMOVE_CART_ITEMS_SUCCESS = {
   en_US: 'The item has been deleted.',
   ja_JP: '商品を削除しました',
   vi_VN: 'Sản phẩm đã xóa',
+  TODO_LOCALE: true,
 };
 
 export const REMOVE_CART_ITEMS_FAILURE_MESSAGE = {
@@ -130,6 +148,7 @@ export const REMOVE_CART_ITEMS_FAILURE_MESSAGE = {
   en_US: 'Delete item: Error occurred',
   ja_JP: '商品の削除：エラーが発生しました',
   vi_VN: 'Xóa Sản phẩm : Xảy ra lỗi',
+  TODO_LOCALE: true,
 };
 
 export const UPDATE_USER_SUCCESS = {
@@ -137,6 +156,7 @@ export const UPDATE_USER_SUCCESS = {
   en_US: 'Your information has been updated.',
   ja_JP: '会員情報が更新しました',
   vi_VN: 'Hoàn tất cập nhật',
+  TODO_LOCALE: true,
 };
 
 export const UPDATE_USER_FAILURE_MESSAGE = {
@@ -144,6 +164,7 @@ export const UPDATE_USER_FAILURE_MESSAGE = {
   en_US: 'Update information: Error occurred',
   ja_JP: '会員情報の更新：エラーが発生しました',
   vi_VN: 'Cập nhật hội viên : Xảy ra lỗi',
+  TODO_LOCALE: true,
 };
 
 export const CREATE_APPLY_SUCCESS = {
@@ -151,6 +172,7 @@ export const CREATE_APPLY_SUCCESS = {
   en_US: 'Your application has been successful.',
   ja_JP: 'お申し込みを受け付けました',
   vi_VN: 'Đăng ký thàng công',
+  TODO_LOCALE: true,
 };
 
 export const CREATE_APPLY_FAILURE_MESSAGE = {
@@ -158,6 +180,7 @@ export const CREATE_APPLY_FAILURE_MESSAGE = {
   en_US: 'Return / Replacement: Error occurred',
   ja_JP: '返品/交換の申し込み：エラーが発生しました',
   vi_VN: 'Xin đổi trả hàng : Xảy ra lỗi',
+  TODO_LOCALE: true,
 };
 
 export const CREATE_ORDER_QA_SUCCESS = {
@@ -165,6 +188,7 @@ export const CREATE_ORDER_QA_SUCCESS = {
   en_US: 'It has been successfully submitted.',
   ja_JP: 'オーダーを送りました',
   vi_VN: 'Đã gửi',
+  TODO_LOCALE: true,
 };
 
 export const CREATE_ORDER_QA_FAILURE_MESSAGE = {
@@ -172,6 +196,7 @@ export const CREATE_ORDER_QA_FAILURE_MESSAGE = {
   en_US: 'Submit order Q&A: Error occurred',
   ja_JP: 'オーダーQ&Aを送る：エラーが発生しました',
   vi_VN: 'Gửi hỏi đáp đơn hàng : Xảy ra lỗi',
+  TODO_LOCALE: true,
 };
 
 export const UPDATE_WISHLIST_SUCCESS = {
@@ -179,6 +204,7 @@ export const UPDATE_WISHLIST_SUCCESS = {
   en_US: 'Updated',
   ja_JP: '更新しました',
   vi_VN: 'Hoàn tất',
+  TODO_LOCALE: true,
 };
 
 export const UPDATE_WISHLIST_FAILURE_MESSAGE = {
@@ -186,6 +212,7 @@ export const UPDATE_WISHLIST_FAILURE_MESSAGE = {
   en_US: 'Wishlist: Error occurred',
   ja_JP: 'ほしい物リスト：エラーが発生しました',
   vi_VN: 'Danh sách mong muốn : Xảy ra lỗi',
+  TODO_LOCALE: true,
 };
 
 export const ADD_STOCK_NOTIFICATION_LIST_SUCCESS = {
@@ -193,6 +220,7 @@ export const ADD_STOCK_NOTIFICATION_LIST_SUCCESS = {
   en_US: 'Added',
   ja_JP: '在庫通知を設定しました',
   vi_VN: 'Đã thêm vào',
+  TODO_LOCALE: true,
 };
 
 export const ADD_STOCK_NOTIFICATION_LIST_FAILURE_MESSAGE = {
@@ -200,6 +228,7 @@ export const ADD_STOCK_NOTIFICATION_LIST_FAILURE_MESSAGE = {
   en_US: 'Product availability notification: Error occurred',
   ja_JP: '在庫通知の設定：エラーが発生しました',
   vi_VN: 'Thêm vào thông báo có thể đặt hàng : Xảy ra lỗi',
+  TODO_LOCALE: true,
 };
 
 export const GET_ORDER_FAILURE_MESSAGE = {
@@ -207,6 +236,7 @@ export const GET_ORDER_FAILURE_MESSAGE = {
   en_US: 'Acquire order: Error occurred',
   ja_JP: 'オーダーを取る：エラーが発生しました',
   vi_VN: 'Nhận đơn hàng : Xảy ra lỗi',
+  TODO_LOCALE: true,
 };
 
 export const RESET_PASSWORD_SUCCESS = {
@@ -214,6 +244,7 @@ export const RESET_PASSWORD_SUCCESS = {
   en_US: 'Successfully reset',
   ja_JP: 'パスワードをリセットしました',
   vi_VN: 'Hoàn tất cài đặt lại',
+  TODO_LOCALE: true,
 };
 
 export const RESET_PASSWORD_FAILURE_MESSAGE = {
@@ -221,6 +252,7 @@ export const RESET_PASSWORD_FAILURE_MESSAGE = {
   en_US: 'Password reset: Error occurred',
   ja_JP: 'パスワードのリセット：エラーが発生しました',
   vi_VN: 'Cài đặt lại mật khẩu : Xảy ra lỗi',
+  TODO_LOCALE: true,
 };
 
 export const SEND_PAYMENT_NOTIFICATION_SUCCESS = {
@@ -228,6 +260,7 @@ export const SEND_PAYMENT_NOTIFICATION_SUCCESS = {
   en_US: 'Successfully sent',
   ja_JP: '送りました',
   vi_VN: 'Đã gửi đi',
+  TODO_LOCALE: true,
 };
 
 export const SEND_PAYMENT_NOTIFICATION_FAILURE_MESSAGE = {
@@ -235,6 +268,7 @@ export const SEND_PAYMENT_NOTIFICATION_FAILURE_MESSAGE = {
   en_US: 'Payment Notification: Error occurred',
   ja_JP: '振込通知：エラーが発生しました',
   vi_VN: 'Gửi thông báo chuyển tiền : Xảy ra lỗi',
+  TODO_LOCALE: true,
 };
 
 export const CHANGE_PASSWORD_SUCCESS = {
@@ -242,6 +276,7 @@ export const CHANGE_PASSWORD_SUCCESS = {
   en_US: 'Successfully updated',
   ja_JP: '更新しました',
   vi_VN: 'Hoàn tất',
+  TODO_LOCALE: true,
 };
 
 export const CHANGE_PASSWORD_FAILURE_MESSAGE = {
@@ -249,6 +284,7 @@ export const CHANGE_PASSWORD_FAILURE_MESSAGE = {
   en_US: 'Change Password: Error occurred',
   ja_JP: 'エラーが発生しました',
   vi_VN: 'Xảy ra lỗi',
+  TODO_LOCALE: true,
 };
 
 export const INVALID_PASSWORD = {
@@ -256,4 +292,5 @@ export const INVALID_PASSWORD = {
   en_US: 'Password is incorrect.',
   ja_JP: 'パスワードが間違っています',
   vi_VN: 'Mật khẩu hiện tại không đúng',
+  TODO_LOCALE: true,
 };

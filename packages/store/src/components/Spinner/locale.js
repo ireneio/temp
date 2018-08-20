@@ -3,6 +3,7 @@ export const AUTH_REQUEST = {
   en_US: 'Authenticating…',
   ja_JP: '検証中です…',
   vi_VN: 'Đang xác nhận…',
+  TODO_LOCALE: true,
 };
 
 export const LOGIN_REQUEST = {
@@ -10,6 +11,7 @@ export const LOGIN_REQUEST = {
   en_US: 'Signing in…',
   ja_JP: 'ログイン中です…',
   vi_VN: 'Đang đăng nhập…',
+  TODO_LOCALE: true,
 };
 
 export const SIGNOUT_REQUEST = {
@@ -17,6 +19,7 @@ export const SIGNOUT_REQUEST = {
   en_US: 'Signing out…',
   ja_JP: 'ログアウト中です…',
   vi_VN: 'Đang đăng xuất…',
+  TODO_LOCALE: true,
 };
 
 export const SIGNUP_REQUEST = {
@@ -24,6 +27,7 @@ export const SIGNUP_REQUEST = {
   en_US: 'Processing…',
   ja_JP: 'サインアップ中です…',
   vi_VN: 'Đang đăng ký…',
+  TODO_LOCALE: true,
 };
 
 export const FORGET_PASSWORD_REQUEST = {
@@ -31,6 +35,7 @@ export const FORGET_PASSWORD_REQUEST = {
   en_US: 'Email sending…',
   ja_JP: '送信中です…',
   vi_VN: 'Đang gửi thư…',
+  TODO_LOCALE: true,
 };
 
 export const ADD_CART_ITEMS_REQUEST = {
@@ -38,6 +43,7 @@ export const ADD_CART_ITEMS_REQUEST = {
   en_US: 'Adding to cart…',
   ja_JP: '商品をカートに入れております…',
   vi_VN: 'Thêm vào giỏ hàng…',
+  TODO_LOCALE: true,
 };
 
 export const UPDATE_CART_ITEMS_REQUEST = {
@@ -45,6 +51,7 @@ export const UPDATE_CART_ITEMS_REQUEST = {
   en_US: 'Changing QTY…',
   ja_JP: '商品数量変更中です…',
   vi_VN: 'Đang thay đổi số lượng…',
+  TODO_LOCALE: true,
 };
 
 export const REMOVE_CART_ITEMS_REQUEST = {
@@ -52,6 +59,7 @@ export const REMOVE_CART_ITEMS_REQUEST = {
   en_US: 'Deleting…',
   ja_JP: '削除中です…',
   vi_VN: 'Đang xóa…',
+  TODO_LOCALE: true,
 };
 
 export const UPDATE_USER_REQUEST = {
@@ -59,6 +67,7 @@ export const UPDATE_USER_REQUEST = {
   en_US: 'Updating…',
   ja_JP: '会員情報を更新しております…',
   vi_VN: 'Cập nhật thông tin…',
+  TODO_LOCALE: true,
 };
 
 export const CREATE_APPLY_REQUEST = {
@@ -66,6 +75,7 @@ export const CREATE_APPLY_REQUEST = {
   en_US: 'Applying…',
   ja_JP: '申し込みしております…',
   vi_VN: 'Đang xin đăng ký…',
+  TODO_LOCALE: true,
 };
 
 export const CREATE_ORDER_QA_REQUEST = {
@@ -73,6 +83,7 @@ export const CREATE_ORDER_QA_REQUEST = {
   en_US: 'Processing…',
   ja_JP: '処理中です…',
   vi_VN: 'Đang xử lý…',
+  TODO_LOCALE: true,
 };
 
 export const UPDATE_WISHLIST_REQUEST = {
@@ -80,6 +91,7 @@ export const UPDATE_WISHLIST_REQUEST = {
   en_US: 'Processing…',
   ja_JP: '更新中です…',
   vi_VN: 'Đang xử lý…',
+  TODO_LOCALE: true,
 };
 
 export const ADD_STOCK_NOTIFICATION_LIST_REQUEST = {
@@ -87,6 +99,7 @@ export const ADD_STOCK_NOTIFICATION_LIST_REQUEST = {
   en_US: 'Processing…',
   ja_JP: '処理中です…',
   vi_VN: 'Đang xử lý…',
+  TODO_LOCALE: true,
 };
 
 export const GET_ORDER_REQUEST = {
@@ -94,6 +107,7 @@ export const GET_ORDER_REQUEST = {
   en_US: 'Processing…',
   ja_JP: '処理中です…',
   vi_VN: 'Đang xử lý…',
+  TODO_LOCALE: true,
 };
 
 export const RESET_PASSWORD_REQUEST = {
@@ -101,4 +115,5 @@ export const RESET_PASSWORD_REQUEST = {
   en_US: 'Processing…',
   ja_JP: '処理中です…',
   vi_VN: 'Đang xử lý…',
+  TODO_LOCALE: true,
 };
