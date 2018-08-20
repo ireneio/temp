@@ -1,3 +1,15 @@
+## 0.2.45 (2018-08-20)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#137](https://github.com/meepshop/meep-lerna/pull/137) 文字元件：修正多個空白問題（N071） ([@yuhsu1004](https://github.com/yuhsu1004))
+  * [#132](https://github.com/meepshop/meep-lerna/pull/132) 修正商品描述的空白段落（N073） ([@HsuTing](https://github.com/HsuTing))
+  * [#131](https://github.com/meepshop/meep-lerna/pull/131) 修正匯款通知預設值（N074） ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ariel Hsu ([@yuhsu1004](https://github.com/yuhsu1004))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.2.43 (2018-08-17)
 
 #### :bug: Bug Fix
