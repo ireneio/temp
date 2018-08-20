@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { areEqual } from 'fbjs';
 import radium, { Style } from 'radium';
-import { enhancer } from 'layout/DecoratorsRoot';
-import areEqual from 'fbjs/lib/areEqual';
 import draftToHtml from 'draftjs-to-html';
 import { convertToRaw } from 'draft-js';
 
+import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
 import getFormattedEditorState from './utils/getFormattedEditorState';
@@ -63,6 +63,7 @@ export default class DraftText extends React.Component {
         : value.replace(/<(?:.|\n)*?>/gm, '');
       return <div>{text}</div>;
     }
+
     const html = editorState
       ? draftToHtml(convertToRaw(editorState.getCurrentContent()))
       : value;
@@ -73,8 +74,7 @@ export default class DraftText extends React.Component {
         {html && (
           <div
             dangerouslySetInnerHTML={{
-              // eslint-disable-line
-              __html: html,
+              __html: html.replace(/<p><\/p>/g, '<br />'),
             }}
           />
         )}
