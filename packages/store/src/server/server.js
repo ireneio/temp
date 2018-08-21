@@ -313,10 +313,8 @@ module.exports = app.prepare().then(
 
       server.post('/log', (req, res) => {
         const XMeepshopDomain = req.headers.host;
-        const { number = '000', data } = req.body;
-        console.log(
-          `${number}(${XMeepshopDomain}) >>>  ${JSON.stringify(data)}`,
-        );
+        const { data } = req.body;
+        console.log(`#LOG#(${XMeepshopDomain}) >>>  ${JSON.stringify(data)}`);
         res.status(200).end();
       });
 

@@ -138,7 +138,6 @@ function* serverProductInitialFlow({ payload }) {
       data,
     );
     if (product == null) {
-      console.error(`${XMeepshopDomain}: pId>>${pId}`);
       throw new Error('There is no product of the id.');
     } else {
       // Get activities from computeOrderList
@@ -199,7 +198,9 @@ function* serverProductInitialFlow({ payload }) {
       yield put(getPagesSuccess(modifiedPage));
     }
   } catch (error) {
-    console.error(error);
+    if (!/There is no product of the id./g.test(error.message)) {
+      console.error(error);
+    }
     yield put(getStoreFailure(error.message));
   }
 }

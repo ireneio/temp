@@ -91,7 +91,9 @@ function* getProductFlow({ payload }) {
       yield put(getPagesSuccess(newPages));
     }
   } catch (error) {
-    console.error(error);
+    if (!/There is no product of the id./g.test(error.message)) {
+      console.error(error);
+    }
     yield put(getProductFailure(error.message));
   }
 }
