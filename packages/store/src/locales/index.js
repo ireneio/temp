@@ -93,3 +93,11 @@ export const WISHLIST = {
   vi_VN: 'Tích lũy của tôi',
   TODO_LOCALE: true,
 };
+
+export const LOGOUT = {
+  en_US: 'logout',
+  zh_TW: '登出',
+  ja_JP: 'ログアウト',
+  vi_VN: 'logout',
+  TODO_LOCALE: true,
+};

@@ -1,78 +1,45 @@
+import * as LOCALE from 'locales';
+
 export default [
   {
     id: 'order-manager',
-    title: {
-      en_US: 'Order manager',
-      zh_TW: '訂單管理',
-      ja_JP: 'ご注文管理',
-      vi_VN: 'Order manager',
-    },
+    title: LOCALE.ORDER,
     action: 2,
     params: { url: '/orders' },
   },
   {
     id: 'member-info',
-    title: {
-      en_US: 'Member info',
-      zh_TW: '會員資料',
-      ja_JP: '会員データ',
-      vi_VN: 'Member info',
-    },
+    title: LOCALE.SETTINGS,
     action: 2,
     params: { url: '/settings' },
   },
   {
     id: 'recipienta',
-    title: {
-      en_US: 'Recipients',
-      zh_TW: '收件人範本',
-      ja_JP: '受信者テンプレート',
-      vi_VN: 'Recipients',
-    },
+    title: LOCALE.RECIPIENTS,
     action: 2,
     params: { url: '/recipients' },
   },
   {
     id: 'change-password',
-    title: {
-      en_US: 'Change password',
-      zh_TW: '更改密碼',
-      ja_JP: 'パスワードを変更する',
-      vi_VN: 'Change password',
-    },
+    title: LOCALE.CHANGE_PASSWORD,
     action: 2,
     params: { url: '/passwordChange' },
   },
   {
     id: 'favorites',
-    title: {
-      en_US: 'Wish list',
-      zh_TW: '我的收藏',
-      ja_JP: 'お気に入り',
-      vi_VN: 'Wish list',
-    },
+    title: LOCALE.WISHLIST,
     action: 2,
     params: { url: '/wishlist' },
   },
   {
     id: 'points',
-    title: {
-      en_US: 'Reward Points',
-      zh_TW: '購物金',
-      ja_JP: 'ポイント',
-      vi_VN: 'Reward Points',
-    },
+    title: LOCALE.REWARD_POINTS,
     action: 2,
     params: { url: '/rewardPoints' },
   },
   {
     id: 'logout',
-    title: {
-      en_US: 'logout',
-      zh_TW: '登出',
-      ja_JP: 'ログアウト',
-      vi_VN: 'logout',
-    },
+    title: LOCALE.LOGOUT,
     action: 'logout',
   },
 ];
