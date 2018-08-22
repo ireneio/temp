@@ -204,7 +204,7 @@ class PayemntInfo extends React.PureComponent {
     ].map(key => fieldsValue[key] || getFieldValue(key));
     const [variantId] = variant.slice(-1);
 
-    const { data: result } = await getData(
+    const result = await getData(
       ...getComputeOrderQuery({
         coupon,
         paymentId,
@@ -219,10 +219,10 @@ class PayemntInfo extends React.PureComponent {
       }),
     );
 
-    if (this.isUnmounted) return;
+    if (this.isUnmounted || !result?.data?.computeOrderList) return;
 
     const { changeChoosePayment, changeChooseShipmentTemplate } = this.props;
-    const { computeOrderList } = result;
+    const { computeOrderList } = result.data;
     const [
       { categories, activityInfo, priceInfo, errorObj },
     ] = computeOrderList;

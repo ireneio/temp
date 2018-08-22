@@ -58,6 +58,10 @@ export default class Group extends React.PureComponent {
     this.getProductsData({ ...params, ids });
   }
 
+  componentWillUnmount() {
+    this.isUnmounted = true;
+  }
+
   getProductsData = async params => {
     this.setState({
       params,
@@ -94,6 +98,7 @@ export default class Group extends React.PureComponent {
       },
     };
 
+    // TODO rewrite query
     const productQuery = `
       data {
         id
@@ -144,18 +149,13 @@ export default class Group extends React.PureComponent {
     `;
 
     const { getData } = this.props;
-    const {
-      data: { computeProductList },
-    } = await getData(query, variables);
+    const result = await getData(query, variables);
 
-    this.setState({
-      products: /* istanbul ignore next */ process.env.STORYBOOK_DOCS
-        ? computeProductList.data.computeProductList.data
-        : computeProductList.data,
-      total: /* istanbul ignore next */ process.env.STORYBOOK_DOCS
-        ? computeProductList.data.computeProductList.total
-        : computeProductList.total,
-    });
+    if (this.isUnmounted || !result?.data?.computeProductList) return;
+
+    const { data: products, total } = result.data.computeProductList;
+
+    this.setState({ products, total });
   };
 
   scrollToTop = () => {

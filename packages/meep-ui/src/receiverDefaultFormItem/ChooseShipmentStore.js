@@ -93,7 +93,8 @@ export default class ChooseShipmentStore extends React.PureComponent {
 
     if (!shipmentId) return;
 
-    const { data: result } = await getData(`
+    // TODO: rewrite query
+    const result = await getData(`
       query getStoreShipmentListForChooseShipmentStore {
         getStoreShipmentList(search: {
           filter: {
@@ -132,10 +133,10 @@ export default class ChooseShipmentStore extends React.PureComponent {
       }
     `);
 
-    if (this.isUnmounted) return;
+    if (this.isUnmounted || !result?.data?.getStoreShipmentList) return;
 
     this.setState({
-      ...result.getStoreShipmentList.data[0].accountInfo,
+      ...result.data.getStoreShipmentList.data[0].accountInfo,
       tradeNo: uuid.v4(),
     });
   };
@@ -187,7 +188,7 @@ export default class ChooseShipmentStore extends React.PureComponent {
     const url = getApiUrl(`/external/${shipmentTemplate}/map/${tradeNo}`);
 
     return (
-      <React.Fragment>
+      <>
         <Button
           style={styles.root(colors)}
           type="primary"
@@ -273,7 +274,7 @@ export default class ChooseShipmentStore extends React.PureComponent {
 
           this.formDOM,
         )}
-      </React.Fragment>
+      </>
     );
   }
 }

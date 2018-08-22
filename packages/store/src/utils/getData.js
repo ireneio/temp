@@ -7,7 +7,8 @@ import { notification } from 'antd';
  * @param query
  * @param variables
  */
-export default async (query, variables) => {
+const getData = async (query, variables, retryTimes = 0) => {
+  console.log(retryTimes);
   try {
     const res = await fetch('/api', {
       method: 'post',
@@ -27,8 +28,20 @@ export default async (query, variables) => {
 
     return data;
   } catch (error) {
+    if (navigator.onLine !== undefined && !navigator.onLine && retryTimes < 3) {
+      const retryData = await new Promise(resolve => {
+        setTimeout(() => {
+          resolve(getData(query, variables, retryTimes + 1));
+        }, 1000);
+      });
+
+      return retryData;
+    }
+
     notification.error({ message: '發生錯誤', description: error.message });
 
     return null;
   }
 };
+
+export default getData;

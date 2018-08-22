@@ -12,7 +12,6 @@ import {
   ISLOGIN_TYPE,
   LOCATION_TYPE,
 } from 'constants/propTypes';
-import fetchProducts from 'utils/fetchProducts';
 import ProductCarousel from 'productCarousel';
 import ProductInfo from 'productInfo';
 
@@ -20,6 +19,7 @@ import ProductTable from './ProductTable';
 import { SORT_OPTIONS } from './constants';
 import * as styles from './styles';
 import * as LOCALE from './locale';
+import getProductsQuery from './utils/getProductsQuery';
 
 @enhancer
 @radium
@@ -122,7 +122,7 @@ export default class ProductList extends React.PureComponent {
         stockNotificationList,
         // fetchProducts when login status changed
         ...(isLogin !== prevIsLogin && {
-          products: fetchProducts(params, getData),
+          products: getData(...getProductsQuery(params)),
           isLoading: true,
           cache: {},
         }),
@@ -161,6 +161,10 @@ export default class ProductList extends React.PureComponent {
     this.reduceProducts();
   }
 
+  componentWillUnmount() {
+    this.isUnmounted = true;
+  }
+
   reduceProducts = () => {
     const { products, cache, params } = this.state;
     const { adTrack, getData } = this.props;
@@ -175,7 +179,8 @@ export default class ProductList extends React.PureComponent {
     if (products === null) {
       const key = JSON.stringify(params);
       this.setState({
-        products: key in cache ? cache[key] : fetchProducts(params, getData),
+        products:
+          key in cache ? cache[key] : getData(...getProductsQuery(params)),
         isLoading: !(key in cache),
       });
       return;
@@ -192,19 +197,19 @@ export default class ProductList extends React.PureComponent {
       params: { ids },
     } = this.state;
 
-    let resolvedProducts = await products.then(
-      ({ data }) => data.computeProductList,
-    );
+    const result = await products;
+
+    if (this.isUnmounted || !result?.data?.computeProductList) return;
+
+    const resolvedProducts = result.data.computeProductList;
 
     // FIXME: 不該由前端排序
     if (ids) {
       const order = String(ids).split(',');
-      resolvedProducts = {
-        ...resolvedProducts,
-        data: resolvedProducts.data.sort(
-          (a, b) => order.indexOf(a.id) - order.indexOf(b.id),
-        ),
-      };
+
+      resolvedProducts.data = resolvedProducts.data.sort(
+        (a, b) => order.indexOf(a.id) - order.indexOf(b.id),
+      );
     }
 
     this.setState(prevState => ({
@@ -243,7 +248,8 @@ export default class ProductList extends React.PureComponent {
 
     this.setState({
       params: nextParams,
-      products: key in cache ? cache[key] : fetchProducts(nextParams, getData),
+      products:
+        key in cache ? cache[key] : getData(...getProductsQuery(nextParams)),
       page: Math.floor(nextParams.offset / nextParams.limit) + 1,
       isLoading: !(key in cache),
     });

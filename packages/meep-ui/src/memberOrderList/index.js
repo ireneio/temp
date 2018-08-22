@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { Style, StyleRoot } from 'radium';
+import { warning } from 'fbjs';
 import { Modal, Divider, Icon, message } from 'antd';
 import moment from 'moment';
-import warning from 'fbjs/lib/warning';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
@@ -69,32 +69,23 @@ export default class MemberOrderList extends React.PureComponent {
 
     if (isLoading) return;
 
-    await this.setState({ isLoading: true });
+    this.setState({ isLoading: true });
 
     const { getData, transformLocale } = this.props;
+    const result = await getData(PAY_AGAIN_QUERY, {
+      paymentAgainOrderList: [order],
+    });
 
-    try {
-      const {
-        data: { paymentAgainOrderList },
-        errors,
-      } = await getData(PAY_AGAIN_QUERY, {
-        paymentAgainOrderList: [order],
-      });
+    if (this.isUnmounted) return;
 
-      const { formData, error } = paymentAgainOrderList[0];
+    const { formData } = result?.data?.paymentAgainOrderList?.[0] || {};
 
-      if (this.isUnmounted) return;
-
-      if (error || errors || !formData || !formData.url || !formData.params) {
-        throw error || errors;
-      } else {
-        message.success(transformLocale(LOCALE.PAY_SUCCESS), 1, () => {
-          this.setState({ formData, isLoading: false });
-        });
-      }
-    } catch (error) {
+    if (!formData || !formData.url) {
       message.error(transformLocale(LOCALE.PAY_FAILED));
       this.setState({ formData: null, isLoading: false });
+    } else {
+      message.success(transformLocale(LOCALE.PAY_SUCCESS));
+      this.setState({ formData, isLoading: false });
     }
   };
 

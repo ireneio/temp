@@ -90,12 +90,12 @@ export default class ThankYouPage extends React.PureComponent {
 
     this.checking = true;
 
-    const { data: result } = await getData(GET_ORDER, { orderId });
+    const result = await getData(GET_ORDER, { orderId });
 
     this.checking = false;
 
-    if (this.isUnmounted) return;
-    if (result?.getOrderList.total === 1) this.setState({ orderExist: true });
+    if (!this.isUnmounted && result?.data?.getOrderList.total === 1)
+      this.setState({ orderExist: true });
   };
 
   render() {

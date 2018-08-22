@@ -172,7 +172,7 @@ export default class OrderDetail extends React.PureComponent {
 
     this.setState({ isChecking: true });
 
-    const { data: result } = await getData(
+    const result = await getData(
       ...getComputeOrderQuery({
         coupon,
         points,
@@ -184,12 +184,12 @@ export default class OrderDetail extends React.PureComponent {
       }),
     );
 
-    if (this.isUnmounted) return;
+    if (this.isUnmounted || !result?.data?.computeOrderList) return;
 
-    const { computeOrderList } = result;
+    const { computeOrderList } = result.data;
     const [
       { activityInfo, priceInfo, categories, errorObj },
-    ] = computeOrderList || [{}];
+    ] = computeOrderList;
     const [
       { products: newProducts = [], paymentList = [], shipmentList = [] },
     ] = categories || [{}];

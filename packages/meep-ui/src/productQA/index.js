@@ -45,14 +45,20 @@ export default class PrdoductQA extends React.PureComponent {
     this.getQAList();
   }
 
+  componentWillUnmount() {
+    this.isUnmounted = true;
+  }
+
   getQAList = async () => {
     const { getData, productId } = this.props;
 
-    const { data: result } = await getData(GET_PRODUCT_QA_LIST, {
+    const result = await getData(GET_PRODUCT_QA_LIST, {
       productId,
     });
 
-    this.setState({ QAList: result.getProductQAList.data });
+    if (this.isUnmounted || !result?.data?.getProductQAList) return;
+
+    this.setState({ QAList: result.data.getProductQAList.data });
   };
 
   submit = e => {
