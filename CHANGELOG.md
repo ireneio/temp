@@ -1,3 +1,12 @@
+## 0.2.50 (2018-08-22)
+
+#### :house: Internal
+* `store`
+  * [#149](https://github.com/meepshop/meep-lerna/pull/149) chore(store): remove console ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.2.48 (2018-08-22)
 
 #### :bug: Bug Fix
