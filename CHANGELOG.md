@@ -1,3 +1,17 @@
+## 0.2.48 (2018-08-22)
+
+#### :bug: Bug Fix
+* `meep-ui`, `store`
+  * [#147](https://github.com/meepshop/meep-lerna/pull/147) fix(meep-ui): handle getData return null ([@HsuTing](https://github.com/HsuTing))
+* `store`
+  * [#148](https://github.com/meepshop/meep-lerna/pull/148) fix(store): fix handling error ([@barrypeng6](https://github.com/barrypeng6))
+* `meep-ui`
+  * [#145](https://github.com/meepshop/meep-lerna/pull/145) fix(meep-ui): fix checkout undefined ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6
+
 ## 0.2.47 (2018-08-21)
 
 #### :bug: Bug Fix
