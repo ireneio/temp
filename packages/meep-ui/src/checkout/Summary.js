@@ -53,7 +53,7 @@ export default class Summary extends React.PureComponent {
         const { transformLocale } = this.props;
 
         return (
-          <React.Fragment>
+          <>
             <div>{transformLocale(value)}</div>
 
             <StyleRoot style={[styles.phoneSpec, styles.activityRoot]}>
@@ -75,7 +75,7 @@ export default class Summary extends React.PureComponent {
                 ))}
               </div>
             )}
-          </React.Fragment>
+          </>
         );
       },
     },
@@ -214,9 +214,9 @@ export default class Summary extends React.PureComponent {
       activityInfo,
       userEmail: user ? user.email : userEmail,
       paymentName: paymentList.find(({ paymentId: id }) => id === paymentId)
-        .name,
+        ?.name,
       shipmentName: shipmentList.find(({ shipmentId: id }) => id === shipmentId)
-        .name,
+        ?.name,
     };
   };
 
