@@ -19,7 +19,7 @@ import {
 
 export default async function({ XMeepshopDomain, cookie, pId }) {
   const isServer = true;
-  if (!pId) throw new Error('Product id is not dfined.');
+  if (!pId) throw new Error('Product id is not defined.');
   const variables = {
     keys:
       '$productSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $wishlistSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType, $orderQASearch: searchInputObjectType',

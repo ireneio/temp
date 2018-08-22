@@ -40,7 +40,9 @@ function* getAuthFlow({ payload }) {
     yield put(getAuthSuccess(data));
   } catch (error) {
     yield put(getAuthFailure(error.message));
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     notification.error({ message: LOCALE.AUTH_FAILURE[locale] });
   }
 }
@@ -114,14 +116,16 @@ export function* loginFlow({ payload }) {
 
       yield put(loginSuccess(memberData));
     } else {
-      throw new Error(`${res.error}`);
+      console.log(`${res.error}`);
     }
   } catch (error) {
     yield put(loginFailure());
     if (error && error.message === 'invalid email, password or identity.') {
       notification.error({ message: LOCALE.INVALID_EMAIL_OR_PASSWORD[locale] });
     } else {
-      console.error(error);
+      console.log(
+        `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+      );
       notification.error({ message: error.message });
     }
   }
@@ -164,7 +168,9 @@ function* signoutFlow() {
     notification.success({ message: LOCALE.SIGNOUT_SUCCESS[locale] });
   } catch (error) {
     yield put(signoutFailure());
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     notification.error({
       message: LOCALE.SIGNOUT_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -221,7 +227,9 @@ function* signupFlow({ payload }) {
     }
   } catch (error) {
     yield put(signupFailure());
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     notification.error({
       message: LOCALE.SIGNUP_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -270,7 +278,9 @@ function* forgetPasswordFlow({ payload: { email } }) {
     notification.success({ message: LOCALE.FORGET_PASSWORD_SUCCESS[locale] });
   } catch (error) {
     yield put(forgetPasswordFailure(error));
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     notification.error({
       message: LOCALE.FORGET_PASSWORD_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -327,7 +337,9 @@ function* AddCartItemsFlow({ payload }) {
     notification.success({ message: LOCALE.ADD_CART_ITEMS_SUCCESS[locale] });
   } catch (error) {
     yield put(addCartItemsFailure());
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     notification.error({
       message: LOCALE.ADD_CART_ITEMS_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -376,7 +388,9 @@ function* UpdateCartItemsFlow({ payload }) {
     notification.success({ message: LOCALE.UPDATE_CART_ITEMS_SUCCESS[locale] });
   } catch (error) {
     yield put(updateCartItemsFailure());
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     notification.error({
       message: LOCALE.UPDATE_CART_ITEMS_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -425,7 +439,9 @@ function* removeCartItemsFlow({ payload }) {
     notification.success({ message: LOCALE.REMOVE_CART_ITEMS_SUCCESS[locale] });
   } catch (error) {
     yield put(removeCartItemsFailure());
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     notification.error({
       message: LOCALE.REMOVE_CART_ITEMS_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -467,7 +483,9 @@ function* updateUserFlow({ payload }) {
     notification.success({ message: LOCALE.UPDATE_USER_SUCCESS[locale] });
   } catch (error) {
     yield put(updateUserFailure());
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     notification.error({
       message: LOCALE.UPDATE_USER_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -510,7 +528,9 @@ function* createApplyFlow({ payload }) {
     Utils.goTo({ pathname: '/orders' });
   } catch (error) {
     yield put(createApplyFailure());
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     notification.error({
       message: LOCALE.CREATE_APPLY_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -552,7 +572,9 @@ function* createOrderQAFlow({ payload }) {
     notification.success({ message: LOCALE.CREATE_ORDER_QA_SUCCESS[locale] });
   } catch (error) {
     yield put(createOrderQAFailure());
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     notification.error({
       message: LOCALE.CREATE_ORDER_QA_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -599,7 +621,9 @@ function* updateWishListFlow({ payload }) {
     notification.success({ message: LOCALE.UPDATE_WISHLIST_SUCCESS[locale] });
   } catch (error) {
     yield put(updateWishListFailure());
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     notification.error({
       message: LOCALE.UPDATE_WISHLIST_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -646,7 +670,9 @@ function* addToNotificationListFlow({ payload }) {
     });
   } catch (error) {
     yield put(addToNotificationListFailure());
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     notification.error({
       message: LOCALE.ADD_STOCK_NOTIFICATION_LIST_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -694,7 +720,9 @@ function* getOrderFlow({ payload }) {
     }
   } catch (error) {
     yield put(getOrderFailure());
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     notification.error({
       message: LOCALE.GET_ORDER_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -740,7 +768,9 @@ function* resetPasswordFlow({ payload }) {
     Utils.goTo({ pathname: '/login' });
   } catch (error) {
     yield put(resetPasswordFailure());
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     notification.error({
       message: LOCALE.RESET_PASSWORD_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -793,7 +823,9 @@ function* sendPaymentNotificationFlow({ payload }) {
     });
   } catch (error) {
     yield put(sendPaymentNotificationFailure());
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     notification.error({
       message: LOCALE.SEND_PAYMENT_NOTIFICATION_FAILURE_MESSAGE[locale],
       description: error.message,

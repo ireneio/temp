@@ -32,7 +32,7 @@ function* getProductFlow({ payload }) {
       productData,
     );
     if (product == null) {
-      throw new Error('There is no product of the id.');
+      yield put(getProductFailure('There is no product of the id.'));
     } else {
       // Get activities from computeOrderList
       // FIXME: when api join activities data in computeProductList
@@ -91,9 +91,9 @@ function* getProductFlow({ payload }) {
       yield put(getPagesSuccess(newPages));
     }
   } catch (error) {
-    if (!/There is no product of the id./g.test(error.message)) {
-      console.error(error);
-    }
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     yield put(getProductFailure(error.message));
   }
 }

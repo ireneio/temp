@@ -20,7 +20,9 @@ export default ({ XMeepshopDomain, url, userAgent }) => {
       query: url.query,
     };
   } catch (error) {
-    console.error(error);
+    console.error(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     return {};
   }
 };

@@ -41,20 +41,21 @@ function* serverIndexInitialFlow({ payload }) {
     const pages = Utils.getIn(['data', 'getPageList', 'data'])(data);
     const page =
       homePageId == null ? pages[0] : R.find(R.propEq('id', homePageId))(pages);
-    let modifiedPage;
     if (page) {
-      modifiedPage = yield Utils.getPageWithModifyWidget(
+      const modifiedPage = yield Utils.getPageWithModifyWidget(
         page,
         XMeepshopDomain,
         query,
         cookie,
       );
+      yield put(getPagesSuccess(modifiedPage));
     } else {
-      throw new Error('Index page is not found.');
+      yield put(getStoreFailure('Index page is not found.'));
     }
-    yield put(getPagesSuccess(modifiedPage));
   } catch (error) {
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     yield put(getStoreFailure(error.message));
   }
 }
@@ -88,20 +89,21 @@ function* serverPagesInitialFlow({ payload }) {
     yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
     yield put(getAuthSuccess(data));
     const page = Utils.getIn(['data', 'getPageList', 'data', 0])(data);
-    let modifiedPage;
     if (page) {
-      modifiedPage = yield Utils.getPageWithModifyWidget(
+      const modifiedPage = yield Utils.getPageWithModifyWidget(
         page,
         XMeepshopDomain,
         query,
         cookie,
       );
+      yield put(getPagesSuccess(modifiedPage));
     } else {
-      throw new Error('The page is not found.');
+      yield put(getStoreFailure('The page is not found.'));
     }
-    yield put(getPagesSuccess(modifiedPage));
   } catch (error) {
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     yield put(getStoreFailure(error.message));
   }
 }
@@ -138,7 +140,7 @@ function* serverProductInitialFlow({ payload }) {
       data,
     );
     if (product == null) {
-      throw new Error('There is no product of the id.');
+      yield put(getStoreFailure('There is no product of the id.'));
     } else {
       // Get activities from computeOrderList
       // FIXME: when api join activities data in computeProductList
@@ -184,23 +186,22 @@ function* serverProductInitialFlow({ payload }) {
         });
       }
       const page = Utils.getIn(['data', 'getPageList', 'data', 0])(pagesData);
-      let modifiedPage;
       if (page) {
-        modifiedPage = yield Utils.getPageWithModifyWidget(
+        const modifiedPage = yield Utils.getPageWithModifyWidget(
           page,
           XMeepshopDomain,
           query,
           cookie,
         );
+        yield put(getPagesSuccess(modifiedPage));
       } else {
-        throw new Error('Product page is not found.');
+        yield put(getStoreFailure('Product page is not found.'));
       }
-      yield put(getPagesSuccess(modifiedPage));
     }
   } catch (error) {
-    if (!/There is no product of the id./g.test(error.message)) {
-      console.error(error);
-    }
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     yield put(getStoreFailure(error.message));
   }
 }
@@ -231,20 +232,21 @@ function* serverProductsInitialFlow({ payload }) {
     yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
     yield put(getAuthSuccess(data));
     const page = Utils.getIn(['data', 'getPageList', 'data', 0])(data);
-    let modifiedPage;
     if (page) {
-      modifiedPage = yield Utils.getPageWithModifyWidget(
+      const modifiedPage = yield Utils.getPageWithModifyWidget(
         page,
         XMeepshopDomain,
         query,
         cookie,
       );
+      yield put(getPagesSuccess(modifiedPage));
     } else {
-      throw new Error('Products page is not found.');
+      yield put(getStoreFailure('Products page is not found.'));
     }
-    yield put(getPagesSuccess(modifiedPage));
   } catch (error) {
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     yield put(getStoreFailure(error.message));
   }
 }
@@ -275,7 +277,9 @@ function* serverOthersInitialFlow({ payload }) {
     yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
     yield put(getAuthSuccess(data));
   } catch (error) {
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     yield put(getStoreFailure(error.message));
   }
 }

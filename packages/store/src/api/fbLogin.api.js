@@ -30,10 +30,9 @@ export default async function(response) {
           return { status: 9999 };
       }
     } else {
-      throw new Error(`${res.status}: ${res.statusText}`);
+      throw new Error(`fbLgoin.api => ${res.status}: ${res.statusText}`);
     }
   } catch (error) {
-    console.error(error);
     return { error: error.message };
   }
 }

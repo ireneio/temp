@@ -34,7 +34,7 @@ module.exports = app.prepare().then(
       server.use(bodyParser.json());
       server.use(cookieParser());
 
-      server.get('/healthz', (req, res) => {
+      server.get('/healthz', (_, res) => {
         res.status(200).send(`Welcome to MeepShop-Store ${VERSION}`);
       });
 
@@ -67,7 +67,9 @@ module.exports = app.prepare().then(
           res.json({ isLoginSuccess: true });
         } catch (error) {
           res.json({ error: error.message });
-          console.error(error);
+          console.log(
+            `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+          );
         }
       });
 
@@ -93,7 +95,9 @@ module.exports = app.prepare().then(
           res.json(data);
         } catch (error) {
           res.json({ error: error.message });
-          console.error(error);
+          console.log(
+            `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+          );
         }
       });
 
@@ -131,7 +135,9 @@ module.exports = app.prepare().then(
           res.json(data);
         } catch (error) {
           res.json({ error: error.message });
-          console.error(error);
+          console.log(
+            `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+          );
         }
       });
 
@@ -265,7 +271,9 @@ module.exports = app.prepare().then(
             res.redirect(302, '/login');
           }
         } catch (error) {
-          console.error(error);
+          console.log(
+            `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+          );
           res.redirect(302, `/login?error=${error.message}`);
         }
       });
@@ -307,7 +315,9 @@ module.exports = app.prepare().then(
           res.json(data);
         } catch (error) {
           res.json({ error: error.message });
-          console.error(error);
+          console.log(
+            `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+          );
         }
       });
 

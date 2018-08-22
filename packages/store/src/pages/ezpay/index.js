@@ -110,10 +110,10 @@ class Ezpay extends React.Component {
     } = this.props;
 
     const { count } = this.state;
-    if (!order && count === 5) console.error('Ezpay cannot get order data.');
+    if (!order && count === 5) console.log('Ezpay cannot get order data.');
 
     return (
-      <React.Fragment>
+      <>
         <Head>
           <title>{storeName}</title>
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
@@ -131,7 +131,7 @@ class Ezpay extends React.Component {
             Loading...
           </div>
         )}
-      </React.Fragment>
+      </>
     );
   }
 }

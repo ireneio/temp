@@ -54,7 +54,9 @@ function* getPagesFlow({ payload }) {
 
     yield put(getPagesSuccess(newPages));
   } catch (error) {
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     yield put(getPagesFailure(error.message));
   }
 }

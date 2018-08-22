@@ -39,7 +39,9 @@ async function paymentOfAllpay(req, res) {
     const returnJson = await response.json();
     res.send(returnJson);
   } catch (error) {
-    console.error(error);
+    console.log(
+      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+    );
     res.json({ error: error.message });
   }
 }

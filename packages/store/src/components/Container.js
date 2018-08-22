@@ -4,12 +4,14 @@ import * as Api from 'api';
 import * as Utils from 'utils';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { isBrowser } from 'fbjs/lib/UserAgent';
+import { UserAgent } from 'fbjs';
 import Layout from '@meepshop/meep-ui/lib/layout';
 import { getJoinedUser, getStoreAppList } from 'selectors';
 import * as Actions from 'ducks/actions';
 
 import Spinner from './Spinner';
+
+const { isBrowser } = UserAgent;
 
 class Container extends React.Component {
   static propTypes = {
@@ -169,12 +171,20 @@ class Container extends React.Component {
                 console.log('Logged into your app and Facebook.');
                 /* Handle login after FB response */
                 const data = await Api.fbLogin(response.authResponse);
+
                 if (data.status === 200) {
-                  if (data.status === 201) {
-                    Utils.execTrackingCode('CompleteRegistration', {
-                      pageAdTrackIDs,
-                    });
+                  getAuth();
+                  if (from === 'cart') {
+                    Utils.goTo({ pathname: 'checkout' });
+                  } else if (window.storePreviousPageUrl) {
+                    Utils.goTo({ pathname: window.storePreviousPageUrl });
+                  } else {
+                    Utils.goTo({ pathname: '/' });
                   }
+                } else if (data.status === 201) {
+                  Utils.execTrackingCode('CompleteRegistration', {
+                    pageAdTrackIDs,
+                  });
                   getAuth();
                   if (from === 'cart') {
                     Utils.goTo({ pathname: 'checkout' });
@@ -192,15 +202,14 @@ class Container extends React.Component {
                 alert(
                   'The person is not logged into this app or we are unable to tell. ',
                 ); /* eslint-enable no-alert */
-                throw new Error(
-                  'The person is not logged into this app or we are unable to tell. ',
-                );
               }
             },
             { scope: 'public_profile,email' },
           );
         } catch (error) {
-          console.error(error);
+          console.log(
+            `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
+          );
         }
       } else if (fbAppId) {
         alert('未設定FB app ID'); // eslint-disable-line no-alert
@@ -251,7 +260,7 @@ class Container extends React.Component {
     } = this.props;
 
     return (
-      <React.Fragment>
+      <>
         <Spinner locale={locale} loading={loading} loadingTip={loadingTip} />
         <Layout
           /* never change */
@@ -291,7 +300,7 @@ class Container extends React.Component {
         >
           {children}
         </Layout>
-      </React.Fragment>
+      </>
     );
   }
 }

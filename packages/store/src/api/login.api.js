@@ -11,13 +11,11 @@ export default async function({ email, password }) {
     let data;
     if (res.status === 200) {
       data = await res.json();
-      if (data.error) throw new Error(data.error);
     } else {
-      throw new Error(`${res.status}: ${res.statusText}`);
+      throw new Error(`login.api => ${res.status}: ${res.statusText}`);
     }
     return data;
   } catch (error) {
-    console.error(error);
     return { error: error.message };
   }
 }
