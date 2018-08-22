@@ -8,7 +8,6 @@ import { notification } from 'antd';
  * @param variables
  */
 const getData = async (query, variables, retryTimes = 0) => {
-  console.log(retryTimes);
   try {
     const res = await fetch('/api', {
       method: 'post',
