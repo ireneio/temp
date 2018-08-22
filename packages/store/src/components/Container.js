@@ -108,13 +108,6 @@ class Container extends React.Component {
     window.addEventListener(
       'unhandledrejection',
       ({ reason: { message, stack } }) => {
-        if (
-          /(Failed to fetch)|(The person is not logged into this app or we are unable to tell.)/.test(
-            message,
-          )
-        )
-          return;
-
         fetch('/log', {
           method: 'post',
           headers: { 'content-type': 'application/json' },

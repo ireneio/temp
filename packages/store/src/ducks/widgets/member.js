@@ -116,7 +116,7 @@ export function* loginFlow({ payload }) {
 
       yield put(loginSuccess(memberData));
     } else {
-      console.log(`${res.error}`);
+      throw new Error(`${res.error}`);
     }
   } catch (error) {
     yield put(loginFailure());
