@@ -8,7 +8,7 @@ export default ({
   search,
   sort,
 }) => {
-  const [field, order] = sort.split('-');
+  const [field, order] = String(sort).split('-');
   const variables = {
     search: {
       size: parseInt(limit, 10),
@@ -40,7 +40,7 @@ export default ({
       ids: ids.split(','),
     });
 
-  if (search)
+  if (typeof search === 'string' && search !== '')
     variables.search.filter.or.push(
       {
         type: 'query_string',
@@ -62,12 +62,12 @@ export default ({
       query,
     }));
 
-    variables.search.filter.and.push(
-      includedAllTags ? tagsFilter : { or: tagsFilter },
+    variables.search.filter.and = variables.search.filter.and.concat(
+      includedAllTags ? tagsFilter : [{ or: tagsFilter }],
     );
   }
 
-  if (price) {
+  if (typeof price === 'string' && price !== '') {
     const [gte, lte] = price.split(',');
 
     variables.search.filter.and.push({
@@ -81,69 +81,69 @@ export default ({
 
   return [
     `query ProductList($search: searchInputObjectType) {
-  computeProductList(
-    search: $search
-  ) {
-    data {
-      id
-      status
-      title {
-        zh_TW
-        en_US
-      }
-      description {
-        zh_TW
-        en_US
-      }
-      variants {
-        id
-        specs {
+      computeProductList(
+        search: $search
+      ) {
+        data {
           id
-          specId
+          status
           title {
             zh_TW
             en_US
           }
+          description {
+            zh_TW
+            en_US
+          }
+          variants {
+            id
+            specs {
+              id
+              specId
+              title {
+                zh_TW
+                en_US
+              }
+            }
+            stock
+            maxPurchaseLimit
+            minPurchaseItems
+            sku
+            listPrice
+            retailPrice
+            suggestedPrice
+            discountPrice
+            totalPrice
+          }
+          specs {
+            id
+            title {
+              zh_TW
+              en_US
+            }
+          }
+          design {
+            pageId
+            templateId
+          }
+          contentGallery {
+            media
+          }
+          contentGalleryInfo {
+            media
+          }
+          gallery {
+            mainId
+            media
+          }
+          galleryInfo {
+            mainId
+            media
+          }
         }
-        stock
-        maxPurchaseLimit
-        minPurchaseItems
-        sku
-        listPrice
-        retailPrice
-        suggestedPrice
-        discountPrice
-        totalPrice
+        total
       }
-      specs {
-        id
-        title {
-          zh_TW
-          en_US
-        }
-      }
-      design {
-        pageId
-        templateId
-      }
-      contentGallery {
-        media
-      }
-      contentGalleryInfo {
-        media
-      }
-      gallery {
-        mainId
-        media
-      }
-      galleryInfo {
-        mainId
-        media
-      }
-    }
-    total
-  }
-}`,
+    }`,
     variables,
   ];
 };
