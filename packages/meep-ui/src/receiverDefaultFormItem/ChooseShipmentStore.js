@@ -182,7 +182,7 @@ export default class ChooseShipmentStore extends React.PureComponent {
     } = this.props;
     const { tradeNo, ezship, allpay } = this.state;
 
-    if (!tradeNo) return null;
+    if (!tradeNo || !(ezship || allpay)) return null;
 
     const { getFieldDecorator } = form;
     const url = getApiUrl(`/external/${shipmentTemplate}/map/${tradeNo}`);
