@@ -1,3 +1,14 @@
+## 0.2.51 (2018-08-23)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#151](https://github.com/meepshop/meep-lerna/pull/151) 一頁式購物車：修正選擇金物流時的錯誤(N118) ([@HsuTing](https://github.com/HsuTing))
+  * [#153](https://github.com/meepshop/meep-lerna/pull/153) 產品列表：修正query error(400 Bad request) ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.2.50 (2018-08-22)
 
 #### :house: Internal
