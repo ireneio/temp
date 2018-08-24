@@ -282,6 +282,7 @@ module.exports = app.prepare().then(
         const XMeepshopDomain = PRODUCTION ? req.headers.host : DOMAIN;
         const XMeepshopDomainToken =
           req.cookies['x-meepshop-authorization-token'];
+
         try {
           const response = await fetch(`${API_HOST}/graphql`, {
             method: 'post',
@@ -294,17 +295,16 @@ module.exports = app.prepare().then(
             credentials: 'include',
             body: JSON.stringify(req.body),
           });
-          let data;
-          if (response.status === 200) {
-            data = await response.json();
-          } else {
-            data = await response.json();
+
+          const data = await response.json();
+
+          if (response.status !== 200)
             throw new Error(
               `${response.status}: ${response.statusText}(api) ${
                 data.errors[0].message
               }`,
             );
-          }
+
           if (!XMeepshopDomainToken) {
             res.cookie(
               'x-meepshop-authorization-token',
@@ -312,9 +312,21 @@ module.exports = app.prepare().then(
               { expires: new Date(Date.now() + 86380000 * 7), httpOnly: true },
             );
           }
+
+          /** FIXME: trace createOrderList is null and errors is null. */
+          if (data.createOrderList === null && data.errors)
+            console.log(
+              `#LOG#(${XMeepshopDomain}) >>>  ${JSON.stringify({
+                ...req.body,
+                name: 'trace createOrderList null',
+              })}`,
+            );
+          /** [end] */
+
           res.json(data);
         } catch (error) {
           res.json({ error: error.message });
+
           console.log(
             `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
           );
