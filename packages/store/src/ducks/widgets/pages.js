@@ -3,6 +3,7 @@ import * as R from 'ramda';
 import * as Utils from 'utils';
 import modifyWidgetDataInClient from 'utils/modifyWidgetDataInClient';
 import * as Api from 'api';
+import uuid from 'uuid/v4';
 
 /* ********************************** 取得頁面資料 ********************************** */
 const FETCH_PAGES_REQUEST = 'FETCH_PAGES_REQUEST';
@@ -44,6 +45,7 @@ function* getPagesFlow({ payload }) {
         )
         .map(({ width, componentWidth, widgets, ...block }) => ({
           ...block,
+          id: uuid(),
           width: [0, null].includes(width) ? 100 : width,
           componentWidth: componentWidth === null ? 0 : componentWidth,
           // 整理及過濾Client-side rendering時的module資料，未來有可能在api server就幫前端整理好

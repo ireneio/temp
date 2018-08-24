@@ -1,5 +1,6 @@
 import getConfig from 'next/config';
 import * as Api from 'api';
+import uuid from 'uuid/v4';
 
 const {
   publicRuntimeConfig: { API_HOST },
@@ -24,7 +25,6 @@ export default async function modifyWidgetDataInServer(
           /* 產品列表 */
           case 'products': {
             const {
-              id,
               contentWidth,
               params: {
                 ids,
@@ -50,7 +50,7 @@ export default async function modifyWidgetDataInServer(
               notBeDeleted,
             } = widget;
             return {
-              id,
+              id: uuid(),
               module: notBeDeleted ? 'products' : 'products-controlled',
               contentWidth,
               params: {
@@ -79,7 +79,7 @@ export default async function modifyWidgetDataInServer(
           /* 產品組合 */
           case 'product': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               showButton: widget.showButton,
@@ -87,10 +87,10 @@ export default async function modifyWidgetDataInServer(
           }
           /* 產品主圖 */
           case 'product-carousell': {
-            const { id, module, contentWidth, carouselInfo } = widget;
+            const { module, contentWidth, carouselInfo } = widget;
 
             return {
-              id,
+              id: uuid(),
               module,
               contentWidth,
               autoPlay: carouselInfo ? carouselInfo.autoPlay : false,
@@ -102,7 +102,7 @@ export default async function modifyWidgetDataInServer(
           /* 產品資訊 */
           case 'product-info': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               showButton: widget.showButton,
@@ -111,7 +111,7 @@ export default async function modifyWidgetDataInServer(
           /* 產品照片集 */
           case 'product-collections': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               align: widget.align || 'original',
@@ -123,7 +123,7 @@ export default async function modifyWidgetDataInServer(
           /* 產品語法嵌入 */
           case 'product-html': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
             };
@@ -131,7 +131,7 @@ export default async function modifyWidgetDataInServer(
           /* 商品問答 */
           case 'product-service': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               productId: query.pId,
@@ -140,7 +140,7 @@ export default async function modifyWidgetDataInServer(
           /* 圖片 */
           case 'image': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               alignment: widget.alignment,
@@ -151,7 +151,7 @@ export default async function modifyWidgetDataInServer(
           /* 語法嵌入 */
           case 'iframe': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               htmlCode: widget.htmlCode || '',
@@ -160,7 +160,7 @@ export default async function modifyWidgetDataInServer(
           /* 地圖 */
           case 'googlemap': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               href: widget.href,
@@ -171,7 +171,7 @@ export default async function modifyWidgetDataInServer(
           /* 輪播圖 */
           case 'carousel': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               htmlCode: widget.htmlCode,
@@ -186,7 +186,7 @@ export default async function modifyWidgetDataInServer(
           /* 分隔線 */
           case 'divider': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               background: widget.background,
@@ -199,7 +199,7 @@ export default async function modifyWidgetDataInServer(
           /* 直播留言 */
           case 'liveVideoComments': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               liveVideo: widget.liveVideo,
@@ -208,7 +208,7 @@ export default async function modifyWidgetDataInServer(
           /* 影片嵌入 */
           case 'video-core': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               aspect: widget.aspect,
@@ -218,7 +218,7 @@ export default async function modifyWidgetDataInServer(
           /* 臉書按讚 */
           case 'social-thumbs': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               alignment: widget.socialMediaInfo.alignItems,
@@ -228,7 +228,7 @@ export default async function modifyWidgetDataInServer(
           /* 臉書牆 */
           case 'facebook-wall': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               href: widget.href,
@@ -278,7 +278,7 @@ export default async function modifyWidgetDataInServer(
               [productData] = data.computeProductList.data;
             }
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.width,
               redirectPage: widget.landingInfo.redirectPage || '/',
@@ -295,7 +295,7 @@ export default async function modifyWidgetDataInServer(
           /* 社群分享 */
           case 'social-media': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               href: widget.socialMediaInfo.share.url,
               alignment: widget.socialMediaInfo.alignItems,
@@ -304,7 +304,7 @@ export default async function modifyWidgetDataInServer(
           /* 圖文 */
           case 'imagetext': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               button: widget.button,
@@ -321,7 +321,7 @@ export default async function modifyWidgetDataInServer(
           /* 文字 */
           case 'draft-text': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               value: widget.value || '',
@@ -330,7 +330,7 @@ export default async function modifyWidgetDataInServer(
           /* 折扣活動 */
           case 'activity': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               background: widget.background,
@@ -340,7 +340,7 @@ export default async function modifyWidgetDataInServer(
           }
           case 'menu': {
             return {
-              id: widget.id,
+              id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,
               menuId: widget.menuId,
@@ -351,6 +351,7 @@ export default async function modifyWidgetDataInServer(
         }
       }
       return {
+        id: uuid(),
         widgets: await modifyWidgetDataInServer(
           widget.widgets,
           XMeepshopDomain,

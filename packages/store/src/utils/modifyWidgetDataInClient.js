@@ -1,4 +1,5 @@
 import * as Api from 'api';
+import uuid from 'uuid/v4';
 
 /**
  * 暫時由前端join與filter各個module欄位
@@ -13,7 +14,6 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 產品列表 */
         case 'products': {
           const {
-            id,
             contentWidth,
             params: {
               ids,
@@ -39,7 +39,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
             notBeDeleted,
           } = widget;
           return {
-            id,
+            id: uuid(),
             module: notBeDeleted ? 'products' : 'products-controlled',
             contentWidth,
             params: {
@@ -68,7 +68,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 產品組合 */
         case 'product': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             contentWidth: widget.contentWidth,
             showButton: widget.showButton,
@@ -76,9 +76,9 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         }
         /* 產品主圖 */
         case 'product-carousell': {
-          const { id, module, contentWidth, carouselInfo } = widget;
+          const { module, contentWidth, carouselInfo } = widget;
           return {
-            id,
+            id: uuid(),
             module,
             contentWidth,
             autoPlay: carouselInfo ? carouselInfo.autoPlay : false,
@@ -88,7 +88,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 產品資訊 */
         case 'product-info': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             contentWidth: widget.contentWidth,
             showButton: widget.showButton,
@@ -97,7 +97,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 產品照片集 */
         case 'product-collections': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             contentWidth: widget.contentWidth,
             align: widget.align || 'original',
@@ -109,7 +109,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 產品語法嵌入 */
         case 'product-html': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             contentWidth: widget.contentWidth,
           };
@@ -117,7 +117,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 商品問答 */
         case 'product-service': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             contentWidth: widget.contentWidth,
             productId: query.pId,
@@ -126,7 +126,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 圖片 */
         case 'image': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             alignment: widget.alignment,
             contentWidth: widget.contentWidth,
@@ -137,7 +137,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 語法嵌入 */
         case 'iframe': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             htmlCode: widget.htmlCode || '',
           };
@@ -145,7 +145,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 地圖 */
         case 'googlemap': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             href: widget.href,
             width: widget.width,
@@ -155,7 +155,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 輪播圖 */
         case 'carousel': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             contentWidth: widget.contentWidth,
             htmlCode: widget.htmlCode,
@@ -170,7 +170,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 分隔線 */
         case 'divider': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             background: widget.background,
             width: widget.width,
@@ -182,7 +182,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 直播留言 */
         case 'liveVideoComments': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             contentWidth: widget.contentWidth,
             liveVideo: widget.liveVideo,
@@ -191,7 +191,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 影片嵌入 */
         case 'videoCore': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             contentWidth: widget.contentWidth,
             aspect: widget.aspect,
@@ -201,7 +201,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 臉書按讚 */
         case 'social-thumbs': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             alignment: widget.socialMediaInfo.alignItems,
             href: widget.socialMediaInfo.share.url,
@@ -210,7 +210,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 臉書牆 */
         case 'facebook-wall': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             href: widget.href,
             alignment: widget.alignment,
@@ -225,7 +225,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 一頁式購物車 */
         case 'landing-page': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             contentWidth: widget.width,
             redirectPage: widget.landingInfo.redirectPage || '/',
@@ -246,7 +246,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 社群分享 */
         case 'social-media': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             href: widget.socialMediaInfo.share.url,
             alignment: widget.socialMediaInfo.alignItems,
@@ -255,7 +255,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 圖文 */
         case 'imagetext': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             contentWidth: widget.contentWidth,
             button: widget.button,
@@ -272,7 +272,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 文字 */
         case 'draft-text': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             value: widget.value || '',
           };
@@ -280,7 +280,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 折扣活動 */
         case 'activity': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             contentWidth: widget.contentWidth,
             background: widget.background,
@@ -290,7 +290,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         }
         case 'menu': {
           return {
-            id: widget.id,
+            id: uuid(),
             module: widget.module,
             contentWidth: widget.contentWidth,
             menuId: widget.menuId,
@@ -300,7 +300,10 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
           return widget;
       }
     }
-    return { widgets: modifyWidgetDataInClient(widget.widgets, query) };
+    return {
+      id: uuid(),
+      widgets: modifyWidgetDataInClient(widget.widgets, query),
+    };
   });
   return mWidgets;
 }

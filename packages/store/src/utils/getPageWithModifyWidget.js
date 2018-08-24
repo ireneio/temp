@@ -1,4 +1,5 @@
 import * as R from 'ramda';
+import uuid from 'uuid/v4';
 
 import getIn from './getIn';
 import modifyWidgetDataInServer from './modifyWidgetDataInServer';
@@ -13,6 +14,7 @@ export default async function(page, XMeepshopDomain, query, cookie) {
   blocks = await Promise.all(
     blocks.map(async ({ width, componentWidth, widgets, ...block }) => ({
       ...block,
+      id: uuid(),
       width: [0, null, undefined].includes(width) ? 100 : width,
       componentWidth: componentWidth || 0,
       // 整理及過濾Server-side rendering時的module資料，未來有可能在api server就幫前端整理好

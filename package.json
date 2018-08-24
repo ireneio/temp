@@ -21,7 +21,8 @@
     "antd": "^3.4.1",
     "radium": "^0.23.0",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.54",
