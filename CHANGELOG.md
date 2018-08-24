@@ -1,3 +1,12 @@
+## 0.2.52 (2018-08-24)
+
+#### :bug: Bug Fix
+* `store`
+  * [#156](https://github.com/meepshop/meep-lerna/pull/156) 修正頁面blocks, widgets ID相同時的render problem(複製頁面造成) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.51 (2018-08-23)
 
 #### :bug: Bug Fix
