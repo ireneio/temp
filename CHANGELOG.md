@@ -1,3 +1,12 @@
+## 0.2.53 (2018-08-24)
+
+#### :house: Internal
+* `store`
+  * [#158](https://github.com/meepshop/meep-lerna/pull/158) perf(store): log createOrder null ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.2.52 (2018-08-24)
 
 #### :bug: Bug Fix
