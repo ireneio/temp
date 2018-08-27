@@ -1,3 +1,12 @@
+## 0.2.54 (2018-08-27)
+
+#### :rocket: New Feature
+* `meep-ui`, `store`
+  * [#154](https://github.com/meepshop/meep-lerna/pull/154) 1997 【優化】會員資料 - 取消訂閱電子報 UI ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.2.53 (2018-08-24)
 
 #### :house: Internal
