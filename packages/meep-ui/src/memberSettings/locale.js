@@ -131,3 +131,11 @@ export const PLACEHOLDER = {
   vi_VN: 'quốc gia / thành phố / quận',
   TODO_LOCALE: true,
 };
+
+export const NEWSLETTER = {
+  zh_TW: '訂閱商店資訊及優惠方案',
+  en_US: 'Subscribe Newsletter',
+  ja_JP: 'ニュースレターを購読する',
+  vi_VN: 'Đăng kí báo tin qua điện thoại',
+  TODO_LOCALE: true,
+};

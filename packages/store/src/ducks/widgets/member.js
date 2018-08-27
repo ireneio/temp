@@ -877,6 +877,7 @@ const getUser = _user => {
   const month = Utils.getIn(['birthday', 'month'])(_user) || null;
   const day = Utils.getIn(['birthday', 'day'])(_user) || null;
   const recipientData = Utils.getIn(['recipientData'])(_user) || [];
+  const userNotification = _user.notification || null;
   return {
     id,
     name,
@@ -901,6 +902,7 @@ const getUser = _user => {
       day,
     },
     recipientData,
+    notification: userNotification,
   };
 };
 

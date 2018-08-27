@@ -33,6 +33,11 @@ const userQuery = `
       }
     }
   }
+  notification {
+    newsletters {
+      cancelEmail
+    }
+  }
 `;
 
 export default userQuery;

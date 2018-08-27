@@ -1,7 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { enhancer } from 'layout/DecoratorsRoot';
-import { Form, Input, Button, Select, DatePicker, Popconfirm } from 'antd';
+import {
+  Form,
+  Input,
+  Button,
+  Select,
+  DatePicker,
+  Popconfirm,
+  Checkbox,
+} from 'antd';
 import moment from 'moment';
 
 import AddressCascader from 'addressCascader';
@@ -78,6 +86,7 @@ export default class MemberSettingsView extends React.PureComponent {
           birthday,
           address,
           street = null,
+          isNotCancelEmail,
         } = values;
         let year = null;
         let month = null;
@@ -110,6 +119,11 @@ export default class MemberSettingsView extends React.PureComponent {
                 },
               },
             },
+            notification: {
+              newsletters: {
+                cancelEmail: !isNotCancelEmail,
+              },
+            },
           },
         });
       }
@@ -134,6 +148,7 @@ export default class MemberSettingsView extends React.PureComponent {
             yahooCode: { country, city, county, street },
           },
         },
+        notification,
       },
       colors,
     } = this.props;
@@ -248,6 +263,12 @@ export default class MemberSettingsView extends React.PureComponent {
                 placeholder={transformLocale(LOCALE.ADDRESS)}
               />,
             )}
+          </div>
+          <div className={styles.row}>
+            {getFieldDecorator('isNotCancelEmail', {
+              initialValue: !notification?.newsletters?.cancelEmail,
+              valuePropName: 'checked',
+            })(<Checkbox>{transformLocale(LOCALE.NEWSLETTER)}</Checkbox>)}
           </div>
           <div>
             <Popconfirm
