@@ -116,14 +116,21 @@ const getPageAdTrackIds = data => {
   let gtmID = null;
   if (webTrackList) {
     webTrackList.forEach(webTrack => {
-      const { trackType } = webTrack;
-      if (trackType === 'google_webmaster') {
-        webMasterID = webTrack.trackId;
-      } else if (trackType === 'google_tag_manager') {
-        gtmID =
-          (Utils.getIn(['trackPage', 0, 'status'])(webTrack) &&
-            Utils.getIn(['trackPage', 0, 'codeInfo', 'id'])(webTrack)) ||
-          null;
+      switch (webTrack?.trackType) {
+        case 'google_webmaster': {
+          webMasterID = webTrack.trackId || null;
+          break;
+        }
+        case 'google_tag_manager': {
+          const status = webTrack.trackPage?.[0]?.status;
+          const trackCode = webTrack.trackPage?.[0]?.trackCode;
+          if (status && trackCode) {
+            gtmID = trackCode.match(/GTM-.*(?=('\)|"))/gm)?.[0];
+          }
+          break;
+        }
+        default:
+          break;
       }
     });
   }
