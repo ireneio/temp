@@ -314,11 +314,10 @@ module.exports = app.prepare().then(
           }
 
           /** FIXME: trace createOrderList is null and errors is null. */
-          if (data.createOrderList === null && data.errors)
+          if (data.createOrderList === null && !data.errors)
             console.log(
-              `#LOG#(${XMeepshopDomain}) >>>  ${JSON.stringify({
+              `#CREATE_ORDER#(${XMeepshopDomain}) >>>  ${JSON.stringify({
                 ...req.body,
-                name: 'trace createOrderList null',
               })}`,
             );
           /** [end] */
