@@ -1,3 +1,15 @@
+## 0.2.57 (2018-08-28)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#167](https://github.com/meepshop/meep-lerna/pull/167) 結帳頁：修正當切換語言造成地址欄error ([@HsuTing](https://github.com/HsuTing))
+* `store`
+  * [#166](https://github.com/meepshop/meep-lerna/pull/166) 修正server-side & client-side 畫面不一致 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.56 (2018-08-28)
 
 #### :bug: Bug Fix
