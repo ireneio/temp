@@ -1,3 +1,21 @@
+## 0.2.55 (2018-08-28)
+
+#### :boom: Breaking Change
+* `meep-ui`, `store`
+  * [#144](https://github.com/meepshop/meep-lerna/pull/144) pref(root): Remove babel polyfill ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+* `store`
+  * [#164](https://github.com/meepshop/meep-lerna/pull/164) fix(store): get gtmId from trackCode (N127) ([@barrypeng6](https://github.com/barrypeng6))
+  * [#163](https://github.com/meepshop/meep-lerna/pull/163) fix(store): add path for set-cookie ([@barrypeng6](https://github.com/barrypeng6))
+  * [#161](https://github.com/meepshop/meep-lerna/pull/161) fix(store): cannot read property templateId ([@barrypeng6](https://github.com/barrypeng6))
+* `meep-ui`
+  * [#162](https://github.com/meepshop/meep-lerna/pull/162) 結帳頁面：國家選項 日 / 越 翻譯（N114） ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.54 (2018-08-27)
 
 #### :rocket: New Feature
