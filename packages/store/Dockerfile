@@ -3,12 +3,17 @@ FROM node:9.11.1
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
+# add patch
+RUN mkdir ./patches
+COPY ./patches/regenerator-runtime+0.12.1.patch ./patches/regenerator-runtime+0.12.1.patch
+
 # Add app dependencies
 # modify dependencies in .circleci/bin/addOtherDependencies.js
 COPY ./store/src ./src
 COPY ./store/package.json ./package.json
 COPY ./store/next.config.js ./next.config.js
 RUN npm install {{ dependencies }}
+RUN npm run postinstall
 RUN npm install --production
 
 # copy @meepshop/meep-ui

@@ -89,6 +89,7 @@ jobs:
       - run:
           name: Deploy docker
           command: |
+            cp -r ./patches ./packages/patches
             npm run lerna -- exec \
               "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/build_docker.sh ${CIRCLE_TAG}" \
               --parallel \

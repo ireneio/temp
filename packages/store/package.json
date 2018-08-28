@@ -4,6 +4,7 @@
   "version": "0.2.55",
   "description": "store for meepshop",
   "scripts": {
+    "postinstall": "patch-package",
     "dev": "node --inspect src/server/server.js",
     "prod": "next build ./src",
     "clean": "rm -rf ./src/.next",

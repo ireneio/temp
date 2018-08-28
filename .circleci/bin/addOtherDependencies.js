@@ -17,7 +17,7 @@ const modules = { ...devDependencies, ...dependencies };
 const otherDevDependencies = (() => {
   switch (packageName) {
     case '@meepshop/store':
-      return ['next'];
+      return ['next', 'patch-package'];
     default:
       return [];
   }
