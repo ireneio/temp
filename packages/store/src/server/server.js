@@ -57,19 +57,23 @@ module.exports = app.prepare().then(
           if (response.status === 200) {
             data = await response.json();
           } else {
-            throw new Error(`${response.status}: ${response.statusText}(api)`);
+            throw new Error(
+              `${response.status}: ${response.statusText}(signin)`,
+            );
           }
-          if (data.error) throw new Error(data.error);
+          if (data.error) {
+            res.json({ error: data.error });
+          }
           res.cookie('x-meepshop-authorization-token', data.token, {
             expires: new Date(Date.now() + 86380000 * 7),
             httpOnly: true,
           });
           res.json({ isLoginSuccess: true });
         } catch (error) {
-          res.json({ error: error.message });
           console.log(
             `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
           );
+          res.json({ error: error.message });
         }
       });
 
@@ -89,7 +93,9 @@ module.exports = app.prepare().then(
             data = { msg: 'logout success' };
           } else {
             data = { msg: 'logout fails.' };
-            throw new Error(`${response.status}: ${response.statusText}(api)`);
+            throw new Error(
+              `${response.status}: ${response.statusText}(signout)`,
+            );
           }
           res.cookie('x-meepshop-authorization-token', '', { httpOnly: true });
           res.json(data);
@@ -300,7 +306,7 @@ module.exports = app.prepare().then(
 
           if (response.status !== 200)
             throw new Error(
-              `${response.status}: ${response.statusText}(api) ${
+              `${response.status}: ${response.statusText}(graphql) ${
                 data.errors[0].message
               }`,
             );
