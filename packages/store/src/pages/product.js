@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import * as R from 'ramda';
 import { connect } from 'react-redux';
 import * as Utils from 'utils';
 import { Container, TrackingCodeHead, Error } from 'components';
@@ -30,22 +29,21 @@ class Product extends React.Component {
       );
     } else {
       const { pagesReducer, productsReducer } = store.getState();
-      const product = R.find(R.propEq('id', pId))(productsReducer);
-      if (R.isNil(product)) {
+      const product = productsReducer.find(_product => _product?.id === pId);
+      if (!product) {
         store.dispatch(Actions.getProduct({ id: pId, query }));
-      } else if (
-        (!Utils.getIn(['design'])(product) ||
-          (!Utils.getIn(['design', 'pageId'])(product) &&
-            !Utils.getIn(['design', 'templateId'])(product))) &&
-        R.isNil(R.find(R.propEq('pageType', 'template'))(pagesReducer))
-      ) {
-        store.dispatch(Actions.getPages({ pageType: 'template', query }));
       } else {
-        const { templateId, pageId } = Utils.getIn(['design'])(product);
-        const id = templateId || pageId;
-
-        if (R.isNil(R.find(R.propEq('id', id))(pagesReducer))) {
+        // 有商品資料
+        const id = product?.design?.templateId || product?.design?.pageId;
+        if (id && !pagesReducer.find(page => page?.id === id)) {
+          // 有版型頁面資料，但無存在store中，需取該id之版型
           store.dispatch(Actions.getPages({ id, query }));
+        } else if (
+          !id &&
+          !pagesReducer.find(page => page?.pageType === 'template')
+        ) {
+          // 無版型頁面資料，且store中無任何版型，需取一版型
+          store.dispatch(Actions.getPages({ pageType: 'template', query }));
         }
       }
     }
@@ -113,7 +111,7 @@ class Product extends React.Component {
     const { keywords, description, image } = page.seo || {};
 
     return (
-      <React.Fragment>
+      <>
         <Head>
           <title>{productName || storeName}</title>
           <meta
@@ -152,7 +150,7 @@ class Product extends React.Component {
         ) : (
           <ProductDiscontinued productName={productName} locale={locale} />
         )}
-      </React.Fragment>
+      </>
     );
   }
 }
@@ -163,11 +161,10 @@ const mapStateToProps = (state, props) => {
   if (error) return { error };
 
   return {
-    storeSetting: Utils.getIn(['storeReducer', 'settings'])(state),
-    pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
+    storeSetting: state?.storeReducer?.settings,
+    pageAdTrackIDs: state?.storeReducer?.pageAdTrackIDs,
     location: Utils.uriParser(props),
-    fbAppId:
-      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
+    fbAppId: state?.storeReducer?.appLogins?.[0]?.appId,
     page: getJoinedPageInProductRoute(state, props),
     // !!Note: product page ONLY
     product: getProduct(state, props),
