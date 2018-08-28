@@ -1,3 +1,12 @@
+## 0.2.56 (2018-08-28)
+
+#### :bug: Bug Fix
+* `store`
+  * [#165](https://github.com/meepshop/meep-lerna/pull/165) fix(store): hot fix regenerator-runtime ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.2.55 (2018-08-28)
 
 #### :boom: Breaking Change
