@@ -5,6 +5,7 @@
   "description": "meep-ui for meepshop",
   "scripts": {
     "babel": "babel",
+    "postinstall": "rm -rf ./node_modules/regenerator-runtime",
     "build:tool": "make build-tool",
     "build:files": "node ./lib/__tool__/bin/build.js",
     "storybook": "concurrently -c green \"start-storybook -p 6006\" \"npm run build:files -- -w -m storybook\"",

@@ -29,12 +29,6 @@ export default class MyDocument extends Document {
             name="viewport"
             content="width=device-width, initial-scale=1, user-scalable=no"
           />
-          {/* TODO: check if the browser needs babel-polyfill */}
-          <script
-            defer
-            async
-            src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"
-          />
           <link
             rel="stylesheet"
             type="text/css"

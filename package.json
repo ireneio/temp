@@ -25,15 +25,16 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.54",
-    "@babel/core": "^7.0.0-beta.54",
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.54",
-    "@babel/plugin-proposal-decorators": "^7.0.0-beta.54",
-    "@babel/plugin-proposal-export-default-from": "^7.0.0-beta.54",
-    "@babel/plugin-proposal-optional-chaining": "^7.0.0-beta.54",
-    "@babel/polyfill": "^7.0.0-beta.54",
-    "@babel/preset-env": "^7.0.0-beta.54",
-    "@babel/preset-react": "^7.0.0-beta.54",
+    "@babel/cli": "^7.0.0-rc.1",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-decorators": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0-rc.1",
+    "@babel/polyfill": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/preset-react": "^7.0.0-rc.1",
+    "@babel/runtime": "^7.0.0-rc.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.6",
     "babel-jest": "^23.0.1",
@@ -61,7 +62,8 @@
     "next": "^6.1.1",
     "output-file-sync": "^2.0.1",
     "patch-package": "^5.1.1",
-    "prettier": "^1.13.5"
+    "prettier": "^1.13.5",
+    "regenerator-runtime": "^0.12.1"
   },
   "engines": {
     "node": ">=8.6.0",

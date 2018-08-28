@@ -1,8 +1,9 @@
 #!/bin/bash
 
-packages=$(ls ./packages)
-
 cat ./package.json >> lerna-package.json
-for package in $packages; do
+for package in $(ls ./packages); do
   cat ./packages/$package/package.json >> lerna-package.json
+done
+for patch in $(ls ./patches); do
+  cat ./patches/$patch >> lerna-package.json
 done
