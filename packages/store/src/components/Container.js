@@ -128,14 +128,14 @@ class Container extends React.Component {
   setLocale = id => {
     const { setLocale } = this.props;
 
-    document.cookie = `locale=${id}`;
+    document.cookie = `locale=${id}; path=/`;
     setLocale(id);
   };
 
   setCustomerCurrency = id => {
     const { setCustomerCurrency } = this.props;
 
-    document.cookie = `currency=${id}`;
+    document.cookie = `currency=${id}; path=/`;
     setCustomerCurrency(id);
   };
 
