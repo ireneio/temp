@@ -1,16 +1,12 @@
 import * as LOCALE from 'locale/country';
 
-import { DEFAULT_COUNTRY } from '../constants';
+const DEFAULT_COUNTRY = Object.keys(LOCALE).map(key => LOCALE[key]);
 
-export default ({ transformLocale, lockedCountry }) => {
-  const selectedCountry =
-    lockedCountry.length === 0
-      ? DEFAULT_COUNTRY
-      : DEFAULT_COUNTRY.filter(country =>
-          lockedCountry.includes(country.zh_TW),
-        );
-
-  return selectedCountry.map(country => {
+export default ({ transformLocale, lockedCountry }) =>
+  (lockedCountry.length === 0
+    ? DEFAULT_COUNTRY
+    : DEFAULT_COUNTRY.filter(country => lockedCountry.includes(country.zh_TW))
+  ).map(country => {
     const countryValue = transformLocale(country);
 
     return {
@@ -19,4 +15,3 @@ export default ({ transformLocale, lockedCountry }) => {
       isLeaf: countryValue !== transformLocale(LOCALE.TAIWAN),
     };
   });
-};

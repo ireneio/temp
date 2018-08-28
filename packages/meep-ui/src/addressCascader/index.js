@@ -16,22 +16,19 @@ export default class AddressCascader extends React.PureComponent {
 
   static propTypes = {
     transformLocale: PropTypes.func.isRequired,
-    defaultValue: PropTypes.arrayOf(PropTypes.string.isRequired),
-    value: PropTypes.arrayOf(PropTypes.string.isRequired),
     lockedCountry: PropTypes.arrayOf(COUNTRY_TYPE.isRequired),
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
-    defaultValue: null,
-    value: null,
     lockedCountry: [],
+    onChange: () => {},
   };
 
   state = {
     popupVisible: false,
     shouldPopupVisible: false,
-    // eslint-disable-next-line react/destructuring-assignment
+    // eslint-disable-next-line react/destructuring-assignment, react/prop-types
     value: this.props.defaultValue || this.props.value || [],
     areaList: getDefaultAreaList(this.props),
   };
@@ -57,14 +54,22 @@ export default class AddressCascader extends React.PureComponent {
   }
 
   onPopupVisibleChange = shouldPopupVisible => {
-    if (!shouldPopupVisible) {
+    if (!shouldPopupVisible)
       return this.setState({
         shouldPopupVisible,
         popupVisible: shouldPopupVisible,
       });
-    }
 
-    const { areaList } = this.state;
+    const { onChange } = this.props;
+    const { areaList, value } = this.state;
+
+    if (
+      value.length !== 0 &&
+      !areaList.find(({ value: areaValue }) => areaValue === value[0])
+    ) {
+      onChange([]);
+      return this.setState({ shouldPopupVisible, value: [] });
+    }
 
     return this.setState({ shouldPopupVisible }, () =>
       this.checkValueIsInAreaList(areaList, 0),
@@ -87,12 +92,10 @@ export default class AddressCascader extends React.PureComponent {
 
     selectedItem.loading = true;
 
-    // TODO: modified street API
     const data = await fetchStreamName(selectedItems.map(({ value }) => value));
 
     if (this.isUnmounted) return;
 
-    this.prevLoadItem = selectedItems;
     selectedItem.loading = false;
     selectedItem.children = data.map(value => ({
       label: value,
@@ -102,6 +105,7 @@ export default class AddressCascader extends React.PureComponent {
 
     const { areaList } = this.state;
 
+    this.prevLoadItem = selectedItems;
     this.setState({ areaList: [...areaList] });
   };
   /* eslint-enable no-param-reassign */
@@ -120,12 +124,12 @@ export default class AddressCascader extends React.PureComponent {
 
     if (!area && preAreaItem.length !== 0) return this.loadData(preAreaItem);
 
-    if (value[index + 1]) {
+    if (value[index + 1])
       return this.checkValueIsInAreaList(area.children, index + 1, [
         ...preAreaItem,
         area,
       ]);
-    }
+
     return this.setState({ popupVisible: shouldPopupVisible });
   };
 
