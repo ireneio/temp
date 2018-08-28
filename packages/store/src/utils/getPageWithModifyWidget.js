@@ -15,7 +15,7 @@ export default async function(page, XMeepshopDomain, query, cookie) {
     blocks.map(async ({ width, componentWidth, widgets, ...block }) => ({
       ...block,
       id: uuid(),
-      width: [0, null, undefined].includes(width) ? 100 : width,
+      width: width || 100,
       componentWidth: componentWidth || 0,
       // 整理及過濾Server-side rendering時的module資料，未來有可能在api server就幫前端整理好
       widgets: await modifyWidgetDataInServer(
