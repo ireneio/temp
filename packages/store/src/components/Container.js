@@ -5,6 +5,7 @@ import * as Utils from 'utils';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { UserAgent } from 'fbjs';
+import { notification } from 'antd';
 import Layout from '@meepshop/meep-ui/lib/layout';
 import { getJoinedUser, getStoreAppList } from 'selectors';
 import * as Actions from 'ducks/actions';
@@ -165,31 +166,51 @@ class Container extends React.Component {
                 /* Handle login after FB response */
                 const data = await Api.fbLogin(response.authResponse);
 
-                if (data.status === 200) {
-                  getAuth();
-                  if (from === 'cart') {
-                    Utils.goTo({ pathname: 'checkout' });
-                  } else if (window.storePreviousPageUrl) {
-                    Utils.goTo({ pathname: window.storePreviousPageUrl });
-                  } else {
-                    Utils.goTo({ pathname: '/' });
+                switch (data.status) {
+                  case 200: {
+                    getAuth();
+                    if (from === 'cart') {
+                      Utils.goTo({ pathname: 'checkout' });
+                    } else if (window.storePreviousPageUrl) {
+                      Utils.goTo({ pathname: window.storePreviousPageUrl });
+                    } else {
+                      Utils.goTo({ pathname: '/' });
+                    }
+                    break;
                   }
-                } else if (data.status === 201) {
-                  Utils.execTrackingCode('CompleteRegistration', {
-                    pageAdTrackIDs,
-                  });
-                  getAuth();
-                  if (from === 'cart') {
-                    Utils.goTo({ pathname: 'checkout' });
-                  } else if (window.storePreviousPageUrl) {
-                    Utils.goTo({ pathname: window.storePreviousPageUrl });
-                  } else {
-                    Utils.goTo({ pathname: '/' });
+                  case 201: {
+                    Utils.execTrackingCode('CompleteRegistration', {
+                      pageAdTrackIDs,
+                    });
+                    getAuth();
+                    if (from === 'cart') {
+                      Utils.goTo({ pathname: 'checkout' });
+                    } else if (window.storePreviousPageUrl) {
+                      Utils.goTo({ pathname: window.storePreviousPageUrl });
+                    } else {
+                      Utils.goTo({ pathname: '/' });
+                    }
+                    break;
                   }
-                } else {
-                  throw new Error(data.msg);
-                }
-                /* Handle login after FB response - End */
+                  case 2010: {
+                    notification.error({ message: 'FB Access token 失效' });
+                    break;
+                  }
+                  case 2011: {
+                    notification.error({ message: 'FB無法取得email' });
+                    break;
+                  }
+                  case 2003: {
+                    notification.error({ message: '無法取得meepShop token' });
+                    break;
+                  }
+                  case 9999: {
+                    notification.error({ message: '未知的錯誤' });
+                    break;
+                  }
+                  default:
+                    break;
+                } /* Handle login after FB response - End */
               } else {
                 /* eslint-disable no-alert */
                 alert(
