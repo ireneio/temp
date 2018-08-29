@@ -17,8 +17,6 @@ export default ({
 
   name,
   isSaveAsReceiverTemplate = false,
-  // TODO not used gender,
-  // TODO not used birthday,
   idNumber,
   mobile,
   postalCode,
@@ -209,9 +207,12 @@ export default ({
               ? {}
               : {
                   address: {
-                    postalCode: postalCode.toString(),
-                    streetAddress: `${postalCode} ${address[0]} ${address[1] ||
-                      ''}${address[2] || ''}${addressDetail}`,
+                    ...(!postalCode
+                      ? {}
+                      : { postalCode: postalCode.toString() }),
+                    streetAddress: `${
+                      !postalCode ? '' : `${postalCode} `
+                    }${address.join('')} ${addressDetail}`,
                     yahooCode: {
                       country: address[0],
                       city: address[1] || '',

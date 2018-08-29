@@ -21,7 +21,6 @@ import getCreateOrderQuery from 'utils/getCreateOrderQuery';
 import createFormData from 'utils/createFormData';
 import findDOMTop from 'utils/findDOMTop';
 import fetchStreamName from 'utils/fetchStreamName';
-import { TAIWAN } from 'locale/country';
 
 import PaymentInfo from './paymentInfo';
 import ReceiverInfo from './ReceiverInfo';
@@ -189,9 +188,9 @@ export default class LandingPage extends React.PureComponent {
             creditCardIsRegistered,
             choosePayment,
             address,
-            ...(transformLocale(TAIWAN) === address?.[0] && {
-              postalCode: await fetchStreamName(address).then(({ zip }) => zip),
-            }),
+            postalCode: !['台灣', 'Taiwan'].includes(address?.[0])
+              ? ''
+              : await fetchStreamName(address).then(({ zip }) => zip),
           };
 
           const result = await getData(...getCreateOrderQuery(orderData));
