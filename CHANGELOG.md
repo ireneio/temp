@@ -1,3 +1,12 @@
+## 0.2.59 (2018-08-29)
+
+#### :rocket: New Feature
+* `meep-ui`, `store`
+  * [#168](https://github.com/meepshop/meep-lerna/pull/168) 結帳頁面：收件人地址新增郵遞區號欄位(1309) ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.2.58 (2018-08-28)
 
 #### :bug: Bug Fix
