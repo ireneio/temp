@@ -52,9 +52,9 @@ export const PRODUCT_QUANTITY = {
 
 export const PRODUCT_PRICE = {
   zh_TW: '價格',
-  en_US: '',
-  ja_JP: '',
-  vi_VN: '',
+  en_US: 'Price',
+  ja_JP: '価格',
+  vi_VN: 'đơn giá',
   TODO_LOCALE: true,
 };
 

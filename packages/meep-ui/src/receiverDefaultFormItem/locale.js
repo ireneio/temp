@@ -43,8 +43,8 @@ export const AREA = {
 export const POSTAL_CODE = {
   zh_TW: '郵遞區號',
   en_US: 'Postal Code',
-  ja_JP: '',
-  vi_VN: '',
+  ja_JP: '郵便番号',
+  vi_VN: 'Mã bưu điện',
   TODO_LOCALE: true,
 };
 
