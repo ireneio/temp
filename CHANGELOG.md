@@ -1,3 +1,19 @@
+## 0.2.60 (2018-08-29)
+
+#### :bug: Bug Fix
+* `store`
+  * [#174](https://github.com/meepshop/meep-lerna/pull/174) fix(store): add polyfill ([@barrypeng6](https://github.com/barrypeng6))
+  * [#172](https://github.com/meepshop/meep-lerna/pull/172) fix(store): fix set header error ([@barrypeng6](https://github.com/barrypeng6))
+  * [#173](https://github.com/meepshop/meep-lerna/pull/173) fix(store): handle fb login error ([@barrypeng6](https://github.com/barrypeng6))
+  * [#170](https://github.com/meepshop/meep-lerna/pull/170) fix(store): give storeName default value & replace getIn ([@barrypeng6](https://github.com/barrypeng6))
+  * [#169](https://github.com/meepshop/meep-lerna/pull/169) 修正不複寫blocks ID ([@barrypeng6](https://github.com/barrypeng6))
+* `meep-ui`
+  * [#171](https://github.com/meepshop/meep-lerna/pull/171) 更新郵遞區號翻譯(1309) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.59 (2018-08-29)
 
 #### :rocket: New Feature
