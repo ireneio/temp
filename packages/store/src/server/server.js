@@ -1,7 +1,7 @@
 const path = require('path');
 
 const express = require('express');
-const next = require('next');
+const nextApp = require('next');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
@@ -14,7 +14,7 @@ const { paymentOfHitrust, paymentOfAllpay } = require('./api');
 const { PRODUCTION, VERSION, API_HOST, DOMAIN } = publicRuntimeConfig;
 
 const PORT = 14401;
-const app = next({ dir: path.resolve(__dirname, '..'), dev: !PRODUCTION });
+const app = nextApp({ dir: path.resolve(__dirname, '..'), dev: !PRODUCTION });
 const handler = routes.getRequestHandler(app, ({ req, res, route, query }) => {
   let { page } = route;
   if (route.name === 'pages' && query.pId) {
@@ -38,7 +38,7 @@ module.exports = app.prepare().then(
         res.status(200).send(`Welcome to MeepShop-Store ${VERSION}`);
       });
 
-      server.post('/signin', async (req, res) => {
+      server.post('/signin', async (req, res, next) => {
         const XMeepshopDomain = PRODUCTION ? req.headers.host : DOMAIN;
         const XMeepshopDomainToken =
           req.cookies['x-meepshop-authorization-token'];
@@ -52,7 +52,10 @@ module.exports = app.prepare().then(
             },
             credentials: 'include',
             body: JSON.stringify(req.body),
-          });
+          }).catch(e => ({ e }));
+
+          if (response.e) return next(response.e);
+
           let data = {};
           if (response.status === 200) {
             data = await response.json();
@@ -62,22 +65,20 @@ module.exports = app.prepare().then(
             );
           }
           if (data.error) {
-            res.json({ error: data.error });
+            return res.json({ error: data.error });
           }
           res.cookie('x-meepshop-authorization-token', data.token, {
             expires: new Date(Date.now() + 86380000 * 7),
             httpOnly: true,
           });
-          res.json({ isLoginSuccess: true });
+          return res.json({ isLoginSuccess: true });
         } catch (error) {
-          console.log(
-            `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-          );
-          res.json({ error: error.message });
+          console.log(`Error: ${error.message}`);
+          return res.json({ error: error.message });
         }
       });
 
-      server.post('/signout', async (req, res) => {
+      server.post('/signout', async (req, res, next) => {
         const XMeepshopDomain = PRODUCTION ? req.headers.host : DOMAIN;
         try {
           const response = await fetch(`${API_HOST}/auth/logout`, {
@@ -87,7 +88,10 @@ module.exports = app.prepare().then(
               'x-meepshop-domain': XMeepshopDomain,
             },
             credentials: 'include',
-          });
+          }).catch(e => ({ e }));
+
+          if (response.e) return next(response.e);
+
           let data;
           if (response.status === 200) {
             data = { msg: 'logout success' };
@@ -98,16 +102,14 @@ module.exports = app.prepare().then(
             );
           }
           res.cookie('x-meepshop-authorization-token', '', { httpOnly: true });
-          res.json(data);
+          return res.json(data);
         } catch (error) {
-          res.json({ error: error.message });
-          console.log(
-            `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-          );
+          console.log(`Error: ${error.message}`);
+          return res.json({ error: error.message });
         }
       });
 
-      server.post('/fbAuth', async (req, res) => {
+      server.post('/fbAuth', async (req, res, next) => {
         const XMeepshopDomain = PRODUCTION ? req.headers.host : DOMAIN;
         const XMeepshopDomainToken =
           req.cookies['x-meepshop-authorization-token'];
@@ -126,28 +128,31 @@ module.exports = app.prepare().then(
               credentials: 'include',
               body: JSON.stringify(req.body),
             },
-          );
+          ).catch(e => ({ e }));
+
+          if (response.e) return next(response.e);
+
           let data;
           if (response.status === 200) {
             data = await response.json();
           } else {
-            throw new Error(`${response.status}: ${response.statusText}(api)`);
+            throw new Error(
+              `${response.status}: ${response.statusText}(fbAuth)`,
+            );
           }
           res.cookie(
             'x-meepshop-authorization-token',
             response.headers.get('x-meepshop-authorization-token'),
             { expires: new Date(Date.now() + 86380000 * 7), httpOnly: true },
           );
-          res.json(data);
+          return res.json(data);
         } catch (error) {
-          res.json({ error: error.message });
-          console.log(
-            `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-          );
+          console.log(`Error: ${error.message}`);
+          return res.json({ error: error.message });
         }
       });
 
-      server.get('/fbAuthForLine', async (req, res) => {
+      server.get('/fbAuthForLine', async (req, res, next) => {
         try {
           /* Get FB app secret */
           const XMeepshopDomain = PRODUCTION ? req.headers.host : DOMAIN;
@@ -171,7 +176,10 @@ module.exports = app.prepare().then(
             },
             credentials: 'include',
             body: JSON.stringify({ query }),
-          });
+          }).catch(e => ({ e }));
+
+          if (response.e) return next(response.e);
+
           let data;
           if (response.status === 200) {
             data = await response.json();
@@ -224,7 +232,10 @@ module.exports = app.prepare().then(
           const responseFromFB = await fetch(fbApi, {
             method: 'get',
             headers: { 'Content-Type': 'application/json' },
-          });
+          }).catch(e => ({ e }));
+
+          if (response.e) return next(response.e);
+
           let dataFromFB;
           if (responseFromFB.status === 200) {
             dataFromFB = await responseFromFB.json();
@@ -249,7 +260,9 @@ module.exports = app.prepare().then(
               credentials: 'include',
               body: JSON.stringify({ accessToken: dataFromFB.access_token }),
             },
-          );
+          ).catch(e => ({ e }));
+
+          if (response.e) return next(response.e);
 
           let dataApi;
           if (responseApi.status === 200) {
@@ -272,19 +285,16 @@ module.exports = app.prepare().then(
           }
 
           if (state.match(/cart/gm)) {
-            res.redirect(302, '/checkout');
-          } else {
-            res.redirect(302, '/login');
+            return res.redirect(302, '/checkout');
           }
+          return res.redirect(302, '/login');
         } catch (error) {
-          console.log(
-            `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-          );
-          res.redirect(302, `/login?error=${error.message}`);
+          console.log(`Error: ${error.message}`);
+          return res.redirect(302, `/login?error=${error.message}`);
         }
       });
 
-      server.post('/api', async (req, res) => {
+      server.post('/api', async (req, res, next) => {
         const XMeepshopDomain = PRODUCTION ? req.headers.host : DOMAIN;
         const XMeepshopDomainToken =
           req.cookies['x-meepshop-authorization-token'];
@@ -300,7 +310,9 @@ module.exports = app.prepare().then(
             },
             credentials: 'include',
             body: JSON.stringify(req.body),
-          });
+          }).catch(e => ({ e }));
+
+          if (response.e) return next(response.e);
 
           const data = await response.json();
 
@@ -308,7 +320,11 @@ module.exports = app.prepare().then(
             throw new Error(
               `${response.status}: ${response.statusText}(graphql) ${
                 data.errors[0].message
-              }`,
+              } ==> ${JSON.stringfy({
+                domian: XMeepshopDomain,
+                token: XMeepshopDomainToken,
+                body: req.body,
+              })}`,
             );
 
           if (!XMeepshopDomainToken) {
@@ -328,13 +344,10 @@ module.exports = app.prepare().then(
             );
           /** [end] */
 
-          res.json(data);
+          return res.json(data);
         } catch (error) {
-          res.json({ error: error.message });
-
-          console.log(
-            `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-          );
+          console.log(`Error: ${error.message}`);
+          return res.json({ error: error.message });
         }
       });
 
@@ -349,6 +362,17 @@ module.exports = app.prepare().then(
       server.post('/payment/allpay', paymentOfAllpay);
 
       server.use(handler);
+
+      server.use((err, req, res, next) => {
+        console.log(err);
+        next(err);
+      });
+
+      /* Log unexpected error */
+      /* eslint-disable */
+      server.use((err, _, res, next) => {
+        res.status(500).end();
+      }); /* eslint-enable */
 
       server.listen(PORT, err => {
         if (err) throw err;
