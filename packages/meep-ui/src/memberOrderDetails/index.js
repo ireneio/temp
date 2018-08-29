@@ -455,6 +455,7 @@ export default class MemberOrderDetails extends React.PureComponent {
       paymentInfo,
       status,
     } = orderDetails;
+    const recipientInfo = shipmentInfo.list[0].recipient;
 
     return (
       <div style={styles.root(colors)} className={this.name}>
@@ -525,17 +526,10 @@ export default class MemberOrderDetails extends React.PureComponent {
                 {transformLocale(LOCALE.RECIPIENT)}
               </div>
               <div style={styles.blockDescription(colors)}>
-                <span>{shipmentInfo.list[0].recipient.name}</span>
-                <span>{shipmentInfo.list[0].recipient.email}</span>
-                <span>{shipmentInfo.list[0].recipient.mobile}</span>
-                <span>
-                  {shipmentInfo.list[0].recipient.address &&
-                    shipmentInfo.list[0].recipient.address.streetAddress}
-                </span>
-                <span>
-                  {shipmentInfo.list[0].recipient.address &&
-                    shipmentInfo.list[0].recipient.address.country}
-                </span>
+                <span>{recipientInfo.name}</span>
+                <span>{recipientInfo.email}</span>
+                <span>{recipientInfo.mobile}</span>
+                <span>{recipientInfo.address?.streetAddress}</span>
               </div>
             </div>
             <div style={styles.block}>
@@ -570,13 +564,13 @@ export default class MemberOrderDetails extends React.PureComponent {
                   {transformLocale(LOCALE.STATUS(status))}
                 </span>
               </div>
-              {shipmentInfo.list[0].recipient.comment && (
+              {recipientInfo.comment && (
                 <div style={styles.blockDescription(colors)}>
-                  {shipmentInfo.list[0].recipient.comment.match(/.*\n/gm)
-                    ? shipmentInfo.list[0].recipient.comment
+                  {recipientInfo.comment.match(/.*\n/gm)
+                    ? recipientInfo.comment
                         .match(/.*\n/gm)
                         .map(str => <div>{str}</div>)
-                    : shipmentInfo.list[0].recipient.comment}
+                    : recipientInfo.comment}
                 </div>
               )}
             </div>

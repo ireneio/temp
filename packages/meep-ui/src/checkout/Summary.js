@@ -20,6 +20,7 @@ import { NOTLOGIN } from 'constants/isLogin';
 import getCreateOrderQuery from 'utils/getCreateOrderQuery';
 import createFormData from 'utils/createFormData';
 import fetchStreamName from 'utils/fetchStreamName';
+import { TAIWAN } from 'locale/country';
 
 import StepHeader from './StepHeader';
 import { INVOICE_FIELDS } from './constants';
@@ -170,7 +171,7 @@ export default class Summary extends React.PureComponent {
   state = {
     formData: null,
     isSubmitting: false,
-    postalCode: '',
+    postalCode: this.props.orderInfo.info.postalCode, // eslint-disable-line
   };
 
   componentDidMount() {
@@ -178,9 +179,10 @@ export default class Summary extends React.PureComponent {
       orderInfo: {
         info: { address },
       },
+      transformLocale,
     } = this.props;
 
-    if (['台灣', 'Taiwan'].includes(address?.[0])) {
+    if (transformLocale(TAIWAN) === address?.[0]) {
       fetchStreamName(address).then(({ zip: postalCode }) => {
         this.setState({ postalCode });
       });
@@ -452,7 +454,9 @@ export default class Summary extends React.PureComponent {
             <div>{mobile}</div>
 
             <div>
-              {postalCode} {(address || []).join(' / ')} {addressDetail}
+              {postalCode} {address?.[0]} {address?.[1]}
+              {address?.[2]}
+              {addressDetail}
             </div>
           </div>
 

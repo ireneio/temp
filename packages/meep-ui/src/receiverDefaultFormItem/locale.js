@@ -40,6 +40,14 @@ export const AREA = {
   TODO_LOCALE: true,
 };
 
+export const POSTAL_CODE = {
+  zh_TW: '郵遞區號',
+  en_US: 'Postal Code',
+  ja_JP: '',
+  vi_VN: '',
+  TODO_LOCALE: true,
+};
+
 export const ADDRESS = {
   zh_TW: '地址',
   en_US: 'Address',

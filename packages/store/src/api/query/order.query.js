@@ -51,14 +51,7 @@ const recipientQuery = `{
   receiverStoreName
   receiverStoreAddress
   address {
-    country
     streetAddress
-    postalCode
-    yahooCode {
-      country
-      city
-      county
-    }
   }
 }`;
 

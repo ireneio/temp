@@ -209,12 +209,9 @@ export default ({
               ? {}
               : {
                   address: {
-                    ...(!postalCode
-                      ? {}
-                      : { postalCode: postalCode.toString() }),
-                    streetAddress: `${
-                      !postalCode ? '' : `${postalCode} `
-                    }${address.join('')} ${addressDetail}`,
+                    postalCode: postalCode.toString(),
+                    streetAddress: `${postalCode} ${address[0]} ${address[1] ||
+                      ''}${address[2] || ''}${addressDetail}`,
                     yahooCode: {
                       country: address[0],
                       city: address[1] || '',
