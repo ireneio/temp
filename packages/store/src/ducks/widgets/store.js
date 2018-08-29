@@ -51,11 +51,9 @@ const initialState = {
 const getPageAdTrackIds = data => {
   /* FB Pixel */
   const fbPixelId =
-    (Utils.getIn(['getFbPixel', 'active'])(data) &&
-      Utils.getIn(['getFbPixel', 'pixelId'])(data)) ||
-    null;
+    (data?.getFbPixel?.active && data?.getFbPixel?.pixelId) || null;
 
-  const gtagList = Utils.getIn(['getGtagList'])(data) || [];
+  const gtagList = data?.getGtagList || [];
   /* Google analytics */
   const gaData = gtagList.find(
     ({ type, eventName }) =>
@@ -111,7 +109,7 @@ const getPageAdTrackIds = data => {
       googleAdsCompleteOrderData.code.match(/AW-.*(?='}\);)/gm)[0]) ||
     null;
 
-  const webTrackList = Utils.getIn(['getWebTrackList', 'data'])(data);
+  const webTrackList = data?.getWebTrackList?.data || [];
   let webMasterID = null;
   let gtmID = null;
   if (webTrackList) {
@@ -149,30 +147,31 @@ const getPageAdTrackIds = data => {
 export default function(state = initialState, { type, payload }) {
   switch (type) {
     case GET_STORE_SUCCESS: {
-      const { data, locale, customerCurrency } = payload;
-      const activities = Utils.getIn(['getActivityList', 'data'])(data);
-      const menus = (Utils.getIn(['getMenuList', 'data'])(data) || []).map(
-        menu => Utils.setDefaultValueForMenuDesign(menu),
-      );
-      const colorPlan =
-        Utils.getIn(['getColorList', 'data', 0])(data) || DEFAULT_COLORS;
-      const { colors } = colorPlan.themes[+colorPlan.selected];
-      const apps = Utils.getIn(['getStoreAppList', 'data'])(data);
-      const memberGroups = Utils.getIn(['getMemberGroupList', 'data'])(data);
-      const appLogins = Utils.getIn(['getAppLoginList', 'data'])(data);
-      const store = Utils.getIn(['getStoreList', 'data', 0])(data);
-      const storeSettings = Utils.getIn(['getStoreList', 'data', 0, 'setting'])(
+      const {
         data,
+        locale /* from cookie */,
+        customerCurrency /* from cookie */,
+      } = payload;
+      const activities = data?.getActivityList?.data || [];
+      const menus = (data?.getMenuList?.data || []).map(menu =>
+        Utils.setDefaultValueForMenuDesign(menu),
       );
+      const colorPlan = data?.getColorList?.data?.[0] || DEFAULT_COLORS;
+      const { colors } = colorPlan.themes[+colorPlan.selected];
+      const apps = data?.getStoreAppList?.data || [];
+      const memberGroups = data?.getMemberGroupList?.data || [];
+      const appLogins = data?.getAppLoginList?.data || [];
+      const store = data?.getStoreList?.data?.[0];
+      const storeSettings = data?.getStoreList?.data?.[0]?.setting;
       const pageAdTrackIDs = getPageAdTrackIds(data);
-      const fxSetup = Utils.getIn(['getExchangeRateList', 'data'])(data);
+      const fxSetup = data?.getExchangeRateList?.data;
       const {
         locale: localeOptions,
         currency: currencyOptions,
         activityVersion,
         lockedCountry,
       } = storeSettings;
-      const invoice = Utils.getIn(['invoice'])(storeSettings) || {
+      const invoice = storeSettings?.invoice || {
         donate: { status: false, units: null },
         duplicate: { status: false },
         eInvoice: { status: false },
@@ -182,45 +181,35 @@ export default function(state = initialState, { type, payload }) {
       const settings = {
         ...storeSettings,
         backgroundImage: colorPlan.imgInfo,
-        storeName: Utils.getIn(['description', 'name'])(store),
-        storeDescription: Utils.getIn(['description', 'introduction'])(store),
+        storeName: store?.description?.name || '',
+        storeDescription: store?.description?.introduction || '',
         cname: store.cname,
         domain: store.domain,
-        faviconUrl: Utils.getIn(['faviconFileInfo', 'image'])(store),
-        logoUrl: Utils.getIn(['logoFileInfo', 'image'])(store),
-        mobileLogoUrl: Utils.getIn(['mobileLogoFileInfo', 'image'])(store),
+        faviconUrl: store?.faviconFileInfo?.image || '',
+        logoUrl: store?.logoFileInfo?.image || '',
+        mobileLogoUrl: store?.mobileLogoFileInfo?.image || '',
         homePageId: store.homePageId,
-        /* FIXME: how to decide default locale */
-        locale:
-          locale ||
-          (localeOptions && localeOptions.length === 1 && localeOptions[0]) ||
-          'zh_TW',
+        locale: locale || localeOptions?.[0] || 'zh_TW', // default locale
         localeOptions: localeOptions || ['zh_TW'], // 用於語系選單
         lockedCountry: lockedCountry || [],
         storeCurrency: store.currency || 'TWD', // 幣值轉換欲轉換成的幣值
-        /* FIXME: how to decide default currency */
-        customerCurrency:
-          customerCurrency ||
-          (currencyOptions &&
-            currencyOptions.length === 1 &&
-            currencyOptions[0]) ||
-          'TWD', // 前台顯示的幣值
+        customerCurrency: customerCurrency || currencyOptions?.[0] || 'TWD', // default currency
         fxSetup, // 用於匯率轉換 customerCurrency ==> storeCurrency
         currencyOptions: currencyOptions || ['TWD'], // 用於幣值選單
         activityVersion,
         invoice: {
           donate: {
-            status: invoice.donate ? !!invoice.donate.status : false,
-            units: invoice.donate ? invoice.donate.units : 0,
+            status: !!invoice?.donate?.status,
+            units: invoice?.donate?.units || 0,
           },
           duplicate: {
-            status: invoice.duplicate ? !!invoice.duplicate.status : false,
+            status: !!invoice?.duplicate?.status,
           },
           eInvoice: {
-            status: invoice.eInvoice ? !!invoice.eInvoice.status : false,
+            status: !!invoice?.eInvoice?.status,
           },
           triplicate: {
-            status: invoice.triplicate ? !!invoice.triplicate.status : false,
+            status: !!invoice?.triplicate?.status,
           },
         },
       };
