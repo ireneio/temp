@@ -1,9 +1,6 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
-import * as R from 'ramda';
-import * as Utils from 'utils';
 import modifyWidgetDataInClient from 'utils/modifyWidgetDataInClient';
 import * as Api from 'api';
-import uuid from 'uuid/v4';
 
 /* ********************************** 取得頁面資料 ********************************** */
 const FETCH_PAGES_REQUEST = 'FETCH_PAGES_REQUEST';
@@ -35,9 +32,9 @@ function* getPagesFlow({ payload }) {
     const data = yield call(Api.getPages, payload);
 
     // 整理data為了符合Layout Component結構，未來有可能在api server就幫前端整理好
-    let newPages = Utils.getIn(['data', 'getPageList', 'data'])(data);
+    let newPages = data?.data?.getPageList?.data;
     newPages = newPages.map(page => {
-      const blocks = Utils.getIn(['blocks'])(page)
+      const blocks = page.blocks
         .filter(
           ({ releaseDateTime }) =>
             !releaseDateTime ||
@@ -45,13 +42,12 @@ function* getPagesFlow({ payload }) {
         )
         .map(({ width, componentWidth, widgets, ...block }) => ({
           ...block,
-          id: uuid(),
           width: width || 100,
           componentWidth: componentWidth || 0,
           // 整理及過濾Client-side rendering時的module資料，未來有可能在api server就幫前端整理好
           widgets: modifyWidgetDataInClient(widgets, query),
         }));
-      return R.assocPath(['blocks'], blocks, page);
+      return { ...page, blocks };
     });
 
     yield put(getPagesSuccess(newPages));
