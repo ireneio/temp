@@ -1,4 +1,4 @@
-## 0.2.60 (2018-08-29)
+## 0.2.61 (2018-08-29)
 
 #### :bug: Bug Fix
 * `store`
@@ -8,20 +8,10 @@
   * [#170](https://github.com/meepshop/meep-lerna/pull/170) fix(store): give storeName default value & replace getIn ([@barrypeng6](https://github.com/barrypeng6))
   * [#169](https://github.com/meepshop/meep-lerna/pull/169) 修正不複寫blocks ID ([@barrypeng6](https://github.com/barrypeng6))
 * `meep-ui`
-  * [#171](https://github.com/meepshop/meep-lerna/pull/171) 更新郵遞區號翻譯(1309) ([@HsuTing](https://github.com/HsuTing))
 
 #### Committers: 2
 - Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
 - [@barrypeng6](https://github.com/barrypeng6)
-
-## 0.2.59 (2018-08-29)
-
-#### :rocket: New Feature
-* `meep-ui`, `store`
-  * [#168](https://github.com/meepshop/meep-lerna/pull/168) 結帳頁面：收件人地址新增郵遞區號欄位(1309) ([@piovischioh](https://github.com/piovischioh))
-
-#### Committers: 1
-- [@piovischioh](https://github.com/piovischioh)
 
 ## 0.2.58 (2018-08-28)
 
