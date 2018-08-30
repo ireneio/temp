@@ -7,7 +7,8 @@ const {
 } = getConfig();
 
 export default class MyDocument extends Document {
-  static async getInitialProps({ req, renderPage }) {
+  static async getInitialProps({ req, res, renderPage }) {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     const XMeepshopDomain = PRODUCTION ? req.headers.host : DOMAIN;
     const { html, head, errorHtml, chunks } = renderPage();
     return {
