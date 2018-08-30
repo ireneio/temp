@@ -1,3 +1,12 @@
+## 0.2.62 (2018-08-30)
+
+#### :bug: Bug Fix
+* `store`
+  * [#181](https://github.com/meepshop/meep-lerna/pull/181) fix(store): prevent browser cache HTML ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.61 (2018-08-29)
 
 #### :bug: Bug Fix
