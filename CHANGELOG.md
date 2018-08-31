@@ -1,3 +1,12 @@
+## 0.2.63 (2018-08-31)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#180](https://github.com/meepshop/meep-lerna/pull/180)  產品列表(手機版)：分頁鈕跑版（N119） ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.2.62 (2018-08-30)
 
 #### :bug: Bug Fix
