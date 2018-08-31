@@ -63,14 +63,13 @@ export const listStyle = (colors, isGrid) => ({
         marginRight: '3px',
       },
       '.ant-pagination-prev, .ant-pagination-next': {
-        margin: '0',
-        width: '100vw',
+        margin: '0px',
         height: 'auto',
         padding: '10px',
       },
       '.loaders': {
         width: `${isGrid ? '50%' : '100%'} !important`,
-        margin: '0 !important',
+        margin: '0px !important',
         padding: '10px',
       },
     },

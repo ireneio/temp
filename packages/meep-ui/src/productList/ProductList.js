@@ -296,15 +296,13 @@ export default class ProductList extends React.PureComponent {
 
     switch (type) {
       case 'prev':
-        if (!current || page === current)
-          return (
-            <span style={styles.paginationItem(colors)}>
-              {transformLocale(LOCALE.PREV_PAGE)}
-            </span>
-          );
         return (
           <Link
-            href={`${pathname}?${queryString.stringify(query)}`}
+            href={
+              !current || page === current
+                ? null
+                : `${pathname}?${queryString.stringify(query)}`
+            }
             style={styles.paginationLink}
           >
             <span style={styles.paginationItem(colors)}>
@@ -312,16 +310,15 @@ export default class ProductList extends React.PureComponent {
             </span>
           </Link>
         );
+
       case 'next':
-        if (page === current)
-          return (
-            <span style={styles.paginationItem(colors)}>
-              {transformLocale(LOCALE.NEXT_PAGE)}
-            </span>
-          );
         return (
           <Link
-            href={`${pathname}?${queryString.stringify(query)}`}
+            href={
+              page === current
+                ? null
+                : `${pathname}?${queryString.stringify(query)}`
+            }
             style={styles.paginationLink}
           >
             <span style={styles.paginationItem(colors)}>
@@ -329,20 +326,20 @@ export default class ProductList extends React.PureComponent {
             </span>
           </Link>
         );
+
       case 'page':
-        if (page === current)
-          return <span style={styles.paginationItem(colors)}>{current}</span>;
         return (
           <Link
-            href={`${pathname}?${queryString.stringify(query)}`}
+            href={
+              page === current
+                ? null
+                : `${pathname}?${queryString.stringify(query)}`
+            }
             style={styles.paginationLink}
           >
             <span style={styles.paginationItem(colors)}>{current}</span>
           </Link>
         );
-      case 'jump-next':
-      case 'jump-prev':
-        return null;
       default:
         return originalElement;
     }
@@ -442,18 +439,21 @@ export default class ProductList extends React.PureComponent {
               transformCurrency={transformCurrency}
               memberSeePrice={hasStoreAppPlugin('memberSeePrice')}
             />
-            {pagination && (
+
+            {!pagination ? null : (
               <div style={styles.pagination}>
                 <Pagination
-                  hideOnSinglePage
                   total={isLoading ? 0 : products.total}
                   pageSize={limit}
                   current={page}
                   itemRender={this.renderPagination}
                   onChange={this.handleParamsChange}
+                  hideOnSinglePage
+                  showLessItems
                 />
               </div>
             )}
+
             <Modal
               className={this.name}
               title={transformLocale(LOCALE.MODAL_TITLE)}
@@ -464,6 +464,7 @@ export default class ProductList extends React.PureComponent {
             >
               {this.generateDetails()}
             </Modal>
+
             {isLoading && <div style={styles.loading} />}
           </div>
         </StyleRoot>
