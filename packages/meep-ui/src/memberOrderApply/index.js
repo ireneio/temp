@@ -74,7 +74,7 @@ export default class MemberOrderApply extends React.PureComponent {
       products: orderApplyProducts,
       name: shipmentInfo.list[0].recipient.name,
       mobile: shipmentInfo.list[0].recipient.mobile,
-      address: shipmentInfo.list[0].recipient.address.streetAddress,
+      address: shipmentInfo.list[0].recipient.address?.streetAddress,
     };
   }
 
@@ -205,7 +205,7 @@ export default class MemberOrderApply extends React.PureComponent {
         dataIndex: 'title',
         width: '50%',
         render: (value, record) => (
-          <React.Fragment>
+          <>
             <div>{transformLocale(value)}</div>
             <div className="show-on-mobile">
               {this.renderSpecs(record.specs)}
@@ -213,7 +213,7 @@ export default class MemberOrderApply extends React.PureComponent {
             <div className="show-on-mobile">
               {transformCurrency(record.retailPrice)}
             </div>
-          </React.Fragment>
+          </>
         ),
       },
       {
@@ -354,7 +354,7 @@ export default class MemberOrderApply extends React.PureComponent {
             </span>
           </div>
           {!step ? (
-            <React.Fragment>
+            <>
               <div style={styles.table}>
                 <Table
                   rowKey="id"
@@ -396,9 +396,9 @@ export default class MemberOrderApply extends React.PureComponent {
                   />
                 </div>
               )}
-            </React.Fragment>
+            </>
           ) : (
-            <React.Fragment>
+            <>
               {type === 'replace' && (
                 <div style={styles.comfirm}>
                   <p>
@@ -423,7 +423,7 @@ export default class MemberOrderApply extends React.PureComponent {
                   size="middle"
                 />
               </div>
-            </React.Fragment>
+            </>
           )}
           <div style={styles.panel}>
             <Button
