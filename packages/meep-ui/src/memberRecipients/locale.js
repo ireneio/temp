@@ -1,3 +1,5 @@
+export { IS_REQUIRED } from 'locale/form';
+
 export const NAME = {
   zh_TW: '姓名',
   en_US: 'Full Name',
@@ -11,6 +13,14 @@ export const ADDRESS = {
   en_US: 'Address',
   ja_JP: '住所',
   vi_VN: 'Địa Chỉ',
+  TODO_LOCALE: true,
+};
+
+export const POSTAL_CODE = {
+  zh_TW: '郵遞區號',
+  en_US: 'Postal Code',
+  ja_JP: '郵便番号',
+  vi_VN: 'Mã bưu điện',
   TODO_LOCALE: true,
 };
 

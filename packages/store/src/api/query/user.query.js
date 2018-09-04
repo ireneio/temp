@@ -25,6 +25,7 @@ const userQuery = `
     name
     mobile
     address {
+      postalCode
       yahooCode {
         country
         city

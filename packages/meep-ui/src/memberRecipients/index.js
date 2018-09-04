@@ -5,6 +5,8 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import { Row, Form, Table, Input, Button, Divider } from 'antd';
 
 import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
+import fetchStreamName from 'utils/fetchStreamName';
+import { TAIWAN } from 'locale/country';
 
 import AddressCascader from '../addressCascader';
 
@@ -64,7 +66,7 @@ export default class MemberRecipients extends React.PureComponent {
       },
       {
         title: transformLocale(LOCALE.ADDRESS),
-        dataIndex: 'address.yahooCode',
+        dataIndex: 'address',
         className: 'hideOnMobile',
         render: this.renderAddress,
       },
@@ -117,44 +119,46 @@ export default class MemberRecipients extends React.PureComponent {
     } = this.props;
     const { selectedIndex } = this.state;
 
-    validateFields((err, values) => {
-      if (!err) {
-        const { name = '', tel = '', mobile = '', street = '' } = values;
-        let { address } = values;
-        if (!address.length) address = ['', '', ''];
+    validateFields(
+      async (err, { postalCode, address, street, ...filedsValue }) => {
+        if (!err) {
+          if (Object.values(TAIWAN).includes(address[0])) {
+            postalCode = await fetchStreamName(address).then(({ zip }) => zip.toString()); // eslint-disable-line
+          }
 
-        const recipient = {
-          name,
-          tel,
-          mobile,
-          address: {
-            streetAddress: address[0] + address[1] + address[2] + street,
-            yahooCode: {
-              country: address[0],
-              city: address[1],
-              county: address[2],
-              street,
+          const recipient = {
+            ...filedsValue,
+            address: {
+              postalCode,
+              streetAddress: `${postalCode} ${address[0]} ${address[1] ||
+                ''}${address[2] || ''}${street}`,
+              yahooCode: {
+                country: address[0],
+                city: address[1],
+                county: address[2],
+                street,
+              },
             },
-          },
-        };
+          };
 
-        const user = { ...member };
-        if (selectedIndex !== null) {
-          user.recipientData[selectedIndex] = recipient;
-        } else {
-          user.recipientData = [...user.recipientData, recipient];
+          const user = { ...member };
+          if (selectedIndex !== null) {
+            user.recipientData[selectedIndex] = recipient;
+          } else {
+            user.recipientData = [...user.recipientData, recipient];
+          }
+          user.recipientData = {
+            replaceData: user.recipientData,
+          };
+
+          dispatchAction('updateUser', { user });
+          resetFields();
+          this.setState({
+            selectedIndex: null,
+          });
         }
-        user.recipientData = {
-          replaceData: user.recipientData,
-        };
-
-        dispatchAction('updateUser', { user });
-        resetFields();
-        this.setState({
-          selectedIndex: null,
-        });
-      }
-    });
+      },
+    );
   };
 
   renderTitle = (value, record, index) => {
@@ -198,9 +202,18 @@ export default class MemberRecipients extends React.PureComponent {
     );
   };
 
-  renderAddress = value => {
-    const { country = '', city = '', county = '', street = '' } = value || {};
-    return <React.Fragment>{country + city + county + street}</React.Fragment>;
+  renderAddress = (address = {}) => {
+    const {
+      postalCode,
+      yahooCode: { country, city, county, street },
+    } = address;
+    return (
+      <React.Fragment>
+        {`${postalCode ? `${postalCode} ` : ''}${
+          country ? `${country} ` : ''
+        }${city || ''}${county || ''}${street || ''}`}
+      </React.Fragment>
+    );
   };
 
   renderAction = (value, record, index) => {
@@ -221,7 +234,7 @@ export default class MemberRecipients extends React.PureComponent {
   renderForm = () => {
     const { selectedIndex } = this.state;
     const {
-      form: { getFieldDecorator, getFieldsError },
+      form: { getFieldDecorator, getFieldsError, getFieldValue },
       colors,
       member,
       lockedCountry,
@@ -254,30 +267,50 @@ export default class MemberRecipients extends React.PureComponent {
         <FormItem>
           {getFieldDecorator('mobile', {
             initialValue: mobile,
+            rules: [
+              {
+                required: true,
+                message: transformLocale(LOCALE.IS_REQUIRED),
+              },
+            ],
           })(
             <Input size="large" placeholder={transformLocale(LOCALE.MOBILE)} />,
           )}
         </FormItem>
         <FormItem>
           {getFieldDecorator('address', {
-            initialValue: country ? [country, city, county] : [],
+            initialValue: country
+              ? [country, ...(city ? [city] : []), ...(county ? [county] : [])]
+              : [],
             rules: [
               {
                 required: true,
-                message: transformLocale(LOCALE.NAME_IS_REQUIRED),
+                message: transformLocale(LOCALE.AREA_IS_REQUIRED),
               },
             ],
           })(
             <AddressCascader
               size="large"
               placeholder={transformLocale(LOCALE.PLACEHOLDER)}
-              lockedCountry={
-                lockedCountry &&
-                lockedCountry.map(e => e === 'Taiwan' && '台灣')
-              }
+              allowClear={false}
+              lockedCountry={lockedCountry}
             />,
           )}
         </FormItem>
+        {[undefined, ...Object.values(TAIWAN)].includes(
+          getFieldValue('address')?.[0],
+        ) ? null : (
+          <FormItem>
+            {getFieldDecorator('postalCode', {
+              rules: [
+                {
+                  required: true,
+                  message: transformLocale(LOCALE.IS_REQUIRED),
+                },
+              ],
+            })(<Input placeholder={transformLocale(LOCALE.POSTAL_CODE)} />)}
+          </FormItem>
+        )}
         <FormItem>
           {getFieldDecorator('street', {
             initialValue: street,

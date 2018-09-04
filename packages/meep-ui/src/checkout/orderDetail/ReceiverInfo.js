@@ -11,6 +11,7 @@ import {
   COUNTRY_TYPE,
 } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
+import { TAIWAN } from 'locale/country';
 
 import ReceiverDefaultFormItem from 'receiverDefaultFormItem';
 
@@ -54,19 +55,24 @@ export default class ReceiverInfo extends React.PureComponent {
     chooseShipmentTemplate: null,
   };
 
-  setReceiverWithTemplate = index => {
+  setReceiverWithTemplate = async index => {
     const { form, user } = this.props;
     const { setFieldsValue } = form;
     const { recipientData } = user;
     const { name, mobile, address } = recipientData[index];
     const { country, city, county, street } = address.yahooCode;
+    const { postalCode } = address;
 
-    setFieldsValue({
+    await setFieldsValue({
       name,
       mobile,
       address: [country, city, county].filter(data => data),
       addressDetail: street,
     });
+
+    if (!Object.values(TAIWAN).includes(county)) {
+      setFieldsValue({ postalCode });
+    }
   };
 
   synchronizeUserInfo = ({ target }) => {

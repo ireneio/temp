@@ -12,6 +12,7 @@ import {
 } from 'constants/propTypes';
 import INVOICE from 'constants/invoice';
 import validateMobile from 'utils/validateMobile';
+import { TAIWAN } from 'locale/country';
 
 import Invoice from './Invoice';
 import ChooseShipmentStore from './ChooseShipmentStore';
@@ -178,6 +179,21 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
                 />,
               )}
             </FormItem>
+
+            {[undefined, ...Object.values(TAIWAN)].includes(
+              getFieldValue('address')?.[0],
+            ) ? null : (
+              <FormItem style={style}>
+                {getFieldDecorator('postalCode', {
+                  rules: [
+                    {
+                      required: true,
+                      message: transformLocale(LOCALE.IS_REQUIRED),
+                    },
+                  ],
+                })(<Input placeholder={transformLocale(LOCALE.POSTAL_CODE)} />)}
+              </FormItem>
+            )}
 
             <FormItem style={style}>
               {getFieldDecorator('addressDetail', {
