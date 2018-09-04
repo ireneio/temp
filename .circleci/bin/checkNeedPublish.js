@@ -11,6 +11,13 @@ const { version } = require(path.resolve(
   './package.json',
 ));
 
-invariant(process.env.CIRCLE_TAG, `CIRCLE_TAG can not be undefined.`);
+invariant(
+  process.env.CIRCLE_TAG || /^test-.*/.test(process.env.CIRCLE_BRANCH),
+  `CIRCLE_TAG can not be undefined, or branch name must be \`test-\``,
+);
 
-console.log(`v${version}` === process.env.CIRCLE_TAG);
+console.log(
+  /^test-.*/.test(process.env.CIRCLE_BRANCH)
+    ? true
+    : `v${version}` === process.env.CIRCLE_TAG,
+);

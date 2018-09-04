@@ -72,6 +72,41 @@ jobs:
             - packages/store/src/.next
             - packages/store/lib
 
+      - save_cache:
+          key: prod-{{ .Environment.CIRCLE_BRANCH }}
+          paths:
+            - packages/meep-ui/lib
+            - packages/store/src/.next
+            - packages/store/lib
+
+  deploy-test:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: ./.circleci/bin/makePkg.sh
+      - restore_cache: *restore-cache
+      - restore_cache:
+          keys:
+            - prod-{{ .Environment.CIRCLE_BRANCH }}
+
+      - setup_remote_docker
+      - run:
+          name: Deploy test docker
+          command: |
+            cp -r ./patches ./packages/patches
+            npm run lerna -- exec \
+              "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/build_docker.sh v${CIRCLE_BRANCH}" \
+              --parallel \
+              --stream \
+              --ignore @meepshop/meep-ui \
+              --ignore @meepshop/test-*
+            npm run lerna -- exec \
+              "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/deploy_k8s.sh v${CIRCLE_BRANCH}" \
+              --parallel \
+              --stream \
+              --ignore @meepshop/meep-ui \
+              --ignore @meepshop/test-*
+
   deploy:
     <<: *defaults
     steps:
@@ -125,6 +160,15 @@ workflows:
           filters:
             tags:
               only: /.*/
+
+      - deploy-test:
+          context: org-global
+          requires:
+            - lint-and-test
+            - check-website-work
+          filters:
+            branches:
+              only: /test-.*/
 
       - deploy:
           context: org-global
