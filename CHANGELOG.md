@@ -1,3 +1,20 @@
+## 0.2.64 (2018-09-04)
+
+#### :rocket: New Feature
+* `meep-ui`, `store`
+  * [#177](https://github.com/meepshop/meep-lerna/pull/177) 收件人地址：新增郵遞區號欄位(1309)  ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#187](https://github.com/meepshop/meep-lerna/pull/187) fix(meep-ui): fix streetAddress of null ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+* [#185](https://github.com/meepshop/meep-lerna/pull/185) perf(root): use test branch to test depoly ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.2.63 (2018-08-31)
 
 #### :bug: Bug Fix
