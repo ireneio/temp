@@ -1,3 +1,12 @@
+## 0.2.66 (2018-09-05)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#192](https://github.com/meepshop/meep-lerna/pull/192) fix(meep-ui): header button next disappears ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.65 (2018-09-05)
 
 #### :rocket: New Feature
