@@ -325,7 +325,7 @@ export default class OrderDetail extends React.PureComponent {
             {transformLocale(LOCALE.CONTINUE_SHOPPING)}
           </div>
 
-          {isChecking ? (
+          {!isChecking ? (
             <div className={styles.headerButton} onClick={this.submit}>
               {transformLocale(LOCALE.NEXT)}
               <ChevronRightIcon className={styles.headerIcon} />
