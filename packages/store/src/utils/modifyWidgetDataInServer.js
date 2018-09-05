@@ -259,7 +259,8 @@ export default async function modifyWidgetDataInServer(
                   throw new Error('Form information has been removed.');
                 }
               } catch (error) {
-                console.warn(error);
+                if (error.message !== 'Form information has been removed.')
+                  console.warn(error);
               }
               orderInfo = {
                 info: data.info, // The form infomation filled by user before choosing store.
