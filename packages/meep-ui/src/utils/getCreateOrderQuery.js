@@ -152,8 +152,7 @@ export default ({
                       creditCardOwnerName &&
                       creditCardNumber &&
                       creditCardSecurityCode &&
-                      creditCardExpiration &&
-                      creditCardInstallment,
+                      creditCardExpiration,
                   ),
                   ...(!creditCardOwnerName
                     ? {}
