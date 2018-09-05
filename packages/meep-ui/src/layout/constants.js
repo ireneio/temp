@@ -13,6 +13,7 @@ export const SPECIAL_HIDE_FOOTER = [
   'negiliving',
   'eoil',
   'fitbit',
+  'fbshop',
 ];
 
 export const STORE_APP_PLUGINS = [
