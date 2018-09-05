@@ -1,3 +1,12 @@
+## 0.2.67 (2018-09-05)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#193](https://github.com/meepshop/meep-lerna/pull/193) GMO:已儲存的卡號無法更新(N139) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.2.66 (2018-09-05)
 
 #### :bug: Bug Fix
