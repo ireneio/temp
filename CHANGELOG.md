@@ -1,3 +1,21 @@
+## 0.2.65 (2018-09-05)
+
+#### :rocket: New Feature
+* `meep-ui`
+  * [#191](https://github.com/meepshop/meep-lerna/pull/191) 頁腳白名單：fbshop ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#189](https://github.com/meepshop/meep-lerna/pull/189) fix(meep-ui): avoid clicked next button when computing at checkout page ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :house: Internal
+* `store`
+  * [#188](https://github.com/meepshop/meep-lerna/pull/188) chore(store): not show landinagePage log ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.64 (2018-09-04)
 
 #### :rocket: New Feature
