@@ -1,3 +1,5 @@
+const path = require('path');
+
 const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const withCSS = require('@zeit/next-css');
@@ -60,9 +62,7 @@ module.exports = withSourceMaps(
           },
           /* eslint-disable no-param-reassign */
           webpack: (config, { dev }) => {
-            if (!dev) {
-              config.devtool = 'source-map';
-            }
+            if (!dev) config.devtool = 'source-map';
 
             config.module.rules.find(
               ({ use: { loader } }) => loader === 'next-babel-loader',
@@ -70,6 +70,25 @@ module.exports = withSourceMaps(
               '../../babel.config.js';
 
             config.plugins.push(new MomentLocalesPlugin());
+
+            const originalEntry = config.entry;
+
+            config.entry = async () => {
+              const entries = await originalEntry();
+              const polyfillsPath = path.resolve(
+                __dirname,
+                './src/static/polyfills.js',
+              );
+
+              if (
+                entries['main.js'] &&
+                !entries['main.js'].includes(polyfillsPath)
+              )
+                entries['main.js'].unshift(polyfillsPath);
+
+              return entries;
+            };
+
             return config;
           },
           /* eslint-enable no-param-reassign */
