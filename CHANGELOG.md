@@ -1,3 +1,17 @@
+## 0.2.69 (2018-09-06)
+
+#### :rocket: New Feature
+* `store`
+  * [#176](https://github.com/meepshop/meep-lerna/pull/176) perf(store): remove polyfill, add core-js/modules/es6.string.starts-with ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#194](https://github.com/meepshop/meep-lerna/pull/194) 手機版產品頁：商品規格顯示跑版(N115) ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.2.68 (2018-09-06)
 
 #### :rocket: New Feature
