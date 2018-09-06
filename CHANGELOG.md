@@ -1,3 +1,12 @@
+## 0.2.68 (2018-09-06)
+
+#### :rocket: New Feature
+* `meep-ui`
+  * [#190](https://github.com/meepshop/meep-lerna/pull/190) 結帳頁面＆一頁式購物車元件：收件人「手機」欄位檢查規則變更 (N136)
+
+#### Committers: 1
+- happycat6323 ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.2.67 (2018-09-05)
 
 #### :bug: Bug Fix
