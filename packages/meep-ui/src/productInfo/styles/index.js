@@ -12,6 +12,7 @@ export const infoStyle = colors => ({
     color: colors[3],
     borderColor: colors[5],
     height: 'unset',
+    margin: '0 6px 6px 0',
   },
   '.ant-select-selection__rendered': {
     overflow: 'hidden',
@@ -28,6 +29,8 @@ export const infoStyle = colors => ({
   '.ant-select-dropdown-menu li': {
     backgroundColor: colors[0],
     color: colors[3],
+    whiteSpace: 'unset',
+    wordBreak: 'break-all',
   },
   '.ant-select-dropdown-menu-item:hover': {
     backgroundColor: colors[4],
@@ -37,6 +40,7 @@ export const infoStyle = colors => ({
   },
   '.ant-select-selection-selected-value': {
     whiteSpace: 'unset',
+    wordBreak: 'break-all',
   },
 
   // ant-modal

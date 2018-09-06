@@ -54,6 +54,7 @@ export default class Category extends React.Component {
             ))
           ) : (
             <Select
+              dropdownMatchSelectWidth={false}
               dropdownClassName={name}
               onChange={value => {
                 onChangeSpec(level, value);
