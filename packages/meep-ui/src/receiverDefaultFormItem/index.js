@@ -11,7 +11,9 @@ import {
   COUNTRY_TYPE,
 } from 'constants/propTypes';
 import INVOICE from 'constants/invoice';
-import validateMobile from 'utils/validateMobile';
+import validateMobile, {
+  validateTaiwanMobileNumber,
+} from 'utils/validateMobile';
 import { TAIWAN } from 'locale/country';
 
 import Invoice from './Invoice';
@@ -88,8 +90,14 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
     const { getFieldValue, getFieldDecorator } = form;
 
     return (
-      <React.Fragment>
-        <FormItem style={style}>
+      <>
+        <FormItem
+          style={style}
+          extra={validateTaiwanMobileNumber(
+            transformLocale,
+            getFieldValue('mobile') || '',
+          )}
+        >
           {getFieldDecorator('mobile', {
             rules: [
               {
@@ -106,7 +114,9 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
           })(
             <Input
               placeholder={transformLocale(LOCALE.MOBILE)}
-              maxLength={15}
+              maxLength={
+                ['allpay', 'ezship'].includes(chooseShipmentTemplate) ? 10 : 20
+              }
             />,
           )}
         </FormItem>
@@ -162,7 +172,7 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
             />
           </FormItem>
         ) : (
-          <React.Fragment>
+          <>
             <FormItem style={style}>
               {getFieldDecorator('address', {
                 rules: [
@@ -205,14 +215,14 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
                 ],
               })(<Input placeholder={transformLocale(LOCALE.ADDRESS)} />)}
             </FormItem>
-          </React.Fragment>
+          </>
         )}
 
         {!(
           invoiceIsNeeded &&
           INVOICE.some(key => invoice[key] && invoice[key].status)
         ) ? null : (
-          <React.Fragment>
+          <>
             <FormItem style={style}>
               {getFieldDecorator('invoice', {
                 rules: [
@@ -236,9 +246,9 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
             </FormItem>
 
             <Invoice style={style} form={form} />
-          </React.Fragment>
+          </>
         )}
-      </React.Fragment>
+      </>
     );
   }
 }

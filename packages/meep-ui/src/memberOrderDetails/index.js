@@ -65,7 +65,7 @@ export default class MemberOrderDetails extends React.PureComponent {
         dataIndex: 'title',
         width: '50%',
         render: (value, record) => (
-          <React.Fragment>
+          <>
             <div>{transformLocale(value)}</div>
             <div className="show-on-mobile">
               {this.renderSpecs(record.specs)}
@@ -75,7 +75,7 @@ export default class MemberOrderDetails extends React.PureComponent {
                 record.type === 'gift' && !record.stock ? 0 : record.quantity
               }`}
             </div>
-          </React.Fragment>
+          </>
         ),
       },
       {
@@ -188,7 +188,7 @@ export default class MemberOrderDetails extends React.PureComponent {
         if (paymentShowMemo[template][allpayChoosePayment]) {
           paymentDescription = paymentDescription.concat([
             allpayChoosePayment === 'ATM' && (
-              <React.Fragment key="ATM">
+              <>
                 <span>
                   {transformLocale(LOCALE.BANK_CODE) + paymentMemoData.BankCode}
                 </span>
@@ -200,10 +200,10 @@ export default class MemberOrderDetails extends React.PureComponent {
                   {transformLocale(LOCALE.EXPIRE_DATE) +
                     paymentMemoData.ExpireDate}
                 </span>
-              </React.Fragment>
+              </>
             ),
             allpayChoosePayment === 'CVS' && (
-              <React.Fragment key="CVS">
+              <>
                 <span>
                   {transformLocale(LOCALE.CVS_PAYMENT_NO) +
                     paymentMemoData.PaymentNo}
@@ -212,10 +212,10 @@ export default class MemberOrderDetails extends React.PureComponent {
                   {transformLocale(LOCALE.EXPIRE_DATE) +
                     paymentMemoData.ExpireDate}
                 </span>
-              </React.Fragment>
+              </>
             ),
             allpayChoosePayment === 'BARCODE' && (
-              <React.Fragment key="BARCODE">
+              <>
                 <span>
                   {`
                     ${transformLocale(LOCALE.BARCODE)}${
@@ -227,7 +227,7 @@ export default class MemberOrderDetails extends React.PureComponent {
                   {transformLocale(LOCALE.EXPIRE_DATE) +
                     paymentMemoData.ExpireDate}
                 </span>
-              </React.Fragment>
+              </>
             ),
             description && <hr key="0" style={styles.hr(colors)} />,
           ]);
@@ -237,7 +237,7 @@ export default class MemberOrderDetails extends React.PureComponent {
         if (paymentShowMemo[template][ezpayPaymentType]) {
           paymentDescription = paymentDescription.concat([
             ezpayPaymentType === 'MMK' && (
-              <React.Fragment key="MMK">
+              <>
                 <span>
                   {transformLocale(LOCALE.CVS_PAYMENT_NO) +
                     paymentMemoData.paycode}
@@ -246,7 +246,7 @@ export default class MemberOrderDetails extends React.PureComponent {
                   {transformLocale(LOCALE.EXPIRE_DATE) +
                     moment.unix(paymentMemoData.expireDate).format('YYYY/M/D')}
                 </span>
-              </React.Fragment>
+              </>
             ),
             description && <hr key="1" style={styles.hr(colors)} />,
           ]);

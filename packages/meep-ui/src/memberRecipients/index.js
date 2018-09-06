@@ -8,6 +8,10 @@ import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
 import fetchStreamName from 'utils/fetchStreamName';
 import { TAIWAN } from 'locale/country';
 
+import validateMobile, {
+  validateTaiwanMobileNumber,
+} from 'utils/validateMobile';
+
 import AddressCascader from '../addressCascader';
 
 import * as styles from './styles';
@@ -123,7 +127,10 @@ export default class MemberRecipients extends React.PureComponent {
       async (err, { postalCode, address, street, ...filedsValue }) => {
         if (!err) {
           if (Object.values(TAIWAN).includes(address[0])) {
-            postalCode = await fetchStreamName(address).then(({ zip }) => zip.toString()); // eslint-disable-line
+            // eslint-disable-next-line
+            postalCode = await fetchStreamName(address).then(({ zip }) =>
+              zip.toString(),
+            );
           }
 
           const recipient = {
@@ -170,7 +177,7 @@ export default class MemberRecipients extends React.PureComponent {
     const { country = '', city = '', county = '', street = '' } =
       yahooCode || {};
     return (
-      <React.Fragment>
+      <>
         <div className="hideOnMobile">{value}</div>
         <div className="showOnMobile" style={styles.recipient}>
           <div style={styles.recipientRow}>
@@ -198,7 +205,7 @@ export default class MemberRecipients extends React.PureComponent {
             <div>{this.renderAction(null, null, index)}</div>
           </div>
         </div>
-      </React.Fragment>
+      </>
     );
   };
 
@@ -208,18 +215,18 @@ export default class MemberRecipients extends React.PureComponent {
       yahooCode: { country, city, county, street },
     } = address;
     return (
-      <React.Fragment>
+      <>
         {`${postalCode ? `${postalCode} ` : ''}${
           country ? `${country} ` : ''
         }${city || ''}${county || ''}${street || ''}`}
-      </React.Fragment>
+      </>
     );
   };
 
   renderAction = (value, record, index) => {
     const { transformLocale } = this.props;
     return (
-      <React.Fragment>
+      <>
         <span style={styles.action} onClick={() => this.editRecipient(index)}>
           {transformLocale(LOCALE.EDIT)}
         </span>
@@ -227,7 +234,7 @@ export default class MemberRecipients extends React.PureComponent {
         <span style={styles.action} onClick={() => this.deleteRecipient(index)}>
           {transformLocale(LOCALE.DELETE)}
         </span>
-      </React.Fragment>
+      </>
     );
   };
 
@@ -264,7 +271,12 @@ export default class MemberRecipients extends React.PureComponent {
             ],
           })(<Input size="large" placeholder={transformLocale(LOCALE.NAME)} />)}
         </FormItem>
-        <FormItem>
+        <FormItem
+          extra={validateTaiwanMobileNumber(
+            transformLocale,
+            getFieldValue('mobile') || '',
+          )}
+        >
           {getFieldDecorator('mobile', {
             initialValue: mobile,
             rules: [
@@ -272,9 +284,16 @@ export default class MemberRecipients extends React.PureComponent {
                 required: true,
                 message: transformLocale(LOCALE.IS_REQUIRED),
               },
+              {
+                validator: validateMobile(transformLocale, 'recipientMobile'),
+              },
             ],
           })(
-            <Input size="large" placeholder={transformLocale(LOCALE.MOBILE)} />,
+            <Input
+              size="large"
+              placeholder={transformLocale(LOCALE.MOBILE)}
+              maxLength={20}
+            />,
           )}
         </FormItem>
         <FormItem>
