@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@meepshop/test-prod-server",
-  "version": "0.2.69",
+  "version": "0.2.70",
   "description": "test prod-server for meepshop",
   "scripts": {
     "postinstall": "patch-package",
@@ -15,7 +15,7 @@
   "author": "meepshop <admin@meepshop.com>",
   "license": "ISC",
   "dependencies": {
-    "@meepshop/store": "^0.2.69",
+    "@meepshop/store": "^0.2.70",
     "chalk": "^2.4.1",
     "commander": "^2.16.0",
     "isomorphic-unfetch": "^2.0.0",

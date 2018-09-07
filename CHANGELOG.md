@@ -1,3 +1,12 @@
+## 0.2.70 (2018-09-07)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#197](https://github.com/meepshop/meep-lerna/pull/197) fix(meep-ui): ErroNotFound DOM exception ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.69 (2018-09-06)
 
 #### :rocket: New Feature
