@@ -1,3 +1,15 @@
+## 0.2.72 (2018-09-10)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#199](https://github.com/meepshop/meep-lerna/pull/199) 結帳頁：修正更新購物車(N145) ([@HsuTing](https://github.com/HsuTing))
+* `store`
+  * [#200](https://github.com/meepshop/meep-lerna/pull/200) fix(store):fb login at first time & modify token expired time ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.70 (2018-09-07)
 
 #### :bug: Bug Fix
