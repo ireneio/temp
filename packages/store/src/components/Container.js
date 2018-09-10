@@ -153,7 +153,15 @@ class Container extends React.Component {
   };
 
   handleFacebookLogin = ({ from }) => {
-    const { pageAdTrackIDs, fbAppId, getAuth, userAgent } = this.props;
+    const {
+      pageAdTrackIDs,
+      fbAppId,
+      getAuth,
+      userAgent,
+      dispatchAction,
+    } = this.props;
+
+    dispatchAction('showLoadingStatus');
 
     if (!userAgent.match(/Line/gm) && !userAgent.match(/Instagram/gm)) {
       // Not Line in-app browser
@@ -182,14 +190,16 @@ class Container extends React.Component {
                     Utils.execTrackingCode('CompleteRegistration', {
                       pageAdTrackIDs,
                     });
-                    getAuth();
-                    if (from === 'cart') {
-                      Utils.goTo({ pathname: 'checkout' });
-                    } else if (window.storePreviousPageUrl) {
-                      Utils.goTo({ pathname: window.storePreviousPageUrl });
-                    } else {
-                      Utils.goTo({ pathname: '/' });
-                    }
+                    setTimeout(() => {
+                      getAuth();
+                      if (from === 'cart') {
+                        Utils.goTo({ pathname: 'checkout' });
+                      } else if (window.storePreviousPageUrl) {
+                        Utils.goTo({ pathname: window.storePreviousPageUrl });
+                      } else {
+                        Utils.goTo({ pathname: '/' });
+                      }
+                    }, 2000);
                     break;
                   }
                   case 2010: {
@@ -327,6 +337,7 @@ const mapStateToProps = state => {
   const {
     storeReducer: { colors, settings, pageAdTrackIDs },
     memberReducer: { user, isLogin, cart, loading, loadingTip },
+    loadingStatus: { loading: isLoading },
   } = state;
   const {
     cname,
@@ -347,7 +358,7 @@ const mapStateToProps = state => {
     isLogin,
     user: user && getJoinedUser(state),
     carts: cart,
-    loading,
+    loading: isLoading || loading,
     loadingTip,
     /* props(not in context) */
     locale,

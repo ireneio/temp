@@ -1,5 +1,7 @@
 import { getPages, getPagesSuccess, getPagesFailure } from './widgets/pages';
 
+import { showLoadingStatus } from './widgets/loading';
+
 import {
   getStoreSuccess,
   getStoreFailure,
@@ -163,4 +165,6 @@ export {
   serverProductInitial,
   serverProductsInitial,
   serverOthersInitial,
+  // loading status
+  showLoadingStatus,
 };

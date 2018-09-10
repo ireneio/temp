@@ -68,7 +68,7 @@ module.exports = app.prepare().then(
             return res.json({ error: data.error });
           }
           res.cookie('x-meepshop-authorization-token', data.token, {
-            expires: new Date(Date.now() + 86380000 * 7),
+            maxAge: 86400 * 1000 * 1,
             httpOnly: true,
           });
           return res.json({ isLoginSuccess: true });
@@ -143,7 +143,7 @@ module.exports = app.prepare().then(
           res.cookie(
             'x-meepshop-authorization-token',
             response.headers.get('x-meepshop-authorization-token'),
-            { expires: new Date(Date.now() + 86380000 * 7), httpOnly: true },
+            { maxAge: 86400 * 1000 * 1, httpOnly: true },
           );
           return res.json(data);
         } catch (error) {
@@ -276,7 +276,7 @@ module.exports = app.prepare().then(
               'x-meepshop-authorization-token',
               responseApi.headers.get('x-meepshop-authorization-token'),
               {
-                expires: new Date(Date.now() + 86380000 * 7),
+                maxAge: 86400 * 1000 * 1,
                 httpOnly: true,
               },
             );
@@ -331,7 +331,7 @@ module.exports = app.prepare().then(
             res.cookie(
               'x-meepshop-authorization-token',
               response.headers.get('x-meepshop-authorization-token'),
-              { expires: new Date(Date.now() + 86380000 * 7), httpOnly: true },
+              { maxAge: 86400 * 1000 * 7, httpOnly: true },
             );
           }
 
