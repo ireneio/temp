@@ -30,7 +30,6 @@ export default class Select extends React.PureComponent {
     /** props */
     error: PropTypes.string,
     cartId: ID_TYPE.isRequired,
-    productId: ID_TYPE.isRequired,
     quantity: PropTypes.number.isRequired,
     retailPrice: POSITIVE_NUMBER_TYPE.isRequired,
     stock: PURCHASE_ITEMS_TYPE.isRequired,
@@ -84,7 +83,6 @@ export default class Select extends React.PureComponent {
       transformLocale,
       updateCartItems,
       cartId,
-      productId,
       quantity,
       retailPrice,
       stock,
@@ -111,7 +109,7 @@ export default class Select extends React.PureComponent {
     const itemAmount = maxPurchase - minPurchaseItems + 1;
 
     return (
-      <React.Fragment>
+      <>
         <Style
           scopeSelector=".cart-product-select"
           rules={styles.modifyAntdStyle(colors)}
@@ -127,7 +125,7 @@ export default class Select extends React.PureComponent {
             defaultValue={quantity}
             value={quantity}
             onChange={value => {
-              onChange({ productId, quantity: value });
+              onChange({ cartId, quantity: value });
               updateCartItems([{ cartId, quantity: value }]);
               this.setState({ searchValue: null });
             }}
@@ -176,7 +174,7 @@ export default class Select extends React.PureComponent {
         <td style={[itemStyle, styles.price]}>
           {transformCurrency(retailPrice * quantity)}
         </td>
-      </React.Fragment>
+      </>
     );
   }
 }

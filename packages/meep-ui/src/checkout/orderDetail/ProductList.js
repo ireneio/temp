@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 import { Button } from 'antd';
-import CloseIcon from 'react-icons/lib/md/close';
+import { close as CloseIcon } from 'react-icons/md';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -46,25 +46,26 @@ export default class ProductList extends React.PureComponent {
     this.isComponentMounted = true;
   }
 
-  updateProducts = ({ productId, quantity }) => {
+  updateProducts = ({ cartId, quantity }) => {
     const { products, updateProducts } = this.props;
-    const newProducts = products.reduce(
-      (result, { productId: id, quantity: preQuantity, ...product }) => {
-        if (id === productId && quantity === 0) return result;
 
-        return [
-          ...result,
-          {
-            ...product,
-            productId: id,
-            quantity: id === productId ? quantity : preQuantity,
-          },
-        ];
-      },
-      [],
+    updateProducts(
+      products.reduce(
+        (result, { cartId: id, quantity: preQuantity, ...product }) => {
+          if (id === cartId && quantity === 0) return result;
+
+          return [
+            ...result,
+            {
+              ...product,
+              cartId: id,
+              quantity: id === cartId ? quantity : preQuantity,
+            },
+          ];
+        },
+        [],
+      ),
     );
-
-    updateProducts(newProducts);
   };
 
   render() {
