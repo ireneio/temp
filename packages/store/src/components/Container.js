@@ -109,6 +109,8 @@ class Container extends React.Component {
     window.addEventListener(
       'unhandledrejection',
       ({ reason: { message, stack } }) => {
+        if (message === 'Failed to fetch') return;
+
         fetch('/log', {
           method: 'post',
           headers: { 'content-type': 'application/json' },
