@@ -110,6 +110,30 @@ export const INVOICE = [
   },
 ];
 
+export const INVOICE_E_INVOICE_TYPE = [
+  {
+    zh_TW: '會員載具',
+    en_US: 'Membership Carrier',
+    ja_JP: '会員キャリア',
+    vi_VN: 'Phương tiện hội viên',
+    TODO_LOCALE: true,
+  },
+  {
+    zh_TW: '手機條碼載具',
+    en_US: 'Mobile Barcode',
+    ja_JP: '携帯電話バーコードキャリア',
+    vi_VN: 'Phương tiện mã vạch di động',
+    TODO_LOCALE: true,
+  },
+  {
+    zh_TW: '自然人憑證載具',
+    en_US: 'NPC Barcode',
+    ja_JP: '自然人証憑キャリア',
+    vi_VN: 'Phương tiện chứng nhận kỹ thuật số công dân',
+    TODO_LOCALE: true,
+  },
+];
+
 export const NOTES = {
   zh_TW: '訂單備註',
   en_US: 'Order Notes',
