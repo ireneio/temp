@@ -1,3 +1,12 @@
+## 0.2.75 (2018-09-11)
+
+#### :bug: Bug Fix
+* `store`
+  * [#204](https://github.com/meepshop/meep-lerna/pull/204) 感謝頁：修正loading spinner轉不停 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.74 (2018-09-11)
 
 #### :house: Internal
