@@ -18,10 +18,8 @@ const initialState = {
 };
 
 export default function(state = initialState, { type, payload }) {
-  console.log(type);
-
+  // TODO: refactor loading state, move loading state from member reducer to here
   if (type.match(/_REQUEST/)) {
-    console.log('is request');
     return {
       loading: true,
       loadingTip: type,
@@ -29,7 +27,6 @@ export default function(state = initialState, { type, payload }) {
   }
 
   if (type.match(/_SUCCESS|_FAILURE/)) {
-    console.log('is success/failure');
     return {
       loading: false,
       loadingTip: '',
