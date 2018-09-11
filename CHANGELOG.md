@@ -1,3 +1,15 @@
+## 0.2.73 (2018-09-11)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#202](https://github.com/meepshop/meep-lerna/pull/202) 結帳確認明細頁：發票資訊 - 電子發票(N138) ([@HsuTing](https://github.com/HsuTing))
+  * [#195](https://github.com/meepshop/meep-lerna/pull/195) 登入頁: fix login style in IE ([@HsuTing](https://github.com/HsuTing))
+* `store`
+  * [#201](https://github.com/meepshop/meep-lerna/pull/201) fix(store): failed to fetch log too many ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.2.72 (2018-09-10)
 
 #### :bug: Bug Fix
