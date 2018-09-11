@@ -1,3 +1,12 @@
+## 0.2.74 (2018-09-11)
+
+#### :house: Internal
+* `store`
+  * [#203](https://github.com/meepshop/meep-lerna/pull/203) fix(store): remove conosle ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.2.73 (2018-09-11)
 
 #### :bug: Bug Fix
