@@ -4,6 +4,7 @@ import * as R from 'ramda';
 import { notification } from 'antd';
 import * as Api from 'api';
 import { NOTLOGIN, ISUSER } from 'constants';
+import { hideLoadingStatus } from './loading';
 import * as LOCALE from '../locale';
 
 /* ********************************* 檢查登入狀態 ********************************* */
@@ -718,6 +719,7 @@ function* getOrderFlow({ payload }) {
       if (data.errors) throw new Error(data.errors[0].message);
       yield put(getOrderSuccess(data));
     }
+    yield put(hideLoadingStatus());
   } catch (error) {
     yield put(getOrderFailure());
     console.log(
