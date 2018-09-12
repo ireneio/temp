@@ -1,8 +1,11 @@
-## 0.2.76 (2018-09-12)
+## 0.3.0 (2018-09-12)
 
 #### :rocket: New Feature
 * `store`, `test-prod-server`
-  * [#159](https://github.com/meepshop/meep-lerna/pull/159) Switch to Koa and use proxy and some bug fixes ([@barrypeng6](https://github.com/barrypeng6))
+  * 顯示商店關閉狀態
+  * Switch to Koa Server
+  * Use proxy
+  * [#159](https://github.com/meepshop/meep-lerna/pull/159) Fix some bugs ([@barrypeng6](https://github.com/barrypeng6))
 
 #### Committers: 1
 - [@barrypeng6](https://github.com/barrypeng6)
