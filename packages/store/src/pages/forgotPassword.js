@@ -16,12 +16,9 @@ class ForgotPassword extends Component {
       req,
       query: { token },
     } = context;
-    const { XMeepshopDomain, userAgent, cookie = null } = Utils.getReqArgs(
-      isServer,
-      req,
-    );
+    const { XMeepshopDomain, userAgent } = Utils.getReqArgs(isServer, req);
     if (isServer) {
-      store.dispatch(Actions.serverOthersInitial({ XMeepshopDomain, cookie }));
+      store.dispatch(Actions.serverOthersInitial(context));
     }
     return { token, userAgent, XMeepshopDomain };
   };
@@ -78,7 +75,7 @@ class ForgotPassword extends Component {
     return isLogin === 'ISUSER' ? (
       <div>已登入</div>
     ) : (
-      <React.Fragment>
+      <>
         <Head>
           <title>{storeName}</title>
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
@@ -90,7 +87,7 @@ class ForgotPassword extends Component {
           fbAppId={fbAppId}
         />
         <Container {...this.props} />
-      </React.Fragment>
+      </>
     );
   }
 }

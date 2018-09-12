@@ -5,7 +5,7 @@
   "description": "test prod-server for meepshop",
   "scripts": {
     "postinstall": "patch-package",
-    "test": "NODE_ENV=production node ./lib/bin/index.js",
+    "test": "TEST_PROD_SERVER=true NODE_ENV=production node ./lib/bin/index.js",
     "test:ci": "make test-ci"
   },
   "keywords": [
@@ -18,6 +18,7 @@
     "@meepshop/store": "^0.2.75",
     "chalk": "^2.4.1",
     "commander": "^2.16.0",
+    "express-http-proxy": "^1.2.0",
     "isomorphic-unfetch": "^2.0.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",

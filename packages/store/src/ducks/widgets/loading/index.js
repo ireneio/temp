@@ -19,19 +19,19 @@ const initialState = {
 
 export default function(state = initialState, { type, payload }) {
   // TODO: refactor loading state, move loading state from member reducer to here
-  if (type.match(/_REQUEST/)) {
-    return {
-      loading: true,
-      loadingTip: type,
-    };
-  }
+  // if (type.match(/_REQUEST/)) {
+  //   return {
+  //     loading: true,
+  //     loadingTip: type,
+  //   };
+  // }
 
-  if (type.match(/_SUCCESS|_FAILURE/)) {
-    return {
-      loading: false,
-      loadingTip: '',
-    };
-  }
+  // if (type.match(/_SUCCESS|_FAILURE/)) {
+  //   return {
+  //     loading: false,
+  //     loadingTip: '',
+  //   };
+  // }
 
   switch (type) {
     case SHOW_LOADING_STATUS: {

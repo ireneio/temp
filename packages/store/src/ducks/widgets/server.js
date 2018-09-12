@@ -1,5 +1,4 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
-import * as R from 'ramda';
 import * as Utils from 'utils';
 import * as Api from 'api';
 
@@ -18,39 +17,26 @@ export const serverIndexInitial = payload => ({
 
 function* serverIndexInitialFlow({ payload }) {
   try {
-    const { XMeepshopDomain, cookie, query } = payload;
+    const { cookie } = payload;
+    const data = yield call(Api.serverIndexInitial, payload);
 
-    const data = yield call(Api.serverIndexInitial, {
-      XMeepshopDomain,
-      cookie,
-    });
+    if (data) {
+      /* Get default locale & currency from cookies */
+      const locale = Utils.getCookie('locale', cookie);
+      const customerCurrency = Utils.getCookie('currency', cookie);
 
-    // get default locale & currency from cookies
-    const locale = Utils.getCookie('locale', cookie);
-    const customerCurrency = Utils.getCookie('currency', cookie);
+      yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
+      yield put(getAuthSuccess(data));
 
-    yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
-    yield put(getAuthSuccess(data));
-    const homePageId = Utils.getIn([
-      'data',
-      'getStoreList',
-      'data',
-      0,
-      'homePageId',
-    ])(data);
-    const pages = Utils.getIn(['data', 'getPageList', 'data'])(data);
-    const page =
-      homePageId == null ? pages[0] : R.find(R.propEq('id', homePageId))(pages);
-    if (page) {
-      const modifiedPage = yield Utils.getPageWithModifyWidget(
-        page,
-        XMeepshopDomain,
-        query,
-        cookie,
-      );
+      const homePageId = data?.data?.getStoreList?.data?.[0]?.homePageId;
+      const pages = data?.data?.getPageList?.data;
+
+      const page = !homePageId
+        ? pages[0]
+        : pages.find(_page => _page.id === homePageId);
+
+      const modifiedPage = yield Utils.getPageWithModifyWidget(page, payload);
       yield put(getPagesSuccess(modifiedPage));
-    } else {
-      yield put(getStoreFailure('Index page is not found.'));
     }
   } catch (error) {
     console.log(
@@ -73,32 +59,24 @@ export const serverPagesInitial = payload => ({
 
 function* serverPagesInitialFlow({ payload }) {
   try {
-    const { XMeepshopDomain, cookie, query } = payload;
-    const { path } = query;
+    const { cookie } = payload;
+    const data = yield call(Api.serverPagesInitial, payload);
 
-    const data = yield call(Api.serverPagesInitial, {
-      XMeepshopDomain,
-      cookie,
-      path,
-    });
+    if (data) {
+      /* Get default locale & currency from cookies */
+      const locale = Utils.getCookie('locale', cookie);
+      const customerCurrency = Utils.getCookie('currency', cookie);
 
-    // get default locale & currency from cookies
-    const locale = Utils.getCookie('locale', cookie);
-    const customerCurrency = Utils.getCookie('currency', cookie);
+      yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
+      yield put(getAuthSuccess(data));
 
-    yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
-    yield put(getAuthSuccess(data));
-    const page = Utils.getIn(['data', 'getPageList', 'data', 0])(data);
-    if (page) {
-      const modifiedPage = yield Utils.getPageWithModifyWidget(
-        page,
-        XMeepshopDomain,
-        query,
-        cookie,
-      );
-      yield put(getPagesSuccess(modifiedPage));
-    } else {
-      yield put(getStoreFailure('The page is not found.'));
+      const page = data?.data?.getPageList?.data?.[0];
+      if (page) {
+        const modifiedPage = yield Utils.getPageWithModifyWidget(page, payload);
+        yield put(getPagesSuccess(modifiedPage));
+      } else {
+        yield put(getStoreFailure('ERROR_PAGE_NOT_FOUND'));
+      }
     }
   } catch (error) {
     console.log(
@@ -121,81 +99,57 @@ export const serverProductInitial = payload => ({
 
 function* serverProductInitialFlow({ payload }) {
   try {
-    const { XMeepshopDomain, cookie, query } = payload;
+    const { cookie, query } = payload;
     const { pId } = query;
 
-    const data = yield call(Api.serverProductInitial, {
-      XMeepshopDomain,
-      cookie,
-      pId,
-    });
+    const data = yield call(Api.serverProductInitial, payload);
 
-    // get default locale & currency from cookies
-    const locale = Utils.getCookie('locale', cookie);
-    const customerCurrency = Utils.getCookie('currency', cookie);
+    if (data) {
+      /* get default locale & currency from cookies */
+      const locale = Utils.getCookie('locale', cookie);
+      const customerCurrency = Utils.getCookie('currency', cookie);
 
-    yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
-    yield put(getAuthSuccess(data));
-    const product = Utils.getIn(['data', 'computeProductList', 'data', 0])(
-      data,
-    );
-    if (product == null) {
-      yield put(getStoreFailure('There is no product of the id.'));
-    } else {
-      // Get activities from computeOrderList
-      // FIXME: when api join activities data in computeProductList
-      const computeOrderData = yield call(Api.getActivitiesByProduct, {
-        isServer: true,
-        variantId: Utils.getIn(['variants', 0, 'id'])(product) || '',
-        XMeepshopDomain,
-        cookie,
-        id: pId,
-      });
-      const activities =
-        Utils.getIn([
-          'data',
-          'computeOrderList',
-          0,
-          'categories',
-          0,
-          'products',
-          0,
-          'activityInfo',
-        ])(computeOrderData) || [];
-
-      // FIXME: Join activities in corresponding product
-      yield put(getProductSuccess({ ...product, activities }));
-      let pagesData;
-      if (
-        !Utils.getIn(['design'])(product) ||
-        (!Utils.getIn(['design', 'pageId'])(product) &&
-          !Utils.getIn(['design', 'templateId'])(product))
-      ) {
-        pagesData = yield call(Api.getPages, {
-          pageType: 'template',
-          isServer: true,
-          XMeepshopDomain,
+      yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
+      yield put(getAuthSuccess(data));
+      const product = data?.data?.computeProductList?.data?.[0];
+      if (product) {
+        /* Get activities from computeOrderList */
+        const computeOrderData = yield call(Api.getActivitiesByProduct, {
+          ...payload,
+          variantId: product?.variants?.[0]?.id || '',
+          id: pId,
         });
+        const activities =
+          computeOrderData?.data?.computeOrderList?.[0]?.categories?.[0]
+            ?.products?.[0]?.activityInfo || [];
+
+        /* Join activities in corresponding product */
+        yield put(getProductSuccess({ ...product, activities }));
+        let pagesData;
+        const { templateId, pageId } = product?.design || {};
+        if (!pageId && !templateId) {
+          pagesData = yield call(Api.getPages, {
+            ...payload,
+            pageType: 'template',
+          });
+        } else {
+          pagesData = yield call(Api.getPages, {
+            ...payload,
+            id: templateId || pageId,
+          });
+        }
+        const page = pagesData?.data?.getPageList?.data?.[0];
+        if (page) {
+          const modifiedPage = yield Utils.getPageWithModifyWidget(
+            page,
+            payload,
+          );
+          yield put(getPagesSuccess(modifiedPage));
+        } else {
+          throw new Error('Product page is not found.');
+        }
       } else {
-        const { templateId, pageId } = Utils.getIn(['design'])(product);
-        const id = templateId || pageId;
-        pagesData = yield call(Api.getPages, {
-          id,
-          isServer: true,
-          XMeepshopDomain,
-        });
-      }
-      const page = Utils.getIn(['data', 'getPageList', 'data', 0])(pagesData);
-      if (page) {
-        const modifiedPage = yield Utils.getPageWithModifyWidget(
-          page,
-          XMeepshopDomain,
-          query,
-          cookie,
-        );
-        yield put(getPagesSuccess(modifiedPage));
-      } else {
-        yield put(getStoreFailure('Product page is not found.'));
+        yield put(getStoreFailure('ERROR_PRODUCT_NOT_FOUND'));
       }
     }
   } catch (error) {
@@ -219,29 +173,23 @@ export const serverProductsInitial = payload => ({
 
 function* serverProductsInitialFlow({ payload }) {
   try {
-    const { XMeepshopDomain, cookie, query } = payload;
-    const data = yield call(Api.serverProductsInitial, {
-      XMeepshopDomain,
-      cookie,
-    });
+    const { cookie } = payload;
+    const data = yield call(Api.serverProductsInitial, payload);
 
-    // get default locale & currency from cookies
-    const locale = Utils.getCookie('locale', cookie);
-    const customerCurrency = Utils.getCookie('currency', cookie);
+    if (data) {
+      /* get default locale & currency from cookies */
+      const locale = Utils.getCookie('locale', cookie);
+      const customerCurrency = Utils.getCookie('currency', cookie);
 
-    yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
-    yield put(getAuthSuccess(data));
-    const page = Utils.getIn(['data', 'getPageList', 'data', 0])(data);
-    if (page) {
-      const modifiedPage = yield Utils.getPageWithModifyWidget(
-        page,
-        XMeepshopDomain,
-        query,
-        cookie,
-      );
-      yield put(getPagesSuccess(modifiedPage));
-    } else {
-      yield put(getStoreFailure('Products page is not found.'));
+      yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
+      yield put(getAuthSuccess(data));
+      const page = data?.data?.getPageList?.data?.[0];
+      if (page) {
+        const modifiedPage = yield Utils.getPageWithModifyWidget(page, payload);
+        yield put(getPagesSuccess(modifiedPage));
+      } else {
+        throw new Error('Products page is not found.');
+      }
     }
   } catch (error) {
     console.log(
@@ -264,18 +212,17 @@ export const serverOthersInitial = payload => ({
 
 function* serverOthersInitialFlow({ payload }) {
   try {
-    const { XMeepshopDomain, cookie } = payload;
-    const data = yield call(Api.serverOthersInitial, {
-      XMeepshopDomain,
-      cookie,
-    });
+    const { cookie } = payload;
+    const data = yield call(Api.serverOthersInitial, payload);
 
-    // get default locale & currency from cookies
-    const locale = Utils.getCookie('locale', cookie);
-    const customerCurrency = Utils.getCookie('currency', cookie);
+    if (data) {
+      // get default locale & currency from cookies
+      const locale = Utils.getCookie('locale', cookie);
+      const customerCurrency = Utils.getCookie('currency', cookie);
 
-    yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
-    yield put(getAuthSuccess(data));
+      yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
+      yield put(getAuthSuccess(data));
+    }
   } catch (error) {
     console.log(
       `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,

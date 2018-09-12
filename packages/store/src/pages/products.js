@@ -9,18 +9,9 @@ import * as Actions from 'ducks/actions';
 
 class Products extends React.Component {
   static getInitialProps = async context => {
-    const {
-      isServer,
-      XMeepshopDomain,
-      userAgent,
-      cookie,
-      store,
-      query,
-    } = context;
+    const { isServer, XMeepshopDomain, userAgent, store, query } = context;
     if (isServer) {
-      store.dispatch(
-        Actions.serverProductsInitial({ XMeepshopDomain, cookie, query }),
-      );
+      store.dispatch(Actions.serverProductsInitial(context));
     } else {
       store.dispatch(Actions.getPages({ pageType: 'products', query }));
     }
@@ -67,7 +58,7 @@ class Products extends React.Component {
     const { keywords, description, image } = page.seo || {};
 
     return (
-      <React.Fragment>
+      <>
         <Head>
           <title>{addressTitle || storeName}</title>
           <meta name="description" content={description} />
@@ -96,7 +87,7 @@ class Products extends React.Component {
           fbAppId={fbAppId}
         />
         <Container {...this.props} />
-      </React.Fragment>
+      </>
     );
   }
 }

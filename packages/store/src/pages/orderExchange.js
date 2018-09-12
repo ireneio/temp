@@ -19,12 +19,11 @@ class OrderExchange extends Component {
       isServer,
       XMeepshopDomain,
       userAgent,
-      cookie,
       store,
       query: { orderId },
     } = context;
     if (isServer) {
-      store.dispatch(Actions.serverOthersInitial({ XMeepshopDomain, cookie }));
+      store.dispatch(Actions.serverOthersInitial(context));
     }
     return { orderId, userAgent, XMeepshopDomain };
   };
@@ -91,7 +90,7 @@ class OrderExchange extends Component {
     return isLogin === 'NOTLOGIN' ? (
       <div>未登入</div>
     ) : (
-      <React.Fragment>
+      <>
         <Head>
           <title>{storeName}</title>
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
@@ -111,7 +110,7 @@ class OrderExchange extends Component {
             />
           </MemberHeader>
         </Container>
-      </React.Fragment>
+      </>
     );
   }
 }

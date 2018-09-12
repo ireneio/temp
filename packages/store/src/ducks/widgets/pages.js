@@ -31,30 +31,28 @@ function* getPagesFlow({ payload }) {
   try {
     const data = yield call(Api.getPages, payload);
 
-    // 整理data為了符合Layout Component結構，未來有可能在api server就幫前端整理好
-    let newPages = data?.data?.getPageList?.data;
-    newPages = newPages.map(page => {
-      const blocks = page.blocks
-        .filter(
-          ({ releaseDateTime }) =>
-            !releaseDateTime ||
-            parseInt(releaseDateTime, 10) * 1000 <= new Date().getTime(),
-        )
-        .map(({ width, componentWidth, widgets, ...block }) => ({
-          ...block,
-          width: width || 100,
-          componentWidth: componentWidth || 0,
-          // 整理及過濾Client-side rendering時的module資料，未來有可能在api server就幫前端整理好
-          widgets: modifyWidgetDataInClient(widgets, query),
-        }));
-      return { ...page, blocks };
-    });
-
-    yield put(getPagesSuccess(newPages));
+    let newPages = data?.data?.getPageList?.data || [];
+    if (newPages.length > 0) {
+      newPages = newPages.map(page => {
+        const blocks = page.blocks
+          .filter(
+            ({ releaseDateTime }) =>
+              !releaseDateTime ||
+              parseInt(releaseDateTime, 10) * 1000 <= new Date().getTime(),
+          )
+          .map(({ width, componentWidth, widgets, ...block }) => ({
+            ...block,
+            width: width || 100,
+            componentWidth: componentWidth || 0,
+            widgets: modifyWidgetDataInClient(widgets, query),
+          }));
+        return { ...page, blocks };
+      });
+      yield put(getPagesSuccess(newPages));
+    } else {
+      yield put(getPagesFailure('ERROR_PAGE_NOT_FOUND'));
+    }
   } catch (error) {
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     yield put(getPagesFailure(error.message));
   }
 }

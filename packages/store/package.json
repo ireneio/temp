@@ -5,10 +5,10 @@
   "description": "store for meepshop",
   "scripts": {
     "postinstall": "patch-package",
-    "dev": "node --inspect src/server/server.js",
+    "dev": "node --inspect src/server",
     "prod": "next build ./src",
     "clean": "rm -rf ./src/.next",
-    "start": "NODE_ENV=production node src/server/server.js"
+    "start": "NODE_ENV=production node src/server"
   },
   "keywords": [
     "meepshop",
@@ -25,8 +25,14 @@
     "compression": "^1.7.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
+    "express-http-proxy": "^1.2.0",
     "htmlescape": "^1.1.1",
     "isomorphic-unfetch": "^2.0.0",
+    "koa": "^2.5.2",
+    "koa-better-http-proxy": "^0.2.4",
+    "koa-bodyparser": "^4.2.1",
+    "koa-connect": "^2.0.1",
+    "koa-router": "^7.4.0",
     "moment-locales-webpack-plugin": "^1.0.5",
     "next-images": "^0.10.2",
     "next-redux-saga": "^3.0.0-beta.1",

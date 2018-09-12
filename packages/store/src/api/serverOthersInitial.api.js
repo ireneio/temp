@@ -16,8 +16,7 @@ import {
   stockNotificationQuery,
 } from './query';
 
-export default async function({ XMeepshopDomain, cookie }) {
-  const isServer = true;
+export default async function(context) {
   const variables = {
     keys:
       '$menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $wishlistSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType, $orderQASearch: searchInputObjectType',
@@ -319,11 +318,9 @@ export default async function({ XMeepshopDomain, cookie }) {
   `;
 
   const response = await postGraphql({
+    ...context,
     query,
     variables,
-    isServer,
-    XMeepshopDomain,
-    cookie,
   });
   return response;
 }

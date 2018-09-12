@@ -15,9 +15,9 @@ import * as TITLE from 'locales';
 
 class MemberOrders extends Component {
   static getInitialProps = async context => {
-    const { isServer, XMeepshopDomain, userAgent, cookie, store } = context;
+    const { isServer, XMeepshopDomain, userAgent, store } = context;
     if (isServer) {
-      store.dispatch(Actions.serverOthersInitial({ XMeepshopDomain, cookie }));
+      store.dispatch(Actions.serverOthersInitial(context));
     }
     return { userAgent, XMeepshopDomain };
   };
@@ -84,7 +84,7 @@ class MemberOrders extends Component {
     return isLogin === 'NOTLOGIN' ? (
       <div>未登入</div>
     ) : (
-      <React.Fragment>
+      <>
         <Head>
           <title>{storeName}</title>
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
@@ -104,7 +104,7 @@ class MemberOrders extends Component {
             />
           </MemberHeader>
         </Container>
-      </React.Fragment>
+      </>
     );
   }
 }

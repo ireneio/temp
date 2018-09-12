@@ -1,7 +1,7 @@
 /**
  * @name getReqArgs
  * @argument {boolean} isServer is server side or client sode
- * @argument {Object} resource requset or window
+ * @argument {Object} req requset or window
  */
 import getConfig from 'next/config';
 

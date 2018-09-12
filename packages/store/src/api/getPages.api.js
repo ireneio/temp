@@ -5,8 +5,8 @@ export default async function({
   id,
   path,
   pageType,
-  isServer,
-  XMeepshopDomain,
+  pageTypes /* use in /pages */,
+  ...context
 }) {
   const variables = {
     keys: '$search: searchInputObjectType',
@@ -23,6 +23,7 @@ export default async function({
         ],
         filter: {
           and: [],
+          or: [],
         },
       },
     },
@@ -47,6 +48,15 @@ export default async function({
       query: pageType,
     });
   }
+  if (pageTypes) {
+    pageTypes.forEach(type => {
+      variables.values.search.filter.or.push({
+        type: 'exact',
+        field: 'pageType',
+        query: type,
+      });
+    });
+  }
   const query = `
     getPageList(
       search: $search
@@ -58,10 +68,9 @@ export default async function({
     }
   `;
   const response = await postGraphql({
+    ...context,
     query,
     variables,
-    isServer,
-    XMeepshopDomain,
   });
   return response;
 }

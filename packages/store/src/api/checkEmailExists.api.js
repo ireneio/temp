@@ -1,5 +1,4 @@
 import postGraphql from 'utils/postGraphql';
-import getIn from 'utils/getIn';
 
 export default async function({ email }) {
   const variables = {
@@ -33,6 +32,5 @@ export default async function({ email }) {
     query,
     variables,
   });
-  const isExists = getIn(['data', 'checkUserInfo', 'exists'])(response);
-  return isExists;
+  return response;
 }

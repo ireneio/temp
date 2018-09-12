@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import * as R from 'ramda';
 import { connect } from 'react-redux';
 import * as Utils from 'utils';
 import { Container, TrackingCodeHead, Error } from 'components';
@@ -11,25 +10,32 @@ import * as CONST from 'constants';
 
 class Pages extends React.Component {
   static getInitialProps = async context => {
-    const {
-      isServer,
-      XMeepshopDomain,
-      userAgent,
-      cookie,
-      store,
-      query,
-    } = context;
+    const { res, isServer, XMeepshopDomain, userAgent, store, query } = context;
     const { path, pId } = query;
+
+    if (pId) {
+      // Redirect /pages/{PRODUCT-NAME}?pId={PRODUCT-ID} to /product/{PRODUCT-ID}
+      if (isServer) {
+        res.writeHead(302, {
+          Location: `/product/${pId}`,
+        });
+        res.end();
+      } else {
+        Utils.goTo({ pathname: `/product/${pId}` });
+      }
+      return {};
+    }
+
     if (isServer) {
-      store.dispatch(
-        Actions.serverPagesInitial({ XMeepshopDomain, cookie, query }),
-      );
+      store.dispatch(Actions.serverPagesInitial(context));
     } else if (pId) {
       Utils.goTo({ pathname: `/product/${pId}` });
     } else {
       const { pagesReducer } = store.getState();
-      if (R.isNil(R.find(R.propEq('path', path))(pagesReducer))) {
-        store.dispatch(Actions.getPages({ path, query }));
+      if (!pagesReducer.find(page => page.path === path)) {
+        store.dispatch(
+          Actions.getPages({ path, pageTypes: ['custom', 'products'], query }),
+        );
       }
     }
     return { path, userAgent, XMeepshopDomain };
@@ -57,7 +63,6 @@ class Pages extends React.Component {
 
   render() {
     const { error } = this.props;
-
     /* Display Error View */
     if (error) return <Error error={error} />;
 
@@ -73,7 +78,7 @@ class Pages extends React.Component {
     const { keywords, description, image } = page.seo || {};
 
     return (
-      <React.Fragment>
+      <>
         <Head>
           <title>{addressTitle || storeName}</title>
           <meta name="description" content={description} />
@@ -102,7 +107,7 @@ class Pages extends React.Component {
           fbAppId={fbAppId}
         />
         <Container {...this.props} />
-      </React.Fragment>
+      </>
     );
   }
 }

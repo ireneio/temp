@@ -2,12 +2,12 @@ const { publicRuntimeConfig } = require('../../../next.config');
 
 const { PRODUCTION, API_HOST, DOMAIN } = publicRuntimeConfig;
 
-async function paymentOfAllpay(req, res) {
-  const XMeepshopDomain = PRODUCTION ? req.headers.host : DOMAIN;
+module.exports = async ctx => {
+  const XMeepshopDomain = PRODUCTION ? ctx.host : DOMAIN;
   const PaymentReturnOrder = {
-    orderId: req.query.orderId,
+    orderId: ctx.query.orderId,
     template: 'allpay',
-    returnData: req.body,
+    returnData: ctx.request.body,
   };
   const variables = {
     keys: '$paymentReturnOrderList: [PaymentReturnOrder]',
@@ -33,17 +33,13 @@ async function paymentOfAllpay(req, res) {
       variables: variables.values,
     }),
   });
-  res.status(response.status);
+  ctx.status = response.status;
 
   try {
     const returnJson = await response.json();
-    res.send(returnJson);
+    ctx.body = JSON.stringify(returnJson);
   } catch (error) {
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
-    res.json({ error: error.message });
+    console.log(`Error: ${error.message}`);
+    ctx.body = { error: error.message };
   }
-}
-
-module.exports = paymentOfAllpay;
+};

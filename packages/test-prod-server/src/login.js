@@ -23,7 +23,7 @@ export default async () => {
       const [key, value = true] = text.split(/=/);
 
       switch (key) {
-        case 'x-meepshop-authorization-token':
+        case `x-meepshop-authorization-token-${process.env.TEST_DOMAIN}`:
           return {
             ...result,
             name: key,
@@ -31,6 +31,7 @@ export default async () => {
           };
 
         case 'Expires':
+        case 'expires':
           return {
             ...result,
             expires: moment(value).unix(),

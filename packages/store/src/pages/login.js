@@ -16,9 +16,9 @@ import * as Actions from 'ducks/actions';
 
 class Login extends Component {
   static getInitialProps = async context => {
-    const { isServer, XMeepshopDomain, userAgent, cookie, store } = context;
+    const { isServer, XMeepshopDomain, userAgent, store } = context;
     if (isServer) {
-      store.dispatch(Actions.serverOthersInitial({ XMeepshopDomain, cookie }));
+      store.dispatch(Actions.serverOthersInitial(context));
     }
     return { userAgent, XMeepshopDomain };
   };
@@ -70,7 +70,7 @@ class Login extends Component {
     return isLogin === 'ISUSER' ? (
       <LoadingPageFromLogin />
     ) : (
-      <React.Fragment>
+      <>
         <Head>
           <title>{storeName}</title>
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
@@ -84,7 +84,7 @@ class Login extends Component {
         <Container {...this.props}>
           <LoginView />
         </Container>
-      </React.Fragment>
+      </>
     );
   }
 }

@@ -11,18 +11,9 @@ import * as CONST from 'constants';
 
 class Index extends React.Component {
   static getInitialProps = async context => {
-    const {
-      isServer,
-      XMeepshopDomain,
-      userAgent,
-      cookie,
-      store,
-      query,
-    } = context;
+    const { isServer, XMeepshopDomain, userAgent, store, query } = context;
     if (isServer) {
-      store.dispatch(
-        Actions.serverIndexInitial({ XMeepshopDomain, cookie, query }),
-      );
+      store.dispatch(Actions.serverIndexInitial(context));
     } else {
       const { storeReducer, pagesReducer } = store.getState();
       const {
@@ -80,7 +71,7 @@ class Index extends React.Component {
     const { keywords, description, image } = page.seo || {};
 
     return (
-      <React.Fragment>
+      <>
         <Head>
           <title>{storeName}</title>
           <meta name="description" content={description} />
@@ -112,7 +103,7 @@ class Index extends React.Component {
         {/* eslint-disable */}
         <a href="/sitemaps/v1" />
         {/* eslint-enable */}
-      </React.Fragment>
+      </>
     );
   }
 }

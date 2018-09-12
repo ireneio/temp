@@ -1,11 +1,19 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import * as Utils from 'utils';
-import * as R from 'ramda';
 import { notification } from 'antd';
 import * as Api from 'api';
 import { NOTLOGIN, ISUSER } from 'constants';
-import { hideLoadingStatus } from './loading';
 import * as LOCALE from '../locale';
+
+const getCart = data => {
+  const changeCart = data?.data?.changeCartList?.[0] || null;
+  if (changeCart)
+    return {
+      ...changeCart,
+      categories: changeCart?.categories?.[0],
+    };
+  return null;
+};
 
 /* ********************************* 檢查登入狀態 ********************************* */
 const AUTH_REQUEST = 'AUTH_REQUEST';
@@ -38,12 +46,9 @@ function* getAuthFlow({ payload }) {
   } = yield select();
   try {
     const data = yield call(Api.updateMemberData, payload);
-    yield put(getAuthSuccess(data));
+    if (data) yield put(getAuthSuccess(data));
   } catch (error) {
     yield put(getAuthFailure(error.message));
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({ message: LOCALE.AUTH_FAILURE[locale] });
   }
 }
@@ -99,11 +104,8 @@ export function* loginFlow({ payload }) {
       }
 
       /* notify nearly expire user points */
-      const numOfExpiredPoints = Utils.getIn([
-        'data',
-        'getExpireSoonUserPointList',
-        'total',
-      ])(memberData);
+      const numOfExpiredPoints =
+        memberData?.data?.getExpireSoonUserPointList?.total;
       if (numOfExpiredPoints > 0) {
         notification.info({
           message: LOCALE.EXPIRED_POINTS_MESSAGE[locale],
@@ -117,18 +119,14 @@ export function* loginFlow({ payload }) {
 
       yield put(loginSuccess(memberData));
     } else {
-      throw new Error(`${res.error}`);
+      yield put(loginFailure());
+      notification.error({
+        message: LOCALE.INVALID_EMAIL_OR_PASSWORD[locale],
+      });
     }
   } catch (error) {
     yield put(loginFailure());
-    if (error && error.message === 'invalid email, password or identity.') {
-      notification.error({ message: LOCALE.INVALID_EMAIL_OR_PASSWORD[locale] });
-    } else {
-      console.log(
-        `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-      );
-      notification.error({ message: error.message });
-    }
+    notification.error({ message: error.message });
   }
 }
 export function* watchGetLoginFlow() {
@@ -158,20 +156,17 @@ function* signoutFlow() {
     },
   } = yield select();
   try {
-    const data = yield call(Api.signout);
-    if (data.error) {
-      const { status, errMsg } = data.error;
-      throw new Error(`${status}: ${errMsg}`);
+    const isSuccess = yield call(Api.signout);
+    if (isSuccess) {
+      const memberData = yield call(Api.updateMemberData);
+      yield put(signoutSuccess(memberData.data));
+      notification.success({ message: LOCALE.SIGNOUT_SUCCESS[locale] });
+    } else {
+      yield put(signoutFailure());
+      notification.error({ message: LOCALE.SIGNOUT_FAILURE_MESSAGE[locale] });
     }
-    const memberData = yield call(Api.updateMemberData);
-
-    yield put(signoutSuccess(memberData.data));
-    notification.success({ message: LOCALE.SIGNOUT_SUCCESS[locale] });
   } catch (error) {
     yield put(signoutFailure());
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({
       message: LOCALE.SIGNOUT_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -208,29 +203,32 @@ function* signupFlow({ payload }) {
 
   try {
     // 檢查信箱是否已註冊
-    const isExists = yield call(Api.checkEmailExists, { email });
-    if (isExists) {
-      yield put(signupFailure());
-      notification.error({ message: LOCALE.EMAIL_ALREADY_EXISTS[locale] });
-    } else {
-      const data = yield call(Api.signup, { email, password, registeredCode });
-      if (data.error) {
-        throw new Error(data.error);
-      }
-      const {
-        storeReducer: { pageAdTrackIDs },
-      } = yield select();
-      Utils.execTrackingCode('CompleteRegistration', { pageAdTrackIDs });
+    const data = yield call(Api.checkEmailExists, { email });
+    if (data) {
+      if (data?.data?.checkUserInfo?.exists) {
+        yield put(signupFailure());
+        notification.error({ message: LOCALE.EMAIL_ALREADY_EXISTS[locale] });
+      } else {
+        yield call(Api.signup, {
+          email,
+          password,
+          registeredCode,
+        });
 
-      yield put(signupSuccess());
-      notification.success({ message: LOCALE.SIGNUP_SUCCESS[locale] });
-      if (callback) callback();
+        /* Tracking code */
+        const {
+          storeReducer: { pageAdTrackIDs },
+        } = yield select();
+        Utils.execTrackingCode('CompleteRegistration', { pageAdTrackIDs });
+        /* Tracking code - End */
+
+        yield put(signupSuccess());
+        notification.success({ message: LOCALE.SIGNUP_SUCCESS[locale] });
+        if (callback) callback();
+      }
     }
   } catch (error) {
     yield put(signupFailure());
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({
       message: LOCALE.SIGNUP_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -321,30 +319,25 @@ function* AddCartItemsFlow({ payload }) {
   } = yield select();
   try {
     const data = yield call(Api.addItemsToCart, payload);
-    if (data.errors) throw new Error(data.errors[0].message);
+    if (data) {
+      const cart = getCart(data);
 
-    let cart = Utils.getIn(['data', 'changeCartList', 0])(data) || null;
-    // 暫時由前端整理資料，以後需改為後端處理
-    if (cart) {
-      const cartCategory = Utils.getIn(['categories', 0])(cart);
-      cart = R.assocPath(['categories'], cartCategory)(cart);
+      /* tracking code */
+      const {
+        storeReducer: { pageAdTrackIDs },
+      } = yield select();
+      Utils.execTrackingCode('AddToCart-EC', { cart, payload, pageAdTrackIDs });
+      /* tracking code - End */
+
+      yield put(addCartItemsSuccess(cart));
+      notification.success({ message: LOCALE.ADD_CART_ITEMS_SUCCESS[locale] });
     }
-
-    const {
-      storeReducer: { pageAdTrackIDs },
-    } = yield select();
-    Utils.execTrackingCode('AddToCart-EC', { cart, payload, pageAdTrackIDs });
-    yield put(addCartItemsSuccess(cart));
-    notification.success({ message: LOCALE.ADD_CART_ITEMS_SUCCESS[locale] });
   } catch (error) {
-    yield put(addCartItemsFailure());
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({
       message: LOCALE.ADD_CART_ITEMS_FAILURE_MESSAGE[locale],
       description: error.message,
     });
+    yield put(addCartItemsFailure());
   }
 }
 export function* watchAddCartItemsFlow() {
@@ -376,22 +369,15 @@ function* UpdateCartItemsFlow({ payload }) {
   } = yield select();
   try {
     const data = yield call(Api.updateItemsToCart, payload);
-    if (data.errors) throw new Error(data.errors[0].message);
-
-    let cart = Utils.getIn(['data', 'changeCartList', 0])(data) || null;
-    // 暫時由前端整理資料，以後需改為後端處理
-    if (cart) {
-      const cartCategory = Utils.getIn(['categories', 0])(cart);
-      cart = R.assocPath(['categories'], cartCategory)(cart);
+    if (data) {
+      const cart = getCart(data);
+      yield put(updateCartItemsSuccess(cart));
+      notification.success({
+        message: LOCALE.UPDATE_CART_ITEMS_SUCCESS[locale],
+      });
     }
-
-    yield put(updateCartItemsSuccess(cart));
-    notification.success({ message: LOCALE.UPDATE_CART_ITEMS_SUCCESS[locale] });
   } catch (error) {
     yield put(updateCartItemsFailure());
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({
       message: LOCALE.UPDATE_CART_ITEMS_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -427,22 +413,15 @@ function* removeCartItemsFlow({ payload }) {
   } = yield select();
   try {
     const data = yield call(Api.removeItemsToCart, payload);
-    if (data.errors) throw new Error(data.errors[0].message);
-
-    let cart = Utils.getIn(['data', 'changeCartList', 0])(data) || null;
-    // TODO: 暫時由前端整理資料，以後需改為後端處理
-    if (cart) {
-      const cartCategory = Utils.getIn(['categories', 0])(cart);
-      cart = R.assocPath(['categories'], cartCategory)(cart);
+    if (data) {
+      const cart = getCart(data);
+      yield put(removeCartItemsSuccess(cart));
+      notification.success({
+        message: LOCALE.REMOVE_CART_ITEMS_SUCCESS[locale],
+      });
     }
-
-    yield put(removeCartItemsSuccess(cart));
-    notification.success({ message: LOCALE.REMOVE_CART_ITEMS_SUCCESS[locale] });
   } catch (error) {
     yield put(removeCartItemsFailure());
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({
       message: LOCALE.REMOVE_CART_ITEMS_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -478,15 +457,12 @@ function* updateUserFlow({ payload }) {
   } = yield select();
   try {
     const data = yield call(Api.updateUser, payload);
-    if (data.errors) throw new Error(data.errors[0].message);
-
-    yield put(updateUserSuccess(data));
-    notification.success({ message: LOCALE.UPDATE_USER_SUCCESS[locale] });
+    if (data) {
+      yield put(updateUserSuccess(data));
+      notification.success({ message: LOCALE.UPDATE_USER_SUCCESS[locale] });
+    }
   } catch (error) {
     yield put(updateUserFailure());
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({
       message: LOCALE.UPDATE_USER_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -522,16 +498,13 @@ function* createApplyFlow({ payload }) {
   } = yield select();
   try {
     const data = yield call(Api.createOrderApply, payload);
-    if (data.errors) throw new Error(data.errors[0].message);
-
-    yield put(createApplySuccess(data));
-    notification.success({ message: LOCALE.CREATE_APPLY_SUCCESS[locale] });
-    Utils.goTo({ pathname: '/orders' });
+    if (data) {
+      yield put(createApplySuccess(data));
+      notification.success({ message: LOCALE.CREATE_APPLY_SUCCESS[locale] });
+      Utils.goTo({ pathname: '/orders' });
+    }
   } catch (error) {
     yield put(createApplyFailure());
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({
       message: LOCALE.CREATE_APPLY_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -567,15 +540,12 @@ function* createOrderQAFlow({ payload }) {
   } = yield select();
   try {
     const data = yield call(Api.createOrderQA, payload);
-    if (data.errors) throw new Error(data.errors[0].message);
-
-    yield put(createOrderQASuccess(data));
-    notification.success({ message: LOCALE.CREATE_ORDER_QA_SUCCESS[locale] });
+    if (data) {
+      yield put(createOrderQASuccess(data));
+      notification.success({ message: LOCALE.CREATE_ORDER_QA_SUCCESS[locale] });
+    }
   } catch (error) {
     yield put(createOrderQAFailure());
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({
       message: LOCALE.CREATE_ORDER_QA_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -611,20 +581,19 @@ function* updateWishListFlow({ payload }) {
   } = yield select();
   try {
     const data = yield call(Api.updateWishList, payload);
-    if (data.errors) throw new Error(data.errors[0].message);
+    if (data) {
+      /* Tracking code */
+      const {
+        storeReducer: { pageAdTrackIDs },
+      } = yield select();
+      Utils.execTrackingCode('AddToWishlist', { pageAdTrackIDs });
+      /* Tracking code - End */
 
-    const {
-      storeReducer: { pageAdTrackIDs },
-    } = yield select();
-    Utils.execTrackingCode('AddToWishlist', { pageAdTrackIDs });
-
-    yield put(updateWishListSuccess(data));
-    notification.success({ message: LOCALE.UPDATE_WISHLIST_SUCCESS[locale] });
+      yield put(updateWishListSuccess(data));
+      notification.success({ message: LOCALE.UPDATE_WISHLIST_SUCCESS[locale] });
+    }
   } catch (error) {
     yield put(updateWishListFailure());
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({
       message: LOCALE.UPDATE_WISHLIST_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -663,17 +632,14 @@ function* addToNotificationListFlow({ payload }) {
   } = yield select();
   try {
     const data = yield call(Api.updateStockNotificationList, payload);
-    if (data.errors) throw new Error(data.errors[0].message);
-
-    yield put(addToNotificationListSuccess(data));
-    notification.success({
-      message: LOCALE.ADD_STOCK_NOTIFICATION_LIST_SUCCESS[locale],
-    });
+    if (data) {
+      yield put(addToNotificationListSuccess(data));
+      notification.success({
+        message: LOCALE.ADD_STOCK_NOTIFICATION_LIST_SUCCESS[locale],
+      });
+    }
   } catch (error) {
     yield put(addToNotificationListFailure());
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({
       message: LOCALE.ADD_STOCK_NOTIFICATION_LIST_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -716,15 +682,12 @@ function* getOrderFlow({ payload }) {
     } = yield select();
     if (!orders.find(order => order.id === payload.orderId)) {
       const data = yield call(Api.getOrder, payload);
-      if (data.errors) throw new Error(data.errors[0].message);
-      yield put(getOrderSuccess(data));
+      if (data) {
+        yield put(getOrderSuccess(data));
+      }
     }
-    yield put(hideLoadingStatus());
   } catch (error) {
     yield put(getOrderFailure());
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({
       message: LOCALE.GET_ORDER_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -759,20 +722,18 @@ function* resetPasswordFlow({ payload }) {
   } = yield select();
   try {
     const data = yield call(Api.resetPassword, payload);
+    if (data) {
+      /* Handle error */
+      if (data.error) throw new Error(data.error);
+      const { error } = Utils.getIn(['data', 'updateUserPSList'])(data);
+      if (error) throw new Error(error);
 
-    /* Handle error */
-    if (data.error) throw new Error(data.error);
-    const { error } = Utils.getIn(['data', 'updateUserPSList'])(data);
-    if (error) throw new Error(error);
-
-    yield put(resetPasswordSuccess());
-    notification.success({ message: LOCALE.RESET_PASSWORD_SUCCESS[locale] });
-    Utils.goTo({ pathname: '/login' });
+      yield put(resetPasswordSuccess());
+      notification.success({ message: LOCALE.RESET_PASSWORD_SUCCESS[locale] });
+      Utils.goTo({ pathname: '/login' });
+    }
   } catch (error) {
     yield put(resetPasswordFailure());
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({
       message: LOCALE.RESET_PASSWORD_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -817,17 +778,16 @@ function* sendPaymentNotificationFlow({ payload }) {
   } = yield select();
   try {
     const data = yield call(Api.sendPaymentNotification, payload);
-    const updateOrder = Utils.getIn(['data', 'updateOrderList', 0])(data);
+    if (data) {
+      const updateOrder = data?.data?.updateOrderList?.[0];
 
-    yield put(sendPaymentNotificationSuccess(updateOrder));
-    notification.success({
-      message: LOCALE.SEND_PAYMENT_NOTIFICATION_SUCCESS[locale],
-    });
+      yield put(sendPaymentNotificationSuccess(updateOrder));
+      notification.success({
+        message: LOCALE.SEND_PAYMENT_NOTIFICATION_SUCCESS[locale],
+      });
+    }
   } catch (error) {
     yield put(sendPaymentNotificationFailure());
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({
       message: LOCALE.SEND_PAYMENT_NOTIFICATION_FAILURE_MESSAGE[locale],
       description: error.message,
@@ -856,29 +816,21 @@ export const addRecipient = payload => ({
  */
 
 const getUser = _user => {
-  const id = _user.id || '';
-  const name = _user.name || '';
-  const gender = _user.gender == null ? null : _user.gender;
-  const email = _user.email || '';
-  const groupId = _user.groupId || null;
-  const mobile = Utils.getIn(['additionalInfo', 'mobile'])(_user) || '';
-  const tel = Utils.getIn(['additionalInfo', 'tel'])(_user) || '';
-  const country =
-    Utils.getIn(['additionalInfo', 'address', 'yahooCode', 'country'])(_user) ||
-    null;
-  const city =
-    Utils.getIn(['additionalInfo', 'address', 'yahooCode', 'city'])(_user) ||
-    null;
-  const county =
-    Utils.getIn(['additionalInfo', 'address', 'yahooCode', 'county'])(_user) ||
-    null;
-  const street =
-    Utils.getIn(['additionalInfo', 'address', 'yahooCode', 'street'])(_user) ||
-    '';
-  const year = Utils.getIn(['birthday', 'year'])(_user) || null;
-  const month = Utils.getIn(['birthday', 'month'])(_user) || null;
-  const day = Utils.getIn(['birthday', 'day'])(_user) || null;
-  const recipientData = Utils.getIn(['recipientData'])(_user) || [];
+  const id = _user?.id || '';
+  const name = _user?.name || '';
+  const gender = _user.gender || null;
+  const email = _user?.email || '';
+  const groupId = _user?.groupId || null;
+  const mobile = _user?.additionalInfo?.mobile || '';
+  const tel = _user?.additionalInfo?.tel || '';
+  const country = _user?.additionalInfo?.address?.yahooCode?.country || null;
+  const city = _user?.additionalInfo?.address?.yahooCode?.city || null;
+  const county = _user?.additionalInfo?.address?.yahooCode?.county || null;
+  const street = _user?.additionalInfo?.address?.yahooCode?.street || null;
+  const year = _user?.birthday?.year || null;
+  const month = _user?.birthday?.month || null;
+  const day = _user?.birthday?.day || null;
+  const recipientData = _user?.recipientData || [];
   const userNotification = _user.notification || null;
   return {
     id,
@@ -910,28 +862,27 @@ const getUser = _user => {
 
 const getMemberData = payload => {
   const { data } = payload;
-  const checkLogin = Utils.getIn(['isLogin', 'isLogin'])(data);
-  const isLogin = checkLogin ? ISUSER : NOTLOGIN;
 
-  const dataUser = Utils.getIn(['getUserList', 'data', 0])(data);
-  const user = dataUser ? getUser(dataUser) : null;
-
-  let cart = Utils.getIn(['getCartList', 'data', 0])(data) || null;
-  // TODO: 暫時由前端整理資料，以後需改為後端處理
-  if (cart) {
-    const cartCategory = Utils.getIn(['categories', 0])(cart);
-    cart = R.assocPath(['categories'], cartCategory)(cart);
+  const dataUser = data?.getUserList?.data?.[0];
+  let user = null;
+  let isLogin = NOTLOGIN;
+  if (dataUser) {
+    user = getUser(dataUser);
+    isLogin = data?.isLogin?.isLogin ? ISUSER : NOTLOGIN;
   }
-  const stockNotificationList =
-    Utils.getIn(['getStockNotificationList', 'data'])(data) || [];
-  const wishList =
-    Utils.getIn(['getWishListList', 'data', 0, 'list'])(data) || [];
-  const orderApply = Utils.getIn(['getOrderApplyList', 'data'])(data) || [];
-  const orders = Utils.getIn(['getOrderList', 'data'])(data) || [];
-  const orderQAList = Utils.getIn(['getOrderQAList', 'data'])(data) || [];
-  const userPoints = Utils.getIn(['getValidUserPointList', 'data'])(data) || [];
-  const expireSoonUserPointList =
-    Utils.getIn(['getExpireSoonUserPointList', 'data'])(data) || [];
+
+  const cartData = data?.getCartList?.data?.[0] || null;
+  const cart = cartData
+    ? { ...cartData, categories: cartData?.categories?.[0] }
+    : null;
+
+  const stockNotificationList = data?.getStockNotificationList?.data || [];
+  const wishList = data?.getWishListList?.data?.[0]?.list || [];
+  const orderApply = data?.getOrderApplyList?.data || [];
+  const orders = data?.getOrderList?.data || [];
+  const orderQAList = data?.getOrderQAList?.data || [];
+  const userPoints = data?.getValidUserPointList?.data || [];
+  const expireSoonUserPointList = data?.getExpireSoonUserPointList?.data || [];
   return {
     isLogin,
     user,
@@ -1133,9 +1084,7 @@ export default function(state = initialState, { type, payload }) {
       };
     }
     case UPDATE_USER_SUCCESS: {
-      const { data } = payload;
-      const user = Utils.getIn(['updateUserList', 0])(data);
-
+      const user = payload?.data?.updateUserList?.[0];
       return {
         ...state,
         user: getUser(user),
@@ -1158,9 +1107,7 @@ export default function(state = initialState, { type, payload }) {
       };
     }
     case CREATE_APPLY_SUCCESS: {
-      const orderApplyItem = Utils.getIn(['data', 'createOrderApplyList', 0])(
-        payload,
-      );
+      const orderApplyItem = payload?.data?.createOrderApplyList?.[0];
       return {
         ...state,
         orderApply: state.orderApply.concat(orderApplyItem),
@@ -1183,7 +1130,7 @@ export default function(state = initialState, { type, payload }) {
       };
     }
     case CREATE_ORDER_QA_SUCCESS: {
-      const orderQA = Utils.getIn(['data', 'createOrderQA', 0])(payload);
+      const orderQA = payload?.data?.createOrderQA?.[0];
       return {
         ...state,
         orderQAList: state.orderQAList.concat([orderQA]),
@@ -1206,9 +1153,7 @@ export default function(state = initialState, { type, payload }) {
       };
     }
     case UPDATE_WISHLIST_SUCCESS: {
-      const wishList = Utils.getIn(['data', 'updateWishListList', 0, 'list'])(
-        payload,
-      );
+      const wishList = payload?.data?.updateWishListList?.[0]?.list;
       return {
         ...state,
         wishList,
@@ -1231,11 +1176,7 @@ export default function(state = initialState, { type, payload }) {
       };
     }
     case ADD_STOCK_NOTIFICATION_LIST_SUCCESS: {
-      const stockNotification = Utils.getIn([
-        'data',
-        'updateStockNotificationList',
-        0,
-      ])(payload);
+      const stockNotification = payload?.data?.updateStockNotificationList?.[0];
       return {
         ...state,
         stockNotificationList: state.stockNotificationList.concat([
@@ -1256,8 +1197,8 @@ export default function(state = initialState, { type, payload }) {
       return state;
     }
     case GET_ORDER_SUCCESS: {
-      const order = Utils.getIn(['data', 'getOrderList', 'data'])(payload);
-      if (order == null) throw new Error('no order data');
+      const order = payload?.data?.getOrderList?.data;
+      if (!order) throw new Error('no order data');
       return {
         ...state,
         orders: order.concat(state.orders),
@@ -1332,8 +1273,8 @@ export default function(state = initialState, { type, payload }) {
         mobile: _recipient.mobile,
         name: _recipient.name,
       };
-      const user = Utils.getIn(['user'])(state);
-      const recipientData = Utils.getIn(['recipientData'])(user);
+      const user = state?.user;
+      const recipientData = user?.recipientData;
       return {
         ...state,
         user: {

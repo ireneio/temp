@@ -2,14 +2,13 @@ const { publicRuntimeConfig } = require('../../../next.config');
 
 const { API_HOST } = publicRuntimeConfig;
 
-async function paymentOfHitrust(req, res) {
-  const orderId = req.query.id;
+module.exports = async ctx => {
+  const orderId = ctx.query.id;
   await fetch(`${API_HOST}/external/hitrust/payment_return/${orderId}`, {
     method: 'post',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(req.body),
+    body: JSON.stringify(ctx.request.body),
   });
-  res.send('R01=00');
-}
-
-module.exports = paymentOfHitrust;
+  ctx.status = 200;
+  ctx.body = 'R01=00';
+};

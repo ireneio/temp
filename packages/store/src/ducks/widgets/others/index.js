@@ -36,9 +36,6 @@ function* changePasswordFlow({ payload }) {
       }
     }
   } catch (error) {
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({ message: '更改密碼：發生錯誤' });
   }
 }

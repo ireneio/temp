@@ -14,19 +14,10 @@ import * as Actions from 'ducks/actions';
 
 class Product extends React.Component {
   static getInitialProps = async context => {
-    const {
-      isServer,
-      XMeepshopDomain,
-      userAgent,
-      cookie,
-      store,
-      query,
-    } = context;
+    const { isServer, XMeepshopDomain, userAgent, store, query } = context;
     const { pId } = query;
     if (isServer) {
-      store.dispatch(
-        Actions.serverProductInitial({ XMeepshopDomain, cookie, query }),
-      );
+      store.dispatch(Actions.serverProductInitial(context));
     } else {
       const { pagesReducer, productsReducer } = store.getState();
       const product = productsReducer.find(_product => _product?.id === pId);

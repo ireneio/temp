@@ -19,13 +19,28 @@ const getData = async (query, variables, retryTimes = 0) => {
       body: JSON.stringify({ query, variables }),
     });
 
-    if (res.status !== 200) throw new Error(`${res.status}: ${res.statusText}`);
+    if (res.status < 400) {
+      const data = await res.json();
 
-    const { error, ...data } = await res.json();
+      /** graphql Errors: userId not exist
+       * Api throw this error when the user have been deleted.
+       */
+      if (data?.errors?.[0]?.message === 'userId not exist') {
+        alert('此會員不存在');
+        await fetch('/signout', { method: 'get', credentials: 'same-origin' });
+        window.location.reload();
+        return null;
+      }
 
-    if (error) return null;
+      return data;
+    }
 
-    return data;
+    if (res.status === 401) {
+      alert('讀取資料錯誤：401'); // eslint-disable-line
+      window.location.reload();
+      return null;
+    }
+    throw new Error(`${res.status}: ${res.statusText}`);
   } catch (error) {
     if (navigator.onLine !== undefined && !navigator.onLine && retryTimes < 3) {
       const retryData = await new Promise(resolve => {

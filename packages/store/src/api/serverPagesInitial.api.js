@@ -17,8 +17,10 @@ import {
   stockNotificationQuery,
 } from './query';
 
-export default async function({ XMeepshopDomain, cookie, path }) {
-  const isServer = true;
+export default async function(context) {
+  const {
+    query: { path },
+  } = context;
   if (!path) throw new Error('Page path is not defined.');
   const variables = {
     keys:
@@ -40,6 +42,18 @@ export default async function({ XMeepshopDomain, cookie, path }) {
               type: 'exact',
               field: 'path',
               query: path,
+            },
+          ],
+          or: [
+            {
+              type: 'exact',
+              field: 'pageType',
+              query: 'custom',
+            },
+            {
+              type: 'exact',
+              field: 'pageType',
+              query: 'products',
             },
           ],
         },
@@ -348,11 +362,9 @@ export default async function({ XMeepshopDomain, cookie, path }) {
   `;
 
   const response = await postGraphql({
+    ...context,
     query,
     variables,
-    isServer,
-    XMeepshopDomain,
-    cookie,
   });
   return response;
 }

@@ -1,4 +1,6 @@
 import React from 'react';
+import ErrorPageNotFound from '../ErrorPageNotFound';
+import ErrorProductNotFound from '../ErrorProductNotFound';
 import oopsImg from './images/oops.png';
 
 const getErrorMsg = _error => {
@@ -21,33 +23,42 @@ const getErrorMsg = _error => {
 
 export default (
   { error, errorInfo }, // eslint-disable-line
-) => (
-  <React.Fragment>
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        color: '#9e9e9e',
-        fontSize: '24px',
-      }}
-    >
-      <img style={{ paddingTop: 150, width: 110 }} src={oopsImg} alt="oops" />
-      <div style={{ textAlign: 'center' }}>
-        <div>{getErrorMsg(error)}</div>
-        {errorInfo ? (
-          <details
-            open
-            style={{ whiteSpace: 'pre-wrap', textAlign: 'left', fontSize: 14 }}
-          >
-            {error && error.toString()}
-            <br />
-            {errorInfo.componentStack}
-          </details>
-        ) : (
-          <div style={{ fontSize: '14px' }}>{`(${error})`}</div>
-        )}
+) => {
+  if (error === 'ERROR_PAGE_NOT_FOUND') return <ErrorPageNotFound />;
+  if (error === 'ERROR_PRODUCT_NOT_FOUND') return <ErrorProductNotFound />;
+
+  return (
+    <>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          color: '#9e9e9e',
+          fontSize: '24px',
+        }}
+      >
+        <img style={{ paddingTop: 150, width: 110 }} src={oopsImg} alt="oops" />
+        <div style={{ textAlign: 'center' }}>
+          <div>{getErrorMsg(error)}</div>
+          {errorInfo ? (
+            <details
+              open
+              style={{
+                whiteSpace: 'pre-wrap',
+                textAlign: 'left',
+                fontSize: 14,
+              }}
+            >
+              {error && error.toString()}
+              <br />
+              {errorInfo.componentStack}
+            </details>
+          ) : (
+            <div style={{ fontSize: '14px' }}>{`(${error})`}</div>
+          )}
+        </div>
       </div>
-    </div>
-  </React.Fragment>
-);
+    </>
+  );
+};

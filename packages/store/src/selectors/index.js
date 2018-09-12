@@ -128,10 +128,11 @@ export const getJoinedPage = (
 
 export const getHomePage = createSelector(
   [getPages, getHomePageId],
-  (pages, homePageId) =>
-    homePageId
-      ? R.find(R.propEq('id', homePageId))(pages)
-      : R.find(R.propEq('pageType', 'home'))(pages),
+  (pages, homePageId) => {
+    if (homePageId)
+      return pages.find(page => page.id === homePageId) || pages[0];
+    return pages[0];
+  },
 );
 
 export const getJoinedModulePage = createSelector(

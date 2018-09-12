@@ -1,12 +1,6 @@
 import postGraphql from 'utils/postGraphql';
 
-export default async function({
-  id: productId,
-  variantId,
-  isServer,
-  XMeepshopDomain,
-  cookie,
-}) {
+export default async function({ id: productId, variantId, ...context }) {
   const variables = {
     keys: '$search: [NewOrder]',
     type: 'mutation getActivitiesByProduct',
@@ -40,11 +34,9 @@ export default async function({
     } 
   `;
   const response = await postGraphql({
+    ...context,
     query,
     variables,
-    XMeepshopDomain,
-    cookie,
-    isServer,
   });
   return response;
 }

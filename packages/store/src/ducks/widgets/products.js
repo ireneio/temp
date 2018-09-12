@@ -32,7 +32,7 @@ function* getProductFlow({ payload }) {
       productData,
     );
     if (product == null) {
-      yield put(getProductFailure('There is no product of the id.'));
+      yield put(getProductFailure('ERROR_PRODUCT_NOT_FOUND'));
     } else {
       // Get activities from computeOrderList
       // FIXME: when api join activities data in computeProductList
@@ -56,11 +56,9 @@ function* getProductFlow({ payload }) {
       yield put(getProductSuccess({ ...product, activities }));
       let pagesData;
       if (!Utils.getIn(['design'])(product)) {
-        const { isServer, XMeepshopDomain } = payload;
         pagesData = yield call(Api.getPages, {
           pageType: 'template',
-          isServer,
-          XMeepshopDomain,
+          payload,
         });
       } else {
         const { templateId, pageId } = Utils.getIn(['design'])(product);

@@ -17,8 +17,10 @@ import {
   stockNotificationQuery,
 } from './query';
 
-export default async function({ XMeepshopDomain, cookie, pId }) {
-  const isServer = true;
+export default async function(context) {
+  const {
+    query: { pId },
+  } = context;
   if (!pId) throw new Error('Product id is not defined.');
   const variables = {
     keys:
@@ -348,11 +350,9 @@ export default async function({ XMeepshopDomain, cookie, pId }) {
   `;
 
   const response = await postGraphql({
+    ...context,
     query,
     variables,
-    isServer,
-    XMeepshopDomain,
-    cookie,
   });
   return response;
 }

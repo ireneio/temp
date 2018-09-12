@@ -13,12 +13,11 @@ class ThankYouPage extends React.Component {
       isServer,
       XMeepshopDomain,
       userAgent,
-      cookie,
       store,
       query: { orderId },
     } = context;
     if (isServer) {
-      store.dispatch(Actions.serverOthersInitial({ XMeepshopDomain, cookie }));
+      store.dispatch(Actions.serverOthersInitial(context));
     }
     return { orderId, userAgent, XMeepshopDomain };
   };
@@ -54,7 +53,7 @@ class ThankYouPage extends React.Component {
     } = this.props;
 
     return (
-      <React.Fragment>
+      <>
         <Head>
           <title>{storeName}</title>
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
@@ -62,7 +61,7 @@ class ThankYouPage extends React.Component {
         </Head>
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props} />
-      </React.Fragment>
+      </>
     );
   }
 }

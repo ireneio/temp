@@ -11,12 +11,8 @@ const {
  * 希望以後後端直接處理...
  */
 
-export default async function modifyWidgetDataInServer(
-  widgets = [],
-  XMeepshopDomain,
-  query,
-  cookie,
-) {
+export default async function modifyWidgetDataInServer(widgets = [], context) {
+  const { query = {} } = context;
   if (!widgets) return [];
   const mWidgets = await Promise.all(
     widgets.map(async widget => {
@@ -272,9 +268,8 @@ export default async function modifyWidgetDataInServer(
             let productData = null;
             if (productId) {
               const { data } = await Api.getProduct({
+                ...context,
                 id: productId,
-                isServer: true,
-                XMeepshopDomain,
               });
               [productData] = data.computeProductList.data;
             }
@@ -353,12 +348,7 @@ export default async function modifyWidgetDataInServer(
       }
       return {
         id: uuid(),
-        widgets: await modifyWidgetDataInServer(
-          widget.widgets,
-          XMeepshopDomain,
-          query,
-          cookie,
-        ),
+        widgets: await modifyWidgetDataInServer(widget.widgets, context),
       };
     }),
   );

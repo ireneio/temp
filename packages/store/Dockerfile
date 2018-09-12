@@ -23,4 +23,4 @@ EXPOSE 14401
 ENV REPO_VERSION={{ build.tag }}
 ENV NODE_ENV=production
 ENV API_HOST=api.stage.meepcloud.com
-CMD ["node", "src/server/server.js"]
+CMD ["node", "src/server"]

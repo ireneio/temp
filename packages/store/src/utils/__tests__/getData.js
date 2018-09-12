@@ -18,18 +18,7 @@ describe('getData', () => {
     expect(getData('query', 'variables')).resolves.toBeNull();
   });
 
-  it('api server work but graphql server has error', () => {
-    setFetchData(() => ({
-      status: 200,
-      json: () => ({
-        error: 'graphql server error',
-      }),
-    }));
-
-    expect(getData('query', 'variables')).resolves.toBeNull();
-  });
-
-  it('api server and graphql server work', () => {
+  it('api server work', () => {
     setFetchData(() => ({
       status: 200,
       json: () => ({

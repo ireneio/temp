@@ -26,6 +26,7 @@ module.exports = withSourceMaps(
     withLess(
       withCSS(
         withBundleAnalyzer({
+          useFileSystemPublicRoutes: false,
           publicRuntimeConfig: {
             PRODUCTION: production,
             VERSION: process.env.REPO_VERSION || +new Date(),

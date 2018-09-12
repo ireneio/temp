@@ -19,13 +19,12 @@ class Checkout extends React.Component {
       isServer,
       XMeepshopDomain,
       userAgent,
-      cookie,
       store,
       query: { shipmentTemplate, tradeNo },
     } = context;
     let orderInfo = null;
     if (isServer) {
-      store.dispatch(Actions.serverOthersInitial({ XMeepshopDomain, cookie }));
+      store.dispatch(Actions.serverOthersInitial(context));
       if (shipmentTemplate && tradeNo) {
         let value = {};
         try {
@@ -107,7 +106,7 @@ class Checkout extends React.Component {
     } = this.props;
 
     return (
-      <React.Fragment>
+      <>
         <Head>
           <title>{storeName}</title>
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
@@ -119,7 +118,7 @@ class Checkout extends React.Component {
           fbAppId={fbAppId}
         />
         <Container {...this.props} />
-      </React.Fragment>
+      </>
     );
   }
 }

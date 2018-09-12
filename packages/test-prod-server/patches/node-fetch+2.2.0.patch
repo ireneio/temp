@@ -1,12 +1,14 @@
 patch-package
 --- a/node_modules/node-fetch/lib/index.js
 +++ b/node_modules/node-fetch/lib/index.js
-@@ -1307,6 +1307,8 @@ function getNodeRequestOptions(request) {
+@@ -1307,6 +1307,10 @@ function getNodeRequestOptions(request) {
   * @return  Promise
   */
  function fetch(url$$1, opts) {
++  if (!process.env.TEST_PROD_SERVER) throw new Error('this patch should run in `test-prod-server`');
 +  url$$1 = url$$1.replace(/meepshop-api:15265/, process.env.TEST_API || 'api.stage.meepcloud.com');
 +  opts.headers['x-meepshop-domain'] = process.env.TEST_DOMAIN || 'bellatest.stage.meepcloud.com';
++  if (process.env.AUTH_TOKEN) opts.headers['x-meepshop-authorization-token'] = process.env.AUTH_TOKEN;
  
  	// allow custom promise
  	if (!fetch.Promise) {
