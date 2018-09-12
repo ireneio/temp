@@ -422,18 +422,18 @@ export const VEHICLE = value => {
       };
     case 2:
       return {
-        zh_TW: '自然人憑證載具',
-        en_US: 'NPC Barcode',
-        ja_JP: '自然人証憑キャリア',
-        vi_VN: 'Phương tiện chứng nhận kỹ thuật số công dân',
-        TODO_LOCALE: true,
-      };
-    case 3:
-      return {
         zh_TW: '手機條碼載具',
         en_US: 'Mobile Barcode',
         ja_JP: '携帯電話バーコードキャリア',
         vi_VN: 'Phương tiện mã vạch di động',
+        TODO_LOCALE: true,
+      };
+    case 3:
+      return {
+        zh_TW: '自然人憑證載具',
+        en_US: 'NPC Barcode',
+        ja_JP: '自然人証憑キャリア',
+        vi_VN: 'Phương tiện chứng nhận kỹ thuật số công dân',
         TODO_LOCALE: true,
       };
     default:
