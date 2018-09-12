@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
-import warning from 'fbjs/lib/warning';
-import areEqual from 'fbjs/lib/areEqual';
+import { warning, areEqual } from 'fbjs';
 import { Modal } from 'antd';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -318,7 +317,7 @@ export default class ProductInfo extends React.PureComponent {
               transformCurrency={transformCurrency}
               colors={colors}
               isLogin={isLogin}
-              hasStoreAppPlugin={hasStoreAppPlugin}
+              memberSeePrice={hasStoreAppPlugin('memberSeePrice')}
               mode={mode}
             />
             {coordinates && (

@@ -140,6 +140,10 @@ export default ({
             mainId
             media
           }
+          showUserPrice {
+            showListPrice
+            showSuggestedPrice
+          }
         }
         total
       }

@@ -25,6 +25,10 @@ export const PRODUCT_TYPE = PropTypes.shape({
   status: PropTypes.oneOf([0, 1]).isRequired,
   title: LOCALE_TYPE.isRequired,
   variants: PropTypes.arrayOf(VARIANT_TYPE.isRequired).isRequired,
+  showUserPrice: PropTypes.shape({
+    showListPrice: PropTypes.bool.isRequired,
+    showSuggestedPrice: PropTypes.bool.isRequired,
+  }),
 });
 
 export const SORT_OPTIONS = locale => [

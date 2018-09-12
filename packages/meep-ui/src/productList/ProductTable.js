@@ -105,7 +105,8 @@ const ProductTable = ({
                 )}
               {showPrice && (
                 <div style={styles.productPrice}>
-                  {variantInfo.listPrice ? (
+                  {variantInfo.listPrice &&
+                  (!memberSeePrice || product.showUserPrice?.showListPrice) ? (
                     <div style={styles.otherPrice(colors)}>
                       <span>
                         {transformLocale(LOCALE.LIST_PRICE)}
@@ -115,7 +116,9 @@ const ProductTable = ({
                       </span>
                     </div>
                   ) : null}
-                  {variantInfo.suggestedPrice ? (
+                  {variantInfo.suggestedPrice &&
+                  (!memberSeePrice ||
+                    product.showUserPrice?.showSuggestedPrice) ? (
                     <div style={styles.otherPrice(colors)}>
                       <span>
                         {transformLocale(LOCALE.SUGGESTED_PRICE)}

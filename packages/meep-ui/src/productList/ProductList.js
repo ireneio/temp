@@ -391,10 +391,14 @@ export default class ProductList extends React.PureComponent {
             <div style={styles.sort}>
               {showSort && (
                 <Select
+                  dropdownMatchSelectWidth={false}
                   dropdownClassName={this.name}
                   value={sort}
                   size="large"
                   onChange={this.handleParamsChange}
+                  dropdownAlign={{
+                    points: ['tr', 'br'],
+                  }}
                 >
                   {SORT_OPTIONS(locale).map(option => (
                     <Select.Option key={option.value} value={option.value}>

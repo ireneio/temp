@@ -358,6 +358,7 @@ export default class ProductList extends React.PureComponent {
             <div style={styles.sort}>
               {showSort && (
                 <Select
+                  dropdownMatchSelectWidth={false}
                   dropdownClassName={this.name}
                   value={sort}
                   size="large"
@@ -366,6 +367,9 @@ export default class ProductList extends React.PureComponent {
                       sort: value,
                       offset: 0,
                     });
+                  }}
+                  dropdownAlign={{
+                    points: ['tr', 'br'],
                   }}
                 >
                   {SORT_OPTIONS(locale).map(option => (
@@ -402,7 +406,6 @@ export default class ProductList extends React.PureComponent {
             {pagination && (
               <div style={styles.pagination}>
                 <Pagination
-                  hideOnSinglePage
                   total={isLoading ? 0 : products.total}
                   pageSize={limit}
                   current={page}
@@ -412,6 +415,8 @@ export default class ProductList extends React.PureComponent {
                       offset: (current - 1) * limit,
                     });
                   }}
+                  hideOnSinglePage
+                  showLessItems
                 />
               </div>
             )}

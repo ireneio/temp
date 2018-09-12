@@ -19,7 +19,7 @@ const Description = ({
   transformLocale,
   transformCurrency,
   isLogin,
-  hasStoreAppPlugin,
+  memberSeePrice,
 }) => (
   <div style={styles.root(colors)}>
     {transformLocale(productData.title) && (
@@ -51,7 +51,9 @@ const Description = ({
     {
       <div style={styles.price}>
         <div>
-          {mode === 'detail' && variantInfo.listPrice ? (
+          {mode === 'detail' &&
+          variantInfo.listPrice &&
+          (!memberSeePrice || productData.showUserPrice?.showListPrice) ? (
             <span style={styles.otherPrice}>
               {transformLocale(LIST_PRICE)}
               <s style={styles.strike}>
@@ -59,7 +61,9 @@ const Description = ({
               </s>
             </span>
           ) : null}
-          {mode === 'detail' && variantInfo.suggestedPrice ? (
+          {mode === 'detail' &&
+          variantInfo.suggestedPrice &&
+          (!memberSeePrice || productData.showUserPrice?.showSuggestedPrice) ? (
             <span style={styles.otherPrice}>
               {transformLocale(SUGGESTED_PRICE)}
               <s style={styles.strike}>
@@ -70,7 +74,7 @@ const Description = ({
         </div>
         {variantInfo.totalPrice ? (
           <div style={styles.thePrice}>
-            {hasStoreAppPlugin('memberSeePrice') && isLogin !== ISUSER
+            {memberSeePrice && isLogin !== ISUSER
               ? transformLocale(MEMBER_SEE_PRICE)
               : transformCurrency(variantInfo.totalPrice)}
           </div>
@@ -90,7 +94,7 @@ Description.propTypes = {
   transformCurrency: PropTypes.func.isRequired,
   isLogin: ISLOGIN_TYPE.isRequired,
   colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-  hasStoreAppPlugin: PropTypes.func.isRequired,
+  memberSeePrice: PropTypes.bool.isRequired,
 };
 /* eslint-enable react/no-typos */
 
