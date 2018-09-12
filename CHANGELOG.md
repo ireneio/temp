@@ -1,3 +1,13 @@
+## 0.3.1 (2018-09-12)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#207](https://github.com/meepshop/meep-lerna/pull/207) 訂單明細：電子發票資訊顯示有誤(N149) ([@piovischioh](https://github.com/piovischioh))
+  * [#205](https://github.com/meepshop/meep-lerna/pull/205) 產品：修正會員可見價(N147) ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.3.0 (2018-09-12)
 
 #### :rocket: New Feature
