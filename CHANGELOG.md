@@ -1,3 +1,19 @@
+## 0.3.2 (2018-09-13)
+
+#### :boom: Breaking Change
+* `meep-ui`
+  * [#183](https://github.com/meepshop/meep-lerna/pull/183) perf(meep-ui): use less, minify code in draftText ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+* `store`
+  * [#208](https://github.com/meepshop/meep-lerna/pull/208) add log route and fix setHeader error ([@barrypeng6](https://github.com/barrypeng6))
+* `meep-ui`
+  * [#209](https://github.com/meepshop/meep-lerna/pull/209) 越南文翻譯更新(N125) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.3.1 (2018-09-12)
 
 #### :bug: Bug Fix
