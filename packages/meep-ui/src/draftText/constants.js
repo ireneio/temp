@@ -1,24 +1,13 @@
-export const COLORS = [
-  'black',
-  'white',
-  'red',
-  'orange',
-  'yellow',
-  'green',
-  'blue',
-  'purple',
-];
-
-export const HEX_COLORS = [
-  '#000000',
-  '#ffffff',
-  '#ff0000',
-  '#ffa500',
-  '#ffff00',
-  '#008000',
-  '#0000ff',
-  '#800080',
-];
+export const COLORS = {
+  black: '#000000',
+  white: '#ffffff',
+  red: '#ff0000',
+  orange: '#ffa500',
+  yellow: '#ffff00',
+  green: '#008000',
+  blue: '#0000ff',
+  purple: '#800080',
+};
 
 export const FONTFAMILY = [
   'Arial',

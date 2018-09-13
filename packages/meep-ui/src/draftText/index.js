@@ -1,21 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { areEqual } from 'fbjs';
-import radium, { Style } from 'radium';
+import memoizeOne from 'memoize-one';
 import draftToHtml from 'draftjs-to-html';
-import { convertToRaw } from 'draft-js';
+import { EditorState, convertFromRaw } from 'draft-js';
 
-import { enhancer } from 'layout/DecoratorsRoot';
-import { COLOR_TYPE } from 'constants/propTypes';
+import styles from './styles/index.less';
+import notMemoizedFormatRawContent from './utils/formatRawContent';
 
-import getFormattedEditorState from './utils/getFormattedEditorState';
-import * as styles from './styles';
+export default class DraftText extends React.PureComponent {
+  formatRawContent = memoizeOne(notMemoizedFormatRawContent);
 
-@enhancer
-@radium
-export default class DraftText extends React.Component {
   static propTypes = {
-    colors: COLOR_TYPE.isRequired,
     value: PropTypes.string.isRequired,
     plainText: PropTypes.bool,
     style: PropTypes.shape({}),
@@ -26,59 +21,33 @@ export default class DraftText extends React.Component {
     style: {},
   };
 
-  state = {
-    // eslint-disable-next-line react/destructuring-assignment
-    editorState: getFormattedEditorState(this.props.value),
-  };
-
-  componentWillReceiveProps(nextProps) {
-    const { value } = this.props;
-
-    if (value !== nextProps.value) {
-      this.setState({
-        editorState: getFormattedEditorState(nextProps.value),
-      });
-    }
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    const { editorState } = this.state;
-
-    return !areEqual(editorState, nextState.editorState);
-  }
-
-  onEditorStateChange = editorState => {
-    this.setState({
-      editorState,
-    });
-  };
-
   render() {
-    const { colors, value, plainText, style } = this.props;
-    const { editorState } = this.state;
+    const { value, plainText, style } = this.props;
+    const rawContent = this.formatRawContent(value);
 
-    if (plainText) {
-      const text = editorState
-        ? editorState.getCurrentContent().getPlainText()
-        : value.replace(/<(?:.|\n)*?>/gm, '');
-      return <div>{text}</div>;
-    }
-
-    const html = editorState
-      ? draftToHtml(convertToRaw(editorState.getCurrentContent()))
-      : value;
+    if (plainText)
+      return (
+        <div>
+          {rawContent
+            ? EditorState.createWithContent(convertFromRaw(rawContent))
+                .getCurrentContent()
+                .getPlainText()
+            : value.replace(/<(?:.|\n)*?>/gm, '')}
+        </div>
+      );
 
     return (
-      <div className="draft-text" style={[styles.root, style]}>
-        <Style scopeSelector=".draft-text" rules={styles.Style(colors)} />
-        {html && (
-          <div
-            dangerouslySetInnerHTML={{
-              __html: html.replace(/<p><\/p>/g, '<br />'),
-            }}
-          />
-        )}
-      </div>
+      <div
+        className={styles.root}
+        style={style}
+        dangerouslySetInnerHTML={{
+          // FIXME: value should be remove(大量上架)
+          __html: (rawContent ? draftToHtml(rawContent) : value).replace(
+            /<p><\/p>/g,
+            '<br />',
+          ),
+        }}
+      />
     );
   }
 }
