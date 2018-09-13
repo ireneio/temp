@@ -14,9 +14,14 @@ const {
   fbAuthForLine,
   paymentOfHitrust,
   paymentOfAllpay,
+  log,
 } = require('./routers');
 
 const { PRODUCTION, VERSION } = publicRuntimeConfig;
+
+process.on('unhandledRejection', error => {
+  console.log('unhandledRejection', error.message);
+});
 
 const port = parseInt(process.env.PORT, 10) || 14401;
 const app = nextApp({ dir: path.resolve(__dirname, '..'), dev: !PRODUCTION });
@@ -53,6 +58,8 @@ app.prepare().then(() => {
 
   router.post('/payment/hitrust/:id', paymentOfHitrust);
   router.post('/payment/allpay', paymentOfAllpay);
+
+  router.post('/log', log);
 
   router.get('*', async ctx => {
     await handle(ctx.req, ctx.res);

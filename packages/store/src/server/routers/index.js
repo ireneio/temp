@@ -4,6 +4,7 @@ const fbAuth = require('./fbAuth');
 const fbAuthForLine = require('./fbAuthForLine');
 const paymentOfHitrust = require('./paymentOfHitrust');
 const paymentOfAllpay = require('./paymentOfAllpay');
+const log = require('./log');
 
 module.exports = {
   api,
@@ -12,4 +13,5 @@ module.exports = {
   fbAuthForLine,
   paymentOfHitrust,
   paymentOfAllpay,
+  log,
 };

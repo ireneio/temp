@@ -37,14 +37,12 @@ const styles = {
 
 export default class extends React.Component {
   static getInitialProps = async context => {
-    const { isServer, XMeepshopDomain, userAgent, cookie, query } = context;
+    const { XMeepshopDomain, userAgent, query } = context;
     const { page = 1 } = query;
     const data = await getProducts({
+      ...context,
       offset: (page - 1) * LIMIT,
       limit: LIMIT,
-      isServer,
-      XMeepshopDomain,
-      cookie,
       sitemap: true,
     });
     const products = Utils.getIn(['data', 'getProductList', 'data'])(data);
