@@ -1,4 +1,4 @@
-import warning from 'fbjs/lib/warning';
+import { warning } from 'fbjs';
 
 export const TITLE = (type, step) => {
   switch (type) {
@@ -7,7 +7,7 @@ export const TITLE = (type, step) => {
         zh_TW: `退貨申請${step ? '確認' : ''}`,
         en_US: 'Return',
         ja_JP: '返品申込',
-        vi_VN: 'đăng ký hoàn trả',
+        vi_VN: 'Đăng ký hoàn trả',
         TODO_LOCALE: true,
       };
     case 'replace':
@@ -15,7 +15,7 @@ export const TITLE = (type, step) => {
         zh_TW: `換貨申請${step ? '確認' : ''}`,
         en_US: 'Replacement',
         ja_JP: '交換申込',
-        vi_VN: 'đăng ký thay thế',
+        vi_VN: 'Đăng ký thay thế',
         TODO_LOCALE: true,
       };
     default:
@@ -28,7 +28,7 @@ export const ORDER_NO = {
   zh_TW: '訂單編號：',
   en_US: 'Order Number: ',
   ja_JP: '注文番号：',
-  vi_VN: 'số đơn hàng: ',
+  vi_VN: 'Số hiệu đơn hàng: ',
   TODO_LOCALE: true,
 };
 
@@ -36,7 +36,7 @@ export const CREATED_ON = {
   zh_TW: '訂購日：',
   en_US: 'Order Date: ',
   ja_JP: '注文日：',
-  vi_VN: 'ngày đặt hàng: ',
+  vi_VN: 'Ngày đặt hàng: ',
   TODO_LOCALE: true,
 };
 
@@ -44,7 +44,7 @@ export const PRODUCT_TITLE = {
   zh_TW: '商品名稱',
   en_US: 'Item',
   ja_JP: '商品名',
-  vi_VN: 'tên sản phẩm',
+  vi_VN: 'Tên sản phẩm',
   TODO_LOCALE: true,
 };
 
@@ -52,7 +52,7 @@ export const PRODUCT_SPEC = {
   zh_TW: '規格',
   en_US: 'Spec',
   ja_JP: '仕様',
-  vi_VN: 'thông số',
+  vi_VN: 'Quy cách',
   TODO_LOCALE: true,
 };
 
@@ -60,7 +60,7 @@ export const PRODUCT_QUANTITY = {
   zh_TW: '數量',
   en_US: 'QTY',
   ja_JP: '数量',
-  vi_VN: 'số lượng',
+  vi_VN: 'Số lượng',
   TODO_LOCALE: true,
 };
 
@@ -68,7 +68,7 @@ export const PRODUCT_PRICE = {
   zh_TW: '價格',
   en_US: 'Price',
   ja_JP: '価格',
-  vi_VN: 'đơn giá',
+  vi_VN: 'Dơn giá',
   TODO_LOCALE: true,
 };
 
@@ -76,7 +76,7 @@ export const PRODUCT_SUBTOTAL = {
   zh_TW: '小計',
   en_US: 'Subtotal',
   ja_JP: '小計',
-  vi_VN: 'tổng con',
+  vi_VN: 'Tổng',
   TODO_LOCALE: true,
 };
 
@@ -92,7 +92,7 @@ export const RECIPIENT = {
   zh_TW: '換貨收件人資訊',
   en_US: 'Recipient Info',
   ja_JP: '交換品受取人情報',
-  vi_VN: 'thông tin người nhận',
+  vi_VN: 'Thông tin người nhận',
   TODO_LOCALE: true,
 };
 
@@ -100,7 +100,7 @@ export const RECIPIENT_NAME = {
   zh_TW: '姓名',
   en_US: 'Full Name',
   ja_JP: '氏名',
-  vi_VN: 'tên',
+  vi_VN: 'Tên',
   TODO_LOCALE: true,
 };
 
@@ -132,7 +132,7 @@ export const PROCEED = step => ({
   zh_TW: step ? '確認' : '下一步',
   en_US: 'Next',
   ja_JP: '次へ',
-  vi_VN: 'Sau',
+  vi_VN: 'Bước sau',
   TODO_LOCALE: true,
 });
 

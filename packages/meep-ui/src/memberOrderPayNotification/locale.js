@@ -2,7 +2,7 @@ export const PAY_NOTIFICATION = {
   zh_TW: '匯款通知',
   en_US: 'Payment Notification',
   ja_JP: '振込通知',
-  vi_VN: 'thông báo chuyển tiền',
+  vi_VN: 'Thông báo chuyển tiền',
   TODO_LOCALE: true,
 };
 
@@ -10,7 +10,7 @@ export const ORDER_NO = {
   zh_TW: '訂單編號：',
   en_US: 'Order Number: ',
   ja_JP: '注文番号：',
-  vi_VN: 'số đơn hàng: ',
+  vi_VN: 'Hiệu số đơn hàng: ',
   TODO_LOCALE: true,
 };
 
@@ -34,7 +34,7 @@ export const SEND = {
   zh_TW: '發送',
   en_US: 'Send',
   ja_JP: '送信',
-  vi_VN: 'gởi đi',
+  vi_VN: 'Gởi đi',
   TODO_LOCALE: true,
 };
 

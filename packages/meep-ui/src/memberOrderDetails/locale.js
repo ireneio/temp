@@ -4,7 +4,7 @@ export const TITLE = {
   zh_TW: '訂單明細',
   en_US: 'Order Details',
   ja_JP: '注文明細',
-  vi_VN: 'chi tiết đơn hàng',
+  vi_VN: 'Chi tiết đơn hàng',
   TODO_LOCALE: true,
 };
 
@@ -12,7 +12,7 @@ export const ORDER_NO = {
   zh_TW: '訂單編號：',
   en_US: 'Order Number: ',
   ja_JP: '注文番号：',
-  vi_VN: 'số đơn hàng: ',
+  vi_VN: 'Số đơn hàng: ',
   TODO_LOCALE: true,
 };
 
@@ -20,7 +20,7 @@ export const CREATED_ON = {
   zh_TW: '訂購日：',
   en_US: 'Order Date:',
   ja_JP: '注文日：',
-  vi_VN: 'ngày đặt hàng: ',
+  vi_VN: 'Ngày đặt hàng: ',
   TODO_LOCALE: true,
 };
 
@@ -30,7 +30,7 @@ export const PRODUCT_TITLE = {
   zh_TW: '商品名稱',
   en_US: 'Item',
   ja_JP: '商品番号/品名',
-  vi_VN: 'Mã số/ Tên sản phẩm',
+  vi_VN: 'Số hiệu/ Tên sản phẩm',
   TODO_LOCALE: true,
 };
 
@@ -38,7 +38,7 @@ export const PRODUCT_SPEC = {
   zh_TW: '規格',
   en_US: 'Spec',
   ja_JP: '仕様',
-  vi_VN: 'thông số',
+  vi_VN: 'Quy cách',
   TODO_LOCALE: true,
 };
 
@@ -46,7 +46,7 @@ export const PRODUCT_QUANTITY = {
   zh_TW: '數量',
   en_US: 'QTY',
   ja_JP: '数量',
-  vi_VN: 'số lượng',
+  vi_VN: 'Số lượng',
   TODO_LOCALE: true,
 };
 
@@ -54,7 +54,7 @@ export const PRODUCT_PRICE = {
   zh_TW: '價格',
   en_US: 'Price',
   ja_JP: '価格',
-  vi_VN: 'đơn giá',
+  vi_VN: 'Đơn giá',
   TODO_LOCALE: true,
 };
 
@@ -62,7 +62,7 @@ export const PRODUCT_SUBTOTAL = {
   zh_TW: '小計',
   en_US: 'Price',
   ja_JP: '価格',
-  vi_VN: 'đơn giá',
+  vi_VN: 'Tổng',
   TODO_LOCALE: true,
 };
 
@@ -70,7 +70,7 @@ export const GIFT = {
   zh_TW: '贈品',
   en_US: 'Free Gift',
   ja_JP: 'プレゼント',
-  vi_VN: 'tặng phẩm',
+  vi_VN: 'Tặng phẩm',
   TODO_LOCALE: true,
 };
 
@@ -88,7 +88,7 @@ export const PRODUCTS_PRICE = {
   zh_TW: '商品總計',
   en_US: 'Subtotal',
   ja_JP: '商品合計',
-  vi_VN: 'tổng mua',
+  vi_VN: 'Tổng đơn',
   TODO_LOCALE: true,
 };
 
@@ -96,7 +96,7 @@ export const REWARD = {
   zh_TW: '購物金',
   en_US: 'Reward Points',
   ja_JP: 'ポイント',
-  vi_VN: 'tiền mua hàng',
+  vi_VN: 'Tiền mua hàng',
   TODO_LOCALE: true,
 };
 
@@ -104,7 +104,7 @@ export const COUPON = {
   zh_TW: '優惠碼',
   en_US: 'Coupon Code',
   ja_JP: 'クーポンコード',
-  vi_VN: 'mã khuyến mãi',
+  vi_VN: 'Mã khuyến mãi',
   TODO_LOCALE: true,
 };
 
@@ -112,7 +112,7 @@ export const SHIPMENT_FEE = {
   zh_TW: '運費',
   en_US: 'Shipping Fee',
   ja_JP: '送料',
-  vi_VN: 'phí giao hàng',
+  vi_VN: 'Phí giao hàng',
   TODO_LOCALE: true,
 };
 
@@ -128,7 +128,7 @@ export const TOTAL = {
   zh_TW: '訂單總金額',
   en_US: 'Total',
   ja_JP: '注文合計金額',
-  vi_VN: 'tổng số đơn hàng',
+  vi_VN: 'Tổng số đơn hàng',
   TODO_LOCALE: true,
 };
 
@@ -146,7 +146,7 @@ export const RECIPIENT = {
   zh_TW: '收件人資訊',
   en_US: 'Recipient Info',
   ja_JP: '送付先情報',
-  vi_VN: 'thông tin người nhận',
+  vi_VN: 'Thông tin người nhận',
   TODO_LOCALE: true,
 };
 
@@ -154,7 +154,7 @@ export const PAYMENT_STATUS = {
   zh_TW: '付款狀態',
   en_US: 'Payment Status',
   ja_JP: '決済状況',
-  vi_VN: 'trạng thái thanh toán',
+  vi_VN: 'Trạng thái thanh toán',
   TODO_LOCALE: true,
 };
 
@@ -162,7 +162,7 @@ export const SHIPMENT_STATUS = {
   zh_TW: '運送狀態',
   en_US: 'Delivery Status',
   ja_JP: '配送状況',
-  vi_VN: 'trạng thái giao nhận',
+  vi_VN: 'Trạng thái giao nhận',
   TODO_LOCALE: true,
 };
 
@@ -170,7 +170,7 @@ export const PAYMENT_TYPE = {
   zh_TW: '付款方式',
   en_US: 'Payment',
   ja_JP: '決済方法',
-  vi_VN: 'phương pháp chi trả',
+  vi_VN: 'Phương pháp chi trả',
   TODO_LOCALE: true,
 };
 
@@ -178,7 +178,7 @@ export const SHIPMENT_TYPE = {
   zh_TW: '運送方式',
   en_US: 'Delivery',
   ja_JP: '配送方法',
-  vi_VN: 'phương pháp giao hàng',
+  vi_VN: 'Phương pháp vận chuyển',
   TODO_LOCALE: true,
 };
 
@@ -186,7 +186,7 @@ export const INVOICE_INFO = {
   zh_TW: '發票資訊',
   en_US: 'Invoice',
   ja_JP: '発票情報',
-  vi_VN: 'thông tin hóa đơn',
+  vi_VN: 'Thông tin hóa đơn',
   TODO_LOCALE: true,
 };
 
@@ -205,7 +205,7 @@ export const PAYMENT = value => {
         zh_TW: '等待確認',
         en_US: 'To be Confirmed',
         ja_JP: '確認待ち',
-        vi_VN: 'đang chờ xác nhận',
+        vi_VN: 'Chờ xác nhận',
         TODO_LOCALE: true,
       };
     case 1:
@@ -213,7 +213,7 @@ export const PAYMENT = value => {
         zh_TW: '匯款通知',
         en_US: 'Payment Notification',
         ja_JP: '振込通知',
-        vi_VN: 'thông báo chuyển tiền',
+        vi_VN: 'Thông báo chuyển tiền',
         TODO_LOCALE: true,
       };
     case 2:
@@ -229,7 +229,7 @@ export const PAYMENT = value => {
         zh_TW: '資料有誤',
         en_US: 'Mismatch',
         ja_JP: '入力エラー',
-        vi_VN: 'thông tin không đúng',
+        vi_VN: 'Thông tin không đúng',
         TODO_LOCALE: true,
       };
     case 4:
@@ -237,7 +237,7 @@ export const PAYMENT = value => {
         zh_TW: '付款失敗',
         en_US: 'Failed',
         ja_JP: '決済エラー',
-        vi_VN: 'chi trả không đúng',
+        vi_VN: 'Chi trả thất bại',
         TODO_LOCALE: true,
       };
     case 5:
@@ -245,7 +245,7 @@ export const PAYMENT = value => {
         zh_TW: '退款處理',
         en_US: 'Refund',
         ja_JP: '返金処理',
-        vi_VN: 'đang hoàn tiền',
+        vi_VN: 'Giải quyết hoàn tiền',
         TODO_LOCALE: true,
       };
     default:
@@ -264,7 +264,7 @@ export const SHIPMENT = value => {
         zh_TW: '未出貨',
         en_US: 'Pending',
         ja_JP: '未出荷',
-        vi_VN: 'chưa giao',
+        vi_VN: 'Chưa xuất hàng',
         TODO_LOCALE: true,
       };
     case 1:
@@ -272,7 +272,7 @@ export const SHIPMENT = value => {
         zh_TW: '備貨中',
         en_US: 'Preparing',
         ja_JP: '出荷準備中',
-        vi_VN: 'đang chuẩn bị hàng',
+        vi_VN: 'Chuẩn bị hàng',
         TODO_LOCALE: true,
       };
     case 2:
@@ -280,7 +280,7 @@ export const SHIPMENT = value => {
         zh_TW: '缺貨中',
         en_US: 'Out of Stock',
         ja_JP: '品切れ中',
-        vi_VN: 'hết hàng',
+        vi_VN: 'Hết hàng',
         TODO_LOCALE: true,
       };
     case 3:
@@ -288,7 +288,7 @@ export const SHIPMENT = value => {
         zh_TW: '已出貨',
         en_US: 'Dispatched',
         ja_JP: '出荷済み',
-        vi_VN: 'đã giao',
+        vi_VN: 'Đã giao',
         TODO_LOCALE: true,
       };
     case 4:
@@ -296,7 +296,7 @@ export const SHIPMENT = value => {
         zh_TW: '預購',
         en_US: 'Pre-order',
         ja_JP: '予約注文',
-        vi_VN: 'dự tính mua',
+        vi_VN: 'Đặt hàng',
         TODO_LOCALE: true,
       };
     case 5:
@@ -304,7 +304,7 @@ export const SHIPMENT = value => {
         zh_TW: '換貨處理',
         en_US: 'Replacement',
         ja_JP: '交換処理',
-        vi_VN: 'đang thay thế',
+        vi_VN: 'Xử lý đổi hàng',
         TODO_LOCALE: true,
       };
     case 6:
@@ -312,7 +312,7 @@ export const SHIPMENT = value => {
         zh_TW: '退貨處理',
         en_US: 'Return',
         ja_JP: '返品処理',
-        vi_VN: 'đang quay lại',
+        vi_VN: 'Xử lý trả hàng',
         TODO_LOCALE: true,
       };
     default:
@@ -331,7 +331,7 @@ export const STATUS = value => {
         zh_TW: '處理中',
         en_US: 'Processing',
         ja_JP: '処理中',
-        vi_VN: 'đang xử lý',
+        vi_VN: 'Đang xử lý',
         TODO_LOCALE: true,
       };
     case 1:
@@ -339,7 +339,7 @@ export const STATUS = value => {
         zh_TW: '訂單結案',
         en_US: 'Completed',
         ja_JP: '配送完了',
-        vi_VN: 'đơn hàng đã đóng',
+        vi_VN: 'Đơn hàng kết thúc',
         TODO_LOCALE: true,
       };
     case 2:
@@ -347,7 +347,7 @@ export const STATUS = value => {
         zh_TW: '訂單取消',
         en_US: 'Canceled',
         ja_JP: '注文キャンセル',
-        vi_VN: 'hủy đơn hàng',
+        vi_VN: 'Hủy đơn hàng',
         TODO_LOCALE: true,
       };
     case 3:
@@ -374,7 +374,7 @@ export const INVOICE = value => {
         zh_TW: '二聯式發票',
         en_US: 'Duplicate Uniform Invoice',
         ja_JP: '二連式発票',
-        vi_VN: 'hóa đơn liên 2',
+        vi_VN: 'Hóa đơn liên 2',
         TODO_LOCALE: true,
       };
     case 2:
@@ -382,7 +382,7 @@ export const INVOICE = value => {
         zh_TW: '三聯式發票',
         en_US: 'Triplicate Uniform Invoice',
         ja_JP: '三連式発票',
-        vi_VN: 'hóa đơn liên 3',
+        vi_VN: 'Hóa đơn liên 3',
         TODO_LOCALE: true,
       };
     case 3:
@@ -390,7 +390,7 @@ export const INVOICE = value => {
         zh_TW: '電子發票',
         en_US: 'e-Invoice',
         ja_JP: '電子発票',
-        vi_VN: 'hóa đơn điện tử',
+        vi_VN: 'Hóa đơn điện tử',
         TODO_LOCALE: true,
       };
     case 4:
@@ -398,7 +398,7 @@ export const INVOICE = value => {
         zh_TW: '捐贈',
         en_US: 'Donate',
         ja_JP: '寄贈',
-        vi_VN: 'tặng',
+        vi_VN: 'Qùa tặng',
         TODO_LOCALE: true,
       };
     default:

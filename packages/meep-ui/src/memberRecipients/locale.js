@@ -52,7 +52,7 @@ export const DELETE = {
   zh_TW: '刪除',
   en_US: 'Remove',
   ja_JP: '削除',
-  vi_VN: 'xóa',
+  vi_VN: 'Xóa',
   TODO_LOCALE: true,
 };
 
@@ -60,7 +60,7 @@ export const PLACEHOLDER = {
   zh_TW: '地區',
   en_US: 'Country',
   ja_JP: '国',
-  vi_VN: 'quốc gia',
+  vi_VN: 'Quốc gia',
   TODO_LOCALE: true,
 };
 
@@ -76,7 +76,7 @@ export const CREATE = {
   zh_TW: '新增',
   en_US: 'Add',
   ja_JP: '作成',
-  vi_VN: 'đã thêm',
+  vi_VN: 'Thêm',
   TODO_LOCALE: true,
 };
 
@@ -84,7 +84,7 @@ export const CANCEL = {
   zh_TW: '取消',
   en_US: 'Discard',
   ja_JP: 'キャンセル',
-  vi_VN: 'hủy bỏ',
+  vi_VN: 'Hủy bỏ',
   TODO_LOCALE: true,
 };
 
@@ -92,7 +92,7 @@ export const SUBMIT = {
   zh_TW: '確認',
   en_US: 'Save',
   ja_JP: '確認',
-  vi_VN: 'xác nhận',
+  vi_VN: 'Xác nhận',
   TODO_LOCALE: true,
 };
 

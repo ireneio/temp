@@ -18,7 +18,7 @@ export const CONFIRMPASSWORD = {
   zh_TW: '確認新密碼',
   en_US: 'Confirm password',
   ja_JP: '新しいパスワードの確認',
-  vi_VN: 'xác nhận mật khẩu',
+  vi_VN: 'Xác nhận mật khẩu',
   TODO_LOCALE: true,
 };
 
@@ -26,7 +26,7 @@ export const SUBMIT = {
   zh_TW: '確認',
   en_US: 'Save',
   ja_JP: '確認',
-  vi_VN: 'xác nhận',
+  vi_VN: 'Xác nhận',
   TODO_LOCALE: true,
 };
 
