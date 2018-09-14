@@ -77,7 +77,7 @@ class MyApp extends App {
       }),
     });
 
-    if (isServer && response.status >= 400) {
+    if (isServer && response.status >= 400 && response.status !== 403) {
       console.log(
         `Check >> ${response.status} (${XMeepshopDomain}) ${JSON.stringify(
           req.headers,
@@ -135,13 +135,14 @@ class MyApp extends App {
   }
 
   componentDidCatch(error, errorInfo) {
+    console.error(error);
     fetch('/log', {
       method: 'post',
       headers: { 'content-type': 'application/json' },
       credentials: 'include',
       body: JSON.stringify({
         data: {
-          error,
+          error: error.message,
           errorInfo,
           // eslint-disable-next-line no-restricted-globals
           pathname: location.pathname,

@@ -1,14 +1,6 @@
 import postGraphql from 'utils/postGraphql';
 
-export default async function(args = {}) {
-  const {
-    isServer,
-    XMeepshopDomain,
-    cookie,
-
-    offset = 0,
-    limit = 20,
-  } = args;
+export default async function({ offset = 0, limit = 20, ...context }) {
   const variables = {
     keys: '$search: searchInputObjectType',
     type: 'query getProductList',
@@ -48,11 +40,9 @@ export default async function(args = {}) {
     }
   `;
   const response = await postGraphql({
+    ...context,
     query,
     variables,
-    isServer,
-    XMeepshopDomain,
-    cookie,
   });
   return response;
 }
