@@ -1,3 +1,12 @@
+## 0.3.3 (2018-09-14)
+
+#### :bug: Bug Fix
+* `store`
+  * [#210](https://github.com/meepshop/meep-lerna/pull/210) fix(store): modified handling log & fix setHeader error ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.3.2 (2018-09-13)
 
 #### :boom: Breaking Change
