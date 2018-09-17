@@ -34,6 +34,13 @@ export default function(state = initialState, { type, payload }) {
   // }
 
   switch (type) {
+    // FIXME: hotfix
+    case 'AUTH_SUCCESS': {
+      return {
+        loading: false,
+        loadingTip: '',
+      };
+    }
     case SHOW_LOADING_STATUS: {
       return {
         loading: true,
