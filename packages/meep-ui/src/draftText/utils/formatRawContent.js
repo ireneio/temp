@@ -20,6 +20,12 @@ export default value => {
             style: `color-${COLORS[style] || style}`,
           };
 
+        if (style.startsWith('background-'))
+          return {
+            ...inline,
+            style: `bgcolor-${COLORS[style.replace(/^background-/, '')]}`,
+          };
+
         if (FONTFAMILY.includes(style))
           return {
             ...inline,
