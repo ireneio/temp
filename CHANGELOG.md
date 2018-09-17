@@ -1,3 +1,15 @@
+## 0.3.4 (2018-09-17)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#212](https://github.com/meepshop/meep-lerna/pull/212) 商品描述：修正文字背景顏色(N153) ([@yuhsu1004](https://github.com/yuhsu1004))
+* `store`
+  * [#216](https://github.com/meepshop/meep-lerna/pull/216) FB 登入：登入之後頁面Loading未消失(N156) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 2
+- Ariel Hsu ([@yuhsu1004](https://github.com/yuhsu1004))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.3.3 (2018-09-14)
 
 #### :bug: Bug Fix
