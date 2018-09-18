@@ -224,6 +224,7 @@ export default class Summary extends React.PureComponent {
   submit = isPayment => async () => {
     const {
       location,
+      locale,
       user,
       cname,
       isLogin,
@@ -252,6 +253,7 @@ export default class Summary extends React.PureComponent {
       ...fieldValue,
       postalCode,
       domain,
+      locale,
       userEmail: userEmail || user.email,
       userPassword,
       products,

@@ -158,6 +158,7 @@ export default class LandingPage extends React.PureComponent {
         if (!err) {
           const {
             location: { host: domain, pathname },
+            locale,
             user,
             cname,
             transformLocale,
@@ -178,6 +179,7 @@ export default class LandingPage extends React.PureComponent {
             ...filedsValue,
             sourcePage: 'lp',
             domain,
+            locale,
             userEmail: userEmail || user.email,
             products: [
               {

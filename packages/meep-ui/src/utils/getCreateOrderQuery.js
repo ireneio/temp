@@ -3,6 +3,7 @@ import moment from 'moment';
 
 export default ({
   domain,
+  locale,
   sourcePage,
 
   userEmail,
@@ -126,6 +127,7 @@ export default ({
     createOrderList: {
       environment: {
         domain,
+        locale,
         ...(!sourcePage ? {} : { sourcePage }),
       },
       idempotentKey: uuid.v4(),
