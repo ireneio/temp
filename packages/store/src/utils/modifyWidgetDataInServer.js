@@ -239,7 +239,7 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
             const productId = widget.params && widget.params.ids;
             let orderInfo;
             if (shipmentTemplate && tradeNo) {
-              orderInfo = getOrderInfo(shipmentTemplate, tradeNo);
+              orderInfo = await getOrderInfo(shipmentTemplate, tradeNo);
             }
             let productData = null;
             if (productId) {

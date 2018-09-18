@@ -19,7 +19,7 @@ class Checkout extends React.Component {
     if (isServer) {
       store.dispatch(Actions.serverOthersInitial(context));
       if (shipmentTemplate && tradeNo) {
-        const orderInfo = Utils.getOrderInfo(shipmentTemplate, tradeNo);
+        const orderInfo = await Utils.getOrderInfo(shipmentTemplate, tradeNo);
         return { orderInfo, userAgent, XMeepshopDomain };
       }
     }
