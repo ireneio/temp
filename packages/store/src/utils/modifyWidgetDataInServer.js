@@ -1,10 +1,6 @@
-import getConfig from 'next/config';
 import * as Api from 'api';
 import uuid from 'uuid/v4';
-
-const {
-  publicRuntimeConfig: { API_HOST },
-} = getConfig();
+import getOrderInfo from './getOrderInfo';
 
 /**
  * 暫時由前端join與filter各個module欄位
@@ -243,27 +239,7 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
             const productId = widget.params && widget.params.ids;
             let orderInfo;
             if (shipmentTemplate && tradeNo) {
-              let data = {};
-              try {
-                const res = await fetch(
-                  `${API_HOST}/external/${shipmentTemplate}/getInfo/${tradeNo}`,
-                );
-                /* api server removes form info in 10 secends */
-                if (res.status === 200) {
-                  data = await res.json();
-                } else {
-                  throw new Error('Form information has been removed.');
-                }
-              } catch (error) {
-                if (error.message !== 'Form information has been removed.')
-                  console.warn(error);
-              }
-              orderInfo = {
-                info: data.info, // The form infomation filled by user before choosing store.
-                CVSAddress: data.CVSAddress,
-                CVSStoreID: data.CVSStoreID,
-                CVSStoreName: data.CVSStoreName,
-              };
+              orderInfo = getOrderInfo(shipmentTemplate, tradeNo);
             }
             let productData = null;
             if (productId) {

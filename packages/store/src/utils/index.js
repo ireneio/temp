@@ -10,6 +10,7 @@ import getCookie from './getCookie';
 import setDefaultValueForMenuDesign from './setDefaultValueForMenuDesign';
 import getJoinedModule from './getJoinedModule';
 import execTrackingCode from './execTrackingCode';
+import getOrderInfo from './getOrderInfo';
 
 export {
   getStateError,
@@ -24,4 +25,5 @@ export {
   setDefaultValueForMenuDesign,
   getJoinedModule,
   execTrackingCode,
+  getOrderInfo,
 };

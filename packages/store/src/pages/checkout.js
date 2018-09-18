@@ -1,17 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import * as R from 'ramda';
-import getConfig from 'next/config';
 import { connect } from 'react-redux';
 import * as Utils from 'utils';
 import { Container, TrackingCodeHead, Error } from 'components';
 import { getJoinedCheckoutPage } from 'selectors/checkout';
 import * as Actions from 'ducks/actions';
-
-const {
-  publicRuntimeConfig: { API_HOST },
-} = getConfig();
 
 class Checkout extends React.Component {
   static getInitialProps = async context => {
@@ -22,35 +16,14 @@ class Checkout extends React.Component {
       store,
       query: { shipmentTemplate, tradeNo },
     } = context;
-    let orderInfo = null;
     if (isServer) {
       store.dispatch(Actions.serverOthersInitial(context));
       if (shipmentTemplate && tradeNo) {
-        let value = {};
-        try {
-          const res = await fetch(
-            `${API_HOST}/external/${shipmentTemplate}/getInfo/${tradeNo}`,
-          );
-          /* api server removes form info in 10 secends */
-          if (res.status === 200) {
-            value = await res.json();
-          } else {
-            throw new Error('Form information has been removed.');
-          }
-        } catch (error) {
-          console.warn(error);
-        }
-        if (!R.isEmpty(value)) {
-          orderInfo = {
-            info: value.info, // The form infomation filled by user before choosing store.
-            CVSAddress: value.CVSAddress,
-            CVSStoreID: value.CVSStoreID,
-            CVSStoreName: value.CVSStoreName,
-          };
-        }
+        const orderInfo = Utils.getOrderInfo(shipmentTemplate, tradeNo);
+        return { orderInfo, userAgent, XMeepshopDomain };
       }
     }
-    return { orderInfo, userAgent, XMeepshopDomain };
+    return { userAgent, XMeepshopDomain };
   };
 
   static propTypes = {
