@@ -1,3 +1,14 @@
+## 0.3.7 (2018-09-18)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#221](https://github.com/meepshop/meep-lerna/pull/221) 系統通知信:翻譯問題(N146) ([@barrypeng6](https://github.com/barrypeng6))
+  * [#220](https://github.com/meepshop/meep-lerna/pull/220) 後台訂單匯出：門市代號有誤(N159) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.3.6 (2018-09-18)
 
 #### :rocket: New Feature
