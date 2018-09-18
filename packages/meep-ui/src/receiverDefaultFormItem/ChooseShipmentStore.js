@@ -153,21 +153,23 @@ export default class ChooseShipmentStore extends React.PureComponent {
       tradeNo,
       shipmentTemplate,
     })}#choose-shipment-store`;
+    const info = {
+      ...getFieldsValue(),
+      storePreviousPageUrl: window.storePreviousPageUrl,
+    };
 
-    if (!process.env.STORYBOOK_DOCS) {
-      // TODO
-      await fetch(getApiUrl(`/external/${shipmentTemplate}/saveInfo`), {
-        method: 'POST',
-        body: JSON.stringify({
-          uuid: tradeNo,
-          url,
-          info: {
-            ...getFieldsValue(),
-            storePreviousPageUrl: window.storePreviousPageUrl,
-          },
-        }),
-      });
-    }
+    delete info.CVSStoreID;
+    delete info.CVSStoreName;
+    delete info.CVSAddress;
+
+    await fetch(getApiUrl(`/external/${shipmentTemplate}/saveInfo`), {
+      method: 'POST',
+      body: JSON.stringify({
+        uuid: tradeNo,
+        url,
+        info,
+      }),
+    });
 
     this.formRef.current.submit();
   };
