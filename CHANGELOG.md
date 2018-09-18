@@ -1,3 +1,16 @@
+## 0.3.5 (2018-09-18)
+
+#### :rocket: New Feature
+* `meep-ui`
+  * [#217](https://github.com/meepshop/meep-lerna/pull/217) 越南文翻譯更新(N152) ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+* `store`
+  * [#218](https://github.com/meepshop/meep-lerna/pull/218) fix(store): refactor get orderInfo and remove warnnimg ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.c
+
 ## 0.3.4 (2018-09-17)
 
 #### :bug: Bug Fix
