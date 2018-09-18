@@ -11,8 +11,8 @@ const NOT_PHONE = {
 const NOT_NUMBER = {
   zh_TW: '請輸入純數字',
   en_US: 'This entry can only contain numbers',
-  ja_JP: '',
-  vi_VN: '',
+  ja_JP: '純粋な数字を入力してください',
+  vi_VN: 'Hãy chỉ điền số',
   TODO_LOCALE: true,
 };
 

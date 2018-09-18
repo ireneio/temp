@@ -2,7 +2,7 @@ export const LATEST = {
   zh_TW: '最新商品',
   en_US: 'New In',
   ja_JP: '新商品',
-  vi_VN: 'sản phẩm mới',
+  vi_VN: 'Sản phẩm mới',
   TODO_LOCALE: true,
 };
 
@@ -10,7 +10,7 @@ export const TITLE = {
   zh_TW: '商品名稱',
   en_US: 'Product Name',
   ja_JP: '商品名',
-  vi_VN: 'tên sản phẩm',
+  vi_VN: 'Tên sản phẩm',
   TODO_LOCALE: true,
 };
 
@@ -50,7 +50,7 @@ export const MEMBER_SEE_PRICE = {
   zh_TW: '會員可見價格',
   en_US: 'Member Exclusive Price',
   ja_JP: '会員価格',
-  vi_VN: 'hội viên có thể xem được giá',
+  vi_VN: 'Hội viên có thể xem được giá',
   TODO_LOCALE: true,
 };
 
@@ -58,7 +58,7 @@ export const ADD_TO_CART = {
   zh_TW: '加入購物車',
   en_US: 'Add to Cart',
   ja_JP: 'カートに追加',
-  vi_VN: 'thêm vào giỏ hàng',
+  vi_VN: 'Thêm vào giỏ hàng',
   TODO_LOCALE: true,
 };
 
@@ -74,7 +74,7 @@ export const PREV_PAGE = {
   zh_TW: '上一頁',
   en_US: 'Back',
   ja_JP: '前のページ',
-  vi_VN: 'trang trước',
+  vi_VN: 'Trang trước',
   TODO_LOCALE: true,
 };
 
@@ -82,7 +82,7 @@ export const NEXT_PAGE = {
   zh_TW: '下一頁',
   en_US: 'Next',
   ja_JP: '次のページ',
-  vi_VN: 'trang sau',
+  vi_VN: 'Trang sau',
   TODO_LOCALE: true,
 };
 
@@ -90,6 +90,6 @@ export const MODAL_TITLE = {
   zh_TW: '請選擇規格',
   en_US: 'Please choose specifications.',
   ja_JP: '商品の仕様をお選びください',
-  vi_VN: 'xin lựa chọn thông số',
+  vi_VN: 'Xin lựa chọn quy cách',
   TODO_LOCALE: true,
 };

@@ -5,7 +5,7 @@ export const SELECT_PRODUCT_PAYMENT = {
   zh_TW: '選擇商品與購物方式',
   en_US: 'Select Item and Payment / Delivery Type',
   ja_JP: '商品及び購入方法を選択',
-  vi_VN: 'Chọn sản phẩm và phương thức mua hàng',
+  vi_VN: 'Lựa chọn sản phẩm và phương thức mua hàng',
   TODO_LOCALE: true,
 };
 
@@ -21,7 +21,7 @@ export const QUANTITY = {
   zh_TW: '數量',
   en_US: 'QTY',
   ja_JP: '数量',
-  vi_VN: 'số lượng',
+  vi_VN: 'Số lượng',
   TODO_LOCALE: true,
 };
 
@@ -30,7 +30,7 @@ export const PRICE = {
   zh_TW: '商品總價',
   en_US: 'Subtotal',
   ja_JP: '商品合計',
-  vi_VN: 'tổng mua',
+  vi_VN: 'Tổng mua',
   TODO_LOCALE: true,
 };
 
@@ -38,7 +38,7 @@ export const COUPON_CODE = {
   zh_TW: '優惠碼',
   en_US: 'Coupon Code',
   ja_JP: 'クーポンコード',
-  vi_VN: 'mã khuyến mãi',
+  vi_VN: 'Mã khuyến mãi',
   TODO_LOCALE: true,
 };
 
@@ -54,7 +54,7 @@ export const SHIPMENT_FEE = {
   zh_TW: '運費',
   en_US: 'Shipping Fee',
   ja_JP: '送料',
-  vi_VN: 'phí giao hàng',
+  vi_VN: 'Phí vận chuyển',
   TODO_LOCALE: true,
 };
 
@@ -62,6 +62,6 @@ export const TOTAL = {
   zh_TW: '本次消費總計',
   en_US: 'Total',
   ja_JP: '今回の消費合計',
-  vi_VN: 'tổng tiêu thụ',
+  vi_VN: 'Tổng tiêu thụ',
   TODO_LOCALE: true,
 };

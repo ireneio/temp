@@ -117,28 +117,28 @@ export const INVOICE_TYPE = {
     zh_TW: '二聯式發票',
     en_US: 'Duplicate Uniform Invoice',
     ja_JP: '二連式発票',
-    vi_VN: 'hóa đơn liên 2',
+    vi_VN: 'Hóa đơn liên 2',
     TODO_LOCALE: true,
   },
   triplicate: {
     zh_TW: '三聯式發票',
     en_US: 'Triplicate Uniform Invoice',
     ja_JP: '三連式発票',
-    vi_VN: 'hóa đơn liên 3',
+    vi_VN: 'Hóa đơn liên 3',
     TODO_LOCALE: true,
   },
   eInvoice: {
     zh_TW: '電子發票',
     en_US: 'e-Invoice',
     ja_JP: '電子発票',
-    vi_VN: 'hóa đơn điện tử',
+    vi_VN: 'Hóa đơn điện tử',
     TODO_LOCALE: true,
   },
   donate: {
     zh_TW: '捐贈',
     en_US: 'Donate',
     ja_JP: '寄贈',
-    vi_VN: 'tặng',
+    vi_VN: 'Tặng',
     TODO_LOCALE: true,
   },
 };
@@ -147,7 +147,7 @@ export const NOTES = {
   zh_TW: '訂單備註',
   en_US: 'Order Notes',
   ja_JP: '注文備考',
-  vi_VN: 'ghi chú đặt hàng',
+  vi_VN: 'Ghi chú đặt hàng',
   TODO_LOCALE: true,
 };
 
@@ -156,7 +156,7 @@ export const INVOICE_TITLE = {
   zh_TW: '發票抬頭',
   en_US: 'Bill to: ',
   ja_JP: '発票の宛名',
-  vi_VN: 'hóa đơn',
+  vi_VN: 'Hóa đơn',
   TODO_LOCALE: true,
 };
 
@@ -172,7 +172,7 @@ export const INVOICE_ADDRESS = {
   zh_TW: '發票地址',
   en_US: 'Invoice Mailing Address',
   ja_JP: '発票住所',
-  vi_VN: 'địa chỉ hóa đơn',
+  vi_VN: 'Địa chỉ hóa đơn',
   TODO_LOCALE: true,
 };
 
@@ -181,7 +181,7 @@ export const INVOICE_E_INVOICE = {
   zh_TW: '電子發票',
   en_US: 'e-Invoice',
   ja_JP: '電子発票',
-  vi_VN: 'hóa đơn điện tử',
+  vi_VN: 'Hóa đơn điện tử',
   TODO_LOCALE: true,
 };
 
@@ -231,7 +231,7 @@ export const INVOICE_DONATE = {
   zh_TW: '社福團體愛心碼',
   en_US: 'Enter NPO Donation Code',
   ja_JP: '社会福祉団体コード',
-  vi_VN: 'nhập mã an sinh xã hội',
+  vi_VN: 'Nhập mã an sinh xã hội',
   TODO_LOCALE: true,
 };
 
@@ -239,6 +239,6 @@ export const INVOICE_SEARCH = {
   zh_TW: '查詢',
   en_US: 'Enquire',
   ja_JP: '検索',
-  vi_VN: 'yêu cầu',
+  vi_VN: 'Tìm kiếm',
   TODO_LOCALE: true,
 };
