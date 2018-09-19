@@ -1,3 +1,15 @@
+## 0.3.8 (2018-09-19)
+
+#### :bug: Bug Fix
+* `store`
+  * [#224](https://github.com/meepshop/meep-lerna/pull/224) fix(store): get wrong home page(N155) ([@barrypeng6](https://github.com/barrypeng6))
+* `store`, `test-prod-server`
+  * [#223](https://github.com/meepshop/meep-lerna/pull/223) 使用「綠界：信用卡」下訂單， 無跳轉至預設的 thank-you-page(N158) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.3.7 (2018-09-18)
 
 #### :bug: Bug Fix
