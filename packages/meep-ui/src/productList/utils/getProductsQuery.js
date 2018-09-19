@@ -12,7 +12,8 @@ export default ({
   const variables = {
     search: {
       size: parseInt(limit, 10),
-      from: parseInt(offset, 10),
+      // FIXME: custom sorting workaround
+      from: sort === 'selections' ? 0 : parseInt(offset, 10),
       filter: {
         and: [
           {
@@ -34,13 +35,22 @@ export default ({
     },
   };
 
-  if (typeof ids === 'string' && ids !== '')
-    variables.search.filter.and.push({
-      type: 'ids',
-      ids: ids.split(','),
-    });
+  if (typeof ids === 'string' && ids !== '') {
+    // FIXME: custom sorting workaround
+    if (sort === 'selections') {
+      variables.search.filter.and.push({
+        type: 'ids',
+        ids: ids.split(',').slice(offset, offset + limit),
+      });
+    } else {
+      variables.search.filter.and.push({
+        type: 'ids',
+        ids: ids.split(','),
+      });
+    }
+  }
 
-  if (typeof search === 'string' && search !== '')
+  if (typeof search === 'string' && search !== '') {
     variables.search.filter.or.push(
       {
         type: 'query_string',
@@ -54,6 +64,7 @@ export default ({
         query: search,
       },
     );
+  }
 
   if (typeof tags === 'string' && tags !== '') {
     const tagsFilter = tags.split(',').map(query => ({

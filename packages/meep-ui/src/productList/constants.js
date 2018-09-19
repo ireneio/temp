@@ -31,14 +31,22 @@ export const PRODUCT_TYPE = PropTypes.shape({
   }),
 });
 
-export const SORT_OPTIONS = locale => [
+export const SORT_OPTIONS = ids => [
+  ...(ids
+    ? [
+        {
+          text: 'SELECTIONS',
+          value: 'selections',
+        },
+      ]
+    : []),
   {
     text: 'LATEST',
     value: 'createdOn-desc',
   },
   {
     text: 'TITLE',
-    value: `title.${locale}-asc`,
+    value: 'title.zh_TW-asc',
   },
   {
     text: 'PRICE_ASC',

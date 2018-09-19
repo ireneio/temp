@@ -1,3 +1,11 @@
+export const SELECTIONS = {
+  zh_TW: '精選商品',
+  en_US: 'Our Favorites',
+  ja_JP: 'おすすめ商品',
+  vi_VN: 'Sản phẩm nổi bật',
+  TODO_LOCALE: true,
+};
+
 export const LATEST = {
   zh_TW: '最新商品',
   en_US: 'New In',

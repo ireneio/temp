@@ -86,6 +86,11 @@ const getJoinedModule = (
               search: query.search || widget.params.search,
               sort: query.sort || widget.params.sort,
               tags: query.tags || widget.params.tags,
+              ...(widget.params.ids
+                ? {
+                    sort: 'selections',
+                  }
+                : {}),
             },
             cart,
             wishList,

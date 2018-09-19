@@ -199,7 +199,7 @@ export default class ProductList extends React.PureComponent {
   resolveProducts = async () => {
     const {
       products,
-      params: { ids },
+      params: { sort, ids },
     } = this.state;
 
     const result = await products;
@@ -209,7 +209,7 @@ export default class ProductList extends React.PureComponent {
     const resolvedProducts = result.data.computeProductList;
 
     // FIXME: 不該由前端排序
-    if (ids) {
+    if (ids && sort === 'selections') {
       const order = String(ids).split(',');
 
       resolvedProducts.data = resolvedProducts.data.sort(
@@ -359,7 +359,6 @@ export default class ProductList extends React.PureComponent {
       cartButton,
       pagination,
 
-      locale,
       location: { pathname, search },
       colors,
       isLogin,
@@ -369,12 +368,15 @@ export default class ProductList extends React.PureComponent {
     } = this.props;
     const {
       products,
-      params: { sort, limit },
+      params: { sort, limit, ids },
       page,
       isOpen,
       isGrid,
       isLoading,
     } = this.state;
+    // FIXME: custom sorting workaround
+    const total =
+      sort === 'selections' ? String(ids).split(',').length : products?.total;
 
     return (
       <div style={styles.root} ref={this.root} className={this.name}>
@@ -400,7 +402,7 @@ export default class ProductList extends React.PureComponent {
                     points: ['tr', 'br'],
                   }}
                 >
-                  {SORT_OPTIONS(locale).map(option => (
+                  {SORT_OPTIONS(ids).map(option => (
                     <Select.Option key={option.value} value={option.value}>
                       {sort === option.value ? (
                         transformLocale(LOCALE[option.text])
@@ -447,7 +449,7 @@ export default class ProductList extends React.PureComponent {
             {!pagination ? null : (
               <div style={styles.pagination}>
                 <Pagination
-                  total={isLoading ? 0 : products.total}
+                  total={total}
                   pageSize={limit}
                   current={page}
                   itemRender={this.renderPagination}
