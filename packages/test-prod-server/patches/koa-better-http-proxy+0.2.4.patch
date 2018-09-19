@@ -1,7 +1,7 @@
 patch-package
---- a/node_modules/express-http-proxy/app/steps/sendProxyRequest.js
-+++ b/node_modules/express-http-proxy/app/steps/sendProxyRequest.js
-@@ -8,6 +8,12 @@ function sendProxyRequest(Container) {
+--- a/node_modules/koa-better-http-proxy/app/steps/sendProxyRequest.js
++++ b/node_modules/koa-better-http-proxy/app/steps/sendProxyRequest.js
+@@ -8,12 +8,23 @@ function sendProxyRequest(Container) {
    var reqOpt = Container.proxy.reqBuilder;
    var options = Container.options;
 
@@ -14,7 +14,6 @@ patch-package
    return new Promise(function(resolve, reject) {
      var protocol = Container.proxy.requestModule;
      var proxyReq = protocol.request(reqOpt, function(rsp) {
-@@ -19,6 +25,10 @@ function sendProxyRequest(Container) {
        var chunks = [];
        rsp.on('data', function(chunk) { chunks.push(chunk); });
        rsp.on('end', function() {
@@ -22,6 +21,7 @@ patch-package
 +          process.env.AUTH_TOKEN = rsp.headers['x-meepshop-authorization-token'];
 +        else if (/auth\/signout/.test(reqOpt.pah))
 +          process.env.AUTH_TOKEN = false;
++
          Container.proxy.res = rsp;
          Container.proxy.resData = Buffer.concat(chunks, chunkLength(chunks));
          resolve(Container);

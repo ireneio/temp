@@ -1,5 +1,5 @@
 # Test prod server
-Mock `node-fetch`, `express-http-proxy` to make `prod sever` work in local.
+Mock `node-fetch`, `koa-better-http-proxy` to make `prod sever` work in local.
 It can use like `dev server` with `process.env`.
 
 ## How to use

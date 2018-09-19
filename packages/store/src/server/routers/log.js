@@ -3,5 +3,4 @@ module.exports = ctx => {
   const { data } = ctx.request.body;
   console.log(`#LOG#(${XMeepshopDomain}) >>>  ${JSON.stringify(data)}`);
   ctx.status = 200;
-  ctx.body = 'ok';
 };

@@ -25,7 +25,7 @@ export default async () => {
             });
 
             // eslint-disable-next-line global-require
-            await require('@meepshop/store/src/server/server');
+            await require('@meepshop/store/src/server');
           } catch (e) {
             childProcess.execSync('make recovery-patch-modules');
             throw e;
