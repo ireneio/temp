@@ -1,3 +1,14 @@
+## 0.3.9 (2018-09-19)
+
+#### :rocket: New Feature
+* `meep-ui`, `store`
+  * [#213](https://github.com/meepshop/meep-lerna/pull/213) 新增錯誤頁畫面(N151) ([@barrypeng6](https://github.com/barrypeng6))
+  * [#215](https://github.com/meepshop/meep-lerna/pull/215) 產品列表：商品換頁排序問題(1494) ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.3.8 (2018-09-19)
 
 #### :bug: Bug Fix
