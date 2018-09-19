@@ -110,20 +110,7 @@ class Container extends React.Component {
       'unhandledrejection',
       ({ reason: { message, stack } }) => {
         if (message === 'Failed to fetch') return;
-
-        fetch('/log', {
-          method: 'post',
-          headers: { 'content-type': 'application/json' },
-          credentials: 'include',
-          body: JSON.stringify({
-            data: {
-              message,
-              stack,
-              // eslint-disable-next-line no-restricted-globals
-              pathname: location.pathname,
-            },
-          }),
-        });
+        Utils.logToServer({ type: 'unhandledrejection', message, stack });
       },
     );
   }

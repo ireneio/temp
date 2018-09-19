@@ -10,7 +10,7 @@ export default async function({
 }) {
   const variables = {
     keys: '$search: searchInputObjectType',
-    type: 'query Root',
+    type: 'query getPages',
     values: {
       search: {
         size: 50,

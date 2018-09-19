@@ -1,3 +1,4 @@
 import React from 'react';
+import ErrorPageNotFound from './ErrorPageNotFound';
 
-export default () => <div>Oops! Product not found</div>;
+export default () => <ErrorPageNotFound />;

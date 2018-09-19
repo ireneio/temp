@@ -4,7 +4,7 @@ import { orderQuery } from './query';
 export default async function({ orderId }) {
   const variables = {
     keys: '$search: searchInputObjectType',
-    type: 'query Root',
+    type: 'query getOrder',
     values: {
       search: {
         filter: {

@@ -4,7 +4,7 @@ import * as Utils from 'utils';
 import * as Actions from 'ducks/actions';
 import { Provider } from 'react-redux';
 import NProgress from 'nprogress';
-import Router from 'next/router';
+import { Router } from 'server/routes';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import { notification } from 'antd';
@@ -134,20 +134,23 @@ class MyApp extends App {
     return { pageProps };
   }
 
+  componentDidMount() {
+    if (!window.meepShopStore.goTo) window.meepShopStore.goTo = Utils.goTo;
+    Router.beforePopState(({ as }) => {
+      if (!Utils.checkRoutesIsValid(as)) {
+        window.location.href = as;
+        return false;
+      }
+      return true;
+    });
+  }
+
   componentDidCatch(error, errorInfo) {
     console.error(error);
-    fetch('/log', {
-      method: 'post',
-      headers: { 'content-type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({
-        data: {
-          error: error.message,
-          errorInfo,
-          // eslint-disable-next-line no-restricted-globals
-          pathname: location.pathname,
-        },
-      }),
+    Utils.logToServer({
+      type: 'componentDidCatch',
+      message: error.message,
+      stack: errorInfo,
     });
   }
 

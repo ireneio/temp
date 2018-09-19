@@ -20,7 +20,9 @@ function* serverIndexInitialFlow({ payload }) {
     const { cookie } = payload;
     const data = yield call(Api.serverIndexInitial, payload);
 
-    if (data) {
+    if (data.apiErr) {
+      yield put(getStoreFailure(data.apiErr));
+    } else {
       /* Get default locale & currency from cookies */
       const locale = Utils.getCookie('locale', cookie);
       const customerCurrency = Utils.getCookie('currency', cookie);
@@ -38,11 +40,10 @@ function* serverIndexInitialFlow({ payload }) {
       const modifiedPage = yield Utils.getPageWithModifyWidget(page, payload);
       yield put(getPagesSuccess(modifiedPage));
     }
-  } catch (error) {
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
-    yield put(getStoreFailure(error.message));
+  } catch ({ message }) {
+    const status = 'SERVER_ERROR';
+    console.log(`${status}: ${message}`);
+    yield put(getStoreFailure({ status, message }));
   }
 }
 export function* watchServerIndexInitialFlow() {
@@ -62,7 +63,9 @@ function* serverPagesInitialFlow({ payload }) {
     const { cookie } = payload;
     const data = yield call(Api.serverPagesInitial, payload);
 
-    if (data) {
+    if (data.apiErr) {
+      yield put(getStoreFailure(data.apiErr));
+    } else {
       /* Get default locale & currency from cookies */
       const locale = Utils.getCookie('locale', cookie);
       const customerCurrency = Utils.getCookie('currency', cookie);
@@ -75,14 +78,13 @@ function* serverPagesInitialFlow({ payload }) {
         const modifiedPage = yield Utils.getPageWithModifyWidget(page, payload);
         yield put(getPagesSuccess(modifiedPage));
       } else {
-        yield put(getStoreFailure('ERROR_PAGE_NOT_FOUND'));
+        yield put(getStoreFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
       }
     }
-  } catch (error) {
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
-    yield put(getStoreFailure(error.message));
+  } catch ({ message }) {
+    const status = 'SERVER_ERROR';
+    console.log(`${status}: ${message}`);
+    yield put(getStoreFailure({ status, message }));
   }
 }
 export function* watchServerPagesInitialFlow() {
@@ -104,7 +106,9 @@ function* serverProductInitialFlow({ payload }) {
 
     const data = yield call(Api.serverProductInitial, payload);
 
-    if (data) {
+    if (data.apiErr) {
+      yield put(getStoreFailure(data.apiErr));
+    } else {
       /* get default locale & currency from cookies */
       const locale = Utils.getCookie('locale', cookie);
       const customerCurrency = Utils.getCookie('currency', cookie);
@@ -119,44 +123,51 @@ function* serverProductInitialFlow({ payload }) {
           variantId: product?.variants?.[0]?.id || '',
           id: pId,
         });
-        const activities =
-          computeOrderData?.data?.computeOrderList?.[0]?.categories?.[0]
-            ?.products?.[0]?.activityInfo || [];
+        if (computeOrderData.apiErr) {
+          yield put(getStoreFailure(computeOrderData.apiErr));
+        } else {
+          const activities =
+            computeOrderData?.data?.computeOrderList?.[0]?.categories?.[0]
+              ?.products?.[0]?.activityInfo || [];
 
-        /* Join activities in corresponding product */
-        yield put(getProductSuccess({ ...product, activities }));
-        let pagesData;
-        const { templateId, pageId } = product?.design || {};
-        if (!pageId && !templateId) {
-          pagesData = yield call(Api.getPages, {
-            ...payload,
-            pageType: 'template',
-          });
-        } else {
-          pagesData = yield call(Api.getPages, {
-            ...payload,
-            id: templateId || pageId,
-          });
-        }
-        const page = pagesData?.data?.getPageList?.data?.[0];
-        if (page) {
-          const modifiedPage = yield Utils.getPageWithModifyWidget(
-            page,
-            payload,
-          );
-          yield put(getPagesSuccess(modifiedPage));
-        } else {
-          throw new Error('Product page is not found.');
+          /* Join activities in corresponding product */
+          yield put(getProductSuccess({ ...product, activities }));
+          let pagesData;
+          const { templateId, pageId } = product?.design || {};
+          if (!pageId && !templateId) {
+            pagesData = yield call(Api.getPages, {
+              ...payload,
+              pageType: 'template',
+            });
+          } else {
+            pagesData = yield call(Api.getPages, {
+              ...payload,
+              id: templateId || pageId,
+            });
+          }
+          if (pagesData.apiErr) {
+            yield put(getStoreFailure(pagesData.apiErr));
+          } else {
+            const page = pagesData?.data?.getPageList?.data?.[0];
+            if (page) {
+              const modifiedPage = yield Utils.getPageWithModifyWidget(
+                page,
+                payload,
+              );
+              yield put(getPagesSuccess(modifiedPage));
+            } else {
+              throw new Error('Product page is not found.');
+            }
+          }
         }
       } else {
         yield put(getStoreFailure('ERROR_PRODUCT_NOT_FOUND'));
       }
     }
-  } catch (error) {
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
-    yield put(getStoreFailure(error.message));
+  } catch ({ message }) {
+    const status = 'SERVER_ERROR';
+    console.log(`${status}: ${message}`);
+    yield put(getStoreFailure({ status, message }));
   }
 }
 export function* watchServerProductInitialFlow() {
@@ -176,7 +187,9 @@ function* serverProductsInitialFlow({ payload }) {
     const { cookie } = payload;
     const data = yield call(Api.serverProductsInitial, payload);
 
-    if (data) {
+    if (data.apiErr) {
+      yield put(getStoreFailure(data.apiErr));
+    } else {
       /* get default locale & currency from cookies */
       const locale = Utils.getCookie('locale', cookie);
       const customerCurrency = Utils.getCookie('currency', cookie);
@@ -191,11 +204,10 @@ function* serverProductsInitialFlow({ payload }) {
         throw new Error('Products page is not found.');
       }
     }
-  } catch (error) {
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
-    yield put(getStoreFailure(error.message));
+  } catch ({ message }) {
+    const status = 'SERVER_ERROR';
+    console.log(`${status}: ${message}`);
+    yield put(getStoreFailure({ status, message }));
   }
 }
 export function* watchServerProductsInitialFlow() {
@@ -215,7 +227,9 @@ function* serverOthersInitialFlow({ payload }) {
     const { cookie } = payload;
     const data = yield call(Api.serverOthersInitial, payload);
 
-    if (data) {
+    if (data.apiErr) {
+      yield put(getStoreFailure(data.apiErr));
+    } else {
       // get default locale & currency from cookies
       const locale = Utils.getCookie('locale', cookie);
       const customerCurrency = Utils.getCookie('currency', cookie);
@@ -223,11 +237,10 @@ function* serverOthersInitialFlow({ payload }) {
       yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
       yield put(getAuthSuccess(data));
     }
-  } catch (error) {
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
-    yield put(getStoreFailure(error.message));
+  } catch ({ message }) {
+    const status = 'SERVER_ERROR';
+    console.log(`${status}: ${message}`);
+    yield put(getStoreFailure({ status, message }));
   }
 }
 export function* watchServerOthersInitialFlow() {

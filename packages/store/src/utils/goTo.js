@@ -1,10 +1,14 @@
 import { Router } from 'server/routes';
+import checkRoutesIsValid from './checkRoutesIsValid';
 
 /**
  * @name goTo
  * @description Go to the location by the given pathname
  */
 export default ({ pathname, params = {}, back = false }) => {
+  /* Check pathname */
+  if (!checkRoutesIsValid(pathname)) window.location.href = pathname;
+
   document.querySelector('body').style.overflow = 'initial';
   if (!back) {
     console.log('goTo:', pathname, params);

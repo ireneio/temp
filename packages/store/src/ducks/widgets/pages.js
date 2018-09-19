@@ -1,6 +1,7 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import modifyWidgetDataInClient from 'utils/modifyWidgetDataInClient';
 import * as Api from 'api';
+import * as Utils from 'utils';
 
 /* ********************************** 取得頁面資料 ********************************** */
 const FETCH_PAGES_REQUEST = 'FETCH_PAGES_REQUEST';
@@ -30,30 +31,36 @@ function* getPagesFlow({ payload }) {
   const { query } = payload;
   try {
     const data = yield call(Api.getPages, payload);
-
-    let newPages = data?.data?.getPageList?.data || [];
-    if (newPages.length > 0) {
-      newPages = newPages.map(page => {
-        const blocks = page.blocks
-          .filter(
-            ({ releaseDateTime }) =>
-              !releaseDateTime ||
-              parseInt(releaseDateTime, 10) * 1000 <= new Date().getTime(),
-          )
-          .map(({ width, componentWidth, widgets, ...block }) => ({
-            ...block,
-            width: width || 100,
-            componentWidth: componentWidth || 0,
-            widgets: modifyWidgetDataInClient(widgets, query),
-          }));
-        return { ...page, blocks };
-      });
-      yield put(getPagesSuccess(newPages));
+    if (data.apiErr) {
+      yield put(getPagesFailure(data.apiErr));
     } else {
-      yield put(getPagesFailure('ERROR_PAGE_NOT_FOUND'));
+      let newPages = data?.data?.getPageList?.data || [];
+      if (newPages.length > 0) {
+        newPages = newPages.map(page => {
+          const blocks = page.blocks
+            .filter(
+              ({ releaseDateTime }) =>
+                !releaseDateTime ||
+                parseInt(releaseDateTime, 10) * 1000 <= new Date().getTime(),
+            )
+            .map(({ width, componentWidth, widgets, ...block }) => ({
+              ...block,
+              width: width || 100,
+              componentWidth: componentWidth || 0,
+              widgets: modifyWidgetDataInClient(widgets, query),
+            }));
+          return { ...page, blocks };
+        });
+        yield put(getPagesSuccess(newPages));
+      } else {
+        yield put(getPagesFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
+      }
     }
-  } catch (error) {
-    yield put(getPagesFailure(error.message));
+  } catch ({ message }) {
+    const status = 'SAGA_PAGES';
+    Utils.logToServer({ type: status, message });
+    console.log(`${status}: ${message}`);
+    yield put(getPagesFailure({ status, message }));
   }
 }
 export function* watchGetPagesFlow() {

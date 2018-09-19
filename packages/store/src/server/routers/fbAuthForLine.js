@@ -11,7 +11,7 @@ module.exports = async ctx => {
       'x-meepshop-authorization-token',
     );
     const query = `
-    query Root {
+    query getAppLogin {
       getAppLoginList {
         data {
           appId

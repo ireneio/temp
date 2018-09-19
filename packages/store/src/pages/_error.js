@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import HTTPStatus from 'http-status';
 import Head from 'next/head';
+import ErrorPageNotFound from 'components/Error/ErrorPageNotFound';
 
 const styles = {
   error: {
@@ -57,16 +58,15 @@ export default class Error extends React.Component {
 
   render() {
     const { statusCode } = this.props;
-    const title =
-      statusCode === 404
-        ? 'This page could not be found'
-        : HTTPStatus[statusCode] || 'An unexpected error has occurred';
+    if (statusCode === 404) return <ErrorPageNotFound />;
+
+    const title = HTTPStatus[statusCode] || 'An unexpected error has occurred';
 
     return (
       <div style={styles.error}>
         <Head>
           <title>
-            {statusCode}: {title}
+            {statusCode} {title}
           </title>
         </Head>
         <div>

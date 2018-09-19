@@ -141,7 +141,7 @@ export default class Group extends React.PureComponent {
     `;
 
     const query = `
-      query Root($search: searchInputObjectType) {
+      query computeProduct4Activity($search: searchInputObjectType) {
         computeProductList(search: $search) {
           ${productQuery}
         }
