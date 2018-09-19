@@ -129,9 +129,10 @@ export const getJoinedPage = (
 export const getHomePage = createSelector(
   [getPages, getHomePageId],
   (pages, homePageId) => {
+    const homePages = pages.filter(page => page.pageType === 'home');
     if (homePageId)
-      return pages.find(page => page.id === homePageId) || pages[0];
-    return pages[0];
+      return homePages.find(page => page.id === homePageId) || homePages[0];
+    return homePages[0];
   },
 );
 
