@@ -27,6 +27,7 @@
     "d3-hierarchy": "^1.1.6",
     "draft-js": "^0.10.5",
     "draftjs-to-html": "^0.8.3",
+    "emoji-regex": "^7.0.1",
     "memoize-one": "^4.0.0",
     "moment": "^2.22.1",
     "money": "^0.2.0",
