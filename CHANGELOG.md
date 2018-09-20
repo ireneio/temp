@@ -1,3 +1,12 @@
+## 0.3.10 (2018-09-20)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#230](https://github.com/meepshop/meep-lerna/pull/230)  fix(meep-ui): offset type error in ProductList ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.3.9 (2018-09-19)
 
 #### :rocket: New Feature

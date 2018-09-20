@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@meepshop/store",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "description": "store for meepshop",
   "scripts": {
     "postinstall": "patch-package",
@@ -47,6 +47,6 @@
     "reselect": "^3.0.1"
   },
   "devDependencies": {
-    "@meepshop/meep-ui": "^0.3.9"
+    "@meepshop/meep-ui": "^0.3.10"
   }
 }
