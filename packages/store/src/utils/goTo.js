@@ -6,9 +6,6 @@ import checkRoutesIsValid from './checkRoutesIsValid';
  * @description Go to the location by the given pathname
  */
 export default ({ pathname, params = {}, back = false }) => {
-  /* Check pathname */
-  if (!checkRoutesIsValid(pathname)) window.location.href = pathname;
-
   document.querySelector('body').style.overflow = 'initial';
   if (!back) {
     console.log('goTo:', pathname, params);
@@ -18,6 +15,9 @@ export default ({ pathname, params = {}, back = false }) => {
       );
     } else {
       if (pathname == null) throw new Error('pathname is required in goTo');
+      /* Check pathname */
+      if (!checkRoutesIsValid(pathname)) window.location.href = pathname;
+
       let queryString = '';
       if (params) {
         const { search } = params;
