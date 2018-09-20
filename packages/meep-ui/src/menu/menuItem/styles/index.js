@@ -42,10 +42,12 @@ export const title = (isExpandSubItem, pages) => [
     [PHONE_MEDIA]: isExpandSubItem
       ? {
           wordBreak: 'keep-all',
+          whiteSpace: 'nowrap',
         }
       : {
           padding: '15px',
           wordBreak: 'keep-all',
+          whiteSpace: 'nowrap',
         },
   },
 
