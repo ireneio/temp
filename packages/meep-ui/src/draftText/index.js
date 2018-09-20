@@ -43,7 +43,7 @@ export default class DraftText extends React.PureComponent {
         dangerouslySetInnerHTML={{
           // FIXME: value should be remove(大量上架)
           __html: (rawContent ? draftToHtml(rawContent) : value).replace(
-            /<p><\/p>/g,
+            /<p(| style=".*")><\/p>/g,
             '<br />',
           ),
         }}
