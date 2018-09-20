@@ -40,7 +40,12 @@ export default ({
     if (sort === 'selections') {
       variables.search.filter.and.push({
         type: 'ids',
-        ids: ids.split(',').slice(offset, offset + limit),
+        ids: ids
+          .split(',')
+          .slice(
+            parseInt(offset, 10),
+            parseInt(offset, 10) + parseInt(limit, 10),
+          ),
       });
     } else {
       variables.search.filter.and.push({
