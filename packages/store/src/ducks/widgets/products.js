@@ -47,26 +47,19 @@ function* getProductFlow({ payload }) {
 
           // FIXME: Join activities in corresponding product
           yield put(getProductSuccess({ ...product, activities }));
-          let pagesData;
+
           const { templateId, pageId } = product?.design || {};
-          if (!pageId && !templateId) {
-            pagesData = yield call(Api.getPages, {
-              ...payload,
-              pageType: 'template',
-            });
-          } else {
-            pagesData = yield call(Api.getPages, {
-              ...payload,
-              id: templateId || pageId,
-            });
-          }
+          const pagesData =
+            !pageId && !templateId
+              ? yield call(Api.getPages, { pageType: 'template' })
+              : yield call(Api.getPages, { id: templateId || pageId });
 
           if (pagesData.apiErr) {
             yield put(getProductFailure(pagesData.apiErr));
           } else {
             // 整理data為了符合Layout Component結構，未來有可能在api server就幫前端整理好
-            const page = pagesData?.data?.getPageList?.data?.[0];
-            const blocks = page?.blocks
+            const page = pagesData.data.getPageList.data[0];
+            const blocks = page.blocks
               .filter(
                 ({ releaseDateTime }) =>
                   !releaseDateTime ||
@@ -81,23 +74,6 @@ function* getProductFlow({ payload }) {
               }));
 
             const modifiedPage = { ...page, blocks };
-            // newPages = page.map(_page => {
-            //   const blocks = _page?.blocks
-            //     .filter(
-            //       ({ releaseDateTime }) =>
-            //         !releaseDateTime ||
-            //         parseInt(releaseDateTime, 10) * 1000 <=
-            //           new Date().getTime(),
-            //     )
-            //     .map(({ width, componentWidth, widgets, ...block }) => ({
-            //       ...block,
-            //       width: [0, null].includes(width) ? 100 : width,
-            //       componentWidth: componentWidth === null ? 0 : componentWidth,
-            //       // 整理及過濾Client-side rendering時的module資料，未來有可能在api server就幫前端整理好
-            //       widgets: modifyWidgetDataInClient(widgets, query),
-            //     }));
-            //   return { ..._page, blocks };
-            // });
             yield put(getPagesSuccess(modifiedPage));
           }
         }
