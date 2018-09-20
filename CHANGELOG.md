@@ -1,3 +1,23 @@
+## 0.3.11 (2018-09-20)
+
+#### :rocket: New Feature
+* `meep-ui`
+  * [#227](https://github.com/meepshop/meep-lerna/pull/227) 物流網址由後端給(T1527) ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#232](https://github.com/meepshop/meep-lerna/pull/232) fix(meep-ui): keep menu title one line ([@barrypeng6](https://github.com/barrypeng6))
+  * [#226](https://github.com/meepshop/meep-lerna/pull/226) 文字元件：斷行問題(N161) ([@yuhsu1004](https://github.com/yuhsu1004))
+  * [#225](https://github.com/meepshop/meep-lerna/pull/225) 文字元件：若有使用圖示，文字顯示異常(N150) ([@yuhsu1004](https://github.com/yuhsu1004))
+* `store`
+  * [#233](https://github.com/meepshop/meep-lerna/pull/233) fix(store): fix check valid pathname(N163) ([@barrypeng6](https://github.com/barrypeng6))
+  * [#231](https://github.com/meepshop/meep-lerna/pull/231) fix(store): fix get product pages ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 3
+- Ariel Hsu ([@yuhsu1004](https://github.com/yuhsu1004))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.3.10 (2018-09-20)
 
 #### :bug: Bug Fix
