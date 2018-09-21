@@ -20,54 +20,17 @@ const getEmojiIndexes = text => {
 };
 
 const formatStyleRange = (inline, originInline, emoji) => {
-  let { offset, length } = inline;
-  const { style } = inline;
+  const { offset, length } = inline;
   const { offset: originOffset, length: originLength } = originInline;
   const { length: emojiLength, originIndex: emojiOriginIndex } = emoji;
-  offset = originOffset > emojiOriginIndex ? offset + emojiLength - 1 : offset;
-  length =
-    originOffset <= emojiOriginIndex &&
-    emojiOriginIndex < originOffset + originLength
-      ? length + emojiLength - 1
-      : length;
-
-  if (COLORS[style] || /^#[\d\w]{6}$/.test(style))
-    return {
-      ...inline,
-      offset,
-      length,
-      style: `color-${COLORS[style] || style}`,
-    };
-
-  if (style.startsWith('background-'))
-    return {
-      ...inline,
-      offset,
-      length,
-      style: `bgcolor-${COLORS[style.replace(/^background-/, '')]}`,
-    };
-
-  if (FONTFAMILY.includes(style))
-    return {
-      ...inline,
-      offset,
-      length,
-      style: `fontfamily-${style}`,
-    };
-
-  if (style.startsWith('FONTSIZE-'))
-    return {
-      ...inline,
-      offset,
-      length,
-      style: style.toLowerCase(),
-    };
-
   return {
     ...inline,
-    offset,
-    length,
-    style,
+    offset: originOffset > emojiOriginIndex ? offset + emojiLength - 1 : offset,
+    length:
+      originOffset <= emojiOriginIndex &&
+      emojiOriginIndex < originOffset + originLength
+        ? length + emojiLength - 1
+        : length,
   };
 };
 
@@ -102,7 +65,36 @@ export default value => {
         data: !/^align-.*$/.test(type)
           ? data
           : { 'text-align': type.replace(/^align-/, '') },
-        inlineStyleRanges: newInlineStyleRanges,
+        inlineStyleRanges: newInlineStyleRanges.map(({ style, ...inline }) => {
+          if (COLORS[style] || /^#[\d\w]{6}$/.test(style))
+            return {
+              ...inline,
+              style: `color-${COLORS[style] || style}`,
+            };
+
+          if (style.startsWith('background-'))
+            return {
+              ...inline,
+              style: `bgcolor-${COLORS[style.replace(/^background-/, '')]}`,
+            };
+
+          if (FONTFAMILY.includes(style))
+            return {
+              ...inline,
+              style: `fontfamily-${style}`,
+            };
+
+          if (style.startsWith('FONTSIZE-'))
+            return {
+              ...inline,
+              style: style.toLowerCase(),
+            };
+
+          return {
+            ...inline,
+            style,
+          };
+        }),
       };
     },
   );
