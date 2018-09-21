@@ -1,3 +1,12 @@
+## 0.3.13 (2018-09-21)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#238](https://github.com/meepshop/meep-lerna/pull/238) 文字元件：文字顯示異常(N150 hotfix) ([@yuhsu1004](https://github.com/yuhsu1004))
+
+#### Committers: 1
+- Ariel Hsu ([@yuhsu1004](https://github.com/yuhsu1004))
+
 ## 0.3.12 (2018-09-20)
 
 #### :bug: Bug Fix
