@@ -113,7 +113,7 @@ module.exports = async ctx => {
         'x-meepshop-authorization-token',
         responseApi.headers.get('x-meepshop-authorization-token'),
         {
-          maxAge: 86400 * 7 * 1000,
+          maxAge: 86400 * 1 * 1000,
           path: '/',
           httpOnly: true,
         },

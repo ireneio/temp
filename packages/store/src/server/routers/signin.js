@@ -33,7 +33,7 @@ module.exports = koaCtx =>
       });
 
       ctx.cookies.set('x-meepshop-authorization-token', data.token || null, {
-        maxAge: 86400 * 1000 * 7,
+        maxAge: 86400 * 1000 * 1,
         path: '/',
         httpOnly: true,
       });

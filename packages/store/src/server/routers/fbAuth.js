@@ -40,7 +40,7 @@ module.exports = koaCtx =>
         'x-meepshop-authorization-token',
         XMeepshopAuthorizationToken,
         {
-          maxAge: 86400 * 1000 * 7,
+          maxAge: 86400 * 1000 * 1,
           path: '/',
           httpOnly: true,
         },
