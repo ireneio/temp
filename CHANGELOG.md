@@ -1,3 +1,13 @@
+## 0.3.15 (2018-09-25)
+
+#### :bug: Bug Fix
+* `store`
+  * [#243](https://github.com/meepshop/meep-lerna/pull/243) fix(store): modified maxAge of token ([@barrypeng6](https://github.com/barrypeng6))
+  * [#242](https://github.com/meepshop/meep-lerna/pull/242) fix(store): add pageNotFound error for products ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.3.14 (2018-09-25)
 
 #### :rocket: New Feature
