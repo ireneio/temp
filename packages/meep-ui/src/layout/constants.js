@@ -14,6 +14,7 @@ export const SPECIAL_HIDE_FOOTER = [
   'eoil',
   'fitbit',
   'fbshop',
+  'doctorabiotech',
 ];
 
 export const STORE_APP_PLUGINS = [
