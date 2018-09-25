@@ -1,3 +1,17 @@
+## 0.3.14 (2018-09-25)
+
+#### :rocket: New Feature
+* `meep-ui`
+  * [#239](https://github.com/meepshop/meep-lerna/pull/239) meepShop MAX 極速開店：新增白名單 - doctorabiotech (N166) ([@yuhsu1004](https://github.com/yuhsu1004))
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#229](https://github.com/meepshop/meep-lerna/pull/229) 結帳頁：移除所有商品後，需出現彈窗「購物車內沒有商品，請返回商店繼續購物」(N162) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ariel Hsu ([@yuhsu1004](https://github.com/yuhsu1004))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.3.13 (2018-09-21)
 
 #### :bug: Bug Fix
