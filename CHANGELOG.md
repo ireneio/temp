@@ -1,3 +1,12 @@
+## 0.3.16 (2018-09-25)
+
+#### :bug: Bug Fix
+* `store`
+  * [#245](https://github.com/meepshop/meep-lerna/pull/245) fix(store): set http status 200 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.3.15 (2018-09-25)
 
 #### :bug: Bug Fix
