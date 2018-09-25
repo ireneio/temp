@@ -65,6 +65,11 @@ module.exports = app.prepare().then(
         await next();
       });
 
+      server.use(async (ctx, next) => {
+        ctx.res.statusCode = 200;
+        await next();
+      });
+
       server.use(router.routes());
 
       server.listen(port, () => {
