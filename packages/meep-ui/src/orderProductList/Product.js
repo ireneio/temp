@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import RemoveIcon from 'react-icons/lib/md/close';
-import TagIcon from 'react-icons/lib/fa/tag';
+import { close as RemoveIcon } from 'react-icons/md';
+import { tag as TagIcon } from 'react-icons/fa';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
@@ -91,7 +91,7 @@ export default class Product extends React.PureComponent {
             <RemoveIcon
               style={styles.removeIcon(colors)}
               onClick={() => {
-                onChange({ productId, quantity: 0 });
+                onChange({ cartId, quantity: 0 });
                 removeCartItems([{ cartId }]);
               }}
             />
@@ -124,12 +124,12 @@ export default class Product extends React.PureComponent {
 
           {!activityInfo ? null : (
             <div style={styles.activity(colors)}>
-              {activityInfo.map(({ id: activityID, title: activityTitle }) => (
-                <React.Fragment key={activityID}>
+              {activityInfo.map(({ title: activityTitle }) => (
+                <>
                   <TagIcon style={styles.tagIcon} />
 
                   {transformLocale(activityTitle)}
-                </React.Fragment>
+                </>
               ))}
             </div>
           )}
