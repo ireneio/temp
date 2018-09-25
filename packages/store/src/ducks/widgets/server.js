@@ -156,12 +156,12 @@ function* serverProductInitialFlow({ payload }) {
               );
               yield put(getPagesSuccess(modifiedPage));
             } else {
-              throw new Error('Product page is not found.');
+              yield put(getStoreFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
             }
           }
         }
       } else {
-        yield put(getStoreFailure('ERROR_PRODUCT_NOT_FOUND'));
+        yield put(getStoreFailure({ status: 'ERROR_PRODUCT_NOT_FOUND' }));
       }
     }
   } catch ({ message }) {
@@ -201,7 +201,7 @@ function* serverProductsInitialFlow({ payload }) {
         const modifiedPage = yield Utils.getPageWithModifyWidget(page, payload);
         yield put(getPagesSuccess(modifiedPage));
       } else {
-        throw new Error('Products page is not found.');
+        yield put(getStoreFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
       }
     }
   } catch ({ message }) {
