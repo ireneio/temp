@@ -3,7 +3,7 @@ export const TOTAL = {
   zh_TW: '商品總計',
   en_US: 'Subtotal',
   ja_JP: '商品合計',
-  vi_VN: 'tổng mua',
+  vi_VN: 'Tổng mua',
   TODO_LOCALE: true,
 };
 
@@ -11,7 +11,7 @@ export const POINT = {
   zh_TW: '購物金',
   en_US: 'Reward Points',
   ja_JP: 'ポイント',
-  vi_VN: 'tiền mua hàng',
+  vi_VN: 'Tiền mua hàng',
   TODO_LOCALE: true,
 };
 
@@ -35,7 +35,7 @@ export const SHIPMENT = {
   zh_TW: '運費',
   en_US: 'Shipping Fee',
   ja_JP: '送料',
-  vi_VN: 'phí giao hàng',
+  vi_VN: 'Phí vận chuyển',
   TODO_LOCALE: true,
 };
 
@@ -43,6 +43,6 @@ export const GRAND_TOTAL = {
   zh_TW: '訂單總金額',
   en_US: 'Total',
   ja_JP: '注文合計金額',
-  vi_VN: 'tổng số đơn hàng',
+  vi_VN: 'Tổng số đơn hàng',
   TODO_LOCALE: true,
 };

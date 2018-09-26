@@ -4,7 +4,7 @@ export const CREDIT_CARD_INFO = {
   zh_TW: '信用卡資訊',
   en_US: 'Credit Card',
   ja_JP: 'クレジットカード情報',
-  vi_VN: 'thông tin thẻ tín dụng',
+  vi_VN: 'Thông tin thẻ tín dụng',
   TODO_LOCALE: true,
 };
 
@@ -12,7 +12,7 @@ export const EDIT = {
   zh_TW: '修改',
   en_US: 'Change',
   ja_JP: '修正',
-  vi_VN: 'chỉnh sửa',
+  vi_VN: 'Chỉnh sửa',
   TODO_LOCALE: true,
 };
 
@@ -20,7 +20,7 @@ export const CANCEL = {
   zh_TW: '取消',
   en_US: 'Cancel',
   ja_JP: 'キャンセル',
-  vi_VN: 'hủy bỏ',
+  vi_VN: 'Hủy bỏ',
   TODO_LOCALE: true,
 };
 
@@ -28,7 +28,7 @@ export const OWNER_NAME = {
   zh_TW: '持卡人姓名',
   en_US: 'Name on Card',
   ja_JP: 'カード名義人',
-  vi_VN: 'tên chủ thẻ',
+  vi_VN: 'Tên chủ thẻ',
   TODO_LOCALE: true,
 };
 
@@ -36,7 +36,7 @@ export const NOT_CREDIT_NUMBER = {
   zh_TW: '非信用卡卡號',
   en_US: 'Invalid card number',
   ja_JP: 'クレジットカード番号ではありません',
-  vi_VN: 'Số thẻ không phải thẻ tín dụng',
+  vi_VN: 'Không phải số thẻ tín dụng',
   TODO_LOCALE: true,
 };
 
@@ -44,7 +44,7 @@ export const SECURITY_CODE = {
   zh_TW: '安全碼',
   en_US: 'CVV',
   ja_JP: 'セキュリティーコード',
-  vi_VN: 'mã an toàn',
+  vi_VN: 'Mã an toàn',
   TODO_LOCALE: true,
 };
 

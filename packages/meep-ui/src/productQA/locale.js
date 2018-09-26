@@ -2,7 +2,7 @@ export const EMAIL = {
   zh_TW: '信箱',
   en_US: 'Email',
   ja_JP: 'メールアドレス',
-  vi_VN: 'hộp thư',
+  vi_VN: 'Email',
   TODO_LOCALE: true,
 };
 
@@ -34,7 +34,7 @@ export const NOT_EMAIL = {
   zh_TW: '信箱格式錯誤',
   en_US: 'Please enter a valid email address.',
   ja_JP: 'メールアドレスではありません',
-  vi_VN: 'hộp thư sai',
+  vi_VN: 'Email sai',
   TODO_LOCALE: true,
 };
 
@@ -50,6 +50,6 @@ export const SUBMIT = {
   zh_TW: '確認送出',
   en_US: 'Submit',
   ja_JP: '確認して送信',
-  vi_VN: 'xác nhận giao hàng',
+  vi_VN: 'Xác nhận giao hàng',
   TODO_LOCALE: true,
 };

@@ -4,7 +4,7 @@ export const COUPON = {
   zh_TW: '請輸入優惠碼',
   en_US: 'Coupon Code',
   ja_JP: 'クーポンコード',
-  vi_VN: 'mã khuyến mãi',
+  vi_VN: 'Nhập mã khuyến mãi',
   TODO_LOCALE: true,
 };
 
@@ -12,7 +12,7 @@ export const COUPON_BUTTON = {
   zh_TW: '確認折抵',
   en_US: 'Apply',
   ja_JP: '割引額確認',
-  vi_VN: 'xác nhận giảm giá',
+  vi_VN: 'Xác nhận giảm giá',
   TODO_LOCALE: true,
 };
 
@@ -20,7 +20,7 @@ export const ASK_CONFIRM_COUPON = {
   zh_TW: '請確認折抵',
   en_US: 'Please click "Apply"',
   ja_JP: '割引額をご確認ください',
-  vi_VN: 'xác nhận giảm giá',
+  vi_VN: 'Xác nhận giảm giá',
   TODO_LOCALE: true,
 };
 

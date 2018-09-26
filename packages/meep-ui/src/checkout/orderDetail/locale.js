@@ -4,7 +4,7 @@ export const CONFIRM_GO_TO = {
   zh_TW: '確認',
   en_US: 'OK',
   ja_JP: '確認',
-  vi_VN: 'xác nhận',
+  vi_VN: 'Xác nhận',
   TODO_LOCALE: true,
 };
 
@@ -23,7 +23,7 @@ export const CONTINUE_SHOPPING = {
   zh_TW: '繼續購物',
   en_US: 'Continue Shopping',
   ja_JP: 'ショッピングを続ける',
-  vi_VN: 'tiếp tục mua hàng',
+  vi_VN: 'Tiếp tục mua hàng',
   TODO_LOCALE: true,
 };
 
@@ -31,7 +31,7 @@ export const TOTAL_PRICE = {
   zh_TW: '訂單總金額',
   en_US: 'Total',
   ja_JP: '注文合計金額',
-  vi_VN: 'tổng số đơn hàng',
+  vi_VN: 'Tổng số đơn hàng',
   TODO_LOCALE: true,
 };
 
@@ -160,7 +160,7 @@ export const RECEIVER_TEMPLATE = {
   zh_TW: '收件人範本',
   en_US: 'Choose from Address Book',
   ja_JP: '受取人テンプレート',
-  vi_VN: 'mẫu người nhận',
+  vi_VN: 'Mẫu người nhận',
   TODO_LOCALE: true,
 };
 
@@ -168,7 +168,7 @@ export const NOTES = {
   zh_TW: '訂單備註',
   en_US: 'Order Notes',
   ja_JP: '注文備考',
-  vi_VN: 'ghi chú đặt hàng',
+  vi_VN: 'Ghi chú đặt hàng',
   TODO_LOCALE: true,
 };
 
@@ -176,7 +176,7 @@ export const SAVE_AS_RECEIVER_TEMPLATE = {
   zh_TW: '儲存為收件人範本',
   en_US: 'Add this Recipient to Address Book',
   ja_JP: '受取人テンプレートとして保存',
-  vi_VN: 'lưu mẫu người nhận',
+  vi_VN: 'Lưu mẫu người nhận',
 
   TODO_LOCALE: true,
 };
