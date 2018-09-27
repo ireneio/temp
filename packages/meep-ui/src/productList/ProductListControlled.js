@@ -12,10 +12,11 @@ import {
   ISLOGIN_TYPE,
   LOCATION_TYPE,
 } from 'constants/propTypes';
+import { PHONE_MEDIA } from 'constants/media';
 import ProductCarousel from 'productCarousel';
 import ProductInfo from 'productInfo';
 
-import ProductTable from './ProductTable';
+import ProductCard from './ProductCard';
 import { SORT_OPTIONS } from './constants';
 import * as styles from './styles';
 import * as LOCALE from './locale';
@@ -155,6 +156,8 @@ export default class ProductList extends React.PureComponent {
 
   componentDidMount() {
     this.reduceProducts();
+    this.resize();
+    window.addEventListener('resize', this.resize);
   }
 
   componentDidUpdate() {
@@ -163,6 +166,7 @@ export default class ProductList extends React.PureComponent {
 
   componentWillUnmount() {
     this.isUnmounted = true;
+    window.removeEventListener('resize', this.resize);
   }
 
   reduceProducts = () => {
@@ -220,6 +224,12 @@ export default class ProductList extends React.PureComponent {
       },
       isLoading: false,
     }));
+  };
+
+  resize = () => {
+    this.setState({
+      isMobile: window.matchMedia(PHONE_MEDIA.substring(7)).matches,
+    });
   };
 
   handleModalOpen = e => {
@@ -340,6 +350,7 @@ export default class ProductList extends React.PureComponent {
       isOpen,
       isGrid,
       isLoading,
+      isMobile,
     } = this.state;
     // FIXME: custom sorting workaround
     const total =
@@ -371,7 +382,7 @@ export default class ProductList extends React.PureComponent {
                     });
                   }}
                   dropdownAlign={{
-                    points: ['tr', 'br'],
+                    points: isMobile ? ['tl', 'bl'] : ['tr', 'br'],
                   }}
                 >
                   {SORT_OPTIONS(ids).map(option => (
@@ -385,7 +396,7 @@ export default class ProductList extends React.PureComponent {
                 <Icon type={isGrid ? 'profile' : 'appstore'} />
               </div>
             </div>
-            <ProductTable
+            <ProductCard
               products={products}
               limit={limit}
               productWidth={productWidth}

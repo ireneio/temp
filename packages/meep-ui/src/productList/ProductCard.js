@@ -1,26 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ContentLoader from 'react-content-loader';
+import radium, { StyleRoot } from 'radium';
 
-import { COLOR_TYPE } from 'constants/propTypes';
+import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
+import { ISUSER } from 'constants/isLogin';
+import Image from 'image';
+import DraftText from 'draftText';
 
-const calculateX = (alignment, productWidth, loaderWidth) => {
-  switch (alignment) {
-    case 'right':
-      return parseInt(productWidth - loaderWidth, 10);
-    case 'center':
-      return parseInt((productWidth - loaderWidth) / 2, 10);
-    case 'left':
-    default:
-      return 0;
-  }
-};
+import ProductLoader from './ProductLoader';
+import { PRODUCT_TYPE } from './constants';
+import * as styles from './styles';
+import * as LOCALE from './locale';
 
 const ProductCard = ({
+  products,
   limit,
   isGrid,
+  handleModalOpen,
 
   alignment,
+  justifyContent,
+  alignItems,
   productWidth,
   padding,
   showTitle,
@@ -29,129 +29,148 @@ const ProductCard = ({
   cartButton,
 
   colors,
-  ...props
-}) => {
-  const Loaders = [];
-  const imageHeight = parseInt(productWidth * 0.67, 10);
-
-  let Title;
-  let Description;
-  let Price;
-  let Button;
-
-  let height = imageHeight + 10;
-
-  if (showTitle) {
-    Title = (
-      <rect
-        x={calculateX(alignment, productWidth, productWidth / 2)}
-        y={height}
-        rx="5"
-        ry="5"
-        width={parseInt(productWidth / 2, 10)}
-        height="10"
-      />
-    );
-    height += 20;
-  }
-
-  if (showDescription) {
-    Description = (
-      <React.Fragment>
-        <rect x="0" y={height} rx="5" ry="5" width={productWidth} height="10" />
-        <rect
-          x="0"
-          y={height + 15}
-          rx="5"
-          ry="5"
-          width={productWidth}
-          height="10"
+  isLogin,
+  transformLocale,
+  transformCurrency,
+  memberSeePrice,
+}) => (
+  <StyleRoot>
+    <div
+      style={[
+        styles.list,
+        {
+          textAlign: alignment,
+          justifyContent,
+          alignItems,
+        },
+      ]}
+    >
+      {products instanceof Promise || !products ? (
+        <ProductLoader
+          limit={limit}
+          productWidth={productWidth}
+          isGrid={isGrid}
+          alignment={alignment}
+          padding={padding}
+          showTitle={showTitle}
+          showDescription={showDescription}
+          showPrice={showPrice}
+          cartButton={cartButton}
+          colors={colors}
         />
-        <rect
-          x="0"
-          y={height + 30}
-          rx="5"
-          ry="5"
-          width={productWidth}
-          height="10"
-        />
-      </React.Fragment>
-    );
-    height += 45;
-  }
+      ) : (
+        products.data.map(product => {
+          const image =
+            product.galleryInfo.mainId || product.galleryInfo.media[0];
+          const variantInfo = product.variants[0] || {};
+          const orderable =
+            product.variants.reduce(
+              (prev, variant) => prev + (variant.stock || 0),
+              0,
+            ) > 0;
 
-  if (showPrice) {
-    Price = (
-      <rect
-        x={calculateX(alignment, productWidth, productWidth / 3)}
-        y={height}
-        rx="5"
-        ry="5"
-        width={parseInt(productWidth / 3, 10)}
-        height="10"
-      />
-    );
-    height += 20;
-  }
-
-  if (cartButton) {
-    const width = productWidth < 100 ? productWidth : 100;
-    Button = (
-      <rect
-        x={calculateX(alignment, productWidth, width)}
-        y={height}
-        rx="5"
-        ry="5"
-        width={productWidth < 100 ? productWidth : 100}
-        height="30"
-      />
-    );
-    height += 40;
-  }
-
-  for (let index = 0; index < limit; index += 1) {
-    Loaders.push(
-      <ContentLoader
-        key={`loader-${index}`}
-        className="loaders"
-        height={height}
-        width={productWidth}
-        speed={2}
-        primaryColor={colors[3]}
-        secondaryColor={colors[3]}
-        primaryOpacity={0.3}
-        secondaryOpacity={0.2}
-        style={{
-          height,
-          width: productWidth,
-          margin: padding / 2,
-        }}
-        {...props}
-      >
-        <rect
-          x="0"
-          y="0"
-          rx="5"
-          ry="5"
-          width={productWidth}
-          height={imageHeight}
-        />
-        {Title}
-        {Description}
-        {Price}
-        {Button}
-      </ContentLoader>,
-    );
-  }
-
-  return Loaders;
-};
+          return (
+            <div
+              key={product.id}
+              style={[
+                {
+                  width: productWidth,
+                  margin: padding / 2,
+                },
+                styles.productCard(colors, isGrid),
+              ]}
+            >
+              <div style={styles.productImage}>
+                <Image
+                  href={`/product/${product.id}`}
+                  contentWidth={100}
+                  alignment="center"
+                  newWindow={false}
+                  files={image && { image }}
+                />
+              </div>
+              {showTitle && (
+                <div style={styles.productTitle}>
+                  {transformLocale(product.title)}
+                </div>
+              )}
+              {showDescription &&
+                transformLocale(product.description) && (
+                  <div style={styles.productDescription(colors)}>
+                    <DraftText
+                      value={transformLocale(product.description)}
+                      plainText
+                    />
+                  </div>
+                )}
+              {showPrice && (
+                <div style={styles.productPrice}>
+                  {variantInfo.listPrice &&
+                  (!memberSeePrice || product.showUserPrice?.showListPrice) ? (
+                    <div style={styles.otherPrice(colors)}>
+                      <span>
+                        {transformLocale(LOCALE.LIST_PRICE)}
+                        <s style={styles.strike}>
+                          {transformCurrency(variantInfo.listPrice)}
+                        </s>
+                      </span>
+                    </div>
+                  ) : null}
+                  {variantInfo.suggestedPrice &&
+                  (!memberSeePrice ||
+                    product.showUserPrice?.showSuggestedPrice) ? (
+                    <div style={styles.otherPrice(colors)}>
+                      <span>
+                        {transformLocale(LOCALE.SUGGESTED_PRICE)}
+                        <s style={styles.strike}>
+                          {transformCurrency(variantInfo.suggestedPrice)}
+                        </s>
+                      </span>
+                    </div>
+                  ) : null}
+                  {variantInfo.totalPrice ? (
+                    <div style={styles.thePrice}>
+                      {memberSeePrice && isLogin !== ISUSER
+                        ? transformLocale(LOCALE.MEMBER_SEE_PRICE)
+                        : transformCurrency(variantInfo.totalPrice)}
+                    </div>
+                  ) : null}
+                </div>
+              )}
+              {cartButton &&
+                !(memberSeePrice && isLogin !== ISUSER) && (
+                  <button
+                    key={`${product.id}-button`}
+                    type="button"
+                    data-id={product.id}
+                    disabled={!orderable}
+                    style={styles.productAddToCart(colors)}
+                    onClick={handleModalOpen}
+                  >
+                    {transformLocale(
+                      orderable ? LOCALE.ADD_TO_CART : LOCALE.SOLD_OUT,
+                    )}
+                  </button>
+                )}
+            </div>
+          );
+        })
+      )}
+    </div>
+  </StyleRoot>
+);
 
 /* eslint-disable react/no-typos */
 ProductCard.propTypes = {
+  products: PropTypes.shape({
+    data: PropTypes.arrayOf(PRODUCT_TYPE),
+  }),
   limit: PropTypes.number.isRequired,
   isGrid: PropTypes.bool.isRequired,
+  handleModalOpen: PropTypes.func.isRequired,
   alignment: PropTypes.string.isRequired,
+  justifyContent: PropTypes.string.isRequired,
+  alignItems: PropTypes.string.isRequired,
   productWidth: PropTypes.number.isRequired,
   padding: PropTypes.number.isRequired,
   showTitle: PropTypes.bool.isRequired,
@@ -159,7 +178,15 @@ ProductCard.propTypes = {
   showPrice: PropTypes.bool.isRequired,
   cartButton: PropTypes.bool.isRequired,
   colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
+  isLogin: ISLOGIN_TYPE.isRequired,
+  transformLocale: PropTypes.func.isRequired,
+  transformCurrency: PropTypes.func.isRequired,
+  memberSeePrice: PropTypes.bool.isRequired,
 };
 /* eslint-enable react/no-typos */
 
-export default ProductCard;
+ProductCard.defaultProps = {
+  products: null,
+};
+
+export default radium(ProductCard);
