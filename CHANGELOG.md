@@ -1,3 +1,18 @@
+## 0.3.17 (2018-09-27)
+
+#### :rocket: New Feature
+* `meep-ui`
+  * [#236](https://github.com/meepshop/meep-lerna/pull/236) 物流網址由後端給(T1527) ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#249](https://github.com/meepshop/meep-lerna/pull/249) 產品列表(手機版)：排序選單(英/日)位置會跑版(N154) ([@piovischioh](https://github.com/piovischioh))
+  * [#244](https://github.com/meepshop/meep-lerna/pull/244) 越南文翻譯更新(N152) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.3.16 (2018-09-25)
 
 #### :bug: Bug Fix
