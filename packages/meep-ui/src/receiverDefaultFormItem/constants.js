@@ -44,4 +44,9 @@ export const INVOICE_E_INVOICE = [
 export const INVOICE_SEARCH_LINK =
   'https://www.einvoice.nat.gov.tw/APMEMBERVAN/XcaOrgPreserveCodeQuery/XcaOrgPreserveCodeQuery?CSRT=4350550699150711492';
 
+export const ALLPAY_LINK =
+  process.env.NODE_ENV === 'production'
+    ? 'https://logistics.ecpay.com.tw/Express/map'
+    : 'https://logistics-stage.ecpay.com.tw/Express/map';
+
 export const EZSHIP_LINK = 'https://map.ezship.com.tw/ezship_map_web.jsp';
