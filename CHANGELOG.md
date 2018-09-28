@@ -1,8 +1,4 @@
-## 0.3.17 (2018-09-27)
-
-#### :rocket: New Feature
-* `meep-ui`
-  * [#236](https://github.com/meepshop/meep-lerna/pull/236) 物流網址由後端給(T1527) ([@HsuTing](https://github.com/HsuTing))
+## 0.3.18 (2018-09-27)
 
 #### :bug: Bug Fix
 * `meep-ui`
