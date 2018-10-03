@@ -4,7 +4,7 @@ export const root = maxWidth => ({
   width: '100%',
   maxWidth: !maxWidth ? '100%' : `${maxWidth}px`,
   flexWrap: 'wrap',
-  alignItems: 'center',
+  alignItems: 'self-start',
   flexDirection: 'row',
   justifyContent: 'center',
 });
