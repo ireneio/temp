@@ -109,7 +109,14 @@ export default async ({
       );
     }
 
-    throw new Error(`${response.status} ${response.statusText}`);
+    if (isServer) {
+      const os = require('os'); // eslint-disable-line
+      throw new Error(
+        `${response.status} ${response.statusText} - ${os.hostname()}`,
+      );
+    } else {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
   } catch ({ message }) {
     const status = 'API_ERROR';
     console.log(`${status}: ${message}`);
