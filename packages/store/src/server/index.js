@@ -14,7 +14,21 @@ const { api, signin, fbAuth, fbAuthForLine, log } = require('./routers');
 const { PRODUCTION, VERSION } = publicRuntimeConfig;
 
 process.on('unhandledRejection', error => {
-  console.log('unhandledRejection', error.message);
+  console.log(
+    `unhandledRejection => ${JSON.stringify({
+      msg: error.message,
+      stk: error.stack,
+    })}`,
+  );
+});
+
+process.on('uncaughtException', error => {
+  console.log(
+    `uncaughtException => ${JSON.stringify({
+      msg: error.message,
+      stk: error.stack,
+    })}`,
+  );
 });
 
 const port = parseInt(process.env.PORT, 10) || 14401;
