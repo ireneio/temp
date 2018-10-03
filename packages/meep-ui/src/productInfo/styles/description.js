@@ -1,7 +1,11 @@
+import { PHONE_MEDIA } from 'constants/media';
+
 export const root = colors => ({
   color: colors[3],
   maxWidth: '500px',
-  wordBreak: 'break-all',
+  wordWrap: 'break-word',
+  hyphens: 'auto',
+  textAlign: 'justify',
 });
 
 export const title = {
@@ -48,6 +52,9 @@ export const otherPrice = {
   marginRight: 15,
   fontSize: 13,
   opacity: 0.5,
+  [PHONE_MEDIA]: {
+    display: 'block',
+  },
 };
 
 export const strike = {

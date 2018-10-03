@@ -117,7 +117,8 @@ export const modalStyle = colors => ({
 
 export const root = {
   width: '100%',
-  wordBreak: 'break-all',
+  wordWrap: 'break-word',
+  hyphens: 'auto',
   position: 'relative',
 };
 
