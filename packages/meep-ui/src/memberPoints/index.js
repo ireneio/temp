@@ -74,13 +74,13 @@ export default class MemberPoints extends React.PureComponent {
         title: transformLocale(LOCALE.STARTDATE),
         dataIndex: 'startTime',
         className: 'alignCenter',
-        render: this.renderDate,
+        render: this.renderStartTime,
       },
       {
         title: transformLocale(LOCALE.ENDDATE),
         dataIndex: 'endTime',
         className: 'alignCenter',
-        render: this.renderDate,
+        render: this.renderEndTime,
       },
     ];
   };
@@ -116,9 +116,21 @@ export default class MemberPoints extends React.PureComponent {
     );
   };
 
-  renderDate = (value, record) => (
+  renderStartTime = (value, record) => (
     <span style={{ color: this.getColor(record) }}>
       {value ? moment.unix(value).format('YYYY/MM/DD') : '-'}
+    </span>
+  );
+
+  /* End-time should be minus one second to prevent that customers misunderstand expired time with one more day. */
+  renderEndTime = (value, record) => (
+    <span style={{ color: this.getColor(record) }}>
+      {value
+        ? moment
+            .unix(value)
+            .subtract(1, 'seconds')
+            .format('YYYY/MM/DD')
+        : '-'}
     </span>
   );
 
