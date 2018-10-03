@@ -1,7 +1,8 @@
-## 0.3.20 (2018-10-03)
+## 0.3.22 (2018-10-03)
 
 #### :bug: Bug Fix
 * `store`
+  * [#259](https://github.com/meepshop/meep-lerna/pull/259) Log server error with hostname and handling error in Koa ([@barrypeng6](https://github.com/barrypeng6))
   * [#258](https://github.com/meepshop/meep-lerna/pull/258) fix(store): log os hostname ([@barrypeng6](https://github.com/barrypeng6))
 
 #### Committers: 1
