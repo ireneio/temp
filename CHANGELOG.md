@@ -1,3 +1,20 @@
+## 0.3.19 (2018-10-03)
+
+#### :rocket: New Feature
+* `store`
+  * [#256](https://github.com/meepshop/meep-lerna/pull/256) feat(store): log uncaughtException ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#247](https://github.com/meepshop/meep-lerna/pull/247) 購物金列表：到期日期顯示錯誤(N168) ([@barrypeng6](https://github.com/barrypeng6))
+  * [#248](https://github.com/meepshop/meep-lerna/pull/248) 商品名稱＆商品描述以單字為單位斷行(N16) ([@piovischioh](https://github.com/piovischioh))
+  * [#254](https://github.com/meepshop/meep-lerna/pull/254) 圖文/文字元件: 圖文元件搭配文字元件顯示結果會跑版(N174) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.3.18 (2018-09-27)
 
 #### :bug: Bug Fix
