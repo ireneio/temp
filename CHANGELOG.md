@@ -1,3 +1,12 @@
+## 0.3.20 (2018-10-03)
+
+#### :bug: Bug Fix
+* `store`
+  * [#258](https://github.com/meepshop/meep-lerna/pull/258) fix(store): log os hostname ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.3.19 (2018-10-03)
 
 #### :rocket: New Feature
