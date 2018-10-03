@@ -1,3 +1,4 @@
+const os = require('os');
 const proxy = require('koa-better-http-proxy');
 
 const { publicRuntimeConfig } = require('../../../next.config');
@@ -80,6 +81,14 @@ module.exports = koaCtx =>
           path: '/',
           httpOnly: true,
         });
+      }
+
+      if (proxyRes.statusCode >= 500) {
+        console.log(
+          `<ERROR> ${proxyRes.statusCode}: ${
+            proxyRes.statusMessage
+          } (${os.pathname()})`,
+        );
       }
 
       return proxyResData.toString('utf8');

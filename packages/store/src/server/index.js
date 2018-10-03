@@ -1,4 +1,5 @@
 const path = require('path');
+const os = require('os');
 
 const Koa = require('koa');
 const nextApp = require('next');
@@ -46,6 +47,14 @@ module.exports = app.prepare().then(
     new Promise(resolve => {
       const server = new Koa();
       const router = new Router();
+
+      server.use(async (ctx, next) => {
+        try {
+          await next();
+        } catch (error) {
+          console.log(`KoaCatch ${error.message} (${os.hostname()})`);
+        }
+      });
 
       server.use(bodyParser());
       server.use(koaConnect(compression()));
