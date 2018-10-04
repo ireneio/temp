@@ -15,7 +15,7 @@ import {
 } from 'constants/propTypes';
 import createFormData from 'utils/createFormData';
 
-import { SHIPMENT_STORE_FIELDS, ALLPAY_LINK, EZSHIP_LINK } from './constants';
+import { SHIPMENT_STORE_FIELDS, EZSHIP_LINK } from './constants';
 import * as LOCALE from './locale';
 import * as styles from './styles/chooseShipmentStore';
 import getDefaultStoreData from './utils/getDefaultStoreData';
@@ -111,6 +111,7 @@ export default class ChooseShipmentStore extends React.PureComponent {
                   ? ''
                   : `
                 allpay: allPay { # TODO rename
+                  host
                   merchantID
                   logisticsType
                   logisticsSubType
@@ -226,7 +227,11 @@ export default class ChooseShipmentStore extends React.PureComponent {
         {ReactDOM.createPortal(
           <form
             ref={this.formRef}
-            action={shipmentTemplate === 'allpay' ? ALLPAY_LINK : EZSHIP_LINK}
+            action={
+              shipmentTemplate === 'allpay'
+                ? `${allpay.host}/Express/map`
+                : EZSHIP_LINK
+            }
             method="POST"
           >
             {createFormData(
