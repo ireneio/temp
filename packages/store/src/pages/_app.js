@@ -8,7 +8,7 @@ import { Router } from 'server/routes';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import { notification } from 'antd';
-import { CloseView, StoreNotExistsView } from 'components';
+import { Error, CloseView, StoreNotExistsView } from 'components';
 import configureStore from 'ducks/store';
 import getConfig from 'next/config';
 import '../static/global.less';
@@ -46,25 +46,26 @@ class MyApp extends App {
       req,
     );
 
-    /**
-     * Because we connot get page data when token expired, we need to check
-     * 401 error before page navigation. We also
-     */
-    const response = await fetch(isServer ? `${API_HOST}/graphql` : '/api', {
-      method: 'post',
-      headers: isServer
-        ? {
-            'content-type': 'application/json',
-            'x-meepshop-domain': XMeepshopDomain,
-            'x-meepshop-authorization-token': Utils.getCookie(
-              'x-meepshop-authorization-token',
-              cookie,
-            ),
-          }
-        : { 'content-type': 'application/json' },
-      credentials: isServer ? 'include' : 'same-origin',
-      body: JSON.stringify({
-        query: `query checkStore {
+    try {
+      /**
+       * Because we connot get page data when token expired, we need to check
+       * 401 error before page navigation. We also
+       */
+      const response = await fetch(isServer ? `${API_HOST}/graphql` : '/api', {
+        method: 'post',
+        headers: isServer
+          ? {
+              'content-type': 'application/json',
+              'x-meepshop-domain': XMeepshopDomain,
+              'x-meepshop-authorization-token': Utils.getCookie(
+                'x-meepshop-authorization-token',
+                cookie,
+              ),
+            }
+          : { 'content-type': 'application/json' },
+        credentials: isServer ? 'include' : 'same-origin',
+        body: JSON.stringify({
+          query: `query checkStore {
         getStoreList {
           data {
             storeStatus
@@ -74,64 +75,75 @@ class MyApp extends App {
           }
         }
       }`,
-      }),
-    });
-
-    if (isServer && response.status >= 400 && response.status !== 403) {
-      console.log(
-        `Check >> ${response.status} (${XMeepshopDomain}) ${JSON.stringify(
-          req.headers,
-        )}`,
-      );
-    }
-
-    if (response.status < 400) {
-      const data = await response.json();
-      const storeStatus = data?.data?.getStoreList?.data?.[0]?.storeStatus;
-      const locale =
-        Utils.getCookie('locale', cookie) ||
-        data?.data?.getStoreList?.data?.[0]?.setting?.locale?.[0] ||
-        'zh_TW';
-      /* The store is closed */
-      if (storeStatus === 0) return { closed: true, locale };
-    }
-
-    /**
-     * If token expired, we remove auth cookie and redirect to the same page
-     * to prevent 401 error.
-     */
-    if (response.status === 401) {
-      if (isServer) {
-        res.setHeader(
-          'Set-Cookie',
-          `x-meepshop-authorization-token=; path=/; Max-Age=0; HttpOnly`,
-        );
-        res.writeHead(302, {
-          Location: '/',
-        });
-        res.end();
-        return {};
-      }
-      const {
-        memberReducer: { isLogin },
-      } = store.getState();
-      if (isLogin === 'ISUSER') {
-        store.dispatch(Actions.getAuth());
-      }
-    }
-
-    /* The store does not exist. */
-    if (response.status === 403) return { storeNotFound: true };
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps({
-        ...ctx,
-        XMeepshopDomain,
-        userAgent,
-        cookie,
+        }),
       });
+
+      if (isServer && response.status >= 400 && response.status !== 403) {
+        console.log(
+          `Check >> ${response.status} (${XMeepshopDomain}) ${JSON.stringify(
+            req.headers,
+          )}`,
+        );
+      }
+
+      if (response.status < 400) {
+        const data = await response.json();
+        const storeStatus = data?.data?.getStoreList?.data?.[0]?.storeStatus;
+        const locale =
+          Utils.getCookie('locale', cookie) ||
+          data?.data?.getStoreList?.data?.[0]?.setting?.locale?.[0] ||
+          'zh_TW';
+        /* The store is closed */
+        if (storeStatus === 0) return { closed: true, locale };
+      }
+
+      /**
+       * If token expired, we remove auth cookie and redirect to the same page
+       * to prevent 401 error.
+       */
+      if (response.status === 401) {
+        if (isServer) {
+          res.setHeader(
+            'Set-Cookie',
+            `x-meepshop-authorization-token=; path=/; Max-Age=0; HttpOnly`,
+          );
+          res.writeHead(302, {
+            Location: '/',
+          });
+          res.end();
+          return {};
+        }
+        const {
+          memberReducer: { isLogin },
+        } = store.getState();
+        if (isLogin === 'ISUSER') {
+          store.dispatch(Actions.getAuth());
+        }
+      }
+
+      /* The store does not exist. */
+      if (response.status === 403) return { storeNotFound: true };
+
+      if (Component.getInitialProps) {
+        pageProps = await Component.getInitialProps({
+          ...ctx,
+          XMeepshopDomain,
+          userAgent,
+          cookie,
+        });
+      }
+      return { pageProps };
+    } catch (error) {
+      console.log(error);
+      if (!isServer) {
+        Utils.logToServer({
+          type: 'getInitialProps in _app',
+          message: error.message,
+          stack: error.stack,
+        });
+      }
+      return { error: { status: 'API_ERROR' } };
     }
-    return { pageProps };
   }
 
   componentDidMount() {
@@ -155,6 +167,8 @@ class MyApp extends App {
   }
 
   render() {
+    /* Hnadle error */
+    if (this.props.error) return <Error error={this.props.error} />;
     /* Store is closed */
     if (this.props.closed) return <CloseView locale={this.props.locale} />;
     /* Store not found */
