@@ -28,21 +28,28 @@ export const getProduct = createSelector(
 export const getProductDescription = createSelector(
   [getProduct],
   ({ description }) => {
-    const descTw = getIn(['zh_TW'])(description) || '';
-    if (descTw === '') {
+    try {
+      const descTw = getIn(['zh_TW'])(description) || '';
+      if (descTw === '') {
+        return '';
+      }
+
+      if (descTw.match(/entityMap/gm)) {
+        // DraftJS type
+        const productDescriptionObj = descTw && JSON.parse(descTw);
+        return productDescriptionObj.blocks.reduce(
+          (_description, block) => `${_description} ${block.text}`,
+          '',
+        );
+      }
+      return '';
+    } catch (error) {
+      const descTw = getIn(['zh_TW'])(description) || '';
+      console.log(
+        `<< getProductDescription >> Error: ${error.message} - ${descTw}`,
+      );
       return '';
     }
-
-    if (descTw.match(/entityMap/gm)) {
-      // DraftJS type
-      const productDescriptionObj =
-        descTw && JSON.parse(getIn(['zh_TW'])(description));
-      return productDescriptionObj.blocks.reduce(
-        (_description, block) => `${_description} ${block.text}`,
-        '',
-      );
-    }
-    return '';
   },
 );
 

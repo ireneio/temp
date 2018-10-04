@@ -73,31 +73,44 @@ export default (description = '', isTesting) => {
     )
     .reduce(
       (result, text) => {
-        if (/^testJSON[ ]?/.test(text)) {
+        try {
+          if (/^testJSON[ ]?/.test(text)) {
+            return {
+              ...result,
+              data: JSON.parse(text.replace(/^testJSON[ ]?/, '')),
+            };
+          }
+
+          if (/^testRandom[ ]?/.test(text)) {
+            return {
+              ...result,
+              data: handleRandom(
+                text.replace(/^testRandom[ ]?/, ''),
+                isTesting,
+              ),
+            };
+          }
+
+          if (/^test[ ]?/.test(text)) {
+            return {
+              ...result,
+              data: handleTest(text.replace(/^test[ ]?/, '')),
+            };
+          }
+
           return {
             ...result,
-            data: JSON.parse(text.replace(/^testJSON[ ]?/, '')),
+            name: text,
           };
-        }
-
-        if (/^testRandom[ ]?/.test(text)) {
+        } catch (error) {
+          console.log(
+            `<< parseDescription >> Error: ${error.message} - ${text}`,
+          );
           return {
             ...result,
-            data: handleRandom(text.replace(/^testRandom[ ]?/, ''), isTesting),
+            name: text,
           };
         }
-
-        if (/^test[ ]?/.test(text)) {
-          return {
-            ...result,
-            data: handleTest(text.replace(/^test[ ]?/, '')),
-          };
-        }
-
-        return {
-          ...result,
-          name: text,
-        };
       },
       {
         name: '',

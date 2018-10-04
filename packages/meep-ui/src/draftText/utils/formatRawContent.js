@@ -36,86 +36,92 @@ const formatStyleRange = (inline, originInline, emoji) => {
 
 // TODO: move to query
 export default value => {
-  if (!/entityMap/.test(value)) return null;
+  try {
+    if (!/entityMap/.test(value)) return null;
 
-  const rawContent = JSON.parse(value);
+    const rawContent = JSON.parse(value);
+    rawContent.blocks = rawContent.blocks.map(
+      ({ type, data, text, inlineStyleRanges, ...block }) => {
+        const emojiIndexes = getEmojiIndexes(text);
+        let newInlineStyleRanges = inlineStyleRanges;
 
-  rawContent.blocks = rawContent.blocks.map(
-    ({ type, data, text, inlineStyleRanges, ...block }) => {
-      const emojiIndexes = getEmojiIndexes(text);
-      let newInlineStyleRanges = inlineStyleRanges;
+        emojiIndexes.forEach(emoji => {
+          newInlineStyleRanges = newInlineStyleRanges.map(
+            (inline, inlineIndex) => {
+              const newInline = formatStyleRange(
+                inline,
+                inlineStyleRanges[inlineIndex],
+                emoji,
+              );
+              return newInline;
+            },
+          );
+        });
 
-      emojiIndexes.forEach(emoji => {
-        newInlineStyleRanges = newInlineStyleRanges.map(
-          (inline, inlineIndex) => {
-            const newInline = formatStyleRange(
-              inline,
-              inlineStyleRanges[inlineIndex],
-              emoji,
-            );
-            return newInline;
+        return {
+          ...block,
+          text,
+          type: !/^align-.*$/.test(type) ? type : 'unstyled',
+          data: !/^align-.*$/.test(type)
+            ? data
+            : { 'text-align': type.replace(/^align-/, '') },
+          inlineStyleRanges: newInlineStyleRanges.map(
+            ({ style, ...inline }) => {
+              if (COLORS[style] || /^#[\d\w]{6}$/.test(style))
+                return {
+                  ...inline,
+                  style: `color-${COLORS[style] || style}`,
+                };
+
+              if (style.startsWith('background-'))
+                return {
+                  ...inline,
+                  style: `bgcolor-${COLORS[style.replace(/^background-/, '')]}`,
+                };
+
+              if (FONTFAMILY.includes(style))
+                return {
+                  ...inline,
+                  style: `fontfamily-${style}`,
+                };
+
+              if (style.startsWith('FONTSIZE-'))
+                return {
+                  ...inline,
+                  style: style.toLowerCase(),
+                };
+
+              return {
+                ...inline,
+                style,
+              };
+            },
+          ),
+        };
+      },
+    );
+
+    Object.keys(rawContent.entityMap).forEach(key => {
+      if (rawContent.entityMap[key].type === 'link') {
+        const {
+          data: { href, ...data },
+          ...entity
+        } = rawContent.entityMap[key];
+
+        rawContent.entityMap[key] = {
+          ...entity,
+          type: 'LINK',
+          data: {
+            ...data,
+            url: href,
           },
-        );
-      });
+        };
+      }
+    });
 
-      return {
-        ...block,
-        text,
-        type: !/^align-.*$/.test(type) ? type : 'unstyled',
-        data: !/^align-.*$/.test(type)
-          ? data
-          : { 'text-align': type.replace(/^align-/, '') },
-        inlineStyleRanges: newInlineStyleRanges.map(({ style, ...inline }) => {
-          if (COLORS[style] || /^#[\d\w]{6}$/.test(style))
-            return {
-              ...inline,
-              style: `color-${COLORS[style] || style}`,
-            };
-
-          if (style.startsWith('background-'))
-            return {
-              ...inline,
-              style: `bgcolor-${COLORS[style.replace(/^background-/, '')]}`,
-            };
-
-          if (FONTFAMILY.includes(style))
-            return {
-              ...inline,
-              style: `fontfamily-${style}`,
-            };
-
-          if (style.startsWith('FONTSIZE-'))
-            return {
-              ...inline,
-              style: style.toLowerCase(),
-            };
-
-          return {
-            ...inline,
-            style,
-          };
-        }),
-      };
-    },
-  );
-
-  Object.keys(rawContent.entityMap).forEach(key => {
-    if (rawContent.entityMap[key].type === 'link') {
-      const {
-        data: { href, ...data },
-        ...entity
-      } = rawContent.entityMap[key];
-
-      rawContent.entityMap[key] = {
-        ...entity,
-        type: 'LINK',
-        data: {
-          ...data,
-          url: href,
-        },
-      };
-    }
-  });
-
-  return rawContent;
+    return rawContent;
+  } catch (error) {
+    console.log(`<< formatRawContent >> Error: ${error.message} - ${value}`);
+    return null;
+  }
 };
