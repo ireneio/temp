@@ -31,7 +31,9 @@ module.exports = withSourceMaps(
             PRODUCTION: production,
             VERSION: process.env.REPO_VERSION || +new Date(),
             API_HOST: production
-              ? 'http://meepshop-api:15265'
+              ? `${protocal}://${
+                  process.env.API_HOST
+                }` /* 'http://meepshop-api:15265' */
               : `${protocal}://${api}`,
             EXTERNAL_API_HOST: production
               ? `${protocal}://${process.env.API_HOST}`
