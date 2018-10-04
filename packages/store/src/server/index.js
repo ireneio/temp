@@ -48,11 +48,16 @@ module.exports = app.prepare().then(
       const server = new Koa();
       const router = new Router();
 
+      server.on('error', error => {
+        console.log(`Koa server onError ${JSON.stringify(error)})`);
+      });
+
       server.use(async (ctx, next) => {
         try {
           await next();
         } catch (error) {
           console.log(`KoaCatch ${error.message} (${os.hostname()})`);
+          throw error;
         }
       });
 
