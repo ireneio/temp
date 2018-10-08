@@ -12,6 +12,7 @@ module.exports = {
     .map(fileName => `src/${fileName}/__tests__/[a-zA-Z0-9]*.js`),
   collectCoverage: true,
   coverageDirectory: 'coverage',
+  coveragePathIgnorePatterns: ['/lib/', '/.next/'],
   collectCoverageFrom: [
     'packages/**/src/**/*.js',
     '!packages/meep-ui/src/**/__story__/*.js',

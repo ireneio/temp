@@ -15,7 +15,7 @@
     "dev": "lerna run dev --stream --parallel",
     "prod": "make prod",
     "release": "make release",
-    "test": "lerna run test:prepare --stream --parallel && NODE_ENV=test jest --silent"
+    "test": "lerna run test:prepare --stream --parallel && NODE_ENV=test jest --silent --runInBand"
   },
   "dependencies": {
     "antd": "^3.4.1",
