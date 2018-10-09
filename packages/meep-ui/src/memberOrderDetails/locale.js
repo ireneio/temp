@@ -540,3 +540,29 @@ export const DONATE_CODE = {
   vi_VN: 'Đóng góp mã tình yêu',
   TODO_LOCALE: true,
 };
+
+/** Qa */
+
+export const QA = {
+  zh_TW: '訂單問答',
+  en_US: 'Q&A for Orders',
+  ja_JP: '注文に関するQ&A',
+  vi_VN: 'Hỏi đáp đơn hàng',
+  TODO_LOCALE: true,
+};
+
+export const PLEASE_WRITE_MESSAGE = {
+  zh_TW: '請輸入訊息給客服',
+  en_US: 'Please enter your message for service support.',
+  ja_JP: 'お客様サービスセンターへメッセージを入力して下さい',
+  vi_VN: 'Vui lòng nhập tin nhắn cho dịch vụ khách hàng',
+  TODO_LOCALE: true,
+};
+
+export const SEND = {
+  zh_TW: '發送',
+  en_US: 'Send',
+  ja_JP: '送信',
+  vi_VN: 'gởi đi',
+  TODO_LOCALE: true,
+};
