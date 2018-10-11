@@ -1,38 +1,77 @@
 import emojiRegex from 'emoji-regex';
+
 import { COLORS, FONTFAMILY } from '../constants';
 
-const getEmojiIndexes = text => {
-  const regex = emojiRegex();
-  const result = [];
-  let match;
-  // eslint-disable-next-line no-cond-assign
-  while ((match = regex.exec(text))) {
-    const emoji = match[0];
-    const index = Math.max(text.indexOf(match[0]), match.index);
-    const { length } = emoji;
-    const mutiCharsEmojiNumber = result.reduce((acc, item) => {
-      if (item.length > 1) return acc + 1;
-      return acc;
-    }, 0);
-    result.push({ index, length, originIndex: index - mutiCharsEmojiNumber });
-  }
-  return result;
-};
+const handleEmoji = (text, inline) =>
+  (text.match(emojiRegex()) || []).reduce(
+    ({ offset, length, ...otherData }, emoji, index, emojiArray) => {
+      const emojiOffset = emoji.length - 1;
+      const emojiIndex = emojiArray
+        .slice(0, index)
+        .reduce(
+          (result, { length: emojiLength }) => result - (emojiLength - 1),
+          text.indexOf(emoji),
+        );
 
-const formatStyleRange = (inline, originInline, emoji) => {
-  const { offset, length } = inline;
-  const { offset: originOffset, length: originLength } = originInline;
-  const { length: emojiLength, originIndex: emojiOriginIndex } = emoji;
-  return {
-    ...inline,
-    offset: originOffset > emojiOriginIndex ? offset + emojiLength - 1 : offset,
-    length:
-      originOffset <= emojiOriginIndex &&
-      emojiOriginIndex < originOffset + originLength
-        ? length + emojiLength - 1
-        : length,
-  };
-};
+      if (emojiIndex < inline.offset)
+        return {
+          ...otherData,
+          offset: offset + emojiOffset,
+          length,
+        };
+
+      if (
+        inline.offset <= emojiIndex &&
+        emojiIndex <= inline.offset + inline.length
+      )
+        return {
+          ...otherData,
+          offset,
+          length: length + emojiOffset,
+        };
+
+      return {
+        ...otherData,
+        offset,
+        length,
+      };
+    },
+    inline,
+  );
+
+const handleInlineStyleRanges = (inlineStyleRanges, text) =>
+  inlineStyleRanges.map(({ style, ...inline }) => {
+    const newInline = handleEmoji(text, inline);
+
+    if (COLORS[style] || /^#[\d\w]{6}$/.test(style))
+      return {
+        ...newInline,
+        style: `color-${COLORS[style] || style}`,
+      };
+
+    if (/^background-/.test(style))
+      return {
+        ...newInline,
+        style: `bgcolor-${COLORS[style.replace(/^background-/, '')]}`,
+      };
+
+    if (FONTFAMILY.includes(style))
+      return {
+        ...newInline,
+        style: `fontfamily-${style}`,
+      };
+
+    if (/^FONTSIZE-/.test(style))
+      return {
+        ...newInline,
+        style: style.toLowerCase(),
+      };
+
+    return {
+      ...newInline,
+      style,
+    };
+  });
 
 // TODO: move to query
 export default value => {
@@ -40,65 +79,17 @@ export default value => {
     if (!/entityMap/.test(value)) return null;
 
     const rawContent = JSON.parse(value);
+
     rawContent.blocks = rawContent.blocks.map(
-      ({ type, data, text, inlineStyleRanges, ...block }) => {
-        const emojiIndexes = getEmojiIndexes(text);
-        let newInlineStyleRanges = inlineStyleRanges;
-
-        emojiIndexes.forEach(emoji => {
-          newInlineStyleRanges = newInlineStyleRanges.map(
-            (inline, inlineIndex) => {
-              const newInline = formatStyleRange(
-                inline,
-                inlineStyleRanges[inlineIndex],
-                emoji,
-              );
-              return newInline;
-            },
-          );
-        });
-
-        return {
-          ...block,
-          text,
-          type: !/^align-.*$/.test(type) ? type : 'unstyled',
-          data: !/^align-.*$/.test(type)
-            ? data
-            : { 'text-align': type.replace(/^align-/, '') },
-          inlineStyleRanges: newInlineStyleRanges.map(
-            ({ style, ...inline }) => {
-              if (COLORS[style] || /^#[\d\w]{6}$/.test(style))
-                return {
-                  ...inline,
-                  style: `color-${COLORS[style] || style}`,
-                };
-
-              if (style.startsWith('background-'))
-                return {
-                  ...inline,
-                  style: `bgcolor-${COLORS[style.replace(/^background-/, '')]}`,
-                };
-
-              if (FONTFAMILY.includes(style))
-                return {
-                  ...inline,
-                  style: `fontfamily-${style}`,
-                };
-
-              if (style.startsWith('FONTSIZE-'))
-                return {
-                  ...inline,
-                  style: style.toLowerCase(),
-                };
-
-              return {
-                ...inline,
-                style,
-              };
-            },
-          ),
-        };
-      },
+      ({ type, data, text, inlineStyleRanges, ...block }) => ({
+        ...block,
+        text,
+        type: !/^align-.*$/.test(type) ? type : 'unstyled',
+        data: !/^align-.*$/.test(type)
+          ? data
+          : { 'text-align': type.replace(/^align-/, '') },
+        inlineStyleRanges: handleInlineStyleRanges(inlineStyleRanges, text),
+      }),
     );
 
     Object.keys(rawContent.entityMap).forEach(key => {

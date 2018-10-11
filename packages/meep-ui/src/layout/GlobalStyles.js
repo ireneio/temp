@@ -12,16 +12,18 @@ export default class GlobalStyles extends React.PureComponent {
     const { colors } = this.props;
 
     return (
-      <style>
-        {`
-          h1, h2, h3, h4, h5, h6,
-          span,
-          a, a:hover, a:active, a:focus, a:visited,
-          .ant-form {
-            color: ${colors[3]};
-          }
-        `}
-      </style>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            h1, h2, h3, h4, h5, h6,
+            span,
+            a, a:hover, a:active, a:focus, a:visited,
+            .ant-form {
+              color: ${colors[3]};
+            }
+          `,
+        }}
+      />
     );
   }
 }

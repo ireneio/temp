@@ -59,4 +59,5 @@ module.exports = {
     'npm run lint',
     'git add',
   ],
+  '*.less': ['npm run prettier -- --parser less --write', 'git add'],
 };

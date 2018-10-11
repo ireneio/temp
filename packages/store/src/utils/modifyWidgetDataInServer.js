@@ -180,9 +180,9 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
             return {
               id: uuid(),
               module: widget.module,
-              contentWidth: widget.contentWidth,
-              background: widget.background,
-              width: widget.width,
+              background:
+                widget.background === '' ? 'white' : widget.background,
+              contentWidth: widget.width,
               height: widget.height,
               alignment: widget.alignment,
               radius: widget.radius,

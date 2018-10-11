@@ -6,6 +6,7 @@ export default async items => {
       ),
     )
     .join('/')}`;
+  // TODO: modified street API
   const data = await fetch(link).then(res => res.json() || { zip: '' });
 
   return data;
