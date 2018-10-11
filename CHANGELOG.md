@@ -1,15 +1,10 @@
-## 0.4.1 (2018-10-09)
-
-#### :rocket: New Feature
-* `meep-ui`, `store`
-  * [#228](https://github.com/meepshop/meep-lerna/pull/228) 訂單問答：Redesign (053) ([@happycat6323](https://github.com/happycat6323))
+## 0.4.2 (2018-10-09)
 
 #### :house: Internal
 * [#262](https://github.com/meepshop/meep-lerna/pull/262) fix(root): fix jest memory lack ([@HsuTing](https://github.com/HsuTing))
 
 #### Committers: 2
 - Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
-- [@happycat6323](https://github.com/happycat6323)
 
 ## 0.3.23 (2018-10-04)
 
