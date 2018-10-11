@@ -36,7 +36,7 @@ export default function(eventName, options = {}) {
           items: [
             {
               id: theProduct.sku,
-              name: `${theProduct.title.zh_TW} ${specsName}`,
+              name: `${theProduct.title.zh_TW}`,
               variant: `${specsName}`,
               quantity,
               price: theProduct.retailPrice,
