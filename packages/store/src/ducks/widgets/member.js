@@ -516,46 +516,44 @@ export function* watchCreateApplyFlow() {
 }
 
 /* ************************************ 發送訂單問答 ************************************ */
-const ADD_ORDER_MESSAGE_REQUEST = 'ADD_ORDER_MESSAGE_REQUEST';
-const ADD_ORDER_MESSAGE_SUCCESS = 'ADD_ORDER_MESSAGE_SUCCESS';
-const ADD_ORDER_MESSAGE_FAILURE = 'ADD_ORDER_MESSAGE_FAILURE';
+const CREATE_ORDER_QA_REQUEST = 'CREATE_ORDER_QA_REQUEST';
+const CREATE_ORDER_QA_SUCCESS = 'CREATE_ORDER_QA_SUCCESS';
+const CREATE_ORDER_QA_FAILURE = 'CREATE_ORDER_QA_FAILURE';
 
-export const addOrderMessage = payload => ({
-  type: ADD_ORDER_MESSAGE_REQUEST,
+export const createOrderQA = payload => ({
+  type: CREATE_ORDER_QA_REQUEST,
   payload,
 });
-export const addOrderMessageSuccess = payload => ({
-  type: ADD_ORDER_MESSAGE_SUCCESS,
+export const createOrderQASuccess = payload => ({
+  type: CREATE_ORDER_QA_SUCCESS,
   payload,
 });
-export const addOrderMessageFailure = () => ({
-  type: ADD_ORDER_MESSAGE_FAILURE,
+export const createOrderQAFailure = () => ({
+  type: CREATE_ORDER_QA_FAILURE,
 });
 
-function* addOrderMessageFlow({ payload }) {
+function* createOrderQAFlow({ payload }) {
   const {
     storeReducer: {
       settings: { locale },
     },
   } = yield select();
   try {
-    const data = yield call(Api.addOrderMessage, payload);
+    const data = yield call(Api.createOrderQA, payload);
     if (data) {
-      yield put(addOrderMessageSuccess(data));
-      notification.success({
-        message: LOCALE.ADD_ORDER_MESSAGE_SUCCESS[locale],
-      });
+      yield put(createOrderQASuccess(data));
+      notification.success({ message: LOCALE.CREATE_ORDER_QA_SUCCESS[locale] });
     }
   } catch (error) {
-    yield put(addOrderMessageFailure());
+    yield put(createOrderQAFailure());
     notification.error({
-      message: LOCALE.ADD_ORDER_MESSAGE_FAILURE_MESSAGE[locale],
+      message: LOCALE.CREATE_ORDER_QA_FAILURE_MESSAGE[locale],
       description: error.message,
     });
   }
 }
-export function* watchAddOrderMessageFlow() {
-  yield takeEvery(ADD_ORDER_MESSAGE_REQUEST, addOrderMessageFlow);
+export function* watchCreateOrderQAFlow() {
+  yield takeEvery(CREATE_ORDER_QA_REQUEST, createOrderQAFlow);
 }
 
 /* ************************************ 加入/移除願望清單 ************************************ */
@@ -1124,14 +1122,14 @@ export default function(state = initialState, { type, payload }) {
         loadingTip: '',
       };
     }
-    case ADD_ORDER_MESSAGE_REQUEST: {
+    case CREATE_ORDER_QA_REQUEST: {
       return {
         ...state,
         loading: true,
-        loadingTip: ADD_ORDER_MESSAGE_REQUEST,
+        loadingTip: CREATE_ORDER_QA_REQUEST,
       };
     }
-    case ADD_ORDER_MESSAGE_SUCCESS: {
+    case CREATE_ORDER_QA_SUCCESS: {
       const orderQA = payload?.data?.createOrderQA?.[0];
       return {
         ...state,
@@ -1140,7 +1138,7 @@ export default function(state = initialState, { type, payload }) {
         loadingTip: '',
       };
     }
-    case ADD_ORDER_MESSAGE_FAILURE: {
+    case CREATE_ORDER_QA_FAILURE: {
       return {
         ...state,
         loading: false,

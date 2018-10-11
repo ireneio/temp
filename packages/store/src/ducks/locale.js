@@ -183,7 +183,7 @@ export const CREATE_APPLY_FAILURE_MESSAGE = {
   TODO_LOCALE: true,
 };
 
-export const ADD_ORDER_MESSAGE_SUCCESS = {
+export const CREATE_ORDER_QA_SUCCESS = {
   zh_TW: '已發送',
   en_US: 'It has been successfully submitted.',
   ja_JP: 'オーダーを送りました',
@@ -191,7 +191,7 @@ export const ADD_ORDER_MESSAGE_SUCCESS = {
   TODO_LOCALE: true,
 };
 
-export const ADD_ORDER_MESSAGE_FAILURE_MESSAGE = {
+export const CREATE_ORDER_QA_FAILURE_MESSAGE = {
   zh_TW: '發送訂單問答：發生錯誤',
   en_US: 'Submit order Q&A: Error occurred',
   ja_JP: 'オーダーQ&Aを送る：エラーが発生しました',

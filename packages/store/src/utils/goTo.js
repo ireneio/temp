@@ -10,13 +10,9 @@ export default ({ pathname, params = {}, back = false }) => {
   if (!back) {
     console.log('goTo:', pathname, params);
     if (params.hash) {
-      if (pathname) {
-        Router.pushRoute(pathname + params.hash);
-      } else {
-        Router.pushRoute(
-          window.location.pathname + window.location.search + params.hash,
-        );
-      }
+      Router.pushRoute(
+        window.location.pathname + window.location.search + params.hash,
+      );
     } else {
       if (pathname == null) throw new Error('pathname is required in goTo');
       /* Check pathname */

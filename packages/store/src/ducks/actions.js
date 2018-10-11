@@ -41,9 +41,9 @@ import {
   createApply,
   createApplySuccess,
   createApplyFailure,
-  addOrderMessage,
-  addOrderMessageSuccess,
-  addOrderMessageFailure,
+  createOrderQA,
+  createOrderQASuccess,
+  createOrderQAFailure,
   updateWishList,
   updateWishListSuccess,
   updateWishListFailure,
@@ -135,10 +135,10 @@ export {
   getProduct,
   getProductSuccess,
   getProductFailure,
-  // add order message
-  addOrderMessage,
-  addOrderMessageSuccess,
-  addOrderMessageFailure,
+  // create order QA
+  createOrderQA,
+  createOrderQASuccess,
+  createOrderQAFailure,
   // update wish list
   updateWishList,
   updateWishListSuccess,

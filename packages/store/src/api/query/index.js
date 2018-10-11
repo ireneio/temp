@@ -14,7 +14,6 @@ import userQuery from './user.query';
 import pointsQuery from './points.query';
 import orderApplyQuery from './orderApply.query';
 import orderQAQuery from './orderQA.query';
-import orderMessageQuery from './orderMessage.query';
 import webTrackQuery from './webTrack.query';
 import stockNotificationQuery from './stockNotification.query';
 
@@ -35,7 +34,6 @@ export {
   pointsQuery,
   orderApplyQuery,
   orderQAQuery,
-  orderMessageQuery,
   webTrackQuery,
   stockNotificationQuery,
 };

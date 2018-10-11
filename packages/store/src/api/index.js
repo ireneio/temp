@@ -27,7 +27,7 @@ import serverOthersInitial from './serverOthersInitial.api';
 
 import updateUser from './updateUser.api';
 import createOrderApply from './createOrderApply.api';
-import addOrderMessage from './addOrderMessage.api';
+import createOrderQA from './createOrderQA.api';
 import updateWishList from './updateWishList.api';
 import updateStockNotificationList from './updateStockNotificationList.api';
 import getOrder from './getOrder.api';
@@ -52,7 +52,7 @@ export {
   resetPassword,
   updateUser,
   createOrderApply,
-  addOrderMessage,
+  createOrderQA,
   updateWishList,
   updateStockNotificationList,
   getOrder,
