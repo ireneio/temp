@@ -1,3 +1,17 @@
+## 0.4.3 (2018-10-11)
+
+#### :bug: Bug Fix
+* `store`
+  * [#266](https://github.com/meepshop/meep-lerna/pull/266) GA：修正加入購物車事件的name參數 (N175) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :house: Internal
+* `meep-ui`, `store`
+  * [#255](https://github.com/meepshop/meep-lerna/pull/255) perf(meep-ui): Modify detail ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.4.2 (2018-10-09)
 
 #### :house: Internal
