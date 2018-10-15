@@ -281,10 +281,6 @@ export default class MemberRecipients extends React.PureComponent {
             initialValue: mobile,
             rules: [
               {
-                required: true,
-                message: transformLocale(LOCALE.IS_REQUIRED),
-              },
-              {
                 validator: validateMobile(transformLocale, 'recipientMobile'),
               },
             ],
