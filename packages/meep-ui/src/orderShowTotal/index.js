@@ -18,6 +18,8 @@ const getActivityInfo = activityInfo =>
       ({ id: activityID }) => activityID === id,
     );
 
+    if (plugin === 'freeShipping') return result;
+
     if (existActivityIndex > -1) {
       result[existActivityIndex].discountPrice += discountPrice || 0; // eslint-disable-line no-param-reassign
       return result;
@@ -124,9 +126,16 @@ export default class OrderShowTotal extends React.PureComponent {
             <div>{transformLocale(LOCALE.SHIPMENT)}</div>
 
             <div>
-              {isChoosenSipment
-                ? transformCurrency(shipmentFee)
-                : transformLocale(LOCALE.NOT_CHOOSE_SHIPMENT)}
+              {(() => {
+                if (
+                  activityInfo.find(({ plugin }) => plugin === 'freeShipping')
+                )
+                  return transformLocale(LOCALE.FREE_SHIPMENT);
+
+                if (isChoosenSipment) return transformCurrency(shipmentFee);
+
+                return transformLocale(LOCALE.NOT_CHOOSE_SHIPMENT);
+              })()}
             </div>
           </div>
         )}

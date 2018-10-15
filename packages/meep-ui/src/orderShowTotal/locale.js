@@ -39,6 +39,14 @@ export const SHIPMENT = {
   TODO_LOCALE: true,
 };
 
+export const FREE_SHIPMENT = {
+  zh_TW: '免運費',
+  en_US: 'Free',
+  ja_JP: '送料無料',
+  vi_VN: 'Miễn phí vận chuyển',
+  TODO_LOCALE: true,
+};
+
 export const GRAND_TOTAL = {
   zh_TW: '訂單總金額',
   en_US: 'Total',
