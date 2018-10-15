@@ -1,3 +1,12 @@
+## 0.4.5 (2018-10-15)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#257](https://github.com/meepshop/meep-lerna/pull/257) 結帳頁面：若商品符合免運，折扣項目的文字未顯示「免運費」(N165) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.4.4 (2018-10-15)
 
 #### :bug: Bug Fix
