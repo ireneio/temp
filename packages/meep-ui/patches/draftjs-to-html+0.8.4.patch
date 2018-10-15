@@ -1,0 +1,75 @@
+patch-package
+--- a/node_modules/draftjs-to-html/lib/draftjs-to-html.js
++++ b/node_modules/draftjs-to-html/lib/draftjs-to-html.js
+@@ -4,6 +4,8 @@
+  (global.draftjsToHtml = factory());
+ }(this, (function () { 'use strict';
+
++const emojiRegex = require('emoji-regex');
++
+ /**
+ * Utility function to execute callback for eack key->value pair.
+ */
+@@ -576,6 +578,16 @@ function getListMarkup(listBlocks, entityMap, hashtagConfig, directional, custom
+   return listHtml.join('');
+ }
+
++function replaceEmoji(emojiList, mockEmoji, html) {
++  var newHtml = html;
++
++  emojiList.forEach(function (emoji) {
++    newHtml = newHtml.replace(mockEmoji, emoji);
++  });
++
++  return newHtml;
++}
++
+ /**
+ * The function will generate html markup for given draftjs editorContent.
+ */
+@@ -587,23 +599,42 @@ function draftToHtml(editorContent, hashtagConfig, directional, customEntityTran
+
+     if (blocks && blocks.length > 0) {
+       var listBlocks = [];
++      var listEmoji = [];
++
++      var regex = emojiRegex();
++      // This code is `num lock`, and not used in `string` normally.
++      var mockEmoji = String.fromCharCode(144);
++
+       blocks.forEach(function (block) {
++        var emojiMatch;
++        var emojiList = [];
++
++        while (emojiMatch = regex.exec(block.text)) {
++          const emoji = emojiMatch[0];
++
++          block.text = block.text.replace(emoji, mockEmoji);
++          emojiList.push(emoji);
++        }
++
+         if (isList(block.type)) {
+           listBlocks.push(block);
++          listEmoji.push(...emojiList);
+         } else {
+           if (listBlocks.length > 0) {
+             var listHtml = getListMarkup(listBlocks, entityMap, hashtagConfig, customEntityTransform); // eslint-disable-line max-len
+-            html.push(listHtml);
++            html.push(replaceEmoji(listEmoji, mockEmoji, listHtml));
+             listBlocks = [];
++            listEmoji = [];
+           }
+           var blockHtml = getBlockMarkup(block, entityMap, hashtagConfig, directional, customEntityTransform);
+-          html.push(blockHtml);
++          html.push(replaceEmoji(emojiList, mockEmoji, blockHtml));
+         }
+       });
+       if (listBlocks.length > 0) {
+         var listHtml = getListMarkup(listBlocks, entityMap, hashtagConfig, directional, customEntityTransform); // eslint-disable-line max-len
+-        html.push(listHtml);
++        html.push(replaceEmoji(listEmoji, mockEmoji, listHtml));
+         listBlocks = [];
++        listEmoji = [];
+       }
+     }
+   }

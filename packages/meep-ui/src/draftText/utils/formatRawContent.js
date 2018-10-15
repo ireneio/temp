@@ -1,74 +1,33 @@
-import emojiRegex from 'emoji-regex';
-
 import { COLORS, FONTFAMILY } from '../constants';
 
-const handleEmoji = (text, inline) =>
-  (text.match(emojiRegex()) || []).reduce(
-    ({ offset, length, ...otherData }, emoji, index, emojiArray) => {
-      const emojiOffset = emoji.length - 1;
-      const emojiIndex = emojiArray
-        .slice(0, index)
-        .reduce(
-          (result, { length: emojiLength }) => result - (emojiLength - 1),
-          text.indexOf(emoji),
-        );
-
-      if (emojiIndex < inline.offset)
-        return {
-          ...otherData,
-          offset: offset + emojiOffset,
-          length,
-        };
-
-      if (
-        inline.offset <= emojiIndex &&
-        emojiIndex <= inline.offset + inline.length
-      )
-        return {
-          ...otherData,
-          offset,
-          length: length + emojiOffset,
-        };
-
-      return {
-        ...otherData,
-        offset,
-        length,
-      };
-    },
-    inline,
-  );
-
-const handleInlineStyleRanges = (inlineStyleRanges, text) =>
+const handleInlineStyleRanges = inlineStyleRanges =>
   inlineStyleRanges.map(({ style, ...inline }) => {
-    const newInline = handleEmoji(text, inline);
-
     if (COLORS[style] || /^#[\d\w]{6}$/.test(style))
       return {
-        ...newInline,
+        ...inline,
         style: `color-${COLORS[style] || style}`,
       };
 
     if (/^background-/.test(style))
       return {
-        ...newInline,
+        ...inline,
         style: `bgcolor-${COLORS[style.replace(/^background-/, '')]}`,
       };
 
     if (FONTFAMILY.includes(style))
       return {
-        ...newInline,
+        ...inline,
         style: `fontfamily-${style}`,
       };
 
     if (/^FONTSIZE-/.test(style))
       return {
-        ...newInline,
+        ...inline,
         style: style.toLowerCase(),
       };
 
     return {
-      ...newInline,
+      ...inline,
       style,
     };
   });
@@ -88,7 +47,7 @@ export default value => {
         data: !/^align-.*$/.test(type)
           ? data
           : { 'text-align': type.replace(/^align-/, '') },
-        inlineStyleRanges: handleInlineStyleRanges(inlineStyleRanges, text),
+        inlineStyleRanges: handleInlineStyleRanges(inlineStyleRanges),
       }),
     );
 

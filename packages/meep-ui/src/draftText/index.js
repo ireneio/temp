@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import memoizeOne from 'memoize-one';
 import draftToHtml from 'draftjs-to-html';
-import { EditorState, convertFromRaw } from 'draft-js';
+import { convertFromRaw } from 'draft-js';
 
 import styles from './styles/index.less';
 import notMemoizedFormatRawContent from './utils/formatRawContent';
@@ -38,9 +38,7 @@ export default class DraftText extends React.PureComponent {
       return (
         <div>
           {rawContent
-            ? EditorState.createWithContent(convertFromRaw(rawContent))
-                .getCurrentContent()
-                .getPlainText()
+            ? convertFromRaw(rawContent).getPlainText()
             : value.replace(/<(?:.|\n)*?>/gm, '')}
         </div>
       );
