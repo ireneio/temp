@@ -1,3 +1,12 @@
+## 0.4.4 (2018-10-15)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#269](https://github.com/meepshop/meep-lerna/pull/269) 文字元件：Use patch to fix emoji bug ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.4.3 (2018-10-11)
 
 #### :bug: Bug Fix
