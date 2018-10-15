@@ -15,7 +15,7 @@ export const ORDER_APPLY_LIST = {
 };
 
 export const ORDER_EXCHANGE = {
-  zh_TW: '換貨申請',
+  zh_TW: '換貨申請確認',
   en_US: 'Replacement',
   ja_JP: '交換申込',
   vi_VN: 'đăng ký thay thế',
@@ -23,15 +23,15 @@ export const ORDER_EXCHANGE = {
 };
 
 export const ORDER_QA = {
-  zh_TW: '訂單問答',
-  en_US: 'Order Questions',
-  ja_JP: '注文についてのお問い合わせ',
-  vi_VN: 'tư vấn dịch vụ khách hàng',
+  zh_TW: '詢問客服',
+  en_US: 'Contact Us',
+  ja_JP: 'お問合せ',
+  vi_VN: 'Tư vấn khách hàng',
   TODO_LOCALE: true,
 };
 
 export const ORDER_REFUND = {
-  zh_TW: '退貨申請',
+  zh_TW: '退貨申請確認',
   en_US: 'Return',
   ja_JP: '返品申込',
   vi_VN: 'đăng ký hoàn trả',
