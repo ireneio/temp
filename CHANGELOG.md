@@ -1,3 +1,14 @@
+## 0.4.6 (2018-10-16)
+
+#### :bug: Bug Fix
+* `store`
+  * [#273](https://github.com/meepshop/meep-lerna/pull/273) 會員選單: 修正標題文字 ([@barrypeng6](https://github.com/barrypeng6))
+* `meep-ui`
+  * [#272](https://github.com/meepshop/meep-lerna/pull/272) 收件人範本: 拿掉手機必填規則文字 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.4.5 (2018-10-15)
 
 #### :bug: Bug Fix
