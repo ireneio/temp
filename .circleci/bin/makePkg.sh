@@ -7,3 +7,6 @@ done
 for patch in $(ls ./patches); do
   cat ./patches/$patch >> lerna-package.json
 done
+for patch in $(ls ./packages/meep-ui/patches); do
+  cat ./packages/meep-ui/patches/$patch >> lerna-package.json
+done

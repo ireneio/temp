@@ -50,7 +50,7 @@ patch-package
 +
          if (isList(block.type)) {
            listBlocks.push(block);
-+          listEmoji.push(...emojiList);
++          listEmoji = listEmoji.concat(emojiList);
          } else {
            if (listBlocks.length > 0) {
              var listHtml = getListMarkup(listBlocks, entityMap, hashtagConfig, customEntityTransform); // eslint-disable-line max-len
