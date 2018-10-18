@@ -1,3 +1,12 @@
+## 0.4.7 (2018-10-18)
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#274](https://github.com/meepshop/meep-lerna/pull/274) 修正IE JS 語法不支援(N189) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.4.6 (2018-10-16)
 
 #### :bug: Bug Fix
