@@ -94,6 +94,7 @@ export const modifyAntdStyle = colors => ({
   '.ant-input-search button': {
     color: colors[2],
     background: colors[4],
+    borderColor: colors[4],
   },
 
   '.ant-checkbox + span': {

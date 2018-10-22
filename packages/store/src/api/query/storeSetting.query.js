@@ -32,18 +32,20 @@ setting {
     footerSite
   }
   invoice {
-    duplicate {
-      status
+    paper {
+      duplicate {
+        isEnabled
+      }
+      triplicate {
+        isEnabled
+      }
+      donation {
+        isEnabled
+      }
     }
-    triplicate {
-      status
-    }
-    eInvoice {
-      status
-    }
-    donate {
-      status
-      units
+    electronic {
+      isEnabled
+      type
     }
   }
   locale

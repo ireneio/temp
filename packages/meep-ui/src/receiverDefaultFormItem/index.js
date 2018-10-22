@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { Form, Input, Select } from 'antd';
+import { Form, Input, Cascader } from 'antd';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import AddressCascader from 'addressCascader';
@@ -10,7 +10,6 @@ import {
   SHIPMENT_TEMPLATE_TYPE,
   COUNTRY_TYPE,
 } from 'constants/propTypes';
-import INVOICE from 'constants/invoice';
 import validateMobile, {
   validateTaiwanMobileNumber,
 } from 'utils/validateMobile';
@@ -18,11 +17,11 @@ import { TAIWAN } from 'locale/country';
 
 import Invoice from './Invoice';
 import ChooseShipmentStore from './ChooseShipmentStore';
+import getInvoiceOptions from './utils/getInvoiceOptions';
 import { ID_NUMBER_CITY_CODE, ID_NUMBER_WEIGHTED } from './constants';
 import * as LOCALE from './locale';
 
 const { Item: FormItem } = Form;
-const { Option } = Select;
 
 @enhancer
 @radium
@@ -86,8 +85,8 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
       invoiceIsNeeded,
     } = this.props;
 
-    const { invoice } = storeSetting;
     const { getFieldValue, getFieldDecorator } = form;
+    const invoiceOptions = getInvoiceOptions({ storeSetting, transformLocale });
 
     return (
       <>
@@ -218,10 +217,7 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
           </>
         )}
 
-        {!(
-          invoiceIsNeeded &&
-          INVOICE.some(key => invoice[key] && invoice[key].status)
-        ) ? null : (
+        {!invoiceIsNeeded || !invoiceOptions.length ? null : (
           <>
             <FormItem style={style}>
               {getFieldDecorator('invoice', {
@@ -232,16 +228,11 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
                   },
                 ],
               })(
-                <Select placeholder={transformLocale(LOCALE.INVOICE)}>
-                  {INVOICE.map(
-                    (invoiceType, index) =>
-                      !(invoice[invoiceType] || {}).status ? null : (
-                        <Option key={invoiceType} value={index + 1}>
-                          {transformLocale(LOCALE.INVOICE_TYPE[invoiceType])}
-                        </Option>
-                      ),
-                  )}
-                </Select>,
+                <Cascader
+                  placeholder={transformLocale(LOCALE.INVOICE)}
+                  options={invoiceOptions}
+                  allowClear={false}
+                />,
               )}
             </FormItem>
 

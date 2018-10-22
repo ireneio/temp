@@ -79,60 +79,74 @@ export const INVOICE_INFO = {
   TODO_LOCALE: true,
 };
 
-export const INVOICE = [
-  {
+export const INVOICE_TYPE = {
+  PAPER: {
+    zh_TW: '紙本發票',
+    en_US: '',
+    ja_JP: '',
+    vi_VN: '',
+    TODO_LOCALE: true,
+  },
+  MANUL_ELECTRONIC: {
+    zh_TW: '電子發票',
+    en_US: 'e-Invoice',
+    ja_JP: '電子発票',
+    vi_VN: 'hóa đơn điện tử',
+    TODO_LOCALE: true,
+  },
+  ECPAY_ELECTRONIC: {
+    zh_TW: '電子發票',
+    en_US: 'e-Invoice',
+    ja_JP: '電子発票',
+    vi_VN: 'hóa đơn điện tử',
+    TODO_LOCALE: true,
+  },
+};
+
+export const INVOICE_METHOD = {
+  DUPLICATE: {
     zh_TW: '二聯式發票',
     en_US: 'Duplicate Uniform Invoice',
     ja_JP: '二連式発票',
     vi_VN: 'Hóa đơn liên 2',
     TODO_LOCALE: true,
   },
-  {
+  TRIPLICATE: {
     zh_TW: '三聯式發票',
     en_US: 'Triplicate Uniform Invoice',
     ja_JP: '三連式発票',
     vi_VN: 'Hóa đơn liên 3',
     TODO_LOCALE: true,
   },
-  {
-    zh_TW: '電子發票',
-    en_US: 'e-Invoice',
-    ja_JP: '電子発票',
-    vi_VN: 'Hóa đơn điện tử',
-    TODO_LOCALE: true,
-  },
-  {
+  DONATION: {
     zh_TW: '捐贈',
     en_US: 'Donate',
     ja_JP: '寄贈',
     vi_VN: 'Tặng',
     TODO_LOCALE: true,
   },
-];
-
-export const INVOICE_E_INVOICE_TYPE = [
-  {
+  MEMBERSHIP: {
     zh_TW: '會員載具',
     en_US: 'Membership Carrier',
     ja_JP: '会員キャリア',
     vi_VN: 'Phương tiện hội viên',
     TODO_LOCALE: true,
   },
-  {
+  MOBILE_BARCODE: {
     zh_TW: '手機條碼載具',
     en_US: 'Mobile Barcode',
     ja_JP: '携帯電話バーコードキャリア',
     vi_VN: 'Phương tiện mã vạch di động',
     TODO_LOCALE: true,
   },
-  {
+  CITIZEN_DIGITAL_CERTIFICATE: {
     zh_TW: '自然人憑證載具',
     en_US: 'NPC Barcode',
     ja_JP: '自然人証憑キャリア',
     vi_VN: 'Phương tiện chứng nhận kỹ thuật số công dân',
     TODO_LOCALE: true,
   },
-];
+};
 
 export const NOTES = {
   zh_TW: '訂單備註',

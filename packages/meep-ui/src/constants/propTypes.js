@@ -14,7 +14,7 @@ import buildPropTypes from 'utils/buildPropTypes';
 
 import LOCALE from './locale';
 import CURRENCY from './currency';
-import INVOICE from './invoice';
+import { PAPER_TYPE, ELECYTONIC_TYPE } from './invoice';
 import * as ISLOGIN from './isLogin';
 
 /** normal propTypes */
@@ -204,17 +204,21 @@ export const STORE_SETTING_TYPE = PropTypes.shape({
   activityVersion: PropTypes.oneOf([2]),
   logoUrl: URL_TYPE,
   mobileLogoUrl: URL_TYPE,
-  invoice: PropTypes.shape(
-    INVOICE.reduce(
+  invoice: PropTypes.shape({
+    paper: PAPER_TYPE.reduce(
       (result, key) => ({
         ...result,
         [key]: PropTypes.shape({
-          status: PropTypes.bool.isRequired,
+          isEnabled: PropTypes.bool.isRequired,
         }).isRequired,
       }),
       {},
     ),
-  ).isRequired,
+    electronic: PropTypes.shape({
+      isEnabled: PropTypes.bool.isRequired,
+      type: PropTypes.oneOf(ELECYTONIC_TYPE).isRequired,
+    }),
+  }).isRequired,
   storeName: PropTypes.string.isRequired,
 });
 

@@ -146,6 +146,7 @@ const orderQuery = `{
           expireDate
         }
       }
+      card4no
     }
     status
   }
@@ -172,25 +173,26 @@ const orderQuery = `{
     }
   }
   priceInfo {
-    currency
-    discount
-    orderDiscount
-    productDiscount
     productPrice
     paymentFee
     shipmentFee
+    adjust
     total
-    cost
   }
-  invoiceInfo{
-    invoiceType
-    invoiceTitle
-    invoiceVAT
-    donateUnit
-    streetAddress
-    vehicleType
-    citizenDigitalCertificate
-    mobileBarcode
+  invoices {
+    type
+    method
+    carrier {
+      type
+      code
+    }
+    code
+    issuedAt
+    status
+    title
+    ban
+    address
+    loveCode
   }
   note
   paidMessage {

@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { Form, Input, Select } from 'antd';
+import { Form, Input, message } from 'antd';
+import { warning } from 'fbjs';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 
-import { INVOICE_E_INVOICE, INVOICE_SEARCH_LINK } from './constants';
+import { INVOICE_SEARCH_LINK } from './constants';
 import * as LOCALE from './locale';
 import * as styles from './styles/invoice';
 
 const { Item: FormItem } = Form;
 const { Search } = Input;
-const { Option } = Select;
 
 @enhancer
 @radium
@@ -19,6 +19,7 @@ export default class Invoice extends React.PureComponent {
   static propTypes = {
     /** context */
     transformLocale: PropTypes.func.isRequired,
+    getData: PropTypes.func.isRequired,
 
     /** props */
     style: PropTypes.shape({}),
@@ -33,14 +34,39 @@ export default class Invoice extends React.PureComponent {
     style: {},
   };
 
+  validateLoveCode = async (rule, value, callback) => {
+    const { transformLocale, getData } = this.props;
+
+    const { data, errors } = await getData(`
+      query IsEInvoiceLoveCodeValid {
+        isEInvoiceLoveCodeValid(loveCode: "${value}")
+      }
+    `);
+
+    if (errors) {
+      warning(!errors.length, JSON.stringify(errors));
+      message.error(transformLocale(LOCALE.ERROR));
+    }
+
+    if (data?.isEInvoiceLoveCodeValid) {
+      return callback();
+    }
+
+    return callback(transformLocale(LOCALE.WRONG_LOVECODE));
+  };
+
   render() {
     const { transformLocale, style, form } = this.props;
     const { getFieldValue, getFieldDecorator } = form;
 
-    switch (getFieldValue('invoice')) {
-      case 2: // triplicate
+    const value = getFieldValue('invoice') || [];
+
+    const isECPAY = value[0] === 'ECPAY_ELECTRONIC';
+
+    switch (value[1]) {
+      case 'TRIPLICATE':
         return (
-          <React.Fragment>
+          <>
             <div style={styles.itemRoot}>
               <FormItem style={style}>
                 {getFieldDecorator('invoiceTitle', {
@@ -50,6 +76,7 @@ export default class Invoice extends React.PureComponent {
                       message: transformLocale(LOCALE.IS_REQUIRED),
                     },
                   ],
+                  validateTrigger: 'onBlur',
                 })(
                   <Input placeholder={transformLocale(LOCALE.INVOICE_TITLE)} />,
                 )}
@@ -63,6 +90,7 @@ export default class Invoice extends React.PureComponent {
                       message: transformLocale(LOCALE.IS_REQUIRED),
                     },
                   ],
+                  validateTrigger: 'onBlur',
                 })(
                   <Input
                     placeholder={transformLocale(LOCALE.INVOICE_NUMBER)}
@@ -85,62 +113,15 @@ export default class Invoice extends React.PureComponent {
                     message: transformLocale(LOCALE.IS_REQUIRED),
                   },
                 ],
+                validateTrigger: 'onBlur',
               })(
                 <Input placeholder={transformLocale(LOCALE.INVOICE_ADDRESS)} />,
               )}
             </FormItem>
-          </React.Fragment>
+          </>
         );
 
-      case 3: // eInvoice
-        return (
-          <div style={styles.itemRoot}>
-            <FormItem style={style}>
-              {getFieldDecorator('invoiceEInvoice', {
-                initialValue: 1,
-                rules: [
-                  {
-                    required: true,
-                    message: transformLocale(LOCALE.IS_REQUIRED),
-                  },
-                ],
-              })(
-                <Select placeholder={transformLocale(LOCALE.INVOICE_E_INVOICE)}>
-                  {INVOICE_E_INVOICE.map((eInvoiceType, index) => (
-                    <Option key={eInvoiceType} value={index + 1}>
-                      {transformLocale(
-                        LOCALE.INVOICE_E_INVOICE_TYPE[eInvoiceType],
-                      )}
-                    </Option>
-                  ))}
-                </Select>,
-              )}
-            </FormItem>
-
-            {getFieldValue('invoiceEInvoice') === 1 ? null : (
-              <FormItem style={style}>
-                {getFieldDecorator('invoiceEInvoiceNumber', {
-                  rules: [
-                    {
-                      required: true,
-                      message: transformLocale(LOCALE.IS_REQUIRED),
-                    },
-                  ],
-                })(
-                  <Input
-                    placeholder={transformLocale(
-                      LOCALE.INVOICE_E_INVOICE_NUMBER[
-                        INVOICE_E_INVOICE[getFieldValue('invoiceEInvoice') - 1]
-                      ],
-                    )}
-                  />,
-                )}
-              </FormItem>
-            )}
-          </div>
-        );
-
-      case 4: // donate
+      case 'DONATION':
         return (
           <FormItem style={style}>
             {getFieldDecorator('invoiceDonate', {
@@ -149,7 +130,11 @@ export default class Invoice extends React.PureComponent {
                   required: true,
                   message: transformLocale(LOCALE.IS_REQUIRED),
                 },
+                isECPAY && {
+                  validator: this.validateLoveCode,
+                },
               ],
+              validateTrigger: 'onBlur',
             })(
               <Search
                 placeholder={transformLocale(LOCALE.INVOICE_DONATE)}
@@ -162,6 +147,56 @@ export default class Invoice extends React.PureComponent {
                     {transformLocale(LOCALE.INVOICE_SEARCH)}
                   </a>
                 }
+              />,
+            )}
+          </FormItem>
+        );
+
+      case 'MOBILE_BARCODE':
+        return (
+          <FormItem style={style}>
+            {getFieldDecorator('invoiceEInvoiceNumber', {
+              rules: [
+                {
+                  required: true,
+                  message: transformLocale(LOCALE.IS_REQUIRED),
+                },
+                {
+                  pattern: /^\/{1}[0-9.+\-A-Z]{7}$/,
+                  message: transformLocale(LOCALE.WRONG_BARCODE),
+                },
+              ],
+              validateTrigger: 'onBlur',
+            })(
+              <Input
+                placeholder={transformLocale(
+                  LOCALE.INVOICE_E_INVOICE_NUMBER[value[1]],
+                )}
+              />,
+            )}
+          </FormItem>
+        );
+
+      case 'CITIZEN_DIGITAL_CERTIFICATE':
+        return (
+          <FormItem style={style}>
+            {getFieldDecorator('invoiceEInvoiceNumber', {
+              rules: [
+                {
+                  required: true,
+                  message: transformLocale(LOCALE.IS_REQUIRED),
+                },
+                {
+                  pattern: /^[A-Z]{2}[0-9]{14}$/,
+                  message: transformLocale(LOCALE.WRONG_CERTIFICATE),
+                },
+              ],
+              validateTrigger: 'onBlur',
+            })(
+              <Input
+                placeholder={transformLocale(
+                  LOCALE.INVOICE_E_INVOICE_NUMBER[value[1]],
+                )}
               />,
             )}
           </FormItem>

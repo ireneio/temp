@@ -32,7 +32,6 @@ export default ({
   invoiceTitle,
   invoiceVAT,
   invoiceAddress,
-  invoiceEInvoice,
   invoiceEInvoiceNumber,
   invoiceDonate,
 
@@ -231,22 +230,29 @@ export default ({
       ...(!invoice
         ? {}
         : {
-            invoiceInfo: {
-              invoiceType: invoice,
-              // invoiceType = 2
-              ...(!invoiceAddress ? {} : { streetAddress: invoiceAddress }),
-              ...(!invoiceTitle ? {} : { invoiceTitle }),
-              ...(!invoiceVAT ? {} : { invoiceVAT }),
-              // invoiceType = 3
-              ...(!invoiceEInvoice ? {} : { vehicleType: invoiceEInvoice }),
-              ...(!invoiceEInvoiceNumber || invoiceEInvoice !== 2
-                ? {}
-                : { mobileBarcode: invoiceEInvoiceNumber }),
-              ...(!invoiceEInvoiceNumber || invoiceEInvoice !== 3
-                ? {}
-                : { citizenDigitalCertificate: invoiceEInvoiceNumber }),
-              // invoiceType = 4
-              ...(!invoiceDonate ? {} : { donateUnit: invoiceDonate }),
+            invoice: {
+              type: invoice[0],
+              ...(invoice[1] === 'MEMBERSHIP' ||
+              invoice[1] === 'MOBILE_BARCODE' ||
+              invoice[1] === 'CITIZEN_DIGITAL_CERTIFICATE'
+                ? {
+                    method: 'CARRIER',
+                    carrier: {
+                      type: invoice[1],
+                      ...(!invoiceEInvoiceNumber
+                        ? {}
+                        : { code: invoiceEInvoiceNumber }),
+                    },
+                  }
+                : {
+                    method: invoice[1],
+                  }),
+              // method = TRIPLICATE
+              ...(!invoiceAddress ? {} : { address: invoiceAddress }),
+              ...(!invoiceTitle ? {} : { title: invoiceTitle }),
+              ...(!invoiceVAT ? {} : { ban: invoiceVAT }),
+              // method = DONATION
+              ...(!invoiceDonate ? {} : { loveCode: invoiceDonate }),
             },
           }),
     },

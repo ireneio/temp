@@ -35,12 +35,6 @@ export const ID_NUMBER_CITY_CODE = [
 
 export const ID_NUMBER_WEIGHTED = [1, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1];
 
-export const INVOICE_E_INVOICE = [
-  'memberVehicle',
-  'mobileBarcodeVehicle',
-  'citizenDigitalCertificateVehicle',
-];
-
 export const INVOICE_SEARCH_LINK =
   'https://www.einvoice.nat.gov.tw/APMEMBERVAN/XcaOrgPreserveCodeQuery/XcaOrgPreserveCodeQuery?CSRT=4350550699150711492';
 

@@ -467,20 +467,14 @@ export default class Summary extends React.PureComponent {
                 {transformLocale(LOCALE.INVOICE_INFO)}
               </h4>
 
-              <div>{transformLocale(LOCALE.INVOICE[invoice - 1])}</div>
+              <div>{`${transformLocale(
+                LOCALE.INVOICE_TYPE[invoice[0]],
+              )}／${transformLocale(LOCALE.INVOICE_METHOD[invoice[1]])}`}</div>
 
-              {INVOICE_FIELDS[invoice - 1].map(
+              {(INVOICE_FIELDS[invoice[1]] || []).map(
                 fileName =>
                   !fieldsValue[fileName] ? null : (
-                    <div key={fileName}>
-                      {fileName === 'invoiceEInvoice'
-                        ? transformLocale(
-                            LOCALE.INVOICE_E_INVOICE_TYPE[
-                              fieldsValue[fileName] - 1
-                            ],
-                          )
-                        : fieldsValue[fileName]}
-                    </div>
+                    <div key={fileName}>{fieldsValue[fileName]}</div>
                   ),
               )}
             </div>

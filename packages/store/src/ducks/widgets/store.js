@@ -171,12 +171,6 @@ export default function(state = initialState, { type, payload }) {
         activityVersion,
         lockedCountry,
       } = storeSettings;
-      const invoice = storeSettings?.invoice || {
-        donate: { status: false, units: null },
-        duplicate: { status: false },
-        eInvoice: { status: false },
-        triplicate: { status: false },
-      };
 
       const settings = {
         ...storeSettings,
@@ -197,21 +191,6 @@ export default function(state = initialState, { type, payload }) {
         fxSetup, // 用於匯率轉換 customerCurrency ==> storeCurrency
         currencyOptions: currencyOptions || ['TWD'], // 用於幣值選單
         activityVersion,
-        invoice: {
-          donate: {
-            status: !!invoice?.donate?.status,
-            units: invoice?.donate?.units || 0,
-          },
-          duplicate: {
-            status: !!invoice?.duplicate?.status,
-          },
-          eInvoice: {
-            status: !!invoice?.eInvoice?.status,
-          },
-          triplicate: {
-            status: !!invoice?.triplicate?.status,
-          },
-        },
       };
       return {
         activities, // 折扣活動

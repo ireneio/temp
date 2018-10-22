@@ -290,12 +290,7 @@ export default class OrderDetail extends React.PureComponent {
     } = this.state;
 
     const { storeName } = storeSetting;
-    const {
-      getFieldDecorator,
-      getFieldsError,
-      getFieldValue,
-      validateFieldsAndScroll,
-    } = form;
+    const { getFieldDecorator, getFieldValue, validateFieldsAndScroll } = form;
     const {
       total,
       paymentList,
@@ -448,13 +443,6 @@ export default class OrderDetail extends React.PureComponent {
                   type="primary"
                   htmlType="submit"
                   loading={isChecking}
-                  disabled={
-                    productHasError ||
-                    (fieldsError =>
-                      Object.keys(fieldsError).some(
-                        field => fieldsError[field],
-                      ))(getFieldsError())
-                  }
                   onClick={() => validateFieldsAndScroll()}
                 >
                   {transformLocale(LOCALE.NEXT)}

@@ -6,12 +6,18 @@ import { Table } from 'antd';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
-import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
 import Link from 'link';
+import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles';
 import * as LOCALE from './locale';
-import { paymentShowMemo } from './constants';
+import {
+  paymentShowMemo,
+  USER_TYPE,
+  ACTIVITY_TYPE,
+  PRICE_TYPE,
+  INVOICE_TYPE,
+} from './constants';
 
 @enhancer
 @radium
@@ -25,11 +31,11 @@ export default class MemberOrderDetails extends React.PureComponent {
       orderNo: PropTypes.string.isRequired,
       createdOn: PropTypes.number.isRequired,
       paymentInfo: PropTypes.shape({}).isRequired,
-      userInfo: PropTypes.shape({}).isRequired,
+      userInfo: USER_TYPE.isRequired,
       shipmentInfo: PropTypes.shape({}).isRequired,
-      activityInfo: PropTypes.arrayOf(PropTypes.shape({})),
-      priceInfo: PropTypes.shape({}).isRequired,
-      invoiceInfo: PropTypes.shape({}),
+      activityInfo: ACTIVITY_TYPE,
+      priceInfo: PRICE_TYPE.isRequired,
+      invoices: INVOICE_TYPE.isRequired,
       status: PropTypes.number.isRequired,
     }).isRequired,
 
@@ -171,7 +177,7 @@ export default class MemberOrderDetails extends React.PureComponent {
     const { orderDetails, transformLocale, colors } = this.props;
     const { paymentInfo: paymentInfos, paidMessage } = orderDetails;
     const paymentInfo = paymentInfos.list[0];
-    const { template, accountInfo, memo, description } = paymentInfo;
+    const { template, accountInfo, memo, description, card4no } = paymentInfo;
 
     const paymentMemoData = memo ? memo[0][template] : {};
 
@@ -180,6 +186,7 @@ export default class MemberOrderDetails extends React.PureComponent {
     const ezpayPaymentType =
       accountInfo && accountInfo[template].ezpayPaymentType;
     const GMOContractCode = accountInfo && accountInfo[template].contractCode;
+    const GMOPaymentType = accountInfo && accountInfo[template].paymentType;
 
     let paymentDescription = [];
 
@@ -229,7 +236,10 @@ export default class MemberOrderDetails extends React.PureComponent {
                 </span>
               </>
             ),
-            description && <hr key="0" style={styles.hr(colors)} />,
+            allpayChoosePayment === 'Credit' && (
+              <span>{transformLocale(LOCALE.CARD_NO) + (card4no || '')}</span>
+            ),
+            description && <hr key="payment" style={styles.hr(colors)} />,
           ]);
         }
         break;
@@ -248,7 +258,10 @@ export default class MemberOrderDetails extends React.PureComponent {
                 </span>
               </>
             ),
-            description && <hr key="1" style={styles.hr(colors)} />,
+            ezpayPaymentType === 'Credit' && (
+              <span>{transformLocale(LOCALE.CARD_NO) + (card4no || '')}</span>
+            ),
+            description && <hr key="payment" style={styles.hr(colors)} />,
           ]);
         }
         break;
@@ -258,9 +271,18 @@ export default class MemberOrderDetails extends React.PureComponent {
             <span key="GMO">
               {transformLocale(LOCALE.GMO_STORE_CODE) + GMOContractCode}
             </span>,
-            description && <hr key="2" style={styles.hr(colors)} />,
+            GMOPaymentType === 'Credit' && (
+              <span>{transformLocale(LOCALE.CARD_NO) + (card4no || '')}</span>
+            ),
+            description && <hr key="payment" style={styles.hr(colors)} />,
           ]);
         }
+        break;
+      case 'hitrust':
+        paymentDescription = paymentDescription.concat([
+          <span>{transformLocale(LOCALE.CARD_NO) + (card4no || '')}</span>,
+          description && <hr key="payment" style={styles.hr(colors)} />,
+        ]);
         break;
       default:
         break;
@@ -271,7 +293,7 @@ export default class MemberOrderDetails extends React.PureComponent {
         ...paidMessage[paidMessage.length - 1].note
           .split('\n')
           .map(i => <span key={i}>{i}</span>),
-        description && <hr key="3" style={styles.hr(colors)} />,
+        description && <hr key="description" style={styles.hr(colors)} />,
       ]);
     }
     if (description) {
@@ -365,53 +387,82 @@ export default class MemberOrderDetails extends React.PureComponent {
   generateInvoiceInfo = () => {
     const { orderDetails, transformLocale, colors } = this.props;
 
-    const { invoiceInfo } = orderDetails;
+    const { invoices } = orderDetails;
 
-    if (!invoiceInfo) return null;
+    // return if no invoice
+    if (!Array.isArray(invoices) || !invoices.length) return null;
 
-    const { invoiceType } = invoiceInfo;
+    const {
+      type,
+      method,
+      carrier,
+      code: number,
+      issuedAt,
+      status,
+      title,
+      ban,
+      address,
+      loveCode,
+    } = invoices[invoices.length - 1];
+    const { type: carrierType, code } = carrier || {};
 
-    if (!invoiceType) return null;
+    const isInvalid = status === 'INVALID';
+    const date = issuedAt
+      ? moment.unix(issuedAt).format('YYYY/MM/DD HH:mm:ss')
+      : transformLocale(LOCALE.INVOICE_WAITING);
 
     let description;
 
-    switch (invoiceType) {
-      case 2:
+    const NumberInfo = (
+      <>
+        <span>
+          {transformLocale(LOCALE.INVOICE_NUMBER) +
+            (isInvalid
+              ? transformLocale(LOCALE.INVOICE_INVALID)
+              : number || transformLocale(LOCALE.INVOICE_WAITING))}
+        </span>
+        <span>
+          {transformLocale(LOCALE.INVOICE_DATE) +
+            (isInvalid ? transformLocale(LOCALE.INVOICE_INVALID) : date)}
+        </span>
+      </>
+    );
+
+    switch (method) {
+      case 'DUPLICATE':
+        description = (
+          <div style={styles.blockDescription(colors)}>{NumberInfo}</div>
+        );
+        break;
+      case 'TRIPLICATE':
         description = (
           <div style={styles.blockDescription(colors)}>
-            <span>{invoiceInfo.invoiceTitle}</span>
-            <span>{invoiceInfo.invoiceVAT}</span>
-            <span>{invoiceInfo.streetAddress}</span>
+            <span>{title}</span>
+            <span>{ban}</span>
+            <span>{address}</span>
+            {NumberInfo}
           </div>
         );
         break;
-      case 3:
+      case 'CARRIER':
         description = (
           <div style={styles.blockDescription(colors)}>
-            <span>
-              {transformLocale(LOCALE.VEHICLE(invoiceInfo.vehicleType))}
-            </span>
-            {invoiceInfo.vehicleType === 2 && (
-              <span>{invoiceInfo.mobileBarcode}</span>
-            )}
-            {invoiceInfo.vehicleType === 3 && (
-              <span>{invoiceInfo.citizenDigitalCertificate}</span>
-            )}
+            {!code || transformLocale(LOCALE.BAR_CODE) + code}
+            {NumberInfo}
           </div>
         );
         break;
-      case 4:
+      case 'DONATION':
         description = (
           <div style={styles.blockDescription(colors)}>
-            <span>
-              {transformLocale(LOCALE.DONATE_CODE) + invoiceInfo.donateUnit}
-            </span>
+            <span>{transformLocale(LOCALE.LOVE_CODE) + loveCode}</span>
           </div>
         );
         break;
       default:
         description = null;
     }
+
     return (
       <div style={styles.block}>
         <div style={styles.blockTitle}>
@@ -419,7 +470,11 @@ export default class MemberOrderDetails extends React.PureComponent {
         </div>
         <div>
           <span style={styles.blockStatus(colors)}>
-            {transformLocale(LOCALE.INVOICE(invoiceType))}
+            {`${transformLocale(LOCALE.INVOICE_TYPE(type))}／${
+              method === 'CARRIER'
+                ? transformLocale(LOCALE.INVOICE_CARRIER(carrierType))
+                : transformLocale(LOCALE.INVOICE_METHOD(type, method))
+            }`}
           </span>
         </div>
         {description}
@@ -499,7 +554,21 @@ export default class MemberOrderDetails extends React.PureComponent {
               {priceInfo.paymentFee ? (
                 <div style={styles.sheetItem}>
                   <div>{transformLocale(LOCALE.PAYMENT_FEE)}</div>
-                  <div>{transformCurrency(priceInfo.paymentFee)}</div>
+                  <div>
+                    {`${
+                      priceInfo.paymentFee < 0 ? '-' : ''
+                    } ${transformCurrency(Math.abs(priceInfo.paymentFee))}`}
+                  </div>
+                </div>
+              ) : null}
+              {priceInfo.adjust ? (
+                <div style={styles.sheetItem}>
+                  <div>{transformLocale(LOCALE.ADJUST)}</div>
+                  <div>
+                    {`${priceInfo.adjust < 0 ? '-' : '+'} ${transformCurrency(
+                      Math.abs(priceInfo.adjust),
+                    )}`}
+                  </div>
                 </div>
               ) : null}
               <div style={[styles.sheetItem, styles.total]}>

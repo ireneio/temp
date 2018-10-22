@@ -1,4 +1,4 @@
-import invariant from 'invariant';
+import { warning } from 'fbjs';
 
 export const TITLE = {
   zh_TW: '訂單明細',
@@ -18,7 +18,7 @@ export const ORDER_NO = {
 
 export const CREATED_ON = {
   zh_TW: '訂購日：',
-  en_US: 'Order Date:',
+  en_US: 'Order Date: ',
   ja_JP: '注文日：',
   vi_VN: 'Ngày đặt hàng: ',
   TODO_LOCALE: true,
@@ -121,6 +121,14 @@ export const PAYMENT_FEE = {
   en_US: 'Processing Fee',
   ja_JP: '決済手数料',
   vi_VN: 'Phí giao dịch',
+  TODO_LOCALE: true,
+};
+
+export const ADJUST = {
+  zh_TW: '訂單變更',
+  en_US: '',
+  ja_JP: '',
+  vi_VN: '',
   TODO_LOCALE: true,
 };
 
@@ -249,7 +257,7 @@ export const PAYMENT = value => {
         TODO_LOCALE: true,
       };
     default:
-      invariant(
+      warning(
         process.env.NODE_ENV === 'production',
         `No corresponding [paymentInfo.status] ${value}!`,
       );
@@ -316,7 +324,7 @@ export const SHIPMENT = value => {
         TODO_LOCALE: true,
       };
     default:
-      invariant(
+      warning(
         process.env.NODE_ENV === 'production',
         `No corresponding [shipmentInfo.status] ${value}!`,
       );
@@ -359,7 +367,7 @@ export const STATUS = value => {
         TODO_LOCALE: true,
       };
     default:
-      invariant(
+      warning(
         process.env.NODE_ENV === 'production',
         `No corresponding [order.status] ${value}!`,
       );
@@ -367,25 +375,25 @@ export const STATUS = value => {
   }
 };
 
-export const INVOICE = value => {
+export const INVOICE_TYPE = value => {
   switch (value) {
-    case 1:
+    case 'PAPER':
       return {
-        zh_TW: '二聯式發票',
-        en_US: 'Duplicate Uniform Invoice',
-        ja_JP: '二連式発票',
-        vi_VN: 'Hóa đơn liên 2',
+        zh_TW: '紙本發票',
+        en_US: '',
+        ja_JP: '',
+        vi_VN: '',
         TODO_LOCALE: true,
       };
-    case 2:
+    case 'MANUL_ELECTRONIC':
       return {
-        zh_TW: '三聯式發票',
-        en_US: 'Triplicate Uniform Invoice',
-        ja_JP: '三連式発票',
-        vi_VN: 'Hóa đơn liên 3',
+        zh_TW: '電子發票',
+        en_US: 'e-Invoice',
+        ja_JP: '電子発票',
+        vi_VN: 'hóa đơn điện tử',
         TODO_LOCALE: true,
       };
-    case 3:
+    case 'ECPAY_ELECTRONIC':
       return {
         zh_TW: '電子發票',
         en_US: 'e-Invoice',
@@ -393,7 +401,43 @@ export const INVOICE = value => {
         vi_VN: 'Hóa đơn điện tử',
         TODO_LOCALE: true,
       };
-    case 4:
+    default:
+      warning(
+        process.env.NODE_ENV === 'production',
+        `No corresponding [order.invoice.type] ${value}!`,
+      );
+      return {};
+  }
+};
+
+export const INVOICE_METHOD = (type, method) => {
+  switch (method) {
+    case 'DUPLICATE':
+      return {
+        zh_TW: '二聯式發票',
+        en_US: 'Duplicate Uniform Invoice',
+        ja_JP: '二連式発票',
+        vi_VN: 'hóa đơn liên 2',
+        TODO_LOCALE: true,
+      };
+    case 'TRIPLICATE':
+      if (type === 'PAPER') {
+        return {
+          zh_TW: '三聯式發票',
+          en_US: 'Triplicate Uniform Invoice',
+          ja_JP: '三連式発票',
+          vi_VN: 'hóa đơn liên 3',
+          TODO_LOCALE: true,
+        };
+      }
+      return {
+        zh_TW: '公司戶',
+        en_US: '',
+        ja_JP: '',
+        vi_VN: '',
+        TODO_LOCALE: true,
+      };
+    case 'DONATION':
       return {
         zh_TW: '捐贈',
         en_US: 'Donate',
@@ -402,17 +446,17 @@ export const INVOICE = value => {
         TODO_LOCALE: true,
       };
     default:
-      invariant(
+      warning(
         process.env.NODE_ENV === 'production',
-        `No corresponding [order.invoiceInfo.invoiceType] ${value}!`,
+        `No corresponding [order.invoice.method] ${method}!`,
       );
       return {};
   }
 };
 
-export const VEHICLE = value => {
+export const INVOICE_CARRIER = value => {
   switch (value) {
-    case 1:
+    case 'MEMBERSHIP':
       return {
         zh_TW: '會員載具',
         en_US: 'Membership Carrier',
@@ -420,7 +464,7 @@ export const VEHICLE = value => {
         vi_VN: 'Phương tiện hội viên',
         TODO_LOCALE: true,
       };
-    case 2:
+    case 'MOBILE_BARCODE':
       return {
         zh_TW: '手機條碼載具',
         en_US: 'Mobile Barcode',
@@ -428,7 +472,7 @@ export const VEHICLE = value => {
         vi_VN: 'Phương tiện mã vạch di động',
         TODO_LOCALE: true,
       };
-    case 3:
+    case 'CITIZEN_DIGITAL_CERTIFICATE':
       return {
         zh_TW: '自然人憑證載具',
         en_US: 'NPC Barcode',
@@ -437,9 +481,9 @@ export const VEHICLE = value => {
         TODO_LOCALE: true,
       };
     default:
-      invariant(
+      warning(
         process.env.NODE_ENV === 'production',
-        `No corresponding [order.invoiceInfo.invoiceType] ${value}!`,
+        `No corresponding [order.invoice.carrier.type] ${value}!`,
       );
       return {};
   }
@@ -447,25 +491,25 @@ export const VEHICLE = value => {
 
 export const SHIPMENT_NUMBER = {
   zh_TW: '物流編號：',
-  en_US: 'Tracking Number',
-  ja_JP: '送り状番号',
-  vi_VN: 'Mã số Vận Chuyển',
+  en_US: 'Tracking Number: ',
+  ja_JP: '送り状番号：',
+  vi_VN: 'Mã số Vận Chuyển: ',
   TODO_LOCALE: true,
 };
 
 export const RECEIVER_STORE_NAME = {
   zh_TW: '門市名稱：',
-  en_US: 'Store Name',
-  ja_JP: 'ショップ名',
-  vi_VN: 'Tên cửa hàng',
+  en_US: 'Store Name: ',
+  ja_JP: 'ショップ名：',
+  vi_VN: 'Tên cửa hàng: ',
   TODO_LOCALE: true,
 };
 
 export const RECEIVER_STORE_ADDRESS = {
   zh_TW: '門市地址：',
-  en_US: 'Store Address',
-  ja_JP: 'ショップ住所',
-  vi_VN: 'Địa chỉ cửa hàng',
+  en_US: 'Store Address: ',
+  ja_JP: 'ショップ住所：',
+  vi_VN: 'Địa chỉ cửa hàng: ',
   TODO_LOCALE: true,
 };
 
@@ -479,49 +523,49 @@ export const SHIPMENT_LINK = {
 
 export const BANK_CODE = {
   zh_TW: '繳費銀行代碼：',
-  en_US: 'Bank Code',
-  ja_JP: '支払金融機関コード',
-  vi_VN: 'Mã ngân hàng để thanh toán',
+  en_US: 'Bank Code: ',
+  ja_JP: '支払金融機関コード：',
+  vi_VN: 'Mã ngân hàng để thanh toán: ',
   TODO_LOCALE: true,
 };
 
 export const VIRTUAL_ACCOUNT = {
   zh_TW: '繳費虛擬帳號：',
-  en_US: 'Virtual Account Number',
-  ja_JP: '支払バーチャル口座',
-  vi_VN: 'Tài khoản ảo để thanh toán',
+  en_US: 'Virtual Account Number: ',
+  ja_JP: '支払バーチャル口座：',
+  vi_VN: 'Tài khoản ảo để thanh toán: ',
   TODO_LOCALE: true,
 };
 
 export const EXPIRE_DATE = {
   zh_TW: '繳費截止日期：',
-  en_US: 'Due Date',
-  ja_JP: '支払期限',
-  vi_VN: 'Hạn chót thanh toán',
+  en_US: 'Due Date: ',
+  ja_JP: '支払期限：',
+  vi_VN: 'Hạn chót thanh toán: ',
   TODO_LOCALE: true,
 };
 
 export const CVS_PAYMENT_NO = {
   zh_TW: '超商繳費代碼：',
-  en_US: 'Convenient Store Payment Number',
-  ja_JP: 'コンビニ支払コード',
-  vi_VN: 'Mã số thanh toán tại cửa hàng tiện lợi',
+  en_US: 'Convenient Store Payment Number: ',
+  ja_JP: 'コンビニ支払コード：',
+  vi_VN: 'Mã số thanh toán tại cửa hàng tiện lợi: ',
   TODO_LOCALE: true,
 };
 
 export const BARCODE = {
   zh_TW: '超商繳費條碼：',
-  en_US: 'Convenient Store Payment Barcode',
-  ja_JP: 'コンビニ支払バーコード',
-  vi_VN: 'Mã vạch thanh toán tại cửa hàng tiện lợi',
+  en_US: 'Convenient Store Payment Barcode: ',
+  ja_JP: 'コンビニ支払バーコード：',
+  vi_VN: 'Mã vạch thanh toán tại cửa hàng tiện lợi: ',
   TODO_LOCALE: true,
 };
 
 export const GMO_STORE_CODE = {
   zh_TW: 'GMO 商店代碼：',
-  en_US: 'GMO Store Code',
-  ja_JP: 'GMOショップコード',
-  vi_VN: 'Mã cửa hàng GMO',
+  en_US: 'GMO Store Code: ',
+  ja_JP: 'GMOショップコード：',
+  vi_VN: 'Mã cửa hàng GMO: ',
   TODO_LOCALE: true,
 };
 
@@ -533,10 +577,58 @@ export const FREE_SHIPMENT_FEE = {
   TODO_LOCALE: true,
 };
 
-export const DONATE_CODE = {
-  zh_TW: '捐贈愛心碼：',
-  en_US: 'NPO Donation Code',
-  ja_JP: '寄付コード',
-  vi_VN: 'Đóng góp mã tình yêu',
+export const LOVE_CODE = {
+  zh_TW: '愛心碼：',
+  en_US: 'NPO Donation Code: ',
+  ja_JP: '寄付コード：',
+  vi_VN: 'Đóng góp mã tình yêu: ',
+  TODO_LOCALE: true,
+};
+
+export const BAR_CODE = {
+  zh_TW: '條碼號碼：',
+  en_US: ': ',
+  ja_JP: '：',
+  vi_VN: ': ',
+  TODO_LOCALE: true,
+};
+
+export const INVOICE_NUMBER = {
+  zh_TW: '發票號碼：',
+  en_US: ': ',
+  ja_JP: '：',
+  vi_VN: ': ',
+  TODO_LOCALE: true,
+};
+
+export const INVOICE_DATE = {
+  zh_TW: '開立時間：',
+  en_US: ': ',
+  ja_JP: '：',
+  vi_VN: ': ',
+  TODO_LOCALE: true,
+};
+
+export const INVOICE_WAITING = {
+  zh_TW: '尚未開立',
+  en_US: '',
+  ja_JP: '',
+  vi_VN: '',
+  TODO_LOCALE: true,
+};
+
+export const INVOICE_INVALID = {
+  zh_TW: '已作廢',
+  en_US: '',
+  ja_JP: '',
+  vi_VN: '',
+  TODO_LOCALE: true,
+};
+
+export const CARD_NO = {
+  zh_TW: '信用卡號末四碼：',
+  en_US: ': ',
+  ja_JP: '：',
+  vi_VN: ': ',
   TODO_LOCALE: true,
 };
