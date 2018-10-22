@@ -1,3 +1,16 @@
+## 0.5.1 (2018-10-22)
+
+#### :boom: Breaking Change
+* `meep-ui`, `store`
+  * [#130](https://github.com/meepshop/meep-lerna/pull/130) 電子發票串接 - 綠界科技(107) ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+* `meep-ui`, `store`
+  * [#130](https://github.com/meepshop/meep-lerna/pull/130) 電子發票串接 - 綠界科技(107) ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.4.7 (2018-10-18)
 
 #### :bug: Bug Fix
