@@ -1,4 +1,4 @@
-## 0.5.1 (2018-10-22)
+## 0.5.2 (2018-10-22)
 
 #### :boom: Breaking Change
 * `meep-ui`, `store`
