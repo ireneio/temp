@@ -99,6 +99,20 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+
+      - run:
+          name: Install packages
+          command: npm run install:all
+      - run:
+          name: Build prod
+          command: npm run prod
+      - setup_remote_docker
+      - run: *deploy-docker
+
+  deploy-test-branch:
+    <<: *defaults
+    steps:
+      - checkout
       - run: ./.circleci/bin/makePkg.sh
       - restore_cache: *restore-cache
       - restore_cache: *restore-prod-cache
@@ -143,7 +157,7 @@ workflows:
             tags:
               only: /.*/
 
-      - deploy-test:
+      - deploy-test-branch:
           context: org-global
           requires:
             - lint-and-test
