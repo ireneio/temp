@@ -167,7 +167,7 @@ class Container extends React.Component {
                   case 200: {
                     getAuth();
                     if (from === 'cart') {
-                      Utils.goTo({ pathname: 'checkout' });
+                      Utils.goTo({ pathname: '/checkout' });
                     } else if (window.storePreviousPageUrl) {
                       Utils.goTo({ pathname: window.storePreviousPageUrl });
                     } else {
