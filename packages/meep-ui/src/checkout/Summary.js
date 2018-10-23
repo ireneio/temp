@@ -270,7 +270,7 @@ export default class Summary extends React.PureComponent {
     const { id, orderNo, error, formData } =
       result?.data?.createOrderList?.[0] || {};
 
-    if (!id) {
+    if (error || !id) {
       notification.error({
         message: transformLocale(LOCALE.PAY_FILE),
         description: error || '',
