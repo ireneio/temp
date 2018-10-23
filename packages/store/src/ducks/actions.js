@@ -1,6 +1,6 @@
 import { getPages, getPagesSuccess, getPagesFailure } from './widgets/pages';
 
-import { showLoadingStatus } from './widgets/loading';
+import { showLoadingStatus, hideLoadingStatus } from './widgets/loading';
 
 import {
   getStoreSuccess,
@@ -167,4 +167,5 @@ export {
   serverOthersInitial,
   // loading status
   showLoadingStatus,
+  hideLoadingStatus,
 };

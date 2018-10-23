@@ -215,6 +215,7 @@ class Container extends React.Component {
                 alert(
                   'The person is not logged into this app or we are unable to tell. ',
                 ); /* eslint-enable no-alert */
+                dispatchAction('hideLoadingStatus');
               }
             },
             { scope: 'public_profile,email' },
