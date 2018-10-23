@@ -1,3 +1,20 @@
+## 0.5.4 (2018-10-23)
+
+#### :rocket: New Feature
+* `meep-ui`
+  * [#214](https://github.com/meepshop/meep-lerna/pull/214) 結帳頁面流程調整:  第三頁拿掉 (2022) ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+* Other
+  * [#280](https://github.com/meepshop/meep-lerna/pull/280) Fix deploy test ([@HsuTing](https://github.com/HsuTing))
+* `store`
+  * [#281](https://github.com/meepshop/meep-lerna/pull/281) 前往結帳，於 panel FB 登入，出現 404 畫面 (N198) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 3
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.5.3 (2018-10-23)
 
 #### :rocket: New Feature
