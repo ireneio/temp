@@ -16,8 +16,10 @@ export const root = colors => ({
 
 export const buttonRoot = {
   minWidth: '150px',
+  marginLeft: '100px',
   [PHONE_MEDIA]: {
     width: '100%',
+    marginLeft: 0,
   },
 };
 

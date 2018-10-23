@@ -181,10 +181,26 @@ export const SAVE_AS_RECEIVER_TEMPLATE = {
   TODO_LOCALE: true,
 };
 
-export const NEXT = {
-  zh_TW: '下一步',
-  en_US: 'Next',
-  ja_JP: '次へ',
-  vi_VN: 'Sau',
+export const CONFIRM = {
+  zh_TW: '確認送出',
+  en_US: 'Place Order',
+  ja_JP: '確認して送信',
+  vi_VN: 'xác nhận giao hàng',
+  TODO_LOCALE: true,
+};
+
+export const PAY_LATER = {
+  zh_TW: '稍後付款',
+  en_US: 'Pay Later',
+  ja_JP: '後で支払う',
+  vi_VN: 'trả sau',
+  TODO_LOCALE: true,
+};
+
+export const PAY_NOW = {
+  zh_TW: '立即付款',
+  en_US: 'Pay Now',
+  ja_JP: '今すぐ支払う',
+  vi_VN: 'trả tiền ngay',
   TODO_LOCALE: true,
 };

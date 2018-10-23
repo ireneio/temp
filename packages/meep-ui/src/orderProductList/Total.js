@@ -16,7 +16,11 @@ export default class Total extends React.PureComponent {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
 
     /** props */
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
+  };
+
+  static defaultProps = {
+    children: null,
   };
 
   render() {
@@ -26,11 +30,13 @@ export default class Total extends React.PureComponent {
       <div style={styles.root(colors)}>
         <OrderShowTotal {...props} />
 
-        <div style={styles.buttonRoot}>
-          {React.cloneElement(children, {
-            style: { ...styles.button(colors), ...children.props.style },
-          })}
-        </div>
+        {!children ? null : (
+          <div style={styles.buttonRoot}>
+            {React.cloneElement(children, {
+              style: { ...styles.button(colors), ...children.props.style },
+            })}
+          </div>
+        )}
       </div>
     );
   }

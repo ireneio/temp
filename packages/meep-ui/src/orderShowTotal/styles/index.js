@@ -1,8 +1,7 @@
 import { PHONE_MEDIA } from 'constants/media';
 
 export const root = {
-  minWidth: '250px',
-  maxWidth: '320px',
+  width: '100%',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   [PHONE_MEDIA]: {

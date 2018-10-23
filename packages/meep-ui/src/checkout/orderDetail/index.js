@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { Form, InputNumber, Button, Modal } from 'antd';
 import uuid from 'uuid';
-import {
-  chevronLeft as ChevronLeftIcon,
-  chevronRight as ChevronRightIcon,
-} from 'react-icons/md';
+import { chevronLeft as ChevronLeftIcon } from 'react-icons/md';
 import transformColor from 'color';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -57,6 +54,8 @@ const { Item: FormItem } = Form;
 export default class OrderDetail extends React.PureComponent {
   isEmptyCart = false;
 
+  isPayment = true;
+
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -74,6 +73,7 @@ export default class OrderDetail extends React.PureComponent {
     isSaveAsReceiverTemplate: PropTypes.bool,
     form: PropTypes.shape({}).isRequired,
     goToInCheckout: PropTypes.func.isRequired,
+    isSubmitting: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
@@ -250,7 +250,7 @@ export default class OrderDetail extends React.PureComponent {
       },
       (err, data) => {
         if (!err) {
-          goToInCheckout(data, {
+          goToInCheckout(this.isPayment, data, {
             priceInfo,
             activityInfo,
             paymentList,
@@ -276,6 +276,7 @@ export default class OrderDetail extends React.PureComponent {
       goTo,
       form,
       countries,
+      isSubmitting,
     } = this.props;
     const {
       showDetail,
@@ -290,7 +291,12 @@ export default class OrderDetail extends React.PureComponent {
     } = this.state;
 
     const { storeName } = storeSetting;
-    const { getFieldDecorator, getFieldValue, validateFieldsAndScroll } = form;
+    const {
+      getFieldDecorator,
+      getFieldsError,
+      getFieldValue,
+      validateFieldsAndScroll,
+    } = form;
     const {
       total,
       paymentList,
@@ -301,6 +307,7 @@ export default class OrderDetail extends React.PureComponent {
       activityInfo,
       priceInfo,
     } = computeOrderData;
+    const { paymentLater } = choosePayment || {};
 
     return (
       <StyleRoot className={styles.root} style={{ background: colors[0] }}>
@@ -308,25 +315,6 @@ export default class OrderDetail extends React.PureComponent {
           scopeSelector={`.${styles.root}`}
           rules={modifyAntdStyle(colors)}
         />
-
-        <div
-          className={styles.phoneSizeHeader}
-          style={{ background: colors[4] }}
-        >
-          <div
-            className={styles.headerButton}
-            onClick={() => goTo({ back: true })}
-          >
-            <ChevronLeftIcon className={styles.headerIcon} />
-
-            {transformLocale(LOCALE.CONTINUE_SHOPPING)}
-          </div>
-
-          <div className={styles.headerButton} onClick={this.submit}>
-            {transformLocale(LOCALE.NEXT)}
-            <ChevronRightIcon className={styles.headerIcon} />
-          </div>
-        </div>
 
         <Form className={styles.fields} onSubmit={this.submit}>
           <div className={styles.wrapper}>
@@ -432,21 +420,69 @@ export default class OrderDetail extends React.PureComponent {
             />
 
             <div className={styles.formItem}>
-              <div className={styles.submitButtonRoot}>
-                <Button
-                  className={styles.submitButton}
-                  style={{
-                    color: colors[2],
-                    borderColor: colors[4],
-                    background: colors[4],
-                  }}
-                  type="primary"
-                  htmlType="submit"
-                  loading={isChecking}
-                  onClick={() => validateFieldsAndScroll()}
+              <div className={styles.buttonRoot}>
+                <div
+                  className={styles.continueShopping}
+                  style={{ color: colors[3] }}
+                  onClick={() => goTo({ back: true })}
                 >
-                  {transformLocale(LOCALE.NEXT)}
-                </Button>
+                  <ChevronLeftIcon className={styles.continueShoppingIcon} />
+                  {transformLocale(LOCALE.CONTINUE_SHOPPING)}
+                </div>
+
+                <div className={styles.submitButtonRoot}>
+                  {!paymentLater ? null : (
+                    <Button
+                      className={styles.paymentLaterButton}
+                      style={{
+                        color: colors[2],
+                        backgroundColor: colors[1],
+                        borderColor: colors[1],
+                      }}
+                      htmlType="submit"
+                      loading={isChecking || isSubmitting}
+                      disabled={
+                        productHasError ||
+                        (fieldsError =>
+                          Object.keys(fieldsError).some(
+                            field => fieldsError[field],
+                          ))(getFieldsError())
+                      }
+                      onClick={() => {
+                        this.isPayment = false;
+                        validateFieldsAndScroll();
+                      }}
+                    >
+                      {transformLocale`${LOCALE.CONFIRM}: ${LOCALE.PAY_LATER}`}
+                    </Button>
+                  )}
+
+                  <Button
+                    className={styles.submitButton}
+                    style={{
+                      color: colors[2],
+                      backgroundColor: colors[4],
+                      borderColor: colors[4],
+                    }}
+                    htmlType="submit"
+                    loading={isChecking || isSubmitting}
+                    disabled={
+                      productHasError ||
+                      (fieldsError =>
+                        Object.keys(fieldsError).some(
+                          field => fieldsError[field],
+                        ))(getFieldsError())
+                    }
+                    onClick={() => {
+                      this.isPayment = true;
+                      validateFieldsAndScroll();
+                    }}
+                  >
+                    {paymentLater
+                      ? transformLocale`${LOCALE.CONFIRM}: ${LOCALE.PAY_NOW}`
+                      : transformLocale(LOCALE.CONFIRM)}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

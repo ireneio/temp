@@ -32,7 +32,7 @@ export default class OrderProductList extends React.PureComponent {
     priceInfo: PropTypes.shape({}),
     isChoosenSipment: PropTypes.bool,
     productHasError: PropTypes.bool.isRequired,
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
   };
 
   static defaultProps = {
@@ -42,6 +42,7 @@ export default class OrderProductList extends React.PureComponent {
     priceInfo: {},
     activityInfo: null,
     isChoosenSipment: false,
+    children: null,
   };
 
   render() {
@@ -64,13 +65,13 @@ export default class OrderProductList extends React.PureComponent {
           style={styles.productList(products.length === 0)}
         >
           {products.length === 0 ? (
-            <React.Fragment>
+            <>
               <EmptyCartIcon />
 
               <p style={styles.emptyCartText}>
                 {transformLocale(LOCALE.EMPTY_CART)}
               </p>
-            </React.Fragment>
+            </>
           ) : (
             <table style={styles.table}>
               <tbody>

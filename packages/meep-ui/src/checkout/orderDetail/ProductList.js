@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
-import { Button } from 'antd';
 import { close as CloseIcon } from 'react-icons/md';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -11,7 +10,6 @@ import { loadAnimation } from 'utils/addAnimation';
 
 import OrderProductList from 'orderProductList';
 
-import * as LOCALE from './locale';
 import * as styles from './styles/productList';
 
 @enhancer
@@ -22,8 +20,6 @@ export default class ProductList extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired,
-    goTo: PropTypes.func.isRequired,
 
     /** props */
     activityInfo: PropTypes.arrayOf(PropTypes.shape({})),
@@ -71,8 +67,6 @@ export default class ProductList extends React.PureComponent {
   render() {
     const {
       colors,
-      transformLocale,
-      goTo,
       showDetail,
       products,
       activityInfo,
@@ -107,11 +101,7 @@ export default class ProductList extends React.PureComponent {
           productHasError={productHasError}
           isChoosenSipment={isChoosenSipment}
           onChange={this.updateProducts}
-        >
-          <Button type="primary" onClick={() => goTo({ back: true })}>
-            {transformLocale(LOCALE.CONTINUE_SHOPPING)}
-          </Button>
-        </OrderProductList>
+        />
       </StyleRoot>
     );
   }
