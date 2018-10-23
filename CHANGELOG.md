@@ -1,3 +1,24 @@
+## 0.5.3 (2018-10-23)
+
+#### :rocket: New Feature
+* `store`
+  * [#277](https://github.com/meepshop/meep-lerna/pull/277) 優化HTML語言lang attribute (N171) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#263](https://github.com/meepshop/meep-lerna/pull/263) 首次購物，使用已達限定次數優惠碼，資料同步異常(N183) ([@HsuTing](https://github.com/HsuTing))
+  * [#276](https://github.com/meepshop/meep-lerna/pull/276) 圖片文字：標題 / 敘述 / 按鈕文字大小與後台顯示結果不同(N188) ([@HsuTing](https://github.com/HsuTing))
+* `store`
+  * [#275](https://github.com/meepshop/meep-lerna/pull/275) 商店設定連接 Facebook Store，於 FB 粉絲頁出現 “OK”(N184) ([@HsuTing](https://github.com/HsuTing))
+  * [#278](https://github.com/meepshop/meep-lerna/pull/278) FB Login: Hide loading status after cancel in fb login (N173) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :house: Internal
+* [#279](https://github.com/meepshop/meep-lerna/pull/279) Modify circleci to deploy test ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.5.2 (2018-10-22)
 
 #### :boom: Breaking Change
