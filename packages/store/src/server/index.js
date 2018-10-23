@@ -87,6 +87,13 @@ module.exports = app.prepare().then(
         ctx.redirect(ctx.request.href);
       });
 
+      // For facebook fan page connect
+      router.post('/', async (ctx, next) => {
+        await handle(ctx.req, ctx.res);
+        ctx.respond = false;
+        await next();
+      });
+
       router.get('*', async (ctx, next) => {
         await handle(ctx.req, ctx.res);
         ctx.respond = false;
