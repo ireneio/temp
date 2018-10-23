@@ -1,8 +1,10 @@
 #!/bin/bash
 
+VERSION=${CIRCLE_TAG:=${TEST_VERSION:=$CIRCLE_BRANCH}}
+
 # check need publish
 if [ $(node ../../.circleci/bin/checkNeedPublish.js) != true ]; then
-  echo "not need to publish: ${1}"
+  echo "not need to publish: $VERSION"
   exit
 fi
 
@@ -15,13 +17,13 @@ fi
 dependencies=$(node ../../.circleci/bin/addOtherDependencies.js)
 
 # replace Dockerfile version with git commit sha
-sed -i "s/{{ build.tag }}/${1}/" "$(pwd)/Dockerfile"
+sed -i "s/{{ build.tag }}/$VERSION/" "$(pwd)/Dockerfile"
 # replace Dockerfile dependencies
 sed -i "s/{{ dependencies }}/${dependencies}/" "$(pwd)/Dockerfile"
 
 docker build -t asia.gcr.io/instant-matter-785/next-store:latest -f $(pwd)/Dockerfile ..
 docker tag asia.gcr.io/instant-matter-785/next-store:latest \
-  asia.gcr.io/instant-matter-785/next-store:$1
+  asia.gcr.io/instant-matter-785/next-store:$VERSION
 docker login -u _json_key -p "$GCLOUD_SERVICE_KEY" https://asia.gcr.io
 docker push asia.gcr.io/instant-matter-785/next-store:latest
-docker push asia.gcr.io/instant-matter-785/next-store:$1
+docker push asia.gcr.io/instant-matter-785/next-store:$VERSION

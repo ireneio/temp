@@ -16,6 +16,34 @@ save-cache: &save-cache
     - packages/store/node_modules
     - packages/test-prod-server/node_modules
 
+restore-prod-cache: &restore-prod-cache
+  keys:
+    - prod-{{ .Environment.CIRCLE_SHA1 }}
+
+save-prod-cache: &save-prod-cache
+  key: prod-{{ .Environment.CIRCLE_SHA1 }}
+  paths:
+    - packages/meep-ui/lib
+    - packages/store/src/.next
+    - packages/store/lib
+
+deploy-docker: &deploy-docker
+  name: Deploy docker
+  command: |
+    cp -r ./patches ./packages/patches
+    npm run lerna -- exec \
+      "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/build_docker.sh" \
+      --parallel \
+      --stream \
+      --ignore @meepshop/meep-ui \
+      --ignore @meepshop/test-*
+    npm run lerna -- exec \
+      "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/deploy_k8s.sh" \
+      --parallel \
+      --stream \
+      --ignore @meepshop/meep-ui \
+      --ignore @meepshop/test-*
+
 jobs:
   install:
     <<: *defaults
@@ -65,19 +93,7 @@ jobs:
               --scope @meepshop/test-prod-server \
               --stream
 
-      - save_cache:
-          key: prod-{{ .Environment.CIRCLE_TAG }}
-          paths:
-            - packages/meep-ui/lib
-            - packages/store/src/.next
-            - packages/store/lib
-
-      - save_cache:
-          key: prod-{{ .Environment.CIRCLE_BRANCH }}
-          paths:
-            - packages/meep-ui/lib
-            - packages/store/src/.next
-            - packages/store/lib
+      - save_cache: *save-prod-cache
 
   deploy-test:
     <<: *defaults
@@ -85,27 +101,10 @@ jobs:
       - checkout
       - run: ./.circleci/bin/makePkg.sh
       - restore_cache: *restore-cache
-      - restore_cache:
-          keys:
-            - prod-{{ .Environment.CIRCLE_BRANCH }}
+      - restore_cache: *restore-prod-cache
 
       - setup_remote_docker
-      - run:
-          name: Deploy test docker
-          command: |
-            cp -r ./patches ./packages/patches
-            npm run lerna -- exec \
-              "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/build_docker.sh v${CIRCLE_BRANCH}" \
-              --parallel \
-              --stream \
-              --ignore @meepshop/meep-ui \
-              --ignore @meepshop/test-*
-            npm run lerna -- exec \
-              "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/deploy_k8s.sh v${CIRCLE_BRANCH}" \
-              --parallel \
-              --stream \
-              --ignore @meepshop/meep-ui \
-              --ignore @meepshop/test-*
+      - run: *deploy-docker
 
   deploy:
     <<: *defaults
@@ -113,30 +112,13 @@ jobs:
       - checkout
       - run: ./.circleci/bin/makePkg.sh
       - restore_cache: *restore-cache
-      - restore_cache:
-          keys:
-            - prod-{{ .Environment.CIRCLE_TAG }}
+      - restore_cache: *restore-prod-cache
 
       - store_artifacts:
           path: packages/meep-ui/lib
 
       - setup_remote_docker
-      - run:
-          name: Deploy docker
-          command: |
-            cp -r ./patches ./packages/patches
-            npm run lerna -- exec \
-              "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/build_docker.sh ${CIRCLE_TAG}" \
-              --parallel \
-              --stream \
-              --ignore @meepshop/meep-ui \
-              --ignore @meepshop/test-*
-            npm run lerna -- exec \
-              "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/deploy_k8s.sh ${CIRCLE_TAG}" \
-              --parallel \
-              --stream \
-              --ignore @meepshop/meep-ui \
-              --ignore @meepshop/test-*
+      - run: *deploy-docker
 
 workflows:
   version: 2

@@ -1,8 +1,10 @@
 #!/bin/bash
 
+VERSION=${CIRCLE_TAG:=${TEST_VERSION:=$CIRCLE_BRANCH}}
+
 # check need publish
 if [ $(node ../../.circleci/bin/checkNeedPublish.js) != true ]; then
-  echo "not need to publish: ${1}"
+  echo "not need to publish: $VERSION"
   exit
 fi
 
@@ -27,7 +29,7 @@ mv ./kubectl /tmp/
 /tmp/kubectl config use-context default-cluster --kubeconfig=/tmp/kubeconfig
 
 # replace deploy.yml version with git commit sha
-sed -i "s/{{ build.tag }}/${1}/" ./k8s_config/deploy.yaml
+sed -i "s/{{ build.tag }}/$VERSION/" ./k8s_config/deploy.yaml
 
 # kubernetes deploy
 /tmp/kubectl apply --force -f ./k8s_config/deploy.yaml --kubeconfig=/tmp/kubeconfig
