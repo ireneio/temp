@@ -20,10 +20,18 @@ export default class MyDocument extends Document {
     };
   }
 
+  getLang = data =>
+    (
+      data?.props?.initialState?.storeReducer?.settings?.localeOptions?.[0] ||
+      'zh-TW'
+    ).replace('_', '-');
+
   render() {
+    const { __NEXT_DATA__: storeData } = this.props;
+    const lang = this.getLang(storeData) || 'zh-TW';
     return (
       /* eslint-disable */
-      <html lang="en">
+      <html lang={lang}>
         <Head>
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <meta
