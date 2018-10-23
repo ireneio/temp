@@ -39,7 +39,7 @@ export const item = (colors, selected) => ({
 });
 
 export const overStock = {
-  fontSize: 14,
+  fontSize: '14px',
   lineHeight: '32px',
   color: '#d0021b',
   margin: '0 6px 6px 0',

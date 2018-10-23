@@ -97,30 +97,30 @@ export const overlayBackground = ({
 };
 
 export const headerStyle = (fontSize, bold) => ({
-  fontSize,
+  fontSize: `${fontSize}px`,
   fontWeight: bold ? '600' : 'normal',
   lineHeight: `${fontSize * 1.4}px`,
   letterSpacing: '1.8px',
   [PHONE_MEDIA]: {
-    fontSize: fontSize * 0.6,
+    fontSize: `${fontSize * 0.6}px`,
     lineHeight: `${fontSize * 0.6 * 1.4}px`,
   },
 });
 
 export const descriptionStyle = fontSize => ({
-  fontSize,
+  fontSize: `${fontSize}px`,
   lineHeight: `${fontSize * 1.375}px`,
   marginBottom: `${fontSize * 1.3}px`,
   letterSpacing: '0.8px',
   [PHONE_MEDIA]: {
-    fontSize: fontSize * 0.6,
+    fontSize: `${fontSize * 0.6}px`,
     lineHeight: `${fontSize * 0.6 * 1.375}px`,
     marginBottom: `${fontSize * 0.6 * 1.3}px`,
   },
 });
 
 export const buttonStyle = (fontSize, color, overlayBackgroundColor) => ({
-  fontSize,
+  fontSize: `${fontSize}px`,
   fontWeight: 300,
   letterSpacing: '1px',
   border: `1px solid ${color}`,
@@ -132,6 +132,6 @@ export const buttonStyle = (fontSize, color, overlayBackgroundColor) => ({
     color: overlayBackgroundColor,
   },
   [PHONE_MEDIA]: {
-    fontSize: fontSize * 0.7,
+    fontSize: `${fontSize * 0.7}px`,
   },
 });

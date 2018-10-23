@@ -64,7 +64,7 @@ export const content = (color, isExpandSubItem, fontSize) => ({
         cursor: 'pointer',
         whiteSpace: 'normal',
         wordBreak: 'break-all',
-        fontSize: fontSize - 2,
+        fontSize: `${fontSize - 2}px`,
         padding: `${Math.round(fontSize / 5)}px 0px`,
       }
     : {
