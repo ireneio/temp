@@ -12,12 +12,14 @@ const { version } = require(path.resolve(
 ));
 
 invariant(
-  process.env.CIRCLE_TAG || /^test-.*/.test(process.env.CIRCLE_BRANCH),
+  process.env.CIRCLE_TAG ||
+    process.env.TEST_VERSION ||
+    /^test-.*/.test(process.env.CIRCLE_BRANCH),
   `CIRCLE_TAG can not be undefined, or branch name must be \`test-\``,
 );
 
 console.log(
-  /^test-.*/.test(process.env.CIRCLE_BRANCH)
+  process.env.TEST_VERSION || /^test-.*/.test(process.env.CIRCLE_BRANCH)
     ? true
     : `v${version}` === process.env.CIRCLE_TAG,
 );
