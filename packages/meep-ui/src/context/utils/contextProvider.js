@@ -4,15 +4,14 @@ import { areEqual } from 'fbjs';
 import { STORE_SETTING_TYPE_OBJ } from '../propTypes';
 import enhancer from './enhancer';
 
-// TODO write tests to check remove is working
-const contextPropsKey = {
+export const contextPropsKey = {
   locale: ['locale', 'transformLocale'],
   location: ['location'],
   func: ['goTo'],
   storeSetting: Object.keys(STORE_SETTING_TYPE_OBJ),
 };
 
-export default originTypes => {
+export default (originTypes, useRef = false) => {
   const types = originTypes instanceof Array ? originTypes : [originTypes];
 
   return {
@@ -27,6 +26,6 @@ export default originTypes => {
 
       return newProps;
     }, areEqual),
-    enhancer: enhancer(types),
+    enhancer: enhancer(types, useRef),
   };
 };

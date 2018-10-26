@@ -5,10 +5,7 @@ module.exports = {
   setupFiles: ['./jest.setup'],
   testPathIgnorePatterns: fs
     .readdirSync(path.resolve(__dirname, './packages/meep-ui/src'))
-    .filter(
-      fileName =>
-        !['utils', 'context', 'constants', 'locale'].includes(fileName),
-    )
+    .filter(fileName => !['utils', 'constants', 'locale'].includes(fileName))
     .map(fileName => `src/${fileName}/__tests__/[a-zA-Z0-9]*.js`),
   collectCoverage: true,
   coverageDirectory: 'coverage',

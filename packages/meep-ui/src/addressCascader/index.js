@@ -1,28 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Cascader } from 'antd';
-import { areEqual } from 'fbjs';
+import { areEqual, emptyFunction } from 'fbjs';
 
-import { enhancer } from 'layout/DecoratorsRoot';
+import { contextProvider } from 'context';
 import { COUNTRY_TYPE } from 'constants/propTypes';
-import removeContextTpyesFromProps from 'utils/removeContextTpyesFromProps';
 import fetchStreamName from 'utils/fetchStreamName';
 
 import getDefaultAreaList from './utils/getDefaultAreaList';
+
+const { enhancer, removeContextProps } = contextProvider('locale', true);
 
 @enhancer
 export default class AddressCascader extends React.PureComponent {
   prevLoadItem = [];
 
   static propTypes = {
-    transformLocale: PropTypes.func.isRequired,
+    /** ignore */
     lockedCountry: PropTypes.arrayOf(COUNTRY_TYPE.isRequired),
     onChange: PropTypes.func,
   };
 
   static defaultProps = {
+    /** props */
     lockedCountry: [],
-    onChange: () => {},
+    onChange: emptyFunction,
   };
 
   state = {
@@ -135,7 +137,7 @@ export default class AddressCascader extends React.PureComponent {
 
   render() {
     const { popupVisible, value, areaList } = this.state;
-    const props = removeContextTpyesFromProps(this.props, ['lockedCountry']);
+    const props = removeContextProps(this.props);
 
     delete props.lockedCountry;
 

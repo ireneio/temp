@@ -1,5 +1,9 @@
 import * as reactDocs from 'react-docgen';
 
+const parseOptions = {
+  legacyDecorators: true,
+};
+
 export default (componentName, componentString) => {
   const newComponentString = componentString
     .replace(/\?\.\[/g, '[')
@@ -10,7 +14,7 @@ export default (componentName, componentString) => {
     .replace(/^class/m, 'export default class');
 
   if (/extends React/.test(newComponentString))
-    return reactDocs.parse(newComponentString);
+    return reactDocs.parse(newComponentString, null, null, parseOptions);
 
   const [propTypesString] = newComponentString.match(
     new RegExp(`${componentName}.propTypes = {\n([^;]*\n)*[ ]*};`),
@@ -19,7 +23,8 @@ export default (componentName, componentString) => {
     new RegExp(`${componentName}.defaultProps = {\n([^;]*\n)*[ ]*};`),
   ) || [''];
 
-  return reactDocs.parse(`
+  return reactDocs.parse(
+    `
       import React from 'react';
       import PropTypes from 'prop-types';
 
@@ -32,5 +37,9 @@ export default (componentName, componentString) => {
           return null;
         }
       }
-    `);
+    `,
+    null,
+    null,
+    parseOptions,
+  );
 };

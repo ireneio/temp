@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import radium, { Style } from 'radium';
+import radium from 'radium';
 
+import Context from 'context';
 import { URL_TYPE, COLOR_TYPE } from 'constants/propTypes';
 
+import GlobalStyles from './GlobalStyles';
 import Cart from './cart';
 import DecoratorsRoot from './DecoratorsRoot';
 import ContainerSwitch from './ContainerSwitch';
@@ -61,34 +63,36 @@ export default class Layout extends React.PureComponent {
     } = this.props;
 
     return (
-      <DecoratorsRoot {...props} colors={colors} carts={carts} cname={cname}>
-        <Style rules={styles.globalStyles(colors)} />
+      <Context {...props}>
+        <DecoratorsRoot {...props} colors={colors} carts={carts} cname={cname}>
+          <GlobalStyles />
 
-        <div style={styles.root(backgroundImage, colors, background)}>
-          <ContainerSwitch
-            {...props}
-            key={container}
-            containerName={container}
-            carts={carts}
-            blocks={blocks}
-          />
+          <div style={styles.root(backgroundImage, colors, background)}>
+            <ContainerSwitch
+              {...props}
+              key={container}
+              containerName={container}
+              carts={carts}
+              blocks={blocks}
+            />
 
-          {SPECIAL_HIDE_FOOTER.includes(cname) ? null : (
-            <footer style={styles.meepshopFooter}>
-              <a
-                href="http://www.meepshopmax.com/?p=new-store-page"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={styles.meepshopFooterLink}
-              >
-                meepShop MAX 極速開店
-              </a>
-            </footer>
-          )}
+            {SPECIAL_HIDE_FOOTER.includes(cname) ? null : (
+              <footer style={styles.meepshopFooter}>
+                <a
+                  href="http://www.meepshopmax.com/?p=new-store-page"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={styles.meepshopFooterLink}
+                >
+                  meepShop MAX 極速開店
+                </a>
+              </footer>
+            )}
 
-          <Cart carts={carts} />
-        </div>
-      </DecoratorsRoot>
+            <Cart carts={carts} />
+          </div>
+        </DecoratorsRoot>
+      </Context>
     );
   }
 }

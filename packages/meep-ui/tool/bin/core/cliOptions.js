@@ -8,6 +8,8 @@ const MODE = ['storybook', 'test'];
 
 const DEFAULT_MODULES = [
   // TODO: parse src
+  'addressCascader',
+  'context',
   'divider',
   'draftText',
   'facebookWall',

@@ -145,6 +145,11 @@ export const SHIPMENT_TEMPLATE_TYPE = PropTypes.oneOf([
   'others',
 ]);
 
+/** test 台灣, 日本 */
+export const COUNTRY_TYPE = PropTypes.oneOf(
+  Object.keys(COUNTRY_LOCALE).map(key => COUNTRY_LOCALE[key].zh_TW),
+);
+
 /**
  * testJSON [{
  *   "en_US": "en_US",
@@ -153,11 +158,6 @@ export const SHIPMENT_TEMPLATE_TYPE = PropTypes.oneOf([
  *   "vi_VN": "vi_VN"
  * }]
  */
-export const COUNTRY_TYPE = PropTypes.oneOf(
-  Object.keys(COUNTRY_LOCALE).map(key => COUNTRY_LOCALE[key].zh_TW),
-);
-
-/** context propTypes */
 export const LOCALE_TYPE = PropTypes.shape(
   LOCALE.reduce(
     (result, locale) => ({
@@ -168,6 +168,7 @@ export const LOCALE_TYPE = PropTypes.shape(
   ),
 );
 
+/** context propTypes */
 export const ISLOGIN_TYPE = PropTypes.oneOf(
   Object.keys(ISLOGIN).map(key => ISLOGIN[key]),
 );

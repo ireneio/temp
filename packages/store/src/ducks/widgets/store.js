@@ -185,6 +185,7 @@ export default function(state = initialState, { type, payload }) {
         homePageId: store.homePageId,
         locale: locale || localeOptions?.[0] || 'zh_TW', // default locale
         localeOptions: localeOptions || ['zh_TW'], // 用於語系選單
+        colors, // 色彩計畫
         lockedCountry: lockedCountry || [],
         storeCurrency: store.currency || 'TWD', // 幣值轉換欲轉換成的幣值
         customerCurrency: customerCurrency || currencyOptions?.[0] || 'TWD', // default currency
@@ -192,10 +193,11 @@ export default function(state = initialState, { type, payload }) {
         currencyOptions: currencyOptions || ['TWD'], // 用於幣值選單
         activityVersion,
       };
+
       return {
         activities, // 折扣活動
         menus, // 選單
-        colors, // 色彩計畫
+        colors, // FIXME: remove, after remove old enhancer
         apps: apps.map(app => ({ ...app, isInstalled: !!app.isInstalled })), // 用於判斷擴充功能是否安裝
         memberGroups,
         appLogins, // 第三方應用 ex. fb login

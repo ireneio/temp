@@ -35,14 +35,14 @@ export default class Context extends React.PureComponent {
   /* eslint-disable react/destructuring-assignment */
 
   static propTypes = {
-    /** variables */
+    /** variables | ignore */
     storeSetting: STORE_SETTING_TYPE.isRequired,
     location: LOCATION_TYPE.isRequired,
 
-    /** locale */
+    /** locale | ignore */
     locale: ONE_OF_LOCALE_TYPE.isRequired,
 
-    /** func */
+    /** func | ignore */
     goTo: PropTypes.func.isRequired,
 
     children: PropTypes.node.isRequired,

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './styles/globalStyles.less';
-
 import { contextProvider } from 'context';
+
+import './styles/globalStyles.less';
 
 const { enhancer } = contextProvider('storeSetting');
 
