@@ -1,3 +1,24 @@
+## 0.6.1 (2018-11-01)
+
+#### :boom: Breaking Change
+* `meep-ui`, `store`, `test-prod-server`
+  * [#261](https://github.com/meepshop/meep-lerna/pull/261)  Use yarn & thank-you-page 的 loading icon 框變為藍色(N178) ([@HsuTing](https://github.com/HsuTing))
+* `meep-ui`, `store`
+  * [#77](https://github.com/meepshop/meep-lerna/pull/77) feat(meep-ui): new context api ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+* `meep-ui`
+  * [#253](https://github.com/meepshop/meep-lerna/pull/253) 結帳頁面＆一頁式購物車元件：輸入欄位的檢查時間點變更 Open, HighAll Users(N135) ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+* `meep-ui`
+  * [#271](https://github.com/meepshop/meep-lerna/pull/271)  文字元件: 圖示、圖示搭配連結，顯示異常(N186) ([@HsuTing](https://github.com/HsuTing))
+* Other
+  * [#283](https://github.com/meepshop/meep-lerna/pull/283) fix(root): fix check publish ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.5.5 (2018-10-23)
 
 #### :rocket: New Feature
