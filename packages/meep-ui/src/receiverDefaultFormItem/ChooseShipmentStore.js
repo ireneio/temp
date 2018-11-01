@@ -211,6 +211,7 @@ export default class ChooseShipmentStore extends React.PureComponent {
         {SHIPMENT_STORE_FIELDS.map((fieldName, index) => (
           <FormItem key={fieldName} style={styles.hideFormItem}>
             {getFieldDecorator(fieldName, {
+              validateTrigger: 'onBlur',
               rules: [
                 {
                   required: true,

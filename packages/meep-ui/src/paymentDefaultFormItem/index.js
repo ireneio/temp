@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import areEqual from 'fbjs/lib/areEqual';
-import UserAgent from 'fbjs/lib/UserAgent';
+import { areEqual, UserAgent } from 'fbjs';
 import radium from 'radium';
 import { Form, Select, Collapse } from 'antd';
 
@@ -232,9 +231,10 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
     const { activityVersion } = storeSetting;
 
     return (
-      <React.Fragment>
+      <>
         <FormItem style={style}>
           {getFieldDecorator('paymentId', {
+            validateTrigger: 'onBlur',
             rules: [
               {
                 required: true,
@@ -276,6 +276,7 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
 
         <FormItem style={style}>
           {getFieldDecorator('shipmentId', {
+            validateTrigger: 'onBlur',
             rules: [
               {
                 required: true,
@@ -325,7 +326,7 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
             computeOrderList={computeOrderList}
           />
         )}
-      </React.Fragment>
+      </>
     );
   }
 }

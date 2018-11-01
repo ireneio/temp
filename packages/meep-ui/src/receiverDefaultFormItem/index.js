@@ -98,6 +98,7 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
           )}
         >
           {getFieldDecorator('mobile', {
+            validateTrigger: 'onBlur',
             rules: [
               {
                 required: true,
@@ -123,6 +124,7 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
         {chooseShipmentTemplate !== 'gmo' ? null : (
           <FormItem style={style}>
             {getFieldDecorator('idNumber', {
+              validateTrigger: 'onBlur',
               rules: [
                 {
                   required: true,
@@ -194,6 +196,7 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
             ) ? null : (
               <FormItem style={style}>
                 {getFieldDecorator('postalCode', {
+                  validateTrigger: 'onBlur',
                   rules: [
                     {
                       required: true,
@@ -206,6 +209,7 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
 
             <FormItem style={style}>
               {getFieldDecorator('addressDetail', {
+                validateTrigger: 'onBlur',
                 rules: [
                   {
                     required: true,

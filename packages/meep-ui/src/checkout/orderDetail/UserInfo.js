@@ -67,9 +67,10 @@ export default class UserInfo extends React.PureComponent {
         <h3 style={titleStyle}>{transformLocale(LOCALE.USER_INFO)}</h3>
 
         {isLogin !== NOTLOGIN ? null : (
-          <React.Fragment>
+          <>
             <FormItem style={formItemStyle}>
               {getFieldDecorator('userEmail', {
+                validateTrigger: 'onBlur',
                 rules: [
                   {
                     required: true,
@@ -90,6 +91,7 @@ export default class UserInfo extends React.PureComponent {
 
             <FormItem style={formItemStyle}>
               {getFieldDecorator('userPassword', {
+                validateTrigger: 'onBlur',
                 rules: [
                   {
                     required: true,
@@ -103,11 +105,12 @@ export default class UserInfo extends React.PureComponent {
                 />,
               )}
             </FormItem>
-          </React.Fragment>
+          </>
         )}
 
         <FormItem style={formItemStyle}>
           {getFieldDecorator('userName', {
+            validateTrigger: 'onBlur',
             rules: [
               {
                 required: true,
@@ -119,6 +122,7 @@ export default class UserInfo extends React.PureComponent {
 
         <FormItem style={formItemStyle}>
           {getFieldDecorator('userMobile', {
+            validateTrigger: 'onBlur',
             rules: [
               {
                 required: true,

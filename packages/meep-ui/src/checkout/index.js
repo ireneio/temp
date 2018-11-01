@@ -1,3 +1,5 @@
+// TODO: rewrite after using relay or apollo client
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { notification } from 'antd';
@@ -234,19 +236,8 @@ export default class Checkout extends React.Component {
 
     const { url, params } = formData || { params: {} };
 
-    // if (isSummary) {
-    //   return (
-    //     <Summary
-    //       {...this.props}
-    //       orderInfo={orderInfo}
-    //       orderOtherDetailInfo={orderOtherDetailInfo}
-    //       goToInCheckout={this.goToInCheckout}
-    //     />
-    //   );
-    // }
-
     return (
-      <div>
+      <>
         <OrderDetail
           {...this.props}
           {...orderOtherDetailInfo}
@@ -265,7 +256,7 @@ export default class Checkout extends React.Component {
             )}
           </form>
         )}
-      </div>
+      </>
     );
   }
 }
