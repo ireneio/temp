@@ -33,7 +33,7 @@ patch-package
        var listBlocks = [];
 +      var listEmoji = [];
 +
-+      var regex = emojiRegex();
++
 +      // This code is `num lock`, and not used in `string` normally.
 +      var mockEmoji = String.fromCharCode(144);
 +
@@ -41,7 +41,7 @@ patch-package
 +        var emojiMatch;
 +        var emojiList = [];
 +
-+        while (emojiMatch = regex.exec(block.text)) {
++        while (emojiMatch = emojiRegex().exec(block.text)) {
 +          const emoji = emojiMatch[0];
 +
 +          block.text = block.text.replace(emoji, mockEmoji);
