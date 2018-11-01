@@ -131,10 +131,11 @@ export default class PrdoductQA extends React.PureComponent {
 
                       {showQAIndex !== index ? null : (
                         <div style={styles.replayContent(colors)}>
-                          <pre>{replay.question}</pre>
-                          ({moment(replay.createdOn * 1000).format(
+                          <pre>{replay.question}</pre>(
+                          {moment(replay.createdOn * 1000).format(
                             'YYYY/MM/DD HH:mm:ss',
-                          )})
+                          )}
+                          )
                         </div>
                       )}
                     </>

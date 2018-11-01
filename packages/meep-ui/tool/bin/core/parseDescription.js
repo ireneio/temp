@@ -4,10 +4,8 @@ import uuid from 'uuid';
 import { sample } from 'lodash';
 import { isInt, isFloat } from 'validator';
 
-/* eslint-disable import/no-unresolved, import/extensions */
-import LOCALE from '__toolMeepUI__/constants/locale';
-import CURRENCY from '__toolMeepUI__/constants/currency';
-/* eslint-enable import/no-unresolved, import/extensions */
+import LOCALE from 'constants/locale';
+import CURRENCY from 'constants/currency';
 
 const handleTest = testValues => {
   switch (testValues) {

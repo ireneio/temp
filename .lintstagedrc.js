@@ -33,8 +33,6 @@ $findKeyword
 
 Example:
 - React.Fragment -> <>...</>
-- Object.values -> Object.keys(Object).map(value => value)
-\${whiteSpace}↪ IE 10 do not support Object.values.
 - import module from 'antd/lib/module' -> import { module } from 'antd'
 ${Object.keys(options)
       .map(
@@ -55,9 +53,10 @@ fi`,
 module.exports = {
   '*.js': [
     'sh ./node_modules/.cache/check-keyword.sh',
-    'npm run prettier -- --write',
-    'npm run lint',
+    'yarn prettier --write',
+    'yarn lint',
     'git add',
   ],
-  '*.less': ['npm run prettier -- --parser less --write', 'git add'],
+  '*.md': ['yarn prettier --parser markdown --write', 'git add'],
+  '*.less': ['yarn prettier --parser less --write', 'git add'],
 };

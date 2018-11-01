@@ -71,9 +71,8 @@ export default class ApplyList extends React.PureComponent {
                 {transformLocale(locale.PHONE)} ：{recipient.mobile}
               </div>
               <div>
-                {transformLocale(locale.ADDRESS)} ：{
-                  recipient.address.streetAddress
-                }
+                {transformLocale(locale.ADDRESS)} ：
+                {recipient.address.streetAddress}
               </div>
             </div>
           )}

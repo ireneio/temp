@@ -1,10 +1,8 @@
 import path from 'path';
 
-import chalk from 'chalk';
 import findUp from 'find-up';
 import commander from 'commander';
-
-const MODE = ['storybook', 'test'];
+import chalk from 'chalk';
 
 const DEFAULT_MODULES = [
   // TODO: parse src
@@ -27,24 +25,28 @@ const { version } = require(pkgPath);
 
 commander
   .version(version)
-  .option('-w, --watch', 'Watch component modified.')
-  .option(
-    '-m, --mode [mode]',
-    `Build mode. Can be one of [${MODE.join(', ')}] or both of them.`,
-    val => val.match(/(storybook|test)/gi),
-  )
+  .option('--watch', 'watch component modified.')
+  .option('--storybook', '[mode] build storybook')
+  .option('--test', '[mode] build tests')
   .option('--modules [modules]', 'Module names', val => val.split(','));
 
 const {
   watch = false,
-  mode = MODE,
+  storybook,
+  test,
   modules = DEFAULT_MODULES,
 } = commander.parse(process.argv);
 
-if (mode.some(val => !MODE.includes(val))) {
+const mode = [];
+
+if (storybook) mode.push('storybook');
+if (test) mode.push('test');
+
+if (mode.length === 0) {
   commander.outputHelp(
     text => chalk`
-  {red Options Error:\`--mode\` is invalid.}
+{red Options Error: [mode] type is required.}
+
 ${text}`,
   );
   process.exit();

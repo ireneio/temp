@@ -1,5 +1,13 @@
 {
   "version": "0.5.5",
+  "command": {
+    "publish": {
+      "message": "chore(release): publish %s [skip ci]",
+      "allowBranch": [
+        "master"
+      ]
+    }
+  },
   "changelog": {
     "repo": "meepshop/meep-lerna",
     "cacheDir": ".changelog",
@@ -11,11 +19,17 @@
       "PR: Internal :house:": ":house: Internal"
     }
   },
-  "lerna": "2.11.0",
+  "lerna": "3.4.0",
+  "npmClient": "yarn",
   "npmClientArgs": [
-    "--no-package-lock"
+    "--no-lockfile"
+  ],
+  "ignoreChanges": [
+    "**/__tests__/**",
+    "**/*.md"
   ],
   "packages": [
     "packages/*"
-  ]
+  ],
+  "useWorkspaces": true
 }

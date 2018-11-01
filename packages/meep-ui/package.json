@@ -4,16 +4,13 @@
   "version": "0.5.5",
   "description": "meep-ui for meepshop",
   "scripts": {
-    "babel": "babel",
-    "postinstall": "rm -rf ./node_modules/regenerator-runtime && patch-package",
-    "build:tool": "make build-tool",
-    "build:files": "node ./lib/__tool__/bin/build.js",
-    "storybook": "concurrently -c green \"start-storybook -p 6006\" \"npm run build:files -- -w -m storybook\"",
-    "storybook:docs": "npm run build:files -- -m storybook && build-storybook -o docs",
     "dev": "make dev",
     "prod": "make prod",
     "clean": "make clean",
-    "test:prepare": "make build-tool && npm run build:files -- -m test"
+    "test": "yarn build:tool --test",
+    "build:tool": "babel-node --config-file ../../babel.config.js ./tool/bin/build.js",
+    "storybook": "concurrently -c green \"start-storybook -p 6006\" \"yarn build:tool --storybook --watch\"",
+    "storybook:docs": "yarn build:tool --storybook && build-storybook -o docs"
   },
   "keywords": [
     "meepshop",
@@ -32,19 +29,18 @@
     "moment": "^2.22.1",
     "money": "^0.2.0",
     "prop-types": "^15.6.0",
-    "query-string": "^5.0.1",
+    "query-string": "^6.2.0",
     "react-content-loader": "^3.1.2",
     "react-icons": "^2.2.7",
     "react-player": "^1.3.0",
-    "react-slick": "^0.22.3",
     "url-parse": "^1.2.0",
-    "validator": "^9.4.0"
+    "validator": "^10.8.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.8",
     "@storybook/addon-console": "^1.0.4",
     "@storybook/react": "^3.4.8",
-    "concurrently": "^3.6.1",
+    "concurrently": "^4.0.1",
     "directory-tree": "^2.1.0",
     "find-up": "^3.0.0",
     "js-combinatorics": "^0.5.3",
@@ -54,7 +50,7 @@
     "mem-fs-editor": "^5.1.0",
     "react-draggable": "^3.0.5",
     "react-markdown": "^3.4.1",
-    "webpack-bundle-analyzer": "^2.13.1"
+    "webpack-bundle-analyzer": "^3.0.2"
   },
   "peerDependencies": {
     "antd": ">=3.4.1",

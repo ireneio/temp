@@ -1,61 +1,21 @@
-BABEL_PACKAGES=--scope @meepshop/meep-ui
-BABEL_IGNORE_PACKAGES=--scope @meepshop/store
+postinstall:
+	rm -rf ./node_modules/next/node_modules/@babel/core
+	@echo "\nremove after using next@^7.x\n"
+	rm -rf ./node_modules/next/node_modules/regenerator-runtime
+	@echo "\nremove after regenerator-runtime > 0.12.1\n"
 
-TEST_SCOPE=@meepshop/test-*
-babel-test-tool:
-	@$(call babel-build, --scope ${TEST_SCOPE})
-
-babel-all:
-	@make babel-clean
-	@$(call babel-build, ${BABEL_PACKAGES})
-
-babel-prod:
-	@NODE_ENV=production make babel-all
-	@npm run lerna -- run prod \
-		--stream \
-		--parallel \
-		${BABEL_PACKAGES}
-
-babel-clean:
-	rm -rf ./lib ./packages/**/lib
-
-prod:
-	@make babel-prod
-	@npm run lerna -- run prod \
-		--stream \
-		--parallel \
-		${BABEL_IGNORE_PACKAGES}
-
-release:
-	@npm run lerna -- publish \
-		--skip-npm \
-		--skip-git \
-		--repo-version ${VERSION} \
-		${RELEASE_SCOPE}
-	@npm run lerna-changelog && \
-		echo "\nContinue with Enter or exit with 'ctrl + c'..." && \
-		read -p ""
-	@vim CHANGELOG.md && \
-		git add . && \
-		git commit -m "chore(release): v${VERSION} [skip ci]" && \
-		git tag -a v${VERSION} -m "v${VERSION}" && \
-		git push origin master --follow-tags
-
-clean-all:
-	@make babel-clean
-	@npm run lerna -- run clean \
-		--stream \
-		--parallel
-	rm -rf ./node_modules ./packages/**/node_modules
+clean:
+	rm -rf ./node_modules
 	rm -rf ./coverage
 	rm -rf ./.eslintcache
 	rm -rf ./.changelog
 	rm -rf ./*.log
 
-define babel-build
-  npm run lerna -- exec \
-		"babel src -d lib --config-file ../../babel.config.js --verbose" \
-		--parallel \
-		--stream \
-		$(1)
-endef
+release:
+	@yarn lerna-changelog && \
+		echo "\nContinue with any keyword or exit with 'ctrl + c'..." && \
+		read -p ""
+	@vim CHANGELOG.md && \
+		git add CHANGELOG.md && \
+		git commit -m "chore(root): add CHANGELOG.md"
+	@yarn lerna version

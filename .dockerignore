@@ -1,0 +1,18 @@
+# node
+node_modules/@meepshop
+
+# README
+*.md
+*/*/*.md
+
+# config
+jest.*
+jsconfig.json
+.circleci
+.eslint*
+.lintstagedrc.js
+.prettierrc.js
+
+# depoly
+*/*/k8s_config
+*/*/Dockerfile

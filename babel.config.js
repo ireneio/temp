@@ -87,7 +87,6 @@ module.exports = {
             root: ['./src'],
             cwd: path.resolve(__dirname, './packages/meep-ui'),
             alias: {
-              __toolMeepUI__: './',
               tool: './tool',
             },
           },

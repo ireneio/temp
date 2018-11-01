@@ -67,8 +67,7 @@ module.exports = withSourceMaps(
 
             config.module.rules.find(
               ({ use: { loader } }) => loader === 'next-babel-loader',
-            ).use.options.configFile =
-              '../../babel.config.js';
+            ).use.options.configFile = '../../babel.config.js';
 
             config.plugins.push(new MomentLocalesPlugin());
 

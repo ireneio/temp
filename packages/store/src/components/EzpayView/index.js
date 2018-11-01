@@ -41,7 +41,10 @@ export default class EzpayView extends React.Component {
         <div className="ezpay_container">
           <div className="ezpay_title">您已成功產生繳款編號！</div>
 
-          <div className="ezpay_paycode">繳款編號：{paycode}</div>
+          <div className="ezpay_paycode">
+            繳款編號：
+            {paycode}
+          </div>
 
           <div className="ezpay_fields">
             <div>商店編號</div>

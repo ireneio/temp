@@ -4,9 +4,8 @@
   "version": "0.5.5",
   "description": "test prod-server for meepshop",
   "scripts": {
-    "postinstall": "patch-package",
-    "test": "TEST_PROD_SERVER=true NODE_ENV=production node ./lib/bin/index.js",
-    "test:ci": "make test-ci"
+    "test:start": "babel-node --config-file ../../babel.config.js ./src/bin/index.js",
+    "unpatch-packages": "babel-node --config-file ../../babel.config.js ./src/bin/unpatch-packages.js"
   },
   "keywords": [
     "meepshop",
@@ -18,7 +17,8 @@
     "@meepshop/store": "^0.5.5",
     "chalk": "^2.4.1",
     "commander": "^2.16.0",
-    "isomorphic-unfetch": "^2.0.0",
+    "execa": "^1.0.0",
+    "isomorphic-unfetch": "^3.0.0",
     "koa-better-http-proxy": "^0.2.4",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",

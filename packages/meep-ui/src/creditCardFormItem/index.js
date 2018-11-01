@@ -137,7 +137,9 @@ class CreditCardFormItem extends React.PureComponent {
 
         {exist && !isModified ? (
           <div style={style}>
-            {cardNumberFront}********{cardNumberLater}
+            {cardNumberFront}
+            ********
+            {cardNumberLater}
           </div>
         ) : (
           <Form style={style} form={form} isInstallment={isInstallment} />

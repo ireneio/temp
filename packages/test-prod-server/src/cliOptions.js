@@ -9,14 +9,14 @@ const program = new commander.Command(chalk`{cyan test-prod-server}`)
   .usage(chalk`{green <domain>} {gray [optoins]}`)
   .description(
     chalk`Run prod server with giving the domain.
-  {green Default: bellatest.stage.meepcloud.com}`,
+{green Default: bellatest.stage.meepcloud.com}`,
   )
   .option(
-    '-t --types [type]',
+    '--types [type]',
     'The types of prod servers. It can be "store".',
     val => val.match(/(store)/gi),
   )
-  .option('-p --paths [paths]', 'Test those paths working.', value =>
+  .option('--paths [paths]', 'Test those paths working.', value =>
     value.split(',').map(text => text.replace(/ |\t/g, '')),
   )
   .option(
@@ -25,7 +25,8 @@ const program = new commander.Command(chalk`{cyan test-prod-server}`)
     value => value.split(',').map(text => text.replace(/ |\t/g, '')),
   )
   .option('--email <email>', 'Use to login.')
-  .option('--password <password>', 'Use to login.');
+  .option('--password <password>', 'Use to login.')
+  .option('--screenshot', 'Make the screenshot');
 
 const {
   args: [domain = 'bellatest.stage.meepcloud.com'],
@@ -34,11 +35,13 @@ const {
   memberPaths = [],
   email,
   password,
+  screenshot,
 } = program.parse(process.argv);
 
-process.env.TEST_DOMAIN = domain;
+process.env.TEST_DOMAIN = process.env.TEST_DOMAIN || domain;
 
-if (!/stage/.test(domain)) process.env.TEST_API = 'api.meepshop.tw';
+if (!/stage/.test(domain))
+  process.env.TEST_API = process.env.TEST_API || 'api.meepshop.tw';
 
 if (memberPaths.length !== 0 && (!email || !password)) {
   program.outputHelp(
@@ -46,15 +49,15 @@ if (memberPaths.length !== 0 && (!email || !password)) {
   {red Options Error: should give \`--email\` and \`--password\` when using \`--member-paths\`.}
 {gray ${text}}`,
   );
-
   process.exit(1);
 }
 
 export default {
-  domain,
+  domain: process.env.TEST_DOMAIN,
   types,
   paths,
   memberPaths,
   email,
   password,
+  screenshot,
 };

@@ -324,9 +324,8 @@ export default class OrderDetail extends React.PureComponent {
               {storeName}
 
               <div className={styles.phoneSizeWrapper}>
-                {transformLocale(LOCALE.TOTAL_PRICE)}：{transformCurrency(
-                  total,
-                )}
+                {transformLocale(LOCALE.TOTAL_PRICE)}：
+                {transformCurrency(total)}
                 <Button onClick={() => this.setState({ showDetail: true })}>
                   {transformLocale(LOCALE.CHECK_DETAIL)}
                 </Button>

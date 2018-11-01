@@ -135,7 +135,7 @@ export default class Coupon extends React.PureComponent {
         style={style}
         validateStatus={validateStatus}
         help={help}
-        hasFeedback
+        hasFeedback={false}
       >
         {getFieldDecorator('coupon')(
           <Search

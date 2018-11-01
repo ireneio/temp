@@ -18,8 +18,7 @@ export default class TaiwansoapLogin extends React.Component {
           請點此
         </a>
         前往說明
-        <br />
-        ● 欲累積直營門市集點與官方商城消費者，請來信
+        <br />● 欲累積直營門市集點與官方商城消費者，請來信
         <br />
         <a style={styles.link} href="mailto:yuandgmk@taiwansoap.com.tw">
           yuandgmk@taiwansoap.com.tw

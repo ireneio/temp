@@ -85,7 +85,9 @@ export default class MemberOrderQA extends React.PureComponent {
               {transformLocale(LOCALE.ORDER_NO) + orderNo}
             </div>
             <div style={styles.qa}>
-              {orderQA.map(({ id, qa }) => <QA key={id} qa={qa} />)}
+              {orderQA.map(({ id, qa }) => (
+                <QA key={id} qa={qa} />
+              ))}
             </div>
 
             <div>{transformLocale(LOCALE.PLEASE_WRITE_MESSAGE)}</div>

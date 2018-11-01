@@ -4,17 +4,48 @@ defaults: &defaults
     - image: circleci/node:9.11.1
   working_directory: ~/repo
 
+check-patches: &check-patches
+  name: Check patches
+  command: |
+    for patch in $(ls ./patches); do
+      cat ./patches/$patch >> patches.json
+    done
+
 restore-cache: &restore-cache
   keys:
-    - v1-dependencies-{{ checksum "lerna-package.json" }}
+    - v1-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "patches.json" }}
 
 save-cache: &save-cache
-  key: v1-dependencies-{{ checksum "lerna-package.json" }}
+  key: v1-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "patches.json" }}
   paths:
     - node_modules
-    - packages/meep-ui/node_modules
-    - packages/store/node_modules
-    - packages/test-prod-server/node_modules
+
+restore-prod-cache: &restore-prod-cache
+  keys:
+    - prod-{{ .Environment.CIRCLE_SHA1 }}
+
+save-prod-cache: &save-prod-cache
+  key: prod-{{ .Environment.CIRCLE_SHA1 }}
+  paths:
+    - packages/meep-ui/lib
+    - packages/store/src/.next
+    - packages/store/lib
+
+deploy-docker: &deploy-docker
+  name: Deploy docker
+  command: |
+    yarn lerna exec \
+      "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/build_docker.sh" \
+      --parallel \
+      --stream \
+      --ignore @meepshop/meep-ui \
+      --ignore @meepshop/test-*
+    yarn lerna exec \
+      "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/deploy_k8s.sh" \
+      --parallel \
+      --stream \
+      --ignore @meepshop/meep-ui \
+      --ignore @meepshop/test-*
 
 restore-prod-cache: &restore-prod-cache
   keys:
@@ -31,13 +62,13 @@ deploy-docker: &deploy-docker
   name: Deploy docker
   command: |
     cp -r ./patches ./packages/patches
-    npm run lerna -- exec \
+    yarn lerna exec \
       "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/build_docker.sh" \
       --parallel \
       --stream \
       --ignore @meepshop/meep-ui \
       --ignore @meepshop/test-*
-    npm run lerna -- exec \
+    yarn lerna exec \
       "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/deploy_k8s.sh" \
       --parallel \
       --stream \
@@ -49,30 +80,30 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: ./.circleci/bin/makePkg.sh
+      - run: *check-patches
       - restore_cache: *restore-cache
 
       - run:
           name: Install packages
-          command: npm run install:all
+          command: yarn install:all
       - save_cache: *save-cache
 
   lint-and-test:
     <<: *defaults
     steps:
       - checkout
-      - run: ./.circleci/bin/makePkg.sh
+      - run: *check-patches
       - restore_cache: *restore-cache
 
       - run:
           name: Check code style
           command: |
-            make babel-prod
-            npm run lint -- .
+            yarn prod @meepshop/meep-ui
+            yarn lint .
 
       - run:
           name: Test pacakges
-          command: npm run test
+          command: yarn test
       - store_artifacts:
           path: coverage
 
@@ -80,16 +111,25 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: ./.circleci/bin/makePkg.sh
+      - run: *check-patches
       - restore_cache: *restore-cache
 
       - run: ./.circleci/bin/installPuppeteerPkg.sh
       - run:
           name: Check website work
           command: |
-            npm run prod
-            make babel-test-tool TEST_SCOPE=@meepshop/test-prod-server
-            npm run lerna -- run test:ci \
+            yarn prod @meepshop/store
+            yarn lerna exec "yarn test:start \
+                             --paths '/, \
+                                      /products, \
+                                      /pages/一頁式購物車, \
+                                      /pages/圖片元件, \
+                                      /pages/圖片文字元件, \
+                                      /pages/輪播元件' \
+                             --member-paths '/orders' \
+                             --email ting@meepshop.com \
+                             --password 123456 \
+                             nextstoretest.stage.meepcloud.com" \
               --scope @meepshop/test-prod-server \
               --stream
 
@@ -99,13 +139,12 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-
       - run:
           name: Install packages
-          command: npm run install:all
+          command: yarn install:all
       - run:
           name: Build prod
-          command: npm run prod
+          command: yarn prod
       - setup_remote_docker
       - run: *deploy-docker
 
@@ -113,10 +152,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: ./.circleci/bin/makePkg.sh
+      - run: *check-patches
       - restore_cache: *restore-cache
       - restore_cache: *restore-prod-cache
-
       - setup_remote_docker
       - run: *deploy-docker
 
@@ -124,13 +162,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: ./.circleci/bin/makePkg.sh
+      - run: *check-patches
       - restore_cache: *restore-cache
       - restore_cache: *restore-prod-cache
-
-      - store_artifacts:
-          path: packages/meep-ui/lib
-
       - setup_remote_docker
       - run: *deploy-docker
 

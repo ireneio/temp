@@ -1,15 +1,17 @@
 patch-package
 --- a/node_modules/koa-better-http-proxy/app/steps/sendProxyRequest.js
 +++ b/node_modules/koa-better-http-proxy/app/steps/sendProxyRequest.js
-@@ -8,12 +8,23 @@ function sendProxyRequest(Container) {
+@@ -8,12 +8,25 @@ function sendProxyRequest(Container) {
    var reqOpt = Container.proxy.reqBuilder;
    var options = Container.options;
 
 +  if (!process.env.TEST_PROD_SERVER) throw new Error('this patch should run in `test-prod-server`');
-+  reqOpt.port = 80;
-+  reqOpt.path = reqOpt.path.replace(/meepshop-api:15265/, process.env.TEST_API || 'api.stage.meepcloud.com');
++  const [newApi, newPort = 80] = (process.env.TEST_API || 'api.stage.meepcloud.com').split(/:/);
++
++  reqOpt.port = newPort;
++  reqOpt.path = reqOpt.path.replace(/meepshop-api:15265/, newApi);
 +  reqOpt.headers['x-meepshop-domain'] = process.env.TEST_DOMAIN || 'bellatest.stage.meepcloud.com';
-+  reqOpt.host = process.env.TEST_API || 'api.stage.meepcloud.com';
++  reqOpt.host = newApi;
 +
    return new Promise(function(resolve, reject) {
      var protocol = Container.proxy.requestModule;

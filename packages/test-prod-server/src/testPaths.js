@@ -1,9 +1,14 @@
+import fs from 'fs';
+import path from 'path';
+
 import puppeteer from 'puppeteer';
 import moment from 'moment';
 import chalk from 'chalk';
 
 import cliOptions from './cliOptions';
 import showInfo from './showInfo';
+
+const screenshotDir = path.resolve(__dirname, '../screenshot');
 
 export default async (pagePaths, cookie) => {
   const browser = await puppeteer.launch({
@@ -75,6 +80,20 @@ export default async (pagePaths, cookie) => {
 
         throw new Error(chalk`Response message
 ${responseMessage}`);
+      }
+
+      if (cliOptions.screenshot) {
+        if (!fs.existsSync(screenshotDir)) fs.mkdirSync(screenshotDir);
+
+        await page.screenshot({
+          path: path.resolve(
+            screenshotDir,
+            `screenshot-${pagePath
+              .replace(/^\/$/, '/home')
+              .replace(/\//g, '-')}.png`,
+          ),
+          fullPage: true,
+        });
       }
 
       showInfo(
