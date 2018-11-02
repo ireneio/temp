@@ -1,37 +1,55 @@
+## 0.6.2 (2018-11-02)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#288](https://github.com/meepshop/meep-lerna/pull/288) IE 11: JS 語法不支援(N210) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.6.1 (2018-11-01)
 
 #### :boom: Breaking Change
-* `meep-ui`, `store`, `test-prod-server`
-  * [#261](https://github.com/meepshop/meep-lerna/pull/261)  Use yarn & thank-you-page 的 loading icon 框變為藍色(N178) ([@HsuTing](https://github.com/HsuTing))
-* `meep-ui`, `store`
-  * [#77](https://github.com/meepshop/meep-lerna/pull/77) feat(meep-ui): new context api ([@HsuTing](https://github.com/HsuTing))
+
+- `meep-ui`, `store`, `test-prod-server`
+  - [#261](https://github.com/meepshop/meep-lerna/pull/261) Use yarn & thank-you-page 的 loading icon 框變為藍色(N178) ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#77](https://github.com/meepshop/meep-lerna/pull/77) feat(meep-ui): new context api ([@HsuTing](https://github.com/HsuTing))
 
 #### :rocket: New Feature
-* `meep-ui`
-  * [#253](https://github.com/meepshop/meep-lerna/pull/253) 結帳頁面＆一頁式購物車元件：輸入欄位的檢查時間點變更 Open, HighAll Users(N135) ([@HsuTing](https://github.com/HsuTing))
+
+- `meep-ui`
+  - [#253](https://github.com/meepshop/meep-lerna/pull/253) 結帳頁面＆一頁式購物車元件：輸入欄位的檢查時間點變更 Open, HighAll Users(N135) ([@HsuTing](https://github.com/HsuTing))
 
 #### :bug: Bug Fix
-* `meep-ui`
-  * [#271](https://github.com/meepshop/meep-lerna/pull/271)  文字元件: 圖示、圖示搭配連結，顯示異常(N186) ([@HsuTing](https://github.com/HsuTing))
-* Other
-  * [#283](https://github.com/meepshop/meep-lerna/pull/283) fix(root): fix check publish ([@HsuTing](https://github.com/HsuTing))
+
+- `meep-ui`
+  - [#271](https://github.com/meepshop/meep-lerna/pull/271) 文字元件: 圖示、圖示搭配連結，顯示異常(N186) ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#283](https://github.com/meepshop/meep-lerna/pull/283) fix(root): fix check publish ([@HsuTing](https://github.com/HsuTing))
 
 #### Committers: 1
+
 - Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
 
 ## 0.5.5 (2018-10-23)
 
 #### :rocket: New Feature
-* `meep-ui`
-  * [#214](https://github.com/meepshop/meep-lerna/pull/214) 結帳頁面流程調整:  第三頁拿掉 (2022) ([@happycat6323](https://github.com/happycat6323))
+
+- `meep-ui`
+  - [#214](https://github.com/meepshop/meep-lerna/pull/214) 結帳頁面流程調整: 第三頁拿掉 (2022) ([@happycat6323](https://github.com/happycat6323))
 
 #### :bug: Bug Fix
-* Other
-  * [#280](https://github.com/meepshop/meep-lerna/pull/280) Fix deploy test ([@HsuTing](https://github.com/HsuTing))
-* `store`
-  * [#281](https://github.com/meepshop/meep-lerna/pull/281) 前往結帳，於 panel FB 登入，出現 404 畫面 (N198) ([@barrypeng6](https://github.com/barrypeng6))
+
+- Other
+  - [#280](https://github.com/meepshop/meep-lerna/pull/280) Fix deploy test ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#281](https://github.com/meepshop/meep-lerna/pull/281) 前往結帳，於 panel FB 登入，出現 404 畫面 (N198) ([@barrypeng6](https://github.com/barrypeng6))
 
 #### Committers: 3
+
 - Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
 - [@barrypeng6](https://github.com/barrypeng6)
 - [@happycat6323](https://github.com/happycat6323)
@@ -39,95 +57,115 @@
 ## 0.5.3 (2018-10-23)
 
 #### :rocket: New Feature
-* `store`
-  * [#277](https://github.com/meepshop/meep-lerna/pull/277) 優化HTML語言lang attribute (N171) ([@barrypeng6](https://github.com/barrypeng6))
+
+- `store`
+  - [#277](https://github.com/meepshop/meep-lerna/pull/277) 優化 HTML 語言 lang attribute (N171) ([@barrypeng6](https://github.com/barrypeng6))
 
 #### :bug: Bug Fix
-* `meep-ui`
-  * [#263](https://github.com/meepshop/meep-lerna/pull/263) 首次購物，使用已達限定次數優惠碼，資料同步異常(N183) ([@HsuTing](https://github.com/HsuTing))
-  * [#276](https://github.com/meepshop/meep-lerna/pull/276) 圖片文字：標題 / 敘述 / 按鈕文字大小與後台顯示結果不同(N188) ([@HsuTing](https://github.com/HsuTing))
-* `store`
-  * [#275](https://github.com/meepshop/meep-lerna/pull/275) 商店設定連接 Facebook Store，於 FB 粉絲頁出現 “OK”(N184) ([@HsuTing](https://github.com/HsuTing))
-  * [#278](https://github.com/meepshop/meep-lerna/pull/278) FB Login: Hide loading status after cancel in fb login (N173) ([@barrypeng6](https://github.com/barrypeng6))
+
+- `meep-ui`
+  - [#263](https://github.com/meepshop/meep-lerna/pull/263) 首次購物，使用已達限定次數優惠碼，資料同步異常(N183) ([@HsuTing](https://github.com/HsuTing))
+  - [#276](https://github.com/meepshop/meep-lerna/pull/276) 圖片文字：標題 / 敘述 / 按鈕文字大小與後台顯示結果不同(N188) ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#275](https://github.com/meepshop/meep-lerna/pull/275) 商店設定連接 Facebook Store，於 FB 粉絲頁出現 “OK”(N184) ([@HsuTing](https://github.com/HsuTing))
+  - [#278](https://github.com/meepshop/meep-lerna/pull/278) FB Login: Hide loading status after cancel in fb login (N173) ([@barrypeng6](https://github.com/barrypeng6))
 
 #### :house: Internal
-* [#279](https://github.com/meepshop/meep-lerna/pull/279) Modify circleci to deploy test ([@HsuTing](https://github.com/HsuTing))
+
+- [#279](https://github.com/meepshop/meep-lerna/pull/279) Modify circleci to deploy test ([@HsuTing](https://github.com/HsuTing))
 
 #### Committers: 2
+
 - Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
 - [@barrypeng6](https://github.com/barrypeng6)
 
 ## 0.5.2 (2018-10-22)
 
 #### :boom: Breaking Change
-* `meep-ui`, `store`
-  * [#130](https://github.com/meepshop/meep-lerna/pull/130) 電子發票串接 - 綠界科技(107) ([@piovischioh](https://github.com/piovischioh))
+
+- `meep-ui`, `store`
+  - [#130](https://github.com/meepshop/meep-lerna/pull/130) 電子發票串接 - 綠界科技(107) ([@piovischioh](https://github.com/piovischioh))
 
 #### :rocket: New Feature
-* `meep-ui`, `store`
-  * [#130](https://github.com/meepshop/meep-lerna/pull/130) 電子發票串接 - 綠界科技(107) ([@piovischioh](https://github.com/piovischioh))
+
+- `meep-ui`, `store`
+  - [#130](https://github.com/meepshop/meep-lerna/pull/130) 電子發票串接 - 綠界科技(107) ([@piovischioh](https://github.com/piovischioh))
 
 #### Committers: 1
+
 - [@piovischioh](https://github.com/piovischioh)
 
 ## 0.4.7 (2018-10-18)
 
 #### :bug: Bug Fix
-* `meep-ui`
-  * [#274](https://github.com/meepshop/meep-lerna/pull/274) 修正IE JS 語法不支援(N189) ([@HsuTing](https://github.com/HsuTing))
+
+- `meep-ui`
+  - [#274](https://github.com/meepshop/meep-lerna/pull/274) 修正 IE JS 語法不支援(N189) ([@HsuTing](https://github.com/HsuTing))
 
 #### Committers: 1
+
 - Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
 
 ## 0.4.6 (2018-10-16)
 
 #### :bug: Bug Fix
-* `store`
-  * [#273](https://github.com/meepshop/meep-lerna/pull/273) 會員選單: 修正標題文字 ([@barrypeng6](https://github.com/barrypeng6))
-* `meep-ui`
-  * [#272](https://github.com/meepshop/meep-lerna/pull/272) 收件人範本: 拿掉手機必填規則文字 ([@barrypeng6](https://github.com/barrypeng6))
+
+- `store`
+  - [#273](https://github.com/meepshop/meep-lerna/pull/273) 會員選單: 修正標題文字 ([@barrypeng6](https://github.com/barrypeng6))
+- `meep-ui`
+  - [#272](https://github.com/meepshop/meep-lerna/pull/272) 收件人範本: 拿掉手機必填規則文字 ([@barrypeng6](https://github.com/barrypeng6))
 
 #### Committers: 1
+
 - [@barrypeng6](https://github.com/barrypeng6)
 
 ## 0.4.5 (2018-10-15)
 
 #### :bug: Bug Fix
-* `meep-ui`
-  * [#257](https://github.com/meepshop/meep-lerna/pull/257) 結帳頁面：若商品符合免運，折扣項目的文字未顯示「免運費」(N165) ([@HsuTing](https://github.com/HsuTing))
+
+- `meep-ui`
+  - [#257](https://github.com/meepshop/meep-lerna/pull/257) 結帳頁面：若商品符合免運，折扣項目的文字未顯示「免運費」(N165) ([@HsuTing](https://github.com/HsuTing))
 
 #### Committers: 1
+
 - Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
 
 ## 0.4.4 (2018-10-15)
 
 #### :bug: Bug Fix
-* `meep-ui`
-  * [#269](https://github.com/meepshop/meep-lerna/pull/269) 文字元件：Use patch to fix emoji bug ([@HsuTing](https://github.com/HsuTing))
+
+- `meep-ui`
+  - [#269](https://github.com/meepshop/meep-lerna/pull/269) 文字元件：Use patch to fix emoji bug ([@HsuTing](https://github.com/HsuTing))
 
 #### Committers: 1
+
 - Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
 
 ## 0.4.3 (2018-10-11)
 
 #### :bug: Bug Fix
-* `store`
-  * [#266](https://github.com/meepshop/meep-lerna/pull/266) GA：修正加入購物車事件的name參數 (N175) ([@barrypeng6](https://github.com/barrypeng6))
+
+- `store`
+  - [#266](https://github.com/meepshop/meep-lerna/pull/266) GA：修正加入購物車事件的 name 參數 (N175) ([@barrypeng6](https://github.com/barrypeng6))
 
 #### :house: Internal
-* `meep-ui`, `store`
-  * [#255](https://github.com/meepshop/meep-lerna/pull/255) perf(meep-ui): Modify detail ([@HsuTing](https://github.com/HsuTing))
+
+- `meep-ui`, `store`
+  - [#255](https://github.com/meepshop/meep-lerna/pull/255) perf(meep-ui): Modify detail ([@HsuTing](https://github.com/HsuTing))
 
 #### Committers: 2
+
 - Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
 - [@barrypeng6](https://github.com/barrypeng6)
 
 ## 0.4.2 (2018-10-09)
 
 #### :house: Internal
-* [#262](https://github.com/meepshop/meep-lerna/pull/262) fix(root): fix jest memory lack ([@HsuTing](https://github.com/HsuTing))
+
+- [#262](https://github.com/meepshop/meep-lerna/pull/262) fix(root): fix jest memory lack ([@HsuTing](https://github.com/HsuTing))
 
 #### Committers: 2
+
 - Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
 
 ## 0.3.23 (2018-10-04)
