@@ -13,10 +13,10 @@ check-patches: &check-patches
 
 restore-cache: &restore-cache
   keys:
-    - v1-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "patches.json" }}
+    - dependencies-{{ checksum "yarn.lock" }}-{{ checksum "patches.json" }}
 
 save-cache: &save-cache
-  key: v1-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "patches.json" }}
+  key: dependencies-{{ checksum "yarn.lock" }}-{{ checksum "patches.json" }}
   paths:
     - node_modules
 
