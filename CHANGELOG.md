@@ -1,3 +1,8 @@
+## 0.6.5 (1018-11-06)
+
+- `meep-ui`
+  - [#285](https://github.com/meepshop/meep-lerna/pull/285) meepShop MAX 極速開店：新增白名單 - ecomo (2188) ([@yuhsu1004](https://github.com/yuhsu1004))
+
 ## 0.6.4 (2018-11-02)
 
 #### :bug: Bug Fix
