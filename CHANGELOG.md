@@ -1,3 +1,14 @@
+## 0.6.7 (2018-11-06)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#293](https://github.com/meepshop/meep-lerna/pull/293) 一頁式購物車：結帳顯示訂購失敗（N211） ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.6.6 (2018-11-06)
 
 #### :bug: Bug Fix
