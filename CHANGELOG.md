@@ -1,7 +1,15 @@
-## 0.6.5 (1018-11-06)
+## 0.6.6 (2018-11-06)
+
+#### :bug: Bug Fix
 
 - `meep-ui`
+  - [#292](https://github.com/meepshop/meep-lerna/pull/292) 文字編輯器：文字置中 or 置右搭配點點 / 數字選單問題（N213） ([@HsuTing](https://github.com/HsuTing))
   - [#285](https://github.com/meepshop/meep-lerna/pull/285) meepShop MAX 極速開店：新增白名單 - ecomo (2188) ([@yuhsu1004](https://github.com/yuhsu1004))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- Ariel Hsu ([@yuhsu1004](https://github.com/yuhsu1004))
 
 ## 0.6.4 (2018-11-02)
 
