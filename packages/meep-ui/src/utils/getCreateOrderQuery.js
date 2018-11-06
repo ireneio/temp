@@ -133,10 +133,10 @@ export default ({
       isPayment,
       products: products
         .filter(({ type }) => type !== 'gift')
-        .map(({ productId, variantId, quantity }) => ({
+        .map(({ productId, variantId, quantity = 1 }) => ({
           productId,
           variantId,
-          ...(!quantity ? {} : { quantity }),
+          quantity,
         })),
       ...(!coupon ? {} : { coupon }),
       ...(!points ? {} : { points }),
