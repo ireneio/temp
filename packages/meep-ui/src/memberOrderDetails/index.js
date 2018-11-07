@@ -9,6 +9,8 @@ import Image from 'image';
 import Link from 'link';
 import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
 
+import Qa from './Qa';
+
 import * as styles from './styles';
 import * as LOCALE from './locale';
 import {
@@ -37,6 +39,8 @@ export default class MemberOrderDetails extends React.PureComponent {
       priceInfo: PRICE_TYPE.isRequired,
       invoices: INVOICE_TYPE.isRequired,
       status: PropTypes.number.isRequired,
+      environment: PropTypes.shape({}).isRequired,
+      messages: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     }).isRequired,
 
     /** props from DecoratorsRoot */
@@ -500,7 +504,9 @@ export default class MemberOrderDetails extends React.PureComponent {
       transformLocale,
       transformCurrency,
     } = this.props;
+
     const {
+      id,
       orderNo,
       createdOn,
       priceInfo,
@@ -509,6 +515,8 @@ export default class MemberOrderDetails extends React.PureComponent {
       shipmentInfo,
       paymentInfo,
       status,
+      messages,
+      environment: { sourcePage },
     } = orderDetails;
     const recipientInfo = shipmentInfo.list[0].recipient;
 
@@ -644,6 +652,7 @@ export default class MemberOrderDetails extends React.PureComponent {
               )}
             </div>
           </div>
+          {sourcePage === 'lp' ? null : <Qa messages={messages} orderId={id} />}
         </StyleRoot>
       </div>
     );

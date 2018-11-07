@@ -258,7 +258,7 @@ export default class MemberOrderList extends React.PureComponent {
 
     // 詢問客服（必帶
     actions.push(
-      <Link key="SERVICE" href={`/orderQA/${id}`} style={styles.cursor(table)}>
+      <Link key="SERVICE" href={`/order/${id}#qa`} style={styles.cursor(table)}>
         {transformLocale(LOCALE.SERVICE)}
       </Link>,
     );

@@ -78,6 +78,11 @@ const orderQuery = `{
   id
   orderNo
   status
+  messages {
+    text
+    bearer
+    createdAt
+  }
   userInfo {
     name
     email
@@ -162,6 +167,7 @@ const orderQuery = `{
     locale
     currency
     exchangeRate
+    sourcePage
   }
   activityInfo {
     plugin
