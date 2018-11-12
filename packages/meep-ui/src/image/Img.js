@@ -55,11 +55,20 @@ export default class Img extends React.PureComponent {
 
   state = {
     width: 0,
+    isClient: false,
   };
 
   componentDidMount() {
     this.resize();
     window.addEventListener('resize', this.resize);
+
+    setTimeout(
+      () =>
+        this.setState({
+          isClient: true,
+        }),
+      0,
+    );
   }
 
   componentWillUnmount() {
@@ -71,15 +80,17 @@ export default class Img extends React.PureComponent {
   */
   getImageSuitableWidth = () => {
     const { width: propWidth, mode } = this.props;
+    const { isClient } = this.state;
+    const ssrDevicePixelRatio = isClient ? devicePixelRatio : 1;
 
     if (mode === 'background' && propWidth)
-      return propWidth * (global.devicePixelRatio || 1);
+      return propWidth * ssrDevicePixelRatio;
 
     const { width } = this.state;
 
     return (
       IMAGE_SUITABLE_WIDTHS.find(
-        suitableWidth => suitableWidth > width * (global.devicePixelRatio || 1),
+        suitableWidth => suitableWidth > width * ssrDevicePixelRatio,
       ) || IMAGE_SUITABLE_WIDTHS.slice(-1)[0]
     );
   };
