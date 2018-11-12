@@ -1,3 +1,26 @@
+## 0.8.0 (2018-11-12)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#196](https://github.com/meepshop/meep-lerna/pull/196) Refactor menu: N122, N101, N121 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#297](https://github.com/meepshop/meep-lerna/pull/297) email 欄位，增加檢查規則(N214) ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#287](https://github.com/meepshop/meep-lerna/pull/287) 手機版商店 LOGO 顯示模糊(N202) ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#302](https://github.com/meepshop/meep-lerna/pull/302) 訂單問答：發送成功的提示訊息，日文翻譯更正(N219) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.7.0 (2018-11-07)
 
 #### :rocket: New Feature
