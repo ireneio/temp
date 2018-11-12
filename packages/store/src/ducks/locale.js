@@ -186,7 +186,7 @@ export const CREATE_APPLY_FAILURE_MESSAGE = {
 export const ADD_ORDER_MESSAGE_SUCCESS = {
   zh_TW: '已發送',
   en_US: 'It has been successfully submitted.',
-  ja_JP: 'オーダーを送りました',
+  ja_JP: '送りました',
   vi_VN: 'Đã gửi',
   TODO_LOCALE: true,
 };
@@ -194,7 +194,7 @@ export const ADD_ORDER_MESSAGE_SUCCESS = {
 export const ADD_ORDER_MESSAGE_FAILURE_MESSAGE = {
   zh_TW: '發送訂單問答：發生錯誤',
   en_US: 'Submit order Q&A: Error occurred',
-  ja_JP: 'オーダーQ&Aを送る：エラーが発生しました',
+  ja_JP: '注文に関するQ&Aを送る：エラーが発生しました',
   vi_VN: 'Gửi hỏi đáp đơn hàng : Xảy ra lỗi',
   TODO_LOCALE: true,
 };
