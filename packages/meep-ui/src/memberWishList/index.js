@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import moment from 'moment';
-import { enhancer } from 'layout/DecoratorsRoot';
-
-import { ID_TYPE, URL_TYPE, COLOR_TYPE } from 'constants/propTypes';
-
 import { Table } from 'antd';
-import Link from 'link';
-import CloseIcon from 'react-icons/lib/md/close';
+import { close as CloseIcon } from 'react-icons/md';
+
+import { enhancer } from 'layout/DecoratorsRoot';
+import Link from 'deprecated/link';
+import { ID_TYPE, URL_TYPE, COLOR_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles';
 import * as LOCALE from './locale';

@@ -13,6 +13,7 @@ const DEFAULT_MODULES = [
   'facebookWall',
   'googleMap',
   'iframe',
+  'link',
   'socialMedia',
   'socialThumbs',
   'unavailableComp',

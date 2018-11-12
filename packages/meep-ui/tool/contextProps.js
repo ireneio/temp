@@ -4,7 +4,7 @@ export default {
   },
   location: {
     // eslint-disable-next-line no-restricted-globals
-    host: process.env.NODE_ENV === 'test' ? '' : location.host,
+    host: process.env.NODE_ENV === 'test' ? 'localhost' : location.host,
     pathname: '/',
     search: '',
   },

@@ -1,42 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import radium from 'radium';
 import URL from 'url-parse';
 import queryString from 'query-string';
 
-import { enhancer } from 'layout/DecoratorsRoot';
-import { URL_TYPE } from 'constants/propTypes';
+import { contextProvider } from 'context';
+import { URL_TYPE, HASH_TYPE } from 'constants/propTypes';
 
-import * as styles from './styles';
+import styles from './styles/index.less';
+
+const { enhancer } = contextProvider(['func', 'location']);
 
 @enhancer
-@radium
 export default class Link extends React.PureComponent {
   static propTypes = {
-    goTo: PropTypes.func.isRequired,
-    href: URL_TYPE,
+    /** props */
+    href: PropTypes.oneOfType([URL_TYPE, HASH_TYPE]),
     target: PropTypes.oneOf(['_self', '_blank', '_parent', '_top']),
-    style: PropTypes.shape({}),
+
+    /** ignore */
+    className: PropTypes.string,
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.string])
       .isRequired,
   };
 
   static defaultProps = {
+    /** props */
     href: null,
     target: '_self',
-    style: null,
+
+    /** ignore */
+    className: '',
   };
 
-  onClick = e => {
-    const { href, target, goTo } = this.props;
-    const { host, pathname, query, hash } = new URL(href);
+  onClick = url => e => {
+    const { location, goTo, target } = this.props;
+    const { host, pathname, query, hash } = new URL(url);
 
-    if (
-      target === '_blank' ||
-      host !== location.host // eslint-disable-line no-restricted-globals
-    ) {
-      return;
-    }
+    if (target === '_blank' || host !== location.host) return;
 
     e.preventDefault();
     goTo({
@@ -49,19 +49,17 @@ export default class Link extends React.PureComponent {
   };
 
   render() {
-    const { href, style, target, children } = this.props;
+    const { href, target, children, className } = this.props;
+    const url = !href || /(^#)|(^\/)|(^http)/.test(href) ? href : `//${href}`;
 
-    if (!href) {
-      // TODO remove
-      return <span style={[styles.link, style]}>{children}</span>;
-    }
+    if (!url) return children;
 
     return (
       <a
-        href={href}
+        className={`${styles.link} ${className}`}
+        href={url}
         target={target}
-        style={[styles.link, style]}
-        onClick={this.onClick}
+        onClick={this.onClick(url)}
       >
         {children}
       </a>

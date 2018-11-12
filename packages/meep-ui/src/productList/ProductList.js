@@ -14,7 +14,7 @@ import {
   LOCATION_TYPE,
 } from 'constants/propTypes';
 import { PHONE_MEDIA } from 'constants/media';
-import Link from 'link';
+import Link from 'deprecated/link';
 import ProductCarousel from 'productCarousel';
 import ProductInfo from 'productInfo';
 

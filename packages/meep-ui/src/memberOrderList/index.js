@@ -6,7 +6,7 @@ import { Modal, Divider, Icon, message } from 'antd';
 import moment from 'moment';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import Link from 'link';
+import Link from 'deprecated/link';
 import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
 import createFormData from 'utils/createFormData';
 

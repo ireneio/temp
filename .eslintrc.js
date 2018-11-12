@@ -117,7 +117,13 @@ module.exports = {
           {
             /** use to ignore context props, lib props */
             ignore: [
-              /** context props */
+              /** context location props */
+              'location',
+
+              /** context func props */
+              'goTo',
+
+              /** context storeSetting props */
               'colors',
 
               /** lib props */

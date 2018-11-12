@@ -1,12 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-
 module.exports = {
   setupFiles: ['./jest.setup'],
-  testPathIgnorePatterns: fs
-    .readdirSync(path.resolve(__dirname, './packages/meep-ui/src'))
-    .filter(fileName => !['utils', 'constants', 'locale'].includes(fileName))
-    .map(fileName => `src/${fileName}/__tests__/[a-zA-Z0-9]*.js`),
+  testMatch: [
+    '**/!(meep-ui)/src/**/__tests__/**/*.js',
+    '**/meep-ui/src/**/__tests__/.cache/*.js',
+    '**/meep-ui/src/**/__tests__/!(.cache)/**/*.js',
+  ],
   collectCoverage: true,
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: ['/lib/', '/.next/'],

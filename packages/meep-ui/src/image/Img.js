@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import Link from 'link';
+import Link from 'deprecated/link';
 import {
   URL_TYPE,
   ALIGNMENT_TYPE,

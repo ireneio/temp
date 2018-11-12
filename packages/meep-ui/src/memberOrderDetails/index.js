@@ -6,7 +6,7 @@ import { Table } from 'antd';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
-import Link from 'link';
+import Link from 'deprecated/link';
 import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
 
 import Qa from './Qa';

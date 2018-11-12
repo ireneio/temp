@@ -4,7 +4,7 @@ import radium, { StyleRoot } from 'radium';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
-import Link from 'link';
+import Link from 'deprecated/link';
 
 import {
   LOCATION_TYPE,

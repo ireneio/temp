@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import areEqual from 'fbjs/lib/areEqual';
+import { areEqual } from 'fbjs';
 import radium, { Style } from 'radium';
-import { enhancer } from 'layout/DecoratorsRoot';
 import { Modal } from 'antd';
 
+import { enhancer } from 'layout/DecoratorsRoot';
+import Link from 'deprecated/link';
+import ProductCarousel from 'productCarousel';
+import ProductInfo from 'productInfo';
 import {
   ID_TYPE,
   URL_TYPE,
   COLOR_TYPE,
   POSITIVE_NUMBER_TYPE,
 } from 'constants/propTypes';
-
-import Link from 'link';
-import ProductCarousel from 'productCarousel';
-import ProductInfo from 'productInfo';
 
 import { PURCHASE, SELECT_SPEC } from '../locale';
 
