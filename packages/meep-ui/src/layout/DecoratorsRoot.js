@@ -4,7 +4,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'fbjs/lib/warning';
+import { warning } from 'fbjs';
 import fx from 'money';
 
 import LOCALE from 'constants/locale';
@@ -42,6 +42,7 @@ export default class DecoratorsRoot extends React.Component {
     locale: ONE_OF_LOCALE_TYPE.isRequired,
     customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
     location: LOCATION_TYPE.isRequired,
+    carts: PropTypes.shape({}).isRequired,
     storeAppList: PropTypes.arrayOf(
       PropTypes.shape({
         isInstalled: PropTypes.bool.isRequired,
@@ -108,6 +109,7 @@ export default class DecoratorsRoot extends React.Component {
       locale,
       customerCurrency,
       location,
+      carts,
 
       /** context func from props */
       setLocale,
@@ -139,6 +141,7 @@ export default class DecoratorsRoot extends React.Component {
       locale,
       customerCurrency,
       location,
+      carts,
 
       /** context func from props */
       setLocale,

@@ -27,22 +27,6 @@ export const root = (backgroundImage, colors, background) => {
   };
 };
 
-export const globalStyles = colors => ({
-  'h1, h2, h3, h4, h5, h6, span, a, a:hover, a:active, a:focus, a:visited, .ant-form': {
-    color: colors[3],
-  },
-  '.ant-cascader-picker-label': {
-    color: 'rgba(0,0,0,.65)',
-  },
-  'button > span': {
-    color: 'inherit',
-  },
-  pre: {
-    fontFamily: 'inherit',
-    fontSize: 'inherit',
-  },
-});
-
 export const meepshopFooter = {
   padding: '30px 0',
   textAlign: 'center',

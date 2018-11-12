@@ -1,32 +1,38 @@
-export default function setDefaultValueForMenuDesign(menu) {
-  const design = {
-    ...menu.design,
-    alignment: (menu.design && menu.design.alignment) || 'right',
-    showLogo: (menu.design && menu.design.showLogo) || false,
-    height: (menu.design && menu.design.height) || 60,
-    showSearchbar: (menu.design && menu.design.showSearchbar) || false,
-    font: (menu.design && menu.design.font) || '黑體',
-    fontSize: (menu.design && menu.design.fontSize) || 14,
-    opacity: (menu.design && menu.design.opacity) || 1,
-    expandSubItem: (menu.design && menu.design.expandSubItem) || false,
-    normal: (menu.design && menu.design.normal) || {
-      color: null,
-      background: null,
-    },
-    hover: (menu.design && menu.design.hover) || {
-      color: null,
-      background: null,
-      borderColor: null,
-    },
-    active: (menu.design && menu.design.active) || {
-      color: null,
-      background: null,
-      borderColor: null,
-    },
-    pattern: (menu.design && menu.design.pattern) || 0,
-  };
-  return {
-    ...menu,
-    design,
-  };
-}
+export const handlePages = (pages, removeIcon = false) =>
+  (pages || []).map(
+    ({ pages: subPages, newWindow, params, icon, ...page }) => ({
+      ...page,
+      newWindow: !!newWindow,
+      params: params || {},
+      pages: handlePages(subPages),
+      icon:
+        removeIcon && !icon?.use
+          ? null
+          : {
+              direction: icon?.direction || 'right',
+              font: icon?.font || null,
+              image: icon?.image || null,
+            },
+    }),
+  );
+
+export default ({ design, pages, ...menu }) => ({
+  ...menu,
+  pages: handlePages(pages),
+  design: {
+    ...design,
+    showLogo: design?.showLogo || false,
+    showSearchbar: design?.showSearchbar || false,
+    expandSubItem: design?.expandSubItem || false,
+    alignment: design?.alignment || 'right',
+    pattern: design?.pattern || 0,
+    opacity: design?.opacity || 1,
+    normal: design?.normal || {},
+    active: design?.active || {},
+    hover: design?.hover || {},
+    fontSize: design?.fontSize || 14,
+    font: design?.font || '黑體',
+    width: design?.width || 0,
+    height: design?.height || 60,
+  },
+});

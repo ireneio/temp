@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import areEqual from 'fbjs/lib/areEqual';
-import radium, { StyleRoot } from 'radium';
-import BarsIcon from 'react-icons/lib/fa/bars';
+import memoizeOne from 'memoize-one';
+import { areEqual, emptyFunction } from 'fbjs';
+import { Affix, Drawer } from 'antd';
+import transformColor from 'color';
+import { bars as BarsIcon } from 'react-icons/fa';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import MenuItem from 'menu/menuItem';
+import Menu from 'menu';
 import Image from 'image';
-import { COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
+import { ID_TYPE, COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
 
-import MobileSidebar from './MobileSidebar';
-import * as styles from './styles';
+import styles from './styles/index.less';
+import notMemoizedGetPages from './utils/getPages';
 
 @enhancer
-@radium
 export default class MobileLayout extends React.PureComponent {
   static propTypes = {
     /** context */
@@ -21,9 +22,10 @@ export default class MobileLayout extends React.PureComponent {
     storeSetting: STORE_SETTING_TYPE.isRequired,
 
     /** props */
-    fixedtop: PropTypes.shape({}), // eslint-disable-line react/no-unused-prop-types
-    secondtop: PropTypes.shape({}), // eslint-disable-line react/no-unused-prop-types
-    sidebar: PropTypes.shape({}), // eslint-disable-line react/no-unused-prop-types
+    id: ID_TYPE.isRequired,
+    fixedtop: PropTypes.shape({}),
+    secondtop: PropTypes.shape({}),
+    sidebar: PropTypes.shape({}),
     children: PropTypes.node.isRequired,
   };
 
@@ -34,162 +36,189 @@ export default class MobileLayout extends React.PureComponent {
   };
 
   state = {
-    design: {},
-    pages: [],
-    additionPages: [],
-    isOpened: false,
+    visible: false,
+    memberPages: [],
+    openKeys: [],
   };
 
-  static getDerivedStateFromProps(nextProps, preState) {
-    const { fixedtop, secondtop, sidebar } = nextProps;
-    const nextState = {};
-
-    const design =
-      (fixedtop && fixedtop.menu.design) ||
-      (secondtop && secondtop.menu.design) ||
-      (sidebar && sidebar.menu.sidebar);
-    const { pages, additionPages } = [
-      ...((fixedtop && fixedtop.menu.pages) || []),
-      ...((secondtop && secondtop.menu.pages) || []),
-      ...((sidebar && sidebar.menu.pages) || []),
-    ].reduce(
-      (result, { id, action, ...page }) => {
-        const { pages: newPages, additionPages: newAdditionPages } = result;
-        const newPage = {
-          ...page,
-          id,
-          action,
-          icon: { use: false },
-        };
-
-        if (
-          [...newPages, ...newAdditionPages].some(
-            ({ id: newPageId }) => newPageId === id,
-          )
-        )
-          return result;
-
-        if ([5, 8].includes(action)) {
-          if (
-            newAdditionPages.some(
-              ({ action: additionPageAction }) => additionPageAction === action,
-            )
-          )
-            return result;
-
-          return {
-            pages: newPages,
-            additionPages: [...newAdditionPages, newPage],
-          };
-        }
-
-        return {
-          pages: [...newPages, newPage],
-          additionPages: newAdditionPages,
-        };
-      },
-      { pages: [], additionPages: [] },
-    );
-
-    if (!areEqual(design, preState.design)) nextState.design = design;
-
-    if (!areEqual(pages, preState.pages)) nextState.pages = pages;
-
-    if (!areEqual(additionPages, preState.additionPages))
-      nextState.additionPages = additionPages.sort(
-        (a, b) => a.action < b.action,
-      );
-
-    if (Object.keys(nextState).length !== 0) return nextState;
-
-    return null;
-  }
-
-  toggleSidebar = () => {
-    const { isOpened } = this.state;
-
-    document.querySelector('body').style.overflow = isOpened
-      ? 'initial'
-      : 'hidden';
-    this.setState({ isOpened: !isOpened });
-  };
+  getPages = memoizeOne(notMemoizedGetPages, areEqual);
 
   render() {
-    const { colors, storeSetting, children, ...props } = this.props;
-    const { design, pages, additionPages, isOpened } = this.state;
+    const {
+      /** context */
+      colors,
+      storeSetting: { mobileLogoUrl },
 
-    const { mobileLogoUrl } = storeSetting;
+      /** props */
+      id,
+      fixedtop,
+      secondtop,
+      sidebar,
+      children,
+    } = this.props;
+    const { visible, memberPages, openKeys } = this.state;
+    const {
+      pages,
+      headerPages,
+      design: { expandSubItem, ...design },
+    } = this.getPages(fixedtop, secondtop, sidebar);
+
+    const normal = {
+      color: colors[2],
+      background: colors[1],
+    };
 
     return (
-      <React.Fragment>
-        <StyleRoot style={styles.root}>{children}</StyleRoot>
-
-        <StyleRoot>
-          <header style={styles.header(colors)}>
-            <div style={styles.buttonRoot}>
+      <>
+        <Affix offsetTop={0}>
+          <header className={styles.header} style={normal}>
+            <div className={styles.barsIcon}>
               {pages.length === 0 ? null : (
-                <BarsIcon style={styles.icon} onClick={this.toggleSidebar} />
+                <BarsIcon onClick={() => this.setState({ visible: true })} />
               )}
             </div>
 
-            <div style={styles.logoWrapper}>
-              {!mobileLogoUrl ? null : (
-                <div style={styles.logo}>
-                  <Image
-                    style={styles.logo}
-                    files={{ image: mobileLogoUrl, href: '/' }}
-                    contentWidth={100}
-                    newWindow={false}
-                    mode="background"
-                    alignment="center"
-                    width={150}
-                  />
-                </div>
-              )}
-            </div>
-
-            <ul style={[styles.buttonRoot, styles.alignRight]}>
-              {additionPages.map(({ id, action, ...page }) => (
-                <MenuItem
-                  key={id}
-                  {...props}
-                  {...page}
-                  action={action}
-                  height={60}
-                  expandSubItem={false}
-                  pattern={0}
-                  fontSize={18}
-                  hover={{
-                    color: 'inherit',
-                    background: 'inherit',
+            {!mobileLogoUrl ? null : (
+              /** TODO remove with new image and new link */
+              <div className={styles.logo}>
+                <Image
+                  files={{
+                    image: mobileLogoUrl,
+                    href: '/',
                   }}
-                  active={{
-                    color: 'inherit',
-                    background: 'inherit',
+                  style={{
+                    margin: 'auto',
+                    width: '150px',
+                    height: '60px',
+                    backgroundSize: 'contain',
                   }}
-                  background={{
-                    color: 'inherit',
-                    background: 'inherit',
-                  }}
-                  icon={{
-                    font: action === 5 ? 'shopping_cart' : 'person',
-                    use: true,
-                    direction: 'only',
-                  }}
+                  mode="background"
+                  alignment="center"
+                  contentWidth={100}
+                  newWindow={false}
                 />
-              ))}
-            </ul>
-          </header>
-        </StyleRoot>
+              </div>
+            )}
 
-        {!isOpened || pages.length === 0 ? null : (
-          <MobileSidebar
-            pages={pages}
-            design={design}
-            toggleSidebar={this.toggleSidebar}
+            <Menu
+              id={`${id}-headerMenu`}
+              className={styles.headerMenu}
+              logoUrl={mobileLogoUrl}
+              pages={headerPages}
+              design={{
+                ...design,
+                showLogo: false,
+                showSearchbar: false,
+                expandSubItem: true,
+                alignment: 'right',
+                normal,
+                width: 0,
+                height: 60,
+                fontSize: 18,
+              }}
+              openKeys={[]}
+              onOpenChange={([memberId]) =>
+                this.setState({
+                  memberPages:
+                    headerPages.find(
+                      ({ id: headerId }) => headerId === memberId,
+                    )?.pages || [],
+                })
+              }
+            />
+          </header>
+        </Affix>
+
+        {children}
+
+        <Drawer
+          className={`${styles.drawer} ${styles.member}`}
+          style={{
+            background: colors[1],
+            color: colors[2],
+          }}
+          onClose={() => this.setState({ memberPages: [] })}
+          visible={memberPages.length !== 0}
+          placement="top"
+          height="100%"
+        >
+          <Menu
+            id={`${id}-member`}
+            className={styles.menu}
+            logoUrl={mobileLogoUrl}
+            pages={memberPages}
+            design={{
+              ...design,
+              showLogo: true,
+              showSearchbar: false,
+              expandSubItem: true,
+              normal,
+              width: 150,
+              height: 60,
+            }}
+            openKeys={[]}
           />
+
+          <style
+            dangerouslySetInnerHTML={{
+              __html: `
+              .${styles.member} .${styles.menu} .logo {
+                border-bottom: 2px solid ${transformColor(colors[2]).alpha(
+                  0.1,
+                )};
+              }
+
+              .${styles.member} .${styles.menu} .menu-1:not(:last-child) {
+                border-bottom: 2px solid ${transformColor(colors[2]).alpha(
+                  0.2,
+                )};
+              }
+            `,
+            }}
+          />
+        </Drawer>
+
+        {pages.length === 0 ? null : (
+          <Drawer
+            className={`${styles.drawer} ${styles.sidebar}`}
+            style={normal}
+            onClose={() => this.setState({ visible: false })}
+            visible={visible}
+            placement="left"
+            width="280px"
+          >
+            <Menu
+              id={`${id}-sidebar`}
+              className={`${styles.menu} show-border`}
+              logoUrl={mobileLogoUrl}
+              pages={pages}
+              design={{
+                ...design,
+                showLogo: true,
+                expandSubItem: true,
+                normal,
+                width: 150,
+                height: 60,
+              }}
+              openKeys={
+                expandSubItem ? pages.map(({ id: pageId }) => pageId) : openKeys
+              }
+              onOpenChange={
+                expandSubItem
+                  ? emptyFunction
+                  : newOpenKeys =>
+                      this.setState({
+                        openKeys:
+                          newOpenKeys.slice(-1) !== openKeys[0]
+                            ? newOpenKeys.slice(-1)
+                            : [],
+                      })
+              }
+              reverseSearch
+            />
+          </Drawer>
         )}
-      </React.Fragment>
+      </>
     );
   }
 }

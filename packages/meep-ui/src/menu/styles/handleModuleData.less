@@ -1,0 +1,13 @@
+@import '../../constants/styles.less';
+
+@media @PHONE_MEDIA {
+  .root {
+    flex-wrap: initial !important;
+    justify-content: flex-start !important;
+    overflow-x: scroll;
+
+    :global(.ant-menu.ant-menu-vertical) {
+      flex-wrap: initial;
+    }
+  }
+}

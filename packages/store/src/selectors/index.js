@@ -6,6 +6,7 @@ import {
   CURRENCY_ITEMS_TMPL,
   MEMBER_ITEMS_TMPL,
 } from 'template';
+import { handlePages } from 'utils/setDefaultValueForMenuDesign';
 
 export const getPages = state => state.pagesReducer;
 export const getHomePageId = state =>
@@ -84,45 +85,74 @@ export const getJoinedPage = (
       R.find(R.propEq('id', menuId))(menus) ||
       R.find(R.propEq('menuType', menuId || ele))(menus) ||
       setDefaultValueForMenuDesign([]);
-    let menuPages = getIn(['pages'])(menu) || [];
-    if (menuPages.length > 0) {
-      menuPages = menuPages.map(menuPage => {
-        let newMenuPage = menuPage;
-        if (menuPage.action === 6) {
+
+    const menuPages = (getIn(['pages'])(menu) || []).map(menuPage => {
+      switch (menuPage.action) {
+        case 6:
           // locale(action = 6)
-          newMenuPage = R.assocPath(['pages'], localeItemsTemplate, menuPage);
-        } else if (menuPage.action === 7) {
+          return R.pipe(R.assocPath(['pages'], localeItemsTemplate))(menuPage);
+
+        case 7:
           // currency(action = 7)
-          newMenuPage = R.assocPath(['pages'], currencyItemsTemplate, menuPage);
-        } else if (menuPage.action === 8) {
+          return R.pipe(R.assocPath(['pages'], currencyItemsTemplate))(
+            menuPage,
+          );
+
+        case 8:
           // member(action = 8)
-          newMenuPage = R.assocPath(['pages'], MEMBER_ITEMS_TMPL, menuPage);
-        }
-        return newMenuPage;
-      });
-    }
+          return R.pipe(
+            R.assocPath(['pages'], MEMBER_ITEMS_TMPL),
+            R.assocPath(
+              ['params', 'displayMemberGroup'],
+              !!menuPage.params?.displayMemberGroup,
+            ),
+          )(menuPage);
+
+        default:
+          return menuPage;
+      }
+    });
+
     if (ele === 'fixedbottom') {
       const {
         fixedbottom: { background, color, fontSize },
         useBottom = true,
       } = joinedPage;
-      menu = {
-        design: {
-          background,
-          color,
-          fontSize: fontSize || 13,
-          useBottom,
-        },
-        pages: menuPages,
-      };
-    }
-    menu = R.assocPath(['pages'], menuPages, menu);
+
+      if (useBottom) {
+        menu = {
+          design: {
+            showLogo: false,
+            showSearchbar: false,
+            expandSubItem: true,
+            alignment: 'center',
+            pattern: 0,
+            opacity: 1,
+            normal: {
+              background,
+              color,
+            },
+            active: {},
+            hover: {},
+            fontSize: fontSize || 13,
+            font: '黑體',
+            width: 0,
+            height: 0,
+          },
+          pages: handlePages(menuPages, true),
+        };
+      }
+    } else menu = R.assocPath(['pages'], menuPages, menu);
+
     joinedPage = R.pipe(
       R.assocPath([ele, 'menu'], menu),
       R.assocPath([ele, 'logo'], logoUrl),
       R.assocPath([ele, 'mobileLogo'], mobileLogoUrl),
     )(joinedPage);
   });
+
+  if (joinedPage.useBottom === false) joinedPage.fixedbottom = null;
+
   return joinedPage;
 };
 

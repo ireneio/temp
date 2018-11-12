@@ -1,94 +1,260 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import radium, { StyleRoot } from 'radium';
+import { Menu as AntdMenu } from 'antd';
+import uuid from 'uuid/v4';
+import transformColor from 'color';
+import { keyboardArrowDown as ArrowIcon } from 'react-icons/md';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
-  COLOR_TYPE,
   ID_TYPE,
+  URL_TYPE,
   ALIGNMENT_TYPE,
   OPACITY_TYPE,
-  STORE_SETTING_TYPE,
+  COLOR_TYPE,
+  POSITIVE_NUMBER_TYPE,
 } from 'constants/propTypes';
+import Image from 'image';
+import removeContextTpyesFromProps from 'utils/removeContextTpyesFromProps';
 
-import Logo from './Logo';
-import SearchBar from './SearchBar';
-import MenuItem from './menuItem';
-import {
-  HEIGHT_TYPE,
-  PATTERN_TYPE,
-  FONTSIZE_TYPE,
-  FONT_TYPE,
-} from './constants';
+import MenuItem from './MenuItem';
+import { DEFAULT_COLOR_WITH_PATTERN } from './constants';
+import { FONTSIZE_TYPE } from './propTypes';
+import styles from './styles/index.less';
+import getMenuStyles from './utils/getMenuStyles';
 
-import * as styles from './styles';
+export handleModuleData from './utils/handleModuleData';
 
 @enhancer
-@radium
 export default class Menu extends React.PureComponent {
-  static propTypes = {
-    /** context */
-    colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    storeSetting: STORE_SETTING_TYPE.isRequired,
+  containerDOM = null;
 
+  searchBarItem = [
+    {
+      id: uuid(),
+      action: 'searchBar',
+      pages: [],
+      newWindow: false,
+      title: {
+        zh_TW: '搜尋',
+      },
+    },
+  ];
+
+  static propTypes = {
     /** props */
-    menu: PropTypes.shape({
-      pages: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: ID_TYPE.isRequired,
-        }).isRequired,
-      ),
-      design: PropTypes.shape({
-        height: HEIGHT_TYPE.isRequired,
-        pattern: PATTERN_TYPE.isRequired,
-        showLogo: PropTypes.bool.isRequired,
-        showSearchbar: PropTypes.bool.isRequired,
-        alignment: ALIGNMENT_TYPE.isRequired,
-        opacity: OPACITY_TYPE.isRequired,
-        fontSize: FONTSIZE_TYPE.isRequired,
-        font: FONT_TYPE.isRequired,
-        normal: PropTypes.shape({
-          color: COLOR_TYPE,
-          background: COLOR_TYPE,
-        }).isRequired,
+    logoUrl: URL_TYPE,
+    id: PropTypes.oneOfType([
+      PropTypes.oneOf(['fixedtop', 'secondtop', 'sidebar']).isRequired,
+      ID_TYPE.isRequired,
+    ]).isRequired,
+    pages: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: ID_TYPE.isRequired,
+      }),
+    ).isRequired,
+    design: PropTypes.shape({
+      showLogo: PropTypes.bool.isRequired,
+      showSearchbar: PropTypes.bool.isRequired,
+      expandSubItem: PropTypes.bool.isRequired,
+      alignment: ALIGNMENT_TYPE.isRequired,
+      pattern: PropTypes.oneOf([0, 1, 2, 3]).isRequired,
+      opacity: OPACITY_TYPE.isRequired,
+      normal: PropTypes.shape({
+        color: COLOR_TYPE,
+        background: COLOR_TYPE,
       }).isRequired,
+      active: PropTypes.shape({
+        color: COLOR_TYPE,
+        background: COLOR_TYPE,
+        borderColor: COLOR_TYPE,
+      }).isRequired,
+      hover: PropTypes.shape({
+        color: COLOR_TYPE,
+        background: COLOR_TYPE,
+        borderColor: COLOR_TYPE,
+      }).isRequired,
+      fontSize: FONTSIZE_TYPE.isRequired,
+      font: PropTypes.oneOf([
+        'Arial',
+        'Arial Black',
+        'Coming Sans MS',
+        'Courier',
+        'Courier New',
+        '標楷體',
+        'Helvetica',
+        '黑體',
+      ]).isRequired,
+      width: POSITIVE_NUMBER_TYPE.isRequired,
+      height: POSITIVE_NUMBER_TYPE.isRequired,
     }).isRequired,
+
+    /** ignore */
+    openKeys: PropTypes.arrayOf(ID_TYPE.isRequired),
+    className: PropTypes.string,
+    reverseSearch: PropTypes.bool,
   };
 
-  state = {
-    menuIndex: -1,
+  static defaultProps = {
+    /** props */
+    logoUrl: null,
+
+    /** ignore */
+    openKeys: [],
+    className: '',
+    reverseSearch: false,
+  };
+
+  getPopupContainer = style => {
+    const { colors } = this.props;
+    const newStyle = {
+      ...style,
+      color: colors[2],
+      background: colors[1],
+    };
+    const shouldAppendContainer = !this.containerDOM;
+
+    this.containerDOM = !shouldAppendContainer
+      ? this.containerDOM
+      : document.createElement('div');
+
+    Object.keys(newStyle).forEach(key => {
+      this.containerDOM.style[key] = newStyle[key];
+    });
+
+    if (shouldAppendContainer)
+      document.querySelector('body').appendChild(this.containerDOM);
+
+    return this.containerDOM;
   };
 
   render() {
-    const { colors, storeSetting, menu, ...props } = this.props;
-    const { menuIndex } = this.state;
+    const {
+      /** context */
+      colors,
 
-    const { logoUrl: logo } = storeSetting;
-    const { pages, design } = menu;
-    const { showLogo, showSearchbar, fontSize, height, expandSubItem } = design;
+      /** props */
+      logoUrl,
+      id,
+      pages,
+      design: {
+        showLogo,
+        showSearchbar,
+        expandSubItem,
+        alignment,
+        pattern,
+        opacity,
+        normal,
+        active,
+        hover,
+        fontSize,
+        font,
+        width,
+        height,
+      },
+      openKeys,
+      className,
+      reverseSearch,
+      ...props
+    } = this.props;
+    const selected = DEFAULT_COLOR_WITH_PATTERN[pattern];
+    const style = {
+      color: normal.color || colors[selected[1]],
+      background: transformColor(
+        normal.background || colors[selected[0]],
+      ).alpha(opacity),
+      fontSize: `${fontSize}px`,
+      fontFamily:
+        font === '黑體'
+          ? 'PingFang TC,微軟正黑體,Microsoft JhengHei,Helvetica Neue,Helvetica,source-han-sans-traditional,Arial,sans-serif'
+          : `${font},微軟正黑體,Microsoft JhengHei,sans-serif`,
+    };
 
     return (
-      <StyleRoot style={styles.root(design, colors, menuIndex !== -1)}>
-        {!(showLogo && logo) ? <div /> : <Logo logo={logo} height={height} />}
+      <div
+        id={`menu-${id}`}
+        className={`${styles.root} ${styles[alignment]} ${
+          expandSubItem ? '' : 'show-hover'
+        } ${className}`}
+        style={style}
+      >
+        {!showLogo ? (
+          <div />
+        ) : (
+          /** TODO remove with new image and new link */
+          <div className="logo">
+            <Image
+              files={{
+                image: logoUrl,
+                href: '/',
+              }}
+              style={{
+                width: width === 0 ? 'auto' : `${width}px`,
+                height: height === 0 ? 'auto' : `${height}px`,
+              }}
+              mode={width !== 0 && height !== 0 ? 'background' : 'img'}
+              alignment="center"
+              contentWidth={100}
+              newWindow={false}
+            />
+          </div>
+        )}
 
-        <StyleRoot style={styles.flex}>
-          <ul style={styles.menuMain(expandSubItem)}>
-            {(pages || []).map((page, index) => (
-              <MenuItem
-                key={page.id}
-                {...props}
-                {...page}
-                {...design}
-                menuItemClick={resetIndex => {
-                  this.setState({ menuIndex: resetIndex || index });
-                }}
-              />
-            ))}
-          </ul>
+        <AntdMenu
+          {...removeContextTpyesFromProps(props)}
+          {...(!expandSubItem
+            ? {}
+            : {
+                openKeys,
+                inlineIndent: 20,
+              })}
+          className={`meepshop ${styles.menu} ${styles[`pattern-${pattern}`]}`}
+          mode={expandSubItem ? 'inline' : 'vertical'}
+          getPopupContainer={() => this.getPopupContainer(style)}
+          expandIcon={({ eventKey, isOpen }) => (
+            <ArrowIcon
+              className={`arrow-icon ${
+                isOpen || (expandSubItem && openKeys.includes(eventKey))
+                  ? styles.open
+                  : styles.close
+              }`}
+            />
+          )}
+        >
+          {(!reverseSearch
+            ? [...pages, ...(!showSearchbar ? [] : this.searchBarItem)]
+            : [...(!showSearchbar ? [] : this.searchBarItem), ...pages]
+          ).map(({ id: pageId, ...page }) => (
+            <MenuItem
+              {...page}
+              key={pageId}
+              id={pageId}
+              menu2Style={
+                !expandSubItem
+                  ? {}
+                  : {
+                      fontSize: `${fontSize - 2}px`,
+                    }
+              }
+            />
+          ))}
+        </AntdMenu>
 
-          {!showSearchbar ? null : <SearchBar fontSize={fontSize} />}
-        </StyleRoot>
-      </StyleRoot>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: getMenuStyles(
+              id,
+              normal,
+              height,
+              active,
+              hover,
+              colors,
+              pattern,
+              selected,
+            ),
+          }}
+        />
+      </div>
     );
   }
 }

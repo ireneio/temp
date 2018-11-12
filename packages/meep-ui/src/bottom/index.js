@@ -1,55 +1,122 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { isHexColor } from 'validator';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import { COLOR_TYPE, ID_TYPE } from 'constants/propTypes';
+import Menu from 'menu';
+import { ID_TYPE, URL_TYPE, COLOR_TYPE } from 'constants/propTypes';
 
-import Item from './Item';
-import { FONT_SIZE_TYPE } from './constants';
 import styles from './styles/index.less';
 
 @enhancer
 export default class Bottom extends React.PureComponent {
+  resizeTimeout = null;
+
   static propTypes = {
-    colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
+    /** context */
+    storeSetting: PropTypes.shape({
+      logoUrl: URL_TYPE,
+    }).isRequired,
+    colors: COLOR_TYPE.isRequired,
+
+    /** props */
+    id: ID_TYPE.isRequired,
     menu: PropTypes.shape({
       pages: PropTypes.arrayOf(
         PropTypes.shape({
           id: ID_TYPE.isRequired,
         }).isRequired,
       ),
-      design: PropTypes.shape({
-        color: COLOR_TYPE,
-        background: PropTypes.string,
-        fontSize: FONT_SIZE_TYPE.isRequired,
-        useBottom: PropTypes.bool,
-      }).isRequired,
+      design: PropTypes.shape({}).isRequired,
     }).isRequired,
+  };
+
+  state = {
+    openKeys: [],
+  };
+
+  componentDidMount() {
+    this.resize();
+    window.addEventListener('resize', this.resize);
+  }
+
+  componentWillUnmount() {
+    this.isUnmounted = true;
+    window.removeEventListener('resize', this.resize);
+  }
+
+  resize = () => {
+    clearTimeout(this.resizeTimeout);
+    this.resizeTimeout = setTimeout(() => {
+      if (this.isUnmounted) return;
+
+      const {
+        menu: { pages },
+      } = this.props;
+
+      this.setState({
+        openKeys:
+          document.querySelector('body').offsetWidth <
+          parseInt(styles.phoneWidth, 10)
+            ? []
+            : pages.map(({ id: pageId }) => pageId),
+      });
+    }, 100);
   };
 
   render() {
     const {
+      /** context */
+      storeSetting: { logoUrl },
       colors,
+
+      /** props */
+      id,
       menu: {
         pages,
-        design: { color, background, fontSize, useBottom },
+        design: {
+          normal: { background = '', color },
+          opacity,
+          ...design
+        },
       },
-      ...props
     } = this.props;
+    const { openKeys } = this.state;
 
-    if (!useBottom) return null;
+    const normal = {
+      color: color || colors[3],
+      background:
+        !background || !isHexColor(background) ? '#ffffff' : background,
+    };
 
     return (
       <div
         className={styles.root}
         style={{
-          color: color || colors[3],
+          ...normal,
           background,
         }}
       >
-        {(pages || []).map(page => (
-          <Item key={page.id} {...props} fontSize={fontSize} page={page} />
-        ))}
+        <Menu
+          id={id}
+          className={styles.menu}
+          logoUrl={logoUrl}
+          pages={pages}
+          design={{
+            ...design,
+            normal,
+            opacity: !background || !isHexColor(background) ? 0 : 1,
+          }}
+          onOpenChange={newOpenKeys =>
+            this.setState({
+              openKeys:
+                newOpenKeys.slice(-1) !== openKeys[0]
+                  ? newOpenKeys.slice(-1)
+                  : [],
+            })
+          }
+          openKeys={openKeys}
+        />
       </div>
     );
   }

@@ -1,16 +1,65 @@
 @import '../../constants/styles.less';
+@value phoneWidth from "../../constants/styles.less";
 
 .root {
-  display: flex;
-  padding: 20px 0px;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
   width: 100%;
   border-top: 1px solid #dddddd;
 
   @media @PHONE_MEDIA {
-    display: block;
     border-top: 0px;
+  }
+
+  .menu {
+    padding: 20px 0px;
+
+    @media @PHONE_MEDIA {
+      padding: 0px;
+    }
+  }
+}
+
+.menu :global(.ant-menu.ant-menu-inline) {
+  @media @PHONE_MEDIA {
+    width: 100%;
+  }
+
+  :global(.menu-1) {
+    padding: 0px 0px 0px 10px;
+    min-width: 140px;
+    border-left: 1px solid #dddddd;
+
+    & > :global(.ant-menu-submenu-title) {
+      margin: 0px;
+      justify-content: flex-start;
+    }
+
+    @media @PHONE_MEDIA {
+      padding: 15px 25px;
+      width: 100%;
+      border-left: 0px;
+      border-top: 1px solid #ddd;
+
+      &:last-child {
+        border-bottom: 1px solid #ddd;
+      }
+
+      :global(.arrow-icon) {
+        display: initial;
+      }
+
+      & > :global(.ant-menu-submenu-title) {
+        justify-content: space-between;
+      }
+    }
+  }
+
+  :global(.menu-2) {
+    padding: 0px !important;
+    width: 100%;
+
+    @media @PHONE_MEDIA {
+      padding: 14px 0px 0px 5px !important;
+      font-size: inherit !important;
+    }
   }
 }

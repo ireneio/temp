@@ -1,5 +1,5 @@
 :global(button > span) {
-  color: inherit;
+  color: unset;
 }
 
 :global(pre) {
@@ -9,4 +9,50 @@
 
 :global(.ant-cascader-picker-label) {
   color: rgba(0, 0, 0, 0.65);
+}
+
+:global(.ant-badge-count) {
+  font-size: 10px;
+}
+
+:global(.ant-badge) {
+  color: unset;
+}
+
+:global(.meepshop.ant-menu-vertical),
+:global(.meepshop.ant-menu-inline) {
+  &:global(.ant-menu),
+  &:global(.ant-menu .ant-menu-item-selected),
+  :global(.ant-menu-item:hover),
+  :global(.ant-menu-item:after),
+  :global(.ant-menu-item-active),
+  :global(.ant-menu-item.ant-menu-item-selected:after),
+  :global(.ant-menu-submenu > .ant-menu),
+  :global(.ant-menu-submenu:hover),
+  :global(.ant-menu-submenu-active),
+  :global(.ant-menu-submenu-title:hover),
+  :global(.ant-menu-submenu-title:active),
+  :global(.ant-menu-submenu-inline > .ant-menu-submenu-title:hover),
+  :global(.ant-menu-submenu-open) {
+    color: unset;
+    background: unset;
+    border: 0px;
+  }
+}
+
+:global(.ant-menu-submenu-title) {
+  transition: unset;
+}
+
+:global(.ant-menu-vertical .ant-menu-item),
+:global(.ant-menu-vertical .ant-menu-submenu),
+:global(.ant-menu-vertical > .ant-menu-item),
+:global(.ant-menu-vertical > .ant-menu-submenu) {
+  top: 0px;
+  margin: 0px;
+  border: 0px;
+}
+
+:global(.ant-menu-vertical .ant-menu-item:not(:last-child)) {
+  margin: 0px;
 }

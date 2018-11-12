@@ -77,14 +77,22 @@ export default class Img extends React.PureComponent {
 
   /*
    * Use to get image suitable width
-  */
+   */
   getImageSuitableWidth = () => {
-    const { width: propWidth, mode } = this.props;
+    // TODO remove
+    const {
+      style: { width: styleWidth } = {},
+      width: propWidth,
+      mode,
+    } = this.props;
     const { isClient } = this.state;
     const ssrDevicePixelRatio = isClient ? devicePixelRatio : 1;
 
-    if (mode === 'background' && propWidth)
-      return propWidth * ssrDevicePixelRatio;
+    if (mode === 'background' && (propWidth || styleWidth))
+      return (
+        (propWidth || parseInt(styleWidth.replace(/px/, ''), 10)) *
+        ssrDevicePixelRatio
+      );
 
     const { width } = this.state;
 

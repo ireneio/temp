@@ -1,39 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import radium from 'radium';
 import { Input } from 'antd';
-import SearchIcon from 'react-icons/lib/md/search';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 
-import { FONTSIZE_TYPE } from './constants';
-import * as styles from './styles/searchBar';
+import Icon from './Icon';
+import styles from './styles/searchBar.less';
 
 @enhancer
-@radium
 export default class SearchBar extends React.PureComponent {
-  static propTypes = {
-    adTrack: PropTypes.func.isRequired,
-    goTo: PropTypes.func.isRequired,
-    fontSize: FONTSIZE_TYPE.isRequired,
-    style: PropTypes.shape({}),
-    type: PropTypes.string,
-  };
+  preValue = '';
 
-  static defaultProps = {
-    style: {},
-    type: '',
+  static propTypes = {
+    /** context */
+    goTo: PropTypes.func.isRequired,
+    adTrack: PropTypes.func.isRequired,
+
+    /** props */
+    title: PropTypes.string.isRequired,
   };
 
   state = {
     value: '',
-    // eslint-disable-next-line react/destructuring-assignment
-    open: this.props.type === 'sidebar',
+    showSearchBar: false,
   };
 
-  onPressEnter = () => {
+  search = ({ target: { value } }) => {
     const { goTo, adTrack } = this.props;
-    const { value } = this.state;
 
     if (this.preValue === value) return;
 
@@ -49,38 +42,28 @@ export default class SearchBar extends React.PureComponent {
     this.preValue = value;
   };
 
-  onChange = e => {
-    const { value = '' } = e.target;
-
-    this.setState({ value });
-  };
-
-  toggleSearch = () => {
-    const { open } = this.state;
-
-    this.setState({ open: !open });
-  };
-
   render() {
-    const { fontSize, style, type } = this.props;
-    const { open, value } = this.state;
+    const { title } = this.props;
+    const { value, showSearchBar } = this.state;
 
     return (
-      <div style={[styles.searchbar, style]}>
-        <SearchIcon
-          style={styles.icon}
-          onClick={type === 'sidebar' ? () => {} : this.toggleSearch}
-        />
-        {!open ? null : (
+      <Icon
+        font="search"
+        direction="left"
+        onClick={() => this.setState({ showSearchBar: !showSearchBar })}
+      >
+        {!showSearchBar ? null : (
           <Input
+            className={styles.root}
+            placeholder={title}
             value={value}
-            placeholder={type === 'sidebar' ? '' : '搜尋'}
-            style={styles.searchbarInput(fontSize)}
-            onChange={this.onChange}
-            onPressEnter={this.onPressEnter}
+            onChange={({ target: { value: changeValue } }) =>
+              this.setState({ value: changeValue })
+            }
+            onPressEnter={this.search}
           />
         )}
-      </div>
+      </Icon>
     );
   }
 }

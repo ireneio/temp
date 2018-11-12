@@ -1,0 +1,62 @@
+@import '../../constants/styles.less';
+
+.root {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0px auto;
+  padding: 0px 70px;
+  width: 100%;
+
+  &.center {
+    justify-content: center;
+  }
+
+  &.right {
+    justify-content: space-between;
+  }
+
+  &.left {
+    justify-content: flex-start;
+  }
+
+  @media @PHONE_MEDIA {
+    padding: 0px;
+  }
+
+  :global(.arrow-icon) {
+    margin: 0px 0px 0px 5px;
+    transition: transform 0.5s ease 0s;
+
+    &.open {
+      transform: rotate(-180deg);
+    }
+
+    &.close {
+      transform: rotate(0deg);
+    }
+  }
+}
+
+:global(.ant-menu-inline .arrow-icon) {
+  display: none;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  line-height: 1.5;
+  font-size: inherit;
+  border-bottom: 0px;
+
+  &.pattern-1 :global(.menu-1:hover) {
+    border-radius: 2px;
+  }
+
+  &:global(.ant-menu-inline) {
+    align-items: flex-start;
+    width: auto;
+    border: 0px;
+  }
+}

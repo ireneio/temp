@@ -1,0 +1,199 @@
+@import '../../constants/styles.less';
+
+@HEADEER_WIDTH: 55px;
+
+.header {
+  display: none;
+
+  @media @PHONE_MEDIA {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    overflow: hidden;
+  }
+}
+
+.barsIcon {
+  width: calc(2 * @HEADEER_WIDTH);
+
+  svg {
+    display: flex;
+    padding: calc((@HEADEER_WIDTH - 24px) / 2);
+    width: @HEADEER_WIDTH;
+    height: 60px;
+    cursor: pointer;
+  }
+}
+
+.logo {
+  width: calc(100% - @HEADEER_WIDTH * 2 * 2);
+
+  /* For smaller than iphone 6 */
+  @media (max-width: 370px) {
+    a > div {
+      width: 100% !important;
+    }
+  }
+}
+
+.headerMenu {
+  width: calc(2 * @HEADEER_WIDTH);
+
+  :global(.ant-badge-count) {
+    top: 5px;
+    right: 20px;
+  }
+
+  :global(.ant-badge) {
+    height: 100%;
+  }
+
+  :global(.ant-menu:before),
+  :global(.ant-menu:after) {
+    content: initial;
+  }
+
+  :global(.ant-menu-inline) {
+    height: 100%;
+
+    :global(.menu-1) {
+      display: flex;
+      padding: 0px !important;
+      width: @HEADEER_WIDTH;
+      height: 100%;
+
+      & > *:first-child {
+        margin: auto !important;
+      }
+    }
+  }
+}
+
+.drawer {
+  :global(.ant-drawer-body) {
+    padding: 0px;
+    min-height: 100%;
+  }
+
+  :global(.ant-drawer-close) {
+    display: block;
+    position: relative;
+    top: 60px;
+    left: calc(100% - 60px);
+    margin: -60px 0px 0px;
+  }
+
+  :global(.ant-drawer-close-x) {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.member {
+  display: none;
+
+  @media @PHONE_MEDIA {
+    display: block;
+  }
+
+  :global(.ant-drawer-close) {
+    top: 70px;
+  }
+
+  :global(.ant-drawer-wrapper-body) {
+    height: 100%;
+    overflow: scroll;
+  }
+
+  .menu {
+    // TODO fix, with new Image
+    :global(.logo) {
+      margin: 0px;
+      padding: 10px 0px;
+      width: 100%;
+
+      a > div {
+        margin: auto;
+        background-position: center !important;
+      }
+    }
+
+    :global(.ant-menu.ant-menu-inline) {
+      :global(.menu-1) {
+        width: 100%;
+        padding: 0px !important;
+        margin: 0px 28px;
+        text-align: center;
+
+        & > *:first-child {
+          margin: 24px auto;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+.sidebar .menu {
+  // TODO fix, with new Image
+  :global(.logo) {
+    margin: 0px 0px 0px 25px;
+  }
+
+  :global(.ant-menu.ant-menu-inline) {
+    :global(.menu-1) {
+      & {
+        display: block;
+        width: 100%;
+        min-height: auto !important;
+        font-weight: normal;
+      }
+
+      &:not(:global(.ant-menu-submenu)) {
+        padding: 15px 15px 15px 25px !important;
+
+        & > *:first-child {
+          margin: 0px;
+        }
+      }
+
+      &:global(.ant-menu-submenu) {
+        padding: 0px;
+
+        & > :global(.ant-menu-submenu-title) {
+          margin: 0px;
+          padding: 15px 15px 15px 25px !important;
+          justify-content: space-between;
+        }
+
+        & > :global(.ant-menu-sub) {
+          transition: unset;
+        }
+      }
+
+      :global(.arrow-icon) {
+        display: initial;
+      }
+    }
+
+    :global(.menu-2) {
+      padding: 5px 25px 5px 40px !important;
+      width: 100%;
+      font-size: inherit;
+
+      @media @PHONE_MEDIA {
+        & {
+          font-size: inherit !important;
+        }
+      }
+    }
+  }
+}
+
+.menu {
+  // TODO fix, with new Image
+  :global(.logo) a > div {
+    background-size: contain !important;
+    background-position: left center !important;
+  }
+}

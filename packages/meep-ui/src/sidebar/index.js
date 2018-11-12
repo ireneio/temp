@@ -1,36 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import radium, { StyleRoot } from 'radium';
+import { areEqual, emptyFunction } from 'fbjs';
+import memoizeOne from 'memoize-one';
 
 import { enhancer } from 'layout/DecoratorsRoot';
+import Menu from 'menu';
 import {
   ISLOGIN_TYPE,
-  COLOR_TYPE,
-  URL_TYPE,
   ID_TYPE,
-  OPACITY_TYPE,
+  URL_TYPE,
+  POSITIVE_NUMBER_TYPE,
 } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
 
-import Logo from 'menu/Logo';
-import SearchBar from 'menu/SearchBar';
-import { PATTERN_TYPE, FONTSIZE_TYPE, FONT_TYPE } from 'menu/constants';
-
-import SidebarItem from './SidebarItem';
-import { WIDTH_TYPE, PADDING_TOP_TYPE } from './constants';
-import * as styles from './styles';
+import styles from './styles/index.less';
 
 @enhancer
-@radium
 export default class Sidebar extends React.PureComponent {
   static propTypes = {
     /** context */
     isLogin: ISLOGIN_TYPE.isRequired,
-    colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
+    storeSetting: PropTypes.shape({
+      logoUrl: URL_TYPE,
+    }).isRequired,
 
     /** props */
-    logo: URL_TYPE,
-    style: PropTypes.shape({}),
+    id: ID_TYPE.isRequired,
     menu: PropTypes.shape({
       pages: PropTypes.arrayOf(
         PropTypes.shape({
@@ -38,79 +33,97 @@ export default class Sidebar extends React.PureComponent {
         }).isRequired,
       ),
       design: PropTypes.shape({
-        width: WIDTH_TYPE.isRequired,
-        paddingTop: PADDING_TOP_TYPE.isRequired,
-        pattern: PATTERN_TYPE.isRequired,
-        showLogo: PropTypes.bool.isRequired,
-        showSearchbar: PropTypes.bool.isRequired,
-        opacity: OPACITY_TYPE.isRequired,
-        fontSize: FONTSIZE_TYPE.isRequired,
-        font: FONT_TYPE.isRequired,
-        normal: PropTypes.shape({
-          color: COLOR_TYPE,
-          background: COLOR_TYPE,
-        }).isRequired,
+        width: POSITIVE_NUMBER_TYPE.isRequired,
+        paddingTop: POSITIVE_NUMBER_TYPE.isRequired,
       }).isRequired,
     }).isRequired,
     children: PropTypes.node.isRequired,
   };
 
-  static defaultProps = {
-    logo: null,
-    style: {},
+  state = {
+    openKeys: [],
   };
+
+  getPages = memoizeOne((pages, isLogin) => {
+    if (isLogin === NOTLOGIN) return pages;
+
+    const member = pages.find(({ action }) => action === 8);
+
+    if (!member) return pages;
+
+    return [member, ...pages.filter(({ action }) => action !== 8)];
+  }, areEqual);
 
   render() {
     const {
+      /** context */
       isLogin,
-      colors,
-      logo,
-      menu,
-      style,
+      storeSetting: { logoUrl },
+
+      /** props */
+      id,
+      menu: {
+        pages,
+        design: { width, paddingTop, expandSubItem, ...design },
+      },
       children,
-      ...props
     } = this.props;
-
-    const { pages, design } = menu;
-    const { showLogo, showSearchbar, fontSize, width, paddingTop } = design;
-
-    let filteredPages = pages;
-    const member = pages.find(page => page.action === 8);
-    if (isLogin !== NOTLOGIN && member) {
-      filteredPages = pages.filter(page => page.action !== 8);
-      filteredPages.unshift(member);
-    }
+    const { openKeys } = this.state;
 
     return (
-      <div style={styles.root}>
-        <StyleRoot style={[styles.sidebar(design, colors), style]}>
-          {!(showLogo && logo) ? <div /> : <Logo logo={logo} width={width} />}
+      <div className={styles.root}>
+        <div
+          style={{
+            width: `${width}px`,
+          }}
+        >
+          <Menu
+            id={id}
+            className={`${styles.menu} ${
+              expandSubItem ? '' : `${styles.showArrow} show-hover`
+            } show-border`}
+            logoUrl={logoUrl}
+            pages={this.getPages(pages, isLogin)}
+            design={{
+              ...design,
+              width,
+              expandSubItem: true,
+            }}
+            openKeys={
+              expandSubItem ? pages.map(({ id: pageId }) => pageId) : openKeys
+            }
+            onOpenChange={
+              expandSubItem
+                ? emptyFunction
+                : newOpenKeys =>
+                    this.setState({
+                      openKeys:
+                        newOpenKeys.slice(-1) !== openKeys[0]
+                          ? newOpenKeys.slice(-1)
+                          : [],
+                    })
+            }
+            reverseSearch
+          />
+        </div>
 
-          <div style={styles.padding(paddingTop)}>
-            {!showSearchbar ? null : (
-              <div style={styles.searchBar(design, colors)}>
-                <SearchBar
-                  fontSize={fontSize}
-                  style={styles.searchIcon}
-                  type="sidebar"
-                />
-              </div>
-            )}
+        <div
+          style={{
+            width: `calc(100% - ${width}px)`,
+          }}
+        >
+          {children}
+        </div>
 
-            {(filteredPages || []).map(page => (
-              <SidebarItem
-                {...props}
-                key={page.id}
-                page={page}
-                design={design}
-              />
-            ))}
-          </div>
-        </StyleRoot>
-
-        {!children ? null : (
-          <StyleRoot style={styles.blockWrapper(design)}>{children}</StyleRoot>
-        )}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              #menu-${id} > .ant-menu {
+                margin: ${paddingTop}px 0px 0px;
+              }
+            `,
+          }}
+        />
       </div>
     );
   }

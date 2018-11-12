@@ -234,6 +234,7 @@ export const CONTEXT_TYPES = {
   locale: ONE_OF_LOCALE_TYPE.isRequired,
   customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
   location: LOCATION_TYPE.isRequired,
+  carts: PropTypes.shape({}).isRequired,
 
   /** context func from props */
   setLocale: PropTypes.func.isRequired,

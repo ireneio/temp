@@ -1,0 +1,41 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: top;
+
+  &.left {
+    flex-direction: row;
+
+    .icon {
+      margin: 0px 5px 0px 0px;
+    }
+  }
+
+  &.right {
+    flex-direction: row-reverse;
+
+    .icon {
+      margin: 0px 0px 0px 5px;
+    }
+  }
+
+  &.upon {
+    flex-direction: column;
+
+    .icon {
+      margin: 0px 0px 5px 0px;
+    }
+  }
+
+  &.below {
+    flex-direction: column-reverse;
+
+    .icon {
+      margin: 5px 0px 0px 0px;
+    }
+  }
+}
+
+.icon {
+  font-size: 24px;
+}

@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'fbjs/lib/warning';
+import { warning } from 'fbjs';
 
 import FixedTop from 'fixedTop';
 import SecondTop from 'secondTop';
 import Sidebar from 'sidebar';
 import Bottom from 'bottom';
-import Block from 'block';
 import MobileLayout from 'mobileLayout';
+
+import Block from 'block';
 
 import * as styles from './styles/containerSwitch';
 
@@ -25,24 +26,40 @@ const ContainerSwitch = ({
   const fixedTopProps = { ...props, ...fixedtop };
   const secondTopProps = { ...props, ...secondtop };
   const sidebarProps = { ...props, ...sidebar };
-  const bottomProps = { ...props, ...fixedbottom };
-  const blockComponent = children || <Block width={width} blocks={blocks} />;
+  const blockComponent = (
+    <>
+      {children || <Block width={width} blocks={blocks} />}
+      {!fixedbottom ? null : <Bottom {...props} {...fixedbottom} />}
+    </>
+  );
+
+  // TODO modify in store
+  // FIXME id is same
+  fixedTopProps.id = 'fixedtop';
+  fixedTopProps.menu.design = {
+    ...fixedTopProps.menu.design,
+    width: 0,
+  };
+  secondTopProps.id = 'secondtop';
+  secondTopProps.menu.design = {
+    ...secondTopProps.menu.design,
+    width: 0,
+  };
+  sidebarProps.id = 'sidebar';
+  sidebarProps.menu.design = {
+    ...sidebarProps.menu.design,
+    height: 0,
+  };
 
   switch (containerName) {
     case 'DefaultContainer':
-      return (
-        <React.Fragment>
-          {blockComponent}
-          <Bottom {...bottomProps} />
-        </React.Fragment>
-      );
+      return blockComponent;
 
     case 'FixedTopContainer':
       return (
         <MobileLayout {...props} fixedtop={fixedtop}>
           <FixedTop {...fixedTopProps} />
           {blockComponent}
-          <Bottom {...bottomProps} />
         </MobileLayout>
       );
 
@@ -52,7 +69,6 @@ const ContainerSwitch = ({
           <FixedTop {...fixedTopProps} />
           <SecondTop {...secondTopProps} />
           {blockComponent}
-          <Bottom {...bottomProps} />
         </MobileLayout>
       );
 
@@ -62,7 +78,6 @@ const ContainerSwitch = ({
           <FixedTop {...fixedTopProps} />
           <Sidebar {...sidebarProps} style={styles.hideSidebarInPhone}>
             {blockComponent}
-            <Bottom {...bottomProps} />
           </Sidebar>
         </MobileLayout>
       );
@@ -79,18 +94,16 @@ const ContainerSwitch = ({
           <SecondTop {...secondTopProps} />
           <Sidebar {...sidebarProps} style={styles.hideSidebarInPhone}>
             {blockComponent}
-            <Bottom {...bottomProps} />
           </Sidebar>
         </MobileLayout>
       );
 
     case 'FixedEndsContainer':
       return (
-        <React.Fragment>
+        <>
           <FixedTop {...fixedTopProps} />
           {blockComponent}
-          <Bottom {...bottomProps} />
-        </React.Fragment>
+        </>
       );
 
     default:
@@ -99,7 +112,6 @@ const ContainerSwitch = ({
         `[component] ${containerName} does not exist.`,
       );
 
-      /* istanbul ignore next */
       return null; // for production
   }
 };

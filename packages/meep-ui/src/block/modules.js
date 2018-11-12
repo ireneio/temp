@@ -13,14 +13,12 @@ import videoCore from 'videoCore';
 import productCollections from 'productCollection';
 import productCarousell from 'productCarousel';
 import productInfo from 'productInfo';
-import fixedTop from 'fixedTop';
-import secondTop from 'secondTop';
 import productList from 'productList';
 import productQA from 'productQA';
 import draftText from 'draftText';
 import activity from 'activity';
 import checkout from 'checkout';
-import menu from 'menu';
+import menu, { handleModuleData } from 'menu';
 import productSet from 'productSet';
 import forgotPassword from 'forgotPassword';
 import UnavailableComp from 'unavailableComp';
@@ -44,15 +42,13 @@ export default {
   'product-collections': productCollections,
   'product-carousell': productCarousell,
   'product-info': productInfo,
-  'fixed-top': fixedTop,
-  'second-top': secondTop,
   products: productList.Default,
   'products-controlled': productList.Controlled,
   'product-service': productQA,
   'draft-text': draftText,
   activity,
   checkout,
-  menu,
+  menu: handleModuleData(menu),
   product: productSet,
   'forgot-password': forgotPassword,
 };
