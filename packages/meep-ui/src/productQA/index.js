@@ -3,6 +3,7 @@ import radium, { Style } from 'radium';
 import PropTypes from 'prop-types';
 import { Form, List, Input, Button, message } from 'antd';
 import { subdirectoryArrowRight as ArrowRightIcon } from 'react-icons/md';
+import { isFullWidth, isEmail } from 'validator';
 import moment from 'moment';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -161,8 +162,11 @@ export default class PrdoductQA extends React.PureComponent {
                   message: transformLocale(LOCALE.IS_REQUIRED),
                 },
                 {
-                  type: 'email',
-                  message: transformLocale(LOCALE.NOT_EMAIL),
+                  validator: (rule, value, callback) => {
+                    if (value && (isFullWidth(value) || !isEmail(value)))
+                      callback(transformLocale(LOCALE.NOT_EMAIL));
+                    else callback();
+                  },
                 },
               ],
             })(<Input placeholder={transformLocale(LOCALE.EMAIL)} />)}

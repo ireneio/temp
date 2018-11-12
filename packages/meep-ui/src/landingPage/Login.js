@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Button, Modal, notification } from 'antd';
-
-import LockIcon from 'react-icons/lib/md/lock';
+import { isFullWidth, isEmail } from 'validator';
+import { lock as LockIcon } from 'react-icons/md';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -113,8 +113,11 @@ export default class Login extends React.PureComponent {
                   message: transformLocale(LOCALE.IS_REQUIRED),
                 },
                 {
-                  type: 'email',
-                  message: transformLocale(LOCALE.NOT_EMAIL),
+                  validator: (rule, value, callback) => {
+                    if (value && (isFullWidth(value) || !isEmail(value)))
+                      callback(transformLocale(LOCALE.NOT_EMAIL));
+                    else callback();
+                  },
                 },
               ],
             },

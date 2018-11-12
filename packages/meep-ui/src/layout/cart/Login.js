@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Button } from 'antd';
-import LockIcon from 'react-icons/lib/md/lock';
-import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart';
-import FacebookIcon from 'react-icons/lib/fa/facebook';
+import { isFullWidth, isEmail } from 'validator';
+import { lock as LockIcon } from 'react-icons/md';
+import {
+  shoppingCart as ShoppingCartIcon,
+  facebook as FacebookIcon,
+} from 'react-icons/fa';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -87,8 +90,11 @@ export default class Login extends React.PureComponent {
                   message: transformLocale(LOCALE.EMAIL_IS_REQUIRED),
                 },
                 {
-                  type: 'email',
-                  message: transformLocale(LOCALE.IS_INVALID_EMAIL),
+                  validator: (rule, value, callback) => {
+                    if (value && (isFullWidth(value) || !isEmail(value)))
+                      callback(transformLocale(LOCALE.IS_INVALID_EMAIL));
+                    else callback();
+                  },
                 },
               ],
             },

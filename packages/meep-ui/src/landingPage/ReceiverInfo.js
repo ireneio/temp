@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Select, DatePicker } from 'antd';
+import { isFullWidth, isEmail } from 'validator';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import ReceiverDefaultFormItem from 'receiverDefaultFormItem';
@@ -158,8 +159,11 @@ export default class ReceiverInfo extends React.PureComponent {
                   message: transformLocale(LOCALE.IS_REQUIRED),
                 },
                 {
-                  type: 'email',
-                  message: transformLocale(LOCALE.NOT_EMAIL),
+                  validator: (rule, value, callback) => {
+                    if (value && (isFullWidth(value) || !isEmail(value)))
+                      callback(transformLocale(LOCALE.NOT_EMAIL));
+                    else callback();
+                  },
                 },
               ],
             })(

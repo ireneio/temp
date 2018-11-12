@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form, Input } from 'antd';
+import { isFullWidth, isEmail } from 'validator';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import styles from './styles/login.less';
@@ -63,8 +64,11 @@ export default class LoginForm extends React.PureComponent {
                 message: transformLocale(LOCALE.EMAIL_IS_REQUIRED),
               },
               {
-                type: 'email',
-                message: transformLocale(LOCALE.IS_INVALID_EMAIL),
+                validator: (rule, value, callback) => {
+                  if (value && (isFullWidth(value) || !isEmail(value)))
+                    callback(transformLocale(LOCALE.IS_INVALID_EMAIL));
+                  else callback();
+                },
               },
             ],
           })(
