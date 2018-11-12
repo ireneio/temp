@@ -54,23 +54,22 @@ export default class PriceInfo extends React.PureComponent {
             </div>
           )}
 
-          {activityInfo.map(
-            ({ id, discountPrice, plugin, title }) =>
-              !discountPrice ? null : (
-                <div key={id} style={styles.block}>
-                  <span>
-                    {transformLocale(
-                      ['productCoupon', 'orderCoupon'].includes(plugin)
-                        ? LOCALE.COUPON_CODE
-                        : title,
-                    )}
-                  </span>
+          {activityInfo.map(({ id, discountPrice, plugin, title }) =>
+            !discountPrice ? null : (
+              <div key={id} style={styles.block}>
+                <span>
+                  {transformLocale(
+                    ['productCoupon', 'orderCoupon'].includes(plugin)
+                      ? LOCALE.COUPON_CODE
+                      : title,
+                  )}
+                </span>
 
-                  <span style={styles.content}>
-                    - {transformCurrency(discountPrice)}
-                  </span>
-                </div>
-              ),
+                <span style={styles.content}>
+                  - {transformCurrency(discountPrice)}
+                </span>
+              </div>
+            ),
           )}
 
           {paymentFee === 0 ? null : (

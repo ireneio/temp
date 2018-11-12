@@ -230,15 +230,14 @@ export default class Group extends React.PureComponent {
               />
             )}
           </div>
-          {total &&
-            total > limit && (
-              <Pagination
-                params={params}
-                total={total}
-                scrollToTop={this.scrollToTop}
-                getProductsData={this.getProductsData}
-              />
-            )}
+          {total && total > limit && (
+            <Pagination
+              params={params}
+              total={total}
+              scrollToTop={this.scrollToTop}
+              getProductsData={this.getProductsData}
+            />
+          )}
         </StyleRoot>
       </div>
     );

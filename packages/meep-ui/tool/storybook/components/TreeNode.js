@@ -131,7 +131,7 @@ export default class TreeNode extends React.PureComponent {
                   data={'{}'}
                   chooseData={this.getChooseData(
                     chooseData instanceof Object &&
-                    Object.keys(chooseData).length === 0
+                      Object.keys(chooseData).length === 0
                       ? '{}'
                       : chooseData,
                   )}

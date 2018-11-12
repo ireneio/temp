@@ -17,7 +17,7 @@ export default class Layout extends React.PureComponent {
   /*
    * colors - the setting of the colors
    * backgroundImage - the img info of the background
-  */
+   */
   static propTypes = {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     background: COLOR_TYPE,

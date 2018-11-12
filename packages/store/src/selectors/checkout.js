@@ -35,8 +35,8 @@ const getCheckoutPage = (state, prevProps) => ({
                 ) || [],
               orderInfo: prevProps.orderInfo, // 超商門市
               // 鎖國家:存的資料（一邊中文一邊英文）與landing page不同
-              countries: state.storeReducer.settings.lockedCountry.map(
-                c => (c === 'Taiwan' ? '台灣' : c),
+              countries: state.storeReducer.settings.lockedCountry.map(c =>
+                c === 'Taiwan' ? '台灣' : c,
               ),
             },
           ],

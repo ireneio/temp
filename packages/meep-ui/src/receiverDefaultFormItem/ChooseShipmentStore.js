@@ -204,8 +204,8 @@ export default class ChooseShipmentStore extends React.PureComponent {
           )}
         </Button>
 
-        {this.storeData.map(
-          text => (!text ? null : <div key={text}>{text}</div>),
+        {this.storeData.map(text =>
+          !text ? null : <div key={text}>{text}</div>,
         )}
 
         {SHIPMENT_STORE_FIELDS.map((fieldName, index) => (

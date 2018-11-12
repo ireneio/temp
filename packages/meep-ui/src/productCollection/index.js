@@ -29,27 +29,29 @@ export default class ProductCollection extends React.PureComponent {
 
     return (
       <StyleRoot style={styles.root(align)}>
-        {files.filter(url => url).map((url, index) => (
-          <div
-            key={
-              `${productName}-${index}` // eslint-disable-line react/no-array-index-key
-            }
-            style={styles.imgWrapper(align)}
-          >
-            <div style={styles.img}>
-              <Image
-                files={{
-                  image: url,
-                }}
-                contentWidth={width || 70}
-                alignment="center"
-                newWindow={false}
-                alt={productName}
-                mode="collection"
-              />
+        {files
+          .filter(url => url)
+          .map((url, index) => (
+            <div
+              key={
+                `${productName}-${index}` // eslint-disable-line react/no-array-index-key
+              }
+              style={styles.imgWrapper(align)}
+            >
+              <div style={styles.img}>
+                <Image
+                  files={{
+                    image: url,
+                  }}
+                  contentWidth={width || 70}
+                  alignment="center"
+                  newWindow={false}
+                  alt={productName}
+                  mode="collection"
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </StyleRoot>
     );
   }

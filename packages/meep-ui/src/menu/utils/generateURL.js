@@ -22,7 +22,7 @@ export default (action, params, isLogin) => {
       /*
        * TODO: remove use new Link
        * https://github.com/meepshop/meep-lerna/pull/111/
-      */
+       */
       return url && !/\/\/?/.test(url) ? `//${url}` : url;
     }
 

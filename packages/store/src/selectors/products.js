@@ -17,8 +17,9 @@ import {
   getQuery,
 } from './index';
 
-const getProductsPage = createSelector([getPages], pages =>
-  R.findLast(R.propEq('pageType', 'products'))(pages),
+const getProductsPage = createSelector(
+  [getPages],
+  pages => R.findLast(R.propEq('pageType', 'products'))(pages),
 );
 
 const getProductsCombinedPage = createSelector(

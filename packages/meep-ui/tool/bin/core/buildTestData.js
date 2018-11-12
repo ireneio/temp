@@ -23,11 +23,10 @@ const buildTestData = testData => {
   }
 
   if (testData instanceof Object) {
-    const dataArray = Object.keys(testData).map(
-      key =>
-        testData[key] instanceof Object || testData?.arrayOf
-          ? buildTestData(testData[key])
-          : [testData[key]],
+    const dataArray = Object.keys(testData).map(key =>
+      testData[key] instanceof Object || testData?.arrayOf
+        ? buildTestData(testData[key])
+        : [testData[key]],
     );
 
     if (dataArray.length === 0) return {};

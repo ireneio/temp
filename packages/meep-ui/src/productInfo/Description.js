@@ -25,8 +25,9 @@ const Description = ({
     {transformLocale(productData.title) && (
       <h1 style={styles.title}>{transformLocale(productData.title)}</h1>
     )}
-    {mode === 'detail' &&
-      variantInfo.sku && <div style={styles.sku}>{variantInfo.sku}</div>}
+    {mode === 'detail' && variantInfo.sku && (
+      <div style={styles.sku}>{variantInfo.sku}</div>
+    )}
     {mode === 'detail' && (
       <DraftText
         value={transformLocale(productData.description)}

@@ -94,15 +94,14 @@ const ProductCard = ({
                   {transformLocale(product.title)}
                 </div>
               )}
-              {showDescription &&
-                transformLocale(product.description) && (
-                  <div style={styles.productDescription(colors)}>
-                    <DraftText
-                      value={transformLocale(product.description)}
-                      plainText
-                    />
-                  </div>
-                )}
+              {showDescription && transformLocale(product.description) && (
+                <div style={styles.productDescription(colors)}>
+                  <DraftText
+                    value={transformLocale(product.description)}
+                    plainText
+                  />
+                </div>
+              )}
               {showPrice && (
                 <div style={styles.productPrice}>
                   {variantInfo.listPrice &&
@@ -137,21 +136,20 @@ const ProductCard = ({
                   ) : null}
                 </div>
               )}
-              {cartButton &&
-                !(memberSeePrice && isLogin !== ISUSER) && (
-                  <button
-                    key={`${product.id}-button`}
-                    type="button"
-                    data-id={product.id}
-                    disabled={!orderable}
-                    style={styles.productAddToCart(colors)}
-                    onClick={handleModalOpen}
-                  >
-                    {transformLocale(
-                      orderable ? LOCALE.ADD_TO_CART : LOCALE.SOLD_OUT,
-                    )}
-                  </button>
-                )}
+              {cartButton && !(memberSeePrice && isLogin !== ISUSER) && (
+                <button
+                  key={`${product.id}-button`}
+                  type="button"
+                  data-id={product.id}
+                  disabled={!orderable}
+                  style={styles.productAddToCart(colors)}
+                  onClick={handleModalOpen}
+                >
+                  {transformLocale(
+                    orderable ? LOCALE.ADD_TO_CART : LOCALE.SOLD_OUT,
+                  )}
+                </button>
+              )}
             </div>
           );
         })

@@ -15,7 +15,7 @@ export const patchPackages = async (patch = true) => {
   await execa.shell(
     `git apply --ignore-whitespace ${
       !patch ? '--reverse' : ''
-    } ${patchesDir}/node-fetch+2.2.0.patch`,
+    } ${patchesDir}/node-fetch+2.2.1.patch`,
     {
       stdio: 'inherit',
       cwd: rootDir,
