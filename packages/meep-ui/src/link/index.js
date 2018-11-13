@@ -33,10 +33,10 @@ export default class Link extends React.PureComponent {
   };
 
   onClick = url => e => {
-    const { location, goTo, target } = this.props;
+    const { goTo, target } = this.props;
     const { host, pathname, query, hash } = new URL(url);
 
-    if (target === '_blank' || host !== location.host) return;
+    if (target === '_blank' || host !== window.location.host) return;
 
     e.preventDefault();
     goTo({

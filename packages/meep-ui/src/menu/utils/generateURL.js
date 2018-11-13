@@ -16,15 +16,8 @@ export default (action, params, isLogin) => {
       return null;
     }
 
-    case 2: {
-      const { url } = params;
-
-      /*
-       * TODO: remove use new Link
-       * https://github.com/meepshop/meep-lerna/pull/111/
-       */
-      return url && !/\/\/?/.test(url) ? `//${url}` : url;
-    }
+    case 2:
+      return params.url;
 
     case 3: {
       const {
