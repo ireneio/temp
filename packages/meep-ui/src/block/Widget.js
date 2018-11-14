@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'fbjs/lib/warning';
+import { warning } from 'fbjs';
 import radium, { StyleRoot } from 'radium';
 
 import { WIDGETSETTING_TYPE } from './constants';
@@ -51,12 +51,14 @@ export default class Widget extends React.PureComponent {
     const { level } = widgetSetting;
     const Component = module ? modules[module] : null;
 
+    const hasVisibleModule = Boolean(Component) && module !== 'viewTracking';
+
     return (
       <StyleRoot
         ref={node => {
           this.widget = node;
         }}
-        style={styles.root(widgetSetting, Boolean(Component))}
+        style={styles.root(widgetSetting, hasVisibleModule)}
       >
         {Component ? (
           <Component {...props} />

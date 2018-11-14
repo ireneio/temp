@@ -23,11 +23,19 @@ export default class Carousel extends React.PureComponent {
     enableIndicators: PropTypes.bool.isRequired,
     enableControls: PropTypes.bool.isRequired,
     pauseWhenHover: PropTypes.bool.isRequired,
+    customTracking: PropTypes.objectOf({
+      eventLabel: PropTypes.string.isRequired,
+      eventCategory: PropTypes.objectOf({
+        status: PropTypes.bool.isRequired,
+        value: PropTypes.string.isRequired,
+      }).isRequired,
+    }),
   };
 
   static defaultProps = {
     files: null,
     newWindow: false,
+    customTracking: null,
   };
 
   state = {
@@ -121,6 +129,7 @@ export default class Carousel extends React.PureComponent {
       enableIndicators,
       enableControls,
       pauseWhenHover,
+      customTracking, // 廣告追蹤用
     } = this.props;
     const { imageIndex } = this.state;
     const files = this.getFiles();
@@ -154,6 +163,7 @@ export default class Carousel extends React.PureComponent {
                 contentWidth={100}
                 newWindow={newWindow}
                 alignment="center"
+                customTracking={customTracking}
               />
             </div>
           ))}

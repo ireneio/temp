@@ -138,6 +138,7 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
               alignment: widget.alignment,
               newWindow: widget.newWindow,
               files: widget.files,
+              customTracking: widget.customTracking,
             };
           }
           /* 語法嵌入 */
@@ -173,6 +174,7 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
               pauseWhenHover: widget.pauseWhenHover,
               files: widget.files,
               newWindow: widget.newWindow,
+              customTracking: widget.customTracking,
             };
           }
           /* 分隔線 */
@@ -288,6 +290,7 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
               showOverlay: widget.showOverlay,
               files: widget.files,
               newWindow: widget.newWindow,
+              customTracking: widget.customTracking,
             };
           }
           /* 文字 */

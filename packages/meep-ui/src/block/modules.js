@@ -22,6 +22,7 @@ import menu, { handleModuleData } from 'menu';
 import productSet from 'productSet';
 import forgotPassword from 'forgotPassword';
 import UnavailableComp from 'unavailableComp';
+import viewTracking from 'viewTracking';
 
 export default {
   image,
@@ -51,4 +52,5 @@ export default {
   menu: handleModuleData(menu),
   product: productSet,
   'forgot-password': forgotPassword,
+  viewTracking,
 };

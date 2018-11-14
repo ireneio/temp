@@ -49,11 +49,19 @@ export default class ImageText extends React.PureComponent {
     textColor: COLOR_TYPE.isRequired,
     showOverlay: PropTypes.bool.isRequired,
     overlayBackgroundColor: COLOR_TYPE.isRequired,
+    customTracking: PropTypes.objectOf({
+      eventLabel: PropTypes.string.isRequired,
+      eventCategory: PropTypes.objectOf({
+        status: PropTypes.bool.isRequired,
+        value: PropTypes.string.isRequired,
+      }).isRequired,
+    }),
   };
 
   static defaultProps = {
     files: null,
     newWindow: false,
+    customTracking: null,
   };
 
   state = {
@@ -91,10 +99,26 @@ export default class ImageText extends React.PureComponent {
       position,
       textColor,
       overlayBackgroundColor,
+      customTracking,
     } = this.props;
     const { showOverlay } = this.state;
 
     const href = this.generateUrl();
+
+    let handleClickTracking;
+    if (customTracking?.status) {
+      const { eventLabel, eventCategory } = customTracking;
+      handleClickTracking = () => {
+        if (window.fbq) window.fbq('track', eventLabel);
+        if (window.gtag) {
+          window.gtag('event', 'meepShop_click', {
+            event_category:
+              (eventCategory?.status && eventCategory?.value) || eventLabel,
+            event_label: eventLabel,
+          });
+        }
+      };
+    }
 
     return (
       <div className={styles.root} style={{ width: `${contentWidth}%` }}>
@@ -117,6 +141,7 @@ export default class ImageText extends React.PureComponent {
             })}
             onMouseEnter={() => this.handleOverlay(true)}
             onMouseLeave={() => this.handleOverlay(false)}
+            onClick={handleClickTracking}
           >
             <StyleRoot
               className={styles.textContainer}

@@ -34,6 +34,7 @@ export default class Img extends React.PureComponent {
     style: PropTypes.shape({}),
     mode: PropTypes.oneOf(['background', 'img', 'collection']),
     alt: PropTypes.string,
+    handleClickTracking: PropTypes.func,
   };
 
   static defaultProps = {
@@ -46,6 +47,7 @@ export default class Img extends React.PureComponent {
     style: {},
     mode: 'img',
     alt: 'meepshop',
+    handleClickTracking: () => {},
   };
 
   constructor(props) {
@@ -129,6 +131,7 @@ export default class Img extends React.PureComponent {
       style,
       mode,
       alt,
+      handleClickTracking, // 廣告分析用
     } = this.props;
     const href = this.generateUrl();
 
@@ -148,6 +151,7 @@ export default class Img extends React.PureComponent {
                   ),
                   style,
                 ]}
+                onClick={handleClickTracking}
               />
             ) : (
               <img
@@ -156,6 +160,7 @@ export default class Img extends React.PureComponent {
                 onLoad={this.resize}
                 alt={alt}
                 style={[styles.image, style]}
+                onClick={handleClickTracking}
               />
             )}
           </Link>
