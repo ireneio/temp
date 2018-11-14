@@ -1,3 +1,27 @@
+## 0.9.1 (2018-11-14)
+
+#### :boom: Breaking Change
+
+- `meep-ui`
+  - [#303](https://github.com/meepshop/meep-lerna/pull/303) New link ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#265](https://github.com/meepshop/meep-lerna/pull/265) 自訂廣告事件: 「廣告分析 - 點擊追蹤」&「廣告分析 - 瀏覽追蹤」(1996) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#310](https://github.com/meepshop/meep-lerna/pull/310) fix(meep-ui): fix link in menu style, link checking ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`, `test-prod-server`
+  - [#305](https://github.com/meepshop/meep-lerna/pull/305) fix(meep-ui): lock clipboard version ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.8.0 (2018-11-12)
 
 #### :boom: Breaking Change
