@@ -85,21 +85,16 @@ module.exports = async ctx => {
       throw new Error(`${responseFromFB.status}: ${responseFromFB.statusText}`);
     }
 
-    const responseApi = await fetch(
-      `${API_HOST}/facebook/fbLogin?domain=${encodeURIComponent(
-        XMeepshopDomain,
-      )}`,
-      {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-meepshop-domain': XMeepshopDomain,
-          'x-meepshop-authorization-token': XMeepshopDomainToken,
-        },
-        credentials: 'include',
-        body: JSON.stringify({ accessToken: dataFromFB.access_token }),
+    const responseApi = await fetch(`${API_HOST}/facebook/fbLogin`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-meepshop-domain': XMeepshopDomain,
+        'x-meepshop-authorization-token': XMeepshopDomainToken,
       },
-    );
+      credentials: 'include',
+      body: JSON.stringify({ accessToken: dataFromFB.access_token }),
+    });
 
     let dataApi;
     if (responseApi.status === 200) {

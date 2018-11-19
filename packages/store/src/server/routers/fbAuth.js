@@ -6,12 +6,7 @@ const { PRODUCTION, API_HOST, DOMAIN } = publicRuntimeConfig;
 
 module.exports = koaCtx =>
   proxy(API_HOST, {
-    proxyReqPathResolver: ctx => {
-      const XMeepshopDomain = PRODUCTION ? ctx.host : DOMAIN;
-      return `${API_HOST}/facebook/fbLogin?domain=${encodeURIComponent(
-        XMeepshopDomain,
-      )}`;
-    },
+    proxyReqPathResolver: () => `${API_HOST}/facebook/fbLogin`,
     proxyReqOptDecorator: (proxyReqOpts, ctx) => {
       const XMeepshopDomain = PRODUCTION ? ctx.host : DOMAIN;
       const XMeepshopAuthorizationToken =
