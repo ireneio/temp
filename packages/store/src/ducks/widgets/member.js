@@ -540,7 +540,14 @@ function* addOrderMessageFlow({ payload }) {
   } = yield select();
   try {
     const data = yield call(Api.addOrderMessage, payload);
-    if (data) {
+
+    if (data.apiErr) {
+      yield put(addOrderMessageFailure());
+      notification.error({
+        message: LOCALE.ADD_ORDER_MESSAGE_FAILURE_MESSAGE[locale],
+        description: data.apiErr.message,
+      });
+    } else {
       yield put(addOrderMessageSuccess(data));
       notification.success({
         message: LOCALE.ADD_ORDER_MESSAGE_SUCCESS[locale],
