@@ -46,7 +46,7 @@ export default class Placeholder extends React.PureComponent {
 
   resize = () => {
     this.setState({
-      height: Math.floor((this.placeholder.current.offsetWidth * 9) / 16),
+      height: this.placeholder.current.offsetWidth,
     });
   };
 

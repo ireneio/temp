@@ -32,14 +32,13 @@ const ProductLoader = ({
   ...props
 }) => {
   const Loaders = [];
-  const imageHeight = parseInt(productWidth * 0.67, 10);
 
   let Title;
   let Description;
   let Price;
   let Button;
 
-  let height = imageHeight + 10;
+  let height = productWidth + 10;
 
   if (showTitle) {
     Title = (
@@ -134,7 +133,7 @@ const ProductLoader = ({
           rx="5"
           ry="5"
           width={productWidth}
-          height={imageHeight}
+          height={productWidth}
         />
         {Title}
         {Description}
