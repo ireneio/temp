@@ -1,3 +1,24 @@
+## 0.9.2 (2018-11-19)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#299](https://github.com/meepshop/meep-lerna/pull/299) fix(store): remove DOMAIN query string of fbLogin api ([@barrypeng6](https://github.com/barrypeng6))
+  - [#295](https://github.com/meepshop/meep-lerna/pull/295) 側邊選單：顯示空白問題 （N209） ([@barrypeng6](https://github.com/barrypeng6))
+  - [#304](https://github.com/meepshop/meep-lerna/pull/304) 訂單問答：當切斷網路，送出訂單問答，提示訊息應為：「發送訂單問答：發生錯誤」(N220) ([@happycat6323](https://github.com/happycat6323))
+  - [#308](https://github.com/meepshop/meep-lerna/pull/308) google 搜尋品牌名稱，商店敘述出現錯誤訊息 (N225) ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#286](https://github.com/meepshop/meep-lerna/pull/286) 分隔線： 後台無設定背景顏色，前台顯示結果卻是白色(N204) ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`
+  - [#306](https://github.com/meepshop/meep-lerna/pull/306) 商品頁產品主圖: 輪播異常 (N215) ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 4
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.9.1 (2018-11-14)
 
 #### :boom: Breaking Change
