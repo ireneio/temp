@@ -174,7 +174,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
           return {
             id: uuid(),
             module: widget.module,
-            background: widget.background === '' ? 'white' : widget.background,
+            background: widget.background,
             contentWidth: widget.width,
             height: widget.height,
             alignment: widget.alignment,

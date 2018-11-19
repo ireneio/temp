@@ -42,7 +42,7 @@ export default class Divider extends React.PureComponent {
       >
         <div
           style={{
-            background,
+            background: background || 'transparent',
             width: `${contentWidth}%`,
             borderRadius: radius,
           }}
