@@ -67,7 +67,7 @@ class Pages extends React.Component {
     if (error) return <Error error={error} />;
 
     const {
-      storeSetting: { storeName, faviconUrl, locale },
+      storeSetting: { storeName, storeDescription, faviconUrl, locale },
       location: { host, pathname },
       page,
       pageAdTrackIDs,
@@ -75,7 +75,7 @@ class Pages extends React.Component {
     } = this.props;
     const url = host + pathname;
     const { addressTitle = '' } = page;
-    const { keywords, description, image } = page.seo || {};
+    const { keywords, description = storeDescription, image } = page.seo || {};
 
     return (
       <>

@@ -61,14 +61,14 @@ class Index extends React.Component {
     if (error) return <Error error={error} />;
 
     const {
-      storeSetting: { storeName, faviconUrl, locale },
+      storeSetting: { storeName, storeDescription, faviconUrl, locale },
       location: { host, pathname },
       page,
       pageAdTrackIDs,
       fbAppId,
     } = this.props;
     const url = host + pathname;
-    const { keywords, description, image } = page.seo || {};
+    const { keywords, description = storeDescription, image } = page.seo || {};
 
     return (
       <>
