@@ -44,9 +44,7 @@ export default ({ pathname, params = {}, back = false }) => {
         /* Hack for fixing Instagram copy url */
         window.open(`${window.location.origin}${pathname + queryString}`);
       } else {
-        Router.pushRoute(pathname + queryString, {
-          shallow: window.location.pathname === pathname,
-        });
+        Router.pushRoute(pathname + queryString);
       }
     }
   } else {
