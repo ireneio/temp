@@ -90,13 +90,12 @@ export default class ProductCarousel extends React.PureComponent {
               prevArrow={<ArrowIcon type="left-circle" />}
             >
               {images.map((url, index) => (
-                <div>
-                  <div
-                    key={
-                      url + index // eslint-disable-line react/no-array-index-key
-                    }
-                    style={styles.showcase(url, mode)}
-                  />
+                <div
+                  key={
+                    url + index // eslint-disable-line react/no-array-index-key
+                  }
+                >
+                  <div style={styles.showcase(url, mode)} />
                 </div>
               ))}
             </Slider>
@@ -113,13 +112,12 @@ export default class ProductCarousel extends React.PureComponent {
                 focusOnSelect
               >
                 {images.map((url, index) => (
-                  <div>
-                    <div
-                      key={
-                        url + index // eslint-disable-line react/no-array-index-key
-                      }
-                      style={styles.thumbnail(url, mode)}
-                    />
+                  <div
+                    key={
+                      url + index // eslint-disable-line react/no-array-index-key
+                    }
+                  >
+                    <div style={styles.thumbnail(url, mode)} />
                   </div>
                 ))}
               </Slider>
