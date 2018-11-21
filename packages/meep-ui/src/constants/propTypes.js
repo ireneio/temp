@@ -118,6 +118,13 @@ export const POSITIVE_NUMBER_TYPE = buildPropTypes(
   'number',
 );
 
+/** testRandom 0, 0.5, 1 */
+export const POSITIVE_FLOAT_TYPE = buildPropTypes(
+  'positive float',
+  value => isFloat(value, { min: 0 }),
+  'number',
+);
+
 /** test oneOfLocale */
 export const ONE_OF_LOCALE_TYPE = PropTypes.oneOf(LOCALE);
 
@@ -199,6 +206,15 @@ export const USER_TYPE = PropTypes.shape({
       }).isRequired,
     }).isRequired,
   ),
+});
+
+export const CUSTOM_TRACKING_TYPE = PropTypes.shape({
+  status: PropTypes.bool.isRequired,
+  eventLabel: PropTypes.string.isRequired,
+  eventCategory: PropTypes.shape({
+    status: PropTypes.bool.isRequired,
+    value: PropTypes.string.isRequired,
+  }).isRequired,
 });
 
 export const STORE_SETTING_TYPE = PropTypes.shape({

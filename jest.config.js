@@ -2,8 +2,9 @@ module.exports = {
   setupFiles: ['./jest.setup'],
   testMatch: [
     '**/!(meep-ui)/src/**/__tests__/**/*.js',
-    '**/meep-ui/src/**/__tests__/.cache/*.js',
-    '**/meep-ui/src/**/__tests__/!(.cache)/**/*.js',
+    '**/meep-ui/src/!(utils)/__tests__/.cache/*.js',
+    '**/meep-ui/src/!(utils)/__tests__/!(.cache)/**/*.js',
+    '**/meep-ui/src/utils/__tests__/**/*.js',
   ],
   collectCoverage: true,
   coverageDirectory: 'coverage',

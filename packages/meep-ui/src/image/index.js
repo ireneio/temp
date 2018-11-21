@@ -1,58 +1,91 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Link from 'link';
+import { URL_TYPE, HASH_TYPE, IMAGE_TYPE } from 'constants/propTypes';
+
 import Placeholder from './Placeholder';
 import Img from './Img';
+import styles from './styles/index.less';
 
-/* ImageSwitch */
-const Image = ({ files, customTracking, /* 廣告追蹤用 */ ...props }) => {
-  let handleClickTracking;
-  if (customTracking?.status) {
-    const { eventLabel, eventCategory } = customTracking;
-    handleClickTracking = () => {
-      if (window.fbq) window.fbq('track', eventLabel);
-      if (window.gtag) {
-        window.gtag('event', 'meepShop_click', {
-          event_category:
-            (eventCategory?.status && eventCategory?.value) || eventLabel,
-          event_label: eventLabel,
-        });
-      }
-    };
+export default class Image extends React.PureComponent {
+  imageRef = React.createRef();
+
+  resizeTimeout = null;
+
+  static propTypes = {
+    /** props */
+    href: PropTypes.oneOfType([URL_TYPE, HASH_TYPE]),
+    image: IMAGE_TYPE,
+    newWindow: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    /** props */
+    href: null,
+    image: null,
+    newWindow: false,
+  };
+
+  state = {
+    width: 0,
+  };
+
+  componentDidMount() {
+    this.resize();
+    window.addEventListener('resize', this.resize);
   }
 
-  return !files || (files instanceof Array && files.length === 0) ? (
-    <Placeholder {...props} />
-  ) : (
-    <Img
-      {...props}
-      {...(files instanceof Array ? files[0] : files)}
-      handleClickTracking={handleClickTracking}
-    />
-  );
-};
+  componentWillUnmount() {
+    this.isUnmounted = true;
+    window.removeEventListener('resize', this.resize);
+  }
 
-/**
- * If just using Image module, `files` must be a array.
- * Howerver, other module use `Image`, `files` can be an object.
- */
-Image.propTypes = {
-  files: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.shape({}).isRequired),
-    PropTypes.shape({}).isRequired,
-  ]),
-  customTracking: PropTypes.objectOf({
-    eventLabel: PropTypes.string.isRequired,
-    eventCategory: PropTypes.objectOf({
-      status: PropTypes.bool.isRequired,
-      value: PropTypes.string.isRequired,
-    }).isRequired,
-  }),
-};
+  /**
+   * resize | testJSON [{
+   *   "imageRef": {
+   *     "current": {
+   *       "offsetWidth": 1000
+   *     }
+   *   }
+   * }, {
+   *   "imageRef": {
+   *     "current": {
+   *       "offsetWidth": 10000
+   *     }
+   *   }
+   * }]
+   */
+  resize = () => {
+    clearTimeout(this.resizeTimeout);
+    this.resizeTimeout = setTimeout(() => {
+      if (this.isUnmounted) return;
 
-Image.defaultProps = {
-  files: null,
-  customTracking: null,
-};
+      this.setState({ width: this.imageRef.current.offsetWidth });
+    }, 100);
+  };
 
-export default Image;
+  render() {
+    const { href, image, newWindow, ...props } = this.props;
+    const { width } = this.state;
+    const linkProps = {
+      className: styles.root,
+      href,
+      target: newWindow ? '_blank' : '_self',
+    };
+
+    return !image ? (
+      <Link {...linkProps}>
+        <Placeholder {...props} ref={this.imageRef} width={width} />
+      </Link>
+    ) : (
+      <Img
+        {...props}
+        ref={this.imageRef}
+        linkProps={linkProps}
+        width={width}
+        image={image}
+      />
+    );
+  }
+}

@@ -6,7 +6,7 @@ import {
   chevronRight as ChevronRightIcon,
 } from 'react-icons/fa';
 
-import Image from 'image';
+import Image from 'deprecated/image';
 import { CONTENT_WIDTH_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles';

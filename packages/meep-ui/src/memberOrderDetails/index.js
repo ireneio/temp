@@ -5,7 +5,7 @@ import moment from 'moment';
 import { Table } from 'antd';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import Image from 'image';
+import Image from 'deprecated/image';
 import Link from 'deprecated/link';
 import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
 

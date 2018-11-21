@@ -28,6 +28,12 @@
 .logo {
   width: calc(100% - @HEADEER_WIDTH * 2 * 2);
 
+  .image {
+    margin: auto;
+    width: 150px;
+    background-size: contain;
+  }
+
   /* For smaller than iphone 6 */
   @media (max-width: 370px) {
     a > div {
@@ -106,11 +112,11 @@
   }
 
   .menu {
-    // TODO fix, with new Image
     :global(.logo) {
       margin: 0px;
       padding: 10px 0px;
-      width: 100%;
+      width: 100% !important;
+      height: 82px !important;
 
       a > div {
         margin: auto;
@@ -125,7 +131,8 @@
         margin: 0px 28px;
         text-align: center;
 
-        & > *:first-child {
+        & > a,
+        &:global(#logout) {
           margin: 24px auto;
           font-size: 18px;
         }
@@ -135,8 +142,8 @@
 }
 
 .sidebar .menu {
-  // TODO fix, with new Image
   :global(.logo) {
+    height: 60px;
     margin: 0px 0px 0px 25px;
   }
 
@@ -190,10 +197,7 @@
   }
 }
 
-.menu {
-  // TODO fix, with new Image
-  :global(.logo) a > div {
-    background-size: contain !important;
-    background-position: left center !important;
-  }
+.menu :global(.logo) a > div {
+  background-size: contain !important;
+  background-position: left center !important;
 }

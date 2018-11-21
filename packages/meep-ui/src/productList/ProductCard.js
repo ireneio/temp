@@ -82,18 +82,21 @@ const ProductCard = ({
             >
               <div style={styles.productImage}>
                 <Image
+                  image={image}
                   href={`/product/${product.id}`}
                   contentWidth={100}
                   alignment="center"
                   newWindow={false}
-                  files={image && { image }}
+                  ratio={1}
                 />
               </div>
+
               {showTitle && (
                 <div style={styles.productTitle}>
                   {transformLocale(product.title)}
                 </div>
               )}
+
               {showDescription && transformLocale(product.description) && (
                 <div style={styles.productDescription(colors)}>
                   <DraftText

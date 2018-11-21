@@ -1,7 +1,3 @@
-import buildPropTypes from 'utils/buildPropTypes';
-
-export const HASH_TYPE = buildPropTypes('hash', value => /^#/.test(value));
-
 export const IMAGE_SUITABLE_WIDTHS = [
   120,
   240,

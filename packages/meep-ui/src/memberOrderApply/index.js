@@ -5,7 +5,7 @@ import { Table, Input, Select, Button, message } from 'antd';
 import moment from 'moment';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import Image from 'image';
+import Image from 'deprecated/image';
 import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles';

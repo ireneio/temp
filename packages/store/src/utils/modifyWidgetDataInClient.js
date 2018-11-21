@@ -126,6 +126,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 圖片 */
         case 'image': {
           return {
+            ...widget.files?.[0],
             id: uuid(),
             module: widget.module,
             alignment: widget.alignment,

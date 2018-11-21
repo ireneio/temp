@@ -78,27 +78,20 @@ export default class MobileLayout extends React.PureComponent {
               )}
             </div>
 
-            {!mobileLogoUrl ? null : (
-              /** TODO remove with new image and new link */
-              <div className={styles.logo}>
+            <div className={styles.logo}>
+              {!mobileLogoUrl ? null : (
                 <Image
-                  files={{
-                    image: mobileLogoUrl,
-                    href: '/',
-                  }}
-                  style={{
-                    margin: 'auto',
-                    width: '150px',
-                    height: '60px',
-                    backgroundSize: 'contain',
-                  }}
+                  className={styles.image}
+                  image={mobileLogoUrl}
+                  height={60}
+                  href="/"
                   mode="background"
                   alignment="center"
                   contentWidth={100}
                   newWindow={false}
                 />
-              </div>
-            )}
+              )}
+            </div>
 
             <Menu
               id={`${id}-headerMenu`}
@@ -149,7 +142,7 @@ export default class MobileLayout extends React.PureComponent {
             pages={memberPages}
             design={{
               ...design,
-              showLogo: true,
+              showLogo: Boolean(mobileLogoUrl),
               showSearchbar: false,
               expandSubItem: true,
               normal,
@@ -194,7 +187,7 @@ export default class MobileLayout extends React.PureComponent {
               pages={pages}
               design={{
                 ...design,
-                showLogo: true,
+                showLogo: Boolean(mobileLogoUrl),
                 expandSubItem: true,
                 normal,
                 width: 150,

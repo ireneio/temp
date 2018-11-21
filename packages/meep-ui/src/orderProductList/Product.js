@@ -5,7 +5,7 @@ import { close as RemoveIcon } from 'react-icons/md';
 import { tag as TagIcon } from 'react-icons/fa';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import Image from 'image';
+import Image from 'deprecated/image';
 import {
   ID_TYPE,
   COLOR_TYPE,

@@ -39,9 +39,7 @@ const addTestData = (parentData, newData) => [
 ];
 
 const getParentData = (parentData, [dataName, ...otherDataNames]) => {
-  if (otherDataNames.length === 0) {
-    return [parentData[dataName]];
-  }
+  if (otherDataNames.length === 0) return [parentData[dataName]];
 
   const [nextDataName] = otherDataNames;
   let result = [];
@@ -240,9 +238,8 @@ const getData = (moduleName, componentsData, propTypesData, isTesting) => {
     testData = handleTestData(childComponentData, testData, isTesting);
 
     /** for tests */
-    if (isTesting) {
+    if (isTesting)
       testMethods = handleTestMethods(childComponentData, testMethods);
-    }
   });
 
   return {
@@ -258,9 +255,8 @@ const build = (componentsData, propTypesData, isTesting) =>
   );
 
 const handleCheckingFunc = data => {
-  if (data instanceof Array) {
+  if (data instanceof Array)
     return data.map(d => (!d?.func ? d : { func: d.func.toString() }));
-  }
 
   return [
     ...Object.keys(data.props).map(key => ({

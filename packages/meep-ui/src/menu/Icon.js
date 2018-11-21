@@ -33,19 +33,14 @@ export default class Icon extends React.PureComponent {
         {!MdIcon ? null : <MdIcon className={styles.icon} onClick={onClick} />}
 
         {!image ? null : (
-          /** TODO remove new Image */
-          <div className={styles.icon}>
-            <Image
-              files={{
-                image,
-              }}
-              style={{
-                display: 'block',
-                width: '32px',
-                height: '32px',
-              }}
-            />
-          </div>
+          <Image
+            className={`${styles.icon} ${styles.image}`}
+            image={image}
+            height={32}
+            alignment="center"
+            contentWidth={100}
+            mode="background"
+          />
         )}
 
         {direction === 'only' ? null : children}

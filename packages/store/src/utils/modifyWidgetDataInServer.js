@@ -132,6 +132,7 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
           /* 圖片 */
           case 'image': {
             return {
+              ...widget.files?.[0],
               id: uuid(),
               module: widget.module,
               contentWidth: widget.contentWidth,

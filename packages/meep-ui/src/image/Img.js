@@ -1,69 +1,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import radium, { StyleRoot } from 'radium';
+import { areEqual } from 'fbjs';
+import memoizeOne from 'memoize-one';
 
-import { enhancer } from 'layout/DecoratorsRoot';
-import Link from 'deprecated/link';
+import Link from 'link';
 import {
-  URL_TYPE,
+  IMAGE_TYPE,
   ALIGNMENT_TYPE,
-  LOCATION_TYPE,
+  POSITIVE_NUMBER_TYPE,
   CONTENT_WIDTH_TYPE,
+  CUSTOM_TRACKING_TYPE,
 } from 'constants/propTypes';
+import notMemoizedClickTracking from 'utils/notMemoizedClickTracking';
 
-import { IMAGE_SUITABLE_WIDTHS, HASH_TYPE } from './constants';
-import * as styles from './styles/img';
+import { IMAGE_SUITABLE_WIDTHS } from './constants';
+import styles from './styles/img.less';
 
-@enhancer
-@radium
-export default class Img extends React.PureComponent {
-  /**
-   * contentWidth -> Image width in block
-   */
+class Img extends React.PureComponent {
+  clickTracking = memoizeOne(notMemoizedClickTracking, areEqual);
+
   static propTypes = {
-    location: LOCATION_TYPE.isRequired,
-    href: PropTypes.oneOfType([URL_TYPE, HASH_TYPE]),
-    newWindow: /* istanbul ignore next */ process.env.STORYBOOK_DOCS
-      ? PropTypes.bool.isRequired
-      : PropTypes.bool,
-    image: URL_TYPE.isRequired,
+    /** props */
+    alt: PropTypes.string,
+    mode: PropTypes.oneOf(['background', 'img']),
+    customTracking: CUSTOM_TRACKING_TYPE,
+    image: IMAGE_TYPE.isRequired,
     alignment: ALIGNMENT_TYPE.isRequired,
     contentWidth: CONTENT_WIDTH_TYPE.isRequired,
-    width: PropTypes.number,
-    rootStyle: PropTypes.shape({}),
-    style: PropTypes.shape({}),
-    mode: PropTypes.oneOf(['background', 'img', 'collection']),
-    alt: PropTypes.string,
-    handleClickTracking: PropTypes.func,
+
+    /** ignore */
+    className: PropTypes.string,
+    height: POSITIVE_NUMBER_TYPE,
+    forwardedRef: PropTypes.shape({}).isRequired,
+    width: POSITIVE_NUMBER_TYPE.isRequired,
+    linkProps: PropTypes.shape({}).isRequired,
   };
 
   static defaultProps = {
-    href: null,
-    newWindow: /* istanbul ignore next */ process.env.STORYBOOK_DOCS
-      ? null
-      : false,
-    width: null,
-    rootStyle: {},
-    style: {},
-    mode: 'img',
+    /** props */
     alt: 'meepshop',
-    handleClickTracking: () => {},
+    mode: 'img',
+    customTracking: null,
+
+    /** ignore */
+    className: '',
+    height: 0,
   };
 
-  constructor(props) {
-    super(props);
-    this.img = React.createRef();
-  }
-
   state = {
-    width: 0,
     isClient: false,
   };
 
   componentDidMount() {
-    this.resize();
-    window.addEventListener('resize', this.resize);
-
     setTimeout(
       () =>
         this.setState({
@@ -73,99 +61,67 @@ export default class Img extends React.PureComponent {
     );
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resize);
-  }
-
-  /*
-   * Use to get image suitable width
-   */
-  getImageSuitableWidth = () => {
-    // TODO remove
-    const {
-      style: { width: styleWidth } = {},
-      width: propWidth,
-      mode,
-    } = this.props;
+  getImageURL = () => {
+    const { mode, image, width, height } = this.props;
     const { isClient } = this.state;
-    const ssrDevicePixelRatio = isClient ? devicePixelRatio : 1;
+    const imageWidth = width * (isClient ? devicePixelRatio : 1);
 
-    if (mode === 'background' && (propWidth || styleWidth))
-      return (
-        (propWidth || parseInt(styleWidth.replace(/px/, ''), 10)) *
-        ssrDevicePixelRatio
-      );
+    if (mode === 'img' && height !== 0) return `//${image}?h=${height}`;
 
-    const { width } = this.state;
-
-    return (
-      IMAGE_SUITABLE_WIDTHS.find(
-        suitableWidth => suitableWidth > width * ssrDevicePixelRatio,
-      ) || IMAGE_SUITABLE_WIDTHS.slice(-1)[0]
-    );
-  };
-
-  resize = () => {
-    if (!this.img.current) return;
-    this.setState({ width: this.img.current.offsetWidth });
-  };
-
-  generateUrl = () => {
-    const { location, href } = this.props;
-    const { pathname } = location;
-
-    if (/^#/.test(href)) return `${pathname}${href}`;
-
-    if (href && !/(^\/)|(^http)/.test(href)) return `//${href}`;
-
-    return href;
+    return `//${image}?w=${IMAGE_SUITABLE_WIDTHS.find(
+      suitableWidth => suitableWidth > imageWidth,
+    ) || IMAGE_SUITABLE_WIDTHS.slice(-1)[0]}`;
   };
 
   render() {
     const {
-      image,
-      newWindow,
-      contentWidth,
-      alignment,
-      rootStyle,
-      style,
-      mode,
+      /** props */
       alt,
-      handleClickTracking, // 廣告分析用
+      mode,
+      alignment,
+      contentWidth,
+      customTracking,
+
+      /** ignore */
+      height,
+      className,
+      forwardedRef,
+      width,
+      linkProps,
     } = this.props;
-    const href = this.generateUrl();
 
     return (
-      <StyleRoot style={[styles.root(alignment), rootStyle]}>
-        <div style={styles.wrapper(contentWidth, mode)}>
-          <Link
-            href={href}
-            target={newWindow ? '_blank' : '_self'}
-            style={styles.link}
-          >
+      <div className={`${styles.root} ${styles[alignment]}`}>
+        <div ref={forwardedRef} style={{ width: `${contentWidth}%` }}>
+          <Link {...linkProps}>
             {mode === 'background' ? (
               <div
-                style={[
-                  styles.background(
-                    `//${image}?w=${this.getImageSuitableWidth()}`,
-                  ),
-                  style,
-                ]}
-                onClick={handleClickTracking}
+                className={`${styles.image} ${styles.background} ${className} ${
+                  width === 0 ? styles.loading : ''
+                }`}
+                style={{
+                  backgroundImage: `url(${this.getImageURL()})`,
+                  height: `${height}px`,
+                }}
+                onClick={this.clickTracking(customTracking)}
               />
             ) : (
               <img
-                ref={this.img}
-                src={`//${image}?w=${this.getImageSuitableWidth()}`}
-                onLoad={this.resize}
+                className={`${styles.image} ${
+                  width === 0 && height === 0 ? styles.loading : ''
+                }`}
+                src={this.getImageURL()}
+                onClick={this.clickTracking(customTracking)}
                 alt={alt}
-                style={[styles.image, style]}
-                onClick={handleClickTracking}
               />
             )}
           </Link>
         </div>
-      </StyleRoot>
+      </div>
     );
   }
 }
+
+export default React.forwardRef((props, ref) => (
+  <Img {...props} forwardedRef={ref} />
+));

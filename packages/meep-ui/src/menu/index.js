@@ -179,20 +179,20 @@ export default class Menu extends React.PureComponent {
         style={style}
       >
         {!showLogo ? (
-          <div />
+          <div className="logo" />
         ) : (
-          /** TODO remove with new image and new link */
-          <div className="logo">
+          <div
+            className="logo"
+            style={{
+              width: width === 0 ? 'auto' : `${width}px`,
+              height: height === 0 ? 'auto' : `${height}px`,
+            }}
+          >
             <Image
-              files={{
-                image: logoUrl,
-                href: '/',
-              }}
-              style={{
-                width: width === 0 ? 'auto' : `${width}px`,
-                height: height === 0 ? 'auto' : `${height}px`,
-              }}
+              image={logoUrl}
               mode={width !== 0 && height !== 0 ? 'background' : 'img'}
+              height={height}
+              href="/"
               alignment="center"
               contentWidth={100}
               newWindow={false}
