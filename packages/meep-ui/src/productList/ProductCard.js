@@ -37,7 +37,7 @@ const ProductCard = ({
   <StyleRoot>
     <div
       style={[
-        styles.list,
+        styles.list(padding),
         {
           textAlign: alignment,
           justifyContent,

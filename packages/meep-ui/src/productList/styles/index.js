@@ -123,10 +123,7 @@ export const root = {
 };
 
 export const wrapper = {
-  padding: '20px 30px',
-  [PHONE_MEDIA]: {
-    padding: '20px 0px',
-  },
+  padding: '0px',
 };
 
 export const loading = {
@@ -142,10 +139,9 @@ export const sort = {
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'center',
-  marginBottom: '40px',
+  margin: '20px',
   [PHONE_MEDIA]: {
-    padding: '0 10px',
-    marginBottom: '20px',
+    margin: '20px 10px',
     justifyContent: 'space-between',
   },
 };
@@ -159,16 +155,22 @@ export const display = {
   },
 };
 
-export const list = {
+export const list = padding => ({
   display: 'flex',
   flexWrap: 'wrap',
-  marginBottom: '40px',
-};
+  padding: padding / 2,
+  [PHONE_MEDIA]: {
+    padding: '0px',
+  },
+});
 
 export const pagination = {
   display: 'flex',
   justifyContent: 'center',
-  marginBottom: '20px',
+  margin: '20px',
+  [PHONE_MEDIA]: {
+    margin: '20px 0px',
+  },
 };
 
 export const paginationItem = colors => ({
