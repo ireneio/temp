@@ -1,3 +1,15 @@
+## 0.10.1 (2018-11-22)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#313](https://github.com/meepshop/meep-lerna/pull/313) 【個別店家】手機版 - 點開 menu，選單跑版(N234 ) ([@HsuTing](https://github.com/HsuTing))
+  - [#315](https://github.com/meepshop/meep-lerna/pull/315) 產品列表 - 當後台元件間距設定無時，前台顯示結果與後台不同，會多出空白(N231) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.10.0 (2018-11-21)
 
 #### :boom: Breaking Change
