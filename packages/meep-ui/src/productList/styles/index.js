@@ -135,16 +135,16 @@ export const loading = {
   cursor: 'not-allowed',
 };
 
-export const sort = {
+export const sort = showSort => ({
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'center',
-  margin: '20px',
+  margin: showSort ? '20px' : '0px',
   [PHONE_MEDIA]: {
     margin: '20px 10px',
     justifyContent: 'space-between',
   },
-};
+});
 
 export const display = {
   fontSize: '24px',

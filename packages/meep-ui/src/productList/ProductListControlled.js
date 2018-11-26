@@ -368,7 +368,7 @@ export default class ProductList extends React.PureComponent {
         />
         <StyleRoot>
           <div style={styles.wrapper}>
-            <div style={styles.sort}>
+            <div style={styles.sort(showSort)}>
               {showSort && (
                 <Select
                   dropdownMatchSelectWidth={false}
