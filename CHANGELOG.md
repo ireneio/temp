@@ -1,3 +1,14 @@
+## 0.10.2 (2018-11-26)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#322](https://github.com/meepshop/meep-lerna/pull/322) Hotfix N231 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.10.1 (2018-11-22)
 
 #### :bug: Bug Fix
