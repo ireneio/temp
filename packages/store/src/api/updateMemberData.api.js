@@ -6,7 +6,6 @@ import {
   orderQuery,
   pointsQuery,
   orderApplyQuery,
-  orderQAQuery,
   stockNotificationQuery,
 } from './query';
 
@@ -14,7 +13,7 @@ export default async function(args = {}) {
   const { isServer, XMeepshopDomain, cookie } = args;
   const variables = {
     keys:
-      '$userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $wishlistSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $orderQASearch: searchInputObjectType',
+      '$userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $wishlistSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!',
     type: 'query updateMemberData',
     values: {
       userSearch: {
@@ -57,14 +56,6 @@ export default async function(args = {}) {
       },
       hasUseablePoints: true,
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
-    },
-    orderQASearch: {
-      sort: [
-        {
-          field: 'createdOn',
-          order: 'desc',
-        },
-      ],
     },
   };
 
@@ -110,11 +101,6 @@ export default async function(args = {}) {
     }
     getExpireSoonUserPointList(expireBy: $expireBy) {
       total
-    }
-    getOrderQAList(search: $orderQASearch) {
-      data {
-        ${orderQAQuery}
-      }
     }
   `;
 

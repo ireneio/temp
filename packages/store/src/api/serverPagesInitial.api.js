@@ -13,7 +13,6 @@ import {
   pointsQuery,
   orderApplyQuery,
   webTrackQuery,
-  orderQAQuery,
   stockNotificationQuery,
 } from './query';
 
@@ -24,7 +23,7 @@ export default async function(context) {
   if (!path) throw new Error('Page path is not defined.');
   const variables = {
     keys:
-      '$pageSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $wishlistSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType, $orderQASearch: searchInputObjectType',
+      '$pageSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $wishlistSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverPagesInitial',
     values: {
       pageSearch: {
@@ -212,14 +211,6 @@ export default async function(context) {
           ],
         },
       },
-      orderQASearch: {
-        sort: [
-          {
-            field: 'createdOn',
-            order: 'desc',
-          },
-        ],
-      },
     },
   };
 
@@ -352,11 +343,6 @@ export default async function(context) {
     getWebTrackList(search: $webTrackSearch) {
       data {
         ${webTrackQuery}
-      }
-    }
-    getOrderQAList(search: $orderQASearch) {
-      data {
-        ${orderQAQuery}
       }
     }
   `;

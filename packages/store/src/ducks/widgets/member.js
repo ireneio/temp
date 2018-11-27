@@ -889,7 +889,6 @@ const getMemberData = payload => {
   const wishList = data?.getWishListList?.data?.[0]?.list || [];
   const orderApply = data?.getOrderApplyList?.data || [];
   const orders = data?.getOrderList?.data || [];
-  const orderQAList = data?.getOrderQAList?.data || [];
   const userPoints = data?.getValidUserPointList?.data || [];
   const expireSoonUserPointList = data?.getExpireSoonUserPointList?.data || [];
   return {
@@ -900,7 +899,6 @@ const getMemberData = payload => {
     stockNotificationList,
     orders,
     orderApply,
-    orderQAList,
     userPoints,
     expireSoonUserPointList,
     loading: false,
@@ -916,7 +914,6 @@ const initialState = {
   stockNotificationList: [],
   orders: [],
   orderApply: [],
-  orderQAList: [],
   loading: false,
   loadingTip: '',
 };
@@ -1139,10 +1136,8 @@ export default function(state = initialState, { type, payload }) {
       };
     }
     case ADD_ORDER_MESSAGE_SUCCESS: {
-      const orderQA = payload?.data?.createOrderQA?.[0];
       return {
         ...state,
-        orderQAList: state.orderQAList.concat([orderQA]),
         loading: false,
         loadingTip: '',
       };
