@@ -8,7 +8,7 @@ import { URL_TYPE, HASH_TYPE } from 'constants/propTypes';
 
 import styles from './styles/index.less';
 
-const { enhancer } = contextProvider(['func', 'location']);
+const { enhancer } = contextProvider('func');
 
 @enhancer
 export default class Link extends React.PureComponent {
@@ -34,7 +34,9 @@ export default class Link extends React.PureComponent {
 
   onClick = url => e => {
     const { goTo, target } = this.props;
-    const { host, pathname, query, hash } = new URL(url);
+    const { host, pathname, query, hash } = new URL(
+      /^#/.test(url) ? `${window.location.pathname}${url}` : url,
+    );
 
     if (target === '_blank' || host !== window.location.host) return;
 
