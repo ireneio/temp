@@ -15,6 +15,7 @@ import {
   getStoreAppList,
   getStockNotificationList,
   getWishList,
+  getProductListCache,
 } from './index';
 
 const getPagePath = (state, { path }) => path;
@@ -40,6 +41,8 @@ export const getJoinedModulePage = createSelector(
     getStoreAppList,
     getStockNotificationList,
     getWishList,
+    // getProductListCache
+    getProductListCache,
   ],
   (
     page,
@@ -53,6 +56,8 @@ export const getJoinedModulePage = createSelector(
     storeApps,
     stockNotificationList,
     wishList,
+    // productList
+    productListCache,
   ) => {
     if (page) {
       const blocks = page.blocks.map(({ widgets, ...block }) => ({
@@ -68,6 +73,8 @@ export const getJoinedModulePage = createSelector(
           storeApps,
           stockNotificationList,
           wishList,
+          // productList
+          productListCache,
         }),
       }));
       return { ...page, blocks };

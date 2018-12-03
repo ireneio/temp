@@ -17,6 +17,7 @@ const getJoinedModule = (
     storeApps,
     stockNotificationList,
     wishList,
+    productListCache,
   },
 ) => {
   const mWidgets = widgets.map(widget => {
@@ -95,6 +96,7 @@ const getJoinedModule = (
             cart,
             wishList,
             stockNotificationList,
+            productListCache,
           };
         }
         case 'product': {
@@ -162,6 +164,7 @@ const getJoinedModule = (
         storeApps,
         stockNotificationList,
         wishList,
+        productListCache,
       }),
     };
   });

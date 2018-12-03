@@ -15,6 +15,7 @@ import {
   getLocaleItemsTemplate,
   getCurrencyItemsTemplate,
   getQuery,
+  getProductListCache,
 } from './index';
 
 const getProductsPage = createSelector(
@@ -35,6 +36,8 @@ const getProductsCombinedPage = createSelector(
     getStoreAppList,
     getStockNotificationList,
     getWishList,
+    // getProductListCache
+    getProductListCache,
   ],
   (
     page,
@@ -48,6 +51,8 @@ const getProductsCombinedPage = createSelector(
     storeApps,
     stockNotificationList,
     wishList,
+    // productList
+    productListCache,
   ) => {
     const blocks = page.blocks.map(({ widgets, ...block }) => ({
       ...block,
@@ -62,6 +67,8 @@ const getProductsCombinedPage = createSelector(
         storeApps,
         stockNotificationList,
         wishList,
+        // productList
+        productListCache,
       }),
     }));
     return { ...page, blocks };

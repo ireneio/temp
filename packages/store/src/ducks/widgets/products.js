@@ -94,7 +94,7 @@ export function* watchGetProductFlow() {
 
 /**
  * @name ProductsReducer
- * @description 商品資料，有訪問過商品頁之商品資料才會存放與此。
+ * @description 商品資料，有訪問過商品頁之商品資料才會存放於此。
  * !! Note:
  * 商品列表的資料不會存放與此，原因是因為不同的商品列表會有不同的排列，不同的組成，
  * 因此直接由ProductList Component call API，並join到該module欄位。

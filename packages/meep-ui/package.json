@@ -19,6 +19,7 @@
   "author": "meepshop <admin@meepshop.com>",
   "license": "ISC",
   "dependencies": {
+    "hash.js": "^1.1.5",
     "clipboard": "^2.0.1",
     "color": "^3.0.0",
     "d3-hierarchy": "^1.1.6",

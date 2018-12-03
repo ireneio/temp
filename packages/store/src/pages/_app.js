@@ -30,11 +30,8 @@ Router.onRouteChangeStart = url => {
   NProgress.start();
 };
 
-Router.onRouteChangeComplete = () => {
-  NProgress.done();
-  // page need to scroll to top when sorting in product list
-  window.scrollTo(0, 0);
-};
+Router.onRouteChangeComplete = () => NProgress.done();
+
 Router.onRouteChangeError = () => NProgress.done();
 
 class MyApp extends App {

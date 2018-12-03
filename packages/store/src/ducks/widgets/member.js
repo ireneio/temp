@@ -4,6 +4,7 @@ import { notification } from 'antd';
 import * as Api from 'api';
 import { NOTLOGIN, ISUSER } from 'constants';
 import * as LOCALE from '../locale';
+import { cleanProductList } from './lists';
 
 const getCart = data => {
   const changeCart = data?.data?.changeCartList?.[0] || null;
@@ -118,6 +119,7 @@ export function* loginFlow({ payload }) {
       }
 
       yield put(loginSuccess(memberData));
+      yield put(cleanProductList());
     } else {
       yield put(loginFailure());
       notification.error({
@@ -160,6 +162,7 @@ function* signoutFlow() {
     if (isSuccess) {
       const memberData = yield call(Api.updateMemberData);
       yield put(signoutSuccess(memberData.data));
+      yield put(cleanProductList());
       notification.success({ message: LOCALE.SIGNOUT_SUCCESS[locale] });
     } else {
       yield put(signoutFailure());

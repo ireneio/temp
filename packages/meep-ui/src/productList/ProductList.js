@@ -4,6 +4,7 @@ import radium, { StyleRoot, Style } from 'radium';
 import { areEqual } from 'fbjs';
 import queryString from 'query-string';
 import { Modal, Pagination, Select, Icon } from 'antd';
+import hash from 'hash.js';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
@@ -27,8 +28,6 @@ import getProductsQuery from './utils/getProductsQuery';
 @enhancer
 @radium
 export default class ProductList extends React.PureComponent {
-  root = React.createRef();
-
   name = 'product-list';
 
   static propTypes = {
@@ -43,6 +42,7 @@ export default class ProductList extends React.PureComponent {
       sort: PropTypes.string,
       limit: PropTypes.number,
     }).isRequired,
+    productListCache: PropTypes.shape({}).isRequired,
 
     /** props for ProductInfo */
     cart: PropTypes.shape({}),
@@ -80,6 +80,7 @@ export default class ProductList extends React.PureComponent {
     transformLocale: PropTypes.func.isRequired,
     transformCurrency: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
+    dispatchAction: PropTypes.func.isRequired,
     /* eslint-enable react/no-unused-prop-types */
   };
 
@@ -114,7 +115,6 @@ export default class ProductList extends React.PureComponent {
     const {
       params: prevStateParams,
       isGrid = true,
-      cache = {},
       isLogin: prevIsLogin,
       cart: prevCart,
       stockNotificationList: prevStockNotificationList,
@@ -129,7 +129,6 @@ export default class ProductList extends React.PureComponent {
         ...(isLogin !== prevIsLogin && {
           products: getData(...getProductsQuery(params)),
           isLoading: true,
-          cache: {},
         }),
         // close modal after adding
         ...(!areEqual(cart, prevCart) ||
@@ -151,7 +150,6 @@ export default class ProductList extends React.PureComponent {
       cart,
       stockNotificationList,
       isGrid,
-      cache,
       target: null,
       isOpen: false,
       isLoading: true,
@@ -174,8 +172,8 @@ export default class ProductList extends React.PureComponent {
   }
 
   reduceProducts = () => {
-    const { products, cache, params } = this.state;
-    const { adTrack, getData } = this.props;
+    const { products, params } = this.state;
+    const { adTrack, getData, dispatchAction, productListCache } = this.props;
 
     // resolved products
     if (products instanceof Promise) {
@@ -186,11 +184,34 @@ export default class ProductList extends React.PureComponent {
     // fetch products
     if (products === null) {
       const key = JSON.stringify(params);
+      const hashcode = hash
+        .sha256()
+        .update(key)
+        .digest('hex');
+      const cached = productListCache[hashcode];
+      const timestamp = productListCache[`${hashcode}:timestamp`];
+
+      // cached or not
+      if (cached && timestamp) {
+        const age = (Date.now() - timestamp) / 1000;
+        if (age < 600) {
+          this.setState({
+            products: cached,
+            isLoading: false,
+          });
+        } else {
+          // get rid of it once expired
+          dispatchAction('saveProductList', {
+            [hashcode]: null,
+            [`${hashcode}:timestamp`]: null,
+          });
+        }
+        return;
+      }
 
       this.setState({
-        products:
-          key in cache ? cache[key] : getData(...getProductsQuery(params)),
-        isLoading: !(key in cache),
+        products: getData(...getProductsQuery(params)),
+        isLoading: true,
       });
       return;
     }
@@ -205,6 +226,7 @@ export default class ProductList extends React.PureComponent {
       products,
       params: { sort, ids },
     } = this.state;
+    const { dispatchAction } = this.props;
 
     const result = await products;
 
@@ -212,7 +234,7 @@ export default class ProductList extends React.PureComponent {
 
     const resolvedProducts = result.data.computeProductList;
 
-    // FIXME: 不該由前端排序
+    // FIXME: custom sorting workaround
     if (ids && sort === 'selections') {
       const order = String(ids).split(',');
 
@@ -221,14 +243,21 @@ export default class ProductList extends React.PureComponent {
       );
     }
 
-    this.setState(prevState => ({
-      products: resolvedProducts,
-      cache: {
-        ...prevState.cache,
-        [JSON.stringify(prevState.params)]: resolvedProducts,
-      },
-      isLoading: false,
-    }));
+    this.setState(prevState => {
+      const key = JSON.stringify(prevState.params);
+      const hashcode = hash
+        .sha256()
+        .update(key)
+        .digest('hex');
+      dispatchAction('saveProductList', {
+        [hashcode]: resolvedProducts,
+        [`${hashcode}:timestamp`]: Date.now(),
+      });
+      return {
+        products: resolvedProducts,
+        isLoading: false,
+      };
+    });
   };
 
   resize = () => {
@@ -250,10 +279,6 @@ export default class ProductList extends React.PureComponent {
 
   handleDisplaySwitch = () => {
     this.setState(prevState => ({ isGrid: !prevState.isGrid }));
-  };
-
-  handleParamsChange = () => {
-    this.root.current.scrollIntoView();
   };
 
   generateDetails = () => {
@@ -390,7 +415,7 @@ export default class ProductList extends React.PureComponent {
       sort === 'selections' ? String(ids).split(',').length : products?.total;
 
     return (
-      <div style={styles.root} ref={this.root} className={this.name}>
+      <div style={styles.root} className={this.name}>
         <Style
           scopeSelector={`.${this.name}`}
           rules={styles.listStyle(colors, isGrid)}
@@ -408,7 +433,6 @@ export default class ProductList extends React.PureComponent {
                   dropdownClassName={this.name}
                   value={sort}
                   size="large"
-                  onChange={this.handleParamsChange}
                   dropdownAlign={{
                     points: isMobile ? ['tl', 'bl'] : ['tr', 'br'],
                   }}
@@ -464,7 +488,6 @@ export default class ProductList extends React.PureComponent {
                   pageSize={limit}
                   current={page}
                   itemRender={this.renderPagination}
-                  onChange={this.handleParamsChange}
                   hideOnSinglePage
                   showLessItems
                 />

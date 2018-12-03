@@ -36,6 +36,8 @@ export const getCurrencyOptions = state =>
 
 export const getQuery = (state, props) => getIn(['url', 'query'])(props) || {};
 
+export const getProductListCache = state => getIn(['listsReducer'])(state);
+
 export const getLocaleItemsTemplate = createSelector(
   [getLocaleOptions],
   localeOptions =>
@@ -182,6 +184,8 @@ export const getJoinedModulePage = createSelector(
     getStoreAppList,
     getStockNotificationList,
     getWishList,
+    // getProductListCache
+    getProductListCache,
   ],
   (
     page,
@@ -195,6 +199,8 @@ export const getJoinedModulePage = createSelector(
     storeApps,
     stockNotificationList,
     wishList,
+    // productList
+    productListCache,
   ) => {
     const blocks = page.blocks.map(({ widgets, ...block }) => ({
       ...block,
@@ -209,6 +215,8 @@ export const getJoinedModulePage = createSelector(
         storeApps,
         stockNotificationList,
         wishList,
+        // productList
+        productListCache,
       }),
     }));
     return { ...page, blocks };
