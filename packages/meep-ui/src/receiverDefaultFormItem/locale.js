@@ -114,9 +114,9 @@ export const INVOICE = {
 
 export const INVOICE_PAPER = {
   zh_TW: '紙本發票',
-  en_US: '',
-  ja_JP: '',
-  vi_VN: '',
+  en_US: 'Paper invoice',
+  ja_JP: '紙の請求書',
+  vi_VN: 'Hóa đơn giấy',
   TODO_LOCALE: true,
 };
 

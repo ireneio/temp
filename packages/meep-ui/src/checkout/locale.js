@@ -82,23 +82,23 @@ export const INVOICE_INFO = {
 export const INVOICE_TYPE = {
   PAPER: {
     zh_TW: '紙本發票',
-    en_US: '',
-    ja_JP: '',
-    vi_VN: '',
+    en_US: 'Paper invoice',
+    ja_JP: '紙の請求書',
+    vi_VN: 'Hóa đơn giấy',
     TODO_LOCALE: true,
   },
   MANUL_ELECTRONIC: {
     zh_TW: '電子發票',
     en_US: 'e-Invoice',
     ja_JP: '電子発票',
-    vi_VN: 'hóa đơn điện tử',
+    vi_VN: 'Hóa đơn điện tử',
     TODO_LOCALE: true,
   },
   ECPAY_ELECTRONIC: {
     zh_TW: '電子發票',
     en_US: 'e-Invoice',
     ja_JP: '電子発票',
-    vi_VN: 'hóa đơn điện tử',
+    vi_VN: 'Hóa đơn điện tử',
     TODO_LOCALE: true,
   },
 };

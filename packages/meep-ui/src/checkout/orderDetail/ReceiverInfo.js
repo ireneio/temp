@@ -33,6 +33,8 @@ const { Option } = Select;
 export default class ReceiverInfo extends React.PureComponent {
   storeSaveAsTemplate = false;
 
+  checkedTemplate = null;
+
   static propTypes = {
     /** context */
     user: USER_TYPE,
@@ -54,6 +56,23 @@ export default class ReceiverInfo extends React.PureComponent {
     countries: null,
     chooseShipmentTemplate: null,
   };
+
+  componentDidUpdate() {
+    const {
+      chooseShipmentTemplate,
+      form: { validateFields, getFieldValue },
+    } = this.props;
+
+    if (
+      chooseShipmentTemplate !== this.checkedTemplate &&
+      getFieldValue('name')
+    ) {
+      validateFields(['name'], {
+        force: true,
+      });
+      this.checkedTemplate = chooseShipmentTemplate;
+    }
+  }
 
   setReceiverWithTemplate = async index => {
     const { form, user } = this.props;
@@ -176,8 +195,20 @@ export default class ReceiverInfo extends React.PureComponent {
               },
               {
                 validator: (rule, value, callback) => {
-                  if (value && value.length > 10)
-                    return callback(transformLocale(LOCALE.NAME_TOO_LONG));
+                  if (
+                    value &&
+                    chooseShipmentTemplate === 'ezship' &&
+                    value.length > 60
+                  )
+                    return callback(transformLocale(LOCALE.NAME_TOO_LONG(60)));
+
+                  if (
+                    value &&
+                    ['allpay', 'gmo'].includes(chooseShipmentTemplate) &&
+                    value.length > 10
+                  )
+                    return callback(transformLocale(LOCALE.NAME_TOO_LONG(10)));
+
                   return callback();
                 },
               },

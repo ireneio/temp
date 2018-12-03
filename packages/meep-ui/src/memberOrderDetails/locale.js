@@ -27,7 +27,7 @@ export const CREATED_ON = {
 /** Product Table */
 
 export const PRODUCT_TITLE = {
-  zh_TW: '商品名稱',
+  zh_TW: '商品編號/名稱',
   en_US: 'Item',
   ja_JP: '商品番号/品名',
   vi_VN: 'Số hiệu/ Tên sản phẩm',
@@ -380,9 +380,9 @@ export const INVOICE_TYPE = value => {
     case 'PAPER':
       return {
         zh_TW: '紙本發票',
-        en_US: '',
-        ja_JP: '',
-        vi_VN: '',
+        en_US: 'Paper invoice',
+        ja_JP: '紙の請求書',
+        vi_VN: 'Hóa đơn giấy',
         TODO_LOCALE: true,
       };
     case 'MANUL_ELECTRONIC':
@@ -390,7 +390,7 @@ export const INVOICE_TYPE = value => {
         zh_TW: '電子發票',
         en_US: 'e-Invoice',
         ja_JP: '電子発票',
-        vi_VN: 'hóa đơn điện tử',
+        vi_VN: 'Hóa đơn điện tử',
         TODO_LOCALE: true,
       };
     case 'ECPAY_ELECTRONIC':
@@ -432,9 +432,9 @@ export const INVOICE_METHOD = (type, method) => {
       }
       return {
         zh_TW: '公司戶',
-        en_US: '',
-        ja_JP: '',
-        vi_VN: '',
+        en_US: 'Company Account',
+        ja_JP: '会社',
+        vi_VN: 'Tên công ty',
         TODO_LOCALE: true,
       };
     case 'DONATION':
@@ -587,49 +587,49 @@ export const LOVE_CODE = {
 
 export const BAR_CODE = {
   zh_TW: '條碼號碼：',
-  en_US: ': ',
-  ja_JP: '：',
-  vi_VN: ': ',
+  en_US: 'Bar Code Number: ',
+  ja_JP: 'バーコード：',
+  vi_VN: 'Số mã vạch: ',
   TODO_LOCALE: true,
 };
 
 export const INVOICE_NUMBER = {
   zh_TW: '發票號碼：',
-  en_US: ': ',
-  ja_JP: '：',
-  vi_VN: ': ',
+  en_US: 'Invoice Number: ',
+  ja_JP: '請求書番号：',
+  vi_VN: 'Số hóa đơn: ',
   TODO_LOCALE: true,
 };
 
 export const INVOICE_DATE = {
   zh_TW: '開立時間：',
-  en_US: ': ',
-  ja_JP: '：',
-  vi_VN: ': ',
+  en_US: 'Issued Date: ',
+  ja_JP: '発行日：',
+  vi_VN: 'Ngày khai lập: ',
   TODO_LOCALE: true,
 };
 
 export const INVOICE_WAITING = {
   zh_TW: '尚未開立',
-  en_US: '',
-  ja_JP: '',
-  vi_VN: '',
+  en_US: 'Yet to be Issued',
+  ja_JP: 'まだ発行されていません',
+  vi_VN: 'Chưa khai lập',
   TODO_LOCALE: true,
 };
 
 export const INVOICE_INVALID = {
   zh_TW: '已作廢',
-  en_US: '',
-  ja_JP: '',
-  vi_VN: '',
+  en_US: 'Invalid Invoice',
+  ja_JP: 'すでに無効になっている',
+  vi_VN: 'Hủy hóa đơn',
   TODO_LOCALE: true,
 };
 
 export const CARD_NO = {
   zh_TW: '信用卡號末四碼：',
-  en_US: ': ',
-  ja_JP: '：',
-  vi_VN: ': ',
+  en_US: 'Last four digits of credit card: ',
+  ja_JP: 'クレジットカード番号の最後の4桁：',
+  vi_VN: '4 số cuối thẻ tín dụng: ',
   TODO_LOCALE: true,
 };
 
