@@ -219,7 +219,8 @@ export default class MenuItem extends React.PureComponent {
       ? propsIcon
       : {
           ...propsIcon,
-          font: 'person',
+          font: propsIcon?.image ? null : propsIcon?.font || 'person',
+          image: propsIcon?.font ? null : propsIcon?.image,
           direction: !title ? 'only' : propsIcon?.direction || null,
         };
     const pages = action === 8 && isLogin === NOTLOGIN ? [] : propsPages;
@@ -237,6 +238,11 @@ export default class MenuItem extends React.PureComponent {
         </Link>
       ),
     };
+
+    /**
+     * title will be added in DOM, it should be removed.
+     */
+    delete menuItemProps.title;
 
     return (
       <CartCount showCartCount={action === 5}>

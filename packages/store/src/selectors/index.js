@@ -116,10 +116,13 @@ export const getJoinedPage = (
     if (ele === 'fixedbottom') {
       const {
         fixedbottom: { background, color, fontSize },
-        useBottom = true,
+        useBottom,
       } = joinedPage;
 
-      if (useBottom) {
+      /**
+       * useBottom default should be true, but it can be null, now.
+       */
+      if (useBottom !== false) {
         menu = {
           design: {
             showLogo: false,
