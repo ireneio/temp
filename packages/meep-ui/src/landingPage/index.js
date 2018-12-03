@@ -289,7 +289,11 @@ export default class LandingPage extends React.PureComponent {
         id={id}
         className={`landingPage-${id}`}
         {...(formData
-          ? { action: url, method: 'POST' }
+          ? {
+              action: url,
+              acceptCharset: /hitrust/.test(url) ? 'big5' : 'utf8',
+              method: 'POST',
+            }
           : { onSubmit: this.submit })}
       >
         <Style

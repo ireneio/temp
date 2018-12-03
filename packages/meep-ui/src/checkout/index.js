@@ -233,7 +233,6 @@ export default class Checkout extends React.Component {
       isSubmitting,
       formData,
     } = this.state;
-
     const { url, params } = formData || { params: {} };
 
     return (
@@ -247,7 +246,12 @@ export default class Checkout extends React.Component {
         />
 
         {!formData ? null : (
-          <form ref={this.formRef} action={url} method="POST">
+          <form
+            ref={this.formRef}
+            action={url}
+            acceptCharset={/hitrust/.test(url) ? 'big5' : 'utf8'}
+            method="POST"
+          >
             {createFormData(
               Object.keys(params).map(key => ({
                 name: key,
