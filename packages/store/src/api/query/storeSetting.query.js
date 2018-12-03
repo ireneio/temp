@@ -54,6 +54,8 @@ setting {
   lockedBirthday
   paidMessage
   activityVersion
+  adRetentionMilliseconds
+  adRetentionMillisecondsEnabled
 }
 logoFileInfo {
   id

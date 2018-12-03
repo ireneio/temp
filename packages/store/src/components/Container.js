@@ -105,7 +105,7 @@ class Container extends React.Component {
     ) {
       Utils.goTo({ params: { hash: '#choose-shipment-store' } });
     }
-
+    // handle error
     window.addEventListener(
       'unhandledrejection',
       ({ reason: { message, stack } }) => {
@@ -113,6 +113,26 @@ class Container extends React.Component {
         Utils.logToServer({ type: 'unhandledrejection', message, stack });
       },
     );
+    // Retention features
+    const {
+      pageAdTrackIDs,
+      storeSetting: { adRetentionMilliseconds, adRetentionMillisecondsEnabled },
+    } = this.props;
+    if (adRetentionMillisecondsEnabled) {
+      setTimeout(() => {
+        // FB Pixel
+        if (window.fbq && pageAdTrackIDs.fbPixelId) {
+          window.fbq('track', 'meepShop_retention');
+        }
+        // GA
+        if (window.gtag && pageAdTrackIDs.gaID) {
+          window.gtag('event', 'meepShop_retention', {
+            event_category: 'meepShop_retention',
+            event_label: 'meepShop_retention',
+          });
+        }
+      }, adRetentionMilliseconds);
+    }
   }
 
   setLocale = id => {

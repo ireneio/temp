@@ -9,7 +9,6 @@ import {
   ALIGNMENT_TYPE,
   POSITIVE_NUMBER_TYPE,
   CONTENT_WIDTH_TYPE,
-  CUSTOM_TRACKING_TYPE,
 } from 'constants/propTypes';
 import notMemoizedClickTracking from 'utils/notMemoizedClickTracking';
 
@@ -23,10 +22,10 @@ class Img extends React.PureComponent {
     /** props */
     alt: PropTypes.string,
     mode: PropTypes.oneOf(['background', 'img']),
-    customTracking: CUSTOM_TRACKING_TYPE,
     image: IMAGE_TYPE.isRequired,
     alignment: ALIGNMENT_TYPE.isRequired,
     contentWidth: CONTENT_WIDTH_TYPE.isRequired,
+    handleClickTracking: PropTypes.func,
 
     /** ignore */
     className: PropTypes.string,
@@ -40,7 +39,7 @@ class Img extends React.PureComponent {
     /** props */
     alt: 'meepshop',
     mode: 'img',
-    customTracking: null,
+    handleClickTracking: () => {},
 
     /** ignore */
     className: '',
@@ -80,7 +79,7 @@ class Img extends React.PureComponent {
       mode,
       alignment,
       contentWidth,
-      customTracking,
+      handleClickTracking, // 廣告分析用
 
       /** ignore */
       height,
@@ -103,7 +102,7 @@ class Img extends React.PureComponent {
                   backgroundImage: `url(${this.getImageURL()})`,
                   height: `${height}px`,
                 }}
-                onClick={this.clickTracking(customTracking)}
+                onClick={handleClickTracking}
               />
             ) : (
               <img
@@ -111,7 +110,7 @@ class Img extends React.PureComponent {
                   width === 0 && height === 0 ? styles.loading : ''
                 }`}
                 src={this.getImageURL()}
-                onClick={this.clickTracking(customTracking)}
+                onClick={handleClickTracking}
                 alt={alt}
               />
             )}
