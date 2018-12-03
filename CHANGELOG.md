@@ -1,3 +1,25 @@
+## 0.10.4 (2018-12-03)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#309](https://github.com/meepshop/meep-lerna/pull/309) 自訂廣告事件:新增(自訂)廣告事件：自訂停留秒數追蹤(1996) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#316](https://github.com/meepshop/meep-lerna/pull/316) 結帳頁面：「收件人姓名」字元限制檢查 & 提示文字變更(N236) ([@HsuTing](https://github.com/HsuTing))
+  - [#330](https://github.com/meepshop/meep-lerna/pull/330) 下訂單，跳轉至網際威信 (hitrust) 結帳頁面，訂單描述顯示亂碼(2270) ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#318](https://github.com/meepshop/meep-lerna/pull/318) 產品列表：從產品頁返回產品列表時，應回到該產品的位置(N235) ([@piovischioh](https://github.com/piovischioh))
+  - [#319](https://github.com/meepshop/meep-lerna/pull/319) N251, N246, N248, N245 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.10.3 (2018-11-27)
 
 #### :bug: Bug Fix
