@@ -40,6 +40,8 @@ class PayemntInfo extends React.PureComponent {
 
   trackTimeout = null;
 
+  cacheResult = [];
+
   static propTypes = {
     /** context */
     storeSetting: STORE_SETTING_TYPE.isRequired,
@@ -203,8 +205,14 @@ class PayemntInfo extends React.PureComponent {
       'coupon',
     ].map(key => fieldsValue[key] || getFieldValue(key));
     const [variantId] = variant.slice(-1);
+    const requestId = uuid();
 
-    const result = await getData(
+    this.cacheResult.push({
+      requestId,
+    });
+    this.cacheResult.find(
+      ({ requestId: cacheId }) => cacheId === requestId,
+    ).result = await getData(
       ...getComputeOrderQuery({
         coupon,
         paymentId,
@@ -218,6 +226,8 @@ class PayemntInfo extends React.PureComponent {
         ],
       }),
     );
+
+    const [{ result }] = this.cacheResult.slice(-1);
 
     if (this.isUnmounted || !result?.data?.computeOrderList) return;
 

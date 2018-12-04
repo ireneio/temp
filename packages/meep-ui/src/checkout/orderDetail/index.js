@@ -56,6 +56,8 @@ export default class OrderDetail extends React.PureComponent {
 
   isPayment = true;
 
+  cacheResult = [];
+
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -172,7 +174,14 @@ export default class OrderDetail extends React.PureComponent {
 
     this.setState({ isChecking: true });
 
-    const result = await getData(
+    const requestId = uuid();
+
+    this.cacheResult.push({
+      requestId,
+    });
+    this.cacheResult.find(
+      ({ requestId: cacheId }) => cacheId === requestId,
+    ).result = await getData(
       ...getComputeOrderQuery({
         coupon,
         points,
@@ -183,6 +192,8 @@ export default class OrderDetail extends React.PureComponent {
         ),
       }),
     );
+
+    const [{ result }] = this.cacheResult.slice(-1);
 
     if (this.isUnmounted || !result?.data?.computeOrderList) return;
 
