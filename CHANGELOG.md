@@ -1,3 +1,19 @@
+## 0.10.6 (2018-12-04)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#336](https://github.com/meepshop/meep-lerna/pull/336) 一頁式購物車，多規格之商品，無法正常下訂單(N263) ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `store`, `test-prod-server`
+  - [#294](https://github.com/meepshop/meep-lerna/pull/294) Remove some warning in packages ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.10.5 (2018-12-04)
 
 #### :bug: Bug Fix
