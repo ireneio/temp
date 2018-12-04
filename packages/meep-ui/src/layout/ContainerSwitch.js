@@ -100,10 +100,10 @@ const ContainerSwitch = ({
 
     case 'FixedEndsContainer':
       return (
-        <>
+        <MobileLayout {...props} fixedtop={fixedtop}>
           <FixedTop {...fixedTopProps} />
           {blockComponent}
-        </>
+        </MobileLayout>
       );
 
     default:
