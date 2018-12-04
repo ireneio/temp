@@ -19,7 +19,7 @@ import buildTestData from './core/buildTestData';
 
 const store = memFs.create();
 const fs = editor.create(store);
-const templateRoot = path.resolve(root, './tool/templates');
+const templateRoot = path.resolve(__dirname, '../templates');
 
 const commitWriteFiles = (taskName, task) => {
   if (!buildMode.includes(taskName)) return;

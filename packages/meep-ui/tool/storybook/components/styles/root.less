@@ -32,8 +32,8 @@
   cursor: pointer;
 }
 
-.cleanCache:global {
-  &.ant-btn-background-ghost.ant-btn-primary {
+.cleanCache {
+  &:global(.ant-btn-background-ghost.ant-btn-primary) {
     height: 40px;
     color: gray;
     border: 1px solid gray;
@@ -43,28 +43,24 @@
     font-size: 17px;
   }
 
-  &.ant-btn > span {
+  &:global(.ant-btn > span) {
     margin: 0px 0px 0px 5px;
     vertical-align: middle;
   }
 }
 
-.textarea:global {
-  &.ant-input {
-    max-width: 50%;
-    min-height: 30%;
-    color: white;
-    background: rgba(0, 0, 0, 0);
-    border-radius: 0px;
-  }
+.textarea:global(.ant-input) {
+  max-width: 50%;
+  min-height: 30%;
+  color: white;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 0px;
 }
 
-.textareaButton:global {
-  &.ant-btn-background-ghost.ant-btn-primary {
-    margin: 0px 0px 20px;
-    width: 50%;
-    color: white;
-    border: 1px solid white;
-    border-radius: 0px;
-  }
+.textareaButton:global(.ant-btn-background-ghost.ant-btn-primary) {
+  margin: 0px 0px 20px;
+  width: 50%;
+  color: white;
+  border: 1px solid white;
+  border-radius: 0px;
 }

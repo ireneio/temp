@@ -8,8 +8,9 @@ import { mount } from 'enzyme';
 import <%= displayName %> from '<%= (displayName[0].toLowerCase() + displayName.slice(1)) %>';
 <% } -%>
 import Context from 'context';
-import contextProps from 'tool/contextProps';
-import * as contextFunc from 'tool/contextFunc';
+
+import contextProps from '../../../../tool/contextProps';
+import * as contextFunc from '../../../../tool/contextFunc';
 
 <% if (hasCustomTestData) { -%>
 import custTestData from '../testData';

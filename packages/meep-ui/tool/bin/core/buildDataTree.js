@@ -6,7 +6,7 @@ import memoizeOne from 'memoize-one';
 import { areEqual, warning, invariant } from 'fbjs';
 import { upperFirst } from 'lodash';
 
-import { root, shouldWatch, buildModules } from './cliOptions';
+import { shouldWatch, buildModules } from './cliOptions';
 import parseFiles from './parseFiles';
 import parseDescription from './parseDescription';
 import { getValues as getPropTypesData } from './getPropTypesData';
@@ -14,7 +14,7 @@ import { getValues as getPropTypesData } from './getPropTypesData';
 const MODULES = buildModules.map(text => `/${text}`);
 
 const METHOD_TEMPLATES = fs
-  .readdirSync(path.resolve(root, './tool/templates/tests'))
+  .readdirSync(path.resolve(__dirname, '../../templates/tests'))
   .filter(templateName => templateName !== 'index.ejs')
   .map(templateName => templateName.replace(/.ejs/, ''));
 

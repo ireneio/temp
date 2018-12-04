@@ -54,10 +54,10 @@ The repo combined store, admin & mepp-ui.
 
 If you need to give the options, run like: `yarn lerna exec "yarn lerna test:start --paths '/' nextstoretest.stage.meepcloud.com" --scope @meepshop/test-prod-server --stream`.
 
-| env         | example                                                                                | note |
-| ----------- | -------------------------------------------------------------------------------------- | ---- |
-| TEST_DOMAIN | TEST_DOMAIN=test.com yarn lerna run test:start --scope @meepshop/test-prod-server      |      |
-| TEST_API    | TEST_API=api.meepshop.com yarn lerna run test:start --scope @meepshop/test-prod-server |      |
+| env         | example                                                                                |
+| ----------- | -------------------------------------------------------------------------------------- |
+| TEST_DOMAIN | TEST_DOMAIN=test.com yarn lerna run test:start --scope @meepshop/test-prod-server      |
+| TEST_API    | TEST_API=api.meepshop.com yarn lerna run test:start --scope @meepshop/test-prod-server |
 
 ###### unpatch-packages
 

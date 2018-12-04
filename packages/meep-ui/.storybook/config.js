@@ -1,5 +1,4 @@
 import '@storybook/addon-console';
-import '@storybook/addon-actions/register';
 import { configure } from '@storybook/react';
 
 /* eslint-disable-next-line import/no-unresolved, import/extensions */

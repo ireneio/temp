@@ -1,6 +1,8 @@
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
+const root = path.resolve(__dirname, '..');
+
 module.exports = (storybookBaseConfig, configType) => {
   if (configType === 'DEVELOPMENT') {
     storybookBaseConfig.plugins.push(
@@ -17,15 +19,30 @@ module.exports = (storybookBaseConfig, configType) => {
         loader: 'babel-loader',
         options: {
           configFile: '../../babel.config.js',
+          plugins: [
+            [
+              'module-resolver',
+              {
+                root: ['./src', './tool'],
+                cwd: root,
+              },
+            ],
+            [
+              'css-modules-transform',
+              {
+                extensions: ['.less'],
+                generateScopedName: '[path][name]__[local]',
+                devMode: process.env.NODE_ENV !== 'production',
+                keepImport: true,
+              },
+            ],
+          ],
         },
       },
     },
     {
       test: /\.less$/,
-      include: [
-        path.resolve(__dirname, '../src'),
-        path.resolve(__dirname, '../tool'),
-      ],
+      include: /styles/,
       use: [
         {
           loader: 'style-loader',
@@ -35,6 +52,11 @@ module.exports = (storybookBaseConfig, configType) => {
           options: {
             modules: true,
             localIdentName: '[path][name]__[local]',
+            getLocalIdent: (context, localIdentName, localName, options) =>
+              `${context.resourcePath
+                .replace(root, '')
+                .replace(/(^\/)|(\.less)/g, '')
+                .replace(/\//g, '-')}__${localName}`,
           },
         },
         {

@@ -1,24 +1,22 @@
-const path = require('path');
-
 module.exports = {
   presets: [
     [
-      '@babel/preset-env',
+      '@babel/env',
       {
         useBuiltIns: 'usage',
       },
     ],
-    '@babel/preset-react',
+    '@babel/react',
   ],
   plugins: [
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-proposal-optional-chaining',
+    '@babel/proposal-optional-chaining',
     [
-      '@babel/plugin-proposal-decorators',
+      '@babel/proposal-decorators',
       {
         legacy: true,
       },
     ],
+    '@babel/proposal-class-properties',
     [
       'transform-imports',
       {
@@ -54,6 +52,7 @@ module.exports = {
       'module-resolver',
       {
         root: ['./src'],
+        cwd: 'packagejson',
       },
     ],
     [
@@ -79,42 +78,7 @@ module.exports = {
   overrides: [
     {
       test: './packages/meep-ui',
-      plugins: [
-        '@babel/plugin-proposal-export-default-from',
-        [
-          'module-resolver',
-          {
-            root: ['./src'],
-            cwd: path.resolve(__dirname, './packages/meep-ui'),
-            alias: {
-              tool: './tool',
-            },
-          },
-        ],
-      ],
-    },
-    {
-      test: './packages/meep-ui/tool',
-      plugins: [
-        [
-          'css-modules-transform',
-          {
-            extensions: ['.less'],
-            generateScopedName: '[path][name]__[local]',
-            devMode: process.env.NODE_ENV !== 'production',
-            ...(process.env.NODE_ENV === 'test'
-              ? {}
-              : {
-                  keepImport: true,
-                  extractCss: {
-                    dir: './lib/__tool__',
-                    relativeRoot: './tool',
-                    filename: '[path]/[name].less',
-                  },
-                }),
-          },
-        ],
-      ],
+      plugins: ['@babel/proposal-export-default-from'],
     },
     {
       test: './packages/store',

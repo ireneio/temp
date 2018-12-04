@@ -23,8 +23,6 @@
     }
   },
   "dependencies": {
-    "antd": "^3.10.1",
-    "radium": "^0.25.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "regenerator-runtime": "^0.12.1"
@@ -44,7 +42,6 @@
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.0.1",
-    "babel-loader": "^8.0.4",
     "babel-plugin-css-modules-transform": "^1.6.1",
     "babel-plugin-import": "^1.8.0",
     "babel-plugin-module-resolver": "^3.1.1",
