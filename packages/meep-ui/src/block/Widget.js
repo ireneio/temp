@@ -58,10 +58,12 @@ export default class Widget extends React.PureComponent {
         ref={node => {
           this.widget = node;
         }}
-        style={styles.root(widgetSetting, hasVisibleModule)}
+        style={styles.root(widgetSetting)}
       >
         {Component ? (
-          <Component {...props} />
+          <div style={styles.wrapper(widgetSetting, hasVisibleModule)}>
+            <Component {...props} />
+          </div>
         ) : (
           widgets.map(({ id, ...data }, index) => (
             <Widget

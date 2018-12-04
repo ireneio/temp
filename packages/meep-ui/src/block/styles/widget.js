@@ -1,4 +1,4 @@
-export const root = ({ componentWidth, padding, level }, hasVisibleModule) => ({
+export const root = ({ componentWidth, level }) => ({
   ...(level === 1
     ? {
         display: 'flex',
@@ -7,7 +7,6 @@ export const root = ({ componentWidth, padding, level }, hasVisibleModule) => ({
         alignItems: 'flex-start',
         justifyContent: 'center',
         width: '100%',
-        padding: hasVisibleModule ? `${padding / 2}px` : '0px',
         minWidth: `${componentWidth}px`,
       }
     : {
@@ -15,6 +14,12 @@ export const root = ({ componentWidth, padding, level }, hasVisibleModule) => ({
         flex: `1 1 ${componentWidth}px`,
         justifyContent: 'center',
         width: '100%',
-        padding: hasVisibleModule ? `${padding / 2}px` : '0px',
       }),
+});
+
+export const wrapper = ({ padding }, hasVisibleModule) => ({
+  width: '100%',
+  padding: hasVisibleModule ? `${padding / 2}px` : '0px',
+  display: 'flex',
+  justifyContent: 'center',
 });
