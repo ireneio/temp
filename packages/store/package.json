@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@meepshop/store",
-  "version": "0.10.5",
+  "version": "0.10.6",
   "description": "store for meepshop",
   "scripts": {
     "dev": "node --inspect src/server",
@@ -16,11 +16,8 @@
   "author": "meepshop <admin@meepshop.com>",
   "license": "ISC",
   "dependencies": {
-    "@meepshop/meep-ui": "^0.10.5",
+    "@meepshop/meep-ui": "^0.10.6",
     "antd": "^3.10.1",
-    "radium": "^0.25.0",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
     "body-parser": "^1.18.2",
     "color": "^3.0.0",
     "compression": "^1.7.2",
@@ -40,7 +37,10 @@
     "next-routes": "^1.2.0",
     "nprogress": "^0.2.0",
     "prop-types": "^15.6.0",
+    "radium": "^0.25.0",
     "ramda": "^0.25.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-saga": "^0.16.0",
@@ -52,9 +52,9 @@
     "@zeit/next-less": "^0.3.0",
     "@zeit/next-source-maps": "0.0.2",
     "less": "^3.5.0-beta.7",
+    "moment": "^2.22.2",
     "moment-locales-webpack-plugin": "^1.0.5",
     "next-images": "^0.10.2",
-    "moment": "^2.22.2",
     "webpack": "^3.12.0"
   }
 }
