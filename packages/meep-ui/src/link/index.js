@@ -42,7 +42,7 @@ export default class Link extends React.PureComponent {
 
     e.preventDefault();
     goTo({
-      pathname,
+      pathname: pathname === '' ? '/' : pathname,
       params: {
         search: queryString.parse(query),
         hash,
