@@ -1,3 +1,14 @@
+## 0.10.7 (2018-12-05)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#338](https://github.com/meepshop/meep-lerna/pull/338) 一頁式購物車/結帳頁： 運送方式為「超商取貨」時，選擇門市按鈕跳掉(N269) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.10.6 (2018-12-04)
 
 #### :bug: Bug Fix
