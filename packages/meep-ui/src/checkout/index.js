@@ -255,7 +255,9 @@ export default class Checkout extends React.Component {
             {createFormData(
               Object.keys(params).map(key => ({
                 name: key,
-                value: params[key],
+                value: /hitrust/.test(url)
+                  ? encodeURI(params[key])
+                  : params[key],
               })),
             )}
           </form>
