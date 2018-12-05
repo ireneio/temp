@@ -227,9 +227,16 @@ class PayemntInfo extends React.PureComponent {
       }),
     );
 
-    const [{ result }] = this.cacheResult.slice(-1);
+    const [{ result, requestId: currentRequestId }] = this.cacheResult.slice(
+      -1,
+    );
 
-    if (this.isUnmounted || !result?.data?.computeOrderList) return;
+    if (
+      this.isUnmounted ||
+      !result?.data?.computeOrderList ||
+      currentRequestId !== requestId
+    )
+      return;
 
     const { changeChoosePayment, changeChooseShipmentTemplate } = this.props;
     const { computeOrderList } = result.data;
