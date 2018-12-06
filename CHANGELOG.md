@@ -1,3 +1,14 @@
+## 0.10.8 (2018-12-06)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#339](https://github.com/meepshop/meep-lerna/pull/339) 下訂單，跳轉至網際威信 (hitrust) 結帳頁面，訂單描述顯示亂碼(2270) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.10.7 (2018-12-05)
 
 #### :bug: Bug Fix
