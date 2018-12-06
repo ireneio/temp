@@ -1,3 +1,14 @@
+## 0.10.9 (2018-12-06)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#342](https://github.com/meepshop/meep-lerna/pull/342) 綠界超商代碼、條碼＆自動櫃員機，送出訂單，出現 error(2296) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.10.8 (2018-12-06)
 
 #### :bug: Bug Fix
