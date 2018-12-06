@@ -304,7 +304,7 @@ export default class LandingPage extends React.PureComponent {
         {createFormData(
           Object.keys(params).map(key => ({
             name: key,
-            value: params[key],
+            value: key === 'orderdesc' ? ' ' : params[key],
           })),
         )}
 
