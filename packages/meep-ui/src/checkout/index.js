@@ -255,7 +255,7 @@ export default class Checkout extends React.Component {
             {createFormData(
               Object.keys(params).map(key => ({
                 name: key,
-                value: key === 'orderdesc' ? ' ' : params[key],
+                value: params[key] && key === 'orderdesc' ? ' ' : params[key],
               })),
             )}
           </form>
