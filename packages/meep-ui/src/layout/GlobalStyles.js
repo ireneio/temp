@@ -10,7 +10,9 @@ const { enhancer } = contextProvider('storeSetting');
 @enhancer
 export default class GlobalStyles extends React.PureComponent {
   render() {
-    const { colors } = this.props;
+    const {
+      storeSetting: { colors },
+    } = this.props;
 
     return (
       <style

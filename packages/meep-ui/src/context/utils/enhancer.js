@@ -41,7 +41,11 @@ export default (types, useRef) => Component => {
 
       return enhancedComponent;
     },
-    ({ forwardedRef, ...props }) => <Component {...props} ref={forwardedRef} />,
+    useRef
+      ? ({ forwardedRef, ...props }) => (
+          <Component {...props} ref={forwardedRef} />
+        )
+      : props => <Component {...props} />,
   );
 
   if (!useRef) return Root;

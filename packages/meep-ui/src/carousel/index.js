@@ -6,7 +6,7 @@ import {
   chevronRight as ChevronRightIcon,
 } from 'react-icons/fa';
 
-import Image from 'deprecated/image';
+import Image from 'image';
 import { CONTENT_WIDTH_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles';
@@ -159,7 +159,7 @@ export default class Carousel extends React.PureComponent {
               style={styles.image}
             >
               <Image
-                files={file}
+                image={file.image}
                 contentWidth={100}
                 newWindow={newWindow}
                 alignment="center"

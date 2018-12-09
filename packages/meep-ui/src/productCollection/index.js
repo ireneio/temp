@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import Image from 'deprecated/image';
+import Image from 'image';
 import { URL_TYPE, LOCALE_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles';
@@ -40,14 +40,11 @@ export default class ProductCollection extends React.PureComponent {
             >
               <div style={styles.img}>
                 <Image
-                  files={{
-                    image: url,
-                  }}
+                  image={url}
                   contentWidth={width || 70}
                   alignment="center"
                   newWindow={false}
                   alt={productName}
-                  mode="collection"
                 />
               </div>
             </div>

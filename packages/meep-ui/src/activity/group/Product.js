@@ -5,7 +5,7 @@ import radium, { Style } from 'radium';
 import { Modal } from 'antd';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import Link from 'deprecated/link';
+import Image from 'image';
 import ProductCarousel from 'productCarousel';
 import ProductInfo from 'productInfo';
 import {
@@ -102,13 +102,13 @@ export default class Product extends React.PureComponent {
       <div style={styles.root}>
         <Style scopeSelector=".ant-modal" rules={styles.modalStyle(colors)} />
         {imageUrl ? (
-          <Link href={`/product/${id}`}>
-            <img
-              alt="product"
-              style={styles.productImage}
-              src={imageUrl && `//${imageUrl}`}
-            />
-          </Link>
+          <Image
+            image={imageUrl}
+            href={`/product/${id}`}
+            contentWidth={100}
+            newWindow={false}
+            alignment="center"
+          />
         ) : null}
         <div style={styles.productText}>
           <div style={styles.productTitle}>{transformLocale(title)}</div>

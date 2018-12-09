@@ -14,9 +14,9 @@ import {
   COLOR_TYPE,
   POSITIVE_NUMBER_TYPE,
 } from 'constants/propTypes';
-import Image from 'image';
 import removeContextTpyesFromProps from 'utils/removeContextTpyesFromProps';
 
+import Link from 'link';
 import MenuItem from './MenuItem';
 import { DEFAULT_COLOR_WITH_PATTERN } from './constants';
 import { FONTSIZE_TYPE } from './propTypes';
@@ -183,20 +183,30 @@ export default class Menu extends React.PureComponent {
         ) : (
           <div
             className="logo"
-            style={{
-              width: width === 0 ? 'auto' : `${width}px`,
-              height: height === 0 ? 'auto' : `${height}px`,
-            }}
+            style={
+              height && width // Mobile-layout Menu's width and height are not zero.
+                ? { display: 'flex', justifyContent: 'center' }
+                : {}
+            }
           >
-            <Image
-              image={logoUrl}
-              mode={width !== 0 && height !== 0 ? 'background' : 'img'}
-              height={height}
-              href="/"
-              alignment="center"
-              contentWidth={100}
-              newWindow={false}
-            />
+            <Link style={{ width: '100%' }} href="/" target="_self">
+              <img
+                style={{ objectFit: height && width ? 'contain' : undefined }}
+                src={`//${logoUrl}?${
+                  width ? `w=${width * 3}` : `h=${height * 3}`
+                }`}
+                srcSet={`//${logoUrl}?${
+                  width ? `w=${width}` : `h=${height}`
+                } 1x, //${logoUrl}?${
+                  width ? `w=${width * 2}` : `h=${height * 2}`
+                } 2x, //${logoUrl}?${
+                  width ? `w=${width * 3}` : `h=${height * 3}`
+                } 3x`}
+                alt={logoUrl}
+                height={height !== 0 ? height : undefined}
+                width={width !== 0 ? width : undefined}
+              />
+            </Link>
           </div>
         )}
 

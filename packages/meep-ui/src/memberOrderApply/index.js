@@ -5,7 +5,7 @@ import { Table, Input, Select, Button, message } from 'antd';
 import moment from 'moment';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import Image from 'deprecated/image';
+import Thumb from 'thumb';
 import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles';
@@ -183,17 +183,7 @@ export default class MemberOrderApply extends React.PureComponent {
         dataIndex: 'galleryInfo',
         render: (value, record) => (
           <StyleRoot style={styles.imgWrapper}>
-            <Image
-              mode="background"
-              files={{
-                image: value.mainId || value.media[0],
-              }}
-              width={80}
-              contentWidth={100}
-              alignment="center"
-              newWindow={false}
-              style={styles.img}
-            />
+            <Thumb imgUrl={value.mainId || value.media[0]} />,
             <div className="show-on-mobile" style={styles.reason(step)}>
               {this.renderReason(record.reason, record)}
             </div>

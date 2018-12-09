@@ -1,14 +1,13 @@
 import memoizeOne from 'memoize-one';
 import { areEqual } from 'fbjs';
 
-import { STORE_SETTING_TYPE_OBJ } from '../propTypes';
 import enhancer from './enhancer';
 
 export const contextPropsKey = {
   locale: ['locale', 'transformLocale'],
   location: ['location'],
   func: ['goTo'],
-  storeSetting: Object.keys(STORE_SETTING_TYPE_OBJ),
+  storeSetting: ['storeSetting'],
 };
 
 export default (originTypes, useRef = false) => {

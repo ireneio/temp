@@ -87,7 +87,6 @@ const ProductCard = ({
                   contentWidth={100}
                   alignment="center"
                   newWindow={false}
-                  ratio={1}
                 />
               </div>
 

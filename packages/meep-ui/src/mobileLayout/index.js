@@ -7,8 +7,8 @@ import transformColor from 'color';
 import { bars as BarsIcon } from 'react-icons/fa';
 
 import { enhancer } from 'layout/DecoratorsRoot';
+import Link from 'link';
 import Menu from 'menu';
-import Image from 'image';
 import { ID_TYPE, COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
 
 import styles from './styles/index.less';
@@ -80,16 +80,16 @@ export default class MobileLayout extends React.PureComponent {
 
             <div className={styles.logo}>
               {!mobileLogoUrl ? null : (
-                <Image
-                  className={styles.image}
-                  image={mobileLogoUrl}
-                  height={60}
-                  href="/"
-                  mode="background"
-                  alignment="center"
-                  contentWidth={100}
-                  newWindow={false}
-                />
+                <Link style={{ width: '100%' }} href="/" target="_self">
+                  <img
+                    style={{ objectFit: 'contain' }}
+                    className={styles.image}
+                    src={`//${mobileLogoUrl}?h=180`}
+                    srcSet={`//${mobileLogoUrl}?h=60 1x, //${mobileLogoUrl}?h=120 2x, //${mobileLogoUrl}?h=180 3x`}
+                    alt="mobile-logo"
+                    height="60"
+                  />
+                </Link>
               )}
             </div>
 

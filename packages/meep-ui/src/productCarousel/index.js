@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { Style, StyleRoot } from 'radium';
 import Slider from 'react-slick';
+import Image from 'image';
 
 import { URL_TYPE } from 'constants/propTypes';
 
@@ -95,7 +96,21 @@ export default class ProductCarousel extends React.PureComponent {
                     url + index // eslint-disable-line react/no-array-index-key
                   }
                 >
-                  <div style={styles.showcase(url, mode)} />
+                  <div
+                    style={{
+                      height: 400,
+                      background: '#f9f9f9',
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <Image
+                      image={url}
+                      contentWidth={100}
+                      newWindow={false}
+                      alignment="center"
+                    />
+                  </div>
                 </div>
               ))}
             </Slider>

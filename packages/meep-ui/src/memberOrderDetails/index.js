@@ -5,7 +5,7 @@ import moment from 'moment';
 import { Table } from 'antd';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import Image from 'deprecated/image';
+import Thumb from 'thumb';
 import Link from 'deprecated/link';
 import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
 
@@ -54,21 +54,7 @@ export default class MemberOrderDetails extends React.PureComponent {
     return [
       {
         dataIndex: 'galleryInfo',
-        render: value => (
-          <StyleRoot style={styles.imgWrapper}>
-            <Image
-              mode="background"
-              files={{
-                image: value.mainId || value.media[0],
-              }}
-              width={80}
-              contentWidth={100}
-              alignment="center"
-              newWindow={false}
-              style={styles.img}
-            />
-          </StyleRoot>
-        ),
+        render: value => <Thumb imgUrl={value.mainId || value.media[0]} />,
       },
       {
         title: transformLocale(LOCALE.PRODUCT_TITLE),

@@ -16,8 +16,6 @@ import styles from './styles/index.less';
 export default class Image extends React.PureComponent {
   imageRef = React.createRef();
 
-  resizeTimeout = null;
-
   static propTypes = {
     /** props */
     href: PropTypes.oneOfType([URL_TYPE, HASH_TYPE]),
@@ -39,38 +37,8 @@ export default class Image extends React.PureComponent {
   };
 
   componentDidMount() {
-    this.resize();
-    window.addEventListener('resize', this.resize);
+    this.setState({ width: this.imageRef.current.offsetWidth });
   }
-
-  componentWillUnmount() {
-    this.isUnmounted = true;
-    window.removeEventListener('resize', this.resize);
-  }
-
-  /**
-   * resize | testJSON [{
-   *   "imageRef": {
-   *     "current": {
-   *       "offsetWidth": 1000
-   *     }
-   *   }
-   * }, {
-   *   "imageRef": {
-   *     "current": {
-   *       "offsetWidth": 10000
-   *     }
-   *   }
-   * }]
-   */
-  resize = () => {
-    clearTimeout(this.resizeTimeout);
-    this.resizeTimeout = setTimeout(() => {
-      if (this.isUnmounted) return;
-
-      this.setState({ width: this.imageRef.current.offsetWidth });
-    }, 100);
-  };
 
   render() {
     const { href, image, newWindow, customTracking, ...props } = this.props;
@@ -80,21 +48,6 @@ export default class Image extends React.PureComponent {
       href,
       target: newWindow ? '_blank' : '_self',
     };
-
-    let handleClickTracking;
-    if (customTracking?.status) {
-      const { eventLabel, eventCategory } = customTracking;
-      handleClickTracking = () => {
-        if (window.fbq) window.fbq('track', eventLabel);
-        if (window.gtag) {
-          window.gtag('event', 'meepShop_click', {
-            event_category:
-              (eventCategory?.status && eventCategory?.value) || eventLabel,
-            event_label: eventLabel,
-          });
-        }
-      };
-    }
 
     return !image ? (
       <Link {...linkProps}>
@@ -107,7 +60,6 @@ export default class Image extends React.PureComponent {
         linkProps={linkProps}
         width={width}
         image={image}
-        handleClickTracking={handleClickTracking}
       />
     );
   }

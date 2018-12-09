@@ -33,24 +33,6 @@ const ContainerSwitch = ({
     </>
   );
 
-  // TODO modify in store
-  // FIXME id is same
-  fixedTopProps.id = 'fixedtop';
-  fixedTopProps.menu.design = {
-    ...fixedTopProps.menu.design,
-    width: 0,
-  };
-  secondTopProps.id = 'secondtop';
-  secondTopProps.menu.design = {
-    ...secondTopProps.menu.design,
-    width: 0,
-  };
-  sidebarProps.id = 'sidebar';
-  sidebarProps.menu.design = {
-    ...sidebarProps.menu.design,
-    height: 0,
-  };
-
   switch (containerName) {
     case 'DefaultContainer':
       return blockComponent;

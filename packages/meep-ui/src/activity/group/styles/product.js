@@ -56,11 +56,6 @@ export const modalStyle = colors => ({
   },
 });
 
-export const productImage = {
-  width: '100%',
-  cursor: 'pointer',
-};
-
 export const productText = {
   padding: 15,
 };

@@ -27,6 +27,8 @@
 
 .logo {
   width: calc(100% - @HEADEER_WIDTH * 2 * 2);
+  display: flex;
+  justify-content: center;
 
   .image {
     margin: auto;
@@ -36,8 +38,8 @@
 
   /* For smaller than iphone 6 */
   @media (max-width: 370px) {
-    a > div {
-      width: 100% !important;
+    a > img {
+      width: 100px !important;
     }
   }
 }
@@ -117,11 +119,6 @@
       padding: 10px 0px;
       width: 100% !important;
       height: 82px !important;
-
-      a > div {
-        margin: auto;
-        background-position: center !important;
-      }
     }
 
     :global(.ant-menu.ant-menu-inline) {
@@ -195,9 +192,4 @@
       }
     }
   }
-}
-
-.menu :global(.logo) a > div {
-  background-size: contain !important;
-  background-position: left center !important;
 }

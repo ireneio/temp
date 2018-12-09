@@ -54,7 +54,7 @@ export default class Context extends React.PureComponent {
     return [
       {
         ContextProvider: StoreSettingContext.Provider,
-        value: storeSetting,
+        value: { storeSetting },
       },
       {
         ContextProvider: FuncContext.Provider,

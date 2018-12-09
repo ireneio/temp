@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Image from 'image';
 import { URL_TYPE } from 'constants/propTypes';
 
 import styles from './styles/icon.less';
@@ -33,13 +32,13 @@ export default class Icon extends React.PureComponent {
         {!MdIcon ? null : <MdIcon className={styles.icon} onClick={onClick} />}
 
         {!image ? null : (
-          <Image
+          <img
             className={`${styles.icon} ${styles.image}`}
-            image={image}
+            src={`//${image}?w=120`}
+            srcSet={`//${image}?w=32 1x, //${image}?w=64 2x, //${image}?w=120 3x`}
+            width={32}
             height={32}
-            alignment="center"
-            contentWidth={100}
-            mode="background"
+            alt={image}
           />
         )}
 

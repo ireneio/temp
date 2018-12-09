@@ -124,7 +124,7 @@ module.exports = {
               'goTo',
 
               /** context storeSetting props */
-              'colors',
+              'storeSetting',
 
               /** lib props */
               'form',

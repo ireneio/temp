@@ -1,4 +1,5 @@
 export const IMAGE_SUITABLE_WIDTHS = [
+  60,
   120,
   240,
   320,

@@ -5,7 +5,7 @@ import { close as RemoveIcon } from 'react-icons/md';
 import { tag as TagIcon } from 'react-icons/fa';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import Image from 'deprecated/image';
+import Thumb from 'thumb';
 import {
   ID_TYPE,
   COLOR_TYPE,
@@ -100,14 +100,9 @@ export default class Product extends React.PureComponent {
           {!media[0] ? (
             <div style={styles.img} />
           ) : (
-            <Image
-              style={styles.img}
-              files={{ image: media[0] }}
-              newWindow={false}
-              contentWidth={100}
-              alignment="center"
-              mode="background"
-            />
+            <div style={{ height: '100%' }}>
+              <Thumb imgUrl={media[0]} />
+            </div>
           )}
         </td>
 

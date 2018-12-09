@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import Image from 'deprecated/image';
+import Image from 'image';
 import Link from 'deprecated/link';
 
 import {
@@ -122,7 +122,7 @@ export default class ImageText extends React.PureComponent {
     return (
       <div className={styles.root} style={{ width: `${contentWidth}%` }}>
         <Image
-          files={files}
+          image={files?.[0]?.image}
           contentWidth={100}
           newWindow={newWindow}
           alignment="center"

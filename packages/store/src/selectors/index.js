@@ -147,9 +147,20 @@ export const getJoinedPage = (
           pages: handlePages(menuPages, true),
         };
       }
-    } else menu = R.assocPath(['pages'], menuPages, menu);
+    } else {
+      menu = {
+        ...menu,
+        design: {
+          ...menu.design,
+          width: ele === 'sidebar' ? menu.design?.width : 0,
+          height: ele !== 'sidebar' ? menu.design?.height : 0,
+        },
+        pages: menuPages,
+      };
+    }
 
     joinedPage = R.pipe(
+      R.assocPath([ele, 'id'], ele),
       R.assocPath([ele, 'menu'], menu),
       R.assocPath([ele, 'logo'], logoUrl),
       R.assocPath([ele, 'mobileLogo'], mobileLogoUrl),

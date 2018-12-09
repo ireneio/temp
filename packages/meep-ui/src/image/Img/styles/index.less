@@ -13,6 +13,10 @@
   &.center {
     justify-content: center;
   }
+
+  & > .loading {
+    overflow: hidden;
+  }
 }
 
 .image {
@@ -22,9 +26,5 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-  }
-
-  &.loading {
-    filter: blur(5px);
   }
 }

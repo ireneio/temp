@@ -85,14 +85,3 @@ export const thumbnail = (file, mode) => ({
     height: '60px',
   },
 });
-
-export const showcase = (file, mode) => ({
-  backgroundImage: `url(//${file}?w=400)`,
-  backgroundSize: 'contain',
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'center center',
-  height: mode === 'list' ? '300px' : '400px',
-  [PHONE_MEDIA]: {
-    height: '300px',
-  },
-});
