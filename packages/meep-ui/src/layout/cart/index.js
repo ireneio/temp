@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // FIXME remove
 import { StyleRoot } from 'radium';
-import warning from 'fbjs/lib/warning';
-import AngleRightIcon from 'react-icons/lib/fa/angle-right';
-import ArrowLeftIcon from 'react-icons/lib/md/keyboard-backspace';
-import CloseIcon from 'react-icons/lib/md/close';
+import { warning } from 'fbjs';
+import { Drawer } from 'antd';
+import { angleRight as AngleRightIcon } from 'react-icons/fa';
+import { keyboardBackspace as ArrowLeftIcon } from 'react-icons/md';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -27,24 +27,9 @@ export default class Cart extends React.PureComponent {
   };
 
   state = {
-    cartIsShown: false,
     nowCart: 'product list',
     history: [],
   };
-
-  static getDerivedStateFromProps(nextProps, preState) {
-    const { isShowCart } = nextProps;
-
-    if (isShowCart && !preState.cartIsShown) {
-      return {
-        cartIsShown: true,
-        nowCart: 'product list',
-        history: [],
-      };
-    }
-
-    return null;
-  }
 
   goToInCart = (nowCart, newFrom) => {
     const { history } = this.state;
@@ -69,60 +54,54 @@ export default class Cart extends React.PureComponent {
 
   render() {
     const { colors, isShowCart, toggleCart, carts } = this.props;
-    const { nowCart, history, cartIsShown } = this.state;
-
-    if (!cartIsShown) return null;
+    const { nowCart, history } = this.state;
 
     return (
-      <div
-        className={`${styles.root} ${styles[isShowCart ? 'show' : 'hide']}`}
-        onAnimationEnd={() => {
-          if (!isShowCart) this.setState({ cartIsShown: false });
-        }}
+      <Drawer
+        className={styles.root}
+        visible={isShowCart}
+        onClose={toggleCart(false)}
+        width="100%"
       >
-        <div className={styles.background} onClick={toggleCart(false)}>
-          <AngleRightIcon
-            className={styles.angleRightIcon}
-            style={{
-              color: colors[2],
-              background: colors[4],
-            }}
-            onClick={toggleCart(false)}
-          />
-        </div>
+        <AngleRightIcon
+          className={styles.angleRightIcon}
+          style={{
+            display: isShowCart ? 'initial' : 'none',
+            color: colors[2],
+            background: colors[4],
+          }}
+          onClick={toggleCart(false)}
+        />
 
-        <StyleRoot className={styles.sidebar} style={{ background: colors[0] }}>
+        <StyleRoot
+          className={`${styles.body} ${
+            nowCart === 'product list' ? '' : styles.hasMinHeight
+          }`}
+          style={{ background: colors[0] }}
+        >
           <div
-            className={`${styles.body} ${
-              nowCart === 'product list' ? '' : styles.hasMinHeight
-            }`}
+            className={styles.header}
+            style={{
+              color: colors[3],
+              background: colors[0],
+              borderBottom:
+                nowCart === 'product list' ? `1px solid ${colors[5]}` : '0px',
+            }}
           >
-            <div
-              className={styles.header}
-              style={{
-                color: colors[3],
-                background: colors[0],
-                borderBottom:
-                  nowCart === 'product list' ? `1px solid ${colors[5]}` : '0px',
-              }}
-            >
-              {history.length === 0 ? (
-                <div />
-              ) : (
-                <ArrowLeftIcon className={styles.icon} onClick={this.goBack} />
-              )}
-
-              <CloseIcon className={styles.icon} onClick={toggleCart(false)} />
-            </div>
-
-            <CartSwitch
-              carts={carts}
-              nowCart={nowCart}
-              goToInCart={this.goToInCart}
-            />
+            {history.length === 0 ? (
+              <div />
+            ) : (
+              <ArrowLeftIcon className={styles.icon} onClick={this.goBack} />
+            )}
           </div>
+
+          <CartSwitch
+            carts={carts}
+            nowCart={nowCart}
+            goToInCart={this.goToInCart}
+          />
         </StyleRoot>
-      </div>
+      </Drawer>
     );
   }
 }

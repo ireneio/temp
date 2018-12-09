@@ -186,12 +186,6 @@ export default class DecoratorsRoot extends React.Component {
   toggleCart = changeCartStatus => () => {
     const { isShowCart } = this.state;
 
-    if (changeCartStatus || !isShowCart) {
-      document.querySelector('body').style.overflow = 'hidden';
-    } else {
-      document.querySelector('body').style.overflow = 'auto';
-    }
-
     this.setState({
       isShowCart:
         changeCartStatus !== undefined ? changeCartStatus : !isShowCart,

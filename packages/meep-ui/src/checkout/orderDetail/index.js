@@ -344,7 +344,13 @@ export default class OrderDetail extends React.PureComponent {
               <div className={styles.phoneSizeWrapper}>
                 {transformLocale(LOCALE.TOTAL_PRICE)}：
                 {transformCurrency(total)}
-                <Button onClick={() => this.setState({ showDetail: true })}>
+                <Button
+                  onClick={() =>
+                    this.setState({ showDetail: true }, () => {
+                      document.querySelector('body').style.overflow = 'hidden';
+                    })
+                  }
+                >
                   {transformLocale(LOCALE.CHECK_DETAIL)}
                 </Button>
               </div>
@@ -515,7 +521,11 @@ export default class OrderDetail extends React.PureComponent {
             this.computeOrderList({ products: newProducts });
             this.setState({ products: newProducts });
           }}
-          closeDetail={() => this.setState({ showDetail: false })}
+          closeDetail={() =>
+            this.setState({ showDetail: false }, () => {
+              document.querySelector('body').style = '';
+            })
+          }
           isChoosenSipment={Boolean(chooseShipment)}
         />
       </StyleRoot>
