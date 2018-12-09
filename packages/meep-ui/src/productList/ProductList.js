@@ -222,6 +222,11 @@ export default class ProductList extends React.PureComponent {
   };
 
   resolveProducts = async () => {
+    // prevent over triggered
+    if (this.isResolving) return;
+
+    this.isResolving = true;
+
     const {
       products,
       params: { sort, ids },
@@ -243,21 +248,26 @@ export default class ProductList extends React.PureComponent {
       );
     }
 
-    this.setState(prevState => {
-      const key = JSON.stringify(prevState.params);
-      const hashcode = hash
-        .sha256()
-        .update(key)
-        .digest('hex');
-      dispatchAction('saveProductList', {
-        [hashcode]: resolvedProducts,
-        [`${hashcode}:timestamp`]: Date.now(),
-      });
-      return {
-        products: resolvedProducts,
-        isLoading: false,
-      };
-    });
+    this.setState(
+      prevState => {
+        const key = JSON.stringify(prevState.params);
+        const hashcode = hash
+          .sha256()
+          .update(key)
+          .digest('hex');
+        dispatchAction('saveProductList', {
+          [hashcode]: resolvedProducts,
+          [`${hashcode}:timestamp`]: Date.now(),
+        });
+        return {
+          products: resolvedProducts,
+          isLoading: false,
+        };
+      },
+      () => {
+        this.isResolving = false;
+      },
+    );
   };
 
   resize = () => {
