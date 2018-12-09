@@ -1,3 +1,22 @@
+## 0.11.0 (2018-12-10)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#335](https://github.com/meepshop/meep-lerna/pull/335) Image Lazy Loading（N241 ） ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#264](https://github.com/meepshop/meep-lerna/pull/264) 手機版 - 滑動購物車 panel or checkout 頁面時，背景會跟著滑動（1775） ([@HsuTing](https://github.com/HsuTing))
+  - [#340](https://github.com/meepshop/meep-lerna/pull/340) 產品列表：當頁面有 30 個產品列表元件，頁面顯示無法讀取（反灰）（N265） ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.10.9 (2018-12-06)
 
 #### :bug: Bug Fix
