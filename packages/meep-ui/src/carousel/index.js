@@ -160,6 +160,7 @@ export default class Carousel extends React.PureComponent {
             >
               <Image
                 image={file.image}
+                href={file.href}
                 contentWidth={100}
                 newWindow={newWindow}
                 alignment="center"
