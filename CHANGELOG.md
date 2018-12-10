@@ -1,3 +1,14 @@
+## 0.11.1 (2018-12-10)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#349](https://github.com/meepshop/meep-lerna/pull/349) 輪播圖元件 : 後台有設定連結，前台連結失效 (N277) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.11.0 (2018-12-10)
 
 #### :rocket: New Feature
