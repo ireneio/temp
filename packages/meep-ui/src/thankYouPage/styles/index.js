@@ -56,6 +56,8 @@ export const modifyAntdStyle = {
 
 export const root = {
   position: 'fixed',
+  top: '0px',
+  left: '0px',
   display: 'flex',
   width: '100vw',
   height: '100%',
