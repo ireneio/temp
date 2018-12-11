@@ -13,7 +13,10 @@ class Products extends React.Component {
     if (isServer) {
       store.dispatch(Actions.serverProductsInitial(context));
     } else {
-      store.dispatch(Actions.getPages({ pageType: 'products', query }));
+      const { pagesReducer } = store.getState();
+      if (!pagesReducer.find(page => page.pageType === 'products')) {
+        store.dispatch(Actions.getPages({ pageType: 'products', query }));
+      }
     }
     return { XMeepshopDomain, userAgent };
   };
