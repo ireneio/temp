@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { Button } from 'antd';
+import { Button, Icon } from 'antd';
 
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
@@ -139,12 +139,15 @@ export default class AddButton extends React.Component {
           <Button
             className="add-wish"
             size="large"
-            icon={isInWishList ? 'heart' : 'heart-o'}
             style={styles.addWishButton(colors, isInWishList)}
             onClick={addToWishList}
             loading={isAddingWish}
             disabled={isAddingWish}
-          />
+          >
+            {isAddingWish ? null : (
+              <Icon type="heart" theme={isInWishList ? 'filled' : 'outlined'} />
+            )}
+          </Button>
         ) : null}
       </div>
     );
