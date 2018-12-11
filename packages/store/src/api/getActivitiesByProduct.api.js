@@ -19,19 +19,18 @@ export default async function({ id: productId, variantId, ...context }) {
   };
 
   const query = `
-      computeOrderList(computeOrderList: $search) {
-        categories {
-          products {
-            activityInfo {
-              title {
-                zh_TW
-              }
-              discountPrice
+    computeOrderList(computeOrderList: $search) {
+      categories {
+        products {
+          activityInfo {
+            title {
+              zh_TW
             }
+            discountPrice
           }
         }
       }
-    } 
+    }
   `;
   const response = await postGraphql({
     ...context,
