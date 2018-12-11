@@ -1,3 +1,17 @@
+## 0.11.3 (2018-12-11)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#352](https://github.com/meepshop/meep-lerna/pull/352) 無法正常開啟，Internal Server Error（N279） ([@barrypeng6](https://github.com/barrypeng6))
+- `store`
+  - [#354](https://github.com/meepshop/meep-lerna/pull/354) fix(store): fix wrong query syntax ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.11.2 (2018-12-11)
 
 #### :bug: Bug Fix
