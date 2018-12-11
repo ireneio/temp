@@ -1,3 +1,19 @@
+## 0.11.2 (2018-12-11)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#341](https://github.com/meepshop/meep-lerna/pull/341) 將商品加入我的收藏，我的收藏按鈕（愛心）沒有變實心(N270) ([@happycat6323](https://github.com/happycat6323))
+  - [#346](https://github.com/meepshop/meep-lerna/pull/346) IE 瀏覽器 - thank-you-page 跑版(N273) ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#334](https://github.com/meepshop/meep-lerna/pull/334) 產品列表: 分頁顯示商品異常 (重複顯示)(N260) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.11.1 (2018-12-10)
 
 #### :bug: Bug Fix
