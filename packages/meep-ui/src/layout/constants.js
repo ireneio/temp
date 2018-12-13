@@ -16,6 +16,7 @@ export const SPECIAL_HIDE_FOOTER = [
   'fbshop',
   'doctorabiotech',
   'ecomo',
+  'animen',
 ];
 
 export const STORE_APP_PLUGINS = [
