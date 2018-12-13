@@ -49,7 +49,7 @@ export default (fixedtop, secondtop, sidebar) => {
                   direction: 'only',
                 },
               },
-            ].sort((a, b) => a.action < b.action),
+            ].sort((a, b) => b.action - a.action),
           };
         }
 
