@@ -1,3 +1,21 @@
+## 0.11.4 (2018-12-13)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#353](https://github.com/meepshop/meep-lerna/pull/353) meepShop MAX 極速開店：新增白名單 - animen(2301) ([@yuhsu1004](https://github.com/yuhsu1004))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#345](https://github.com/meepshop/meep-lerna/pull/345) 手機版 menu: 加入購物車 icon 跟會員登入 icon 位置錯誤(N275) ([@HsuTing](https://github.com/HsuTing))
+  - [#351](https://github.com/meepshop/meep-lerna/pull/351) 當後台置底選單部分設定分頁（部分無），前台頁腳顯示跑版(N278) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ariel Hsu ([@yuhsu1004](https://github.com/yuhsu1004))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.11.3 (2018-12-11)
 
 #### :bug: Bug Fix
