@@ -1,3 +1,17 @@
+## 0.12.0 (2018-12-17)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#347](https://github.com/meepshop/meep-lerna/pull/347) 訂單明細: 門市代號 (2030) ([@yuhsu1004](https://github.com/yuhsu1004))
+- `meep-ui`, `store`
+  - [#327](https://github.com/meepshop/meep-lerna/pull/327) 「社群分享」元件優化(1511) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 2
+
+- Ariel Hsu ([@yuhsu1004](https://github.com/yuhsu1004))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.11.4 (2018-12-13)
 
 #### :rocket: New Feature
