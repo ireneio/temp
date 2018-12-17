@@ -268,11 +268,25 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
           }
           /* 社群分享 */
           case 'social-media': {
+            const {
+              alignItems,
+              color,
+              iconStyle,
+              enableFacebook,
+              enableLine,
+              enableWechat,
+              enableTwitter,
+            } = widget.socialMediaInfo;
             return {
               id: uuid(),
               module: widget.module,
-              href: widget.socialMediaInfo.share.url,
-              alignment: widget.socialMediaInfo.alignItems,
+              alignItems: alignItems || 'left',
+              color: color || '#757575',
+              iconStyle: iconStyle || 0,
+              enableFacebook: enableFacebook || enableFacebook == null || false,
+              enableLine: enableLine || enableLine == null || false,
+              enableWechat: enableWechat || enableWechat == null || false,
+              enableTwitter: enableTwitter || enableTwitter == null || false,
             };
           }
           /* 圖文 */

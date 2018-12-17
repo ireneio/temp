@@ -1,42 +1,51 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { ALIGNMENT_TYPE, COLOR_TYPE } from 'constants/propTypes';
+import { contextProvider } from 'context';
+import { Facebook, Line, Wechat, Twitter } from './ShareButtons';
 
-import { URL_TYPE, ALIGNMENT_TYPE } from 'constants/propTypes';
-
-import { DEFAULT_URL, BRANDS } from './constants';
 import styles from './styles/index.less';
 
+const { enhancer } = contextProvider('location');
+
+@enhancer
 export default class SocialMedia extends React.PureComponent {
   static propTypes = {
     /** props */
-    href: URL_TYPE,
-    alignment: ALIGNMENT_TYPE.isRequired,
-  };
-
-  static defaultProps = {
-    /** props */
-    href: null,
+    alignItems: ALIGNMENT_TYPE.isRequired,
+    color: COLOR_TYPE.isRequired,
+    /** test 0,1,2,3 */
+    iconStyle: PropTypes.number.isRequired,
+    enableFacebook: PropTypes.bool.isRequired,
+    enableLine: PropTypes.bool.isRequired,
+    enableTwitter: PropTypes.bool.isRequired,
+    enableWechat: PropTypes.bool.isRequired,
   };
 
   render() {
-    const { href, alignment } = this.props;
+    const {
+      location: { href },
+      alignItems,
+      color,
+      iconStyle,
+      enableFacebook,
+      enableLine,
+      enableTwitter,
+      enableWechat,
+    } = this.props;
+
+    const props = {
+      url: `https://${href}`,
+      iconStyle,
+      color,
+    };
 
     return (
-      <div className={`${styles.root} ${styles[alignment]}`}>
-        {Object.keys(BRANDS).map(brand => {
-          const { url, Icon } = BRANDS[brand];
-
-          return (
-            <a
-              key={brand}
-              href={`${url}${href?.replace(/^\/\//, 'http://') || DEFAULT_URL}`}
-              className={`${styles.shareButton} ${styles[brand]}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icon />
-            </a>
-          );
-        })}
+      <div className={`${styles.root} ${styles[alignItems]}`}>
+        {enableFacebook && <Facebook {...props} />}
+        {enableLine && <Line {...props} />}
+        {enableTwitter && <Wechat {...props} />}
+        {enableWechat && <Twitter {...props} />}
       </div>
     );
   }
