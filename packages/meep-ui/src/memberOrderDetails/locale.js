@@ -497,6 +497,14 @@ export const SHIPMENT_NUMBER = {
   TODO_LOCALE: true,
 };
 
+export const RECEIVER_STORE_ID = {
+  zh_TW: '門市代號：',
+  en_US: 'Store ID﻿: ',
+  ja_JP: 'ショップコード：',
+  vi_VN: 'Mã số cửa hàng: ',
+  TODO_LOCALE: true,
+};
+
 export const RECEIVER_STORE_NAME = {
   zh_TW: '門市名稱：',
   en_US: 'Store Name: ',

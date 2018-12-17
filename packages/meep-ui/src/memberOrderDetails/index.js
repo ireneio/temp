@@ -326,6 +326,10 @@ export default class MemberOrderDetails extends React.PureComponent {
     }
     if (shipmentInfo.recipient.receiverStoreName) {
       shipmentDescription = shipmentDescription.concat([
+        <span key="ID">
+          {transformLocale(LOCALE.RECEIVER_STORE_ID)}
+          {shipmentInfo.recipient.receiverStoreID}
+        </span>,
         <span key="NAME">
           {transformLocale(LOCALE.RECEIVER_STORE_NAME)}
           {shipmentInfo.recipient.receiverStoreName}
