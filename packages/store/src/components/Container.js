@@ -168,12 +168,17 @@ class Container extends React.Component {
       getAuth,
       userAgent,
       dispatchAction,
+      cname,
     } = this.props;
 
     dispatchAction('showLoadingStatus');
 
-    if (!userAgent.match(/Line/gm) && !userAgent.match(/Instagram/gm)) {
-      // Not Line in-app browser
+    if (
+      !userAgent.match(/Line/gm) &&
+      !userAgent.match(/Instagram/gm) &&
+      cname !== 'angelina-outfit' // FIXME: hotfix N291 (原因不明，可能為FB SDK bug
+    ) {
+      // Not Line/Instagram in-app browser
       if (window.FB) {
         try {
           window.FB.login(
@@ -230,6 +235,7 @@ class Container extends React.Component {
                   default:
                     break;
                 } /* Handle login after FB response - End */
+                dispatchAction('hideLoadingStatus');
               } else {
                 /* eslint-disable no-alert */
                 alert(
