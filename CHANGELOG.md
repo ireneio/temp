@@ -1,3 +1,14 @@
+## 0.12.1 (2018-12-18)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#360](https://github.com/meepshop/meep-lerna/pull/360) 廣告分析 : 無法偵測 GTM 程式碼(N287) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.12.0 (2018-12-17)
 
 #### :rocket: New Feature
