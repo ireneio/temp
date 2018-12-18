@@ -1,3 +1,14 @@
+## 0.12.2 (2018-12-18)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#364](https://github.com/meepshop/meep-lerna/pull/364) 無法 FB 登入，應用程式未設定 cname：angelina-outfit (N291) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.12.1 (2018-12-18)
 
 #### :bug: Bug Fix
