@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import htmlescape from 'htmlescape';
 import Head from 'next/head';
 
 export default class extends React.Component {
@@ -74,31 +75,6 @@ export default class extends React.Component {
           <meta name="google-site-verification" content={`${webMasterID}`} />
         )}
 
-        {/* fbAppId && (
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-          window.fbAsyncInit = function() {
-            FB.init({
-              appId      : ${fbAppId},
-              cookie     : true,
-              xfbml      : true,
-              version    : 'v3.0'
-            });
-            FB.AppEvents.logPageView();
-          };
-          (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));
-          `,
-            }}
-          />
-        ) */}
-
         {/* eslint-disable react/no-danger */}
         {/* <!-- Facebook Pixel Code --> */}
         {fbPixelId && (
@@ -110,7 +86,7 @@ export default class extends React.Component {
             n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
             t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
             document,'script','https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '${fbPixelId}');
+            fbq('init', ${htmlescape(fbPixelId)});
             fbq('track', "PageView");
           `,
             }}
@@ -146,12 +122,14 @@ export default class extends React.Component {
             gtag('js', new Date());
             ${
               gaID
-                ? `gtag('config', '${gaID}', {page_path: '${pathname}'});`
+                ? `gtag('config', ${htmlescape(gaID)}, {page_path: ${htmlescape(
+                    pathname,
+                  )}});`
                 : ''
             }
             ${
               googleAdsConversionID
-                ? `gtag('config', '${googleAdsConversionID}');`
+                ? `gtag('config', ${htmlescape(googleAdsConversionID)});`
                 : ''
             }
           `,
@@ -169,7 +147,7 @@ export default class extends React.Component {
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${gtmID}');
+            })(window,document,'script','dataLayer',${htmlescape(gtmID)});
           `,
             }}
           />

@@ -50,8 +50,7 @@ const initialState = {
 
 const getPageAdTrackIds = data => {
   /* FB Pixel */
-  const fbPixelId =
-    (data?.getFbPixel?.active && data?.getFbPixel?.pixelId) || null;
+  const fbPixelId = data?.getFbPixel?.pixelId || null;
 
   const gtagList = data?.getGtagList || [];
   /* Google analytics */
@@ -66,47 +65,28 @@ const getPageAdTrackIds = data => {
       type === 'google_adwords' && eventName === 'adwords_config',
   );
   const googleAdsConversionID =
-    (googleAdsConfigData &&
-      googleAdsConfigData.active &&
-      typeof googleAdsConfigData.code === 'string' &&
-      googleAdsConfigData.code.match(/AW-[0-9]*(?='\);)/gm) &&
-      googleAdsConfigData.code.match(/AW-[0-9]*(?='\);)/gm)[0]) ||
-    null;
+    (googleAdsConfigData?.code || '').match(/AW-[0-9]*(?='\);)/gm)?.[0] || null;
   /* Google Ads conversion Label - Signup */
   const googleAdsSignupData = gtagList.find(
     ({ type, eventName }) =>
       type === 'google_adwords' && eventName === 'sign_up',
   );
   const googleAdsSignupLabel =
-    (googleAdsSignupData &&
-      googleAdsSignupData.active &&
-      typeof googleAdsSignupData.code === 'string' &&
-      googleAdsSignupData.code.match(/AW-.*(?='}\);)/gm) &&
-      googleAdsSignupData.code.match(/AW-.*(?='}\);)/gm)[0]) ||
-    null;
+    (googleAdsSignupData?.code || '').match(/AW-.*(?='}\);)/gm)?.[0] || null;
   /* Google Ads conversion Label - Checkout */
   const googleAdsCheckoutData = gtagList.find(
     ({ type, eventName }) =>
       type === 'google_adwords' && eventName === 'begin_checkout',
   );
   const googleAdsCheckoutLabel =
-    (googleAdsCheckoutData &&
-      googleAdsCheckoutData.active &&
-      typeof googleAdsCheckoutData.code === 'string' &&
-      googleAdsCheckoutData.code.match(/AW-.*(?='}\);)/gm) &&
-      googleAdsCheckoutData.code.match(/AW-.*(?='}\);)/gm)[0]) ||
-    null;
+    (googleAdsCheckoutData?.code || '').match(/AW-.*(?='}\);)/gm)?.[0] || null;
   /* Google Ads conversion Label - CompleteOrder */
   const googleAdsCompleteOrderData = gtagList.find(
     ({ type, eventName }) =>
       type === 'google_adwords' && eventName === 'purchase',
   );
   const googleAdsCompleteOrderLabel =
-    (googleAdsCompleteOrderData &&
-      googleAdsCompleteOrderData.active &&
-      typeof googleAdsCompleteOrderData.code === 'string' &&
-      googleAdsCompleteOrderData.code.match(/AW-.*(?='}\);)/gm) &&
-      googleAdsCompleteOrderData.code.match(/AW-.*(?='}\);)/gm)[0]) ||
+    (googleAdsCompleteOrderData?.code || '').match(/AW-.*(?='}\);)/gm)?.[0] ||
     null;
 
   const webTrackList = data?.getWebTrackList?.data || [];
@@ -116,15 +96,14 @@ const getPageAdTrackIds = data => {
     webTrackList.forEach(webTrack => {
       switch (webTrack?.trackType) {
         case 'google_webmaster': {
-          webMasterID = webTrack.trackId || null;
+          webMasterID = webTrack?.trackId || null;
           break;
         }
         case 'google_tag_manager': {
-          const status = webTrack.trackPage?.[0]?.status;
-          const trackCode = webTrack.trackPage?.[0]?.trackCode;
-          if (status && trackCode) {
-            gtmID = trackCode.match(/GTM-.*(?=('\)|"))/gm)?.[0];
-          }
+          gtmID =
+            (webTrack?.trackPage?.[0]?.trackCode || '').match(
+              /GTM-.*(?=('\)|"))/gm,
+            )?.[0] || null;
           break;
         }
         default:
