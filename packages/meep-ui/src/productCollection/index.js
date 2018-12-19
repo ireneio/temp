@@ -5,6 +5,7 @@ import radium, { StyleRoot } from 'radium';
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
 import { URL_TYPE, LOCALE_TYPE } from 'constants/propTypes';
+import { PHONE_MEDIA } from 'constants/media';
 
 import * as styles from './styles';
 
@@ -23,8 +24,24 @@ export default class ProductCollection extends React.PureComponent {
     width: 70,
   };
 
+  componentDidMount() {
+    this.resize();
+    window.addEventListener('resize', this.resize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+  }
+
+  resize = () => {
+    this.setState({
+      isMobile: window.matchMedia(PHONE_MEDIA.substring(7)).matches,
+    });
+  };
+
   render() {
     const { transformLocale, files, align, title, width } = this.props;
+    const { isMobile } = this.state;
     const productName = transformLocale(title);
 
     return (
@@ -41,7 +58,7 @@ export default class ProductCollection extends React.PureComponent {
               <div style={styles.img}>
                 <Image
                   image={url}
-                  contentWidth={width || 70}
+                  contentWidth={isMobile ? 100 : width || 70}
                   alignment="center"
                   newWindow={false}
                   alt={productName}
