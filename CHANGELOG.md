@@ -1,3 +1,25 @@
+## 0.13.0 (2018-12-19)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#332](https://github.com/meepshop/meep-lerna/pull/332) 前端 - Wishlist 改用新 API ([@HsuTing](https://github.com/HsuTing))
+  - [#344](https://github.com/meepshop/meep-lerna/pull/344) 會員功能：會員群組、群組起訖(1970) ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#357](https://github.com/meepshop/meep-lerna/pull/357) 後台有設定「廣告分析 - 瀏覽追蹤」元件，前台 FB pixel 無觸發事件(N282) ([@barrypeng6](https://github.com/barrypeng6))
+  - [#359](https://github.com/meepshop/meep-lerna/pull/359) 手機版 - 吃到後台產品照片集 - 電腦版寬度之設定值(N281) ([@piovischioh](https://github.com/piovischioh))
+  - [#355](https://github.com/meepshop/meep-lerna/pull/355) 商品頁：影像 1 商品圖跑版，原本 div 被改成 img(N280) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 4
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.12.2 (2018-12-18)
 
 #### :bug: Bug Fix
