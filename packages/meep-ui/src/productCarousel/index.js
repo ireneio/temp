@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { Style, StyleRoot } from 'radium';
 import Slider from 'react-slick';
-import Image from 'image';
+import Lazy from 'image/Img/Lazy';
 
 import { URL_TYPE } from 'constants/propTypes';
 
@@ -91,26 +91,20 @@ export default class ProductCarousel extends React.PureComponent {
               prevArrow={<ArrowIcon type="left-circle" />}
             >
               {images.map((url, index) => (
-                <div
-                  key={
-                    url + index // eslint-disable-line react/no-array-index-key
-                  }
-                >
-                  <div
-                    style={{
-                      height: 400,
-                      background: '#f9f9f9',
-                      display: 'flex',
-                      alignItems: 'center',
+                // eslint-disable-next-line react/no-array-index-key
+                <div key={url + index}>
+                  <Lazy>
+                    {({ useLarge, isClear, onLoad }) => {
+                      if (useLarge) {
+                        const img = new Image();
+                        img.onload = onLoad;
+                        img.src = `//${url}?w=400`;
+                      }
+                      return (
+                        <div style={styles.showcase({ url, mode, isClear })} />
+                      );
                     }}
-                  >
-                    <Image
-                      image={url}
-                      contentWidth={100}
-                      newWindow={false}
-                      alignment="center"
-                    />
-                  </div>
+                  </Lazy>
                 </div>
               ))}
             </Slider>

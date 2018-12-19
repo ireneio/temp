@@ -75,6 +75,20 @@ export const arrow = {
   fontSize: '18px',
 };
 
+export const showcase = ({ url, mode, isClear }) => ({
+  backgroundImage: isClear ? `url(//${url}?w=400)` : `url(//${url}?w=60)`,
+  backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'center center',
+  height: mode === 'list' ? '300px' : '400px',
+  filter: !isClear && 'blur(10px) brightness(80%)',
+  transform: !isClear && 'scale(1.01)',
+  transition: 'all 0.5s ease-in',
+  [PHONE_MEDIA]: {
+    height: '300px',
+  },
+});
+
 export const thumbnail = (file, mode) => ({
   backgroundImage: `url(//${file}?w=100)`,
   backgroundSize: 'contain',
