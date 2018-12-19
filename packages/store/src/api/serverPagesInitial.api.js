@@ -23,7 +23,7 @@ export default async function(context) {
   if (!path) throw new Error('Page path is not defined.');
   const variables = {
     keys:
-      '$pageSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $wishlistSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$pageSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverPagesInitial',
     values: {
       pageSearch: {
@@ -163,7 +163,6 @@ export default async function(context) {
       cartSearch: {
         showDetail: true,
       },
-      wishlistSearch: {},
       notificationSearch: {},
       orderSearch: {
         size: 100,
@@ -303,11 +302,9 @@ export default async function(context) {
         ${cartQuery}
       }
     }
-    getWishListList(search: $wishlistSearch) {
-      data {
-        ${wishListQuery}
-      }
-    }
+
+    ${wishListQuery}
+
     getStockNotificationList(search: $notificationSearch) {
       data {
         ${stockNotificationQuery}

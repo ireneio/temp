@@ -50,7 +50,7 @@ export const productImage = src => ({
         backgroundSize: 'cover',
         backgroundPosition: '50% 50%',
         backgroundRepeat: 'no-repeat',
-        backgroundImage: `url(//${src})`,
+        backgroundImage: `url(${src})`,
       }
     : {
         backgroundColor: '#eeeeee',

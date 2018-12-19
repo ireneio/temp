@@ -18,7 +18,7 @@ import {
 export default async function(context) {
   const variables = {
     keys:
-      '$menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $wishlistSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverOthersInitial',
     values: {
       menuSearch: {
@@ -127,7 +127,6 @@ export default async function(context) {
       cartSearch: {
         showDetail: true,
       },
-      wishlistSearch: {},
       notificationSearch: {},
       orderSearch: {
         size: 100,
@@ -259,11 +258,9 @@ export default async function(context) {
         ${cartQuery}
       }
     }
-    getWishListList(search: $wishlistSearch) {
-      data {
-        ${wishListQuery}
-      }
-    }
+
+    ${wishListQuery}
+
     getStockNotificationList(search: $notificationSearch) {
       data {
         ${stockNotificationQuery}

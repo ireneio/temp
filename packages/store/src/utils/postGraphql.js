@@ -15,7 +15,7 @@ export default async ({
 }) => {
   try {
     const graphql = {
-      query: `${variables.type}(${variables.keys}) {
+      query: `${variables.type}${variables.keys ? `(${variables.keys})` : ''} {
         ${query}
       } ${variables.fragments !== undefined ? variables.fragments : ''}`,
       variables: variables.values,

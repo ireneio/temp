@@ -19,14 +19,15 @@ export default class MemberWishList extends React.PureComponent {
     wishList: PropTypes.arrayOf(
       PropTypes.shape({
         id: ID_TYPE.isRequired,
+        productId: ID_TYPE.isRequired,
+        createdAt: PropTypes.number.isRequired,
         title: PropTypes.shape({
           zh_TW: PropTypes.string.isRequired,
         }),
-        galleryInfo: PropTypes.shape({
-          media: PropTypes.arrayOf(URL_TYPE).isRequired,
+        productImage: PropTypes.shape({
+          src: URL_TYPE.isRequired,
         }),
-        status: PropTypes.oneOf([0, 1]),
-        createdOn: PropTypes.number.isRequired,
+        isAvailableForSale: PropTypes.bool.isRequired,
       }),
     ).isRequired,
 
@@ -37,72 +38,60 @@ export default class MemberWishList extends React.PureComponent {
   };
 
   generateColumns = () => {
-    const { transformLocale } = this.props;
+    const { transformLocale, dispatchAction } = this.props;
+
     return [
       {
-        title: '',
-        dataIndex: 'galleryInfo',
-        render: this.renderImage,
+        dataIndex: 'productImage',
+        render: (value, { productId }) => (
+          <Link href={`/product/${productId}`} target="_blank">
+            <div style={styles.productImage(value?.src)} />
+          </Link>
+        ),
       },
       {
         title: transformLocale(LOCALE.PRODUCT_TITLE),
         dataIndex: 'title',
-        render: this.renderTitle,
+        render: (value, { productId, isAvailableForSale }) => (
+          <Link
+            href={!isAvailableForSale ? null : `/product/${productId}`}
+            target="_blank"
+          >
+            <span style={styles.productText(isAvailableForSale)}>
+              {transformLocale(
+                isAvailableForSale ? value : LOCALE.PRODUCT_STATUS_OFF,
+              )}
+            </span>
+          </Link>
+        ),
       },
       {
         title: transformLocale(LOCALE.ADD_DATE),
-        dataIndex: 'createdOn',
+        dataIndex: 'createdAt',
         className: 'alignCenter nowrap',
-        render: this.renderDate,
+        render: (value, { isAvailableForSale }) => (
+          <span style={styles.productText(isAvailableForSale)}>
+            {isAvailableForSale ? moment.unix(value).format('YYYY/MM/DD') : '-'}
+          </span>
+        ),
       },
       {
         title: transformLocale(LOCALE.CANCEL_COLLECT),
+        dataIndex: 'productId',
         className: 'alignCenter',
-        render: this.renderCancel,
+        render: value => (
+          <CloseIcon
+            style={styles.icon}
+            onClick={() =>
+              dispatchAction('updateWishList', {
+                remove: value,
+              })
+            }
+          />
+        ),
       },
     ];
   };
-
-  cancelCollect = index => {
-    const { wishList, dispatchAction } = this.props;
-    dispatchAction('updateWishList', { remove: [wishList[index].id] });
-  };
-
-  renderImage = (value, record) => {
-    const { id } = record;
-    return (
-      <Link href={`/product/${id}`} target="_blank">
-        <div style={styles.productImage(((value || {}).media || [])[0])} />
-      </Link>
-    );
-  };
-
-  renderTitle = (value, record) => {
-    const { transformLocale } = this.props;
-    const { id, status } = record;
-    return status ? (
-      <Link href={`/product/${id}`} target="_blank">
-        <span style={styles.productText(status)}>{transformLocale(value)}</span>
-      </Link>
-    ) : (
-      <span style={styles.productText(status)}>
-        {transformLocale(LOCALE.PRODUCT_STATUS_OFF)}
-      </span>
-    );
-  };
-
-  renderDate = (value, record) => {
-    const { status } = record;
-    return (
-      <span style={styles.productText(status)}>
-        {value ? moment.unix(value).format('YYYY/MM/DD') : '-'}
-      </span>
-    );
-  };
-
-  renderCancel = (value, record, index) => (
-    <CloseIcon style={styles.icon} onClick={() => this.cancelCollect(index)} />
-  );
 
   render() {
     const { colors, wishList } = this.props;
@@ -113,6 +102,7 @@ export default class MemberWishList extends React.PureComponent {
           scopeSelector=".ant-table-wrapper"
           rules={styles.Style(colors)}
         />
+
         <Table
           rowKey="id"
           columns={this.generateColumns()}

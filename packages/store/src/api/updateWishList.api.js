@@ -1,28 +1,43 @@
 import postGraphql from 'utils/postGraphql';
-import { wishListQuery } from './query';
 
-export default async function({ add = [], remove = [] }) {
-  const variables = {
-    keys: '$updateWishListList: [UpdateWishList]',
-    type: 'mutation UpdateWishList',
-    values: {
-      updateWishListList: [
-        {
-          addProductIds: add,
-          removeProductIds: remove,
-        },
-      ],
-    },
-  };
-
-  const query = `
-    updateWishListList(updateWishListList: $updateWishListList) {
-      ${wishListQuery}
+export default async ({ add, remove }) => {
+  const result = await postGraphql({
+    query: `
+    ${remove ? 'removeWishlistProduct' : 'addWishlistProduct'} (
+      input: $input
+    ) {
+      ${
+        remove
+          ? 'productId'
+          : `
+        wishlistProduct {
+          id
+          productId
+          createdAt
+          title {
+            zh_TW
+          }
+          productImage {
+            src
+          }
+          isAvailableForSale
+        }
+      `
+      }
     }
-  `;
-  const response = await postGraphql({
-    query,
-    variables,
+  `,
+    variables: {
+      type: remove ? 'mutation removeWishlist' : 'mutation addWishlist',
+      keys: remove
+        ? '$input: RemoveWishlistProductInput!'
+        : '$input: AddWishlistProductInput!',
+      values: {
+        input: {
+          productId: remove || add,
+        },
+      },
+    },
   });
-  return response;
-}
+
+  return result;
+};

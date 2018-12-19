@@ -1,16 +1,16 @@
-const wishListQuery = `
-  id
-  list {
-    id
-    createdOn
-    title {
-      zh_TW
+export default `
+  viewer {
+    wishlist {
+      id
+      productId
+      createdAt
+      title {
+        zh_TW
+      }
+      productImage {
+        src
+      }
+      isAvailableForSale
     }
-    galleryInfo {
-      media
-    }
-    status
   }
 `;
-
-export default wishListQuery;

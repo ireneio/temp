@@ -13,7 +13,7 @@ export default async function(args = {}) {
   const { isServer, XMeepshopDomain, cookie } = args;
   const variables = {
     keys:
-      '$userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $wishlistSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!',
+      '$userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!',
     type: 'query updateMemberData',
     values: {
       userSearch: {
@@ -24,7 +24,6 @@ export default async function(args = {}) {
       cartSearch: {
         showDetail: true,
       },
-      wishlistSearch: {},
       notificationSearch: {},
       orderSearch: {
         size: 100,
@@ -74,11 +73,9 @@ export default async function(args = {}) {
         ${cartQuery}
       }
     }
-    getWishListList(search: $wishlistSearch) {
-      data {
-        ${wishListQuery}
-      }
-    }
+
+    ${wishListQuery}
+
     getStockNotificationList(search: $notificationSearch) {
       data {
         ${stockNotificationQuery}

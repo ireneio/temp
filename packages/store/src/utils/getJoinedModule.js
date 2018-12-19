@@ -100,7 +100,6 @@ const getJoinedModule = (
           };
         }
         case 'product': {
-          const isInWishList = !!wishList.find(({ id }) => product.id === id);
           return {
             ...widget,
             productData: product,
@@ -108,18 +107,21 @@ const getJoinedModule = (
             cart,
             activityData: product.activities,
             stockNotificationList,
-            isInWishList,
+            isInWishList: !!wishList.find(
+              ({ productId }) => product.id === productId,
+            ),
           };
         }
         case 'product-info': {
-          const isInWishList = !!wishList.find(({ id }) => product.id === id);
           return {
             ...widget,
             productData: product,
             cart,
             activityData: product.activities,
             stockNotificationList,
-            isInWishList,
+            isInWishList: !!wishList.find(
+              ({ productId }) => product.id === productId,
+            ),
             edition: 'detail',
           };
         }

@@ -23,7 +23,7 @@ export default async function(context) {
   if (!pId) throw new Error('Product id is not defined.');
   const variables = {
     keys:
-      '$productSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $wishlistSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$productSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverProductInitial',
     values: {
       productSearch: {
@@ -153,7 +153,6 @@ export default async function(context) {
       cartSearch: {
         showDetail: true,
       },
-      wishlistSearch: {},
       notificationSearch: {},
       orderSearch: {
         size: 100,
@@ -291,11 +290,9 @@ export default async function(context) {
         ${cartQuery}
       }
     }
-    getWishListList(search: $wishlistSearch) {
-      data {
-        ${wishListQuery}
-      }
-    }
+
+    ${wishListQuery}
+
     getStockNotificationList(search: $notificationSearch) {
       data {
         ${stockNotificationQuery}

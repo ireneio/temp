@@ -898,11 +898,12 @@ const getMemberData = payload => {
     : null;
 
   const stockNotificationList = data?.getStockNotificationList?.data || [];
-  const wishList = data?.getWishListList?.data?.[0]?.list || [];
+  const wishList = data?.viewer?.wishlist || [];
   const orderApply = data?.getOrderApplyList?.data || [];
   const orders = data?.getOrderList?.data || [];
   const userPoints = data?.getValidUserPointList?.data || [];
   const expireSoonUserPointList = data?.getExpireSoonUserPointList?.data || [];
+
   return {
     isLogin,
     user,
@@ -1169,14 +1170,34 @@ export default function(state = initialState, { type, payload }) {
       };
     }
     case UPDATE_WISHLIST_SUCCESS: {
-      const wishList = payload?.data?.updateWishListList?.[0]?.list;
-      return {
+      const { wishList } = state;
+      const newState = {
         ...state,
-        wishList,
         loading: false,
         loadingTip: '',
       };
+
+      if (payload?.data?.removeWishlistProduct) {
+        const { productId } = payload.data.removeWishlistProduct;
+
+        return {
+          ...newState,
+          wishList: wishList.filter(({ productId: id }) => id !== productId),
+        };
+      }
+
+      if (payload?.data?.addWishlistProduct) {
+        const { wishlistProduct } = payload.data.addWishlistProduct;
+
+        return {
+          ...newState,
+          wishList: [wishlistProduct, ...wishList],
+        };
+      }
+
+      return newState;
     }
+
     case UPDATE_WISHLIST_FAILURE: {
       return {
         ...state,
