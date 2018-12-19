@@ -2,6 +2,11 @@ const userQuery = `
   id
   name
   groupId
+  group {
+    startDate
+    expireDate
+    unlimitedDate
+  }
   email
   gender
   birthday {

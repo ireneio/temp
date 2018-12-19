@@ -24,6 +24,13 @@ export default class MemberSettingsView extends React.PureComponent {
   static propTypes = {
     member: PropTypes.shape({
       id: PropTypes.string,
+      groupName: PropTypes.string,
+      groupType: PropTypes.string,
+      group: PropTypes.shape({
+        startDate: PropTypes.number,
+        expireDate: PropTypes.number,
+        unlimitedDate: PropTypes.bool,
+      }),
       name: PropTypes.string,
       gender: PropTypes.number,
       additionalInfo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -137,6 +144,9 @@ export default class MemberSettingsView extends React.PureComponent {
       lockedCountry,
       lockedBirthday,
       member: {
+        groupName,
+        groupType,
+        group: { startDate, expireDate, unlimitedDate },
         name,
         email,
         gender,
@@ -156,6 +166,18 @@ export default class MemberSettingsView extends React.PureComponent {
 
     return (
       <div className={styles.wrapper}>
+        <div className={styles.groupName} style={{ color: colors[4] }}>
+          {groupName}
+        </div>
+        {groupType === 'normal' ? null : (
+          <div className={styles.groupExpireDate} style={{ color: colors[4] }}>
+            {`${transformLocale(LOCALE.GROUP_EXPIRE_DATE)}
+            ${moment.unix(startDate).format('YYYY/MM/DD')} ~ `}
+            {unlimitedDate
+              ? transformLocale(LOCALE.FOREVER)
+              : moment.unix(expireDate).format('YYYY/MM/DD')}
+          </div>
+        )}
         <Form className={styles.form} onSubmit={this.handleSubmit}>
           <div className={styles.row}>
             <div className={styles.nameInput}>
@@ -264,7 +286,7 @@ export default class MemberSettingsView extends React.PureComponent {
               />,
             )}
           </div>
-          <div className={styles.row}>
+          <div className={styles.cancelEmailCheckbox}>
             {getFieldDecorator('isNotCancelEmail', {
               initialValue: !notification?.newsletters?.cancelEmail,
               valuePropName: 'checked',

@@ -155,6 +155,8 @@ const mapStateToProps = (state, props) => {
 
   const locale = Utils.getIn(['storeReducer', 'settings', 'locale'])(state);
 
+  const user = Utils.getIn(['memberReducer', 'user'])(state);
+
   return {
     storeSetting: state.storeReducer.settings,
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
@@ -163,7 +165,7 @@ const mapStateToProps = (state, props) => {
     page: getPage(state, props),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
     title: TITLE.SETTINGS[locale],
-    user: Utils.getIn(['memberReducer', 'user'])(state),
+    user: user && Selectors.getJoinedUser(state),
     lockedBirthday:
       Utils.getIn(['storeReducer', 'lockedBirthday'])(state) || false,
     lockedCountry: Utils.getIn(['storeReducer', 'lockedCountry'])(state) || [],

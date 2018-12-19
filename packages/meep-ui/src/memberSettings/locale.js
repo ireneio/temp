@@ -1,3 +1,19 @@
+export const GROUP_EXPIRE_DATE = {
+  zh_TW: '使用期限',
+  en_US: '',
+  ja_JP: '',
+  vi_VN: '',
+  TODO_LOCALE: true,
+};
+
+export const FOREVER = {
+  zh_TW: '永久',
+  en_US: '',
+  ja_JP: '',
+  vi_VN: '',
+  TODO_LOCALE: true,
+};
+
 export const NAME = {
   zh_TW: '姓名',
   en_US: 'Full Name',

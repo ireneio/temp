@@ -65,7 +65,11 @@ export const getJoinedUser = createSelector(
   (user, memberGroups) => {
     const groupId = getIn(['groupId'])(user);
     const memberGroup = R.find(R.propEq('id', groupId))(memberGroups);
-    return R.assocPath(['groupName'], memberGroup && memberGroup.name)(user);
+
+    return R.pipe(
+      R.assocPath(['groupName'], memberGroup && memberGroup.name),
+      R.assocPath(['groupType'], memberGroup && memberGroup.type),
+    )(user);
   },
 );
 

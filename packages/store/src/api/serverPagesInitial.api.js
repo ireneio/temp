@@ -272,6 +272,7 @@ export default async function(context) {
       data {
         id
         name
+        type
       }
     }
     getAppLoginList(search: $appLoginSearch) {

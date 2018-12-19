@@ -833,6 +833,10 @@ const getUser = _user => {
   const gender = _user.gender || null;
   const email = _user?.email || '';
   const groupId = _user?.groupId || null;
+  const startDate = _user?.group?.[_user.group.length - 1]?.startDate || null;
+  const expireDate = _user?.group?.[_user.group.length - 1]?.expireDate || null;
+  const unlimitedDate =
+    _user?.group?.[_user.group.length - 1]?.unlimitedDate || null;
   const mobile = _user?.additionalInfo?.mobile || '';
   const tel = _user?.additionalInfo?.tel || '';
   const country = _user?.additionalInfo?.address?.yahooCode?.country || null;
@@ -850,6 +854,11 @@ const getUser = _user => {
     email,
     gender,
     groupId,
+    group: {
+      startDate,
+      expireDate,
+      unlimitedDate,
+    },
     additionalInfo: {
       mobile,
       tel,
