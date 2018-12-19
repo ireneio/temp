@@ -37,7 +37,11 @@ export default class extends React.Component {
   render() {
     const { isTriggered } = this.state;
     return (
-      <VisibilitySensor onChange={this.handleVisible}>
+      <VisibilitySensor
+        active={!isTriggered}
+        partialVisibility
+        onChange={this.handleVisible}
+      >
         <div
           style={{
             display: isTriggered ? 'none' : 'block',
