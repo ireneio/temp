@@ -1,3 +1,23 @@
+## 0.13.1 (2018-12-25)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#366](https://github.com/meepshop/meep-lerna/pull/366) 前台頁面圖片 loading 過慢，且未按瀏覽順序顯示(apply 到「所有店家」)(N241) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#361](https://github.com/meepshop/meep-lerna/pull/361) 背景圖片:前台頁面背景還是空白(N288) ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#365](https://github.com/meepshop/meep-lerna/pull/365) 送出訂單問答，發生錯誤：400 Syntax Error: Unexpected (N298) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.13.0 (2018-12-19)
 
 #### :rocket: New Feature
