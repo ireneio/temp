@@ -13,9 +13,8 @@ export default async function({ text, orderId }) {
     },
   };
   const query = `
-      addOrderMessage(input: $input) {
-        ${orderMessageQuery}
-      }
+    addOrderMessage(input: $input) {
+      ${orderMessageQuery}
     }
   `;
   const response = await postGraphql({
