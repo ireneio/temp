@@ -14,7 +14,6 @@ import {
 import notMemoizedClickTracking from 'utils/notMemoizedClickTracking';
 import { contextProvider } from 'context';
 
-import Progressive from './Progressive';
 import Lazy from './Lazy';
 import { IMAGE_SUITABLE_WIDTHS } from '../constants';
 import styles from './styles/index.less';
@@ -68,20 +67,13 @@ class Img extends React.PureComponent {
       /** ignore */
       forwardedRef,
       linkProps,
-      storeSetting: { cname }, // TODO: for experiment
     } = this.props;
-
-    /** TODO: Experiment feature - only for beeding.com */
-    let EnhanceComp = Progressive;
-    if (cname === 'beeding' || cname === 'bellatest') {
-      EnhanceComp = Lazy;
-    } /** Experiment feature - only for beeding.com - End */
 
     return (
       <div className={`${styles.root} ${styles[alignment]}`}>
         <div ref={forwardedRef} style={{ width: `${contentWidth}%` }}>
           <Link {...linkProps}>
-            <EnhanceComp>
+            <Lazy>
               {({ useLarge, isClear, onLoad, onError }) => (
                 <img
                   style={{
@@ -97,7 +89,7 @@ class Img extends React.PureComponent {
                   alt={alt}
                 />
               )}
-            </EnhanceComp>
+            </Lazy>
           </Link>
         </div>
       </div>
