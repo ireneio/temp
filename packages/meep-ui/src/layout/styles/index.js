@@ -7,7 +7,8 @@
  */
 export const root = (backgroundImage, colors, background) => {
   const realBackground = (() => {
-    const { image, used, repeat, size } = backgroundImage;
+    const { files, used, repeat, size } = backgroundImage;
+    const { image } = files?.[0] || {};
 
     if (used && image) {
       return `

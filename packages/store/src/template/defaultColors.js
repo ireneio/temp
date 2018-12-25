@@ -67,11 +67,12 @@ export default {
     used: false,
     repeat: false,
     size: false,
-    file: [
+    files: [
       {
-        fileId: '',
-        linkId: '',
-        type: 'jpeg',
+        href: null,
+        image: null,
+        path: null,
+        linkId: null,
       },
     ],
   },

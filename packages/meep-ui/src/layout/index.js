@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 
 import Context from 'context';
-import { URL_TYPE, COLOR_TYPE } from 'constants/propTypes';
+import { COLOR_TYPE } from 'constants/propTypes';
 
 import GlobalStyles from './GlobalStyles';
 import Cart from './cart';
@@ -32,7 +32,7 @@ export default class Layout extends React.PureComponent {
       'FixedEndsContainer',
     ]).isRequired,
     backgroundImage: PropTypes.shape({
-      image: URL_TYPE,
+      files: PropTypes.array.isRequired,
       repeat: PropTypes.bool.isRequired,
       size: PropTypes.bool.isRequired,
       used: PropTypes.bool.isRequired,
