@@ -1,3 +1,25 @@
+## 0.14.0 (2018-12-26)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#356](https://github.com/meepshop/meep-lerna/pull/356) 前端 - Gallery 改用新 API ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#356](https://github.com/meepshop/meep-lerna/pull/356) 前端 - Gallery 改用新 API ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#358](https://github.com/meepshop/meep-lerna/pull/358) N235 fix(store): fix unexpected reload when browser goes back to /products ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 2
+
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.13.1 (2018-12-25)
 
 #### :rocket: New Feature
