@@ -103,7 +103,6 @@ const getJoinedModule = (
           return {
             ...widget,
             productData: product,
-            galleryInfo: product.galleryInfo,
             cart,
             activityData: product.activities,
             stockNotificationList,
@@ -128,13 +127,13 @@ const getJoinedModule = (
         case 'product-carousell': {
           return {
             ...widget,
-            galleryInfo: product.galleryInfo,
+            galleries: product.galleries,
           };
         }
         case 'product-collections': {
           return {
             ...widget,
-            files: product.contentGalleryInfo.media,
+            galleries: product.galleries,
             title: product.title,
           };
         }

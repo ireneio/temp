@@ -35,21 +35,17 @@ const productQuery = `{
     warehouseNumber
     minRetailPrice
   }
-  gallery {
-    mainId
-    media
-  }
-  galleryInfo {
-    mainId
-    media
-  }
-  contentGallery {
-    mainId
-    media
-  }
-  contentGalleryInfo {
-    mainId
-    media
+  galleries {
+    mainImage {
+      fileId
+      isMain
+      src
+    }
+    images {
+      fileId
+      isMain
+      src
+    }
   }
   tags
   variants {

@@ -10,9 +10,9 @@ import ProductCarousel from 'productCarousel';
 import ProductInfo from 'productInfo';
 import {
   ID_TYPE,
-  URL_TYPE,
   COLOR_TYPE,
   POSITIVE_NUMBER_TYPE,
+  GALLERY_TYPE,
 } from 'constants/propTypes';
 
 import { PURCHASE, SELECT_SPEC } from '../locale';
@@ -32,10 +32,7 @@ export default class Product extends React.PureComponent {
         zh_TW: PropTypes.string.isRequired,
         en_US: PropTypes.string,
       }),
-      galleryInfo: PropTypes.shape({
-        mainId: PropTypes.string,
-        media: PropTypes.arrayOf(URL_TYPE),
-      }),
+      galleries: GALLERY_TYPE.isRequired,
       variants: PropTypes.arrayOf(
         PropTypes.shape({
           totalPrice: POSITIVE_NUMBER_TYPE.isRequired,
@@ -93,17 +90,18 @@ export default class Product extends React.PureComponent {
       wishList,
       stockNotificationList,
     } = this.props;
-    const { id, title, galleryInfo, variants } = product;
-    const { mainId, media = [] } = galleryInfo || {};
-    const imageUrl = mainId || media[0] || null;
+    const { id, title, galleries, variants } = product;
+    const imageSrc =
+      galleries?.[0]?.mainImage?.src ||
+      ((galleries?.[0]?.images || []).find(image => image?.src) || {}).src;
     const totalPrice = (variants[0] || {}).totalPrice || 0;
 
     return (
       <div style={styles.root}>
         <Style scopeSelector=".ant-modal" rules={styles.modalStyle(colors)} />
-        {imageUrl ? (
+        {imageSrc ? (
           <Image
-            image={imageUrl}
+            image={imageSrc}
             href={`/product/${id}`}
             contentWidth={100}
             newWindow={false}
@@ -135,7 +133,7 @@ export default class Product extends React.PureComponent {
         >
           <div style={styles.modal}>
             <ProductCarousel
-              galleryInfo={galleryInfo}
+              galleries={galleries}
               autoPlay={false}
               thumbsPosition="bottom"
               edition="small"

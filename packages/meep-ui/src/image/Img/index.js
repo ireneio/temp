@@ -44,16 +44,18 @@ class Img extends React.PureComponent {
     customTracking: null,
   };
 
+  /** 當useLarge為true時，表示已觸發sensor，此時生命週期已完成did mount，
+   *  可直接使用device pixel ratio; 否則使用小圖。
+   */
   getSrc = useLarge => {
     const { image, width } = this.props;
-    /** 當useLarge為true時，表示已觸發sensor，此時生命週期已完成did mount，
-     *  可直接使用device pixel ratio; 否則使用小圖。
-     */
+    const url = /(^\/)|(^http)/.test(image) ? image : `//${image}`;
+
     return useLarge
-      ? `//${image}?w=${IMAGE_SUITABLE_WIDTHS.find(
+      ? `${url}?w=${IMAGE_SUITABLE_WIDTHS.find(
           suitableWidth => suitableWidth > width * window.devicePixelRatio,
         ) || IMAGE_SUITABLE_WIDTHS.slice(-1)[0]}`
-      : `//${image}?w=60`;
+      : `${url}?w=60`;
   };
 
   render() {

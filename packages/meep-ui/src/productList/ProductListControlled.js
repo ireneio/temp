@@ -351,7 +351,7 @@ export default class ProductList extends React.PureComponent {
       <div style={styles.modal} id="modal-area">
         <ProductCarousel
           mode="list"
-          galleryInfo={productData.galleryInfo}
+          galleries={productData.galleries}
           autoPlay={false}
           thumbsPosition="bottom"
         />

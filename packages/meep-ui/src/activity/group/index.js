@@ -107,12 +107,17 @@ export default class Group extends React.PureComponent {
           zh_TW
           en_US
         }
-        gallery {
-          mainId
-          media
-        }
-        galleryInfo {
-          media
+        galleries {
+          mainImage {
+            fileId
+            isMain
+            src
+          }
+          images {
+            fileId
+            isMain
+            src
+          }
         }
         variants {
           id

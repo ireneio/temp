@@ -39,36 +39,34 @@ export default class ProductSet extends React.PureComponent {
     } = this.props;
 
     return (
-      <React.Fragment>
-        <StyleRoot>
-          <div style={styles.root}>
-            <div style={styles.half}>
-              <ProductCarousel
-                galleryInfo={productData.galleryInfo}
-                autoPlay={false}
-                thumbsPosition="none"
-              />
-            </div>
-            <div style={styles.half}>
-              <ProductInfo
-                productData={productData}
-                activityData={activityData}
-                cart={cart}
-                stockNotificationList={stockNotificationList}
-                isInWishList={isInWishList}
-                showButton={showButton}
-              />
-            </div>
-            <div style={styles.block}>
-              <ProductCollection
-                files={productData.contentGalleryInfo.media}
-                align="original"
-                title={productData.title}
-              />
-            </div>
+      <StyleRoot>
+        <div style={styles.root}>
+          <div style={styles.half}>
+            <ProductCarousel
+              galleries={productData.galleries}
+              autoPlay={false}
+              thumbsPosition="none"
+            />
           </div>
-        </StyleRoot>
-      </React.Fragment>
+          <div style={styles.half}>
+            <ProductInfo
+              productData={productData}
+              activityData={activityData}
+              cart={cart}
+              stockNotificationList={stockNotificationList}
+              isInWishList={isInWishList}
+              showButton={showButton}
+            />
+          </div>
+          <div style={styles.block}>
+            <ProductCollection
+              galleries={productData.galleries}
+              align="original"
+              title={productData.title}
+            />
+          </div>
+        </div>
+      </StyleRoot>
     );
   }
 }

@@ -60,18 +60,26 @@ const ProductCard = ({
         />
       ) : (
         products.data.map(product => {
-          const image =
-            product.galleryInfo.mainId || product.galleryInfo.media[0];
-          const variantInfo = product.variants[0] || {};
+          const {
+            id,
+            title,
+            description,
+            galleries,
+            variants,
+            showUserPrice,
+          } = product;
+          const imageSrc =
+            galleries?.[0]?.mainImage?.src ||
+            ((galleries?.[0]?.images || []).find(image => image?.src) || {})
+              .src;
+          const variantInfo = variants[0] || {};
           const orderable =
-            product.variants.reduce(
-              (prev, variant) => prev + (variant.stock || 0),
-              0,
-            ) > 0;
+            variants.reduce((prev, variant) => prev + (variant.stock || 0), 0) >
+            0;
 
           return (
             <div
-              key={product.id}
+              key={id}
               style={[
                 {
                   width: productWidth,
@@ -82,32 +90,28 @@ const ProductCard = ({
             >
               <div style={styles.productImage}>
                 <Image
-                  image={image}
-                  href={`/product/${product.id}`}
+                  image={imageSrc}
+                  href={`/product/${id}`}
                   contentWidth={100}
                   alignment="center"
                   newWindow={false}
+                  ratio={1}
                 />
               </div>
 
               {showTitle && (
-                <div style={styles.productTitle}>
-                  {transformLocale(product.title)}
-                </div>
+                <div style={styles.productTitle}>{transformLocale(title)}</div>
               )}
 
-              {showDescription && transformLocale(product.description) && (
+              {showDescription && transformLocale(description) && (
                 <div style={styles.productDescription(colors)}>
-                  <DraftText
-                    value={transformLocale(product.description)}
-                    plainText
-                  />
+                  <DraftText value={transformLocale(description)} plainText />
                 </div>
               )}
               {showPrice && (
                 <div style={styles.productPrice}>
                   {variantInfo.listPrice &&
-                  (!memberSeePrice || product.showUserPrice?.showListPrice) ? (
+                  (!memberSeePrice || showUserPrice?.showListPrice) ? (
                     <div style={styles.otherPrice(colors)}>
                       <span>
                         {transformLocale(LOCALE.LIST_PRICE)}
@@ -118,8 +122,7 @@ const ProductCard = ({
                     </div>
                   ) : null}
                   {variantInfo.suggestedPrice &&
-                  (!memberSeePrice ||
-                    product.showUserPrice?.showSuggestedPrice) ? (
+                  (!memberSeePrice || showUserPrice?.showSuggestedPrice) ? (
                     <div style={styles.otherPrice(colors)}>
                       <span>
                         {transformLocale(LOCALE.SUGGESTED_PRICE)}
@@ -140,9 +143,9 @@ const ProductCard = ({
               )}
               {cartButton && !(memberSeePrice && isLogin !== ISUSER) && (
                 <button
-                  key={`${product.id}-button`}
+                  key={`${id}-button`}
                   type="button"
-                  data-id={product.id}
+                  data-id={id}
                   disabled={!orderable}
                   style={styles.productAddToCart(colors)}
                   onClick={handleModalOpen}

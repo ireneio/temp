@@ -75,8 +75,8 @@ export const arrow = {
   fontSize: '18px',
 };
 
-export const showcase = ({ url, mode, isClear }) => ({
-  backgroundImage: isClear ? `url(//${url}?w=400)` : `url(//${url}?w=60)`,
+export const showcase = ({ src, mode, isClear }) => ({
+  backgroundImage: isClear ? `url(${src}?w=400)` : `url(${src}?w=60)`,
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center center',
@@ -89,8 +89,8 @@ export const showcase = ({ url, mode, isClear }) => ({
   },
 });
 
-export const thumbnail = (file, mode) => ({
-  backgroundImage: `url(//${file}?w=100)`,
+export const thumbnail = (src, mode) => ({
+  backgroundImage: `url(${src}?w=100)`,
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center center',

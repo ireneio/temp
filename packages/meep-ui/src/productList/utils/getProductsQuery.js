@@ -142,19 +142,17 @@ export default ({
             pageId
             templateId
           }
-          contentGallery {
-            media
-          }
-          contentGalleryInfo {
-            media
-          }
-          gallery {
-            mainId
-            media
-          }
-          galleryInfo {
-            mainId
-            media
+          galleries {
+            mainImage {
+              fileId
+              isMain
+              src
+            }
+            images {
+              fileId
+              isMain
+              src
+            }
           }
           showUserPrice {
             showListPrice

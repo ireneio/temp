@@ -4,7 +4,7 @@ import radium, { Style, StyleRoot } from 'radium';
 import Slider from 'react-slick';
 import Lazy from 'image/Img/Lazy';
 
-import { URL_TYPE } from 'constants/propTypes';
+import { GALLERY_TYPE } from 'constants/propTypes';
 
 import ArrowIcon from './ArrowIcon';
 import * as styles from './styles';
@@ -12,10 +12,7 @@ import * as styles from './styles';
 @radium
 export default class ProductCarousel extends React.PureComponent {
   static propTypes = {
-    galleryInfo: PropTypes.shape({
-      mainId: URL_TYPE,
-      media: PropTypes.arrayOf(URL_TYPE).isRequired,
-    }).isRequired,
+    galleries: GALLERY_TYPE.isRequired,
     autoPlay: PropTypes.bool.isRequired,
     thumbsPosition: PropTypes.oneOf(['none', 'bottom']).isRequired,
     mode: PropTypes.oneOf(['list', 'detail']),
@@ -54,13 +51,15 @@ export default class ProductCarousel extends React.PureComponent {
   };
 
   setMainImage = () => {
-    const {
-      galleryInfo: { media, mainId },
-    } = this.props;
+    const { galleries } = this.props;
+    const main = galleries?.[0];
 
-    if (!mainId) return media.filter(url => url);
-
-    return [mainId, ...media.filter(url => url && url !== mainId)];
+    return [
+      ...(main?.mainImage?.src ? [main?.mainImage] : []),
+      ...(main?.images || []).filter(
+        image => image && image.src && !image.isMain,
+      ),
+    ];
   };
 
   render() {
@@ -90,18 +89,18 @@ export default class ProductCarousel extends React.PureComponent {
               nextArrow={<ArrowIcon type="right-circle" />}
               prevArrow={<ArrowIcon type="left-circle" />}
             >
-              {images.map((url, index) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <div key={url + index}>
+              {images.map(image => (
+                <div key={image.fileId}>
                   <Lazy>
                     {({ useLarge, isClear, onLoad }) => {
+                      const { src } = image;
                       if (useLarge) {
                         const img = new Image();
                         img.onload = onLoad;
-                        img.src = `//${url}?w=400`;
+                        img.src = `${src}?w=400`;
                       }
                       return (
-                        <div style={styles.showcase({ url, mode, isClear })} />
+                        <div style={styles.showcase({ src, mode, isClear })} />
                       );
                     }}
                   </Lazy>
@@ -120,13 +119,9 @@ export default class ProductCarousel extends React.PureComponent {
                 swipe={false}
                 focusOnSelect
               >
-                {images.map((url, index) => (
-                  <div
-                    key={
-                      url + index // eslint-disable-line react/no-array-index-key
-                    }
-                  >
-                    <div style={styles.thumbnail(url, mode)} />
+                {images.map(image => (
+                  <div key={image.fileId}>
+                    <div style={styles.thumbnail(image.src, mode)} />
                   </div>
                 ))}
               </Slider>
