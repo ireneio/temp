@@ -1,5 +1,4 @@
 import { Router } from 'server/routes';
-import checkRoutesIsValid from './checkRoutesIsValid';
 
 /**
  * @name goTo
@@ -19,8 +18,6 @@ export default ({ pathname, params = {}, back = false }) => {
       }
     } else {
       if (pathname == null) throw new Error('pathname is required in goTo');
-      /* Check pathname */
-      if (!checkRoutesIsValid(pathname)) window.location.href = pathname;
 
       let queryString = '';
       if (params) {

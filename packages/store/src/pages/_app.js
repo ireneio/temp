@@ -145,13 +145,6 @@ class MyApp extends App {
 
   componentDidMount() {
     if (!window.meepShopStore.goTo) window.meepShopStore.goTo = Utils.goTo;
-    Router.beforePopState(({ as }) => {
-      if (!Utils.checkRoutesIsValid(as)) {
-        window.location.href = as;
-        return false;
-      }
-      return true;
-    });
   }
 
   componentDidCatch(error, errorInfo) {
