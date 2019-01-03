@@ -2,7 +2,6 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 import * as Utils from 'utils';
 import modifyWidgetDataInClient from 'utils/modifyWidgetDataInClient';
 import * as Api from 'api';
-import { getPagesSuccess } from './pages';
 
 /* ********************************* 取得單筆商品資料 及 該商品對應的頁面資料 ********************************* */
 const GET_PRODUCT_REQUEST = 'GET_PRODUCT_REQUEST';
@@ -45,37 +44,29 @@ function* getProductFlow({ payload }) {
             computeOrderData?.data?.computeOrderList?.[0]?.categories?.[0]
               ?.products?.[0]?.activityInfo || [];
 
-          // FIXME: Join activities in corresponding product
-          yield put(getProductSuccess({ ...product, activities }));
+          const { page } = product;
+          const blocks = page.blocks
+            .filter(
+              ({ releaseDateTime }) =>
+                !releaseDateTime ||
+                parseInt(releaseDateTime, 10) * 1000 <= new Date().getTime(),
+            )
+            .map(({ width, componentWidth, widgets, ...block }) => ({
+              ...block,
+              width: [0, null].includes(width) ? 100 : width,
+              componentWidth: componentWidth === null ? 0 : componentWidth,
+              // 整理及過濾Client-side rendering時的module資料，未來有可能在api server就幫前端整理好
+              widgets: modifyWidgetDataInClient(widgets, query),
+            }));
 
-          const { templateId, pageId } = product?.design || {};
-          const pagesData =
-            !pageId && !templateId
-              ? yield call(Api.getPages, { pageType: 'template' })
-              : yield call(Api.getPages, { id: templateId || pageId });
-
-          if (pagesData.apiErr) {
-            yield put(getProductFailure(pagesData.apiErr));
-          } else {
-            // 整理data為了符合Layout Component結構，未來有可能在api server就幫前端整理好
-            const page = pagesData.data.getPageList.data[0];
-            const blocks = page.blocks
-              .filter(
-                ({ releaseDateTime }) =>
-                  !releaseDateTime ||
-                  parseInt(releaseDateTime, 10) * 1000 <= new Date().getTime(),
-              )
-              .map(({ width, componentWidth, widgets, ...block }) => ({
-                ...block,
-                width: [0, null].includes(width) ? 100 : width,
-                componentWidth: componentWidth === null ? 0 : componentWidth,
-                // 整理及過濾Client-side rendering時的module資料，未來有可能在api server就幫前端整理好
-                widgets: modifyWidgetDataInClient(widgets, query),
-              }));
-
-            const modifiedPage = { ...page, blocks };
-            yield put(getPagesSuccess(modifiedPage));
-          }
+          const modifiedPage = { ...page, blocks };
+          yield put(
+            getProductSuccess({
+              ...product,
+              activities,
+              page: modifiedPage,
+            }),
+          );
         }
       } else {
         yield put(getProductFailure({ status: 'ERROR_PRODUCT_NOT_FOUND' }));
@@ -94,7 +85,7 @@ export function* watchGetProductFlow() {
 
 /**
  * @name ProductsReducer
- * @description 商品資料，有訪問過商品頁之商品資料才會存放於此。
+ * @description 商品資料，有訪問過商品頁之商品資料才會存放於此。 (包括商品頁面資料)
  * !! Note:
  * 商品列表的資料不會存放與此，原因是因為不同的商品列表會有不同的排列，不同的組成，
  * 因此直接由ProductList Component call API，並join到該module欄位。

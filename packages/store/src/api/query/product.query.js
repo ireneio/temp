@@ -1,3 +1,5 @@
+import pageQuery from './page.query';
+
 const productQuery = `{
   id
   title{
@@ -91,9 +93,8 @@ const productQuery = `{
     showListPrice
     showSuggestedPrice
   }
-  design {
-    templateId
-    pageId
+  page {
+    ${pageQuery}
   }
 }`;
 

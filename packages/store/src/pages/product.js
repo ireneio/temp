@@ -19,23 +19,10 @@ class Product extends React.Component {
     if (isServer) {
       store.dispatch(Actions.serverProductInitial(context));
     } else {
-      const { pagesReducer, productsReducer } = store.getState();
+      const { productsReducer } = store.getState();
       const product = productsReducer.find(_product => _product?.id === pId);
       if (!product) {
         store.dispatch(Actions.getProduct({ id: pId, query }));
-      } else {
-        // 有商品資料
-        const id = product?.design?.templateId || product?.design?.pageId;
-        if (id && !pagesReducer.find(page => page?.id === id)) {
-          // 有版型頁面資料，但無存在store中，需取該id之版型
-          store.dispatch(Actions.getPages({ id, query }));
-        } else if (
-          !id &&
-          !pagesReducer.find(page => page?.pageType === 'template')
-        ) {
-          // 無版型頁面資料，且store中無任何版型，需取一版型
-          store.dispatch(Actions.getPages({ pageType: 'template', query }));
-        }
       }
     }
     return { pId, userAgent, XMeepshopDomain };

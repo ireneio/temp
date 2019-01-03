@@ -2,7 +2,6 @@ import * as R from 'ramda';
 import { createSelector } from 'reselect';
 import { getIn, getJoinedModule } from 'utils';
 import {
-  getPages,
   getMenus,
   getLogoUrl,
   getCart,
@@ -54,24 +53,14 @@ export const getProductDescription = createSelector(
   },
 );
 
-const getPageIdByProduct = createSelector(
+const getPageByProduct = createSelector(
   getProduct,
-  product =>
-    getIn(['design', 'templateId'])(product) ||
-    getIn(['design', 'pageId'])(product),
-);
-
-const getPageById = createSelector(
-  [getPageIdByProduct, getPages],
-  (id, pages) => {
-    if (!id) return R.find(R.propEq('pageType', 'template'))(pages);
-    return R.find(R.propEq('id', id))(pages);
-  },
+  product => product.page,
 );
 
 const getProductCombinedPage = createSelector(
   [
-    getPageById,
+    getPageByProduct,
     getQuery,
     getMenus,
     getLocaleItemsTemplate,

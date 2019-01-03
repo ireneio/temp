@@ -131,33 +131,21 @@ function* serverProductInitialFlow({ payload }) {
               ?.products?.[0]?.activityInfo || [];
 
           /* Join activities in corresponding product */
-          yield put(getProductSuccess({ ...product, activities }));
-          let pagesData;
-          const { templateId, pageId } = product?.design || {};
-          if (!pageId && !templateId) {
-            pagesData = yield call(Api.getPages, {
-              ...payload,
-              pageType: 'template',
-            });
+          const { page } = product;
+          if (page) {
+            const modifiedPage = yield Utils.getPageWithModifyWidget(
+              page,
+              payload,
+            );
+            yield put(
+              getProductSuccess({
+                ...product,
+                activities,
+                page: modifiedPage,
+              }),
+            );
           } else {
-            pagesData = yield call(Api.getPages, {
-              ...payload,
-              id: templateId || pageId,
-            });
-          }
-          if (pagesData.apiErr) {
-            yield put(getStoreFailure(pagesData.apiErr));
-          } else {
-            const page = pagesData?.data?.getPageList?.data?.[0];
-            if (page) {
-              const modifiedPage = yield Utils.getPageWithModifyWidget(
-                page,
-                payload,
-              );
-              yield put(getPagesSuccess(modifiedPage));
-            } else {
-              yield put(getStoreFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
-            }
+            yield put(getStoreFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
           }
         }
       } else {
