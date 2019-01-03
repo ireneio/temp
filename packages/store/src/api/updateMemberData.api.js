@@ -1,8 +1,7 @@
 import postGraphql from 'utils/postGraphql';
 import {
+  viewer,
   cartQuery,
-  userQuery,
-  wishListQuery,
   orderQuery,
   pointsQuery,
   orderApplyQuery,
@@ -13,14 +12,9 @@ export default async function(args = {}) {
   const { isServer, XMeepshopDomain, cookie } = args;
   const variables = {
     keys:
-      '$userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!',
+      '$cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!',
     type: 'query updateMemberData',
     values: {
-      userSearch: {
-        filter: {
-          and: [],
-        },
-      },
       cartSearch: {
         showDetail: true,
       },
@@ -59,23 +53,12 @@ export default async function(args = {}) {
   };
 
   const query = `
-    isLogin {
-      isLogin
-      expireTime
-    }
-    getUserList(search: $userSearch) {
-      data {
-        ${userQuery}
-      }
-    }
+    ${viewer}
     getCartList(search: $cartSearch) {
       data {
         ${cartQuery}
       }
     }
-
-    ${wishListQuery}
-
     getStockNotificationList(search: $notificationSearch) {
       data {
         ${stockNotificationQuery}

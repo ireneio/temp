@@ -830,7 +830,7 @@ export const addRecipient = payload => ({
 const getUser = _user => {
   const id = _user?.id || '';
   const name = _user?.name || '';
-  const gender = _user.gender || null;
+  const gender = _user?.gender || null;
   const email = _user?.email || '';
   const groupId = _user?.groupId || null;
   const startDate = _user?.group?.[_user.group.length - 1]?.startDate || null;
@@ -884,21 +884,19 @@ const getUser = _user => {
 const getMemberData = payload => {
   const { data } = payload;
 
-  const dataUser = data?.getUserList?.data?.[0];
-  let user = null;
-  let isLogin = NOTLOGIN;
-  if (dataUser) {
-    user = getUser(dataUser);
-    isLogin = data?.isLogin?.isLogin ? ISUSER : NOTLOGIN;
-  }
+  // 已改用新API: Viewer
+  const viewer = data?.viewer;
+  const user = viewer ? getUser(viewer) : null;
+  const isLogin = viewer?.role === 'SHOPPER' ? ISUSER : NOTLOGIN;
+  const wishList = viewer?.wishlist || [];
 
+  // TODO: 未改為Viewer
   const cartData = data?.getCartList?.data?.[0] || null;
   const cart = cartData
     ? { ...cartData, categories: cartData?.categories?.[0] }
     : null;
 
   const stockNotificationList = data?.getStockNotificationList?.data || [];
-  const wishList = data?.viewer?.wishlist || [];
   const orderApply = data?.getOrderApplyList?.data || [];
   const orders = data?.getOrderList?.data || [];
   const userPoints = data?.getValidUserPointList?.data || [];

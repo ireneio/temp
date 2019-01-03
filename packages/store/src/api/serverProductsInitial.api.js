@@ -1,5 +1,6 @@
 import postGraphql from 'utils/postGraphql';
 import {
+  viewer,
   pageQuery,
   storeAppQuery,
   menuQuery,
@@ -7,8 +8,6 @@ import {
   colorQuery,
   activityQuery,
   cartQuery,
-  userQuery,
-  wishListQuery,
   orderQuery,
   pointsQuery,
   orderApplyQuery,
@@ -19,7 +18,7 @@ import {
 export default async function(context) {
   const variables = {
     keys:
-      '$pageSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$pageSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverProductsInitial',
     values: {
       pageSearch: {
@@ -139,11 +138,6 @@ export default async function(context) {
       exchangeRate: {
         search: 'USD',
       },
-      userSearch: {
-        filter: {
-          and: [],
-        },
-      },
       cartSearch: {
         showDetail: true,
       },
@@ -198,6 +192,7 @@ export default async function(context) {
   };
 
   const query = `
+    ${viewer}
     getPageList(
       search: $pageSearch
     ) {
@@ -272,23 +267,11 @@ export default async function(context) {
         _error
       }
     }
-    isLogin {
-      isLogin
-      expireTime
-    }
-    getUserList(search: $userSearch) {
-      data {
-        ${userQuery}
-      }
-    }
     getCartList(search: $cartSearch) {
       data {
         ${cartQuery}
       }
     }
-
-    ${wishListQuery}
-
     getStockNotificationList(search: $notificationSearch) {
       data {
         ${stockNotificationQuery}

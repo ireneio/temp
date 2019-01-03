@@ -1,13 +1,12 @@
 import postGraphql from 'utils/postGraphql';
 import {
+  viewer,
   storeAppQuery,
   menuQuery,
   storeSettingQuery,
   colorQuery,
   activityQuery,
   cartQuery,
-  userQuery,
-  wishListQuery,
   orderQuery,
   pointsQuery,
   orderApplyQuery,
@@ -18,7 +17,7 @@ import {
 export default async function(context) {
   const variables = {
     keys:
-      '$menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverOthersInitial',
     values: {
       menuSearch: {
@@ -119,11 +118,6 @@ export default async function(context) {
       exchangeRate: {
         search: 'USD',
       },
-      userSearch: {
-        filter: {
-          and: [],
-        },
-      },
       cartSearch: {
         showDetail: true,
       },
@@ -178,6 +172,7 @@ export default async function(context) {
   };
 
   const query = `
+    ${viewer}
     getMenuList(search: $menuSearch) {
       data {
         ${menuQuery}
@@ -248,19 +243,11 @@ export default async function(context) {
       isLogin
       expireTime
     }
-    getUserList(search: $userSearch) {
-      data {
-        ${userQuery}
-      }
-    }
     getCartList(search: $cartSearch) {
       data {
         ${cartQuery}
       }
     }
-
-    ${wishListQuery}
-
     getStockNotificationList(search: $notificationSearch) {
       data {
         ${stockNotificationQuery}

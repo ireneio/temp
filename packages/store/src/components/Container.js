@@ -204,16 +204,14 @@ class Container extends React.Component {
                     Utils.execTrackingCode('CompleteRegistration', {
                       pageAdTrackIDs,
                     });
-                    setTimeout(() => {
-                      getAuth();
-                      if (from === 'cart') {
-                        Utils.goTo({ pathname: 'checkout' });
-                      } else if (window.storePreviousPageUrl) {
-                        Utils.goTo({ pathname: window.storePreviousPageUrl });
-                      } else {
-                        Utils.goTo({ pathname: '/' });
-                      }
-                    }, 2000);
+                    getAuth();
+                    if (from === 'cart') {
+                      Utils.goTo({ pathname: 'checkout' });
+                    } else if (window.storePreviousPageUrl) {
+                      Utils.goTo({ pathname: window.storePreviousPageUrl });
+                    } else {
+                      Utils.goTo({ pathname: '/' });
+                    }
                     break;
                   }
                   case 2010: {

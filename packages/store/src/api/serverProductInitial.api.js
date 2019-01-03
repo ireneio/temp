@@ -1,5 +1,6 @@
 import postGraphql from 'utils/postGraphql';
 import {
+  viewer,
   productQuery,
   storeAppQuery,
   menuQuery,
@@ -7,8 +8,6 @@ import {
   colorQuery,
   activityQuery,
   cartQuery,
-  userQuery,
-  wishListQuery,
   orderQuery,
   pointsQuery,
   orderApplyQuery,
@@ -23,7 +22,7 @@ export default async function(context) {
   if (!pId) throw new Error('Product id is not defined.');
   const variables = {
     keys:
-      '$productSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $userSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$productSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverProductInitial',
     values: {
       productSearch: {
@@ -145,11 +144,6 @@ export default async function(context) {
       exchangeRate: {
         search: 'USD',
       },
-      userSearch: {
-        filter: {
-          and: [],
-        },
-      },
       cartSearch: {
         showDetail: true,
       },
@@ -204,6 +198,7 @@ export default async function(context) {
   };
 
   const query = `
+    ${viewer}
     computeProductList(
       search: $productSearch
     ) {
@@ -276,23 +271,11 @@ export default async function(context) {
         _error
       }
     }
-    isLogin {
-      isLogin
-      expireTime
-    }
-    getUserList(search: $userSearch) {
-      data {
-        ${userQuery}
-      }
-    }
     getCartList(search: $cartSearch) {
       data {
         ${cartQuery}
       }
     }
-
-    ${wishListQuery}
-
     getStockNotificationList(search: $notificationSearch) {
       data {
         ${stockNotificationQuery}

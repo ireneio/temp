@@ -16,6 +16,7 @@ import orderApplyQuery from './orderApply.query';
 import orderMessageQuery from './orderMessage.query';
 import webTrackQuery from './webTrack.query';
 import stockNotificationQuery from './stockNotification.query';
+import viewer from './viewer.query';
 
 export {
   localeQuery,
@@ -36,4 +37,5 @@ export {
   orderMessageQuery,
   webTrackQuery,
   stockNotificationQuery,
+  viewer,
 };
