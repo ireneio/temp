@@ -120,6 +120,10 @@ module.exports = {
               /** context location props */
               'location',
 
+              /** context locale props */
+              'locale',
+              'transformLocale',
+
               /** context func props */
               'goTo',
 

@@ -105,11 +105,10 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
             return {
               id: uuid(),
               module: widget.module,
-              contentWidth: widget.contentWidth,
               align: widget.align || 'original',
               title: widget.title,
               files: [],
-              width: widget.width,
+              contentWidth: widget.width || 70,
             };
           }
           /* 產品語法嵌入 */

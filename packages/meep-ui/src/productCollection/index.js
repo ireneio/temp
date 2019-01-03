@@ -1,70 +1,63 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import radium, { StyleRoot } from 'radium';
 
-import { enhancer } from 'layout/DecoratorsRoot';
+import { contextProvider } from 'context';
 import Image from 'image';
-import { GALLERY_TYPE, LOCALE_TYPE } from 'constants/propTypes';
-import { PHONE_MEDIA } from 'constants/media';
+import {
+  GALLERY_TYPE,
+  LOCALE_TYPE,
+  CONTENT_WIDTH_TYPE,
+} from 'constants/propTypes';
 
-import * as styles from './styles';
+import styles from './styles/index.less';
+
+const { enhancer } = contextProvider('locale');
 
 @enhancer
-@radium
 export default class ProductCollection extends React.PureComponent {
   static propTypes = {
-    transformLocale: PropTypes.func.isRequired,
+    /** props */
     galleries: GALLERY_TYPE.isRequired,
     align: PropTypes.oneOf(['original', 'side']).isRequired,
     title: LOCALE_TYPE.isRequired,
-    width: PropTypes.number,
-  };
-
-  static defaultProps = {
-    width: 70,
-  };
-
-  componentDidMount() {
-    this.resize();
-    window.addEventListener('resize', this.resize);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resize);
-  }
-
-  resize = () => {
-    this.setState({
-      isMobile: window.matchMedia(PHONE_MEDIA.substring(7)).matches,
-    });
+    contentWidth: CONTENT_WIDTH_TYPE.isRequired,
   };
 
   render() {
-    const { transformLocale, galleries, align, title, width } = this.props;
-    const { isMobile } = this.state;
+    const {
+      /** context */
+      transformLocale,
+
+      /** props */
+      galleries,
+      align,
+      title,
+      contentWidth,
+    } = this.props;
     const images = galleries?.[1]?.images;
-    const productName = transformLocale(title);
 
     if (!images) return null;
 
     return (
-      <StyleRoot style={styles.root(align)}>
+      <div className={`${styles.root} ${styles[align]}`}>
         {images
-          .filter(image => image && image.src)
-          .map(image => (
-            <div key={image.fileId} style={styles.imgWrapper(align)}>
-              <div style={styles.img}>
-                <Image
-                  image={image.src}
-                  contentWidth={isMobile ? 100 : width || 70}
-                  alignment="center"
-                  newWindow={false}
-                  alt={productName}
-                />
-              </div>
+          .filter(image => image?.src)
+          .map(({ fileId, src }) => (
+            <div
+              key={fileId}
+              className={`${styles.imgWrapper} ${styles[align]}`}
+            >
+              <Image
+                className={styles.img}
+                image={src}
+                contentWidth={contentWidth}
+                alt={transformLocale(title)}
+                alignment="center"
+                newWindow={false}
+              />
             </div>
           ))}
-      </StyleRoot>
+      </div>
     );
   }
 }

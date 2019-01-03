@@ -10,7 +10,7 @@ import {
 } from 'constants/propTypes';
 
 import Placeholder from './Placeholder';
-import Img from './Img';
+import Img from './img';
 import styles from './styles/index.less';
 
 export default class Image extends React.PureComponent {

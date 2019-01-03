@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { Style, StyleRoot } from 'radium';
 import Slider from 'react-slick';
-import Lazy from 'image/Img/Lazy';
+import Lazy from 'image/img/Lazy';
 
 import { GALLERY_TYPE } from 'constants/propTypes';
 

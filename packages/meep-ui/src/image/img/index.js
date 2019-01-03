@@ -28,6 +28,7 @@ class Img extends React.PureComponent {
     /** props */
     alt: PropTypes.string,
     customTracking: CUSTOM_TRACKING_TYPE,
+    className: PropTypes.string,
     image: IMAGE_TYPE.isRequired,
     alignment: ALIGNMENT_TYPE.isRequired,
     contentWidth: CONTENT_WIDTH_TYPE.isRequired,
@@ -42,6 +43,7 @@ class Img extends React.PureComponent {
     /** props */
     alt: 'meepshop',
     customTracking: null,
+    className: '',
   };
 
   /** 當useLarge為true時，表示已觸發sensor，此時生命週期已完成did mount，
@@ -62,9 +64,10 @@ class Img extends React.PureComponent {
     const {
       /** props */
       alt,
+      customTracking, // 廣告分析用
+      className,
       alignment,
       contentWidth,
-      customTracking, // 廣告分析用
 
       /** ignore */
       forwardedRef,
@@ -72,7 +75,7 @@ class Img extends React.PureComponent {
     } = this.props;
 
     return (
-      <div className={`${styles.root} ${styles[alignment]}`}>
+      <div className={`${styles.root} ${styles[alignment]} ${className}`}>
         <div ref={forwardedRef} style={{ width: `${contentWidth}%` }}>
           <Link {...linkProps}>
             <Lazy>
