@@ -17,6 +17,7 @@ export const SPECIAL_HIDE_FOOTER = [
   'doctorabiotech',
   'ecomo',
   'animen',
+  'flymi',
 ];
 
 export const STORE_APP_PLUGINS = [
