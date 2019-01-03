@@ -1,3 +1,24 @@
+## 0.15.0 (2019-01-03)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#343](https://github.com/meepshop/meep-lerna/pull/343) 前端 - page 改用新欄位 ([@barrypeng6](https://github.com/barrypeng6))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#363](https://github.com/meepshop/meep-lerna/pull/363) FB 登入，出現 Something went wrong. (N141) ([@barrypeng6](https://github.com/barrypeng6))
+- `meep-ui`
+  - [#367](https://github.com/meepshop/meep-lerna/pull/367) 無法新增、編輯＆刪除收件人範本 (N302) ([@barrypeng6](https://github.com/barrypeng6))
+- `meep-ui`, `store`
+  - [#368](https://github.com/meepshop/meep-lerna/pull/368) 手機版 - 若「電腦版寬度設定」設定在 50％ 以下，影像 2 圖片呈現模糊 (N311) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.14.0 (2018-12-26)
 
 #### :boom: Breaking Change
