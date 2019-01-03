@@ -102,7 +102,11 @@ export default class MemberRecipients extends React.PureComponent {
   deleteRecipient = index => {
     const { member, dispatchAction } = this.props;
 
-    const user = { ...member };
+    const user = {
+      id: member.id,
+      recipientData: member.recipientData,
+    };
+
     user.recipientData = {
       replaceData: [
         ...user.recipientData.slice(0, index),
@@ -148,7 +152,11 @@ export default class MemberRecipients extends React.PureComponent {
             },
           };
 
-          const user = { ...member };
+          const user = {
+            id: member.id,
+            recipientData: member.recipientData,
+          };
+
           if (selectedIndex !== null) {
             user.recipientData[selectedIndex] = recipient;
           } else {
