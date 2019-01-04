@@ -1,3 +1,14 @@
+## 0.15.1 (2019-01-04)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#372](https://github.com/meepshop/meep-lerna/pull/372) 點選『產品 tag 搜尋』的選單分頁後，再點選 /products，產品列表顯示有誤 (N317) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 1
+
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.15.0 (2019-01-03)
 
 #### :rocket: New Feature
