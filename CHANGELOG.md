@@ -1,3 +1,13 @@
+## 0.16.1 (2019-01-07)
+
+#### :bug: Bug Fix
+
+- [#377](https://github.com/meepshop/meep-lerna/pull/377) Fix circleci ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.16.0 (2019-01-07)
 
 #### :rocket: New Feature
