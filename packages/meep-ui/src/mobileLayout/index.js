@@ -9,7 +9,12 @@ import { bars as BarsIcon } from 'react-icons/fa';
 import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
 import Menu from 'menu';
-import { ID_TYPE, COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
+import {
+  ID_TYPE,
+  COLOR_TYPE,
+  STORE_SETTING_TYPE,
+  LOCATION_TYPE,
+} from 'constants/propTypes';
 
 import styles from './styles/index.less';
 import notMemoizedGetPages from './utils/getPages';
@@ -19,6 +24,7 @@ export default class MobileLayout extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
+    location: LOCATION_TYPE.isRequired,
     storeSetting: STORE_SETTING_TYPE.isRequired,
 
     /** props */
@@ -42,6 +48,21 @@ export default class MobileLayout extends React.PureComponent {
   };
 
   getPages = memoizeOne(notMemoizedGetPages, areEqual);
+
+  componentDidUpdate(prevProps) {
+    const {
+      location: { href },
+    } = this.props;
+
+    if (href !== prevProps.location.href)
+      setTimeout(() => {
+        if (!this.isUnmounted) this.setState({ visible: false });
+      }, 0);
+  }
+
+  componentWillUnmount() {
+    this.isUnmounted = true;
+  }
 
   render() {
     const {
