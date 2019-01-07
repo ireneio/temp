@@ -94,6 +94,7 @@ jobs:
       - checkout
       - run: *check-patches
       - restore_cache: *restore-cache
+      - run: yarn lerna bootstrap
 
       - run:
           name: Check code style
@@ -113,6 +114,7 @@ jobs:
       - checkout
       - run: *check-patches
       - restore_cache: *restore-cache
+      - run: yarn lerna bootstrap
 
       - run: ./.circleci/bin/installPuppeteerPkg.sh
       - run:
@@ -154,6 +156,7 @@ jobs:
       - checkout
       - run: *check-patches
       - restore_cache: *restore-cache
+      - run: yarn lerna bootstrap
       - restore_cache: *restore-prod-cache
       - setup_remote_docker
       - run: *deploy-docker
@@ -164,6 +167,7 @@ jobs:
       - checkout
       - run: *check-patches
       - restore_cache: *restore-cache
+      - run: yarn lerna bootstrap
       - restore_cache: *restore-prod-cache
       - setup_remote_docker
       - run: *deploy-docker
