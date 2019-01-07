@@ -8,7 +8,7 @@ import * as Selectors from 'selectors';
 import * as Template from 'template';
 import { Container, TrackingCodeHead, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
-import MemberOrderApplyList from '@meepshop/meep-ui/lib/memberOrderApplyList'; // eslint-disable-line import/no-unresolved
+import MemberOrderApplyList from '@meepshop/meep-ui/lib/memberOrderApplyList';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
 import * as TITLE from 'locales';

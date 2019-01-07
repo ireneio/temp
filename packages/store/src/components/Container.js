@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { UserAgent } from 'fbjs';
 import { notification } from 'antd';
-import Layout from '@meepshop/meep-ui/lib/layout'; // eslint-disable-line import/no-unresolved
+import Layout from '@meepshop/meep-ui/lib/layout';
 import { getJoinedUser, getStoreAppList } from 'selectors';
 import * as Actions from 'ducks/actions';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { enhancer } from '@meepshop/meep-ui/lib/layout/DecoratorsRoot'; // eslint-disable-line import/no-unresolved
+import { enhancer } from '@meepshop/meep-ui/lib/layout/DecoratorsRoot';
 
 @enhancer
 export default class extends React.Component {
