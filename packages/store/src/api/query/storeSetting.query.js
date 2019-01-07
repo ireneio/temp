@@ -6,7 +6,6 @@ description {
   name
   introduction
 }
-storeStatus
 timezone
 currency
 contact {

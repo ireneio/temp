@@ -62,16 +62,23 @@ class MyApp extends App {
           : { 'content-type': 'application/json' },
         credentials: isServer ? 'include' : 'same-origin',
         body: JSON.stringify({
-          query: `query checkStore {
-        getStoreList {
-          data {
-            storeStatus
-            setting {
-              locale
+          query: `
+            query checkStore {
+              getStoreList {
+                data {
+                  setting {
+                    locale
+                  }
+                }
+              }
+
+              viewer {
+                store {
+                  storeStatus
+                }
+              }
             }
-          }
-        }
-      }`,
+          `,
         }),
       });
 
@@ -85,7 +92,7 @@ class MyApp extends App {
 
       if (response.status < 400) {
         const data = await response.json();
-        const storeStatus = data?.data?.getStoreList?.data?.[0]?.storeStatus;
+        const storeStatus = data?.data?.viewer.store.storeStatus;
         const locale =
           Utils.getCookie('locale', cookie) ||
           data?.data?.getStoreList?.data?.[0]?.setting?.locale?.[0] ||
