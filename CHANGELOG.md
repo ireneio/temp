@@ -1,3 +1,21 @@
+## 0.16.0 (2019-01-07)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#373](https://github.com/meepshop/meep-lerna/pull/373) 從 viewer 拿取 store.storeStatus 跟 store.adminStatus ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#375](https://github.com/meepshop/meep-lerna/pull/375) 手機版 - menu 點選任一頁面，panel 都應自動收合 (N319) ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#370](https://github.com/meepshop/meep-lerna/pull/370) 部分獨立編輯商品頁跑版：「產品細節」跑至「產品主圖」下方 (N307) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.15.1 (2019-01-04)
 
 #### :bug: Bug Fix
