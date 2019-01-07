@@ -41,7 +41,7 @@ export default (types, useRef) => Component => {
 
       return enhancedComponent;
     },
-    useRef
+    useRef /* eslint-disable-next-line react/prop-types */
       ? ({ forwardedRef, ...props }) => (
           <Component {...props} ref={forwardedRef} />
         )

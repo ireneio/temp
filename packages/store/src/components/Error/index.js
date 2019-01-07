@@ -5,6 +5,7 @@ import ApiError from './ApiError';
 import ServerError from './ServerError';
 import oopsImg from './images/oops.png';
 
+// eslint-disable-next-line react/prop-types
 export default ({ error }) => {
   const { status } = error;
   if (status === 'ERROR_PAGE_NOT_FOUND') return <ErrorPageNotFound />;

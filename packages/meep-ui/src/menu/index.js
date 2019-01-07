@@ -88,6 +88,7 @@ export default class Menu extends React.PureComponent {
       width: POSITIVE_NUMBER_TYPE.isRequired,
       height: POSITIVE_NUMBER_TYPE.isRequired,
     }).isRequired,
+    colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
 
     /** ignore */
     openKeys: PropTypes.arrayOf(ID_TYPE.isRequired),

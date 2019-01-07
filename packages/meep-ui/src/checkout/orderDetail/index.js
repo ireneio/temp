@@ -66,6 +66,7 @@ export default class OrderDetail extends React.PureComponent {
     transformCurrency: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
+    getData: PropTypes.func.isRequired,
 
     /** props */
     countries: PropTypes.arrayOf(COUNTRY_TYPE.isRequired),

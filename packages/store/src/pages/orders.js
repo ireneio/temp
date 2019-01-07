@@ -9,7 +9,7 @@ import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
 import * as Selectors from 'selectors';
 import * as Template from 'template';
-import MemberOrdersView from '@meepshop/meep-ui/lib/memberOrderList';
+import MemberOrdersView from '@meepshop/meep-ui/lib/memberOrderList'; // eslint-disable-line import/no-unresolved
 import MemberHeader from 'components/MemberHeader';
 import * as TITLE from 'locales';
 

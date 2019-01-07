@@ -381,6 +381,7 @@ class PayemntInfo extends React.PureComponent {
   }
 }
 
+// eslint-disable-next-line react/no-multi-comp
 export default React.forwardRef((props, ref) => (
   <PayemntInfo {...props} paymentInfoRef={ref} />
 ));

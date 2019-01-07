@@ -102,6 +102,7 @@ class Img extends React.PureComponent {
   }
 }
 
+// eslint-disable-next-line react/no-multi-comp
 export default React.forwardRef((props, ref) => (
   <Img {...props} forwardedRef={ref} />
 ));
