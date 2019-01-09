@@ -1,0 +1,118 @@
+@import '../../constants/styles.less';
+
+.root {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  width: 100vw;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  @media @PHONE_MEDIA {
+    :global(.ant-progress:not(.ant-progress-status-normal)
+        .ant-progress-inner) {
+      width: 32px !important;
+      height: 32px !important;
+      font-size: 16px;
+    }
+  }
+
+  :global(.ant-progress-circle .ant-progress-text .anticon),
+  :global(.ant-progress-circle.ant-progress-status-exception
+      .ant-progress-text) {
+    font-size: 50px;
+
+    @media @PHONE_MEDIA {
+      font-size: 16px;
+    }
+  }
+
+  .header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 50px;
+    background: #707f92;
+  }
+
+  h1 {
+    display: inline-block;
+    margin: 0px 0px 0px 20px;
+    color: #666666;
+    font-size: 40px;
+    letter-spacing: 0.03px;
+    vertical-align: middle;
+
+    @media @PHONE_MEDIA {
+      font-size: 30px;
+    }
+  }
+
+  p {
+    margin: 60px 25px 0px;
+    color: #666666;
+    font-size: 22px;
+    letter-spacing: 2.25px;
+    line-height: 30px;
+
+    @media @PHONE_MEDIA {
+      margin: 35px 25px 0px;
+      font-size: 18px;
+    }
+  }
+
+  .buttonRoot {
+    margin: 100px 0px 0px;
+
+    @media @PHONE_MEDIA {
+      position: fixed;
+      left: 0px;
+      bottom: 0px;
+      margin: 0px;
+    }
+
+    :global(.ant-btn) {
+      width: 220px;
+      height: 60px;
+      border-radius: 0px;
+
+      @media @PHONE_MEDIA {
+        width: 50vw;
+      }
+
+      &:first-child {
+        margin: 0px 35px 0px 0px;
+        color: white;
+        background: #707f92;
+        border: 0px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+        font-size: 18px;
+
+        @media @PHONE_MEDIA {
+          margin: 0px;
+        }
+      }
+
+      &:last-child {
+        color: #979797;
+        border: 1px solid #979797;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+        font-size: 18px;
+
+        @media @PHONE_MEDIA {
+          color: white;
+          background: #707f92 !important;
+        }
+
+        &:hover {
+          color: white;
+          background: #666666;
+        }
+      }
+    }
+  }
+}

@@ -112,6 +112,12 @@ module.exports = {
     {
       files: ['packages/meep-ui/**'],
       rules: {
+        'no-underscore-dangle': [
+          'error',
+          {
+            allow: ['__typename'],
+          },
+        ],
         'react/prop-types': [
           'error',
           {
@@ -124,11 +130,19 @@ module.exports = {
               'locale',
               'transformLocale',
 
+              /** context currency props */
+              'customerCurrency',
+              'transformCurrency',
+
               /** context func props */
               'goTo',
+              'hasStoreAppPlugin',
 
               /** context storeSetting props */
               'storeSetting',
+
+              /** context props */
+              'user',
 
               /** lib props */
               'form',

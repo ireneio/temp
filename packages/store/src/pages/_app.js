@@ -1,16 +1,20 @@
 import React from 'react';
 import App, { Container } from 'next/app';
-import * as Utils from 'utils';
-import * as Actions from 'ducks/actions';
+import getConfig from 'next/config';
 import { Provider } from 'react-redux';
-import NProgress from 'nprogress';
-import { Router } from 'server/routes';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
+import { ApolloProvider } from 'react-apollo';
+import NProgress from 'nprogress';
 import { notification } from 'antd';
+
 import { Error, CloseView, StoreNotExistsView } from 'components';
+import { Router } from 'server/routes';
+import * as Utils from 'utils';
 import configureStore from 'ducks/store';
-import getConfig from 'next/config';
+import * as Actions from 'ducks/actions';
+import withApollo from 'utils/withApollo';
+
 import '../static/global.less';
 import '../static/nprogress.less';
 
@@ -164,23 +168,41 @@ class MyApp extends App {
   }
 
   render() {
-    /* Hnadle error */
-    if (this.props.error) return <Error error={this.props.error} />;
-    /* Store is closed */
-    if (this.props.closed) return <CloseView locale={this.props.locale} />;
-    /* Store not found */
-    if (this.props.storeNotFound) return <StoreNotExistsView />;
+    const {
+      error,
+      closed,
+      locale,
+      storeNotFound,
+      Component,
+      pageProps,
+      router,
+      apolloClient,
+      store,
+    } = this.props;
 
-    const { Component, pageProps, router, store } = this.props;
-    const url = { asPath: router.asPath, query: router.query };
+    /* Hnadle error */
+    if (error) return <Error error={error} />;
+    /* Store is closed */
+    if (closed) return <CloseView locale={locale} />;
+    /* Store not found */
+    if (storeNotFound) return <StoreNotExistsView />;
+
     return (
       <Container>
-        <Provider store={store}>
-          <Component {...pageProps} url={url} />
-        </Provider>
+        <ApolloProvider client={apolloClient}>
+          <Provider store={store}>
+            <Component
+              {...pageProps}
+              url={{
+                asPath: router.asPath,
+                query: router.query,
+              }}
+            />
+          </Provider>
+        </ApolloProvider>
       </Container>
     );
   }
 }
 
-export default withRedux(configureStore)(withReduxSaga(MyApp));
+export default withApollo(withRedux(configureStore)(withReduxSaga(MyApp)));

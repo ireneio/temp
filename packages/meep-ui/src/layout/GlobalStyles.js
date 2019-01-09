@@ -41,8 +41,9 @@ export default class GlobalStyles extends React.PureComponent {
               background: ${transformColor(colors[1]).darken(0.05)};
             }
 
-            ${colors.map(
-              (color, index) => `
+            ${colors
+              .map(
+                (color, index) => `
               .color-${index},
               .color-${index}-hover:hover {
                 color: ${color};
@@ -53,7 +54,8 @@ export default class GlobalStyles extends React.PureComponent {
                 background: ${color};
               }
             `,
-            )}
+              )
+              .join('\n')}
           `,
         }}
       />

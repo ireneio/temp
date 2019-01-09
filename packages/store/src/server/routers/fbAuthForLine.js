@@ -1,46 +1,41 @@
 const fetch = require('isomorphic-unfetch');
 const { publicRuntimeConfig } = require('../../../next.config');
 
-const { PRODUCTION, API_HOST, DOMAIN } = publicRuntimeConfig;
+const { API_HOST } = publicRuntimeConfig;
 
 module.exports = async ctx => {
   try {
     /* Get FB app secret */
-    const XMeepshopDomain = PRODUCTION ? ctx.host : DOMAIN;
-    const XMeepshopDomainToken = ctx.cookies.get(
-      'x-meepshop-authorization-token',
-    );
-    const query = `
-    query getAppLogin {
-      getAppLoginList {
-        data {
-          appId
-          appSecret
-        }
-      }
-    }
-  `;
     const appIdResponse = await fetch(`${API_HOST}/graphql`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
-        'x-meepshop-domain': XMeepshopDomain,
+        'x-meepshop-domain': ctx.XMeepshopDomain,
       },
       credentials: 'include',
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({
+        query: `
+          query getAppLogin {
+            getAppLoginList {
+              data {
+                appId
+                appSecret
+              }
+            }
+          }
+        `,
+      }),
     });
-    let data;
-    if (appIdResponse.status < 400) {
-      data = await appIdResponse.json();
-    } else {
+
+    if (appIdResponse.status >= 400)
       throw new Error(
-        `${appIdResponse.status}: ${appIdResponse.statusText}(appIdResponse) ${
-          data.errors[0].message
-        }`,
+        `${appIdResponse.status}: ${
+          appIdResponse.statusText
+        }(${appIdResponse})`,
       );
-    }
 
     /* Get FB app secret - End */
+    const data = await appIdResponse.json();
     const appId =
       data &&
       data.data.getAppLoginList &&
@@ -72,38 +67,35 @@ module.exports = async ctx => {
     if (!state.match(/meepShopNextStore/gm))
       throw new Error('State is not matched!');
 
-    const fbApi = `https://graph.facebook.com/v3.0/oauth/access_token?client_id=${appId}&redirect_uri=https://${XMeepshopDomain}/fbAuthForLine&client_secret=${appSecret}&code=${code}`;
+    const fbApi = `https://graph.facebook.com/v3.0/oauth/access_token?client_id=${appId}&redirect_uri=https://${
+      ctx.XMeepshopDomain
+    }/fbAuthForLine&client_secret=${appSecret}&code=${code}`;
     const responseFromFB = await fetch(fbApi, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' },
     });
-    let dataFromFB;
-    if (responseFromFB.status === 200) {
-      dataFromFB = await responseFromFB.json();
-    } else {
-      dataFromFB = await responseFromFB.json();
+    const dataFromFB = await responseFromFB.json();
+
+    if (responseFromFB.status !== 200)
       throw new Error(`${responseFromFB.status}: ${responseFromFB.statusText}`);
-    }
 
     const responseApi = await fetch(`${API_HOST}/facebook/fbLogin`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
-        'x-meepshop-domain': XMeepshopDomain,
-        'x-meepshop-authorization-token': XMeepshopDomainToken,
+        'x-meepshop-domain': ctx.XMeepshopDomain,
+        'x-meepshop-authorization-token': ctx.XMeepshopDomainToken,
       },
       credentials: 'include',
       body: JSON.stringify({ accessToken: dataFromFB.access_token }),
     });
 
-    let dataApi;
-    if (responseApi.status === 200) {
-      dataApi = await responseApi.json();
-    } else {
+    if (responseApi.status !== 200)
       throw new Error(`${responseApi.status}: ${responseApi.statusText}`);
-    }
 
-    if (dataApi.code === 200 || dataApi.code === 201) {
+    const dataApi = await responseApi.json();
+
+    if (dataApi.code === 200 || dataApi.code === 201)
       ctx.cookies.set(
         'x-meepshop-authorization-token',
         responseApi.headers.get('x-meepshop-authorization-token'),
@@ -113,9 +105,7 @@ module.exports = async ctx => {
           httpOnly: true,
         },
       );
-    } else {
-      throw new Error(`${dataApi.code}-${dataApi._error}`); // eslint-disable-line
-    }
+    else throw new Error(`${dataApi.code}-${dataApi._error}`); // eslint-disable-line
 
     /* Redirect back to website by condition */
     ctx.status = 302;

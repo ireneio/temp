@@ -10,4 +10,8 @@ export default {
     search: '',
   },
   locale: 'zh_TW',
+  customerCurrency: 'TWD',
+  storeCurrency: 'TWD',
+  storeAppList: [],
+  user: null,
 };

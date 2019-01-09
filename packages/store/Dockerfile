@@ -23,5 +23,6 @@ RUN yarn lerna link
 EXPOSE 14401
 ENV REPO_VERSION={{ build.tag }}
 ENV NODE_ENV=production
-ENV API_HOST=api.stage.meepcloud.com
+ENV API_HOST=http://meepshop-api:15265
+ENV EXTERNAL_API_HOST=https://api.stage.meepcloud.com
 CMD ["yarn", "lerna", "run", "--scope", "@meepshop/store", "start", "--stream"]

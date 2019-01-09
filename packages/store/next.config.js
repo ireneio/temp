@@ -7,11 +7,6 @@ const withLess = require('@zeit/next-less');
 const withImages = require('next-images');
 const withSourceMaps = require('@zeit/next-source-maps');
 
-const protocal = process.env.API_PROTOCAL || 'https';
-const production = process.env.NODE_ENV === 'production';
-const domain = process.env.TEST_DOMAIN || 'bellatest.stage.meepcloud.com';
-const api = process.env.TEST_API || 'api.stage.meepcloud.com';
-
 const FONT_FAMILY =
   '"PingFang TC", "Microsoft JhengHei", "Helvetica Neue", "Helvetica", "source-han-sans-traditional", "Arial", "sans-serif"';
 
@@ -21,6 +16,12 @@ if (typeof require !== 'undefined') {
   require.extensions['.css'] = () => {};
 }
 
+// set default env in dev mode
+if (process.env.NODE_ENV !== 'production') {
+  if (!process.env.STORE_DOMAIN)
+    process.env.STORE_DOMAIN = 'bellatest.stage.meepcloud.com';
+}
+
 module.exports = withSourceMaps(
   withImages(
     withLess(
@@ -28,15 +29,10 @@ module.exports = withSourceMaps(
         withBundleAnalyzer({
           useFileSystemPublicRoutes: false,
           publicRuntimeConfig: {
-            PRODUCTION: production,
-            VERSION: process.env.REPO_VERSION || +new Date(),
-            API_HOST: production
-              ? 'http://meepshop-api:15265'
-              : `${protocal}://${api}`,
-            EXTERNAL_API_HOST: production
-              ? `${protocal}://${process.env.API_HOST}`
-              : `${protocal}://${api}`,
-            DOMAIN: domain,
+            API_HOST: process.env.API_HOST || 'http://api.stage.meepcloud.com',
+            EXTERNAL_API_HOST:
+              process.env.EXTERNAL_API_HOST || 'http://api.stage.meepcloud.com',
+            STORE_DOMAIN: process.env.STORE_DOMAIN,
           },
           analyzeServer: ['server', 'both'].includes(
             process.env.BUNDLE_ANALYZE,

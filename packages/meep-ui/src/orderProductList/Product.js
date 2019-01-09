@@ -101,7 +101,7 @@ export default class Product extends React.PureComponent {
             <div style={styles.img} />
           ) : (
             <div style={{ height: '100%' }}>
-              <Thumb imgUrl={media[0]} />
+              <Thumb imgUrl={`//${media[0]}`} />
             </div>
           )}
         </td>

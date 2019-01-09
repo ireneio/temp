@@ -1,0 +1,83 @@
+@import '../../constants/styles.less';
+
+.root {
+  margin: 0px auto;
+  padding: 40px 0px;
+  max-width: 1000px;
+
+  @media @PHONE_MEDIA {
+    padding: 0px 0px 40px;
+  }
+
+  :global(.ant-table) {
+    color: inherit;
+    font-size: 16px;
+  }
+
+  :global(.ant-table-thead) {
+    & > tr > th {
+      padding: 15px;
+      background: transparent;
+      color: inherit;
+
+      &:last-child {
+        display: none;
+      }
+    }
+
+    @media @PHONE_MEDIA {
+      display: none;
+    }
+  }
+
+  :global(.ant-table-tbody) > tr > td {
+    padding: 15px;
+
+    @media @PHONE_MEDIA {
+      &:not(:last-child) {
+        display: none;
+      }
+    }
+
+    &:last-child {
+      display: none;
+
+      @media @PHONE_MEDIA {
+        display: flex;
+      }
+    }
+  }
+
+  .link {
+    text-decoration: underline;
+  }
+
+  .pagination {
+    display: flex;
+
+    & > div {
+      margin: 24px auto 0px;
+      font-size: 16px;
+      line-height: 24px;
+      user-select: none;
+
+      i:global(.anticon) {
+        font-size: 24px;
+        vertical-align: middle;
+        cursor: pointer;
+
+        &:global(.disabled) {
+          cursor: not-allowed;
+        }
+
+        &:global(.anticon-left) {
+          margin: 0px 16px 0px 0px;
+        }
+
+        &:global(.anticon-right) {
+          margin: 0px 0px 0px 16px;
+        }
+      }
+    }
+  }
+}

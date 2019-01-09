@@ -7,7 +7,7 @@ const Thumb = ({ imgUrl }) => (
   <div className={styles.wrapper}>
     <div
       className={styles.image}
-      style={{ backgroundImage: `url(//${imgUrl}?w=80)` }}
+      style={{ backgroundImage: `url(${imgUrl}?w=80)` }}
     />
   </div>
 );

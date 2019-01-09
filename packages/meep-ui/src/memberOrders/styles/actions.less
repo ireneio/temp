@@ -1,0 +1,30 @@
+@import '../../constants/styles.less';
+
+.root {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:not(:last-child):after {
+    content: '';
+    position: relative;
+    top: -0.06em;
+    margin: 0px 8px;
+    padding: 0px;
+    display: inline-block;
+    width: 1px;
+    height: 0.9em;
+    vertical-align: middle;
+    color: rgba(0, 0, 0, 0.65);
+    background: #e8e8e8;
+    font-variant: tabular-nums;
+
+    @media @PHONE_MEDIA {
+      display: none;
+    }
+  }
+}

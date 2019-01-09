@@ -3,20 +3,21 @@ import htmlescape from 'htmlescape';
 import getConfig from 'next/config';
 
 const {
-  publicRuntimeConfig: { PRODUCTION, DOMAIN },
+  publicRuntimeConfig: { STORE_DOMAIN },
 } = getConfig();
 
 export default class MyDocument extends Document {
   static async getInitialProps({ req, res, renderPage }) {
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-    const XMeepshopDomain = PRODUCTION ? req.headers.host : DOMAIN;
     const { html, head, errorHtml, chunks } = renderPage();
+
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+
     return {
       html,
       head,
       errorHtml,
       chunks,
-      XMeepshopDomain,
+      XMeepshopDomain: req.headers['x-meepshop-domain'],
     };
   }
 
@@ -27,8 +28,9 @@ export default class MyDocument extends Document {
     ).replace('_', '-');
 
   render() {
-    const { __NEXT_DATA__: storeData } = this.props;
+    const { __NEXT_DATA__: storeData, XMeepshopDomain } = this.props;
     const lang = this.getLang(storeData) || 'zh-TW';
+
     return (
       /* eslint-disable */
       <html lang={lang}>
@@ -50,12 +52,12 @@ export default class MyDocument extends Document {
           <script
             dangerouslySetInnerHTML={{
               __html: `
-              window.meepShopStore = { XMeepshopDomain: ${htmlescape(
-                PRODUCTION,
-              )} ? ${htmlescape(this.props.XMeepshopDomain)} : ${htmlescape(
-                DOMAIN,
-              )} };
-            `,
+                window.meepShopStore = {
+                  XMeepshopDomain: ${htmlescape(
+                    STORE_DOMAIN || XMeepshopDomain,
+                  )}
+                };
+              `,
             }}
           />
           <NextScript />

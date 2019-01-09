@@ -1,0 +1,67 @@
+.root {
+  position: relative;
+  margin: 0px auto;
+  width: 100%;
+  max-width: 300px;
+
+  h4 {
+    margin: 0px;
+    padding: 5px 0px;
+
+    .link {
+      display: inline-block;
+      margin: 0px 0px 0px 4px;
+      text-decoration: underline;
+    }
+  }
+
+  .status {
+    display: flex;
+
+    & > div {
+      margin: 0px 15px 0px 0px;
+
+      & > :global(.anticon) {
+        margin: 0px 4px 0px 0px;
+      }
+    }
+  }
+
+  .wrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.drawer {
+  :global(.ant-drawer-body) {
+    padding: 0px;
+
+    h5 {
+      margin: 0px;
+      padding: 10px 0px;
+      font-size: 16px;
+      font-weight: normal;
+      text-align: center;
+    }
+
+    & > :not(h5) {
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #ccc;
+      }
+    }
+
+    :global(.ant-divider) {
+      display: none;
+    }
+  }
+}

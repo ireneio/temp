@@ -1,0 +1,31 @@
+@import '../../constants/styles.less';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 16px;
+  font-size: 15px;
+
+  @media @PHONE_MEDIA {
+    padding: 15px;
+  }
+
+  & > div {
+    display: flex;
+    width: 350px;
+    justify-content: space-between;
+
+    @media @PHONE_MEDIA {
+      width: 100%;
+    }
+  }
+
+  .total {
+    margin: 20px 0px 0px;
+
+    & > div:last-child {
+      font-size: 20px;
+    }
+  }
+}

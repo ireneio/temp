@@ -34,3 +34,4 @@ sed -i "s/{{ build.tag }}/$VERSION/" ./k8s_config/deploy.yaml
 # kubernetes deploy
 /tmp/kubectl apply --force -f ./k8s_config/deploy.yaml --kubeconfig=/tmp/kubeconfig
 /tmp/kubectl apply --force -f ./k8s_config/svc.yaml --kubeconfig=/tmp/kubeconfig
+/tmp/kubectl apply --force -f ./k8s_config/cm_stage.yaml --kubeconfig=/tmp/kubeconfig

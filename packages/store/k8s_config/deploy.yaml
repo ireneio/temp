@@ -35,21 +35,11 @@ spec:
             cpu: "0.1"
             memory: "150Mi"
         env:
-        - name: NODE_ENV
+        - name: EXTERNAL_API_HOST
           valueFrom:
             configMapKeyRef:
-              name: cm-store
-              key: node.env
-        - name: API_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: cm-store
-              key: api.host
-        - name: API_PORT
-          valueFrom:
-            configMapKeyRef:
-              name: cm-store
-              key: api.port
+              name: cm-next-store
+              key: external.api.host
         ports:
         - containerPort: 14401
           name: http-port

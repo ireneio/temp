@@ -10,36 +10,32 @@ const koaConnect = require('koa-connect');
 
 const { publicRuntimeConfig } = require('../../next.config');
 const routes = require('./routes');
-const { api, signin, fbAuth, fbAuthForLine, log } = require('./routers');
+const { proxy } = require('./middleware');
+const { signin, fbAuthForLine } = require('./routers');
 
-const { PRODUCTION, VERSION } = publicRuntimeConfig;
-
-process.on('unhandledRejection', error => {
-  console.log(
-    `unhandledRejection => ${JSON.stringify({
-      msg: error.message,
-      stk: error.stack,
-    })}`,
-  );
-});
-
-process.on('uncaughtException', error => {
-  console.log(
-    `uncaughtException => ${JSON.stringify({
-      msg: error.message,
-      stk: error.stack,
-    })}`,
-  );
-});
-
+const { STORE_DOMAIN } = publicRuntimeConfig;
 const port = parseInt(process.env.PORT, 10) || 14401;
-const app = nextApp({ dir: path.resolve(__dirname, '..'), dev: !PRODUCTION });
+const app = nextApp({
+  dir: path.resolve(__dirname, '..'),
+  dev: process.env.NODE_ENV !== 'production',
+});
 const handle = routes.getRequestHandler(app, ({ req, res, route, query }) => {
   let { page } = route;
-  if (route.name === 'pages' && query.pId) {
-    page = '/product';
-  }
+
+  if (route.name === 'pages' && query.pId) page = '/product';
+
   app.render(req, res, page, query);
+});
+
+['unhandledRejection', 'uncaughtException'].forEach(eventName => {
+  process.on(eventName, error => {
+    console.log(
+      `${eventName} => ${JSON.stringify({
+        msg: error.message,
+        stk: error.stack,
+      })}`,
+    );
+  });
 });
 
 module.exports = app.prepare().then(
@@ -48,29 +44,28 @@ module.exports = app.prepare().then(
       const server = new Koa();
       const router = new Router();
 
-      server.on('error', error => {
-        console.log(`Koa server onError ${JSON.stringify(error)})`);
-      });
-
-      server.use(async (ctx, next) => {
-        try {
-          await next();
-        } catch (error) {
-          console.log(`KoaCatch ${error.message} (${os.hostname()})`);
-          throw error;
-        }
-      });
-
-      server.use(bodyParser());
-      server.use(koaConnect(compression()));
-
+      /** router start */
+      // info
       router.get('/healthz', ctx => {
-        ctx.status = 200;
-        ctx.body = `Welcome to MeepShop-Store ${VERSION}`;
+        ctx.body = `Welcome to MeepShop-Store ${process.env.REPO_VERSION ||
+          +new Date()}`;
       });
 
-      router.post('/api', api);
+      router.post('/log', ctx => {
+        console.log(
+          `#LOG#(${ctx.XMeepshopDomain}) >>>  ${JSON.stringify(
+            ctx.request.body.data,
+          )}`,
+        );
+      });
+
+      // api
+      router.post('/api', proxy('/graphql'));
+
+      // auth
       router.post('/signin', signin);
+      router.post('/fbAuth', proxy('/facebook/fbLogin'));
+      router.get('/fbAuthForLine', fbAuthForLine);
       router.get('/signout', ctx => {
         ctx.cookies.set('x-meepshop-authorization-token', '', {
           maxAge: 0,
@@ -78,11 +73,7 @@ module.exports = app.prepare().then(
         ctx.status = 200;
       });
 
-      router.post('/fbAuth', fbAuth);
-      router.get('/fbAuthForLine', fbAuthForLine);
-
-      router.post('/log', log);
-
+      // others
       router.post('/checkout/thank-you-page/:id', ctx => {
         ctx.redirect(ctx.request.href);
       });
@@ -99,10 +90,25 @@ module.exports = app.prepare().then(
         ctx.respond = false;
         await next();
       });
+      /** router end */
 
+      server.on('error', error => {
+        console.log(`Koa server onError ${JSON.stringify(error)})`);
+      });
+
+      server.use(bodyParser());
+      server.use(koaConnect(compression()));
       server.use(async (ctx, next) => {
-        ctx.res.statusCode = 200;
-        await next();
+        try {
+          ctx.res.statusCode = 200;
+          ctx.headers['x-meepshop-domain'] = STORE_DOMAIN || ctx.host;
+          ctx.headers['x-meepshop-authorization-token'] =
+            ctx.cookies.get('x-meepshop-authorization-token') || null;
+          await next();
+        } catch (error) {
+          console.log(`KoaCatch ${error.message} (${os.hostname()})`);
+          throw error;
+        }
       });
 
       server.use(router.routes());

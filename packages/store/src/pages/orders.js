@@ -1,24 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+
+import MemberOrdersView from '@meepshop/meep-ui/lib/memberOrders';
+
 import * as Utils from 'utils';
 import { Container, TrackingCodeHead, Error } from 'components';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
 import * as Selectors from 'selectors';
 import * as Template from 'template';
-import MemberOrdersView from '@meepshop/meep-ui/lib/memberOrderList';
 import MemberHeader from 'components/MemberHeader';
 import * as TITLE from 'locales';
 
-class MemberOrders extends Component {
+class MemberOrders extends React.Component {
   static getInitialProps = async context => {
     const { isServer, XMeepshopDomain, userAgent, store } = context;
-    if (isServer) {
-      store.dispatch(Actions.serverOthersInitial(context));
-    }
+
+    if (isServer) store.dispatch(Actions.serverOthersInitial(context));
+
     return { userAgent, XMeepshopDomain };
   };
 
@@ -38,8 +40,6 @@ class MemberOrders extends Component {
     }).isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,
-    orderList: PropTypes.arrayOf(PropTypes.object).isRequired,
-    orderApply: PropTypes.arrayOf(PropTypes.object).isRequired,
     storeAppList: PropTypes.arrayOf(PropTypes.object).isRequired,
     fbAppId: PropTypes.string.isRequired,
   };
@@ -49,17 +49,13 @@ class MemberOrders extends Component {
   componentDidMount() {
     const { isLogin } = this.props;
 
-    if (isLogin === 'NOTLOGIN') {
-      Router.pushRoute('/login');
-    }
+    if (isLogin === 'NOTLOGIN') Router.pushRoute('/login');
   }
 
   componentDidUpdate() {
     const { isLogin } = this.props;
 
-    if (isLogin === 'NOTLOGIN') {
-      Router.pushRoute('/login');
-    }
+    if (isLogin === 'NOTLOGIN') Router.pushRoute('/login');
   }
 
   render() {
@@ -75,8 +71,6 @@ class MemberOrders extends Component {
       pageAdTrackIDs,
       colors,
       title,
-      orderList,
-      orderApply,
       storeAppList,
       fbAppId,
     } = this.props;
@@ -97,11 +91,7 @@ class MemberOrders extends Component {
         />
         <Container {...this.props}>
           <MemberHeader title={title} colors={colors}>
-            <MemberOrdersView
-              orderList={orderList}
-              orderApply={orderApply}
-              storeAppList={storeAppList}
-            />
+            <MemberOrdersView storeAppList={storeAppList} />
           </MemberHeader>
         </Container>
       </>
@@ -161,8 +151,6 @@ const mapStateToProps = (state, props) => {
     page: getPage(state),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
     title: TITLE.ORDERS[locale],
-    orderList: Utils.getIn(['memberReducer', 'orders'])(state),
-    orderApply: Utils.getIn(['memberReducer', 'orderApply'])(state),
     storeAppList: Utils.getIn(['storeReducer', 'apps'])(state),
     fbAppId:
       Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,

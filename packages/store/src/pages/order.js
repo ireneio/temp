@@ -1,32 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+
+import MemberOrderView from '@meepshop/meep-ui/lib/memberOrder';
+
 import * as Utils from 'utils';
 import * as Selectors from 'selectors';
 import * as Template from 'template';
 import { Container, TrackingCodeHead, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
-import MemberOrderDetails from '@meepshop/meep-ui/lib/memberOrderDetails';
-import OrderNotFound from 'components/OrderNotFound';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
 import * as TITLE from 'locales';
 
-class MemberOrder extends Component {
+class MemberOrder extends React.Component {
   static getInitialProps = async context => {
-    const {
-      isServer,
-      XMeepshopDomain,
-      userAgent,
-      store,
-      query: { orderId },
-    } = context;
-    if (isServer) {
-      store.dispatch(Actions.serverOthersInitial(context));
-    }
-    return { orderId, userAgent, XMeepshopDomain };
+    const { isServer, XMeepshopDomain, userAgent, store } = context;
+
+    if (isServer) store.dispatch(Actions.serverOthersInitial(context));
+    return { userAgent, XMeepshopDomain };
   };
 
   static propTypes = {
@@ -45,9 +39,6 @@ class MemberOrder extends Component {
     }).isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,
-    orderDetails: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired,
     fbAppId: PropTypes.string.isRequired,
   };
 
@@ -56,17 +47,13 @@ class MemberOrder extends Component {
   componentDidMount() {
     const { isLogin } = this.props;
 
-    if (isLogin === 'NOTLOGIN') {
-      Router.pushRoute('/login');
-    }
+    if (isLogin === 'NOTLOGIN') Router.pushRoute('/login');
   }
 
   componentDidUpdate() {
     const { isLogin } = this.props;
 
-    if (isLogin === 'NOTLOGIN') {
-      Router.pushRoute('/login');
-    }
+    if (isLogin === 'NOTLOGIN') Router.pushRoute('/login');
   }
 
   render() {
@@ -82,7 +69,6 @@ class MemberOrder extends Component {
       pageAdTrackIDs,
       colors,
       title,
-      orderDetails,
       fbAppId,
     } = this.props;
 
@@ -95,18 +81,16 @@ class MemberOrder extends Component {
           <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
           <link rel="apple-touch-icon" href={`https://${faviconUrl}`} />
         </Head>
+
         <TrackingCodeHead
           pathname={pathname}
           pageAdTrackIDs={pageAdTrackIDs}
           fbAppId={fbAppId}
         />
+
         <Container {...this.props}>
           <MemberHeader title={title} goBackToOrders colors={colors}>
-            {orderDetails ? (
-              <MemberOrderDetails orderDetails={orderDetails} />
-            ) : (
-              <OrderNotFound />
-            )}
+            <MemberOrderView />
           </MemberHeader>
         </Container>
       </>
@@ -118,13 +102,6 @@ const mapStateToProps = (state, props) => {
   /* Handle error */
   const error = Utils.getStateError(state);
   if (error) return { error };
-
-  const getOrderId = (_, _props) => _props.orderId;
-  const getOrders = _state => Utils.getIn(['memberReducer', 'orders'])(_state);
-  const getOrderDetails = createSelector(
-    [getOrderId, getOrders],
-    (orderId, orders) => orders.find(order => order.id === orderId),
-  );
 
   const getOrderPage = () => ({
     id: 'page-member-order-details',
@@ -173,7 +150,6 @@ const mapStateToProps = (state, props) => {
     page: getPage(state, props),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
     title: TITLE.ORDER[locale],
-    orderDetails: getOrderDetails(state, props),
     fbAppId:
       Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };

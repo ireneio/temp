@@ -6,19 +6,24 @@
 import getConfig from 'next/config';
 
 const {
-  publicRuntimeConfig: { DOMAIN, PRODUCTION },
+  publicRuntimeConfig: { STORE_DOMAIN },
 } = getConfig();
 
 export default (isServer, req) => {
   if (isServer) {
-    const XMeepshopDomain = PRODUCTION ? req.headers.host : DOMAIN;
-    // const XMeepshopDomain = DOMAIN;
     const userAgent = req.headers['user-agent'];
     const { cookie } = req.headers;
-    return { XMeepshopDomain, userAgent, cookie };
+
+    return {
+      XMeepshopDomain: req.headers['x-meepshop-domain'],
+      userAgent,
+      cookie,
+    };
   }
-  const XMeepshopDomain = PRODUCTION ? window.location.host : DOMAIN;
-  // const XMeepshopDomain = DOMAIN;
+
   const { userAgent } = window.navigator;
-  return { XMeepshopDomain, userAgent };
+  return {
+    XMeepshopDomain: STORE_DOMAIN || window.location.host,
+    userAgent,
+  };
 };

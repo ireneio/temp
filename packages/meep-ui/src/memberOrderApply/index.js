@@ -183,7 +183,7 @@ export default class MemberOrderApply extends React.PureComponent {
         dataIndex: 'galleryInfo',
         render: (value, record) => (
           <StyleRoot style={styles.imgWrapper}>
-            <Thumb imgUrl={value.mainId || value.media[0]} />,
+            <Thumb imgUrl={`//${value.mainId || value.media[0]}`} />,
             <div className="show-on-mobile" style={styles.reason(step)}>
               {this.renderReason(record.reason, record)}
             </div>
