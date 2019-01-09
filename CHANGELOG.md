@@ -1,3 +1,20 @@
+## 0.17.0 (2019-01-09)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#362](https://github.com/meepshop/meep-lerna/pull/362) call 新的 API (Query.viewer.order) ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#376](https://github.com/meepshop/meep-lerna/pull/376) 選單分頁往下滑動，畫面呈現空白 (N322) ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.16.1 (2019-01-07)
 
 #### :bug: Bug Fix
