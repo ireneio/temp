@@ -8,9 +8,10 @@ export const overlayBackground = ({
   position,
 }) => {
   const defaultStyle = {
-    background: showOverlay
-      ? transformColor(overlayBackgroundColor).alpha(0.8)
-      : '',
+    background:
+      showOverlay && overlayBackgroundColor
+        ? transformColor(overlayBackgroundColor).alpha(0.8)
+        : '',
     position: 'absolute',
     left: 0,
     right: 0,
