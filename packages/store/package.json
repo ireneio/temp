@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@meepshop/store",
-  "version": "0.16.1",
+  "version": "0.17.0",
   "description": "store for meepshop",
   "scripts": {
     "dev": "node --inspect src/server",
@@ -16,7 +16,7 @@
   "author": "meepshop <admin@meepshop.com>",
   "license": "ISC",
   "dependencies": {
-    "@meepshop/meep-ui": "^0.16.1",
+    "@meepshop/meep-ui": "^0.17.0",
     "antd": "^3.10.1",
     "apollo-boost": "^0.1.22",
     "body-parser": "^1.18.2",
