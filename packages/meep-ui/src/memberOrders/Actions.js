@@ -186,7 +186,7 @@ export default class Actions extends React.PureComponent {
 
     if (![0, 3].includes(status)) return null;
 
-    const { choosePayment } = accountInfo[template] || {};
+    const { choosePayment } = accountInfo?.[template] || {};
 
     // 判斷是否可以稍後付款
     const payLater = choosePayment
