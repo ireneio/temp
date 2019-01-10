@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@meepshop/meep-ui",
-  "version": "0.17.1",
+  "version": "0.17.2",
   "description": "meep-ui for meepshop",
   "scripts": {
     "dev": "make dev",
