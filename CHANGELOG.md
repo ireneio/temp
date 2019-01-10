@@ -1,3 +1,14 @@
+## 0.17.2 (2019-01-10)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#378](https://github.com/meepshop/meep-lerna/pull/378) /checkout、一頁式購物車：地區選單，增加國家(N085) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.17.1 (2019-01-09)
 
 #### :bug: Bug Fix
