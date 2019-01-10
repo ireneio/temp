@@ -110,6 +110,46 @@ export const AUSTRALIA = {
   TODO_LOCALE: true,
 };
 
+export const RUSSIA = {
+  zh_TW: '俄羅斯',
+  en_US: 'Russia',
+  ja_JP: 'ロシア',
+  vi_VN: 'Nga',
+  TODO_LOCALE: true,
+};
+
+export const FRANCE = {
+  zh_TW: '法國',
+  en_US: 'France',
+  ja_JP: 'フランス',
+  vi_VN: 'Pháp',
+  TODO_LOCALE: true,
+};
+
+export const USA = {
+  zh_TW: '美國',
+  en_US: 'U.S.A.',
+  ja_JP: 'アメリカ',
+  vi_VN: 'Hoa Kỳ',
+  TODO_LOCALE: true,
+};
+
+export const AUSTRIA = {
+  zh_TW: '奧地利',
+  en_US: 'Austria',
+  ja_JP: 'オーストリア',
+  vi_VN: 'Áo',
+  TODO_LOCALE: true,
+};
+
+export const ITALY = {
+  zh_TW: '義大利',
+  en_US: 'Italy',
+  ja_JP: 'イタリア',
+  vi_VN: 'Ý Đại Lợi',
+  TODO_LOCALE: true,
+};
+
 export const OTHER = {
   zh_TW: '其他',
   en_US: 'Other',
