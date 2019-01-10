@@ -1,3 +1,14 @@
+## 0.17.3 (2019-01-10)
+
+#### :bug: Bug Fix
+
+- `store`, `test-prod-server`
+  - [#384](https://github.com/meepshop/meep-lerna/pull/384) 首次購物 - 確認門市跳回 /checkout 頁面時，購物車內商品消失（綠界＆ezShip）(N330) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.17.2 (2019-01-10)
 
 #### :rocket: New Feature
