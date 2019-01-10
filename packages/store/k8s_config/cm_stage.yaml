@@ -4,4 +4,4 @@ metadata:
   name: cm-next-store
   namespace: default
 data:
-  external.api.host: "http://api.stage.meepcloud.com"
+  external.api.host: "https://api.stage.meepcloud.com"

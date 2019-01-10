@@ -10,8 +10,7 @@ const koaConnect = require('koa-connect');
 
 const { publicRuntimeConfig } = require('../../next.config');
 const routes = require('./routes');
-const { proxy } = require('./middleware');
-const { signin, fbAuthForLine } = require('./routers');
+const { api, signin, fbAuthForLine } = require('./routers');
 
 const { STORE_DOMAIN } = publicRuntimeConfig;
 const port = parseInt(process.env.PORT, 10) || 14401;
@@ -53,18 +52,18 @@ module.exports = app.prepare().then(
 
       router.post('/log', ctx => {
         console.log(
-          `#LOG#(${ctx.XMeepshopDomain}) >>>  ${JSON.stringify(
+          `#LOG#(${ctx.headers['x-meepshop-domain']}) >>>  ${JSON.stringify(
             ctx.request.body.data,
           )}`,
         );
       });
 
       // api
-      router.post('/api', proxy('/graphql'));
+      router.post('/api', api);
 
       // auth
-      router.post('/signin', signin);
-      router.post('/fbAuth', proxy('/facebook/fbLogin'));
+      router.post('/signin', signin('/auth/login'));
+      router.post('/fbAuth', signin('/facebook/fbLogin'));
       router.get('/fbAuthForLine', fbAuthForLine);
       router.get('/signout', ctx => {
         ctx.cookies.set('x-meepshop-authorization-token', '', {

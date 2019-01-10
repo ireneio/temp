@@ -38,10 +38,10 @@ const {
   screenshot,
 } = program.parse(process.argv);
 
-process.env.TEST_DOMAIN = process.env.TEST_DOMAIN || domain;
+process.env.STORE_DOMAIN = process.env.STORE_DOMAIN || domain;
 
 if (!/stage/.test(domain))
-  process.env.TEST_API = process.env.TEST_API || 'api.meepshop.tw';
+  process.env.API_HOST = process.env.API_HOST || 'api.meepshop.tw';
 
 if (memberPaths.length !== 0 && (!email || !password)) {
   program.outputHelp(
@@ -53,7 +53,7 @@ if (memberPaths.length !== 0 && (!email || !password)) {
 }
 
 export default {
-  domain: process.env.TEST_DOMAIN,
+  domain: process.env.STORE_DOMAIN,
   types,
   paths,
   memberPaths,

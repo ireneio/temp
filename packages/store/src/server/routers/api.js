@@ -6,9 +6,9 @@ const { publicRuntimeConfig } = require('../../../next.config');
 
 const { API_HOST } = publicRuntimeConfig;
 
-module.exports = redirectPath =>
+module.exports = koaCtx =>
   proxy(API_HOST, {
-    proxyReqPathResolver: () => redirectPath,
+    proxyReqPathResolver: () => '/graphql',
     userResDecorator: async (proxyRes, proxyResData, ctx) => {
       /* Handle token verify failed */
       if (proxyRes.statusCode === 401) {
@@ -31,7 +31,7 @@ module.exports = redirectPath =>
 
         // TODO: remove this when api removing set-cookie
         ctx.cookies.set(
-          `x-meepshop-authorization-token-${ctx.XMeepshopDomain}`,
+          `x-meepshop-authorization-token-${ctx.headers['x-meepshop-domain']}`,
           '',
           {
             maxAge: 0,
@@ -55,4 +55,4 @@ module.exports = redirectPath =>
 
       return proxyResData.toString('utf8');
     },
-  });
+  })(koaCtx);

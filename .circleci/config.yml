@@ -128,9 +128,6 @@ jobs:
                                       /pages/圖片元件, \
                                       /pages/圖片文字元件, \
                                       /pages/輪播元件' \
-                             --member-paths '/orders' \
-                             --email ting@meepshop.com \
-                             --password 123456 \
                              nextstoretest.stage.meepcloud.com" \
               --scope @meepshop/test-prod-server \
               --stream

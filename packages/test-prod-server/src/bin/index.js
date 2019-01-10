@@ -2,7 +2,7 @@
 
 import cliOptions from '../cliOptions';
 import showInfo from '../showInfo';
-import runServer, { patchPackages } from '../runServer';
+import runServer from '../runServer';
 import testPaths from '../testPaths';
 import login from '../login';
 
@@ -21,11 +21,9 @@ process.on('unhandledRejection', error => {
       if (cliOptions.memberPaths.length !== 0)
         await testPaths(cliOptions.memberPaths, await login());
     } catch (e) {
-      await patchPackages(false);
       throw e;
     }
 
-    await patchPackages(false);
     process.exit();
   }
 })();

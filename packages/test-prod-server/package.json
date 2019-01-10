@@ -4,8 +4,7 @@
   "version": "0.17.2",
   "description": "test prod-server for meepshop",
   "scripts": {
-    "test:start": "babel-node --config-file ../../babel.config.js ./src/bin/index.js",
-    "unpatch-packages": "babel-node --config-file ../../babel.config.js ./src/bin/unpatch-packages.js"
+    "test:start": "babel-node --config-file ../../babel.config.js ./src/bin/index.js"
   },
   "keywords": [
     "meepshop",

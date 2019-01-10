@@ -10,7 +10,7 @@ module.exports = async ctx => {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
-        'x-meepshop-domain': ctx.XMeepshopDomain,
+        'x-meepshop-domain': ctx.headers['x-meepshop-domain'],
       },
       credentials: 'include',
       body: JSON.stringify({
@@ -68,7 +68,7 @@ module.exports = async ctx => {
       throw new Error('State is not matched!');
 
     const fbApi = `https://graph.facebook.com/v3.0/oauth/access_token?client_id=${appId}&redirect_uri=https://${
-      ctx.XMeepshopDomain
+      ctx.headers['x-meepshop-domain']
     }/fbAuthForLine&client_secret=${appSecret}&code=${code}`;
     const responseFromFB = await fetch(fbApi, {
       method: 'get',
@@ -83,8 +83,9 @@ module.exports = async ctx => {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
-        'x-meepshop-domain': ctx.XMeepshopDomain,
-        'x-meepshop-authorization-token': ctx.XMeepshopDomainToken,
+        'x-meepshop-domain': ctx.headers['x-meepshop-domain'],
+        'x-meepshop-authorization-token':
+          ctx.headers['x-meepshop-authorization-token'],
       },
       credentials: 'include',
       body: JSON.stringify({ accessToken: dataFromFB.access_token }),

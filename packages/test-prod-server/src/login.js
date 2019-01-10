@@ -23,7 +23,7 @@ export default async () => {
       const [key, value = true] = text.split(/=/);
 
       switch (key) {
-        case `x-meepshop-authorization-token-${process.env.TEST_DOMAIN}`:
+        case `x-meepshop-authorization-token-${process.env.STORE_DOMAIN}`:
           return {
             ...result,
             name: key,

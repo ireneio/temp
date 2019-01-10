@@ -4,29 +4,40 @@ const { publicRuntimeConfig } = require('../../../next.config');
 
 const { API_HOST } = publicRuntimeConfig;
 
-module.exports = koaCtx =>
+module.exports = redirectPath => koaCtx =>
   proxy(API_HOST, {
-    proxyReqPathResolver: () => '/auth/login',
+    proxyReqPathResolver: () => redirectPath,
     userResDecorator: async (proxyRes, proxyResData, ctx) => {
-      const data = JSON.parse(proxyResData.toString('utf8'));
+      let newToken;
 
-      if (data.error) return JSON.stringify({ error: data.error });
+      if (redirectPath === '/auth/login') {
+        const data = JSON.parse(proxyResData.toString('utf8'));
+
+        if (data.error) return JSON.stringify({ error: data.error });
+
+        newToken = data.token || null;
+      } else {
+        newToken = proxyRes.headers['x-meepshop-authorization-token'] || null;
+      }
 
       // TODO: Remove this when api removing set-cookie
       ctx.cookies.set(
-        `x-meepshop-authorization-token-${ctx.XMeepshopDomain}`,
+        `x-meepshop-authorization-token-${ctx.headers['x-meepshop-domain']}`,
         '',
         {
           maxAge: 0,
         },
       );
 
-      ctx.cookies.set('x-meepshop-authorization-token', data.token || null, {
+      ctx.cookies.set('x-meepshop-authorization-token', newToken, {
         maxAge: 86400 * 1000 * 1,
         path: '/',
         httpOnly: true,
       });
 
-      return JSON.stringify({ isLoginSuccess: true });
+      if (redirectPath === '/auth/login')
+        return JSON.stringify({ isLoginSuccess: true });
+
+      return proxyResData.toString('utf8');
     },
   })(koaCtx);

@@ -29,9 +29,10 @@ module.exports = withSourceMaps(
         withBundleAnalyzer({
           useFileSystemPublicRoutes: false,
           publicRuntimeConfig: {
-            API_HOST: process.env.API_HOST || 'http://api.stage.meepcloud.com',
+            API_HOST: process.env.API_HOST || 'https://api.stage.meepcloud.com',
             EXTERNAL_API_HOST:
-              process.env.EXTERNAL_API_HOST || 'http://api.stage.meepcloud.com',
+              process.env.EXTERNAL_API_HOST ||
+              'https://api.stage.meepcloud.com',
             STORE_DOMAIN: process.env.STORE_DOMAIN,
           },
           analyzeServer: ['server', 'both'].includes(
