@@ -1,18 +1,10 @@
 import getConfig from 'next/config';
-import getCookie from './getCookie';
 
 const {
   publicRuntimeConfig: { API_HOST },
 } = getConfig();
 
-export default async ({
-  res,
-  query,
-  variables,
-  isServer,
-  XMeepshopDomain,
-  cookie,
-}) => {
+export default async ({ res, req, query, variables, isServer }) => {
   try {
     const graphql = {
       query: `${variables.type}${variables.keys ? `(${variables.keys})` : ''} {
@@ -21,17 +13,14 @@ export default async ({
       variables: variables.values,
     };
 
-    const XMeepshopAuthorizationToken =
-      (cookie && getCookie('x-meepshop-authorization-token', cookie)) || null;
-
-    // const response = await fetch('https://httpstat.us/504', { method: 'POST' });
     const response = isServer
       ? await fetch(`${API_HOST}/graphql`, {
           method: 'post',
           headers: {
             'content-type': 'application/json',
-            'x-meepshop-domain': XMeepshopDomain,
-            'x-meepshop-authorization-token': XMeepshopAuthorizationToken,
+            'x-meepshop-domain': req.headers['x-meepshop-domain'],
+            'x-meepshop-authorization-token':
+              req.headers['x-meepshop-authorization-token'],
           },
           credentials: 'include',
           body: JSON.stringify(graphql),
@@ -44,7 +33,7 @@ export default async ({
         });
 
     /* set-cookie in server-side */
-    if (isServer && !XMeepshopAuthorizationToken) {
+    if (isServer && !req.headers['x-meepshop-authorization-token']) {
       const newToken = response.headers.get('x-meepshop-authorization-token');
       if (newToken) {
         res.setHeader(

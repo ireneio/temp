@@ -103,6 +103,7 @@ module.exports = app.prepare().then(
           ctx.headers['x-meepshop-domain'] = STORE_DOMAIN || ctx.host;
           ctx.headers['x-meepshop-authorization-token'] =
             ctx.cookies.get('x-meepshop-authorization-token') || null;
+          delete ctx.headers.cookie;
           await next();
         } catch (error) {
           console.log(`KoaCatch ${error.message} (${os.hostname()})`);

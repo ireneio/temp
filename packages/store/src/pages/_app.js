@@ -57,11 +57,9 @@ class MyApp extends App {
         headers: isServer
           ? {
               'content-type': 'application/json',
-              'x-meepshop-domain': XMeepshopDomain,
-              'x-meepshop-authorization-token': Utils.getCookie(
-                'x-meepshop-authorization-token',
-                cookie,
-              ),
+              'x-meepshop-domain': req.headers['x-meepshop-domain'],
+              'x-meepshop-authorization-token':
+                req.headers['x-meepshop-authorization-token'],
             }
           : { 'content-type': 'application/json' },
         credentials: isServer ? 'include' : 'same-origin',
