@@ -120,8 +120,8 @@ export default class MemberSettingsView extends React.PureComponent {
               address: {
                 yahooCode: {
                   country: address[0],
-                  city: address[1],
-                  county: address[2],
+                  city: address[1] || '',
+                  county: address[2] || '',
                   street,
                 },
               },
@@ -263,7 +263,9 @@ export default class MemberSettingsView extends React.PureComponent {
           </div>
           <div className={styles.row}>
             {getFieldDecorator('address', {
-              initialValue: country ? [country, city, county] : [],
+              initialValue: country
+                ? [country, city, county].filter(text => text)
+                : [],
             })(
               <AddressCascader
                 size="large"

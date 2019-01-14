@@ -145,8 +145,8 @@ export default class MemberRecipients extends React.PureComponent {
                 ''}${address[2] || ''}${street}`,
               yahooCode: {
                 country: address[0],
-                city: address[1],
-                county: address[2],
+                city: address[1] || '',
+                county: address[2] || '',
                 street,
               },
             },
@@ -303,7 +303,7 @@ export default class MemberRecipients extends React.PureComponent {
         <FormItem>
           {getFieldDecorator('address', {
             initialValue: country
-              ? [country, ...(city ? [city] : []), ...(county ? [county] : [])]
+              ? [country, city, county].filter(text => text)
               : [],
             rules: [
               {
