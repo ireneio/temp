@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Select, InputNumber, Cascader } from 'antd';
+import { Form, Select, InputNumber, Cascader, Modal } from 'antd';
 import { getElementPosition } from 'fbjs';
 import uuid from 'uuid';
 
@@ -122,11 +122,25 @@ class PayemntInfo extends React.PureComponent {
   }
 
   getVariantInfo = variant => {
-    const { variants } = this.props;
+    const {
+      /** context */
+      transformLocale,
+
+      /** props */
+      variants,
+      addition,
+    } = this.props;
     const [variantId] = variant.slice(-1);
     const { stock, minPurchaseItems: variantMin, maxPurchaseLimit } =
       variants.find(({ id }) => id === variantId) || {};
     const variantMax = maxPurchaseLimit > stock ? stock : maxPurchaseLimit;
+
+    if (
+      !addition.includes('quantity') ||
+      variantMax === 0 ||
+      variantMax < variantMin
+    )
+      Modal.error({ title: transformLocale(LOCALE.NO_VARIANT) });
 
     this.trackAddToCart();
     this.computeOrderList({ variant });

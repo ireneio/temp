@@ -65,3 +65,11 @@ export const TOTAL = {
   vi_VN: 'Tổng tiêu thụ',
   TODO_LOCALE: true,
 };
+
+export const NO_VARIANT = {
+  zh_TW: '補貨中',
+  en_US: '',
+  ja_JP: '',
+  vi_VN: '',
+  TODO_LOCALE: true,
+};
