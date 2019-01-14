@@ -1,3 +1,24 @@
+## 0.17.5 (2019-01-14)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#350](https://github.com/meepshop/meep-lerna/pull/350) 前端 - 會員地址傳完整資料 ([@HsuTing](https://github.com/HsuTing))
+  - [#382](https://github.com/meepshop/meep-lerna/pull/382) 一頁式購物車 - 當商品 or 商品某種規格庫存為 0 時，提醒視窗的時間點＆提示文字優化(N305) ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#374](https://github.com/meepshop/meep-lerna/pull/374) 產品列表：從產品頁返回產品列表時，應回到該產品的位置 (N235) ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#379](https://github.com/meepshop/meep-lerna/pull/379) 分享連結，縮圖顯示有誤 (N306) ([@barrypeng6](https://github.com/barrypeng6))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.17.4 (2019-01-11)
 
 #### :bug: Bug Fix
