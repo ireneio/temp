@@ -77,7 +77,7 @@ class Product extends React.Component {
       page,
       product: {
         status,
-        galleryInfo,
+        galleries,
         title: { zh_TW: productName },
       },
       productDescription,
@@ -85,8 +85,9 @@ class Product extends React.Component {
       fbAppId,
     } = this.props;
     const url = host + pathname;
-    const productImage = Utils.getIn(['media', 0])(galleryInfo) || '';
-    const { keywords, description = storeDescription, image } = page.seo || {};
+    const productImage =
+      galleries?.[0]?.mainImage?.src || galleries?.[0]?.images?.[0]?.src || '';
+    const { keywords, description = storeDescription } = page.seo || {};
 
     return (
       <>
@@ -106,7 +107,9 @@ class Product extends React.Component {
           <meta property="og:title" content={productName || storeName} />
           <meta
             property="og:image"
-            content={`https://${image || productImage || faviconUrl}?w=400`}
+            content={
+              productImage ? `${productImage}?w=400` : `//${faviconUrl}?w=400`
+            }
           />
           <meta property="og:image:width" content="400" />
           <meta property="og:image:height" content="300" />
