@@ -32,6 +32,7 @@ class Img extends React.PureComponent {
     image: IMAGE_TYPE.isRequired,
     alignment: ALIGNMENT_TYPE.isRequired,
     contentWidth: CONTENT_WIDTH_TYPE.isRequired,
+    isUsingCache: PropTypes.bool,
 
     /** ignore */
     forwardedRef: PropTypes.shape({}).isRequired,
@@ -44,6 +45,7 @@ class Img extends React.PureComponent {
     alt: 'meepshop',
     customTracking: null,
     className: '',
+    isUsingCache: false,
   };
 
   /** 當useLarge為true時，表示已觸發sensor，此時生命週期已完成did mount，
@@ -68,6 +70,7 @@ class Img extends React.PureComponent {
       className,
       alignment,
       contentWidth,
+      isUsingCache,
 
       /** ignore */
       forwardedRef,
@@ -78,23 +81,32 @@ class Img extends React.PureComponent {
       <div className={`${styles.root} ${styles[alignment]} ${className}`}>
         <div ref={forwardedRef} style={{ width: `${contentWidth}%` }}>
           <Link {...linkProps}>
-            <Lazy>
-              {({ useLarge, isClear, onLoad, onError }) => (
-                <img
-                  style={{
-                    width: '100%',
-                    filter: !isClear && 'blur(10px) brightness(80%)',
-                    transform: !isClear && 'scale(1.01)',
-                    transition: 'all 0.5s ease-in',
-                  }}
-                  src={this.getSrc(useLarge)}
-                  onClick={this.clickTracking(customTracking)}
-                  onLoad={onLoad}
-                  onError={onError}
-                  alt={alt}
-                />
-              )}
-            </Lazy>
+            {isUsingCache ? (
+              <img
+                style={{ width: '100%' }}
+                src={this.getSrc(true)}
+                onClick={this.clickTracking(customTracking)}
+                alt={alt}
+              />
+            ) : (
+              <Lazy>
+                {({ useLarge, isClear, onLoad, onError }) => (
+                  <img
+                    style={{
+                      width: '100%',
+                      filter: !isClear && 'blur(10px) brightness(80%)',
+                      transform: !isClear && 'scale(1.01)',
+                      transition: 'all 0.5s ease-in',
+                    }}
+                    src={this.getSrc(useLarge)}
+                    onClick={this.clickTracking(customTracking)}
+                    onLoad={onLoad}
+                    onError={onError}
+                    alt={alt}
+                  />
+                )}
+              </Lazy>
+            )}
           </Link>
         </div>
       </div>

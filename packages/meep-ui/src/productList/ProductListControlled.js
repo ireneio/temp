@@ -196,6 +196,7 @@ export default class ProductList extends React.PureComponent {
           this.setState({
             products: cached,
             isLoading: false,
+            isUsingCache: true,
           });
         } else {
           // get rid of it once expired
@@ -210,6 +211,7 @@ export default class ProductList extends React.PureComponent {
       this.setState({
         products: getData(...getProductsQuery(params)),
         isLoading: true,
+        isUsingCache: false,
       });
       return;
     }
@@ -316,6 +318,7 @@ export default class ProductList extends React.PureComponent {
           products: cached,
           page: Math.floor(nextParams.offset / nextParams.limit) + 1,
           isLoading: false,
+          isUsingCache: true,
         });
       } else {
         // get rid of it once expired
@@ -332,6 +335,7 @@ export default class ProductList extends React.PureComponent {
       products: getData(...getProductsQuery(nextParams)),
       page: Math.floor(nextParams.offset / nextParams.limit) + 1,
       isLoading: true,
+      isUsingCache: false,
     });
   };
 
@@ -420,6 +424,7 @@ export default class ProductList extends React.PureComponent {
       isGrid,
       isLoading,
       isMobile,
+      isUsingCache,
     } = this.state;
     // FIXME: custom sorting workaround
     const total =
@@ -484,6 +489,7 @@ export default class ProductList extends React.PureComponent {
               transformLocale={transformLocale}
               transformCurrency={transformCurrency}
               memberSeePrice={hasStoreAppPlugin('memberSeePrice')}
+              isUsingCache={isUsingCache}
             />
             {pagination && (
               <div style={styles.pagination}>

@@ -28,13 +28,20 @@ Router.onRouteChangeStart = url => {
   // save previous page
   const { pathname, search } = window.location;
   window.storePreviousPageUrl = `${pathname}${search}`;
+  window.storePreviousOffset = window.pageYOffset;
 
   console.log(`Loading: ${url}`);
   NProgress.configure({ showSpinner: false });
   NProgress.start();
 };
 
-Router.onRouteChangeComplete = () => NProgress.done();
+Router.onRouteChangeComplete = () => {
+  if (window.storeCurrentOffset !== undefined) {
+    window.scrollTo(0, window.storeCurrentOffset);
+    window.storeCurrentOffset = undefined;
+  }
+  NProgress.done();
+};
 
 Router.onRouteChangeError = () => NProgress.done();
 
@@ -154,6 +161,11 @@ class MyApp extends App {
 
   componentDidMount() {
     if (!window.meepShopStore.goTo) window.meepShopStore.goTo = Utils.goTo;
+    window.history.scrollRestoration = 'manual';
+    Router.beforePopState(() => {
+      window.storeCurrentOffset = window.storePreviousOffset;
+      return true;
+    });
   }
 
   componentDidCatch(error, errorInfo) {

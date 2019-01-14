@@ -33,6 +33,7 @@ const ProductCard = ({
   transformLocale,
   transformCurrency,
   memberSeePrice,
+  isUsingCache,
 }) => (
   <StyleRoot>
     <div
@@ -96,6 +97,7 @@ const ProductCard = ({
                   alignment="center"
                   newWindow={false}
                   ratio={1}
+                  isUsingCache={isUsingCache}
                 />
               </div>
 
@@ -185,6 +187,7 @@ ProductCard.propTypes = {
   transformLocale: PropTypes.func.isRequired,
   transformCurrency: PropTypes.func.isRequired,
   memberSeePrice: PropTypes.bool.isRequired,
+  isUsingCache: PropTypes.bool.isRequired,
 };
 /* eslint-enable react/no-typos */
 
