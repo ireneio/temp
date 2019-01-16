@@ -1,3 +1,14 @@
+## 0.17.6 (2019-01-16)
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#381](https://github.com/meepshop/meep-lerna/pull/381) header 跑版 (多了一條空白) (N325) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.17.5 (2019-01-14)
 
 #### :rocket: New Feature
