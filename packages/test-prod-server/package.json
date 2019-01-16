@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@meepshop/test-prod-server",
-  "version": "0.17.5",
+  "version": "0.17.6",
   "description": "test prod-server for meepshop",
   "scripts": {
     "test:start": "babel-node --config-file ../../babel.config.js ./src/bin/index.js"
@@ -13,7 +13,7 @@
   "author": "meepshop <admin@meepshop.com>",
   "license": "ISC",
   "dependencies": {
-    "@meepshop/store": "^0.17.5",
+    "@meepshop/store": "^0.17.6",
     "chalk": "^2.4.1",
     "commander": "^2.16.0",
     "execa": "^1.0.0",
