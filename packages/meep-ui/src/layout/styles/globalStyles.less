@@ -1,3 +1,6 @@
+@import '../../constants/styles.less';
+
+// TODO: add global className
 :global(button > span) {
   color: unset;
 }
@@ -55,4 +58,15 @@
 
 :global(.ant-menu-vertical .ant-menu-item:not(:last-child)) {
   margin: 0px;
+}
+
+:global(.ant-drawer-header) {
+  padding: 0px !important;
+  border-bottom: 0px !important;
+}
+
+@media @PHONE_MEDIA {
+  :global(.ant-modal) {
+    max-width: initial !important;
+  }
 }

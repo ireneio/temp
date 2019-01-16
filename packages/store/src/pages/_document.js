@@ -40,6 +40,7 @@ export default class MyDocument extends Document {
             name="viewport"
             content="width=device-width, initial-scale=1, user-scalable=no"
           />
+          {/* TODO: 商品頁，產品頁加入購物車 Modal 跑版 */}
           <link
             rel="stylesheet"
             type="text/css"
