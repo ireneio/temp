@@ -95,7 +95,7 @@ class Product extends React.Component {
           <title>{productName || storeName}</title>
           <meta
             name="description"
-            content={description || productDescription}
+            content={description || productDescription || storeDescription}
           />
           <meta name="keywords" content={keywords} />
           <link rel="icon" type="image/png" href={`//${faviconUrl}`} />
@@ -115,7 +115,7 @@ class Product extends React.Component {
           <meta property="og:image:height" content="300" />
           <meta
             property="og:description"
-            content={description || productDescription}
+            content={description || productDescription || storeDescription}
           />
           <meta property="og:site_name" content={storeName} />
           <meta property="og:locale" content={locale} />

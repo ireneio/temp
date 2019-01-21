@@ -64,7 +64,7 @@ class Products extends React.Component {
       <>
         <Head>
           <title>{addressTitle || storeName}</title>
-          <meta name="description" content={description} />
+          <meta name="description" content={description || storeDescription} />
           <meta name="keywords" content={keywords} />
           <link rel="icon" type="image/png" href={`//${faviconUrl}`} />
           <link rel="apple-touch-icon" href={`//${faviconUrl}`} />
@@ -79,7 +79,10 @@ class Products extends React.Component {
           />
           <meta property="og:image:width" content="400" />
           <meta property="og:image:height" content="300" />
-          <meta property="og:description" content={description} />
+          <meta
+            property="og:description"
+            content={description || storeDescription}
+          />
           <meta property="og:site_name" content={storeName} />
           <meta property="og:locale" content={locale} />
           {/* <!-- End - Facebook Open Graph --> */}
