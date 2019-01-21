@@ -1,3 +1,14 @@
+## 0.17.9 (2019-01-21)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#393](https://github.com/meepshop/meep-lerna/pull/393) Fix prettier error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.17.8 (2019-01-21)
 
 #### :bug: Bug Fix
