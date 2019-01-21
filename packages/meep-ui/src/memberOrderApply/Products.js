@@ -76,33 +76,33 @@ export default class Products extends React.PureComponent {
     // TODO: should add in schemas
     return {
       id,
-      orderApplyProducts: products.reduce(
-        (result, { id: productId, quantity, type, ...product }) => {
-          if (type === 'gift') return result;
+      orderApplyProducts: products.reduce((
+        result,
+        { id: productId, quantity, type, ...product },
+      ) => {
+        if (type === 'gift') return result;
 
-          const orderApplyProducts = orderApply.find(
-            ({ orderProductId }) => orderProductId === productId,
-          );
+        const orderApplyProducts = orderApply.find(
+          ({ orderProductId }) => orderProductId === productId,
+        );
 
-          if (orderApplyProducts && [0, 3].includes(orderApplyProducts.status))
-            return result;
-
-          const newQuantity = quantity - (orderApplyProducts?.quantity || 0);
-
-          if (newQuantity === 0) return result;
-
-          result.push({
-            ...product,
-            id: productId,
-            quantity: newQuantity,
-            quantitySelected: newQuantity,
-            reason: '',
-          });
-
+        if (orderApplyProducts && [0, 3].includes(orderApplyProducts.status))
           return result;
-        },
-        [],
-      ),
+
+        const newQuantity = quantity - (orderApplyProducts?.quantity || 0);
+
+        if (newQuantity === 0) return result;
+
+        result.push({
+          ...product,
+          id: productId,
+          quantity: newQuantity,
+          quantitySelected: newQuantity,
+          reason: '',
+        });
+
+        return result;
+      }, []),
     };
   }
 

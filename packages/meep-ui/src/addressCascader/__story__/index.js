@@ -63,10 +63,10 @@ class AddressCascaderWrapper extends React.PureComponent {
 #### Data now
 \`\`\`js
 ${JSON.stringify(
-            { ...getFieldsValue(), 'address-state': addressState },
-            null,
-            2,
-          )}
+  { ...getFieldsValue(), 'address-state': addressState },
+  null,
+  2,
+)}
 \`\`\``}
         />
 

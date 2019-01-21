@@ -35,13 +35,13 @@ Example:
 - React.Fragment -> <>...</>
 - import module from 'antd/lib/module' -> import { module } from 'antd'
 ${Object.keys(options)
-      .map(
-        key =>
-          `- import module from '${
-            options[key].transform
-          }module' -> import { module } from '${key}'`,
-      )
-      .join('\n')}"
+  .map(
+    key =>
+      `- import module from '${
+        options[key].transform
+      }module' -> import { module } from '${key}'`,
+  )
+  .join('\n')}"
 
 if [[ ! -z "$findKeyword" ]]; then
   echo "$info"
