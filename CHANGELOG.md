@@ -1,3 +1,17 @@
+## 0.17.7 (2019-01-21)
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#380](https://github.com/meepshop/meep-lerna/pull/380) 訂單列表分頁問題 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#388](https://github.com/meepshop/meep-lerna/pull/388) call 新的 API (Query.viewer.order) - 補上藍新 ([@HsuTing](https://github.com/HsuTing))
+  - [#390](https://github.com/meepshop/meep-lerna/pull/390) 【個別店家】搜尋結果的商店描述，與後台設定不同 (N346) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.17.6 (2019-01-16)
 
 #### :bug: Bug Fix
