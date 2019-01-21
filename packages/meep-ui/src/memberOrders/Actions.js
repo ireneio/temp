@@ -47,8 +47,8 @@ export const actionsFragment = gql`
   }
 `;
 
-export const actionsOrderApplyFragment = gql`
-  fragment actionsOrderApplyFragment on OrderApply {
+export const actionsOrderApplyListFragment = gql`
+  fragment actionsOrderApplyListFragment on OrderApply {
     orderId
     orderProductId
     status
@@ -131,7 +131,8 @@ export default class Actions extends React.PureComponent {
 
   static propTypes = {
     node: PropTypes.shape({}).isRequired,
-    orderApply: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
+    orderApplyList: PropTypes.arrayOf(PropTypes.shape({}).isRequired)
+      .isRequired,
   };
 
   state = {
@@ -181,7 +182,7 @@ export default class Actions extends React.PureComponent {
         shipmentInfo,
         products,
       },
-      orderApply,
+      orderApplyList,
     } = this.props;
 
     if (![0, 3].includes(status)) return null;
@@ -194,21 +195,22 @@ export default class Actions extends React.PureComponent {
       : PAYMENT_CAN_PAID_LATER[template];
 
     // 判斷是否已有申請退換貨
-    const orderApplyById = orderApply.filter(({ orderId }) => orderId === id);
+    const orderApply = orderApplyList.filter(({ orderId }) => orderId === id);
 
     // 判斷是否有商品可以退換貨
+    // TODO: should add in schemas
     const canOrderApply = products.reduce(
       (result, { id: productId, quantity, type }) => {
         if (type === 'gift') return result;
 
-        const orderProductsApply = orderApplyById.find(
+        const orderApplyProducts = orderApply.find(
           ({ orderProductId }) => orderProductId === productId,
         );
 
-        if (orderProductsApply && [0, 3].includes(orderProductsApply.status))
+        if (orderApplyProducts && [0, 3].includes(orderApplyProducts.status))
           return result;
 
-        return result || quantity - (orderProductsApply?.quantity || 0) > 0;
+        return result || quantity - (orderApplyProducts?.quantity || 0) > 0;
       },
       false,
     );
@@ -257,7 +259,7 @@ export default class Actions extends React.PureComponent {
 
         {shipmentInfo.status !== 3 ? null : (
           <>
-            {orderApplyById.length === 0 ? null : (
+            {orderApply.length === 0 ? null : (
               <Link className={styles.root} href={`/orderApplyList/${id}`}>
                 {transformLocale(LOCALE.APPLY_INFO)}
               </Link>

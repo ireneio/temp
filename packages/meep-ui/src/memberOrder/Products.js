@@ -15,7 +15,7 @@ import styles from './styles/products.less';
 const { enhancer } = contextProvider(['locale', 'currency', 'storeSetting']);
 
 export const productsFragment = gql`
-  fragment productsFragment on productsObjectType {
+  fragment memberOrder_productsFragment on productsObjectType {
     id
     mainImage {
       src
@@ -48,7 +48,7 @@ export default class Products extends React.PureComponent {
     return [
       {
         dataIndex: 'mainImage.src',
-        render: value => <Thumb imgUrl={value} />,
+        render: value => (!value ? null : <Thumb imgUrl={value} />),
       },
       {
         title: transformLocale(LOCALE.PRODUCT_TITLE),

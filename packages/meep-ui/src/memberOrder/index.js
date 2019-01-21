@@ -36,7 +36,7 @@ class MemberOrder extends React.PureComponent {
       order: {
         orderNo,
         createdOn,
-        categories: [{ products }],
+        products,
         environment: { sourcePage },
         id,
         messages,
@@ -47,15 +47,15 @@ class MemberOrder extends React.PureComponent {
     return (
       <div className={styles.root} style={{ color: colors[3] }}>
         <div className={styles.wrapper}>
-          <div className={styles.subTitle}>
-            <span>{`${transformLocale(LOCALE.ORDER_NO)}${orderNo}`}</span>
+          <h1>
+            <font>{`${transformLocale(LOCALE.ORDER_NO)}${orderNo}`}</font>
 
-            <span>
+            <font>
               <font>{transformLocale(LOCALE.CREATED_ON)}</font>
 
               {moment.unix(createdOn).format('YYYY/MM/DD')}
-            </span>
-          </div>
+            </font>
+          </h1>
 
           <Products products={filter(productsFragment, products)} />
 
@@ -72,7 +72,7 @@ class MemberOrder extends React.PureComponent {
           dangerouslySetInnerHTML={{
             __html: `
               @media ${styles.phoneMedia} {
-                .${styles.subTitle} > span:last-child {
+                .${styles.root} h1 > font:last-child {
                   color: ${transformColor(colors[3]).alpha(0.5)};
                 }
               }
@@ -84,7 +84,7 @@ class MemberOrder extends React.PureComponent {
   }
 }
 
-export default withRouter(({ router }) => (
+export default withRouter(({ router: { query: { orderId } } }) => (
   <Query
     query={gql`
       query getMemberOrder($orderId: ID!) {
@@ -92,10 +92,8 @@ export default withRouter(({ router }) => (
           order(orderId: $orderId) {
             orderNo
             createdOn
-            categories {
-              products {
-                ...productsFragment
-              }
+            products {
+              ...memberOrder_productsFragment
             }
             environment {
               sourcePage
@@ -114,15 +112,17 @@ export default withRouter(({ router }) => (
       ${blocksFragment}
       ${qaFragment}
     `}
-    variables={router.query}
+    variables={{ orderId }}
   >
     {({ loading, error, data }) => {
-      if (loading) return <Spin indicator={<Icon type="loading" spin />} />;
-      if (error) return <NotFound />;
+      if (loading || error)
+        return <Spin indicator={<Icon type="loading" spin />} />;
 
       const {
         viewer: { order },
       } = data;
+
+      if (!order) return <NotFound />;
 
       return <MemberOrder order={order} />;
     }}

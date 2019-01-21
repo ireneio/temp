@@ -8,6 +8,16 @@
       border-top: 1px solid #e8e8e8;
     }
 
+    :global(.ant-table-thead) > tr > th,
+    :global(.ant-table-tbody) > tr > td {
+      &:nth-child(4),
+      &:nth-child(5),
+      &:nth-child(6) {
+        word-break: keep-all;
+        white-space: nowrap;
+      }
+    }
+
     :global(.ant-table-thead) {
       & > tr > th {
         background: transparent;
@@ -19,27 +29,9 @@
       }
     }
 
-    :global(.ant-table-thead > tr > th),
-    :global(.ant-table-tbody > tr > td) {
-      &:nth-child(4),
-      &:nth-child(5),
-      &:nth-child(6) {
-        word-break: keep-all;
-        white-space: nowrap;
-      }
-    }
-
-    :global(.ant-table-tbody > tr > td):nth-child(2) > div {
-      display: none;
-    }
-
-    @media @PHONE_MEDIA {
-      :global(.ant-table-tbody) > tr > td {
+    :global(.ant-table-tbody) > tr > td {
+      @media @PHONE_MEDIA {
         padding: 10px;
-
-        &:nth-child(2) > div {
-          display: block;
-        }
 
         &:nth-child(3),
         &:nth-child(4),
@@ -47,8 +39,18 @@
           display: none;
         }
       }
+    }
 
-      :global(.ant-table-body) > table > colgroup > col {
+    :global(.ant-table-tbody) > tr > td:nth-child(2) > div {
+      display: none;
+
+      @media @PHONE_MEDIA {
+        display: block;
+      }
+    }
+
+    :global(.ant-table-body) > table > colgroup > col {
+      @media @PHONE_MEDIA {
         width: initial !important;
         min-width: initial !important;
       }

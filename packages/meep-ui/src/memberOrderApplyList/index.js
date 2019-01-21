@@ -1,71 +1,135 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import radium, { StyleRoot } from 'radium';
+import { Query } from 'react-apollo';
+import { gql } from 'apollo-boost';
+import { filter } from 'graphql-anywhere';
+import { withRouter } from 'next/router';
+import { Spin, Icon } from 'antd';
 import moment from 'moment';
 
-import { enhancer } from 'layout/DecoratorsRoot';
-import { COLOR_TYPE } from 'constants/propTypes';
+import { contextProvider } from 'context';
 
-import ApplyList from './ApplyList';
-import * as styles from './styles';
-import * as locale from './locale';
+import OrderApply, {
+  orderApplyFragment,
+  orderApplyProductFragment,
+} from './OrderApply';
+import styles from './styles/index.less';
+import * as LOCALE from './locale';
+
+const { enhancer } = contextProvider('locale');
 
 @enhancer
-@radium
-export default class MemberOrderApplyList extends React.PureComponent {
+class MemberOrderApplyList extends React.PureComponent {
   static propTypes = {
-    colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired,
-    orderDetails: PropTypes.shape({
-      orderNo: PropTypes.string.isRequired,
-      createdOn: PropTypes.number.isRequired,
-      categories: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    }).isRequired,
-    orderApply: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  };
-
-  handleApplyList = () => {
-    const { orderDetails, orderApply } = this.props;
-    const { products } = orderDetails.categories[0];
-
-    const applyList = {};
-    orderApply.forEach(order => {
-      const detail = products.find(
-        product => product.id === order.orderProductId,
-      );
-      applyList[order.returnId] = applyList[order.returnId] || [];
-      applyList[order.returnId].push({
-        orderApply: order,
-        orderDetails: detail,
-      });
-    });
-    return applyList;
+    order: PropTypes.shape({}).isRequired,
+    orderApplyData: PropTypes.shape({}).isRequired,
   };
 
   render() {
-    const { colors, transformLocale, orderDetails } = this.props;
-    const { orderNo, createdOn } = orderDetails;
-    const applyList = this.handleApplyList();
+    const {
+      /** context */
+      transformLocale,
+
+      /** props */
+      order: { orderNo, createdOn },
+      orderApplyData,
+    } = this.props;
 
     return (
-      <div style={styles.root}>
-        <StyleRoot style={styles.container}>
-          <div style={styles.banners({ borderColor: colors[5] })}>
-            <div>
-              {transformLocale(locale.ORDER_NO)} ： {orderNo}
-            </div>
-            <div>
-              <span style={styles.orderDate}>
-                {transformLocale(locale.ORDER_DATE)} ：
-              </span>
+      <div className={styles.root}>
+        <div>
+          <h1>
+            <font>
+              {transformLocale(LOCALE.ORDER_NO)}
+              {orderNo}
+            </font>
+
+            <font>
+              <span>{transformLocale(LOCALE.ORDER_DATE)}</span>
+
               {moment.unix(createdOn).format('YYYY/MM/DD')}
-            </div>
-          </div>
-          {Object.keys(applyList).map(key => (
-            <ApplyList applyList={applyList[key]} key={key} />
+            </font>
+          </h1>
+          {Object.keys(orderApplyData).map(key => (
+            <OrderApply key={key} applyList={orderApplyData[key]} />
           ))}
-        </StyleRoot>
+        </div>
       </div>
     );
   }
 }
+
+export default withRouter(({ router: { query: { orderId } } }) => (
+  <Query
+    query={gql`
+      query getMemberOrderApplyList($orderId: ID!) {
+        viewer {
+          order(orderId: $orderId) {
+            id
+            orderNo
+            createdOn
+            products {
+              id
+              ...orderApplyProductFragment
+            }
+          }
+        }
+
+        # TODO: use new api
+        getOrderApplyList(
+          search: { size: 100, sort: [{ field: "createdOn", order: "desc" }] }
+        ) {
+          orderApplyList: data {
+            orderId
+            orderProductId
+            returnId
+            ...orderApplyFragment
+          }
+        }
+      }
+      ${orderApplyFragment}
+      ${orderApplyProductFragment}
+    `}
+    variables={{
+      orderId,
+    }}
+  >
+    {({ loading, error, data }) => {
+      if (loading || error)
+        return <Spin indicator={<Icon type="loading" spin />} />;
+
+      const {
+        viewer: {
+          order: { id, products, ...order },
+        },
+        getOrderApplyList: { orderApplyList },
+      } = data;
+
+      return (
+        <MemberOrderApplyList
+          order={order}
+          orderApplyData={orderApplyList.reduce(
+            (result, { orderProductId, returnId, ...orderApply }) => {
+              if (id !== orderApply.orderId) return result;
+
+              // eslint-disable-next-line no-param-reassign
+              if (!result[returnId]) result[returnId] = [];
+
+              result[returnId].push({
+                orderApply: filter(orderApplyFragment, orderApply),
+                product: filter(
+                  orderApplyProductFragment,
+                  products.find(product => product.id === orderProductId) ||
+                    null,
+                ),
+              });
+
+              return result;
+            },
+            {},
+          )}
+        />
+      );
+    }}
+  </Query>
+));

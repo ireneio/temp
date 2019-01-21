@@ -117,7 +117,14 @@ export default class Qa extends React.PureComponent {
 
     return (
       <div className={styles.root}>
-        <h1>{transformLocale(LOCALE.QA)}</h1>
+        <h3
+          style={{
+            borderTop: `1px solid ${colors[5]}`,
+            borderBottom: `1px solid ${colors[5]}`,
+          }}
+        >
+          {transformLocale(LOCALE.QA)}
+        </h3>
 
         <div className={styles.messages}>
           {messages.map(({ bearer, text, createdAt }, index) => (
@@ -145,6 +152,9 @@ export default class Qa extends React.PureComponent {
 
           <textarea
             ref={this.textareaRef}
+            style={{
+              border: `1px solid ${colors[5]}`,
+            }}
             placeholder={transformLocale(LOCALE.PLEASE_WRITE_MESSAGE)}
             value={newMessage}
             onChange={({ target: { value } }) =>
@@ -165,6 +175,10 @@ export default class Qa extends React.PureComponent {
           >
             {addOrderMessage => (
               <Button
+                style={{
+                  color: colors[3],
+                  border: `1px solid ${colors[3]}`,
+                }}
                 onClick={() =>
                   addOrderMessage({
                     variables: {
@@ -182,27 +196,6 @@ export default class Qa extends React.PureComponent {
             )}
           </Mutation>
         </div>
-
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-              .${styles.root} h1 {
-                border-top: 1px solid ${colors[5]};
-                border-bottom: 1px solid ${colors[5]};
-              }
-
-              .${styles.root} textarea {
-                border: 1px solid ${colors[5]};
-              }
-
-              .${styles.root} .ant-btn:not([disabled]),
-              .${styles.root} .ant-btn:not([disabled]):hover {
-                color: ${colors[3]};
-                border: 1px solid ${colors[3]};
-              }
-            `,
-          }}
-        />
       </div>
     );
   }

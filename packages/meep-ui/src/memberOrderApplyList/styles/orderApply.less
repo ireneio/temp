@@ -1,0 +1,62 @@
+@import '../../constants/styles.less';
+
+.root {
+  &:not(:last-child) {
+    margin: 0px 0px 80px;
+
+    @media @PHONE_MEDIA {
+      margin: 0px 0px 40px;
+    }
+  }
+
+  .receiverInfo {
+    margin: 0px 0px 30px;
+
+    h4 {
+      margin: 0px;
+      font-size: 16px;
+      font-weight: normal;
+      line-height: 32px;
+    }
+  }
+
+  :global(.ant-table) {
+    color: inherit;
+
+    :global(.ant-table-thead) > tr > th {
+      padding: 17px 10px;
+      background: transparent;
+      color: inherit;
+
+      @media @PHONE_MEDIA {
+        display: none;
+      }
+    }
+
+    :global(.ant-table-tbody) > tr > td {
+      padding: 30px 10px;
+
+      @media @PHONE_MEDIA {
+        &:nth-child(3) {
+          display: none;
+        }
+      }
+    }
+
+    .mobileShow {
+      display: none;
+
+      @media @PHONE_MEDIA {
+        display: block;
+      }
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      font-size: 14px;
+      line-height: 20px;
+      white-space: nowrap;
+    }
+  }
+}

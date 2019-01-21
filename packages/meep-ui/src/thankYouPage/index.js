@@ -89,7 +89,7 @@ class ThankYouPage extends React.PureComponent {
   }
 }
 
-export default withRouter(({ router }) => (
+export default withRouter(({ router: { query: { orderId } } }) => (
   <Query
     query={gql`
       query getOrderInThankYouPage($orderId: ID!) {
@@ -100,7 +100,9 @@ export default withRouter(({ router }) => (
         }
       }
     `}
-    variables={router.query}
+    variables={{
+      orderId,
+    }}
   >
     {({ loading, data }) => {
       if (loading) return <Spin indicator={<Icon type="loading" spin />} />;

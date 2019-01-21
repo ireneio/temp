@@ -1,19 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+
+import MemberOrderApply from '@meepshop/meep-ui/lib/memberOrderApply';
+
 import * as Utils from 'utils';
-import * as Selectors from 'selectors';
-import * as Template from 'template';
 import { Container, TrackingCodeHead, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
-import MemberOrderApply from '@meepshop/meep-ui/lib/memberOrderApply';
 import { Router } from 'server/routes';
+import * as Selectors from 'selectors';
+import * as Template from 'template';
 import * as Actions from 'ducks/actions';
 import * as TITLE from 'locales';
 
-class OrderRefund extends Component {
+class OrderRefund extends React.Component {
   static getInitialProps = async context => {
     const {
       isServer,
@@ -44,10 +46,6 @@ class OrderRefund extends Component {
     }).isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,
-    orderDetails: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired,
-    orderApply: PropTypes.arrayOf(PropTypes.object).isRequired,
     fbAppId: PropTypes.string.isRequired,
   };
 
@@ -82,8 +80,6 @@ class OrderRefund extends Component {
       pageAdTrackIDs,
       colors,
       title,
-      orderDetails,
-      orderApply,
       fbAppId,
     } = this.props;
 
@@ -103,11 +99,7 @@ class OrderRefund extends Component {
         />
         <Container {...this.props}>
           <MemberHeader title={title} goBackToOrders colors={colors}>
-            <MemberOrderApply
-              type="return"
-              orderDetails={orderDetails}
-              orderApply={orderApply}
-            />
+            <MemberOrderApply />
           </MemberHeader>
         </Container>
       </>
@@ -119,24 +111,6 @@ const mapStateToProps = (state, props) => {
   /* Handle error */
   const error = Utils.getStateError(state);
   if (error) return { error };
-
-  const getOrderId = (_, _props) => _props.orderId;
-  const getOrders = _state => Utils.getIn(['memberReducer', 'orders'])(_state);
-  const getOrderApplyList = _state =>
-    Utils.getIn(['memberReducer', 'orderApply'])(_state);
-  const getOrderDetails = createSelector(
-    [getOrderId, getOrders],
-    (orderId, orders) => orders.find(order => order.id === orderId),
-  );
-  const getOrderApply = createSelector(
-    [getOrderId, getOrderApplyList],
-    (orderId, orderApplyList) =>
-      orderApplyList.reduce(
-        (applyList, apply) =>
-          apply.orderId === orderId ? applyList.concat([apply]) : applyList,
-        [],
-      ),
-  );
 
   const getOrderApplyListPage = () => ({
     id: 'page-member-order-apply',
@@ -185,8 +159,6 @@ const mapStateToProps = (state, props) => {
     page: getPage(state, props),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
     title: TITLE.ORDER_REFUND[locale],
-    orderDetails: getOrderDetails(state, props),
-    orderApply: getOrderApply(state, props),
     fbAppId:
       Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };

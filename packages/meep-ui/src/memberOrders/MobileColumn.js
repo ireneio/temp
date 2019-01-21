@@ -7,7 +7,10 @@ import { Drawer, Icon } from 'antd';
 import { contextProvider } from 'context';
 import Link from 'link';
 
-import Actions, { actionsFragment, actionsOrderApplyFragment } from './Actions';
+import Actions, {
+  actionsFragment,
+  actionsOrderApplyListFragment,
+} from './Actions';
 import * as LOCALE from './locale';
 import styles from './styles/mobileColumn.less';
 
@@ -17,7 +20,8 @@ const { enhancer } = contextProvider('locale');
 export default class MobileColumn extends React.PureComponent {
   static propTypes = {
     node: PropTypes.shape({}).isRequired,
-    orderApply: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
+    orderApplyList: PropTypes.arrayOf(PropTypes.shape({}).isRequired)
+      .isRequired,
   };
 
   state = {
@@ -31,7 +35,7 @@ export default class MobileColumn extends React.PureComponent {
 
       /** props */
       node,
-      orderApply,
+      orderApplyList,
     } = this.props;
     const { drawerVisible } = this.state;
     const { createdOn, orderNo, id, paymentInfo, shipmentInfo, status } = node;
@@ -86,7 +90,10 @@ export default class MobileColumn extends React.PureComponent {
 
           <Actions
             node={filter(actionsFragment, node)}
-            orderApply={filter(actionsOrderApplyFragment, orderApply)}
+            orderApplyList={filter(
+              actionsOrderApplyListFragment,
+              orderApplyList,
+            )}
           />
         </Drawer>
       </div>

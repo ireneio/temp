@@ -1,3 +1,5 @@
+import client from 'apollo/initApollo';
+
 export default async function({ email, password }) {
   try {
     const res = await fetch('/signin', {
@@ -9,7 +11,10 @@ export default async function({ email, password }) {
       body: JSON.stringify({ email, password }),
     });
     let data;
+
     if (res.status === 200) {
+      // FIXME: should signout with apollo
+      client().clearStore();
       data = await res.json();
     } else {
       throw new Error(`login.api => ${res.status}: ${res.statusText}`);

@@ -31,7 +31,7 @@ module.exports = routes
   // 訂單管理 - 換貨申請
   .add('orderExchange', '/orderExchange/:orderId', 'orderExchange')
   // 訂單管理 - 匯款通知
-  .add('payNotify', '/payNotify/:orderId', 'payNotify')
+  .add('payNotify', '/payNotify/:orderId', 'orderPayNotify')
   // 訂單管理 - 訂單問答
   .add('orderQA', '/orderQA/:orderId', 'orderQA')
 

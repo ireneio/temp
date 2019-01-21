@@ -13,7 +13,7 @@ import { Router } from 'server/routes';
 import * as Utils from 'utils';
 import configureStore from 'ducks/store';
 import * as Actions from 'ducks/actions';
-import withApollo from 'utils/withApollo';
+import withApollo from 'apollo/withApollo';
 
 import '../static/global.less';
 import '../static/nprogress.less';

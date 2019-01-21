@@ -1,19 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+
+import MemberOrderPayNotify from '@meepshop/meep-ui/lib/memberOrderPayNotify';
+
+import { Container, TrackingCodeHead, Error } from 'components';
+import MemberHeader from 'components/MemberHeader';
 import * as Utils from 'utils';
 import * as Selectors from 'selectors';
 import * as Template from 'template';
-import { Container, TrackingCodeHead, Error } from 'components';
-import MemberHeader from 'components/MemberHeader';
-import MemberOrderPayNotification from '@meepshop/meep-ui/lib/memberOrderPayNotification';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
 import * as TITLE from 'locales';
 
-class PayNotify extends Component {
+class OrderPayNotify extends React.Component {
   static getInitialProps = async context => {
     const {
       isServer,
@@ -44,9 +46,6 @@ class PayNotify extends Component {
     }).isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,
-    orderDetails: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired,
     fbAppId: PropTypes.string.isRequired,
   };
 
@@ -81,7 +80,6 @@ class PayNotify extends Component {
       pageAdTrackIDs,
       colors,
       title,
-      orderDetails,
       fbAppId,
     } = this.props;
 
@@ -101,7 +99,7 @@ class PayNotify extends Component {
         />
         <Container {...this.props}>
           <MemberHeader title={title} goBackToOrders colors={colors}>
-            <MemberOrderPayNotification orderDetails={orderDetails} />
+            <MemberOrderPayNotify />
           </MemberHeader>
         </Container>
       </>
@@ -113,13 +111,6 @@ const mapStateToProps = (state, props) => {
   /* Handle error */
   const error = Utils.getStateError(state);
   if (error) return { error };
-
-  const getOrderId = (_, _props) => _props.orderId;
-  const getOrders = _state => Utils.getIn(['memberReducer', 'orders'])(_state);
-  const getOrderDetails = createSelector(
-    [getOrderId, getOrders],
-    (orderId, orders) => orders.find(order => order.id === orderId),
-  );
 
   const getPayNotifyPage = () => ({
     id: 'page-member-order-pay-noti',
@@ -168,10 +159,9 @@ const mapStateToProps = (state, props) => {
     page: getPage(state, props),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
     title: TITLE.PAY_NOTIFY[locale],
-    orderDetails: getOrderDetails(state, props),
     fbAppId:
       Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 
-export default connect(mapStateToProps)(PayNotify);
+export default connect(mapStateToProps)(OrderPayNotify);

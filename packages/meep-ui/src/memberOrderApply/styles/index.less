@@ -1,0 +1,42 @@
+@import '../../constants/styles.less';
+@value phoneMedia from "../../constants/styles.less";
+
+.root {
+  padding: 40px;
+
+  @media @PHONE_MEDIA {
+    padding: 40px 0px;
+  }
+
+  h1 {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 0px 30px;
+    font-size: 16px;
+
+    @media @PHONE_MEDIA {
+      padding: 0px 15px;
+
+      & > font:last-child > font {
+        display: none;
+      }
+    }
+  }
+
+  .replaceInfo {
+    margin: 30px 0px;
+    padding: 0px 30px;
+    font-size: 16px;
+  }
+
+  .buttonRoot {
+    margin: 15px 0px 0px;
+    text-align: center;
+
+    :global(.ant-btn) {
+      margin: 5px;
+      height: 45px;
+      background: transparent;
+    }
+  }
+}

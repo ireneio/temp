@@ -1,11 +1,3 @@
-export const ORDER_APPLY_LIST = {
-  zh_TW: '退換貨查詢',
-  en_US: 'Return / Replacement',
-  ja_JP: '返品交換確認',
-  vi_VN: 'Tư vấn đổi trả',
-  TODO_LOCALE: true,
-};
-
 export const ORDER_NO = {
   zh_TW: '訂單編號：',
   en_US: 'Order Number: ',
@@ -29,6 +21,23 @@ export const APPLY = {
   vi_VN: 'Dăng ký: ',
   TODO_LOCALE: true,
 };
+
+export const APPLICATION_TYPE = type =>
+  type === 'return'
+    ? {
+        zh_TW: '退貨',
+        en_US: 'Return',
+        ja_JP: '返品',
+        vi_VN: 'Hoàn trả',
+        TODO_LOCALE: true,
+      }
+    : {
+        zh_TW: '換貨',
+        en_US: 'Replacement',
+        ja_JP: '交換',
+        vi_VN: 'Đổi hàng',
+        TODO_LOCALE: true,
+      };
 
 export const ORDER_APPLY_DATE = {
   zh_TW: '申請日：',
@@ -60,27 +69,6 @@ export const ADDRESS = {
   ja_JP: '住所：',
   vi_VN: 'Địa Chỉ: ',
   TODO_LOCALE: true,
-};
-
-export const APPLICATION_TYPE = type => {
-  switch (type) {
-    case 'return':
-      return {
-        zh_TW: '退貨',
-        en_US: 'Return',
-        ja_JP: '返品',
-        vi_VN: 'Hoàn trả',
-        TODO_LOCALE: true,
-      };
-    default:
-      return {
-        zh_TW: '換貨',
-        en_US: 'Replacement',
-        ja_JP: '交換',
-        vi_VN: 'Đổi hàng',
-        TODO_LOCALE: true,
-      };
-  }
 };
 
 export const PRODUCT_NAME = {
@@ -127,6 +115,7 @@ export const ORDER_APPLY_STATUS = (type, status) => {
           TODO_LOCALE: true,
         };
       }
+
       return {
         zh_TW: '此商品退貨失敗，如有任何疑問請詢問客服',
         en_US:
@@ -137,6 +126,7 @@ export const ORDER_APPLY_STATUS = (type, status) => {
           'Sản phẩm này hoàn trả thất bại, nếu có thăc mắc xin liên hệ bên tư vấn khách hàng',
         TODO_LOCALE: true,
       };
+
     default:
       if (status === 1) {
         return {
@@ -147,6 +137,7 @@ export const ORDER_APPLY_STATUS = (type, status) => {
           TODO_LOCALE: true,
         };
       }
+
       return {
         zh_TW: '此商品換貨失敗，如有任何疑問請詢問客服',
         en_US:
@@ -170,6 +161,7 @@ export const APPLICATIN_STATUS = status => {
         vi_VN: 'Vận chuyển',
         TODO_LOCALE: true,
       };
+
     case 11:
       return {
         zh_TW: '取件',
@@ -178,6 +170,7 @@ export const APPLICATIN_STATUS = status => {
         vi_VN: 'Nhận hàng',
         TODO_LOCALE: true,
       };
+
     case 12:
       return {
         zh_TW: '確認',
@@ -186,6 +179,7 @@ export const APPLICATIN_STATUS = status => {
         vi_VN: 'Xác nhận',
         TODO_LOCALE: true,
       };
+
     case 13:
       return {
         zh_TW: '異常',
@@ -194,6 +188,7 @@ export const APPLICATIN_STATUS = status => {
         vi_VN: 'Bất thường',
         TODO_LOCALE: true,
       };
+
     case 20:
       return {
         zh_TW: '退款處理',
@@ -202,6 +197,7 @@ export const APPLICATIN_STATUS = status => {
         vi_VN: 'Xử lý hoàn tiền',
         TODO_LOCALE: true,
       };
+
     case 21:
       return {
         zh_TW: '退款完成',
@@ -210,6 +206,7 @@ export const APPLICATIN_STATUS = status => {
         vi_VN: 'Hoàn thành hoàn tiền',
         TODO_LOCALE: true,
       };
+
     case 22:
       return {
         zh_TW: '退款異常',
@@ -218,6 +215,7 @@ export const APPLICATIN_STATUS = status => {
         vi_VN: 'Sự cố hoàn tiền',
         TODO_LOCALE: true,
       };
+
     default:
       return {
         zh_TW: '等待確認',

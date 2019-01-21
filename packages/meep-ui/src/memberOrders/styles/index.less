@@ -12,44 +12,44 @@
   :global(.ant-table) {
     color: inherit;
     font-size: 16px;
-  }
 
-  :global(.ant-table-thead) {
-    & > tr > th {
+    :global(.ant-table-thead) {
+      & > tr > th {
+        padding: 15px;
+        background: transparent;
+        color: inherit;
+
+        &:last-child {
+          display: none;
+        }
+      }
+
+      @media @PHONE_MEDIA {
+        display: none;
+      }
+    }
+
+    :global(.ant-table-tbody) > tr > td {
       padding: 15px;
-      background: transparent;
-      color: inherit;
+
+      @media @PHONE_MEDIA {
+        &:not(:last-child) {
+          display: none;
+        }
+      }
 
       &:last-child {
         display: none;
-      }
-    }
 
-    @media @PHONE_MEDIA {
-      display: none;
-    }
-  }
-
-  :global(.ant-table-tbody) > tr > td {
-    padding: 15px;
-
-    @media @PHONE_MEDIA {
-      &:not(:last-child) {
-        display: none;
-      }
-    }
-
-    &:last-child {
-      display: none;
-
-      @media @PHONE_MEDIA {
-        display: flex;
+        @media @PHONE_MEDIA {
+          display: flex;
+        }
       }
     }
   }
 
   .link {
-    text-decoration: underline;
+    text-decoration: underline !important;
   }
 
   .pagination {

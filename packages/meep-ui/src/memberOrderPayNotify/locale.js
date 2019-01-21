@@ -1,11 +1,3 @@
-export const PAY_NOTIFICATION = {
-  zh_TW: '匯款通知',
-  en_US: 'Payment Notification',
-  ja_JP: '振込通知',
-  vi_VN: 'Thông báo chuyển tiền',
-  TODO_LOCALE: true,
-};
-
 export const ORDER_NO = {
   zh_TW: '訂單編號：',
   en_US: 'Order Number: ',
@@ -19,14 +11,6 @@ export const EDIT_AGAIN = {
   en_US: 'Edit',
   ja_JP: '再編集',
   vi_VN: 'Chỉnh sửa lần nữa',
-  TODO_LOCALE: true,
-};
-
-export const RETURN = {
-  zh_TW: '返回',
-  en_US: 'Discard',
-  ja_JP: '戻る',
-  vi_VN: 'Phản Hồi',
   TODO_LOCALE: true,
 };
 

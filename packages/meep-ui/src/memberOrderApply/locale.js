@@ -1,29 +1,3 @@
-import { warning } from 'fbjs';
-
-export const TITLE = (type, step) => {
-  switch (type) {
-    case 'return':
-      return {
-        zh_TW: `退貨申請${step ? '確認' : ''}`,
-        en_US: 'Return',
-        ja_JP: '返品申込',
-        vi_VN: 'Đăng ký hoàn trả',
-        TODO_LOCALE: true,
-      };
-    case 'replace':
-      return {
-        zh_TW: `換貨申請${step ? '確認' : ''}`,
-        en_US: 'Replacement',
-        ja_JP: '交換申込',
-        vi_VN: 'Đăng ký thay thế',
-        TODO_LOCALE: true,
-      };
-    default:
-      warning(process.env.NODE_ENV === 'production', `Uknown [type] ${type}`);
-      return null;
-  }
-};
-
 export const ORDER_NO = {
   zh_TW: '訂單編號：',
   en_US: 'Order Number: ',
@@ -80,11 +54,51 @@ export const PRODUCT_SUBTOTAL = {
   TODO_LOCALE: true,
 };
 
-export const REASON = (type, input) => ({
-  zh_TW: `${input ? '輸入' : ''}${type === 'replace' ? '換貨' : '退貨'}原因`,
+export const REASON = type => ({
+  zh_TW: `${type === 'orderExchange' ? '換貨' : '退貨'}原因`,
   en_US: 'Description',
   ja_JP: '理由',
   vi_VN: 'Nguyên nhân',
+  TODO_LOCALE: true,
+});
+
+export const INPUT = {
+  zh_TW: '輸入',
+  en_US: 'Input',
+  ja_JP: '',
+  vi_VN: '',
+  TODO_LOCALE: true,
+};
+
+export const RECEDE = {
+  zh_TW: '返回',
+  en_US: 'Back',
+  ja_JP: '戻る',
+  vi_VN: 'Phản Hồi',
+  TODO_LOCALE: true,
+};
+
+export const PROCEED = checking => ({
+  zh_TW: checking ? '確認' : '下一步',
+  en_US: 'Next',
+  ja_JP: '次へ',
+  vi_VN: 'Bước sau',
+  TODO_LOCALE: true,
+});
+
+export const WARNING = type => ({
+  zh_TW: `請選取至少一項商品${
+    type === 'orderExchange' ? '並填寫完整收件人資訊' : '。'
+  }`,
+  en_US: `Please select item${
+    type === 'orderExchange' ? ' and enter recipient info' : '.'
+  }`,
+  ja_JP: `商品を一つ以上お選びください${
+    type === 'orderExchange' ? '、受取人情報をすべてご記入ください' : '。'
+  }`,
+  vi_VN: `Xin chọn ít nhất một mục sản phẩm${
+    type === 'orderExchange' ? ' Và điền đầy đủ thông tin người nhận' : '.'
+  }`,
   TODO_LOCALE: true,
 });
 
@@ -119,35 +133,3 @@ export const RECIPIENT_ADDRESS = {
   vi_VN: 'Địa Chỉ',
   TODO_LOCALE: true,
 };
-
-export const RECEDE = {
-  zh_TW: '返回',
-  en_US: 'Back',
-  ja_JP: '戻る',
-  vi_VN: 'Phản Hồi',
-  TODO_LOCALE: true,
-};
-
-export const PROCEED = step => ({
-  zh_TW: step ? '確認' : '下一步',
-  en_US: 'Next',
-  ja_JP: '次へ',
-  vi_VN: 'Bước sau',
-  TODO_LOCALE: true,
-});
-
-export const WARNING = type => ({
-  zh_TW: `請選取至少一項商品${
-    type === 'replace' ? '並填寫完整收件人資訊' : '。'
-  }`,
-  en_US: `Please select item${
-    type === 'replace' ? ' and enter recipient info' : '.'
-  }`,
-  ja_JP: `商品を一つ以上お選びください${
-    type === 'replace' ? '、受取人情報をすべてご記入ください' : '。'
-  }`,
-  vi_VN: `Xin chọn ít nhất một mục sản phẩm${
-    type === 'replace' ? ' Và điền đầy đủ thông tin người nhận' : '.'
-  }`,
-  TODO_LOCALE: true,
-});

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import { filter } from 'graphql-anywhere';
-import { Table, Icon } from 'antd';
+import { Spin, Icon, Table } from 'antd';
 import moment from 'moment';
 import memoizeOne from 'memoize-one';
 import transformColor from 'color';
@@ -12,13 +12,17 @@ import { emptyFunction } from 'fbjs';
 import { contextProvider } from 'context';
 import Link from 'link';
 
-import Actions, { actionsFragment, actionsOrderApplyFragment } from './Actions';
+import Actions, {
+  actionsFragment,
+  actionsOrderApplyListFragment,
+} from './Actions';
 import MobileColumn from './MobileColumn';
 import { MAX_ITEMS } from './constants';
 import * as LOCALE from './locale';
 import styles from './styles/index.less';
 
 const { enhancer } = contextProvider(['storeSetting', 'locale']);
+let cacheCurrent = 0;
 
 @enhancer
 class MemberOrders extends React.PureComponent {
@@ -26,12 +30,13 @@ class MemberOrders extends React.PureComponent {
     orders: PropTypes.shape({
       edges: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
     }).isRequired,
-    orderApply: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
+    orderApplyList: PropTypes.arrayOf(PropTypes.shape({}).isRequired)
+      .isRequired,
     fetchMore: PropTypes.func.isRequired,
   };
 
   state = {
-    current: 0,
+    current: cacheCurrent,
     loading: false,
   };
 
@@ -41,7 +46,7 @@ class MemberOrders extends React.PureComponent {
       transformLocale,
 
       /** props */
-      orderApply,
+      orderApplyList,
     } = this.props;
 
     return [
@@ -85,14 +90,19 @@ class MemberOrders extends React.PureComponent {
         render: value => (
           <Actions
             node={filter(actionsFragment, value)}
-            orderApply={filter(actionsOrderApplyFragment, orderApply)}
+            orderApplyList={filter(
+              actionsOrderApplyListFragment,
+              orderApplyList,
+            )}
           />
         ),
       },
       {
         key: 'mobile',
         dataIndex: 'node',
-        render: value => <MobileColumn node={value} orderApply={orderApply} />,
+        render: value => (
+          <MobileColumn node={value} orderApplyList={orderApplyList} />
+        ),
       },
     ];
   });
@@ -114,6 +124,7 @@ class MemberOrders extends React.PureComponent {
 
     if (loading) return;
 
+    cacheCurrent = current - 1;
     this.setState({ current: current - 1 });
   };
 
@@ -130,6 +141,7 @@ class MemberOrders extends React.PureComponent {
     if (loading) return;
 
     if (Math.ceil(edges.length / MAX_ITEMS) - 1 > current) {
+      cacheCurrent = current + 1;
       this.setState({ current: current + 1 });
       return;
     }
@@ -142,6 +154,7 @@ class MemberOrders extends React.PureComponent {
         fetchMore({
           variables: {
             cursor: endCursor,
+            first: MAX_ITEMS,
           },
           updateQuery: (
             previousResult,
@@ -152,8 +165,10 @@ class MemberOrders extends React.PureComponent {
                 },
               },
             },
-          ) =>
-            edges.length
+          ) => {
+            cacheCurrent = current + 1;
+
+            return edges.length > 0
               ? {
                   ...previousResult,
                   viewer: {
@@ -169,7 +184,8 @@ class MemberOrders extends React.PureComponent {
                     },
                   },
                 }
-              : previousResult,
+              : previousResult;
+          },
         }),
     );
   };
@@ -234,69 +250,79 @@ class MemberOrders extends React.PureComponent {
   }
 }
 
+const query = gql`
+  query getMemberOrders($first: PositiveInt!, $cursor: String) {
+    viewer {
+      orders(first: $first, after: $cursor) {
+        edges {
+          node {
+            id
+            createdOn
+            orderNo
+            paymentInfo {
+              status
+            }
+            shipmentInfo {
+              status
+            }
+            status
+            ...actionsFragment
+          }
+        }
+        pageInfo {
+          endCursor
+        }
+        total
+      }
+    }
+
+    # TODO: use new api
+    getOrderApplyList(
+      search: { size: 100, sort: [{ field: "createdOn", order: "desc" }] }
+    ) {
+      orderApplyList: data {
+        ...actionsOrderApplyListFragment
+      }
+    }
+  }
+  ${actionsFragment}
+  ${actionsOrderApplyListFragment}
+`;
+
 export default () => (
   <Query
-    query={gql`
-      query getMemberOrders($cursor: String) {
-        viewer {
-          orders(first: ${MAX_ITEMS}, after: $cursor) {
-            edges {
-              node {
-                id
-                createdOn
-                orderNo
-                paymentInfo {
-                  status
-                }
-                shipmentInfo {
-                  status
-                }
-                status
-                ...actionsFragment
-              }
-            }
-            pageInfo {
-              endCursor
-            }
-            total
-          }
-        }
-
-        # TODO: use new api
-        getOrderApplyList(search: {
-          size: 100
-          sort: [
-            {
-              field: "createdOn"
-              order: "desc"
-            },
-          ]
-        }) {
-          orderApply: data {
-            ...actionsOrderApplyFragment
-          }
-        }
-      }
-      ${actionsFragment}
-      ${actionsOrderApplyFragment}
-    `}
+    query={query}
+    variables={{
+      first: MAX_ITEMS,
+    }}
   >
-    {({ loading, error, data, fetchMore }) => {
-      if (loading) return 'loading';
-      if (error) return error.message;
+    {({ loading, error, data, fetchMore, client }) => {
+      if (loading || error)
+        return <Spin indicator={<Icon type="loading" spin />} />;
 
       const {
         viewer: { orders },
-        getOrderApplyList: { orderApply },
+        getOrderApplyList: { orderApplyList },
       } = data;
+      const props = {
+        orders,
+        orderApplyList,
+        fetchMore,
+      };
 
-      return (
-        <MemberOrders
-          orders={orders}
-          orderApply={orderApply}
-          fetchMore={fetchMore}
-        />
-      );
+      if (cacheCurrent * MAX_ITEMS > orders.length) {
+        const cacheData = client.readQuery({
+          query,
+          variables: {
+            first: (cacheCurrent + 1) * MAX_ITEMS,
+          },
+        });
+
+        props.orders = cacheData.viewer.orders;
+        props.orderApplyList = cacheData.getOrderApplyList.orderApplyList;
+      }
+
+      return <MemberOrders {...props} />;
     }}
   </Query>
 );

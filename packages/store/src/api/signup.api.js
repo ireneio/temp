@@ -1,5 +1,6 @@
 import postGraphql from 'utils/postGraphql';
 import getIn from 'utils/getIn';
+import client from 'apollo/initApollo';
 
 /**
  * @description 註冊
@@ -42,5 +43,7 @@ export default async function({ email, password, registeredCode }) {
   } else {
     data = { error: 'Unexpected error' };
   }
+
+  client().clearStore();
   return data;
 }

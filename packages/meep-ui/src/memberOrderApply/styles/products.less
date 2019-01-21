@@ -1,0 +1,104 @@
+@import '../../constants/styles.less';
+
+.root {
+  :global(.ant-table) {
+    color: inherit;
+
+    :global(.ant-table-thead) > tr > th,
+    :global(.ant-table-tbody) > tr:not(:global(.ant-table-expanded-row)) > td {
+      &:nth-child(6),
+      &:nth-child(7),
+      &:nth-child(8) {
+        word-break: keep-all;
+        white-space: nowrap;
+      }
+
+      @media @PHONE_MEDIA {
+        &:nth-child(5),
+        &:nth-child(7),
+        &:nth-child(9) {
+          display: none;
+        }
+      }
+    }
+
+    :global(.ant-table-thead) > tr > th,
+    :global(.ant-table-tbody) > tr > td {
+      &:nth-child(1) {
+        width: 0px;
+        min-width: 0px;
+        padding: 0px;
+
+        & > * {
+          display: none;
+        }
+      }
+    }
+
+    :global(.ant-table-thead) > tr > th {
+      border-top: 1px solid #e8e8e8;
+      background: transparent;
+      font-size: 16px;
+    }
+
+    :global(.ant-table-tbody) > tr:not(:global(.ant-table-expanded-row)) > td {
+      @media @PHONE_MEDIA {
+        border-bottom: 0px;
+      }
+    }
+
+    :global(.ant-table-tbody) > tr:global(.ant-table-expanded-row) {
+      display: none;
+      background: transparent;
+
+      @media @PHONE_MEDIA {
+        display: table-row;
+      }
+
+      & > td:nth-child(2) {
+        padding-left: 75px;
+      }
+    }
+
+    :global(.ant-table-tbody) > tr > td:nth-child(4) > div {
+      display: none;
+
+      @media @PHONE_MEDIA {
+        display: block;
+      }
+    }
+
+    .reason {
+      width: 360px;
+
+      @media @PHONE_MEDIA {
+        width: 100%;
+      }
+    }
+  }
+
+  &.checking {
+    :global(.ant-table) {
+      :global(.ant-table-thead) > tr > th,
+      :global(.ant-table-tbody)
+        > tr:not(:global(.ant-table-expanded-row))
+        > td {
+        &:nth-child(2) {
+          width: 0px;
+          min-width: 0px;
+          padding: 0px;
+
+          & > * {
+            display: none;
+          }
+        }
+      }
+
+      :global(.ant-table-tbody)
+        > tr:global(.ant-table-expanded-row)
+        > td:nth-child(2) {
+        padding-left: 16px;
+      }
+    }
+  }
+}

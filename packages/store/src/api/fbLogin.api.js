@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-unfetch';
+import client from 'apollo/initApollo';
 
 // for api server to auth
 export default async function(response) {
@@ -12,8 +13,12 @@ export default async function(response) {
       credentials: 'same-origin',
       body: JSON.stringify(response),
     });
+
     if (res.status === 200) {
       data = await res.json();
+      // FIXME: should signout with apollo
+      client().clearStore();
+
       switch (data.code) {
         case 200: // 登入成功
           return { status: 200 };
