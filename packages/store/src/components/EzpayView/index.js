@@ -1,19 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as Utils from 'utils';
-import './index.less';
+import { Query } from 'react-apollo';
+import { gql } from 'apollo-boost';
+import { withRouter } from 'next/router';
+import { Spin, Icon } from 'antd';
 
+import * as Utils from 'utils';
+
+import './styles/index.less';
 import ezpayLogo from './images/ezpay-logo.png';
 import sevenEleven from './images/7eleven.png';
 import familymart from './images/familymart.png';
 import hilife from './images/hi-life.png';
 import okmart from './images/ok-mart.png';
 
-export default class EzpayView extends React.Component {
+class EzpayView extends React.Component {
   static propTypes = {
-    order: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired,
+    order: PropTypes.shape({}).isRequired,
   };
 
   shouldComponentUpdate() {
@@ -21,19 +24,32 @@ export default class EzpayView extends React.Component {
   }
 
   render() {
-    const { order } = this.props;
-    const payment = Utils.getIn(['paymentInfo', 'list', 0])(order);
-    const memo = Utils.getIn(['memo', 0, 'ezpay'])(payment);
-    const paycode = Utils.getIn(['paycode'])(memo);
-    const merchantNumber = Utils.getIn([
-      'accountInfo',
-      'ezpay',
-      'merchantNumber',
-    ])(payment);
-    const storeName = Utils.getIn(['storeName'])(memo);
-    const orderNumber = Utils.getIn(['orderNumber'])(memo);
-    const amount = Utils.getIn(['amount'])(memo);
-    const expireDate = Utils.getIn(['expireDate'])(memo);
+    const {
+      order: {
+        id,
+        paymentInfo: {
+          list: [
+            {
+              memo: [
+                {
+                  ezpay: {
+                    paycode,
+                    storeName,
+                    orderNumber,
+                    amount,
+                    expireDate,
+                  },
+                },
+              ],
+              accountInfo: {
+                ezpay: { merchantNumber },
+              },
+            },
+          ],
+        },
+      },
+    } = this.props;
+
     return (
       <div className="ezpay_wrapper">
         <img className="ezpay_logo" src={ezpayLogo} alt="ezpayLogo" />
@@ -76,34 +92,34 @@ export default class EzpayView extends React.Component {
                 <div className="ezpay_imgs">
                   {[
                     {
-                      id: 'sevenEleven',
+                      key: 'sevenEleven',
                       src: sevenEleven,
                       link: 'http://www.ibon.com.tw/paymentcode.aspx#gsc.tab=0',
                     },
                     {
-                      id: 'familymart',
+                      key: 'familymart',
                       src: familymart,
                       link:
                         'http://www.famiport.com.tw/intro.asp?page=5&oc=A05&ocsub=B02',
                     },
                     {
-                      id: 'hiLife',
+                      key: 'hiLife',
                       src: hilife,
                       link: 'http://www.hilife.com.tw/serviceInfo.aspx',
                     },
                     {
-                      id: 'okMart',
+                      key: 'okMart',
                       src: okmart,
                       link: 'http://www.okmart.com.tw/okGo_service',
                     },
-                  ].map(({ id, src, link }) => (
+                  ].map(({ key, src, link }) => (
                     <a
-                      key={id}
+                      key={key}
                       href={link}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <img src={src} alt={id} />
+                      <img src={src} alt={key} />
                     </a>
                   ))}
                 </div>
@@ -131,7 +147,7 @@ export default class EzpayView extends React.Component {
               type="button"
               className="ezpay_backBtn"
               onClick={() =>
-                Utils.goTo({ pathname: `/checkout/thank-you-page/${order.id}` })
+                Utils.goTo({ pathname: `/checkout/thank-you-page/${id}` })
               }
             >
               回商家網站
@@ -146,3 +162,47 @@ export default class EzpayView extends React.Component {
     );
   }
 }
+
+export default withRouter(({ router: { query: { orderId } } }) => (
+  <Query
+    query={gql`
+      query getOrderInEzpay($orderId: ID!) {
+        viewer {
+          order(orderId: $orderId) {
+            id
+            paymentInfo {
+              list {
+                memo {
+                  ezpay {
+                    paycode
+                    storeName
+                    orderNumber
+                    amount
+                    expireDate
+                  }
+                }
+                accountInfo {
+                  ezpay {
+                    merchantNumber
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `}
+    variables={{ orderId }}
+  >
+    {({ loading, error, data }) => {
+      if (loading || error)
+        return <Spin indicator={<Icon type="loading" spin />} />;
+
+      const {
+        viewer: { order },
+      } = data;
+
+      return <EzpayView order={order} />;
+    }}
+  </Query>
+));
