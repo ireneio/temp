@@ -1,3 +1,16 @@
+## 0.17.10 (2019-01-22)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#389](https://github.com/meepshop/meep-lerna/pull/389) 一頁式購物車元件 - 當後台「商品數量」未勾選時，前台無法選擇商品 (N349) ([@HsuTing](https://github.com/HsuTing))
+  - [#392](https://github.com/meepshop/meep-lerna/pull/392) 商品描述，文字間距顯示與後台不一致 (N344) ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.17.9 (2019-01-21)
 
 #### :bug: Bug Fix
