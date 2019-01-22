@@ -128,18 +128,13 @@ class PayemntInfo extends React.PureComponent {
 
       /** props */
       variants,
-      addition,
     } = this.props;
     const [variantId] = variant.slice(-1);
     const { stock, minPurchaseItems: variantMin, maxPurchaseLimit } =
       variants.find(({ id }) => id === variantId) || {};
     const variantMax = maxPurchaseLimit > stock ? stock : maxPurchaseLimit;
 
-    if (
-      !addition.includes('quantity') ||
-      variantMax === 0 ||
-      variantMax < variantMin
-    )
+    if (variantMax === 0 || variantMax < variantMin)
       Modal.error({ title: transformLocale(LOCALE.NO_VARIANT) });
 
     this.trackAddToCart();
