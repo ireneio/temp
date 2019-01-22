@@ -5,7 +5,6 @@ export const root = colors => ({
   maxWidth: '500px',
   wordWrap: 'break-word',
   hyphens: 'auto',
-  textAlign: 'justify',
 });
 
 export const title = {
