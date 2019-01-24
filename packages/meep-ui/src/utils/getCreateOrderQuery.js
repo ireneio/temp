@@ -115,6 +115,7 @@ export default ({
           nexturl
           hash
           bankid
+          Language
         }
         url
         type
