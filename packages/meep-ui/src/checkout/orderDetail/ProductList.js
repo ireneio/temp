@@ -46,21 +46,21 @@ export default class ProductList extends React.PureComponent {
     const { products, updateProducts } = this.props;
 
     updateProducts(
-      products.reduce((
-        result,
-        { cartId: id, quantity: preQuantity, ...product },
-      ) => {
-        if (id === cartId && quantity === 0) return result;
+      products.reduce(
+        (result, { cartId: id, quantity: preQuantity, ...product }) => {
+          if (id === cartId && quantity === 0) return result;
 
-        return [
-          ...result,
-          {
-            ...product,
-            cartId: id,
-            quantity: id === cartId ? quantity : preQuantity,
-          },
-        ];
-      }, []),
+          return [
+            ...result,
+            {
+              ...product,
+              cartId: id,
+              quantity: id === cartId ? quantity : preQuantity,
+            },
+          ];
+        },
+        [],
+      ),
     );
   };
 

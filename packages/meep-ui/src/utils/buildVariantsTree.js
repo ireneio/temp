@@ -28,38 +28,41 @@ const buildTree = ({ specs, variants, ...product }) => {
     {},
   );
 
-  const newVariants = (variants || []).reduce((variantsResult, variant) => {
-    const { specs: variantSpecs } = variant;
-    let preKey = 'root';
+  const newVariants = (variants || []).reduce(
+    (variantsResult, variant) => {
+      const { specs: variantSpecs } = variant;
+      let preKey = 'root';
 
-    return (variantSpecs || []).reduce(
-      (specsResult, { title, specId }, index) => {
-        const key = `${preKey}_${generateKey(title)}`;
-        const parent = preKey;
+      return (variantSpecs || []).reduce(
+        (specsResult, { title, specId }, index) => {
+          const key = `${preKey}_${generateKey(title)}`;
+          const parent = preKey;
 
-        preKey = key;
+          preKey = key;
 
-        if (
-          specsStore[specId].includes(key) &&
-          index !== variantSpecs.length - 1
-        )
-          return specsResult;
+          if (
+            specsStore[specId].includes(key) &&
+            index !== variantSpecs.length - 1
+          )
+            return specsResult;
 
-        specsStore[specId].push(key);
+          specsStore[specId].push(key);
 
-        return [
-          ...specsResult,
-          {
-            ...(index !== variantSpecs.length - 1 ? null : { variant }),
-            key,
-            parent,
-            title,
-          },
-        ];
-      },
-      variantsResult,
-    );
-  }, [{ key: 'root' }]);
+          return [
+            ...specsResult,
+            {
+              ...(index !== variantSpecs.length - 1 ? null : { variant }),
+              key,
+              parent,
+              title,
+            },
+          ];
+        },
+        variantsResult,
+      );
+    },
+    [{ key: 'root' }],
+  );
 
   return {
     ...product,
