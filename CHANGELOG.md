@@ -1,3 +1,14 @@
+## 0.18.0 (2019-01-24)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#387](https://github.com/meepshop/meep-lerna/pull/387) 串接綠界金流刷卡語系設定 (N089) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.17.10 (2019-01-22)
 
 #### :bug: Bug Fix
