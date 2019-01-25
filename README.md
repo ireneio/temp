@@ -28,11 +28,11 @@ The repo combined store, admin & mepp-ui.
 
 ###### dev
 
-| env            | example                                            | note                                  |
-| -------------- | -------------------------------------------------- | ------------------------------------- |
-| TEST_DOMAIN    | TEST_DOMAIN=test.com yarn dev @meepshop/store      |                                       |
-| TEST_API       | TEST_API=api.meepshop.com yarn dev @meepshop/store |                                       |
-| BUNDLE_ANALYZE | BUNDLE_ANALYZE=both yarn dev @meepshop/store       | It can be `both`, `server`, `browser` |
+| env                         | example                                                                                             | note                                  |
+| --------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| STORE_DOMAIN                | STORE_DOMAIN=test.com yarn dev @meepshop/store                                                      |                                       |
+| API_HOST, EXTERNAL_API_HOST | API_HOST=https://api.meepshop.tw EXTERNAL_API_HOST=https://api.meepshop.tw yarn dev @meepshop/store |                                       |
+| BUNDLE_ANALYZE              | BUNDLE_ANALYZE=both yarn dev @meepshop/store                                                        | It can be `both`, `server`, `browser` |
 
 ## meep-ui
 
@@ -42,26 +42,6 @@ The repo combined store, admin & mepp-ui.
 | storybook:docs | yarn lerna run storybook:docs --scope @meepshop/meep-ui |
 
 > You can see [README.md](./packages/meep-ui/README.md) to leran how to use `storybook`.
-
-## test-prod-server
-
-| command          | example                                                            |
-| ---------------- | ------------------------------------------------------------------ |
-| test:start       | yarn lerna run test:start --scope @meepshop/test-prod-server       |
-| unpatch-packages | yarn lerna run unpatch-packages --scope @meepshop/test-prod-server |
-
-###### test:start
-
-If you need to give the options, run like: `yarn lerna exec "yarn lerna test:start --paths '/' nextstoretest.stage.meepcloud.com" --scope @meepshop/test-prod-server --stream`.
-
-| env         | example                                                                                |
-| ----------- | -------------------------------------------------------------------------------------- |
-| TEST_DOMAIN | TEST_DOMAIN=test.com yarn lerna run test:start --scope @meepshop/test-prod-server      |
-| TEST_API    | TEST_API=api.meepshop.com yarn lerna run test:start --scope @meepshop/test-prod-server |
-
-###### unpatch-packages
-
-If `test:start` does not work, try to use `unpatch-packages` and run `test:start` again.
 
 [circleci-image]: https://circleci.com/gh/meepshop/meep-lerna.svg?style=svg&circle-token=e54a3d5ceee3a9f2139527c7614c8209ea772f90
 [circleci-url]: https://circleci.com/gh/meepshop/meep-lerna
