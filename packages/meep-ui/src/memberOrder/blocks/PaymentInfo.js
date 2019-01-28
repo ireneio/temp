@@ -120,26 +120,27 @@ export default class PaymentInfo extends React.PureComponent {
       /** props */
       order: {
         paymentInfo: {
-          list: [
-            {
-              memo: [
-                {
-                  allpay: {
-                    BankCode,
-                    vAccount,
-                    PaymentNo,
-                    Barcode1,
-                    Barcode2,
-                    Barcode3,
-                    ExpireDate,
-                  },
-                },
-              ],
-            },
-          ],
+          list: [{ memo }],
         },
       },
     } = this.props;
+
+    // FIXME: 等待後端修正移除
+    if (!memo.length) return null;
+
+    const [
+      {
+        allpay: {
+          BankCode,
+          vAccount,
+          PaymentNo,
+          Barcode1,
+          Barcode2,
+          Barcode3,
+          ExpireDate,
+        },
+      },
+    ] = memo;
 
     switch (choosePayment) {
       case 'ATM':
@@ -205,18 +206,19 @@ export default class PaymentInfo extends React.PureComponent {
       /** props */
       order: {
         paymentInfo: {
-          list: [
-            {
-              memo: [
-                {
-                  ezpay: { paycode, expireDate },
-                },
-              ],
-            },
-          ],
+          list: [{ memo }],
         },
       },
     } = this.props;
+
+    // FIXME: 等待後端修正移除
+    if (!memo.length) return null;
+
+    const [
+      {
+        ezpay: { paycode, expireDate },
+      },
+    ] = memo;
 
     switch (choosePayment) {
       case 'MMK':
