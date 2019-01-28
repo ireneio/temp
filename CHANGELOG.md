@@ -1,3 +1,26 @@
+## 0.18.2 (2019-01-28)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#394](https://github.com/meepshop/meep-lerna/pull/394) 【BUG】新建立的訂單，回到訂單列表，並無出現在最上方 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#400](https://github.com/meepshop/meep-lerna/pull/400) Modify README ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#387](https://github.com/meepshop/meep-lerna/pull/387) 串接綠界金流刷卡語系設定 (N089) ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#395](https://github.com/meepshop/meep-lerna/pull/395) N350 【個別店家】前台 - 某會員的 1/17 訂單明細呈現空白 ([@happycat6323](https://github.com/happycat6323))
+  - [#399](https://github.com/meepshop/meep-lerna/pull/399) N355 【BUG】一頁式購物車 - 當切換物流選項時，會發生錯誤（綠界超取＆ezShip） ([@HsuTing](https://github.com/HsuTing))
+  - [#401](https://github.com/meepshop/meep-lerna/pull/401) Fix prettier error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.18.1 (2019-01-24)
 
 #### :bug: Bug Fix
