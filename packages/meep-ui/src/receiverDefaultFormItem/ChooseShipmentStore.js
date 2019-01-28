@@ -52,17 +52,22 @@ export default class ChooseShipmentStore extends React.PureComponent {
 
   state = {
     shipmentId: null,
+    shipmentTemplate: null,
     tradeNo: null,
     ezship: null,
     allpay: null,
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
-    const { shipmentId } = nextProps;
+    const { shipmentId, shipmentTemplate } = nextProps;
 
-    if (shipmentId !== preState.shipmentId) {
+    if (
+      shipmentId !== preState.shipmentId &&
+      shipmentTemplate !== preState.shipmentTemplate
+    ) {
       return {
         shipmentId,
+        shipmentTemplate,
         tradeNo: null,
         ezship: null,
         allpay: null,
@@ -88,8 +93,8 @@ export default class ChooseShipmentStore extends React.PureComponent {
   }
 
   getFormArguments = async () => {
-    const { getData, shipmentTemplate } = this.props;
-    const { shipmentId } = this.state;
+    const { getData } = this.props;
+    const { shipmentId, shipmentTemplate } = this.state;
 
     if (!shipmentId) return;
 
@@ -143,8 +148,8 @@ export default class ChooseShipmentStore extends React.PureComponent {
   };
 
   goToShipmentStore = async () => {
-    const { location, getApiUrl, form, shipmentTemplate } = this.props;
-    const { tradeNo } = this.state;
+    const { location, getApiUrl, form } = this.props;
+    const { tradeNo, shipmentTemplate } = this.state;
 
     const { host, pathname, search } = location;
     const { getFieldsValue } = form;
@@ -176,14 +181,8 @@ export default class ChooseShipmentStore extends React.PureComponent {
   };
 
   render() {
-    const {
-      colors,
-      transformLocale,
-      getApiUrl,
-      form,
-      shipmentTemplate,
-    } = this.props;
-    const { tradeNo, ezship, allpay } = this.state;
+    const { colors, transformLocale, getApiUrl, form } = this.props;
+    const { tradeNo, ezship, allpay, shipmentTemplate } = this.state;
 
     if (!tradeNo || !(ezship || allpay)) return null;
 
