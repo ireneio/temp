@@ -1,3 +1,14 @@
+## 0.18.3 (2019-01-30)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#402](https://github.com/meepshop/meep-lerna/pull/402) 一頁式購物車 - 訂購完成後無法從第三方金流跳轉回「首頁」(N341) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.18.2 (2019-01-28)
 
 #### :rocket: New Feature
