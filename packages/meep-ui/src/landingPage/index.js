@@ -194,6 +194,9 @@ export default class LandingPage extends React.PureComponent {
             ...(Object.values(TAIWAN).includes(address?.[0]) && {
               postalCode: await fetchStreamName(address).then(({ zip }) => zip),
             }),
+            redirectUrl: !redirectPage
+              ? null
+              : `${window.location.origin}${redirectPage}`,
           };
 
           const result = await getData(...getCreateOrderQuery(orderData));
@@ -233,7 +236,16 @@ export default class LandingPage extends React.PureComponent {
                     )
                   ) {
                     dispatchAction('emptyCart');
-                    goTo({ pathname: `/ezpay/cvcode/${id}` });
+                    goTo({
+                      pathname: `/ezpay/cvcode/${id}`,
+                      params: {
+                        search: !redirectPage
+                          ? {}
+                          : {
+                              redirectUrl: redirectPage,
+                            },
+                      },
+                    });
                     return;
                   }
 

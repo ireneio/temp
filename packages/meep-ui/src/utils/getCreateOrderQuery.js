@@ -41,6 +41,9 @@ export default ({
   creditCardExpiration,
   creditCardInstallment,
 
+  // redirectUrl
+  redirectUrl = null,
+
   // not in form data
   isPayment = true,
   products,
@@ -144,6 +147,7 @@ export default ({
       payments: [
         {
           paymentId,
+          redirectUrl,
           ...(choosePayment.template !== 'gmo'
             ? {}
             : {

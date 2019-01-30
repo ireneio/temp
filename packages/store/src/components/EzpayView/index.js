@@ -146,9 +146,20 @@ class EzpayView extends React.Component {
             <button
               type="button"
               className="ezpay_backBtn"
-              onClick={() =>
-                Utils.goTo({ pathname: `/checkout/thank-you-page/${id}` })
-              }
+              onClick={() => {
+                const redirectUrl = (window.location.search || '').replace(
+                  /\??redirectUrl=(.*)&?/,
+                  '$1',
+                );
+
+                Utils.goTo({
+                  pathname:
+                    !window.location.search ||
+                    redirectUrl === window.location.search
+                      ? `/checkout/thank-you-page/${id}`
+                      : decodeURIComponent(redirectUrl),
+                });
+              }}
             >
               回商家網站
             </button>
