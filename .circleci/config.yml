@@ -99,7 +99,7 @@ jobs:
       - run:
           name: Check code style
           command: |
-            yarn prod @meepshop/meep-ui
+            yarn prod @meepshop/store
             yarn lint .
 
       - run:
@@ -107,31 +107,6 @@ jobs:
           command: yarn test
       - store_artifacts:
           path: coverage
-
-  check-website-work:
-    <<: *defaults
-    steps:
-      - checkout
-      - run: *check-patches
-      - restore_cache: *restore-cache
-      - run: yarn lerna bootstrap
-
-      - run: ./.circleci/bin/installPuppeteerPkg.sh
-      - run:
-          name: Check website work
-          command: |
-            yarn prod @meepshop/store
-            yarn lerna exec "yarn test:start \
-                             --paths '/, \
-                                      /products, \
-                                      /pages/一頁式購物車, \
-                                      /pages/圖片元件, \
-                                      /pages/圖片文字元件, \
-                                      /pages/輪播元件' \
-                             nextstoretest.stage.meepcloud.com" \
-              --scope @meepshop/test-prod-server \
-              --stream
-
       - save_cache: *save-prod-cache
 
   deploy-test:
@@ -143,7 +118,7 @@ jobs:
           command: yarn install:all
       - run:
           name: Build prod
-          command: yarn prod
+          command: yarn prod @meepshop/store
       - setup_remote_docker
       - run: *deploy-docker
 
@@ -185,18 +160,10 @@ workflows:
             tags:
               only: /.*/
 
-      - check-website-work:
-          requires:
-            - install
-          filters:
-            tags:
-              only: /.*/
-
       - deploy-test-branch:
           context: org-global
           requires:
             - lint-and-test
-            - check-website-work
           filters:
             branches:
               only: /test-.*/
@@ -205,7 +172,6 @@ workflows:
           context: org-global
           requires:
             - lint-and-test
-            - check-website-work
           filters:
             branches:
               ignore: /.*/
