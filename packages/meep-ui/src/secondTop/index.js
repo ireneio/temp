@@ -44,7 +44,6 @@ export default class SecondTop extends React.PureComponent {
         logoUrl={logoUrl}
         pages={pages}
         design={design}
-        openKeys={pages.map(({ id: pageId }) => pageId)}
       />
     );
   }

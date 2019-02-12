@@ -41,13 +41,7 @@ export default class FixedTop extends React.PureComponent {
     return (
       <Affix offsetTop={0}>
         <header className={styles.root}>
-          <Menu
-            id={id}
-            logoUrl={logoUrl}
-            pages={pages}
-            design={design}
-            openKeys={pages.map(({ id: pageId }) => pageId)}
-          />
+          <Menu id={id} logoUrl={logoUrl} pages={pages} design={design} />
         </header>
       </Affix>
     );

@@ -10,7 +10,6 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
 import Menu from 'menu';
 import {
-  ID_TYPE,
   COLOR_TYPE,
   STORE_SETTING_TYPE,
   LOCATION_TYPE,
@@ -28,7 +27,6 @@ export default class MobileLayout extends React.PureComponent {
     storeSetting: STORE_SETTING_TYPE.isRequired,
 
     /** props */
-    id: ID_TYPE.isRequired,
     fixedtop: PropTypes.shape({}),
     secondtop: PropTypes.shape({}),
     sidebar: PropTypes.shape({}),
@@ -71,7 +69,6 @@ export default class MobileLayout extends React.PureComponent {
       storeSetting: { mobileLogoUrl },
 
       /** props */
-      id,
       fixedtop,
       secondtop,
       sidebar,
@@ -115,7 +112,7 @@ export default class MobileLayout extends React.PureComponent {
             </div>
 
             <Menu
-              id={`${id}-headerMenu`}
+              id="mobile-headerMenu"
               className={styles.headerMenu}
               logoUrl={mobileLogoUrl}
               pages={headerPages}
@@ -147,17 +144,13 @@ export default class MobileLayout extends React.PureComponent {
 
         <Drawer
           className={`${styles.drawer} ${styles.member}`}
-          style={{
-            background: colors[1],
-            color: colors[2],
-          }}
           onClose={() => this.setState({ memberPages: [] })}
           visible={memberPages.length !== 0}
           placement="top"
           height="100%"
         >
           <Menu
-            id={`${id}-member`}
+            id="mobile-member"
             className={styles.menu}
             logoUrl={mobileLogoUrl}
             pages={memberPages}
@@ -170,7 +163,6 @@ export default class MobileLayout extends React.PureComponent {
               width: 150,
               height: 60,
             }}
-            openKeys={[]}
           />
 
           <style
@@ -195,15 +187,16 @@ export default class MobileLayout extends React.PureComponent {
         {pages.length === 0 ? null : (
           <Drawer
             className={`${styles.drawer} ${styles.sidebar}`}
-            style={normal}
             onClose={() => this.setState({ visible: false })}
             visible={visible}
             placement="left"
             width="280px"
           >
             <Menu
-              id={`${id}-sidebar`}
-              className={`${styles.menu} show-border`}
+              id="mobile-sidebar"
+              className={`${styles.menu} show-border ${
+                expandSubItem ? '' : styles.showIcon
+              }`}
               logoUrl={mobileLogoUrl}
               pages={pages}
               design={{
@@ -212,21 +205,24 @@ export default class MobileLayout extends React.PureComponent {
                 expandSubItem: true,
                 normal,
                 width: 150,
-                height: 60,
+                height: 48,
               }}
-              openKeys={
-                expandSubItem ? pages.map(({ id: pageId }) => pageId) : openKeys
-              }
+              openKeys={expandSubItem ? undefined : openKeys}
               onOpenChange={
                 expandSubItem
                   ? emptyFunction
-                  : newOpenKeys =>
-                      this.setState({
-                        openKeys:
-                          newOpenKeys.slice(-1) !== openKeys[0]
-                            ? newOpenKeys.slice(-1)
-                            : [],
-                      })
+                  : newOpenKeys => {
+                      const latestOpenKey = newOpenKeys.find(
+                        key => !openKeys.includes(key),
+                      );
+
+                      if (pages.every(({ id }) => id !== latestOpenKey))
+                        this.setState({ openKeys: newOpenKeys });
+                      else
+                        this.setState({
+                          openKeys: latestOpenKey ? [latestOpenKey] : [],
+                        });
+                    }
               }
               reverseSearch
             />

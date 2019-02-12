@@ -1,6 +1,6 @@
 @import '../../constants/styles.less';
 
-@HEADEER_WIDTH: 55px;
+@HEADEER_WIDTH: 64px;
 
 .header {
   display: none;
@@ -148,6 +148,13 @@
     margin: 0px 0px 0px 25px;
   }
 
+  &.showIcon {
+    :global(.arrow-icon) {
+      display: block;
+      font-size: 1.5em;
+    }
+  }
+
   :global(.ant-menu.ant-menu-inline) {
     :global(.menu-1) {
       & {
@@ -175,25 +182,29 @@
         }
 
         & > :global(.ant-menu-sub) {
+          font-size: inherit;
           transition: unset;
         }
       }
+    }
 
-      :global(.arrow-icon) {
-        display: initial;
+    :global(.menu-2),
+    :global(.menu-3) {
+      width: 100%;
+      font-size: inherit !important;
+      white-space: normal;
+
+      & > :global(.ant-menu-sub) {
+        font-size: inherit;
       }
     }
 
     :global(.menu-2) {
-      padding: 5px 25px 5px 40px !important;
-      width: 100%;
-      font-size: inherit;
+      padding: 5px 15px 5px 40px !important;
+    }
 
-      @media @PHONE_MEDIA {
-        & {
-          font-size: inherit !important;
-        }
-      }
+    :global(.menu-3) {
+      padding: 5px 15px !important;
     }
   }
 }

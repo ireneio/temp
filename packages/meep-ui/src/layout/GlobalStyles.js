@@ -37,7 +37,8 @@ export default class GlobalStyles extends React.PureComponent {
               background: ${colors[1]};
             }
 
-            .ant-menu-submenu-popup.ant-menu-submenu .ant-menu-item:hover {
+            .ant-menu-submenu-popup.ant-menu-submenu .ant-menu-item:hover,
+            .ant-menu-submenu-popup.ant-menu-submenu .ant-menu-submenu:hover {
               background: ${transformColor(colors[1]).darken(0.05)};
             }
 

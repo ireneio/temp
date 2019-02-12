@@ -107,14 +107,18 @@ export default class Bottom extends React.PureComponent {
             normal,
             opacity: !background || !isHexColor(background) ? 0 : 1,
           }}
-          onOpenChange={newOpenKeys =>
-            this.setState({
-              openKeys:
-                newOpenKeys.slice(-1) !== openKeys[0]
-                  ? newOpenKeys.slice(-1)
-                  : [],
-            })
-          }
+          onOpenChange={newOpenKeys => {
+            const latestOpenKey = newOpenKeys.find(
+              key => !openKeys.includes(key),
+            );
+
+            if (pages.every(({ id: pageId }) => pageId !== latestOpenKey))
+              this.setState({ openKeys: newOpenKeys });
+            else
+              this.setState({
+                openKeys: latestOpenKey ? [latestOpenKey] : [],
+              });
+          }}
           openKeys={openKeys}
         />
       </div>

@@ -20,7 +20,8 @@
     }
   }
 
-  &:global(.menu-2) {
+  &:global(.menu-2),
+  &:global(.menu-3) {
     display: block;
     margin: 0px;
     padding: 10px;
@@ -29,6 +30,28 @@
 
     &.fontBold {
       font-weight: bold;
+    }
+
+    &:global(.ant-menu-submenu-active) {
+      color: inherit;
+    }
+
+    &:global(.ant-menu-submenu.ant-menu-submenu-popup) {
+      padding: 0px;
+    }
+
+    & > :global(.ant-menu-submenu-title) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0px;
+      padding: 0px;
+      height: inherit;
+      line-height: 1.5;
+
+      &:hover {
+        color: inherit;
+      }
     }
   }
 
@@ -59,7 +82,8 @@
       }
     }
 
-    &:global(.menu-2) {
+    &:global(.menu-2),
+    &:global(.menu-3) {
       @media @PHONE_MEDIA {
         font-size: 16px;
       }
@@ -94,11 +118,28 @@
       }
     }
 
-    &:global(.menu-2) {
+    &:global(.menu-2),
+    &:global(.menu-3) {
       margin: 0px;
       padding: 3px 0px !important;
       height: auto;
       line-height: 1.5;
+      font-size: inherit;
+
+      & > :global(.ant-menu-submenu-title) {
+        margin: 0px;
+        padding: 3px 0px !important;
+        height: auto;
+        line-height: 1.5;
+      }
+
+      & > :global(.ant-menu-sub) {
+        font-size: inherit;
+      }
+    }
+
+    &:global(.menu-3) {
+      padding: 3px 0px 3px 15px !important;
     }
   }
 

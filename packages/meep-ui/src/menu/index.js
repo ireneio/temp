@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import memoizeOne from 'memoize-one';
 import { Menu as AntdMenu } from 'antd';
 import uuid from 'uuid/v4';
 import transformColor from 'color';
@@ -21,14 +22,13 @@ import MenuItem from './MenuItem';
 import { DEFAULT_COLOR_WITH_PATTERN } from './constants';
 import { FONTSIZE_TYPE } from './propTypes';
 import styles from './styles/index.less';
-import getMenuStyles from './utils/getMenuStyles';
+import notMemoizedGetMenuStyles from './utils/getMenuStyles';
+import notMemoizedGetAllKeys from './utils/getAllKeys';
 
 export handleModuleData from './utils/handleModuleData';
 
 @enhancer
 export default class Menu extends React.PureComponent {
-  containerDOM = null;
-
   searchBarItem = [
     {
       id: uuid(),
@@ -41,11 +41,22 @@ export default class Menu extends React.PureComponent {
     },
   ];
 
+  getMenuStyles = memoizeOne(notMemoizedGetMenuStyles);
+
+  getAllKeys = memoizeOne(notMemoizedGetAllKeys);
+
   static propTypes = {
     /** props */
     logoUrl: URL_TYPE,
     id: PropTypes.oneOfType([
-      PropTypes.oneOf(['fixedtop', 'secondtop', 'sidebar']).isRequired,
+      PropTypes.oneOf([
+        'fixedtop',
+        'secondtop',
+        'sidebar',
+        'mobile-headerMenu',
+        'mobile-member',
+        'mobile-sidebar',
+      ]).isRequired,
       ID_TYPE.isRequired,
     ]).isRequired,
     pages: PropTypes.arrayOf(
@@ -101,32 +112,9 @@ export default class Menu extends React.PureComponent {
     logoUrl: null,
 
     /** ignore */
-    openKeys: [],
+    openKeys: null,
     className: '',
     reverseSearch: false,
-  };
-
-  getPopupContainer = style => {
-    const { colors } = this.props;
-    const newStyle = {
-      ...style,
-      color: colors[2],
-      background: colors[1],
-    };
-    const shouldAppendContainer = !this.containerDOM;
-
-    this.containerDOM = !shouldAppendContainer
-      ? this.containerDOM
-      : document.createElement('div');
-
-    Object.keys(newStyle).forEach(key => {
-      this.containerDOM.style[key] = newStyle[key];
-    });
-
-    if (shouldAppendContainer)
-      document.querySelector('body').appendChild(this.containerDOM);
-
-    return this.containerDOM;
   };
 
   render() {
@@ -192,7 +180,11 @@ export default class Menu extends React.PureComponent {
           >
             <Link style={{ width: '100%' }} href="/" target="_self">
               <img
-                style={{ objectFit: height && width ? 'contain' : undefined }}
+                style={{
+                  height: height !== 0 ? height : undefined,
+                  width: width !== 0 ? width : undefined,
+                  objectFit: height && width ? 'contain' : undefined,
+                }}
                 src={`//${logoUrl}?${
                   width ? `w=${width * 3}` : `h=${height * 3}`
                 }`}
@@ -204,8 +196,6 @@ export default class Menu extends React.PureComponent {
                   width ? `w=${width * 3}` : `h=${height * 3}`
                 } 3x`}
                 alt={logoUrl}
-                height={height !== 0 ? height : undefined}
-                width={width !== 0 ? width : undefined}
               />
             </Link>
           </div>
@@ -216,12 +206,11 @@ export default class Menu extends React.PureComponent {
           {...(!expandSubItem
             ? {}
             : {
-                openKeys,
+                openKeys: openKeys || this.getAllKeys(pages),
                 inlineIndent: 20,
               })}
           className={`meepshop ${styles.menu} ${styles[`pattern-${pattern}`]}`}
           mode={expandSubItem ? 'inline' : 'vertical'}
-          getPopupContainer={() => this.getPopupContainer(style)}
           expandIcon={({ eventKey, isOpen }) => (
             <ArrowIcon
               className={`arrow-icon ${
@@ -240,7 +229,13 @@ export default class Menu extends React.PureComponent {
               {...page}
               key={pageId}
               id={pageId}
-              menu2Style={
+              hasLevelThree={[
+                'fixedtop',
+                'secondtop',
+                'sidebar',
+                'mobile-sidebar',
+              ].includes(id)}
+              menuItemStyle={
                 !expandSubItem
                   ? {}
                   : {
@@ -253,7 +248,7 @@ export default class Menu extends React.PureComponent {
 
         <style
           dangerouslySetInnerHTML={{
-            __html: getMenuStyles(
+            __html: this.getMenuStyles(
               id,
               normal,
               height,

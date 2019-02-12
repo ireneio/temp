@@ -89,19 +89,24 @@ export default class Sidebar extends React.PureComponent {
               width,
               expandSubItem: true,
             }}
-            openKeys={
-              expandSubItem ? pages.map(({ id: pageId }) => pageId) : openKeys
-            }
+            openKeys={expandSubItem ? null : openKeys}
             onOpenChange={
               expandSubItem
                 ? emptyFunction
-                : newOpenKeys =>
-                    this.setState({
-                      openKeys:
-                        newOpenKeys.slice(-1) !== openKeys[0]
-                          ? newOpenKeys.slice(-1)
-                          : [],
-                    })
+                : newOpenKeys => {
+                    const latestOpenKey = newOpenKeys.find(
+                      key => !openKeys.includes(key),
+                    );
+
+                    if (
+                      pages.every(({ id: pageId }) => pageId !== latestOpenKey)
+                    )
+                      this.setState({ openKeys: newOpenKeys });
+                    else
+                      this.setState({
+                        openKeys: latestOpenKey ? [latestOpenKey] : [],
+                      });
+                  }
             }
             reverseSearch
           />

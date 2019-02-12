@@ -51,7 +51,6 @@ export default Component => {
             // TODO: module should not have width
             width: 0,
           }}
-          openKeys={pages.map(({ id: pageId }) => pageId)}
         />
       );
     }

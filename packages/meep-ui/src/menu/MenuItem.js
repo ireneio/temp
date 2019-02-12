@@ -88,7 +88,8 @@ export default class MenuItem extends React.PureComponent {
     title: LOCALE_TYPE.isRequired,
 
     /** ignore */
-    menu2Style: PropTypes.shape({}),
+    menuItemStyle: PropTypes.shape({}),
+    hasLevelThree: PropTypes.bool.isRequired,
     level: POSITIVE_NUMBER_TYPE.isRequired, // generate by antd/menu
   };
 
@@ -98,7 +99,7 @@ export default class MenuItem extends React.PureComponent {
     params: null,
 
     /** ignore */
-    menu2Style: {},
+    menuItemStyle: {},
   };
 
   onClick = () => {
@@ -199,7 +200,8 @@ export default class MenuItem extends React.PureComponent {
       level,
 
       /** ignore */
-      menu2Style,
+      menuItemStyle,
+      hasLevelThree,
       ...props
     } = this.props;
 
@@ -227,6 +229,7 @@ export default class MenuItem extends React.PureComponent {
 
     const menuItemProps = {
       ...removeContextTpyesFromProps(props),
+      hasLevelThree,
       level,
       className: `${styles.menuItem} ${
         action === 8 && isLogin !== NOTLOGIN ? 'is-login' : ''
@@ -246,19 +249,19 @@ export default class MenuItem extends React.PureComponent {
 
     return (
       <CartCount showCartCount={action === 5}>
-        {pages.length !== 0 ? (
+        {(pages || []).length !== 0 ? (
           <SubMenu
             {...menuItemProps}
             title={menuItemProps.children}
-            builtinPlacements={BUILTIN_PLACEMENTS}
+            builtinPlacements={level === 1 ? BUILTIN_PLACEMENTS : undefined}
           >
-            {pages.map(({ id, ...page }) =>
+            {pages.map(({ id, pages: subPages, ...page }) =>
               React.createElement(enhancer(MenuItem), {
                 ...page,
                 key: id,
                 id,
-                pages: [],
-                style: menu2Style,
+                pages: !hasLevelThree ? [] : subPages,
+                style: menuItemStyle,
               }),
             )}
           </SubMenu>
