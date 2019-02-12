@@ -54,7 +54,9 @@ const Description = ({
         <div>
           {mode === 'detail' &&
           variantInfo.listPrice &&
-          (!memberSeePrice || productData.showUserPrice?.showListPrice) ? (
+          (!memberSeePrice ||
+            productData.showUserPrice?.showListPrice ||
+            isLogin === ISUSER) ? (
             <span style={styles.otherPrice}>
               {transformLocale(LIST_PRICE)}
               <s style={styles.strike}>
@@ -64,7 +66,9 @@ const Description = ({
           ) : null}
           {mode === 'detail' &&
           variantInfo.suggestedPrice &&
-          (!memberSeePrice || productData.showUserPrice?.showSuggestedPrice) ? (
+          (!memberSeePrice ||
+            productData.showUserPrice?.showSuggestedPrice ||
+            isLogin === ISUSER) ? (
             <span style={styles.otherPrice}>
               {transformLocale(SUGGESTED_PRICE)}
               <s style={styles.strike}>
