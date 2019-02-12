@@ -1,3 +1,23 @@
+## 0.18.4 (2019-02-12)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#398](https://github.com/meepshop/meep-lerna/pull/398) N340 【優化】一頁式購物車：「收件人姓名」字元限制檢查 & 提示文字變更 ([@barrypeng6](https://github.com/barrypeng6))
+  - [#396](https://github.com/meepshop/meep-lerna/pull/396) N297 【優化】前台 - 側邊選單無法顯示第三層 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#405](https://github.com/meepshop/meep-lerna/pull/405) N358 【BUG】前台 - 商品頁 - 無顯示「定價」＆「建議售價」 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#406](https://github.com/meepshop/meep-lerna/pull/406) Fix build ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+
 ## 0.18.3 (2019-01-30)
 
 #### :rocket: New Feature
