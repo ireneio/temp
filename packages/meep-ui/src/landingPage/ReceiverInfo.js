@@ -61,6 +61,25 @@ export default class ReceiverInfo extends React.PureComponent {
     showLogin: false,
   };
 
+  checkedTemplate = null;
+
+  componentDidUpdate() {
+    const {
+      chooseShipmentTemplate,
+      form: { validateFields, getFieldValue },
+    } = this.props;
+
+    if (
+      chooseShipmentTemplate !== this.checkedTemplate &&
+      getFieldValue('name')
+    ) {
+      validateFields(['name'], {
+        force: true,
+      });
+      this.checkedTemplate = chooseShipmentTemplate;
+    }
+  }
+
   componentWillUnmount() {
     this.isUnmounted = true;
   }
@@ -106,6 +125,31 @@ export default class ReceiverInfo extends React.PureComponent {
                 {
                   required: true,
                   message: transformLocale(LOCALE.IS_REQUIRED),
+                },
+                {
+                  validator: (rule, value, callback) => {
+                    if (
+                      value &&
+                      chooseShipmentTemplate === 'ezship' &&
+                      value.length > 60
+                    ) {
+                      return callback(
+                        transformLocale(LOCALE.NAME_TOO_LONG(60)),
+                      );
+                    }
+
+                    if (
+                      value &&
+                      ['allpay', 'gmo'].includes(chooseShipmentTemplate) &&
+                      value.length > 10
+                    ) {
+                      return callback(
+                        transformLocale(LOCALE.NAME_TOO_LONG(10)),
+                      );
+                    }
+
+                    return callback();
+                  },
                 },
               ],
             })(<Input placeholder={transformLocale(LOCALE.RECEIVER)} />)}

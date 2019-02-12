@@ -106,6 +106,14 @@ export const RECEIVER = {
   TODO_LOCALE: true,
 };
 
+export const NAME_TOO_LONG = max => ({
+  zh_TW: `姓名欄位不得超過${max}個字`,
+  en_US: `Your name should not exceed ${max} words`,
+  ja_JP: `姓名欄は${max}文字以内`,
+  vi_VN: `Cột họ tên không được vượt quá ${max} từ`,
+  TODO_LOCALE: true,
+});
+
 export const GENDER = {
   zh_TW: '性別',
   en_US: 'Gender',
