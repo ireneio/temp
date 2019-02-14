@@ -1,3 +1,16 @@
+## 0.18.5 (2019-02-14)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#408](https://github.com/meepshop/meep-lerna/pull/408) fix(meep-ui): remove product list warning ([@piovischioh](https://github.com/piovischioh))
+  - [#407](https://github.com/meepshop/meep-lerna/pull/407) N365 【BUG】前台 - 退貨申請確認後，訂單明細中的訂單狀態未即時改為「退換貨處理」([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- [@piovischioh](https://github.com/piovischioh)
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.18.4 (2019-02-12)
 
 #### :rocket: New Feature
