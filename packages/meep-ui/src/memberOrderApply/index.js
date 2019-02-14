@@ -83,7 +83,13 @@ class MemberOrderApply extends React.PureComponent {
   };
 
   updateApply = (cache, { data: { createOrderApplyList } }) => {
-    const { goTo } = this.props;
+    const {
+      /** context */
+      goTo,
+
+      /** props */
+      order: { id },
+    } = this.props;
     const query = gql`
       {
         # TODO: use new api
@@ -110,6 +116,19 @@ class MemberOrderApply extends React.PureComponent {
           __typename: 'OrderApplyList',
           orderApplyList: [...createOrderApplyList, ...orderApplyList],
         },
+      },
+    });
+
+    cache.writeFragment({
+      id,
+      fragment: gql`
+        fragment updateOrderApplyStatus on Order {
+          status
+        }
+      `,
+      data: {
+        __typename: 'Order',
+        status: 3,
       },
     });
 
