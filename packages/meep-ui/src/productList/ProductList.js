@@ -504,6 +504,8 @@ export default class ProductList extends React.PureComponent {
                   itemRender={this.renderPagination}
                   hideOnSinglePage
                   showLessItems
+                  // FIXME: remove warning
+                  onChange={() => {}}
                 />
               </div>
             )}
