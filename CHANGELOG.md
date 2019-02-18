@@ -1,3 +1,16 @@
+## 0.18.6 (2019-02-18)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#412](https://github.com/meepshop/meep-lerna/pull/412) N356 【BUG】前台 - 商品頁 - 影像 1 下方多出邊框 ([@yuhsu1004](https://github.com/yuhsu1004))
+  - [#409](https://github.com/meepshop/meep-lerna/pull/409) N368 【BUG】前台 - 產品列表 - 無顯示「定價」＆「建議售價」 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ariel Hsu ([@yuhsu1004](https://github.com/yuhsu1004))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.18.5 (2019-02-14)
 
 #### :bug: Bug Fix
