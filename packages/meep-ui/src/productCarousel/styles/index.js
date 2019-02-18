@@ -7,6 +7,10 @@ export const Style = mode => ({
     border: mode === 'list' ? 'none' : 'solid 1px #e8e8e8',
   },
 
+  '.mainSlider .slick-slide': {
+    height: mode === 'list' ? '300px' : '400px',
+  },
+
   '.navigator': {
     marginTop: mode === 'list' ? '10px' : '25px',
     marginBottom: mode === 'list' ? '15px' : '0px',
@@ -50,6 +54,14 @@ export const Style = mode => ({
 
   '.slick-slider:hover .slick-prev, .slick-slider:hover .slick-next': {
     opacity: '1',
+  },
+
+  mediaQueries: {
+    [PHONE_MEDIA.substring(7)]: {
+      '.mainSlider .slick-slide': {
+        height: '300px',
+      },
+    },
   },
 });
 
