@@ -113,7 +113,9 @@ const ProductCard = ({
               {showPrice && (
                 <div style={styles.productPrice}>
                   {variantInfo.listPrice &&
-                  (!memberSeePrice || showUserPrice?.showListPrice) ? (
+                  (!memberSeePrice ||
+                    showUserPrice?.showListPrice ||
+                    isLogin === ISUSER) ? (
                     <div style={styles.otherPrice(colors)}>
                       <span>
                         {transformLocale(LOCALE.LIST_PRICE)}
@@ -124,7 +126,9 @@ const ProductCard = ({
                     </div>
                   ) : null}
                   {variantInfo.suggestedPrice &&
-                  (!memberSeePrice || showUserPrice?.showSuggestedPrice) ? (
+                  (!memberSeePrice ||
+                    showUserPrice?.showSuggestedPrice ||
+                    isLogin === ISUSER) ? (
                     <div style={styles.otherPrice(colors)}>
                       <span>
                         {transformLocale(LOCALE.SUGGESTED_PRICE)}
