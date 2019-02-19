@@ -1,3 +1,19 @@
+## 0.18.7 (2019-02-19)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#391](https://github.com/meepshop/meep-lerna/pull/391) N240 【優化產品列表改版 Step-1：加購區 (點擊圖片＆加入購物車行為) ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#391](https://github.com/meepshop/meep-lerna/pull/391) N240 【優化產品列表改版 Step-1：加購區 (點擊圖片＆加入購物車行為) ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.18.6 (2019-02-18)
 
 #### :bug: Bug Fix
