@@ -60,19 +60,6 @@ export const infoStyle = colors => ({
     borderColor: colors[4],
     color: colors[3],
   },
-
-  mediaQueries: {
-    [PHONE_MEDIA.substring(7)]: {
-      '.add-item': {
-        flex: '1',
-        borderRadius: '0 !important',
-        marginRight: '0 !important',
-      },
-      '.add-wish': {
-        borderRadius: '0 !important',
-      },
-    },
-  },
 });
 
 export const root = mode => ({
@@ -91,11 +78,11 @@ export const wrapper = mode => ({
         },
       }
     : {
-        padding: '10px 20px 0',
+        padding: '10px 25px 0',
         [PHONE_MEDIA]: {
           maxWidth: '500px',
           margin: 'auto',
-          padding: '10px 15px 50px',
+          padding: '10px 15px 0',
         },
       }),
 });

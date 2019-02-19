@@ -31,6 +31,8 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
               showTitle,
               showSort,
               notBeDeleted,
+              type,
+              popUpGalleryView,
             } = widget;
             return {
               id: uuid(),
@@ -48,6 +50,8 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
               productWidth,
               padding,
               pagination,
+              type,
+              popUpGalleryView,
             };
           }
           /* 產品組合 */

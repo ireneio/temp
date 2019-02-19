@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
-import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
+import {
+  COLOR_TYPE,
+  ISLOGIN_TYPE,
+  STORE_SETTING_TYPE,
+} from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 import Image from 'image';
 import DraftText from 'draftText';
@@ -27,6 +31,7 @@ const ProductCard = ({
   showDescription,
   showPrice,
   cartButton,
+  type,
 
   colors,
   isLogin,
@@ -34,6 +39,7 @@ const ProductCard = ({
   transformCurrency,
   memberSeePrice,
   isUsingCache,
+  storeSetting,
 }) => (
   <StyleRoot>
     <div
@@ -77,6 +83,9 @@ const ProductCard = ({
           const orderable =
             variants.reduce((prev, variant) => prev + (variant.stock || 0), 0) >
             0;
+          const productListImagePopUpEnabled =
+            storeSetting?.experiment?.productListImagePopUpEnabled &&
+            type === 'pop-up';
 
           return (
             <div
@@ -89,10 +98,15 @@ const ProductCard = ({
                 styles.productCard(colors, isGrid),
               ]}
             >
-              <div style={styles.productImage}>
+              <div
+                style={styles.productImage}
+                {...(productListImagePopUpEnabled
+                  ? { onClick: () => handleModalOpen(id) }
+                  : {})}
+              >
                 <Image
                   image={imageSrc}
-                  href={`/product/${id}`}
+                  href={productListImagePopUpEnabled ? '' : `/product/${id}`}
                   contentWidth={100}
                   alignment="center"
                   newWindow={false}
@@ -151,10 +165,9 @@ const ProductCard = ({
                 <button
                   key={`${id}-button`}
                   type="button"
-                  data-id={id}
                   disabled={!orderable}
                   style={styles.productAddToCart(colors)}
-                  onClick={handleModalOpen}
+                  onClick={() => handleModalOpen(id)}
                 >
                   {transformLocale(
                     orderable ? LOCALE.ADD_TO_CART : LOCALE.SOLD_OUT,
@@ -186,12 +199,14 @@ ProductCard.propTypes = {
   showDescription: PropTypes.bool.isRequired,
   showPrice: PropTypes.bool.isRequired,
   cartButton: PropTypes.bool.isRequired,
+  type: PropTypes.oneOf(['original', 'pop-up']).isRequired,
   colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
   isLogin: ISLOGIN_TYPE.isRequired,
   transformLocale: PropTypes.func.isRequired,
   transformCurrency: PropTypes.func.isRequired,
   memberSeePrice: PropTypes.bool.isRequired,
   isUsingCache: PropTypes.bool.isRequired,
+  storeSetting: STORE_SETTING_TYPE.isRequired,
 };
 /* eslint-enable react/no-typos */
 

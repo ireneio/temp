@@ -1,12 +1,12 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import radium from 'radium';
 import { Button, Icon } from 'antd';
 
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 
-import * as styles from './styles/addButton';
+import styles from './styles/addButton.less';
 import { VARIANT_TYPE, ORDERABLE_TYPE } from './constants';
 import {
   LOGIN_FIRST,
@@ -17,7 +17,6 @@ import {
   NO_VARIANTS,
 } from './locale';
 
-@radium
 export default class AddButton extends React.Component {
   static propTypes = {
     variantInfo: VARIANT_TYPE.isRequired,
@@ -34,6 +33,7 @@ export default class AddButton extends React.Component {
     isLogin: ISLOGIN_TYPE.isRequired,
     goTo: PropTypes.func.isRequired,
     mode: PropTypes.oneOf(['list', 'detail']).isRequired,
+    isMobile: PropTypes.bool.isRequired,
   };
 
   generateAddButton = () => {
@@ -50,13 +50,19 @@ export default class AddButton extends React.Component {
       isAddingItem,
       mode,
     } = this.props;
+    const config = {
+      className: `color-2 color-2-hover ${styles.item} ${styles[mode]}`,
+      style: {
+        border: `2px solid ${colors[4]}`,
+        background: colors[4],
+      },
+      size: 'large',
+    };
 
     if (hasStoreAppPlugin('memberSeePrice') && isLogin !== ISUSER) {
       return (
         <Button
-          className="add-item"
-          size="large"
-          style={styles.addItemButton(mode, colors)}
+          {...config}
           onClick={() => {
             goTo({ pathname: '/login' });
           }}
@@ -69,9 +75,7 @@ export default class AddButton extends React.Component {
     if (orderable === 'ORDERABLE') {
       return (
         <Button
-          className="add-item"
-          size="large"
-          style={styles.addItemButton(mode, colors)}
+          {...config}
           onClick={addToCart}
           loading={isAddingItem}
           disabled={isAddingItem}
@@ -83,12 +87,7 @@ export default class AddButton extends React.Component {
 
     if (orderable === 'NO_VARIANTS') {
       return (
-        <Button
-          className="add-item"
-          size="large"
-          style={styles.addItemButton(mode, colors)}
-          disabled
-        >
+        <Button {...config} disabled>
           {transformLocale(NO_VARIANTS)}
         </Button>
       );
@@ -97,9 +96,7 @@ export default class AddButton extends React.Component {
     if (hasStoreAppPlugin('productNotice')) {
       return (
         <Button
-          className="add-item"
-          size="large"
-          style={styles.addItemButton(mode, colors)}
+          {...config}
           loading={isAddingItem}
           onClick={addToNotificationList}
           disabled={variantInfo.productNotice || isAddingItem}
@@ -113,9 +110,11 @@ export default class AddButton extends React.Component {
 
     return (
       <Button
-        className="add-item"
-        size="large"
-        style={styles.addItemButton(mode, colors, false)}
+        {...config}
+        style={{
+          border: `2px solid ${colors[4]}`,
+          background: '#CCC',
+        }}
         disabled
       >
         {transformLocale(SOLD_OUT)}
@@ -130,16 +129,25 @@ export default class AddButton extends React.Component {
       addToWishList,
       isAddingWish,
       mode,
+      isMobile,
     } = this.props;
 
-    return (
-      <div style={styles.root(mode)}>
+    return isMobile ? (
+      ReactDOM.createPortal(
+        <div className={styles.portal}>{this.generateAddButton()}</div>,
+        document.querySelector('body'),
+      )
+    ) : (
+      <div className={`${styles.root} ${styles[mode]}`}>
         {this.generateAddButton()}
         {mode === 'detail' ? (
           <Button
-            className="add-wish"
+            className={styles.wish}
             size="large"
-            style={styles.addWishButton(colors, isInWishList)}
+            style={{
+              border: `1px solid ${isInWishList ? colors[4] : colors[5]}`,
+              color: isInWishList ? colors[4] : colors[5],
+            }}
             onClick={addToWishList}
             loading={isAddingWish}
             disabled={isAddingWish}

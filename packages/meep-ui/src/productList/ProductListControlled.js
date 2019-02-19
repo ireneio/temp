@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { areEqual } from 'fbjs';
-import { Modal, Pagination, Select, Icon } from 'antd';
+import { Pagination, Select, Icon } from 'antd';
 import hash from 'hash.js';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -12,12 +12,12 @@ import {
   ONE_OF_LOCALE_TYPE,
   ISLOGIN_TYPE,
   LOCATION_TYPE,
+  STORE_SETTING_TYPE,
 } from 'constants/propTypes';
 import { PHONE_MEDIA } from 'constants/media';
-import ProductCarousel from 'productCarousel';
-import ProductInfo from 'productInfo';
 
 import ProductCard from './ProductCard';
+import PopUp from './PopUp';
 import { SORT_OPTIONS } from './constants';
 import * as styles from './styles';
 import * as LOCALE from './locale';
@@ -69,8 +69,11 @@ export default class ProductList extends React.PureComponent {
     showPrice: PropTypes.bool.isRequired,
     cartButton: PropTypes.bool.isRequired,
     pagination: PropTypes.bool.isRequired,
+    type: PropTypes.oneOf(['original', 'pop-up']),
+    popUpGalleryView: PropTypes.oneOf(['one', 'two', 'all', 'none']),
 
     /** props from context */
+    storeSetting: STORE_SETTING_TYPE.isRequired,
     locale: ONE_OF_LOCALE_TYPE.isRequired,
     location: LOCATION_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -86,6 +89,8 @@ export default class ProductList extends React.PureComponent {
 
   static defaultProps = {
     cart: null,
+    type: 'original',
+    popUpGalleryView: 'one',
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -276,9 +281,9 @@ export default class ProductList extends React.PureComponent {
     });
   };
 
-  handleModalOpen = e => {
+  handleModalOpen = id => {
     this.setState({
-      target: e.target.dataset.id,
+      target: id,
       isOpen: true,
     });
   };
@@ -339,39 +344,6 @@ export default class ProductList extends React.PureComponent {
     });
   };
 
-  generateDetails = () => {
-    const { cart, stockNotificationList, wishList } = this.props;
-    const { products, target } = this.state;
-
-    // return if no target or products
-    if (!target || !products || products instanceof Promise) return null;
-
-    const productData = products.data.find(item => item.id === target);
-
-    // return if no productData
-    if (!productData) return null;
-
-    return (
-      <div style={styles.modal} id="modal-area">
-        <ProductCarousel
-          mode="list"
-          galleries={productData.galleries}
-          autoPlay={false}
-          thumbsPosition="bottom"
-        />
-        <ProductInfo
-          mode="list"
-          productData={productData}
-          cart={cart}
-          stockNotificationList={stockNotificationList}
-          isInWishList={wishList.some(item => item.productId === target)}
-          showButton={false}
-          container="modal-area"
-        />
-      </div>
-    );
-  };
-
   renderPagination = (current, type, originalElement) => {
     const { colors, transformLocale } = this.props;
     let item;
@@ -409,7 +381,14 @@ export default class ProductList extends React.PureComponent {
       showPrice,
       cartButton,
       pagination,
+      type,
+      popUpGalleryView,
 
+      cart,
+      stockNotificationList,
+      wishList,
+
+      storeSetting,
       colors,
       isLogin,
       transformLocale,
@@ -420,6 +399,7 @@ export default class ProductList extends React.PureComponent {
       products,
       params: { sort, limit, ids },
       page,
+      target,
       isOpen,
       isGrid,
       isLoading,
@@ -470,6 +450,7 @@ export default class ProductList extends React.PureComponent {
                 <Icon type={isGrid ? 'profile' : 'appstore'} />
               </div>
             </div>
+
             <ProductCard
               products={products}
               limit={limit}
@@ -484,13 +465,16 @@ export default class ProductList extends React.PureComponent {
               showDescription={showDescription}
               showPrice={showPrice}
               cartButton={cartButton}
+              type={type}
               colors={colors}
               isLogin={isLogin}
               transformLocale={transformLocale}
               transformCurrency={transformCurrency}
               memberSeePrice={hasStoreAppPlugin('memberSeePrice')}
               isUsingCache={isUsingCache}
+              storeSetting={storeSetting}
             />
+
             {pagination && (
               <div style={styles.pagination}>
                 <Pagination
@@ -508,16 +492,23 @@ export default class ProductList extends React.PureComponent {
                 />
               </div>
             )}
-            <Modal
+
+            <PopUp
               className={this.name}
               title={transformLocale(LOCALE.MODAL_TITLE)}
               visible={isOpen}
               onCancel={this.handleModalClose}
-              footer={null}
-              destroyOnClose
-            >
-              {this.generateDetails()}
-            </Modal>
+              type={type}
+              popUpGalleryView={popUpGalleryView}
+              cart={cart}
+              stockNotificationList={stockNotificationList}
+              wishList={wishList}
+              storeSetting={storeSetting}
+              products={products}
+              target={target}
+              isMobile={isMobile}
+            />
+
             {isLoading && <div style={styles.loading} />}
           </div>
         </StyleRoot>

@@ -90,25 +90,23 @@ export default class ProductCarousel extends React.PureComponent {
               prevArrow={<ArrowIcon type="left-circle" />}
             >
               {images.map(image => (
-                <div key={image.fileId}>
-                  <Lazy>
-                    {({ useLarge, isClear, onLoad }) => {
-                      const { src } = image;
-                      if (useLarge) {
-                        const img = new Image();
-                        img.onload = onLoad;
-                        img.src = `${src}?w=400`;
-                      }
-                      return (
-                        <div style={styles.showcase({ src, mode, isClear })} />
-                      );
-                    }}
-                  </Lazy>
-                </div>
+                <Lazy key={image.fileId}>
+                  {({ useLarge, isClear, onLoad }) => {
+                    const { src } = image;
+                    if (useLarge) {
+                      const img = new Image();
+                      img.onload = onLoad;
+                      img.src = `${src}?w=400`;
+                    }
+                    return (
+                      <div style={styles.showcase({ src, mode, isClear })} />
+                    );
+                  }}
+                </Lazy>
               ))}
             </Slider>
 
-            {thumbsPosition !== 'bottom' ? null : (
+            {thumbsPosition !== 'bottom' || images.length === 1 ? null : (
               <Slider
                 ref={this.navigator}
                 asNavFor={slider}

@@ -28,6 +28,8 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
             showTitle,
             showSort,
             notBeDeleted,
+            type,
+            popUpGalleryView,
           } = widget;
           return {
             id: uuid(),
@@ -45,6 +47,8 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
             productWidth,
             padding,
             pagination,
+            type,
+            popUpGalleryView,
           };
         }
         /* 產品組合 */

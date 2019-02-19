@@ -37,6 +37,7 @@ export default class ProductInfo extends React.PureComponent {
     mode: PropTypes.oneOf(['list', 'detail']),
     cart: PropTypes.shape({}),
     container: PropTypes.string,
+    isMobile: PropTypes.bool,
 
     /** props from module */
     showButton: PropTypes.bool.isRequired,
@@ -57,6 +58,7 @@ export default class ProductInfo extends React.PureComponent {
     mode: 'detail',
     cart: null,
     container: '',
+    isMobile: null,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -262,6 +264,7 @@ export default class ProductInfo extends React.PureComponent {
       showButton,
       colors,
       isLogin,
+      isMobile,
     } = this.props;
     const {
       coordinates,
@@ -304,6 +307,7 @@ export default class ProductInfo extends React.PureComponent {
           cancelText={transformLocale(CANCEL)}
           onCancel={this.handleCancel}
           closable={false}
+          centered
         >
           {transformLocale(GOTO_LOGIN)}
         </Modal>
@@ -362,6 +366,7 @@ export default class ProductInfo extends React.PureComponent {
             isAddingItem={isAddingItem}
             isAddingWish={isAddingWish}
             mode={mode}
+            isMobile={isMobile}
           />
         </StyleRoot>
       </div>

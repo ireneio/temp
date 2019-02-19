@@ -21,6 +21,11 @@ export default class ProductCollection extends React.PureComponent {
     align: PropTypes.oneOf(['original', 'side']).isRequired,
     title: LOCALE_TYPE.isRequired,
     contentWidth: CONTENT_WIDTH_TYPE.isRequired,
+    mode: PropTypes.oneOf(['list', 'detail']),
+  };
+
+  static defaultProps = {
+    mode: 'detail',
   };
 
   render() {
@@ -33,19 +38,26 @@ export default class ProductCollection extends React.PureComponent {
       align,
       title,
       contentWidth,
+      mode,
     } = this.props;
     const images = galleries?.[1]?.images;
 
     if (!images) return null;
 
     return (
-      <div className={`${styles.root} ${styles[align]}`}>
+      <div
+        className={`${styles.root} ${styles[align]} ${
+          mode === 'list' ? styles[mode] : ''
+        }`}
+      >
         {images
           .filter(image => image?.src)
           .map(({ fileId, src }) => (
             <div
               key={fileId}
-              className={`${styles.imgWrapper} ${styles[align]}`}
+              className={`${styles.imgWrapper} ${styles[align]} ${
+                mode === 'list' ? styles[mode] : ''
+              }`}
             >
               <Image
                 className={styles.img}

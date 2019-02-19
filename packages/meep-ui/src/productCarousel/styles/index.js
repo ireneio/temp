@@ -13,7 +13,7 @@ export const Style = mode => ({
 
   '.navigator': {
     marginTop: mode === 'list' ? '10px' : '25px',
-    marginBottom: mode === 'list' ? '15px' : '0px',
+    marginBottom: mode === 'list' ? '10px' : '0px',
   },
 
   '.navigator .slick-slide': {

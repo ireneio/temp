@@ -78,9 +78,10 @@ export const listStyle = (colors, isGrid) => ({
 
 export const modalStyle = colors => ({
   // ant-modal
-  top: '60px',
+  padding: '0',
   '.ant-modal-content': {
     backgroundColor: colors[0],
+    overflow: 'hidden',
   },
   '.ant-modal-header': {
     backgroundColor: 'transparent',
@@ -95,13 +96,16 @@ export const modalStyle = colors => ({
   },
   '.ant-modal-body': {
     padding: '0',
+    maxHeight: '80vh',
+    overflow: 'auto',
+    marginBottom: '50px',
   },
   mediaQueries: {
     [PHONE_MEDIA.substring(7)]: {
       top: '0',
       margin: '0',
-      padding: '0',
       height: '100%',
+      width: '100% !important',
       '.ant-modal-content': {
         borderRadius: '0',
         height: '100%',
@@ -109,7 +113,10 @@ export const modalStyle = colors => ({
       '.ant-modal-header': {},
       '.ant-modal-body': {
         borderRadius: '0',
+        maxHeight: 'unset',
         height: 'calc(100% - 55px)',
+        paddingBottom: '50px',
+        marginBottom: '0',
       },
     },
   },
@@ -253,11 +260,3 @@ export const productAddToCart = colors => ({
     cursor: 'not-allowed',
   },
 });
-
-export const modal = {
-  height: '100%',
-  display: 'flex',
-  overflow: 'auto',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-};
