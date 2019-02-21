@@ -212,7 +212,7 @@ export default ({
               ? {}
               : {
                   address: {
-                    postalCode: postalCode.toString(),
+                    postalCode: postalCode?.toString(),
                     streetAddress: `${postalCode} ${address[0]} ${address[1] ||
                       ''}${address[2] || ''}${addressDetail}`,
                     yahooCode: {
