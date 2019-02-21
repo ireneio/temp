@@ -1,3 +1,18 @@
+## 0.18.8 (2019-02-21)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#415](https://github.com/meepshop/meep-lerna/pull/415) 【BUG】新架構 - 手機版商店 LOGO 跑版 ([@HsuTing](https://github.com/HsuTing))
+  - [#414](https://github.com/meepshop/meep-lerna/pull/414) 【其他】新架構 /checkout，郵遞區號前端先擋 ([@HsuTing](https://github.com/HsuTing))
+  - [#397](https://github.com/meepshop/meep-lerna/pull/397) N354 【BUG】綠界信用卡 - 稍後付款，至訂單列表立即付款，出現交易失敗 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#386](https://github.com/meepshop/meep-lerna/pull/386) 選完門市回到 /checkout 語系會跑掉 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.18.7 (2019-02-19)
 
 #### :boom: Breaking Change
