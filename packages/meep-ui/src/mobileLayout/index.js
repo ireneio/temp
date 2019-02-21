@@ -98,14 +98,12 @@ export default class MobileLayout extends React.PureComponent {
 
             <div className={styles.logo}>
               {!mobileLogoUrl ? null : (
-                <Link style={{ width: '100%' }} href="/" target="_self">
+                <Link className={styles.link} href="/" target="_self">
                   <img
-                    style={{ objectFit: 'contain' }}
                     className={styles.image}
                     src={`//${mobileLogoUrl}?h=180`}
                     srcSet={`//${mobileLogoUrl}?h=60 1x, //${mobileLogoUrl}?h=120 2x, //${mobileLogoUrl}?h=180 3x`}
                     alt="mobile-logo"
-                    height="60"
                   />
                 </Link>
               )}

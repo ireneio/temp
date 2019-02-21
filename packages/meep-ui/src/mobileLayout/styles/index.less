@@ -36,10 +36,13 @@
     background-size: contain;
   }
 
-  /* For smaller than iphone 6 */
-  @media (max-width: 370px) {
-    a > img {
-      width: 100px !important;
+  .link {
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 60px;
+      object-fit: contain;
     }
   }
 }
