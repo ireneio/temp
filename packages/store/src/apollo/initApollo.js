@@ -8,7 +8,7 @@ import clientState from './clientState';
 import shouldPrintError from './shouldPrintError';
 
 const {
-  publicRuntimeConfig: { API_HOST },
+  publicRuntimeConfig: { API_HOST, VERSION },
 } = getConfig();
 
 let apolloClient = null;
@@ -19,6 +19,8 @@ const create = (initialState, ctx) => {
   }).restore(initialState || {});
 
   return new ApolloClient({
+    name: 'store',
+    version: VERSION,
     connectToDevTools: process.browser,
     ssrMode: process.browser,
     link: ApolloLink.from([

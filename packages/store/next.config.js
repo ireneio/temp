@@ -34,6 +34,7 @@ module.exports = withSourceMaps(
               process.env.EXTERNAL_API_HOST ||
               'https://api.stage.meepcloud.com',
             STORE_DOMAIN: process.env.STORE_DOMAIN,
+            VERSION: process.env.REPO_VERSION || +new Date(),
           },
           analyzeServer: ['server', 'both'].includes(
             process.env.BUNDLE_ANALYZE,

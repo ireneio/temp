@@ -12,7 +12,7 @@ const { publicRuntimeConfig } = require('../../next.config');
 const routes = require('./routes');
 const { api, signin, fbAuthForLine } = require('./routers');
 
-const { STORE_DOMAIN } = publicRuntimeConfig;
+const { STORE_DOMAIN, VERSION } = publicRuntimeConfig;
 const port = parseInt(process.env.PORT, 10) || 14401;
 const app = nextApp({
   dir: path.resolve(__dirname, '..'),
@@ -46,8 +46,7 @@ module.exports = app.prepare().then(
       /** router start */
       // info
       router.get('/healthz', ctx => {
-        ctx.body = `Welcome to MeepShop-Store ${process.env.REPO_VERSION ||
-          +new Date()}`;
+        ctx.body = `Welcome to MeepShop-Store ${VERSION}`;
       });
 
       router.post('/log', ctx => {
