@@ -2,7 +2,7 @@ import React from 'react';
 
 export default formData =>
   (formData || []).map(({ name, value, ...props }) =>
-    !value ? null : (
+    !value || name === '__typename' ? null : (
       <input
         {...props}
         key={name}
