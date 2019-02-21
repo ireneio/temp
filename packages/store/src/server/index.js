@@ -103,6 +103,8 @@ module.exports = app.prepare().then(
           ctx.headers['x-meepshop-domain'] = STORE_DOMAIN || ctx.host;
           ctx.headers['x-meepshop-authorization-token'] =
             ctx.cookies.get('x-meepshop-authorization-token') || null;
+          ctx.req.locale = ctx.cookies.get('locale');
+          ctx.req.currency = ctx.cookies.get('currency');
           delete ctx.headers.cookie;
           await next();
         } catch (error) {

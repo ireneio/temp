@@ -17,15 +17,13 @@ export const serverIndexInitial = payload => ({
 
 function* serverIndexInitialFlow({ payload }) {
   try {
-    const { cookie } = payload;
     const data = yield call(Api.serverIndexInitial, payload);
 
     if (data.apiErr) {
       yield put(getStoreFailure(data.apiErr));
     } else {
       /* Get default locale & currency from cookies */
-      const locale = Utils.getCookie('locale', cookie);
-      const customerCurrency = Utils.getCookie('currency', cookie);
+      const { locale, currency: customerCurrency } = payload.req;
 
       yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
       yield put(getAuthSuccess(data));
@@ -60,15 +58,13 @@ export const serverPagesInitial = payload => ({
 
 function* serverPagesInitialFlow({ payload }) {
   try {
-    const { cookie } = payload;
     const data = yield call(Api.serverPagesInitial, payload);
 
     if (data.apiErr) {
       yield put(getStoreFailure(data.apiErr));
     } else {
       /* Get default locale & currency from cookies */
-      const locale = Utils.getCookie('locale', cookie);
-      const customerCurrency = Utils.getCookie('currency', cookie);
+      const { locale, currency: customerCurrency } = payload.req;
 
       yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
       yield put(getAuthSuccess(data));
@@ -101,7 +97,7 @@ export const serverProductInitial = payload => ({
 
 function* serverProductInitialFlow({ payload }) {
   try {
-    const { cookie, query } = payload;
+    const { query } = payload;
     const { pId } = query;
 
     const data = yield call(Api.serverProductInitial, payload);
@@ -110,8 +106,7 @@ function* serverProductInitialFlow({ payload }) {
       yield put(getStoreFailure(data.apiErr));
     } else {
       /* get default locale & currency from cookies */
-      const locale = Utils.getCookie('locale', cookie);
-      const customerCurrency = Utils.getCookie('currency', cookie);
+      const { locale, currency: customerCurrency } = payload.req;
 
       yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
       yield put(getAuthSuccess(data));
@@ -172,15 +167,13 @@ export const serverProductsInitial = payload => ({
 
 function* serverProductsInitialFlow({ payload }) {
   try {
-    const { cookie } = payload;
     const data = yield call(Api.serverProductsInitial, payload);
 
     if (data.apiErr) {
       yield put(getStoreFailure(data.apiErr));
     } else {
       /* get default locale & currency from cookies */
-      const locale = Utils.getCookie('locale', cookie);
-      const customerCurrency = Utils.getCookie('currency', cookie);
+      const { locale, currency: customerCurrency } = payload.req;
 
       yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
       yield put(getAuthSuccess(data));
@@ -212,15 +205,13 @@ export const serverOthersInitial = payload => ({
 
 function* serverOthersInitialFlow({ payload }) {
   try {
-    const { cookie } = payload;
     const data = yield call(Api.serverOthersInitial, payload);
 
     if (data.apiErr) {
       yield put(getStoreFailure(data.apiErr));
     } else {
       // get default locale & currency from cookies
-      const locale = Utils.getCookie('locale', cookie);
-      const customerCurrency = Utils.getCookie('currency', cookie);
+      const { locale, currency: customerCurrency } = payload.req;
 
       yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
       yield put(getAuthSuccess(data));

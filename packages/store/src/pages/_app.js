@@ -49,10 +49,7 @@ class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     const { isServer, req, res, store } = ctx;
     let pageProps = {};
-    const { XMeepshopDomain, userAgent, cookie = null } = Utils.getReqArgs(
-      isServer,
-      req,
-    );
+    const { XMeepshopDomain, userAgent } = Utils.getReqArgs(isServer, req);
 
     try {
       /**
@@ -103,7 +100,7 @@ class MyApp extends App {
         const data = await response.json();
         const storeStatus = data?.data?.viewer.store.storeStatus;
         const locale =
-          Utils.getCookie('locale', cookie) ||
+          req?.locale ||
           data?.data?.getStoreList?.data?.[0]?.setting?.locale?.[0] ||
           'zh_TW';
         /* The store is closed */
@@ -142,7 +139,6 @@ class MyApp extends App {
           ...ctx,
           XMeepshopDomain,
           userAgent,
-          cookie,
         });
       }
       return { pageProps };
