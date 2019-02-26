@@ -210,16 +210,16 @@ export const INVOICE_E_INVOICE_TYPE = {
   },
   COMPANY: {
     zh_TW: '公司戶',
-    en_US: '',
-    ja_JP: '',
-    vi_VN: '',
+    en_US: 'Company Account',
+    ja_JP: '会社',
+    vi_VN: 'Công ty',
     TODO_LOCALE: true,
   },
   DONATION: {
     zh_TW: '捐贈',
     en_US: 'Donate',
     ja_JP: '寄贈',
-    vi_VN: 'tặng',
+    vi_VN: 'Tặng',
     TODO_LOCALE: true,
   },
 };
@@ -243,17 +243,17 @@ export const INVOICE_E_INVOICE_NUMBER = {
 
 export const WRONG_CERTIFICATE = {
   zh_TW: '自然人憑證條碼錯誤，請重新輸入。',
-  en_US: '',
-  ja_JP: '',
-  vi_VN: '',
+  en_US: 'NPC Barcode is incorrect. Please enter again.',
+  ja_JP: '自然人証憑バーコードが誤っています。もう一度入力してください。',
+  vi_VN: 'Mã vạch thẻ Thể Nhân không đúng, xin vui lòng nhập lại.',
   TODO_LOCALE: true,
 };
 
 export const WRONG_BARCODE = {
   zh_TW: '手機條碼錯誤，請重新輸入。',
-  en_US: '',
-  ja_JP: '',
-  vi_VN: '',
+  en_US: 'Mobile Barcode is incorrect. Please enter again.',
+  ja_JP: '携帯電話バーコードが誤っています。もう一度入力してください。',
+  vi_VN: 'Mã vạch máy di động không đúng, xin vui lòng nhập lại.',
   TODO_LOCALE: true,
 };
 
@@ -276,9 +276,9 @@ export const INVOICE_SEARCH = {
 
 export const WRONG_LOVECODE = {
   zh_TW: '愛心碼錯誤，請重新輸入。',
-  en_US: '',
-  ja_JP: '',
-  vi_VN: '',
+  en_US: 'NPO Donation Code is incorrect. Please enter again.',
+  ja_JP: '社会福祉団体コードが誤っています。もう一度入力してください。',
+  vi_VN: 'Mã số Trái Tim không đúng, xin vui lòng nhập lại.',
   TODO_LOCALE: true,
 };
 
