@@ -1,3 +1,22 @@
+## 0.18.9 (2019-02-26)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#419](https://github.com/meepshop/meep-lerna/pull/419) 【個案處理】meepShop MAX 極速開店：新增白名單 - kolstyle ([@yuhsu1004](https://github.com/yuhsu1004))
+- `store`
+  - [#416](https://github.com/meepshop/meep-lerna/pull/416) Add apollo-client name ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#417](https://github.com/meepshop/meep-lerna/pull/417) 電子發票 - 前台補上翻譯 (2) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ariel Hsu ([@yuhsu1004](https://github.com/yuhsu1004))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.18.8 (2019-02-21)
 
 #### :bug: Bug Fix
