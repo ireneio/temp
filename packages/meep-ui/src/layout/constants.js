@@ -18,6 +18,7 @@ export const SPECIAL_HIDE_FOOTER = [
   'ecomo',
   'animen',
   'flymi',
+  'kolstyle',
 ];
 
 export const STORE_APP_PLUGINS = [
