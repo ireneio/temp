@@ -8,9 +8,6 @@ prod:
 
 clean:
 	rm -rf ./lib
-	rm -rf ./.storybook/.cache/
-	rm -rf ./src/**/__story__/.cache
-	rm -rf ./src/**/__tests__/.cache
 
 copy-style-less:
 	test -e ./lib || mkdir ./lib

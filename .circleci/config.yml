@@ -102,11 +102,6 @@ jobs:
             yarn prod @meepshop/store
             yarn lint .
 
-      - run:
-          name: Test pacakges
-          command: yarn test
-      - store_artifacts:
-          path: coverage
       - save_cache: *save-prod-cache
 
   deploy-test:

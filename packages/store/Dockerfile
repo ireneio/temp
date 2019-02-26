@@ -16,7 +16,6 @@ COPY ./node_modules ./node_modules
 # Copy folder
 COPY ./packages/meep-ui ./packages/meep-ui
 COPY ./packages/store ./packages/store
-COPY ./packages/test-prod-server ./packages/test-prod-server
 
 RUN yarn lerna link
 
