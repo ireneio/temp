@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Select, Checkbox } from 'antd';
+import { isAlpha } from 'validator';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
@@ -195,21 +196,36 @@ export default class ReceiverInfo extends React.PureComponent {
               },
               {
                 validator: (rule, value, callback) => {
-                  if (
-                    value &&
-                    chooseShipmentTemplate === 'ezship' &&
-                    value.length > 60
-                  )
-                    return callback(transformLocale(LOCALE.NAME_TOO_LONG(60)));
+                  if (!value) callback();
 
-                  if (
-                    value &&
-                    ['allpay', 'gmo'].includes(chooseShipmentTemplate) &&
-                    value.length > 10
-                  )
-                    return callback(transformLocale(LOCALE.NAME_TOO_LONG(10)));
+                  switch (chooseShipmentTemplate) {
+                    case 'ezship':
+                      return callback(
+                        value.length > 60
+                          ? transformLocale(LOCALE.NAME_TOO_LONG(60))
+                          : undefined,
+                      );
 
-                  return callback();
+                    case 'gmo':
+                      return callback(
+                        value.length > 10
+                          ? transformLocale(LOCALE.NAME_TOO_LONG(10))
+                          : undefined,
+                      );
+
+                    case 'allpay':
+                      return callback(
+                        /[\^'`!@#%&*+\\"<>|_[\] ,，\d]/.test(value) ||
+                          (isAlpha(value)
+                            ? value.length > 10 || value.length < 4
+                            : value.length > 5 || value.length < 2)
+                          ? transformLocale(LOCALE.ALLPAY_LNAME_TOO_LONG)
+                          : undefined,
+                      );
+
+                    default:
+                      return callback();
+                  }
                 },
               },
             ],

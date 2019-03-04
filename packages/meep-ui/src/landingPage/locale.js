@@ -114,6 +114,14 @@ export const NAME_TOO_LONG = max => ({
   TODO_LOCALE: true,
 });
 
+export const ALLPAY_LNAME_TOO_LONG = {
+  zh_TW: '中文須為2~5個字/英文須為4~10個字，不可使用符號/數字/空白',
+  en_US: '',
+  ja_JP: '',
+  vi_VN: '',
+  TODO_LOCALE: true,
+};
+
 export const GENDER = {
   zh_TW: '性別',
   en_US: 'Gender',
