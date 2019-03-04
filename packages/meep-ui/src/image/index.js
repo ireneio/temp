@@ -2,12 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Link from 'link';
-import {
-  URL_TYPE,
-  HASH_TYPE,
-  IMAGE_TYPE,
-  CUSTOM_TRACKING_TYPE,
-} from 'constants/propTypes';
+import { URL_TYPE, HASH_TYPE, IMAGE_TYPE } from 'constants/propTypes';
 
 import Placeholder from './Placeholder';
 import Img from './img';
@@ -21,7 +16,6 @@ export default class Image extends React.PureComponent {
     href: PropTypes.oneOfType([URL_TYPE, HASH_TYPE]),
     image: IMAGE_TYPE,
     newWindow: PropTypes.bool,
-    customTracking: CUSTOM_TRACKING_TYPE,
   };
 
   static defaultProps = {
@@ -29,7 +23,6 @@ export default class Image extends React.PureComponent {
     href: null,
     image: null,
     newWindow: false,
-    customTracking: null,
   };
 
   state = {
@@ -41,7 +34,7 @@ export default class Image extends React.PureComponent {
   }
 
   render() {
-    const { href, image, newWindow, customTracking, ...props } = this.props;
+    const { href, image, newWindow, ...props } = this.props;
     const { width } = this.state;
     const linkProps = {
       className: styles.root,
