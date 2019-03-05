@@ -1,3 +1,15 @@
+## 0.18.11 (2019-03-05)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#404](https://github.com/meepshop/meep-lerna/pull/404) 2378 【優化】優惠碼 - 前台 /checkout 系統判斷＆文字提示調整：前端 ([@HsuTing](https://github.com/HsuTing))
+  - [#426](https://github.com/meepshop/meep-lerna/pull/426) N216 【BUG】商品問答 - 無資料時隱藏 "no data" ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.18.10 (2019-03-04)
 
 #### :rocket: New Feature
