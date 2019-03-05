@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import areEqual from 'fbjs/lib/areEqual';
+import { areEqual } from 'fbjs';
 import moment from 'moment';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -55,31 +55,9 @@ export default class CouponSuccess extends React.PureComponent {
     );
 
     if (activity && !areEqual(activity, preState.activity)) {
-      const {
-        startTime,
-        endTime,
-        couponSetting,
-        rule,
-        unlimitedDate,
-      } = activity;
+      const { startTime, endTime, rule, unlimitedDate } = activity;
       const [discount] = rule.discount;
-      const { useTimesType, couponUseTimes, useTimes } = couponSetting;
       const { method, value } = discount;
-
-      const timesString =
-        useTimesType === 1
-          ? ''
-          : transformLocale`${LOCALE.ALREADY_USED(couponUseTimes)}${
-              LOCALE.COMMA
-            }${LOCALE.TIMES_STILL_CAN_USE(useTimes - couponUseTimes)}`;
-
-      const period = unlimitedDate
-        ? ''
-        : transformLocale`${LOCALE.ACTIVITY_PERIOD_IS} ${moment(
-            startTime * 1000,
-          ).format(TIME_FORMAT)}-${moment(endTime * 1000)
-            .subtract(1, 'days')
-            .format(TIME_FORMAT)}`;
 
       return {
         activity,
@@ -88,9 +66,13 @@ export default class CouponSuccess extends React.PureComponent {
             method === 1 ? `${value} %OFF` : transformCurrency(value),
           ),
         ),
-        descriptString: transformLocale`${timesString}${
-          useTimesType === 0 && !unlimitedDate ? LOCALE.COMMA : ''
-        }${period}`,
+        descriptString: unlimitedDate
+          ? ''
+          : transformLocale`${LOCALE.ACTIVITY_PERIOD_IS} ${moment(
+              startTime * 1000,
+            ).format(TIME_FORMAT)}-${moment(endTime * 1000)
+              .subtract(1, 'days')
+              .format(TIME_FORMAT)}`,
       };
     }
 

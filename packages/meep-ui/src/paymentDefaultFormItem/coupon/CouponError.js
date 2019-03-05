@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import areEqual from 'fbjs/lib/areEqual';
+import { areEqual } from 'fbjs';
 import moment from 'moment';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -85,27 +85,10 @@ export default class CouponError extends React.PureComponent {
           LOCALE.YOUR_MEMBER_GROUP_CAN_NOT_USE_THIS_CODE
         }${LOCALE.PLZ_DELETE_THEN_CHECKOUT}`;
 
-      case 4018: {
-        const { useTimes, startTime, endTime } = params;
-
-        return (
-          <React.Fragment>
-            <div>
-              {transformLocale`${LOCALE.THIS_CODE_USETIMES_FULL}${
-                LOCALE.PLZ_DELETE_THEN_CHECKOUT
-              }`}
-            </div>
-
-            <div>
-              {transformLocale`${LOCALE.ALREADY_USED(useTimes)} ${
-                LOCALE.ACTIVITY_PERIOD_IS
-              } ${moment(startTime * 1000).format(TIME_FORMAT)}-${moment(
-                endTime * 1000,
-              ).format(TIME_FORMAT)}`}
-            </div>
-          </React.Fragment>
-        );
-      }
+      case 4018:
+        return transformLocale`${LOCALE.THIS_CODE_USETIMES_FULL}${
+          LOCALE.PLZ_ASK_SERVICE_OR_DELETE
+        }`;
 
       case 4019: {
         const { type, condition } = params;

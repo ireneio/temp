@@ -24,14 +24,6 @@ export const ASK_CONFIRM_COUPON = {
   TODO_LOCALE: true,
 };
 
-export const ALREADY_USED = useTimes => ({
-  zh_TW: `已使用 ${useTimes} 次`,
-  en_US: `This coupon code has been used ${useTimes} times.`,
-  ja_JP: `${useTimes}回使用済`,
-  vi_VN: `Đã sử dụng ${useTimes} lần`,
-  TODO_LOCALE: true,
-});
-
 export const ACTIVITY_PERIOD_IS = {
   zh_TW: '活動期間為',
   en_US: 'The campaign runs from',
@@ -57,14 +49,6 @@ export const THIS_CODE_CAN_DISCOUNT = discount => ({
   TODO_LOCALE: true,
 });
 
-export const TIMES_STILL_CAN_USE = couponCanUseTimes => ({
-  zh_TW: `尚可使用 ${couponCanUseTimes} 次`,
-  en_US: `This coupon code can be redeemed for ${couponCanUseTimes}`,
-  ja_JP: `このクーポンコードは${couponCanUseTimes}分としてご利用いただけます`,
-  vi_VN: `Mã khuyến mãi này có thể giảm ${couponCanUseTimes}`,
-  TODO_LOCALE: true,
-});
-
 /** coupon error */
 export const THIS_CODE_NOT_EXIST = {
   zh_TW: '此優惠碼不存在',
@@ -75,10 +59,10 @@ export const THIS_CODE_NOT_EXIST = {
 };
 
 export const YOUR_MEMBER_GROUP_CAN_NOT_USE_THIS_CODE = {
-  zh_TW: '您的會員等級無法使用此優惠碼',
-  en_US: 'The level of your membership is not able to use this coupon code',
-  ja_JP: 'お客様の会員ランクではこのクーポンコードをご利用いただけません',
-  vi_VN: 'Cấp độ thành viên của bạn không thể sử dụng mã khuyến mãi này',
+  zh_TW: '會員資格不符！無法使用此優惠碼',
+  en_US: 'Membership is not qualified! This coupon code cannot apply.',
+  ja_JP: '会員資格が適合していません！このサービスコードはご使用になれません',
+  vi_VN: 'Không phù hợp điều kiện hội viên! Không thể sử dụng mã ưu đãi',
   TODO_LOCALE: true,
 };
 
@@ -91,10 +75,10 @@ export const THIS_CODE_ACTIVITY_PERIOD = {
 };
 
 export const THIS_CODE_USETIMES_FULL = {
-  zh_TW: '此優惠碼使用次數已滿',
-  en_US: 'This coupon code has reached limited number of effective times',
-  ja_JP: 'このクーポンコードは使用回数制限に達しました',
-  vi_VN: 'Số lần sử dụng mã khuyến mãi này đã hết',
+  zh_TW: '此優惠代碼使用次數已達上限',
+  en_US: 'This coupon code has reached the limit of number of uses.',
+  ja_JP: 'このサービスコードの使用回数が上限に達しています',
+  vi_VN: 'Mã ưu đãi này đã đạt giới hạn số lần sử dụng cao nhất',
   TODO_LOCALE: true,
 };
 
