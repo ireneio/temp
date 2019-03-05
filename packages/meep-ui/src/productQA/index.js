@@ -107,7 +107,7 @@ export default class PrdoductQA extends React.PureComponent {
         />
 
         <List
-          locale={{ emptyText: '' }}
+          locale={{ emptyText: ' ' }}
           itemLayout="horizontal"
           dataSource={QAList}
           renderItem={({ qa, userEmail }, index) => {
