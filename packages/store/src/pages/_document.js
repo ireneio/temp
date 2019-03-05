@@ -36,20 +36,18 @@ export default class MyDocument extends Document {
       <html lang={lang}>
         <Head>
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1, user-scalable=no"
           />
-          {/* TODO: 商品頁，產品頁加入購物車 Modal 跑版 */}
-          <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.10.3/antd.min.css"
-          />
+
           <link rel="stylesheet" href="/_next/static/style.css" />
         </Head>
-        <body>
+
+        <body id="meepshop">
           <Main />
+
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -61,6 +59,7 @@ export default class MyDocument extends Document {
               `,
             }}
           />
+
           <NextScript />
         </body>
       </html>

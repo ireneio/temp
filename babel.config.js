@@ -9,7 +9,9 @@ module.exports = {
     '@babel/react',
   ],
   plugins: [
+    '@babel/transform-runtime',
     '@babel/proposal-optional-chaining',
+    '@babel/proposal-export-default-from',
     [
       '@babel/proposal-decorators',
       {
@@ -21,6 +23,10 @@ module.exports = {
       'transform-imports',
       {
         /* eslint-disable no-template-curly-in-string */
+        antd: {
+          transform: 'antd/lib/${member}',
+          kebabCase: true,
+        },
         lodash: {
           transform: 'lodash/${member}',
         },
@@ -42,13 +48,6 @@ module.exports = {
       },
     ],
     [
-      'import',
-      {
-        libraryName: 'antd',
-        style: process.env.NODE_ENV !== 'test',
-      },
-    ],
-    [
       'module-resolver',
       {
         root: ['./src'],
@@ -60,26 +59,20 @@ module.exports = {
       {
         extensions: ['.less'],
         generateScopedName: '[path][name]__[local]',
+        preprocessCss: css => `:global(#meepshop) { ${css} }`,
         devMode: process.env.NODE_ENV !== 'production',
-        ...(process.env.NODE_ENV === 'test'
-          ? {}
-          : {
-              keepImport: true,
-              extractCss: {
-                dir: './lib',
-                relativeRoot: './src',
-                filename: '[path]/[name].less',
-              },
-            }),
+        keepImport: true,
+        ignore: /antd/,
+        extractCss: {
+          dir: './lib',
+          relativeRoot: './src',
+          filename: '[path]/[name].less',
+        },
       },
     ],
   ],
   ignore: process.env.NODE_ENV === 'test' ? [] : ['**/__tests__/**'],
   overrides: [
-    {
-      test: './packages/meep-ui',
-      plugins: ['@babel/proposal-export-default-from'],
-    },
     {
       test: './packages/store',
       presets: ['next/babel'],

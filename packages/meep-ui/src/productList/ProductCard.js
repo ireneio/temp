@@ -52,7 +52,7 @@ const ProductCard = ({
         },
       ]}
     >
-      {products instanceof Promise || !products ? (
+      {!products || products.then ? (
         <ProductLoader
           limit={limit}
           productWidth={productWidth}

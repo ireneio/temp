@@ -181,7 +181,7 @@ export default class ProductList extends React.PureComponent {
     const { adTrack, getData, dispatchAction, productListCache } = this.props;
 
     // resolved products
-    if (products instanceof Promise) {
+    if (products?.then) {
       this.resolveProducts();
       return;
     }

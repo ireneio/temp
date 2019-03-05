@@ -1,8 +1,6 @@
 postinstall:
 	rm -rf ./node_modules/next/node_modules/@babel/core
 	@echo "\nremove after using next@^7.x\n"
-	rm -rf ./node_modules/next/node_modules/regenerator-runtime
-	@echo "\nremove after regenerator-runtime > 0.12.1\n"
 
 clean:
 	rm -rf ./node_modules

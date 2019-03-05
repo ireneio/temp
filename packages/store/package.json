@@ -1,31 +1,22 @@
 {
   "private": true,
   "name": "@meepshop/store",
-  "version": "0.18.11",
   "description": "store for meepshop",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.18.11",
   "scripts": {
+    "clean": "rm -rf ./src/.next ./lib",
     "dev": "node --inspect src/server",
     "prod": "next build ./src",
-    "clean": "rm -rf ./src/.next ./lib",
     "start": "NODE_ENV=production node src/server"
   },
-  "keywords": [
-    "meepshop",
-    "store"
-  ],
-  "author": "meepshop <admin@meepshop.com>",
-  "license": "ISC",
   "dependencies": {
     "@meepshop/meep-ui": "^0.18.11",
-    "antd": "^3.10.1",
-    "apollo-boost": "^0.1.22",
     "body-parser": "^1.18.2",
     "color": "^3.0.0",
     "compression": "^1.7.2",
     "cookie-parser": "^1.4.3",
-    "express": "^4.16.3",
-    "express-http-proxy": "^1.2.0",
-    "graphql": "^14.0.2",
     "htmlescape": "^1.1.1",
     "isomorphic-unfetch": "^3.0.0",
     "koa": "^2.5.2",
@@ -38,12 +29,8 @@
     "next-redux-wrapper": "^2.0.0-beta.6",
     "next-routes": "^1.2.0",
     "nprogress": "^0.2.0",
-    "prop-types": "^15.6.0",
     "radium": "^0.25.0",
     "ramda": "^0.25.0",
-    "react": "^16.4.2",
-    "react-apollo": "^2.3.3",
-    "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-saga": "^0.16.0",
@@ -59,5 +46,6 @@
     "moment-locales-webpack-plugin": "^1.0.5",
     "next-images": "^0.10.2",
     "webpack": "^3.12.0"
-  }
+  },
+  "keywords": ["meepshop", "store"]
 }

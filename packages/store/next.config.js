@@ -1,7 +1,5 @@
-const path = require('path');
-
-const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
 const withCSS = require('@zeit/next-css');
 const withLess = require('@zeit/next-less');
 const withImages = require('next-images');
@@ -66,23 +64,24 @@ module.exports = withSourceMaps(
             config.module.rules.find(
               ({ use: { loader } }) => loader === 'next-babel-loader',
             ).use.options.configFile = '../../babel.config.js';
-
             config.plugins.push(new MomentLocalesPlugin());
 
             const originalEntry = config.entry;
 
             config.entry = async () => {
               const entries = await originalEntry();
-              const polyfillsPath = path.resolve(
-                __dirname,
-                './src/static/polyfills.js',
-              );
 
-              if (
-                entries['main.js'] &&
-                !entries['main.js'].includes(polyfillsPath)
-              )
-                entries['main.js'].unshift(polyfillsPath);
+              // fix for IE
+              [
+                'core-js/modules/es6.string.starts-with',
+                'core-js/modules/es6.symbol', // TODO: remove after next upgrade
+              ].forEach(polyfill => {
+                if (
+                  entries['main.js'] &&
+                  !entries['main.js'].includes(require.resolve(polyfill))
+                )
+                  entries['main.js'].unshift(require.resolve(polyfill));
+              });
 
               return entries;
             };

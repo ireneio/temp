@@ -59,7 +59,7 @@ export default class PopUp extends React.PureComponent {
     } = this.props;
 
     // return if no target or products
-    if (!target || !products || products instanceof Promise) return null;
+    if (!target || !products || products.then) return null;
 
     const productData = products.data.find(item => item.id === target);
 

@@ -6,16 +6,13 @@ const mockPromiseData = (prevProps, fields) =>
   fields.reduce(
     (defaultState, fieldKey) => ({
       ...defaultState,
-      [fieldKey]:
-        prevProps[fieldKey] instanceof Promise
-          ? undefined
-          : prevProps[fieldKey],
+      [fieldKey]: prevProps[fieldKey]?.then ? undefined : prevProps[fieldKey],
     }),
     {},
   );
 
 const checkPromiseExist = (prevProps, fields) =>
-  fields.some(fieldKey => prevProps[fieldKey] instanceof Promise);
+  fields.some(fieldKey => prevProps[fieldKey]?.then);
 
 const styles = {
   '.ant-spin-nested-loading > div > .ant-spin': {

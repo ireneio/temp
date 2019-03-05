@@ -2,29 +2,27 @@
   "private": true,
   "name": "@meepshop/meep-lerna",
   "license": "ISC",
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": ["packages/*"],
   "scripts": {
-    "dev": "lerna run dev --stream --parallel --include-filtered-dependencies --scope",
-    "prod": "NODE_ENV=production lerna run prod --stream --include-filtered-dependencies --scope",
     "clean": "lerna run clean && lerna clean && make clean",
-    "install:all": "yarn install && lerna bootstrap",
+    "dev": "lerna run dev --stream --parallel --include-filtered-dependencies --scope",
     "preinstall": "patch-package --reverse || echo \"no patch packages\"",
     "postinstall": "patch-package && make postinstall",
+    "install:all": "yarn install && lerna bootstrap",
     "lint": "NODE_ENV=test esw --cache --ext .js",
     "lint:watch": "yarn lint -w --rule \"prettier/prettier: off\" --quiet",
+    "prod": "NODE_ENV=production lerna run prod --stream --include-filtered-dependencies --scope",
     "release": "make release"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "dependencies": {
+    "antd": "^3.10.1",
+    "apollo-boost": "^0.1.22",
+    "graphql": "^14.0.2",
+    "graphql-anywhere": "^4.1.24",
+    "prop-types": "^15.6.0",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "regenerator-runtime": "^0.12.1"
+    "react-apollo": "^2.3.3",
+    "react-dom": "^16.4.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-rc.1",
@@ -33,13 +31,12 @@
     "@babel/plugin-proposal-decorators": "^7.0.0-rc.1",
     "@babel/plugin-proposal-export-default-from": "^7.0.0-rc.1",
     "@babel/plugin-proposal-optional-chaining": "^7.0.0-rc.1",
-    "@babel/polyfill": "^7.0.0-rc.1",
+    "@babel/plugin-transform-runtime": "^7.0.0-rc.1",
     "@babel/preset-env": "^7.0.0-rc.1",
     "@babel/preset-react": "^7.0.0-rc.1",
     "@babel/runtime": "^7.0.0-rc.1",
     "babel-eslint": "^10.0.1",
     "babel-plugin-css-modules-transform": "^1.6.1",
-    "babel-plugin-import": "^1.8.0",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-transform-imports": "^1.5.0",
     "eslint": "^5.1.0",
@@ -52,18 +49,22 @@
     "eslint-plugin-react": "^7.11.1",
     "eslint-watch": "^4.0.2",
     "husky": "^1.1.0",
-    "jest": "^23.1.0",
     "lerna": "^3.4.0",
     "lerna-changelog": "^0.8.0",
     "lint-staged": "^7.2.0",
-    "next": "^6.1.1",
     "patch-package": "^5.1.1",
     "postinstall-prepare": "^1.0.1",
-    "prettier": "^1.13.5"
+    "prettier": "^1.13.5",
+    "prettier-package-json": "^2.1.0"
   },
   "engines": {
     "node": ">=9.11.1",
     "npm": ">=5.3.0",
     "yarn": ">=1.5.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
