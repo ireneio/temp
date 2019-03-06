@@ -1,5 +1,10 @@
 module.exports = {
   '*.js': ['yarn prettier --write', 'yarn lint', 'git add'],
+  '*.{ts,tsx}': [
+    'yarn prettier --parser typescript --write',
+    'yarn lint',
+    'git add',
+  ],
   '**/package.json': [
     'yarn prettier-package-json --write',
     'yarn prettier --parser json --write',

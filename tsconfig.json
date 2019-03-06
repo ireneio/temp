@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "lib": ["es6", "dom"],
+    "noEmit": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "jsx": "react"
+  },
+  "include": [
+    "store/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

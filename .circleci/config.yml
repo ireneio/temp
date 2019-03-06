@@ -101,6 +101,7 @@ jobs:
           command: |
             yarn prod @meepshop/store
             yarn lint .
+            yarn tsc
 
       - save_cache: *save-prod-cache
 
