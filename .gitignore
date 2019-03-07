@@ -14,13 +14,6 @@ lib
 
 # jest
 coverage
-.cache
 
 # lerna-changelog
 .changelog
-
-# next
-.next
-
-# bundle-analyzer
-analyzer
