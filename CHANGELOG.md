@@ -1,3 +1,26 @@
+## 0.19.0 (2019-03-13)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#425](https://github.com/meepshop/meep-lerna/pull/425) Modify babel plugin and antd ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#428](https://github.com/meepshop/meep-lerna/pull/428) (@meepshop/front-end): Add typescript ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- Other
+  - [#428](https://github.com/meepshop/meep-lerna/pull/428) (@meepshop/front-end): Add typescript ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#425](https://github.com/meepshop/meep-lerna/pull/425) Modify babel plugin and antd ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.18.11 (2019-03-05)
 
 #### :bug: Bug Fix
