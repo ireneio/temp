@@ -12,6 +12,7 @@ export default customTracking => {
         event_category:
           (eventCategory?.status && eventCategory?.value) || eventLabel,
         event_label: eventLabel,
+        non_interaction: true,
       });
   };
 };

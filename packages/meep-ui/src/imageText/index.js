@@ -114,6 +114,7 @@ export default class ImageText extends React.PureComponent {
             event_category:
               (eventCategory?.status && eventCategory?.value) || eventLabel,
             event_label: eventLabel,
+            non_interaction: true,
           });
         }
       };

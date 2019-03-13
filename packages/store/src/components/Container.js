@@ -129,6 +129,7 @@ class Container extends React.Component {
           window.gtag('event', 'meepShop_retention', {
             event_category: 'meepShop_retention',
             event_label: 'meepShop_retention',
+            non_interaction: true,
           });
         }
       }, adRetentionMilliseconds);

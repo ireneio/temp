@@ -28,6 +28,7 @@ export default class extends React.Component {
           event_category:
             (eventCategory?.status && eventCategory?.value) || eventLabel,
           event_label: eventLabel,
+          non_interaction: true,
         });
       }
       this.setState({ isTriggered: true });

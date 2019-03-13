@@ -74,6 +74,7 @@ module.exports = withSourceMaps(
               // fix for IE
               [
                 'core-js/modules/es6.string.starts-with',
+                'core-js/modules/es6.object.assign',
                 'core-js/modules/es6.symbol', // TODO: remove after next upgrade
               ].forEach(polyfill => {
                 if (
