@@ -32,9 +32,8 @@ const productsQuery = `{
     depth
     unit
   }
-  galleryInfo {
-    media
-    mainId
+  mainImage{
+    src
   }
   orderStatus
   shippedCount

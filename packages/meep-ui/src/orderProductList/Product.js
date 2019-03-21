@@ -9,9 +9,9 @@ import Thumb from 'thumb';
 import {
   ID_TYPE,
   COLOR_TYPE,
-  URL_TYPE,
   LOCALE_TYPE,
   PURCHASE_ITEMS_TYPE,
+  GALLERY_IMAGE_TYPE,
 } from 'constants/propTypes';
 
 import Select from './Select';
@@ -29,9 +29,7 @@ export default class Product extends React.PureComponent {
 
     /** props */
     error: PropTypes.string,
-    galleryInfo: PropTypes.shape({
-      media: PropTypes.arrayOf(URL_TYPE).isRequired,
-    }),
+    mainImage: GALLERY_IMAGE_TYPE.isRequired,
     specs: PropTypes.arrayOf(
       PropTypes.shape({
         title: LOCALE_TYPE.isRequired,
@@ -54,7 +52,6 @@ export default class Product extends React.PureComponent {
 
   static defaultProps = {
     error: null,
-    galleryInfo: null,
     activityInfo: null,
     specs: null,
   };
@@ -66,7 +63,7 @@ export default class Product extends React.PureComponent {
       removeCartItems,
       type,
       error,
-      galleryInfo,
+      mainImage,
       activityInfo,
       specs,
       cartId,
@@ -77,7 +74,6 @@ export default class Product extends React.PureComponent {
       productHasError,
       ...props
     } = this.props;
-    const { media } = galleryInfo || { media: [] };
 
     return (
       <tr
@@ -97,11 +93,11 @@ export default class Product extends React.PureComponent {
             />
           )}
 
-          {!media[0] ? (
+          {!mainImage?.src ? (
             <div style={styles.img} />
           ) : (
             <div style={{ height: '100%' }}>
-              <Thumb imgUrl={`//${media[0]}`} />
+              <Thumb imgUrl={mainImage.src} />
             </div>
           )}
         </td>

@@ -37,8 +37,8 @@ const computeOrderQuery = `
       minPurchaseItems
       quantity
       discountPrice
-      galleryInfo {
-        media
+      mainImage{
+        src
       }
       activityInfo {
         id

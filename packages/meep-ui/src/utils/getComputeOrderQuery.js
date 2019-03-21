@@ -79,8 +79,8 @@ export default ({ coupon, points, paymentId, shipmentId, products }) => [
           minPurchaseItems
           quantity
           discountPrice
-          galleryInfo {
-            media
+          mainImage{
+            src
           }
           activityInfo {
             id

@@ -42,8 +42,8 @@ const cartQuery = `
         zh_TW
         en_US
       }
-      galleryInfo {
-        media
+      mainImage{
+        src
       }
       type
       error: _error
