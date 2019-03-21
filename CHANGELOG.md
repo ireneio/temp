@@ -1,3 +1,14 @@
+## 0.19.1 (2019-03-21)
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#420](https://github.com/meepshop/meep-lerna/pull/420) productsObjectType.galleryInfo 改用 mainImage ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.19.0 (2019-03-13)
 
 #### :boom: Breaking Change
