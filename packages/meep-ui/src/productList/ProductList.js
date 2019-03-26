@@ -13,7 +13,6 @@ import {
   ONE_OF_LOCALE_TYPE,
   ISLOGIN_TYPE,
   LOCATION_TYPE,
-  STORE_SETTING_TYPE,
 } from 'constants/propTypes';
 import { PHONE_MEDIA } from 'constants/media';
 import Link from 'deprecated/link';
@@ -73,7 +72,6 @@ export default class ProductList extends React.PureComponent {
     popUpGalleryView: PropTypes.oneOf(['one', 'two', 'all', 'none']),
 
     /** props from context */
-    storeSetting: STORE_SETTING_TYPE.isRequired,
     locale: ONE_OF_LOCALE_TYPE.isRequired,
     location: LOCATION_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -384,7 +382,6 @@ export default class ProductList extends React.PureComponent {
       stockNotificationList,
       wishList,
 
-      storeSetting,
       location: { pathname, search },
       colors,
       isLogin,
@@ -475,7 +472,6 @@ export default class ProductList extends React.PureComponent {
               transformCurrency={transformCurrency}
               memberSeePrice={hasStoreAppPlugin('memberSeePrice')}
               isUsingCache={isUsingCache}
-              storeSetting={storeSetting}
             />
 
             {!pagination ? null : (
@@ -503,7 +499,6 @@ export default class ProductList extends React.PureComponent {
               cart={cart}
               stockNotificationList={stockNotificationList}
               wishList={wishList}
-              storeSetting={storeSetting}
               products={products}
               target={target}
               isMobile={isMobile}

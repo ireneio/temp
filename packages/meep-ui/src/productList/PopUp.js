@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'antd';
 
-import { STORE_SETTING_TYPE, ID_TYPE } from 'constants/propTypes';
+import { ID_TYPE } from 'constants/propTypes';
 import ProductCarousel from 'productCarousel';
 import ProductInfo from 'productInfo';
 import ProductCollection from 'productCollection';
@@ -29,7 +29,6 @@ export default class PopUp extends React.PureComponent {
         variantId: ID_TYPE.isRequired,
       }),
     ).isRequired,
-    storeSetting: STORE_SETTING_TYPE.isRequired,
 
     products: PropTypes.shape({
       data: PropTypes.arrayOf(PRODUCT_TYPE),
@@ -52,7 +51,6 @@ export default class PopUp extends React.PureComponent {
       cart,
       stockNotificationList,
       wishList,
-      storeSetting,
       products,
       target,
       isMobile,
@@ -66,10 +64,7 @@ export default class PopUp extends React.PureComponent {
     // return if no productData
     if (!productData) return null;
 
-    if (
-      storeSetting?.experiment?.productListImagePopUpEnabled &&
-      type === 'pop-up'
-    ) {
+    if (type === 'pop-up') {
       return (
         <div id="modal-area">
           {['one', 'all', undefined].indexOf(popUpGalleryView) > -1 && (

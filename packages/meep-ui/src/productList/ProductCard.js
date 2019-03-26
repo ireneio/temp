@@ -2,11 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
-import {
-  COLOR_TYPE,
-  ISLOGIN_TYPE,
-  STORE_SETTING_TYPE,
-} from 'constants/propTypes';
+import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 import Image from 'image';
 import DraftText from 'draftText';
@@ -39,7 +35,6 @@ const ProductCard = ({
   transformCurrency,
   memberSeePrice,
   isUsingCache,
-  storeSetting,
 }) => (
   <StyleRoot>
     <div
@@ -83,9 +78,7 @@ const ProductCard = ({
           const orderable =
             variants.reduce((prev, variant) => prev + (variant.stock || 0), 0) >
             0;
-          const productListImagePopUpEnabled =
-            storeSetting?.experiment?.productListImagePopUpEnabled &&
-            type === 'pop-up';
+          const productListImagePopUpEnabled = type === 'pop-up';
 
           return (
             <div
@@ -206,7 +199,6 @@ ProductCard.propTypes = {
   transformCurrency: PropTypes.func.isRequired,
   memberSeePrice: PropTypes.bool.isRequired,
   isUsingCache: PropTypes.bool.isRequired,
-  storeSetting: STORE_SETTING_TYPE.isRequired,
 };
 /* eslint-enable react/no-typos */
 

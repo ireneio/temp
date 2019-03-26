@@ -75,9 +75,6 @@ const storeSettingQuery = `
     image
   }
   homePageId
-  experiment {
-    productListImagePopUpEnabled
-  }
 `;
 
 export default storeSettingQuery;

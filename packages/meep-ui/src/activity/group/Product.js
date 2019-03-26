@@ -14,6 +14,7 @@ import {
   POSITIVE_NUMBER_TYPE,
   GALLERY_TYPE,
 } from 'constants/propTypes';
+import { PHONE_MEDIA } from 'constants/media';
 
 import { PURCHASE, SELECT_SPEC } from '../locale';
 
@@ -61,6 +62,11 @@ export default class Product extends React.PureComponent {
     openModal: false,
   };
 
+  componentDidMount() {
+    this.resize();
+    window.addEventListener('resize', this.resize);
+  }
+
   componentWillReceiveProps(nextProps) {
     const { cart } = this.props;
 
@@ -71,6 +77,10 @@ export default class Product extends React.PureComponent {
     }
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+  }
+
   toggleModal = () => {
     const { openModal } = this.state;
 
@@ -79,8 +89,14 @@ export default class Product extends React.PureComponent {
     });
   };
 
+  resize = () => {
+    this.setState({
+      isMobile: window.matchMedia(PHONE_MEDIA.substring(7)).matches,
+    });
+  };
+
   render() {
-    const { openModal } = this.state;
+    const { openModal, isMobile } = this.state;
     const {
       colors,
       transformLocale,
@@ -130,13 +146,14 @@ export default class Product extends React.PureComponent {
           onCancel={this.toggleModal}
           footer={null}
           destroyOnClose
+          centered
         >
-          <div style={styles.modal}>
+          <div id="modal-area">
             <ProductCarousel
+              mode="list"
               galleries={galleries}
               autoPlay={false}
               thumbsPosition="bottom"
-              edition="small"
             />
             <ProductInfo
               mode="list"
@@ -145,6 +162,8 @@ export default class Product extends React.PureComponent {
               stockNotificationList={stockNotificationList}
               isInWishList={wishList.some(item => item.productId === id)}
               showButton={false}
+              container="modal-area"
+              isMobile={isMobile}
             />
           </div>
         </Modal>

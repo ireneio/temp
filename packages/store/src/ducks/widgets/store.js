@@ -171,7 +171,6 @@ export default function(state = initialState, { type, payload }) {
         fxSetup, // 用於匯率轉換 customerCurrency ==> storeCurrency
         currencyOptions: currencyOptions || ['TWD'], // 用於幣值選單
         activityVersion,
-        experiment: store?.experiment || {},
       };
 
       return {
