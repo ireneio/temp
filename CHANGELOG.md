@@ -1,3 +1,14 @@
+## 0.19.2 (2019-03-26)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#432](https://github.com/meepshop/meep-lerna/pull/432) N240 【優化產品列表改版 Step-1：加購區 - 白名單開關，前端移除判斷 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.19.1 (2019-03-21)
 
 #### :bug: Bug Fix
