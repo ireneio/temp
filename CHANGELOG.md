@@ -1,3 +1,14 @@
+## 0.19.3 (2019-03-28)
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#433](https://github.com/meepshop/meep-lerna/pull/433) 【優化】會員目前可用購物金，修正計算規則 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.19.2 (2019-03-26)
 
 #### :rocket: New Feature
