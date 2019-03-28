@@ -1,5 +1,5 @@
 export const CURRENT_POINTS = {
-  zh_TW: '目前擁有購物金：',
+  zh_TW: '目前可用購物金：',
   en_US: 'Current Balance: ',
   ja_JP: '保有ポイント：',
   vi_VN: 'Tiền mua hàng hiện có: ',

@@ -308,9 +308,6 @@ export default async function(context) {
       }
       total
     }
-    getExpireSoonUserPointList(expireBy: $expireBy) {
-      total
-    }
     getFbPixel {
       active
       pixelId

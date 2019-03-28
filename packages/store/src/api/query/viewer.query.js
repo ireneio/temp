@@ -59,7 +59,14 @@ viewer {
     }
     isAvailableForSale
   }
-} 
+
+  rewardPoint {
+    currentBalance
+    expiringPoints(expireBy: $expireBy) {
+      total
+    }
+  }
+}
 `;
 
 export default viewer;

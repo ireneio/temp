@@ -30,6 +30,7 @@ export default class MemberPoints extends React.PureComponent {
         unlimitedDate: PropTypes.bool.isRequired,
       }).isRequired,
     ).isRequired,
+    currentBalance: PropTypes.number.isRequired,
 
     /** props from DecoratorsRoot */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -140,19 +141,15 @@ export default class MemberPoints extends React.PureComponent {
       userPoints,
       transformLocale,
       transformCurrency,
+      currentBalance,
     } = this.props;
-    const nowTime = parseInt(new Date() / 1000, 10);
-    const total = userPoints.reduce((pre, cur) => {
-      const { endTime, points } = cur;
-      if (endTime && endTime <= nowTime) return pre;
-      return pre + points;
-    }, 0);
 
     return (
       <StyleRoot className="member-points" style={styles.root}>
         <Style scopeSelector=".member-points" rules={styles.Style(colors)} />
         <StyleRoot style={styles.total(colors)}>
-          {transformLocale(LOCALE.CURRENT_POINTS) + transformCurrency(total)}
+          {transformLocale(LOCALE.CURRENT_POINTS)}
+          {transformCurrency(currentBalance)}
         </StyleRoot>
         <Table
           rowKey="id"

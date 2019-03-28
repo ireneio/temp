@@ -79,9 +79,6 @@ export default async function(args = {}) {
       }
       total
     }
-    getExpireSoonUserPointList(expireBy: $expireBy) {
-      total
-    }
   `;
 
   const response = await postGraphql({

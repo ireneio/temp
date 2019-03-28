@@ -39,6 +39,7 @@ class RewardPoints extends Component {
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,
     userPoints: PropTypes.arrayOf(PropTypes.object).isRequired,
+    currentBalance: PropTypes.number.isRequired,
     fbAppId: PropTypes.string.isRequired,
   };
 
@@ -74,6 +75,7 @@ class RewardPoints extends Component {
       colors,
       title,
       userPoints,
+      currentBalance,
       fbAppId,
     } = this.props;
 
@@ -93,7 +95,10 @@ class RewardPoints extends Component {
         />
         <Container {...this.props}>
           <MemberHeader title={title} colors={colors}>
-            <MemberPoints userPoints={userPoints} />
+            <MemberPoints
+              userPoints={userPoints}
+              currentBalance={currentBalance}
+            />
           </MemberHeader>
         </Container>
       </>
@@ -154,6 +159,7 @@ const mapStateToProps = (state, props) => {
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
     title: TITLE.REWARD_POINTS[locale],
     userPoints: Utils.getIn(['memberReducer', 'userPoints'])(state),
+    currentBalance: Utils.getIn(['memberReducer', 'currentBalance'])(state),
     fbAppId:
       Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };

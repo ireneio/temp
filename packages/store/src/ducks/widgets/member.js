@@ -106,7 +106,7 @@ export function* loginFlow({ payload }) {
 
       /* notify nearly expire user points */
       const numOfExpiredPoints =
-        memberData?.data?.getExpireSoonUserPointList?.total;
+        memberData?.data?.viewer?.rewardPoint.expiringPoints.total;
       if (numOfExpiredPoints > 0) {
         notification.info({
           message: LOCALE.EXPIRED_POINTS_MESSAGE[locale],
@@ -889,6 +889,7 @@ const getMemberData = payload => {
   const user = viewer ? getUser(viewer) : null;
   const isLogin = viewer?.role === 'SHOPPER' ? ISUSER : NOTLOGIN;
   const wishList = viewer?.wishlist || [];
+  const currentBalance = viewer?.rewardPoint.currentBalance || 0;
 
   // TODO: 未改為Viewer
   const cartData = data?.getCartList?.data?.[0] || null;
@@ -900,18 +901,17 @@ const getMemberData = payload => {
   const orderApply = data?.getOrderApplyList?.data || [];
   const orders = data?.getOrderList?.data || [];
   const userPoints = data?.getValidUserPointList?.data || [];
-  const expireSoonUserPointList = data?.getExpireSoonUserPointList?.data || [];
 
   return {
     isLogin,
     user,
     cart,
     wishList,
+    currentBalance,
     stockNotificationList,
     orders,
     orderApply,
     userPoints,
-    expireSoonUserPointList,
     loading: false,
     loadingTip: '',
   };
