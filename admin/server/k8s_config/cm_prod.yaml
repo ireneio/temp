@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cm-next-admin
+  namespace: default
+data:
+  api.host: "https://api.meepshop.tw"
+  api.domain: "admin.meepshop.tw"

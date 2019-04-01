@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "name": "@admin/utils",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.18.11",
+  "main": "./lib",
+  "scripts": {
+    "clean": "make clean",
+    "dev": "make dev",
+    "prod": "make prod"
+  }
+}

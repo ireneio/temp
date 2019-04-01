@@ -17,9 +17,11 @@ fi
 # replace Dockerfile version with git commit sha
 sed -i "s/{{ build.tag }}/$VERSION/" "$(pwd)/Dockerfile"
 
-docker build -t asia.gcr.io/instant-matter-785/next-store:latest -f $(pwd)/Dockerfile ../..
-docker tag asia.gcr.io/instant-matter-785/next-store:latest \
-  asia.gcr.io/instant-matter-785/next-store:$VERSION
+PACKAGE_NAME=$(node ../../.circleci/bin/getPackageName.js)
+
+docker build -t asia.gcr.io/instant-matter-785/$PACKAGE_NAME:latest -f $(pwd)/Dockerfile ../..
+docker tag asia.gcr.io/instant-matter-785/$PACKAGE_NAME:latest \
+  asia.gcr.io/instant-matter-785/$PACKAGE_NAME:$VERSION
 docker login -u _json_key -p "$GCLOUD_SERVICE_KEY" https://asia.gcr.io
-docker push asia.gcr.io/instant-matter-785/next-store:latest
-docker push asia.gcr.io/instant-matter-785/next-store:$VERSION
+docker push asia.gcr.io/instant-matter-785/$PACKAGE_NAME:latest
+docker push asia.gcr.io/instant-matter-785/$PACKAGE_NAME:$VERSION

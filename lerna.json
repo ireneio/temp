@@ -29,7 +29,7 @@
     "**/*.md"
   ],
   "packages": [
-    "packages/*"
+    "packages/*", "admin/*"
   ],
   "useWorkspaces": true
 }

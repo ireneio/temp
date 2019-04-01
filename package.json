@@ -2,7 +2,7 @@
   "private": true,
   "name": "@meepshop/front-end",
   "license": "ISC",
-  "workspaces": ["packages/*"],
+  "workspaces": ["packages/*", "admin/*"],
   "scripts": {
     "clean": "lerna run clean && lerna clean && make clean",
     "dev": "lerna run dev --stream --parallel --include-filtered-dependencies --scope",

@@ -30,6 +30,10 @@ save-prod-cache: &save-prod-cache
     - packages/meep-ui/lib
     - packages/store/src/.next
     - packages/store/lib
+    - admin/server/src/.next
+    - admin/wrapper/lib
+    - admin/dashboard/lib
+    - admin/utils/lib
 
 deploy-docker: &deploy-docker
   name: Deploy docker
@@ -38,42 +42,14 @@ deploy-docker: &deploy-docker
       "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/build_docker.sh" \
       --parallel \
       --stream \
-      --ignore @meepshop/meep-ui \
-      --ignore @meepshop/test-*
+      --scope @admin/server \
+      --scope @meepshop/store
     yarn lerna exec \
       "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/deploy_k8s.sh" \
       --parallel \
       --stream \
-      --ignore @meepshop/meep-ui \
-      --ignore @meepshop/test-*
-
-restore-prod-cache: &restore-prod-cache
-  keys:
-    - prod-{{ .Environment.CIRCLE_SHA1 }}
-
-save-prod-cache: &save-prod-cache
-  key: prod-{{ .Environment.CIRCLE_SHA1 }}
-  paths:
-    - packages/meep-ui/lib
-    - packages/store/src/.next
-    - packages/store/lib
-
-deploy-docker: &deploy-docker
-  name: Deploy docker
-  command: |
-    cp -r ./patches ./packages/patches
-    yarn lerna exec \
-      "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/build_docker.sh" \
-      --parallel \
-      --stream \
-      --ignore @meepshop/meep-ui \
-      --ignore @meepshop/test-*
-    yarn lerna exec \
-      "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/deploy_k8s.sh" \
-      --parallel \
-      --stream \
-      --ignore @meepshop/meep-ui \
-      --ignore @meepshop/test-*
+      --scope @admin/server \
+      --scope @meepshop/store
 
 jobs:
   install:
@@ -100,6 +76,7 @@ jobs:
           name: Check code style
           command: |
             yarn prod @meepshop/store
+            yarn prod @admin/server
             yarn lint .
             yarn tsc
 
@@ -114,7 +91,9 @@ jobs:
           command: yarn install:all
       - run:
           name: Build prod
-          command: yarn prod @meepshop/store
+          command: |
+            yarn prod @meepshop/store
+            yarn prod @admin/server
       - setup_remote_docker
       - run: *deploy-docker
 

@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: next-admin
+  labels:
+    app: next-admin
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: next-admin
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: next-admin
+        image: asia.gcr.io/instant-matter-785/next-admin:{{ build.tag }}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 14405
+          initialDelaySeconds: 15
+          periodSeconds: 3
+        resources:
+          limits:
+            cpu: "0.4"
+            memory: "1200Mi"
+          requests:
+            cpu: "0.2"
+            memory: "600Mi"
+        env:
+        - name: API_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: cm-next-admin
+              key: api.host
+        - name: API_DOMAIN
+          valueFrom:
+            configMapKeyRef:
+              name: cm-next-admin
+              key: api.domain
+        ports:
+        - containerPort: 14405
+          name: http-port

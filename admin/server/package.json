@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "name": "@admin/server",
+  "description": "admin server",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.18.11",
+  "scripts": {
+    "clean": "rm -rf ./src/.next",
+    "dev": "node index.js",
+    "prod": "next build ./src",
+    "start": "NODE_ENV=production node index.js"
+  },
+  "dependencies": {
+    "@admin/dashboard": "^0.18.11",
+    "@admin/utils": "^0.18.11",
+    "@admin/wrapper": "^0.18.11",
+    "antd": "^3.10.3",
+    "apollo-boost": "^0.1.22",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.16.4",
+    "express-http-proxy": "^1.5.1",
+    "graphql": "^14.0.2",
+    "i18next": "^15.0.4",
+    "memoize-one": "^4.0.0",
+    "next": "^7.0.2",
+    "next-i18next": "^0.32.0",
+    "next-routes": "^1.4.2",
+    "react-apollo": "^2.4.0"
+  },
+  "devDependencies": {
+    "@zeit/next-less": "^1.0.1",
+    "moment-locales-webpack-plugin": "^1.0.7"
+  },
+  "keywords": ["admin", "meepshop"]
+}
