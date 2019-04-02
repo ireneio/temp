@@ -19,6 +19,7 @@ export const SPECIAL_HIDE_FOOTER = [
   'animen',
   'flymi',
   'kolstyle',
+  'jj-f4',
 ];
 
 export const STORE_APP_PLUGINS = [
