@@ -4,7 +4,7 @@
   "description": "meep-ui for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.19.3",
+  "version": "0.19.4",
   "scripts": {
     "clean": "make clean",
     "dev": "make dev",

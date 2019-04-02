@@ -4,7 +4,7 @@
   "description": "admin server",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.18.11",
+  "version": "0.19.4",
   "scripts": {
     "clean": "rm -rf ./src/.next",
     "dev": "node index.js",
@@ -12,9 +12,9 @@
     "start": "NODE_ENV=production node index.js"
   },
   "dependencies": {
-    "@admin/dashboard": "^0.18.11",
-    "@admin/utils": "^0.18.11",
-    "@admin/wrapper": "^0.18.11",
+    "@admin/dashboard": "^0.19.4",
+    "@admin/utils": "^0.19.4",
+    "@admin/wrapper": "^0.19.4",
     "antd": "^3.10.3",
     "apollo-boost": "^0.1.22",
     "body-parser": "^1.18.3",

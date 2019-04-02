@@ -3,7 +3,7 @@
   "name": "@admin/wrapper",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.18.11",
+  "version": "0.19.4",
   "main": "./lib/index.js",
   "scripts": {
     "clean": "make clean",
