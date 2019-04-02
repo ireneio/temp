@@ -1,3 +1,21 @@
+## 0.19.4 (2019-04-02)
+
+#### :boom: Breaking Change
+
+- [#421](https://github.com/meepshop/meep-lerna/pull/421) New Admin ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#434](https://github.com/meepshop/meep-lerna/pull/434) 【個案處理】meepShop MAX 極速開店：新增白名單 - jj-f4 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#421](https://github.com/meepshop/meep-lerna/pull/421) New Admin ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.19.3 (2019-03-28)
 
 #### :bug: Bug Fix
