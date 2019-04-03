@@ -54,7 +54,7 @@ app.prepare().then(() => {
       })
       .redirect('/login');
   });
-  server.post(/^\/api/, api);
+  server.all(/^\/api/, api);
   server.get('*', (req, res) => handler(req, res));
 
   // listen
