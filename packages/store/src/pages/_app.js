@@ -1,3 +1,4 @@
+import 'isomorphic-unfetch';
 import 'antd/dist/antd.less';
 import React from 'react';
 import App, { Container } from 'next/app';

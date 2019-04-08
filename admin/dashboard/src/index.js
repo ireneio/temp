@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
-import moment from 'moment';
 import { Spin, Icon } from 'antd';
+import moment from 'moment';
 
 import { withNamespaces } from '@admin/utils/lib/i18n';
 import formatAmount from '@admin/utils/lib/formatAmount';
@@ -26,13 +26,13 @@ class Dashboard extends React.Component {
 
   formatAmount = amount => {
     const { data } = this.props;
-    const currency = data?.viewer?.store.currency;
+    const currency = data.viewer?.store.currency;
     return formatAmount({ amount, currency });
   };
 
   render() {
     const { t, data } = this.props;
-    const showPaymentNotice = data?.viewer?.store.unpaidBills?.totalCount > 0;
+    const showPaymentNotice = data.viewer?.store.unpaidBills?.totalCount > 0;
     const {
       pendingOrder,
       notShipped,
@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
       orderMonthly,
       revenueMonthly,
       costMonthly,
-    } = data?.getDashboardInfo || {};
+    } = data.getDashboardInfo || {};
 
     return (
       <div className={styles.root}>
@@ -149,8 +149,8 @@ export default props => (
     {({ loading, error, data }) => {
       if (loading || error) return <Spin />;
 
-      const { timezone } = data?.viewer?.store;
-      const isMerchant = data?.viewer?.role === 'MERCHANT';
+      const { timezone } = data.viewer?.store;
+      const isMerchant = data.viewer?.role === 'MERCHANT';
       return (
         <Query
           query={gql`

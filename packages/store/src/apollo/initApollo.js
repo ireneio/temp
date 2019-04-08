@@ -2,6 +2,7 @@ import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import getConfig from 'next/config';
+import Router from 'next/router';
 import { notification } from 'antd';
 
 import clientState from './clientState';
@@ -25,6 +26,21 @@ const create = (initialState, ctx) => {
     ssrMode: process.browser,
     link: ApolloLink.from([
       onError(({ response, graphQLErrors, networkError }) => {
+        if (
+          networkError.statusCode === 401 &&
+          process.browser &&
+          window.location.pathname !== '/login'
+        ) {
+          notification.error({
+            message: '請重新登入',
+            duration: 1,
+            onClose: () => {
+              Router.replace('/login');
+            },
+          });
+          return;
+        }
+
         if (graphQLErrors) {
           const errors = graphQLErrors.filter(shouldPrintError);
 

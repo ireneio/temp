@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getDataFromTree } from 'react-apollo';
 import Head from 'next/head';
+import { getDataFromTree } from 'react-apollo';
 
 import initApollo from './initApollo';
 
@@ -11,18 +11,16 @@ export default App =>
       apolloState: PropTypes.shape({}).isRequired,
     };
 
-    static async getInitialProps({ Component, router, ctx }) {
-      const { res } = ctx;
-      const apollo = initApollo({}, ctx);
+    static getInitialProps = async ctx => {
+      const {
+        Component,
+        router,
+        ctx: { res },
+      } = ctx;
+      const apollo = initApollo({}, ctx.ctx);
+      const appProps = await App?.getInitialProps(ctx);
 
-      ctx.apolloClient = apollo;
-
-      let appProps = {};
-      if (App.getInitialProps) {
-        appProps = await App.getInitialProps({ Component, router, ctx });
-      }
-
-      if (res && res.finished) return {};
+      if (res?.finished) return {};
 
       if (!process.browser) {
         try {
@@ -41,13 +39,13 @@ export default App =>
         Head.rewind();
       }
 
-      const apolloState = apollo.cache.extract();
+      const apolloState = apollo.extract();
 
       return {
         ...appProps,
         apolloState,
       };
-    }
+    };
 
     constructor(props) {
       super(props);

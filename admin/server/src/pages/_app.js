@@ -1,47 +1,51 @@
+import 'isomorphic-unfetch';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
-import App, { Container } from 'next/app';
+import NextApp, { Container } from 'next/app';
+import Router from 'next/router';
+
+import { appWithTranslation } from '@admin/utils/lib/i18n';
+import Wrapper from '@admin/wrapper';
 
 import withApollo from 'apollo/withApollo';
-import Wrapper from '@admin/wrapper';
-import { appWithTranslation } from '@admin/utils/lib/i18n';
 
-import { Router } from '../../routes';
 import './_app.less';
 
 @withApollo
 @appWithTranslation
-class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {};
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
-
-    return { pageProps };
-  }
+export default class App extends NextApp {
+  static getInitialProps = async ({ Component, ctx }) => ({
+    pageProps: (await Component.getInitialProps?.(ctx)) || {},
+  });
 
   componentDidMount() {
     Router.beforePopState(({ as }) => {
       if (!as) window.location.reload();
+
       return true;
     });
   }
 
   render() {
-    const { Component, pageProps, apolloClient, router } = this.props;
+    const {
+      Component,
+      pageProps,
+      apolloClient,
+      router: { pathname },
+    } = this.props;
 
     return (
       <Container>
         <ApolloProvider client={apolloClient}>
-          <Wrapper path={router.pathname.split('/')[1]}>
+          {/login/.test(pathname) ? (
             <Component {...pageProps} />
-          </Wrapper>
+          ) : (
+            <Wrapper>
+              <Component {...pageProps} />
+            </Wrapper>
+          )}
         </ApolloProvider>
       </Container>
     );
   }
 }
-
-export default MyApp;

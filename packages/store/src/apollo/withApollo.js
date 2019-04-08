@@ -6,9 +6,7 @@ import { getDataFromTree } from 'react-apollo';
 import initApollo from './initApollo';
 
 export default App =>
-  class WithData extends React.Component {
-    static displayName = `WithData(${App.displayName})`;
-
+  class WithApollo extends React.Component {
     static propTypes = {
       apolloState: PropTypes.shape({}).isRequired,
     };

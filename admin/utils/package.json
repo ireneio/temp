@@ -9,5 +9,8 @@
     "clean": "make clean",
     "dev": "make dev",
     "prod": "make prod"
+  },
+  "dependencies": {
+    "next-i18next": "^0.32.0"
   }
 }

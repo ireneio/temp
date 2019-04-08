@@ -7,9 +7,9 @@
   "version": "0.19.4",
   "scripts": {
     "clean": "rm -rf ./src/.next",
-    "dev": "node index.js",
+    "dev": "node --inspect src/server",
     "prod": "next build ./src",
-    "start": "NODE_ENV=production node index.js"
+    "start": "NODE_ENV=production node src/server"
   },
   "dependencies": {
     "@admin/dashboard": "^0.19.4",
@@ -30,8 +30,13 @@
     "react-apollo": "^2.4.0"
   },
   "devDependencies": {
+    "@zeit/next-bundle-analyzer": "^0.1.1",
     "@zeit/next-less": "^1.0.1",
-    "moment-locales-webpack-plugin": "^1.0.7"
+    "@zeit/next-source-maps": "0.0.2",
+    "less": "^3.5.0-beta.7",
+    "moment": "^2.22.2",
+    "moment-locales-webpack-plugin": "^1.0.7",
+    "next-images": "^0.10.2"
   },
   "keywords": ["admin", "meepshop"]
 }

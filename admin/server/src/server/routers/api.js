@@ -2,15 +2,13 @@ const os = require('os');
 
 const proxy = require('express-http-proxy');
 
-const { publicRuntimeConfig } = require('../next.config');
+const { publicRuntimeConfig } = require('../../../next.config');
 
 const { API_HOST } = publicRuntimeConfig;
 
 module.exports = proxy(API_HOST, {
-  proxyReqPathResolver: req => {
-    if (req.url === '/api') return '/graphql';
-    return req.url.replace('/api', '');
-  },
+  proxyReqPathResolver: req =>
+    req.url === '/api' ? '/graphql' : req.url.replace('/api', ''),
   userResDecorator: async (proxyRes, proxyResData, userReq, userRes) => {
     /* Handle token verify failed */
     if (proxyRes.statusCode === 401) {

@@ -1,6 +1,7 @@
 const path = require('path');
 const os = require('os');
 
+require('isomorphic-unfetch');
 const Koa = require('koa');
 const nextApp = require('next');
 const Router = require('koa-router');
@@ -115,7 +116,7 @@ module.exports = app.prepare().then(
       server.use(router.routes());
 
       server.listen(port, () => {
-        console.log(`*** Ready on http://localhost:${port} ***`);
+        console.log(`> Store ready on http://localhost:${port}`);
         resolve();
       });
     }),

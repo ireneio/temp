@@ -1,6 +1,6 @@
 const proxy = require('express-http-proxy');
 
-const { publicRuntimeConfig } = require('../next.config');
+const { publicRuntimeConfig } = require('../../../next.config');
 
 const { API_HOST } = publicRuntimeConfig;
 
@@ -8,6 +8,7 @@ module.exports = proxy(API_HOST, {
   proxyReqPathResolver: () => '/auth/login',
   userResDecorator: async (proxyRes, proxyResData, userReq, userRes) => {
     const data = JSON.parse(proxyResData.toString('utf8'));
+
     if (data.error) return JSON.stringify({ error: data.error });
 
     // TODO: Remove this when api removing set-cookie

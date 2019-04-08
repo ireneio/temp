@@ -9,5 +9,9 @@
     "clean": "make clean",
     "dev": "make dev",
     "prod": "make prod"
+  },
+  "dependencies": {
+    "@admin/utils": "^0.19.4",
+    "moment": "^2.22.1"
   }
 }

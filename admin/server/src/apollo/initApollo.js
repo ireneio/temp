@@ -2,28 +2,25 @@ import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import getConfig from 'next/config';
-import fetch from 'isomorphic-unfetch';
+import Router from 'next/router';
 import { notification } from 'antd';
+
+const {
+  publicRuntimeConfig: { API_HOST, VERSION },
+} = getConfig();
 
 let apolloClient = null;
 
-// Polyfill fetch() on the server (used by apollo-client)
-if (!process.browser) {
-  global.fetch = fetch;
-}
-
-const {
-  publicRuntimeConfig: { API_HOST, API_DOMAIN },
-} = getConfig();
-
-function create(initialState, ctx) {
+const create = (initialState, ctx) => {
   const cache = new InMemoryCache({
     dataIdFromObject: ({ id }) => id,
   }).restore(initialState || {});
 
   return new ApolloClient({
+    name: 'admin',
+    version: VERSION,
     connectToDevTools: process.browser,
-    ssrMode: !process.browser,
+    ssrMode: process.browser,
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {
         if (
@@ -35,7 +32,7 @@ function create(initialState, ctx) {
             message: '請重新登入',
             duration: 1,
             onClose: () => {
-              window.location = '/login';
+              Router.replace('/login');
             },
           });
           return;
@@ -70,26 +67,23 @@ function create(initialState, ctx) {
       new HttpLink({
         uri: process.browser ? '/api' : `${API_HOST}/graphql`,
         credentials: 'include',
-        headers: {
-          'x-meepshop-domain': API_DOMAIN,
-          ...(ctx
-            ? {
-                'x-meepshop-authorization-token': ctx.req.get(
-                  'x-meepshop-authorization-token',
-                ),
-              }
-            : {}),
-        },
+        headers: !ctx
+          ? {}
+          : {
+              'x-meepshop-domain': ctx.req.headers['x-meepshop-domain'],
+              'x-meepshop-authorization-token':
+                ctx.req.headers['x-meepshop-authorization-token'],
+            },
       }),
     ]),
     cache,
   });
-}
+};
 
-export default function initApollo(initialState, options) {
-  if (!process.browser) return create(initialState, options);
+export default (...argu) => {
+  if (!process.browser) return create(...argu);
 
-  if (!apolloClient) apolloClient = create(initialState, options);
+  if (!apolloClient) apolloClient = create(...argu);
 
   return apolloClient;
-}
+};

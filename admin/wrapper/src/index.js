@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'next/router';
 import Link from 'next/link';
+import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import { Layout, Menu, Spin } from 'antd';
 import memoizeOne from 'memoize-one';
 import { areEqual } from 'fbjs';
@@ -16,10 +17,11 @@ const { Content, Sider } = Layout;
 const { Item, SubMenu } = Menu;
 
 @withNamespaces('common')
+@withRouter
 class Wrapper extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    path: PropTypes.string.isRequired,
+    router: PropTypes.shape({}).isRequired,
     data: PropTypes.shape({}).isRequired,
     t: PropTypes.func.isRequired,
   };
@@ -39,7 +41,7 @@ class Wrapper extends React.Component {
         permission: getAuthorityList?.data?.find(
           list => list.id === viewer?.groupId,
         ),
-        domain: viewer?.store.domain || viewer?.store.defaultDomain,
+        domain: viewer?.store.domain?.[0] || viewer?.store.defaultDomain,
         isMerchant: viewer?.role === 'MERCHANT',
         isOldActivityVersion: !activityVersion || activityVersion === 1,
         isAdminOpen: !(viewer?.store.adminStatus === 'CLOSED_BILL_NOT_PAID'),
@@ -49,7 +51,12 @@ class Wrapper extends React.Component {
   );
 
   render() {
-    const { children, path, data, t } = this.props;
+    const {
+      children,
+      router: { pathname },
+      data,
+      t,
+    } = this.props;
     const {
       storeAppList,
       permission,
@@ -58,6 +65,7 @@ class Wrapper extends React.Component {
       isOldActivityVersion,
       isAdminOpen,
     } = this.getMenuParams({ ...data });
+    const path = pathname.split('/')[1];
 
     return (
       <Layout className={styles.layout}>

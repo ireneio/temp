@@ -1,4 +1,3 @@
-const fetch = require('isomorphic-unfetch');
 const { publicRuntimeConfig } = require('../../../next.config');
 
 const { API_HOST } = publicRuntimeConfig;
