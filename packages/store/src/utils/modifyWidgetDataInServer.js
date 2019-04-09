@@ -9,7 +9,8 @@ import getOrderInfo from './getOrderInfo';
 
 export default async function modifyWidgetDataInServer(widgets = [], context) {
   const { query = {} } = context;
-  if (!widgets) return [];
+  // FIXME: prevent malformed widget data
+  if (!Array.isArray(widgets)) return [];
   const mWidgets = await Promise.all(
     widgets.map(async widget => {
       if (widget.widgets == null) {

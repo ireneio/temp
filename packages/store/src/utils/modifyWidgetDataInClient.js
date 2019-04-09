@@ -7,7 +7,8 @@ import uuid from 'uuid/v4';
  */
 
 export default function modifyWidgetDataInClient(widgets = [], query) {
-  if (!widgets) return [];
+  // FIXME: prevent malformed widget data
+  if (!Array.isArray(widgets)) return [];
   const mWidgets = widgets.map(widget => {
     if (widget.widgets == null) {
       switch (widget.module) {
