@@ -46,8 +46,8 @@ export default class Login extends React.PureComponent {
         }),
       })
         .then(res => res.json())
-        .then(({ isLoginSuccess, error }) => {
-          if (isLoginSuccess) Router.push({ pathname: '/' });
+        .then(({ adminStatus, error }) => {
+          if (adminStatus) Router.push({ pathname: '/' });
           else message.error(error);
         });
     });
