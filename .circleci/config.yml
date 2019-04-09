@@ -1,43 +1,31 @@
 version: 2
 defaults: &defaults
   docker:
-    - image: circleci/node:9.11.1
+    - image: circleci/node:10.15.3-browsers
   working_directory: ~/repo
 
 check-patches: &check-patches
   name: Check patches
   command: |
     for patch in $(ls ./patches); do
-      cat ./patches/$patch >> patches.json
+      cat ./patches/$patch >> patches.lock
     done
 
 restore-cache: &restore-cache
   keys:
-    - dependencies-{{ checksum "yarn.lock" }}-{{ checksum "patches.json" }}
+    - dependencies-{{ checksum "yarn.lock" }}-{{ checksum "patches.lock" }}
 
 save-cache: &save-cache
-  key: dependencies-{{ checksum "yarn.lock" }}-{{ checksum "patches.json" }}
+  key: dependencies-{{ checksum "yarn.lock" }}-{{ checksum "patches.lock" }}
   paths:
     - node_modules
-
-restore-prod-cache: &restore-prod-cache
-  keys:
-    - prod-{{ .Environment.CIRCLE_SHA1 }}
-
-save-prod-cache: &save-prod-cache
-  key: prod-{{ .Environment.CIRCLE_SHA1 }}
-  paths:
-    - packages/meep-ui/lib
-    - packages/store/src/.next
-    - packages/store/lib
-    - admin/server/src/.next
-    - admin/wrapper/lib
-    - admin/dashboard/lib
-    - admin/utils/lib
 
 deploy-docker: &deploy-docker
   name: Deploy docker
   command: |
+    yarn prod
+    yarn lerna run prod --stream --scope @meepshop/store
+    yarn lerna run prod --stream --scope @admin/server
     yarn lerna exec \
       "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/build_docker.sh" \
       --parallel \
@@ -57,8 +45,8 @@ jobs:
     steps:
       - checkout
       - run: *check-patches
-      - restore_cache: *restore-cache
 
+      - restore_cache: *restore-cache
       - run:
           name: Install packages
           command: yarn install:all
@@ -75,27 +63,34 @@ jobs:
       - run:
           name: Check code style
           command: |
-            yarn prod @meepshop/store
-            yarn prod @admin/server
-            yarn lint .
+            #TODO: remove after removing @meesphop/meep-ui
+            yarn prod
             yarn tsc
+            yarn lint .
 
-      - save_cache: *save-prod-cache
+      - run:
+          name: Unit testing
+          command: yarn test
+      - store_artifacts:
+          path: coverage
 
-  deploy-test:
+  end-to-end:
     <<: *defaults
     steps:
       - checkout
+      - run: *check-patches
+      - restore_cache: *restore-cache
+      - run: yarn lerna bootstrap
+
       - run:
-          name: Install packages
-          command: yarn install:all
-      - run:
-          name: Build prod
+          name: Run end to end testing
           command: |
-            yarn prod @meepshop/store
-            yarn prod @admin/server
-      - setup_remote_docker
-      - run: *deploy-docker
+            yarn prod
+            yarn lerna run prod --stream --scope @meepshop/store
+            yarn lerna run test --stream --scope @meepshop/end-to-end
+      - store_artifacts:
+          path: packages/end-to-end/errors
+          destination: end-to-end
 
   deploy-test-branch:
     <<: *defaults
@@ -104,7 +99,6 @@ jobs:
       - run: *check-patches
       - restore_cache: *restore-cache
       - run: yarn lerna bootstrap
-      - restore_cache: *restore-prod-cache
       - setup_remote_docker
       - run: *deploy-docker
 
@@ -115,7 +109,16 @@ jobs:
       - run: *check-patches
       - restore_cache: *restore-cache
       - run: yarn lerna bootstrap
-      - restore_cache: *restore-prod-cache
+      - setup_remote_docker
+      - run: *deploy-docker
+
+  deploy-test:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Install packages
+          command: yarn install:all
       - setup_remote_docker
       - run: *deploy-docker
 
@@ -132,13 +135,24 @@ workflows:
           requires:
             - install
           filters:
+            branches:
+              ignore: /test-.*/
             tags:
-              only: /.*/
+              ignore: /.*/
+
+      - end-to-end:
+          requires:
+            - install
+          filters:
+            branches:
+              ignore: /test-.*/
+            tags:
+              ignore: /.*/
 
       - deploy-test-branch:
           context: org-global
           requires:
-            - lint-and-test
+            - install
           filters:
             branches:
               only: /test-.*/
@@ -146,7 +160,7 @@ workflows:
       - deploy:
           context: org-global
           requires:
-            - lint-and-test
+            - install
           filters:
             branches:
               ignore: /.*/

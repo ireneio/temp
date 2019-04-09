@@ -8,10 +8,15 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "jsx": "react"
   },
   "include": [
-    "store/**/*"
+    "types/*",
+    "packages/**/src/**/*",
+    "store/**/src/**/*",
+    "admin/**/src/**/*"
   ],
   "exclude": [
     "node_modules"

@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@store/ezpay",
+  "description": "Ezpay page for store",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.18.11",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "query-string": "^6.3.0"
+  },
+  "keywords": ["ezpship page", "store"]
+}

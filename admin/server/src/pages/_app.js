@@ -1,15 +1,15 @@
+import 'antd/dist/antd.less';
 import 'isomorphic-unfetch';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import NextApp, { Container } from 'next/app';
 import Router from 'next/router';
 
+import '@admin/utils/lib/styles/base.less';
 import { appWithTranslation } from '@admin/utils/lib/i18n';
 import Wrapper from '@admin/wrapper';
 
 import withApollo from 'apollo/withApollo';
-
-import './_app.less';
 
 @withApollo
 @appWithTranslation

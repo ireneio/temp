@@ -5,11 +5,6 @@
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.19.4",
-  "scripts": {
-    "clean": "make clean",
-    "dev": "make dev",
-    "prod": "make prod"
-  },
   "dependencies": {
     "clipboard": "^2.0.1",
     "color": "^3.0.0",

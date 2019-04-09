@@ -1,15 +1,12 @@
 {
   "private": true,
   "name": "@admin/wrapper",
+  "description": "Wrapper for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.19.4",
   "main": "./lib/index.js",
-  "scripts": {
-    "clean": "make clean",
-    "dev": "make dev",
-    "prod": "make prod"
-  },
+  "keywords": ["admin", "wrapper"],
   "dependencies": {
     "@admin/utils": "^0.19.4",
     "memoize-one": "^4.0.0"

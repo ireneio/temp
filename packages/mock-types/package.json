@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "@meepshop/mock-types",
+  "description": "Mock graphql type for storybook and testing",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.18.11",
+  "main": "./index.js",
+  "scripts": {
+    "clean": "rm -rf ./schema.graphql",
+    "schema": "apollo service:download -c ../../apollo.config.js"
+  },
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "apollo-link-schema": "^1.2.0",
+    "graphql-tools": "^4.0.4",
+    "js-combinatorics": "^0.5.4",
+    "moment": "^2.24.0",
+    "uuid": "^3.3.2"
+  },
+  "keywords": ["graphql", "mock"]
+}

@@ -1,15 +1,12 @@
 {
   "private": true,
   "name": "@admin/utils",
+  "description": "Utils tool for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.19.4",
-  "main": "./lib",
-  "scripts": {
-    "clean": "make clean",
-    "dev": "make dev",
-    "prod": "make prod"
-  },
+  "main": "./lib/index.js",
+  "keywords": ["admin", "utils"],
   "dependencies": {
     "next-i18next": "^0.32.0"
   }

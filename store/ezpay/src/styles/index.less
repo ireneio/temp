@@ -1,0 +1,170 @@
+.wrapper {
+  margin: 30px auto;
+  padding: 10px;
+  max-width: 630px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.container {
+  border: 3px solid #9ec2db;
+  background-color: #eff5f9;
+}
+
+.logo {
+  display: block;
+  margin: 0px auto 10px;
+}
+
+.title {
+  margin: 15px 0px;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+}
+
+.paycode {
+  border: 3px solid #dae8f1;
+  background-color: #ffffff;
+  text-align: center;
+  color: #ff2600;
+  margin: 0px 40px;
+  padding: 10px 0px;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 30px;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: 70px auto;
+  margin: 10px 54px;
+}
+
+.block {
+  margin: 10px;
+  border: 3px solid #dae8f1;
+  background-color: #ffffff;
+}
+
+.notice {
+  color: #ff2600;
+  margin: 20px 0px 0px 20px;
+}
+
+.noticeList {
+  margin: 0px 43px;
+}
+
+.ul {
+  padding: 0px 20px;
+}
+
+.imgs {
+  display: grid;
+  grid-template-columns:
+    calc((100% - 8px * 3) / 4) calc((100% - 8px * 3) / 4) calc(
+      (100% - 8px * 3) / 4
+    )
+    calc((100% - 8px * 3) / 4);
+  grid-column-gap: 8px;
+  margin: 22px 0px;
+}
+
+.limitTime {
+  color: #ff2600;
+}
+
+.buttonWrapper {
+  margin: 30px 0px;
+  text-align: center;
+}
+
+.actionBtn {
+  color: #000000;
+  margin: 0px 10px;
+  padding: 5px 15px;
+  opacity: 0.7;
+  background: linear-gradient(
+    180deg,
+    #c1c1c1 0%,
+    #d7d7d7 16.85%,
+    #ffffff 29.63%,
+    #ececec 51.94%,
+    #767474 100%
+  );
+  border: 1px solid #979797;
+  border-radius: 5px;
+}
+
+.printBtn {
+  color: #000000;
+  margin: 0px 10px;
+  padding: 5px 15px;
+  opacity: 0.7;
+  background: linear-gradient(
+    180deg,
+    #c1c1c1 0%,
+    #d7d7d7 16.85%,
+    #ffffff 29.63%,
+    #ececec 51.94%,
+    #767474 100%
+  );
+  border: 1px solid #979797;
+  border-radius: 5px;
+}
+
+.backBtn {
+  color: #000000;
+  margin: 0px 10px;
+  padding: 5px 15px;
+  opacity: 0.7;
+  background: linear-gradient(
+    180deg,
+    #c1c1c1 0%,
+    #d7d7d7 16.85%,
+    #ffffff 29.63%,
+    #ececec 51.94%,
+    #767474 100%
+  );
+  border: 1px solid #979797;
+  border-radius: 5px;
+}
+
+.footerTip {
+  color: #ff2600;
+  text-align: center;
+  margin: 10px 0px 0px;
+}
+
+@media screen and (max-width: 481px) {
+  .wrapper {
+    margin: 30px 10px;
+  }
+
+  .paycode {
+    margin: 0px 10px;
+  }
+
+  .fields {
+    margin: 10px 20px;
+  }
+
+  .notice {
+    margin: 10px 0px 0px 10px;
+  }
+
+  .noticeList {
+    margin: 0px 10px;
+  }
+
+  .imgs {
+    grid-template-columns: calc((100% - 8px) / 2) calc((100% - 8px) / 2);
+    grid-gap: 20px;
+  }
+
+  .printBtn {
+    display: none;
+  }
+}

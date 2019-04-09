@@ -1,0 +1,160 @@
+@import '~@admin/utils/lib/styles/base.less';
+
+:global(.ant-layout) {
+  height: 100%;
+
+  :global(.ant-layout-content) {
+    height: 100%;
+  }
+}
+
+.layout {
+  flex-direction: row;
+}
+
+.sider {
+  background-color: @menu-color;
+
+  :global(.ant-layout-sider-children) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 30px;
+  }
+
+  &.closed {
+    :global(.ant-layout-sider-children) {
+      justify-content: flex-end;
+    }
+  }
+}
+
+.menu {
+  background-color: transparent;
+  width: 100%;
+  border-right: 0;
+
+  li {
+    margin: 0;
+    padding: 0;
+    height: @menu-width;
+    border-left: 0px solid transparent;
+    display: flex;
+    align-items: center;
+
+    &:global(.ant-menu-item-active),
+    &:global(.ant-menu-submenu-active) {
+      border-left: 3px solid rgba(255, 255, 255, 0.4);
+      background-color: #65bdcd;
+
+      img {
+        opacity: 1;
+      }
+    }
+
+    &:global(.ant-menu-item-selected),
+    &:global(.ant-menu-submenu-selected) {
+      border-left: 3px solid white;
+      background-color: #3ca6b9;
+
+      img {
+        opacity: 1;
+      }
+    }
+
+    a {
+      width: 100%;
+    }
+
+    img {
+      width: 100%;
+      opacity: 0.8;
+      transition: 0.3s;
+
+      &.controller {
+        opacity: 1;
+      }
+    }
+
+    :global(.ant-menu-submenu-title) {
+      padding: 0;
+      margin: 0;
+      height: @menu-width;
+
+      :global(.ant-menu-submenu-arrow) {
+        display: none;
+      }
+    }
+  }
+}
+
+.submenu:global(.ant-menu-submenu-popup) {
+  background-color: @menu-color !important;
+  border-radius: 0 !important;
+
+  > :global(.ant-menu) {
+    background-color: transparent !important;
+    min-width: unset !important;
+    width: auto;
+
+    > :global(.ant-menu-item) {
+      padding: 0px 10px !important;
+      margin: 0 !important;
+      display: flex;
+      align-items: center;
+
+      &:global(.ant-menu-item-active) {
+        background-color: #65bdcd;
+
+        img {
+          opacity: 1;
+        }
+
+        .subtitle {
+          color: white;
+        }
+      }
+
+      &:global(.ant-menu-item-selected) {
+        background-color: #3ca6b9;
+
+        img {
+          opacity: 1;
+        }
+
+        .subtitle {
+          color: white;
+        }
+      }
+
+      .subtitle {
+        margin-left: 6px;
+        font-size: 14px;
+        color: #ccfbff;
+      }
+
+      img {
+        width: 30px;
+        transition: 0.3s;
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+.signout {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: white;
+  opacity: 0.8;
+  transition: 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+}

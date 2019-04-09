@@ -9,7 +9,7 @@ import moment from 'moment';
 import { withNamespaces } from '@admin/utils/lib/i18n';
 import formatAmount from '@admin/utils/lib/formatAmount';
 
-import styles from './styles.less';
+import styles from './styles/index.less';
 
 @withNamespaces('dashboard')
 class Dashboard extends React.Component {

@@ -1,4 +1,4 @@
-FROM node:9.11.1
+FROM node:10.15.3
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -16,6 +16,7 @@ COPY ./node_modules ./node_modules
 # Copy folder
 COPY ./packages/meep-ui ./packages/meep-ui
 COPY ./packages/store ./packages/store
+COPY ./store/ezpay ./store/ezpay
 
 RUN yarn lerna link
 

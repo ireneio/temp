@@ -1,3 +1,7 @@
+const path = require('path');
+
+const findPkgDir = require('find-pkg-dir');
+
 module.exports = {
   presets: [
     [
@@ -7,6 +11,7 @@ module.exports = {
       },
     ],
     '@babel/react',
+    '@babel/preset-typescript',
   ],
   plugins: [
     '@babel/transform-runtime',
@@ -58,20 +63,42 @@ module.exports = {
       'css-modules-transform',
       {
         extensions: ['.less'],
-        generateScopedName: '[path][name]__[local]',
-        preprocessCss: css => `:global(#meepshop) { ${css} }`,
-        devMode: process.env.NODE_ENV !== 'production',
-        keepImport: true,
         ignore: /antd/,
-        extractCss: {
-          dir: './lib',
-          relativeRoot: './src',
-          filename: '[path]/[name].less',
+        preprocessCss: css =>
+          /ignore generateScopedName/.test(css)
+            ? css
+            : `:global(#meepshop) { ${css} }`,
+        generateScopedName: (name, filePath) => {
+          const pkgDir = findPkgDir(filePath);
+          // eslint-disable-next-line global-require, import/no-dynamic-require
+          const { name: pkgName } = require(path.resolve(
+            pkgDir,
+            './package.json',
+          ));
+
+          return `${pkgName.replace(/^@/, '').replace(/\//g, '-')}__${path
+            .relative(pkgDir, filePath)
+            .replace(/(src\/|styles\/)/g, '')
+            .replace(/\//g, '-')
+            .replace(/\.less$/, '')}__${name}`;
         },
+        devMode: process.env.NODE_ENV !== 'production',
+        keepImport: process.env.NODE_ENV !== 'test',
+        extractCss:
+          process.env.NODE_ENV === 'test'
+            ? path.resolve(__dirname, './.storybook/combined.less')
+            : {
+                dir: './lib',
+                relativeRoot: './src',
+                filename: '[path]/[name].less',
+              },
       },
     ],
   ],
-  ignore: process.env.NODE_ENV === 'test' ? [] : ['**/__tests__/**'],
+  ignore: [
+    '**/__generated__/**',
+    ...(process.env.NODE_ENV === 'test' ? [] : ['**/__tests__/**']),
+  ],
   overrides: [
     {
       test: './packages/store',

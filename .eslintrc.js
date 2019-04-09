@@ -23,7 +23,9 @@ module.exports = {
   plugins: ['import'],
   settings: {
     'import/resolver': {
-      node: {},
+      node: {
+        extensions: ['.js', '.ts', '.tsx'],
+      },
       'babel-module': {},
     },
   },
@@ -109,23 +111,27 @@ module.exports = {
        * ]
        */
       rules: {
+        'react/prop-types': 'off', // modify
         '@typescript-eslint/adjacent-overload-signatures': 'error',
         '@typescript-eslint/array-type': 'error',
         '@typescript-eslint/ban-types': 'error',
         camelcase: 'off',
         '@typescript-eslint/camelcase': 'error',
         '@typescript-eslint/class-name-casing': 'error',
-        '@typescript-eslint/explicit-function-return-type': 'warn',
+        '@typescript-eslint/explicit-function-return-type': [
+          'error',
+          { allowExpressions: true },
+        ], // modify
         '@typescript-eslint/explicit-member-accessibility': 'error',
         indent: 'off',
-        '@typescript-eslint/indent': 'off',
+        '@typescript-eslint/indent': 'off', // prettier
         '@typescript-eslint/interface-name-prefix': 'error',
-        '@typescript-eslint/member-delimiter-style': 'off',
+        '@typescript-eslint/member-delimiter-style': 'off', // prettier
         '@typescript-eslint/no-angle-bracket-type-assertion': 'error',
         'no-array-constructor': 'off',
         '@typescript-eslint/no-array-constructor': 'error',
         '@typescript-eslint/no-empty-interface': 'error',
-        '@typescript-eslint/no-explicit-any': 'warn',
+        '@typescript-eslint/no-explicit-any': 'error', // modify
         '@typescript-eslint/no-inferrable-types': 'error',
         '@typescript-eslint/no-misused-new': 'error',
         '@typescript-eslint/no-namespace': 'error',
@@ -134,12 +140,12 @@ module.exports = {
         '@typescript-eslint/no-parameter-properties': 'error',
         '@typescript-eslint/no-triple-slash-reference': 'error',
         'no-unused-vars': 'off',
-        '@typescript-eslint/no-unused-vars': 'warn',
+        '@typescript-eslint/no-unused-vars': 'error', // modify
         '@typescript-eslint/no-use-before-define': 'error',
         '@typescript-eslint/no-var-requires': 'error',
         '@typescript-eslint/prefer-interface': 'error',
         '@typescript-eslint/prefer-namespace-keyword': 'error',
-        '@typescript-eslint/type-annotation-spacing': 'off',
+        '@typescript-eslint/type-annotation-spacing': 'off', // prettier
       },
     },
     {

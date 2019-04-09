@@ -10,8 +10,9 @@ import { areEqual } from 'fbjs';
 
 import { withNamespaces } from '@admin/utils/lib/i18n';
 
-import { generateMenu, generateController } from './utils';
-import styles from './styles.less';
+import generateMenu from './utils/generateMenu';
+import generateController from './utils/generateController';
+import styles from './styles/index.less';
 
 const { Content, Sider } = Layout;
 const { Item, SubMenu } = Menu;

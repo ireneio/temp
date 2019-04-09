@@ -1,15 +1,12 @@
 {
   "private": true,
   "name": "@admin/dashboard",
+  "description": "Dashboard for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.19.4",
   "main": "./lib/index.js",
-  "scripts": {
-    "clean": "make clean",
-    "dev": "make dev",
-    "prod": "make prod"
-  },
+  "keywords": ["admin", "dashboard"],
   "dependencies": {
     "@admin/utils": "^0.19.4",
     "moment": "^2.22.1"

@@ -19,7 +19,7 @@
       "PR: Internal :house:": ":house: Internal"
     }
   },
-  "lerna": "3.4.0",
+  "lerna": "3.13.1",
   "npmClient": "yarn",
   "npmClientArgs": [
     "--no-lockfile"
@@ -29,8 +29,7 @@
     "**/*.md"
   ],
   "packages": [
-    "packages/*",
-    "admin/*"
+    "packages/*", "admin/*", "store/*"
   ],
   "useWorkspaces": true
 }
