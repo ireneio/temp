@@ -1,5 +1,5 @@
 {
-  "version": "0.19.4",
+  "version": "0.20.0",
   "command": {
     "publish": {
       "message": "chore(release): publish %s [skip ci]",
@@ -29,7 +29,9 @@
     "**/*.md"
   ],
   "packages": [
-    "packages/*", "admin/*", "store/*"
+    "packages/*",
+    "admin/*",
+    "store/*"
   ],
   "useWorkspaces": true
 }
