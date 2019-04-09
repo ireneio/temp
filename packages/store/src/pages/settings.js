@@ -167,7 +167,8 @@ const mapStateToProps = (state, props) => {
     title: TITLE.SETTINGS[locale],
     user: user && Selectors.getJoinedUser(state),
     lockedBirthday:
-      Utils.getIn(['storeReducer', 'lockedBirthday'])(state) || false,
+      Utils.getIn(['storeReducer', 'settings', 'lockedBirthday'])(state) ||
+      false,
     lockedCountry: Utils.getIn(['storeReducer', 'lockedCountry'])(state) || [],
     fbAppId:
       Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
