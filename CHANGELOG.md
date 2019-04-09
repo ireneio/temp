@@ -1,3 +1,25 @@
+## 0.20.0 (2019-04-09)
+
+#### :boom: Breaking Change
+
+- `end-to-end`, `meep-ui`, `mock-types`, `store`
+  - [#429](https://github.com/meepshop/meep-lerna/pull/429) 範例 package ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#439](https://github.com/meepshop/meep-lerna/pull/439) Modify @admin/\* detail ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#438](https://github.com/meepshop/meep-lerna/pull/438) 【個別店家】後台 - 查看某分頁，Server error ([@piovischioh](https://github.com/piovischioh))
+  - [#437](https://github.com/meepshop/meep-lerna/pull/437) 【BUG】 新架構 - 鎖定會員生日欄位功能失效 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#436](https://github.com/meepshop/meep-lerna/pull/436) fix(admin): modify api method ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.19.4 (2019-04-02)
 
 #### :boom: Breaking Change
