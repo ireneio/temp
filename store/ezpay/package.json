@@ -8,7 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "query-string": "^6.3.0"
+    "query-string": "^6.4.2"
   },
   "keywords": ["ezpship page", "store"]
 }

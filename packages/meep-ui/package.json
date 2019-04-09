@@ -16,7 +16,7 @@
     "memoize-one": "^4.0.0",
     "moment": "^2.22.1",
     "money": "^0.2.0",
-    "query-string": "^5.0.1",
+    "query-string": "^6.4.2",
     "radium": "^0.25.0",
     "react-content-loader": "^3.1.2",
     "react-icons": "^2.2.7",

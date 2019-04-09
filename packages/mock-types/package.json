@@ -8,7 +8,7 @@
   "main": "./index.js",
   "scripts": {
     "clean": "rm -rf ./schema.graphql",
-    "schema": "apollo service:download -c ../../apollo.config.js"
+    "schema": "apollo service:download"
   },
   "types": "./src/index.tsx",
   "dependencies": {
