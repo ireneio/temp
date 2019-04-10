@@ -44,8 +44,11 @@ module.exports = app.prepare().then(
       server.use(nextI18NextMiddleware(nextI18next));
 
       // routes
-      server.get('/healthz-new', (req, res) => {
-        res.send(`Welcome to MeepShop-Admin ${VERSION}`);
+      server.get('/healthz', (req, res) => {
+        res.status(200).end();
+      });
+      server.get('/version', (req, res) => {
+        res.status(200).send(`Welcome to Next-Admin ${VERSION}`);
       });
       server.get('*', (req, res) => handler(req, res));
 
