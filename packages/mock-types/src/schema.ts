@@ -9,6 +9,8 @@ import Order from './schemas/Order';
 import ezPaymentReturnListObjectType from './schemas/ezPaymentReturnListObjectType';
 import PaymentAccountForEzpay from './schemas/PaymentAccountForEzpay';
 
+// TODO: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/34649
+// @ts-ignore
 const schema = buildClientSchema(schemaJSON);
 
 addMockFunctionsToSchema({
