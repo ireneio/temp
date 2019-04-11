@@ -9,6 +9,7 @@ module.exports = ({ config }) => {
         loader: 'babel-loader',
         options: {
           configFile: path.resolve(__dirname, '../babel.config.js'),
+          sourceType: 'unambiguous',
         },
       },
     },
@@ -33,6 +34,11 @@ module.exports = ({ config }) => {
   ];
 
   config.resolve.extensions = ['.ts', '.tsx', ...config.resolve.extensions];
+  config.resolve.alias = {
+    ...config.resolve.alias,
+    'next/router': path.resolve(__dirname, '../__mocks__/next/router'),
+    'next-i18next': path.resolve(__dirname, '../__mocks__/next-i18next'),
+  };
 
   return config;
 };

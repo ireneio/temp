@@ -4,13 +4,7 @@ import { action } from '@storybook/addon-actions';
 import LinkTo from '@storybook/addon-links/react';
 import React from 'react';
 import Markdown from 'react-markdown';
-import Router from 'next/router';
 import { message } from 'antd';
-
-Router.router = {
-  push: action('router push'),
-  prefetch: action('router prefetch'),
-};
 
 const stories = [
   {
