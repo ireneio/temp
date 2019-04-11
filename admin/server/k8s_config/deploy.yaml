@@ -27,6 +27,12 @@ spec:
             port: 14405
           initialDelaySeconds: 15
           periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 14405
+          initialDelaySeconds: 15
+          periodSeconds: 3
         resources:
           limits:
             cpu: "0.4"
