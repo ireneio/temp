@@ -13,7 +13,7 @@ postinstall:
 
 clean:
 	rm -rf ./node_modules
-	rm -rf ./store/**/lib ./admin/**/lib ./meepshop/**/lib
+	rm -rf ./store/**/lib ./admin/**/lib ./packages/**/lib
 	rm -rf ./coverage
 	rm -rf ./.eslintcache
 	rm -rf ./.changelog
