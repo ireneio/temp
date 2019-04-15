@@ -9,7 +9,6 @@ babel-changed:
 postinstall:
 	rm -rf ./node_modules/next/node_modules/@babel/core
 	@echo "\nremove after using next@^7.x\n"
-	@echo "remove resolutions after antd upgrade"
 
 clean:
 	rm -rf ./node_modules
