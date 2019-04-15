@@ -1,16 +1,30 @@
-import React from 'react';
+import i18n from 'i18next';
+import { reactI18nextModule, withNamespaces } from 'react-i18next';
 
-/* eslint-disable global-require */
-const locales = {
-  common: require('@admin/server/src/static/locales/zh_TW/common.json'),
-  dashboard: require('@admin/server/src/static/locales/zh_TW/dashboard.json'),
-};
-/* eslint-enable global-require */
+i18n.use(reactI18nextModule).init({
+  /* eslint-disable global-require, @typescript-eslint/camelcase */
+  resources: {
+    zh_TW: {
+      common: require('@admin/server/src/static/locales/zh_TW/common.json'),
+      dashboard: require('@admin/server/src/static/locales/zh_TW/dashboard.json'),
+    },
+    en_US: {
+      common: require('@admin/server/src/static/locales/en_US/common.json'),
+      dashboard: require('@admin/server/src/static/locales/en_US/dashboard.json'),
+    },
+    ja_JP: {
+      common: require('@admin/server/src/static/locales/ja_JP/common.json'),
+      dashboard: require('@admin/server/src/static/locales/ja_JP/dashboard.json'),
+    },
+    /* eslint-enable global-require, @typescript-eslint/camelcase */
+  },
+  lng: 'zh-TW',
+  fallbackLng: 'zh_TW',
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 export default class NextI18Next {
-  public withNamespaces = (namespaceName: string) => (
-    Component: React.ComponentType<T>,
-  ) => (props: T) => (
-    <Component {...props} t={(key: string) => locales[namespaceName][key]} />
-  );
+  public withNamespaces = withNamespaces;
 }
