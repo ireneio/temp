@@ -12,11 +12,15 @@ export default ({ isMerchant, domain }) => [
             },
           ]
         : []),
-      {
-        path: '/bill-setting',
-        src: '/static/images/menu/bill-setting.png',
-        title: 'bill-setting',
-      },
+      ...(isMerchant
+        ? [
+            {
+              path: '/bill-payment',
+              src: '/static/images/menu/bill-payment.png',
+              title: 'bill-payment',
+            },
+          ]
+        : []),
       {
         path: `//${domain}`,
         src: '/static/images/menu/go-to-store.png',

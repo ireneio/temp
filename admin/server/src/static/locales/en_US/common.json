@@ -29,7 +29,7 @@
   "app-store": "擴充功能",
   "controller": "主控台",
   "account-setting": "帳號設定",
-  "bill-setting": "帳單管理",
+  "bill-payment": "帳單與付款",
   "go-to-store": "前往商店",
   "signout": "登出"
 }

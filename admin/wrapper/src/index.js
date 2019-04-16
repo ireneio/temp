@@ -41,7 +41,7 @@ class Wrapper extends React.Component {
         ),
         permission: getAuthorityList?.data?.find(
           list => list.id === viewer?.groupId,
-        ),
+        )?.permission,
         domain: viewer?.store.domain?.[0] || viewer?.store.defaultDomain,
         isMerchant: viewer?.role === 'MERCHANT',
         isOldActivityVersion: !activityVersion || activityVersion === 1,
