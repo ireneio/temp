@@ -1,3 +1,40 @@
+## 0.20.1 (2019-04-16)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`
+  - [#440](https://github.com/meepshop/meep-lerna/pull/440) (@meepshop/front-end): Fix typescript ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#441](https://github.com/meepshop/meep-lerna/pull/441) Remove meepshop-api proxy ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- [#441](https://github.com/meepshop/meep-lerna/pull/441) Remove meepshop-api proxy ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#446](https://github.com/meepshop/meep-lerna/pull/446) 【個別店家】 前台 - 整個頁面跑版 ([@HsuTing](https://github.com/HsuTing))
+  - [#451](https://github.com/meepshop/meep-lerna/pull/451) 【其他】 手機版 - Chrome 瀏覽器，無法放大檢視商品圖 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#450](https://github.com/meepshop/meep-lerna/pull/450) New Admin ([@piovischioh](https://github.com/piovischioh))
+  - [#453](https://github.com/meepshop/meep-lerna/pull/453) (@meepshop/front-end) Fix resolutions ([@HsuTing](https://github.com/HsuTing))
+  - [#452](https://github.com/meepshop/meep-lerna/pull/452) (@meepshop/front-end) Fix Makefile error ([@HsuTing](https://github.com/HsuTing))
+  - [#447](https://github.com/meepshop/meep-lerna/pull/447) (@meepshop/front-end) Fix e2e ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#448](https://github.com/meepshop/meep-lerna/pull/448) (@meepshop/mock-types) Fix typescript error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#454](https://github.com/meepshop/meep-lerna/pull/454) (@meepshop/front-end) Use `react-i18next` in mock ([@HsuTing](https://github.com/HsuTing))
+- [#453](https://github.com/meepshop/meep-lerna/pull/453) (@meepshop/front-end) Fix resolutions ([@HsuTing](https://github.com/HsuTing))
+- [#449](https://github.com/meepshop/meep-lerna/pull/449) (@meepshop/front-end) Add storybook mock ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.20.0 (2019-04-09)
 
 #### :boom: Breaking Change
