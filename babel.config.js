@@ -16,11 +16,11 @@ module.exports = {
   plugins: [
     '@babel/transform-runtime',
     '@babel/proposal-optional-chaining',
-    '@babel/proposal-export-default-from',
+    '@babel/proposal-export-default-from', // TODO: remove, typescript not support
     [
       '@babel/proposal-decorators',
       {
-        legacy: true,
+        legacy: true, // TODO: remove, typescript not support
       },
     ],
     '@babel/proposal-class-properties',

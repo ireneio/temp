@@ -18,7 +18,7 @@ i18n.use(reactI18nextModule).init({
     },
     /* eslint-enable global-require, @typescript-eslint/camelcase */
   },
-  lng: 'zh-TW',
+  lng: 'zh_TW',
   fallbackLng: 'zh_TW',
   interpolation: {
     escapeValue: false,

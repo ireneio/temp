@@ -5,9 +5,8 @@
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.20.0",
-  "main": "./lib/index.js",
   "dependencies": {
-    "next-i18next": "^0.32.0"
+    "next-i18next": "^0.37.0"
   },
   "keywords": ["admin", "utils"]
 }

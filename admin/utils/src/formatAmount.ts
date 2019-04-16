@@ -1,4 +1,4 @@
-export default ({ amount, currency }) =>
+export default ({ amount, currency }: { amount: string; currency: string }) =>
   (price => {
     switch (currency) {
       case 'TWD':
@@ -20,6 +20,6 @@ export default ({ amount, currency }) =>
       case 'MYR':
         return `RM ${price.toFixed(2)}`;
       default:
-        return price;
+        return price.toString();
     }
   })(parseFloat(amount)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');

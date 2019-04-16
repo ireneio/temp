@@ -11285,10 +11285,17 @@ i18next-xhr-backend@^2.0.0:
   resolved "https://registry.yarnpkg.com/i18next-xhr-backend/-/i18next-xhr-backend-2.0.1.tgz#7af735ee1b0c6d4ce49fa5756591040a0fba6db7"
   integrity sha512-CP0XPjJsTE4hY1rM1KXFYo63Ib61EBLEcTvMDyJwr0vs9p/UTuA3ENCmzSs9+ghZgWSjdOigc0oUERHaxctbsQ==
 
-i18next@^15.0.0, i18next@^15.0.4:
+i18next@^15.0.0:
   version "15.0.5"
   resolved "https://registry.yarnpkg.com/i18next/-/i18next-15.0.5.tgz#9dfaeaa70b6bc0da49c6b8f1790be3646f8cfe2c"
   integrity sha512-JqcoIM20BuYq0iQm8VLlq2pqhCNoG60+QuOxLE9PCDGZZc+in9kWofw1qLUazo4B53jJDca1ARd2YLmhXcx2uw==
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+
+i18next@^15.0.9:
+  version "15.0.9"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-15.0.9.tgz#42536407a921bb5a8535a4c090a26f16827a1884"
+  integrity sha512-IdVj7DqErUuMbGuj2dFT431T7zKlmDci63eae6pNA/bMwgBZKT74/KnwHXE0WH7ivo2EV/LNme4pP4Yw6vB79w==
   dependencies:
     "@babel/runtime" "^7.3.1"
 
@@ -14265,10 +14272,10 @@ netrc-parser@^3.1.4:
     debug "^3.1.0"
     execa "^0.10.0"
 
-next-i18next@^0.32.0:
-  version "0.32.1"
-  resolved "https://registry.yarnpkg.com/next-i18next/-/next-i18next-0.32.1.tgz#9a86f85f7ddd2582af8986f0f7a0016051f50bc1"
-  integrity sha512-H9fp7pdTUEqgfH4PixwMyvfCIB7bpbqsYB9zwmHLpzeluO6Keb8+h/T8L8WounmdC0P9rDhGCd62CH3zq30d3A==
+next-i18next@^0.37.0:
+  version "0.37.0"
+  resolved "https://registry.yarnpkg.com/next-i18next/-/next-i18next-0.37.0.tgz#d82d69ae69cc4617be4385168a348795646bb59a"
+  integrity sha512-QGyTJy96gxSuU6bpTSag6d5VAbUVIPttPgWFWu0Exk22PZ/iabIV+XcaB9h8RFBtJMn8bu+VD3jdhQ3mIZkGlA==
   dependencies:
     detect-node "^2.0.4"
     hoist-non-react-statics "^3.2.0"
@@ -14280,7 +14287,7 @@ next-i18next@^0.32.0:
     path-match "^1.2.4"
     pretty-error "^2.1.1"
     prop-types "^15.6.2"
-    react-i18next "^9.0.4"
+    react-i18next "9.0.10"
     url "^0.11.0"
 
 next-images@^0.10.2:
@@ -17067,7 +17074,7 @@ react-hotkeys@2.0.0-pre4:
   dependencies:
     prop-types "^15.6.1"
 
-react-i18next@^9.0.4:
+react-i18next@9.0.10:
   version "9.0.10"
   resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-9.0.10.tgz#ba596b98e8dd06dbb805cf720147459ad55a3ada"
   integrity sha512-xpeCWNut7ylQLs3Qqyo7dT13kgZbML1CdftbdnswLCv0RbRT16bRP16ma59iLe1KHIbn92VJo0Q8LSKYoXVNvg==

@@ -19,10 +19,10 @@
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
     "express-http-proxy": "^1.5.1",
-    "i18next": "^15.0.4",
+    "i18next": "^15.0.9",
     "memoize-one": "^4.0.0",
     "next": "^7.0.2",
-    "next-i18next": "^0.32.0",
+    "next-i18next": "^0.37.0",
     "next-routes": "^1.4.2"
   },
   "devDependencies": {

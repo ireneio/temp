@@ -20,5 +20,11 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@admin/utils/lib/*": ["node_modules/@admin/utils/src/*"]
+    }
+  }
 }
