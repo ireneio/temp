@@ -2,6 +2,7 @@ import 'isomorphic-unfetch';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import NextApp, { Container } from 'next/app';
+import Head from 'next/head';
 import Router from 'next/router';
 
 import '@admin/utils/lib/styles/base.less';
@@ -35,6 +36,9 @@ export default class App extends NextApp {
 
     return (
       <Container>
+        <Head>
+          <title>meepShop</title>
+        </Head>
         <ApolloProvider client={apolloClient}>
           {/login/.test(pathname) ? (
             <Component {...pageProps} />
