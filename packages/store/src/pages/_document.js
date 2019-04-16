@@ -3,7 +3,7 @@ import htmlescape from 'htmlescape';
 import getConfig from 'next/config';
 
 const {
-  publicRuntimeConfig: { STORE_DOMAIN },
+  publicRuntimeConfig: { STORE_DOMAIN, VERSION },
 } = getConfig();
 
 export default class MyDocument extends Document {
@@ -39,7 +39,10 @@ export default class MyDocument extends Document {
 
           <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-          <link rel="stylesheet" href="/_next/static/style.css" />
+          <link
+            rel="stylesheet"
+            href={`/_next/static/style.css?v=${VERSION}`}
+          />
         </Head>
 
         <body id="meepshop">
