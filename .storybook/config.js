@@ -1,10 +1,11 @@
-import 'antd/dist/antd.less';
 import { configure, storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import LinkTo from '@storybook/addon-links/react';
 import React from 'react';
 import Markdown from 'react-markdown';
 import { message } from 'antd';
+
+import '@admin/utils/lib/styles/base.less';
 
 const stories = [
   {

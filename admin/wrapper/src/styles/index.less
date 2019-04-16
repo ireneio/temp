@@ -1,4 +1,4 @@
-@import '~@admin/utils/lib/styles/base.less';
+@import '~@admin/utils/lib/styles/variables.less';
 
 :global(.ant-layout) {
   height: 100%;
@@ -89,17 +89,17 @@
 }
 
 .submenu:global(.ant-menu-submenu-popup) {
-  background-color: @menu-color !important;
-  border-radius: 0 !important;
+  background-color: @menu-color;
+  border-radius: 0;
 
   > :global(.ant-menu) {
-    background-color: transparent !important;
-    min-width: unset !important;
+    background-color: transparent;
+    min-width: unset;
     width: auto;
 
     > :global(.ant-menu-item) {
-      padding: 0px 10px !important;
-      margin: 0 !important;
+      padding: 0px 10px;
+      margin: 0;
       display: flex;
       align-items: center;
 

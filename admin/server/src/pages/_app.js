@@ -1,4 +1,3 @@
-import 'antd/dist/antd.less';
 import 'isomorphic-unfetch';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
