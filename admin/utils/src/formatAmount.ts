@@ -1,3 +1,4 @@
+// definition
 export default ({ amount, currency }: { amount: string; currency: string }) =>
   (price => {
     switch (currency) {

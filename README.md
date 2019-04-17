@@ -130,6 +130,22 @@ workspace(store, admin...)
     └── index.tsx
 ```
 
+#### File architecture
+
+```js
+// typescript import
+
+// import
+
+// graphql typescript
+
+// graphql import
+
+// typescript definition
+
+// definition
+```
+
 ## Project roadmap
 
 #### Dev tool

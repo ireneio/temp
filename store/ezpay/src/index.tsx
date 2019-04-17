@@ -1,3 +1,4 @@
+// import
 import React from 'react';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
@@ -5,13 +6,16 @@ import { Spin, Icon } from 'antd';
 import queryString from 'query-string';
 import Router from 'next/router';
 
+import styles from './styles/index.less';
+
+// graphql typescript
 import {
   getOrderInEzpay,
   getOrderInEzpayVariables,
   getOrderInEzpay_viewer_order as getOrderInEzpayViewerOrder,
 } from './__generated__/getOrderInEzpay';
-import styles from './styles/index.less';
 
+// definition
 const Ezpay = React.memo<{
   order: getOrderInEzpayViewerOrder;
   ezpayLogo: string;
