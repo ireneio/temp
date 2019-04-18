@@ -1,3 +1,4 @@
+// import
 import React from 'react';
 import { Button, Tooltip } from 'antd';
 import { ApolloClient } from 'apollo-client';
@@ -5,6 +6,7 @@ import { ApolloClient } from 'apollo-client';
 import mock from './mock';
 import styles from './styles/mockData.less';
 
+// definition
 const { Group } = Button;
 
 const MockData = React.memo(

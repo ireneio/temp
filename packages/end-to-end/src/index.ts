@@ -1,8 +1,10 @@
+// import
 import fs from 'fs';
 import path from 'path';
 
 import execa from 'execa';
 
+// definition
 (async () => {
   const { stdout } = await execa.shell('git diff origin/master --name-only');
   const files = stdout

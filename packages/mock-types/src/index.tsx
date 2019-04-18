@@ -1,3 +1,4 @@
+// import
 import React from 'react';
 import { ApolloClient, InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -11,12 +12,14 @@ import schema from './schema';
 import mock from './mock';
 import styles from './styles/index.less';
 
-mock.init();
-
+// typescript definition
 interface StateType {
   mockTypes: string[];
   visibleDrawer: boolean;
 }
+
+// definition
+mock.init();
 
 export default class MockTypes extends React.PureComponent<{}, StateType> {
   public state: StateType = {

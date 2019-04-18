@@ -1,3 +1,4 @@
+// definition
 class Mock {
   public schemas: {
     [key: string]: ((

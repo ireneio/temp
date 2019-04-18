@@ -1,3 +1,4 @@
+// import
 import { buildClientSchema } from 'graphql';
 import { addMockFunctionsToSchema } from 'graphql-tools';
 
@@ -9,6 +10,7 @@ import Order from './schemas/Order';
 import ezPaymentReturnListObjectType from './schemas/ezPaymentReturnListObjectType';
 import PaymentAccountForEzpay from './schemas/PaymentAccountForEzpay';
 
+// definition
 // TODO: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/34649
 // @ts-ignore
 const schema = buildClientSchema(schemaJSON);
