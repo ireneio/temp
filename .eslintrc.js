@@ -38,6 +38,12 @@ module.exports = {
         location: 'anywhere',
       },
     ],
+    'no-underscore-dangle': [
+      'error',
+      {
+        allow: ['__typename'],
+      },
+    ],
 
     'react/jsx-filename-extension': 'off',
     'react/sort-comp': [
@@ -162,12 +168,6 @@ module.exports = {
     {
       files: ['packages/meep-ui/**'],
       rules: {
-        'no-underscore-dangle': [
-          'error',
-          {
-            allow: ['__typename'],
-          },
-        ],
         'react/prop-types': [
           'error',
           {
