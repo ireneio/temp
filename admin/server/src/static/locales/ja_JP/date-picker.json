@@ -1,0 +1,11 @@
+{
+  "today": "今天",
+  "yesterday": "昨天",
+  "lastWeek": "上週",
+  "lastMonth": "上個月",
+  "last7Days": "最近 7 天",
+  "last30Days": "最近 30 天",
+  "custom": "自訂時間",
+  "start-date": "開始時間",
+  "end-date": "結束時間"
+}

@@ -152,6 +152,8 @@ module.exports = {
         '@typescript-eslint/prefer-interface': 'error',
         '@typescript-eslint/prefer-namespace-keyword': 'error',
         '@typescript-eslint/type-annotation-spacing': 'off', // prettier
+        'import/no-duplicates': 'off', // modify
+        'import/order': 'off', // modify
       },
     },
     {

@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@admin/date-picker",
+  "description": "Admin date picker component with antd",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/utils": "^0.20.0",
+    "moment": "^2.22.1"
+  },
+  "keywords": ["admin", "date picker"]
+}

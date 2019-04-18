@@ -1,0 +1,22 @@
+.root {
+  :global(.ant-calendar-range) {
+    width: auto;
+    transform: translateY(36px);
+  }
+
+  :global(.ant-calendar-panel) {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  :global(.ant-calendar-footer) {
+    padding: 0px;
+    border: 0px;
+  }
+
+  &.notCustom {
+    :global(.ant-calendar-date-panel) {
+      display: none;
+    }
+  }
+}
