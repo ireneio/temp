@@ -64,10 +64,17 @@ module.exports = {
       {
         extensions: ['.less'],
         ignore: /antd/,
-        preprocessCss: css =>
-          /ignore generateScopedName/.test(css)
-            ? css
-            : `:global(#meepshop) { ${css} }`,
+        preprocessCss: css => {
+          if (/ignore generateScopedName/.test(css)) return css;
+
+          if (/@import/.test(css))
+            return `${css.replace(
+              /(@import.*;\n?)+/,
+              '$&:global(#meepshop) {',
+            )}}`;
+
+          return `:global(#meepshop) { ${css} }`;
+        },
         generateScopedName: (name, filePath) => {
           const pkgDir = findPkgDir(filePath);
           // eslint-disable-next-line global-require, import/no-dynamic-require
