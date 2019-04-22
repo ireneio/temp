@@ -15,7 +15,7 @@ module.exports = {
   ],
   plugins: [
     '@babel/transform-runtime',
-    '@babel/proposal-optional-chaining',
+    '@babel/proposal-optional-chaining', // TODO: remove, typescript not support
     '@babel/proposal-export-default-from', // TODO: remove, typescript not support
     [
       '@babel/proposal-decorators',
@@ -52,6 +52,7 @@ module.exports = {
         /* eslint-enable no-template-curly-in-string */
       },
     ],
+    'idx',
     [
       'module-resolver',
       {

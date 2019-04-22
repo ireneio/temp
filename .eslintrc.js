@@ -142,7 +142,7 @@ module.exports = {
         '@typescript-eslint/no-misused-new': 'error',
         '@typescript-eslint/no-namespace': 'error',
         '@typescript-eslint/no-non-null-assertion': 'error',
-        '@typescript-eslint/no-object-literal-type-assertion': 'error',
+        '@typescript-eslint/no-object-literal-type-assertion': 'off', // modify
         '@typescript-eslint/no-parameter-properties': 'error',
         '@typescript-eslint/no-triple-slash-reference': 'error',
         'no-unused-vars': 'off',
