@@ -19,6 +19,7 @@ gql`
       ...localeFragment
     }
   }
+
   ${localeFragment}
 `;
 

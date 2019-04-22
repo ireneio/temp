@@ -37,15 +37,10 @@ interface StateType {
 const { RangePicker } = AntdDatePicker;
 
 class DatePicker extends React.PureComponent<PropsType, StateType> {
-  public state: StateType = {
-    type: null,
-    value: null,
-  };
-
   public static getDerivedStateFromProps(
     nextProps: PropsType,
     prevState: StateType,
-  ): StateType {
+  ): Pick<StateType, 'value'> | null {
     if (nextProps.onChange && !areEqual(nextProps.value, prevState.value))
       return {
         value: nextProps.value,
@@ -140,7 +135,7 @@ class DatePicker extends React.PureComponent<PropsType, StateType> {
             'last7Days',
             'last30Days',
             'custom',
-          ].map((key: StateType['type']) => (
+          ].map((key: Required<StateType>['type']) => (
             <div
               key={key}
               className={`ant-select-dropdown-menu-item ${
@@ -148,7 +143,7 @@ class DatePicker extends React.PureComponent<PropsType, StateType> {
               }`}
               onClick={this.changeType(key)}
             >
-              {t(key)}
+              {t(key as string)}
             </div>
           ))
         }

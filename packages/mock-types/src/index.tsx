@@ -1,3 +1,6 @@
+// import typescript
+import { NextLink } from 'apollo-link';
+
 // import
 import React from 'react';
 import { ApolloClient, InMemoryCache } from 'apollo-boost';
@@ -48,7 +51,7 @@ export default class MockTypes extends React.PureComponent<{}, StateType> {
           });
       }),
       new ApolloLink(
-        (operation, forward) =>
+        (operation, forward: NextLink) =>
           new Observable(observer => {
             const sub = forward(operation).subscribe({
               next: result => {
