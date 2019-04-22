@@ -1,5 +1,6 @@
 // import
 import { gql } from 'apollo-boost';
+import idx from 'idx';
 import moment from 'moment';
 
 import mock from '../mock';
@@ -28,10 +29,10 @@ export default mock.add<
   },
   { orderId: string }
 >('Order', [
-  (_, { orderId }) => ({
+  (obj, { orderId }) => ({
     __typename: 'Order',
-    id: orderId || _.node.id,
-    orderNo: (orderId || _.node.id).slice(0, 8),
+    id: orderId || idx(obj, _ => _.node.id) || 'id',
+    orderNo: (orderId || idx(obj, _ => _.node.id) || 'orderNo').slice(0, 8),
     status: 0,
     priceInfo: {
       __typename: 'priceObjectType',
@@ -39,10 +40,10 @@ export default mock.add<
     },
     createdOn: moment().unix(),
   }),
-  (_, { orderId }) => ({
+  (obj, { orderId }) => ({
     __typename: 'Order',
-    id: orderId || _.node.id,
-    orderNo: (orderId || _.node.id).slice(0, 8),
+    id: orderId || idx(obj, _ => _.node.id) || 'id',
+    orderNo: (orderId || idx(obj, _ => _.node.id) || 'orderNo').slice(0, 8),
     status: 1,
     priceInfo: {
       __typename: 'priceObjectType',

@@ -13,8 +13,8 @@ import styles from './styles/index.less';
 
 // typescript definition
 export interface PropsType extends I18nPropsType {
-  value?: StateType['value'];
-  onChange?: (value: StateType['value']) => void;
+  value?: [moment.Moment, moment.Moment];
+  onChange?: (value: PropsType['value']) => void;
 }
 
 interface StateType {
@@ -26,17 +26,15 @@ interface StateType {
     | 'last7Days'
     | 'last30Days'
     | 'custom';
-  value?:
-    | undefined[]
-    | [moment.Moment]
-    | [undefined, moment.Moment]
-    | [moment.Moment, moment.Moment];
+  value?: PropsType['value'];
 }
 
 // definition
 const { RangePicker } = AntdDatePicker;
 
 class DatePicker extends React.PureComponent<PropsType, StateType> {
+  public state: StateType = {};
+
   public static getDerivedStateFromProps(
     nextProps: PropsType,
     prevState: StateType,
@@ -121,11 +119,13 @@ class DatePicker extends React.PureComponent<PropsType, StateType> {
           type === 'custom' ? '' : styles.notCustom
         }`}
         placeholder={[t('start-date'), t('end-date')]}
-        onChange={newValue =>
-          this.setState({ value: newValue }, () => {
-            if (onChange) onChange(newValue);
-          })
-        }
+        onChange={newValue => {
+          if (newValue && newValue.some(time => !time)) return;
+
+          this.setState({ value: newValue } as Pick<PropsType, 'value'>, () => {
+            if (onChange) onChange(newValue as PropsType['value']);
+          });
+        }}
         renderExtraFooter={() =>
           [
             'today',
