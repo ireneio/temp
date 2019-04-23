@@ -1,3 +1,51 @@
+## 0.20.2 (2019-04-23)
+
+#### :boom: Breaking Change
+
+- [#457](https://github.com/meepshop/meep-lerna/pull/457) (@admin/utils) use typescripts ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#464](https://github.com/meepshop/meep-lerna/pull/464) 【個案處理】meepShop MAX 極速開店：新增白名單 - xmiutc ([@happycat6323](https://github.com/happycat6323))
+- `mock-types`
+  - [#470](https://github.com/meepshop/meep-lerna/pull/470) (@meepshop/front-end) Add strictNullChecks to typescript ([@HsuTing](https://github.com/HsuTing))
+  - [#468](https://github.com/meepshop/meep-lerna/pull/468) (@meepshop/mock-types) Add new mock types ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#469](https://github.com/meepshop/meep-lerna/pull/469) (@meepshop/front-end): Add idx ([@HsuTing](https://github.com/HsuTing))
+  - [#458](https://github.com/meepshop/meep-lerna/pull/458) (@admin/date-picker) Add date-picker ([@HsuTing](https://github.com/HsuTing))
+  - [#457](https://github.com/meepshop/meep-lerna/pull/457) (@admin/utils) use typescripts ([@HsuTing](https://github.com/HsuTing))
+  - [#455](https://github.com/meepshop/meep-lerna/pull/455) use variables.less ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#467](https://github.com/meepshop/meep-lerna/pull/467) 【BUG】Query String 造成新架構 IE 瀏覽器部分問題 ([@HsuTing](https://github.com/HsuTing))
+  - [#463](https://github.com/meepshop/meep-lerna/pull/463) (@meepshop/front-end) Fix babel config with css-module ([@HsuTing](https://github.com/HsuTing))
+  - [#465](https://github.com/meepshop/meep-lerna/pull/465) (@meepshop/front-end) Fix eslint bug ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#460](https://github.com/meepshop/meep-lerna/pull/460) 【其他】GMO 信用卡 - 前台移除卡號碼檢查器 ([@piovischioh](https://github.com/piovischioh))
+- `mock-types`
+  - [#471](https://github.com/meepshop/meep-lerna/pull/471) (@admin/data-picker, @meepshop/mock-types) Fix storybook error ([@HsuTing](https://github.com/HsuTing))
+  - [#470](https://github.com/meepshop/meep-lerna/pull/470) (@meepshop/front-end) Add strictNullChecks to typescript ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `mock-types`
+  - [#471](https://github.com/meepshop/meep-lerna/pull/471) (@admin/data-picker, @meepshop/mock-types) Fix storybook error ([@HsuTing](https://github.com/HsuTing))
+  - [#468](https://github.com/meepshop/meep-lerna/pull/468) (@meepshop/mock-types) Add new mock types ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#469](https://github.com/meepshop/meep-lerna/pull/469) (@meepshop/front-end): Add idx ([@HsuTing](https://github.com/HsuTing))
+  - [#459](https://github.com/meepshop/meep-lerna/pull/459) (@admin/utils, @store/ezpay): Move typescript position ([@HsuTing](https://github.com/HsuTing))
+- `end-to-end`, `mock-types`
+  - [#461](https://github.com/meepshop/meep-lerna/pull/461) (@meepshop/mock-types, @meepshop/end-to-end) Add comments ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.20.1 (2019-04-16)
 
 #### :boom: Breaking Change
