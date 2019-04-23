@@ -22,7 +22,7 @@ const create = (initialState, ctx) => {
     connectToDevTools: process.browser,
     ssrMode: process.browser,
     link: ApolloLink.from([
-      onError(({ graphQLErrors, networkError }) => {
+      onError(({ graphQLErrors, networkError = {} }) => {
         if (
           networkError.statusCode === 401 &&
           process.browser &&

@@ -16,6 +16,7 @@ module.exports = withSourceMaps(
   withImages(
     withLess(
       withBundleAnalyzer({
+        pageExtensions: ['js', 'ts', 'tsx'],
         useFileSystemPublicRoutes: false,
         publicRuntimeConfig: {
           API_HOST: process.env.API_HOST || 'https://api.stage.meepcloud.com',

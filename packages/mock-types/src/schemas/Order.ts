@@ -19,6 +19,9 @@ gql`
       total
     }
     createdOn
+    lastEcfitRequestRecord {
+      createdAt
+    }
   }
 `;
 
@@ -39,6 +42,10 @@ export default mock.add<
       total: 100,
     },
     createdOn: moment().unix(),
+    lastEcfitRequestRecord: {
+      __typename: 'EcfitRequestRecord',
+      createdAt: moment().unix(),
+    },
   }),
   (obj, { orderId }) => ({
     __typename: 'Order',
@@ -50,5 +57,9 @@ export default mock.add<
       total: 100,
     },
     createdOn: moment().unix(),
+    lastEcfitRequestRecord: {
+      __typename: 'EcfitRequestRecord',
+      createdAt: moment().unix(),
+    },
   }),
 ]);
