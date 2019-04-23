@@ -20,6 +20,7 @@ export const SPECIAL_HIDE_FOOTER = [
   'flymi',
   'kolstyle',
   'jj-f4',
+  'xmiutc',
 ];
 
 export const STORE_APP_PLUGINS = [
