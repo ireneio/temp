@@ -4,7 +4,7 @@ import radium from 'radium';
 import { Form, Input, DatePicker, Cascader } from 'antd';
 import moment from 'moment';
 import isInt from 'validator/lib/isInt';
-import isCreditCard from 'validator/lib/isCreditCard';
+import isNumeric from 'validator/lib/isNumeric';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ONE_OF_LOCALE_TYPE } from 'constants/propTypes';
@@ -120,7 +120,7 @@ export default class From extends React.PureComponent {
               },
               {
                 validator: (rule, value, callback) => {
-                  if (!isCreditCard((value || []).join('-')))
+                  if (!isNumeric((value || []).join('')))
                     return callback(transformLocale(LOCALE.NOT_CREDIT_NUMBER));
 
                   return callback();
