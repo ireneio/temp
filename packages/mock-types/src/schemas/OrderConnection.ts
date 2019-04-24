@@ -37,7 +37,7 @@ export default mock.add<
     after?: string;
   }
 >('OrderConnection', [
-  (_, { first, after }) => {
+  (_, { first = 10, after }) => {
     const cacheIndex = !after
       ? 0
       : cache.findIndex(({ node: { id } }) => id === after);

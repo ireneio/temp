@@ -15,6 +15,7 @@ import PaymentAccountForEzpay from './schemas/PaymentAccountForEzpay';
 import StoreShipment from './schemas/StoreShipment';
 import shipmentInfoType from './schemas/shipmentInfoType';
 import shipmentObjectType from './schemas/shipmentObjectType';
+import StoreEcfitSettings from './schemas/StoreEcfitSettings';
 
 // definition
 // TODO: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/34649
@@ -33,6 +34,7 @@ addMockFunctionsToSchema({
     StoreShipment,
     shipmentInfoType,
     shipmentObjectType,
+    StoreEcfitSettings,
   },
 });
 
