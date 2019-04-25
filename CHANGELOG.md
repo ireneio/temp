@@ -1,3 +1,22 @@
+## 0.20.3 (2019-04-25)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#474](https://github.com/meepshop/meep-lerna/pull/474) 【BUG】IE 瀏覽器 - 當選單 or 頁面背景顏色為黑色時，前台選單文字顯示異常 --- 新架構 ([@piovischioh](https://github.com/piovischioh))
+- `mock-types`
+  - [#472](https://github.com/meepshop/meep-lerna/pull/472) (@meepshop/mock-types, @admin/server) Fix error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `mock-types`
+  - [#475](https://github.com/meepshop/meep-lerna/pull/475) (@meepshop/mock-types) Add StoreEcfitSettings schema ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.20.2 (2019-04-23)
 
 #### :boom: Breaking Change
