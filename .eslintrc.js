@@ -26,7 +26,10 @@ module.exports = {
       node: {
         extensions: ['.js', '.ts', '.tsx'],
       },
-      'babel-module': {},
+      'babel-module': {
+        root: ['./src'],
+        cwd: 'packagejson',
+      },
     },
   },
   rules: {
