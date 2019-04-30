@@ -24,8 +24,11 @@ deploy-docker: &deploy-docker
   name: Deploy docker
   command: |
     yarn prod
-    yarn lerna run prod --stream --scope @meepshop/store
-    yarn lerna run prod --stream --scope @admin/server
+    yarn lerna run prod \
+      --parallel \
+      --stream \
+      --scope @meepshop/store \
+      --scope @admin/server
     yarn lerna exec \
       "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/build_docker.sh" \
       --parallel \
