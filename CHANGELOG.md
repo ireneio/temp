@@ -1,3 +1,23 @@
+# CHANGELOG
+
+## 0.20.4 (2019-04-30)
+
+#### :bug: Bug Fix
+
+- [#482](https://github.com/meepshop/meep-lerna/pull/482) 【BUG】登入 admin，有時候會轉到舊版的 dashboard ([@piovischioh](https://github.com/piovischioh))
+- [#484](https://github.com/meepshop/meep-lerna/pull/484) (@meepshop/front-end) Lock react-slick ([@HsuTing](https://github.com/HsuTing))
+- [#483](https://github.com/meepshop/meep-lerna/pull/483) (@meepshop/front-end) Fix eslint error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#484](https://github.com/meepshop/meep-lerna/pull/484) (@meepshop/front-end) Lock react-slick ([@HsuTing](https://github.com/HsuTing))
+- [#483](https://github.com/meepshop/meep-lerna/pull/483) (@meepshop/front-end) Fix eslint error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.20.3 (2019-04-25)
 
 #### :bug: Bug Fix
