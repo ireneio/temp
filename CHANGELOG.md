@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.20.5 (2019-05-02)
+
+#### :rocket: New Feature
+
+- [#491](https://github.com/meepshop/meep-lerna/pull/491) (@store/utils) Add new packages ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#478](https://github.com/meepshop/meep-lerna/pull/478) 【BUG】 前台 - 商品圖 (影像 1) 出現白邊 ([@happycat6323](https://github.com/happycat6323))
+  - [#481](https://github.com/meepshop/meep-lerna/pull/481) 【BUG】新架構/手機版 - 前台頁腳若有子選單，會自動展開 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#480](https://github.com/meepshop/meep-lerna/pull/480) 【BUG】 新架構 - 後台選單設計樣式透明度設為 0，前台出現白色 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `end-to-end`
+  - [#489](https://github.com/meepshop/meep-lerna/pull/489) (@meepshop/end-to-end) Fix testing error ([@HsuTing](https://github.com/HsuTing))
+  - [#487](https://github.com/meepshop/meep-lerna/pull/487) (@meepshop/front-end) Use parallel ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.20.4 (2019-04-30)
 
 #### :bug: Bug Fix
