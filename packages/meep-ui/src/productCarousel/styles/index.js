@@ -71,13 +71,13 @@ export const root = {
 
 export const sliderWrapper = mode => ({
   margin: 'auto',
-  maxWidth: mode === 'list' ? '300px' : '400px',
+  maxWidth: mode === 'list' ? '302px' : '402px',
   ...(mode === 'detail'
     ? {
         padding: '60px 0',
         [PHONE_MEDIA]: {
           padding: '15px 0',
-          maxWidth: '300px',
+          maxWidth: '302px',
         },
       }
     : {}),
