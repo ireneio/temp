@@ -38,8 +38,9 @@ class CreditCardFormItem extends React.PureComponent {
     getData: PropTypes.func.isRequired,
 
     /** props */
+    // TODO: use class name
     style: PropTypes.shape({}),
-    rootStyle: PropTypes.shape({}),
+    rootStyle: PropTypes.string,
     titleStyle: PropTypes.shape({}),
     form: PropTypes.shape({
       getFieldDecorator: PropTypes.func.isRequired,
@@ -119,7 +120,7 @@ class CreditCardFormItem extends React.PureComponent {
     };
 
     return (
-      <div style={rootStyle}>
+      <div className={rootStyle}>
         <h3 style={[styles.title, titleStyle]}>
           {transformLocale(LOCALE.CREDIT_CARD_INFO)}
 
