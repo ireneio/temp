@@ -26,7 +26,7 @@ export default ({ design, pages, ...menu }) => ({
     expandSubItem: design?.expandSubItem || false,
     alignment: design?.alignment || 'right',
     pattern: design?.pattern || 0,
-    opacity: design?.opacity || 1,
+    opacity: design?.opacity === undefined ? 1 : design?.opacity,
     normal: design?.normal || {},
     active: design?.active || {},
     hover: design?.hover || {},
