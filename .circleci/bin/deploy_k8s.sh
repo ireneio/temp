@@ -38,7 +38,7 @@ sed -i "s/{{ build.tag }}/$VERSION/" ./k8s_config/deploy.yaml
 /tmp/kubectl apply --force -f ./k8s_config/cm_stage.yaml --kubeconfig=/tmp/kubeconfig
 
 # release bot
-if [ "$CIRCLE_TAG" == "$VERSION" ]; then
+if [[ $CIRCLE_TAG =~ ^v[0-9.]*$ ]]; then
   curl -H 'Content-Type: application/json' -d "{
     \"icon\": \"https://res.cloudinary.com/cakeresume/image/upload/s--Lv6sj1oB--/c_pad,fl_png8,h_200,w_200/v1509504375/pcotebjqdkfuqbvbt4xc.png\",
     \"activity\": \"release bot\",
