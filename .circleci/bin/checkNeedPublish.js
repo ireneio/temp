@@ -1,7 +1,4 @@
 #!/usr/bin/env node
-/**
- * Use for checking need to publish
- */
 
 const path = require('path');
 const invariant = require('fbjs/lib/invariant');

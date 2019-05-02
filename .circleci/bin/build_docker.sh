@@ -1,6 +1,7 @@
 #!/bin/bash
 
 VERSION=${CIRCLE_TAG:=${TEST_VERSION:=$CIRCLE_BRANCH}}
+PACKAGE_NAME=$(node ../../.circleci/bin/getPackageName.js)
 
 # check need publish
 if [ $(node ../../.circleci/bin/checkNeedPublish.js) != true ]; then
@@ -16,8 +17,6 @@ fi
 
 # replace Dockerfile version with git commit sha
 sed -i "s/{{ build.tag }}/$VERSION/" "$(pwd)/Dockerfile"
-
-PACKAGE_NAME=$(node ../../.circleci/bin/getPackageName.js)
 
 docker build -t asia.gcr.io/instant-matter-785/$PACKAGE_NAME:latest -f $(pwd)/Dockerfile ../..
 docker tag asia.gcr.io/instant-matter-785/$PACKAGE_NAME:latest \
