@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.20.6 (2019-05-02)
+
+#### :rocket: New Feature
+
+- [#492](https://github.com/meepshop/meep-lerna/pull/492) (@meepshop/front-end) Add release bot ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#493](https://github.com/meepshop/meep-lerna/pull/493) 【BUG】 新架構/Chrome 74 - /checkout 付款方式選擇 GMO 信用卡，畫面空白 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#492](https://github.com/meepshop/meep-lerna/pull/492) (@meepshop/front-end) Add release bot ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.20.5 (2019-05-02)
 
 #### :rocket: New Feature
