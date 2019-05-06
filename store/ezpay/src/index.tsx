@@ -6,6 +6,7 @@ import { Spin, Icon } from 'antd';
 import Router from 'next/router';
 import idx from 'idx';
 import queryString from 'query-string';
+import moment from 'moment';
 
 import styles from './styles/index.less';
 
@@ -66,9 +67,9 @@ const Ezpay = React.memo<{
 
             <div>繳費期限</div>
             <div>
-              {`${new Date(expireDate * 1000).getFullYear()} / ${new Date(
-                expireDate * 1000,
-              ).getMonth() + 1} / ${new Date(expireDate * 1000).getDate()}`}
+              {moment((expireDate || 0) * 1000).format(
+                'YYYY / MM / DD',
+              ) /** TODO should not ne bull */}
             </div>
           </div>
 
