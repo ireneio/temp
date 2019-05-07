@@ -5,6 +5,8 @@ import getConfig from 'next/config';
 import Router from 'next/router';
 import { notification } from 'antd';
 
+import shouldPrintError from './shouldPrintError';
+
 const {
   publicRuntimeConfig: { API_HOST, VERSION },
 } = getConfig();
@@ -22,7 +24,7 @@ const create = (initialState, ctx) => {
     connectToDevTools: process.browser,
     ssrMode: process.browser,
     link: ApolloLink.from([
-      onError(({ graphQLErrors, networkError = {} }) => {
+      onError(({ response, graphQLErrors, networkError = {} }) => {
         if (
           networkError.statusCode === 401 &&
           process.browser &&
@@ -39,7 +41,14 @@ const create = (initialState, ctx) => {
         }
 
         if (graphQLErrors) {
-          graphQLErrors.forEach(({ message, locations, path }) => {
+          const errors = graphQLErrors.filter(shouldPrintError);
+
+          if (errors.length === 0) {
+            response.errors = null;
+            return;
+          }
+
+          errors.forEach(({ message, locations, path }) => {
             const description = `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
               locations,
               null,
@@ -59,9 +68,16 @@ const create = (initialState, ctx) => {
           if (process.browser)
             notification.error({
               message: 'Error!',
-              description: `[Network error]: ${networkError}`,
+              description: `[Network error]: ${JSON.stringify(
+                networkError,
+                null,
+                2,
+              )}`,
             });
-          else console.error(`[Network error]: ${networkError}`);
+          else
+            console.error(
+              `[Network error]: ${JSON.stringify(networkError, null, 2)}`,
+            );
         }
       }),
       new HttpLink({

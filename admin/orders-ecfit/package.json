@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "@admin/orders-ecfit",
+  "description": "Orders ecfit page for admin",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/date-picker": "^0.20.2",
+    "@admin/utils": "^0.20.2",
+    "memoize-one": "^4.0.0",
+    "moment": "^2.22.1"
+  },
+  "keywords": ["admin", "ecfit", "orders"]
+}

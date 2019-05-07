@@ -14,9 +14,9 @@ COPY ./babel.config.js ./babel.config.js
 COPY ./node_modules ./node_modules
 
 # Copy folder
-COPY ./packages/meep-ui ./packages/meep-ui
-COPY ./packages/store ./packages/store
-COPY ./store/ezpay ./store/ezpay
+# TODO: remove
+COPY ./packages ./packages
+COPY ./store ./store
 
 RUN yarn lerna link
 

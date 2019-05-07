@@ -1,0 +1,146 @@
+{
+  "title": "ECFIT訂單管理",
+  "status": {
+    "NOT_SENT": "未傳送",
+    "SENT_SUCCESSFUL": "已傳送",
+    "SENT_FAILED": "傳送失敗"
+  },
+  "change": "變更",
+  "change-status": {
+    "title": "變更狀態",
+    "paymentStatusList": "帳款狀態",
+    "shipmentStatusList": "運送狀態",
+    "orderStatusList": "訂單狀態",
+    "choose": "請選擇",
+    "cancel": "取消",
+    "confirm": "確認",
+    "error": {
+      "title": "變更狀態失敗",
+      "description": {
+        "0": " 筆訂單的",
+        "1": "變更失敗"
+      }
+    },
+    "success": {
+      "title": "變更狀態成功",
+      "description": {
+        "0": " 筆訂單的",
+        "1": "更新為「",
+        "2": "」"
+      }
+    },
+    "order-change": {
+      "cancel": {
+        "title": "注意！取消訂單無法復原",
+        "description": "訂單取消後將無法再編輯訂單，且取消的訂單不列入營收、銷量、行銷統計，確定要取消訂單嗎？"
+      },
+      "closed": {
+        "title": "注意！訂單結案無法復原",
+        "description": "訂單結案後無法再進行變更任何訂單資料（包含退貨），確定要結案嗎？"
+      }
+    }
+  },
+  "more-operating": {
+    "title": "更多操作",
+    "export": "匯出",
+    "print": "列印"
+  },
+  "filter": {
+    "advanced-search": "進階搜尋",
+    "searchTerm": "搜尋關鍵字",
+    "reset": "清空搜尋"
+  },
+  "orderStatusList": {
+    "PROCESSING": "處理中",
+    "CANCELED": "取消訂單",
+    "RETURN": "退換貨處理",
+    "CLOSED": "訂單結案"
+  },
+  "paymentStatusList": {
+    "WAITING": "等待確認",
+    "NOTIFICATED": "匯款通知",
+    "RECONCILED": "對帳完成",
+    "DATA_ERROR": "資料錯誤",
+    "FAILED": "付款失敗",
+    "REFUND": "退款處理"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "未出貨",
+    "PREPARING": "備貨中",
+    "OUT_OF_STOCK": "缺貨中",
+    "SHIPPED": "已出貨",
+    "PRE_ORDER": "預購",
+    "EXCHANGE": "換貨處理",
+    "RETURN": "退貨處理中"
+  },
+  "advanced-search": {
+    "pre-placeholder": "請選擇",
+    "orderStatusList-title": "訂單狀態",
+    "paymentStatusList-title": "帳款狀態",
+    "paymentIdList-title": "付款方式",
+    "shipmentStatusList-title": "運送狀態",
+    "shipmentIdList-title": "運送方式",
+    "reset": "重設",
+    "filter": "篩選"
+  },
+  "send": "傳送訂單至ECFIT",
+  "orders": {
+    "order-no": "訂單編號",
+    "shipment-name": "運送方式",
+    "payment-status": "帳款狀態",
+    "shipment-status": "運送狀態",
+    "order-status": "訂單狀態",
+    "recipient": "收件人",
+    "amount": "金額",
+    "create-on": "建立時間",
+    "send-time": "傳送時間",
+    "fail-reason": "失敗原因"
+  },
+  "empty-orders": "無訂單資料",
+  "fail-reason": {
+    "FAIL_TIMEOUT": "超時",
+    "FAIL_UNKNOWN_ECFIT_ERROR_CODE": "未知的 ECFIT 錯誤",
+    "FAIL_01_FIELD_ORDER_NO_BLANK": "訂單編號為空",
+    "FAIL_02_FIELD_INVOICED_BLANK": "是否開立發票欄位為空值",
+    "FAIL_03_FIELD_BAN_WRONG": "買方統一編號錯誤",
+    "FAIL_04_FIELD_NPO_WRONG": "捐贈碼錯誤",
+    "FAIL_05_BAN_NOT_ALLOWED_WHEN_NPO_FILLED": "捐贈發票不得開立買方統一編號",
+    "FAIL_06_FIELD_DEMAND_CANNOT_BE_Y_WHEN_NPO_FILLED": "捐贈發票不得索取",
+    "FAIL_07_INCOMPLETE_CUSTOMER_INFO": "消費者資訊有缺",
+    "FAIL_08_BLANK_ORDER_PRODUCT_OR_PRODUCT_QUANTITY_ZERO": "品項空白 或 產品數量為 0",
+    "FAIL_09_FIELD_AMOUNT_WRONG": "金額錯誤 (與產品價格對不起來)",
+    "FAIL_10_UNKNOWN_ERROR": "不明原因問題",
+    "FAIL_11_ORDER_NOT_FOUND": "訂單不存在",
+    "FAIL_12_FIELD_ARRIVE_LESS_THAN_NOW": "預計出貨日已逾期",
+    "FAIL_13_DUPLICATE_ORDER_NO": "訂單編號重複",
+    "FAIL_14_WRONG_PRODUCT_BARCODE": "條碼編號錯誤",
+    "FAIL_15_FIELD_LOGISTICS_ID_WRONG": "物流名稱錯誤",
+    "FAIL_16_PRODUCT_NOT_FOUND": "商品資料不存在",
+    "FAIL_17_FIELD_ARRIVE_TYPE_WRONG": "查無對應配送時段",
+    "FAIL_18_FILED_CREDIT_NO_WRONG": "信用卡末 4 碼有誤",
+    "FAIL_19_BUYER_REQUIRED_WHEN_FIELD_INVOICED_IS_Y": "購買人資訊未填寫",
+    "FAIL_20_NO_BUYER_WHEN_FIELD_INVOICED_IS_N": "未使用ECFIT電子發票，無須填寫購買人資訊",
+    "FAIL_21_FIELD_EMAIL_FORMAT_ERROR": "Email格式錯誤",
+    "FAIL_22_FIELD_TAX_TYPE_WRONG": "課稅類別有誤",
+    "FAIL_23_FIELD_CLEARANCE_MARK_WRONG": "通關方式不合法",
+    "FAIL_24_FIELD_PHONE_FORMAT_ERROR": "手機格式錯誤",
+    "FAIL_41_FIELD_CODE_REQUIRED": "公司token不得為空",
+    "FAIL_42_STORE_PICK_UP_REQUIRE_CODE": "超取訂單資料不齊全",
+    "FAIL_43_CODE_NOT_ALLOWED_WHEN_NOT_STORE_PICK_UP": "非超取訂單無須填寫超商門市資訊",
+    "FAIL_01_ORDER_NOT_FOUND": "ECFIT 訂單不存在",
+    "FAIL_02_ORDER_STATUS_CANCELED_OR_CLOSED": "ECFIT 訂單被取消或結案",
+    "FAIL_03_ORDER_STATUS_WRONG_OR_NOT_ALLOWED": "ECFIT 訂單狀態為錯誤不可執行取消"
+  },
+  "send-error": {
+    "title": "無法使用ECFIT服務",
+    "content": "設定出現錯誤，請至第三方設定中重新檢查",
+    "confirm": "確定"
+  },
+  "orders-info": {
+    "0": "共 ",
+    "1": " 筆",
+    "2": " / 已選取 ",
+    "3": " 筆"
+  },
+  "page-size": "筆 / 頁"
+}

@@ -14,10 +14,7 @@ COPY ./babel.config.js ./babel.config.js
 COPY ./node_modules ./node_modules
 
 # Copy folder
-COPY ./admin/server ./admin/server
-COPY ./admin/wrapper ./admin/wrapper
-COPY ./admin/utils ./admin/utils
-COPY ./admin/dashboard ./admin/dashboard
+COPY ./admin ./admin
 
 RUN yarn lerna link
 

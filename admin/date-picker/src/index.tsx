@@ -53,13 +53,17 @@ class DatePicker extends React.PureComponent<PropsType, StateType> {
 
     switch (key) {
       case 'today':
-        newState.value = [moment(), moment()];
+        newState.value = [moment().startOf('day'), moment().endOf('day')];
         break;
 
       case 'yesterday':
         newState.value = [
-          moment().subtract(1, 'days'),
-          moment().subtract(1, 'days'),
+          moment()
+            .subtract(1, 'days')
+            .startOf('day'),
+          moment()
+            .subtract(1, 'days')
+            .endOf('day'),
         ];
         break;
 
@@ -114,8 +118,9 @@ class DatePicker extends React.PureComponent<PropsType, StateType> {
 
     return (
       <RangePicker
+        className={styles.root}
         value={value}
-        dropdownClassName={`${styles.root} ${
+        dropdownClassName={`${styles.dropdown} ${
           type === 'custom' ? '' : styles.notCustom
         }`}
         placeholder={[t('start-date'), t('end-date')]}

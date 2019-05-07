@@ -1,0 +1,44 @@
+.root {
+  width: 100%;
+  max-width: 500px;
+
+  :global(.ant-popover-arrow) {
+    display: none;
+  }
+
+  :global(.ant-popover-content) {
+    transform: translateY(-40px);
+  }
+
+  :global(.ant-popover-inner-content) {
+    padding: 16px 8px;
+  }
+}
+
+.item {
+  display: flex;
+  margin: 0px 0px 16px;
+
+  .title {
+    padding: 0px 16px;
+    line-height: 30px;
+  }
+
+  :global(.ant-select) {
+    flex-grow: 1;
+    margin: 0px 16px 0px 0px;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin: 24px 16px 0px 0px;
+
+  > span {
+    margin: 0px 14px 0px 0px;
+    padding: 8px 14px;
+    line-height: 16px;
+    cursor: pointer;
+  }
+}

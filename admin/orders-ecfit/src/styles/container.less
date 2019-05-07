@@ -1,0 +1,43 @@
+@import '~@admin/utils/lib/styles/variables.less';
+
+.sendStatus {
+  display: flex;
+  margin: 24px 0px 16px;
+
+  > div:first-child {
+    flex-grow: 1;
+  }
+}
+
+.operating > *:not(:last-child) {
+  margin: 0px 16px 0px 0px;
+}
+
+.root {
+  padding: 24px;
+  background: #ffffff;
+}
+
+.filter {
+  display: flex;
+
+  > div:first-child {
+    flex-grow: 1;
+
+    > *:not(:last-child) {
+      margin: 0px 8px 0px 0px;
+    }
+  }
+
+  .search {
+    max-width: 200px;
+  }
+
+  .reset {
+    display: inline-block;
+    padding: 4px 8px;
+    color: @primary-color;
+    line-height: 24px;
+    cursor: pointer;
+  }
+}
