@@ -1,4 +1,4 @@
-export default ({ message }) => {
+export default ({ message }: Error) => {
   switch (message) {
     case 'FAIL_TIMEOUT':
     case 'FAIL_UNKNOWN_ECFIT_ERROR_CODE':

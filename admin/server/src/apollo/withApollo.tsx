@@ -1,26 +1,39 @@
+// typescript import
+import { NextAppContext, AppProps, DefaultAppIProps } from 'next/app';
+import { DefaultQuery } from 'next/router';
+import { ApolloClient, NormalizedCacheObject } from 'apollo-boost';
+
+import { App as NextApp } from '../pages/_app';
+import { CustomReq } from './initApollo';
+
+// import
 import React from 'react';
-import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { getDataFromTree } from 'react-apollo';
+import idx from 'idx';
 
 import initApollo from './initApollo';
 
-export default App =>
-  class WithApollo extends React.Component {
-    static propTypes = {
-      apolloState: PropTypes.shape({}).isRequired,
-    };
+// typescript definition
+interface PropsType extends AppProps, DefaultAppIProps {
+  apolloState?: NormalizedCacheObject;
+}
 
-    static getInitialProps = async ctx => {
+// definition
+export default (App: typeof NextApp) =>
+  class WithApollo extends React.Component<PropsType> {
+    public static getInitialProps = async (
+      ctx: NextAppContext<DefaultQuery, CustomReq>,
+    ) => {
       const {
         Component,
         router,
         ctx: { res },
       } = ctx;
       const apollo = initApollo({}, ctx.ctx);
-      const appProps = await App?.getInitialProps(ctx);
+      const appProps = await App.getInitialProps(ctx);
 
-      if (res?.finished) return {};
+      if (idx(res, _ => _.finished)) return {};
 
       if (!process.browser) {
         try {
@@ -42,17 +55,21 @@ export default App =>
       const apolloState = apollo.extract();
 
       return {
+        Component,
+        router,
         ...appProps,
         apolloState,
       };
     };
 
-    constructor(props) {
+    private apolloClient: ApolloClient<NormalizedCacheObject>;
+
+    public constructor(props: PropsType) {
       super(props);
       this.apolloClient = initApollo(props.apolloState);
     }
 
-    render() {
+    public render(): React.ReactNode {
       return <App {...this.props} apolloClient={this.apolloClient} />;
     }
   };

@@ -1,5 +1,11 @@
 // definition
-export default ({ amount, currency }: { amount: string; currency: string }) =>
+export default ({
+  amount,
+  currency,
+}: {
+  amount: number;
+  currency?: string | null;
+}) =>
   (price => {
     switch (currency) {
       case 'TWD':
@@ -23,4 +29,4 @@ export default ({ amount, currency }: { amount: string; currency: string }) =>
       default:
         return price.toString();
     }
-  })(parseFloat(amount)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  })(amount).replace(/\B(?=(\d{3})+(?!\d))/g, ',');

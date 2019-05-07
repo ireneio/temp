@@ -1,12 +1,18 @@
+// typescript import
+import { I18nPropsType } from '@admin/utils/lib/i18n';
+import { SingletonRouter } from 'next/router';
+import { MenuItemType } from './constants';
+
+// import
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
 import Link from 'next/link';
 import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
-import { Layout, Menu, Spin } from 'antd';
+import { Layout, Menu, Spin, Icon } from 'antd';
 import memoizeOne from 'memoize-one';
 import { areEqual } from 'fbjs';
+import idx from 'idx';
 
 import { withNamespaces } from '@admin/utils/lib/i18n';
 
@@ -14,48 +20,76 @@ import generateMenu from './utils/generateMenu';
 import generateController from './utils/generateController';
 import styles from './styles/index.less';
 
+// graphql typescript
+import {
+  initAdmin,
+  initAdmin_viewer as initAdminViewer,
+  initAdmin_getStoreAppList as initAdminGetStoreAppList,
+  initAdmin_getAuthorityList as initAdminGetAuthorityList,
+} from './__generated__/initAdmin';
+
+// typescript definition
+interface PropsType extends I18nPropsType {
+  viewer: initAdminViewer;
+  getStoreAppList: initAdminGetStoreAppList;
+  getAuthorityList: initAdminGetAuthorityList;
+  router: SingletonRouter;
+  children: React.ReactNode;
+}
+
+// definition
 const { Content, Sider } = Layout;
 const { Item, SubMenu } = Menu;
 
-@withNamespaces('common')
-@withRouter
-class Wrapper extends React.Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    router: PropTypes.shape({}).isRequired,
-    data: PropTypes.shape({}).isRequired,
-    t: PropTypes.func.isRequired,
-  };
+class Wrapper extends React.Component<PropsType> {
+  private getMenuParams = memoizeOne(
+    ({
+      viewer,
+      getStoreAppList,
+      getAuthorityList,
+    }: {
+      viewer: initAdminViewer;
+      getStoreAppList: initAdminGetStoreAppList;
+      getAuthorityList: initAdminGetAuthorityList;
+    }) => {
+      const activityVersion = idx(viewer, _ => _.store.setting.activityVersion);
+      const { permission = null } =
+        (idx(getAuthorityList, _ => _.data) || []).find(
+          list => (list || { id: undefined }).id === viewer.groupId,
+        ) || {};
 
-  getMenuParams = memoizeOne(
-    ({ viewer, getStoreAppList, getAuthorityList }) => {
-      const activityVersion = viewer?.store.setting.activityVersion;
       return {
-        storeAppList: getStoreAppList?.data?.reduce(
-          (list, { plugin, isInstalled }) => {
-            // eslint-disable-next-line no-param-reassign
-            list[plugin] = Boolean(isInstalled);
-            return list;
+        storeAppList: (idx(getStoreAppList, _ => _.data) || []).reduce(
+          (list: { [plugin: string]: boolean }, storeApp) => {
+            const { plugin = null, isInstalled = null } = storeApp || {};
+            return {
+              ...list,
+              [plugin || 'unknown']: Boolean(isInstalled),
+            };
           },
           {},
         ),
-        permission: getAuthorityList?.data?.find(
-          list => list.id === viewer?.groupId,
-        )?.permission,
-        domain: viewer?.store.domain?.[0] || viewer?.store.defaultDomain,
-        isMerchant: viewer?.role === 'MERCHANT',
+        permission,
+        domain:
+          idx(viewer, _ => _.store.domain[0]) ||
+          idx(viewer, _ => _.store.defaultDomain),
+        isMerchant: viewer.role === 'MERCHANT',
         isOldActivityVersion: !activityVersion || activityVersion === 1,
-        isAdminOpen: !(viewer?.store.adminStatus === 'CLOSED_BILL_NOT_PAID'),
+        isAdminOpen: !(
+          idx(viewer, _ => _.store.adminStatus) === 'CLOSED_BILL_NOT_PAID'
+        ),
       };
     },
     areEqual,
   );
 
-  render() {
+  public render(): React.ReactNode {
     const {
       children,
       router: { pathname },
-      data,
+      viewer,
+      getStoreAppList,
+      getAuthorityList,
       t,
     } = this.props;
     const {
@@ -65,8 +99,8 @@ class Wrapper extends React.Component {
       isMerchant,
       isOldActivityVersion,
       isAdminOpen,
-    } = this.getMenuParams({ ...data });
-    const path = pathname.split('/')[1];
+    } = this.getMenuParams({ viewer, getStoreAppList, getAuthorityList });
+    const rootPath = pathname.split('/')[1];
 
     return (
       <Layout className={styles.layout}>
@@ -79,68 +113,65 @@ class Wrapper extends React.Component {
               <Menu
                 className={styles.menu}
                 mode="vertical"
-                selectedKeys={[path]}
+                selectedKeys={[rootPath]}
               >
                 {generateMenu({
                   storeAppList,
                   permission,
                   isMerchant,
                   isOldActivityVersion,
-                }).map(item => {
-                  if (item.sub) {
-                    return (
-                      <SubMenu
-                        className={styles.submenu}
-                        key={item.title}
-                        title={<img src={item.src} alt={t(item.title)} />}
-                      >
-                        {item.sub.map(subitem => (
-                          <Item key={subitem.title}>
-                            <Link href={subitem.path}>
-                              <a href={subitem.path}>
-                                <img src={subitem.src} alt={t(subitem.title)} />
-                                <span className={styles.subtitle}>
-                                  {t(subitem.title)}
-                                </span>
-                              </a>
-                            </Link>
-                          </Item>
-                        ))}
-                      </SubMenu>
-                    );
-                  }
-                  return (
-                    <Item key={item.title}>
-                      <Link href={item.path}>
-                        <a href={item.path}>
-                          <img src={item.src} alt={t(item.title)} />
+                }).map(({ src, title, path, sub }: MenuItemType) =>
+                  sub ? (
+                    <SubMenu
+                      className={styles.submenu}
+                      key={title}
+                      title={<img src={src} alt={t(title)} />}
+                    >
+                      {sub.map(subitem => (
+                        <Item key={subitem.title}>
+                          <Link href={subitem.path}>
+                            <a href={subitem.path}>
+                              <img src={subitem.src} alt={t(subitem.title)} />
+                              <span className={styles.subtitle}>
+                                {t(subitem.title)}
+                              </span>
+                            </a>
+                          </Link>
+                        </Item>
+                      ))}
+                    </SubMenu>
+                  ) : (
+                    <Item key={title}>
+                      <Link href={path}>
+                        <a href={path}>
+                          <img src={src} alt={t(title)} />
                         </a>
                       </Link>
                     </Item>
-                  );
-                })}
+                  ),
+                )}
               </Menu>
               <Menu
                 className={styles.menu}
                 mode="vertical"
-                selectedKeys={[path]}
+                selectedKeys={[rootPath]}
               >
                 {generateController({
                   domain,
                   isMerchant,
-                }).map(item => (
+                }).map(({ src, title, sub }: MenuItemType) => (
                   <SubMenu
                     className={styles.submenu}
-                    key={item.title}
+                    key={title}
                     title={
                       <img
                         className={styles.controller}
-                        src={item.src}
-                        alt={t(item.title)}
+                        src={src}
+                        alt={t(title)}
                       />
                     }
                   >
-                    {item.sub.map(subitem => (
+                    {(sub || []).map(subitem => (
                       <Item key={subitem.title}>
                         <Link href={subitem.path}>
                           <a href={subitem.path} target={subitem.target}>
@@ -173,8 +204,8 @@ class Wrapper extends React.Component {
   }
 }
 
-export default props => (
-  <Query
+export default ({ children }: { children: React.ReactNode }) => (
+  <Query<initAdmin>
     query={gql`
       query initAdmin {
         viewer {
@@ -247,10 +278,19 @@ export default props => (
       }
     `}
   >
-    {({ loading, error, data = {} }) => {
-      if (loading || error) return <Spin />;
+    {({ loading, error, data }) => {
+      if (loading || error)
+        return (
+          <Spin
+            className={styles.spin}
+            indicator={<Icon type="loading" spin />}
+          />
+        );
 
-      return <Wrapper data={data} {...props} />;
+      return React.createElement(
+        withNamespaces('common')(withRouter(Wrapper)),
+        { children, ...data } as PropsType,
+      );
     }}
   </Query>
 );

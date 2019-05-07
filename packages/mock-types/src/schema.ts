@@ -15,7 +15,18 @@ import PaymentAccountForEzpay from './schemas/PaymentAccountForEzpay';
 import StoreShipment from './schemas/StoreShipment';
 import shipmentInfoType from './schemas/shipmentInfoType';
 import shipmentObjectType from './schemas/shipmentObjectType';
+import User from './schemas/User';
+import Authority from './schemas/Authority';
+import permissionDesignObj from './schemas/permissionDesignObj';
+import permissionFileObj from './schemas/permissionFileObj';
+import permissionOrderObj from './schemas/permissionOrderObj';
+import permissionProductObj from './schemas/permissionProductObj';
+import permissionServiceObj from './schemas/permissionServiceObj';
+import permissionStoreObj from './schemas/permissionStoreObj';
+import permissionUserObj from './schemas/permissionUserObj';
 import StoreEcfitSettings from './schemas/StoreEcfitSettings';
+import DashboardInfo from './schemas/DashboardInfo';
+import Store from './schemas/Store';
 
 // definition
 // TODO: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/34649
@@ -34,7 +45,18 @@ addMockFunctionsToSchema({
     StoreShipment,
     shipmentInfoType,
     shipmentObjectType,
+    User,
+    Authority,
+    permissionDesignObj,
+    permissionFileObj,
+    permissionOrderObj,
+    permissionProductObj,
+    permissionServiceObj,
+    permissionStoreObj,
+    permissionUserObj,
     StoreEcfitSettings,
+    DashboardInfo,
+    Store,
   },
 });
 

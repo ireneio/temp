@@ -1,3 +1,8 @@
+// typescript import
+import { NextAppContext, DefaultAppIProps } from 'next/app';
+import { ApolloClient, NormalizedCacheObject } from 'apollo-boost';
+
+// import
 import 'isomorphic-unfetch';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
@@ -9,24 +14,32 @@ import '@admin/utils/lib/styles/base.less';
 import { appWithTranslation } from '@admin/utils/lib/i18n';
 import Wrapper from '@admin/wrapper';
 
-import withApollo from 'apollo/withApollo';
+import withApollo from '../apollo/withApollo';
 
-@withApollo
-@appWithTranslation
-export default class App extends NextApp {
-  static getInitialProps = async ({ Component, ctx }) => ({
-    pageProps: (await Component.getInitialProps?.(ctx)) || {},
+// typescript definition
+interface PropsType extends DefaultAppIProps {
+  apolloClient: ApolloClient<NormalizedCacheObject>;
+}
+
+// definition
+export class App extends NextApp<PropsType> {
+  public static getInitialProps = async ({
+    Component,
+    ctx,
+  }: NextAppContext) => ({
+    pageProps: Component.getInitialProps ? Component.getInitialProps(ctx) : {},
   });
 
-  componentDidMount() {
-    Router.beforePopState(({ as }) => {
-      if (!as) window.location.reload();
-
-      return true;
-    });
+  public componentDidMount(): void {
+    Router.beforePopState(
+      ({ as }: { as: string }): boolean => {
+        if (!as) window.location.reload();
+        return true;
+      },
+    );
   }
 
-  render() {
+  public render(): React.ReactNode {
     const {
       Component,
       pageProps,
@@ -52,3 +65,5 @@ export default class App extends NextApp {
     );
   }
 }
+
+export default appWithTranslation(withApollo(App));

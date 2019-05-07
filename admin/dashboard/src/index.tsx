@@ -1,48 +1,71 @@
+// typescript import
+import { I18nPropsType } from '@admin/utils/lib/i18n';
+
+// import
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
 import { Spin, Icon } from 'antd';
 import moment from 'moment';
+import idx from 'idx';
 
 import { withNamespaces } from '@admin/utils/lib/i18n';
 import formatAmount from '@admin/utils/lib/formatAmount';
 
 import styles from './styles/index.less';
 
-@withNamespaces('dashboard')
-class Dashboard extends React.Component {
-  static async getInitialProps() {
+// graphql typescript
+import { getTimezone } from './__generated__/getTimezone';
+import {
+  getDashboard,
+  getDashboardVariables,
+  getDashboard_viewer as getDashboardInfoViewer,
+  getDashboard_getDashboardInfo as getDashboardInfoGetDashboardInfo,
+} from './__generated__/getDashboard';
+
+// typescript definition
+interface InitialPropsType {
+  namespacesRequired: string[];
+}
+
+interface PropsType extends I18nPropsType, InitialPropsType {
+  viewer: getDashboardInfoViewer;
+  getDashboardInfo: getDashboardInfoGetDashboardInfo;
+}
+
+// definition
+class Dashboard extends React.Component<PropsType> {
+  public static async getInitialProps(): Promise<InitialPropsType> {
     return {
       namespacesRequired: ['common', 'dashboard'],
     };
   }
 
-  static propTypes = {
-    t: PropTypes.func.isRequired,
-    data: PropTypes.shape({}).isRequired,
-  };
+  private formatAmount = (amount: number | null) => {
+    if (amount === null) return '';
 
-  formatAmount = amount => {
-    const { data } = this.props;
-    const currency = data.viewer?.store.currency;
+    const { viewer } = this.props;
+    const currency = idx(viewer, _ => _.store.currency);
+
     return formatAmount({ amount, currency });
   };
 
-  render() {
-    const { t, data } = this.props;
-    const showPaymentNotice = data.viewer?.store.unpaidBills?.totalCount > 0;
+  public render(): React.ReactNode {
+    const { t, viewer, getDashboardInfo } = this.props;
+    const shouldShowUnpaidBills =
+      viewer.role === 'MERCHANT' &&
+      (idx(viewer, _ => _.store.unpaidBills.totalCount) || 0) > 0;
     const {
-      pendingOrder,
-      notShipped,
-      orderQA,
-      productQA,
-      userCount,
-      orderMonthly,
-      revenueMonthly,
-      costMonthly,
-    } = data.getDashboardInfo || {};
+      pendingOrder = null,
+      notShipped = null,
+      orderQA = null,
+      productQA = null,
+      userCount = null,
+      orderMonthly = null,
+      revenueMonthly = null,
+      costMonthly = null,
+    } = getDashboardInfo || {};
 
     return (
       <div className={styles.root}>
@@ -50,7 +73,7 @@ class Dashboard extends React.Component {
           <div className={styles.title}>{t('common:dashboard')}</div>
         </div>
         <div className={styles.content}>
-          {showPaymentNotice && (
+          {shouldShowUnpaidBills ? (
             <div className={styles.payment}>
               <div className={styles.text}>
                 <Icon type="warning" theme="filled" className={styles.icon} />
@@ -65,7 +88,7 @@ class Dashboard extends React.Component {
                 </a>
               </Link>
             </div>
-          )}
+          ) : null}
           <div className={styles.welcome}>
             <img
               src="/static/images/dashboard/logo.svg"
@@ -132,14 +155,14 @@ class Dashboard extends React.Component {
   }
 }
 
-export default props => (
-  <Query
+export default (props: InitialPropsType) => (
+  <Query<getTimezone>
     query={gql`
       query getTimezone {
         viewer {
           id
-          role
           store {
+            id
             timezone
           }
         }
@@ -147,14 +170,15 @@ export default props => (
     `}
   >
     {({ loading, error, data }) => {
-      if (loading || error) return <Spin />;
+      if (loading || error)
+        return <Spin indicator={<Icon type="loading" spin />} />;
 
-      const { timezone } = data.viewer?.store;
-      const isMerchant = data.viewer?.role === 'MERCHANT';
+      const timezone = idx(data, _ => _.viewer.store.timezone) || '+8';
+
       return (
-        <Query
+        <Query<getDashboard, getDashboardVariables>
           query={gql`
-            query getDashboardInfo($info: DashboardInfoInput) {
+            query getDashboard($info: DashboardInfoInput) {
               getDashboardInfo(getDashboardInfo: $info) {
                 pendingOrder
                 notShipped
@@ -167,20 +191,15 @@ export default props => (
               }
               viewer {
                 id
+                role
                 store {
+                  id
                   currency
-                  ${
-                    isMerchant
-                      ? `
-                      unpaidBills {
-                        totalCount
-                      }
-                    `
-                      : ''
+                  unpaidBills {
+                    totalCount
                   }
                 }
               }
-
             }
           `}
           variables={{
@@ -207,9 +226,13 @@ export default props => (
           }}
         >
           {res => {
-            if (res.loading || res.error) return <Spin />;
+            if (res.loading || res.error)
+              return <Spin indicator={<Icon type="loading" spin />} />;
 
-            return <Dashboard data={res.data} {...props} />;
+            return React.createElement(withNamespaces('dashboard')(Dashboard), {
+              ...props,
+              ...res.data,
+            } as PropsType);
           }}
         </Query>
       );

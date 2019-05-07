@@ -1,15 +1,30 @@
+// typescript import
+import { MenuItemType } from '../constants';
+
+// import
+import idx from 'idx';
+
+// graphql typescript
+import { initAdmin_getAuthorityList_data_permission as initAdminGetAuthorityListDataPermission } from '../__generated__/initAdmin';
+
+// definition
 export default ({
   isMerchant,
   permission,
   storeAppList,
   isOldActivityVersion,
-}) => [
+}: {
+  isMerchant: boolean;
+  permission: initAdminGetAuthorityListDataPermission | null;
+  storeAppList: { [plugin: string]: boolean };
+  isOldActivityVersion: boolean;
+}): MenuItemType[] => [
   {
     path: '/dashboard',
     src: '/static/images/menu/dashboard.png',
     title: 'dashboard',
   },
-  ...(isMerchant || permission?.order.index
+  ...(isMerchant || idx(permission, _ => _.order.index)
     ? [
         {
           path: '/orders',
@@ -18,7 +33,7 @@ export default ({
         },
       ]
     : []),
-  ...(isMerchant || permission?.product.index
+  ...(isMerchant || idx(permission, _ => _.product.index)
     ? [
         {
           path: '/products',
@@ -27,13 +42,13 @@ export default ({
         },
       ]
     : []),
-  ...(isMerchant || permission?.service.index
+  ...(isMerchant || idx(permission, _ => _.service.index)
     ? [
         {
           src: '/static/images/menu/questions.png',
           title: 'questions',
           sub: [
-            ...(isMerchant || permission?.service.product
+            ...(isMerchant || idx(permission, _ => _.service.product)
               ? [
                   {
                     path: '/product-service',
@@ -46,7 +61,7 @@ export default ({
         },
       ]
     : []),
-  ...(storeAppList?.analytics
+  ...(storeAppList.analytics
     ? [
         {
           path: '/analytics',
@@ -55,7 +70,7 @@ export default ({
         },
       ]
     : []),
-  ...(isMerchant || permission?.user.index
+  ...(isMerchant || idx(permission, _ => _.user.index)
     ? [
         {
           src: '/static/images/menu/member.png',
@@ -66,7 +81,7 @@ export default ({
               src: '/static/images/menu/members.png',
               title: 'members',
             },
-            ...(storeAppList?.memberGroup
+            ...(storeAppList.memberGroup
               ? [
                   {
                     path: '/member-group',
@@ -75,7 +90,7 @@ export default ({
                   },
                 ]
               : []),
-            ...(storeAppList?.memberGroupCode
+            ...(storeAppList.memberGroupCode
               ? [
                   {
                     path: '/member-group-code',
@@ -88,7 +103,7 @@ export default ({
         },
       ]
     : []),
-  ...(isMerchant || permission?.design.index
+  ...(isMerchant || idx(permission, _ => _.design.index)
     ? [
         {
           src: '/static/images/menu/design.png',
@@ -124,7 +139,7 @@ export default ({
         src: '/static/images/menu/discount.png',
         title: 'discount',
       },
-      ...(storeAppList?.points && isOldActivityVersion
+      ...(storeAppList.points && isOldActivityVersion
         ? [
             {
               path: '/reward-points',
@@ -133,7 +148,7 @@ export default ({
             },
           ]
         : []),
-      ...(storeAppList?.newsletters
+      ...(storeAppList.newsletters
         ? [
             {
               path: '/newsletter',
@@ -142,7 +157,7 @@ export default ({
             },
           ]
         : []),
-      ...(storeAppList?.webTrack
+      ...(storeAppList.webTrack
         ? [
             {
               path: '/ads-analytics',
@@ -153,7 +168,7 @@ export default ({
         : []),
     ],
   },
-  ...(isMerchant || permission?.file.index
+  ...(isMerchant || idx(permission, _ => _.file.index)
     ? [
         {
           path: '/file-manager',
@@ -162,7 +177,7 @@ export default ({
         },
       ]
     : []),
-  ...(isMerchant || permission?.store.index
+  ...(isMerchant || idx(permission, _ => _.store.index)
     ? [
         {
           src: '/static/images/menu/setting.png',
@@ -173,7 +188,7 @@ export default ({
               src: '/static/images/menu/store-setting.png',
               title: 'store-setting',
             },
-            ...(isMerchant || permission?.store.payment
+            ...(isMerchant || idx(permission, _ => _.store.payment)
               ? [
                   {
                     path: '/payments',
@@ -182,7 +197,7 @@ export default ({
                   },
                 ]
               : []),
-            ...(isMerchant || permission?.store.shipment
+            ...(isMerchant || idx(permission, _ => _.store.shipment)
               ? [
                   {
                     path: '/shippings',
@@ -191,7 +206,7 @@ export default ({
                   },
                 ]
               : []),
-            ...(isMerchant || permission?.store.exportSetting
+            ...(isMerchant || idx(permission, _ => _.store.exportSetting)
               ? [
                   {
                     path: '/export-setting',
@@ -209,7 +224,7 @@ export default ({
                   },
                 ]
               : []),
-            ...(storeAppList?.gooddeal || storeAppList?.fbLogin
+            ...(storeAppList.gooddeal || storeAppList.fbLogin
               ? [
                   {
                     path: '/login-setting',

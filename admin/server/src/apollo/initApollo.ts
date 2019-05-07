@@ -1,24 +1,38 @@
+// typescript import
+import { NormalizedCacheObject } from 'apollo-boost';
+import { NextContext } from 'next';
+import { DefaultQuery } from 'next/router';
+
+// import
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import getConfig from 'next/config';
 import Router from 'next/router';
 import { notification } from 'antd';
+import idx from 'idx';
 
 import shouldPrintError from './shouldPrintError';
 
+// typescript definition
+export interface CustomReq {
+  cookies?: {
+    'x-meepshop-authorization-token': string;
+  };
+}
+
+// definition
 const {
   publicRuntimeConfig: { API_HOST, VERSION },
 } = getConfig();
 
-let apolloClient = null;
+let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 
-const create = (initialState, ctx) => {
-  const cache = new InMemoryCache({
-    dataIdFromObject: ({ id }) => id,
-  }).restore(initialState || {});
-
-  return new ApolloClient({
+const create = (
+  initialState?: NormalizedCacheObject,
+  ctx?: NextContext<DefaultQuery, CustomReq>,
+): ApolloClient<NormalizedCacheObject> =>
+  new ApolloClient({
     name: 'admin',
     version: VERSION,
     connectToDevTools: process.browser,
@@ -26,6 +40,7 @@ const create = (initialState, ctx) => {
     link: ApolloLink.from([
       onError(({ response, graphQLErrors, networkError = {} }) => {
         if (
+          // @ts-ignore https://github.com/apollographql/apollo-link/issues/536
           networkError.statusCode === 401 &&
           process.browser &&
           window.location.pathname !== '/login'
@@ -43,8 +58,8 @@ const create = (initialState, ctx) => {
         if (graphQLErrors) {
           const errors = graphQLErrors.filter(shouldPrintError);
 
-          if (errors.length === 0) {
-            response.errors = null;
+          if (response && errors.length === 0) {
+            response.errors = undefined;
             return;
           }
 
@@ -88,19 +103,25 @@ const create = (initialState, ctx) => {
           : {
               'x-meepshop-domain':
                 process.env.API_DOMAIN || 'admin.stage.meepcloud.com',
-              'x-meepshop-authorization-token':
-                ctx.req.cookies['x-meepshop-authorization-token'],
+              'x-meepshop-authorization-token': idx(
+                ctx,
+                _ => _.req.cookies['x-meepshop-authorization-token'],
+              ),
             },
       }),
     ]),
-    cache,
+    cache: new InMemoryCache({
+      dataIdFromObject: ({ id }) => id,
+    }).restore(initialState || {}),
   });
-};
 
-export default (...argu) => {
-  if (!process.browser) return create(...argu);
+export default (
+  initialState?: NormalizedCacheObject,
+  ctx?: NextContext<DefaultQuery, CustomReq>,
+) => {
+  if (!process.browser) return create(initialState, ctx);
 
-  if (!apolloClient) apolloClient = create(...argu);
+  if (!apolloClient) apolloClient = create(initialState, ctx);
 
   return apolloClient;
 };

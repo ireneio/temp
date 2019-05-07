@@ -5,7 +5,8 @@
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.20.5",
-  "main": "./lib/index.js",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
   "dependencies": {
     "@admin/utils": "^0.20.5",
     "memoize-one": "^4.0.0"

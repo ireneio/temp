@@ -1,4 +1,14 @@
-export default ({ isMerchant, domain }) => [
+// typescript import
+import { MenuItemType } from '../constants';
+
+// definition
+export default ({
+  isMerchant,
+  domain,
+}: {
+  isMerchant: boolean;
+  domain?: string | null;
+}): MenuItemType[] => [
   {
     src: '/static/images/menu/logo.png',
     title: 'controller',
