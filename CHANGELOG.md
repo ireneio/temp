@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.21.0 (2019-05-07)
+
+#### :rocket: New Feature
+
+- `mock-types`
+  - [#477](https://github.com/meepshop/meep-lerna/pull/477) Use Typescript in Next-Admin ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#444](https://github.com/meepshop/meep-lerna/pull/444) 2114 【功能】ECFIT 串接 - 前端 - 商品設定 + 訂單頁 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#500](https://github.com/meepshop/meep-lerna/pull/500) (@store/ezpay) Fix typescript with using moment ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `mock-types`
+  - [#477](https://github.com/meepshop/meep-lerna/pull/477) Use Typescript in Next-Admin ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.20.6 (2019-05-02)
 
 #### :rocket: New Feature
