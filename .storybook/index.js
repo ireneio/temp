@@ -10,8 +10,12 @@ require('output-file-sync')(
   `import React from 'react';
 import { storiesOf } from '@storybook/react';
 
+import MockTypes from '@meepshop/mock-types';
+import resolvers, { initializeCache } from '${
+    /@admin/.test(name) ? '@admin' : '@store'
+  }/apollo-client-resolvers';
+
 import './combined.less';
-import MockTypes from '../packages/mock-types';
 import Component from '${path.resolve(main)}';
 
 ${
@@ -22,7 +26,7 @@ ${
 
 storiesOf('${name}', module)
   .add('demo', () => (
-    <MockTypes>
+    <MockTypes resolvers={resolvers} initializeCache={initializeCache}>
       <Component {...props} />
     </MockTypes>
   ));`,

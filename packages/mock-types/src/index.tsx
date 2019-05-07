@@ -1,5 +1,6 @@
 // import typescript
 import { NextLink } from 'apollo-link';
+import { Resolvers } from 'apollo-client/core/types';
 
 // import
 import React from 'react';
@@ -24,50 +25,64 @@ interface StateType {
 // definition
 mock.init();
 
-export default class MockTypes extends React.PureComponent<{}, StateType> {
+export default class MockTypes extends React.PureComponent<
+  {
+    resolvers: Resolvers;
+    initializeCache: <C>(cache: C) => void;
+  },
+  StateType
+> {
   public state: StateType = {
     mockTypes: [],
     visibleDrawer: false,
   };
 
-  private client = new ApolloClient({
-    cache: new InMemoryCache({
+  private client = (() => {
+    const { resolvers, initializeCache } = this.props;
+    const cache = new InMemoryCache({
       dataIdFromObject: ({ id }) => id,
-    }),
-    link: ApolloLink.from([
-      onError(({ graphQLErrors }) => {
-        if (graphQLErrors)
-          graphQLErrors.forEach(({ message, locations, path }) => {
-            const description = `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
-              locations,
-              null,
-              2,
-            )}, Path: ${JSON.stringify(path, null, 2)}`;
+    });
 
-            notification.error({
-              message: '發生錯誤',
-              description,
-            });
-          });
-      }),
-      new ApolloLink(
-        (operation, forward: NextLink) =>
-          new Observable(observer => {
-            const sub = forward(operation).subscribe({
-              next: result => {
-                this.setState({ mockTypes: mock.tracking });
-                observer.next(result);
-              },
-            });
+    initializeCache(cache);
 
-            return () => {
-              if (sub) sub.unsubscribe();
-            };
-          }),
-      ),
-      new SchemaLink({ schema }),
-    ]),
-  });
+    return new ApolloClient({
+      cache,
+      resolvers,
+      link: ApolloLink.from([
+        onError(({ graphQLErrors }) => {
+          if (graphQLErrors)
+            graphQLErrors.forEach(({ message, locations, path }) => {
+              const description = `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
+                locations,
+                null,
+                2,
+              )}, Path: ${JSON.stringify(path, null, 2)}`;
+
+              notification.error({
+                message: '發生錯誤',
+                description,
+              });
+            });
+        }),
+        new ApolloLink(
+          (operation, forward: NextLink) =>
+            new Observable(observer => {
+              const sub = forward(operation).subscribe({
+                next: result => {
+                  this.setState({ mockTypes: mock.tracking });
+                  observer.next(result);
+                },
+              });
+
+              return () => {
+                if (sub) sub.unsubscribe();
+              };
+            }),
+        ),
+        new SchemaLink({ schema }),
+      ]),
+    });
+  })();
 
   public render(): React.ReactNode {
     const { children } = this.props;

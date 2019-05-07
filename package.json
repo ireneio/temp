@@ -15,7 +15,8 @@
     "release": "make release",
     "storybook": "lerna run schema --stream --scope @meepshop/mock-types && NODE_ENV=test lerna exec ../../.storybook/index.js --stream --scope",
     "test": "lerna run schema --stream --scope @meepshop/mock-types && jest --silent --runInBand",
-    "tsc": "apollo client:codegen --target=typescript && tsc"
+    "tsc": "make tsc",
+    "tsc:watch": "make tsc-watch"
   },
   "dependencies": {
     "antd": "^3.10.1",

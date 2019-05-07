@@ -18,7 +18,7 @@ import styles from './styles/changeStatus.less';
 // graphql typescript
 import { updateOrder, updateOrderVariables } from './__generated__/updateOrder';
 import { updateOrderStatus } from './__generated__/updateOrderStatus';
-import { UpdateOrder } from '../../../__generated__/globalTypes';
+import { UpdateOrder } from '../../../__generated__/admin';
 
 // typescript definition
 interface PropsType extends I18nPropsType {

@@ -12,6 +12,8 @@ import Router from 'next/router';
 import { notification } from 'antd';
 import idx from 'idx';
 
+import resolvers, { initializeCache } from '@admin/apollo-client-resolvers';
+
 import shouldPrintError from './shouldPrintError';
 
 // typescript definition
@@ -31,12 +33,21 @@ let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 const create = (
   initialState?: NormalizedCacheObject,
   ctx?: NextContext<DefaultQuery, CustomReq>,
-): ApolloClient<NormalizedCacheObject> =>
-  new ApolloClient({
+): ApolloClient<NormalizedCacheObject> => {
+  const cache = new InMemoryCache({
+    dataIdFromObject: ({ id }) => id,
+  }).restore(initialState || {});
+
+  // TODO: add cache in arguments
+  initializeCache();
+
+  return new ApolloClient({
     name: 'admin',
     version: VERSION,
     connectToDevTools: process.browser,
     ssrMode: process.browser,
+    cache,
+    resolvers,
     link: ApolloLink.from([
       onError(({ response, graphQLErrors, networkError = {} }) => {
         if (
@@ -110,10 +121,8 @@ const create = (
             },
       }),
     ]),
-    cache: new InMemoryCache({
-      dataIdFromObject: ({ id }) => id,
-    }).restore(initialState || {}),
   });
+};
 
 export default (
   initialState?: NormalizedCacheObject,

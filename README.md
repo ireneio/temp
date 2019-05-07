@@ -17,6 +17,7 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 - `storybook`: Run `storybook` with the name of the package. `yarn storybook @store/ezpay`
 - `test`: Run testing.
 - `tsc`: Test typescript.
+- `tsc:watch`: Test typescript with watch mode.
 
 #### dependencies
 
@@ -74,11 +75,12 @@ module.exports =
 import React from 'react';
 
 import runTest from '@meepshop/mock-types/src/runTest';
+import * as resolvers from '/** workspace *//apollo-client-resolvers';
 
 import /** ComponentName */ from '../index';
 import props from '../../mock';
 
-runTest(</** ComponentName */ {...props} />);
+runTest(</** ComponentName */ {...props} />, resolvers);
 ```
 
 5. Now, you can start to write your component in `src/index.ts`.

@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "@admin/apollo-client-resolvers",
+  "description": "Apollo-client resolvers for admin",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.ts",
+  "keywords": ["admin", "apollo-client", "resolvers"]
+}

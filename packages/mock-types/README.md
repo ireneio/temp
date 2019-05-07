@@ -9,9 +9,10 @@ This package is used to mock `apollo-client` request result.
 
 ```js
 import MockTypes from '@meepshop/mock-types';
+import resolvers, { initializeCache } from '/** worksapce *//apollo-client-resolvers';
 
 ...
-<MockTypes>
+<MockTypes resolvers={resolvers} initializeCache={initializeCache}>
   <Component />
 </MockTypes>
 ...
@@ -23,8 +24,9 @@ import MockTypes from '@meepshop/mock-types';
 
 ```js
 import runTest from '@meepshop/mock-types/src/runTest';
+import * as resolvers from '/** worksapce *//apollo-client-resolvers';
 
-runTest(<Component />);
+runTest(<Component />, resolvers);
 ```
 
 If you need to test some functions like `onClick`, you can use like this:
@@ -33,7 +35,7 @@ If you need to test some functions like `onClick`, you can use like this:
 import { ReactWrapper } from 'enzyme';
 
 ...
-runTest(<Component />, (wrapper: ReactWrapper<unknown, unknown>) => {
+runTest(<Component />, resolvers, (wrapper: ReactWrapper<unknown, unknown>) => {
   // write testing with enzyme for those functions.
 });
 ```

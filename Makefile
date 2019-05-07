@@ -1,10 +1,27 @@
+BRANCH=$(shell git branch | grep \* | cut -d ' ' -f2)
+WATCH=""
+
 babel-all:
 	@$(call babel-build)
 
-BRANCH=$(shell git branch | grep \* | cut -d ' ' -f2)
-WATCH=""
 babel-changed:
 	@$(call babel-build, $(WATCH), --since $(BRANCH))
+
+tsc-basic:
+	@echo "- @meepshop/mock-types"
+	@apollo client:codegen --target=typescript --globalTypesFile=./__generated__/mock-types.ts
+	@echo "- @store/*"
+	@APOLLO_TYPE=store apollo client:codegen --target=typescript --globalTypesFile=./__generated__/store.ts
+	@echo "- @admin/*"
+	@APOLLO_TYPE=admin apollo client:codegen --target=typescript --globalTypesFile=./__generated__/admin.ts
+
+tsc:
+	@make tsc-basic
+	@tsc
+
+tsc-watch:
+	@make tsc-basic
+	@tsc -w
 
 postinstall:
 	rm -rf ./node_modules/next/node_modules/@babel/core

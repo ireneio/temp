@@ -5,7 +5,8 @@ import getConfig from 'next/config';
 import Router from 'next/router';
 import { notification } from 'antd';
 
-import clientState from './clientState';
+import resolvers, { initializeCache } from '@store/apollo-client-resolvers';
+
 import shouldPrintError from './shouldPrintError';
 
 const {
@@ -19,11 +20,15 @@ const create = (initialState, ctx) => {
     dataIdFromObject: ({ id }) => id,
   }).restore(initialState || {});
 
+  initializeCache(cache);
+
   return new ApolloClient({
     name: 'store',
     version: VERSION,
     connectToDevTools: process.browser,
     ssrMode: process.browser,
+    cache,
+    resolvers,
     link: ApolloLink.from([
       onError(({ response, graphQLErrors, networkError }) => {
         if (
@@ -44,8 +49,8 @@ const create = (initialState, ctx) => {
         if (graphQLErrors) {
           const errors = graphQLErrors.filter(shouldPrintError);
 
-          if (errors.length === 0) {
-            response.errors = null;
+          if (response && errors.length === 0) {
+            response.errors = undefined;
             return;
           }
 
@@ -58,7 +63,7 @@ const create = (initialState, ctx) => {
 
             if (process.browser)
               notification.error({
-                message: '發生錯誤',
+                message: 'Error!',
                 description,
               });
             else console.error(description);
@@ -68,13 +73,19 @@ const create = (initialState, ctx) => {
         if (networkError) {
           if (process.browser)
             notification.error({
-              message: '發生錯誤',
-              description: `[Network error]: ${networkError}`,
+              message: 'Error!',
+              description: `[Network error]: ${JSON.stringify(
+                networkError,
+                null,
+                2,
+              )}`,
             });
-          else console.error(`[Network error]: ${networkError}`);
+          else
+            console.error(
+              `[Network error]: ${JSON.stringify(networkError, null, 2)}`,
+            );
         }
       }),
-      clientState(cache),
       new HttpLink({
         uri: process.browser ? '/api' : `${API_HOST}/graphql`,
         credentials: 'include',
@@ -87,7 +98,6 @@ const create = (initialState, ctx) => {
             },
       }),
     ]),
-    cache,
   });
 };
 
