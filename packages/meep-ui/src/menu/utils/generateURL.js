@@ -33,13 +33,22 @@ export default (action, params, isLogin) => {
         offset,
         limit,
         sort: `createdOn-${order}`,
+        ...(search
+          ? {
+              search,
+            }
+          : {}),
+        ...(gte > 10000
+          ? {
+              price: `${lte},${gte}`,
+            }
+          : {}),
+        ...(tags
+          ? {
+              tags,
+            }
+          : {}),
       };
-
-      if (search) query.search = search;
-
-      if (gte > 10000) query.sort = `${lte},${gte}`;
-
-      if (tags) query.tags = tags;
 
       return `/products?${queryString.stringify(query)}`;
     }
