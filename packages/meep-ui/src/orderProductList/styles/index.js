@@ -7,6 +7,7 @@ export const root = {
 
 export const productList = isEmpty => ({
   flexGrow: 1,
+  maxHeight: '100%',
   padding: '0px 25px',
   overflowY: 'scroll',
   ...(!isEmpty
