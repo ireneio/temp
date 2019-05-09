@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.21.1 (2019-05-09)
+
+#### :boom: Breaking Change
+
+- [#485](https://github.com/meepshop/meep-lerna/pull/485) 【其他】移除 lock version ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `mock-types`
+  - [#503](https://github.com/meepshop/meep-lerna/pull/503) (@meepshop/mock-types) Use new apollo command ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`, `store`
+  - [#498](https://github.com/meepshop/meep-lerna/pull/498) (@store/apollo-client-resolvers, admin/apollo-client-resolvers) Add apollo client resolvers ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#501](https://github.com/meepshop/meep-lerna/pull/501) 【BUG】新架構 - 商品列表排序選單顯示「0,50000」 ([@piovischioh](https://github.com/piovischioh))
+  - [#497](https://github.com/meepshop/meep-lerna/pull/497) 【優化】 新架構 - /checkout - 付款方式/運送方式說明文字段落換行 ([@piovischioh](https://github.com/piovischioh))
+  - [#494](https://github.com/meepshop/meep-lerna/pull/494) 【其他】Chrome 74 造成的問題 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#485](https://github.com/meepshop/meep-lerna/pull/485) 【其他】移除 lock version ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.21.0 (2019-05-07)
 
 #### :rocket: New Feature
