@@ -141,7 +141,7 @@ export default class Qa extends React.PureComponent {
                   ).alpha(0.1),
                 }}
               >
-                <p>{text}</p>
+                <pre>{text}</pre>
 
                 <p style={{ color: transformColor(colors[2]).alpha(0.5) }}>
                   {moment(createdAt).format('YYYY/MM/DD HH:mm')}

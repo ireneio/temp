@@ -66,9 +66,7 @@ export default class ShipmentInfo extends React.PureComponent {
           </div>
         </>
       ),
-      !description
-        ? null
-        : description.split('\n').map(i => <div key={i}>{i}</div>),
+      !description ? null : <pre>{description}</pre>,
     ]);
   }
 }

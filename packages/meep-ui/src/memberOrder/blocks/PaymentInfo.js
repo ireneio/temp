@@ -271,7 +271,7 @@ export default class PaymentInfo extends React.PureComponent {
     return children([
       this.paymentDescription(template),
       this.paidDescription(paidMessage || []),
-      description.split('\n').map(i => <div key={i}>{i}</div>),
+      !description ? null : <pre>{description}</pre>,
     ]);
   }
 }

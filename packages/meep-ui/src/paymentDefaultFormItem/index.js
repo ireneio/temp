@@ -268,7 +268,7 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
                 header={transformLocale(LOCALE.PAYMENT_DESCRIPTION)}
                 style={styles.panel(colors)}
               >
-                {choosePayment.description}
+                <pre>{choosePayment.description}</pre>
               </Panel>
             </Collapse>
           )}
@@ -312,7 +312,7 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
                 header={transformLocale(LOCALE.SHIPMENT_DESCRIPTION)}
                 style={styles.panel(colors)}
               >
-                {chooseShipment.description}
+                <pre>{chooseShipment.description}</pre>
               </Panel>
             </Collapse>
           )}
