@@ -14,8 +14,8 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@store/utils/lib/*": ["node_modules/@store/utils/src/*"],
-      "@admin/utils/lib/*": ["node_modules/@admin/utils/src/*"]
+      "@store/utils/lib/*": ["store/utils/src/*"],
+      "@admin/utils/lib/*": ["admin/utils/src/*"]
     }
   },
   "include": [
