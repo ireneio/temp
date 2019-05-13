@@ -26,9 +26,17 @@ export class App extends NextApp<PropsType> {
   public static getInitialProps = async ({
     Component,
     ctx,
-  }: NextAppContext) => ({
-    pageProps: Component.getInitialProps ? Component.getInitialProps(ctx) : {},
-  });
+  }: NextAppContext) => {
+    const pageProps = Component.getInitialProps
+      ? await Component.getInitialProps(ctx)
+      : {};
+    return {
+      pageProps: {
+        ...pageProps,
+        namespacesRequired: [...(pageProps.namespacesRequired || []), 'common'],
+      },
+    };
+  };
 
   public componentDidMount(): void {
     Router.beforePopState(
@@ -66,4 +74,4 @@ export class App extends NextApp<PropsType> {
   }
 }
 
-export default appWithTranslation(withApollo(App));
+export default withApollo(appWithTranslation(App));

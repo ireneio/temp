@@ -204,7 +204,13 @@ class Wrapper extends React.Component<PropsType> {
   }
 }
 
-export default ({ children }: { children: React.ReactNode }) => (
+const EnhancedWrapper = withNamespaces('common')(withRouter(Wrapper));
+
+const WrapperWithData = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): React.ReactElement => (
   <Query<initAdmin>
     query={gql`
       query initAdmin {
@@ -286,11 +292,11 @@ export default ({ children }: { children: React.ReactNode }) => (
             indicator={<Icon type="loading" spin />}
           />
         );
-
-      return React.createElement(
-        withNamespaces('common')(withRouter(Wrapper)),
-        { children, ...data } as PropsType,
+      return (
+        <EnhancedWrapper {...data as PropsType}>{children}</EnhancedWrapper>
       );
     }}
   </Query>
 );
+
+export default WrapperWithData;

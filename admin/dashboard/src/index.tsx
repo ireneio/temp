@@ -25,23 +25,17 @@ import {
 } from './__generated__/getDashboard';
 
 // typescript definition
-interface InitialPropsType {
+interface PagePropsType {
   namespacesRequired: string[];
 }
 
-interface PropsType extends I18nPropsType, InitialPropsType {
+interface PropsType extends PagePropsType, I18nPropsType {
   viewer: getDashboardInfoViewer;
   getDashboardInfo: getDashboardInfoGetDashboardInfo;
 }
 
 // definition
 class Dashboard extends React.Component<PropsType> {
-  public static async getInitialProps(): Promise<InitialPropsType> {
-    return {
-      namespacesRequired: ['common', 'dashboard'],
-    };
-  }
-
   private formatAmount = (amount: number | null) => {
     if (amount === null) return '';
 
@@ -155,7 +149,9 @@ class Dashboard extends React.Component<PropsType> {
   }
 }
 
-export default (props: InitialPropsType) => (
+const EnhancedDashboard = withNamespaces('dashboard')(Dashboard);
+
+const DashboardWithData = (props: PagePropsType): React.ReactNode => (
   <Query<getTimezone>
     query={gql`
       query getTimezone {
@@ -229,13 +225,21 @@ export default (props: InitialPropsType) => (
             if (res.loading || res.error)
               return <Spin indicator={<Icon type="loading" spin />} />;
 
-            return React.createElement(withNamespaces('dashboard')(Dashboard), {
-              ...props,
-              ...res.data,
-            } as PropsType);
+            return (
+              <EnhancedDashboard
+                {...props}
+                {...res.data as Pick<PropsType, 'getDashboardInfo' | 'viewer'>}
+              />
+            );
           }}
         </Query>
       );
     }}
   </Query>
 );
+
+DashboardWithData.getInitialProps = async () => ({
+  namespacesRequired: ['dashboard'],
+});
+
+export default DashboardWithData;
