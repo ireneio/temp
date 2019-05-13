@@ -14292,7 +14292,7 @@ netrc-parser@^3.1.4:
     debug "^3.1.0"
     execa "^0.10.0"
 
-next-i18next@^0.37.0:
+next-i18next@0.37.0, next-i18next@^0.37.0:
   version "0.37.0"
   resolved "https://registry.yarnpkg.com/next-i18next/-/next-i18next-0.37.0.tgz#d82d69ae69cc4617be4385168a348795646bb59a"
   integrity sha512-QGyTJy96gxSuU6bpTSag6d5VAbUVIPttPgWFWu0Exk22PZ/iabIV+XcaB9h8RFBtJMn8bu+VD3jdhQ3mIZkGlA==
