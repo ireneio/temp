@@ -59,7 +59,7 @@ class Img extends React.PureComponent {
       ? `${url}?w=${IMAGE_SUITABLE_WIDTHS.find(
           suitableWidth => suitableWidth > width * window.devicePixelRatio,
         ) || IMAGE_SUITABLE_WIDTHS.slice(-1)[0]}`
-      : `${url}?w=60`;
+      : `${url}?w=50`;
   };
 
   render() {
