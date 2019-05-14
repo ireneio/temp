@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 0.21.2 (2019-05-14)
+
+#### :boom: Breaking Change
+
+- [#505](https://github.com/meepshop/meep-lerna/pull/505) (@admin/\*) add getInitialProps ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#507](https://github.com/meepshop/meep-lerna/pull/507) 【BUG】新架構/發票資訊 - 載具欄位顯示錯誤＆無顯示愛心碼 ([@piovischioh](https://github.com/piovischioh))
+  - [#506](https://github.com/meepshop/meep-lerna/pull/506) 【BUG】 圖片元件 - 群組寬度 60%、元件寬度 40％，前台顯示異常 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#509](https://github.com/meepshop/meep-lerna/pull/509) (@meepshop/front-end) Fix typescript config with relative path ([@HsuTing](https://github.com/HsuTing))
+  - [#505](https://github.com/meepshop/meep-lerna/pull/505) (@admin/\*) add getInitialProps ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#509](https://github.com/meepshop/meep-lerna/pull/509) (@meepshop/front-end) Fix typescript config with relative path ([@HsuTing](https://github.com/HsuTing))
+- [#508](https://github.com/meepshop/meep-lerna/pull/508) (@meepshop/front-end) Upgrade lock ([@HsuTing](https://github.com/HsuTing))
+- [#505](https://github.com/meepshop/meep-lerna/pull/505) (@admin/\*) add getInitialProps ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.21.1 (2019-05-09)
 
 #### :boom: Breaking Change
