@@ -19,6 +19,7 @@ export const invoiceInfoFragment = gql`
       carrierType: type
       carrierCode: code
     }
+    loveCode
     title
     ban
     address
@@ -86,7 +87,7 @@ export default class InvoiceInfo extends React.PureComponent {
         case 'CARRIER':
           return (
             <>
-              {carrierCode
+              {!carrierCode
                 ? null
                 : `${transformLocale(LOCALE.BAR_CODE)}${carrierCode}`}
               {NumberInfo}
@@ -128,7 +129,7 @@ export default class InvoiceInfo extends React.PureComponent {
 
     return children(
       `${transformLocale(LOCALE.INVOICE_TYPE[type])}/${transformLocale(
-        invoices.method === 'CARRIER'
+        method === 'CARRIER'
           ? LOCALE.INVOICE_CARRIER[carrierType]
           : LOCALE.INVOICE_METHOD(type, method),
       )}`,
