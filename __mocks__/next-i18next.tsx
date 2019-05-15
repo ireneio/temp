@@ -10,6 +10,7 @@ i18n.use(reactI18nextModule).init({
       dashboard: require('@admin/server/src/static/locales/zh_TW/dashboard.json'),
       orders: require('@admin/server/src/static/locales/zh_TW/orders.json'),
       'orders-ecfit': require('@admin/server/src/static/locales/zh_TW/orders-ecfit.json'),
+      'orders-export': require('@admin/server/src/static/locales/zh_TW/orders-export.json'),
     },
     en_US: {
       'date-picker': require('@admin/server/src/static/locales/en_US/date-picker.json'),
@@ -17,6 +18,7 @@ i18n.use(reactI18nextModule).init({
       dashboard: require('@admin/server/src/static/locales/en_US/dashboard.json'),
       orders: require('@admin/server/src/static/locales/en_US/orders.json'),
       'orders-ecfit': require('@admin/server/src/static/locales/en_US/orders-ecfit.json'),
+      'orders-export': require('@admin/server/src/static/locales/en_US/orders-export.json'),
     },
     ja_JP: {
       'date-picker': require('@admin/server/src/static/locales/ja_JP/date-picker.json'),
@@ -24,6 +26,7 @@ i18n.use(reactI18nextModule).init({
       dashboard: require('@admin/server/src/static/locales/ja_JP/dashboard.json'),
       orders: require('@admin/server/src/static/locales/ja_JP/orders.json'),
       'orders-ecfit': require('@admin/server/src/static/locales/ja_JP/orders-ecfit.json'),
+      'orders-export': require('@admin/server/src/static/locales/ja_JP/orders-export.json'),
     },
     /* eslint-enable global-require, @typescript-eslint/camelcase */
   },

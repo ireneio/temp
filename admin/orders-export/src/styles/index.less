@@ -1,0 +1,47 @@
+.root {
+  :global(.ant-drawer-content-wrapper) {
+    max-width: 600px;
+    width: 100% !important;
+  }
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+
+  :global(.ant-btn) {
+    font-size: 16px;
+
+    &:not(:last-child) {
+      margin: 0px 16px 0px 0px;
+    }
+  }
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+
+  &:not(:last-child) {
+    margin: 0px 0px 20px;
+  }
+
+  & > span {
+    &:first-child {
+      flex-shrink: 0;
+      width: 120px;
+    }
+
+    &:last-child {
+      flex-grow: 1;
+    }
+  }
+
+  :global(.ant-select) {
+    width: 100%;
+    font-size: 16px;
+  }
+}

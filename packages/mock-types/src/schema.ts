@@ -27,6 +27,7 @@ import permissionUserObj from './schemas/permissionUserObj';
 import StoreEcfitSettings from './schemas/StoreEcfitSettings';
 import DashboardInfo from './schemas/DashboardInfo';
 import Store from './schemas/Store';
+import ExportFormat from './schemas/ExportFormat';
 
 // definition
 // TODO: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/34649
@@ -57,6 +58,7 @@ addMockFunctionsToSchema({
     StoreEcfitSettings,
     DashboardInfo,
     Store,
+    ExportFormat,
   },
 });
 
