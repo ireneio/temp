@@ -18,13 +18,9 @@ else {
 
 module.exports = {
   client: {
+    service: process.env.APOLLO_TAG
+      ? `meepshop-api-stage@${process.env.APOLLO_TAG}`
+      : 'meepshop-api-stage',
     includes,
-    service: {
-      name: 'meepshop',
-      url: 'https://api.stage.meepcloud.com/graphql',
-      headers: {
-        'x-meepshop-domain': 'bellatest.stage.meepcloud.com',
-      },
-    },
   },
 };

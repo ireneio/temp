@@ -135,6 +135,7 @@ workflows:
               only: /.*/
 
       - lint-and-test:
+          context: org-global
           requires:
             - install
           filters:
