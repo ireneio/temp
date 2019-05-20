@@ -75,4 +75,20 @@ class OrdersEcfit extends React.PureComponent<I18nPropsType> {
   }
 }
 
-export default withNamespaces(['orders-ecfit', 'orders'])(OrdersEcfit);
+const EnhancedOrdersEcfit = withNamespaces(['orders-ecfit', 'orders'])(
+  OrdersEcfit,
+);
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const OrdersEcfitPage = () => <EnhancedOrdersEcfit />;
+
+OrdersEcfitPage.getInitialProps = async () => ({
+  namespacesRequired: [
+    'orders-ecfit',
+    'orders',
+    'date-picker',
+    'orders-export',
+  ],
+});
+
+export default OrdersEcfitPage;

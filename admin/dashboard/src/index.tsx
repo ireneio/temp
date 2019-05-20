@@ -25,11 +25,7 @@ import {
 } from './__generated__/getDashboard';
 
 // typescript definition
-interface PagePropsType {
-  namespacesRequired: string[];
-}
-
-interface PropsType extends PagePropsType, I18nPropsType {
+interface PropsType extends I18nPropsType {
   viewer: getDashboardInfoViewer;
   getDashboardInfo: getDashboardInfoGetDashboardInfo;
 }
@@ -151,7 +147,8 @@ class Dashboard extends React.Component<PropsType> {
 
 const EnhancedDashboard = withNamespaces('dashboard')(Dashboard);
 
-const DashboardWithData = (props: PagePropsType): React.ReactNode => (
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const DashboardPage = () => (
   <Query<getTimezone>
     query={gql`
       query getTimezone {
@@ -227,7 +224,6 @@ const DashboardWithData = (props: PagePropsType): React.ReactNode => (
 
             return (
               <EnhancedDashboard
-                {...props}
                 {...res.data as Pick<PropsType, 'getDashboardInfo' | 'viewer'>}
               />
             );
@@ -238,8 +234,8 @@ const DashboardWithData = (props: PagePropsType): React.ReactNode => (
   </Query>
 );
 
-DashboardWithData.getInitialProps = async () => ({
+DashboardPage.getInitialProps = async () => ({
   namespacesRequired: ['dashboard'],
 });
 
-export default DashboardWithData;
+export default DashboardPage;
