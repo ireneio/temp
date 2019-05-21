@@ -4,7 +4,7 @@
   "description": "Apollo-client resolvers for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.21.1",
+  "version": "0.21.3",
   "main": "./index.js",
   "types": "./src/index.ts",
   "keywords": ["admin", "apollo-client", "resolvers"]
