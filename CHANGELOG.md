@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## 0.21.3 (2019-05-21)
+
+#### :rocket: New Feature
+
+- Other
+  - [#523](https://github.com/meepshop/meep-lerna/pull/523) (@meepshop/front-end) Add APOLLO_TAG in config ([@HsuTing](https://github.com/HsuTing))
+  - [#522](https://github.com/meepshop/meep-lerna/pull/522) (@admin/server) Add testing to check namespacesRequired ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#512](https://github.com/meepshop/meep-lerna/pull/512) (@admin/orders-export) Add orders export panel ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#516](https://github.com/meepshop/meep-lerna/pull/516) 【其他】ECFIT 訂單管理 - 未測試到的 Spec UI ([@HsuTing](https://github.com/HsuTing))
+- [#520](https://github.com/meepshop/meep-lerna/pull/520) (@meepshop/front-end) Remove lock version ([@HsuTing](https://github.com/HsuTing))
+- [#514](https://github.com/meepshop/meep-lerna/pull/514) (@meepshop/front-end) Hotfix for rc-drawer new version ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#523](https://github.com/meepshop/meep-lerna/pull/523) (@meepshop/front-end) Add APOLLO_TAG in config ([@HsuTing](https://github.com/HsuTing))
+- [#522](https://github.com/meepshop/meep-lerna/pull/522) (@admin/server) Add testing to check namespacesRequired ([@HsuTing](https://github.com/HsuTing))
+- [#520](https://github.com/meepshop/meep-lerna/pull/520) (@meepshop/front-end) Remove lock version ([@HsuTing](https://github.com/HsuTing))
+- [#514](https://github.com/meepshop/meep-lerna/pull/514) (@meepshop/front-end) Hotfix for rc-drawer new version ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.21.2 (2019-05-14)
 
 #### :boom: Breaking Change
