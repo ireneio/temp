@@ -759,8 +759,9 @@ export function* watchResetPasswordFlow() {
 /* ************************************ 成立訂單，清空購物車 ************************************ */
 const EMPTY_CART = 'EMPTY_CART';
 
-export const emptyCart = () => ({
+export const emptyCart = usePoints => ({
   type: EMPTY_CART,
+  payload: { usePoints },
 });
 
 /* ************************************ 送出匯款通知 ************************************ */
@@ -1264,8 +1265,11 @@ export default function(state = initialState, { type, payload }) {
       };
     }
     case EMPTY_CART: {
+      const { usePoints } = payload;
+
       return {
         ...state,
+        currentBalance: state.currentBalance - (usePoints || 0),
         cart: null,
       };
     }

@@ -201,7 +201,7 @@ export default class Checkout extends React.Component {
             }
 
             addRecipient();
-            dispatchAction('emptyCart');
+            dispatchAction('emptyCart', orderData.points);
             goTo({
               pathname: `/checkout/thank-you-page/${id}`,
               params: {
