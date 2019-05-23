@@ -103,7 +103,7 @@ export const JOIN = {
 };
 
 export const PROMOTION_CODE = {
-  zh_TW: '企業優惠代碼',
+  zh_TW: '群組代碼',
   en_US: 'Corporate Promotion Code',
   ja_JP: '企業クーポンコード',
   vi_VN: 'Mã giao dịch kinh doanh',
