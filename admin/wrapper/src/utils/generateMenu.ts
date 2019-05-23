@@ -180,65 +180,9 @@ export default ({
   ...(isMerchant || idx(permission, _ => _.store.index)
     ? [
         {
+          path: '/setting',
           src: '/static/images/menu/setting.png',
           title: 'setting',
-          sub: [
-            {
-              path: '/store-setting',
-              src: '/static/images/menu/store-setting.png',
-              title: 'store-setting',
-            },
-            ...(isMerchant || idx(permission, _ => _.store.payment)
-              ? [
-                  {
-                    path: '/payments',
-                    src: '/static/images/menu/payments.png',
-                    title: 'payments',
-                  },
-                ]
-              : []),
-            ...(isMerchant || idx(permission, _ => _.store.shipment)
-              ? [
-                  {
-                    path: '/shippings',
-                    src: '/static/images/menu/shipments.png',
-                    title: 'shipments',
-                  },
-                ]
-              : []),
-            ...(isMerchant || idx(permission, _ => _.store.exportSetting)
-              ? [
-                  {
-                    path: '/export-setting',
-                    src: '/static/images/menu/export-setting.png',
-                    title: 'export-setting',
-                  },
-                ]
-              : []),
-            ...(isMerchant
-              ? [
-                  {
-                    path: '/authorization',
-                    src: '/static/images/menu/authorization.png',
-                    title: 'authorization',
-                  },
-                ]
-              : []),
-            ...(storeAppList.gooddeal || storeAppList.fbLogin
-              ? [
-                  {
-                    path: '/login-setting',
-                    src: '/static/images/menu/login-setting.png',
-                    title: 'login-setting',
-                  },
-                ]
-              : []),
-            {
-              path: '/app-store',
-              src: '/static/images/menu/app-store.png',
-              title: 'app-store',
-            },
-          ],
         },
       ]
     : []),
