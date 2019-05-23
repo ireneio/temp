@@ -116,6 +116,7 @@ export default class PrdoductQA extends React.PureComponent {
 
             return (
               <ListItem
+                style={{ flexWrap: 'wrap' }}
                 extra={
                   qa.length === 1 ? null : (
                     <>
