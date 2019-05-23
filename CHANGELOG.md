@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 0.21.4 (2019-05-23)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#519](https://github.com/meepshop/meep-lerna/pull/519) 【優化】 前台/login - 「企業優惠代碼」正名「群組代碼」 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#466](https://github.com/meepshop/meep-lerna/pull/466) 2361 【優化】後台 - 商店設定 UI 優化 - 前端 only ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#521](https://github.com/meepshop/meep-lerna/pull/521) 前台會員購物金頁面金額錯誤 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#517](https://github.com/meepshop/meep-lerna/pull/517) 【BUG】新架構/商品問答 - 後台回覆商品問答，前台文字顯示跑版 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#525](https://github.com/meepshop/meep-lerna/pull/525) (@meepshop/front-end) Fix lock ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.21.3 (2019-05-21)
 
 #### :rocket: New Feature
