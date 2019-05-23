@@ -32,6 +32,10 @@ storiesOf('${name}', module)
   ));`,
 );
 
+process.env.STORYBOOK_NEXT_I18NEXT_PARENT_MODULE_FILENAME = /@admin/.test(name)
+  ? 'admin/utils'
+  : 'store/utils';
+
 require('@storybook/react/standalone')({
   mode: 'dev',
   port: 14400,
