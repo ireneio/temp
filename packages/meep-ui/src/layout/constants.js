@@ -21,6 +21,7 @@ export const SPECIAL_HIDE_FOOTER = [
   'kolstyle',
   'jj-f4',
   'xmiutc',
+  'fionho',
 ];
 
 export const STORE_APP_PLUGINS = [
