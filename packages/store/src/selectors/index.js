@@ -120,10 +120,8 @@ export const getJoinedPage = (
     });
 
     if (ele === 'fixedbottom') {
-      const {
-        fixedbottom: { background, color, fontSize },
-        useBottom,
-      } = joinedPage;
+      const { background, color, fontSize } = joinedPage.fixedbottom || {};
+      const { useBottom } = joinedPage;
 
       /**
        * useBottom default should be true, but it can be null, now.
