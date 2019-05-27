@@ -30,7 +30,7 @@ const create = (initialState, ctx) => {
     cache,
     resolvers,
     link: ApolloLink.from([
-      onError(({ response, graphQLErrors, networkError }) => {
+      onError(({ response, graphQLErrors, networkError = {} }) => {
         if (
           networkError.statusCode === 401 &&
           process.browser &&
