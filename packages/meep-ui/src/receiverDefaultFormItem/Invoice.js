@@ -37,22 +37,51 @@ export default class Invoice extends React.PureComponent {
   validateLoveCode = async (rule, value, callback) => {
     const { transformLocale, getData } = this.props;
 
-    const { data, errors } = await getData(`
-      query IsEInvoiceLoveCodeValid {
-        isEInvoiceLoveCodeValid(loveCode: "${value}")
+    try {
+      const { data, errors } = await getData(`
+        query IsEInvoiceLoveCodeValid {
+          isEInvoiceLoveCodeValid(loveCode: "${value}")
+        }
+      `);
+
+      if (errors) {
+        warning(!errors.length, JSON.stringify(errors));
+        message.error(transformLocale(LOCALE.ERROR));
       }
-    `);
 
-    if (errors) {
-      warning(!errors.length, JSON.stringify(errors));
-      message.error(transformLocale(LOCALE.ERROR));
+      if (data?.isEInvoiceLoveCodeValid) {
+        return callback();
+      }
+
+      return callback(transformLocale(LOCALE.WRONG_LOVECODE));
+    } catch (error) {
+      return callback(transformLocale(LOCALE.ERROR));
     }
+  };
 
-    if (data?.isEInvoiceLoveCodeValid) {
-      return callback();
+  validateBarCode = async (rule, value, callback) => {
+    const { transformLocale, getData } = this.props;
+
+    try {
+      const { data, errors } = await getData(`
+        query isEInvoiceBarCodeValid {
+          isEInvoiceBarCodeValid(barCode: "${value}")
+        }
+      `);
+
+      if (errors) {
+        warning(!errors.length, JSON.stringify(errors));
+        message.error(transformLocale(LOCALE.ERROR));
+      }
+
+      if (data?.isEInvoiceBarCodeValid) {
+        return callback();
+      }
+
+      return callback(transformLocale(LOCALE.WRONG_BARCODE));
+    } catch (error) {
+      return callback(transformLocale(LOCALE.ERROR));
     }
-
-    return callback(transformLocale(LOCALE.WRONG_LOVECODE));
   };
 
   render() {
@@ -134,6 +163,7 @@ export default class Invoice extends React.PureComponent {
                   validator: this.validateLoveCode,
                 },
               ],
+              validateFirst: true,
               validateTrigger: 'onBlur',
             })(
               <Search
@@ -165,7 +195,11 @@ export default class Invoice extends React.PureComponent {
                   pattern: /^\/{1}[0-9.+\-A-Z]{7}$/,
                   message: transformLocale(LOCALE.WRONG_BARCODE),
                 },
+                isECPAY && {
+                  validator: this.validateBarCode,
+                },
               ],
+              validateFirst: true,
               validateTrigger: 'onBlur',
             })(
               <Input
@@ -191,6 +225,7 @@ export default class Invoice extends React.PureComponent {
                   message: transformLocale(LOCALE.WRONG_CERTIFICATE),
                 },
               ],
+              validateFirst: true,
               validateTrigger: 'onBlur',
             })(
               <Input
