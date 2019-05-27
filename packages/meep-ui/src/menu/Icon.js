@@ -9,6 +9,7 @@ import icons from './icons';
 export default class Icon extends React.PureComponent {
   static propTypes = {
     /** props */
+    iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
     font: PropTypes.oneOf(Object.keys(icons)),
     image: URL_TYPE,
     onClick: PropTypes.func,
@@ -24,20 +25,27 @@ export default class Icon extends React.PureComponent {
   };
 
   render() {
-    const { font, image, onClick, direction, children } = this.props;
+    const { iconSize, font, image, onClick, direction, children } = this.props;
     const MdIcon = icons[font || ''];
 
     return (
       <div className={`${styles.root} ${styles[direction] || ''}`}>
-        {!MdIcon ? null : <MdIcon className={styles.icon} onClick={onClick} />}
+        {!MdIcon ? null : (
+          <MdIcon
+            style={{ fontSize: `${iconSize}px` }}
+            className={styles.icon}
+            onClick={onClick}
+          />
+        )}
 
         {!image ? null : (
           <img
             className={`${styles.icon} ${styles.image}`}
-            src={`//${image}?w=120`}
-            srcSet={`//${image}?w=32 1x, //${image}?w=64 2x, //${image}?w=120 3x`}
-            width={32}
-            height={32}
+            src={`//${image}?w=${iconSize}`}
+            srcSet={`//${image}?w=${iconSize} 1x, //${image}?w=${iconSize *
+              2} 2x, //${image}?w=${iconSize * 3} 3x`}
+            width={iconSize}
+            height={iconSize}
             alt={image}
           />
         )}

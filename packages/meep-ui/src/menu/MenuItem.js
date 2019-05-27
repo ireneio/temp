@@ -48,6 +48,7 @@ export default class MenuItem extends React.PureComponent {
 
     /** props */
     icon: PropTypes.shape({}),
+    iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
     params: PropTypes.shape({
       path: PropTypes.string,
       pageId: PropTypes.oneOfType([PropTypes.oneOf(['Home']), ID_TYPE]),
@@ -202,6 +203,7 @@ export default class MenuItem extends React.PureComponent {
       /** ignore */
       menuItemStyle,
       hasLevelThree,
+      iconSize,
       ...props
     } = this.props;
 
@@ -237,7 +239,13 @@ export default class MenuItem extends React.PureComponent {
       onClick: this.onClick,
       children: (
         <Link href={url} target={newWindow ? '_blank' : '_self'}>
-          {!icon ? title : <Icon {...icon}>{title}</Icon>}
+          {!icon ? (
+            title
+          ) : (
+            <Icon {...icon} iconSize={iconSize}>
+              {title}
+            </Icon>
+          )}
         </Link>
       ),
     };

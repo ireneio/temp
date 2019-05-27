@@ -18,6 +18,7 @@ export default class SecondTop extends React.PureComponent {
     /** props */
     id: ID_TYPE.isRequired,
     menu: PropTypes.shape({
+      iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
       pages: PropTypes.arrayOf(
         PropTypes.shape({
           id: ID_TYPE.isRequired,
@@ -34,7 +35,7 @@ export default class SecondTop extends React.PureComponent {
 
       /** props */
       id,
-      menu: { pages, design },
+      menu: { iconSize, pages, design },
     } = this.props;
 
     return (
@@ -42,6 +43,7 @@ export default class SecondTop extends React.PureComponent {
         id={id}
         className={styles.root}
         logoUrl={logoUrl}
+        iconSize={iconSize}
         pages={pages}
         design={design}
       />

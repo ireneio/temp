@@ -64,6 +64,7 @@ export default class Menu extends React.PureComponent {
         id: ID_TYPE.isRequired,
       }),
     ).isRequired,
+    iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
     design: PropTypes.shape({
       showLogo: PropTypes.bool.isRequired,
       showSearchbar: PropTypes.bool.isRequired,
@@ -126,6 +127,7 @@ export default class Menu extends React.PureComponent {
       logoUrl,
       id,
       pages,
+      iconSize,
       design: {
         showLogo,
         showSearchbar,
@@ -233,6 +235,7 @@ export default class Menu extends React.PureComponent {
               {...page}
               key={pageId}
               id={pageId}
+              iconSize={iconSize}
               hasLevelThree={[
                 'fixedtop',
                 'secondtop',

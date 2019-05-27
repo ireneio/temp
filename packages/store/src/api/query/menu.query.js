@@ -42,6 +42,7 @@ title {
 }
 notBeDeleted
 menuType
+iconSize
 pages {
   ${menuPagesQuery}
   pages {

@@ -17,6 +17,7 @@ export default Component => {
       /** props */
       id: ID_TYPE.isRequired,
       menu: PropTypes.shape({
+        iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
         pages: PropTypes.arrayOf(
           PropTypes.shape({
             id: ID_TYPE.isRequired,
@@ -34,6 +35,7 @@ export default Component => {
         /** props */
         id,
         menu: {
+          iconSize,
           pages,
           design: { expandSubItem, ...design },
         },
@@ -45,6 +47,7 @@ export default Component => {
           className={expandSubItem ? '' : styles.root}
           logoUrl={logoUrl}
           pages={pages}
+          iconSize={iconSize}
           design={{
             ...design,
             expandSubItem,

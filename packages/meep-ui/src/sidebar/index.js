@@ -27,6 +27,7 @@ export default class Sidebar extends React.PureComponent {
     /** props */
     id: ID_TYPE.isRequired,
     menu: PropTypes.shape({
+      iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
       pages: PropTypes.arrayOf(
         PropTypes.shape({
           id: ID_TYPE.isRequired,
@@ -63,6 +64,7 @@ export default class Sidebar extends React.PureComponent {
       /** props */
       id,
       menu: {
+        iconSize,
         pages,
         design: { width, paddingTop, expandSubItem, ...design },
       },
@@ -108,6 +110,7 @@ export default class Sidebar extends React.PureComponent {
                       });
                   }
             }
+            iconSize={iconSize}
             reverseSearch
           />
         </div>
