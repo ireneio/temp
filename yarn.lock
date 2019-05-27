@@ -4442,7 +4442,7 @@ ansicolors@~0.3.2:
   resolved "https://registry.yarnpkg.com/ansicolors/-/ansicolors-0.3.2.tgz#665597de86a9ffe3aa9bfbe6cae5c6ea426b4979"
   integrity sha1-ZlWX3oap/+Oqm/vmyuXG6kJrSXk=
 
-antd@3.18.2, antd@^3.10.1:
+antd@^3.10.1:
   version "3.18.2"
   resolved "https://registry.yarnpkg.com/antd/-/antd-3.18.2.tgz#10d5c1685e0ba782565eb45508e9a34b4aadb180"
   integrity sha512-TfWIO4W8s+e1s4lClR/uth/cx8sDZKzvjdhvycstEmems56tgBGo28xtrLLojQJtHS8vQ0aqhZ6Di95YKQLfHg==
