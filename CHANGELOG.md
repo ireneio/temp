@@ -1,5 +1,40 @@
 # CHANGELOG
 
+## 0.21.5 (2019-05-27)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#532](https://github.com/meepshop/meep-lerna/pull/532) 【其他】 綠界電子發票：前端要 call 手機條碼驗證 api ([@piovischioh](https://github.com/piovischioh))
+  - [#530](https://github.com/meepshop/meep-lerna/pull/530) 【個案處理】meepShop MAX 極速開店：新增白名單 - fionho ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`, `store`
+  - [#518](https://github.com/meepshop/meep-lerna/pull/518) N366 【優化】選單 - 預設圖示 icon＆自訂圖示顯示的大小 - 前端 ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#502](https://github.com/meepshop/meep-lerna/pull/502) 2114 【功能】ECFIT 串接 - 前端 - 補做 ECFIT 訂單頁的匯出＆列印 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#513](https://github.com/meepshop/meep-lerna/pull/513) 修正 fixedbottom 可以為 null 的問題 ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#502](https://github.com/meepshop/meep-lerna/pull/502) 2114 【功能】ECFIT 串接 - 前端 - 補做 ECFIT 訂單頁的匯出＆列印 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#533](https://github.com/meepshop/meep-lerna/pull/533) (@meepshop/front-end) Fix apollo error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- Other
+  - [#533](https://github.com/meepshop/meep-lerna/pull/533) (@meepshop/front-end) Fix apollo error ([@HsuTing](https://github.com/HsuTing))
+  - [#529](https://github.com/meepshop/meep-lerna/pull/529) (@meepshop/front-end) lock apollo version ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#531](https://github.com/meepshop/meep-lerna/pull/531) (@meepshop/front-end) Fix dev with @store/\* ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.21.4 (2019-05-23)
 
 #### :rocket: New Feature
