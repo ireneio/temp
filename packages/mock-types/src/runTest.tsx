@@ -1,4 +1,5 @@
 // import typescript
+import { InMemoryCache } from 'apollo-boost';
 import { Resolvers } from 'apollo-client/core/types';
 
 // import
@@ -16,7 +17,7 @@ export default (
   {
     default: resolvers,
     initializeCache,
-  }: { default: Resolvers; initializeCache: <C>(cache: C) => void },
+  }: { default: Resolvers; initializeCache: (cache: InMemoryCache) => void },
   callback:
     | ((wrapper: ReactWrapper<unknown, unknown>) => void | boolean)
     | undefined = emptyFunction.thatReturnsTrue,

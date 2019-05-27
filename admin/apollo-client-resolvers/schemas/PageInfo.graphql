@@ -1,0 +1,21 @@
+extend type Mutation {
+  setCurrent(input: SetCurrentInput!): Boolean!
+}
+
+input SetCurrentInput {
+  pageId: ID!
+  current: Int!
+}
+
+extend type PageInfo {
+  currentInfo(input: CurrentInfoInput!): CurrentInfo!
+}
+
+input CurrentInfoInput {
+  pageId: ID!
+}
+
+type CurrentInfo {
+  id: ID!
+  current: Int!
+}

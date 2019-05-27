@@ -28,7 +28,7 @@ mock.init();
 export default class MockTypes extends React.PureComponent<
   {
     resolvers: Resolvers;
-    initializeCache: <C>(cache: C) => void;
+    initializeCache: (cache: InMemoryCache) => void;
   },
   StateType
 > {

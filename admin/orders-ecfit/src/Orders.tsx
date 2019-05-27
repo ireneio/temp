@@ -1,5 +1,8 @@
 // typescript import
+import { MutationFn } from 'react-apollo';
+
 import { I18nPropsType } from '@admin/utils/lib/i18n';
+import { SetCurrentPropsType } from '@admin/utils/lib/withSetCurrent';
 
 import { getEcfitListQueryPropsType } from './constants';
 
@@ -9,42 +12,50 @@ import { gql } from 'apollo-boost';
 import { Table, Icon, Select, Spin, Empty } from 'antd';
 import Link from 'next/link';
 import idx from 'idx';
-import { emptyFunction } from 'fbjs';
+import { emptyFunction, areEqual } from 'fbjs';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
 
 import { withNamespaces } from '@admin/utils/lib/i18n';
+import withSetCurrent from '@admin/utils/lib/withSetCurrent';
 
 import { STATUS_LIST } from './constants';
 import styles from './styles/orders.less';
 
 // graphql typescript
 import {
-  ordersFragment as ordersFragmentType,
-  ordersFragment_edges as ordersFragmentEdges,
-  ordersFragment_edges_node as ordersFragmentEdgesNode,
-  ordersFragment_edges_node_lastEcfitRequestRecord as ordersFragmentEdgesNodeLastEcfitRequestRecord,
-  ordersFragment_edges_node_paymentInfo as ordersFragmentEdgesNodePaymentInfo,
-  ordersFragment_edges_node_shipmentInfo as ordersFragmentEdgesNodeShipmentInfo,
-} from './__generated__/ordersFragment';
+  ordersEcfitOrdersFragment as ordersEcfitOrdersFragmentType,
+  ordersEcfitOrdersFragment_edges as ordersEcfitOrdersFragmentEdges,
+  ordersEcfitOrdersFragment_edges_node as ordersEcfitOrdersFragmentEdgesNode,
+  ordersEcfitOrdersFragment_edges_node_lastEcfitRequestRecord as ordersEcfitOrdersFragmentEdgesNodeLastEcfitRequestRecord,
+  ordersEcfitOrdersFragment_edges_node_paymentInfo as ordersEcfitOrdersFragmentEdgesNodePaymentInfo,
+  ordersEcfitOrdersFragment_edges_node_shipmentInfo as ordersEcfitOrdersFragmentEdgesNodeShipmentInfo,
+} from './__generated__/ordersEcfitOrdersFragment';
+import { ordersSelectedOrdersFragment as ordersSelectedOrdersFragmentType } from './__generated__/ordersSelectedOrdersFragment';
+import {
+  setOrdersToSelectedOrders,
+  setOrdersToSelectedOrdersVariables,
+} from './__generated__/setOrdersToSelectedOrders';
 
 // typescript definition
-export type PropsType = I18nPropsType &
-  Pick<getEcfitListQueryPropsType, 'variables' | 'refetch'> & {
-    selectOrders: (selectedKeys: string[]) => void;
-    changePage: (current: number) => void;
-    runningIds: string[];
-    selected: string[];
-    current: number;
-    loading: boolean;
-    ecfitOrders: ordersFragmentType;
-  };
+export interface PropsType
+  extends I18nPropsType,
+    SetCurrentPropsType,
+    Pick<getEcfitListQueryPropsType, 'variables' | 'refetch' | 'fetchMore'> {
+  runningIds: string[];
+  ecfitOrders: ordersEcfitOrdersFragmentType;
+  selectedOrders: ordersSelectedOrdersFragmentType;
+  setOrdersToSelectedOrdersMutation: MutationFn<
+    setOrdersToSelectedOrders,
+    setOrdersToSelectedOrdersVariables
+  >;
+}
 
 // definition
 const { Option } = Select;
 
-export const ordersFragment = gql`
-  fragment ordersFragment on OrderConnection {
+export const ordersEcfitOrdersFragment = gql`
+  fragment ordersEcfitOrdersFragment on OrderConnection {
     edges {
       node {
         id
@@ -72,11 +83,38 @@ export const ordersFragment = gql`
         }
       }
     }
+    pageInfo {
+      endCursor
+      currentInfo(input: { pageId: "orders-ecfit" }) @client {
+        id
+        current
+      }
+    }
     total
   }
 `;
 
-class Orders extends React.PureComponent<PropsType> {
+export const ordersSelectedOrdersFragment = gql`
+  fragment ordersSelectedOrdersFragment on OrderConnection {
+    edges {
+      node {
+        id
+      }
+    }
+    total
+  }
+`;
+
+class Orders extends React.PureComponent<
+  PropsType,
+  {
+    loading: boolean;
+  }
+> {
+  public state = {
+    loading: false,
+  };
+
   private columns = memoizeOne(() => {
     const {
       // HOC
@@ -91,26 +129,22 @@ class Orders extends React.PureComponent<PropsType> {
         title: t('orders.order-no'),
         dataIndex: 'node.orderNo',
         render: (
-          value: ordersFragmentEdgesNode['orderNo'],
-          edge: ordersFragmentEdges,
-        ) => {
+          value: ordersEcfitOrdersFragmentEdgesNode['orderNo'],
           // TODO: should not be null
-          const id = idx(edge, _ => _.node.id);
+          { node: { id } }: ordersEcfitOrdersFragmentEdges,
+        ) => (
+          <>
+            <Spin />
 
-          return (
-            <>
-              <Spin />
-
-              {!id ? (
-                value
-              ) : (
-                <Link href={`/orders/${id}`}>
-                  <a href={`/orders/${id}`}>{value}</a>
-                </Link>
-              )}
-            </>
-          );
-        },
+            {!id ? (
+              value
+            ) : (
+              <Link href={`/orders/${id}?ref=ecfit`}>
+                <a href={`/orders/${id}?ref=ecfit`}>{value}</a>
+              </Link>
+            )}
+          </>
+        ),
       },
       {
         title: t('orders.shipment-name'),
@@ -120,7 +154,9 @@ class Orders extends React.PureComponent<PropsType> {
         title: t('orders.payment-status'),
         dataIndex: 'node.paymentInfo.status',
         // TODO: should not be null
-        render: (value: ordersFragmentEdgesNodePaymentInfo['status']) =>
+        render: (
+          value: ordersEcfitOrdersFragmentEdgesNodePaymentInfo['status'],
+        ) =>
           value === null
             ? null
             : t(`paymentStatusList.${STATUS_LIST.paymentStatusList[value]}`),
@@ -129,7 +165,9 @@ class Orders extends React.PureComponent<PropsType> {
         title: t('orders.shipment-status'),
         dataIndex: 'node.shipmentInfo.status',
         // TODO: should not be null
-        render: (value: ordersFragmentEdgesNodeShipmentInfo['status']) =>
+        render: (
+          value: ordersEcfitOrdersFragmentEdgesNodeShipmentInfo['status'],
+        ) =>
           value === null
             ? null
             : t(`shipmentStatusList.${STATUS_LIST.shipmentStatusList[value]}`),
@@ -138,7 +176,7 @@ class Orders extends React.PureComponent<PropsType> {
         title: t('orders.order-status'),
         dataIndex: 'node.status',
         // TODO: should not be null
-        render: (value: ordersFragmentEdgesNode['status']) =>
+        render: (value: ordersEcfitOrdersFragmentEdgesNode['status']) =>
           value === null
             ? null
             : t(`orderStatusList.${STATUS_LIST.orderStatusList[value]}`),
@@ -154,7 +192,7 @@ class Orders extends React.PureComponent<PropsType> {
       {
         title: t('orders.create-on'),
         dataIndex: 'node.createdOn',
-        render: (value: ordersFragmentEdgesNode['createdOn']) =>
+        render: (value: ordersEcfitOrdersFragmentEdgesNode['createdOn']) =>
           // TODO: should not be null
           !value ? null : moment.unix(value).format('YYYY/MM/DD HH:mm:ss'),
       },
@@ -165,7 +203,7 @@ class Orders extends React.PureComponent<PropsType> {
               title: t('orders.send-time'),
               dataIndex: 'node.lastEcfitRequestRecord.createdAt',
               render: (
-                value: ordersFragmentEdgesNodeLastEcfitRequestRecord['createdAt'],
+                value: ordersEcfitOrdersFragmentEdgesNodeLastEcfitRequestRecord['createdAt'],
               ) =>
                 !value ? null : moment(value).format('YYYY/MM/DD HH:mm:ss'),
             },
@@ -177,12 +215,116 @@ class Orders extends React.PureComponent<PropsType> {
               title: t('orders.fail-reason'),
               dataIndex: 'node.lastEcfitRequestRecord.response',
               render: (
-                value: ordersFragmentEdgesNodeLastEcfitRequestRecord['response'],
+                value: ordersEcfitOrdersFragmentEdgesNodeLastEcfitRequestRecord['response'],
               ) => (!value ? null : t(`fail-reason.${value}`)),
             },
           ]),
     ];
   });
+
+  public componentDidUpdate(prevProps: PropsType): void {
+    const {
+      variables: { filter },
+      ecfitOrders,
+      setOrdersToSelectedOrdersMutation,
+    } = this.props;
+
+    if (!areEqual(ecfitOrders, prevProps.ecfitOrders))
+      setTimeout(() => {
+        this.setState({ loading: false });
+      }, 0);
+
+    if (!areEqual(filter, prevProps.variables.filter))
+      setOrdersToSelectedOrdersMutation({
+        variables: {
+          input: {
+            ids: [],
+          },
+        },
+      });
+  }
+
+  private changePage = (newCurrent: number) => {
+    const {
+      variables: { first, ...variables },
+      ecfitOrders: {
+        edges,
+        pageInfo: {
+          endCursor,
+          currentInfo: { current, ...currentInfo },
+        },
+      },
+      fetchMore,
+      setCurrent,
+    } = this.props;
+    const { loading } = this.state;
+
+    if (loading || newCurrent === current) return;
+
+    if (newCurrent < current || Math.ceil(edges.length / first) - 1 > current) {
+      setCurrent(newCurrent);
+      return;
+    }
+
+    this.setState(
+      {
+        loading: true,
+      },
+      () =>
+        // @ts-ignore: https://github.com/apollographql/react-apollo/issues/3044
+        fetchMore({
+          variables: {
+            ...variables,
+            cursor: endCursor,
+            first,
+          },
+          updateQuery: (previousResult, { fetchMoreResult }) => {
+            if (
+              (idx(fetchMoreResult, _ => _.viewer.ecfitOrders.edges) || [])
+                .length > 0
+            )
+              return {
+                ...previousResult,
+                viewer: {
+                  ...previousResult.viewer,
+                  ecfitOrders: {
+                    __typename: 'OrderConnection',
+                    edges: [
+                      ...(idx(
+                        previousResult,
+                        _ => _.viewer.ecfitOrders.edges,
+                      ) || []),
+                      ...(idx(
+                        fetchMoreResult,
+                        _ => _.viewer.ecfitOrders.edges,
+                      ) || []),
+                    ],
+                    pageInfo: {
+                      ...idx(
+                        fetchMoreResult,
+                        _ => _.viewer.ecfitOrders.pageInfo,
+                      ),
+                      currentInfo: {
+                        ...currentInfo,
+                        __typename: 'CurrentInfo',
+                        current: newCurrent,
+                      },
+                    },
+                    total: idx(
+                      fetchMoreResult,
+                      _ => _.viewer.ecfitOrders.total,
+                    ),
+                  },
+                },
+              };
+
+            this.setState({ loading: false });
+
+            return previousResult;
+          },
+        }),
+    );
+  };
 
   public render(): React.ReactNode {
     const {
@@ -191,29 +333,26 @@ class Orders extends React.PureComponent<PropsType> {
 
       // props
       runningIds,
-      selected,
-      current,
-      loading,
-      selectOrders,
-      changePage,
+      selectedOrders,
       variables,
       refetch,
-      ecfitOrders: { edges, total },
+      ecfitOrders: {
+        edges,
+        total,
+        pageInfo: {
+          currentInfo: { current },
+        },
+      },
+      setOrdersToSelectedOrdersMutation,
     } = this.props;
-
-    // TODO: should be not null
-    if (total === null || !edges) throw new Error('should be not null');
-
+    const { loading } = this.state;
     const { first: pageSize } = variables;
     const endPage = Math.ceil(total / pageSize);
 
     return (
       <>
         <Table
-          dataSource={[...edges].slice(
-            current * pageSize,
-            (current + 1) * pageSize,
-          )}
+          dataSource={edges.slice(current * pageSize, (current + 1) * pageSize)}
           locale={{
             emptyText: (
               <Empty
@@ -224,22 +363,24 @@ class Orders extends React.PureComponent<PropsType> {
           }}
           columns={this.columns()}
           loading={loading}
-          rowClassName={edge =>
-            runningIds.includes(
-              idx(edge, _ => _.node.id) ||
-                'null-id' /** TODO: should be not null */,
-            )
+          rowClassName={({ node: { id } }) =>
+            runningIds.includes(id || 'null-id' /** TODO: should be not null */)
               ? styles.running
               : ''
           }
           rowKey={
-            edge =>
-              idx(edge, _ => _.node.id) ||
-              'null-id' /** TODO: should be not null */
+            ({ node: { id } }) =>
+              id || 'null-id' /** TODO: should be not null */
           }
           rowSelection={{
-            selectedRowKeys: selected,
-            onChange: selectOrders,
+            selectedRowKeys: selectedOrders.edges.map(
+              ({ node: { id } }) =>
+                id || 'null-id' /** TODO: should be not null */,
+            ),
+            onChange: ids =>
+              setOrdersToSelectedOrdersMutation({
+                variables: { input: { ids } },
+              } as { variables: setOrdersToSelectedOrdersVariables }),
           }}
           pagination={false}
         />
@@ -250,11 +391,11 @@ class Orders extends React.PureComponent<PropsType> {
             {total}
             {t('orders-info.1')}
 
-            {selected.length === 0 ? null : (
+            {selectedOrders.total === 0 ? null : (
               <>
                 {t('orders-info.2')}
 
-                <span className={styles.selected}>{selected.length}</span>
+                <span className={styles.selected}>{selectedOrders.total}</span>
 
                 {t('orders-info.3')}
               </>
@@ -266,7 +407,9 @@ class Orders extends React.PureComponent<PropsType> {
               type="left"
               className={current === 0 ? styles.disabled : ''}
               onClick={
-                current === 0 ? emptyFunction : () => changePage(current - 1)
+                current === 0
+                  ? emptyFunction
+                  : () => this.changePage(current - 1)
               }
             />
             {current + 1} / {endPage}
@@ -276,7 +419,7 @@ class Orders extends React.PureComponent<PropsType> {
               onClick={
                 current === endPage - 1
                   ? emptyFunction
-                  : () => changePage(current + 1)
+                  : () => this.changePage(current + 1)
               }
             />
             <Select
@@ -303,4 +446,6 @@ class Orders extends React.PureComponent<PropsType> {
   }
 }
 
-export default withNamespaces('orders-ecfit')(Orders);
+export default withNamespaces('orders-ecfit')(
+  withSetCurrent('orders-ecfit')(Orders),
+);

@@ -1,5 +1,6 @@
 // typescript import
 import { DataProxy } from 'apollo-cache';
+import { MutationFn } from 'react-apollo';
 
 import { I18nPropsType } from '@admin/utils/lib/i18n';
 
@@ -16,13 +17,15 @@ import { STATUS_LIST } from './constants';
 import styles from './styles/changeStatus.less';
 
 // graphql typescript
+import { changeStatusFragment as changeStatusFragmentType } from './__generated__/changeStatusFragment';
 import { updateOrder, updateOrderVariables } from './__generated__/updateOrder';
 import { updateOrderStatus } from './__generated__/updateOrderStatus';
 import { UpdateOrder } from '../../../__generated__/admin';
 
 // typescript definition
 interface PropsType extends I18nPropsType {
-  selected: string[];
+  runningIds: string[];
+  selectedOrders: changeStatusFragmentType;
 }
 
 type StatusType =
@@ -30,21 +33,28 @@ type StatusType =
   | 'paymentStatusList'
   | 'shipmentStatusList';
 
-type updateOrderType = (options: {
-  variables: updateOrderVariables;
-}) => Promise<{ data: updateOrder }>;
-
 // definition
 const { Option } = Select;
+
+export const changeStatusFragment = gql`
+  fragment changeStatusFragment on OrderConnection {
+    edges {
+      node {
+        id
+      }
+    }
+    total
+  }
+`;
 
 class ChangeTypes extends React.PureComponent<PropsType> {
   private countErrors = 0;
 
   private newStatus?: string;
 
-  private selectChangeStatusType = (updateOrderMutation: updateOrderType) => (
-    statusType: StatusType,
-  ) => {
+  private selectChangeStatusType = (
+    updateOrderMutation: MutationFn<updateOrder, updateOrderVariables>,
+  ) => (statusType: StatusType) => {
     const { t } = this.props;
 
     this.countErrors = 0;
@@ -87,7 +97,7 @@ class ChangeTypes extends React.PureComponent<PropsType> {
 
   private changeOrderStatusWarning = (
     statusType: StatusType,
-    updateOrderMutation: updateOrderType,
+    updateOrderMutation: MutationFn<updateOrder, updateOrderVariables>,
   ) => {
     const { t } = this.props;
 
@@ -116,14 +126,15 @@ class ChangeTypes extends React.PureComponent<PropsType> {
 
   private updateOrders = async (
     statusType: StatusType,
-    updateOrderMutation: updateOrderType,
+    updateOrderMutation: MutationFn<updateOrder, updateOrderVariables>,
   ) => {
     const {
       // HOC
       t,
 
       // props
-      selected,
+      runningIds,
+      selectedOrders: { edges, total },
     } = this.props;
     const newOrderStatus: Pick<
       UpdateOrder,
@@ -154,16 +165,19 @@ class ChangeTypes extends React.PureComponent<PropsType> {
     }
 
     await Promise.all(
-      selected.map(id =>
-        updateOrderMutation({
+      edges.map(async ({ node: { id } }) => {
+        // TODO: should not be null
+        if (!id || runningIds.includes(id)) return;
+
+        await updateOrderMutation({
           variables: {
             updateOrder: {
               ...newOrderStatus,
               id,
             },
           },
-        }),
-      ),
+        });
+      }),
     );
 
     if (this.countErrors !== 0)
@@ -176,10 +190,10 @@ class ChangeTypes extends React.PureComponent<PropsType> {
         )}`,
       });
 
-    if (selected.length - this.countErrors !== 0)
+    if (total - this.countErrors !== 0)
       notification.success({
         message: t('change-status.success.title'),
-        description: `${selected.length - this.countErrors}${t(
+        description: `${total - this.countErrors}${t(
           'change-status.success.description.0',
         )}${t(`change-status.${statusType}`)}${t(
           'change-status.success.description.1',
@@ -234,7 +248,7 @@ class ChangeTypes extends React.PureComponent<PropsType> {
     const { t } = this.props;
 
     return (
-      <Mutation
+      <Mutation<updateOrder, updateOrderVariables>
         mutation={gql`
           mutation updateOrder($updateOrder: UpdateOrder) {
             updateOrder(updateOrder: $updateOrder) {
@@ -254,7 +268,7 @@ class ChangeTypes extends React.PureComponent<PropsType> {
           this.countErrors += 1;
         }}
       >
-        {(updateOrderMutation: updateOrderType) => (
+        {updateOrderMutation => (
           <Select<StatusType | string>
             value={t('change-status.title')}
             onChange={this.selectChangeStatusType(updateOrderMutation)}

@@ -1,4 +1,6 @@
 // typescript import
+import { MutationFn } from 'react-apollo';
+
 import { I18nPropsType } from '@admin/utils/lib/i18n';
 import { PropsType as DataPickerPropsType } from '@admin/date-picker';
 
@@ -12,7 +14,6 @@ import { filter } from 'graphql-anywhere';
 import Router from 'next/router';
 import { Spin, Icon, Radio, Input, Button, Badge, Modal } from 'antd';
 import idx from 'idx';
-import { areEqual } from 'fbjs';
 import moment from 'moment';
 
 import { withNamespaces } from '@admin/utils/lib/i18n';
@@ -20,6 +21,7 @@ import DatePicker from '@admin/date-picker';
 
 import AdvancedSearch from './AdvancedSearch';
 import ChangeStatus from './ChangeStatus';
+import MoreOperating from './MoreOperating';
 import Tags from './Tags';
 import Orders from './Orders';
 import styles from './styles/container.less';
@@ -31,51 +33,49 @@ import {
   getEcfitList_viewer_ecfitOrders as getEcfitListViewerEcfitOrders,
   getEcfitList_getStorePaymentList as getEcfitListGetStorePaymentList,
   getEcfitList_getStoreShipmentList as getEcfitListGetStoreShipmentList,
+  getEcfitList_selectedOrders as getEcfitListSelectedOrders,
 } from './__generated__/getEcfitList';
 import {
   createEcfitOrder,
   createEcfitOrderVariables,
 } from './__generated__/createEcfitOrder';
+import {
+  setOrdersToSelectedOrders,
+  setOrdersToSelectedOrdersVariables,
+} from './__generated__/setOrdersToSelectedOrders';
 
 // graphql import
 import {
   advancedSearchPaymentListFragment,
   advancedSearchShipmentListFragment,
 } from './AdvancedSearch';
+import { changeStatusFragment } from './ChangeStatus';
 import { tagsPaymentListFragment, tagsShipmentListFragment } from './Tags';
-import { ordersFragment } from './Orders';
+import {
+  ordersEcfitOrdersFragment,
+  ordersSelectedOrdersFragment,
+} from './Orders';
 
 // typescript definition
-type PropsType = I18nPropsType &
-  Pick<getEcfitListQueryPropsType, 'variables' | 'fetchMore' | 'refetch'> & {
-    ecfitOrders: getEcfitListViewerEcfitOrders;
-    getStorePaymentList: getEcfitListGetStorePaymentList;
-    getStoreShipmentList: getEcfitListGetStoreShipmentList;
-    sentFailedAmount: number;
-    isEnabled: boolean;
-  };
-
-interface StateType {
-  runningIds: string[];
-  selected: string[];
-  loading: boolean;
-  current: number;
+interface PropsType
+  extends I18nPropsType,
+    Pick<getEcfitListQueryPropsType, 'variables' | 'fetchMore' | 'refetch'> {
+  ecfitOrders: getEcfitListViewerEcfitOrders;
+  getStorePaymentList: getEcfitListGetStorePaymentList;
+  getStoreShipmentList: getEcfitListGetStoreShipmentList;
+  selectedOrders: getEcfitListSelectedOrders;
+  sentFailedAmount: number;
   isEnabled: boolean;
 }
 
-type createEcfitOrderType = (options: {
-  variables: createEcfitOrderVariables;
-}) => Promise<{ data: createEcfitOrder }>;
+interface StateType {
+  runningIds: string[];
+  isEnabled: boolean;
+}
 
 // definition
 const { Group } = Radio;
 const { Search } = Input;
-const cache: Pick<StateType, 'current' | 'selected'> &
-  Pick<getEcfitListVariables, 'first' | 'filter'> = {
-  current: 0,
-  first: 10,
-  selected: [],
-};
 
 const query = gql`
   query getEcfitList(
@@ -86,7 +86,7 @@ const query = gql`
     viewer {
       id
       ecfitOrders(first: $first, after: $cursor, filter: $filter) {
-        ...ordersFragment
+        ...ordersEcfitOrdersFragment
         edges {
           node {
             id
@@ -120,21 +120,31 @@ const query = gql`
       ...advancedSearchShipmentListFragment
       ...tagsShipmentListFragment
     }
+
+    selectedOrders @client {
+      ...changeStatusFragment
+      ...ordersSelectedOrdersFragment
+      edges {
+        node {
+          id
+        }
+      }
+      total
+    }
   }
 
   ${advancedSearchPaymentListFragment}
   ${advancedSearchShipmentListFragment}
+  ${changeStatusFragment}
   ${tagsPaymentListFragment}
   ${tagsShipmentListFragment}
-  ${ordersFragment}
+  ${ordersEcfitOrdersFragment}
+  ${ordersSelectedOrdersFragment}
 `;
 
 class Container extends React.PureComponent<PropsType, StateType> {
   public state: StateType = {
-    selected: cache.selected,
     runningIds: [],
-    loading: false,
-    current: cache.current,
     // eslint-disable-next-line react/destructuring-assignment
     isEnabled: this.props.isEnabled,
   };
@@ -153,7 +163,13 @@ class Container extends React.PureComponent<PropsType, StateType> {
   }
 
   public componentDidUpdate(): void {
-    const { t } = this.props;
+    const {
+      // HOC
+      t,
+
+      // props
+      variables,
+    } = this.props;
     const { isEnabled } = this.state;
 
     if (!isEnabled)
@@ -163,86 +179,11 @@ class Container extends React.PureComponent<PropsType, StateType> {
         okText: t('send-error.confirm'),
         onOk: () => Router.push('/store-setting'),
       });
+
+    // TODO: remove after print move to next-admin
+    if (process.browser)
+      localStorage.setItem('ecfitOrders-variables', JSON.stringify(variables));
   }
-
-  private changePage = (newCurrent: number) => {
-    const {
-      variables: { first, ...variables },
-      ecfitOrders: {
-        edges,
-        pageInfo: { endCursor },
-      },
-      fetchMore,
-    } = this.props;
-    const { current, loading } = this.state;
-
-    if (loading || newCurrent === current) return;
-
-    cache.current = newCurrent;
-
-    if (newCurrent < current) {
-      this.setState({ current: newCurrent });
-      return;
-    }
-
-    if (Math.ceil((edges || []).length / first) - 1 > current) {
-      this.setState({ current: newCurrent });
-      return;
-    }
-
-    this.setState(
-      {
-        current: newCurrent,
-        loading: true,
-      },
-      () =>
-        fetchMore({
-          query,
-          variables: {
-            ...variables,
-            cursor: endCursor,
-            first,
-          },
-          updateQuery: (previousResult, { fetchMoreResult }) => {
-            if (
-              (idx(fetchMoreResult, _ => _.viewer.ecfitOrders.edges) || [])
-                .length > 0
-            )
-              return {
-                ...previousResult,
-                viewer: {
-                  ...previousResult.viewer,
-                  ecfitOrders: {
-                    __typename: 'OrderConnection',
-                    edges: [
-                      ...(idx(
-                        previousResult,
-                        _ => _.viewer.ecfitOrders.edges,
-                      ) || []),
-                      ...(idx(
-                        fetchMoreResult,
-                        _ => _.viewer.ecfitOrders.edges,
-                      ) || []),
-                    ],
-                    pageInfo: idx(
-                      fetchMoreResult,
-                      _ => _.viewer.ecfitOrders.pageInfo,
-                    ),
-                    total: idx(
-                      fetchMoreResult,
-                      _ => _.viewer.ecfitOrders.total,
-                    ),
-                  },
-                },
-              };
-
-            this.setState({ loading: false });
-
-            return previousResult;
-          },
-        }),
-    );
-  };
 
   private getDatePickerValue = ():
     | undefined
@@ -279,25 +220,37 @@ class Container extends React.PureComponent<PropsType, StateType> {
   };
 
   private updateCreateEcfitOrder = async (
-    createEcfitOrderMutation: createEcfitOrderType,
+    createEcfitOrderMutation: MutationFn<
+      createEcfitOrder,
+      createEcfitOrderVariables
+    >,
   ) => {
-    const { variables } = this.props;
-    const { isEnabled, selected } = this.state;
+    const { variables, selectedOrders } = this.props;
+    const { isEnabled } = this.state;
     const ecfitSentStatus = idx(variables, _ => _.filter.ecfitSentStatus);
+    // TODO: should not be null
+    const selectedIds = selectedOrders.edges.map(
+      ({ node: { id } }) => id || 'null-id',
+    );
     let isFail = false;
 
-    cache.selected = [];
-    this.setState({ selected: [], runningIds: selected });
+    this.setState({ runningIds: selectedIds });
 
     const successIds = (await Promise.all(
-      selected.map(orderId =>
+      selectedIds.map(orderId =>
         createEcfitOrderMutation({
           variables: {
             input: { orderId },
           },
         }),
       ),
-    )).reduce((result, { data: { createEcfitOrder: { status } } }, index) => {
+    )).reduce((result, response, index) => {
+      if (!response) return result;
+
+      const status = idx(response, _ => _.data.createEcfitOrder.status);
+
+      if (!status) return result;
+
       if (
         isEnabled &&
         ['FAIL_ECFIT_NOT_ENABLED', 'FAIL_ECFIT_NOT_AUTHORIZED'].includes(status)
@@ -308,7 +261,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
         ecfitSentStatus === 'NOT_SENT' ||
         (ecfitSentStatus === 'SENT_FAILED' && status === 'OK')
       )
-        return [...result, selected[index]];
+        return [...result, selectedIds[index]];
 
       return result;
     }, []);
@@ -331,8 +284,8 @@ class Container extends React.PureComponent<PropsType, StateType> {
       fetchMore,
     } = this.props;
 
+    // @ts-ignore: https://github.com/apollographql/react-apollo/issues/3044
     await fetchMore({
-      query,
       variables: {
         ...currentVariables,
         cursor: endCursor,
@@ -350,13 +303,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
               edges: [
                 ...(
                   idx(previousResult, _ => _.viewer.ecfitOrders.edges) || []
-                ).filter(
-                  edges =>
-                    // TODO: should not be null
-                    !successIds.includes(
-                      idx(edges, _ => _.node.id) || 'null id',
-                    ),
-                ),
+                ).filter(({ node: { id } }) => !successIds.includes(id)),
                 ...(idx(fetchMoreResult, _ => _.viewer.ecfitOrders.edges) ||
                   []),
               ],
@@ -370,6 +317,8 @@ class Container extends React.PureComponent<PropsType, StateType> {
         };
       },
     });
+
+    this.setState({ runningIds: [] });
   };
 
   public render(): React.ReactNode {
@@ -380,12 +329,14 @@ class Container extends React.PureComponent<PropsType, StateType> {
       // props
       variables,
       refetch,
+      fetchMore,
       ecfitOrders,
       getStorePaymentList,
       getStoreShipmentList,
+      selectedOrders,
       sentFailedAmount,
     } = this.props;
-    const { runningIds, selected, loading, current } = this.state;
+    const { runningIds } = this.state;
 
     return (
       <>
@@ -415,19 +366,15 @@ class Container extends React.PureComponent<PropsType, StateType> {
             ))}
           </Group>
 
-          {selected.length === 0 ? null : (
-            <div>
-              <ChangeStatus selected={selected} />
-            </div>
+          {selectedOrders.total === 0 ? null : (
+            <div className={styles.operating}>
+              <ChangeStatus
+                runningIds={runningIds}
+                selectedOrders={filter(changeStatusFragment, selectedOrders)}
+              />
 
-            /* TODO: T2701 */
-            /* <Select value={t('more-operating.title')} size="large">
-                {['export', 'print'].map(status => (
-                  <Option key={status} value={status}>
-                    {t(`more-operating.${status}`)}
-                  </Option>
-                ))}
-              </Select> */
+              <MoreOperating />
+            </div>
           )}
         </div>
 
@@ -487,10 +434,10 @@ class Container extends React.PureComponent<PropsType, StateType> {
 
             <div />
 
-            {(selected.length === 0 && runningIds.length === 0) ||
+            {(selectedOrders.total === 0 && runningIds.length === 0) ||
             idx(variables, _ => _.filter.ecfitSentStatus) ===
               'SENT_SUCCESSFUL' ? null : (
-              <Mutation
+              <Mutation<createEcfitOrder, createEcfitOrderVariables>
                 mutation={gql`
                   mutation createEcfitOrder($input: CreateEcfitOrderInput!) {
                     createEcfitOrder(input: $input) {
@@ -499,7 +446,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
                   }
                 `}
               >
-                {(createEcfitOrderMutation: createEcfitOrderType) => (
+                {createEcfitOrderMutation => (
                   <Button
                     onClick={() =>
                       this.updateCreateEcfitOrder(createEcfitOrderMutation)
@@ -528,70 +475,113 @@ class Container extends React.PureComponent<PropsType, StateType> {
             )}
           />
 
-          <Orders
-            selectOrders={selectedKeys => {
-              cache.selected = selectedKeys;
-              this.setState({ selected: selectedKeys });
-            }}
-            changePage={this.changePage}
-            runningIds={runningIds}
-            selected={selected}
-            loading={loading}
-            current={current}
-            variables={variables}
-            refetch={refetch}
-            ecfitOrders={filter(ordersFragment, ecfitOrders)}
-          />
+          <Mutation<
+            setOrdersToSelectedOrders,
+            setOrdersToSelectedOrdersVariables
+          >
+            mutation={gql`
+              mutation setOrdersToSelectedOrders(
+                $input: SetOrdersToSelectedOrdersInput!
+              ) {
+                setOrdersToSelectedOrders(input: $input) @client
+              }
+            `}
+          >
+            {setOrdersToSelectedOrdersMutation => (
+              <Orders
+                runningIds={runningIds}
+                variables={variables}
+                refetch={refetch}
+                fetchMore={fetchMore}
+                ecfitOrders={filter(ordersEcfitOrdersFragment, ecfitOrders)}
+                selectedOrders={filter(
+                  ordersSelectedOrdersFragment,
+                  selectedOrders,
+                )}
+                setOrdersToSelectedOrdersMutation={
+                  setOrdersToSelectedOrdersMutation
+                }
+              />
+            )}
+          </Mutation>
         </div>
       </>
     );
   }
 }
 
+const EnhancedContainer = withNamespaces('orders-ecfit')(Container);
+
+// TODO: remove after print move to next-admin
+if (
+  process.browser &&
+  moment().diff(
+    moment(localStorage.getItem('selectedOrders-timeout') || undefined),
+    'minutes',
+    true,
+  ) > 1
+)
+  localStorage.removeItem('ecfitOrders-variables');
+
+const initVariables = (() => {
+  // TODO: remove after orderlist move to next-admin
+  if (process.browser) {
+    const variables = JSON.parse(
+      localStorage.getItem('ecfitOrders-variables') || '{}',
+    );
+
+    if (Object.keys(variables).length !== 0) return variables;
+  }
+
+  return {
+    first: 10,
+    filter: {
+      ecfitSentStatus: 'NOT_SENT',
+    },
+  };
+})();
+
 // eslint-disable-next-line react/no-multi-comp
 export default React.memo(() => (
   <Query<getEcfitList, getEcfitListVariables>
     query={query}
-    variables={
-      {
-        first: 10,
-        filter: {
-          ecfitSentStatus: 'NOT_SENT',
-        },
-      } as getEcfitListVariables
-    }
+    variables={initVariables}
+    ssr={false}
   >
     {({ error, data, variables, fetchMore, refetch }) => {
       if (error) return <Spin indicator={<Icon type="loading" spin />} />;
 
       const ecfitOrders = idx(data, _ => _.viewer.ecfitOrders);
-      const { getStorePaymentList = null, getStoreShipmentList = null } =
-        data || {};
-
-      if (!ecfitOrders || !getStorePaymentList || !getStoreShipmentList)
-        return <Spin indicator={<Icon type="loading" spin />} />;
+      const {
+        getStorePaymentList = null,
+        getStoreShipmentList = null,
+        selectedOrders = null,
+      } = data || {};
 
       if (
-        variables.first !== cache.first ||
-        !areEqual(variables.filter, cache.filter)
-      ) {
-        cache.first = variables.first;
-        cache.filter = variables.filter;
-        cache.current = 0;
-      }
+        !ecfitOrders ||
+        !getStorePaymentList ||
+        !getStoreShipmentList ||
+        !selectedOrders
+      )
+        return <Spin indicator={<Icon type="loading" spin />} />;
 
-      return React.createElement(withNamespaces('orders-ecfit')(Container), {
-        variables,
-        fetchMore,
-        refetch,
-        ecfitOrders,
-        // TODO: should not be null
-        isEnabled:
-          idx(data, _ => _.viewer.store.storeEcfitSettings.isEnabled) || false,
-        getStorePaymentList,
-        getStoreShipmentList,
-        sentFailedAmount: idx(data, _ => _.viewer.sentFailedList.total) || 0,
-      });
+      return (
+        <EnhancedContainer
+          variables={variables}
+          fetchMore={fetchMore}
+          refetch={refetch}
+          ecfitOrders={ecfitOrders}
+          isEnabled={
+            idx(data, _ => _.viewer.store.storeEcfitSettings.isEnabled) ||
+            false /** TODO: should not be null */
+          }
+          getStorePaymentList={getStorePaymentList}
+          getStoreShipmentList={getStoreShipmentList}
+          selectedOrders={selectedOrders}
+          sentFailedAmount={idx(data, _ => _.viewer.sentFailedList.total) || 0}
+        />
+      );
     }}
   </Query>
 ));

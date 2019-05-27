@@ -24,11 +24,12 @@ import { advancedSearchShipmentListFragment as advancedSearchShipmentListFragmen
 import localeFragment from '@admin/utils/lib/fragments/locale';
 
 // typescript definition
-type PropsType = I18nPropsType &
-  Pick<getEcfitListQueryPropsType, 'variables' | 'refetch'> & {
-    getStorePaymentList: advancedSearchPaymentListFragmentType;
-    getStoreShipmentList: advancedSearchShipmentListFragmentType;
-  };
+interface PropsType
+  extends I18nPropsType,
+    Pick<getEcfitListQueryPropsType, 'variables' | 'refetch'> {
+  getStorePaymentList: advancedSearchPaymentListFragmentType;
+  getStoreShipmentList: advancedSearchShipmentListFragmentType;
+}
 
 interface StateType {
   isVisible: boolean;
@@ -121,8 +122,26 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
 
     refetch({
       ...variables,
-      filter,
+      filter: {
+        ...filter,
+        timeRange: idx(variables, _ => _.filter.timeRange),
+        searchTerm: idx(variables, _ => _.filter.searchTerm),
+        ecfitSentStatus: idx(variables, _ => _.filter.ecfitSentStatus),
+      },
     });
+  };
+
+  private visibleChange = (visible: boolean) => {
+    if (!visible) {
+      this.setState({ isVisible: visible }, this.search);
+      return;
+    }
+
+    const {
+      variables: { filter },
+    } = this.props;
+
+    this.setState({ isVisible: visible, filter });
   };
 
   public render(): React.ReactNode {
@@ -183,9 +202,7 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
             </div>
           </>
         }
-        onVisibleChange={visible =>
-          this.setState({ isVisible: visible }, this.search)
-        }
+        onVisibleChange={this.visibleChange}
         placement="bottomLeft"
         trigger="click"
       >

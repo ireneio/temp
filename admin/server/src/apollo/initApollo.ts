@@ -38,8 +38,7 @@ const create = (
     dataIdFromObject: ({ id }) => id,
   }).restore(initialState || {});
 
-  // TODO: add cache in arguments
-  initializeCache();
+  initializeCache(cache);
 
   return new ApolloClient({
     name: 'admin',

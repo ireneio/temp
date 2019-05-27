@@ -1,0 +1,11 @@
+extend type Query {
+  selectedOrders: OrderConnection!
+}
+
+extend type Mutation {
+  setOrdersToSelectedOrders(input: SetOrdersToSelectedOrdersInput!): Boolean!
+}
+
+input SetOrdersToSelectedOrdersInput {
+  ids: [ID!]!
+}

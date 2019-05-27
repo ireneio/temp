@@ -30,15 +30,16 @@ interface PropsType
   extends I18nPropsType,
     Pick<QueryResult<getExportFormat>, 'fetchMore'>,
     OmitType<DrawerProps, 'closable' | 'title'> {
+  loading: boolean;
   exportFormatList: {
     id: string;
     name: string;
   }[];
-  goBack: () => void;
+  orderIds: string[];
 }
 
 interface StateType extends OmitType<orderExportDownload, 'orderIds'> {
-  loading: boolean;
+  loadingExportDownloadUri: boolean;
 }
 
 // definition
@@ -49,7 +50,7 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
     maskId: null,
     fileType: null,
     fileName: null,
-    loading: false,
+    loadingExportDownloadUri: false,
   };
 
   private getExportDownloadUri = () => {
@@ -59,12 +60,13 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
 
       // props
       fetchMore,
+      orderIds,
     } = this.props;
-    const { maskId, fileType, fileName, loading } = this.state;
+    const { maskId, fileType, fileName, loadingExportDownloadUri } = this.state;
 
-    if (loading) return;
+    if (loadingExportDownloadUri) return;
 
-    this.setState({ loading: true }, () =>
+    this.setState({ loadingExportDownloadUri: true }, () =>
       fetchMore<
         getExportDownloadUri,
         getExportDownloadUriVariables,
@@ -81,14 +83,15 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
           ids: {
             maskId,
             fileType,
-            orderIds: [], // TODO: use selectedOrders
+            orderIds,
+            fileName,
           },
         },
         updateQuery: (previousResult, { fetchMoreResult }) => {
           const uri = idx(fetchMoreResult, _ => _.getOrderExportDownload.uri);
 
           if (!uri) {
-            this.setState({ loading: false }, () =>
+            this.setState({ loadingExportDownloadUri: false }, () =>
               Modal.error({
                 title: t('error.title'),
                 content: t('error.content'),
@@ -97,17 +100,12 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
             return previousResult;
           }
 
-          // TODO: should remove setTimeout
-          setTimeout(() => {
-            const downloadLink = document.createElement('a');
+          const downloadLink = document.createElement('a');
 
-            downloadLink.href = `/api/importExport/orders/${uri}`;
-            downloadLink.download = `${fileName ||
-              new Date().getTime()}.${fileType}`;
-            downloadLink.click();
+          downloadLink.href = `/api/importExport/orders/${uri}`;
+          downloadLink.click();
 
-            this.setState({ loading: false });
-          }, 2000);
+          this.setState({ loadingExportDownloadUri: false });
 
           return previousResult;
         },
@@ -121,12 +119,13 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
       t,
 
       // props
+      loading,
       className,
       exportFormatList,
-      goBack,
+      onClose,
       ...props
     } = this.props;
-    const { maskId, fileType, loading } = this.state;
+    const { maskId, fileType, loadingExportDownloadUri } = this.state;
     const options: {
       [key: string]: PropsType['exportFormatList'];
     } = {
@@ -142,11 +141,11 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
             <span>{t('title')}</span>
 
             <span>
-              <Button onClick={goBack}>{t('go-back')}</Button>
+              <Button onClick={onClose}>{t('go-back')}</Button>
 
               {!maskId || !fileType ? null : (
                 <Button
-                  loading={loading}
+                  loading={loadingExportDownloadUri}
                   onClick={this.getExportDownloadUri}
                   type="primary"
                 >
@@ -157,41 +156,46 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
           </div>
         }
         className={`${styles.root} ${className}`}
+        onClose={onClose}
         closable={false}
       >
-        {['maskId', 'fileType', 'fileName'].map(key => (
-          <div key={key} className={styles.content}>
-            <span>{t(`${key}.title`)}</span>
+        {loading ? (
+          <Spin indicator={<Icon type="loading" spin />} />
+        ) : (
+          ['maskId', 'fileType', 'fileName'].map(key => (
+            <div key={key} className={styles.content}>
+              <span>{t(`${key}.title`)}</span>
 
-            <span>
-              {options[key] ? (
-                <Select
-                  placeholder={t(`${key}.placeholder`)}
-                  onChange={value =>
-                    this.setState({ [key]: value } as OmitType<
-                      StateType,
-                      'loading'
-                    >)
-                  }
-                >
-                  {options[key].map(({ id, name }) => (
-                    <Option key={id}>{name}</Option>
-                  ))}
-                </Select>
-              ) : (
-                <Input
-                  placeholder={t(`${key}.placeholder`)}
-                  onChange={({ target: { value } }) =>
-                    this.setState({ [key]: value } as OmitType<
-                      StateType,
-                      'loading'
-                    >)
-                  }
-                />
-              )}
-            </span>
-          </div>
-        ))}
+              <span>
+                {options[key] ? (
+                  <Select
+                    placeholder={t(`${key}.placeholder`)}
+                    onChange={value =>
+                      this.setState({ [key]: value } as OmitType<
+                        StateType,
+                        'loadingExportDownloadUri'
+                      >)
+                    }
+                  >
+                    {options[key].map(({ id, name }) => (
+                      <Option key={id}>{name}</Option>
+                    ))}
+                  </Select>
+                ) : (
+                  <Input
+                    placeholder={t(`${key}.placeholder`)}
+                    onChange={({ target: { value } }) =>
+                      this.setState({ [key]: value } as OmitType<
+                        StateType,
+                        'loadingExportDownloadUri'
+                      >)
+                    }
+                  />
+                )}
+              </span>
+            </div>
+          ))
+        )}
       </Drawer>
     );
   }
@@ -199,67 +203,76 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
 
 const EnhancedOrdersExport = withNamespaces('orders-export')(OrdersExport);
 
-export default React.memo(
-  ({ visible, ...props }: OmitType<PropsType, keyof I18nPropsType>) => (
-    <Query<getExportFormat>
-      query={gql`
-        query getExportFormat {
-          getExportFormatList(
-            search: {
-              filter: {
-                or: [
-                  { type: "exact", field: "type", query: "order_custom" }
-                  {
-                    type: "exact"
-                    field: "type"
-                    query: "order_system_default"
-                  }
-                ]
-              }
-            }
-          ) {
-            data {
-              id
-              name
+export default React.memo(({ visible, ...props }: DrawerProps) => (
+  <Query<getExportFormat>
+    query={gql`
+      query getExportFormat {
+        getExportFormatList(
+          search: {
+            filter: {
+              or: [
+                { type: "exact", field: "type", query: "order_custom" }
+                { type: "exact", field: "type", query: "order_system_default" }
+              ]
             }
           }
-
-          getDefaultExportFormat(type: order_default) {
+        ) {
+          data {
             id
             name
           }
         }
-      `}
-      skip={!visible}
-    >
-      {({ loading, error, data, fetchMore }) => {
-        if (loading || error || !data)
-          return <Spin indicator={<Icon type="loading" spin />} />;
 
-        const { getExportFormatList, getDefaultExportFormat } = data;
-        const exportFormatList = [];
+        getDefaultExportFormat(type: order_default) {
+          id
+          name
+        }
 
-        // TODO: should not be null
-        if (getDefaultExportFormat)
-          exportFormatList.push(getDefaultExportFormat);
-
-        return (
-          <EnhancedOrdersExport
-            {...props}
-            visible={visible}
-            fetchMore={fetchMore}
-            exportFormatList={
-              [
-                ...exportFormatList,
-                // TODO: should not be null
-                ...(idx(getExportFormatList, _ => _.data) || []).filter(
-                  d => d !== null,
-                ),
-              ] as PropsType['exportFormatList']
+        selectedOrders @client {
+          edges {
+            node {
+              id
             }
-          />
-        );
-      }}
-    </Query>
-  ),
-);
+          }
+        }
+      }
+    `}
+    skip={!visible}
+  >
+    {({ loading, error, data, fetchMore }) => {
+      const {
+        getExportFormatList = null,
+        getDefaultExportFormat = { data: [] },
+        selectedOrders = null,
+      } = data || {};
+      const exportFormatList = [];
+
+      // TODO: should not be null
+      if (getDefaultExportFormat) exportFormatList.push(getDefaultExportFormat);
+
+      return (
+        <EnhancedOrdersExport
+          {...props}
+          loading={Boolean(loading || error || !data)}
+          fetchMore={fetchMore}
+          visible={visible}
+          exportFormatList={
+            [
+              ...exportFormatList,
+              // TODO: should not be null
+              ...(idx(getExportFormatList, _ => _.data) || []).filter(
+                d => d !== null,
+              ),
+            ] as PropsType['exportFormatList']
+          }
+          orderIds={
+            // TODO: should not be null
+            !selectedOrders
+              ? []
+              : selectedOrders.edges.map(({ node: { id } }) => id || 'null-id')
+          }
+        />
+      );
+    }}
+  </Query>
+));
