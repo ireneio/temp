@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.21.6 (2019-05-29)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#431](https://github.com/meepshop/meep-lerna/pull/431) 2331 【功能 國泰世華銀行 - 信用卡收單服務（金流串接） ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#536](https://github.com/meepshop/meep-lerna/pull/536) 修復 next-store 另開分頁 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#538](https://github.com/meepshop/meep-lerna/pull/538) (@meepshop/front-end) Remove lock ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.21.5 (2019-05-27)
 
 #### :rocket: New Feature
