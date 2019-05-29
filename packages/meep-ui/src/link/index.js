@@ -33,6 +33,9 @@ export default class Link extends React.PureComponent {
   };
 
   onClick = url => e => {
+    // return when clicking with these following key
+    if (e.shiftKey || e.metaKey || e.ctrlKey) return;
+
     const { goTo, target } = this.props;
     const { host, pathname, query, hash } = new URL(
       /^#/.test(url) ? `${window.location.pathname}${url}` : url,
