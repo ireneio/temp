@@ -119,6 +119,7 @@ export default ({
           hash
           bankid
           Language
+          strRqXML
         }
         url
         type

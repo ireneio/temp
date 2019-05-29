@@ -32,6 +32,9 @@ export const paymentInfoFragment = gql`
             gmoContractCode: contractCode
             choosePayment: paymentType
           }
+          cathay {
+            choosePayment: type
+          }
         }
         memo {
           allpay {
@@ -98,6 +101,9 @@ export default class PaymentInfo extends React.PureComponent {
 
       case 'hitrust':
         return this.credit();
+
+      case 'cathay':
+        return choosePayment !== 'CREDIT' ? null : this.credit();
 
       default:
         return null;
@@ -254,7 +260,7 @@ export default class PaymentInfo extends React.PureComponent {
       },
     } = this.props;
 
-    return <div>{`${transformLocale(LOCALE.CARD_NO)}${card4no}`}</div>;
+    return <div>{`${transformLocale(LOCALE.CARD_NO)}${card4no || ''}`}</div>;
   };
 
   render() {

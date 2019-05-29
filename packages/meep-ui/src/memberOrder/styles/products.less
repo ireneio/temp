@@ -19,9 +19,12 @@
     }
 
     :global(.ant-table-thead) {
-      & > tr > th {
+      & > tr {
         background: transparent;
-        font-size: 16px;
+
+        & > th {
+          font-size: 16px;
+        }
       }
 
       @media @PHONE_MEDIA {
