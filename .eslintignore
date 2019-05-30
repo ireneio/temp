@@ -8,4 +8,4 @@ lib
 coverage
 
 # add checking other configs
-!.*.js
+!.*

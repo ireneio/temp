@@ -425,7 +425,7 @@ class Orders extends React.PureComponent<
             <Select
               className={styles.pageSize}
               value={pageSize}
-              onChange={value =>
+              onChange={(value: 10 | 20 | 50 | 100 | 500) =>
                 refetch({
                   ...variables,
                   first: value,

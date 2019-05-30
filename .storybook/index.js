@@ -3,13 +3,19 @@
 const fs = require('fs');
 const path = require('path');
 
+// eslint-disable-next-line import/no-dynamic-require
 const { main, name } = require(path.resolve('./package.json'));
 
 require('output-file-sync')(
   path.resolve(__dirname, 'story.js'),
-  `import React from 'react';
+  `/* eslint-disable */
+
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 
+import '${
+    /@admin/.test(name) ? '@admin' : '@store'
+  }/utils/lib/styles/base.less';
 import MockTypes from '@meepshop/mock-types';
 import resolvers, { initializeCache } from '${
     /@admin/.test(name) ? '@admin' : '@store'

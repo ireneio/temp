@@ -4,9 +4,7 @@ class Mock {
     [key: string]: ((
       arg0: { [key: string]: unknown },
       arg1: { [key: string]: unknown },
-    ) => {
-      [other: string]: unknown;
-    })[];
+    ) => unknown)[];
   } = {};
 
   public tracking: string[] = [];
@@ -19,7 +17,7 @@ class Mock {
   };
 
   public add = <
-    T extends { [key: string]: unknown },
+    T,
     P extends { [key: string]: unknown } = { [key: string]: unknown },
     A extends { [key: string]: unknown } = { [key: string]: unknown }
   >(

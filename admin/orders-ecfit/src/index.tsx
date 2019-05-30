@@ -44,7 +44,7 @@ class OrdersEcfit extends React.PureComponent<I18nPropsType> {
             className={styles.title}
             defaultValue={t('title')}
             dropdownClassName={styles.options}
-            onChange={value => {
+            onChange={(value: string) => {
               if (value === t('orders:title')) Router.push('/orders');
               else Router.push('/orders/ecfit');
             }}

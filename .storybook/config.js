@@ -1,10 +1,9 @@
+/* eslint-disable global-require, react/prop-types */
+
 import { configure, storiesOf } from '@storybook/react';
 import LinkTo from '@storybook/addon-links/react';
 import React from 'react';
 import Markdown from 'react-markdown';
-import { message } from 'antd';
-
-import '@admin/utils/lib/styles/base.less';
 
 const stories = [
   {
@@ -57,7 +56,7 @@ const link = path => ({ href, children }) => {
         href={href}
         onClick={e => {
           e.preventDefault();
-          location.hash = href;
+          window.location.hash = href;
         }}
       >
         {children}
@@ -66,7 +65,7 @@ const link = path => ({ href, children }) => {
 
   if (/^http/.test(href))
     return (
-      <a href={href} target="_blank">
+      <a href={href} target="_blank" rel="noopener noreferrer">
         {children}
       </a>
     );
@@ -84,6 +83,7 @@ const link = path => ({ href, children }) => {
     <a
       href={`https://github.com/meepshop/meep-lerna/tree/master/${path}${href}`}
       target="_blank"
+      rel="noopener noreferrer"
     >
       {children}
     </a>
@@ -91,6 +91,7 @@ const link = path => ({ href, children }) => {
 };
 
 configure(() => {
+  // eslint-disable-next-line import/no-unresolved
   require('./story.js');
 
   stories.forEach(({ name, source, path }) => {

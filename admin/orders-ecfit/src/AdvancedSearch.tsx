@@ -166,7 +166,7 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
 
                   <Select
                     value={idx(filter, _ => _[optionsKey]) || []}
-                    onChange={value =>
+                    onChange={(value?: string[]) =>
                       this.setState({
                         filter: {
                           ...filter,
