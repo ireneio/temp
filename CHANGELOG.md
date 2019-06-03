@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 0.21.7 (2019-06-03)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#541](https://github.com/meepshop/meep-lerna/pull/541) 【其他】修改前端 deploy 的設定 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#544](https://github.com/meepshop/meep-lerna/pull/544) 新架構 - 產品列表元件不應吃產品搜尋 (products?limit)＆關鍵字搜尋 (products/?search) 的值 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#540](https://github.com/meepshop/meep-lerna/pull/540) 【BUG】 新架構/選單元件 - 子選單展開第一層文字應置左 ([@HsuTing](https://github.com/HsuTing))
+  - [#542](https://github.com/meepshop/meep-lerna/pull/542) 【BUG】 前台新架構 - 置頂選單顯示異常（有子選單時） ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- Other
+  - [#545](https://github.com/meepshop/meep-lerna/pull/545) (@meepshop/front-end) Remove lock ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `mock-types`
+  - [#543](https://github.com/meepshop/meep-lerna/pull/543) (@meepshop/front-end) Modify storybook ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.21.6 (2019-05-29)
 
 #### :rocket: New Feature
