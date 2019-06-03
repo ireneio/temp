@@ -73,8 +73,8 @@ const getJoinedModule = (
             cart,
           };
         }
+
         case 'products':
-        case 'products-controlled': {
           return {
             ...widget,
             params: {
@@ -98,7 +98,31 @@ const getJoinedModule = (
             stockNotificationList,
             productListCache,
           };
-        }
+
+        case 'products-controlled':
+          return {
+            ...widget,
+            params: {
+              ids: widget.params.ids,
+              includedAllTags: widget.params.includedAllTags,
+              limit: +widget.params.limit,
+              offset: +widget.params.offset,
+              price: widget.params.price,
+              search: widget.params.search,
+              sort: widget.params.sort,
+              tags: widget.params.tags,
+              ...(widget.params.ids
+                ? {
+                    sort: 'selections',
+                  }
+                : {}),
+            },
+            cart,
+            wishList,
+            stockNotificationList,
+            productListCache,
+          };
+
         case 'product': {
           return {
             ...widget,
