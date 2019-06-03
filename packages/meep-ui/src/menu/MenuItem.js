@@ -32,6 +32,8 @@ const { Item: AntdMenuItem, SubMenu } = Menu;
 export default class MenuItem extends React.PureComponent {
   generateURL = memoizeOne(notMemoizedGenerateURL);
 
+  SubMenu = enhancer(MenuItem);
+
   static propTypes = {
     /** context, TODO: remove */
     transformLocale: PropTypes.func.isRequired,
@@ -264,7 +266,7 @@ export default class MenuItem extends React.PureComponent {
             builtinPlacements={level === 1 ? BUILTIN_PLACEMENTS : undefined}
           >
             {pages.map(({ id, pages: subPages, ...page }) =>
-              React.createElement(enhancer(MenuItem), {
+              React.createElement(this.SubMenu, {
                 ...page,
                 key: id,
                 id,
