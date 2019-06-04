@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.22.0 (2019-06-04)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#526](https://github.com/meepshop/meep-lerna/pull/526) next-store koa 轉 express ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#526](https://github.com/meepshop/meep-lerna/pull/526) next-store koa 轉 express ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.21.7 (2019-06-03)
 
 #### :rocket: New Feature
