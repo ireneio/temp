@@ -8,7 +8,7 @@ import { notification } from 'antd';
  */
 const getData = async (query, variables, retryTimes = 0) => {
   try {
-    const res = await fetch('/api', {
+    const res = await fetch('/api/graphql', {
       method: 'post',
       headers: {
         'content-type': 'application/json',

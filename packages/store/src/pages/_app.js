@@ -58,37 +58,40 @@ class MyApp extends App {
        * Because we connot get page data when token expired, we need to check
        * 401 error before page navigation. We also
        */
-      const response = await fetch(isServer ? `${API_HOST}/graphql` : '/api', {
-        method: 'post',
-        headers: isServer
-          ? {
-              'content-type': 'application/json',
-              'x-meepshop-domain': req.headers['x-meepshop-domain'],
-              'x-meepshop-authorization-token':
-                req.headers['x-meepshop-authorization-token'],
-            }
-          : { 'content-type': 'application/json' },
-        credentials: isServer ? 'include' : 'same-origin',
-        body: JSON.stringify({
-          query: `
-            query checkStore {
-              getStoreList {
-                data {
-                  setting {
-                    locale
+      const response = await fetch(
+        isServer ? `${API_HOST}/graphql` : '/api/graphql',
+        {
+          method: 'post',
+          headers: isServer
+            ? {
+                'content-type': 'application/json',
+                'x-meepshop-domain': req.get('host'),
+                'x-meepshop-authorization-token':
+                  req.cookies['x-meepshop-authorization-token'],
+              }
+            : { 'content-type': 'application/json' },
+          credentials: isServer ? 'include' : 'same-origin',
+          body: JSON.stringify({
+            query: `
+              query checkStore {
+                getStoreList {
+                  data {
+                    setting {
+                      locale
+                    }
+                  }
+                }
+
+                viewer {
+                  store {
+                    storeStatus
                   }
                 }
               }
-
-              viewer {
-                store {
-                  storeStatus
-                }
-              }
-            }
-          `,
-        }),
-      });
+            `,
+          }),
+        },
+      );
 
       if (isServer && response.status >= 400 && response.status !== 403) {
         console.log(
@@ -115,14 +118,11 @@ class MyApp extends App {
        */
       if (response.status === 401) {
         if (isServer) {
-          res.setHeader(
-            'Set-Cookie',
-            `x-meepshop-authorization-token=; path=/; Max-Age=0; HttpOnly`,
-          );
-          res.writeHead(302, {
-            Location: '/',
+          res.cookie('x-meepshop-authorization-token', '', {
+            maxAge: 0,
+            httpOnly: true,
           });
-          res.end();
+          res.redirect(302, '/');
           return {};
         }
         const {

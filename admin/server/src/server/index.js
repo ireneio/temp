@@ -2,8 +2,8 @@ const path = require('path');
 
 require('isomorphic-unfetch');
 const nextApp = require('next');
-const compression = require('compression');
 const express = require('express');
+const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const nextI18NextMiddleware = require('next-i18next/middleware');
@@ -48,7 +48,7 @@ module.exports = app.prepare().then(
         res.status(200).end();
       });
       server.get('/version', (req, res) => {
-        res.status(200).send(`Welcome to Next-Admin ${VERSION}`);
+        res.status(200).send(`Welcome to next-admin ${VERSION}`);
       });
       server.get('*', (req, res) => handler(req, res));
 

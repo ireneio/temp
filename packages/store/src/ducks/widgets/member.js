@@ -88,7 +88,7 @@ export function* loginFlow({ payload }) {
 
   try {
     const res = yield call(Api.login, { email, password });
-    if (res.isLoginSuccess) {
+    if (res.userId) {
       const memberData = yield call(Api.updateMemberData);
       notification.success({ message: LOCALE.LOGIN_SUCCESS[locale] });
       if (callback) callback();

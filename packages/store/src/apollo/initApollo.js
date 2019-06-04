@@ -87,14 +87,14 @@ const create = (initialState, ctx) => {
         }
       }),
       new HttpLink({
-        uri: process.browser ? '/api' : `${API_HOST}/graphql`,
+        uri: process.browser ? '/api/graphql' : `${API_HOST}/graphql`,
         credentials: 'include',
         headers: !ctx
           ? {}
           : {
-              'x-meepshop-domain': ctx.req.headers['x-meepshop-domain'],
+              'x-meepshop-domain': ctx.req.get('host'),
               'x-meepshop-authorization-token':
-                ctx.req.headers['x-meepshop-authorization-token'],
+                ctx.req.cookies['x-meepshop-authorization-token'],
             },
       }),
     ]),
