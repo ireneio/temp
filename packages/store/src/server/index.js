@@ -2,23 +2,25 @@ const path = require('path');
 const os = require('os');
 
 require('isomorphic-unfetch');
+const Koa = require('koa');
 const nextApp = require('next');
-const express = require('express');
+const Router = require('koa-router');
+const bodyParser = require('koa-bodyparser');
 const compression = require('compression');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
+const koaConnect = require('koa-connect');
+const uuid = require('uuid/v4');
 
 const { publicRuntimeConfig } = require('../../next.config');
 const routes = require('./routes');
-const fbAuthForLine = require('./fbAuthForLine');
+const { api, signin, fbAuthForLine } = require('./routers');
 
-const { VERSION } = publicRuntimeConfig;
+const { STORE_DOMAIN, VERSION } = publicRuntimeConfig;
 const port = parseInt(process.env.PORT, 10) || 14401;
 const app = nextApp({
   dir: path.resolve(__dirname, '..'),
   dev: process.env.NODE_ENV !== 'production',
 });
-const handler = routes.getRequestHandler(app, ({ req, res, route, query }) => {
+const handle = routes.getRequestHandler(app, ({ req, res, route, query }) => {
   let { page } = route;
 
   if (route.name === 'pages' && query.pId) page = '/product';
@@ -40,55 +42,93 @@ const handler = routes.getRequestHandler(app, ({ req, res, route, query }) => {
 module.exports = app.prepare().then(
   () =>
     new Promise(resolve => {
-      const server = express();
+      const server = new Koa();
+      const router = new Router();
 
-      // middleware
-      server.use(cookieParser());
-      server.use(compression());
-      server.use(bodyParser.json());
-      server.use((req, res, next) => {
-        req.locale = req.cookies.locale;
-        req.currency = req.cookies.currency;
-        next();
+      /** router start */
+      // info
+      router.get('/healthz', ctx => {
+        ctx.body = `Welcome to MeepShop-Store ${VERSION}`;
       });
 
-      // routes
-      server.get('/healthz', (req, res) => {
-        res.status(200).end();
-      });
-      server.get('/version', (req, res) => {
-        res.status(200).send(`Welcome to next-store ${VERSION}`);
-      });
-      server.post('/log', req => {
+      router.post('/log', ctx => {
         console.log(
-          `#LOG#(${req.get('host')}) >>>  ${JSON.stringify(req.body.data)}`,
+          `#LOG#(${ctx.headers['x-meepshop-domain']}) >>>  ${JSON.stringify(
+            ctx.request.body.data,
+          )}`,
         );
       });
-      server.post('/checkout/thank-you-page/:id', (req, res) => {
-        res.redirect(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
+
+      // api
+      router.post('/api', api);
+
+      // auth
+      router.post('/signin', signin('/auth/login'));
+      router.post('/fbAuth', signin('/facebook/fbLogin'));
+      router.get('/fbAuthForLine', fbAuthForLine);
+      router.get('/signout', ctx => {
+        ctx.cookies.set('x-meepshop-authorization-token', '', {
+          maxAge: 0,
+        });
+        ctx.status = 200;
+      });
+
+      // others
+      router.post('/checkout/thank-you-page/:id', ctx => {
+        ctx.redirect(ctx.request.href);
       });
 
       // For facebook fan page connect
-      server.post('/', (req, res) => handler(req, res));
-
-      // auth
-      server.get('/fbAuthForLine', fbAuthForLine);
-
-      server.get('*', (req, res) => handler(req, res));
-
-      // error handler
-      // eslint-disable-next-line consistent-return
-      server.use((error, req, res, next) => {
-        console.error(`error: ${JSON.stringify(error)} (${os.hostname()})`);
-        if (res.headersSent) {
-          // return to default error handler
-          return next(error);
-        }
-        res.status(500);
-        res.render('error', { error });
+      router.post('/', async (ctx, next) => {
+        await handle(ctx.req, ctx.res);
+        ctx.respond = false;
+        await next();
       });
 
-      // listen
+      router.get('*', async (ctx, next) => {
+        await handle(ctx.req, ctx.res);
+        ctx.respond = false;
+        await next();
+      });
+      /** router end */
+
+      server.on('error', error => {
+        console.log(`Koa server onError ${JSON.stringify(error)})`);
+      });
+
+      server.use(async (ctx, next) => {
+        const id = uuid.v4();
+        const start = Date.now();
+
+        console.log(
+          `id=${id}, direction=in, info=${ctx.domain} ${ctx.path} ${ctx.ip} ${
+            ctx.ips
+          } ${ctx.headers}`,
+        );
+        console.log(`id=${id}, body=${JSON.stringify(ctx.body)}`);
+        await next();
+        console.log(`id=${id}, direction=out, time=${Date.now() - start}`);
+      });
+      server.use(bodyParser());
+      server.use(koaConnect(compression()));
+      server.use(async (ctx, next) => {
+        try {
+          ctx.res.statusCode = 200;
+          ctx.headers['x-meepshop-domain'] = STORE_DOMAIN || ctx.host;
+          ctx.headers['x-meepshop-authorization-token'] =
+            ctx.cookies.get('x-meepshop-authorization-token') || null;
+          ctx.req.locale = ctx.cookies.get('locale');
+          ctx.req.currency = ctx.cookies.get('currency');
+          delete ctx.headers.cookie;
+          await next();
+        } catch (error) {
+          console.log(`KoaCatch ${error.message} (${os.hostname()})`);
+          throw error;
+        }
+      });
+
+      server.use(router.routes());
+
       server.listen(port, () => {
         console.log(`> Store ready on http://localhost:${port}`);
         resolve();

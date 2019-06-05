@@ -1,15 +1,15 @@
-const { publicRuntimeConfig } = require('../../next.config');
+const { publicRuntimeConfig } = require('../../../next.config');
 
 const { API_HOST } = publicRuntimeConfig;
 
-module.exports = async (req, res) => {
+module.exports = async ctx => {
   try {
     /* Get FB app secret */
     const appIdResponse = await fetch(`${API_HOST}/graphql`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
-        'x-meepshop-domain': req.get('host'),
+        'x-meepshop-domain': ctx.headers['x-meepshop-domain'],
       },
       credentials: 'include',
       body: JSON.stringify({
@@ -49,26 +49,26 @@ module.exports = async (req, res) => {
     if (!appSecret) throw new Error('No app secret.');
 
     /* Handle error */
-    const errorArr = req.originalUrl.match(/(error)=(.*?)(?=&)/gm);
+    const errorArr = ctx.url.match(/(error)=(.*?)(?=&)/gm);
     const error = errorArr && errorArr[0].split('=')[1];
-    const errorReasonArr = req.originalUrl.match(/(error_reason)=(.*?)(?=&)/gm);
+    const errorReasonArr = ctx.url.match(/(error_reason)=(.*?)(?=&)/gm);
     const errorReason = errorReasonArr && errorReasonArr[0].split('=')[1];
 
     if (error) throw new Error(`${error}: ${errorReason}`);
     /* Handle error - End */
 
     /* Parse code & state */
-    const codeArr = req.originalUrl.match(/code=(.*?)(?=&)/gm);
+    const codeArr = ctx.url.match(/code=(.*?)(?=&)/gm);
     const code = codeArr && codeArr[0].split('=')[1];
-    const stateArr = req.originalUrl.match(/&(.*?)$/gm);
+    const stateArr = ctx.url.match(/&(.*?)$/gm);
     const state = stateArr && stateArr[0].split('=')[1];
 
     if (!state.match(/meepShopNextStore/gm))
       throw new Error('State is not matched!');
 
-    const fbApi = `https://graph.facebook.com/v3.0/oauth/access_token?client_id=${appId}&redirect_uri=https://${req.get(
-      'host',
-    )}/fbAuthForLine&client_secret=${appSecret}&code=${code}`;
+    const fbApi = `https://graph.facebook.com/v3.0/oauth/access_token?client_id=${appId}&redirect_uri=https://${
+      ctx.headers['x-meepshop-domain']
+    }/fbAuthForLine&client_secret=${appSecret}&code=${code}`;
     const responseFromFB = await fetch(fbApi, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' },
@@ -82,8 +82,11 @@ module.exports = async (req, res) => {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
-        'x-meepshop-domain': req.get('host'),
+        'x-meepshop-domain': ctx.headers['x-meepshop-domain'],
+        'x-meepshop-authorization-token':
+          ctx.headers['x-meepshop-authorization-token'],
       },
+      credentials: 'include',
       body: JSON.stringify({ accessToken: dataFromFB.access_token }),
     });
 
@@ -92,8 +95,8 @@ module.exports = async (req, res) => {
 
     const dataApi = await responseApi.json();
 
-    if (dataApi.code === 200 || dataApi.code === 201) {
-      res.cookie(
+    if (dataApi.code === 200 || dataApi.code === 201)
+      ctx.cookies.set(
         'x-meepshop-authorization-token',
         responseApi.headers.get('x-meepshop-authorization-token'),
         {
@@ -102,23 +105,18 @@ module.exports = async (req, res) => {
           httpOnly: true,
         },
       );
-      res.cookie(`x-meepshop-authorization-token-${req.get('host')}`, '', {
-        maxAge: 0,
-        path: '/',
-        httpOnly: true,
-      });
-    } else {
-      throw new Error(`${dataApi.code}-${dataApi._error}`); // eslint-disable-line
-    }
+    else throw new Error(`${dataApi.code}-${dataApi._error}`); // eslint-disable-line
 
     /* Redirect back to website by condition */
-    if (state.match(/cart/gm)) res.redirect('/checkout');
-    else res.redirect('/login');
+    ctx.status = 302;
+    if (state.match(/cart/gm)) ctx.redirect('/checkout');
+    else ctx.redirect('/login');
     /* Redirect back to website by condition - End */
   } catch (error) {
     console.log(
       `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
     );
-    res.redirect(301, `/login?error=${error.message}`);
+    ctx.status = 301;
+    ctx.redirect(`/login?error=${error.message}`);
   }
 };

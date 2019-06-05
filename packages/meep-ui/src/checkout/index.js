@@ -143,12 +143,11 @@ export default class Checkout extends React.Component {
 
     const { id, orderNo, error, formData } =
       result?.data?.createOrderList?.[0] || {};
-    const { errors } = result || {};
 
-    if (error || errors || !id) {
+    if (error || !id) {
       notification.error({
         message: transformLocale(LOCALE.PAY_FILE),
-        description: error || errors?.[0]?.message || '',
+        description: error || '',
       });
 
       this.setState({ isSubmitting: false });
