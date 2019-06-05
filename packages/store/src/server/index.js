@@ -93,18 +93,19 @@ module.exports = app.prepare().then(
       /** router end */
 
       server.on('error', error => {
-        console.log(`Koa server onError ${JSON.stringify(error)})`);
+        console.log(`Koa server onError`, error);
       });
 
       server.use(async (ctx, next) => {
-        const id = uuid.v4();
+        const id = uuid();
         const start = Date.now();
 
         console.log(
-          `id=${id}, direction=in, info=${ctx.domain} ${ctx.path} ${ctx.ip} ${
+          `id=${id}, direction=in, info=${ctx.host} ${ctx.path} ${ctx.ip} ${
             ctx.ips
-          } ${ctx.headers}`,
+          }`,
         );
+        console.log(`id=${id}, headers=${JSON.stringify(ctx.headers)}`);
         console.log(`id=${id}, body=${JSON.stringify(ctx.body)}`);
         await next();
         console.log(`id=${id}, direction=out, time=${Date.now() - start}`);
