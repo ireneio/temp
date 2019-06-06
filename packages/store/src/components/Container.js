@@ -177,7 +177,7 @@ class Container extends React.Component {
     if (
       !userAgent.match(/Line/gm) &&
       !userAgent.match(/Instagram/gm) &&
-      cname !== 'angelina-outfit' // FIXME: hotfix N291 (原因不明，可能為FB SDK bug
+      cname !== 'truda-moda' // FIXME: hotfix T2939 (原因不明，可能為FB SDK bug
     ) {
       // Not Line/Instagram in-app browser
       if (window.FB) {
