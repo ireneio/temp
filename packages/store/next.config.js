@@ -1,3 +1,5 @@
+const path = require('path');
+
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
 const withLess = require('@zeit/next-less');
@@ -58,8 +60,19 @@ module.exports = withSourceMaps(
 
           config.module.rules.find(
             ({ use: { loader } }) => loader === 'next-babel-loader',
-          ).use.options.configFile = '../../babel.config.js';
+          ).use.options.configFile = path.resolve(
+            __dirname,
+            '../../babel.config.js',
+          );
           config.plugins.push(new MomentLocalesPlugin());
+          config.resolve.alias = {
+            ...config.resolve.alias,
+            // TODO: remove after support next-i18next'
+            '@store/utils/lib/i18n': path.resolve(
+              __dirname,
+              './src/utils/i18n.js',
+            ),
+          };
 
           const originalEntry = config.entry;
 
