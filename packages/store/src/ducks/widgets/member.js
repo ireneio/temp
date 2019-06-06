@@ -88,7 +88,8 @@ export function* loginFlow({ payload }) {
 
   try {
     const res = yield call(Api.login, { email, password });
-    if (res.isLoginSuccess) {
+    // TODO: 不需要兼容 meep-nginx 後可以移除(#553)
+    if (res.isLoginSuccess || res.userId) {
       const memberData = yield call(Api.updateMemberData);
       notification.success({ message: LOCALE.LOGIN_SUCCESS[locale] });
       if (callback) callback();
