@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.23.0 (2019-06-06)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#549](https://github.com/meepshop/meep-lerna/pull/549) (Revert) next-store koa 轉 express, add log ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#551](https://github.com/meepshop/meep-lerna/pull/551) 【個別店家】 Facebook 無法登入：應用程式未設定 (cname：truda-moda) ([@piovischioh](https://github.com/piovischioh))
+  - [#550](https://github.com/meepshop/meep-lerna/pull/550) (@meepshop/store) Fix log error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `store`
+  - [#549](https://github.com/meepshop/meep-lerna/pull/549) (Revert) next-store koa 轉 express, add log ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.22.0 (2019-06-04)
 
 #### :boom: Breaking Change
