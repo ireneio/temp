@@ -6,20 +6,7 @@ import { contextProvider } from '@meepshop/meep-ui/lib/context';
 
 const { enhancer, removeContextProps } = contextProvider('locale');
 /* eslint-disable global-require, import/no-unresolved */
-const locales = {
-  zh_TW: {
-    'gmo-credit-card-form': require('../static/locales/zh_TW/gmo-credit-card-form.json'),
-  },
-  en_US: {
-    'gmo-credit-card-form': require('../static/locales/en_US/gmo-credit-card-form.json'),
-  },
-  ja_JP: {
-    'gmo-credit-card-form': require('../static/locales/ja_JP/gmo-credit-card-form.json'),
-  },
-  vi_VN: {
-    'gmo-credit-card-form': require('../static/locales/vi_VN/gmo-credit-card-form.json'),
-  },
-};
+const locales = {};
 /* eslint-enable global-require, import/no-unresolved */
 
 export const withNamespaces = namespace => Component => {
@@ -51,8 +38,15 @@ export const withNamespaces = namespace => Component => {
     };
 
     render() {
+      // eslint-disable-next-line react/prop-types
+      const { locale: language } = this.props;
+
       return (
-        <Component {...removeContextProps(this.props)} t={this.transform} />
+        <Component
+          {...removeContextProps(this.props)}
+          t={this.transform}
+          i18n={{ language }}
+        />
       );
     }
   }
