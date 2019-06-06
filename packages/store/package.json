@@ -7,7 +7,7 @@
   "version": "0.23.0",
   "scripts": {
     "clean": "rm -rf ./src/.next",
-    "dev": "node --inspect src/server",
+    "dev": "node --inspect=localhost:9230 src/server",
     "prod": "next build ./src",
     "start": "NODE_ENV=production node src/server"
   },

@@ -22,20 +22,38 @@ import resolvers, { initializeCache } from '${
   }/apollo-client-resolvers';
 
 import './combined.less';
-import Component from '${path.resolve(main)}';
 
-${
-  !fs.existsSync(path.resolve('./mock.ts'))
-    ? 'const props = {}'
-    : `import props from '${path.resolve('./mock.ts')}';`
-}
+${(() => {
+  if (fs.existsSync(path.resolve('./mock.ts')))
+    return `import Component from '${path.resolve(main)}';
+import props from '${path.resolve('./mock.ts')}';
 
 storiesOf('${name}', module)
   .add('demo', () => (
     <MockTypes resolvers={resolvers} initializeCache={initializeCache}>
       <Component {...props} />
     </MockTypes>
-  ));`,
+  ));`;
+
+  if (fs.existsSync(path.resolve('./mock.tsx')))
+    return `import Component from '${path.resolve('./mock.tsx')}';
+
+storiesOf('${name}', module)
+  .add('demo', () => (
+    <MockTypes resolvers={resolvers} initializeCache={initializeCache}>
+      <Component />
+    </MockTypes>
+  ));`;
+
+  return `import Component from '${path.resolve(main)}';
+
+storiesOf('${name}', module)
+  .add('demo', () => (
+    <MockTypes resolvers={resolvers} initializeCache={initializeCache}>
+      <Component />
+    </MockTypes>
+  ));`;
+})()}`,
 );
 
 process.env.STORYBOOK_NEXT_I18NEXT_PARENT_MODULE_FILENAME = /@admin/.test(name)

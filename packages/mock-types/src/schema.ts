@@ -28,6 +28,8 @@ import StoreEcfitSettings from './schemas/StoreEcfitSettings';
 import DashboardInfo from './schemas/DashboardInfo';
 import Store from './schemas/Store';
 import ExportFormat from './schemas/ExportFormat';
+import GMOUserInfo from './schemas/GMOUserInfo';
+import GmoBankInstallment from './schemas/GmoBankInstallment';
 
 // definition
 // TODO: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/34649
@@ -59,6 +61,8 @@ addMockFunctionsToSchema({
     DashboardInfo,
     Store,
     ExportFormat,
+    GMOUserInfo,
+    GmoBankInstallment,
   },
 });
 

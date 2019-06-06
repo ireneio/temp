@@ -72,6 +72,7 @@ module.exports =
 4. Add `src/__tests__/index.tsx` in the folder, and copy this:
 
 ```js
+// import
 import React from 'react';
 
 import runTest from '@meepshop/mock-types/src/runTest';
@@ -80,6 +81,7 @@ import * as resolvers from '/** workspace *//apollo-client-resolvers';
 import /** ComponentName */ from '../index';
 import props from '../../mock';
 
+// definition
 runTest(</** ComponentName */ {...props} />, resolvers);
 ```
 
