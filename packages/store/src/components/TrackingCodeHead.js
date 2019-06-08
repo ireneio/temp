@@ -23,9 +23,7 @@ export default class extends React.Component {
       const { pageAdTrackIDs } = this.props;
       const gtmNoscript = document.createElement('noscript');
 
-      gtmNoscript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=${
-        pageAdTrackIDs.gtmID
-      }"
+      gtmNoscript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=${pageAdTrackIDs.gtmID}"
       height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
       document.body.appendChild(gtmNoscript);
       window.meepShopStore.gtmIsInstalled = true;

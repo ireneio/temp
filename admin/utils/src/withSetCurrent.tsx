@@ -34,7 +34,7 @@ export default (pageId: string) => <P extends object>(
     >
       {setCurrentMutation => (
         <Component
-          {...props as P}
+          {...(props as P)}
           setCurrent={(current: number) =>
             setCurrentMutation({
               variables: {

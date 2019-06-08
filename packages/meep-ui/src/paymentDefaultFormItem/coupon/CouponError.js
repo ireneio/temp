@@ -66,9 +66,7 @@ export default class CouponError extends React.PureComponent {
 
     switch (code) {
       case 4015:
-        return transformLocale`${LOCALE.THIS_CODE_NOT_EXIST}${
-          LOCALE.PLZ_ASK_SERVICE_OR_DELETE
-        }`;
+        return transformLocale`${LOCALE.THIS_CODE_NOT_EXIST}${LOCALE.PLZ_ASK_SERVICE_OR_DELETE}`;
 
       case 4016: {
         const { startTime, endTime } = params;
@@ -81,22 +79,16 @@ export default class CouponError extends React.PureComponent {
       }
 
       case 4017:
-        return transformLocale`${
-          LOCALE.YOUR_MEMBER_GROUP_CAN_NOT_USE_THIS_CODE
-        }${LOCALE.PLZ_DELETE_THEN_CHECKOUT}`;
+        return transformLocale`${LOCALE.YOUR_MEMBER_GROUP_CAN_NOT_USE_THIS_CODE}${LOCALE.PLZ_DELETE_THEN_CHECKOUT}`;
 
       case 4018:
-        return transformLocale`${LOCALE.THIS_CODE_USETIMES_FULL}${
-          LOCALE.PLZ_ASK_SERVICE_OR_DELETE
-        }`;
+        return transformLocale`${LOCALE.THIS_CODE_USETIMES_FULL}${LOCALE.PLZ_ASK_SERVICE_OR_DELETE}`;
 
       case 4019: {
         const { type, condition } = params;
 
         if (type === '2')
-          return transformLocale`${
-            LOCALE.THIS_CODE_HAS_TO_BUY_SPECIFIC_PRODUCTS
-          }${LOCALE.PLZ_DELETE_THEN_CHECKOUT}`;
+          return transformLocale`${LOCALE.THIS_CODE_HAS_TO_BUY_SPECIFIC_PRODUCTS}${LOCALE.PLZ_DELETE_THEN_CHECKOUT}`;
 
         const { transformCurrency } = this.props;
 
@@ -108,9 +100,7 @@ export default class CouponError extends React.PureComponent {
       }
 
       case 4020:
-        return transformLocale`${LOCALE.THIS_CODE_IS_THE_SAME}${
-          LOCALE.PLZ_DELETE_THEN_CHECKOUT
-        }`;
+        return transformLocale`${LOCALE.THIS_CODE_IS_THE_SAME}${LOCALE.PLZ_DELETE_THEN_CHECKOUT}`;
 
       default:
         return null;

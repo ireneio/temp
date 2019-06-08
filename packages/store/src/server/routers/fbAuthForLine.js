@@ -28,9 +28,7 @@ module.exports = async ctx => {
 
     if (appIdResponse.status >= 400)
       throw new Error(
-        `${appIdResponse.status}: ${
-          appIdResponse.statusText
-        }(${appIdResponse})`,
+        `${appIdResponse.status}: ${appIdResponse.statusText}(${appIdResponse})`,
       );
 
     /* Get FB app secret - End */

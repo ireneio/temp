@@ -255,9 +255,7 @@ class Container extends React.Component {
       }
     } else {
       // Line in-app browser
-      window.location.href = `https://www.facebook.com/v3.0/dialog/oauth?client_id=${fbAppId}&redirect_uri=https://${
-        window.meepShopStore.XMeepshopDomain
-      }/fbAuthForLine&scope=email&state=meepShopNextStore${from}`;
+      window.location.href = `https://www.facebook.com/v3.0/dialog/oauth?client_id=${fbAppId}&redirect_uri=https://${window.meepShopStore.XMeepshopDomain}/fbAuthForLine&scope=email&state=meepShopNextStore${from}`;
     }
   };
 

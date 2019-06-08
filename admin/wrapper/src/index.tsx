@@ -293,7 +293,7 @@ const WrapperWithData = ({
           />
         );
       return (
-        <EnhancedWrapper {...data as PropsType}>{children}</EnhancedWrapper>
+        <EnhancedWrapper {...(data as PropsType)}>{children}</EnhancedWrapper>
       );
     }}
   </Query>

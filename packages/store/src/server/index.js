@@ -101,9 +101,7 @@ module.exports = app.prepare().then(
         const start = Date.now();
 
         console.log(
-          `id=${id}, direction=in, info=${ctx.host} ${ctx.path} ${ctx.ip} ${
-            ctx.ips
-          }`,
+          `id=${id}, direction=in, info=${ctx.host} ${ctx.path} ${ctx.ip} ${ctx.ips}`,
         );
         console.log(`id=${id}, headers=${JSON.stringify(ctx.headers)}`);
         console.log(`id=${id}, body=${JSON.stringify(ctx.body)}`);

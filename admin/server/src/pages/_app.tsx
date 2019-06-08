@@ -39,12 +39,10 @@ export class App extends NextApp<PropsType> {
   };
 
   public componentDidMount(): void {
-    Router.beforePopState(
-      ({ as }: { as: string }): boolean => {
-        if (!as) window.location.reload();
-        return true;
-      },
-    );
+    Router.beforePopState(({ as }: { as: string }): boolean => {
+      if (!as) window.location.reload();
+      return true;
+    });
   }
 
   public render(): React.ReactNode {

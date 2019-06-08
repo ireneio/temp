@@ -224,7 +224,10 @@ const DashboardPage = () => (
 
             return (
               <EnhancedDashboard
-                {...res.data as Pick<PropsType, 'getDashboardInfo' | 'viewer'>}
+                {...(res.data as Pick<
+                  PropsType,
+                  'getDashboardInfo' | 'viewer'
+                >)}
               />
             );
           }}

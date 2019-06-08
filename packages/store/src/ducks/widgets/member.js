@@ -111,11 +111,7 @@ export function* loginFlow({ payload }) {
       if (numOfExpiredPoints > 0) {
         notification.info({
           message: LOCALE.EXPIRED_POINTS_MESSAGE[locale],
-          description: `${
-            LOCALE.EXPIRED_POINTS_DESCRIPTION_1[locale]
-          } ${numOfExpiredPoints} ${
-            LOCALE.EXPIRED_POINTS_DESCRIPTION_2[locale]
-          }`,
+          description: `${LOCALE.EXPIRED_POINTS_DESCRIPTION_1[locale]} ${numOfExpiredPoints} ${LOCALE.EXPIRED_POINTS_DESCRIPTION_2[locale]}`,
         });
       }
 

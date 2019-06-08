@@ -75,7 +75,7 @@ export const TAGS_KEYS: [
   'paymentStatusList',
   'paymentIdList',
   'shipmentStatusList',
-  'shipmentIdList'
+  'shipmentIdList',
 ] = [
   'orderStatusList',
   'paymentStatusList',
