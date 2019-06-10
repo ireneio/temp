@@ -22,6 +22,7 @@ export const SPECIAL_HIDE_FOOTER = [
   'jj-f4',
   'xmiutc',
   'fionho',
+  'jin',
 ];
 
 export const STORE_APP_PLUGINS = [
