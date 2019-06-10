@@ -100,16 +100,34 @@ module.exports = app.prepare().then(
         const id = uuid();
         const start = Date.now();
 
+        ctx.logId = id;
+
         console.log(
-          `id=${id}, direction=in, info=${ctx.host} ${ctx.path} ${ctx.ip} ${ctx.ips}`,
+          `id=${id}, info=${ctx.host} ${ctx.path} ${ctx.ip} ${ctx.ips}`,
         );
         console.log(`id=${id}, headers=${JSON.stringify(ctx.headers)}`);
-        console.log(`id=${id}, body=${JSON.stringify(ctx.body)}`);
+        console.log(`id=${id}, bodyParser=in`);
         await next();
-        console.log(`id=${id}, direction=out, time=${Date.now() - start}`);
+        console.log(`id=${id}, bodyParser=out`);
+        console.log(`id=${id}, time=${Date.now() - start}`);
       });
       server.use(bodyParser());
+
+      server.use(async (ctx, next) => {
+        console.log(
+          `id=${ctx.logId}, body=${JSON.stringify(ctx.request.body)}`,
+        );
+        console.log(`id=${ctx.logId}, compression=in`);
+        await next();
+        console.log(`id=${ctx.logId}, compression=out`);
+      });
       server.use(koaConnect(compression()));
+
+      server.use(async (ctx, next) => {
+        console.log(`id=${ctx.logId}, cookies=in`);
+        await next();
+        console.log(`id=${ctx.logId}, cookies=out`);
+      });
       server.use(async (ctx, next) => {
         try {
           ctx.res.statusCode = 200;
@@ -126,6 +144,11 @@ module.exports = app.prepare().then(
         }
       });
 
+      server.use(async (ctx, next) => {
+        console.log(`id=${ctx.logId}, router=in`);
+        await next();
+        console.log(`id=${ctx.logId}, router=out`);
+      });
       server.use(router.routes());
 
       server.listen(port, () => {
