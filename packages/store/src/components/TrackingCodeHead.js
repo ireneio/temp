@@ -37,7 +37,7 @@ export default class extends React.Component {
           appId: fbAppId,
           cookie: true,
           xfbml: true,
-          version: 'v3.0',
+          version: 'v3.3',
         });
         window.meepShopStore.fbSdkIsInstalled = true;
         FB.AppEvents.logPageView();
