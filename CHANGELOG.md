@@ -1,5 +1,39 @@
 # CHANGELOG
 
+## 0.23.1 (2019-06-10)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#557](https://github.com/meepshop/meep-lerna/pull/557) 【個別店家】 Facebook 無法登入：應用程式未設定 (cname：imint) ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`
+  - [#547](https://github.com/meepshop/meep-lerna/pull/547) 【個案處理】meepShop MAX 極速開店：新增白名單 - jin ([@happycat6323](https://github.com/happycat6323))
+- `mock-types`, `store`
+  - [#552](https://github.com/meepshop/meep-lerna/pull/552) (@meepshop/front-end) Support component ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#557](https://github.com/meepshop/meep-lerna/pull/557) 【個別店家】 Facebook 無法登入：應用程式未設定 (cname：imint) ([@piovischioh](https://github.com/piovischioh))
+  - [#555](https://github.com/meepshop/meep-lerna/pull/555) (@meepshop/store) Fix i18n language error ([@HsuTing](https://github.com/HsuTing))
+  - [#554](https://github.com/meepshop/meep-lerna/pull/554) (@meepshop/store) Support to use i18n ([@HsuTing](https://github.com/HsuTing))
+  - [#553](https://github.com/meepshop/meep-lerna/pull/553) (@meepshop/store) Compatible login flow with meep-nginx ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`, `store`
+  - [#558](https://github.com/meepshop/meep-lerna/pull/558) (@meepshop/front-end) Fix prettier ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#561](https://github.com/meepshop/meep-lerna/pull/561) (@meepshop/store) Add body log ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`, `store`
+  - [#552](https://github.com/meepshop/meep-lerna/pull/552) (@meepshop/front-end) Support component ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.23.0 (2019-06-06)
 
 #### :boom: Breaking Change
