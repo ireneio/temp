@@ -4,6 +4,7 @@
   "license": "ISC",
   "workspaces": ["packages/*", "store/*", "admin/*"],
   "scripts": {
+    "admin": "make run-docker-compose TYPE=admin DOMAIN=admin.stage.meepcloud.com",
     "clean": "lerna clean && make clean",
     "dev": "make babel-changed WATCH=-w",
     "preinstall": "patch-package --reverse || echo \"no patch packages\"",
@@ -13,6 +14,7 @@
     "lint:watch": "yarn lint -w --rule \"prettier/prettier: off\" --quiet",
     "prod": "NODE_ENV=production make babel-all",
     "release": "make release",
+    "store": "make run-docker-compose TYPE=store DOMAIN=bellatest.stage.meepcloud.com",
     "storybook": "lerna run schema --stream --scope @meepshop/mock-types && NODE_ENV=test lerna exec ../../.storybook/index.js --stream --scope",
     "test": "lerna run schema --stream --scope @meepshop/mock-types && jest --silent --runInBand",
     "tsc": "make tsc",

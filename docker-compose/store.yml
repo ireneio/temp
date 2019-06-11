@@ -1,0 +1,16 @@
+version: '3'
+services:
+  build:
+    image: node:10.15.3
+    volumes:
+      - ../:/meep-lerna
+    working_dir: /meep-lerna
+    command: yarn dev
+  next-store:
+    image: node:10.15.3
+    volumes:
+      - ../:/meep-lerna
+    working_dir: /meep-lerna
+    command: yarn lerna run dev --stream --scope @meepshop/store
+    depends_on:
+      - build

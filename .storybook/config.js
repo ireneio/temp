@@ -10,25 +10,25 @@ const stories = [
     name: '@meepshop/front-end',
     pattern: /\.\/$/,
     path: './',
-    source: require('../README.md'),
+    source: require('../README.md').default,
   },
   {
     name: '@meepshop/end-to-end',
     pattern: /end-to-end$/,
     path: './packages/end-to-end/',
-    source: require('../packages/end-to-end/README.md'),
+    source: require('../packages/end-to-end/README.md').default,
   },
   {
     name: '@meepshop/mock-types',
     pattern: /mock-types$/,
     path: './packages/mock-types/',
-    source: require('../packages/mock-types/README.md'),
+    source: require('../packages/mock-types/README.md').default,
   },
   {
     name: '@store/server',
     pattern: /store\/server$/,
     path: './packages/store/',
-    source: require('../packages/store/README.md'), // TODO: modify path
+    source: require('../packages/store/README.md').default, // TODO: modify path
   },
 ];
 

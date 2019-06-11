@@ -1,0 +1,10 @@
+version: '3'
+services:
+  nginx:
+    environment:
+      - IP
+    extra_hosts:
+      admin: ${IP}
+      next-admin: ${IP}
+      next-store: ${IP}
+      meepshop-app-market: ${IP}

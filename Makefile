@@ -1,6 +1,23 @@
 BRANCH=$(shell git branch | grep \* | cut -d ' ' -f2)
 WATCH=""
 
+## docker-compose
+API=https://api.stage.meepcloud.com
+TYPE="store"
+COMPOSE=""
+
+## do not modify
+API_WITHOUT_PROTOCOL=$(subst http://,,$(subst https://,,$(API)))
+ADMIN_HOST=$(shell test $(TYPE) = "store" && echo "" || echo "localhost")
+EXTERNAL_COMPOSE=$(shell test $(COMPOSE) = "" && echo "$(TYPE)" || echo "$(COMPOSE)")
+
+run-docker-compose:
+	@API=$(API) \
+		API_WITHOUT_PROTOCOL=$(API_WITHOUT_PROTOCOL) \
+		DOMAIN=$(DOMAIN) \
+		ADMIN_HOST=$(ADMIN_HOST) \
+		docker-compose -f ./docker-compose/basic.yml -f ./docker-compose/$(EXTERNAL_COMPOSE).yml up
+
 babel-all:
 	@$(call babel-build)
 
