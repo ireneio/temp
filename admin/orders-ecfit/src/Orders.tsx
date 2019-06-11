@@ -115,112 +115,110 @@ class Orders extends React.PureComponent<
     loading: false,
   };
 
-  private columns = memoizeOne(() => {
-    const {
-      // HOC
-      t,
+  private columns = memoizeOne(
+    (variables: getEcfitListQueryPropsType['variables']) => {
+      const { t } = this.props;
 
-      // props
-      variables,
-    } = this.props;
+      return [
+        {
+          title: t('orders.order-no'),
+          dataIndex: 'node.orderNo',
+          render: (
+            value: ordersEcfitOrdersFragmentEdgesNode['orderNo'],
+            // TODO: should not be null
+            { node: { id } }: ordersEcfitOrdersFragmentEdges,
+          ) => (
+            <>
+              <Spin />
 
-    return [
-      {
-        title: t('orders.order-no'),
-        dataIndex: 'node.orderNo',
-        render: (
-          value: ordersEcfitOrdersFragmentEdgesNode['orderNo'],
+              {!id ? (
+                value
+              ) : (
+                <Link href={`/orders/${id}?ref=ecfit`}>
+                  <a href={`/orders/${id}?ref=ecfit`}>{value}</a>
+                </Link>
+              )}
+            </>
+          ),
+        },
+        {
+          title: t('orders.shipment-name'),
+          dataIndex: 'node.shipmentInfo.list[0].name',
+        },
+        {
+          title: t('orders.payment-status'),
+          dataIndex: 'node.paymentInfo.status',
           // TODO: should not be null
-          { node: { id } }: ordersEcfitOrdersFragmentEdges,
-        ) => (
-          <>
-            <Spin />
-
-            {!id ? (
-              value
-            ) : (
-              <Link href={`/orders/${id}?ref=ecfit`}>
-                <a href={`/orders/${id}?ref=ecfit`}>{value}</a>
-              </Link>
-            )}
-          </>
-        ),
-      },
-      {
-        title: t('orders.shipment-name'),
-        dataIndex: 'node.shipmentInfo.list[0].name',
-      },
-      {
-        title: t('orders.payment-status'),
-        dataIndex: 'node.paymentInfo.status',
-        // TODO: should not be null
-        render: (
-          value: ordersEcfitOrdersFragmentEdgesNodePaymentInfo['status'],
-        ) =>
-          value === null
-            ? null
-            : t(`paymentStatusList.${STATUS_LIST.paymentStatusList[value]}`),
-      },
-      {
-        title: t('orders.shipment-status'),
-        dataIndex: 'node.shipmentInfo.status',
-        // TODO: should not be null
-        render: (
-          value: ordersEcfitOrdersFragmentEdgesNodeShipmentInfo['status'],
-        ) =>
-          value === null
-            ? null
-            : t(`shipmentStatusList.${STATUS_LIST.shipmentStatusList[value]}`),
-      },
-      {
-        title: t('orders.order-status'),
-        dataIndex: 'node.status',
-        // TODO: should not be null
-        render: (value: ordersEcfitOrdersFragmentEdgesNode['status']) =>
-          value === null
-            ? null
-            : t(`orderStatusList.${STATUS_LIST.orderStatusList[value]}`),
-      },
-      {
-        title: t('orders.recipient'),
-        dataIndex: 'node.shipmentInfo.list[0].recipient.name',
-      },
-      {
-        title: t('orders.amount'),
-        dataIndex: 'node.priceInfo.total',
-      },
-      {
-        title: t('orders.create-on'),
-        dataIndex: 'node.createdOn',
-        render: (value: ordersEcfitOrdersFragmentEdgesNode['createdOn']) =>
+          render: (
+            value: ordersEcfitOrdersFragmentEdgesNodePaymentInfo['status'],
+          ) =>
+            value === null
+              ? null
+              : t(`paymentStatusList.${STATUS_LIST.paymentStatusList[value]}`),
+        },
+        {
+          title: t('orders.shipment-status'),
+          dataIndex: 'node.shipmentInfo.status',
           // TODO: should not be null
-          !value ? null : moment.unix(value).format('YYYY/MM/DD HH:mm:ss'),
-      },
-      ...(idx(variables, _ => _.filter.ecfitSentStatus) !== 'SENT_SUCCESSFUL'
-        ? []
-        : [
-            {
-              title: t('orders.send-time'),
-              dataIndex: 'node.lastEcfitRequestRecord.createdAt',
-              render: (
-                value: ordersEcfitOrdersFragmentEdgesNodeLastEcfitRequestRecord['createdAt'],
-              ) =>
-                !value ? null : moment(value).format('YYYY/MM/DD HH:mm:ss'),
-            },
-          ]),
-      ...(idx(variables, _ => _.filter.ecfitSentStatus) !== 'SENT_FAILED'
-        ? []
-        : [
-            {
-              title: t('orders.fail-reason'),
-              dataIndex: 'node.lastEcfitRequestRecord.response',
-              render: (
-                value: ordersEcfitOrdersFragmentEdgesNodeLastEcfitRequestRecord['response'],
-              ) => (!value ? null : t(`fail-reason.${value}`)),
-            },
-          ]),
-    ];
-  });
+          render: (
+            value: ordersEcfitOrdersFragmentEdgesNodeShipmentInfo['status'],
+          ) =>
+            value === null
+              ? null
+              : t(
+                  `shipmentStatusList.${STATUS_LIST.shipmentStatusList[value]}`,
+                ),
+        },
+        {
+          title: t('orders.order-status'),
+          dataIndex: 'node.status',
+          // TODO: should not be null
+          render: (value: ordersEcfitOrdersFragmentEdgesNode['status']) =>
+            value === null
+              ? null
+              : t(`orderStatusList.${STATUS_LIST.orderStatusList[value]}`),
+        },
+        {
+          title: t('orders.recipient'),
+          dataIndex: 'node.shipmentInfo.list[0].recipient.name',
+        },
+        {
+          title: t('orders.amount'),
+          dataIndex: 'node.priceInfo.total',
+        },
+        {
+          title: t('orders.create-on'),
+          dataIndex: 'node.createdOn',
+          render: (value: ordersEcfitOrdersFragmentEdgesNode['createdOn']) =>
+            // TODO: should not be null
+            !value ? null : moment.unix(value).format('YYYY/MM/DD HH:mm:ss'),
+        },
+        ...(idx(variables, _ => _.filter.ecfitSentStatus) !== 'SENT_SUCCESSFUL'
+          ? []
+          : [
+              {
+                title: t('orders.send-time'),
+                dataIndex: 'node.lastEcfitRequestRecord.createdAt',
+                render: (
+                  value: ordersEcfitOrdersFragmentEdgesNodeLastEcfitRequestRecord['createdAt'],
+                ) =>
+                  !value ? null : moment(value).format('YYYY/MM/DD HH:mm:ss'),
+              },
+            ]),
+        ...(idx(variables, _ => _.filter.ecfitSentStatus) !== 'SENT_FAILED'
+          ? []
+          : [
+              {
+                title: t('orders.fail-reason'),
+                dataIndex: 'node.lastEcfitRequestRecord.response',
+                render: (
+                  value: ordersEcfitOrdersFragmentEdgesNodeLastEcfitRequestRecord['response'],
+                ) => (!value ? null : t(`fail-reason.${value}`)),
+              },
+            ]),
+      ];
+    },
+  );
 
   public componentDidUpdate(prevProps: PropsType): void {
     const {
@@ -361,7 +359,7 @@ class Orders extends React.PureComponent<
               />
             ),
           }}
-          columns={this.columns()}
+          columns={this.columns(variables)}
           loading={loading}
           rowClassName={({ node: { id } }) =>
             runningIds.includes(id || 'null-id' /** TODO: should be not null */)
