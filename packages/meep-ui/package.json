@@ -4,7 +4,7 @@
   "description": "meep-ui for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.23.1",
+  "version": "0.23.2",
   "dependencies": {
     "clipboard": "^2.0.1",
     "color": "^3.0.0",
