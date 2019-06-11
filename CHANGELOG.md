@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.23.2 (2019-06-11)
+
+#### :rocket: New Feature
+
+- [#563](https://github.com/meepshop/meep-lerna/pull/563) (@meepshop/front-end) Add docker compose ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#562](https://github.com/meepshop/meep-lerna/pull/562) 【BUG】新架構 -「購物車數量」、購物車內的「商品名稱/規格」、「金額」沒有綁色彩計畫 ([@piovischioh](https://github.com/piovischioh))
+  - [#559](https://github.com/meepshop/meep-lerna/pull/559) 【BUG】新架構/手機版 - 會員登入 icon 於登入之後跑版 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#560](https://github.com/meepshop/meep-lerna/pull/560) 【BUG】ECFIT 訂單管理 - 列表欄位顯示有誤 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#563](https://github.com/meepshop/meep-lerna/pull/563) (@meepshop/front-end) Add docker compose ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.23.1 (2019-06-10)
 
 #### :rocket: New Feature
