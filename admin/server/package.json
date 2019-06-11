@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@admin/dashboard": "^0.23.1",
+    "@admin/orders-ecfit": "^0.23.1",
     "@admin/utils": "^0.23.1",
     "@admin/wrapper": "^0.23.1",
     "body-parser": "^1.18.3",
