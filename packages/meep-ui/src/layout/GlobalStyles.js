@@ -31,10 +31,19 @@ export default class GlobalStyles extends React.PureComponent {
               box-shadow: 0px 1px 1px ${colors[5]};
             }
 
+            .ant-scroll-number-only {
+              color: ${colors[2]};
+            }
+
+            .ant-menu-submenu-popup {
+              background: transparent;
+            }
+
             .ant-menu-submenu-popup.ant-menu-submenu > .ant-menu,
             .ant-menu-submenu-popup.ant-menu-submenu .ant-menu-item {
               color: ${colors[2]};
               background: ${colors[1]};
+              border-radius: 0px;
             }
 
             .ant-menu-submenu-popup.ant-menu-submenu .ant-menu-item:hover,

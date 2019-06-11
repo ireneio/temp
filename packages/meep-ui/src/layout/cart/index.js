@@ -77,12 +77,11 @@ export default class Cart extends React.PureComponent {
           className={`${styles.body} ${
             nowCart === 'product list' ? '' : styles.hasMinHeight
           }`}
-          style={{ background: colors[0] }}
+          style={{ background: colors[0], color: colors[3] }}
         >
           <div
             className={styles.header}
             style={{
-              color: colors[3],
               background: colors[0],
               borderBottom:
                 nowCart === 'product list' ? `1px solid ${colors[5]}` : '0px',
