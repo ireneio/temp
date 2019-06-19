@@ -51,6 +51,11 @@ export interface PropsType
   >;
 }
 
+interface StateType {
+  loading: boolean;
+  prevEcfitOrders?: PropsType['ecfitOrders'];
+}
+
 // definition
 const { Option } = Select;
 
@@ -105,15 +110,25 @@ export const ordersSelectedOrdersFragment = gql`
   }
 `;
 
-class Orders extends React.PureComponent<
-  PropsType,
-  {
-    loading: boolean;
-  }
-> {
+class Orders extends React.PureComponent<PropsType, StateType> {
   public state = {
     loading: false,
   };
+
+  public static getDerivedStateFromProps(
+    nextProps: PropsType,
+    prevState: StateType,
+  ): null | StateType {
+    const { ecfitOrders } = nextProps;
+
+    if (!areEqual(ecfitOrders, prevState.prevEcfitOrders))
+      return {
+        loading: false,
+        prevEcfitOrders: ecfitOrders,
+      };
+
+    return null;
+  }
 
   private columns = memoizeOne(
     (variables: getEcfitListQueryPropsType['variables']) => {
@@ -223,14 +238,8 @@ class Orders extends React.PureComponent<
   public componentDidUpdate(prevProps: PropsType): void {
     const {
       variables: { filter },
-      ecfitOrders,
       setOrdersToSelectedOrdersMutation,
     } = this.props;
-
-    if (!areEqual(ecfitOrders, prevProps.ecfitOrders))
-      setTimeout(() => {
-        this.setState({ loading: false });
-      }, 0);
 
     if (!areEqual(filter, prevProps.variables.filter))
       setOrdersToSelectedOrdersMutation({

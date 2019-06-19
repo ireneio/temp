@@ -70,6 +70,7 @@ interface PropsType
 
 interface StateType {
   runningIds: string[];
+  searchTerm: string;
   isEnabled: boolean;
 }
 
@@ -145,6 +146,8 @@ const query = gql`
 class Container extends React.PureComponent<PropsType, StateType> {
   public state: StateType = {
     runningIds: [],
+    // eslint-disable-next-line react/destructuring-assignment
+    searchTerm: idx(this.props.variables, _ => _.filter.searchTerm) || '',
     // eslint-disable-next-line react/destructuring-assignment
     isEnabled: this.props.isEnabled,
   };
@@ -336,7 +339,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
       selectedOrders,
       sentFailedAmount,
     } = this.props;
-    const { runningIds } = this.state;
+    const { runningIds, searchTerm } = this.state;
 
     return (
       <>
@@ -396,14 +399,17 @@ class Container extends React.PureComponent<PropsType, StateType> {
 
               <Search
                 className={styles.search}
-                defaultValue={idx(variables, _ => _.filter.searchTerm) || ''}
+                value={searchTerm}
+                onChange={({ target: { value: newSearchTerm } }) =>
+                  this.setState({ searchTerm: newSearchTerm })
+                }
                 placeholder={t('filter.searchTerm')}
-                onSearch={searchTerm =>
+                onSearch={newSearchTerm =>
                   refetch({
                     ...variables,
                     filter: {
                       ...variables.filter,
-                      searchTerm,
+                      searchTerm: newSearchTerm,
                     },
                   })
                 }
@@ -417,15 +423,17 @@ class Container extends React.PureComponent<PropsType, StateType> {
               <div
                 className={styles.reset}
                 onClick={() =>
-                  refetch({
-                    ...variables,
-                    filter: {
-                      ecfitSentStatus: idx(
-                        variables,
-                        _ => _.filter.ecfitSentStatus,
-                      ),
-                    },
-                  })
+                  this.setState({ searchTerm: '' }, () =>
+                    refetch({
+                      ...variables,
+                      filter: {
+                        ecfitSentStatus: idx(
+                          variables,
+                          _ => _.filter.ecfitSentStatus,
+                        ),
+                      },
+                    }),
+                  )
                 }
               >
                 {t('filter.reset')}

@@ -28,7 +28,7 @@ import { orderExportDownload } from '../../../__generated__/admin';
 // typescript definition
 interface PropsType
   extends I18nPropsType,
-    Pick<QueryResult<getExportFormat>, 'fetchMore'>,
+    Pick<QueryResult<getExportFormat>, 'client'>,
     OmitType<DrawerProps, 'closable' | 'title'> {
   loading: boolean;
   exportFormatList: {
@@ -59,18 +59,17 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
       t,
 
       // props
-      fetchMore,
+      client,
       orderIds,
     } = this.props;
     const { maskId, fileType, fileName, loadingExportDownloadUri } = this.state;
 
     if (loadingExportDownloadUri) return;
 
-    this.setState({ loadingExportDownloadUri: true }, () =>
-      fetchMore<
+    this.setState({ loadingExportDownloadUri: true }, async () => {
+      const { data } = await client.query<
         getExportDownloadUri,
-        getExportDownloadUriVariables,
-        keyof getExportDownloadUriVariables
+        getExportDownloadUriVariables
       >({
         query: gql`
           query getExportDownloadUri($ids: orderExportDownload) {
@@ -87,30 +86,27 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
             fileName,
           },
         },
-        updateQuery: (previousResult, { fetchMoreResult }) => {
-          const uri = idx(fetchMoreResult, _ => _.getOrderExportDownload.uri);
+      });
 
-          if (!uri) {
-            this.setState({ loadingExportDownloadUri: false }, () =>
-              Modal.error({
-                title: t('error.title'),
-                content: t('error.content'),
-              }),
-            );
-            return previousResult;
-          }
+      const uri = idx(data, _ => _.getOrderExportDownload.uri);
 
-          const downloadLink = document.createElement('a');
+      if (!uri) {
+        this.setState({ loadingExportDownloadUri: false }, () =>
+          Modal.error({
+            title: t('error.title'),
+            content: t('error.content'),
+          }),
+        );
+        return;
+      }
 
-          downloadLink.href = `/api/importExport/orders/${uri}`;
-          downloadLink.click();
+      const downloadLink = document.createElement('a');
 
-          this.setState({ loadingExportDownloadUri: false });
+      downloadLink.href = `/api/importExport/orders/${uri}`;
+      downloadLink.click();
 
-          return previousResult;
-        },
-      }),
-    );
+      this.setState({ loadingExportDownloadUri: false });
+    });
   };
 
   public render(): React.ReactNode {
@@ -239,7 +235,7 @@ export default React.memo(({ visible, ...props }: DrawerProps) => (
     `}
     skip={!visible}
   >
-    {({ loading, error, data, fetchMore }) => {
+    {({ loading, error, data, client }) => {
       const {
         getExportFormatList = null,
         getDefaultExportFormat = { data: [] },
@@ -254,7 +250,7 @@ export default React.memo(({ visible, ...props }: DrawerProps) => (
         <EnhancedOrdersExport
           {...props}
           loading={Boolean(loading || error || !data)}
-          fetchMore={fetchMore}
+          client={client}
           visible={visible}
           exportFormatList={
             [
