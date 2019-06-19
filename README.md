@@ -18,9 +18,9 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 - `test`: Run testing.
 - `tsc`: Test typescript.
 - `tsc:watch`: Test typescript with watch mode.
-- `store`, `admin`: Run `store` and `admin` server with `docker-compose`.
+- `store`, `admin`, `admin:old`: Run `store` and `admin` server with `docker-compose`.
 
-###### Run `store`, `admin`
+###### Run `store`, `admin`, `admin:old`
 
 - Require `docker`.
 - Because `yarn dev` only watch the changed files, you should modify the files in the package before running `yarn store` or `yarn admin`.

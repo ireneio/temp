@@ -1,0 +1,21 @@
+version: '3'
+services:
+  build:
+    image: node:10.15.3
+    volumes:
+      - ../:/meep-lerna
+    working_dir: /meep-lerna
+    command: yarn dev
+  nginx:
+    environment:
+      - IP
+    extra_hosts:
+      admin: ${IP}
+  next-admin:
+    image: node:10.15.3
+    volumes:
+      - ../:/meep-lerna
+    working_dir: /meep-lerna
+    command: yarn lerna run dev --stream --scope @admin/server
+    depends_on:
+      - build
