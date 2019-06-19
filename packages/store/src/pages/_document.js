@@ -1,6 +1,7 @@
+import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import htmlescape from 'htmlescape';
 import getConfig from 'next/config';
+import htmlescape from 'htmlescape';
 
 const {
   publicRuntimeConfig: { STORE_DOMAIN, VERSION },

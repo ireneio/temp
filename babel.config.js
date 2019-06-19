@@ -108,10 +108,4 @@ module.exports = {
     '**/__generated__/**',
     ...(process.env.NODE_ENV === 'test' ? [] : ['**/__tests__/**']),
   ],
-  overrides: [
-    {
-      test: './packages/store',
-      presets: ['next/babel'],
-    },
-  ],
 };

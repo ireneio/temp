@@ -20,15 +20,14 @@
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
     "express-http-proxy": "^1.5.1",
-    "memoize-one": "^4.0.0",
-    "next": "^7.0.2",
+    "memoize-one": "^5.0.4",
     "next-i18next": "^0.37.0",
     "next-routes": "^1.4.2"
   },
   "devDependencies": {
     "@zeit/next-bundle-analyzer": "^0.1.1",
     "@zeit/next-less": "^1.0.1",
-    "@zeit/next-source-maps": "0.0.2",
+    "@zeit/next-source-maps": "0.0.3",
     "@zeit/next-typescript": "^1.1.1",
     "directory-tree": "^2.2.3",
     "less": "^3.5.0-beta.7",

@@ -40,10 +40,6 @@ tsc-watch:
 	@make tsc-basic
 	@tsc -w
 
-postinstall:
-	rm -rf ./node_modules/next/node_modules/@babel/core
-	@echo "\nremove after using next@^7.x\n"
-
 clean:
 	rm -rf ./node_modules
 	rm -rf ./store/**/lib ./admin/**/lib ./packages/**/lib
