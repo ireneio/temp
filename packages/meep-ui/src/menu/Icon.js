@@ -40,7 +40,7 @@ export default class Icon extends React.PureComponent {
 
         {!image ? null : (
           <img
-            className={`${styles.icon} ${styles.image}`}
+            className={styles.icon}
             src={`//${image}?w=${iconSize}`}
             srcSet={`//${image}?w=${iconSize} 1x, //${image}?w=${iconSize *
               2} 2x, //${image}?w=${iconSize * 3} 3x`}
