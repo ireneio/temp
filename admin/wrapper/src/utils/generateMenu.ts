@@ -61,7 +61,7 @@ export default ({
         },
       ]
     : []),
-  ...(storeAppList.analytics
+  ...(isMerchant && storeAppList.analytics
     ? [
         {
           path: '/analytics',
