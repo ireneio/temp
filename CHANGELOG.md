@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## 0.24.0 (2019-06-19)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#569](https://github.com/meepshop/meep-lerna/pull/569) Upgrade next.js ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#568](https://github.com/meepshop/meep-lerna/pull/568) 【其他】admin 的 favicon ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#571](https://github.com/meepshop/meep-lerna/pull/571) 【BUG】 小幫手權限管理 - 點選營收統計，會直接登出系統 ([@piovischioh](https://github.com/piovischioh))
+  - [#564](https://github.com/meepshop/meep-lerna/pull/564) 【BUG】ECFIT 訂單管理 - 點選「清空搜尋」無清空「搜尋關鍵字」內容 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#565](https://github.com/meepshop/meep-lerna/pull/565) 【BUG】 新架構 - 預設圖示 24x24，前台會出現壓縮＆解析度問題 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `end-to-end`
+  - [#570](https://github.com/meepshop/meep-lerna/pull/570) (@meepshop/end-to-end) Fix testing ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#567](https://github.com/meepshop/meep-lerna/pull/567) (@admin/wrapper) Fix typo error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.23.2 (2019-06-11)
 
 #### :rocket: New Feature
