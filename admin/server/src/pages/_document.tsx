@@ -14,7 +14,19 @@ export default class Document extends NextDocument {
   public render(): React.ReactNode {
     return (
       <html lang="zh">
-        <Head />
+        <Head>
+          <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+          <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="/static/images/favicon.ico"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/static/images/apple-touch-icon.png"
+          />
+        </Head>
 
         <body id="meepshop">
           <Main />
