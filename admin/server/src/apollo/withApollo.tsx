@@ -55,8 +55,6 @@ export default (App: typeof NextApp) =>
       const apolloState = apollo.extract();
 
       return {
-        Component,
-        router,
         ...appProps,
         apolloState,
       };
