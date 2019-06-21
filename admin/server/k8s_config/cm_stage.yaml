@@ -1,8 +1,0 @@
-kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: cm-next-admin
-  namespace: default
-data:
-  api.host: "https://api.stage.meepcloud.com"
-  api.domain: "admin.stage.meepcloud.com"

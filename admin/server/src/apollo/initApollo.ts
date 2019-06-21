@@ -21,6 +21,9 @@ export interface CustomReq {
   cookies?: {
     'x-meepshop-authorization-token': string;
   };
+  headers?: {
+    host: string;
+  };
 }
 
 // definition
@@ -111,8 +114,7 @@ const create = (
         headers: !ctx
           ? {}
           : {
-              'x-meepshop-domain':
-                process.env.API_DOMAIN || 'admin.stage.meepcloud.com',
+              'x-meepshop-domain': idx(ctx, _ => _.req.headers.host),
               'x-meepshop-authorization-token': idx(
                 ctx,
                 _ => _.req.cookies['x-meepshop-authorization-token'],

@@ -40,17 +40,6 @@ spec:
           requests:
             cpu: "0.2"
             memory: "600Mi"
-        env:
-        - name: API_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: cm-next-admin
-              key: api.host
-        - name: API_DOMAIN
-          valueFrom:
-            configMapKeyRef:
-              name: cm-next-admin
-              key: api.domain
         ports:
         - containerPort: 14405
           name: http-port

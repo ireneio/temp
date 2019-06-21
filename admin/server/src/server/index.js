@@ -48,7 +48,7 @@ module.exports = app.prepare().then(
         res.status(200).end();
       });
       server.get('/version', (req, res) => {
-        res.status(200).send(`Welcome to Next-Admin ${VERSION}`);
+        res.status(200).send(`Welcome to next-admin ${VERSION}`);
       });
       server.get('*', (req, res) => handler(req, res));
 
