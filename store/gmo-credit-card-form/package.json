@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@store/gmo-credit-card-form",
+  "description": "GMO credit card form for store",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "memoize-one": "^5.0.4",
+    "moment": "^2.22.1",
+    "validator": "^10.8.0"
+  },
+  "keywords": ["credit card", "gmo", "store"]
+}

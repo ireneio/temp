@@ -1,0 +1,17 @@
+{
+  "title": "Thông tin thẻ tín dụng",
+  "modify": "Chỉnh sửa",
+  "cancel": "Hủy bỏ'",
+  "expire": "Ngày hết hạn",
+  "securityCode": "Mã an toàn",
+  "cardHolderName": "Tên chủ thẻ",
+  "installment": "期",
+  "installments": "Kỳ hạn trả góp",
+  "bank": "Ngân hàng trả góp",
+  "form": {
+    "cardNumberError": "Không phải số thẻ tín dụng",
+    "required": "必填"
+  },
+  "not-gmo-bank": "此家發卡銀行沒有配合分期，請使用以下銀行的信用卡，或更改付款方式",
+  "dot": "、"
+}

@@ -1,0 +1,23 @@
+.expireAndSeecurityCode {
+  display: flex;
+
+  :global(.ant-form-item) {
+    &:first-child {
+      flex-grow: 1;
+    }
+
+    &:last-child {
+      width: 125px;
+      margin: 0px 0px 0px 10px;
+    }
+  }
+
+  :global(.ant-calendar-picker),
+  :global(.ant-input-number) {
+    width: 100%;
+
+    :global(.ant-input-number-handler-wrap) {
+      display: none;
+    }
+  }
+}

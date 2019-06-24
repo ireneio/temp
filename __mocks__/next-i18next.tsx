@@ -33,7 +33,18 @@ const resources = /admin\/utils/.test(parentModuleFilename)
       },
     }
   : {
-      // TODO: store locales
+      zh_TW: {
+        'gmo-credit-card-form': require('@meepshop/store/src/static/locales/zh_TW/gmo-credit-card-form.json'),
+      },
+      en_US: {
+        'gmo-credit-card-form': require('@meepshop/store/src/static/locales/en_US/gmo-credit-card-form.json'),
+      },
+      ja_JP: {
+        'gmo-credit-card-form': require('@meepshop/store/src/static/locales/ja_JP/gmo-credit-card-form.json'),
+      },
+      vi_VN: {
+        'gmo-credit-card-form': require('@meepshop/store/src/static/locales/vi_VN/gmo-credit-card-form.json'),
+      },
     };
 /* eslint-enable global-require, @typescript-eslint/camelcase */
 

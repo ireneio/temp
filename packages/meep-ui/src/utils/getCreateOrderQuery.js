@@ -1,5 +1,4 @@
 import uuid from 'uuid';
-import moment from 'moment';
 
 export default ({
   domain,
@@ -35,11 +34,13 @@ export default ({
   invoiceEInvoiceNumber,
   invoiceDonate,
 
-  creditCardOwnerName,
-  creditCardSecurityCode,
-  creditCardNumber,
-  creditCardExpiration,
-  creditCardInstallment,
+  isRegistered,
+  changeCardNumber,
+  cardHolderName,
+  cardNumber,
+  securityCode,
+  expire,
+  installmentCode,
 
   // redirectUrl
   redirectUrl = null,
@@ -47,7 +48,6 @@ export default ({
   // not in form data
   isPayment = true,
   products,
-  creditCardIsRegistered,
   choosePayment,
 }) => [
   `
@@ -149,45 +149,26 @@ export default ({
         {
           paymentId,
           redirectUrl,
-          ...(choosePayment.template !== 'gmo'
+          ...(choosePayment.template !== 'gmo' ||
+          choosePayment.accountInfo.gmo.paymentType !== 'Credit'
             ? {}
             : {
                 gmo: {
-                  isRegistered: creditCardIsRegistered,
-                  changeCardNumber: Boolean(
-                    creditCardIsRegistered &&
-                      creditCardOwnerName &&
-                      creditCardNumber &&
-                      creditCardSecurityCode &&
-                      creditCardExpiration,
-                  ),
-                  ...(!creditCardOwnerName
+                  isRegistered,
+                  changeCardNumber,
+                  ...(isRegistered && !changeCardNumber
                     ? {}
-                    : { cardHolderName: creditCardOwnerName }),
-                  ...(!creditCardNumber
-                    ? {}
-                    : { cardNumber: creditCardNumber.join('') }),
-                  ...(!creditCardSecurityCode
-                    ? {}
-                    : { securityCode: creditCardSecurityCode }),
-                  ...(!creditCardExpiration
-                    ? {}
-                    : moment(creditCardExpiration)
-                        .toArray()
-                        .slice(0, 2)
-                        .reduce(
-                          (result, val, index) =>
-                            index === 0
-                              ? { ...result, expireYear: val.toString() }
-                              : {
-                                  ...result,
-                                  expireMonth: (val + 1).toString(),
-                                },
-                          {},
-                        )),
-                  ...(!creditCardInstallment
-                    ? {}
-                    : { installmentCode: creditCardInstallment.join('-') }),
+                    : {
+                        cardHolderName,
+                        cardNumber: cardNumber.join(''),
+                        securityCode,
+                        expireYear: expire.year(),
+                        expireMonth: expire.month() + 1,
+                        installmentCode:
+                          installmentCode instanceof Array
+                            ? installmentCode[installmentCode.length - 1]
+                            : installmentCode,
+                      }),
                 },
               }),
         },

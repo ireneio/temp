@@ -110,7 +110,6 @@ export default class Checkout extends React.Component {
     const { host: domain } = location;
     const {
       products,
-      creditCardIsRegistered,
       choosePayment,
       isSaveAsReceiverTemplate,
     } = orderOtherDetailInfo;
@@ -131,7 +130,6 @@ export default class Checkout extends React.Component {
       userEmail: userEmail || user.email,
       userPassword,
       products,
-      creditCardIsRegistered,
       choosePayment,
       isPayment,
       isSaveAsReceiverTemplate,

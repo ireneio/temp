@@ -1,0 +1,17 @@
+{
+  "title": "信用卡資訊",
+  "modify": "修改",
+  "cancel": "取消",
+  "expire": "有效期限",
+  "securityCode": "安全碼",
+  "cardHolderName": "持卡人姓名",
+  "installment": "期",
+  "installments": "分期期數",
+  "bank": "分期銀行",
+  "form": {
+    "cardNumberError": "非信用卡卡號",
+    "required": "必填"
+  },
+  "not-gmo-bank": "此家發卡銀行沒有配合分期，請使用以下銀行的信用卡，或更改付款方式",
+  "dot": "、"
+}

@@ -6,6 +6,8 @@ import uuid from 'uuid';
 import { chevronLeft as ChevronLeftIcon } from 'react-icons/md';
 import transformColor from 'color';
 
+import GmoCreditCardForm from '@store/gmo-credit-card-form';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
   COLOR_TYPE,
@@ -15,7 +17,6 @@ import {
 import getComputeOrderQuery from 'utils/getComputeOrderQuery';
 
 import PaymentDefaultFormItem from 'paymentDefaultFormItem';
-import CreditCardFormItem from 'creditCardFormItem';
 
 import StepHeader from '../StepHeader';
 
@@ -71,7 +72,6 @@ export default class OrderDetail extends React.PureComponent {
     /** props */
     countries: PropTypes.arrayOf(COUNTRY_TYPE.isRequired),
     products: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
-    creditCardIsRegistered: PropTypes.bool,
     isSynchronizeUserInfo: PropTypes.bool,
     isSaveAsReceiverTemplate: PropTypes.bool,
     form: PropTypes.shape({}).isRequired,
@@ -81,7 +81,6 @@ export default class OrderDetail extends React.PureComponent {
 
   static defaultProps = {
     countries: null,
-    creditCardIsRegistered: false,
     isSynchronizeUserInfo: false,
     isSaveAsReceiverTemplate: false,
   };
@@ -97,8 +96,6 @@ export default class OrderDetail extends React.PureComponent {
     choosePayment: null,
     chooseShipment: null,
     productHasError: false,
-    // eslint-disable-next-line react/destructuring-assignment
-    creditCardIsRegistered: this.props.creditCardIsRegistered,
     // eslint-disable-next-line react/destructuring-assignment
     isSynchronizeUserInfo: this.props.isSynchronizeUserInfo,
     // eslint-disable-next-line react/destructuring-assignment
@@ -245,7 +242,6 @@ export default class OrderDetail extends React.PureComponent {
       computeOrderData,
       products,
       choosePayment,
-      creditCardIsRegistered,
       isSynchronizeUserInfo,
       isSaveAsReceiverTemplate,
     } = this.state;
@@ -276,7 +272,6 @@ export default class OrderDetail extends React.PureComponent {
             shipmentList,
             products,
             choosePayment,
-            creditCardIsRegistered,
             isSynchronizeUserInfo,
             isSaveAsReceiverTemplate,
           });
@@ -432,16 +427,15 @@ export default class OrderDetail extends React.PureComponent {
               }}
             />
 
-            <CreditCardFormItem
-              style={formItemStyle}
-              rootStyle={styles.block}
-              titleStyle={styles.title}
-              form={form}
-              choosePayment={choosePayment}
-              changeCreditCardIsRegistered={isRegistered => {
-                this.setState({ creditCardIsRegistered: isRegistered });
-              }}
-            />
+            {!choosePayment ||
+            choosePayment.template !== 'gmo' ||
+            choosePayment.accountInfo.gmo.paymentType !== 'Credit' ? null : (
+              <GmoCreditCardForm
+                storePaymentId={choosePayment.paymentId}
+                isInstallment={choosePayment.accountInfo.gmo.isInstallment}
+                form={form}
+              />
+            )}
 
             <div className={styles.formItem}>
               <div className={styles.buttonRoot}>

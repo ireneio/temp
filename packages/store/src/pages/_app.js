@@ -1,5 +1,5 @@
 import 'isomorphic-unfetch';
-import 'antd/dist/antd.less';
+import '@store/utils/lib/styles/base.less';
 import React from 'react';
 import App, { Container } from 'next/app';
 import getConfig from 'next/config';

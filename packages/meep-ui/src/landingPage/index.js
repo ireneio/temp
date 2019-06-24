@@ -4,8 +4,9 @@ import radium, { Style, StyleRoot } from 'radium';
 import { Form, Button, Divider, notification } from 'antd';
 import moment from 'moment';
 
+import GmoCreditCardForm from '@store/gmo-credit-card-form';
+
 import { enhancer } from 'layout/DecoratorsRoot';
-import CreditCardFormItem from 'creditCardFormItem';
 import {
   ID_TYPE,
   URL_TYPE,
@@ -108,7 +109,6 @@ export default class LandingPage extends React.PureComponent {
   state = {
     choosePayment: null,
     chooseShipmentTemplate: null,
-    creditCardIsRegistered: false,
     formData: null,
     isSubmitting: false,
   };
@@ -172,7 +172,7 @@ export default class LandingPage extends React.PureComponent {
 
           this.setState({ isSubmitting: true });
 
-          const { choosePayment, creditCardIsRegistered } = this.state;
+          const { choosePayment } = this.state;
           const { id: productId } = productData || {};
           const [variantId] = variant.slice(-1);
           const orderData = {
@@ -188,7 +188,6 @@ export default class LandingPage extends React.PureComponent {
                 quantity,
               },
             ],
-            creditCardIsRegistered,
             choosePayment,
             address,
             ...(Object.values(TAIWAN).includes(address?.[0]) && {
@@ -345,16 +344,15 @@ export default class LandingPage extends React.PureComponent {
             toggleLogin={this.toggleLogin}
           />
 
-          <CreditCardFormItem
-            style={styles.formItem}
-            titleStyle={styles.title(colors)}
-            rootStyle={styles.block}
-            form={form}
-            choosePayment={choosePayment}
-            changeCreditCardIsRegistered={isRegistered =>
-              this.setState({ creditCardIsRegistered: isRegistered })
-            }
-          />
+          {!choosePayment ||
+          choosePayment.template !== 'gmo' ||
+          choosePayment.accountInfo.gmo.paymentType !== 'Credit' ? null : (
+            <GmoCreditCardForm
+              storePaymentId={choosePayment.paymentId}
+              isInstallment={choosePayment.accountInfo.gmo.isInstallment}
+              form={form}
+            />
+          )}
         </StyleRoot>
 
         <Divider style={{ ...styles.title(colors), ...styles.argeementText }}>

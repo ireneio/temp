@@ -1,5 +1,21 @@
 /** ignore generateScopedName */
-// TODO: add to @meepshop/store
 @import '~antd/dist/antd.less';
 
 @import './variables.less';
+
+:global(.ant-cascader-menus) {
+  & > div {
+    display: flex;
+  }
+
+  :global(.ant-cascader-menu-item) {
+    display: flex;
+    align-items: center;
+    white-space: pre-line;
+    word-break: break-word;
+  }
+}
+
+:global(.ant-form-item) {
+  margin: 0px 0px 14px;
+}
