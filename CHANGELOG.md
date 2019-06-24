@@ -1,5 +1,39 @@
 # CHANGELOG
 
+## 0.24.1 (2019-06-24)
+
+#### :boom: Breaking Change
+
+- `end-to-end`, `meep-ui`, `store`
+  - [#527](https://github.com/meepshop/meep-lerna/pull/527) 【功能】GMO 金流規格變更 - 新增「新 NEWEB」：前端 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#556](https://github.com/meepshop/meep-lerna/pull/556) (@admin/server): remove unnecessary env ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- `end-to-end`, `meep-ui`, `store`
+  - [#527](https://github.com/meepshop/meep-lerna/pull/527) 【功能】GMO 金流規格變更 - 新增「新 NEWEB」：前端 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#556](https://github.com/meepshop/meep-lerna/pull/556) (@admin/server): remove unnecessary env ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#575](https://github.com/meepshop/meep-lerna/pull/575) 2844 【優化】 前台/login - 「企業優惠代碼」正名「群組代碼」- 補翻譯 ([@HsuTing](https://github.com/HsuTing))
+- `end-to-end`
+  - [#576](https://github.com/meepshop/meep-lerna/pull/576) (@meepshop/end-to-end) Fix testing ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#574](https://github.com/meepshop/meep-lerna/pull/574) (@admin/server): remove additional router and component in withApollo ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#573](https://github.com/meepshop/meep-lerna/pull/573) (@meepshop/front-end) Add old-admin ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.24.0 (2019-06-19)
 
 #### :boom: Breaking Change
