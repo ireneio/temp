@@ -4,7 +4,7 @@
   "description": "admin server",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.24.0",
+  "version": "0.24.1",
   "scripts": {
     "clean": "rm -rf ./src/.next",
     "dev": "node --inspect=localhost:9229 src/server",
@@ -12,10 +12,10 @@
     "start": "NODE_ENV=production node src/server"
   },
   "dependencies": {
-    "@admin/dashboard": "^0.24.0",
-    "@admin/orders-ecfit": "^0.24.0",
-    "@admin/utils": "^0.24.0",
-    "@admin/wrapper": "^0.24.0",
+    "@admin/dashboard": "^0.24.1",
+    "@admin/orders-ecfit": "^0.24.1",
+    "@admin/utils": "^0.24.1",
+    "@admin/wrapper": "^0.24.1",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",

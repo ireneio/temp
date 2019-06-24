@@ -4,13 +4,13 @@
   "description": "Orders ecfit page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.24.0",
+  "version": "0.24.1",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/date-picker": "^0.24.0",
-    "@admin/orders-export": "^0.24.0",
-    "@admin/utils": "^0.24.0",
+    "@admin/date-picker": "^0.24.1",
+    "@admin/orders-export": "^0.24.1",
+    "@admin/utils": "^0.24.1",
     "memoize-one": "^5.0.4",
     "moment": "^2.22.1"
   },
