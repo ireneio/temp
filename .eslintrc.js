@@ -48,6 +48,7 @@ module.exports = {
       },
     ],
 
+    'react/prop-types': 'off',
     'react/jsx-filename-extension': 'off',
     'react/sort-comp': [
       'error',
@@ -120,7 +121,6 @@ module.exports = {
        * ]
        */
       rules: {
-        'react/prop-types': 'off', // modify
         '@typescript-eslint/adjacent-overload-signatures': 'error',
         '@typescript-eslint/array-type': 'error',
         '@typescript-eslint/ban-types': 'error',
@@ -166,42 +166,6 @@ module.exports = {
           'error',
           {
             allow: ['_headers', '_error'],
-          },
-        ],
-      },
-    },
-    {
-      files: ['packages/meep-ui/**'],
-      rules: {
-        'react/prop-types': [
-          'error',
-          {
-            /** use to ignore context props, lib props */
-            ignore: [
-              /** context location props */
-              'location',
-
-              /** context locale props */
-              'locale',
-              'transformLocale',
-
-              /** context currency props */
-              'customerCurrency',
-              'transformCurrency',
-
-              /** context func props */
-              'goTo',
-              'hasStoreAppPlugin',
-
-              /** context storeSetting props */
-              'storeSetting',
-
-              /** context props */
-              'user',
-
-              /** lib props */
-              'form',
-            ],
           },
         ],
       },
