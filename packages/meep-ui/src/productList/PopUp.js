@@ -57,6 +57,7 @@ export default class PopUp extends React.PureComponent {
     } = this.props;
 
     // return if no target or products
+    // eslint-disable-next-line react/prop-types
     if (!target || !products || products.then) return null;
 
     const productData = products.data.find(item => item.id === target);
@@ -70,6 +71,7 @@ export default class PopUp extends React.PureComponent {
           {['one', 'all', undefined].indexOf(popUpGalleryView) > -1 && (
             <ProductCarousel
               mode="list"
+              coverImage={productData.coverImage}
               galleries={productData.galleries}
               autoPlay={false}
               thumbsPosition="bottom"
@@ -102,6 +104,7 @@ export default class PopUp extends React.PureComponent {
       <div id="modal-area">
         <ProductCarousel
           mode="list"
+          coverImage={productData.coverImage}
           galleries={productData.galleries}
           autoPlay={false}
           thumbsPosition="bottom"

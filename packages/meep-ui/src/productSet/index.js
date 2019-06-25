@@ -43,6 +43,7 @@ export default class ProductSet extends React.PureComponent {
         <div style={styles.root}>
           <div style={styles.half}>
             <ProductCarousel
+              coverImage={productData.coverImage}
               galleries={productData.galleries}
               autoPlay={false}
               thumbsPosition="none"

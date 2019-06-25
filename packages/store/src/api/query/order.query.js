@@ -32,7 +32,7 @@ const productsQuery = `{
     depth
     unit
   }
-  mainImage{
+  coverImage{
     src
   }
   orderStatus

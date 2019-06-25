@@ -9,6 +9,8 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'deprecated/link';
 import { ID_TYPE, URL_TYPE, COLOR_TYPE } from 'constants/propTypes';
 
+import { ThumbPlaceholder } from 'placeholder';
+
 import * as styles from './styles';
 import * as LOCALE from './locale';
 
@@ -24,7 +26,7 @@ export default class MemberWishList extends React.PureComponent {
         title: PropTypes.shape({
           zh_TW: PropTypes.string.isRequired,
         }),
-        productImage: PropTypes.shape({
+        coverImage: PropTypes.shape({
           src: URL_TYPE.isRequired,
         }),
         isAvailableForSale: PropTypes.bool.isRequired,
@@ -42,10 +44,14 @@ export default class MemberWishList extends React.PureComponent {
 
     return [
       {
-        dataIndex: 'productImage',
+        dataIndex: 'coverImage',
         render: (value, { productId }) => (
           <Link href={`/product/${productId}`} target="_blank">
-            <div style={styles.productImage(value?.src)} />
+            {!value?.src ? (
+              <ThumbPlaceholder />
+            ) : (
+              <div style={styles.productImage(value?.src)} />
+            )}
           </Link>
         ),
       },

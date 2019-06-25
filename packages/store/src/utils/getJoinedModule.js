@@ -151,6 +151,7 @@ const getJoinedModule = (
         case 'product-carousell': {
           return {
             ...widget,
+            coverImage: product.coverImage,
             galleries: product.galleries,
           };
         }

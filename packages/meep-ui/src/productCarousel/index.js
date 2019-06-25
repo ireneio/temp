@@ -4,7 +4,9 @@ import radium, { Style, StyleRoot } from 'radium';
 import Slider from 'react-slick';
 import Lazy from 'image/img/Lazy';
 
-import { GALLERY_TYPE } from 'constants/propTypes';
+import { Placeholder } from 'placeholder';
+
+import { COVER_IMAGE_TYPE, GALLERY_TYPE } from 'constants/propTypes';
 
 import ArrowIcon from './ArrowIcon';
 import * as styles from './styles';
@@ -12,6 +14,7 @@ import * as styles from './styles';
 @radium
 export default class ProductCarousel extends React.PureComponent {
   static propTypes = {
+    coverImage: COVER_IMAGE_TYPE,
     galleries: GALLERY_TYPE.isRequired,
     autoPlay: PropTypes.bool.isRequired,
     thumbsPosition: PropTypes.oneOf(['none', 'bottom']).isRequired,
@@ -19,6 +22,7 @@ export default class ProductCarousel extends React.PureComponent {
   };
 
   static defaultProps = {
+    coverImage: null,
     mode: 'detail',
   };
 
@@ -51,13 +55,12 @@ export default class ProductCarousel extends React.PureComponent {
   };
 
   setMainImage = () => {
-    const { galleries } = this.props;
-    const main = galleries?.[0];
+    const { coverImage, galleries } = this.props;
 
     return [
-      ...(main?.mainImage?.src ? [main?.mainImage] : []),
-      ...(main?.images || []).filter(
-        image => image && image.src && !image.isMain,
+      ...(coverImage?.src ? [coverImage] : []),
+      ...(galleries?.[0]?.images || []).filter(
+        image => image && image.src && image.fileId !== coverImage?.fileId,
       ),
     ];
   };
@@ -67,7 +70,13 @@ export default class ProductCarousel extends React.PureComponent {
     const { slider, navigator } = this.state;
     const images = this.setMainImage();
 
-    if (!images.length) return null;
+    if (!images.length) {
+      return (
+        <div style={styles.placeholder}>
+          <Placeholder />
+        </div>
+      );
+    }
 
     return (
       <div style={styles.root}>

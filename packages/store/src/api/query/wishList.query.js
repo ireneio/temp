@@ -7,7 +7,7 @@ export default `
       title {
         zh_TW
       }
-      productImage {
+      coverImage {
         src
       }
       isAvailableForSale

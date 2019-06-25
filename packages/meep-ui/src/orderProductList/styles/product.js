@@ -34,14 +34,6 @@ export const removeIcon = colors => ({
   cursor: 'pointer',
 });
 
-export const img = {
-  width: '60px',
-  height: '60px',
-  backgroundColor: '#fff',
-  borderRadius: '5px',
-  boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)',
-};
-
 /** title */
 export const title = {
   flexGrow: 1,

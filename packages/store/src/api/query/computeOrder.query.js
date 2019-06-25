@@ -37,7 +37,7 @@ const computeOrderQuery = `
       minPurchaseItems
       quantity
       discountPrice
-      mainImage{
+      coverImage{
         src
       }
       activityInfo {

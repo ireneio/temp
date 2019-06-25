@@ -17,7 +17,7 @@ export default async ({ add, remove }) => {
           title {
             zh_TW
           }
-          productImage {
+          coverImage {
             src
           }
           isAvailableForSale

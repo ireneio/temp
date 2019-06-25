@@ -6,6 +6,7 @@ import moment from 'moment';
 import memoizeOne from 'memoize-one';
 
 import { contextProvider } from 'context';
+import { ThumbPlaceholder } from 'placeholder';
 import Thumb from 'thumb';
 import localeFragment from 'fragments/localeFragment';
 
@@ -37,7 +38,7 @@ export const orderApplyFragment = gql`
 
 export const orderApplyProductFragment = gql`
   fragment orderApplyProductFragment on productsObjectType {
-    mainImage {
+    coverImage {
       src
     }
     title {
@@ -67,8 +68,9 @@ export default class OrderApply extends React.PureComponent {
 
     return [
       {
-        dataIndex: 'product.mainImage.src',
-        render: value => (!value ? null : <Thumb imgUrl={value} />),
+        dataIndex: 'product.coverImage.src',
+        render: value =>
+          !value ? <ThumbPlaceholder /> : <Thumb imgUrl={value} />,
         width: '10%',
         align: 'center',
       },

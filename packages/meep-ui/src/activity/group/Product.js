@@ -6,12 +6,15 @@ import { Modal } from 'antd';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
+import Link from 'link';
+import { Placeholder } from 'placeholder';
 import ProductCarousel from 'productCarousel';
 import ProductInfo from 'productInfo';
 import {
   ID_TYPE,
   COLOR_TYPE,
   POSITIVE_NUMBER_TYPE,
+  COVER_IMAGE_TYPE,
   GALLERY_TYPE,
 } from 'constants/propTypes';
 import { PHONE_MEDIA } from 'constants/media';
@@ -33,6 +36,7 @@ export default class Product extends React.PureComponent {
         zh_TW: PropTypes.string.isRequired,
         en_US: PropTypes.string,
       }),
+      coverImage: COVER_IMAGE_TYPE,
       galleries: GALLERY_TYPE.isRequired,
       variants: PropTypes.arrayOf(
         PropTypes.shape({
@@ -106,24 +110,25 @@ export default class Product extends React.PureComponent {
       wishList,
       stockNotificationList,
     } = this.props;
-    const { id, title, galleries, variants } = product;
-    const imageSrc =
-      galleries?.[0]?.mainImage?.src ||
-      ((galleries?.[0]?.images || []).find(image => image?.src) || {}).src;
+    const { id, title, coverImage, galleries, variants } = product;
     const totalPrice = (variants[0] || {}).totalPrice || 0;
 
     return (
       <div style={styles.root}>
         <Style scopeSelector=".ant-modal" rules={styles.modalStyle(colors)} />
-        {imageSrc ? (
+        {coverImage?.src ? (
           <Image
-            image={imageSrc}
+            image={coverImage.src}
             href={`/product/${id}`}
             contentWidth={100}
             newWindow={false}
             alignment="center"
           />
-        ) : null}
+        ) : (
+          <Link href={`/product/${id}`} target="_self">
+            <Placeholder />
+          </Link>
+        )}
         <div style={styles.productText}>
           <div style={styles.productTitle}>{transformLocale(title)}</div>
           <div style={styles.productPrice}>{transformCurrency(totalPrice)}</div>
@@ -151,6 +156,7 @@ export default class Product extends React.PureComponent {
           <div id="modal-area">
             <ProductCarousel
               mode="list"
+              coverImage={coverImage}
               galleries={galleries}
               autoPlay={false}
               thumbsPosition="bottom"

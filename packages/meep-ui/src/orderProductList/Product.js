@@ -5,13 +5,14 @@ import { close as RemoveIcon } from 'react-icons/md';
 import { tag as TagIcon } from 'react-icons/fa';
 
 import { enhancer } from 'layout/DecoratorsRoot';
+import { ThumbPlaceholder } from 'placeholder';
 import Thumb from 'thumb';
 import {
   ID_TYPE,
   COLOR_TYPE,
   LOCALE_TYPE,
   PURCHASE_ITEMS_TYPE,
-  GALLERY_IMAGE_TYPE,
+  COVER_IMAGE_TYPE,
 } from 'constants/propTypes';
 
 import Select from './Select';
@@ -29,7 +30,7 @@ export default class Product extends React.PureComponent {
 
     /** props */
     error: PropTypes.string,
-    mainImage: GALLERY_IMAGE_TYPE.isRequired,
+    coverImage: COVER_IMAGE_TYPE,
     specs: PropTypes.arrayOf(
       PropTypes.shape({
         title: LOCALE_TYPE.isRequired,
@@ -52,6 +53,7 @@ export default class Product extends React.PureComponent {
 
   static defaultProps = {
     error: null,
+    coverImage: null,
     activityInfo: null,
     specs: null,
   };
@@ -63,7 +65,7 @@ export default class Product extends React.PureComponent {
       removeCartItems,
       type,
       error,
-      mainImage,
+      coverImage,
       activityInfo,
       specs,
       cartId,
@@ -93,11 +95,11 @@ export default class Product extends React.PureComponent {
             />
           )}
 
-          {!mainImage?.src ? (
-            <div style={styles.img} />
+          {!coverImage?.src ? (
+            <ThumbPlaceholder />
           ) : (
             <div style={{ height: '100%' }}>
-              <Thumb imgUrl={mainImage.src} />
+              <Thumb imgUrl={coverImage.src} />
             </div>
           )}
         </td>

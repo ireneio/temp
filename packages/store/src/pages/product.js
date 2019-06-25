@@ -77,7 +77,7 @@ class Product extends React.Component {
       page,
       product: {
         status,
-        galleries,
+        coverImage,
         title: { zh_TW: productName },
       },
       productDescription,
@@ -85,8 +85,7 @@ class Product extends React.Component {
       fbAppId,
     } = this.props;
     const url = host + pathname;
-    const productImage =
-      galleries?.[0]?.mainImage?.src || galleries?.[0]?.images?.[0]?.src || '';
+    const productImage = coverImage?.src || '';
     const { keywords, description = storeDescription } = page.seo || {};
 
     return (

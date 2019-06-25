@@ -65,6 +65,16 @@ export const Style = mode => ({
   },
 });
 
+export const placeholder = {
+  margin: 'auto',
+  width: '400px',
+  height: '400px',
+  [PHONE_MEDIA]: {
+    width: '300px',
+    height: '300px',
+  },
+};
+
 export const root = {
   width: '100%',
 };

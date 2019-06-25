@@ -42,7 +42,7 @@ const cartQuery = `
         zh_TW
         en_US
       }
-      mainImage{
+      coverImage{
         src
       }
       type

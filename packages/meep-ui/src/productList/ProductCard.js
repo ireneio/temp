@@ -5,6 +5,8 @@ import radium, { StyleRoot } from 'radium';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 import Image from 'image';
+import Link from 'link';
+import { Placeholder } from 'placeholder';
 import DraftText from 'draftText';
 
 import ProductLoader from './ProductLoader';
@@ -66,14 +68,10 @@ const ProductCard = ({
             id,
             title,
             description,
-            galleries,
+            coverImage,
             variants,
             showUserPrice,
           } = product;
-          const imageSrc =
-            galleries?.[0]?.mainImage?.src ||
-            ((galleries?.[0]?.images || []).find(image => image?.src) || {})
-              .src;
           const variantInfo = variants[0] || {};
           const orderable =
             variants.reduce((prev, variant) => prev + (variant.stock || 0), 0) >
@@ -97,15 +95,24 @@ const ProductCard = ({
                   ? { onClick: () => handleModalOpen(id) }
                   : {})}
               >
-                <Image
-                  image={imageSrc}
-                  href={productListImagePopUpEnabled ? '' : `/product/${id}`}
-                  contentWidth={100}
-                  alignment="center"
-                  newWindow={false}
-                  ratio={1}
-                  isUsingCache={isUsingCache}
-                />
+                {!coverImage?.src ? (
+                  <Link // eslint-disable-line jsx-a11y/anchor-is-valid
+                    href={productListImagePopUpEnabled ? '' : `/product/${id}`}
+                    target="_self"
+                  >
+                    <Placeholder />
+                  </Link>
+                ) : (
+                  <Image
+                    image={coverImage.src}
+                    href={productListImagePopUpEnabled ? '' : `/product/${id}`}
+                    contentWidth={100}
+                    alignment="center"
+                    newWindow={false}
+                    ratio={1}
+                    isUsingCache={isUsingCache}
+                  />
+                )}
               </div>
 
               {showTitle && (

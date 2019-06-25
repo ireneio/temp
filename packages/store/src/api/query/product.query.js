@@ -37,12 +37,11 @@ const productQuery = `{
     warehouseNumber
     minRetailPrice
   }
+  coverImage {
+    fileId
+    src
+  }
   galleries {
-    mainImage {
-      fileId
-      isMain
-      src
-    }
     images {
       fileId
       isMain

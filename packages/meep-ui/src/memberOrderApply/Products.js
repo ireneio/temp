@@ -6,6 +6,7 @@ import memoizeOne from 'memoize-one';
 import transformColor from 'color';
 
 import { contextProvider } from 'context';
+import { ThumbPlaceholder } from 'placeholder';
 import Thumb from 'thumb';
 import localeFragment from 'fragments/localeFragment';
 
@@ -22,7 +23,7 @@ export const productsFragment = gql`
       id
       quantity
       type
-      mainImage {
+      coverImage {
         src
       }
       title {
@@ -118,8 +119,9 @@ export default class Products extends React.PureComponent {
 
     return [
       {
-        dataIndex: 'mainImage.src',
-        render: value => (!value ? null : <Thumb imgUrl={value} />),
+        dataIndex: 'coverImage.src',
+        render: value =>
+          !value ? <ThumbPlaceholder /> : <Thumb imgUrl={value} />,
       },
       {
         title: transformLocale(LOCALE.PRODUCT_TITLE),

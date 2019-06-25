@@ -142,12 +142,11 @@ export default ({
             pageId
             templateId
           }
+          coverImage {
+            fileId
+            src
+          }
           galleries {
-            mainImage {
-              fileId
-              isMain
-              src
-            }
             images {
               fileId
               isMain
