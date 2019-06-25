@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.24.2 (2019-06-25)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#577](https://github.com/meepshop/meep-lerna/pull/577) 【優化】 ECFIT - 物流設定 - 海外：前端 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#539](https://github.com/meepshop/meep-lerna/pull/539) 修正使用商品主圖邏輯 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#403](https://github.com/meepshop/meep-lerna/pull/403) N362 【BUG】前台 - Line 分享連結，商品頁未帶「商品描述」 ([@barrypeng6](https://github.com/barrypeng6))
+- Other
+  - [#578](https://github.com/meepshop/meep-lerna/pull/578) 【BUG】後台 - Dashboard：本月訂單數、會員總數出現字元 '＄' ([@piovischioh](https://github.com/piovischioh))
+  - close react/prop-types rule ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 4
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@barrypeng6](https://github.com/barrypeng6)
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.24.1 (2019-06-24)
 
 #### :boom: Breaking Change
