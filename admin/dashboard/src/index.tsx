@@ -124,18 +124,14 @@ class Dashboard extends React.Component<PropsType> {
               <img src="/static/images/dashboard/order.svg" alt="order" />
               <div>
                 <span>{t('order')}</span>
-                <span className={styles.green}>
-                  {this.formatAmount(orderMonthly)}
-                </span>
+                <span className={styles.green}>{orderMonthly}</span>
               </div>
             </div>
             <div>
               <img src="/static/images/dashboard/member.svg" alt="member" />
               <div>
                 <span>{t('member')}</span>
-                <span className={styles.green}>
-                  {this.formatAmount(userCount)}
-                </span>
+                <span className={styles.green}>{userCount}</span>
               </div>
             </div>
           </div>
