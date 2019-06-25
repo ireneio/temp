@@ -86,7 +86,7 @@ class Product extends React.Component {
     } = this.props;
     const url = host + pathname;
     const productImage = coverImage?.src || '';
-    const { keywords, description = storeDescription } = page.seo || {};
+    const keywords = page?.seo?.keywords;
 
     return (
       <>
@@ -94,7 +94,7 @@ class Product extends React.Component {
           <title>{productName || storeName}</title>
           <meta
             name="description"
-            content={description || productDescription || storeDescription}
+            content={productDescription || storeDescription}
           />
           <meta name="keywords" content={keywords} />
           <link rel="icon" type="image/png" href={`//${faviconUrl}`} />
@@ -114,7 +114,7 @@ class Product extends React.Component {
           <meta property="og:image:height" content="300" />
           <meta
             property="og:description"
-            content={description || productDescription || storeDescription}
+            content={productDescription || storeDescription}
           />
           <meta property="og:site_name" content={storeName} />
           <meta property="og:locale" content={locale} />
