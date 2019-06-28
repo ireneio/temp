@@ -30,6 +30,7 @@ import Store from './schemas/Store';
 import ExportFormat from './schemas/ExportFormat';
 import GMOUserInfo from './schemas/GMOUserInfo';
 import GmoBankInstallment from './schemas/GmoBankInstallment';
+import ColorList from './schemas/ColorList';
 
 // definition
 // TODO: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/34649
@@ -63,6 +64,7 @@ addMockFunctionsToSchema({
     ExportFormat,
     GMOUserInfo,
     GmoBankInstallment,
+    ColorList,
   },
 });
 
