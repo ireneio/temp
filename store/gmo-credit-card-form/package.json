@@ -8,6 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@store/utils": "^0.24.1",
     "memoize-one": "^5.0.4",
     "moment": "^2.22.1",
     "validator": "^10.8.0"

@@ -38,6 +38,7 @@ module.exports = ({ config }) => {
   config.resolve.alias = {
     ...config.resolve.alias,
     'next/router': path.resolve(__dirname, '../__mocks__/next/router'),
+    'next/link': path.resolve(__dirname, '../__mocks__/next/link'),
     'next-i18next': path.resolve(__dirname, '../__mocks__/next-i18next'),
   };
 

@@ -12,6 +12,7 @@
     "start": "NODE_ENV=production node src/server"
   },
   "dependencies": {
+    "@admin/apollo-client-resolvers": "^0.24.1",
     "@admin/dashboard": "^0.24.2",
     "@admin/orders-ecfit": "^0.24.1",
     "@admin/utils": "^0.24.1",

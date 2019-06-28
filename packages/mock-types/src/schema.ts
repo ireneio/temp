@@ -65,6 +65,7 @@ addMockFunctionsToSchema({
     GMOUserInfo,
     GmoBankInstallment,
     ColorList,
+    Timestamp: () => Number.MAX_SAFE_INTEGER,
   },
 });
 
