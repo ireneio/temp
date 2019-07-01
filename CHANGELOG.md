@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.24.3 (2019-07-01)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#584](https://github.com/meepshop/meep-lerna/pull/584) 【優化】 meepShop x Facebook - pixel ([@happycat6323](https://github.com/happycat6323))
+- `mock-types`
+  - [#583](https://github.com/meepshop/meep-lerna/pull/583) (@store/apollo-client-resolvers) Add colors client schema ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `end-to-end`, `mock-types`
+  - [#585](https://github.com/meepshop/meep-lerna/pull/585) (@meepshop/front-end) Fix detail of pacakages ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.24.2 (2019-06-25)
 
 #### :rocket: New Feature
