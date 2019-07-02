@@ -29,13 +29,14 @@ import { orderExportDownload } from '../../../__generated__/admin';
 interface PropsType
   extends I18nPropsType,
     Pick<QueryResult<getExportFormat>, 'client'>,
-    OmitType<DrawerProps, 'closable' | 'title'> {
+    OmitType<DrawerProps, 'closable' | 'title' | 'onClose'> {
   loading: boolean;
   exportFormatList: {
     id: string;
     name: string;
   }[];
   orderIds: string[];
+  onClose?: () => void;
 }
 
 interface StateType extends OmitType<orderExportDownload, 'orderIds'> {
@@ -199,76 +200,88 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
 
 const EnhancedOrdersExport = withNamespaces('orders-export')(OrdersExport);
 
-export default React.memo(({ visible, ...props }: DrawerProps) => (
-  <Query<getExportFormat>
-    query={gql`
-      query getExportFormat {
-        getExportFormatList(
-          search: {
-            filter: {
-              or: [
-                { type: "exact", field: "type", query: "order_custom" }
-                { type: "exact", field: "type", query: "order_system_default" }
-              ]
+export default React.memo(
+  ({
+    visible,
+    ...props
+  }: OmitType<DrawerProps, 'onClose'> & Pick<PropsType, 'onClose'>) => (
+    <Query<getExportFormat>
+      query={gql`
+        query getExportFormat {
+          getExportFormatList(
+            search: {
+              filter: {
+                or: [
+                  { type: "exact", field: "type", query: "order_custom" }
+                  {
+                    type: "exact"
+                    field: "type"
+                    query: "order_system_default"
+                  }
+                ]
+              }
+            }
+          ) {
+            data {
+              id
+              name
             }
           }
-        ) {
-          data {
+
+          getDefaultExportFormat(type: order_default) {
             id
             name
           }
-        }
 
-        getDefaultExportFormat(type: order_default) {
-          id
-          name
-        }
-
-        selectedOrders @client {
-          edges {
-            node {
-              id
+          selectedOrders @client {
+            edges {
+              node {
+                id
+              }
             }
           }
         }
-      }
-    `}
-    skip={!visible}
-  >
-    {({ loading, error, data, client }) => {
-      const {
-        getExportFormatList = null,
-        getDefaultExportFormat = { data: [] },
-        selectedOrders = null,
-      } = data || {};
-      const exportFormatList = [];
+      `}
+      skip={!visible}
+    >
+      {({ loading, error, data, client }) => {
+        const {
+          getExportFormatList = null,
+          getDefaultExportFormat = { data: [] },
+          selectedOrders = null,
+        } = data || {};
+        const exportFormatList = [];
 
-      // TODO: should not be null
-      if (getDefaultExportFormat) exportFormatList.push(getDefaultExportFormat);
+        // TODO: should not be null
+        if (getDefaultExportFormat)
+          exportFormatList.push(getDefaultExportFormat);
 
-      return (
-        <EnhancedOrdersExport
-          {...props}
-          loading={Boolean(loading || error || !data)}
-          client={client}
-          visible={visible}
-          exportFormatList={
-            [
-              ...exportFormatList,
+        return (
+          <EnhancedOrdersExport
+            {...props}
+            loading={Boolean(loading || error || !data)}
+            client={client}
+            visible={visible}
+            exportFormatList={
+              [
+                ...exportFormatList,
+                // TODO: should not be null
+                ...(idx(getExportFormatList, _ => _.data) || []).filter(
+                  d => d !== null,
+                ),
+              ] as PropsType['exportFormatList']
+            }
+            orderIds={
               // TODO: should not be null
-              ...(idx(getExportFormatList, _ => _.data) || []).filter(
-                d => d !== null,
-              ),
-            ] as PropsType['exportFormatList']
-          }
-          orderIds={
-            // TODO: should not be null
-            !selectedOrders
-              ? []
-              : selectedOrders.edges.map(({ node: { id } }) => id || 'null-id')
-          }
-        />
-      );
-    }}
-  </Query>
-));
+              !selectedOrders
+                ? []
+                : selectedOrders.edges.map(
+                    ({ node: { id } }) => id || 'null-id',
+                  )
+            }
+          />
+        );
+      }}
+    </Query>
+  ),
+);

@@ -7,6 +7,9 @@ const withLess = require('@zeit/next-less');
 const withImages = require('next-images');
 const withSourceMaps = require('@zeit/next-source-maps');
 
+const { transformFileSync } = require('@babel/core');
+const outputFileSync = require('output-file-sync');
+
 const FONT_FAMILY =
   '"PingFang TC", "Microsoft JhengHei", "Helvetica Neue", "Helvetica", "source-han-sans-traditional", "Arial", "sans-serif"';
 
@@ -21,6 +24,14 @@ if (process.env.NODE_ENV !== 'production') {
   if (!process.env.STORE_DOMAIN)
     process.env.STORE_DOMAIN = 'bellatest.stage.meepcloud.com';
 }
+
+// TODO: remove after support next-i18next'
+outputFileSync(
+  path.resolve(__dirname, '../../store/utils/lib/i18n.js'),
+  transformFileSync(path.resolve(__dirname, './src/utils/i18n.js'), {
+    configFile: path.resolve(__dirname, '../../babel.config.js'),
+  }).code.replace(/..\/static/g, path.resolve(__dirname, './src/static')),
+);
 
 module.exports = withSourceMaps(
   withTypescript(
@@ -70,14 +81,6 @@ module.exports = withSourceMaps(
               '../../babel.config.js',
             );
             config.plugins.push(new MomentLocalesPlugin());
-            config.resolve.alias = {
-              ...config.resolve.alias,
-              // TODO: remove after support next-i18next'
-              '@store/utils/lib/i18n': path.resolve(
-                __dirname,
-                './src/utils/i18n.js',
-              ),
-            };
 
             const originalEntry = config.entry;
 
