@@ -15,7 +15,8 @@ COPY ./node_modules ./node_modules
 
 # Copy folder
 # TODO: remove
-COPY ./packages ./packages
+COPY ./packages/store ./packages/store
+COPY ./packages/meep-ui ./packages/meep-ui
 COPY ./store ./store
 
 RUN yarn lerna link

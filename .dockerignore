@@ -13,6 +13,9 @@ jsconfig.json
 .lintstagedrc.js
 .prettierrc.js
 
+# test
+*/*/__tests__
+
 # depoly
 */*/k8s_config
 */*/Dockerfile
