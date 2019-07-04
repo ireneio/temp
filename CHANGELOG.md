@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.24.4 (2019-07-04)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#594](https://github.com/meepshop/meep-lerna/pull/594) 【BUG】新架構 - GMO 信用卡安全碼第一碼若為 0，系統會過濾掉 ([@HsuTing](https://github.com/HsuTing))
+  - [#592](https://github.com/meepshop/meep-lerna/pull/592) (@meepshop/store) Fix deploy ([@HsuTing](https://github.com/HsuTing))
+  - [#589](https://github.com/meepshop/meep-lerna/pull/589) (@meepshop/store) Fix i18n SSR error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.24.3 (2019-07-01)
 
 #### :rocket: New Feature
