@@ -10,6 +10,7 @@
   "bank": "Bank",
   "form": {
     "cardNumberError": "Invalid card number",
+    "securityCodeError": "Invalid CVV",
     "required": "必填"
   },
   "not-gmo-bank": "此家發卡銀行沒有配合分期，請使用以下銀行的信用卡，或更改付款方式",

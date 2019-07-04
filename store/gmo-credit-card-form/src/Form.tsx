@@ -5,9 +5,9 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { Form as AntdForm, DatePicker, Input, InputNumber } from 'antd';
+import { Form as AntdForm, DatePicker, Input } from 'antd';
 import moment from 'moment';
-import { isNumeric } from 'validator';
+import { isNumeric, isInt } from 'validator';
 
 import { withNamespaces } from '@store/utils/lib/i18n';
 
@@ -60,7 +60,7 @@ class Form extends React.PureComponent<PropsType> {
           })(<CreditCardInput />)}
         </FormItem>
 
-        <div className={styles.expireAndSeecurityCode}>
+        <div className={styles.expireAndSecurityCode}>
           <FormItem>
             {getFieldDecorator('expire', {
               rules: [
@@ -86,15 +86,16 @@ class Form extends React.PureComponent<PropsType> {
                   required: true,
                   message: t('form.required'),
                 },
+                {
+                  validator: (_, value, callback) => {
+                    if (!isInt(value || '', { min: 0, max: 999 }))
+                      return callback(t('form.securityCodeError'));
+
+                    return callback();
+                  },
+                },
               ],
-            })(
-              <InputNumber
-                min={0}
-                max={999}
-                maxLength={3}
-                placeholder={t('securityCode')}
-              />,
-            )}
+            })(<Input maxLength={3} placeholder={t('securityCode')} />)}
           </FormItem>
         </div>
 
