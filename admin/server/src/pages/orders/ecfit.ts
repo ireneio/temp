@@ -1,1 +1,3 @@
-export { default } from '@admin/orders-ecfit';
+import OrdersEcfit from '@admin/orders-ecfit';
+
+export default OrdersEcfit;
