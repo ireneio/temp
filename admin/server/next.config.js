@@ -64,6 +64,8 @@ module.exports = withSourceMaps(
               [
                 'core-js/modules/es6.string.starts-with',
                 'core-js/modules/es6.object.assign',
+                'core-js/modules/es6.symbol',
+                'core-js/modules/es6.array.from',
               ].forEach(polyfill => {
                 if (
                   entries['main.js'] &&
