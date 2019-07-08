@@ -357,6 +357,22 @@ export default class ProductList extends React.PureComponent {
             <span style={styles.paginationItem(colors)}>{current}</span>
           </Link>
         );
+
+      case 'jump-next':
+      case 'jump-prev':
+        return (
+          <Link
+            href={
+              page === current
+                ? null
+                : `${pathname}?${queryString.stringify(query)}`
+            }
+            style={styles.paginationLink}
+          >
+            {originalElement}
+          </Link>
+        );
+
       default:
         return originalElement;
     }

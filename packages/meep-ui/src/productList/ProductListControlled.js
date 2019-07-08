@@ -358,9 +358,6 @@ export default class ProductList extends React.PureComponent {
       case 'page':
         item = current;
         break;
-      case 'jump-next':
-      case 'jump-prev':
-        return null;
       default:
         return originalElement;
     }
