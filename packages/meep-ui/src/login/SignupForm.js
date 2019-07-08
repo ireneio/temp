@@ -16,6 +16,7 @@ export default class SignupForm extends React.PureComponent {
     form: PropTypes.objectOf(PropTypes.func).isRequired,
     dispatchAction: PropTypes.func.isRequired,
     handleTypeChange: PropTypes.func.isRequired,
+    hasStoreAppPlugin: PropTypes.func.isRequired,
   };
 
   state = {
@@ -76,6 +77,7 @@ export default class SignupForm extends React.PureComponent {
     const {
       form: { getFieldDecorator },
       transformLocale,
+      hasStoreAppPlugin,
       colors,
     } = this.props;
 
@@ -147,17 +149,19 @@ export default class SignupForm extends React.PureComponent {
           )}
         </FormItem>
 
-        <FormItem>
-          {getFieldDecorator('code', {
-            rules: [],
-          })(
-            <Input
-              type="text"
-              placeholder={transformLocale(LOCALE.PROMOTION_CODE)}
-              size="large"
-            />,
-          )}
-        </FormItem>
+        {!hasStoreAppPlugin('memberGroupCode') ? null : (
+          <FormItem>
+            {getFieldDecorator('code', {
+              rules: [],
+            })(
+              <Input
+                type="text"
+                placeholder={transformLocale(LOCALE.PROMOTION_CODE)}
+                size="large"
+              />,
+            )}
+          </FormItem>
+        )}
 
         <div className="button-group">
           <Button

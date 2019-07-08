@@ -75,6 +75,7 @@ export default class Login extends React.PureComponent {
             transformLocale={transformLocale}
             dispatchAction={dispatchAction}
             handleTypeChange={this.handleTypeChange}
+            hasStoreAppPlugin={hasStoreAppPlugin}
           />
         );
         break;
