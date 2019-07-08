@@ -4,7 +4,7 @@
   "description": "store for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.24.5",
+  "version": "0.24.7",
   "scripts": {
     "clean": "rm -rf ./src/.next",
     "dev": "node --inspect=localhost:9230 src/server",
@@ -48,8 +48,5 @@
     "moment-locales-webpack-plugin": "^1.0.5",
     "next-images": "^0.10.2"
   },
-  "keywords": [
-    "meepshop",
-    "store"
-  ]
+  "keywords": ["meepshop", "store"]
 }
