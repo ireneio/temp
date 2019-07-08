@@ -71,10 +71,12 @@ class DatePicker extends React.PureComponent<PropsType, StateType> {
         newState.value = [
           moment()
             .subtract(1, 'weeks')
-            .startOf('week'),
+            .startOf('week')
+            .startOf('day'),
           moment()
             .subtract(1, 'weeks')
-            .endOf('week'),
+            .endOf('week')
+            .endOf('day'),
         ];
         break;
 
@@ -82,19 +84,31 @@ class DatePicker extends React.PureComponent<PropsType, StateType> {
         newState.value = [
           moment()
             .subtract(1, 'months')
-            .startOf('month'),
+            .startOf('month')
+            .startOf('day'),
           moment()
             .subtract(1, 'months')
-            .endOf('month'),
+            .endOf('month')
+            .endOf('day'),
         ];
         break;
 
       case 'last7Days':
-        newState.value = [moment().subtract(6, 'days'), moment()];
+        newState.value = [
+          moment()
+            .subtract(6, 'days')
+            .startOf('day'),
+          moment().endOf('day'),
+        ];
         break;
 
       case 'last30Days':
-        newState.value = [moment().subtract(29, 'days'), moment()];
+        newState.value = [
+          moment()
+            .subtract(29, 'days')
+            .startOf('day'),
+          moment().endOf('day'),
+        ];
         break;
 
       default:
@@ -124,8 +138,15 @@ class DatePicker extends React.PureComponent<PropsType, StateType> {
           type === 'custom' ? '' : styles.notCustom
         }`}
         placeholder={[t('start-date'), t('end-date')]}
-        onChange={newValue => {
-          if (newValue && newValue.some(time => !time)) return;
+        onChange={originalNewValue => {
+          if (originalNewValue && originalNewValue.some(time => !time)) return;
+
+          const newValue = [
+            !originalNewValue[0]
+              ? undefined
+              : originalNewValue[0].startOf('day'),
+            !originalNewValue[1] ? undefined : originalNewValue[1].endOf('day'),
+          ];
 
           this.setState({ value: newValue } as Pick<PropsType, 'value'>, () => {
             if (onChange) onChange(newValue as PropsType['value']);
