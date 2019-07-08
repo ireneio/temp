@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.24.6 (2019-07-08)
+
+#### :bug: Bug Fix
+
+- Other
+  - [#598](https://github.com/meepshop/meep-lerna/pull/598) 【BUG】ECFIT 訂單管理 - DatePicker 選擇「自訂時間」無出現訂單 ([@HsuTing](https://github.com/HsuTing))
+  - [#597](https://github.com/meepshop/meep-lerna/pull/597) (@admin/server) Fix export error with new babel version ([@HsuTing](https://github.com/HsuTing))
+  - [#595](https://github.com/meepshop/meep-lerna/pull/595) (@meepshop/front-end) Fix new version babel error ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#587](https://github.com/meepshop/meep-lerna/pull/587) 【BUG】 新架構 - (預設) 商品列表分頁的「...」按了無反應，無法跳頁 ([@happycat6323](https://github.com/happycat6323))
+  - [#596](https://github.com/meepshop/meep-lerna/pull/596) 【BUG】 新架構 - 未安裝「會員群組代碼」擴充功能，前台卻顯示 ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#593](https://github.com/meepshop/meep-lerna/pull/593) 【BUG】 新架構/IE 瀏覽器 - 前台無法正常開啟，顯示一片空白 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.24.4 (2019-07-04)
 
 #### :bug: Bug Fix
