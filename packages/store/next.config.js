@@ -25,7 +25,7 @@ if (process.env.NODE_ENV !== 'production') {
     process.env.STORE_DOMAIN = 'bellatest.stage.meepcloud.com';
 }
 
-// TODO: remove after support next-i18next'
+// TODO: remove after support next-i18next
 outputFileSync(
   path.resolve(__dirname, '../../store/utils/lib/i18n.js'),
   transformFileSync(path.resolve(__dirname, './src/utils/i18n.js'), {

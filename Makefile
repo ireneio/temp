@@ -26,6 +26,11 @@ babel-all:
 babel-changed:
 	@$(call babel-build, $(WATCH), --since $(BRANCH))
 
+## TODO: remove after support next-i18next
+MEEP_UI_VERSION=$(shell grep 'version' ./packages/meep-ui/package.json | cut -d '"' -f 4)
+hotfix-i18n:
+	@npx json -I -f ./store/utils/package.json -e 'this.dependencies={"@meepshop/meep-ui": "^$(MEEP_UI_VERSION)"}'
+
 tsc-basic:
 	@echo "- @meepshop/mock-types"
 	@apollo client:codegen --target=typescript --globalTypesFile=./__generated__/mock-types.ts

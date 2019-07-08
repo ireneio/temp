@@ -29,6 +29,7 @@ deploy-docker: &deploy-docker
       --stream \
       --scope @meepshop/store \
       --scope @admin/server
+    make hotfix-i18n
     yarn lerna exec \
       "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/build_docker.sh" \
       --parallel \

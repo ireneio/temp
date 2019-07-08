@@ -7,8 +7,5 @@
   "version": "0.24.3",
   "main": "./index.js",
   "types": "./src/index.tsx",
-  "dependencies": {
-    "@meepshop/meep-ui": "^0.24.3"
-  },
   "keywords": ["store", "utils"]
 }
