@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.24.8 (2019-07-10)
+
+#### :rocket: New Feature
+
+- `mock-types`, `store`
+  - [#586](https://github.com/meepshop/meep-lerna/pull/586) 修改 我的收藏 ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`, `mock-types`, `store`
+  - [#590](https://github.com/meepshop/meep-lerna/pull/590) 修改 thankYouPage ([@piovischioh](https://github.com/piovischioh))
+  - [#524](https://github.com/meepshop/meep-lerna/pull/524) 新增 @store/address-cascader ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#588](https://github.com/meepshop/meep-lerna/pull/588) 【BUG】 手機版 - 後台商店總覽頁面跑版 ([@piovischioh](https://github.com/piovischioh))
+  - [#602](https://github.com/meepshop/meep-lerna/pull/602) (@meepshop/front-end) Fix bug about @babel/helper ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#600](https://github.com/meepshop/meep-lerna/pull/600) (@meepshop/front-end) Fix packages warning ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.24.6 (2019-07-08)
 
 #### :bug: Bug Fix
