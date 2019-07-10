@@ -1,0 +1,68 @@
+@import '~@store/utils/lib/styles/variables.less';
+
+.root {
+  max-width: 880px;
+  margin: auto;
+  padding: 0 30px;
+
+  :global(.ant-table-thead) > tr > th {
+    background: transparent;
+    font-size: 16px;
+  }
+
+  @media @phone-media {
+    padding: 15px;
+
+    :global(.ant-table-thead) > tr > th {
+      display: none;
+    }
+
+    :global(.ant-table-tbody) > tr > td {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+}
+
+.image {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  background-color: #eeeeee;
+  overflow: hidden;
+
+  @media @phone-media {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.notAvailableForSale {
+  opacity: 0.5;
+}
+
+.link {
+  display: inherit;
+  color: inherit;
+  text-decoration: none;
+
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+.addDate {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.icon {
+  text-align: center;
+  font-size: 18px;
+
+  i {
+    cursor: pointer;
+  }
+}

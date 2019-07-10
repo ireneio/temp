@@ -15,6 +15,7 @@
     "@meepshop/meep-ui": "^0.24.3",
     "@store/ezpay": "^0.24.1",
     "@store/thank-you-page": "^0.0.1",
+    "@store/member-wish-list": "^0.1.0",
     "@store/member-settings": "^0.1.0",
     "@store/utils": "^0.24.3",
     "body-parser": "^1.18.2",

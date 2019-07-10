@@ -8,7 +8,7 @@ import * as Selectors from 'selectors';
 import * as Template from 'template';
 import { Container, TrackingCodeHead, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
-import MemberWishlist from '@meepshop/meep-ui/lib/memberWishList';
+import MemberWishlist from '@store/member-wish-list';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
 import * as TITLE from 'locales';
@@ -76,6 +76,7 @@ class Wishlist extends Component {
       title,
       wishList,
       fbAppId,
+      dispatchAction,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -95,7 +96,10 @@ class Wishlist extends Component {
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
           <MemberHeader title={title} colors={colors}>
-            <MemberWishlist wishList={wishList} />
+            <MemberWishlist
+              wishListFromRedux={wishList}
+              dispatchAction={dispatchAction}
+            />
           </MemberHeader>
         </Container>
       </>
@@ -161,4 +165,11 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps)(Wishlist);
+export default connect(
+  mapStateToProps,
+  dispatch => ({
+    dispatchAction: (actionName, args) => {
+      dispatch(Actions[actionName](args));
+    },
+  }),
+)(Wishlist);

@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "@store/placeholder",
+  "description": "placeholder svg for store",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.24.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "keywords": ["placeholder", "store"]
+}

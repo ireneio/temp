@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@store/member-wish-list",
+  "description": "Member wish list page for store",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@store/utils": "^0.24.3",
+    "moment": "^2.22.1"
+  },
+  "keywords": ["member wish list page", "store"]
+}

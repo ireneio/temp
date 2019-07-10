@@ -35,6 +35,7 @@ import MemberGroupList from './schemas/MemberGroupList';
 import UserMemberGroupObjectType from './schemas/UserMemberGroupObjectType';
 import NotificationObjectType from './schemas/NotificationObjectType';
 import ColorList from './schemas/ColorList';
+import WishlistProduct from './schemas/WishlistProduct';
 
 // definition
 // TODO: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/34649
@@ -73,6 +74,7 @@ addMockFunctionsToSchema({
     UserMemberGroupObjectType,
     NotificationObjectType,
     ColorList,
+    WishlistProduct,
     Timestamp: () => Number.MAX_SAFE_INTEGER,
   },
 });

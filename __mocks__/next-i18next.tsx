@@ -35,21 +35,25 @@ const resources = /admin\/utils/.test(parentModuleFilename)
   : {
       zh_TW: {
         'gmo-credit-card-form': require('@meepshop/store/src/static/locales/zh_TW/gmo-credit-card-form.json'),
+        'member-wish-list': require('@meepshop/store/src/static/locales/zh_TW/member-wish-list.json'),
         'member-settings': require('@meepshop/store/src/static/locales/zh_TW/member-settings.json'),
         'thank-you-page': require('@meepshop/store/src/static/locales/zh_TW/thank-you-page.json'),
       },
       en_US: {
         'gmo-credit-card-form': require('@meepshop/store/src/static/locales/en_US/gmo-credit-card-form.json'),
+        'member-wish-list': require('@meepshop/store/src/static/locales/en_US/member-wish-list.json'),
         'member-settings': require('@meepshop/store/src/static/locales/en_US/member-settings.json'),
         'thank-you-page': require('@meepshop/store/src/static/locales/en_US/thank-you-page.json'),
       },
       ja_JP: {
         'gmo-credit-card-form': require('@meepshop/store/src/static/locales/ja_JP/gmo-credit-card-form.json'),
+        'member-wish-list': require('@meepshop/store/src/static/locales/ja_JP/member-wish-list.json'),
         'member-settings': require('@meepshop/store/src/static/locales/ja_JP/member-settings.json'),
         'thank-you-page': require('@meepshop/store/src/static/locales/ja_JP/thank-you-page.json'),
       },
       vi_VN: {
         'gmo-credit-card-form': require('@meepshop/store/src/static/locales/vi_VN/gmo-credit-card-form.json'),
+        'member-wish-list': require('@meepshop/store/src/static/locales/vi_VN/member-wish-list.json'), 
         'member-settings': require('@meepshop/store/src/static/locales/vi_VN/member-settings.json'),
         'thank-you-page': require('@meepshop/store/src/static/locales/vi_VN/thank-you-page.json'),
       },
