@@ -51,6 +51,7 @@ export default mock.add<UserMock>('User', [
       additionalInfo: null,
       birthday: null,
       notification: null,
+      order: null,
     } as UserMock),
   () =>
     ({
@@ -83,12 +84,9 @@ export default mock.add<UserMock>('User', [
         day: 1,
       },
       notification: {},
-    } as UserMock),
-  () =>
-    ({
-      __typename: 'User',
-      groupId: null,
-      role: 'MERCHANT',
-      order: null,
+      order: {
+        __typename: 'Order',
+        id: 'id',
+      },
     } as UserMock),
 ]);
