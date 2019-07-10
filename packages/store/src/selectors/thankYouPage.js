@@ -9,32 +9,14 @@ import {
   getCurrencyItemsTemplate,
 } from './index';
 
-const getThankYouPage = (state, prevProps) => ({
-  id: 'page-thank-you-page',
+const getThankYouPage = () => ({
+  id: 'thank-you-page',
   title: {
     en_US: 'Checkout',
     zh_TW: '結帳',
   },
   container: 'DefaultContainer',
-  blocks: [
-    {
-      id: 'block-thank-you-page',
-      width: 100,
-      componentWidth: 0,
-      padding: 0,
-      widgets: [
-        {
-          widgets: [
-            {
-              id: 'thank-you-page',
-              module: 'thank-you-page',
-              orderId: prevProps.orderId,
-            },
-          ],
-        },
-      ],
-    },
-  ],
+  blocks: [],
   fixedtop,
   secondtop,
   fixedbottom,

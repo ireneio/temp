@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "@store/thank-you-page",
+  "description": "thank you page",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/meep-ui": "^0.24.3",
+    "@store/utils": "^0.24.3",
+    "clipboard": "^2.0.1"
+  },
+  "keywords": [
+    "thank you page",
+    "store"
+  ]
+}

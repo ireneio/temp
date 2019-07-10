@@ -1,0 +1,15 @@
+{
+  "title": {
+    "default": "Thank you!",
+    "error": "Oops!"
+  },
+  "info": {
+    "default": "We have received your order. Please check your order for payment status.",
+    "error": "Data synchronization error occurred. Please copy the URL and pass it to Customer Service for assistance."
+  },
+  "return": "Back to the homepage",
+  "copy": "Copy the URL",
+  "copied": "URL copied to clipboard.",
+  "data-error": "Data Synchronization Error",
+  "order": "Check My Order"
+}

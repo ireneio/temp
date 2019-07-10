@@ -11,6 +11,9 @@ import { UserMock } from './__generated__/UserMock';
 gql`
   fragment UserMock on User {
     role
+    order(orderId: "test") {
+      id
+    }
     groupId
     name
     email
@@ -80,5 +83,12 @@ export default mock.add<UserMock>('User', [
         day: 1,
       },
       notification: {},
+    } as UserMock),
+  () =>
+    ({
+      __typename: 'User',
+      groupId: null,
+      role: 'MERCHANT',
+      order: null,
     } as UserMock),
 ]);

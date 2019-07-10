@@ -1,4 +1,4 @@
-@import '../../constants/styles.less';
+@import '~@store/utils/lib/styles/variables.less';
 
 .root {
   position: fixed;
@@ -11,7 +11,7 @@
   align-items: center;
   text-align: center;
 
-  @media @PHONE_MEDIA {
+  @media @phone-media {
     :global(.ant-progress:not(.ant-progress-status-normal)
         .ant-progress-inner) {
       width: 32px !important;
@@ -25,7 +25,7 @@
       .ant-progress-text) {
     font-size: 50px;
 
-    @media @PHONE_MEDIA {
+    @media @phone-media {
       font-size: 16px;
     }
   }
@@ -47,7 +47,7 @@
     letter-spacing: 0.03px;
     vertical-align: middle;
 
-    @media @PHONE_MEDIA {
+    @media @phone-media {
       font-size: 30px;
     }
   }
@@ -59,7 +59,7 @@
     letter-spacing: 2.25px;
     line-height: 30px;
 
-    @media @PHONE_MEDIA {
+    @media @phone-media {
       margin: 35px 25px 0px;
       font-size: 18px;
     }
@@ -68,7 +68,7 @@
   .buttonRoot {
     margin: 100px 0px 0px;
 
-    @media @PHONE_MEDIA {
+    @media @phone-media {
       position: fixed;
       left: 0px;
       bottom: 0px;
@@ -80,7 +80,7 @@
       height: 60px;
       border-radius: 0px;
 
-      @media @PHONE_MEDIA {
+      @media @phone-media {
         width: 50vw;
       }
 
@@ -92,7 +92,7 @@
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
         font-size: 18px;
 
-        @media @PHONE_MEDIA {
+        @media @phone-media {
           margin: 0px;
         }
       }
@@ -103,7 +103,7 @@
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
         font-size: 18px;
 
-        @media @PHONE_MEDIA {
+        @media @phone-media {
           color: white;
           background: #707f92 !important;
         }

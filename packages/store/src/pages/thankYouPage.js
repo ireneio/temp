@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 
+import ThankYouPageView from '@store/thank-you-page';
+
 import { Container, TrackingCodeHead, Error } from 'components';
 import * as Utils from 'utils';
 import { getJoinedThankYouPage } from 'selectors/thankYouPage';
@@ -33,13 +35,14 @@ class ThankYouPage extends React.Component {
       faviconUrl: PropTypes.string.isRequired,
     }).isRequired,
     location: PropTypes.shape({
-      host: PropTypes.string.isRequired,
       pathname: PropTypes.string.isRequired,
+      href: PropTypes.string.isRequired,
     }).isRequired,
     pageAdTrackIDs: PropTypes.shape({
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
     }).isRequired,
+    orderId: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -52,8 +55,9 @@ class ThankYouPage extends React.Component {
 
     const {
       storeSetting: { storeName, faviconUrl },
-      location: { pathname },
+      location: { pathname, href },
       pageAdTrackIDs,
+      orderId,
     } = this.props;
 
     return (
@@ -64,7 +68,9 @@ class ThankYouPage extends React.Component {
           <link rel="apple-touch-icon" href={`https://${faviconUrl}`} />
         </Head>
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
-        <Container {...this.props} />
+        <Container {...this.props}>
+          <ThankYouPageView orderId={orderId} href={href} />
+        </Container>
       </>
     );
   }

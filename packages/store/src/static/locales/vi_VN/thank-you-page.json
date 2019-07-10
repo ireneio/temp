@@ -1,0 +1,15 @@
+{
+  "title": {
+    "default": "Thank you!",
+    "error": "Thành thật xin lỗi"
+  },
+  "info": {
+    "default": "Đã nhận được đơn hàng của bạn，vui lòng kiểm tra đơn hàng，xác nhận kiểm tra trạng thái thanh toán của bạn",
+    "error": "Đồng bộ dữ liệu bất thường，xin nhấp vào nút sao chép bên dưới，cung cấp thông tin cho dịch vụ khách hàng để được hỗ trợ giải quyết."
+  },
+  "return": "Trở về trang chủ",
+  "copy": "Sao chép địa chỉ trang web",
+  "copied": "Đã sao chép địa chỉ trang web",
+  "data-error": "Đồng bộ dữ liệu bất thường",
+  "order": "Truy vấn đơn hàng"
+}

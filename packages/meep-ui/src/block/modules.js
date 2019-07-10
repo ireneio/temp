@@ -8,7 +8,6 @@ import landingPage from 'landingPage';
 import socialThumbs from 'socialThumbs';
 import imagetext from 'imageText';
 import socailMedia from 'socialMedia';
-import thankYouPage from 'thankYouPage';
 import videoCore from 'videoCore';
 import productCollections from 'productCollection';
 import productCarousell from 'productCarousel';
@@ -38,7 +37,6 @@ export default {
   'social-thumbs': socialThumbs,
   imagetext,
   'social-media': socailMedia,
-  'thank-you-page': thankYouPage,
   'video-core': videoCore,
   'product-collections': productCollections,
   'product-carousell': productCarousell,

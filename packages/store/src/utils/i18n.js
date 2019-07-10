@@ -10,18 +10,22 @@ const locales = {
   zh_TW: {
     'gmo-credit-card-form': require('../static/locales/zh_TW/gmo-credit-card-form.json'),
     'member-settings': require('../static/locales/zh_TW/member-settings.json'),
+    'thank-you-page': require('../static/locales/zh_TW/thank-you-page.json'),
   },
   en_US: {
     'gmo-credit-card-form': require('../static/locales/en_US/gmo-credit-card-form.json'),
     'member-settings': require('../static/locales/en_US/member-settings.json'),
+    'thank-you-page': require('../static/locales/en_US/thank-you-page.json'),
   },
   ja_JP: {
     'gmo-credit-card-form': require('../static/locales/ja_JP/gmo-credit-card-form.json'),
     'member-settings': require('../static/locales/ja_JP/member-settings.json'),
+    'thank-you-page': require('../static/locales/ja_JP/thank-you-page.json'),
   },
   vi_VN: {
     'gmo-credit-card-form': require('../static/locales/vi_VN/gmo-credit-card-form.json'),
     'member-settings': require('../static/locales/vi_VN/member-settings.json'),
+    'thank-you-page': require('../static/locales/vi_VN/thank-you-page.json'),
   },
 };
 /* eslint-enable global-require, import/no-unresolved */

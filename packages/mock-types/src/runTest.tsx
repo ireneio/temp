@@ -19,7 +19,10 @@ export default (
     initializeCache,
   }: { default: Resolvers; initializeCache: (cache: InMemoryCache) => void },
   callback:
-    | ((wrapper: ReactWrapper<unknown, unknown>) => void | boolean)
+    | ((
+        wrapper: ReactWrapper<unknown, unknown>,
+        trackingIndex: number[],
+      ) => void | boolean)
     | undefined = emptyFunction.thatReturnsTrue,
 ) => {
   mock.init();
@@ -63,7 +66,7 @@ ${mock.tracking.map(type => `  ${type}: %i`).join('\n')}
         wrapper.update();
       });
 
-      if (callback(wrapper))
+      if (callback(wrapper, trackingIndex))
         test('exist', () => {
           expect(wrapper.exists()).toBeTruthy();
         });
