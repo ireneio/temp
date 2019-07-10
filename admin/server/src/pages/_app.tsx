@@ -57,6 +57,8 @@ export class App extends NextApp<PropsType> {
       <Container>
         <Head>
           <title>meepShop</title>
+          {/* overwrite default viewport meta tag in next.js */}
+          <meta name="viewport" content="" />
         </Head>
         <ApolloProvider client={apolloClient}>
           {/login/.test(pathname) ? (
