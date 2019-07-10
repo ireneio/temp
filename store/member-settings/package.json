@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@store/member-settings",
+  "description": "Member settings for store",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@store/address-cascader": "^0.1.0",
+    "@store/utils": "^0.24.1",
+    "moment": "^2.22.1"
+  },
+  "keywords": ["member", "settings", "store"]
+}

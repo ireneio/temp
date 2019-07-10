@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@store/address-cascader",
+  "description": "Address cascader for store",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@store/utils": "^0.24.1",
+    "memoize-one": "^5.0.4"
+  },
+  "keywords": ["address", "cascader", "store"]
+}

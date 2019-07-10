@@ -1,0 +1,20 @@
+{
+  "group-expire-date": {
+    "info": "使用期限",
+    "forever": "永久"
+  },
+  "name": "氏名",
+  "gender": {
+    "placeholder": "性別",
+    "male": "男",
+    "female": "女"
+  },
+  "email": "メールアドレス",
+  "tel": "固定電話",
+  "mobile": "携帯電話",
+  "birthday": "生年月日",
+  "address": "国/都道府県/市区町村",
+  "street": "住所",
+  "isNotCancelEmail": "ニュースレターを購読する",
+  "submit": "情報を更新"
+}

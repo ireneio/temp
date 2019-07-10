@@ -27,9 +27,13 @@ import permissionUserObj from './schemas/permissionUserObj';
 import StoreEcfitSettings from './schemas/StoreEcfitSettings';
 import DashboardInfo from './schemas/DashboardInfo';
 import Store from './schemas/Store';
+import SettingObjectType from './schemas/SettingObjectType';
 import ExportFormat from './schemas/ExportFormat';
 import GMOUserInfo from './schemas/GMOUserInfo';
 import GmoBankInstallment from './schemas/GmoBankInstallment';
+import MemberGroupList from './schemas/MemberGroupList';
+import UserMemberGroupObjectType from './schemas/UserMemberGroupObjectType';
+import NotificationObjectType from './schemas/NotificationObjectType';
 import ColorList from './schemas/ColorList';
 
 // definition
@@ -61,9 +65,13 @@ addMockFunctionsToSchema({
     StoreEcfitSettings,
     DashboardInfo,
     Store,
+    SettingObjectType,
     ExportFormat,
     GMOUserInfo,
     GmoBankInstallment,
+    MemberGroupList,
+    UserMemberGroupObjectType,
+    NotificationObjectType,
     ColorList,
     Timestamp: () => Number.MAX_SAFE_INTEGER,
   },

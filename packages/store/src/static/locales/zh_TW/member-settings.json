@@ -1,0 +1,20 @@
+{
+  "group-expire-date": {
+    "info": "使用期限",
+    "forever": "永久"
+  },
+  "name": "姓名",
+  "gender": {
+    "placeholder": "性別",
+    "male": "男",
+    "female": "女"
+  },
+  "email": "信箱",
+  "tel": "電話",
+  "mobile": "手機",
+  "birthday": "生日（年/月/日）",
+  "address": "國家/縣市/鄉鎮",
+  "street": "地址",
+  "isNotCancelEmail": "訂閱商店資訊及優惠方案",
+  "submit": "更新資料"
+}

@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+
+import MemberSettings from '@store/member-settings';
+
 import * as Utils from 'utils';
 import * as Selectors from 'selectors';
 import * as Template from 'template';
 import { Container, TrackingCodeHead, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
-import MemberSettingsView from '@meepshop/meep-ui/lib/memberSettings';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
 import * as TITLE from 'locales';
@@ -78,9 +80,8 @@ class Settings extends Component {
       colors,
       title,
       user,
-      lockedBirthday,
-      lockedCountry,
       fbAppId,
+      dispatchAction,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -99,11 +100,7 @@ class Settings extends Component {
         />
         <Container {...this.props}>
           <MemberHeader title={title} colors={colors}>
-            <MemberSettingsView
-              member={user}
-              lockedBirthday={lockedBirthday}
-              lockedCountry={lockedCountry}
-            />
+            <MemberSettings dispatchAction={dispatchAction} member={user} />
           </MemberHeader>
         </Container>
       </>
@@ -175,4 +172,11 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps)(Settings);
+export default connect(
+  mapStateToProps,
+  dispatch => ({
+    dispatchAction: (actionName, args) => {
+      dispatch(Actions[actionName](args));
+    },
+  }),
+)(Settings);

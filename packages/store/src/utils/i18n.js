@@ -9,15 +9,19 @@ const { enhancer, removeContextProps } = contextProvider('locale');
 const locales = {
   zh_TW: {
     'gmo-credit-card-form': require('../static/locales/zh_TW/gmo-credit-card-form.json'),
+    'member-settings': require('../static/locales/zh_TW/member-settings.json'),
   },
   en_US: {
     'gmo-credit-card-form': require('../static/locales/en_US/gmo-credit-card-form.json'),
+    'member-settings': require('../static/locales/en_US/member-settings.json'),
   },
   ja_JP: {
     'gmo-credit-card-form': require('../static/locales/ja_JP/gmo-credit-card-form.json'),
+    'member-settings': require('../static/locales/ja_JP/member-settings.json'),
   },
   vi_VN: {
     'gmo-credit-card-form': require('../static/locales/vi_VN/gmo-credit-card-form.json'),
+    'member-settings': require('../static/locales/vi_VN/member-settings.json'),
   },
 };
 /* eslint-enable global-require, import/no-unresolved */

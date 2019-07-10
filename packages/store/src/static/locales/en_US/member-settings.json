@@ -1,0 +1,20 @@
+{
+  "group-expire-date": {
+    "info": "使用期限",
+    "forever": "永久"
+  },
+  "name": "Full Name",
+  "gender": {
+    "placeholder": "Gender",
+    "male": "Male",
+    "female": "Female"
+  },
+  "email": "Email",
+  "tel": "Phone No.",
+  "mobile": "Mobile",
+  "birthday": "Date of birth (Year / Month / Date)",
+  "address": "Country / City / Township",
+  "street": "Address",
+  "isNotCancelEmail": "Subscribe Newsletter",
+  "submit": "Update"
+}
