@@ -58,13 +58,13 @@ class AddressCascader extends React.PureComponent<PropsType> {
   public componentDidMount(): void {
     const { value } = this.props;
 
-    if (value) this.findExist(value, this.options);
+    if (value && value.length !== 0) this.findExist(value, this.options);
   }
 
   public componentDidUpdate(): void {
     const { value } = this.props;
 
-    if (value) this.findExist(value, this.options);
+    if (value && value.length !== 0) this.findExist(value, this.options);
   }
 
   private getOptions = (options: OptionsType[]): CascaderOptionType[] =>
