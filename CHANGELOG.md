@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.24.9 (2019-07-11)
+
+#### :bug: Bug Fix
+
+- Other
+  - [#606](https://github.com/meepshop/meep-lerna/pull/606) 【BUG】 新架構 - 前台會員資料頁面空白 ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#605](https://github.com/meepshop/meep-lerna/pull/605) 【BUG】新架構/IE 瀏覽器 - 前台無法正常開啟，顯示一片空白 - 07/11 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.24.8 (2019-07-10)
 
 #### :rocket: New Feature
