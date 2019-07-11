@@ -20,20 +20,22 @@ runTest(
         .find(`.${styles.buttonRoot}`)
         .childAt(0)
         .simulate('click');
+
       expect(Router.push).toHaveBeenCalledTimes(1);
       expect(Router.push).toHaveBeenCalledWith('/');
     });
 
-    if (trackingIndex[0] !== 2) {
-      test('check order details', () => {
-        Router.push = jest.fn();
-        wrapper
-          .find(`.${styles.buttonRoot}`)
-          .childAt(1)
-          .simulate('click');
-        expect(Router.push).toHaveBeenCalledTimes(1);
-        expect(Router.push).toHaveBeenCalledWith(`/order/${props.orderId}`);
-      });
-    }
+    if (trackingIndex[0] === 0) return;
+
+    test('check order details', () => {
+      Router.push = jest.fn();
+      wrapper
+        .find(`.${styles.buttonRoot}`)
+        .childAt(1)
+        .simulate('click');
+
+      expect(Router.push).toHaveBeenCalledTimes(1);
+      expect(Router.push).toHaveBeenCalledWith(`/order/${props.orderId}`);
+    });
   },
 );

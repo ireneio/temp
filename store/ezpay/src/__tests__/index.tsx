@@ -14,7 +14,9 @@ import styles from '../styles/index.less';
 runTest(
   <Ezpay {...props} />,
   resolvers,
-  (wrapper: ReactWrapper<unknown, unknown>) => {
+  (wrapper: ReactWrapper<unknown, unknown>, trackingIndex) => {
+    if (trackingIndex[0] === 0) return;
+
     test('print button click', () => {
       window.print = jest.fn();
       wrapper.find(`.${styles.printBtn}`).simulate('click');
@@ -31,13 +33,7 @@ runTest(
       'go back button click with querystring = `$search`',
       ({ search, expected }) => {
         Router.push = jest.fn();
-        Object.defineProperty(window, 'location', {
-          writable: true,
-          value: {
-            ...window.location,
-            search,
-          },
-        });
+        window.history.pushState({}, 'Test Title', `/checkout/ezpay${search}`);
 
         // window.location.search = search;
         wrapper.find(`.${styles.backBtn}`).simulate('click');

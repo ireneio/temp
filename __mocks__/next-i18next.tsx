@@ -53,7 +53,7 @@ const resources = /admin\/utils/.test(parentModuleFilename)
       },
       vi_VN: {
         'gmo-credit-card-form': require('@meepshop/store/src/static/locales/vi_VN/gmo-credit-card-form.json'),
-        'member-wish-list': require('@meepshop/store/src/static/locales/vi_VN/member-wish-list.json'), 
+        'member-wish-list': require('@meepshop/store/src/static/locales/vi_VN/member-wish-list.json'),
         'member-settings': require('@meepshop/store/src/static/locales/vi_VN/member-settings.json'),
         'thank-you-page': require('@meepshop/store/src/static/locales/vi_VN/thank-you-page.json'),
       },

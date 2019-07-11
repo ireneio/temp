@@ -62,7 +62,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
   }
 
   private onSubmit = (e: React.FormEvent<HTMLElement>) => {
-    if (e) e.preventDefault();
+    e.preventDefault();
 
     const {
       // HOC

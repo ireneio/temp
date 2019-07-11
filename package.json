@@ -111,8 +111,6 @@
     }
   },
   "resolutions": {
-    "@babel/plugin-proposal-object-rest-spread": "7.4.4",
-    "@babel/helpers": "7.5.1",
     "@types/query-string": "6.2.0",
     "next-i18next": "0.37.0",
     "query-string": "5.1.1",

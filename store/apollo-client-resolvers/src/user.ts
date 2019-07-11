@@ -2,15 +2,17 @@
 import idx from 'idx';
 
 // typescript definition
-interface AdditionalInfoType {
-  tel?: string;
-  mobile?: string;
-  address?: {
-    yahooCode?: {
-      country?: string;
-      city?: string;
-      county?: string;
-      street?: string;
+interface UserType {
+  additionalInfo?: {
+    tel?: string;
+    mobile?: string;
+    address?: {
+      yahooCode?: {
+        country?: string;
+        city?: string;
+        county?: string;
+        street?: string;
+      };
     };
   };
 }
@@ -19,17 +21,17 @@ interface AdditionalInfoType {
 export const resolver = {
   Query: {},
   User: {
-    tel: ({ additionalInfo }: { additionalInfo: AdditionalInfoType }) =>
+    tel: ({ additionalInfo }: UserType) =>
       idx(additionalInfo, _ => _.tel) || null,
-    mobile: ({ additionalInfo }: { additionalInfo: AdditionalInfoType }) =>
+    mobile: ({ additionalInfo }: UserType) =>
       idx(additionalInfo, _ => _.mobile) || null,
-    country: ({ additionalInfo }: { additionalInfo: AdditionalInfoType }) =>
+    country: ({ additionalInfo }: UserType) =>
       idx(additionalInfo, _ => _.address.yahooCode.country) || null,
-    city: ({ additionalInfo }: { additionalInfo: AdditionalInfoType }) =>
+    city: ({ additionalInfo }: UserType) =>
       idx(additionalInfo, _ => _.address.yahooCode.city) || null,
-    county: ({ additionalInfo }: { additionalInfo: AdditionalInfoType }) =>
+    county: ({ additionalInfo }: UserType) =>
       idx(additionalInfo, _ => _.address.yahooCode.county) || null,
-    street: ({ additionalInfo }: { additionalInfo: AdditionalInfoType }) =>
+    street: ({ additionalInfo }: UserType) =>
       idx(additionalInfo, _ => _.address.yahooCode.street) || null,
     groupClient: ({
       groupId,

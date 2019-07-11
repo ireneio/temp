@@ -1,6 +1,4 @@
-import uuid from 'uuid/v4';
-
 export default {
-  orderId: uuid(),
+  orderId: 'order-id',
   href: 'mock/href',
 };

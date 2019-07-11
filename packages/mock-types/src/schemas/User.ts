@@ -86,7 +86,7 @@ export default mock.add<UserMock>('User', [
       notification: {},
       order: {
         __typename: 'Order',
-        id: 'id',
+        id: 'order-id',
       },
     } as UserMock),
 ]);
