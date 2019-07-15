@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.24.10 (2019-07-15)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`, `store`
+  - [#591](https://github.com/meepshop/meep-lerna/pull/591) 修改 收件人範本 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#609](https://github.com/meepshop/meep-lerna/pull/609) 【BUG】新架構 - 會員登入後，先進到「會員資料」再進到「訂單明細」，訂單列表無法顯示 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.24.9 (2019-07-11)
 
 #### :bug: Bug Fix
