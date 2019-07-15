@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.24.11 (2019-07-15)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#611](https://github.com/meepshop/meep-lerna/pull/611) 【BUG】新架構/一頁式購物車 - 頁面空白 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.24.10 (2019-07-15)
 
 #### :rocket: New Feature
