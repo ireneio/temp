@@ -89,6 +89,7 @@ export default withRouter(({ router: { query: { orderId } } }) => (
     query={gql`
       query getMemberOrder($orderId: ID!) {
         viewer {
+          id
           order(orderId: $orderId) {
             orderNo
             createdOn

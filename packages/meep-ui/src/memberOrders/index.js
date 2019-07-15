@@ -253,6 +253,7 @@ class MemberOrders extends React.PureComponent {
 const query = gql`
   query getMemberOrders($first: PositiveInt!, $cursor: String) {
     viewer {
+      id
       orders(first: $first, after: $cursor) {
         edges {
           node {
