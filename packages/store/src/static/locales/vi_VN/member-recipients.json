@@ -1,0 +1,18 @@
+{
+  "name": "tên",
+  "mobile": "Mã bưu điện",
+  "address": "Quốc gia",
+  "postal-code": "Mã bưu điện",
+  "street": "Địa Chỉ",
+  "edit": "Biên Tập",
+  "remove": "Xóa",
+  "cancel": "Hủy bỏ",
+  "submit": "Xác nhận",
+  "create": "Thêm",
+  "form": {
+    "required": "必填",
+    "not-taiwan-mobile": "Khu vực Đài Loan số điện thoại nên là 10 số",
+    "not-mobile": "Định dạng điện thoại không hợp lệ",
+    "not-number": "Hãy chỉ điền số"
+  }
+}

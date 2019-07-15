@@ -16,6 +16,7 @@ import StoreShipment from './schemas/StoreShipment';
 import shipmentInfoType from './schemas/shipmentInfoType';
 import shipmentObjectType from './schemas/shipmentObjectType';
 import User from './schemas/User';
+import AddressObjectType from './schemas/AddressObjectType';
 import Authority from './schemas/Authority';
 import permissionDesignObj from './schemas/permissionDesignObj';
 import permissionFileObj from './schemas/permissionFileObj';
@@ -55,6 +56,7 @@ addMockFunctionsToSchema({
     shipmentInfoType,
     shipmentObjectType,
     User,
+    AddressObjectType,
     Authority,
     permissionDesignObj,
     permissionFileObj,

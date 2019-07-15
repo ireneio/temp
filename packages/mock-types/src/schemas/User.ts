@@ -21,14 +21,11 @@ gql`
     additionalInfo {
       tel
       mobile
-      address {
-        yahooCode {
-          country
-          city
-          county
-          street
-        }
-      }
+    }
+    recipientData {
+      name
+      tel
+      mobile
     }
     birthday {
       year
@@ -49,8 +46,8 @@ export default mock.add<UserMock>('User', [
       email: null,
       gender: null,
       additionalInfo: null,
+      recipientData: null,
       birthday: null,
-      notification: null,
       order: null,
     } as UserMock),
   () =>
@@ -66,24 +63,21 @@ export default mock.add<UserMock>('User', [
         __typename: 'AdditionalInfoObjectType',
         tel: '02-11111111',
         mobile: '0912345678',
-        address: {
-          __typename: 'AddressObjectType',
-          yahooCode: {
-            __typename: 'YahooCodesObjectType',
-            country: 'Taiwan',
-            city: '臺北市',
-            county: '信義區',
-            street: 'xxx 街',
-          },
-        },
       },
+      recipientData: [
+        {
+          __typename: 'RecipientObjectType',
+          name: 'name',
+          tel: '02-11111111',
+          mobile: '0912345678',
+        },
+      ],
       birthday: {
         __typename: 'BirthdayObjectType',
         year: 2019,
         month: 1,
         day: 1,
       },
-      notification: {},
       order: {
         __typename: 'Order',
         id: 'order-id',

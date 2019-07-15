@@ -1,0 +1,18 @@
+{
+  "name": "Full Name",
+  "mobile": "Mobile",
+  "address": "Country",
+  "postal-code": "Postal Code",
+  "street": "Address",
+  "edit": "Edit",
+  "remove": "Remove",
+  "cancel": "Discard",
+  "submit": "Save",
+  "create": "Add",
+  "form": {
+    "required": "必填",
+    "not-taiwan-mobile": "Taiwan mobile phone number is 10 digits",
+    "not-mobile": "Invalid mobile number",
+    "not-number": "This entry can only contain numbers"
+  }
+}

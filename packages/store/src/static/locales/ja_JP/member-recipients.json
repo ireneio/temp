@@ -1,0 +1,18 @@
+{
+  "name": "氏名",
+  "mobile": "携帯電話",
+  "address": "国",
+  "postal-code": "郵便番号",
+  "street": "住所",
+  "edit": "編集",
+  "remove": "削除",
+  "cancel": "キャンセル",
+  "submit": "確認",
+  "create": "作成",
+  "form": {
+    "required": "必填",
+    "not-taiwan-mobile": "台湾の携帯電話番号は10桁です",
+    "not-mobile": "携帯電話番号が正しくありません",
+    "not-number": "純粋な数字を入力してください"
+  }
+}

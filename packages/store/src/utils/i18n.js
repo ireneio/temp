@@ -11,24 +11,28 @@ const locales = {
     'gmo-credit-card-form': require('../static/locales/zh_TW/gmo-credit-card-form.json'),
     'member-wish-list': require('../static/locales/zh_TW/member-wish-list.json'),
     'member-settings': require('../static/locales/zh_TW/member-settings.json'),
+    'member-recipients': require('../static/locales/zh_TW/member-recipients.json'),
     'thank-you-page': require('../static/locales/zh_TW/thank-you-page.json'),
   },
   en_US: {
     'gmo-credit-card-form': require('../static/locales/en_US/gmo-credit-card-form.json'),
     'member-wish-list': require('../static/locales/en_US/member-wish-list.json'),
     'member-settings': require('../static/locales/en_US/member-settings.json'),
+    'member-recipients': require('../static/locales/en_US/member-recipients.json'),
     'thank-you-page': require('../static/locales/en_US/thank-you-page.json'),
   },
   ja_JP: {
     'gmo-credit-card-form': require('../static/locales/ja_JP/gmo-credit-card-form.json'),
     'member-wish-list': require('../static/locales/ja_JP/member-wish-list.json'),
     'member-settings': require('../static/locales/ja_JP/member-settings.json'),
+    'member-recipients': require('../static/locales/ja_JP/member-recipients.json'),
     'thank-you-page': require('../static/locales/ja_JP/thank-you-page.json'),
   },
   vi_VN: {
     'gmo-credit-card-form': require('../static/locales/vi_VN/gmo-credit-card-form.json'),
     'member-wish-list': require('../static/locales/vi_VN/member-wish-list.json'),
     'member-settings': require('../static/locales/vi_VN/member-settings.json'),
+    'member-recipients': require('../static/locales/vi_VN/member-recipients.json'),
     'thank-you-page': require('../static/locales/vi_VN/thank-you-page.json'),
   },
 };

@@ -1,0 +1,18 @@
+{
+  "name": "姓名",
+  "mobile": "手機",
+  "address": "地區",
+  "postal-code": "郵遞區號",
+  "street": "地址",
+  "edit": "編輯",
+  "remove": "刪除",
+  "cancel": "取消",
+  "submit": "確認",
+  "create": "新增",
+  "form": {
+    "required": "必填",
+    "not-taiwan-mobile": "台灣區手機號碼應為10碼",
+    "not-mobile": "手機格式有誤",
+    "not-number": "請輸入純數字"
+  }
+}

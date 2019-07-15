@@ -1,0 +1,70 @@
+@import '~@store/utils/lib/styles/variables.less';
+
+.root {
+  margin: auto;
+  padding: 30px 0px;
+  max-width: 840px;
+
+  @media @phone-media {
+    padding: 15px;
+  }
+
+  :global(.ant-table-thead) > tr > th {
+    background: transparent;
+    font-size: 16px;
+
+    &:last-child {
+      display: none;
+    }
+
+    @media @phone-media {
+      display: none;
+    }
+  }
+
+  :global(.ant-table-tbody) > tr > td {
+    &:last-child {
+      display: none;
+
+      @media @phone-media {
+        display: table-cell;
+      }
+    }
+
+    &:not(:last-child) {
+      @media @phone-media {
+        display: none;
+      }
+    }
+  }
+
+  :global(.ant-table-thead) > tr > th,
+  :global(.ant-table-tbody) > tr > td {
+    &:nth-child(3),
+    &:nth-child(4) {
+      white-space: nowrap;
+    }
+  }
+}
+
+.action {
+  cursor: pointer;
+}
+
+.mobile {
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 1.4;
+
+  & > *:nth-child(even) {
+    flex: 1 0 calc(100% - 55px);
+    padding: 3px 0px;
+  }
+
+  & > *:nth-child(odd) {
+    flex: 0 0 50px;
+    margin: 0px 5px 0px 0px;
+    padding: 3px 0px;
+    font-weight: bold;
+  }
+}

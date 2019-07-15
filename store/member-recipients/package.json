@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@store/member-recipients",
+  "description": "Member recipients for store",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@store/apollo-client-resolvers": "^0.24.9",
+    "@store/utils": "^0.24.1",
+    "memoize-one": "^5.0.4"
+  },
+  "keywords": ["member", "recipients", "store"]
+}
