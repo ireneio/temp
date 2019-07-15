@@ -80,7 +80,7 @@ class PayemntInfo extends React.PureComponent {
 
   state = {
     productId: null,
-    variantOptions: null,
+    variantOptions: [],
     variantMax: 0,
     variantMin: 0,
     shipmentList: [],
