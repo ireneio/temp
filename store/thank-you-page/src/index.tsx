@@ -91,6 +91,7 @@ export default ({ orderId, href }: { orderId: string; href: string }) => (
     query={gql`
       query getOrderInThankYouPage($orderId: ID!) {
         viewer {
+          id
           order(orderId: $orderId) {
             id
           }

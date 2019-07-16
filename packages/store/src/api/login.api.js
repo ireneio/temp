@@ -14,7 +14,7 @@ export default async function({ email, password }) {
 
     if (res.status === 200) {
       // FIXME: should signout with apollo
-      client().clearStore();
+      client().resetStore();
       data = await res.json();
     } else {
       throw new Error(`login.api => ${res.status}: ${res.statusText}`);

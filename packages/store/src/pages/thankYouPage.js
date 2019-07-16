@@ -23,7 +23,7 @@ class ThankYouPage extends React.Component {
 
     if (isServer) store.dispatch(Actions.serverOthersInitial(context));
     // FIXME: remove after checkout using apollo-client
-    else client().clearStore();
+    else client().resetStore();
 
     return { orderId, userAgent, XMeepshopDomain };
   };

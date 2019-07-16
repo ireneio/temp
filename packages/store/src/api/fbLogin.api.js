@@ -16,7 +16,7 @@ export default async function(response) {
     if (res.status === 200) {
       data = await res.json();
       // FIXME: should signout with apollo
-      client().clearStore();
+      client().resetStore();
 
       switch (data.code) {
         case 200: // 登入成功

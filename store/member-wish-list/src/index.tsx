@@ -11,7 +11,7 @@ import idx from 'idx';
 import { areEqual } from 'fbjs';
 import moment from 'moment';
 
-import Placeholder from '@store/placeholder';
+import Thumbnail from '@store/thumbnail';
 import { withNamespaces } from '@store/utils/lib/i18n';
 
 import styles from './styles/index.less';
@@ -20,7 +20,6 @@ import styles from './styles/index.less';
 import {
   getWishlist,
   getWishlist_viewer_wishlist as getWishlistViewerWishlist,
-  getWishlist_viewer_wishlist_coverImage as getWishlistViewerWishlistCoverImage,
   getWishlist_viewer_wishlist_title as getWishlistViewerWishlistTitle,
 } from './__generated__/getWishlist';
 
@@ -57,34 +56,18 @@ class MemberWishList extends React.PureComponent<PropsType> {
       {
         dataIndex: 'coverImage.src',
         render: (
-          value: getWishlistViewerWishlistCoverImage,
+          value: string | null,
           { productId, isAvailableForSale }: getWishlistViewerWishlist,
         ) => {
-          const image = (
-            <div
-              className={styles.image}
-              style={
-                value && {
-                  backgroundSize: 'cover',
-                  backgroundPosition: '50% 50%',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundImage: `url(${value})`,
-                }
-              }
-            >
-              {value ? null : <Placeholder />}
-            </div>
-          );
+          if (!isAvailableForSale) return <Thumbnail imgUrl={value} />;
 
-          return !isAvailableForSale ? (
-            image
-          ) : (
+          return (
             <a
               href={`/product/${productId}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {image}
+              <Thumbnail imgUrl={value} />
             </a>
           );
         },

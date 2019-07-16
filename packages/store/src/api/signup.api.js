@@ -44,6 +44,6 @@ export default async function({ email, password, registeredCode }) {
     data = { error: 'Unexpected error' };
   }
 
-  client().clearStore();
+  client().resetStore();
   return data;
 }

@@ -10,6 +10,8 @@ import { ApolloProvider } from 'react-apollo';
 import NProgress from 'nprogress';
 import { notification } from 'antd';
 
+import { CurrencyProvider } from '@store/currency';
+
 import { Error, CloseView, StoreNotExistsView } from 'components';
 import { Router } from 'server/routes';
 import * as Utils from 'utils';
@@ -143,7 +145,7 @@ class MyApp extends App {
           userAgent,
         });
       }
-      return { pageProps };
+      return { pageProps, currency: req?.currency || 'TWD' };
     } catch (error) {
       console.log(error);
       if (!isServer) {
@@ -183,6 +185,7 @@ class MyApp extends App {
       storeNotFound,
       Component,
       pageProps,
+      currency,
       router,
       apolloClient,
       store,
@@ -198,15 +201,17 @@ class MyApp extends App {
     return (
       <Container>
         <ApolloProvider client={apolloClient}>
-          <Provider store={store}>
-            <Component
-              {...pageProps}
-              url={{
-                asPath: router.asPath,
-                query: router.query,
-              }}
-            />
-          </Provider>
+          <CurrencyProvider currency={currency}>
+            <Provider store={store}>
+              <Component
+                {...pageProps}
+                url={{
+                  asPath: router.asPath,
+                  query: router.query,
+                }}
+              />
+            </Provider>
+          </CurrencyProvider>
         </ApolloProvider>
       </Container>
     );

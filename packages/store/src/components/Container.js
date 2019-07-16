@@ -6,7 +6,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { UserAgent } from 'fbjs';
 import { notification } from 'antd';
+
 import Layout from '@meepshop/meep-ui/lib/layout';
+import withCurrency from '@store/currency';
+
 import { getJoinedUser, getStoreAppList } from 'selectors';
 import * as Actions from 'ducks/actions';
 
@@ -14,6 +17,7 @@ import Spinner from './Spinner';
 
 const { isBrowser } = UserAgent;
 
+@withCurrency
 class Container extends React.Component {
   static propTypes = {
     /* never change */
@@ -144,9 +148,11 @@ class Container extends React.Component {
   };
 
   setCustomerCurrency = id => {
-    const { setCustomerCurrency } = this.props;
+    const { setCustomerCurrency, setCurrency, currency } = this.props;
+    if (id === currency) return;
 
     document.cookie = `currency=${id}; path=/`;
+    setCurrency(id);
     setCustomerCurrency(id);
   };
 

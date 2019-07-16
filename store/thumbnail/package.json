@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@store/thumbnail",
+  "description": "thumbnail for store",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.24.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@store/placeholder": "^0.24.0"
+  },
+  "keywords": ["thumbnail", "store"]
+}

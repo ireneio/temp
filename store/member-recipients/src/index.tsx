@@ -322,6 +322,7 @@ export default React.memo(
               }
             }
             store {
+              id
               setting {
                 lockedCountry
               }

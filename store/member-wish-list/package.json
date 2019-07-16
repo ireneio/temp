@@ -8,6 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@store/thumbnail": "^0.24.0",
     "@store/utils": "^0.24.10",
     "moment": "^2.22.1"
   },
