@@ -12,6 +12,7 @@
   },
   "types": "./src/index.tsx",
   "dependencies": {
+    "@store/currency": "^0.24.0",
     "apollo-link-schema": "^1.2.0",
     "graphql-tools": "^4.0.4",
     "js-combinatorics": "^0.5.4",

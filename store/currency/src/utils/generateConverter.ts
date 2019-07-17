@@ -1,7 +1,7 @@
 import fx from 'money';
 
 export default (storeCurrency: string, customerCurrency: string) => (
-  price: string,
+  price: number,
 ) =>
   (transformPrice => {
     switch (customerCurrency) {
@@ -23,16 +23,11 @@ export default (storeCurrency: string, customerCurrency: string) => (
         return `HK$ ${transformPrice.toFixed(1)}`;
       case 'MYR':
         return `RM ${transformPrice.toFixed(2)}`;
-      /**
-       * ignore reason:
-       * other currency will not pass propTypes
-       */
-      /* istanbul ignore next */
       default:
-        return price;
+        return price.toString();
     }
   })(
-    fx(parseFloat(price))
+    fx(price)
       .from(storeCurrency)
       .to(customerCurrency),
   ).replace(/\B(?=(\d{3})+(?!\d))/g, ',');

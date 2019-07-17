@@ -85,15 +85,6 @@ export default class DecoratorsRoot extends React.Component {
     cname: null,
   };
 
-  constructor(props) {
-    super(props);
-
-    const { fxSetup } = props;
-    Object.keys(fxSetup).forEach(setting => {
-      fx[setting] = fxSetup[setting];
-    });
-  }
-
   state = {
     isShowCart: false,
   };

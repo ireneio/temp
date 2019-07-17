@@ -11,6 +11,8 @@ import { onError } from 'apollo-link-error';
 import { SchemaLink } from 'apollo-link-schema';
 import { Drawer, Button, notification } from 'antd';
 
+import { CurrencyProvider } from '@store/currency';
+
 import MockData from './MockData';
 import schema from './schema';
 import mock from './mock';
@@ -90,7 +92,7 @@ export default class MockTypes extends React.PureComponent<
 
     return (
       <ApolloProvider client={this.client}>
-        {children}
+        <CurrencyProvider currency="TWD">{children}</CurrencyProvider>
 
         <Button
           className={styles.button}

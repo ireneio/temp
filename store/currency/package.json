@@ -8,7 +8,9 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@store/utils": "^0.24.8",
+    "memoize-one": "^5.0.4",
     "money": "^0.2.0"
   },
-  "keywords": ["currency", "context", "store"]
+  "keywords": ["context", "currency", "store"]
 }

@@ -10,6 +10,7 @@ import idx from 'idx';
 
 import CurrencyContext from './context';
 import generateConverter from './utils/generateConverter';
+import initFx from './utils/initFx';
 
 // graphql typescript
 import { getStoreCurrency } from './__generated__/getStoreCurrency';
@@ -42,6 +43,14 @@ export const CurrencyProvider = React.memo(
                 currency
               }
             }
+
+            getExchangeRateList {
+              data {
+                base
+                rates
+                timestamp
+              }
+            }
           }
         `}
       >
@@ -51,6 +60,8 @@ export const CurrencyProvider = React.memo(
 
           const storeCurrency =
             idx(data, _ => _.viewer.store.currency) || 'TWD';
+
+          initFx(idx(data, _ => _.getExchangeRateList.data));
 
           return (
             <CurrencyContext.Provider

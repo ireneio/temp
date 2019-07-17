@@ -4,5 +4,12 @@ declare module 'money' {
     to: (currency: string) => number;
   }
 
-  export default function fx(input: number): Property;
+  const fx: {
+    (input: number): Property;
+    base: string;
+    rates: string[];
+    timestamp: string;
+  };
+
+  export default fx;
 }
