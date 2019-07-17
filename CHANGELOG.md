@@ -1,5 +1,38 @@
 # CHANGELOG
 
+## 0.24.12 (2019-07-17)
+
+#### :rocket: New Feature
+
+- Other
+  - [#613](https://github.com/meepshop/meep-lerna/pull/613) 【BUG】新架構/藍新超商代碼 - EC＆一頁式皆無法成立訂單 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `mock-types`
+  - [#618](https://github.com/meepshop/meep-lerna/pull/618) (@store/currency) init fx ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#608](https://github.com/meepshop/meep-lerna/pull/608) (@store/thumbnail, @store/currency) add new packages ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#580](https://github.com/meepshop/meep-lerna/pull/580) N362 【BUG】前台 - Line 分享連結，商品頁未帶「商品描述」 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#614](https://github.com/meepshop/meep-lerna/pull/614) 【BUG】新架構/收件人範本 - 地區下拉選項顯示「no data」 ([@HsuTing](https://github.com/HsuTing))
+  - [#617](https://github.com/meepshop/meep-lerna/pull/617) (@store/member-recipients) Remove client side schema recipient id ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#612](https://github.com/meepshop/meep-lerna/pull/612) 前端重整 code 架構 -- 補翻譯 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- Other
+  - [#615](https://github.com/meepshop/meep-lerna/pull/615) (@store/currency, @store/member-wish-list) Modify code style ([@HsuTing](https://github.com/HsuTing))
+- `end-to-end`, `meep-ui`, `mock-types`, `store`
+  - [#616](https://github.com/meepshop/meep-lerna/pull/616) (@meepshop/front-end) Remove console ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.24.11 (2019-07-15)
 
 #### :bug: Bug Fix
