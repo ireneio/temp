@@ -20,6 +20,7 @@ import styles from './styles/index.less';
 import {
   getWishlist,
   getWishlist_viewer_wishlist as getWishlistViewerWishlist,
+  getWishlist_viewer_wishlist_coverImage as getWishlistViewerWishlistCoverImage,
   getWishlist_viewer_wishlist_title as getWishlistViewerWishlistTitle,
 } from './__generated__/getWishlist';
 
@@ -56,12 +57,12 @@ class MemberWishList extends React.PureComponent<PropsType> {
       {
         dataIndex: 'coverImage.src',
         render: (
-          value: string | null,
+          value: getWishlistViewerWishlistCoverImage['src'],
           { productId, isAvailableForSale }: getWishlistViewerWishlist,
-        ) => {
-          if (!isAvailableForSale) return <Thumbnail imgUrl={value} />;
-
-          return (
+        ) =>
+          !isAvailableForSale ? (
+            <Thumbnail imgUrl={value} />
+          ) : (
             <a
               href={`/product/${productId}`}
               target="_blank"
@@ -69,14 +70,13 @@ class MemberWishList extends React.PureComponent<PropsType> {
             >
               <Thumbnail imgUrl={value} />
             </a>
-          );
-        },
+          ),
       },
       {
         dataIndex: 'title.zh_TW',
         title: t('productTitle'),
         render: (
-          value: getWishlistViewerWishlistTitle,
+          value: getWishlistViewerWishlistTitle['zh_TW'],
           { productId, isAvailableForSale }: getWishlistViewerWishlist,
         ) =>
           !isAvailableForSale ? (
@@ -129,16 +129,16 @@ class MemberWishList extends React.PureComponent<PropsType> {
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              .${styles.root} .ant-table { 
-                color: ${colors[3]}; 
+              .${styles.root} .ant-table {
+                color: ${colors[3]};
               }
 
               .${styles.root} .ant-table-thead > tr > th {
-                color: ${colors[3]}; 
+                color: ${colors[3]};
               }
-              
-              .${styles.root} .ant-table-tbody > tr:hover > td { 
-                background: ${colors[4]}; 
+
+              .${styles.root} .ant-table-tbody > tr:hover > td {
+                background: ${colors[4]};
               }
             `,
           }}

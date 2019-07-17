@@ -2,7 +2,7 @@
 import { Subtract } from '@store/utils/lib/types';
 
 // import
-import React from 'react';
+import React, { useState } from 'react';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import { Spin, Icon } from 'antd';
@@ -17,10 +17,7 @@ import { getStoreCurrency } from './__generated__/getStoreCurrency';
 // typescript definition
 interface PropsType {
   currency: string;
-}
-
-interface StateType {
-  currency: string;
+  children: React.ReactNode;
 }
 
 export interface CurrencyType {
@@ -30,30 +27,9 @@ export interface CurrencyType {
 }
 
 // definition
-export class CurrencyProvider extends React.Component<PropsType, StateType> {
-  public constructor(props: PropsType) {
-    super(props);
-    this.state = {
-      currency: props.currency,
-    };
-  }
-
-  private getContextValue = (storeCurrency: string) => {
-    const { currency } = this.state;
-
-    return {
-      convertCurrency: generateConverter(storeCurrency, currency),
-      setCurrency: this.setCurrency,
-      currency,
-    };
-  };
-
-  private setCurrency = (currency: string) => {
-    this.setState({ currency });
-  };
-
-  public render(): React.ReactElement {
-    const { children } = this.props;
+export const CurrencyProvider = React.memo(
+  ({ currency: propsCurrency, children }: PropsType) => {
+    const [currency, setCurrency] = useState<string>(propsCurrency);
 
     return (
       <Query<getStoreCurrency>
@@ -78,7 +54,11 @@ export class CurrencyProvider extends React.Component<PropsType, StateType> {
 
           return (
             <CurrencyContext.Provider
-              value={this.getContextValue(storeCurrency)}
+              value={{
+                convertCurrency: generateConverter(storeCurrency, currency),
+                setCurrency,
+                currency,
+              }}
             >
               {children}
             </CurrencyContext.Provider>
@@ -86,16 +66,16 @@ export class CurrencyProvider extends React.Component<PropsType, StateType> {
         }}
       </Query>
     );
-  }
-}
+  },
+);
 
 export default <P extends object>(
   Component: React.ComponentType<P>,
-): React.ComponentType<Subtract<P, CurrencyType>> => props => (
+): React.ComponentType<Subtract<P, CurrencyType>> => (props: P) => (
   <CurrencyContext.Consumer>
     {({ convertCurrency, setCurrency, currency }) => (
       <Component
-        {...(props as P)}
+        {...props}
         c={convertCurrency}
         setCurrency={setCurrency}
         currency={currency}
