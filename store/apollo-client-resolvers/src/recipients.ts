@@ -1,6 +1,5 @@
 // import
 import idx from 'idx';
-import uuid from 'uuid/v4';
 
 // typescript definition
 interface RecipientObjectType {
@@ -19,7 +18,6 @@ interface RecipientObjectType {
 export const resolver = {
   Query: {},
   RecipientObjectType: {
-    id: () => uuid(), // TODO: remove
     postalCode: ({ address }: RecipientObjectType) =>
       idx(address, _ => _.postalCode) || null,
     country: ({ address }: RecipientObjectType) =>

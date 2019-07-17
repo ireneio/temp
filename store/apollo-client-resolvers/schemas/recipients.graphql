@@ -1,5 +1,4 @@
 extend type RecipientObjectType {
-  id: ID!
   postalCode: String
   country: String
   city: String

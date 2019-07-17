@@ -180,10 +180,13 @@ export default ({
     query={gql`
       query getOrderInEzpay($orderId: ID!) {
         viewer {
+          id
           order(orderId: $orderId) {
             id
             paymentInfo {
+              id
               list {
+                id
                 memo {
                   ezpay {
                     paycode

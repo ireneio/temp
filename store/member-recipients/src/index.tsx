@@ -302,7 +302,7 @@ export default React.memo(
           viewer {
             id
             recipientData {
-              id @client
+              id
               name
               mobile
               postalCode @client
