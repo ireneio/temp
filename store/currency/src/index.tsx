@@ -22,7 +22,7 @@ interface PropsType {
 }
 
 export interface CurrencyType {
-  c: (price: string) => string;
+  c: (price: number) => string;
   setCurrency: (currency: string) => void;
   currency: string;
 }
