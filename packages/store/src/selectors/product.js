@@ -28,21 +28,17 @@ export const getProduct = createSelector(
 export const getProductDescription = createSelector(
   [getProduct],
   ({ description }) => {
-    try {
-      const descTw = getIn(['zh_TW'])(description) || '';
-      if (descTw === '') {
-        return '';
-      }
+    const descTw = getIn(['zh_TW'])(description) || '';
 
-      if (descTw.match(/entityMap/gm)) {
-        // DraftJS type
-        const productDescriptionObj = descTw && JSON.parse(descTw);
-        return productDescriptionObj.blocks.reduce(
-          (_description, block) => `${_description} ${block.text}`,
+    try {
+      // DraftJS type
+      if (descTw.match(/entityMap/gm))
+        return JSON.parse(descTw).blocks.reduce(
+          (result, { text }) => `${result} ${text}`,
           '',
         );
-      }
-      return '';
+
+      return descTw;
     } catch (error) {
       return '';
     }
