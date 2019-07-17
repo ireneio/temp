@@ -11,6 +11,8 @@ export default React.memo(() => {
     <>
       <AddressCascader />
 
+      <AddressCascader lockedCountry={['Taiwan']} />
+
       <AddressCascader
         value={emptyArray}
         onChange={newValue => onChangeEmptyArray(newValue)}

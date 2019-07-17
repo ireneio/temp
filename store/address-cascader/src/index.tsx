@@ -251,8 +251,10 @@ class AddressCascader extends React.PureComponent<PropsType> {
       !lockedCountry || lockedCountry.length === 0
         ? countries
         : countries.filter(country =>
-            // TODO: should not be null
-            lockedCountry.includes(country.name.zh_TW || ''),
+            // TODO: remove after using real schema
+            lockedCountry.some(lock =>
+              Object.values(country.name).includes(lock),
+            ),
           ),
       i18n,
     );
