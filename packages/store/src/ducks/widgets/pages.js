@@ -57,10 +57,8 @@ function* getPagesFlow({ payload }) {
       }
     }
   } catch ({ message }) {
-    const status = 'SAGA_PAGES';
-    Utils.logToServer({ type: status, message });
-    console.log(`${status}: ${message}`);
-    yield put(getPagesFailure({ status, message }));
+    Utils.logToServer({ type: 'SAGA_PAGES', message });
+    yield put(getPagesFailure({ status: 'SAGA_PAGES', message }));
   }
 }
 export function* watchGetPagesFlow() {

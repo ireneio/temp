@@ -61,8 +61,8 @@ export default class SignupForm extends React.PureComponent {
 
     validateFields((err, values) => {
       if (!err) {
-        console.log('Recived values: ', values);
         const { email, newPassword: password, code: registeredCode } = values;
+
         dispatchAction('signup', {
           email,
           password,

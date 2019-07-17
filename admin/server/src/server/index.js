@@ -23,6 +23,7 @@ const handler = routes.getRequestHandler(app);
 
 ['unhandledRejection', 'uncaughtException'].forEach(eventName => {
   process.on(eventName, error => {
+    // eslint-disable-next-line no-console
     console.log(
       `${eventName} => ${JSON.stringify({
         msg: error.message,
@@ -54,6 +55,7 @@ module.exports = app.prepare().then(
 
       // listen
       server.listen(port, () => {
+        // eslint-disable-next-line no-console
         console.log(`> Admin ready on http://localhost:${port}`);
         resolve();
       });

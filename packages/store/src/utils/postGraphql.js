@@ -107,8 +107,6 @@ export default async ({ res, req, query, variables, isServer }) => {
       throw new Error(`${response.status} ${response.statusText}`);
     }
   } catch ({ message }) {
-    const status = 'API_ERROR';
-    console.log(`${status}: ${message}`);
-    return { apiErr: { status, message } };
+    return { apiErr: { status: 'API_ERROR', message } };
   }
 };

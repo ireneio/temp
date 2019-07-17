@@ -66,6 +66,7 @@ const create = (initialState, ctx) => {
                 message: 'Error!',
                 description,
               });
+            // eslint-disable-next-line no-console
             else console.error(description);
           });
         }
@@ -80,10 +81,12 @@ const create = (initialState, ctx) => {
                 2,
               )}`,
             });
-          else
+          else {
+            // eslint-disable-next-line no-console
             console.error(
               `[Network error]: ${JSON.stringify(networkError, null, 2)}`,
             );
+          }
         }
       }),
       new HttpLink({

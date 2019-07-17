@@ -191,7 +191,6 @@ class Container extends React.Component {
           window.FB.login(
             async response => {
               if (response.status === 'connected') {
-                console.log('Logged into your app and Facebook.');
                 /* Handle login after FB response */
                 const data = await Api.fbLogin(response.authResponse);
 
@@ -251,10 +250,9 @@ class Container extends React.Component {
             },
             { scope: 'public_profile,email' },
           );
-        } catch (error) {
-          console.log(
-            `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-          );
+        } catch ({ message, stack }) {
+          // eslint-disable-next-line no-console
+          console.error(`Error: ${message}, Stack: ${JSON.stringify(stack)}`);
         }
       } else if (fbAppId) {
         alert('未設定FB app ID'); // eslint-disable-line no-alert

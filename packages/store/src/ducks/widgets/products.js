@@ -73,10 +73,8 @@ function* getProductFlow({ payload }) {
       }
     }
   } catch ({ message }) {
-    const status = 'SAGA_PRODUCTS';
-    Utils.logToServer({ type: status, message });
-    console.log(`${status}: ${message}`);
-    yield put(getProductFailure({ status, message }));
+    Utils.logToServer({ type: 'SAGA_PRODUCTS', message });
+    yield put(getProductFailure({ status: 'SAGA_PRODUCTS', message }));
   }
 }
 export function* watchGetProductFlow() {

@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 const { publicRuntimeConfig } = require('../../../next.config');
 
 const { API_HOST } = publicRuntimeConfig;

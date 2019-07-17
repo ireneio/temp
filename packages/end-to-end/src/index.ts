@@ -29,6 +29,7 @@ import execa from 'execa';
         stdio: 'inherit',
       });
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
       process.exit(1);
     }

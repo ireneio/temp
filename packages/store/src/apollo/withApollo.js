@@ -32,8 +32,9 @@ export default App =>
               apolloClient={apollo}
             />,
           );
-        } catch (error) {
-          console.error('Error while running `getDataFromTree`', error);
+        } catch (e) {
+          // eslint-disable-next-line no-console
+          console.error('Error while running `getDataFromTree`', e);
         }
 
         Head.rewind();

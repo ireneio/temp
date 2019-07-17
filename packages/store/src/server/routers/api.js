@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 const os = require('os');
 
 const proxy = require('koa-better-http-proxy');

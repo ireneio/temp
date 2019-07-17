@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import 'isomorphic-unfetch';
 import '@store/utils/lib/styles/base.less';
 import React from 'react';

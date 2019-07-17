@@ -33,7 +33,7 @@ module.exports = {
     },
   },
   rules: {
-    'no-console': 'off',
+    'no-console': 'error',
     'no-warning-comments': [
       'warn',
       {
@@ -149,7 +149,10 @@ module.exports = {
         '@typescript-eslint/no-parameter-properties': 'error',
         '@typescript-eslint/no-triple-slash-reference': 'error',
         'no-unused-vars': 'off',
-        '@typescript-eslint/no-unused-vars': 'error', // modify
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+          { argsIgnorePattern: '^_' },
+        ], // modify
         '@typescript-eslint/no-use-before-define': 'error',
         '@typescript-eslint/no-var-requires': 'error',
         '@typescript-eslint/prefer-interface': 'error',

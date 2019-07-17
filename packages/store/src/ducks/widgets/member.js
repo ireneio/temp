@@ -277,9 +277,6 @@ function* forgetPasswordFlow({ payload: { email } }) {
     notification.success({ message: LOCALE.FORGET_PASSWORD_SUCCESS[locale] });
   } catch (error) {
     yield put(forgetPasswordFailure(error));
-    console.log(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
     notification.error({
       message: LOCALE.FORGET_PASSWORD_FAILURE_MESSAGE[locale],
       description: error.message,

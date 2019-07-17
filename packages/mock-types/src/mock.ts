@@ -37,6 +37,7 @@ class Mock {
 
         return mockData[0](...args);
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e);
 
         throw e;

@@ -19,10 +19,9 @@ export default ({ XMeepshopDomain, url, userAgent }) => {
       hash,
       query: url.query,
     };
-  } catch (error) {
-    console.error(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
+  } catch ({ message, stack }) {
+    // eslint-disable-next-line no-console
+    console.error({ message, stack });
     return {};
   }
 };

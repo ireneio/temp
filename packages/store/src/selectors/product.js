@@ -44,10 +44,6 @@ export const getProductDescription = createSelector(
       }
       return '';
     } catch (error) {
-      const descTw = getIn(['zh_TW'])(description) || '';
-      console.log(
-        `<< getProductDescription >> Error: ${error.message} - ${descTw}`,
-      );
       return '';
     }
   },

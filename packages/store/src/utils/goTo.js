@@ -7,7 +7,6 @@ import { Router } from 'server/routes';
 export default ({ pathname, params = {}, back = false }) => {
   document.querySelector('body').style.overflow = 'initial';
   if (!back) {
-    console.log('goTo:', pathname, params);
     if (params.hash) {
       if (pathname) {
         Router.pushRoute(pathname + params.hash);
@@ -50,7 +49,6 @@ export default ({ pathname, params = {}, back = false }) => {
     // for go back from /checkout page
     // if no previous page, go to homepage
     const previousPage = window.storePreviousPageUrl || '/';
-    console.log('goTo:', previousPage);
 
     if (
       window.navigator.userAgent.match(/Instagram/gm) &&

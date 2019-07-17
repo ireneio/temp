@@ -88,6 +88,7 @@ const create = (
                 message: 'Error!',
                 description,
               });
+            // eslint-disable-next-line no-console
             else console.error(description);
           });
         }
@@ -102,10 +103,12 @@ const create = (
                 2,
               )}`,
             });
-          else
+          else {
+            // eslint-disable-next-line no-console
             console.error(
               `[Network error]: ${JSON.stringify(networkError, null, 2)}`,
             );
+          }
         }
       }),
       new HttpLink({

@@ -39,9 +39,7 @@ function* serverIndexInitialFlow({ payload }) {
       yield put(getPagesSuccess(modifiedPage));
     }
   } catch ({ message }) {
-    const status = 'SERVER_ERROR';
-    console.log(`${status}: ${message}`);
-    yield put(getStoreFailure({ status, message }));
+    yield put(getStoreFailure({ status: 'SERVER_ERROR', message }));
   }
 }
 export function* watchServerIndexInitialFlow() {
@@ -78,9 +76,7 @@ function* serverPagesInitialFlow({ payload }) {
       }
     }
   } catch ({ message }) {
-    const status = 'SERVER_ERROR';
-    console.log(`${status}: ${message}`);
-    yield put(getStoreFailure({ status, message }));
+    yield put(getStoreFailure({ status: 'SERVER_ERROR', message }));
   }
 }
 export function* watchServerPagesInitialFlow() {
@@ -148,9 +144,7 @@ function* serverProductInitialFlow({ payload }) {
       }
     }
   } catch ({ message }) {
-    const status = 'SERVER_ERROR';
-    console.log(`${status}: ${message}`);
-    yield put(getStoreFailure({ status, message }));
+    yield put(getStoreFailure({ status: 'SERVER_ERROR', message }));
   }
 }
 export function* watchServerProductInitialFlow() {
@@ -186,9 +180,7 @@ function* serverProductsInitialFlow({ payload }) {
       }
     }
   } catch ({ message }) {
-    const status = 'SERVER_ERROR';
-    console.log(`${status}: ${message}`);
-    yield put(getStoreFailure({ status, message }));
+    yield put(getStoreFailure({ status: 'SERVER_ERROR', message }));
   }
 }
 export function* watchServerProductsInitialFlow() {
@@ -217,9 +209,7 @@ function* serverOthersInitialFlow({ payload }) {
       yield put(getAuthSuccess(data));
     }
   } catch ({ message }) {
-    const status = 'SERVER_ERROR';
-    console.log(`${status}: ${message}`);
-    yield put(getStoreFailure({ status, message }));
+    yield put(getStoreFailure({ status: 'SERVER_ERROR', message }));
   }
 }
 export function* watchServerOthersInitialFlow() {

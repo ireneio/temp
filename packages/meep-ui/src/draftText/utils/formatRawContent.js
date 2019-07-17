@@ -71,7 +71,6 @@ export default value => {
 
     return rawContent;
   } catch (error) {
-    console.log(`<< formatRawContent >> Error: ${error.message} - ${value}`);
     return null;
   }
 };
