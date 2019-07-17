@@ -106,6 +106,7 @@ const query = gql`
       }
 
       store {
+        id
         storeEcfitSettings {
           isEnabled
         }

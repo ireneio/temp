@@ -342,6 +342,7 @@ export default React.memo(
               month
               day
             }
+
             notification {
               newsletters {
                 cancelEmail

@@ -31,13 +31,14 @@ MEEP_UI_VERSION=$(shell grep 'version' ./packages/meep-ui/package.json | cut -d 
 hotfix-i18n:
 	@npx json -I -f ./store/utils/package.json -e 'this.dependencies={"@meepshop/meep-ui": "^$(MEEP_UI_VERSION)"}'
 
+APOLLO_TYPE=mock-types
+apollo-watch:
+	@$(call apollo,$(APOLLO_TYPE),--watch)
+
 tsc-basic:
-	@echo "- @meepshop/mock-types"
-	@apollo client:codegen --target=typescript --globalTypesFile=./__generated__/mock-types.ts
-	@echo "- @store/*"
-	@APOLLO_TYPE=store apollo client:codegen --target=typescript --globalTypesFile=./__generated__/store.ts
-	@echo "- @admin/*"
-	@APOLLO_TYPE=admin apollo client:codegen --target=typescript --globalTypesFile=./__generated__/admin.ts
+	@$(call apollo,mock-types)
+	@$(call apollo,store)
+	@$(call apollo,admin)
 
 tsc:
 	@make tsc-basic
@@ -63,6 +64,11 @@ release:
 		git add CHANGELOG.md && \
 		git commit -m "chore(root): add CHANGELOG.md"
 	@yarn lerna version
+
+define apollo
+	echo "- $(1)"
+	APOLLO_TYPE=$(1) yarn apollo client:codegen --target=typescript --globalTypesFile=./__generated__/$(1).ts $(2)
+endef
 
 define babel-build
   yarn lerna exec \

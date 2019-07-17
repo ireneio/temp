@@ -68,6 +68,7 @@ export const ordersEcfitOrdersFragment = gql`
         shipmentInfo {
           status
           list {
+            id
             name
             recipient {
               name
@@ -75,6 +76,7 @@ export const ordersEcfitOrdersFragment = gql`
           }
         }
         paymentInfo {
+          id
           status
         }
         status

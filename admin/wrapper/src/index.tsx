@@ -219,6 +219,7 @@ const WrapperWithData = ({
           groupId
           role
           store {
+            id
             adminStatus
             domain
             defaultDomain

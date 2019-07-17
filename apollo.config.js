@@ -1,19 +1,23 @@
 const includes = [];
 
-if (!process.env.APOLLO_TYPE)
-  includes.push('./packages/mock-types/src/**/*.{ts,tsx}');
-else {
-  if (process.env.APOLLO_TYPE === 'store')
+switch (process.env.APOLLO_TYPE) {
+  case 'store':
     includes.push(
       './store/apollo-client-resolvers/schemas/*.graphql',
       './store/**/src/**/*.{ts,tsx}',
     );
+    break;
 
-  if (process.env.APOLLO_TYPE === 'admin')
+  case 'admin':
     includes.push(
       './admin/apollo-client-resolvers/schemas/*.graphql',
       './admin/**/src/**/*.{ts,tsx}',
     );
+    break;
+
+  default:
+    includes.push('./packages/mock-types/src/**/*.{ts,tsx}');
+    break;
 }
 
 module.exports = {

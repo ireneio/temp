@@ -5,8 +5,10 @@ import { gql } from 'apollo-boost';
 export default gql`
   fragment colorsFragment on ColorList {
     data {
+      id
       selected
       themes {
+        id
         colors
       }
     }
