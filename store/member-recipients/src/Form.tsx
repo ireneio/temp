@@ -121,6 +121,7 @@ class Form extends React.PureComponent<PropsType> {
     const {
       // HOC
       t,
+      i18n,
       form: {
         getFieldDecorator,
         getFieldValue,
@@ -198,6 +199,7 @@ class Form extends React.PureComponent<PropsType> {
             <AddressCascader
               size="large"
               placeholder={t('address')}
+              i18n={i18n}
               lockedCountry={!lockedCountry ? undefined : lockedCountry}
             />,
           )}

@@ -48,10 +48,8 @@ class MemberRecipients extends React.PureComponent<PropsType> {
     selectId: null,
   };
 
-  private generateColumns = memoizeOne(() => {
-    const { t, i18n } = this.props;
-
-    return [
+  private generateColumns = memoizeOne(
+    ({ t, i18n }: Pick<PropsType, 't' | 'i18n'>) => [
       {
         title: t('name'),
         dataIndex: 'name',
@@ -173,8 +171,8 @@ class MemberRecipients extends React.PureComponent<PropsType> {
           </div>
         ),
       },
-    ];
-  });
+    ],
+  );
 
   public componentDidUpdate(prevProps: PropsType): void {
     const { refetch, member } = this.props;
@@ -229,6 +227,11 @@ class MemberRecipients extends React.PureComponent<PropsType> {
 
   public render(): React.ReactNode {
     const {
+      // HOC
+      t,
+      i18n,
+
+      // props
       viewer: { id, recipientData, store },
       colors,
       dispatchAction,
@@ -255,7 +258,7 @@ class MemberRecipients extends React.PureComponent<PropsType> {
             data =>
               idx(data, _ => _.id) || 'null-id' /** TODO: should noe be null */
           }
-          columns={this.generateColumns()}
+          columns={this.generateColumns({ t, i18n })}
           dataSource={
             (recipientData || []).filter(
               data => data,

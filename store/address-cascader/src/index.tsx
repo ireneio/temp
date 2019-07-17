@@ -2,6 +2,7 @@
 import { QueryResult } from 'react-apollo';
 import { CascaderProps, CascaderOptionType } from 'antd/lib/cascader';
 
+import { I18nPropsType } from '@store/utils/lib/i18n';
 import { OmitType } from '@store/utils/lib/types';
 
 // import
@@ -33,7 +34,8 @@ import localeFragment from '@store/utils/lib/fragments/locale';
 // typescript definition
 interface PropsType
   extends OmitType<CascaderProps, 'options'>,
-    Pick<QueryResult<getCountriesAddress>, 'client'> {
+    Pick<QueryResult<getCountriesAddress>, 'client'>,
+    Pick<I18nPropsType, 'i18n'> {
   lockedCountry?: string[];
   countries: getCountriesAddressAddressServiceCountries[];
 }
@@ -67,18 +69,21 @@ class AddressCascader extends React.PureComponent<PropsType> {
     if (value && value.length !== 0) this.findExist(value, this.options);
   }
 
-  private getOptions = (options: OptionsType[]): CascaderOptionType[] =>
+  private getOptions = (
+    options: OptionsType[],
+    i18n: PropsType['i18n'],
+  ): CascaderOptionType[] =>
     options.map(({ __typename, id, name, children, ...data }) => ({
       ...data,
       __typename,
       value: id,
-      label: name.zh_TW,
+      label: name[i18n.language],
       isLeaf:
         (__typename === 'Country' && id !== 'Taiwan') || __typename === 'Area',
       children:
         !children || children.length === 0
           ? undefined
-          : this.getOptions(children),
+          : this.getOptions(children, i18n),
     }));
 
   private getCountriesOptions = memoizeOne(this.getOptions);
@@ -239,7 +244,7 @@ class AddressCascader extends React.PureComponent<PropsType> {
   };
 
   public render(): React.ReactNode {
-    const { countries, lockedCountry, ...props } = this.props;
+    const { i18n, countries, lockedCountry, ...props } = this.props;
 
     delete props.client;
     this.options = this.getCountriesOptions(
@@ -249,6 +254,7 @@ class AddressCascader extends React.PureComponent<PropsType> {
             // TODO: should not be null
             lockedCountry.includes(country.name.zh_TW || ''),
           ),
+      i18n,
     );
 
     // TODO remove after using real schema

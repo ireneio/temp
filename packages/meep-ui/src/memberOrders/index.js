@@ -40,72 +40,59 @@ class MemberOrders extends React.PureComponent {
     loading: false,
   };
 
-  columns = memoizeOne(() => {
-    const {
-      /** context */
-      transformLocale,
-
-      /** props */
-      orderApplyList,
-    } = this.props;
-
-    return [
-      {
-        title: transformLocale(LOCALE.DATE),
-        dataIndex: 'node.createdOn',
-        render: value => moment.unix(value).format('YYYY/MM/DD'),
-        width: 130,
-      },
-      {
-        title: transformLocale(LOCALE.ORDER_NO),
-        dataIndex: 'node.orderNo',
-        render: (value, { node: { id } }) => (
-          <Link href={`/order/${id}`} className={styles.link}>
-            {value}
-          </Link>
-        ),
-        width: 150,
-      },
-      {
-        title: transformLocale(LOCALE.PAYMENT_TITLE),
-        dataIndex: 'node.paymentInfo.status',
-        render: value => transformLocale(LOCALE.PAYMENT[value]),
-        width: 130,
-      },
-      {
-        title: transformLocale(LOCALE.SHIPMENT_TITLE),
-        dataIndex: 'node.shipmentInfo.status',
-        render: value => transformLocale(LOCALE.SHIPMENT[value]),
-        width: 130,
-      },
-      {
-        title: transformLocale(LOCALE.STATUS_TITLE),
-        dataIndex: 'node.status',
-        render: value => transformLocale(LOCALE.STATUS[value]),
-        width: 130,
-      },
-      {
-        key: 'action',
-        dataIndex: 'node',
-        render: value => (
-          <Actions
-            node={filter(actionsFragment, value)}
-            orderApplyList={filter(
-              actionsOrderApplyListFragment,
-              orderApplyList,
-            )}
-          />
-        ),
-      },
-      {
-        key: 'mobile',
-        dataIndex: 'node',
-        render: value => (
-          <MobileColumn node={value} orderApplyList={orderApplyList} />
-        ),
-      },
-    ];
-  });
+  columns = memoizeOne(({ transformLocale, orderApplyList }) => [
+    {
+      title: transformLocale(LOCALE.DATE),
+      dataIndex: 'node.createdOn',
+      render: value => moment.unix(value).format('YYYY/MM/DD'),
+      width: 130,
+    },
+    {
+      title: transformLocale(LOCALE.ORDER_NO),
+      dataIndex: 'node.orderNo',
+      render: (value, { node: { id } }) => (
+        <Link href={`/order/${id}`} className={styles.link}>
+          {value}
+        </Link>
+      ),
+      width: 150,
+    },
+    {
+      title: transformLocale(LOCALE.PAYMENT_TITLE),
+      dataIndex: 'node.paymentInfo.status',
+      render: value => transformLocale(LOCALE.PAYMENT[value]),
+      width: 130,
+    },
+    {
+      title: transformLocale(LOCALE.SHIPMENT_TITLE),
+      dataIndex: 'node.shipmentInfo.status',
+      render: value => transformLocale(LOCALE.SHIPMENT[value]),
+      width: 130,
+    },
+    {
+      title: transformLocale(LOCALE.STATUS_TITLE),
+      dataIndex: 'node.status',
+      render: value => transformLocale(LOCALE.STATUS[value]),
+      width: 130,
+    },
+    {
+      key: 'action',
+      dataIndex: 'node',
+      render: value => (
+        <Actions
+          node={filter(actionsFragment, value)}
+          orderApplyList={filter(actionsOrderApplyListFragment, orderApplyList)}
+        />
+      ),
+    },
+    {
+      key: 'mobile',
+      dataIndex: 'node',
+      render: value => (
+        <MobileColumn node={value} orderApplyList={orderApplyList} />
+      ),
+    },
+  ]);
 
   componentDidUpdate(prevProps) {
     const {
@@ -194,9 +181,12 @@ class MemberOrders extends React.PureComponent {
     const {
       /** context */
       storeSetting: { colors },
+      locale,
+      transformLocale,
 
       /** props */
       orders: { edges, total },
+      orderApplyList,
     } = this.props;
     const { current, loading } = this.state;
     const pageSize = Math.ceil(total / MAX_ITEMS);
@@ -208,7 +198,7 @@ class MemberOrders extends React.PureComponent {
             current * MAX_ITEMS,
             (current + 1) * MAX_ITEMS,
           )}
-          columns={this.columns()}
+          columns={this.columns({ locale, transformLocale, orderApplyList })}
           loading={loading}
           pagination={false}
           rowKey={({ node: { id } }) => id}

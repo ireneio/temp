@@ -126,6 +126,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
       /** HOC */
       form: { getFieldDecorator },
       t,
+      i18n,
 
       /** props */
       viewer: {
@@ -243,6 +244,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
               <AddressCascader
                 size="large"
                 placeholder={t('address')}
+                i18n={i18n}
                 lockedCountry={
                   !lockedCountry
                     ? undefined

@@ -38,19 +38,6 @@ export default class Context extends React.PureComponent {
       );
     },
   };
-
-  locale = {
-    locale: this.props.locale,
-    transformLocale: transformLocale(this.props.locale),
-  };
-
-  currency = {
-    customerCurrency: this.props.customerCurrency,
-    transformCurrency: transformCurrency(
-      this.props.storeCurrency,
-      this.props.customerCurrency,
-    ),
-  };
   /* eslint-disable react/destructuring-assignment */
 
   static propTypes = {
@@ -81,7 +68,15 @@ export default class Context extends React.PureComponent {
   };
 
   render() {
-    const { user, storeSetting, location, children } = this.props;
+    const {
+      locale,
+      customerCurrency,
+      storeCurrency,
+      user,
+      storeSetting,
+      location,
+      children,
+    } = this.props;
 
     return [
       {
@@ -98,11 +93,17 @@ export default class Context extends React.PureComponent {
       },
       {
         ContextProvider: LocaleContext.Provider,
-        value: this.locale,
+        value: {
+          locale,
+          transformLocale: transformLocale(locale),
+        },
       },
       {
         ContextProvider: CurrencyContext.Provider,
-        value: this.currency,
+        value: {
+          customerCurrency,
+          transformCurrency: transformCurrency(storeCurrency, customerCurrency),
+        },
       },
       {
         ContextProvider: UserContext.Provider,

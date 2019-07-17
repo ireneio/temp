@@ -57,7 +57,9 @@ export const withNamespaces = namespace => Component => {
           ...result,
           [key]: prevLocale[key][nowKey],
         }),
-        {},
+        {
+          TODO_LOCALE: true,
+        },
       );
 
       if (hasNextKey.length !== 0)

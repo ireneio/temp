@@ -9,6 +9,7 @@ import { gql } from 'apollo-boost';
 import { Spin, Icon, Table } from 'antd';
 import idx from 'idx';
 import { areEqual } from 'fbjs';
+import memoizeOne from 'memoize-one';
 import moment from 'moment';
 
 import Thumbnail from '@store/thumbnail';
@@ -43,17 +44,11 @@ interface PropsType
 
 // definition
 class MemberWishList extends React.PureComponent<PropsType> {
-  // TODO: remove after removing redux
-  public componentDidUpdate(prevProps: PropsType): void {
-    const { refetch, wishListFromRedux } = this.props;
-
-    if (!areEqual(wishListFromRedux, prevProps.wishListFromRedux)) refetch();
-  }
-
-  private columns = () => {
-    const { t, dispatchAction } = this.props;
-
-    return [
+  private columns = memoizeOne(
+    ({
+      t,
+      dispatchAction,
+    }: Pick<PropsType, 't' | 'i18n' | 'dispatchAction'>) => [
       {
         dataIndex: 'coverImage.src',
         render: (
@@ -118,11 +113,27 @@ class MemberWishList extends React.PureComponent<PropsType> {
           />
         ),
       },
-    ];
-  };
+    ],
+  );
+
+  // TODO: remove after removing redux
+  public componentDidUpdate(prevProps: PropsType): void {
+    const { refetch, wishListFromRedux } = this.props;
+
+    if (!areEqual(wishListFromRedux, prevProps.wishListFromRedux)) refetch();
+  }
 
   public render(): React.ReactNode {
-    const { wishlist, colors } = this.props;
+    const {
+      // HOC
+      t,
+      i18n,
+
+      // props
+      wishlist,
+      colors,
+      dispatchAction,
+    } = this.props;
 
     return (
       <div className={styles.root}>
@@ -145,7 +156,7 @@ class MemberWishList extends React.PureComponent<PropsType> {
         />
         <Table
           rowKey={({ productId }) => productId}
-          columns={this.columns()}
+          columns={this.columns({ t, i18n, dispatchAction })}
           dataSource={wishlist}
           pagination={false}
         />
