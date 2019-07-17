@@ -16,6 +16,7 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 - `release`: Release the new version.
 - `storybook`: Run `storybook` with the name of the package. `yarn storybook @store/ezpay`
 - `test`: Run testing.
+- `apollo:watch`: Watch gql files to build schema typescript.
 - `tsc`: Test typescript.
 - `tsc:watch`: Test typescript with watch mode.
 - `store`, `admin`, `admin:old`: Run `store` and `admin` server with `docker-compose`.
