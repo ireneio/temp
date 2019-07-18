@@ -183,9 +183,12 @@ class Container extends React.Component {
     if (
       !userAgent.match(/Line/gm) &&
       !userAgent.match(/Instagram/gm) &&
+      !userAgent.match(/FBAN/gm) && // FIXME: T3144
+      !userAgent.match(/FBAV/gm) &&
+      cname !== 'imint' && // FIXME: T2945
       cname !== 'truda-moda' // FIXME: hotfix T2939 (原因不明，可能為FB SDK bug
     ) {
-      // Not Line/Instagram in-app browser
+      // Not in-app browser
       if (window.FB) {
         try {
           window.FB.login(
@@ -258,8 +261,8 @@ class Container extends React.Component {
         alert('未設定FB app ID'); // eslint-disable-line no-alert
       }
     } else {
-      // Line in-app browser
-      window.location.href = `https://www.facebook.com/v3.0/dialog/oauth?client_id=${fbAppId}&redirect_uri=https://${window.meepShopStore.XMeepshopDomain}/fbAuthForLine&scope=email&state=meepShopNextStore${from}`;
+      // in-app browser
+      window.location.href = `https://www.facebook.com/v3.3/dialog/oauth?client_id=${fbAppId}&redirect_uri=https://${window.meepShopStore.XMeepshopDomain}/fbAuthForLine&scope=email&state=meepShopNextStore${from}`;
     }
   };
 
