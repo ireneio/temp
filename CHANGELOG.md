@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.24.13 (2019-07-18)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#623](https://github.com/meepshop/meep-lerna/pull/623) 【其他】新架構/手機版 - 從 FB 粉絲專頁導向過去前台，無法 FB 登入 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#619](https://github.com/meepshop/meep-lerna/pull/619) (@store/currency): modify currenyType ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.24.12 (2019-07-17)
 
 #### :rocket: New Feature
