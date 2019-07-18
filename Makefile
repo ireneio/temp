@@ -58,7 +58,7 @@ clean:
 
 release:
 	@yarn lerna-changelog && \
-		echo "\nContinue with any keyword or exit with 'ctrl + c'..." && \
+		echo "\nPlease copy above logs and edit in CHANGELOG.md. Exit with 'ctrl + c'..." && \
 		read -p ""
 	@vim CHANGELOG.md && \
 		git add CHANGELOG.md && \
