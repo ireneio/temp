@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { notification } from 'antd';
+import { areEqual } from 'fbjs';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { USER_TYPE, LOCATION_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
@@ -18,7 +19,7 @@ import OrderDetail from './orderDetail';
 import * as LOCALE from './locale';
 
 @enhancer
-export default class Checkout extends React.Component {
+export default class Checkout extends React.PureComponent {
   formRef = React.createRef();
 
   static propTypes = {
@@ -65,10 +66,11 @@ export default class Checkout extends React.Component {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     const { formData } = this.state;
 
-    if (formData) this.formRef.current.submit();
+    if (formData && !areEqual(formData, prevState.formData))
+      this.formRef.current.submit();
   }
 
   componentWillUnmount() {
@@ -160,6 +162,7 @@ export default class Checkout extends React.Component {
         () => {
           const nextStep = (firstPurchase = false) => {
             if (this.isUnmounted) return;
+
             const addRecipient = () => {
               if (!isSaveAsReceiverTemplate) return;
 

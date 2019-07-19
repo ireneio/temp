@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import radium, { Style, StyleRoot } from 'radium';
 import { Form, Button, Divider, notification } from 'antd';
 import moment from 'moment';
+import { areEqual } from 'fbjs';
 
 import GmoCreditCardForm from '@store/gmo-credit-card-form';
 
@@ -126,7 +127,7 @@ export default class LandingPage extends React.PureComponent {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     const { adTrack, productData } = this.props;
     const { formData } = this.state;
 
@@ -137,7 +138,8 @@ export default class LandingPage extends React.PureComponent {
       }, 5000);
     }
 
-    if (formData) this.formRef.current.submit();
+    if (formData && !areEqual(formData, prevState.formData))
+      this.formRef.current.submit();
   }
 
   componentWillUnmount() {
