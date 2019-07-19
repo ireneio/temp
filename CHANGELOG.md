@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.24.14 (2019-07-19)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#625](https://github.com/meepshop/meep-lerna/pull/625) 【BUG】新架構/綠界金流 - 首次購物，出現交易失敗！訂單編號重覆，建立失敗(錯誤代碼 100002)，請聯繫商店處理。 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#623](https://github.com/meepshop/meep-lerna/pull/623) 【其他】新架構/手機版 - 從 FB 粉絲專頁導向過去前台，無法 FB 登入 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#619](https://github.com/meepshop/meep-lerna/pull/619) (@store/currency): modify currenyType ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.24.13 (2019-07-18)
 
 #### :bug: Bug Fix
