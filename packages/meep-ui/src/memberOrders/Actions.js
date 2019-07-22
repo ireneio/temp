@@ -122,6 +122,8 @@ export const outformDataObjectFragment = gql`
       hash
       bankid
       strRqXML
+      URLEnc
+      merID
     }
   }
 `;

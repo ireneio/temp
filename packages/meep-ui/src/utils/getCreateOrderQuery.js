@@ -120,6 +120,8 @@ export default ({
           bankid
           Language
           strRqXML
+          URLEnc
+          merID
         }
         url
         type

@@ -35,6 +35,9 @@ export const paymentInfoFragment = gql`
           cathay {
             choosePayment: type
           }
+          chinatrust {
+            choosePayment: type
+          }
         }
         memo {
           allpay {
@@ -103,6 +106,7 @@ export default class PaymentInfo extends React.PureComponent {
         return this.credit();
 
       case 'cathay':
+      case 'chinatrust':
         return choosePayment !== 'CREDIT' ? null : this.credit();
 
       default:
