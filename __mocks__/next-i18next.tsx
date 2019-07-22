@@ -39,6 +39,7 @@ const resources = /admin\/utils/.test(parentModuleFilename)
         'member-settings': require('@meepshop/store/src/static/locales/zh_TW/member-settings.json'),
         'member-reward-points': require('@meepshop/store/src/static/locales/zh_TW/member-reward-points.json'),
         'member-recipients': require('@meepshop/store/src/static/locales/zh_TW/member-recipients.json'),
+        'member-password-change': require('@meepshop/store/src/static/locales/zh_TW/member-password-change.json'),
         'thank-you-page': require('@meepshop/store/src/static/locales/zh_TW/thank-you-page.json'),
       },
       en_US: {
@@ -47,6 +48,7 @@ const resources = /admin\/utils/.test(parentModuleFilename)
         'member-settings': require('@meepshop/store/src/static/locales/en_US/member-settings.json'),
         'member-reward-points': require('@meepshop/store/src/static/locales/en_US/member-reward-points.json'),
         'member-recipients': require('@meepshop/store/src/static/locales/en_US/member-recipients.json'),
+        'member-password-change': require('@meepshop/store/src/static/locales/en_US/member-password-change.json'),
         'thank-you-page': require('@meepshop/store/src/static/locales/en_US/thank-you-page.json'),
       },
       ja_JP: {
@@ -55,6 +57,7 @@ const resources = /admin\/utils/.test(parentModuleFilename)
         'member-settings': require('@meepshop/store/src/static/locales/ja_JP/member-settings.json'),
         'member-reward-points': require('@meepshop/store/src/static/locales/ja_JP/member-reward-points.json'),
         'member-recipients': require('@meepshop/store/src/static/locales/ja_JP/member-recipients.json'),
+        'member-password-change': require('@meepshop/store/src/static/locales/ja_JP/member-password-change.json'),
         'thank-you-page': require('@meepshop/store/src/static/locales/ja_JP/thank-you-page.json'),
       },
       vi_VN: {
@@ -63,6 +66,7 @@ const resources = /admin\/utils/.test(parentModuleFilename)
         'member-settings': require('@meepshop/store/src/static/locales/vi_VN/member-settings.json'),
         'member-reward-points': require('@meepshop/store/src/static/locales/vi_VN/member-reward-points.json'),
         'member-recipients': require('@meepshop/store/src/static/locales/vi_VN/member-recipients.json'),
+        'member-password-change': require('@meepshop/store/src/static/locales/vi_VN/member-password-change.json'),
         'thank-you-page': require('@meepshop/store/src/static/locales/vi_VN/thank-you-page.json'),
       },
     };

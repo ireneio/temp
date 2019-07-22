@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+
+import MemberPasswordChange from '@store/member-password-change';
+
 import * as Utils from 'utils';
 import * as Selectors from 'selectors';
 import * as Template from 'template';
 import { Container, TrackingCodeHead, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
-import MemberChangePassword from '@meepshop/meep-ui/lib/memberPassword';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
 import * as TITLE from 'locales';
@@ -91,7 +93,7 @@ class PasswordChange extends Component {
         />
         <Container {...this.props}>
           <MemberHeader title={title} colors={colors}>
-            <MemberChangePassword />
+            <MemberPasswordChange />
           </MemberHeader>
         </Container>
       </>

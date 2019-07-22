@@ -10,7 +10,7 @@
   "submit": "Xác nhận",
   "create": "Thêm",
   "form": {
-    "required": "必填",
+    "required": "dòng bắt buộc",
     "not-taiwan-mobile": "Khu vực Đài Loan số điện thoại nên là 10 số",
     "not-mobile": "Định dạng điện thoại không hợp lệ",
     "not-number": "Hãy chỉ điền số"

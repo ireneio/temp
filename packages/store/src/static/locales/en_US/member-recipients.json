@@ -10,7 +10,7 @@
   "submit": "Save",
   "create": "Add",
   "form": {
-    "required": "必填",
+    "required": "Required",
     "not-taiwan-mobile": "Taiwan mobile phone number is 10 digits",
     "not-mobile": "Invalid mobile number",
     "not-number": "This entry can only contain numbers"

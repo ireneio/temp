@@ -10,7 +10,7 @@
   "submit": "確認",
   "create": "作成",
   "form": {
-    "required": "必填",
+    "required": "入力必須項目",
     "not-taiwan-mobile": "台湾の携帯電話番号は10桁です",
     "not-mobile": "携帯電話番号が正しくありません",
     "not-number": "純粋な数字を入力してください"
