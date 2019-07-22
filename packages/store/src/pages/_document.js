@@ -11,14 +11,14 @@ export default class MyDocument extends Document {
   static async getInitialProps({ req, res, renderPage }) {
     const { html, head, errorHtml, chunks } = renderPage();
 
-    res.append('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
 
     return {
       html,
       head,
       errorHtml,
       chunks,
-      XMeepshopDomain: req.get('host'),
+      XMeepshopDomain: req.headers['x-meepshop-domain'],
     };
   }
 

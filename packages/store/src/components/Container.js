@@ -168,7 +168,6 @@ class Container extends React.Component {
     }
   };
 
-  // eslint-disable-next-line consistent-return
   handleFacebookLogin = ({ from }) => {
     const {
       pageAdTrackIDs,
@@ -178,11 +177,6 @@ class Container extends React.Component {
       dispatchAction,
       cname,
     } = this.props;
-
-    if (!fbAppId)
-      return notification.error({
-        message: '尚未設定 Facebook APP ID',
-      });
 
     dispatchAction('showLoadingStatus');
 
@@ -263,6 +257,8 @@ class Container extends React.Component {
           // eslint-disable-next-line no-console
           console.error(`Error: ${message}, Stack: ${JSON.stringify(stack)}`);
         }
+      } else if (fbAppId) {
+        alert('未設定FB app ID'); // eslint-disable-line no-alert
       }
     } else {
       // in-app browser

@@ -1,13 +1,13 @@
-const proxy = require('express-http-proxy');
+const proxy = require('koa-better-http-proxy');
 
 const { publicRuntimeConfig } = require('../../../next.config');
 
 const { API_HOST } = publicRuntimeConfig;
 
-module.exports = redirectPath =>
+module.exports = redirectPath => koaCtx =>
   proxy(API_HOST, {
     proxyReqPathResolver: () => redirectPath,
-    userResDecorator: (proxyRes, proxyResData, userReq, userRes) => {
+    userResDecorator: async (proxyRes, proxyResData, ctx) => {
       let newToken;
 
       if (redirectPath === '/auth/login') {
@@ -15,23 +15,21 @@ module.exports = redirectPath =>
 
         if (data.error) return JSON.stringify({ error: data.error });
 
-        newToken = data.token || '';
+        newToken = data.token || null;
       } else {
-        newToken = proxyRes.headers['x-meepshop-authorization-token'] || '';
+        newToken = proxyRes.headers['x-meepshop-authorization-token'] || null;
       }
 
       // TODO: Remove this when api removing set-cookie
-      userRes.cookie(
-        `x-meepshop-authorization-token-${userReq.get('host')}`,
+      ctx.cookies.set(
+        `x-meepshop-authorization-token-${ctx.headers['x-meepshop-domain']}`,
         '',
         {
           maxAge: 0,
-          path: '/',
-          httpOnly: true,
         },
       );
 
-      userRes.cookie('x-meepshop-authorization-token', newToken, {
+      ctx.cookies.set('x-meepshop-authorization-token', newToken, {
         maxAge: 86400 * 1000 * 1,
         path: '/',
         httpOnly: true,
@@ -42,4 +40,4 @@ module.exports = redirectPath =>
 
       return proxyResData.toString('utf8');
     },
-  });
+  })(koaCtx);
