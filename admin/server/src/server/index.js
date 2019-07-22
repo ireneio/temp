@@ -2,8 +2,8 @@ const path = require('path');
 
 require('isomorphic-unfetch');
 const nextApp = require('next');
-const compression = require('compression');
 const express = require('express');
+const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const nextI18NextMiddleware = require('next-i18next/middleware');

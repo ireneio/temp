@@ -95,9 +95,9 @@ const create = (initialState, ctx) => {
         headers: !ctx
           ? {}
           : {
-              'x-meepshop-domain': ctx.req.headers['x-meepshop-domain'],
+              'x-meepshop-domain': ctx.req.get('host'),
               'x-meepshop-authorization-token':
-                ctx.req.headers['x-meepshop-authorization-token'],
+                ctx.req.cookies['x-meepshop-authorization-token'],
             },
       }),
     ]),
