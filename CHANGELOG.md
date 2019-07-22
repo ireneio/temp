@@ -22,28 +22,6 @@
 - Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
 - [@piovischioh](https://github.com/piovischioh)
 
-## 0.24.15 (2019-07-22)
-
-#### :boom: Breaking Change
-
-- `meep-ui`, `store`
-  - [#601](https://github.com/meepshop/meep-lerna/pull/601) next-store koa 轉 express ([@piovischioh](https://github.com/piovischioh))
-
-#### :rocket: New Feature
-
-- `meep-ui`, `store`
-  - [#620](https://github.com/meepshop/meep-lerna/pull/620) 修改 會員 更改密碼 ([@HsuTing](https://github.com/HsuTing))
-  - [#601](https://github.com/meepshop/meep-lerna/pull/601) next-store koa 轉 express ([@piovischioh](https://github.com/piovischioh))
-- `meep-ui`, `mock-types`, `store`
-  - [#607](https://github.com/meepshop/meep-lerna/pull/607) 修改 購物金 ([@HsuTing](https://github.com/HsuTing))
-- `meep-ui`
-  - [#566](https://github.com/meepshop/meep-lerna/pull/566) 【功能】 中國信託信用卡串接（POS_URL） ([@HsuTing](https://github.com/HsuTing))
-
-#### Committers: 2
-
-- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
-- [@piovischioh](https://github.com/piovischioh)
-
 ## 0.24.14 (2019-07-19)
 
 #### :bug: Bug Fix
