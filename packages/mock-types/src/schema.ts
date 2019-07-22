@@ -37,6 +37,8 @@ import StoreEcfitSettings from './schemas/StoreEcfitSettings';
 import Store from './schemas/Store';
 import SettingObjectType from './schemas/SettingObjectType';
 import User from './schemas/User';
+import UserPoints from './schemas/UserPoints';
+import UserRewardPoint from './schemas/UserRewardPoint';
 import UserMemberGroupObjectType from './schemas/UserMemberGroupObjectType';
 import WishlistProduct from './schemas/WishlistProduct';
 
@@ -78,6 +80,8 @@ addMockFunctionsToSchema({
     Store,
     SettingObjectType,
     User,
+    UserPoints,
+    UserRewardPoint,
     UserMemberGroupObjectType,
     WishlistProduct,
     Timestamp: () => Number.MAX_SAFE_INTEGER,

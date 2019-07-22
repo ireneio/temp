@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+
+import MemberRewardPoints from '@store/member-reward-points';
+
 import * as Utils from 'utils';
 import * as Selectors from 'selectors';
 import * as Template from 'template';
 import { Container, TrackingCodeHead, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
-import MemberPoints from '@meepshop/meep-ui/lib/memberPoints';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
 import * as TITLE from 'locales';
@@ -74,8 +76,6 @@ class RewardPoints extends Component {
       pageAdTrackIDs,
       colors,
       title,
-      userPoints,
-      currentBalance,
       fbAppId,
     } = this.props;
 
@@ -95,10 +95,7 @@ class RewardPoints extends Component {
         />
         <Container {...this.props}>
           <MemberHeader title={title} colors={colors}>
-            <MemberPoints
-              userPoints={userPoints}
-              currentBalance={currentBalance}
-            />
+            <MemberRewardPoints />
           </MemberHeader>
         </Container>
       </>

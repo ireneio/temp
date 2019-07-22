@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "@store/member-reward-points",
+  "description": "Member reward points page for store",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@store/currency": "^0.24.0",
+    "@store/utils": "^0.24.8",
+    "memoize-one": "^5.0.4",
+    "moment": "^2.22.1"
+  },
+  "keywords": ["member", "reward points", "store"]
+}
