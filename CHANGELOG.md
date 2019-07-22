@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.24.16 (2019-07-22)
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#627](https://github.com/meepshop/meep-lerna/pull/627) Revert "next-store koa 轉 express (#601)" ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.24.15 (2019-07-22)
 
 #### :boom: Breaking Change
