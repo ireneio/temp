@@ -4,7 +4,7 @@
   "description": "Utils tool for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.24.12",
+  "version": "0.24.15",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "keywords": ["store", "utils"]
