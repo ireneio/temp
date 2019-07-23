@@ -15,7 +15,10 @@ import { OmitType, MaybeType } from '@store/utils/lib/types';
 import styles from './styles/form.less';
 
 // graphql typescript
-import { getUserRecipients_viewer_recipientData as getUserRecipientsViewerRecipientData } from './__generated__/getUserRecipients';
+import {
+  getUserRecipients_viewer_recipientData as getUserRecipientsViewerRecipientData,
+  getUserRecipients_getColorList as getUserRecipientsGetColorList,
+} from './__generated__/getUserRecipients';
 
 // typescript definition
 interface PropsType
@@ -24,7 +27,7 @@ interface PropsType
     MaybeType<
       OmitType<getUserRecipientsViewerRecipientData, '__typename' | 'address'>
     > {
-  colors: string[];
+  colors: getUserRecipientsGetColorList['colors'];
   lockedCountry: string[] | null;
   cancel: () => void;
   // TODO: remove after removing redux

@@ -17,7 +17,10 @@ import { withNamespaces } from '@store/utils/lib/i18n';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getColor } from './__generated__/getColor';
+import {
+  getColor,
+  getColor_getColorList as getColorGetColorList,
+} from './__generated__/getColor';
 import {
   memberChangePassword,
   memberChangePasswordVariables,
@@ -28,7 +31,7 @@ import { colorsFragment } from '@store/apollo-client-resolvers/lib/ColorList';
 
 // typescript definition
 interface PropsType extends I18nPropsType, FormComponentProps {
-  colors: string[];
+  colors: getColorGetColorList['colors'];
 }
 
 // definition
@@ -129,17 +132,6 @@ class MemberPasswordChange extends React.PureComponent<PropsType> {
             className={styles.root}
             onSubmit={this.onSubmit(memberChangePasswordMutation)}
           >
-            <style
-              dangerouslySetInnerHTML={{
-                __html: `
-                  .${styles.button} {
-                    color: ${colors[3]} !important;
-                    border-color: ${colors[3]} !important;
-                  }
-                `,
-              }}
-            />
-
             <FormItem>
               {getFieldDecorator('currentPassword', {
                 rules: [
@@ -196,6 +188,10 @@ class MemberPasswordChange extends React.PureComponent<PropsType> {
 
             <Button
               className={styles.button}
+              style={{
+                color: colors[3],
+                borderColor: colors[3],
+              }}
               disabled={(fieldsError =>
                 Object.keys(fieldsError).some(field => fieldsError[field]))(
                 getFieldsError(),

@@ -21,6 +21,7 @@ import {
   getUserRewardPotins,
   getUserRewardPotins_viewer_rewardPoint as getUserRewardPotinsViewerRewardPoint,
   getUserRewardPotins_getValidUserPointList_data as getUserRewardPotinsGetValidUserPointListData,
+  getUserRewardPotins_getColorList as getUserRewardPotinsGetColorList,
 } from './__generated__/getUserRewardPotins';
 
 // graphql import
@@ -30,7 +31,7 @@ import { colorsFragment } from '@store/apollo-client-resolvers/lib/ColorList';
 interface PropsType extends I18nPropsType, CurrencyType {
   currentBalance: getUserRewardPotinsViewerRewardPoint['currentBalance'];
   userPoints: getUserRewardPotinsGetValidUserPointListData[];
-  colors: string[];
+  colors: getUserRewardPotinsGetColorList['colors'];
 }
 
 // definition
@@ -131,15 +132,14 @@ class MemberRewardPoints extends React.PureComponent<PropsType> {
               .${styles.root} .ant-table-tbody > tr:hover > td {
                 background: ${colors[4]};
               }
-
-              .${styles.total} {
-                border-bottom: 3px solid ${colors[5]};
-              }
             `,
           }}
         />
 
-        <div className={styles.total}>
+        <div
+          className={styles.total}
+          style={{ borderBottom: `3px solid ${colors[5]}` }}
+        >
           {t('current-points')}
           {c(currentBalance)}
         </div>

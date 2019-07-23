@@ -24,6 +24,7 @@ import {
   getWishlist_viewer_wishlist as getWishlistViewerWishlist,
   getWishlist_viewer_wishlist_coverImage as getWishlistViewerWishlistCoverImage,
   getWishlist_viewer_wishlist_title as getWishlistViewerWishlistTitle,
+  getWishlist_getColorList as getWishlistGetColorList,
 } from './__generated__/getWishlist';
 
 // graphql import
@@ -36,7 +37,7 @@ interface PropsType
     Pick<QueryResult<getWishlist>, 'refetch'> {
   viewerId: string;
   wishlist: getWishlistViewerWishlist[];
-  colors: string[];
+  colors: getWishlistGetColorList['colors'];
 
   // TODO: remove after removing redux
   wishListFromRedux?: unknown;

@@ -31,6 +31,7 @@ import styles from './styles/index.less';
 import {
   getUserInfo,
   getUserInfo_viewer as getUserInfoViewer,
+  getUserInfo_getColorList as getUserInfoGetColorList,
 } from './__generated__/getUserInfo';
 
 // graphql import
@@ -47,7 +48,7 @@ interface PropsType
   // TODO: remove after removing redux
   member?: unknown;
   viewer: getUserInfoViewer;
-  colors: string[];
+  colors: getUserInfoGetColorList['colors'];
 }
 
 // definition

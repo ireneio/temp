@@ -24,6 +24,7 @@ import {
   getUserRecipients,
   getUserRecipients_viewer as getUserRecipientsViewer,
   getUserRecipients_viewer_recipientData as getUserRecipientsViewerRecipientData,
+  getUserRecipients_getColorList as getUserRecipientsGetColorList,
 } from './__generated__/getUserRecipients';
 
 // graphql import
@@ -39,7 +40,7 @@ interface PropsType
   // TODO: remove after removing redux
   member?: unknown;
   viewer: getUserRecipientsViewer;
-  colors: string[];
+  colors: getUserRecipientsGetColorList['colors'];
 }
 
 // definition
