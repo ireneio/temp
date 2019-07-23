@@ -1,17 +1,19 @@
 // import
-import * as user from './user';
-import * as recipients from './recipients';
-import * as addressService from './addressService';
-import * as colors from './colors';
+import * as AddressService from './AddressService';
+import * as ColorList from './ColorList';
+import * as PageInfo from './PageInfo';
+import * as RecipientObjectType from './RecipientObjectType';
+import * as User from './User';
 
 // definition
 export const initializeCache = (): void => {};
 
 export default [
-  user.resolver,
-  recipients.resolver,
-  addressService.resolver,
-  colors.resolver,
+  AddressService.resolver,
+  ColorList.resolver,
+  PageInfo.resolver,
+  RecipientObjectType.resolver,
+  User.resolver,
 ].reduce(
   (result, { Query, ...resolver }) => ({
     ...result,

@@ -34,7 +34,7 @@ import {
 } from './__generated__/getUserInfo';
 
 // graphql import
-import colorsFragment from '@store/utils/lib/fragments/colors';
+import { colorsFragment } from '@store/apollo-client-resolvers/lib/ColorList';
 
 // typescript definition
 interface PropsType

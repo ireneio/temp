@@ -16,7 +16,7 @@
     "paths": {
       "@store/utils/lib/*": ["store/utils/src/*"],
       "@admin/utils/lib/*": ["admin/utils/src/*"],
-      "@store/apollo-client-resolvers/lib/constants": ["store/apollo-client-resolvers/src/constants"]
+      "@store/apollo-client-resolvers/lib/*": ["store/apollo-client-resolvers/src/*"]
     }
   },
   "include": [

@@ -24,7 +24,7 @@ import {
 } from './__generated__/memberChangePassword';
 
 // graphql import
-import colorsFragment from '@store/utils/lib/fragments/colors';
+import { colorsFragment } from '@store/apollo-client-resolvers/lib/ColorList';
 
 // typescript definition
 interface PropsType extends I18nPropsType, FormComponentProps {

@@ -5,7 +5,7 @@ import { ContextType } from './constants';
 import { gql } from 'apollo-boost';
 
 // graphql typescript
-import { SetCurrentInput } from '../../../__generated__/admin';
+import { SetCurrentInput } from '../../../__generated__/store';
 
 // definition
 const fragment = gql`

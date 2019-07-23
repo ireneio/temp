@@ -1,5 +1,6 @@
 // typescript import
 import { QueryResult } from 'react-apollo';
+
 import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
@@ -26,7 +27,7 @@ import {
 } from './__generated__/getWishlist';
 
 // graphql import
-import colorsFragment from '@store/utils/lib/fragments/colors';
+import { colorsFragment } from '@store/apollo-client-resolvers/lib/ColorList';
 
 // typescript definition
 interface PropsType

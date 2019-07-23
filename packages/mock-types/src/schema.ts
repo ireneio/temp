@@ -1,6 +1,7 @@
 // import
 import { buildClientSchema } from 'graphql';
 import { addMockFunctionsToSchema } from 'graphql-tools';
+import moment from 'moment';
 
 // Generate by command
 // @ts-ignore
@@ -84,7 +85,8 @@ addMockFunctionsToSchema({
     UserRewardPoint,
     UserMemberGroupObjectType,
     WishlistProduct,
-    Timestamp: () => Number.MAX_SAFE_INTEGER,
+    Timestamp: () => moment().unix(),
+    DateTime: () => moment().format(),
     JSON: data => data,
   },
 });

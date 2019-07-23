@@ -7,5 +7,9 @@
   "version": "0.24.15",
   "main": "./index.js",
   "types": "./src/index.tsx",
+  "dependencies": {
+    "@store/apollo-client-resolvers": "^0.24.12",
+    "@store/utils": "^0.24.12"
+  },
   "keywords": ["member", "password change", "store"]
 }

@@ -1,7 +1,6 @@
 // import
 import { gql } from 'apollo-boost';
 import uuid from 'uuid/v4';
-import moment from 'moment';
 
 import mock from '../mock';
 
@@ -14,7 +13,6 @@ gql`
   fragment WishlistProductMock on WishlistProduct {
     id
     productId
-    createdAt
     title {
       zh_TW
     }
@@ -30,7 +28,6 @@ export default mock.add<WishlistProductMock>('WishlistProduct', [
     __typename: 'WishlistProduct',
     id: uuid(),
     productId: uuid(),
-    createdAt: moment().unix(),
     title: {
       __typename: 'Locale',
       zh_TW: 'WishlistProduct 1', // eslint-disable-line @typescript-eslint/camelcase
@@ -46,7 +43,6 @@ export default mock.add<WishlistProductMock>('WishlistProduct', [
     __typename: 'WishlistProduct',
     id: uuid(),
     productId: uuid(),
-    createdAt: moment().unix(),
     title: {
       __typename: 'Locale',
       zh_TW: null, // eslint-disable-line @typescript-eslint/camelcase
@@ -61,7 +57,6 @@ export default mock.add<WishlistProductMock>('WishlistProduct', [
     __typename: 'WishlistProduct',
     id: uuid(),
     productId: uuid(),
-    createdAt: '',
     title: null,
     coverImage: null,
     isAvailableForSale: null,

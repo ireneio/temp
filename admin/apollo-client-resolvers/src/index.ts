@@ -3,14 +3,14 @@ import { InMemoryCache } from 'apollo-boost';
 
 // import
 import * as PageInfo from './PageInfo';
-import * as SelectedOrders from './SelectedOrders';
+import * as selectedOrders from './selectedOrders';
 
 // definition
 export const initializeCache = (cache: InMemoryCache): void => {
-  SelectedOrders.initializeCache(cache);
+  selectedOrders.initializeCache(cache);
 };
 
-export default [PageInfo.resolver, SelectedOrders.resolver].reduce(
+export default [PageInfo.resolver, selectedOrders.resolver].reduce(
   (result, { Query, Mutation, ...resolver }) => ({
     ...result,
     ...resolver,

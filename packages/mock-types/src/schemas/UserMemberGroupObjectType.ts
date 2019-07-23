@@ -1,6 +1,5 @@
 // import
 import { gql } from 'apollo-boost';
-import moment from 'moment';
 
 import mock from '../mock';
 
@@ -11,8 +10,6 @@ import { UserMemberGroupObjectTypeMock } from './__generated__/UserMemberGroupOb
 // eslint-disable-next-line no-unused-expressions
 gql`
   fragment UserMemberGroupObjectTypeMock on UserMemberGroupObjectType {
-    startDate
-    expireDate
     unlimitedDate
   }
 `;
@@ -22,14 +19,10 @@ export default mock.add<UserMemberGroupObjectTypeMock>(
   [
     () => ({
       __typename: 'UserMemberGroupObjectType',
-      startDate: moment().unix(),
-      expireDate: moment().unix(),
       unlimitedDate: false,
     }),
     () => ({
       __typename: 'UserMemberGroupObjectType',
-      startDate: moment().unix(),
-      expireDate: moment().unix(),
       unlimitedDate: true,
     }),
   ],
