@@ -5,7 +5,6 @@ import { Router } from 'server/routes';
  * @description Go to the location by the given pathname
  */
 export default ({ pathname, params = {}, back = false }) => {
-  document.querySelector('body').style.overflow = 'initial';
   if (!back) {
     if (params.hash) {
       if (pathname) {
