@@ -311,7 +311,7 @@ export const addCartItemsFailure = () => ({
 function* AddCartItemsFlow({ payload }) {
   const {
     storeReducer: {
-      settings: { locale },
+      settings: { cname, locale },
     },
   } = yield select();
   try {
@@ -323,7 +323,12 @@ function* AddCartItemsFlow({ payload }) {
       const {
         storeReducer: { pageAdTrackIDs },
       } = yield select();
-      Utils.execTrackingCode('AddToCart-EC', { cart, payload, pageAdTrackIDs });
+      Utils.execTrackingCode('AddToCart-EC', {
+        cart,
+        payload,
+        pageAdTrackIDs,
+        cname,
+      });
       /* tracking code - End */
 
       yield put(addCartItemsSuccess(cart));

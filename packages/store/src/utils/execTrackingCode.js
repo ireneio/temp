@@ -15,11 +15,18 @@ const getSpecsName = specs => {
 export default function(eventName, options = {}) {
   switch (eventName) {
     case 'AddToCart-EC': {
-      const { cart, payload, pageAdTrackIDs } = options;
+      const { cart, payload, pageAdTrackIDs, cname } = options;
       const { products } = cart.categories;
       const { productId, variantId, quantity } = payload.items[0];
       /* FB Pixel */
       if (window.fbq && pageAdTrackIDs.fbPixelId) {
+        // For: T3163
+        if (['beeding', 'bellatest'].includes(cname))
+          window.fbq('trackCustom', 'FKMK', {
+            content_ids: [productId],
+            content_type: 'product',
+          });
+
         window.fbq('track', 'AddToCart', {
           content_ids: [productId],
           content_type: 'product',
