@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.24.17 (2019-07-24)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#626](https://github.com/meepshop/meep-lerna/pull/626) 【功能】 FB 像素：新增(自訂)廣告事件 - 加到購物車 ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#624](https://github.com/meepshop/meep-lerna/pull/624) (@store/utils) Add set currenct ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#628](https://github.com/meepshop/meep-lerna/pull/628) 【BUG】前台 - 若該會員無購物金，頁面頁面會一直 loading ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#629](https://github.com/meepshop/meep-lerna/pull/629) (@store/\*) Modify code style ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.24.16 (2019-07-22)
 
 #### :bug: Bug Fix
