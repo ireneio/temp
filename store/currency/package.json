@@ -4,11 +4,11 @@
   "description": "currency context for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.24.15",
+  "version": "0.24.17",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@store/utils": "^0.24.15",
+    "@store/utils": "^0.24.17",
     "memoize-one": "^5.0.4",
     "money": "^0.2.0"
   },

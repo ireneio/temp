@@ -4,12 +4,12 @@
   "description": "Member recipients for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.24.15",
+  "version": "0.24.17",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@store/apollo-client-resolvers": "^0.24.15",
-    "@store/utils": "^0.24.15",
+    "@store/apollo-client-resolvers": "^0.24.17",
+    "@store/utils": "^0.24.17",
     "memoize-one": "^5.0.4"
   },
   "keywords": ["member", "recipients", "store"]
