@@ -201,11 +201,14 @@ export default React.memo(() => (
         return <Spin indicator={<Icon type="loading" spin />} />;
 
       const { viewer, getValidUserPointList, getColorList } = data;
-      const currentBalance = idx(viewer, _ => _.rewardPoint.currentBalance);
       const userPoints = idx(getValidUserPointList, _ => _.data);
 
-      if (!currentBalance || !userPoints || !getColorList)
+      if (!viewer || !userPoints || !getColorList)
         return <Spin indicator={<Icon type="loading" spin />} />;
+
+      const currentBalance =
+        idx(viewer, _ => _.rewardPoint.currentBalance) ||
+        0; /** TODO: should not be null */
 
       return (
         <EnhancedMemberRewardPoints
