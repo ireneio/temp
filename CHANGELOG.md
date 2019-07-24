@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.24.18 (2019-07-24)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#632](https://github.com/meepshop/meep-lerna/pull/632) 【BUG】 新架構/手機版 - Android 瀏覽頁面時，畫面會卡住 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.24.17 (2019-07-24)
 
 #### :rocket: New Feature
