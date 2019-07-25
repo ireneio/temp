@@ -47,10 +47,7 @@ interface PropsType
 // definition
 class MemberWishList extends React.PureComponent<PropsType> {
   private columns = memoizeOne(
-    ({
-      t,
-      dispatchAction,
-    }: Pick<PropsType, 't' | 'i18n' | 'dispatchAction'>) => [
+    ({ t, dispatchAction }: Pick<PropsType, 't' | 'dispatchAction'>) => [
       {
         dataIndex: 'coverImage.src',
         render: (
@@ -129,7 +126,6 @@ class MemberWishList extends React.PureComponent<PropsType> {
     const {
       // HOC
       t,
-      i18n,
 
       // props
       wishlist,
@@ -158,7 +154,7 @@ class MemberWishList extends React.PureComponent<PropsType> {
         />
         <Table
           rowKey={({ productId }) => productId}
-          columns={this.columns({ t, i18n, dispatchAction })}
+          columns={this.columns({ t, dispatchAction })}
           dataSource={wishlist}
           pagination={false}
         />

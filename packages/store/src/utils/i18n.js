@@ -65,15 +65,16 @@ export const withNamespaces = namespace => Component => {
           ...result,
           [key]: prevLocale[key][nowKey],
         }),
-        {
-          TODO_LOCALE: true,
-        },
+        {},
       );
 
       if (hasNextKey.length !== 0)
         return this.transform(hasNextKey.join('.'), localeObj);
 
-      return transformLocale(localeObj);
+      return transformLocale({
+        ...localeObj,
+        TODO_LOCALE: true,
+      });
     };
 
     render() {

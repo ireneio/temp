@@ -37,7 +37,7 @@ interface PropsType extends I18nPropsType, CurrencyType {
 // definition
 class MemberRewardPoints extends React.PureComponent<PropsType> {
   private generateColumns = memoizeOne(
-    ({ t, c }: Pick<PropsType, 't' | 'i18n' | 'c'>) => [
+    ({ t, c }: Pick<PropsType, 't' | 'c'>) => [
       {
         title: 'NO.',
         dataIndex: 'id',
@@ -115,7 +115,6 @@ class MemberRewardPoints extends React.PureComponent<PropsType> {
     const {
       // HOC
       t,
-      i18n,
       c,
 
       // props
@@ -146,7 +145,7 @@ class MemberRewardPoints extends React.PureComponent<PropsType> {
 
         <Table
           rowKey="id"
-          columns={this.generateColumns({ t, i18n, c })}
+          columns={this.generateColumns({ t, c })}
           rowClassName={this.getRowClassName}
           dataSource={userPoints}
           pagination={false}
