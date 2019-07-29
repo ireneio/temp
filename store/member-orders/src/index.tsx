@@ -317,6 +317,7 @@ class MemberOrders extends React.PureComponent<PropsType> {
 }
 
 const EnhancedMemberOrders = withNamespaces('member-orders')(
+  // @ts-ignore
   withSetCurrent('member-orders')(MemberOrders),
 );
 
