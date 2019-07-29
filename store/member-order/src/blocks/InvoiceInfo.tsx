@@ -94,11 +94,14 @@ class InvoiceInfo extends React.PureComponent<PropsType> {
           );
 
         case 'CARRIER':
-          return `${
-            !carrierCode
-              ? null
-              : `${t('blocks.invoice.bar-code')}${carrierCode}`
-          }${NumberInfo}`;
+          return (
+            <>
+              {!carrierCode
+                ? null
+                : `${t('blocks.invoice.bar-code')}${carrierCode}`}
+              {NumberInfo}
+            </>
+          );
 
         case 'DONATION':
           return (
