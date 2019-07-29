@@ -282,6 +282,7 @@ export default withRouter(({ router: { pathname, query: { orderId } } }) => (
     query={gql`
       query getMemberOrderApplyList($orderId: ID!) {
         viewer {
+          id
           order(orderId: $orderId) {
             id
             orderNo
