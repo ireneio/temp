@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.25.1 (2019-07-29)
+
+#### :bug: Bug Fix
+
+- [#637](https://github.com/meepshop/meep-lerna/pull/637) (@store/\*) Fix v0.25.0 release error ([@HsuTing](https://github.com/HsuTing))
+- [#636](https://github.com/meepshop/meep-lerna/pull/636) (@store/member-orders) Fix typescript error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.25.0 (2019-07-29)
 
 #### :boom: Breaking Change
