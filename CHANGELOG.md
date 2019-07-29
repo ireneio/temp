@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.25.2 (2019-07-29)
+
+#### :bug: Bug Fix
+
+- [#638](https://github.com/meepshop/meep-lerna/pull/638) (@store/member-orders) Fix query error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.25.1 (2019-07-29)
 
 #### :bug: Bug Fix
