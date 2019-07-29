@@ -2,7 +2,11 @@
   "private": true,
   "name": "@meepshop/front-end",
   "license": "ISC",
-  "workspaces": ["packages/*", "store/*", "admin/*"],
+  "workspaces": [
+    "packages/*",
+    "store/*",
+    "admin/*"
+  ],
   "scripts": {
     "admin": "make run-docker-compose TYPE=admin DOMAIN=admin.stage.meepcloud.com",
     "admin:old": "make run-docker-compose TYPE=old-admin DOMAIN=admin.stage.meepcloud.com",
@@ -51,6 +55,7 @@
     "@storybook/addon-viewport": "^5.0.1",
     "@storybook/react": "^5.0.0",
     "@types/clipboard": "^2.0.1",
+    "@types/color": "^3.0.0",
     "@types/enzyme": "^3.9.0",
     "@types/execa": "^0.9.0",
     "@types/graphql": "^14.0.7",

@@ -1,5 +1,4 @@
-@import '../../constants/styles.less';
-@value phoneMedia from "../../constants/styles.less";
+@import '~@store/utils/lib/styles/variables.less';
 
 .root {
   width: 100%;
@@ -17,10 +16,10 @@
       padding: 0px 15px;
       font-size: 16px;
 
-      @media @PHONE_MEDIA {
+      @media @phone-media {
         margin: 0px 0px 20px;
 
-        & > font:last-child > font {
+        & > span:last-child > span {
           display: none;
         }
       }

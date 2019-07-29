@@ -1,0 +1,107 @@
+{
+  "order-number": "注文番号：",
+  "created-on": "注文日：",
+  "not-found": "無此訂單，請確認是否登入正確的帳號。",
+  "product": {
+    "title": "商品番号/品名",
+    "spec": "仕様",
+    "quantity": "数量",
+    "price": "価格",
+    "subtotal": "価格",
+    "gift": "プレゼント",
+    "no-gift": "プレゼント配布終了"
+  },
+  "sheet": {
+    "product": "商品合計",
+    "shipment": "送料",
+    "free-shipment": "送料無料",
+    "payment": "決済手数料",
+    "adjustment": "訂單變更",
+    "total": "注文合計金額",
+    "reward": "ポイント",
+    "coupon": "クーポンコード"
+  },
+  "qa": {
+    "title": "注文に関するQ&A",
+    "placeholder": "お客様サービスセンターへメッセージを入力して下さい",
+    "send": "送信",
+    "success": "オーダーを送りました",
+    "error": "オーダーQ&Aを送る：エラーが発生しました"
+  },
+  "blocks": {
+    "buyer": "会員情報",
+    "recipient": "送付先情報",
+    "payment": {
+      "title": "決済状況",
+      "status": [
+        "確認待ち",
+        "振込通知",
+        "入金確認完了",
+        "入力エラー",
+        "決済エラー",
+        "返金処理"
+      ],
+      "type": "決済方法",
+      "bank-code": "支払金融機関コード：",
+      "virtual-account": "支払バーチャル口座：",
+      "expire-date": "支払期限：",
+      "cvs-payment-no": "コンビニ支払コード：",
+      "barcode": "コンビニ支払バーコード：",
+      "card-no": "クレジットカード番号の最後の4桁：",
+      "gmo-store-code": "GMO ショップコード："
+    },
+    "shipment": {
+      "title": "配送状況",
+      "status": [
+        "未出荷",
+        "出荷準備中",
+        "品切れ中",
+        "出荷済み",
+        "予約注文",
+        "交換処理",
+        "返品処理"
+      ],
+      "type": "配送方法",
+      "link": "荷物の追跡",
+      "number": "送り状番号：",
+      "store": {
+        "id": "ショップコード：",
+        "name": "ショップ名：",
+        "address": "ショップ住所："
+      }
+    },
+    "invoice": {
+      "title": "発票情報",
+      "type": {
+        "paper": "紙の請求書",
+        "manul-electronic": "電子発票",
+        "ecpay-electronic": "電子発票"
+      },
+      "method": {
+        "duplicate": "二連式発票",
+        "triplicate": "三連式発票",
+        "company": "会社",
+        "donation": "寄贈"
+      },
+      "carrier": {
+        "membership": "会員キャリア",
+        "mobile-barcode": "携帯電話バーコードキャリア"
+      },
+      "bar-code": "バーコード：",
+      "love-code": "寄付コード：",
+      "number": "請求書番号：",
+      "date": "発行日：",
+      "waiting": "まだ発行されていません",
+      "invalid": "すでに無効になっている"
+    },
+    "order": {
+      "title": "注文状況及び備考",
+      "status": [
+        "処理中",
+        "配送完了",
+        "注文キャンセル",
+        "返品交換処理"
+      ]
+    }
+  }
+}

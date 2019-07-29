@@ -1,0 +1,107 @@
+{
+  "order-number": "Số đơn hàng: ",
+  "created-on": "Ngày đặt hàng: ",
+  "not-found": "無此訂單，請確認是否登入正確的帳號。",
+  "product": {
+    "title": "Số hiệu/ Tên sản phẩm",
+    "spec": "Quy cách",
+    "quantity": "Số lượng",
+    "price": "Đơn giá",
+    "subtotal": "Tổng",
+    "gift": "Tặng phẩm",
+    "no-gift": "Đã hoàn thành tặng quà"
+  },
+  "sheet": {
+    "product": "Tổng đơn",
+    "shipment": "Phí giao hàng",
+    "free-shipment": "Miễn phí vận chuyển",
+    "payment": "Phí giao dịch",
+    "adjustment": "訂單變更",
+    "total": "Tổng số đơn hàng",
+    "reward": "Tiền mua hàng",
+    "coupon": "Mã khuyến mãi"
+  },
+  "qa": {
+    "title": "Hỏi đáp đơn hàng",
+    "placeholder": "Vui lòng nhập tin nhắn cho dịch vụ khách hàng",
+    "send": "gởi đi",
+    "success": "Đã gửi",
+    "error": "Gửi hỏi đáp đơn hàng : Xảy ra lỗi"
+  },
+  "blocks": {
+    "buyer": "Thông tin hội viên",
+    "recipient": "Thông tin người nhận",
+    "payment": {
+      "title": "Trạng thái thanh toán",
+      "status": [
+        "Chờ xác nhận",
+        "Thông báo chuyển tiền",
+        "Hoàn thành đối chiếu sổ sách",
+        "Thông tin không đúng",
+        "Chi trả thất bại",
+        "Giải quyết hoàn tiền"
+      ],
+      "type": "Phương pháp chi trả",
+      "bank-code": "Mã ngân hàng để thanh toán: ",
+      "virtual-account": "Tài khoản ảo để thanh toán: ",
+      "expire-date": "Hạn chót thanh toán: ",
+      "cvs-payment-no": "Mã số thanh toán tại cửa hàng tiện lợi: ",
+      "barcode": "Mã vạch thanh toán tại cửa hàng tiện lợi: ",
+      "card-no": "4 số cuối thẻ tín dụng: ",
+      "gmo-store-code": "Mã cửa hàng GMO: "
+    },
+    "shipment": {
+      "title": "Trạng thái giao nhận",
+      "status": [
+        "Chưa xuất hàng",
+        "Chuẩn bị hàng",
+        "Hết hàng",
+        "Đã giao",
+        "Đặt hàng",
+        "Xử lý đổi hàng",
+        "Xử lý trả hàng"
+      ],
+      "type": "Phương pháp vận chuyển",
+      "link": "Truy vấn tình trạng vận chuyển",
+      "number": "Mã số Vận Chuyển: ",
+      "store": {
+        "id": "Mã số cửa hàng: ",
+        "name": "Tên cửa hàng: ",
+        "address": "Địa chỉ cửa hàng: "
+      }
+    },
+    "invoice": {
+      "title": "Thông tin hóa đơn",
+      "type": {
+        "paper": "Hóa đơn giấy",
+        "manul-electronic": "Hóa đơn điện tử",
+        "ecpay-electronic": "Hóa đơn điện tử"
+      },
+      "method": {
+        "duplicate": "hóa đơn liên 2",
+        "triplicate": "hóa đơn liên 3",
+        "company": "Tên công ty",
+        "donation": "Qùa tặng"
+      },
+      "carrier": {
+        "membership": "Phương tiện hội viên",
+        "mobile-barcode": "Phương tiện mã vạch di động"
+      },
+      "bar-code": "Số mã vạch: ",
+      "love-code": "Đóng góp mã tình yêu: ",
+      "number": "Số hóa đơn: ",
+      "date": "Ngày khai lập: ",
+      "waiting": "Chưa khai lập",
+      "invalid": "Hủy hóa đơn"
+    },
+    "order": {
+      "title": "Trạng thái đơn hàng và ghi chú",
+      "status": [
+        "Đang xử lý",
+        "Đơn hàng kết thúc",
+        "Hủy đơn hàng",
+        "Xử lý đổi trả hàng"
+      ]
+    }
+  }
+}

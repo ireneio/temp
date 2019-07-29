@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import MemberOrderView from '@meepshop/meep-ui/lib/memberOrder';
+import MemberOrder from '@store/member-order';
 
 import * as Utils from 'utils';
 import * as Selectors from 'selectors';
@@ -15,12 +15,18 @@ import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
 import * as TITLE from 'locales';
 
-class MemberOrder extends React.Component {
+class Order extends React.Component {
   static getInitialProps = async context => {
-    const { isServer, XMeepshopDomain, userAgent, store } = context;
+    const {
+      isServer,
+      XMeepshopDomain,
+      userAgent,
+      store,
+      query: { orderId },
+    } = context;
 
     if (isServer) store.dispatch(Actions.serverOthersInitial(context));
-    return { userAgent, XMeepshopDomain };
+    return { orderId, userAgent, XMeepshopDomain };
   };
 
   static propTypes = {
@@ -70,6 +76,7 @@ class MemberOrder extends React.Component {
       colors,
       title,
       fbAppId,
+      orderId,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -90,7 +97,7 @@ class MemberOrder extends React.Component {
 
         <Container {...this.props}>
           <MemberHeader title={title} goBackToOrders colors={colors}>
-            <MemberOrderView />
+            <MemberOrder orderId={orderId} />
           </MemberHeader>
         </Container>
       </>
@@ -155,4 +162,4 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps)(MemberOrder);
+export default connect(mapStateToProps)(Order);

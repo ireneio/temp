@@ -24,7 +24,7 @@ export default (pageId: string) => <P extends object>(
 ) => {
   const WithSetCurrent = (
     props: OmitType<P, keyof SetCurrentPropsType>,
-  ): React.ReactElement => (
+  ): React.ReactNode => (
     <Mutation<setCurrent, setCurrentVariables>
       mutation={gql`
         mutation setCurrent($input: SetCurrentInput!) {

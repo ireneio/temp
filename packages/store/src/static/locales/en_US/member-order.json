@@ -1,0 +1,107 @@
+{
+  "order-number": "Order Number: ",
+  "created-on": "Order Date: ",
+  "not-found": "無此訂單，請確認是否登入正確的帳號。",
+  "product": {
+    "title": "Item",
+    "spec": "Spec",
+    "quantity": "QTY",
+    "price": "Price",
+    "subtotal": "Price",
+    "gift": "Free Gift",
+    "no-gift": "Out of Stock"
+  },
+  "sheet": {
+    "product": "Subtotal",
+    "shipment": "Shipping Fee",
+    "free-shipment": "Free",
+    "payment": "Processing Fee",
+    "adjustment": "訂單變更",
+    "total": "Total",
+    "reward": "Reward Points",
+    "coupon": "Coupon Code"
+  },
+  "qa": {
+    "title": "Q&A for Orders",
+    "placeholder": "Please enter your message for service support.",
+    "send": "Send",
+    "success": "It has been successfully submitted.",
+    "error": "Submit order Q&A: Error occurred"
+  },
+  "blocks": {
+    "buyer": "Member Info",
+    "recipient": "Recipient Info",
+    "payment": {
+      "title": "Payment Status",
+      "status": [
+        "To be Confirmed",
+        "Payment Notification",
+        "Paid",
+        "Mismatch",
+        "Failed",
+        "Refund"
+      ],
+      "type": "Payment",
+      "bank-code": "Bank Code: ",
+      "virtual-account": "Virtual Account Number: ",
+      "expire-date": "Due Date: ",
+      "cvs-payment-no": "Convenient Store Payment Number: ",
+      "barcode": "Convenient Store Payment Barcode: ",
+      "card-no": "Last four digits of credit card: ",
+      "gmo-store-code": "GMO Store Code: "
+    },
+    "shipment": {
+      "title": "Delivery Status",
+      "status": [
+        "Pending",
+        "Preparing",
+        "Out of Stock",
+        "Dispatched",
+        "Pre-order",
+        "Replacement",
+        "Return"
+      ],
+      "type": "Delivery",
+      "link": "Track Order",
+      "number": "Tracking Number: ",
+      "store": {
+        "id": "Store ID: ",
+        "name": "Store Name: ",
+        "address": "Store Address: "
+      }
+    },
+    "invoice": {
+      "title": "Invoice",
+      "type": {
+        "paper": "Paper invoice",
+        "manul-electronic": "e-Invoice",
+        "ecpay-electronic": "e-Invoice"
+      },
+      "method": {
+        "duplicate": "Duplicate Uniform Invoice",
+        "triplicate": "Triplicate Uniform Invoice",
+        "company": "Company Account",
+        "donation": "Donate"
+      },
+      "carrier": {
+        "membership": "Membership Carrier",
+        "mobile-barcode": "Mobile Barcode"
+      },
+      "bar-code": "Bar Code Number: ",
+      "love-code": "NPO Donation Code: ",
+      "number": "Invoice Number: ",
+      "date": "Issued Date: ",
+      "waiting": "Yet to be Issued",
+      "invalid": "Invalid Invoice"
+    },
+    "order": {
+      "title": "Order Status & Notes",
+      "status": [
+        "Processing",
+        "Completed",
+        "Canceled",
+        "Return / Replacement"
+      ]
+    }
+  }
+}

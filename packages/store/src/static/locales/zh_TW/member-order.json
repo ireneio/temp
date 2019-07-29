@@ -1,0 +1,107 @@
+{
+  "order-number": "訂單編號：",
+  "created-on": "訂購日：",
+  "not-found": "無此訂單，請確認是否登入正確的帳號。",
+  "product": {
+    "title": "商品編號/名稱",
+    "spec": "規格",
+    "quantity": "數量",
+    "price": "價格",
+    "subtotal": "小計",
+    "gift": "贈品",
+    "no-gift": "贈送完畢"
+  },
+  "sheet": {
+    "product": "商品總計",
+    "shipment": "運費",
+    "free-shipment": "免運費",
+    "payment": "金流手續費",
+    "adjustment": "訂單變更",
+    "total": "訂單總金額",
+    "reward": "購物金",
+    "coupon": "優惠碼"
+  },
+  "qa": {
+    "title": "訂單問答",
+    "placeholder": "請輸入訊息給客服",
+    "send": "發送",
+    "success": "已發送",
+    "error": "發送訂單問答：發生錯誤"
+  },
+  "blocks": {
+    "buyer": "會員資訊",
+    "recipient": "收件人資訊",
+    "payment": {
+      "title": "付款狀態",
+      "status": [
+        "等待確認",
+        "匯款通知",
+        "對帳完成",
+        "資料有誤",
+        "付款失敗",
+        "退款處理"
+      ],
+      "type": "付款方式",
+      "bank-code": "繳費銀行代碼：",
+      "virtual-account": "繳費虛擬帳號：",
+      "expire-date": "繳費截止日期：",
+      "cvs-payment-no": "超商繳費代碼：",
+      "barcode": "超商繳費條碼：",
+      "card-no": "信用卡號末四碼：",
+      "gmo-store-code": "GMO 商店代碼："
+    },
+    "shipment": {
+      "title": "運送狀態",
+      "status": [
+        "未出貨",
+        "備貨中",
+        "缺貨中",
+        "已出貨",
+        "預購",
+        "換貨處理",
+        "退貨處理"
+      ],
+      "type": "運送方式",
+      "link": "查詢物流狀態",
+      "number": "物流編號：",
+      "store": {
+        "id": "門市代號：",
+        "name": "門市名稱：",
+        "address": "門市地址："
+      }
+    },
+    "invoice": {
+      "title": "發票資訊",
+      "type": {
+        "paper": "紙本發票",
+        "manul-electronic": "電子發票",
+        "ecpay-electronic": "電子發票"
+      },
+      "method": {
+        "duplicate": "二聯式發票",
+        "triplicate": "三聯式發票",
+        "company": "公司戶",
+        "donation": "捐贈"
+      },
+      "carrier": {
+        "membership": "會員載具",
+        "mobile-barcode": "手機條碼載具"
+      },
+      "bar-code": "條碼號碼：",
+      "love-code": "愛心碼：",
+      "number": "發票號碼：",
+      "date": "開立時間：",
+      "waiting": "尚未開立",
+      "invalid": "已作廢"
+    },
+    "order": {
+      "title": "訂單狀態與備註",
+      "status": [
+        "處理中",
+        "訂單結案",
+        "訂單取消",
+        "退換貨處理"
+      ]
+    }
+  }
+}

@@ -21,6 +21,7 @@ export const actionsFragment = gql`
     paymentInfo {
       status
       list {
+        id
         accountInfo {
           allpay {
             choosePayment: ChoosePayment

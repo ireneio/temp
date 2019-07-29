@@ -1,20 +1,43 @@
+// typescript import
+import { DataProxy } from 'apollo-cache';
+import { I18nPropsType } from '@store/utils/lib/i18n';
+
+// import
 import React from 'react';
-import PropTypes from 'prop-types';
-import { gql } from 'apollo-boost';
 import { Mutation } from 'react-apollo';
+import { gql } from 'apollo-boost';
+import transformColor from 'color';
 import { Button, notification } from 'antd';
 import moment from 'moment';
-import transformColor from 'color';
 
-import { contextProvider } from 'context';
-import { ID_TYPE } from 'constants/propTypes';
-import findDOMTop from 'utils/findDOMTop';
+import { withNamespaces } from '@store/utils/lib/i18n';
 
-import * as LOCALE from './locale';
 import styles from './styles/qa.less';
 
-const { enhancer } = contextProvider(['storeSetting', 'locale', 'location']);
+// graphql typescript
+import { qaFragment as qaFragmentType } from './__generated__/qaFragment';
+import {
+  getMemberOrder_viewer_order as getMemberOrderViewerOrder,
+  getMemberOrder_getColorList as getMemberOrderGetColorList,
+} from './__generated__/getMemberOrder';
+import {
+  addNewMessage,
+  addNewMessageVariables,
+} from './__generated__/addNewMessage';
+import { readMessagesFragment } from './__generated__/readMessagesFragment';
 
+// typescript definition
+interface PropsType extends I18nPropsType {
+  messages: getMemberOrderViewerOrder['messages'];
+  orderId: getMemberOrderViewerOrder['id'];
+  colors: getMemberOrderGetColorList['colors'];
+}
+
+interface StateType {
+  newMessage: string;
+}
+
+// definition
 export const qaFragment = gql`
   fragment qaFragment on OrderMessage {
     bearer
@@ -23,44 +46,37 @@ export const qaFragment = gql`
   }
 `;
 
-@enhancer
-export default class Qa extends React.PureComponent {
-  textareaRef = React.createRef();
+class Qa extends React.PureComponent<PropsType, StateType> {
+  private textareaRef: React.RefObject<HTMLTextAreaElement> = React.createRef();
 
-  static propTypes = {
-    messages: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    orderId: ID_TYPE.isRequired,
-  };
-
-  state = {
+  public state = {
     newMessage: '',
   };
 
-  componentDidMount() {
+  public componentDidMount(): void {
     const {
       location: { hash },
-    } = this.props;
+    } = window;
+    const { current } = this.textareaRef;
 
-    if (hash === '#qa') {
-      setTimeout(() => {
-        window.scrollTo(0, findDOMTop(this.textareaRef.current));
-      }, 0);
+    if (hash === '#qa' && current) {
+      current.scrollIntoView();
     }
   }
 
-  updateMessages = (
-    cache,
+  private updateMessages = (
+    cache: DataProxy,
     {
       data: {
         addOrderMessage: { success, reason },
       },
-    },
+    }: { data: addNewMessage },
   ) => {
-    const { transformLocale, orderId } = this.props;
+    const { t, orderId } = this.props;
 
     if (!success) {
       notification.error({
-        message: transformLocale(LOCALE.ADD_ORDER_MESSAGE_FAILURE_MESSAGE),
+        message: t('qa.error'),
         description: reason,
       });
       return;
@@ -68,7 +84,8 @@ export default class Qa extends React.PureComponent {
 
     const { newMessage } = this.state;
     const fragment = {
-      id: orderId,
+      // TODO: id should not be null
+      id: orderId || 'null id',
       fragment: gql`
         fragment readMessagesFragment on Order {
           messages {
@@ -79,41 +96,48 @@ export default class Qa extends React.PureComponent {
         }
       `,
     };
-    const { messages } = cache.readFragment(fragment);
+    const order = cache.readFragment<readMessagesFragment>(fragment);
 
-    messages.push({
-      text: newMessage,
-      bearer: 'CUSTOMER',
-      createdAt: moment().format(),
-      __typename: 'OrderMessage',
-    });
+    if (!order) return;
 
     cache.writeFragment({
       ...fragment,
       data: {
         __typename: 'Order',
-        messages,
+        messages: [
+          ...order.messages,
+          {
+            text: newMessage,
+            bearer: 'CUSTOMER',
+            createdAt: moment().format(),
+            __typename: 'OrderMessage',
+          },
+        ],
       },
     });
 
     this.setState({ newMessage: '' }, () =>
       notification.success({
-        message: transformLocale(LOCALE.ADD_ORDER_MESSAGE_SUCCESS),
+        message: t('qa.success'),
       }),
     );
   };
 
-  render() {
+  public render(): React.ReactNode {
     const {
-      /** context */
-      storeSetting: { colors },
-      transformLocale,
+      /** HOC */
+      t,
 
       /** props */
+      colors,
       messages,
       orderId,
     } = this.props;
     const { newMessage } = this.state;
+    // TODO: should not be null[]
+    const filteredMessages = messages.filter(
+      message => message,
+    ) as qaFragmentType[];
 
     return (
       <div className={styles.root}>
@@ -123,11 +147,11 @@ export default class Qa extends React.PureComponent {
             borderBottom: `1px solid ${colors[5]}`,
           }}
         >
-          {transformLocale(LOCALE.QA)}
+          {t('qa.title')}
         </h3>
 
         <div className={styles.messages}>
-          {messages.map(({ bearer, text, createdAt }, index) => (
+          {filteredMessages.map(({ bearer, text, createdAt }, index) => (
             <div
               key={createdAt}
               className={`${messages.length - 1 === index ? styles.last : ''} ${
@@ -138,12 +162,20 @@ export default class Qa extends React.PureComponent {
                 style={{
                   background: transformColor(
                     colors[bearer === 'CUSTOMER' ? 5 : 4],
-                  ).alpha(0.1),
+                  )
+                    .alpha(0.1)
+                    .toString(),
                 }}
               >
                 <pre>{text}</pre>
 
-                <p style={{ color: transformColor(colors[2]).alpha(0.5) }}>
+                <p
+                  style={{
+                    color: transformColor(colors[2])
+                      .alpha(0.5)
+                      .toString(),
+                  }}
+                >
                   {moment(createdAt).format('YYYY/MM/DD HH:mm')}
                 </p>
               </div>
@@ -155,14 +187,14 @@ export default class Qa extends React.PureComponent {
             style={{
               border: `1px solid ${colors[5]}`,
             }}
-            placeholder={transformLocale(LOCALE.PLEASE_WRITE_MESSAGE)}
+            placeholder={t('qa.placeholder')}
             value={newMessage}
             onChange={({ target: { value } }) =>
               this.setState({ newMessage: value })
             }
           />
 
-          <Mutation
+          <Mutation<addNewMessage, addNewMessageVariables>
             mutation={gql`
               mutation addNewMessage($input: AddOrderMessageInput!) {
                 addOrderMessage(input: $input) {
@@ -183,7 +215,8 @@ export default class Qa extends React.PureComponent {
                   addOrderMessage({
                     variables: {
                       input: {
-                        orderId,
+                        // TODO: id should not be null
+                        orderId: orderId || 'null id',
                         text: newMessage,
                       },
                     },
@@ -191,7 +224,7 @@ export default class Qa extends React.PureComponent {
                 }
                 disabled={newMessage === ''}
               >
-                {transformLocale(LOCALE.SEND)}
+                {t('qa.send')}
               </Button>
             )}
           </Mutation>
@@ -200,3 +233,5 @@ export default class Qa extends React.PureComponent {
     );
   }
 }
+
+export default withNamespaces('member-order')(Qa);

@@ -9,6 +9,7 @@ const { enhancer, removeContextProps } = contextProvider('locale');
 const locales = {
   zh_TW: {
     'gmo-credit-card-form': require('../static/locales/zh_TW/gmo-credit-card-form.json'),
+    'member-order': require('../static/locales/zh_TW/member-order.json'),
     'member-wish-list': require('../static/locales/zh_TW/member-wish-list.json'),
     'member-settings': require('../static/locales/zh_TW/member-settings.json'),
     'member-reward-points': require('../static/locales/zh_TW/member-reward-points.json'),
@@ -18,6 +19,7 @@ const locales = {
   },
   en_US: {
     'gmo-credit-card-form': require('../static/locales/en_US/gmo-credit-card-form.json'),
+    'member-order': require('../static/locales/en_US/member-order.json'),
     'member-wish-list': require('../static/locales/en_US/member-wish-list.json'),
     'member-settings': require('../static/locales/en_US/member-settings.json'),
     'member-reward-points': require('../static/locales/en_US/member-reward-points.json'),
@@ -27,6 +29,7 @@ const locales = {
   },
   ja_JP: {
     'gmo-credit-card-form': require('../static/locales/ja_JP/gmo-credit-card-form.json'),
+    'member-order': require('../static/locales/ja_JP/member-order.json'),
     'member-wish-list': require('../static/locales/ja_JP/member-wish-list.json'),
     'member-settings': require('../static/locales/ja_JP/member-settings.json'),
     'member-reward-points': require('../static/locales/ja_JP/member-reward-points.json'),
@@ -36,6 +39,7 @@ const locales = {
   },
   vi_VN: {
     'gmo-credit-card-form': require('../static/locales/vi_VN/gmo-credit-card-form.json'),
+    'member-order': require('../static/locales/vi_VN/member-order.json'),
     'member-wish-list': require('../static/locales/vi_VN/member-wish-list.json'),
     'member-settings': require('../static/locales/vi_VN/member-settings.json'),
     'member-reward-points': require('../static/locales/vi_VN/member-reward-points.json'),

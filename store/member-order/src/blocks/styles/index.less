@@ -1,4 +1,4 @@
-@import '../../../constants/styles.less';
+@import '~@store/utils/lib/styles/variables.less';
 
 .root {
   display: flex;
@@ -6,7 +6,7 @@
   justify-content: space-between;
   padding: 0px 70px;
 
-  @media @PHONE_MEDIA {
+  @media @phone-media {
     padding: 0px 15px;
   }
 
@@ -15,7 +15,7 @@
     width: 48%;
     max-width: 422px;
 
-    @media @PHONE_MEDIA {
+    @media @phone-media {
       width: 100%;
       max-width: unset;
     }
@@ -45,6 +45,7 @@
     }
 
     .link {
+      color: inherit;
       display: inline-block;
       margin: 0px 0px 0px 10px;
       padding: 2px 5px;

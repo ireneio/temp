@@ -1,10 +1,10 @@
-@import '../../constants/styles.less';
+@import '~@store/utils/lib/styles/variables.less';
 
 .root {
   :global(.ant-table) {
     color: inherit;
 
-    @media @PHONE_MEDIA {
+    @media @phone-media {
       border-top: 1px solid #e8e8e8;
     }
 
@@ -16,6 +16,12 @@
         word-break: keep-all;
         white-space: nowrap;
       }
+
+      @media @phone-media {
+        &:nth-child(1) {
+          width: 80px;
+        }
+      }
     }
 
     :global(.ant-table-thead) {
@@ -23,17 +29,18 @@
         background: transparent;
 
         & > th {
+          background: transparent;
           font-size: 16px;
         }
       }
 
-      @media @PHONE_MEDIA {
+      @media @phone-media {
         display: none;
       }
     }
 
     :global(.ant-table-tbody) > tr > td {
-      @media @PHONE_MEDIA {
+      @media @phone-media {
         padding: 10px;
 
         &:nth-child(3),
@@ -47,13 +54,13 @@
     :global(.ant-table-tbody) > tr > td:nth-child(2) > div {
       display: none;
 
-      @media @PHONE_MEDIA {
+      @media @phone-media {
         display: block;
       }
     }
 
     :global(.ant-table-body) > table > colgroup > col {
-      @media @PHONE_MEDIA {
+      @media @phone-media {
         width: initial !important;
         min-width: initial !important;
       }
