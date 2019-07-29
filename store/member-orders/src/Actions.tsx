@@ -48,9 +48,10 @@ export const actionsFragment = gql`
     isOrderApplied @client
     paymentInfo {
       status
-      paymentId
       list {
+        id
         template
+        paymentId
       }
     }
     shipmentInfo {
@@ -174,7 +175,8 @@ class Actions extends React.PureComponent<PropsType, StateType> {
                         {
                           orderId: id || 'null-id', // TODO: should not be null
                           paymentId:
-                            idx(paymentInfo, _ => _.paymentId) || 'null-id', // TODO: should not be null
+                            idx(paymentInfo, _ => _.list[0].paymentId) ||
+                            'null-id', // TODO: should not be null
                         },
                       ],
                     },
