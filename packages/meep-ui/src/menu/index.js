@@ -170,7 +170,16 @@ export default class Menu extends React.PureComponent {
         style={style}
       >
         {!showLogo ? (
-          <div className="logo" />
+          <div
+            className="logo"
+            style={
+              height && width // Mobile-layout Menu's width and height are not zero.
+                ? {
+                    width: '100%',
+                  }
+                : {}
+            }
+          />
         ) : (
           <div
             className="logo"
