@@ -8,7 +8,6 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/meep-ui": "^0.24.17",
     "@store/utils": "^0.24.17",
     "clipboard": "^2.0.1"
   },

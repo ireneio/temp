@@ -1,0 +1,43 @@
+{
+  "date": "Order Date",
+  "order": {
+    "no": "Order Number",
+    "apply-list": "Return / Replacement",
+    "return": "Return",
+    "replace": "Replacement",
+    "pay-notify": "Payment Notification",
+    "detail": "View Details",
+    "qa": "Contact Us"
+  },
+  "payment": {
+    "title": "Payment",
+    "0": "To be Confirmed",
+    "1": "Payment Notification",
+    "2": "Paid",
+    "3": "Mismatch",
+    "4": "Failed",
+    "5": "Refund"
+  },
+  "shipment": {
+    "title": "Delivery",
+    "0": "Pending",
+    "1": "Preparing",
+    "2": "Out of Stock",
+    "3": "Dispatched",
+    "4": "Pre-order",
+    "5": "Replacement",
+    "6": "Return"
+  },
+  "status": {
+    "title": "Order Status",
+    "0": "Processing",
+    "1": "Completed",
+    "2": "Canceled",
+    "3": "Return / Replacement"
+  },
+  "pay-again": {
+    "title": "Pay Now",
+    "success": "This page will be redirected to the payment page",
+    "fail": "Errors occurred"
+  }
+}

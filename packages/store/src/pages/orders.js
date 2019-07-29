@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import MemberOrdersView from '@meepshop/meep-ui/lib/memberOrders';
+import MemberOrders from '@store/member-orders';
 
 import * as Utils from 'utils';
 import { Container, TrackingCodeHead, Error } from 'components';
@@ -15,7 +15,7 @@ import * as Template from 'template';
 import MemberHeader from 'components/MemberHeader';
 import * as TITLE from 'locales';
 
-class MemberOrders extends React.Component {
+class Orders extends React.Component {
   static getInitialProps = async context => {
     const { isServer, XMeepshopDomain, userAgent, store } = context;
 
@@ -40,7 +40,6 @@ class MemberOrders extends React.Component {
     }).isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,
-    storeAppList: PropTypes.arrayOf(PropTypes.object).isRequired,
     fbAppId: PropTypes.string.isRequired,
   };
 
@@ -71,7 +70,6 @@ class MemberOrders extends React.Component {
       pageAdTrackIDs,
       colors,
       title,
-      storeAppList,
       fbAppId,
     } = this.props;
 
@@ -91,7 +89,7 @@ class MemberOrders extends React.Component {
         />
         <Container {...this.props}>
           <MemberHeader title={title} colors={colors}>
-            <MemberOrdersView storeAppList={storeAppList} />
+            <MemberOrders />
           </MemberHeader>
         </Container>
       </>
@@ -151,10 +149,9 @@ const mapStateToProps = (state, props) => {
     page: getPage(state),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
     title: TITLE.ORDERS[locale],
-    storeAppList: Utils.getIn(['storeReducer', 'apps'])(state),
     fbAppId:
       Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 
-export default connect(mapStateToProps)(MemberOrders);
+export default connect(mapStateToProps)(Orders);

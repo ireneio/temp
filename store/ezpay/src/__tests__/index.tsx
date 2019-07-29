@@ -26,9 +26,9 @@ runTest(
 
     test.each`
       search                                           | expected
-      ${undefined}                                     | ${`/checkout/thank-you-page/${props.orderId}`}
-      ${'?redirectUrl=/redirectUrl'}                   | ${`/redirectUrl`}
-      ${'?redirectUrl=/redirectUrl&redirectUrl=/test'} | ${'/redirectUrl'}
+      ${undefined}                                     | ${[`/thankYouPage?orderId=${props.orderId}`, `/checkout/thank-you-page/${props.orderId}`]}
+      ${'?redirectUrl=/redirectUrl'}                   | ${['/redirectUrl', undefined]}
+      ${'?redirectUrl=/redirectUrl&redirectUrl=/test'} | ${['/redirectUrl', undefined]}
     `(
       'go back button click with querystring = `$search`',
       ({ search, expected }) => {
@@ -39,7 +39,7 @@ runTest(
         wrapper.find(`.${styles.backBtn}`).simulate('click');
 
         expect(Router.push).toHaveBeenCalledTimes(1);
-        expect(Router.push).toHaveBeenCalledWith(expected);
+        expect(Router.push).toHaveBeenCalledWith(...expected);
       },
     );
   },

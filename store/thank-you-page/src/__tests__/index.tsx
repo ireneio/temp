@@ -35,7 +35,10 @@ runTest(
         .simulate('click');
 
       expect(Router.push).toHaveBeenCalledTimes(1);
-      expect(Router.push).toHaveBeenCalledWith(`/order/${props.orderId}`);
+      expect(Router.push).toHaveBeenCalledWith(
+        `/order?orderId=${props.orderId}`,
+        `/order/${props.orderId}`,
+      );
     });
   },
 );

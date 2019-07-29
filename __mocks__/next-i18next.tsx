@@ -35,6 +35,7 @@ const resources = /admin\/utils/.test(parentModuleFilename)
   : {
       zh_TW: {
         'gmo-credit-card-form': require('@meepshop/store/src/static/locales/zh_TW/gmo-credit-card-form.json'),
+        'member-orders': require('@meepshop/store/src/static/locales/zh_TW/member-orders.json'),
         'member-wish-list': require('@meepshop/store/src/static/locales/zh_TW/member-wish-list.json'),
         'member-order': require('@meepshop/store/src/static/locales/zh_TW/member-order.json'),
         'member-settings': require('@meepshop/store/src/static/locales/zh_TW/member-settings.json'),
@@ -45,6 +46,7 @@ const resources = /admin\/utils/.test(parentModuleFilename)
       },
       en_US: {
         'gmo-credit-card-form': require('@meepshop/store/src/static/locales/en_US/gmo-credit-card-form.json'),
+        'member-orders': require('@meepshop/store/src/static/locales/en_US/member-orders.json'),
         'member-wish-list': require('@meepshop/store/src/static/locales/en_US/member-wish-list.json'),
         'member-order': require('@meepshop/store/src/static/locales/en_US/member-order.json'),
         'member-settings': require('@meepshop/store/src/static/locales/en_US/member-settings.json'),
@@ -55,6 +57,7 @@ const resources = /admin\/utils/.test(parentModuleFilename)
       },
       ja_JP: {
         'gmo-credit-card-form': require('@meepshop/store/src/static/locales/ja_JP/gmo-credit-card-form.json'),
+        'member-orders': require('@meepshop/store/src/static/locales/ja_JP/member-orders.json'),
         'member-wish-list': require('@meepshop/store/src/static/locales/ja_JP/member-wish-list.json'),
         'member-order': require('@meepshop/store/src/static/locales/ja_JP/member-order.json'),
         'member-settings': require('@meepshop/store/src/static/locales/ja_JP/member-settings.json'),
@@ -65,6 +68,7 @@ const resources = /admin\/utils/.test(parentModuleFilename)
       },
       vi_VN: {
         'gmo-credit-card-form': require('@meepshop/store/src/static/locales/vi_VN/gmo-credit-card-form.json'),
+        'member-orders': require('@meepshop/store/src/static/locales/vi_VN/member-orders.json'),
         'member-wish-list': require('@meepshop/store/src/static/locales/vi_VN/member-wish-list.json'),
         'member-order': require('@meepshop/store/src/static/locales/vi_VN/member-order.json'),
         'member-settings': require('@meepshop/store/src/static/locales/vi_VN/member-settings.json'),

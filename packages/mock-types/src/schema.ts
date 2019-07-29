@@ -21,6 +21,7 @@ import MemberGroupList from './schemas/MemberGroupList';
 import NotificationObjectType from './schemas/NotificationObjectType';
 import Order from './schemas/Order';
 import OrderConnection from './schemas/OrderConnection';
+import OrderApplyList from './schemas/OrderApplyList';
 import permissionDesignObj from './schemas/permissionDesignObj';
 import permissionFileObj from './schemas/permissionFileObj';
 import permissionOrderObj from './schemas/permissionOrderObj';
@@ -29,13 +30,17 @@ import permissionServiceObj from './schemas/permissionServiceObj';
 import permissionStoreObj from './schemas/permissionStoreObj';
 import permissionUserObj from './schemas/permissionUserObj';
 import paymentInfoType from './schemas/paymentInfoType';
+import paymentObjectType from './schemas/paymentObjectType';
+import productsObjectType from './schemas/productsObjectType';
 import PaymentAccountForEzpay from './schemas/PaymentAccountForEzpay';
+import PaymentForAllpay from './schemas/PaymentForAllpay';
 import shipmentInfoType from './schemas/shipmentInfoType';
 import shipmentObjectType from './schemas/shipmentObjectType';
 import StorePayment from './schemas/StorePayment';
 import StoreShipment from './schemas/StoreShipment';
 import StoreEcfitSettings from './schemas/StoreEcfitSettings';
 import Store from './schemas/Store';
+import StoreApp from './schemas/StoreApp';
 import SettingObjectType from './schemas/SettingObjectType';
 import User from './schemas/User';
 import UserPoints from './schemas/UserPoints';
@@ -64,6 +69,7 @@ addMockFunctionsToSchema({
     NotificationObjectType,
     Order,
     OrderConnection,
+    OrderApplyList,
     permissionDesignObj,
     permissionFileObj,
     permissionOrderObj,
@@ -72,13 +78,17 @@ addMockFunctionsToSchema({
     permissionStoreObj,
     permissionUserObj,
     paymentInfoType,
+    paymentObjectType,
+    productsObjectType,
     PaymentAccountForEzpay,
+    PaymentForAllpay,
     shipmentInfoType,
     shipmentObjectType,
     StorePayment,
     StoreShipment,
     StoreEcfitSettings,
     Store,
+    StoreApp,
     SettingObjectType,
     User,
     UserPoints,

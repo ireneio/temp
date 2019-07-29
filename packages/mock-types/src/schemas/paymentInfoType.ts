@@ -23,4 +23,12 @@ export default mock.add<paymentInfoTypeMock>('paymentInfoType', [
     __typename: 'paymentInfoType',
     status: 1,
   }),
+  () => ({
+    __typename: 'paymentInfoType',
+    status: 2,
+  }),
+  () => ({
+    __typename: 'paymentInfoType',
+    status: 3,
+  }),
 ]);

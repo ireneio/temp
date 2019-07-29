@@ -5,7 +5,10 @@
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.24.17",
-  "main": "./index.js",
-  "types": "./src/index.tsx",
+  "dependencies": {
+    "next-i18next": "^0.37.0",
+    "path-to-regexp": "^1.7.0",
+    "validator": "^10.8.0"
+  },
   "keywords": ["store", "utils"]
 }

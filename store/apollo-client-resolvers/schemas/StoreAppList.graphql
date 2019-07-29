@@ -1,0 +1,3 @@
+extend type StoreAppList {
+  isPluginInstalled(pluginName: String!): Boolean!
+}

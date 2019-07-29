@@ -11,6 +11,7 @@ import Clipboard from 'clipboard';
 import idx from 'idx';
 
 import { withNamespaces } from '@store/utils/lib/i18n';
+import getLinkProps from '@store/utils/lib/getLinkProps';
 
 import styles from './styles/index.less';
 
@@ -72,7 +73,13 @@ class ThankYouPage extends React.PureComponent<PropsType> {
                     role: 'copy',
                   }
                 : {
-                    onClick: () => Router.push(`/order/${orderId}`),
+                    onClick: () => {
+                      const { href, as: asHref } = getLinkProps(
+                        `/order/${orderId}`,
+                      );
+
+                      Router.push(href, asHref);
+                    },
                   })}
             >
               {!orderId ? t('copy') : t('order')}

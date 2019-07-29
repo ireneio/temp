@@ -15,6 +15,7 @@
     "@meepshop/meep-ui": "^0.24.17",
     "@store/currency": "^0.24.17",
     "@store/ezpay": "^0.24.15",
+    "@store/member-orders": "^0.1.0",
     "@store/member-order": "^0.0.1",
     "@store/member-recipients": "^0.24.17",
     "@store/member-settings": "^0.24.17",

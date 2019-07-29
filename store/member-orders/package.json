@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "@store/member-orders",
+  "description": "Member orders list for store",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@store/apollo-client-resolvers": "^0.24.12",
+    "@store/utils": "^0.24.12",
+    "color": "^3.0.0",
+    "memoize-one": "^5.0.4",
+    "moment": "^2.22.1"
+  },
+  "keywords": ["member", "orders", "store"]
+}

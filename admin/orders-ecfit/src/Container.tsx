@@ -78,72 +78,6 @@ interface StateType {
 const { Group } = Radio;
 const { Search } = Input;
 
-const query = gql`
-  query getEcfitList(
-    $first: PositiveInt!
-    $cursor: String
-    $filter: EcfitOrderFilterInput
-  ) {
-    viewer {
-      id
-      ecfitOrders(first: $first, after: $cursor, filter: $filter) {
-        ...ordersEcfitOrdersFragment
-        edges {
-          node {
-            id
-          }
-        }
-        pageInfo {
-          endCursor
-        }
-      }
-
-      sentFailedList: ecfitOrders(
-        first: 10
-        filter: { ecfitSentStatus: SENT_FAILED }
-      ) {
-        total
-      }
-
-      store {
-        id
-        storeEcfitSettings {
-          isEnabled
-        }
-      }
-    }
-
-    getStorePaymentList {
-      ...advancedSearchPaymentListFragment
-      ...tagsPaymentListFragment
-    }
-
-    getStoreShipmentList {
-      ...advancedSearchShipmentListFragment
-      ...tagsShipmentListFragment
-    }
-
-    selectedOrders @client {
-      ...changeStatusFragment
-      ...ordersSelectedOrdersFragment
-      edges {
-        node {
-          id
-        }
-      }
-      total
-    }
-  }
-
-  ${advancedSearchPaymentListFragment}
-  ${advancedSearchShipmentListFragment}
-  ${changeStatusFragment}
-  ${tagsPaymentListFragment}
-  ${tagsShipmentListFragment}
-  ${ordersEcfitOrdersFragment}
-  ${ordersSelectedOrdersFragment}
-`;
-
 class Container extends React.PureComponent<PropsType, StateType> {
   public state: StateType = {
     runningIds: [],
@@ -288,7 +222,6 @@ class Container extends React.PureComponent<PropsType, StateType> {
       fetchMore,
     } = this.props;
 
-    // @ts-ignore: https://github.com/apollographql/react-apollo/issues/3044
     await fetchMore({
       variables: {
         ...currentVariables,
@@ -553,7 +486,71 @@ const initVariables = (() => {
 // eslint-disable-next-line react/no-multi-comp
 export default React.memo(() => (
   <Query<getEcfitList, getEcfitListVariables>
-    query={query}
+    query={gql`
+      query getEcfitList(
+        $first: PositiveInt!
+        $cursor: String
+        $filter: EcfitOrderFilterInput
+      ) {
+        viewer {
+          id
+          ecfitOrders(first: $first, after: $cursor, filter: $filter) {
+            ...ordersEcfitOrdersFragment
+            edges {
+              node {
+                id
+              }
+            }
+            pageInfo {
+              endCursor
+            }
+          }
+
+          sentFailedList: ecfitOrders(
+            first: 10
+            filter: { ecfitSentStatus: SENT_FAILED }
+          ) {
+            total
+          }
+
+          store {
+            id
+            storeEcfitSettings {
+              isEnabled
+            }
+          }
+        }
+
+        getStorePaymentList {
+          ...advancedSearchPaymentListFragment
+          ...tagsPaymentListFragment
+        }
+
+        getStoreShipmentList {
+          ...advancedSearchShipmentListFragment
+          ...tagsShipmentListFragment
+        }
+
+        selectedOrders @client {
+          ...changeStatusFragment
+          ...ordersSelectedOrdersFragment
+          edges {
+            node {
+              id
+            }
+          }
+          total
+        }
+      }
+
+      ${advancedSearchPaymentListFragment}
+      ${advancedSearchShipmentListFragment}
+      ${changeStatusFragment}
+      ${tagsPaymentListFragment}
+      ${tagsShipmentListFragment}
+      ${ordersEcfitOrdersFragment}
+      ${ordersSelectedOrdersFragment}
+    `}
     variables={initVariables}
     ssr={false}
   >

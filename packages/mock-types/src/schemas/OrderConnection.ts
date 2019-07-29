@@ -53,11 +53,23 @@ export default mock.add<
             cache.length + first > MAX_TOTAL ? MAX_TOTAL - cache.length : first,
           ),
         )
-        .map(() => ({
-          node: {
-            id: uuid(),
-          },
-        }));
+        .map((__: undefined, index: number) =>
+          cache.length === 0 && index === 0
+            ? {
+                __typename: 'OrderEdge',
+                node: {
+                  __typename: 'Order',
+                  id: 'order-id',
+                },
+              }
+            : {
+                __typename: 'OrderEdge',
+                node: {
+                  __typename: 'Order',
+                  id: uuid(),
+                },
+              },
+        );
 
       edges.push(...newEdges);
       cache.push(...newEdges);

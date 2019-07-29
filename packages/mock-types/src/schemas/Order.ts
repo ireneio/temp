@@ -51,4 +51,26 @@ export default mock.add<
     },
     createdOn: moment().unix(),
   }),
+  (obj, { orderId }) => ({
+    __typename: 'Order',
+    id: orderId || idx(obj, _ => _.node.id) || 'id',
+    orderNo: (orderId || idx(obj, _ => _.node.id) || 'orderNo').slice(0, 8),
+    status: 2,
+    priceInfo: {
+      __typename: 'priceObjectType',
+      total: 100,
+    },
+    createdOn: moment().unix(),
+  }),
+  (obj, { orderId }) => ({
+    __typename: 'Order',
+    id: orderId || idx(obj, _ => _.node.id) || 'id',
+    orderNo: (orderId || idx(obj, _ => _.node.id) || 'orderNo').slice(0, 8),
+    status: 3,
+    priceInfo: {
+      __typename: 'priceObjectType',
+      total: 100,
+    },
+    createdOn: moment().unix(),
+  }),
 ]);

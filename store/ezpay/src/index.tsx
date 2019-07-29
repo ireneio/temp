@@ -8,6 +8,8 @@ import idx from 'idx';
 import queryString from 'query-string';
 import moment from 'moment';
 
+import getLinkProps from '@store/utils/lib/getLinkProps';
+
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -144,12 +146,13 @@ const Ezpay = React.memo<{
                 const { redirectUrl } = queryString.parse(
                   window.location.search,
                 );
-
-                Router.push(
+                const { href, as: asHref } = getLinkProps(
                   (redirectUrl instanceof Array
                     ? redirectUrl[0]
                     : redirectUrl) || `/checkout/thank-you-page/${id}`,
                 );
+
+                Router.push(href, asHref);
               }}
             >
               回商家網站

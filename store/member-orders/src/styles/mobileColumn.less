@@ -1,0 +1,54 @@
+.root {
+  margin: 0px auto;
+  max-width: 300px;
+
+  h4 {
+    margin: 0px;
+    padding: 5px 0px;
+  }
+}
+
+.link {
+  display: inline-block;
+  margin: 0px 0px 0px 4px;
+  text-decoration: underline;
+}
+
+.status {
+  display: flex;
+
+  & > div {
+    margin: 0px 15px 0px 0px;
+
+    & > :global(.anticon) {
+      margin: 0px 4px 0px 0px;
+    }
+  }
+}
+
+.drawer {
+  :global(.ant-drawer-body) {
+    padding: 0px;
+    text-align: center;
+
+    & > :not(h5) {
+      display: block;
+      padding: 10px;
+      width: 100%;
+      color: inherit;
+      font-size: 16px;
+      text-decoration: none;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  }
+
+  h5 {
+    margin: 0px;
+    padding: 10px 0px;
+    font-size: 16px;
+    font-weight: normal;
+  }
+}

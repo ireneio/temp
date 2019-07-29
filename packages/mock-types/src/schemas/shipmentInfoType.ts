@@ -25,4 +25,14 @@ export default mock.add<shipmentInfoTypeMock>('shipmentInfoType', [
     status: 1,
     list: [{}],
   }),
+  () => ({
+    __typename: 'shipmentInfoType',
+    status: 2,
+    list: [{}],
+  }),
+  () => ({
+    __typename: 'shipmentInfoType',
+    status: 3,
+    list: [{}],
+  }),
 ]);
