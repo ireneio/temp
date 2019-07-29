@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.25.0 (2019-07-29)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#630](https://github.com/meepshop/meep-lerna/pull/630) next-store koa 轉 express ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`, `store`
+  - [#622](https://github.com/meepshop/meep-lerna/pull/622) 修改 訂單列表 ([@HsuTing](https://github.com/HsuTing))
+  - [#621](https://github.com/meepshop/meep-lerna/pull/621) 修改 訂單明細 ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`, `store`
+  - [#630](https://github.com/meepshop/meep-lerna/pull/630) next-store koa 轉 express ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#631](https://github.com/meepshop/meep-lerna/pull/631) 【BUG】新架構/選選樂 - 將商品從購物車 panel 刪除，會變為「贈品」 ([@piovischioh](https://github.com/piovischioh))
+  - [#634](https://github.com/meepshop/meep-lerna/pull/634) 【BUG】新架構/手機版 - 新開商店，開啟選單，頁面跑版 ([@HsuTing](https://github.com/HsuTing))
+  - [#635](https://github.com/meepshop/meep-lerna/pull/635) 【BUG】新架構 - 前台會員系列，部分頁面呈現 loading ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#633](https://github.com/meepshop/meep-lerna/pull/633) (@store/\*) Fix i18n ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.24.18 (2019-07-24)
 
 #### :bug: Bug Fix
