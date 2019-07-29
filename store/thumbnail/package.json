@@ -4,11 +4,11 @@
   "description": "thumbnail for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.24.15",
+  "version": "0.25.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@store/placeholder": "^0.24.15"
+    "@store/placeholder": "^0.25.0"
   },
   "keywords": ["store", "thumbnail"]
 }
