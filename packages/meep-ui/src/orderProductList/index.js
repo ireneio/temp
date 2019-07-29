@@ -75,11 +75,12 @@ export default class OrderProductList extends React.PureComponent {
           ) : (
             <table style={styles.table}>
               <tbody>
-                {products.map(({ productId, ...product }) => (
+                {products.map(({ productId, ...product }, index) => (
                   <Product
                     {...product}
                     productId={productId}
-                    key={productId}
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={`${productId}-${index}`}
                     orderProductListRef={this.orderProductListRef}
                     onChange={onChange}
                     productHasError={productHasError}
