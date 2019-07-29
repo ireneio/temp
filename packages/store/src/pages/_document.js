@@ -4,21 +4,21 @@ import getConfig from 'next/config';
 import htmlescape from 'htmlescape';
 
 const {
-  publicRuntimeConfig: { STORE_DOMAIN, VERSION },
+  publicRuntimeConfig: { VERSION },
 } = getConfig();
 
 export default class MyDocument extends Document {
   static async getInitialProps({ req, res, renderPage }) {
     const { html, head, errorHtml, chunks } = renderPage();
 
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.append('Cache-Control', 'no-cache, no-store, must-revalidate');
 
     return {
       html,
       head,
       errorHtml,
       chunks,
-      XMeepshopDomain: req.headers['x-meepshop-domain'],
+      XMeepshopDomain: req.get('x-meepshop-domain'),
     };
   }
 
@@ -53,9 +53,7 @@ export default class MyDocument extends Document {
             dangerouslySetInnerHTML={{
               __html: `
                 window.meepShopStore = {
-                  XMeepshopDomain: ${htmlescape(
-                    STORE_DOMAIN || XMeepshopDomain,
-                  )}
+                  XMeepshopDomain: ${htmlescape(XMeepshopDomain)}
                 };
               `,
             }}

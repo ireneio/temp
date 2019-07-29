@@ -16,10 +16,7 @@ class Pages extends React.Component {
     if (pId) {
       // Redirect /pages/{PRODUCT-NAME}?pId={PRODUCT-ID} to /product/{PRODUCT-ID}
       if (isServer) {
-        res.writeHead(302, {
-          Location: `/product/${pId}`,
-        });
-        res.end();
+        res.redirect(302, `/product/${pId}`);
       } else {
         Utils.goTo({ pathname: `/product/${pId}` });
       }

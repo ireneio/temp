@@ -67,30 +67,31 @@ class MyApp extends App {
         headers: isServer
           ? {
               'content-type': 'application/json',
-              'x-meepshop-domain': req.headers['x-meepshop-domain'],
-              'x-meepshop-authorization-token':
-                req.headers['x-meepshop-authorization-token'],
+              'x-meepshop-domain': req.get('x-meepshop-domain'),
+              'x-meepshop-authorization-token': req.get(
+                'x-meepshop-authorization-token',
+              ),
             }
           : { 'content-type': 'application/json' },
         credentials: isServer ? 'include' : 'same-origin',
         body: JSON.stringify({
           query: `
-            query checkStore {
-              getStoreList {
-                data {
-                  setting {
-                    locale
+              query checkStore {
+                getStoreList {
+                  data {
+                    setting {
+                      locale
+                    }
+                  }
+                }
+
+                viewer {
+                  store {
+                    storeStatus
                   }
                 }
               }
-
-              viewer {
-                store {
-                  storeStatus
-                }
-              }
-            }
-          `,
+            `,
         }),
       });
 
@@ -119,14 +120,11 @@ class MyApp extends App {
        */
       if (response.status === 401) {
         if (isServer) {
-          res.setHeader(
-            'Set-Cookie',
-            `x-meepshop-authorization-token=; path=/; Max-Age=0; HttpOnly`,
-          );
-          res.writeHead(302, {
-            Location: '/',
+          res.cookie('x-meepshop-authorization-token', '', {
+            maxAge: 0,
+            httpOnly: true,
           });
-          res.end();
+          res.redirect(302, '/');
           return {};
         }
         const {

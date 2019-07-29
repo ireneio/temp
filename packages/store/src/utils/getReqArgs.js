@@ -11,13 +11,11 @@ const {
 
 export default (isServer, req) => {
   if (isServer) {
-    const userAgent = req.headers['user-agent'];
-    const { cookie } = req.headers;
+    const userAgent = req.get('user-agent');
 
     return {
-      XMeepshopDomain: req.headers['x-meepshop-domain'],
+      XMeepshopDomain: req.get('x-meepshop-domain'),
       userAgent,
-      cookie,
     };
   }
 
