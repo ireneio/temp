@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.25.4 (2019-07-31)
+
+#### :bug: Bug Fix
+
+- [#643](https://github.com/meepshop/meep-lerna/pull/643) 【BUG】新架構 - 前台訂單明細 - 運送狀態顯示有誤 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.25.3 (2019-07-31)
 
 #### :bug: Bug Fix
