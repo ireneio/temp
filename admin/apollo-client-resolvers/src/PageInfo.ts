@@ -9,7 +9,7 @@ import { SetCurrentInput } from '../../../__generated__/admin';
 
 // definition
 const fragment = gql`
-  fragment setCurrentFragment on CurrentInfo {
+  fragment pageInfoFragment on CurrentInfo {
     id
     current
   }

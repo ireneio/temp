@@ -154,7 +154,7 @@ class AddressCascader extends React.PureComponent<PropsType> {
         client.writeFragment({
           id: selectedItem.value,
           fragment: gql`
-            fragment writeCitiesToCache on Country {
+            fragment addressCascaderCountryFragment on Country {
               cities {
                 id
               }
@@ -199,7 +199,7 @@ class AddressCascader extends React.PureComponent<PropsType> {
         client.writeFragment({
           id: selectedItem.value,
           fragment: gql`
-            fragment writeAreaToCache on City {
+            fragment addressCascaderCityFragment on City {
               areas {
                 id
               }

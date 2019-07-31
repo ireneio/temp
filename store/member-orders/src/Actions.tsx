@@ -20,8 +20,8 @@ import styles from './styles/actions.less';
 // graphql typescript
 import createOrderFragment from '@store/utils/lib/fragments/createOrder';
 
-import { actionsFragment as actionsFragmentType } from './__generated__/actionsFragment';
-import { actionsAppPluginsFragment as actionsAppPluginsFragmentType } from './__generated__/actionsAppPluginsFragment';
+import { actionsOrderFragment as actionsOrderFragmentType } from './__generated__/actionsOrderFragment';
+import { actionsStoreAppListFragment as actionsStoreAppListFragmentType } from './__generated__/actionsStoreAppListFragment';
 import {
   payOrderAgain,
   payOrderAgainVariables,
@@ -30,8 +30,8 @@ import {
 
 // typescript definition
 interface PropsType extends I18nPropsType {
-  order: actionsFragmentType;
-  appPlugins: actionsAppPluginsFragmentType;
+  order: actionsOrderFragmentType;
+  appPlugins: actionsStoreAppListFragmentType;
 }
 
 interface StateType {
@@ -39,8 +39,8 @@ interface StateType {
 }
 
 // definition
-export const actionsFragment = gql`
-  fragment actionsFragment on Order {
+export const actionsOrderFragment = gql`
+  fragment actionsOrderFragment on Order {
     id
     status
     isAvailableForPayLater @client
@@ -60,8 +60,8 @@ export const actionsFragment = gql`
   }
 `;
 
-export const actionsAppPluginsFragment = gql`
-  fragment actionsAppPluginsFragment on StoreAppList {
+export const actionsStoreAppListFragment = gql`
+  fragment actionsStoreAppListFragment on StoreAppList {
     total # can not only have client side schema in the fragment
     isReturnOrderInstalled: isPluginInstalled(pluginName: "returnOrder") @client
     isReplacementInstalled: isPluginInstalled(pluginName: "replacement") @client

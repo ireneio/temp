@@ -15,7 +15,7 @@ import { withNamespaces } from '@store/utils/lib/i18n';
 import styles from './styles/qa.less';
 
 // graphql typescript
-import { qaFragment as qaFragmentType } from './__generated__/qaFragment';
+import { qaOrderMessageFragment as qaOrderMessageFragmentType } from './__generated__/qaOrderMessageFragment';
 import {
   getMemberOrder_viewer_order as getMemberOrderViewerOrder,
   getMemberOrder_getColorList as getMemberOrderGetColorList,
@@ -24,7 +24,7 @@ import {
   addNewMessage,
   addNewMessageVariables,
 } from './__generated__/addNewMessage';
-import { readMessagesFragment } from './__generated__/readMessagesFragment';
+import { qaOrderFragment } from './__generated__/qaOrderFragment';
 
 // typescript definition
 interface PropsType extends I18nPropsType {
@@ -38,8 +38,8 @@ interface StateType {
 }
 
 // definition
-export const qaFragment = gql`
-  fragment qaFragment on OrderMessage {
+export const qaOrderMessageFragment = gql`
+  fragment qaOrderMessageFragment on OrderMessage {
     bearer
     text
     createdAt
@@ -87,7 +87,7 @@ class Qa extends React.PureComponent<PropsType, StateType> {
       // TODO: id should not be null
       id: orderId || 'null id',
       fragment: gql`
-        fragment readMessagesFragment on Order {
+        fragment qaOrderFragment on Order {
           messages {
             bearer
             text
@@ -96,7 +96,7 @@ class Qa extends React.PureComponent<PropsType, StateType> {
         }
       `,
     };
-    const order = cache.readFragment<readMessagesFragment>(fragment);
+    const order = cache.readFragment<qaOrderFragment>(fragment);
 
     if (!order) return;
 
@@ -137,7 +137,7 @@ class Qa extends React.PureComponent<PropsType, StateType> {
     // TODO: should not be null[]
     const filteredMessages = messages.filter(
       message => message,
-    ) as qaFragmentType[];
+    ) as qaOrderMessageFragmentType[];
 
     return (
       <div className={styles.root}>

@@ -163,6 +163,11 @@ workspace(store, admin...)
 // definition
 ```
 
+#### Fragment name rule
+
+- One fragment in a file: `file name` + `fragment`.
+- Multiple fragments in a file: `file name` + `type name` + `fragment`.
+
 ## Project roadmap
 
 #### Dev tool
@@ -187,7 +192,6 @@ workspace(store, admin...)
   - [ ] move `@meepshop/store` to `@store/server`
 - [store](./store)
   - [ ] `@meepshop/store` add `next-i18next` and use `express`
-  - [ ] upgrade to `next` >= 7
 - [admin](./admin)
 
 ## lerna
@@ -198,10 +202,6 @@ In this project, we use `yarn` with `lerna` and `lerna-changelog` to generate `C
 
 - lerna.json
 - `workspaces` in `package.json`
-
-#### TOOD
-
-- [ ] deploy with `--since {branch}`
 
 ## babel
 

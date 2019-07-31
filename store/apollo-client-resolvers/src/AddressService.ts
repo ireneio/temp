@@ -8,7 +8,7 @@ import { gql } from 'apollo-boost';
 import { COUNTRIES } from './constants';
 
 // graphql typescript
-import { addUnknownCity } from './__generated__/addUnknownCity';
+import { addressServiceFragment } from './__generated__/addressServiceFragment';
 import { CityFilterInput, AreaFilterInput } from '../../../__generated__/store';
 
 // definition
@@ -33,7 +33,7 @@ const getAreas = async (
   const fragment = {
     id: 'Taiwan',
     fragment: gql`
-      fragment addUnknownCity on Country {
+      fragment addressServiceFragment on Country {
         cities {
           id
           name {
@@ -57,8 +57,8 @@ const getAreas = async (
       }
     `,
   };
-  const { cities, ...country }: addUnknownCity = cache.readFragment<
-    addUnknownCity
+  const { cities, ...country }: addressServiceFragment = cache.readFragment<
+    addressServiceFragment
   >(fragment) || {
     __typename: 'Country',
     cities: [],

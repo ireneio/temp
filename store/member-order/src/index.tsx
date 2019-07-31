@@ -29,12 +29,12 @@ import {
 } from './__generated__/getMemberOrder';
 
 // graphql import
-import { colorsFragment } from '@store/apollo-client-resolvers/lib/ColorList';
+import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
 import { notFoundFragment } from './NotFound';
 import { productsFragment } from './Products';
 import { totalSheetFragment } from './TotalSheet';
 import { blocksFragment } from './blocks';
-import { qaFragment } from './Qa';
+import { qaOrderMessageFragment } from './Qa';
 
 // typescript definition
 interface PropsType extends I18nPropsType {
@@ -77,7 +77,7 @@ const MemberOrder = React.memo(
 
         {idx(environment, _ => _.sourcePage) === 'lp' ? null : (
           <Qa
-            messages={filter(qaFragment, messages)}
+            messages={filter(qaOrderMessageFragment, messages)}
             orderId={id}
             colors={colors}
           />
@@ -119,22 +119,22 @@ export default ({ orderId }: { orderId: string }) => (
               sourcePage
             }
             messages {
-              ...qaFragment
+              ...qaOrderMessageFragment
             }
             ...totalSheetFragment
             ...blocksFragment
           }
         }
         getColorList {
-          ...colorsFragment
+          ...colorListFragment
         }
       }
       ${notFoundFragment}
       ${productsFragment}
       ${totalSheetFragment}
       ${blocksFragment}
-      ${qaFragment}
-      ${colorsFragment}
+      ${qaOrderMessageFragment}
+      ${colorListFragment}
     `}
     variables={{ orderId }}
   >

@@ -25,7 +25,7 @@ import {
 } from './__generated__/getUserRewardPotins';
 
 // graphql import
-import { colorsFragment } from '@store/apollo-client-resolvers/lib/ColorList';
+import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
 
 // typescript definition
 interface PropsType extends I18nPropsType, CurrencyType {
@@ -187,11 +187,11 @@ export default React.memo(() => (
         }
 
         getColorList {
-          ...colorsFragment
+          ...colorListFragment
         }
       }
 
-      ${colorsFragment}
+      ${colorListFragment}
     `}
     fetchPolicy="no-cache"
   >

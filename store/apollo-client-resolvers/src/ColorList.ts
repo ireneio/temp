@@ -3,11 +3,11 @@ import { gql } from 'apollo-boost';
 import idx from 'idx';
 
 // graphql typescript
-import { colorsFragment as colorsFragmentType } from './__generated__/colorsFragment';
+import { colorListFragment as colorListFragmentType } from './__generated__/colorListFragment';
 
 // definition
-export const colorsFragment = gql`
-  fragment colorsFragment on ColorList {
+export const colorListFragment = gql`
+  fragment colorListFragment on ColorList {
     data {
       id
       selected
@@ -24,7 +24,7 @@ export const colorsFragment = gql`
 export const resolver = {
   Query: {},
   ColorList: {
-    colors: ({ data }: colorsFragmentType) => {
+    colors: ({ data }: colorListFragmentType) => {
       const { selected = null, themes = null } = idx(data, _ => _[0]) || {}; // TODO: should not be null
 
       return (

@@ -5,12 +5,12 @@ import idx from 'idx';
 import { PAYMENT_CAN_PAID_LATER } from './constants';
 
 // graphql typescript
-import { orderFragment as orderFragmentType } from './__generated__/orderFragment';
-import { orderApplyFragment as orderApplyFragmentType } from './__generated__/orderApplyFragment';
+import { viewerOrderFragment as viewerOrderFragmentType } from './__generated__/viewerOrderFragment';
+import { viewerOrderApplyListFragment as viewerOrderApplyListFragmentType } from './__generated__/viewerOrderApplyListFragment';
 
 // definition
-export const orderFragment = gql`
-  fragment orderFragment on Order {
+export const viewerOrderFragment = gql`
+  fragment viewerOrderFragment on Order {
     id
     paymentInfo {
       list {
@@ -40,8 +40,8 @@ export const orderFragment = gql`
   }
 `;
 
-export const orderApplyFragment = gql`
-  fragment orderApplyFragment on OrderApplyList {
+export const viewerOrderApplyListFragment = gql`
+  fragment viewerOrderApplyListFragment on OrderApplyList {
     data {
       orderId
       orderProductId
@@ -60,11 +60,11 @@ export const resolver = {
       viewer: {
         orders: {
           edges: {
-            node: orderFragmentType;
+            node: viewerOrderFragmentType;
           }[];
         } | null;
       } | null;
-      getOrderApplyList: orderApplyFragmentType | null;
+      getOrderApplyList: viewerOrderApplyListFragmentType | null;
     }) => {
       if (!viewer || !viewer.orders || !getOrderApplyList) return viewer;
 

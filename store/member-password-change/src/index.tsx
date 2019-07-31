@@ -27,7 +27,7 @@ import {
 } from './__generated__/memberChangePassword';
 
 // graphql import
-import { colorsFragment } from '@store/apollo-client-resolvers/lib/ColorList';
+import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
 
 // typescript definition
 interface PropsType extends I18nPropsType, FormComponentProps {
@@ -218,11 +218,11 @@ export default React.memo(() => (
     query={gql`
       query getColor {
         getColorList {
-          ...colorsFragment
+          ...colorListFragment
         }
       }
 
-      ${colorsFragment}
+      ${colorListFragment}
     `}
   >
     {({ loading, error, data }) => {

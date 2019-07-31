@@ -35,7 +35,7 @@ import {
 } from './__generated__/getUserInfo';
 
 // graphql import
-import { colorsFragment } from '@store/apollo-client-resolvers/lib/ColorList';
+import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
 
 // typescript definition
 interface PropsType
@@ -374,11 +374,11 @@ export default React.memo(
           }
 
           getColorList {
-            ...colorsFragment
+            ...colorListFragment
           }
         }
 
-        ${colorsFragment}
+        ${colorListFragment}
       `}
     >
       {({ loading, error, data, refetch }) => {

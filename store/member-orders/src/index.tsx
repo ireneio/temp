@@ -39,14 +39,14 @@ import {
 } from './__generated__/getOrders';
 
 // graphql import
-import { colorsFragment } from '@store/apollo-client-resolvers/lib/ColorList';
+import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
 import {
-  orderFragment,
-  orderApplyFragment,
+  viewerOrderFragment,
+  viewerOrderApplyListFragment,
 } from '@store/apollo-client-resolvers/lib/viewer';
 import { storeAppListFragment } from '@store/apollo-client-resolvers/lib/StoreAppList';
 
-import { actionsFragment, actionsAppPluginsFragment } from './Actions';
+import { actionsOrderFragment, actionsStoreAppListFragment } from './Actions';
 
 // typescript definition
 interface PropsType
@@ -137,8 +137,8 @@ class MemberOrders extends React.PureComponent<PropsType> {
         dataIndex: 'node',
         render: (value: getOrdersViewerOrdersEdgesNode) => (
           <Actions
-            order={filter(actionsFragment, value)}
-            appPlugins={filter(actionsAppPluginsFragment, appPlugins)}
+            order={filter(actionsOrderFragment, value)}
+            appPlugins={filter(actionsStoreAppListFragment, appPlugins)}
           />
         ),
       },
@@ -148,8 +148,8 @@ class MemberOrders extends React.PureComponent<PropsType> {
         render: (value: getOrdersViewerOrdersEdgesNode) => (
           <MobileColumn {...value}>
             <Actions
-              order={filter(actionsFragment, value)}
-              appPlugins={filter(actionsAppPluginsFragment, appPlugins)}
+              order={filter(actionsOrderFragment, value)}
+              appPlugins={filter(actionsStoreAppListFragment, appPlugins)}
             />
           </MobileColumn>
         ),
@@ -339,8 +339,8 @@ export default React.memo(() => (
                   status
                 }
                 status
-                ...orderFragment
-                ...actionsFragment
+                ...viewerOrderFragment
+                ...actionsOrderFragment
               }
             }
 
@@ -357,27 +357,27 @@ export default React.memo(() => (
         }
 
         getColorList {
-          ...colorsFragment
+          ...colorListFragment
         }
 
         getOrderApplyList(
           search: { size: 100, sort: [{ field: "createdOn", order: "desc" }] }
         ) {
-          ...orderApplyFragment
+          ...viewerOrderApplyListFragment
         }
 
         getStoreAppList {
           ...storeAppListFragment
-          ...actionsAppPluginsFragment
+          ...actionsStoreAppListFragment
         }
       }
 
-      ${colorsFragment}
-      ${orderFragment}
-      ${orderApplyFragment}
+      ${colorListFragment}
+      ${viewerOrderFragment}
+      ${viewerOrderApplyListFragment}
       ${storeAppListFragment}
-      ${actionsFragment}
-      ${actionsAppPluginsFragment}
+      ${actionsOrderFragment}
+      ${actionsStoreAppListFragment}
     `}
     variables={{
       first: 10,
