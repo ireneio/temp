@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.25.3 (2019-07-31)
+
+#### :bug: Bug Fix
+
+- [#639](https://github.com/meepshop/meep-lerna/pull/639) 【優化】ECFIT 訂單管理 UI 調整 ([@HsuTing](https://github.com/HsuTing))
+- [#642](https://github.com/meepshop/meep-lerna/pull/642) 【BUG】新架構/手機版 -「立即付款」項目跑版 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#640](https://github.com/meepshop/meep-lerna/pull/640) 重新命名 Fragments ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.25.2 (2019-07-29)
 
 #### :bug: Bug Fix
