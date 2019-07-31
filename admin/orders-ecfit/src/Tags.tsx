@@ -16,15 +16,15 @@ import emptyArrayToUndefined from './utils/emptyArrayToUndefined';
 import styles from './styles/tags.less';
 
 // graphql typescript
-import { tagsPaymentListFragment as tagsPaymentListFragmentType } from './__generated__/tagsPaymentListFragment';
-import { tagsShipmentListFragment as tagsShipmentListFragmentType } from './__generated__/tagsShipmentListFragment';
+import { tagsStorePaymentListFragment as tagsStorePaymentListFragmentType } from './__generated__/tagsStorePaymentListFragment';
+import { tagsStoreShipmentListFragment as tagsStoreShipmentListFragmentType } from './__generated__/tagsStoreShipmentListFragment';
 
 // graphql import
 import localeFragment from '@admin/utils/lib/fragments/locale';
 
 // definition
-export const tagsPaymentListFragment = gql`
-  fragment tagsPaymentListFragment on StorePaymentList {
+export const tagsStorePaymentListFragment = gql`
+  fragment tagsStorePaymentListFragment on StorePaymentList {
     data {
       id
       title {
@@ -36,8 +36,8 @@ export const tagsPaymentListFragment = gql`
   ${localeFragment}
 `;
 
-export const tagsShipmentListFragment = gql`
-  fragment tagsShipmentListFragment on StoreShipmentList {
+export const tagsStoreShipmentListFragment = gql`
+  fragment tagsStoreShipmentListFragment on StoreShipmentList {
     data {
       id
       title {
@@ -59,8 +59,8 @@ const Tags = React.memo(
     getStoreShipmentList,
   }: I18nPropsType &
     Pick<getEcfitListQueryPropsType, 'variables' | 'refetch'> & {
-      getStorePaymentList: tagsPaymentListFragmentType;
-      getStoreShipmentList: tagsShipmentListFragmentType;
+      getStorePaymentList: tagsStorePaymentListFragmentType;
+      getStoreShipmentList: tagsStoreShipmentListFragmentType;
     }) => (
     <div className={styles.root}>
       {TAGS_KEYS.map(key => {

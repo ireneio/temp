@@ -17,15 +17,15 @@ import { STATUS_LIST } from './constants';
 import styles from './styles/changeStatus.less';
 
 // graphql typescript
-import { changeStatusFragment as changeStatusFragmentType } from './__generated__/changeStatusFragment';
+import { changeStatusOrderConnectionFragment as changeStatusOrderConnectionFragmentType } from './__generated__/changeStatusOrderConnectionFragment';
 import { updateOrder, updateOrderVariables } from './__generated__/updateOrder';
-import { updateOrderStatus } from './__generated__/updateOrderStatus';
+import { changeStatusOrderFragment } from './__generated__/changeStatusOrderFragment';
 import { UpdateOrder } from '../../../__generated__/admin';
 
 // typescript definition
 interface PropsType extends I18nPropsType {
   runningIds: string[];
-  selectedOrders: changeStatusFragmentType;
+  selectedOrders: changeStatusOrderConnectionFragmentType;
 }
 
 type StatusType =
@@ -36,8 +36,8 @@ type StatusType =
 // definition
 const { Option } = Select;
 
-export const changeStatusFragment = gql`
-  fragment changeStatusFragment on OrderConnection {
+export const changeStatusOrderConnectionFragment = gql`
+  fragment changeStatusOrderConnectionFragment on OrderConnection {
     edges {
       node {
         id
@@ -211,7 +211,7 @@ class ChangeTypes extends React.PureComponent<PropsType> {
       // TODO: should not be null id
       id: idx(newOrder, _ => _.id) || 'null id',
       fragment: gql`
-        fragment updateOrderStatus on Order {
+        fragment changeStatusOrderFragment on Order {
           id
           status
           shipmentInfo {
@@ -223,7 +223,7 @@ class ChangeTypes extends React.PureComponent<PropsType> {
         }
       `,
     };
-    const order = cache.readFragment<updateOrderStatus>(fragment);
+    const order = cache.readFragment<changeStatusOrderFragment>(fragment);
 
     if (!order) return;
 

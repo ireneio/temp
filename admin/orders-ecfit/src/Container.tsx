@@ -46,14 +46,17 @@ import {
 
 // graphql import
 import {
-  advancedSearchPaymentListFragment,
-  advancedSearchShipmentListFragment,
+  advancedSearchStorePaymentListFragment,
+  advancedSearchStoreShipmentListFragment,
 } from './AdvancedSearch';
-import { changeStatusFragment } from './ChangeStatus';
-import { tagsPaymentListFragment, tagsShipmentListFragment } from './Tags';
+import { changeStatusOrderConnectionFragment } from './ChangeStatus';
 import {
-  ordersEcfitOrdersFragment,
-  ordersSelectedOrdersFragment,
+  tagsStorePaymentListFragment,
+  tagsStoreShipmentListFragment,
+} from './Tags';
+import {
+  ordersOrderConnectionFragment,
+  ordersPageInfoFragment,
 } from './Orders';
 
 // typescript definition
@@ -162,6 +165,10 @@ class Container extends React.PureComponent<PropsType, StateType> {
       createEcfitOrder,
       createEcfitOrderVariables
     >,
+    setOrdersToSelectedOrdersMutation: MutationFn<
+      setOrdersToSelectedOrders,
+      setOrdersToSelectedOrdersVariables
+    >,
   ) => {
     const { variables, selectedOrders } = this.props;
     const { isEnabled } = this.state;
@@ -219,8 +226,13 @@ class Container extends React.PureComponent<PropsType, StateType> {
       ecfitOrders: {
         pageInfo: { endCursor },
       },
+      selectedOrders: currentSelectedOrders,
       fetchMore,
     } = this.props;
+    // TODO: should not be null
+    const currentSelectedIds = currentSelectedOrders.edges.map(
+      ({ node: { id } }) => id || 'null-id',
+    );
 
     await fetchMore({
       variables: {
@@ -255,6 +267,14 @@ class Container extends React.PureComponent<PropsType, StateType> {
       },
     });
 
+    await setOrdersToSelectedOrdersMutation({
+      variables: {
+        input: {
+          ids: currentSelectedIds.filter(id => !successIds.includes(id)),
+        },
+      },
+    });
+
     this.setState({ runningIds: [] });
   };
 
@@ -276,178 +296,189 @@ class Container extends React.PureComponent<PropsType, StateType> {
     const { runningIds, searchTerm } = this.state;
 
     return (
-      <>
-        <div className={styles.sendStatus}>
-          <Group
-            value={idx(variables, _ => _.filter.ecfitSentStatus)}
-            onChange={({ target: { value } }) =>
-              refetch({
-                ...variables,
-                filter: {
-                  ...variables.filter,
-                  ecfitSentStatus: value,
-                },
-              })
-            }
-          >
-            {['NOT_SENT', 'SENT_SUCCESSFUL', 'SENT_FAILED'].map(key => (
-              <Radio key={key} value={key}>
-                {key !== 'SENT_FAILED' ? (
-                  t(`status.${key}`)
-                ) : (
-                  <Badge dot={sentFailedAmount !== 0}>
-                    {t(`status.${key}`)}
-                  </Badge>
-                )}
-              </Radio>
-            ))}
-          </Group>
-
-          {selectedOrders.total === 0 ? null : (
-            <div className={styles.operating}>
-              <ChangeStatus
-                runningIds={runningIds}
-                selectedOrders={filter(changeStatusFragment, selectedOrders)}
-              />
-
-              <MoreOperating />
-            </div>
-          )}
-        </div>
-
-        <div className={styles.root}>
-          <div className={styles.filter}>
-            <div>
-              <AdvancedSearch
-                variables={variables}
-                refetch={refetch}
-                getStorePaymentList={filter(
-                  advancedSearchPaymentListFragment,
-                  getStorePaymentList,
-                )}
-                getStoreShipmentList={filter(
-                  advancedSearchShipmentListFragment,
-                  getStoreShipmentList,
-                )}
-              />
-
-              <Search
-                className={styles.search}
-                value={searchTerm}
-                onChange={({ target: { value: newSearchTerm } }) =>
-                  this.setState({ searchTerm: newSearchTerm })
-                }
-                placeholder={t('filter.searchTerm')}
-                onSearch={newSearchTerm =>
+      <Mutation<setOrdersToSelectedOrders, setOrdersToSelectedOrdersVariables>
+        mutation={gql`
+          mutation setOrdersToSelectedOrders(
+            $input: SetOrdersToSelectedOrdersInput!
+          ) {
+            setOrdersToSelectedOrders(input: $input) @client
+          }
+        `}
+      >
+        {setOrdersToSelectedOrdersMutation => (
+          <>
+            <div className={styles.sendStatus}>
+              <Group
+                value={idx(variables, _ => _.filter.ecfitSentStatus)}
+                onChange={({ target: { value } }) =>
                   refetch({
                     ...variables,
                     filter: {
                       ...variables.filter,
-                      searchTerm: newSearchTerm,
+                      ecfitSentStatus: value,
                     },
                   })
                 }
-              />
-
-              <DatePicker
-                value={this.getDatePickerValue()}
-                onChange={this.datePickerChange}
-              />
-
-              <div
-                className={styles.reset}
-                onClick={() =>
-                  this.setState({ searchTerm: '' }, () =>
-                    refetch({
-                      ...variables,
-                      filter: {
-                        ecfitSentStatus: idx(
-                          variables,
-                          _ => _.filter.ecfitSentStatus,
-                        ),
-                      },
-                    }),
-                  )
-                }
               >
-                {t('filter.reset')}
-              </div>
+                {['NOT_SENT', 'SENT_SUCCESSFUL', 'SENT_FAILED'].map(key => (
+                  <Radio key={key} value={key}>
+                    {key !== 'SENT_FAILED' ? (
+                      t(`status.${key}`)
+                    ) : (
+                      <Badge dot={sentFailedAmount !== 0}>
+                        {t(`status.${key}`)}
+                      </Badge>
+                    )}
+                  </Radio>
+                ))}
+              </Group>
+
+              {selectedOrders.total === 0 ? null : (
+                <div className={styles.operating}>
+                  <ChangeStatus
+                    runningIds={runningIds}
+                    selectedOrders={filter(
+                      changeStatusOrderConnectionFragment,
+                      selectedOrders,
+                    )}
+                  />
+
+                  <MoreOperating />
+                </div>
+              )}
             </div>
 
-            <div />
+            <div className={styles.root}>
+              <div className={styles.filter}>
+                <div>
+                  <AdvancedSearch
+                    variables={variables}
+                    refetch={refetch}
+                    getStorePaymentList={filter(
+                      advancedSearchStorePaymentListFragment,
+                      getStorePaymentList,
+                    )}
+                    getStoreShipmentList={filter(
+                      advancedSearchStoreShipmentListFragment,
+                      getStoreShipmentList,
+                    )}
+                  />
 
-            {(selectedOrders.total === 0 && runningIds.length === 0) ||
-            idx(variables, _ => _.filter.ecfitSentStatus) ===
-              'SENT_SUCCESSFUL' ? null : (
-              <Mutation<createEcfitOrder, createEcfitOrderVariables>
-                mutation={gql`
-                  mutation createEcfitOrder($input: CreateEcfitOrderInput!) {
-                    createEcfitOrder(input: $input) {
-                      status
+                  <Search
+                    className={styles.search}
+                    value={searchTerm}
+                    onChange={({ target: { value: newSearchTerm } }) =>
+                      this.setState({ searchTerm: newSearchTerm })
                     }
-                  }
-                `}
-              >
-                {createEcfitOrderMutation => (
-                  <Button
+                    placeholder={t('filter.searchTerm')}
+                    onSearch={newSearchTerm =>
+                      refetch({
+                        ...variables,
+                        filter: {
+                          ...variables.filter,
+                          searchTerm: newSearchTerm,
+                        },
+                      })
+                    }
+                  />
+
+                  <DatePicker
+                    value={this.getDatePickerValue()}
+                    onChange={this.datePickerChange}
+                  />
+
+                  <div
+                    className={styles.reset}
                     onClick={() =>
-                      this.updateCreateEcfitOrder(createEcfitOrderMutation)
+                      this.setState({ searchTerm: '' }, () =>
+                        refetch({
+                          ...variables,
+                          filter: {
+                            ecfitSentStatus: idx(
+                              variables,
+                              _ => _.filter.ecfitSentStatus,
+                            ),
+                          },
+                        }),
+                      )
                     }
-                    loading={runningIds.length !== 0}
-                    type="primary"
-                    size="large"
                   >
-                    {t('send')}
-                  </Button>
+                    {t('filter.reset')}
+                  </div>
+                </div>
+
+                <div />
+
+                {(selectedOrders.total === 0 && runningIds.length === 0) ||
+                idx(variables, _ => _.filter.ecfitSentStatus) ===
+                  'SENT_SUCCESSFUL' ? null : (
+                  <Mutation<createEcfitOrder, createEcfitOrderVariables>
+                    mutation={gql`
+                      mutation createEcfitOrder(
+                        $input: CreateEcfitOrderInput!
+                      ) {
+                        createEcfitOrder(input: $input) {
+                          status
+                        }
+                      }
+                    `}
+                  >
+                    {createEcfitOrderMutation => (
+                      <Button
+                        onClick={() =>
+                          this.updateCreateEcfitOrder(
+                            createEcfitOrderMutation,
+                            setOrdersToSelectedOrdersMutation,
+                          )
+                        }
+                        loading={runningIds.length !== 0}
+                        type="primary"
+                        size="large"
+                      >
+                        {t('send')}
+                      </Button>
+                    )}
+                  </Mutation>
                 )}
-              </Mutation>
-            )}
-          </div>
+              </div>
 
-          <Tags
-            variables={variables}
-            refetch={refetch}
-            getStorePaymentList={filter(
-              tagsPaymentListFragment,
-              getStorePaymentList,
-            )}
-            getStoreShipmentList={filter(
-              tagsShipmentListFragment,
-              getStoreShipmentList,
-            )}
-          />
+              <Tags
+                variables={variables}
+                refetch={refetch}
+                getStorePaymentList={filter(
+                  tagsStorePaymentListFragment,
+                  getStorePaymentList,
+                )}
+                getStoreShipmentList={filter(
+                  tagsStoreShipmentListFragment,
+                  getStoreShipmentList,
+                )}
+              />
 
-          <Mutation<
-            setOrdersToSelectedOrders,
-            setOrdersToSelectedOrdersVariables
-          >
-            mutation={gql`
-              mutation setOrdersToSelectedOrders(
-                $input: SetOrdersToSelectedOrdersInput!
-              ) {
-                setOrdersToSelectedOrders(input: $input) @client
-              }
-            `}
-          >
-            {setOrdersToSelectedOrdersMutation => (
               <Orders
                 runningIds={runningIds}
                 variables={variables}
                 refetch={refetch}
                 fetchMore={fetchMore}
-                ecfitOrders={filter(ordersEcfitOrdersFragment, ecfitOrders)}
+                ecfitOrders={{
+                  ...filter(ordersOrderConnectionFragment, ecfitOrders),
+                  pageInfo: filter(
+                    ordersPageInfoFragment,
+                    ecfitOrders.pageInfo,
+                  ),
+                }}
                 selectedOrders={filter(
-                  ordersSelectedOrdersFragment,
+                  ordersOrderConnectionFragment,
                   selectedOrders,
                 )}
                 setOrdersToSelectedOrdersMutation={
                   setOrdersToSelectedOrdersMutation
                 }
               />
-            )}
-          </Mutation>
-        </div>
-      </>
+            </div>
+          </>
+        )}
+      </Mutation>
     );
   }
 }
@@ -495,13 +526,14 @@ export default React.memo(() => (
         viewer {
           id
           ecfitOrders(first: $first, after: $cursor, filter: $filter) {
-            ...ordersEcfitOrdersFragment
+            ...ordersOrderConnectionFragment
             edges {
               node {
                 id
               }
             }
             pageInfo {
+              ...ordersPageInfoFragment
               endCursor
             }
           }
@@ -522,18 +554,18 @@ export default React.memo(() => (
         }
 
         getStorePaymentList {
-          ...advancedSearchPaymentListFragment
-          ...tagsPaymentListFragment
+          ...advancedSearchStorePaymentListFragment
+          ...tagsStorePaymentListFragment
         }
 
         getStoreShipmentList {
-          ...advancedSearchShipmentListFragment
-          ...tagsShipmentListFragment
+          ...advancedSearchStoreShipmentListFragment
+          ...tagsStoreShipmentListFragment
         }
 
         selectedOrders @client {
-          ...changeStatusFragment
-          ...ordersSelectedOrdersFragment
+          ...changeStatusOrderConnectionFragment
+          ...ordersOrderConnectionFragment
           edges {
             node {
               id
@@ -543,13 +575,13 @@ export default React.memo(() => (
         }
       }
 
-      ${advancedSearchPaymentListFragment}
-      ${advancedSearchShipmentListFragment}
-      ${changeStatusFragment}
-      ${tagsPaymentListFragment}
-      ${tagsShipmentListFragment}
-      ${ordersEcfitOrdersFragment}
-      ${ordersSelectedOrdersFragment}
+      ${advancedSearchStorePaymentListFragment}
+      ${advancedSearchStoreShipmentListFragment}
+      ${changeStatusOrderConnectionFragment}
+      ${tagsStorePaymentListFragment}
+      ${tagsStoreShipmentListFragment}
+      ${ordersOrderConnectionFragment}
+      ${ordersPageInfoFragment}
     `}
     variables={initVariables}
     ssr={false}

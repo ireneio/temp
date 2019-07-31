@@ -24,14 +24,14 @@ import styles from './styles/orders.less';
 
 // graphql typescript
 import {
-  ordersEcfitOrdersFragment as ordersEcfitOrdersFragmentType,
-  ordersEcfitOrdersFragment_edges as ordersEcfitOrdersFragmentEdges,
-  ordersEcfitOrdersFragment_edges_node as ordersEcfitOrdersFragmentEdgesNode,
-  ordersEcfitOrdersFragment_edges_node_lastEcfitRequestRecord as ordersEcfitOrdersFragmentEdgesNodeLastEcfitRequestRecord,
-  ordersEcfitOrdersFragment_edges_node_paymentInfo as ordersEcfitOrdersFragmentEdgesNodePaymentInfo,
-  ordersEcfitOrdersFragment_edges_node_shipmentInfo as ordersEcfitOrdersFragmentEdgesNodeShipmentInfo,
-} from './__generated__/ordersEcfitOrdersFragment';
-import { ordersSelectedOrdersFragment as ordersSelectedOrdersFragmentType } from './__generated__/ordersSelectedOrdersFragment';
+  ordersOrderConnectionFragment as ordersOrderConnectionFragmentType,
+  ordersOrderConnectionFragment_edges as ordersOrderConnectionFragmentEdges,
+  ordersOrderConnectionFragment_edges_node as ordersOrderConnectionFragmentEdgesNode,
+  ordersOrderConnectionFragment_edges_node_lastEcfitRequestRecord as ordersOrderConnectionFragmentEdgesNodeLastEcfitRequestRecord,
+  ordersOrderConnectionFragment_edges_node_paymentInfo as ordersOrderConnectionFragmentEdgesNodePaymentInfo,
+  ordersOrderConnectionFragment_edges_node_shipmentInfo as ordersOrderConnectionFragmentEdgesNodeShipmentInfo,
+} from './__generated__/ordersOrderConnectionFragment';
+import { ordersPageInfoFragment as ordersPageInfoFragmentType } from './__generated__/ordersPageInfoFragment';
 import {
   setOrdersToSelectedOrders,
   setOrdersToSelectedOrdersVariables,
@@ -43,8 +43,10 @@ export interface PropsType
     SetCurrentPropsType,
     Pick<getEcfitListQueryPropsType, 'variables' | 'refetch' | 'fetchMore'> {
   runningIds: string[];
-  ecfitOrders: ordersEcfitOrdersFragmentType;
-  selectedOrders: ordersSelectedOrdersFragmentType;
+  ecfitOrders: ordersOrderConnectionFragmentType & {
+    pageInfo: ordersPageInfoFragmentType;
+  };
+  selectedOrders: ordersOrderConnectionFragmentType;
   setOrdersToSelectedOrdersMutation: MutationFn<
     setOrdersToSelectedOrders,
     setOrdersToSelectedOrdersVariables
@@ -59,8 +61,8 @@ interface StateType {
 // definition
 const { Option } = Select;
 
-export const ordersEcfitOrdersFragment = gql`
-  fragment ordersEcfitOrdersFragment on OrderConnection {
+export const ordersOrderConnectionFragment = gql`
+  fragment ordersOrderConnectionFragment on OrderConnection {
     edges {
       node {
         id
@@ -90,25 +92,17 @@ export const ordersEcfitOrdersFragment = gql`
         }
       }
     }
-    pageInfo {
-      endCursor
-      currentInfo(input: { pageId: "orders-ecfit" }) @client {
-        id
-        current
-      }
-    }
     total
   }
 `;
 
-export const ordersSelectedOrdersFragment = gql`
-  fragment ordersSelectedOrdersFragment on OrderConnection {
-    edges {
-      node {
-        id
-      }
+export const ordersPageInfoFragment = gql`
+  fragment ordersPageInfoFragment on PageInfo {
+    endCursor
+    currentInfo(input: { pageId: "orders-ecfit" }) @client {
+      id
+      current
     }
-    total
   }
 `;
 
@@ -141,9 +135,9 @@ class Orders extends React.PureComponent<PropsType, StateType> {
         title: t('orders.order-no'),
         dataIndex: 'node.orderNo',
         render: (
-          value: ordersEcfitOrdersFragmentEdgesNode['orderNo'],
+          value: ordersOrderConnectionFragmentEdgesNode['orderNo'],
           // TODO: should not be null
-          { node: { id } }: ordersEcfitOrdersFragmentEdges,
+          { node: { id } }: ordersOrderConnectionFragmentEdges,
         ) => (
           <>
             <Spin />
@@ -167,7 +161,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
         dataIndex: 'node.paymentInfo.status',
         // TODO: should not be null
         render: (
-          value: ordersEcfitOrdersFragmentEdgesNodePaymentInfo['status'],
+          value: ordersOrderConnectionFragmentEdgesNodePaymentInfo['status'],
         ) =>
           value === null
             ? null
@@ -178,7 +172,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
         dataIndex: 'node.shipmentInfo.status',
         // TODO: should not be null
         render: (
-          value: ordersEcfitOrdersFragmentEdgesNodeShipmentInfo['status'],
+          value: ordersOrderConnectionFragmentEdgesNodeShipmentInfo['status'],
         ) =>
           value === null
             ? null
@@ -188,7 +182,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
         title: t('orders.order-status'),
         dataIndex: 'node.status',
         // TODO: should not be null
-        render: (value: ordersEcfitOrdersFragmentEdgesNode['status']) =>
+        render: (value: ordersOrderConnectionFragmentEdgesNode['status']) =>
           value === null
             ? null
             : t(`orderStatusList.${STATUS_LIST.orderStatusList[value]}`),
@@ -204,7 +198,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
       {
         title: t('orders.create-on'),
         dataIndex: 'node.createdOn',
-        render: (value: ordersEcfitOrdersFragmentEdgesNode['createdOn']) =>
+        render: (value: ordersOrderConnectionFragmentEdgesNode['createdOn']) =>
           // TODO: should not be null
           !value ? null : moment.unix(value).format('YYYY/MM/DD HH:mm:ss'),
       },
@@ -215,7 +209,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
               title: t('orders.send-time'),
               dataIndex: 'node.lastEcfitRequestRecord.createdAt',
               render: (
-                value: ordersEcfitOrdersFragmentEdgesNodeLastEcfitRequestRecord['createdAt'],
+                value: ordersOrderConnectionFragmentEdgesNodeLastEcfitRequestRecord['createdAt'],
               ) =>
                 !value ? null : moment(value).format('YYYY/MM/DD HH:mm:ss'),
             },
@@ -227,7 +221,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
               title: t('orders.fail-reason'),
               dataIndex: 'node.lastEcfitRequestRecord.response',
               render: (
-                value: ordersEcfitOrdersFragmentEdgesNodeLastEcfitRequestRecord['response'],
+                value: ordersOrderConnectionFragmentEdgesNodeLastEcfitRequestRecord['response'],
               ) => (!value ? null : t(`fail-reason.${value}`)),
             },
           ]),
@@ -358,6 +352,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
     return (
       <>
         <Table
+          className={styles.table}
           dataSource={edges.slice(current * pageSize, (current + 1) * pageSize)}
           locale={{
             emptyText: (

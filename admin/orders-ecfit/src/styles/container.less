@@ -4,8 +4,9 @@
   display: flex;
   margin: 24px 0px 16px;
 
-  > div:first-child {
+  :global(.ant-radio-group) {
     flex-grow: 1;
+    line-height: 40px;
   }
 }
 
@@ -24,6 +25,7 @@
 
   > div:first-child {
     flex-grow: 1;
+    margin: 0px 0px 8px;
 
     > *:not(:last-child) {
       margin: 0px 8px 0px 0px;

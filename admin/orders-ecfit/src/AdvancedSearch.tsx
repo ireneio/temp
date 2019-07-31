@@ -17,8 +17,8 @@ import emptyArrayToUndefined from './utils/emptyArrayToUndefined';
 import styles from './styles/advancedSearch.less';
 
 // graphql typescript
-import { advancedSearchPaymentListFragment as advancedSearchPaymentListFragmentType } from './__generated__/advancedSearchPaymentListFragment';
-import { advancedSearchShipmentListFragment as advancedSearchShipmentListFragmentType } from './__generated__/advancedSearchShipmentListFragment';
+import { advancedSearchStorePaymentListFragment as advancedSearchStorePaymentListFragmentType } from './__generated__/advancedSearchStorePaymentListFragment';
+import { advancedSearchStoreShipmentListFragment as advancedSearchStoreShipmentListFragmentType } from './__generated__/advancedSearchStoreShipmentListFragment';
 
 // graphql import
 import localeFragment from '@admin/utils/lib/fragments/locale';
@@ -27,8 +27,8 @@ import localeFragment from '@admin/utils/lib/fragments/locale';
 interface PropsType
   extends I18nPropsType,
     Pick<getEcfitListQueryPropsType, 'variables' | 'refetch'> {
-  getStorePaymentList: advancedSearchPaymentListFragmentType;
-  getStoreShipmentList: advancedSearchShipmentListFragmentType;
+  getStorePaymentList: advancedSearchStorePaymentListFragmentType;
+  getStoreShipmentList: advancedSearchStoreShipmentListFragmentType;
 }
 
 interface StateType {
@@ -39,8 +39,8 @@ interface StateType {
 // definition
 const { Option } = Select;
 
-export const advancedSearchPaymentListFragment = gql`
-  fragment advancedSearchPaymentListFragment on StorePaymentList {
+export const advancedSearchStorePaymentListFragment = gql`
+  fragment advancedSearchStorePaymentListFragment on StorePaymentList {
     data {
       id
       title {
@@ -52,8 +52,8 @@ export const advancedSearchPaymentListFragment = gql`
   ${localeFragment}
 `;
 
-export const advancedSearchShipmentListFragment = gql`
-  fragment advancedSearchShipmentListFragment on StoreShipmentList {
+export const advancedSearchStoreShipmentListFragment = gql`
+  fragment advancedSearchStoreShipmentListFragment on StoreShipmentList {
     data {
       id
       title {
