@@ -159,7 +159,7 @@ export class Blocks extends React.PureComponent<PropsType> {
           <h4>{t('blocks.shipment.title')}</h4>
 
           <div className={styles.status}>
-            {t(`blocks.payment.status.${idx(shipmentInfo, _ => _.status)}`)}
+            {t(`blocks.shipment.status.${idx(shipmentInfo, _ => _.status)}`)}
           </div>
         </div>
 
