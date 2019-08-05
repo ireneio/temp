@@ -1,0 +1,37 @@
+{
+  "order-no": "Order Number: ",
+  "order-date": "Order Date: ",
+  "apply": "Apply for: ",
+  "type": {
+    "return": "Return",
+    "replace": "Replacement"
+  },
+  "date": "Date: ",
+  "recipient": "Recipient: ",
+  "phone": "Phone No.: ",
+  "address": "Address: ",
+  "product": {
+    "title": "Item",
+    "quantity": "QTY"
+  },
+  "reason": "Description",
+  "status": {
+    "title": "Status",
+    "0": "To be Confirmed",
+    "10": "Dispatched",
+    "11": "Pick-up",
+    "12": "Confirmed",
+    "13": "Error Occurred",
+    "20": "Refund",
+    "21": "Refunded",
+    "22": "Error Occurred",
+    "return": {
+      "1": "Completed",
+      "2": "The return for this product is impossible, please contact our customer service if you have any questions."
+    },
+    "replace": {
+      "1": "Completed",
+      "2": "The replacement for this product is impossible, please contact our customer service if you have any questions."
+    }
+  }
+}

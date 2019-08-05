@@ -1,4 +1,4 @@
-@import '../../constants/styles.less';
+@import '~@store/utils/lib/styles/variables.less';
 
 .root {
   display: flex;
@@ -9,7 +9,7 @@
     max-width: 1120px;
     padding: 56px 30px;
 
-    @media @PHONE_MEDIA {
+    @media @phone-media {
       padding: 20px 15px;
     }
 
@@ -20,8 +20,8 @@
       line-height: 22px;
       margin-bottom: 25px;
 
-      span {
-        @media @PHONE_MEDIA {
+      span > span {
+        @media @phone-media {
           display: none;
         }
       }

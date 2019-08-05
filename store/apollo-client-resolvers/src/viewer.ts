@@ -5,8 +5,23 @@ import idx from 'idx';
 import { PAYMENT_CAN_PAID_LATER } from './constants';
 
 // graphql typescript
-import { viewerOrderFragment as viewerOrderFragmentType } from './__generated__/viewerOrderFragment';
-import { viewerOrderApplyListFragment as viewerOrderApplyListFragmentType } from './__generated__/viewerOrderApplyListFragment';
+import {
+  viewerOrderFragment as viewerOrderFragmentType,
+  viewerOrderFragment_products as viewerOrderFragmentProducts,
+} from './__generated__/viewerOrderFragment';
+import {
+  viewerOrderApplyListFragment as viewerOrderApplyListFragmentType,
+  viewerOrderApplyListFragment_data as viewerOrderApplyListFragmentData,
+} from './__generated__/viewerOrderApplyListFragment';
+
+// typescript definition
+interface Application extends viewerOrderApplyListFragmentData {
+  extra: ApplicationData[];
+}
+
+interface ApplicationData extends viewerOrderApplyListFragmentData {
+  product: viewerOrderFragmentProducts | {};
+}
 
 // definition
 export const viewerOrderFragment = gql`
@@ -14,6 +29,7 @@ export const viewerOrderFragment = gql`
     id
     paymentInfo {
       list {
+        id
         template
         accountInfo {
           allpay {
@@ -43,10 +59,25 @@ export const viewerOrderFragment = gql`
 export const viewerOrderApplyListFragment = gql`
   fragment viewerOrderApplyListFragment on OrderApplyList {
     data {
+      id
       orderId
       orderProductId
-      status
+      returnId
+      applicationType
+      createdOn
+      recipient {
+        name
+        mobile
+        address {
+          streetAddress
+        }
+      }
+      applicationInfo {
+        comment
+      }
       quantity
+      status
+      applicationStatus
     }
   }
 `;
@@ -63,109 +94,175 @@ export const resolver = {
             node: viewerOrderFragmentType;
           }[];
         } | null;
+        order: viewerOrderFragmentType;
       } | null;
       getOrderApplyList: viewerOrderApplyListFragmentType | null;
     }) => {
-      if (!viewer || !viewer.orders || !getOrderApplyList) return viewer;
+      if (!viewer || !getOrderApplyList) return viewer;
 
       // TODO: should be added in the server schema
       return {
         ...viewer,
-        orders: {
-          ...viewer.orders,
-          edges: viewer.orders.edges.map(({ node, ...edge }) => {
-            const { template = null, accountInfo = null } =
-              idx(node, _ => _.paymentInfo.list[0]) || {};
+        orders: !viewer.orders
+          ? null
+          : {
+              ...viewer.orders,
+              edges: viewer.orders.edges.map(({ node, ...edge }) => {
+                const { template = null, accountInfo = null } =
+                  idx(node, _ => _.paymentInfo.list[0]) || {};
 
-            if (!template)
-              return {
-                ...edge,
-                node,
-              };
+                if (!template)
+                  return {
+                    ...edge,
+                    node,
+                  };
 
-            const { choosePayment = null } =
-              template === 'allpay' ||
-              template === 'ezpay' ||
-              template === 'gmo'
-                ? idx(accountInfo, _ => _[template]) || {}
-                : {};
+                const { choosePayment = null } =
+                  template === 'allpay' ||
+                  template === 'ezpay' ||
+                  template === 'gmo'
+                    ? idx(accountInfo, _ => _[template]) || {}
+                    : {};
 
-            // 判斷是否已有申請退換貨
-            const orderApply = (
-              idx(getOrderApplyList, _ => _.data) || []
-            ).filter(
-              orderApplyElement =>
-                idx(orderApplyElement, _ => _.orderId) ===
-                node.id /** TODO: should not be null */,
-            );
-
-            // 判斷是否有商品可以退換貨
-            const isAvailableForOrderApply = node.products.reduce(
-              (result, product) => {
-                const { id: productId = null, quantity = 0, type = 'gift' } =
-                  product || {}; /** TODO: should not be null */
-
-                if (type === 'gift') return result;
-
-                const orderApplyProducts = orderApply.find(
+                // 判斷是否已有申請退換貨
+                const orderApply = (
+                  idx(getOrderApplyList, _ => _.data) || []
+                ).filter(
                   orderApplyElement =>
-                    idx(orderApplyElement, _ => _.orderProductId) ===
-                    productId /** TODO: should not be null */,
+                    idx(orderApplyElement, _ => _.orderId) ===
+                    node.id /** TODO: should not be null */,
                 );
 
-                if (
-                  orderApplyProducts &&
-                  [0, 3].includes(
-                    orderApplyProducts.status ||
-                      0 /** TODO: should not be null */,
+                // 判斷是否有商品可以退換貨
+                const isAvailableForOrderApply = node.products.reduce(
+                  (result, product) => {
+                    const {
+                      id: productId = null,
+                      quantity = 0,
+                      type = 'gift',
+                    } = product || {}; /** TODO: should not be null */
+
+                    if (type === 'gift') return result;
+
+                    const orderApplyProducts = orderApply.find(
+                      orderApplyElement =>
+                        idx(orderApplyElement, _ => _.orderProductId) ===
+                        productId /** TODO: should not be null */,
+                    );
+
+                    if (
+                      orderApplyProducts &&
+                      [0, 3].includes(
+                        orderApplyProducts.status ||
+                          0 /** TODO: should not be null */,
+                      )
+                    )
+                      return result;
+
+                    return (
+                      result ||
+                      (quantity || 0) -
+                        ((orderApplyProducts || { quantity: 0 }).quantity ||
+                          0) /** TODO: should not be null */ >
+                        0
+                    );
+                  },
+                  false,
+                );
+                const isAvailableForPayLater = (() => {
+                  if (choosePayment) {
+                    if (template === 'allpay')
+                      return PAYMENT_CAN_PAID_LATER[template][
+                        choosePayment as
+                          | 'Credit'
+                          | 'WebATM'
+                          | 'ATM'
+                          | 'CVS'
+                          | 'BARCODE'
+                      ];
+
+                    if (template === 'ezpay')
+                      return PAYMENT_CAN_PAID_LATER[template][
+                        choosePayment as
+                          | 'Credit'
+                          | 'CS'
+                          | 'ATM'
+                          | 'WEBATM'
+                          | 'MMK'
+                      ];
+                  }
+
+                  return PAYMENT_CAN_PAID_LATER[
+                    template as keyof typeof PAYMENT_CAN_PAID_LATER
+                  ];
+                })();
+
+                return {
+                  ...edge,
+                  node: {
+                    ...node,
+                    isAvailableForPayLater: Boolean(isAvailableForPayLater),
+                    isAvailableForOrderApply,
+                    isOrderApplied: orderApply.length !== 0,
+                  },
+                };
+              }),
+            },
+        order: !viewer.order
+          ? null
+          : {
+              ...viewer.order,
+              applications: (getOrderApplyList.data || []).reduce(
+                (applications, application) => {
+                  if (
+                    !application ||
+                    idx(application, _ => _.orderId) !== viewer.order.id
+                    /** TODO: should not be null */
                   )
-                )
-                  return result;
+                    return applications;
 
-                return (
-                  result ||
-                  (quantity || 0) -
-                    ((orderApplyProducts || { quantity: 0 }).quantity ||
-                      0) /** TODO: should not be null */ >
-                    0
-                );
-              },
-              false,
-            );
-            const isAvailableForPayLater = (() => {
-              if (choosePayment) {
-                if (template === 'allpay')
-                  return PAYMENT_CAN_PAID_LATER[template][
-                    choosePayment as
-                      | 'Credit'
-                      | 'WebATM'
-                      | 'ATM'
-                      | 'CVS'
-                      | 'BARCODE'
+                  const existedApp = applications.find(
+                    app => app.returnId === application.returnId,
+                  );
+
+                  if (!existedApp)
+                    return [
+                      ...applications,
+                      {
+                        ...application,
+                        extra: [
+                          {
+                            ...application,
+                            product:
+                              viewer.order.products.find(
+                                product =>
+                                  /** TODO: should not be null */
+                                  idx(application, _ => _.orderProductId) ===
+                                  (product || { id: null }).id,
+                              ) || {},
+                          },
+                        ],
+                      },
+                    ];
+
+                  existedApp.extra = [
+                    ...existedApp.extra,
+                    {
+                      ...application,
+                      product:
+                        viewer.order.products.find(
+                          product =>
+                            /** TODO: should not be null */
+                            idx(application, _ => _.orderProductId) ===
+                            (product || { id: null }).id,
+                        ) || {},
+                    },
                   ];
-
-                if (template === 'ezpay')
-                  return PAYMENT_CAN_PAID_LATER[template][
-                    choosePayment as 'Credit' | 'CS' | 'ATM' | 'WEBATM' | 'MMK'
-                  ];
-              }
-
-              return PAYMENT_CAN_PAID_LATER[
-                template as keyof typeof PAYMENT_CAN_PAID_LATER
-              ];
-            })();
-
-            return {
-              ...edge,
-              node: {
-                ...node,
-                isAvailableForPayLater: Boolean(isAvailableForPayLater),
-                isAvailableForOrderApply,
-                isOrderApplied: orderApply.length !== 0,
-              },
-            };
-          }),
-        },
+                  return applications;
+                },
+                [] as Application[],
+              ),
+            },
       };
     },
   },

@@ -1,0 +1,37 @@
+{
+  "order-no": "Số đơn hàng: ",
+  "order-date": "Ngày đặt hàng: ",
+  "apply": "Dăng ký: ",
+  "type": {
+    "return": "Hoàn trả",
+    "replace": "Đổi hàng"
+  },
+  "date": "Ngày đăng ký: ",
+  "recipient": "Thông tin người nhận: ",
+  "phone": "Diện thoại: ",
+  "address": "Địa Chỉ: ",
+  "product": {
+    "title": "Tên sản phẩm",
+    "quantity": "Số lượng"
+  },
+  "reason": "Nguyên nhân",
+  "status": {
+    "title": "Trạng thái",
+    "0": "Đang chờ xác nhận",
+    "10": "Vận chuyển",
+    "11": "Nhận hàng",
+    "12": "Xác nhận",
+    "13": "Bất thường",
+    "20": "Xử lý hoàn tiền",
+    "21": "Hoàn thành hoàn tiền",
+    "22": "Sự cố hoàn tiền",
+    "return": {
+      "1": "Kết thúc hoàn trả",
+      "2": "Sản phẩm này hoàn trả thất bại, nếu có thăc mắc xin liên hệ bên tư vấn khách hàng"
+    },
+    "replace": {
+      "1": "Kết thúc hoàn trả",
+      "2": "Sản phẩm này đổi hàng thất bại, nếu có thăc mắc xin liên hệ bên tư vấn khách hàng"
+    }
+  }
+}

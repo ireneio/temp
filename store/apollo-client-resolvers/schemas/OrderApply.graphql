@@ -1,0 +1,4 @@
+extend type OrderApply {
+  extra: [OrderApply!]!
+  product: productsObjectType!
+}
