@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 0.25.5 (2019-08-05)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`, `store`
+  - [#644](https://github.com/meepshop/meep-lerna/pull/644) 修改 退換貨查詢 ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`, `store`
+  - [#645](https://github.com/meepshop/meep-lerna/pull/645) 【功能】 新增(自訂)廣告事件 - 彈窗版型商品列表的「加到購物車」 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#646](https://github.com/meepshop/meep-lerna/pull/646) 修改 匯款通知 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- [#647](https://github.com/meepshop/meep-lerna/pull/647) 【個別店家】 新架構 - 前台訂單明細空白 ([@piovischioh](https://github.com/piovischioh))
+- [#648](https://github.com/meepshop/meep-lerna/pull/648) 【個別店家】 新架構 - 前台訂單管理轉圈圈，無法查詢訂單 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.25.4 (2019-07-31)
 
 #### :bug: Bug Fix
