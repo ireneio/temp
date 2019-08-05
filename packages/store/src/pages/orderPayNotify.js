@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import MemberOrderPayNotify from '@meepshop/meep-ui/lib/memberOrderPayNotify';
+import MemberOrderPayNotify from '@store/member-order-pay-notify';
 
 import { Container, TrackingCodeHead, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
@@ -81,6 +81,7 @@ class OrderPayNotify extends React.Component {
       colors,
       title,
       fbAppId,
+      orderId,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -99,7 +100,7 @@ class OrderPayNotify extends React.Component {
         />
         <Container {...this.props}>
           <MemberHeader title={title} goBackToOrders colors={colors}>
-            <MemberOrderPayNotify />
+            <MemberOrderPayNotify orderId={orderId} />
           </MemberHeader>
         </Container>
       </>
