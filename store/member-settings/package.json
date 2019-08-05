@@ -4,13 +4,13 @@
   "description": "Member settings for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.25.3",
+  "version": "0.25.5",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@store/address-cascader": "^0.25.3",
-    "@store/apollo-client-resolvers": "^0.25.3",
-    "@store/utils": "^0.25.1",
+    "@store/address-cascader": "^0.25.5",
+    "@store/apollo-client-resolvers": "^0.25.5",
+    "@store/utils": "^0.25.5",
     "moment": "^2.22.1"
   },
   "keywords": ["member", "settings", "store"]
