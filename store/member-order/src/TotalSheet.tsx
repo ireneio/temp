@@ -52,7 +52,7 @@ export const totalSheetFragment = gql`
 `;
 
 class TotalSheet extends React.PureComponent<PropsType> {
-  private generateActivityInfo = memoizeOne(() => {
+  private generateActivityInfo = memoizeOne((t: I18nPropsType['t']) => {
     const {
       order: { activityInfo },
     } = this.props;
@@ -85,7 +85,7 @@ class TotalSheet extends React.PureComponent<PropsType> {
                 {
                   id,
                   discountPrice,
-                  title: 'sheet.reward',
+                  title: t('sheet.reward'),
                 },
               ];
 
@@ -96,7 +96,7 @@ class TotalSheet extends React.PureComponent<PropsType> {
                 {
                   id,
                   discountPrice,
-                  title: 'sheet.coupon',
+                  title: t('sheet.coupon'),
                 },
               ];
 
@@ -106,7 +106,8 @@ class TotalSheet extends React.PureComponent<PropsType> {
                 {
                   id,
                   discountPrice,
-                  title: idx(title, _ => _[language]) || '',
+                  title:
+                    idx(title, _ => _[language]) || idx(title, _ => _.zh_TW),
                 },
               ];
           }
@@ -160,9 +161,10 @@ class TotalSheet extends React.PureComponent<PropsType> {
           <div>{c(productPrice)}</div>
         </div>
 
-        {this.generateActivityInfo().map(({ id, title, discountPrice }) => (
-          <div key={id || title}>
-            <div>{t(title)}</div>
+        {this.generateActivityInfo(t).map(({ id, title, discountPrice }) => (
+          // TODO: should not be null
+          <div key={id || 'null id'}>
+            <div>{title}</div>
             <div>{c(-1 * discountPrice)}</div>
           </div>
         ))}
