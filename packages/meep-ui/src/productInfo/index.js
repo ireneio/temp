@@ -38,6 +38,7 @@ export default class ProductInfo extends React.PureComponent {
     cart: PropTypes.shape({}),
     container: PropTypes.string,
     isMobile: PropTypes.bool,
+    type: PropTypes.string,
 
     /** props from module */
     showButton: PropTypes.bool.isRequired,
@@ -59,6 +60,7 @@ export default class ProductInfo extends React.PureComponent {
     cart: null,
     container: '',
     isMobile: null,
+    type: null,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -188,17 +190,21 @@ export default class ProductInfo extends React.PureComponent {
   };
 
   addToCart = () => {
-    const { addCartItems, productData } = this.props;
+    const { addCartItems, productData, type } = this.props;
     const { variantInfo, quantity } = this.state;
 
     this.setState({ isAddingItem: true });
-    addCartItems([
-      {
-        productId: productData.id,
-        variantId: variantInfo.id,
-        quantity,
-      },
-    ]);
+
+    addCartItems(
+      [
+        {
+          productId: productData.id,
+          variantId: variantInfo.id,
+          quantity,
+        },
+      ],
+      type,
+    );
   };
 
   addToWishList = () => {

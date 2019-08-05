@@ -14,7 +14,8 @@ const getSpecsName = specs => {
 
 export default function(eventName, options = {}) {
   switch (eventName) {
-    case 'AddToCart-EC': {
+    case 'AddToCart-EC':
+    case 'AddToCart-EC-Popup': {
       const { cart, payload, pageAdTrackIDs, cname } = options;
       const { products } = cart.categories;
       const { productId, variantId, quantity } = payload.items[0];
@@ -22,15 +23,25 @@ export default function(eventName, options = {}) {
       if (window.fbq && pageAdTrackIDs.fbPixelId) {
         // For: T3163
         if (['beeding', 'bellatest'].includes(cname))
-          window.fbq('trackCustom', 'FKMK', {
+          window.fbq(
+            'trackCustom',
+            eventName === 'AddToCart-EC-Popup' ? 'AddToCart_PopUp' : 'FKMK',
+            {
+              content_ids: [productId],
+              content_type: 'product',
+            },
+          );
+
+        if (eventName === 'AddToCart-EC-Popup')
+          window.fbq('trackCustom', 'AddToCart_PopUp', {
             content_ids: [productId],
             content_type: 'product',
           });
-
-        window.fbq('track', 'AddToCart', {
-          content_ids: [productId],
-          content_type: 'product',
-        });
+        else
+          window.fbq('track', 'AddToCart', {
+            content_ids: [productId],
+            content_type: 'product',
+          });
       }
       /* Google Enhanced Ecommerce */
       if (window.gtag && pageAdTrackIDs.gaID) {
@@ -40,6 +51,7 @@ export default function(eventName, options = {}) {
         );
         const specsName = getSpecsName(theProduct.specs);
         window.gtag('event', 'add_to_cart', {
+          event_label: eventName === 'AddToCart-EC-Popup' ? 'popup' : 'general',
           items: [
             {
               id: theProduct.sku,
@@ -53,6 +65,7 @@ export default function(eventName, options = {}) {
       }
       break;
     }
+
     case 'AddToCart-LP': {
       const {
         id: productId,

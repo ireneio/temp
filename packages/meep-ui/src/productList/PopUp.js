@@ -86,6 +86,7 @@ export default class PopUp extends React.PureComponent {
             showButton={false}
             container="modal-area"
             isMobile={isMobile}
+            type="pop-up"
           />
           {['two', 'all'].indexOf(popUpGalleryView) > -1 && (
             <ProductCollection
