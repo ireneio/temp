@@ -77,7 +77,7 @@ export const resolver = {
             const { template = null, accountInfo = null } =
               idx(node, _ => _.paymentInfo.list[0]) || {};
 
-            if (!template || !accountInfo || !getOrderApplyList)
+            if (!template)
               return {
                 ...edge,
                 node,
@@ -91,7 +91,9 @@ export const resolver = {
                 : {};
 
             // 判斷是否已有申請退換貨
-            const orderApply = (getOrderApplyList.data || []).filter(
+            const orderApply = (
+              idx(getOrderApplyList, _ => _.data) || []
+            ).filter(
               orderApplyElement =>
                 idx(orderApplyElement, _ => _.orderId) ===
                 node.id /** TODO: should not be null */,
