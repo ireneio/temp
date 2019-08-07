@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.25.6 (2019-08-07)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#650](https://github.com/meepshop/meep-lerna/pull/650) 【優化】 電子發票捐贈社福團體愛心碼查詢網址變更([@happycat6323](https://github.com/happycat6323))
+
 ## 0.25.5 (2019-08-05)
 
 #### :rocket: New Feature
