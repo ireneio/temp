@@ -36,6 +36,6 @@ export const ID_NUMBER_CITY_CODE = [
 export const ID_NUMBER_WEIGHTED = [1, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1];
 
 export const INVOICE_SEARCH_LINK =
-  'https://www.einvoice.nat.gov.tw/APMEMBERVAN/XcaOrgPreserveCodeQuery/XcaOrgPreserveCodeQuery?CSRT=4350550699150711492';
+  'https://www.einvoice.nat.gov.tw/APCONSUMER/BTC603W/';
 
 export const EZSHIP_LINK = 'https://map.ezship.com.tw/ezship_map_web.jsp';
