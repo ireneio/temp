@@ -1,0 +1,24 @@
+{
+  "order-no": "注文番号：",
+  "created-on": "注文日：",
+  "product": {
+    "title": "商品名",
+    "spec": "仕様",
+    "quantity": "数量",
+    "price": "価格",
+    "subtotal": "小計"
+  },
+  "reason": "理由",
+  "recede": "戻る",
+  "proceed": "次へ",
+  "warning": {
+    "refund": "商品を一つ以上お選びください",
+    "exchange": "商品を一つ以上お選びください、受取人情報をすべてご記入ください"
+  },
+  "recipient": {
+    "title": "交換品受取人情報",
+    "name": "氏名",
+    "mobile": "携帯電話",
+    "address": "住所"
+  }
+}

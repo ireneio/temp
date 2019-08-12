@@ -1,17 +1,32 @@
+// typescript import
+import { I18nPropsType } from '@store/utils/lib/i18n';
+
+// import
 import React from 'react';
-import PropType from 'prop-types';
 import { gql } from 'apollo-boost';
 import { Input } from 'antd';
+import idx from 'idx';
 
-import { contextProvider } from 'context';
+import { withNamespaces } from '@store/utils/lib/i18n';
 
 import styles from './styles/replaceForm.less';
-import * as LOCALE from './locale';
 
-const { enhancer } = contextProvider('locale');
+// graphql import
+import { RecipientCreateType } from '../../../__generated__/store';
 
-export const replaceFormFragment = gql`
-  fragment replaceFormFragment on RecipientObjectType {
+// typescript definition
+interface PropsType extends I18nPropsType {
+  recipient?: RecipientCreateType;
+  onChange: (value: RecipientCreateType) => void;
+}
+
+interface StateType {
+  [key: string]: string;
+}
+
+// definition
+export const formFragment = gql`
+  fragment formFragment on RecipientObjectType {
     name
     mobile
     address {
@@ -20,37 +35,21 @@ export const replaceFormFragment = gql`
   }
 `;
 
-@enhancer
-export default class ReplaceForm extends React.PureComponent {
-  static propTypes = {
-    recipient: PropType.shape({
-      name: PropType.string.isRequired,
-      mobile: PropType.string.isRequired,
-      address: PropType.shape({
-        streetAddress: PropType.string.isRequired,
-      }).isRequired,
-    }).isRequired,
-    onChange: PropType.func.isRequired,
+class Form extends React.PureComponent<PropsType, StateType> {
+  public state: StateType = {
+    // eslint-disable-next-line react/destructuring-assignment
+    name: idx(this, _ => _.props.recipient.name) || '',
+    // eslint-disable-next-line react/destructuring-assignment
+    mobile: idx(this, _ => _.props.recipient.mobile) || '',
+    // eslint-disable-next-line react/destructuring-assignment
+    address: idx(this, _ => _.props.recipient.address.streetAddress) || '',
   };
 
-  state = {
-    // eslint-disable-next-line react/destructuring-assignment
-    name: this.props.recipient.name || '',
-    // eslint-disable-next-line react/destructuring-assignment
-    mobile: this.props.recipient.mobile || '',
-    // eslint-disable-next-line react/destructuring-assignment
-    address: this.props.recipient.address?.streetAddress || '',
-  };
-
-  componentDidMount() {
-    this.onChange({});
-  }
-
-  componentDidUpdate(prevProps, prevState) {
+  public componentDidUpdate(_prevProps: PropsType, prevState: StateType): void {
     this.onChange(prevState);
   }
 
-  onChange = prevState => {
+  private onChange = (prevState: StateType) => {
     const { onChange } = this.props;
     const { name, mobile, address } = this.state;
 
@@ -68,30 +67,30 @@ export default class ReplaceForm extends React.PureComponent {
       });
   };
 
-  render() {
-    const { transformLocale } = this.props;
+  public render(): React.ReactNode {
+    const { t } = this.props;
 
     return (
       <div className={styles.root}>
-        <h3>{transformLocale(LOCALE.RECIPIENT)}</h3>
+        <h3>{t('recipient.title')}</h3>
 
         {[
           {
             key: 'name',
-            placeholder: LOCALE.RECIPIENT_NAME,
+            placeholder: t('recipient.name'),
           },
           {
             key: 'mobile',
-            placeholder: LOCALE.RECIPIENT_MOBILE,
+            placeholder: t('recipient.mobile'),
           },
           {
             key: 'address',
-            placeholder: LOCALE.RECIPIENT_ADDRESS,
+            placeholder: t('recipient.address'),
           },
         ].map(({ key, placeholder }) => (
           <Input
             key={key}
-            placeholder={transformLocale(placeholder)}
+            placeholder={placeholder}
             value={
               this.state[key] // eslint-disable-line react/destructuring-assignment
             }
@@ -105,3 +104,5 @@ export default class ReplaceForm extends React.PureComponent {
     );
   }
 }
+
+export default withNamespaces('member-order-apply')(Form);

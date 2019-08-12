@@ -1,0 +1,24 @@
+{
+  "order-no": "Order Number: ",
+  "created-on": "Order Date: ",
+  "product": {
+    "title": "Item",
+    "spec": "Spec",
+    "quantity": "QTY",
+    "price": "Price",
+    "subtotal": "Subtotal"
+  },
+  "reason": "Description",
+  "recede": "Back",
+  "proceed": "Next",
+  "warning": {
+    "refund": "Please select item",
+    "exchange": "Please select item and enter recipient info"
+  },
+  "recipient": {
+    "title": "Recipient Info",
+    "name": "Full Name",
+    "mobile": "Mobile",
+    "address": "Address"
+  }
+}

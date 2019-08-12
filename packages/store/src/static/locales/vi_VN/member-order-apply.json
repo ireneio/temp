@@ -1,0 +1,24 @@
+{
+  "order-no": "Số hiệu đơn hàng: ",
+  "created-on": "Ngày đặt hàng: ",
+  "product": {
+    "title": "Tên sản phẩm",
+    "spec": "Quy cách",
+    "quantity": "Số lượng",
+    "price": "Dơn giá",
+    "subtotal": "Tổng"
+  },
+  "reason": "Nguyên nhân",
+  "recede": "Phản Hồi",
+  "proceed": "Bước sau",
+  "warning": {
+    "refund": "Xin chọn ít nhất một mục sản phẩm",
+    "exchange": "Xin chọn ít nhất một mục sản phẩm Và điền đầy đủ thông tin người nhận"
+  },
+  "recipient": {
+    "title": "Thông tin người nhận",
+    "name": "Tên",
+    "mobile": "Điện Thoại",
+    "address": "Địa Chỉ"
+  }
+}

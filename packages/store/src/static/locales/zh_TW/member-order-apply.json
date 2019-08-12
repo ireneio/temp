@@ -1,0 +1,24 @@
+{
+  "order-no": "訂單編號：",
+  "created-on": "訂購日：",
+  "product": {
+    "title": "商品名稱",
+    "spec": "規格",
+    "quantity": "數量",
+    "price": "價格",
+    "subtotal": "小計"
+  },
+  "reason": "原因",
+  "recede": "返回",
+  "proceed": "確認",
+  "warning": {
+    "refund": "請選取至少一項商品",
+    "exchange": "請選取至少一項商品並填寫完整收件人資訊"
+  },
+  "recipient": {
+    "title": "換貨收件人資訊",
+    "name": "姓名",
+    "mobile": "手機",
+    "address": "地址"
+  }
+}

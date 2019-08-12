@@ -1,10 +1,9 @@
-@import '../../constants/styles.less';
-@value phoneMedia from "../../constants/styles.less";
+@import '~@store/utils/lib/styles/variables.less';
 
 .root {
   padding: 40px;
 
-  @media @PHONE_MEDIA {
+  @media @phone-media {
     padding: 40px 0px;
   }
 
@@ -14,10 +13,10 @@
     margin: 0px 0px 30px;
     font-size: 16px;
 
-    @media @PHONE_MEDIA {
+    @media @phone-media {
       padding: 0px 15px;
 
-      & > font:last-child > font {
+      span > span {
         display: none;
       }
     }

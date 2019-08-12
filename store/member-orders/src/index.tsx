@@ -41,9 +41,9 @@ import {
 // graphql import
 import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
 import {
-  viewerOrderFragment,
-  viewerOrderApplyListFragment,
-} from '@store/apollo-client-resolvers/lib/viewer';
+  calculateOrderOrderFragment,
+  calculateOrderOrderApplyListFragment,
+} from '@store/apollo-client-resolvers/lib/utils/calculateOrder';
 import { storeAppListFragment } from '@store/apollo-client-resolvers/lib/StoreAppList';
 
 import { actionsOrderFragment, actionsStoreAppListFragment } from './Actions';
@@ -339,7 +339,7 @@ export default React.memo(() => (
                   status
                 }
                 status
-                ...viewerOrderFragment
+                ...calculateOrderOrderFragment
                 ...actionsOrderFragment
               }
             }
@@ -363,7 +363,7 @@ export default React.memo(() => (
         getOrderApplyList(
           search: { size: 100, sort: [{ field: "createdOn", order: "desc" }] }
         ) {
-          ...viewerOrderApplyListFragment
+          ...calculateOrderOrderApplyListFragment
         }
 
         getStoreAppList {
@@ -373,8 +373,8 @@ export default React.memo(() => (
       }
 
       ${colorListFragment}
-      ${viewerOrderFragment}
-      ${viewerOrderApplyListFragment}
+      ${calculateOrderOrderFragment}
+      ${calculateOrderOrderApplyListFragment}
       ${storeAppListFragment}
       ${actionsOrderFragment}
       ${actionsStoreAppListFragment}
