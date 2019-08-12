@@ -7,6 +7,10 @@
 - `meep-ui`, `store`
   - [#649](https://github.com/meepshop/meep-lerna/pull/649) 修改 退換貨申請 ([@piovischioh](https://github.com/piovischioh))
 
+#### :bug: Bug Fix
+- `store`
+  - [#651](https://github.com/meepshop/meep-lerna/pull/651) 【BUG】新架構/手機版 - 訂單列表位置跑版 ([@piovischioh](https://github.com/piovischioh))
+
 #### Committers: 1
 
 - [@piovischioh](https://github.com/piovischioh)
