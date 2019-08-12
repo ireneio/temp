@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.25.7 (2019-08-12)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#649](https://github.com/meepshop/meep-lerna/pull/649) 修改 退換貨申請 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.25.6 (2019-08-07)
 
 #### :rocket: New Feature
