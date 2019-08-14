@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.25.8 (2019-08-14)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#656](https://github.com/meepshop/meep-lerna/pull/656) 【個案處理】meepShop MAX 極速開店：新增白名單 - mothersarm ([@happycat6323](https://github.com/happycat6323))
+  - [#653](https://github.com/meepshop/meep-lerna/pull/653) 【個別店家】 移除新架構 - 購物車 panel 會員登入畫面客製之文字 -- 阿原 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.25.7 (2019-08-12)
 
 #### :rocket: New Feature
@@ -8,6 +20,7 @@
   - [#649](https://github.com/meepshop/meep-lerna/pull/649) 修改 退換貨申請 ([@piovischioh](https://github.com/piovischioh))
 
 #### :bug: Bug Fix
+
 - `store`
   - [#651](https://github.com/meepshop/meep-lerna/pull/651) 【BUG】新架構/手機版 - 訂單列表位置跑版 ([@piovischioh](https://github.com/piovischioh))
 
