@@ -12,7 +12,6 @@ import {
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
-import TaiwansoapLogin from './special/TaiwansoapLogin';
 import * as styles from './styles/login';
 import * as LOCALE from './locale';
 
@@ -24,7 +23,6 @@ const { Item: FormItem } = Form;
 export default class Login extends React.PureComponent {
   static propTypes = {
     /** context */
-    cname: PropTypes.string,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     transformLocale: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
@@ -40,10 +38,6 @@ export default class Login extends React.PureComponent {
       validateFields: PropTypes.func.isRequired,
     }).isRequired,
     goToInCart: PropTypes.func.isRequired,
-  };
-
-  static defaultProps = {
-    cname: null,
   };
 
   submit = e => {
@@ -64,7 +58,6 @@ export default class Login extends React.PureComponent {
   render() {
     const {
       colors,
-      cname,
       transformLocale,
       goTo,
       fbLogin,
@@ -149,8 +142,6 @@ export default class Login extends React.PureComponent {
             </Button>
           </div>
         </Form>
-
-        {cname !== 'taiwansoap' ? null : <TaiwansoapLogin />}
 
         <div style={[styles.buttonRoot, styles.buttonRootExtend]}>
           <div style={styles.buttonWidth}>
