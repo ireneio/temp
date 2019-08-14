@@ -23,6 +23,7 @@ export const SPECIAL_HIDE_FOOTER = [
   'xmiutc',
   'fionho',
   'jin',
+  'mothersarm',
 ];
 
 export const STORE_APP_PLUGINS = [
