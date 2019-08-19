@@ -86,8 +86,6 @@ export default class Select extends React.PureComponent {
       quantity,
       retailPrice,
       stock,
-      minPurchaseItems,
-      maxPurchaseLimit,
       error,
       onChange,
       productHasError,
@@ -95,7 +93,6 @@ export default class Select extends React.PureComponent {
     } = this.props;
     const { searchValue } = this.state;
 
-    const maxPurchase = maxPurchaseLimit > stock ? stock : maxPurchaseLimit;
     const errorMessage = this.getErrorMessage();
 
     if (errorMessage) {
@@ -105,6 +102,23 @@ export default class Select extends React.PureComponent {
         </td>
       );
     }
+
+    let { minPurchaseItems, maxPurchaseLimit } = this.props;
+
+    // minPurchaseItems 最小需等於 1
+    minPurchaseItems = minPurchaseItems > 0 ? minPurchaseItems : 1;
+
+    // maxPurchaseLimit 最小需等於 minPurchaseItems
+    if (typeof maxPurchaseLimit === 'number') {
+      maxPurchaseLimit =
+        maxPurchaseLimit > minPurchaseItems
+          ? maxPurchaseLimit
+          : minPurchaseItems;
+    } else {
+      maxPurchaseLimit = stock;
+    }
+
+    const maxPurchase = maxPurchaseLimit < stock ? maxPurchaseLimit : stock;
 
     const itemAmount = maxPurchase - minPurchaseItems + 1;
 

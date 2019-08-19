@@ -1,5 +1,29 @@
 import { ORDERABLE, OUT_OF_STOCK, LIMITED } from './constants';
 
+export const reformatVariant = (variantInfo, stockNotificationList) => {
+  let { maxPurchaseLimit, minPurchaseItems } = variantInfo;
+
+  // minPurchaseItems 最小需等於 1
+  minPurchaseItems = minPurchaseItems > 0 ? minPurchaseItems : 1;
+
+  // maxPurchaseLimit 最小需等於 minPurchaseItems
+  if (typeof maxPurchaseLimit === 'number') {
+    maxPurchaseLimit =
+      maxPurchaseLimit > minPurchaseItems ? maxPurchaseLimit : minPurchaseItems;
+  } else {
+    maxPurchaseLimit = variantInfo.stock;
+  }
+
+  return {
+    ...variantInfo,
+    minPurchaseItems,
+    maxPurchaseLimit,
+    productNotice: stockNotificationList.some(
+      item => item.variantId === variantInfo.id,
+    ),
+  };
+};
+
 export const calculateOrderable = (variantInfo, cart, quantity) => {
   const { id, stock, minPurchaseItems, maxPurchaseLimit } = variantInfo;
 
@@ -38,24 +62,5 @@ export const calculateOrderable = (variantInfo, cart, quantity) => {
   }
   return {
     orderable: OUT_OF_STOCK,
-  };
-};
-
-export const reformatVariant = (variantInfo, stockNotificationList) => {
-  let { maxPurchaseLimit, minPurchaseItems } = variantInfo;
-
-  // 防呆
-  // TODO: shouldn't deal this problem here
-  minPurchaseItems = minPurchaseItems > 0 ? minPurchaseItems : 1;
-  maxPurchaseLimit =
-    maxPurchaseLimit > minPurchaseItems ? maxPurchaseLimit : minPurchaseItems;
-
-  return {
-    ...variantInfo,
-    minPurchaseItems,
-    maxPurchaseLimit,
-    productNotice: stockNotificationList.some(
-      item => item.variantId === variantInfo.id,
-    ),
   };
 };
