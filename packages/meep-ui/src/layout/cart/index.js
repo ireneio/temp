@@ -61,7 +61,7 @@ export default class Cart extends React.PureComponent {
         className={styles.root}
         visible={isShowCart}
         onClose={toggleCart(false)}
-        width="100%"
+        width="100vw"
       >
         <AngleRightIcon
           className={styles.angleRightIcon}
