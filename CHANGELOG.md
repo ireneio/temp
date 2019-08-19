@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.25.11 (2019-08-19)
+
+#### :bug: Bug Fix
+
+- [#664](https://github.com/meepshop/meep-lerna/pull/664) 【BUG】Next Admin - 左側列表細項跑版 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.25.10 (2019-08-19)
 
 #### :bug: Bug Fix
