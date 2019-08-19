@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.25.10 (2019-08-19)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#663](https://github.com/meepshop/meep-lerna/pull/663) 【BUG】新架構 - 購物車 panel 問題 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.25.9 (2019-08-19)
 
 #### :boom: Breaking Change
