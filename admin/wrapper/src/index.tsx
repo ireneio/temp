@@ -123,8 +123,8 @@ class Wrapper extends React.Component<PropsType> {
                 }).map(({ src, title, path, sub }: MenuItemType) =>
                   sub ? (
                     <SubMenu
-                      className={styles.submenu}
                       key={title}
+                      popupClassName={styles.submenu}
                       title={<img src={src} alt={t(title)} />}
                     >
                       {sub.map(subitem => (
@@ -161,8 +161,8 @@ class Wrapper extends React.Component<PropsType> {
                   isMerchant,
                 }).map(({ src, title, sub }: MenuItemType) => (
                   <SubMenu
-                    className={styles.submenu}
                     key={title}
+                    popupClassName={styles.submenu}
                     title={
                       <img
                         className={styles.controller}
