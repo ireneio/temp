@@ -6,7 +6,7 @@ const express = require('express');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const nextI18NextMiddleware = require('next-i18next/middleware');
+const { default: nextI18NextMiddleware } = require('next-i18next/middleware');
 
 const { default: nextI18next } = require('@admin/utils/lib/i18n');
 

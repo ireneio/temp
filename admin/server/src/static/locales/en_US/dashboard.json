@@ -1,7 +1,7 @@
 {
-  "payment-dealine": "請於當月 6 號中午 12:00 前完成繳款 (GMT+8)。",
-  "payment-text": "繳款期限如遇假日，則順延至下一個工作天。逾期未付款，系統將會關閉您商店前/後台。",
-  "payment-link": "查詢帳單與付款",
+  "payment-dealine": null,
+  "payment-text": null,
+  "payment-link": null,
   "welcome": "Welcome to meepShop Online Store Platform",
   "pending-order": "Unprocessed Order",
   "not-shipped": "Not yet shipped",

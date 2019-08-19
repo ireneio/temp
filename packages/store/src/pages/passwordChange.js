@@ -21,7 +21,11 @@ class PasswordChange extends Component {
     if (isServer) {
       store.dispatch(Actions.serverOthersInitial(context));
     }
-    return { userAgent, XMeepshopDomain };
+    return {
+      userAgent,
+      XMeepshopDomain,
+      namespacesRequired: ['member-password-change'],
+    };
   };
 
   static propTypes = {

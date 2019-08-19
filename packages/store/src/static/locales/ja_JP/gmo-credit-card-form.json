@@ -5,7 +5,7 @@
   "expire": "有効期限",
   "securityCode": "セキュリティーコード",
   "cardHolderName": "カード名義人",
-  "installment": "期",
+  "installment": null,
   "installments": "分割回数",
   "bank": "分割払いにする銀行",
   "form": {
@@ -13,6 +13,6 @@
     "cardNumberError": "クレジットカード番号ではありません",
     "securityCodeError": "セキュリティーコードではありません"
   },
-  "not-gmo-bank": "此家發卡銀行沒有配合分期，請使用以下銀行的信用卡，或更改付款方式",
+  "not-gmo-bank": null,
   "dot": "、"
 }

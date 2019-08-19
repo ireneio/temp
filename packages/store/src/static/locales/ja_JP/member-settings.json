@@ -1,7 +1,7 @@
 {
   "group-expire-date": {
-    "info": "使用期限",
-    "forever": "永久"
+    "info": null,
+    "forever": null
   },
   "name": "氏名",
   "gender": {

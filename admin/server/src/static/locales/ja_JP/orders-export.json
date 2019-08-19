@@ -1,21 +1,21 @@
 {
-  "title": "表單匯出",
+  "title": null,
   "maskId": {
-    "title": "匯出項目",
-    "placeholder": "請選擇適用群組"
+    "title": null,
+    "placeholder": null
   },
   "fileType": {
-    "title": "檔案格式",
-    "placeholder": "選擇匯出檔案格式"
+    "title": null,
+    "placeholder": null
   },
   "fileName": {
-    "title": "檔案名稱",
-    "placeholder": "輸入檔案名稱（非必填）"
+    "title": null,
+    "placeholder": null
   },
-  "go-back": "返回",
-  "download": "下載",
+  "go-back": null,
+  "download": null,
   "error": {
-    "title": "錯誤",
-    "content": "無資料可下載"
+    "title": null,
+    "content": null
   }
 }

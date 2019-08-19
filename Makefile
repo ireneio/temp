@@ -26,11 +26,6 @@ babel-all:
 babel-changed:
 	@$(call babel-build, $(WATCH), --since $(BRANCH))
 
-## TODO: remove after support next-i18next
-MEEP_UI_VERSION=$(shell grep 'version' ./packages/meep-ui/package.json | cut -d '"' -f 4)
-hotfix-i18n:
-	@npx json -I -f ./store/utils/package.json -e 'this.dependencies={"@meepshop/meep-ui": "^$(MEEP_UI_VERSION)"}'
-
 APOLLO_TYPE=mock-types
 apollo-watch:
 	@$(call apollo,$(APOLLO_TYPE),--watch)
@@ -55,6 +50,7 @@ clean:
 	rm -rf ./.eslintcache
 	rm -rf ./.changelog
 	rm -rf ./*.log
+	rm -rf **/__generated__
 
 release:
 	@yarn lerna-changelog && \

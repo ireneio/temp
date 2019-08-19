@@ -11,6 +11,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const debug = require('debug')('next-store:server');
 const uuid = require('uuid/v4');
+const { default: nextI18NextMiddleware } = require('next-i18next/middleware');
+
+const { default: nextI18next } = require('@store/utils/lib/i18n');
 
 const { publicRuntimeConfig } = require('../../next.config');
 const routes = require('./routes');
@@ -75,6 +78,12 @@ module.exports = app.prepare().then(
         debug(`id=${req.logId}, compression=out`);
       });
       server.use(compression());
+      server.use(async (req, res, next) => {
+        debug(`id=${req.logId}, nextI18next=in`);
+        await next();
+        debug(`id=${req.logId}, nextI18next=out`);
+      });
+      server.use(nextI18NextMiddleware(nextI18next));
       server.use(async (req, res, next) => {
         debug(`id=${req.logId}, modifier=in`);
         await next();

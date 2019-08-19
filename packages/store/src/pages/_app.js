@@ -12,6 +12,7 @@ import { ApolloProvider } from 'react-apollo';
 import NProgress from 'nprogress';
 import { notification } from 'antd';
 
+import { appWithTranslation } from '@store/utils/lib/i18n';
 import { CurrencyProvider } from '@store/currency';
 
 import { Error, CloseView, StoreNotExistsView } from 'components';
@@ -111,7 +112,7 @@ class MyApp extends App {
           data?.data?.getStoreList?.data?.[0]?.setting?.locale?.[0] ||
           'zh_TW';
         /* The store is closed */
-        if (storeStatus === 0) return { closed: true, locale };
+        if (storeStatus === 0) return { closed: true, locale, pageProps };
       }
 
       /**
@@ -125,7 +126,7 @@ class MyApp extends App {
             httpOnly: true,
           });
           res.redirect(302, '/');
-          return {};
+          return { pageProps };
         }
         const {
           memberReducer: { isLogin },
@@ -136,7 +137,7 @@ class MyApp extends App {
       }
 
       /* The store does not exist. */
-      if (response.status === 403) return { storeNotFound: true };
+      if (response.status === 403) return { storeNotFound: true, pageProps };
 
       if (Component.getInitialProps) {
         pageProps = await Component.getInitialProps({
@@ -145,7 +146,16 @@ class MyApp extends App {
           userAgent,
         });
       }
-      return { pageProps, currency: req?.currency || 'TWD' };
+      return {
+        pageProps: {
+          ...pageProps,
+          namespacesRequired: [
+            ...(pageProps.namespacesRequired || []),
+            'common',
+          ],
+        },
+        currency: req?.currency || 'TWD',
+      };
     } catch (error) {
       console.log(error);
       if (!isServer) {
@@ -155,7 +165,7 @@ class MyApp extends App {
           stack: error.stack,
         });
       }
-      return { error: { status: 'API_ERROR' } };
+      return { error: { status: 'API_ERROR' }, pageProps };
     }
   }
 
@@ -218,4 +228,6 @@ class MyApp extends App {
   }
 }
 
-export default withApollo(withRedux(configureStore)(withReduxSaga(MyApp)));
+export default withApollo(
+  withRedux(configureStore)(withReduxSaga(appWithTranslation(MyApp))),
+);

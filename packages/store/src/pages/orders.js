@@ -21,7 +21,11 @@ class Orders extends React.Component {
 
     if (isServer) store.dispatch(Actions.serverOthersInitial(context));
 
-    return { userAgent, XMeepshopDomain };
+    return {
+      userAgent,
+      XMeepshopDomain,
+      namespacesRequired: ['member-orders'],
+    };
   };
 
   static propTypes = {

@@ -27,7 +27,12 @@ class OrderApplyList extends React.Component {
     if (isServer) {
       store.dispatch(Actions.serverOthersInitial(context));
     }
-    return { orderId, userAgent, XMeepshopDomain };
+    return {
+      orderId,
+      userAgent,
+      XMeepshopDomain,
+      namespacesRequired: ['member-order-applications'],
+    };
   };
 
   static propTypes = {

@@ -19,7 +19,11 @@ class Wishlist extends Component {
     if (isServer) {
       store.dispatch(Actions.serverOthersInitial(context));
     }
-    return { userAgent, XMeepshopDomain };
+    return {
+      userAgent,
+      XMeepshopDomain,
+      namespacesRequired: ['member-wish-list'],
+    };
   };
 
   static propTypes = {

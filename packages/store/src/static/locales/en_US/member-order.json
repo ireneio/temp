@@ -1,7 +1,7 @@
 {
   "order-number": "Order Number: ",
   "created-on": "Order Date: ",
-  "not-found": "無此訂單，請確認是否登入正確的帳號。",
+  "not-found": null,
   "product": {
     "title": "Item",
     "spec": "Spec",
@@ -16,7 +16,7 @@
     "shipment": "Shipping Fee",
     "free-shipment": "Free",
     "payment": "Processing Fee",
-    "adjustment": "訂單變更",
+    "adjustment": null,
     "total": "Total",
     "reward": "Reward Points",
     "coupon": "Coupon Code"

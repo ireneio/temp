@@ -27,7 +27,12 @@ class OrderPayNotify extends React.Component {
     if (isServer) {
       store.dispatch(Actions.serverOthersInitial(context));
     }
-    return { orderId, userAgent, XMeepshopDomain };
+    return {
+      orderId,
+      userAgent,
+      XMeepshopDomain,
+      namespacesRequired: ['member-order-pay-notify'],
+    };
   };
 
   static propTypes = {

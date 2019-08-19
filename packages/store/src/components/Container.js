@@ -8,6 +8,7 @@ import { UserAgent } from 'fbjs';
 import { notification } from 'antd';
 
 import Layout from '@meepshop/meep-ui/lib/layout';
+import { i18n } from '@store/utils/lib/i18n';
 import withCurrency from '@store/currency';
 
 import { getJoinedUser, getStoreAppList } from 'selectors';
@@ -144,6 +145,7 @@ class Container extends React.Component {
     const { setLocale } = this.props;
 
     document.cookie = `locale=${id}; path=/`;
+    i18n.changeLanguage(id);
     setLocale(id);
   };
 

@@ -26,7 +26,12 @@ class Order extends React.Component {
     } = context;
 
     if (isServer) store.dispatch(Actions.serverOthersInitial(context));
-    return { orderId, userAgent, XMeepshopDomain };
+    return {
+      orderId,
+      userAgent,
+      XMeepshopDomain,
+      namespacesRequired: ['member-order'],
+    };
   };
 
   static propTypes = {

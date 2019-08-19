@@ -1,7 +1,7 @@
 {
   "order-number": "Số đơn hàng: ",
   "created-on": "Ngày đặt hàng: ",
-  "not-found": "無此訂單，請確認是否登入正確的帳號。",
+  "not-found": null,
   "product": {
     "title": "Số hiệu/ Tên sản phẩm",
     "spec": "Quy cách",
@@ -16,7 +16,7 @@
     "shipment": "Phí giao hàng",
     "free-shipment": "Miễn phí vận chuyển",
     "payment": "Phí giao dịch",
-    "adjustment": "訂單變更",
+    "adjustment": null,
     "total": "Tổng số đơn hàng",
     "reward": "Tiền mua hàng",
     "coupon": "Mã khuyến mãi"

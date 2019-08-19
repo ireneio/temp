@@ -5,7 +5,7 @@
   "expire": "Expiry Date'",
   "securityCode": "CVV",
   "cardHolderName": "Name on Card",
-  "installment": "Installment",
+  "installment": null,
   "installments": "Payment Installment",
   "bank": "Bank",
   "form": {
@@ -13,6 +13,6 @@
     "cardNumberError": "Invalid card number",
     "securityCodeError": "Invalid CVV"
   },
-  "not-gmo-bank": "此家發卡銀行沒有配合分期，請使用以下銀行的信用卡，或更改付款方式",
+  "not-gmo-bank": null,
   "dot": "、"
 }

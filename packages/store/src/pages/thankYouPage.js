@@ -25,7 +25,12 @@ class ThankYouPage extends React.Component {
     // FIXME: remove after checkout using apollo-client
     else client().resetStore();
 
-    return { orderId, userAgent, XMeepshopDomain };
+    return {
+      orderId,
+      userAgent,
+      XMeepshopDomain,
+      namespacesRequired: ['thank-you-page'],
+    };
   };
 
   static propTypes = {

@@ -71,19 +71,19 @@ class AddressCascader extends React.PureComponent<PropsType> {
 
   private getOptions = (
     options: OptionsType[],
-    i18n: PropsType['i18n'],
+    language: PropsType['i18n']['language'],
   ): CascaderOptionType[] =>
     options.map(({ __typename, id, name, children, ...data }) => ({
       ...data,
       __typename,
       value: id,
-      label: name[i18n.language],
+      label: name[language],
       isLeaf:
         (__typename === 'Country' && id !== 'Taiwan') || __typename === 'Area',
       children:
         !children || children.length === 0
           ? undefined
-          : this.getOptions(children, i18n),
+          : this.getOptions(children, language),
     }));
 
   private getCountriesOptions = memoizeOne(this.getOptions);
@@ -256,7 +256,7 @@ class AddressCascader extends React.PureComponent<PropsType> {
               Object.values(country.name).includes(lock),
             ),
           ),
-      i18n,
+      i18n.language,
     );
 
     // TODO remove after using real schema

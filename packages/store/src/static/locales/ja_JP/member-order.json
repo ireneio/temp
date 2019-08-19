@@ -1,7 +1,7 @@
 {
   "order-number": "注文番号：",
   "created-on": "注文日：",
-  "not-found": "無此訂單，請確認是否登入正確的帳號。",
+  "not-found": null,
   "product": {
     "title": "商品番号/品名",
     "spec": "仕様",
@@ -16,7 +16,7 @@
     "shipment": "送料",
     "free-shipment": "送料無料",
     "payment": "決済手数料",
-    "adjustment": "訂單變更",
+    "adjustment": null,
     "total": "注文合計金額",
     "reward": "ポイント",
     "coupon": "クーポンコード"

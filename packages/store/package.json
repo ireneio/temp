@@ -34,6 +34,7 @@
     "htmlescape": "^1.1.1",
     "http-status": "^1.3.2",
     "isomorphic-unfetch": "^3.0.0",
+    "next-i18next": "^0.37.0",
     "next-redux-saga": "^3.0.0-beta.1",
     "next-redux-wrapper": "^2.0.0-beta.6",
     "next-routes": "^1.2.0",

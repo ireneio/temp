@@ -13,12 +13,15 @@ export interface I18nPropsType {
 }
 
 // definition
-const i18n = new NextI18Next({
+const nextI18next = new NextI18Next({
   defaultLanguage: 'zh_TW',
   otherLanguages: ['en_US', 'ja_JP', 'vi_VN'],
   localePath: 'src/static/locales',
+  // we use 'null' to fall back
+  fallbackLng: 'zh_TW',
+  returnNull: false,
 });
 
-export const { withNamespaces, appWithTranslation } = i18n;
+export const { withNamespaces, appWithTranslation, i18n } = nextI18next;
 
-export default i18n;
+export default nextI18next;
