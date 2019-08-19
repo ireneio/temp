@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.25.9 (2019-08-19)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#654](https://github.com/meepshop/meep-lerna/pull/654) next-store 使用 next-i18next ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- `store`
+  - [#654](https://github.com/meepshop/meep-lerna/pull/654) next-store 使用 next-i18next ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#661](https://github.com/meepshop/meep-lerna/pull/661) (@meepshop/front-end) Upgrade less version, lock less-loader version ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#658](https://github.com/meepshop/meep-lerna/pull/658) 【BUG】 後台 - 商品庫存大於 1，但前台 - 購買數量僅顯示 1 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.25.8 (2019-08-14)
 
 #### :rocket: New Feature
