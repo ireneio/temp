@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.25.12 (2019-08-20)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#665](https://github.com/meepshop/meep-lerna/pull/665) 【BUG】新架構/IE 瀏覽器 - 前台顯示異常 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.25.11 (2019-08-19)
 
 #### :bug: Bug Fix
