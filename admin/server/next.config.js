@@ -20,6 +20,7 @@ module.exports = withSourceMaps(
       withLess(
         withBundleAnalyzer(
           withTM({
+            transpileModules: ['next-i18next'],
             pageExtensions: ['js', 'ts', 'tsx'],
             useFileSystemPublicRoutes: false,
             publicRuntimeConfig: {
