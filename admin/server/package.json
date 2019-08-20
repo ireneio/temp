@@ -34,7 +34,11 @@
     "less": "^3.10.1",
     "moment": "^2.22.2",
     "moment-locales-webpack-plugin": "^1.0.7",
-    "next-images": "^0.10.2"
+    "next-images": "^0.10.2",
+    "next-transpile-modules": "^2.3.1"
   },
-  "keywords": ["admin", "meepshop"]
+  "keywords": [
+    "admin",
+    "meepshop"
+  ]
 }
