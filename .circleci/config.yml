@@ -64,6 +64,11 @@ jobs:
       - run: yarn lerna bootstrap
 
       - run:
+          name: Check locale files
+          command: |
+            yarn lerna exec "node ../../.circleci/bin/localeNotifier.js" --stream --scope @meepshop/store --scope @admin/server
+
+      - run:
           name: Check code style
           command: |
             #TODO: remove after removing @meesphop/meep-ui
