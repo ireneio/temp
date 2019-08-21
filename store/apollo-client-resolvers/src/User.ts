@@ -19,7 +19,6 @@ interface UserType {
 
 // definition
 export const resolver = {
-  Query: {},
   User: {
     tel: ({ additionalInfo }: UserType) =>
       idx(additionalInfo, _ => _.tel) || null,

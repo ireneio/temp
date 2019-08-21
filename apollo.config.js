@@ -5,6 +5,7 @@ switch (process.env.APOLLO_TYPE) {
     includes.push(
       './store/apollo-client-resolvers/schemas/*.graphql',
       './store/**/src/**/*.{ts,tsx}',
+      './store/**/mock.{ts,tsx}',
     );
     break;
 
@@ -12,6 +13,7 @@ switch (process.env.APOLLO_TYPE) {
     includes.push(
       './admin/apollo-client-resolvers/schemas/*.graphql',
       './admin/**/src/**/*.{ts,tsx}',
+      './admin/**/mock.{ts,tsx}',
     );
     break;
 

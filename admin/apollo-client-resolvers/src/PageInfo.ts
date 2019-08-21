@@ -16,7 +16,6 @@ const fragment = gql`
 `;
 
 export const resolver = {
-  Query: {},
   Mutation: {
     setCurrent: (
       _: unknown,

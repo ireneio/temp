@@ -1,11 +1,6 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import getConfig from 'next/config';
 import htmlescape from 'htmlescape';
-
-const {
-  publicRuntimeConfig: { VERSION },
-} = getConfig();
 
 export default class MyDocument extends Document {
   static async getInitialProps({ req, res, renderPage }) {
@@ -39,11 +34,6 @@ export default class MyDocument extends Document {
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
 
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-          <link
-            rel="stylesheet"
-            href={`/_next/static/style.css?v=${VERSION}`}
-          />
         </Head>
 
         <body id="meepshop">

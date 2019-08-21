@@ -1,3 +1,6 @@
+// typescript import
+import { Resolvers } from 'apollo-client/core/types';
+
 // import
 import * as AddressService from './AddressService';
 import * as ColorList from './ColorList';
@@ -10,6 +13,8 @@ import * as viewer from './viewer';
 // definition
 export const initializeCache = (): void => {};
 
+export const introspectionQueryResultDataType = [];
+
 export default [
   AddressService.resolver,
   ColorList.resolver,
@@ -19,15 +24,20 @@ export default [
   User.resolver,
   viewer.resolver,
 ].reduce(
-  (result, { Query, ...resolver }) => ({
+  (result, { Query, Mutation, ...resolver }: Resolvers) => ({
     ...result,
     ...resolver,
     Query: {
       ...result.Query,
       ...Query,
     },
+    Mutation: {
+      ...result.Mutation,
+      ...Mutation,
+    },
   }),
   {
     Query: {},
+    Mutation: {},
   },
 );

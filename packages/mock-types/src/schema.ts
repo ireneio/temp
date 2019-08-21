@@ -97,7 +97,7 @@ addMockFunctionsToSchema({
     WishlistProduct,
     Timestamp: () => moment().unix(),
     DateTime: () => moment().format(),
-    JSON: data => data,
+    JSON: (data, _, __, { fieldName }) => data[fieldName],
     URL: () =>
       'https://res.cloudinary.com/cakeresume/image/upload/s--Lv6sj1oB--/c_pad,fl_png8,h_200,w_200/v1509504375/pcotebjqdkfuqbvbt4xc.png',
   },

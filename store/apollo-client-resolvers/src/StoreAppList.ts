@@ -15,7 +15,6 @@ export const storeAppListFragment = gql`
 `;
 
 export const resolver = {
-  Query: {},
   StoreAppList: {
     isPluginInstalled: (
       { data }: storeAppListFragmentType,

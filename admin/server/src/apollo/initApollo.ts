@@ -7,12 +7,16 @@ import { DefaultQuery } from 'next/router';
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
+import { IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 import getConfig from 'next/config';
 import Router from 'next/router';
 import { notification } from 'antd';
 import idx from 'idx';
 
-import resolvers, { initializeCache } from '@admin/apollo-client-resolvers';
+import resolvers, {
+  initializeCache,
+  introspectionQueryResultDataType,
+} from '@admin/apollo-client-resolvers';
 
 import shouldPrintError from './shouldPrintError';
 
@@ -39,6 +43,13 @@ const create = (
 ): ApolloClient<NormalizedCacheObject> => {
   const cache = new InMemoryCache({
     dataIdFromObject: ({ id }) => id,
+    fragmentMatcher: new IntrospectionFragmentMatcher({
+      introspectionQueryResultData: {
+        __schema: {
+          types: introspectionQueryResultDataType,
+        },
+      },
+    }),
   }).restore(initialState || {});
 
   initializeCache(cache);

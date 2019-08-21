@@ -16,7 +16,6 @@ interface RecipientObjectType {
 
 // definition
 export const resolver = {
-  Query: {},
   RecipientObjectType: {
     postalCode: ({ address }: RecipientObjectType) =>
       idx(address, _ => _.postalCode) || null,

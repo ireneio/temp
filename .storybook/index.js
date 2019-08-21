@@ -17,7 +17,7 @@ import '${
     /@admin/.test(name) ? '@admin' : '@store'
   }/utils/lib/styles/base.less';
 import MockTypes from '@meepshop/mock-types';
-import resolvers, { initializeCache } from '${
+import * as resolvers from '${
     /@admin/.test(name) ? '@admin' : '@store'
   }/apollo-client-resolvers';
 
@@ -30,7 +30,7 @@ import props from '${path.resolve('./mock.ts')}';
 
 storiesOf('${name}', module)
   .add('demo', () => (
-    <MockTypes resolvers={resolvers} initializeCache={initializeCache}>
+    <MockTypes {...resolvers} >
       <Component {...props} />
     </MockTypes>
   ));`;
@@ -40,7 +40,7 @@ storiesOf('${name}', module)
 
 storiesOf('${name}', module)
   .add('demo', () => (
-    <MockTypes resolvers={resolvers} initializeCache={initializeCache}>
+    <MockTypes {...resolvers} >
       <Component />
     </MockTypes>
   ));`;
@@ -49,7 +49,7 @@ storiesOf('${name}', module)
 
 storiesOf('${name}', module)
   .add('demo', () => (
-    <MockTypes resolvers={resolvers} initializeCache={initializeCache}>
+    <MockTypes {...resolvers} >
       <Component />
     </MockTypes>
   ));`;

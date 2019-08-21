@@ -1,6 +1,5 @@
 // import typescript
-import { InMemoryCache } from 'apollo-boost';
-import { Resolvers } from 'apollo-client/core/types';
+import { PropsType } from './index';
 
 // import
 import React from 'react';
@@ -14,10 +13,7 @@ import MockTypes from './index';
 // definition
 export default (
   node: React.ReactNode,
-  {
-    default: resolvers,
-    initializeCache,
-  }: { default: Resolvers; initializeCache: (cache: InMemoryCache) => void },
+  resolvers: PropsType,
   callback:
     | ((
         wrapper: ReactWrapper<unknown, unknown>,
@@ -26,11 +22,7 @@ export default (
     | undefined = emptyFunction.thatReturnsTrue,
 ) => {
   mock.init();
-  mount(
-    <MockTypes resolvers={resolvers} initializeCache={initializeCache}>
-      {node}
-    </MockTypes>,
-  );
+  mount(<MockTypes {...resolvers}>{node}</MockTypes>);
 
   describe.each(
     cartesianProduct(
@@ -48,11 +40,7 @@ ${mock.tracking.map(type => `  ${type}: %i`).join('\n')}
     (...trackingIndex) => {
       mock.trackingIndex = trackingIndex;
 
-      const wrapper = mount(
-        <MockTypes resolvers={resolvers} initializeCache={initializeCache}>
-          {node}
-        </MockTypes>,
-      );
+      const wrapper = mount(<MockTypes {...resolvers}>{node}</MockTypes>);
 
       beforeAll(async () => {
         await new Promise(resolve => {

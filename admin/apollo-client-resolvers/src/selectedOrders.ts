@@ -74,7 +74,6 @@ export const initializeCache = (cache: InMemoryCache): void => {
 };
 
 export const resolver = {
-  Query: {},
   Mutation: {
     setOrdersToSelectedOrders: (
       _: unknown,

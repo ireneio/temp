@@ -1,6 +1,7 @@
 // import typescript
 import { NextLink } from 'apollo-link';
 import { Resolvers } from 'apollo-client/core/types';
+import { IntrospectionResultData } from 'apollo-cache-inmemory';
 
 // import
 import React from 'react';
@@ -8,6 +9,7 @@ import { ApolloClient, InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloLink, Observable } from 'apollo-link';
 import { onError } from 'apollo-link-error';
+import { IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 import { SchemaLink } from 'apollo-link-schema';
 import { Drawer, Button, notification } from 'antd';
 
@@ -19,6 +21,12 @@ import mock from './mock';
 import styles from './styles/index.less';
 
 // typescript definition
+export interface PropsType {
+  initializeCache: (cache: InMemoryCache) => void;
+  introspectionQueryResultDataType: IntrospectionResultData['__schema']['types'];
+  default: Resolvers;
+}
+
 interface StateType {
   mockTypes: string[];
   visibleDrawer: boolean;
@@ -28,10 +36,7 @@ interface StateType {
 mock.init();
 
 export default class MockTypes extends React.PureComponent<
-  {
-    resolvers: Resolvers;
-    initializeCache: (cache: InMemoryCache) => void;
-  },
+  PropsType,
   StateType
 > {
   public state: StateType = {
@@ -40,9 +45,20 @@ export default class MockTypes extends React.PureComponent<
   };
 
   private client = (() => {
-    const { resolvers, initializeCache } = this.props;
+    const {
+      initializeCache,
+      introspectionQueryResultDataType,
+      default: resolvers,
+    } = this.props;
     const cache = new InMemoryCache({
       dataIdFromObject: ({ id }) => id,
+      fragmentMatcher: new IntrospectionFragmentMatcher({
+        introspectionQueryResultData: {
+          __schema: {
+            types: introspectionQueryResultDataType,
+          },
+        },
+      }),
     });
 
     initializeCache(cache);
