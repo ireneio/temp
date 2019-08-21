@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.25.13 (2019-08-21)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#667](https://github.com/meepshop/meep-lerna/pull/667) (@meepshop/front-end) Add locale notifier ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#660](https://github.com/meepshop/meep-lerna/pull/660) 【BUG】新架構 - 商品規格 dropdown menu 的箭頭與前面文字無間距 ([@piovischioh](https://github.com/piovischioh))
+- `mock-types`, `store`
+  - [#659](https://github.com/meepshop/meep-lerna/pull/659) 修正前後台 apollo-client 的一些 bug ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#666](https://github.com/meepshop/meep-lerna/pull/666) (@admin/server): add lost config option ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.25.12 (2019-08-20)
 
 #### :bug: Bug Fix
