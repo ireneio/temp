@@ -56,7 +56,7 @@ export const modalStyle = colors => ({
       '.ant-modal-body': {
         borderRadius: '0',
         maxHeight: 'unset',
-        height: 'calc(100% - 55px)',
+        height: 'calc(100% - 105px)',
         paddingBottom: '50px',
         marginBottom: '0',
       },

@@ -4,6 +4,9 @@ export const infoStyle = colors => ({
   color: colors[3],
 
   // ant-select
+  '.ant-select': {
+    minWidth: '60px',
+  },
   '.ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active': {
     boxShadow: 'none',
   },
@@ -16,9 +19,7 @@ export const infoStyle = colors => ({
   },
   '.ant-select-selection__rendered': {
     overflow: 'hidden',
-  },
-  '.ant-select-search--inline': {
-    width: 'calc(100% - 12px)',
+    marginRight: '30px',
   },
   '.ant-select-arrow': {
     color: colors[3],
@@ -41,6 +42,8 @@ export const infoStyle = colors => ({
   '.ant-select-selection-selected-value': {
     whiteSpace: 'unset',
     wordBreak: 'break-all',
+    width: '100%',
+    textAlign: 'center',
   },
 
   // ant-modal

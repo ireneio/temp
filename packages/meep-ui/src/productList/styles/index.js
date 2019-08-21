@@ -20,6 +20,9 @@ export const listStyle = (colors, isGrid) => ({
     color: colors[3],
     borderColor: colors[3],
   },
+  '.ant-select-selection__rendered': {
+    marginRight: '30px',
+  },
   '.ant-select-arrow': {
     color: colors[3],
   },
@@ -114,7 +117,7 @@ export const modalStyle = colors => ({
       '.ant-modal-body': {
         borderRadius: '0',
         maxHeight: 'unset',
-        height: 'calc(100% - 55px)',
+        height: 'calc(100% - 105px)',
         paddingBottom: '50px',
         marginBottom: '0',
       },

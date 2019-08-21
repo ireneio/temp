@@ -95,7 +95,6 @@ export default class QuantityButton extends React.Component {
 
         return (
           <Select
-            style={{ minWidth: '60px' }}
             showSearch
             dropdownMatchSelectWidth={false}
             dropdownClassName={name}
