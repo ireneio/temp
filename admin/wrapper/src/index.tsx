@@ -223,7 +223,6 @@ const WrapperWithData = ({
             adminStatus
             domain
             defaultDomain
-            locale
             setting {
               activityVersion
             }

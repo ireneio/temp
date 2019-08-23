@@ -103,4 +103,6 @@ i18n.use(reactI18nextModule).init({
 
 export default class NextI18Next {
   public withNamespaces = withNamespaces;
+
+  public i18n = i18n;
 }

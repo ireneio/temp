@@ -3,6 +3,8 @@ import { NormalizedCacheObject } from 'apollo-boost';
 import { NextContext } from 'next';
 import { DefaultQuery } from 'next/router';
 
+import { CustomReq } from './withApollo';
+
 // import
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
 import { ApolloLink } from 'apollo-link';
@@ -19,16 +21,6 @@ import resolvers, {
 } from '@admin/apollo-client-resolvers';
 
 import shouldPrintError from './shouldPrintError';
-
-// typescript definition
-export interface CustomReq {
-  cookies?: {
-    'x-meepshop-authorization-token': string;
-  };
-  headers?: {
-    host: string;
-  };
-}
 
 // definition
 const {
