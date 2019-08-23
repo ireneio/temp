@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.25.15 (2019-08-23)
+
+#### :bug: Bug Fix
+
+- [#670](https://github.com/meepshop/meep-lerna/pull/670) 同步 admin 新舊架構語系設定 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.25.14 (2019-08-23)
 
 #### :rocket: New Feature
