@@ -95,7 +95,6 @@ module.exports = app.prepare().then(
           req.headers['x-meepshop-domain'] = req.get('host');
           req.headers['x-meepshop-authorization-token'] =
             req.cookies['x-meepshop-authorization-token'] || null;
-          req.locale = req.cookies.locale;
           req.currency = req.cookies.currency;
           delete req.cookies;
           next();

@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { getDataFromTree } from 'react-apollo';
 
 import initApollo from './initApollo';
+import changeLanguage from './changeLanguage';
 
 export default App =>
   class WithApollo extends React.Component {
@@ -18,6 +19,16 @@ export default App =>
         ctx: { res },
       } = ctx;
       const apollo = initApollo({}, ctx.ctx);
+
+      if (!process.browser) {
+        try {
+          await changeLanguage(apollo, ctx.ctx);
+        } catch (e) {
+          // eslint-disable-next-line no-console
+          console.error('Error while changing language', e);
+        }
+      }
+
       const appProps = await App?.getInitialProps(ctx);
 
       if (res?.finished) return {};

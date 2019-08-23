@@ -144,7 +144,6 @@ class Container extends React.Component {
   setLocale = id => {
     const { setLocale } = this.props;
 
-    document.cookie = `locale=${id}; path=/`;
     i18n.changeLanguage(id);
     setLocale(id);
   };
