@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.25.14 (2019-08-23)
+
+#### :rocket: New Feature
+
+- [#668](https://github.com/meepshop/meep-lerna/pull/668) (@meepshop/front-end) Modify locale notifier ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#672](https://github.com/meepshop/meep-lerna/pull/672) 【BUG】 前台語系越南文變成中文 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#668](https://github.com/meepshop/meep-lerna/pull/668) (@meepshop/front-end) Modify locale notifier ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.25.13 (2019-08-21)
 
 #### :rocket: New Feature
