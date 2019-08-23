@@ -3,10 +3,8 @@
 const path = require('path');
 const invariant = require('fbjs/lib/invariant');
 
-const { version } = require(path.resolve(
-  process.argv[2] || process.cwd(),
-  './package.json',
-));
+// eslint-disable-next-line import/no-dynamic-require
+const { version } = require(path.resolve(process.cwd(), './package.json'));
 
 invariant(
   process.env.CIRCLE_TAG ||
@@ -15,6 +13,7 @@ invariant(
   `CIRCLE_TAG can not be undefined, or branch name must be \`test-\``,
 );
 
+// eslint-disable-next-line no-console
 console.log(
   process.env.TEST_VERSION || /^test-.*/.test(process.env.CIRCLE_BRANCH)
     ? true

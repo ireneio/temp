@@ -13,6 +13,12 @@ const stories = [
     source: require('../README.md').default,
   },
   {
+    name: '@meepshop/front-end/circleci',
+    pattern: /\.circleci$/,
+    path: './.circleci',
+    source: require('../.circleci/README.md').default,
+  },
+  {
     name: '@meepshop/end-to-end',
     pattern: /end-to-end$/,
     path: './packages/end-to-end/',

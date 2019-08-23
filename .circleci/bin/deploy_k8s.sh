@@ -44,12 +44,4 @@ if [[ $CIRCLE_TAG =~ ^v[0-9.]*$ ]]; then
     \"activity\": \"release bot\",
     \"title\": \"$PACKAGE_NAME: $VERSION\"
   }" https://hooks.glip.com/webhook/57916ea2-14b4-488c-8cb9-95efe808cae2
-
-  # locale bot
-  curl -H 'Content-Type: application/json' -d "{
-    \"icon\": \"https://res.cloudinary.com/cakeresume/image/upload/s--Lv6sj1oB--/c_pad,fl_png8,h_200,w_200/v1509504375/pcotebjqdkfuqbvbt4xc.png\",
-    \"activity\": \"locale bot\",
-    \"title\": \"$PACKAGE_NAME: $VERSION\"
-  }" https://hooks.glip.com/webhook/a86a81ec-fbd0-4a7c-8f34-2135d18d1309
-  node ../../.circleci/bin/localeNotifier.js --send
 fi

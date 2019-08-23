@@ -66,7 +66,11 @@ jobs:
       - run:
           name: Check locale files
           command: |
-            yarn lerna exec "node ../../.circleci/bin/localeNotifier.js" --stream --scope @meepshop/store --scope @admin/server
+            yarn lerna exec \
+              "node ${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/localeNotifier.js" \
+              --stream \
+              --scope @meepshop/store \
+              --scope @admin/server
 
       - run:
           name: Check code style
@@ -119,6 +123,14 @@ jobs:
       - run: yarn lerna bootstrap
       - setup_remote_docker
       - run: *deploy-docker
+      - run:
+          name: Send locale notifier
+          command: |
+            yarn lerna exec \
+              "node ${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/localeNotifier.js --send" \
+              --stream \
+              --scope @meepshop/store \
+              --scope @admin/server
 
   deploy-test:
     <<: *defaults

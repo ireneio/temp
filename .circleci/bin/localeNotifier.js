@@ -59,25 +59,6 @@ const findNullLocales = (filename, data, nullLocales = [], preKey = []) => {
   }, nullLocales);
 };
 
-const locales = LOCAL_KEYS.reduce(
-  (result, locale) =>
-    fs
-      .readdirSync(path.resolve(ROOT_FOLDER, locale))
-      .filter(filename => /\.json$/.test(filename))
-      .reduce(
-        (prevLocales, filename) => ({
-          ...prevLocales,
-          [filename.replace(/\.json$/, '')]: {
-            ...prevLocales[filename.replace(/\.json$/, '')],
-            // eslint-disable-next-line global-require, import/no-dynamic-require
-            [locale]: require(path.resolve(ROOT_FOLDER, locale, filename)),
-          },
-        }),
-        result,
-      ),
-  {},
-);
-
 const postMessage = title =>
   fetch(HOOK_URL, {
     method: 'post',
@@ -103,11 +84,69 @@ const postMessage = title =>
       });
     });
 
+const checkPR = () =>
+  fetch('https://api.github.com/graphql', {
+    method: 'POST',
+    headers: {
+      Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: `
+{
+  repository(owner: "meepshop", name: "meep-lerna") {
+    pullRequests(first: 1, labels: "locale", states: OPEN) {
+      totalCount
+    }
+  }
+}
+
+      `,
+    }),
+  })
+    .then(res => {
+      if (res.status < 200 || res.status >= 300)
+        throw new Error(res.statusText);
+
+      return res;
+    })
+    .then(res => res.json())
+    .then(({ data, errors }) => {
+      if (errors) throw new Error(JSON.stringify(errors));
+
+      return data;
+    })
+    .then(
+      ({
+        repository: {
+          pullRequests: { totalCount },
+        },
+      }) => totalCount,
+    );
+
 process.on('unhandledRejection', e => {
   throw e;
 });
 
 (async () => {
+  const locales = LOCAL_KEYS.reduce(
+    (result, locale) =>
+      fs
+        .readdirSync(path.resolve(ROOT_FOLDER, locale))
+        .filter(filename => /\.json$/.test(filename))
+        .reduce(
+          (prevLocales, filename) => ({
+            ...prevLocales,
+            [filename.replace(/\.json$/, '')]: {
+              ...prevLocales[filename.replace(/\.json$/, '')],
+              // eslint-disable-next-line global-require, import/no-dynamic-require
+              [locale]: require(path.resolve(ROOT_FOLDER, locale, filename)),
+            },
+          }),
+          result,
+        ),
+    {},
+  );
   const messages = Object.keys(locales).reduce(
     (result, filename) => {
       const nullLocales = findNullLocales(filename, locales[filename]);
@@ -150,7 +189,8 @@ process.on('unhandledRejection', e => {
 
   // eslint-disable-next-line no-restricted-syntax
   for (const message of messages) {
-    if (process.argv[2] === '--send') {
+    // eslint-disable-next-line no-await-in-loop
+    if (process.argv[2] === '--send' && (await checkPR()) === 0) {
       // eslint-disable-next-line no-await-in-loop
       await postMessage(message.join('\n'));
       // eslint-disable-next-line no-await-in-loop
