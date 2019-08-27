@@ -4,7 +4,7 @@
   "description": "End to end testing",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.25.14",
+  "version": "0.25.16",
   "main": "./index.js",
   "scripts": {
     "test": "NODE_ENV=production STORE_DOMAIN=bellatest.stage.meepcloud.com babel-node --config-file ../../babel.config.js ./src/index.ts -x .ts"
@@ -12,9 +12,12 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@babel/node": "^7.0.0-rc.1",
-    "@meepshop/store": "^0.25.14",
+    "@meepshop/store": "^0.25.16",
     "execa": "^1.0.0",
     "testcafe": "^1.1.0"
   },
-  "keywords": ["graphql", "mock"]
+  "keywords": [
+    "graphql",
+    "mock"
+  ]
 }
