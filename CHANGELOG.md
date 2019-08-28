@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.25.16 (2019-08-28)
+
+#### :bug: Bug Fix
+
+- [#674](https://github.com/meepshop/meep-lerna/pull/674) 【其他】Next Admin - 左側列表細項：補 英 / 日 翻譯 ([@piovischioh](https://github.com/piovischioh))
+- [#673](https://github.com/meepshop/meep-lerna/pull/673) (@meepshop/front-end) Lock @types/graphql ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.25.15 (2019-08-23)
 
 #### :bug: Bug Fix
