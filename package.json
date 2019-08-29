@@ -97,7 +97,6 @@
     "prettier": "^1.13.5",
     "prettier-package-json": "^2.1.0",
     "react-markdown": "^4.0.6",
-    "typescript": "^3.3.3333",
     "webpack": "^4.34.0"
   },
   "engines": {
@@ -120,6 +119,7 @@
     "graphql": "14.2.1",
     "css-loader": "1.0.0",
     "less-loader": "5.0.0",
-    "mini-css-extract-plugin": "0.4.3"
+    "mini-css-extract-plugin": "0.4.3",
+    "typescript": "3.5.3"
   }
 }
