@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.25.18 (2019-09-04)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#655](https://github.com/meepshop/meep-lerna/pull/655) 原本在 商品列表 或 選選樂 就先取得 商品彈窗 中的資料，改成點開 商品彈窗 才取得 商品的資料 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#678](https://github.com/meepshop/meep-lerna/pull/678) 【BUG】新架構/手機版 - 若背景顏色不為白色，menu 底下會有一塊空白 ([@piovischioh](https://github.com/piovischioh))
+  - [#677](https://github.com/meepshop/meep-lerna/pull/677) 【BUG】 背景顏色 - 後台預覽顯示正常，前台顯示會多一塊空白 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#676](https://github.com/meepshop/meep-lerna/pull/676) (@meepshop/front-end) Lock typescript version ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.25.17 (2019-08-28)
 
 #### :bug: Bug Fix
