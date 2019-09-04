@@ -515,7 +515,6 @@ export default class ProductList extends React.PureComponent {
               cart={cart}
               stockNotificationList={stockNotificationList}
               wishList={wishList}
-              products={products}
               target={target}
               isMobile={isMobile}
             />

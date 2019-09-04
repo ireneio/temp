@@ -102,7 +102,6 @@ export default ({
       ) {
         data {
           id
-          status
           title {
             zh_TW
             en_US
@@ -113,45 +112,14 @@ export default ({
           }
           variants {
             id
-            specs {
-              id
-              specId
-              title {
-                zh_TW
-                en_US
-              }
-            }
             stock
-            maxPurchaseLimit
-            minPurchaseItems
-            sku
             listPrice
-            retailPrice
             suggestedPrice
-            discountPrice
             totalPrice
-          }
-          specs {
-            id
-            title {
-              zh_TW
-              en_US
-            }
-          }
-          design {
-            pageId
-            templateId
           }
           coverImage {
             fileId
             src
-          }
-          galleries {
-            images {
-              fileId
-              isMain
-              src
-            }
           }
           showUserPrice {
             showListPrice

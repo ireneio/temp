@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal } from 'antd';
+import { Query } from 'react-apollo';
+import { gql } from 'apollo-boost';
+import { Spin, Icon, Modal } from 'antd';
 
+import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE } from 'constants/propTypes';
 import ProductCarousel from 'productCarousel';
 import ProductInfo from 'productInfo';
 import ProductCollection from 'productCollection';
 
-import { PRODUCT_TYPE } from './constants';
-
+@enhancer
 export default class PopUp extends React.PureComponent {
   static propTypes = {
     className: PropTypes.string.isRequired,
@@ -30,40 +32,26 @@ export default class PopUp extends React.PureComponent {
       }),
     ).isRequired,
 
-    products: PropTypes.shape({
-      data: PropTypes.arrayOf(PRODUCT_TYPE),
-    }),
     target: PropTypes.string,
     isMobile: PropTypes.bool,
   };
 
   static defaultProps = {
     cart: null,
-    products: null,
     target: null,
     isMobile: null,
   };
 
-  generateDetails = () => {
+  generateDetails = product => {
     const {
       type,
       popUpGalleryView,
       cart,
       stockNotificationList,
       wishList,
-      products,
       target,
       isMobile,
     } = this.props;
-
-    // return if no target or products
-    // eslint-disable-next-line react/prop-types
-    if (!target || !products || products.then) return null;
-
-    const productData = products.data.find(item => item.id === target);
-
-    // return if no productData
-    if (!productData) return null;
 
     if (type === 'pop-up') {
       return (
@@ -71,15 +59,15 @@ export default class PopUp extends React.PureComponent {
           {['one', 'all', undefined].indexOf(popUpGalleryView) > -1 && (
             <ProductCarousel
               mode="list"
-              coverImage={productData.coverImage}
-              galleries={productData.galleries}
+              coverImage={product.coverImage}
+              galleries={product.galleries}
               autoPlay={false}
               thumbsPosition="bottom"
             />
           )}
           <ProductInfo
             mode="list"
-            productData={productData}
+            productData={product}
             cart={cart}
             stockNotificationList={stockNotificationList}
             isInWishList={wishList.some(item => item.productId === target)}
@@ -91,9 +79,9 @@ export default class PopUp extends React.PureComponent {
           {['two', 'all'].indexOf(popUpGalleryView) > -1 && (
             <ProductCollection
               mode="list"
-              galleries={productData.galleries}
+              galleries={product.galleries}
               align="original"
-              title={productData.title}
+              title={product.title}
               contentWidth={100}
             />
           )}
@@ -105,14 +93,14 @@ export default class PopUp extends React.PureComponent {
       <div id="modal-area">
         <ProductCarousel
           mode="list"
-          coverImage={productData.coverImage}
-          galleries={productData.galleries}
+          coverImage={product.coverImage}
+          galleries={product.galleries}
           autoPlay={false}
           thumbsPosition="bottom"
         />
         <ProductInfo
           mode="list"
-          productData={productData}
+          productData={product}
           cart={cart}
           stockNotificationList={stockNotificationList}
           isInWishList={wishList.some(item => item.productId === target)}
@@ -125,20 +113,107 @@ export default class PopUp extends React.PureComponent {
   };
 
   render() {
-    const { className, title, visible, onCancel } = this.props;
+    const { className, title, visible, onCancel, target } = this.props;
+
+    if (!target) return null;
 
     return (
-      <Modal
-        className={className}
-        title={title}
-        visible={visible}
-        onCancel={onCancel}
-        footer={null}
-        destroyOnClose
-        centered
+      <Query
+        query={gql`
+          query PopUpProduct($search: searchInputObjectType) {
+            computeProductList(search: $search) {
+              data {
+                id
+                status
+                title {
+                  zh_TW
+                  en_US
+                }
+                description {
+                  zh_TW
+                  en_US
+                }
+                variants {
+                  id
+                  stock
+                  maxPurchaseLimit
+                  minPurchaseItems
+                  sku
+                  listPrice
+                  suggestedPrice
+                  totalPrice
+                  specs {
+                    id
+                    specId
+                    title {
+                      zh_TW
+                      en_US
+                    }
+                  }
+                }
+                specs {
+                  id
+                  title {
+                    zh_TW
+                    en_US
+                  }
+                }
+                coverImage {
+                  fileId
+                  src
+                }
+                galleries {
+                  images {
+                    fileId
+                    isMain
+                    src
+                  }
+                }
+                showUserPrice {
+                  showListPrice
+                  showSuggestedPrice
+                }
+              }
+            }
+          }
+        `}
+        variables={{
+          search: {
+            filter: {
+              and: [
+                {
+                  type: 'ids',
+                  ids: [target],
+                },
+              ],
+            },
+          },
+        }}
       >
-        {this.generateDetails()}
-      </Modal>
+        {({ loading, error, data }) => {
+          if (loading || error || !data)
+            return <Spin indicator={<Icon type="loading" spin />} />;
+
+          const product = data?.computeProductList?.data[0];
+
+          if (!product || !product.id)
+            return <Spin indicator={<Icon type="loading" spin />} />;
+
+          return (
+            <Modal
+              className={className}
+              title={title}
+              visible={visible}
+              onCancel={onCancel}
+              footer={null}
+              destroyOnClose
+              centered
+            >
+              {this.generateDetails(product)}
+            </Modal>
+          );
+        }}
+      </Query>
     );
   }
 }

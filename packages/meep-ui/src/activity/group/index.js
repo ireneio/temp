@@ -102,7 +102,6 @@ export default class Group extends React.PureComponent {
     const productQuery = `
       data {
         id
-        status
         title{
           zh_TW
           en_US
@@ -111,34 +110,9 @@ export default class Group extends React.PureComponent {
           fileId
           src
         }
-        galleries {
-          images {
-            fileId
-            isMain
-            src
-          }
-        }
         variants {
           id
-          specs {
-            id
-            specId
-            title{
-              zh_TW
-              en_US
-            }
-          }
-          stock
-          maxPurchaseLimit
-          minPurchaseItems
           totalPrice
-        }
-        specs {
-          id
-          title {
-            zh_TW
-            en_US
-          }
         }
       }
       total
@@ -177,6 +151,7 @@ export default class Group extends React.PureComponent {
       stockNotificationList,
     } = this.props;
     const { params, products, total } = this.state;
+
     const { sort, limit } = params;
 
     return (

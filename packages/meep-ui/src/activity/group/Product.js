@@ -2,20 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { areEqual } from 'fbjs';
 import radium, { Style } from 'radium';
-import { Modal } from 'antd';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
 import Link from 'link';
 import { Placeholder } from 'placeholder';
-import ProductCarousel from 'productCarousel';
-import ProductInfo from 'productInfo';
+import PopUp from 'productList/PopUp';
 import {
   ID_TYPE,
   COLOR_TYPE,
   POSITIVE_NUMBER_TYPE,
   COVER_IMAGE_TYPE,
-  GALLERY_TYPE,
 } from 'constants/propTypes';
 import { PHONE_MEDIA } from 'constants/media';
 
@@ -37,7 +34,6 @@ export default class Product extends React.PureComponent {
         en_US: PropTypes.string,
       }),
       coverImage: COVER_IMAGE_TYPE,
-      galleries: GALLERY_TYPE.isRequired,
       variants: PropTypes.arrayOf(
         PropTypes.shape({
           totalPrice: POSITIVE_NUMBER_TYPE.isRequired,
@@ -64,6 +60,7 @@ export default class Product extends React.PureComponent {
 
   state = {
     openModal: false,
+    target: null,
   };
 
   componentDidMount() {
@@ -75,9 +72,7 @@ export default class Product extends React.PureComponent {
     const { cart } = this.props;
 
     if (!areEqual(cart, nextProps.cart)) {
-      this.setState({
-        openModal: false,
-      });
+      this.setState({ openModal: false });
     }
   }
 
@@ -86,10 +81,14 @@ export default class Product extends React.PureComponent {
   }
 
   toggleModal = () => {
+    const {
+      product: { id },
+    } = this.props;
     const { openModal } = this.state;
 
     this.setState({
       openModal: !openModal,
+      target: openModal ? null : id,
     });
   };
 
@@ -100,7 +99,6 @@ export default class Product extends React.PureComponent {
   };
 
   render() {
-    const { openModal, isMobile } = this.state;
     const {
       colors,
       transformLocale,
@@ -110,7 +108,9 @@ export default class Product extends React.PureComponent {
       wishList,
       stockNotificationList,
     } = this.props;
-    const { id, title, coverImage, galleries, variants } = product;
+    const { openModal, target, isMobile } = this.state;
+
+    const { id, title, coverImage, variants } = product;
     const totalPrice = (variants[0] || {}).totalPrice || 0;
 
     return (
@@ -145,34 +145,20 @@ export default class Product extends React.PureComponent {
         >
           {transformLocale(PURCHASE)}
         </div>
-        <Modal
+
+        <PopUp
+          className="activity-group"
           title={transformLocale(SELECT_SPEC)}
           visible={openModal}
           onCancel={this.toggleModal}
-          footer={null}
-          destroyOnClose
-          centered
-        >
-          <div id="modal-area">
-            <ProductCarousel
-              mode="list"
-              coverImage={coverImage}
-              galleries={galleries}
-              autoPlay={false}
-              thumbsPosition="bottom"
-            />
-            <ProductInfo
-              mode="list"
-              productData={product}
-              cart={cart}
-              stockNotificationList={stockNotificationList}
-              isInWishList={wishList.some(item => item.productId === id)}
-              showButton={false}
-              container="modal-area"
-              isMobile={isMobile}
-            />
-          </div>
-        </Modal>
+          type="original"
+          popUpGalleryView="one"
+          cart={cart}
+          stockNotificationList={stockNotificationList}
+          wishList={wishList}
+          target={target}
+          isMobile={isMobile}
+        />
       </div>
     );
   }
