@@ -226,6 +226,16 @@ export default class MobileLayout extends React.PureComponent {
             />
           </Drawer>
         )}
+
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+            .${styles.drawer} .ant-drawer-wrapper-body {
+              background: ${colors[1]};
+            }
+          `,
+          }}
+        />
       </>
     );
   }
