@@ -18,6 +18,10 @@ export default class GlobalStyles extends React.PureComponent {
       <style
         dangerouslySetInnerHTML={{
           __html: `
+            body {
+              background: ${colors[0]};
+            }
+
             h1, h2, h3, h4, h5, h6,
             span,
             a, a:hover, a:active, a:focus, a:visited,
