@@ -2,10 +2,6 @@ extend type AddressService {
   countryId(countryId: ID, cityId: ID, areaId: ID): ID!
 }
 
-extend type Country {
-  cities: [City!]!
-}
-
-extend type City {
-  areas: [Area!]!
+extend type Area {
+  zipCode: String
 }
