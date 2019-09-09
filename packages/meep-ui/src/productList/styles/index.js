@@ -82,6 +82,7 @@ export const listStyle = (colors, isGrid) => ({
 export const modalStyle = colors => ({
   // ant-modal
   padding: '0',
+
   '.ant-modal-content': {
     backgroundColor: colors[0],
     overflow: 'hidden',
@@ -109,11 +110,12 @@ export const modalStyle = colors => ({
       margin: '0',
       height: '100%',
       width: '100% !important',
+      maxWidth: 'initial !important',
+
       '.ant-modal-content': {
         borderRadius: '0',
         height: '100%',
       },
-      '.ant-modal-header': {},
       '.ant-modal-body': {
         borderRadius: '0',
         maxHeight: 'unset',
