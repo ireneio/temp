@@ -6,6 +6,14 @@ export const SELECTIONS = {
   TODO_LOCALE: true,
 };
 
+export const OLDEST = {
+  zh_TW: '由舊到新',
+  en_US: null,
+  ja_JP: null,
+  vi_VN: null,
+  TODO_LOCALE: true,
+};
+
 export const LATEST = {
   zh_TW: '最新商品',
   en_US: 'New In',

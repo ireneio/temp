@@ -443,7 +443,7 @@ export default class ProductList extends React.PureComponent {
                     points: isMobile ? ['tl', 'bl'] : ['tr', 'br'],
                   }}
                 >
-                  {SORT_OPTIONS(ids).map(option => (
+                  {SORT_OPTIONS(ids, sort).map(option => (
                     <Select.Option key={option.value} value={option.value}>
                       {sort === option.value ? (
                         transformLocale(LOCALE[option.text])

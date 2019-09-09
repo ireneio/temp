@@ -31,12 +31,20 @@ export const PRODUCT_TYPE = PropTypes.shape({
   }),
 });
 
-export const SORT_OPTIONS = ids => [
+export const SORT_OPTIONS = (ids, value) => [
   ...(ids
     ? [
         {
           text: 'SELECTIONS',
           value: 'selections',
+        },
+      ]
+    : []),
+  ...(value === 'createdOn-asc'
+    ? [
+        {
+          text: 'OLDEST',
+          value,
         },
       ]
     : []),
