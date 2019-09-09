@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.25.19 (2019-09-09)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#680](https://github.com/meepshop/meep-lerna/pull/680) 【BUG】 手機版 - 商品加入我的收藏，尚未登入會員提示彈窗跑版 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#682](https://github.com/meepshop/meep-lerna/pull/682) 前台 移除不必要的 client side schema ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.25.18 (2019-09-04)
 
 #### :rocket: New Feature
