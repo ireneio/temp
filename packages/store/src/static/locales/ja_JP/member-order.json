@@ -85,7 +85,8 @@
       },
       "carrier": {
         "membership": "会員キャリア",
-        "mobile-barcode": "携帯電話バーコードキャリア"
+        "mobile-barcode": "携帯電話バーコードキャリア",
+        "citizen-digital-certificate": "自然人証憑キャリア"
       },
       "bar-code": "バーコード：",
       "love-code": "寄付コード：",

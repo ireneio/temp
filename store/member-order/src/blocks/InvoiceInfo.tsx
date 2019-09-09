@@ -120,7 +120,7 @@ class InvoiceInfo extends React.PureComponent<PropsType> {
   private transformKey = (key?: string | null) => {
     if (!key) return key;
 
-    return key.replace('_', '-').toLowerCase();
+    return key.replace(/_/g, '-').toLowerCase();
   };
 
   public render(): React.ReactNode {

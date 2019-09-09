@@ -85,7 +85,8 @@
       },
       "carrier": {
         "membership": "Phương tiện hội viên",
-        "mobile-barcode": "Phương tiện mã vạch di động"
+        "mobile-barcode": "Phương tiện mã vạch di động",
+        "citizen-digital-certificate": "Phương tiện chứng nhận kỹ thuật số công dân"
       },
       "bar-code": "Số mã vạch: ",
       "love-code": "Đóng góp mã tình yêu: ",

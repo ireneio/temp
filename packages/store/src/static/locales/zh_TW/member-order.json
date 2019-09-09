@@ -85,7 +85,8 @@
       },
       "carrier": {
         "membership": "會員載具",
-        "mobile-barcode": "手機條碼載具"
+        "mobile-barcode": "手機條碼載具",
+        "citizen-digital-certificate": "自然人憑證載具"
       },
       "bar-code": "條碼號碼：",
       "love-code": "愛心碼：",

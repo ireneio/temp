@@ -85,7 +85,8 @@
       },
       "carrier": {
         "membership": "Membership Carrier",
-        "mobile-barcode": "Mobile Barcode"
+        "mobile-barcode": "Mobile Barcode",
+        "citizen-digital-certificate": "NPC Barcode"
       },
       "bar-code": "Bar Code Number: ",
       "love-code": "NPO Donation Code: ",
