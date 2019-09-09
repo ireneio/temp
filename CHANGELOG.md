@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.25.20 (2019-09-09)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#679](https://github.com/meepshop/meep-lerna/pull/679) 【BUG】前台 - 訂單明細/發票資訊 ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`
+  - [#681](https://github.com/meepshop/meep-lerna/pull/681) 【BUG】 前台商品列表頁 - 排序選單文字出現 createdOn-asc ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.25.19 (2019-09-09)
 
 #### :bug: Bug Fix
