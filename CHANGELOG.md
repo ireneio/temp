@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.25.21 (2019-09-11)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#690](https://github.com/meepshop/meep-lerna/pull/690) 【個別店家】無法使用藍新 - 超商代碼建立訂單 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.25.20 (2019-09-09)
 
 #### :bug: Bug Fix
