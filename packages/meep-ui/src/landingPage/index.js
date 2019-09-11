@@ -232,11 +232,7 @@ export default class LandingPage extends React.PureComponent {
                 if (this.isUnmounted) return;
 
                 if (formData && formData.url) {
-                  if (
-                    /testmaple2.neweb.com.tw\/CashSystemFrontEnd\/Query/.test(
-                      formData.url,
-                    )
-                  ) {
+                  if (/CashSystemFrontEnd\/Query/.test(formData.url)) {
                     dispatchAction('emptyCart');
                     goTo({
                       pathname: `/ezpay/cvcode/${id}`,

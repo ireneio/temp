@@ -182,11 +182,7 @@ export default class Checkout extends React.PureComponent {
             };
 
             if (formData && formData.url) {
-              if (
-                /testmaple2.neweb.com.tw\/CashSystemFrontEnd\/Query/.test(
-                  formData.url,
-                )
-              ) {
+              if (/CashSystemFrontEnd\/Query/.test(formData.url)) {
                 addRecipient();
                 dispatchAction('emptyCart');
                 goTo({ pathname: `/ezpay/cvcode/${id}` });
