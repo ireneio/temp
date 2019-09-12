@@ -89,8 +89,8 @@ class RewardPoints extends Component {
       <>
         <Head>
           <title>{storeName}</title>
-          <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
-          <link rel="apple-touch-icon" href={`https://${faviconUrl}`} />
+          <link rel="icon" type="image/png" href={faviconUrl} />
+          <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
         <TrackingCodeHead
           pathname={pathname}

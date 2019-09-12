@@ -97,8 +97,8 @@ class Product extends React.Component {
             content={productDescription || storeDescription}
           />
           <meta name="keywords" content={keywords} />
-          <link rel="icon" type="image/png" href={`//${faviconUrl}`} />
-          <link rel="apple-touch-icon" href={`//${faviconUrl}`} />
+          <link rel="icon" type="image/png" href={faviconUrl} />
+          <link rel="apple-touch-icon" href={faviconUrl} />
 
           {/* <!-- Facebook Open Graph --> */}
           <meta property="og:type" content="website" />
@@ -106,9 +106,7 @@ class Product extends React.Component {
           <meta property="og:title" content={productName || storeName} />
           <meta
             property="og:image"
-            content={
-              productImage ? `${productImage}?w=400` : `//${faviconUrl}?w=400`
-            }
+            content={`${productImage || faviconUrl}?w=400`}
           />
           <meta property="og:image:width" content="400" />
           <meta property="og:image:height" content="300" />

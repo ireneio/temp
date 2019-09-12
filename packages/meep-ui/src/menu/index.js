@@ -200,14 +200,14 @@ export default class Menu extends React.PureComponent {
                   width: width !== 0 ? width : undefined,
                   objectFit: height && width ? 'contain' : undefined,
                 }}
-                src={`//${logoUrl}?${
+                src={`${logoUrl}?${
                   width ? `w=${width * 3}` : `h=${height * 3}`
                 }`}
-                srcSet={`//${logoUrl}?${
+                srcSet={`${logoUrl}?${
                   width ? `w=${width}` : `h=${height}`
-                } 1x, //${logoUrl}?${
+                } 1x, ${logoUrl}?${
                   width ? `w=${width * 2}` : `h=${height * 2}`
-                } 2x, //${logoUrl}?${
+                } 2x, ${logoUrl}?${
                   width ? `w=${width * 3}` : `h=${height * 3}`
                 } 3x`}
                 alt={logoUrl}

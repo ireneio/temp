@@ -80,8 +80,8 @@ class Pages extends React.Component {
           <title>{addressTitle || storeName}</title>
           <meta name="description" content={description || storeDescription} />
           <meta name="keywords" content={keywords} />
-          <link rel="icon" type="image/png" href={`https://${faviconUrl}`} />
-          <link rel="apple-touch-icon" href={`https://${faviconUrl}`} />
+          <link rel="icon" type="image/png" href={faviconUrl} />
+          <link rel="apple-touch-icon" href={faviconUrl} />
 
           {/* <!-- Facebook Open Graph --> */}
           <meta property="og:type" content="website" />
@@ -89,7 +89,7 @@ class Pages extends React.Component {
           <meta property="og:title" content={addressTitle || storeName} />
           <meta
             property="og:image"
-            content={`https://${image || faviconUrl}?w=400`}
+            content={`${image ? `https://${image}` : faviconUrl}?w=400`}
           />
           <meta property="og:image:width" content="400" />
           <meta property="og:image:height" content="300" />

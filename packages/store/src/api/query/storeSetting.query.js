@@ -15,9 +15,6 @@ const storeSettingQuery = `
     tel
   }
   locale
-  logoId
-  mobileLogoId
-  faviconId
   setting {
     order {
       autoAddStock
@@ -56,23 +53,14 @@ const storeSettingQuery = `
     adRetentionMilliseconds
     adRetentionMillisecondsEnabled
   }
-  logoFileInfo {
-    id
-    linkId
-    type
-    image
-  },
-  mobileLogoFileInfo {
-    id
-    linkId
-    type
-    image
-  },
-  faviconFileInfo {
-    id
-    linkId
-    type
-    image
+  logoImage {
+    src
+  }
+  mobileLogoImage {
+    src
+  }
+  faviconImage {
+    src
   }
   homePageId
 `;

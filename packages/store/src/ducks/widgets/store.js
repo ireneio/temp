@@ -158,9 +158,9 @@ export default function(state = initialState, { type, payload }) {
         storeDescription: store?.description?.introduction || '',
         cname: store.cname,
         domain: store.domain,
-        faviconUrl: store?.faviconFileInfo?.image || '',
-        logoUrl: store?.logoFileInfo?.image || '',
-        mobileLogoUrl: store?.mobileLogoFileInfo?.image || '',
+        faviconUrl: store?.faviconImage?.src || '',
+        logoUrl: store?.logoImage?.src || '',
+        mobileLogoUrl: store?.mobileLogoImage?.src || '',
         homePageId: store.homePageId,
         locale: locale || localeOptions?.[0] || 'zh_TW', // default locale
         localeOptions: localeOptions || ['zh_TW'], // 用於語系選單
