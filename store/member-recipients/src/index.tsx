@@ -212,6 +212,8 @@ class MemberRecipients extends React.PureComponent<PropsType> {
               mobile,
               address: {
                 postalCode,
+                streetAddress: `${postalCode} ${country} ${city ||
+                  ''}${county || ''}${street}`,
                 yahooCode: {
                   country,
                   city,

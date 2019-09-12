@@ -71,6 +71,8 @@ class Form extends React.PureComponent<PropsType> {
                 mobile,
                 address: {
                   postalCode,
+                  streetAddress: `${postalCode} ${address[0] ||
+                    ''} ${address[1] || ''}${address[2] || ''}${street}`,
                   yahooCode: {
                     country: !address ? null : address[0] || null,
                     city: !address ? null : address[1] || null,
@@ -84,6 +86,10 @@ class Form extends React.PureComponent<PropsType> {
                 mobile: recipient.mobile,
                 address: {
                   postalCode: recipient.postalCode,
+                  streetAddress: `${recipient.postalCode} ${recipient.country ||
+                    ''} ${recipient.city || ''}${recipient.county || ''}${
+                    recipient.street
+                  }`,
                   yahooCode: {
                     country: recipient.country,
                     city: recipient.city,
@@ -100,6 +106,8 @@ class Form extends React.PureComponent<PropsType> {
           mobile,
           address: {
             postalCode,
+            streetAddress: `${postalCode} ${address[0] || ''} ${address[1] ||
+              ''}${address[2] || ''}${street}`,
             yahooCode: {
               country: !address ? null : address[0] || null,
               city: !address ? null : address[1] || null,

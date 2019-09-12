@@ -83,6 +83,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
         tel = null,
         mobile = null,
         birthday = null,
+        postalCode = null,
         address = null,
         street = null,
         isNotCancelEmail = false,
@@ -104,6 +105,9 @@ class MemberSettings extends React.PureComponent<PropsType> {
             tel,
             mobile,
             address: {
+              postalCode,
+              streetAddress: `${postalCode || ''} ${address[0]} ${address[1] ||
+                ''}${address[2] || ''}${street}`,
               yahooCode: {
                 country: !address ? null : address[0] || null,
                 city: !address ? null : address[1] || null,
@@ -125,7 +129,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
   public render(): React.ReactNode {
     const {
       /** HOC */
-      form: { getFieldDecorator },
+      form: { getFieldDecorator, setFieldsValue, getFieldValue },
       t,
       i18n,
 
@@ -139,6 +143,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
         notification,
         tel,
         mobile,
+        postalCode,
         country,
         city,
         county,
@@ -241,6 +246,15 @@ class MemberSettings extends React.PureComponent<PropsType> {
           <FormItem>
             {getFieldDecorator('address', {
               initialValue: [country, city, county].filter(text => text),
+              getValueFromEvent: (value, allValues) => {
+                const newCounty = allValues[2];
+
+                if (newCounty && newCounty.zipCode)
+                  setFieldsValue({ postalCode: newCounty.zipCode });
+                else setFieldsValue({ postalCode: undefined });
+
+                return value;
+              },
             })(
               <AddressCascader
                 size="large"
@@ -255,6 +269,25 @@ class MemberSettings extends React.PureComponent<PropsType> {
                 }
               />,
             )}
+          </FormItem>
+
+          <FormItem
+            className={
+              getFieldValue('address').length === 0 ||
+              getFieldValue('address').length === 3
+                ? styles.hidden
+                : ''
+            }
+          >
+            {getFieldDecorator('postalCode', {
+              initialValue: postalCode,
+              rules: [
+                {
+                  required: true,
+                  message: t('form.required'),
+                },
+              ],
+            })(<Input placeholder={t('postal-code')} size="large" />)}
           </FormItem>
 
           <FormItem>
@@ -320,6 +353,7 @@ export default React.memo(
 
             tel @client
             mobile @client
+            postalCode @client
             country @client
             city @client
             county @client
@@ -329,6 +363,7 @@ export default React.memo(
               tel
               mobile
               address {
+                postalCode
                 yahooCode {
                   country
                   city

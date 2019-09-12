@@ -2,6 +2,7 @@ extend type User {
   groupClient: MemberGroup
   tel: String
   mobile: String
+  postalCode: String
   country: String
   city: String
   county: String
