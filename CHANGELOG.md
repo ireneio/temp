@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.25.22 (2019-09-12)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#689](https://github.com/meepshop/meep-lerna/pull/689) 前端 - 前台會員資料＆收件人範本 補傳 streetAddress 到後端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `store`
+  - [#675](https://github.com/meepshop/meep-lerna/pull/675) 前端改用 logo/mobileLogo/favicon 新欄位 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.25.21 (2019-09-11)
 
 #### :bug: Bug Fix
