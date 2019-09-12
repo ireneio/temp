@@ -4,11 +4,11 @@
   "description": "Member wish list page for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.25.19",
+  "version": "0.25.22",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@store/apollo-client-resolvers": "^0.25.19",
+    "@store/apollo-client-resolvers": "^0.25.22",
     "@store/thumbnail": "^0.25.7",
     "@store/utils": "^0.25.9",
     "memoize-one": "^5.0.4",
