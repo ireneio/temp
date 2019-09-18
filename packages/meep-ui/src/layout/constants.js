@@ -24,6 +24,8 @@ export const SPECIAL_HIDE_FOOTER = [
   'fionho',
   'jin',
   'mothersarm',
+  'giftcungvn',
+  'giftcung',
 ];
 
 export const STORE_APP_PLUGINS = [
