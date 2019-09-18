@@ -1,8 +1,12 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import * as Utils from 'utils';
 import { notification } from 'antd';
+
+import * as COUNTRY_LOCALE from '@meepshop/meep-ui/lib/locale/country';
+
 import * as Api from 'api';
 import { NOTLOGIN, ISUSER } from 'constants';
+
 import * as LOCALE from '../locale';
 import { cleanProductList } from './lists';
 
@@ -855,8 +859,13 @@ const getUser = _user => {
   const year = _user?.birthday?.year || null;
   const month = _user?.birthday?.month || null;
   const day = _user?.birthday?.day || null;
-  const recipientData = _user?.recipientData || [];
+  const recipientData = (_user?.recipientData || []).filter(recipient =>
+    Object.values(COUNTRY_LOCALE).some(locale =>
+      Object.values(locale).includes(recipient?.address?.yahooCode?.country),
+    ),
+  );
   const userNotification = _user.notification || null;
+
   return {
     id,
     name,

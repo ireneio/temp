@@ -1,5 +1,7 @@
 import uuid from 'uuid';
 
+import * as COUNTRY_LOCALE from 'locale/country';
+
 export default ({
   domain,
   locale,
@@ -200,7 +202,10 @@ export default ({
                     streetAddress: `${postalCode} ${address[0]} ${address[1] ||
                       ''}${address[2] || ''}${addressDetail}`,
                     yahooCode: {
-                      country: address[0],
+                      country: Object.values(COUNTRY_LOCALE).find(
+                        countyLocale =>
+                          Object.values(countyLocale).includes(address[0]),
+                      ).en_US,
                       city: address[1] || '',
                       county: address[2] || '',
                       street: addressDetail,
