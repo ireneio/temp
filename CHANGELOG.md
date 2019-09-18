@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.25.23 (2019-09-18)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#692](https://github.com/meepshop/meep-lerna/pull/692) 【個案處理】meepShop MAX 極速開店：新增白名單 - giftcungvn, giftcung ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#691](https://github.com/meepshop/meep-lerna/pull/691) 前端 - 結帳頁 儲存收件人範本 國家需存英文 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.25.22 (2019-09-12)
 
 #### :bug: Bug Fix
