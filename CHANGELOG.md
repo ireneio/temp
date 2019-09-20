@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.25.24 (2019-09-20)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#604](https://github.com/meepshop/meep-lerna/pull/604) 【優化】 GMO 信用卡 - 信用卡卡號、安全碼留存同意機制：前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#683](https://github.com/meepshop/meep-lerna/pull/683) 【優化】 前端 - 結帳頁：若訂單建立失敗，保留消費者已填寫的各項資料 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.25.23 (2019-09-18)
 
 #### :rocket: New Feature
