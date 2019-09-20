@@ -107,7 +107,8 @@ export default class Checkout extends React.PureComponent {
       dispatchAction,
     } = this.props;
 
-    this.setState({ isSubmitting: true });
+    // TODO: should rewrite form data controller
+    this.setState({ isSubmitting: true, orderInfo });
 
     const { host: domain } = location;
     const {
