@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.25.25 (2019-09-20)
+
+#### :bug: Bug Fix
+
+- [#695](https://github.com/meepshop/meep-lerna/pull/695) (@store/gmo-credit-card-form, @store/member-settings) Fix cache ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.25.24 (2019-09-20)
 
 #### :rocket: New Feature
