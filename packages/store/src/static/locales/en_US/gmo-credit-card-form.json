@@ -2,6 +2,7 @@
   "title": "Credit Card",
   "modify": "Change",
   "cancel": "Cancel",
+  "remember-card": "本人同意將信用卡卡號、安全碼等支付資訊予香港商技慕最網金流有限公司台北分公司（GMO Payment Gateway,Inc.）留存，以便下次購買時快速支付結帳。",
   "expire": "Expiry Date'",
   "securityCode": "CVV",
   "cardHolderName": "Name on Card",

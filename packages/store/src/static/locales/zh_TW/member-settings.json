@@ -17,5 +17,12 @@
   "postal-code": "郵遞區號",
   "street": "地址",
   "isNotCancelEmail": "訂閱商店資訊及優惠方案",
-  "submit": "更新資料"
+  "submit": "更新資料",
+  "remove-credit-card-info": {
+    "title": "信用卡交易資料",
+    "subTitle": "為確保交易的安全性，保留的卡號資料皆由銀行進行加密處理",
+    "submit": "移除信用卡交易資料",
+    "fail": "移除失敗",
+    "success": "移除成功"
+  }
 }

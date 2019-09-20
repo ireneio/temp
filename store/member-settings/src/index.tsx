@@ -8,6 +8,7 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 import React from 'react';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
+import { filter } from 'graphql-anywhere';
 import {
   Spin,
   Icon,
@@ -25,6 +26,7 @@ import moment from 'moment';
 import AddressCascader from '@store/address-cascader';
 import { withNamespaces } from '@store/utils/lib/i18n';
 
+import RemoveCreditCardInfo from './RemoveCreditCardInfo';
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -36,6 +38,8 @@ import {
 
 // graphql import
 import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
+
+import { removeCreditCardInfoFragment } from './RemoveCreditCardInfo';
 
 // typescript definition
 interface PropsType
@@ -134,24 +138,26 @@ class MemberSettings extends React.PureComponent<PropsType> {
       i18n,
 
       /** props */
-      viewer: {
-        group,
-        name,
-        email,
-        gender,
-        birthday,
-        notification,
-        tel,
-        mobile,
-        postalCode,
-        country,
-        city,
-        county,
-        street,
-        store,
-      },
+      viewer,
       colors,
     } = this.props;
+    const {
+      group,
+      name,
+      email,
+      gender,
+      birthday,
+      notification,
+      tel,
+      mobile,
+      postalCode,
+      country,
+      city,
+      county,
+      street,
+      store,
+      hasGmoCreditCard,
+    } = viewer;
 
     // TODO: should not be null
     const {
@@ -163,6 +169,8 @@ class MemberSettings extends React.PureComponent<PropsType> {
     } = group || {};
     const { lockedCountry = null, lockedBirthday = null } =
       idx(store, _ => _.setting) || {};
+    const gmoRememberCardEnabled =
+      idx(store, _ => _.experiment.gmoRememberCardEnabled) || false;
 
     return (
       <div className={styles.root}>
@@ -313,6 +321,13 @@ class MemberSettings extends React.PureComponent<PropsType> {
           >
             {t('submit')}
           </Button>
+
+          {!gmoRememberCardEnabled || !hasGmoCreditCard ? null : (
+            <RemoveCreditCardInfo
+              viewer={filter(removeCreditCardInfoFragment, viewer)}
+              colors={colors}
+            />
+          )}
         </Form>
       </div>
     );
@@ -332,6 +347,7 @@ export default React.memo(
       query={gql`
         query getUserInfo {
           viewer {
+            ...removeCreditCardInfoFragment
             id
             groupId
             groupServer: group {
@@ -391,7 +407,13 @@ export default React.memo(
                 lockedCountry
                 lockedBirthday
               }
+
+              experiment {
+                gmoRememberCardEnabled
+              }
             }
+
+            hasGmoCreditCard
           }
 
           getMemberGroupList(
@@ -414,7 +436,10 @@ export default React.memo(
         }
 
         ${colorListFragment}
+        ${removeCreditCardInfoFragment}
       `}
+      /** FIXME: should update hasGmoCreditCard in cache after creating order */
+      fetchPolicy="network-only"
     >
       {({ loading, error, data, refetch }) => {
         if (loading || error || !data)

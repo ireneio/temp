@@ -36,8 +36,7 @@ export default ({
   invoiceEInvoiceNumber,
   invoiceDonate,
 
-  isRegistered,
-  changeCardNumber,
+  isRememberCard,
   cardHolderName,
   cardNumber,
   securityCode,
@@ -158,16 +157,19 @@ export default ({
             ? {}
             : {
                 gmo: {
-                  isRegistered,
-                  changeCardNumber,
-                  ...(isRegistered && !changeCardNumber
+                  isRememberCard,
+                  cardHolderName,
+                  cardNumber: !cardNumber ? undefined : cardNumber.join(''),
+                  securityCode,
+                  ...(!expire
                     ? {}
                     : {
-                        cardHolderName,
-                        cardNumber: cardNumber.join(''),
-                        securityCode,
                         expireYear: expire.year(),
                         expireMonth: expire.month() + 1,
+                      }),
+                  ...(!installmentCode
+                    ? {}
+                    : {
                         installmentCode:
                           installmentCode instanceof Array
                             ? installmentCode[installmentCode.length - 1]

@@ -1,5 +1,6 @@
 // typescript import
 import { FormComponentProps } from 'antd/lib/form';
+import { WithRouterProps } from 'next/router';
 
 import { I18nPropsType } from '@store/utils/lib/i18n';
 
@@ -7,7 +8,9 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 import React from 'react';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
-import { Spin, Icon } from 'antd';
+import { withRouter } from 'next/router';
+import { Spin, Icon, Input, Checkbox } from 'antd';
+import idx from 'idx';
 
 import { withNamespaces } from '@store/utils/lib/i18n';
 
@@ -26,8 +29,10 @@ export interface PropsType
   extends getGMOUserGmoUser,
     I18nPropsType,
     FormComponentProps {
+  router: NonNullable<WithRouterProps['router']>;
   isInstallment: boolean;
   storePaymentId: string;
+  gmoRememberCardEnabled: boolean;
 }
 
 // definition
@@ -42,6 +47,7 @@ class GmoCreditCardForm extends React.PureComponent<PropsType> {
     const {
       // HOC
       t,
+      router: { pathname },
 
       // props
       exist,
@@ -49,6 +55,7 @@ class GmoCreditCardForm extends React.PureComponent<PropsType> {
       cardNumberLater,
       isInstallment,
       storePaymentId,
+      gmoRememberCardEnabled,
       form,
     } = this.props;
     const { isModified } = this.state;
@@ -71,16 +78,13 @@ class GmoCreditCardForm extends React.PureComponent<PropsType> {
           )}
         </h3>
 
-        {getFieldDecorator('isRegistered', {
-          initialValue: exist,
-        })(<input type="hidden" />)}
-
         {getFieldDecorator('changeCardNumber', {
-          initialValue: exist && isModified,
-        })(<input type="hidden" />)}
+          // just use to record card changed, do not use in creating order.
+          initialValue: Boolean(exist && isModified),
+        })(<Input type="hidden" />)}
 
         {exist && !isModified ? (
-          <div>
+          <div className={styles.cardNumber}>
             {cardNumberFront}
             ********
             {cardNumberLater}
@@ -93,13 +97,33 @@ class GmoCreditCardForm extends React.PureComponent<PropsType> {
             form={form}
           />
         )}
+
+        {getFieldDecorator('isRememberCard', {
+          valuePropName: 'checked',
+          initialValue:
+            !gmoRememberCardEnabled ||
+            /** FIXME: should not need to check pathname after landingPage is rewritten by the new spec */
+            pathname !== '/checkout' ||
+            Boolean(exist && !isModified),
+        })(
+          <Checkbox
+            className={
+              /** FIXME: should not need to check pathname after landingPage is rewritten by the new spec */
+              !gmoRememberCardEnabled || pathname !== '/checkout'
+                ? styles.hidden
+                : ''
+            }
+          >
+            {t('remember-card')}
+          </Checkbox>,
+        )}
       </>
     );
   }
 }
 
 const EnhancedGmoCreditCardForm = withNamespaces('gmo-credit-card-form')(
-  GmoCreditCardForm,
+  withRouter(GmoCreditCardForm),
 );
 
 export default React.forwardRef(
@@ -120,15 +144,29 @@ export default React.forwardRef(
             cardNumberFront
             cardNumberLater
           }
+
+          viewer {
+            id
+            store {
+              id
+              experiment {
+                gmoRememberCardEnabled
+              }
+            }
+          }
         }
       `}
+      /** FIXME: should remove cache in @store/member-settings, fix this after getGMOUser is rewritten */
+      fetchPolicy="network-only"
       variables={{ storePaymentId }}
     >
       {({ loading, error, data }) => {
         if (loading || error || !data)
           return <Spin indicator={<Icon type="loading" spin />} />;
 
-        const { gmoUser } = data;
+        const { gmoUser, viewer } = data;
+        const gmoRememberCardEnabled =
+          idx(viewer, _ => _.store.experiment.gmoRememberCardEnabled) || false;
 
         return (
           <EnhancedGmoCreditCardForm
@@ -142,6 +180,7 @@ export default React.forwardRef(
             }
             isInstallment={isInstallment}
             storePaymentId={storePaymentId}
+            gmoRememberCardEnabled={gmoRememberCardEnabled}
             form={form}
           />
         );
