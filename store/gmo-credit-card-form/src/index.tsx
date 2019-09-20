@@ -157,7 +157,7 @@ export default React.forwardRef(
         }
       `}
       /** FIXME: should remove cache in @store/member-settings, fix this after getGMOUser is rewritten */
-      fetchPolicy="network-only"
+      fetchPolicy="no-cache"
       variables={{ storePaymentId }}
     >
       {({ loading, error, data }) => {

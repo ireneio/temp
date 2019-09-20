@@ -1,4 +1,5 @@
 // typescript import
+import { QueryResult } from 'react-apollo';
 import { DataProxy } from 'apollo-cache';
 
 import { I18nPropsType } from '@store/utils/lib/i18n';
@@ -15,12 +16,18 @@ import { withNamespaces } from '@store/utils/lib/i18n';
 import styles from './styles/removeCreditCardInfo.less';
 
 // graphql typescript
-import { getUserInfo_getColorList as getUserInfoGetColorList } from './__generated__/getUserInfo';
+import {
+  getUserInfo,
+  getUserInfo_getColorList as getUserInfoGetColorList,
+} from './__generated__/getUserInfo';
 import { removeCreditCardInfoFragment as removeCreditCardInfoFragmentType } from './__generated__/removeCreditCardInfoFragment';
 import { removeCreditCard } from './__generated__/removeCreditCard';
 
 // typescript definition
-interface PropsType extends I18nPropsType {
+interface PropsType
+  extends I18nPropsType,
+    /** FIXME: should update hasGmoCreditCard in cache after creating order */
+    Pick<QueryResult<getUserInfo>, 'refetch'> {
   viewer: removeCreditCardInfoFragmentType;
   colors: getUserInfoGetColorList['colors'];
 }
@@ -44,6 +51,7 @@ class RemoveCreditCardInfo extends React.PureComponent<PropsType> {
 
       // props
       viewer,
+      refetch,
     } = this.props;
     const status = idx(removeGmoCreditCard, _ => _.status);
     const id = idx(viewer, _ => _.id);
@@ -67,6 +75,9 @@ class RemoveCreditCardInfo extends React.PureComponent<PropsType> {
         hasGmoCreditCard: false,
       },
     });
+
+    /** FIXME: should update hasGmoCreditCard in cache after creating order */
+    refetch();
   };
 
   public render(): React.ReactNode {

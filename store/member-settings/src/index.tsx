@@ -140,6 +140,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
       /** props */
       viewer,
       colors,
+      refetch,
     } = this.props;
     const {
       group,
@@ -326,6 +327,8 @@ class MemberSettings extends React.PureComponent<PropsType> {
             <RemoveCreditCardInfo
               viewer={filter(removeCreditCardInfoFragment, viewer)}
               colors={colors}
+              /** FIXME: should update hasGmoCreditCard in cache after creating order */
+              refetch={refetch}
             />
           )}
         </Form>
@@ -439,7 +442,7 @@ export default React.memo(
         ${removeCreditCardInfoFragment}
       `}
       /** FIXME: should update hasGmoCreditCard in cache after creating order */
-      fetchPolicy="network-only"
+      fetchPolicy="no-cache"
     >
       {({ loading, error, data, refetch }) => {
         if (loading || error || !data)
