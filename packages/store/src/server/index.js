@@ -116,10 +116,11 @@ module.exports = app.prepare().then(
       server.get('/version', (req, res) => {
         res.status(200).send(`Welcome to next-store ${VERSION}`);
       });
-      server.post('/log', req => {
+      server.post('/log', (req, res) => {
         console.log(
           `#LOG#(${req.get('host')}) >>>  ${JSON.stringify(req.body.data)}`,
         );
+        res.end();
       });
 
       // api
