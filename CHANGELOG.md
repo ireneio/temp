@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 0.26.0 (2019-09-27)
+
+#### :rocket: New Feature
+
+- `mock-types`, `store`
+  - [#694](https://github.com/meepshop/meep-lerna/pull/694) 前端 - 收件人範本從新欄位拿 (using yahooCode) ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#699](https://github.com/meepshop/meep-lerna/pull/699) 【BUG】一頁式購物車 - 「訂單備註」的越南文語系，出現日文 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#698](https://github.com/meepshop/meep-lerna/pull/698) (@meepshop/store): end response after logging ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `end-to-end`
+  - [#706](https://github.com/meepshop/meep-lerna/pull/706) (@meepshop/end-to-end) Remove end-to-end testing ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#698](https://github.com/meepshop/meep-lerna/pull/698) (@meepshop/store): end response after logging ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.25.25 (2019-09-20)
 
 #### :bug: Bug Fix
