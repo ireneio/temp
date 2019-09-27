@@ -74,7 +74,6 @@ define babel-build
 		--include-filtered-dependencies \
 		--ignore @meepshop/store \
 		--ignore @meepshop/mock-types \
-		--ignore @meepshop/end-to-end \
 		--ignore @admin/server \
 		$(2)
 endef

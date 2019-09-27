@@ -1,7 +1,0 @@
-{
-  "browsers": ["chrome:headless"],
-  "src": ["src/**/*.testcafe"],
-  "screenshotPath": "errors",
-  "takeScreenshotsOnFails": true,
-  "skipJsErrors": true
-}

@@ -86,24 +86,6 @@ jobs:
       - store_artifacts:
           path: coverage
 
-  end-to-end:
-    <<: *defaults
-    steps:
-      - checkout
-      - run: *check-patches
-      - restore_cache: *restore-cache
-      - run: yarn lerna bootstrap
-
-      - run:
-          name: Run end to end testing
-          command: |
-            yarn prod
-            yarn lerna run prod --stream --scope @meepshop/store
-            yarn lerna run test --stream --scope @meepshop/end-to-end
-      - store_artifacts:
-          path: packages/end-to-end/errors
-          destination: end-to-end
-
   deploy-test-branch:
     <<: *defaults
     steps:
@@ -153,15 +135,6 @@ workflows:
 
       - lint-and-test:
           context: org-global
-          requires:
-            - install
-          filters:
-            branches:
-              ignore: /test-.*/
-            tags:
-              ignore: /.*/
-
-      - end-to-end:
           requires:
             - install
           filters:

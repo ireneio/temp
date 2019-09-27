@@ -19,12 +19,6 @@ const stories = [
     source: require('../.circleci/README.md').default,
   },
   {
-    name: '@meepshop/end-to-end',
-    pattern: /end-to-end$/,
-    path: './packages/end-to-end/',
-    source: require('../packages/end-to-end/README.md').default,
-  },
-  {
     name: '@meepshop/mock-types',
     pattern: /mock-types$/,
     path: './packages/mock-types/',

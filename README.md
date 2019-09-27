@@ -116,10 +116,6 @@ Before `new schema` can work, you can use `storybook` to write the new component
 
 See [@meepshop/mock-types](./packages/mock-types) to learn more detail.
 
-#### Write end-to-end testing
-
-See [@meepshop/end-to-end](./packages/end-to-end) to learn more detail.
-
 #### (optional) Build with prod server
 
 1. Run `yarn prod`.
@@ -181,7 +177,6 @@ workspace(store, admin...)
 - [lint-staged](#lint-staged)
 - [husky](#husky)
 - [jest](#jest)
-- [testcafe](./packages/end-to-end)
 - [storybook](#storybook)
 - [circleci](#circleci)
 
@@ -350,7 +345,6 @@ const stories = [
   - tsc
   - lint
   - jest
-- `end-to-end`: Run `end-to-end testing`.
 - `deploy-test-branch`: Deploy image with `test-*` branch.
 - `deploy`: Deploy image with `v*` tag.
 - `deploy-test`: Deploy image with [meep-github-console](https://github.com/meepshop/meep-github-console).
