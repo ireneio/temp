@@ -174,6 +174,6 @@ export const NOTES = {
   zh_TW: '訂單備註',
   en_US: 'Order Notes',
   ja_JP: '注文備考',
-  vi_VN: 'メールアドレスに誤りがあります',
+  vi_VN: 'Ghi chú đặt hàng',
   TODO_LOCALE: true,
 };
