@@ -2,7 +2,7 @@
   "name": "氏名",
   "mobile": "携帯電話",
   "address": "国",
-  "postal-code": "郵便番号",
+  "zip-code": "郵便番号",
   "street": "住所",
   "edit": "編集",
   "remove": "削除",

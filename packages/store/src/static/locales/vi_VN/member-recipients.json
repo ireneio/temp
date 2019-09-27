@@ -2,7 +2,7 @@
   "name": "tên",
   "mobile": "Mã bưu điện",
   "address": "Quốc gia",
-  "postal-code": "Mã bưu điện",
+  "zip-code": "Mã bưu điện",
   "street": "Địa Chỉ",
   "edit": "Biên Tập",
   "remove": "Xóa",

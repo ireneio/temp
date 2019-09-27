@@ -2,7 +2,7 @@
   "name": "姓名",
   "mobile": "手機",
   "address": "地區",
-  "postal-code": "郵遞區號",
+  "zip-code": "郵遞區號",
   "street": "地址",
   "edit": "編輯",
   "remove": "刪除",

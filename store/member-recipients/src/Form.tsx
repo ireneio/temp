@@ -16,7 +16,7 @@ import styles from './styles/form.less';
 
 // graphql typescript
 import {
-  getUserRecipients_viewer_recipientData as getUserRecipientsViewerRecipientData,
+  getUserRecipients_viewer_recipientAddressBook as getUserRecipientsViewerRecipientAddressBook,
   getUserRecipients_getColorList as getUserRecipientsGetColorList,
 } from './__generated__/getUserRecipients';
 
@@ -25,7 +25,10 @@ interface PropsType
   extends I18nPropsType,
     FormComponentProps,
     MaybeType<
-      OmitType<getUserRecipientsViewerRecipientData, '__typename' | 'address'>
+      OmitType<
+        getUserRecipientsViewerRecipientAddressBook,
+        '__typename' | 'address'
+      >
     > {
   colors: getUserRecipientsGetColorList['colors'];
   lockedCountry: string[] | null;
@@ -35,7 +38,7 @@ interface PropsType
   // TODO: remove after removing redux
   dispatchAction: (dispatchName: string, data: unknown) => void;
   // TODO: remove after removing redux
-  recipientData: (getUserRecipientsViewerRecipientData | null)[] | null;
+  recipientAddressBook: getUserRecipientsViewerRecipientAddressBook[];
 }
 
 // definition
@@ -53,26 +56,23 @@ class Form extends React.PureComponent<PropsType> {
       id,
       userId,
       dispatchAction,
-      recipientData,
+      recipientAddressBook,
     } = this.props;
 
     validateFields((err, values) => {
       if (err) return;
 
-      const { name, mobile, postalCode, address, street } = values;
-      /** TODO: should noe be null */
-      const newRecipientData = ((recipientData || []).filter(
-        data => data,
-      ) as getUserRecipientsViewerRecipientData[]).map(
+      const { name, mobile, zipCode, address, street } = values;
+      const newRecipientAddressBook = recipientAddressBook.map(
         ({ id: recipientId, ...recipient }) =>
           id === recipientId
             ? {
                 name,
                 mobile,
                 address: {
-                  postalCode,
-                  streetAddress: `${postalCode} ${address[0] ||
-                    ''} ${address[1] || ''}${address[2] || ''}${street}`,
+                  postalCode: zipCode,
+                  streetAddress: `${zipCode} ${address[0] || ''} ${address[1] ||
+                    ''}${address[2] || ''}${street}`,
                   yahooCode: {
                     country: !address ? null : address[0] || null,
                     city: !address ? null : address[1] || null,
@@ -85,8 +85,8 @@ class Form extends React.PureComponent<PropsType> {
                 name: recipient.name,
                 mobile: recipient.mobile,
                 address: {
-                  postalCode: recipient.postalCode,
-                  streetAddress: `${recipient.postalCode} ${recipient.country ||
+                  postalCode: recipient.zipCode,
+                  streetAddress: `${recipient.zipCode} ${recipient.country ||
                     ''} ${recipient.city || ''}${recipient.county || ''}${
                     recipient.street
                   }`,
@@ -101,12 +101,12 @@ class Form extends React.PureComponent<PropsType> {
       );
 
       if (!id)
-        newRecipientData.push({
+        newRecipientAddressBook.push({
           name,
           mobile,
           address: {
-            postalCode,
-            streetAddress: `${postalCode} ${address[0] || ''} ${address[1] ||
+            postalCode: zipCode,
+            streetAddress: `${zipCode} ${address[0] || ''} ${address[1] ||
               ''}${address[2] || ''}${street}`,
             yahooCode: {
               country: !address ? null : address[0] || null,
@@ -121,7 +121,7 @@ class Form extends React.PureComponent<PropsType> {
         user: {
           id: userId,
           recipientData: {
-            replaceData: newRecipientData,
+            replaceData: newRecipientAddressBook,
           },
         },
       });
@@ -201,8 +201,8 @@ class Form extends React.PureComponent<PropsType> {
               const county = allValues[2];
 
               if (county && county.zipCode)
-                setFieldsValue({ postalCode: county.zipCode });
-              else setFieldsValue({ postalCode: undefined });
+                setFieldsValue({ zipCode: county.zipCode });
+              else setFieldsValue({ zipCode: undefined });
 
               return value;
             },
@@ -224,14 +224,14 @@ class Form extends React.PureComponent<PropsType> {
               : ''
           }
         >
-          {getFieldDecorator('postalCode', {
+          {getFieldDecorator('zipCode', {
             rules: [
               {
                 required: true,
                 message: t('form.required'),
               },
             ],
-          })(<Input placeholder={t('postal-code')} size="large" />)}
+          })(<Input placeholder={t('zip-code')} size="large" />)}
         </FormItem>
 
         <FormItem>
@@ -277,7 +277,7 @@ export default withNamespaces('member-recipients')(
       country,
       city,
       county,
-      postalCode,
+      zipCode,
       street,
     }) => ({
       name: AntdForm.createFormField({
@@ -289,8 +289,8 @@ export default withNamespaces('member-recipients')(
       address: AntdForm.createFormField({
         value: [country, city, county].filter(text => text),
       }),
-      postalCode: AntdForm.createFormField({
-        value: postalCode,
+      zipCode: AntdForm.createFormField({
+        value: zipCode,
       }),
       street: AntdForm.createFormField({
         value: street,

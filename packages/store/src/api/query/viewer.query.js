@@ -28,19 +28,17 @@ viewer {
     month
     day
   }
-  recipientData {
+
+  recipientAddressBook {
     name
     mobile
-    address {
-      postalCode
-      yahooCode {
-        country
-        city
-        county
-        street
-      }
-    }
+    postalCode: zipCode
+    yahooCodeCountry
+    yahooCodeCity
+    yahooCodeCounty
+    street
   }
+
   notification {
     newsletters {
       cancelEmail

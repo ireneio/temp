@@ -20,6 +20,7 @@ gql`
   }
 `;
 
+// TODO: remove
 export default mock.add<AddressObjectTypeMock>('AddressObjectType', [
   () => ({
     __typename: 'AddressObjectType',

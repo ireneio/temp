@@ -859,11 +859,8 @@ const getUser = _user => {
   const year = _user?.birthday?.year || null;
   const month = _user?.birthday?.month || null;
   const day = _user?.birthday?.day || null;
-  const recipientData = (_user?.recipientData || []).filter(recipient =>
-    Object.values(COUNTRY_LOCALE).some(locale =>
-      Object.values(locale).includes(recipient?.address?.yahooCode?.country),
-    ),
-  );
+  const recipientData = _user?.recipientData || [];
+  const recipientAddressBook = _user?.recipientAddressBook || [];
   const userNotification = _user.notification || null;
 
   return {
@@ -894,7 +891,34 @@ const getUser = _user => {
       month,
       day,
     },
-    recipientData,
+    recipientData: (_user?.recipientData
+      ? recipientData
+      : recipientAddressBook.map(
+          ({
+            postalCode,
+            yahooCodeCountry,
+            yahooCodeCity,
+            yahooCodeCounty,
+            street: recipientStreet,
+            ...recipient
+          }) => ({
+            ...recipient,
+            address: {
+              postalCode,
+              yahooCode: {
+                country: yahooCodeCountry,
+                city: yahooCodeCity,
+                county: yahooCodeCounty,
+                street: recipientStreet,
+              },
+            },
+          }),
+        )
+    ).filter(recipient =>
+      Object.values(COUNTRY_LOCALE).some(locale =>
+        Object.values(locale).includes(recipient?.address?.yahooCode?.country),
+      ),
+    ),
     notification: userNotification,
   };
 };

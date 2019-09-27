@@ -23,7 +23,7 @@ import styles from './styles/index.less';
 import {
   getUserRecipients,
   getUserRecipients_viewer as getUserRecipientsViewer,
-  getUserRecipients_viewer_recipientData as getUserRecipientsViewerRecipientData,
+  getUserRecipients_viewer_recipientAddressBook as getUserRecipientsViewerRecipientAddressBook,
   getUserRecipients_getColorList as getUserRecipientsGetColorList,
 } from './__generated__/getUserRecipients';
 
@@ -61,15 +61,15 @@ class MemberRecipients extends React.PureComponent<PropsType> {
         render: (
           _: unknown,
           {
-            postalCode,
+            zipCode,
             country,
             city,
             county,
             street,
-          }: getUserRecipientsViewerRecipientData,
+          }: getUserRecipientsViewerRecipientAddressBook,
         ) =>
           [
-            postalCode,
+            zipCode,
             !country
               ? null
               : (
@@ -98,7 +98,7 @@ class MemberRecipients extends React.PureComponent<PropsType> {
       {
         key: 'action',
         dataIndex: 'id',
-        render: (value: getUserRecipientsViewerRecipientData['id']) => (
+        render: (value: getUserRecipientsViewerRecipientAddressBook['id']) => (
           <>
             <span className={styles.action} onClick={() => this.edit(value)}>
               {t('edit')}
@@ -116,23 +116,23 @@ class MemberRecipients extends React.PureComponent<PropsType> {
         key: 'mobileStyle',
         dataIndex: 'id',
         render: (
-          value: getUserRecipientsViewerRecipientData['id'],
+          value: getUserRecipientsViewerRecipientAddressBook['id'],
           {
             name,
             mobile,
-            postalCode,
+            zipCode,
             country,
             city,
             county,
             street,
-          }: getUserRecipientsViewerRecipientData,
+          }: getUserRecipientsViewerRecipientAddressBook,
         ) => (
           <div className={styles.mobile}>
             <span>{t('name')}</span>
             <span>{name}</span>
 
             <span>{t('address')}</span>
-            <span>{`${postalCode || ''}${
+            <span>{`${zipCode || ''}${
               !country
                 ? null
                 : (
@@ -181,48 +181,45 @@ class MemberRecipients extends React.PureComponent<PropsType> {
     if (!areEqual(member, prevProps.member)) refetch();
   }
 
-  private edit = (id: getUserRecipientsViewerRecipientData['id']) => {
+  private edit = (id: getUserRecipientsViewerRecipientAddressBook['id']) => {
     this.setState({ selectId: id });
   };
 
-  private remove = (id: getUserRecipientsViewerRecipientData['id']) => {
+  private remove = (id: getUserRecipientsViewerRecipientAddressBook['id']) => {
     const {
-      viewer: { id: userId, recipientData },
+      viewer: { id: userId, recipientAddressBook },
       dispatchAction,
     } = this.props;
-    /** TODO: should noe be null */
-    const index = (recipientData || []).findIndex(
-      data => idx(data, _ => _.id) === id,
+    const index = recipientAddressBook.findIndex(
+      ({ id: recipientId }) => recipientId === id,
     );
-
-    if (!recipientData) return;
 
     // TODO: update apollo cache after removing redux
     dispatchAction('updateUser', {
       user: {
         id: userId,
         recipientData: {
-          replaceData: ([
-            ...recipientData.slice(0, index),
-            ...recipientData.slice(index + 1, recipientData.length),
-            /** TODO: should noe be null */
-          ].filter(data => data) as getUserRecipientsViewerRecipientData[]).map(
-            ({ name, mobile, postalCode, country, city, county, street }) => ({
-              name,
-              mobile,
-              address: {
-                postalCode,
-                streetAddress: `${postalCode} ${country} ${city ||
-                  ''}${county || ''}${street}`,
-                yahooCode: {
-                  country,
-                  city,
-                  county,
-                  street,
-                },
+          replaceData: [
+            ...recipientAddressBook.slice(0, index),
+            ...recipientAddressBook.slice(
+              index + 1,
+              recipientAddressBook.length,
+            ),
+          ].map(({ name, mobile, zipCode, country, city, county, street }) => ({
+            name,
+            mobile,
+            address: {
+              postalCode: zipCode,
+              streetAddress: `${zipCode} ${country} ${city || ''}${county ||
+                ''}${street}`,
+              yahooCode: {
+                country,
+                city,
+                county,
+                street,
               },
-            }),
-          ),
+            },
+          })),
         },
       },
     });
@@ -235,7 +232,7 @@ class MemberRecipients extends React.PureComponent<PropsType> {
       i18n,
 
       // props
-      viewer: { id, recipientData, store },
+      viewer: { id, recipientAddressBook, store },
       colors,
       dispatchAction,
     } = this.props;
@@ -257,25 +254,16 @@ class MemberRecipients extends React.PureComponent<PropsType> {
         />
 
         <Table
-          rowKey={
-            data =>
-              idx(data, _ => _.id) || 'null-id' /** TODO: should noe be null */
-          }
+          rowKey={({ id: recipientId }) => recipientId}
           columns={this.generateColumns({ t, i18n })}
-          dataSource={
-            (recipientData || []).filter(
-              data => data,
-            ) /** TODO: should not be null */
-          }
+          dataSource={recipientAddressBook}
           pagination={false}
         />
 
         <Form
-          {
-            ...(recipientData || []).find(
-              data => idx(data, _ => _.id) === selectId,
-            ) /** TODO: should noe be null */
-          }
+          {...(recipientAddressBook || []).find(
+            ({ id: recipientId }) => recipientId === selectId,
+          )}
           colors={colors}
           lockedCountry={
             !lockedCountry
@@ -286,7 +274,7 @@ class MemberRecipients extends React.PureComponent<PropsType> {
           cancel={() => this.setState({ selectId: null })}
           userId={id}
           dispatchAction={dispatchAction}
-          recipientData={recipientData}
+          recipientAddressBook={recipientAddressBook}
         />
       </div>
     );
@@ -307,25 +295,15 @@ export default React.memo(
         query getUserRecipients {
           viewer {
             id
-            recipientData {
+            recipientAddressBook {
               id
               name
               mobile
-              postalCode @client
-              country @client
-              city @client
-              county @client
-              street @client
-              # for client
-              address {
-                postalCode
-                yahooCode {
-                  country
-                  city
-                  county
-                  street
-                }
-              }
+              zipCode
+              country: yahooCodeCountry
+              city: yahooCodeCity
+              county: yahooCodeCounty
+              street
             }
 
             store {

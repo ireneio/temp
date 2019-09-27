@@ -22,11 +22,6 @@ gql`
       tel
       mobile
     }
-    recipientData {
-      name
-      tel
-      mobile
-    }
     birthday {
       year
       month
@@ -46,7 +41,7 @@ export default mock.add<UserMock>('User', [
       email: null,
       gender: null,
       additionalInfo: null,
-      recipientData: null,
+      recipientAddressBook: [],
       birthday: null,
       order: null,
     } as UserMock),
@@ -64,14 +59,7 @@ export default mock.add<UserMock>('User', [
         tel: '02-11111111',
         mobile: '0912345678',
       },
-      recipientData: [
-        {
-          __typename: 'RecipientObjectType',
-          name: 'name',
-          tel: '02-11111111',
-          mobile: '0912345678',
-        },
-      ],
+      recipientAddressBook: [{}],
       birthday: {
         __typename: 'BirthdayObjectType',
         year: 2019,

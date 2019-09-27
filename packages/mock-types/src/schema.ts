@@ -34,6 +34,7 @@ import paymentObjectType from './schemas/paymentObjectType';
 import productsObjectType from './schemas/productsObjectType';
 import PaymentAccountForEzpay from './schemas/PaymentAccountForEzpay';
 import PaymentForAllpay from './schemas/PaymentForAllpay';
+import RecipientAddress from './schemas/RecipientAddress';
 import shipmentInfoType from './schemas/shipmentInfoType';
 import shipmentObjectType from './schemas/shipmentObjectType';
 import StorePayment from './schemas/StorePayment';
@@ -82,6 +83,7 @@ addMockFunctionsToSchema({
     productsObjectType,
     PaymentAccountForEzpay,
     PaymentForAllpay,
+    RecipientAddress,
     shipmentInfoType,
     shipmentObjectType,
     StorePayment,

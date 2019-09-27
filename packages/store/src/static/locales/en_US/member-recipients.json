@@ -2,7 +2,7 @@
   "name": "Full Name",
   "mobile": "Mobile",
   "address": "Country",
-  "postal-code": "Postal Code",
+  "zip-code": "Postal Code",
   "street": "Address",
   "edit": "Edit",
   "remove": "Remove",
