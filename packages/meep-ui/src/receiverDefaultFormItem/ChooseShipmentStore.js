@@ -6,6 +6,8 @@ import { Form, Input, Button } from 'antd';
 import uuid from 'uuid';
 import queryString from 'query-string';
 
+import ConvenienceStoreMap from '@store/convenience-store-map';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
   ID_TYPE,
@@ -15,10 +17,15 @@ import {
 } from 'constants/propTypes';
 import createFormData from 'utils/createFormData';
 
-import { SHIPMENT_STORE_FIELDS, EZSHIP_LINK } from './constants';
+import {
+  SHIPMENT_STORE_FIELDS,
+  EZSHIP_LINK,
+  CONVENIENCE_STORE_SHIPMENT_TYPE_ENUM,
+  ECPAY_CONVENIENCE_STORE_TYPE_ENUM,
+  EZSHIP_CONVENIENCE_STORE_TYPE_ENUM,
+} from './constants';
 import * as LOCALE from './locale';
-import * as styles from './styles/chooseShipmentStore';
-import getDefaultStoreData from './utils/getDefaultStoreData';
+import styles from './styles/chooseShipmentStore.less';
 
 const { Item: FormItem } = Form;
 
@@ -30,8 +37,6 @@ export default class ChooseShipmentStore extends React.PureComponent {
   rootDOM = document.querySelector('body');
 
   formDOM = document.createElement('div');
-
-  storeData = getDefaultStoreData(this.props);
 
   static propTypes = {
     /** context */
@@ -56,13 +61,15 @@ export default class ChooseShipmentStore extends React.PureComponent {
     tradeNo: null,
     ezship: null,
     allpay: null,
+    openConvenienceStoreMap: false,
+    inHouseConvenienceStoreMapEnabled: false,
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
     const { shipmentId, shipmentTemplate } = nextProps;
 
     if (
-      shipmentId !== preState.shipmentId &&
+      shipmentId !== preState.shipmentId ||
       shipmentTemplate !== preState.shipmentTemplate
     ) {
       return {
@@ -97,6 +104,27 @@ export default class ChooseShipmentStore extends React.PureComponent {
     const { shipmentId, shipmentTemplate } = this.state;
 
     if (!shipmentId) return;
+
+    // 超取地圖白名單
+    const {
+      data: {
+        viewer: {
+          store: {
+            experiment: { inHouseConvenienceStoreMapEnabled },
+          },
+        },
+      },
+    } = await getData(`
+      query getInHouseConvenienceStoreMapEnabled {
+        viewer {
+          store {
+            experiment {
+              inHouseConvenienceStoreMapEnabled
+            }
+          }
+        }
+      }
+    `);
 
     // TODO: rewrite query
     const result = await getData(`
@@ -139,11 +167,21 @@ export default class ChooseShipmentStore extends React.PureComponent {
       }
     `);
 
-    if (this.isUnmounted || !result?.data?.getStoreShipmentList) return;
+    if (
+      this.isUnmounted ||
+      !result?.data?.getStoreShipmentList ||
+      (shipmentTemplate === 'allpay' &&
+        !result?.data?.getStoreShipmentList.data[0].accountInfo.allpay
+          ?.merchantID) ||
+      (shipmentTemplate === 'ezship' &&
+        !result?.data?.getStoreShipmentList.data[0].accountInfo.ezship?.suID)
+    )
+      return;
 
     this.setState({
       ...result.data.getStoreShipmentList.data[0].accountInfo,
       tradeNo: uuid.v4(),
+      inHouseConvenienceStoreMapEnabled,
     });
   };
 
@@ -180,35 +218,89 @@ export default class ChooseShipmentStore extends React.PureComponent {
     this.formRef.current.submit();
   };
 
+  confirmStore = store => {
+    const {
+      form: { setFieldsValue },
+    } = this.props;
+
+    // fix ios body overflow: hidden bug
+    if (window.getComputedStyle(document.body).position === 'fixed') {
+      this.setState({ openConvenienceStoreMap: false }, () => {
+        window.scrollTo(0, 1000);
+      });
+    } else {
+      this.setState({ openConvenienceStoreMap: false });
+    }
+
+    setFieldsValue(store);
+  };
+
+  closeConvenienceStoreMap = () => {
+    // fix ios body overflow: hidden bug
+    if (window.getComputedStyle(document.body).position === 'fixed') {
+      this.setState({ openConvenienceStoreMap: false }, () => {
+        window.scrollTo(0, 1000);
+      });
+    } else {
+      this.setState({ openConvenienceStoreMap: false });
+    }
+  };
+
   render() {
     const { colors, transformLocale, getApiUrl, form } = this.props;
-    const { tradeNo, ezship, allpay, shipmentTemplate } = this.state;
+    const {
+      tradeNo,
+      ezship,
+      allpay,
+      shipmentTemplate,
+      inHouseConvenienceStoreMapEnabled,
+      openConvenienceStoreMap,
+    } = this.state;
 
     if (!tradeNo || !(ezship || allpay)) return null;
 
-    const { getFieldDecorator } = form;
+    const { getFieldDecorator, getFieldValue } = form;
     const url = getApiUrl(`/external/${shipmentTemplate}/map/${tradeNo}`);
 
     return (
       <>
         <Button
-          style={styles.root(colors)}
+          className={styles.root}
           type="primary"
-          onClick={this.goToShipmentStore}
+          style={{
+            color: colors[2],
+            borderColor: colors[4],
+            background: colors[4],
+          }}
+          onClick={
+            inHouseConvenienceStoreMapEnabled
+              ? () => this.setState({ openConvenienceStoreMap: true })
+              : this.goToShipmentStore
+          }
         >
           {transformLocale(
-            this.storeData.some(text => text)
+            SHIPMENT_STORE_FIELDS.map(field => getFieldValue(field)).some(
+              value => value,
+            )
               ? LOCALE.RECHOOSE_STORE
               : LOCALE.CHOOSE_STORE,
           )}
         </Button>
 
-        {this.storeData.map(text =>
-          !text ? null : <div key={text}>{text}</div>,
+        {SHIPMENT_STORE_FIELDS.map(field =>
+          !getFieldValue(field) ? null : (
+            <div
+              key={getFieldValue(field)}
+              className={styles.convenienceStoreInfo}
+            >
+              {transformLocale(LOCALE.CONVENIENCE_STORE[field])}：
+              {getFieldValue(field)}
+            </div>
+          ),
         )}
 
         {SHIPMENT_STORE_FIELDS.map((fieldName, index) => (
-          <FormItem key={fieldName} style={styles.hideFormItem}>
+          <FormItem key={fieldName} className={styles.hideFormItem}>
             {getFieldDecorator(fieldName, {
               validateTrigger: 'onBlur',
               rules: [
@@ -223,6 +315,21 @@ export default class ChooseShipmentStore extends React.PureComponent {
             })(<Input type="hidden" />)}
           </FormItem>
         ))}
+
+        {!openConvenienceStoreMap ? null : (
+          <ConvenienceStoreMap
+            shipmentType={CONVENIENCE_STORE_SHIPMENT_TYPE_ENUM(
+              shipmentTemplate,
+            )}
+            storeTypes={
+              shipmentTemplate === 'allpay'
+                ? ECPAY_CONVENIENCE_STORE_TYPE_ENUM(allpay.logisticsSubType)
+                : EZSHIP_CONVENIENCE_STORE_TYPE_ENUM
+            }
+            close={this.closeConvenienceStoreMap}
+            confirmStore={this.confirmStore}
+          />
+        )}
 
         {ReactDOM.createPortal(
           <form

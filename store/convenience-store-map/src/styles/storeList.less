@@ -1,0 +1,161 @@
+@import '~@store/utils/lib/styles/variables.less';
+
+.noData {
+  text-align: center;
+  color: #bfbfbf;
+  font-size: 14px;
+  line-height: 20px;
+
+  & > i {
+    padding-right: 5px;
+  }
+
+  & > svg {
+    display: none;
+  }
+
+  @media @phone-media {
+    color: #bfbfbf;
+    font-size: 16px;
+    line-height: 22px;
+    margin-top: 48px;
+
+    & > i {
+      display: none;
+    }
+
+    & > svg {
+      display: block;
+      height: 64px;
+      width: 64px;
+      margin: 0px auto 6px;
+    }
+  }
+}
+
+.root {
+  @media @phone-media {
+    padding: 16px 25px;
+    background-color: #f5f5f5;
+    min-height: 400px;
+  }
+}
+
+.label {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  line-height: 22px;
+  margin-bottom: 8px;
+
+  & > span {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 12px;
+    line-height: 20px;
+    padding-left: 4px;
+  }
+
+  @media @phone-media {
+    font-size: 16px;
+    margin-bottom: 0px;
+  }
+}
+
+.wrapper {
+  height: 238px;
+  width: 224px;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  background-color: #fafafa;
+  overflow: scroll;
+  padding: 10px;
+
+  & > div {
+    height: 32px;
+    width: 100%;
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+    padding: 5px 16px;
+    line-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+
+    &:hover {
+      color: #00c5dc;
+      box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    &.selected {
+      color: #00c5dc;
+      border: 0.5px solid #00c5dc;
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    &.disabled {
+      color: rgba(0, 0, 0, 0.45);
+      border: 0.5px solid #e6ebf1;
+      background-color: #f5f5f5;
+      cursor: not-allowed;
+    }
+
+    &.disabled:hover {
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  :not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  .address {
+    display: none;
+  }
+
+  @media @phone-media {
+    height: 100%;
+    width: 100%;
+    border: none;
+    border-radius: unset;
+    background-color: #f5f5f5;
+    overflow: initial;
+    padding: 0px;
+
+    & > div {
+      min-height: 66px;
+      height: auto;
+      border: 1px solid rgba(26, 37, 76, 0.08);
+      box-shadow: 0 0 3px 0 rgba(54, 65, 104, 0.08);
+      margin-top: 10px;
+      padding: 10px 16px;
+      color: rgba(0, 0, 0, 0.85);
+      font-size: 18px;
+      line-height: 26px;
+      overflow: initial;
+      text-overflow: initial;
+      white-space: initial;
+
+      &:hover {
+        color: rgba(0, 0, 0, 0.85);
+        box-shadow: 0 0 3px 0 rgba(54, 65, 104, 0.08);
+      }
+
+      &.disabled {
+        background-color: #e8e8e8;
+      }
+
+      &.disabled:hover {
+        color: rgba(0, 0, 0, 0.45);
+        box-shadow: 0 0 3px 0 rgba(54, 65, 104, 0.08);
+      }
+    }
+
+    .address {
+      display: block;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 12px;
+      line-height: 20px;
+    }
+  }
+}

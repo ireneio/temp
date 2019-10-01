@@ -46,6 +46,7 @@ const resources = /admin\/utils/.test(parentModuleFilename)
         'member-recipients': require('@meepshop/store/src/static/locales/zh_TW/member-recipients.json'),
         'member-password-change': require('@meepshop/store/src/static/locales/zh_TW/member-password-change.json'),
         'thank-you-page': require('@meepshop/store/src/static/locales/zh_TW/thank-you-page.json'),
+        'convenience-store-map': require('@meepshop/store/src/static/locales/zh_TW/convenience-store-map.json'),
       },
       en_US: {
         'gmo-credit-card-form': require('@meepshop/store/src/static/locales/en_US/gmo-credit-card-form.json'),
@@ -60,6 +61,7 @@ const resources = /admin\/utils/.test(parentModuleFilename)
         'member-recipients': require('@meepshop/store/src/static/locales/en_US/member-recipients.json'),
         'member-password-change': require('@meepshop/store/src/static/locales/en_US/member-password-change.json'),
         'thank-you-page': require('@meepshop/store/src/static/locales/en_US/thank-you-page.json'),
+        'convenience-store-map': require('@meepshop/store/src/static/locales/en_US/convenience-store-map.json'),
       },
       ja_JP: {
         'gmo-credit-card-form': require('@meepshop/store/src/static/locales/ja_JP/gmo-credit-card-form.json'),
@@ -74,6 +76,7 @@ const resources = /admin\/utils/.test(parentModuleFilename)
         'member-recipients': require('@meepshop/store/src/static/locales/ja_JP/member-recipients.json'),
         'member-password-change': require('@meepshop/store/src/static/locales/ja_JP/member-password-change.json'),
         'thank-you-page': require('@meepshop/store/src/static/locales/ja_JP/thank-you-page.json'),
+        'convenience-store-map': require('@meepshop/store/src/static/locales/ja_JP/convenience-store-map.json'),
       },
       vi_VN: {
         'gmo-credit-card-form': require('@meepshop/store/src/static/locales/vi_VN/gmo-credit-card-form.json'),
@@ -88,6 +91,7 @@ const resources = /admin\/utils/.test(parentModuleFilename)
         'member-recipients': require('@meepshop/store/src/static/locales/vi_VN/member-recipients.json'),
         'member-password-change': require('@meepshop/store/src/static/locales/vi_VN/member-password-change.json'),
         'thank-you-page': require('@meepshop/store/src/static/locales/vi_VN/thank-you-page.json'),
+        'convenience-store-map': require('@meepshop/store/src/static/locales/vi_VN/convenience-store-map.json'),
       },
     };
 /* eslint-enable global-require, @typescript-eslint/camelcase */

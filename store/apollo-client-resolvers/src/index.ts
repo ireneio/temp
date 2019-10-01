@@ -8,6 +8,7 @@ import * as PageInfo from './PageInfo';
 import * as RecipientObjectType from './RecipientObjectType';
 import * as StoreAppList from './StoreAppList';
 import * as User from './User';
+import * as validatedConvenienceStoreCities from './validatedConvenienceStoreCities';
 import * as viewer from './viewer';
 
 // definition
@@ -22,6 +23,7 @@ export default [
   RecipientObjectType.resolver,
   StoreAppList.resolver,
   User.resolver,
+  validatedConvenienceStoreCities.resolver,
   viewer.resolver,
 ].reduce(
   (result, { Query, Mutation, ...resolver }: Resolvers) => ({

@@ -1,0 +1,145 @@
+@import '~@store/utils/lib/styles/variables.less';
+
+.root {
+  width: 400px;
+  border-radius: 4px;
+  background-color: #fafafa;
+  text-align: center;
+
+  & > button {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 22px;
+    margin-bottom: 16px;
+  }
+
+  & > button:last-child {
+    display: none;
+  }
+
+  @media @phone-media {
+    overflow: auto;
+    height: calc(100% - 55px);
+    width: 100%;
+    border-radius: unset;
+    background-color: #fff;
+    z-index: 1;
+    position: fixed;
+    top: 55px;
+    padding: 24px 25px;
+    animation: slideIn 0.3s linear;
+
+    & > :first-child {
+      display: flex;
+      flex-wrap: wrap-reverse;
+      align-content: flex-end;
+    }
+
+    & > button {
+      height: 48px;
+      width: 100%;
+      font-size: 18px;
+      letter-spacing: 1.2px;
+      line-height: 21px;
+      margin: 24px 0px 16px;
+    }
+
+    & > button:last-child {
+      display: block;
+      margin: 0px;
+    }
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    top: 100%;
+    opacity: 0;
+  }
+
+  80% {
+    top: 80px;
+    opacity: 0.5;
+  }
+
+  100% {
+    top: 55px;
+    opacity: 1;
+  }
+}
+
+.hidden {
+  @media @phone-media {
+    top: 100%;
+    animation: slideOut 0.3s linear;
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    top: 55px;
+    opacity: 0.6;
+  }
+
+  20% {
+    top: 80px;
+    opacity: 0.3;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.noData {
+  height: 402px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #bfbfbf;
+  font-size: 14px;
+  line-height: 20px;
+
+  :last-child {
+    padding-top: 8px;
+  }
+}
+
+.map {
+  width: 100%;
+  border: 0px;
+  display: block;
+
+  @media @phone-media {
+    height: 260px;
+  }
+}
+
+.details {
+  padding: 16px 32px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 24px;
+  text-align: left;
+
+  & > div {
+    display: flex;
+
+    :first-child {
+      flex: 0 0 auto;
+    }
+  }
+
+  @media @phone-media {
+    padding: 0px 7px 16px;
+  }
+}
+
+.disabledButton {
+  color: #fff;
+  background-color: #d9d9d9;
+}

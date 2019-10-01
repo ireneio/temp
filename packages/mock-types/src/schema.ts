@@ -11,6 +11,7 @@ import schemaJSON from '../schema.json';
 import AddressObjectType from './schemas/AddressObjectType';
 import Authority from './schemas/Authority';
 import ColorList from './schemas/ColorList';
+import ConvenienceStore from './schemas/ConvenienceStore';
 import DashboardInfo from './schemas/DashboardInfo';
 import exchangeRate from './schemas/exchangeRate';
 import ezPaymentReturnListObjectType from './schemas/ezPaymentReturnListObjectType';
@@ -60,6 +61,7 @@ addMockFunctionsToSchema({
     AddressObjectType,
     Authority,
     ColorList,
+    ConvenienceStore,
     DashboardInfo,
     exchangeRate,
     ezPaymentReturnListObjectType,

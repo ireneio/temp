@@ -189,6 +189,7 @@ export default class ReceiverInfo extends React.PureComponent {
         <FormItem style={formItemStyle}>
           {getFieldDecorator('name', {
             validateTrigger: 'onBlur',
+            validateFirst: true,
             rules: [
               {
                 required: true,

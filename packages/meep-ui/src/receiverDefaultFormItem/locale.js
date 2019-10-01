@@ -64,28 +64,28 @@ export const CHOOSE_STORE = {
   TODO_LOCALE: true,
 };
 
-export const STORE_NAME = {
-  zh_TW: '門市名稱',
-  en_US: 'Store Name',
-  ja_JP: 'ショップ名',
-  vi_VN: 'Tên cửa hàng',
-  TODO_LOCALE: true,
-};
-
-export const STORE_ADDRESS = {
-  zh_TW: '門市地址',
-  en_US: 'Store Address',
-  ja_JP: 'ショップ住所',
-  vi_VN: 'Địa chỉ cửa hàng',
-  TODO_LOCALE: true,
-};
-
-export const STORE_ID = {
-  zh_TW: '門市代號',
-  en_US: 'Store ID',
-  ja_JP: 'ショップコード',
-  vi_VN: 'Mã số cửa hàng',
-  TODO_LOCALE: true,
+export const CONVENIENCE_STORE = {
+  CVSStoreName: {
+    zh_TW: '門市名稱',
+    en_US: 'Store Name',
+    ja_JP: 'ショップ名',
+    vi_VN: 'Tên cửa hàng',
+    TODO_LOCALE: true,
+  },
+  CVSAddress: {
+    zh_TW: '門市地址',
+    en_US: 'Store Address',
+    ja_JP: 'ショップ住所',
+    vi_VN: 'Địa chỉ cửa hàng',
+    TODO_LOCALE: true,
+  },
+  CVSStoreID: {
+    zh_TW: '門市代號',
+    en_US: 'Store ID',
+    ja_JP: 'ショップコード',
+    vi_VN: 'Mã số cửa hàng',
+    TODO_LOCALE: true,
+  },
 };
 
 export const NOT_CHOOSE_STORE = {

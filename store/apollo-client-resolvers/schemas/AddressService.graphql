@@ -5,3 +5,7 @@ extend type AddressService {
 extend type Area {
   zipCode: String
 }
+
+extend type Area {
+  streets: [String!]!
+}

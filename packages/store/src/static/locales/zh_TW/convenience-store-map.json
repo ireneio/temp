@@ -1,0 +1,23 @@
+{
+  "chooseConvenienceStore": "選擇超商門市",
+  "addressSearch": "地址查詢",
+  "nameSearch": "店名查詢",
+  "storeNumberSearch": "代號查詢",
+  "pleaseSelectCityArea": "請選擇縣市區域",
+  "pleaseSelectStreet": "請選擇街道名稱",
+  "pleaseChooseStore": "請選擇門市",
+  "disabledStore": "灰底為無法配送的門市",
+  "pleaseEnterName": "請輸入門市名稱",
+  "pleaseEnterStoreNumber": "請輸入代號查詢",
+  "searchStore": "搜尋門市",
+  "noStore": "查無符合門市",
+  "unableToShip": "無法配送",
+  "pleaseSearchStore": "請依搜尋條件選擇門市",
+  "storeNumber": "門市代號",
+  "storeServiceNumber": "服務編號",
+  "storeName": "門市名稱",
+  "storeAddress": "門市地址",
+  "storePhone": "門市電話",
+  "confirmStore": "確認門市",
+  "reselectStore": "重選門市"
+}

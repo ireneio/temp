@@ -121,6 +121,7 @@ export default class ReceiverInfo extends React.PureComponent {
         <div style={styles.nameRoot}>
           <FormItem style={formItemStyle}>
             {getFieldDecorator('name', {
+              validateFirst: true,
               rules: [
                 {
                   required: true,
