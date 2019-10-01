@@ -2,6 +2,7 @@
 import { FormComponentProps } from 'antd/lib/form';
 
 import { I18nPropsType } from '@store/utils/lib/i18n';
+import { MaybeType } from '@store/utils/lib/types';
 
 // import
 import React from 'react';
@@ -10,7 +11,6 @@ import { Form as AntdForm, Input, Button } from 'antd';
 import AddressCascader from '@store/address-cascader';
 import { withNamespaces } from '@store/utils/lib/i18n';
 import validateMobile from '@store/utils/lib/validate/mobile';
-import { OmitType, MaybeType } from '@store/utils/lib/types';
 
 import styles from './styles/form.less';
 
@@ -25,7 +25,7 @@ interface PropsType
   extends I18nPropsType,
     FormComponentProps,
     MaybeType<
-      OmitType<
+      Omit<
         getUserRecipientsViewerRecipientAddressBook,
         '__typename' | 'address'
       >

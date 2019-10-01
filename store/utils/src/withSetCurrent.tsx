@@ -1,8 +1,6 @@
 // typescript import
 import { MutationFn } from 'react-apollo';
 
-import { OmitType } from './types';
-
 // import
 import React from 'react';
 import { gql } from 'apollo-boost';
@@ -23,7 +21,7 @@ export default (pageId: string) => <P extends object>(
   Component: React.ComponentType<P>,
 ) => {
   const WithSetCurrent = (
-    props: OmitType<P, keyof SetCurrentPropsType>,
+    props: Omit<P, keyof SetCurrentPropsType>,
   ): React.ReactElement => (
     <Mutation<setCurrent, setCurrentVariables>
       mutation={gql`

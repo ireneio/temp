@@ -3,7 +3,6 @@ import { QueryResult } from 'react-apollo';
 import { DrawerProps } from 'antd/lib/drawer';
 
 import { I18nPropsType } from '@admin/utils/lib/i18n';
-import { OmitType } from '@admin/utils/lib/types';
 
 // import
 import React from 'react';
@@ -29,7 +28,7 @@ import { orderExportDownload } from '../../../__generated__/admin';
 interface PropsType
   extends I18nPropsType,
     Pick<QueryResult<getExportFormat>, 'client'>,
-    OmitType<DrawerProps, 'closable' | 'title' | 'onClose'> {
+    Omit<DrawerProps, 'closable' | 'title' | 'onClose'> {
   loading: boolean;
   exportFormatList: {
     id: string;
@@ -39,7 +38,7 @@ interface PropsType
   onClose?: () => void;
 }
 
-interface StateType extends OmitType<orderExportDownload, 'orderIds'> {
+interface StateType extends Omit<orderExportDownload, 'orderIds'> {
   loadingExportDownloadUri: boolean;
 }
 
@@ -168,7 +167,7 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
                   <Select
                     placeholder={t(`${key}.placeholder`)}
                     onChange={value =>
-                      this.setState({ [key]: value } as OmitType<
+                      this.setState({ [key]: value } as Omit<
                         StateType,
                         'loadingExportDownloadUri'
                       >)
@@ -182,7 +181,7 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
                   <Input
                     placeholder={t(`${key}.placeholder`)}
                     onChange={({ target: { value } }) =>
-                      this.setState({ [key]: value } as OmitType<
+                      this.setState({ [key]: value } as Omit<
                         StateType,
                         'loadingExportDownloadUri'
                       >)
@@ -204,7 +203,7 @@ export default React.memo(
   ({
     visible,
     ...props
-  }: OmitType<DrawerProps, 'onClose'> & Pick<PropsType, 'onClose'>) => (
+  }: Omit<DrawerProps, 'onClose'> & Pick<PropsType, 'onClose'>) => (
     <Query<getExportFormat>
       query={gql`
         query getExportFormat {

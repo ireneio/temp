@@ -3,7 +3,6 @@ import { QueryResult } from 'react-apollo';
 import { CascaderProps, CascaderOptionType } from 'antd/lib/cascader';
 
 import { I18nPropsType } from '@store/utils/lib/i18n';
-import { OmitType } from '@store/utils/lib/types';
 
 // import
 import React from 'react';
@@ -33,7 +32,7 @@ import localeFragment from '@store/utils/lib/fragments/locale';
 
 // typescript definition
 interface PropsType
-  extends OmitType<CascaderProps, 'options'>,
+  extends Omit<CascaderProps, 'options'>,
     Pick<QueryResult<getCountriesAddress>, 'client'>,
     Pick<I18nPropsType, 'i18n'> {
   lockedCountry?: string[];
@@ -269,7 +268,7 @@ class AddressCascader extends React.PureComponent<PropsType> {
 }
 
 export default React.forwardRef(({ // TODO remove value after using real schema
-  value, ...props }: OmitType<PropsType, 'client' | 'countries'>, ref: React.Ref<Query<getCountriesAddress, getCountriesAddressVariables>>) => (
+  value, ...props }: Omit<PropsType, 'client' | 'countries'>, ref: React.Ref<Query<getCountriesAddress, getCountriesAddressVariables>>) => (
   <Query<getCountriesAddress, getCountriesAddressVariables>
     ref={ref}
     query={gql`
