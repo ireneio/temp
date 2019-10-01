@@ -147,9 +147,15 @@ export default class Checkout extends React.PureComponent {
     const { errors } = result || {};
 
     if (error || errors || !id) {
+      const errorMessage = error || errors?.[0]?.message || '';
+
       notification.error({
         message: transformLocale(LOCALE.PAY_FILE),
-        description: error || errors?.[0]?.message || '',
+        description: /(<st_code>|七天後關|門市不存在|門市關轉店或為外島|取貨門市店代碼)/.test(
+          errorMessage,
+        )
+          ? '原取件門市暫停服務，請重新選擇！'
+          : errorMessage,
       });
 
       this.setState({ isSubmitting: false });
