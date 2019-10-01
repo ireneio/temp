@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.26.1 (2019-10-01)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#697](https://github.com/meepshop/meep-lerna/pull/697) 【優化】 前端 - 結帳頁，建立訂單失敗時，美化提示文字 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `mock-types`, `store`
+  - [#610](https://github.com/meepshop/meep-lerna/pull/610) 2371 【功能】前台 - 結帳頁 - 自建超取地圖：前端 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#708](https://github.com/meepshop/meep-lerna/pull/708) (@meepshop/front-end) Remove OmitType, use new Omit ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.26.0 (2019-09-27)
 
 #### :rocket: New Feature
