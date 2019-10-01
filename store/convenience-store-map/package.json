@@ -8,7 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@store/utils": "^0.25.5",
+    "@store/utils": "^0.26.0",
     "memoize-one": "^5.0.4"
   },
   "keywords": ["convenience store map", "store"]
