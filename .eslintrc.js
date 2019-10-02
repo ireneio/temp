@@ -50,10 +50,15 @@ module.exports = {
 
     'react/prop-types': 'off',
     'react/jsx-filename-extension': 'off',
+    // FIXME: false positive on whitespaces in jsx
+    'react/jsx-curly-brace-presence': 'off',
+    // FIXME: false positive on destructuring props
+    'react/no-unused-prop-types': 'off',
     'react/sort-comp': [
       'error',
       {
         order: [
+          'static-variables',
           'static-methods',
           'instance-variables',
           'lifecycle',
