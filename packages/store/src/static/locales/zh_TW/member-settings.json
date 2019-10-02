@@ -1,4 +1,7 @@
 {
+  "form": {
+    "required": "必填"
+  },
   "group-expire-date": {
     "info": "使用期限",
     "forever": "永久"

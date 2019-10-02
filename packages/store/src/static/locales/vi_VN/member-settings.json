@@ -1,4 +1,7 @@
 {
+  "form": {
+    "required": "dòng bắt buộc"
+  },
   "group-expire-date": {
     "info": null,
     "forever": null

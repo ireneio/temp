@@ -292,8 +292,11 @@ class MemberSettings extends React.PureComponent<PropsType> {
               initialValue: postalCode,
               rules: [
                 {
-                  required: true,
-                  message: t('form.required'),
+                  validator: (_, value, callback) => {
+                    if (getFieldValue('address').length !== 0 && !value)
+                      callback(t('form.required'));
+                    else callback();
+                  },
                 },
               ],
             })(<Input placeholder={t('postal-code')} size="large" />)}

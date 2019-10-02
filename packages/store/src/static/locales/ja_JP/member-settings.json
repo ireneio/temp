@@ -1,4 +1,7 @@
 {
+  "form": {
+    "required": "入力必須項目"
+  },
   "group-expire-date": {
     "info": null,
     "forever": null

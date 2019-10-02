@@ -1,4 +1,7 @@
 {
+  "form": {
+    "required": "Required"
+  },
   "group-expire-date": {
     "info": null,
     "forever": null
