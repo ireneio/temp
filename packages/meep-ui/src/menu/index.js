@@ -229,7 +229,8 @@ export default class Menu extends React.PureComponent {
           expandIcon={({ eventKey, isOpen }) => (
             <ArrowIcon
               className={`arrow-icon ${
-                isOpen || (expandSubItem && openKeys.includes(eventKey))
+                isOpen ||
+                (expandSubItem && openKeys && openKeys.includes(eventKey))
                   ? styles.open
                   : styles.close
               }`}
