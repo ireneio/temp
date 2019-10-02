@@ -2,7 +2,6 @@
 import { FormComponentProps } from 'antd/lib/form';
 
 import { I18nPropsType } from '@store/utils/lib/i18n';
-import { MaybeType } from '@store/utils/lib/types';
 
 // import
 import React from 'react';
@@ -24,7 +23,7 @@ import {
 interface PropsType
   extends I18nPropsType,
     FormComponentProps,
-    MaybeType<
+    Partial<
       Omit<
         getUserRecipientsViewerRecipientAddressBook,
         '__typename' | 'address'
