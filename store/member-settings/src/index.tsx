@@ -422,20 +422,6 @@ export default React.memo(
             hasGmoCreditCard
           }
 
-          getMemberGroupList(
-            search: {
-              size: 50
-              from: 0
-              filter: { and: [{ type: "exact", field: "status", query: "1" }] }
-            }
-          ) {
-            data {
-              id
-              type
-              name
-            }
-          }
-
           getColorList {
             ...colorListFragment
           }

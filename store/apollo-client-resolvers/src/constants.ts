@@ -1,9 +1,14 @@
 // typescript import
-import { InMemoryCache } from 'apollo-boost';
+import {
+  InMemoryCache,
+  ApolloClient,
+  NormalizedCacheObject,
+} from 'apollo-boost';
 
 // typescript definition
 export interface ContextType {
   cache: InMemoryCache;
+  client: ApolloClient<NormalizedCacheObject>;
 }
 
 // definition
