@@ -59,6 +59,7 @@ export const arrowRightIcon = {
 };
 
 export const replayContent = colors => ({
+  width: '100%',
   margin: '10px 0px 0px',
   padding: '12px 18px',
   background: transformColor(colors[4]).alpha(0.1),
