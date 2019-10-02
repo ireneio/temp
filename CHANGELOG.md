@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.26.2 (2019-10-02)
+
+#### :rocket: New Feature
+
+- Other
+  - [#711](https://github.com/meepshop/meep-lerna/pull/711) (@store/utils): replace MaybeType with Partial ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`
+  - [#603](https://github.com/meepshop/meep-lerna/pull/603) 【功能】 PayPal 串接：前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#701](https://github.com/meepshop/meep-lerna/pull/701) 【BUG】前台 - 回覆商品問答若文字太短，會造成跑版 ([@piovischioh](https://github.com/piovischioh))
+  - [#700](https://github.com/meepshop/meep-lerna/pull/700) 【個別店家】 部分分頁顯示空白 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#704](https://github.com/meepshop/meep-lerna/pull/704) 【BUG】 前台 - 會員資料 - 未顯示會員群組名稱、起迄時間 ([@happycat6323](https://github.com/happycat6323))
+- `store`
+  - [#696](https://github.com/meepshop/meep-lerna/pull/696) 【BUG】 前台 - 會員資料 - 無法更新 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#711](https://github.com/meepshop/meep-lerna/pull/711) (@store/utils): replace MaybeType with Partial ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.26.1 (2019-10-01)
 
 #### :rocket: New Feature
