@@ -8,6 +8,7 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import {
   ISLOGIN_TYPE,
   USER_TYPE,
+  PAYMENT_TEMPLATE_TYPE,
   SHIPMENT_TEMPLATE_TYPE,
   COUNTRY_TYPE,
 } from 'constants/propTypes';
@@ -45,6 +46,7 @@ export default class ReceiverInfo extends React.PureComponent {
     /** props */
     form: PropTypes.shape({}).isRequired,
     countries: PropTypes.arrayOf(COUNTRY_TYPE.isRequired),
+    choosePaymentTemplate: PAYMENT_TEMPLATE_TYPE,
     chooseShipmentTemplate: SHIPMENT_TEMPLATE_TYPE,
     isSynchronizeUserInfo: PropTypes.bool.isRequired,
     changeSynchronizeUserInfo: PropTypes.func.isRequired,
@@ -55,6 +57,7 @@ export default class ReceiverInfo extends React.PureComponent {
   static defaultProps = {
     user: null,
     countries: null,
+    choosePaymentTemplate: null,
     chooseShipmentTemplate: null,
   };
 
@@ -142,6 +145,7 @@ export default class ReceiverInfo extends React.PureComponent {
       form,
       user,
       countries,
+      choosePaymentTemplate,
       chooseShipmentTemplate,
       isSynchronizeUserInfo,
       changeSaveAsReceiverTemplate,
@@ -238,7 +242,7 @@ export default class ReceiverInfo extends React.PureComponent {
           form={form}
           chooseShipmentTemplate={chooseShipmentTemplate}
           countries={countries}
-          invoiceIsNeeded
+          invoiceIsNeeded={choosePaymentTemplate !== 'paypal'}
         />
 
         <FormItem style={formItemStyle}>

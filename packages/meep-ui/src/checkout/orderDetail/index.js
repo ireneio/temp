@@ -414,6 +414,7 @@ export default class OrderDetail extends React.PureComponent {
             <ReceiverInfo
               form={form}
               countries={countries}
+              choosePaymentTemplate={(choosePayment || {}).template}
               chooseShipmentTemplate={(chooseShipment || {}).template}
               isSynchronizeUserInfo={isSynchronizeUserInfo}
               changeSynchronizeUserInfo={synchronizeUserInfo => {

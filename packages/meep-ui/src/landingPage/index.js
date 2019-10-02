@@ -345,6 +345,7 @@ export default class LandingPage extends React.PureComponent {
           <ReceiverInfo
             {...props}
             form={form}
+            choosePaymentTemplate={(choosePayment || {}).template}
             chooseShipmentTemplate={chooseShipmentTemplate}
             toggleLogin={this.toggleLogin}
           />

@@ -154,9 +154,12 @@ export const ALIGNMENT_TYPE = PropTypes.oneOf(['left', 'center', 'right']);
 
 export const PAYMENT_TEMPLATE_TYPE = PropTypes.oneOf([
   'allpay',
-  'gmo',
   'hitrust',
+  'gmo',
   'ezpay',
+  'cathay',
+  'chinatrust',
+  'paypal',
   'custom',
 ]);
 

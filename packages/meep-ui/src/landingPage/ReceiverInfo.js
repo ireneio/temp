@@ -9,6 +9,7 @@ import ReceiverDefaultFormItem from 'receiverDefaultFormItem';
 import {
   COLOR_TYPE,
   ISLOGIN_TYPE,
+  PAYMENT_TEMPLATE_TYPE,
   SHIPMENT_TEMPLATE_TYPE,
   COUNTRY_TYPE,
 } from 'constants/propTypes';
@@ -39,6 +40,7 @@ export default class ReceiverInfo extends React.PureComponent {
     getData: PropTypes.func.isRequired,
 
     /** props */
+    choosePaymentTemplate: PAYMENT_TEMPLATE_TYPE,
     chooseShipmentTemplate: SHIPMENT_TEMPLATE_TYPE,
     form: PropTypes.shape({
       // from LandingPage Form.create()
@@ -53,6 +55,7 @@ export default class ReceiverInfo extends React.PureComponent {
   };
 
   static defaultProps = {
+    choosePaymentTemplate: null,
     chooseShipmentTemplate: null,
     countries: null,
   };
@@ -103,6 +106,7 @@ export default class ReceiverInfo extends React.PureComponent {
       isLogin,
       colors,
       transformLocale,
+      choosePaymentTemplate,
       chooseShipmentTemplate,
       countries,
       form,
@@ -236,7 +240,9 @@ export default class ReceiverInfo extends React.PureComponent {
           form={form}
           chooseShipmentTemplate={chooseShipmentTemplate}
           countries={countries}
-          invoiceIsNeeded={addition.includes('invoice')}
+          invoiceIsNeeded={
+            addition.includes('invoice') && choosePaymentTemplate !== 'paypal'
+          }
         />
 
         {!addition.includes('notes') ? null : (
