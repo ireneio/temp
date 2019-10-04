@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { notification } from 'antd';
 import { areEqual } from 'fbjs';
+import uuid from 'uuid/v4';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { USER_TYPE, LOCATION_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
@@ -21,6 +22,8 @@ import * as LOCALE from './locale';
 @enhancer
 export default class Checkout extends React.PureComponent {
   formRef = React.createRef();
+
+  idempotentKey = uuid();
 
   static propTypes = {
     /** context */
@@ -106,6 +109,9 @@ export default class Checkout extends React.PureComponent {
       login,
       dispatchAction,
     } = this.props;
+    const { isSubmitting } = this.state;
+
+    if (isSubmitting) return;
 
     // TODO: should rewrite form data controller
     this.setState({ isSubmitting: true, orderInfo });
@@ -119,14 +125,15 @@ export default class Checkout extends React.PureComponent {
     const { userEmail, userPassword, ...fieldValue } = orderInfo.info;
 
     let { postalCode = '' } = orderInfo.info;
-    if (Object.values(TAIWAN).includes(fieldValue.address?.[0])) {
+
+    if (Object.values(TAIWAN).includes(fieldValue.address?.[0]))
       await fetchStreamName(fieldValue.address).then(({ zip }) => {
         postalCode = zip;
       });
-    }
 
     const orderData = {
       ...fieldValue,
+      idempotentKey: this.idempotentKey,
       postalCode,
       domain,
       locale,
@@ -158,6 +165,7 @@ export default class Checkout extends React.PureComponent {
           : errorMessage,
       });
 
+      this.idempotentKey = uuid();
       this.setState({ isSubmitting: false });
     } else {
       adTrack(

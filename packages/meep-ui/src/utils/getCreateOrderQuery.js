@@ -1,8 +1,8 @@
-import uuid from 'uuid';
-
 import * as COUNTRY_LOCALE from 'locale/country';
 
 export default ({
+  idempotentKey,
+
   domain,
   locale,
   sourcePage,
@@ -137,7 +137,7 @@ export default ({
         locale,
         ...(!sourcePage ? {} : { sourcePage }),
       },
-      idempotentKey: uuid.v4(),
+      idempotentKey,
       isPayment,
       products: products
         .filter(({ type }) => type !== 'gift')

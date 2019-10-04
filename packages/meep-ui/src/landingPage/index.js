@@ -4,6 +4,7 @@ import radium, { Style, StyleRoot } from 'radium';
 import { Form, Button, Divider, notification } from 'antd';
 import moment from 'moment';
 import { areEqual } from 'fbjs';
+import uuid from 'uuid/v4';
 
 import GmoCreditCardForm from '@store/gmo-credit-card-form';
 
@@ -171,6 +172,9 @@ export default class LandingPage extends React.PureComponent {
             redirectPage,
             dispatchAction,
           } = this.props;
+          const { isSubmitting } = this.state;
+
+          if (isSubmitting) return;
 
           this.setState({ isSubmitting: true });
 
@@ -179,6 +183,7 @@ export default class LandingPage extends React.PureComponent {
           const [variantId] = variant.slice(-1);
           const orderData = {
             ...filedsValue,
+            idempotentKey: uuid(),
             sourcePage: 'lp',
             domain,
             locale,
