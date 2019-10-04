@@ -1,0 +1,36 @@
+{
+  "title": null,
+  "save": null,
+  "cancel": null,
+  "auto-email": null,
+  "auto-email-description": null,
+  "email": null,
+  "email-error": null,
+  "required": null,
+  "auto-email-setting": null,
+  "order": {
+    "title": null,
+    "description": null
+  },
+  "order-QA": {
+    "title": null,
+    "description": null
+  },
+  "order-applicaiton": {
+    "title": null,
+    "tip": null,
+    "description": null
+  },
+  "payment-notification": {
+    "title": null,
+    "tip": null,
+    "description": null
+  },
+  "product-QA": {
+    "title": null,
+    "tip": null,
+    "description": null
+  },
+  "success": null,
+  "error": null
+}

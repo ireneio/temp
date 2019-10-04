@@ -1,0 +1,182 @@
+@import '~@admin/utils/lib/styles/variables.less';
+
+.root {
+  background-color: @main-background-color;
+  height: 100%;
+  overflow: auto;
+  padding: 56px 35px;
+  color: rgba(0, 0, 0, 0.85);
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    max-width: 992px;
+
+    h1 {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 33px;
+      color: rgba(0, 0, 0, 0.65);
+      margin: 0;
+    }
+  }
+
+  .content {
+    margin: auto;
+    max-width: 992px;
+
+    & > section {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px 0;
+      justify-content: space-between;
+
+      & > div:first-child {
+        width: 344px;
+        padding: 32px 48px 0 0;
+
+        h2 {
+          font-size: 18px;
+          font-weight: 600;
+          line-height: 25px;
+          color: rgba(0, 0, 0, 0.65);
+        }
+
+        p {
+          font-size: 14px;
+          line-height: 22px;
+          color: rgba(0, 0, 0, 0.35);
+        }
+      }
+
+      & > div:last-child {
+        width: 648px;
+        background-color: #fff;
+        border-radius: 4px;
+        padding: 32px 24px;
+      }
+    }
+
+    h3 {
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 22px;
+      margin-bottom: 15px;
+    }
+
+    .item {
+      display: flex;
+
+      &:not(:last-child) {
+        margin-bottom: 25px;
+      }
+
+      & > :global(.ant-form-item-label) {
+        margin-left: 18px;
+        width: unset;
+      }
+
+      & > :global(.ant-form-item-control-wrapper) {
+        width: unset;
+      }
+
+      label {
+        &::after {
+          content: '';
+          margin: 0;
+        }
+
+        & > div {
+          p {
+            margin: 0;
+          }
+
+          & > p:first-child {
+            font-size: 16px;
+            line-height: 22px;
+
+            .icon {
+              font-size: 14px;
+              color: @primary-color;
+              margin-left: 5px;
+            }
+          }
+
+          & > p:last-child {
+            font-size: 14px;
+            line-height: 22px;
+            color: rgba(0, 0, 0, 0.35);
+          }
+        }
+      }
+    }
+  }
+}
+
+.icon {
+  margin-right: 7px;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    color: @primary-color;
+  }
+}
+
+.hr {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
+}
+
+.affixed {
+  height: @header-height !important;
+  width: 100% !important;
+
+  > :global(.ant-affix) {
+    height: @header-height !important;
+    width: calc(100vw - @menu-width) !important;
+    top: 0 !important;
+    margin-left: -35px;
+    background-color: @main-background-color;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    animation: fadeInDown 0.5s;
+
+    .header {
+      height: 100%;
+    }
+  }
+}
+
+.spin {
+  height: 100%;
+
+  &:global(.ant-spin) {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :global(.ant-spin-container) {
+    height: 100%;
+  }
+
+  :global(.ant-spin) {
+    max-height: unset;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
