@@ -26,6 +26,8 @@ export const SPECIAL_HIDE_FOOTER = [
   'mothersarm',
   'giftcungvn',
   'giftcung',
+  'luckyandcolorful',
+  'may',
 ];
 
 export const STORE_APP_PLUGINS = [
