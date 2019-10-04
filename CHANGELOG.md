@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.27.0 (2019-10-04)
+
+#### :boom: Breaking Change
+
+- [#572](https://github.com/meepshop/meep-lerna/pull/572) 1011 【功能】店家自動通知信＋通知設定 - 前端 ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#713](https://github.com/meepshop/meep-lerna/pull/713) 【個案處理】meepShop MAX 極速開店：新增白名單 - luckyandcolorful & may ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#572](https://github.com/meepshop/meep-lerna/pull/572) 1011 【功能】店家自動通知信＋通知設定 - 前端 ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#702](https://github.com/meepshop/meep-lerna/pull/702) 【BUG】 後台 - 商品庫存大於 1，前台 - 一頁式購買數量顯示 null ([@piovischioh](https://github.com/piovischioh))
+  - [#707](https://github.com/meepshop/meep-lerna/pull/707) 【個別店家】 確認送出訂單，卻產生多筆訂單 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.26.3 (2019-10-02)
 
 #### :rocket: New Feature
