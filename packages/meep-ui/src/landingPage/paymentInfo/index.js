@@ -130,9 +130,27 @@ class PayemntInfo extends React.PureComponent {
       variants,
     } = this.props;
     const [variantId] = variant.slice(-1);
-    const { stock, minPurchaseItems: variantMin, maxPurchaseLimit } =
-      variants.find(({ id }) => id === variantId) || {};
-    const variantMax = maxPurchaseLimit > stock ? stock : maxPurchaseLimit;
+    const variantInfo = variants.find(({ id }) => id === variantId) || {};
+    let { minPurchaseItems, maxPurchaseLimit } = variantInfo;
+
+    // minPurchaseItems 最小需等於 1
+    minPurchaseItems = minPurchaseItems > 0 ? minPurchaseItems : 1;
+
+    // maxPurchaseLimit 最小需等於 minPurchaseItems
+    if (typeof maxPurchaseLimit === 'number') {
+      maxPurchaseLimit =
+        maxPurchaseLimit > minPurchaseItems
+          ? maxPurchaseLimit
+          : minPurchaseItems;
+    } else {
+      maxPurchaseLimit = variantInfo.stock;
+    }
+
+    const variantMin = minPurchaseItems;
+    const variantMax =
+      maxPurchaseLimit > variantInfo.stock
+        ? variantInfo.stock
+        : maxPurchaseLimit;
 
     if (variantMax === 0 || variantMax < variantMin)
       Modal.error({ title: transformLocale(LOCALE.NO_VARIANT) });
