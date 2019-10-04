@@ -4,14 +4,14 @@
   "description": "member order page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.26.3",
+  "version": "0.27.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@store/apollo-client-resolvers": "^0.26.3",
-    "@store/currency": "^0.26.3",
-    "@store/thumbnail": "^0.26.1",
-    "@store/utils": "^0.26.3",
+    "@store/apollo-client-resolvers": "^0.27.0",
+    "@store/currency": "^0.27.0",
+    "@store/thumbnail": "^0.27.0",
+    "@store/utils": "^0.27.0",
     "color": "^3.0.0"
   },
   "keywords": ["member", "order", "store"]
