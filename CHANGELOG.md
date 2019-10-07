@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.27.1 (2019-10-07)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#709](https://github.com/meepshop/meep-lerna/pull/709) 使用新的匯率查詢 API ([@happycat6323](https://github.com/happycat6323))
+  - [#693](https://github.com/meepshop/meep-lerna/pull/693) 前端 - 改用 viewer.store 取得商店資料 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.27.0 (2019-10-04)
 
 #### :boom: Breaking Change
