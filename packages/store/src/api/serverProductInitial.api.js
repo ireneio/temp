@@ -1,10 +1,10 @@
 import postGraphql from 'utils/postGraphql';
 import {
   viewer,
+  viewerStoreQuery,
   productQuery,
   storeAppQuery,
   menuQuery,
-  storeSettingQuery,
   colorQuery,
   activityQuery,
   cartQuery,
@@ -22,7 +22,7 @@ export default async function(context) {
   if (!pId) throw new Error('Product id is not defined.');
   const variables = {
     keys:
-      '$productSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$productSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverProductInitial',
     values: {
       productSearch: {
@@ -58,11 +58,6 @@ export default async function(context) {
             order: 'desc',
           },
         ],
-      },
-      storeSearch: {
-        filter: {
-          and: [],
-        },
       },
       storeAppSearch: {
         size: 100,
@@ -199,6 +194,7 @@ export default async function(context) {
 
   const query = `
     ${viewer}
+    ${viewerStoreQuery}
     computeProductList(
       search: $productSearch
     ) {
@@ -208,12 +204,6 @@ export default async function(context) {
     getMenuList(search: $menuSearch) {
       data {
         ${menuQuery}
-      }
-      total
-    }
-    getStoreList(search: $storeSearch) {
-      data {
-        ${storeSettingQuery}
       }
       total
     }

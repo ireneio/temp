@@ -78,17 +78,12 @@ class MyApp extends App {
         body: JSON.stringify({
           query: `
               query checkStore {
-                getStoreList {
-                  data {
-                    setting {
-                      locale
-                    }
-                  }
-                }
-
                 viewer {
                   store {
                     storeStatus
+                    setting {
+                      locale
+                    }
                   }
                 }
               }
@@ -109,7 +104,7 @@ class MyApp extends App {
         const storeStatus = data?.data?.viewer.store.storeStatus;
         const locale =
           req?.locale ||
-          data?.data?.getStoreList?.data?.[0]?.setting?.locale?.[0] ||
+          data?.data?.viewer?.store?.setting?.locale?.[0] ||
           'zh_TW';
         /* The store is closed */
         if (storeStatus === 0) return { closed: true, locale, pageProps };

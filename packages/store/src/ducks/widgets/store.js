@@ -140,8 +140,8 @@ export default function(state = initialState, { type, payload }) {
       const apps = data?.getStoreAppList?.data || [];
       const memberGroups = data?.getMemberGroupList?.data || [];
       const appLogins = data?.getAppLoginList?.data || [];
-      const store = data?.getStoreList?.data?.[0];
-      const storeSettings = data?.getStoreList?.data?.[0]?.setting;
+      const store = data?.viewer?.store;
+      const storeSettings = data?.viewer?.store?.setting;
       const pageAdTrackIDs = getPageAdTrackIds(data);
       const fxSetup = data?.getExchangeRateList?.data;
       const {

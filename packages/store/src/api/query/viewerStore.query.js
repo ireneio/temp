@@ -1,0 +1,72 @@
+const viewerStoreQuery = `
+viewer {
+  store {
+    name
+    cname
+    domain
+    description {
+      name
+      introduction
+    }
+    timezone
+    currency
+    contact {
+      name
+      email
+      mobile
+      tel
+    }
+    locale
+    setting {
+      order {
+        autoAddStock
+        afterPaymentFail
+      }
+      cart {
+        cartlock
+        cartlockTime
+      }
+      design {
+        footerSite
+      }
+      invoice {
+        paper {
+          duplicate {
+            isEnabled
+          }
+          triplicate {
+            isEnabled
+          }
+          donation {
+            isEnabled
+          }
+        }
+        electronic {
+          isEnabled
+          type
+        }
+      }
+      locale
+      currency
+      lockedCountry
+      lockedBirthday
+      paidMessage
+      activityVersion
+      adRetentionMilliseconds
+      adRetentionMillisecondsEnabled
+    }
+    logoImage {
+      src
+    }
+    mobileLogoImage {
+      src
+    }
+    faviconImage {
+      src
+    }
+    homePageId
+  }
+}
+`;
+
+export default viewerStoreQuery;

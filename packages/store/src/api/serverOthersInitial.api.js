@@ -1,9 +1,9 @@
 import postGraphql from 'utils/postGraphql';
 import {
   viewer,
+  viewerStoreQuery,
   storeAppQuery,
   menuQuery,
-  storeSettingQuery,
   colorQuery,
   activityQuery,
   cartQuery,
@@ -17,7 +17,7 @@ import {
 export default async function(context) {
   const variables = {
     keys:
-      '$menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverOthersInitial',
     values: {
       menuSearch: {
@@ -32,11 +32,6 @@ export default async function(context) {
             order: 'desc',
           },
         ],
-      },
-      storeSearch: {
-        filter: {
-          and: [],
-        },
       },
       storeAppSearch: {
         size: 100,
@@ -173,15 +168,10 @@ export default async function(context) {
 
   const query = `
     ${viewer}
+    ${viewerStoreQuery}
     getMenuList(search: $menuSearch) {
       data {
         ${menuQuery}
-      }
-      total
-    }
-    getStoreList(search: $storeSearch) {
-      data {
-        ${storeSettingQuery}
       }
       total
     }

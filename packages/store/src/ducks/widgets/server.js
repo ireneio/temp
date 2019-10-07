@@ -27,8 +27,7 @@ function* serverIndexInitialFlow({ payload }) {
 
       yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
       yield put(getAuthSuccess(data));
-
-      const homePageId = data?.data?.getStoreList?.data?.[0]?.homePageId;
+      const homePageId = data?.data?.viewer?.store?.homePageId;
       const pages = data?.data?.getPageList?.data;
 
       const page = !homePageId

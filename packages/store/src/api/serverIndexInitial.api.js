@@ -1,10 +1,10 @@
 import postGraphql from 'utils/postGraphql';
 import {
   viewer,
+  viewerStoreQuery,
   pageQuery,
   storeAppQuery,
   menuQuery,
-  storeSettingQuery,
   colorQuery,
   activityQuery,
   cartQuery,
@@ -18,7 +18,7 @@ import {
 export default async function(context) {
   const variables = {
     keys:
-      '$pageSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $storeSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$pageSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverIndexInitial',
     values: {
       pageSearch: {
@@ -52,11 +52,6 @@ export default async function(context) {
             order: 'desc',
           },
         ],
-      },
-      storeSearch: {
-        filter: {
-          and: [],
-        },
       },
       storeAppSearch: {
         size: 100,
@@ -193,6 +188,7 @@ export default async function(context) {
 
   const query = `
     ${viewer}
+    ${viewerStoreQuery}
     getPageList(
       search: $pageSearch
     ) {
@@ -204,12 +200,6 @@ export default async function(context) {
     getMenuList(search: $menuSearch) {
       data {
         ${menuQuery}
-      }
-      total
-    }
-    getStoreList(search: $storeSearch) {
-      data {
-        ${storeSettingQuery}
       }
       total
     }
