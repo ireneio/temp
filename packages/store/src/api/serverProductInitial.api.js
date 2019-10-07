@@ -22,7 +22,7 @@ export default async function(context) {
   if (!pId) throw new Error('Product id is not defined.');
   const variables = {
     keys:
-      '$productSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$productSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverProductInitial',
     values: {
       productSearch: {
@@ -135,9 +135,6 @@ export default async function(context) {
             order: 'asc',
           },
         ],
-      },
-      exchangeRate: {
-        search: 'USD',
       },
       cartSearch: {
         showDetail: true,
@@ -253,13 +250,10 @@ export default async function(context) {
         appId
       }
     }
-    getExchangeRateList(baseCurrency: $exchangeRateSearch) {
-      data {
-        timestamp
-        base
-        rates
-        _error
-      }
+    exchangeRateService {
+      base
+      rates
+      timestamp
     }
     getCartList(search: $cartSearch) {
       data {

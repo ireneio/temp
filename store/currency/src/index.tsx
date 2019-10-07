@@ -44,12 +44,10 @@ export const CurrencyProvider = React.memo(
               }
             }
 
-            getExchangeRateList {
-              data {
-                base
-                rates
-                timestamp
-              }
+            exchangeRateService {
+              base
+              rates
+              timestamp
             }
           }
         `}
@@ -61,7 +59,7 @@ export const CurrencyProvider = React.memo(
           const storeCurrency =
             idx(data, _ => _.viewer.store.currency) || 'TWD';
 
-          initFx(idx(data, _ => _.getExchangeRateList.data));
+          initFx(idx(data, _ => _.exchangeRateService));
 
           return (
             <CurrencyContext.Provider

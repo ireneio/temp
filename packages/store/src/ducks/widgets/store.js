@@ -143,7 +143,7 @@ export default function(state = initialState, { type, payload }) {
       const store = data?.viewer?.store;
       const storeSettings = data?.viewer?.store?.setting;
       const pageAdTrackIDs = getPageAdTrackIds(data);
-      const fxSetup = data?.getExchangeRateList?.data;
+      const fxSetup = data?.exchangeRateService;
       const {
         locale: localeOptions,
         currency: currencyOptions,

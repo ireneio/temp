@@ -22,7 +22,7 @@ export default async function(context) {
   if (!path) throw new Error('Page path is not defined.');
   const variables = {
     keys:
-      '$pageSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $exchangeRateSearch: String, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$pageSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverPagesInitial',
     values: {
       pageSearch: {
@@ -146,9 +146,6 @@ export default async function(context) {
           },
         ],
       },
-      exchangeRate: {
-        search: 'USD',
-      },
       cartSearch: {
         showDetail: true,
       },
@@ -265,13 +262,10 @@ export default async function(context) {
         appId
       }
     }
-    getExchangeRateList(baseCurrency: $exchangeRateSearch) {
-      data {
-        timestamp
-        base
-        rates
-        _error
-      }
+    exchangeRateService {
+      base
+      rates
+      timestamp
     }
     getCartList(search: $cartSearch) {
       data {
