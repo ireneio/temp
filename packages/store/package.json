@@ -4,7 +4,7 @@
   "description": "store for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.27.0",
+  "version": "0.27.1",
   "scripts": {
     "clean": "rm -rf ./src/.next",
     "dev": "node --inspect=localhost:9230 src/server",
@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@meepshop/meep-ui": "^0.27.0",
-    "@store/currency": "^0.27.0",
+    "@store/currency": "^0.27.1",
     "@store/ezpay": "^0.27.0",
-    "@store/member-order": "^0.27.0",
+    "@store/member-order": "^0.27.1",
     "@store/member-order-applications": "^0.27.0",
     "@store/member-order-apply": "^0.27.0",
     "@store/member-order-pay-notify": "^0.27.0",
