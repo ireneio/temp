@@ -13,7 +13,7 @@ import Authority from './schemas/Authority';
 import ColorList from './schemas/ColorList';
 import ConvenienceStore from './schemas/ConvenienceStore';
 import DashboardInfo from './schemas/DashboardInfo';
-import exchangeRate from './schemas/exchangeRate';
+import ExchangeRate from './schemas/ExchangeRate';
 import ezPaymentReturnListObjectType from './schemas/ezPaymentReturnListObjectType';
 import ExportFormat from './schemas/ExportFormat';
 import GmoBankInstallment from './schemas/GmoBankInstallment';
@@ -63,7 +63,7 @@ addMockFunctionsToSchema({
     ColorList,
     ConvenienceStore,
     DashboardInfo,
-    exchangeRate,
+    ExchangeRate,
     ezPaymentReturnListObjectType,
     ExportFormat,
     GmoBankInstallment,

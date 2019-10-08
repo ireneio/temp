@@ -4,21 +4,21 @@ import { gql } from 'apollo-boost';
 import mock from '../mock';
 
 // graphql typescript
-import { exchangeRateMock } from './__generated__/exchangeRateMock';
+import { ExchangeRateMock } from './__generated__/ExchangeRateMock';
 
 // definition
 // eslint-disable-next-line no-unused-expressions
 gql`
-  fragment exchangeRateMock on exchangeRate {
+  fragment ExchangeRateMock on ExchangeRate {
     base
     rates
     timestamp
   }
 `;
 
-export default mock.add<exchangeRateMock>('exchangeRate', [
+export default mock.add<ExchangeRateMock>('ExchangeRate', [
   () => ({
-    __typename: 'exchangeRate',
+    __typename: 'ExchangeRate',
     base: 'USD',
     rates: {
       AED: 3.673181,
