@@ -297,7 +297,7 @@ export default class ProductList extends React.PureComponent {
   };
 
   handleParamsChange = params => {
-    const { params: prevParams } = this.state;
+    const { params: prevParams, isMobile } = this.state;
     const { getData, dispatchAction, productListCache } = this.props;
     const nextParams = {
       ...prevParams,
@@ -313,6 +313,7 @@ export default class ProductList extends React.PureComponent {
 
     // scroll into view
     this.root.current.scrollIntoView(true);
+    if (!isMobile) window.scrollBy(0, -80);
 
     // cached or not
     if (cached && timestamp) {
