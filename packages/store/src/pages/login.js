@@ -46,11 +46,10 @@ class Login extends Component {
     fbAppId: null,
   };
 
-  async componentDidMount() {
-    const { isLogin } = this.props;
-    if (isLogin === 'ISUSER') {
-      Router.pushRoute('/');
-    }
+  static getDerivedStateFromProps(nextProps) {
+    const { isLogin } = nextProps;
+
+    if (isLogin === 'ISUSER') Router.pushRoute('/');
   }
 
   render() {
