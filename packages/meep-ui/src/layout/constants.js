@@ -26,6 +26,7 @@ export const SPECIAL_HIDE_FOOTER = [
   'mothersarm',
   'giftcungvn',
   'giftcung',
+  'shinzitiy',
   'luckyandcolorful',
   'may',
 ];
