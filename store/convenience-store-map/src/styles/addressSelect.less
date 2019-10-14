@@ -17,6 +17,10 @@
   :global(.ant-select) {
     width: 100%;
     margin: 8px 0 32px;
+
+    svg {
+      transform: none;
+    }
   }
 
   @media @phone-media {
@@ -51,4 +55,17 @@
 
 .popupClassName {
   position: fixed;
+}
+
+.notFoundContent {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  padding: 3px;
+
+  & > i {
+    font-size: 28px;
+    padding: 2px;
+  }
 }

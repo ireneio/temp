@@ -5,6 +5,7 @@
   "storeNumberSearch": "代號查詢",
   "pleaseSelectCityArea": "請選擇縣市區域",
   "pleaseSelectStreet": "請選擇街道名稱",
+  "noStreet": "查無此路名",
   "pleaseChooseStore": "請選擇門市",
   "disabledStore": "灰底為無法配送的門市",
   "pleaseEnterName": "請輸入門市名稱",

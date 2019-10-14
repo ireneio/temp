@@ -37,10 +37,17 @@ const { Option } = Select;
 
 // definition
 class AddressSelect extends React.PureComponent<PropsType> {
+  private titleRef = React.createRef<HTMLDivElement>();
+
   public state = {
     selectedAddress: { cityId: '', areaId: '', street: undefined },
     streets: [],
+    width: 0,
   };
+
+  public componentDidMount(): void {
+    this.setState({ width: idx(this.titleRef, _ => _.current.offsetWidth) });
+  }
 
   private getAreas = async (selectedOptions: CascaderOptionType[]) => {
     const { client, shipmentType, storeTypes } = this.props;
@@ -186,11 +193,20 @@ class AddressSelect extends React.PureComponent<PropsType> {
       // props
       cities,
     } = this.props;
-    const { streets, selectedAddress } = this.state;
+    const { streets, selectedAddress, width } = this.state;
 
     return (
       <div className={styles.root}>
-        <div>{t('pleaseSelectCityArea')}</div>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              .${styles.popupClassName} ul {
+                width: ${width ? `${width / 2}px` : 'auto'};
+              }
+            `,
+          }}
+        />
+        <div ref={this.titleRef}>{t('pleaseSelectCityArea')}</div>
         <Cascader
           popupClassName={styles.popupClassName}
           placeholder={t('pleaseSelectCityArea')}
@@ -212,7 +228,15 @@ class AddressSelect extends React.PureComponent<PropsType> {
           changeOnSelect
         />
         <Select
+          showSearch
+          suffixIcon={<Icon type="search" />}
           placeholder={t('pleaseSelectStreet')}
+          notFoundContent={
+            <div className={styles.notFoundContent}>
+              <Icon type="file-search" />
+              <div>{t('noStreet')}</div>
+            </div>
+          }
           disabled={!streets || !streets.length}
           value={selectedAddress.street}
           onChange={this.filterConvenienceStores}

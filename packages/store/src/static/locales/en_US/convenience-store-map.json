@@ -5,6 +5,7 @@
   "storeNumberSearch": null,
   "pleaseSelectCityArea": null,
   "pleaseSelectStreet": null,
+  "noStreet": null,
   "pleaseChooseStore": null,
   "disabledStore": null,
   "pleaseEnterName": null,
