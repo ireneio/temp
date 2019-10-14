@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.27.2 (2019-10-14)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#721](https://github.com/meepshop/meep-lerna/pull/721) 【個別店家】 meepShop MAX 極速開店：新增白名單 - 3cking ([@happycat6323](https://github.com/happycat6323))
+  - [#716](https://github.com/meepshop/meep-lerna/pull/716) 【個案處理】meepShop MAX 極速開店：新增白名單 - shinzitiy ([@happycat6323](https://github.com/happycat6323))
+- `store`
+  - [#720](https://github.com/meepshop/meep-lerna/pull/720) 【優化】 自建超取地圖 - 路名搜尋 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#718](https://github.com/meepshop/meep-lerna/pull/718) 【BUG】 新架構 - 登入之後，出現「登入中」空白畫面 ([@HsuTing](https://github.com/HsuTing))
+  - [#715](https://github.com/meepshop/meep-lerna/pull/715) 【BUG】前台 - 幣值選單，選項排序與後台不符 ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`
+  - [#719](https://github.com/meepshop/meep-lerna/pull/719) (@meepshop/meep-ui): modify scrolling height when changing pages ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `mock-types`
+  - [#717](https://github.com/meepshop/meep-lerna/pull/717) (@meepshop/mock-types) Fix testing with type error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.27.1 (2019-10-07)
 
 #### :rocket: New Feature
