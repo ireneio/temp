@@ -24,6 +24,7 @@ export const SPECIAL_HIDE_FOOTER = [
   'fionho',
   'jin',
   'mothersarm',
+  '3cking',
   'giftcungvn',
   'giftcung',
   'shinzitiy',
