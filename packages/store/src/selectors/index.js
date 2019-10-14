@@ -52,11 +52,10 @@ export const getLocaleItemsTemplate = createSelector(
 export const getCurrencyItemsTemplate = createSelector(
   [getCurrencyOptions],
   currencyOptions =>
-    CURRENCY_ITEMS_TMPL.reduce((items, item) => {
-      if (currencyOptions.includes(item.id)) {
-        return items.concat([item]);
-      }
-      return items;
+    currencyOptions.reduce((options, currency) => {
+      const option = CURRENCY_ITEMS_TMPL.find(item => item.id === currency);
+
+      return option ? [...options, option] : options;
     }, []),
 );
 
