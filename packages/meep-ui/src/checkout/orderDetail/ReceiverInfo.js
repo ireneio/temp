@@ -13,7 +13,7 @@ import {
   COUNTRY_TYPE,
 } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
-import { TAIWAN } from 'locale/country';
+import * as COUNTRY_LOCALE from 'locale/country';
 
 import ReceiverDefaultFormItem from 'receiverDefaultFormItem';
 
@@ -79,7 +79,7 @@ export default class ReceiverInfo extends React.PureComponent {
   }
 
   setReceiverWithTemplate = async index => {
-    const { form, user } = this.props;
+    const { transformLocale, form, user } = this.props;
     const { setFieldsValue } = form;
     const { recipientData } = user;
     const { name, mobile, address } = recipientData[index];
@@ -89,13 +89,20 @@ export default class ReceiverInfo extends React.PureComponent {
     await setFieldsValue({
       name,
       mobile,
-      address: [country, city, county].filter(data => data),
+      address: [country, city, county]
+        .filter(data => data)
+        .map(data => {
+          const locale = Object.values(COUNTRY_LOCALE).find(countryLocale =>
+            Object.values(countryLocale).includes(data),
+          );
+
+          return !locale ? data : transformLocale(locale);
+        }),
       addressDetail: street,
     });
 
-    if (!Object.values(TAIWAN).includes(county)) {
+    if (!Object.values(COUNTRY_LOCALE.TAIWAN).includes(county))
       setFieldsValue({ postalCode });
-    }
   };
 
   synchronizeUserInfo = ({ target }) => {
