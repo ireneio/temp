@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.27.3 (2019-10-16)
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#723](https://github.com/meepshop/meep-lerna/pull/723) 【BUG】手機版/iPhone/商品頁、商品列表 - 數量下拉選單，無法顯示最後一個數量 ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`
+  - [#722](https://github.com/meepshop/meep-lerna/pull/722) 【BUG】 後台 - 訂單明細 - 地址顯示問題 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.27.2 (2019-10-14)
 
 #### :rocket: New Feature
