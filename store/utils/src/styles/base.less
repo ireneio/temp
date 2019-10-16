@@ -3,6 +3,13 @@
 
 @import './variables.less';
 
+* {
+  /** make scrolling smoothy in safari, ios */
+  -webkit-overflow-scrolling: touch;
+  /* Because the default value of IE is diifferent with other browser */
+  flex-shrink: 1;
+}
+
 :global(.ant-cascader-menus) {
   & > div {
     display: flex;
@@ -49,4 +56,10 @@
     background-color: #00c5dc;
     border-color: #00c5dc;
   }
+}
+
+// fix ios safari rendering problem (T3764)
+:global(.ant-select-dropdown-menu-item:last-child),
+:global(.ant-select-dropdown-menu-item:first-child) {
+  -webkit-transform: translate3d(0, 0, 0);
 }

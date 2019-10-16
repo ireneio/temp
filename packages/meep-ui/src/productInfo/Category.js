@@ -19,7 +19,7 @@ export default class Category extends React.Component {
     onChangeSpec: PropTypes.func.isRequired,
     transformLocale: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
-    container: PropTypes.string.isRequired,
+    container: PropTypes.shape({}).isRequired,
   };
 
   render() {
@@ -60,9 +60,7 @@ export default class Category extends React.Component {
                 onChangeSpec(level, value);
               }}
               value={selected}
-              getPopupContainer={() =>
-                container ? document.getElementById(container) : document.body
-              }
+              getPopupContainer={() => container.current || document.body}
             >
               {items.map((item, index) => (
                 <Select.Option

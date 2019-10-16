@@ -36,7 +36,7 @@ export default class ProductInfo extends React.PureComponent {
     isInWishList: PropTypes.bool.isRequired,
     mode: PropTypes.oneOf(['list', 'detail']),
     cart: PropTypes.shape({}),
-    container: PropTypes.string,
+    container: PropTypes.shape({}),
     isMobile: PropTypes.bool,
     type: PropTypes.string,
 
@@ -58,7 +58,7 @@ export default class ProductInfo extends React.PureComponent {
     activityData: null,
     mode: 'detail',
     cart: null,
-    container: '',
+    container: {},
     isMobile: null,
     type: null,
   };

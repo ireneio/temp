@@ -19,7 +19,7 @@ export default class SpecList extends React.Component {
     onChangeSpec: PropTypes.func.isRequired,
     mode: PropTypes.oneOf(['list', 'detail']).isRequired,
     name: PropTypes.string.isRequired,
-    container: PropTypes.string.isRequired,
+    container: PropTypes.shape({}).isRequired,
   };
 
   render() {

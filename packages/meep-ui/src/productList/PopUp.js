@@ -12,6 +12,8 @@ import ProductCollection from 'productCollection';
 
 @enhancer
 export default class PopUp extends React.PureComponent {
+  rootRef = React.createRef();
+
   static propTypes = {
     className: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -55,7 +57,7 @@ export default class PopUp extends React.PureComponent {
 
     if (type === 'pop-up') {
       return (
-        <div id="modal-area">
+        <div ref={this.rootRef}>
           {['one', 'all', undefined].indexOf(popUpGalleryView) > -1 && (
             <ProductCarousel
               mode="list"
@@ -72,7 +74,7 @@ export default class PopUp extends React.PureComponent {
             stockNotificationList={stockNotificationList}
             isInWishList={wishList.some(item => item.productId === target)}
             showButton={false}
-            container="modal-area"
+            container={this.rootRef}
             isMobile={isMobile}
             type="pop-up"
           />
@@ -90,7 +92,7 @@ export default class PopUp extends React.PureComponent {
     }
 
     return (
-      <div id="modal-area">
+      <div ref={this.rootRef}>
         <ProductCarousel
           mode="list"
           coverImage={product.coverImage}
@@ -105,7 +107,7 @@ export default class PopUp extends React.PureComponent {
           stockNotificationList={stockNotificationList}
           isInWishList={wishList.some(item => item.productId === target)}
           showButton={false}
-          container="modal-area"
+          container={this.rootRef}
           isMobile={isMobile}
         />
       </div>

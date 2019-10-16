@@ -26,7 +26,7 @@ export default class QuantityButton extends React.Component {
     transformLocale: PropTypes.func.isRequired,
     onChangeQuantity: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
-    container: PropTypes.string.isRequired,
+    container: PropTypes.shape({}).isRequired,
   };
 
   static defaultProps = {
@@ -104,9 +104,7 @@ export default class QuantityButton extends React.Component {
             onSearch={value => {
               this.onSearch({ value, max, min });
             }}
-            getPopupContainer={() =>
-              container ? document.getElementById(container) : document.body
-            }
+            getPopupContainer={() => container.current || document.body}
           >
             {result ? (
               <Select.Option value={result}>{result}</Select.Option>
@@ -141,9 +139,7 @@ export default class QuantityButton extends React.Component {
           dropdownClassName={name}
           onChange={onChangeQuantity}
           value={quantity}
-          getPopupContainer={() =>
-            container ? document.getElementById(container) : document.body
-          }
+          getPopupContainer={() => container.current || document.body}
         >
           {options}
         </Select>
