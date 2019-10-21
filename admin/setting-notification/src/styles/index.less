@@ -64,22 +64,31 @@
       font-weight: normal;
       line-height: 22px;
       margin-bottom: 15px;
+
+      &.title {
+        margin-bottom: 8px;
+      }
     }
 
     .item {
       display: flex;
+      margin-bottom: 25px;
 
-      &:not(:last-child) {
-        margin-bottom: 25px;
+      &:last-child {
+        margin-bottom: 0px;
       }
 
       & > :global(.ant-form-item-label) {
-        margin-left: 18px;
+        margin-left: 16px;
         width: unset;
       }
 
       & > :global(.ant-form-item-control-wrapper) {
         width: unset;
+
+        :global(.ant-form-item-control) {
+          line-height: unset;
+        }
       }
 
       label {
@@ -101,6 +110,8 @@
               font-size: 14px;
               color: @primary-color;
               margin-left: 5px;
+              line-height: 22px;
+              vertical-align: middle;
             }
           }
 
@@ -115,7 +126,7 @@
   }
 }
 
-.icon {
+.indicator {
   margin-right: 7px;
   cursor: pointer;
 

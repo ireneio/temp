@@ -179,7 +179,7 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
                 <div className={styles.header}>
                   <h1>
                     <Link href="/setting">
-                      <Icon className={styles.icon} type="left" />
+                      <Icon className={styles.indicator} type="left" />
                     </Link>
                     {t('title')}
                   </h1>
@@ -213,7 +213,7 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
                   </div>
                   <div>
                     <div>
-                      <h3>{t('email')}</h3>
+                      <h3 className={styles.title}>{t('email')}</h3>
 
                       <Form.Item>
                         {getFieldDecorator('recipientEmail', {
