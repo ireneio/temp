@@ -63,6 +63,7 @@ import {
 interface PropsType
   extends I18nPropsType,
     Pick<getEcfitListQueryPropsType, 'variables' | 'fetchMore' | 'refetch'> {
+  rootRef: React.RefObject<HTMLDivElement>;
   ecfitOrders: getEcfitListViewerEcfitOrders;
   getStorePaymentList: getEcfitListGetStorePaymentList;
   getStoreShipmentList: getEcfitListGetStoreShipmentList;
@@ -284,6 +285,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
       t,
 
       // props
+      rootRef,
       variables,
       refetch,
       fetchMore,
@@ -352,6 +354,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
               <div className={styles.filter}>
                 <div>
                   <AdvancedSearch
+                    rootRef={rootRef}
                     variables={variables}
                     refetch={refetch}
                     getStorePaymentList={filter(
@@ -515,111 +518,116 @@ const initVariables = (() => {
 })();
 
 // eslint-disable-next-line react/no-multi-comp
-export default React.memo(() => (
-  <Query<getEcfitList, getEcfitListVariables>
-    query={gql`
-      query getEcfitList(
-        $first: PositiveInt!
-        $cursor: String
-        $filter: EcfitOrderFilterInput
-      ) {
-        viewer {
-          id
-          ecfitOrders(first: $first, after: $cursor, filter: $filter) {
+export default React.memo(
+  ({ rootRef }: { rootRef: React.RefObject<HTMLDivElement> }) => (
+    <Query<getEcfitList, getEcfitListVariables>
+      query={gql`
+        query getEcfitList(
+          $first: PositiveInt!
+          $cursor: String
+          $filter: EcfitOrderFilterInput
+        ) {
+          viewer {
+            id
+            ecfitOrders(first: $first, after: $cursor, filter: $filter) {
+              ...ordersOrderConnectionFragment
+              edges {
+                node {
+                  id
+                }
+              }
+              pageInfo {
+                ...ordersPageInfoFragment
+                endCursor
+              }
+            }
+
+            sentFailedList: ecfitOrders(
+              first: 10
+              filter: { ecfitSentStatus: SENT_FAILED }
+            ) {
+              total
+            }
+
+            store {
+              id
+              storeEcfitSettings {
+                isEnabled
+              }
+            }
+          }
+
+          getStorePaymentList {
+            ...advancedSearchStorePaymentListFragment
+            ...tagsStorePaymentListFragment
+          }
+
+          getStoreShipmentList {
+            ...advancedSearchStoreShipmentListFragment
+            ...tagsStoreShipmentListFragment
+          }
+
+          selectedOrders @client {
+            ...changeStatusOrderConnectionFragment
             ...ordersOrderConnectionFragment
             edges {
               node {
                 id
               }
             }
-            pageInfo {
-              ...ordersPageInfoFragment
-              endCursor
-            }
-          }
-
-          sentFailedList: ecfitOrders(
-            first: 10
-            filter: { ecfitSentStatus: SENT_FAILED }
-          ) {
             total
           }
+        }
 
-          store {
-            id
-            storeEcfitSettings {
-              isEnabled
+        ${advancedSearchStorePaymentListFragment}
+        ${advancedSearchStoreShipmentListFragment}
+        ${changeStatusOrderConnectionFragment}
+        ${tagsStorePaymentListFragment}
+        ${tagsStoreShipmentListFragment}
+        ${ordersOrderConnectionFragment}
+        ${ordersPageInfoFragment}
+      `}
+      variables={initVariables}
+      ssr={false}
+    >
+      {({ error, data, variables, fetchMore, refetch }) => {
+        if (error) return <Spin indicator={<Icon type="loading" spin />} />;
+
+        const ecfitOrders = idx(data, _ => _.viewer.ecfitOrders);
+        const {
+          getStorePaymentList = null,
+          getStoreShipmentList = null,
+          selectedOrders = null,
+        } = data || {};
+
+        if (
+          !ecfitOrders ||
+          !getStorePaymentList ||
+          !getStoreShipmentList ||
+          !selectedOrders
+        )
+          return <Spin indicator={<Icon type="loading" spin />} />;
+
+        return (
+          <EnhancedContainer
+            rootRef={rootRef}
+            variables={variables}
+            fetchMore={fetchMore}
+            refetch={refetch}
+            ecfitOrders={ecfitOrders}
+            isEnabled={
+              idx(data, _ => _.viewer.store.storeEcfitSettings.isEnabled) ||
+              false /** TODO: should not be null */
             }
-          }
-        }
-
-        getStorePaymentList {
-          ...advancedSearchStorePaymentListFragment
-          ...tagsStorePaymentListFragment
-        }
-
-        getStoreShipmentList {
-          ...advancedSearchStoreShipmentListFragment
-          ...tagsStoreShipmentListFragment
-        }
-
-        selectedOrders @client {
-          ...changeStatusOrderConnectionFragment
-          ...ordersOrderConnectionFragment
-          edges {
-            node {
-              id
+            getStorePaymentList={getStorePaymentList}
+            getStoreShipmentList={getStoreShipmentList}
+            selectedOrders={selectedOrders}
+            sentFailedAmount={
+              idx(data, _ => _.viewer.sentFailedList.total) || 0
             }
-          }
-          total
-        }
-      }
-
-      ${advancedSearchStorePaymentListFragment}
-      ${advancedSearchStoreShipmentListFragment}
-      ${changeStatusOrderConnectionFragment}
-      ${tagsStorePaymentListFragment}
-      ${tagsStoreShipmentListFragment}
-      ${ordersOrderConnectionFragment}
-      ${ordersPageInfoFragment}
-    `}
-    variables={initVariables}
-    ssr={false}
-  >
-    {({ error, data, variables, fetchMore, refetch }) => {
-      if (error) return <Spin indicator={<Icon type="loading" spin />} />;
-
-      const ecfitOrders = idx(data, _ => _.viewer.ecfitOrders);
-      const {
-        getStorePaymentList = null,
-        getStoreShipmentList = null,
-        selectedOrders = null,
-      } = data || {};
-
-      if (
-        !ecfitOrders ||
-        !getStorePaymentList ||
-        !getStoreShipmentList ||
-        !selectedOrders
-      )
-        return <Spin indicator={<Icon type="loading" spin />} />;
-
-      return (
-        <EnhancedContainer
-          variables={variables}
-          fetchMore={fetchMore}
-          refetch={refetch}
-          ecfitOrders={ecfitOrders}
-          isEnabled={
-            idx(data, _ => _.viewer.store.storeEcfitSettings.isEnabled) ||
-            false /** TODO: should not be null */
-          }
-          getStorePaymentList={getStorePaymentList}
-          getStoreShipmentList={getStoreShipmentList}
-          selectedOrders={selectedOrders}
-          sentFailedAmount={idx(data, _ => _.viewer.sentFailedList.total) || 0}
-        />
-      );
-    }}
-  </Query>
-));
+          />
+        );
+      }}
+    </Query>
+  ),
+);

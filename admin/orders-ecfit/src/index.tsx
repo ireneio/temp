@@ -15,6 +15,8 @@ import styles from './styles/index.less';
 const { Option } = Select;
 
 class OrdersEcfit extends React.PureComponent<I18nPropsType> {
+  private rootRef = React.createRef<HTMLDivElement>();
+
   public state = {
     isOpened: false,
   };
@@ -38,7 +40,7 @@ class OrdersEcfit extends React.PureComponent<I18nPropsType> {
     const { isOpened } = this.state;
 
     return (
-      <div className={styles.root}>
+      <div className={styles.root} ref={this.rootRef}>
         <div className={styles.wrapper}>
           <Select
             className={styles.title}
@@ -68,7 +70,7 @@ class OrdersEcfit extends React.PureComponent<I18nPropsType> {
             </Option>
           </Select>
 
-          <Container />
+          <Container rootRef={this.rootRef} />
         </div>
       </div>
     );

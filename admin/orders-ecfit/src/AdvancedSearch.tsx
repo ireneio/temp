@@ -27,6 +27,7 @@ import localeFragment from '@admin/utils/lib/fragments/locale';
 interface PropsType
   extends I18nPropsType,
     Pick<getEcfitListQueryPropsType, 'variables' | 'refetch'> {
+  rootRef: React.RefObject<HTMLDivElement>;
   getStorePaymentList: advancedSearchStorePaymentListFragmentType;
   getStoreShipmentList: advancedSearchStoreShipmentListFragmentType;
 }
@@ -145,7 +146,7 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
   };
 
   public render(): React.ReactNode {
-    const { t } = this.props;
+    const { t, rootRef } = this.props;
     const { isVisible, filter } = this.state;
 
     return (
@@ -205,6 +206,7 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
         onVisibleChange={this.visibleChange}
         placement="bottomLeft"
         trigger="click"
+        getPopupContainer={() => rootRef.current || document.body}
       >
         <span>
           <Select value={t('filter.advanced-search')} open={false}>
