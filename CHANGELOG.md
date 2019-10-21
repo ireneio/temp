@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.27.4 (2019-10-21)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#724](https://github.com/meepshop/meep-lerna/pull/724) 【個案處理】meepShop MAX 極速開店：新增白名單 - dusabioliving ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#725](https://github.com/meepshop/meep-lerna/pull/725) 【BUG】商店設定 - 通知設定介面 ([@piovischioh](https://github.com/piovischioh))
+  - [#726](https://github.com/meepshop/meep-lerna/pull/726) 【BUG】 ECFIT/進階搜尋 - 篩選面板欄位跑版 ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#727](https://github.com/meepshop/meep-lerna/pull/727) 【BUG】前台 - 訂單明細/發票資訊 - 出現 blocks.invoice.type.manual-electronic ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.27.3 (2019-10-16)
 
 #### :bug: Bug Fix
