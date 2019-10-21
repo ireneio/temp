@@ -30,6 +30,10 @@ export const SPECIAL_HIDE_FOOTER = [
   'shinzitiy',
   'luckyandcolorful',
   'may',
+  'dusabioliving1',
+  'dusabioliving2',
+  'dusabioliving3',
+  'dusabioliving4',
 ];
 
 export const STORE_APP_PLUGINS = [
