@@ -74,7 +74,7 @@
       "title": "發票資訊",
       "type": {
         "paper": "紙本發票",
-        "manul-electronic": "電子發票",
+        "manual-electronic": "電子發票",
         "ecpay-electronic": "電子發票"
       },
       "method": {

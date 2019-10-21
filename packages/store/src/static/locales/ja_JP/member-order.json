@@ -74,7 +74,7 @@
       "title": "発票情報",
       "type": {
         "paper": "紙の請求書",
-        "manul-electronic": "電子発票",
+        "manual-electronic": "電子発票",
         "ecpay-electronic": "電子発票"
       },
       "method": {

@@ -74,7 +74,7 @@
       "title": "Thông tin hóa đơn",
       "type": {
         "paper": "Hóa đơn giấy",
-        "manul-electronic": "Hóa đơn điện tử",
+        "manual-electronic": "Hóa đơn điện tử",
         "ecpay-electronic": "Hóa đơn điện tử"
       },
       "method": {

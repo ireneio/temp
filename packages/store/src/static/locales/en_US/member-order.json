@@ -74,7 +74,7 @@
       "title": "Invoice",
       "type": {
         "paper": "Paper invoice",
-        "manul-electronic": "e-Invoice",
+        "manual-electronic": "e-Invoice",
         "ecpay-electronic": "e-Invoice"
       },
       "method": {
