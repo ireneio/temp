@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.27.5 (2019-10-23)
+
+#### :rocket: New Feature
+
+- [#728](https://github.com/meepshop/meep-lerna/pull/728) 左側 Navigation bar 增加提示優化 ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#730](https://github.com/meepshop/meep-lerna/pull/730) 【BUG】 ECFIT 訂單管理 - 取消訂單有發生錯誤，但錯誤訊息沒有顯示 ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`
+  - [#729](https://github.com/meepshop/meep-lerna/pull/729) 【優化】 結帳頁 - 刪除商品時 - 不清除已填欄位的會員資料＆收件者資料 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.27.4 (2019-10-21)
 
 #### :rocket: New Feature
