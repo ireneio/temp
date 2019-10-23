@@ -207,6 +207,11 @@ class ChangeTypes extends React.PureComponent<PropsType> {
     cache: DataProxy,
     { data: { updateOrder: newOrder } }: { data: updateOrder },
   ) => {
+    if (!newOrder) {
+      this.countErrors += 1;
+      return;
+    }
+
     const fragment = {
       // TODO: should not be null id
       id: idx(newOrder, _ => _.id) || 'null id',
@@ -264,9 +269,6 @@ class ChangeTypes extends React.PureComponent<PropsType> {
           }
         `}
         update={this.updateOrderStatus}
-        onError={() => {
-          this.countErrors += 1;
-        }}
       >
         {updateOrderMutation => (
           <Select<StatusType | string>
