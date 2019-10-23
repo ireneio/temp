@@ -9,7 +9,7 @@ import { withRouter } from 'next/router';
 import Link from 'next/link';
 import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
-import { Layout, Menu, Spin, Icon } from 'antd';
+import { Layout, Menu, Spin, Icon, Popover, Tooltip } from 'antd';
 import memoizeOne from 'memoize-one';
 import { areEqual } from 'fbjs';
 import idx from 'idx';
@@ -39,7 +39,7 @@ interface PropsType extends I18nPropsType {
 
 // definition
 const { Content, Sider } = Layout;
-const { Item, SubMenu } = Menu;
+const { Item } = Menu;
 
 class Wrapper extends React.Component<PropsType> {
   private getMenuParams = memoizeOne(
@@ -52,7 +52,6 @@ class Wrapper extends React.Component<PropsType> {
       getStoreAppList: initAdminGetStoreAppList;
       getAuthorityList: initAdminGetAuthorityList;
     }) => {
-      const activityVersion = idx(viewer, _ => _.store.setting.activityVersion);
       const { permission = null } =
         (idx(getAuthorityList, _ => _.data) || []).find(
           list => (list || { id: undefined }).id === viewer.groupId,
@@ -74,7 +73,6 @@ class Wrapper extends React.Component<PropsType> {
           idx(viewer, _ => _.store.domain[0]) ||
           idx(viewer, _ => _.store.defaultDomain),
         isMerchant: viewer.role === 'MERCHANT',
-        isOldActivityVersion: !activityVersion || activityVersion === 1,
         isAdminOpen: !(
           idx(viewer, _ => _.store.adminStatus) === 'CLOSED_BILL_NOT_PAID'
         ),
@@ -97,7 +95,6 @@ class Wrapper extends React.Component<PropsType> {
       permission,
       domain,
       isMerchant,
-      isOldActivityVersion,
       isAdminOpen,
     } = this.getMenuParams({ viewer, getStoreAppList, getAuthorityList });
     const rootPath = pathname.split('/')[1];
@@ -119,34 +116,43 @@ class Wrapper extends React.Component<PropsType> {
                   storeAppList,
                   permission,
                   isMerchant,
-                  isOldActivityVersion,
                 }).map(({ src, title, path, sub }: MenuItemType) =>
                   sub ? (
-                    <SubMenu
-                      key={title}
-                      popupClassName={styles.submenu}
-                      title={<img src={src} alt={t(title)} />}
-                    >
-                      {sub.map(subitem => (
-                        <Item key={subitem.title}>
-                          <Link href={subitem.path}>
-                            <a href={subitem.path}>
-                              <img src={subitem.src} alt={t(subitem.title)} />
-                              <span className={styles.subtitle}>
-                                {t(subitem.title)}
-                              </span>
-                            </a>
-                          </Link>
-                        </Item>
-                      ))}
-                    </SubMenu>
+                    <Item key={title}>
+                      <Popover
+                        overlayClassName={styles.popover}
+                        placement="rightTop"
+                        content={(sub || []).map(subitem => (
+                          <div key={subitem.title} className={styles.subitem}>
+                            <Link href={subitem.path}>
+                              <a href={subitem.path} target={subitem.target}>
+                                <img src={subitem.src} alt={t(subitem.title)} />
+                                <span>{t(subitem.title)}</span>
+                              </a>
+                            </Link>
+                          </div>
+                        ))}
+                      >
+                        <div>
+                          <img src={src} alt={t(title)} />
+                        </div>
+                      </Popover>
+                    </Item>
                   ) : (
                     <Item key={title}>
-                      <Link href={path}>
-                        <a href={path}>
-                          <img src={src} alt={t(title)} />
-                        </a>
-                      </Link>
+                      <Tooltip
+                        placement="right"
+                        overlayClassName={styles.tooltip}
+                        title={t(title)}
+                      >
+                        <div>
+                          <Link href={path}>
+                            <a href={path}>
+                              <img src={src} alt={t(title)} />
+                            </a>
+                          </Link>
+                        </div>
+                      </Tooltip>
                     </Item>
                   ),
                 )}
@@ -160,30 +166,26 @@ class Wrapper extends React.Component<PropsType> {
                   domain,
                   isMerchant,
                 }).map(({ src, title, sub }: MenuItemType) => (
-                  <SubMenu
-                    key={title}
-                    popupClassName={styles.submenu}
-                    title={
-                      <img
-                        className={styles.controller}
-                        src={src}
-                        alt={t(title)}
-                      />
-                    }
-                  >
-                    {(sub || []).map(subitem => (
-                      <Item key={subitem.title}>
-                        <Link href={subitem.path}>
-                          <a href={subitem.path} target={subitem.target}>
-                            <img src={subitem.src} alt={t(subitem.title)} />
-                            <span className={styles.subtitle}>
-                              {t(subitem.title)}
-                            </span>
-                          </a>
-                        </Link>
-                      </Item>
-                    ))}
-                  </SubMenu>
+                  <Item key={title}>
+                    <Popover
+                      overlayClassName={styles.popover}
+                      placement="rightBottom"
+                      content={(sub || []).map(subitem => (
+                        <div key={subitem.title} className={styles.subitem}>
+                          <Link href={subitem.path}>
+                            <a href={subitem.path} target={subitem.target}>
+                              <img src={subitem.src} alt={t(subitem.title)} />
+                              <span>{t(subitem.title)}</span>
+                            </a>
+                          </Link>
+                        </div>
+                      ))}
+                    >
+                      <div key={title}>
+                        <img src={src} alt={t(title)} />
+                      </div>
+                    </Popover>
+                  </Item>
                 ))}
               </Menu>
             </>
@@ -223,9 +225,6 @@ const WrapperWithData = ({
             adminStatus
             domain
             defaultDomain
-            setting {
-              activityVersion
-            }
           }
         }
         getStoreAppList {

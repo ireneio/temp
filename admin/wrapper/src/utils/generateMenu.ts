@@ -12,23 +12,21 @@ export default ({
   isMerchant,
   permission,
   storeAppList,
-  isOldActivityVersion,
 }: {
   isMerchant: boolean;
   permission: initAdminGetAuthorityListDataPermission | null;
   storeAppList: { [plugin: string]: boolean };
-  isOldActivityVersion: boolean;
 }): MenuItemType[] => [
   {
     path: '/dashboard',
-    src: '/static/images/menu/dashboard.png',
+    src: '/static/images/menu/dashboard.svg',
     title: 'dashboard',
   },
   ...(isMerchant || idx(permission, _ => _.order.index)
     ? [
         {
           path: '/orders',
-          src: '/static/images/menu/orders.png',
+          src: '/static/images/menu/orders.svg',
           title: 'orders',
         },
       ]
@@ -37,27 +35,17 @@ export default ({
     ? [
         {
           path: '/products',
-          src: '/static/images/menu/products.png',
+          src: '/static/images/menu/products.svg',
           title: 'products',
         },
       ]
     : []),
-  ...(isMerchant || idx(permission, _ => _.service.index)
+  ...(isMerchant || idx(permission, _ => _.service.product)
     ? [
         {
-          src: '/static/images/menu/questions.png',
-          title: 'questions',
-          sub: [
-            ...(isMerchant || idx(permission, _ => _.service.product)
-              ? [
-                  {
-                    path: '/product-service',
-                    src: '/static/images/menu/product-service.png',
-                    title: 'product-service',
-                  },
-                ]
-              : []),
-          ],
+          path: '/product-service',
+          src: '/static/images/menu/product-service.svg',
+          title: 'product-service',
         },
       ]
     : []),
@@ -65,7 +53,7 @@ export default ({
     ? [
         {
           path: '/analytics',
-          src: '/static/images/menu/analytics.png',
+          src: '/static/images/menu/analytics.svg',
           title: 'analytics',
         },
       ]
@@ -73,19 +61,19 @@ export default ({
   ...(isMerchant || idx(permission, _ => _.user.index)
     ? [
         {
-          src: '/static/images/menu/member.png',
+          src: '/static/images/menu/member.svg',
           title: 'member',
           sub: [
             {
               path: '/users',
-              src: '/static/images/menu/members.png',
+              src: '/static/images/menu/members.svg',
               title: 'members',
             },
             ...(storeAppList.memberGroup
               ? [
                   {
                     path: '/member-group',
-                    src: '/static/images/menu/member-group.png',
+                    src: '/static/images/menu/member-group.svg',
                     title: 'member-group',
                   },
                 ]
@@ -94,7 +82,7 @@ export default ({
               ? [
                   {
                     path: '/member-group-code',
-                    src: '/static/images/menu/member-group-code.png',
+                    src: '/static/images/menu/member-group-code.svg',
                     title: 'member-group-code',
                   },
                 ]
@@ -106,22 +94,22 @@ export default ({
   ...(isMerchant || idx(permission, _ => _.design.index)
     ? [
         {
-          src: '/static/images/menu/design.png',
+          src: '/static/images/menu/design.svg',
           title: 'design',
           sub: [
             {
               path: '/page-manager',
-              src: '/static/images/menu/page-manager.png',
+              src: '/static/images/menu/page-manager.svg',
               title: 'page-manager',
             },
             {
               path: '/color-manager',
-              src: '/static/images/menu/color-manager.png',
+              src: '/static/images/menu/color-manager.svg',
               title: 'color-manager',
             },
             {
               path: '/menus',
-              src: '/static/images/menu/menu-manager.png',
+              src: '/static/images/menu/menu-manager.svg',
               title: 'menu-manager',
             },
           ],
@@ -129,30 +117,19 @@ export default ({
       ]
     : []),
   {
-    src: '/static/images/menu/marketing.png',
+    src: '/static/images/menu/marketing.svg',
     title: 'marketing',
     sub: [
       {
-        path: isOldActivityVersion
-          ? '/marketing-activities-old'
-          : '/marketing-activities',
-        src: '/static/images/menu/discount.png',
+        path: '/marketing-activities',
+        src: '/static/images/menu/discount.svg',
         title: 'discount',
       },
-      ...(storeAppList.points && isOldActivityVersion
-        ? [
-            {
-              path: '/reward-points',
-              src: '/static/images/menu/reward.png',
-              title: 'reward',
-            },
-          ]
-        : []),
       ...(storeAppList.newsletters
         ? [
             {
               path: '/newsletter',
-              src: '/static/images/menu/newsletter.png',
+              src: '/static/images/menu/newsletter.svg',
               title: 'newsletter',
             },
           ]
@@ -161,7 +138,7 @@ export default ({
         ? [
             {
               path: '/ads-analytics',
-              src: '/static/images/menu/ads-analytics.png',
+              src: '/static/images/menu/ads-analytics.svg',
               title: 'ads-analytics',
             },
           ]
@@ -172,7 +149,7 @@ export default ({
     ? [
         {
           path: '/file-manager',
-          src: '/static/images/menu/file-manager.png',
+          src: '/static/images/menu/file-manager.svg',
           title: 'file-manager',
         },
       ]
@@ -181,7 +158,7 @@ export default ({
     ? [
         {
           path: '/setting',
-          src: '/static/images/menu/setting.png',
+          src: '/static/images/menu/setting.svg',
           title: 'setting',
         },
       ]
