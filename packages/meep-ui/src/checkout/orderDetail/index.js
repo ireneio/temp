@@ -35,8 +35,8 @@ const { Item: FormItem } = Form;
     const { name: userName, additionalInfo = {} } = user || {};
     const { mobile: userMobile } = additionalInfo;
     const fieldsData = {
-      userName,
-      userMobile,
+      userName: data.userName || userName,
+      userMobile: data.userMobile || userMobile,
       ...data,
       ...(info || {}),
     };
@@ -47,6 +47,17 @@ const { Item: FormItem } = Form;
         [key]: Form.createFormField({ value: fieldsData[key] }),
       }),
       {},
+    );
+  },
+  onFieldsChange: ({ onChange }, _, allValues) => {
+    onChange(
+      Object.keys(allValues).reduce(
+        (result, key) => ({
+          ...result,
+          [key]: allValues[key].value,
+        }),
+        {},
+      ),
     );
   },
 })

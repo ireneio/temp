@@ -81,10 +81,7 @@ export default class Checkout extends React.PureComponent {
   }
 
   goToInCheckout = (isPayment, info, otherDetailInfo) => {
-    // const { adTrack } = this.props;
     const { orderInfo, orderOtherDetailInfo } = this.state;
-
-    // adTrack('AddPaymentInfo');
 
     this.submit({
       isPayment,
@@ -256,6 +253,11 @@ export default class Checkout extends React.PureComponent {
           orderInfo={orderInfo}
           goToInCheckout={this.goToInCheckout}
           isSubmitting={isSubmitting}
+          onChange={data => {
+            this.setState({
+              orderInfo: data,
+            });
+          }}
         />
 
         {!formData ? null : (
