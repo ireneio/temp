@@ -54,6 +54,7 @@ export default class Checkout extends React.PureComponent {
     orderOtherDetailInfo: null,
     isSubmitting: false,
     formData: null,
+    errors: {},
   };
 
   componentDidMount() {
@@ -240,6 +241,7 @@ export default class Checkout extends React.PureComponent {
     const {
       orderInfo,
       orderOtherDetailInfo,
+      errors,
       isSubmitting,
       formData,
     } = this.state;
@@ -250,13 +252,12 @@ export default class Checkout extends React.PureComponent {
         <OrderDetail
           {...this.props}
           {...orderOtherDetailInfo}
+          errors={errors}
           orderInfo={orderInfo}
           goToInCheckout={this.goToInCheckout}
           isSubmitting={isSubmitting}
           onChange={data => {
-            this.setState({
-              orderInfo: data,
-            });
+            this.setState(data);
           }}
         />
 

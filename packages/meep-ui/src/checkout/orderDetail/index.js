@@ -30,7 +30,7 @@ import { modifyAntdStyle, formItem as formItemStyle } from './styles';
 const { Item: FormItem } = Form;
 
 @Form.create({
-  mapPropsToFields: ({ user, orderInfo }) => {
+  mapPropsToFields: ({ user, orderInfo, errors }) => {
     const { info, ...data } = orderInfo || {};
     const { name: userName, additionalInfo = {} } = user || {};
     const { mobile: userMobile } = additionalInfo;
@@ -44,7 +44,10 @@ const { Item: FormItem } = Form;
     return Object.keys(fieldsData).reduce(
       (fileds, key) => ({
         ...fileds,
-        [key]: Form.createFormField({ value: fieldsData[key] }),
+        [key]: Form.createFormField({
+          value: fieldsData[key],
+          errors: errors[key],
+        }),
       }),
       {},
     );
@@ -53,10 +56,19 @@ const { Item: FormItem } = Form;
     onChange(
       Object.keys(allValues).reduce(
         (result, key) => ({
-          ...result,
-          [key]: allValues[key].value,
+          orderInfo: {
+            ...result.orderInfo,
+            [key]: allValues[key].value,
+          },
+          errors: {
+            ...result.errors,
+            [key]: allValues[key].errors,
+          },
         }),
-        {},
+        {
+          orderInfo: {},
+          errors: {},
+        },
       ),
     );
   },
