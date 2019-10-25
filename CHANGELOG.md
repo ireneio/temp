@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.27.6 (2019-10-25)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#735](https://github.com/meepshop/meep-lerna/pull/735) 【BUG】/checkout - 資料未填寫完整，無出現「必填」提示訊息 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.27.5 (2019-10-23)
 
 #### :rocket: New Feature
