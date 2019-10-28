@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.27.7 (2019-10-28)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#734](https://github.com/meepshop/meep-lerna/pull/734) 【BUG】IE 瀏覽器 - /checkout 頁面選完門市，頁面無法滑動 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.27.6 (2019-10-25)
 
 #### :bug: Bug Fix
