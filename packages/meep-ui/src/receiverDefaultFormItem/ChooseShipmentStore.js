@@ -223,14 +223,7 @@ export default class ChooseShipmentStore extends React.PureComponent {
       form: { setFieldsValue },
     } = this.props;
 
-    // fix ios body overflow: hidden bug
-    if (window.getComputedStyle(document.body).position === 'fixed') {
-      this.setState({ openConvenienceStoreMap: false }, () => {
-        window.scrollTo(0, 1000);
-      });
-    } else {
-      this.setState({ openConvenienceStoreMap: false });
-    }
+    this.closeConvenienceStoreMap();
 
     setFieldsValue(store);
   };
@@ -240,9 +233,12 @@ export default class ChooseShipmentStore extends React.PureComponent {
     if (window.getComputedStyle(document.body).position === 'fixed') {
       this.setState({ openConvenienceStoreMap: false }, () => {
         window.scrollTo(0, 1000);
+        document.body.style.overflow = '';
       });
     } else {
-      this.setState({ openConvenienceStoreMap: false });
+      this.setState({ openConvenienceStoreMap: false }, () => {
+        document.body.style.overflow = '';
+      });
     }
   };
 
