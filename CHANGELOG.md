@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.27.8 (2019-10-30)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#737](https://github.com/meepshop/meep-lerna/pull/737) 【個別店家】 meepShop MAX 極速開店：新增白名單 - 2plus1store, iwe ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`, `store`
+  - [#731](https://github.com/meepshop/meep-lerna/pull/731) 【優化】 FB/GA 事件參數補充 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#738](https://github.com/meepshop/meep-lerna/pull/738) 【BUG】手機版/in-app browser - FB 登入之後，出現 500 Internal Server Error. ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.27.7 (2019-10-28)
 
 #### :bug: Bug Fix
