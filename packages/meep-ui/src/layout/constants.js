@@ -69,4 +69,6 @@ export const STORE_APP_PLUGINS = [
   'returnOrder',
   'memberSeePrice',
   'productMassUpload',
+  '2plus1store',
+  'iwe',
 ];
