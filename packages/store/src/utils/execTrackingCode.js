@@ -16,9 +16,14 @@ export default function(eventName, options = {}) {
   switch (eventName) {
     case 'AddToCart-EC':
     case 'AddToCart-EC-Popup': {
-      const { cart, payload, pageAdTrackIDs, cname } = options;
+      const { price, cart, payload, pageAdTrackIDs, cname } = options;
       const { products } = cart.categories;
       const { productId, variantId, quantity } = payload.items[0];
+      const theProduct = products.find(
+        product =>
+          product.productId === productId && product.variantId === variantId,
+      );
+
       /* FB Pixel */
       if (window.fbq && pageAdTrackIDs.fbPixelId) {
         // For: T3163
@@ -29,6 +34,7 @@ export default function(eventName, options = {}) {
             {
               content_ids: [productId],
               content_type: 'product',
+              value: price,
             },
           );
 
@@ -36,20 +42,20 @@ export default function(eventName, options = {}) {
           window.fbq('trackCustom', 'AddToCart_PopUp', {
             content_ids: [productId],
             content_type: 'product',
+            value: price,
           });
         else
           window.fbq('track', 'AddToCart', {
             content_ids: [productId],
             content_type: 'product',
+            value: price,
           });
       }
+
       /* Google Enhanced Ecommerce */
       if (window.gtag && pageAdTrackIDs.gaID) {
-        const theProduct = products.find(
-          product =>
-            product.productId === productId && product.variantId === variantId,
-        );
         const specsName = getSpecsName(theProduct.specs);
+
         window.gtag('event', 'add_to_cart', {
           event_label: eventName === 'AddToCart-EC-Popup' ? 'popup' : 'general',
           items: [
@@ -58,7 +64,7 @@ export default function(eventName, options = {}) {
               name: `${theProduct.title.zh_TW}`,
               variant: `${specsName}`,
               quantity,
-              price: theProduct.retailPrice,
+              price,
             },
           ],
         });
@@ -74,16 +80,19 @@ export default function(eventName, options = {}) {
         variant,
         pageAdTrackIDs,
       } = options;
+
       /* FB Pixel */
-      if (window.fbq && pageAdTrackIDs.fbPixelId) {
+      if (window.fbq && pageAdTrackIDs.fbPixelId)
         window.fbq('track', 'AddToCart', {
           content_ids: [productId],
           content_type: 'product',
+          value: variant.totalPrice,
         });
-      }
+
       /* Google Enhanced Ecommerce */
       if (window.gtag && pageAdTrackIDs.gaID) {
         const specsName = getSpecsName(variant.specs);
+
         window.gtag('event', 'add_to_cart', {
           items: [
             {
@@ -91,24 +100,26 @@ export default function(eventName, options = {}) {
               name: `${title.zh_TW} ${specsName}`,
               variant: `${specsName}`,
               quantity,
-              price: variant.retailPrice,
+              price: variant.totalPrice,
             },
           ],
         });
       }
       break;
     }
+
     case 'ViewProduct': {
       const { pageAdTrackIDs, product } = options;
+
       /* FB Pixel */
-      if (window.fbq && pageAdTrackIDs.fbPixelId) {
+      if (window.fbq && pageAdTrackIDs.fbPixelId)
         window.fbq('track', 'ViewContent', {
           content_ids: [product.id],
           content_type: 'product',
         });
-      }
+
       /* Google Enhanced Ecommerce */
-      if (window.gtag && pageAdTrackIDs.gaID) {
+      if (window.gtag && pageAdTrackIDs.gaID)
         window.gtag('event', 'view_item', {
           items: [
             {
@@ -117,15 +128,16 @@ export default function(eventName, options = {}) {
             },
           ],
         });
-      }
       break;
     }
+
     case 'Search': {
       const { products, pageAdTrackIDs, searchString } = options;
+
       /* FB Pixel */
-      if (window.fbq && pageAdTrackIDs.fbPixelId && !products) {
+      if (window.fbq && pageAdTrackIDs.fbPixelId && !products)
         window.fbq('track', 'Search', { search_string: searchString });
-      }
+
       /* Google Enhanced Ecommerce */
       if (window.gtag && pageAdTrackIDs.gaID && products) {
         const items = products.data.map(product => ({
@@ -133,86 +145,98 @@ export default function(eventName, options = {}) {
           name: product.title.zh_TW,
           list_name: `${searchString}`,
         }));
+
         window.gtag('event', 'view_item_list', { items });
       }
       break;
     }
+
     case 'AddToWishlist': {
       const { pageAdTrackIDs } = options;
+
       /* FB Pixel */
-      if (window.fbq && pageAdTrackIDs.fbPixelId) {
+      if (window.fbq && pageAdTrackIDs.fbPixelId)
         window.fbq('track', 'AddToWishlist');
-      }
+
       /* No corresponding Google Enhanced Ecommerce */
       break;
     }
+
     case 'CompleteRegistration': {
       const { pageAdTrackIDs } = options;
-      if (window.fbq && pageAdTrackIDs.fbPixelId) {
+
+      if (window.fbq && pageAdTrackIDs.fbPixelId)
         window.fbq('track', 'CompleteRegistration');
-      }
+
       /* No corresponding Google Enhanced Ecommerce */
       /* Adwords conversion */
       if (
         window.gtag &&
         pageAdTrackIDs.googleAdsConversionID &&
         pageAdTrackIDs.googleAdsSignupLabel
-      ) {
+      )
         window.gtag('event', 'conversion', {
           send_to: `${pageAdTrackIDs.googleAdsSignupLabel}`,
         });
-      }
       break;
     }
+
     case 'BeginCheckout': {
-      const { pageAdTrackIDs } = options;
+      const { pageAdTrackIDs, total } = options;
+
       /* FB Pixel */
-      if (window.fbq && pageAdTrackIDs.fbPixelId) {
-        window.fbq('track', 'InitiateCheckout');
-      }
+      if (window.fbq && pageAdTrackIDs.fbPixelId)
+        window.fbq('track', 'InitiateCheckout', {
+          value: total,
+        });
+
       /* Google Enhanced Ecommerce */
-      if (window.gtag && pageAdTrackIDs.gaID) {
+      if (window.gtag && pageAdTrackIDs.gaID)
         window.gtag('event', 'set_checkout_option', {
           checkout_step: 1,
           checkout_option: 'visa',
+          value: total,
         });
-      }
+
       /* Adwords conversion */
       if (
         window.gtag &&
         pageAdTrackIDs.googleAdsConversionID &&
         pageAdTrackIDs.googleAdsCheckoutLabel
-      ) {
+      )
         window.gtag('event', 'conversion', {
           send_to: `${pageAdTrackIDs.googleAdsCheckoutLabel}`,
         });
-      }
       break;
     }
+
     case 'AddPaymentInfo': {
       const { pageAdTrackIDs } = options;
+
       /* FB Pixel */
-      if (window.fbq && pageAdTrackIDs.fbPixelId) {
+      if (window.fbq && pageAdTrackIDs.fbPixelId)
         window.fbq('track', 'AddPaymentInfo');
-      }
+
       /* Google Enhanced Ecommerce */
-      if (window.gtag && pageAdTrackIDs.gaID) {
+      if (window.gtag && pageAdTrackIDs.gaID)
         window.gtag('event', 'set_checkout_option', {
           checkout_step: 2,
           checkout_option: 'visa',
         });
-      }
       break;
     }
+
     case 'Purchase': {
       const {
         products,
         priceInfo: { total, shipmentFee, paymentFee, currency },
         pageAdTrackIDs,
       } = options;
+
       /* FB Pixel */
       if (window.fbq && pageAdTrackIDs.fbPixelId) {
         const productIds = products.map(product => product.productId);
+
         window.fbq('track', 'Purchase', {
           content_ids: productIds,
           content_type: 'product',
@@ -220,6 +244,7 @@ export default function(eventName, options = {}) {
           currency,
         });
       }
+
       /* Google Enhanced Ecommerce */
       if (window.gtag && pageAdTrackIDs.gaID) {
         const { orderNo, cname } = options;
@@ -235,6 +260,7 @@ export default function(eventName, options = {}) {
               quantity: product.quantity,
             };
           });
+
         window.gtag('event', 'purchase', {
           transaction_id: orderNo,
           affiliation: cname,
@@ -243,18 +269,19 @@ export default function(eventName, options = {}) {
           items,
         });
       }
+
       /* Adwords conversion */
       if (
         window.gtag &&
         pageAdTrackIDs.googleAdsConversionID &&
         pageAdTrackIDs.googleAdsCompleteOrderLabel
-      ) {
+      )
         window.gtag('event', 'conversion', {
           send_to: `${pageAdTrackIDs.googleAdsCompleteOrderLabel}`,
         });
-      }
       break;
     }
+
     default:
       break;
   }

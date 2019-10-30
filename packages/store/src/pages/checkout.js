@@ -54,15 +54,17 @@ class Checkout extends React.Component {
   };
 
   componentDidMount() {
-    const { location, pageAdTrackIDs, orderInfo } = this.props;
-    if (location.search === '') {
-      Utils.execTrackingCode('BeginCheckout', { pageAdTrackIDs });
-    }
+    const { location, pageAdTrackIDs, carts, orderInfo } = this.props;
+
+    if (location.search === '')
+      Utils.execTrackingCode('BeginCheckout', {
+        pageAdTrackIDs,
+        total: carts.priceInfo.total,
+      });
 
     // Get store previous page in orderInfo when coming back from choosing store page
-    if (orderInfo) {
+    if (orderInfo)
       window.storePreviousPageUrl = orderInfo.info.storePreviousPageUrl;
-    }
   }
 
   render() {
@@ -99,6 +101,7 @@ class Checkout extends React.Component {
 const mapStateToProps = (state, props) => {
   /* Handle error */
   const error = Utils.getStateError(state);
+
   if (error) return { error };
 
   return {
@@ -108,6 +111,7 @@ const mapStateToProps = (state, props) => {
     fbAppId:
       Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
     page: getJoinedCheckoutPage(state, props),
+    carts: state.memberReducer.cart,
   };
 };
 

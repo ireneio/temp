@@ -203,6 +203,7 @@ export default class ProductInfo extends React.PureComponent {
           quantity,
         },
       ],
+      variantInfo.totalPrice,
       type,
     );
   };

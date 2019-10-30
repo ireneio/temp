@@ -300,9 +300,9 @@ const ADD_CART_ITEMS_FAILURE = 'ADD_CART_ITEMS_FAILURE';
  * @name addCartItems
  * @param {Array} items = [productId, variantId, quantity ]
  */
-export const addCartItems = (items, type) => ({
+export const addCartItems = (items, price, type) => ({
   type: ADD_CART_ITEMS_REQUEST,
-  payload: { items, type },
+  payload: { items, price, type },
 });
 export const addCartItemsSuccess = payload => ({
   type: ADD_CART_ITEMS_SUCCESS,
@@ -312,7 +312,7 @@ export const addCartItemsFailure = () => ({
   type: ADD_CART_ITEMS_FAILURE,
 });
 
-function* AddCartItemsFlow({ payload: { type, ...payload } }) {
+function* AddCartItemsFlow({ payload: { type, price, ...payload } }) {
   const {
     storeReducer: {
       settings: { cname, locale },
@@ -330,6 +330,7 @@ function* AddCartItemsFlow({ payload: { type, ...payload } }) {
 
       if (type === 'pop-up')
         Utils.execTrackingCode('AddToCart-EC-Popup', {
+          price,
           cart,
           payload,
           pageAdTrackIDs,
@@ -337,6 +338,7 @@ function* AddCartItemsFlow({ payload: { type, ...payload } }) {
         });
       else
         Utils.execTrackingCode('AddToCart-EC', {
+          price,
           cart,
           payload,
           pageAdTrackIDs,
