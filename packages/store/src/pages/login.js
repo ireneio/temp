@@ -46,7 +46,13 @@ class Login extends Component {
     fbAppId: null,
   };
 
-  static getDerivedStateFromProps(nextProps) {
+  componentDidMount() {
+    const { isLogin } = this.props;
+
+    if (isLogin === 'ISUSER') Router.pushRoute('/');
+  }
+
+  componentDidUpdate(nextProps) {
     const { isLogin } = nextProps;
 
     if (isLogin === 'ISUSER') Router.pushRoute('/');
