@@ -16,18 +16,11 @@
     "confirm": "確認",
     "error": {
       "title": "變更狀態失敗",
-      "description": {
-        "0": " 筆訂單的",
-        "1": "變更失敗"
-      }
+      "description": "{{amount}} 筆訂單的{{status}}變更失敗"
     },
     "success": {
       "title": "變更狀態成功",
-      "description": {
-        "0": " 筆訂單的",
-        "1": "更新為「",
-        "2": "」"
-      }
+      "description": "{{amount}} 筆訂單的{{status}}更新為「{{newStatus}}」"
     },
     "order-change": {
       "cancel": {
@@ -137,10 +130,9 @@
     "confirm": "確定"
   },
   "orders-info": {
-    "0": "共 ",
-    "1": " 筆",
-    "2": " / 已選取 ",
-    "3": " 筆"
+    "total": "共 {{total}} 筆",
+    "select": " / 已選取 ",
+    "amount": " 筆"
   },
   "page-size": "筆 / 頁"
 }

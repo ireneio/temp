@@ -183,23 +183,20 @@ class ChangeTypes extends React.PureComponent<PropsType> {
     if (this.countErrors !== 0)
       notification.error({
         message: t('change-status.error.title'),
-        description: `${this.countErrors}${t(
-          'change-status.error.description.0',
-        )}${t(`change-status.${statusType}`)}${t(
-          'change-status.error.description.1',
-        )}`,
+        description: t('change-status.error.description', {
+          amount: this.countErrors,
+          status: t(`change-status.${statusType}`),
+        }),
       });
 
     if (total - this.countErrors !== 0)
       notification.success({
         message: t('change-status.success.title'),
-        description: `${total - this.countErrors}${t(
-          'change-status.success.description.0',
-        )}${t(`change-status.${statusType}`)}${t(
-          'change-status.success.description.1',
-        )}${t(`${statusType}.${this.newStatus}`)}${t(
-          'change-status.success.description.2',
-        )}`,
+        description: t('change-status.success.description', {
+          amount: total - this.countErrors,
+          status: t(`change-status.${statusType}`),
+          newStatus: t(`${statusType}.${this.newStatus}`),
+        }),
       });
   };
 

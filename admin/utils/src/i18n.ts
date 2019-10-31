@@ -6,7 +6,7 @@ import NextI18Next from 'next-i18next';
 
 // typescript definition
 export interface I18nPropsType {
-  t: (key: string) => string;
+  t: (key: string, options?: {}) => string;
   i18n: i18next.i18n & {
     language: 'zh_TW' | 'en_US' | 'ja_JP';
   };

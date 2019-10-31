@@ -388,17 +388,15 @@ class Orders extends React.PureComponent<PropsType, StateType> {
 
         <div className={styles.root}>
           <div>
-            {t('orders-info.0')}
-            {total}
-            {t('orders-info.1')}
+            {t('orders-info.total', { total })}
 
             {selectedOrders.total === 0 ? null : (
               <>
-                {t('orders-info.2')}
+                {t('orders-info.select')}
 
                 <span className={styles.selected}>{selectedOrders.total}</span>
 
-                {t('orders-info.3')}
+                {t('orders-info.amount')}
               </>
             )}
           </div>
