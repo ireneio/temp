@@ -28,8 +28,6 @@ import {
   initAdmin_getAuthorityList as initAdminGetAuthorityList,
 } from './__generated__/initAdmin';
 
-import { AdminStatusEnum } from '../../../__generated__/admin';
-
 // typescript definition
 interface PropsType extends I18nPropsType {
   viewer: initAdminViewer;
@@ -76,8 +74,7 @@ class Wrapper extends React.Component<PropsType> {
           idx(viewer, _ => _.store.defaultDomain),
         isMerchant: viewer.role === 'MERCHANT',
         isAdminOpen: !(
-          idx(viewer, _ => _.store.adminStatus) ===
-          ('CLOSED_BILL_NOT_PAID' as AdminStatusEnum)
+          idx(viewer, _ => _.store.adminStatus) === 'CLOSED_BILL_NOT_PAID'
         ),
       };
     },
