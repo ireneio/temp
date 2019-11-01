@@ -73,13 +73,27 @@ class Wrapper extends React.Component<PropsType> {
           idx(viewer, _ => _.store.domain[0]) ||
           idx(viewer, _ => _.store.defaultDomain),
         isMerchant: viewer.role === 'MERCHANT',
-        isAdminOpen: !(
-          idx(viewer, _ => _.store.adminStatus) === 'CLOSED_BILL_NOT_PAID'
-        ),
+        isClosed:
+          idx(viewer, _ => _.store.adminStatus) === 'CLOSED_BILL_NOT_PAID',
       };
     },
     areEqual,
   );
+
+  public componentDidMount(): void {
+    this.checkStatus();
+  }
+
+  public componentDidUpdate(): void {
+    this.checkStatus();
+  }
+
+  private checkStatus = () => {
+    const { viewer, router } = this.props;
+
+    if (idx(viewer, _ => _.store.adminStatus) === 'CLOSED_BILL_NOT_PAID')
+      router.replace('/bill-payment');
+  };
 
   public render(): React.ReactNode {
     const {
@@ -95,17 +109,24 @@ class Wrapper extends React.Component<PropsType> {
       permission,
       domain,
       isMerchant,
-      isAdminOpen,
+      isClosed,
     } = this.getMenuParams({ viewer, getStoreAppList, getAuthorityList });
     const rootPath = pathname.split('/')[1];
 
     return (
       <Layout className={styles.layout}>
         <Sider
-          className={`${styles.sider} ${!isAdminOpen ? styles.closed : ''}`}
+          className={`${styles.sider} ${isClosed && styles.closed}`}
           width="55"
         >
-          {isAdminOpen ? (
+          {isClosed ? (
+            <Link href="/signout">
+              <div className={styles.signout}>
+                <img src="/static/images/menu/signout.svg" alt={t('signout')} />
+                <span>{t('signout')}</span>
+              </div>
+            </Link>
+          ) : (
             <>
               <Menu
                 className={styles.menu}
@@ -189,13 +210,6 @@ class Wrapper extends React.Component<PropsType> {
                 ))}
               </Menu>
             </>
-          ) : (
-            <Link href="/signout">
-              <div className={styles.signout}>
-                <img src="/static/images/menu/signout.svg" alt={t('signout')} />
-                <span>{t('signout')}</span>
-              </div>
-            </Link>
           )}
         </Sider>
         <Layout>
