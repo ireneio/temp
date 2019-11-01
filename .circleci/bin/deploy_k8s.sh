@@ -10,7 +10,7 @@ if [ $(node ../../.circleci/bin/checkNeedPublish.js) != true ]; then
 fi
 
 # install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.7.3/bin/linux/amd64/kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.14.0/bin/linux/amd64/kubectl
 chmod +x ./kubectl
 mv ./kubectl /tmp/
 
