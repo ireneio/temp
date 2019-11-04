@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.27.9 (2019-11-04)
+
+#### :boom: Breaking Change
+
+- [#743](https://github.com/meepshop/meep-lerna/pull/743) Revert - 修改 AdminStatusEnum type ([@happycat6323](https://github.com/happycat6323))
+- [#739](https://github.com/meepshop/meep-lerna/pull/739) 修改 AdminStatusEnum type ([@happycat6323](https://github.com/happycat6323))
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#740](https://github.com/meepshop/meep-lerna/pull/740) 【個別店家】 meepShop MAX 極速開店：新增白名單 - 2plus1store, iwe ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#736](https://github.com/meepshop/meep-lerna/pull/736) 優化後台 ecfit 語系 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#733](https://github.com/meepshop/meep-lerna/pull/733) (@admin/wrapper): fix style and redirection ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `store`
+  - [#742](https://github.com/meepshop/meep-lerna/pull/742) (@meepshop/frontend): upgrade kubectl ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.27.8 (2019-10-30)
 
 #### :rocket: New Feature
