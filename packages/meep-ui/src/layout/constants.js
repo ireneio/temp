@@ -34,6 +34,8 @@ export const SPECIAL_HIDE_FOOTER = [
   'dusabioliving2',
   'dusabioliving3',
   'dusabioliving4',
+  '2plus1store',
+  'iwe',
 ];
 
 export const STORE_APP_PLUGINS = [
@@ -69,6 +71,4 @@ export const STORE_APP_PLUGINS = [
   'returnOrder',
   'memberSeePrice',
   'productMassUpload',
-  '2plus1store',
-  'iwe',
 ];
