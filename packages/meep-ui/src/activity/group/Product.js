@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { areEqual } from 'fbjs';
 import radium, { Style } from 'radium';
 
+import { withNamespaces } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
 import Link from 'link';
@@ -16,17 +18,16 @@ import {
 } from 'constants/propTypes';
 import { PHONE_MEDIA } from 'constants/media';
 
-import { PURCHASE, SELECT_SPEC } from '../locale';
-
 import * as styles from './styles/product';
 
+@withNamespaces('activity')
 @enhancer
 @radium
 export default class Product extends React.PureComponent {
   static propTypes = {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired,
     transformCurrency: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired,
     product: PropTypes.shape({
       id: ID_TYPE.isRequired,
       title: PropTypes.shape({
@@ -100,9 +101,13 @@ export default class Product extends React.PureComponent {
 
   render() {
     const {
+      /** context */
       colors,
-      transformLocale,
       transformCurrency,
+
+      /** props */
+      t,
+      i18n,
       product,
       cart,
       wishList,
@@ -130,7 +135,9 @@ export default class Product extends React.PureComponent {
           </Link>
         )}
         <div style={styles.productText}>
-          <div style={styles.productTitle}>{transformLocale(title)}</div>
+          <div style={styles.productTitle}>
+            {title[i18n.language] || title.zh_TW}
+          </div>
           <div style={styles.productPrice}>{transformCurrency(totalPrice)}</div>
         </div>
         <div
@@ -143,12 +150,12 @@ export default class Product extends React.PureComponent {
           ]}
           onClick={this.toggleModal}
         >
-          {transformLocale(PURCHASE)}
+          {t('purchase')}
         </div>
 
         <PopUp
           className="activity-group"
-          title={transformLocale(SELECT_SPEC)}
+          title={t('select-spec')}
           visible={openModal}
           onCancel={this.toggleModal}
           type="original"

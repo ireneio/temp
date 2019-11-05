@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
-import { enhancer } from 'layout/DecoratorsRoot';
-
-import { ID_TYPE, COLOR_TYPE, LOCALE_TYPE } from 'constants/propTypes';
-
 import { Spin, Icon } from 'antd';
+
+import { withNamespaces } from '@store/utils/lib/i18n';
+
+import { enhancer } from 'layout/DecoratorsRoot';
+import { ID_TYPE, COLOR_TYPE, LOCALE_TYPE } from 'constants/propTypes';
 
 import Product from './Product';
 import Pagination from './Pagination';
@@ -13,13 +14,14 @@ import SortIcon from './SortIcon';
 
 import * as styles from './styles';
 
+@withNamespaces('activity')
 @enhancer
 @radium
 export default class Group extends React.PureComponent {
   static propTypes = {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     getData: PropTypes.func.isRequired,
-    transformLocale: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired,
     background: PropTypes.string.isRequired,
     group: PropTypes.shape({
       title: LOCALE_TYPE.isRequired,
@@ -142,11 +144,14 @@ export default class Group extends React.PureComponent {
 
   render() {
     const {
+      /** context */
       colors,
-      transformLocale,
+      cart,
+
+      /** props */
+      i18n,
       background,
       group,
-      cart,
       wishList,
       stockNotificationList,
     } = this.props;
@@ -170,7 +175,8 @@ export default class Group extends React.PureComponent {
               },
             ]}
           >
-            {transformLocale(group.title)}
+            {group.title[i18n.language] || group.title.zh_TW}
+
             <SortIcon
               sort={sort}
               style={styles.sort}

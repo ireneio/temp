@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { enhancer } from 'layout/DecoratorsRoot';
 
+import { withNamespaces } from '@store/utils/lib/i18n';
+
+import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE } from 'constants/propTypes';
 
 import Group from './group';
 import * as styles from './styles';
-import { PLEASE_SELECT_ACTIVITY } from './locale';
 
+@withNamespaces('activity')
 @enhancer
 @radium
 export default class Activity extends React.PureComponent {
@@ -26,7 +28,7 @@ export default class Activity extends React.PureComponent {
     cart: PropTypes.shape({}),
     wishList: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     stockNotificationList: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    transformLocale: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -42,16 +44,13 @@ export default class Activity extends React.PureComponent {
       cart,
       wishList,
       stockNotificationList,
-      transformLocale,
+      t,
     } = this.props;
     const { groups } = (activity || {}).target || {};
-    if (!activity) {
-      return (
-        <div style={styles.blank}>
-          {transformLocale(PLEASE_SELECT_ACTIVITY)}
-        </div>
-      );
-    }
+
+    if (!activity)
+      return <div style={styles.blank}>{t('please-select-activity')}</div>;
+
     return (
       <div style={styles.root}>
         {groups.map(({ id, ...group }) => (
