@@ -3,23 +3,29 @@ import PropTypes from 'prop-types';
 import { Button, Form, Input, Row, Col } from 'antd';
 import { StyleRoot } from 'radium';
 
+import { withNamespaces } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
+
 import * as styles from './styles';
-import * as LOCALE from './locale';
 
 const FormItem = Form.Item;
 
+@withNamespaces('forgot-password')
 @enhancer
 @Form.create()
 export default class ForgotPswForm extends React.PureComponent {
   static propTypes = {
+    /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired,
-    form: PropTypes.objectOf(PropTypes.func).isRequired,
-    token: PropTypes.string.isRequired,
     dispatchAction: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
+
+    /** props */
+    t: PropTypes.func.isRequired,
+    form: PropTypes.objectOf(PropTypes.func).isRequired,
+    token: PropTypes.string.isRequired,
   };
 
   state = { status: 'INITIAL' };
@@ -54,10 +60,14 @@ export default class ForgotPswForm extends React.PureComponent {
 
   render() {
     const {
-      form: { getFieldDecorator },
-      transformLocale,
+      // context
       colors,
+
+      // props
+      t,
+      form: { getFieldDecorator },
     } = this.props;
+
     return (
       <Form
         style={styles.form}
@@ -71,7 +81,7 @@ export default class ForgotPswForm extends React.PureComponent {
             sm={{ span: 14 }}
             xs={{ span: 20 }}
           >
-            <h3>{transformLocale(LOCALE.FORGET_PASSWORD)}</h3>
+            <h3>{t('forget-password')}</h3>
           </Col>
         </Row>
         <Row type="flex" justify="center" gutter={24}>
@@ -86,14 +96,14 @@ export default class ForgotPswForm extends React.PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: transformLocale(LOCALE.PASSWORD_IS_REQUIRED),
+                    message: t('password-is-required'),
                   },
                 ],
               })(
                 <Input
                   className="forget-password-form-password-input"
                   type="password"
-                  placeholder={transformLocale(LOCALE.PASSWORD_PLACEHOLDER)}
+                  placeholder={t('password-placeholder')}
                   size="large"
                 />,
               )}
@@ -115,7 +125,7 @@ export default class ForgotPswForm extends React.PureComponent {
                   htmlType="submit"
                   size="large"
                 >
-                  {transformLocale(LOCALE.RESET_PASSWORD)}
+                  {t('reset-password')}
                 </Button>
               </div>
             </StyleRoot>
