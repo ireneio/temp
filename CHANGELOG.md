@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.27.10 (2019-11-06)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#752](https://github.com/meepshop/meep-lerna/pull/752) 忘記密碼從 locale.js 改成 next-i18next ([@HsuTing](https://github.com/HsuTing))
+  - [#741](https://github.com/meepshop/meep-lerna/pull/741) 折扣元件從 locale.js 改成 next-i18next ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#748](https://github.com/meepshop/meep-lerna/pull/748) 【BUG】前台 - 會員登入後，無跳轉回登入前的頁面 ([@HsuTing](https://github.com/HsuTing))
+  - [#745](https://github.com/meepshop/meep-lerna/pull/745) 【優化】 前台 - 購物金 - 「獲得點數」文字改為「可用購物金」 ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`
+  - [#744](https://github.com/meepshop/meep-lerna/pull/744) 【BUG】 商品、訂單優惠碼 - 若是輸入已過期的優惠碼，前/後台「結束日期」不同 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.27.9 (2019-11-04)
 
 #### :boom: Breaking Change
