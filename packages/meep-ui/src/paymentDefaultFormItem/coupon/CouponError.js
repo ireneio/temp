@@ -73,9 +73,9 @@ export default class CouponError extends React.PureComponent {
 
         return transformLocale`${LOCALE.THIS_CODE_ACTIVITY_PERIOD} ${moment(
           startTime * 1000,
-        ).format(TIME_FORMAT)}-${moment(endTime * 1000).format(TIME_FORMAT)} ${
-          LOCALE.PLZ_DELETE_THEN_CHECKOUT
-        }`;
+        ).format(TIME_FORMAT)}-${moment(endTime * 1000)
+          .subtract(1, 'days')
+          .format(TIME_FORMAT)} ${LOCALE.PLZ_DELETE_THEN_CHECKOUT}`;
       }
 
       case 4017:
