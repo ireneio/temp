@@ -1,0 +1,15 @@
+{
+  "go-back-to-store": "繼續購物",
+  "bill": "前往結帳",
+  "member-login": "會員登入",
+  "email-is-required": "請輸入信箱",
+  "is-invalid-email": "信箱格式錯誤",
+  "email-placeholder": "信箱",
+  "password-is-required": "請輸入密碼",
+  "password-placeholder": "密碼",
+  "forget-password": "忘記密碼",
+  "login": "登入",
+  "first-time": "首次購物",
+  "fb-login": "Facebook 登入",
+  "send-password": "寄送重設密碼信"
+}

@@ -4,23 +4,28 @@ import radium from 'radium';
 import { Form, Input, Button } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 
+import { withNamespaces } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles/forgetPassword';
 import * as loginStyles from './styles/login';
-import * as LOCALE from './locale';
 
 const { Item: FormItem } = Form;
 
+@withNamespaces('cart')
 @Form.create()
 @enhancer
 @radium
 export default class ForgetPassword extends React.PureComponent {
   static propTypes = {
+    /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired,
     forgetPassword: PropTypes.func.isRequired,
+
+    /** props */
+    t: PropTypes.func.isRequired,
     form: PropTypes.shape({
       getFieldDecorator: PropTypes.func.isRequired,
       getFieldsError: PropTypes.func.isRequired,
@@ -40,14 +45,18 @@ export default class ForgetPassword extends React.PureComponent {
   };
 
   render() {
-    const { transformLocale, colors, form } = this.props;
-    const { getFieldDecorator, getFieldsError } = form;
+    const {
+      /** context */
+      colors,
+
+      /** props */
+      t,
+      form: { getFieldDecorator, getFieldsError },
+    } = this.props;
 
     return (
       <div style={[loginStyles.root, styles.root]}>
-        <h3 style={loginStyles.header}>
-          {transformLocale(LOCALE.FORGET_PASSWORD)}
-        </h3>
+        <h3 style={loginStyles.header}>{t('forget-password')}</h3>
 
         <Form onSubmit={this.submit}>
           <FormItem style={loginStyles.formItem}>
@@ -55,12 +64,12 @@ export default class ForgetPassword extends React.PureComponent {
               rules: [
                 {
                   required: true,
-                  message: transformLocale(LOCALE.EMAIL_IS_REQUIRED),
+                  message: t('email-is-required'),
                 },
                 {
                   validator: (rule, value, callback) => {
                     if (value && (isFullWidth(value) || !isEmail(value)))
-                      callback(transformLocale(LOCALE.IS_INVALID_EMAIL));
+                      callback(t('is-invalid-email'));
                     else callback();
                   },
                 },
@@ -68,7 +77,7 @@ export default class ForgetPassword extends React.PureComponent {
             })(
               <Input
                 style={loginStyles.input}
-                placeholder={transformLocale(LOCALE.EMAIL_PLACEHOLDER)}
+                placeholder={t('email-placeholder')}
                 size="large"
               />,
             )}
@@ -86,7 +95,7 @@ export default class ForgetPassword extends React.PureComponent {
                 getFieldsError(),
               )}
             >
-              {transformLocale(LOCALE.SEND_PASSWORD)}
+              {t('send-password')}
             </Button>
           </div>
         </Form>

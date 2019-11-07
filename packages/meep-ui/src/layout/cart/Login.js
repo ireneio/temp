@@ -9,14 +9,16 @@ import {
   facebook as FacebookIcon,
 } from 'react-icons/fa';
 
+import { withNamespaces } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles/login';
-import * as LOCALE from './locale';
 
 const { Item: FormItem } = Form;
 
+@withNamespaces('cart')
 @Form.create()
 @enhancer
 @radium
@@ -24,7 +26,6 @@ export default class Login extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
     fbLogin: PropTypes.func.isRequired,
@@ -32,6 +33,7 @@ export default class Login extends React.PureComponent {
     toggleCart: PropTypes.func.isRequired,
 
     /** props */
+    t: PropTypes.func.isRequired,
     form: PropTypes.shape({
       getFieldDecorator: PropTypes.func.isRequired,
       getFieldsError: PropTypes.func.isRequired,
@@ -57,35 +59,38 @@ export default class Login extends React.PureComponent {
 
   render() {
     const {
+      /** context */
       colors,
-      transformLocale,
       goTo,
+      toggleCart,
       fbLogin,
       hasStoreAppPlugin,
+
+      /** props */
+      t,
       form,
       goToInCart,
-      toggleCart,
     } = this.props;
     const { getFieldDecorator, getFieldsError } = form;
 
     return (
       <div style={styles.root}>
-        <h3 style={styles.header}>{transformLocale(LOCALE.MEMBER_LOGIN)}</h3>
+        <h3 style={styles.header}>{t('member-login')}</h3>
 
         <Form onSubmit={this.submit}>
           {[
             {
               name: 'email',
-              placeholder: transformLocale(LOCALE.EMAIL_PLACEHOLDER),
+              placeholder: t('email-placeholder'),
               rules: [
                 {
                   required: true,
-                  message: transformLocale(LOCALE.EMAIL_IS_REQUIRED),
+                  message: t('email-is-required'),
                 },
                 {
                   validator: (rule, value, callback) => {
                     if (value && (isFullWidth(value) || !isEmail(value)))
-                      callback(transformLocale(LOCALE.IS_INVALID_EMAIL));
+                      callback(t('is-invalid-email'));
                     else callback();
                   },
                 },
@@ -94,11 +99,11 @@ export default class Login extends React.PureComponent {
             {
               name: 'password',
               type: 'password',
-              placeholder: transformLocale(LOCALE.PASSWORD_PLACEHOLDER),
+              placeholder: t('password-placeholder'),
               rules: [
                 {
                   required: true,
-                  message: transformLocale(LOCALE.PASSWORD_IS_REQUIRED),
+                  message: t('password-is-required'),
                 },
               ],
             },
@@ -122,7 +127,7 @@ export default class Login extends React.PureComponent {
             >
               <LockIcon />
 
-              {transformLocale(LOCALE.FORGET_PASSWORD)}
+              {t('forget-password')}
             </div>
 
             <Button
@@ -138,7 +143,7 @@ export default class Login extends React.PureComponent {
               )}
               ghost
             >
-              {transformLocale(LOCALE.LOGIN)}
+              {t('login')}
             </Button>
           </div>
         </Form>
@@ -157,9 +162,7 @@ export default class Login extends React.PureComponent {
               <div style={styles.buttonWrapper}>
                 <ShoppingCartIcon style={styles.icon(colors)} />
 
-                <div style={styles.buttonText}>
-                  {transformLocale(LOCALE.FIRST_TIME)}
-                </div>
+                <div style={styles.buttonText}>{t('first-time')}</div>
               </div>
             </Button>
           </div>
@@ -183,9 +186,7 @@ export default class Login extends React.PureComponent {
                     }}
                   />
 
-                  <div style={styles.buttonText}>
-                    {transformLocale(LOCALE.FB_LOGIN)}
-                  </div>
+                  <div style={styles.buttonText}>{t('fb-login')}</div>
                 </div>
               </Button>
             </div>

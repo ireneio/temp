@@ -1,0 +1,15 @@
+{
+  "go-back-to-store": "Continue Shopping",
+  "bill": "Checkout",
+  "member-login": "Sign In",
+  "email-is-required": "Please enter email.",
+  "is-invalid-email": "Please enter a valid email address.",
+  "email-placeholder": "Email",
+  "password-is-required": "Please enter password.",
+  "password-placeholder": "Password",
+  "forget-password": "Forget password?",
+  "login": "Sign In",
+  "first-time": "First Shopping",
+  "fb-login": "Sign in with Facebook",
+  "send-password": "Reset Password"
+}

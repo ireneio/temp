@@ -3,31 +3,33 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Button } from 'antd';
 
+import { withNamespaces } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import OrderProductList from 'orderProductList';
 import { ISLOGIN_TYPE, LOCATION_TYPE } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
 
-import * as LOCALE from './locale';
 import * as styles from './styles/productList';
 
+@withNamespaces('cart')
 @enhancer
 @radium
 export default class ProductList extends React.PureComponent {
   static propTypes = {
     /** context */
     location: LOCATION_TYPE.isRequired,
-    transformLocale: PropTypes.func.isRequired,
     toggleCart: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
-
-    /** props */
     carts: PropTypes.shape({
       categories: PropTypes.shape({
         products: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
       }).isRequired,
     }),
+
+    /** props */
+    t: PropTypes.func.isRequired,
     goToInCart: PropTypes.func.isRequired,
   };
 
@@ -57,7 +59,15 @@ export default class ProductList extends React.PureComponent {
   };
 
   render() {
-    const { location, transformLocale, toggleCart, carts } = this.props;
+    const {
+      /** context */
+      location,
+      carts,
+
+      /** props */
+      t,
+      toggleCart,
+    } = this.props;
     const { productHasError } = this.state;
     const { categories, priceInfo, activityInfo } = carts || { categories: {} };
     const { products = [] } = categories;
@@ -76,9 +86,7 @@ export default class ProductList extends React.PureComponent {
             type="primary"
             onClick={products.length === 0 ? toggleCart(false) : this.submit}
           >
-            {transformLocale(
-              products.length === 0 ? LOCALE.GO_BACK_TO_STORE : LOCALE.BILL,
-            )}
+            {t(products.length === 0 ? 'go-back-to-store' : 'bill')}
           </Button>
         )}
       </OrderProductList>
