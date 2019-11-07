@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.27.11 (2019-11-067)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#753](https://github.com/meepshop/meep-lerna/pull/753) 購物車從 locale.js 改成 next-i18next ([@HsuTing](https://github.com/HsuTing))
+  - [#756](https://github.com/meepshop/meep-lerna/pull/756) 【個別店家】 一頁式購物車付款完成後指定頁面跳轉 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.27.10 (2019-11-06)
 
 #### :boom: Breaking Change
