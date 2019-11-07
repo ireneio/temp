@@ -141,6 +141,10 @@ module.exports = app.prepare().then(
       // For facebook fan page connect
       server.post('/', (req, res) => handler(req, res));
 
+      // ecpay
+      server.post('/pages/:path', (req, res) => handler(req, res));
+      server.post('/products', (req, res) => handler(req, res));
+
       // others
       server.post('/checkout/thank-you-page/:id', (req, res) => {
         res.redirect(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
