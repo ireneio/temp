@@ -29,7 +29,7 @@ const arrowLeftStyle = {
 export default (
   { title = '', goBackToOrders, colors, children }, // eslint-disable-line
 ) => (
-  <React.Fragment>
+  <>
     <div
       style={{ ...wrapperStyle, backgroundColor: colors[4], color: colors[2] }}
     >
@@ -41,8 +41,10 @@ export default (
           <i style={{ ...arrowLeftStyle, borderColor: colors[2] }} />
         </div>
       )}
+
       {title}
     </div>
+
     {children}
-  </React.Fragment>
+  </>
 );

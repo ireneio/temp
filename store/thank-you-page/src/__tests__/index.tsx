@@ -3,7 +3,6 @@ import React from 'react';
 import Router from 'next/router';
 import { ReactWrapper } from 'enzyme';
 
-import * as resolvers from '@store/apollo-client-resolvers';
 import runTest from '@meepshop/mock-types/src/runTest';
 
 import ThankYouPage from '../index';
@@ -11,8 +10,8 @@ import props from '../../mock';
 import styles from '../styles/index.less';
 
 runTest(
+  'store',
   <ThankYouPage {...props} />,
-  resolvers,
   (wrapper: ReactWrapper<unknown, unknown>, trackingIndex) => {
     test('return home page', () => {
       Router.push = jest.fn();

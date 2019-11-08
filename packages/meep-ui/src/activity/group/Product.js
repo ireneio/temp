@@ -62,19 +62,23 @@ export default class Product extends React.PureComponent {
   state = {
     openModal: false,
     target: null,
+    cart: null,
   };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { cart } = nextProps;
+
+    if (areEqual(cart, prevState.cart)) return null;
+
+    return {
+      cart,
+      openModal: false,
+    };
+  }
 
   componentDidMount() {
     this.resize();
     window.addEventListener('resize', this.resize);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { cart } = this.props;
-
-    if (!areEqual(cart, nextProps.cart)) {
-      this.setState({ openModal: false });
-    }
   }
 
   componentWillUnmount() {

@@ -22,6 +22,9 @@ import * as resolvers from '${
   }/apollo-client-resolvers';
 
 import './combined.less';
+import Provider from '@meepshop/mock-types/src/${
+    /@admin/.test(name) ? 'Admin' : 'Store'
+  }Provider';
 
 ${(() => {
   if (fs.existsSync(path.resolve('./mock.ts')))
@@ -30,8 +33,10 @@ import props from '${path.resolve('./mock.ts')}';
 
 storiesOf('${name}', module)
   .add('demo', () => (
-    <MockTypes {...resolvers} >
-      <Component {...props} />
+    <MockTypes {...resolvers}>
+      <Provider>
+        <Component {...props} />
+      </Provider>
     </MockTypes>
   ));`;
 
@@ -40,8 +45,10 @@ storiesOf('${name}', module)
 
 storiesOf('${name}', module)
   .add('demo', () => (
-    <MockTypes {...resolvers} >
-      <Component />
+    <MockTypes {...resolvers}>
+      <Provider>
+        <Component />
+      </Provider>
     </MockTypes>
   ));`;
 
@@ -49,8 +56,10 @@ storiesOf('${name}', module)
 
 storiesOf('${name}', module)
   .add('demo', () => (
-    <MockTypes {...resolvers} >
-      <Component />
+    <MockTypes {...resolvers}>
+      <Provider>
+        <Component />
+      </Provider>
     </MockTypes>
   ));`;
 })()}`,

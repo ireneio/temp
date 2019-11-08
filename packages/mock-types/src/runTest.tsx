@@ -1,6 +1,3 @@
-// import typescript
-import { PropsType } from './index';
-
 // import
 import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
@@ -12,8 +9,8 @@ import MockTypes from './index';
 
 // definition
 export default (
+  testType: 'store' | 'admin',
   node: React.ReactNode,
-  resolvers: PropsType,
   callback:
     | ((
         wrapper: ReactWrapper<unknown, unknown>,
@@ -21,8 +18,23 @@ export default (
       ) => void | boolean)
     | undefined = emptyFunction.thatReturnsTrue,
 ) => {
+  /* eslint-disable global-require */
+  const resolvers =
+    testType === 'store'
+      ? require('@store/apollo-client-resolvers')
+      : require('@admin/apollo-client-resolvers');
+  const Provider =
+    testType === 'store'
+      ? require('./StoreProvider').default
+      : require('./AdminProvider').default;
+  /* eslint-enable global-require */
+
   mock.init();
-  mount(<MockTypes {...resolvers}>{node}</MockTypes>);
+  mount(
+    <MockTypes {...resolvers}>
+      <Provider>{node}</Provider>
+    </MockTypes>,
+  );
 
   describe.each(
     cartesianProduct(
@@ -31,7 +43,10 @@ export default (
           .apply(null, { length: mock.schemas[type].length })
           .map(Number.call, Number),
       ),
-    ).toArray(),
+    )
+      .toArray()
+      // FIXME: @admin/order-ecfit will heap out of memory
+      .slice(0, 300),
   )(
     `mock types testing:
 
@@ -40,7 +55,11 @@ ${mock.tracking.map(type => `  ${type}: %i`).join('\n')}
     (...trackingIndex) => {
       mock.trackingIndex = trackingIndex;
 
-      const wrapper = mount(<MockTypes {...resolvers}>{node}</MockTypes>);
+      const wrapper = mount(
+        <MockTypes {...resolvers}>
+          <Provider>{node}</Provider>
+        </MockTypes>,
+      );
 
       beforeAll(async () => {
         await new Promise(resolve => {

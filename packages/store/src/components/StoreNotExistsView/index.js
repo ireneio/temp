@@ -17,6 +17,6 @@ export default () => (
       transform: 'translate(-50%, -50%)',
     }}
   >
-    {`... 無此商店 / The store does not exist ...`}
+    ... 無此商店 / The store does not exist ...
   </div>
 );

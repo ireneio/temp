@@ -4,7 +4,6 @@ import Router from 'next/router';
 import { ReactWrapper } from 'enzyme';
 
 import runTest from '@meepshop/mock-types/src/runTest';
-import * as resolvers from '@store/apollo-client-resolvers';
 
 import Ezpay from '../index';
 import props from '../../mock';
@@ -12,8 +11,8 @@ import styles from '../styles/index.less';
 
 // definition
 runTest(
+  'store',
   <Ezpay {...props} />,
-  resolvers,
   (wrapper: ReactWrapper<unknown, unknown>, trackingIndex) => {
     if (trackingIndex[0] === 0) return;
 

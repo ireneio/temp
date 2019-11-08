@@ -3,6 +3,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'airbnb',
+    'airbnb/hooks',
     'plugin:prettier/recommended',
     'prettier/react',
   ],
@@ -50,9 +51,9 @@ module.exports = {
 
     'react/prop-types': 'off',
     'react/jsx-filename-extension': 'off',
-    // FIXME: false positive on whitespaces in jsx
-    'react/jsx-curly-brace-presence': 'off',
-    // FIXME: false positive on destructuring props
+    'react/jsx-props-no-spreading': 'off',
+    'react/state-in-constructor': 'off',
+    'react/static-property-placement': ['error', 'static public field'],
     'react/no-unused-prop-types': 'off',
     'react/sort-comp': [
       'error',

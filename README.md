@@ -88,14 +88,13 @@ module.exports =
 // import
 import React from 'react';
 
-import runTest from '@meepshop/mock-types/src/runTest';
 import * as resolvers from '/** workspace *//apollo-client-resolvers';
 
 import /** ComponentName */ from '../index';
 import props from '../../mock';
 
 // definition
-runTest(</** ComponentName */ {...props} />, resolvers);
+runTest('store' or 'admin', </** ComponentName */ {...props} />);
 ```
 
 5. Now, you can start to write your component in `src/index.ts`.

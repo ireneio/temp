@@ -1,6 +1,7 @@
 // Only important functions can be added to the `Context`.
 // Use enhancer with those functions.
 // TODO remove
+/* eslint-disable max-classes-per-file */
 
 import React from 'react';
 import PropTypes from 'prop-types';
