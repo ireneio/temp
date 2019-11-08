@@ -1,22 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form, Input } from 'antd';
-import { COLOR_TYPE } from 'constants/propTypes';
 import { isFullWidth, isEmail } from 'validator';
 
-import * as LOCALE from './locale';
+import { withNamespaces } from '@store/utils/lib/i18n';
+
+import { enhancer } from 'layout/DecoratorsRoot';
+import { COLOR_TYPE } from 'constants/propTypes';
 
 const FormItem = Form.Item;
 
 @Form.create()
+@withNamespaces('login')
+@enhancer
 export default class SignupForm extends React.PureComponent {
   static propTypes = {
+    /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired,
-    form: PropTypes.objectOf(PropTypes.func).isRequired,
     dispatchAction: PropTypes.func.isRequired,
-    handleTypeChange: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
+
+    /** props */
+    form: PropTypes.objectOf(PropTypes.func).isRequired,
+    t: PropTypes.func.isRequired,
+    handleTypeChange: PropTypes.func.isRequired,
   };
 
   state = {
@@ -32,27 +39,26 @@ export default class SignupForm extends React.PureComponent {
   };
 
   compareToFirstPassword = (_, value, callback) => {
-    const { form, transformLocale } = this.props;
+    const { form, t } = this.props;
 
-    if (value && value !== form.getFieldValue('newPassword')) {
-      callback(transformLocale(LOCALE.PASSWORD_IS_NO_MATCH));
-    } else {
-      callback();
-    }
+    if (value && value !== form.getFieldValue('newPassword'))
+      callback(t('password-is-no-match'));
+    else callback();
   };
 
   validateToNextPassword = (_, value, callback) => {
     const { form } = this.props;
     const { confirmDirty } = this.state;
 
-    if (value && confirmDirty) {
+    if (value && confirmDirty)
       form.validateFields(['confirmPassword'], { force: true });
-    }
+
     callback();
   };
 
   handleSubmit = e => {
     e.preventDefault();
+
     const {
       form: { validateFields },
       dispatchAction,
@@ -75,37 +81,35 @@ export default class SignupForm extends React.PureComponent {
 
   render() {
     const {
-      form: { getFieldDecorator },
-      transformLocale,
+      /** context */
       hasStoreAppPlugin,
       colors,
+
+      /** props */
+      form: { getFieldDecorator },
+      t,
     } = this.props;
 
     return (
       <Form onSubmit={this.handleSubmit}>
-        <h3>{transformLocale(LOCALE.SIGNUP)}</h3>
+        <h3>{t('signup')}</h3>
 
         <FormItem>
           {getFieldDecorator('email', {
             rules: [
               {
                 required: true,
-                message: transformLocale(LOCALE.EMAIL_IS_REQUIRED),
+                message: t('email-is-required'),
               },
               {
                 validator: (rule, value, callback) => {
                   if (value && (isFullWidth(value) || !isEmail(value)))
-                    callback(transformLocale(LOCALE.IS_INVALID_EMAIL));
+                    callback(t('is-invalid-email'));
                   else callback();
                 },
               },
             ],
-          })(
-            <Input
-              placeholder={transformLocale(LOCALE.EMAIL_PLACEHOLDER)}
-              size="large"
-            />,
-          )}
+          })(<Input placeholder={t('email-placeholder')} size="large" />)}
         </FormItem>
 
         <FormItem>
@@ -113,7 +117,7 @@ export default class SignupForm extends React.PureComponent {
             rules: [
               {
                 required: true,
-                message: transformLocale(LOCALE.PASSWORD_IS_REQUIRED),
+                message: t('password-is-required'),
               },
               {
                 validator: this.validateToNextPassword,
@@ -122,7 +126,7 @@ export default class SignupForm extends React.PureComponent {
           })(
             <Input
               type="password"
-              placeholder={transformLocale(LOCALE.PASSWORD)}
+              placeholder={t('password')}
               size="large"
               onBlur={this.handleConfirmBlur}
             />,
@@ -134,7 +138,7 @@ export default class SignupForm extends React.PureComponent {
             rules: [
               {
                 required: true,
-                message: transformLocale(LOCALE.PASSWORD_IS_REQUIRED),
+                message: t('password-is-required'),
               },
               {
                 validator: this.compareToFirstPassword,
@@ -143,7 +147,7 @@ export default class SignupForm extends React.PureComponent {
           })(
             <Input
               type="password"
-              placeholder={transformLocale(LOCALE.CONFIRM_PASSWORD)}
+              placeholder={t('confirm-password')}
               size="large"
             />,
           )}
@@ -156,7 +160,7 @@ export default class SignupForm extends React.PureComponent {
             })(
               <Input
                 type="text"
-                placeholder={transformLocale(LOCALE.PROMOTION_CODE)}
+                placeholder={t('promotion-code')}
                 size="large"
               />,
             )}
@@ -169,7 +173,7 @@ export default class SignupForm extends React.PureComponent {
             htmlType="submit"
             size="large"
           >
-            {transformLocale(LOCALE.JOIN)}
+            {t('join')}
           </Button>
         </div>
       </Form>

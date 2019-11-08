@@ -1,0 +1,19 @@
+{
+  "email-is-required": "請輸入信箱",
+  "is-invalid-email": "無效的信箱",
+  "email-placeholder": "信箱",
+  "password-is-required": "請輸入密碼",
+  "password-placeholder": "密碼",
+  "forget-password": "忘記密碼",
+  "signup": "註冊",
+  "login": "登入",
+  "join-us": "加入會員",
+  "fb-login": "Facebook登入",
+  "go-back": "返回",
+  "password-is-no-match": "密碼不一致",
+  "join": "加入",
+  "promotion-code": "群組代碼",
+  "password": "密碼",
+  "confirm-password": "確認密碼",
+  "send-reset-password-mail": "寄送重設密碼信"
+}

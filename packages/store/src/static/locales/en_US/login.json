@@ -1,0 +1,19 @@
+{
+  "email-is-required": "Please enter email.",
+  "is-invalid-email": "Please enter a valid email address.",
+  "email-placeholder": "Email",
+  "password-is-required": "Please enter password.",
+  "password-placeholder": "Password",
+  "forget-password": "Forgot Password?",
+  "signup": "Sign Up",
+  "login": "Sign In",
+  "join-us": "Create an account",
+  "fb-login": "Sign in with Facebook",
+  "go-back": "Back",
+  "password-is-no-match": "Please retype your password here",
+  "join": "Join",
+  "promotion-code": "Group code",
+  "password": "Password",
+  "confirm-password": "Confrim Password",
+  "send-reset-password-mail": "Reset Password"
+}

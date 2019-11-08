@@ -3,29 +3,36 @@ import PropTypes from 'prop-types';
 import { Button, Form, Input } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 
+import { withNamespaces } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
+
 import styles from './styles/login.less';
-import * as LOCALE from './locale';
 
 const FormItem = Form.Item;
 
 @Form.create()
+@withNamespaces('login')
 @enhancer
 export default class LoginForm extends React.PureComponent {
   static propTypes = {
+    /** context */
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     goTo: PropTypes.func.isRequired,
-    toggleToSignup: PropTypes.func.isRequired,
-    toggleToForgetPassword: PropTypes.func.isRequired,
-    form: PropTypes.objectOf(PropTypes.func).isRequired,
     dispatchAction: PropTypes.func.isRequired,
     fbLogin: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
-    transformLocale: PropTypes.func.isRequired,
+
+    /** props */
+    form: PropTypes.objectOf(PropTypes.func).isRequired,
+    t: PropTypes.func.isRequired,
+    toggleToSignup: PropTypes.func.isRequired,
+    toggleToForgetPassword: PropTypes.func.isRequired,
   };
 
   handleSubmit = e => {
     e.preventDefault();
+
     const {
       form: { validateFields },
       dispatchAction,
@@ -42,41 +49,39 @@ export default class LoginForm extends React.PureComponent {
 
   render() {
     const {
+      /** context */
       goTo,
-      form: { getFieldDecorator },
-      toggleToSignup,
-      toggleToForgetPassword,
       fbLogin,
       hasStoreAppPlugin,
-      transformLocale,
       colors,
+
+      /** props */
+      form: { getFieldDecorator },
+      t,
+      toggleToSignup,
+      toggleToForgetPassword,
     } = this.props;
 
     return (
       <Form onSubmit={this.handleSubmit}>
-        <h3>{transformLocale(LOCALE.LOGIN)}</h3>
+        <h3>{t('login')}</h3>
 
         <FormItem>
           {getFieldDecorator('email', {
             rules: [
               {
                 required: true,
-                message: transformLocale(LOCALE.EMAIL_IS_REQUIRED),
+                message: t('email-is-required'),
               },
               {
                 validator: (rule, value, callback) => {
                   if (value && (isFullWidth(value) || !isEmail(value)))
-                    callback(transformLocale(LOCALE.IS_INVALID_EMAIL));
+                    callback(t('is-invalid-email'));
                   else callback();
                 },
               },
             ],
-          })(
-            <Input
-              placeholder={transformLocale(LOCALE.EMAIL_PLACEHOLDER)}
-              size="large"
-            />,
-          )}
+          })(<Input placeholder={t('email-placeholder')} size="large" />)}
         </FormItem>
 
         <FormItem>
@@ -84,13 +89,13 @@ export default class LoginForm extends React.PureComponent {
             rules: [
               {
                 required: true,
-                message: transformLocale(LOCALE.PASSWORD_IS_REQUIRED),
+                message: t('password-is-required'),
               },
             ],
           })(
             <Input
               type="password"
-              placeholder={transformLocale(LOCALE.PASSWORD_PLACEHOLDER)}
+              placeholder={t('password-placeholder')}
               size="large"
             />,
           )}
@@ -98,10 +103,11 @@ export default class LoginForm extends React.PureComponent {
 
         <div className={styles.optionsWrapper}>
           <div style={{ cursor: 'pointer' }} onClick={toggleToForgetPassword}>
-            {transformLocale(LOCALE.FORGET_PASSWORD)}
+            {t('forget-password')}
           </div>
+
           <div style={{ cursor: 'pointer' }} onClick={toggleToSignup}>
-            {transformLocale(LOCALE.JOIN_US)}
+            {t('join-us')}
           </div>
         </div>
 
@@ -111,7 +117,7 @@ export default class LoginForm extends React.PureComponent {
             htmlType="submit"
             size="large"
           >
-            {transformLocale(LOCALE.LOGIN)}
+            {t('login')}
           </Button>
 
           {hasStoreAppPlugin('fbLogin') && (
@@ -120,7 +126,7 @@ export default class LoginForm extends React.PureComponent {
               onClick={fbLogin}
               size="large"
             >
-              {transformLocale(LOCALE.FB_LOGIN)}
+              {t('fb-login')}
             </Button>
           )}
 
@@ -130,7 +136,7 @@ export default class LoginForm extends React.PureComponent {
             onClick={() => goTo({ back: true })}
             size="large"
           >
-            {transformLocale(LOCALE.GO_BACK)}
+            {t('go-back')}
           </Button>
         </div>
       </Form>

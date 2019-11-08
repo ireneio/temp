@@ -1,24 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form, Input } from 'antd';
-import { COLOR_TYPE } from 'constants/propTypes';
 import { isFullWidth, isEmail } from 'validator';
 
-import * as LOCALE from './locale';
+import { withNamespaces } from '@store/utils/lib/i18n';
+
+import { enhancer } from 'layout/DecoratorsRoot';
+import { COLOR_TYPE } from 'constants/propTypes';
 
 const FormItem = Form.Item;
 
 @Form.create()
+@withNamespaces('login')
+@enhancer
 export default class SendResetPswMailForm extends React.PureComponent {
   static propTypes = {
+    /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired,
-    form: PropTypes.objectOf(PropTypes.func).isRequired,
     dispatchAction: PropTypes.func.isRequired,
+
+    /** props */
+    form: PropTypes.objectOf(PropTypes.func).isRequired,
+    t: PropTypes.func.isRequired,
   };
 
   handleSubmit = e => {
     e.preventDefault();
+
     const {
       form: { validateFields },
       dispatchAction,
@@ -35,35 +43,34 @@ export default class SendResetPswMailForm extends React.PureComponent {
 
   render() {
     const {
-      form: { getFieldDecorator },
-      transformLocale,
+      /** context */
       colors,
+
+      /** props */
+      form: { getFieldDecorator },
+      t,
     } = this.props;
+
     return (
       <Form onSubmit={this.handleSubmit}>
-        <h3>{transformLocale(LOCALE.FORGET_PASSWORD)}</h3>
+        <h3>{t('forget-password')}</h3>
 
         <FormItem>
           {getFieldDecorator('email', {
             rules: [
               {
                 required: true,
-                message: transformLocale(LOCALE.EMAIL_IS_REQUIRED),
+                message: t('email-is-required'),
               },
               {
                 validator: (rule, value, callback) => {
                   if (value && (isFullWidth(value) || !isEmail(value)))
-                    callback(transformLocale(LOCALE.IS_INVALID_EMAIL));
+                    callback(t('is-invalid-email'));
                   else callback();
                 },
               },
             ],
-          })(
-            <Input
-              placeholder={transformLocale(LOCALE.EMAIL_PLACEHOLDER)}
-              size="large"
-            />,
-          )}
+          })(<Input placeholder={t('email-placeholder')} size="large" />)}
         </FormItem>
 
         <div className="button-group">
@@ -72,7 +79,7 @@ export default class SendResetPswMailForm extends React.PureComponent {
             htmlType="submit"
             size="large"
           >
-            {transformLocale(LOCALE.SEND_RESET_PASSWORD_MAIL)}
+            {t('send-reset-password-mail')}
           </Button>
         </div>
       </Form>

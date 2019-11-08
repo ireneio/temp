@@ -1,0 +1,19 @@
+{
+  "email-is-required": "メールアドレスを入力してください",
+  "is-invalid-email": "メールアドレスに誤りがあります",
+  "email-placeholder": "メールアドレス",
+  "password-is-required": "パスワードを入力してください",
+  "password-placeholder": "パスワード",
+  "forget-password": "パスワードを忘れた",
+  "signup": "登録",
+  "login": "ログイン",
+  "join-us": "会員登録",
+  "fb-login": "Facebookでログイン",
+  "go-back": "戻る",
+  "password-is-no-match": "パスワードが一致しません",
+  "join": "登録確認",
+  "promotion-code": "グループコード",
+  "password": "パスワード",
+  "confirm-password": "パスワードを確認",
+  "send-reset-password-mail": "パスワード再設定メールを送信"
+}

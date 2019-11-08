@@ -1,0 +1,19 @@
+{
+  "email-is-required": "Xin nhập hộp thư",
+  "is-invalid-email": "Hộp thư sai",
+  "email-placeholder": "Hộp thư",
+  "password-is-required": "Xin nhập mật khẩu",
+  "password-placeholder": "mật khẩu",
+  "forget-password": "Quên mật khẩu",
+  "signup": "Đã đăng ký",
+  "login": "Đăng nhập",
+  "join-us": "Tham gia hội viên",
+  "fb-login": "Đăng nhập Facebook",
+  "go-back": "Phản Hồi",
+  "password-is-no-match": "Mật khẩu không khớp",
+  "join": "Xác nhận đăng ký",
+  "promotion-code": "Mã nhóm",
+  "password": "Mật khẩu",
+  "confirm-password": "Xác nhận mật khẩu",
+  "send-reset-password-mail": "Gửi thư cài đặt lại mật khẩu"
+}
