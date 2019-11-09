@@ -173,11 +173,8 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  dispatch => ({
-    dispatchAction: (actionName, args) => {
-      dispatch(Actions[actionName](args));
-    },
-  }),
-)(Recipients);
+export default connect(mapStateToProps, dispatch => ({
+  dispatchAction: (actionName, args) => {
+    dispatch(Actions[actionName](args));
+  },
+}))(Recipients);

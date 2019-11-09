@@ -96,7 +96,7 @@
     "output-file-sync": "^2.0.1",
     "patch-package": "^5.1.1",
     "postinstall-prepare": "^1.0.1",
-    "prettier": "^1.13.5",
+    "prettier": "^1.19.1",
     "prettier-package-json": "^2.1.0",
     "react-markdown": "^4.0.6",
     "webpack": "^4.34.0"

@@ -45,10 +45,7 @@ export const getProductDescription = createSelector(
   },
 );
 
-const getPageByProduct = createSelector(
-  getProduct,
-  product => product.page,
-);
+const getPageByProduct = createSelector(getProduct, product => product.page);
 
 const getProductCombinedPage = createSelector(
   [

@@ -147,7 +147,12 @@ export default ({ orderId }: { orderId: string }) => (
 
       if (!order) {
         return (
-          <NotFound user={filter(notFoundFragment, idx(data, _ => _.viewer))} />
+          <NotFound
+            user={filter(
+              notFoundFragment,
+              idx(data, _ => _.viewer),
+            )}
+          />
         );
       }
 

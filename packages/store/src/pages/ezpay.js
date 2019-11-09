@@ -97,7 +97,4 @@ const mapStateToProps = (state, prevProps) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  () => ({}),
-)(Ezpay);
+export default connect(mapStateToProps, () => ({}))(Ezpay);

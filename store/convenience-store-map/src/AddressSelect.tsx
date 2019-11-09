@@ -96,7 +96,10 @@ class AddressSelect extends React.PureComponent<PropsType> {
       data: {
         __typename: 'City',
         areas:
-          idx(data, _ => _.validatedConvenienceStoreAreas).map(
+          idx(
+            data,
+            _ => _.validatedConvenienceStoreAreas,
+          ).map(
             (
               area: getValidatedConvenienceStoreCitiesValidatedConvenienceStoreCitiesChildren,
             ) => ({ ...area, streets: [] }),

@@ -182,15 +182,17 @@ class Container extends React.PureComponent<PropsType, StateType> {
 
     this.setState({ runningIds: selectedIds });
 
-    const successIds = (await Promise.all(
-      selectedIds.map(orderId =>
-        createEcfitOrderMutation({
-          variables: {
-            input: { orderId },
-          },
-        }),
-      ),
-    )).reduce((result, response, index) => {
+    const successIds = (
+      await Promise.all(
+        selectedIds.map(orderId =>
+          createEcfitOrderMutation({
+            variables: {
+              input: { orderId },
+            },
+          }),
+        ),
+      )
+    ).reduce((result, response, index) => {
       if (!response) return result;
 
       const status = idx(response, _ => _.data.createEcfitOrder.status);

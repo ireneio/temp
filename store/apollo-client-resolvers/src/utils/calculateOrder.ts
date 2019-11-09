@@ -180,56 +180,53 @@ export const calculateOrderApplications = (
   order: calculateOrderOrderFragmentType,
   getOrderApplyList: calculateOrderOrderApplyListFragmentType,
 ): Application[] =>
-  (getOrderApplyList.data || []).reduce(
-    (applications, application) => {
-      if (
-        !application ||
-        idx(application, _ => _.orderId) !== order.id
-        /** TODO: should not be null */
-      )
-        return applications;
+  (getOrderApplyList.data || []).reduce((applications, application) => {
+    if (
+      !application ||
+      idx(application, _ => _.orderId) !== order.id
+      /** TODO: should not be null */
+    )
+      return applications;
 
-      const existedApp = applications.find(
-        app => app.returnId === application.returnId,
-      );
+    const existedApp = applications.find(
+      app => app.returnId === application.returnId,
+    );
 
-      if (!existedApp)
-        return [
-          ...applications,
-          {
-            ...application,
-            extra: [
-              {
-                ...application,
-                product:
-                  order.products.find(
-                    product =>
-                      /** TODO: should not be null */
-                      idx(application, _ => _.orderProductId) ===
-                      (product || { id: null }).id,
-                  ) || {},
-              },
-            ],
-          },
-        ];
-
-      existedApp.extra = [
-        ...existedApp.extra,
+    if (!existedApp)
+      return [
+        ...applications,
         {
           ...application,
-          product:
-            order.products.find(
-              product =>
-                /** TODO: should not be null */
-                idx(application, _ => _.orderProductId) ===
-                (product || { id: null }).id,
-            ) || {},
+          extra: [
+            {
+              ...application,
+              product:
+                order.products.find(
+                  product =>
+                    /** TODO: should not be null */
+                    idx(application, _ => _.orderProductId) ===
+                    (product || { id: null }).id,
+                ) || {},
+            },
+          ],
         },
       ];
-      return applications;
-    },
-    [] as Application[],
-  );
+
+    existedApp.extra = [
+      ...existedApp.extra,
+      {
+        ...application,
+        product:
+          order.products.find(
+            product =>
+              /** TODO: should not be null */
+              idx(application, _ => _.orderProductId) ===
+              (product || { id: null }).id,
+          ) || {},
+      },
+    ];
+    return applications;
+  }, [] as Application[]);
 
 export const calculateOrderProducts = (
   order: calculateOrderOrderFragmentType,
