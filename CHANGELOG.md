@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.27.13 (2019-11-11)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#763](https://github.com/meepshop/meep-lerna/pull/763) (@meepshop/meep-ui): fix drawer style ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.27.12 (2019-11-11)
 
 #### :boom: Breaking Change
