@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## 0.27.12 (2019-11-11)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#710](https://github.com/meepshop/meep-lerna/pull/710) 前端 - 前台會員資料＆收件人範本改用新的 addressService api ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#759](https://github.com/meepshop/meep-lerna/pull/759) 產品列表元件 從 locale.js 改成 next-i18next ([@HsuTing](https://github.com/HsuTing))
+  - [#757](https://github.com/meepshop/meep-lerna/pull/757) 產品資訊元件、產品主圖元件 從 locale.js 改成 next-i18next ([@HsuTing](https://github.com/HsuTing))
+  - [#754](https://github.com/meepshop/meep-lerna/pull/754) 登入頁面 從 locale.js 改成 next-i18next ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`, `store`
+  - [#755](https://github.com/meepshop/meep-lerna/pull/755) (@meepshop/front-end) Add hook rules to eslint ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#762](https://github.com/meepshop/meep-lerna/pull/762) (@store/address-cascader) Fix eslint error ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#758](https://github.com/meepshop/meep-lerna/pull/758) (@meepshop/front-end) Fix prettier ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `mock-types`, `store`
+  - [#755](https://github.com/meepshop/meep-lerna/pull/755) (@meepshop/front-end) Add hook rules to eslint ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.27.11 (2019-11-07)
 
 #### :boom: Breaking Change
