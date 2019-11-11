@@ -35,7 +35,7 @@ export const SORT_OPTIONS = (ids, value) => [
   ...(ids
     ? [
         {
-          text: 'SELECTIONS',
+          text: 'selections',
           value: 'selections',
         },
       ]
@@ -43,25 +43,25 @@ export const SORT_OPTIONS = (ids, value) => [
   ...(value === 'createdOn-asc'
     ? [
         {
-          text: 'OLDEST',
+          text: 'oldest',
           value,
         },
       ]
     : []),
   {
-    text: 'LATEST',
+    text: 'latest',
     value: 'createdOn-desc',
   },
   {
-    text: 'TITLE',
+    text: 'title',
     value: 'title.zh_TW-asc',
   },
   {
-    text: 'PRICE_ASC',
+    text: 'price-asc',
     value: 'variantInfo.firstRetailPrice-asc',
   },
   {
-    text: 'PRICE_DESC',
+    text: 'price-desc',
     value: 'variantInfo.firstRetailPrice-desc',
   },
 ];

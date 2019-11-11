@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
+import { withNamespaces } from '@store/utils/lib/i18n';
+
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 import Image from 'image';
@@ -12,7 +14,6 @@ import DraftText from 'draftText';
 import ProductLoader from './ProductLoader';
 import { PRODUCT_TYPE } from './constants';
 import * as styles from './styles';
-import * as LOCALE from './locale';
 
 const ProductCard = ({
   products,
@@ -33,7 +34,8 @@ const ProductCard = ({
 
   colors,
   isLogin,
-  transformLocale,
+  t,
+  i18n,
   transformCurrency,
   memberSeePrice,
   isUsingCache,
@@ -116,14 +118,21 @@ const ProductCard = ({
               </div>
 
               {showTitle && (
-                <div style={styles.productTitle}>{transformLocale(title)}</div>
-              )}
-
-              {showDescription && transformLocale(description) && (
-                <div style={styles.productDescription(colors)}>
-                  <DraftText value={transformLocale(description)} plainText />
+                <div style={styles.productTitle}>
+                  {title[i18n.language] || title.zh_TW}
                 </div>
               )}
+
+              {showDescription &&
+                (description[i18n.language] || description.zh_TW) && (
+                  <div style={styles.productDescription(colors)}>
+                    <DraftText
+                      value={description[i18n.language] || description.zh_TW}
+                      plainText
+                    />
+                  </div>
+                )}
+
               {showPrice && (
                 <div style={styles.productPrice}>
                   {variantInfo.listPrice &&
@@ -132,7 +141,8 @@ const ProductCard = ({
                     isLogin === ISUSER) ? (
                     <div style={styles.otherPrice(colors)}>
                       <span>
-                        {transformLocale(LOCALE.LIST_PRICE)}
+                        {t('list-price')}
+
                         <s style={styles.strike}>
                           {transformCurrency(variantInfo.listPrice)}
                         </s>
@@ -145,7 +155,8 @@ const ProductCard = ({
                     isLogin === ISUSER) ? (
                     <div style={styles.otherPrice(colors)}>
                       <span>
-                        {transformLocale(LOCALE.SUGGESTED_PRICE)}
+                        {t('suggested-price')}
+
                         <s style={styles.strike}>
                           {transformCurrency(variantInfo.suggestedPrice)}
                         </s>
@@ -155,7 +166,7 @@ const ProductCard = ({
                   {variantInfo.totalPrice ? (
                     <div style={styles.thePrice}>
                       {memberSeePrice && isLogin !== ISUSER
-                        ? transformLocale(LOCALE.MEMBER_SEE_PRICE)
+                        ? t('member-see-price')
                         : transformCurrency(variantInfo.totalPrice)}
                     </div>
                   ) : null}
@@ -169,9 +180,7 @@ const ProductCard = ({
                   style={styles.productAddToCart(colors)}
                   onClick={() => handleModalOpen(id)}
                 >
-                  {transformLocale(
-                    orderable ? LOCALE.ADD_TO_CART : LOCALE.SOLD_OUT,
-                  )}
+                  {t(orderable ? 'add-to-cart' : 'sold-out')}
                 </button>
               )}
             </div>
@@ -202,7 +211,7 @@ ProductCard.propTypes = {
   type: PropTypes.oneOf(['original', 'pop-up']).isRequired,
   colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
   isLogin: ISLOGIN_TYPE.isRequired,
-  transformLocale: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
   transformCurrency: PropTypes.func.isRequired,
   memberSeePrice: PropTypes.bool.isRequired,
   isUsingCache: PropTypes.bool.isRequired,
@@ -213,4 +222,4 @@ ProductCard.defaultProps = {
   products: null,
 };
 
-export default radium(ProductCard);
+export default withNamespaces('product-list')(radium(ProductCard));

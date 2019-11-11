@@ -1,0 +1,16 @@
+{
+  "selections": "Sản phẩm nổi bật",
+  "oldest": null,
+  "latest": "Sản phẩm mới",
+  "title": "Tên sản phẩm",
+  "price-asc": "Giá từ thấp đến cao",
+  "price-desc": "Giá từ cao đến thấp",
+  "list-price": "Định giá",
+  "suggested-price": "Giá bán đề nghị",
+  "member-see-price": "Hội viên có thể xem được giá",
+  "add-to-cart": "Thêm vào giỏ hàng",
+  "sold-out": "Đã bán hết",
+  "prev-page": "Trang trước",
+  "next-page": "Trang sau",
+  "modal-title": "Xin lựa chọn quy cách"
+}

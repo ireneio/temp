@@ -1,0 +1,16 @@
+{
+  "selections": "おすすめ商品",
+  "oldest": null,
+  "latest": "新商品",
+  "title": "商品名",
+  "price-asc": "価格の安い順",
+  "price-desc": "価格の高い順",
+  "list-price": "定価",
+  "suggested-price": "希望小売価格",
+  "member-see-price": "会員価格",
+  "add-to-cart": "カートに追加",
+  "sold-out": "完売しました",
+  "prev-page": "前のページ",
+  "next-page": "次のページ",
+  "modal-title": "商品の仕様をお選びください"
+}

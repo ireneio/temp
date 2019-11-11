@@ -1,0 +1,16 @@
+{
+  "selections": "Our Favorites",
+  "oldest": null,
+  "latest": "New In",
+  "title": "Product Name",
+  "price-asc": "Price Low - High",
+  "price-desc": "Price High - Low",
+  "list-price": "List Price",
+  "suggested-price": "MSRP",
+  "member-see-price": "Member Exclusive Price",
+  "add-to-cart": "Add to Cart",
+  "sold-out": "Out of Stock",
+  "prev-page": "Back",
+  "next-page": "Next",
+  "modal-title": "Please choose specifications."
+}

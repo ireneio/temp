@@ -5,6 +5,8 @@ import { areEqual } from 'fbjs';
 import { Pagination, Select, Icon } from 'antd';
 import hash from 'hash.js';
 
+import { withNamespaces } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
   ID_TYPE,
@@ -20,9 +22,9 @@ import ProductCard from './ProductCard';
 import PopUp from './PopUp';
 import { SORT_OPTIONS } from './constants';
 import * as styles from './styles';
-import * as LOCALE from './locale';
 import getProductsQuery from './utils/getProductsQuery';
 
+@withNamespaces('product-list')
 @enhancer
 @radium
 export default class ProductList extends React.PureComponent {
@@ -58,6 +60,7 @@ export default class ProductList extends React.PureComponent {
     ).isRequired,
 
     /** props from module */
+    t: PropTypes.func.isRequired,
     showSort: PropTypes.bool.isRequired,
     alignment: PropTypes.string.isRequired,
     justifyContent: PropTypes.string.isRequired,
@@ -80,7 +83,6 @@ export default class ProductList extends React.PureComponent {
     isLogin: ISLOGIN_TYPE.isRequired,
     getData: PropTypes.func.isRequired,
     adTrack: PropTypes.func.isRequired,
-    transformLocale: PropTypes.func.isRequired,
     transformCurrency: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
@@ -346,15 +348,15 @@ export default class ProductList extends React.PureComponent {
   };
 
   renderPagination = (current, type, originalElement) => {
-    const { colors, transformLocale } = this.props;
+    const { t, colors } = this.props;
     let item;
 
     switch (type) {
       case 'prev':
-        item = transformLocale(LOCALE.PREV_PAGE);
+        item = t('prev-page');
         break;
       case 'next':
-        item = transformLocale(LOCALE.NEXT_PAGE);
+        item = t('next-page');
         break;
       case 'page':
         item = current;
@@ -382,6 +384,7 @@ export default class ProductList extends React.PureComponent {
       type,
       popUpGalleryView,
 
+      t,
       cart,
       stockNotificationList,
       wishList,
@@ -389,7 +392,6 @@ export default class ProductList extends React.PureComponent {
       storeSetting,
       colors,
       isLogin,
-      transformLocale,
       transformCurrency,
       hasStoreAppPlugin,
     } = this.props;
@@ -439,7 +441,7 @@ export default class ProductList extends React.PureComponent {
                 >
                   {SORT_OPTIONS(ids, sort).map(option => (
                     <Select.Option key={option.value} value={option.value}>
-                      {transformLocale(LOCALE[option.text])}
+                      {t(option.text)}
                     </Select.Option>
                   ))}
                 </Select>
@@ -466,7 +468,6 @@ export default class ProductList extends React.PureComponent {
               type={type}
               colors={colors}
               isLogin={isLogin}
-              transformLocale={transformLocale}
               transformCurrency={transformCurrency}
               memberSeePrice={hasStoreAppPlugin('memberSeePrice')}
               isUsingCache={isUsingCache}
@@ -493,7 +494,7 @@ export default class ProductList extends React.PureComponent {
 
             <PopUp
               className={this.name}
-              title={transformLocale(LOCALE.MODAL_TITLE)}
+              title={t('modal-title')}
               visible={isOpen}
               onCancel={this.handleModalClose}
               type={type}

@@ -1,0 +1,16 @@
+{
+  "selections": "精選商品",
+  "oldest": "由舊到新",
+  "latest": "最新商品",
+  "title": "商品名稱",
+  "price-asc": "價格低至高",
+  "price-desc": "價格高至低",
+  "list-price": "定價",
+  "suggested-price": "建議售價",
+  "member-see-price": "會員可見價格",
+  "add-to-cart": "加入購物車",
+  "sold-out": "已售完",
+  "prev-page": "上一頁",
+  "next-page": "下一頁",
+  "modal-title": "請選擇規格"
+}
