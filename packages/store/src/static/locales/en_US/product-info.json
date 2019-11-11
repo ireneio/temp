@@ -1,0 +1,19 @@
+{
+  "goto-login": "Please sign in.",
+  "confirm": "OK",
+  "cancel": "No, thanks.",
+  "list-price": "List Price",
+  "suggested-price": "MSRP",
+  "member-see-price": "Member Exclusive Price",
+  "over-stock": "The items in your cart has reached to the limit.",
+  "out-of-stock": "Out of Stock",
+  "quantity": "QTY",
+  "login-first": "Please sign in.",
+  "add-to-cart": "Add to Cart",
+  "notice-done": "Completed. Please wait for notification.",
+  "notice-me": "Notify me when it is back in stock",
+  "sold-out": "Out of Stock",
+  "no-variants": "No specifications are available.",
+  "not-found-content": "The number of purchasable items might surpass its limit or the format is invalid.",
+  "more-options": "… or key in desired QTY"
+}

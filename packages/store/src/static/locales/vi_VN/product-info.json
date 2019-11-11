@@ -1,0 +1,19 @@
+{
+  "goto-login": "Bạn chưa đăng nhập hội viên, bạn có muốn đến trang đăng nhập hội viên không?",
+  "confirm": "Xác nhận",
+  "cancel": "Hủy bỏ",
+  "list-price": "Định giá",
+  "suggested-price": "Giá bán",
+  "member-see-price": "Hội viên có thể xem được giá",
+  "over-stock": "Đã thêm số lượng tối đa có thể mua vào giỏ hàng",
+  "out-of-stock": "Trong kho thiếu hàng",
+  "quantity": "Số lượng",
+  "login-first": "Xin đăng nhập thành viên trước",
+  "add-to-cart": "Thêm vào giỏ hàng",
+  "notice-done": "Đã hoàn thành, xin đợi thông báo sau",
+  "notice-me": "Thông báo cho tôi khi có thể đặt hàng",
+  "sold-out": "Đã bán hết",
+  "no-variants": "Tất cả thông số được đóng lại",
+  "not-found-content": "Vượt quá lượng mua lớn nhất hoặc không phù hợp định dạng",
+  "more-options": "…hoặc tự nhập thêm"
+}

@@ -12,7 +12,6 @@ import * as styles from './styles/specTable';
 export default class SpecList extends React.Component {
   static propTypes = {
     productData: PRODUCT_TYPE.isRequired,
-    transformLocale: PropTypes.func.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     showButton: PropTypes.bool.isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
@@ -25,7 +24,6 @@ export default class SpecList extends React.Component {
   render() {
     const {
       productData,
-      transformLocale,
       colors,
       showButton,
       coordinates,
@@ -54,7 +52,6 @@ export default class SpecList extends React.Component {
                 colors={colors}
                 showButton={showButton}
                 onChangeSpec={onChangeSpec}
-                transformLocale={transformLocale}
                 name={name}
               />
             );

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { withNamespaces } from '@store/utils/lib/i18n';
+
 import { contextProvider } from 'context';
 import Image from 'image';
 import {
@@ -13,6 +15,7 @@ import styles from './styles/index.less';
 
 const { enhancer } = contextProvider('locale');
 
+@withNamespaces('common')
 @enhancer
 export default class ProductCollection extends React.PureComponent {
   static propTypes = {
@@ -30,10 +33,8 @@ export default class ProductCollection extends React.PureComponent {
 
   render() {
     const {
-      /** context */
-      transformLocale,
-
       /** props */
+      i18n,
       galleries,
       align,
       title,
@@ -63,7 +64,7 @@ export default class ProductCollection extends React.PureComponent {
                 className={styles.img}
                 image={src}
                 contentWidth={contentWidth}
-                alt={transformLocale(title)}
+                alt={title[i18n.language] || title.zh_TW}
                 alignment="center"
                 newWindow={false}
               />

@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Select } from 'antd';
 
+import { withNamespaces } from '@store/utils/lib/i18n';
+
 import { COLOR_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles/category';
-import * as LOCALE from './locale';
 import {
   VARIANT_TYPE,
   ORDERABLE_TYPE,
@@ -15,15 +16,16 @@ import {
   LIMITED,
 } from './constants';
 
+@withNamespaces('product-info')
 @radium
 export default class QuantityButton extends React.Component {
   static propTypes = {
+    t: PropTypes.func.isRequired,
     variantInfo: VARIANT_TYPE.isRequired,
     orderable: ORDERABLE_TYPE.isRequired,
     quantity: PropTypes.number.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     cart: PropTypes.shape({}),
-    transformLocale: PropTypes.func.isRequired,
     onChangeQuantity: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
     container: PropTypes.shape({}).isRequired,
@@ -53,11 +55,11 @@ export default class QuantityButton extends React.Component {
 
   generateOptions = () => {
     const {
+      t,
       variantInfo,
       orderable,
       quantity,
       cart,
-      transformLocale,
       onChangeQuantity,
       name,
       container,
@@ -100,7 +102,7 @@ export default class QuantityButton extends React.Component {
             dropdownClassName={name}
             value={quantity}
             onChange={onChangeQuantity}
-            notFoundContent={transformLocale(LOCALE.NOT_FOUND_CONTENT)}
+            notFoundContent={t('not-found-content')}
             onSearch={value => {
               this.onSearch({ value, max, min });
             }}
@@ -110,12 +112,8 @@ export default class QuantityButton extends React.Component {
               <Select.Option value={result}>{result}</Select.Option>
             ) : (
               vision.concat([
-                <Select.Option
-                  key="MORE"
-                  title={transformLocale(LOCALE.MORE_OPTIONS)}
-                  disabled
-                >
-                  {transformLocale(LOCALE.MORE_OPTIONS)}
+                <Select.Option key="MORE" title={t('more-options')} disabled>
+                  {t('more-options')}
                 </Select.Option>,
               ])
             )}
@@ -146,31 +144,22 @@ export default class QuantityButton extends React.Component {
       );
     }
 
-    if (orderable === OUT_OF_STOCK) {
-      return (
-        <div style={styles.overStock}>
-          {transformLocale(LOCALE.OUT_OF_STOCK)}
-        </div>
-      );
-    }
+    if (orderable === OUT_OF_STOCK)
+      return <div style={styles.overStock}>{t('out-of-stock')}</div>;
 
-    if (orderable === LIMITED) {
-      return (
-        <div style={styles.overStock}>{transformLocale(LOCALE.OVER_STOCK)}</div>
-      );
-    }
+    if (orderable === LIMITED)
+      return <div style={styles.overStock}>{t('over-stock')}</div>;
 
     return null;
   };
 
   render() {
-    const { colors, transformLocale } = this.props;
+    const { colors, t } = this.props;
 
     return (
       <div style={styles.root}>
-        <div style={styles.label(colors)}>
-          {transformLocale(LOCALE.QUANTITY)}
-        </div>
+        <div style={styles.label(colors)}>{t('quantity')}</div>
+
         {this.generateOptions()}
       </div>
     );

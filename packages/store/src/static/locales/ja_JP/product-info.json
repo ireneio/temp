@@ -1,0 +1,19 @@
+{
+  "goto-login": "まだログインしていません。ログインページに移動しますか。",
+  "confirm": "確認",
+  "cancel": "キャンセル",
+  "list-price": "定価",
+  "suggested-price": "希望小売価格",
+  "member-see-price": "会員価格",
+  "over-stock": "カートがいっぱいで追加できません",
+  "out-of-stock": "在庫数量不足",
+  "quantity": "数量",
+  "login-first": "アカウントにログインしてください",
+  "add-to-cart": "カートに追加",
+  "notice-done": "完了しました。通知が来るまでお待ちください。",
+  "notice-me": "入荷を知らせる",
+  "sold-out": "完売しました",
+  "no-variants": "仕様をすべて閉じる",
+  "not-found-content": "最大購買量をオーバーしているか様式が合っていません",
+  "more-options": "…あるいは、自分で更に入力して下さい"
+}

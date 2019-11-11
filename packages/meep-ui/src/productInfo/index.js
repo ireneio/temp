@@ -4,6 +4,8 @@ import radium, { StyleRoot, Style } from 'radium';
 import { warning, areEqual } from 'fbjs';
 import { Modal } from 'antd';
 
+import { withNamespaces } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER, NOTLOGIN, ISADMIN } from 'constants/isLogin';
@@ -20,9 +22,9 @@ import {
   LIST_TYPE,
   NO_VARIANTS,
 } from './constants';
-import { GOTO_LOGIN, CONFIRM, CANCEL } from './locale';
 import { calculateOrderable, reformatVariant } from './utils';
 
+@withNamespaces('product-info')
 @enhancer
 @buildVariantsTree('productData')
 @radium
@@ -30,6 +32,7 @@ export default class ProductInfo extends React.PureComponent {
   name = 'product-info';
 
   static propTypes = {
+    t: PropTypes.func.isRequired,
     productData: PRODUCT_TYPE.isRequired,
     activityData: ACTIVITY_TYPE,
     stockNotificationList: LIST_TYPE.isRequired, // eslint-disable-line react/no-unused-prop-types
@@ -47,7 +50,6 @@ export default class ProductInfo extends React.PureComponent {
     isLogin: ISLOGIN_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
-    transformLocale: PropTypes.func.isRequired,
     transformCurrency: PropTypes.func.isRequired,
     addCartItems: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
@@ -259,10 +261,10 @@ export default class ProductInfo extends React.PureComponent {
 
   render() {
     const {
+      t,
       productData,
       activityData,
       mode,
-      transformLocale,
       transformCurrency,
       hasStoreAppPlugin,
       cart,
@@ -310,21 +312,21 @@ export default class ProductInfo extends React.PureComponent {
           onOk={() => {
             goTo({ pathname: '/login' });
           }}
-          okText={transformLocale(CONFIRM)}
-          cancelText={transformLocale(CANCEL)}
+          okText={t('confirm')}
+          cancelText={t('cancel')}
           onCancel={this.handleCancel}
           closable={false}
           centered
         >
-          {transformLocale(GOTO_LOGIN)}
+          {t('goto-login')}
         </Modal>
+
         <StyleRoot>
           <div style={styles.wrapper(mode)}>
             <Description
               productData={productData}
               activityData={activityData}
               variantInfo={variantInfo}
-              transformLocale={transformLocale}
               transformCurrency={transformCurrency}
               colors={colors}
               isLogin={isLogin}
@@ -334,7 +336,6 @@ export default class ProductInfo extends React.PureComponent {
             {coordinates && (
               <SpecList
                 productData={productData}
-                transformLocale={transformLocale}
                 colors={colors}
                 showButton={showButton}
                 coordinates={coordinates}
@@ -351,7 +352,6 @@ export default class ProductInfo extends React.PureComponent {
                 quantity={quantity}
                 colors={colors}
                 cart={cart}
-                transformLocale={transformLocale}
                 onChangeQuantity={onChangeQuantity}
                 name={name}
                 container={container}
@@ -361,7 +361,6 @@ export default class ProductInfo extends React.PureComponent {
           <AddButton
             variantInfo={variantInfo}
             orderable={orderable}
-            transformLocale={transformLocale}
             addToCart={addToCart}
             addToWishList={addToWishList}
             addToNotificationList={addToNotificationList}

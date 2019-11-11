@@ -1,0 +1,19 @@
+{
+  "goto-login": "您尚未登入會員，是否轉跳至會員登入頁面？",
+  "confirm": "確認",
+  "cancel": "取消",
+  "list-price": "定價",
+  "suggested-price": "建議售價",
+  "member-see-price": "會員可見價格",
+  "over-stock": "購物車已加入最大購買量",
+  "out-of-stock": "庫存不足",
+  "quantity": "數量",
+  "login-first": "請先登入會員",
+  "add-to-cart": "加入購物車",
+  "notice-done": "已完成請等候通知",
+  "notice-me": "可訂購時通知我",
+  "sold-out": "已售完",
+  "no-variants": "規格全數關閉",
+  "not-found-content": "超過最大購買量或格式不符",
+  "more-options": "⋯⋯或自行輸入更多"
+}

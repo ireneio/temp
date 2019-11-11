@@ -2,50 +2,56 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 
+import { withNamespaces } from '@store/utils/lib/i18n';
+
 import DraftText from 'draftText';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 
 import * as styles from './styles/description';
 import { PRODUCT_TYPE, VARIANT_TYPE, ACTIVITY_TYPE } from './constants';
-import { LIST_PRICE, SUGGESTED_PRICE, MEMBER_SEE_PRICE } from './locale';
 
 const Description = ({
+  t,
+  i18n,
   productData,
   variantInfo,
   mode,
   activityData,
   colors,
-  transformLocale,
   transformCurrency,
   isLogin,
   memberSeePrice,
 }) => (
   <div style={styles.root(colors)}>
-    {transformLocale(productData.title) && (
-      <h1 style={styles.title}>{transformLocale(productData.title)}</h1>
+    {!productData.title ? null : (
+      <h1 style={styles.title}>
+        {productData.title[i18n.language] || productData.title.zh_TW}
+      </h1>
     )}
     {mode === 'detail' && variantInfo.sku && (
       <div style={styles.sku}>{variantInfo.sku}</div>
     )}
     {mode === 'detail' && (
       <DraftText
-        value={transformLocale(productData.description)}
+        value={
+          productData.description[i18n.language] ||
+          productData.description.zh_TW
+        }
         style={styles.description}
       />
     )}
     {activityData && (
       <div style={styles.activities}>
-        {activityData.map(
-          activity =>
-            transformLocale(activity.title) && (
-              <div
-                key={transformLocale(activity.title)}
-                style={styles.activityTag(colors)}
-              >
-                {transformLocale(activity.title)}
-              </div>
-            ),
+        {activityData.map(activity =>
+          !activity.title ? null : (
+            <div
+              key={activity.title[i18n.language] || activity.title.zh_TW}
+              style={styles.activityTag(colors)}
+            >
+              {activity.title[i18n.language] || activity.title.zh_TW}
+            </div>
+          ),
         )}
       </div>
     )}
@@ -58,7 +64,8 @@ const Description = ({
             productData.showUserPrice?.showListPrice ||
             isLogin === ISUSER) ? (
             <span style={styles.otherPrice}>
-              {transformLocale(LIST_PRICE)}
+              {t('list-price')}
+
               <s style={styles.strike}>
                 {transformCurrency(variantInfo.listPrice)}
               </s>
@@ -70,7 +77,8 @@ const Description = ({
             productData.showUserPrice?.showSuggestedPrice ||
             isLogin === ISUSER) ? (
             <span style={styles.otherPrice}>
-              {transformLocale(SUGGESTED_PRICE)}
+              {t('suggested-price')}
+
               <s style={styles.strike}>
                 {transformCurrency(variantInfo.suggestedPrice)}
               </s>
@@ -80,7 +88,7 @@ const Description = ({
         {variantInfo.totalPrice ? (
           <div style={styles.thePrice}>
             {memberSeePrice && isLogin !== ISUSER
-              ? transformLocale(MEMBER_SEE_PRICE)
+              ? t('member-see-price')
               : transformCurrency(variantInfo.totalPrice)}
           </div>
         ) : null}
@@ -91,11 +99,11 @@ const Description = ({
 
 /* eslint-disable react/no-typos */
 Description.propTypes = {
+  t: PropTypes.func.isRequired,
   productData: PRODUCT_TYPE.isRequired,
   activityData: ACTIVITY_TYPE,
   variantInfo: VARIANT_TYPE.isRequired,
   mode: PropTypes.oneOf(['list', 'detail']).isRequired,
-  transformLocale: PropTypes.func.isRequired,
   transformCurrency: PropTypes.func.isRequired,
   isLogin: ISLOGIN_TYPE.isRequired,
   colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -107,4 +115,4 @@ Description.defaultProps = {
   activityData: null,
 };
 
-export default radium(Description);
+export default withNamespaces('product-info')(radium(Description));
