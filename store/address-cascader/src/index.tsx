@@ -1,42 +1,42 @@
 // graphql typescript
-import { QueryResult } from 'react-apollo';
-import { CascaderProps, CascaderOptionType } from 'antd/lib/cascader';
+import { CascaderOptionType } from 'antd/lib/cascader';
 
 import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
-import React from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
-import { Cascader, Select } from 'antd';
+import { Cascader, Select, Input } from 'antd';
 import idx from 'idx';
-import memoizeOne from 'memoize-one';
+
+import ZipCodeInput from './ZipCodeInput';
+import styles from './styles/index.less';
 
 // graphql typescript
 import {
   getCountriesAddress,
-  getCountriesAddressVariables,
   getCountriesAddress_addressService_countries as getCountriesAddressAddressServiceCountries,
+  getCountriesAddress_getColorList as getCountriesAddressGetColorList,
 } from './__generated__/getCountriesAddress';
-import {
-  getCitiesAddress,
-  getCitiesAddressVariables,
-} from './__generated__/getCitiesAddress';
-import {
-  getAreasAddress,
-  getAreasAddressVariables,
-} from './__generated__/getAreasAddress';
 
 // graphql import
+import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
 import localeFragment from '@store/utils/lib/fragments/locale';
 
 // typescript definition
-interface PropsType
-  extends Omit<CascaderProps, 'options'>,
-    Pick<QueryResult<getCountriesAddress>, 'client'>,
-    Pick<I18nPropsType, 'i18n'> {
+interface PropsType extends Pick<I18nPropsType, 'i18n'> {
+  className?: string;
+  size?: 'small' | 'default' | 'large';
+  placeholder: [string, string];
   lockedCountry?: string[];
+  value?: {
+    address?: string[];
+    zipCode?: string;
+  };
+  onChange?: (value: { address?: string[]; zipCode?: string }) => void;
   countries: getCountriesAddressAddressServiceCountries[];
+  colors: getCountriesAddressGetColorList['colors'];
 }
 
 interface OptionsType {
@@ -53,281 +53,184 @@ interface OptionsType {
 }
 
 // definition
-class AddressCascader extends React.PureComponent<PropsType> {
-  private options: CascaderOptionType[] = [];
+const getOptions = (
+  data: OptionsType[],
+  language: PropsType['i18n']['language'],
+): CascaderOptionType[] =>
+  data.map(({ id, name, children, ...d }) => ({
+    ...d,
+    value: id,
+    label: name[language],
+    children:
+      !children || children.length === 0
+        ? undefined
+        : getOptions(children, language),
+  }));
 
-  public componentDidMount(): void {
-    const { value } = this.props;
+const findZipcodes = (
+  options: CascaderOptionType[],
+  address: string[] | undefined,
+): null | string[] => {
+  const [id, ...otherIds]: string[] = address || [];
+  const option = options.find(({ value }) => value === id);
+  const zipCodes = idx(option, _ => _.zipCodes);
 
-    if (value && value.length !== 0) this.findExist(value, this.options);
-  }
+  if (zipCodes) return zipCodes;
 
-  public componentDidUpdate(): void {
-    const { value } = this.props;
+  if (!option || otherIds.length === 0) return null;
 
-    if (value && value.length !== 0) this.findExist(value, this.options);
-  }
+  return findZipcodes(option.children || [], otherIds);
+};
 
-  private getOptions = (
-    options: OptionsType[],
-    language: PropsType['i18n']['language'],
-  ): CascaderOptionType[] =>
-    options.map(({ __typename, id, name, children, ...data }) => ({
-      ...data,
-      __typename,
-      value: id,
-      label: name[language],
-      isLeaf:
-        (__typename === 'Country' && id !== 'Taiwan') || __typename === 'Area',
-      children:
-        !children || children.length === 0
-          ? undefined
-          : this.getOptions(children, language),
-    }));
-
-  private getCountriesOptions = memoizeOne(this.getOptions);
-
-  private findExist = (value: string[], options: CascaderOptionType[]) => {
-    const selectedItem = value[0];
-
-    if (value.length === 1) return;
-
-    const existOptions = options.find(
-      ({ value: optionsValue }) => optionsValue === selectedItem,
+const AddressCascader = React.memo(
+  ({
+    i18n,
+    className,
+    size,
+    placeholder,
+    lockedCountry,
+    value,
+    onChange: propsOnChange,
+    countries,
+    colors,
+  }: PropsType): React.ReactElement => {
+    const [
+      { address = undefined, zipCode = undefined } = {},
+      onChange,
+    ] = propsOnChange ? [value, propsOnChange] : useState(value);
+    const options = useMemo(
+      () =>
+        getOptions(
+          !lockedCountry || lockedCountry.length === 0
+            ? countries
+            : countries.filter(({ id }) => lockedCountry.includes(id)),
+          i18n.language,
+        ),
+      [i18n.language],
     );
+    const zipCodes = useMemo(() => findZipcodes(options, address), [address]);
+    const addressLength = (address || []).length;
+    const isOnlyOneOption = options.length === 1;
+    const isSelectAddress = addressLength !== 0;
 
-    if (!existOptions || !existOptions.children)
-      this.loadData([
-        {
-          __typename: options[0].__typename,
-          value: selectedItem,
-        },
-      ]);
-    else this.findExist(value.slice(1), existOptions.children || []);
-  };
-
-  private loadData = async (selectedItems: CascaderOptionType[]) => {
-    const { client } = this.props;
-    const selectedItem = selectedItems[selectedItems.length - 1];
-
-    if (selectedItem.loading || !selectedItem.value) return;
-
-    selectedItem.loading = true;
-
-    switch (selectedItem.__typename) {
-      case 'Country': {
-        const { data } = await client.query<
-          getCitiesAddress,
-          getCitiesAddressVariables
-        >({
-          query: gql`
-            query getCitiesAddress($input: CityFilterInput!) {
-              # TODO use real schema
-              addressService @client {
-                cities(input: $input) {
-                  id
-                  name {
-                    ...localeFragment
-                  }
-
-                  areas {
-                    id
-                    name {
-                      ...localeFragment
-                    }
-                    zipCode
-                  }
-                }
-              }
-            }
-
-            ${localeFragment}
-          `,
-          variables: {
-            input: {
-              countryId: selectedItem.value,
-            },
-          },
-        });
-
-        client.writeFragment({
-          id: selectedItem.value,
-          fragment: gql`
-            fragment addressCascaderCountryFragment on Country {
-              cities {
-                id
-              }
-            }
-          `,
-          data: {
-            __typename: 'Country',
-            cities: idx(data, _ => _.addressService.cities) || [],
-          },
-        });
-        break;
-      }
-
-      case 'City': {
-        const { data } = await client.query<
-          getAreasAddress,
-          getAreasAddressVariables
-        >({
-          query: gql`
-            query getAreasAddress($input: AreaFilterInput!) {
-              # TODO use real schema
-              addressService @client {
-                areas(input: $input) {
-                  id
-                  name {
-                    ...localeFragment
-                  }
-                  zipCode
-                }
-              }
-            }
-
-            ${localeFragment}
-          `,
-          variables: {
-            input: {
-              cityId: selectedItem.value,
-            },
-          },
-        });
-
-        client.writeFragment({
-          id: selectedItem.value,
-          fragment: gql`
-            fragment addressCascaderCityFragment on City {
-              areas {
-                id
-              }
-            }
-          `,
-          data: {
-            __typename: 'City',
-            areas: idx(data, _ => _.addressService.areas) || [],
-          },
-        });
-
-        // TODO remove after using real schema
-        const { value } = this.props;
-
-        if (!value) return;
-
-        client.query({
-          query: gql`
-            query unknownArea($countryId: ID, $cityId: ID, $areaId: ID) {
-              addressService @client {
-                # TODO remove
-                countryId(
-                  countryId: $countryId
-                  cityId: $cityId
-                  areaId: $areaId
-                )
-              }
-            }
-          `,
-          variables: {
-            countryId: value[0],
-            cityId: value[1],
-            areaId: value[2],
-          },
-        });
-        break;
-      }
-
-      default:
-        break;
-    }
-  };
-
-  public render(): React.ReactNode {
-    const { i18n, countries, lockedCountry, ...props } = this.props;
-
-    delete props.client;
-    this.options = this.getCountriesOptions(
-      !lockedCountry || lockedCountry.length === 0
-        ? countries
-        : countries.filter(country =>
-            // TODO: remove after using real schema
-            lockedCountry.some(lock =>
-              Object.values(country.name).includes(lock),
-            ),
-          ),
-      i18n.language,
-    );
-
-    // TODO remove after using real schema
-    if (!props.value) delete props.value;
+    if (isOnlyOneOption)
+      useEffect(() => {
+        if (addressLength === 0 && !options[0].children)
+          onChange({
+            address: [options[0].value as string],
+            zipCode,
+          });
+      }, [options.length]);
 
     return (
-      <Cascader {...props} options={this.options} loadData={this.loadData} />
-    );
-  }
-}
-
-export default React.forwardRef(({ // TODO remove value after using real schema
-  value, ...props }: Omit<PropsType, 'client' | 'countries'>, ref: React.Ref<Query<getCountriesAddress, getCountriesAddressVariables>>) => (
-  <Query<getCountriesAddress, getCountriesAddressVariables>
-    ref={ref}
-    query={gql`
-      query getCountriesAddress($countryId: ID) {
-        # TODO use real schema
-        addressService @client {
-          # TODO remove
-          countryId(countryId: $countryId)
-
-          countries {
-            id
-            name {
-              ...localeFragment
+      <div
+        className={`${styles.root} ${
+          !isSelectAddress || addressLength === 1 ? '' : styles.selectZipCode
+        } ${className}`}
+      >
+        {isOnlyOneOption && !options[0].children ? (
+          <Input size={size} value={options[0].label as string} disabled />
+        ) : (
+          <Cascader
+            size={size}
+            placeholder={placeholder[0]}
+            value={!address || !isOnlyOneOption ? address : address.slice(1)}
+            onChange={newAddress => {
+              onChange({
+                address: !isOnlyOneOption
+                  ? newAddress
+                  : [options[0].value as string, ...newAddress],
+                zipCode: undefined,
+              });
+            }}
+            options={!isOnlyOneOption ? options : options[0].children}
+            displayRender={label =>
+              (!isSelectAddress || !isOnlyOneOption
+                ? label
+                : [options[0].label, ...label]
+              ).join(' / ')
             }
+          />
+        )}
 
-            # TODO use client side schema
-            children: cities {
+        {!isSelectAddress ? null : (
+          <ZipCodeInput
+            size={size}
+            placeholder={placeholder[1]}
+            value={zipCode}
+            onChange={newZipCode => {
+              onChange({ address, zipCode: newZipCode });
+            }}
+            options={zipCodes}
+            colors={colors}
+          />
+        )}
+      </div>
+    );
+  },
+);
+
+export default React.forwardRef(
+  (
+    props: Omit<PropsType, 'countries' | 'colors'>,
+    ref: React.Ref<Query<getCountriesAddress>>,
+  ) => (
+    <Query<getCountriesAddress>
+      ref={ref}
+      query={gql`
+        query getCountriesAddress {
+          addressService {
+            countries {
               id
               name {
                 ...localeFragment
               }
 
-              children: areas {
+              children: cities {
                 id
                 name {
                   ...localeFragment
                 }
-                zipCode
+
+                children: areas {
+                  id
+                  name {
+                    ...localeFragment
+                  }
+                  zipCodes
+                }
               }
             }
           }
-        }
-      }
 
-      ${localeFragment}
-    `}
-    variables={{
-      // TODO remove after using real schema
-      countryId: !value ? null : value[0],
-    }}
-  >
-    {({ loading, error, data, client }) => {
-      if (loading || error || !data) return <Select loading />;
-
-      const {
-        addressService: { countryId, countries },
-      } = data;
-
-      return (
-        <AddressCascader
-          {...props}
-          value={
-            // TODO remove after using real schema
-            value && value[0] ? [countryId, ...value.slice(1)] : value
+          getColorList {
+            ...colorListFragment
           }
-          countries={countries}
-          client={client}
-        />
-      );
-    }}
-  </Query>
-));
+        }
+
+        ${colorListFragment}
+        ${localeFragment}
+      `}
+    >
+      {({ loading, error, data }) => {
+        if (loading || error || !data) return <Select loading />;
+
+        const {
+          addressService: { countries },
+          getColorList,
+        } = data;
+
+        // FIXME should not be null
+        if (!getColorList) return <Select loading />;
+
+        return (
+          <AddressCascader
+            {...props}
+            countries={countries}
+            colors={getColorList.colors}
+          />
+        );
+      }}
+    </Query>
+  ),
+);

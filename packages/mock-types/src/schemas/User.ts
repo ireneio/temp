@@ -41,6 +41,7 @@ export default mock.add<UserMock>('User', [
       email: null,
       gender: null,
       additionalInfo: null,
+      address: null,
       recipientAddressBook: [],
       birthday: null,
       order: null,

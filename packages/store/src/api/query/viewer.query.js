@@ -30,6 +30,7 @@ viewer {
   }
 
   recipientAddressBook {
+    id
     name
     mobile
     postalCode: zipCode

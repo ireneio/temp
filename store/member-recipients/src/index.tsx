@@ -13,8 +13,6 @@ import idx from 'idx';
 import memoizeOne from 'memoize-one';
 
 import { withNamespaces } from '@store/utils/lib/i18n';
-// TODO: remove after using real schema and remove in tsconfig
-import { COUNTRIES } from '@store/apollo-client-resolvers/lib/constants';
 
 import Form from './Form';
 import styles from './styles/index.less';
@@ -29,6 +27,7 @@ import {
 
 // graphql import
 import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
+import localeFragment from '@store/utils/lib/fragments/locale';
 
 // typescript definition
 interface PropsType
@@ -61,34 +60,21 @@ class MemberRecipients extends React.PureComponent<PropsType> {
         render: (
           _: unknown,
           {
-            zipCode,
             country,
             city,
-            county,
+            area,
+            zipCode,
             street,
           }: getUserRecipientsViewerRecipientAddressBook,
         ) =>
           [
             zipCode,
-            !country
-              ? null
-              : (
-                  COUNTRIES.find(({ name }) =>
-                    Object.values(name).includes(country),
-                  ) || {
-                    name: {
-                      /* eslint-disable @typescript-eslint/camelcase */
-                      zh_TW: country,
-                      en_US: country,
-                      ja_JP: country,
-                      vi_VN: country,
-                      /* eslint-enable @typescript-eslint/camelcase */
-                    },
-                  }
-                ).name[i18n.language],
-            `${city || ''}${county || ''}${street || ''}`,
+            !country ? null : country.name[i18n.language],
+            `${!city ? '' : city.name[i18n.language]}${
+              !area ? '' : area.name[i18n.language]
+            }${street || ''}`,
           ]
-            .filter(text => text)
+            .filter(Boolean)
             .join(' '),
       },
       {
@@ -123,7 +109,7 @@ class MemberRecipients extends React.PureComponent<PropsType> {
             zipCode,
             country,
             city,
-            county,
+            area,
             street,
           }: getUserRecipientsViewerRecipientAddressBook,
         ) => (
@@ -133,23 +119,10 @@ class MemberRecipients extends React.PureComponent<PropsType> {
 
             <span>{t('address')}</span>
             <span>{`${zipCode || ''}${
-              !country
-                ? null
-                : (
-                    COUNTRIES.find(({ name: countryName }) =>
-                      Object.values(countryName).includes(country),
-                    ) || {
-                      name: {
-                        /* eslint-disable @typescript-eslint/camelcase */
-                        zh_TW: country,
-                        en_US: country,
-                        ja_JP: country,
-                        vi_VN: country,
-                        /* eslint-enable @typescript-eslint/camelcase */
-                      },
-                    }
-                  ).name[i18n.language] || ''
-            }${city || ''}${county || ''}${street || ''}`}</span>
+              !country ? '' : country.name[i18n.language]
+            }${!city ? '' : city.name[i18n.language]}${
+              !area ? '' : area.name[i18n.language]
+            }${street || ''}`}</span>
 
             <span>{t('mobile')}</span>
             <span>{mobile}</span>
@@ -178,7 +151,10 @@ class MemberRecipients extends React.PureComponent<PropsType> {
   public componentDidUpdate(prevProps: PropsType): void {
     const { refetch, member } = this.props;
 
-    if (!areEqual(member, prevProps.member)) refetch();
+    if (!areEqual(member, prevProps.member))
+      refetch().then(() => {
+        this.setState({ selectId: null });
+      });
   }
 
   private edit = (id: getUserRecipientsViewerRecipientAddressBook['id']) => {
@@ -187,41 +163,16 @@ class MemberRecipients extends React.PureComponent<PropsType> {
 
   private remove = (id: getUserRecipientsViewerRecipientAddressBook['id']) => {
     const {
-      viewer: { id: userId, recipientAddressBook },
       dispatchAction,
+      viewer: { recipientAddressBook },
     } = this.props;
-    const index = recipientAddressBook.findIndex(
-      ({ id: recipientId }) => recipientId === id,
-    );
 
     // TODO: update apollo cache after removing redux
-    dispatchAction('updateUser', {
-      user: {
-        id: userId,
-        recipientData: {
-          replaceData: [
-            ...recipientAddressBook.slice(0, index),
-            ...recipientAddressBook.slice(
-              index + 1,
-              recipientAddressBook.length,
-            ),
-          ].map(({ name, mobile, zipCode, country, city, county, street }) => ({
-            name,
-            mobile,
-            address: {
-              postalCode: zipCode,
-              streetAddress: `${zipCode} ${country} ${city || ''}${county ||
-                ''}${street}`,
-              yahooCode: {
-                country,
-                city,
-                county,
-                street,
-              },
-            },
-          })),
-        },
-      },
+    dispatchAction('deleteRecipientAddress', {
+      input: { id },
+      recipientIndexForRedux: recipientAddressBook.findIndex(
+        ({ id: recipientId }) => recipientId === id,
+      ),
     });
   };
 
@@ -232,7 +183,7 @@ class MemberRecipients extends React.PureComponent<PropsType> {
       i18n,
 
       // props
-      viewer: { id, recipientAddressBook, store },
+      viewer: { recipientAddressBook, store },
       colors,
       dispatchAction,
     } = this.props;
@@ -261,7 +212,7 @@ class MemberRecipients extends React.PureComponent<PropsType> {
         />
 
         <Form
-          {...(recipientAddressBook || []).find(
+          {...recipientAddressBook.find(
             ({ id: recipientId }) => recipientId === selectId,
           )}
           colors={colors}
@@ -272,9 +223,10 @@ class MemberRecipients extends React.PureComponent<PropsType> {
                 (lockedCountry.filter(text => text) as string[])
           }
           cancel={() => this.setState({ selectId: null })}
-          userId={id}
           dispatchAction={dispatchAction}
-          recipientAddressBook={recipientAddressBook}
+          recipientIndexForRedux={recipientAddressBook.findIndex(
+            ({ id: recipientId }) => recipientId === selectId,
+          )}
         />
       </div>
     );
@@ -299,10 +251,25 @@ export default React.memo(
               id
               name
               mobile
+              country {
+                id
+                name {
+                  ...localeFragment
+                }
+              }
+              city {
+                id
+                name {
+                  ...localeFragment
+                }
+              }
+              area {
+                id
+                name {
+                  ...localeFragment
+                }
+              }
               zipCode
-              country: yahooCodeCountry
-              city: yahooCodeCity
-              county: yahooCodeCounty
               street
             }
 
@@ -320,6 +287,7 @@ export default React.memo(
         }
 
         ${colorListFragment}
+        ${localeFragment}
       `}
     >
       {({ loading, error, data, refetch }) => {

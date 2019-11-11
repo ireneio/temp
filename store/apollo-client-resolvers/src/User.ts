@@ -10,15 +10,6 @@ interface UserType {
   additionalInfo?: {
     tel?: string;
     mobile?: string;
-    address?: {
-      postalCode?: string;
-      yahooCode?: {
-        country?: string;
-        city?: string;
-        county?: string;
-        street?: string;
-      };
-    };
   };
 }
 
@@ -29,16 +20,6 @@ export const resolver = {
       idx(additionalInfo, _ => _.tel) || null,
     mobile: ({ additionalInfo }: UserType) =>
       idx(additionalInfo, _ => _.mobile) || null,
-    postalCode: ({ additionalInfo }: UserType) =>
-      idx(additionalInfo, _ => _.address.postalCode) || null,
-    country: ({ additionalInfo }: UserType) =>
-      idx(additionalInfo, _ => _.address.yahooCode.country) || null,
-    city: ({ additionalInfo }: UserType) =>
-      idx(additionalInfo, _ => _.address.yahooCode.city) || null,
-    county: ({ additionalInfo }: UserType) =>
-      idx(additionalInfo, _ => _.address.yahooCode.county) || null,
-    street: ({ additionalInfo }: UserType) =>
-      idx(additionalInfo, _ => _.address.yahooCode.street) || null,
     groupClient: async (
       {
         groupId,

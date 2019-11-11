@@ -182,14 +182,17 @@ export default class Checkout extends React.PureComponent {
 
               dispatchAction('addRecipient', {
                 recipient: {
-                  yahooCode: {
-                    country: fieldValue.address[0],
-                    city: fieldValue.address[1] || '',
-                    county: fieldValue.address[2] || '',
-                    street: fieldValue.addressDetail,
-                  },
-                  mobile: fieldValue.mobile,
                   name: fieldValue.name,
+                  mobile: fieldValue.mobile,
+                  address: {
+                    postalCode,
+                    yahooCode: {
+                      country: fieldValue.address[0],
+                      city: fieldValue.address[1] || '',
+                      county: fieldValue.address[2] || '',
+                      street: fieldValue.addressDetail,
+                    },
+                  },
                 },
               });
             };

@@ -17,7 +17,7 @@
   "mobile": "Mobile",
   "birthday": "Date of birth (Year / Month / Date)",
   "address": "Country / City / Township",
-  "postal-code": "Postal Code",
+  "zip-code": "Postal Code",
   "street": "Address",
   "isNotCancelEmail": "Subscribe Newsletter",
   "submit": "Update",

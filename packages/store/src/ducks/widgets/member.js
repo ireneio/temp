@@ -1,11 +1,13 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import * as Utils from 'utils';
 import { notification } from 'antd';
+import { gql } from 'apollo-boost';
 
 import * as COUNTRY_LOCALE from '@meepshop/meep-ui/lib/locale/country';
 
 import * as Api from 'api';
 import { NOTLOGIN, ISUSER } from 'constants';
+import client from 'apollo/initApollo';
 
 import * as LOCALE from '../locale';
 import { cleanProductList } from './lists';
@@ -20,7 +22,7 @@ const getCart = data => {
   return null;
 };
 
-/* ********************************* 檢查登入狀態 ********************************* */
+/* ********************************* 檢查登入狀態 ********************************* */
 const AUTH_REQUEST = 'AUTH_REQUEST';
 const AUTH_SUCCESS = 'AUTH_SUCCESS';
 const AUTH_FAILURE = 'AUTH_FAILURE';
@@ -244,9 +246,9 @@ export function* watchSignupFlow() {
 }
 
 /* ********************************* 忘記密碼 ********************************* */
-const FORGET_PASSWORD_REQUEST = 'FORGET_PASSWORD_REQUEST';
-const FORGET_PASSWORD_SUCCESS = 'FORGET_PASSWORD_SUCCESS';
-const FORGET_PASSWORD_FAILURE = 'RESET_PASSWORD_FAILURE';
+const FORGET_PASSWORD_REQUEST = 'FORGET_PASSWORD_REQUEST';
+const FORGET_PASSWORD_SUCCESS = 'FORGET_PASSWORD_SUCCESS';
+const FORGET_PASSWORD_FAILURE = 'RESET_PASSWORD_FAILURE';
 
 /**
  * @name forgetPassword
@@ -488,6 +490,296 @@ function* updateUserFlow({ payload }) {
 }
 export function* watchUpdateUserFlow() {
   yield takeEvery(UPDATE_USER_REQUEST, updateUserFlow);
+}
+
+/* ******************************** 新增收件人範本 ********************************* */
+const ADD_RECIPIENT_ADDRESS_REQUEST = 'ADD_RECIPIENT_ADDRESS_REQUEST';
+
+export const addRecipientAddress = payload => ({
+  type: ADD_RECIPIENT_ADDRESS_REQUEST,
+  payload,
+});
+
+function* addRecipientAddressFlow({ payload }) {
+  const {
+    storeReducer: {
+      settings: { locale },
+    },
+    memberReducer: { user },
+  } = yield select();
+
+  try {
+    const {
+      data: {
+        addRecipientAddress: { status, recipientAddressId },
+      },
+    } = yield call(Api.addRecipientAddress, payload);
+
+    if (status === 'OK') {
+      const {
+        input: { name, mobile, countryId, cityId, areaId, zipCode, street },
+      } = payload;
+      const countryData = client().readFragment({
+        id: countryId,
+        fragment: gql`
+          fragment getCountryFragment on Country {
+            id
+            name {
+              zh_TW
+              en_US
+              ja_JP
+              vi_VN
+            }
+          }
+        `,
+      });
+      const cityData = client().readFragment({
+        id: cityId,
+        fragment: gql`
+          fragment cityFragment on City {
+            id
+            name {
+              zh_TW
+              en_US
+              ja_JP
+              vi_VN
+            }
+          }
+        `,
+      });
+      const areaData = client().readFragment({
+        id: areaId,
+        fragment: gql`
+          fragment areaFragment on Area {
+            id
+            name {
+              zh_TW
+              en_US
+              ja_JP
+              vi_VN
+            }
+          }
+        `,
+      });
+
+      const country = !countryData.id ? null : countryData.name.en_US;
+      const city = !cityData.id ? null : cityData.name[locale];
+      const county = !areaData.id ? null : areaData.name[locale];
+
+      yield put(
+        updateUserSuccess({
+          data: {
+            updateUserList: [
+              {
+                ...user,
+                recipientData: [
+                  ...user.recipientData,
+                  {
+                    id: recipientAddressId,
+                    name,
+                    mobile,
+                    address: {
+                      postalCode: zipCode,
+                      yahooCode: {
+                        country,
+                        city,
+                        county,
+                        street,
+                      },
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        }),
+      );
+    }
+  } catch (error) {
+    yield put(updateUserFailure());
+
+    notification.error({
+      message: LOCALE.UPDATE_USER_FAILURE_MESSAGE[locale],
+      description: error.message,
+    });
+  }
+}
+
+export function* watchAddRecipientAddressFlow() {
+  yield takeEvery(ADD_RECIPIENT_ADDRESS_REQUEST, addRecipientAddressFlow);
+}
+
+/* ******************************** 修改收件人範本 ********************************* */
+const UPDATE_RECIPIENT_ADDRESS_REQUEST = 'UPDATE_RECIPIENT_ADDRESS_REQUEST';
+
+export const updateRecipientAddress = payload => ({
+  type: UPDATE_RECIPIENT_ADDRESS_REQUEST,
+  payload,
+});
+
+function* updateRecipientAddressFlow({
+  payload: { recipientIndexForRedux, ...payload },
+}) {
+  const {
+    storeReducer: {
+      settings: { locale },
+    },
+    memberReducer: { user },
+  } = yield select();
+
+  try {
+    const {
+      data: {
+        updateRecipientAddress: { status },
+      },
+    } = yield call(Api.updateRecipientAddress, payload);
+
+    if (status === 'OK') {
+      const {
+        input: { name, mobile, countryId, cityId, areaId, zipCode, street },
+      } = payload;
+      const countryData = client().readFragment({
+        id: countryId,
+        fragment: gql`
+          fragment getCountryFragment on Country {
+            id
+            name {
+              zh_TW
+              en_US
+              ja_JP
+              vi_VN
+            }
+          }
+        `,
+      });
+      const cityData = client().readFragment({
+        id: cityId,
+        fragment: gql`
+          fragment cityFragment on City {
+            id
+            name {
+              zh_TW
+              en_US
+              ja_JP
+              vi_VN
+            }
+          }
+        `,
+      });
+      const areaData = client().readFragment({
+        id: areaId,
+        fragment: gql`
+          fragment areaFragment on Area {
+            id
+            name {
+              zh_TW
+              en_US
+              ja_JP
+              vi_VN
+            }
+          }
+        `,
+      });
+
+      const country = !countryData.id ? null : countryData.name.en_US;
+      const city = !cityData.id ? null : cityData.name[locale];
+      const county = !areaData.id ? null : areaData.name[locale];
+      const recipientData = [...user.recipientData];
+
+      recipientData[recipientIndexForRedux] = {
+        ...recipientData[recipientIndexForRedux],
+        name,
+        mobile,
+        address: {
+          postalCode: zipCode,
+          yahooCode: {
+            country,
+            city,
+            county,
+            street,
+          },
+        },
+      };
+
+      yield put(
+        updateUserSuccess({
+          data: {
+            updateUserList: [
+              {
+                ...user,
+                recipientData,
+              },
+            ],
+          },
+        }),
+      );
+    }
+  } catch (error) {
+    yield put(updateUserFailure());
+
+    notification.error({
+      message: LOCALE.UPDATE_USER_FAILURE_MESSAGE[locale],
+      description: error.message,
+    });
+  }
+}
+
+export function* watchUpdateRecipientAddressFlow() {
+  yield takeEvery(UPDATE_RECIPIENT_ADDRESS_REQUEST, updateRecipientAddressFlow);
+}
+
+/* ******************************** 刪除收件人範本 ********************************* */
+const DELETE_RECIPIENT_ADDRESS_REQUEST = 'DELETE_RECIPIENT_ADDRESS_REQUEST';
+
+export const deleteRecipientAddress = payload => ({
+  type: DELETE_RECIPIENT_ADDRESS_REQUEST,
+  payload,
+});
+
+function* deleteRecipientAddressFlow({
+  payload: { recipientIndexForRedux, ...payload },
+}) {
+  const {
+    storeReducer: {
+      settings: { locale },
+    },
+    memberReducer: { user },
+  } = yield select();
+
+  try {
+    const {
+      data: {
+        deleteRecipientAddress: { status },
+      },
+    } = yield call(Api.deleteRecipientAddress, payload);
+
+    if (status === 'OK')
+      yield put(
+        updateUserSuccess({
+          data: {
+            updateUserList: [
+              {
+                ...user,
+                recipientData: user.recipientData.filter(
+                  (_, index) => recipientIndexForRedux !== index,
+                ),
+              },
+            ],
+          },
+        }),
+      );
+  } catch (error) {
+    yield put(updateUserFailure());
+
+    notification.error({
+      message: LOCALE.UPDATE_USER_FAILURE_MESSAGE[locale],
+      description: error.message,
+    });
+  }
+}
+
+export function* watchDeleteRecipientAddressFlow() {
+  yield takeEvery(DELETE_RECIPIENT_ADDRESS_REQUEST, deleteRecipientAddressFlow);
 }
 
 /* ************************************ 退貨申請 ************************************ */
@@ -1348,23 +1640,21 @@ export default function(state = initialState, { type, payload }) {
         loadingTip: '',
       };
     }
+
     case ADD_RECIPIENT: {
-      const { recipient: _recipient } = payload;
-      const recipient = {
-        address: { yahooCode: _recipient.yahooCode },
-        mobile: _recipient.mobile,
-        name: _recipient.name,
-      };
+      const { recipient } = payload;
       const user = state?.user;
       const recipientData = user?.recipientData;
+
       return {
         ...state,
         user: {
           ...user,
-          recipientData: recipientData.concat(recipient),
+          recipientData: [...recipientData, recipient],
         },
       };
     }
+
     default:
       return state;
   }

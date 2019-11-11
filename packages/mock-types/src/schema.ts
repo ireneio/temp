@@ -8,7 +8,8 @@ import moment from 'moment';
 // eslint-disable-next-line import/no-unresolved
 import schemaJSON from '../schema.json';
 
-import AddressObjectType from './schemas/AddressObjectType';
+import Address from './schemas/Address';
+import AddressService from './schemas/AddressService';
 import Authority from './schemas/Authority';
 import ColorList from './schemas/ColorList';
 import ConvenienceStore from './schemas/ConvenienceStore';
@@ -58,7 +59,8 @@ const schema = buildClientSchema(schemaJSON);
 addMockFunctionsToSchema({
   schema,
   mocks: {
-    AddressObjectType,
+    Address,
+    AddressService,
     Authority,
     ColorList,
     ConvenienceStore,

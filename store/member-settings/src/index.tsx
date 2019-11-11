@@ -87,12 +87,15 @@ class MemberSettings extends React.PureComponent<PropsType> {
         tel = null,
         mobile = null,
         birthday = null,
-        postalCode = null,
-        address = null,
         street = null,
         isNotCancelEmail = false,
+        addressAndZipCode: { address, zipCode } = {
+          address: [],
+          zipCode: null,
+        },
       } = values;
 
+      // TODO: update apollo cache after removing redux
       dispatchAction('updateUser', {
         user: {
           id,
@@ -108,17 +111,13 @@ class MemberSettings extends React.PureComponent<PropsType> {
           additionalInfo: {
             tel,
             mobile,
-            address: {
-              postalCode,
-              streetAddress: `${postalCode || ''} ${address[0]} ${address[1] ||
-                ''}${address[2] || ''}${street}`,
-              yahooCode: {
-                country: !address ? null : address[0] || null,
-                city: !address ? null : address[1] || null,
-                county: !address ? null : address[2] || null,
-                street,
-              },
-            },
+          },
+          address: {
+            countryId: address[0],
+            cityId: address[1],
+            areaId: address[2],
+            street,
+            zipCode,
           },
           notification: {
             newsletters: {
@@ -133,7 +132,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
   public render(): React.ReactNode {
     const {
       /** HOC */
-      form: { getFieldDecorator, setFieldsValue, getFieldValue },
+      form: { getFieldDecorator },
       t,
       i18n,
 
@@ -151,14 +150,17 @@ class MemberSettings extends React.PureComponent<PropsType> {
       notification,
       tel,
       mobile,
-      postalCode,
-      country,
-      city,
-      county,
-      street,
+      address,
       store,
       hasGmoCreditCard,
     } = viewer;
+    const {
+      country = null,
+      city = null,
+      area = null,
+      street = null,
+      zipCode = null,
+    } = address || {};
 
     // TODO: should not be null
     const {
@@ -253,21 +255,18 @@ class MemberSettings extends React.PureComponent<PropsType> {
           </FormItem>
 
           <FormItem>
-            {getFieldDecorator('address', {
-              initialValue: [country, city, county].filter(text => text),
-              getValueFromEvent: (value, allValues) => {
-                const newCounty = allValues[2];
-
-                if (newCounty && newCounty.zipCode)
-                  setFieldsValue({ postalCode: newCounty.zipCode });
-                else setFieldsValue({ postalCode: undefined });
-
-                return value;
+            {getFieldDecorator('addressAndZipCode', {
+              initialValue: {
+                address: ([country, city, area].filter(Boolean) as NonNullable<
+                  typeof country | typeof city | typeof area
+                >[]).map(({ id }) => id),
+                zipCode,
               },
             })(
               <AddressCascader
+                className={styles.addressCascader}
                 size="large"
-                placeholder={t('address')}
+                placeholder={[t('address'), t('zip-code')]}
                 i18n={i18n}
                 lockedCountry={
                   !lockedCountry
@@ -278,28 +277,6 @@ class MemberSettings extends React.PureComponent<PropsType> {
                 }
               />,
             )}
-          </FormItem>
-
-          <FormItem
-            className={
-              getFieldValue('address').length === 0 ||
-              getFieldValue('address').length === 3
-                ? styles.hidden
-                : ''
-            }
-          >
-            {getFieldDecorator('postalCode', {
-              initialValue: postalCode,
-              rules: [
-                {
-                  validator: (_, value, callback) => {
-                    if (getFieldValue('address').length !== 0 && !value)
-                      callback(t('form.required'));
-                    else callback();
-                  },
-                },
-              ],
-            })(<Input placeholder={t('postal-code')} size="large" />)}
           </FormItem>
 
           <FormItem>
@@ -375,24 +352,24 @@ export default React.memo(
 
             tel @client
             mobile @client
-            postalCode @client
-            country @client
-            city @client
-            county @client
-            street @client
             additionalInfo {
               # for client
               tel
               mobile
-              address {
-                postalCode
-                yahooCode {
-                  country
-                  city
-                  county
-                  street
-                }
+            }
+
+            address {
+              country {
+                id
               }
+              city {
+                id
+              }
+              area {
+                id
+              }
+              street
+              zipCode
             }
 
             birthday {

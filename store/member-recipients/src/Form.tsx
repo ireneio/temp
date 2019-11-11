@@ -33,11 +33,9 @@ interface PropsType
   lockedCountry: string[] | null;
   cancel: () => void;
   // TODO: remove after removing redux
-  userId: string | null;
-  // TODO: remove after removing redux
   dispatchAction: (dispatchName: string, data: unknown) => void;
   // TODO: remove after removing redux
-  recipientAddressBook: getUserRecipientsViewerRecipientAddressBook[];
+  recipientIndexForRedux: number;
 }
 
 // definition
@@ -53,75 +51,39 @@ class Form extends React.PureComponent<PropsType> {
 
       // props
       id,
-      userId,
       dispatchAction,
-      recipientAddressBook,
+      recipientIndexForRedux,
     } = this.props;
 
     validateFields((err, values) => {
       if (err) return;
 
-      const { name, mobile, zipCode, address, street } = values;
-      const newRecipientAddressBook = recipientAddressBook.map(
-        ({ id: recipientId, ...recipient }) =>
-          id === recipientId
-            ? {
-                name,
-                mobile,
-                address: {
-                  postalCode: zipCode,
-                  streetAddress: `${zipCode} ${address[0] || ''} ${address[1] ||
-                    ''}${address[2] || ''}${street}`,
-                  yahooCode: {
-                    country: !address ? null : address[0] || null,
-                    city: !address ? null : address[1] || null,
-                    county: !address ? null : address[2] || null,
-                    street,
-                  },
-                },
-              }
-            : {
-                name: recipient.name,
-                mobile: recipient.mobile,
-                address: {
-                  postalCode: recipient.zipCode,
-                  streetAddress: `${recipient.zipCode} ${recipient.country ||
-                    ''} ${recipient.city || ''}${recipient.county || ''}${
-                    recipient.street
-                  }`,
-                  yahooCode: {
-                    country: recipient.country,
-                    city: recipient.city,
-                    county: recipient.county,
-                    street: recipient.street,
-                  },
-                },
-              },
-      );
+      const {
+        name,
+        mobile,
+        addressAndZipCode: { address, zipCode },
+        street,
+      } = values;
 
-      if (!id)
-        newRecipientAddressBook.push({
+      dispatchAction(!id ? 'addRecipientAddress' : 'updateRecipientAddress', {
+        ...(!id
+          ? {}
+          : {
+              recipientIndexForRedux,
+            }),
+        input: {
+          ...(!id
+            ? {}
+            : {
+                id,
+              }),
           name,
           mobile,
-          address: {
-            postalCode: zipCode,
-            streetAddress: `${zipCode} ${address[0] || ''} ${address[1] ||
-              ''}${address[2] || ''}${street}`,
-            yahooCode: {
-              country: !address ? null : address[0] || null,
-              city: !address ? null : address[1] || null,
-              county: !address ? null : address[2] || null,
-              street,
-            },
-          },
-        });
-
-      dispatchAction('updateUser', {
-        user: {
-          id: userId,
-          recipientData: {
-            replaceData: newRecipientAddressBook,
-          },
+          countryId: address[0],
+          cityId: address[1],
+          areaId: address[2],
+          street,
+          zipCode,
         },
       });
     });
@@ -132,12 +94,7 @@ class Form extends React.PureComponent<PropsType> {
       // HOC
       t,
       i18n,
-      form: {
-        getFieldDecorator,
-        getFieldValue,
-        getFieldsError,
-        setFieldsValue,
-      },
+      form: { getFieldDecorator, getFieldValue, getFieldsError },
 
       // props
       id,
@@ -189,48 +146,22 @@ class Form extends React.PureComponent<PropsType> {
         </FormItem>
 
         <FormItem>
-          {getFieldDecorator('address', {
+          {getFieldDecorator('addressAndZipCode', {
             rules: [
               {
                 required: true,
                 message: t('form.required'),
               },
             ],
-            getValueFromEvent: (value, allValues) => {
-              const county = allValues[2];
-
-              if (county && county.zipCode)
-                setFieldsValue({ zipCode: county.zipCode });
-              else setFieldsValue({ zipCode: undefined });
-
-              return value;
-            },
           })(
             <AddressCascader
+              className={styles.addressCascader}
               size="large"
-              placeholder={t('address')}
+              placeholder={[t('address'), t('zip-code')]}
               i18n={i18n}
               lockedCountry={!lockedCountry ? undefined : lockedCountry}
             />,
           )}
-        </FormItem>
-
-        <FormItem
-          className={
-            getFieldValue('address').length === 0 ||
-            getFieldValue('address').length === 3
-              ? styles.hidden
-              : ''
-          }
-        >
-          {getFieldDecorator('zipCode', {
-            rules: [
-              {
-                required: true,
-                message: t('form.required'),
-              },
-            ],
-          })(<Input placeholder={t('zip-code')} size="large" />)}
         </FormItem>
 
         <FormItem>
@@ -275,7 +206,7 @@ export default withNamespaces('member-recipients')(
       mobile,
       country,
       city,
-      county,
+      area,
       zipCode,
       street,
     }) => ({
@@ -285,11 +216,13 @@ export default withNamespaces('member-recipients')(
       mobile: AntdForm.createFormField({
         value: mobile,
       }),
-      address: AntdForm.createFormField({
-        value: [country, city, county].filter(text => text),
-      }),
-      zipCode: AntdForm.createFormField({
-        value: zipCode,
+      addressAndZipCode: AntdForm.createFormField({
+        value: {
+          address: ([country, city, area].filter(Boolean) as NonNullable<
+            typeof country | typeof city | typeof area
+          >[]).map(({ id }) => id),
+          zipCode,
+        },
       }),
       street: AntdForm.createFormField({
         value: street,

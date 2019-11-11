@@ -1,3 +1,5 @@
+@import '~@store/utils/lib/styles/variables.less';
+
 .root {
   display: flex;
   flex-direction: column;
@@ -38,6 +40,14 @@
 
   :global(.ant-calendar-picker) {
     width: 100%;
+  }
+}
+
+.addressCascader {
+  @media @phone-media {
+    > *:first-child:nth-last-child(2) {
+      margin-bottom: 24px !important;
+    }
   }
 }
 

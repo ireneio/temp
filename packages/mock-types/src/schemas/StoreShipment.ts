@@ -30,6 +30,7 @@ export default mock.add<StoreShipmentMock>('StoreShipment', [
       zh_TW: 'shipment',
       en_US: 'shipment',
       ja_JP: 'shipment',
+      vi_VN: 'shipment',
       /* eslint-enable @typescript-eslint/camelcase */
     },
   }),

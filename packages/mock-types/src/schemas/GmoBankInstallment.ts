@@ -31,6 +31,7 @@ export default mock.add<GmoBankInstallmentMock>('GmoBankInstallment', [
       zh_TW: 'GmoBank1',
       en_US: 'GmoBank1',
       ja_JP: 'GmoBank1',
+      vi_VN: 'GmoBank1',
       /* eslint-enable @typescript-eslint/camelcase */
     },
     code: '1',
@@ -44,6 +45,7 @@ export default mock.add<GmoBankInstallmentMock>('GmoBankInstallment', [
       zh_TW: 'GmoBank2',
       en_US: 'GmoBank2',
       ja_JP: 'GmoBank2',
+      vi_VN: 'GmoBank2',
       /* eslint-enable @typescript-eslint/camelcase */
     },
     code: null,

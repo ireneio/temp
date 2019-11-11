@@ -30,6 +30,7 @@ export default mock.add<StorePaymentMock>('StorePayment', [
       zh_TW: 'payment',
       en_US: 'payment',
       ja_JP: 'payment',
+      vi_VN: 'payment',
       /* eslint-enable @typescript-eslint/camelcase */
     },
   }),
