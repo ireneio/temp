@@ -29,6 +29,10 @@ const ZipCodeInput = ({
   options,
   colors,
 }: PropsType): React.ReactElement => {
+  useEffect(() => {
+    if (options && options.length === 1 && !value) onChange(options[0]);
+  }, [value, onChange, options]);
+
   if (!options)
     return (
       <Input
@@ -39,11 +43,7 @@ const ZipCodeInput = ({
       />
     );
 
-  if (options.length === 1) {
-    useEffect(() => {
-      if (!value) onChange(options[0]);
-    }, [value]);
-
+  if (options.length === 1)
     return (
       <Input
         className={styles.disabled}
@@ -59,7 +59,6 @@ const ZipCodeInput = ({
         disabled
       />
     );
-  }
 
   return (
     <Select

@@ -106,9 +106,12 @@ const AddressCascader = React.memo(
             : countries.filter(({ id }) => lockedCountry.includes(id)),
           i18n.language,
         ),
-      [i18n.language],
+      [i18n.language, countries, lockedCountry],
     );
-    const zipCodes = useMemo(() => findZipcodes(options, address), [address]);
+    const zipCodes = useMemo(() => findZipcodes(options, address), [
+      options,
+      address,
+    ]);
     const addressLength = (address || []).length;
     const isOnlyOneOption = options.length === 1;
     const isSelectAddress = addressLength !== 0;
@@ -120,7 +123,7 @@ const AddressCascader = React.memo(
             address: [options[0].value as string],
             zipCode,
           });
-      }, [options.length]);
+      }, [options.length, addressLength, onChange, zipCode, options]);
 
     return (
       <div
