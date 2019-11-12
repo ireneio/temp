@@ -4,6 +4,8 @@ import radium, { StyleRoot, Style } from 'radium';
 import { warning, areEqual } from 'fbjs';
 import { Modal } from 'antd';
 
+import withContext from '@store/utils/lib/withContext';
+import adTrackContext from '@store/ad-track';
 import { withNamespaces } from '@store/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -24,6 +26,7 @@ import {
 } from './constants';
 import { calculateOrderable, reformatVariant } from './utils';
 
+@withContext(adTrackContext)
 @withNamespaces('product-info')
 @enhancer
 @buildVariantsTree('productData')
@@ -32,6 +35,7 @@ export default class ProductInfo extends React.PureComponent {
   name = 'product-info';
 
   static propTypes = {
+    adTrack: PropTypes.shape({}).isRequired,
     t: PropTypes.func.isRequired,
     productData: PRODUCT_TYPE.isRequired,
     activityData: ACTIVITY_TYPE,
@@ -192,7 +196,7 @@ export default class ProductInfo extends React.PureComponent {
   };
 
   addToCart = () => {
-    const { addCartItems, productData, type } = this.props;
+    const { adTrack, addCartItems, productData, type } = this.props;
     const { variantInfo, quantity } = this.state;
 
     this.setState({ isAddingItem: true });
@@ -206,12 +210,28 @@ export default class ProductInfo extends React.PureComponent {
         },
       ],
       variantInfo.totalPrice,
-      type,
+      () => {
+        adTrack.addToCart({
+          eventName: type === 'pop-up' ? 'ec-popup' : 'ec',
+          id: productData.id,
+          title: productData.title,
+          quantity,
+          sku: variantInfo.sku,
+          specs: variantInfo.specs,
+          price: variantInfo.totalPrice,
+        });
+      },
     );
   };
 
   addToWishList = () => {
-    const { productData, isInWishList, isLogin, dispatchAction } = this.props;
+    const {
+      adTrack,
+      productData,
+      isInWishList,
+      isLogin,
+      dispatchAction,
+    } = this.props;
 
     switch (isLogin) {
       case ISADMIN:
@@ -223,6 +243,9 @@ export default class ProductInfo extends React.PureComponent {
         this.setState({ isAddingWish: true });
         dispatchAction('updateWishList', {
           [isInWishList ? 'remove' : 'add']: [productData.id],
+          callback: () => {
+            adTrack.addToWishList();
+          },
         });
         break;
       default:

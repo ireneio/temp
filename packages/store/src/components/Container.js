@@ -9,7 +9,9 @@ import { notification } from 'antd';
 
 import Layout from '@meepshop/meep-ui/lib/layout';
 import { i18n } from '@store/utils/lib/i18n';
+import withContext from '@store/utils/lib/withContext';
 import withCurrency from '@store/currency';
+import adTrackContext from '@store/ad-track';
 
 import { getJoinedUser, getStoreAppList } from 'selectors';
 import * as Actions from 'ducks/actions';
@@ -157,27 +159,15 @@ class Container extends React.Component {
     setCustomerCurrency(id);
   };
 
-  handleAdTracking = (eventName, options, callback) => {
-    const { pageAdTrackIDs } = this.props;
-
-    Utils.execTrackingCode(eventName, {
-      ...options,
-      pageAdTrackIDs,
-    });
-    if (callback) {
-      callback();
-    }
-  };
-
   // eslint-disable-next-line consistent-return
   handleFacebookLogin = ({ from }) => {
     const {
-      pageAdTrackIDs,
       fbAppId,
       getAuth,
       userAgent,
       dispatchAction,
       cname,
+      adTrack,
     } = this.props;
 
     if (!fbAppId)
@@ -217,10 +207,9 @@ class Container extends React.Component {
                     break;
                   }
                   case 201: {
-                    Utils.execTrackingCode('CompleteRegistration', {
-                      pageAdTrackIDs,
-                    });
+                    adTrack.completeRegistration();
                     getAuth();
+
                     if (from === 'cart') {
                       Utils.goTo({ pathname: 'checkout' });
                     } else if (window.storePreviousPageUrl) {
@@ -327,7 +316,6 @@ class Container extends React.Component {
           customerCurrency={customerCurrency}
           /* func to modify data */
           goTo={Utils.goTo}
-          adTrack={this.handleAdTracking}
           fbLogin={this.handleFacebookLogin}
           getData={Utils.getData}
           getApiUrl={Utils.getApiUrl}
@@ -409,4 +397,7 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Container);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withContext(adTrackContext)(Container));

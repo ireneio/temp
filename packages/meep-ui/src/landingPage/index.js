@@ -6,6 +6,8 @@ import moment from 'moment';
 import { areEqual } from 'fbjs';
 import uuid from 'uuid/v4';
 
+import withContext from '@store/utils/lib/withContext';
+import adTrackContext from '@store/ad-track';
 import GmoCreditCardForm from '@store/gmo-credit-card-form';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -33,6 +35,7 @@ import * as LOCALE from './locale';
 import mockOrderInfo from './utils/mockOrderInfo';
 import * as styles from './styles';
 
+@withContext(adTrackContext)
 @enhancer
 @loadData(['productData'])
 @buildVariantsTree('productData')
@@ -74,7 +77,6 @@ export default class LandingPage extends React.PureComponent {
     location: LOCATION_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
-    adTrack: PropTypes.func.isRequired,
     transformLocale: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
@@ -95,6 +97,7 @@ export default class LandingPage extends React.PureComponent {
     updateOrderInfo: PropTypes.func.isRequired,
 
     /** moduleProps */
+    adTrack: PropTypes.shape({}).isRequired,
     id: ID_TYPE.isRequired,
     redirectPage: URL_TYPE.isRequired,
     addition: ADDITION_TYPE.isRequired,
@@ -134,7 +137,7 @@ export default class LandingPage extends React.PureComponent {
 
     if (productData && this.needToTrackViewProduct) {
       setTimeout(() => {
-        adTrack('ViewProduct', { product: productData });
+        adTrack.viewProduct({ id: productData.id, title: productData.title });
         this.needToTrackViewProduct = false;
       }, 5000);
     }
@@ -163,7 +166,6 @@ export default class LandingPage extends React.PureComponent {
             location: { host: domain, pathname },
             locale,
             user,
-            cname,
             transformLocale,
             goTo,
             adTrack,
@@ -230,51 +232,53 @@ export default class LandingPage extends React.PureComponent {
             notification.success({
               message: transformLocale(LOCALE.PAY_SUCCESS),
             });
+            const { products, priceInfo } = {
+              ...this.storeComputeOrderList,
+              ...this.storeComputeOrderList.categories[0],
+            };
 
-            adTrack(
-              'Purchase',
-              {
-                ...this.storeComputeOrderList,
-                ...this.storeComputeOrderList.categories[0],
-                orderNo,
-                cname,
-              },
-              () => {
-                if (this.isUnmounted) return;
+            adTrack.purchase({
+              orderNo,
+              products,
+              total: priceInfo.total,
+              currency: priceInfo.currency,
+              shipmentFee: priceInfo.shipmentFee,
+              paymentFee: priceInfo.paymentFee,
+            });
 
-                if (formData && formData.url) {
-                  if (/CashSystemFrontEnd\/Query/.test(formData.url)) {
-                    dispatchAction('emptyCart');
-                    goTo({
-                      pathname: `/ezpay/cvcode/${id}`,
-                      params: {
-                        search: !redirectPage
-                          ? {}
-                          : {
-                              redirectUrl: redirectPage,
-                            },
-                      },
-                    });
-                    return;
-                  }
+            if (this.isUnmounted) return;
 
-                  if (formData.type === 'GET') {
-                    window.location = formData.url;
-                    return;
-                  }
+            if (formData && formData.url) {
+              if (/CashSystemFrontEnd\/Query/.test(formData.url)) {
+                dispatchAction('emptyCart');
+                goTo({
+                  pathname: `/ezpay/cvcode/${id}`,
+                  params: {
+                    search: !redirectPage
+                      ? {}
+                      : {
+                          redirectUrl: redirectPage,
+                        },
+                  },
+                });
+                return;
+              }
 
-                  this.setState({ formData, isSubmitting: false });
-                  return;
-                }
+              if (formData.type === 'GET') {
+                window.location = formData.url;
+                return;
+              }
 
-                updateOrderInfo({}, true);
-                this.setState({ isSubmitting: false });
+              this.setState({ formData, isSubmitting: false });
+              return;
+            }
 
-                if (pathname === redirectPage)
-                  this.paymentInfoRef.current.computeOrderList();
-                else goTo({ pathname: redirectPage });
-              },
-            );
+            updateOrderInfo({}, true);
+            this.setState({ isSubmitting: false });
+
+            if (pathname === redirectPage)
+              this.paymentInfoRef.current.computeOrderList();
+            else goTo({ pathname: redirectPage });
           }
         }
       },

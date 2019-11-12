@@ -5,6 +5,8 @@ import { areEqual } from 'fbjs';
 import { Pagination, Select, Icon } from 'antd';
 import hash from 'hash.js';
 
+import withContext from '@store/utils/lib/withContext';
+import adTrackContext from '@store/ad-track';
 import { withNamespaces } from '@store/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -24,6 +26,7 @@ import { SORT_OPTIONS } from './constants';
 import * as styles from './styles';
 import getProductsQuery from './utils/getProductsQuery';
 
+@withContext(adTrackContext)
 @withNamespaces('product-list')
 @enhancer
 @radium
@@ -61,6 +64,7 @@ export default class ProductList extends React.PureComponent {
 
     /** props from module */
     t: PropTypes.func.isRequired,
+    adTrack: PropTypes.func.isRequired,
     showSort: PropTypes.bool.isRequired,
     alignment: PropTypes.string.isRequired,
     justifyContent: PropTypes.string.isRequired,
@@ -82,7 +86,6 @@ export default class ProductList extends React.PureComponent {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
     getData: PropTypes.func.isRequired,
-    adTrack: PropTypes.func.isRequired,
     transformCurrency: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
@@ -225,7 +228,7 @@ export default class ProductList extends React.PureComponent {
 
     // send adTrack each time with resolved products
     if (params.search)
-      adTrack('Search', { products, searchString: params.search });
+      adTrack.search({ searchString: params.search, products: products.data });
   };
 
   resolveProducts = async () => {

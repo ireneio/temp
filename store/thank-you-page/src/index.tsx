@@ -1,8 +1,9 @@
 // typescript import
 import { I18nPropsType } from '@store/utils/lib/i18n';
+import { OptionType } from '@store/ad-track/lib/utils/getPurchaseTrack';
 
 // import
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import Router from 'next/router';
@@ -12,41 +13,60 @@ import idx from 'idx';
 
 import { withNamespaces } from '@store/utils/lib/i18n';
 import getLinkProps from '@store/utils/lib/getLinkProps';
+import adTrackContext from '@store/ad-track';
 
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getOrderInThankYouPage } from './__generated__/getOrderInThankYouPage';
-
-// graphql import
+import {
+  getOrderInThankYouPage,
+  getOrderInThankYouPage_viewer as getOrderInThankYouPageViewer,
+} from './__generated__/getOrderInThankYouPage';
 
 // typescript definition
 interface PropsType extends I18nPropsType {
-  orderId?: string | null;
+  order: getOrderInThankYouPageViewer['order'];
   href: string;
 }
 
 // definition
-class ThankYouPage extends React.PureComponent<PropsType> {
-  public componentDidMount = () => {
-    const { t, href, orderId } = this.props;
+const ThankYouPage = withNamespaces('thank-you-page')(
+  React.memo(({ t, href, order }: PropsType) => {
+    const { adTrack } = useContext(adTrackContext);
 
-    if (!orderId)
-      new Clipboard('button[role="copy"]', {
-        text: () => `${t('data-error')}${href}`,
-      }).on('success', () => {
-        message.success(t('copied'));
-      });
-  };
+    useEffect(() => {
+      if (!order)
+        new Clipboard('button[role="copy"]', {
+          text: () => `${t('data-error')}${href}`,
+        }).on('success', () => {
+          message.success(t('copied'));
+        });
+      else
+        adTrack.purchase({
+          orderNo: order.orderNo || '', // FIXME: should not be null
+          // @ts-ignore FIXME: should not be null
+          products: (order.products || []).reduce(
+            (result: OptionType['products'], data) => {
+              if (!data) return result;
 
-  public render(): React.ReactNode {
-    const {
-      /** HOC */
-      t,
+              const product = result.find(
+                ({ productId }) => productId === data.productId,
+              );
 
-      /** props */
-      orderId,
-    } = this.props;
+              if (!product) return [...result, data];
+
+              product.quantity += data.quantity || 0;
+
+              return result;
+            },
+            [],
+          ),
+          total: idx(order, _ => _.priceInfo.total) || 0, // FIXME: should not be null
+          currency: idx(order, _ => _.priceInfo.currency) || 'TWD', // FIXME: should not be null
+          shipmentFee: idx(order, _ => _.priceInfo.shipmentFee) || 0, // FIXME: should not be null
+          paymentFee: idx(order, _ => _.priceInfo.paymentFee) || 0, // FIXME: should not be null
+        });
+    }, [t, href, order, adTrack]);
 
     return (
       <div className={styles.root}>
@@ -57,41 +77,37 @@ class ThankYouPage extends React.PureComponent<PropsType> {
             type="circle"
             percent={100}
             width={72}
-            {...(!orderId ? { status: 'exception', format: () => '!' } : {})}
+            {...(!order ? { status: 'exception', format: () => '!' } : {})}
           />
 
-          <h1>{!orderId ? t('title.error') : t('title.default')}</h1>
+          <h1>{!order ? t('title.error') : t('title.default')}</h1>
 
-          <p>{!orderId ? t('info.error') : t('info.default')}</p>
+          <p>{!order ? t('info.error') : t('info.default')}</p>
 
           <div className={styles.buttonRoot}>
             <Button onClick={() => Router.push('/')}>{t('return')}</Button>
 
             <Button
-              {...(!orderId
+              {...(!order
                 ? {
                     role: 'copy',
                   }
                 : {
                     onClick: () => {
-                      const { href, as: asHref } = getLinkProps(
-                        `/order/${orderId}`,
-                      );
+                      const linkProps = getLinkProps(`/order/${order.id}`);
 
-                      Router.push(href, asHref);
+                      Router.push(linkProps.href, linkProps.as);
                     },
                   })}
             >
-              {!orderId ? t('copy') : t('order')}
+              {!order ? t('copy') : t('order')}
             </Button>
           </div>
         </div>
       </div>
     );
-  }
-}
-
-const EnhancedThankYouPage = withNamespaces('thank-you-page')(ThankYouPage);
+  }),
+);
 
 export default ({ orderId, href }: { orderId: string; href: string }) => (
   <Query<getOrderInThankYouPage>
@@ -101,6 +117,30 @@ export default ({ orderId, href }: { orderId: string; href: string }) => (
           id
           order(orderId: $orderId) {
             id
+            orderNo
+            products {
+              id
+              productId
+              type
+              sku
+              title {
+                zh_TW
+              }
+              specs {
+                title {
+                  zh_TW
+                }
+              }
+              totalPrice
+              quantity
+            }
+
+            priceInfo {
+              total
+              shipmentFee
+              paymentFee
+              currency
+            }
           }
         }
       }
@@ -113,8 +153,8 @@ export default ({ orderId, href }: { orderId: string; href: string }) => (
       if (loading) return <Spin indicator={<Icon type="loading" spin />} />;
 
       return (
-        <EnhancedThankYouPage
-          orderId={idx(data, _ => _.viewer.order.id)}
+        <ThankYouPage
+          order={idx(data, _ => _.viewer.order) || null}
           href={href}
         />
       );

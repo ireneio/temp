@@ -8,7 +8,6 @@ import getPageWithModifyWidget from './getPageWithModifyWidget';
 import getReqArgs from './getReqArgs';
 import setDefaultValueForMenuDesign from './setDefaultValueForMenuDesign';
 import getJoinedModule from './getJoinedModule';
-import execTrackingCode from './execTrackingCode';
 import getOrderInfo from './getOrderInfo';
 import logToServer from './logToServer';
 
@@ -23,7 +22,6 @@ export {
   getReqArgs,
   setDefaultValueForMenuDesign,
   getJoinedModule,
-  execTrackingCode,
   getOrderInfo,
   logToServer,
 };

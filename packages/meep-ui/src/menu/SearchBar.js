@@ -2,11 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'antd';
 
+import withContext from '@store/utils/lib/withContext';
+import adTrackContext from '@store/ad-track';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 
 import Icon from './Icon';
 import styles from './styles/searchBar.less';
 
+@withContext(adTrackContext)
 @enhancer
 export default class SearchBar extends React.PureComponent {
   preValue = '';
@@ -14,9 +18,9 @@ export default class SearchBar extends React.PureComponent {
   static propTypes = {
     /** context */
     goTo: PropTypes.func.isRequired,
-    adTrack: PropTypes.func.isRequired,
 
     /** props */
+    adTrack: PropTypes.shape({}).isRequired,
     title: PropTypes.string.isRequired,
   };
 
@@ -38,7 +42,7 @@ export default class SearchBar extends React.PureComponent {
         },
       },
     });
-    adTrack('Search', { searchString: value });
+    adTrack.search({ searchString: value });
     this.preValue = value;
   };
 

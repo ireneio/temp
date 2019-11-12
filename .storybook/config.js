@@ -2,6 +2,7 @@
 
 import { configure, storiesOf } from '@storybook/react';
 import LinkTo from '@storybook/addon-links/react';
+import { action } from '@storybook/addon-actions';
 import React from 'react';
 import Markdown from 'react-markdown';
 
@@ -93,6 +94,9 @@ const link = path => ({ href, children }) => {
 configure(() => {
   // eslint-disable-next-line import/no-unresolved
   require('./story.js');
+
+  window.fbq = action('fbq');
+  window.gtag = action('gtag');
 
   stories.forEach(({ name, source, path }) => {
     storiesOf(name, module).add('readme', () => (

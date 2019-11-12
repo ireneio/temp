@@ -15,9 +15,6 @@ gql`
     id
     orderNo
     status
-    priceInfo {
-      total
-    }
     createdOn
   }
 `;
@@ -34,10 +31,6 @@ export default mock.add<
     id: orderId || idx(obj, _ => _.node.id) || 'id',
     orderNo: (orderId || idx(obj, _ => _.node.id) || 'orderNo').slice(0, 8),
     status: 0,
-    priceInfo: {
-      __typename: 'priceObjectType',
-      total: 100,
-    },
     createdOn: moment().unix(),
   }),
   (obj, { orderId }) => ({
@@ -45,10 +38,6 @@ export default mock.add<
     id: orderId || idx(obj, _ => _.node.id) || 'id',
     orderNo: (orderId || idx(obj, _ => _.node.id) || 'orderNo').slice(0, 8),
     status: 1,
-    priceInfo: {
-      __typename: 'priceObjectType',
-      total: 100,
-    },
     createdOn: moment().unix(),
   }),
   (obj, { orderId }) => ({
@@ -56,10 +45,6 @@ export default mock.add<
     id: orderId || idx(obj, _ => _.node.id) || 'id',
     orderNo: (orderId || idx(obj, _ => _.node.id) || 'orderNo').slice(0, 8),
     status: 2,
-    priceInfo: {
-      __typename: 'priceObjectType',
-      total: 100,
-    },
     createdOn: moment().unix(),
   }),
   (obj, { orderId }) => ({
@@ -67,10 +52,6 @@ export default mock.add<
     id: orderId || idx(obj, _ => _.node.id) || 'id',
     orderNo: (orderId || idx(obj, _ => _.node.id) || 'orderNo').slice(0, 8),
     status: 3,
-    priceInfo: {
-      __typename: 'priceObjectType',
-      total: 100,
-    },
     createdOn: moment().unix(),
   }),
 ]);

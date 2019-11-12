@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@meepshop/meep-ui": "^0.27.13",
+    "@store/ad-track": "^0.1.0",
     "@store/currency": "^0.27.9",
     "@store/ezpay": "^0.27.9",
     "@store/member-order": "^0.27.12",

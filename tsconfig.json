@@ -14,9 +14,11 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@store/utils/lib/*": ["store/utils/src/*"],
       "@admin/utils/lib/*": ["admin/utils/src/*"],
-      "@store/apollo-client-resolvers/lib/*": ["store/apollo-client-resolvers/src/*"]
+      "@admin/apollo-client-resolvers/lib/*": ["admin/apollo-client-resolvers/src/*"],
+      "@store/utils/lib/*": ["store/utils/src/*"],
+      "@store/apollo-client-resolvers/lib/*": ["store/apollo-client-resolvers/src/*"],
+      "@store/ad-track/lib/*": ["store/ad-track/src/*"]
     }
   },
   "include": [

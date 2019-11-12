@@ -5,6 +5,9 @@ import { Form, Input, Button, Modal, notification } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 import { lock as LockIcon } from 'react-icons/md';
 
+import withContext from '@store/utils/lib/withContext';
+import adTrackContext from '@store/ad-track';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
@@ -16,6 +19,7 @@ import { formItem as formItemStyle } from './styles';
 const { Item: FormItem } = Form;
 let storeEmail = null;
 
+@withContext(adTrackContext)
 @enhancer
 @Form.create({
   mapPropsToFields: ({ email }) => ({
@@ -35,6 +39,7 @@ export default class Login extends React.PureComponent {
     form: PropTypes.shape({}).isRequired,
 
     /** props */
+    adTrack: PropTypes.shape({}).isRequired,
     hideLogin: PropTypes.func.isRequired,
   };
 
@@ -57,6 +62,7 @@ export default class Login extends React.PureComponent {
       login,
       forgetPassword,
       form,
+      adTrack,
       hideLogin,
     } = this.props;
     const { isForgetPassword } = this.state;
@@ -77,8 +83,11 @@ export default class Login extends React.PureComponent {
           login({
             email,
             password,
-            callback: hideLogin,
             from: 'landingPage',
+            callback: () => {
+              hideLogin();
+              adTrack.completeRegistration();
+            },
           });
         }
       }

@@ -54,7 +54,6 @@ export default class DecoratorsRoot extends React.Component {
     /** context func from props */
     setLocale: PropTypes.func.isRequired,
     setCustomerCurrency: PropTypes.func.isRequired,
-    adTrack: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
@@ -106,7 +105,6 @@ export default class DecoratorsRoot extends React.Component {
       /** context func from props */
       setLocale,
       setCustomerCurrency,
-      adTrack,
       goTo,
       getData,
       login,
@@ -138,7 +136,6 @@ export default class DecoratorsRoot extends React.Component {
       /** context func from props */
       setLocale,
       setCustomerCurrency,
-      adTrack,
       goTo,
       getData,
       login,

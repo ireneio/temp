@@ -221,13 +221,6 @@ function* signupFlow({ payload }) {
           registeredCode,
         });
 
-        /* Tracking code */
-        const {
-          storeReducer: { pageAdTrackIDs },
-        } = yield select();
-        Utils.execTrackingCode('CompleteRegistration', { pageAdTrackIDs });
-        /* Tracking code - End */
-
         yield put(signupSuccess());
         notification.success({ message: LOCALE.SIGNUP_SUCCESS[locale] });
         if (callback) callback();
@@ -302,9 +295,9 @@ const ADD_CART_ITEMS_FAILURE = 'ADD_CART_ITEMS_FAILURE';
  * @name addCartItems
  * @param {Array} items = [productId, variantId, quantity ]
  */
-export const addCartItems = (items, price, type) => ({
+export const addCartItems = (items, price, callback) => ({
   type: ADD_CART_ITEMS_REQUEST,
-  payload: { items, price, type },
+  payload: { items, price, callback },
 });
 export const addCartItemsSuccess = payload => ({
   type: ADD_CART_ITEMS_SUCCESS,
@@ -314,10 +307,10 @@ export const addCartItemsFailure = () => ({
   type: ADD_CART_ITEMS_FAILURE,
 });
 
-function* AddCartItemsFlow({ payload: { type, price, ...payload } }) {
+function* AddCartItemsFlow({ payload: { price, callback, ...payload } }) {
   const {
     storeReducer: {
-      settings: { cname, locale },
+      settings: { locale },
     },
   } = yield select();
   try {
@@ -325,29 +318,7 @@ function* AddCartItemsFlow({ payload: { type, price, ...payload } }) {
     if (data) {
       const cart = getCart(data);
 
-      /* tracking code */
-      const {
-        storeReducer: { pageAdTrackIDs },
-      } = yield select();
-
-      if (type === 'pop-up')
-        Utils.execTrackingCode('AddToCart-EC-Popup', {
-          price,
-          cart,
-          payload,
-          pageAdTrackIDs,
-          cname,
-        });
-      else
-        Utils.execTrackingCode('AddToCart-EC', {
-          price,
-          cart,
-          payload,
-          pageAdTrackIDs,
-          cname,
-        });
-      /* tracking code - End */
-
+      callback();
       yield put(addCartItemsSuccess(cart));
       notification.success({ message: LOCALE.ADD_CART_ITEMS_SUCCESS[locale] });
     }
@@ -891,7 +862,7 @@ export const updateWishListFailure = () => ({
   type: UPDATE_WISHLIST_FAILURE,
 });
 
-function* updateWishListFlow({ payload }) {
+function* updateWishListFlow({ payload: { callback, ...payload } }) {
   const {
     storeReducer: {
       settings: { locale },
@@ -899,14 +870,9 @@ function* updateWishListFlow({ payload }) {
   } = yield select();
   try {
     const data = yield call(Api.updateWishList, payload);
-    if (data) {
-      /* Tracking code */
-      const {
-        storeReducer: { pageAdTrackIDs },
-      } = yield select();
-      Utils.execTrackingCode('AddToWishlist', { pageAdTrackIDs });
-      /* Tracking code - End */
 
+    if (data) {
+      callback();
       yield put(updateWishListSuccess(data));
       notification.success({ message: LOCALE.UPDATE_WISHLIST_SUCCESS[locale] });
     }

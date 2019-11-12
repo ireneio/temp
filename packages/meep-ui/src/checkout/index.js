@@ -6,6 +6,9 @@ import { notification } from 'antd';
 import { areEqual } from 'fbjs';
 import uuid from 'uuid/v4';
 
+import withContext from '@store/utils/lib/withContext';
+import adTrackContext from '@store/ad-track';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import { USER_TYPE, LOCATION_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
@@ -19,6 +22,7 @@ import OrderDetail from './orderDetail';
 
 import * as LOCALE from './locale';
 
+@withContext(adTrackContext)
 @enhancer
 export default class Checkout extends React.PureComponent {
   formRef = React.createRef();
@@ -35,10 +39,10 @@ export default class Checkout extends React.PureComponent {
     transformLocale: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
-    adTrack: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
 
     /** props */
+    adTrack: PropTypes.shape({}).isRequired,
     orderInfo: PropTypes.shape({}),
     products: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
   };
@@ -98,14 +102,13 @@ export default class Checkout extends React.PureComponent {
       location,
       locale,
       user,
-      cname,
       isLogin,
       transformLocale,
       getData,
       goTo,
-      adTrack,
       login,
       dispatchAction,
+      adTrack,
     } = this.props;
     const { isSubmitting } = this.state;
 
@@ -147,8 +150,7 @@ export default class Checkout extends React.PureComponent {
 
     if (this.isUnmounted) return;
 
-    const { id, orderNo, error, formData } =
-      result?.data?.createOrderList?.[0] || {};
+    const { id, error, formData } = result?.data?.createOrderList?.[0] || {};
     const { errors } = result || {};
 
     if (error || errors || !id) {
@@ -166,77 +168,70 @@ export default class Checkout extends React.PureComponent {
       this.idempotentKey = uuid();
       this.setState({ isSubmitting: false });
     } else {
-      adTrack(
-        'Purchase',
-        {
-          ...orderOtherDetailInfo,
-          cname,
-          orderNo,
-        },
-        () => {
-          const nextStep = (firstPurchase = false) => {
-            if (this.isUnmounted) return;
+      const nextStep = (firstPurchase = false) => {
+        if (this.isUnmounted) return;
 
-            const addRecipient = () => {
-              if (!isSaveAsReceiverTemplate) return;
+        const addRecipient = () => {
+          if (!isSaveAsReceiverTemplate) return;
 
-              dispatchAction('addRecipient', {
-                recipient: {
-                  name: fieldValue.name,
-                  mobile: fieldValue.mobile,
-                  address: {
-                    postalCode,
-                    yahooCode: {
-                      country: fieldValue.address[0],
-                      city: fieldValue.address[1] || '',
-                      county: fieldValue.address[2] || '',
-                      street: fieldValue.addressDetail,
-                    },
-                  },
+          dispatchAction('addRecipient', {
+            recipient: {
+              name: fieldValue.name,
+              mobile: fieldValue.mobile,
+              address: {
+                postalCode,
+                yahooCode: {
+                  country: fieldValue.address[0],
+                  city: fieldValue.address[1] || '',
+                  county: fieldValue.address[2] || '',
+                  street: fieldValue.addressDetail,
                 },
-              });
-            };
-
-            if (formData && formData.url) {
-              if (/CashSystemFrontEnd\/Query/.test(formData.url)) {
-                addRecipient();
-                dispatchAction('emptyCart');
-                goTo({ pathname: `/ezpay/cvcode/${id}` });
-                return;
-              }
-
-              if (formData.type === 'GET') {
-                window.location = formData.url;
-                return;
-              }
-
-              this.setState({ formData });
-              return;
-            }
-
-            addRecipient();
-            dispatchAction('emptyCart', orderData.points);
-            goTo({
-              pathname: `/checkout/thank-you-page/${id}`,
-              params: {
-                search: { firstPurchase },
               },
-            });
-          };
+            },
+          });
+        };
 
-          if (isLogin === NOTLOGIN) {
-            login({
-              email: userEmail,
-              password: userPassword,
-              callback: () => nextStep(true),
-              from: 'checkout',
-            });
+        if (formData && formData.url) {
+          if (/CashSystemFrontEnd\/Query/.test(formData.url)) {
+            addRecipient();
+            dispatchAction('emptyCart');
+            goTo({ pathname: `/ezpay/cvcode/${id}` });
             return;
           }
 
-          nextStep();
-        },
-      );
+          if (formData.type === 'GET') {
+            window.location = formData.url;
+            return;
+          }
+
+          this.setState({ formData });
+          return;
+        }
+
+        addRecipient();
+        dispatchAction('emptyCart', orderData.points);
+        goTo({
+          pathname: `/checkout/thank-you-page/${id}`,
+          params: {
+            search: { firstPurchase },
+          },
+        });
+      };
+
+      if (isLogin === NOTLOGIN) {
+        login({
+          email: userEmail,
+          password: userPassword,
+          callback: () => {
+            adTrack.completeRegistration();
+            nextStep(true);
+          },
+          from: 'checkout',
+        });
+        return;
+      }
+
+      nextStep();
     }
   };
 

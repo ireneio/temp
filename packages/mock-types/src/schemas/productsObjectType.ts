@@ -11,20 +11,68 @@ import { productsObjectTypeMock } from './__generated__/productsObjectTypeMock';
 gql`
   fragment productsObjectTypeMock on productsObjectType {
     id
+    productId
+    sku
+    title {
+      zh_TW
+    }
+    specs {
+      title {
+        zh_TW
+      }
+    }
+    totalPrice
+    quantity
   }
 `;
 
 export default mock.add<productsObjectTypeMock>('productsObjectType', [
   () => ({
     __typename: 'productsObjectType',
-    id: 'product-id',
-    quantity: 10,
+    id: 'id',
+    productId: 'product id',
     type: 'gift',
+    sku: 'sku',
+    title: {
+      __typename: 'Locale',
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      zh_TW: 'title',
+    },
+    specs: [
+      {
+        __typename: 'SpecValue',
+        title: {
+          __typename: 'Locale',
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          zh_TW: 'spec',
+        },
+      },
+    ],
+    totalPrice: 100,
+    quantity: 10,
   }),
   () => ({
     __typename: 'productsObjectType',
-    id: 'product-id',
-    quantity: 10,
+    id: 'id',
+    productId: 'product id',
     type: 'product',
+    sku: 'sku',
+    title: {
+      __typename: 'Locale',
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      zh_TW: 'title',
+    },
+    specs: [
+      {
+        __typename: 'SpecValue',
+        title: {
+          __typename: 'Locale',
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          zh_TW: 'spec',
+        },
+      },
+    ],
+    totalPrice: 100,
+    quantity: 10,
   }),
 ]);

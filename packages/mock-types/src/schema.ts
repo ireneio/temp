@@ -17,6 +17,8 @@ import DashboardInfo from './schemas/DashboardInfo';
 import ExchangeRate from './schemas/ExchangeRate';
 import ezPaymentReturnListObjectType from './schemas/ezPaymentReturnListObjectType';
 import ExportFormat from './schemas/ExportFormat';
+import FbPixel from './schemas/FbPixel';
+import gtag from './schemas/gtag';
 import GmoBankInstallment from './schemas/GmoBankInstallment';
 import GMOUserInfo from './schemas/GMOUserInfo';
 import MemberGroupList from './schemas/MemberGroupList';
@@ -34,6 +36,7 @@ import permissionUserObj from './schemas/permissionUserObj';
 import paymentInfoType from './schemas/paymentInfoType';
 import paymentObjectType from './schemas/paymentObjectType';
 import productsObjectType from './schemas/productsObjectType';
+import priceObjectType from './schemas/priceObjectType';
 import PaymentAccountForEzpay from './schemas/PaymentAccountForEzpay';
 import PaymentForAllpay from './schemas/PaymentForAllpay';
 import RecipientAddress from './schemas/RecipientAddress';
@@ -68,6 +71,8 @@ addMockFunctionsToSchema({
     ExchangeRate,
     ezPaymentReturnListObjectType,
     ExportFormat,
+    FbPixel,
+    gtag,
     GmoBankInstallment,
     GMOUserInfo,
     MemberGroupList,
@@ -85,6 +90,7 @@ addMockFunctionsToSchema({
     paymentInfoType,
     paymentObjectType,
     productsObjectType,
+    priceObjectType,
     PaymentAccountForEzpay,
     PaymentForAllpay,
     RecipientAddress,

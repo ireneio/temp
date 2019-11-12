@@ -13,6 +13,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/apollo-client-resolvers": "^0.27.0",
+    "@store/ad-track": "^0.1.0",
     "@store/apollo-client-resolvers": "^0.27.12",
     "@store/currency": "^0.27.9",
     "apollo-link-schema": "^1.2.0",

@@ -14,6 +14,7 @@ import { notification } from 'antd';
 
 import { appWithTranslation } from '@store/utils/lib/i18n';
 import { CurrencyProvider } from '@store/currency';
+import { AdTrackProvider } from '@store/ad-track';
 
 import { Error, CloseView, StoreNotExistsView } from 'components';
 import { Router } from 'server/routes';
@@ -206,15 +207,17 @@ class MyApp extends App {
       <Container>
         <ApolloProvider client={apolloClient}>
           <CurrencyProvider currency={currency}>
-            <Provider store={store}>
-              <Component
-                {...pageProps}
-                url={{
-                  asPath: router.asPath,
-                  query: router.query,
-                }}
-              />
-            </Provider>
+            <AdTrackProvider>
+              <Provider store={store}>
+                <Component
+                  {...pageProps}
+                  url={{
+                    asPath: router.asPath,
+                    query: router.query,
+                  }}
+                />
+              </Provider>
+            </AdTrackProvider>
           </CurrencyProvider>
         </ApolloProvider>
       </Container>

@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
+
+import withContext from '@store/utils/lib/withContext';
+import adTrackContext from '@store/ad-track';
+
 import * as Utils from 'utils';
 import { Container, TrackingCodeHead, Error } from 'components';
 import ProductDiscontinued from 'components/ProductDiscontinued';
@@ -59,10 +63,13 @@ class Product extends React.Component {
   static defaultProps = { error: null };
 
   componentDidMount() {
-    const { product, pageAdTrackIDs } = this.props;
-    if (product) {
-      Utils.execTrackingCode('ViewProduct', { product, pageAdTrackIDs });
-    }
+    const { adTrack, product } = this.props;
+
+    if (product)
+      adTrack.viewProduct({
+        id: product.id,
+        title: product.title,
+      });
   }
 
   render() {
@@ -150,4 +157,4 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps)(Product);
+export default connect(mapStateToProps)(withContext(adTrackContext)(Product));

@@ -28,6 +28,8 @@ export interface CurrencyType {
 }
 
 // definition
+export const Context = CurrencyContext;
+
 export const CurrencyProvider = React.memo(
   ({ currency: propsCurrency, children }: PropsType) => {
     const [currency, setCurrency] = useState<string>(propsCurrency);

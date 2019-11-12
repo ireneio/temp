@@ -4,6 +4,9 @@ import { Form, Select, InputNumber, Cascader, Modal } from 'antd';
 import { getElementPosition } from 'fbjs';
 import uuid from 'uuid';
 
+import withContext from '@store/utils/lib/withContext';
+import adTrackContext from '@store/ad-track';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import PaymentDefaultFormItem from 'paymentDefaultFormItem';
 import {
@@ -13,7 +16,6 @@ import {
   STORE_SETTING_TYPE,
 } from 'constants/propTypes';
 import getComputeOrderQuery from 'utils/getComputeOrderQuery';
-import removeContextTpyesFromProps from 'utils/removeContextTpyesFromProps';
 
 import { ADDITION_TYPE } from '../constants';
 import {
@@ -31,6 +33,7 @@ import mockPaymentInfoRef from './utils/mockPaymentInfoRef';
 const { Item: FormItem } = Form;
 const { Option } = Select;
 
+@withContext(adTrackContext)
 @enhancer
 @mockPaymentInfoRef
 class PayemntInfo extends React.PureComponent {
@@ -50,9 +53,9 @@ class PayemntInfo extends React.PureComponent {
     transformCurrency: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
-    adTrack: PropTypes.func.isRequired,
 
     /** props */
+    adTrack: PropTypes.shape({}).isRequired,
     moduleId: ID_TYPE.isRequired,
     form: PropTypes.shape({}).isRequired,
     changeChoosePayment: PropTypes.func.isRequired,
@@ -199,14 +202,23 @@ class PayemntInfo extends React.PureComponent {
 
     clearTimeout(this.trackTimeout);
     this.trackTimeout = setTimeout(() => {
-      const { adTrack, form, title, variants, ...props } = this.props;
+      const { adTrack, form, title, variants } = this.props;
+      const { productId } = this.state;
       const [variantId] = form.getFieldValue('variant').slice(-1);
+      const { quantity } = form.getFieldsValue();
+      const variant =
+        variants.find(
+          ({ id: currentVariantId }) => currentVariantId === variantId,
+        ) || {};
 
-      adTrack('AddToCart-LP', {
-        ...removeContextTpyesFromProps(props),
-        ...form.getFieldsValue(),
-        variant: variants.find(({ id }) => id === variantId) || {},
+      adTrack.addToCart({
+        eventName: 'lp',
+        id: productId,
         title,
+        quantity,
+        sku: variant.sku,
+        specs: variant.specs,
+        price: variant.totalPrice,
       });
       this.isTracked = true;
       callback();

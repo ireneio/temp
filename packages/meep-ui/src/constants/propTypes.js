@@ -275,7 +275,6 @@ export const CONTEXT_TYPES = {
   /** context func from props */
   setLocale: PropTypes.func.isRequired,
   setCustomerCurrency: PropTypes.func.isRequired,
-  adTrack: PropTypes.func.isRequired,
   goTo: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   getData: PropTypes.func.isRequired,

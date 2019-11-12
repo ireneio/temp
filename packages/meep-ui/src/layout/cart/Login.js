@@ -10,6 +10,8 @@ import {
 } from 'react-icons/fa';
 
 import { withNamespaces } from '@store/utils/lib/i18n';
+import withContext from '@store/utils/lib/withContext';
+import adTrackContext from '@store/ad-track';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -19,6 +21,7 @@ import * as styles from './styles/login';
 const { Item: FormItem } = Form;
 
 @withNamespaces('cart')
+@withContext(adTrackContext)
 @Form.create()
 @enhancer
 @radium
@@ -34,6 +37,7 @@ export default class Login extends React.PureComponent {
 
     /** props */
     t: PropTypes.func.isRequired,
+    adTrack: PropTypes.shape({}).isRequired,
     form: PropTypes.shape({
       getFieldDecorator: PropTypes.func.isRequired,
       getFieldsError: PropTypes.func.isRequired,
@@ -44,7 +48,7 @@ export default class Login extends React.PureComponent {
 
   submit = e => {
     e.preventDefault();
-    const { form, login } = this.props;
+    const { form, login, adTrack } = this.props;
 
     form.validateFields((err, { email, password }) => {
       if (!err) {
@@ -52,6 +56,9 @@ export default class Login extends React.PureComponent {
           email,
           password,
           from: 'cart',
+          callback: () => {
+            adTrack.completeRegistration();
+          },
         });
       }
     });
