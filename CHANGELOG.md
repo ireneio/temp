@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.27.14 (2019-11-12)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`, `store`
+  - [#751](https://github.com/meepshop/meep-lerna/pull/751) 建立新的 @store/ad-track ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#750](https://github.com/meepshop/meep-lerna/pull/750) 前端 - 移除 gtag/fbPixel 無用的 active 欄位 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.27.13 (2019-11-11)
 
 #### :bug: Bug Fix
