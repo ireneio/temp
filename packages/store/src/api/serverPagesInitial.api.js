@@ -293,13 +293,11 @@ export default async function(context) {
       total
     }
     getFbPixel {
-      active
       pixelId
     }
     getGtagList {
       type
       eventName
-      active
       code
     }
     getWebTrackList(search: $webTrackSearch) {

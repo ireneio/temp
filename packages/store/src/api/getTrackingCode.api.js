@@ -27,13 +27,11 @@ export default async function({ isServer = true, XMeepshopDomain }) {
 
   const query = `
     getFbPixel {
-      active
       pixelId
     }
     getGtagList {
       type
       eventName
-      active
       code
     }
     getWebTrackList(search: $webTrackSearch) {
