@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 0.28.0 (2019-11-13)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#760](https://github.com/meepshop/meep-lerna/pull/760) 產品問答元件 從 locale.js 改成 next-i18next ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#767](https://github.com/meepshop/meep-lerna/pull/767) 【個案處理】meepShop MAX 極速開店：新增白名單 - i-eat ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#768](https://github.com/meepshop/meep-lerna/pull/768) 【個別店家】 地圖元件，前台出現錯誤訊息「Google Maps Platform rejected your request. Invalid request. One of the input parameters contains a non-UTF-8 string.」 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.27.14 (2019-11-12)
 
 #### :rocket: New Feature
