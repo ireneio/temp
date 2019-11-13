@@ -90,9 +90,9 @@ export default class GoogleMap extends React.PureComponent {
         }}
         title="google map"
         src={`https://www.google.com/maps/embed?pb=${
-          (href || DEFAULT_LATITUDE_AND_LONGITUDE).match(
-            /(!([\w.-]|%3)+)+/g,
-          )?.[0]
+          /google\.com\/maps\/embed\?pb/.test(href)
+            ? href.match(/(?<=pb=)[\w%\-!.]*(?=")/g)?.[0]
+            : href || DEFAULT_LATITUDE_AND_LONGITUDE
         }`}
         allowFullScreen
       />
