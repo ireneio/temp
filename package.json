@@ -116,6 +116,8 @@
   "resolutions": {
     "@types/query-string": "6.2.0",
     "@types/graphql": "14.2.3",
+    "@types/next": "^8.0.7",
+    "@types/next-server": "^8.1.2",
     "next-i18next": "0.37.0",
     "query-string": "5.1.1",
     "graphql": "14.2.1",
