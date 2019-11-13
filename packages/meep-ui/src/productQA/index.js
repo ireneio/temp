@@ -6,11 +6,12 @@ import { subdirectoryArrowRight as ArrowRightIcon } from 'react-icons/md';
 import { isFullWidth, isEmail } from 'validator';
 import moment from 'moment';
 
+import { withNamespaces } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, ISLOGIN_TYPE, COLOR_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 
-import * as LOCALE from './locale';
 import { GET_PRODUCT_QA_LIST, CREATE_PRODUCT_QA } from './constants';
 import * as styles from './styles';
 
@@ -21,19 +22,20 @@ const { TextArea } = Input;
 
 @enhancer
 @Form.create()
+@withNamespaces('product-qa')
 @radium
 export default class PrdoductQA extends React.PureComponent {
   static propTypes = {
     /** context */
     isLogin: ISLOGIN_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
 
     /** antd */
     form: PropTypes.shape({}).isRequired,
 
     /** props */
+    t: PropTypes.func.isRequired,
     productId: ID_TYPE.isRequired,
   };
 
@@ -65,8 +67,15 @@ export default class PrdoductQA extends React.PureComponent {
   submit = e => {
     e.preventDefault();
 
-    const { getData, transformLocale, form, productId } = this.props;
-    const { validateFields, resetFields } = form;
+    const {
+      /** context */
+      getData,
+
+      /** props */
+      t,
+      form: { validateFields, resetFields },
+      productId,
+    } = this.props;
 
     validateFields(async (err, { userEmail, question }) => {
       if (!err) {
@@ -87,17 +96,23 @@ export default class PrdoductQA extends React.PureComponent {
 
           resetFields();
           this.setState({ QAList: [...result.createProductQA, ...QAList] });
-        } else {
-          message.error(transformLocale(LOCALE.CAN_NOT_SEND));
-        }
+        } else message.error(t('can-not-send'));
       }
     });
   };
 
   render() {
-    const { isLogin, colors, transformLocale, form, productId } = this.props;
+    const {
+      /** context */
+      isLogin,
+      colors,
+
+      /** props */
+      t,
+      form: { getFieldDecorator, resetFields },
+      productId,
+    } = this.props;
     const { QAList, showQAIndex } = this.state;
-    const { getFieldDecorator, resetFields } = form;
 
     return (
       <Form className={`productQA-${productId}`} onSubmit={this.submit}>
@@ -161,17 +176,17 @@ export default class PrdoductQA extends React.PureComponent {
               rules: [
                 {
                   required: true,
-                  message: transformLocale(LOCALE.IS_REQUIRED),
+                  message: t('is-required'),
                 },
                 {
                   validator: (rule, value, callback) => {
                     if (value && (isFullWidth(value) || !isEmail(value)))
-                      callback(transformLocale(LOCALE.NOT_EMAIL));
+                      callback(t('not-email'));
                     else callback();
                   },
                 },
               ],
-            })(<Input placeholder={transformLocale(LOCALE.EMAIL)} />)}
+            })(<Input placeholder={t('email')} />)}
           </FormItem>
         )}
 
@@ -180,12 +195,10 @@ export default class PrdoductQA extends React.PureComponent {
             rules: [
               {
                 required: true,
-                message: transformLocale(LOCALE.IS_REQUIRED),
+                message: t('is-required'),
               },
             ],
-          })(
-            <TextArea placeholder={transformLocale(LOCALE.CONTENT)} rows={4} />,
-          )}
+          })(<TextArea placeholder={t('content')} rows={4} />)}
         </FormItem>
 
         <div style={styles.buttonRoot}>
@@ -193,11 +206,11 @@ export default class PrdoductQA extends React.PureComponent {
             style={styles.resetButton(colors)}
             onClick={() => resetFields()}
           >
-            {transformLocale(LOCALE.RESET)}
+            {t('reset')}
           </Button>
 
           <Button style={styles.submitButton(colors)} htmlType="submit">
-            {transformLocale(LOCALE.SUBMIT)}
+            {t('submit')}
           </Button>
         </div>
       </Form>
