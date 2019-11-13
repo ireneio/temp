@@ -36,6 +36,7 @@ export const SPECIAL_HIDE_FOOTER = [
   'dusabioliving4',
   '2plus1store',
   'iwe',
+  'i-eat',
 ];
 
 export const STORE_APP_PLUGINS = [
