@@ -4,12 +4,12 @@
   "description": "Member order pay notify page for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.27.14",
+  "version": "0.28.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@store/apollo-client-resolvers": "^0.27.14",
-    "@store/utils": "^0.27.14"
+    "@store/apollo-client-resolvers": "^0.28.0",
+    "@store/utils": "^0.28.0"
   },
   "keywords": ["member order pay notify page", "store"]
 }

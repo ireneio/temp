@@ -4,11 +4,11 @@
   "description": "Orders export for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.27.14",
+  "version": "0.28.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/utils": "^0.27.14"
+    "@admin/utils": "^0.28.0"
   },
   "keywords": ["admin", "export", "orders"]
 }

@@ -4,12 +4,12 @@
   "description": "thank you page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.27.14",
+  "version": "0.28.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@store/ad-track": "^0.27.14",
-    "@store/utils": "^0.27.14",
+    "@store/ad-track": "^0.28.0",
+    "@store/utils": "^0.28.0",
     "clipboard": "^2.0.1"
   },
   "keywords": ["store", "thank you page"]
