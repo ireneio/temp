@@ -41,7 +41,9 @@ const ThankYouPage = withNamespaces('thank-you-page')(
         }).on('success', () => {
           message.success(t('copied'));
         });
-      else
+    }, [t, order, href]);
+    useEffect(() => {
+      if (order)
         adTrack.purchase({
           orderNo: order.orderNo || '', // FIXME: should not be null
           // @ts-ignore FIXME: should not be null
@@ -66,7 +68,7 @@ const ThankYouPage = withNamespaces('thank-you-page')(
           shipmentFee: idx(order, _ => _.priceInfo.shipmentFee) || 0, // FIXME: should not be null
           paymentFee: idx(order, _ => _.priceInfo.paymentFee) || 0, // FIXME: should not be null
         });
-    }, [t, href, order, adTrack]);
+    }, [order, adTrack]);
 
     return (
       <div className={styles.root}>
