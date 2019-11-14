@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.28.1 (2019-11-14)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#773](https://github.com/meepshop/meep-lerna/pull/773) 【BUG】 商店頁面無法載入 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.28.0 (2019-11-13)
 
 #### :boom: Breaking Change
