@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.28.2 (2019-11-14)
+
+#### :bug: Bug Fix
+
+- Other
+  - [#772](https://github.com/meepshop/meep-lerna/pull/772) 【BUG】 購買事件重複觸發 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.28.1 (2019-11-14)
 
 #### :bug: Bug Fix
