@@ -91,7 +91,7 @@ export default class GoogleMap extends React.PureComponent {
         title="google map"
         src={`https://www.google.com/maps/embed?pb=${
           /google\.com\/maps\/embed\?pb/.test(href)
-            ? href.match(/(?<=pb=)[\w%\-!.]*(?=")/g)?.[0]
+            ? href.match(/pb=[\w%\-!.]*(?=")/g)?.[0].substring(3)
             : href || DEFAULT_LATITUDE_AND_LONGITUDE
         }`}
         allowFullScreen
