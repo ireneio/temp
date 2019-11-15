@@ -1,30 +1,23 @@
-// typescript import
-import { NextDocumentContext } from 'next/document';
-
 // import
 import React from 'react';
-import NextDocument, { Head, Main, NextScript } from 'next/document';
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 
 // definition
 export default class Document extends NextDocument {
-  public static getInitialProps = async (ctx: NextDocumentContext) => ({
-    ...(await NextDocument.getInitialProps(ctx)),
-  });
-
-  public render(): React.ReactNode {
+  public render(): JSX.Element {
     return (
-      <html lang="zh">
+      <Html lang="zh">
         <Head>
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <link
             rel="shortcut icon"
             type="image/x-icon"
-            href="/static/images/favicon.ico"
+            href="/images/favicon.ico"
           />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
-            href="/static/images/apple-touch-icon.png"
+            href="/images/apple-touch-icon.png"
           />
         </Head>
 
@@ -33,7 +26,7 @@ export default class Document extends NextDocument {
 
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

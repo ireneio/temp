@@ -1,17 +1,17 @@
 // typescript import
-import { QueryResult } from 'react-apollo';
+import { QueryResult } from '@apollo/react-common';
 import { DrawerProps } from 'antd/lib/drawer';
 
 import { I18nPropsType } from '@admin/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
-import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import { Query } from '@apollo/react-components';
 import { Spin, Icon, Drawer, Select, Input, Button, Modal } from 'antd';
 import idx from 'idx';
 
-import { withNamespaces } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@admin/utils/lib/i18n';
 
 import { TYPE_LIST } from './constants';
 import styles from './styles/index.less';
@@ -53,7 +53,7 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
     loadingExportDownloadUri: false,
   };
 
-  private getExportDownloadUri = () => {
+  private getExportDownloadUri = (): void => {
     const {
       // HOC
       t,
@@ -197,7 +197,7 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
   }
 }
 
-const EnhancedOrdersExport = withNamespaces('orders-export')(OrdersExport);
+const EnhancedOrdersExport = withTranslation('orders-export')(OrdersExport);
 
 export default React.memo(
   ({

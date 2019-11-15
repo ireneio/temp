@@ -9,9 +9,9 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@store/utils": "^0.28.0",
-    "memoize-one": "^5.0.4",
+    "memoize-one": "^5.1.1",
     "moment": "^2.22.1",
-    "validator": "^10.8.0"
+    "validator": "^12.0.0"
   },
   "keywords": ["credit card", "gmo", "store"]
 }

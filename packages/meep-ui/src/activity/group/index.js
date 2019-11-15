@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 import { Spin, Icon } from 'antd';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, COLOR_TYPE, LOCALE_TYPE } from 'constants/propTypes';
@@ -14,7 +14,7 @@ import SortIcon from './SortIcon';
 
 import * as styles from './styles';
 
-@withNamespaces('activity')
+@withTranslation('activity')
 @enhancer
 @radium
 export default class Group extends React.PureComponent {

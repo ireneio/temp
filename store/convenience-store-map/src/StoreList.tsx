@@ -6,7 +6,7 @@ import React from 'react';
 import { Icon } from 'antd';
 import memoizeOne from 'memoize-one';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import StoreIcon from './StoreIcon';
 import styles from './styles/storeList.less';
@@ -93,4 +93,4 @@ class StoreList extends React.PureComponent<PropsType> {
   }
 }
 
-export default withNamespaces('convenience-store-map')(StoreList);
+export default withTranslation('convenience-store-map')(StoreList);

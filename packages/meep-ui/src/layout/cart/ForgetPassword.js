@@ -4,7 +4,7 @@ import radium from 'radium';
 import { Form, Input, Button } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -14,7 +14,7 @@ import * as loginStyles from './styles/login';
 
 const { Item: FormItem } = Form;
 
-@withNamespaces('cart')
+@withTranslation('cart')
 @Form.create()
 @enhancer
 @radium

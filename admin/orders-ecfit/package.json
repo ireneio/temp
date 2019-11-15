@@ -11,7 +11,7 @@
     "@admin/date-picker": "^0.28.0",
     "@admin/orders-export": "^0.28.0",
     "@admin/utils": "^0.28.0",
-    "memoize-one": "^5.0.4",
+    "memoize-one": "^5.1.1",
     "moment": "^2.22.1"
   },
   "keywords": ["admin", "ecfit", "orders"]

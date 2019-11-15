@@ -2,7 +2,7 @@
 import { ContextType } from './constants';
 
 // import
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 
 // graphql typescript
 import { SetCurrentInput } from '../../../__generated__/store';

@@ -4,9 +4,9 @@ import radium, { StyleRoot, Style } from 'radium';
 import { warning, areEqual } from 'fbjs';
 import { Modal } from 'antd';
 
+import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
-import { withNamespaces } from '@store/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
@@ -26,8 +26,8 @@ import {
 } from './constants';
 import { calculateOrderable, reformatVariant } from './utils';
 
+@withTranslation('product-info')
 @withContext(adTrackContext)
-@withNamespaces('product-info')
 @enhancer
 @buildVariantsTree('productData')
 @radium

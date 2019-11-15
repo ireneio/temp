@@ -1,12 +1,12 @@
 // typescript import
 import { I18nPropsType } from '@store/utils/lib/i18n';
-import { MutationFn } from 'react-apollo';
+import { MutationFunction } from '@apollo/react-common';
 import { DataProxy } from 'apollo-cache';
 
 // import
 import React from 'react';
-import { Query, Mutation } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query, Mutation } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import Router from 'next/router';
 import { Spin, Icon, Button, message } from 'antd';
@@ -14,7 +14,7 @@ import moment from 'moment';
 import transformColor from 'color';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 import {
   calculateOrderApply,
   calculateOrderProducts,
@@ -89,7 +89,9 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
   };
 
   // TODO: createOrderApplyVariables 與實際參數不相符
-  private submit = (createApplication: MutationFn<createOrderApply>) => () => {
+  private submit = (
+    createApplication: MutationFunction<createOrderApply>,
+  ) => () => {
     const {
       /** HOC */
       t,
@@ -136,7 +138,7 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
   private updateApplications = (
     store: DataProxy,
     { data: { createOrderApplyList } }: { data: createOrderApply },
-  ) => {
+  ): void => {
     const {
       order: { id },
     } = this.props;
@@ -412,7 +414,7 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
   }
 }
 
-const EnhancedMemberOrderApply = withNamespaces('member-order-apply')(
+const EnhancedMemberOrderApply = withTranslation('member-order-apply')(
   MemberOrderApply,
 );
 
@@ -422,7 +424,7 @@ export default ({
 }: {
   type: 'refund' | 'exchange';
   orderId: string;
-}) => (
+}): React.ReactElement => (
   <Query<getMemberOrderApply, getMemberOrderApplyVariables>
     query={gql`
       query getMemberOrderApply($orderId: ID!) {

@@ -7,7 +7,7 @@ import { DatePicker as AntdDatePicker } from 'antd';
 import { areEqual } from 'fbjs';
 import moment from 'moment';
 
-import { withNamespaces } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@admin/utils/lib/i18n';
 
 import styles from './styles/index.less';
 
@@ -178,4 +178,4 @@ class DatePicker extends React.PureComponent<PropsType, StateType> {
   }
 }
 
-export default withNamespaces('date-picker')(DatePicker);
+export default withTranslation('date-picker')(DatePicker);

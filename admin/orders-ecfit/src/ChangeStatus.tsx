@@ -1,17 +1,17 @@
 // typescript import
 import { DataProxy } from 'apollo-cache';
-import { MutationFn } from 'react-apollo';
+import { MutationFunction } from '@apollo/react-common';
 
 import { I18nPropsType } from '@admin/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
-import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import { Mutation } from '@apollo/react-components';
 import { Select, Modal, Icon, notification } from 'antd';
 import idx from 'idx';
 
-import { withNamespaces } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@admin/utils/lib/i18n';
 
 import { STATUS_LIST } from './constants';
 import styles from './styles/changeStatus.less';
@@ -53,7 +53,7 @@ class ChangeTypes extends React.PureComponent<PropsType> {
   private newStatus?: string;
 
   private selectChangeStatusType = (
-    updateOrderMutation: MutationFn<updateOrder, updateOrderVariables>,
+    updateOrderMutation: MutationFunction<updateOrder, updateOrderVariables>,
   ) => (statusType: StatusType) => {
     const { t } = this.props;
 
@@ -97,8 +97,8 @@ class ChangeTypes extends React.PureComponent<PropsType> {
 
   private changeOrderStatusWarning = (
     statusType: StatusType,
-    updateOrderMutation: MutationFn<updateOrder, updateOrderVariables>,
-  ) => {
+    updateOrderMutation: MutationFunction<updateOrder, updateOrderVariables>,
+  ): void => {
     const { t } = this.props;
 
     if (this.newStatus === 'CANCELED')
@@ -126,8 +126,8 @@ class ChangeTypes extends React.PureComponent<PropsType> {
 
   private updateOrders = async (
     statusType: StatusType,
-    updateOrderMutation: MutationFn<updateOrder, updateOrderVariables>,
-  ) => {
+    updateOrderMutation: MutationFunction<updateOrder, updateOrderVariables>,
+  ): Promise<void> => {
     const {
       // HOC
       t,
@@ -203,7 +203,7 @@ class ChangeTypes extends React.PureComponent<PropsType> {
   private updateOrderStatus = (
     cache: DataProxy,
     { data: { updateOrder: newOrder } }: { data: updateOrder },
-  ) => {
+  ): void => {
     if (!newOrder) {
       this.countErrors += 1;
       return;
@@ -287,4 +287,4 @@ class ChangeTypes extends React.PureComponent<PropsType> {
   }
 }
 
-export default withNamespaces('orders-ecfit')(ChangeTypes);
+export default withTranslation('orders-ecfit')(ChangeTypes);

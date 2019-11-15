@@ -1,13 +1,13 @@
 // typescript import
-import { QueryResult } from 'react-apollo';
+import { QueryResult } from '@apollo/react-common';
 
 import { I18nPropsType } from '@store/utils/lib/i18n';
 import { SetCurrentPropsType } from '@store/utils/lib/withSetCurrent';
 
 // import
 import React from 'react';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Table } from 'antd';
 import Link from 'next/link';
@@ -17,7 +17,7 @@ import memoizeOne from 'memoize-one';
 import moment from 'moment';
 import transformColor from 'color';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 import withSetCurrent from '@store/utils/lib/withSetCurrent';
 import getLinkProps from '@store/utils/lib/getLinkProps';
 
@@ -157,7 +157,7 @@ class MemberOrders extends React.PureComponent<PropsType> {
     ],
   );
 
-  private changePage = (newCurrent: number) => {
+  private changePage = (newCurrent: number): void => {
     const {
       // HOC
       setCurrent,
@@ -316,7 +316,7 @@ class MemberOrders extends React.PureComponent<PropsType> {
   }
 }
 
-const EnhancedMemberOrders = withNamespaces('member-orders')(
+const EnhancedMemberOrders = withTranslation('member-orders')(
   withSetCurrent('member-orders')(MemberOrders),
 );
 

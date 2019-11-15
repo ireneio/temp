@@ -3,13 +3,13 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React, { useState } from 'react';
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { WithTranslation } from '@store/utils/lib/i18n';
 
 import AddressCascader from './src';
 
 // definition
 export default React.memo(
-  withNamespaces('common')(({ i18n }: I18nPropsType) => {
+  WithTranslation('common')(({ i18n }: I18nPropsType) => {
     const [emptyValue, onChangeEmptyValue] = useState(undefined);
     const [value, onChange] = useState({
       address: [

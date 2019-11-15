@@ -19,7 +19,7 @@
       "PR: Internal :house:": ":house: Internal"
     }
   },
-  "lerna": "3.13.1",
+  "lerna": "3.18.4",
   "npmClient": "yarn",
   "npmClientArgs": [
     "--no-lockfile"

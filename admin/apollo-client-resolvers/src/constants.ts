@@ -1,5 +1,5 @@
 // typescript import
-import { InMemoryCache } from 'apollo-boost';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
 // typescript definition
 export interface ContextType {

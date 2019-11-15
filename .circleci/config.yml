@@ -23,6 +23,7 @@ save-cache: &save-cache
 deploy-docker: &deploy-docker
   name: Deploy docker
   command: |
+    yarn tsc:basic
     yarn prod
     yarn lerna run prod \
       --parallel \

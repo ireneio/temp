@@ -1,10 +1,11 @@
-patch-package
+diff --git a/node_modules/draftjs-to-html/lib/draftjs-to-html.js b/node_modules/draftjs-to-html/lib/draftjs-to-html.js
+index fe9c9a4..6b8a13c 100644
 --- a/node_modules/draftjs-to-html/lib/draftjs-to-html.js
 +++ b/node_modules/draftjs-to-html/lib/draftjs-to-html.js
 @@ -4,6 +4,8 @@
-  (global.draftjsToHtml = factory());
+ 	(global.draftjsToHtml = factory());
  }(this, (function () { 'use strict';
-
+ 
 +const emojiRegex = require('emoji-regex');
 +
  /**
@@ -13,7 +14,7 @@ patch-package
 @@ -576,6 +578,16 @@ function getListMarkup(listBlocks, entityMap, hashtagConfig, directional, custom
    return listHtml.join('');
  }
-
+ 
 +function replaceEmoji(emojiList, mockEmoji, html) {
 +  var newHtml = html;
 +
@@ -27,12 +28,11 @@ patch-package
  /**
  * The function will generate html markup for given draftjs editorContent.
  */
-@@ -587,23 +599,42 @@ function draftToHtml(editorContent, hashtagConfig, directional, customEntityTran
-
+@@ -587,23 +599,41 @@ function draftToHtml(editorContent, hashtagConfig, directional, customEntityTran
+ 
      if (blocks && blocks.length > 0) {
        var listBlocks = [];
 +      var listEmoji = [];
-+
 +
 +      // This code is `num lock`, and not used in `string` normally.
 +      var mockEmoji = String.fromCharCode(144);

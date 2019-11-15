@@ -1,17 +1,17 @@
 // typescript import
-import { QueryResult } from 'react-apollo';
+import { QueryResult } from '@apollo/react-common';
 import { CascaderOptionType } from 'antd/lib/cascader';
 
 import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { Cascader, Select } from 'antd';
 import memoizeOne from 'memoize-one';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import styles from './styles/installmentFormItem.less';
 
@@ -35,6 +35,7 @@ interface PropsType
       >,
       'refetch'
     > {
+  forwardedRef: React.Ref<Cascader | Select>;
   cardNumber: string;
   value?: string[];
   onChange?: (value: string[]) => void;
@@ -68,6 +69,7 @@ class InstallmentFormItem extends React.PureComponent<PropsType> {
       i18n,
 
       // props
+      forwardedRef,
       disabled,
       value,
       onChange,
@@ -78,6 +80,7 @@ class InstallmentFormItem extends React.PureComponent<PropsType> {
     if (!gmoBankInstallment && !allGmoBankInstallments)
       return (
         <Select
+          ref={forwardedRef as React.Ref<Select>}
           className={styles.root}
           placeholder={t('installments')}
           disabled
@@ -87,6 +90,7 @@ class InstallmentFormItem extends React.PureComponent<PropsType> {
     if (!gmoBankInstallment)
       return (
         <Cascader
+          ref={forwardedRef as React.Ref<Cascader>}
           className={styles.root}
           placeholder={`${t('bank')} / ${t('installments')}`}
           options={this.getOptions(allGmoBankInstallments, t, i18n)}
@@ -101,6 +105,7 @@ class InstallmentFormItem extends React.PureComponent<PropsType> {
     return (
       <>
         <Select
+          ref={forwardedRef as React.Ref<Select>}
           className={styles.root}
           placeholder={t('installments')}
           value={value}
@@ -128,7 +133,7 @@ class InstallmentFormItem extends React.PureComponent<PropsType> {
   }
 }
 
-const EnhancedInstallmentFormItem = withNamespaces('gmo-credit-card-form')(
+const EnhancedInstallmentFormItem = withTranslation('gmo-credit-card-form')(
   InstallmentFormItem,
 );
 
@@ -142,12 +147,9 @@ export default React.forwardRef(
     }: Pick<PropsType, 'cardNumber' | 'value' | 'onChange'> & {
       storePaymentId: string;
     },
-    ref: React.Ref<
-      Query<getGmoAvailableInstallments, getGmoAvailableInstallmentsVariables>
-    >,
+    ref: PropsType['forwardedRef'],
   ) => (
     <Query<getGmoAvailableInstallments, getGmoAvailableInstallmentsVariables>
-      ref={ref}
       query={gql`
         query getGmoAvailableInstallments(
           $storePaymentId: String!
@@ -181,6 +183,7 @@ export default React.forwardRef(
       {({ loading, error, data, refetch }) => (
         <EnhancedInstallmentFormItem
           {...(data as getGmoAvailableInstallments)}
+          forwardedRef={ref}
           cardNumber={cardNumber}
           value={value}
           onChange={onChange}

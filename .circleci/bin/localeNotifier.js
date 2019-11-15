@@ -14,7 +14,7 @@ const HOOK_URL =
   'https://hooks.glip.com/webhook/a86a81ec-fbd0-4a7c-8f34-2135d18d1309';
 const BOT_IMAGE_URL =
   'https://res.cloudinary.com/cakeresume/image/upload/s--Lv6sj1oB--/c_pad,fl_png8,h_200,w_200/v1509504375/pcotebjqdkfuqbvbt4xc.png';
-const ROOT_FOLDER = path.resolve('./src/static/locales');
+const ROOT_FOLDER = path.resolve('./src/public/locales');
 const URL_FOLDER = `https://github.com/meepshop/meep-lerna/tree/master/${path.relative(
   path.resolve(__dirname, '../..'),
   ROOT_FOLDER,

@@ -4,7 +4,7 @@ import memoizeOne from 'memoize-one';
 import { areEqual, emptyFunction } from 'fbjs';
 import { Affix, Drawer } from 'antd';
 import transformColor from 'color';
-import { bars as BarsIcon } from 'react-icons/fa';
+import { FaBars as BarsIcon } from 'react-icons/fa';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';

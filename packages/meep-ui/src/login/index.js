@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Radio } from 'antd';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import styles from './styles/index.less';
 import LoginForm from './LoginForm';
@@ -10,7 +10,7 @@ import SignupForm from './SignupForm';
 import SendResetPswMailForm from './SendResetPswMailForm';
 import { LOGIN, SIGNUP, FORGET_PSW } from './constants';
 
-@withNamespaces('login')
+@withTranslation('login')
 export default class Login extends React.PureComponent {
   static propTypes = {
     /** props */

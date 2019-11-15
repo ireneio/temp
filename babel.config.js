@@ -1,6 +1,7 @@
 const path = require('path');
 
 const findPkgDir = require('find-pkg-dir');
+const kebabCase = require('lodash.kebabcase');
 
 module.exports = {
   presets: [
@@ -8,7 +9,7 @@ module.exports = {
       '@babel/env',
       {
         useBuiltIns: 'usage',
-        corejs: '2.6.9',
+        corejs: '3.2.1',
       },
     ],
     '@babel/react',
@@ -30,8 +31,7 @@ module.exports = {
       {
         /* eslint-disable no-template-curly-in-string */
         antd: {
-          transform: 'antd/lib/${member}',
-          kebabCase: true,
+          transform: key => `antd/lib/${kebabCase(key)}`,
         },
         lodash: {
           transform: 'lodash/${member}',
@@ -41,14 +41,6 @@ module.exports = {
         },
         validator: {
           transform: 'validator/lib/${member}',
-        },
-        'react-icons/fa': {
-          transform: 'react-icons/lib/fa/${member}',
-          kebabCase: true,
-        },
-        'react-icons/md': {
-          transform: 'react-icons/lib/md/${member}',
-          kebabCase: true,
         },
         /* eslint-enable no-template-curly-in-string */
       },

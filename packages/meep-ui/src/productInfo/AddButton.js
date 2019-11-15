@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Button, Icon } from 'antd';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
@@ -11,7 +11,7 @@ import { ISUSER } from 'constants/isLogin';
 import styles from './styles/addButton.less';
 import { VARIANT_TYPE, ORDERABLE_TYPE } from './constants';
 
-@withNamespaces('product-info')
+@withTranslation('product-info')
 export default class AddButton extends React.Component {
   static propTypes = {
     t: PropTypes.func.isRequired,

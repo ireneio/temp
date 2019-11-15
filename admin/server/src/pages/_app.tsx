@@ -1,12 +1,13 @@
 // typescript import
-import { NextAppContext, DefaultAppIProps } from 'next/app';
-import { ApolloClient, NormalizedCacheObject } from 'apollo-boost';
+import { AppContext, AppInitialProps } from 'next/app';
+import { ApolloClient } from 'apollo-client';
+import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
 // import
 import 'isomorphic-unfetch';
 import React from 'react';
-import { ApolloProvider } from 'react-apollo';
-import NextApp, { Container } from 'next/app';
+import { ApolloProvider } from '@apollo/react-components';
+import NextApp from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
 
@@ -17,7 +18,7 @@ import Wrapper from '@admin/wrapper';
 import withApollo from '../apollo/withApollo';
 
 // typescript definition
-interface PropsType extends DefaultAppIProps {
+interface PropsType extends AppInitialProps {
   apolloClient: ApolloClient<NormalizedCacheObject>;
 }
 
@@ -26,10 +27,11 @@ export class App extends NextApp<PropsType> {
   public static getInitialProps = async ({
     Component,
     ctx,
-  }: NextAppContext) => {
-    const pageProps = Component.getInitialProps
-      ? await Component.getInitialProps(ctx)
-      : {};
+  }: AppContext): Promise<Omit<PropsType, 'apolloClient'>> => {
+    const pageProps: {
+      namespacesRequired?: string[];
+    } = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+
     return {
       pageProps: {
         ...pageProps,
@@ -45,7 +47,7 @@ export class App extends NextApp<PropsType> {
     });
   }
 
-  public render(): React.ReactNode {
+  public render(): JSX.Element {
     const {
       Component,
       pageProps,
@@ -54,12 +56,13 @@ export class App extends NextApp<PropsType> {
     } = this.props;
 
     return (
-      <Container>
+      <>
         <Head>
           <title>meepShop</title>
           {/* overwrite default viewport meta tag in next.js */}
           <meta name="viewport" content="" />
         </Head>
+
         <ApolloProvider client={apolloClient}>
           {/login/.test(pathname) ? (
             <Component {...pageProps} />
@@ -69,7 +72,7 @@ export class App extends NextApp<PropsType> {
             </Wrapper>
           )}
         </ApolloProvider>
-      </Container>
+      </>
     );
   }
 }

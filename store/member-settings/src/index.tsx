@@ -1,13 +1,13 @@
 // typescript import
-import { QueryResult } from 'react-apollo';
+import { QueryResult } from '@apollo/react-common';
 import { FormComponentProps } from 'antd/lib/form';
 
 import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import {
   Spin,
@@ -24,7 +24,7 @@ import idx from 'idx';
 import moment from 'moment';
 
 import AddressCascader from '@store/address-cascader';
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import RemoveCreditCardInfo from './RemoveCreditCardInfo';
 import styles from './styles/index.less';
@@ -66,7 +66,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
     if (!areEqual(member, prevProps.member)) refetch();
   }
 
-  private onSubmit = (e: React.FormEvent<HTMLElement>) => {
+  private onSubmit = (e: React.FormEvent<HTMLElement>): void => {
     e.preventDefault();
 
     const {
@@ -317,7 +317,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
   }
 }
 
-const EnhancedMemberSettings = withNamespaces('member-settings')(
+const EnhancedMemberSettings = withTranslation('member-settings')(
   Form.create<PropsType>()(MemberSettings),
 );
 

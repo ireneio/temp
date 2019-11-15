@@ -5,8 +5,8 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React, { useMemo, useState, useEffect } from 'react';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { Cascader, Select, Input } from 'antd';
 import idx from 'idx';
 
@@ -26,6 +26,7 @@ import localeFragment from '@store/utils/lib/fragments/locale';
 
 // typescript definition
 interface PropsType extends Pick<I18nPropsType, 'i18n'> {
+  forwardedRef: React.Ref<HTMLDivElement>;
   className?: string;
   size?: 'small' | 'default' | 'large';
   placeholder: [string, string];
@@ -84,6 +85,8 @@ const findZipcodes = (
 
 const AddressCascader = React.memo(
   ({
+    // props
+    forwardedRef,
     i18n,
     className,
     size,
@@ -127,6 +130,7 @@ const AddressCascader = React.memo(
 
     return (
       <div
+        ref={forwardedRef}
         className={`${styles.root} ${
           !isSelectAddress || addressLength === 1 ? '' : styles.selectZipCode
         } ${className}`}
@@ -175,11 +179,10 @@ const AddressCascader = React.memo(
 
 export default React.forwardRef(
   (
-    props: Omit<PropsType, 'countries' | 'colors'>,
-    ref: React.Ref<Query<getCountriesAddress>>,
+    props: Omit<PropsType, 'forwardedRef' | 'countries' | 'colors'>,
+    ref: PropsType['forwardedRef'],
   ) => (
     <Query<getCountriesAddress>
-      ref={ref}
       query={gql`
         query getCountriesAddress {
           addressService {
@@ -188,13 +191,11 @@ export default React.forwardRef(
               name {
                 ...localeFragment
               }
-
               children: cities {
                 id
                 name {
                   ...localeFragment
                 }
-
                 children: areas {
                   id
                   name {
@@ -205,12 +206,10 @@ export default React.forwardRef(
               }
             }
           }
-
           getColorList {
             ...colorListFragment
           }
         }
-
         ${colorListFragment}
         ${localeFragment}
       `}
@@ -229,6 +228,7 @@ export default React.forwardRef(
         return (
           <AddressCascader
             {...props}
+            forwardedRef={ref}
             countries={countries}
             colors={getColorList.colors}
           />

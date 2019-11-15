@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Form, Input, Row, Col } from 'antd';
 import { StyleRoot } from 'radium';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -12,7 +12,7 @@ import * as styles from './styles';
 
 const FormItem = Form.Item;
 
-@withNamespaces('forgot-password')
+@withTranslation('forgot-password')
 @enhancer
 @Form.create()
 export default class ForgotPswForm extends React.PureComponent {

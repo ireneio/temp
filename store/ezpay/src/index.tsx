@@ -1,7 +1,7 @@
 // import
 import React from 'react';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 import Router from 'next/router';
 import idx from 'idx';
@@ -178,7 +178,7 @@ export default ({
   familyMartLogo: string;
   hiLifeLogo: string;
   oKmartLogo: string;
-}) => (
+}): React.ReactElement => (
   <Query<getOrderInEzpay, getOrderInEzpayVariables>
     query={gql`
       query getOrderInEzpay($orderId: ID!) {

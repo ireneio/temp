@@ -5,10 +5,10 @@ import { Blocks } from './index';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 // graphql typescript
 import { shipmentInfoFragment as shipmentInfoFragmentType } from './__generated__/shipmentInfoFragment';
@@ -32,7 +32,7 @@ export const shipmentInfoFragment = gql`
   }
 `;
 
-export default withNamespaces('member-order')(
+export default withTranslation('member-order')(
   ({
     t,
     children,

@@ -1,15 +1,16 @@
 // typescript import
-import { QueryResult } from 'react-apollo';
+import { QueryResult } from '@apollo/react-common';
+
 import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { ApolloConsumer } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { ApolloConsumer } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { Modal, Tabs } from 'antd';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import AddressSelect from './AddressSelect';
 import SearchInput from './SearchInput';
@@ -56,7 +57,7 @@ class ConvenienceStoreMap extends React.PureComponent<PropsType> {
     street: string;
     name: string;
     storeNumber: string;
-  }) => {
+  }): Promise<void> => {
     const { client, shipmentType, storeTypes } = this.props;
 
     const { data } = await client.query({
@@ -94,15 +95,15 @@ class ConvenienceStoreMap extends React.PureComponent<PropsType> {
     }
   };
 
-  public selectStore = (store: {}) => {
+  public selectStore = (store: {}): void => {
     this.setState({ store });
   };
 
-  public reselectStore = () => {
+  public reselectStore = (): void => {
     this.setState({ store: {} });
   };
 
-  public cleanStores = () => {
+  public cleanStores = (): void => {
     const { showStoreList } = this.state;
 
     if (showStoreList) {
@@ -235,7 +236,7 @@ class ConvenienceStoreMap extends React.PureComponent<PropsType> {
   }
 }
 
-const EnhancedConvenienceStoreMap = withNamespaces('convenience-store-map')(
+const EnhancedConvenienceStoreMap = withTranslation('convenience-store-map')(
   ConvenienceStoreMap,
 );
 

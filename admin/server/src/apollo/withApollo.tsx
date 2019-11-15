@@ -1,7 +1,7 @@
 // typescript import
-import { NextAppContext, AppProps, DefaultAppIProps } from 'next/app';
-import { DefaultQuery } from 'next/router';
-import { ApolloClient, NormalizedCacheObject } from 'apollo-boost';
+import { AppContext, AppProps, AppInitialProps } from 'next/app';
+import { ApolloClient } from 'apollo-client';
+import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
 import { I18nPropsType } from '@admin/utils/lib/i18n';
 
@@ -10,35 +10,35 @@ import { App as NextApp } from '../pages/_app';
 // import
 import React from 'react';
 import Head from 'next/head';
-import { getDataFromTree } from 'react-apollo';
+import { getDataFromTree } from '@apollo/react-ssr';
 import idx from 'idx';
 
 import initApollo from './initApollo';
 import changeLanguage from './changeLanguage';
 
 // typescript definition
-interface PropsType extends AppProps, DefaultAppIProps {
+interface PropsType extends AppProps {
   apolloState?: NormalizedCacheObject;
 }
 
-export interface CustomReq {
-  headers: {
-    host: string;
+export interface CustomCtx extends AppContext {
+  ctx: AppContext['ctx'] & {
+    req: {
+      cookies: {
+        'x-meepshop-authorization-token': string;
+      };
+      i18n: I18nPropsType['i18n'];
+      language: I18nPropsType['i18n']['language'];
+    };
   };
-  cookies: {
-    'x-meepshop-authorization-token': string;
-    'next-i18next': I18nPropsType['i18n']['language'];
-  };
-  language: I18nPropsType['i18n']['language'];
-  i18n: I18nPropsType['i18n'];
 }
 
 // definition
-export default (App: typeof NextApp) =>
+export default (App: typeof NextApp): React.ComponentType =>
   class WithApollo extends React.Component<PropsType> {
     public static getInitialProps = async (
-      ctx: NextAppContext<DefaultQuery, CustomReq>,
-    ) => {
+      ctx: CustomCtx,
+    ): Promise<AppInitialProps & Omit<PropsType, keyof AppProps>> => {
       const {
         Component,
         router,
@@ -57,7 +57,7 @@ export default (App: typeof NextApp) =>
 
       const appProps = await App.getInitialProps(ctx);
 
-      if (idx(res, _ => _.finished)) return {};
+      if (idx(res, _ => _.finished)) return appProps;
 
       if (!process.browser) {
         try {

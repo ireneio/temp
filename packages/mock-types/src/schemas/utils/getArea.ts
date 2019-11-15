@@ -1,5 +1,20 @@
 // definition
-export default (id: string) =>
+export default (
+  id: string,
+):
+  | {
+      __typename: string;
+      id: string;
+      name: {
+        __typename: string;
+        zh_TW: string | null;
+        en_US: string | null;
+        ja_JP: string | null;
+        vi_VN: string | null;
+      };
+      zipCodes: string[];
+    }
+  | undefined =>
   [
     {
       __typename: 'Area',

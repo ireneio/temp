@@ -8,7 +8,7 @@ import { Select } from 'antd';
 import moment from 'moment';
 
 import OrdersExport from '@admin/orders-export';
-import { withNamespaces } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@admin/utils/lib/i18n';
 
 // typescript definition
 type OperatingType = 'export' | 'print' | string;
@@ -21,7 +21,7 @@ class MoreOperating extends React.PureComponent<I18nPropsType> {
     showOrdersExport: false,
   };
 
-  private operating = (operatingType: OperatingType) => {
+  private operating = (operatingType: OperatingType): void => {
     if (operatingType === 'print') {
       // TODO: remove after orderlist move to next-admin
       localStorage.setItem('selectedOrders-timeout', moment().format());
@@ -59,4 +59,4 @@ class MoreOperating extends React.PureComponent<I18nPropsType> {
   }
 }
 
-export default withNamespaces('orders-ecfit')(MoreOperating);
+export default withTranslation('orders-ecfit')(MoreOperating);

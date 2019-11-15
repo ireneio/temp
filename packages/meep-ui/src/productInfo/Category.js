@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Select } from 'antd';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import { COLOR_TYPE, LOCALE_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles/category';
 
-@withNamespaces('product-info')
+@withTranslation('product-info')
 @radium
 export default class Category extends React.Component {
   static propTypes = {

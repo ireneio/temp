@@ -4,13 +4,13 @@ import { I18nPropsType } from '@admin/utils/lib/i18n';
 // import
 import React from 'react';
 import Link from 'next/link';
-import { gql } from 'apollo-boost';
-import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import { Query } from '@apollo/react-components';
 import { Spin, Icon } from 'antd';
 import moment from 'moment';
 import idx from 'idx';
 
-import { withNamespaces } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@admin/utils/lib/i18n';
 import formatAmount from '@admin/utils/lib/formatAmount';
 
 import styles from './styles/index.less';
@@ -32,7 +32,7 @@ interface PropsType extends I18nPropsType {
 
 // definition
 class Dashboard extends React.Component<PropsType> {
-  private formatAmount = (amount: number | null) => {
+  private formatAmount = (amount: number | null): string => {
     if (amount === null) return '';
 
     const { viewer } = this.props;
@@ -81,7 +81,7 @@ class Dashboard extends React.Component<PropsType> {
           ) : null}
           <div className={styles.welcome}>
             <img
-              src="/static/images/dashboard/logo.svg"
+              src="/images/dashboard/logo.svg"
               className={styles.logo}
               alt="meepshop"
             />
@@ -107,28 +107,28 @@ class Dashboard extends React.Component<PropsType> {
           </div>
           <div className={styles.statistics}>
             <div>
-              <img src="/static/images/dashboard/revenue.svg" alt="revenue" />
+              <img src="/images/dashboard/revenue.svg" alt="revenue" />
               <div>
                 <span>{t('revenue')}</span>
                 <span>{this.formatAmount(revenueMonthly)}</span>
               </div>
             </div>
             <div>
-              <img src="/static/images/dashboard/cost.svg" alt="cost" />
+              <img src="/images/dashboard/cost.svg" alt="cost" />
               <div>
                 <span>{t('cost')}</span>
                 <span>{this.formatAmount(costMonthly)}</span>
               </div>
             </div>
             <div>
-              <img src="/static/images/dashboard/order.svg" alt="order" />
+              <img src="/images/dashboard/order.svg" alt="order" />
               <div>
                 <span>{t('order')}</span>
                 <span className={styles.green}>{orderMonthly}</span>
               </div>
             </div>
             <div>
-              <img src="/static/images/dashboard/member.svg" alt="member" />
+              <img src="/images/dashboard/member.svg" alt="member" />
               <div>
                 <span>{t('member')}</span>
                 <span className={styles.green}>{userCount}</span>
@@ -141,7 +141,7 @@ class Dashboard extends React.Component<PropsType> {
   }
 }
 
-const EnhancedDashboard = withNamespaces('dashboard')(Dashboard);
+const EnhancedDashboard = withTranslation('dashboard')(Dashboard);
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const DashboardPage = () => (

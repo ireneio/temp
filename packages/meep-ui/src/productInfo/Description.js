@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import DraftText from 'draftText';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
@@ -115,4 +115,4 @@ Description.defaultProps = {
   activityData: null,
 };
 
-export default withNamespaces('product-info')(radium(Description));
+export default withTranslation('product-info')(radium(Description));

@@ -3,14 +3,14 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 import transformColor from 'color';
 import moment from 'moment';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import Application, { getApplicationStyles } from './Application';
 import styles from './styles/index.less';
@@ -75,11 +75,11 @@ const MemberOrderApplications = React.memo(
   ),
 );
 
-const EnhancedMemberOrderApplications = withNamespaces(
+const EnhancedMemberOrderApplications = withTranslation(
   'member-order-applications',
 )(MemberOrderApplications);
 
-export default ({ orderId }: { orderId: string }) => (
+export default ({ orderId }: { orderId: string }): React.ReactElement => (
   <Query<getMemberOrderApplications, getMemberOrderApplicationsVariables>
     query={gql`
       query getMemberOrderApplications($orderId: ID!) {

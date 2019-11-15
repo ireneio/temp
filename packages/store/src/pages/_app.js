@@ -3,12 +3,12 @@
 import 'isomorphic-unfetch';
 import '@store/utils/lib/styles/base.less';
 import React from 'react';
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import getConfig from 'next/config';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from '@apollo/react-components';
 import NProgress from 'nprogress';
 import { notification } from 'antd';
 
@@ -23,7 +23,7 @@ import configureStore from 'ducks/store';
 import * as Actions from 'ducks/actions';
 import withApollo from 'apollo/withApollo';
 
-import '../static/nprogress.less';
+import '../public/nprogress.less';
 
 const {
   publicRuntimeConfig: { API_HOST },
@@ -204,23 +204,21 @@ class MyApp extends App {
     if (storeNotFound) return <StoreNotExistsView />;
 
     return (
-      <Container>
-        <ApolloProvider client={apolloClient}>
-          <CurrencyProvider currency={currency}>
-            <AdTrackProvider>
-              <Provider store={store}>
-                <Component
-                  {...pageProps}
-                  url={{
-                    asPath: router.asPath,
-                    query: router.query,
-                  }}
-                />
-              </Provider>
-            </AdTrackProvider>
-          </CurrencyProvider>
-        </ApolloProvider>
-      </Container>
+      <ApolloProvider client={apolloClient}>
+        <CurrencyProvider currency={currency}>
+          <AdTrackProvider>
+            <Provider store={store}>
+              <Component
+                {...pageProps}
+                url={{
+                  asPath: router.asPath,
+                  query: router.query,
+                }}
+              />
+            </Provider>
+          </AdTrackProvider>
+        </CurrencyProvider>
+      </ApolloProvider>
     );
   }
 }

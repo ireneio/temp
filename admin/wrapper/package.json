@@ -9,7 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/utils": "^0.28.0",
-    "memoize-one": "^5.0.4"
+    "memoize-one": "^5.1.1"
   },
   "keywords": ["admin", "wrapper"]
 }

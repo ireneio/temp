@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { areEqual } from 'fbjs';
 import radium, { Style } from 'radium';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
@@ -20,7 +20,7 @@ import { PHONE_MEDIA } from 'constants/media';
 
 import * as styles from './styles/product';
 
-@withNamespaces('activity')
+@withTranslation('activity')
 @enhancer
 @radium
 export default class Product extends React.PureComponent {

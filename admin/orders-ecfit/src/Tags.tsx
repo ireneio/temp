@@ -6,10 +6,10 @@ import { getEcfitListQueryPropsType } from './constants';
 // import
 import React from 'react';
 import { Tag } from 'antd';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import idx from 'idx';
 
-import { withNamespaces } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@admin/utils/lib/i18n';
 
 import { TAGS_KEYS } from './constants';
 import emptyArrayToUndefined from './utils/emptyArrayToUndefined';
@@ -108,4 +108,4 @@ const Tags = React.memo(
   ),
 );
 
-export default withNamespaces('orders-ecfit')(Tags);
+export default withTranslation('orders-ecfit')(Tags);

@@ -1,12 +1,11 @@
 // typescript import
-import { NextContext } from 'next';
-import { DefaultQuery } from 'next/router';
-import { ApolloClient, NormalizedCacheObject } from 'apollo-boost';
+import { ApolloClient } from 'apollo-client';
+import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
-import { CustomReq } from './withApollo';
+import { CustomCtx } from './withApollo';
 
 // import
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import idx from 'idx';
 
 // graphql typescript
@@ -15,8 +14,8 @@ import { getAdminLocale } from './__generated__/getAdminLocale';
 // definition
 export default async (
   client: ApolloClient<NormalizedCacheObject>,
-  { req }: NextContext<DefaultQuery, CustomReq>,
-) => {
+  { req }: CustomCtx['ctx'],
+): Promise<void> => {
   if (!req) return;
 
   const result = await client.query<getAdminLocale>({

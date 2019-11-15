@@ -3,7 +3,7 @@ import { ContextType } from './constants';
 
 // import
 import idx from 'idx';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 
 // typescript definition
 interface UserType {

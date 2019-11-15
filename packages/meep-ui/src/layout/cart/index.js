@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { StyleRoot } from 'radium';
 import { warning } from 'fbjs';
 import { Drawer } from 'antd';
-import { angleRight as AngleRightIcon } from 'react-icons/fa';
-import { keyboardBackspace as ArrowLeftIcon } from 'react-icons/md';
+import { FaAngleRight as AngleRightIcon } from 'react-icons/fa';
+import { MdKeyboardBackspace as ArrowLeftIcon } from 'react-icons/md';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';

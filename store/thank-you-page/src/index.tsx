@@ -4,14 +4,14 @@ import { OptionType } from '@store/ad-track/lib/utils/getPurchaseTrack';
 
 // import
 import React, { useEffect, useContext } from 'react';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import Router from 'next/router';
 import { Spin, Icon, Progress, Button, message } from 'antd';
 import Clipboard from 'clipboard';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 import getLinkProps from '@store/utils/lib/getLinkProps';
 import adTrackContext from '@store/ad-track';
 
@@ -30,7 +30,7 @@ interface PropsType extends I18nPropsType {
 }
 
 // definition
-const ThankYouPage = withNamespaces('thank-you-page')(
+const ThankYouPage = withTranslation('thank-you-page')(
   React.memo(({ t, href, order }: PropsType) => {
     const { adTrack } = useContext(adTrackContext);
 
@@ -46,8 +46,8 @@ const ThankYouPage = withNamespaces('thank-you-page')(
       if (order)
         adTrack.purchase({
           orderNo: order.orderNo || '', // FIXME: should not be null
-          // @ts-ignore FIXME: should not be null
-          products: (order.products || []).reduce(
+          products: (idx(order, _ => _.products) || []).reduce(
+            // FIXME: should not be null
             (result: OptionType['products'], data) => {
               if (!data) return result;
 
@@ -111,7 +111,13 @@ const ThankYouPage = withNamespaces('thank-you-page')(
   }),
 );
 
-export default ({ orderId, href }: { orderId: string; href: string }) => (
+export default ({
+  orderId,
+  href,
+}: {
+  orderId: string;
+  href: string;
+}): React.ReactElement => (
   <Query<getOrderInThankYouPage>
     query={gql`
       query getOrderInThankYouPage($orderId: ID!) {

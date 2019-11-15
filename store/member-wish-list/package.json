@@ -11,7 +11,7 @@
     "@store/apollo-client-resolvers": "^0.28.0",
     "@store/thumbnail": "^0.28.0",
     "@store/utils": "^0.28.0",
-    "memoize-one": "^5.0.4",
+    "memoize-one": "^5.1.1",
     "moment": "^2.22.1"
   },
   "keywords": ["member wish list page", "store"]

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { close as RemoveIcon } from 'react-icons/md';
-import { tag as TagIcon } from 'react-icons/fa';
+import { MdClose as RemoveIcon } from 'react-icons/md';
+import { FaTag as TagIcon } from 'react-icons/fa';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ThumbPlaceholder } from 'placeholder';

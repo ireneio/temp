@@ -9,7 +9,7 @@ import { Form as AntdForm, DatePicker, Input } from 'antd';
 import moment from 'moment';
 import { isNumeric, isInt } from 'validator';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import CreditCardInput from './CreditCardInput';
 import InstallmentFormItem from './InstallmentFormItem';
@@ -132,4 +132,4 @@ class Form extends React.PureComponent<PropsType> {
   }
 }
 
-export default withNamespaces('gmo-credit-card-form')(Form);
+export default withTranslation('gmo-credit-card-form')(Form);

@@ -4,6 +4,7 @@ import { addMockFunctionsToSchema } from 'graphql-tools';
 import moment from 'moment';
 
 // Generate by command
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 // eslint-disable-next-line import/no-unresolved
 import schemaJSON from '../schema.json';
@@ -56,6 +57,7 @@ import WishlistProduct from './schemas/WishlistProduct';
 
 // definition
 // TODO: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/34649
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 const schema = buildClientSchema(schemaJSON);
 

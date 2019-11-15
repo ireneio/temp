@@ -7,14 +7,14 @@ import { MenuItemType } from './constants';
 import React from 'react';
 import { withRouter } from 'next/router';
 import Link from 'next/link';
-import { gql } from 'apollo-boost';
-import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import { Query } from '@apollo/react-components';
 import { Layout, Menu, Spin, Icon, Popover, Tooltip } from 'antd';
 import memoizeOne from 'memoize-one';
 import { areEqual } from 'fbjs';
 import idx from 'idx';
 
-import { withNamespaces } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@admin/utils/lib/i18n';
 
 import generateMenu from './utils/generateMenu';
 import generateController from './utils/generateController';
@@ -88,7 +88,7 @@ class Wrapper extends React.Component<PropsType> {
     this.checkStatus();
   }
 
-  private checkStatus = () => {
+  private checkStatus = (): void => {
     const { viewer, router } = this.props;
 
     if (idx(viewer, _ => _.store.adminStatus) === 'CLOSED_BILL_NOT_PAID')
@@ -145,7 +145,7 @@ class Wrapper extends React.Component<PropsType> {
                         placement="rightTop"
                         content={(sub || []).map(subitem => (
                           <div key={subitem.title} className={styles.subitem}>
-                            <Link href={subitem.path}>
+                            <Link href={subitem.path as string}>
                               <a href={subitem.path} target={subitem.target}>
                                 <img src={subitem.src} alt={t(subitem.title)} />
                                 <span>{t(subitem.title)}</span>
@@ -167,7 +167,7 @@ class Wrapper extends React.Component<PropsType> {
                         title={t(title)}
                       >
                         <div>
-                          <Link href={path}>
+                          <Link href={path as string}>
                             <a href={path}>
                               <img src={src} alt={t(title)} />
                             </a>
@@ -193,7 +193,7 @@ class Wrapper extends React.Component<PropsType> {
                       placement="rightBottom"
                       content={(sub || []).map(subitem => (
                         <div key={subitem.title} className={styles.subitem}>
-                          <Link href={subitem.path}>
+                          <Link href={subitem.path as string}>
                             <a href={subitem.path} target={subitem.target}>
                               <img src={subitem.src} alt={t(subitem.title)} />
                               <span>{t(subitem.title)}</span>
@@ -220,7 +220,7 @@ class Wrapper extends React.Component<PropsType> {
   }
 }
 
-const EnhancedWrapper = withNamespaces('common')(withRouter(Wrapper));
+const EnhancedWrapper = withTranslation('common')(withRouter(Wrapper));
 
 const WrapperWithData = ({
   children,

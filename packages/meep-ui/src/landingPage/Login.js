@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Button, Modal, notification } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
-import { lock as LockIcon } from 'react-icons/md';
+import { MdLock as LockIcon } from 'react-icons/md';
 
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';

@@ -1,7 +1,11 @@
-import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
+import { ApolloClient } from 'apollo-client';
+import {
+  InMemoryCache,
+  IntrospectionFragmentMatcher,
+} from 'apollo-cache-inmemory';
+import { HttpLink } from 'apollo-link-http';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
-import { IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 import getConfig from 'next/config';
 import Router from 'next/router';
 import { notification } from 'antd';
@@ -37,7 +41,7 @@ const create = (initialState, ctx) => {
     name: 'store',
     version: VERSION,
     connectToDevTools: process.browser,
-    ssrMode: process.browser,
+    ssrMode: !process.browser,
     cache,
     resolvers,
     link: ApolloLink.from([

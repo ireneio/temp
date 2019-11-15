@@ -4,13 +4,13 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import { Table } from 'antd';
 import moment from 'moment';
 import memoizeOne from 'memoize-one';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 import Thumbnail from '@store/thumbnail';
 
 import styles from './styles/application.less';
@@ -216,4 +216,4 @@ export const getApplicationStyles = (
   }
 `;
 
-export default withNamespaces('member-order-applications')(Application);
+export default withTranslation('member-order-applications')(Application);

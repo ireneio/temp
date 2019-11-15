@@ -8,7 +8,7 @@ import React from 'react';
 import { Form as AntdForm, Input, Button } from 'antd';
 
 import AddressCascader from '@store/address-cascader';
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 import validateMobile from '@store/utils/lib/validate/mobile';
 
 import styles from './styles/form.less';
@@ -42,7 +42,7 @@ interface PropsType
 const { Item: FormItem } = AntdForm;
 
 class Form extends React.PureComponent<PropsType> {
-  private onSubmit = (e: React.FormEvent<HTMLElement>) => {
+  private onSubmit = (e: React.FormEvent<HTMLElement>): void => {
     e.preventDefault();
 
     const {
@@ -199,7 +199,7 @@ class Form extends React.PureComponent<PropsType> {
   }
 }
 
-export default withNamespaces('member-recipients')(
+export default withTranslation('member-recipients')(
   AntdForm.create<PropsType>({
     mapPropsToFields: ({
       name,

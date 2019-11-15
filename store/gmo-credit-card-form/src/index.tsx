@@ -1,18 +1,18 @@
 // typescript import
 import { FormComponentProps } from 'antd/lib/form';
-import { WithRouterProps } from 'next/router';
+import { WithRouterProps } from 'next/dist/client/with-router';
 
 import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { withRouter } from 'next/router';
 import { Spin, Icon, Input, Checkbox } from 'antd';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import Form from './Form';
 import styles from './styles/index.less';
@@ -122,21 +122,17 @@ class GmoCreditCardForm extends React.PureComponent<PropsType> {
   }
 }
 
-const EnhancedGmoCreditCardForm = withNamespaces('gmo-credit-card-form')(
+const EnhancedGmoCreditCardForm = withTranslation('gmo-credit-card-form')(
   withRouter(GmoCreditCardForm),
 );
 
-export default React.forwardRef(
-  (
-    {
-      storePaymentId,
-      isInstallment,
-      form,
-    }: getGMOUserVariables & Pick<PropsType, 'isInstallment' | 'form'>,
-    ref: React.Ref<Query<getGMOUser, getGMOUserVariables>>,
-  ) => (
+export default React.memo(
+  ({
+    storePaymentId,
+    isInstallment,
+    form,
+  }: getGMOUserVariables & Pick<PropsType, 'isInstallment' | 'form'>) => (
     <Query<getGMOUser, getGMOUserVariables>
-      ref={ref}
       query={gql`
         query getGMOUser($storePaymentId: ID!) {
           gmoUser: getGMOUser(getGMOUser: { storePaymentId: $storePaymentId }) {

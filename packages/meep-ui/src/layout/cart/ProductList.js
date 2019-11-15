@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Button } from 'antd';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import OrderProductList from 'orderProductList';
@@ -12,7 +12,7 @@ import { NOTLOGIN } from 'constants/isLogin';
 
 import * as styles from './styles/productList';
 
-@withNamespaces('cart')
+@withTranslation('cart')
 @enhancer
 @radium
 export default class ProductList extends React.PureComponent {

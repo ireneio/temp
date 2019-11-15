@@ -1,5 +1,5 @@
 // typescript import
-import { MutationFn } from 'react-apollo';
+import { MutationFunction } from '@apollo/react-common';
 
 import { I18nPropsType } from '@admin/utils/lib/i18n';
 import { PropsType as DataPickerPropsType } from '@admin/date-picker';
@@ -8,15 +8,15 @@ import { getEcfitListQueryPropsType } from './constants';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
-import { Query, Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import { Query, Mutation } from '@apollo/react-components';
 import { filter } from 'graphql-anywhere';
 import Router from 'next/router';
 import { Spin, Icon, Radio, Input, Button, Badge, Modal } from 'antd';
 import idx from 'idx';
 import moment from 'moment';
 
-import { withNamespaces } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@admin/utils/lib/i18n';
 import DatePicker from '@admin/date-picker';
 
 import AdvancedSearch from './AdvancedSearch';
@@ -142,7 +142,9 @@ class Container extends React.PureComponent<PropsType, StateType> {
     return !start || !end ? undefined : [moment.unix(start), moment.unix(end)];
   };
 
-  private datePickerChange = (timeRange: DataPickerPropsType['value']) => {
+  private datePickerChange = (
+    timeRange: DataPickerPropsType['value'],
+  ): void => {
     const { variables, refetch } = this.props;
     const [start = undefined, end = undefined] = timeRange || [];
 
@@ -162,15 +164,15 @@ class Container extends React.PureComponent<PropsType, StateType> {
   };
 
   private updateCreateEcfitOrder = async (
-    createEcfitOrderMutation: MutationFn<
+    createEcfitOrderMutation: MutationFunction<
       createEcfitOrder,
       createEcfitOrderVariables
     >,
-    setOrdersToSelectedOrdersMutation: MutationFn<
+    setOrdersToSelectedOrdersMutation: MutationFunction<
       setOrdersToSelectedOrders,
       setOrdersToSelectedOrdersVariables
     >,
-  ) => {
+  ): Promise<void> => {
     const { variables, selectedOrders } = this.props;
     const { isEnabled } = this.state;
     const ecfitSentStatus = idx(variables, _ => _.filter.ecfitSentStatus);
@@ -488,7 +490,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
   }
 }
 
-const EnhancedContainer = withNamespaces('orders-ecfit')(Container);
+const EnhancedContainer = withTranslation('orders-ecfit')(Container);
 
 // TODO: remove after print move to next-admin
 if (

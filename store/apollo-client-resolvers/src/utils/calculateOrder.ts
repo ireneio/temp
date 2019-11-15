@@ -1,5 +1,5 @@
 // import
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import idx from 'idx';
 
 import { PAYMENT_CAN_PAID_LATER } from '../constants';

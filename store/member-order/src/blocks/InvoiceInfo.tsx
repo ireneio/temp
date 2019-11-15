@@ -3,12 +3,12 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 // graphql typescript
 import { blocksFragment as blocksFragmentType } from './__generated__/blocksFragment';
@@ -117,7 +117,9 @@ class InvoiceInfo extends React.PureComponent<PropsType> {
     },
   );
 
-  private transformKey = (key?: string | null) => {
+  private transformKey = (
+    key: string | null | undefined,
+  ): string | null | undefined => {
     if (!key) return key;
 
     return key.replace(/_/g, '-').toLowerCase();
@@ -160,4 +162,4 @@ class InvoiceInfo extends React.PureComponent<PropsType> {
   }
 }
 
-export default withNamespaces('member-order')(InvoiceInfo);
+export default withTranslation('member-order')(InvoiceInfo);

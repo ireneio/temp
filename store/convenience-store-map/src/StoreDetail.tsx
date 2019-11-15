@@ -5,7 +5,7 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 import React from 'react';
 import { Button } from 'antd';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import StoreIcon from './StoreIcon';
 import styles from './styles/storeDetail.less';
@@ -29,7 +29,7 @@ interface PropsType extends I18nPropsType {
 
 // definition
 class StoreDetail extends React.PureComponent<PropsType> {
-  private isStoreDisabled = () => {
+  private isStoreDisabled = (): boolean => {
     const {
       shipmentType,
       store: { ecpayStoreNumber, ezshipStoreNumber },
@@ -138,4 +138,4 @@ class StoreDetail extends React.PureComponent<PropsType> {
   }
 }
 
-export default withNamespaces('convenience-store-map')(StoreDetail);
+export default withTranslation('convenience-store-map')(StoreDetail);

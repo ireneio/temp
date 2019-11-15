@@ -4,7 +4,7 @@ import memoizeOne from 'memoize-one';
 import { Menu as AntdMenu } from 'antd';
 import uuid from 'uuid/v4';
 import transformColor from 'color';
-import { keyboardArrowDown as ArrowIcon } from 'react-icons/md';
+import { MdKeyboardArrowDown as ArrowIcon } from 'react-icons/md';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import {

@@ -6,9 +6,9 @@ import queryString from 'query-string';
 import { Pagination, Select, Icon } from 'antd';
 import hash from 'hash.js';
 
+import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
-import { withNamespaces } from '@store/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
@@ -27,8 +27,8 @@ import { SORT_OPTIONS } from './constants';
 import * as styles from './styles';
 import getProductsQuery from './utils/getProductsQuery';
 
+@withTranslation('product-list')
 @withContext(adTrackContext)
-@withNamespaces('product-list')
 @enhancer
 @radium
 export default class ProductList extends React.PureComponent {

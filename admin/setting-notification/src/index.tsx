@@ -1,14 +1,15 @@
 // typescript import
-import { I18nPropsType } from '@admin/utils/lib/i18n';
-import { FormComponentProps } from 'antd/lib/form/Form';
-import { MutationFn } from 'react-apollo';
 import { DataProxy } from 'apollo-cache';
+import { MutationFunction } from '@apollo/react-common';
+import { FormComponentProps } from 'antd/lib/form/Form';
+
+import { I18nPropsType } from '@admin/utils/lib/i18n';
 
 // import
 import React from 'react';
 import Link from 'next/link';
-import { gql } from 'apollo-boost';
-import { Query, Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import { Query, Mutation } from '@apollo/react-components';
 import {
   Affix,
   Button,
@@ -22,7 +23,7 @@ import {
 } from 'antd';
 import idx from 'idx';
 
-import { withNamespaces } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@admin/utils/lib/i18n';
 
 import styles from './styles/index.less';
 
@@ -48,7 +49,7 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
   private rootRef: React.RefObject<HTMLInputElement> = React.createRef();
 
   private updateNotification = (
-    mutate: MutationFn<
+    mutate: MutationFunction<
       updateNotificationSetting,
       updateNotificationSettingVariables
     >,
@@ -72,8 +73,11 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
         setStoreEmailNotificationEventSubscription: { status },
       },
     }: { data: updateNotificationSetting },
-  ) => {
-    if (status !== 'SUCCESS') return this.onError();
+  ): void => {
+    if (status !== 'SUCCESS') {
+      this.onError();
+      return;
+    }
 
     const { t, form } = this.props;
     const user = cache.readQuery<getStoreId>({
@@ -90,7 +94,10 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
     });
     const id = idx(user, _ => _.viewer.store.id);
 
-    if (!id) return this.onError();
+    if (!id) {
+      this.onError();
+      return;
+    }
 
     cache.writeFragment({
       id,
@@ -121,11 +128,10 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
     });
 
     form.resetFields();
-
-    return message.success(t('success'));
+    message.success(t('success'));
   };
 
-  private onError = () => {
+  private onError = (): void => {
     const { t, form } = this.props;
 
     form.resetFields();
@@ -362,7 +368,7 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
 }
 
 const EnhancedSettingNotification = Form.create<PropsType>()(
-  withNamespaces('setting-notification')(SettingNotification),
+  withTranslation('setting-notification')(SettingNotification),
 );
 
 const SettingNotificationPage = (): React.ReactNode => (

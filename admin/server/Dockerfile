@@ -11,6 +11,7 @@ COPY ./yarn.lock ./yarn.lock
 COPY ./lerna.json ./lerna.json
 COPY ./Makefile ./Makefile
 COPY ./babel.config.js ./babel.config.js
+COPY ./next.config.js ./next.config.js
 COPY ./node_modules ./node_modules
 
 # Copy folder

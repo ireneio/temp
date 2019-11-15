@@ -1,5 +1,5 @@
 // typescript import
-import { MutationFn } from 'react-apollo';
+import { MutationFunction } from '@apollo/react-common';
 
 import { I18nPropsType } from '@admin/utils/lib/i18n';
 import { SetCurrentPropsType } from '@admin/utils/lib/withSetCurrent';
@@ -8,7 +8,7 @@ import { getEcfitListQueryPropsType } from './constants';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import { Table, Icon, Select, Spin, Empty } from 'antd';
 import Link from 'next/link';
 import idx from 'idx';
@@ -16,7 +16,7 @@ import { emptyFunction, areEqual } from 'fbjs';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
 
-import { withNamespaces } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@admin/utils/lib/i18n';
 import withSetCurrent from '@admin/utils/lib/withSetCurrent';
 
 import { STATUS_LIST } from './constants';
@@ -47,7 +47,7 @@ export interface PropsType
     pageInfo: ordersPageInfoFragmentType;
   };
   selectedOrders: ordersOrderConnectionFragmentType;
-  setOrdersToSelectedOrdersMutation: MutationFn<
+  setOrdersToSelectedOrdersMutation: MutationFunction<
     setOrdersToSelectedOrders,
     setOrdersToSelectedOrdersVariables
   >;
@@ -244,7 +244,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
       });
   }
 
-  private changePage = (newCurrent: number) => {
+  private changePage = (newCurrent: number): void => {
     const {
       variables: { first, ...variables },
       ecfitOrders: {
@@ -445,6 +445,6 @@ class Orders extends React.PureComponent<PropsType, StateType> {
   }
 }
 
-export default withNamespaces('orders-ecfit')(
+export default withTranslation('orders-ecfit')(
   withSetCurrent('orders-ecfit')(Orders),
 );

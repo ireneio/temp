@@ -11,7 +11,7 @@ class Mock {
 
   public trackingIndex: number[] = [];
 
-  public init = () => {
+  public init = (): void => {
     this.tracking = [];
     this.trackingIndex = [];
   };
@@ -23,7 +23,7 @@ class Mock {
   >(
     schemaName: string,
     mockData: ((arg0: P, arg1: A) => T)[],
-  ) => {
+  ): ((arg0: P, arg1: A) => T) => {
     this.schemas[schemaName] = mockData;
 
     return (...args: [P, A]) => {

@@ -71,7 +71,7 @@ define babel-build
 		"rm -rf lib && babel src -d lib --config-file ../../babel.config.js --verbose -x .js,.ts,.tsx $(1)" \
 		--parallel \
 		--stream \
-		--include-filtered-dependencies \
+		--include-dependencies \
 		--ignore @meepshop/store \
 		--ignore @meepshop/mock-types \
 		--ignore @admin/server \

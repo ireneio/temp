@@ -3,10 +3,10 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import styles from './styles/notFound.less';
 
@@ -26,7 +26,7 @@ export const notFoundFragment = gql`
   }
 `;
 
-export default withNamespaces('member-order')(({ user, t }: PropsType) => (
+export default withTranslation('member-order')(({ user, t }: PropsType) => (
   <div className={styles.root}>
     <h4>{`Hi, ${idx(user, _ => _.name) || ''} (${idx(user, _ => _.email) ||
       ''})`}</h4>

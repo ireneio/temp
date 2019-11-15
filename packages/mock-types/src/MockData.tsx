@@ -1,3 +1,6 @@
+// typescript import
+import { NormalizedCacheObject } from 'apollo-cache-inmemory';
+
 // import
 import React from 'react';
 import { Button, Tooltip } from 'antd';
@@ -15,7 +18,7 @@ const MockData = React.memo(
     type,
     typeIndex,
   }: {
-    client: ApolloClient<{}>;
+    client: ApolloClient<NormalizedCacheObject>;
     type: string;
     typeIndex: number;
   }) => {

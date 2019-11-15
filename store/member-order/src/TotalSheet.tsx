@@ -4,11 +4,11 @@ import { CurrencyType } from '@store/currency';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import memoizeOne from 'memoize-one';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 import withCurrency from '@store/currency';
 
 import styles from './styles/totalSheet.less';
@@ -203,4 +203,4 @@ class TotalSheet extends React.PureComponent<PropsType> {
   }
 }
 
-export default withNamespaces('member-order')(withCurrency(TotalSheet));
+export default withTranslation('member-order')(withCurrency(TotalSheet));

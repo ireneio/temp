@@ -3,8 +3,8 @@ import { Subtract } from '@store/utils/lib/types';
 
 // import
 import React, { useState } from 'react';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 import idx from 'idx';
 

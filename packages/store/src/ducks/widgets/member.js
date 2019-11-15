@@ -1,7 +1,7 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import * as Utils from 'utils';
 import { notification } from 'antd';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 
 import * as COUNTRY_LOCALE from '@meepshop/meep-ui/lib/locale/country';
 

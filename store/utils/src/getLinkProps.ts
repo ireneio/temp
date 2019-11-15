@@ -65,7 +65,12 @@ const routes = [
   };
 });
 
-export default (href: string) => {
+export default (
+  href: string,
+): {
+  href: string;
+  as?: string;
+} => {
   const hrefPath: false | string = routes.reduce(
     (result, { regexp, keys, page }) => {
       if (result) return result;

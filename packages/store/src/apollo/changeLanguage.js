@@ -1,6 +1,6 @@
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 
-export default async (client, ctx) => {
+export default async (client, { req }) => {
   const result = await client.query({
     query: gql`
       query getStoreLocale {
@@ -18,7 +18,7 @@ export default async (client, ctx) => {
   });
   const locale = result.data?.viewer?.store.setting.locale || ['zh_TW'];
 
-  if (locale.includes(ctx.req.language)) return;
+  if (locale.includes(req.language)) return;
 
-  await ctx.req.i18n.changeLanguage(locale[0]);
+  if (req.i18n) await req.i18n.changeLanguage(locale);
 };

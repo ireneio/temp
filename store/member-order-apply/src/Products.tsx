@@ -6,7 +6,7 @@ import { CurrencyType } from '@store/currency';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import { Table, Input, Select } from 'antd';
 import memoizeOne from 'memoize-one';
 import transformColor from 'color';
@@ -14,7 +14,7 @@ import idx from 'idx';
 
 import Thumbnail from '@store/thumbnail';
 import localeFragment from '@store/utils/lib/fragments/locale';
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 import withCurrency from '@store/currency';
 
 import styles from './styles/products.less';
@@ -99,7 +99,7 @@ export const productsProductsObjectTypeFragment = gql`
 
 class Products extends React.PureComponent<PropsType, StateType> {
   // eslint-disable-next-line react/sort-comp
-  private availableProducts = () => {
+  private availableProducts = (): SelectedProduct[] => {
     const { products } = this.props;
 
     // exclude gifts
@@ -108,7 +108,7 @@ class Products extends React.PureComponent<PropsType, StateType> {
     ) as productsProductsObjectTypeFragmentType[];
 
     return filteredProducts.reduce(
-      (result, { unappliedQuantity, ...product }) => {
+      (result: SelectedProduct[], { unappliedQuantity, ...product }) => {
         if (unappliedQuantity <= 0) return result;
 
         result.push({
@@ -121,7 +121,7 @@ class Products extends React.PureComponent<PropsType, StateType> {
 
         return result;
       },
-      [] as SelectedProduct[],
+      [],
     );
   };
 
@@ -240,7 +240,7 @@ class Products extends React.PureComponent<PropsType, StateType> {
   private renderReason = (
     value: SelectedProduct['reason'],
     { id }: Partial<SelectedProduct>,
-  ) => {
+  ): React.ReactNode => {
     const {
       /** HOC */
       t,
@@ -267,7 +267,7 @@ class Products extends React.PureComponent<PropsType, StateType> {
     productId: SelectedProduct['id'],
     name: keyof SelectedProduct,
     value: string | number,
-  ) => {
+  ): void => {
     const { onChange } = this.props;
     const { availableProducts, selectedRowKeys } = this.state;
     const newAvailableProducts = [...availableProducts];
@@ -325,4 +325,4 @@ export const getProductsStyles = (
   }
 `;
 
-export default withNamespaces('member-order-apply')(withCurrency(Products));
+export default withTranslation('member-order-apply')(withCurrency(Products));

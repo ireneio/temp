@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 import {
-  chevronLeft as ChevronLeftIcon,
-  chevronRight as ChevronRightIcon,
+  FaChevronLeft as ChevronLeftIcon,
+  FaChevronRight as ChevronRightIcon,
 } from 'react-icons/fa';
 
 import Image from 'image';

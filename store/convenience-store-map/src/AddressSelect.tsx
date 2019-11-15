@@ -1,16 +1,17 @@
 // typescript import
-import { QueryResult } from 'react-apollo';
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { QueryResult } from '@apollo/react-common';
 import { CascaderOptionType } from 'antd/lib/cascader';
+
+import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { Spin, Icon, Cascader, Select } from 'antd';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import styles from './styles/addressSelect.less';
 
@@ -49,7 +50,9 @@ class AddressSelect extends React.PureComponent<PropsType> {
     this.setState({ width: idx(this.titleRef, _ => _.current.offsetWidth) });
   }
 
-  private getAreas = async (selectedOptions: CascaderOptionType[]) => {
+  private getAreas = async (
+    selectedOptions: CascaderOptionType[],
+  ): Promise<void> => {
     const { client, shipmentType, storeTypes } = this.props;
 
     const selectedOption = selectedOptions[selectedOptions.length - 1];
@@ -111,7 +114,7 @@ class AddressSelect extends React.PureComponent<PropsType> {
   private getStreets = async (
     value: string[],
     selectedOptions: CascaderOptionType[],
-  ) => {
+  ): Promise<void> => {
     const {
       client,
       shipmentType,
@@ -178,7 +181,7 @@ class AddressSelect extends React.PureComponent<PropsType> {
     }
   };
 
-  private filterConvenienceStores = (value: string) => {
+  private filterConvenienceStores = (value: string): void => {
     const { filterConvenienceStores } = this.props;
     const {
       selectedAddress: { cityId, areaId },
@@ -255,7 +258,7 @@ class AddressSelect extends React.PureComponent<PropsType> {
   }
 }
 
-const EnhancedAddressSelect = withNamespaces('convenience-store-map')(
+const EnhancedAddressSelect = withTranslation('convenience-store-map')(
   AddressSelect,
 );
 

@@ -2,11 +2,11 @@ import React from 'react';
 import radium, { Style } from 'radium';
 import PropTypes from 'prop-types';
 import { Form, List, Input, Button, message } from 'antd';
-import { subdirectoryArrowRight as ArrowRightIcon } from 'react-icons/md';
+import { MdSubdirectoryArrowRight as ArrowRightIcon } from 'react-icons/md';
 import { isFullWidth, isEmail } from 'validator';
 import moment from 'moment';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, ISLOGIN_TYPE, COLOR_TYPE } from 'constants/propTypes';
@@ -22,7 +22,7 @@ const { TextArea } = Input;
 
 @enhancer
 @Form.create()
-@withNamespaces('product-qa')
+@withTranslation('product-qa')
 @radium
 export default class PrdoductQA extends React.PureComponent {
   static propTypes = {

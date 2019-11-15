@@ -9,7 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@store/utils": "^0.28.0",
-    "memoize-one": "^5.0.4",
+    "memoize-one": "^5.1.1",
     "money": "^0.2.0"
   },
   "keywords": ["context", "currency", "store"]

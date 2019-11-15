@@ -4,13 +4,13 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { Mutation } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Mutation } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import transformColor from 'color';
 import { Button, notification } from 'antd';
 import moment from 'moment';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import styles from './styles/qa.less';
 
@@ -71,7 +71,7 @@ class Qa extends React.PureComponent<PropsType, StateType> {
         addOrderMessage: { success, reason },
       },
     }: { data: addNewMessage },
-  ) => {
+  ): void => {
     const { t, orderId } = this.props;
 
     if (!success) {
@@ -234,4 +234,4 @@ class Qa extends React.PureComponent<PropsType, StateType> {
   }
 }
 
-export default withNamespaces('member-order')(Qa);
+export default withTranslation('member-order')(Qa);

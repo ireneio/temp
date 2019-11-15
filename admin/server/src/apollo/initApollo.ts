@@ -1,15 +1,17 @@
 // typescript import
-import { NormalizedCacheObject } from 'apollo-boost';
-import { NextContext } from 'next';
-import { DefaultQuery } from 'next/router';
+import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
-import { CustomReq } from './withApollo';
+import { CustomCtx } from './withApollo';
 
 // import
-import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
+import { ApolloClient } from 'apollo-client';
+import {
+  InMemoryCache,
+  IntrospectionFragmentMatcher,
+} from 'apollo-cache-inmemory';
+import { HttpLink } from 'apollo-link-http';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
-import { IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 import getConfig from 'next/config';
 import Router from 'next/router';
 import { notification } from 'antd';
@@ -31,7 +33,7 @@ let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 
 const create = (
   initialState?: NormalizedCacheObject,
-  ctx?: NextContext<DefaultQuery, CustomReq>,
+  ctx?: CustomCtx['ctx'],
 ): ApolloClient<NormalizedCacheObject> => {
   const cache = new InMemoryCache({
     dataIdFromObject: ({ id }) => id,
@@ -50,12 +52,13 @@ const create = (
     name: 'admin',
     version: VERSION,
     connectToDevTools: process.browser,
-    ssrMode: process.browser,
+    ssrMode: !process.browser,
     cache,
     resolvers,
     link: ApolloLink.from([
       onError(({ response, graphQLErrors, networkError = {} }) => {
         if (
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore https://github.com/apollographql/apollo-link/issues/536
           networkError.statusCode === 401 &&
           process.browser &&
@@ -133,8 +136,8 @@ const create = (
 
 export default (
   initialState?: NormalizedCacheObject,
-  ctx?: NextContext<DefaultQuery, CustomReq>,
-) => {
+  ctx?: CustomCtx['ctx'],
+): ApolloClient<NormalizedCacheObject> => {
   if (!process.browser) return create(initialState, ctx);
 
   if (!apolloClient) apolloClient = create(initialState, ctx);

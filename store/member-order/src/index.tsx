@@ -3,15 +3,15 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon } from 'antd';
 import moment from 'moment';
 import transformColor from 'color';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import NotFound from './NotFound';
 import Products from './Products';
@@ -99,9 +99,9 @@ const MemberOrder = React.memo(
   ),
 );
 
-const EnhancedMemberOrder = withNamespaces('member-order')(MemberOrder);
+const EnhancedMemberOrder = withTranslation('member-order')(MemberOrder);
 
-export default ({ orderId }: { orderId: string }) => (
+export default ({ orderId }: { orderId: string }): React.ReactElement => (
   <Query<getMemberOrder, getMemberOrderVariables>
     query={gql`
       query getMemberOrder($orderId: ID!) {

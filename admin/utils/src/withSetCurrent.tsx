@@ -1,10 +1,10 @@
 // typescript import
-import { MutationFn } from 'react-apollo';
+import { MutationFunction } from '@apollo/react-common';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
-import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import { Mutation } from '@apollo/react-components';
 
 // graphql typescript
 import { setCurrent, setCurrentVariables } from './__generated__/setCurrent';
@@ -13,7 +13,7 @@ import { setCurrent, setCurrentVariables } from './__generated__/setCurrent';
 export interface SetCurrentPropsType {
   setCurrent: (
     current: number,
-  ) => ReturnType<MutationFn<setCurrent, setCurrentVariables>>;
+  ) => ReturnType<MutationFunction<setCurrent, setCurrentVariables>>;
 }
 
 // definition

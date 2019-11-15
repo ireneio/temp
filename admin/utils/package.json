@@ -6,7 +6,7 @@
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.28.0",
   "dependencies": {
-    "next-i18next": "^0.37.0"
+    "next-i18next": "^2.0.0"
   },
   "keywords": ["admin", "utils"]
 }

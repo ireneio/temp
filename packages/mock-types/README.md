@@ -44,7 +44,7 @@ runTest('store' or 'admin', <Component />, (wrapper: ReactWrapper<unknown, unkno
 1. Write a new schema file in [./src/schemas](./src/schemas), and copy this:
 
 ```js
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 
 import mock from '../mock';
 import { /** fragment name */ } from './__generated__//** fragment name */';

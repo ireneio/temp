@@ -1,5 +1,5 @@
 // graphql typescript
-import { QueryResult } from 'react-apollo';
+import { QueryResult } from '@apollo/react-common';
 
 import {
   getEcfitList,

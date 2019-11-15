@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { Form, InputNumber, Button, Modal } from 'antd';
 import uuid from 'uuid';
-import { chevronLeft as ChevronLeftIcon } from 'react-icons/md';
+import { MdChevronLeft as ChevronLeftIcon } from 'react-icons/md';
 import transformColor from 'color';
 
 import GmoCreditCardForm from '@store/gmo-credit-card-form';

@@ -19,14 +19,14 @@ export default ({
 }): MenuItemType[] => [
   {
     path: '/dashboard',
-    src: '/static/images/menu/dashboard.svg',
+    src: '/images/menu/dashboard.svg',
     title: 'dashboard',
   },
   ...(isMerchant || idx(permission, _ => _.order.index)
     ? [
         {
           path: '/orders',
-          src: '/static/images/menu/orders.svg',
+          src: '/images/menu/orders.svg',
           title: 'orders',
         },
       ]
@@ -35,7 +35,7 @@ export default ({
     ? [
         {
           path: '/products',
-          src: '/static/images/menu/products.svg',
+          src: '/images/menu/products.svg',
           title: 'products',
         },
       ]
@@ -44,7 +44,7 @@ export default ({
     ? [
         {
           path: '/product-service',
-          src: '/static/images/menu/product-service.svg',
+          src: '/images/menu/product-service.svg',
           title: 'product-service',
         },
       ]
@@ -53,7 +53,7 @@ export default ({
     ? [
         {
           path: '/analytics',
-          src: '/static/images/menu/analytics.svg',
+          src: '/images/menu/analytics.svg',
           title: 'analytics',
         },
       ]
@@ -61,19 +61,19 @@ export default ({
   ...(isMerchant || idx(permission, _ => _.user.index)
     ? [
         {
-          src: '/static/images/menu/member.svg',
+          src: '/images/menu/member.svg',
           title: 'member',
           sub: [
             {
               path: '/users',
-              src: '/static/images/menu/members.svg',
+              src: '/images/menu/members.svg',
               title: 'members',
             },
             ...(storeAppList.memberGroup
               ? [
                   {
                     path: '/member-group',
-                    src: '/static/images/menu/member-group.svg',
+                    src: '/images/menu/member-group.svg',
                     title: 'member-group',
                   },
                 ]
@@ -82,7 +82,7 @@ export default ({
               ? [
                   {
                     path: '/member-group-code',
-                    src: '/static/images/menu/member-group-code.svg',
+                    src: '/images/menu/member-group-code.svg',
                     title: 'member-group-code',
                   },
                 ]
@@ -94,22 +94,22 @@ export default ({
   ...(isMerchant || idx(permission, _ => _.design.index)
     ? [
         {
-          src: '/static/images/menu/design.svg',
+          src: '/images/menu/design.svg',
           title: 'design',
           sub: [
             {
               path: '/page-manager',
-              src: '/static/images/menu/page-manager.svg',
+              src: '/images/menu/page-manager.svg',
               title: 'page-manager',
             },
             {
               path: '/color-manager',
-              src: '/static/images/menu/color-manager.svg',
+              src: '/images/menu/color-manager.svg',
               title: 'color-manager',
             },
             {
               path: '/menus',
-              src: '/static/images/menu/menu-manager.svg',
+              src: '/images/menu/menu-manager.svg',
               title: 'menu-manager',
             },
           ],
@@ -117,19 +117,19 @@ export default ({
       ]
     : []),
   {
-    src: '/static/images/menu/marketing.svg',
+    src: '/images/menu/marketing.svg',
     title: 'marketing',
     sub: [
       {
         path: '/marketing-activities',
-        src: '/static/images/menu/discount.svg',
+        src: '/images/menu/discount.svg',
         title: 'discount',
       },
       ...(storeAppList.newsletters
         ? [
             {
               path: '/newsletter',
-              src: '/static/images/menu/newsletter.svg',
+              src: '/images/menu/newsletter.svg',
               title: 'newsletter',
             },
           ]
@@ -138,7 +138,7 @@ export default ({
         ? [
             {
               path: '/ads-analytics',
-              src: '/static/images/menu/ads-analytics.svg',
+              src: '/images/menu/ads-analytics.svg',
               title: 'ads-analytics',
             },
           ]
@@ -149,7 +149,7 @@ export default ({
     ? [
         {
           path: '/file-manager',
-          src: '/static/images/menu/file-manager.svg',
+          src: '/images/menu/file-manager.svg',
           title: 'file-manager',
         },
       ]
@@ -158,7 +158,7 @@ export default ({
     ? [
         {
           path: '/setting',
-          src: '/static/images/menu/setting.svg',
+          src: '/images/menu/setting.svg',
           title: 'setting',
         },
       ]

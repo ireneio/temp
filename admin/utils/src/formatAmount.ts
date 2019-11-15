@@ -5,7 +5,7 @@ export default ({
 }: {
   amount: number;
   currency?: string | null;
-}) =>
+}): string =>
   (price => {
     switch (currency) {
       case 'TWD':

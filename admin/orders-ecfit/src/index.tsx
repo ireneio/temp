@@ -6,7 +6,7 @@ import React from 'react';
 import Router from 'next/router';
 import { Select, Icon } from 'antd';
 
-import { withNamespaces } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@admin/utils/lib/i18n';
 
 import Container from './Container';
 import styles from './styles/index.less';
@@ -23,13 +23,13 @@ class OrdersEcfit extends React.PureComponent<I18nPropsType> {
 
   private timeout?: NodeJS.Timer;
 
-  private openSelect = () => {
+  private openSelect = (): void => {
     if (this.timeout) clearTimeout(this.timeout);
 
     this.setState({ isOpened: true });
   };
 
-  private closeSelect = () => {
+  private closeSelect = (): void => {
     this.timeout = setTimeout(() => {
       this.setState({ isOpened: false });
     }, 100);
@@ -77,7 +77,7 @@ class OrdersEcfit extends React.PureComponent<I18nPropsType> {
   }
 }
 
-const EnhancedOrdersEcfit = withNamespaces(['orders-ecfit', 'orders'])(
+const EnhancedOrdersEcfit = withTranslation(['orders-ecfit', 'orders'])(
   OrdersEcfit,
 );
 

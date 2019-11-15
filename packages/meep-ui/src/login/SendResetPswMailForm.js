@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Form, Input } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -11,7 +11,7 @@ import { COLOR_TYPE } from 'constants/propTypes';
 const FormItem = Form.Item;
 
 @Form.create()
-@withNamespaces('login')
+@withTranslation('login')
 @enhancer
 export default class SendResetPswMailForm extends React.PureComponent {
   static propTypes = {

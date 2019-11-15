@@ -36,15 +36,22 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 
 Add main packages which are used in the most of the packages.
 
+- `@apollo/react-common`
+- `@apollo/react-components`
+- `@apollo/react-ssr`
+- `@apollo/react-hooks`
 - `antd`
 - `apollo`
-- `apollo-boost`
+- `apollo-cache`
+- `apollo-client`
+- `apollo-link`
+- `apollo-utilities`
 - `graphql`
 - `graphql-anywhere`
+- `graphql-tag`
 - `next`
 - `prop-types`
 - `react`
-- `react-apollo`
 - `react-dom`
 
 ###### TODO

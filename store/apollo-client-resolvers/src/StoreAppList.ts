@@ -1,5 +1,5 @@
 // import
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 
 // graphql typescript
 import { storeAppListFragment as storeAppListFragmentType } from './__generated__/storeAppListFragment';

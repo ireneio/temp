@@ -6,12 +6,12 @@ import { AllpayType, EzpayType } from './constants';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import { PAYMENT_SHOW_MEMO } from './constants';
 
@@ -154,7 +154,7 @@ class PaymentInfo extends React.PureComponent<PropsType> {
     },
   );
 
-  private allpay = (choosePayment: keyof AllpayType) => {
+  private allpay = (choosePayment: keyof AllpayType): React.ReactNode => {
     const {
       /** context */
       t,
@@ -237,7 +237,7 @@ class PaymentInfo extends React.PureComponent<PropsType> {
     }
   };
 
-  private ezpay = (choosePayment: keyof EzpayType) => {
+  private ezpay = (choosePayment: keyof EzpayType): React.ReactNode => {
     const {
       /** context */
       t,
@@ -306,4 +306,4 @@ class PaymentInfo extends React.PureComponent<PropsType> {
   }
 }
 
-export default withNamespaces('member-order')(PaymentInfo);
+export default withTranslation('member-order')(PaymentInfo);

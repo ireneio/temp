@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
-import { close as CloseIcon } from 'react-icons/md';
+import { MdClose as CloseIcon } from 'react-icons/md';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';

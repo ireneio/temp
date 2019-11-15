@@ -3,11 +3,11 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import { Input } from 'antd';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import styles from './styles/replaceForm.less';
 
@@ -49,7 +49,7 @@ class Form extends React.PureComponent<PropsType, StateType> {
     this.onChange(prevState);
   }
 
-  private onChange = (prevState: StateType) => {
+  private onChange = (prevState: StateType): void => {
     const { onChange } = this.props;
     const { name, mobile, address } = this.state;
 
@@ -105,4 +105,4 @@ class Form extends React.PureComponent<PropsType, StateType> {
   }
 }
 
-export default withNamespaces('member-order-apply')(Form);
+export default withTranslation('member-order-apply')(Form);

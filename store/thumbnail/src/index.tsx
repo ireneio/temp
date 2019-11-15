@@ -11,7 +11,7 @@ interface PropType {
 }
 
 // definition
-export default ({ imgUrl }: PropType) => (
+export default ({ imgUrl }: PropType): React.ReactElement => (
   <div className={styles.wrapper}>
     {!imgUrl ? (
       <Placeholder />

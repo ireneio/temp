@@ -5,14 +5,14 @@ import { CurrencyType } from '@store/currency';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import { Table } from 'antd';
 import memoizeOne from 'memoize-one';
 import transformColor from 'color';
 import idx from 'idx';
 
 import Thumbnail from '@store/thumbnail';
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 import withCurrency from '@store/currency';
 
 import styles from './styles/products.less';
@@ -186,6 +186,8 @@ class Products extends React.PureComponent<PropsType> {
   }
 }
 
-const EnhancedProducts = withNamespaces('member-order')(withCurrency(Products));
+const EnhancedProducts = withTranslation('member-order')(
+  withCurrency(Products),
+);
 
 export default EnhancedProducts;

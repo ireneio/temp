@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
@@ -222,4 +222,4 @@ ProductCard.defaultProps = {
   products: null,
 };
 
-export default withNamespaces('product-list')(radium(ProductCard));
+export default withTranslation('product-list')(radium(ProductCard));

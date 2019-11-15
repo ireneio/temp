@@ -1,15 +1,15 @@
 // typescript import
 import { I18nPropsType } from '@store/utils/lib/i18n';
-import { MutationFn } from 'react-apollo';
+import { MutationFunction } from '@apollo/react-common';
 
 // import
 import React from 'react';
-import { Query, Mutation } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query, Mutation } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { Spin, Icon, Input, Button, Modal, notification } from 'antd';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import { DEFAULT_MESSAGE } from './constants';
 import styles from './styles/index.less';
@@ -49,7 +49,9 @@ class MemberOrderPayNotify extends React.PureComponent<PropsType> {
       (idx(this.props.order, _ => _.paidMessage) || []).length > 0,
   };
 
-  private send = (sendOrderPayNotify: MutationFn<sendOrderPayNotifyType>) => {
+  private send = (
+    sendOrderPayNotify: MutationFunction<sendOrderPayNotifyType>,
+  ): void => {
     const {
       // HOC
       t,
@@ -83,7 +85,7 @@ class MemberOrderPayNotify extends React.PureComponent<PropsType> {
       });
   };
 
-  private updateMessages = () => {
+  private updateMessages = (): void => {
     const { t } = this.props;
 
     notification.success({ message: t('sendSuccess') });
@@ -153,7 +155,7 @@ class MemberOrderPayNotify extends React.PureComponent<PropsType> {
   }
 }
 
-const EnhancedMemberOrderPayNotify = withNamespaces('member-order-pay-notify')(
+const EnhancedMemberOrderPayNotify = withTranslation('member-order-pay-notify')(
   MemberOrderPayNotify,
 );
 

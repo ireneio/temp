@@ -1,5 +1,5 @@
 // import
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import uuid from 'uuid/v4';
 
 import mock from '../mock';

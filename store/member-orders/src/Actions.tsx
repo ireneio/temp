@@ -5,14 +5,14 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
-import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import { Mutation } from '@apollo/react-components';
 import { message } from 'antd';
 import Link from 'next/link';
 import idx from 'idx';
 import { areEqual } from 'fbjs';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 import getLinkProps from '@store/utils/lib/getLinkProps';
 
 import styles from './styles/actions.less';
@@ -89,7 +89,7 @@ class Actions extends React.PureComponent<PropsType, StateType> {
   private payOrderAgainDone = (
     __: DataProxy,
     { data: { paymentAgainOrderList } }: { data: payOrderAgain },
-  ) => {
+  ): void => {
     const { t } = this.props;
     const formData = idx(paymentAgainOrderList, _ => _[0].formData);
 
@@ -118,9 +118,16 @@ class Actions extends React.PureComponent<PropsType, StateType> {
     } = this.props;
     const { formData } = this.state;
     const isSkipOtherAction = ![0, 3].includes(status === null ? -1 : status); // TODO: should not be null
-    const { url = '', params = {} } = formData || {};
-    const paramKeys = Object.keys(params).filter(
-      (key: keyof typeof params) => key !== '__typename' && params[key],
+    const { url = '', params = {} } = formData || {
+      url: undefined,
+      params: undefined,
+    };
+    const formParams = Object.keys(params).reduce(
+      (result, key: keyof typeof params) =>
+        key === '__typename' || !params[key]
+          ? result
+          : [...result, [key, key === 'orderdesc' ? ' ' : params[key]]],
+      [],
     );
 
     // TODO: should not be null
@@ -128,18 +135,18 @@ class Actions extends React.PureComponent<PropsType, StateType> {
 
     return (
       <div className={styles.root}>
-        {!url || paramKeys.length === 0 ? null : (
+        {!url ? null : (
           <form
             ref={this.formRef}
             action={url}
             acceptCharset={/hitrust/.test(url) ? 'big5' : 'utf8'}
             method="POST"
           >
-            {paramKeys.map((key: keyof typeof params) => (
+            {formParams.map(([key, value]) => (
               <input
                 key={key}
                 name={key}
-                value={params[key] && key === 'orderdesc' ? ' ' : params[key]}
+                value={value}
                 type="hidden"
                 readOnly
               />
@@ -232,4 +239,4 @@ class Actions extends React.PureComponent<PropsType, StateType> {
   }
 }
 
-export default withNamespaces('member-orders')(Actions);
+export default withTranslation('member-orders')(Actions);

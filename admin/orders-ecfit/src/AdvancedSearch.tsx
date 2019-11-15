@@ -5,12 +5,12 @@ import { getEcfitListQueryPropsType } from './constants';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import { Popover, Select, Divider, Button } from 'antd';
 import idx from 'idx';
 import { areEqual } from 'fbjs';
 
-import { withNamespaces } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@admin/utils/lib/i18n';
 
 import { ADVANCED_SEARCH_ITEMS } from './constants';
 import emptyArrayToUndefined from './utils/emptyArrayToUndefined';
@@ -76,7 +76,7 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
   private getOptions = (
     optionsKey: keyof StateType['filter'],
     options: string[],
-  ) => {
+  ): React.ReactNode => {
     const {
       // HOC
       t,
@@ -115,7 +115,7 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
     }
   };
 
-  private search = () => {
+  private search = (): void => {
     const { variables, refetch } = this.props;
     const { isVisible, filter } = this.state;
 
@@ -132,7 +132,7 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
     });
   };
 
-  private visibleChange = (visible: boolean) => {
+  private visibleChange = (visible: boolean): void => {
     if (!visible) {
       this.setState({ isVisible: visible }, this.search);
       return;
@@ -220,4 +220,4 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
   }
 }
 
-export default withNamespaces('orders-ecfit')(AdvancedSearch);
+export default withTranslation('orders-ecfit')(AdvancedSearch);

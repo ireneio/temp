@@ -8,6 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
+    "apollo-cache-inmemory": "^1.6.3",
     "moment": "^2.22.1"
   },
   "keywords": ["admin", "apollo-client", "resolvers"]

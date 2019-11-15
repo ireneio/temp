@@ -1,12 +1,12 @@
 // typescript import
-import { QueryResult } from 'react-apollo';
+import { QueryResult } from '@apollo/react-common';
 
 import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { Spin, Icon, Table } from 'antd';
 import idx from 'idx';
 import { areEqual } from 'fbjs';
@@ -14,7 +14,7 @@ import memoizeOne from 'memoize-one';
 import moment from 'moment';
 
 import Thumbnail from '@store/thumbnail';
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import styles from './styles/index.less';
 
@@ -163,7 +163,7 @@ class MemberWishList extends React.PureComponent<PropsType> {
   }
 }
 
-const EnhancedMemberWishList = withNamespaces('member-wish-list')(
+const EnhancedMemberWishList = withTranslation('member-wish-list')(
   MemberWishList,
 );
 

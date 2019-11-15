@@ -8,7 +8,7 @@ import { Icon, Drawer } from 'antd';
 import idx from 'idx';
 import Link from 'next/link';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 import getLinkProps from '@store/utils/lib/getLinkProps';
 
 import styles from './styles/mobileColumn.less';
@@ -124,4 +124,4 @@ export const getMobileStyles = (
   }
 `;
 
-export default withNamespaces('member-orders')(MobileColumn);
+export default withTranslation('member-orders')(MobileColumn);

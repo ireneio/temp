@@ -1,5 +1,5 @@
 // import
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import moment from 'moment';
 
 import mock from '../mock';

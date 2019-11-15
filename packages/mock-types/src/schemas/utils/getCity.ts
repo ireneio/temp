@@ -2,7 +2,22 @@
 import getArea from './getArea';
 
 // definition
-export default (id: string) =>
+export default (
+  id: string,
+):
+  | {
+      __typename: string;
+      id: string;
+      name: {
+        __typename: string;
+        zh_TW: string | null;
+        en_US: string | null;
+        ja_JP: string | null;
+        vi_VN: string | null;
+      };
+      areas: ReturnType<typeof getArea>[];
+    }
+  | undefined =>
   [
     {
       __typename: 'City',
@@ -22,6 +37,7 @@ export default (id: string) =>
       ],
     },
     {
+      __typename: 'City',
       id: '3b6cbd75-b341-4824-bbc7-37e5569cb07b',
       name: {
         __typename: 'Locale',

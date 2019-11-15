@@ -1,7 +1,7 @@
 // import
 import React from 'react';
 
-export default () => (
+export default (): React.ReactElement => (
   <svg
     width="72px"
     height="72px"

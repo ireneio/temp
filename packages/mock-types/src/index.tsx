@@ -5,11 +5,14 @@ import { IntrospectionResultData } from 'apollo-cache-inmemory';
 
 // import
 import React from 'react';
-import { ApolloClient, InMemoryCache } from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloClient } from 'apollo-client';
+import {
+  InMemoryCache,
+  IntrospectionFragmentMatcher,
+} from 'apollo-cache-inmemory';
+import { ApolloProvider } from '@apollo/react-components';
 import { ApolloLink, Observable } from 'apollo-link';
 import { onError } from 'apollo-link-error';
-import { IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 import { SchemaLink } from 'apollo-link-schema';
 import { Drawer, Button, notification } from 'antd';
 
@@ -125,6 +128,8 @@ export default class MockTypes extends React.PureComponent<
           placement="right"
         >
           {mockTypes.map((type, typeIndex) => (
+            // FIXME: will be fixed after eslint-plugin-react >= 7.15.1
+            /* eslint-disable react/jsx-curly-brace-presence */
             <div key={type} className={styles.buttons}>
               {type}:{' '}
               <MockData
@@ -133,6 +138,7 @@ export default class MockTypes extends React.PureComponent<
                 typeIndex={typeIndex}
               />
             </div>
+            /* eslint-enable react/jsx-curly-brace-presence */
           ))}
         </Drawer>
       </ApolloProvider>

@@ -5,7 +5,7 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 import React from 'react';
 import { Input, Button } from 'antd';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import styles from './styles/searchInput.less';
 
@@ -22,7 +22,7 @@ class SearchInput extends React.PureComponent<PropsType> {
     inputContent: '',
   };
 
-  private filterConvenienceStores = () => {
+  private filterConvenienceStores = (): void => {
     const { searchKey, filterConvenienceStores } = this.props;
     const { inputContent } = this.state;
 
@@ -54,4 +54,4 @@ class SearchInput extends React.PureComponent<PropsType> {
   }
 }
 
-export default withNamespaces('convenience-store-map')(SearchInput);
+export default withTranslation('convenience-store-map')(SearchInput);

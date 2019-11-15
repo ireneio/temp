@@ -1,10 +1,10 @@
 // typescript import
-import { InMemoryCache } from 'apollo-boost';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import { ContextType } from './constants';
 
 // import
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import moment from 'moment';
 
 // graphql typescript

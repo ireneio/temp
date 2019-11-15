@@ -23,7 +23,15 @@ export default (
     cname: getAdTrackViewerStore['cname'];
     currency: CurrencyType['currency'];
   },
-) =>
+): {
+  addToCart: ReturnType<typeof getAddToCartTrack>;
+  viewProduct: ReturnType<typeof getViewProductTrack>;
+  search: ReturnType<typeof getSearchTrack>;
+  addToWishList: ReturnType<typeof getAddToWishListTrack>;
+  completeRegistration: ReturnType<typeof getCompleteRegistrationTrack>;
+  beginCheckout: ReturnType<typeof getBeginCheckoutTrack>;
+  purchase: ReturnType<typeof getPurchaseTrack>;
+} =>
   useMemo(
     () => ({
       addToCart: getAddToCartTrack(data),

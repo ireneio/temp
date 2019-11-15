@@ -1,5 +1,5 @@
 import React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 import htmlescape from 'htmlescape';
 
 export default class MyDocument extends Document {
@@ -29,7 +29,7 @@ export default class MyDocument extends Document {
 
     return (
       /* eslint-disable */
-      <html lang={lang}>
+      <Html lang={lang}>
         <Head>
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
 
@@ -51,7 +51,7 @@ export default class MyDocument extends Document {
 
           <NextScript />
         </body>
-      </html>
+      </Html>
       /* eslint-disable */
     );
   }

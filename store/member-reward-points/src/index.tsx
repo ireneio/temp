@@ -4,14 +4,14 @@ import { CurrencyType } from '@store/currency';
 
 // import
 import React from 'react';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { Spin, Icon, Table } from 'antd';
 import idx from 'idx';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 import withCurrency from '@store/currency';
 
 import styles from './styles/index.less';
@@ -93,7 +93,7 @@ class MemberRewardPoints extends React.PureComponent<PropsType> {
   private getRowClassName = ({
     points,
     endTime,
-  }: getUserRewardPotinsGetValidUserPointListData) => {
+  }: getUserRewardPotinsGetValidUserPointListData): string => {
     if (
       (endTime && moment().diff(moment.unix(endTime)) > 0) ||
       (points || 0) /** TODO: should not be null */ <= 0
@@ -155,7 +155,7 @@ class MemberRewardPoints extends React.PureComponent<PropsType> {
   }
 }
 
-const EnhancedMemberRewardPoints = withNamespaces('member-reward-points')(
+const EnhancedMemberRewardPoints = withTranslation('member-reward-points')(
   withCurrency(MemberRewardPoints),
 );
 

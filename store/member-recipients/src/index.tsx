@@ -1,18 +1,18 @@
 // typescript import
-import { QueryResult } from 'react-apollo';
+import { QueryResult } from '@apollo/react-common';
 
 import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { Spin, Icon, Table, Divider } from 'antd';
 import { areEqual } from 'fbjs';
 import idx from 'idx';
 import memoizeOne from 'memoize-one';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import Form from './Form';
 import styles from './styles/index.less';
@@ -157,11 +157,15 @@ class MemberRecipients extends React.PureComponent<PropsType> {
       });
   }
 
-  private edit = (id: getUserRecipientsViewerRecipientAddressBook['id']) => {
+  private edit = (
+    id: getUserRecipientsViewerRecipientAddressBook['id'],
+  ): void => {
     this.setState({ selectId: id });
   };
 
-  private remove = (id: getUserRecipientsViewerRecipientAddressBook['id']) => {
+  private remove = (
+    id: getUserRecipientsViewerRecipientAddressBook['id'],
+  ): void => {
     const {
       dispatchAction,
       viewer: { recipientAddressBook },
@@ -233,7 +237,7 @@ class MemberRecipients extends React.PureComponent<PropsType> {
   }
 }
 
-const EnhancedMemberRecipients = withNamespaces('member-recipients')(
+const EnhancedMemberRecipients = withTranslation('member-recipients')(
   MemberRecipients,
 );
 

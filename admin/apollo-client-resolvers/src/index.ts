@@ -1,5 +1,5 @@
 // typescript import
-import { InMemoryCache } from 'apollo-boost';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import { Resolvers } from 'apollo-client/core/types';
 
 // import

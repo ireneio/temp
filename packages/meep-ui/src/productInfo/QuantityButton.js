@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Select } from 'antd';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import { COLOR_TYPE } from 'constants/propTypes';
 
@@ -16,7 +16,7 @@ import {
   LIMITED,
 } from './constants';
 
-@withNamespaces('product-info')
+@withTranslation('product-info')
 @radium
 export default class QuantityButton extends React.Component {
   static propTypes = {

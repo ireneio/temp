@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Button } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
-import { lock as LockIcon } from 'react-icons/md';
+import { MdLock as LockIcon } from 'react-icons/md';
 import {
-  shoppingCart as ShoppingCartIcon,
-  facebook as FacebookIcon,
+  FaShoppingCart as ShoppingCartIcon,
+  FaFacebook as FacebookIcon,
 } from 'react-icons/fa';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
 
@@ -20,7 +20,7 @@ import * as styles from './styles/login';
 
 const { Item: FormItem } = Form;
 
-@withNamespaces('cart')
+@withTranslation('cart')
 @withContext(adTrackContext)
 @Form.create()
 @enhancer

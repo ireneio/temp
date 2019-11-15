@@ -1,17 +1,17 @@
 // typescript import
-import { QueryResult } from 'react-apollo';
+import { QueryResult } from '@apollo/react-common';
 import { DataProxy } from 'apollo-cache';
 
 import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
-import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import { Mutation } from '@apollo/react-components';
 import { Button, notification } from 'antd';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import styles from './styles/removeCreditCardInfo.less';
 
@@ -44,7 +44,7 @@ class RemoveCreditCardInfo extends React.PureComponent<PropsType> {
   private removeGmoCreditCardDone = (
     cache: DataProxy,
     { data: { removeGmoCreditCard } }: { data: removeCreditCard },
-  ) => {
+  ): void => {
     const {
       // HOC
       t,
@@ -127,4 +127,4 @@ class RemoveCreditCardInfo extends React.PureComponent<PropsType> {
   }
 }
 
-export default withNamespaces('member-settings')(RemoveCreditCardInfo);
+export default withTranslation('member-settings')(RemoveCreditCardInfo);

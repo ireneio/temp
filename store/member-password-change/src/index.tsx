@@ -1,18 +1,18 @@
 // typescript import
 import { DataProxy } from 'apollo-cache';
-import { MutationFn } from 'react-apollo';
+import { MutationFunction } from '@apollo/react-common';
 import { FormComponentProps } from 'antd/lib/form';
 
 import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { Query, Mutation } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { Query, Mutation } from '@apollo/react-components';
+import gql from 'graphql-tag';
 import { Spin, Icon, Form, Input, Button, notification } from 'antd';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import styles from './styles/index.less';
 
@@ -39,7 +39,7 @@ const { Item: FormItem } = Form;
 
 class MemberPasswordChange extends React.PureComponent<PropsType> {
   private onSubmit = (
-    memberChangePasswordMutation: MutationFn<
+    memberChangePasswordMutation: MutationFunction<
       memberChangePassword,
       memberChangePasswordVariables
     >,
@@ -70,7 +70,7 @@ class MemberPasswordChange extends React.PureComponent<PropsType> {
   private updateMessage = (
     __: DataProxy,
     { data: { changeUserPassword } }: { data: memberChangePassword },
-  ) => {
+  ): void => {
     const {
       t,
       form: { resetFields },
@@ -94,7 +94,7 @@ class MemberPasswordChange extends React.PureComponent<PropsType> {
     _: unknown,
     value: string,
     callback: (message?: string) => void,
-  ) => {
+  ): void => {
     const {
       t,
       form: { getFieldValue },
@@ -209,7 +209,7 @@ class MemberPasswordChange extends React.PureComponent<PropsType> {
   }
 }
 
-const EnhancedMemberPasswordChange = withNamespaces('member-password-change')(
+const EnhancedMemberPasswordChange = withTranslation('member-password-change')(
   Form.create<PropsType>()(MemberPasswordChange),
 );
 

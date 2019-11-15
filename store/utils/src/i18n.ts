@@ -1,13 +1,13 @@
 // typescript import
-import i18next from 'i18next';
+import { WithTranslation } from 'next-i18next';
 
 // import
 import NextI18Next from 'next-i18next';
 
 // typescript definition
-export interface I18nPropsType {
+export interface I18nPropsType extends WithTranslation {
   t: (key: string, options?: {}) => string;
-  i18n: i18next.i18n & {
+  i18n: WithTranslation['i18n'] & {
     language: 'zh_TW' | 'en_US' | 'ja_JP' | 'vi_VN';
   };
 }
@@ -16,12 +16,12 @@ export interface I18nPropsType {
 const nextI18next = new NextI18Next({
   defaultLanguage: 'zh_TW',
   otherLanguages: ['en_US', 'ja_JP', 'vi_VN'],
-  localePath: 'src/static/locales',
+  localePath: !process.browser ? 'src/public/locales' : 'locales',
   // we use 'null' to fall back
   fallbackLng: 'zh_TW',
   returnNull: false,
 });
 
-export const { withNamespaces, appWithTranslation, i18n } = nextI18next;
+export const { withTranslation, appWithTranslation, i18n } = nextI18next;
 
 export default nextI18next;

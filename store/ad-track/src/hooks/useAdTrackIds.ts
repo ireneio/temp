@@ -20,7 +20,17 @@ const getMatch = (
   reg: RegExp,
 ): string | null => idx((code || '').match(reg), _ => _[0]) || null;
 
-export default ({ getFbPixel, getGtagList }: getAdTrack) =>
+export default ({
+  getFbPixel,
+  getGtagList,
+}: getAdTrack): {
+  fbPixelId: string | null;
+  gaId: string | null;
+  googleAdsConversionID: string | null;
+  googleAdsSignupLabel: string | null;
+  googleAdsCheckoutLabel: string | null;
+  googleAdsCompleteOrderId: string | null;
+} =>
   useMemo(
     () => ({
       fbPixelId: idx(getFbPixel, _ => _.pixelId) || null,

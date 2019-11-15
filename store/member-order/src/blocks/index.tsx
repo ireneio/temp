@@ -3,12 +3,12 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
 import idx from 'idx';
 
-import { withNamespaces } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import PaymentInfo from './PaymentInfo';
 import ShipmentInfo from './ShipmentInfo';
@@ -77,7 +77,9 @@ export const blocksFragment = gql`
 `;
 
 export class Blocks extends React.PureComponent<PropsType> {
-  public renderDescription = (children: React.ReactNode) =>
+  public renderDescription = (
+    children: React.ReactNode,
+  ): React.ReactElement | null =>
     !children ? null : (
       <div className={styles.description}>
         {children instanceof Array
@@ -259,4 +261,4 @@ export class Blocks extends React.PureComponent<PropsType> {
   }
 }
 
-export default withNamespaces('member-order')(Blocks);
+export default withTranslation('member-order')(Blocks);

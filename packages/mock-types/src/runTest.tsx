@@ -17,7 +17,7 @@ export default (
         trackingIndex: number[],
       ) => void | boolean)
     | undefined = emptyFunction.thatReturnsTrue,
-) => {
+): void => {
   /* eslint-disable global-require */
   const resolvers =
     testType === 'store'
