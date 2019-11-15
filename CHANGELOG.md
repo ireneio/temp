@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.29.0 (2019-11-15)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#714](https://github.com/meepshop/meep-lerna/pull/714) 套件大更新 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.28.2 (2019-11-14)
 
 #### :bug: Bug Fix
