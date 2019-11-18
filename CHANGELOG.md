@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.29.1 (2019-11-18)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#766](https://github.com/meepshop/meep-lerna/pull/766) 【優化】更改密碼通知信連結頁面 UI 調整 ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#774](https://github.com/meepshop/meep-lerna/pull/774) 【BUG】前台 - 我的收藏無法移除商品([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.29.0 (2019-11-15)
 
 #### :boom: Breaking Change
