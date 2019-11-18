@@ -4,11 +4,11 @@
   "description": "Ezpay page for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.29.0",
+  "version": "0.29.1",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@store/utils": "^0.29.0",
+    "@store/utils": "^0.29.1",
     "moment": "^2.22.1",
     "query-string": "^6.4.2"
   },
