@@ -318,7 +318,8 @@ function* AddCartItemsFlow({ payload: { price, callback, ...payload } }) {
     if (data) {
       const cart = getCart(data);
 
-      callback();
+      if (callback) callback();
+
       yield put(addCartItemsSuccess(cart));
       notification.success({ message: LOCALE.ADD_CART_ITEMS_SUCCESS[locale] });
     }
@@ -872,7 +873,8 @@ function* updateWishListFlow({ payload: { callback, ...payload } }) {
     const data = yield call(Api.updateWishList, payload);
 
     if (data) {
-      callback();
+      if (callback) callback();
+
       yield put(updateWishListSuccess(data));
       notification.success({ message: LOCALE.UPDATE_WISHLIST_SUCCESS[locale] });
     }
