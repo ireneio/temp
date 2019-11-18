@@ -19,7 +19,6 @@ import activity from 'activity';
 import checkout from 'checkout';
 import menu, { handleModuleData } from 'menu';
 import productSet from 'productSet';
-import forgotPassword from 'forgotPassword';
 import UnavailableComp from 'unavailableComp';
 import viewTracking from 'viewTracking';
 
@@ -49,6 +48,5 @@ export default {
   checkout,
   menu: handleModuleData(menu),
   product: productSet,
-  'forgot-password': forgotPassword,
   viewTracking,
 };

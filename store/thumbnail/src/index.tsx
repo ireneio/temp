@@ -6,12 +6,12 @@ import Placeholder from '@store/placeholder';
 import styles from './styles/index.less';
 
 // typescript definition
-interface PropType {
+interface PropsType {
   imgUrl?: string | null;
 }
 
 // definition
-export default ({ imgUrl }: PropType): React.ReactElement => (
+export default ({ imgUrl }: PropsType): React.ReactElement => (
   <div className={styles.wrapper}>
     {!imgUrl ? (
       <Placeholder />

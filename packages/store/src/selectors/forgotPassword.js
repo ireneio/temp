@@ -9,8 +9,7 @@ import {
   getJoinedPage,
 } from './index';
 
-const getForgotPasswordPage = (state, props) => {
-  const { token } = props;
+const getForgotPasswordPage = () => {
   return {
     id: 'page-forgot-password',
     title: {
@@ -18,25 +17,7 @@ const getForgotPasswordPage = (state, props) => {
       zh_TW: '重置密碼',
     },
     container: 'TwoTopsContainer',
-    blocks: [
-      {
-        id: 'block-forgot-password',
-        width: 100,
-        componentWidth: 0,
-        padding: 0,
-        widgets: [
-          {
-            widgets: [
-              {
-                id: 'forgot-password',
-                module: 'forgot-password',
-                token,
-              },
-            ],
-          },
-        ],
-      },
-    ],
+    blocks: [],
     fixedtop,
     secondtop,
     fixedbottom,

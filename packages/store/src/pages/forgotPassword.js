@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
+
+import ForgotPasswordView from '@store/forgot-password';
+
 import * as Utils from 'utils';
 import { Container, TrackingCodeHead, Error } from 'components';
 import { Router } from 'server/routes';
@@ -70,6 +73,8 @@ class ForgotPassword extends Component {
       location: { pathname },
       fbAppId,
       pageAdTrackIDs,
+      dispatchAction,
+      token,
     } = this.props;
 
     return isLogin === 'ISUSER' ? (
@@ -86,7 +91,9 @@ class ForgotPassword extends Component {
           pageAdTrackIDs={pageAdTrackIDs}
           fbAppId={fbAppId}
         />
-        <Container {...this.props} />
+        <Container {...this.props}>
+          <ForgotPasswordView dispatchAction={dispatchAction} token={token} />
+        </Container>
       </>
     );
   }
@@ -108,4 +115,8 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps)(ForgotPassword);
+export default connect(mapStateToProps, dispatch => ({
+  dispatchAction: (actionName, args) => {
+    dispatch(Actions[actionName](args));
+  },
+}))(ForgotPassword);

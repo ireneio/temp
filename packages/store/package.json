@@ -16,6 +16,7 @@
     "@store/ad-track": "^0.29.0",
     "@store/currency": "^0.29.0",
     "@store/ezpay": "^0.29.0",
+    "@store/forgot-password": "^0.27.0",
     "@store/member-order": "^0.29.0",
     "@store/member-order-applications": "^0.29.0",
     "@store/member-order-apply": "^0.29.0",

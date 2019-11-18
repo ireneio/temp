@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@store/forgot-password",
+  "description": "forgot password page for store",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.27.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@store/utils": "^0.29.0"
+  },
+  "keywords": ["forgot", "password", "store"]
+}
