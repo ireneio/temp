@@ -61,7 +61,7 @@ const getOptions = (
   data.map(({ id, name, children, ...d }) => ({
     ...d,
     value: id,
-    label: name[language],
+    label: name[language] || name.zh_TW,
     children:
       !children || children.length === 0
         ? undefined
