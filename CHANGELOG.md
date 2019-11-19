@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.29.2 (2019-11-19)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#780](https://github.com/meepshop/meep-lerna/pull/780) 【BUG】前台 - 日文＆越南語系地址選單的臺灣縣市地區顯示異常 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.29.1 (2019-11-18)
 
 #### :rocket: New Feature
