@@ -4,7 +4,7 @@
   "description": "store for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.29.1",
+  "version": "0.29.2",
   "scripts": {
     "clean": "rm -rf ./src/.next",
     "dev": "node --inspect=localhost:9230 src/server",
@@ -23,7 +23,7 @@
     "@store/member-order-pay-notify": "^0.29.1",
     "@store/member-orders": "^0.29.1",
     "@store/member-recipients": "^0.29.1",
-    "@store/member-settings": "^0.29.1",
+    "@store/member-settings": "^0.29.2",
     "@store/member-wish-list": "^0.29.1",
     "@store/thank-you-page": "^0.29.1",
     "@store/utils": "^0.29.1",
