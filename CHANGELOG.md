@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.29.3 (2019-11-20)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#769](https://github.com/meepshop/meep-lerna/pull/769) 部分頁面細節 從 locale.js 改成 next-i18next ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#765](https://github.com/meepshop/meep-lerna/pull/765) 【優化】 手機版 - 搜尋欄問題 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#776](https://github.com/meepshop/meep-lerna/pull/776) 【個別店家】 前台 - 越南語系變回中文 ([@HsuTing](https://github.com/HsuTing))
+  - [#777](https://github.com/meepshop/meep-lerna/pull/777) 【BUG】前台 - FB 登入之後，無出現購物金即將到期筆數提醒彈窗 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.29.2 (2019-11-19)
 
 #### :bug: Bug Fix
