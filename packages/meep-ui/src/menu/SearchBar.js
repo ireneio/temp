@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input } from 'antd';
+import { Form, Input } from 'antd';
 
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
@@ -57,15 +57,18 @@ export default class SearchBar extends React.PureComponent {
         onClick={() => this.setState({ showSearchBar: !showSearchBar })}
       >
         {!showSearchBar ? null : (
-          <Input
-            className={styles.root}
-            placeholder={title}
-            value={value}
-            onChange={({ target: { value: changeValue } }) =>
-              this.setState({ value: changeValue })
-            }
-            onPressEnter={this.search}
-          />
+          <Form className={styles.form} action="">
+            <Input
+              className={styles.input}
+              type="search"
+              placeholder={title}
+              value={value}
+              onChange={({ target: { value: changeValue } }) =>
+                this.setState({ value: changeValue })
+              }
+              onPressEnter={this.search}
+            />
+          </Form>
         )}
       </Icon>
     );
