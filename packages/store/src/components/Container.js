@@ -15,6 +15,7 @@ import adTrackContext from '@store/ad-track';
 
 import { getJoinedUser, getStoreAppList } from 'selectors';
 import * as Actions from 'ducks/actions';
+import * as LOCALE from 'ducks/locale';
 
 import Spinner from './Spinner';
 
@@ -168,6 +169,7 @@ class Container extends React.Component {
       dispatchAction,
       cname,
       adTrack,
+      locale,
     } = this.props;
 
     if (!fbAppId)
@@ -195,30 +197,29 @@ class Container extends React.Component {
                 const data = await Api.fbLogin(response.authResponse);
 
                 switch (data.status) {
-                  case 200: {
-                    getAuth();
-                    if (from === 'cart') {
-                      Utils.goTo({ pathname: '/checkout' });
-                    } else if (window.storePreviousPageUrl) {
-                      Utils.goTo({ pathname: window.storePreviousPageUrl });
-                    } else {
-                      Utils.goTo({ pathname: '/' });
-                    }
-                    break;
-                  }
+                  case 200:
                   case 201: {
-                    adTrack.completeRegistration();
+                    const member = await Api.updateMemberData();
+                    const numOfExpiredPoints =
+                      member?.data?.viewer?.rewardPoint.expiringPoints.total;
+
+                    if (data.status === 201) adTrack.completeRegistration();
+
+                    if (numOfExpiredPoints > 0)
+                      notification.info({
+                        message: LOCALE.EXPIRED_POINTS_MESSAGE[locale],
+                        description: `${LOCALE.EXPIRED_POINTS_DESCRIPTION_1[locale]} ${numOfExpiredPoints} ${LOCALE.EXPIRED_POINTS_DESCRIPTION_2[locale]}`,
+                      });
+
                     getAuth();
 
-                    if (from === 'cart') {
-                      Utils.goTo({ pathname: 'checkout' });
-                    } else if (window.storePreviousPageUrl) {
+                    if (from === 'cart') Utils.goTo({ pathname: '/checkout' });
+                    else if (window.storePreviousPageUrl)
                       Utils.goTo({ pathname: window.storePreviousPageUrl });
-                    } else {
-                      Utils.goTo({ pathname: '/' });
-                    }
+                    else Utils.goTo({ pathname: '/' });
                     break;
                   }
+
                   case 2010: {
                     notification.error({ message: 'FB Access token 失效' });
                     break;
