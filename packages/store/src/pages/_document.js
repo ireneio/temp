@@ -14,18 +14,12 @@ export default class MyDocument extends Document {
       errorHtml,
       chunks,
       XMeepshopDomain: req.get('x-meepshop-domain'),
+      lang: req.language,
     };
   }
 
-  getLang = data =>
-    (
-      data?.props?.initialState?.storeReducer?.settings?.localeOptions?.[0] ||
-      'zh-TW'
-    ).replace('_', '-');
-
   render() {
-    const { __NEXT_DATA__: storeData, XMeepshopDomain } = this.props;
-    const lang = this.getLang(storeData) || 'zh-TW';
+    const { XMeepshopDomain, lang } = this.props;
 
     return (
       /* eslint-disable */

@@ -1,1 +1,19 @@
-{}
+{
+  "close": "サービス一時停止中です。",
+  "product-is-discontinued": "この商品は販売を終了しました",
+  "back-to-homepage": "ホームへ",
+  "title": {
+    "order": "注文明細",
+    "order-apply-list": "返品交換確認",
+    "order-exchange": "交換申込",
+    "order-refund": "返品申込",
+    "orders": "注文管理",
+    "change-password": "パスワードを変更する",
+    "pay-notify": "振込通知",
+    "recipients": "受取人テンプレート",
+    "reward-points": "ポイント",
+    "settings": "会員情報",
+    "wishlist": "お気に入りに入れる",
+    "logout": "ログアウト"
+  }
+}

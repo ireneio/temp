@@ -3,22 +3,24 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+
+import { withTranslation } from '@store/utils/lib/i18n';
+import MemberWishlist from '@store/member-wish-list';
+
 import * as Utils from 'utils';
 import * as Selectors from 'selectors';
 import * as Template from 'template';
 import { Container, TrackingCodeHead, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
-import MemberWishlist from '@store/member-wish-list';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
-import * as TITLE from 'locales';
 
 class Wishlist extends Component {
   static getInitialProps = async context => {
     const { isServer, XMeepshopDomain, userAgent, store } = context;
-    if (isServer) {
-      store.dispatch(Actions.serverOthersInitial(context));
-    }
+
+    if (isServer) store.dispatch(Actions.serverOthersInitial(context));
+
     return {
       userAgent,
       XMeepshopDomain,
@@ -81,6 +83,7 @@ class Wishlist extends Component {
       wishList,
       fbAppId,
       dispatchAction,
+      t,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -99,7 +102,7 @@ class Wishlist extends Component {
         />
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
-          <MemberHeader title={title} colors={colors}>
+          <MemberHeader title={t('title.wishlist')} colors={colors}>
             <MemberWishlist
               wishListFromRedux={wishList}
               dispatchAction={dispatchAction}
@@ -153,8 +156,6 @@ const mapStateToProps = (state, props) => {
       ),
   );
 
-  const locale = Utils.getIn(['storeReducer', 'settings', 'locale'])(state);
-
   return {
     storeSetting: state.storeReducer.settings,
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
@@ -162,7 +163,6 @@ const mapStateToProps = (state, props) => {
     location: Utils.uriParser(props),
     page: getPage(state, props),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
-    title: TITLE.WISHLIST[locale],
     wishList: Utils.getIn(['memberReducer', 'wishList'])(state),
     fbAppId:
       Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
@@ -173,4 +173,4 @@ export default connect(mapStateToProps, dispatch => ({
   dispatchAction: (actionName, args) => {
     dispatch(Actions[actionName](args));
   },
-}))(Wishlist);
+}))(withTranslation('common')(Wishlist));

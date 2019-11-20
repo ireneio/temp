@@ -1,0 +1,17 @@
+{
+  "auth-request": "検証中です…",
+  "login-request": "ログイン中です…",
+  "signout-request": "ログアウト中です…",
+  "signup-request": "サインアップ中です…",
+  "forget-password-request": "送信中です…",
+  "add-cart-items-request": "商品をカートに入れております…",
+  "update-cart-items-request": "商品数量変更中です…",
+  "remove-cart-items-request": "削除中です…",
+  "update-user-request": "会員情報を更新しております…",
+  "create-apply-request": "申し込みしております…",
+  "create-order-qa-request": "処理中です…",
+  "update-wishlist-request": "更新中です…",
+  "add-stock-notification-list-request": "処理中です…",
+  "get-order-request": "処理中です…",
+  "reset-password-request": "処理中です…"
+}

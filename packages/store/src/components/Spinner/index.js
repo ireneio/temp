@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import getMessage from './getMessage';
+
+import { withTranslation } from '@store/utils/lib/i18n';
+
 import spinner from './images/spinner.svg';
 
-const Spinner = ({ loading, loadingTip: type, locale = 'zh_TW' }) => (
+const Spinner = ({ t, loading, loadingTip }) => (
   <div
     id="spinner"
     style={{
@@ -19,14 +21,16 @@ const Spinner = ({ loading, loadingTip: type, locale = 'zh_TW' }) => (
     }}
   >
     <img src={spinner} alt="spinner" style={{ borderRadius: 8, width: 100 }} />
-    <div style={{ color: '#eee' }}>{getMessage(type, locale)}</div>
+
+    <div style={{ color: '#eee' }}>
+      {t(loadingTip.toLowerCase().replace(/_/g, '-'))}
+    </div>
   </div>
 );
 
 Spinner.propTypes = {
   loading: PropTypes.bool.isRequired,
   loadingTip: PropTypes.string.isRequired,
-  locale: PropTypes.string.isRequired,
 };
 
-export default Spinner;
+export default withTranslation('spinner')(Spinner);

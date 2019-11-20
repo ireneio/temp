@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { withTranslation } from '@store/utils/lib/i18n';
 import MemberOrders from '@store/member-orders';
 
 import * as Utils from 'utils';
@@ -13,7 +14,6 @@ import * as Actions from 'ducks/actions';
 import * as Selectors from 'selectors';
 import * as Template from 'template';
 import MemberHeader from 'components/MemberHeader';
-import * as TITLE from 'locales';
 
 class Orders extends React.Component {
   static getInitialProps = async context => {
@@ -75,6 +75,7 @@ class Orders extends React.Component {
       colors,
       title,
       fbAppId,
+      t,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -92,7 +93,7 @@ class Orders extends React.Component {
           fbAppId={fbAppId}
         />
         <Container {...this.props}>
-          <MemberHeader title={title} colors={colors}>
+          <MemberHeader title={t('title.orders')} colors={colors}>
             <MemberOrders />
           </MemberHeader>
         </Container>
@@ -143,8 +144,6 @@ const mapStateToProps = (state, props) => {
       ),
   );
 
-  const locale = Utils.getIn(['storeReducer', 'settings', 'locale'])(state);
-
   return {
     storeSetting: state.storeReducer.settings,
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
@@ -152,10 +151,9 @@ const mapStateToProps = (state, props) => {
     location: Utils.uriParser(props),
     page: getPage(state),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
-    title: TITLE.ORDERS[locale],
     fbAppId:
       Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 
-export default connect(mapStateToProps)(Orders);
+export default connect(mapStateToProps)(withTranslation('common')(Orders));

@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { withTranslation } from '@store/utils/lib/i18n';
 import MemberOrderApply from '@store/member-order-apply';
 
 import { Container, TrackingCodeHead, Error } from 'components';
@@ -13,7 +14,6 @@ import * as Selectors from 'selectors';
 import * as Template from 'template';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
-import * as TITLE from 'locales';
 
 class OrderExchange extends Component {
   static getInitialProps = async context => {
@@ -24,9 +24,9 @@ class OrderExchange extends Component {
       store,
       query: { orderId },
     } = context;
-    if (isServer) {
-      store.dispatch(Actions.serverOthersInitial(context));
-    }
+
+    if (isServer) store.dispatch(Actions.serverOthersInitial(context));
+
     return {
       orderId,
       userAgent,
@@ -87,6 +87,7 @@ class OrderExchange extends Component {
       title,
       fbAppId,
       orderId,
+      t,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -104,7 +105,11 @@ class OrderExchange extends Component {
           fbAppId={fbAppId}
         />
         <Container {...this.props}>
-          <MemberHeader title={title} goBackToOrders colors={colors}>
+          <MemberHeader
+            title={t('title.order-exchange')}
+            goBackToOrders
+            colors={colors}
+          >
             <MemberOrderApply orderId={orderId} type="exchange" />
           </MemberHeader>
         </Container>
@@ -155,8 +160,6 @@ const mapStateToProps = (state, props) => {
       ),
   );
 
-  const locale = Utils.getIn(['storeReducer', 'settings', 'locale'])(state);
-
   return {
     storeSetting: state.storeReducer.settings,
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
@@ -164,10 +167,11 @@ const mapStateToProps = (state, props) => {
     location: Utils.uriParser(props),
     page: getPage(state, props),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
-    title: TITLE.ORDER_EXCHANGE[locale],
     fbAppId:
       Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 
-export default connect(mapStateToProps)(OrderExchange);
+export default connect(mapStateToProps)(
+  withTranslation('common')(OrderExchange),
+);

@@ -1,9 +1,8 @@
 import React from 'react';
-import * as LOCALE from './locale';
 
-export default (
-  { locale }, // eslint-disable-line
-) => (
+import { withTranslation } from '@store/utils/lib/i18n';
+
+const CloseView = ({ t }) => (
   <div
     style={{
       fontSize: 18,
@@ -20,6 +19,8 @@ export default (
       transform: 'translate(-50%, -50%)',
     }}
   >
-    {`...${LOCALE.STORE_CLOSE[locale]}...`}
+    ...{t('close')}...
   </div>
 );
+
+export default withTranslation('common')(CloseView);

@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { withTranslation } from '@store/utils/lib/i18n';
 import MemberPasswordChange from '@store/member-password-change';
 
 import * as Utils from 'utils';
@@ -13,14 +14,13 @@ import { Container, TrackingCodeHead, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
-import * as TITLE from 'locales';
 
 class PasswordChange extends Component {
   static getInitialProps = async context => {
     const { isServer, XMeepshopDomain, userAgent, store } = context;
-    if (isServer) {
-      store.dispatch(Actions.serverOthersInitial(context));
-    }
+
+    if (isServer) store.dispatch(Actions.serverOthersInitial(context));
+
     return {
       userAgent,
       XMeepshopDomain,
@@ -79,6 +79,7 @@ class PasswordChange extends Component {
       colors,
       title,
       fbAppId,
+      t,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -96,7 +97,7 @@ class PasswordChange extends Component {
           fbAppId={fbAppId}
         />
         <Container {...this.props}>
-          <MemberHeader title={title} colors={colors}>
+          <MemberHeader title={t('title.change-password')} colors={colors}>
             <MemberPasswordChange />
           </MemberHeader>
         </Container>
@@ -147,8 +148,6 @@ const mapStateToProps = (state, props) => {
       ),
   );
 
-  const locale = Utils.getIn(['storeReducer', 'settings', 'locale'])(state);
-
   return {
     storeSetting: state.storeReducer.settings,
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
@@ -156,10 +155,11 @@ const mapStateToProps = (state, props) => {
     location: Utils.uriParser(props),
     page: getPage(state, props),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
-    title: TITLE.CHANGE_PASSWORD[locale],
     fbAppId:
       Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 
-export default connect(mapStateToProps)(PasswordChange);
+export default connect(mapStateToProps)(
+  withTranslation('common')(PasswordChange),
+);

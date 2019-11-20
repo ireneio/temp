@@ -1,1 +1,19 @@
-{}
+{
+  "close": "商店關閉中",
+  "product-is-discontinued": "抱歉，此商品已下架",
+  "back-to-homepage": "回首頁",
+  "title": {
+    "order": "訂單明細",
+    "order-apply-list": "退換貨查詢",
+    "order-exchange": "換貨申請",
+    "order-refund": "退貨申請",
+    "orders": "訂單管理",
+    "change-password": "更改密碼",
+    "pay-notify": "匯款通知",
+    "recipients": "收件人範本",
+    "reward-points": "購物金",
+    "settings": "會員資料",
+    "wishlist": "我的收藏",
+    "logout": "登出"
+  }
+}

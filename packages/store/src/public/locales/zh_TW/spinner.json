@@ -1,0 +1,17 @@
+{
+  "auth-request": "驗證中...",
+  "login-request": "登入中...",
+  "signout-request": "登出中...",
+  "signup-request": "註冊中...",
+  "forget-password-request": "寄信中...",
+  "add-cart-items-request": "加入購物車...",
+  "update-cart-items-request": "更改數量中...",
+  "remove-cart-items-request": "移除中...",
+  "update-user-request": "更新資料...",
+  "create-apply-request": "申請中...",
+  "create-order-qa-request": "處理中...",
+  "update-wishlist-request": "處理中...",
+  "add-stock-notification-list-request": "處理中...",
+  "get-order-request": "處理中...",
+  "reset-password-request": "處理中..."
+}

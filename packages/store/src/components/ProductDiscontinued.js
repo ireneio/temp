@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Router } from 'server/routes';
-import * as LOCALE from './locale';
 
-const ProductDiscontinued = ({ productName, locale }) => (
+import { withTranslation } from '@store/utils/lib/i18n';
+
+const ProductDiscontinued = ({ t, productName }) => (
   <div
     style={{
       zIndex: 999,
@@ -29,7 +30,7 @@ const ProductDiscontinued = ({ productName, locale }) => (
         <path d="M0 1h183v240H0z" />
       </g>
     </svg>
-    <div>{LOCALE.PRODUCT_IS_DISCONTINUED[locale]}</div>
+    <div>{t('product-is-discontinued')}</div>
     <div>{productName}</div>
     <div
       style={{ fontSize: 12, textDecoration: 'underline', paddingTop: 20 }}
@@ -37,7 +38,7 @@ const ProductDiscontinued = ({ productName, locale }) => (
         Router.push('/');
       }}
     >
-      {LOCALE.BACK_TO_HOMEPAGE[locale]}
+      {t('back-to-homepage')}
     </div>
   </div>
 );
@@ -47,4 +48,4 @@ ProductDiscontinued.propTypes = {
   locale: PropTypes.string.isRequired,
 };
 
-export default ProductDiscontinued;
+export default withTranslation('common')(ProductDiscontinued);

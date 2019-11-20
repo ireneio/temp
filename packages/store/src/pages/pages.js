@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
+
+import { withTranslation } from '@store/utils/lib/i18n';
+
 import * as Utils from 'utils';
 import { Container, TrackingCodeHead, Error } from 'components';
 import { getJoinedPageInPagesRoute } from 'selectors/pages';
@@ -64,11 +67,12 @@ class Pages extends React.Component {
     if (error) return <Error error={error} />;
 
     const {
-      storeSetting: { storeName, storeDescription, faviconUrl, locale },
+      storeSetting: { storeName, storeDescription, faviconUrl },
       location: { host, pathname },
       page,
       pageAdTrackIDs,
       fbAppId,
+      i18n,
     } = this.props;
     const url = host + pathname;
     const { addressTitle = '' } = page;
@@ -98,7 +102,7 @@ class Pages extends React.Component {
             content={description || storeDescription}
           />
           <meta property="og:site_name" content={storeName} />
-          <meta property="og:locale" content={locale} />
+          <meta property="og:locale" content={i18n.language} />
           {/* <!-- End - Facebook Open Graph --> */}
         </Head>
         <TrackingCodeHead
@@ -127,4 +131,4 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps)(Pages);
+export default connect(mapStateToProps)(withTranslation('common')(Pages));

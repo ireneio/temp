@@ -299,7 +299,7 @@ class Container extends React.Component {
 
     return (
       <>
-        <Spinner locale={locale} loading={loading} loadingTip={loadingTip} />
+        <Spinner loading={loading} loadingTip={loadingTip} />
         <Layout
           /* never change */
           cname={cname}
@@ -307,7 +307,7 @@ class Container extends React.Component {
           storeCurrency={storeCurrency}
           storeAppList={storeAppList}
           storeSetting={storeSetting}
-          /* may chnage */
+          /* may change */
           isLogin={isLogin}
           user={user}
           location={location}

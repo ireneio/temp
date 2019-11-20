@@ -81,9 +81,6 @@ class MyApp extends App {
                 viewer {
                   store {
                     storeStatus
-                    setting {
-                      locale
-                    }
                   }
                 }
               }
@@ -102,12 +99,9 @@ class MyApp extends App {
       if (response.status < 400) {
         const data = await response.json();
         const storeStatus = data?.data?.viewer.store.storeStatus;
-        const locale =
-          req?.locale ||
-          data?.data?.viewer?.store?.setting?.locale?.[0] ||
-          'zh_TW';
+
         /* The store is closed */
-        if (storeStatus === 0) return { closed: true, locale, pageProps };
+        if (storeStatus === 0) return { closed: true, pageProps };
       }
 
       /**
@@ -186,7 +180,6 @@ class MyApp extends App {
     const {
       error,
       closed,
-      locale,
       storeNotFound,
       Component,
       pageProps,
@@ -199,7 +192,7 @@ class MyApp extends App {
     /* Hnadle error */
     if (error) return <Error error={error} />;
     /* Store is closed */
-    if (closed) return <CloseView locale={locale} />;
+    if (closed) return <CloseView />;
     /* Store not found */
     if (storeNotFound) return <StoreNotExistsView />;
 

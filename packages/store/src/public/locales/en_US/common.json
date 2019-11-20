@@ -1,1 +1,19 @@
-{}
+{
+  "close": "Out of Service",
+  "product-is-discontinued": "Oops! This product has been discontinued.",
+  "back-to-homepage": "Back to the homepage",
+  "title": {
+    "order": "Order Details",
+    "order-apply-list": "Return / Replacement",
+    "order-exchange": "Replacement",
+    "order-refund": "Return",
+    "orders": "My Orders",
+    "change-password": "Change Password",
+    "pay-notify": "Payment Notification",
+    "recipients": "Address Book",
+    "reward-points": "Reward Points",
+    "settings": "Member Info",
+    "wishlist": "Wish list",
+    "logout": "logout"
+  }
+}

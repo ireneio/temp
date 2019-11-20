@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 
+import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
 
@@ -20,6 +21,7 @@ class Product extends React.Component {
   static getInitialProps = async context => {
     const { isServer, XMeepshopDomain, userAgent, store, query } = context;
     const { pId } = query;
+
     if (isServer) {
       store.dispatch(Actions.serverProductInitial(context));
     } else {
@@ -29,6 +31,7 @@ class Product extends React.Component {
         store.dispatch(Actions.getProduct({ id: pId, query }));
       }
     }
+
     return { pId, userAgent, XMeepshopDomain };
   };
 
@@ -51,7 +54,6 @@ class Product extends React.Component {
       variantInfo: PropTypes.object,
       status: PropTypes.number.isRequired,
     }).isRequired,
-    locale: PropTypes.string.isRequired,
     pageAdTrackIDs: PropTypes.shape({
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
@@ -79,7 +81,7 @@ class Product extends React.Component {
     if (error) return <Error error={error} />;
 
     const {
-      storeSetting: { storeName, storeDescription, faviconUrl, locale },
+      storeSetting: { storeName, storeDescription, faviconUrl },
       location: { host, pathname },
       page,
       product: {
@@ -90,6 +92,7 @@ class Product extends React.Component {
       productDescription,
       pageAdTrackIDs,
       fbAppId,
+      i18n,
     } = this.props;
     const url = host + pathname;
     const productImage = coverImage?.src || '';
@@ -122,7 +125,7 @@ class Product extends React.Component {
             content={productDescription || storeDescription}
           />
           <meta property="og:site_name" content={storeName} />
-          <meta property="og:locale" content={locale} />
+          <meta property="og:locale" content={i18n.language} />
           {/* <!-- End - Facebook Open Graph --> */}
         </Head>
         <TrackingCodeHead
@@ -130,10 +133,11 @@ class Product extends React.Component {
           pageAdTrackIDs={pageAdTrackIDs}
           fbAppId={fbAppId}
         />
+
         {status ? (
           <Container {...this.props} />
         ) : (
-          <ProductDiscontinued productName={productName} locale={locale} />
+          <ProductDiscontinued productName={productName} />
         )}
       </>
     );
@@ -157,4 +161,6 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps)(withContext(adTrackContext)(Product));
+export default connect(mapStateToProps)(
+  withTranslation('common')(withContext(adTrackContext)(Product)),
+);

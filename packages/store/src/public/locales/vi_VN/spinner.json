@@ -1,0 +1,17 @@
+{
+  "auth-request": "Đang xác nhận…",
+  "login-request": "Đang đăng nhập…",
+  "signout-request": "Đang đăng xuất…",
+  "signup-request": "Đang đăng ký…",
+  "forget-password-request": "Đang gửi thư…",
+  "add-cart-items-request": "Thêm vào giỏ hàng…",
+  "update-cart-items-request": "Đang thay đổi số lượng…",
+  "remove-cart-items-request": "Đang xóa…",
+  "update-user-request": "Cập nhật thông tin…",
+  "create-apply-request": "Đang xin đăng ký…",
+  "create-order-qa-request": "Đang xử lý…",
+  "update-wishlist-request": "Đang xử lý…",
+  "add-stock-notification-list-request": "Đang xử lý…",
+  "get-order-request": "Đang xử lý…",
+  "reset-password-request": "Đang xử lý…"
+}

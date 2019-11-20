@@ -1,1 +1,19 @@
-{}
+{
+  "close": "Đã đóng cửa hàng",
+  "product-is-discontinued": "hàng đã được gởi đi",
+  "back-to-homepage": "Trở về trang chủ",
+  "title": {
+    "order": "chi tiết đơn hàng",
+    "order-apply-list": "tư vấn đổi trả",
+    "order-exchange": "đăng ký thay thế",
+    "order-refund": "đăng ký hoàn trả",
+    "orders": "quản lý đơn hàng",
+    "change-password": "Thay đổi mật mã",
+    "pay-notify": "thông báo chuyển tiền",
+    "recipients": "mẫu người nhận",
+    "reward-points": "tiền mua hàng",
+    "settings": "thông tin hội viên",
+    "wishlist": "Tích lũy của tôi",
+    "logout": "logout"
+  }
+}

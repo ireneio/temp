@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { withTranslation } from '@store/utils/lib/i18n';
 import MemberRewardPoints from '@store/member-reward-points';
 
 import * as Utils from 'utils';
@@ -13,14 +14,13 @@ import { Container, TrackingCodeHead, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
-import * as TITLE from 'locales';
 
 class RewardPoints extends Component {
   static getInitialProps = async context => {
     const { isServer, XMeepshopDomain, userAgent, store } = context;
-    if (isServer) {
-      store.dispatch(Actions.serverOthersInitial(context));
-    }
+
+    if (isServer) store.dispatch(Actions.serverOthersInitial(context));
+
     return {
       userAgent,
       XMeepshopDomain,
@@ -81,6 +81,7 @@ class RewardPoints extends Component {
       colors,
       title,
       fbAppId,
+      t,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -98,7 +99,7 @@ class RewardPoints extends Component {
           fbAppId={fbAppId}
         />
         <Container {...this.props}>
-          <MemberHeader title={title} colors={colors}>
+          <MemberHeader title={t('title.reward-points')} colors={colors}>
             <MemberRewardPoints />
           </MemberHeader>
         </Container>
@@ -149,8 +150,6 @@ const mapStateToProps = (state, props) => {
       ),
   );
 
-  const locale = Utils.getIn(['storeReducer', 'settings', 'locale'])(state);
-
   return {
     storeSetting: state.storeReducer.settings,
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
@@ -158,7 +157,6 @@ const mapStateToProps = (state, props) => {
     location: Utils.uriParser(props),
     page: getPage(state, props),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
-    title: TITLE.REWARD_POINTS[locale],
     userPoints: Utils.getIn(['memberReducer', 'userPoints'])(state),
     currentBalance: Utils.getIn(['memberReducer', 'currentBalance'])(state),
     fbAppId:
@@ -166,4 +164,6 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps)(RewardPoints);
+export default connect(mapStateToProps)(
+  withTranslation('common')(RewardPoints),
+);

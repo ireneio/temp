@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { withTranslation } from '@store/utils/lib/i18n';
 import MemberSettings from '@store/member-settings';
 
 import * as Utils from 'utils';
@@ -13,14 +14,13 @@ import { Container, TrackingCodeHead, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
-import * as TITLE from 'locales';
 
 class Settings extends Component {
   static getInitialProps = async context => {
     const { isServer, XMeepshopDomain, userAgent, store } = context;
-    if (isServer) {
-      store.dispatch(Actions.serverOthersInitial(context));
-    }
+
+    if (isServer) store.dispatch(Actions.serverOthersInitial(context));
+
     return {
       userAgent,
       XMeepshopDomain,
@@ -86,6 +86,7 @@ class Settings extends Component {
       user,
       fbAppId,
       dispatchAction,
+      t,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -103,7 +104,7 @@ class Settings extends Component {
           fbAppId={fbAppId}
         />
         <Container {...this.props}>
-          <MemberHeader title={title} colors={colors}>
+          <MemberHeader title={t('title.settings')} colors={colors}>
             <MemberSettings dispatchAction={dispatchAction} member={user} />
           </MemberHeader>
         </Container>
@@ -154,8 +155,6 @@ const mapStateToProps = (state, props) => {
       ),
   );
 
-  const locale = Utils.getIn(['storeReducer', 'settings', 'locale'])(state);
-
   const user = Utils.getIn(['memberReducer', 'user'])(state);
 
   return {
@@ -165,7 +164,6 @@ const mapStateToProps = (state, props) => {
     location: Utils.uriParser(props),
     page: getPage(state, props),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
-    title: TITLE.SETTINGS[locale],
     user: user && Selectors.getJoinedUser(state),
     lockedBirthday:
       Utils.getIn(['storeReducer', 'settings', 'lockedBirthday'])(state) ||
@@ -180,4 +178,4 @@ export default connect(mapStateToProps, dispatch => ({
   dispatchAction: (actionName, args) => {
     dispatch(Actions[actionName](args));
   },
-}))(Settings);
+}))(withTranslation('common')(Settings));
