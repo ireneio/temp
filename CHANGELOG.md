@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.29.4 (2019-11-22)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#784](https://github.com/meepshop/meep-lerna/pull/784)【個案處理】meepShop MAX 極速開店：新增白名單 - uteam ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#782](https://github.com/meepshop/meep-lerna/pull/782)【BUG】 前台 - 當商品影像 1 無設定自動輪播，往前點選無反應 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.29.3 (2019-11-20)
 
 #### :boom: Breaking Change
