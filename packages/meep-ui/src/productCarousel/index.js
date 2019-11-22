@@ -54,6 +54,19 @@ export default class ProductCarousel extends React.PureComponent {
     });
   };
 
+  setSlickActive = () => {
+    // FIXME: react-slick bug - miss .slick-active class on slides that are visible
+    // https://github.com/akiran/react-slick/issues/764
+    const slickList = this.navigator.current.innerSlider.list.childNodes[0]
+      .childNodes;
+
+    slickList.forEach((slick, index) => {
+      if (!/slick-active/.test(slickList[index].className)) {
+        slickList[index].className += ' slick-active';
+      }
+    });
+  };
+
   setMainImage = () => {
     const { coverImage, galleries } = this.props;
 
@@ -125,6 +138,7 @@ export default class ProductCarousel extends React.PureComponent {
                 slidesToShow={images.length > 4 ? 4 : images.length}
                 swipe={false}
                 focusOnSelect
+                afterChange={this.setSlickActive}
               >
                 {images.map(image => (
                   <div key={image.fileId}>
