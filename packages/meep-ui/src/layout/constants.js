@@ -37,6 +37,7 @@ export const SPECIAL_HIDE_FOOTER = [
   '2plus1store',
   'iwe',
   'i-eat',
+  'uteam',
 ];
 
 export const STORE_APP_PLUGINS = [
