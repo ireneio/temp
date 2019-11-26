@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import radium, { Style } from 'radium';
 import { Select as AntdSelect } from 'antd';
 
+import { withTranslation } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
   ID_TYPE,
@@ -11,23 +13,23 @@ import {
   PURCHASE_ITEMS_TYPE,
 } from 'constants/propTypes';
 
-import * as LOCALE from './locale';
 import * as styles from './styles/select';
 import { item as itemStyle } from './styles/product';
 
 const { Option } = AntdSelect;
 
+@withTranslation('order-product-list')
 @enhancer
 @radium
 export default class Select extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired,
     transformCurrency: PropTypes.func.isRequired,
     updateCartItems: PropTypes.func.isRequired,
 
     /** props */
+    t: PropTypes.func.isRequired,
     error: PropTypes.string,
     cartId: ID_TYPE.isRequired,
     quantity: PropTypes.number.isRequired,
@@ -49,39 +51,30 @@ export default class Select extends React.PureComponent {
   };
 
   getErrorMessage = () => {
-    const {
-      transformLocale,
-      stock,
-      minPurchaseItems,
-      error,
-      productHasError,
-    } = this.props;
+    const { t, stock, minPurchaseItems, error, productHasError } = this.props;
 
-    if (/Product not online/.test(error)) {
-      return transformLocale(
-        productHasError
-          ? LOCALE.PRODUCT_STATUS_OFF_WARNING
-          : LOCALE.PRODUCT_STATUS_OFF,
-      );
-    }
+    if (/Product not online/.test(error))
+      return productHasError
+        ? t('product-status-off-warning')
+        : t('product-status-off');
 
-    if (stock <= 0 || (stock > 0 && minPurchaseItems > stock)) {
-      return transformLocale(
-        productHasError
-          ? LOCALE.PRODUCT_SOLD_OUT_WARNING
-          : LOCALE.PRODUCT_SOLD_OUT,
-      );
-    }
+    if (stock <= 0 || (stock > 0 && minPurchaseItems > stock))
+      return productHasError
+        ? t('product-sold-out-warning')
+        : t('product-sold-out');
 
     return null;
   };
 
   render() {
     const {
+      /** context */
       colors,
       transformCurrency,
-      transformLocale,
       updateCartItems,
+
+      /** props */
+      t,
       cartId,
       quantity,
       retailPrice,
@@ -95,13 +88,12 @@ export default class Select extends React.PureComponent {
 
     const errorMessage = this.getErrorMessage();
 
-    if (errorMessage) {
+    if (errorMessage)
       return (
         <td style={[itemStyle, styles.error(productHasError)]} colSpan="2">
           {errorMessage}
         </td>
       );
-    }
 
     let { minPurchaseItems, maxPurchaseLimit } = this.props;
 
@@ -109,17 +101,14 @@ export default class Select extends React.PureComponent {
     minPurchaseItems = minPurchaseItems > 0 ? minPurchaseItems : 1;
 
     // maxPurchaseLimit 最小需等於 minPurchaseItems
-    if (typeof maxPurchaseLimit === 'number') {
+    if (typeof maxPurchaseLimit === 'number')
       maxPurchaseLimit =
         maxPurchaseLimit > minPurchaseItems
           ? maxPurchaseLimit
           : minPurchaseItems;
-    } else {
-      maxPurchaseLimit = stock;
-    }
+    else maxPurchaseLimit = stock;
 
     const maxPurchase = maxPurchaseLimit < stock ? maxPurchaseLimit : stock;
-
     const itemAmount = maxPurchase - minPurchaseItems + 1;
 
     return (
@@ -144,7 +133,7 @@ export default class Select extends React.PureComponent {
               this.setState({ searchValue: null });
             }}
             getPopupContainer={() => orderProductListRef.current}
-            notFoundContent={transformLocale(LOCALE.NOT_FOUND_CONTENT)}
+            notFoundContent={t('not-found-content')}
             onSearch={value => {
               const searchValueTemp = parseInt(value, 10);
 
@@ -169,9 +158,7 @@ export default class Select extends React.PureComponent {
 
                   return (
                     <Option key={value} value={value} disabled={index >= 100}>
-                      {index >= 100
-                        ? transformLocale(LOCALE.MORE_OPTIONS)
-                        : value}
+                      {index >= 100 ? t('more-options') : value}
                     </Option>
                   );
                 })
@@ -179,9 +166,7 @@ export default class Select extends React.PureComponent {
           </AntdSelect>
 
           {!error ? null : (
-            <div className="ant-form-explain">
-              {transformLocale(LOCALE.PRODUCT_OVER_STOCK)}
-            </div>
+            <div className="ant-form-explain">{t('product-over-stock')}</div>
           )}
         </td>
 

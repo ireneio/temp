@@ -1,0 +1,9 @@
+{
+  "total": "商品合計",
+  "point": "ポイント",
+  "payment": "決済手数料",
+  "not-choose-shipment": "まだ選択していません",
+  "shipment": "送料",
+  "free-shipment": "送料無料",
+  "grand-total": "注文合計金額"
+}

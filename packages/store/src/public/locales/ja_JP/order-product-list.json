@@ -1,0 +1,12 @@
+{
+  "empty-cart": "商品がまだ選択されていません",
+  "product-status-off": "この商品は販売を終了しました",
+  "product-status-off-warning": "先に販売終了商品を削除してください",
+  "product-sold-out": "商品は完売しました",
+  "product-sold-out-warning": "先に完売商品を削除してください",
+  "product-over-stock": "購入可能数量を超えています",
+  "not-found-content": "最大購買量をオーバーしているか様式が合っていません",
+  "more-options": "…あるいは、自分で更に入力して下さい",
+  "gift": "プレゼント",
+  "gift-exchange-is-completed": "プレゼント配布終了"
+}

@@ -1,0 +1,12 @@
+{
+  "empty-cart": "Your cart is empty.",
+  "product-status-off": "Not Available",
+  "product-status-off-warning": "Please remove this item",
+  "product-sold-out": "Out of Stock",
+  "product-sold-out-warning": "Please remove this item",
+  "product-over-stock": "Over the limited number of purchasable items",
+  "not-found-content": "The number of purchasable items might surpass its limit or the format is invalid.",
+  "more-options": "… or key in desired QTY",
+  "gift": "Free Gift",
+  "gift-exchange-is-completed": "Out of Stock"
+}

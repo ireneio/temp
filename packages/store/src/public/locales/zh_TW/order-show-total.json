@@ -1,0 +1,9 @@
+{
+  "total": "商品總計",
+  "point": "購物金",
+  "payment": "金流手續費",
+  "not-choose-shipment": "未選擇",
+  "shipment": "運費",
+  "free-shipment": "免運費",
+  "grand-total": "訂單總金額"
+}

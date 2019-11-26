@@ -2,25 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 
-import { enhancer } from 'layout/DecoratorsRoot';
+import { withTranslation } from '@store/utils/lib/i18n';
+
 import { ID_TYPE } from 'constants/propTypes';
 
 import Product from './Product';
 import EmptyCartIcon from './EmptyCartIcon';
 import Total from './Total';
-import * as LOCALE from './locale';
 import * as styles from './styles';
 
-@enhancer
+@withTranslation('order-product-list')
 @radium
 export default class OrderProductList extends React.PureComponent {
   orderProductListRef = React.createRef();
 
   static propTypes = {
-    /** context */
-    transformLocale: PropTypes.func.isRequired,
-
     /** props */
+    t: PropTypes.func.isRequired,
     style: PropTypes.shape({}),
     onChange: PropTypes.func,
     products: PropTypes.arrayOf(
@@ -47,7 +45,7 @@ export default class OrderProductList extends React.PureComponent {
 
   render() {
     const {
-      transformLocale,
+      t,
       style,
       onChange,
       children,
@@ -68,9 +66,7 @@ export default class OrderProductList extends React.PureComponent {
             <>
               <EmptyCartIcon />
 
-              <p style={styles.emptyCartText}>
-                {transformLocale(LOCALE.EMPTY_CART)}
-              </p>
+              <p style={styles.emptyCartText}>{t('empty-cart')}</p>
             </>
           ) : (
             <table style={styles.table}>

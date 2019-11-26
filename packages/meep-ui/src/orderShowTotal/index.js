@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 
+import { withTranslation } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
   ID_TYPE,
@@ -9,7 +11,6 @@ import {
   POSITIVE_NUMBER_TYPE,
 } from 'constants/propTypes';
 
-import * as LOCALE from './locale';
 import * as styles from './styles';
 
 const getActivityInfo = activityInfo =>
@@ -36,16 +37,17 @@ const getActivityInfo = activityInfo =>
     ];
   }, []);
 
+@withTranslation('order-show-total')
 @enhancer
 @radium
 export default class OrderShowTotal extends React.PureComponent {
   static propTypes = {
     /** context */
     location: LOCATION_TYPE.isRequired,
-    transformLocale: PropTypes.func.isRequired,
     transformCurrency: PropTypes.func.isRequired,
 
     /** props */
+    t: PropTypes.func.isRequired,
     style: PropTypes.shape({}),
     productPrice: POSITIVE_NUMBER_TYPE,
     paymentFee: PropTypes.number,
@@ -58,7 +60,6 @@ export default class OrderShowTotal extends React.PureComponent {
         id: ID_TYPE.isRequired,
         plugin: PropTypes.string.isRequired, // TODO
         discountPrice: POSITIVE_NUMBER_TYPE, // TODO
-        title: LOCALE.isRequired,
       }).isRequired,
     ).isRequired,
   };
@@ -74,9 +75,13 @@ export default class OrderShowTotal extends React.PureComponent {
 
   render() {
     const {
+      /** context */
       location,
-      transformLocale,
       transformCurrency,
+
+      /** props */
+      t,
+      i18n,
       style,
       productPrice,
       paymentFee,
@@ -90,7 +95,7 @@ export default class OrderShowTotal extends React.PureComponent {
     return (
       <div style={[styles.root, style]}>
         <div style={styles.item}>
-          <div>{transformLocale(LOCALE.TOTAL)}</div>
+          <div>{t('total')}</div>
 
           <div>{transformCurrency(productPrice)}</div>
         </div>
@@ -100,9 +105,9 @@ export default class OrderShowTotal extends React.PureComponent {
             discountPrice <= 0 ? null : (
               <div key={id} style={styles.item}>
                 <div>
-                  {transformLocale(
-                    plugin === 'usePoints' ? LOCALE.POINT : title,
-                  )}
+                  {plugin === 'usePoints'
+                    ? t('point')
+                    : title[i18n.language] || title.zh_TW}
                 </div>
 
                 <div>- {transformCurrency(discountPrice)}</div>
@@ -112,7 +117,7 @@ export default class OrderShowTotal extends React.PureComponent {
 
         {paymentFee === 0 ? null : (
           <div style={styles.item}>
-            <div>{transformLocale(LOCALE.PAYMENT)}</div>
+            <div>{t('payment')}</div>
 
             <div>
               {paymentFee < 0 ? '-' : ''}{' '}
@@ -123,25 +128,25 @@ export default class OrderShowTotal extends React.PureComponent {
 
         {pathname !== '/checkout' ? null : (
           <div style={styles.item}>
-            <div>{transformLocale(LOCALE.SHIPMENT)}</div>
+            <div>{t('shipment')}</div>
 
             <div>
               {(() => {
                 if (
                   activityInfo.find(({ plugin }) => plugin === 'freeShipping')
                 )
-                  return transformLocale(LOCALE.FREE_SHIPMENT);
+                  return t('free-shipment');
 
                 if (isChoosenSipment) return transformCurrency(shipmentFee);
 
-                return transformLocale(LOCALE.NOT_CHOOSE_SHIPMENT);
+                return t('not-choose-shipment');
               })()}
             </div>
           </div>
         )}
 
         <div style={[styles.item, styles.total]}>
-          <div>{transformLocale(LOCALE.GRAND_TOTAL)}</div>
+          <div>{t('grand-total')}</div>
 
           <div style={styles.totalPrice}>{transformCurrency(total)}</div>
         </div>

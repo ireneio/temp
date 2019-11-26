@@ -4,6 +4,8 @@ import radium from 'radium';
 import { MdClose as RemoveIcon } from 'react-icons/md';
 import { FaTag as TagIcon } from 'react-icons/fa';
 
+import { withTranslation } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ThumbPlaceholder } from 'placeholder';
 import Thumb from 'thumb';
@@ -16,19 +18,19 @@ import {
 } from 'constants/propTypes';
 
 import Select from './Select';
-import * as LOCALE from './locale';
 import * as styles from './styles/product';
 
+@withTranslation('order-product-list')
 @enhancer
 @radium
 export default class Product extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired,
     removeCartItems: PropTypes.func.isRequired,
 
     /** props */
+    t: PropTypes.func.isRequired,
     error: PropTypes.string,
     coverImage: COVER_IMAGE_TYPE,
     specs: PropTypes.arrayOf(
@@ -60,9 +62,13 @@ export default class Product extends React.PureComponent {
 
   render() {
     const {
+      /** context */
       colors,
-      transformLocale,
       removeCartItems,
+
+      /** props */
+      t,
+      i18n,
       type,
       error,
       coverImage,
@@ -105,12 +111,15 @@ export default class Product extends React.PureComponent {
         </td>
 
         <td style={[styles.item, styles.title]}>
-          {transformLocale(title)}
+          {title[i18n.language] || title.zh_TW}
 
           {!specs ? null : (
             <div style={styles.spec}>
               {specs
-                .map(({ title: specTitle }) => transformLocale(specTitle))
+                .map(
+                  ({ title: specTitle }) =>
+                    specTitle[i18n.language] || specTitle.zh_TW,
+                )
                 .join('/')}
             </div>
           )}
@@ -121,7 +130,7 @@ export default class Product extends React.PureComponent {
                 <>
                   <TagIcon style={styles.tagIcon} />
 
-                  {transformLocale(activityTitle)}
+                  {activityTitle[i18n.language] || activityTitle.zh_TW}
                 </>
               ))}
             </div>
@@ -140,11 +149,7 @@ export default class Product extends React.PureComponent {
           />
         ) : (
           <td style={[styles.item, styles.gift(error, colors)]} colSpan="2">
-            {transformLocale(
-              LOCALE[
-                stock <= 0 || error ? 'GIFT_EXCHANGE_IS_COMPLETED' : 'GIFT'
-              ],
-            )}
+            {stock <= 0 || error ? t('gift-exchange-is-completed') : t('gift')}
           </td>
         )}
       </tr>

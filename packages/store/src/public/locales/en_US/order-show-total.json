@@ -1,0 +1,9 @@
+{
+  "total": "Subtotal",
+  "point": "Reward Points",
+  "payment": "Processing Fee",
+  "not-choose-shipment": "Options are not selected",
+  "shipment": "Shipping Fee",
+  "free-shipment": "Free",
+  "grand-total": "Total"
+}
