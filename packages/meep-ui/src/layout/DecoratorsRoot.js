@@ -68,11 +68,6 @@ export default class DecoratorsRoot extends React.Component {
 
     /** variables for DecoratorsRoot func */
     storeCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
-    fxSetup: PropTypes.shape({
-      timestamp: PropTypes.number.isRequired,
-      base: ONE_OF_CURRENCY_TYPE.isRequired,
-      rates: PropTypes.shape({}).isRequired,
-    }).isRequired,
 
     /** render */
     children: PropTypes.node.isRequired,

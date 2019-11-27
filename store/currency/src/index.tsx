@@ -1,23 +1,20 @@
-// typescript import
-import { Subtract } from '@store/utils/lib/types';
-
 // import
 import React, { useState } from 'react';
-import { Query } from '@apollo/react-components';
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 import idx from 'idx';
 
-import CurrencyContext from './context';
 import generateConverter from './utils/generateConverter';
 import initFx from './utils/initFx';
+import { DEFAULT_FX } from './constants';
 
 // graphql typescript
 import { getStoreCurrency } from './__generated__/getStoreCurrency';
 
 // typescript definition
 interface PropsType {
-  currency: string;
+  cookieCurrency: string;
   children: React.ReactNode;
 }
 
@@ -28,69 +25,54 @@ export interface CurrencyType {
 }
 
 // definition
-export const Context = CurrencyContext;
+const CurrencyContext = React.createContext({
+  c: generateConverter('TWD', 'TWD'),
+  setCurrency: (_: string) => {},
+  currency: 'TWD',
+});
 
 export const CurrencyProvider = React.memo(
-  ({ currency: propsCurrency, children }: PropsType) => {
-    const [currency, setCurrency] = useState<string>(propsCurrency);
-
-    return (
-      <Query<getStoreCurrency>
-        query={gql`
-          query getStoreCurrency {
-            viewer {
+  ({ cookieCurrency, children }: PropsType) => {
+    const { loading, error, data } = useQuery<getStoreCurrency>(
+      gql`
+        query getStoreCurrency {
+          viewer {
+            id
+            store {
               id
-              store {
-                id
-                currency
-              }
-            }
-
-            exchangeRateService {
-              base
-              rates
-              timestamp
+              currency
             }
           }
-        `}
-      >
-        {({ loading, error, data }) => {
-          if (loading || error)
-            return <Spin indicator={<Icon type="loading" spin />} />;
 
-          const storeCurrency =
-            idx(data, _ => _.viewer.store.currency) || 'TWD';
+          exchangeRateService {
+            base
+            rates
+            timestamp
+          }
+        }
+      `,
+    );
+    const [currency, setCurrency] = useState<string>(cookieCurrency);
 
-          initFx(idx(data, _ => _.exchangeRateService));
+    if (loading || error)
+      return <Spin indicator={<Icon type="loading" spin />} />;
 
-          return (
-            <CurrencyContext.Provider
-              value={{
-                convertCurrency: generateConverter(storeCurrency, currency),
-                setCurrency,
-                currency,
-              }}
-            >
-              {children}
-            </CurrencyContext.Provider>
-          );
+    const storeCurrency = idx(data, _ => _.viewer.store.currency) || 'TWD';
+
+    initFx(idx(data, _ => _.exchangeRateService) || DEFAULT_FX);
+
+    return (
+      <CurrencyContext.Provider
+        value={{
+          c: generateConverter(storeCurrency, currency),
+          setCurrency,
+          currency,
         }}
-      </Query>
+      >
+        {children}
+      </CurrencyContext.Provider>
     );
   },
 );
 
-export default <P extends object>(
-  Component: React.ComponentType<P>,
-): React.ComponentType<Subtract<P, CurrencyType>> => (props: P) => (
-  <CurrencyContext.Consumer>
-    {({ convertCurrency, setCurrency, currency }) => (
-      <Component
-        {...props}
-        c={convertCurrency}
-        setCurrency={setCurrency}
-        currency={currency}
-      />
-    )}
-  </CurrencyContext.Consumer>
-);
+export default CurrencyContext;

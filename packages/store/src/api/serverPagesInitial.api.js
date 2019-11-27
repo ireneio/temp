@@ -262,11 +262,6 @@ export default async function(context) {
         appId
       }
     }
-    exchangeRateService {
-      base
-      rates
-      timestamp
-    }
     getCartList(search: $cartSearch) {
       data {
         ${cartQuery}

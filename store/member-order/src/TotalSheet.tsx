@@ -9,7 +9,8 @@ import memoizeOne from 'memoize-one';
 import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
-import withCurrency from '@store/currency';
+import withContext from '@store/utils/lib/withContext';
+import currencyContext from '@store/currency';
 
 import styles from './styles/totalSheet.less';
 
@@ -203,4 +204,6 @@ class TotalSheet extends React.PureComponent<PropsType> {
   }
 }
 
-export default withTranslation('member-order')(withCurrency(TotalSheet));
+export default withTranslation('member-order')(
+  withContext(currencyContext)(TotalSheet),
+);

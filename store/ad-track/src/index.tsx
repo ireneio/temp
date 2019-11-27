@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 import idx from 'idx';
 
-import { Context as CurrencyContext } from '@store/currency';
+import CurrencyContext from '@store/currency';
 
 import useAdTrackIds from './hooks/useAdTrackIds';
 import useAdTrack from './hooks/useAdTrack';

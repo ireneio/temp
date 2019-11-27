@@ -218,11 +218,6 @@ export default async function(context) {
         appId
       }
     }
-    exchangeRateService {
-      base
-      rates
-      timestamp
-    }
     isLogin {
       isLogin
       expireTime

@@ -10,7 +10,7 @@ import { notification } from 'antd';
 import Layout from '@meepshop/meep-ui/lib/layout';
 import { i18n } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
-import withCurrency from '@store/currency';
+import currencyContext from '@store/currency';
 import adTrackContext from '@store/ad-track';
 
 import { getJoinedUser, getStoreAppList } from 'selectors';
@@ -21,7 +21,8 @@ import Spinner from './Spinner';
 
 const { isBrowser } = UserAgent;
 
-@withCurrency
+@withContext(adTrackContext)
+@withContext(currencyContext)
 class Container extends React.Component {
   static propTypes = {
     /* never change */
@@ -71,10 +72,6 @@ class Container extends React.Component {
     locale: PropTypes.string.isRequired,
     storeCurrency: PropTypes.string.isRequired,
     customerCurrency: PropTypes.string,
-    fxSetup: PropTypes.shape({
-      rate: PropTypes.object,
-      base: PropTypes.string,
-    }).isRequired,
     backgroundImage: PropTypes.shape({
       files: PropTypes.array.isRequired,
       repeat: PropTypes.bool.isRequired,
@@ -292,7 +289,6 @@ class Container extends React.Component {
       locale,
       storeCurrency,
       customerCurrency,
-      fxSetup,
       backgroundImage,
       page,
       children,
@@ -331,7 +327,6 @@ class Container extends React.Component {
           logout={signout}
           dispatchAction={dispatchAction}
           /* props(not in context) */
-          fxSetup={fxSetup} // currnecy rate
           backgroundImage={backgroundImage} // background-image of page
           radiumConfig={{ userAgent: location.userAgent }} // for radium media query
           {...page}
@@ -358,7 +353,6 @@ const mapStateToProps = state => {
     locale,
     storeCurrency,
     customerCurrency,
-    fxSetup,
     backgroundImage,
   } = settings;
   return {
@@ -378,7 +372,6 @@ const mapStateToProps = state => {
     locale,
     storeCurrency,
     customerCurrency,
-    fxSetup,
     backgroundImage,
   };
 };
@@ -398,7 +391,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withContext(adTrackContext)(Container));
+export default connect(mapStateToProps, mapDispatchToProps)(Container);

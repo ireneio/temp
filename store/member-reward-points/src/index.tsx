@@ -12,7 +12,8 @@ import memoizeOne from 'memoize-one';
 import moment from 'moment';
 
 import { withTranslation } from '@store/utils/lib/i18n';
-import withCurrency from '@store/currency';
+import withContext from '@store/utils/lib/withContext';
+import currencyContext from '@store/currency';
 
 import styles from './styles/index.less';
 
@@ -156,7 +157,7 @@ class MemberRewardPoints extends React.PureComponent<PropsType> {
 }
 
 const EnhancedMemberRewardPoints = withTranslation('member-reward-points')(
-  withCurrency(MemberRewardPoints),
+  withContext(currencyContext)(MemberRewardPoints),
 );
 
 export default React.memo(() => (

@@ -143,7 +143,6 @@ export default function(state = initialState, { type, payload }) {
       const store = data?.viewer?.store;
       const storeSettings = data?.viewer?.store?.setting;
       const pageAdTrackIDs = getPageAdTrackIds(data);
-      const fxSetup = data?.exchangeRateService;
       const {
         locale: localeOptions,
         currency: currencyOptions,
@@ -168,7 +167,6 @@ export default function(state = initialState, { type, payload }) {
         lockedCountry: lockedCountry || [],
         storeCurrency: store.currency || 'TWD', // 幣值轉換欲轉換成的幣值
         customerCurrency: customerCurrency || currencyOptions?.[0] || 'TWD', // default currency
-        fxSetup, // 用於匯率轉換 customerCurrency ==> storeCurrency
         currencyOptions: currencyOptions || ['TWD'], // 用於幣值選單
         activityVersion,
       };

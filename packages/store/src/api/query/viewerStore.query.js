@@ -1,6 +1,8 @@
 const viewerStoreQuery = `
 viewer {
+  id
   store {
+    id
     name
     cname
     domain

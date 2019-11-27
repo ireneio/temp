@@ -15,7 +15,8 @@ import idx from 'idx';
 import Thumbnail from '@store/thumbnail';
 import localeFragment from '@store/utils/lib/fragments/locale';
 import { withTranslation } from '@store/utils/lib/i18n';
-import withCurrency from '@store/currency';
+import withContext from '@store/utils/lib/withContext';
+import currencyContext from '@store/currency';
 
 import styles from './styles/products.less';
 
@@ -325,4 +326,6 @@ export const getProductsStyles = (
   }
 `;
 
-export default withTranslation('member-order-apply')(withCurrency(Products));
+export default withTranslation('member-order-apply')(
+  withContext(currencyContext)(Products),
+);

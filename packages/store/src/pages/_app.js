@@ -135,6 +135,7 @@ class MyApp extends App {
           userAgent,
         });
       }
+
       return {
         pageProps: {
           ...pageProps,
@@ -143,7 +144,7 @@ class MyApp extends App {
             'common',
           ],
         },
-        currency: req?.currency || 'TWD',
+        cookieCurrency: req?.currency,
       };
     } catch (error) {
       console.log(error);
@@ -183,7 +184,7 @@ class MyApp extends App {
       storeNotFound,
       Component,
       pageProps,
-      currency,
+      cookieCurrency,
       router,
       apolloClient,
       store,
@@ -198,7 +199,7 @@ class MyApp extends App {
 
     return (
       <ApolloProvider client={apolloClient}>
-        <CurrencyProvider currency={currency}>
+        <CurrencyProvider cookieCurrency={cookieCurrency}>
           <AdTrackProvider>
             <Provider store={store}>
               <Component
