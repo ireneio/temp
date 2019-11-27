@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.29.5 (2019-11-27)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#783](https://github.com/meepshop/meep-lerna/pull/783) 購物車 與 checkout 共用元件 從 locale.js 改成 next-i18next ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `mock-types`, `store`
+  - [#785](https://github.com/meepshop/meep-lerna/pull/785) 修改 @store/currency ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#764](https://github.com/meepshop/meep-lerna/pull/764) 【BUG】手機版/iPhone - 無法選擇超取地圖 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- `meep-ui`, `mock-types`, `store`
+  - [#785](https://github.com/meepshop/meep-lerna/pull/785) 修改 @store/currency ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.29.4 (2019-11-22)
 
 #### :rocket: New Feature
