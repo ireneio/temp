@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.29.6 (2019-11-28)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#781](https://github.com/meepshop/meep-lerna/pull/781) 【優化】修正前後台商店顯示範圍 ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#781](https://github.com/meepshop/meep-lerna/pull/781) 【優化】修正前後台商店顯示範圍 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.29.5 (2019-11-27)
 
 #### :boom: Breaking Change
