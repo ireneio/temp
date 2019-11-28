@@ -90,37 +90,38 @@ export default class Bottom extends React.PureComponent {
     };
 
     return (
-      <div
-        className={styles.root}
-        style={{
-          ...normal,
-          background,
-        }}
-      >
-        <Menu
-          id={id}
-          className={styles.menu}
-          logoUrl={logoUrl}
-          pages={pages}
-          design={{
-            ...design,
-            normal,
-            opacity: !background || !isHexColor(background) ? 0 : 1,
+      <div className={styles.root}>
+        <div
+          style={{
+            ...normal,
+            background,
           }}
-          onOpenChange={newOpenKeys => {
-            const latestOpenKey = newOpenKeys.find(
-              key => !openKeys.includes(key),
-            );
+        >
+          <Menu
+            id={id}
+            className={styles.menu}
+            logoUrl={logoUrl}
+            pages={pages}
+            design={{
+              ...design,
+              normal,
+              opacity: !background || !isHexColor(background) ? 0 : 1,
+            }}
+            onOpenChange={newOpenKeys => {
+              const latestOpenKey = newOpenKeys.find(
+                key => !openKeys.includes(key),
+              );
 
-            if (pages.every(({ id: pageId }) => pageId !== latestOpenKey))
-              this.setState({ openKeys: newOpenKeys });
-            else
-              this.setState({
-                openKeys: latestOpenKey ? [latestOpenKey] : [],
-              });
-          }}
-          openKeys={openKeys}
-        />
+              if (pages.every(({ id: pageId }) => pageId !== latestOpenKey))
+                this.setState({ openKeys: newOpenKeys });
+              else
+                this.setState({
+                  openKeys: latestOpenKey ? [latestOpenKey] : [],
+                });
+            }}
+            openKeys={openKeys}
+          />
+        </div>
       </div>
     );
   }

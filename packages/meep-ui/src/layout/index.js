@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
+import { UserAgent } from 'fbjs';
 
 import Context from 'context';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -10,7 +11,7 @@ import Cart from './cart';
 import DecoratorsRoot from './DecoratorsRoot';
 import ContainerSwitch from './ContainerSwitch';
 import { SPECIAL_HIDE_FOOTER } from './constants';
-import * as styles from './styles';
+import styles from './styles/index.less';
 
 @radium
 export default class Layout extends React.PureComponent {
@@ -18,6 +19,12 @@ export default class Layout extends React.PureComponent {
    * colors - the setting of the colors
    * backgroundImage - the img info of the background
    */
+  rootRef = React.createRef();
+
+  state = {
+    shouldGetFixed: false,
+  };
+
   static propTypes = {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     background: COLOR_TYPE,
@@ -50,7 +57,42 @@ export default class Layout extends React.PureComponent {
     children: null,
   };
 
+  componentDidMount() {
+    if (
+      UserAgent.isBrowser('IE') &&
+      this.rootRef.current.getBoundingClientRect().height <= window.innerHeight
+    ) {
+      this.setState({ shouldGetFixed: true });
+    }
+  }
+
+  getRootStyle = () => {
+    const { backgroundImage, colors, background } = this.props;
+
+    const realBackground = (() => {
+      const { files, used, repeat, size } = backgroundImage;
+      const { image } = files?.[0] || {};
+
+      if (used && image) {
+        return `
+          ${colors[0]}
+          url(${`//${image}`})
+          ${repeat ? 'repeat' : 'no-repeat'} top left /
+          ${size ? '100%' : 'auto'} auto
+        `;
+      }
+
+      return background || colors[0];
+    })();
+
+    return {
+      color: colors[3],
+      background: realBackground,
+    };
+  };
+
   render() {
+    const { shouldGetFixed } = this.state;
     const {
       cname,
       backgroundImage,
@@ -67,22 +109,30 @@ export default class Layout extends React.PureComponent {
         <DecoratorsRoot {...props} colors={colors} carts={carts} cname={cname}>
           <GlobalStyles />
 
-          <div style={styles.root(backgroundImage, colors, background)}>
-            <ContainerSwitch
-              {...props}
-              key={container}
-              containerName={container}
-              carts={carts}
-              blocks={blocks}
-            />
+          <div
+            style={{
+              ...this.getRootStyle(),
+              ...(shouldGetFixed && { height: 0 }),
+            }}
+            className={styles.root}
+            ref={this.rootRef}
+          >
+            <div className={styles.container}>
+              <ContainerSwitch
+                {...props}
+                key={container}
+                containerName={container}
+                carts={carts}
+                blocks={blocks}
+              />
+            </div>
 
             {SPECIAL_HIDE_FOOTER.includes(cname) ? null : (
-              <footer style={styles.meepshopFooter}>
+              <footer className={styles.footer}>
                 <a
                   href="http://www.meepshopmax.com/?p=new-store-page"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={styles.meepshopFooterLink}
                 >
                   meepShop MAX 極速開店
                 </a>

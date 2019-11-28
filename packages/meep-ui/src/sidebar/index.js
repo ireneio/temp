@@ -118,6 +118,8 @@ export default class Sidebar extends React.PureComponent {
         <div
           style={{
             width: `calc(100% - ${width}px)`,
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
           {children}
