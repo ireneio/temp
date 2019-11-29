@@ -6,6 +6,7 @@ const express = require('express');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const uaParser = require('ua-parser-js');
 const { default: nextI18NextMiddleware } = require('next-i18next/middleware');
 
 const { default: nextI18next } = require('@admin/utils/lib/i18n');
@@ -49,7 +50,24 @@ module.exports = app.prepare().then(
         res.status(200).end();
       });
       server.get('/version', (req, res) => {
-        res.status(200).send(`Welcome to next-admin ${VERSION}`);
+        const {
+          browser,
+          engine,
+          os: _os,
+          device: { type = 'desktop', model = '', vendor = 'unknown' },
+        } = uaParser(req.headers['user-agent']);
+        res.status(200).send(`
+          <header>Welcome to next-admin ${VERSION}</header>
+          <main>
+            Your information:
+            <ul>
+              <li>Browser: ${browser.name}(${browser.version})</li>
+              <li>Engine: ${engine.name}</li>
+              <li>OS: ${_os.name}(${_os.version})</li>
+              <li>Device: ${type} - ${model}(${vendor})</li>
+            </ul>
+          </main>
+        `);
       });
       server.get('*', (req, res) => handler(req, res));
 

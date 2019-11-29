@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const debug = require('debug')('next-store:server');
 const uuid = require('uuid/v4');
+const uaParser = require('ua-parser-js');
 const { default: nextI18NextMiddleware } = require('next-i18next/middleware');
 
 const { default: nextI18next } = require('@store/utils/lib/i18n');
@@ -114,7 +115,24 @@ module.exports = app.prepare().then(
         res.status(200).end();
       });
       server.get('/version', (req, res) => {
-        res.status(200).send(`Welcome to next-store ${VERSION}`);
+        const {
+          browser,
+          engine,
+          os: _os,
+          device: { type = 'desktop', model = '', vendor = 'unknown' },
+        } = uaParser(req.headers['user-agent']);
+        res.status(200).send(`
+          <header>Welcome to next-store ${VERSION}</header>
+          <main>
+            Your information:
+            <ul>
+              <li>Browser: ${browser.name}(${browser.version})</li>
+              <li>Engine: ${engine.name}</li>
+              <li>OS: ${_os.name}(${_os.version})</li>
+              <li>Device: ${type} - ${model}(${vendor})</li>
+            </ul>
+          </main>
+        `);
       });
       server.post('/log', (req, res) => {
         console.log(
