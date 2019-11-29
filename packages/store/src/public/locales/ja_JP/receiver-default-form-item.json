@@ -1,0 +1,45 @@
+{
+  "is-required": "入力必須項目",
+  "mobile": "携帯電話",
+  "id-number": "身分証明書番号",
+  "not-id-number": "身分証明書番号に誤りがあります",
+  "area": "国",
+  "postal-code": "郵便番号",
+  "address": "住所",
+  "choose-store": "ショップを選択",
+  "not-choose-store": "ショップをお選びください",
+  "rechoose-store": "再選択",
+  "invoice": "発票",
+  "invoice-paper": "紙の請求書",
+  "invoice-title": "発票の宛名",
+  "invoice-number": "統一編号（法人番号）",
+  "invoice-address": "発票住所",
+  "invoice-e-invoice": "電子発票",
+  "wrong-certificate": "自然人証憑バーコードが誤っています。もう一度入力してください。",
+  "wrong-barcode": "携帯電話バーコードが誤っています。もう一度入力してください。",
+  "invoice-donate": "社会福祉団体コード",
+  "invoice-search": "検索",
+  "wrong-lovecode": "社会福祉団体コードが誤っています。もう一度入力してください。",
+  "error": "エラーが発生しました",
+  "invoice-e-invoice-number": {
+    "moile-barcode": "携帯電話バーコードを読み込んでください",
+    "citizen-digital-certificate": "自然人証憑バーコードを読み込んでください"
+  },
+  "invoice-e-invoice-type": {
+    "membership": "会員キャリア",
+    "mobile-barcode": "携帯電話バーコードキャリア",
+    "citizen-digital-certificate": "自然人証憑キャリア",
+    "company": "会社",
+    "donation": "寄贈"
+  },
+  "convenience-store": {
+    "CVSStoreName": "ショップ名",
+    "CVSAddress": "ショップ住所",
+    "CVSStoreID": "ショップコード"
+  },
+  "invoice-paper-type": {
+    "duplicate": "二連式発票",
+    "triplicate": "三連式発票",
+    "donation": "寄贈"
+  }
+}

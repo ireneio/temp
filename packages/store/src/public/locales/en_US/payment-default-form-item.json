@@ -1,0 +1,26 @@
+{
+  "is-required": "Required",
+  "payment": "Payment",
+  "payment-description": "Description",
+  "shipment": "Delivery",
+  "shipment-description": "Description",
+  "choose-paymeny-error": "The selected payment method is not available, please select again.",
+  "choose-shipment-error": "The selected delivery is not available, please select again.",
+  "coupon": {
+    "placeholder": "Coupon Code",
+    "coupon-button": "Apply",
+    "ask-confirm-coupon": "Please click \"Apply\"",
+    "activity-period-is": "The campaign runs from",
+    "this-code-not-exist": "This coupon code is invalid",
+    "your-member-group-can-not-use-this-code": "Membership is not qualified! This coupon code cannot apply.",
+    "this-code-activity-period": "The campaign runs from ",
+    "this-code-usetimes-full": "This coupon code has reached the limit of number of uses.",
+    "this-code-has-to-buy-specific-products": "Specific products must be purchased to use this coupon code",
+    "amount-of-products": "item(s)",
+    "this-code-is-the-same": "This coupon code cannot be used due to duplication",
+    "plz-ask-service-or-delete": ", please contact our Customer Service for assistance, or clear the coupon code then proceed to checkout.",
+    "plz-delete-then-checkout": ", please clear the coupon code then proceed to checkout.",
+    "this-code-has-to-satisfy": "To use this coupon code, the total amount must reach {{currency}}",
+    "this-code-can-discount": "This coupon code can be redeemed for {{currency}}"
+  }
+}

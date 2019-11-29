@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Cascader } from 'antd';
 
+import { withTranslation } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import AddressCascader from 'addressCascader';
 import {
@@ -19,19 +21,19 @@ import Invoice from './Invoice';
 import ChooseShipmentStore from './ChooseShipmentStore';
 import getInvoiceOptions from './utils/getInvoiceOptions';
 import { ID_NUMBER_CITY_CODE, ID_NUMBER_WEIGHTED } from './constants';
-import * as LOCALE from './locale';
 
 const { Item: FormItem } = Form;
 
+@withTranslation(['receiver-default-form-item', 'validate-mobile'])
 @enhancer
 @radium
 export default class ReceiverDefaultFormItem extends React.PureComponent {
   static propTypes = {
     /** context */
     storeSetting: STORE_SETTING_TYPE.isRequired,
-    transformLocale: PropTypes.func.isRequired,
 
     /** props */
+    t: PropTypes.func.isRequired,
     style: PropTypes.shape({}),
     chooseShipmentTemplate: SHIPMENT_TEMPLATE_TYPE,
     form: PropTypes.shape({}).isRequired, // from LandingPage Form.create()
@@ -48,36 +50,34 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
   };
 
   componentDidUpdate(preProps) {
-    const { transformLocale, chooseShipmentTemplate, form } = this.props;
+    const { t, chooseShipmentTemplate, form } = this.props;
 
     if (chooseShipmentTemplate !== preProps.chooseShipmentTemplate) {
       const { getFieldValue, setFields, validateFields } = form;
       const mobileValue = getFieldValue('mobile');
 
-      if (mobileValue) {
-        validateMobile(transformLocale, chooseShipmentTemplate)(
-          null,
-          mobileValue,
-          error => {
-            if (error) {
-              setFields({
-                mobile: {
-                  value: mobileValue,
-                  error: [new Error(error)],
-                },
-              });
-              validateFields(['mobile']);
-            }
-          },
-        );
-      }
+      if (mobileValue)
+        validateMobile(t, chooseShipmentTemplate)(null, mobileValue, error => {
+          if (error) {
+            setFields({
+              mobile: {
+                value: mobileValue,
+                error: [new Error(error)],
+              },
+            });
+            validateFields(['mobile']);
+          }
+        });
     }
   }
 
   render() {
     const {
+      // contxt
       storeSetting,
-      transformLocale,
+
+      // props
+      t,
       style,
       chooseShipmentTemplate,
       form,
@@ -86,34 +86,28 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
     } = this.props;
 
     const { getFieldValue, getFieldDecorator } = form;
-    const invoiceOptions = getInvoiceOptions({ storeSetting, transformLocale });
+    const invoiceOptions = getInvoiceOptions({ storeSetting, t });
 
     return (
       <>
         <FormItem
           style={style}
-          extra={validateTaiwanMobileNumber(
-            transformLocale,
-            getFieldValue('mobile') || '',
-          )}
+          extra={validateTaiwanMobileNumber(t, getFieldValue('mobile') || '')}
         >
           {getFieldDecorator('mobile', {
             validateTrigger: 'onBlur',
             rules: [
               {
                 required: true,
-                message: transformLocale(LOCALE.IS_REQUIRED),
+                message: t('is-required'),
               },
               {
-                validator: validateMobile(
-                  transformLocale,
-                  chooseShipmentTemplate,
-                ),
+                validator: validateMobile(t, chooseShipmentTemplate),
               },
             ],
           })(
             <Input
-              placeholder={transformLocale(LOCALE.MOBILE)}
+              placeholder={t('mobile')}
               maxLength={
                 ['allpay', 'ezship'].includes(chooseShipmentTemplate) ? 10 : 20
               }
@@ -128,14 +122,14 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
               rules: [
                 {
                   required: true,
-                  message: transformLocale(LOCALE.IS_REQUIRED),
+                  message: t('is-required'),
                 },
                 {
                   validator: (rule, value, callback) => {
                     const id = (value || '').toUpperCase();
 
                     if (!/^[A-Z](1|2)\d{8}$/i.test(id))
-                      return callback(transformLocale(LOCALE.NOT_ID_NUMBER));
+                      return callback(t('not-id-number'));
 
                     const [engChar, ...numbers] = id;
                     const total = [
@@ -148,19 +142,13 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
                       0,
                     );
 
-                    if (total % 10 !== 0)
-                      return callback(transformLocale(LOCALE.NOT_ID_NUMBER));
+                    if (total % 10 !== 0) return callback(t('not-id-number'));
 
                     return callback();
                   },
                 },
               ],
-            })(
-              <Input
-                placeholder={transformLocale(LOCALE.ID_NUMBER)}
-                maxLength={10}
-              />,
-            )}
+            })(<Input placeholder={t('id-number')} maxLength={10} />)}
           </FormItem>
         )}
 
@@ -179,12 +167,12 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: transformLocale(LOCALE.IS_REQUIRED),
+                    message: t('is-required'),
                   },
                 ],
               })(
                 <AddressCascader
-                  placeholder={transformLocale(LOCALE.AREA)}
+                  placeholder={t('area')}
                   lockedCountry={countries}
                   allowClear={false}
                 />,
@@ -200,10 +188,10 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
                   rules: [
                     {
                       required: true,
-                      message: transformLocale(LOCALE.IS_REQUIRED),
+                      message: t('is-required'),
                     },
                   ],
-                })(<Input placeholder={transformLocale(LOCALE.POSTAL_CODE)} />)}
+                })(<Input placeholder={t('postal-code')} />)}
               </FormItem>
             )}
 
@@ -213,10 +201,10 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: transformLocale(LOCALE.IS_REQUIRED),
+                    message: t('is-required'),
                   },
                 ],
-              })(<Input placeholder={transformLocale(LOCALE.ADDRESS)} />)}
+              })(<Input placeholder={t('address')} />)}
             </FormItem>
           </>
         )}
@@ -228,12 +216,12 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: transformLocale(LOCALE.IS_REQUIRED),
+                    message: t('is-required'),
                   },
                 ],
               })(
                 <Cascader
-                  placeholder={transformLocale(LOCALE.INVOICE)}
+                  placeholder={t('invoice')}
                   options={invoiceOptions}
                   allowClear={false}
                 />,

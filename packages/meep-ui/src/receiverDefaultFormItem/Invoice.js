@@ -4,30 +4,32 @@ import radium from 'radium';
 import { Form, Input, message } from 'antd';
 import { warning } from 'fbjs';
 
+import { withTranslation } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 
 import { INVOICE_SEARCH_LINK } from './constants';
-import * as LOCALE from './locale';
 import * as styles from './styles/invoice';
 
 const { Item: FormItem } = Form;
 const { Search } = Input;
 
+@withTranslation('receiver-default-form-item')
 @enhancer
 @radium
 export default class Invoice extends React.PureComponent {
   static propTypes = {
     /** context */
-    transformLocale: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
 
     /** props */
-    style: PropTypes.shape({}),
+    t: PropTypes.func.isRequired,
     form: PropTypes.shape({
       // from LandingPage Form.create()
       getFieldValue: PropTypes.func.isRequired,
       getFieldDecorator: PropTypes.func.isRequired,
     }).isRequired,
+    style: PropTypes.shape({}),
   };
 
   static defaultProps = {
@@ -35,7 +37,7 @@ export default class Invoice extends React.PureComponent {
   };
 
   validateLoveCode = async (rule, value, callback) => {
-    const { transformLocale, getData } = this.props;
+    const { t, getData } = this.props;
 
     try {
       const { data, errors } = await getData(`
@@ -46,21 +48,19 @@ export default class Invoice extends React.PureComponent {
 
       if (errors) {
         warning(!errors.length, JSON.stringify(errors));
-        message.error(transformLocale(LOCALE.ERROR));
+        message.error(t('error'));
       }
 
-      if (data?.isEInvoiceLoveCodeValid) {
-        return callback();
-      }
+      if (data?.isEInvoiceLoveCodeValid) return callback();
 
-      return callback(transformLocale(LOCALE.WRONG_LOVECODE));
+      return callback(t('wrong-lovecode'));
     } catch (error) {
-      return callback(transformLocale(LOCALE.ERROR));
+      return callback(t('error'));
     }
   };
 
   validateBarCode = async (rule, value, callback) => {
-    const { transformLocale, getData } = this.props;
+    const { t, getData } = this.props;
 
     try {
       const { data, errors } = await getData(`
@@ -71,21 +71,19 @@ export default class Invoice extends React.PureComponent {
 
       if (errors) {
         warning(!errors.length, JSON.stringify(errors));
-        message.error(transformLocale(LOCALE.ERROR));
+        message.error(t('error'));
       }
 
-      if (data?.isEInvoiceBarCodeValid) {
-        return callback();
-      }
+      if (data?.isEInvoiceBarCodeValid) return callback();
 
-      return callback(transformLocale(LOCALE.WRONG_BARCODE));
+      return callback(t('wrong-barcode'));
     } catch (error) {
-      return callback(transformLocale(LOCALE.ERROR));
+      return callback(t('error'));
     }
   };
 
   render() {
-    const { transformLocale, style, form } = this.props;
+    const { t, style, form } = this.props;
     const { getFieldValue, getFieldDecorator } = form;
 
     const value = getFieldValue('invoice') || [];
@@ -102,13 +100,11 @@ export default class Invoice extends React.PureComponent {
                   rules: [
                     {
                       required: true,
-                      message: transformLocale(LOCALE.IS_REQUIRED),
+                      message: t('is-required'),
                     },
                   ],
                   validateTrigger: 'onBlur',
-                })(
-                  <Input placeholder={transformLocale(LOCALE.INVOICE_TITLE)} />,
-                )}
+                })(<Input placeholder={t('invoice-title')} />)}
               </FormItem>
 
               <FormItem style={style}>
@@ -116,15 +112,11 @@ export default class Invoice extends React.PureComponent {
                   rules: [
                     {
                       required: true,
-                      message: transformLocale(LOCALE.IS_REQUIRED),
+                      message: t('is-required'),
                     },
                   ],
                   validateTrigger: 'onBlur',
-                })(
-                  <Input
-                    placeholder={transformLocale(LOCALE.INVOICE_NUMBER)}
-                  />,
-                )}
+                })(<Input placeholder={t('invoice-number')} />)}
               </FormItem>
             </div>
 
@@ -139,13 +131,11 @@ export default class Invoice extends React.PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: transformLocale(LOCALE.IS_REQUIRED),
+                    message: t('is-required'),
                   },
                 ],
                 validateTrigger: 'onBlur',
-              })(
-                <Input placeholder={transformLocale(LOCALE.INVOICE_ADDRESS)} />,
-              )}
+              })(<Input placeholder={t('invoice-address')} />)}
             </FormItem>
           </>
         );
@@ -157,7 +147,7 @@ export default class Invoice extends React.PureComponent {
               rules: [
                 {
                   required: true,
-                  message: transformLocale(LOCALE.IS_REQUIRED),
+                  message: t('is-required'),
                 },
                 isECPAY && {
                   validator: this.validateLoveCode,
@@ -167,14 +157,14 @@ export default class Invoice extends React.PureComponent {
               validateTrigger: 'onBlur',
             })(
               <Search
-                placeholder={transformLocale(LOCALE.INVOICE_DONATE)}
+                placeholder={t('invoice-donate')}
                 enterButton={
                   <a
                     href={INVOICE_SEARCH_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {transformLocale(LOCALE.INVOICE_SEARCH)}
+                    {t('invoice-search')}
                   </a>
                 }
               />,
@@ -189,11 +179,11 @@ export default class Invoice extends React.PureComponent {
               rules: [
                 {
                   required: true,
-                  message: transformLocale(LOCALE.IS_REQUIRED),
+                  message: t('is-required'),
                 },
                 {
                   pattern: /^\/{1}[0-9.+\-A-Z]{7}$/,
-                  message: transformLocale(LOCALE.WRONG_BARCODE),
+                  message: t('wrong-barcode'),
                 },
                 isECPAY && {
                   validator: this.validateBarCode,
@@ -203,9 +193,7 @@ export default class Invoice extends React.PureComponent {
               validateTrigger: 'onBlur',
             })(
               <Input
-                placeholder={transformLocale(
-                  LOCALE.INVOICE_E_INVOICE_NUMBER[value[1]],
-                )}
+                placeholder={t('invoice-e-invoice-number.moile-barcode')}
               />,
             )}
           </FormItem>
@@ -218,19 +206,19 @@ export default class Invoice extends React.PureComponent {
               rules: [
                 {
                   required: true,
-                  message: transformLocale(LOCALE.IS_REQUIRED),
+                  message: t('is-required'),
                 },
                 {
                   pattern: /^[A-Z]{2}[0-9]{14}$/,
-                  message: transformLocale(LOCALE.WRONG_CERTIFICATE),
+                  message: t('wrong-certificate'),
                 },
               ],
               validateFirst: true,
               validateTrigger: 'onBlur',
             })(
               <Input
-                placeholder={transformLocale(
-                  LOCALE.INVOICE_E_INVOICE_NUMBER[value[1]],
+                placeholder={t(
+                  'invoice-e-invoice-number.citizen-digital-certificate',
                 )}
               />,
             )}

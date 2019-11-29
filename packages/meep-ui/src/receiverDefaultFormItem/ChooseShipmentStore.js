@@ -6,6 +6,7 @@ import { Form, Input, Button } from 'antd';
 import uuid from 'uuid';
 import queryString from 'query-string';
 
+import { withTranslation } from '@store/utils/lib/i18n';
 import ConvenienceStoreMap from '@store/convenience-store-map';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -24,11 +25,11 @@ import {
   ECPAY_CONVENIENCE_STORE_TYPE_ENUM,
   EZSHIP_CONVENIENCE_STORE_TYPE_ENUM,
 } from './constants';
-import * as LOCALE from './locale';
 import styles from './styles/chooseShipmentStore.less';
 
 const { Item: FormItem } = Form;
 
+@withTranslation('receiver-default-form-item')
 @enhancer
 @radium
 export default class ChooseShipmentStore extends React.PureComponent {
@@ -42,11 +43,11 @@ export default class ChooseShipmentStore extends React.PureComponent {
     /** context */
     location: LOCATION_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
     getApiUrl: PropTypes.func.isRequired,
 
     /** props */
+    t: PropTypes.func.isRequired,
     form: PropTypes.shape({
       getFieldsValue: PropTypes.func.isRequired,
       getFieldDecorator: PropTypes.func.isRequired,
@@ -243,7 +244,15 @@ export default class ChooseShipmentStore extends React.PureComponent {
   };
 
   render() {
-    const { colors, transformLocale, getApiUrl, form } = this.props;
+    const {
+      // context
+      colors,
+      getApiUrl,
+
+      // props
+      t,
+      form,
+    } = this.props;
     const {
       tradeNo,
       ezship,
@@ -274,13 +283,11 @@ export default class ChooseShipmentStore extends React.PureComponent {
               : this.goToShipmentStore
           }
         >
-          {transformLocale(
-            SHIPMENT_STORE_FIELDS.map(field => getFieldValue(field)).some(
-              value => value,
-            )
-              ? LOCALE.RECHOOSE_STORE
-              : LOCALE.CHOOSE_STORE,
-          )}
+          {SHIPMENT_STORE_FIELDS.map(field => getFieldValue(field)).some(
+            value => value,
+          )
+            ? t('rechoose-store')
+            : t('choose-store')}
         </Button>
 
         {SHIPMENT_STORE_FIELDS.map(field =>
@@ -289,8 +296,7 @@ export default class ChooseShipmentStore extends React.PureComponent {
               key={getFieldValue(field)}
               className={styles.convenienceStoreInfo}
             >
-              {transformLocale(LOCALE.CONVENIENCE_STORE[field])}：
-              {getFieldValue(field)}
+              {t(`convenience-store.${field}`)}：{getFieldValue(field)}
             </div>
           ),
         )}
@@ -302,10 +308,7 @@ export default class ChooseShipmentStore extends React.PureComponent {
               rules: [
                 {
                   required: true,
-                  message:
-                    index !== 0
-                      ? ' '
-                      : transformLocale(LOCALE.NOT_CHOOSE_STORE),
+                  message: index !== 0 ? ' ' : t('not-choose-store'),
                 },
               ],
             })(<Input type="hidden" />)}

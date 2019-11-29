@@ -1,0 +1,45 @@
+{
+  "is-required": "Required",
+  "mobile": "Mobile",
+  "id-number": "ID Number",
+  "not-id-number": "Invalid ID number",
+  "area": "Country",
+  "postal-code": "Postal Code",
+  "address": "Address",
+  "choose-store": "Select Store",
+  "not-choose-store": "Please select a store",
+  "rechoose-store": "Change",
+  "invoice": "Invoice",
+  "invoice-paper": "Paper invoice",
+  "invoice-title": "Bill to: ",
+  "invoice-number": "VAT No.",
+  "invoice-address": "Invoice Mailing Address",
+  "invoice-e-invoice": "e-Invoice",
+  "wrong-certificate": "NPC Barcode is incorrect. Please enter again.",
+  "wrong-barcode": "Mobile Barcode is incorrect. Please enter again.",
+  "invoice-donate": "Enter NPO Donation Code",
+  "invoice-search": "Enquire",
+  "wrong-lovecode": "NPO Donation Code is incorrect. Please enter again.",
+  "error": "Errors occurred",
+  "invoice-e-invoice-number": {
+    "moile-barcode": "Enter barcode",
+    "citizen-digital-certificate": "Enter barcode"
+  },
+  "invoice-e-invoice-type": {
+    "membership": "Membership Carrier",
+    "mobile-barcode": "Mobile Barcode",
+    "citizen-digital-certificate": "NPC Barcode",
+    "company": "Company Account",
+    "donation": "Donate"
+  },
+  "convenience-store": {
+    "CVSStoreName": "Store Name",
+    "CVSAddress": "Store Address",
+    "CVSStoreID": "Store ID"
+  },
+  "invoice-paper-type": {
+    "duplicate": "Duplicate Uniform Invoice",
+    "triplicate": "Triplicate Uniform Invoice",
+    "donation": "Donate"
+  }
+}

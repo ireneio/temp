@@ -1,0 +1,26 @@
+{
+  "is-required": "dòng bắt buộc",
+  "payment": "phương pháp chi trả",
+  "payment-description": "Hướng dẫn phương thức thanh toán",
+  "shipment": "phương pháp giao hàng",
+  "shipment-description": "Hướng dẫn phương thức giao hàng",
+  "choose-paymeny-error": "Phương thức thanh toán đã chọn không được áp dụng，vui lòng chọn lại",
+  "choose-shipment-error": "Phương thức giao hàng đã chọn không được áp dụng，vui lòng chọn lại",
+  "coupon": {
+    "placeholder": "Nhập mã khuyến mãi",
+    "coupon-button": "Xác nhận giảm giá",
+    "ask-confirm-coupon": "Xác nhận giảm giá",
+    "activity-period-is": "Thời gian đợt khuyến mãi là",
+    "this-code-not-exist": "Mã khuyến mãi này không tồn tại",
+    "your-member-group-can-not-use-this-code": "Không phù hợp điều kiện hội viên! Không thể sử dụng mã ưu đãi",
+    "this-code-activity-period": "Thời gian sử dụng mã khuyến mãi này là",
+    "this-code-usetimes-full": "Mã ưu đãi này đã đạt giới hạn số lần sử dụng cao nhất",
+    "this-code-has-to-buy-specific-products": "Mã khuyến mãi này phải mua sản phẩm chỉ định mới sử dụng được",
+    "amount-of-products": "Mục sản phẩm",
+    "this-code-is-the-same": "Mã khuyến mãi này trùng lặp với người khác",
+    "plz-ask-service-or-delete": ", xin liên hệ với nhân viên dịch vụ khách hàng của cửa hàng để giải quyết，hoặc xóa mã khuyến mãi rồi mới thanh toán",
+    "plz-delete-then-checkout": ", xin hãy xóa mã khuyến mãi rồi mới thanh toán",
+    "this-code-has-to-satisfy": "Mã khuyến mãi này phải đủ {{currency}} mới sử dụng được",
+    "this-code-can-discount": "Mã khuyến mãi này có thể giảm {{currency}}"
+  }
+}

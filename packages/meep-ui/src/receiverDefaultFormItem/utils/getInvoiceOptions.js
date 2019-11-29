@@ -1,6 +1,4 @@
-import * as LOCALE from '../locale';
-
-export default ({ storeSetting, transformLocale }) => {
+export default ({ storeSetting, t }) => {
   const { invoice } = storeSetting;
   const methods = Object.keys(invoice?.paper || {}).filter(
     method => (invoice?.paper || {})[method]?.isEnabled,
@@ -11,10 +9,10 @@ export default ({ storeSetting, transformLocale }) => {
       ? [
           {
             value: 'PAPER',
-            label: transformLocale(LOCALE.INVOICE_PAPER),
+            label: t('invoice-paper'),
             children: methods.map(method => ({
               value: method.toUpperCase(),
-              label: transformLocale(LOCALE.INVOICE_PAPER_TYPE[method]),
+              label: t(`invoice-paper-type.${method}`),
             })),
           },
         ]
@@ -23,33 +21,27 @@ export default ({ storeSetting, transformLocale }) => {
       ? [
           {
             value: `${invoice?.electronic?.type}_ELECTRONIC`,
-            label: transformLocale(LOCALE.INVOICE_E_INVOICE),
+            label: t('invoice-e-invoice'),
             children: [
               {
                 value: 'MEMBERSHIP',
-                label: transformLocale(
-                  LOCALE.INVOICE_E_INVOICE_TYPE.MEMBERSHIP,
-                ),
+                label: t('invoice-e-invoice-type.membership'),
               },
               {
                 value: 'MOBILE_BARCODE',
-                label: transformLocale(
-                  LOCALE.INVOICE_E_INVOICE_TYPE.MOBILE_BARCODE,
-                ),
+                label: t('invoice-e-invoice-type.mobile-barcode'),
               },
               {
                 value: 'CITIZEN_DIGITAL_CERTIFICATE',
-                label: transformLocale(
-                  LOCALE.INVOICE_E_INVOICE_TYPE.CITIZEN_DIGITAL_CERTIFICATE,
-                ),
+                label: t('invoice-e-invoice-type.citizen-digital-certificate'),
               },
               {
                 value: 'TRIPLICATE',
-                label: transformLocale(LOCALE.INVOICE_E_INVOICE_TYPE.COMPANY),
+                label: t('invoice-e-invoice-type.company'),
               },
               {
                 value: 'DONATION',
-                label: transformLocale(LOCALE.INVOICE_E_INVOICE_TYPE.DONATION),
+                label: t('invoice-e-invoice-type.donation'),
               },
             ],
           },

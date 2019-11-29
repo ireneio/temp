@@ -1,0 +1,45 @@
+{
+  "is-required": "dòng bắt buộc",
+  "mobile": "Điện Thoại",
+  "id-number": "Số CMND",
+  "not-id-number": "Định dạng số CMND không hợp lệ",
+  "area": "quốc gia",
+  "postal-code": "Mã bưu điện",
+  "address": "Địa Chỉ",
+  "choose-store": "chọn 1 cửa hàng",
+  "not-choose-store": "chọn 1 cửa hàng",
+  "rechoose-store": "Chọn lại",
+  "invoice": "loại hóa đơn",
+  "invoice-paper": "Hóa đơn giấy",
+  "invoice-title": "Hóa đơn",
+  "invoice-number": "Mã số thuế",
+  "invoice-address": "Địa chỉ hóa đơn",
+  "invoice-e-invoice": "Hóa đơn điện tử",
+  "wrong-certificate": "Mã vạch thẻ Thể Nhân không đúng, xin vui lòng nhập lại.",
+  "wrong-barcode": "Mã vạch máy di động không đúng, xin vui lòng nhập lại.",
+  "invoice-donate": "Nhập mã an sinh xã hội",
+  "invoice-search": "Tìm kiếm",
+  "wrong-lovecode": "Mã số Trái Tim không đúng, xin vui lòng nhập lại.",
+  "error": "Bị lỗi",
+  "invoice-e-invoice-number": {
+    "moile-barcode": "Xin nhập mã vạch di động",
+    "citizen-digital-certificate": "Xin nhập mã vạch chứng nhận kỹ thuật số công dân"
+  },
+  "invoice-e-invoice-type": {
+    "membership": "Phương tiện hội viên",
+    "mobile-barcode": "Phương tiện mã vạch di động",
+    "citizen-digital-certificate": "Phương tiện chứng nhận kỹ thuật số công dân",
+    "company": "Công ty",
+    "donation": "Tặng"
+  },
+  "convenience-store": {
+    "CVSStoreName": "Tên cửa hàng",
+    "CVSAddress": "Địa chỉ cửa hàng",
+    "CVSStoreID": "Mã số cửa hàng"
+  },
+  "invoice-paper-type": {
+    "duplicate": "Hóa đơn liên 2",
+    "triplicate": "Hóa đơn liên 3",
+    "donation": "Tặng"
+  }
+}

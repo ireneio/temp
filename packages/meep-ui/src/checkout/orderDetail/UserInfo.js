@@ -4,6 +4,8 @@ import radium from 'radium';
 import { Form, Input } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 
+import { withTranslation } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ISLOGIN_TYPE } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
@@ -21,6 +23,7 @@ import {
 
 const { Item: FormItem } = Form;
 
+@withTranslation('validate-mobile')
 @enhancer
 @radium
 export default class UserInfo extends React.PureComponent {
@@ -31,6 +34,7 @@ export default class UserInfo extends React.PureComponent {
     transformLocale: PropTypes.func.isRequired,
 
     /** props */
+    t: PropTypes.func.isRequired,
     form: PropTypes.shape({}).isRequired,
   };
 
@@ -60,7 +64,15 @@ export default class UserInfo extends React.PureComponent {
   };
 
   render() {
-    const { isLogin, transformLocale, form } = this.props;
+    const {
+      // context
+      isLogin,
+      transformLocale,
+
+      // props
+      t,
+      form,
+    } = this.props;
     const { getFieldDecorator } = form;
 
     return (
@@ -133,7 +145,7 @@ export default class UserInfo extends React.PureComponent {
                 message: transformLocale(LOCALE.IS_REQUIRED),
               },
               {
-                validator: validateMobile(transformLocale),
+                validator: validateMobile(t),
               },
             ],
           })(<Input placeholder={transformLocale(LOCALE.MOBILE)} />)}

@@ -2,25 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input } from 'antd';
-import { enhancer } from 'layout/DecoratorsRoot';
+
+import { withTranslation } from '@store/utils/lib/i18n';
 
 import { ID_TYPE } from 'constants/propTypes';
 
 import CouponError from './CouponError';
 import CouponSuccess from './CouponSuccess';
-import * as LOCALE from './locale';
 
 const { Item: FormItem } = Form;
 const { Search } = Input;
 
-@enhancer
+@withTranslation('payment-default-form-item')
 @radium
 export default class Coupon extends React.PureComponent {
   static propTypes = {
-    /** context */
-    transformLocale: PropTypes.func.isRequired,
-
     /** props */
+    t: PropTypes.func.isRequired,
     style: PropTypes.shape({}),
     form: PropTypes.shape({
       getFieldValue: PropTypes.func.isRequired,
@@ -102,7 +100,7 @@ export default class Coupon extends React.PureComponent {
   }
 
   askConfirmCoupon = ({ target }) => {
-    const { transformLocale, form } = this.props;
+    const { t, form } = this.props;
     const { setFields } = form;
     const { value: coupon } = target;
 
@@ -113,7 +111,7 @@ export default class Coupon extends React.PureComponent {
 
       this.setState({
         validateStatus: 'warning',
-        help: transformLocale(LOCALE.ASK_CONFIRM_COUPON),
+        help: t('coupon.ask-confirm-coupon'),
       });
     } else {
       setFields({ coupon: { errors: null } });
@@ -126,7 +124,7 @@ export default class Coupon extends React.PureComponent {
   };
 
   render() {
-    const { transformLocale, style, form, computeOrderList } = this.props;
+    const { t, style, form, computeOrderList } = this.props;
     const { checking, validateStatus, help } = this.state;
     const { getFieldDecorator } = form;
 
@@ -139,8 +137,8 @@ export default class Coupon extends React.PureComponent {
       >
         {getFieldDecorator('coupon')(
           <Search
-            placeholder={transformLocale(LOCALE.COUPON)}
-            enterButton={transformLocale(LOCALE.COUPON_BUTTON)}
+            placeholder={t('coupon.placeholder')}
+            enterButton={t('coupon.coupon-button')}
             onChange={this.askConfirmCoupon}
             onBlur={({ target }) => {
               if (target.value === '') {

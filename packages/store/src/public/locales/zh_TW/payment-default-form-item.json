@@ -1,0 +1,26 @@
+{
+  "is-required": "必填",
+  "payment": "付款方式",
+  "payment-description": "付款方式說明",
+  "shipment": "運送方式",
+  "shipment-description": "運送方式說明",
+  "choose-paymeny-error": "已選的付款方式不適用，請重新選取",
+  "choose-shipment-error": "已選的運送方式不適用，請重新選取",
+  "coupon": {
+    "placeholder": "請輸入優惠碼",
+    "coupon-button": "確認折抵",
+    "ask-confirm-coupon": "請確認折抵",
+    "activity-period-is": "活動期間為",
+    "this-code-not-exist": "此優惠碼不存在",
+    "your-member-group-can-not-use-this-code": "會員資格不符！無法使用此優惠碼",
+    "this-code-activity-period": "此優惠碼活動期間為：",
+    "this-code-usetimes-full": "此優惠代碼使用次數已達上限",
+    "this-code-has-to-buy-specific-products": "此優惠碼須購買指定商品才可使用",
+    "amount-of-products": "件商品",
+    "this-code-is-the-same": "此優惠碼與他人重複",
+    "plz-ask-service-or-delete": "，請洽商店客服人員協助處理，或清空優惠碼再結帳",
+    "plz-delete-then-checkout": "，請清空優惠碼再結帳",
+    "this-code-has-to-satisfy": "此優惠碼需滿 {{currency}} 才可使用",
+    "this-code-can-discount": "此優惠代碼可折扣 {{currency}}"
+  }
+}

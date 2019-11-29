@@ -1,0 +1,5 @@
+{
+  "not-phone": "Invalid mobile number",
+  "not-number": "This entry can only contain numbers",
+  "taiwan-mobile-ten-digits": "Taiwan mobile phone number is 10 digits"
+}

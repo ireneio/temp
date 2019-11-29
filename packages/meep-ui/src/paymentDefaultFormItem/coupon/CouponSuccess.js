@@ -3,22 +3,24 @@ import PropTypes from 'prop-types';
 import { areEqual } from 'fbjs';
 import moment from 'moment';
 
+import { withTranslation } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, POSITIVE_NUMBER_TYPE } from 'constants/propTypes';
 
 import { TIME_FORMAT } from './constants';
-import * as LOCALE from './locale';
 import * as styles from './styles/couponSuccess';
 
+@withTranslation('payment-default-form-item')
 @enhancer
 export default class CouponSuccess extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
     transformCurrency: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
 
     /** props */
+    t: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
     // eslint-disable-next-line react/no-unused-prop-types
     activityInfo: PropTypes.arrayOf(
       PropTypes.shape({
@@ -49,7 +51,7 @@ export default class CouponSuccess extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
-    const { transformLocale, transformCurrency, activityInfo } = nextProps;
+    const { t, transformCurrency, activityInfo } = nextProps;
     const activity = activityInfo.find(({ plugin }) =>
       ['productCoupon', 'orderCoupon'].includes(plugin),
     );
@@ -61,14 +63,12 @@ export default class CouponSuccess extends React.PureComponent {
 
       return {
         activity,
-        discountString: transformLocale(
-          LOCALE.THIS_CODE_CAN_DISCOUNT(
-            method === 1 ? `${value} %OFF` : transformCurrency(value),
-          ),
-        ),
+        discountString: `${t('coupon.this-code-can-discount', {
+          currency: method === 1 ? `${value} %OFF` : transformCurrency(value),
+        })}`,
         descriptString: unlimitedDate
           ? ''
-          : transformLocale`${LOCALE.ACTIVITY_PERIOD_IS} ${moment(
+          : `${t('coupon.activity-period-is')} ${moment(
               startTime * 1000,
             ).format(TIME_FORMAT)}-${moment(endTime * 1000)
               .subtract(1, 'days')

@@ -1,0 +1,26 @@
+{
+  "is-required": "入力必須項目",
+  "payment": "決済方法",
+  "payment-description": "決済方法のご説明",
+  "shipment": "配送方法",
+  "shipment-description": "配送方法のご説明",
+  "choose-paymeny-error": "お選びになった決済方法はご利用いただけません。再度お選びください",
+  "choose-shipment-error": "お選びになった配送方法はご利用いただけません。再度お選びください",
+  "coupon": {
+    "placeholder": "クーポンコード",
+    "coupon-button": "割引額確認",
+    "ask-confirm-coupon": "割引額をご確認ください",
+    "activity-period-is": "イベント期間は",
+    "this-code-not-exist": "入力されたクーポンが存在しません",
+    "your-member-group-can-not-use-this-code": "会員資格が適合していません！このサービスコードはご使用になれません",
+    "this-code-activity-period": "このクーポンコードの使用期間は",
+    "this-code-usetimes-full": "このサービスコードの使用回数が上限に達しています",
+    "this-code-has-to-buy-specific-products": "このクーポンコードは特定商品のご購入にのみご使用いただけます",
+    "amount-of-products": "点の商品",
+    "this-code-is-the-same": "クーポンコードが重複しています",
+    "plz-ask-service-or-delete": "、ショップカスタマーサービスまでご連絡いただくか、クーポンコードを削除してお支払いください",
+    "plz-delete-then-checkout": "、クーポンコードを削除してお支払いください",
+    "this-code-has-to-satisfy": "このクーポンコードは購入金額が{{currency}}以上のときご使用いただけます",
+    "this-code-can-discount": "このクーポンコードは{{currency}}分としてご利用いただけます"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "is-required": "必填",
+  "mobile": "手機",
+  "id-number": "身分證字號",
+  "not-id-number": "身分證字號格式有誤",
+  "area": "地區",
+  "postal-code": "郵遞區號",
+  "address": "地址",
+  "choose-store": "選擇門市",
+  "not-choose-store": "尚未選擇門市",
+  "rechoose-store": "重新選擇",
+  "invoice": "發票",
+  "invoice-paper": "紙本發票",
+  "invoice-title": "發票抬頭",
+  "invoice-number": "統一編號",
+  "invoice-address": "發票地址",
+  "invoice-e-invoice": "電子發票",
+  "wrong-certificate": "自然人憑證條碼錯誤，請重新輸入。",
+  "wrong-barcode": "手機條碼錯誤，請重新輸入。",
+  "invoice-donate": "社福團體愛心碼",
+  "invoice-search": "查詢",
+  "wrong-lovecode": "愛心碼錯誤，請重新輸入。",
+  "error": "發生錯誤",
+  "invoice-e-invoice-number": {
+    "moile-barcode": "請輸入手機條碼",
+    "citizen-digital-certificate": "請輸入自然人憑證條碼"
+  },
+  "invoice-e-invoice-type": {
+    "membership": "會員載具",
+    "mobile-barcode": "手機條碼載具",
+    "citizen-digital-certificate": "自然人憑證載具",
+    "company": "公司戶",
+    "donation": "捐贈"
+  },
+  "convenience-store": {
+    "CVSStoreName": "門市名稱",
+    "CVSAddress": "門市地址",
+    "CVSStoreID": "門市代號"
+  },
+  "invoice-paper-type": {
+    "duplicate": "二聯式發票",
+    "triplicate": "三聯式發票",
+    "donation": "捐贈"
+  }
+}

@@ -4,32 +4,31 @@ import { areEqual, UserAgent } from 'fbjs';
 import radium from 'radium';
 import { Form, Select, Collapse } from 'antd';
 
+import { withTranslation } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
 
 import Coupon from './coupon';
 import { FILTER_ALLPAY_PLAYFORM } from './constants';
-import * as LOCALE from './locale';
 import * as styles from './styles';
 
 const { Item: FormItem } = Form;
 const { Option } = Select;
 const { Panel } = Collapse;
 
+@withTranslation('payment-default-form-item')
 @enhancer
 @radium
-/**
- * @prop {Function} changeChooseShipment - Use this function to get shipment which is chosen.
- */
 export default class PayemntDefaultFormItem extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     storeSetting: STORE_SETTING_TYPE.isRequired,
-    transformLocale: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
 
     /** props */
+    t: PropTypes.func.isRequired,
     style: PropTypes.shape({}),
     couponInfo: PropTypes.shape({
       errorObj: PropTypes.shape({}),
@@ -84,7 +83,7 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
-    const { transformLocale, form, paymentList, shipmentList } = nextProps;
+    const { t, form, paymentList, shipmentList } = nextProps;
     const { getFieldsValue, setFields } = form;
     const { paymentId, shipmentId } = getFieldsValue([
       'paymentId',
@@ -106,7 +105,7 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
         setFields({
           paymentId: {
             value: undefined,
-            errors: [new Error(transformLocale(LOCALE.CHOOSE_PAYMENY_ERROR))],
+            errors: [new Error(t('choose-paymeny-error'))],
           },
         });
       }
@@ -115,7 +114,7 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
         setFields({
           shipmentId: {
             value: undefined,
-            errors: [new Error(transformLocale(LOCALE.CHOOSE_SHIPMENT_ERROR))],
+            errors: [new Error(t('choose-shipment-error'))],
           },
         });
       }
@@ -212,10 +211,13 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
 
   render() {
     const {
+      // context
       colors,
       storeSetting,
-      transformLocale,
       hasStoreAppPlugin,
+
+      // props
+      t,
       style,
       couponInfo,
       computeOrderList,
@@ -238,12 +240,12 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
             rules: [
               {
                 required: true,
-                message: transformLocale(LOCALE.IS_REQUIRED),
+                message: t('is-required'),
               },
             ],
           })(
             <Select
-              placeholder={transformLocale(LOCALE.PAYMENT)}
+              placeholder={t('payment')}
               disabled={paymentList.length === 0 || paymentList[0].isFake}
               onChange={paymentId => {
                 computeOrderList({ paymentId });
@@ -265,7 +267,7 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
           {!choosePayment.description ? null : (
             <Collapse style={styles.collapse} bordered={false}>
               <Panel
-                header={transformLocale(LOCALE.PAYMENT_DESCRIPTION)}
+                header={t('payment-description')}
                 style={styles.panel(colors)}
               >
                 <pre>{choosePayment.description}</pre>
@@ -280,12 +282,12 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
             rules: [
               {
                 required: true,
-                message: transformLocale(LOCALE.IS_REQUIRED),
+                message: t('is-required'),
               },
             ],
           })(
             <Select
-              placeholder={transformLocale(LOCALE.SHIPMENT)}
+              placeholder={t('shipment')}
               disabled={shipmentList.length === 0 || shipmentList[0].isFake}
               onChange={shipmentId => {
                 computeOrderList({ shipmentId });
@@ -309,7 +311,7 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
           {!chooseShipment.description ? null : (
             <Collapse style={styles.collapse} bordered={false}>
               <Panel
-                header={transformLocale(LOCALE.SHIPMENT_DESCRIPTION)}
+                header={t('shipment-description')}
                 style={styles.panel(colors)}
               >
                 <pre>{chooseShipment.description}</pre>
