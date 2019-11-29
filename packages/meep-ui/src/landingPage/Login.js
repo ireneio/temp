@@ -97,12 +97,7 @@ export default class Login extends React.PureComponent {
   render() {
     const { colors, transformLocale, form, hideLogin } = this.props;
     const { isForgetPassword } = this.state;
-    const {
-      resetFields,
-      getFieldDecorator,
-      getFieldsError,
-      getFieldValue,
-    } = form;
+    const { resetFields, getFieldDecorator, getFieldValue, setFields } = form;
 
     return (
       <Modal
@@ -129,6 +124,15 @@ export default class Login extends React.PureComponent {
                   },
                 },
               ],
+              validateTrigger: false,
+              normalize: value => value.replace(/\s/g, ''),
+              onChange: ({ target: { value } }) => {
+                setFields({
+                  email: {
+                    value,
+                  },
+                });
+              },
             },
             ...(isForgetPassword
               ? []
@@ -145,10 +149,17 @@ export default class Login extends React.PureComponent {
                     ],
                   },
                 ]),
-          ].map(({ name, type, placeholder, initialValue, rules }) => (
+          ].map(({ name, type, placeholder, onChange, ...rules }) => (
             <FormItem key={name} style={formItemStyle}>
-              {getFieldDecorator(name, { initialValue, rules })(
-                <Input type={type} placeholder={placeholder} />,
+              {getFieldDecorator(
+                name,
+                rules,
+              )(
+                <Input
+                  type={type}
+                  placeholder={placeholder}
+                  onChange={onChange}
+                />,
               )}
             </FormItem>
           ))}
@@ -180,10 +191,6 @@ export default class Login extends React.PureComponent {
               style={styles.button(colors)}
               type="primary"
               htmlType="submit"
-              disabled={(fieldsError =>
-                Object.keys(fieldsError).some(field => fieldsError[field]))(
-                getFieldsError(),
-              )}
             >
               {transformLocale(isForgetPassword ? LOCALE.SEND : LOCALE.LOGIN)}
             </Button>

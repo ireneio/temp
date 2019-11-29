@@ -78,7 +78,7 @@ export default class Login extends React.PureComponent {
       form,
       goToInCart,
     } = this.props;
-    const { getFieldDecorator, getFieldsError } = form;
+    const { getFieldDecorator, setFields } = form;
 
     return (
       <div style={styles.root}>
@@ -102,6 +102,15 @@ export default class Login extends React.PureComponent {
                   },
                 },
               ],
+              validateTrigger: false,
+              normalize: value => value.replace(/\s/g, ''),
+              onChange: ({ target: { value } }) => {
+                setFields({
+                  email: {
+                    value,
+                  },
+                });
+              },
             },
             {
               name: 'password',
@@ -114,13 +123,17 @@ export default class Login extends React.PureComponent {
                 },
               ],
             },
-          ].map(({ name, type, placeholder, rules }) => (
+          ].map(({ name, type, placeholder, onChange, ...rules }) => (
             <FormItem key={name} style={styles.formItem}>
-              {getFieldDecorator(name, { rules })(
+              {getFieldDecorator(
+                name,
+                rules,
+              )(
                 <Input
                   style={styles.input}
                   type={type}
                   placeholder={placeholder}
+                  onChange={onChange}
                   size="large"
                 />,
               )}
@@ -144,10 +157,6 @@ export default class Login extends React.PureComponent {
               }}
               type="primary"
               htmlType="submit"
-              disabled={(fieldsError =>
-                Object.keys(fieldsError).some(field => fieldsError[field]))(
-                getFieldsError(),
-              )}
               ghost
             >
               {t('login')}

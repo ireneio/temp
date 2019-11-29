@@ -86,7 +86,7 @@ export default class SignupForm extends React.PureComponent {
       colors,
 
       /** props */
-      form: { getFieldDecorator },
+      form: { getFieldDecorator, setFields },
       t,
     } = this.props;
 
@@ -109,7 +109,21 @@ export default class SignupForm extends React.PureComponent {
                 },
               },
             ],
-          })(<Input placeholder={t('email-placeholder')} size="large" />)}
+            validateTrigger: false,
+            normalize: value => value.replace(/\s/g, ''),
+          })(
+            <Input
+              placeholder={t('email-placeholder')}
+              size="large"
+              onChange={({ target: { value } }) => {
+                setFields({
+                  email: {
+                    value,
+                  },
+                });
+              }}
+            />,
+          )}
         </FormItem>
 
         <FormItem>

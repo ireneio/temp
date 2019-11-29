@@ -28,7 +28,6 @@ export default class ForgetPassword extends React.PureComponent {
     t: PropTypes.func.isRequired,
     form: PropTypes.shape({
       getFieldDecorator: PropTypes.func.isRequired,
-      getFieldsError: PropTypes.func.isRequired,
       validateFields: PropTypes.func.isRequired,
     }).isRequired,
   };
@@ -51,7 +50,7 @@ export default class ForgetPassword extends React.PureComponent {
 
       /** props */
       t,
-      form: { getFieldDecorator, getFieldsError },
+      form: { getFieldDecorator, setFields },
     } = this.props;
 
     return (
@@ -74,11 +73,20 @@ export default class ForgetPassword extends React.PureComponent {
                   },
                 },
               ],
+              validateTrigger: false,
+              normalize: value => value.replace(/\s/g, ''),
             })(
               <Input
                 style={loginStyles.input}
                 placeholder={t('email-placeholder')}
                 size="large"
+                onChange={({ target: { value } }) => {
+                  setFields({
+                    email: {
+                      value,
+                    },
+                  });
+                }}
               />,
             )}
           </FormItem>
@@ -90,10 +98,6 @@ export default class ForgetPassword extends React.PureComponent {
               style={styles.button(colors)}
               type="primary"
               htmlType="submit"
-              disabled={(fieldsError =>
-                Object.keys(fieldsError).some(field => fieldsError[field]))(
-                getFieldsError(),
-              )}
             >
               {t('send-password')}
             </Button>
