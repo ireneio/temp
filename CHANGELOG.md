@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.29.7 (2019-11-29)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#746](https://github.com/meepshop/meep-lerna/pull/746) 註冊/會員登入 - 信箱格式、驗證體驗 ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#778](https://github.com/meepshop/meep-lerna/pull/778) 【優化】- 查看前後台瀏覽器版本功能 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.29.6 (2019-11-28)
 
 #### :rocket: New Feature
