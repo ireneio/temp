@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.29.8 (2019-12-02)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#789](https://github.com/meepshop/meep-lerna/pull/789) landingPage 與 checkout 共用元件 從 locale.js 改成 next-i18next ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#792](https://github.com/meepshop/meep-lerna/pull/792) 【個別店家】 meepShop MAX 極速開店：新增白名單 - digitalrabbit ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.29.7 (2019-11-29)
 
 #### :rocket: New Feature
