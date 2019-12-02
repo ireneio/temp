@@ -38,6 +38,7 @@ export const SPECIAL_HIDE_FOOTER = [
   'iwe',
   'i-eat',
   'uteam',
+  'digitalrabbit',
 ];
 
 export const STORE_APP_PLUGINS = [
