@@ -4,8 +4,6 @@ import radium from 'radium';
 import { Form, Input, Select, DatePicker } from 'antd';
 import { isAlpha, isFullWidth, isEmail } from 'validator';
 
-import { withTranslation } from '@store/utils/lib/i18n';
-
 import { enhancer } from 'layout/DecoratorsRoot';
 import ReceiverDefaultFormItem from 'receiverDefaultFormItem';
 import {
@@ -19,6 +17,7 @@ import { NOTLOGIN } from 'constants/isLogin';
 
 import Login from './Login';
 import { CHECK_USER_EMAIL, ADDITION_TYPE, REQUIRED_TYPE } from './constants';
+import * as LOCALE from './locale';
 import * as styles from './styles/receiverInfo';
 import {
   block as blockStyle,
@@ -30,7 +29,6 @@ const { Item: FormItem } = Form;
 const { Option } = Select;
 const { TextArea } = Input;
 
-@withTranslation('landing-page')
 @enhancer
 @radium
 export default class ReceiverInfo extends React.PureComponent {
@@ -38,10 +36,10 @@ export default class ReceiverInfo extends React.PureComponent {
     /** context */
     isLogin: ISLOGIN_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
+    transformLocale: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
 
     /** props */
-    t: PropTypes.func.isRequired,
     choosePaymentTemplate: PAYMENT_TEMPLATE_TYPE,
     chooseShipmentTemplate: SHIPMENT_TEMPLATE_TYPE,
     form: PropTypes.shape({
@@ -105,12 +103,9 @@ export default class ReceiverInfo extends React.PureComponent {
 
   render() {
     const {
-      /** context */
       isLogin,
       colors,
-
-      /** props */
-      t,
+      transformLocale,
       choosePaymentTemplate,
       chooseShipmentTemplate,
       countries,
@@ -124,7 +119,7 @@ export default class ReceiverInfo extends React.PureComponent {
     return (
       <div style={blockStyle}>
         <h3 id="choose-shipment-store" style={titleStyle(colors)}>
-          {t('receiver-info')}
+          {transformLocale(LOCALE.RECEIVER_INFO)}
         </h3>
 
         <div style={styles.nameRoot}>
@@ -134,7 +129,7 @@ export default class ReceiverInfo extends React.PureComponent {
               rules: [
                 {
                   required: true,
-                  message: t('is-required'),
+                  message: transformLocale(LOCALE.IS_REQUIRED),
                 },
                 {
                   validator: (rule, value, callback) => {
@@ -144,14 +139,14 @@ export default class ReceiverInfo extends React.PureComponent {
                       case 'ezship':
                         return callback(
                           value.length > 60
-                            ? t('name-too-long', { amount: 60 })
+                            ? transformLocale(LOCALE.NAME_TOO_LONG(60))
                             : undefined,
                         );
 
                       case 'gmo':
                         return callback(
                           value.length > 10
-                            ? t('name-too-long', { amount: 10 })
+                            ? transformLocale(LOCALE.NAME_TOO_LONG(10))
                             : undefined,
                         );
 
@@ -161,7 +156,7 @@ export default class ReceiverInfo extends React.PureComponent {
                             (isAlpha(value)
                               ? value.length > 10 || value.length < 4
                               : value.length > 5 || value.length < 2)
-                            ? t('allpay-name-too-long')
+                            ? transformLocale(LOCALE.ALLPAY_LNAME_TOO_LONG)
                             : undefined,
                         );
 
@@ -171,7 +166,7 @@ export default class ReceiverInfo extends React.PureComponent {
                   },
                 },
               ],
-            })(<Input placeholder={t('receiver')} />)}
+            })(<Input placeholder={transformLocale(LOCALE.RECEIVER)} />)}
           </FormItem>
 
           {!addition.includes('gender') ? null : (
@@ -180,14 +175,14 @@ export default class ReceiverInfo extends React.PureComponent {
                 rules: [
                   {
                     required: required.includes('gender'),
-                    message: t('is-required'),
+                    message: transformLocale(LOCALE.IS_REQUIRED),
                   },
                 ],
               })(
-                <Select placeholder={t('gender')}>
-                  {['male', 'female'].map((name, index) => (
+                <Select placeholder={transformLocale(LOCALE.GENDER)}>
+                  {['MALE', 'FEMALE'].map((name, index) => (
                     <Option key={name} value={index}>
-                      {t(name)}
+                      {transformLocale(LOCALE[name])}
                     </Option>
                   ))}
                 </Select>,
@@ -202,13 +197,13 @@ export default class ReceiverInfo extends React.PureComponent {
               rules: [
                 {
                   required: required.includes('birthday'),
-                  message: t('is-required'),
+                  message: transformLocale(LOCALE.IS_REQUIRED),
                 },
               ],
             })(
               <DatePicker
                 style={styles.birthday}
-                placeholder={t('birthday')}
+                placeholder={transformLocale(LOCALE.BIRTHDAY)}
               />,
             )}
           </FormItem>
@@ -220,19 +215,19 @@ export default class ReceiverInfo extends React.PureComponent {
               rules: [
                 {
                   required: true,
-                  message: t('is-required'),
+                  message: transformLocale(LOCALE.IS_REQUIRED),
                 },
                 {
                   validator: (rule, value, callback) => {
                     if (value && (isFullWidth(value) || !isEmail(value)))
-                      callback(t('not-email'));
+                      callback(transformLocale(LOCALE.NOT_EMAIL));
                     else callback();
                   },
                 },
               ],
             })(
               <Input
-                placeholder={t('email')}
+                placeholder={transformLocale(LOCALE.EMAIL)}
                 onChange={() => this.setState({ showLogin: false })}
                 onBlur={this.checkUserEmail}
               />,
@@ -256,10 +251,12 @@ export default class ReceiverInfo extends React.PureComponent {
               rules: [
                 {
                   required: required.includes('notes'),
-                  message: t('is-required'),
+                  message: transformLocale(LOCALE.IS_REQUIRED),
                 },
               ],
-            })(<TextArea placeholder={t('notes')} rows={4} />)}
+            })(
+              <TextArea placeholder={transformLocale(LOCALE.NOTES)} rows={4} />,
+            )}
           </FormItem>
         )}
 

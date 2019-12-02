@@ -12,6 +12,7 @@ import { NOTLOGIN } from 'constants/isLogin';
 
 import validateMobile from 'utils/validateMobile';
 
+import * as LOCALE from './locale';
 import { CHECK_USER_EMAIL } from './constants';
 
 import {
@@ -22,7 +23,7 @@ import {
 
 const { Item: FormItem } = Form;
 
-@withTranslation(['validate-mobile', 'checkout'])
+@withTranslation('validate-mobile')
 @enhancer
 @radium
 export default class UserInfo extends React.PureComponent {
@@ -30,6 +31,7 @@ export default class UserInfo extends React.PureComponent {
     /** context */
     isLogin: ISLOGIN_TYPE.isRequired,
     getData: PropTypes.func.isRequired,
+    transformLocale: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -41,14 +43,7 @@ export default class UserInfo extends React.PureComponent {
   }
 
   checkUserEmail = async ({ target }) => {
-    const {
-      /** context */
-      getData,
-
-      /** props */
-      t,
-      form,
-    } = this.props;
+    const { transformLocale, getData, form } = this.props;
     const { getFieldError, setFields } = form;
 
     if (getFieldError('userEmail')) return;
@@ -62,7 +57,7 @@ export default class UserInfo extends React.PureComponent {
       setFields({
         userEmail: {
           value: email,
-          errors: [new Error(t('is-register'))],
+          errors: [new Error(transformLocale(LOCALE.IS_REGISTER))],
         },
       });
     }
@@ -72,6 +67,7 @@ export default class UserInfo extends React.PureComponent {
     const {
       // context
       isLogin,
+      transformLocale,
 
       // props
       t,
@@ -81,7 +77,7 @@ export default class UserInfo extends React.PureComponent {
 
     return (
       <div style={blockStyle}>
-        <h3 style={titleStyle}>{t('user-info')}</h3>
+        <h3 style={titleStyle}>{transformLocale(LOCALE.USER_INFO)}</h3>
 
         {isLogin !== NOTLOGIN ? null : (
           <>
@@ -91,18 +87,21 @@ export default class UserInfo extends React.PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: t('is-required'),
+                    message: transformLocale(LOCALE.IS_REQUIRED),
                   },
                   {
                     validator: (rule, value, callback) => {
                       if (value && (isFullWidth(value) || !isEmail(value)))
-                        callback(t('not-email'));
+                        callback(transformLocale(LOCALE.NOT_EMAIL));
                       else callback();
                     },
                   },
                 ],
               })(
-                <Input placeholder={t('email')} onBlur={this.checkUserEmail} />,
+                <Input
+                  placeholder={transformLocale(LOCALE.EMAIL)}
+                  onBlur={this.checkUserEmail}
+                />,
               )}
             </FormItem>
 
@@ -112,10 +111,15 @@ export default class UserInfo extends React.PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: t('is-required'),
+                    message: transformLocale(LOCALE.IS_REQUIRED),
                   },
                 ],
-              })(<Input type="password" placeholder={t('password')} />)}
+              })(
+                <Input
+                  type="password"
+                  placeholder={transformLocale(LOCALE.PASSWORD)}
+                />,
+              )}
             </FormItem>
           </>
         )}
@@ -126,10 +130,10 @@ export default class UserInfo extends React.PureComponent {
             rules: [
               {
                 required: true,
-                message: t('is-required'),
+                message: transformLocale(LOCALE.IS_REQUIRED),
               },
             ],
-          })(<Input placeholder={t('name')} />)}
+          })(<Input placeholder={transformLocale(LOCALE.NAME)} />)}
         </FormItem>
 
         <FormItem style={formItemStyle}>
@@ -138,13 +142,13 @@ export default class UserInfo extends React.PureComponent {
             rules: [
               {
                 required: true,
-                message: t('is-required'),
+                message: transformLocale(LOCALE.IS_REQUIRED),
               },
               {
                 validator: validateMobile(t),
               },
             ],
-          })(<Input placeholder={t('mobile')} />)}
+          })(<Input placeholder={transformLocale(LOCALE.MOBILE)} />)}
         </FormItem>
       </div>
     );

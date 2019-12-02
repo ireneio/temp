@@ -1,17 +1,17 @@
-const getVariantOptions = (children, i18n) =>
+const getVariantOptions = (children, { transformLocale }) =>
   children.map(({ children: child, data }) => {
     const { title, variant = {} } = data;
     const { id, stock, minPurchaseItems } = variant;
     const disabled = stock && minPurchaseItems && stock < minPurchaseItems;
 
     return {
-      value: child ? title[i18n.language] || title.zh_TW : id,
-      label: title[i18n.language] || title.zh_TW,
+      value: child ? transformLocale(title) : id,
+      label: transformLocale(title),
       disabled,
       ...(!child
         ? {}
         : {
-            children: getVariantOptions(child, i18n),
+            children: getVariantOptions(child, { transformLocale }),
           }),
     };
   });
