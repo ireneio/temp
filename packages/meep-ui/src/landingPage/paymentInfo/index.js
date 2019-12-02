@@ -4,6 +4,7 @@ import { Form, Select, InputNumber, Cascader, Modal } from 'antd';
 import { getElementPosition } from 'fbjs';
 import uuid from 'uuid';
 
+import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
 
@@ -26,13 +27,13 @@ import {
 
 import PriceInfo from './PriceInfo';
 import { VARIANTS_TYPE, VARIANTS_TREE_TYPE } from './constants';
-import * as LOCALE from './locale';
 import getVariantOptions from './utils/getVariantOptions';
 import mockPaymentInfoRef from './utils/mockPaymentInfoRef';
 
 const { Item: FormItem } = Form;
 const { Option } = Select;
 
+@withTranslation('landing-page')
 @withContext(adTrackContext)
 @enhancer
 @mockPaymentInfoRef
@@ -49,12 +50,12 @@ class PayemntInfo extends React.PureComponent {
     /** context */
     storeSetting: STORE_SETTING_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired,
     transformCurrency: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
 
     /** props */
+    t: PropTypes.func.isRequired,
     adTrack: PropTypes.shape({}).isRequired,
     moduleId: ID_TYPE.isRequired,
     form: PropTypes.shape({}).isRequired,
@@ -93,14 +94,12 @@ class PayemntInfo extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
-    const { transformLocale, id, variantsTree } = nextProps;
+    const { i18n, id, variantsTree } = nextProps;
 
     if (id && id !== preState.productId) {
       return {
         productId: id,
-        variantOptions: getVariantOptions(variantsTree.children, {
-          transformLocale,
-        }),
+        variantOptions: getVariantOptions(variantsTree.children, i18n),
         variantMax: 0,
         variantMin: 0,
       };
@@ -125,13 +124,7 @@ class PayemntInfo extends React.PureComponent {
   }
 
   getVariantInfo = variant => {
-    const {
-      /** context */
-      transformLocale,
-
-      /** props */
-      variants,
-    } = this.props;
+    const { t, variants } = this.props;
     const [variantId] = variant.slice(-1);
     const variantInfo = variants.find(({ id }) => id === variantId) || {};
     let { minPurchaseItems, maxPurchaseLimit } = variantInfo;
@@ -156,7 +149,7 @@ class PayemntInfo extends React.PureComponent {
         : maxPurchaseLimit;
 
     if (variantMax === 0 || variantMax < variantMin)
-      Modal.error({ title: transformLocale(LOCALE.NO_VARIANT) });
+      Modal.error({ title: t('no-variant') });
 
     this.trackAddToCart();
     this.computeOrderList({ variant });
@@ -321,8 +314,12 @@ class PayemntInfo extends React.PureComponent {
 
   render() {
     const {
+      /** context */
       colors,
-      transformLocale,
+
+      /** props */
+      t,
+      i18n,
       title,
       variants,
       variantsTree,
@@ -343,9 +340,7 @@ class PayemntInfo extends React.PureComponent {
 
     return (
       <div style={blockStyle}>
-        <h3 style={titleStyle(colors)}>
-          {transformLocale(LOCALE.SELECT_PRODUCT_PAYMENT)}
-        </h3>
+        <h3 style={titleStyle(colors)}>{t('select-product-payment')}</h3>
 
         <FormItem style={formItemStyle}>
           {getFieldDecorator('variant', {
@@ -353,25 +348,31 @@ class PayemntInfo extends React.PureComponent {
               {
                 type: 'array',
                 required: true,
-                message: transformLocale(LOCALE.SELECT_PRODUCT),
+                message: t('select-product'),
               },
             ],
           })(
             variants.length === 1 ? (
               <Select disabled>
-                <Option value={variants[0].id}>{transformLocale(title)}</Option>
+                <Option value={variants[0].id}>
+                  {title[i18n.language] || title.zh_TW}
+                </Option>
               </Select>
             ) : (
               <Cascader
-                placeholder={transformLocale(title || LOCALE.SELECT_PRODUCT)}
+                placeholder={
+                  title
+                    ? title[i18n.language] || title.zh_TW
+                    : t('select-product')
+                }
                 options={variantOptions}
                 disabled={variantsTree.children.length === 0}
                 displayRender={label =>
                   label.length === 0
                     ? ''
-                    : `${title ? transformLocale(title) : ''} ${label.join(
-                        ' / ',
-                      )}`
+                    : `${
+                        title ? title[i18n.language] || title.zh_TW : ''
+                      } ${label.join(' / ')}`
                 }
                 allowClear={false}
                 onChange={this.getVariantInfo}
@@ -389,14 +390,12 @@ class PayemntInfo extends React.PureComponent {
                 {
                   required: true,
                   type: 'number',
-                  message: transformLocale(LOCALE.IS_REQUIRED),
+                  message: t('is-required'),
                 },
               ],
             })(
               <InputNumber
-                placeholder={`${transformLocale(
-                  LOCALE.QUANTITY,
-                )} (${variantMin} ~ ${variantMax})`}
+                placeholder={`${t('quantity')} (${variantMin} ~ ${variantMax})`}
                 min={variantMin}
                 max={variantMax}
                 onChange={this.checkQuantity}

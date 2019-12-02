@@ -6,6 +6,7 @@ import uuid from 'uuid';
 import { MdChevronLeft as ChevronLeftIcon } from 'react-icons/md';
 import transformColor from 'color';
 
+import { withTranslation } from '@store/utils/lib/i18n';
 import GmoCreditCardForm from '@store/gmo-credit-card-form';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -23,7 +24,7 @@ import StepHeader from '../StepHeader';
 import UserInfo from './UserInfo';
 import ReceiverInfo from './ReceiverInfo';
 import ProductList from './ProductList';
-import * as LOCALE from './locale';
+
 import styles from './styles/index.less';
 import { modifyAntdStyle, formItem as formItemStyle } from './styles';
 
@@ -73,6 +74,7 @@ const { Item: FormItem } = Form;
     );
   },
 })
+@withTranslation('checkout')
 @enhancer
 @radium
 export default class OrderDetail extends React.PureComponent {
@@ -86,13 +88,13 @@ export default class OrderDetail extends React.PureComponent {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     storeSetting: STORE_SETTING_TYPE.isRequired,
-    transformLocale: PropTypes.func.isRequired,
     transformCurrency: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
 
     /** props */
+    t: PropTypes.func.isRequired,
     countries: PropTypes.arrayOf(COUNTRY_TYPE.isRequired),
     products: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
     isSynchronizeUserInfo: PropTypes.bool,
@@ -169,14 +171,20 @@ export default class OrderDetail extends React.PureComponent {
   checkCartIsEmpty = () => {
     if (this.isUnmounted || this.isEmptyCart) return;
 
-    const { transformLocale, goTo } = this.props;
+    const {
+      /** context */
+      goTo,
+
+      /** props */
+      t,
+    } = this.props;
     const { products } = this.state;
 
     if (products.length === 0) {
       this.isEmptyCart = true;
       Modal.warning({
-        title: transformLocale(LOCALE.CART_IS_EMPTY),
-        okText: transformLocale(LOCALE.CONFIRM_GO_TO),
+        title: t('cart-is-empty'),
+        okText: t('confirm-go-to'),
         onOk: () => goTo({ pathname: '/' }),
       });
     }
@@ -305,12 +313,15 @@ export default class OrderDetail extends React.PureComponent {
 
   render() {
     const {
+      /** context */
       colors,
       storeSetting,
-      transformLocale,
       transformCurrency,
       hasStoreAppPlugin,
       goTo,
+
+      /** props */
+      t,
       form,
       countries,
       isSubmitting,
@@ -361,8 +372,7 @@ export default class OrderDetail extends React.PureComponent {
               {storeName}
 
               <div className={styles.phoneSizeWrapper}>
-                {transformLocale(LOCALE.TOTAL_PRICE)}：
-                {transformCurrency(total)}
+                {t('total-price')}：{transformCurrency(total)}
                 <Button
                   onClick={() =>
                     this.setState({ showDetail: true }, () => {
@@ -370,15 +380,13 @@ export default class OrderDetail extends React.PureComponent {
                     })
                   }
                 >
-                  {transformLocale(LOCALE.CHECK_DETAIL)}
+                  {t('check-detail')}
                 </Button>
               </div>
             </div>
 
             <div className={styles.block}>
-              <h3 className={styles.title}>
-                {transformLocale(LOCALE.PAYMENT_INFO)}
-              </h3>
+              <h3 className={styles.title}>{t('payment-info')}</h3>
 
               <PaymentDefaultFormItem
                 style={formItemStyle}
@@ -395,7 +403,7 @@ export default class OrderDetail extends React.PureComponent {
                     <InputNumber
                       min={0}
                       max={canUsePointsLimit || 0}
-                      placeholder={transformLocale(LOCALE.REWARD_POINTS)}
+                      placeholder={t('reward-points')}
                       onBlur={({ target }) =>
                         this.computeOrderList({
                           points: target.value === '' ? 0 : target.value,
@@ -411,9 +419,7 @@ export default class OrderDetail extends React.PureComponent {
                       background: transformColor(colors[5]).alpha(0.15),
                     }}
                   >
-                    {transformLocale(
-                      LOCALE.REWARD_POINTS_CAN_USE(userPoints || 0),
-                    )}
+                    {t('reward-points-can-use', { point: userPoints || 0 })}
 
                     <font
                       style={{
@@ -423,9 +429,7 @@ export default class OrderDetail extends React.PureComponent {
                             : 'inherit',
                       }}
                     >
-                      {transformLocale(
-                        LOCALE.POINTS_LIMIT(canUsePointsLimit || 0),
-                      )}
+                      {t('points-limit', { point: canUsePointsLimit || 0 })}
                     </font>
                   </div>
                 </FormItem>
@@ -469,7 +473,8 @@ export default class OrderDetail extends React.PureComponent {
                   onClick={() => goTo({ back: true })}
                 >
                   <ChevronLeftIcon className={styles.continueShoppingIcon} />
-                  {transformLocale(LOCALE.CONTINUE_SHOPPING)}
+
+                  {t('continue-shopping')}
                 </div>
 
                 <div className={styles.submitButtonRoot}>
@@ -495,7 +500,7 @@ export default class OrderDetail extends React.PureComponent {
                         validateFieldsAndScroll();
                       }}
                     >
-                      {transformLocale`${LOCALE.CONFIRM}: ${LOCALE.PAY_LATER}`}
+                      {t('confirm')}: {t('pay-later')}
                     </Button>
                   )}
 
@@ -521,8 +526,8 @@ export default class OrderDetail extends React.PureComponent {
                     }}
                   >
                     {paymentLater
-                      ? transformLocale`${LOCALE.CONFIRM}: ${LOCALE.PAY_NOW}`
-                      : transformLocale(LOCALE.CONFIRM)}
+                      ? `${t('confirm')}: ${t('pay-now')}`
+                      : t('confirm')}
                   </Button>
                 </div>
               </div>

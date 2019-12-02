@@ -4,7 +4,10 @@ import radium from 'radium';
 import { Form, Input, Select, Checkbox } from 'antd';
 import { isAlpha } from 'validator';
 
+import { withTranslation } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
+import ReceiverDefaultFormItem from 'receiverDefaultFormItem';
 import {
   ISLOGIN_TYPE,
   USER_TYPE,
@@ -15,11 +18,7 @@ import {
 import { NOTLOGIN } from 'constants/isLogin';
 import * as COUNTRY_LOCALE from 'locale/country';
 
-import ReceiverDefaultFormItem from 'receiverDefaultFormItem';
-
-import * as LOCALE from './locale';
 import * as styles from './styles/receiverInfo';
-
 import {
   block as blockStyle,
   title as titleStyle,
@@ -30,6 +29,7 @@ const { Item: FormItem } = Form;
 const { TextArea } = Input;
 const { Option } = Select;
 
+@withTranslation('checkout')
 @enhancer
 @radium
 export default class ReceiverInfo extends React.PureComponent {
@@ -41,9 +41,9 @@ export default class ReceiverInfo extends React.PureComponent {
     /** context */
     user: USER_TYPE,
     isLogin: ISLOGIN_TYPE.isRequired,
-    transformLocale: PropTypes.func.isRequired,
 
     /** props */
+    t: PropTypes.func.isRequired,
     form: PropTypes.shape({}).isRequired,
     countries: PropTypes.arrayOf(COUNTRY_TYPE.isRequired),
     choosePaymentTemplate: PAYMENT_TEMPLATE_TYPE,
@@ -79,7 +79,14 @@ export default class ReceiverInfo extends React.PureComponent {
   }
 
   setReceiverWithTemplate = async index => {
-    const { transformLocale, form, user } = this.props;
+    const {
+      /** context */
+      user,
+
+      /** props */
+      i18n,
+      form,
+    } = this.props;
     const { setFieldsValue } = form;
     const { recipientData } = user;
     const { name, mobile, address } = recipientData[index];
@@ -96,7 +103,7 @@ export default class ReceiverInfo extends React.PureComponent {
             Object.values(countryLocale).includes(data),
           );
 
-          return !locale ? data : transformLocale(locale);
+          return !locale ? data : locale[i18n.language] || locale.zh_TW;
         }),
       addressDetail: street,
     });
@@ -148,9 +155,12 @@ export default class ReceiverInfo extends React.PureComponent {
 
   render() {
     const {
-      transformLocale,
-      form,
+      /** context */
       user,
+
+      /** props */
+      t,
+      form,
       countries,
       choosePaymentTemplate,
       chooseShipmentTemplate,
@@ -167,13 +177,13 @@ export default class ReceiverInfo extends React.PureComponent {
           id="choose-shipment-store"
           style={[titleStyle, styles.receiverTitle]}
         >
-          {transformLocale(LOCALE.RECEIVER_INFO)}
+          {t('receiver-info')}
 
           <Checkbox
             onChange={this.synchronizeUserInfo}
             checked={isSynchronizeUserInfo}
           >
-            {transformLocale(LOCALE.SAME_AS_USER_INFO)}
+            {t('same-as-user-info')}
           </Checkbox>
         </h3>
 
@@ -182,7 +192,7 @@ export default class ReceiverInfo extends React.PureComponent {
           <FormItem style={formItemStyle}>
             {getFieldDecorator('receiverTemplate')(
               <Select
-                placeholder={transformLocale(LOCALE.RECEIVER_TEMPLATE)}
+                placeholder={t('receiver-template')}
                 onChange={this.setReceiverWithTemplate}
               >
                 {user.recipientData.map(({ name }, index) => (
@@ -204,7 +214,7 @@ export default class ReceiverInfo extends React.PureComponent {
             rules: [
               {
                 required: true,
-                message: transformLocale(LOCALE.IS_REQUIRED),
+                message: t('is-required'),
               },
               {
                 validator: (rule, value, callback) => {
@@ -214,14 +224,14 @@ export default class ReceiverInfo extends React.PureComponent {
                     case 'ezship':
                       return callback(
                         value.length > 60
-                          ? transformLocale(LOCALE.NAME_TOO_LONG(60))
+                          ? t('name-too-long', { amount: 60 })
                           : undefined,
                       );
 
                     case 'gmo':
                       return callback(
                         value.length > 10
-                          ? transformLocale(LOCALE.NAME_TOO_LONG(10))
+                          ? t('name-too-long', { amount: 10 })
                           : undefined,
                       );
 
@@ -231,7 +241,7 @@ export default class ReceiverInfo extends React.PureComponent {
                           (isAlpha(value)
                             ? value.length > 10 || value.length < 4
                             : value.length > 5 || value.length < 2)
-                          ? transformLocale(LOCALE.ALLPAY_LNAME_TOO_LONG)
+                          ? t('allpay-name-too-long')
                           : undefined,
                       );
 
@@ -241,7 +251,7 @@ export default class ReceiverInfo extends React.PureComponent {
                 },
               },
             ],
-          })(<Input placeholder={transformLocale(LOCALE.NAME)} />)}
+          })(<Input placeholder={t('name')} />)}
         </FormItem>
 
         <ReceiverDefaultFormItem
@@ -254,7 +264,7 @@ export default class ReceiverInfo extends React.PureComponent {
 
         <FormItem style={formItemStyle}>
           {getFieldDecorator('notes')(
-            <TextArea placeholder={transformLocale(LOCALE.NOTES)} rows={4} />,
+            <TextArea placeholder={t('notes')} rows={4} />,
           )}
         </FormItem>
 
@@ -266,7 +276,7 @@ export default class ReceiverInfo extends React.PureComponent {
               }
               checked={isSaveAsReceiverTemplate}
             >
-              {transformLocale(LOCALE.SAVE_AS_RECEIVER_TEMPLATE)}
+              {t('save-as-receiver-template')}
             </Checkbox>
           </div>
         )}

@@ -6,6 +6,7 @@ import moment from 'moment';
 import { areEqual } from 'fbjs';
 import uuid from 'uuid/v4';
 
+import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
 import GmoCreditCardForm from '@store/gmo-credit-card-form';
@@ -31,11 +32,9 @@ import { TAIWAN } from 'locale/country';
 import PaymentInfo from './paymentInfo';
 import ReceiverInfo from './ReceiverInfo';
 import { ADDITION_TYPE } from './constants';
-import * as LOCALE from './locale';
 import mockOrderInfo from './utils/mockOrderInfo';
 import * as styles from './styles';
 
-@withContext(adTrackContext)
 @enhancer
 @loadData(['productData'])
 @buildVariantsTree('productData')
@@ -58,6 +57,8 @@ import * as styles from './styles';
   onValuesChange: ({ updateOrderInfo }, changedValues, allValues) =>
     updateOrderInfo(allValues),
 })
+@withContext(adTrackContext)
+@withTranslation('landing-page')
 @radium
 export default class LandingPage extends React.PureComponent {
   paymentInfoRef = React.createRef();
@@ -77,7 +78,6 @@ export default class LandingPage extends React.PureComponent {
     location: LOCATION_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
-    transformLocale: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
@@ -97,6 +97,7 @@ export default class LandingPage extends React.PureComponent {
     updateOrderInfo: PropTypes.func.isRequired,
 
     /** moduleProps */
+    t: PropTypes.func.isRequired,
     adTrack: PropTypes.shape({}).isRequired,
     id: ID_TYPE.isRequired,
     redirectPage: URL_TYPE.isRequired,
@@ -163,16 +164,19 @@ export default class LandingPage extends React.PureComponent {
       ) => {
         if (!err) {
           const {
+            /** context */
             location: { host: domain, pathname },
             locale,
             user,
-            transformLocale,
             goTo,
-            adTrack,
             getData,
+            dispatchAction,
+
+            /** props */
+            t,
+            adTrack,
             productData,
             redirectPage,
-            dispatchAction,
           } = this.props;
           const { isSubmitting } = this.state;
 
@@ -219,7 +223,7 @@ export default class LandingPage extends React.PureComponent {
             const errorMessage = error || errors?.[0]?.message || '';
 
             notification.error({
-              message: transformLocale(LOCALE.PAY_FILE),
+              message: t('pay-fail'),
               description: /(<st_code>|七天後關|門市不存在|門市關轉店或為外島|取貨門市店代碼)/.test(
                 errorMessage,
               )
@@ -230,7 +234,7 @@ export default class LandingPage extends React.PureComponent {
             this.setState({ isSubmitting: false });
           } else {
             notification.success({
-              message: transformLocale(LOCALE.PAY_SUCCESS),
+              message: t('pay-success'),
             });
             const { products, priceInfo } = {
               ...this.storeComputeOrderList,
@@ -287,9 +291,12 @@ export default class LandingPage extends React.PureComponent {
 
   render() {
     const {
+      /** context */
       colors,
       isLogin,
-      transformLocale,
+
+      /** props */
+      t,
       form,
       productData,
       id,
@@ -371,7 +378,7 @@ export default class LandingPage extends React.PureComponent {
         </StyleRoot>
 
         <Divider style={{ ...styles.title(colors), ...styles.argeementText }}>
-          {transformLocale(LOCALE.AGREEMENT)}
+          {t('agreement')}
         </Divider>
 
         <StyleRoot style={styles.content(contentWidth)}>
@@ -394,7 +401,7 @@ export default class LandingPage extends React.PureComponent {
             onClick={() => validateFieldsAndScroll()}
             loading={isSubmitting}
           >
-            {transformLocale(LOCALE.AGREE_SUBMIT)}
+            {t('agree-submit')}
           </Button>
         </StyleRoot>
       </form>
