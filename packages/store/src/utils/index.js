@@ -8,7 +8,6 @@ import getPageWithModifyWidget from './getPageWithModifyWidget';
 import getReqArgs from './getReqArgs';
 import setDefaultValueForMenuDesign from './setDefaultValueForMenuDesign';
 import getJoinedModule from './getJoinedModule';
-import getOrderInfo from './getOrderInfo';
 import logToServer from './logToServer';
 
 export {
@@ -22,6 +21,5 @@ export {
   getReqArgs,
   setDefaultValueForMenuDesign,
   getJoinedModule,
-  getOrderInfo,
   logToServer,
 };

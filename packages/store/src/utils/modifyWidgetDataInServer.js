@@ -1,6 +1,5 @@
 import * as Api from 'api';
 import uuid from 'uuid/v4';
-import getOrderInfo from './getOrderInfo';
 
 /**
  * 暫時由前端join與filter各個module欄位
@@ -223,12 +222,7 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
           }
           /* 一頁式購物車 */
           case 'landing-page': {
-            const { tradeNo, shipmentTemplate } = query;
             const productId = widget.params && widget.params.ids;
-            let orderInfo;
-            if (shipmentTemplate && tradeNo) {
-              orderInfo = await getOrderInfo(shipmentTemplate, tradeNo);
-            }
             let productData = null;
             if (productId) {
               const { data } = await Api.getProduct({
@@ -249,7 +243,6 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
               agreedMatters: widget.landingInfo.agreedMatters,
               paymentFilter: widget.landingInfo.paymentId || [],
               shipmentFilter: widget.landingInfo.shipmentId || [],
-              orderInfo,
             };
           }
           /* 社群分享 */

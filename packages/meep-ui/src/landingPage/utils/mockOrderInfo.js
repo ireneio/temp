@@ -6,18 +6,13 @@ import { ISLOGIN_TYPE } from 'constants/propTypes';
 export default Component =>
   class MockOrderInfo extends React.Component {
     static propTypes = {
-      orderInfo: PropTypes.shape({}),
       isLogin: ISLOGIN_TYPE.isRequired,
       isShowCart: PropTypes.bool.isRequired,
     };
 
-    static defaultProps = {
-      orderInfo: {},
-    };
-
     state = {
       // eslint-disable-next-line react/destructuring-assignment
-      orderInfo: this.props.orderInfo,
+      orderInfo: {},
       cacheProps: {
         // eslint-disable-next-line react/destructuring-assignment
         isLogin: this.props.isLogin,

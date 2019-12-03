@@ -13,19 +13,9 @@ import * as Actions from 'ducks/actions';
 
 class Checkout extends React.Component {
   static getInitialProps = async context => {
-    const {
-      isServer,
-      XMeepshopDomain,
-      userAgent,
-      store,
-      query: { shipmentTemplate, tradeNo },
-    } = context;
+    const { isServer, XMeepshopDomain, userAgent, store } = context;
     if (isServer) {
       store.dispatch(Actions.serverOthersInitial(context));
-      if (shipmentTemplate && tradeNo) {
-        const orderInfo = await Utils.getOrderInfo(shipmentTemplate, tradeNo);
-        return { orderInfo, userAgent, XMeepshopDomain };
-      }
     }
     return { userAgent, XMeepshopDomain };
   };
@@ -43,31 +33,20 @@ class Checkout extends React.Component {
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
     }).isRequired,
-    orderInfo: PropTypes.shape({
-      info: PropTypes.object,
-      CVSAddress: PropTypes.string.isRequired,
-      CVSStoreID: PropTypes.string.isRequired,
-      CVSStoreName: PropTypes.string.isRequired,
-    }),
     fbAppId: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
     error: null,
-    orderInfo: null,
   };
 
   componentDidMount() {
-    const { location, carts, adTrack, orderInfo } = this.props;
+    const { location, carts, adTrack } = this.props;
 
     if (location.search === '')
       adTrack.beginCheckout({
         total: carts.priceInfo.total,
       });
-
-    // Get store previous page in orderInfo when coming back from choosing store page
-    if (orderInfo)
-      window.storePreviousPageUrl = orderInfo.info.storePreviousPageUrl;
   }
 
   render() {
