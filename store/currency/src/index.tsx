@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 import idx from 'idx';
+import { emptyFunction } from 'fbjs';
 
 import generateConverter from './utils/generateConverter';
 import initFx from './utils/initFx';
@@ -25,9 +26,9 @@ export interface CurrencyType {
 }
 
 // definition
-const CurrencyContext = React.createContext({
+const CurrencyContext = React.createContext<CurrencyType>({
   c: generateConverter('TWD', 'TWD'),
-  setCurrency: (_: string) => {},
+  setCurrency: emptyFunction,
   currency: 'TWD',
 });
 

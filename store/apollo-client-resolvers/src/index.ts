@@ -2,6 +2,8 @@
 import { Resolvers } from 'apollo-client/core/types';
 
 // import
+import { emptyFunction } from 'fbjs';
+
 import * as ColorList from './ColorList';
 import * as PageInfo from './PageInfo';
 import * as RecipientObjectType from './RecipientObjectType';
@@ -12,7 +14,7 @@ import * as validatedConvenienceStoreCities from './validatedConvenienceStoreCit
 import * as viewer from './viewer';
 
 // definition
-export const initializeCache = (): void => {};
+export const initializeCache = emptyFunction;
 
 export const introspectionQueryResultDataType = [];
 

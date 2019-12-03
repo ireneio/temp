@@ -4,6 +4,7 @@ import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 import idx from 'idx';
+import { emptyFunction } from 'fbjs';
 
 import CurrencyContext from '@store/currency';
 
@@ -23,13 +24,13 @@ const AdTrackContext = React.createContext<{
   adTrack: ReturnType<typeof useAdTrack>;
 }>({
   adTrack: {
-    addToCart: () => {},
-    viewProduct: () => {},
-    search: () => {},
-    addToWishList: () => {},
-    completeRegistration: () => {},
-    beginCheckout: () => {},
-    purchase: () => {},
+    addToCart: emptyFunction,
+    viewProduct: emptyFunction,
+    search: emptyFunction,
+    addToWishList: emptyFunction,
+    completeRegistration: emptyFunction,
+    beginCheckout: emptyFunction,
+    purchase: emptyFunction,
   },
 });
 
