@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.30.0 (2019-12-03)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+- [#788](https://github.com/meepshop/meep-lerna/pull/788) 移除超取地圖白名單功能，以及舊的超取 - 前端
+  ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.29.8 (2019-12-02)
 
 #### :boom: Breaking Change
