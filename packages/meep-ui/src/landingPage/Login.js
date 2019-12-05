@@ -5,13 +5,13 @@ import { Form, Input, Button, Modal, notification } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 import { MdLock as LockIcon } from 'react-icons/md';
 
+import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
-import * as LOCALE from './locale';
 import * as styles from './styles/login';
 
 import { formItem as formItemStyle } from './styles';
@@ -19,27 +19,26 @@ import { formItem as formItemStyle } from './styles';
 const { Item: FormItem } = Form;
 let storeEmail = null;
 
-@withContext(adTrackContext)
 @enhancer
 @Form.create({
   mapPropsToFields: ({ email }) => ({
     email: Form.createFormField({ value: email }),
   }),
 })
+@withTranslation('landing-page')
+@withContext(adTrackContext)
 @radium
 export default class Login extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    transformLocale: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
     forgetPassword: PropTypes.func.isRequired,
 
-    /** ant.Form */
-    form: PropTypes.shape({}).isRequired,
-
     /** props */
+    t: PropTypes.func.isRequired,
     adTrack: PropTypes.shape({}).isRequired,
+    form: PropTypes.shape({}).isRequired,
     hideLogin: PropTypes.func.isRequired,
   };
 
@@ -58,11 +57,14 @@ export default class Login extends React.PureComponent {
     e.stopPropagation();
 
     const {
-      transformLocale,
+      /** context */
       login,
       forgetPassword,
-      form,
+
+      /** props */
+      t,
       adTrack,
+      form,
       hideLogin,
     } = this.props;
     const { isForgetPassword } = this.state;
@@ -75,7 +77,7 @@ export default class Login extends React.PureComponent {
             callback: () => {
               hideLogin();
               notification.success({
-                message: transformLocale(LOCALE.SEND_SUCCESS),
+                message: t('send-success'),
               });
             },
           });
@@ -95,13 +97,21 @@ export default class Login extends React.PureComponent {
   };
 
   render() {
-    const { colors, transformLocale, form, hideLogin } = this.props;
+    const {
+      /** context */
+      colors,
+
+      /** props */
+      t,
+      form,
+      hideLogin,
+    } = this.props;
     const { isForgetPassword } = this.state;
     const { resetFields, getFieldDecorator, getFieldValue, setFields } = form;
 
     return (
       <Modal
-        title={transformLocale(LOCALE.PLZ_LOGIN)}
+        title={t('plz-login')}
         footer={null}
         onCancel={hideLogin}
         visible={storeEmail !== getFieldValue('email')}
@@ -110,16 +120,16 @@ export default class Login extends React.PureComponent {
           {[
             {
               name: 'email',
-              placeholder: transformLocale(LOCALE.EMAIL),
+              placeholder: t('email'),
               rules: [
                 {
                   required: true,
-                  message: transformLocale(LOCALE.IS_REQUIRED),
+                  message: t('is-required'),
                 },
                 {
                   validator: (rule, value, callback) => {
                     if (value && (isFullWidth(value) || !isEmail(value)))
-                      callback(transformLocale(LOCALE.NOT_EMAIL));
+                      callback(t('not-email'));
                     else callback();
                   },
                 },
@@ -140,11 +150,11 @@ export default class Login extends React.PureComponent {
                   {
                     name: 'password',
                     type: 'password',
-                    placeholder: transformLocale(LOCALE.PASSWORD),
+                    placeholder: t('password'),
                     rules: [
                       {
                         required: true,
-                        message: transformLocale(LOCALE.IS_REQUIRED),
+                        message: t('is-required'),
                       },
                     ],
                   },
@@ -171,7 +181,7 @@ export default class Login extends React.PureComponent {
                 type="primary"
                 onClick={() => this.setState({ isForgetPassword: false })}
               >
-                {transformLocale(LOCALE.GO_BACK)}
+                {t('go-back')}
               </Button>
             ) : (
               <div
@@ -183,7 +193,7 @@ export default class Login extends React.PureComponent {
               >
                 <LockIcon />
 
-                {transformLocale(LOCALE.FORGET_PASSWORD)}
+                {t('forget-password')}
               </div>
             )}
 
@@ -192,7 +202,7 @@ export default class Login extends React.PureComponent {
               type="primary"
               htmlType="submit"
             >
-              {transformLocale(isForgetPassword ? LOCALE.SEND : LOCALE.LOGIN)}
+              {isForgetPassword ? t('send') : t('login')}
             </Button>
           </div>
         </Form>

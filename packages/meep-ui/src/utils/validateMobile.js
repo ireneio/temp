@@ -9,16 +9,21 @@ export default (t, chooseShipmentTemplate) => (rule, value, callback) => {
     switch (chooseShipmentTemplate) {
       case 'ezship':
         if (!isTenNumber)
-          return callback(`${t('not-phone')} ${t('not-number')}`);
+          return callback(
+            `${t('validate-mobile:not-phone')} ${t(
+              'validate-mobile:not-number',
+            )}`,
+          );
         break;
       case 'allpay':
-        if (!/^(09)\d{8}$/.test(value)) return callback(t('not-phone'));
+        if (!/^(09)\d{8}$/.test(value))
+          return callback(t('validate-mobile:not-phone'));
         break;
       default:
-        if (!isNumber) return callback(t('not-number'));
+        if (!isNumber) return callback(t('validate-mobile:not-number'));
         break;
     }
-  } else if (!isPhone) return callback(t('not-number'));
+  } else if (!isPhone) return callback(t('validate-mobile:not-number'));
 
   return callback();
 };
@@ -26,4 +31,4 @@ export default (t, chooseShipmentTemplate) => (rule, value, callback) => {
 export const validateTaiwanMobileNumber = (t, value) =>
   !value || (isInt(value) && isLength(value, { min: 0, max: 10 }))
     ? ''
-    : t('taiwan-mobile-ten-digits');
+    : t('validate-mobile:taiwan-mobile-ten-digits');

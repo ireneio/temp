@@ -6,6 +6,7 @@ import { notification } from 'antd';
 import { areEqual } from 'fbjs';
 import uuid from 'uuid/v4';
 
+import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
 
@@ -20,8 +21,7 @@ import createFormData from 'utils/createFormData';
 
 import OrderDetail from './orderDetail';
 
-import * as LOCALE from './locale';
-
+@withTranslation('checkout')
 @withContext(adTrackContext)
 @enhancer
 export default class Checkout extends React.PureComponent {
@@ -36,12 +36,12 @@ export default class Checkout extends React.PureComponent {
     cname: PropTypes.string.isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
     getData: PropTypes.func.isRequired,
-    transformLocale: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
 
     /** props */
+    t: PropTypes.func.isRequired,
     adTrack: PropTypes.shape({}).isRequired,
     orderInfo: PropTypes.shape({}),
     products: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
@@ -99,15 +99,18 @@ export default class Checkout extends React.PureComponent {
 
   submit = async ({ isPayment, orderInfo, orderOtherDetailInfo }) => {
     const {
+      /** context */
       location,
       locale,
       user,
       isLogin,
-      transformLocale,
       getData,
       goTo,
       login,
       dispatchAction,
+
+      /** props */
+      t,
       adTrack,
     } = this.props;
     const { isSubmitting } = this.state;
@@ -157,7 +160,7 @@ export default class Checkout extends React.PureComponent {
       const errorMessage = error || errors?.[0]?.message || '';
 
       notification.error({
-        message: transformLocale(LOCALE.PAY_FILE),
+        message: t('pay-fail'),
         description: /(<st_code>|七天後關|門市不存在|門市關轉店或為外島|取貨門市店代碼)/.test(
           errorMessage,
         )

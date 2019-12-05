@@ -2,23 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 
+import { withTranslation } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, POSITIVE_NUMBER_TYPE } from 'constants/propTypes';
 
 import { formItem as formItemStyle } from '../styles';
 
-import * as LOCALE from './locale';
 import * as styles from './styles/priceInfo';
 
+@withTranslation('landing-page')
 @enhancer
 @radium
 export default class PriceInfo extends React.PureComponent {
   static propTypes = {
     /** context */
-    transformLocale: PropTypes.func.isRequired,
     transformCurrency: PropTypes.func.isRequired,
 
     /** props */
+    t: PropTypes.func.isRequired,
     activityInfo: PropTypes.arrayOf(
       PropTypes.shape({
         id: ID_TYPE.isRequired,
@@ -34,8 +36,12 @@ export default class PriceInfo extends React.PureComponent {
 
   render() {
     const {
-      transformLocale,
+      /** context */
       transformCurrency,
+
+      /** props */
+      t,
+      i18n,
       activityInfo,
       priceInfo,
     } = this.props;
@@ -46,7 +52,7 @@ export default class PriceInfo extends React.PureComponent {
         <div>
           {productPrice < 0 ? null : (
             <div style={styles.block}>
-              <span>{transformLocale(LOCALE.PRICE)}</span>
+              <span>{t('price')}</span>
 
               <span style={styles.content}>
                 {transformCurrency(productPrice || 0)}
@@ -58,11 +64,9 @@ export default class PriceInfo extends React.PureComponent {
             !discountPrice ? null : (
               <div key={id} style={styles.block}>
                 <span>
-                  {transformLocale(
-                    ['productCoupon', 'orderCoupon'].includes(plugin)
-                      ? LOCALE.COUPON_CODE
-                      : title,
-                  )}
+                  {['productCoupon', 'orderCoupon'].includes(plugin)
+                    ? t('coupon-code')
+                    : title[i18n.language] || title.zh_TW}
                 </span>
 
                 <span style={styles.content}>
@@ -74,7 +78,7 @@ export default class PriceInfo extends React.PureComponent {
 
           {paymentFee === 0 ? null : (
             <div style={styles.block}>
-              <span>{transformLocale(LOCALE.PAYMENT_FEE)}</span>
+              <span>{t('payment-fee')}</span>
 
               <span style={styles.content}>
                 {paymentFee < 0 ? '-' : ''}{' '}
@@ -85,7 +89,7 @@ export default class PriceInfo extends React.PureComponent {
 
           {shipmentFee === 0 ? null : (
             <div style={styles.block}>
-              <span>{transformLocale(LOCALE.SHIPMENT_FEE)}</span>
+              <span>{t('shipment-fee')}</span>
 
               <span style={styles.content}>
                 {transformCurrency(shipmentFee)}
@@ -94,7 +98,7 @@ export default class PriceInfo extends React.PureComponent {
           )}
 
           <div style={styles.block}>
-            <span>{transformLocale(LOCALE.TOTAL)}</span>
+            <span>{t('total')}</span>
 
             <span style={styles.content}>{transformCurrency(total)}</span>
           </div>
