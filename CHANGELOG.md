@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.30.1 (2019-12-06)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#794](https://github.com/meepshop/meep-lerna/pull/794) landingPage 與 checkout 從 locale.js 改成 next-i18next ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#795](https://github.com/meepshop/meep-lerna/pull/795) 【隔離名單】隱藏頁腳 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#799](https://github.com/meepshop/meep-lerna/pull/799) 【BUG】手機版 - 商品頁「加入購物車」按鈕，會切到圖片 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#796](https://github.com/meepshop/meep-lerna/pull/796) (@meepshop/front-end) Fix lint error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.30.0 (2019-12-03)
 
 #### :rocket: New Feature
