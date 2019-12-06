@@ -10,7 +10,6 @@ import GlobalStyles from './GlobalStyles';
 import Cart from './cart';
 import DecoratorsRoot from './DecoratorsRoot';
 import ContainerSwitch from './ContainerSwitch';
-import { SPECIAL_HIDE_FOOTER } from './constants';
 import styles from './styles/index.less';
 
 @radium
@@ -101,6 +100,7 @@ export default class Layout extends React.PureComponent {
       blocks,
       carts,
       container,
+      experiment,
       ...props
     } = this.props;
 
@@ -127,7 +127,7 @@ export default class Layout extends React.PureComponent {
               />
             </div>
 
-            {SPECIAL_HIDE_FOOTER.includes(cname) ? null : (
+            {experiment.hiddingMeepshopMaxInFooterEnabled ? null : (
               <footer className={styles.footer}>
                 <a
                   href="http://www.meepshopmax.com/?p=new-store-page"

@@ -46,6 +46,7 @@ const initialState = {
   memberGroups: [],
   appLogins: [],
   settings: {},
+  experiment: {},
 };
 
 const getPageAdTrackIds = data => {
@@ -180,6 +181,7 @@ export default function(state = initialState, { type, payload }) {
         appLogins, // 第三方應用 ex. fb login
         settings,
         pageAdTrackIDs,
+        experiment: data?.viewer?.store.experiment || {},
       };
     }
     case GET_STORE_FAILURE: {

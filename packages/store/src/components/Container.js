@@ -270,6 +270,7 @@ class Container extends React.Component {
       colors,
       storeAppList,
       storeSetting,
+      experiment,
       /* may change */
       isLogin,
       user,
@@ -304,6 +305,7 @@ class Container extends React.Component {
           storeCurrency={storeCurrency}
           storeAppList={storeAppList}
           storeSetting={storeSetting}
+          experiment={experiment}
           /* may change */
           isLogin={isLogin}
           user={user}
@@ -344,7 +346,7 @@ const mapStateToProps = state => {
   if (error) return { error };
 
   const {
-    storeReducer: { colors, settings, pageAdTrackIDs },
+    storeReducer: { colors, settings, pageAdTrackIDs, experiment },
     memberReducer: { user, isLogin, cart, loading, loadingTip },
     loadingStatus: { loading: isLoading },
   } = state;
@@ -355,6 +357,7 @@ const mapStateToProps = state => {
     customerCurrency,
     backgroundImage,
   } = settings;
+
   return {
     /* never change */
     cname,
@@ -362,6 +365,7 @@ const mapStateToProps = state => {
     storeAppList: getStoreAppList(state),
     storeSetting: settings,
     pageAdTrackIDs,
+    experiment,
     /* may chnage */
     isLogin,
     user: user && getJoinedUser(state),

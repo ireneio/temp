@@ -67,6 +67,10 @@ viewer {
       src
     }
     homePageId
+
+    experiment {
+      hiddingMeepshopMaxInFooterEnabled
+    }
   }
 }
 `;
