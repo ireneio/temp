@@ -1,7 +1,13 @@
+@import '../../constants/styles.less';
+
 .root {
   min-height: 100%;
   display: flex;
   flex-direction: column;
+
+  @media @PHONE_MEDIA {
+    padding-bottom: 50px;
+  }
 
   .container {
     flex-grow: 1;
