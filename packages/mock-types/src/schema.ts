@@ -7,7 +7,7 @@ import moment from 'moment';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 // eslint-disable-next-line import/no-unresolved
-import schemaJSON from '../schema.json';
+import schemaJSON from '../schema';
 
 import Address from './schemas/Address';
 import AddressService from './schemas/AddressService';
