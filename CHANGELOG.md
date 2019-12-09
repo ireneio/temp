@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.30.2 (2019-12-09)
+
+#### :rocket: New Feature
+
+- `admin`
+  - [#747](https://github.com/meepshop/meep-lerna/pull/747)【功能】帳單與付款 - 合約戶：即將到期通知信 & 到期後關閉商店 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.30.1 (2019-12-06)
 
 #### :boom: Breaking Change
