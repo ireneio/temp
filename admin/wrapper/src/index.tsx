@@ -73,8 +73,7 @@ class Wrapper extends React.Component<PropsType> {
           idx(viewer, _ => _.store.domain[0]) ||
           idx(viewer, _ => _.store.defaultDomain),
         isMerchant: viewer.role === 'MERCHANT',
-        isClosed:
-          idx(viewer, _ => _.store.adminStatus) === 'CLOSED_BILL_NOT_PAID',
+        isClosed: idx(viewer, _ => _.store.adminStatus) !== 'OPEN',
       };
     },
     areEqual,
@@ -91,7 +90,7 @@ class Wrapper extends React.Component<PropsType> {
   private checkStatus = (): void => {
     const { viewer, router } = this.props;
 
-    if (idx(viewer, _ => _.store.adminStatus) === 'CLOSED_BILL_NOT_PAID')
+    if (idx(viewer, _ => _.store.adminStatus) !== 'OPEN')
       router.replace('/bill-payment');
   };
 
