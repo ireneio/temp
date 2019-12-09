@@ -3,13 +3,13 @@ import * as Utils from 'utils';
 import { notification } from 'antd';
 import gql from 'graphql-tag';
 
+import { i18n } from '@store/utils/lib/i18n';
 import * as COUNTRY_LOCALE from '@meepshop/meep-ui/lib/locale/country';
 
 import * as Api from 'api';
 import { NOTLOGIN, ISUSER } from 'constants';
 import client from 'apollo/initApollo';
 
-import * as LOCALE from '../locale';
 import { cleanProductList } from './lists';
 
 const getCart = data => {
@@ -46,17 +46,13 @@ export const getAuthFailure = payload => ({
 });
 
 function* getAuthFlow({ payload }) {
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
   try {
     const data = yield call(Api.updateMemberData, payload);
+
     if (data) yield put(getAuthSuccess(data));
   } catch (error) {
     yield put(getAuthFailure(error.message));
-    notification.error({ message: LOCALE.AUTH_FAILURE[locale] });
+    notification.error({ message: i18n.t('ducks:auth-failure') });
   }
 }
 export function* watchGetAuthFlow() {
@@ -86,18 +82,16 @@ export const loginFailure = payload => ({
 
 export function* loginFlow({ payload }) {
   const { email, password, callback, from } = payload;
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
 
   try {
     const res = yield call(Api.login, { email, password });
+
     // TODO: 不需要兼容 meep-nginx 後可以移除(#553)
     if (res.isLoginSuccess || res.userId) {
       const memberData = yield call(Api.updateMemberData);
-      notification.success({ message: LOCALE.LOGIN_SUCCESS[locale] });
+
+      notification.success({ message: i18n.t('ducks:login-success') });
+
       if (callback) callback();
       if (from === 'cart') {
         Utils.goTo({ pathname: '/checkout' });
@@ -114,19 +108,21 @@ export function* loginFlow({ payload }) {
       /* notify nearly expire user points */
       const numOfExpiredPoints =
         memberData?.data?.viewer?.rewardPoint.expiringPoints.total;
-      if (numOfExpiredPoints > 0) {
+
+      if (numOfExpiredPoints > 0)
         notification.info({
-          message: LOCALE.EXPIRED_POINTS_MESSAGE[locale],
-          description: `${LOCALE.EXPIRED_POINTS_DESCRIPTION_1[locale]} ${numOfExpiredPoints} ${LOCALE.EXPIRED_POINTS_DESCRIPTION_2[locale]}`,
+          message: i18n.t('ducks:expired-points-message'),
+          description: i18n.t('ducks:expired-points-description', {
+            point: numOfExpiredPoints,
+          }),
         });
-      }
 
       yield put(loginSuccess(memberData));
       yield put(cleanProductList());
     } else {
       yield put(loginFailure());
       notification.error({
-        message: LOCALE.INVALID_EMAIL_OR_PASSWORD[locale],
+        message: i18n.t('ducks:invalid-email-or-password'),
       });
     }
   } catch (error) {
@@ -155,26 +151,23 @@ export const signoutFailure = () => ({
 });
 
 function* signoutFlow() {
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
   try {
     const isSuccess = yield call(Api.signout);
+
     if (isSuccess) {
       const memberData = yield call(Api.updateMemberData);
+
       yield put(signoutSuccess(memberData.data));
       yield put(cleanProductList());
-      notification.success({ message: LOCALE.SIGNOUT_SUCCESS[locale] });
+      notification.success({ message: i18n.t('ducks:signout-success') });
     } else {
       yield put(signoutFailure());
-      notification.error({ message: LOCALE.SIGNOUT_FAILURE_MESSAGE[locale] });
+      notification.error({ message: i18n.t('ducks:signout-failure-message') });
     }
   } catch (error) {
     yield put(signoutFailure());
     notification.error({
-      message: LOCALE.SIGNOUT_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:signout-failure-message'),
       description: error.message,
     });
   }
@@ -201,35 +194,31 @@ export const signupFailure = () => ({
 
 function* signupFlow({ payload }) {
   const { email, password, registeredCode, callback } = payload;
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
 
   try {
     // 檢查信箱是否已註冊
     const data = yield call(Api.checkEmailExists, { email });
+
     if (data) {
       if (data?.data?.checkUserInfo?.exists) {
         yield put(signupFailure());
-        notification.error({ message: LOCALE.EMAIL_ALREADY_EXISTS[locale] });
+        notification.error({ message: i18n.t('ducks:email-already-exists') });
       } else {
         yield call(Api.signup, {
           email,
           password,
           registeredCode,
         });
-
         yield put(signupSuccess());
-        notification.success({ message: LOCALE.SIGNUP_SUCCESS[locale] });
+        notification.success({ message: i18n.t('ducks:signup-success') });
+
         if (callback) callback();
       }
     }
   } catch (error) {
     yield put(signupFailure());
     notification.error({
-      message: LOCALE.SIGNUP_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:signup-failure-message'),
       description: error.message,
     });
   }
@@ -259,11 +248,6 @@ export const forgetPasswordFailure = () => ({
 });
 
 function* forgetPasswordFlow({ payload: { email } }) {
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
   try {
     const data = yield call(Api.sendMaiToForgetPassword, { email });
 
@@ -273,11 +257,11 @@ function* forgetPasswordFlow({ payload: { email } }) {
       throw new Error(data.data.forgotUserPSList.error[0]);
 
     yield put(forgetPasswordSuccess());
-    notification.success({ message: LOCALE.FORGET_PASSWORD_SUCCESS[locale] });
+    notification.success({ message: i18n.t('ducks:forget-password-success') });
   } catch (error) {
     yield put(forgetPasswordFailure(error));
     notification.error({
-      message: LOCALE.FORGET_PASSWORD_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:forget-password-failure-message'),
       description: error.message,
     });
   }
@@ -308,24 +292,20 @@ export const addCartItemsFailure = () => ({
 });
 
 function* AddCartItemsFlow({ payload: { price, callback, ...payload } }) {
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
   try {
     const data = yield call(Api.addItemsToCart, payload);
+
     if (data) {
       const cart = getCart(data);
 
       if (callback) callback();
 
       yield put(addCartItemsSuccess(cart));
-      notification.success({ message: LOCALE.ADD_CART_ITEMS_SUCCESS[locale] });
+      notification.success({ message: i18n.t('ducks:add-cart-items-success') });
     }
   } catch (error) {
     notification.error({
-      message: LOCALE.ADD_CART_ITEMS_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:add-cart-items-failure-message'),
       description: error.message,
     });
     yield put(addCartItemsFailure());
@@ -353,24 +333,21 @@ export const updateCartItemsFailure = () => ({
 });
 
 function* UpdateCartItemsFlow({ payload }) {
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
   try {
     const data = yield call(Api.updateItemsToCart, payload);
+
     if (data) {
       const cart = getCart(data);
+
       yield put(updateCartItemsSuccess(cart));
       notification.success({
-        message: LOCALE.UPDATE_CART_ITEMS_SUCCESS[locale],
+        message: i18n.t('ducks:update-cart-items-success'),
       });
     }
   } catch (error) {
     yield put(updateCartItemsFailure());
     notification.error({
-      message: LOCALE.UPDATE_CART_ITEMS_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:update-cart-items-failure-message'),
       description: error.message,
     });
   }
@@ -397,24 +374,20 @@ export const removeCartItemsFailure = () => ({
 });
 
 function* removeCartItemsFlow({ payload }) {
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
   try {
     const data = yield call(Api.removeItemsToCart, payload);
     if (data) {
       const cart = getCart(data);
+
       yield put(removeCartItemsSuccess(cart));
       notification.success({
-        message: LOCALE.REMOVE_CART_ITEMS_SUCCESS[locale],
+        message: i18n.t('ducks:remove-cart-items-success'),
       });
     }
   } catch (error) {
     yield put(removeCartItemsFailure());
     notification.error({
-      message: LOCALE.REMOVE_CART_ITEMS_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:remove-cart-items-failure-message'),
       description: error.message,
     });
   }
@@ -441,21 +414,17 @@ export const updateUserFailure = () => ({
 });
 
 function* updateUserFlow({ payload }) {
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
   try {
     const data = yield call(Api.updateUser, payload);
+
     if (data) {
       yield put(updateUserSuccess(data));
-      notification.success({ message: LOCALE.UPDATE_USER_SUCCESS[locale] });
+      notification.success({ message: i18n.t('ducks:update-user-success') });
     }
   } catch (error) {
     yield put(updateUserFailure());
     notification.error({
-      message: LOCALE.UPDATE_USER_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:update-user-failure-message'),
       description: error.message,
     });
   }
@@ -474,9 +443,6 @@ export const addRecipientAddress = payload => ({
 
 function* addRecipientAddressFlow({ payload }) {
   const {
-    storeReducer: {
-      settings: { locale },
-    },
     memberReducer: { user },
   } = yield select();
 
@@ -535,8 +501,8 @@ function* addRecipientAddressFlow({ payload }) {
       });
 
       const country = !countryData.id ? null : countryData.name.en_US;
-      const city = !cityData.id ? null : cityData.name[locale];
-      const county = !areaData.id ? null : areaData.name[locale];
+      const city = !cityData.id ? null : cityData.name[i18n.language];
+      const county = !areaData.id ? null : areaData.name[i18n.language];
 
       yield put(
         updateUserSuccess({
@@ -571,7 +537,7 @@ function* addRecipientAddressFlow({ payload }) {
     yield put(updateUserFailure());
 
     notification.error({
-      message: LOCALE.UPDATE_USER_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:update-user-failure-message'),
       description: error.message,
     });
   }
@@ -593,9 +559,6 @@ function* updateRecipientAddressFlow({
   payload: { recipientIndexForRedux, ...payload },
 }) {
   const {
-    storeReducer: {
-      settings: { locale },
-    },
     memberReducer: { user },
   } = yield select();
 
@@ -654,8 +617,8 @@ function* updateRecipientAddressFlow({
       });
 
       const country = !countryData.id ? null : countryData.name.en_US;
-      const city = !cityData.id ? null : cityData.name[locale];
-      const county = !areaData.id ? null : areaData.name[locale];
+      const city = !cityData.id ? null : cityData.name[i18n.language];
+      const county = !areaData.id ? null : areaData.name[i18n.language];
       const recipientData = [...user.recipientData];
 
       recipientData[recipientIndexForRedux] = {
@@ -690,7 +653,7 @@ function* updateRecipientAddressFlow({
     yield put(updateUserFailure());
 
     notification.error({
-      message: LOCALE.UPDATE_USER_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:update-user-failure-message'),
       description: error.message,
     });
   }
@@ -712,9 +675,6 @@ function* deleteRecipientAddressFlow({
   payload: { recipientIndexForRedux, ...payload },
 }) {
   const {
-    storeReducer: {
-      settings: { locale },
-    },
     memberReducer: { user },
   } = yield select();
 
@@ -742,9 +702,8 @@ function* deleteRecipientAddressFlow({
       );
   } catch (error) {
     yield put(updateUserFailure());
-
     notification.error({
-      message: LOCALE.UPDATE_USER_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:update-user-failure-message'),
       description: error.message,
     });
   }
@@ -772,22 +731,18 @@ export const createApplyFailure = () => ({
 });
 
 function* createApplyFlow({ payload }) {
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
   try {
     const data = yield call(Api.createOrderApply, payload);
+
     if (data) {
       yield put(createApplySuccess(data));
-      notification.success({ message: LOCALE.CREATE_APPLY_SUCCESS[locale] });
+      notification.success({ message: i18n.t('ducks:create-apply-success') });
       Utils.goTo({ pathname: '/orders' });
     }
   } catch (error) {
     yield put(createApplyFailure());
     notification.error({
-      message: LOCALE.CREATE_APPLY_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:create-apply-failure-message'),
       description: error.message,
     });
   }
@@ -814,30 +769,25 @@ export const addOrderMessageFailure = () => ({
 });
 
 function* addOrderMessageFlow({ payload }) {
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
   try {
     const data = yield call(Api.addOrderMessage, payload);
 
     if (data.apiErr) {
       yield put(addOrderMessageFailure());
       notification.error({
-        message: LOCALE.ADD_ORDER_MESSAGE_FAILURE_MESSAGE[locale],
+        message: i18n.t('ducks:add-order-message-failure-message'),
         description: data.apiErr.message,
       });
     } else {
       yield put(addOrderMessageSuccess(data));
       notification.success({
-        message: LOCALE.ADD_ORDER_MESSAGE_SUCCESS[locale],
+        message: i18n.t('ducks:add-order-message-success'),
       });
     }
   } catch (error) {
     yield put(addOrderMessageFailure());
     notification.error({
-      message: LOCALE.ADD_ORDER_MESSAGE_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:add-order-message-failure-message'),
       description: error.message,
     });
   }
@@ -864,11 +814,6 @@ export const updateWishListFailure = () => ({
 });
 
 function* updateWishListFlow({ payload: { callback, ...payload } }) {
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
   try {
     const data = yield call(Api.updateWishList, payload);
 
@@ -876,12 +821,14 @@ function* updateWishListFlow({ payload: { callback, ...payload } }) {
       if (callback) callback();
 
       yield put(updateWishListSuccess(data));
-      notification.success({ message: LOCALE.UPDATE_WISHLIST_SUCCESS[locale] });
+      notification.success({
+        message: i18n.t('ducks:update-wishlist-success'),
+      });
     }
   } catch (error) {
     yield put(updateWishListFailure());
     notification.error({
-      message: LOCALE.UPDATE_WISHLIST_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:update-wishlist-failure-message'),
       description: error.message,
     });
   }
@@ -911,23 +858,19 @@ export const addToNotificationListFailure = () => ({
 });
 
 function* addToNotificationListFlow({ payload }) {
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
   try {
     const data = yield call(Api.updateStockNotificationList, payload);
+
     if (data) {
       yield put(addToNotificationListSuccess(data));
       notification.success({
-        message: LOCALE.ADD_STOCK_NOTIFICATION_LIST_SUCCESS[locale],
+        message: i18n.t('ducks:add-stock-notification-list-success'),
       });
     }
   } catch (error) {
     yield put(addToNotificationListFailure());
     notification.error({
-      message: LOCALE.ADD_STOCK_NOTIFICATION_LIST_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:add-stock-notification-list-failure-message'),
       description: error.message,
     });
   }
@@ -957,25 +900,20 @@ export const getOrderFailure = () => ({
 });
 
 function* getOrderFlow({ payload }) {
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
   try {
     const {
       memberReducer: { orders },
     } = yield select();
+
     if (!orders.find(order => order.id === payload.orderId)) {
       const data = yield call(Api.getOrder, payload);
-      if (data) {
-        yield put(getOrderSuccess(data));
-      }
+
+      if (data) yield put(getOrderSuccess(data));
     }
   } catch (error) {
     yield put(getOrderFailure());
     notification.error({
-      message: LOCALE.GET_ORDER_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:get-order-failure-message'),
       description: error.message,
     });
   }
@@ -1001,27 +939,25 @@ export const resetPasswordFailure = () => ({
 });
 
 function* resetPasswordFlow({ payload }) {
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
   try {
     const data = yield call(Api.resetPassword, payload);
+
     if (data) {
       /* Handle error */
       if (data.error) throw new Error(data.error);
+
       const { error } = Utils.getIn(['data', 'updateUserPSList'])(data);
+
       if (error) throw new Error(error);
 
       yield put(resetPasswordSuccess());
-      notification.success({ message: LOCALE.RESET_PASSWORD_SUCCESS[locale] });
+      notification.success({ message: i18n.t('ducks:reset-password-success') });
       Utils.goTo({ pathname: '/login' });
     }
   } catch (error) {
     yield put(resetPasswordFailure());
     notification.error({
-      message: LOCALE.RESET_PASSWORD_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:reset-password-failure-message'),
       description: error.message,
     });
   }
@@ -1058,25 +994,21 @@ export const sendPaymentNotificationFailure = () => ({
 });
 
 function* sendPaymentNotificationFlow({ payload }) {
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
   try {
     const data = yield call(Api.sendPaymentNotification, payload);
+
     if (data) {
       const updateOrder = data?.data?.updateOrderList?.[0];
 
       yield put(sendPaymentNotificationSuccess(updateOrder));
       notification.success({
-        message: LOCALE.SEND_PAYMENT_NOTIFICATION_SUCCESS[locale],
+        message: i18n.t('ducks:send-payment-notification-success'),
       });
     }
   } catch (error) {
     yield put(sendPaymentNotificationFailure());
     notification.error({
-      message: LOCALE.SEND_PAYMENT_NOTIFICATION_FAILURE_MESSAGE[locale],
+      message: i18n.t('ducks:send-payment-notification-failure-message'),
       description: error.message,
     });
   }

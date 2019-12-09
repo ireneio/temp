@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import memoizeOne from 'memoize-one';
 import { Menu } from 'antd';
 
+import { withTranslation } from '@store/utils/lib/i18n';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
 import {
@@ -28,27 +30,27 @@ import styles from './styles/menuItem.less';
 
 const { Item: AntdMenuItem, SubMenu } = Menu;
 
+@withTranslation('common')
 @enhancer
 export default class MenuItem extends React.PureComponent {
   generateURL = memoizeOne(notMemoizedGenerateURL);
 
-  SubMenu = enhancer(MenuItem);
+  SubMenu = withTranslation('common')(enhancer(MenuItem));
 
   static propTypes = {
     /** context, TODO: remove */
-    transformLocale: PropTypes.func.isRequired,
     toggleCart: PropTypes.func.isRequired,
     location: LOCATION_TYPE.isRequired,
     locale: ONE_OF_LOCALE_TYPE.isRequired,
     customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
     logout: PropTypes.func.isRequired,
-    setLocale: PropTypes.func.isRequired,
     setCustomerCurrency: PropTypes.func.isRequired,
     carts: PropTypes.shape({}).isRequired,
     user: USER_TYPE.isRequired,
 
     /** props */
+    t: PropTypes.func.isRequired,
     icon: PropTypes.shape({}),
     iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
     params: PropTypes.shape({
@@ -110,10 +112,10 @@ export default class MenuItem extends React.PureComponent {
       /** context */
       toggleCart,
       logout,
-      setLocale,
       setCustomerCurrency,
 
       /** props */
+      i18n,
       id,
       action,
     } = this.props;
@@ -128,7 +130,7 @@ export default class MenuItem extends React.PureComponent {
         break;
 
       case 'locale':
-        setLocale(id);
+        i18n.changeLanguage(id);
         break;
 
       case 'currency':
@@ -143,11 +145,11 @@ export default class MenuItem extends React.PureComponent {
   getTitle = () => {
     const {
       /** context */
-      transformLocale,
       isLogin,
       user,
 
       /** props */
+      i18n,
       action,
       title,
       params,
@@ -158,7 +160,7 @@ export default class MenuItem extends React.PureComponent {
         ? user.groupName
         : null;
 
-    return transformLocale(title);
+    return title[i18n.language] || title.zh_TW;
   };
 
   getActive = url => {

@@ -15,5 +15,10 @@
     "settings": "Member Info",
     "wishlist": "Wish list",
     "logout": "logout"
+  },
+  "locale": {
+    "zh_TW": "English",
+    "en_US": "English",
+    "ja_JP": "English"
   }
 }

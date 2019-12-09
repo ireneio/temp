@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
-import { contextProvider } from 'context';
 import Image from 'image';
 import {
   GALLERY_TYPE,
@@ -13,10 +12,7 @@ import {
 
 import styles from './styles/index.less';
 
-const { enhancer } = contextProvider('locale');
-
 @withTranslation('common')
-@enhancer
 export default class ProductCollection extends React.PureComponent {
   static propTypes = {
     /** props */

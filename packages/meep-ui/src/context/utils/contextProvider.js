@@ -4,7 +4,6 @@ import { areEqual } from 'fbjs';
 import enhancer from './enhancer';
 
 export const contextPropsKey = {
-  locale: ['locale', 'transformLocale'],
   location: ['location'],
   func: ['goTo', 'hasStoreAppPlugin'],
   storeSetting: ['storeSetting'],

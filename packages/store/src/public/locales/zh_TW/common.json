@@ -15,5 +15,10 @@
     "settings": "會員資料",
     "wishlist": "我的收藏",
     "logout": "登出"
+  },
+  "locale": {
+    "zh_TW": "繁體中文",
+    "en_US": "繁體中文",
+    "ja_JP": "繁體中文"
   }
 }

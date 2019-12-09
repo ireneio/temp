@@ -1,7 +1,9 @@
-import { takeEvery, call, select } from 'redux-saga/effects';
+import { takeEvery, call } from 'redux-saga/effects';
 import { notification } from 'antd';
+
+import { i18n } from '@store/utils/lib/i18n';
+
 import * as Api from 'api';
-import * as LOCALE from '../../locale';
 
 /* ********************************* 更改顧客密碼 ********************************* */
 const CHANGE_PASSWORD_REQUEST = 'CHANGE_PASSWORD_REQUEST';
@@ -12,31 +14,31 @@ export const changePassword = payload => ({
 });
 
 function* changePasswordFlow({ payload }) {
-  const {
-    storeReducer: {
-      settings: { locale },
-    },
-  } = yield select();
   try {
     const { data } = yield call(Api.changePassword, payload);
+
     if (data) {
       const { status } = data.changeUserPassword;
+
       switch (status) {
         case 0: {
           notification.success({
-            message: LOCALE.CHANGE_PASSWORD_SUCCESS[locale],
+            message: i18n.t('ducks:change-password-success'),
           });
           break;
         }
+
         default:
           notification.error({
-            message: LOCALE.CHANGE_PASSWORD_FAILURE_MESSAGE[locale],
+            message: i18n.t('ducks:change-password-failure-message'),
           });
           break;
       }
     }
   } catch (error) {
-    notification.error({ message: '更改密碼：發生錯誤' });
+    notification.error({
+      message: i18n.t('ducks:change-password-failure-message'),
+    });
   }
 }
 export function* watchChangePasswordFlow() {

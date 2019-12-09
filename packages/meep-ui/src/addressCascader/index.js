@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import { Cascader } from 'antd';
 import { areEqual, emptyFunction } from 'fbjs';
 
-import { contextProvider } from 'context';
+import { withTranslation } from '@store/utils/lib/i18n';
+
 import { COUNTRY_TYPE } from 'constants/propTypes';
 import fetchStreamName from 'utils/fetchStreamName';
 
 import getDefaultAreaList from './utils/getDefaultAreaList';
 
-const { enhancer, removeContextProps } = contextProvider('locale', true);
-
-@enhancer
+@withTranslation('common')
 export default class AddressCascader extends React.PureComponent {
   prevLoadItem = [];
 
@@ -137,7 +136,7 @@ export default class AddressCascader extends React.PureComponent {
 
   render() {
     const { popupVisible, value, areaList } = this.state;
-    const props = removeContextProps(this.props);
+    const { ...props } = this.props;
 
     delete props.lockedCountry;
 

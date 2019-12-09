@@ -8,19 +8,19 @@ import { UserAgent } from 'fbjs';
 import { notification } from 'antd';
 
 import Layout from '@meepshop/meep-ui/lib/layout';
-import { i18n } from '@store/utils/lib/i18n';
+import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import currencyContext from '@store/currency';
 import adTrackContext from '@store/ad-track';
 
 import { getJoinedUser, getStoreAppList } from 'selectors';
 import * as Actions from 'ducks/actions';
-import * as LOCALE from 'ducks/locale';
 
 import Spinner from './Spinner';
 
 const { isBrowser } = UserAgent;
 
+@withTranslation('ducks')
 @withContext(adTrackContext)
 @withContext(currencyContext)
 class Container extends React.Component {
@@ -59,7 +59,6 @@ class Container extends React.Component {
     loading: PropTypes.bool.isRequired,
     loadingTip: PropTypes.string.isRequired,
     /* func to modify data */
-    setLocale: PropTypes.func.isRequired,
     setCustomerCurrency: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
     forgetPassword: PropTypes.func.isRequired,
@@ -69,7 +68,6 @@ class Container extends React.Component {
     removeCartItems: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
     /* props(not in context) */
-    locale: PropTypes.string.isRequired,
     storeCurrency: PropTypes.string.isRequired,
     customerCurrency: PropTypes.string,
     backgroundImage: PropTypes.shape({
@@ -141,13 +139,6 @@ class Container extends React.Component {
     }
   }
 
-  setLocale = id => {
-    const { setLocale } = this.props;
-
-    i18n.changeLanguage(id);
-    setLocale(id);
-  };
-
   setCustomerCurrency = id => {
     const { setCustomerCurrency, setCurrency, currency } = this.props;
     if (id === currency) return;
@@ -166,7 +157,7 @@ class Container extends React.Component {
       dispatchAction,
       cname,
       adTrack,
-      locale,
+      t,
     } = this.props;
 
     if (!fbAppId)
@@ -204,8 +195,10 @@ class Container extends React.Component {
 
                     if (numOfExpiredPoints > 0)
                       notification.info({
-                        message: LOCALE.EXPIRED_POINTS_MESSAGE[locale],
-                        description: `${LOCALE.EXPIRED_POINTS_DESCRIPTION_1[locale]} ${numOfExpiredPoints} ${LOCALE.EXPIRED_POINTS_DESCRIPTION_2[locale]}`,
+                        message: t('expired-points-message'),
+                        description: t('expired-points-description', {
+                          point: numOfExpiredPoints,
+                        }),
                       });
 
                     getAuth();
@@ -287,7 +280,6 @@ class Container extends React.Component {
       removeCartItems,
       dispatchAction,
       /* props(not in context) */
-      locale,
       storeCurrency,
       customerCurrency,
       backgroundImage,
@@ -311,14 +303,12 @@ class Container extends React.Component {
           user={user}
           location={location}
           carts={carts}
-          locale={locale}
           customerCurrency={customerCurrency}
           /* func to modify data */
           goTo={Utils.goTo}
           fbLogin={this.handleFacebookLogin}
           getData={Utils.getData}
           getApiUrl={Utils.getApiUrl}
-          setLocale={this.setLocale}
           setCustomerCurrency={this.setCustomerCurrency}
           /* use dispatchAction */
           login={login}
@@ -350,13 +340,7 @@ const mapStateToProps = state => {
     memberReducer: { user, isLogin, cart, loading, loadingTip },
     loadingStatus: { loading: isLoading },
   } = state;
-  const {
-    cname,
-    locale,
-    storeCurrency,
-    customerCurrency,
-    backgroundImage,
-  } = settings;
+  const { cname, storeCurrency, customerCurrency, backgroundImage } = settings;
 
   return {
     /* never change */
@@ -373,7 +357,6 @@ const mapStateToProps = state => {
     loading: isLoading || loading,
     loadingTip,
     /* props(not in context) */
-    locale,
     storeCurrency,
     customerCurrency,
     backgroundImage,
@@ -381,7 +364,6 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  setLocale: bindActionCreators(Actions.setLocale, dispatch),
   setCustomerCurrency: bindActionCreators(Actions.setCurrency, dispatch),
   signout: bindActionCreators(Actions.signout, dispatch),
   login: bindActionCreators(Actions.login, dispatch),

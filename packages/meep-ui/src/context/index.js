@@ -9,7 +9,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ONE_OF_LOCALE_TYPE, ONE_OF_CURRENCY_TYPE } from 'constants/propTypes';
+import { ONE_OF_CURRENCY_TYPE } from 'constants/propTypes';
 
 import { USER_TYPE, STORE_SETTING_TYPE, LOCATION_TYPE } from './propTypes';
 import { STORE_APP_PLUGINS } from './constant';
@@ -17,11 +17,9 @@ import {
   StoreSettingContext,
   FuncContext,
   LocationContext,
-  LocaleContext,
   CurrencyContext,
   UserContext,
 } from './context';
-import transformLocale from './utils/transformLocale';
 import transformCurrency from './utils/transformCurrency';
 
 export contextProvider from './utils/contextProvider';
@@ -54,9 +52,6 @@ export default class Context extends React.PureComponent {
       }),
     ).isRequired,
 
-    /** locale | ignore */
-    locale: ONE_OF_LOCALE_TYPE.isRequired,
-
     /** func | ignore */
     goTo: PropTypes.func.isRequired,
 
@@ -69,7 +64,6 @@ export default class Context extends React.PureComponent {
 
   render() {
     const {
-      locale,
       customerCurrency,
       storeCurrency,
       user,
@@ -90,13 +84,6 @@ export default class Context extends React.PureComponent {
       {
         ContextProvider: LocationContext.Provider,
         value: { location },
-      },
-      {
-        ContextProvider: LocaleContext.Provider,
-        value: {
-          locale,
-          transformLocale: transformLocale(locale),
-        },
       },
       {
         ContextProvider: CurrencyContext.Provider,

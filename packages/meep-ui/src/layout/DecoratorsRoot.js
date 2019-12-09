@@ -8,10 +8,8 @@ import PropTypes from 'prop-types';
 import { warning } from 'fbjs';
 import fx from 'money';
 
-import LOCALE from 'constants/locale';
 import {
   COLOR_TYPE,
-  ONE_OF_LOCALE_TYPE,
   ONE_OF_CURRENCY_TYPE,
   ISLOGIN_TYPE,
   LOCATION_TYPE,
@@ -40,7 +38,6 @@ export default class DecoratorsRoot extends React.Component {
     isLogin: ISLOGIN_TYPE.isRequired,
     storeSetting: STORE_SETTING_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    locale: ONE_OF_LOCALE_TYPE.isRequired,
     customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
     location: LOCATION_TYPE.isRequired,
     carts: PropTypes.shape({}).isRequired,
@@ -52,7 +49,6 @@ export default class DecoratorsRoot extends React.Component {
     ).isRequired,
 
     /** context func from props */
-    setLocale: PropTypes.func.isRequired,
     setCustomerCurrency: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
@@ -92,13 +88,11 @@ export default class DecoratorsRoot extends React.Component {
       isLogin,
       storeSetting,
       colors,
-      locale,
       customerCurrency,
       location,
       carts,
 
       /** context func from props */
-      setLocale,
       setCustomerCurrency,
       goTo,
       getData,
@@ -114,8 +108,6 @@ export default class DecoratorsRoot extends React.Component {
     } = this.props;
     const { isShowCart } = this.state;
 
-    warning(LOCALE.includes(locale), `${locale} is not supported, now.`);
-
     return {
       /** context variables from props */
       user,
@@ -123,13 +115,11 @@ export default class DecoratorsRoot extends React.Component {
       isLogin,
       storeSetting,
       colors,
-      locale,
       customerCurrency,
       location,
       carts,
 
       /** context func from props */
-      setLocale,
       setCustomerCurrency,
       goTo,
       getData,
@@ -150,7 +140,6 @@ export default class DecoratorsRoot extends React.Component {
       hasStoreAppPlugin: this.hasStoreAppPlugin,
       toggleCart: this.toggleCart,
       transformCurrency: this.transformCurrency,
-      transformLocale: this.transformLocale,
     };
   }
 
@@ -212,37 +201,6 @@ export default class DecoratorsRoot extends React.Component {
         .from(storeCurrency)
         .to(customerCurrency),
     ).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  };
-
-  transformLocale = (strings, ...locales) => {
-    /** transform locale object */
-    if (!(strings instanceof Array)) {
-      const { TODO_LOCALE, ...textObj } = strings || {};
-      const { locale } = this.props;
-
-      if (TODO_LOCALE) {
-        warning(
-          textObj[locale],
-          `${locale} is not defined in ${JSON.stringify(textObj)}.`,
-        );
-      }
-
-      /** TODO: can not transform from data */
-      if (!TODO_LOCALE) return textObj.zh_TW;
-
-      return textObj[locale] || /* istanbul ignore next */ textObj.zh_TW; // for production
-    }
-
-    /** transform locale template */
-    return strings.reduce(
-      (result, string, index) =>
-        `${result}${string}${
-          !locales[index] || !(locales[index] instanceof Object)
-            ? locales[index] || ''
-            : this.transformLocale(locales[index])
-        }`,
-      '',
-    );
   };
 
   render() {

@@ -24,16 +24,6 @@ export const setCurrency = id => ({
   payload: id,
 });
 
-/* ****************************************** 更改語系 ****************************************** */
-const SET_LOCALE = 'SET_LOCALE';
-/**
- * @param {String} id 語言代號，如：'zh_TW', 'en_US'
- */
-export const setLocale = id => ({
-  type: SET_LOCALE,
-  payload: id,
-});
-
 /**
  * @name StoreReducer
  * @description 存放商店資料，語言，幣值
@@ -127,11 +117,7 @@ const getPageAdTrackIds = data => {
 export default function(state = initialState, { type, payload }) {
   switch (type) {
     case GET_STORE_SUCCESS: {
-      const {
-        data,
-        locale /* from cookie */,
-        customerCurrency /* from cookie */,
-      } = payload;
+      const { data, customerCurrency /* from cookie */ } = payload;
       const activities = data?.getActivityList?.data || [];
       const menus = (data?.getMenuList?.data || []).map(menu =>
         Utils.setDefaultValueForMenuDesign(menu),
@@ -162,7 +148,6 @@ export default function(state = initialState, { type, payload }) {
         logoUrl: store?.logoImage?.src || '',
         mobileLogoUrl: store?.mobileLogoImage?.src || '',
         homePageId: store.homePageId,
-        locale: locale || localeOptions?.[0] || 'zh_TW', // default locale
         localeOptions: localeOptions || ['zh_TW'], // 用於語系選單
         colors, // 色彩計畫
         lockedCountry: lockedCountry || [],
@@ -192,11 +177,6 @@ export default function(state = initialState, { type, payload }) {
     case SET_CURRENCY: {
       const { settings } = state;
       return { ...state, settings: { ...settings, customerCurrency: payload } };
-    }
-    /* 更改語系 */
-    case SET_LOCALE: {
-      const { settings } = state;
-      return { ...state, settings: { ...settings, locale: payload } };
     }
     default:
       return state;

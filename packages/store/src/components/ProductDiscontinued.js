@@ -45,7 +45,6 @@ const ProductDiscontinued = ({ t, productName }) => (
 
 ProductDiscontinued.propTypes = {
   productName: PropTypes.string.isRequired,
-  locale: PropTypes.string.isRequired,
 };
 
 export default withTranslation('common')(ProductDiscontinued);

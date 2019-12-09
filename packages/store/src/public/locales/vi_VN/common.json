@@ -15,5 +15,10 @@
     "settings": "thông tin hội viên",
     "wishlist": "Tích lũy của tôi",
     "logout": "logout"
+  },
+  "locale": {
+    "zh_TW": "tiếng việt",
+    "en_US": "tiếng việt",
+    "ja_JP": "tiếng việt"
   }
 }

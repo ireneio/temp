@@ -12,7 +12,6 @@ import {
 import * as COUNTRY_LOCALE from 'locale/country';
 import buildPropTypes from 'utils/buildPropTypes';
 
-import LOCALE from './locale';
 import CURRENCY from './currency';
 import { PAPER_TYPE, ELECYTONIC_TYPE } from './invoice';
 import * as ISLOGIN from './isLogin';
@@ -143,7 +142,12 @@ export const POSITIVE_FLOAT_TYPE = buildPropTypes(
 );
 
 /** test oneOfLocale */
-export const ONE_OF_LOCALE_TYPE = PropTypes.oneOf(LOCALE);
+export const ONE_OF_LOCALE_TYPE = PropTypes.oneOf([
+  'zh_TW',
+  'en_US',
+  'ja_JP',
+  'vi_VN',
+]);
 
 /** test oneOfCurrency */
 export const ONE_OF_CURRENCY_TYPE = PropTypes.oneOf(CURRENCY);
@@ -186,7 +190,7 @@ export const COUNTRY_TYPE = PropTypes.oneOf(
  * }]
  */
 export const LOCALE_TYPE = PropTypes.shape(
-  LOCALE.reduce(
+  ['en_US', 'zh_TW', 'ja_JP', 'vi_VN'].reduce(
     (result, locale) => ({
       ...result,
       [locale]: PropTypes.string.isRequired,
@@ -273,7 +277,6 @@ export const CONTEXT_TYPES = {
   carts: PropTypes.shape({}).isRequired,
 
   /** context func from props */
-  setLocale: PropTypes.func.isRequired,
   setCustomerCurrency: PropTypes.func.isRequired,
   goTo: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
@@ -293,6 +296,5 @@ export const CONTEXT_TYPES = {
   /** context func from DecoratorsRoot */
   hasStoreAppPlugin: PropTypes.func.isRequired,
   toggleCart: PropTypes.func.isRequired,
-  transformLocale: PropTypes.func.isRequired,
   transformCurrency: PropTypes.func.isRequired,
 };

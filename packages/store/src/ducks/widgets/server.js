@@ -22,10 +22,9 @@ function* serverIndexInitialFlow({ payload }) {
     if (data.apiErr) {
       yield put(getStoreFailure(data.apiErr));
     } else {
-      /* Get default locale & currency from cookies */
-      const { locale, currency: customerCurrency } = payload.req;
+      const { currency: customerCurrency } = payload.req;
 
-      yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
+      yield put(getStoreSuccess({ ...data, customerCurrency }));
       yield put(getAuthSuccess(data));
       const homePageId = data?.data?.viewer?.store?.homePageId;
       const pages = data?.data?.getPageList?.data;
@@ -60,10 +59,9 @@ function* serverPagesInitialFlow({ payload }) {
     if (data.apiErr) {
       yield put(getStoreFailure(data.apiErr));
     } else {
-      /* Get default locale & currency from cookies */
-      const { locale, currency: customerCurrency } = payload.req;
+      const { currency: customerCurrency } = payload.req;
 
-      yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
+      yield put(getStoreSuccess({ ...data, customerCurrency }));
       yield put(getAuthSuccess(data));
 
       const page = data?.data?.getPageList?.data?.[0];
@@ -100,10 +98,9 @@ function* serverProductInitialFlow({ payload }) {
     if (data.apiErr) {
       yield put(getStoreFailure(data.apiErr));
     } else {
-      /* get default locale & currency from cookies */
-      const { locale, currency: customerCurrency } = payload.req;
+      const { currency: customerCurrency } = payload.req;
 
-      yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
+      yield put(getStoreSuccess({ ...data, customerCurrency }));
       yield put(getAuthSuccess(data));
       const product = data?.data?.computeProductList?.data?.[0];
       if (product) {
@@ -165,10 +162,9 @@ function* serverProductsInitialFlow({ payload }) {
     if (data.apiErr) {
       yield put(getStoreFailure(data.apiErr));
     } else {
-      /* get default locale & currency from cookies */
-      const { locale, currency: customerCurrency } = payload.req;
+      const { currency: customerCurrency } = payload.req;
 
-      yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
+      yield put(getStoreSuccess({ ...data, customerCurrency }));
       yield put(getAuthSuccess(data));
       const page = data?.data?.getPageList?.data?.[0];
       if (page) {
@@ -201,10 +197,9 @@ function* serverOthersInitialFlow({ payload }) {
     if (data.apiErr) {
       yield put(getStoreFailure(data.apiErr));
     } else {
-      // get default locale & currency from cookies
-      const { locale, currency: customerCurrency } = payload.req;
+      const { currency: customerCurrency } = payload.req;
 
-      yield put(getStoreSuccess({ ...data, locale, customerCurrency }));
+      yield put(getStoreSuccess({ ...data, customerCurrency }));
       yield put(getAuthSuccess(data));
     }
   } catch ({ message }) {

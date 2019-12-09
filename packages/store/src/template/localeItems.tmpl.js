@@ -1,41 +1,32 @@
+/* eslint-disable camelcase */
+import zh_TW from 'public/locales/zh_TW/common.json';
+import en_US from 'public/locales/en_US/common.json';
+import ja_JP from 'public/locales/ja_JP/common.json';
+import vi_VN from 'public/locales/vi_VN/common.json';
+/* eslint-enable camelcase */
+
 export default [
   {
     id: 'zh_TW',
-    title: {
-      zh_TW: '繁體中文',
-      en_US: '繁體中文',
-      ja_JP: '繁體中文',
-    },
+    title: zh_TW.locale,
     action: 'locale',
     newWindow: false,
   },
   {
     id: 'en_US',
-    title: {
-      zh_TW: 'English',
-      en_US: 'English',
-      ja_JP: 'English',
-    },
+    title: en_US.locale,
     action: 'locale',
     newWindow: false,
   },
   {
     id: 'ja_JP',
-    title: {
-      zh_TW: '日本語',
-      en_US: '日本語',
-      ja_JP: '日本語',
-    },
+    title: ja_JP.locale,
     action: 'locale',
     newWindow: false,
   },
   {
     id: 'vi_VN',
-    title: {
-      zh_TW: 'tiếng việt',
-      en_US: 'tiếng việt',
-      ja_JP: 'tiếng việt',
-    },
+    title: vi_VN.locale,
     action: 'locale',
     newWindow: false,
   },
