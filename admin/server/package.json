@@ -4,7 +4,7 @@
   "description": "admin server",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.30.0",
+  "version": "0.30.2",
   "scripts": {
     "clean": "rm -rf ./src/.next",
     "dev": "node --inspect=localhost:9229 src/server",
@@ -16,7 +16,7 @@
     "@admin/dashboard": "^0.30.0",
     "@admin/orders-ecfit": "^0.30.0",
     "@admin/utils": "^0.30.0",
-    "@admin/wrapper": "^0.30.0",
+    "@admin/wrapper": "^0.30.2",
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-link-http": "^1.5.16",
     "body-parser": "^1.18.3",
