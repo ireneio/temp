@@ -139,7 +139,13 @@ class DatePicker extends React.PureComponent<PropsType, StateType> {
         }`}
         placeholder={[t('start-date'), t('end-date')]}
         onChange={originalNewValue => {
-          if (originalNewValue && originalNewValue.some(time => !time)) return;
+          if (
+            originalNewValue &&
+            originalNewValue.some(
+              (time: moment.Moment | null | undefined) => !time,
+            )
+          )
+            return;
 
           const newValue = [
             !originalNewValue[0]
