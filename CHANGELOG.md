@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.30.3 (2019-12-10)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#798](https://github.com/meepshop/meep-lerna/pull/798) 剩下 locale 轉到 next-i18next ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `store`
+  - [#800](https://github.com/meepshop/meep-lerna/pull/800) 【優化】 預設 thank you page - 若使用者為尚未登入的狀態，先轉至登入頁面，再轉回 thank-you-page ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.30.2 (2019-12-09)
 
 #### :rocket: New Feature
