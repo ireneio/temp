@@ -8,6 +8,7 @@ import ThankYouPageView from '@store/thank-you-page';
 import { Container, TrackingCodeHead, Error } from 'components';
 import * as Utils from 'utils';
 import { getJoinedThankYouPage } from 'selectors/thankYouPage';
+import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
 import client from 'apollo/initApollo';
 
@@ -51,6 +52,18 @@ class ThankYouPage extends React.Component {
   };
 
   static defaultProps = { error: null };
+
+  componentDidMount() {
+    const { isLogin } = this.props;
+
+    if (isLogin === 'NOTLOGIN') Router.pushRoute('/login');
+  }
+
+  componentDidUpdate() {
+    const { isLogin } = this.props;
+
+    if (isLogin === 'NOTLOGIN') Router.pushRoute('/login');
+  }
 
   render() {
     const { error } = this.props;
