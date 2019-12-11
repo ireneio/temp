@@ -1,3 +1,4 @@
+import { notification } from 'antd';
 import getConfig from 'next/config';
 
 const {
@@ -44,7 +45,7 @@ export default async ({ res, req, query, variables, isServer }) => {
           res.redirect(302, '/');
           return null;
         }
-        alert('此會員不存在');
+        notification.error({ message: 'Error: unknown user' });
         await fetch('/signout', { method: 'get', credentials: 'same-origin' });
         window.location.reload();
         return null;
@@ -63,7 +64,7 @@ export default async ({ res, req, query, variables, isServer }) => {
         res.redirect(302, '/');
         return null;
       }
-      alert('讀取資料錯誤：401'); // eslint-disable-line
+      notification.error({ message: 'Error: response 401' });
       window.location.reload();
       return null;
     }

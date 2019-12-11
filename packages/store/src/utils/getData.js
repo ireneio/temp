@@ -25,7 +25,7 @@ const getData = async (query, variables, retryTimes = 0) => {
        * Api throw this error when the user have been deleted.
        */
       if (data?.errors?.[0]?.message === 'userId not exist') {
-        alert('此會員不存在');
+        notification.error({ message: 'Error: unknown user' });
         await fetch('/signout', { method: 'get', credentials: 'same-origin' });
         window.location.reload();
         return null;
@@ -35,7 +35,7 @@ const getData = async (query, variables, retryTimes = 0) => {
     }
 
     if (res.status === 401) {
-      alert('讀取資料錯誤：401'); // eslint-disable-line
+      notification.error({ message: 'Error: response 401' });
       window.location.reload();
       return null;
     }
@@ -51,7 +51,7 @@ const getData = async (query, variables, retryTimes = 0) => {
       return retryData;
     }
 
-    notification.error({ message: '發生錯誤', description: error.message });
+    notification.error({ message: 'Error', description: error.message });
 
     return null;
   }

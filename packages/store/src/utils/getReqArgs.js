@@ -19,9 +19,8 @@ export default (isServer, req) => {
     };
   }
 
-  const { userAgent } = window.navigator;
   return {
     XMeepshopDomain: STORE_DOMAIN || window.location.host,
-    userAgent,
+    userAgent: window.navigator.userAgent,
   };
 };

@@ -231,10 +231,10 @@ class Container extends React.Component {
                 } /* Handle login after FB response - End */
                 dispatchAction('hideLoadingStatus');
               } else {
-                /* eslint-disable no-alert */
-                alert(
-                  'The person is not logged into this app or we are unable to tell. ',
-                ); /* eslint-enable no-alert */
+                notification.error({
+                  message:
+                    'The person is not logged into this app or we are unable to tell.',
+                });
                 dispatchAction('hideLoadingStatus');
               }
             },

@@ -43,7 +43,6 @@ class PasswordChange extends Component {
       fbPixelId: PropTypes.string,
     }).isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    title: PropTypes.string.isRequired,
     fbAppId: PropTypes.string.isRequired,
   };
 
@@ -77,7 +76,6 @@ class PasswordChange extends Component {
       location: { pathname },
       pageAdTrackIDs,
       colors,
-      title,
       fbAppId,
       t,
     } = this.props;

@@ -259,7 +259,7 @@ function* forgetPasswordFlow({ payload: { email } }) {
     yield put(forgetPasswordSuccess());
     notification.success({ message: i18n.t('ducks:forget-password-success') });
   } catch (error) {
-    yield put(forgetPasswordFailure(error));
+    yield put(forgetPasswordFailure());
     notification.error({
       message: i18n.t('ducks:forget-password-failure-message'),
       description: error.message,

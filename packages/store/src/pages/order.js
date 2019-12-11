@@ -50,7 +50,6 @@ class Order extends React.Component {
       fbPixelId: PropTypes.string,
     }).isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    title: PropTypes.string.isRequired,
     fbAppId: PropTypes.string.isRequired,
   };
 
@@ -80,7 +79,6 @@ class Order extends React.Component {
       location: { pathname },
       pageAdTrackIDs,
       colors,
-      title,
       fbAppId,
       orderId,
       t,

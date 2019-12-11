@@ -18,41 +18,18 @@ const initialState = {
 };
 
 export default function(state = initialState, { type, payload }) {
-  // TODO: refactor loading state, move loading state from member reducer to here
-  // if (type.match(/_REQUEST/)) {
-  //   return {
-  //     loading: true,
-  //     loadingTip: type,
-  //   };
-  // }
-
-  // if (type.match(/_SUCCESS|_FAILURE/)) {
-  //   return {
-  //     loading: false,
-  //     loadingTip: '',
-  //   };
-  // }
-
   switch (type) {
-    // FIXME: hotfix
-    case 'AUTH_SUCCESS': {
+    case HIDE_LOADING_STATUS:
+    case 'AUTH_SUCCESS':
       return {
         loading: false,
         loadingTip: '',
       };
-    }
-    case SHOW_LOADING_STATUS: {
+    case SHOW_LOADING_STATUS:
       return {
         loading: true,
         loadingTip: payload,
       };
-    }
-    case HIDE_LOADING_STATUS: {
-      return {
-        loading: false,
-        loadingTip: '',
-      };
-    }
     default:
       return state;
   }

@@ -23,6 +23,7 @@
     "compression": "^1.7.2",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
+    "helmet": "^3.21.2",
     "memoize-one": "^5.1.1",
     "next-i18next": "^2.0.0",
     "next-routes": "^1.4.2",

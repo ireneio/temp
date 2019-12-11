@@ -28,8 +28,6 @@ class Pages extends React.Component {
 
     if (isServer) {
       store.dispatch(Actions.serverPagesInitial(context));
-    } else if (pId) {
-      Utils.goTo({ pathname: `/product/${pId}` });
     } else {
       const { pagesReducer } = store.getState();
       if (!pagesReducer.find(page => page.path === path)) {

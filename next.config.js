@@ -3,7 +3,9 @@
 const path = require('path');
 
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
-const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 const withLess = require('@zeit/next-less');
 const withImages = require('next-images');
 const withSourceMaps = require('@zeit/next-source-maps');
@@ -77,22 +79,6 @@ module.exports = nextConfig =>
           ...nextConfig,
           pageExtensions: ['js', 'ts', 'tsx'],
           useFileSystemPublicRoutes: false,
-          analyzeServer: ['server', 'both'].includes(
-            process.env.BUNDLE_ANALYZE,
-          ),
-          analyzeBrowser: ['browser', 'both'].includes(
-            process.env.BUNDLE_ANALYZE,
-          ),
-          bundleAnalyzerConfig: {
-            server: {
-              analyzerMode: 'static',
-              reportFilename: 'analyzer/server.html',
-            },
-            browser: {
-              analyzerMode: 'static',
-              reportFilename: 'analyzer/client.html',
-            },
-          },
           lessLoaderOptions: {
             ...nextConfig.lessLoaderOptions,
             javascriptEnabled: true,

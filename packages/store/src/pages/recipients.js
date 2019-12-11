@@ -43,7 +43,6 @@ class Recipients extends Component {
       fbPixelId: PropTypes.string,
     }).isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    title: PropTypes.string.isRequired,
     user: PropTypes.shape({
       id: PropTypes.string.isRequired,
     }).isRequired,
@@ -82,7 +81,6 @@ class Recipients extends Component {
       location: { pathname },
       pageAdTrackIDs,
       colors,
-      title,
       user,
       fbAppId,
       dispatchAction,

@@ -44,7 +44,6 @@ class Wishlist extends Component {
       fbPixelId: PropTypes.string,
     }).isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    title: PropTypes.string.isRequired,
     wishList: PropTypes.arrayOf(PropTypes.object).isRequired,
     fbAppId: PropTypes.string.isRequired,
   };
@@ -79,7 +78,6 @@ class Wishlist extends Component {
       location: { pathname },
       pageAdTrackIDs,
       colors,
-      title,
       wishList,
       fbAppId,
       dispatchAction,

@@ -43,7 +43,6 @@ class RewardPoints extends Component {
       fbPixelId: PropTypes.string,
     }).isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    title: PropTypes.string.isRequired,
     userPoints: PropTypes.arrayOf(PropTypes.object).isRequired,
     currentBalance: PropTypes.number.isRequired,
     fbAppId: PropTypes.string.isRequired,
@@ -79,7 +78,6 @@ class RewardPoints extends Component {
       location: { pathname },
       pageAdTrackIDs,
       colors,
-      title,
       fbAppId,
       t,
     } = this.props;

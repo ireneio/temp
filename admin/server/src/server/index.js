@@ -6,6 +6,7 @@ const express = require('express');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
 const uaParser = require('ua-parser-js');
 const { default: nextI18NextMiddleware } = require('next-i18next/middleware');
 
@@ -44,6 +45,7 @@ module.exports = app.prepare().then(
       server.use(compression());
       server.use(bodyParser.json());
       server.use(nextI18NextMiddleware(nextI18next));
+      server.use(helmet());
 
       // routes
       server.get('/healthz', (req, res) => {
