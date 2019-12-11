@@ -4,7 +4,7 @@
   "description": "Admin date picker component with antd",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.30.0",
+  "version": "0.30.4",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
