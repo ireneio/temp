@@ -79,7 +79,7 @@ export default async function(context) {
             {
               type: 'exact',
               field: 'status',
-              query: 1,
+              query: '1',
             },
           ],
         },
@@ -122,7 +122,7 @@ export default async function(context) {
             {
               type: 'exact',
               field: 'status',
-              query: 1,
+              query: '1',
             },
           ],
         },
@@ -157,7 +157,7 @@ export default async function(context) {
             {
               type: 'exact',
               field: 'move_house',
-              query: 0,
+              query: '0',
             },
           ],
         },
@@ -202,9 +202,7 @@ export default async function(context) {
   const query = `
     ${viewer}
     ${viewerStoreQuery}
-    getPageList(
-      search: $pageSearch
-    ) {
+    getPageList(search: $pageSearch) {
       data {
         ${pageQuery}
       }
@@ -234,7 +232,7 @@ export default async function(context) {
       }
       total
     }
-    getStorePaymentList( search: $paymentSearch ) {
+    getStorePaymentList(search: $paymentSearch) {
       data {
         id
         title {

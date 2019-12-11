@@ -26,7 +26,7 @@ export default async function(args = {}) {
             {
               type: 'exact',
               field: 'move_house',
-              query: 0,
+              query: '0',
             },
           ],
         },

@@ -19,7 +19,7 @@ export default ({
           {
             type: 'exact',
             field: 'status',
-            query: 1,
+            query: '1',
           },
         ],
         or: [],

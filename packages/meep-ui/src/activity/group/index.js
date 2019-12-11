@@ -81,7 +81,7 @@ export default class Group extends React.PureComponent {
             {
               type: 'exact',
               field: 'status',
-              query: 1,
+              query: '1',
             },
             {
               type: 'ids',

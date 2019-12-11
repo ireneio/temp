@@ -13,7 +13,7 @@ export default async function({ offset = 0, limit = 20, ...context }) {
             {
               type: 'exact',
               field: 'status',
-              query: 1,
+              query: '1',
             },
           ],
           or: [],
