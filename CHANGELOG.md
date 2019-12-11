@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.30.4 (2019-12-11)
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#761](https://github.com/meepshop/meep-lerna/pull/761) 清查 store, admin, next-admin input 資料型別 ([@happycat6323](https://github.com/happycat6323))
+  - [#791](https://github.com/meepshop/meep-lerna/pull/791) 弱點掃描分析：可立即修復錯誤 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#803](https://github.com/meepshop/meep-lerna/pull/803) (@meepshop/front-end) Fix typescript with the new antd version ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `store`
+  - [#791](https://github.com/meepshop/meep-lerna/pull/791) 弱點掃描分析：可立即修復錯誤 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.30.3 (2019-12-10)
 
 #### :boom: Breaking Change
