@@ -166,7 +166,6 @@ export default class LandingPage extends React.PureComponent {
           const {
             /** context */
             location: { host: domain, pathname },
-            locale,
             user,
             goTo,
             getData,
@@ -174,6 +173,7 @@ export default class LandingPage extends React.PureComponent {
 
             /** props */
             t,
+            i18n,
             adTrack,
             productData,
             redirectPage,
@@ -192,7 +192,7 @@ export default class LandingPage extends React.PureComponent {
             idempotentKey: uuid(),
             sourcePage: 'lp',
             domain,
-            locale,
+            locale: i18n.language || 'zh_TW',
             userEmail: userEmail || user.email,
             products: [
               {

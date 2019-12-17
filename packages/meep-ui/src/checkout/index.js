@@ -101,7 +101,6 @@ export default class Checkout extends React.PureComponent {
     const {
       /** context */
       location,
-      locale,
       user,
       isLogin,
       getData,
@@ -111,6 +110,7 @@ export default class Checkout extends React.PureComponent {
 
       /** props */
       t,
+      i18n,
       adTrack,
     } = this.props;
     const { isSubmitting } = this.state;
@@ -140,7 +140,7 @@ export default class Checkout extends React.PureComponent {
       idempotentKey: this.idempotentKey,
       postalCode,
       domain,
-      locale,
+      locale: i18n.language || 'zh_TW',
       userEmail: userEmail || user.email,
       userPassword,
       products,
