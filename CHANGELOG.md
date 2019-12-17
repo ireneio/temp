@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.30.5 (2019-12-17)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#809](https://github.com/meepshop/meep-lerna/pull/809) 【BUG】 系統通知信 - 未寄送相對應語系 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.30.4 (2019-12-11)
 
 #### :bug: Bug Fix
