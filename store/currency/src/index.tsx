@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
-import idx from 'idx';
 import { emptyFunction } from 'fbjs';
 
 import generateConverter from './utils/generateConverter';
@@ -58,9 +57,9 @@ export const CurrencyProvider = React.memo(
     if (loading || error)
       return <Spin indicator={<Icon type="loading" spin />} />;
 
-    const storeCurrency = idx(data, _ => _.viewer.store.currency) || 'TWD';
+    const storeCurrency = data?.viewer?.store?.currency || 'TWD';
 
-    initFx(idx(data, _ => _.exchangeRateService) || DEFAULT_FX);
+    initFx(data?.exchangeRateService || DEFAULT_FX);
 
     return (
       <CurrencyContext.Provider

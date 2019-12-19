@@ -11,7 +11,6 @@ import { App as NextApp } from '../pages/_app';
 import React from 'react';
 import Head from 'next/head';
 import { getDataFromTree } from '@apollo/react-ssr';
-import idx from 'idx';
 
 import initApollo from './initApollo';
 import changeLanguage from './changeLanguage';
@@ -57,7 +56,7 @@ export default (App: typeof NextApp): React.ComponentType =>
 
       const appProps = await App.getInitialProps(ctx);
 
-      if (idx(res, _ => _.finished)) return appProps;
+      if (res?.finished) return appProps;
 
       if (!process.browser) {
         try {

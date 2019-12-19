@@ -7,7 +7,6 @@ import React from 'react';
 import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Spin, Icon, Table } from 'antd';
-import idx from 'idx';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
 
@@ -201,19 +200,23 @@ export default React.memo(() => (
         return <Spin indicator={<Icon type="loading" spin />} />;
 
       const { viewer, getValidUserPointList, getColorList } = data;
-      const userPoints = idx(getValidUserPointList, _ => _.data);
+      const userPoints = getValidUserPointList?.data;
 
       if (!viewer || !userPoints || !getColorList)
         return <Spin indicator={<Icon type="loading" spin />} />;
 
       const currentBalance =
-        idx(viewer, _ => _.rewardPoint.currentBalance) ||
+        viewer?.rewardPoint?.currentBalance ||
         0; /** TODO: should not be null */
 
       return (
         <EnhancedMemberRewardPoints
           currentBalance={currentBalance}
-          userPoints={userPoints}
+          userPoints={
+            userPoints.filter(
+              Boolean,
+            ) as PropsType['userPoints'] /** TODO: should not be null */
+          }
           colors={getColorList.colors}
         />
       );

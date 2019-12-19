@@ -12,7 +12,6 @@ import Router from 'next/router';
 import { Spin, Icon, Button, message } from 'antd';
 import moment from 'moment';
 import transformColor from 'color';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 import {
@@ -71,19 +70,15 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
     selectedProducts: [],
     checking: false,
     replaceRecipient: {
-      name:
-        idx(this, _ => _.props.order.shipmentInfo.list[0].recipient.name) || '',
-      mobile:
-        idx(this, _ => _.props.order.shipmentInfo.list[0].recipient.mobile) ||
-        '',
+      // eslint-disable-next-line react/destructuring-assignment
+      name: this.props.order.shipmentInfo?.list?.[0]?.recipient?.name || '',
+      // eslint-disable-next-line react/destructuring-assignment
+      mobile: this.props.order.shipmentInfo?.list?.[0]?.recipient?.mobile || '',
       address: {
         streetAddress:
-          idx(
-            this,
-            _ =>
-              _.props.order.shipmentInfo.list[0].recipient.address
-                .streetAddress,
-          ) || '',
+          // eslint-disable-next-line react/destructuring-assignment
+          this.props.order.shipmentInfo?.list?.[0]?.recipient?.address
+            ?.streetAddress || '',
       },
     },
   };
@@ -171,7 +166,7 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
       },
     });
 
-    const Applications = idx(cache, _ => _.getOrderApplyList.data);
+    const Applications = cache?.getOrderApplyList?.data;
 
     if (!Applications || !createOrderApplyList) return;
 
@@ -187,7 +182,7 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
       },
     });
 
-    const order = idx(cache, _ => _.viewer.order);
+    const order = cache?.viewer?.order;
 
     if (!id || !order) return;
 
@@ -319,24 +314,19 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
             {[
               {
                 key: 'name',
-                children: `${t('recipient.name')}：${idx(
-                  replaceRecipient,
-                  _ => _.name,
-                ) || ''}`,
+                children: `${t('recipient.name')}：${replaceRecipient?.name ||
+                  ''}`,
               },
               {
                 key: 'mobile',
-                children: `${t('recipient.mobile')}：${idx(
-                  replaceRecipient,
-                  _ => _.mobile,
-                ) || ''}`,
+                children: `${t(
+                  'recipient.mobile',
+                )}：${replaceRecipient?.mobile || ''}`,
               },
               {
                 key: 'address',
-                children: `${t('recipient.address')}：${idx(
-                  replaceRecipient,
-                  _ => _.address.streetAddress,
-                ) || ''}`,
+                children: `${t('recipient.address')}：${replaceRecipient
+                  ?.address?.streetAddress || ''}`,
               },
             ].map(props => (
               <p {...props} />
@@ -475,8 +465,8 @@ export default ({
       if (loading || error)
         return <Spin indicator={<Icon type="loading" spin />} />;
 
-      const order = idx(data, _ => _.viewer.order);
-      const colors = idx(data, _ => _.getColorList.colors) || [];
+      const order = data?.viewer?.order;
+      const colors = data?.getColorList?.colors || [];
 
       if (!order) return <Spin indicator={<Icon type="loading" spin />} />;
 

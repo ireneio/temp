@@ -6,7 +6,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
@@ -115,9 +114,9 @@ export class Blocks extends React.PureComponent<PropsType> {
         ...order
       },
     } = this.props;
-    const shipmentObj = idx(shipmentInfo, _ => _.list[0]);
-    const paymentObj = idx(paymentInfo, _ => _.list[0]);
-    const searchLink = idx(shipmentObj, _ => _.storeShipmentDetails.searchLink);
+    const shipmentObj = shipmentInfo?.list?.[0];
+    const paymentObj = paymentInfo?.list?.[0];
+    const searchLink = shipmentObj?.storeShipmentDetails?.searchLink;
 
     return (
       <div className={styles.root}>
@@ -127,7 +126,7 @@ export class Blocks extends React.PureComponent<PropsType> {
           <div className={styles.description}>
             {['name', 'email', 'mobile'].map(
               (key: 'name' | 'email' | 'mobile') => (
-                <div key={key}>{idx(userInfo, _ => _[key])}</div>
+                <div key={key}>{userInfo?.[key]}</div>
               ),
             )}
           </div>
@@ -141,8 +140,8 @@ export class Blocks extends React.PureComponent<PropsType> {
               (key: 'name' | 'email' | 'mobile' | 'address') => (
                 <div key={key}>
                   {key === 'address'
-                    ? idx(shipmentObj, _ => _.recipient.address.streetAddress)
-                    : idx(shipmentObj, _ => _.recipient[key])}
+                    ? shipmentObj?.recipient?.address?.streetAddress
+                    : shipmentObj?.recipient?.[key]}
                 </div>
               ),
             )}
@@ -153,7 +152,7 @@ export class Blocks extends React.PureComponent<PropsType> {
           <h4>{t('blocks.payment.title')}</h4>
 
           <div className={styles.status}>
-            {t(`blocks.payment.status.${idx(paymentInfo, _ => _.status)}`)}
+            {t(`blocks.payment.status.${paymentInfo?.status}`)}
           </div>
         </div>
 
@@ -161,14 +160,14 @@ export class Blocks extends React.PureComponent<PropsType> {
           <h4>{t('blocks.shipment.title')}</h4>
 
           <div className={styles.status}>
-            {t(`blocks.shipment.status.${idx(shipmentInfo, _ => _.status)}`)}
+            {t(`blocks.shipment.status.${shipmentInfo?.status}`)}
           </div>
         </div>
 
         <div>
           <h4>{t('blocks.payment.type')}</h4>
 
-          <div className={styles.status}>{idx(paymentObj, _ => _.name)}</div>
+          <div className={styles.status}>{paymentObj?.name}</div>
 
           <PaymentInfo
             order={filter(paymentInfoFragment, {
@@ -183,7 +182,7 @@ export class Blocks extends React.PureComponent<PropsType> {
         <div>
           <h4>{t('blocks.shipment.type')}</h4>
 
-          <div className={styles.status}>{idx(shipmentObj, _ => _.name)}</div>
+          <div className={styles.status}>{shipmentObj?.name}</div>
 
           {!searchLink ? null : (
             <a
@@ -227,7 +226,7 @@ export class Blocks extends React.PureComponent<PropsType> {
           </div>
 
           {this.renderDescription(
-            (idx(shipmentObj, _ => _.recipient.comment) || '')
+            (shipmentObj?.recipient?.comment || '')
               .split('\n')
               .map((str: string) => <div key={str}>{str}</div>),
           )}

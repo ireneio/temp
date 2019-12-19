@@ -5,7 +5,6 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 import React from 'react';
 import gql from 'graphql-tag';
 import { Input } from 'antd';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
@@ -38,11 +37,11 @@ export const formFragment = gql`
 class Form extends React.PureComponent<PropsType, StateType> {
   public state: StateType = {
     // eslint-disable-next-line react/destructuring-assignment
-    name: idx(this, _ => _.props.recipient.name) || '',
+    name: this.props.recipient?.name || '',
     // eslint-disable-next-line react/destructuring-assignment
-    mobile: idx(this, _ => _.props.recipient.mobile) || '',
+    mobile: this.props.recipient?.mobile || '',
     // eslint-disable-next-line react/destructuring-assignment
-    address: idx(this, _ => _.props.recipient.address.streetAddress) || '',
+    address: this.props.recipient?.address?.streetAddress || '',
   };
 
   public componentDidUpdate(_prevProps: PropsType, prevState: StateType): void {

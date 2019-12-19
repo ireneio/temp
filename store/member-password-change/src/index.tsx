@@ -10,7 +10,6 @@ import React from 'react';
 import { Query, Mutation } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Spin, Icon, Form, Input, Button, notification } from 'antd';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
@@ -75,7 +74,7 @@ class MemberPasswordChange extends React.PureComponent<PropsType> {
       t,
       form: { resetFields },
     } = this.props;
-    const status = idx(changeUserPassword, _ => _.status); // TODO: should not be null
+    const status = changeUserPassword?.status; // TODO: should not be null
 
     if (status === 0) {
       notification.success({

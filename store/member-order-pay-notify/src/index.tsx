@@ -7,7 +7,6 @@ import React from 'react';
 import { Query, Mutation } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Spin, Icon, Input, Button, Modal, notification } from 'antd';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
@@ -39,14 +38,13 @@ class MemberOrderPayNotify extends React.PureComponent<PropsType> {
   public state = {
     message:
       // eslint-disable-next-line react/destructuring-assignment
-      ((idx(this.props.order, _ => _.paidMessage) || []).slice(-1)[0] || {})
-        .note ||
+      (this.props.order?.paidMessage?.slice(-1)[0] || {}).note ||
       // eslint-disable-next-line react/destructuring-assignment
       this.props.paidMessage ||
       DEFAULT_MESSAGE,
     disabled:
       // eslint-disable-next-line react/destructuring-assignment
-      (idx(this.props.order, _ => _.paidMessage) || []).length > 0,
+      (this.props.order?.paidMessage?.length || 0) > 0,
   };
 
   private send = (
@@ -195,8 +193,8 @@ export default React.memo(({ orderId }: { orderId: string }) => (
 
       const { viewer, getColorList } = data;
 
-      const order = idx(viewer, _ => _.order);
-      const paidMessage = idx(viewer, _ => _.store.setting.paidMessage) || '';
+      const order = viewer?.order;
+      const paidMessage = viewer?.store?.setting?.paidMessage || '';
 
       if (!order || !getColorList)
         return <Spin indicator={<Icon type="loading" spin />} />;

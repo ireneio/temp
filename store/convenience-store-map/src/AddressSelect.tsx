@@ -9,7 +9,6 @@ import React from 'react';
 import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Spin, Icon, Cascader, Select } from 'antd';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
@@ -47,7 +46,7 @@ class AddressSelect extends React.PureComponent<PropsType> {
   };
 
   public componentDidMount(): void {
-    this.setState({ width: idx(this.titleRef, _ => _.current.offsetWidth) });
+    this.setState({ width: this.titleRef.current?.offsetWidth });
   }
 
   private getAreas = async (
@@ -99,10 +98,7 @@ class AddressSelect extends React.PureComponent<PropsType> {
       data: {
         __typename: 'City',
         areas:
-          idx(
-            data,
-            _ => _.validatedConvenienceStoreAreas,
-          ).map(
+          data?.validatedConvenienceStoreAreas.map(
             (
               area: getValidatedConvenienceStoreCitiesValidatedConvenienceStoreCitiesChildren,
             ) => ({ ...area, streets: [] }),
@@ -162,13 +158,13 @@ class AddressSelect extends React.PureComponent<PropsType> {
           `,
           data: {
             __typename: 'Area',
-            streets: idx(data, _ => _.validatedConvenienceStoreStreets) || [],
+            streets: data?.validatedConvenienceStoreStreets || [],
           },
         });
 
         this.setState({
           selectedAddress: { cityId: value[0], areaId: value[1] },
-          streets: idx(data, _ => _.validatedConvenienceStoreStreets) || [],
+          streets: data?.validatedConvenienceStoreStreets || [],
         });
       } else {
         this.setState({

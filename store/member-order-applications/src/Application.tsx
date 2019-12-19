@@ -8,7 +8,6 @@ import gql from 'graphql-tag';
 import { Table } from 'antd';
 import moment from 'moment';
 import memoizeOne from 'memoize-one';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 import Thumbnail from '@store/thumbnail';
@@ -110,18 +109,12 @@ class Application extends React.PureComponent<PropTypes> {
 
             <div>
               {(specs || [])
-                .map(
-                  spec =>
-                    idx(spec, _ => _.title[language]) ||
-                    idx(spec, _ => _.title.zh_TW),
-                )
+                .map(spec => spec?.title?.[language] || spec?.title?.zh_TW)
                 .filter(spec => spec)
                 .join(' / ')}
             </div>
 
-            <div className={styles.mobileShow}>
-              {idx(applicationInfo, _ => _.comment)}
-            </div>
+            <div className={styles.mobileShow}>{applicationInfo?.comment}</div>
           </>
         ),
       },
@@ -183,15 +176,15 @@ class Application extends React.PureComponent<PropTypes> {
             <>
               <h4>
                 {t('recipient')}
-                {idx(recipient, _ => _.name)}
+                {recipient?.name}
               </h4>
               <h4>
                 {t('phone')}
-                {idx(recipient, _ => _.mobile)}
+                {recipient?.mobile}
               </h4>
               <h4>
                 {t('address')}
-                {idx(recipient, _ => _.address.streetAddress)}
+                {recipient?.address?.streetAddress}
               </h4>
             </>
           )}

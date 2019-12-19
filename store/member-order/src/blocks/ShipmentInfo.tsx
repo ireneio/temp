@@ -6,7 +6,6 @@ import { Blocks } from './index';
 // import
 import React from 'react';
 import gql from 'graphql-tag';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
@@ -38,7 +37,7 @@ export default withTranslation('member-order')(
     children,
     shipmentInfo: { number, recipient, description },
   }: PropsType) => {
-    const receiverStoreName = idx(recipient, _ => _.receiverStoreName);
+    const receiverStoreName = recipient?.receiverStoreName;
 
     return children([
       !number ? null : (
@@ -51,7 +50,7 @@ export default withTranslation('member-order')(
         <>
           <div>
             {t('blocks.shipment.store.id')}
-            {idx(recipient, _ => _.receiverStoreID)}
+            {recipient?.receiverStoreID}
           </div>
 
           <div>
@@ -61,7 +60,7 @@ export default withTranslation('member-order')(
 
           <div>
             {t('blocks.shipment.store.address')}
-            {idx(recipient, _ => _.receiverStoreAddress)}
+            {recipient?.receiverStoreAddress}
           </div>
         </>
       ),

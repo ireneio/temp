@@ -9,7 +9,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from '@apollo/react-components';
 import { Spin, Icon, Drawer, Select, Input, Button, Modal } from 'antd';
-import idx from 'idx';
 
 import { withTranslation } from '@admin/utils/lib/i18n';
 
@@ -88,7 +87,7 @@ class OrdersExport extends React.PureComponent<PropsType, StateType> {
         },
       });
 
-      const uri = idx(data, _ => _.getOrderExportDownload.uri);
+      const uri = data?.getOrderExportDownload?.uri;
 
       if (!uri) {
         this.setState({ loadingExportDownloadUri: false }, () =>
@@ -265,9 +264,7 @@ export default React.memo(
               [
                 ...exportFormatList,
                 // TODO: should not be null
-                ...(idx(getExportFormatList, _ => _.data) || []).filter(
-                  d => d !== null,
-                ),
+                ...(getExportFormatList?.data || []).filter(d => d !== null),
               ] as PropsType['exportFormatList']
             }
             orderIds={

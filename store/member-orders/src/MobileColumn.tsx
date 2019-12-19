@@ -5,7 +5,6 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 import React, { useState } from 'react';
 import moment from 'moment';
 import { Icon, Drawer } from 'antd';
-import idx from 'idx';
 import Link from 'next/link';
 
 import { withTranslation } from '@store/utils/lib/i18n';
@@ -57,10 +56,8 @@ const MobileColumn = React.memo(
 
               {t(
                 `payment.${
-                  idx(
-                    paymentInfo,
-                    _ => _.status,
-                  ) /** TODO: should not be null */
+                  paymentInfo?.status
+                  /** TODO: should not be null */
                 }`,
               )}
             </div>
@@ -70,10 +67,8 @@ const MobileColumn = React.memo(
 
               {t(
                 `shipment.${
-                  idx(
-                    shipmentInfo,
-                    _ => _.status,
-                  ) /** TODO: should not be null */
+                  shipmentInfo?.status
+                  /** TODO: should not be null */
                 }`,
               )}
             </div>

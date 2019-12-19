@@ -6,7 +6,6 @@ import { CurrencyType } from '@store/currency';
 import React from 'react';
 import gql from 'graphql-tag';
 import memoizeOne from 'memoize-one';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
@@ -107,8 +106,7 @@ class TotalSheet extends React.PureComponent<PropsType> {
                 {
                   id,
                   discountPrice,
-                  title:
-                    idx(title, _ => _[language]) || idx(title, _ => _.zh_TW),
+                  title: title?.[language] || title?.zh_TW,
                 },
               ];
           }
@@ -132,9 +130,7 @@ class TotalSheet extends React.PureComponent<PropsType> {
 
     if (!activityInfo) return c(shipmentFee);
 
-    return activityInfo.find(
-      activity => idx(activity, _ => _.plugin) === 'freeShipping',
-    )
+    return activityInfo.find(activity => activity?.plugin === 'freeShipping')
       ? t('sheet.free-shipment')
       : c(shipmentFee);
   }
@@ -148,11 +144,11 @@ class TotalSheet extends React.PureComponent<PropsType> {
       /** props */
       order: { priceInfo },
     } = this.props;
-    const productPrice = idx(priceInfo, _ => _.productPrice) || 0;
-    const shipmentFee = idx(priceInfo, _ => _.shipmentFee) || 0;
-    const paymentFee = idx(priceInfo, _ => _.paymentFee) || 0;
-    const adjust = idx(priceInfo, _ => _.adjust) || 0;
-    const total = idx(priceInfo, _ => _.total) || 0;
+    const productPrice = priceInfo?.productPrice || 0;
+    const shipmentFee = priceInfo?.shipmentFee || 0;
+    const paymentFee = priceInfo?.paymentFee || 0;
+    const adjust = priceInfo?.adjust || 0;
+    const total = priceInfo?.total || 0;
 
     return (
       <div className={styles.root}>

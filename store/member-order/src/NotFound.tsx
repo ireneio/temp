@@ -4,7 +4,6 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 // import
 import React from 'react';
 import gql from 'graphql-tag';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
@@ -28,8 +27,7 @@ export const notFoundFragment = gql`
 
 export default withTranslation('member-order')(({ user, t }: PropsType) => (
   <div className={styles.root}>
-    <h4>{`Hi, ${idx(user, _ => _.name) || ''} (${idx(user, _ => _.email) ||
-      ''})`}</h4>
+    <h4>{`Hi, ${user?.name || ''} (${user?.email || ''})`}</h4>
 
     <h1>{t('not-found')}</h1>
   </div>

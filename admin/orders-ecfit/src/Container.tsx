@@ -13,7 +13,6 @@ import { Query, Mutation } from '@apollo/react-components';
 import { filter } from 'graphql-anywhere';
 import Router from 'next/router';
 import { Spin, Icon, Radio, Input, Button, Badge, Modal } from 'antd';
-import idx from 'idx';
 import moment from 'moment';
 
 import { withTranslation } from '@admin/utils/lib/i18n';
@@ -86,7 +85,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
   public state: StateType = {
     runningIds: [],
     // eslint-disable-next-line react/destructuring-assignment
-    searchTerm: idx(this.props.variables, _ => _.filter.searchTerm) || '',
+    searchTerm: this.props.variables?.filter?.searchTerm || '',
     // eslint-disable-next-line react/destructuring-assignment
     isEnabled: this.props.isEnabled,
   };
@@ -137,7 +136,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
     }: {
       start?: number;
       end?: number;
-    } = idx(variables, _ => _.filter.timeRange) || {};
+    } = variables?.filter?.timeRange || {};
 
     return !start || !end ? undefined : [moment.unix(start), moment.unix(end)];
   };
@@ -175,7 +174,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
   ): Promise<void> => {
     const { variables, selectedOrders } = this.props;
     const { isEnabled } = this.state;
-    const ecfitSentStatus = idx(variables, _ => _.filter.ecfitSentStatus);
+    const ecfitSentStatus = variables?.filter?.ecfitSentStatus;
     // TODO: should not be null
     const selectedIds = selectedOrders.edges.map(
       ({ node: { id } }) => id || 'null-id',
@@ -195,9 +194,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
         ),
       )
     ).reduce((result, response, index) => {
-      if (!response) return result;
-
-      const status = idx(response, _ => _.data.createEcfitOrder.status);
+      const status = response?.data?.createEcfitOrder.status;
 
       if (!status) return result;
 
@@ -255,17 +252,16 @@ class Container extends React.PureComponent<PropsType, StateType> {
             ecfitOrders: {
               __typename: 'OrderConnection',
               edges: [
-                ...(
-                  idx(previousResult, _ => _.viewer.ecfitOrders.edges) || []
-                ).filter(({ node: { id } }) => !successIds.includes(id)),
-                ...(idx(fetchMoreResult, _ => _.viewer.ecfitOrders.edges) ||
-                  []),
+                ...(previousResult?.viewer.ecfitOrders?.edges || []).filter(
+                  ({ node: { id } }) =>
+                    !successIds.includes(
+                      id || 'null id' /** TODO: should not be null */,
+                    ),
+                ),
+                ...(fetchMoreResult?.viewer?.ecfitOrders?.edges || []),
               ],
-              pageInfo: idx(
-                fetchMoreResult,
-                _ => _.viewer.ecfitOrders.pageInfo,
-              ),
-              total: idx(fetchMoreResult, _ => _.viewer.ecfitOrders.total),
+              pageInfo: fetchMoreResult?.viewer?.ecfitOrders?.pageInfo,
+              total: fetchMoreResult?.viewer?.ecfitOrders?.total,
             },
           },
         };
@@ -315,7 +311,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
           <>
             <div className={styles.sendStatus}>
               <Group
-                value={idx(variables, _ => _.filter.ecfitSentStatus)}
+                value={variables?.filter?.ecfitSentStatus}
                 onChange={({ target: { value } }) =>
                   refetch({
                     ...variables,
@@ -401,10 +397,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
                         refetch({
                           ...variables,
                           filter: {
-                            ecfitSentStatus: idx(
-                              variables,
-                              _ => _.filter.ecfitSentStatus,
-                            ),
+                            ecfitSentStatus: variables?.filter?.ecfitSentStatus,
                           },
                         }),
                       )
@@ -417,7 +410,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
                 <div />
 
                 {(selectedOrders.total === 0 && runningIds.length === 0) ||
-                idx(variables, _ => _.filter.ecfitSentStatus) ===
+                variables?.filter?.ecfitSentStatus ===
                   'SENT_SUCCESSFUL' ? null : (
                   <Mutation<createEcfitOrder, createEcfitOrderVariables>
                     mutation={gql`
@@ -597,7 +590,7 @@ export default React.memo(
       {({ error, data, variables, fetchMore, refetch }) => {
         if (error) return <Spin indicator={<Icon type="loading" spin />} />;
 
-        const ecfitOrders = idx(data, _ => _.viewer.ecfitOrders);
+        const ecfitOrders = data?.viewer?.ecfitOrders;
         const {
           getStorePaymentList = null,
           getStoreShipmentList = null,
@@ -620,15 +613,13 @@ export default React.memo(
             refetch={refetch}
             ecfitOrders={ecfitOrders}
             isEnabled={
-              idx(data, _ => _.viewer.store.storeEcfitSettings.isEnabled) ||
+              data?.viewer?.store?.storeEcfitSettings?.isEnabled ||
               false /** TODO: should not be null */
             }
             getStorePaymentList={getStorePaymentList}
             getStoreShipmentList={getStoreShipmentList}
             selectedOrders={selectedOrders}
-            sentFailedAmount={
-              idx(data, _ => _.viewer.sentFailedList.total) || 0
-            }
+            sentFailedAmount={data?.viewer?.sentFailedList?.total || 0}
           />
         );
       }}

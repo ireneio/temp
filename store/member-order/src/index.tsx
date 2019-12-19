@@ -9,7 +9,6 @@ import { filter } from 'graphql-anywhere';
 import { Spin, Icon } from 'antd';
 import moment from 'moment';
 import transformColor from 'color';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
@@ -75,7 +74,7 @@ const MemberOrder = React.memo(
 
         <Blocks order={filter(blocksFragment, order)} colors={colors} />
 
-        {idx(environment, _ => _.sourcePage) === 'lp' ? null : (
+        {environment?.sourcePage === 'lp' ? null : (
           <Qa
             messages={filter(qaOrderMessageFragment, messages)}
             orderId={id}
@@ -142,18 +141,11 @@ export default ({ orderId }: { orderId: string }): React.ReactElement => (
       if (loading || error)
         return <Spin indicator={<Icon type="loading" spin />} />;
 
-      const order = idx(data, _ => _.viewer.order);
-      const colors = idx(data, _ => _.getColorList.colors) || [];
+      const order = data?.viewer?.order;
+      const colors = data?.getColorList?.colors || [];
 
       if (!order) {
-        return (
-          <NotFound
-            user={filter(
-              notFoundFragment,
-              idx(data, _ => _.viewer),
-            )}
-          />
-        );
+        return <NotFound user={filter(notFoundFragment, data?.viewer)} />;
       }
 
       return <EnhancedMemberOrder colors={colors} order={order} />;

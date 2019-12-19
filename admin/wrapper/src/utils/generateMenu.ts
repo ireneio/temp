@@ -1,9 +1,6 @@
 // typescript import
 import { MenuItemType } from '../constants';
 
-// import
-import idx from 'idx';
-
 // graphql typescript
 import { initAdmin_getAuthorityList_data_permission as initAdminGetAuthorityListDataPermission } from '../__generated__/initAdmin';
 
@@ -22,7 +19,7 @@ export default ({
     src: '/images/menu/dashboard.svg',
     title: 'dashboard',
   },
-  ...(isMerchant || idx(permission, _ => _.order.index)
+  ...(isMerchant || permission?.order?.index
     ? [
         {
           path: '/orders',
@@ -31,7 +28,7 @@ export default ({
         },
       ]
     : []),
-  ...(isMerchant || idx(permission, _ => _.product.index)
+  ...(isMerchant || permission?.product?.index
     ? [
         {
           path: '/products',
@@ -40,7 +37,7 @@ export default ({
         },
       ]
     : []),
-  ...(isMerchant || idx(permission, _ => _.service.product)
+  ...(isMerchant || permission?.service?.product
     ? [
         {
           path: '/product-service',
@@ -58,7 +55,7 @@ export default ({
         },
       ]
     : []),
-  ...(isMerchant || idx(permission, _ => _.user.index)
+  ...(isMerchant || permission?.user?.index
     ? [
         {
           src: '/images/menu/member.svg',
@@ -91,7 +88,7 @@ export default ({
         },
       ]
     : []),
-  ...(isMerchant || idx(permission, _ => _.design.index)
+  ...(isMerchant || permission?.design?.index
     ? [
         {
           src: '/images/menu/design.svg',
@@ -145,7 +142,7 @@ export default ({
         : []),
     ],
   },
-  ...(isMerchant || idx(permission, _ => _.file.index)
+  ...(isMerchant || permission?.file?.index
     ? [
         {
           path: '/file-manager',
@@ -154,7 +151,7 @@ export default ({
         },
       ]
     : []),
-  ...(isMerchant || idx(permission, _ => _.store.index)
+  ...(isMerchant || permission?.store?.index
     ? [
         {
           path: '/setting',

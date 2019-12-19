@@ -20,7 +20,6 @@ import {
   Button,
 } from 'antd';
 import { areEqual } from 'fbjs';
-import idx from 'idx';
 import moment from 'moment';
 
 import AddressCascader from '@store/address-cascader';
@@ -171,9 +170,9 @@ class MemberSettings extends React.PureComponent<PropsType> {
       unlimitedDate = false,
     } = group || {};
     const { lockedCountry = null, lockedBirthday = null } =
-      idx(store, _ => _.setting) || {};
+      store?.setting || {};
     const gmoRememberCardEnabled =
-      idx(store, _ => _.experiment.gmoRememberCardEnabled) || false;
+      store?.experiment?.gmoRememberCardEnabled || false;
 
     return (
       <div className={styles.root}>
@@ -288,7 +287,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
           <FormItem>
             {getFieldDecorator('isNotCancelEmail', {
               // TODO: should not be null
-              initialValue: !idx(notification, _ => _.newsletters.cancelEmail),
+              initialValue: !notification?.newsletters?.cancelEmail,
               valuePropName: 'checked',
             })(<Checkbox>{t('isNotCancelEmail')}</Checkbox>)}
           </FormItem>

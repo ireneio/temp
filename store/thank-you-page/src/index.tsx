@@ -9,7 +9,6 @@ import gql from 'graphql-tag';
 import Router from 'next/router';
 import { Spin, Icon, Progress, Button, message } from 'antd';
 import Clipboard from 'clipboard';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 import getLinkProps from '@store/utils/lib/getLinkProps';
@@ -46,7 +45,7 @@ const ThankYouPage = withTranslation('thank-you-page')(
       if (order)
         adTrack.purchase({
           orderNo: order.orderNo || '', // FIXME: should not be null
-          products: (idx(order, _ => _.products) || []).reduce(
+          products: (order?.products || []).reduce(
             // FIXME: should not be null
             (result: OptionType['products'], data) => {
               if (!data) return result;
@@ -55,7 +54,8 @@ const ThankYouPage = withTranslation('thank-you-page')(
                 ({ productId }) => productId === data.productId,
               );
 
-              if (!product) return [...result, data];
+              if (!product)
+                return [...result, data as OptionType['products'][number]];
 
               product.quantity += data.quantity || 0;
 
@@ -63,10 +63,10 @@ const ThankYouPage = withTranslation('thank-you-page')(
             },
             [],
           ),
-          total: idx(order, _ => _.priceInfo.total) || 0, // FIXME: should not be null
-          currency: idx(order, _ => _.priceInfo.currency) || 'TWD', // FIXME: should not be null
-          shipmentFee: idx(order, _ => _.priceInfo.shipmentFee) || 0, // FIXME: should not be null
-          paymentFee: idx(order, _ => _.priceInfo.paymentFee) || 0, // FIXME: should not be null
+          total: order?.priceInfo?.total || 0, // FIXME: should not be null
+          currency: order?.priceInfo?.currency || 'TWD', // FIXME: should not be null
+          shipmentFee: order?.priceInfo?.shipmentFee || 0, // FIXME: should not be null
+          paymentFee: order?.priceInfo?.paymentFee || 0, // FIXME: should not be null
         });
     }, [order, adTrack]);
 
@@ -160,12 +160,7 @@ export default ({
     {({ loading, data }) => {
       if (loading) return <Spin indicator={<Icon type="loading" spin />} />;
 
-      return (
-        <ThankYouPage
-          order={idx(data, _ => _.viewer.order) || null}
-          href={href}
-        />
-      );
+      return <ThankYouPage order={data?.viewer?.order || null} href={href} />;
     }}
   </Query>
 );

@@ -21,7 +21,6 @@ import {
   Form,
   message,
 } from 'antd';
-import idx from 'idx';
 
 import { withTranslation } from '@admin/utils/lib/i18n';
 
@@ -92,7 +91,7 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
         }
       `,
     });
-    const id = idx(user, _ => _.viewer.store.id);
+    const id = user?.viewer?.store?.id;
 
     if (!id) {
       this.onError();
@@ -149,9 +148,7 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
       orderReturnedOrExchanged = false,
       orderTransferMessageReceived = false,
       productQAReceived = false,
-    } =
-      idx(viewer, _ => _.store.setting.emailNotificationEventSubscription) ||
-      {};
+    } = viewer?.store?.setting?.emailNotificationEventSubscription || {};
 
     return (
       <Mutation<updateNotificationSetting, updateNotificationSettingVariables>

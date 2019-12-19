@@ -9,7 +9,6 @@ import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Spin, Icon, Table, Divider } from 'antd';
 import { areEqual } from 'fbjs';
-import idx from 'idx';
 import memoizeOne from 'memoize-one';
 
 import { withTranslation } from '@store/utils/lib/i18n';
@@ -194,7 +193,7 @@ class MemberRecipients extends React.PureComponent<PropsType> {
     const { selectId } = this.state;
 
     // TODO: should not be null
-    const { lockedCountry = null } = idx(store, _ => _.setting) || {};
+    const { lockedCountry = null } = store?.setting || {};
 
     return (
       <div className={styles.root}>

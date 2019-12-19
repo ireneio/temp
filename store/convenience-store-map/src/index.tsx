@@ -8,7 +8,6 @@ import React from 'react';
 import { ApolloConsumer } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Modal, Tabs } from 'antd';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
@@ -84,13 +83,13 @@ class ConvenienceStoreMap extends React.PureComponent<PropsType> {
     if (input.storeNumber) {
       this.setState({
         showStoreList: true,
-        stores: idx(data, _ => _.validatedConvenienceStores),
-        store: idx(data, _ => _.validatedConvenienceStores[0]),
+        stores: data?.validatedConvenienceStores,
+        store: data?.validatedConvenienceStores[0],
       });
     } else {
       this.setState({
         showStoreList: true,
-        stores: idx(data, _ => _.validatedConvenienceStores),
+        stores: data?.validatedConvenienceStores,
       });
     }
   };
@@ -140,7 +139,7 @@ class ConvenienceStoreMap extends React.PureComponent<PropsType> {
     return (
       <Modal
         wrapClassName={`${styles.modalWrap} ${
-          idx(store, _ => _.storeNumber) ? styles.overflowHidden : ''
+          store?.storeNumber ? styles.overflowHidden : ''
         }`}
         visible
         width="720px"
@@ -177,7 +176,7 @@ class ConvenienceStoreMap extends React.PureComponent<PropsType> {
                 <StoreList
                   shipmentType={shipmentType}
                   stores={stores}
-                  selectedStoreNumber={idx(store, _ => _.storeNumber)}
+                  selectedStoreNumber={store?.storeNumber}
                   selectStore={this.selectStore}
                 />
               )}
@@ -200,7 +199,7 @@ class ConvenienceStoreMap extends React.PureComponent<PropsType> {
                 <StoreList
                   shipmentType={shipmentType}
                   stores={stores}
-                  selectedStoreNumber={idx(store, _ => _.storeNumber)}
+                  selectedStoreNumber={store?.storeNumber}
                   selectStore={this.selectStore}
                 />
               )}

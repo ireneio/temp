@@ -8,7 +8,6 @@ import gql from 'graphql-tag';
 import { Query } from '@apollo/react-components';
 import { Spin, Icon } from 'antd';
 import moment from 'moment';
-import idx from 'idx';
 
 import { withTranslation } from '@admin/utils/lib/i18n';
 import formatAmount from '@admin/utils/lib/formatAmount';
@@ -36,7 +35,7 @@ class Dashboard extends React.Component<PropsType> {
     if (amount === null) return '';
 
     const { viewer } = this.props;
-    const currency = idx(viewer, _ => _.store.currency);
+    const currency = viewer?.store?.currency;
 
     return formatAmount({ amount, currency });
   };
@@ -45,7 +44,7 @@ class Dashboard extends React.Component<PropsType> {
     const { t, viewer, getDashboardInfo } = this.props;
     const shouldShowUnpaidBills =
       viewer.role === 'MERCHANT' &&
-      (idx(viewer, _ => _.store.unpaidBills.totalCount) || 0) > 0;
+      (viewer?.store?.unpaidBills?.totalCount || 0) > 0;
     const {
       pendingOrder = null,
       notShipped = null,
@@ -162,7 +161,7 @@ const DashboardPage = () => (
       if (loading || error)
         return <Spin indicator={<Icon type="loading" spin />} />;
 
-      const timezone = idx(data, _ => _.viewer.store.timezone) || '+8';
+      const timezone = data?.viewer?.store?.timezone || '+8';
 
       return (
         <Query<getDashboard, getDashboardVariables>

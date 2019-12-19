@@ -9,7 +9,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
@@ -79,7 +78,7 @@ class PaymentInfo extends React.PureComponent<PropsType> {
     const {
       order: { paymentInfo },
     } = this.props;
-    const template = idx(paymentInfo, _ => _.list[0].template) as
+    const template = paymentInfo?.list?.[0]?.template as
       | 'allpay'
       | 'ezpay'
       | 'gmo'
@@ -94,10 +93,8 @@ class PaymentInfo extends React.PureComponent<PropsType> {
     // TODO: "hitrust" should list in "accountInfo"
     if (template === 'hitrust') return this.credit();
 
-    const choosePayment = idx(
-      paymentInfo,
-      _ => _.list[0].accountInfo[template].choosePayment,
-    );
+    const choosePayment =
+      paymentInfo?.list?.[0]?.accountInfo?.[template]?.choosePayment;
 
     if (!choosePayment) return null;
 
@@ -116,10 +113,8 @@ class PaymentInfo extends React.PureComponent<PropsType> {
         return this[template](choosePayment as keyof (AllpayType | EzpayType));
 
       case 'gmo': {
-        const gmoContractCode = idx(
-          paymentInfo,
-          _ => _.list[0].accountInfo[template].gmoContractCode,
-        );
+        const gmoContractCode =
+          paymentInfo?.list?.[0]?.accountInfo?.[template]?.gmoContractCode;
 
         if (!gmoContractCode) return null;
 
@@ -162,24 +157,15 @@ class PaymentInfo extends React.PureComponent<PropsType> {
       /** props */
       order: { paymentInfo },
     } = this.props;
-    const memo = idx(paymentInfo, _ => _.list[0].memo) || [];
-
-    // FIXME: 等待後端修正移除
-    if (!memo.length) return null;
-
-    const [
-      {
-        allpay: {
-          BankCode,
-          vAccount,
-          PaymentNo,
-          Barcode1,
-          Barcode2,
-          Barcode3,
-          ExpireDate,
-        },
-      },
-    ] = memo;
+    const {
+      BankCode,
+      vAccount,
+      PaymentNo,
+      Barcode1,
+      Barcode2,
+      Barcode3,
+      ExpireDate,
+    } = paymentInfo?.list?.[0]?.memo?.[0]?.allpay || {};
 
     switch (choosePayment) {
       case 'ATM':
@@ -245,16 +231,9 @@ class PaymentInfo extends React.PureComponent<PropsType> {
       /** props */
       order: { paymentInfo },
     } = this.props;
-    const memo = idx(paymentInfo, _ => _.list[0].memo) || [];
-
-    // FIXME: 等待後端修正移除
-    if (!memo.length) return null;
-
-    const [
-      {
-        ezpay: { paycode, expireDate },
-      },
-    ] = memo;
+    // TODO: should not be null
+    const { paycode, expireDate } =
+      paymentInfo?.list?.[0]?.memo?.[0]?.ezpay || {};
 
     switch (choosePayment) {
       case 'MMK':
@@ -267,7 +246,9 @@ class PaymentInfo extends React.PureComponent<PropsType> {
 
             <div>
               {t('blocks.payment.expire-date')}
-              {moment.unix(expireDate).format('YYYY/M/D')}
+              {moment
+                .unix(expireDate || 0 /** TODO: should not be null */)
+                .format('YYYY/M/D')}
             </div>
           </>
         );
@@ -285,7 +266,7 @@ class PaymentInfo extends React.PureComponent<PropsType> {
       /** props */
       order: { paymentInfo },
     } = this.props;
-    const card4no = idx(paymentInfo, _ => _.list[0].card4no) || '';
+    const card4no = paymentInfo?.list?.[0]?.card4no || '';
 
     return <div>{`${t('blocks.payment.card-no')}${card4no}`}</div>;
   };
@@ -296,7 +277,7 @@ class PaymentInfo extends React.PureComponent<PropsType> {
       t,
       order: { paidMessage, paymentInfo },
     } = this.props;
-    const description = idx(paymentInfo, _ => _.list[0].description) || '';
+    const description = paymentInfo?.list?.[0]?.description || '';
 
     return children([
       this.paymentDescription(t),

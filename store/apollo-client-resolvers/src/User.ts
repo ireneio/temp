@@ -2,7 +2,6 @@
 import { ContextType } from './constants';
 
 // import
-import idx from 'idx';
 import gql from 'graphql-tag';
 
 // typescript definition
@@ -16,10 +15,8 @@ interface UserType {
 // definition
 export const resolver = {
   User: {
-    tel: ({ additionalInfo }: UserType) =>
-      idx(additionalInfo, _ => _.tel) || null,
-    mobile: ({ additionalInfo }: UserType) =>
-      idx(additionalInfo, _ => _.mobile) || null,
+    tel: ({ additionalInfo }: UserType) => additionalInfo?.tel || null,
+    mobile: ({ additionalInfo }: UserType) => additionalInfo?.mobile || null,
     groupClient: async (
       {
         groupId,

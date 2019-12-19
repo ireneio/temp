@@ -9,7 +9,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from '@apollo/react-components';
 import { Select, Modal, Icon, notification } from 'antd';
-import idx from 'idx';
 
 import { withTranslation } from '@admin/utils/lib/i18n';
 
@@ -211,7 +210,7 @@ class ChangeTypes extends React.PureComponent<PropsType> {
 
     const fragment = {
       // TODO: should not be null id
-      id: idx(newOrder, _ => _.id) || 'null id',
+      id: newOrder?.id || 'null id',
       fragment: gql`
         fragment changeStatusOrderFragment on Order {
           id
@@ -233,14 +232,14 @@ class ChangeTypes extends React.PureComponent<PropsType> {
       ...fragment,
       data: {
         ...order,
-        status: idx(newOrder, _ => _.status),
+        status: newOrder?.status,
         shipmentInfo: {
-          ...idx(order, _ => _.shipmentInfo),
-          ...idx(newOrder, _ => _.shipmentInfo),
+          ...order?.shipmentInfo,
+          ...newOrder?.shipmentInfo,
         },
         paymentInfo: {
-          ...idx(order, _ => _.paymentInfo),
-          ...idx(newOrder, _ => _.paymentInfo),
+          ...order?.paymentInfo,
+          ...newOrder?.paymentInfo,
         },
       },
     });

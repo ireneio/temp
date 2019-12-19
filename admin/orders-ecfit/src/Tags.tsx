@@ -7,7 +7,6 @@ import { getEcfitListQueryPropsType } from './constants';
 import React from 'react';
 import { Tag } from 'antd';
 import gql from 'graphql-tag';
-import idx from 'idx';
 
 import { withTranslation } from '@admin/utils/lib/i18n';
 
@@ -64,7 +63,7 @@ const Tags = React.memo(
     }) => (
     <div className={styles.root}>
       {TAGS_KEYS.map(key => {
-        const options = idx(variables, _ => _.filter[key]) || [];
+        const options = variables?.filter?.[key] || [];
 
         return options.map((option: string) => (
           <Tag
@@ -87,20 +86,18 @@ const Tags = React.memo(
             {t(`advanced-search.${key}-title`)}：
             {key !== 'paymentIdList' && key !== 'shipmentIdList'
               ? t(`${key}.${option}`)
-              : idx(
-                  ({
-                    paymentIdList: getStorePaymentList.data,
-                    shipmentIdList: getStoreShipmentList.data,
-                  }[key] as {
-                    id: string;
-                    title: {
-                      zh_TW: string;
-                      en_US: string;
-                      ja_JP: string;
-                    };
-                  }[]).find(({ id }) => id === option),
-                  _ => _.title[i18n.language],
-                ) || ''}
+              : ({
+                  paymentIdList: getStorePaymentList.data,
+                  shipmentIdList: getStoreShipmentList.data,
+                }[key] as {
+                  id: string;
+                  title: {
+                    zh_TW: string;
+                    en_US: string;
+                    ja_JP: string;
+                  };
+                }[]).find(({ id }) => id === option)?.title[i18n.language] ||
+                ''}
           </Tag>
         ));
       })}

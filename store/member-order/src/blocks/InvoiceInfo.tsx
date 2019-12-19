@@ -6,7 +6,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
@@ -77,7 +76,7 @@ class InvoiceInfo extends React.PureComponent<PropsType> {
           </div>
         </>
       );
-      const carrierCode = idx(carrier, _ => _.carrierCode);
+      const carrierCode = carrier?.carrierCode;
 
       switch (method) {
         case 'DUPLICATE':
@@ -149,7 +148,7 @@ class InvoiceInfo extends React.PureComponent<PropsType> {
         : `${t(`blocks.invoice.type.${this.transformKey(type)}`)}/${t(
             method === 'CARRIER'
               ? `blocks.invoice.carrier.${this.transformKey(
-                  idx(carrier, _ => _.carrierType),
+                  carrier?.carrierType,
                 )}`
               : `blocks.invoice.method.${
                   method === 'TRIPLICATE' && type !== 'PAPER'

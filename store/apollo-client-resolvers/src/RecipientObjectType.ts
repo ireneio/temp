@@ -1,6 +1,3 @@
-// import
-import idx from 'idx';
-
 // typescript definition
 interface RecipientObjectType {
   address?: {
@@ -18,14 +15,14 @@ interface RecipientObjectType {
 export const resolver = {
   RecipientObjectType: {
     postalCode: ({ address }: RecipientObjectType) =>
-      idx(address, _ => _.postalCode) || null,
+      address?.postalCode || null,
     country: ({ address }: RecipientObjectType) =>
-      idx(address, _ => _.yahooCode.country) || null,
+      address?.yahooCode?.country || null,
     city: ({ address }: RecipientObjectType) =>
-      idx(address, _ => _.yahooCode.city) || null,
+      address?.yahooCode?.city || null,
     county: ({ address }: RecipientObjectType) =>
-      idx(address, _ => _.yahooCode.county) || null,
+      address?.yahooCode?.county || null,
     street: ({ address }: RecipientObjectType) =>
-      idx(address, _ => _.yahooCode.street) || null,
+      address?.yahooCode?.street || null,
   },
 };

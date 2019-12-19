@@ -12,7 +12,6 @@ import { Query } from '@apollo/react-components';
 import { Layout, Menu, Spin, Icon, Popover, Tooltip } from 'antd';
 import memoizeOne from 'memoize-one';
 import { areEqual } from 'fbjs';
-import idx from 'idx';
 
 import { withTranslation } from '@admin/utils/lib/i18n';
 
@@ -53,12 +52,12 @@ class Wrapper extends React.Component<PropsType> {
       getAuthorityList: initAdminGetAuthorityList;
     }) => {
       const { permission = null } =
-        (idx(getAuthorityList, _ => _.data) || []).find(
+        (getAuthorityList?.data || []).find(
           list => (list || { id: undefined }).id === viewer.groupId,
         ) || {};
 
       return {
-        storeAppList: (idx(getStoreAppList, _ => _.data) || []).reduce(
+        storeAppList: (getStoreAppList?.data || []).reduce(
           (list: { [plugin: string]: boolean }, storeApp) => {
             const { plugin = null, isInstalled = null } = storeApp || {};
             return {
@@ -69,11 +68,9 @@ class Wrapper extends React.Component<PropsType> {
           {},
         ),
         permission,
-        domain:
-          idx(viewer, _ => _.store.domain[0]) ||
-          idx(viewer, _ => _.store.defaultDomain),
+        domain: viewer?.store?.domain?.[0] || viewer?.store?.defaultDomain,
         isMerchant: viewer.role === 'MERCHANT',
-        isClosed: idx(viewer, _ => _.store.adminStatus) !== 'OPEN',
+        isClosed: viewer?.store?.adminStatus !== 'OPEN',
       };
     },
     areEqual,
@@ -90,8 +87,7 @@ class Wrapper extends React.Component<PropsType> {
   private checkStatus = (): void => {
     const { viewer, router } = this.props;
 
-    if (idx(viewer, _ => _.store.adminStatus) !== 'OPEN')
-      router.replace('/bill-payment');
+    if (viewer?.store?.adminStatus !== 'OPEN') router.replace('/bill-payment');
   };
 
   public render(): React.ReactNode {

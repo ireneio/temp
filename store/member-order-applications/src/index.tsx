@@ -8,7 +8,6 @@ import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 import transformColor from 'color';
 import moment from 'moment';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
@@ -134,8 +133,8 @@ export default ({ orderId }: { orderId: string }): React.ReactElement => (
       if (loading || error)
         return <Spin indicator={<Icon type="loading" spin />} />;
 
-      const order = idx(data, _ => _.viewer.order);
-      const colors = idx(data, _ => _.getColorList.colors) || [];
+      const order = data?.viewer?.order;
+      const colors = data?.getColorList?.colors || [];
 
       if (!order) return <Spin indicator={<Icon type="loading" spin />} />;
 

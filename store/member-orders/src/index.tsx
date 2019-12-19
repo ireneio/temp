@@ -12,7 +12,6 @@ import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Table } from 'antd';
 import Link from 'next/link';
 import { areEqual, emptyFunction } from 'fbjs';
-import idx from 'idx';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
 import transformColor from 'color';
@@ -194,10 +193,7 @@ class MemberOrders extends React.PureComponent<PropsType> {
             first,
           },
           updateQuery: (previousResult, { fetchMoreResult }) => {
-            if (
-              (idx(fetchMoreResult, _ => _.viewer.orders.edges) || []).length >
-              0
-            )
+            if ((fetchMoreResult?.viewer?.orders?.edges || []).length > 0)
               return {
                 ...previousResult,
                 viewer: {
@@ -205,20 +201,18 @@ class MemberOrders extends React.PureComponent<PropsType> {
                   orders: {
                     __typename: 'OrderConnection',
                     edges: [
-                      ...(idx(previousResult, _ => _.viewer.orders.edges) ||
-                        []),
-                      ...(idx(fetchMoreResult, _ => _.viewer.orders.edges) ||
-                        []),
+                      ...(previousResult?.viewer?.orders?.edges || []),
+                      ...(fetchMoreResult?.viewer?.orders?.edges || []),
                     ],
                     pageInfo: {
-                      ...idx(fetchMoreResult, _ => _.viewer.orders.pageInfo),
+                      ...fetchMoreResult?.viewer?.orders?.pageInfo,
                       currentInfo: {
                         ...currentInfo,
                         __typename: 'CurrentInfo',
                         current: newCurrent,
                       },
                     },
-                    total: idx(fetchMoreResult, _ => _.viewer.orders.total),
+                    total: fetchMoreResult?.viewer?.orders?.total,
                   },
                 },
               };

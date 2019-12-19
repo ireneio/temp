@@ -6,7 +6,6 @@ import { CustomCtx } from './withApollo';
 
 // import
 import gql from 'graphql-tag';
-import idx from 'idx';
 
 // graphql typescript
 import { getAdminLocale } from './__generated__/getAdminLocale';
@@ -31,7 +30,7 @@ export default async (
       }
     `,
   });
-  const locale = idx(result, _ => _.data.viewer.store.locale) || 'zh_TW';
+  const locale = result?.data.viewer?.store?.locale || 'zh_TW';
 
   if (locale === req.language) return;
 

@@ -9,7 +9,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from '@apollo/react-components';
 import { Button, notification } from 'antd';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
@@ -53,8 +52,8 @@ class RemoveCreditCardInfo extends React.PureComponent<PropsType> {
       viewer,
       refetch,
     } = this.props;
-    const status = idx(removeGmoCreditCard, _ => _.status);
-    const id = idx(viewer, _ => _.id);
+    const status = removeGmoCreditCard?.status;
+    const id = viewer?.id;
 
     if (status !== 'SUCCESS' || !id) {
       notification.error({

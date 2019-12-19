@@ -8,7 +8,6 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Cascader, Select, Input } from 'antd';
-import idx from 'idx';
 
 import ZipCodeInput from './ZipCodeInput';
 import styles from './styles/index.less';
@@ -74,7 +73,7 @@ const findZipcodes = (
 ): null | string[] => {
   const [id, ...otherIds]: string[] = address || [];
   const option = options.find(({ value }) => value === id);
-  const zipCodes = idx(option, _ => _.zipCodes);
+  const zipCodes = option?.zipCodes;
 
   if (zipCodes) return zipCodes;
 

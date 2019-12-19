@@ -1,6 +1,5 @@
 // import
 import gql from 'graphql-tag';
-import idx from 'idx';
 
 import { PAYMENT_CAN_PAID_LATER } from '../constants';
 
@@ -144,13 +143,13 @@ export const calculateOrderPayLater = (
   order: calculateOrderOrderFragmentType,
 ): OrderPayLaterPropsType | null => {
   const { template = null, accountInfo = null } =
-    idx(order, _ => _.paymentInfo.list[0]) || {};
+    order?.paymentInfo?.list?.[0] || {};
 
   if (!template) return null;
 
   const { choosePayment = null } =
     template === 'allpay' || template === 'ezpay' || template === 'gmo'
-      ? idx(accountInfo, _ => _[template]) || {}
+      ? accountInfo?.[template] || {}
       : {};
 
   const isAvailableForPayLater = (() => {
@@ -183,7 +182,7 @@ export const calculateOrderApplications = (
   (getOrderApplyList.data || []).reduce((applications, application) => {
     if (
       !application ||
-      idx(application, _ => _.orderId) !== order.id
+      application?.orderId !== order.id
       /** TODO: should not be null */
     )
       return applications;
@@ -204,7 +203,7 @@ export const calculateOrderApplications = (
                 order.products.find(
                   product =>
                     /** TODO: should not be null */
-                    idx(application, _ => _.orderProductId) ===
+                    application?.orderProductId ===
                     (product || { id: null }).id,
                 ) || {},
             },
@@ -220,8 +219,7 @@ export const calculateOrderApplications = (
           order.products.find(
             product =>
               /** TODO: should not be null */
-              idx(application, _ => _.orderProductId) ===
-              (product || { id: null }).id,
+              application?.orderProductId === (product || { id: null }).id,
           ) || {},
       },
     ];

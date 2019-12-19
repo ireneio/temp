@@ -9,7 +9,7 @@ module.exports = {
       '@babel/env',
       {
         useBuiltIns: 'usage',
-        corejs: '3.2.1',
+        corejs: 3,
       },
     ],
     '@babel/react',
@@ -17,7 +17,8 @@ module.exports = {
   ],
   plugins: [
     '@babel/transform-runtime',
-    '@babel/proposal-optional-chaining', // TODO: remove, typescript not support
+    '@babel/proposal-optional-chaining',
+    '@babel/proposal-nullish-coalescing-operator',
     '@babel/proposal-export-default-from', // TODO: remove, typescript not support
     [
       '@babel/proposal-decorators',
@@ -45,7 +46,6 @@ module.exports = {
         /* eslint-enable no-template-curly-in-string */
       },
     ],
-    'idx',
     [
       'module-resolver',
       {

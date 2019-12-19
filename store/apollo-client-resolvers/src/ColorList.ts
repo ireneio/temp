@@ -1,6 +1,5 @@
 // import
 import gql from 'graphql-tag';
-import idx from 'idx';
 
 // graphql typescript
 import { colorListFragment as colorListFragmentType } from './__generated__/colorListFragment';
@@ -24,7 +23,7 @@ export const colorListFragment = gql`
 export const resolver = {
   ColorList: {
     colors: ({ data }: colorListFragmentType) => {
-      const { selected = null, themes = null } = idx(data, _ => _[0]) || {}; // TODO: should not be null
+      const { selected = null, themes = null } = data?.[0] || {}; // TODO: should not be null
 
       return (
         (themes || [])[parseInt(selected || '0', 10)] || {

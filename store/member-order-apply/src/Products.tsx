@@ -10,7 +10,6 @@ import gql from 'graphql-tag';
 import { Table, Input, Select } from 'antd';
 import memoizeOne from 'memoize-one';
 import transformColor from 'color';
-import idx from 'idx';
 
 import Thumbnail from '@store/thumbnail';
 import localeFragment from '@store/utils/lib/fragments/locale';
@@ -158,11 +157,7 @@ class Products extends React.PureComponent<PropsType, StateType> {
 
             <div>
               {(specs || [])
-                .map(
-                  spec =>
-                    idx(spec, _ => _.title[language]) ||
-                    idx(spec, _ => _.title.zh_TW),
-                )
+                .map(spec => spec?.title?.[language] || spec?.title?.zh_TW)
                 .filter(spec => spec)
                 .join(' / ')}
             </div>
@@ -177,11 +172,7 @@ class Products extends React.PureComponent<PropsType, StateType> {
         dataIndex: 'specs',
         render: (value: SelectedProduct['specs']) =>
           (value || [])
-            .map(
-              spec =>
-                idx(spec, _ => _.title[language]) ||
-                idx(spec, _ => _.title.zh_TW),
-            )
+            .map(spec => spec?.title?.[language] || spec?.title?.zh_TW)
             .filter(spec => spec)
             .join(' / '),
         width: '50%',

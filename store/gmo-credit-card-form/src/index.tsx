@@ -10,7 +10,6 @@ import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { withRouter } from 'next/router';
 import { Spin, Icon, Input, Checkbox } from 'antd';
-import idx from 'idx';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
@@ -162,7 +161,7 @@ export default React.memo(
 
         const { gmoUser, viewer } = data;
         const gmoRememberCardEnabled =
-          idx(viewer, _ => _.store.experiment.gmoRememberCardEnabled) || false;
+          viewer?.store?.experiment?.gmoRememberCardEnabled || false;
 
         return (
           <EnhancedGmoCreditCardForm

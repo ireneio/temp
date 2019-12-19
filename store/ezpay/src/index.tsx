@@ -4,7 +4,6 @@ import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 import Router from 'next/router';
-import idx from 'idx';
 import queryString from 'query-string';
 import moment from 'moment';
 
@@ -36,8 +35,8 @@ const Ezpay = React.memo<{
     hiLifeLogo,
     oKmartLogo,
   }) => {
-    const memoEzpay = idx(paymentInfo, _ => _.list[0].memo[0].ezpay);
-    const accountInfoEzpay = idx(paymentInfo, _ => _.list[0].accountInfo.ezpay);
+    const memoEzpay = paymentInfo?.list?.[0]?.memo?.[0]?.ezpay;
+    const accountInfoEzpay = paymentInfo?.list?.[0]?.accountInfo?.ezpay;
 
     if (!memoEzpay || !accountInfoEzpay)
       return <Spin indicator={<Icon type="loading" spin />} />;
@@ -216,7 +215,7 @@ export default ({
       if (loading || error)
         return <Spin indicator={<Icon type="loading" spin />} />;
 
-      const order = idx(data, _ => _.viewer.order);
+      const order = data?.viewer?.order;
 
       if (!order) return <Spin indicator={<Icon type="loading" spin />} />;
 

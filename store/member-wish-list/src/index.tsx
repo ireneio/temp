@@ -8,7 +8,6 @@ import React from 'react';
 import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Spin, Icon, Table } from 'antd';
-import idx from 'idx';
 import { areEqual } from 'fbjs';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
@@ -206,8 +205,8 @@ export default React.memo(
 
         const { viewer, getColorList } = data;
         // TODO: should not be null id
-        const id = idx(viewer, _ => _.id) || 'null id';
-        const wishlist = idx(viewer, _ => _.wishlist);
+        const id = viewer?.id || 'null id';
+        const wishlist = viewer?.wishlist;
 
         if (!wishlist || !getColorList)
           return <Spin indicator={<Icon type="loading" spin />} />;
@@ -215,7 +214,11 @@ export default React.memo(
         return (
           <EnhancedMemberWishList
             viewerId={id}
-            wishlist={wishlist}
+            wishlist={
+              wishlist.filter(
+                Boolean,
+              ) as PropsType['wishlist'] /** TODO: should not be null */
+            }
             colors={getColorList.colors}
             refetch={refetch}
             dispatchAction={dispatchAction}
@@ -242,7 +245,7 @@ export default React.memo(
 //     }
 //   `}
 //   update={(cache, { data }) => {
-//     if (idx(data, _ => _.removeWishlistProduct.success)) {
+//     if (data?.removeWishlistProduct.success) {
 //       const fragment = {
 //         id: viewerId,
 //         fragment: gql`
@@ -258,7 +261,7 @@ export default React.memo(
 //       const wishlistView = cache.readFragment<getWishlistViewer>(
 //         fragment,
 //       );
-//       const wishlist = idx(wishlistView, _ => _.wishlist);
+//       const wishlist = wishlistView?.wishlist;
 
 //       if (!wishlist) return;
 
@@ -269,7 +272,7 @@ export default React.memo(
 //           wishlist: wishlist.filter(
 //             wish =>
 //               wish.productId !==
-//               idx(data, _ => _.removeWishlistProduct.productId),
+//               data?.removeWishlistProduct.productId,
 //           ),
 //         },
 //       });
@@ -278,7 +281,7 @@ export default React.memo(
 //     } else {
 //       notification.error({
 //         message: t('error'),
-//         description: idx(data, _ => _.removeWishlistProduct.reason),
+//         description: data?.removeWishlistProduct.reason,
 //       });
 //     }
 //   }}

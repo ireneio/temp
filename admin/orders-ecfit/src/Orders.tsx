@@ -11,7 +11,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Table, Icon, Select, Spin, Empty } from 'antd';
 import Link from 'next/link';
-import idx from 'idx';
 import { emptyFunction, areEqual } from 'fbjs';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
@@ -202,7 +201,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
           // TODO: should not be null
           !value ? null : moment.unix(value).format('YYYY/MM/DD HH:mm:ss'),
       },
-      ...(idx(variables, _ => _.filter.ecfitSentStatus) !== 'SENT_SUCCESSFUL'
+      ...(variables?.filter?.ecfitSentStatus !== 'SENT_SUCCESSFUL'
         ? []
         : [
             {
@@ -214,7 +213,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
                 !value ? null : moment(value).format('YYYY/MM/DD HH:mm:ss'),
             },
           ]),
-      ...(idx(variables, _ => _.filter.ecfitSentStatus) !== 'SENT_FAILED'
+      ...(variables?.filter?.ecfitSentStatus !== 'SENT_FAILED'
         ? []
         : [
             {
@@ -278,10 +277,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
             first,
           },
           updateQuery: (previousResult, { fetchMoreResult }) => {
-            if (
-              (idx(fetchMoreResult, _ => _.viewer.ecfitOrders.edges) || [])
-                .length > 0
-            )
+            if ((fetchMoreResult?.viewer?.ecfitOrders?.edges || []).length > 0)
               return {
                 ...previousResult,
                 viewer: {
@@ -289,30 +285,18 @@ class Orders extends React.PureComponent<PropsType, StateType> {
                   ecfitOrders: {
                     __typename: 'OrderConnection',
                     edges: [
-                      ...(idx(
-                        previousResult,
-                        _ => _.viewer.ecfitOrders.edges,
-                      ) || []),
-                      ...(idx(
-                        fetchMoreResult,
-                        _ => _.viewer.ecfitOrders.edges,
-                      ) || []),
+                      ...(previousResult?.viewer?.ecfitOrders?.edges || []),
+                      ...(fetchMoreResult?.viewer?.ecfitOrders?.edges || []),
                     ],
                     pageInfo: {
-                      ...idx(
-                        fetchMoreResult,
-                        _ => _.viewer.ecfitOrders.pageInfo,
-                      ),
+                      ...fetchMoreResult?.viewer?.ecfitOrders?.pageInfo,
                       currentInfo: {
                         ...currentInfo,
                         __typename: 'CurrentInfo',
                         current: newCurrent,
                       },
                     },
-                    total: idx(
-                      fetchMoreResult,
-                      _ => _.viewer.ecfitOrders.total,
-                    ),
+                    total: fetchMoreResult?.viewer?.ecfitOrders?.total,
                   },
                 },
               };

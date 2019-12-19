@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
-import idx from 'idx';
 import { emptyFunction } from 'fbjs';
 
 import CurrencyContext from '@store/currency';
@@ -46,7 +45,7 @@ const AdTrack = ({
       value={{
         adTrack: useAdTrack({
           ...useAdTrackIds(data),
-          cname: idx(data, _ => _.viewer.store.cname) || null,
+          cname: data?.viewer?.store?.cname || null,
           currency,
         }),
       }}

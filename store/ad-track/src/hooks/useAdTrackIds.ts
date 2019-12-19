@@ -1,6 +1,5 @@
 // import
 import { useMemo } from 'react';
-import idx from 'idx';
 
 // graphql typescript
 import {
@@ -12,13 +11,12 @@ import {
 const getCode = (
   getGtagList: getAdTrack['getGtagList'],
   callback: (data: getAdTrackGetGtagList) => boolean,
-): getAdTrackGetGtagList['code'] =>
-  idx((getGtagList || []).find(callback), _ => _.code) || null;
+): getAdTrackGetGtagList['code'] => getGtagList?.find(callback)?.code || null;
 
 const getMatch = (
   code: getAdTrackGetGtagList['code'],
   reg: RegExp,
-): string | null => idx((code || '').match(reg), _ => _[0]) || null;
+): string | null => code?.match(reg)?.[0] || null;
 
 export default ({
   getFbPixel,
@@ -33,7 +31,7 @@ export default ({
 } =>
   useMemo(
     () => ({
-      fbPixelId: idx(getFbPixel, _ => _.pixelId) || null,
+      fbPixelId: getFbPixel?.pixelId || null,
       gaId: getCode(
         getGtagList,
         ({ type, eventName }: getAdTrackGetGtagList) =>

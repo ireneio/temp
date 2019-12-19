@@ -9,7 +9,6 @@ import gql from 'graphql-tag';
 import { Mutation } from '@apollo/react-components';
 import { message } from 'antd';
 import Link from 'next/link';
-import idx from 'idx';
 import { areEqual } from 'fbjs';
 
 import { withTranslation } from '@store/utils/lib/i18n';
@@ -91,7 +90,7 @@ class Actions extends React.PureComponent<PropsType, StateType> {
     { data: { paymentAgainOrderList } }: { data: payOrderAgain },
   ): void => {
     const { t } = this.props;
-    const formData = idx(paymentAgainOrderList, _ => _[0].formData);
+    const formData = paymentAgainOrderList?.[0]?.formData;
 
     if (!formData || !formData.url) {
       message.error(t('pay-again.fail'));
@@ -131,7 +130,7 @@ class Actions extends React.PureComponent<PropsType, StateType> {
     );
 
     // TODO: should not be null
-    const { template = null } = idx(paymentInfo, _ => _.list[0]) || {};
+    const template = paymentInfo?.list?.[0]?.template;
 
     return (
       <div className={styles.root}>
@@ -182,8 +181,7 @@ class Actions extends React.PureComponent<PropsType, StateType> {
                         {
                           orderId: id || 'null-id', // TODO: should not be null
                           paymentId:
-                            idx(paymentInfo, _ => _.list[0].paymentId) ||
-                            'null-id', // TODO: should not be null
+                            paymentInfo?.list?.[0]?.paymentId || 'null-id', // TODO: should not be null
                         },
                       ],
                     },

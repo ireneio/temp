@@ -7,7 +7,6 @@ import { getEcfitListQueryPropsType } from './constants';
 import React from 'react';
 import gql from 'graphql-tag';
 import { Popover, Select, Divider, Button } from 'antd';
-import idx from 'idx';
 import { areEqual } from 'fbjs';
 
 import { withTranslation } from '@admin/utils/lib/i18n';
@@ -125,9 +124,9 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
       ...variables,
       filter: {
         ...filter,
-        timeRange: idx(variables, _ => _.filter.timeRange),
-        searchTerm: idx(variables, _ => _.filter.searchTerm),
-        ecfitSentStatus: idx(variables, _ => _.filter.ecfitSentStatus),
+        timeRange: variables?.filter?.timeRange,
+        searchTerm: variables?.filter?.searchTerm,
+        ecfitSentStatus: variables?.filter?.ecfitSentStatus,
       },
     });
   };
@@ -166,7 +165,7 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
                   </span>
 
                   <Select
-                    value={idx(filter, _ => _[optionsKey]) || []}
+                    value={filter?.[optionsKey] || []}
                     onChange={(value?: string[]) =>
                       this.setState({
                         filter: {

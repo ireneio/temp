@@ -15,7 +15,6 @@ import { onError } from 'apollo-link-error';
 import getConfig from 'next/config';
 import Router from 'next/router';
 import { notification } from 'antd';
-import idx from 'idx';
 
 import resolvers, {
   initializeCache,
@@ -123,11 +122,9 @@ const create = (
         headers: !ctx
           ? {}
           : {
-              'x-meepshop-domain': idx(ctx, _ => _.req.headers.host),
-              'x-meepshop-authorization-token': idx(
-                ctx,
-                _ => _.req.cookies['x-meepshop-authorization-token'],
-              ),
+              'x-meepshop-domain': ctx.req.headers.host,
+              'x-meepshop-authorization-token':
+                ctx.req.cookies['x-meepshop-authorization-token'],
             },
       }),
     ]),

@@ -1,6 +1,5 @@
 // import
 import gql from 'graphql-tag';
-import idx from 'idx';
 import moment from 'moment';
 
 import mock from '../mock';
@@ -28,29 +27,29 @@ export default mock.add<
 >('Order', [
   (obj, { orderId }) => ({
     __typename: 'Order',
-    id: orderId || idx(obj, _ => _.node.id) || 'id',
-    orderNo: (orderId || idx(obj, _ => _.node.id) || 'orderNo').slice(0, 8),
+    id: orderId || obj?.node.id || 'id',
+    orderNo: (orderId || obj?.node.id || 'orderNo').slice(0, 8),
     status: 0,
     createdOn: moment().unix(),
   }),
   (obj, { orderId }) => ({
     __typename: 'Order',
-    id: orderId || idx(obj, _ => _.node.id) || 'id',
-    orderNo: (orderId || idx(obj, _ => _.node.id) || 'orderNo').slice(0, 8),
+    id: orderId || obj?.node.id || 'id',
+    orderNo: (orderId || obj?.node.id || 'orderNo').slice(0, 8),
     status: 1,
     createdOn: moment().unix(),
   }),
   (obj, { orderId }) => ({
     __typename: 'Order',
-    id: orderId || idx(obj, _ => _.node.id) || 'id',
-    orderNo: (orderId || idx(obj, _ => _.node.id) || 'orderNo').slice(0, 8),
+    id: orderId || obj?.node.id || 'id',
+    orderNo: (orderId || obj?.node.id || 'orderNo').slice(0, 8),
     status: 2,
     createdOn: moment().unix(),
   }),
   (obj, { orderId }) => ({
     __typename: 'Order',
-    id: orderId || idx(obj, _ => _.node.id) || 'id',
-    orderNo: (orderId || idx(obj, _ => _.node.id) || 'orderNo').slice(0, 8),
+    id: orderId || obj?.node.id || 'id',
+    orderNo: (orderId || obj?.node.id || 'orderNo').slice(0, 8),
     status: 3,
     createdOn: moment().unix(),
   }),
