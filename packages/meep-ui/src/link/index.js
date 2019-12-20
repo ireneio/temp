@@ -38,7 +38,9 @@ export default class Link extends React.PureComponent {
 
     const { goTo, target } = this.props;
     const { host, pathname, query, hash } = new URL(
-      /^#/.test(url) ? `${window.location.pathname}${url}` : url,
+      /^#/.test(url)
+        ? `${window.location.pathname}${window.location.search}${url}`
+        : url,
     );
 
     if (target === '_blank' || host !== window.location.host) return;

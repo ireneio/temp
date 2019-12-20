@@ -77,10 +77,10 @@ export default class ImageText extends React.PureComponent {
 
   generateUrl = () => {
     const { location, files } = this.props;
-    const { pathname } = location;
+    const { pathname, search } = location;
     const { href } = files?.[0] || {};
 
-    if (/^#/.test(href)) return `${pathname}${href}`;
+    if (/^#/.test(href)) return `${pathname}${search}${href}`;
 
     if (href && !/(^\/)|(^http)/.test(href)) return `//${href}`;
 

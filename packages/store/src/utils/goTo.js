@@ -8,41 +8,44 @@ export default ({ pathname, params = {}, back = false }) => {
   if (!back) {
     if (params.hash) {
       if (pathname) {
-        Router.pushRoute(pathname + params.hash);
-      } else {
+        const queryString = Object.keys(params.search || {})
+          .map(
+            (key, index) =>
+              `${index === 0 ? '?' : ''}${key}=${encodeURIComponent(
+                params.search[key],
+              )}`,
+          )
+          .join('&');
+
+        Router.pushRoute(`${pathname}${queryString}${params.hash}`);
+      } else
         Router.pushRoute(
-          window.location.pathname + window.location.search + params.hash,
+          `${window.location.pathname}${window.location.search}${params.hash}`,
         );
-      }
     } else {
       if (pathname == null) throw new Error('pathname is required in goTo');
 
-      let queryString = '';
-      if (params) {
-        const { search } = params;
-        if (search) {
-          queryString = Object.keys(search).reduce((_queryString, key) => {
-            if (_queryString.length === 0) {
-              return `?${key}=${encodeURIComponent(search[key])}`;
-            }
-            return `${_queryString}&${key}=${encodeURIComponent(search[key])}`;
-          }, '');
-        }
-      }
+      const queryString = Object.keys(params.search || {})
+        .map(
+          (key, index) =>
+            `${index === 0 ? '?' : ''}${key}=${encodeURIComponent(
+              params.search[key],
+            )}`,
+        )
+        .join('&');
 
       if (
         window.navigator.userAgent.match(/Instagram/gm) &&
         (pathname === '/' ||
           pathname.includes('/pages') ||
           pathname.includes('/product'))
-      ) {
+      )
         /* Hack for fixing Instagram copy url */
-        window.open(`${window.location.origin}${pathname + queryString}`);
-      } else {
-        Router.pushRoute(pathname + queryString).then(() => {
+        window.open(`${window.location.origin}${pathname}${queryString}`);
+      else
+        Router.pushRoute(`${pathname}${queryString}`).then(() => {
           window.scrollTo(0, 0);
         });
-      }
     }
   } else {
     // for go back from /checkout page
