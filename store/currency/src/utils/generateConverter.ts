@@ -6,25 +6,25 @@ export default (storeCurrency: string, customerCurrency: string) => (
   (transformPrice => {
     switch (customerCurrency) {
       case 'TWD':
-        return `NT$ ${transformPrice.toFixed(0)}`;
+        return `NT$ ${transformPrice.toFixed()}`;
       case 'CNY':
-        return `RMB￥${transformPrice.toFixed(2)}`;
+        return `RMB￥${parseFloat(transformPrice.toFixed(2))}`;
       case 'USD':
-        return `US$ ${transformPrice.toFixed(2)}`;
+        return `US$ ${parseFloat(transformPrice.toFixed(2))}`;
       case 'JPY':
-        return `JPY￥${transformPrice.toFixed(0)}`;
+        return `JPY￥${transformPrice.toFixed()}`;
       case 'EUR':
-        return `€ ${transformPrice.toFixed(2)}`;
+        return `€ ${parseFloat(transformPrice.toFixed(2))}`;
       case 'VND':
-        return `₫ ${transformPrice.toFixed(0)}`;
+        return `₫ ${transformPrice.toFixed()}`;
       case 'KRW':
-        return `₩ ${transformPrice.toFixed(0)}`;
+        return `₩ ${transformPrice.toFixed()}`;
       case 'HKD':
-        return `HK$ ${transformPrice.toFixed(1)}`;
+        return `HK$ ${parseFloat(transformPrice.toFixed(1))}`;
       case 'MYR':
-        return `RM ${transformPrice.toFixed(2)}`;
+        return `RM ${parseFloat(transformPrice.toFixed(2))}`;
       default:
-        return price.toString();
+        return price.toFixed();
     }
   })(
     fx(price)

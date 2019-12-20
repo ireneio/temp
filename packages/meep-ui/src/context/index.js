@@ -9,18 +9,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ONE_OF_CURRENCY_TYPE } from 'constants/propTypes';
-
 import { USER_TYPE, STORE_SETTING_TYPE, LOCATION_TYPE } from './propTypes';
 import { STORE_APP_PLUGINS } from './constant';
 import {
   StoreSettingContext,
   FuncContext,
   LocationContext,
-  CurrencyContext,
   UserContext,
 } from './context';
-import transformCurrency from './utils/transformCurrency';
 
 export contextProvider from './utils/contextProvider';
 
@@ -43,8 +39,6 @@ export default class Context extends React.PureComponent {
     user: USER_TYPE,
     storeSetting: STORE_SETTING_TYPE.isRequired,
     location: LOCATION_TYPE.isRequired,
-    customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
-    storeCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
     storeAppList: PropTypes.arrayOf(
       PropTypes.shape({
         isInstalled: PropTypes.bool.isRequired,
@@ -63,14 +57,7 @@ export default class Context extends React.PureComponent {
   };
 
   render() {
-    const {
-      customerCurrency,
-      storeCurrency,
-      user,
-      storeSetting,
-      location,
-      children,
-    } = this.props;
+    const { user, storeSetting, location, children } = this.props;
 
     return [
       {
@@ -84,13 +71,6 @@ export default class Context extends React.PureComponent {
       {
         ContextProvider: LocationContext.Provider,
         value: { location },
-      },
-      {
-        ContextProvider: CurrencyContext.Provider,
-        value: {
-          customerCurrency,
-          transformCurrency: transformCurrency(storeCurrency, customerCurrency),
-        },
       },
       {
         ContextProvider: UserContext.Provider,

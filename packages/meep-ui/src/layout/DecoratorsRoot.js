@@ -6,7 +6,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { warning } from 'fbjs';
-import fx from 'money';
+
+import generateConverter from '@store/currency/lib/utils/generateConverter';
 
 import {
   COLOR_TYPE,
@@ -38,6 +39,7 @@ export default class DecoratorsRoot extends React.Component {
     isLogin: ISLOGIN_TYPE.isRequired,
     storeSetting: STORE_SETTING_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
+    storeCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
     customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
     location: LOCATION_TYPE.isRequired,
     carts: PropTypes.shape({}).isRequired,
@@ -63,9 +65,6 @@ export default class DecoratorsRoot extends React.Component {
     getApiUrl: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
 
-    /** variables for DecoratorsRoot func */
-    storeCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
-
     /** render */
     children: PropTypes.node.isRequired,
   };
@@ -90,6 +89,7 @@ export default class DecoratorsRoot extends React.Component {
       isLogin,
       storeSetting,
       colors,
+      storeCurrency,
       customerCurrency,
       location,
       carts,
@@ -143,7 +143,7 @@ export default class DecoratorsRoot extends React.Component {
       /** context func from DecoratorsRoot */
       hasStoreAppPlugin: this.hasStoreAppPlugin,
       toggleCart: this.toggleCart,
-      transformCurrency: this.transformCurrency,
+      transformCurrency: generateConverter(storeCurrency, customerCurrency),
     };
   }
 
@@ -167,44 +167,6 @@ export default class DecoratorsRoot extends React.Component {
       isShowCart:
         changeCartStatus !== undefined ? changeCartStatus : !isShowCart,
     });
-  };
-
-  transformCurrency = price => {
-    const { storeCurrency, customerCurrency } = this.props;
-
-    return (transformPrice => {
-      switch (customerCurrency) {
-        case 'TWD':
-          return `NT$ ${transformPrice.toFixed(0)}`;
-        case 'CNY':
-          return `RMB￥${transformPrice.toFixed(2)}`;
-        case 'USD':
-          return `US$ ${transformPrice.toFixed(2)}`;
-        case 'JPY':
-          return `JPY￥${transformPrice.toFixed(0)}`;
-        case 'EUR':
-          return `€ ${transformPrice.toFixed(2)}`;
-        case 'VND':
-          return `₫ ${transformPrice.toFixed(0)}`;
-        case 'KRW':
-          return `₩ ${transformPrice.toFixed(0)}`;
-        case 'HKD':
-          return `HK$ ${transformPrice.toFixed(1)}`;
-        case 'MYR':
-          return `RM ${transformPrice.toFixed(2)}`;
-        /**
-         * ignore reason:
-         * other currency will not pass propTypes
-         */
-        /* istanbul ignore next */
-        default:
-          return price;
-      }
-    })(
-      fx(parseFloat(price))
-        .from(storeCurrency)
-        .to(customerCurrency),
-    ).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
   render() {
