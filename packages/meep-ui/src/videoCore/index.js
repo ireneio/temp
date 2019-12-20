@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 
+import { enhancer } from 'layout/DecoratorsRoot';
 import { CONTENT_WIDTH_TYPE, URL_TYPE } from 'constants/propTypes';
 
 import { ASPECT_TYPE } from './propTypes';
 import { RATIOS, DEFAULT_VIDEO_URL } from './constants';
 import styles from './styles/index.less';
 
+@enhancer
 export default class VideoCore extends React.PureComponent {
   videoCoreRef = React.createRef();
 
@@ -68,7 +70,7 @@ export default class VideoCore extends React.PureComponent {
   };
 
   render() {
-    const { href, contentWidth } = this.props;
+    const { href, contentWidth, fbAppId } = this.props;
     const { height } = this.state;
 
     return (
@@ -78,6 +80,12 @@ export default class VideoCore extends React.PureComponent {
         url={href || DEFAULT_VIDEO_URL}
         width={`${contentWidth}%`}
         height={`${height}px`}
+        config={{
+          facebook: {
+            version: 'v5.0',
+            appId: fbAppId,
+          },
+        }}
         controls
       />
     );

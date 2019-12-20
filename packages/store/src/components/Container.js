@@ -247,7 +247,7 @@ class Container extends React.Component {
       }
     } else {
       // in-app browser
-      window.location.href = `https://www.facebook.com/v3.3/dialog/oauth?client_id=${fbAppId}&redirect_uri=https://${window.meepShopStore.XMeepshopDomain}/fbAuthForLine&scope=email&state=meepShopNextStore${from}`;
+      window.location.href = `https://www.facebook.com/v5.0/dialog/oauth?client_id=${fbAppId}&redirect_uri=https://${window.meepShopStore.XMeepshopDomain}/fbAuthForLine&scope=email&state=meepShopNextStore${from}`;
     }
   };
 
@@ -264,6 +264,7 @@ class Container extends React.Component {
       storeAppList,
       storeSetting,
       experiment,
+      fbAppId,
       /* may change */
       isLogin,
       user,
@@ -298,6 +299,7 @@ class Container extends React.Component {
           storeAppList={storeAppList}
           storeSetting={storeSetting}
           experiment={experiment}
+          fbAppId={fbAppId}
           /* may change */
           isLogin={isLogin}
           user={user}
