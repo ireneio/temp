@@ -40,32 +40,21 @@ export default class UserInfo extends React.PureComponent {
     this.isUnmounted = true;
   }
 
-  checkUserEmail = async ({ target }) => {
+  checkUserEmail = async (rule, value, callback) => {
     const {
       /** context */
       getData,
 
       /** props */
       t,
-      form,
     } = this.props;
-    const { getFieldError, setFields } = form;
 
-    if (getFieldError('userEmail')) return;
-
-    const { value: email } = target;
-    const result = await getData(CHECK_USER_EMAIL, { email });
+    const result = await getData(CHECK_USER_EMAIL, { email: value });
 
     if (this.isUnmounted) return;
 
-    if (result?.data?.checkUserInfo.exists) {
-      setFields({
-        userEmail: {
-          value: email,
-          errors: [new Error(t('is-register'))],
-        },
-      });
-    }
+    if (result?.data?.checkUserInfo.exists) callback(t('is-register'));
+    else callback();
   };
 
   render() {
@@ -88,6 +77,7 @@ export default class UserInfo extends React.PureComponent {
             <FormItem style={formItemStyle}>
               {getFieldDecorator('userEmail', {
                 validateTrigger: 'onBlur',
+                validateFirst: true,
                 rules: [
                   {
                     required: true,
@@ -100,10 +90,11 @@ export default class UserInfo extends React.PureComponent {
                       else callback();
                     },
                   },
+                  {
+                    validator: this.checkUserEmail,
+                  },
                 ],
-              })(
-                <Input placeholder={t('email')} onBlur={this.checkUserEmail} />,
-              )}
+              })(<Input placeholder={t('email')} />)}
             </FormItem>
 
             <FormItem style={formItemStyle}>

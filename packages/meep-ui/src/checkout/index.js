@@ -171,6 +171,8 @@ export default class Checkout extends React.PureComponent {
       this.idempotentKey = uuid();
       this.setState({ isSubmitting: false });
     } else {
+      if (global.window) window.sessionStorage.clear();
+
       const nextStep = (firstPurchase = false) => {
         if (this.isUnmounted) return;
 

@@ -11,6 +11,7 @@ import withReduxSaga from 'next-redux-saga';
 import { ApolloProvider } from '@apollo/react-components';
 import NProgress from 'nprogress';
 import { notification } from 'antd';
+import moment from 'moment';
 
 import { appWithTranslation } from '@store/utils/lib/i18n';
 import { CurrencyProvider } from '@store/currency';
@@ -166,6 +167,11 @@ class MyApp extends App {
       window.storeCurrentOffset = window.storePreviousOffset;
       return true;
     });
+    this.checkSession();
+  }
+
+  componentDidUpdate() {
+    this.checkSession();
   }
 
   componentDidCatch(error, errorInfo) {
@@ -176,6 +182,24 @@ class MyApp extends App {
       stack: errorInfo,
     });
   }
+
+  checkSession = () => {
+    const expiresAt = window.sessionStorage.getItem('expiresAt');
+
+    if (!expiresAt) return;
+
+    const timestamp = moment().unix();
+
+    if (expiresAt <= timestamp) {
+      window.sessionStorage.clear();
+      return;
+    }
+
+    if (!window.preservedInfoTimer)
+      window.preservedInfoTimer = setTimeout(() => {
+        window.sessionStorage.clear();
+      }, (expiresAt - timestamp) * 1000);
+  };
 
   render() {
     const {

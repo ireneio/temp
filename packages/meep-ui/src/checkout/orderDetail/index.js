@@ -20,12 +20,14 @@ import getComputeOrderQuery from 'utils/getComputeOrderQuery';
 import PaymentDefaultFormItem from 'paymentDefaultFormItem';
 
 import StepHeader from '../StepHeader';
+import { PRESERVED_FIELDS, DEFERRED_FIELDS } from '../constants';
 
 import UserInfo from './UserInfo';
 import ReceiverInfo from './ReceiverInfo';
 import ProductList from './ProductList';
 
 import styles from './styles/index.less';
+import { resetTimer } from './utils';
 import { modifyAntdStyle, formItem as formItemStyle } from './styles';
 
 const { Item: FormItem } = Form;
@@ -53,17 +55,17 @@ const { Item: FormItem } = Form;
       {},
     );
   },
-  onFieldsChange: ({ onChange }, _, allValues) => {
+  onFieldsChange: ({ onChange }, changedFields, allFields) => {
     onChange(
-      Object.keys(allValues).reduce(
+      Object.keys(allFields).reduce(
         (result, key) => ({
           orderInfo: {
             ...result.orderInfo,
-            [key]: allValues[key].value,
+            [key]: allFields[key].value,
           },
           errors: {
             ...result.errors,
-            [key]: allValues[key].errors,
+            [key]: allFields[key].errors,
           },
         }),
         {
@@ -72,6 +74,17 @@ const { Item: FormItem } = Form;
         },
       ),
     );
+  },
+  onValuesChange: (_, changedValues, allValues) => {
+    if (!global.window) return;
+
+    PRESERVED_FIELDS.forEach(field => {
+      if (allValues[field]) {
+        window.sessionStorage.setItem(field, allValues[field]);
+      }
+    });
+
+    resetTimer();
   },
 })
 @withTranslation('checkout')
@@ -158,6 +171,7 @@ export default class OrderDetail extends React.PureComponent {
 
   componentDidMount() {
     this.computeOrderList();
+    this.restoreInfo();
   }
 
   componentDidUpdate() {
@@ -309,6 +323,42 @@ export default class OrderDetail extends React.PureComponent {
         }
       },
     );
+  };
+
+  restoreInfo = () => {
+    if (!global.window) return;
+
+    const { form } = this.props;
+
+    const preservedInfo = PRESERVED_FIELDS.reduce((values, field) => {
+      let value = window.sessionStorage.getItem(field);
+
+      if (!value && value !== 0) return values;
+
+      if (field === 'address' || field === 'invoice') value = value.split(',');
+
+      return {
+        ...values,
+        [field]: value,
+      };
+    }, {});
+
+    if (Object.keys(preservedInfo).length !== 0)
+      form.setFieldsValue(preservedInfo, () => {
+        const deferredInfo = DEFERRED_FIELDS.reduce((values, field) => {
+          const value = window.sessionStorage.getItem(field);
+
+          if (!value && value !== 0) return values;
+
+          return {
+            ...values,
+            [field]: value,
+          };
+        }, {});
+
+        if (Object.keys(deferredInfo).length !== 0)
+          form.setFieldsValue(deferredInfo, resetTimer);
+      });
   };
 
   render() {

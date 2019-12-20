@@ -9,6 +9,7 @@ export default async function() {
   if (res.status < 400) {
     // FIXME: should signout with apollo
     client().resetStore();
+    window.sessionStorage.clear();
     return true;
   }
 
