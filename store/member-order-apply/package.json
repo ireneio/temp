@@ -4,11 +4,11 @@
   "description": "member order apply form",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.30.1",
+  "version": "0.30.6",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@store/apollo-client-resolvers": "^0.30.1",
+    "@store/apollo-client-resolvers": "^0.30.6",
     "@store/thumbnail": "^0.30.0",
     "@store/utils": "^0.30.0",
     "color": "^3.0.0",
