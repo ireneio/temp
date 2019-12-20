@@ -74,7 +74,6 @@ class MemberSettings extends React.PureComponent<PropsType> {
 
       // props
       dispatchAction,
-      viewer: { id },
     } = this.props;
 
     validateFieldsAndScroll((err, values) => {
@@ -97,7 +96,6 @@ class MemberSettings extends React.PureComponent<PropsType> {
       // TODO: update apollo cache after removing redux
       dispatchAction('updateUser', {
         user: {
-          id,
           name,
           gender,
           birthday: !birthday

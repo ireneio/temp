@@ -1,18 +1,17 @@
 import postGraphql from 'utils/postGraphql';
-import { userQuery } from './query';
 
 export default async function(user) {
   const variables = {
-    keys: '$updateUserList: [UpdateUser]',
-    type: 'mutation UpdateUserList',
+    keys: '$input: UpdateShopperInfoInput!',
+    type: 'mutation updateShopperInformation',
     values: {
-      updateUserList: [user],
+      input: user,
     },
   };
 
   const query = `
-    updateUserList(updateUserList: $updateUserList) {
-      ${userQuery}
+    updateShopperInformation(input: $input) {
+      status
     }
   `;
   const response = await postGraphql({

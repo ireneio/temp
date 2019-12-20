@@ -414,12 +414,27 @@ export const updateUserFailure = () => ({
 });
 
 function* updateUserFlow({ payload }) {
-  try {
-    const data = yield call(Api.updateUser, payload);
+  const {
+    memberReducer: { user },
+  } = yield select();
 
-    if (data) {
-      yield put(updateUserSuccess(data));
+  try {
+    const {
+      data: {
+        updateShopperInformation: { status },
+      },
+    } = yield call(Api.updateUser, payload);
+
+    if (status === 'OK') {
+      yield put(
+        updateUserSuccess({
+          ...user,
+          ...payload,
+        }),
+      );
       notification.success({ message: i18n.t('ducks:update-user-success') });
+    } else {
+      throw Error(status);
     }
   } catch (error) {
     yield put(updateUserFailure());
@@ -506,30 +521,24 @@ function* addRecipientAddressFlow({ payload }) {
 
       yield put(
         updateUserSuccess({
-          data: {
-            updateUserList: [
-              {
-                ...user,
-                recipientData: [
-                  ...user.recipientData,
-                  {
-                    id: recipientAddressId,
-                    name,
-                    mobile,
-                    address: {
-                      postalCode: zipCode,
-                      yahooCode: {
-                        country,
-                        city,
-                        county,
-                        street,
-                      },
-                    },
-                  },
-                ],
+          ...user,
+          recipientData: [
+            ...user.recipientData,
+            {
+              id: recipientAddressId,
+              name,
+              mobile,
+              address: {
+                postalCode: zipCode,
+                yahooCode: {
+                  country,
+                  city,
+                  county,
+                  street,
+                },
               },
-            ],
-          },
+            },
+          ],
         }),
       );
     }
@@ -638,14 +647,8 @@ function* updateRecipientAddressFlow({
 
       yield put(
         updateUserSuccess({
-          data: {
-            updateUserList: [
-              {
-                ...user,
-                recipientData,
-              },
-            ],
-          },
+          ...user,
+          recipientData,
         }),
       );
     }
@@ -688,16 +691,10 @@ function* deleteRecipientAddressFlow({
     if (status === 'OK')
       yield put(
         updateUserSuccess({
-          data: {
-            updateUserList: [
-              {
-                ...user,
-                recipientData: user.recipientData.filter(
-                  (_, index) => recipientIndexForRedux !== index,
-                ),
-              },
-            ],
-          },
+          ...user,
+          recipientData: user.recipientData.filter(
+            (_, index) => recipientIndexForRedux !== index,
+          ),
         }),
       );
   } catch (error) {
@@ -1337,10 +1334,9 @@ export default function(state = initialState, { type, payload }) {
       };
     }
     case UPDATE_USER_SUCCESS: {
-      const user = payload?.data?.updateUserList?.[0];
       return {
         ...state,
-        user: getUser(user),
+        user: getUser(payload),
         loading: false,
         loadingTip: '',
       };
