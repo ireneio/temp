@@ -1,5 +1,41 @@
 # CHANGELOG
 
+## 0.30.6 (2019-12-20)
+
+#### :boom: Breaking Change
+
+- `mock-types`
+  - [#802](https://github.com/meepshop/meep-lerna/pull/802) (@meepshop/front-end) Remove idx ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `store`
+  - [#811](https://github.com/meepshop/meep-lerna/pull/811) 前端 - 前台更新會員資料改用新 API ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`, `store`
+  - [#775](https://github.com/meepshop/meep-lerna/pull/775) 【優化】 返回上一頁 - 保留結帳頁已填的會員＆收件者資料 ([@piovischioh](https://github.com/piovischioh))
+- `mock-types`
+  - [#802](https://github.com/meepshop/meep-lerna/pull/802) (@meepshop/front-end) Remove idx ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#813](https://github.com/meepshop/meep-lerna/pull/813) 【BUG】 獨立商品頁 - 頁面連結若有使用「頁面群組」，預覽頁面 404 問題 ([@HsuTing](https://github.com/HsuTing))
+  - [#779](https://github.com/meepshop/meep-lerna/pull/779) 【優化】修補影片元件 ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`
+  - [#807](https://github.com/meepshop/meep-lerna/pull/807) 【優化】幣值顯示格式 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `store`
+  - [#811](https://github.com/meepshop/meep-lerna/pull/811) 前端 - 前台更新會員資料改用新 API ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`
+  - [#807](https://github.com/meepshop/meep-lerna/pull/807) 【優化】幣值顯示格式 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.30.5 (2019-12-17)
 
 #### :bug: Bug Fix
