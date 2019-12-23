@@ -22,6 +22,11 @@ const nextI18next = new NextI18Next({
   returnNull: false,
 });
 
-export const { withTranslation, appWithTranslation, i18n } = nextI18next;
+export const {
+  withTranslation,
+  appWithTranslation,
+  i18n,
+  useTranslation,
+} = nextI18next;
 
 export default nextI18next;

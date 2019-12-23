@@ -34,6 +34,7 @@ const MockData = React.memo(
             }
             overlayClassName={styles.tooltip}
             title={JSON.stringify(mockData({}, {}), null, 2)}
+            autoAdjustOverflow={false}
             placement="bottom"
           >
             <Button

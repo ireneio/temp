@@ -12,6 +12,8 @@ require('output-file-sync')(
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { I18nextProvider } from 'react-i18next';
+import nextI18next from 'next-i18next';
 
 import '${
     /@admin/.test(name) ? '@admin' : '@store'
@@ -29,40 +31,28 @@ import Provider from '@meepshop/mock-types/src/${
 ${(() => {
   if (fs.existsSync(path.resolve('./mock.ts')))
     return `import Component from '${path.resolve(main)}';
-import props from '${path.resolve('./mock.ts')}';
-
-storiesOf('${name}', module)
-  .add('demo', () => (
-    <MockTypes {...resolvers}>
-      <Provider>
-        <Component {...props} />
-      </Provider>
-    </MockTypes>
-  ));`;
+import props from '${path.resolve('./mock.ts')}';`;
 
   if (fs.existsSync(path.resolve('./mock.tsx')))
     return `import Component from '${path.resolve('./mock.tsx')}';
 
-storiesOf('${name}', module)
-  .add('demo', () => (
-    <MockTypes {...resolvers}>
-      <Provider>
-        <Component />
-      </Provider>
-    </MockTypes>
-  ));`;
+const props = {}`;
 
   return `import Component from '${path.resolve(main)}';
 
+const props = {}`;
+})()}
+
 storiesOf('${name}', module)
   .add('demo', () => (
-    <MockTypes {...resolvers}>
-      <Provider>
-        <Component />
-      </Provider>
-    </MockTypes>
-  ));`;
-})()}`,
+    <I18nextProvider i18n={nextI18next.i18n}>
+      <MockTypes {...resolvers}>
+        <Provider>
+          <Component />
+        </Provider>
+      </MockTypes>
+    </I18nextProvider>
+  ));`,
 );
 
 process.env.STORYBOOK_NEXT_I18NEXT_PARENT_MODULE_FILENAME = /@admin/.test(name)
