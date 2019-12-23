@@ -48,9 +48,6 @@ import {
   addToNotificationList,
   addToNotificationListSuccess,
   addToNotificationListFailure,
-  getOrder,
-  getOrderSuccess,
-  getOrderFailure,
   resetPassword,
   resetPasswordSuccess,
   resetPasswordFailure,
@@ -152,10 +149,6 @@ export {
   addToNotificationList,
   addToNotificationListSuccess,
   addToNotificationListFailure,
-  // get order
-  getOrder,
-  getOrderSuccess,
-  getOrderFailure,
   // change password
   changePassword,
   // pay notify

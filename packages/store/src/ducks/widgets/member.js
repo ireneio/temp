@@ -879,46 +879,6 @@ export function* watchAddToNotificationListFlow() {
   );
 }
 
-/* ************************************ 取得訂單 ************************************ */
-const GET_ORDER_REQUEST = 'GET_ORDER_REQUEST';
-const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
-const GET_ORDER_FAILURE = 'GET_ORDER_FAILURE';
-
-export const getOrder = payload => ({
-  type: GET_ORDER_REQUEST,
-  payload,
-});
-export const getOrderSuccess = payload => ({
-  type: GET_ORDER_SUCCESS,
-  payload,
-});
-export const getOrderFailure = () => ({
-  type: GET_ORDER_FAILURE,
-});
-
-function* getOrderFlow({ payload }) {
-  try {
-    const {
-      memberReducer: { orders },
-    } = yield select();
-
-    if (!orders.find(order => order.id === payload.orderId)) {
-      const data = yield call(Api.getOrder, payload);
-
-      if (data) yield put(getOrderSuccess(data));
-    }
-  } catch (error) {
-    yield put(getOrderFailure());
-    notification.error({
-      message: i18n.t('ducks:get-order-failure-message'),
-      description: error.message,
-    });
-  }
-}
-export function* watchGetOrderFlow() {
-  yield takeEvery(GET_ORDER_REQUEST, getOrderFlow);
-}
-
 /* ************************************ 重置密碼 ************************************ */
 const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
 const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
@@ -1132,7 +1092,6 @@ const getMemberData = payload => {
 
   const stockNotificationList = data?.getStockNotificationList?.data || [];
   const orderApply = data?.getOrderApplyList?.data || [];
-  const orders = data?.getOrderList?.data || [];
   const userPoints = data?.getValidUserPointList?.data || [];
 
   return {
@@ -1142,7 +1101,6 @@ const getMemberData = payload => {
     wishList,
     currentBalance,
     stockNotificationList,
-    orders,
     orderApply,
     userPoints,
     loading: false,
@@ -1459,20 +1417,6 @@ export default function(state = initialState, { type, payload }) {
         loading: false,
         loadingTip: '',
       };
-    }
-    case GET_ORDER_REQUEST: {
-      return state;
-    }
-    case GET_ORDER_SUCCESS: {
-      const order = payload?.data?.getOrderList?.data;
-      if (!order) throw new Error('no order data');
-      return {
-        ...state,
-        orders: order.concat(state.orders),
-      };
-    }
-    case GET_ORDER_FAILURE: {
-      return state;
     }
     case RESET_PASSWORD_REQUEST: {
       return {

@@ -7,7 +7,6 @@ import {
   colorQuery,
   activityQuery,
   cartQuery,
-  orderQuery,
   pointsQuery,
   orderApplyQuery,
   webTrackQuery,
@@ -17,7 +16,7 @@ import {
 export default async function(context) {
   const variables = {
     keys:
-      '$menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverOthersInitial',
     values: {
       menuSearch: {
@@ -114,25 +113,6 @@ export default async function(context) {
         showDetail: true,
       },
       notificationSearch: {},
-      orderSearch: {
-        size: 100,
-        filter: {
-          not: [
-            {
-              type: 'exact',
-              field: 'move_house',
-              query: '0',
-            },
-          ],
-        },
-        sort: [
-          {
-            field: 'createdOn',
-            order: 'desc',
-          },
-        ],
-        showMainFile: true,
-      },
       orderApplySearch: {
         size: 100,
         sort: [
@@ -231,10 +211,6 @@ export default async function(context) {
       data {
         ${stockNotificationQuery}
       }
-    }
-    getOrderList(search: $orderSearch) {
-      data ${orderQuery}
-      total
     }
     getOrderApplyList(search: $orderApplySearch) {
       data {

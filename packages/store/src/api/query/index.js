@@ -8,7 +8,6 @@ import cartQuery from './cart.query';
 import productQuery from './product.query';
 import wishListQuery from './wishList.query';
 import computeOrderQuery from './computeOrder.query';
-import orderQuery from './order.query';
 import userQuery from './user.query';
 import pointsQuery from './points.query';
 import orderApplyQuery from './orderApply.query';
@@ -29,7 +28,6 @@ export {
   productQuery,
   wishListQuery,
   computeOrderQuery,
-  orderQuery,
   userQuery,
   pointsQuery,
   orderApplyQuery,

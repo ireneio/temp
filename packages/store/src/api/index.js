@@ -30,7 +30,6 @@ import createOrderApply from './createOrderApply.api';
 import addOrderMessage from './addOrderMessage.api';
 import updateWishList from './updateWishList.api';
 import updateStockNotificationList from './updateStockNotificationList.api';
-import getOrder from './getOrder.api';
 import sendPaymentNotification from './sendPaymentNotification.api';
 
 import addRecipientAddress from './addRecipientAddress.api';
@@ -59,7 +58,6 @@ export {
   addOrderMessage,
   updateWishList,
   updateStockNotificationList,
-  getOrder,
   getTrackingCode,
   changePassword,
   sendPaymentNotification,

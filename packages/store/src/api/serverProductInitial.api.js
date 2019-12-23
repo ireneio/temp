@@ -8,7 +8,6 @@ import {
   colorQuery,
   activityQuery,
   cartQuery,
-  orderQuery,
   pointsQuery,
   orderApplyQuery,
   webTrackQuery,
@@ -22,7 +21,7 @@ export default async function(context) {
   if (!pId) throw new Error('Product id is not defined.');
   const variables = {
     keys:
-      '$productSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$productSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverProductInitial',
     values: {
       productSearch: {
@@ -140,25 +139,6 @@ export default async function(context) {
         showDetail: true,
       },
       notificationSearch: {},
-      orderSearch: {
-        size: 100,
-        filter: {
-          not: [
-            {
-              type: 'exact',
-              field: 'move_house',
-              query: '0',
-            },
-          ],
-        },
-        sort: [
-          {
-            field: 'createdOn',
-            order: 'desc',
-          },
-        ],
-        showMainFile: true,
-      },
       orderApplySearch: {
         size: 100,
         sort: [
@@ -257,10 +237,6 @@ export default async function(context) {
       data {
         ${stockNotificationQuery}
       }
-    }
-    getOrderList(search: $orderSearch) {
-      data ${orderQuery}
-      total
     }
     getOrderApplyList(search: $orderApplySearch) {
       data {
