@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.30.7 (2019-12-23)
+
+#### :house: Internal
+
+- `store`
+  - [#806](https://github.com/meepshop/meep-lerna/pull/806) remove getOrderList ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.30.6 (2019-12-20)
 
 #### :boom: Breaking Change
