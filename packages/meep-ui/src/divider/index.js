@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { phoneMedia } from '@store/utils/lib/styles';
+
 import {
   ID_TYPE,
   COLOR_TYPE,
@@ -55,7 +57,7 @@ export default class Divider extends React.PureComponent {
                 height: ${height}px;
               }
 
-              @media ${styles.phoneMedia} {
+              @media ${phoneMedia} {
                 #divider-${id} > div {
                   height: ${height / 2}px;
                 }

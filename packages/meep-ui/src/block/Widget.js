@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { warning } from 'fbjs';
 import radium, { StyleRoot } from 'radium';
 
+import { phoneMedia } from '@store/utils/lib/styles';
+
 import { WIDGETSETTING_TYPE } from './constants';
 import modules from './modules';
-import * as styles from './styles/widget';
+
+import styles from './styles/widget.less';
 
 /**
  * odd level to vertical layout
@@ -41,14 +44,14 @@ export default class Widget extends React.PureComponent {
   };
 
   render() {
-    const { module, widgets, widgetSetting, ...props } = this.props;
+    const { module, widgets, widgetSetting, id, ...props } = this.props;
 
     warning(
       widgets || (!widgets && module),
       'If `widgets` of the `Widget` is `null`, `module` can not be `null.`',
     );
 
-    const { level } = widgetSetting;
+    const { padding, level, componentWidth } = widgetSetting;
     const Component = module ? modules[module] : null;
 
     const hasVisibleModule = Boolean(Component) && module !== 'viewTracking';
@@ -58,18 +61,46 @@ export default class Widget extends React.PureComponent {
         ref={node => {
           this.widget = node;
         }}
-        style={styles.root(widgetSetting)}
+        className={styles.root}
+        style={
+          level === 1
+            ? {
+                display: 'flex',
+                flexWrap: 'wrap',
+                flexShrink: 0,
+                alignItems: 'flex-start',
+                minWidth: `${componentWidth}px`,
+              }
+            : {
+                display: level % 2 ? 'flex' : 'block',
+                flex: `1 1 ${componentWidth}px`,
+              }
+        }
       >
         {Component ? (
-          <div style={styles.wrapper(widgetSetting, hasVisibleModule)}>
-            <Component {...props} />
+          <div id={`wrapper-${id}`} className={styles.wrapper}>
+            <style
+              dangerouslySetInnerHTML={{
+                __html: `
+                  #wrapper-${id} {
+                    padding: ${hasVisibleModule ? padding / 2 : 0}px;
+                  }
+                  @media ${phoneMedia} {
+                    #wrapper-${id} {
+                      padding: ${hasVisibleModule ? padding / 4 : 0}px;
+                    }
+                  }
+                `,
+              }}
+            />
+            <Component id={id} {...props} />
           </div>
         ) : (
-          widgets.map(({ id, ...data }, index) => (
+          widgets.map(({ id: widgetId, ...data }, index) => (
             <Widget
               {...data}
-              key={id || `${level}-${index}`}
-              id={id}
+              key={widgetId || `${level}-${index}`}
+              id={widgetId}
               widgetSetting={{
                 ...widgetSetting,
                 level: level + 1,

@@ -2,11 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 
+import { phoneMedia } from '@store/utils/lib/styles';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 
 import Widget from './Widget';
 import { BLOCKS_TYPE } from './constants';
-import * as styles from './styles';
+
+import styles from './styles/index.less';
 
 @enhancer
 @radium
@@ -24,13 +27,34 @@ export default class Block extends React.PureComponent {
     const { width: maxWidth, blocks } = this.props;
 
     return (
-      <div style={styles.root(maxWidth)}>
+      <div
+        className={styles.root}
+        style={{ maxWidth: !maxWidth ? '100%' : `${maxWidth}px` }}
+      >
         {blocks.map(({ id, widgets, width, componentWidth, padding }) => (
           <div
             key={id}
             id={`block-${id}`}
-            style={styles.block(width, componentWidth, padding)}
+            className={styles.block}
+            style={{
+              width: `${width || 100}%`,
+              minWidth: `${componentWidth}px`,
+            }}
           >
+            <style
+              dangerouslySetInnerHTML={{
+                __html: `
+                  #block-${id} {
+                    padding: ${padding / 2}px;
+                  }
+                  @media ${phoneMedia} {
+                    #block-${id} {
+                      padding: ${padding / 4}px;
+                    }
+                  }
+                `,
+              }}
+            />
             {(widgets || []).map(({ id: widgetId, ...data }, index) => (
               <Widget
                 {...data}
