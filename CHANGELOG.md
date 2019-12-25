@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.31.0 (2019-12-25)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#812](https://github.com/meepshop/meep-lerna/pull/812) 【功能】 新增新架構前後台語系：大量翻譯 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`, `store`
+  - [#812](https://github.com/meepshop/meep-lerna/pull/812) 【功能】 新增新架構前後台語系：大量翻譯 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#804](https://github.com/meepshop/meep-lerna/pull/804) 【優化】移除假擴充功能 - 前端 ([@happycat6323](https://github.com/happycat6323))
+  - [#805](https://github.com/meepshop/meep-lerna/pull/805) D&D 群組 - 電腦、手機版間距優化 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- [#816](https://github.com/meepshop/meep-lerna/pull/816) 產生所有語系 csv 檔案 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.30.7 (2019-12-23)
 
 #### :house: Internal
