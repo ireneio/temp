@@ -1,0 +1,16 @@
+{
+  "selections": "Nuestros favoritos",
+  "oldest": "De lo viejo a lo nuevo",
+  "latest": "Nuevo en",
+  "title": "nombre del producto",
+  "price-asc": "Precio bajo - alto",
+  "price-desc": "Precio alto - bajo",
+  "list-price": "Precio de lista",
+  "suggested-price": "MSRP",
+  "member-see-price": "Precio exclusivo para miembros",
+  "add-to-cart": "añadir a la cesta",
+  "sold-out": "Agotado",
+  "prev-page": "atrás",
+  "next-page": "Próxima",
+  "modal-title": "Por favor, elija las especificaciones."
+}

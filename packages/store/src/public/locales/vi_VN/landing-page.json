@@ -13,7 +13,7 @@
   "send-success": "Đã gửi đến hộp thư",
   "receiver-info": "Thông tin người nhận",
   "receiver": "Tên",
-  "allpay-name-too-long": null,
+  "allpay-name-too-long": "Tiếng Trung nên là 2-5 ký tự / tiếng Anh nên là 4-10 ký tự. Vui lòng không sử dụng ký hiệu / số hoặc để trống",
   "gender": "Giới tính",
   "male": "Nam",
   "female": "Nữ",
@@ -30,5 +30,5 @@
   "payment-fee": "Phí giao dịch",
   "shipment-fee": "Phí vận chuyển",
   "total": "Tổng tiêu thụ",
-  "no-variant": null
+  "no-variant": "Đang chờ bổ sung"
 }

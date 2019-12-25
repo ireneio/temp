@@ -1,0 +1,138 @@
+{
+  "title": "Quản lý đơn hàng ECFIT",
+  "status": {
+    "NOT_SENT": "Chưa có",
+    "SENT_SUCCESSFUL": "Gởi",
+    "SENT_FAILED": "Gửi thất bại"
+  },
+  "change": "Thay đổi",
+  "change-status": {
+    "title": "Thay đổi trạng thái",
+    "paymentStatusList": "Tình trạng thanh toán",
+    "shipmentStatusList": "Tình trạng giao hàng",
+    "orderStatusList": "Tình trạng đặt hàng",
+    "choose": "Xin hãy lựa chọn",
+    "cancel": "Hủy bỏ",
+    "confirm": "Xác nhận",
+    "error": {
+      "title": "Thay đổi trạng thái không thành công",
+      "description": "{{status}} thay đổi cho {{amount}} của đơn hàng không thành công"
+    },
+    "success": {
+      "title": "Thay đổi trạng thái thành công",
+      "description": "{{status}} cho {{amount}} đơn hàng được cập nhật thành \"{{newStatus}}\""
+    },
+    "order-change": {
+      "cancel": {
+        "title": "Chú ý! Đơn hàng bị hủy không thể được phục hồi",
+        "description": "Một đơn đặt hàng bị hủy không còn có thể được chỉnh sửa và sẽ không được bao gồm trong thống kê doanh thu, bán hàng và tiếp thị. Bạn có chắc là muốn hủy bỏ?"
+      },
+      "closed": {
+        "title": "Chú ý! Đơn hàng đã đóng không thể rút lại",
+        "description": "Thông tin về một đơn hàng đã đóng không còn có thể thay đổi (bao gồm cả trả về). Bạn có chắc chắn muốn đóng vụ án?"
+      }
+    }
+  },
+  "more-operating": {
+    "title": "Nhiêu hanh động hơn",
+    "export": "Xuất khẩu",
+    "print": "In"
+  },
+  "filter": {
+    "advanced-search": "Tìm kiếm nâng cao",
+    "searchTerm": "Tìm kiếm từ khóa",
+    "reset": "Tìm kiếm rõ ràng"
+  },
+  "orderStatusList": {
+    "PROCESSING": "Chế biến",
+    "CANCELED": "Hủy đơn hàng",
+    "RETURN": "Trả lại và hoàn trả",
+    "CLOSED": "Đơn hàng đã đóng"
+  },
+  "paymentStatusList": {
+    "WAITING": "Đang chờ xác nhận",
+    "NOTIFICATED": "Thông báo thanh toán",
+    "RECONCILED": "Hòa giải hoàn thành",
+    "DATA_ERROR": "Thông tin không chính xác",
+    "FAILED": "Thanh toán không thành công",
+    "REFUND": "Hoàn tiền"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "Không vận chuyển",
+    "PREPARING": "Chuẩn bị cho chuyến hàng",
+    "OUT_OF_STOCK": "Hết hàng",
+    "SHIPPED": "Vận chuyển",
+    "PRE_ORDER": "Đặt hàng trước",
+    "EXCHANGE": "Trở về",
+    "RETURN": "Xử lý hoàn trả"
+  },
+  "advanced-search": {
+    "pre-placeholder": "Xin hãy lựa chọn",
+    "orderStatusList-title": "Tình trạng đặt hàng",
+    "paymentStatusList-title": "Tình trạng thanh toán",
+    "paymentIdList-title": "Phương thức thanh toán",
+    "shipmentStatusList-title": "Tình trạng giao hàng",
+    "shipmentIdList-title": "Phương pháp vận chuyển",
+    "reset": "Cài lại",
+    "filter": "Bộ lọc"
+  },
+  "send": "Gửi đơn hàng đến ECFIT",
+  "orders": {
+    "order-no": "Số thứ tự",
+    "shipment-name": "Phương pháp vận chuyển",
+    "payment-status": "Tình trạng thanh toán",
+    "shipment-status": "Tình trạng giao hàng",
+    "order-status": "Tình trạng đặt hàng",
+    "recipient": "Người nhận",
+    "amount": "Số tiền",
+    "create-on": "Thiết lập thời gian",
+    "send-time": "Thời gian giao hàng",
+    "fail-reason": "Lý do thất bại"
+  },
+  "empty-orders": "Thông tin đặt hàng không tìm thấy",
+  "fail-reason": {
+    "FAIL_TIMEOUT": "Hết giờ",
+    "FAIL_UNKNOWN_ECFIT_ERROR_CODE": "Lỗi ECFIT không xác định",
+    "FAIL_01_FIELD_ORDER_NO_BLANK": "Số thứ tự trống",
+    "FAIL_02_FIELD_INVOICED_BLANK": "Để ô hóa đơn trống?",
+    "FAIL_03_FIELD_BAN_WRONG": "Số GUI của người mua không chính xác",
+    "FAIL_04_FIELD_NPO_WRONG": "Mã quyên góp không chính xác",
+    "FAIL_05_BAN_NOT_ALLOWED_WHEN_NPO_FILLED": "Số GUI của người mua không thể được đưa vào hóa đơn quyên góp",
+    "FAIL_06_FIELD_DEMAND_CANNOT_BE_Y_WHEN_NPO_FILLED": "Hóa đơn đóng góp không thể được yêu cầu",
+    "FAIL_07_INCOMPLETE_CUSTOMER_INFO": "Thiếu thông tin người tiêu dùng",
+    "FAIL_08_BLANK_ORDER_PRODUCT_OR_PRODUCT_QUANTITY_ZERO": "Ô mục trống hoặc số lượng sản phẩm là 0",
+    "FAIL_09_FIELD_AMOUNT_WRONG": "Số tiền không chính xác (không thể khớp với giá sản phẩm)",
+    "FAIL_10_UNKNOWN_ERROR": "Vấn đề không xác định",
+    "FAIL_11_ORDER_NOT_FOUND": "Đơn hàng không tồn tại",
+    "FAIL_12_FIELD_ARRIVE_LESS_THAN_NOW": "Ngày giao hàng dự kiến đã hết hạn",
+    "FAIL_13_DUPLICATE_ORDER_NO": "Số thứ tự trùng lặp",
+    "FAIL_14_WRONG_PRODUCT_BARCODE": "Mã vạch không chính xác",
+    "FAIL_15_FIELD_LOGISTICS_ID_WRONG": "Tên giao hàng không chính xác",
+    "FAIL_16_PRODUCT_NOT_FOUND": "Thông tin sản phẩm không tồn tại",
+    "FAIL_17_FIELD_ARRIVE_TYPE_WRONG": "Không tìm thấy thời gian giao hàng tương ứng",
+    "FAIL_18_FILED_CREDIT_NO_WRONG": "4 chữ số cuối cùng trên thẻ tín dụng không chính xác",
+    "FAIL_19_BUYER_REQUIRED_WHEN_FIELD_INVOICED_IS_Y": "Thông tin người mua không được cung cấp",
+    "FAIL_20_NO_BUYER_WHEN_FIELD_INVOICED_IS_N": "Hóa đơn điện tử ECFIT không được sử dụng, do đó không cần thông tin người mua",
+    "FAIL_21_FIELD_EMAIL_FORMAT_ERROR": "Định dạng email không chính xác",
+    "FAIL_22_FIELD_TAX_TYPE_WRONG": "Danh mục thuế không chính xác",
+    "FAIL_23_FIELD_CLEARANCE_MARK_WRONG": "Phương thức làm thủ tục hải quan bất hợp pháp",
+    "FAIL_24_FIELD_PHONE_FORMAT_ERROR": "Định dạng điện thoại không chính xác",
+    "FAIL_41_FIELD_CODE_REQUIRED": "Mã thông báo công ty yêu cầu",
+    "FAIL_42_STORE_PICK_UP_REQUIRE_CODE": "Thông tin không đầy đủ cho đơn đặt hàng tại cửa hàng tiện lợi",
+    "FAIL_43_CODE_NOT_ALLOWED_WHEN_NOT_STORE_PICK_UP": "Thông tin cửa hàng tiện lợi là không cần thiết cho đơn đặt hàng đón cửa hàng không tiện lợi",
+    "FAIL_01_ORDER_NOT_FOUND": "Đơn hàng ECFIT không tồn tại",
+    "FAIL_02_ORDER_STATUS_CANCELED_OR_CLOSED": "Đơn hàng ECFIT bị hủy hoặc đóng",
+    "FAIL_03_ORDER_STATUS_WRONG_OR_NOT_ALLOWED": "Lỗi trạng thái đơn hàng ECFIT, do đó hủy bỏ không thể được thực thi"
+  },
+  "send-error": {
+    "title": "Không thể sử dụng dịch vụ ECFIT",
+    "content": "Lỗi cấu hình. Vui lòng kiểm tra lại bằng cấu hình của bên thứ ba",
+    "confirm": "Xác nhận"
+  },
+  "orders-info": {
+    "total": "Tổng số đơn đặt hàng {{total}}",
+    "select": "/ Đã chọn",
+    "amount": "Đặt hàng"
+  },
+  "page-size": "Đặt hàng / trang"
+}

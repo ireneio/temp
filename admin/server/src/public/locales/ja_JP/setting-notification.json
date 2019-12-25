@@ -1,36 +1,36 @@
 {
-  "title": null,
-  "save": null,
-  "cancel": null,
-  "auto-email": null,
-  "auto-email-description": null,
-  "email": null,
-  "email-error": null,
-  "required": null,
-  "auto-email-setting": null,
+  "title": "通知設定",
+  "save": "セーブ",
+  "cancel": "キャンセル",
+  "auto-email": "自動通知メールを保存する",
+  "auto-email-description": "通知がアクティブになると、通知メールが20分ごとに送信されます。 ログインアカウントとは異なるメールアドレスを設定できます。",
+  "email": "メールを受信する",
+  "email-error": "メール形式が正しくありません",
+  "required": "必須",
+  "auto-email-setting": "通知設定",
   "order": {
-    "title": null,
-    "description": null
+    "title": "注文を作成",
+    "description": "新しい注文が作成されたときに通知する"
   },
   "order-QA": {
-    "title": null,
-    "description": null
+    "title": "注文に関するQ＆A",
+    "description": "消費者が注文の詳細でメッセージを送信したときに通知する"
   },
   "order-applicaiton": {
-    "title": null,
-    "tip": null,
-    "description": null
+    "title": "注文の交換または払い戻しの申請",
+    "tip": "この機能には、「払い戻し」または「交換ステータス」の拡張機能が必要です",
+    "description": "消費者が「払い戻し/交換の申請」を提出したときに通知する"
   },
   "payment-notification": {
-    "title": null,
-    "tip": null,
-    "description": null
+    "title": "注文支払い通知",
+    "tip": "この機能は、注文金額があり、ATMで支払われた注文にのみ適用されます",
+    "description": "消費者が注文の詳細に支払い情報を提供したときに通知する"
   },
   "product-QA": {
-    "title": null,
-    "tip": null,
-    "description": null
+    "title": "製品に関するQ＆A",
+    "tip": "この機能では、消費者が質問したりメッセージを残したりするために、製品ページにQ＆Aコンポーネントが必要です",
+    "description": "製品ページの製品Q＆Aで消費者が質問したりメッセージを残したときに通知する"
   },
-  "success": null,
-  "error": null
+  "success": "正常に保存",
+  "error": "エラー"
 }

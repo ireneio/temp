@@ -1,0 +1,108 @@
+{
+  "order-number": "Número de orden:",
+  "created-on": "Fecha de orden:",
+  "not-found": "Pedido no encontrado, confirme que ha iniciado sesión en la cuenta correcta.",
+  "product": {
+    "title": "ít",
+    "spec": "Especulación",
+    "quantity": "Cantidad",
+    "price": "Precio",
+    "subtotal": "Precio",
+    "gift": "Regalo gratis",
+    "no-gift": "Agotado"
+  },
+  "sheet": {
+    "product": "Total parcial",
+    "shipment": "Gastos de envío",
+    "free-shipment": "Gratis",
+    "payment": "Cuota de procesamiento",
+    "adjustment": "Editar orden",
+    "total": "Total",
+    "reward": "Puntos de recompensa",
+    "coupon": "Código promocional"
+  },
+  "qa": {
+    "title": "Preguntas y respuestas sobre pedidos",
+    "placeholder": "Ingrese su mensaje para obtener asistencia técnica.",
+    "send": "Enviar",
+    "success": "Se ha enviado correctamente.",
+    "error": "Enviar pedido Preguntas y respuestas: se produjo un error"
+  },
+  "blocks": {
+    "buyer": "Información del miembro",
+    "recipient": "Información del destinatario",
+    "payment": {
+      "title": "Estado de pago",
+      "status": {
+        "0": "Para ser confirmado",
+        "1": "Notificacion de pago",
+        "2": "Pagada",
+        "3": "Desajuste",
+        "4": "Ha fallado",
+        "5": "Reembolso"
+      },
+      "type": "Pago",
+      "bank-code": "Codigo bancario:",
+      "virtual-account": "Número de cuenta virtual:",
+      "expire-date": "Fecha de vencimiento:",
+      "cvs-payment-no": "Conveniente número de pago de la tienda:",
+      "barcode": "Conveniente código de barras de pago de la tienda:",
+      "card-no": "Últimos cuatro dígitos de la tarjeta de crédito:",
+      "gmo-store-code": "Código de tienda de OMG:"
+    },
+    "shipment": {
+      "title": "Estado de entrega",
+      "status": {
+        "0": "Pendiente",
+        "1": "Preparando",
+        "2": "Agotado",
+        "3": "Enviada",
+        "4": "Hacer un pedido",
+        "5": "Reemplazo",
+        "6": "Regreso"
+      },
+      "type": "Entrega",
+      "link": "Orden de pista",
+      "number": "El número de rastreo:",
+      "store": {
+        "id": "Identificación de la tienda:",
+        "name": "Nombre de la tienda:",
+        "address": "Dirección de la tienda:"
+      }
+    },
+    "invoice": {
+      "title": "Factura",
+      "type": {
+        "paper": "Factura en papel",
+        "manual-electronic": "Factura electrónica",
+        "ecpay-electronic": "Factura electrónica"
+      },
+      "method": {
+        "duplicate": "Factura uniforme duplicada",
+        "triplicate": "Factura uniforme por triplicado",
+        "company": "Cuenta de la compañia",
+        "donation": "Donar"
+      },
+      "carrier": {
+        "membership": "Portador de Membresía",
+        "mobile-barcode": "Código de barras móvil",
+        "citizen-digital-certificate": "Código de barras NPC"
+      },
+      "bar-code": "Codigo de barras:",
+      "love-code": "Código de Donación de NPO:",
+      "number": "Numero de factura:",
+      "date": "Fecha de Emisión:",
+      "waiting": "Aún no se ha emitido",
+      "invalid": "Factura invalida"
+    },
+    "order": {
+      "title": "Estado del pedido y notas",
+      "status": {
+        "0": "Tratamiento",
+        "1": "Terminada",
+        "2": "Cancelada",
+        "3": "Devolución / Reemplazo"
+      }
+    }
+  }
+}

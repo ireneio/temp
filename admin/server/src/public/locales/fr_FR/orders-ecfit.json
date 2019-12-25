@@ -1,0 +1,138 @@
+{
+  "title": "Gérer la commande ECFIT",
+  "status": {
+    "NOT_SENT": "Non envoyé",
+    "SENT_SUCCESSFUL": "Envoyée",
+    "SENT_FAILED": "Envoi échoué"
+  },
+  "change": "Changement",
+  "change-status": {
+    "title": "Changer le statut",
+    "paymentStatusList": "Statut de paiement",
+    "shipmentStatusList": "Statut d'envoi",
+    "orderStatusList": "Statut de la commande",
+    "choose": "Veuillez sélectionner",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "error": {
+      "title": "Le changement d'état a échoué",
+      "description": "Échec de la modification de {{status}} pour {{amount}} de commande (s)"
+    },
+    "success": {
+      "title": "Changement de statut réussi",
+      "description": "{{status}} pour {{amount}} de commande (s) mis à jour en \"{{newStatus}}\""
+    },
+    "order-change": {
+      "cancel": {
+        "title": "Attention, les commandes annulées ne peuvent pas être récupérées",
+        "description": "Une commande annulée ne peut plus être modifiée et ne sera pas incluse dans les statistiques sur les revenus, les ventes et le marketing. Es-tu sûre de vouloir annuler?"
+      },
+      "closed": {
+        "title": "Attention, les commandes fermées ne peuvent pas être rétractées",
+        "description": "Les informations sur une commande clôturée ne peuvent plus être modifiées (y compris les retours). Voulez-vous vraiment fermer le dossier?"
+      }
+    }
+  },
+  "more-operating": {
+    "title": "Plus d'actions",
+    "export": "Exportation",
+    "print": "Impression"
+  },
+  "filter": {
+    "advanced-search": "Recherche Avancée",
+    "searchTerm": "Rechercher des mots-clés",
+    "reset": "Effacer la recherche"
+  },
+  "orderStatusList": {
+    "PROCESSING": "En traitement",
+    "CANCELED": "annuler la commande",
+    "RETURN": "Retour et remboursement",
+    "CLOSED": "Commande fermée"
+  },
+  "paymentStatusList": {
+    "WAITING": "En attente de confirmation",
+    "NOTIFICATED": "Notification de paiement",
+    "RECONCILED": "Rapprochement terminé",
+    "DATA_ERROR": "Information incorrecte",
+    "FAILED": "Paiement échoué",
+    "REFUND": "Rembourser"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "Pas livré",
+    "PREPARING": "Préparation à l'expédition",
+    "OUT_OF_STOCK": "En rupture de stock",
+    "SHIPPED": "Expédié",
+    "PRE_ORDER": "Pré-commander",
+    "EXCHANGE": "Revenir",
+    "RETURN": "Traitement du retour"
+  },
+  "advanced-search": {
+    "pre-placeholder": "Veuillez sélectionner",
+    "orderStatusList-title": "Statut de la commande",
+    "paymentStatusList-title": "Statut de paiement",
+    "paymentIdList-title": "Mode de paiement",
+    "shipmentStatusList-title": "Statut d'envoi",
+    "shipmentIdList-title": "Méthode d'envoi",
+    "reset": "Réinitialiser",
+    "filter": "Filtre"
+  },
+  "send": "Envoyer la commande à ECFIT",
+  "orders": {
+    "order-no": "Numéro de commande",
+    "shipment-name": "Méthode d'envoi",
+    "payment-status": "Statut de paiement",
+    "shipment-status": "Statut d'envoi",
+    "order-status": "Statut de la commande",
+    "recipient": "Bénéficiaire",
+    "amount": "Montante",
+    "create-on": "Établir le temps",
+    "send-time": "Heure de livraison",
+    "fail-reason": "Raison de l'échec"
+  },
+  "empty-orders": "Informations de commande introuvables",
+  "fail-reason": {
+    "FAIL_TIMEOUT": "Temps libre",
+    "FAIL_UNKNOWN_ECFIT_ERROR_CODE": "Erreur ECFIT inconnue",
+    "FAIL_01_FIELD_ORDER_NO_BLANK": "Le numéro de commande est vide",
+    "FAIL_02_FIELD_INVOICED_BLANK": "Laisser la cellule de facture vide?",
+    "FAIL_03_FIELD_BAN_WRONG": "Numéro GUI de l'acheteur incorrect",
+    "FAIL_04_FIELD_NPO_WRONG": "Code de don incorrect",
+    "FAIL_05_BAN_NOT_ALLOWED_WHEN_NPO_FILLED": "Le numéro GUI de l'acheteur ne peut pas être inclus sur la facture de don",
+    "FAIL_06_FIELD_DEMAND_CANNOT_BE_Y_WHEN_NPO_FILLED": "Les factures de dons ne peuvent pas être réclamées",
+    "FAIL_07_INCOMPLETE_CUSTOMER_INFO": "Information des consommateurs manquante",
+    "FAIL_08_BLANK_ORDER_PRODUCT_OR_PRODUCT_QUANTITY_ZERO": "La cellule de l'article est vide ou la quantité de produit est 0",
+    "FAIL_09_FIELD_AMOUNT_WRONG": "Montant incorrect (ne peut pas correspondre au prix du produit)",
+    "FAIL_10_UNKNOWN_ERROR": "Problème inconnu",
+    "FAIL_11_ORDER_NOT_FOUND": "La commande n'existe pas",
+    "FAIL_12_FIELD_ARRIVE_LESS_THAN_NOW": "La date d'expédition prévue a expiré",
+    "FAIL_13_DUPLICATE_ORDER_NO": "Numéro de commande dupliqué",
+    "FAIL_14_WRONG_PRODUCT_BARCODE": "Numéro de code-barres incorrect",
+    "FAIL_15_FIELD_LOGISTICS_ID_WRONG": "Nom d'expédition incorrect",
+    "FAIL_16_PRODUCT_NOT_FOUND": "Les informations sur le produit n'existent pas",
+    "FAIL_17_FIELD_ARRIVE_TYPE_WRONG": "Délai de livraison correspondant introuvable",
+    "FAIL_18_FILED_CREDIT_NO_WRONG": "Les 4 derniers chiffres de la carte de crédit sont incorrects",
+    "FAIL_19_BUYER_REQUIRED_WHEN_FIELD_INVOICED_IS_Y": "Informations sur l'acheteur non fournies",
+    "FAIL_20_NO_BUYER_WHEN_FIELD_INVOICED_IS_N": "La facture électronique ECFIT n'est pas utilisée, donc les informations sur l'acheteur ne sont pas requises",
+    "FAIL_21_FIELD_EMAIL_FORMAT_ERROR": "Format d'e-mail incorrect",
+    "FAIL_22_FIELD_TAX_TYPE_WRONG": "Catégorie de taxe incorrecte",
+    "FAIL_23_FIELD_CLEARANCE_MARK_WRONG": "Méthode de dédouanement illégale",
+    "FAIL_24_FIELD_PHONE_FORMAT_ERROR": "Format de téléphone incorrect",
+    "FAIL_41_FIELD_CODE_REQUIRED": "Jeton d'entreprise requis",
+    "FAIL_42_STORE_PICK_UP_REQUIRE_CODE": "Informations incomplètes pour la commande de retrait du dépanneur",
+    "FAIL_43_CODE_NOT_ALLOWED_WHEN_NOT_STORE_PICK_UP": "Les informations sur les dépanneurs ne sont pas requises pour les commandes de cueillette hors dépanneur",
+    "FAIL_01_ORDER_NOT_FOUND": "La commande ECFIT n'existe pas",
+    "FAIL_02_ORDER_STATUS_CANCELED_OR_CLOSED": "Commande ECFIT annulée ou clôturée",
+    "FAIL_03_ORDER_STATUS_WRONG_OR_NOT_ALLOWED": "Erreur d'état de la commande ECFIT, donc l'annulation ne peut pas être exécutée"
+  },
+  "send-error": {
+    "title": "Impossible d'utiliser le service ECFIT",
+    "content": "Erreur de configuration. Veuillez vérifier à nouveau en utilisant la configuration tierce",
+    "confirm": "Confirmer"
+  },
+  "orders-info": {
+    "total": "Total de {{total}} commandes",
+    "select": "/ Sélectionné",
+    "amount": "Ordres)"
+  },
+  "page-size": "Commande (s) / page"
+}

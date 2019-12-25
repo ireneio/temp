@@ -1,0 +1,138 @@
+{
+  "title": "Gestionar pedido ECFIT",
+  "status": {
+    "NOT_SENT": "No enviado",
+    "SENT_SUCCESSFUL": "Expedida",
+    "SENT_FAILED": "Envío fallido"
+  },
+  "change": "Cambio",
+  "change-status": {
+    "title": "Cambiar Estado",
+    "paymentStatusList": "Estado de pago",
+    "shipmentStatusList": "Estado del envío",
+    "orderStatusList": "Estado del pedido",
+    "choose": "Por favor seleccione",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "error": {
+      "title": "Cambio de estado fallido",
+      "description": "{{status}} cambio para {{amount}} de pedidos fallidos"
+    },
+    "success": {
+      "title": "Cambio de estado exitoso",
+      "description": "{{status}} para {{amount}} de pedido (s) actualizado a \"{{newStatus}}\""
+    },
+    "order-change": {
+      "cancel": {
+        "title": "¡Atención! Los pedidos cancelados no se pueden recuperar",
+        "description": "Un pedido cancelado ya no se puede editar y no se incluirá en las estadísticas de ingresos, ventas y marketing. ¿Estas seguro que quieres cancelar?"
+      },
+      "closed": {
+        "title": "¡Atención! Los pedidos cerrados no pueden retirarse",
+        "description": "La información de un pedido cerrado ya no se puede cambiar (incluidas las devoluciones). ¿Seguro que quieres cerrar el caso?"
+      }
+    }
+  },
+  "more-operating": {
+    "title": "Mas acciones",
+    "export": "Exportar",
+    "print": "Impresión"
+  },
+  "filter": {
+    "advanced-search": "Búsqueda Avanzada",
+    "searchTerm": "Buscar palabras clave",
+    "reset": "Borrar búsqueda"
+  },
+  "orderStatusList": {
+    "PROCESSING": "Tratamiento",
+    "CANCELED": "Cancelar orden",
+    "RETURN": "Devolución y reembolso",
+    "CLOSED": "Orden cerrada"
+  },
+  "paymentStatusList": {
+    "WAITING": "Pendiente de confirmación",
+    "NOTIFICATED": "Notificacion de pago",
+    "RECONCILED": "Conciliación completada",
+    "DATA_ERROR": "Información incorrecta",
+    "FAILED": "Pago fallido",
+    "REFUND": "Reembolso"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "No enviado",
+    "PREPARING": "Preparación para el envío",
+    "OUT_OF_STOCK": "Agotado",
+    "SHIPPED": "Enviada",
+    "PRE_ORDER": "Hacer un pedido",
+    "EXCHANGE": "Regreso",
+    "RETURN": "Procesamiento de devolución"
+  },
+  "advanced-search": {
+    "pre-placeholder": "Por favor seleccione",
+    "orderStatusList-title": "Estado del pedido",
+    "paymentStatusList-title": "Estado de pago",
+    "paymentIdList-title": "Método de pago",
+    "shipmentStatusList-title": "Estado del envío",
+    "shipmentIdList-title": "Método de envío",
+    "reset": "Reiniciar",
+    "filter": "Filtrar"
+  },
+  "send": "Enviar pedido a ECFIT",
+  "orders": {
+    "order-no": "Número de orden",
+    "shipment-name": "Método de envío",
+    "payment-status": "Estado de pago",
+    "shipment-status": "Estado del envío",
+    "order-status": "Estado del pedido",
+    "recipient": "Recipiente",
+    "amount": "Cantidad",
+    "create-on": "Establecer tiempo",
+    "send-time": "El tiempo de entrega",
+    "fail-reason": "Motivo del fracaso"
+  },
+  "empty-orders": "Información de pedido no encontrada",
+  "fail-reason": {
+    "FAIL_TIMEOUT": "Se acabó el tiempo",
+    "FAIL_UNKNOWN_ECFIT_ERROR_CODE": "Error ECFIT desconocido",
+    "FAIL_01_FIELD_ORDER_NO_BLANK": "El número de pedido está en blanco",
+    "FAIL_02_FIELD_INVOICED_BLANK": "¿Dejar la celda de la factura en blanco?",
+    "FAIL_03_FIELD_BAN_WRONG": "Número de GUI del comprador incorrecto",
+    "FAIL_04_FIELD_NPO_WRONG": "Código de donación incorrecto",
+    "FAIL_05_BAN_NOT_ALLOWED_WHEN_NPO_FILLED": "El número de GUI del comprador no se puede incluir en la factura de donación",
+    "FAIL_06_FIELD_DEMAND_CANNOT_BE_Y_WHEN_NPO_FILLED": "Las facturas de donación no pueden ser reclamadas",
+    "FAIL_07_INCOMPLETE_CUSTOMER_INFO": "Falta información del consumidor",
+    "FAIL_08_BLANK_ORDER_PRODUCT_OR_PRODUCT_QUANTITY_ZERO": "La celda del artículo está en blanco o la cantidad del producto es 0",
+    "FAIL_09_FIELD_AMOUNT_WRONG": "Cantidad incorrecta (no puede coincidir con el precio del producto)",
+    "FAIL_10_UNKNOWN_ERROR": "Problema desconocido",
+    "FAIL_11_ORDER_NOT_FOUND": "El orden no existe",
+    "FAIL_12_FIELD_ARRIVE_LESS_THAN_NOW": "La fecha de envío esperada ha expirado",
+    "FAIL_13_DUPLICATE_ORDER_NO": "Número de pedido duplicado",
+    "FAIL_14_WRONG_PRODUCT_BARCODE": "Número de código de barras incorrecto",
+    "FAIL_15_FIELD_LOGISTICS_ID_WRONG": "Nombre de envío incorrecto",
+    "FAIL_16_PRODUCT_NOT_FOUND": "La información del producto no existe",
+    "FAIL_17_FIELD_ARRIVE_TYPE_WRONG": "Período de entrega correspondiente no encontrado",
+    "FAIL_18_FILED_CREDIT_NO_WRONG": "4 dígitos finales en la tarjeta de crédito incorrectos",
+    "FAIL_19_BUYER_REQUIRED_WHEN_FIELD_INVOICED_IS_Y": "Información del comprador no proporcionada",
+    "FAIL_20_NO_BUYER_WHEN_FIELD_INVOICED_IS_N": "La factura electrónica ECFIT no se utiliza, por lo tanto, no se requiere información del comprador",
+    "FAIL_21_FIELD_EMAIL_FORMAT_ERROR": "Formato de correo electrónico incorrecto",
+    "FAIL_22_FIELD_TAX_TYPE_WRONG": "Categoría de impuestos incorrecta",
+    "FAIL_23_FIELD_CLEARANCE_MARK_WRONG": "Método de despacho de aduana ilegal",
+    "FAIL_24_FIELD_PHONE_FORMAT_ERROR": "Formato de teléfono incorrecto",
+    "FAIL_41_FIELD_CODE_REQUIRED": "Token de la empresa requerido",
+    "FAIL_42_STORE_PICK_UP_REQUIRE_CODE": "Información incompleta para el pedido de recogida en una tienda de conveniencia",
+    "FAIL_43_CODE_NOT_ALLOWED_WHEN_NOT_STORE_PICK_UP": "No se requiere información de la tienda de conveniencia para el pedido de recogida en una tienda que no sea de conveniencia",
+    "FAIL_01_ORDER_NOT_FOUND": "La orden ECFIT no existe",
+    "FAIL_02_ORDER_STATUS_CANCELED_OR_CLOSED": "Pedido ECFIT cancelado o cerrado",
+    "FAIL_03_ORDER_STATUS_WRONG_OR_NOT_ALLOWED": "Error de estado de la orden ECFIT, por lo tanto, la cancelación no se puede ejecutar"
+  },
+  "send-error": {
+    "title": "No se puede usar el servicio ECFIT",
+    "content": "Error de configuración. Vuelva a verificar utilizando la configuración de terceros",
+    "confirm": "Confirmar"
+  },
+  "orders-info": {
+    "total": "Total de {{total}} pedidos",
+    "select": "/ Seleccionado",
+    "amount": "Pedidos)"
+  },
+  "page-size": "Orden (es) / página"
+}

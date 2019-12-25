@@ -1,0 +1,11 @@
+{
+  "today": "aujourd'hui",
+  "yesterday": "hier",
+  "lastWeek": "La semaine dernière",
+  "lastMonth": "Le mois dernier",
+  "last7Days": "Les 7 derniers jours",
+  "last30Days": "Les 30 derniers jours",
+  "custom": "Heure personnalisée",
+  "start-date": "Heure de début",
+  "end-date": "Heure de fin"
+}

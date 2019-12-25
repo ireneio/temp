@@ -3,8 +3,8 @@
     "required": "dòng bắt buộc"
   },
   "group-expire-date": {
-    "info": null,
-    "forever": null
+    "info": "Ngày hết hạn",
+    "forever": "Dài hạn"
   },
   "name": "Tên",
   "gender": {

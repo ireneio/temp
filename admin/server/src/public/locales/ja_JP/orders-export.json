@@ -1,21 +1,21 @@
 {
-  "title": null,
+  "title": "注文フォームをエクスポート",
   "maskId": {
-    "title": null,
-    "placeholder": null
+    "title": "アイテムをエクスポート",
+    "placeholder": "該当するグループを選択してください"
   },
   "fileType": {
-    "title": null,
-    "placeholder": null
+    "title": "ファイル形式",
+    "placeholder": "エクスポートファイル形式を選択"
   },
   "fileName": {
-    "title": null,
-    "placeholder": null
+    "title": "ファイル名",
+    "placeholder": "ファイル名を入力してください（オプション）"
   },
-  "go-back": null,
-  "download": null,
+  "go-back": "バック",
+  "download": "ダウンロード",
   "error": {
-    "title": null,
-    "content": null
+    "title": "エラー",
+    "content": "ダウンロードデータはありません"
   }
 }

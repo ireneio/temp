@@ -1,0 +1,43 @@
+{
+  "date": "Fecha de orden",
+  "order": {
+    "no": "Número de orden",
+    "apply-list": "Devolución / Reemplazo",
+    "return": "Regreso",
+    "replace": "Reemplazo",
+    "pay-notify": "Notificacion de pago",
+    "detail": "Ver detalles",
+    "qa": "Contáctenos"
+  },
+  "payment": {
+    "0": "Para ser confirmado",
+    "1": "Notificacion de pago",
+    "2": "Pagada",
+    "3": "Desajuste",
+    "4": "Ha fallado",
+    "5": "Reembolso",
+    "title": "Pago"
+  },
+  "shipment": {
+    "0": "Pendiente",
+    "1": "Preparando",
+    "2": "Agotado",
+    "3": "Enviada",
+    "4": "Hacer un pedido",
+    "5": "Reemplazo",
+    "6": "Regreso",
+    "title": "Entrega"
+  },
+  "status": {
+    "0": "Tratamiento",
+    "1": "Terminada",
+    "2": "Cancelada",
+    "3": "Devolución / Reemplazo",
+    "title": "Estado del pedido"
+  },
+  "pay-again": {
+    "title": "Pague ahora",
+    "success": "Esta página será redirigida a la página de pago.",
+    "fail": "Ocurrieron errores"
+  }
+}

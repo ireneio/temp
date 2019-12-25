@@ -1,0 +1,21 @@
+{
+  "title": "Formulario de pedido de exportación",
+  "maskId": {
+    "title": "Exportar artículos",
+    "placeholder": "Por favor seleccione el grupo aplicable"
+  },
+  "fileType": {
+    "title": "Formato de archivo",
+    "placeholder": "Seleccionar formato de archivo de exportación"
+  },
+  "fileName": {
+    "title": "Nombre del archivo",
+    "placeholder": "Ingrese el nombre del archivo (opcional)"
+  },
+  "go-back": "atrás",
+  "download": "Descargar",
+  "error": {
+    "title": "Error",
+    "content": "No hay datos de descarga disponibles."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": {
+    "default": "Merci!",
+    "error": "Oops!"
+  },
+  "info": {
+    "default": "Nous avons bien reçu votre commande. Veuillez vérifier l'état de votre paiement dans votre commande.",
+    "error": "Une erreur de synchronisation des données s'est produite. Veuillez copier l'URL et la transmettre au service client pour obtenir de l'aide."
+  },
+  "return": "Retour à la page d'accueil",
+  "copy": "Copiez l'URL",
+  "copied": "URL copiée dans le presse-papiers.",
+  "data-error": "Erreur de synchronisation des données",
+  "order": "Vérifier ma commande"
+}

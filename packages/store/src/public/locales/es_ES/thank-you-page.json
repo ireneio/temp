@@ -1,0 +1,15 @@
+{
+  "title": {
+    "default": "¡Gracias!",
+    "error": "¡Uy!"
+  },
+  "info": {
+    "default": "Hemos recibido tu pedido. Por favor revise su orden para el estado del pago.",
+    "error": "Se produjo un error de sincronización de datos. Copie la URL y páselo al Servicio de atención al cliente para obtener ayuda."
+  },
+  "return": "Volver a la página de inicio",
+  "copy": "Copia la URL",
+  "copied": "URL copiada al portapapeles.",
+  "data-error": "Error de sincronización de datos",
+  "order": "Verifica mi pedido"
+}

@@ -1,7 +1,7 @@
 {
   "order-number": "Số đơn hàng: ",
   "created-on": "Ngày đặt hàng: ",
-  "not-found": null,
+  "not-found": "Không tìm thấy đơn hàng, vui lòng xác nhận rằng bạn đã đăng nhập vào đúng tài khoản.",
   "product": {
     "title": "Số hiệu/ Tên sản phẩm",
     "spec": "Quy cách",
@@ -16,7 +16,7 @@
     "shipment": "Phí giao hàng",
     "free-shipment": "Miễn phí vận chuyển",
     "payment": "Phí giao dịch",
-    "adjustment": null,
+    "adjustment": "Chỉnh sửa thứ tự",
     "total": "Tổng số đơn hàng",
     "reward": "Tiền mua hàng",
     "coupon": "Mã khuyến mãi"
@@ -33,14 +33,14 @@
     "recipient": "Thông tin người nhận",
     "payment": {
       "title": "Trạng thái thanh toán",
-      "status": [
-        "Chờ xác nhận",
-        "Thông báo chuyển tiền",
-        "Hoàn thành đối chiếu sổ sách",
-        "Thông tin không đúng",
-        "Chi trả thất bại",
-        "Giải quyết hoàn tiền"
-      ],
+      "status": {
+        "0": "Chờ xác nhận",
+        "1": "Thông báo chuyển tiền",
+        "2": "Hoàn thành đối chiếu sổ sách",
+        "3": "Thông tin không đúng",
+        "4": "Chi trả thất bại",
+        "5": "Giải quyết hoàn tiền"
+      },
       "type": "Phương pháp chi trả",
       "bank-code": "Mã ngân hàng để thanh toán: ",
       "virtual-account": "Tài khoản ảo để thanh toán: ",
@@ -52,15 +52,15 @@
     },
     "shipment": {
       "title": "Trạng thái giao nhận",
-      "status": [
-        "Chưa xuất hàng",
-        "Chuẩn bị hàng",
-        "Hết hàng",
-        "Đã giao",
-        "Đặt hàng",
-        "Xử lý đổi hàng",
-        "Xử lý trả hàng"
-      ],
+      "status": {
+        "0": "Chưa xuất hàng",
+        "1": "Chuẩn bị hàng",
+        "2": "Hết hàng",
+        "3": "Đã giao",
+        "4": "Đặt hàng",
+        "5": "Xử lý đổi hàng",
+        "6": "Xử lý trả hàng"
+      },
       "type": "Phương pháp vận chuyển",
       "link": "Truy vấn tình trạng vận chuyển",
       "number": "Mã số Vận Chuyển: ",
@@ -97,12 +97,12 @@
     },
     "order": {
       "title": "Trạng thái đơn hàng và ghi chú",
-      "status": [
-        "Đang xử lý",
-        "Đơn hàng kết thúc",
-        "Hủy đơn hàng",
-        "Xử lý đổi trả hàng"
-      ]
+      "status": {
+        "0": "Đang xử lý",
+        "1": "Đơn hàng kết thúc",
+        "2": "Hủy đơn hàng",
+        "3": "Xử lý đổi trả hàng"
+      }
     }
   }
 }

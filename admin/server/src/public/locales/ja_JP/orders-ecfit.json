@@ -1,138 +1,138 @@
 {
-  "title": null,
+  "title": "ECFIT注文を管理する",
   "status": {
-    "NOT_SENT": null,
-    "SENT_SUCCESSFUL": null,
-    "SENT_FAILED": null
+    "NOT_SENT": "未送信",
+    "SENT_SUCCESSFUL": "送信済み",
+    "SENT_FAILED": "送信に失敗しました"
   },
-  "change": null,
+  "change": "変化する",
   "change-status": {
-    "title": null,
-    "paymentStatusList": null,
-    "shipmentStatusList": null,
-    "orderStatusList": null,
-    "choose": null,
-    "cancel": null,
-    "confirm": null,
+    "title": "ステータスを変更する",
+    "paymentStatusList": "支払い状況",
+    "shipmentStatusList": "配送状況",
+    "orderStatusList": "注文の状況",
+    "choose": "選んでください",
+    "cancel": "キャンセル",
+    "confirm": "確認する",
     "error": {
-      "title": null,
-      "description": null
+      "title": "ステータス変更に失敗しました",
+      "description": "注文の{{amount}}の{{status}}の変更に失敗しました"
     },
     "success": {
-      "title": null,
-      "description": null
+      "title": "ステータス変更成功",
+      "description": "注文の{{amount}}の{{status}}が「{{newStatus}}」に更新されました"
     },
     "order-change": {
       "cancel": {
-        "title": null,
-        "description": null
+        "title": "注意！キャンセルされた注文は復元できません",
+        "description": "キャンセルされた注文は編集できなくなり、収益、販売、マーケティングの統計に含まれなくなります。 あなたがキャンセルしてもよろしいです？"
       },
       "closed": {
-        "title": null,
-        "description": null
+        "title": "注意！クローズした注文は撤回できません",
+        "description": "終了した注文の情報は変更できません（返品を含む）。 ケースを閉じてもよろしいですか？"
       }
     }
   },
   "more-operating": {
-    "title": null,
-    "export": null,
-    "print": null
+    "title": "その他のアクション",
+    "export": "輸出する",
+    "print": "印刷する"
   },
   "filter": {
-    "advanced-search": null,
-    "searchTerm": null,
-    "reset": null
+    "advanced-search": "高度な検索",
+    "searchTerm": "検索キーワード",
+    "reset": "検索をクリア"
   },
   "orderStatusList": {
-    "PROCESSING": null,
-    "CANCELED": null,
-    "RETURN": null,
-    "CLOSED": null
+    "PROCESSING": "処理",
+    "CANCELED": "注文をキャンセルする",
+    "RETURN": "返品と返金",
+    "CLOSED": "終了した注文"
   },
   "paymentStatusList": {
-    "WAITING": null,
-    "NOTIFICATED": null,
-    "RECONCILED": null,
-    "DATA_ERROR": null,
-    "FAILED": null,
-    "REFUND": null
+    "WAITING": "確認待ち",
+    "NOTIFICATED": "支払い通知",
+    "RECONCILED": "調整完了",
+    "DATA_ERROR": "間違った情報",
+    "FAILED": "支払いに失敗しました",
+    "REFUND": "払い戻し"
   },
   "shipmentStatusList": {
-    "NOT_YET": null,
-    "PREPARING": null,
-    "OUT_OF_STOCK": null,
-    "SHIPPED": null,
-    "PRE_ORDER": null,
-    "EXCHANGE": null,
-    "RETURN": null
+    "NOT_YET": "出荷されてない",
+    "PREPARING": "配送手続き中",
+    "OUT_OF_STOCK": "在庫切れ",
+    "SHIPPED": "発送済み",
+    "PRE_ORDER": "予約注文",
+    "EXCHANGE": "戻る",
+    "RETURN": "返品の処理"
   },
   "advanced-search": {
-    "pre-placeholder": null,
-    "orderStatusList-title": null,
-    "paymentStatusList-title": null,
-    "paymentIdList-title": null,
-    "shipmentStatusList-title": null,
-    "shipmentIdList-title": null,
-    "reset": null,
-    "filter": null
+    "pre-placeholder": "選んでください",
+    "orderStatusList-title": "注文の状況",
+    "paymentStatusList-title": "支払い状況",
+    "paymentIdList-title": "支払方法",
+    "shipmentStatusList-title": "配送状況",
+    "shipmentIdList-title": "発送方法",
+    "reset": "リセットする",
+    "filter": "フィルタ"
   },
-  "send": null,
+  "send": "ECFITに注文を送信",
   "orders": {
-    "order-no": null,
-    "shipment-name": null,
-    "payment-status": null,
-    "shipment-status": null,
-    "order-status": null,
-    "recipient": null,
-    "amount": null,
-    "create-on": null,
-    "send-time": null,
-    "fail-reason": null
+    "order-no": "注文番号",
+    "shipment-name": "発送方法",
+    "payment-status": "支払い状況",
+    "shipment-status": "配送状況",
+    "order-status": "注文の状況",
+    "recipient": "受取人",
+    "amount": "量",
+    "create-on": "時間を確立する",
+    "send-time": "納期",
+    "fail-reason": "失敗の理由"
   },
-  "empty-orders": null,
+  "empty-orders": "注文情報が見つかりません",
   "fail-reason": {
-    "FAIL_TIMEOUT": null,
-    "FAIL_UNKNOWN_ECFIT_ERROR_CODE": null,
-    "FAIL_01_FIELD_ORDER_NO_BLANK": null,
-    "FAIL_02_FIELD_INVOICED_BLANK": null,
-    "FAIL_03_FIELD_BAN_WRONG": null,
-    "FAIL_04_FIELD_NPO_WRONG": null,
-    "FAIL_05_BAN_NOT_ALLOWED_WHEN_NPO_FILLED": null,
-    "FAIL_06_FIELD_DEMAND_CANNOT_BE_Y_WHEN_NPO_FILLED": null,
-    "FAIL_07_INCOMPLETE_CUSTOMER_INFO": null,
-    "FAIL_08_BLANK_ORDER_PRODUCT_OR_PRODUCT_QUANTITY_ZERO": null,
-    "FAIL_09_FIELD_AMOUNT_WRONG": null,
-    "FAIL_10_UNKNOWN_ERROR": null,
-    "FAIL_11_ORDER_NOT_FOUND": null,
-    "FAIL_12_FIELD_ARRIVE_LESS_THAN_NOW": null,
-    "FAIL_13_DUPLICATE_ORDER_NO": null,
-    "FAIL_14_WRONG_PRODUCT_BARCODE": null,
-    "FAIL_15_FIELD_LOGISTICS_ID_WRONG": null,
-    "FAIL_16_PRODUCT_NOT_FOUND": null,
-    "FAIL_17_FIELD_ARRIVE_TYPE_WRONG": null,
-    "FAIL_18_FILED_CREDIT_NO_WRONG": null,
-    "FAIL_19_BUYER_REQUIRED_WHEN_FIELD_INVOICED_IS_Y": null,
-    "FAIL_20_NO_BUYER_WHEN_FIELD_INVOICED_IS_N": null,
-    "FAIL_21_FIELD_EMAIL_FORMAT_ERROR": null,
-    "FAIL_22_FIELD_TAX_TYPE_WRONG": null,
-    "FAIL_23_FIELD_CLEARANCE_MARK_WRONG": null,
-    "FAIL_24_FIELD_PHONE_FORMAT_ERROR": null,
-    "FAIL_41_FIELD_CODE_REQUIRED": null,
-    "FAIL_42_STORE_PICK_UP_REQUIRE_CODE": null,
-    "FAIL_43_CODE_NOT_ALLOWED_WHEN_NOT_STORE_PICK_UP": null,
-    "FAIL_01_ORDER_NOT_FOUND": null,
-    "FAIL_02_ORDER_STATUS_CANCELED_OR_CLOSED": null,
-    "FAIL_03_ORDER_STATUS_WRONG_OR_NOT_ALLOWED": null
+    "FAIL_TIMEOUT": "タイムアウト",
+    "FAIL_UNKNOWN_ECFIT_ERROR_CODE": "不明なECFITエラー",
+    "FAIL_01_FIELD_ORDER_NO_BLANK": "注文番号は空白です",
+    "FAIL_02_FIELD_INVOICED_BLANK": "請求書セルを空白のままにしますか？",
+    "FAIL_03_FIELD_BAN_WRONG": "購入者のGUI番号が正しくありません",
+    "FAIL_04_FIELD_NPO_WRONG": "寄付コードが間違っています",
+    "FAIL_05_BAN_NOT_ALLOWED_WHEN_NPO_FILLED": "購入者のGUI番号を寄付請求書に含めることはできません",
+    "FAIL_06_FIELD_DEMAND_CANNOT_BE_Y_WHEN_NPO_FILLED": "寄付請求書は請求できません",
+    "FAIL_07_INCOMPLETE_CUSTOMER_INFO": "消費者情報がありません",
+    "FAIL_08_BLANK_ORDER_PRODUCT_OR_PRODUCT_QUANTITY_ZERO": "アイテムセルが空白か、製品の数量が0",
+    "FAIL_09_FIELD_AMOUNT_WRONG": "金額が正しくありません（製品の価格と一致させることはできません）",
+    "FAIL_10_UNKNOWN_ERROR": "不明な問題",
+    "FAIL_11_ORDER_NOT_FOUND": "注文は存在しません",
+    "FAIL_12_FIELD_ARRIVE_LESS_THAN_NOW": "発送予定日が終了しました",
+    "FAIL_13_DUPLICATE_ORDER_NO": "注文番号が重複しています",
+    "FAIL_14_WRONG_PRODUCT_BARCODE": "バーコード番号が正しくありません",
+    "FAIL_15_FIELD_LOGISTICS_ID_WRONG": "配送名が間違っています",
+    "FAIL_16_PRODUCT_NOT_FOUND": "製品情報が存在しません",
+    "FAIL_17_FIELD_ARRIVE_TYPE_WRONG": "対応する配達期間が見つかりません",
+    "FAIL_18_FILED_CREDIT_NO_WRONG": "クレジットカードの最後の4桁が正しくありません",
+    "FAIL_19_BUYER_REQUIRED_WHEN_FIELD_INVOICED_IS_Y": "購入者情報が提供されていません",
+    "FAIL_20_NO_BUYER_WHEN_FIELD_INVOICED_IS_N": "ECFIT電子請求書は使用されないため、バイヤー情報は不要です",
+    "FAIL_21_FIELD_EMAIL_FORMAT_ERROR": "メール形式が正しくありません",
+    "FAIL_22_FIELD_TAX_TYPE_WRONG": "税カテゴリが正しくありません",
+    "FAIL_23_FIELD_CLEARANCE_MARK_WRONG": "違法な通関方法",
+    "FAIL_24_FIELD_PHONE_FORMAT_ERROR": "電話の形式が正しくありません",
+    "FAIL_41_FIELD_CODE_REQUIRED": "会社トークンが必要です",
+    "FAIL_42_STORE_PICK_UP_REQUIRE_CODE": "コンビニのピックアップ注文に関する不完全な情報",
+    "FAIL_43_CODE_NOT_ALLOWED_WHEN_NOT_STORE_PICK_UP": "コンビニエンスストアの集荷注文にはコンビニエンスストアの情報は必要ありません",
+    "FAIL_01_ORDER_NOT_FOUND": "ECFIT注文は存在しません",
+    "FAIL_02_ORDER_STATUS_CANCELED_OR_CLOSED": "ECFIT注文がキャンセルまたはクローズされました",
+    "FAIL_03_ORDER_STATUS_WRONG_OR_NOT_ALLOWED": "ECFIT注文ステータスエラーのため、キャンセルを実行できません"
   },
   "send-error": {
-    "title": null,
-    "content": null,
-    "confirm": null
+    "title": "ECFITサービスを使用できません",
+    "content": "構成エラー。 サードパーティの設定を使用してもう一度確認してください",
+    "confirm": "確認する"
   },
   "orders-info": {
-    "total": null,
-    "select": null,
-    "amount": null
+    "total": "{{total}}注文の合計",
+    "select": "/選択",
+    "amount": "注文"
   },
-  "page-size": null
+  "page-size": "注文/ページ"
 }

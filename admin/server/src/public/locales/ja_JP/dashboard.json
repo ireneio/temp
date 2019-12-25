@@ -1,7 +1,7 @@
 {
-  "payment-dealine": null,
-  "payment-text": null,
-  "payment-link": null,
+  "payment-dealine": "毎月6日正午（GMT + 8）に支払いを完了してください。",
+  "payment-text": "支払い期限が休日に当たる場合は、翌営業日に支払いを行う必要があります。支払い期限が過ぎている場合、システムは店舗のフロント/バックエンドを閉鎖します。",
+  "payment-link": "請求書と支払いを確認する",
   "welcome": "meepShop のオンラインストア出店プラットフォームをご利用いただき、ありがとうございます",
   "pending-order": "処理待ちの注文",
   "not-shipped": "未出荷",

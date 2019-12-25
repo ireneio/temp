@@ -1,0 +1,12 @@
+{
+  "empty-cart": "Tu carrito esta vacío.",
+  "product-status-off": "No disponible",
+  "product-status-off-warning": "Por favor elimine este artículo",
+  "product-sold-out": "Agotado",
+  "product-sold-out-warning": "Por favor elimine este artículo",
+  "product-over-stock": "Sobre el número limitado de artículos que se pueden comprar",
+  "not-found-content": "El número de artículos que se pueden comprar puede superar su límite o el formato no es válido.",
+  "more-options": "... o ingrese la CANTIDAD deseada",
+  "gift": "Regalo gratis",
+  "gift-exchange-is-completed": "Agotado"
+}

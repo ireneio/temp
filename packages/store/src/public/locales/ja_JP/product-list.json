@@ -1,6 +1,6 @@
 {
   "selections": "おすすめ商品",
-  "oldest": null,
+  "oldest": "古いものから新しいものへ",
   "latest": "新商品",
   "title": "商品名",
   "price-asc": "価格の安い順",

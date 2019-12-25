@@ -1,138 +1,138 @@
 {
-  "title": null,
+  "title": "Manage ECFIT order",
   "status": {
-    "NOT_SENT": null,
-    "SENT_SUCCESSFUL": null,
-    "SENT_FAILED": null
+    "NOT_SENT": "Unsent",
+    "SENT_SUCCESSFUL": "Sent",
+    "SENT_FAILED": "Sending failed"
   },
-  "change": null,
+  "change": "Change",
   "change-status": {
-    "title": null,
-    "paymentStatusList": null,
-    "shipmentStatusList": null,
-    "orderStatusList": null,
-    "choose": null,
-    "cancel": null,
-    "confirm": null,
+    "title": "Change status",
+    "paymentStatusList": "Payment status",
+    "shipmentStatusList": "Shipping status",
+    "orderStatusList": "Order status",
+    "choose": "Please select",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
     "error": {
-      "title": null,
-      "description": null
+      "title": "Status change failed",
+      "description": "{{status}} change for {{amount}} of order(s) failed"
     },
     "success": {
-      "title": null,
-      "description": null
+      "title": "Status change successful",
+      "description": " {{status}} for {{amount}} of order(s) updated to \"{{newStatus}}\""
     },
     "order-change": {
       "cancel": {
-        "title": null,
-        "description": null
+        "title": "Attention!Canceled orders cannot be recovered",
+        "description": "A canceled order can no longer be edited and will not be included in the revenue, sales, and marketing statistics. Are you sure you want to cancel?"
       },
       "closed": {
-        "title": null,
-        "description": null
+        "title": "Attention!Closed orders cannot be retracted",
+        "description": "The information on a closed order can no longer be changed (including returns). Are you sure you want to close the case?"
       }
     }
   },
   "more-operating": {
-    "title": null,
-    "export": null,
-    "print": null
+    "title": "More actions",
+    "export": "Export",
+    "print": "Print"
   },
   "filter": {
-    "advanced-search": null,
-    "searchTerm": null,
-    "reset": null
+    "advanced-search": "Advanced search",
+    "searchTerm": "Search keywords",
+    "reset": "Clear search"
   },
   "orderStatusList": {
-    "PROCESSING": null,
-    "CANCELED": null,
-    "RETURN": null,
-    "CLOSED": null
+    "PROCESSING": "Processing",
+    "CANCELED": "Cancel Order",
+    "RETURN": "Return and refund",
+    "CLOSED": "Closed order"
   },
   "paymentStatusList": {
-    "WAITING": null,
-    "NOTIFICATED": null,
-    "RECONCILED": null,
-    "DATA_ERROR": null,
-    "FAILED": null,
-    "REFUND": null
+    "WAITING": "Awaiting confirmation",
+    "NOTIFICATED": "Payment notification",
+    "RECONCILED": "Reconciliation completed",
+    "DATA_ERROR": "Incorrect information",
+    "FAILED": "Payment failed",
+    "REFUND": "Refund"
   },
   "shipmentStatusList": {
-    "NOT_YET": null,
-    "PREPARING": null,
-    "OUT_OF_STOCK": null,
-    "SHIPPED": null,
-    "PRE_ORDER": null,
-    "EXCHANGE": null,
-    "RETURN": null
+    "NOT_YET": "Not shipped",
+    "PREPARING": "Preparing for shipment",
+    "OUT_OF_STOCK": "Out of stock",
+    "SHIPPED": "Shipped",
+    "PRE_ORDER": "Pre-order",
+    "EXCHANGE": "Return",
+    "RETURN": "Processing return"
   },
   "advanced-search": {
-    "pre-placeholder": null,
-    "orderStatusList-title": null,
-    "paymentStatusList-title": null,
-    "paymentIdList-title": null,
-    "shipmentStatusList-title": null,
-    "shipmentIdList-title": null,
-    "reset": null,
-    "filter": null
+    "pre-placeholder": "Please select",
+    "orderStatusList-title": "Order status",
+    "paymentStatusList-title": "Payment status",
+    "paymentIdList-title": "Payment method",
+    "shipmentStatusList-title": "Shipping status",
+    "shipmentIdList-title": "Shipping method",
+    "reset": "Reset",
+    "filter": "Filter"
   },
-  "send": null,
+  "send": "Send order to ECFIT",
   "orders": {
-    "order-no": null,
-    "shipment-name": null,
-    "payment-status": null,
-    "shipment-status": null,
-    "order-status": null,
-    "recipient": null,
-    "amount": null,
-    "create-on": null,
-    "send-time": null,
-    "fail-reason": null
+    "order-no": "Order number",
+    "shipment-name": "Shipping method",
+    "payment-status": "Payment status",
+    "shipment-status": "Shipping status",
+    "order-status": "Order status",
+    "recipient": "Recipient",
+    "amount": "Amount",
+    "create-on": "Establish time",
+    "send-time": "Delivery time",
+    "fail-reason": "Reason for failure"
   },
-  "empty-orders": null,
+  "empty-orders": "Order information not found",
   "fail-reason": {
-    "FAIL_TIMEOUT": null,
-    "FAIL_UNKNOWN_ECFIT_ERROR_CODE": null,
-    "FAIL_01_FIELD_ORDER_NO_BLANK": null,
-    "FAIL_02_FIELD_INVOICED_BLANK": null,
-    "FAIL_03_FIELD_BAN_WRONG": null,
-    "FAIL_04_FIELD_NPO_WRONG": null,
-    "FAIL_05_BAN_NOT_ALLOWED_WHEN_NPO_FILLED": null,
-    "FAIL_06_FIELD_DEMAND_CANNOT_BE_Y_WHEN_NPO_FILLED": null,
-    "FAIL_07_INCOMPLETE_CUSTOMER_INFO": null,
-    "FAIL_08_BLANK_ORDER_PRODUCT_OR_PRODUCT_QUANTITY_ZERO": null,
-    "FAIL_09_FIELD_AMOUNT_WRONG": null,
-    "FAIL_10_UNKNOWN_ERROR": null,
-    "FAIL_11_ORDER_NOT_FOUND": null,
-    "FAIL_12_FIELD_ARRIVE_LESS_THAN_NOW": null,
-    "FAIL_13_DUPLICATE_ORDER_NO": null,
-    "FAIL_14_WRONG_PRODUCT_BARCODE": null,
-    "FAIL_15_FIELD_LOGISTICS_ID_WRONG": null,
-    "FAIL_16_PRODUCT_NOT_FOUND": null,
-    "FAIL_17_FIELD_ARRIVE_TYPE_WRONG": null,
-    "FAIL_18_FILED_CREDIT_NO_WRONG": null,
-    "FAIL_19_BUYER_REQUIRED_WHEN_FIELD_INVOICED_IS_Y": null,
-    "FAIL_20_NO_BUYER_WHEN_FIELD_INVOICED_IS_N": null,
-    "FAIL_21_FIELD_EMAIL_FORMAT_ERROR": null,
-    "FAIL_22_FIELD_TAX_TYPE_WRONG": null,
-    "FAIL_23_FIELD_CLEARANCE_MARK_WRONG": null,
-    "FAIL_24_FIELD_PHONE_FORMAT_ERROR": null,
-    "FAIL_41_FIELD_CODE_REQUIRED": null,
-    "FAIL_42_STORE_PICK_UP_REQUIRE_CODE": null,
-    "FAIL_43_CODE_NOT_ALLOWED_WHEN_NOT_STORE_PICK_UP": null,
-    "FAIL_01_ORDER_NOT_FOUND": null,
-    "FAIL_02_ORDER_STATUS_CANCELED_OR_CLOSED": null,
-    "FAIL_03_ORDER_STATUS_WRONG_OR_NOT_ALLOWED": null
+    "FAIL_TIMEOUT": "Time out",
+    "FAIL_UNKNOWN_ECFIT_ERROR_CODE": "Unknown ECFIT error",
+    "FAIL_01_FIELD_ORDER_NO_BLANK": "Order number is blank",
+    "FAIL_02_FIELD_INVOICED_BLANK": "Leave the invoice cell as blank?",
+    "FAIL_03_FIELD_BAN_WRONG": "Buyer GUI number incorrect",
+    "FAIL_04_FIELD_NPO_WRONG": "Donation code incorrect",
+    "FAIL_05_BAN_NOT_ALLOWED_WHEN_NPO_FILLED": "Buyer GUI number cannot be included on the donation invoice",
+    "FAIL_06_FIELD_DEMAND_CANNOT_BE_Y_WHEN_NPO_FILLED": "Donation invoices cannot be claimed",
+    "FAIL_07_INCOMPLETE_CUSTOMER_INFO": "Consumer information missing",
+    "FAIL_08_BLANK_ORDER_PRODUCT_OR_PRODUCT_QUANTITY_ZERO": "Item cell is blank or product quantity is 0",
+    "FAIL_09_FIELD_AMOUNT_WRONG": "Amount incorrect (cannot be matched with the product price)",
+    "FAIL_10_UNKNOWN_ERROR": "Unknown issue",
+    "FAIL_11_ORDER_NOT_FOUND": "Order does not exist",
+    "FAIL_12_FIELD_ARRIVE_LESS_THAN_NOW": "Expected shipping date has expired",
+    "FAIL_13_DUPLICATE_ORDER_NO": "Duplicated order number",
+    "FAIL_14_WRONG_PRODUCT_BARCODE": "Barcode number incorrect",
+    "FAIL_15_FIELD_LOGISTICS_ID_WRONG": "Shipping name incorrect",
+    "FAIL_16_PRODUCT_NOT_FOUND": "Product information does not exist",
+    "FAIL_17_FIELD_ARRIVE_TYPE_WRONG": "Corresponding delivery period not found",
+    "FAIL_18_FILED_CREDIT_NO_WRONG": "Final 4 digits on the credit card incorrect",
+    "FAIL_19_BUYER_REQUIRED_WHEN_FIELD_INVOICED_IS_Y": "Buyer information not provided",
+    "FAIL_20_NO_BUYER_WHEN_FIELD_INVOICED_IS_N": "ECFIT electronic invoice is not used, therefore buyer information is not required",
+    "FAIL_21_FIELD_EMAIL_FORMAT_ERROR": "Email format incorrect",
+    "FAIL_22_FIELD_TAX_TYPE_WRONG": "Tax category incorrect",
+    "FAIL_23_FIELD_CLEARANCE_MARK_WRONG": "Illegal customs clearance method",
+    "FAIL_24_FIELD_PHONE_FORMAT_ERROR": "Phone format incorrect",
+    "FAIL_41_FIELD_CODE_REQUIRED": "Company token required",
+    "FAIL_42_STORE_PICK_UP_REQUIRE_CODE": "Incomplete information for convenience store pick-up order",
+    "FAIL_43_CODE_NOT_ALLOWED_WHEN_NOT_STORE_PICK_UP": "Convenience store information is not required for non-convenience store pick-up order",
+    "FAIL_01_ORDER_NOT_FOUND": "ECFIT order does not exist",
+    "FAIL_02_ORDER_STATUS_CANCELED_OR_CLOSED": "ECFIT order canceled or closed",
+    "FAIL_03_ORDER_STATUS_WRONG_OR_NOT_ALLOWED": "ECFIT order status error, therefore cancellation can not be executed"
   },
   "send-error": {
-    "title": null,
-    "content": null,
-    "confirm": null
+    "title": "Unable to use ECFIT service",
+    "content": "Configuration error. Please check again using the third-party configuration",
+    "confirm": "Confirm"
   },
   "orders-info": {
-    "total": null,
-    "select": null,
-    "amount": null
+    "total": "Total of {{total}} orders",
+    "select": "/ Selected",
+    "amount": "Order(s)"
   },
-  "page-size": null
+  "page-size": "Order(s) / page"
 }

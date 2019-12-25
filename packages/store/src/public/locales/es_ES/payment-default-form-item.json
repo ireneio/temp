@@ -1,0 +1,26 @@
+{
+  "is-required": "Necesaria",
+  "payment": "Pago",
+  "payment-description": "Descripción",
+  "shipment": "Entrega",
+  "shipment-description": "Descripción",
+  "choose-paymeny-error": "El método de pago seleccionado no está disponible, seleccione nuevamente.",
+  "choose-shipment-error": "La entrega seleccionada no está disponible, seleccione nuevamente.",
+  "coupon": {
+    "placeholder": "Código promocional",
+    "coupon-button": "Aplicar",
+    "ask-confirm-coupon": "Por favor haga clic en \"Aplicar\"",
+    "activity-period-is": "La campaña va desde",
+    "this-code-not-exist": "Este código de cupón no es válido",
+    "your-member-group-can-not-use-this-code": "¡La membresía no está calificada! Este código de cupón no puede aplicarse.",
+    "this-code-activity-period": "La campaña va desde",
+    "this-code-usetimes-full": "Este código de cupón ha alcanzado el límite de número de usos.",
+    "this-code-has-to-buy-specific-products": "Se deben comprar productos específicos para usar este código de cupón",
+    "amount-of-products": "artículos)",
+    "this-code-is-the-same": "Este código de cupón no se puede usar debido a duplicación",
+    "plz-ask-service-or-delete": ", comuníquese con nuestro Servicio de atención al cliente para obtener ayuda o borre el código del cupón y luego proceda al pago.",
+    "plz-delete-then-checkout": ", borre el código del cupón y luego proceda al pago.",
+    "this-code-has-to-satisfy": "Para usar este código de cupón, el monto total debe alcanzar {{currency}}",
+    "this-code-can-discount": "Este código de cupón se puede canjear por {{currency}}"
+  }
+}

@@ -1,36 +1,36 @@
 {
-  "title": null,
-  "save": null,
-  "cancel": null,
-  "auto-email": null,
-  "auto-email-description": null,
-  "email": null,
-  "email-error": null,
-  "required": null,
-  "auto-email-setting": null,
+  "title": "Notification settings",
+  "save": "Save",
+  "cancel": "Cancel",
+  "auto-email": "Store automatic notification email",
+  "auto-email-description": "When notifications are activated, a notification email will be sent every 20 minutes. You can set an email address different from your login account.",
+  "email": "Receiving email",
+  "email-error": "Email format incorrect",
+  "required": "Required",
+  "auto-email-setting": "Notifications setting",
   "order": {
-    "title": null,
-    "description": null
+    "title": "Create order",
+    "description": "Notify when new orders are created"
   },
   "order-QA": {
-    "title": null,
-    "description": null
+    "title": "Order Q&A",
+    "description": "Notify when consumers send messages in order details"
   },
   "order-applicaiton": {
-    "title": null,
-    "tip": null,
-    "description": null
+    "title": "Application for order exchange or refund",
+    "tip": "This feature requires the extension \"Refund\" or \"Exchange Status\"",
+    "description": "Notify when consumers submits an \"apply for refund/exchange\""
   },
   "payment-notification": {
-    "title": null,
-    "tip": null,
-    "description": null
+    "title": "Order payment notification",
+    "tip": "This feature is only applicable to orders with custom amount and paid through ATM",
+    "description": "Notify when consumers provide payment information in order details"
   },
   "product-QA": {
-    "title": null,
-    "tip": null,
-    "description": null
+    "title": "Product Q&A",
+    "tip": "This function requires a Q&A component on the product page for consumers to ask questions or leave a message",
+    "description": "Notify when consumers ask questions or leave messages in the product Q&A on the product page"
   },
-  "success": null,
-  "error": null
+  "success": "Saved successfully",
+  "error": "Error"
 }

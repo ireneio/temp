@@ -16,6 +16,8 @@ import emptyArrayToUndefined from './utils/emptyArrayToUndefined';
 import styles from './styles/advancedSearch.less';
 
 // graphql typescript
+import { localeFragmentType } from '@admin/utils/lib/fragments/locale';
+
 import { advancedSearchStorePaymentListFragment as advancedSearchStorePaymentListFragmentType } from './__generated__/advancedSearchStorePaymentListFragment';
 import { advancedSearchStoreShipmentListFragment as advancedSearchStoreShipmentListFragmentType } from './__generated__/advancedSearchStoreShipmentListFragment';
 
@@ -94,11 +96,7 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
           shipmentIdList: getStoreShipmentList.data,
         }[optionsKey] as {
           id: string;
-          title: {
-            zh_TW: string;
-            en_US: string;
-            ja_JP: string;
-          };
+          title: localeFragmentType;
         }[]).map(({ id, title }) => (
           <Option key={id} value={id}>
             {title[i18n.language]}

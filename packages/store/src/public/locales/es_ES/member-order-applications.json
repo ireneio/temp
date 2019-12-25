@@ -1,0 +1,37 @@
+{
+  "order-no": "Número de orden:",
+  "order-date": "Fecha de orden:",
+  "apply": "Solicitar:",
+  "type": {
+    "return": "Regreso",
+    "replace": "Reemplazo"
+  },
+  "date": "Fecha:",
+  "recipient": "Recipiente:",
+  "phone": "Telefono no.:",
+  "address": "Dirección:",
+  "product": {
+    "title": "ít",
+    "quantity": "Cantidad"
+  },
+  "reason": "Descripción",
+  "status": {
+    "0": "Para ser confirmado",
+    "10": "Enviada",
+    "11": "Recoger",
+    "12": "Confirmada",
+    "13": "Se produjo un error",
+    "20": "Reembolso",
+    "21": "Reintegrada",
+    "22": "Se produjo un error",
+    "title": "Estado",
+    "return": {
+      "1": "Terminada",
+      "2": "La devolución de este producto es imposible, póngase en contacto con nuestro servicio al cliente si tiene alguna pregunta."
+    },
+    "replace": {
+      "1": "Terminada",
+      "2": "El reemplazo de este producto es imposible, póngase en contacto con nuestro servicio al cliente si tiene alguna pregunta."
+    }
+  }
+}

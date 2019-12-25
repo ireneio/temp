@@ -1,0 +1,18 @@
+{
+  "name": "Nom complet",
+  "mobile": "Mobile",
+  "address": "Pays",
+  "zip-code": "code postal",
+  "street": "Adresse",
+  "edit": "modifier",
+  "remove": "Retirer",
+  "cancel": "Jeter",
+  "submit": "sauver",
+  "create": "Ajouter",
+  "form": {
+    "required": "Champs obligatoires",
+    "not-taiwan-mobile": "Le numéro de téléphone mobile de Taiwan est de 10 chiffres",
+    "not-mobile": "Numéro de portable invalide",
+    "not-number": "Cette entrée ne peut contenir que des chiffres"
+  }
+}

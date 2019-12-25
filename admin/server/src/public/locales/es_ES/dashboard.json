@@ -1,0 +1,14 @@
+{
+  "payment-dealine": "Complete el pago el 6 del mes antes de las 12:00 del mediodía (GMT + 8).",
+  "payment-text": "En caso de que la fecha límite de pago caiga en un día festivo, los pagos deben realizarse al siguiente día hábil. Si hubiera pagos vencidos, el sistema cerrará la parte delantera / trasera de su tienda.",
+  "payment-link": "Consultar facturas y pago",
+  "welcome": "Bienvenido a la plataforma de la tienda en línea de meepShop",
+  "pending-order": "Orden sin procesar",
+  "not-shipped": "Aun no ha sido enviado",
+  "orderQA": "Orden de preguntas y respuestas",
+  "productQA": "Producto Q & A",
+  "revenue": "Ingresos de este mes",
+  "cost": "Costo de este mes",
+  "order": "Órdenes de este mes",
+  "member": "Número de miembros"
+}

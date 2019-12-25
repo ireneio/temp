@@ -1,0 +1,12 @@
+{
+  "empty-cart": "Votre panier est vide.",
+  "product-status-off": "Indisponible",
+  "product-status-off-warning": "Veuillez retirer cet article",
+  "product-sold-out": "En rupture de stock",
+  "product-sold-out-warning": "Veuillez retirer cet article",
+  "product-over-stock": "Sur le nombre limité d'articles achetables",
+  "not-found-content": "Le nombre d'articles achetables peut dépasser sa limite ou le format n'est pas valide.",
+  "more-options": "… Ou saisissez la quantité désirée",
+  "gift": "Cadeau gratuit",
+  "gift-exchange-is-completed": "En rupture de stock"
+}

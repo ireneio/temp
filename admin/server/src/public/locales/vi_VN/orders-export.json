@@ -1,0 +1,21 @@
+{
+  "title": "Mẫu đơn đặt hàng xuất khẩu",
+  "maskId": {
+    "title": "Xuất khẩu mặt hàng",
+    "placeholder": "Vui lòng chọn nhóm áp dụng"
+  },
+  "fileType": {
+    "title": "Định dạng tệp",
+    "placeholder": "Chọn định dạng tệp xuất"
+  },
+  "fileName": {
+    "title": "Tên tệp",
+    "placeholder": "Nhập tên tệp (tùy chọn)"
+  },
+  "go-back": "Trở lại",
+  "download": "Tải về",
+  "error": {
+    "title": "lỗi",
+    "content": "Không có dữ liệu tải xuống"
+  }
+}

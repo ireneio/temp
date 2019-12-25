@@ -13,7 +13,6 @@ const getForgotPasswordPage = () => {
   return {
     id: 'page-forgot-password',
     title: {
-      en_US: 'Reset Password',
       zh_TW: '重置密碼',
     },
     container: 'TwoTopsContainer',

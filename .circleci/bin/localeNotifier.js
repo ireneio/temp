@@ -19,16 +19,16 @@ const URL_FOLDER = `https://github.com/meepshop/meep-lerna/tree/master/${path.re
   path.resolve(__dirname, '../..'),
   ROOT_FOLDER,
 )}`;
-const LOCAL_KEYS = fs.readdirSync(ROOT_FOLDER).sort(a => a !== 'zh_TW');
+const LOCALE_KEYS = fs.readdirSync(ROOT_FOLDER).sort(a => a !== 'zh_TW');
 
 const findNullLocales = (filename, data, nullLocales = [], preKey = []) => {
-  const keys = Object.keys(data[LOCAL_KEYS[0]]);
+  const keys = Object.keys(data[LOCALE_KEYS[0]]);
 
   invariant(
-    !LOCAL_KEYS.some(
+    !LOCALE_KEYS.some(
       localeKey => !areEqual(keys, Object.keys(data[localeKey])),
     ),
-    chalk`Keys should be the same in {green ${filename}.json}, but get\n\n${LOCAL_KEYS.map(
+    chalk`Keys should be the same in {green ${filename}.json}, but get\n\n${LOCALE_KEYS.map(
       localeKey =>
         chalk`{bold ${localeKey}}: {gray ${[
           ...preKey,
@@ -38,13 +38,13 @@ const findNullLocales = (filename, data, nullLocales = [], preKey = []) => {
   );
 
   return keys.reduce((result, key) => {
-    if (LOCAL_KEYS.some(localeKey => !data[localeKey][key]))
+    if (LOCALE_KEYS.some(localeKey => !data[localeKey][key]))
       return [...result, [...preKey, key]];
 
-    if (LOCAL_KEYS.some(localeKey => data[localeKey][key] instanceof Object))
+    if (LOCALE_KEYS.some(localeKey => data[localeKey][key] instanceof Object))
       return findNullLocales(
         filename,
-        LOCAL_KEYS.reduce(
+        LOCALE_KEYS.reduce(
           (newLocale, localeKey) => ({
             ...newLocale,
             [localeKey]: data[localeKey][key],
@@ -129,7 +129,7 @@ process.on('unhandledRejection', e => {
 });
 
 (async () => {
-  const locales = LOCAL_KEYS.reduce(
+  const locales = LOCALE_KEYS.reduce(
     (result, locale) =>
       fs
         .readdirSync(path.resolve(ROOT_FOLDER, locale))
@@ -155,9 +155,9 @@ process.on('unhandledRejection', e => {
 
       const newTitle = [
         `| **${pkgName}@${filename}** |${[].constructor
-          .apply({}, new Array(LOCAL_KEYS.length))
+          .apply({}, new Array(LOCALE_KEYS.length))
           .join('|')}|`,
-        `| | **${LOCAL_KEYS.map(
+        `| | **${LOCALE_KEYS.map(
           localeKey =>
             `[${localeKey}](${URL_FOLDER}/${localeKey}/${filename}.json)`,
         ).join('** | **')}** |`,
@@ -165,7 +165,7 @@ process.on('unhandledRejection', e => {
 
       nullLocales.forEach(keys => {
         newTitle.push(
-          `| **${keys.join('.')}** | ${LOCAL_KEYS.map(
+          `| **${keys.join('.')}** | ${LOCALE_KEYS.map(
             localeKey =>
               keys.reduce(
                 (newData, key) => newData[key],

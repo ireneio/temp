@@ -10,7 +10,7 @@ require('output-file-sync')(
   path.resolve(__dirname, 'story.js'),
   `/* eslint-disable */
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { storiesOf } from '@storybook/react';
 import { I18nextProvider } from 'react-i18next';
 import nextI18next from 'next-i18next';
@@ -48,20 +48,25 @@ storiesOf('${name}', module)
     <I18nextProvider i18n={nextI18next.i18n}>
       <MockTypes {...resolvers}>
         <Provider>
-          <Component />
+          <Suspense fallback="loading">
+            <Component />
+          </Suspense>
         </Provider>
       </MockTypes>
     </I18nextProvider>
   ));`,
 );
 
-process.env.STORYBOOK_NEXT_I18NEXT_PARENT_MODULE_FILENAME = /@admin/.test(name)
-  ? 'admin/utils'
-  : 'store/utils';
+process.env.STORYBOOK_RUN = true;
 
 require('@storybook/react/standalone')({
   mode: 'dev',
   port: 14400,
   configDir: __dirname,
+  staticDir: [
+    /@admin/.test(name)
+      ? path.resolve(__dirname, '../admin/server/src/public')
+      : path.resolve(__dirname, '../packages/store/src/public'),
+  ],
   ci: true,
 });

@@ -1,0 +1,20 @@
+{
+  "close": "Hors service",
+  "product-is-discontinued": "Oops! Ce produit a été abandonné.",
+  "back-to-homepage": "Retour à la page d'accueil",
+  "title": {
+    "order": "détails de la commande",
+    "order-apply-list": "Retour / Remplacement",
+    "order-exchange": "Remplacement",
+    "order-refund": "Revenir",
+    "orders": "Mes commandes",
+    "change-password": "Changer le mot de passe",
+    "pay-notify": "Notification de paiement",
+    "recipients": "Carnet d'adresses",
+    "reward-points": "Points de récompense",
+    "settings": "Infos membres",
+    "wishlist": "Liste de souhaits",
+    "logout": "Connectez - Out"
+  },
+  "locale": "Le français"
+}

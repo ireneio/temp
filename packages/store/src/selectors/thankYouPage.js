@@ -12,7 +12,6 @@ import {
 const getThankYouPage = () => ({
   id: 'thank-you-page',
   title: {
-    en_US: 'Checkout',
     zh_TW: '結帳',
   },
   container: 'DefaultContainer',

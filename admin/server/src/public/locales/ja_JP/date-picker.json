@@ -1,11 +1,11 @@
 {
-  "today": null,
-  "yesterday": null,
-  "lastWeek": null,
-  "lastMonth": null,
-  "last7Days": null,
-  "last30Days": null,
-  "custom": null,
-  "start-date": null,
-  "end-date": null
+  "today": "今日",
+  "yesterday": "昨日",
+  "lastWeek": "先週",
+  "lastMonth": "先月",
+  "last7Days": "過去7日間",
+  "last30Days": "過去30日間",
+  "custom": "カスタム時間",
+  "start-date": "始まる時間",
+  "end-date": "終了時間"
 }

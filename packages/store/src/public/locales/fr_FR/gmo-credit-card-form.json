@@ -1,0 +1,19 @@
+{
+  "title": "Carte de crédit",
+  "modify": "Changement",
+  "cancel": "Annuler",
+  "remember-card": null,
+  "expire": "Date d'expiration'",
+  "securityCode": "CVV",
+  "cardHolderName": "Nom sur carte",
+  "installment": "Tranche",
+  "installments": "Acompte de paiement",
+  "bank": "Banque",
+  "form": {
+    "required": "Champs obligatoires",
+    "cardNumberError": "numéro de carte invalide",
+    "securityCodeError": "CVV invalide"
+  },
+  "not-gmo-bank": "Cette banque émettrice de la carte n'offre pas de versements, veuillez utiliser la carte de crédit des banques suivantes ou modifier votre mode de paiement",
+  "dot": "、"
+}

@@ -1,0 +1,17 @@
+{
+  "auth-request": "Autenticando ...",
+  "login-request": "Iniciando sesión…",
+  "signout-request": "Cerrando sesión…",
+  "signup-request": "Tratamiento…",
+  "forget-password-request": "Envío de correo electrónico ...",
+  "add-cart-items-request": "Añadiendo al carrito ...",
+  "update-cart-items-request": "Cambiando QTY ...",
+  "remove-cart-items-request": "Eliminando ...",
+  "update-user-request": "Actualizando ...",
+  "create-apply-request": "Aplicando ...",
+  "create-order-qa-request": "Tratamiento…",
+  "update-wishlist-request": "Tratamiento…",
+  "add-stock-notification-list-request": "Tratamiento…",
+  "get-order-request": "Tratamiento…",
+  "reset-password-request": "Tratamiento…"
+}

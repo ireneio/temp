@@ -18,7 +18,7 @@
   "is-register": "Hộp thư này đã được đăng ký",
   "password": "Xin cài đặt mật khẩu hội viên",
   "name": "tên",
-  "allpay-name-too-long": null,
+  "allpay-name-too-long": "Tiếng Trung nên là 2-5 ký tự / tiếng Anh nên là 4-10 ký tự. Vui lòng không sử dụng ký hiệu / số hoặc để trống",
   "mobile": "Điện Thoại",
   "payment-info": "Cách thức mua hàng",
   "same-as-user-info": "Giống thông tin hội viên",

@@ -1,0 +1,45 @@
+{
+  "is-required": "Necesaria",
+  "mobile": "Móvil",
+  "id-number": "Número de identificación",
+  "not-id-number": "Número de identificación inválido",
+  "area": "País",
+  "postal-code": "Código postal",
+  "address": "Dirección",
+  "choose-store": "Seleccionar tienda",
+  "not-choose-store": "Por favor seleccione una tienda",
+  "rechoose-store": "Cambio",
+  "invoice": "Factura",
+  "invoice-paper": "Factura en papel",
+  "invoice-title": "Cobrar a:",
+  "invoice-number": "IVA no",
+  "invoice-address": "Dirección postal de la factura",
+  "invoice-e-invoice": "Factura electrónica",
+  "wrong-certificate": "El código de barras NPC es incorrecto. Por favor ingrese nuevamente.",
+  "wrong-barcode": "El código de barras móvil es incorrecto. Por favor ingrese nuevamente.",
+  "invoice-donate": "Ingrese el código de donación de NPO",
+  "invoice-search": "Preguntar",
+  "wrong-lovecode": "El código de donación de NPO es incorrecto. Por favor ingrese nuevamente.",
+  "error": "Ocurrieron errores",
+  "invoice-e-invoice-number": {
+    "moile-barcode": "Ingresar código de barras",
+    "citizen-digital-certificate": "Ingresar código de barras"
+  },
+  "invoice-e-invoice-type": {
+    "membership": "Portador de Membresía",
+    "mobile-barcode": "Código de barras móvil",
+    "citizen-digital-certificate": "Código de barras NPC",
+    "company": "Cuenta de la compañia",
+    "donation": "Donar"
+  },
+  "convenience-store": {
+    "CVSStoreName": "Nombre de la tienda",
+    "CVSAddress": "Dirección de la tienda",
+    "CVSStoreID": "ID de tienda"
+  },
+  "invoice-paper-type": {
+    "duplicate": "Factura uniforme duplicada",
+    "triplicate": "Factura uniforme por triplicado",
+    "donation": "Donar"
+  }
+}

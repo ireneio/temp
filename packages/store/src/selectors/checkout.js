@@ -13,7 +13,6 @@ import {
 const getCheckoutPage = (state, prevProps) => ({
   id: 'page-checkout',
   title: {
-    en_US: 'Checkout',
     zh_TW: '結帳',
   },
   container: 'DefaultContainer',

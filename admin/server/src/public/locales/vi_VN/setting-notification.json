@@ -1,0 +1,36 @@
+{
+  "title": "Thiết lập thông báo",
+  "save": "Tiết kiệm",
+  "cancel": "Hủy bỏ",
+  "auto-email": "Lưu trữ email thông báo tự động",
+  "auto-email-description": "Khi thông báo được kích hoạt, một email thông báo sẽ được gửi cứ sau 20 phút. Bạn có thể đặt một địa chỉ email khác với tài khoản đăng nhập của bạn.",
+  "email": "Nhận email",
+  "email-error": "Định dạng email không chính xác",
+  "required": "Cần thiết",
+  "auto-email-setting": "Cài đặt thông báo",
+  "order": {
+    "title": "Tạo đơn hàng",
+    "description": "Thông báo khi đơn hàng mới được tạo"
+  },
+  "order-QA": {
+    "title": "Hỏi và trả lời",
+    "description": "Thông báo khi người tiêu dùng gửi tin nhắn theo thứ tự chi tiết"
+  },
+  "order-applicaiton": {
+    "title": "Đơn xin đổi hoặc hoàn tiền",
+    "tip": "Tính năng này yêu cầu tiện ích mở rộng \"Hoàn tiền\" hoặc \"Trạng thái trao đổi\"",
+    "description": "Thông báo khi người tiêu dùng gửi \"đăng ký hoàn tiền / trao đổi\""
+  },
+  "payment-notification": {
+    "title": "Thông báo thanh toán đơn hàng",
+    "tip": "Tính năng này chỉ áp dụng cho các đơn hàng có số tiền tùy chỉnh và được thanh toán qua ATM",
+    "description": "Thông báo khi người tiêu dùng cung cấp thông tin thanh toán theo thứ tự chi tiết"
+  },
+  "product-QA": {
+    "title": "Hỏi đáp về sản phẩm",
+    "tip": "Chức năng này yêu cầu thành phần Hỏi & Đáp trên trang sản phẩm để người tiêu dùng đặt câu hỏi hoặc để lại tin nhắn",
+    "description": "Thông báo khi người tiêu dùng đặt câu hỏi hoặc để lại tin nhắn trong Hỏi & Đáp về sản phẩm trên trang sản phẩm"
+  },
+  "success": "đã lưu thành công",
+  "error": "lỗi"
+}

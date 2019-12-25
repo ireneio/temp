@@ -1,0 +1,20 @@
+{
+  "close": "Fuera de servicio",
+  "product-is-discontinued": "¡Uy! Este producto ha sido descontinuado.",
+  "back-to-homepage": "Volver a la página de inicio",
+  "title": {
+    "order": "Detalles del pedido",
+    "order-apply-list": "Devolución / Reemplazo",
+    "order-exchange": "Reemplazo",
+    "order-refund": "Regreso",
+    "orders": "Mis ordenes",
+    "change-password": "Cambia la contraseña",
+    "pay-notify": "Notificacion de pago",
+    "recipients": "Directorio",
+    "reward-points": "Puntos de recompensa",
+    "settings": "Información del miembro",
+    "wishlist": "Lista de deseos",
+    "logout": "cerrar sesión"
+  },
+  "locale": "Espanol"
+}

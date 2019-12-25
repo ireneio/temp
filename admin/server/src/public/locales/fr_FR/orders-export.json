@@ -1,0 +1,21 @@
+{
+  "title": "Bon de commande d'exportation",
+  "maskId": {
+    "title": "Exporter des articles",
+    "placeholder": "Veuillez sélectionner le groupe applicable"
+  },
+  "fileType": {
+    "title": "Format de fichier",
+    "placeholder": "Sélectionnez le format de fichier d'exportation"
+  },
+  "fileName": {
+    "title": "Nom de fichier",
+    "placeholder": "Entrez le nom du fichier (facultatif)"
+  },
+  "go-back": "Retour",
+  "download": "Télécharger",
+  "error": {
+    "title": "Erreur",
+    "content": "Aucune donnée de téléchargement disponible"
+  }
+}

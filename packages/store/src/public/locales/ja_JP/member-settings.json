@@ -3,8 +3,8 @@
     "required": "入力必須項目"
   },
   "group-expire-date": {
-    "info": null,
-    "forever": null
+    "info": "有効期限",
+    "forever": "常設"
   },
   "name": "氏名",
   "gender": {

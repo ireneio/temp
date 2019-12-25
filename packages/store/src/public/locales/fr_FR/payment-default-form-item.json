@@ -1,0 +1,26 @@
+{
+  "is-required": "Champs obligatoires",
+  "payment": "Paiement",
+  "payment-description": "La description",
+  "shipment": "Livraison",
+  "shipment-description": "La description",
+  "choose-paymeny-error": "Le mode de paiement sélectionné n'est pas disponible, veuillez sélectionner à nouveau.",
+  "choose-shipment-error": "La livraison sélectionnée n'est pas disponible, veuillez sélectionner à nouveau.",
+  "coupon": {
+    "placeholder": "Code promo",
+    "coupon-button": "Appliquer",
+    "ask-confirm-coupon": "Veuillez cliquer sur \"Appliquer\"",
+    "activity-period-is": "La campagne se déroule du",
+    "this-code-not-exist": "Ce code promo n'est pas valide",
+    "your-member-group-can-not-use-this-code": "L'adhésion n'est pas qualifiée! Ce code promo ne peut pas s'appliquer.",
+    "this-code-activity-period": "La campagne se déroule du",
+    "this-code-usetimes-full": "Ce code promo a atteint la limite du nombre d'utilisations.",
+    "this-code-has-to-buy-specific-products": "Des produits spécifiques doivent être achetés pour utiliser ce code promo",
+    "amount-of-products": "articles)",
+    "this-code-is-the-same": "Ce code promo ne peut pas être utilisé en raison de la duplication",
+    "plz-ask-service-or-delete": ", veuillez contacter notre service client pour obtenir de l'aide, ou effacer le code du coupon, puis passez à la caisse.",
+    "plz-delete-then-checkout": ", veuillez effacer le code du coupon, puis passez à la caisse.",
+    "this-code-has-to-satisfy": "Pour utiliser ce code promo, le montant total doit atteindre {{currency}}",
+    "this-code-can-discount": "Ce code de réduction peut être utilisé pour {{currency}}"
+  }
+}

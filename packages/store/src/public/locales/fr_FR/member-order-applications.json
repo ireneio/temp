@@ -1,0 +1,37 @@
+{
+  "order-no": "Numéro de commande:",
+  "order-date": "Date de commande:",
+  "apply": "Poser sa candidature:",
+  "type": {
+    "return": "Revenir",
+    "replace": "Remplacement"
+  },
+  "date": "Rendez-vous amoureux:",
+  "recipient": "Bénéficiaire:",
+  "phone": "Pas de téléphone.:",
+  "address": "Adresse:",
+  "product": {
+    "title": "Article",
+    "quantity": "QUANTITÉ"
+  },
+  "reason": "La description",
+  "status": {
+    "0": "Être confirmé",
+    "10": "Expédié",
+    "11": "Ramasser",
+    "12": "Confirmé",
+    "13": "Erreur est survenue",
+    "20": "Rembourser",
+    "21": "Remboursé",
+    "22": "Erreur est survenue",
+    "title": "Statut",
+    "return": {
+      "1": "Terminé",
+      "2": "Le retour de ce produit est impossible, veuillez contacter notre service client si vous avez des questions."
+    },
+    "replace": {
+      "1": "Terminé",
+      "2": "Le remplacement de ce produit est impossible, veuillez contacter notre service client si vous avez des questions."
+    }
+  }
+}

@@ -3,6 +3,8 @@ import gql from 'graphql-tag';
 
 import mock from '../mock';
 
+import getLocale from './utils/getLocale';
+
 // graphql typescript
 import { StoreShipmentMock } from './__generated__/StoreShipmentMock';
 
@@ -24,14 +26,6 @@ gql`
 export default mock.add<StoreShipmentMock>('StoreShipment', [
   () => ({
     __typename: 'StoreShipment',
-    title: {
-      __typename: 'Locale',
-      /* eslint-disable @typescript-eslint/camelcase */
-      zh_TW: 'shipment',
-      en_US: 'shipment',
-      ja_JP: 'shipment',
-      vi_VN: 'shipment',
-      /* eslint-enable @typescript-eslint/camelcase */
-    },
+    title: getLocale('shipment'),
   }),
 ]);

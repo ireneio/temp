@@ -2,11 +2,11 @@
   "title": "Thông tin thẻ tín dụng",
   "modify": "Chỉnh sửa",
   "cancel": "Hủy bỏ'",
-  "remember-card": "本人同意將信用卡卡號、安全碼等支付資訊予香港商技慕最網金流有限公司台北分公司（GMO Payment Gateway,Inc.）留存，以便下次購買時快速支付結帳。",
+  "remember-card": null,
   "expire": "Ngày hết hạn",
   "securityCode": "Mã an toàn",
   "cardHolderName": "Tên chủ thẻ",
-  "installment": null,
+  "installment": "Trả góp",
   "installments": "Kỳ hạn trả góp",
   "bank": "Ngân hàng trả góp",
   "form": {
@@ -14,6 +14,6 @@
     "cardNumberError": "Không phải số thẻ tín dụng",
     "securityCodeError": "Không phải mã an toàn"
   },
-  "not-gmo-bank": null,
+  "not-gmo-bank": "Ngân hàng phát hành thẻ này không cung cấp trả góp, vui lòng sử dụng thẻ tín dụng của các ngân hàng sau hoặc thay đổi phương thức thanh toán của bạn",
   "dot": "、"
 }

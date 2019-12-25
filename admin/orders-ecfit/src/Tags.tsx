@@ -15,6 +15,8 @@ import emptyArrayToUndefined from './utils/emptyArrayToUndefined';
 import styles from './styles/tags.less';
 
 // graphql typescript
+import { localeFragmentType } from '@admin/utils/lib/fragments/locale';
+
 import { tagsStorePaymentListFragment as tagsStorePaymentListFragmentType } from './__generated__/tagsStorePaymentListFragment';
 import { tagsStoreShipmentListFragment as tagsStoreShipmentListFragmentType } from './__generated__/tagsStoreShipmentListFragment';
 
@@ -91,11 +93,7 @@ const Tags = React.memo(
                   shipmentIdList: getStoreShipmentList.data,
                 }[key] as {
                   id: string;
-                  title: {
-                    zh_TW: string;
-                    en_US: string;
-                    ja_JP: string;
-                  };
+                  title: localeFragmentType;
                 }[]).find(({ id }) => id === option)?.title[i18n.language] ||
                 ''}
           </Tag>

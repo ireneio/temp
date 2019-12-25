@@ -1,21 +1,21 @@
 {
-  "title": null,
+  "title": "Export order form",
   "maskId": {
-    "title": null,
-    "placeholder": null
+    "title": "Export Items",
+    "placeholder": "Please select applicable group"
   },
   "fileType": {
-    "title": null,
-    "placeholder": null
+    "title": "File format",
+    "placeholder": "Select export file format"
   },
   "fileName": {
-    "title": null,
-    "placeholder": null
+    "title": "File name",
+    "placeholder": "Enter file name (optional)"
   },
-  "go-back": null,
-  "download": null,
+  "go-back": "Back",
+  "download": "Download",
   "error": {
-    "title": null,
-    "content": null
+    "title": "Error",
+    "content": "No download data available"
   }
 }

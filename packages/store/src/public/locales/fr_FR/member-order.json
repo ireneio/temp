@@ -1,0 +1,108 @@
+{
+  "order-number": "Numéro de commande:",
+  "created-on": "Date de commande:",
+  "not-found": "Commande introuvable, veuillez confirmer que vous êtes connecté au bon compte.",
+  "product": {
+    "title": "Article",
+    "spec": "Spec",
+    "quantity": "QUANTITÉ",
+    "price": "Prix",
+    "subtotal": "Prix",
+    "gift": "Cadeau gratuit",
+    "no-gift": "En rupture de stock"
+  },
+  "sheet": {
+    "product": "Total",
+    "shipment": "Frais d'expédition",
+    "free-shipment": "Libre",
+    "payment": "Frais de traitement",
+    "adjustment": "Modifier la commande",
+    "total": "Totale",
+    "reward": "Points de récompense",
+    "coupon": "Code promo"
+  },
+  "qa": {
+    "title": "Q&R pour les commandes",
+    "placeholder": "Veuillez saisir votre message pour l'assistance technique.",
+    "send": "Envoyer",
+    "success": "Il a été soumis avec succès.",
+    "error": "Soumettre la commande Q&R: Une erreur s'est produite"
+  },
+  "blocks": {
+    "buyer": "Infos membres",
+    "recipient": "Informations sur le destinataire",
+    "payment": {
+      "title": "Statut de paiement",
+      "status": {
+        "0": "Être confirmé",
+        "1": "Notification de paiement",
+        "2": "Payé",
+        "3": "Décalage",
+        "4": "Échoué",
+        "5": "Rembourser"
+      },
+      "type": "Paiement",
+      "bank-code": "Code bancaire:",
+      "virtual-account": "Numéro de compte virtuel:",
+      "expire-date": "Date d'échéance:",
+      "cvs-payment-no": "Numéro de paiement en magasin pratique:",
+      "barcode": "Code à barres de paiement en magasin pratique:",
+      "card-no": "Quatre derniers chiffres de la carte de crédit:",
+      "gmo-store-code": "Code de magasin OGM:"
+    },
+    "shipment": {
+      "title": "Statut de livraison",
+      "status": {
+        "0": "en attendant",
+        "1": "En train de préparer",
+        "2": "En rupture de stock",
+        "3": "Expédié",
+        "4": "Pré-commander",
+        "5": "Remplacement",
+        "6": "Revenir"
+      },
+      "type": "Livraison",
+      "link": "Suivi de commande",
+      "number": "Numéro de suivi:",
+      "store": {
+        "id": "ID du magasin:",
+        "name": "Nom du magasin:",
+        "address": "Adresse du magasin:"
+      }
+    },
+    "invoice": {
+      "title": "Facture d'achat",
+      "type": {
+        "paper": "Facture papier",
+        "manual-electronic": "e-facture",
+        "ecpay-electronic": "e-facture"
+      },
+      "method": {
+        "duplicate": "Facture uniforme en double",
+        "triplicate": "Facture uniforme en triple",
+        "company": "Compte d'entreprise",
+        "donation": "Faire un don"
+      },
+      "carrier": {
+        "membership": "Transporteur d'adhésion",
+        "mobile-barcode": "Code à barres mobile",
+        "citizen-digital-certificate": "NPC Barcode"
+      },
+      "bar-code": "Numéro de code barre:",
+      "love-code": "Code de don d'OBNL:",
+      "number": "Numéro de facture:",
+      "date": "Date de publication:",
+      "waiting": "Reste à publier",
+      "invalid": "Facture invalide"
+    },
+    "order": {
+      "title": "Statut de la commande et notes",
+      "status": {
+        "0": "En traitement",
+        "1": "Terminé",
+        "2": "Annulé",
+        "3": "Retour / Remplacement"
+      }
+    }
+  }
+}

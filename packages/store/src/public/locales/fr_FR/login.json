@@ -1,0 +1,19 @@
+{
+  "email-is-required": "Veuillez saisir un e-mail.",
+  "is-invalid-email": "S'il vous plaît, mettez une adresse email valide.",
+  "email-placeholder": "Email",
+  "password-is-required": "Veuillez entrer le mot de passe.",
+  "password-placeholder": "Mot de passe",
+  "forget-password": "Mot de passe oublié?",
+  "signup": "S'inscrire",
+  "login": "Se connecter",
+  "join-us": "Créer un compte",
+  "fb-login": "Connectez-vous avec Facebook",
+  "go-back": "Retour",
+  "password-is-no-match": "Veuillez retaper votre mot de passe ici",
+  "join": "Joindre",
+  "promotion-code": "Code de groupe",
+  "password": "Mot de passe",
+  "confirm-password": "Confirmez le mot de passe",
+  "send-reset-password-mail": "réinitialiser le mot de passe"
+}

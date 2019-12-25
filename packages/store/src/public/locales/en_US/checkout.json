@@ -18,7 +18,7 @@
   "is-register": "This email address is already registered",
   "password": "Password",
   "name": "Full Name",
-  "allpay-name-too-long": null,
+  "allpay-name-too-long": "Chinese should be 2-5 characters / English should be 4-10 characters. Please don't use symbols/numbers or leave blank",
   "mobile": "Mobile",
   "payment-info": "Payment / Delivery Type",
   "same-as-user-info": "Same as member info",

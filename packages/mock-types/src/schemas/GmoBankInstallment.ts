@@ -3,6 +3,8 @@ import gql from 'graphql-tag';
 
 import mock from '../mock';
 
+import getLocale from './utils/getLocale';
+
 // graphql typescript
 import { GmoBankInstallmentMock } from './__generated__/GmoBankInstallmentMock';
 
@@ -25,29 +27,13 @@ gql`
 export default mock.add<GmoBankInstallmentMock>('GmoBankInstallment', [
   () => ({
     __typename: 'GmoBankInstallment',
-    name: {
-      __typename: 'Locale',
-      /* eslint-disable @typescript-eslint/camelcase */
-      zh_TW: 'GmoBank1',
-      en_US: 'GmoBank1',
-      ja_JP: 'GmoBank1',
-      vi_VN: 'GmoBank1',
-      /* eslint-enable @typescript-eslint/camelcase */
-    },
+    name: getLocale('GmoBank1'),
     code: '1',
     installments: [2, 4, 6],
   }),
   () => ({
     __typename: 'GmoBankInstallment',
-    name: {
-      __typename: 'Locale',
-      /* eslint-disable @typescript-eslint/camelcase */
-      zh_TW: 'GmoBank2',
-      en_US: 'GmoBank2',
-      ja_JP: 'GmoBank2',
-      vi_VN: 'GmoBank2',
-      /* eslint-enable @typescript-eslint/camelcase */
-    },
+    name: getLocale('GmoBank2'),
     code: null,
     installments: [2, 4, 6, 8],
   }),

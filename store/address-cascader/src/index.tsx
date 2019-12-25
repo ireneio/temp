@@ -13,6 +13,8 @@ import ZipCodeInput from './ZipCodeInput';
 import styles from './styles/index.less';
 
 // graphql typescript
+import { localeFragmentType } from '@store/utils/lib/fragments/locale';
+
 import {
   getCountriesAddress,
   getCountriesAddress_addressService_countries as getCountriesAddressAddressServiceCountries,
@@ -42,13 +44,7 @@ interface PropsType extends Pick<I18nPropsType, 'i18n'> {
 interface OptionsType {
   __typename: string;
   id: string;
-  name: {
-    __typename: 'Locale';
-    zh_TW: string | null;
-    en_US: string | null;
-    ja_JP: string | null;
-    vi_VN: string | null;
-  };
+  name: localeFragmentType;
   children?: OptionsType[];
 }
 

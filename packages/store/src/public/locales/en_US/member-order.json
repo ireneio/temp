@@ -1,7 +1,7 @@
 {
   "order-number": "Order Number: ",
   "created-on": "Order Date: ",
-  "not-found": null,
+  "not-found": "Order not found, please confirm that you are logged in to the correct account.",
   "product": {
     "title": "Item",
     "spec": "Spec",
@@ -16,7 +16,7 @@
     "shipment": "Shipping Fee",
     "free-shipment": "Free",
     "payment": "Processing Fee",
-    "adjustment": null,
+    "adjustment": "Edit order",
     "total": "Total",
     "reward": "Reward Points",
     "coupon": "Coupon Code"

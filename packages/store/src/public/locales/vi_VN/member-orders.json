@@ -10,30 +10,30 @@
     "qa": "Tư vấn khách hàng"
   },
   "payment": {
-    "title": "Trạng thái thanh toán",
     "0": "Chờ xác nhận",
     "1": "Thông báo chuyển tiền",
     "2": "Hoàn thành đối chiếu tài khoản",
     "3": "Thông tin không đúng",
     "4": "Thanh toán thất bại",
-    "5": "Xử lý hoàn tiền"
+    "5": "Xử lý hoàn tiền",
+    "title": "Trạng thái thanh toán"
   },
   "shipment": {
-    "title": "Trạng thái giao nhận",
     "0": "Chưa xuất hàng",
     "1": "Đang chuẩn bị hàng",
     "2": "Hết hàng",
     "3": "Đã xuất hàng",
     "4": "Đặt hàng",
     "5": "Xử lý đổi hàng",
-    "6": "Xử lý hoàn trả hàng"
+    "6": "Xử lý hoàn trả hàng",
+    "title": "Trạng thái giao nhận"
   },
   "status": {
-    "title": "Trạng Thái Đặt Hàng",
     "0": "Đang xử lý",
     "1": "Đơn hàng kết thúc",
     "2": "Hủy đơn hàng",
-    "3": "Xử lý đổi trả hàng"
+    "3": "Xử lý đổi trả hàng",
+    "title": "Trạng Thái Đặt Hàng"
   },
   "pay-again": {
     "title": "Lập tức thanh toán",

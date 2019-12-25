@@ -18,7 +18,7 @@
   "is-register": "このメールアドレスはすでに使われています",
   "password": "会員パスワードを設定してください",
   "name": "氏名",
-  "allpay-name-too-long": null,
+  "allpay-name-too-long": "中国語は2〜5文字、英語は4〜10文字にする必要があります。 記号/数字を使用したり、空白のままにしないでください",
   "mobile": "携帯電話",
   "payment-info": "支払方法",
   "same-as-user-info": "会員情報と同じ",

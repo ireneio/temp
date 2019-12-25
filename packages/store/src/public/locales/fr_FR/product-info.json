@@ -1,0 +1,19 @@
+{
+  "goto-login": "Veuillez vous connecter.",
+  "confirm": "D'accord",
+  "cancel": "Non merci.",
+  "list-price": "Liste des prix",
+  "suggested-price": "MSRP",
+  "member-see-price": "Prix exclusif aux membres",
+  "over-stock": "Les articles de votre panier ont atteint la limite.",
+  "out-of-stock": "En rupture de stock",
+  "quantity": "QUANTITÉ",
+  "login-first": "Veuillez vous connecter.",
+  "add-to-cart": "Ajouter au panier",
+  "notice-done": "Terminé. Veuillez attendre la notification.",
+  "notice-me": "M'avertir quand il sera de retour en stock",
+  "sold-out": "En rupture de stock",
+  "no-variants": "Aucune spécification n'est disponible.",
+  "not-found-content": "Le nombre d'articles achetables peut dépasser sa limite ou le format n'est pas valide.",
+  "more-options": "… Ou saisissez la quantité désirée"
+}

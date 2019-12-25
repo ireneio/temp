@@ -1,0 +1,19 @@
+{
+  "title": "Tarjeta de crédito",
+  "modify": "Cambio",
+  "cancel": "Cancelar",
+  "remember-card": null,
+  "expire": "Fecha de caducidad'",
+  "securityCode": "CVV",
+  "cardHolderName": "Nombre en la tarjeta",
+  "installment": "Entrega",
+  "installments": "Pago a plazos",
+  "bank": "Banco",
+  "form": {
+    "required": "Necesaria",
+    "cardNumberError": "numero de tarjeta invalido",
+    "securityCodeError": "CVV inválido"
+  },
+  "not-gmo-bank": "Este banco emisor de la tarjeta no ofrece cuotas, utilice la tarjeta de crédito de los siguientes bancos o cambie su método de pago",
+  "dot": "、"
+}

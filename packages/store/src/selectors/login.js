@@ -13,7 +13,6 @@ const loginPage = {
   id: 'page-login',
   title: {
     zh_TW: '登入',
-    en_US: 'Login',
   },
   container: 'TwoTopsContainer',
   blocks: [],

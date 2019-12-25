@@ -1,11 +1,11 @@
 {
-  "today": null,
-  "yesterday": null,
-  "lastWeek": null,
-  "lastMonth": null,
-  "last7Days": null,
-  "last30Days": null,
-  "custom": null,
-  "start-date": null,
-  "end-date": null
+  "today": "today",
+  "yesterday": "yesterday",
+  "lastWeek": "Last week",
+  "lastMonth": "Last month",
+  "last7Days": "Last 7 days",
+  "last30Days": "Last 30 days",
+  "custom": "Custom time",
+  "start-date": "Start time",
+  "end-date": "End time"
 }

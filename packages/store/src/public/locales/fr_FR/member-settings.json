@@ -1,0 +1,31 @@
+{
+  "form": {
+    "required": "Champs obligatoires"
+  },
+  "group-expire-date": {
+    "info": "Date d'expiration",
+    "forever": "Permanente"
+  },
+  "name": "Nom complet",
+  "gender": {
+    "placeholder": "Le genre",
+    "male": "Femelle",
+    "female": "Femme"
+  },
+  "email": "Email",
+  "tel": "Pas de téléphone.",
+  "mobile": "Mobile",
+  "birthday": "Date de naissance (année / mois / date)",
+  "address": "Pays / Ville / Canton",
+  "zip-code": "code postal",
+  "street": "Adresse",
+  "isNotCancelEmail": "Abonnez-vous à la newsletter",
+  "submit": "Mise à jour",
+  "remove-credit-card-info": {
+    "title": "信用卡 交易 資料",
+    "subTitle": "為 確保 交易 的 安全 性 ， 保留 的 卡號 資料 皆由 銀行 進行 加密 處理",
+    "submit": "移除 信用卡 交易 資料",
+    "fail": "移除 失敗",
+    "success": "移除 成功"
+  }
+}

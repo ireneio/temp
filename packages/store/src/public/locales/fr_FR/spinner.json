@@ -1,0 +1,17 @@
+{
+  "auth-request": "Authentification…",
+  "login-request": "Connectez-vous…",
+  "signout-request": "Déconnecter…",
+  "signup-request": "En traitement…",
+  "forget-password-request": "Envoi d'email…",
+  "add-cart-items-request": "Ajout au panier…",
+  "update-cart-items-request": "Modification de la quantité…",
+  "remove-cart-items-request": "Suppression…",
+  "update-user-request": "Mise à jour…",
+  "create-apply-request": "Appliquer…",
+  "create-order-qa-request": "En traitement…",
+  "update-wishlist-request": "En traitement…",
+  "add-stock-notification-list-request": "En traitement…",
+  "get-order-request": "En traitement…",
+  "reset-password-request": "En traitement…"
+}

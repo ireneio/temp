@@ -1,0 +1,24 @@
+{
+  "order-no": "Número de orden:",
+  "created-on": "Fecha de orden:",
+  "product": {
+    "title": "ít",
+    "spec": "Especulación",
+    "quantity": "Cantidad",
+    "price": "Precio",
+    "subtotal": "Total parcial"
+  },
+  "reason": "Descripción",
+  "recede": "atrás",
+  "proceed": "Próxima",
+  "warning": {
+    "refund": "Por favor seleccione un artículo",
+    "exchange": "Seleccione el artículo e ingrese la información del destinatario"
+  },
+  "recipient": {
+    "title": "Información del destinatario",
+    "name": "Nombre completo",
+    "mobile": "Móvil",
+    "address": "Dirección"
+  }
+}

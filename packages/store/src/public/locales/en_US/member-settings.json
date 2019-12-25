@@ -3,8 +3,8 @@
     "required": "Required"
   },
   "group-expire-date": {
-    "info": null,
-    "forever": null
+    "info": "Expiry date",
+    "forever": "Permanent"
   },
   "name": "Full Name",
   "gender": {

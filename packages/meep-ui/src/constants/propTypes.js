@@ -147,6 +147,8 @@ export const ONE_OF_LOCALE_TYPE = PropTypes.oneOf([
   'en_US',
   'ja_JP',
   'vi_VN',
+  'fr_FR',
+  'es_ES',
 ]);
 
 /** test oneOfCurrency */
@@ -190,7 +192,7 @@ export const COUNTRY_TYPE = PropTypes.oneOf(
  * }]
  */
 export const LOCALE_TYPE = PropTypes.shape(
-  ['en_US', 'zh_TW', 'ja_JP', 'vi_VN'].reduce(
+  ['en_US', 'zh_TW', 'ja_JP', 'vi_VN', 'fr_FR', 'es_ES'].reduce(
     (result, locale) => ({
       ...result,
       [locale]: PropTypes.string.isRequired,

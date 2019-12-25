@@ -13,7 +13,7 @@
   "send-success": "メールボックスへ送信されました",
   "receiver-info": "受取人情報",
   "receiver": "氏名",
-  "allpay-name-too-long": null,
+  "allpay-name-too-long": "中国語は2〜5文字、英語は4〜10文字にする必要があります。 記号/数字を使用したり、空白のままにしないでください",
   "gender": "性別",
   "male": "男",
   "female": "女",
@@ -30,5 +30,5 @@
   "payment-fee": "決済手数料",
   "shipment-fee": "送料",
   "total": "今回の消費合計",
-  "no-variant": null
+  "no-variant": "保留中の補充"
 }

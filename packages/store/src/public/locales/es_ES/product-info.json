@@ -1,0 +1,19 @@
+{
+  "goto-login": "Por favor, registrese.",
+  "confirm": "Okay",
+  "cancel": "No, gracias.",
+  "list-price": "Precio de lista",
+  "suggested-price": "MSRP",
+  "member-see-price": "Precio exclusivo para miembros",
+  "over-stock": "Los artículos en su carrito han llegado al límite.",
+  "out-of-stock": "Agotado",
+  "quantity": "Cantidad",
+  "login-first": "Por favor, registrese.",
+  "add-to-cart": "añadir a la cesta",
+  "notice-done": "Terminado. Por favor espere la notificación.",
+  "notice-me": "Notificarme cuando vuelva a estar en stock",
+  "sold-out": "Agotado",
+  "no-variants": "No hay especificaciones disponibles.",
+  "not-found-content": "El número de artículos que se pueden comprar puede superar su límite o el formato no es válido.",
+  "more-options": "... o ingrese la CANTIDAD deseada"
+}

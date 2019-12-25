@@ -1,0 +1,18 @@
+{
+  "name": "Nombre completo",
+  "mobile": "Móvil",
+  "address": "País",
+  "zip-code": "Código postal",
+  "street": "Dirección",
+  "edit": "Editar",
+  "remove": "retirar",
+  "cancel": "Descarte",
+  "submit": "Salvar",
+  "create": "Añadir",
+  "form": {
+    "required": "Necesaria",
+    "not-taiwan-mobile": "El número de teléfono móvil de Taiwán tiene 10 dígitos.",
+    "not-mobile": "Número de teléfono inválido",
+    "not-number": "Esta entrada solo puede contener números"
+  }
+}

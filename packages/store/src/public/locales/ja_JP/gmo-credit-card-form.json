@@ -2,11 +2,11 @@
   "title": "クレジットカード情報",
   "modify": "修正",
   "cancel": "キャンセル",
-  "remember-card": "本人同意將信用卡卡號、安全碼等支付資訊予香港商技慕最網金流有限公司台北分公司（GMO Payment Gateway,Inc.）留存，以便下次購買時快速支付結帳。",
+  "remember-card": null,
   "expire": "有効期限",
   "securityCode": "セキュリティーコード",
   "cardHolderName": "カード名義人",
-  "installment": null,
+  "installment": "取り付け",
   "installments": "分割回数",
   "bank": "分割払いにする銀行",
   "form": {
@@ -14,6 +14,6 @@
     "cardNumberError": "クレジットカード番号ではありません",
     "securityCodeError": "セキュリティーコードではありません"
   },
-  "not-gmo-bank": null,
+  "not-gmo-bank": "このカード発行銀行は分割払いを提供していません。次の銀行のクレジットカードを使用するか、支払い方法を変更してください",
   "dot": "、"
 }

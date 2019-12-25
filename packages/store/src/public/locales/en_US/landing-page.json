@@ -13,7 +13,7 @@
   "send-success": "Reset password link has been sent. Please check your inbox.",
   "receiver-info": "Recipient Info",
   "receiver": "Full Name",
-  "allpay-name-too-long": null,
+  "allpay-name-too-long": "Chinese should be 2-5 characters / English should be 4-10 characters. Please don't use symbols/numbers or leave blank",
   "gender": "Gender",
   "male": "Male",
   "female": "Female",
@@ -30,5 +30,5 @@
   "payment-fee": "Processing Fee",
   "shipment-fee": "Shipping Fee",
   "total": "Total",
-  "no-variant": null
+  "no-variant": "Pending replenishment"
 }

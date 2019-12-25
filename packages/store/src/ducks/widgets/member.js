@@ -482,6 +482,8 @@ function* addRecipientAddressFlow({ payload }) {
               en_US
               ja_JP
               vi_VN
+              fr_FR
+              es_ES
             }
           }
         `,
@@ -496,6 +498,8 @@ function* addRecipientAddressFlow({ payload }) {
               en_US
               ja_JP
               vi_VN
+              fr_FR
+              es_ES
             }
           }
         `,
@@ -510,6 +514,8 @@ function* addRecipientAddressFlow({ payload }) {
               en_US
               ja_JP
               vi_VN
+              fr_FR
+              es_ES
             }
           }
         `,
@@ -592,6 +598,8 @@ function* updateRecipientAddressFlow({
               en_US
               ja_JP
               vi_VN
+              fr_FR
+              es_ES
             }
           }
         `,
@@ -606,6 +614,8 @@ function* updateRecipientAddressFlow({
               en_US
               ja_JP
               vi_VN
+              fr_FR
+              es_ES
             }
           }
         `,
@@ -620,6 +630,8 @@ function* updateRecipientAddressFlow({
               en_US
               ja_JP
               vi_VN
+              fr_FR
+              es_ES
             }
           }
         `,

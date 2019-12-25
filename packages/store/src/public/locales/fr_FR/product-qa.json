@@ -1,0 +1,9 @@
+{
+  "email": "Email",
+  "content": "Enquête",
+  "can-not-send": "Échec de soumission",
+  "is-required": "Champs obligatoires",
+  "not-email": "S'il vous plaît, mettez une adresse email valide.",
+  "reset": "Tout effacer",
+  "submit": "Soumettre"
+}
