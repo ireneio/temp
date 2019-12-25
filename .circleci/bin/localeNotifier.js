@@ -20,6 +20,13 @@ const URL_FOLDER = `https://github.com/meepshop/meep-lerna/tree/master/${path.re
   ROOT_FOLDER,
 )}`;
 const LOCALE_KEYS = fs.readdirSync(ROOT_FOLDER).sort(a => a !== 'zh_TW');
+const localesFolder = path.resolve(__dirname, '../../locales');
+
+if (!fs.existsSync(localesFolder)) fs.mkdirSync(localesFolder);
+
+const outputFile = fs.createWriteStream(
+  path.resolve(localesFolder, `${pkgName}.csv`),
+);
 
 const findNullLocales = (filename, data, nullLocales = [], preKey = []) => {
   const keys = Object.keys(data[LOCALE_KEYS[0]]);
@@ -55,6 +62,13 @@ const findNullLocales = (filename, data, nullLocales = [], preKey = []) => {
         [...preKey, key],
       );
 
+    outputFile.write(`${[...preKey, key].join('.')}`);
+    LOCALE_KEYS.forEach(localeKey => {
+      if (/,/.test(data[localeKey][key]))
+        outputFile.write(`,"${data[localeKey][key]}"`);
+      else outputFile.write(`,${data[localeKey][key]}`);
+    });
+    outputFile.write('\n');
     return result;
   }, nullLocales);
 };
@@ -149,7 +163,22 @@ process.on('unhandledRejection', e => {
   );
   const messages = Object.keys(locales).reduce(
     (result, filename) => {
+      outputFile.write(`${pkgName}@${filename}`);
+      LOCALE_KEYS.forEach(() => {
+        outputFile.write(`,`);
+      });
+      outputFile.write('\n');
+      LOCALE_KEYS.forEach(localeKey => {
+        outputFile.write(`,${localeKey}`);
+      });
+      outputFile.write('\n');
+
       const nullLocales = findNullLocales(filename, locales[filename]);
+
+      LOCALE_KEYS.forEach(() => {
+        outputFile.write(`,`);
+      });
+      outputFile.write('\n');
 
       if (nullLocales.length === 0) return result;
 
@@ -207,4 +236,11 @@ process.on('unhandledRejection', e => {
       );
     }
   }
+
+  if (process.argv[2] === '--send')
+    await postMessage(
+      `${process.env.CIRCLE_TAG}: https://${process.env.CIRCLE_BUILD_NUM}-140218068-gh.circle-artifacts.com/0/home/circleci/repo/locales/${pkgName}.csv`,
+    );
+
+  outputFile.end();
 })();

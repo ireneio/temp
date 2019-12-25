@@ -20,6 +20,9 @@ save-cache: &save-cache
   paths:
     - node_modules
 
+store-locales-filse: &store-locales-files
+  path: locales
+
 deploy-docker: &deploy-docker
   name: Deploy docker
   command: |
@@ -72,6 +75,7 @@ jobs:
               --stream \
               --scope @meepshop/store \
               --scope @admin/server
+      - store_artifacts: *store-locales-files
 
       - run:
           name: Check code style
@@ -114,6 +118,7 @@ jobs:
               --stream \
               --scope @meepshop/store \
               --scope @admin/server
+      - store_artifacts: *store-locales-files
 
   deploy-test:
     <<: *defaults
