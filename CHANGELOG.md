@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.31.1 (2019-12-27)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#822](https://github.com/meepshop/meep-lerna/pull/822) 修正 admin, meepshop-ui, next-store input 錯誤 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.31.0 (2019-12-25)
 
 #### :boom: Breaking Change
