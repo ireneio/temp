@@ -4,7 +4,7 @@
   "description": "Member settings for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.31.0",
+  "version": "0.31.1",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
