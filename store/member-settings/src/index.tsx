@@ -101,9 +101,9 @@ class MemberSettings extends React.PureComponent<PropsType> {
           birthday: !birthday
             ? null
             : {
-                year: birthday.format('YYYY'),
-                month: birthday.format('M'),
-                day: birthday.format('D'),
+                year: parseInt(birthday.format('YYYY'), 10),
+                month: parseInt(birthday.format('M'), 10),
+                day: parseInt(birthday.format('D'), 10),
               },
           additionalInfo: {
             tel,

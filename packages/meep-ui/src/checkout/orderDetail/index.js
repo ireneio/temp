@@ -456,7 +456,10 @@ export default class OrderDetail extends React.PureComponent {
                       placeholder={t('reward-points')}
                       onBlur={({ target }) =>
                         this.computeOrderList({
-                          points: target.value === '' ? 0 : target.value,
+                          points:
+                            target.value === ''
+                              ? 0
+                              : parseInt(target.value, 10),
                         })
                       }
                     />,

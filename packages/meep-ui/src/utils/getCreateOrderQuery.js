@@ -164,8 +164,8 @@ export default ({
                   ...(!expire
                     ? {}
                     : {
-                        expireYear: expire.year(),
-                        expireMonth: expire.month() + 1,
+                        expireYear: expire.format('YYYY'),
+                        expireMonth: expire.format('M'),
                       }),
                   ...(!installmentCode
                     ? {}
