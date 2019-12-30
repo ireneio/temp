@@ -33,14 +33,14 @@
     "recipient": "Recipient Info",
     "payment": {
       "title": "Payment Status",
-      "status": [
-        "To be Confirmed",
-        "Payment Notification",
-        "Paid",
-        "Mismatch",
-        "Failed",
-        "Refund"
-      ],
+      "status": {
+        "0": "To be Confirmed",
+        "1": "Payment Notification",
+        "2": "Paid",
+        "3": "Mismatch",
+        "4": "Failed",
+        "5": "Refund"
+      },
       "type": "Payment",
       "bank-code": "Bank Code: ",
       "virtual-account": "Virtual Account Number: ",
@@ -52,15 +52,15 @@
     },
     "shipment": {
       "title": "Delivery Status",
-      "status": [
-        "Pending",
-        "Preparing",
-        "Out of Stock",
-        "Dispatched",
-        "Pre-order",
-        "Replacement",
-        "Return"
-      ],
+      "status": {
+        "0": "Pending",
+        "1": "Preparing",
+        "2": "Out of Stock",
+        "3": "Dispatched",
+        "4": "Pre-order",
+        "5": "Replacement",
+        "6": "Return"
+      },
       "type": "Delivery",
       "link": "Track Order",
       "number": "Tracking Number: ",
@@ -97,12 +97,12 @@
     },
     "order": {
       "title": "Order Status & Notes",
-      "status": [
-        "Processing",
-        "Completed",
-        "Canceled",
-        "Return / Replacement"
-      ]
+      "status": {
+        "0": "Processing",
+        "1": "Completed",
+        "2": "Canceled",
+        "3": "Return / Replacement"
+      }
     }
   }
 }

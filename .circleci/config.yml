@@ -20,9 +20,6 @@ save-cache: &save-cache
   paths:
     - node_modules
 
-store-locales-filse: &store-locales-files
-  path: locales
-
 deploy-docker: &deploy-docker
   name: Deploy docker
   command: |
@@ -70,12 +67,15 @@ jobs:
       - run:
           name: Check locale files
           command: |
-            yarn lerna exec \
-              "node ${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/localeNotifier.js" \
+            yarn lerna exec "babel src -d lib --config-file ../../babel.config.js --verbose -x .ts" \
               --stream \
-              --scope @meepshop/store \
-              --scope @admin/server
-      - store_artifacts: *store-locales-files
+              --scope @meepshop/locale-parser
+            yarn lerna exec "yarn locale-parser check-keys @meepshop/store" \
+              --stream \
+              --scope @meepshop/locale-parser
+            yarn lerna exec "yarn locale-parser check-keys @admin/server" \
+              --stream \
+              --scope @meepshop/locale-parser
 
       - run:
           name: Check code style
@@ -113,12 +113,23 @@ jobs:
       - run:
           name: Send locale notifier
           command: |
-            yarn lerna exec \
-              "node ${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/localeNotifier.js --send" \
+            yarn lerna exec "babel src -d lib --config-file ../../babel.config.js --verbose -x .ts" \
               --stream \
-              --scope @meepshop/store \
-              --scope @admin/server
-      - store_artifacts: *store-locales-files
+              --scope @meepshop/locale-parser
+            yarn lerna exec "yarn locale-parser find-null @meepshop/store --send-glip" \
+              --stream \
+              --scope @meepshop/locale-parser
+            yarn lerna exec "yarn locale-parser find-null @admin/server --send-glip" \
+              --stream \
+              --scope @meepshop/locale-parser
+            yarn lerna exec "yarn locale-parser generate-csv @meepshop/store" \
+              --stream \
+              --scope @meepshop/locale-parser
+            yarn lerna exec "yarn locale-parser generate-csv @admin/server" \
+              --stream \
+              --scope @meepshop/locale-parser
+      - store_artifacts:
+          path: locales
 
   deploy-test:
     <<: *defaults

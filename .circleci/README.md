@@ -41,23 +41,3 @@ yarn lerna exec "node ../../.circleci/bin/getPackageName.js" --stream --scope <s
 // in ci
 yarn lerna exec "node ${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/getPackageName.js" --stream --scope <scope name>
 ```
-
-## `localeNotifier`
-
-Use to check the locale files and send the notification to `glip`.
-
-- Check the locale files
-
-  ```sh
-  yarn lerna exec "node ../../.circleci/bin/localeNotifier.js" --stream --scope <scope name>
-  // in ci
-  yarn lerna exec "node ${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/localeNotifier.js" --stream --scope <scope name>
-  ```
-
-- Send the notification
-
-  ```sh
-  yarn lerna exec "node ../../.circleci/bin/localeNotifier.js --send" --stream --scope <scope name>
-  // in ci
-  yarn lerna exec "node ${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/localeNotifier.js --send" --stream --scope <scope name>
-  ```

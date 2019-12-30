@@ -10,30 +10,30 @@
     "qa": "Contact Us"
   },
   "payment": {
-    "title": "Payment",
     "0": "To be Confirmed",
     "1": "Payment Notification",
     "2": "Paid",
     "3": "Mismatch",
     "4": "Failed",
-    "5": "Refund"
+    "5": "Refund",
+    "title": "Payment"
   },
   "shipment": {
-    "title": "Delivery",
     "0": "Pending",
     "1": "Preparing",
     "2": "Out of Stock",
     "3": "Dispatched",
     "4": "Pre-order",
     "5": "Replacement",
-    "6": "Return"
+    "6": "Return",
+    "title": "Delivery"
   },
   "status": {
-    "title": "Order Status",
     "0": "Processing",
     "1": "Completed",
     "2": "Canceled",
-    "3": "Return / Replacement"
+    "3": "Return / Replacement",
+    "title": "Order Status"
   },
   "pay-again": {
     "title": "Pay Now",

@@ -10,6 +10,7 @@ module.exports = {
   testMatch: [
     '**/store/**/src/**/__tests__/**/*.{ts,tsx}',
     '**/admin/**/src/**/__tests__/**/*.{ts,tsx}',
+    '**/packages/locale-parser/**/__tests__/**/*.{ts,tsx}',
   ],
   collectCoverage: true,
   coverageDirectory: 'coverage',

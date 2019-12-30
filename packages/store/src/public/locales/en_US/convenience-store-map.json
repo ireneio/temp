@@ -15,10 +15,10 @@
   "unableToShip": "Delivery not available",
   "pleaseSearchStore": "Please select a store based on search criteria",
   "storeNumber": "Store code",
-  "storeServiceNumber":"Service number",
+  "storeServiceNumber": "Service number",
   "storeName": "Store name",
   "storeAddress": "Store address",
-  "storePhone":"Store phone number",
+  "storePhone": "Store phone number",
   "confirmStore": "Confirm store",
   "reselectStore": "Re-select store"
 }

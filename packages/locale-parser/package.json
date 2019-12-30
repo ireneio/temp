@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "@meepshop/locale-parser",
+  "description": "Use to parse the locales files and translate the content with google.",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "bin": "./lib/bin/index.js",
+  "scripts": {
+    "locale-parser": "node ./lib/bin/index.js"
+  },
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "commander": "^4.0.1",
+    "node-fetch": "^2.6.0",
+    "ora": "^4.0.3",
+    "output-file-sync": "^2.0.1",
+    "puppeteer": "^2.0.0"
+  },
+  "keywords": ["google", "locale", "parser"]
+}

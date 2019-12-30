@@ -5,6 +5,7 @@
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.31.0",
+  "main": "./next.config.js",
   "scripts": {
     "clean": "rm -rf ./src/.next",
     "dev": "node --inspect=localhost:9229 src/server",

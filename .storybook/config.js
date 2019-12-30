@@ -26,6 +26,12 @@ const stories = [
     source: require('../packages/mock-types/README.md').default,
   },
   {
+    name: '@meepshop/locale-parser',
+    pattern: /meepshop\/locale-parser$/,
+    path: './packages/locale-parser/',
+    source: require('../packages/locale-parser/README.md').default,
+  },
+  {
     name: '@store/server',
     pattern: /store\/server$/,
     path: './packages/store/',
