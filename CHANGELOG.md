@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.32.0 (2019-12-30)
+
+#### :rocket: New Feature
+
+- `locale-parser`, `store`
+  - [#817](https://github.com/meepshop/meep-lerna/pull/817) 新增語系 tool ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `locale-parser`, `store`
+  - [#817](https://github.com/meepshop/meep-lerna/pull/817) 新增語系 tool ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.31.1 (2019-12-27)
 
 #### :bug: Bug Fix
