@@ -2,7 +2,8 @@ import { action } from '@storybook/addon-actions';
 import React from 'react';
 
 const router = {
-  pathname: 'mock-path',
+  pathname: 'mock-pathname',
+  query: {},
   push: window.test ? jest.fn() : action('router push'),
   prefetch: window.test ? jest.fn() : action('router prefetch'),
   replace: window.test ? jest.fn() : action('router replace'),
@@ -15,5 +16,7 @@ export const withRouter = (Component: React.ReactType): React.ReactType => (
     router,
     ...props,
   });
+
+export const useRouter = (): typeof router => router;
 
 export default router;

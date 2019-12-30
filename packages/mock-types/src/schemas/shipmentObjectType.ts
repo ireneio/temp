@@ -11,9 +11,8 @@ import { shipmentObjectTypeMock } from './__generated__/shipmentObjectTypeMock';
 gql`
   fragment shipmentObjectTypeMock on shipmentObjectType {
     name
-    recipient {
-      name
-    }
+    number
+    description
   }
 `;
 
@@ -21,9 +20,15 @@ export default mock.add<shipmentObjectTypeMock>('shipmentObjectType', [
   () => ({
     __typename: 'shipmentObjectType',
     name: 'shipment name',
-    recipient: {
-      __typename: 'RecipientObjectType',
-      name: 'recipient',
-    },
+    number: null,
+    description: null,
+    recipient: null,
+  }),
+  () => ({
+    __typename: 'shipmentObjectType',
+    name: 'shipment name',
+    number: 'shipment number',
+    description: 'shipment description',
+    recipient: {},
   }),
 ]);

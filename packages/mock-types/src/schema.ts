@@ -39,8 +39,10 @@ import paymentObjectType from './schemas/paymentObjectType';
 import productsObjectType from './schemas/productsObjectType';
 import priceObjectType from './schemas/priceObjectType';
 import PaymentAccountForEzpay from './schemas/PaymentAccountForEzpay';
+import PaymentAccountForCathay from './schemas/PaymentAccountForCathay';
 import PaymentForAllpay from './schemas/PaymentForAllpay';
 import RecipientAddress from './schemas/RecipientAddress';
+import RecipientObjectType from './schemas/RecipientObjectType';
 import shipmentInfoType from './schemas/shipmentInfoType';
 import shipmentObjectType from './schemas/shipmentObjectType';
 import StorePayment from './schemas/StorePayment';
@@ -53,6 +55,7 @@ import User from './schemas/User';
 import UserPoints from './schemas/UserPoints';
 import UserRewardPoint from './schemas/UserRewardPoint';
 import UserMemberGroupObjectType from './schemas/UserMemberGroupObjectType';
+import userObjectType from './schemas/userObjectType';
 import WishlistProduct from './schemas/WishlistProduct';
 
 // definition
@@ -94,8 +97,10 @@ addMockFunctionsToSchema({
     productsObjectType,
     priceObjectType,
     PaymentAccountForEzpay,
+    PaymentAccountForCathay,
     PaymentForAllpay,
     RecipientAddress,
+    RecipientObjectType,
     shipmentInfoType,
     shipmentObjectType,
     StorePayment,
@@ -108,6 +113,7 @@ addMockFunctionsToSchema({
     UserPoints,
     UserRewardPoint,
     UserMemberGroupObjectType,
+    userObjectType,
     WishlistProduct,
     Timestamp: () => moment().unix(),
     DateTime: () => moment().format(),

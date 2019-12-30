@@ -15,6 +15,9 @@ gql`
     orderNo
     status
     createdOn
+    paidMessage {
+      note
+    }
   }
 `;
 
@@ -27,30 +30,39 @@ export default mock.add<
 >('Order', [
   (obj, { orderId }) => ({
     __typename: 'Order',
-    id: orderId || obj?.node.id || 'id',
-    orderNo: (orderId || obj?.node.id || 'orderNo').slice(0, 8),
+    id: orderId || obj?.node?.id || 'id',
+    orderNo: (orderId || obj?.node?.id || 'orderNo').slice(0, 8),
     status: 0,
     createdOn: moment().unix(),
+    paidMessage: [
+      {
+        __typename: 'PaidMessageObject',
+        note: 'paid message',
+      },
+    ],
   }),
   (obj, { orderId }) => ({
     __typename: 'Order',
-    id: orderId || obj?.node.id || 'id',
-    orderNo: (orderId || obj?.node.id || 'orderNo').slice(0, 8),
+    id: orderId || obj?.node?.id || 'id',
+    orderNo: (orderId || obj?.node?.id || 'orderNo').slice(0, 8),
     status: 1,
     createdOn: moment().unix(),
+    paidMessage: null,
   }),
   (obj, { orderId }) => ({
     __typename: 'Order',
-    id: orderId || obj?.node.id || 'id',
-    orderNo: (orderId || obj?.node.id || 'orderNo').slice(0, 8),
+    id: orderId || obj?.node?.id || 'id',
+    orderNo: (orderId || obj?.node?.id || 'orderNo').slice(0, 8),
     status: 2,
     createdOn: moment().unix(),
+    paidMessage: null,
   }),
   (obj, { orderId }) => ({
     __typename: 'Order',
-    id: orderId || obj?.node.id || 'id',
-    orderNo: (orderId || obj?.node.id || 'orderNo').slice(0, 8),
+    id: orderId || obj?.node?.id || 'id',
+    orderNo: (orderId || obj?.node?.id || 'orderNo').slice(0, 8),
     status: 3,
     createdOn: moment().unix(),
+    paidMessage: null,
   }),
 ]);

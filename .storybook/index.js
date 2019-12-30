@@ -49,7 +49,7 @@ storiesOf('${name}', module)
       <MockTypes {...resolvers}>
         <Provider>
           <Suspense fallback="loading">
-            <Component />
+            <Component {...props} />
           </Suspense>
         </Provider>
       </MockTypes>

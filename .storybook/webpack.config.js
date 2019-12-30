@@ -41,6 +41,9 @@ module.exports = ({ config }) => {
     'next/link': path.resolve(__dirname, '../__mocks__/next/link'),
     'next-i18next': path.resolve(__dirname, '../__mocks__/next-i18next'),
   };
+  config.plugins = config.plugins.filter(
+    ({ constructor }) => constructor.name !== 'ProgressPlugin',
+  );
 
   return config;
 };
