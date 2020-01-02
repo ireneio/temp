@@ -242,7 +242,7 @@ export default class ProductInfo extends React.PureComponent {
       case ISUSER:
         this.setState({ isAddingWish: true });
         dispatchAction('updateWishList', {
-          [isInWishList ? 'remove' : 'add']: [productData.id],
+          [isInWishList ? 'remove' : 'add']: productData.id,
           callback: () => {
             adTrack.addToWishList();
           },
