@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.32.1 (2020-01-02)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#827](https://github.com/meepshop/meep-lerna/pull/827) 【BUG】前台 - 我的收藏加入無效 ([@happycat6323](https://github.com/happycat6323))
+- `mock-types`
+  - [#821](https://github.com/meepshop/meep-lerna/pull/821) (前置）【功能】國泰世華 - 虛擬帳號付款 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.32.0 (2019-12-30)
 
 #### :rocket: New Feature
