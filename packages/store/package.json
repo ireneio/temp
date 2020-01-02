@@ -4,7 +4,7 @@
   "description": "store for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.32.0",
+  "version": "0.32.1",
   "main": "./next.config.js",
   "scripts": {
     "clean": "rm -rf ./src/.next",
@@ -13,7 +13,7 @@
     "start": "NODE_ENV=production node src/server"
   },
   "dependencies": {
-    "@meepshop/meep-ui": "^0.32.0",
+    "@meepshop/meep-ui": "^0.32.1",
     "@store/ad-track": "^0.32.0",
     "@store/currency": "^0.32.0",
     "@store/ezpay": "^0.32.0",
