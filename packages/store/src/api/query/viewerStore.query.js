@@ -71,6 +71,12 @@ viewer {
     experiment {
       hiddingMeepshopMaxInFooterEnabled
     }
+
+    memberGroups(filter: $memberGroupFilter) {
+      id
+      name
+      type
+    }
   }
 }
 `;

@@ -16,7 +16,7 @@ import {
 export default async function(context) {
   const variables = {
     keys:
-      '$menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupSearch: searchInputObjectType, $appLoginSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupFilter: MemberGroupFilterInput, $appLoginSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverOthersInitial',
     values: {
       menuSearch: {
@@ -77,18 +77,8 @@ export default async function(context) {
           ],
         },
       },
-      memberGroupSearch: {
-        size: 50,
-        from: 0,
-        filter: {
-          and: [
-            {
-              type: 'exact',
-              field: 'status',
-              query: '1',
-            },
-          ],
-        },
+      memberGroupFilter: {
+        status: 'ENABLED',
       },
       appLoginSearch: {
         size: 50,
@@ -183,13 +173,6 @@ export default async function(context) {
             isInstallment
           }
         }
-      }
-    }
-    getMemberGroupList(search: $memberGroupSearch) {
-      data {
-        id
-        name
-        type
       }
     }
     getAppLoginList(search: $appLoginSearch) {

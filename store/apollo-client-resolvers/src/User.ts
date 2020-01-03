@@ -45,31 +45,29 @@ export const resolver = {
 
       const {
         data: {
-          getMemberGroupList: { data: memberGroupList },
+          viewer: {
+            store: { memberGroups },
+          },
         },
       } = await client.query({
         query: gql`
-          query getMemberGroupList {
-            getMemberGroupList(
-              search: {
-                size: 50
-                from: 0
-                filter: {
-                  and: [{ type: "exact", field: "status", query: "1" }]
-                }
-              }
-            ) {
-              data {
+          query getMemberGroups {
+            viewer {
+              id
+              store {
                 id
-                type
-                name
+                memberGroups(filter: { status: ENABLED }) {
+                  id
+                  type
+                  name
+                }
               }
             }
           }
         `,
       });
 
-      const { name, type } = memberGroupList.find(
+      const { name, type } = memberGroups.find(
         (memberGroup: { id: string }) => memberGroup.id === groupId,
       );
 
