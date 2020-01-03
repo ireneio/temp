@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Input } from 'antd';
 
+import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
 
@@ -10,6 +11,7 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import Icon from './Icon';
 import styles from './styles/searchBar.less';
 
+@withTranslation('menu')
 @withContext(adTrackContext)
 @enhancer
 export default class SearchBar extends React.PureComponent {
@@ -21,7 +23,6 @@ export default class SearchBar extends React.PureComponent {
 
     /** props */
     adTrack: PropTypes.shape({}).isRequired,
-    title: PropTypes.string.isRequired,
   };
 
   state = {
@@ -47,7 +48,7 @@ export default class SearchBar extends React.PureComponent {
   };
 
   render() {
-    const { title } = this.props;
+    const { t } = this.props;
     const { value, showSearchBar } = this.state;
 
     return (
@@ -61,7 +62,7 @@ export default class SearchBar extends React.PureComponent {
             <Input
               className={styles.input}
               type="search"
-              placeholder={title}
+              placeholder={t('search')}
               value={value}
               onChange={({ target: { value: changeValue } }) =>
                 this.setState({ value: changeValue })
