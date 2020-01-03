@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.33.0 (2020-01-03)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#810](https://github.com/meepshop/meep-lerna/pull/810) 前端 - 改用 store.memberGroups / memberGroupCodes ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`, `store`
+  - [#819](https://github.com/meepshop/meep-lerna/pull/819) 【優化】 前台 - search bar「搜尋」二字語系 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#810](https://github.com/meepshop/meep-lerna/pull/810) 前端 - 改用 store.memberGroups / memberGroupCodes ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.32.1 (2020-01-02)
 
 #### :bug: Bug Fix
