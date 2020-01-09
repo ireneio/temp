@@ -16,17 +16,20 @@ import translate from './translate';
 import findNull from './findNull';
 import checkKeys from './checkKeys';
 import generateCsv from './generateCsv';
+import copy from './copy';
 
 // typescript definition
 export interface CliOptionsType {
   rootFolder: string;
+  relative: string;
+  localeName: string;
   options?: {
-    [key: string]: boolean;
+    [key: string]: unknown;
   };
   beforeAll: (
     rootFolder: string,
     filename: string,
-    enUSLocale: LocaleType,
+    baseLocale: LocaleType,
     options: CliOptionsType['options'],
   ) => void;
   beforeEach: (
@@ -50,11 +53,19 @@ export interface CliOptionsType {
 }
 
 // definition
-const findRootFolder = (moduleNameOrPath: string): string => {
+const findRootFolder = (
+  moduleNameOrPath: string,
+): Pick<CliOptionsType, 'rootFolder' | 'relative'> => {
   try {
-    return path.dirname(require.resolve(moduleNameOrPath));
+    return {
+      rootFolder: path.dirname(require.resolve(moduleNameOrPath)),
+      relative: './src/public/locales',
+    };
   } catch (e) {
-    return moduleNameOrPath;
+    return {
+      rootFolder: moduleNameOrPath,
+      relative: './',
+    };
   }
 };
 
@@ -72,7 +83,8 @@ export default (argv: string[]): Promise<CliOptionsType> =>
       .description('use to translate the locales files')
       .action(moduleNameOrPath => {
         resolve({
-          rootFolder: findRootFolder(moduleNameOrPath),
+          ...findRootFolder(moduleNameOrPath),
+          localeName: 'en_US',
           beforeAll: emptyFunction,
           beforeEach: translate.beforeEach,
           run: translate.run,
@@ -90,7 +102,8 @@ export default (argv: string[]): Promise<CliOptionsType> =>
       .option('--send-glip', 'send messages to glip', false)
       .action((moduleNameOrPath, { sendGlip }) => {
         resolve({
-          rootFolder: findRootFolder(moduleNameOrPath),
+          ...findRootFolder(moduleNameOrPath),
+          localeName: 'en_US',
           options: {
             sendGlip,
           },
@@ -110,7 +123,8 @@ export default (argv: string[]): Promise<CliOptionsType> =>
       .description('use to check the keys in the locales files')
       .action(moduleNameOrPath => {
         resolve({
-          rootFolder: findRootFolder(moduleNameOrPath),
+          ...findRootFolder(moduleNameOrPath),
+          localeName: 'en_US',
           beforeAll: emptyFunction,
           beforeEach: emptyFunction,
           run: checkKeys.run,
@@ -127,13 +141,39 @@ export default (argv: string[]): Promise<CliOptionsType> =>
       .description('use to generate csv files')
       .action(moduleNameOrPath => {
         resolve({
-          rootFolder: findRootFolder(moduleNameOrPath),
+          ...findRootFolder(moduleNameOrPath),
+          localeName: 'en_US',
           beforeAll: generateCsv.beforeAll,
           beforeEach: emptyFunction,
           run: generateCsv.run,
           afterEach: emptyFunction,
           afterAll: generateCsv.afterAll,
           end: generateCsv.end,
+        });
+      });
+
+    program
+      .command('copy')
+      .arguments('<root-folder>')
+      .usage(chalk`{green <root-rootFolder>}`)
+      .description('use to copy the locale files')
+      .requiredOption(
+        '-r, --relative-path <relative-path>',
+        'path to the locale files',
+      )
+      .action((moduleNameOrPath, { relativePath }) => {
+        resolve({
+          ...findRootFolder(moduleNameOrPath),
+          localeName: 'zh_TW',
+          options: {
+            relativePath,
+          },
+          beforeAll: copy.beforeAll,
+          beforeEach: emptyFunction,
+          run: copy.run,
+          afterEach: copy.afterEach,
+          afterAll: emptyFunction,
+          end: emptyFunction,
         });
       });
 

@@ -16,6 +16,8 @@ process.on('unhandledRejection', err => {
 (async () => {
   const {
     rootFolder,
+    relative,
+    localeName,
     options,
     beforeAll,
     beforeEach,
@@ -24,19 +26,21 @@ process.on('unhandledRejection', err => {
     afterAll,
     end,
   } = await cliOptions(process.argv);
-  const localesFolder = path.resolve(rootFolder, './src/public/locales');
-  const files = fs.readdirSync(path.resolve(localesFolder, './en_US'));
+  const localesFolder = path.resolve(rootFolder, relative);
+  const files = fs
+    .readdirSync(path.resolve(localesFolder, localeName))
+    .filter(filename => /\.json$/.test(filename));
 
   // eslint-disable-next-line no-restricted-syntax
   for (const filename of files) {
     // eslint-disable-next-line import/no-dynamic-require, global-require, @typescript-eslint/no-var-requires
-    const enUSLocale = require(path.resolve(
+    const baseLocale = require(path.resolve(
       localesFolder,
-      './en_US',
+      localeName,
       filename,
     ));
 
-    beforeAll(rootFolder, filename, enUSLocale, options);
+    beforeAll(rootFolder, filename, baseLocale, options);
 
     // eslint-disable-next-line no-restricted-syntax
     for (const localeKey of Object.keys(LOCALES)) {
@@ -55,7 +59,7 @@ process.on('unhandledRejection', err => {
         localeKey as keyof typeof LOCALES,
         // eslint-disable-next-line no-await-in-loop
         await localeParser(
-          enUSLocale,
+          baseLocale,
           newLocale,
           localeKey as keyof typeof LOCALES,
           run,

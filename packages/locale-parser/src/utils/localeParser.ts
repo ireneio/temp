@@ -10,7 +10,7 @@ export interface LocaleType {
 
 // definition
 const localeParser = async (
-  enUSLocale: LocaleType,
+  baseLocale: LocaleType,
   newLocale: LocaleType,
   localeKey: keyof typeof LOCALES,
   run: CliOptionsType['run'],
@@ -19,8 +19,8 @@ const localeParser = async (
   const output: LocaleType = {};
 
   // eslint-disable-next-line no-restricted-syntax
-  for (const key of Object.keys(enUSLocale)) {
-    const value = enUSLocale[key];
+  for (const key of Object.keys(baseLocale)) {
+    const value = baseLocale[key];
 
     if (value instanceof Object) {
       const newValue = newLocale[key] || {};

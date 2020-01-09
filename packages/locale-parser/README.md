@@ -22,9 +22,15 @@ Use to check the keys in the locale files. In each language, the keys of the loc
 
 This command will collect the locale files and generate a csv file in the root folder.
 
+#### `copy <root-folder> -r <path-to-reference-zh_TW-file>`
+
+This command will copy the locale files when the value in `zh_TW` can be found in the reference `zh_TW` files.
+
 ## Add a new locale
 
-Add the new locale to [here](./src/constants), and the value of the new locale must be a google translate url.
+- Add the new locale to [here](./src/constants), and the value of the new locale must be a google translate url.
+- Use `grep -rin es_ES --exclude=**/node_modules/** --exclude=**/.next/** --exclude=**/__generated__/** --exclude=**/lib/** --exclude=**/coverage/** --exclude=**/.git/** .` to find the files which should be added the new locales.
+- Check `{{key}}` in the locale files.
 
 ## Add a new command
 

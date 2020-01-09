@@ -3,7 +3,7 @@ import localeParser from '../localeParser';
 
 // definition
 test('locale parser', async () => {
-  const enUSLocale = {
+  const baseLocale = {
     a: 'locale',
     b: {
       c: 'locale',
@@ -19,7 +19,7 @@ test('locale parser', async () => {
 
   expect(
     await localeParser(
-      enUSLocale,
+      baseLocale,
       {
         a: 'newLocale',
       },
@@ -27,7 +27,7 @@ test('locale parser', async () => {
       func,
     ),
   ).toEqual({
-    ...enUSLocale,
+    ...baseLocale,
     a: 'newLocale',
   });
 

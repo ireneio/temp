@@ -21,6 +21,8 @@ describe('cli options', () => {
       ]),
     ).toEqual({
       rootFolder: path.dirname(require.resolve('@meepshop/store')),
+      relative: './src/public/locales',
+      localeName: 'en_US',
       beforeAll: emptyFunction,
       beforeEach: translate.beforeEach,
       run: translate.run,
@@ -35,6 +37,8 @@ describe('cli options', () => {
       await cliOptions(['yarn', 'locale-parser', 'find-null', __dirname]),
     ).toEqual({
       rootFolder: __dirname,
+      relative: './',
+      localeName: 'en_US',
       options: {
         sendGlip: false,
       },

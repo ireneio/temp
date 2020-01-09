@@ -53,7 +53,7 @@ class FindNull {
   public beforeAll = (
     rootFolder: string,
     filename: string,
-    enUSLocale: LocaleType,
+    baseLocale: LocaleType,
     {
       sendGlip: shouldSendGlip,
     }: {
@@ -62,7 +62,7 @@ class FindNull {
   ): void => {
     this.shouldSendGlip = shouldSendGlip;
     this.name = getName(rootFolder, filename);
-    this.addData('en_US', enUSLocale);
+    this.addData('en_US', baseLocale);
   };
 
   public run = (
