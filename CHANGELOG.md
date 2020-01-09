@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.33.1 (2020-01-09)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#826](https://github.com/meepshop/meep-lerna/pull/826) 前端 - 建立訂單 input 加上選擇的門市資訊 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- [#829](https://github.com/meepshop/meep-lerna/pull/829) 【BUG】後台 - 通知設定開關問題 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.33.0 (2020-01-03)
 
 #### :rocket: New Feature
