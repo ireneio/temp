@@ -15,6 +15,7 @@ import {
 
 import {
   SHIPMENT_STORE_FIELDS,
+  CONVENIENCE_STORE_FIELDS,
   CONVENIENCE_STORE_SHIPMENT_TYPE_ENUM,
   ECPAY_CONVENIENCE_STORE_TYPE_ENUM,
   EZSHIP_CONVENIENCE_STORE_TYPE_ENUM,
@@ -50,12 +51,19 @@ export default class ChooseShipmentStore extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
-    const { shipmentId, shipmentTemplate } = nextProps;
+    const {
+      form: { resetFields },
+      shipmentId,
+      shipmentTemplate,
+    } = nextProps;
 
     if (
       shipmentId !== preState.shipmentId ||
       shipmentTemplate !== preState.shipmentTemplate
     ) {
+      SHIPMENT_STORE_FIELDS.forEach(field => resetFields(field));
+      CONVENIENCE_STORE_FIELDS.forEach(field => resetFields(field));
+
       return {
         shipmentId,
         shipmentTemplate,
@@ -197,6 +205,12 @@ export default class ChooseShipmentStore extends React.PureComponent {
                 },
               ],
             })(<Input type="hidden" />)}
+          </FormItem>
+        ))}
+
+        {CONVENIENCE_STORE_FIELDS.map(fieldName => (
+          <FormItem key={fieldName} className={styles.hideFormItem}>
+            {getFieldDecorator(fieldName)(<Input type="hidden" />)}
           </FormItem>
         ))}
 

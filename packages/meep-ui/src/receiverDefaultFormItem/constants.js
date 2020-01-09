@@ -4,6 +4,8 @@ export const SHIPMENT_STORE_FIELDS = [
   'CVSAddress',
 ];
 
+export const CONVENIENCE_STORE_FIELDS = ['cvsType', 'cvsCode'];
+
 export const CONVENIENCE_STORE_SHIPMENT_TYPE_ENUM = type => {
   switch (type) {
     case 'allpay':

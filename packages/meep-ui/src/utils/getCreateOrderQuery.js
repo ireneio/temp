@@ -28,6 +28,8 @@ export default ({
   CVSStoreID,
   CVSStoreName,
   CVSAddress,
+  cvsType,
+  cvsCode,
 
   invoice,
   invoiceTitle,
@@ -218,6 +220,8 @@ export default ({
           },
         },
       ],
+      cvsType,
+      cvsCode,
       userInfo: {
         name: userName || name,
         ...(!userEmail ? {} : { email: userEmail }),

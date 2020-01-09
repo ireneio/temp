@@ -123,6 +123,8 @@ class StoreDetail extends React.PureComponent<PropsType> {
                     shipmentType === 'ECPAY'
                       ? ecpayStoreNumber
                       : ezshipStoreNumber,
+                  cvsType: type,
+                  cvsCode: storeNumber,
                 })
               }
             >
