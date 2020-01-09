@@ -4,7 +4,7 @@
   "description": "Convenience store map for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.33.0",
+  "version": "0.33.1",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
