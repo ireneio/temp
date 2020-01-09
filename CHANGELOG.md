@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.33.2 (2020-01-09)
+
+#### :rocket: New Feature
+
+- `locale-parser`
+  - [#831](https://github.com/meepshop/meep-lerna/pull/831) (@meepshop/locale-parser) Add copy command ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#833](https://github.com/meepshop/meep-lerna/pull/833) (@admin/server) Add @admin/setting-notification to package.json ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `locale-parser`
+  - [#831](https://github.com/meepshop/meep-lerna/pull/831) (@meepshop/locale-parser) Add copy command ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.33.1 (2020-01-09)
 
 #### :rocket: New Feature
