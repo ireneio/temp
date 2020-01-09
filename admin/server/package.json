@@ -16,6 +16,7 @@
     "@admin/apollo-client-resolvers": "^0.33.0",
     "@admin/dashboard": "^0.33.0",
     "@admin/orders-ecfit": "^0.33.0",
+    "@admin/setting-notification": "^0.33.1",
     "@admin/utils": "^0.33.0",
     "@admin/wrapper": "^0.33.0",
     "apollo-cache-inmemory": "^1.6.3",
