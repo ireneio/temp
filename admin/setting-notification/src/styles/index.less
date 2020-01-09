@@ -73,53 +73,25 @@
     .item {
       display: flex;
       margin-bottom: 25px;
+      font-size: 16px;
+      line-height: 22px;
+      color: rgba(0, 0, 0, 0.85);
 
-      &:last-child {
-        margin-bottom: 0px;
-      }
-
-      & > :global(.ant-form-item-label) {
+      & > div {
         margin-left: 16px;
-        width: unset;
-      }
 
-      & > :global(.ant-form-item-control-wrapper) {
-        width: unset;
-
-        :global(.ant-form-item-control) {
-          line-height: unset;
-        }
-      }
-
-      label {
-        &::after {
-          content: '';
-          margin: 0;
+        & > div > i {
+          font-size: 14px;
+          color: @primary-color;
+          margin-left: 5px;
+          line-height: 22px;
+          vertical-align: middle;
         }
 
-        & > div {
-          p {
-            margin: 0;
-          }
-
-          & > p:first-child {
-            font-size: 16px;
-            line-height: 22px;
-
-            .icon {
-              font-size: 14px;
-              color: @primary-color;
-              margin-left: 5px;
-              line-height: 22px;
-              vertical-align: middle;
-            }
-          }
-
-          & > p:last-child {
-            font-size: 14px;
-            line-height: 22px;
-            color: rgba(0, 0, 0, 0.35);
-          }
+        & > div:last-child {
+          font-size: 14px;
+          line-height: 22px;
+          color: rgba(0, 0, 0, 0.35);
         }
       }
     }

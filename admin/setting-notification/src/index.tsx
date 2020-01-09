@@ -239,119 +239,80 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
                     <div>
                       <h3>{t('auto-email-setting')}</h3>
 
-                      <Form.Item
-                        className={styles.item}
-                        label={
-                          <div>
-                            <p>{t('order.title')}</p>
-                            <p>{t('order.description')}</p>
-                          </div>
-                        }
-                        labelCol={{
-                          order: 1,
-                        }}
-                      >
+                      <div className={styles.item}>
                         {getFieldDecorator('orderCreated', {
                           initialValue: orderCreated,
                           valuePropName: 'checked',
                         })(<Switch />)}
-                      </Form.Item>
 
-                      <Form.Item
-                        className={styles.item}
-                        label={
-                          <div>
-                            <p>{t('order-QA.title')}</p>
-                            <p>{t('order-QA.description')}</p>
-                          </div>
-                        }
-                        labelCol={{
-                          order: 1,
-                        }}
-                      >
+                        <div>
+                          <div>{t('order.title')}</div>
+                          <div>{t('order.description')}</div>
+                        </div>
+                      </div>
+
+                      <div className={styles.item}>
                         {getFieldDecorator('orderMessageReceived', {
                           initialValue: orderMessageReceived,
                           valuePropName: 'checked',
                         })(<Switch />)}
-                      </Form.Item>
 
-                      <Form.Item
-                        className={styles.item}
-                        label={
-                          <div>
-                            <p>
-                              {t('order-applicaiton.title')}
-                              <Tooltip title={t('order-applicaiton.tip')}>
-                                <Icon
-                                  type="question-circle-o"
-                                  className={styles.icon}
-                                />
-                              </Tooltip>
-                            </p>
-                            <p>{t('order-applicaiton.description')}</p>
-                          </div>
-                        }
-                        labelCol={{
-                          order: 1,
-                        }}
-                      >
+                        <div>
+                          <div>{t('order-QA.title')}</div>
+                          <div>{t('order-QA.description')}</div>
+                        </div>
+                      </div>
+
+                      <div className={styles.item}>
                         {getFieldDecorator('orderReturnedOrExchanged', {
                           initialValue: orderReturnedOrExchanged,
                           valuePropName: 'checked',
                         })(<Switch />)}
-                      </Form.Item>
 
-                      <Form.Item
-                        className={styles.item}
-                        label={
+                        <div>
                           <div>
-                            <p>
-                              {t('payment-notification.title')}
-                              <Tooltip title={t('payment-notification.tip')}>
-                                <Icon
-                                  type="question-circle-o"
-                                  className={styles.icon}
-                                />
-                              </Tooltip>
-                            </p>
-                            <p>{t('payment-notification.description')}</p>
+                            <span>{t('order-applicaiton.title')}</span>
+                            <Tooltip title={t('order-applicaiton.tip')}>
+                              <Icon type="question-circle-o" />
+                            </Tooltip>
                           </div>
-                        }
-                        labelCol={{
-                          order: 1,
-                        }}
-                      >
+                          <div>{t('order-applicaiton.description')}</div>
+                        </div>
+                      </div>
+
+                      <div className={styles.item}>
                         {getFieldDecorator('orderTransferMessageReceived', {
                           initialValue: orderTransferMessageReceived,
                           valuePropName: 'checked',
                         })(<Switch />)}
-                      </Form.Item>
 
-                      <Form.Item
-                        className={styles.item}
-                        label={
+                        <div>
                           <div>
-                            <p>
-                              {t('product-QA.title')}
-                              <Tooltip title={t('product-QA.tip')}>
-                                <Icon
-                                  type="question-circle-o"
-                                  className={styles.icon}
-                                />
-                              </Tooltip>
-                            </p>
-                            <p>{t('product-QA.description')}</p>
+                            <span>{t('payment-notification.title')}</span>
+                            <Tooltip title={t('payment-notification.tip')}>
+                              <Icon type="question-circle-o" />
+                            </Tooltip>
                           </div>
-                        }
-                        labelCol={{
-                          order: 1,
-                        }}
-                      >
+                          <div>{t('payment-notification.description')}</div>
+                        </div>
+                      </div>
+
+                      <div className={styles.item}>
                         {getFieldDecorator('productQAReceived', {
                           initialValue: productQAReceived,
                           valuePropName: 'checked',
                         })(<Switch />)}
-                      </Form.Item>
+
+                        <div>
+                          <div>
+                            <span>{t('product-QA.title')}</span>
+                            <Tooltip title={t('product-QA.tip')}>
+                              <Icon type="question-circle-o" />
+                            </Tooltip>
+                          </div>
+                          <div>{t('product-QA.description')}</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </section>
