@@ -48,6 +48,7 @@ export default class MenuItem extends React.PureComponent {
     setCustomerCurrency: PropTypes.func.isRequired,
     carts: PropTypes.shape({}).isRequired,
     user: USER_TYPE.isRequired,
+    hasStoreAppPlugin: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -195,10 +196,12 @@ export default class MenuItem extends React.PureComponent {
       isLogin,
       // TODO: carts should not be undefined
       carts,
+      hasStoreAppPlugin,
 
       /** props */
       icon: propsIcon,
       params,
+      id: itemId,
       action,
       pages: propsPages,
       newWindow,
@@ -210,6 +213,8 @@ export default class MenuItem extends React.PureComponent {
       iconSize,
       ...props
     } = this.props;
+
+    if (itemId === 'favorites' && !hasStoreAppPlugin('wishList')) return null;
 
     const title = this.getTitle();
 
@@ -231,10 +236,18 @@ export default class MenuItem extends React.PureComponent {
           image: propsIcon?.font ? null : propsIcon?.image,
           direction: !title ? 'only' : propsIcon?.direction || null,
         };
-    const pages = action === 8 && isLogin === NOTLOGIN ? [] : propsPages;
+
+    let pages = propsPages;
+    if (action === 8) {
+      if (isLogin === NOTLOGIN) {
+        pages = [];
+      } else if (!hasStoreAppPlugin('wishList')) {
+        pages = pages.filter(item => item.id !== 'favorites');
+      }
+    }
 
     const menuItemProps = {
-      ...removeContextTpyesFromProps(props),
+      ...removeContextTpyesFromProps({ ...props, id: itemId }),
       hasLevelThree,
       level,
       className: `${styles.menuItem} ${

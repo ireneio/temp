@@ -123,6 +123,7 @@ export default class AddButton extends React.Component {
       isAddingWish,
       mode,
       isMobile,
+      hasStoreAppPlugin,
     } = this.props;
 
     return isMobile ? (
@@ -133,7 +134,7 @@ export default class AddButton extends React.Component {
     ) : (
       <div className={`${styles.root} ${styles[mode]}`}>
         {this.generateAddButton()}
-        {mode === 'detail' ? (
+        {mode === 'detail' && hasStoreAppPlugin('wishList') ? (
           <Button
             className={styles.wish}
             size="large"

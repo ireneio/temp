@@ -31,6 +31,7 @@ class Wishlist extends Component {
   static propTypes = {
     error: PropTypes.string,
     isLogin: PropTypes.string.isRequired,
+    storeAppList: PropTypes.arrayOf(PropTypes.object).isRequired,
     storeSetting: PropTypes.shape({
       storeName: PropTypes.string.isRequired,
       faviconUrl: PropTypes.string.isRequired,
@@ -55,6 +56,8 @@ class Wishlist extends Component {
 
     if (isLogin === 'NOTLOGIN') {
       Router.pushRoute('/login');
+    } else if (!this.hasWishListAppPlugin()) {
+      Router.pushRoute('/');
     }
   }
 
@@ -63,8 +66,18 @@ class Wishlist extends Component {
 
     if (isLogin === 'NOTLOGIN') {
       Router.pushRoute('/login');
+    } else if (!this.hasWishListAppPlugin()) {
+      Router.pushRoute('/');
     }
   }
+
+  hasWishListAppPlugin = () => {
+    const { storeAppList } = this.props;
+
+    return storeAppList.find(
+      ({ isInstalled, plugin }) => plugin === 'wishList' && isInstalled,
+    );
+  };
 
   render() {
     const { error } = this.props;
@@ -84,9 +97,11 @@ class Wishlist extends Component {
       t,
     } = this.props;
 
-    return isLogin === 'NOTLOGIN' ? (
-      <div>未登入</div>
-    ) : (
+    if (isLogin === 'NOTLOGIN') return <div>未登入</div>;
+
+    if (!this.hasWishListAppPlugin()) return <div />;
+
+    return (
       <>
         <Head>
           <title>{storeName}</title>
@@ -155,6 +170,7 @@ const mapStateToProps = (state, props) => {
   );
 
   return {
+    storeAppList: Selectors.getStoreAppList(state),
     storeSetting: state.storeReducer.settings,
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
