@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.33.3 (2020-01-13)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#790](https://github.com/meepshop/meep-lerna/pull/790) 【優化】後台 - 將「商品收藏」改為用開關來控制前台是否顯示 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.33.2 (2020-01-09)
 
 #### :rocket: New Feature
