@@ -24,7 +24,6 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
               cartButton,
               justifyContent,
               padding,
-              pagination,
               productWidth,
               showDescription,
               showPrice,
@@ -49,7 +48,6 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
               cartButton,
               productWidth,
               padding,
-              pagination,
               type,
               popUpGalleryView,
             };

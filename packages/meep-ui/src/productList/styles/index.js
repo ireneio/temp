@@ -20,6 +20,11 @@ export const listStyle = (colors, isGrid) => ({
     color: colors[3],
     borderColor: colors[3],
   },
+  '.ant-select-disabled .ant-select-selection': {
+    borderColor: '#B3B3B3',
+    color: '#5C5C5C',
+    opacity: 0.4,
+  },
   '.ant-select-selection__rendered': {
     marginRight: '30px',
   },
@@ -202,6 +207,29 @@ export const productCard = (colors, isGrid) => ({
     padding: '10px',
   },
 });
+
+export const defaultProductImage = {
+  position: 'relative',
+};
+
+export const defaultProductHint = {
+  color: 'rgb(255,255,255,0.85)',
+  fontSize: '16px',
+  fontWeight: 500,
+  backgroundColor: '#000000',
+  opacity: 0,
+  width: '100%',
+  height: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'absolute',
+  cursor: 'not-allowed',
+  transition: 'all 0.3s ease',
+  ':hover': {
+    opacity: 0.65,
+  },
+};
 
 export const productImage = {
   width: '100%',

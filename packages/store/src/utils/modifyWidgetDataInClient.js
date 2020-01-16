@@ -22,7 +22,6 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
             cartButton,
             justifyContent,
             padding,
-            pagination,
             productWidth,
             showDescription,
             showPrice,
@@ -47,7 +46,6 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
             cartButton,
             productWidth,
             padding,
-            pagination,
             type,
             popUpGalleryView,
           };

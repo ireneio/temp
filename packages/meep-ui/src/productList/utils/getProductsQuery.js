@@ -132,3 +132,19 @@ export default ({
     variables,
   ];
 };
+
+export const getOriginalProductsQuery = () => [
+  `query ProductList($search: searchInputObjectType) {
+    computeProductList(
+      search: $search
+    ) {
+      total
+    }
+  }`,
+  {
+    search: {
+      size: 1,
+      from: 0,
+    },
+  },
+];

@@ -23,9 +23,11 @@ import Link from 'deprecated/link';
 
 import ProductCard from './ProductCard';
 import PopUp from './PopUp';
-import { SORT_OPTIONS } from './constants';
+import { SORT_OPTIONS, DEFAULT_PRODUCTS } from './constants';
 import * as styles from './styles';
-import getProductsQuery from './utils/getProductsQuery';
+import getProductsQuery, {
+  getOriginalProductsQuery,
+} from './utils/getProductsQuery';
 
 @withTranslation('product-list')
 @withContext(adTrackContext)
@@ -74,7 +76,6 @@ export default class ProductList extends React.PureComponent {
     showDescription: PropTypes.bool.isRequired,
     showPrice: PropTypes.bool.isRequired,
     cartButton: PropTypes.bool.isRequired,
-    pagination: PropTypes.bool.isRequired,
     type: PropTypes.oneOf(['original', 'pop-up']),
     popUpGalleryView: PropTypes.oneOf(['one', 'two', 'all', 'none']),
 
@@ -205,6 +206,7 @@ export default class ProductList extends React.PureComponent {
         if (age < 600) {
           this.setState({
             products: cached,
+            isDefaultProducts: productListCache.isDefaultProducts,
             isLoading: false,
             isUsingCache: true,
           });
@@ -241,13 +243,23 @@ export default class ProductList extends React.PureComponent {
       products,
       params: { sort, ids },
     } = this.state;
-    const { dispatchAction } = this.props;
+    const { getData, dispatchAction, productListCache } = this.props;
 
     const result = await products;
 
     if (this.isUnmounted || !result?.data?.computeProductList) return;
 
-    const resolvedProducts = result.data.computeProductList;
+    let isDefaultProducts;
+    if (typeof productListCache.isDefaultProducts === 'boolean') {
+      isDefaultProducts = productListCache.isDefaultProducts;
+    } else {
+      const originalProducts = await getData(...getOriginalProductsQuery());
+      isDefaultProducts = !originalProducts.data.computeProductList.total;
+    }
+
+    const resolvedProducts = isDefaultProducts
+      ? DEFAULT_PRODUCTS
+      : result.data.computeProductList;
 
     // FIXME: custom sorting workaround
     if (ids && sort === 'selections') {
@@ -267,9 +279,11 @@ export default class ProductList extends React.PureComponent {
           .digest('hex');
         dispatchAction('saveProductList', {
           [hashcode]: resolvedProducts,
+          isDefaultProducts,
           [`${hashcode}:timestamp`]: Date.now(),
         });
         return {
+          isDefaultProducts,
           products: resolvedProducts,
           isLoading: false,
         };
@@ -391,7 +405,6 @@ export default class ProductList extends React.PureComponent {
       showDescription,
       showPrice,
       cartButton,
-      pagination,
       type,
       popUpGalleryView,
 
@@ -407,6 +420,7 @@ export default class ProductList extends React.PureComponent {
       hasStoreAppPlugin,
     } = this.props;
     const {
+      isDefaultProducts,
       products,
       params: { sort, limit, ids },
       page,
@@ -440,6 +454,7 @@ export default class ProductList extends React.PureComponent {
                   dropdownClassName={this.name}
                   value={sort}
                   size="large"
+                  disabled={isDefaultProducts}
                   dropdownAlign={{
                     points: isMobile ? ['tl', 'bl'] : ['tr', 'br'],
                   }}
@@ -469,6 +484,7 @@ export default class ProductList extends React.PureComponent {
             </div>
 
             <ProductCard
+              isDefaultProducts={isDefaultProducts}
               products={products}
               limit={limit}
               productWidth={productWidth}
@@ -490,20 +506,18 @@ export default class ProductList extends React.PureComponent {
               isUsingCache={isUsingCache}
             />
 
-            {!pagination ? null : (
-              <div style={styles.pagination}>
-                <Pagination
-                  total={total}
-                  pageSize={limit}
-                  current={page}
-                  itemRender={this.renderPagination}
-                  hideOnSinglePage
-                  showLessItems
-                  // FIXME: remove warning
-                  onChange={() => {}}
-                />
-              </div>
-            )}
+            <div style={styles.pagination}>
+              <Pagination
+                total={total}
+                pageSize={limit}
+                current={page}
+                itemRender={this.renderPagination}
+                hideOnSinglePage
+                showLessItems
+                // FIXME: remove warning
+                onChange={() => {}}
+              />
+            </div>
 
             <PopUp
               className={this.name}

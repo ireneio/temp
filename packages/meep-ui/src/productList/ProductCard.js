@@ -16,6 +16,7 @@ import { PRODUCT_TYPE } from './constants';
 import * as styles from './styles';
 
 const ProductCard = ({
+  isDefaultProducts,
   products,
   limit,
   isGrid,
@@ -91,31 +92,44 @@ const ProductCard = ({
                 styles.productCard(colors, isGrid),
               ]}
             >
-              <div
-                style={styles.productImage}
-                {...(productListImagePopUpEnabled
-                  ? { onClick: () => handleModalOpen(id) }
-                  : {})}
-              >
-                {!coverImage?.src ? (
-                  <Link // eslint-disable-line jsx-a11y/anchor-is-valid
-                    href={productListImagePopUpEnabled ? '' : `/product/${id}`}
-                    target="_self"
-                  >
-                    <Placeholder />
-                  </Link>
-                ) : (
-                  <Image
-                    image={coverImage.src}
-                    href={productListImagePopUpEnabled ? '' : `/product/${id}`}
-                    contentWidth={100}
-                    alignment="center"
-                    newWindow={false}
-                    ratio={1}
-                    isUsingCache={isUsingCache}
-                  />
-                )}
-              </div>
+              {isDefaultProducts ? (
+                <div style={styles.defaultProductImage}>
+                  <div key={`${id}-hint`} style={styles.defaultProductHint}>
+                    {t('product-building')}
+                  </div>
+                  {React.createElement(coverImage)}
+                </div>
+              ) : (
+                <div
+                  style={styles.productImage}
+                  {...(productListImagePopUpEnabled
+                    ? { onClick: () => handleModalOpen(id) }
+                    : {})}
+                >
+                  {!coverImage?.src ? (
+                    <Link // eslint-disable-line jsx-a11y/anchor-is-valid
+                      href={
+                        productListImagePopUpEnabled ? '' : `/product/${id}`
+                      }
+                      target="_self"
+                    >
+                      <Placeholder />
+                    </Link>
+                  ) : (
+                    <Image
+                      image={coverImage.src}
+                      href={
+                        productListImagePopUpEnabled ? '' : `/product/${id}`
+                      }
+                      contentWidth={100}
+                      alignment="center"
+                      newWindow={false}
+                      ratio={1}
+                      isUsingCache={isUsingCache}
+                    />
+                  )}
+                </div>
+              )}
 
               {showTitle && (
                 <div style={styles.productTitle}>
@@ -176,7 +190,7 @@ const ProductCard = ({
                 <button
                   key={`${id}-button`}
                   type="button"
-                  disabled={!orderable}
+                  disabled={!orderable || isDefaultProducts}
                   style={styles.productAddToCart(colors)}
                   onClick={() => handleModalOpen(id)}
                 >
