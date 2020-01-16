@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.35.1 (2020-01-16)
+
+Fix locale key.
+
 ## 0.35.0 (2020-01-16)
 
 #### :rocket: New Feature
