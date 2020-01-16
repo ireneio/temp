@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.34.0 (2020-01-16)
+
+#### :rocket: New Feature
+
+- `locale-parser`, `meep-ui`, `mock-types`, `store`
+  - [#825](https://github.com/meepshop/meep-lerna/pull/825) 【功能】 新增前後台語系：泰文、印尼文 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#836](https://github.com/meepshop/meep-lerna/pull/836) 【BUG】 FB 像素未追蹤到註冊會員事件 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#834](https://github.com/meepshop/meep-lerna/pull/834) (@meepshop/front-end) Remove @types/node lock ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.33.3 (2020-01-13)
 
 #### :rocket: New Feature
