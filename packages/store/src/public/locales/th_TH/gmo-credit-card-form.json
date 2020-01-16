@@ -1,0 +1,19 @@
+{
+  "title": "บัตรเครดิต",
+  "modify": "เปลี่ยนแปลง",
+  "cancel": "ยกเลิก",
+  "remember-card": null,
+  "expire": "วันหมดอายุ'",
+  "securityCode": "CVV",
+  "cardHolderName": "ชื่อบนบัตร",
+  "installment": "ค่างวดเงินผ่อน",
+  "installments": "ผ่อนชำระ",
+  "bank": "ธนาคาร",
+  "form": {
+    "required": "จำเป็นต้องใช้",
+    "cardNumberError": "เลขบัตรไม่ถูกต้อง",
+    "securityCodeError": "CVV ไม่ถูกต้อง"
+  },
+  "not-gmo-bank": "ธนาคารผู้ออกบัตรนี้ไม่มีข้อเสนอผ่อนชำระโปรดใช้บัตรเครดิตของธนาคารต่อไปนี้หรือเปลี่ยนวิธีการชำระเงินของคุณ",
+  "dot": ","
+}

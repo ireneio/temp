@@ -1,0 +1,24 @@
+{
+  "order-no": "Jumlah order:",
+  "created-on": "Tanggal pemesanan:",
+  "product": {
+    "title": "Barang",
+    "spec": "Spec",
+    "quantity": "QTY",
+    "price": "Harga",
+    "subtotal": "Subtotal"
+  },
+  "reason": "Deskripsi",
+  "recede": "Kembali",
+  "proceed": "Lanjut",
+  "warning": {
+    "refund": "Silakan pilih item",
+    "exchange": "Silakan pilih item dan masukkan info penerima"
+  },
+  "recipient": {
+    "title": "Info Penerima",
+    "name": "Nama lengkap",
+    "mobile": "Mobile",
+    "address": "Alamat"
+  }
+}

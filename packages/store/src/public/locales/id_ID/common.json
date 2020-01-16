@@ -1,0 +1,20 @@
+{
+  "close": "Sedang dalam perbaikan",
+  "product-is-discontinued": "Ups! Produk ini telah berhenti diproduksi.",
+  "back-to-homepage": "Kembali ke beranda",
+  "title": {
+    "order": "Detail pesanan",
+    "order-apply-list": "Pengembalian / Penggantian",
+    "order-exchange": "Penggantian",
+    "order-refund": "Kembali",
+    "orders": "pesananku",
+    "change-password": "Ganti kata sandi",
+    "pay-notify": "Notifikasi pembayaran",
+    "recipients": "Buku alamat",
+    "reward-points": "Poin Hadiah",
+    "settings": "Info Anggota",
+    "wishlist": "Daftar keinginan",
+    "logout": "keluar"
+  },
+  "locale": "Inggris"
+}

@@ -1,0 +1,37 @@
+{
+  "order-no": "Jumlah order:",
+  "order-date": "Tanggal pemesanan:",
+  "apply": "Berlaku untuk:",
+  "type": {
+    "return": "Kembali",
+    "replace": "Penggantian"
+  },
+  "date": "Tanggal:",
+  "recipient": "Penerima:",
+  "phone": "No Telepon.:",
+  "address": "Alamat:",
+  "product": {
+    "title": "Barang",
+    "quantity": "QTY"
+  },
+  "reason": "Deskripsi",
+  "status": {
+    "0": "Untuk di konfirmasi",
+    "10": "Dikirim",
+    "11": "Menjemput",
+    "12": "Dikonfirmasi",
+    "13": "Kesalahan Terjadi",
+    "20": "Pengembalian dana",
+    "21": "Dikembalikan",
+    "22": "Kesalahan Terjadi",
+    "title": "Status",
+    "return": {
+      "1": "Lengkap",
+      "2": "Pengembalian produk ini tidak mungkin, silakan hubungi layanan pelanggan kami jika Anda memiliki pertanyaan."
+    },
+    "replace": {
+      "1": "Lengkap",
+      "2": "Penggantian untuk produk ini tidak mungkin, silakan hubungi layanan pelanggan kami jika Anda memiliki pertanyaan."
+    }
+  }
+}

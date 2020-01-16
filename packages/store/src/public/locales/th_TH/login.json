@@ -1,0 +1,19 @@
+{
+  "email-is-required": "กรุณาใส่อีเมล",
+  "is-invalid-email": "กรุณาใส่อีเมล์ที่ถูกต้อง.",
+  "email-placeholder": "อีเมล์",
+  "password-is-required": "กรุณาใส่รหัสผ่าน",
+  "password-placeholder": "รหัสผ่าน",
+  "forget-password": "ลืมรหัสผ่าน?",
+  "signup": "ลงชื่อ",
+  "login": "เข้าสู่ระบบ",
+  "join-us": "สร้างบัญชี",
+  "fb-login": "เข้าสู่ระบบด้วย Facebook",
+  "go-back": "กลับ",
+  "password-is-no-match": "โปรดพิมพ์รหัสผ่านของคุณอีกครั้งที่นี่",
+  "join": "ร่วม",
+  "promotion-code": "รหัสกลุ่ม",
+  "password": "รหัสผ่าน",
+  "confirm-password": "ยืนยันรหัสผ่าน",
+  "send-reset-password-mail": "รีเซ็ตรหัสผ่าน"
+}

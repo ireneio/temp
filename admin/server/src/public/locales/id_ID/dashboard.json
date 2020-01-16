@@ -1,0 +1,14 @@
+{
+  "payment-dealine": "Silakan lengkapi pembayaran pada tanggal 6 bulan sebelum pukul 12:00 siang (GMT + 8).",
+  "payment-text": "Dalam hal batas waktu pembayaran jatuh pada hari libur, pembayaran harus dilakukan pada hari kerja berikutnya. Jika ada pembayaran yang terlambat, sistem akan menutup bagian depan / belakang toko Anda.",
+  "payment-link": "Periksa tagihan dan pembayaran",
+  "welcome": "Selamat datang di meepShop Platform Toko Online",
+  "pending-order": "Pesanan yang belum diproses",
+  "not-shipped": "belum dikirim",
+  "orderQA": "Q & A Pemesanan",
+  "productQA": "Tanya Jawab Produk",
+  "revenue": "Penghasilan Bulan Ini",
+  "cost": "Biaya Bulan Ini",
+  "order": "Pesanan bulan ini",
+  "member": "Jumlah anggota"
+}

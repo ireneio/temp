@@ -484,6 +484,8 @@ function* addRecipientAddressFlow({ payload }) {
               vi_VN
               fr_FR
               es_ES
+              th_TH
+              id_ID
             }
           }
         `,
@@ -500,6 +502,8 @@ function* addRecipientAddressFlow({ payload }) {
               vi_VN
               fr_FR
               es_ES
+              th_TH
+              id_ID
             }
           }
         `,
@@ -516,6 +520,8 @@ function* addRecipientAddressFlow({ payload }) {
               vi_VN
               fr_FR
               es_ES
+              th_TH
+              id_ID
             }
           }
         `,
@@ -600,6 +606,8 @@ function* updateRecipientAddressFlow({
               vi_VN
               fr_FR
               es_ES
+              th_TH
+              id_ID
             }
           }
         `,
@@ -616,6 +624,8 @@ function* updateRecipientAddressFlow({
               vi_VN
               fr_FR
               es_ES
+              th_TH
+              id_ID
             }
           }
         `,
@@ -632,6 +642,8 @@ function* updateRecipientAddressFlow({
               vi_VN
               fr_FR
               es_ES
+              th_TH
+              id_ID
             }
           }
         `,

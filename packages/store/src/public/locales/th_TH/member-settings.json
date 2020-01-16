@@ -1,0 +1,31 @@
+{
+  "form": {
+    "required": "จำเป็นต้องใช้"
+  },
+  "group-expire-date": {
+    "info": "วันหมดอายุ",
+    "forever": "ถาวร"
+  },
+  "name": "ชื่อเต็ม",
+  "gender": {
+    "placeholder": "เพศ",
+    "male": "ชาย",
+    "female": "หญิง"
+  },
+  "email": "อีเมล์",
+  "tel": "เบอร์โทรศัพท์",
+  "mobile": "โทรศัพท์มือถือ",
+  "birthday": "วันเดือนปีเกิด (ปี / เดือน / วันที่)",
+  "address": "ประเทศ / เมือง / เขตการปกครอง",
+  "zip-code": "รหัสไปรษณีย์",
+  "street": "ที่อยู่",
+  "isNotCancelEmail": "สมัครรับจดหมายข่าว",
+  "submit": "ปรับปรุง",
+  "remove-credit-card-info": {
+    "title": null,
+    "subTitle": null,
+    "submit": null,
+    "fail": null,
+    "success": null
+  }
+}

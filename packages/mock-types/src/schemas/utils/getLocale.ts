@@ -11,5 +11,7 @@ export default (text: string): localeFragment => ({
   vi_VN: text,
   fr_FR: text,
   es_ES: text,
+  th_TH: text,
+  id_ID: text,
   /* eslint-enable @typescript-eslint/camelcase */
 });

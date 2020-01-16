@@ -1,0 +1,19 @@
+{
+  "goto-login": "Silakan masuk.",
+  "confirm": "baik",
+  "cancel": "Tidak, terima kasih.",
+  "list-price": "Daftar Harga",
+  "suggested-price": "MSRP",
+  "member-see-price": "Harga Eksklusif Anggota",
+  "over-stock": "Item dalam keranjang Anda telah mencapai batasnya.",
+  "out-of-stock": "Kehabisan persediaan",
+  "quantity": "QTY",
+  "login-first": "Silakan masuk.",
+  "add-to-cart": "Masukkan ke keranjang",
+  "notice-done": "Lengkap. Harap tunggu notifikasi.",
+  "notice-me": "Beri tahu saya saat stok kembali",
+  "sold-out": "Kehabisan persediaan",
+  "no-variants": "Tidak ada spesifikasi yang tersedia.",
+  "not-found-content": "Jumlah barang yang dapat dibeli mungkin melebihi batasnya atau formatnya tidak valid.",
+  "more-options": "... atau kunci"
+}

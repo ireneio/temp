@@ -1,0 +1,108 @@
+{
+  "order-number": "Jumlah order:",
+  "created-on": "Tanggal pemesanan:",
+  "not-found": "Pesanan tidak ditemukan, harap konfirmasi bahwa Anda masuk ke akun yang benar.",
+  "product": {
+    "title": "Barang",
+    "spec": "Spec",
+    "quantity": "QTY",
+    "price": "Harga",
+    "subtotal": "Harga",
+    "gift": "Hadiah gratis",
+    "no-gift": "Kehabisan persediaan"
+  },
+  "sheet": {
+    "product": "Subtotal",
+    "shipment": "Biaya pengiriman",
+    "free-shipment": "Gratis",
+    "payment": "Biaya pengolahan",
+    "adjustment": "Edit pesanan",
+    "total": "Total",
+    "reward": "Poin Hadiah",
+    "coupon": "Kode Kupon"
+  },
+  "qa": {
+    "title": "T&J untuk Pesanan",
+    "placeholder": "Silakan masukkan pesan Anda untuk dukungan layanan.",
+    "send": "Kirim",
+    "success": "Telah berhasil dikirim.",
+    "error": "Kirim Q&A pesanan: Terjadi kesalahan"
+  },
+  "blocks": {
+    "buyer": "Info Anggota",
+    "recipient": "Info Penerima",
+    "payment": {
+      "title": "Status pembayaran",
+      "status": {
+        "0": "Untuk di konfirmasi",
+        "1": "Notifikasi pembayaran",
+        "2": "Dibayar",
+        "3": "Ketidakcocokan",
+        "4": "Gagal",
+        "5": "Pengembalian dana"
+      },
+      "type": "Pembayaran",
+      "bank-code": "Kode Bank:",
+      "virtual-account": "Nomor Akun Virtual:",
+      "expire-date": "Batas tanggal terakhir:",
+      "cvs-payment-no": "Nomor Pembayaran Toko Nyaman:",
+      "barcode": "Barcode Pembayaran Toko Nyaman:",
+      "card-no": "Empat digit terakhir kartu kredit:",
+      "gmo-store-code": "Kode Toko GMO:"
+    },
+    "shipment": {
+      "title": "Status pengiriman",
+      "status": {
+        "0": "Tertunda",
+        "1": "Mempersiapkan",
+        "2": "Kehabisan persediaan",
+        "3": "Dikirim",
+        "4": "Pesan terlebih dahulu",
+        "5": "Penggantian",
+        "6": "Kembali"
+      },
+      "type": "Pengiriman",
+      "link": "Lacak Pesanan",
+      "number": "Melacak nomor:",
+      "store": {
+        "id": "ID Toko:",
+        "name": "Nama Toko:",
+        "address": "Alamat Toko:"
+      }
+    },
+    "invoice": {
+      "title": "Faktur",
+      "type": {
+        "paper": "Faktur kertas",
+        "manual-electronic": "e-Faktur",
+        "ecpay-electronic": "e-Faktur"
+      },
+      "method": {
+        "duplicate": "Faktur Seragam Duplikat",
+        "triplicate": "Faktur Seragam Rangkap Tiga",
+        "company": "Akun Perusahaan",
+        "donation": "Menyumbangkan"
+      },
+      "carrier": {
+        "membership": "Operator Keanggotaan",
+        "mobile-barcode": "Kode Batang Seluler",
+        "citizen-digital-certificate": "Kode Batang NPC"
+      },
+      "bar-code": "Nomor Kode Batang:",
+      "love-code": "Kode Donasi NPO:",
+      "number": "Nomor faktur:",
+      "date": "Tanggal Terbit:",
+      "waiting": "Belum diterbitkan",
+      "invalid": "Faktur Tidak Valid"
+    },
+    "order": {
+      "title": "Status Pemesanan & Catatan",
+      "status": {
+        "0": "Pengolahan",
+        "1": "Lengkap",
+        "2": "Dibatalkan",
+        "3": "Pengembalian / Penggantian"
+      }
+    }
+  }
+}

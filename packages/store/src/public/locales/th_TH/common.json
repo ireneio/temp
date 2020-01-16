@@ -1,0 +1,20 @@
+{
+  "close": "ออกจากบริการ",
+  "product-is-discontinued": "อ๊ะ! ผลิตภัณฑ์นี้ถูกยกเลิก",
+  "back-to-homepage": "กลับไปที่หน้าแรก",
+  "title": {
+    "order": "รายละเอียดการสั่งซื้อ",
+    "order-apply-list": "คืน / เปลี่ยน",
+    "order-exchange": "การแทนที่",
+    "order-refund": "กลับ",
+    "orders": "คำสั่งซื้อของฉัน",
+    "change-password": "เปลี่ยนรหัสผ่าน",
+    "pay-notify": "แจ้งการชำระเงิน",
+    "recipients": "สมุดที่อยู่",
+    "reward-points": "คะแนนสะสม",
+    "settings": "ข้อมูลสมาชิก",
+    "wishlist": "รายการที่ต้องการ",
+    "logout": "ออกจากระบบ"
+  },
+  "locale": "อังกฤษ"
+}

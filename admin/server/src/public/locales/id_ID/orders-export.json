@@ -1,0 +1,21 @@
+{
+  "title": "Formulir pemesanan ekspor",
+  "maskId": {
+    "title": "Barang Ekspor",
+    "placeholder": "Silakan pilih grup yang berlaku"
+  },
+  "fileType": {
+    "title": "Format file",
+    "placeholder": "Pilih format file ekspor"
+  },
+  "fileName": {
+    "title": "Nama file",
+    "placeholder": "Masukkan nama file (opsional)"
+  },
+  "go-back": "Kembali",
+  "download": "Unduh",
+  "error": {
+    "title": "Kesalahan",
+    "content": "Tidak ada data unduhan yang tersedia"
+  }
+}

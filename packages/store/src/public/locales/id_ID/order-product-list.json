@@ -1,0 +1,12 @@
+{
+  "empty-cart": "Keranjang Anda kosong.",
+  "product-status-off": "Tidak tersedia",
+  "product-status-off-warning": "Harap hapus item ini",
+  "product-sold-out": "Kehabisan persediaan",
+  "product-sold-out-warning": "Harap hapus item ini",
+  "product-over-stock": "Lebih dari jumlah terbatas barang yang bisa dibeli",
+  "not-found-content": "Jumlah barang yang dapat dibeli mungkin melebihi batasnya atau formatnya tidak valid.",
+  "more-options": "... atau masukkan QTY yang diinginkan",
+  "gift": "Hadiah gratis",
+  "gift-exchange-is-completed": "Kehabisan persediaan"
+}

@@ -8,14 +8,30 @@ import NextI18Next from 'next-i18next';
 export interface I18nPropsType extends WithTranslation {
   t: (key: string, options?: {}) => string;
   i18n: WithTranslation['i18n'] & {
-    language: 'zh_TW' | 'en_US' | 'ja_JP' | 'vi_VN' | 'fr_FR' | 'es_ES';
+    language:
+      | 'zh_TW'
+      | 'en_US'
+      | 'ja_JP'
+      | 'vi_VN'
+      | 'fr_FR'
+      | 'es_ES'
+      | 'th_TH'
+      | 'id_ID';
   };
 }
 
 // definition
 const nextI18next = new NextI18Next({
   defaultLanguage: 'zh_TW',
-  otherLanguages: ['en_US', 'ja_JP', 'vi_VN', 'fr_FR', 'es_ES'],
+  otherLanguages: [
+    'en_US',
+    'ja_JP',
+    'vi_VN',
+    'fr_FR',
+    'es_ES',
+    'th_TH',
+    'id_ID',
+  ],
   localePath: !process.browser ? 'src/public/locales' : 'locales',
   // we use 'null' to fall back
   fallbackLng: 'zh_TW',

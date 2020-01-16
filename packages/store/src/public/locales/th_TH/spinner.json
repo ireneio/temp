@@ -1,0 +1,17 @@
+{
+  "auth-request": "ตรวจสอบสิทธิ์ ...",
+  "login-request": "กำลังลงชื่อเข้าใช้ ...",
+  "signout-request": "กำลังออกจากระบบ ...",
+  "signup-request": "กำลังประมวลผล ...",
+  "forget-password-request": "กำลังส่งอีเมล ...",
+  "add-cart-items-request": "กำลังเพิ่มลงในรถเข็น ...",
+  "update-cart-items-request": "เปลี่ยนจำนวน ...",
+  "remove-cart-items-request": "การลบ ...",
+  "update-user-request": "การอัปเดต ...",
+  "create-apply-request": "การประยุกต์ใช้ ...",
+  "create-order-qa-request": "กำลังประมวลผล ...",
+  "update-wishlist-request": "กำลังประมวลผล ...",
+  "add-stock-notification-list-request": "กำลังประมวลผล ...",
+  "get-order-request": "กำลังประมวลผล ...",
+  "reset-password-request": "กำลังประมวลผล ..."
+}

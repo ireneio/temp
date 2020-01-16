@@ -1,0 +1,26 @@
+{
+  "is-required": "Yg dibutuhkan",
+  "payment": "Pembayaran",
+  "payment-description": "Deskripsi",
+  "shipment": "Pengiriman",
+  "shipment-description": "Deskripsi",
+  "choose-paymeny-error": "Metode pembayaran yang dipilih tidak tersedia, silakan pilih lagi.",
+  "choose-shipment-error": "Pengiriman yang dipilih tidak tersedia, silakan pilih lagi.",
+  "coupon": {
+    "placeholder": "Kode Kupon",
+    "coupon-button": "Menerapkan",
+    "ask-confirm-coupon": "Silakan klik \"Terapkan\"",
+    "activity-period-is": "Kampanye berjalan dari",
+    "this-code-not-exist": "Kode kupon ini tidak valid",
+    "your-member-group-can-not-use-this-code": "Keanggotaan tidak memenuhi syarat! Kode kupon ini tidak dapat diterapkan.",
+    "this-code-activity-period": "Kampanye berjalan dari",
+    "this-code-usetimes-full": "Kode kupon ini telah mencapai batas jumlah penggunaan.",
+    "this-code-has-to-buy-specific-products": "Produk tertentu harus dibeli untuk menggunakan kode kupon ini",
+    "amount-of-products": "item",
+    "this-code-is-the-same": "Kode kupon ini tidak dapat digunakan karena duplikasi",
+    "plz-ask-service-or-delete": ", silakan hubungi Layanan Pelanggan kami untuk bantuan, atau hapus kode kupon kemudian lanjutkan ke checkout.",
+    "plz-delete-then-checkout": ", harap hapus kode kupon kemudian lanjutkan ke checkout.",
+    "this-code-has-to-satisfy": "Untuk menggunakan kode kupon ini, jumlah total harus mencapai {{currency}}",
+    "this-code-can-discount": "Kode kupon ini dapat ditukarkan dengan {{currency}}"
+  }
+}

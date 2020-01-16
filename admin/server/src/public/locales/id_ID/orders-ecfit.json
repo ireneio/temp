@@ -1,0 +1,138 @@
+{
+  "title": "Kelola pesanan ECFIT",
+  "status": {
+    "NOT_SENT": "Tidak ada",
+    "SENT_SUCCESSFUL": "Terkirim",
+    "SENT_FAILED": "Pengiriman gagal"
+  },
+  "change": "Perubahan",
+  "change-status": {
+    "title": "Merubah status",
+    "paymentStatusList": "Status pembayaran",
+    "shipmentStatusList": "Status pengiriman",
+    "orderStatusList": "Status pemesanan",
+    "choose": "Silahkan pilih",
+    "cancel": "Membatalkan",
+    "confirm": "Konfirmasi",
+    "error": {
+      "title": "Perubahan status gagal",
+      "description": "{{status}} perubahan untuk {{amount}} pesanan gagal"
+    },
+    "success": {
+      "title": "Perubahan status berhasil",
+      "description": "{{status}} untuk {{amount}} pesanan diperbarui ke \"{{newStatus}}\" \""
+    },
+    "order-change": {
+      "cancel": {
+        "title": "Perhatian! Pesanan yang dibatalkan tidak dapat dipulihkan",
+        "description": "Pesanan yang dibatalkan tidak lagi dapat diedit dan tidak akan dimasukkan dalam statistik pendapatan, penjualan, dan pemasaran. Anda yakin ingin membatalkan?"
+      },
+      "closed": {
+        "title": "Perhatian! Pesanan tertutup tidak dapat ditarik kembali",
+        "description": "Informasi tentang pesanan tertutup tidak lagi dapat diubah (termasuk pengembalian). Anda yakin ingin menutup kasing?"
+      }
+    }
+  },
+  "more-operating": {
+    "title": "Lebih banyak aksi",
+    "export": "Ekspor",
+    "print": "Mencetak"
+  },
+  "filter": {
+    "advanced-search": "Pencarian lanjutan",
+    "searchTerm": "Mencari kata kunci",
+    "reset": "Bersihkan pencarian"
+  },
+  "orderStatusList": {
+    "PROCESSING": "Pengolahan",
+    "CANCELED": "Batalkan pesanan",
+    "RETURN": "Pengembalian dan pengembalian uang",
+    "CLOSED": "Pesanan tertutup"
+  },
+  "paymentStatusList": {
+    "WAITING": "Menunggu konfirmasi",
+    "NOTIFICATED": "Notifikasi pembayaran",
+    "RECONCILED": "Rekonsiliasi selesai",
+    "DATA_ERROR": "Informasi salah",
+    "FAILED": "Pembayaran gagal",
+    "REFUND": "Pengembalian dana"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "Tidak dikirim",
+    "PREPARING": "Menyiapkan pengiriman",
+    "OUT_OF_STOCK": "Kehabisan persediaan",
+    "SHIPPED": "Dikirim",
+    "PRE_ORDER": "Pesan terlebih dahulu",
+    "EXCHANGE": "Kembali",
+    "RETURN": "Memproses pengembalian"
+  },
+  "advanced-search": {
+    "pre-placeholder": "Silahkan pilih",
+    "orderStatusList-title": "Status pemesanan",
+    "paymentStatusList-title": "Status pembayaran",
+    "paymentIdList-title": "Cara Pembayaran",
+    "shipmentStatusList-title": "Status pengiriman",
+    "shipmentIdList-title": "Metode pengiriman",
+    "reset": "Setel ulang",
+    "filter": "Saring"
+  },
+  "send": "Kirim pesanan ke ECFIT",
+  "orders": {
+    "order-no": "Jumlah order",
+    "shipment-name": "Metode pengiriman",
+    "payment-status": "Status pembayaran",
+    "shipment-status": "Status pengiriman",
+    "order-status": "Status pemesanan",
+    "recipient": "Penerima",
+    "amount": "Jumlah",
+    "create-on": "Tetapkan waktu",
+    "send-time": "Waktu pengiriman",
+    "fail-reason": "Alasan kegagalan"
+  },
+  "empty-orders": "Informasi pemesanan tidak ditemukan",
+  "fail-reason": {
+    "FAIL_TIMEOUT": "Waktu habis",
+    "FAIL_UNKNOWN_ECFIT_ERROR_CODE": "Kesalahan ECFIT tidak dikenal",
+    "FAIL_01_FIELD_ORDER_NO_BLANK": "Nomor pesanan kosong",
+    "FAIL_02_FIELD_INVOICED_BLANK": "Biarkan sel faktur kosong?",
+    "FAIL_03_FIELD_BAN_WRONG": "Nomor GUI pembeli salah",
+    "FAIL_04_FIELD_NPO_WRONG": "Kode donasi salah",
+    "FAIL_05_BAN_NOT_ALLOWED_WHEN_NPO_FILLED": "Nomor GUI pembeli tidak dapat disertakan pada faktur donasi",
+    "FAIL_06_FIELD_DEMAND_CANNOT_BE_Y_WHEN_NPO_FILLED": "Faktur donasi tidak dapat diklaim",
+    "FAIL_07_INCOMPLETE_CUSTOMER_INFO": "Informasi konsumen hilang",
+    "FAIL_08_BLANK_ORDER_PRODUCT_OR_PRODUCT_QUANTITY_ZERO": "Item sel kosong atau jumlah produk adalah 0",
+    "FAIL_09_FIELD_AMOUNT_WRONG": "Jumlah salah (tidak dapat dicocokkan dengan harga produk)",
+    "FAIL_10_UNKNOWN_ERROR": "Masalah tidak dikenal",
+    "FAIL_11_ORDER_NOT_FOUND": "Pesanan tidak ada",
+    "FAIL_12_FIELD_ARRIVE_LESS_THAN_NOW": "Tanggal pengiriman yang diharapkan telah kedaluwarsa",
+    "FAIL_13_DUPLICATE_ORDER_NO": "Nomor pesanan duplikat",
+    "FAIL_14_WRONG_PRODUCT_BARCODE": "Nomor barcode salah",
+    "FAIL_15_FIELD_LOGISTICS_ID_WRONG": "Nama pengiriman salah",
+    "FAIL_16_PRODUCT_NOT_FOUND": "Informasi produk tidak ada",
+    "FAIL_17_FIELD_ARRIVE_TYPE_WRONG": "Periode pengiriman yang sesuai tidak ditemukan",
+    "FAIL_18_FILED_CREDIT_NO_WRONG": "Final 4 digit pada kartu kredit salah",
+    "FAIL_19_BUYER_REQUIRED_WHEN_FIELD_INVOICED_IS_Y": "Informasi pembeli tidak disediakan",
+    "FAIL_20_NO_BUYER_WHEN_FIELD_INVOICED_IS_N": "Faktur elektronik ECFIT tidak digunakan, oleh karena itu informasi pembeli tidak diperlukan",
+    "FAIL_21_FIELD_EMAIL_FORMAT_ERROR": "Format email salah",
+    "FAIL_22_FIELD_TAX_TYPE_WRONG": "Kategori pajak salah",
+    "FAIL_23_FIELD_CLEARANCE_MARK_WRONG": "Metode bea cukai ilegal",
+    "FAIL_24_FIELD_PHONE_FORMAT_ERROR": "Format telepon salah",
+    "FAIL_41_FIELD_CODE_REQUIRED": "Token perusahaan diperlukan",
+    "FAIL_42_STORE_PICK_UP_REQUIRE_CODE": "Informasi tidak lengkap untuk pesanan penjemputan toko serba ada",
+    "FAIL_43_CODE_NOT_ALLOWED_WHEN_NOT_STORE_PICK_UP": "Informasi toserba tidak diperlukan untuk pesanan penjemputan di toko",
+    "FAIL_01_ORDER_NOT_FOUND": "Pesanan ECFIT tidak ada",
+    "FAIL_02_ORDER_STATUS_CANCELED_OR_CLOSED": "Pesanan ECFIT dibatalkan atau ditutup",
+    "FAIL_03_ORDER_STATUS_WRONG_OR_NOT_ALLOWED": "Kesalahan status pesanan ECFIT, oleh karena itu pembatalan tidak dapat dilakukan"
+  },
+  "send-error": {
+    "title": "Tidak dapat menggunakan layanan ECFIT",
+    "content": "Kesalahan konfigurasi. Silakan periksa lagi menggunakan konfigurasi pihak ketiga",
+    "confirm": "Konfirmasi"
+  },
+  "orders-info": {
+    "total": "Total pesanan {{total}}",
+    "select": "/ Terpilih",
+    "amount": "Memesan"
+  },
+  "page-size": "Pesanan / halaman"
+}

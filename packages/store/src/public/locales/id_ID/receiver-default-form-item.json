@@ -1,0 +1,45 @@
+{
+  "is-required": "Yg dibutuhkan",
+  "mobile": "Mobile",
+  "id-number": "Nomor ID",
+  "not-id-number": "Nomor ID tidak valid",
+  "area": "Negara",
+  "postal-code": "Kode Pos",
+  "address": "Alamat",
+  "choose-store": "Pilih Toko",
+  "not-choose-store": "Silakan pilih toko",
+  "rechoose-store": "Perubahan",
+  "invoice": "Faktur",
+  "invoice-paper": "Faktur kertas",
+  "invoice-title": "Pembayaran kepada:",
+  "invoice-number": "Tidak. PPN",
+  "invoice-address": "Alamat Pengiriman Faktur",
+  "invoice-e-invoice": "e-Faktur",
+  "wrong-certificate": "Kode Batang NPC salah. Silakan masukkan lagi.",
+  "wrong-barcode": "Kode Batang Seluler salah. Silakan masukkan lagi.",
+  "invoice-donate": "Masukkan Kode Donasi NPO",
+  "invoice-search": "Menanyakan",
+  "wrong-lovecode": "Kode Donasi NPO salah. Silakan masukkan lagi.",
+  "error": "Terjadi kesalahan",
+  "invoice-e-invoice-number": {
+    "moile-barcode": "Masukkan kode batang",
+    "citizen-digital-certificate": "Masukkan kode batang"
+  },
+  "invoice-e-invoice-type": {
+    "membership": "Operator Keanggotaan",
+    "mobile-barcode": "Kode Batang Seluler",
+    "citizen-digital-certificate": "Kode Batang NPC",
+    "company": "Akun Perusahaan",
+    "donation": "Menyumbangkan"
+  },
+  "convenience-store": {
+    "CVSStoreName": "Nama Toko",
+    "CVSAddress": "Alamat Toko",
+    "CVSStoreID": "ID Toko"
+  },
+  "invoice-paper-type": {
+    "duplicate": "Faktur Seragam Duplikat",
+    "triplicate": "Faktur Seragam Rangkap Tiga",
+    "donation": "Menyumbangkan"
+  }
+}

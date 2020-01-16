@@ -1,0 +1,19 @@
+{
+  "title": "Kartu kredit",
+  "modify": "Perubahan",
+  "cancel": "Membatalkan",
+  "remember-card": null,
+  "expire": "Tanggal kadaluarsa'",
+  "securityCode": "CVV",
+  "cardHolderName": "Nama di kartu",
+  "installment": "Cicilan",
+  "installments": "Angsuran Pembayaran",
+  "bank": "Bank",
+  "form": {
+    "required": "Yg dibutuhkan",
+    "cardNumberError": "Nomor kartu tidak valid",
+    "securityCodeError": "CVV tidak valid"
+  },
+  "not-gmo-bank": "Bank penerbit kartu ini tidak menawarkan cicilan, silakan gunakan kartu kredit dari bank-bank berikut atau ubah metode pembayaran Anda",
+  "dot": "、"
+}

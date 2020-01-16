@@ -22,10 +22,10 @@
   "isNotCancelEmail": "ニュースレターを購読する",
   "submit": "情報を更新",
   "remove-credit-card-info": {
-    "title": "信用卡交易資料",
-    "subTitle": "為確保交易的安全性，保留的卡號資料皆由銀行進行加密處理",
-    "submit": "移除信用卡交易資料",
-    "fail": "移除失敗",
-    "success": "移除成功"
+    "title": null,
+    "subTitle": null,
+    "submit": null,
+    "fail": null,
+    "success": null
   }
 }

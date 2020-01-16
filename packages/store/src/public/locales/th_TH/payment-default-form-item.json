@@ -1,0 +1,26 @@
+{
+  "is-required": "จำเป็นต้องใช้",
+  "payment": "การชำระเงิน",
+  "payment-description": "ลักษณะ",
+  "shipment": "การจัดส่งสินค้า",
+  "shipment-description": "ลักษณะ",
+  "choose-paymeny-error": "วิธีการชำระเงินที่เลือกไม่สามารถใช้งานได้โปรดเลือกอีกครั้ง",
+  "choose-shipment-error": "การจัดส่งที่เลือกไม่สามารถใช้งานได้โปรดเลือกอีกครั้ง",
+  "coupon": {
+    "placeholder": "รหัสคูปอง",
+    "coupon-button": "ใช้",
+    "ask-confirm-coupon": "กรุณาคลิก \"สมัคร\"",
+    "activity-period-is": "แคมเปญเริ่มต้นจาก",
+    "this-code-not-exist": "รหัสคูปองนี้ไม่ถูกต้อง",
+    "your-member-group-can-not-use-this-code": "การเป็นสมาชิกไม่ผ่านการรับรอง! รหัสคูปองนี้ใช้ไม่ได้",
+    "this-code-activity-period": "แคมเปญเริ่มต้นจาก",
+    "this-code-usetimes-full": "รหัสคูปองนี้มีจำนวนการใช้งานถึงขีด จำกัด แล้ว",
+    "this-code-has-to-buy-specific-products": "ต้องซื้อผลิตภัณฑ์เฉพาะเพื่อใช้รหัสคูปองนี้",
+    "amount-of-products": "รายการ (s)",
+    "this-code-is-the-same": "รหัสคูปองนี้ไม่สามารถใช้งานได้เนื่องจากมีการทำซ้ำ",
+    "plz-ask-service-or-delete": "โปรดติดต่อฝ่ายบริการลูกค้าของเราเพื่อขอความช่วยเหลือหรือล้างรหัสคูปองจากนั้นดำเนินการชำระเงินต่อไป",
+    "plz-delete-then-checkout": "โปรดล้างรหัสคูปองจากนั้นดำเนินการชำระเงินต่อ",
+    "this-code-has-to-satisfy": "ในการใช้รหัสคูปองนี้จำนวนรวมจะต้องถึง {{currency}}",
+    "this-code-can-discount": "รหัสคูปองนี้สามารถแลกเป็น {{currency}}"
+  }
+}

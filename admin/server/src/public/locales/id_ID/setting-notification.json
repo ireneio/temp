@@ -1,0 +1,36 @@
+{
+  "title": "Pengaturan pemberitahuan",
+  "save": "Menyimpan",
+  "cancel": "Membatalkan",
+  "auto-email": "Simpan email pemberitahuan otomatis",
+  "auto-email-description": "Saat pemberitahuan diaktifkan, email pemberitahuan akan dikirim setiap 20 menit. Anda dapat mengatur alamat email yang berbeda dari akun login Anda.",
+  "email": "Menerima email",
+  "email-error": "Format email salah",
+  "required": "Yg dibutuhkan",
+  "auto-email-setting": "Pengaturan pemberitahuan",
+  "order": {
+    "title": "Buat pesanan",
+    "description": "Beri tahu saat pesanan baru dibuat"
+  },
+  "order-QA": {
+    "title": "Pesan Tanya Jawab",
+    "description": "Beri tahu ketika konsumen mengirim pesan dalam detail pesanan"
+  },
+  "order-applicaiton": {
+    "title": "Aplikasi untuk pertukaran pesanan atau pengembalian uang",
+    "tip": "Fitur ini memerlukan ekstensi \"Pengembalian Dana\" atau \"Status Pertukaran\"",
+    "description": "Beri tahu ketika konsumen mengajukan \"mengajukan pengembalian uang / penukaran\""
+  },
+  "payment-notification": {
+    "title": "Pesan notifikasi pembayaran",
+    "tip": "Fitur ini hanya berlaku untuk pesanan dengan jumlah khusus dan dibayar melalui ATM",
+    "description": "Beri tahu ketika konsumen memberikan informasi pembayaran dalam detail pesanan"
+  },
+  "product-QA": {
+    "title": "T&J Produk",
+    "tip": "Fungsi ini membutuhkan komponen T&J pada halaman produk agar konsumen dapat mengajukan pertanyaan atau meninggalkan pesan",
+    "description": "Beri tahu ketika konsumen mengajukan pertanyaan atau meninggalkan pesan di Q&A produk di halaman produk"
+  },
+  "success": "Berhasil disimpan",
+  "error": "Kesalahan"
+}

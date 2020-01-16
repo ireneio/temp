@@ -1,0 +1,138 @@
+{
+  "title": "จัดการคำสั่งซื้อ ECFIT",
+  "status": {
+    "NOT_SENT": "ยังไม่ได้ส่ง",
+    "SENT_SUCCESSFUL": "ส่ง",
+    "SENT_FAILED": "การส่งล้มเหลว"
+  },
+  "change": "เปลี่ยนแปลง",
+  "change-status": {
+    "title": "เปลี่ยนสถานะ",
+    "paymentStatusList": "สถานะการชำระเงิน",
+    "shipmentStatusList": "สถานะการจัดส่ง",
+    "orderStatusList": "สถานะการสั่งซื้อ",
+    "choose": "โปรดเลือก",
+    "cancel": "ยกเลิก",
+    "confirm": "ยืนยัน",
+    "error": {
+      "title": "การเปลี่ยนสถานะล้มเหลว",
+      "description": "{{status}} การเปลี่ยนแปลงสำหรับ {{amount}}ำสั่งซื้อล้มเหลว"
+    },
+    "success": {
+      "title": "การเปลี่ยนสถานะสำเร็จแล้ว",
+      "description": "{{status}} สำหรับ {{amount}} องคำสั่งที่อัปเดตเป็น \"{{newStatus}}\""
+    },
+    "order-change": {
+      "cancel": {
+        "title": "โปรดทราบ! คำสั่งซื้อที่ถูกยกเลิกไม่สามารถกู้คืนได้",
+        "description": "คำสั่งซื้อที่ยกเลิกจะไม่สามารถแก้ไขได้อีกต่อไปและจะไม่รวมอยู่ในสถิติรายได้การขายและการตลาด คุณแน่ใจหรือไม่ว่าต้องการยกเลิก"
+      },
+      "closed": {
+        "title": "โปรดทราบ! คำสั่งซื้อที่ปิดไม่สามารถดึงกลับมาได้",
+        "description": "ข้อมูลเกี่ยวกับคำสั่งปิดไม่สามารถเปลี่ยนแปลงได้อีกต่อไป (รวมถึงการส่งคืน) คุณแน่ใจหรือไม่ว่าต้องการปิดเคส"
+      }
+    }
+  },
+  "more-operating": {
+    "title": "การดำเนินการมากขึ้น",
+    "export": "ส่งออก",
+    "print": "พิมพ์"
+  },
+  "filter": {
+    "advanced-search": "การค้นหาขั้นสูง",
+    "searchTerm": "ค้นหาคำสำคัญ",
+    "reset": "ล้างการค้นหา"
+  },
+  "orderStatusList": {
+    "PROCESSING": "การประมวลผล",
+    "CANCELED": "ยกเลิกคำสั่งซื้อ",
+    "RETURN": "ส่งคืนและคืนเงิน",
+    "CLOSED": "สั่งปิด"
+  },
+  "paymentStatusList": {
+    "WAITING": "รอการยืนยัน",
+    "NOTIFICATED": "แจ้งชำระเงิน",
+    "RECONCILED": "การกระทบยอดเสร็จสมบูรณ์",
+    "DATA_ERROR": "ข้อมูลไม่ถูกต้อง",
+    "FAILED": "การชำระเงินล้มเหลว",
+    "REFUND": "คืนเงินให้"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "ไม่ได้จัดส่ง",
+    "PREPARING": "กำลังเตรียมการเพื่อขนส่ง",
+    "OUT_OF_STOCK": "สินค้าหมด",
+    "SHIPPED": "การจัดส่ง",
+    "PRE_ORDER": "สั่งซื้อล่วงหน้า",
+    "EXCHANGE": "กลับ",
+    "RETURN": "กำลังดำเนินการส่งคืน"
+  },
+  "advanced-search": {
+    "pre-placeholder": "โปรดเลือก",
+    "orderStatusList-title": "สถานะการสั่งซื้อ",
+    "paymentStatusList-title": "สถานะการชำระเงิน",
+    "paymentIdList-title": "วิธีการชำระเงิน",
+    "shipmentStatusList-title": "สถานะการจัดส่ง",
+    "shipmentIdList-title": "วิธีจัดส่ง",
+    "reset": "ตั้งค่าใหม่",
+    "filter": "กรอง"
+  },
+  "send": "ส่งคำสั่งซื้อไปยัง ECFIT",
+  "orders": {
+    "order-no": "หมายเลขสั่งซื้อ",
+    "shipment-name": "วิธีจัดส่ง",
+    "payment-status": "สถานะการชำระเงิน",
+    "shipment-status": "สถานะการจัดส่ง",
+    "order-status": "สถานะการสั่งซื้อ",
+    "recipient": "ผู้รับ",
+    "amount": "จำนวน",
+    "create-on": "กำหนดเวลา",
+    "send-time": "เวลาจัดส่ง",
+    "fail-reason": "สาเหตุของความล้มเหลว"
+  },
+  "empty-orders": "ไม่พบข้อมูลการสั่งซื้อ",
+  "fail-reason": {
+    "FAIL_TIMEOUT": "หมดเวลา",
+    "FAIL_UNKNOWN_ECFIT_ERROR_CODE": "ข้อผิดพลาด ECFIT ที่ไม่รู้จัก",
+    "FAIL_01_FIELD_ORDER_NO_BLANK": "หมายเลขคำสั่งซื้อว่างเปล่า",
+    "FAIL_02_FIELD_INVOICED_BLANK": "ปล่อยให้เซลล์ใบแจ้งหนี้ว่างเปล่าหรือไม่",
+    "FAIL_03_FIELD_BAN_WRONG": "หมายเลข GUI ของผู้ซื้อไม่ถูกต้อง",
+    "FAIL_04_FIELD_NPO_WRONG": "รหัสบริจาคไม่ถูกต้อง",
+    "FAIL_05_BAN_NOT_ALLOWED_WHEN_NPO_FILLED": "หมายเลข GUI ของผู้ซื้อไม่สามารถรวมอยู่ในใบแจ้งหนี้การบริจาค",
+    "FAIL_06_FIELD_DEMAND_CANNOT_BE_Y_WHEN_NPO_FILLED": "ไม่สามารถอ้างสิทธิ์ในใบแจ้งหนี้การบริจาค",
+    "FAIL_07_INCOMPLETE_CUSTOMER_INFO": "ข้อมูลผู้บริโภคหายไป",
+    "FAIL_08_BLANK_ORDER_PRODUCT_OR_PRODUCT_QUANTITY_ZERO": "เซลล์รายการว่างเปล่าหรือปริมาณสินค้าเป็น 0",
+    "FAIL_09_FIELD_AMOUNT_WRONG": "จำนวนเงินไม่ถูกต้อง (ไม่สามารถจับคู่กับราคาผลิตภัณฑ์)",
+    "FAIL_10_UNKNOWN_ERROR": "ปัญหาที่ไม่รู้จัก",
+    "FAIL_11_ORDER_NOT_FOUND": "ไม่มีคำสั่งซื้อ",
+    "FAIL_12_FIELD_ARRIVE_LESS_THAN_NOW": "วันที่จัดส่งคาดว่าจะหมดอายุ",
+    "FAIL_13_DUPLICATE_ORDER_NO": "หมายเลขคำสั่งซ้ำ",
+    "FAIL_14_WRONG_PRODUCT_BARCODE": "หมายเลขบาร์โค้ดไม่ถูกต้อง",
+    "FAIL_15_FIELD_LOGISTICS_ID_WRONG": "ชื่อการจัดส่งไม่ถูกต้อง",
+    "FAIL_16_PRODUCT_NOT_FOUND": "ไม่มีข้อมูลผลิตภัณฑ์",
+    "FAIL_17_FIELD_ARRIVE_TYPE_WRONG": "ไม่พบระยะเวลาจัดส่งที่สอดคล้องกัน",
+    "FAIL_18_FILED_CREDIT_NO_WRONG": "ตัวเลข 4 หลักสุดท้ายบนบัตรเครดิตไม่ถูกต้อง",
+    "FAIL_19_BUYER_REQUIRED_WHEN_FIELD_INVOICED_IS_Y": "ไม่มีข้อมูลผู้ซื้อ",
+    "FAIL_20_NO_BUYER_WHEN_FIELD_INVOICED_IS_N": "ไม่ได้ใช้ใบแจ้งหนี้อิเล็กทรอนิกส์ของ ECFIT ดังนั้นจึงไม่จำเป็นต้องใช้ข้อมูลผู้ซื้อ",
+    "FAIL_21_FIELD_EMAIL_FORMAT_ERROR": "รูปแบบอีเมลไม่ถูกต้อง",
+    "FAIL_22_FIELD_TAX_TYPE_WRONG": "หมวดหมู่ภาษีไม่ถูกต้อง",
+    "FAIL_23_FIELD_CLEARANCE_MARK_WRONG": "วิธีการผ่านด่านศุลกากรที่ผิดกฎหมาย",
+    "FAIL_24_FIELD_PHONE_FORMAT_ERROR": "รูปแบบโทรศัพท์ไม่ถูกต้อง",
+    "FAIL_41_FIELD_CODE_REQUIRED": "ต้องใช้โทเค็นของ บริษัท",
+    "FAIL_42_STORE_PICK_UP_REQUIRE_CODE": "ข้อมูลไม่สมบูรณ์สำหรับการรับของที่ร้านสะดวกซื้อ",
+    "FAIL_43_CODE_NOT_ALLOWED_WHEN_NOT_STORE_PICK_UP": "ไม่จำเป็นต้องใช้ข้อมูลร้านสะดวกซื้อสำหรับการรับของที่ไม่ใช่ร้านสะดวกซื้อ",
+    "FAIL_01_ORDER_NOT_FOUND": "ไม่มีคำสั่งซื้อ ECFIT",
+    "FAIL_02_ORDER_STATUS_CANCELED_OR_CLOSED": "คำสั่ง ECFIT ถูกยกเลิกหรือปิด",
+    "FAIL_03_ORDER_STATUS_WRONG_OR_NOT_ALLOWED": "ข้อผิดพลาดสถานะคำสั่งซื้อ ECFIT ดังนั้นการยกเลิกไม่สามารถดำเนินการได้"
+  },
+  "send-error": {
+    "title": "ไม่สามารถใช้บริการ ECFIT",
+    "content": "ข้อผิดพลาดการกำหนดค่า โปรดตรวจสอบอีกครั้งโดยใช้การกำหนดค่าบุคคลที่สาม",
+    "confirm": "ยืนยัน"
+  },
+  "orders-info": {
+    "total": "ยอดรวมคำสั่งซื้อ {{total}} ทั้งหมด",
+    "select": "/ เลือกแล้ว",
+    "amount": "การสั่งซื้อ (s)"
+  },
+  "page-size": "คำสั่งซื้อ / หน้า"
+}

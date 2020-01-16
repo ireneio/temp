@@ -15,5 +15,7 @@ export default gql`
     vi_VN
     fr_FR
     es_ES
+    th_TH
+    id_ID
   }
 `;

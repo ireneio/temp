@@ -11,5 +11,9 @@ export const LOCALES = {
     'https://translate.google.com/?hl=zh-TW#view=home&op=translate&sl=en&tl=ja',
   vi_VN:
     'https://translate.google.com/?hl=zh-TW#view=home&op=translate&sl=en&tl=vi',
+  th_TH:
+    'https://translate.google.com/?hl=zh-TW#view=home&op=translate&sl=en&tl=th',
+  id_ID:
+    'https://translate.google.com/?hl=zh-TW#view=home&op=translate&sl=en&tl=id',
 };
 /* eslint-enable @typescript-eslint/camelcase */

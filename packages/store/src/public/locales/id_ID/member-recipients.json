@@ -1,0 +1,18 @@
+{
+  "name": "Nama lengkap",
+  "mobile": "Mobile",
+  "address": "Negara",
+  "zip-code": "Kode Pos",
+  "street": "Alamat",
+  "edit": "Edit",
+  "remove": "Menghapus",
+  "cancel": "Membuang",
+  "submit": "Menyimpan",
+  "create": "Menambahkan",
+  "form": {
+    "required": "Yg dibutuhkan",
+    "not-taiwan-mobile": "Nomor ponsel Taiwan adalah 10 digit",
+    "not-mobile": "Nomor ponsel tidak valid",
+    "not-number": "Entri ini hanya dapat berisi angka"
+  }
+}

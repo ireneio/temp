@@ -1,0 +1,19 @@
+{
+  "email-is-required": "Silakan masukkan email.",
+  "is-invalid-email": "Silakan isi alamat email.",
+  "email-placeholder": "Surel",
+  "password-is-required": "Silakan masukkan kata sandi.",
+  "password-placeholder": "Kata sandi",
+  "forget-password": "Tidak ingat kata sandi?",
+  "signup": "Daftar",
+  "login": "Masuk",
+  "join-us": "Buat sebuah akun",
+  "fb-login": "Masuk dengan Facebook",
+  "go-back": "Kembali",
+  "password-is-no-match": "Ketikkan ulang kata sandi Anda di sini",
+  "join": "Ikuti",
+  "promotion-code": "Kode grup",
+  "password": "Kata sandi",
+  "confirm-password": "konfirmasi sandi",
+  "send-reset-password-mail": "Setel Ulang Kata Sandi"
+}

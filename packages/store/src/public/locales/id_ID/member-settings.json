@@ -1,0 +1,31 @@
+{
+  "form": {
+    "required": "Yg dibutuhkan"
+  },
+  "group-expire-date": {
+    "info": "Tanggal kadaluarsa",
+    "forever": "Permanen"
+  },
+  "name": "Nama lengkap",
+  "gender": {
+    "placeholder": "Jenis kelamin",
+    "male": "Pria",
+    "female": "Perempuan"
+  },
+  "email": "Surel",
+  "tel": "No Telepon.",
+  "mobile": "Mobile",
+  "birthday": "Tanggal lahir (Tahun / Bulan / Tanggal)",
+  "address": "Negara / Kota / Kotamadya",
+  "zip-code": "Kode Pos",
+  "street": "Alamat",
+  "isNotCancelEmail": "Berlangganan Newsletter",
+  "submit": "Memperbarui",
+  "remove-credit-card-info": {
+    "title": null,
+    "subTitle": null,
+    "submit": null,
+    "fail": null,
+    "success": null
+  }
+}

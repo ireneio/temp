@@ -1,0 +1,16 @@
+{
+  "selections": "รายการโปรดของเรา",
+  "oldest": "จากเก่าไปใหม่",
+  "latest": "ใหม่ใน",
+  "title": "ชื่อผลิตภัณฑ์",
+  "price-asc": "ราคาต่ำ - สูง",
+  "price-desc": "ราคาสูง - ต่ำ",
+  "list-price": "รายการราคา",
+  "suggested-price": "MSRP",
+  "member-see-price": "ราคาพิเศษสำหรับสมาชิก",
+  "add-to-cart": "ใส่ในรถเข็น",
+  "sold-out": "สินค้าหมด",
+  "prev-page": "กลับ",
+  "next-page": "ต่อไป",
+  "modal-title": "กรุณาเลือกข้อมูลจำเพาะ"
+}

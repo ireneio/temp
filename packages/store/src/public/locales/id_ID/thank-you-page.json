@@ -1,0 +1,15 @@
+{
+  "title": {
+    "default": "Terima kasih!",
+    "error": "Ups!"
+  },
+  "info": {
+    "default": "Kami telah menerima pesanan Anda. Silakan periksa pesanan Anda untuk status pembayaran.",
+    "error": "Kesalahan sinkronisasi data terjadi. Harap salin URL dan berikan ke Layanan Pelanggan untuk bantuan."
+  },
+  "return": "Kembali ke beranda",
+  "copy": "Salin URL",
+  "copied": "URL disalin ke papan klip.",
+  "data-error": "Kesalahan Sinkronisasi Data",
+  "order": "Periksa Pesanan Saya"
+}

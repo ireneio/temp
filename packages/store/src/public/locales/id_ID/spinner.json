@@ -1,0 +1,17 @@
+{
+  "auth-request": "Mengautentikasi ...",
+  "login-request": "Masuk…",
+  "signout-request": "Keluar ...",
+  "signup-request": "Pengolahan…",
+  "forget-password-request": "Pengiriman email ...",
+  "add-cart-items-request": "Menambahkan ke troli ...",
+  "update-cart-items-request": "Mengubah QTY ...",
+  "remove-cart-items-request": "Menghapus ...",
+  "update-user-request": "Memperbarui ...",
+  "create-apply-request": "Menerapkan ...",
+  "create-order-qa-request": "Pengolahan…",
+  "update-wishlist-request": "Pengolahan…",
+  "add-stock-notification-list-request": "Pengolahan…",
+  "get-order-request": "Pengolahan…",
+  "reset-password-request": "Pengolahan…"
+}

@@ -1,0 +1,43 @@
+{
+  "date": "Tanggal pemesanan",
+  "order": {
+    "no": "Jumlah order",
+    "apply-list": "Pengembalian / Penggantian",
+    "return": "Kembali",
+    "replace": "Penggantian",
+    "pay-notify": "Notifikasi pembayaran",
+    "detail": "Melihat rincian",
+    "qa": "Hubungi kami"
+  },
+  "payment": {
+    "0": "Untuk di konfirmasi",
+    "1": "Notifikasi pembayaran",
+    "2": "Dibayar",
+    "3": "Ketidakcocokan",
+    "4": "Gagal",
+    "5": "Pengembalian dana",
+    "title": "Pembayaran"
+  },
+  "shipment": {
+    "0": "Tertunda",
+    "1": "Mempersiapkan",
+    "2": "Kehabisan persediaan",
+    "3": "Dikirim",
+    "4": "Pesan terlebih dahulu",
+    "5": "Penggantian",
+    "6": "Kembali",
+    "title": "Pengiriman"
+  },
+  "status": {
+    "0": "Pengolahan",
+    "1": "Lengkap",
+    "2": "Dibatalkan",
+    "3": "Pengembalian / Penggantian",
+    "title": "Status pemesanan"
+  },
+  "pay-again": {
+    "title": "Bayar sekarang",
+    "success": "Halaman ini akan dialihkan ke halaman pembayaran",
+    "fail": "Terjadi kesalahan"
+  }
+}
