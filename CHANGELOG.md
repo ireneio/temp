@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.35.0 (2020-01-16)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#814](https://github.com/meepshop/meep-lerna/pull/814) D&D 元件 - 商品列表 - 顯示預設值 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.34.0 (2020-01-16)
 
 #### :rocket: New Feature
