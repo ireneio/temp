@@ -4,6 +4,8 @@ import { Button, Form, Input } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 
 import { withTranslation } from '@store/utils/lib/i18n';
+import withContext from '@store/utils/lib/withContext';
+import adTrackContext from '@store/ad-track';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -12,6 +14,7 @@ const FormItem = Form.Item;
 
 @Form.create()
 @withTranslation('login')
+@withContext(adTrackContext)
 @enhancer
 export default class SignupForm extends React.PureComponent {
   static propTypes = {
@@ -63,6 +66,7 @@ export default class SignupForm extends React.PureComponent {
       form: { validateFields },
       dispatchAction,
       handleTypeChange,
+      adTrack,
     } = this.props;
 
     validateFields((err, values) => {
@@ -73,7 +77,10 @@ export default class SignupForm extends React.PureComponent {
           email,
           password,
           registeredCode,
-          callback: handleTypeChange({ options: 'LOGIN' }),
+          callback: () => {
+            handleTypeChange({ options: 'LOGIN' });
+            adTrack.completeRegistration();
+          },
         });
       }
     });
