@@ -32,6 +32,12 @@ const stories = [
     source: require('../packages/locale-parser/README.md').default,
   },
   {
+    name: '@meepshop/icons',
+    pattern: /meepshop\/icons$/,
+    path: './packages/icons/',
+    source: require('../packages/icons/README.md').default,
+  },
+  {
     name: '@store/server',
     pattern: /store\/server$/,
     path: './packages/store/',

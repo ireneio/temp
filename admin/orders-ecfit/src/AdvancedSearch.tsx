@@ -163,7 +163,7 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
                   </span>
 
                   <Select
-                    value={filter?.[optionsKey] || []}
+                    value={(filter?.[optionsKey] || []) as string[]}
                     onChange={(value?: string[]) =>
                       this.setState({
                         filter: {

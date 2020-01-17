@@ -80,6 +80,9 @@ module.exports = {
         validator: {
           transform: 'validator/lib/${member}',
         },
+        '@meepshop/icons': {
+          transform: key => `@meepshop/icons/lib/${key}`,
+        },
         /* eslint-enable no-template-curly-in-string */
       },
     ],
@@ -113,5 +116,6 @@ module.exports = {
   ignore: [
     '**/__generated__/**',
     ...(process.env.NODE_ENV === 'test' ? [] : ['**/__tests__/**']),
+    './packages/icons/src/types.ts',
   ],
 };
