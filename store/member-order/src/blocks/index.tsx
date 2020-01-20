@@ -37,6 +37,9 @@ export const blocksFragment = gql`
       email
       mobile
     }
+    address {
+      fullAddress
+    }
     shipmentInfo {
       status
       list {
@@ -46,9 +49,6 @@ export const blocksFragment = gql`
           name
           email
           mobile
-          address {
-            streetAddress
-          }
           comment
         }
         storeShipmentDetails {
@@ -140,7 +140,7 @@ export class Blocks extends React.PureComponent<PropsType> {
               (key: 'name' | 'email' | 'mobile' | 'address') => (
                 <div key={key}>
                   {key === 'address'
-                    ? shipmentObj?.recipient?.address?.streetAddress
+                    ? order?.address?.fullAddress
                     : shipmentObj?.recipient?.[key]}
                 </div>
               ),

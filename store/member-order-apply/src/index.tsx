@@ -3,6 +3,8 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 import { MutationFunction } from '@apollo/react-common';
 import { DataProxy } from 'apollo-cache';
 
+import { PropsType as FormPropsType } from './Form';
+
 // import
 import React from 'react';
 import { Query, Mutation } from '@apollo/react-components';
@@ -37,7 +39,6 @@ import {
   createOrderApplyVariables,
 } from './__generated__/createOrderApply';
 import { getOrderCache } from './__generated__/getOrderCache';
-import { RecipientCreateType } from '../../../__generated__/store';
 
 // graphql import
 import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
@@ -50,7 +51,6 @@ import {
   productsOrderApplyFragment,
   SelectedProduct,
 } from './Products';
-import { formFragment } from './Form';
 
 // typescript definition
 interface PropsType extends I18nPropsType {
@@ -62,7 +62,7 @@ interface PropsType extends I18nPropsType {
 interface StateType {
   selectedProducts: SelectedProduct[];
   checking: boolean;
-  replaceRecipient: RecipientCreateType;
+  replaceRecipient: FormPropsType['recipient'];
 }
 
 // definition
@@ -75,12 +75,7 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
       name: this.props.order.shipmentInfo?.list?.[0]?.recipient?.name || '',
       // eslint-disable-next-line react/destructuring-assignment
       mobile: this.props.order.shipmentInfo?.list?.[0]?.recipient?.mobile || '',
-      address: {
-        streetAddress:
-          // eslint-disable-next-line react/destructuring-assignment
-          this.props.order.shipmentInfo?.list?.[0]?.recipient?.address
-            ?.streetAddress || '',
-      },
+      address: this.props?.order.address?.fullAddress || '',
     },
   };
 
@@ -124,7 +119,13 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
           ...(type !== 'exchange'
             ? null
             : {
-                recipient: replaceRecipient,
+                recipient: {
+                  name: replaceRecipient.name,
+                  mobile: replaceRecipient.mobile,
+                  address: {
+                    streetAddress: replaceRecipient.address,
+                  },
+                },
               }),
         },
       },
@@ -326,8 +327,9 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
               },
               {
                 key: 'address',
-                children: `${t('recipient.address')}：${replaceRecipient
-                  ?.address?.streetAddress || ''}`,
+                children: `${t(
+                  'recipient.address',
+                )}：${replaceRecipient?.address || ''}`,
               },
             ].map(props => (
               <p {...props} />
@@ -348,7 +350,7 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
         {type !== 'exchange' || checking ? null : (
           <Form
             recipient={replaceRecipient}
-            onChange={(value: RecipientCreateType) =>
+            onChange={(value: FormPropsType['recipient']) =>
               this.setState({ replaceRecipient: value })
             }
           />
@@ -432,9 +434,13 @@ export default ({
               list {
                 id
                 recipient {
-                  ...formFragment
+                  name
+                  mobile
                 }
               }
+            }
+            address {
+              fullAddress
             }
           }
         }
@@ -455,7 +461,6 @@ export default ({
 
       ${productsProductsObjectTypeFragment}
       ${productsOrderApplyFragment}
-      ${formFragment}
       ${colorListFragment}
     `}
     variables={{

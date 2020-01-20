@@ -3,105 +3,63 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { Input } from 'antd';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
 import styles from './styles/replaceForm.less';
 
-// graphql import
-import { RecipientCreateType } from '../../../__generated__/store';
-
 // typescript definition
-interface PropsType extends I18nPropsType {
-  recipient?: RecipientCreateType;
-  onChange: (value: RecipientCreateType) => void;
-}
-
-interface StateType {
-  [key: string]: string;
+export interface PropsType extends I18nPropsType {
+  recipient: {
+    name: string;
+    mobile: string;
+    address: string;
+  };
+  onChange: (value: PropsType['recipient']) => void;
 }
 
 // definition
-export const formFragment = gql`
-  fragment formFragment on RecipientObjectType {
-    name
-    mobile
-    address {
-      streetAddress
-    }
-  }
-`;
+export default withTranslation('member-order-apply')(
+  React.memo(({ t, recipient, onChange }: PropsType) => (
+    <div className={styles.root}>
+      <h3>{t('recipient.title')}</h3>
 
-class Form extends React.PureComponent<PropsType, StateType> {
-  public state: StateType = {
-    // eslint-disable-next-line react/destructuring-assignment
-    name: this.props.recipient?.name || '',
-    // eslint-disable-next-line react/destructuring-assignment
-    mobile: this.props.recipient?.mobile || '',
-    // eslint-disable-next-line react/destructuring-assignment
-    address: this.props.recipient?.address?.streetAddress || '',
-  };
-
-  public componentDidUpdate(_prevProps: PropsType, prevState: StateType): void {
-    this.onChange(prevState);
-  }
-
-  private onChange = (prevState: StateType): void => {
-    const { onChange } = this.props;
-    const { name, mobile, address } = this.state;
-
-    if (
-      name !== prevState.name ||
-      mobile !== prevState.mobile ||
-      address !== prevState.address
-    )
-      onChange({
-        name,
-        mobile,
-        address: {
-          streetAddress: address,
+      {[
+        {
+          key: 'name',
+          placeholder: t('recipient.name'),
         },
-      });
-  };
-
-  public render(): React.ReactNode {
-    const { t } = this.props;
-
-    return (
-      <div className={styles.root}>
-        <h3>{t('recipient.title')}</h3>
-
-        {[
-          {
-            key: 'name',
-            placeholder: t('recipient.name'),
-          },
-          {
-            key: 'mobile',
-            placeholder: t('recipient.mobile'),
-          },
-          {
-            key: 'address',
-            placeholder: t('recipient.address'),
-          },
-        ].map(({ key, placeholder }) => (
+        {
+          key: 'mobile',
+          placeholder: t('recipient.mobile'),
+        },
+        {
+          key: 'address',
+          placeholder: t('recipient.address'),
+        },
+      ].map(
+        ({
+          key,
+          placeholder,
+        }: {
+          key: keyof PropsType['recipient'];
+          placeholder: string;
+        }) => (
           <Input
             key={key}
             placeholder={placeholder}
-            value={
-              this.state[key] // eslint-disable-line react/destructuring-assignment
-            }
-            onChange={({ target: { value: newValue } }) =>
-              this.setState({ [key]: newValue })
+            value={recipient[key]}
+            onChange={({ target: { value } }) =>
+              onChange({
+                ...recipient,
+                [key]: value,
+              })
             }
             size="large"
           />
-        ))}
-      </div>
-    );
-  }
-}
-
-export default withTranslation('member-order-apply')(Form);
+        ),
+      )}
+    </div>
+  )),
+);
