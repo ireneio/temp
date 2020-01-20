@@ -4,7 +4,7 @@
   "description": "admin server",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.35.0",
+  "version": "0.35.2",
   "main": "./next.config.js",
   "scripts": {
     "clean": "rm -rf ./src/.next",
@@ -13,12 +13,12 @@
     "start": "NODE_ENV=production node src/server"
   },
   "dependencies": {
-    "@admin/apollo-client-resolvers": "^0.35.0",
-    "@admin/dashboard": "^0.35.0",
-    "@admin/orders-ecfit": "^0.35.0",
-    "@admin/setting-notification": "^0.35.0",
-    "@admin/utils": "^0.35.0",
-    "@admin/wrapper": "^0.35.0",
+    "@admin/apollo-client-resolvers": "^0.35.2",
+    "@admin/dashboard": "^0.35.2",
+    "@admin/orders-ecfit": "^0.35.2",
+    "@admin/setting-notification": "^0.35.2",
+    "@admin/utils": "^0.35.2",
+    "@admin/wrapper": "^0.35.2",
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-link-http": "^1.5.16",
     "body-parser": "^1.18.3",
