@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.35.2 (2020-01-20)
+
+#### :rocket: New Feature
+
+- Other
+  - [#786](https://github.com/meepshop/meep-lerna/pull/786) 前端 - 前台 訂單地址使用新欄位 ([@HsuTing](https://github.com/HsuTing))
+- `icons`
+  - [#838](https://github.com/meepshop/meep-lerna/pull/838) (@meepshop/icons) Add new package ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#837](https://github.com/meepshop/meep-lerna/pull/837) 【BUG】前台/日文、越南文語系 - 會員收件人範本地區資料出現 null ([@HsuTing](https://github.com/HsuTing))
+- `icons`
+  - [#839](https://github.com/meepshop/meep-lerna/pull/839) (@meepshop/icons) Fix lint error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.35.1 (2020-01-16)
 
 Fix locale key.
