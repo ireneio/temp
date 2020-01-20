@@ -54,7 +54,7 @@ class InstallmentFormItem extends React.PureComponent<PropsType> {
     ): CascaderOptionType[] =>
       allGmoBankInstallments.map(({ name, code, installments }, index) => ({
         value: index.toString(),
-        label: name[i18n.language],
+        label: name[i18n.language] || name.zh_TW,
         children: installments.map(installment => ({
           value: `${code || ''}${installment}`,
           label: `${installment} ${t('installment')}`,
@@ -124,7 +124,7 @@ class InstallmentFormItem extends React.PureComponent<PropsType> {
             <h4>{t('not-gmo-bank')}</h4>
 
             {allGmoBankInstallments
-              .map(({ name }) => name[i18n.language])
+              .map(({ name }) => name[i18n.language] || name.zh_TW)
               .join(t('dot'))}
           </div>
         )}

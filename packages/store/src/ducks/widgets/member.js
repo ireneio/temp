@@ -528,8 +528,12 @@ function* addRecipientAddressFlow({ payload }) {
       });
 
       const country = !countryData.id ? null : countryData.name.en_US;
-      const city = !cityData.id ? null : cityData.name[i18n.language];
-      const county = !areaData.id ? null : areaData.name[i18n.language];
+      const city = !cityData.id
+        ? null
+        : cityData.name[i18n.language] || cityData.name.zh_TW;
+      const county = !areaData.id
+        ? null
+        : areaData.name[i18n.language] || areaData.name.zh_TW;
 
       yield put(
         updateUserSuccess({
@@ -650,8 +654,12 @@ function* updateRecipientAddressFlow({
       });
 
       const country = !countryData.id ? null : countryData.name.en_US;
-      const city = !cityData.id ? null : cityData.name[i18n.language];
-      const county = !areaData.id ? null : areaData.name[i18n.language];
+      const city = !cityData.id
+        ? null
+        : cityData.name[i18n.language] || cityData.name.zh_TW;
+      const county = !areaData.id
+        ? null
+        : areaData.name[i18n.language] || areaData.name.zh_TW;
       const recipientData = [...user.recipientData];
 
       recipientData[recipientIndexForRedux] = {

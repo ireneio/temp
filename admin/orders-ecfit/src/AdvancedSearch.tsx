@@ -99,7 +99,7 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
           title: localeFragmentType;
         }[]).map(({ id, title }) => (
           <Option key={id} value={id}>
-            {title[i18n.language]}
+            {title[i18n.language] || title.zh_TW}
           </Option>
         ));
 

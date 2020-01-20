@@ -64,41 +64,47 @@ const Tags = React.memo(
       getStoreShipmentList: tagsStoreShipmentListFragmentType;
     }) => (
     <div className={styles.root}>
-      {TAGS_KEYS.map(key => {
-        const options = variables?.filter?.[key] || [];
+      {TAGS_KEYS.map(key =>
+        (variables?.filter?.[key] || []).map(
+          (option: string, _: number, options: string[]) => {
+            const title =
+              key !== 'paymentIdList' && key !== 'shipmentIdList'
+                ? null
+                : ({
+                    paymentIdList: getStorePaymentList.data,
+                    shipmentIdList: getStoreShipmentList.data,
+                  }[key] as {
+                    id: string;
+                    title: localeFragmentType;
+                  }[]).find(({ id }) => id === option)?.title;
 
-        return options.map((option: string) => (
-          <Tag
-            key={option}
-            onClose={() =>
-              refetch({
-                ...variables,
-                filter: {
-                  ...variables.filter,
-                  [key]: emptyArrayToUndefined(
-                    options.filter(
-                      (optionName: string) => optionName !== option,
-                    ),
-                  ),
-                },
-              })
-            }
-            closable
-          >
-            {t(`advanced-search.${key}-title`)}：
-            {key !== 'paymentIdList' && key !== 'shipmentIdList'
-              ? t(`${key}.${option}`)
-              : ({
-                  paymentIdList: getStorePaymentList.data,
-                  shipmentIdList: getStoreShipmentList.data,
-                }[key] as {
-                  id: string;
-                  title: localeFragmentType;
-                }[]).find(({ id }) => id === option)?.title[i18n.language] ||
-                ''}
-          </Tag>
-        ));
-      })}
+            return (
+              <Tag
+                key={option}
+                onClose={() =>
+                  refetch({
+                    ...variables,
+                    filter: {
+                      ...variables.filter,
+                      [key]: emptyArrayToUndefined(
+                        options.filter(
+                          (optionName: string) => optionName !== option,
+                        ),
+                      ),
+                    },
+                  })
+                }
+                closable
+              >
+                {t(`advanced-search.${key}-title`)}：
+                {!title
+                  ? t(`${key}.${option}`)
+                  : title[i18n.language] || title.zh_TW}
+              </Tag>
+            );
+          },
+        ),
+      )}
     </div>
   ),
 );

@@ -68,9 +68,9 @@ class MemberRecipients extends React.PureComponent<PropsType> {
         ) =>
           [
             zipCode,
-            !country ? null : country.name[i18n.language],
-            `${!city ? '' : city.name[i18n.language]}${
-              !area ? '' : area.name[i18n.language]
+            !country ? null : country.name[i18n.language] || country.name.zh_TW,
+            `${!city ? '' : city.name[i18n.language] || city.name.zh_TW}${
+              !area ? '' : area.name[i18n.language] || area.name.zh_TW
             }${street || ''}`,
           ]
             .filter(Boolean)
@@ -118,9 +118,9 @@ class MemberRecipients extends React.PureComponent<PropsType> {
 
             <span>{t('address')}</span>
             <span>{`${zipCode || ''}${
-              !country ? '' : country.name[i18n.language]
-            }${!city ? '' : city.name[i18n.language]}${
-              !area ? '' : area.name[i18n.language]
+              !country ? '' : country.name[i18n.language] || country.name.zh_TW
+            }${!city ? '' : city.name[i18n.language] || city.name.zh_TW}${
+              !area ? '' : area.name[i18n.language] || area.name.zh_TW
             }${street || ''}`}</span>
 
             <span>{t('mobile')}</span>
