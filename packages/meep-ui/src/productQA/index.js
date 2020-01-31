@@ -126,7 +126,7 @@ export default class PrdoductQA extends React.PureComponent {
           itemLayout="horizontal"
           dataSource={QAList}
           renderItem={({ qa, userEmail }, index) => {
-            const [{ question, createdOn }, replay] = qa;
+            const [{ question, createdOn }, ...replay] = qa;
             const [email] = (userEmail || '').split(/@/);
 
             return (
@@ -147,15 +147,22 @@ export default class PrdoductQA extends React.PureComponent {
                         View Reply
                       </div>
 
-                      {showQAIndex !== index ? null : (
-                        <div style={styles.replayContent(colors)}>
-                          <pre>{replay.question}</pre>(
-                          {moment(replay.createdOn * 1000).format(
-                            'YYYY/MM/DD HH:mm:ss',
+                      {showQAIndex !== index
+                        ? null
+                        : replay.map(
+                            ({
+                              question: replayQuestion,
+                              createdOn: replayCreatedOn,
+                            }) => (
+                              <div style={styles.replayContent(colors)}>
+                                <pre>{replayQuestion}</pre>(
+                                {moment(replayCreatedOn * 1000).format(
+                                  'YYYY/MM/DD HH:mm:ss',
+                                )}
+                                )
+                              </div>
+                            ),
                           )}
-                          )
-                        </div>
-                      )}
                     </>
                   )
                 }
