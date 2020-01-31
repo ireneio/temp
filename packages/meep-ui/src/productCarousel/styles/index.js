@@ -65,14 +65,24 @@ export const Style = mode => ({
   },
 });
 
-export const placeholder = {
-  margin: 'auto',
-  width: '400px',
-  height: '400px',
-  [PHONE_MEDIA]: {
-    width: '300px',
-    height: '300px',
-  },
+export const placeholder = mode => {
+  if (mode === 'list')
+    return {
+      margin: '0 auto',
+      width: '300px',
+      height: '300px',
+    };
+
+  return {
+    margin: '60px 0',
+    width: '400px',
+    height: '400px',
+    [PHONE_MEDIA]: {
+      margin: '15px 0',
+      width: '300px',
+      height: '300px',
+    },
+  };
 };
 
 export const root = {

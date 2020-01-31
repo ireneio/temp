@@ -4,7 +4,7 @@ import radium, { Style, StyleRoot } from 'radium';
 import Slider from 'react-slick';
 import Lazy from 'image/img/Lazy';
 
-import { Placeholder } from 'placeholder';
+import Placeholder from '@store/placeholder';
 
 import { COVER_IMAGE_TYPE, GALLERY_TYPE } from 'constants/propTypes';
 
@@ -85,7 +85,7 @@ export default class ProductCarousel extends React.PureComponent {
 
     if (!images.length) {
       return (
-        <div style={styles.placeholder}>
+        <div style={styles.placeholder(mode)}>
           <Placeholder />
         </div>
       );

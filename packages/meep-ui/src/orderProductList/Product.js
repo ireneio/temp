@@ -7,8 +7,7 @@ import { FaTag as TagIcon } from 'react-icons/fa';
 import { withTranslation } from '@store/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import { ThumbPlaceholder } from 'placeholder';
-import Thumb from 'thumb';
+import Thumbnail from '@store/thumbnail';
 import {
   ID_TYPE,
   COLOR_TYPE,
@@ -101,13 +100,7 @@ export default class Product extends React.PureComponent {
             />
           )}
 
-          {!coverImage?.src ? (
-            <ThumbPlaceholder />
-          ) : (
-            <div style={{ height: '100%' }}>
-              <Thumb imgUrl={coverImage.src} />
-            </div>
-          )}
+          {<Thumbnail imgUrl={coverImage?.src} />}
         </td>
 
         <td style={[styles.item, styles.title]}>

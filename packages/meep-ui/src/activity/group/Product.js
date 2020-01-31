@@ -8,7 +8,7 @@ import { withTranslation } from '@store/utils/lib/i18n';
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
 import Link from 'link';
-import { Placeholder } from 'placeholder';
+import Placeholder from '@store/placeholder';
 import PopUp from 'productList/PopUp';
 import {
   ID_TYPE,

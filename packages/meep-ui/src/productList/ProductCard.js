@@ -8,7 +8,7 @@ import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 import Image from 'image';
 import Link from 'link';
-import { Placeholder } from 'placeholder';
+import Placeholder from '@store/placeholder';
 import DraftText from 'draftText';
 
 import ProductLoader from './ProductLoader';
