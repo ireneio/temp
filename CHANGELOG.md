@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.35.3 (2020-01-31)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#832](https://github.com/meepshop/meep-lerna/pull/832) 【BUG】前台 - 商品無圖時，商品圖位置跑版 ([@piovischioh](https://github.com/piovischioh))
+  - [#840](https://github.com/meepshop/meep-lerna/pull/840) 【BUG】後台 - 商品問答有多則回覆，前台只會顯示第一則的回覆訊息 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.35.2 (2020-01-20)
 
 #### :rocket: New Feature
