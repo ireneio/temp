@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@admin/gallery",
+  "description": "Use to select the images for admin",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/utils": "^0.35.2",
+    "file-type": "^13.1.2",
+    "uuid": "^3.3.3"
+  },
+  "keywords": ["admin", "gallery"]
+}

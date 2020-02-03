@@ -32,4 +32,8 @@ declare module 'fbjs' {
     export const NUMPAD_0: 96;
     export const NUMPAD_9: 105;
   }
+
+  export function getElementPosition(
+    dom: HTMLElement,
+  ): { width: number; height: number };
 }

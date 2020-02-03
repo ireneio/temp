@@ -19,6 +19,7 @@ import ExchangeRate from './schemas/ExchangeRate';
 import ezPaymentReturnListObjectType from './schemas/ezPaymentReturnListObjectType';
 import ExportFormat from './schemas/ExportFormat';
 import FbPixel from './schemas/FbPixel';
+import FileConnection from './schemas/FileConnection';
 import gtag from './schemas/gtag';
 import GmoBankInstallment from './schemas/GmoBankInstallment';
 import GMOUserInfo from './schemas/GMOUserInfo';
@@ -51,6 +52,7 @@ import StoreEcfitSettings from './schemas/StoreEcfitSettings';
 import Store from './schemas/Store';
 import StoreApp from './schemas/StoreApp';
 import SettingObjectType from './schemas/SettingObjectType';
+import TagList from './schemas/TagList';
 import User from './schemas/User';
 import UserPoints from './schemas/UserPoints';
 import UserRewardPoint from './schemas/UserRewardPoint';
@@ -77,6 +79,7 @@ addMockFunctionsToSchema({
     ezPaymentReturnListObjectType,
     ExportFormat,
     FbPixel,
+    FileConnection,
     gtag,
     GmoBankInstallment,
     GMOUserInfo,
@@ -109,6 +112,7 @@ addMockFunctionsToSchema({
     Store,
     StoreApp,
     SettingObjectType,
+    TagList,
     User,
     UserPoints,
     UserRewardPoint,
