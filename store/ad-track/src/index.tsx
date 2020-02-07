@@ -1,6 +1,6 @@
 // import
 import React, { useContext } from 'react';
-import { Query } from '@apollo/react-components';
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 import { emptyFunction } from 'fbjs';
@@ -33,59 +33,49 @@ const AdTrackContext = React.createContext<{
   },
 });
 
-// TODO: merge to AdTrackProvider after using @apollo/react-hook
-const AdTrack = ({
-  data,
-  children,
-}: PropsType & { data: getAdTrack }): React.ReactElement => {
+const query = gql`
+  query getAdTrack {
+    getFbPixel {
+      pixelId
+    }
+
+    getGtagList {
+      type
+      eventName
+      code
+    }
+
+    viewer {
+      id
+      store {
+        id
+        cname
+      }
+    }
+  }
+`;
+
+export const AdTrackProvider = React.memo(({ children }: PropsType) => {
+  const { data } = useQuery<getAdTrack>(query);
   const { currency } = useContext(CurrencyContext);
+  const adTrackIds = useAdTrackIds(data);
+  const adTrack = useAdTrack({
+    ...adTrackIds,
+    cname: data?.viewer?.store?.cname || null,
+    currency,
+  });
+
+  if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
 
   return (
     <AdTrackContext.Provider
       value={{
-        adTrack: useAdTrack({
-          ...useAdTrackIds(data),
-          cname: data?.viewer?.store?.cname || null,
-          currency,
-        }),
+        adTrack,
       }}
     >
       {children}
     </AdTrackContext.Provider>
   );
-};
-
-export const AdTrackProvider = React.memo(({ children }: PropsType) => (
-  <Query<getAdTrack>
-    query={gql`
-      query getAdTrack {
-        getFbPixel {
-          pixelId
-        }
-
-        getGtagList {
-          type
-          eventName
-          code
-        }
-
-        viewer {
-          id
-          store {
-            id
-            cname
-          }
-        }
-      }
-    `}
-  >
-    {({ loading, error, data }) => {
-      if (loading || error || !data)
-        return <Spin indicator={<Icon type="loading" spin />} />;
-
-      return <AdTrack data={data}>{children}</AdTrack>;
-    }}
-  </Query>
-));
+});
 
 export default AdTrackContext;

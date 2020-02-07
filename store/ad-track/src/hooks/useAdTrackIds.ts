@@ -9,7 +9,7 @@ import {
 
 // definition
 const getCode = (
-  getGtagList: getAdTrack['getGtagList'],
+  getGtagList: getAdTrack['getGtagList'] | undefined,
   callback: (data: getAdTrackGetGtagList) => boolean,
 ): getAdTrackGetGtagList['code'] => getGtagList?.find(callback)?.code || null;
 
@@ -18,10 +18,9 @@ const getMatch = (
   reg: RegExp,
 ): string | null => code?.match(reg)?.[0] || null;
 
-export default ({
-  getFbPixel,
-  getGtagList,
-}: getAdTrack): {
+export default (
+  data: getAdTrack | undefined,
+): {
   fbPixelId: string | null;
   gaId: string | null;
   googleAdsConversionID: string | null;
@@ -31,15 +30,15 @@ export default ({
 } =>
   useMemo(
     () => ({
-      fbPixelId: getFbPixel?.pixelId || null,
+      fbPixelId: data?.getFbPixel?.pixelId || null,
       gaId: getCode(
-        getGtagList,
+        data?.getGtagList,
         ({ type, eventName }: getAdTrackGetGtagList) =>
           type === 'google_analytics' && eventName === 'analytics_config',
       ),
       googleAdsConversionID: getMatch(
         getCode(
-          getGtagList,
+          data?.getGtagList,
           ({ type, eventName }: getAdTrackGetGtagList) =>
             type === 'google_adwords' && eventName === 'adwords_config',
         ),
@@ -47,7 +46,7 @@ export default ({
       ),
       googleAdsSignupLabel: getMatch(
         getCode(
-          getGtagList,
+          data?.getGtagList,
           ({ type, eventName }: getAdTrackGetGtagList) =>
             type === 'google_adwords' && eventName === 'sign_up',
         ),
@@ -55,7 +54,7 @@ export default ({
       ),
       googleAdsCheckoutLabel: getMatch(
         getCode(
-          getGtagList,
+          data?.getGtagList,
           ({ type, eventName }: getAdTrackGetGtagList) =>
             type === 'google_adwords' && eventName === 'begin_checkout',
         ),
@@ -63,12 +62,12 @@ export default ({
       ),
       googleAdsCompleteOrderId: getMatch(
         getCode(
-          getGtagList,
+          data?.getGtagList,
           ({ type, eventName }: getAdTrackGetGtagList) =>
             type === 'google_adwords' && eventName === 'purchase',
         ),
         /AW-.*(?='}\);)/gm,
       ),
     }),
-    [getFbPixel, getGtagList],
+    [data],
   );
