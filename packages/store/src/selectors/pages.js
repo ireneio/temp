@@ -19,11 +19,15 @@ import {
 } from './index';
 
 const getPagePath = (state, { path }) => path;
+const getPageId = (state, { pageId }) => pageId;
 
 export const getPageByPath = createSelector(
-  [getPagePath, getPages],
-  (path, pages) => {
-    const page = R.find(R.propEq('path', path))(pages);
+  [getPagePath, getPageId, getPages],
+  (path, pageId, pages) => {
+    const page = pageId
+      ? R.find(R.propEq('id', pageId))(pages)
+      : R.find(R.propEq('path', path))(pages);
+
     return page || null;
   },
 );

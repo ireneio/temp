@@ -20,6 +20,8 @@ export default App =>
       } = ctx;
       const apollo = initApollo({}, ctx.ctx);
 
+      ctx.ctx.client = apollo;
+
       if (!process.browser) {
         try {
           await initCookies(apollo, ctx.ctx);

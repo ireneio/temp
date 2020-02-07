@@ -52,4 +52,11 @@ module.exports = routes
   .add('ezpay', '/ezpay/cvcode/:orderId', 'ezpay')
 
   // sitemaps(products): for crawler
-  .add('sitemaps/v1', '/sitemaps/v1', 'sitemaps/v1');
+  .add('sitemaps/v1', '/sitemaps/v1', 'sitemaps/v1')
+
+  // TODO: admin only, remove
+  .add(
+    'admin/[pageId]/[token]',
+    '/admin/:pageId/:token',
+    'admin/[pageId]/[token]',
+  );

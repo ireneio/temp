@@ -95,7 +95,7 @@ module.exports =
 // import
 import React from 'react';
 
-import * as resolvers from '/** workspace *//apollo-client-resolvers';
+import runTest from '@meepshop/mock-types/src/runTest';
 
 import /** ComponentName */ from '../index';
 import props from '../../mock';
