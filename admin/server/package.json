@@ -19,6 +19,7 @@
     "@admin/setting-notification": "^0.35.2",
     "@admin/utils": "^0.35.2",
     "@admin/wrapper": "^0.35.2",
+    "@meepshop/icons": "^0.35.2",
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-link-http": "^1.5.16",
     "body-parser": "^1.18.3",

@@ -3,6 +3,52 @@
   "payment-text": "Trong trường hợp thời hạn thanh toán rơi vào ngày lễ, thanh toán sẽ được thực hiện vào ngày làm việc tiếp theo. Nếu có thanh toán quá hạn, hệ thống sẽ đóng mặt trước / mặt sau của cửa hàng của bạn.",
   "payment-link": "Kiểm tra hóa đơn và thanh toán",
   "welcome": "Chào mừng bạn đến với nền tảng cửa hàng trực tuyến meepShop",
+  "meepshop": null,
+  "welcome-back": null,
+  "steps": null,
+  "close-tutorial": null,
+  "open-tutorial": null,
+  "tutorial": {
+    "store": {
+      "tab": null,
+      "title": null,
+      "content": null
+    },
+    "page": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null
+      }
+    },
+    "product": {
+      "tab": null,
+      "title": null,
+      "content": null
+    },
+    "payment": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null,
+        "2": null
+      }
+    },
+    "shipment": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null,
+        "2": null
+      }
+    }
+  },
   "pending-order": "Đơn hàng chưa xử lý",
   "not-shipped": "Chưa được vận chuyển",
   "orderQA": "Hỏi và trả lời",

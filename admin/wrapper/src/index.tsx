@@ -93,7 +93,7 @@ class Wrapper extends React.Component<PropsType> {
   public render(): React.ReactNode {
     const {
       children,
-      router: { pathname },
+      router,
       viewer,
       getStoreAppList,
       getAuthorityList,
@@ -106,7 +106,7 @@ class Wrapper extends React.Component<PropsType> {
       isMerchant,
       isClosed,
     } = this.getMenuParams({ viewer, getStoreAppList, getAuthorityList });
-    const rootPath = pathname.split('/')[1];
+    const rootPath = router?.pathname.split('/')[1];
 
     return (
       <Layout className={styles.layout}>
@@ -117,7 +117,7 @@ class Wrapper extends React.Component<PropsType> {
           {isClosed ? (
             <Link href="/signout">
               <div className={styles.signout}>
-                <img src="/static/images/menu/signout.svg" alt={t('signout')} />
+                <img src="/images/menu/signout.svg" alt={t('signout')} />
                 <span>{t('signout')}</span>
               </div>
             </Link>

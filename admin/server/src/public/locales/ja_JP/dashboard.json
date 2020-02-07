@@ -3,6 +3,52 @@
   "payment-text": "支払い期限が休日に当たる場合は、翌営業日に支払いを行う必要があります。支払い期限が過ぎている場合、システムは店舗のフロント/バックエンドを閉鎖します。",
   "payment-link": "請求書と支払いを確認する",
   "welcome": "meepShop のオンラインストア出店プラットフォームをご利用いただき、ありがとうございます",
+  "meepshop": null,
+  "welcome-back": null,
+  "steps": null,
+  "close-tutorial": null,
+  "open-tutorial": null,
+  "tutorial": {
+    "store": {
+      "tab": null,
+      "title": null,
+      "content": null
+    },
+    "page": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null
+      }
+    },
+    "product": {
+      "tab": null,
+      "title": null,
+      "content": null
+    },
+    "payment": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null,
+        "2": null
+      }
+    },
+    "shipment": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null,
+        "2": null
+      }
+    }
+  },
   "pending-order": "処理待ちの注文",
   "not-shipped": "未出荷",
   "orderQA": "注文についてのお問い合わせ",

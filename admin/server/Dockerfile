@@ -16,6 +16,7 @@ COPY ./node_modules ./node_modules
 
 # Copy folder
 COPY ./admin ./admin
+COPY ./packages/icons ./packages/icons
 
 RUN yarn lerna link
 

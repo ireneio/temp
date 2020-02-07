@@ -3,6 +3,52 @@
   "payment-text": "Dalam hal batas waktu pembayaran jatuh pada hari libur, pembayaran harus dilakukan pada hari kerja berikutnya. Jika ada pembayaran yang terlambat, sistem akan menutup bagian depan / belakang toko Anda.",
   "payment-link": "Periksa tagihan dan pembayaran",
   "welcome": "Selamat datang di meepShop Platform Toko Online",
+  "meepshop": null,
+  "welcome-back": null,
+  "steps": null,
+  "close-tutorial": null,
+  "open-tutorial": null,
+  "tutorial": {
+    "store": {
+      "tab": null,
+      "title": null,
+      "content": null
+    },
+    "page": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null
+      }
+    },
+    "product": {
+      "tab": null,
+      "title": null,
+      "content": null
+    },
+    "payment": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null,
+        "2": null
+      }
+    },
+    "shipment": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null,
+        "2": null
+      }
+    }
+  },
   "pending-order": "Pesanan yang belum diproses",
   "not-shipped": "belum dikirim",
   "orderQA": "Q & A Pemesanan",

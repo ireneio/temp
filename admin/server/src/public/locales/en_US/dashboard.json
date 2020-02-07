@@ -2,7 +2,53 @@
   "payment-dealine": "Please complete the payment on the 6th of the month before 12:00 noon (GMT+8).",
   "payment-text": "In case the payment deadline falls on a holiday, payments should be made on the next working day.Should there be payments overdue, the system will close the front/back end of your store.",
   "payment-link": "Check bills and payment",
-  "welcome": "Welcome to meepShop Online Store Platform",
+  "welcome": "Welcome",
+  "meepshop": null,
+  "welcome-back": null,
+  "steps": null,
+  "close-tutorial": null,
+  "open-tutorial": null,
+  "tutorial": {
+    "store": {
+      "tab": null,
+      "title": null,
+      "content": null
+    },
+    "page": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null
+      }
+    },
+    "product": {
+      "tab": null,
+      "title": null,
+      "content": null
+    },
+    "payment": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null,
+        "2": null
+      }
+    },
+    "shipment": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null,
+        "2": null
+      }
+    }
+  },
   "pending-order": "Unprocessed Order",
   "not-shipped": "Not yet shipped",
   "orderQA": "Order Q & A",

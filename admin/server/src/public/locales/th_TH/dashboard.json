@@ -3,6 +3,52 @@
   "payment-text": "ในกรณีที่กำหนดเวลาการชำระเงินตรงกับวันหยุดควรทำการชำระเงินในวันทำการถัดไปหากมีการชำระเงินล่าช้าระบบจะปิดหน้า / หลังร้านค้าของคุณ",
   "payment-link": "ตรวจสอบตั๋วเงินและชำระเงิน",
   "welcome": "ยินดีต้อนรับสู่ meepShop Online Store Platform",
+  "meepshop": null,
+  "welcome-back": null,
+  "steps": null,
+  "close-tutorial": null,
+  "open-tutorial": null,
+  "tutorial": {
+    "store": {
+      "tab": null,
+      "title": null,
+      "content": null
+    },
+    "page": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null
+      }
+    },
+    "product": {
+      "tab": null,
+      "title": null,
+      "content": null
+    },
+    "payment": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null,
+        "2": null
+      }
+    },
+    "shipment": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null,
+        "2": null
+      }
+    }
+  },
   "pending-order": "คำสั่งที่ยังไม่ได้ประมวลผล",
   "not-shipped": "ยังไม่ถูกส่ง",
   "orderQA": "สั่งซื้อ Q & A",

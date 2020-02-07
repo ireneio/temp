@@ -3,6 +3,52 @@
   "payment-text": "En caso de que la fecha límite de pago caiga en un día festivo, los pagos deben realizarse al siguiente día hábil. Si hubiera pagos vencidos, el sistema cerrará la parte delantera / trasera de su tienda.",
   "payment-link": "Consultar facturas y pago",
   "welcome": "Bienvenido a la plataforma de la tienda en línea de meepShop",
+  "meepshop": null,
+  "welcome-back": null,
+  "steps": null,
+  "close-tutorial": null,
+  "open-tutorial": null,
+  "tutorial": {
+    "store": {
+      "tab": null,
+      "title": null,
+      "content": null
+    },
+    "page": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null
+      }
+    },
+    "product": {
+      "tab": null,
+      "title": null,
+      "content": null
+    },
+    "payment": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null,
+        "2": null
+      }
+    },
+    "shipment": {
+      "tab": null,
+      "title": null,
+      "content": null,
+      "items": {
+        "0": null,
+        "1": null,
+        "2": null
+      }
+    }
+  },
   "pending-order": "Orden sin procesar",
   "not-shipped": "Aun no ha sido enviado",
   "orderQA": "Orden de preguntas y respuestas",

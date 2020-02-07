@@ -9,6 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/utils": "^0.35.2",
+    "@meepshop/icons": "^0.35.2",
     "moment": "^2.22.1"
   },
   "keywords": ["admin", "dashboard"]
