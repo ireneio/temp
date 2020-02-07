@@ -4,11 +4,11 @@
   "description": "Wrapper for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.35.2",
+  "version": "0.35.4",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/utils": "^0.35.2",
+    "@admin/utils": "^0.35.4",
     "memoize-one": "^5.1.1"
   },
   "keywords": ["admin", "wrapper"]
