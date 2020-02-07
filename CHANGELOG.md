@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.35.4 (2020-02-07)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#830](https://github.com/meepshop/meep-lerna/pull/830)前台 - 新增頁面 For 後台 page-manager 預覽用 ([@HsuTing](https://github.com/HsuTing))
+- `icons`
+  - [#818](https://github.com/meepshop/meep-lerna/pull/818) 【優化】簡單引導基本開店步驟 - 前端 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#846](https://github.com/meepshop/meep-lerna/pull/846) (@store/ad-track) Rewrite with @apollo/react-hooks ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#841](https://github.com/meepshop/meep-lerna/pull/841) (@admin/gallery) Add new package ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.35.3 (2020-01-31)
 
 #### :bug: Bug Fix
