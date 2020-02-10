@@ -34,8 +34,8 @@ const stories = [
   {
     name: '@meepshop/icons',
     pattern: /meepshop\/icons$/,
-    path: './packages/icons/',
-    source: require('../packages/icons/README.md').default,
+    path: './meepshop/icons/',
+    source: require('../meepshop/icons/README.md').default,
   },
   {
     name: '@store/server',

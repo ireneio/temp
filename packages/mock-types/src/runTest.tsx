@@ -9,7 +9,7 @@ import MockTypes from './index';
 
 // definition
 export default (
-  testType: 'store' | 'admin',
+  testType: 'meepshop' | 'store' | 'admin',
   node: React.ReactNode,
   callback:
     | ((
@@ -19,14 +19,27 @@ export default (
     | undefined = emptyFunction.thatReturnsTrue,
 ): void => {
   /* eslint-disable global-require */
-  const resolvers =
-    testType === 'store'
-      ? require('@store/apollo-client-resolvers')
-      : require('@admin/apollo-client-resolvers');
-  const Provider =
-    testType === 'store'
-      ? require('./StoreProvider').default
-      : require('./AdminProvider').default;
+  const { resolvers, Provider } = (() => {
+    switch (testType) {
+      case 'store':
+        return {
+          resolvers: require('@store/apollo-client-resolvers'),
+          Provider: require('./StoreProvider').default,
+        };
+
+      case 'admin':
+        return {
+          resolvers: require('@admin/apollo-client-resolvers'),
+          Provider: require('./AdminProvider').default,
+        };
+
+      default:
+        return {
+          resolvers: {},
+          Provider: ({ children }: { children: React.ReactNode }) => children,
+        };
+    }
+  })();
   /* eslint-enable global-require */
 
   mock.init();

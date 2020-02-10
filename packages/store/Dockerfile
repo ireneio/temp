@@ -19,6 +19,7 @@ COPY ./node_modules ./node_modules
 COPY ./packages/store ./packages/store
 COPY ./packages/meep-ui ./packages/meep-ui
 COPY ./store ./store
+COPY ./meepshop ./meepshop
 
 RUN yarn lerna link
 

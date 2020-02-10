@@ -1,6 +1,13 @@
 const includes = [];
 
 switch (process.env.APOLLO_TYPE) {
+  case 'meepshop':
+    includes.push(
+      './meepshop/**/src/**/*.{ts,tsx}',
+      './meepshop/**/mock.{ts,tsx}',
+    );
+    break;
+
   case 'store':
     includes.push(
       './store/apollo-client-resolvers/schemas/*.graphql',
