@@ -23,7 +23,7 @@ import FileConnection from './schemas/FileConnection';
 import gtag from './schemas/gtag';
 import GmoBankInstallment from './schemas/GmoBankInstallment';
 import GMOUserInfo from './schemas/GMOUserInfo';
-import MemberGroupList from './schemas/MemberGroupList';
+import MemberGroup from './schemas/MemberGroup';
 import NotificationObjectType from './schemas/NotificationObjectType';
 import Order from './schemas/Order';
 import OrderConnection from './schemas/OrderConnection';
@@ -83,7 +83,7 @@ addMockFunctionsToSchema({
     gtag,
     GmoBankInstallment,
     GMOUserInfo,
-    MemberGroupList,
+    MemberGroup,
     NotificationObjectType,
     Order,
     OrderConnection,
