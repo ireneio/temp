@@ -427,6 +427,7 @@ export default class ProductList extends React.PureComponent {
     // FIXME: custom sorting workaround
     const total =
       sort === 'selections' ? String(ids).split(',').length : products?.total;
+    const sortOptions = SORT_OPTIONS(ids, sort);
 
     return (
       <div style={styles.root} ref={this.root} className={this.name}>
@@ -445,7 +446,11 @@ export default class ProductList extends React.PureComponent {
                 <Select
                   dropdownMatchSelectWidth={false}
                   dropdownClassName={this.name}
-                  value={sort}
+                  value={
+                    sortOptions.some(option => option.value === sort)
+                      ? sort
+                      : 'createdOn-desc'
+                  }
                   size="large"
                   disabled={isDefaultProducts}
                   onChange={value => {
@@ -458,7 +463,7 @@ export default class ProductList extends React.PureComponent {
                     points: isMobile ? ['tl', 'bl'] : ['tr', 'br'],
                   }}
                 >
-                  {SORT_OPTIONS(ids, sort).map(option => (
+                  {sortOptions.map(option => (
                     <Select.Option key={option.value} value={option.value}>
                       {t(option.text)}
                     </Select.Option>

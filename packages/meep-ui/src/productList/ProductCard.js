@@ -14,6 +14,7 @@ import DraftText from 'draftText';
 import ProductLoader from './ProductLoader';
 import { PRODUCT_TYPE } from './constants';
 import * as styles from './styles';
+import lessStyles from './styles/card.less';
 
 const ProductCard = ({
   isDefaultProducts,
@@ -93,10 +94,8 @@ const ProductCard = ({
               ]}
             >
               {isDefaultProducts ? (
-                <div style={styles.defaultProductImage}>
-                  <div key={`${id}-hint`} style={styles.defaultProductHint}>
-                    {t('product-building')}
-                  </div>
+                <div className={lessStyles.default}>
+                  <div>{t('product-building')}</div>
                   {React.createElement(coverImage)}
                 </div>
               ) : (
