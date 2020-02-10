@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.35.5 (2020-02-10)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#848](https://github.com/meepshop/meep-lerna/pull/848) 【BUG】 IE 瀏覽器 - 後台無商品時，前台商品範例位置跑版 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.35.4 (2020-02-07)
 
 #### :rocket: New Feature
