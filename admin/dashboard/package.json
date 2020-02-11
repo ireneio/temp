@@ -4,12 +4,12 @@
   "description": "Dashboard for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.35.4",
+  "version": "0.36.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/utils": "^0.35.4",
-    "@meepshop/icons": "^0.35.4",
+    "@admin/utils": "^0.36.0",
+    "@meepshop/icons": "^0.36.0",
     "moment": "^2.22.1"
   },
   "keywords": ["admin", "dashboard"]
