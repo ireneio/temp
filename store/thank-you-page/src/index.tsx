@@ -1,166 +1,95 @@
-// typescript import
-import { I18nPropsType } from '@store/utils/lib/i18n';
-import { OptionType } from '@store/ad-track/lib/utils/getPurchaseTrack';
-
 // import
-import React, { useEffect, useContext } from 'react';
-import { Query } from '@apollo/react-components';
+import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import Router from 'next/router';
-import { Spin, Icon, Progress, Button, message } from 'antd';
-import Clipboard from 'clipboard';
+import { filter } from 'graphql-anywhere';
+import { useRouter } from 'next/router';
+import { Spin, Icon, Progress, Button } from 'antd';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { useTranslation } from '@store/utils/lib/i18n';
 import getLinkProps from '@store/utils/lib/getLinkProps';
-import adTrackContext from '@store/ad-track';
 
+import Info from './info';
+import useClipboard from './hooks/useClipboard';
+import useAdTrack from './hooks/useAdTrack';
 import styles from './styles/index.less';
 
-// graphql typescript
-import {
-  getOrderInThankYouPage,
-  getOrderInThankYouPage_viewer as getOrderInThankYouPageViewer,
-} from './__generated__/getOrderInThankYouPage';
-
-// typescript definition
-interface PropsType extends I18nPropsType {
-  order: getOrderInThankYouPageViewer['order'];
-  href: string;
-}
+// graphql import
+import { infoFragment } from './info';
+import { useAdTrackFragment } from './hooks/useAdTrack';
 
 // definition
-const ThankYouPage = withTranslation('thank-you-page')(
-  React.memo(({ t, href, order }: PropsType) => {
-    const { adTrack } = useContext(adTrackContext);
+const query = gql`
+  query getOrderInThankYouPage($orderId: ID!) {
+    viewer {
+      id
+      order(orderId: $orderId) {
+        id
+        ...infoFragment
+        ...useAdTrackFragment
+      }
+    }
+  }
 
-    useEffect(() => {
-      if (!order)
-        new Clipboard('button[role="copy"]', {
-          text: () => `${t('data-error')}${href}`,
-        }).on('success', () => {
-          message.success(t('copied'));
-        });
-    }, [t, order, href]);
-    useEffect(() => {
-      if (order)
-        adTrack.purchase({
-          orderNo: order.orderNo || '', // FIXME: should not be null
-          products: (order?.products || []).reduce(
-            // FIXME: should not be null
-            (result: OptionType['products'], data) => {
-              if (!data) return result;
+  ${infoFragment}
+  ${useAdTrackFragment}
+`;
 
-              const product = result.find(
-                ({ productId }) => productId === data.productId,
-              );
+export default React.memo(() => {
+  const { t } = useTranslation('thank-you-page');
+  const router = useRouter();
+  const { loading, data } = useQuery(query, {
+    variables: { orderId: router.query.orderId },
+  });
+  const order = data?.viewer.order;
 
-              if (!product)
-                return [...result, data as OptionType['products'][number]];
+  useClipboard(t, loading, order?.id);
+  useAdTrack(!order ? order : filter(useAdTrackFragment, order));
 
-              product.quantity += data.quantity || 0;
+  if (loading) return <Spin indicator={<Icon type="loading" spin />} />;
 
-              return result;
-            },
-            [],
-          ),
-          total: order?.priceInfo?.total || 0, // FIXME: should not be null
-          currency: order?.priceInfo?.currency || 'TWD', // FIXME: should not be null
-          shipmentFee: order?.priceInfo?.shipmentFee || 0, // FIXME: should not be null
-          paymentFee: order?.priceInfo?.paymentFee || 0, // FIXME: should not be null
-        });
-    }, [order, adTrack]);
+  return (
+    <div className={styles.root}>
+      <div>
+        <Progress
+          type="circle"
+          percent={100}
+          width={72}
+          {...(!order ? { status: 'exception', format: () => '!' } : {})}
+        />
 
-    return (
-      <div className={styles.root}>
-        <div className={styles.header} />
+        <h1>{!order ? t('title.error') : t('title.default')}</h1>
 
-        <div>
-          <Progress
-            type="circle"
-            percent={100}
-            width={72}
-            {...(!order ? { status: 'exception', format: () => '!' } : {})}
-          />
+        <Info order={!order ? order : filter(infoFragment, order)} />
 
-          <h1>{!order ? t('title.error') : t('title.default')}</h1>
+        <div className={styles.buttonRoot}>
+          <Button
+            onClick={() => {
+              const linkProps = getLinkProps(!order ? '/orders' : '/');
 
-          <p>{!order ? t('info.error') : t('info.default')}</p>
+              router.push(linkProps.href, linkProps.as);
+            }}
+          >
+            {!order ? t('order') : t('return')}
+          </Button>
 
-          <div className={styles.buttonRoot}>
-            <Button onClick={() => Router.push('/')}>{t('return')}</Button>
+          <Button
+            {...(!order
+              ? {
+                  role: 'copy',
+                }
+              : {
+                  onClick: () => {
+                    const linkProps = getLinkProps(`/order/${order.id}`);
 
-            <Button
-              {...(!order
-                ? {
-                    role: 'copy',
-                  }
-                : {
-                    onClick: () => {
-                      const linkProps = getLinkProps(`/order/${order.id}`);
-
-                      Router.push(linkProps.href, linkProps.as);
-                    },
-                  })}
-            >
-              {!order ? t('copy') : t('order')}
-            </Button>
-          </div>
+                    router.push(linkProps.href, linkProps.as);
+                  },
+                })}
+          >
+            {!order ? t('copy') : t('order')}
+          </Button>
         </div>
       </div>
-    );
-  }),
-);
-
-export default ({
-  orderId,
-  href,
-}: {
-  orderId: string;
-  href: string;
-}): React.ReactElement => (
-  <Query<getOrderInThankYouPage>
-    query={gql`
-      query getOrderInThankYouPage($orderId: ID!) {
-        viewer {
-          id
-          order(orderId: $orderId) {
-            id
-            orderNo
-            products {
-              id
-              productId
-              type
-              sku
-              title {
-                zh_TW
-              }
-              specs {
-                title {
-                  zh_TW
-                }
-              }
-              totalPrice
-              quantity
-            }
-
-            priceInfo {
-              total
-              shipmentFee
-              paymentFee
-              currency
-            }
-          }
-        }
-      }
-    `}
-    variables={{
-      orderId,
-    }}
-  >
-    {({ loading, data }) => {
-      if (loading) return <Spin indicator={<Icon type="loading" spin />} />;
-
-      return <ThankYouPage order={data?.viewer?.order || null} href={href} />;
-    }}
-  </Query>
-);
+    </div>
+  );
+});

@@ -1,17 +1,14 @@
-// typescript import
-import { I18nPropsType } from '@store/utils/lib/i18n';
-
 // import
 import React from 'react';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { useTranslation } from '@store/utils/lib/i18n';
 
-import PaymentInfo from './PaymentInfo';
+import PaymentInfo from './paymentInfo';
 import ShipmentInfo from './ShipmentInfo';
-import InvoiceInfo from './InvoiceInfo';
+import InvoiceInfo from './invoiceInfo';
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -19,12 +16,12 @@ import { getMemberOrder_getColorList as getMemberOrderGetColorList } from '../__
 import { blocksFragment as blocksFragmentType } from './__generated__/blocksFragment';
 
 // graphql import
-import { paymentInfoFragment } from './PaymentInfo';
+import { paymentInfoFragment } from './paymentInfo';
 import { shipmentInfoFragment } from './ShipmentInfo';
-import { invoiceInfoFragment } from './InvoiceInfo';
+import { invoiceInfoFragment } from './invoiceInfo';
 
 // typescript definition
-interface PropsType extends I18nPropsType {
+interface PropsType {
   order: blocksFragmentType;
   colors: getMemberOrderGetColorList['colors'];
 }
@@ -32,6 +29,7 @@ interface PropsType extends I18nPropsType {
 // definition
 export const blocksFragment = gql`
   fragment blocksFragment on Order {
+    id
     userInfo {
       name
       email
@@ -52,12 +50,14 @@ export const blocksFragment = gql`
           comment
         }
         storeShipmentDetails {
+          id
           searchLink
         }
         ...shipmentInfoFragment
       }
     }
     paymentInfo {
+      id
       status
       list {
         id
@@ -75,45 +75,12 @@ export const blocksFragment = gql`
   ${invoiceInfoFragment}
 `;
 
-export class Blocks extends React.PureComponent<PropsType> {
-  public renderDescription = (
-    children: React.ReactNode,
-  ): React.ReactElement | null =>
-    !children ? null : (
-      <div className={styles.description}>
-        {children instanceof Array
-          ? children
-              .filter(dom => dom)
-              .map((dom, index, totalArray) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <div key={index}>
-                  {dom}
-
-                  {index === totalArray.length - 1 ? null : (
-                    <div className={styles.border} />
-                  )}
-                </div>
-              ))
-          : children}
-      </div>
-    );
-
-  public render(): React.ReactNode {
-    const {
-      /** HOC */
-      t,
-
-      /** props */
-      colors,
-      order: {
-        userInfo,
-        shipmentInfo,
-        paymentInfo,
-        status,
-        invoices,
-        ...order
-      },
-    } = this.props;
+export default React.memo(
+  ({
+    colors,
+    order: { userInfo, shipmentInfo, paymentInfo, status, invoices, ...order },
+  }: PropsType) => {
+    const { t } = useTranslation('member-order');
     const shipmentObj = shipmentInfo?.list?.[0];
     const paymentObj = paymentInfo?.list?.[0];
     const searchLink = shipmentObj?.storeShipmentDetails?.searchLink;
@@ -169,14 +136,14 @@ export class Blocks extends React.PureComponent<PropsType> {
 
           <div className={styles.status}>{paymentObj?.name}</div>
 
-          <PaymentInfo
-            order={filter(paymentInfoFragment, {
-              ...order,
-              paymentInfo,
-            })}
-          >
-            {this.renderDescription}
-          </PaymentInfo>
+          <div className={`${styles.description} ${styles.border}`}>
+            <PaymentInfo
+              order={filter(paymentInfoFragment, {
+                ...order,
+                paymentInfo,
+              })}
+            />
+          </div>
         </div>
 
         <div>
@@ -196,23 +163,23 @@ export class Blocks extends React.PureComponent<PropsType> {
           )}
 
           {!shipmentObj ? null : (
-            <ShipmentInfo
-              shipmentInfo={filter(shipmentInfoFragment, shipmentObj)}
-            >
-              {this.renderDescription}
-            </ShipmentInfo>
+            <div className={`${styles.description} ${styles.border}`}>
+              <ShipmentInfo
+                shipmentInfo={filter(shipmentInfoFragment, shipmentObj)}
+              />
+            </div>
           )}
         </div>
 
         <div>
           <h4>{t('blocks.invoice.title')}</h4>
 
-          <InvoiceInfo invoices={invoices}>
+          <InvoiceInfo invoices={filter(invoiceInfoFragment, invoices)}>
             {(type: string | null, description: React.ReactNode) => (
               <>
                 <div className={styles.status}>{type}</div>
 
-                {this.renderDescription(description)}
+                <div className={styles.description}>{description}</div>
               </>
             )}
           </InvoiceInfo>
@@ -225,39 +192,37 @@ export class Blocks extends React.PureComponent<PropsType> {
             {t(`blocks.order.status.${status}`)}
           </div>
 
-          {this.renderDescription(
-            (shipmentObj?.recipient?.comment || '')
-              .split('\n')
-              .map((str: string) => <div key={str}>{str}</div>),
-          )}
+          <div className={styles.description}>
+            {shipmentObj?.recipient?.comment?.split('\n').map((str: string) => (
+              <div key={str}>{str}</div>
+            ))}
+          </div>
         </div>
 
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              .${styles.description} {
-                color: ${colors[3]};
-                background: ${transformColor(colors[4]).alpha(0.1)};
-              }
+            .${styles.description} {
+              color: ${colors[3]};
+              background: ${transformColor(colors[4]).alpha(0.1)};
+            }
 
-              .${styles.description} .${styles.border} {
-                background: ${colors[5]};
-              }
+            .${styles.description}.${styles.border} > *::after {
+              background: ${colors[5]};
+            }
 
-              .${styles.status} {
-                color: ${colors[2]};
-                background: ${colors[4]};
-              }
+            .${styles.status} {
+              color: ${colors[2]};
+              background: ${colors[4]};
+            }
 
-              .${styles.link} {
-                border: 1px solid ${colors[3]};
-              }
-            `,
+            .${styles.link} {
+              border: 1px solid ${colors[3]};
+            }
+          `,
           }}
         />
       </div>
     );
-  }
-}
-
-export default withTranslation('member-order')(Blocks);
+  },
+);

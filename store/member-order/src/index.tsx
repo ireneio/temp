@@ -71,9 +71,12 @@ const MemberOrder = React.memo(
 
         <Products products={products} colors={colors} />
 
-        <TotalSheet order={filter(totalSheetFragment, order)} />
+        <TotalSheet order={filter(totalSheetFragment, { ...order, id })} />
 
-        <Blocks order={filter(blocksFragment, order)} colors={colors} />
+        <Blocks
+          order={filter(blocksFragment, { ...order, id })}
+          colors={colors}
+        />
 
         {environment?.sourcePage === 'lp' ? null : (
           <Qa

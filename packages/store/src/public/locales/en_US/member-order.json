@@ -48,7 +48,14 @@
       "cvs-payment-no": "Convenient Store Payment Number: ",
       "barcode": "Convenient Store Payment Barcode: ",
       "card-no": "Last four digits of credit card: ",
-      "gmo-store-code": "GMO Store Code: "
+      "gmo-store-code": "GMO Store Code: ",
+      "cathay-atm": {
+        "bank-name": null,
+        "back-code": null,
+        "account": null,
+        "price": null,
+        "expire-date": null
+      }
     },
     "shipment": {
       "title": "Delivery Status",
@@ -73,20 +80,20 @@
     "invoice": {
       "title": "Invoice",
       "type": {
-        "paper": "Paper invoice",
-        "manual-electronic": "e-Invoice",
-        "ecpay-electronic": "e-Invoice"
+        "PAPER": "Paper invoice",
+        "MANUAL_ELECTRONIC": "e-Invoice",
+        "ECPAY_ELECTRONIC": "e-Invoice"
       },
       "method": {
-        "duplicate": "Duplicate Uniform Invoice",
-        "triplicate": "Triplicate Uniform Invoice",
-        "company": "Company Account",
-        "donation": "Donate"
+        "DUPLICATE": "Duplicate Uniform Invoice",
+        "TRIPLICATE": "Triplicate Uniform Invoice",
+        "COMPANY": "Company Account",
+        "DONATION": "Donate"
       },
       "carrier": {
-        "membership": "Membership Carrier",
-        "mobile-barcode": "Mobile Barcode",
-        "citizen-digital-certificate": "NPC Barcode"
+        "MEMBERSHIP": "Membership Carrier",
+        "MOBILE_BARCODE": "Mobile Barcode",
+        "CITIZEN_DIGITAL_CERTIFICATE": "NPC Barcode"
       },
       "bar-code": "Bar Code Number: ",
       "love-code": "NPO Donation Code: ",

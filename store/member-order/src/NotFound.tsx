@@ -20,6 +20,7 @@ interface PropsType extends I18nPropsType {
 // definition
 export const notFoundFragment = gql`
   fragment notFoundFragment on User {
+    id
     name
     email
   }

@@ -1,117 +1,76 @@
 @import '~@store/utils/lib/styles/variables.less';
 
 .root {
-  position: fixed;
-  top: 0px;
-  left: 0px;
   display: flex;
   width: 100vw;
   height: 100%;
   justify-content: center;
   align-items: center;
   text-align: center;
+  background: #f5f5f5;
 
   @media @phone-media {
-    :global(.ant-progress:not(.ant-progress-status-normal)
-        .ant-progress-inner) {
-      width: 32px !important;
-      height: 32px !important;
-      font-size: 16px;
-    }
+    display: block;
+    padding: 48px 20px;
   }
 
   :global(.ant-progress-circle .ant-progress-text .anticon),
   :global(.ant-progress-circle.ant-progress-status-exception
       .ant-progress-text) {
     font-size: 50px;
-
-    @media @phone-media {
-      font-size: 16px;
-    }
-  }
-
-  .header {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 50px;
-    background: #707f92;
   }
 
   h1 {
     display: inline-block;
-    margin: 0px 0px 0px 20px;
-    color: #666666;
-    font-size: 40px;
-    letter-spacing: 0.03px;
+    margin: 0px 0px 0px 16px;
+    color: #363b4a;
+    font-size: 48px;
+    font-weight: 500;
+    letter-spacing: 0.04px;
     vertical-align: middle;
 
     @media @phone-media {
-      font-size: 30px;
+      display: block;
+      margin: 16px 0px 0px 0px;
     }
   }
+}
 
-  p {
-    margin: 60px 25px 0px;
-    color: #666666;
-    font-size: 22px;
-    letter-spacing: 2.25px;
-    line-height: 30px;
-
-    @media @phone-media {
-      margin: 35px 25px 0px;
-      font-size: 18px;
-    }
+.buttonRoot {
+  @media @phone-media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .buttonRoot {
-    margin: 100px 0px 0px;
+  :global(.ant-btn) {
+    width: 208px;
+    height: 62px;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
 
-    @media @phone-media {
-      position: fixed;
-      left: 0px;
-      bottom: 0px;
-      margin: 0px;
-    }
-
-    :global(.ant-btn) {
-      width: 220px;
-      height: 60px;
-      border-radius: 0px;
+    &:first-child {
+      margin: 0px 32px 0px 0px;
+      color: white;
+      font-weight: 300;
+      background: #363b4a;
+      border: 0px;
 
       @media @phone-media {
-        width: 50vw;
+        margin: 0px 0px 32px;
       }
+    }
 
-      &:first-child {
-        margin: 0px 35px 0px 0px;
+    &:last-child {
+      color: #595959;
+      font-weight: 400;
+      border: 1px solid #8c8c8c;
+      background: transparent;
+
+      &:hover {
         color: white;
-        background: #707f92;
-        border: 0px;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
-        font-size: 18px;
-
-        @media @phone-media {
-          margin: 0px;
-        }
-      }
-
-      &:last-child {
-        color: #979797;
-        border: 1px solid #979797;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
-        font-size: 18px;
-
-        @media @phone-media {
-          color: white;
-          background: #707f92 !important;
-        }
-
-        &:hover {
-          color: white;
-          background: #666666;
-        }
+        background: #666666;
       }
     }
   }

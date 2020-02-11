@@ -1,4 +1,5 @@
-export default {
-  orderId: 'order-id',
-  href: 'mock/href',
-};
+import Router from 'next/router';
+
+Router.query.orderId = 'order-id';
+
+export default {};

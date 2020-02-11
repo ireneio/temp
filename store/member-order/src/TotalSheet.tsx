@@ -31,6 +31,8 @@ interface PropsType extends I18nPropsType, CurrencyType {
 // TODO: add to cart and checkout
 export const totalSheetFragment = gql`
   fragment totalSheetFragment on Order {
+    id
+
     priceInfo {
       productPrice
       shipmentFee

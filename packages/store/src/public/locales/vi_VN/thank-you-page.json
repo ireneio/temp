@@ -5,11 +5,22 @@
   },
   "info": {
     "default": "Đã nhận được đơn hàng của bạn，vui lòng kiểm tra đơn hàng，xác nhận kiểm tra trạng thái thanh toán của bạn",
-    "error": "Đồng bộ dữ liệu bất thường，xin nhấp vào nút sao chép bên dưới，cung cấp thông tin cho dịch vụ khách hàng để được hỗ trợ giải quyết."
+    "cathay-atm": null,
+    "error": {
+      "0": "Đồng bộ dữ liệu bất thường，xin nhấp vào nút sao chép bên dưới，cung cấp thông tin cho dịch vụ khách hàng để được hỗ trợ giải quyết.",
+      "1": ""
+    }
+  },
+  "cathay-atm": {
+    "bank-name": null,
+    "back-code": null,
+    "account": null,
+    "price": null,
+    "expire-date": null
   },
   "return": "Trở về trang chủ",
+  "order": "Truy vấn đơn hàng",
   "copy": "Sao chép địa chỉ trang web",
   "copied": "Đã sao chép địa chỉ trang web",
-  "data-error": "Đồng bộ dữ liệu bất thường",
-  "order": "Truy vấn đơn hàng"
+  "data-error": "Đồng bộ dữ liệu bất thường"
 }

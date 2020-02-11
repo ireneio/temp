@@ -5,13 +5,14 @@ import { ReactWrapper } from 'enzyme';
 
 import runTest from '@meepshop/mock-types/src/runTest';
 
+import '../../mock';
+
 import ThankYouPage from '../index';
-import props from '../../mock';
 import styles from '../styles/index.less';
 
 runTest(
   'store',
-  <ThankYouPage {...props} />,
+  <ThankYouPage />,
   (wrapper: ReactWrapper<unknown, unknown>, trackingIndex) => {
     test('return home page', () => {
       Router.push = jest.fn();
@@ -21,7 +22,7 @@ runTest(
         .simulate('click');
 
       expect(Router.push).toHaveBeenCalledTimes(1);
-      expect(Router.push).toHaveBeenCalledWith('/');
+      expect(Router.push).toHaveBeenCalledWith('/', undefined);
     });
 
     if (trackingIndex[0] === 0) return;
@@ -35,8 +36,8 @@ runTest(
 
       expect(Router.push).toHaveBeenCalledTimes(1);
       expect(Router.push).toHaveBeenCalledWith(
-        `/order?orderId=${props.orderId}`,
-        `/order/${props.orderId}`,
+        `/order?orderId=${Router.query.orderId}`,
+        `/order/${Router.query.orderId}`,
       );
     });
   },

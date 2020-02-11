@@ -48,7 +48,14 @@
       "cvs-payment-no": "Conveniente número de pago de la tienda:",
       "barcode": "Conveniente código de barras de pago de la tienda:",
       "card-no": "Últimos cuatro dígitos de la tarjeta de crédito:",
-      "gmo-store-code": "Código de tienda de OMG:"
+      "gmo-store-code": "Código de tienda de OMG:",
+      "cathay-atm": {
+        "bank-name": null,
+        "back-code": null,
+        "account": null,
+        "price": null,
+        "expire-date": null
+      }
     },
     "shipment": {
       "title": "Estado de entrega",
@@ -73,20 +80,20 @@
     "invoice": {
       "title": "Factura",
       "type": {
-        "paper": "Factura en papel",
-        "manual-electronic": "Factura electrónica",
-        "ecpay-electronic": "Factura electrónica"
+        "PAPER": "Factura en papel",
+        "MANUAL_ELECTRONIC": "Factura electrónica",
+        "ECPAY_ELECTRONIC": "Factura electrónica"
       },
       "method": {
-        "duplicate": "Factura uniforme duplicada",
-        "triplicate": "Factura uniforme por triplicado",
-        "company": "Cuenta de la compañia",
-        "donation": "Donar"
+        "DUPLICATE": "Factura uniforme duplicada",
+        "TRIPLICATE": "Factura uniforme por triplicado",
+        "COMPANY": "Cuenta de la compañia",
+        "DONATION": "Donar"
       },
       "carrier": {
-        "membership": "Portador de Membresía",
-        "mobile-barcode": "Código de barras móvil",
-        "citizen-digital-certificate": "Código de barras NPC"
+        "MEMBERSHIP": "Portador de Membresía",
+        "MOBILE_BARCODE": "Código de barras móvil",
+        "CITIZEN_DIGITAL_CERTIFICATE": "Código de barras NPC"
       },
       "bar-code": "Codigo de barras:",
       "love-code": "Código de Donación de NPO:",

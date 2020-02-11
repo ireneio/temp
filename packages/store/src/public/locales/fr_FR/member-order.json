@@ -48,7 +48,14 @@
       "cvs-payment-no": "Numéro de paiement en magasin pratique:",
       "barcode": "Code à barres de paiement en magasin pratique:",
       "card-no": "Quatre derniers chiffres de la carte de crédit:",
-      "gmo-store-code": "Code de magasin OGM:"
+      "gmo-store-code": "Code de magasin OGM:",
+      "cathay-atm": {
+        "bank-name": null,
+        "back-code": null,
+        "account": null,
+        "price": null,
+        "expire-date": null
+      }
     },
     "shipment": {
       "title": "Statut de livraison",
@@ -73,20 +80,20 @@
     "invoice": {
       "title": "Facture d'achat",
       "type": {
-        "paper": "Facture papier",
-        "manual-electronic": "e-facture",
-        "ecpay-electronic": "e-facture"
+        "PAPER": "Facture papier",
+        "MANUAL_ELECTRONIC": "e-facture",
+        "ECPAY_ELECTRONIC": "e-facture"
       },
       "method": {
-        "duplicate": "Facture uniforme en double",
-        "triplicate": "Facture uniforme en triple",
-        "company": "Compte d'entreprise",
-        "donation": "Faire un don"
+        "DUPLICATE": "Facture uniforme en double",
+        "TRIPLICATE": "Facture uniforme en triple",
+        "COMPANY": "Compte d'entreprise",
+        "DONATION": "Faire un don"
       },
       "carrier": {
-        "membership": "Transporteur d'adhésion",
-        "mobile-barcode": "Code à barres mobile",
-        "citizen-digital-certificate": "NPC Barcode"
+        "MEMBERSHIP": "Transporteur d'adhésion",
+        "MOBILE_BARCODE": "Code à barres mobile",
+        "CITIZEN_DIGITAL_CERTIFICATE": "NPC Barcode"
       },
       "bar-code": "Numéro de code barre:",
       "love-code": "Code de don d'OBNL:",

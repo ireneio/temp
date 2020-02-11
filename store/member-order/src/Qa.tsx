@@ -88,6 +88,7 @@ class Qa extends React.PureComponent<PropsType, StateType> {
       id: orderId || 'null id',
       fragment: gql`
         fragment qaOrderFragment on Order {
+          id
           messages {
             bearer
             text

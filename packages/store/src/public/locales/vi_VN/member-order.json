@@ -48,7 +48,14 @@
       "cvs-payment-no": "Mã số thanh toán tại cửa hàng tiện lợi: ",
       "barcode": "Mã vạch thanh toán tại cửa hàng tiện lợi: ",
       "card-no": "4 số cuối thẻ tín dụng: ",
-      "gmo-store-code": "Mã cửa hàng GMO: "
+      "gmo-store-code": "Mã cửa hàng GMO: ",
+      "cathay-atm": {
+        "bank-name": null,
+        "back-code": null,
+        "account": null,
+        "price": null,
+        "expire-date": null
+      }
     },
     "shipment": {
       "title": "Trạng thái giao nhận",
@@ -73,20 +80,20 @@
     "invoice": {
       "title": "Thông tin hóa đơn",
       "type": {
-        "paper": "Hóa đơn giấy",
-        "manual-electronic": "Hóa đơn điện tử",
-        "ecpay-electronic": "Hóa đơn điện tử"
+        "PAPER": "Hóa đơn giấy",
+        "MANUAL_ELECTRONIC": "Hóa đơn điện tử",
+        "ECPAY_ELECTRONIC": "Hóa đơn điện tử"
       },
       "method": {
-        "duplicate": "hóa đơn liên 2",
-        "triplicate": "hóa đơn liên 3",
-        "company": "Tên công ty",
-        "donation": "Qùa tặng"
+        "DUPLICATE": "hóa đơn liên 2",
+        "TRIPLICATE": "hóa đơn liên 3",
+        "COMPANY": "Tên công ty",
+        "DONATION": "Qùa tặng"
       },
       "carrier": {
-        "membership": "Phương tiện hội viên",
-        "mobile-barcode": "Phương tiện mã vạch di động",
-        "citizen-digital-certificate": "Phương tiện chứng nhận kỹ thuật số công dân"
+        "MEMBERSHIP": "Phương tiện hội viên",
+        "MOBILE_BARCODE": "Phương tiện mã vạch di động",
+        "CITIZEN_DIGITAL_CERTIFICATE": "Phương tiện chứng nhận kỹ thuật số công dân"
       },
       "bar-code": "Số mã vạch: ",
       "love-code": "Đóng góp mã tình yêu: ",

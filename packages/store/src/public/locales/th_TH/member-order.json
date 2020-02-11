@@ -48,7 +48,14 @@
       "cvs-payment-no": "ร้านสะดวกซื้อจำนวนการชำระเงิน:",
       "barcode": "ร้านสะดวกซื้อ",
       "card-no": "บัตรเครดิตสี่หลักสุดท้าย:",
-      "gmo-store-code": "รหัสร้านค้า GMO:"
+      "gmo-store-code": "รหัสร้านค้า GMO:",
+      "cathay-atm": {
+        "bank-name": null,
+        "back-code": null,
+        "account": null,
+        "price": null,
+        "expire-date": null
+      }
     },
     "shipment": {
       "title": "สถานะการจัดส่ง",
@@ -73,20 +80,20 @@
     "invoice": {
       "title": "ใบแจ้งหนี้",
       "type": {
-        "paper": "ใบแจ้งหนี้กระดาษ",
-        "manual-electronic": "E-ใบแจ้งหนี้",
-        "ecpay-electronic": "E-ใบแจ้งหนี้"
+        "PAPER": "ใบแจ้งหนี้กระดาษ",
+        "MANUAL_ELECTRONIC": "E-ใบแจ้งหนี้",
+        "ECPAY_ELECTRONIC": "E-ใบแจ้งหนี้"
       },
       "method": {
-        "duplicate": "ใบแจ้งหนี้ชุดซ้ำ",
-        "triplicate": "เพิ่มทวีคูณ Invoice",
-        "company": "บัญชี บริษัท",
-        "donation": "บริจาค"
+        "DUPLICATE": "ใบแจ้งหนี้ชุดซ้ำ",
+        "TRIPLICATE": "เพิ่มทวีคูณ Invoice",
+        "COMPANY": "บัญชี บริษัท",
+        "DONATION": "บริจาค"
       },
       "carrier": {
-        "membership": "ผู้ให้บริการสมาชิก",
-        "mobile-barcode": "บาร์โค้ดมือถือ",
-        "citizen-digital-certificate": "บาร์โค้ด NPC"
+        "MEMBERSHIP": "ผู้ให้บริการสมาชิก",
+        "MOBILE_BARCODE": "บาร์โค้ดมือถือ",
+        "CITIZEN_DIGITAL_CERTIFICATE": "บาร์โค้ด NPC"
       },
       "bar-code": "หมายเลขบาร์โค้ด:",
       "love-code": "รหัสการบริจาค NPO:",

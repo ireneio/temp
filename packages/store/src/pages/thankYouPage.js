@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import ThankYouPageView from '@store/thank-you-page';
 
-import { Container, TrackingCodeHead, Error } from 'components';
+import { TrackingCodeHead, Error } from 'components';
 import * as Utils from 'utils';
 import { getJoinedThankYouPage } from 'selectors/thankYouPage';
 import { Router } from 'server/routes';
@@ -14,20 +14,13 @@ import client from 'apollo/initApollo';
 
 class ThankYouPage extends React.Component {
   static getInitialProps = async context => {
-    const {
-      isServer,
-      XMeepshopDomain,
-      userAgent,
-      store,
-      query: { orderId },
-    } = context;
+    const { isServer, XMeepshopDomain, userAgent, store } = context;
 
     if (isServer) store.dispatch(Actions.serverOthersInitial(context));
     // FIXME: remove after checkout using apollo-client
     else client().resetStore();
 
     return {
-      orderId,
       userAgent,
       XMeepshopDomain,
       namespacesRequired: ['thank-you-page'],
@@ -48,7 +41,6 @@ class ThankYouPage extends React.Component {
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
     }).isRequired,
-    orderId: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -73,9 +65,8 @@ class ThankYouPage extends React.Component {
 
     const {
       storeSetting: { storeName, faviconUrl },
-      location: { pathname, href },
+      location: { pathname },
       pageAdTrackIDs,
-      orderId,
     } = this.props;
 
     return (
@@ -86,9 +77,7 @@ class ThankYouPage extends React.Component {
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
-        <Container {...this.props}>
-          <ThankYouPageView orderId={orderId} href={href} />
-        </Container>
+        <ThankYouPageView />
       </>
     );
   }

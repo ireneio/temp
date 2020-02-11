@@ -5,11 +5,22 @@
   },
   "info": {
     "default": "Hemos recibido tu pedido. Por favor revise su orden para el estado del pago.",
-    "error": "Se produjo un error de sincronización de datos. Copie la URL y páselo al Servicio de atención al cliente para obtener ayuda."
+    "cathay-atm": null,
+    "error": {
+      "0": "Se produjo un error de sincronización de datos. Copie la URL y páselo al Servicio de atención al cliente para obtener ayuda.",
+      "1": ""
+    }
+  },
+  "cathay-atm": {
+    "bank-name": null,
+    "back-code": null,
+    "account": null,
+    "price": null,
+    "expire-date": null
   },
   "return": "Volver a la página de inicio",
+  "order": "Verifica mi pedido",
   "copy": "Copia la URL",
   "copied": "URL copiada al portapapeles.",
-  "data-error": "Error de sincronización de datos",
-  "order": "Verifica mi pedido"
+  "data-error": "Error de sincronización de datos"
 }

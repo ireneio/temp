@@ -5,11 +5,22 @@
   },
   "info": {
     "default": "Nous avons bien reçu votre commande. Veuillez vérifier l'état de votre paiement dans votre commande.",
-    "error": "Une erreur de synchronisation des données s'est produite. Veuillez copier l'URL et la transmettre au service client pour obtenir de l'aide."
+    "cathay-atm": null,
+    "error": {
+      "0": "Une erreur de synchronisation des données s'est produite. Veuillez copier l'URL et la transmettre au service client pour obtenir de l'aide.",
+      "1": ""
+    }
+  },
+  "cathay-atm": {
+    "bank-name": null,
+    "back-code": null,
+    "account": null,
+    "price": null,
+    "expire-date": null
   },
   "return": "Retour à la page d'accueil",
+  "order": "Vérifier ma commande",
   "copy": "Copiez l'URL",
   "copied": "URL copiée dans le presse-papiers.",
-  "data-error": "Erreur de synchronisation des données",
-  "order": "Vérifier ma commande"
+  "data-error": "Erreur de synchronisation des données"
 }

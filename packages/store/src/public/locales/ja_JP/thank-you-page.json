@@ -5,11 +5,22 @@
   },
   "info": {
     "default": "ご注文を承りました。注文内容及び決済状況をご確認ください",
-    "error": "情報同期エラーです。下のコピーボタンをクリックして、カスタマーサービスまでご連絡ください"
+    "cathay-atm": null,
+    "error": {
+      "0": "情報同期エラーです。下のコピーボタンをクリックして、カスタマーサービスまでご連絡ください",
+      "1": ""
+    }
+  },
+  "cathay-atm": {
+    "bank-name": null,
+    "back-code": null,
+    "account": null,
+    "price": null,
+    "expire-date": null
   },
   "return": "ホームへ",
+  "order": "注文状況の確認",
   "copy": "リンクをコピー",
   "copied": "リンクをコピーしました",
-  "data-error": "情報同期エラー",
-  "order": "注文状況の確認"
+  "data-error": "情報同期エラー"
 }

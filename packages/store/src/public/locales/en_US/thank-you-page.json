@@ -5,11 +5,22 @@
   },
   "info": {
     "default": "We have received your order. Please check your order for payment status.",
-    "error": "Data synchronization error occurred. Please copy the URL and pass it to Customer Service for assistance."
+    "cathay-atm": null,
+    "error": {
+      "0": "Data synchronization error occurred. Please copy the URL and pass it to Customer Service for assistance.",
+      "1": ""
+    }
+  },
+  "cathay-atm": {
+    "bank-name": null,
+    "back-code": null,
+    "account": null,
+    "price": null,
+    "expire-date": null
   },
   "return": "Back to the homepage",
+  "order": "Check My Order",
   "copy": "Copy the URL",
   "copied": "URL copied to clipboard.",
-  "data-error": "Data Synchronization Error",
-  "order": "Check My Order"
+  "data-error": "Data Synchronization Error"
 }

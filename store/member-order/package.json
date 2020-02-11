@@ -12,7 +12,8 @@
     "@store/currency": "^0.35.4",
     "@store/thumbnail": "^0.35.4",
     "@store/utils": "^0.35.4",
-    "color": "^3.0.0"
+    "color": "^3.0.0",
+    "moment": "^2.22.1"
   },
   "keywords": ["member", "order", "store"]
 }

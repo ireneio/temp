@@ -5,11 +5,22 @@
   },
   "info": {
     "default": "Kami telah menerima pesanan Anda. Silakan periksa pesanan Anda untuk status pembayaran.",
-    "error": "Kesalahan sinkronisasi data terjadi. Harap salin URL dan berikan ke Layanan Pelanggan untuk bantuan."
+    "cathay-atm": null,
+    "error": {
+      "0": "Kesalahan sinkronisasi data terjadi. Harap salin URL dan berikan ke Layanan Pelanggan untuk bantuan.",
+      "1": ""
+    }
+  },
+  "cathay-atm": {
+    "bank-name": null,
+    "back-code": null,
+    "account": null,
+    "price": null,
+    "expire-date": null
   },
   "return": "Kembali ke beranda",
+  "order": "Periksa Pesanan Saya",
   "copy": "Salin URL",
   "copied": "URL disalin ke papan klip.",
-  "data-error": "Kesalahan Sinkronisasi Data",
-  "order": "Periksa Pesanan Saya"
+  "data-error": "Kesalahan Sinkronisasi Data"
 }

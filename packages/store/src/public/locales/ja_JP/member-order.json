@@ -48,7 +48,14 @@
       "cvs-payment-no": "コンビニ支払コード：",
       "barcode": "コンビニ支払バーコード：",
       "card-no": "クレジットカード番号の最後の4桁：",
-      "gmo-store-code": "GMO ショップコード："
+      "gmo-store-code": "GMO ショップコード：",
+      "cathay-atm": {
+        "bank-name": null,
+        "back-code": null,
+        "account": null,
+        "price": null,
+        "expire-date": null
+      }
     },
     "shipment": {
       "title": "配送状況",
@@ -73,20 +80,20 @@
     "invoice": {
       "title": "発票情報",
       "type": {
-        "paper": "紙の請求書",
-        "manual-electronic": "電子発票",
-        "ecpay-electronic": "電子発票"
+        "PAPER": "紙の請求書",
+        "MANUAL_ELECTRONIC": "電子発票",
+        "ECPAY_ELECTRONIC": "電子発票"
       },
       "method": {
-        "duplicate": "二連式発票",
-        "triplicate": "三連式発票",
-        "company": "会社",
-        "donation": "寄贈"
+        "DUPLICATE": "二連式発票",
+        "TRIPLICATE": "三連式発票",
+        "COMPANY": "会社",
+        "DONATION": "寄贈"
       },
       "carrier": {
-        "membership": "会員キャリア",
-        "mobile-barcode": "携帯電話バーコードキャリア",
-        "citizen-digital-certificate": "自然人証憑キャリア"
+        "MEMBERSHIP": "会員キャリア",
+        "MOBILE_BARCODE": "携帯電話バーコードキャリア",
+        "CITIZEN_DIGITAL_CERTIFICATE": "自然人証憑キャリア"
       },
       "bar-code": "バーコード：",
       "love-code": "寄付コード：",

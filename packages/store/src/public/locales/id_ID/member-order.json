@@ -48,7 +48,14 @@
       "cvs-payment-no": "Nomor Pembayaran Toko Nyaman:",
       "barcode": "Barcode Pembayaran Toko Nyaman:",
       "card-no": "Empat digit terakhir kartu kredit:",
-      "gmo-store-code": "Kode Toko GMO:"
+      "gmo-store-code": "Kode Toko GMO:",
+      "cathay-atm": {
+        "bank-name": null,
+        "back-code": null,
+        "account": null,
+        "price": null,
+        "expire-date": null
+      }
     },
     "shipment": {
       "title": "Status pengiriman",
@@ -73,20 +80,20 @@
     "invoice": {
       "title": "Faktur",
       "type": {
-        "paper": "Faktur kertas",
-        "manual-electronic": "e-Faktur",
-        "ecpay-electronic": "e-Faktur"
+        "PAPER": "Faktur kertas",
+        "MANUAL_ELECTRONIC": "e-Faktur",
+        "ECPAY_ELECTRONIC": "e-Faktur"
       },
       "method": {
-        "duplicate": "Faktur Seragam Duplikat",
-        "triplicate": "Faktur Seragam Rangkap Tiga",
-        "company": "Akun Perusahaan",
-        "donation": "Menyumbangkan"
+        "DUPLICATE": "Faktur Seragam Duplikat",
+        "TRIPLICATE": "Faktur Seragam Rangkap Tiga",
+        "COMPANY": "Akun Perusahaan",
+        "DONATION": "Menyumbangkan"
       },
       "carrier": {
-        "membership": "Operator Keanggotaan",
-        "mobile-barcode": "Kode Batang Seluler",
-        "citizen-digital-certificate": "Kode Batang NPC"
+        "MEMBERSHIP": "Operator Keanggotaan",
+        "MOBILE_BARCODE": "Kode Batang Seluler",
+        "CITIZEN_DIGITAL_CERTIFICATE": "Kode Batang NPC"
       },
       "bar-code": "Nomor Kode Batang:",
       "love-code": "Kode Donasi NPO:",
