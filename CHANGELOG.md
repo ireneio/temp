@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.36.0 (2020-02-11)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#808](https://github.com/meepshop/meep-lerna/pull/808) 【功能】國泰世華 - 虛擬帳號付款 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `store`
+  - [#808](https://github.com/meepshop/meep-lerna/pull/808) 【功能】國泰世華 - 虛擬帳號付款 - 前端 ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`, `store`
+  - [#849](https://github.com/meepshop/meep-lerna/pull/849) (@meepshop/icons) Move to the new workspace ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `mock-types`
+  - [#852](https://github.com/meepshop/meep-lerna/pull/852) (@meepshop/mock-types) Fix types error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.35.5 (2020-02-10)
 
 #### :bug: Bug Fix
