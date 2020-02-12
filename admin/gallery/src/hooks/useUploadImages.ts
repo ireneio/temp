@@ -11,7 +11,10 @@ import {
   uploadImages as uploadImagesType,
   uploadImagesVariables,
 } from './__generated__/uploadImages';
-import { useUploadImagesReadCache } from './__generated__/useUploadImagesReadCache';
+import {
+  useUploadImagesReadCache,
+  useUploadImagesReadCacheVariables,
+} from './__generated__/useUploadImagesReadCache';
 
 import { getImagesVariables } from '../__generated__/getImages';
 
@@ -67,15 +70,20 @@ export default (
 
         if (!cacheData || !createFileList) return;
 
-        cache.writeQuery({
+        cache.writeQuery<
+          useUploadImagesReadCache,
+          useUploadImagesReadCacheVariables
+        >({
           query,
           variables,
           data: {
             ...cacheData,
             viewer: {
               ...cacheData.viewer,
+              __typename: 'User',
               files: {
                 ...cacheData.viewer?.files,
+                __typename: 'FileConnection',
                 edges: [
                   ...createFileList.map(node => ({
                     __typename: 'FileEdge',
@@ -92,7 +100,7 @@ export default (
                   (cacheData.viewer?.files?.total || 0) + createFileList.length,
               },
             },
-          },
+          } as useUploadImagesReadCache,
         });
       },
     },

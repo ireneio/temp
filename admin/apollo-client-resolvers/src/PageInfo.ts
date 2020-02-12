@@ -7,6 +7,8 @@ import gql from 'graphql-tag';
 // graphql typescript
 import { SetCurrentInput } from '../../../__generated__/admin';
 
+import { pageInfoFragment } from './__generated__/pageInfoFragment';
+
 // definition
 const fragment = gql`
   fragment pageInfoFragment on CurrentInfo {
@@ -22,7 +24,7 @@ export const resolver = {
       { input: { pageId, current } }: { input: SetCurrentInput },
       { cache }: ContextType,
     ) => {
-      cache.writeFragment({
+      cache.writeFragment<pageInfoFragment>({
         id: pageId,
         fragment,
         data: {

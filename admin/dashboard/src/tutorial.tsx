@@ -16,6 +16,7 @@ import {
   adminSetIsTutorialEnabled,
   adminSetIsTutorialEnabledVariables,
 } from './__generated__/adminSetIsTutorialEnabled';
+import { tutorialStoreFragment } from './__generated__/tutorialStoreFragment';
 
 // typescript definition
 interface PropsType {
@@ -51,10 +52,10 @@ const Tutorial = ({ name, id, setting }: PropsType): React.ReactElement => {
       update: (cache, { data }) => {
         if (!data?.setIsTutorialEnabled.success) return;
 
-        cache.writeFragment({
+        cache.writeFragment<tutorialStoreFragment>({
           id,
           fragment: gql`
-            fragment setting on Store {
+            fragment tutorialStoreFragment on Store {
               setting {
                 isTutorialEnabled
               }

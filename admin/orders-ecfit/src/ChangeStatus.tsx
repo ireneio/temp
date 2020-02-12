@@ -228,20 +228,23 @@ class ChangeTypes extends React.PureComponent<PropsType> {
 
     if (!order) return;
 
-    cache.writeFragment({
+    cache.writeFragment<changeStatusOrderFragment>({
       ...fragment,
       data: {
         ...order,
+        __typename: 'Order',
         status: newOrder?.status,
         shipmentInfo: {
           ...order?.shipmentInfo,
           ...newOrder?.shipmentInfo,
+          __typename: 'shipmentInfoType',
         },
         paymentInfo: {
           ...order?.paymentInfo,
           ...newOrder?.paymentInfo,
+          __typename: 'paymentInfoType',
         },
-      },
+      } as changeStatusOrderFragment,
     });
   };
 

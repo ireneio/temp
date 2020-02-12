@@ -65,7 +65,7 @@ class RemoveCreditCardInfo extends React.PureComponent<PropsType> {
     notification.success({
       message: t('remove-credit-card-info.success'),
     });
-    cache.writeFragment({
+    cache.writeFragment<removeCreditCardInfoFragmentType>({
       id,
       fragment: removeCreditCardInfoFragment,
       data: {

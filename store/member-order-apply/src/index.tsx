@@ -39,6 +39,7 @@ import {
   createOrderApplyVariables,
 } from './__generated__/createOrderApply';
 import { getOrderCache } from './__generated__/getOrderCache';
+import { memberOrderApplyFragment } from './__generated__/memberOrderApplyFragment';
 
 // graphql import
 import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
@@ -177,21 +178,21 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
       data: [...createOrderApplyList, ...Applications],
     };
 
-    store.writeQuery({
+    store.writeQuery<getOrderCache>({
       query,
       data: {
         getOrderApplyList,
-      },
+      } as getOrderCache,
     });
 
     const order = cache?.viewer?.order;
 
     if (!id || !order) return;
 
-    store.writeFragment({
+    store.writeFragment<memberOrderApplyFragment>({
       id,
       fragment: gql`
-        fragment updateOrder on Order {
+        fragment memberOrderApplyFragment on Order {
           status
           isOrderApplied @client
           isAvailableForOrderApply @client
@@ -264,7 +265,7 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
         products: calculateOrderProducts(order, getOrderApplyList),
         applications: calculateOrderApplications(order, getOrderApplyList),
         ...calculateOrderApply(order, getOrderApplyList),
-      },
+      } as memberOrderApplyFragment,
     });
 
     Router.push('/orders');

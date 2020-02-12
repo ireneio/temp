@@ -33,6 +33,7 @@ import {
   updateNotificationSettingVariables,
 } from './__generated__/updateNotificationSetting';
 import { getStoreId } from './__generated__/getStoreId';
+import { settingNotificationFragment } from './__generated__/settingNotificationFragment';
 
 // typescript definition
 interface PropsType extends getNotificationsSetting, FormComponentProps {}
@@ -98,10 +99,10 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
       return;
     }
 
-    cache.writeFragment({
+    cache.writeFragment<settingNotificationFragment>({
       id,
       fragment: gql`
-        fragment setting on Store {
+        fragment settingNotificationFragment on Store {
           setting {
             emailNotificationEventSubscription {
               recipientEmail
@@ -123,7 +124,7 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
             ...this.value,
           },
         },
-      },
+      } as settingNotificationFragment,
     });
 
     form.resetFields();

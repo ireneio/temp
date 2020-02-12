@@ -101,7 +101,7 @@ class Qa extends React.PureComponent<PropsType, StateType> {
 
     if (!order) return;
 
-    cache.writeFragment({
+    cache.writeFragment<qaOrderFragment>({
       ...fragment,
       data: {
         __typename: 'Order',
@@ -114,7 +114,7 @@ class Qa extends React.PureComponent<PropsType, StateType> {
             __typename: 'OrderMessage',
           },
         ],
-      },
+      } as qaOrderFragment,
     });
 
     this.setState({ newMessage: '' }, () =>

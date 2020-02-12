@@ -10,6 +10,8 @@ import moment from 'moment';
 // graphql typescript
 import { SetOrdersToSelectedOrdersInput } from '../../../__generated__/admin';
 
+import { initializeSelectedOrders } from './__generated__/initializeSelectedOrders';
+
 // definition
 const query = gql`
   query initializeSelectedOrders {
@@ -66,7 +68,10 @@ export const initializeCache = (cache: InMemoryCache): void => {
             id,
           },
         })),
-        pageInfo,
+        pageInfo: {
+          ...pageInfo,
+          __typename: 'PageInfo',
+        },
         total: selectedOrders.length,
       },
     },
@@ -80,7 +85,7 @@ export const resolver = {
       { input: { ids } }: { input: SetOrdersToSelectedOrdersInput },
       { cache }: ContextType,
     ) => {
-      cache.writeQuery({
+      cache.writeQuery<initializeSelectedOrders>({
         query,
         data: {
           selectedOrders: {
@@ -92,7 +97,10 @@ export const resolver = {
                 id,
               },
             })),
-            pageInfo,
+            pageInfo: {
+              ...pageInfo,
+              __typename: 'PageInfo',
+            },
             total: ids.length,
           },
         },

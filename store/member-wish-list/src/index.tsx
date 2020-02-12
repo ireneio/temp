@@ -265,7 +265,7 @@ export default React.memo(
 
 //       if (!wishlist) return;
 
-//       cache.writeFragment({
+//       cache.writeFragment<getWishlistViewer>({
 //         ...fragment,
 //         data: {
 //           __typename: "User",

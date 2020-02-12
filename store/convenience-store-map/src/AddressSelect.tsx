@@ -21,6 +21,8 @@ import {
   getValidatedConvenienceStoreCities_validatedConvenienceStoreCities_children as getValidatedConvenienceStoreCitiesValidatedConvenienceStoreCitiesChildren,
 } from './__generated__/getValidatedConvenienceStoreCities';
 import { getValidatedConvenienceStoreAreas } from './__generated__/getValidatedConvenienceStoreAreas';
+import { addressSelectCityFragment } from './__generated__/addressSelectCityFragment';
+import { addressSelectAreaFragment } from './__generated__/addressSelectAreaFragment';
 
 // typescript definition
 interface PropsType
@@ -82,10 +84,10 @@ class AddressSelect extends React.PureComponent<PropsType> {
       },
     });
 
-    client.writeFragment({
+    client.writeFragment<addressSelectCityFragment>({
       id: selectedOption.value,
       fragment: gql`
-        fragment areas on City {
+        fragment addressSelectCityFragment on City {
           areas {
             id
             name {
@@ -149,10 +151,10 @@ class AddressSelect extends React.PureComponent<PropsType> {
           },
         });
 
-        client.writeFragment({
+        client.writeFragment<addressSelectAreaFragment>({
           id: value[1],
           fragment: gql`
-            fragment streets on Area {
+            fragment addressSelectAreaFragment on Area {
               streets
             }
           `,
