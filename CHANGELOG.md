@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.36.1 (2020-02-17)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#845](https://github.com/meepshop/meep-lerna/pull/845) 【功能】 前台登入密碼框可視密碼功能 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#851](https://github.com/meepshop/meep-lerna/pull/851) D&D 元件 - 圖片/輪播/圖片文字 - 優化預設顯示 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#854](https://github.com/meepshop/meep-lerna/pull/854) (@meepshop/frontend) Add more types in writeFragment and writeQuery ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.36.0 (2020-02-11)
 
 #### :boom: Breaking Change
