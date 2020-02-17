@@ -56,7 +56,7 @@ export const initializeCache = (cache: InMemoryCache): void => {
     ? []
     : JSON.parse(localStorage.getItem('selectedOrders') || '[]');
 
-  cache.writeQuery({
+  cache.writeQuery<initializeSelectedOrders>({
     query,
     data: {
       selectedOrders: {

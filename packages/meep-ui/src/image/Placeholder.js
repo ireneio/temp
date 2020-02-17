@@ -14,7 +14,7 @@ class Placeholder extends React.PureComponent {
   };
 
   static defaultProps = {
-    ratio: 9 / 16,
+    ratio: 2 / 5,
   };
 
   render() {
@@ -25,10 +25,11 @@ class Placeholder extends React.PureComponent {
       <div
         ref={forwardedRef}
         className={`${styles.root} ${width === 0 ? '' : styles.done}`}
-        style={width === 0 ? {} : { height: `${height}px` }}
-      >
-        {width === 0 ? null : `${Math.floor(width)} x ${height}`}
-      </div>
+        style={{
+          ...(width === 0 ? {} : { height: `${height}px` }),
+          background: 'url("/images/image-placeholder.svg") top / cover',
+        }}
+      />
     );
   }
 }

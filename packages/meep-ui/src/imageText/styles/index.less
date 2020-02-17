@@ -1,3 +1,5 @@
+@import '../../constants/styles.less';
+
 .root {
   height: 100%;
   position: relative;
@@ -5,13 +7,54 @@
 
 .link {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
   cursor: pointer;
 }
 
-.textContainer {
-  max-width: 500px;
+.overlayBackground {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  padding: 8% 10%;
+  overflow: hidden;
+  transition: all 0.25s ease-in;
+
+  @media @PHONE_MEDIA {
+    padding: 8%;
+  }
+}
+
+.container {
+  max-width: 75%;
+
+  @media @PHONE_MEDIA {
+    max-width: 100%;
+  }
+}
+
+.header {
+  line-height: 1.2em;
+  letter-spacing: 0.02em;
+}
+
+.description {
+  margin: 0.2em auto 1em;
+  line-height: 1.4em;
+  letter-spacing: 0.05em;
+}
+
+.button {
+  display: inline-block;
+  width: fit-content;
+  padding: 0.4em 1em;
+  line-height: 1.4em;
+  letter-spacing: 0.05em;
+  font-weight: 300;
+  word-break: break-word;
 }

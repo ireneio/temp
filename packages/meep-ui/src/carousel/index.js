@@ -55,9 +55,7 @@ export default class Carousel extends React.PureComponent {
   getFiles = () => {
     const { files } = this.props;
 
-    return !files || files.length === 0
-      ? [null, null, null, null, null]
-      : files;
+    return !files || files.length === 0 ? [null, null, null] : files;
   };
 
   play = () => {

@@ -128,12 +128,14 @@ export default class ImageText extends React.PureComponent {
           newWindow={newWindow}
           alignment="center"
         />
+
         <Link
+          className={styles.link}
           href={href}
           target={newWindow ? '_blank' : '_self'}
-          className={styles.link}
         >
           <div
+            className={styles.overlayBackground}
             style={overlayBackground({
               showOverlay,
               overlayBackgroundColor,
@@ -144,21 +146,30 @@ export default class ImageText extends React.PureComponent {
             onClick={handleClickTracking}
           >
             <StyleRoot
-              className={styles.textContainer}
+              className={styles.container}
               style={{ color: textColor }}
             >
               {!header.show ? null : (
-                <div style={headerStyle(header.fontSize, header.bold)}>
+                <div
+                  className={styles.header}
+                  style={headerStyle(header.fontSize, header.bold)}
+                >
                   {header.value}
                 </div>
               )}
+
               {!description.show ? null : (
-                <div style={descriptionStyle(description.fontSize)}>
+                <div
+                  className={styles.description}
+                  style={descriptionStyle(description.fontSize)}
+                >
                   {description.value}
                 </div>
               )}
+
               {!button.show ? null : (
                 <div
+                  className={styles.button}
                   style={buttonStyle(
                     button.fontSize,
                     textColor,
