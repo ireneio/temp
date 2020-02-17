@@ -11,6 +11,7 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
 const FormItem = Form.Item;
+const { Password } = Input;
 
 @Form.create()
 @withTranslation('login')
@@ -145,8 +146,7 @@ export default class SignupForm extends React.PureComponent {
               },
             ],
           })(
-            <Input
-              type="password"
+            <Password
               placeholder={t('password')}
               size="large"
               onBlur={this.handleConfirmBlur}
@@ -165,13 +165,7 @@ export default class SignupForm extends React.PureComponent {
                 validator: this.compareToFirstPassword,
               },
             ],
-          })(
-            <Input
-              type="password"
-              placeholder={t('confirm-password')}
-              size="large"
-            />,
-          )}
+          })(<Password placeholder={t('confirm-password')} size="large" />)}
         </FormItem>
 
         {!hasStoreAppPlugin('memberGroupCode') ? null : (

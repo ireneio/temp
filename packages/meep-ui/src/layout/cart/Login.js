@@ -19,6 +19,7 @@ import { COLOR_TYPE } from 'constants/propTypes';
 import * as styles from './styles/login';
 
 const { Item: FormItem } = Form;
+const { Password } = Input;
 
 @withTranslation('cart')
 @withContext(adTrackContext)
@@ -85,10 +86,8 @@ export default class Login extends React.PureComponent {
         <h3 style={styles.header}>{t('member-login')}</h3>
 
         <Form onSubmit={this.submit}>
-          {[
-            {
-              name: 'email',
-              placeholder: t('email-placeholder'),
+          <FormItem style={styles.formItem}>
+            {getFieldDecorator('email', {
               rules: [
                 {
                   required: true,
@@ -104,41 +103,38 @@ export default class Login extends React.PureComponent {
               ],
               validateTrigger: false,
               normalize: value => value.replace(/\s/g, ''),
-              onChange: ({ target: { value } }) => {
-                setFields({
-                  email: {
-                    value,
-                  },
-                });
-              },
-            },
-            {
-              name: 'password',
-              type: 'password',
-              placeholder: t('password-placeholder'),
+            })(
+              <Input
+                style={styles.input}
+                placeholder={t('email-placeholder')}
+                onChange={({ target: { value } }) => {
+                  setFields({
+                    email: {
+                      value,
+                    },
+                  });
+                }}
+                size="large"
+              />,
+            )}
+          </FormItem>
+
+          <FormItem style={styles.formItem}>
+            {getFieldDecorator('password', {
               rules: [
                 {
                   required: true,
                   message: t('password-is-required'),
                 },
               ],
-            },
-          ].map(({ name, type, placeholder, onChange, ...rules }) => (
-            <FormItem key={name} style={styles.formItem}>
-              {getFieldDecorator(
-                name,
-                rules,
-              )(
-                <Input
-                  style={styles.input}
-                  type={type}
-                  placeholder={placeholder}
-                  onChange={onChange}
-                  size="large"
-                />,
-              )}
-            </FormItem>
-          ))}
+            })(
+              <Password
+                style={styles.input}
+                placeholder={t('password-placeholder')}
+                size="large"
+              />,
+            )}
+          </FormItem>
 
           <div style={styles.buttonRoot}>
             <div

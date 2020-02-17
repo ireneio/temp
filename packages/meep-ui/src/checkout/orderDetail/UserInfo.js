@@ -21,6 +21,7 @@ import {
 } from './styles';
 
 const { Item: FormItem } = Form;
+const { Password } = Input;
 
 @withTranslation(['checkout', 'validate-mobile'])
 @enhancer
@@ -106,7 +107,7 @@ export default class UserInfo extends React.PureComponent {
                     message: t('is-required'),
                   },
                 ],
-              })(<Input type="password" placeholder={t('password')} />)}
+              })(<Password placeholder={t('password')} />)}
             </FormItem>
           </>
         )}

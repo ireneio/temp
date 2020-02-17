@@ -17,6 +17,7 @@ import * as styles from './styles/login';
 import { formItem as formItemStyle } from './styles';
 
 const { Item: FormItem } = Form;
+const { Password } = Input;
 let storeEmail = null;
 
 @enhancer
@@ -117,10 +118,8 @@ export default class Login extends React.PureComponent {
         visible={storeEmail !== getFieldValue('email')}
       >
         <Form style={styles.root} onSubmit={this.submit}>
-          {[
-            {
-              name: 'email',
-              placeholder: t('email'),
+          <FormItem style={formItemStyle}>
+            {getFieldDecorator('email', {
               rules: [
                 {
                   required: true,
@@ -136,43 +135,32 @@ export default class Login extends React.PureComponent {
               ],
               validateTrigger: false,
               normalize: value => value.replace(/\s/g, ''),
-              onChange: ({ target: { value } }) => {
-                setFields({
-                  email: {
-                    value,
-                  },
-                });
-              },
-            },
-            ...(isForgetPassword
-              ? []
-              : [
+            })(
+              <Input
+                placeholder={t('email')}
+                onChange={({ target: { value } }) => {
+                  setFields({
+                    email: {
+                      value,
+                    },
+                  });
+                }}
+              />,
+            )}
+          </FormItem>
+
+          {isForgetPassword ? null : (
+            <FormItem style={formItemStyle}>
+              {getFieldDecorator('password', {
+                rules: [
                   {
-                    name: 'password',
-                    type: 'password',
-                    placeholder: t('password'),
-                    rules: [
-                      {
-                        required: true,
-                        message: t('is-required'),
-                      },
-                    ],
+                    required: true,
+                    message: t('is-required'),
                   },
-                ]),
-          ].map(({ name, type, placeholder, onChange, ...rules }) => (
-            <FormItem key={name} style={formItemStyle}>
-              {getFieldDecorator(
-                name,
-                rules,
-              )(
-                <Input
-                  type={type}
-                  placeholder={placeholder}
-                  onChange={onChange}
-                />,
-              )}
+                ],
+              })(<Password placeholder={t('password')} />)}
             </FormItem>
-          ))}
+          )}
 
           <div style={[formItemStyle, styles.buttonRoot]}>
             {isForgetPassword ? (

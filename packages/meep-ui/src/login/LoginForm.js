@@ -10,6 +10,7 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import styles from './styles/login.less';
 
 const FormItem = Form.Item;
+const { Password } = Input;
 
 @Form.create()
 @withTranslation('login')
@@ -106,13 +107,7 @@ export default class LoginForm extends React.PureComponent {
                 message: t('password-is-required'),
               },
             ],
-          })(
-            <Input
-              type="password"
-              placeholder={t('password-placeholder')}
-              size="large"
-            />,
-          )}
+          })(<Password placeholder={t('password-placeholder')} size="large" />)}
         </FormItem>
 
         <div className={styles.optionsWrapper}>

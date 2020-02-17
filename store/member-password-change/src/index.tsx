@@ -35,6 +35,7 @@ interface PropsType extends I18nPropsType, FormComponentProps {
 
 // definition
 const { Item: FormItem } = Form;
+const { Password } = Input;
 
 class MemberPasswordChange extends React.PureComponent<PropsType> {
   private onSubmit = (
@@ -139,13 +140,7 @@ class MemberPasswordChange extends React.PureComponent<PropsType> {
                     message: t('form.required'),
                   },
                 ],
-              })(
-                <Input
-                  size="large"
-                  type="password"
-                  placeholder={t('current-password')}
-                />,
-              )}
+              })(<Password size="large" placeholder={t('current-password')} />)}
             </FormItem>
 
             <FormItem>
@@ -156,13 +151,7 @@ class MemberPasswordChange extends React.PureComponent<PropsType> {
                     message: t('form.required'),
                   },
                 ],
-              })(
-                <Input
-                  size="large"
-                  type="password"
-                  placeholder={t('new-password')}
-                />,
-              )}
+              })(<Password size="large" placeholder={t('new-password')} />)}
             </FormItem>
 
             <FormItem>
@@ -176,13 +165,7 @@ class MemberPasswordChange extends React.PureComponent<PropsType> {
                     validator: this.confirmPassword,
                   },
                 ],
-              })(
-                <Input
-                  size="large"
-                  type="password"
-                  placeholder={t('confirm-password')}
-                />,
-              )}
+              })(<Password size="large" placeholder={t('confirm-password')} />)}
             </FormItem>
 
             <Button
