@@ -11,7 +11,11 @@ import * as Actions from 'ducks/actions';
 const Page = React.memo(({ error, ...props }) => {
   if (error) return <Error error={error} />;
 
-  return <Container {...props} />;
+  return (
+    <div style={{ userSelect: 'none', pointerEvents: 'none' }}>
+      <Container {...props} />
+    </div>
+  );
 });
 
 Page.getInitialProps = async ctx => {

@@ -35,5 +35,7 @@ declare module 'fbjs' {
 
   export function getElementPosition(
     dom: HTMLElement,
-  ): { width: number; height: number };
+  ): { width: number; height: number; x: number; y: number };
+
+  export function getScrollPosition(dom: HTMLElement): { x: number; y: number };
 }

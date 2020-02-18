@@ -224,7 +224,6 @@ class Container extends React.PureComponent<PropsType, StateType> {
     }
 
     const {
-      variables: currentVariables,
       ecfitOrders: {
         pageInfo: { endCursor },
       },
@@ -238,7 +237,6 @@ class Container extends React.PureComponent<PropsType, StateType> {
 
     await fetchMore({
       variables: {
-        ...currentVariables,
         cursor: endCursor,
         first: successIds.length,
       },

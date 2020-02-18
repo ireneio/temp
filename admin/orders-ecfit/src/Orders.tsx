@@ -245,7 +245,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
 
   private changePage = (newCurrent: number): void => {
     const {
-      variables: { first, ...variables },
+      variables: { first },
       ecfitOrders: {
         edges,
         pageInfo: {
@@ -272,9 +272,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
       () =>
         fetchMore({
           variables: {
-            ...variables,
             cursor: endCursor,
-            first,
           },
           updateQuery: (previousResult, { fetchMoreResult }) => {
             if ((fetchMoreResult?.viewer?.ecfitOrders?.edges || []).length > 0)

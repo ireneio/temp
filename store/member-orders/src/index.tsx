@@ -162,7 +162,7 @@ class MemberOrders extends React.PureComponent<PropsType> {
       setCurrent,
 
       // props
-      variables: { first, ...variables },
+      variables: { first },
       orders: {
         edges,
         pageInfo: {
@@ -188,9 +188,7 @@ class MemberOrders extends React.PureComponent<PropsType> {
       () =>
         fetchMore({
           variables: {
-            ...variables,
             cursor: endCursor,
-            first,
           },
           updateQuery: (previousResult, { fetchMoreResult }) => {
             if ((fetchMoreResult?.viewer?.orders?.edges || []).length > 0)

@@ -78,7 +78,6 @@ module.exports = nextConfig =>
         withBundleAnalyzer({
           ...nextConfig,
           pageExtensions: ['js', 'ts', 'tsx'],
-          useFileSystemPublicRoutes: false,
           lessLoaderOptions: {
             ...nextConfig.lessLoaderOptions,
             javascriptEnabled: true,

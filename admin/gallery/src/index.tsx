@@ -2,16 +2,21 @@
 import React, { useState, useRef } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Button } from 'antd';
 
 import { useTranslation } from '@admin/utils/lib/i18n';
 
 import Card from './Card';
 import ImageUpload from './ImageUpload';
+import useLoadMoreImages from './hooks/useLoadMoreImages';
 import styles from './styles/index.less';
 
 // graphql typescript
 import { getImages, getImagesVariables } from './__generated__/getImages';
+
+// graphql import
+import { useLoadMoreImagesFragment } from './hooks/useLoadMoreImages';
 
 // typescript definition
 interface PropsType {
@@ -40,11 +45,8 @@ const query = gql`
         }
 
         pageInfo {
-          hasNextPage
-          endCursor
+          ...useLoadMoreImagesFragment
         }
-
-        total
       }
     }
 
@@ -55,32 +57,41 @@ const query = gql`
       }
     }
   }
+
+  ${useLoadMoreImagesFragment}
 `;
 
 export default React.memo(
   ({ buttons, onSubmit, submitText, multiple }: PropsType) => {
     const { t } = useTranslation('gallery');
-    const { error, data, variables } = useQuery<getImages, getImagesVariables>(
-      query,
-      {
-        variables: {
-          search: {
-            filter: {
-              and: [
-                {
-                  type: 'exact',
-                  field: 'type',
-                  query: 'file',
-                },
-              ],
-            },
+    const { error, data, variables, refetch, fetchMore } = useQuery<
+      getImages,
+      getImagesVariables
+    >(query, {
+      variables: {
+        search: {
+          filter: {
+            and: [
+              {
+                type: 'exact',
+                field: 'type',
+                query: 'file',
+              },
+            ],
           },
-          first: 100,
         },
+        first: 100,
       },
-    );
+    });
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
     const imageUploadRef = useRef<HTMLInputElement>(null);
+    const loadMoreImages = useLoadMoreImages(
+      fetchMore,
+      !data?.viewer?.files?.pageInfo
+        ? null
+        : filter(useLoadMoreImagesFragment, data.viewer.files.pageInfo),
+    );
+    const tagList = variables.filter?.tagList || [];
 
     if (error || !data)
       return <Spin indicator={<Icon type="loading" spin />} />;
@@ -93,7 +104,22 @@ export default React.memo(
           {data.getTagList?.data?.[0]?.tags?.map(tag => (
             <div
               key={tag || '' /** TODO should not be null */}
-              className={styles.tag}
+              className={`${styles.tag} ${
+                !tagList.includes(tag) ? '' : styles.selected
+              }`}
+              onClick={() => {
+                const newTagList = tagList.includes(tag)
+                  ? tagList.filter(name => name !== tag)
+                  : [...tagList, tag];
+
+                refetch({
+                  ...variables,
+                  filter: {
+                    ...variables?.filter,
+                    tagList: newTagList.length === 0 ? undefined : newTagList,
+                  },
+                });
+              }}
             >
               {tag}
             </div>
@@ -125,7 +151,7 @@ export default React.memo(
             </div>
           </div>
 
-          <div className={styles.body}>
+          <div className={styles.body} onScroll={loadMoreImages}>
             {data.viewer?.files?.edges.map(({ node: { id, image } }) => (
               <Card
                 key={id || 'id' /** TODO should not be null */}

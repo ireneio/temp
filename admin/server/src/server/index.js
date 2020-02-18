@@ -13,7 +13,6 @@ const { default: nextI18NextMiddleware } = require('next-i18next/middleware');
 const { default: nextI18next } = require('@admin/utils/lib/i18n');
 
 const { publicRuntimeConfig } = require('../../next.config');
-const routes = require('./routes');
 
 const { VERSION } = publicRuntimeConfig;
 const port = parseInt(process.env.PORT, 10) || 14405;
@@ -21,7 +20,7 @@ const app = nextApp({
   dir: path.resolve(__dirname, '..'),
   dev: process.env.NODE_ENV !== 'production',
 });
-const handler = routes.getRequestHandler(app);
+const handler = app.getRequestHandler();
 
 ['unhandledRejection', 'uncaughtException'].forEach(eventName => {
   process.on(eventName, error => {
