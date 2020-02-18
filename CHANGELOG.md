@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.36.2 (2020-02-18)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#843](https://github.com/meepshop/meep-lerna/pull/843) 【功能】自訂會員註冊與登入頁訊息 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#860](https://github.com/meepshop/meep-lerna/pull/860) (@admin/server, @meepshop/store) Fix typo ([@HsuTing](https://github.com/HsuTing))
+  - [#855](https://github.com/meepshop/meep-lerna/pull/855) (@admin/gallery) Fix details error ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#859](https://github.com/meepshop/meep-lerna/pull/859) (@store/address-cascader) Fix lint error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.36.1 (2020-02-17)
 
 #### :rocket: New Feature
