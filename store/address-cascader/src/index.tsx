@@ -92,10 +92,11 @@ const AddressCascader = React.memo(
     countries,
     colors,
   }: PropsType): React.ReactElement => {
+    const useValueinState = useState(value);
     const [
       { address = undefined, zipCode = undefined } = {},
       onChange,
-    ] = propsOnChange ? [value, propsOnChange] : useState(value);
+    ] = propsOnChange ? [value, propsOnChange] : useValueinState;
     const options = useMemo(
       () =>
         getOptions(
@@ -114,14 +115,20 @@ const AddressCascader = React.memo(
     const isOnlyOneOption = options.length === 1;
     const isSelectAddress = addressLength !== 0;
 
-    if (isOnlyOneOption)
-      useEffect(() => {
-        if (addressLength === 0 && !options[0].children)
-          onChange({
-            address: [options[0].value as string],
-            zipCode,
-          });
-      }, [options.length, addressLength, onChange, zipCode, options]);
+    useEffect(() => {
+      if (isOnlyOneOption && addressLength === 0 && !options[0].children)
+        onChange({
+          address: [options[0].value as string],
+          zipCode,
+        });
+    }, [
+      isOnlyOneOption,
+      options.length,
+      addressLength,
+      onChange,
+      zipCode,
+      options,
+    ]);
 
     return (
       <div
