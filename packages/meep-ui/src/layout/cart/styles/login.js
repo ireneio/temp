@@ -34,11 +34,11 @@ export const buttonRoot = {
 
 export const buttonRootExtend = {
   flexGrow: 1,
+  display: 'flex',
+  justifyContent: 'space-between',
   alignItems: 'center',
-  margin: '0px',
   [PHONE_MEDIA]: {
-    justifyContent: 'center',
-    flexDirection: 'column',
+    display: 'block',
   },
 };
 
@@ -96,4 +96,18 @@ export const fbButton = {
 export const fbIcon = {
   backgroundColor: '#3b5998',
   color: '#ffffff',
+};
+
+export const hr = colors => ({
+  minHeight: '1px',
+  backgroundColor: colors[5],
+  margin: '32px -24px',
+  [PHONE_MEDIA]: {
+    margin: '32px -12px',
+  },
+});
+
+export const draftText = {
+  marginBottom: '10px',
+  padding: '0px',
 };

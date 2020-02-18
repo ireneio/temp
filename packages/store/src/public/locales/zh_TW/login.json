@@ -12,7 +12,7 @@
   "go-back": "返回",
   "password-is-no-match": "密碼不一致",
   "join": "加入",
-  "promotion-code": "群組代碼",
+  "promotion-code": "特約代碼（僅開通特約會員需填寫）",
   "password": "密碼",
   "confirm-password": "確認密碼",
   "send-reset-password-mail": "寄送重設密碼信"

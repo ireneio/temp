@@ -56,6 +56,8 @@ viewer {
       activityVersion
       adRetentionMilliseconds
       adRetentionMillisecondsEnabled
+      shopperLoginMessageEnabled
+      shopperLoginMessage
     }
     logoImage {
       src

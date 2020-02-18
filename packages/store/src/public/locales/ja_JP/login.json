@@ -12,7 +12,7 @@
   "go-back": "戻る",
   "password-is-no-match": "パスワードが一致しません",
   "join": "登録確認",
-  "promotion-code": "グループコード",
+  "promotion-code": null,
   "password": "パスワード",
   "confirm-password": "パスワードを確認",
   "send-reset-password-mail": "パスワード再設定メールを送信"

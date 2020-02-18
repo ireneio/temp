@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // FIXME remove
 import { StyleRoot } from 'radium';
 import { warning } from 'fbjs';
-import { Drawer } from 'antd';
+import { Drawer, Icon } from 'antd';
 import { FaAngleRight as AngleRightIcon } from 'react-icons/fa';
 import { MdKeyboardBackspace as ArrowLeftIcon } from 'react-icons/md';
 
@@ -60,6 +60,7 @@ export default class Cart extends React.PureComponent {
       <Drawer
         className={styles.root}
         visible={isShowCart}
+        closable={false}
         onClose={toggleCart(false)}
         width="100vw"
       >
@@ -92,6 +93,11 @@ export default class Cart extends React.PureComponent {
             ) : (
               <ArrowLeftIcon className={styles.icon} onClick={this.goBack} />
             )}
+            <Icon
+              type="close"
+              className={styles.closeIcon}
+              onClick={toggleCart(false)}
+            />
           </div>
 
           <CartSwitch

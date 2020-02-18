@@ -12,7 +12,7 @@
   "go-back": "Kembali",
   "password-is-no-match": "Ketikkan ulang kata sandi Anda di sini",
   "join": "Ikuti",
-  "promotion-code": "Kode grup",
+  "promotion-code": null,
   "password": "Kata sandi",
   "confirm-password": "konfirmasi sandi",
   "send-reset-password-mail": "Setel Ulang Kata Sandi"

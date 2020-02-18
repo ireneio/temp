@@ -13,6 +13,8 @@ import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
 
+import DraftText from 'draftText';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
@@ -45,6 +47,7 @@ export default class Login extends React.PureComponent {
       validateFields: PropTypes.func.isRequired,
     }).isRequired,
     goToInCart: PropTypes.func.isRequired,
+    storeSetting: PropTypes.shape({}).isRequired,
   };
 
   submit = e => {
@@ -78,11 +81,17 @@ export default class Login extends React.PureComponent {
       t,
       form,
       goToInCart,
+      storeSetting: { shopperLoginMessageEnabled, shopperLoginMessage },
     } = this.props;
     const { getFieldDecorator, setFields } = form;
 
     return (
-      <div style={styles.root}>
+      <div
+        style={{
+          ...styles.root,
+          ...(shopperLoginMessageEnabled ? { flexGrow: 0 } : {}),
+        }}
+      >
         <h3 style={styles.header}>{t('member-login')}</h3>
 
         <Form onSubmit={this.submit}>
@@ -160,7 +169,12 @@ export default class Login extends React.PureComponent {
           </div>
         </Form>
 
-        <div style={[styles.buttonRoot, styles.buttonRootExtend]}>
+        <div
+          style={{
+            ...styles.buttonRootExtend,
+            ...(shopperLoginMessageEnabled ? { marginTop: '56px' } : {}),
+          }}
+        >
           <div style={styles.buttonWidth}>
             <Button
               style={styles.button(colors)}
@@ -204,6 +218,13 @@ export default class Login extends React.PureComponent {
             </div>
           )}
         </div>
+
+        {!shopperLoginMessageEnabled ? null : (
+          <>
+            <div style={styles.hr(colors)} />
+            <DraftText style={styles.draftText} value={shopperLoginMessage} />
+          </>
+        )}
       </div>
     );
   }

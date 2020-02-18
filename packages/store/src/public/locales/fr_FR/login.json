@@ -12,7 +12,7 @@
   "go-back": "Retour",
   "password-is-no-match": "Veuillez retaper votre mot de passe ici",
   "join": "Joindre",
-  "promotion-code": "Code de groupe",
+  "promotion-code": null,
   "password": "Mot de passe",
   "confirm-password": "Confirmez le mot de passe",
   "send-reset-password-mail": "réinitialiser le mot de passe"

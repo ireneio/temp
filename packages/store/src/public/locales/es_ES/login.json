@@ -12,7 +12,7 @@
   "go-back": "atrás",
   "password-is-no-match": "Vuelva a escribir su contraseña aquí",
   "join": "Unirse",
-  "promotion-code": "El codigo del grupo",
+  "promotion-code": null,
   "password": "Contraseña",
   "confirm-password": "Confirmar contraseña",
   "send-reset-password-mail": "Restablecer la contraseña"

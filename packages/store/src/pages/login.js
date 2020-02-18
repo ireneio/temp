@@ -68,6 +68,7 @@ class Login extends Component {
     const {
       isLogin,
       fbAppId,
+      storeSetting,
       storeSetting: { storeName, faviconUrl },
       location: { pathname },
       pageAdTrackIDs,
@@ -88,7 +89,7 @@ class Login extends Component {
           fbAppId={fbAppId}
         />
         <Container {...this.props}>
-          <LoginView />
+          <LoginView storeSetting={storeSetting} />
         </Container>
       </>
     );

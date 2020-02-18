@@ -4,6 +4,9 @@ import { Radio } from 'antd';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
+import { enhancer } from 'layout/DecoratorsRoot';
+import DraftText from 'draftText';
+
 import styles from './styles/index.less';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
@@ -11,10 +14,15 @@ import SendResetPswMailForm from './SendResetPswMailForm';
 import { LOGIN, SIGNUP, FORGET_PSW } from './constants';
 
 @withTranslation('login')
+@enhancer
 export default class Login extends React.PureComponent {
   static propTypes = {
+    /** context */
+    colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+
     /** props */
     t: PropTypes.func.isRequired,
+    storeSetting: PropTypes.shape({}).isRequired,
   };
 
   state = {
@@ -38,7 +46,11 @@ export default class Login extends React.PureComponent {
   };
 
   render() {
-    const { t } = this.props;
+    const {
+      colors,
+      t,
+      storeSetting: { shopperLoginMessageEnabled, shopperLoginMessage },
+    } = this.props;
     const { options } = this.state;
     let optionsComp = null;
 
@@ -77,6 +89,16 @@ export default class Login extends React.PureComponent {
         </Radio.Group>
 
         {optionsComp}
+
+        {!shopperLoginMessageEnabled ? null : (
+          <>
+            <div className={styles.hr} style={{ backgroundColor: colors[5] }} />
+            <DraftText
+              style={{ marginBottom: 'calc(60px - 5vh)', padding: '0px' }}
+              value={shopperLoginMessage}
+            />
+          </>
+        )}
       </div>
     );
   }
