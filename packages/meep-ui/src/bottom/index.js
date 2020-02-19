@@ -4,7 +4,7 @@ import { isHexColor } from 'validator';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Menu from 'menu';
-import { ID_TYPE, URL_TYPE, COLOR_TYPE } from 'constants/propTypes';
+import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
 
 import styles from './styles/index.less';
 
@@ -14,9 +14,6 @@ export default class Bottom extends React.PureComponent {
 
   static propTypes = {
     /** context */
-    storeSetting: PropTypes.shape({
-      logoUrl: URL_TYPE,
-    }).isRequired,
     colors: COLOR_TYPE.isRequired,
 
     /** props */
@@ -67,7 +64,6 @@ export default class Bottom extends React.PureComponent {
   render() {
     const {
       /** context */
-      storeSetting: { logoUrl },
       colors,
 
       /** props */
@@ -100,7 +96,6 @@ export default class Bottom extends React.PureComponent {
           <Menu
             id={id}
             className={styles.menu}
-            logoUrl={logoUrl}
             pages={pages}
             design={{
               ...design,

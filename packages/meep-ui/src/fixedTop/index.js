@@ -4,18 +4,13 @@ import { Affix } from 'antd';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Menu from 'menu';
-import { ID_TYPE, URL_TYPE } from 'constants/propTypes';
+import { ID_TYPE } from 'constants/propTypes';
 
 import styles from './styles/index.less';
 
 @enhancer
 export default class FixedTop extends React.PureComponent {
   static propTypes = {
-    /** context */
-    storeSetting: PropTypes.shape({
-      logoUrl: URL_TYPE,
-    }).isRequired,
-
     /** props */
     id: ID_TYPE.isRequired,
     menu: PropTypes.shape({
@@ -31,9 +26,6 @@ export default class FixedTop extends React.PureComponent {
 
   render() {
     const {
-      /** context */
-      storeSetting: { logoUrl },
-
       /** props */
       id,
       menu: { iconSize, pages, design },
@@ -42,13 +34,7 @@ export default class FixedTop extends React.PureComponent {
     return (
       <Affix offsetTop={0}>
         <header className={styles.root}>
-          <Menu
-            id={id}
-            logoUrl={logoUrl}
-            pages={pages}
-            design={design}
-            iconSize={iconSize}
-          />
+          <Menu id={id} pages={pages} design={design} iconSize={iconSize} />
         </header>
       </Affix>
     );

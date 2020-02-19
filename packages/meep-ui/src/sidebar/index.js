@@ -8,7 +8,6 @@ import Menu from 'menu';
 import {
   ISLOGIN_TYPE,
   ID_TYPE,
-  URL_TYPE,
   POSITIVE_NUMBER_TYPE,
 } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
@@ -20,9 +19,6 @@ export default class Sidebar extends React.PureComponent {
   static propTypes = {
     /** context */
     isLogin: ISLOGIN_TYPE.isRequired,
-    storeSetting: PropTypes.shape({
-      logoUrl: URL_TYPE,
-    }).isRequired,
 
     /** props */
     id: ID_TYPE.isRequired,
@@ -59,7 +55,6 @@ export default class Sidebar extends React.PureComponent {
     const {
       /** context */
       isLogin,
-      storeSetting: { logoUrl },
 
       /** props */
       id,
@@ -84,7 +79,6 @@ export default class Sidebar extends React.PureComponent {
             className={`${styles.menu} ${
               expandSubItem ? '' : `${styles.showArrow} show-hover`
             } show-border`}
-            logoUrl={logoUrl}
             pages={this.getPages(pages, isLogin)}
             design={{
               ...design,

@@ -2,18 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import { ID_TYPE, URL_TYPE } from 'constants/propTypes';
+import { ID_TYPE } from 'constants/propTypes';
 
 import styles from '../styles/handleModuleData.less';
 
 export default Component => {
   class MenuWrapper extends React.PureComponent {
     static propTypes = {
-      /** context */
-      storeSetting: PropTypes.shape({
-        logoUrl: URL_TYPE,
-      }).isRequired,
-
       /** props */
       id: ID_TYPE.isRequired,
       menu: PropTypes.shape({
@@ -29,9 +24,6 @@ export default Component => {
 
     render() {
       const {
-        /** context */
-        storeSetting: { logoUrl },
-
         /** props */
         id,
         menu: {
@@ -45,7 +37,6 @@ export default Component => {
         <Component
           id={id}
           className={expandSubItem ? '' : styles.root}
-          logoUrl={logoUrl}
           pages={pages}
           iconSize={iconSize}
           design={{

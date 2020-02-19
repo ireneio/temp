@@ -98,7 +98,7 @@ export default class MobileLayout extends React.PureComponent {
 
             <div className={styles.logo}>
               {!mobileLogoUrl ? null : (
-                <Link className={styles.link} href="/" target="_self">
+                <Link href="/" target="_self">
                   <img
                     className={styles.image}
                     src={`${mobileLogoUrl}?h=180`}
@@ -112,7 +112,6 @@ export default class MobileLayout extends React.PureComponent {
             <Menu
               id="mobile-headerMenu"
               className={styles.headerMenu}
-              logoUrl={mobileLogoUrl}
               pages={headerPages}
               design={{
                 ...design,
@@ -150,7 +149,6 @@ export default class MobileLayout extends React.PureComponent {
           <Menu
             id="mobile-member"
             className={styles.menu}
-            logoUrl={mobileLogoUrl}
             pages={memberPages}
             design={{
               ...design,
@@ -195,7 +193,6 @@ export default class MobileLayout extends React.PureComponent {
               className={`${styles.menu} show-border ${
                 expandSubItem ? '' : styles.showIcon
               }`}
-              logoUrl={mobileLogoUrl}
               pages={pages}
               design={{
                 ...design,
