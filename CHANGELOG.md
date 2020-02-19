@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.36.3 (2020-02-19)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#853](https://github.com/meepshop/meep-lerna/pull/853) D&D 頁面編輯 - 選單 - Logo 預設佔位圖 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.36.2 (2020-02-18)
 
 #### :rocket: New Feature
