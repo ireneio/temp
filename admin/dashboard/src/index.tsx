@@ -1,5 +1,5 @@
 // import
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
@@ -25,6 +25,11 @@ import { tutorialSettingObjectTypeFragment } from './tutorial';
 
 // definition
 const Dashboard = (): React.ReactElement => {
+  useEffect(() => {
+    if (window.fbq) window.fbq('track', 'PageView');
+    if (window.gtag) window.gtag('config', 'AW-986719315');
+  });
+
   const getTimezoneResult = useQuery<getTimezone>(
     gql`
       query getTimezone {
