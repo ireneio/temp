@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.36.4 (2020-02-20)
+
+#### :rocket: New Feature
+
+- [#858](https://github.com/meepshop/meep-lerna/pull/858) 【功能】 Admin - FB/GA 全域代碼埋放 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.36.3 (2020-02-19)
 
 #### :rocket: New Feature
