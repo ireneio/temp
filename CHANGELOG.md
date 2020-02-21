@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.36.5 (2020-02-21)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#862](https://github.com/meepshop/meep-lerna/pull/862) D&D 元件 - 圖片/輪播/圖片文字 - 優化預設顯示 - 補手機版文字 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.36.4 (2020-02-20)
 
 #### :rocket: New Feature
