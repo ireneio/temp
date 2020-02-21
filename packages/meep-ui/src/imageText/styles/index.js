@@ -92,17 +92,14 @@ export const headerStyle = (fontSize, bold) => ({
   fontSize: `${fontSize}px`,
   fontWeight: bold ? '600' : 'normal',
   [PHONE_MEDIA]: {
-    fontSize: `${fontSize * 0.6}px`,
-    lineHeight: `${fontSize * 0.6 * 1.4}px`,
+    fontSize: `${fontSize * 0.6 >= 12 ? fontSize * 0.6 : 12}px`,
   },
 });
 
 export const descriptionStyle = fontSize => ({
   fontSize: `${fontSize}px`,
   [PHONE_MEDIA]: {
-    fontSize: `${fontSize * 0.6}px`,
-    lineHeight: `${fontSize * 0.6 * 1.375}px`,
-    marginBottom: `${fontSize * 0.6 * 1.3}px`,
+    fontSize: `${fontSize * 0.6 >= 12 ? fontSize * 0.6 : 12}px`,
   },
 });
 
@@ -114,6 +111,6 @@ export const buttonStyle = (fontSize, color, overlayBackgroundColor) => ({
     color: overlayBackgroundColor,
   },
   [PHONE_MEDIA]: {
-    fontSize: `${fontSize * 0.7}px`,
+    fontSize: `${fontSize * 0.6 >= 12 ? fontSize * 0.6 : 12}px`,
   },
 });
