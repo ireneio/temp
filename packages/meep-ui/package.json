@@ -4,7 +4,7 @@
   "description": "meep-ui for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.36.3",
+  "version": "0.36.5",
   "dependencies": {
     "@store/ad-track": "^0.36.0",
     "@store/gmo-credit-card-form": "^0.36.0",
