@@ -4,6 +4,7 @@ import 'isomorphic-unfetch';
 import '@store/utils/lib/styles/base.less';
 import React from 'react';
 import App from 'next/app';
+import Head from 'next/head';
 import getConfig from 'next/config';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
@@ -222,21 +223,30 @@ class MyApp extends App {
     if (storeNotFound) return <StoreNotExistsView />;
 
     return (
-      <ApolloProvider client={apolloClient}>
-        <CurrencyProvider cookieCurrency={cookieCurrency}>
-          <AdTrackProvider>
-            <Provider store={store}>
-              <Component
-                {...pageProps}
-                url={{
-                  asPath: router.asPath,
-                  query: router.query,
-                }}
-              />
-            </Provider>
-          </AdTrackProvider>
-        </CurrencyProvider>
-      </ApolloProvider>
+      <>
+        <Head>
+          <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1"
+          />
+        </Head>
+        <ApolloProvider client={apolloClient}>
+          <CurrencyProvider cookieCurrency={cookieCurrency}>
+            <AdTrackProvider>
+              <Provider store={store}>
+                <Component
+                  {...pageProps}
+                  url={{
+                    asPath: router.asPath,
+                    query: router.query,
+                  }}
+                />
+              </Provider>
+            </AdTrackProvider>
+          </CurrencyProvider>
+        </ApolloProvider>
+      </>
     );
   }
 }

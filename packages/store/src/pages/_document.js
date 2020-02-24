@@ -24,11 +24,7 @@ export default class MyDocument extends Document {
     return (
       /* eslint-disable */
       <Html lang={lang}>
-        <Head>
-          <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </Head>
+        <Head />
 
         <body id="meepshop">
           <Main />
