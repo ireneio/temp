@@ -3,16 +3,18 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
-import { useRouter } from 'next/router';
 import { Spin, Icon, Progress, Button } from 'antd';
 
 import { useTranslation } from '@store/utils/lib/i18n';
-import getLinkProps from '@store/utils/lib/getLinkProps';
+import Link, { useRouter } from '@store/link';
 
 import Info from './info';
 import useClipboard from './hooks/useClipboard';
 import useAdTrack from './hooks/useAdTrack';
 import styles from './styles/index.less';
+
+// graphql typescript
+import { getOrderInThankYouPage } from './__generated__/getOrderInThankYouPage';
 
 // graphql import
 import { infoFragment } from './info';
@@ -38,10 +40,10 @@ const query = gql`
 export default React.memo(() => {
   const { t } = useTranslation('thank-you-page');
   const router = useRouter();
-  const { loading, data } = useQuery(query, {
+  const { loading, data } = useQuery<getOrderInThankYouPage>(query, {
     variables: { orderId: router.query.orderId },
   });
-  const order = data?.viewer.order;
+  const order = data?.viewer?.order;
 
   useClipboard(t, loading, order?.id);
   useAdTrack(!order ? order : filter(useAdTrackFragment, order));
@@ -63,31 +65,18 @@ export default React.memo(() => {
         <Info order={!order ? order : filter(infoFragment, order)} />
 
         <div className={styles.buttonRoot}>
-          <Button
-            onClick={() => {
-              const linkProps = getLinkProps(!order ? '/orders' : '/');
+          <Link href={!order ? '/orders' : '/'}>
+            <Button>{!order ? t('order') : t('return')}</Button>
+          </Link>
 
-              router.push(linkProps.href, linkProps.as);
-            }}
-          >
-            {!order ? t('order') : t('return')}
-          </Button>
-
-          <Button
-            {...(!order
-              ? {
-                  role: 'copy',
-                }
-              : {
-                  onClick: () => {
-                    const linkProps = getLinkProps(`/order/${order.id}`);
-
-                    router.push(linkProps.href, linkProps.as);
-                  },
-                })}
-          >
-            {!order ? t('copy') : t('order')}
-          </Button>
+          {!order ? (
+            // eslint-disable-next-line jsx-a11y/aria-role
+            <Button role="copy">{t('copy')}</Button>
+          ) : (
+            <Link href={`/order/${order.id}`}>
+              <Button>{t('order')}</Button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

@@ -90,13 +90,12 @@ export default (
     false,
   );
 
-  if (!hrefPath)
-    return {
-      href,
-    };
-
-  return {
-    href: hrefPath,
-    as: href,
-  };
+  return !hrefPath
+    ? {
+        href,
+      }
+    : {
+        href: hrefPath,
+        as: href,
+      };
 };

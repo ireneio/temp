@@ -8,11 +8,10 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from '@apollo/react-components';
 import { message } from 'antd';
-import Link from 'next/link';
 import { areEqual } from 'fbjs';
 
 import { withTranslation } from '@store/utils/lib/i18n';
-import getLinkProps from '@store/utils/lib/getLinkProps';
+import Link from '@store/link';
 
 import styles from './styles/actions.less';
 
@@ -198,7 +197,7 @@ class Actions extends React.PureComponent<PropsType, StateType> {
         (shipmentInfo || { status: -1 }).status !== 3 ? null : (
           <>
             {!isOrderApplied ? null : (
-              <Link {...getLinkProps(`/orderApplyList/${id}`)}>
+              <Link href={`/orderApplyList/${id}`}>
                 <a href={`/orderApplyList/${id}`}>{t('order.apply-list')}</a>
               </Link>
             )}
@@ -206,13 +205,13 @@ class Actions extends React.PureComponent<PropsType, StateType> {
             {!isAvailableForOrderApply ? null : (
               <>
                 {!isReturnOrderInstalled ? null : (
-                  <Link {...getLinkProps(`/orderRefund/${id}`)}>
+                  <Link href={`/orderRefund/${id}`}>
                     <a href={`/orderRefund/${id}`}>{t('order.return')}</a>
                   </Link>
                 )}
 
                 {!isReplacementInstalled ? null : (
-                  <Link {...getLinkProps(`/orderExchange/${id}`)}>
+                  <Link href={`/orderExchange/${id}`}>
                     <a href={`/orderExchange/${id}`}>{t('order.replace')}</a>
                   </Link>
                 )}
@@ -224,12 +223,12 @@ class Actions extends React.PureComponent<PropsType, StateType> {
         {isSkipOtherAction ||
         (paymentInfo || { status: -1 }).status === 2 ||
         template !== 'custom' ? null : (
-          <Link {...getLinkProps(`/payNotify/${id}`)}>
+          <Link href={`/payNotify/${id}`}>
             <a href={`/payNotify/${id}`}>{t('order.pay-notify')}</a>
           </Link>
         )}
 
-        <Link {...getLinkProps(`/order/${id}#qa`)}>
+        <Link href={`/order/${id}#qa`}>
           <a href={`/order/${id}#qa`}>{t('order.qa')}</a>
         </Link>
       </div>

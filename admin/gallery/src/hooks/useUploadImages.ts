@@ -49,7 +49,7 @@ const query = gql`
 export default (
   variables: getImagesVariables,
 ): MutationTuple<uploadImagesType, uploadImagesVariables>[0] => {
-  const [uploadImages] = useMutation(
+  const [uploadImages] = useMutation<uploadImagesType, uploadImagesVariables>(
     gql`
       mutation uploadImages($createFileList: [NewFile]) {
         createFileList(createFileList: $createFileList) {

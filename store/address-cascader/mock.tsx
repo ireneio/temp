@@ -20,20 +20,6 @@ export default React.memo(() => {
 
   return (
     <>
-      <AddressCascader i18n={i18n} placeholder={['', '']} />
-
-      <AddressCascader
-        i18n={i18n}
-        lockedCountry={['a1e4aa6c-5a52-408a-9ede-471b10b1e265']}
-        placeholder={['', '']}
-      />
-
-      <AddressCascader
-        i18n={i18n}
-        lockedCountry={['6cd709bd-3d05-47a4-b86d-b54e64af0538']}
-        placeholder={['', '']}
-      />
-
       <AddressCascader
         i18n={i18n}
         value={emptyValue}
@@ -45,6 +31,22 @@ export default React.memo(() => {
         i18n={i18n}
         value={value}
         onChange={newValue => onChange(newValue)}
+        placeholder={['', '']}
+      />
+
+      <AddressCascader
+        i18n={i18n}
+        value={emptyValue}
+        onChange={newValue => onChangeEmptyValue(newValue)}
+        lockedCountry={['a1e4aa6c-5a52-408a-9ede-471b10b1e265']}
+        placeholder={['', '']}
+      />
+
+      <AddressCascader
+        i18n={i18n}
+        value={value}
+        onChange={newValue => onChange(newValue)}
+        lockedCountry={['6cd709bd-3d05-47a4-b86d-b54e64af0538']}
         placeholder={['', '']}
       />
     </>

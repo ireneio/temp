@@ -10,7 +10,7 @@ import Clipboard from 'clipboard';
 export default (
   t: I18nPropsType['t'],
   loading: boolean,
-  orderId: string | null,
+  orderId: string | null | undefined,
 ): void => {
   useEffect(() => {
     if (!loading && !orderId)

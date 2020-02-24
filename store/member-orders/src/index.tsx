@@ -10,7 +10,6 @@ import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Table } from 'antd';
-import Link from 'next/link';
 import { areEqual, emptyFunction } from 'fbjs';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
@@ -18,7 +17,7 @@ import transformColor from 'color';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 import withSetCurrent from '@store/utils/lib/withSetCurrent';
-import getLinkProps from '@store/utils/lib/getLinkProps';
+import Link from '@store/link';
 
 import MobileColumn, { getMobileStyles } from './MobileColumn';
 import Actions from './Actions';
@@ -104,7 +103,7 @@ class MemberOrders extends React.PureComponent<PropsType> {
           value: getOrdersViewerOrdersEdgesNode['orderNo'],
           { node: { id } }: getOrdersViewerOrdersEdges,
         ) => (
-          <Link {...getLinkProps(`/order/${id}`)}>
+          <Link href={`/order/${id}`}>
             <a href={`/order/${id}`}>{value}</a>
           </Link>
         ),

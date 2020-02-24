@@ -1,6 +1,5 @@
 // import
 import React, { useEffect } from 'react';
-import Link from 'next/link';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { useQuery } from '@apollo/react-hooks';
@@ -9,6 +8,7 @@ import moment from 'moment';
 
 import { useTranslation } from '@admin/utils/lib/i18n';
 import formatAmount from '@admin/utils/lib/formatAmount';
+import Link from '@admin/link';
 
 import Tutorial from './tutorial';
 import styles from './styles/index.less';

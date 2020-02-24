@@ -1,7 +1,0 @@
-extend type RecipientObjectType {
-  postalCode: String
-  country: String
-  city: String
-  county: String
-  street: String
-}

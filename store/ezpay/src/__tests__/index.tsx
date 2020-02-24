@@ -1,6 +1,5 @@
 // import
 import React from 'react';
-import Router from 'next/router';
 import { ReactWrapper } from 'enzyme';
 
 import runTest from '@meepshop/mock-types/src/runTest';
@@ -22,24 +21,5 @@ runTest(
 
       expect(window.print).toHaveBeenCalledTimes(1);
     });
-
-    test.each`
-      search                                           | expected
-      ${undefined}                                     | ${[`/thankYouPage?orderId=${props.orderId}`, `/checkout/thank-you-page/${props.orderId}`]}
-      ${'?redirectUrl=/redirectUrl'}                   | ${['/redirectUrl', undefined]}
-      ${'?redirectUrl=/redirectUrl&redirectUrl=/test'} | ${['/redirectUrl', undefined]}
-    `(
-      'go back button click with querystring = `$search`',
-      ({ search, expected }) => {
-        Router.push = jest.fn();
-        window.history.pushState({}, 'Test Title', `/checkout/ezpay${search}`);
-
-        // window.location.search = search;
-        wrapper.find(`.${styles.backBtn}`).simulate('click');
-
-        expect(Router.push).toHaveBeenCalledTimes(1);
-        expect(Router.push).toHaveBeenCalledWith(...expected);
-      },
-    );
   },
 );

@@ -21,8 +21,9 @@ import { useLoadMoreImagesFragment } from './hooks/useLoadMoreImages';
 // typescript definition
 interface PropsType {
   buttons?: React.ReactNode;
-  onSubmit?: (ids: string[]) => void;
-  submitText?: string;
+  value?: string | string[];
+  onChange?: (ids: string | string[]) => void;
+  buttonText?: string;
   multiple?: boolean;
 }
 
@@ -62,7 +63,7 @@ const query = gql`
 `;
 
 export default React.memo(
-  ({ buttons, onSubmit, submitText, multiple }: PropsType) => {
+  ({ buttons, value, onChange, buttonText, multiple }: PropsType) => {
     const { t } = useTranslation('gallery');
     const { error, data, variables, refetch, fetchMore } = useQuery<
       getImages,
@@ -83,7 +84,9 @@ export default React.memo(
         first: 100,
       },
     });
-    const [selectedIds, setSelectedIds] = useState<string[]>([]);
+    const [selectedIds, setSelectedIds] = useState<string[]>(
+      value instanceof Array ? value : ([value].filter(Boolean) as string[]),
+    );
     const imageUploadRef = useRef<HTMLInputElement>(null);
     const loadMoreImages = useLoadMoreImages(
       fetchMore,
@@ -144,8 +147,13 @@ export default React.memo(
               </Button>
 
               {selectedIds.length === 0 ? null : (
-                <Button onClick={() => onSubmit?.(selectedIds)} type="primary">
-                  {submitText || t('save')}
+                <Button
+                  onClick={() =>
+                    onChange?.(multiple ? selectedIds : selectedIds[0])
+                  }
+                  type="primary"
+                >
+                  {buttonText || t('save')}
                 </Button>
               )}
             </div>

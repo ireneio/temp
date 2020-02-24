@@ -39,6 +39,8 @@ import paymentInfoType from './schemas/paymentInfoType';
 import paymentObjectType from './schemas/paymentObjectType';
 import productsObjectType from './schemas/productsObjectType';
 import priceObjectType from './schemas/priceObjectType';
+import Page from './schemas/Page';
+import PageConnection from './schemas/PageConnection';
 import PaymentAccountForEzpay from './schemas/PaymentAccountForEzpay';
 import PaymentAccountForCathay from './schemas/PaymentAccountForCathay';
 import PaymentForAllpay from './schemas/PaymentForAllpay';
@@ -99,6 +101,8 @@ addMockFunctionsToSchema({
     paymentObjectType,
     productsObjectType,
     priceObjectType,
+    Page,
+    PageConnection,
     PaymentAccountForEzpay,
     PaymentAccountForCathay,
     PaymentForAllpay,

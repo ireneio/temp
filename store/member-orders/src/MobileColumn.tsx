@@ -5,10 +5,9 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 import React, { useState } from 'react';
 import moment from 'moment';
 import { Icon, Drawer } from 'antd';
-import Link from 'next/link';
 
 import { withTranslation } from '@store/utils/lib/i18n';
-import getLinkProps from '@store/utils/lib/getLinkProps';
+import Link from '@store/link';
 
 import styles from './styles/mobileColumn.less';
 
@@ -93,7 +92,7 @@ const MobileColumn = React.memo(
             {t('order.no')}：{orderNo}
           </h5>
 
-          <Link {...getLinkProps(`/order/${id}`)}>
+          <Link href={`/order/${id}`}>
             <a href={`/order/${id}`}>{t('order.detail')}</a>
           </Link>
 

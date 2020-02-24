@@ -1,11 +1,11 @@
 // import
 import React, { useState, useLayoutEffect } from 'react';
-import Link from 'next/link';
 import { Icon, Tabs, List } from 'antd';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import { useTranslation } from '@admin/utils/lib/i18n';
+import Link from '@admin/link';
 
 import styles from './styles/tutorial.less';
 import { TUTORIAL } from './constants';

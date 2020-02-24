@@ -1,0 +1,2 @@
+// definition
+export default { href: '/' };

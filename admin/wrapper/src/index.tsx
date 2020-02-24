@@ -6,7 +6,6 @@ import { MenuItemType } from './constants';
 // import
 import React from 'react';
 import { withRouter } from 'next/router';
-import Link from 'next/link';
 import gql from 'graphql-tag';
 import { Query } from '@apollo/react-components';
 import { Layout, Menu, Spin, Icon, Popover, Tooltip } from 'antd';
@@ -14,6 +13,7 @@ import memoizeOne from 'memoize-one';
 import { areEqual } from 'fbjs';
 
 import { withTranslation } from '@admin/utils/lib/i18n';
+import Link from '@admin/link';
 
 import generateMenu from './utils/generateMenu';
 import generateController from './utils/generateController';

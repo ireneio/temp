@@ -10,13 +10,13 @@ import { getEcfitListQueryPropsType } from './constants';
 import React from 'react';
 import gql from 'graphql-tag';
 import { Table, Icon, Select, Spin, Empty } from 'antd';
-import Link from 'next/link';
 import { emptyFunction, areEqual } from 'fbjs';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
 
 import { withTranslation } from '@admin/utils/lib/i18n';
 import withSetCurrent from '@admin/utils/lib/withSetCurrent';
+import Link from '@admin/link';
 
 import { STATUS_LIST } from './constants';
 import styles from './styles/orders.less';

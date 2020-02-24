@@ -7,7 +7,6 @@ import { I18nPropsType } from '@admin/utils/lib/i18n';
 
 // import
 import React from 'react';
-import Link from 'next/link';
 import gql from 'graphql-tag';
 import { Query, Mutation } from '@apollo/react-components';
 import {
@@ -23,6 +22,7 @@ import {
 } from 'antd';
 
 import { withTranslation } from '@admin/utils/lib/i18n';
+import Link from '@admin/link';
 
 import styles from './styles/index.less';
 

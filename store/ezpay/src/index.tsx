@@ -3,11 +3,9 @@ import React from 'react';
 import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
-import Router from 'next/router';
-import queryString from 'query-string';
 import moment from 'moment';
 
-import getLinkProps from '@store/utils/lib/getLinkProps';
+import Link, { useRouter } from '@store/link';
 
 import styles from './styles/index.less';
 
@@ -37,12 +35,14 @@ const Ezpay = React.memo<{
   }) => {
     const memoEzpay = paymentInfo?.list?.[0]?.memo?.[0]?.ezpay;
     const accountInfoEzpay = paymentInfo?.list?.[0]?.accountInfo?.ezpay;
+    const router = useRouter();
 
     if (!memoEzpay || !accountInfoEzpay)
       return <Spin indicator={<Icon type="loading" spin />} />;
 
     const { paycode, storeName, orderNumber, amount, expireDate } = memoEzpay;
     const { merchantNumber } = accountInfoEzpay;
+    const { redirectUrl } = router.query;
 
     return (
       <div className={styles.wrapper}>
@@ -138,24 +138,16 @@ const Ezpay = React.memo<{
               列印此頁
             </button>
 
-            <button
-              type="button"
-              className={styles.backBtn}
-              onClick={() => {
-                const { redirectUrl } = queryString.parse(
-                  window.location.search,
-                );
-                const { href, as: asHref } = getLinkProps(
-                  (redirectUrl instanceof Array
-                    ? redirectUrl[0]
-                    : redirectUrl) || `/checkout/thank-you-page/${id}`,
-                );
-
-                Router.push(href, asHref);
-              }}
+            <Link
+              href={
+                (redirectUrl instanceof Array ? redirectUrl[0] : redirectUrl) ||
+                `/checkout/thank-you-page/${id}`
+              }
             >
-              回商家網站
-            </button>
+              <button type="button" className={styles.backBtn}>
+                回商家網站
+              </button>
+            </Link>
           </div>
         </div>
 

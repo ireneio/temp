@@ -16,7 +16,7 @@ import { cathayAtmFragment } from './CathayAtm';
 
 // typescript definition
 interface PropsType {
-  order: infoFragmentType;
+  order: infoFragmentType | null | undefined;
 }
 
 // definition

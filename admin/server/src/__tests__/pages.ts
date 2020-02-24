@@ -9,7 +9,7 @@ describe('check pages has namespacesRequired', () => {
     path.resolve(__dirname, '../pages'),
     {
       extensions: /\.tsx?$/,
-      exclude: [/_app.tsx/, /_document.tsx/],
+      exclude: [/_app.tsx/, /_document.tsx/, /api/],
     },
     ({ path: filePath, name }) => {
       test(name, async () => {
