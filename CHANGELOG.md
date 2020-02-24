@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.36.6 (2020-02-24)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#868](https://github.com/meepshop/meep-lerna/pull/868) 【BUG】 手機版 - 於購物車內更改商品數量，購物車會放大且無法移動 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `mock-types`
+  - [#863](https://github.com/meepshop/meep-lerna/pull/863) (@meepshop/frontend) Modify detail ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.36.5 (2020-02-21)
 
 #### :rocket: New Feature
