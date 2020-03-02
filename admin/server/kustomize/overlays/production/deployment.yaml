@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: next-admin
+  labels:
+    app: next-admin
+spec:
+  replicas: 3
+  revisionHistoryLimit: 3
+  template:
+    spec:
+      containers:
+        - name: next-admin
+          resources:
+            limits:
+              cpu: 200m
+              memory: 600Mi
+            requests:
+              cpu: 100m
+              memory: 300Mi

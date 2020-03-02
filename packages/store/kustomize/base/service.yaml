@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: next-admin
-  name: next-admin
+    app: next-store
+  name: next-store
 spec:
   type: LoadBalancer
   ports:
-    - port: 14405
+    - port: 14401
       name: http-port
-      targetPort: 14405
+      targetPort: 14401
   selector:
-    app: next-admin
+    app: next-store

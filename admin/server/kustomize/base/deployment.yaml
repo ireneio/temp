@@ -23,7 +23,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: next-admin
-        image: asia.gcr.io/instant-matter-785/next-admin:{{ build.tag }}
+        image: asia.gcr.io/instant-matter-785/next-admin:tag
         livenessProbe:
           httpGet:
             path: /healthz
@@ -36,13 +36,6 @@ spec:
             port: 14405
           initialDelaySeconds: 15
           periodSeconds: 3
-        resources:
-          limits:
-            cpu: "0.4"
-            memory: "1200Mi"
-          requests:
-            cpu: "0.2"
-            memory: "600Mi"
         ports:
         - containerPort: 14405
           name: http-port

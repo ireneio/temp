@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: next-store
+  labels:
+    app: next-store
+spec:
+  replicas: 3
+  revisionHistoryLimit: 3
+  template:
+    spec:
+      containers:
+        - name: next-store
+          resources:
+            limits:
+              cpu: 600m
+              memory: 1200Mi
+            requests:
+              cpu: 300m
+              memory: 600Mi

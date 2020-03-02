@@ -23,25 +23,24 @@ spec:
       restartPolicy: Always
       containers:
       - name: next-store
-        image: asia.gcr.io/instant-matter-785/next-store:{{ build.tag }}
+        image: asia.gcr.io/instant-matter-785/next-store:tag
         livenessProbe:
           httpGet:
             path: /healthz
             port: 14401
           initialDelaySeconds: 15
           periodSeconds: 3
-        resources:
-          limits:
-            cpu: "0.4"
-            memory: "1200Mi"
-          requests:
-            cpu: "0.2"
-            memory: "600Mi"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 14401
+          initialDelaySeconds: 15
+          periodSeconds: 3
         env:
         - name: EXTERNAL_API_HOST
           valueFrom:
             configMapKeyRef:
-              name: cm-next-store
+              name: next-store
               key: external.api.host
         ports:
         - containerPort: 14401
