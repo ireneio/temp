@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.36.7 (2020-03-02)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#847](https://github.com/meepshop/meep-lerna/pull/847) (@meepshop/front-end): add kustomize ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- `store`
+  - [#847](https://github.com/meepshop/meep-lerna/pull/847) (@meepshop/front-end): add kustomize ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `store`
+  - [#847](https://github.com/meepshop/meep-lerna/pull/847) (@meepshop/front-end): add kustomize ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.36.6 (2020-02-24)
 
 #### :bug: Bug Fix
