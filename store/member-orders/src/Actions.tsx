@@ -193,15 +193,15 @@ class Actions extends React.PureComponent<PropsType, StateType> {
           </Mutation>
         )}
 
+        {!isOrderApplied ? null : (
+          <Link href={`/orderApplyList/${id}`}>
+            <a href={`/orderApplyList/${id}`}>{t('order.apply-list')}</a>
+          </Link>
+        )}
+
         {isSkipOtherAction ||
         (shipmentInfo || { status: -1 }).status !== 3 ? null : (
           <>
-            {!isOrderApplied ? null : (
-              <Link href={`/orderApplyList/${id}`}>
-                <a href={`/orderApplyList/${id}`}>{t('order.apply-list')}</a>
-              </Link>
-            )}
-
             {!isAvailableForOrderApply ? null : (
               <>
                 {!isReturnOrderInstalled ? null : (
