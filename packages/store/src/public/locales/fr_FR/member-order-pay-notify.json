@@ -1,7 +1,10 @@
 {
-  "orderNo": "Numéro de commande:",
-  "editAgain": "modifier",
+  "order-no": "Numéro de commande:",
+  "please-enter-paid-message": null,
+  "edit-again": "modifier",
   "send": "Envoyer",
-  "pleaseEditPayNotification": "Veuillez saisir les informations de paiement.",
-  "sendSuccess": "Votre message a été envoyé."
+  "pay-message-is-not-updated": null,
+  "please-edit-paid-message": null,
+  "confirm": null,
+  "send-success": "Votre message a été envoyé."
 }

@@ -1,7 +1,10 @@
 {
-  "orderNo": "訂單編號：",
-  "editAgain": "再次編輯",
+  "order-no": "訂單編號：",
+  "please-enter-paid-message": "請輸入匯款通知內容",
+  "edit-again": "再次編輯",
   "send": "發送",
-  "pleaseEditPayNotification": "請編輯匯款通知",
-  "sendSuccess": "發送成功"
+  "pay-message-is-not-updated": "匯款通知內容未更新",
+  "please-edit-paid-message": "匯款通知內容與上一次發送時相同，請先更新匯款通知內容再重新發送。",
+  "confirm": "確定",
+  "send-success": "發送成功"
 }

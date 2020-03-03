@@ -1,7 +1,10 @@
 {
-  "orderNo": "หมายเลขสั่งซื้อ:",
-  "editAgain": "แก้ไข",
+  "order-no": "หมายเลขสั่งซื้อ:",
+  "please-enter-paid-message": null,
+  "edit-again": "แก้ไข",
   "send": "ส่ง",
-  "pleaseEditPayNotification": "กรุณากรอกข้อมูลการชำระเงิน",
-  "sendSuccess": "ข้อความของคุณถูกส่งแล้ว."
+  "pay-message-is-not-updated": null,
+  "please-edit-paid-message": null,
+  "confirm": null,
+  "send-success": "ข้อความของคุณถูกส่งแล้ว."
 }

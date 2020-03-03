@@ -1,7 +1,10 @@
 {
-  "orderNo": "注文番号：",
-  "editAgain": "再編集",
+  "order-no": "注文番号：",
+  "please-enter-paid-message": null,
+  "edit-again": "再編集",
   "send": "送信",
-  "pleaseEditPayNotification": "振込通知内容をご編集ください",
-  "sendSuccess": "送信に成功しました"
+  "pay-message-is-not-updated": null,
+  "please-edit-paid-message": null,
+  "confirm": null,
+  "send-success": "送信に成功しました"
 }

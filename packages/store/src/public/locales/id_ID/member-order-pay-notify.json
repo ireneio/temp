@@ -1,7 +1,10 @@
 {
-  "orderNo": "Jumlah order:",
-  "editAgain": "Edit",
+  "order-no": "Jumlah order:",
+  "please-enter-paid-message": null,
+  "edit-again": "Edit",
   "send": "Kirim",
-  "pleaseEditPayNotification": "Silakan masukkan info pembayaran.",
-  "sendSuccess": "Pesan Anda telah dikirim."
+  "pay-message-is-not-updated": null,
+  "please-edit-paid-message": null,
+  "confirm": null,
+  "send-success": "Pesan Anda telah dikirim."
 }
