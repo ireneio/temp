@@ -140,7 +140,7 @@ export default Form.create<PropsType>()(
                           },
                         });
                       else
-                        Modal.error({
+                        Modal.warning({
                           title: t('pay-message-is-not-updated'),
                           content: <>{t('please-edit-paid-message')}</>,
                           okText: t('confirm'),

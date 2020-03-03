@@ -3,8 +3,8 @@
   "please-enter-paid-message": "請輸入匯款通知內容",
   "edit-again": "再次編輯",
   "send": "發送",
-  "pay-message-is-not-updated": "匯款通知內容未更新",
-  "please-edit-paid-message": "匯款通知內容與上一次發送時相同，請先更新匯款通知內容再重新發送。",
+  "pay-message-is-not-updated": "匯款通知內容相同",
+  "please-edit-paid-message": "匯款通知內容未變更，請先編輯內容再重新發送。",
   "confirm": "確定",
   "send-success": "發送成功"
 }
