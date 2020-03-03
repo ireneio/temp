@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.36.8 (2020-03-03)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#866](https://github.com/meepshop/meep-lerna/pull/866) 【優化】前台 / 匯款通知 / 內容變更行為 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#828](https://github.com/meepshop/meep-lerna/pull/828) 【優化】退&換貨申請處理流程 ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`
+  - [#864](https://github.com/meepshop/meep-lerna/pull/864) 【BUG】手機版 - 購物車登入 - UI 問題 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.36.7 (2020-03-02)
 
 #### :boom: Breaking Change
