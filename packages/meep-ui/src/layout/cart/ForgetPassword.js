@@ -9,8 +9,7 @@ import { withTranslation } from '@store/utils/lib/i18n';
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
-import * as styles from './styles/forgetPassword';
-import * as loginStyles from './styles/login';
+import styles from './styles/forgetPassword.less';
 
 const { Item: FormItem } = Form;
 
@@ -54,11 +53,11 @@ export default class ForgetPassword extends React.PureComponent {
     } = this.props;
 
     return (
-      <div style={[loginStyles.root, styles.root]}>
-        <h3 style={loginStyles.header}>{t('forget-password')}</h3>
+      <div className={styles.root}>
+        <div>{t('forget-password')}</div>
 
         <Form onSubmit={this.submit}>
-          <FormItem style={loginStyles.formItem}>
+          <FormItem>
             {getFieldDecorator('email', {
               rules: [
                 {
@@ -77,7 +76,6 @@ export default class ForgetPassword extends React.PureComponent {
               normalize: value => value.replace(/\s/g, ''),
             })(
               <Input
-                style={loginStyles.input}
                 placeholder={t('email-placeholder')}
                 size="large"
                 onChange={({ target: { value } }) => {
@@ -91,11 +89,13 @@ export default class ForgetPassword extends React.PureComponent {
             )}
           </FormItem>
 
-          <div style={loginStyles.buttonRoot}>
-            <div />
-
+          <div className={styles.buttonRoot}>
             <Button
-              style={styles.button(colors)}
+              style={{
+                color: colors[2],
+                borderColor: colors[4],
+                backgroundColor: colors[4],
+              }}
               type="primary"
               htmlType="submit"
             >

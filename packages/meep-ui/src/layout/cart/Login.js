@@ -18,7 +18,7 @@ import DraftText from 'draftText';
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
-import * as styles from './styles/login';
+import styles from './styles/login.less';
 
 const { Item: FormItem } = Form;
 const { Password } = Input;
@@ -87,15 +87,13 @@ export default class Login extends React.PureComponent {
 
     return (
       <div
-        style={{
-          ...styles.root,
-          ...(shopperLoginMessageEnabled ? { flexGrow: 0 } : {}),
-        }}
+        className={styles.root}
+        style={shopperLoginMessageEnabled ? { flexGrow: 0 } : {}}
       >
-        <h3 style={styles.header}>{t('member-login')}</h3>
+        <div>{t('member-login')}</div>
 
         <Form onSubmit={this.submit}>
-          <FormItem style={styles.formItem}>
+          <FormItem>
             {getFieldDecorator('email', {
               rules: [
                 {
@@ -114,7 +112,6 @@ export default class Login extends React.PureComponent {
               normalize: value => value.replace(/\s/g, ''),
             })(
               <Input
-                style={styles.input}
                 placeholder={t('email-placeholder')}
                 onChange={({ target: { value } }) => {
                   setFields({
@@ -128,7 +125,7 @@ export default class Login extends React.PureComponent {
             )}
           </FormItem>
 
-          <FormItem style={styles.formItem}>
+          <FormItem>
             {getFieldDecorator('password', {
               rules: [
                 {
@@ -137,29 +134,18 @@ export default class Login extends React.PureComponent {
                 },
               ],
             })(
-              <Password
-                style={styles.input}
-                placeholder={t('password-placeholder')}
-                size="large"
-              />,
+              <Password placeholder={t('password-placeholder')} size="large" />,
             )}
           </FormItem>
 
-          <div style={styles.buttonRoot}>
-            <div
-              style={styles.forgetPassword}
-              onClick={() => goToInCart('forget password', 'login')}
-            >
+          <div className={styles.buttonRoot}>
+            <div onClick={() => goToInCart('forget password', 'login')}>
               <LockIcon />
-
               {t('forget-password')}
             </div>
 
             <Button
-              style={{
-                ...styles.button(colors),
-                ...styles.loginButton,
-              }}
+              style={{ color: colors[3], borderColor: colors[3] }}
               type="primary"
               htmlType="submit"
               ghost
@@ -169,15 +155,10 @@ export default class Login extends React.PureComponent {
           </div>
         </Form>
 
-        <div
-          style={{
-            ...styles.buttonRootExtend,
-            ...(shopperLoginMessageEnabled ? { marginTop: '56px' } : {}),
-          }}
-        >
-          <div style={styles.buttonWidth}>
+        <div className={styles.buttonRootExtend}>
+          <div>
             <Button
-              style={styles.button(colors)}
+              style={{ color: colors[3], borderColor: colors[3] }}
               type="primary"
               ghost
               onClick={() => {
@@ -185,34 +166,25 @@ export default class Login extends React.PureComponent {
                 goTo({ pathname: '/checkout' });
               }}
             >
-              <div style={styles.buttonWrapper}>
-                <ShoppingCartIcon style={styles.icon(colors)} />
-
-                <div style={styles.buttonText}>{t('first-time')}</div>
+              <div>
+                <ShoppingCartIcon
+                  style={{ color: colors[0], backgroundColor: colors[3] }}
+                />
+                <div>{t('first-time')}</div>
               </div>
             </Button>
           </div>
 
           {!hasStoreAppPlugin('fbLogin') ? null : (
-            <div style={styles.buttonWidth}>
+            <div>
               <Button
-                style={{
-                  ...styles.button(colors),
-                  ...styles.fbButton,
-                }}
-                type="primary"
+                className={styles.fbButton}
                 ghost
                 onClick={() => fbLogin({ from: 'cart' })}
               >
-                <div style={styles.buttonWrapper}>
-                  <FacebookIcon
-                    style={{
-                      ...styles.icon(colors),
-                      ...styles.fbIcon,
-                    }}
-                  />
-
-                  <div style={styles.buttonText}>{t('fb-login')}</div>
+                <div>
+                  <FacebookIcon className={styles.fbIcon} />
+                  <div>{t('fb-login')}</div>
                 </div>
               </Button>
             </div>
@@ -221,8 +193,11 @@ export default class Login extends React.PureComponent {
 
         {!shopperLoginMessageEnabled ? null : (
           <>
-            <div style={styles.hr(colors)} />
-            <DraftText style={styles.draftText} value={shopperLoginMessage} />
+            <div className={styles.hr} style={{ backgroundColor: colors[5] }} />
+            <DraftText
+              style={{ padding: '0px 0px 10px 0px' }}
+              value={shopperLoginMessage}
+            />
           </>
         )}
       </div>
