@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.36.9 (2020-03-03)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#872](https://github.com/meepshop/meep-lerna/pull/872) 【優化】前台 - 匯款通知 - 內容變更行為 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.36.8 (2020-03-03)
 
 #### :rocket: New Feature
