@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.36.10 (2020-03-04)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#856](https://github.com/meepshop/meep-lerna/pull/856) 新架構改用 Store.storePayments/storePayment, Store.storeShipments/storeShipment ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#869](https://github.com/meepshop/meep-lerna/pull/869) 【BUG】 手機 LOGO 跑版 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.36.9 (2020-03-03)
 
 #### :rocket: New Feature
