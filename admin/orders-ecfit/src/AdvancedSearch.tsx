@@ -18,8 +18,8 @@ import styles from './styles/advancedSearch.less';
 // graphql typescript
 import { localeFragmentType } from '@admin/utils/lib/fragments/locale';
 
-import { advancedSearchStorePaymentListFragment as advancedSearchStorePaymentListFragmentType } from './__generated__/advancedSearchStorePaymentListFragment';
-import { advancedSearchStoreShipmentListFragment as advancedSearchStoreShipmentListFragmentType } from './__generated__/advancedSearchStoreShipmentListFragment';
+import { advancedSearchStorePaymentFragment as advancedSearchStorePaymentFragmentType } from './__generated__/advancedSearchStorePaymentFragment';
+import { advancedSearchStoreShipmentFragment as advancedSearchStoreShipmentFragmentType } from './__generated__/advancedSearchStoreShipmentFragment';
 
 // graphql import
 import localeFragment from '@admin/utils/lib/fragments/locale';
@@ -29,8 +29,8 @@ interface PropsType
   extends I18nPropsType,
     Pick<getEcfitListQueryPropsType, 'variables' | 'refetch'> {
   rootRef: React.RefObject<HTMLDivElement>;
-  getStorePaymentList: advancedSearchStorePaymentListFragmentType;
-  getStoreShipmentList: advancedSearchStoreShipmentListFragmentType;
+  storePayments: advancedSearchStorePaymentFragmentType[];
+  storeShipments: advancedSearchStoreShipmentFragmentType[];
 }
 
 interface StateType {
@@ -41,26 +41,22 @@ interface StateType {
 // definition
 const { Option } = Select;
 
-export const advancedSearchStorePaymentListFragment = gql`
-  fragment advancedSearchStorePaymentListFragment on StorePaymentList {
-    data {
-      id
-      title {
-        ...localeFragment
-      }
+export const advancedSearchStorePaymentFragment = gql`
+  fragment advancedSearchStorePaymentFragment on StorePayment {
+    id
+    title {
+      ...localeFragment
     }
   }
 
   ${localeFragment}
 `;
 
-export const advancedSearchStoreShipmentListFragment = gql`
-  fragment advancedSearchStoreShipmentListFragment on StoreShipmentList {
-    data {
-      id
-      title {
-        ...localeFragment
-      }
+export const advancedSearchStoreShipmentFragment = gql`
+  fragment advancedSearchStoreShipmentFragment on StoreShipment {
+    id
+    title {
+      ...localeFragment
     }
   }
 
@@ -84,16 +80,16 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
       i18n,
 
       // props
-      getStorePaymentList,
-      getStoreShipmentList,
+      storePayments,
+      storeShipments,
     } = this.props;
 
     switch (optionsKey) {
       case 'paymentIdList':
       case 'shipmentIdList':
         return ({
-          paymentIdList: getStorePaymentList.data,
-          shipmentIdList: getStoreShipmentList.data,
+          paymentIdList: storePayments,
+          shipmentIdList: storeShipments,
         }[optionsKey] as {
           id: string;
           title: localeFragmentType;

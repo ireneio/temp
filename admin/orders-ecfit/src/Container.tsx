@@ -30,8 +30,8 @@ import {
   getEcfitList,
   getEcfitListVariables,
   getEcfitList_viewer_ecfitOrders as getEcfitListViewerEcfitOrders,
-  getEcfitList_getStorePaymentList as getEcfitListGetStorePaymentList,
-  getEcfitList_getStoreShipmentList as getEcfitListGetStoreShipmentList,
+  getEcfitList_viewer_store_storePayments as getEcfitListViewerStoreStorePayments,
+  getEcfitList_viewer_store_storeShipments as getEcfitListViewerStoreStoreShipments,
   getEcfitList_selectedOrders as getEcfitListSelectedOrders,
 } from './__generated__/getEcfitList';
 import {
@@ -45,14 +45,11 @@ import {
 
 // graphql import
 import {
-  advancedSearchStorePaymentListFragment,
-  advancedSearchStoreShipmentListFragment,
+  advancedSearchStorePaymentFragment,
+  advancedSearchStoreShipmentFragment,
 } from './AdvancedSearch';
 import { changeStatusOrderConnectionFragment } from './ChangeStatus';
-import {
-  tagsStorePaymentListFragment,
-  tagsStoreShipmentListFragment,
-} from './Tags';
+import { tagsStorePaymentFragment, tagsStoreShipmentFragment } from './Tags';
 import {
   ordersOrderConnectionFragment,
   ordersPageInfoFragment,
@@ -64,8 +61,8 @@ interface PropsType
     Pick<getEcfitListQueryPropsType, 'variables' | 'fetchMore' | 'refetch'> {
   rootRef: React.RefObject<HTMLDivElement>;
   ecfitOrders: getEcfitListViewerEcfitOrders;
-  getStorePaymentList: getEcfitListGetStorePaymentList;
-  getStoreShipmentList: getEcfitListGetStoreShipmentList;
+  storePayments: getEcfitListViewerStoreStorePayments[];
+  storeShipments: getEcfitListViewerStoreStoreShipments[];
   selectedOrders: getEcfitListSelectedOrders;
   sentFailedAmount: number;
   isEnabled: boolean;
@@ -288,8 +285,8 @@ class Container extends React.PureComponent<PropsType, StateType> {
       refetch,
       fetchMore,
       ecfitOrders,
-      getStorePaymentList,
-      getStoreShipmentList,
+      storePayments,
+      storeShipments,
       selectedOrders,
       sentFailedAmount,
     } = this.props;
@@ -355,13 +352,13 @@ class Container extends React.PureComponent<PropsType, StateType> {
                     rootRef={rootRef}
                     variables={variables}
                     refetch={refetch}
-                    getStorePaymentList={filter(
-                      advancedSearchStorePaymentListFragment,
-                      getStorePaymentList,
+                    storePayments={filter(
+                      advancedSearchStorePaymentFragment,
+                      storePayments,
                     )}
-                    getStoreShipmentList={filter(
-                      advancedSearchStoreShipmentListFragment,
-                      getStoreShipmentList,
+                    storeShipments={filter(
+                      advancedSearchStoreShipmentFragment,
+                      storeShipments,
                     )}
                   />
 
@@ -443,13 +440,10 @@ class Container extends React.PureComponent<PropsType, StateType> {
               <Tags
                 variables={variables}
                 refetch={refetch}
-                getStorePaymentList={filter(
-                  tagsStorePaymentListFragment,
-                  getStorePaymentList,
-                )}
-                getStoreShipmentList={filter(
-                  tagsStoreShipmentListFragment,
-                  getStoreShipmentList,
+                storePayments={filter(tagsStorePaymentFragment, storePayments)}
+                storeShipments={filter(
+                  tagsStoreShipmentFragment,
+                  storeShipments,
                 )}
               />
 
@@ -549,17 +543,15 @@ export default React.memo(
               storeEcfitSettings {
                 isEnabled
               }
+              storePayments {
+                ...advancedSearchStorePaymentFragment
+                ...tagsStorePaymentFragment
+              }
+              storeShipments {
+                ...advancedSearchStoreShipmentFragment
+                ...tagsStoreShipmentFragment
+              }
             }
-          }
-
-          getStorePaymentList {
-            ...advancedSearchStorePaymentListFragment
-            ...tagsStorePaymentListFragment
-          }
-
-          getStoreShipmentList {
-            ...advancedSearchStoreShipmentListFragment
-            ...tagsStoreShipmentListFragment
           }
 
           selectedOrders @client {
@@ -574,11 +566,11 @@ export default React.memo(
           }
         }
 
-        ${advancedSearchStorePaymentListFragment}
-        ${advancedSearchStoreShipmentListFragment}
+        ${advancedSearchStorePaymentFragment}
+        ${advancedSearchStoreShipmentFragment}
         ${changeStatusOrderConnectionFragment}
-        ${tagsStorePaymentListFragment}
-        ${tagsStoreShipmentListFragment}
+        ${tagsStorePaymentFragment}
+        ${tagsStoreShipmentFragment}
         ${ordersOrderConnectionFragment}
         ${ordersPageInfoFragment}
       `}
@@ -589,16 +581,14 @@ export default React.memo(
         if (error) return <Spin indicator={<Icon type="loading" spin />} />;
 
         const ecfitOrders = data?.viewer?.ecfitOrders;
-        const {
-          getStorePaymentList = null,
-          getStoreShipmentList = null,
-          selectedOrders = null,
-        } = data || {};
+        const storePayments = data?.viewer?.store?.storePayments;
+        const storeShipments = data?.viewer?.store?.storeShipments;
+        const selectedOrders = data?.selectedOrders;
 
         if (
           !ecfitOrders ||
-          !getStorePaymentList ||
-          !getStoreShipmentList ||
+          !storePayments ||
+          !storeShipments ||
           !selectedOrders
         )
           return <Spin indicator={<Icon type="loading" spin />} />;
@@ -614,8 +604,8 @@ export default React.memo(
               data?.viewer?.store?.storeEcfitSettings?.isEnabled ||
               false /** TODO: should not be null */
             }
-            getStorePaymentList={getStorePaymentList}
-            getStoreShipmentList={getStoreShipmentList}
+            storePayments={storePayments}
+            storeShipments={storeShipments}
             selectedOrders={selectedOrders}
             sentFailedAmount={data?.viewer?.sentFailedList?.total || 0}
           />

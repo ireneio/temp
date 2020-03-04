@@ -92,21 +92,16 @@ export default class ChooseShipmentStore extends React.PureComponent {
 
     if (!shipmentId) return;
 
-    // TODO: rewrite query
+    // TODO: should merge in computeOrder
     const result = await getData(`
       query getStoreShipmentListForChooseShipmentStore {
-        getStoreShipmentList(search: {
-          filter: {
-            and: {
-              type: "ids"
-              ids: ["${shipmentId}"]
-            }
-          }
-        }) {
-          data {
-            accountInfo {
-              allpay: allPay { # TODO rename
-                logisticsSubType
+        viewer {
+          store {
+            storeShipment(storeShipmentId: "${shipmentId}") {
+              accountInfo {
+                allpay: allPay { # TODO rename
+                  logisticsSubType
+                }
               }
             }
           }
@@ -115,13 +110,13 @@ export default class ChooseShipmentStore extends React.PureComponent {
     `);
 
     if (
-      !result?.data?.getStoreShipmentList?.data[0]?.accountInfo.allpay
+      !result?.data?.viewer?.store?.storeShipment?.accountInfo.allpay
         ?.logisticsSubType
     )
       return;
 
     this.setState({
-      ...result.data.getStoreShipmentList.data[0].accountInfo,
+      ...result.data.viewer.store.storeShipment.accountInfo,
     });
   };
 

@@ -17,33 +17,37 @@ import styles from './styles/tags.less';
 // graphql typescript
 import { localeFragmentType } from '@admin/utils/lib/fragments/locale';
 
-import { tagsStorePaymentListFragment as tagsStorePaymentListFragmentType } from './__generated__/tagsStorePaymentListFragment';
-import { tagsStoreShipmentListFragment as tagsStoreShipmentListFragmentType } from './__generated__/tagsStoreShipmentListFragment';
+import { tagsStorePaymentFragment as tagsStorePaymentFragmentType } from './__generated__/tagsStorePaymentFragment';
+import { tagsStoreShipmentFragment as tagsStoreShipmentFragmentType } from './__generated__/tagsStoreShipmentFragment';
 
 // graphql import
 import localeFragment from '@admin/utils/lib/fragments/locale';
 
+// typescript definition
+interface PropsType
+  extends I18nPropsType,
+    Pick<getEcfitListQueryPropsType, 'variables' | 'refetch'> {
+  storePayments: tagsStorePaymentFragmentType[];
+  storeShipments: tagsStoreShipmentFragmentType[];
+}
+
 // definition
-export const tagsStorePaymentListFragment = gql`
-  fragment tagsStorePaymentListFragment on StorePaymentList {
-    data {
-      id
-      title {
-        ...localeFragment
-      }
+export const tagsStorePaymentFragment = gql`
+  fragment tagsStorePaymentFragment on StorePayment {
+    id
+    title {
+      ...localeFragment
     }
   }
 
   ${localeFragment}
 `;
 
-export const tagsStoreShipmentListFragment = gql`
-  fragment tagsStoreShipmentListFragment on StoreShipmentList {
-    data {
-      id
-      title {
-        ...localeFragment
-      }
+export const tagsStoreShipmentFragment = gql`
+  fragment tagsStoreShipmentFragment on StoreShipment {
+    id
+    title {
+      ...localeFragment
     }
   }
 
@@ -56,13 +60,9 @@ const Tags = React.memo(
     i18n,
     variables,
     refetch,
-    getStorePaymentList,
-    getStoreShipmentList,
-  }: I18nPropsType &
-    Pick<getEcfitListQueryPropsType, 'variables' | 'refetch'> & {
-      getStorePaymentList: tagsStorePaymentListFragmentType;
-      getStoreShipmentList: tagsStoreShipmentListFragmentType;
-    }) => (
+    storePayments,
+    storeShipments,
+  }: PropsType) => (
     <div className={styles.root}>
       {TAGS_KEYS.map(key =>
         (variables?.filter?.[key] || []).map(
@@ -71,8 +71,8 @@ const Tags = React.memo(
               key !== 'paymentIdList' && key !== 'shipmentIdList'
                 ? null
                 : ({
-                    paymentIdList: getStorePaymentList.data,
-                    shipmentIdList: getStoreShipmentList.data,
+                    paymentIdList: storePayments,
+                    shipmentIdList: storeShipments,
                   }[key] as {
                     id: string;
                     title: localeFragmentType;
