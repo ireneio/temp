@@ -52,8 +52,12 @@
 }
 
 .headerMenu {
-  width: auto;
+  width: calc(2 * @ICON_WIDTH);
   margin: 0px;
+
+  @media @SMALL_PHONE_MEDIA {
+    width: calc(2 * @SMALL_ICON_WIDTH);
+  }
 
   :global(.ant-badge-count) {
     top: 5px;
