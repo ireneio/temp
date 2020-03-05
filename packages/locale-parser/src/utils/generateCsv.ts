@@ -87,7 +87,7 @@ class GenerateCsv {
 
     if (process.env.CIRCLE_TAG)
       sendGlip(
-        `${process.env.CIRCLE_TAG}: https://${process.env.CIRCLE_BUILD_NUM}-140218068-gh.circle-artifacts.com/0/home/circleci/repo/locales/${fileName}`,
+        `${process.env.CIRCLE_TAG}: https://${process.env.CIRCLE_BUILD_NUM}-140218068-gh.circle-artifacts.com/0/locales/${fileName}`,
       );
   };
 }
