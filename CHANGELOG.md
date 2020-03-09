@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 0.36.11 (2020-03-09)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#880](https://github.com/meepshop/meep-lerna/pull/880) 【優化】頁腳沒有 padding & 點擊選單時，子選單會收起 ([@happycat6323](https://github.com/happycat6323))
+  - [#876](https://github.com/meepshop/meep-lerna/pull/876) 【優化】 商品頁在有庫存的狀態下，需顯示可購買規格 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#875](https://github.com/meepshop/meep-lerna/pull/875) 【優化】補未翻譯欄位 - Part 1（全數使用 Google 翻譯） ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#874](https://github.com/meepshop/meep-lerna/pull/874) 【優化】翻譯文字調整 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#879](https://github.com/meepshop/meep-lerna/pull/879) 【BUG】商品範例 - 出現定價＆建議售價 ([@happycat6323](https://github.com/happycat6323))
+- `mock-types`
+  - [#873](https://github.com/meepshop/meep-lerna/pull/873) 【BUG】Thank you page 按鈕跑版 ([@HsuTing](https://github.com/HsuTing))
+- `locale-parser`
+  - [#871](https://github.com/meepshop/meep-lerna/pull/871) (@meepshop/locale-parser) Fix csv link error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.36.10 (2020-03-04)
 
 #### :rocket: New Feature
