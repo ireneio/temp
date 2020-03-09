@@ -11,8 +11,9 @@ import MemberWishList from '../index';
 runTest(
   'store',
   <MemberWishList dispatchAction={emptyFunction} />,
-  (wrapper: ReactWrapper<unknown, unknown>) => {
+  (getWrapper: () => ReactWrapper<unknown, unknown>) => {
     test('cancel button click', () => {
+      const wrapper = getWrapper();
       const cancelRowKey = wrapper
         .find('.ant-table-row')
         .first()

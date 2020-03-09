@@ -1,24 +1,16 @@
 // import typescript
-import { NextLink } from 'apollo-link';
 import { Resolvers } from 'apollo-client/core/types';
 import { IntrospectionResultData } from 'apollo-cache-inmemory';
 
 // import
-import React from 'react';
-import { ApolloClient } from 'apollo-client';
-import {
-  InMemoryCache,
-  IntrospectionFragmentMatcher,
-} from 'apollo-cache-inmemory';
+import React, { useState } from 'react';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from '@apollo/react-components';
-import { ApolloLink, Observable } from 'apollo-link';
-import { onError } from 'apollo-link-error';
-import { SchemaLink } from 'apollo-link-schema';
-import { Drawer, Button, notification } from 'antd';
+import { Drawer, Button, Divider } from 'antd';
+import i18n from 'i18next';
 
 import MockData from './MockData';
-import schema from './schema';
-import mock from './mock';
+import useApollo from './hooks/useApollo';
 import styles from './styles/index.less';
 
 // typescript definition
@@ -28,120 +20,72 @@ export interface PropsType {
   default: Resolvers;
 }
 
-interface StateType {
-  mockTypes: string[];
-  visibleDrawer: boolean;
-}
-
 // definition
-mock.init();
+const { Group: ButtonGroup } = Button;
 
-export default class MockTypes extends React.PureComponent<
-  PropsType,
-  StateType
-> {
-  public state: StateType = {
-    mockTypes: [],
-    visibleDrawer: false,
-  };
-
-  private client = (() => {
-    const {
-      initializeCache,
-      introspectionQueryResultDataType,
-      default: resolvers,
-    } = this.props;
-    const cache = new InMemoryCache({
-      dataIdFromObject: ({ id }) => id,
-      fragmentMatcher: new IntrospectionFragmentMatcher({
-        introspectionQueryResultData: {
-          __schema: {
-            types: introspectionQueryResultDataType,
-          },
-        },
-      }),
-    });
-
-    initializeCache(cache);
-
-    return new ApolloClient({
-      cache,
-      resolvers,
-      link: ApolloLink.from([
-        onError(({ graphQLErrors }) => {
-          if (graphQLErrors)
-            graphQLErrors.forEach(({ message, locations, path }) => {
-              const description = `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
-                locations,
-                null,
-                2,
-              )}, Path: ${JSON.stringify(path, null, 2)}`;
-
-              notification.error({
-                message: '發生錯誤',
-                description,
-              });
-            });
-        }),
-        new ApolloLink(
-          (operation, forward: NextLink) =>
-            new Observable(observer => {
-              const sub = forward(operation).subscribe({
-                next: result => {
-                  this.setState({ mockTypes: mock.tracking });
-                  observer.next(result);
-                },
-              });
-
-              return () => {
-                if (sub) sub.unsubscribe();
-              };
-            }),
-        ),
-        new SchemaLink({ schema }),
-      ]),
-    });
-  })();
-
-  public render(): React.ReactNode {
-    const { children } = this.props;
-    const { mockTypes, visibleDrawer } = this.state;
+export default React.memo(
+  ({
+    children,
+    ...props
+  }: PropsType & {
+    children: React.ReactNode;
+  }) => {
+    const { mockTypes, client } = useApollo(props);
+    const [visibleDrawer, setVisibleDrawer] = useState<boolean>(false);
 
     return (
-      <ApolloProvider client={this.client}>
+      <ApolloProvider client={client}>
         {children}
 
         <Button
           className={styles.button}
-          onClick={() => this.setState({ visibleDrawer: !visibleDrawer })}
+          onClick={() => setVisibleDrawer(!visibleDrawer)}
           type="primary"
           ghost
         >
-          Mock datas
+          Settings
         </Button>
 
         <Drawer
-          onClose={() => this.setState({ visibleDrawer: false })}
+          onClose={() => setVisibleDrawer(false)}
           visible={visibleDrawer}
           width="30%"
-          title="Mock datas"
+          title="Settings"
           placement="right"
         >
+          <div className={styles.buttons}>
+            Change language:{' '}
+            <ButtonGroup>
+              {[
+                'zh_TW',
+                'en_US',
+                'ja_JP',
+                'vi_VN',
+                'fr_FR',
+                'es_ES',
+                'th_TH',
+                'id_ID',
+              ].map(language => (
+                <Button
+                  key={language}
+                  onClick={() => i18n.changeLanguage(language)}
+                >
+                  {language}
+                </Button>
+              ))}
+            </ButtonGroup>
+          </div>
+
+          <Divider />
+
           {mockTypes.map((type, typeIndex) => (
-            // FIXME: will be fixed after eslint-plugin-react >= 7.15.1
-            /* eslint-disable react/jsx-curly-brace-presence */
             <div key={type} className={styles.buttons}>
               {type}:{' '}
-              <MockData
-                client={this.client}
-                type={type}
-                typeIndex={typeIndex}
-              />
+              <MockData client={client} type={type} typeIndex={typeIndex} />
             </div>
-            /* eslint-enable react/jsx-curly-brace-presence */
           ))}
         </Drawer>
       </ApolloProvider>
     );
-  }
-}
+  },
+);

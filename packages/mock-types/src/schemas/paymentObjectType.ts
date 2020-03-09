@@ -76,7 +76,7 @@ export default mock.add<paymentObjectTypeMock>('paymentObjectType', [
     ({
       __typename: 'paymentObjectType',
       name: 'payment name',
-      template: 'cathay',
+      template: 'cathay_atm',
       description: null,
       atm: {
         __typename: 'OrderPaymentAtm',

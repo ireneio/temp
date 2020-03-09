@@ -2,7 +2,7 @@
 import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
 // import
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Tooltip } from 'antd';
 import { ApolloClient } from 'apollo-client';
 
@@ -10,9 +10,9 @@ import mock from './mock';
 import styles from './styles/mockData.less';
 
 // definition
-const { Group } = Button;
+const { Group: ButtonGroup } = Button;
 
-const MockData = React.memo(
+export default React.memo(
   ({
     client,
     type,
@@ -22,10 +22,10 @@ const MockData = React.memo(
     type: string;
     typeIndex: number;
   }) => {
-    const [currentIndex, changeMockData] = React.useState(0);
+    const [currentIndex, changeMockData] = useState<number>(0);
 
     return (
-      <Group>
+      <ButtonGroup>
         {mock.schemas[type].map((mockData, mockIndex) => (
           <Tooltip
             key={
@@ -49,9 +49,7 @@ const MockData = React.memo(
             </Button>
           </Tooltip>
         ))}
-      </Group>
+      </ButtonGroup>
     );
   },
 );
-
-export default MockData;

@@ -12,10 +12,12 @@ import styles from '../styles/index.less';
 runTest(
   'store',
   <Ezpay {...props} />,
-  (wrapper: ReactWrapper<unknown, unknown>, trackingIndex) => {
+  (getWrapper: () => ReactWrapper<unknown, unknown>, trackingIndex) => {
     if (trackingIndex[0] === 0) return;
 
     test('print button click', () => {
+      const wrapper = getWrapper();
+
       window.print = jest.fn();
       wrapper.find(`.${styles.printBtn}`).simulate('click');
 

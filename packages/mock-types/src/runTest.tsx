@@ -1,8 +1,9 @@
 // import
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { mount, ReactWrapper } from 'enzyme';
 import { cartesianProduct } from 'js-combinatorics';
-import { areEqual, emptyFunction } from 'fbjs';
+import { emptyFunction } from 'fbjs';
 
 import mock from './mock';
 import MockTypes from './index';
@@ -13,7 +14,7 @@ export default (
   node: React.ReactNode,
   callback:
     | ((
-        wrapper: ReactWrapper<unknown, unknown>,
+        getWrapper: () => ReactWrapper<unknown, unknown>,
         trackingIndex: number[],
       ) => void | boolean)
     | undefined = emptyFunction.thatReturnsTrue,
@@ -67,26 +68,20 @@ ${mock.tracking.map(type => `  ${type}: %i`).join('\n')}
 `,
     (...trackingIndex) => {
       mock.trackingIndex = trackingIndex;
-
-      const wrapper = mount(
-        <MockTypes {...resolvers}>
-          <Provider>{node}</Provider>
-        </MockTypes>,
-      );
+      let wrapper: ReactWrapper<unknown, unknown>;
 
       beforeAll(async () => {
-        await new Promise(resolve => {
-          const wait = setInterval(() => {
-            if (!areEqual(wrapper.state('mockTypes'), mock.tracking)) return;
-
-            clearInterval(wait);
-            resolve();
-          }, 5);
+        await act(async () => {
+          wrapper = mount(
+            <MockTypes {...resolvers}>
+              <Provider>{node}</Provider>
+            </MockTypes>,
+          );
         });
         wrapper.update();
       });
 
-      if (callback(wrapper, trackingIndex))
+      if (callback(() => wrapper, trackingIndex))
         test('exist', () => {
           expect(wrapper.exists()).toBeTruthy();
         });
