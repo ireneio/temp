@@ -2,7 +2,7 @@
   "title": "Tarjeta de crédito",
   "modify": "Cambio",
   "cancel": "Cancelar",
-  "remember-card": null,
+  "remember-card": "Acepto mantener el número de tarjeta de crédito, el código de seguridad y otra información de pago en GMO Payment Gateway, Inc., sucursal de Taipei",
   "expire": "Fecha de caducidad'",
   "securityCode": "CVV",
   "cardHolderName": "Nombre en la tarjeta",

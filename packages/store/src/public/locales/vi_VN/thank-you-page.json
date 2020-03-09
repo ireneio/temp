@@ -5,18 +5,18 @@
   },
   "info": {
     "default": "Đã nhận được đơn hàng của bạn，vui lòng kiểm tra đơn hàng，xác nhận kiểm tra trạng thái thanh toán của bạn",
-    "cathay-atm": null,
+    "cathay-atm": "Đơn hàng của bạn đã được nhận, vui lòng thanh toán trong thời gian",
     "error": {
-      "0": "Đồng bộ dữ liệu bất thường，xin nhấp vào nút sao chép bên dưới，cung cấp thông tin cho dịch vụ khách hàng để được hỗ trợ giải quyết.",
-      "1": ""
+      "0": "Có một số vấn đề trong thông tin, vui lòng kiểm tra xem đơn hàng đã được thiết lập thành công chưa",
+      "1": "Bạn cũng có thể nhấp để sao chép thông báo lỗi và cung cấp thông tin cho dịch vụ khách hàng để xử lý nó cho bạn"
     }
   },
   "cathay-atm": {
-    "bank-name": null,
-    "back-code": null,
-    "account": null,
-    "price": null,
-    "expire-date": null
+    "bank-name": "Ngân hàng thanh toán",
+    "back-code": "Mã ngân hàng",
+    "account": "Tài khoản thanh toán",
+    "price": "số lượng đơn đặt hàng",
+    "expire-date": "Thời hạn thanh toán"
   },
   "return": "Trở về trang chủ",
   "order": "Truy vấn đơn hàng",

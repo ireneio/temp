@@ -1,10 +1,10 @@
 {
   "order-no": "หมายเลขสั่งซื้อ:",
-  "please-enter-paid-message": null,
+  "please-enter-paid-message": "โปรดป้อนการแจ้งการโอนเงิน",
   "edit-again": "แก้ไข",
   "send": "ส่ง",
-  "pay-message-is-not-updated": null,
-  "please-edit-paid-message": null,
-  "confirm": null,
+  "pay-message-is-not-updated": "เนื้อหาการแจ้งเตือนการโอนเงินเหมือนกัน",
+  "please-edit-paid-message": "เนื้อหาของหนังสือแจ้งการโอนเงินไม่ได้เปลี่ยนแปลงโปรดแก้ไขเนื้อหาก่อนส่งอีกครั้ง",
+  "confirm": "ยืนยัน",
   "send-success": "ข้อความของคุณถูกส่งแล้ว."
 }

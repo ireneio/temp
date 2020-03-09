@@ -2,7 +2,7 @@
   "title": "クレジットカード情報",
   "modify": "修正",
   "cancel": "キャンセル",
-  "remember-card": null,
+  "remember-card": "クレジットカード番号、セキュリティコード、その他の支払い情報をGMO Payment Gateway、Inc.、Taipei Branchに保管することに同意します",
   "expire": "有効期限",
   "securityCode": "セキュリティーコード",
   "cardHolderName": "カード名義人",

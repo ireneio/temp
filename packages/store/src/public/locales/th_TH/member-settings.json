@@ -22,10 +22,10 @@
   "isNotCancelEmail": "สมัครรับจดหมายข่าว",
   "submit": "ปรับปรุง",
   "remove-credit-card-info": {
-    "title": null,
-    "subTitle": null,
-    "submit": null,
-    "fail": null,
-    "success": null
+    "title": "ข้อมูลการทำธุรกรรมบัตรเครดิต",
+    "subTitle": "เพื่อความปลอดภัยของการทำธุรกรรมข้อมูลหมายเลขบัตรที่สงวนไว้จะถูกเข้ารหัสโดยธนาคาร",
+    "submit": "ลบข้อมูลธุรกรรมบัตรเครดิต",
+    "fail": "การลบล้มเหลว",
+    "success": "นำออกสำเร็จแล้ว"
   }
 }

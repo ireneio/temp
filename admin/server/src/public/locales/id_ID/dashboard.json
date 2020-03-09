@@ -3,49 +3,49 @@
   "payment-text": "Dalam hal batas waktu pembayaran jatuh pada hari libur, pembayaran harus dilakukan pada hari kerja berikutnya. Jika ada pembayaran yang terlambat, sistem akan menutup bagian depan / belakang toko Anda.",
   "payment-link": "Periksa tagihan dan pembayaran",
   "welcome": "Selamat datang di meepShop Platform Toko Online",
-  "meepshop": null,
-  "welcome-back": null,
-  "steps": null,
-  "close-tutorial": null,
-  "open-tutorial": null,
+  "meepshop": "platform toko online meepShop",
+  "welcome-back": "Halo! Selamat datang kembali {{name}}",
+  "steps": "Hanya beberapa langkah sederhana untuk membuka toko, mari kita periksa!",
+  "close-tutorial": "Tutup panduan toko",
+  "open-tutorial": "Panduan toko",
   "tutorial": {
     "store": {
-      "tab": null,
-      "title": null,
-      "content": null
+      "tab": "Pengaturan toko",
+      "title": "Buat pengaturan dasar untuk toko Anda",
+      "content": "Beri nama toko Anda, unggah logo unik, atau gunakan domain khusus."
     },
     "page": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "desain halaman",
+      "title": "Bangun toko yang unik",
+      "content": "Desain gaya yang menarik untuk toko Anda, sesuaikan warna toko dan tata letak halaman.",
       "items": {
-        "0": null,
-        "1": null
+        "0": "Desain halaman yang disesuaikan",
+        "1": "Toko Satu Halaman"
       }
     },
     "product": {
-      "tab": null,
-      "title": null,
-      "content": null
+      "tab": "Manajemen barang dagangan",
+      "title": "Unggah produk pertama Anda",
+      "content": "Tambahkan item ke toko Anda untuk memperluas penjualan Anda."
     },
     "payment": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "Manajemen Aliran Emas",
+      "title": "Pilih metode checkout untuk toko Anda",
+      "content": "Tambahkan beberapa aliran emas ke toko Anda dan beri konsumen lebih banyak cara untuk membayar.",
       "items": {
-        "0": null,
-        "1": null,
-        "2": null
+        "0": "Pembayaran akun virtual",
+        "1": "Kartu kredit",
+        "2": "Bayar di tempat"
       }
     },
     "shipment": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "Manajemen logistik",
+      "title": "Pilih metode pengiriman Anda",
+      "content": "Tambahkan beberapa logistik ke toko Anda dan berikan berbagai jenis metode pengiriman.",
       "items": {
-        "0": null,
-        "1": null,
-        "2": null
+        "0": "Pengiriman rumah",
+        "1": "Pembayaran super pick up",
+        "2": "Logistik khusus"
       }
     }
   },

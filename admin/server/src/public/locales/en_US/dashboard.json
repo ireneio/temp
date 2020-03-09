@@ -3,49 +3,49 @@
   "payment-text": "In case the payment deadline falls on a holiday, payments should be made on the next working day.Should there be payments overdue, the system will close the front/back end of your store.",
   "payment-link": "Check bills and payment",
   "welcome": "Welcome",
-  "meepshop": null,
-  "welcome-back": null,
-  "steps": null,
-  "close-tutorial": null,
-  "open-tutorial": null,
+  "meepshop": "meepShop online shop platform",
+  "welcome-back": "Hello! Welcome back {{name}}",
+  "steps": "Just a few simple steps to open a shop, let's check it out!",
+  "close-tutorial": "Close shop guide",
+  "open-tutorial": "Shop guide",
   "tutorial": {
     "store": {
-      "tab": null,
-      "title": null,
-      "content": null
+      "tab": "Store settings",
+      "title": "Make basic settings for your store",
+      "content": "Give your store a name, upload a unique logo, or use a custom domain."
     },
     "page": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "page design",
+      "title": "Build a unique store",
+      "content": "Design attractive styles for your store, customize store colors and page layouts.",
       "items": {
-        "0": null,
-        "1": null
+        "0": "Customized page design",
+        "1": "One Page Store"
       }
     },
     "product": {
-      "tab": null,
-      "title": null,
-      "content": null
+      "tab": "Merchandise management",
+      "title": "Upload your first product",
+      "content": "Add an item to your store to expand your sales."
     },
     "payment": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "Gold Flow Management",
+      "title": "Select a checkout method for your store",
+      "content": "Add a few gold streams to your store and give consumers more ways to pay.",
       "items": {
-        "0": null,
-        "1": null,
-        "2": null
+        "0": "Virtual account payment",
+        "1": "Credit card",
+        "2": "Cash on delivery"
       }
     },
     "shipment": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "Logistics management",
+      "title": "Choose your shipping method",
+      "content": "Add a few logistics to your store and provide different kinds of shipping methods.",
       "items": {
-        "0": null,
-        "1": null,
-        "2": null
+        "0": "Home delivery",
+        "1": "Super pick up payment",
+        "2": "Custom logistics"
       }
     }
   },

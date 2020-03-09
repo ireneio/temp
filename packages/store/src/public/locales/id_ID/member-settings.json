@@ -22,10 +22,10 @@
   "isNotCancelEmail": "Berlangganan Newsletter",
   "submit": "Memperbarui",
   "remove-credit-card-info": {
-    "title": null,
-    "subTitle": null,
-    "submit": null,
-    "fail": null,
-    "success": null
+    "title": "Informasi transaksi kartu kredit",
+    "subTitle": "Untuk memastikan keamanan transaksi, data nomor kartu yang dipesan dienkripsi oleh bank",
+    "submit": "Hapus informasi transaksi kartu kredit",
+    "fail": "Hapus Gagal",
+    "success": "Berhasil dihapus"
   }
 }

@@ -22,10 +22,10 @@
   "isNotCancelEmail": "ニュースレターを購読する",
   "submit": "情報を更新",
   "remove-credit-card-info": {
-    "title": null,
-    "subTitle": null,
-    "submit": null,
-    "fail": null,
-    "success": null
+    "title": "クレジットカード取引情報",
+    "subTitle": "トランザクションのセキュリティを確保するために、予約されたカード番号データは銀行によって暗号化されます",
+    "submit": "クレジットカードの取引情報を削除する",
+    "fail": "削除に失敗しました",
+    "success": "正常に削除されました"
   }
 }

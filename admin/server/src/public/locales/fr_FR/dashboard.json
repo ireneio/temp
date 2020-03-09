@@ -3,49 +3,49 @@
   "payment-text": "Si le délai de paiement tombe un jour férié, les paiements doivent être effectués le jour ouvrable suivant. En cas de retard de paiement, le système fermera l'extrémité avant / arrière de votre magasin.",
   "payment-link": "Vérifier les factures et le paiement",
   "welcome": "Bienvenue sur la plateforme de boutique en ligne meepShop",
-  "meepshop": null,
-  "welcome-back": null,
-  "steps": null,
-  "close-tutorial": null,
-  "open-tutorial": null,
+  "meepshop": "plateforme de boutique en ligne meepShop",
+  "welcome-back": "salut! Bienvenue à nouveau {{name}}",
+  "steps": "Juste quelques étapes simples pour ouvrir une boutique, allons-y!",
+  "close-tutorial": "Fermer le guide de la boutique",
+  "open-tutorial": "Guide boutique",
   "tutorial": {
     "store": {
-      "tab": null,
-      "title": null,
-      "content": null
+      "tab": "Enregistrer les paramètres",
+      "title": "Définissez les paramètres de base de votre magasin",
+      "content": "Donnez un nom à votre boutique, téléchargez un logo unique ou utilisez un domaine personnalisé."
     },
     "page": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "conception de page",
+      "title": "Construisez un magasin unique",
+      "content": "Concevez des styles attrayants pour votre magasin, personnalisez les couleurs du magasin et les mises en page.",
       "items": {
-        "0": null,
-        "1": null
+        "0": "Conception de page personnalisée",
+        "1": "Boutique d'une page"
       }
     },
     "product": {
-      "tab": null,
-      "title": null,
-      "content": null
+      "tab": "Gestion des marchandises",
+      "title": "Téléchargez votre premier produit",
+      "content": "Ajoutez un article à votre magasin pour augmenter vos ventes."
     },
     "payment": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "Gestion du flux d'or",
+      "title": "Sélectionnez une méthode de paiement pour votre magasin",
+      "content": "Ajoutez quelques flux d'or à votre magasin et offrez aux consommateurs davantage de moyens de paiement.",
       "items": {
-        "0": null,
-        "1": null,
-        "2": null
+        "0": "Paiement du compte virtuel",
+        "1": "Carte de crédit",
+        "2": "Paiement à la livraison"
       }
     },
     "shipment": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "Gestion de la logistique",
+      "title": "Choisissez votre méthode d'expédition",
+      "content": "Ajoutez un peu de logistique à votre magasin et fournissez différents types de méthodes d'expédition.",
       "items": {
-        "0": null,
-        "1": null,
-        "2": null
+        "0": "Livraison à domicile",
+        "1": "Paiement super pick up",
+        "2": "Logistique sur mesure"
       }
     }
   },

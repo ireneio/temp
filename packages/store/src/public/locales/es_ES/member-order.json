@@ -50,11 +50,11 @@
       "card-no": "Últimos cuatro dígitos de la tarjeta de crédito:",
       "gmo-store-code": "Código de tienda de OMG:",
       "cathay-atm": {
-        "bank-name": null,
-        "back-code": null,
-        "account": null,
-        "price": null,
-        "expire-date": null
+        "bank-name": "Pagando Banco:",
+        "back-code": "Codigo bancario:",
+        "account": "Cuenta de pago:",
+        "price": "Total de la orden:",
+        "expire-date": "Periodo de pago:"
       }
     },
     "shipment": {

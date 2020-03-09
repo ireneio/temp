@@ -3,49 +3,49 @@
   "payment-text": "支払い期限が休日に当たる場合は、翌営業日に支払いを行う必要があります。支払い期限が過ぎている場合、システムは店舗のフロント/バックエンドを閉鎖します。",
   "payment-link": "請求書と支払いを確認する",
   "welcome": "meepShop のオンラインストア出店プラットフォームをご利用いただき、ありがとうございます",
-  "meepshop": null,
-  "welcome-back": null,
-  "steps": null,
-  "close-tutorial": null,
-  "open-tutorial": null,
+  "meepshop": "meepShopオンラインショッププラットフォーム",
+  "welcome-back": "こんにちは！ {{name}}へようこそ",
+  "steps": "ショップを開くための簡単な手順をいくつか見てみましょう。",
+  "close-tutorial": "店舗案内",
+  "open-tutorial": "ショップガイド",
   "tutorial": {
     "store": {
-      "tab": null,
-      "title": null,
-      "content": null
+      "tab": "ストア設定",
+      "title": "ストアの基本設定を行います",
+      "content": "ストアに名前を付けたり、一意のロゴをアップロードしたり、カスタムドメインを使用したりします。"
     },
     "page": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "ページデザイン",
+      "title": "ユニークなストアを構築する",
+      "content": "お店の魅力的なスタイルをデザインし、店の色とページレイアウトをカスタマイズします。",
       "items": {
-        "0": null,
-        "1": null
+        "0": "カスタマイズされたページデザイン",
+        "1": "ワンページストア"
       }
     },
     "product": {
-      "tab": null,
-      "title": null,
-      "content": null
+      "tab": "商品管理",
+      "title": "最初の製品をアップロードする",
+      "content": "ストアにアイテムを追加して、販売を拡大します。"
     },
     "payment": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "ゴールドフロー管理",
+      "title": "ストアのチェックアウト方法を選択してください",
+      "content": "いくつかのゴールドストリームをストアに追加し、消費者に支払い方法を増やします。",
       "items": {
-        "0": null,
-        "1": null,
-        "2": null
+        "0": "仮想口座支払い",
+        "1": "クレジットカード",
+        "2": "代金引換"
       }
     },
     "shipment": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "物流管理",
+      "title": "配送方法を選択してください",
+      "content": "ストアにいくつかのロジスティクスを追加し、さまざまな種類の配送方法を提供します。",
       "items": {
-        "0": null,
-        "1": null,
-        "2": null
+        "0": "宅配",
+        "1": "スーパーピックアップお支払い",
+        "2": "カスタム物流"
       }
     }
   },

@@ -2,7 +2,7 @@
   "title": "Credit Card",
   "modify": "Change",
   "cancel": "Cancel",
-  "remember-card": null,
+  "remember-card": "I agree to keep credit card number, security code and other payment information to GMO Payment Gateway, Inc., Taipei Branch",
   "expire": "Expiry Date'",
   "securityCode": "CVV",
   "cardHolderName": "Name on Card",

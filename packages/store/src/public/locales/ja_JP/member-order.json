@@ -50,11 +50,11 @@
       "card-no": "クレジットカード番号の最後の4桁：",
       "gmo-store-code": "GMO ショップコード：",
       "cathay-atm": {
-        "bank-name": null,
-        "back-code": null,
-        "account": null,
-        "price": null,
-        "expire-date": null
+        "bank-name": "支払い銀行：",
+        "back-code": "金融機関コード：",
+        "account": "支払い口座：",
+        "price": "注文金額：",
+        "expire-date": "返済期間："
       }
     },
     "shipment": {

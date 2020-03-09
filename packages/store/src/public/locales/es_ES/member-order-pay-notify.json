@@ -1,10 +1,10 @@
 {
   "order-no": "Número de orden:",
-  "please-enter-paid-message": null,
+  "please-enter-paid-message": "Por favor ingrese el aviso de envío",
   "edit-again": "Editar",
   "send": "Enviar",
-  "pay-message-is-not-updated": null,
-  "please-edit-paid-message": null,
-  "confirm": null,
+  "pay-message-is-not-updated": "El contenido de la notificación de remesa es el mismo",
+  "please-edit-paid-message": "El contenido del aviso de envío no ha cambiado, edítelo antes de reenviarlo.",
+  "confirm": "Confirmar",
   "send-success": "Tu mensaje ha sido enviado."
 }

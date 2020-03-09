@@ -3,49 +3,49 @@
   "payment-text": "Trong trường hợp thời hạn thanh toán rơi vào ngày lễ, thanh toán sẽ được thực hiện vào ngày làm việc tiếp theo. Nếu có thanh toán quá hạn, hệ thống sẽ đóng mặt trước / mặt sau của cửa hàng của bạn.",
   "payment-link": "Kiểm tra hóa đơn và thanh toán",
   "welcome": "Chào mừng bạn đến với nền tảng cửa hàng trực tuyến meepShop",
-  "meepshop": null,
-  "welcome-back": null,
-  "steps": null,
-  "close-tutorial": null,
-  "open-tutorial": null,
+  "meepshop": "nền tảng cửa hàng trực tuyến meepShop",
+  "welcome-back": "Xin chào! Chào mừng trở lại {{name}}",
+  "steps": "Chỉ cần một vài bước đơn giản để mở một cửa hàng, hãy kiểm tra nó!",
+  "close-tutorial": "Đóng hướng dẫn cửa hàng",
+  "open-tutorial": "Hướng dẫn mua hàng",
   "tutorial": {
     "store": {
-      "tab": null,
-      "title": null,
-      "content": null
+      "tab": "Cài đặt cửa hàng",
+      "title": "Tạo cài đặt cơ bản cho cửa hàng của bạn",
+      "content": "Đặt tên cho cửa hàng của bạn, tải lên logo độc đáo hoặc sử dụng tên miền tùy chỉnh."
     },
     "page": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "thiết kế trang",
+      "title": "Xây dựng một cửa hàng độc đáo",
+      "content": "Thiết kế kiểu dáng hấp dẫn cho cửa hàng của bạn, tùy chỉnh màu sắc cửa hàng và bố cục trang.",
       "items": {
-        "0": null,
-        "1": null
+        "0": "Thiết kế trang tùy chỉnh",
+        "1": "Cửa hàng một trang"
       }
     },
     "product": {
-      "tab": null,
-      "title": null,
-      "content": null
+      "tab": "Quản lý hàng hóa",
+      "title": "Tải lên sản phẩm đầu tiên của bạn",
+      "content": "Thêm một mặt hàng vào cửa hàng của bạn để mở rộng doanh số của bạn."
     },
     "payment": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "Quản lý dòng chảy vàng",
+      "title": "Chọn phương thức thanh toán cho cửa hàng của bạn",
+      "content": "Thêm một vài luồng vàng vào cửa hàng của bạn và cung cấp cho người tiêu dùng nhiều cách hơn để thanh toán.",
       "items": {
-        "0": null,
-        "1": null,
-        "2": null
+        "0": "Thanh toán tài khoản ảo",
+        "1": "Thẻ tín dụng",
+        "2": "Thanh toán khi giao hàng"
       }
     },
     "shipment": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "Quản lý hậu cần",
+      "title": "Chọn phương thức vận chuyển của bạn",
+      "content": "Thêm một vài hậu cần cho cửa hàng của bạn và cung cấp các loại phương thức vận chuyển khác nhau.",
       "items": {
-        "0": null,
-        "1": null,
-        "2": null
+        "0": "Giao hàng tận nhà",
+        "1": "Nhận siêu thanh toán",
+        "2": "Hậu cần tùy chỉnh"
       }
     }
   },

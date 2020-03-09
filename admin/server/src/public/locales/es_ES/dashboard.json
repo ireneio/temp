@@ -3,49 +3,49 @@
   "payment-text": "En caso de que la fecha límite de pago caiga en un día festivo, los pagos deben realizarse al siguiente día hábil. Si hubiera pagos vencidos, el sistema cerrará la parte delantera / trasera de su tienda.",
   "payment-link": "Consultar facturas y pago",
   "welcome": "Bienvenido a la plataforma de la tienda en línea de meepShop",
-  "meepshop": null,
-  "welcome-back": null,
-  "steps": null,
-  "close-tutorial": null,
-  "open-tutorial": null,
+  "meepshop": "plataforma de tienda en línea meepShop",
+  "welcome-back": "¡Hola! Bienvenido de nuevo {{name}}",
+  "steps": "¡Solo unos pocos pasos simples para abrir una tienda, echemos un vistazo!",
+  "close-tutorial": "Cerrar la guía de la tienda",
+  "open-tutorial": "Guía de la tienda",
   "tutorial": {
     "store": {
-      "tab": null,
-      "title": null,
-      "content": null
+      "tab": "Guardar configuración",
+      "title": "Realiza ajustes básicos para tu tienda",
+      "content": "Dé un nombre a su tienda, cargue un logotipo único o use un dominio personalizado."
     },
     "page": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "diseño de página",
+      "title": "Construye una tienda única",
+      "content": "Diseñe estilos atractivos para su tienda, personalice los colores de la tienda y los diseños de página.",
       "items": {
-        "0": null,
-        "1": null
+        "0": "Diseño de página personalizado",
+        "1": "Tienda de una página"
       }
     },
     "product": {
-      "tab": null,
-      "title": null,
-      "content": null
+      "tab": "Gestión de mercancías",
+      "title": "Sube tu primer producto",
+      "content": "Agregue un artículo a su tienda para expandir sus ventas."
     },
     "payment": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "Gestión del flujo de oro",
+      "title": "Seleccione un método de pago para su tienda",
+      "content": "Agregue algunas corrientes de oro a su tienda y brinde a los consumidores más formas de pago.",
       "items": {
-        "0": null,
-        "1": null,
-        "2": null
+        "0": "Pago de cuenta virtual",
+        "1": "Tarjeta de crédito",
+        "2": "Contra reembolso"
       }
     },
     "shipment": {
-      "tab": null,
-      "title": null,
-      "content": null,
+      "tab": "Gestion de logistica",
+      "title": "Elige tu método de envío",
+      "content": "Agregue un poco de logística a su tienda y proporcione diferentes tipos de métodos de envío.",
       "items": {
-        "0": null,
-        "1": null,
-        "2": null
+        "0": "Entrega a domicilio",
+        "1": "Super recoger el pago",
+        "2": "Logística personalizada"
       }
     }
   },

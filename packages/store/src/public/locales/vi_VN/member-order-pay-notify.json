@@ -1,10 +1,10 @@
 {
   "order-no": "Hiệu số đơn hàng: ",
-  "please-enter-paid-message": null,
+  "please-enter-paid-message": "Vui lòng nhập thông báo chuyển tiền",
   "edit-again": "Chỉnh sửa lần nữa",
   "send": "Gởi đi",
-  "pay-message-is-not-updated": null,
-  "please-edit-paid-message": null,
-  "confirm": null,
+  "pay-message-is-not-updated": "Nội dung thông báo chuyển tiền là như nhau",
+  "please-edit-paid-message": "Nội dung của thông báo chuyển tiền không thay đổi, vui lòng chỉnh sửa nội dung trước khi gửi lại.",
+  "confirm": "Xác nhận",
   "send-success": "Đã gửi thành công"
 }

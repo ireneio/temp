@@ -5,18 +5,18 @@
   },
   "info": {
     "default": "We have received your order. Please check your order for payment status.",
-    "cathay-atm": null,
+    "cathay-atm": "Your order has been received, please make payment within time",
     "error": {
-      "0": "Data synchronization error occurred. Please copy the URL and pass it to Customer Service for assistance.",
-      "1": ""
+      "0": "There are some problems in the information, please check whether the order was successfully established",
+      "1": "You can also click to copy the error message and provide the information to the customer service to handle it for you"
     }
   },
   "cathay-atm": {
-    "bank-name": null,
-    "back-code": null,
-    "account": null,
-    "price": null,
-    "expire-date": null
+    "bank-name": "Payment bank",
+    "back-code": "Bank Code",
+    "account": "Payment account",
+    "price": "order amount",
+    "expire-date": "Payment period"
   },
   "return": "Back to the homepage",
   "order": "Check My Order",

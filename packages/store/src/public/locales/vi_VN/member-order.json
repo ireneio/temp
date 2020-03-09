@@ -50,11 +50,11 @@
       "card-no": "4 số cuối thẻ tín dụng: ",
       "gmo-store-code": "Mã cửa hàng GMO: ",
       "cathay-atm": {
-        "bank-name": null,
-        "back-code": null,
-        "account": null,
-        "price": null,
-        "expire-date": null
+        "bank-name": "Ngân hàng thanh toán:",
+        "back-code": "Mã ngân hàng:",
+        "account": "Tài khoản thanh toán:",
+        "price": "số lượng đơn đặt hàng:",
+        "expire-date": "Thời hạn thanh toán:"
       }
     },
     "shipment": {

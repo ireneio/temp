@@ -5,18 +5,18 @@
   },
   "info": {
     "default": "Hemos recibido tu pedido. Por favor revise su orden para el estado del pago.",
-    "cathay-atm": null,
+    "cathay-atm": "Su pedido ha sido recibido, realice el pago a tiempo",
     "error": {
-      "0": "Se produjo un error de sincronización de datos. Copie la URL y páselo al Servicio de atención al cliente para obtener ayuda.",
-      "1": ""
+      "0": "Hay algunos problemas en la información, verifique si el pedido se estableció correctamente",
+      "1": "También puede hacer clic para copiar el mensaje de error y proporcionar la información al servicio al cliente para que lo maneje por usted"
     }
   },
   "cathay-atm": {
-    "bank-name": null,
-    "back-code": null,
-    "account": null,
-    "price": null,
-    "expire-date": null
+    "bank-name": "Banco de pago",
+    "back-code": "Codigo bancario",
+    "account": "Cuenta de pago",
+    "price": "Total de la orden",
+    "expire-date": "Periodo de pago"
   },
   "return": "Volver a la página de inicio",
   "order": "Verifica mi pedido",

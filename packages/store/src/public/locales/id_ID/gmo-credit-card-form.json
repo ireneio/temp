@@ -2,7 +2,7 @@
   "title": "Kartu kredit",
   "modify": "Perubahan",
   "cancel": "Membatalkan",
-  "remember-card": null,
+  "remember-card": "Saya setuju untuk menyimpan nomor kartu kredit, kode keamanan dan informasi pembayaran lainnya ke GMO Payment Gateway, Inc., Cabang Taipei",
   "expire": "Tanggal kadaluarsa'",
   "securityCode": "CVV",
   "cardHolderName": "Nama di kartu",

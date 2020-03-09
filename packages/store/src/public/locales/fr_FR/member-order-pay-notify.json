@@ -1,10 +1,10 @@
 {
   "order-no": "Numéro de commande:",
-  "please-enter-paid-message": null,
+  "please-enter-paid-message": "Veuillez saisir l'avis de versement",
   "edit-again": "modifier",
   "send": "Envoyer",
-  "pay-message-is-not-updated": null,
-  "please-edit-paid-message": null,
-  "confirm": null,
+  "pay-message-is-not-updated": "Le contenu des notifications de versement est le même",
+  "please-edit-paid-message": "Le contenu de l'avis de versement n'a pas changé, veuillez modifier le contenu avant de le renvoyer.",
+  "confirm": "Confirmer",
   "send-success": "Votre message a été envoyé."
 }

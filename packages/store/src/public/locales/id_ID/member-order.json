@@ -50,11 +50,11 @@
       "card-no": "Empat digit terakhir kartu kredit:",
       "gmo-store-code": "Kode Toko GMO:",
       "cathay-atm": {
-        "bank-name": null,
-        "back-code": null,
-        "account": null,
-        "price": null,
-        "expire-date": null
+        "bank-name": "Bank pembayar:",
+        "back-code": "Kode Bank:",
+        "account": "Akun pembayaran:",
+        "price": "jumlah pesanan:",
+        "expire-date": "Periode pembayaran:"
       }
     },
     "shipment": {

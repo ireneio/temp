@@ -50,11 +50,11 @@
       "card-no": "Quatre derniers chiffres de la carte de crédit:",
       "gmo-store-code": "Code de magasin OGM:",
       "cathay-atm": {
-        "bank-name": null,
-        "back-code": null,
-        "account": null,
-        "price": null,
-        "expire-date": null
+        "bank-name": "Banque payante:",
+        "back-code": "Code bancaire:",
+        "account": "Compte de paiement:",
+        "price": "montant de la commande:",
+        "expire-date": "Délai de paiement:"
       }
     },
     "shipment": {

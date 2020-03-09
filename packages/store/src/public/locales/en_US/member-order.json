@@ -50,11 +50,11 @@
       "card-no": "Last four digits of credit card: ",
       "gmo-store-code": "GMO Store Code: ",
       "cathay-atm": {
-        "bank-name": null,
-        "back-code": null,
-        "account": null,
-        "price": null,
-        "expire-date": null
+        "bank-name": "Paying bank:",
+        "back-code": "Bank Code:",
+        "account": "Payment account:",
+        "price": "order amount:",
+        "expire-date": "Payment period:"
       }
     },
     "shipment": {

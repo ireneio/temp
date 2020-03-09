@@ -22,10 +22,10 @@
   "isNotCancelEmail": "Đăng kí nhận tin nhắn thông tin và khuyến mại",
   "submit": "Cập nhật thông tin",
   "remove-credit-card-info": {
-    "title": null,
-    "subTitle": null,
-    "submit": null,
-    "fail": null,
-    "success": null
+    "title": "Thông tin giao dịch thẻ tín dụng",
+    "subTitle": "Để đảm bảo an toàn cho giao dịch, dữ liệu số thẻ dành riêng được ngân hàng mã hóa",
+    "submit": "Xóa thông tin giao dịch thẻ tín dụng",
+    "fail": "Xóa không thành công",
+    "success": "Đã xóa thành công"
   }
 }

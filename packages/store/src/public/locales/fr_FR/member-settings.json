@@ -22,10 +22,10 @@
   "isNotCancelEmail": "Abonnez-vous à la newsletter",
   "submit": "Mise à jour",
   "remove-credit-card-info": {
-    "title": null,
-    "subTitle": null,
-    "submit": null,
-    "fail": null,
-    "success": null
+    "title": "Informations sur les transactions par carte de crédit",
+    "subTitle": "Afin d'assurer la sécurité de la transaction, les données du numéro de carte réservé sont cryptées par la banque",
+    "submit": "Supprimer les informations de transaction par carte de crédit",
+    "fail": "Supprimer échoué",
+    "success": "Supprimé avec succès"
   }
 }

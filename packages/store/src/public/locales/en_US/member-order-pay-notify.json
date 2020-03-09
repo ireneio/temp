@@ -1,10 +1,10 @@
 {
   "order-no": "Order Number: ",
-  "please-enter-paid-message": null,
+  "please-enter-paid-message": "Please enter the remittance notice",
   "edit-again": "Edit",
   "send": "Send",
-  "pay-message-is-not-updated": null,
-  "please-edit-paid-message": null,
-  "confirm": null,
+  "pay-message-is-not-updated": "Remittance notification content is the same",
+  "please-edit-paid-message": "The content of the remittance notice has not changed, please edit the content before resending.",
+  "confirm": "Confirm",
   "send-success": "Your message has been sent."
 }

@@ -22,10 +22,10 @@
   "isNotCancelEmail": "Subscribe Newsletter",
   "submit": "Update",
   "remove-credit-card-info": {
-    "title": null,
-    "subTitle": null,
-    "submit": null,
-    "fail": null,
-    "success": null
+    "title": "Credit card transaction information",
+    "subTitle": "In order to ensure the security of the transaction, the reserved card number data is encrypted by the bank",
+    "submit": "Remove credit card transaction information",
+    "fail": "Remove Failed",
+    "success": "Removed successfully"
   }
 }

@@ -50,11 +50,11 @@
       "card-no": "บัตรเครดิตสี่หลักสุดท้าย:",
       "gmo-store-code": "รหัสร้านค้า GMO:",
       "cathay-atm": {
-        "bank-name": null,
-        "back-code": null,
-        "account": null,
-        "price": null,
-        "expire-date": null
+        "bank-name": "ธนาคารที่ชำระเงิน:",
+        "back-code": "รหัสธนาคาร:",
+        "account": "บัญชีการชำระเงิน:",
+        "price": "จำนวนการสั่งซื้อ:",
+        "expire-date": "ระยะเวลาการชำระเงิน:"
       }
     },
     "shipment": {

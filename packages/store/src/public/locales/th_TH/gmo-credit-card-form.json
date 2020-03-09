@@ -2,7 +2,7 @@
   "title": "บัตรเครดิต",
   "modify": "เปลี่ยนแปลง",
   "cancel": "ยกเลิก",
-  "remember-card": null,
+  "remember-card": "ฉันตกลงที่จะเก็บหมายเลขบัตรเครดิตรหัสความปลอดภัยและข้อมูลการชำระเงินอื่น ๆ กับ GMO Payment Gateway, Inc. สาขาไทเป",
   "expire": "วันหมดอายุ'",
   "securityCode": "CVV",
   "cardHolderName": "ชื่อบนบัตร",
