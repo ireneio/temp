@@ -87,8 +87,6 @@ export const DEFAULT_PRODUCTS = {
       variants: [
         {
           totalPrice: 2690,
-          listPrice: 2690,
-          suggestedPrice: 2690,
           stock: 1,
         },
       ],
@@ -104,8 +102,6 @@ export const DEFAULT_PRODUCTS = {
       variants: [
         {
           totalPrice: 1200,
-          listPrice: 1200,
-          suggestedPrice: 1200,
           stock: 1,
         },
       ],
@@ -121,8 +117,6 @@ export const DEFAULT_PRODUCTS = {
       variants: [
         {
           totalPrice: 2800,
-          listPrice: 2800,
-          suggestedPrice: 2800,
           stock: 1,
         },
       ],
@@ -138,8 +132,6 @@ export const DEFAULT_PRODUCTS = {
       variants: [
         {
           totalPrice: 2580,
-          listPrice: 2580,
-          suggestedPrice: 2580,
           stock: 1,
         },
       ],
@@ -155,8 +147,6 @@ export const DEFAULT_PRODUCTS = {
       variants: [
         {
           totalPrice: 1790,
-          listPrice: 1790,
-          suggestedPrice: 1790,
           stock: 1,
         },
       ],
@@ -172,8 +162,6 @@ export const DEFAULT_PRODUCTS = {
       variants: [
         {
           totalPrice: 2500,
-          listPrice: 2500,
-          suggestedPrice: 2500,
           stock: 1,
         },
       ],
