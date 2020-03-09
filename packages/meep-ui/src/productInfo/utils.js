@@ -1,5 +1,13 @@
 import { ORDERABLE, OUT_OF_STOCK, LIMITED } from './constants';
 
+export const findCoordinates = variantNode =>
+  !variantNode.parent
+    ? []
+    : [
+        ...findCoordinates(variantNode.parent),
+        variantNode.parent.children.findIndex(node => node === variantNode),
+      ];
+
 export const reformatVariant = (variantInfo, stockNotificationList) => {
   let { maxPurchaseLimit, minPurchaseItems } = variantInfo;
 

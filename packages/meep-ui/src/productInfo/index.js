@@ -24,7 +24,7 @@ import {
   LIST_TYPE,
   NO_VARIANTS,
 } from './constants';
-import { calculateOrderable, reformatVariant } from './utils';
+import { findCoordinates, calculateOrderable, reformatVariant } from './utils';
 
 @withTranslation('product-info')
 @withContext(adTrackContext)
@@ -135,20 +135,24 @@ export default class ProductInfo extends React.PureComponent {
 
     if (specs) {
       // 多規格
-      const coordinates = new Array(specs.length).fill(0);
-      let { variantsTree } = productData;
-      coordinates.forEach(depth => {
-        variantsTree = variantsTree.children[depth];
-      });
+      const variantsLeaves = productData.variantsTree.leaves();
+      const variantNode =
+        variantsLeaves.find(
+          ({
+            data: {
+              variant: { stock },
+            },
+          }) => stock > 0,
+        ) || variantsLeaves[0];
       const variantInfo = reformatVariant(
-        variantsTree.data.variant,
+        variantNode.data.variant,
         stockNotificationList,
       );
 
       return {
         id,
         quantity: variantInfo.minPurchaseItems,
-        coordinates,
+        coordinates: findCoordinates(variantNode),
         variantInfo,
         isInWishList,
         cart,
