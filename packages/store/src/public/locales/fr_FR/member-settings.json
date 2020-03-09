@@ -9,8 +9,8 @@
   "name": "Nom complet",
   "gender": {
     "placeholder": "Le genre",
-    "male": "Femelle",
-    "female": "Femme"
+    "male": "Masculin",
+    "female": "Féminin"
   },
   "email": "Email",
   "tel": "Pas de téléphone.",

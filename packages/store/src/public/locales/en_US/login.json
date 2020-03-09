@@ -12,7 +12,7 @@
   "go-back": "Back",
   "password-is-no-match": "Please retype your password here",
   "join": "Join",
-  "promotion-code": null,
+  "promotion-code": "Special code (required only for special members)",
   "password": "Password",
   "confirm-password": "Confrim Password",
   "send-reset-password-mail": "Reset Password"

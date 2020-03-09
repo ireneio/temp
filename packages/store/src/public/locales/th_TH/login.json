@@ -12,7 +12,7 @@
   "go-back": "กลับ",
   "password-is-no-match": "โปรดพิมพ์รหัสผ่านของคุณอีกครั้งที่นี่",
   "join": "ร่วม",
-  "promotion-code": null,
+  "promotion-code": "รหัสพิเศษ (จำเป็นสำหรับสมาชิกพิเศษเท่านั้น)",
   "password": "รหัสผ่าน",
   "confirm-password": "ยืนยันรหัสผ่าน",
   "send-reset-password-mail": "รีเซ็ตรหัสผ่าน"
