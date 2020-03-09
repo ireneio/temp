@@ -5,6 +5,7 @@ import { isHexColor } from 'validator';
 import { enhancer } from 'layout/DecoratorsRoot';
 import Menu from 'menu';
 import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
+import { PHONE_MEDIA } from 'constants/media';
 
 import styles from './styles/index.less';
 
@@ -30,6 +31,7 @@ export default class Bottom extends React.PureComponent {
 
   state = {
     openKeys: [],
+    isMobile: false,
   };
 
   componentDidMount() {
@@ -57,6 +59,7 @@ export default class Bottom extends React.PureComponent {
           parseInt(styles.phoneWidth, 10)
             ? []
             : pages.map(({ id: pageId }) => pageId),
+        isMobile: window.matchMedia(PHONE_MEDIA.substring(7)).matches,
       });
     }, 100);
   };
@@ -77,7 +80,7 @@ export default class Bottom extends React.PureComponent {
         },
       },
     } = this.props;
-    const { openKeys } = this.state;
+    const { openKeys, isMobile } = this.state;
 
     const normal = {
       color: color || colors[3],
@@ -103,6 +106,7 @@ export default class Bottom extends React.PureComponent {
               opacity: !background || !isHexColor(background) ? 0 : 1,
             }}
             onOpenChange={newOpenKeys => {
+              if (!isMobile) return;
               const latestOpenKey = newOpenKeys.find(
                 key => !openKeys.includes(key),
               );
