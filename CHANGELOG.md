@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.36.12 (2020-03-10)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#882](https://github.com/meepshop/meep-lerna/pull/882) 【BUG】 搜尋客戶商品時，搜尋結果會出現 meepshop 文字 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.36.11 (2020-03-09)
 
 #### :rocket: New Feature
