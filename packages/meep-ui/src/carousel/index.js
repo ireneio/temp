@@ -163,6 +163,7 @@ export default class Carousel extends React.PureComponent {
                 newWindow={newWindow}
                 alignment="center"
                 customTracking={customTracking}
+                alt={file?.image}
               />
             </div>
           ))}

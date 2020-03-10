@@ -132,6 +132,7 @@ export default class Product extends React.PureComponent {
             contentWidth={100}
             newWindow={false}
             alignment="center"
+            alt={title[i18n.language] || title.zh_TW}
           />
         ) : (
           <Link href={`/product/${id}`} target="_self">

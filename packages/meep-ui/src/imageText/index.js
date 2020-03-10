@@ -127,6 +127,7 @@ export default class ImageText extends React.PureComponent {
           contentWidth={100}
           newWindow={newWindow}
           alignment="center"
+          alt={header.value || description.value || button.value}
         />
 
         <Link

@@ -125,6 +125,7 @@ const ProductCard = ({
                       newWindow={false}
                       ratio={1}
                       isUsingCache={isUsingCache}
+                      alt={title[i18n.language] || title.zh_TW}
                     />
                   )}
                 </div>

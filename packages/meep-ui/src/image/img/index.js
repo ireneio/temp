@@ -42,7 +42,7 @@ class Img extends React.PureComponent {
 
   static defaultProps = {
     /** props */
-    alt: 'meepshop',
+    alt: '',
     customTracking: null,
     className: '',
     isUsingCache: false,
