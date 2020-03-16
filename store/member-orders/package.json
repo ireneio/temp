@@ -9,6 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@store/apollo-client-resolvers": "^0.36.6",
+    "@store/link": "^0.36.6",
     "@store/utils": "^0.36.6",
     "color": "^3.0.0",
     "memoize-one": "^5.1.1",

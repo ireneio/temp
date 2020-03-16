@@ -7,5 +7,8 @@
   "version": "0.36.6",
   "main": "./index.js",
   "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/link": "^0.36.6"
+  },
   "keywords": ["admin", "notification", "setting"]
 }

@@ -9,6 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/date-picker": "^0.36.6",
+    "@admin/link": "^0.36.6",
     "@admin/orders-export": "^0.36.6",
     "@admin/utils": "^0.36.6",
     "memoize-one": "^5.1.1",

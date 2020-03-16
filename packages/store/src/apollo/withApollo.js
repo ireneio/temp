@@ -18,7 +18,7 @@ export default App =>
         router,
         ctx: { res },
       } = ctx;
-      const apollo = initApollo({}, ctx.ctx);
+      const apollo = initApollo(undefined, ctx.ctx);
 
       ctx.ctx.client = apollo;
 

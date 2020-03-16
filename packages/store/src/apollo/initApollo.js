@@ -35,7 +35,7 @@ const create = (initialState, ctx) => {
     }),
   }).restore(initialState || {});
 
-  initializeCache(cache);
+  if (!initialState) initializeCache(cache, ctx);
 
   return new ApolloClient({
     name: 'store',

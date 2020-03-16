@@ -15,6 +15,7 @@ import localeFragment from './fragments/locale';
 // eslint-disable-next-line no-unused-expressions
 gql`
   fragment StoreMock on Store {
+    adminStatus
     domain
     currency
     unpaidBills {
@@ -42,46 +43,50 @@ gql`
 `;
 
 export default mock.add<StoreMock>('Store', [
-  () => ({
-    __typename: 'Store',
-    domain: null,
-    currency: null,
-    unpaidBills: {
-      __typename: 'StoreUnpaidBills',
-      totalCount: 5,
-    },
-    defaultHomePage: {
-      __typename: 'Page',
-      id: 'home-page-id',
-      pageType: 'home',
-      title: getLocale('home-page-id'),
-    },
-    defaultProductListPage: {
-      __typename: 'Page',
-      id: 'default-product-list-page-id',
-      pageType: 'products',
-      title: getLocale('default-product-list-page-id'),
-    },
-  }),
-  () => ({
-    __typename: 'Store',
-    domain: ['localhost:14401'],
-    currency: 'TWD',
-    unpaidBills: {
-      __typename: 'StoreUnpaidBills',
-      totalCount: 5,
-    },
-    defaultHomePage: {
-      __typename: 'Page',
-      id: 'home-page-id',
-      pageType: 'home',
-      title: getLocale('home-page-id'),
-    },
-    defaultProductListPage: {
-      __typename: 'Page',
-      id: 'default-product-list-page-id',
-      pageType: 'products',
-      title: getLocale('default-product-list-page-id'),
-    },
-  }),
+  () =>
+    ({
+      __typename: 'Store',
+      adminStatus: 'BILL_NOT_PAID',
+      domain: null,
+      currency: null,
+      unpaidBills: {
+        __typename: 'StoreUnpaidBills',
+        totalCount: 5,
+      },
+      defaultHomePage: {
+        __typename: 'Page',
+        id: 'home-page-id',
+        pageType: 'home',
+        title: getLocale('home-page-id'),
+      },
+      defaultProductListPage: {
+        __typename: 'Page',
+        id: 'default-product-list-page-id',
+        pageType: 'products',
+        title: getLocale('default-product-list-page-id'),
+      },
+    } as StoreMock),
+  () =>
+    ({
+      __typename: 'Store',
+      adminStatus: 'OPEN',
+      domain: ['localhost:14401'],
+      currency: 'TWD',
+      unpaidBills: {
+        __typename: 'StoreUnpaidBills',
+        totalCount: 5,
+      },
+      defaultHomePage: {
+        __typename: 'Page',
+        id: 'home-page-id',
+        pageType: 'home',
+        title: getLocale('home-page-id'),
+      },
+      defaultProductListPage: {
+        __typename: 'Page',
+        id: 'default-product-list-page-id',
+        pageType: 'products',
+        title: getLocale('default-product-list-page-id'),
+      },
+    } as StoreMock),
 ]);

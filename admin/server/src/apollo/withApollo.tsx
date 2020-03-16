@@ -13,7 +13,7 @@ import Head from 'next/head';
 import { getDataFromTree } from '@apollo/react-ssr';
 
 import initApollo from './initApollo';
-import changeLanguage from './changeLanguage';
+import initCookies from './initCookies';
 
 // typescript definition
 interface PropsType extends AppProps {
@@ -43,11 +43,11 @@ export default (App: typeof NextApp): React.ComponentType =>
         router,
         ctx: { res },
       } = ctx;
-      const apollo = initApollo({}, ctx.ctx);
+      const apollo = initApollo(undefined, ctx.ctx);
 
       if (!process.browser) {
         try {
-          await changeLanguage(apollo, ctx.ctx);
+          await initCookies(apollo, ctx.ctx);
         } catch (e) {
           // eslint-disable-next-line no-console
           console.error('Error while changing language', e);

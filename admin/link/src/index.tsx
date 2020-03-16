@@ -11,14 +11,21 @@ import getLinkProps from './utils/getLinkProps';
 // typescript definition
 interface PropsType extends Omit<LinkProps, 'as' | 'href'> {
   href: string;
+  target?: string;
   children: React.ReactElement;
 }
 
 // definition
 export const useRouter = useRouterHook;
 
-export default React.memo(({ href, ...props }: PropsType) => {
+export default React.memo(({ href, target, children, ...props }: PropsType) => {
   const linkProps = useMemo(() => getLinkProps(href), [href]);
 
-  return <Link {...props} {...linkProps} />;
+  return target === '_blank' ? (
+    React.cloneElement(children, { onClick: () => window.open(href) })
+  ) : (
+    <Link {...props} {...linkProps}>
+      {children}
+    </Link>
+  );
 });

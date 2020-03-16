@@ -45,7 +45,7 @@ const create = (
     }),
   }).restore(initialState || {});
 
-  initializeCache(cache);
+  if (!initialState) initializeCache(cache, ctx);
 
   return new ApolloClient({
     name: 'admin',
