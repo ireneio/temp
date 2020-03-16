@@ -7,7 +7,7 @@ __root="$(cd "$(dirname "${__dir}")" && pwd)"
 
 VERSION=${CIRCLE_TAG:=${TEST_VERSION:=$CIRCLE_BRANCH}}
 PACKAGE_NAME=$(node ../../.circleci/bin/getPackageName.js)
-ISTIOCTL_VERSION=1.3.6
+ISTIOCTL_VERSION=1.5.0
 
 # check need publish
 if [ $(node ../../.circleci/bin/checkNeedPublish.js) != true ]; then
