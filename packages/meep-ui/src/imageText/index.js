@@ -82,7 +82,7 @@ export default class ImageText extends React.PureComponent {
 
     if (/^#/.test(href)) return `${pathname}${search}${href}`;
 
-    if (href && !/(^\/)|(^http)/.test(href)) return `//${href}`;
+    if (href && !/(^\/)|(^http)|(^tel:+)/.test(href)) return `//${href}`;
 
     return href;
   };

@@ -43,7 +43,12 @@ export default class Link extends React.PureComponent {
         : url,
     );
 
-    if (target === '_blank' || host !== window.location.host) return;
+    if (
+      target === '_blank' ||
+      host !== window.location.host ||
+      /^tel:+/.test(url)
+    )
+      return;
 
     e.preventDefault();
     goTo({
@@ -57,7 +62,8 @@ export default class Link extends React.PureComponent {
 
   render() {
     const { href, target, children, className } = this.props;
-    const url = !href || /(^#)|(^\/)|(^http)/.test(href) ? href : `//${href}`;
+    const url =
+      !href || /(^#)|(^\/)|(^http)|(^tel:+)/.test(href) ? href : `//${href}`;
 
     if (!url) return children;
 

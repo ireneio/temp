@@ -33,7 +33,8 @@ export default class Link extends React.PureComponent {
 
     if (
       target === '_blank' ||
-      host !== location.host // eslint-disable-line no-restricted-globals
+      host !== location.host || // eslint-disable-line no-restricted-globals
+      /^tel:+/.test(href)
     ) {
       return;
     }
