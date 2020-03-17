@@ -4,7 +4,7 @@
   "description": "Icons for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.36.6",
+  "version": "0.36.13",
   "main": "./index.js",
   "types": "./src/types.ts",
   "keywords": ["icons"]
