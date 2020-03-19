@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.36.14 (2020-03-19)
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#887](https://github.com/meepshop/meep-lerna/pull/887) 【個別店家】 結帳頁面無優惠碼欄位（cname：swissstyle） ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.36.13 (2020-03-17)
 
 #### :boom: Breaking Change
