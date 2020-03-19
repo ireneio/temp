@@ -7,7 +7,7 @@ import { Form, Select, Collapse } from 'antd';
 import { withTranslation } from '@store/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import { ID_TYPE, COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
+import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
 
 import Coupon from './coupon';
 import { FILTER_ALLPAY_PLAYFORM } from './constants';
@@ -24,7 +24,6 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    storeSetting: STORE_SETTING_TYPE.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
 
     /** props */
@@ -213,7 +212,6 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
     const {
       // context
       colors,
-      storeSetting,
       hasStoreAppPlugin,
 
       // props
@@ -230,7 +228,6 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
       shipmentList,
     } = this.state;
     const { getFieldDecorator } = form;
-    const { activityVersion } = storeSetting;
 
     return (
       <>
@@ -320,7 +317,7 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
           )}
         </FormItem>
 
-        {!(activityVersion === 2 && hasStoreAppPlugin('coupon')) ? null : (
+        {!hasStoreAppPlugin('coupon') ? null : (
           <Coupon
             {...couponInfo}
             style={style}

@@ -133,7 +133,6 @@ export default function(state = initialState, { type, payload }) {
       const {
         locale: localeOptions,
         currency: currencyOptions,
-        activityVersion,
         lockedCountry,
       } = storeSettings;
 
@@ -154,7 +153,6 @@ export default function(state = initialState, { type, payload }) {
         storeCurrency: store.currency || 'TWD', // 幣值轉換欲轉換成的幣值
         customerCurrency: customerCurrency || currencyOptions?.[0] || 'TWD', // default currency
         currencyOptions: currencyOptions || ['TWD'], // 用於幣值選單
-        activityVersion,
       };
 
       return {

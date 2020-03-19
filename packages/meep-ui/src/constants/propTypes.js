@@ -255,7 +255,6 @@ export const CUSTOM_TRACKING_TYPE = PropTypes.shape({
 });
 
 export const STORE_SETTING_TYPE = PropTypes.shape({
-  activityVersion: PropTypes.oneOf([2]),
   logoUrl: URL_TYPE,
   mobileLogoUrl: URL_TYPE,
   invoice: PropTypes.shape({

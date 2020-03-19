@@ -53,7 +53,6 @@ viewer {
       lockedCountry
       lockedBirthday
       paidMessage
-      activityVersion
       adRetentionMilliseconds
       adRetentionMillisecondsEnabled
       shopperLoginMessageEnabled

@@ -30,7 +30,6 @@ class Container extends React.Component {
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     storeAppList: PropTypes.arrayOf(PropTypes.object).isRequired,
     storeSetting: PropTypes.shape({
-      activityVersion: PropTypes.number.isRequired,
       invoice: PropTypes.object.isRequired,
     }).isRequired,
     pageAdTrackIDs: PropTypes.shape({
