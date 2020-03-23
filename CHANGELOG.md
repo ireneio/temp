@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.36.15 (2020-03-23)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#867](https://github.com/meepshop/meep-lerna/pull/867) D&D 頁面編輯 - 選單 - 增加 Logo 排列設定 - 前端 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.36.14 (2020-03-19)
 
 #### :bug: Bug Fix
