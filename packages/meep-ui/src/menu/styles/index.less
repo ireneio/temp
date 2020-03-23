@@ -10,14 +10,36 @@
 
   &.center {
     justify-content: center;
+
+    &.RIGHT {
+      flex-direction: row-reverse;
+    }
   }
 
   &.right {
-    justify-content: space-between;
+    justify-content: flex-end;
+
+    &.RIGHT {
+      justify-content: flex-start;
+      flex-direction: row-reverse;
+    }
   }
 
   &.left {
     justify-content: flex-start;
+
+    &.RIGHT {
+      justify-content: flex-end;
+      flex-direction: row-reverse;
+    }
+  }
+
+  &.separate {
+    justify-content: space-around;
+
+    &.RIGHT {
+      flex-direction: row-reverse;
+    }
   }
 
   @media @PHONE_MEDIA {

@@ -67,6 +67,7 @@ export default class Menu extends React.PureComponent {
       }),
     ).isRequired,
     iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
+    logoAlignment: PropTypes.oneOf(['LEFT', 'RIGHT']),
     design: PropTypes.shape({
       showLogo: PropTypes.bool.isRequired,
       showSearchbar: PropTypes.bool.isRequired,
@@ -115,6 +116,7 @@ export default class Menu extends React.PureComponent {
     openKeys: null,
     className: '',
     reverseSearch: false,
+    logoAlignment: null,
   };
 
   state = {
@@ -147,6 +149,7 @@ export default class Menu extends React.PureComponent {
       id,
       pages,
       iconSize,
+      logoAlignment,
       design: {
         showLogo,
         showSearchbar,
@@ -188,8 +191,8 @@ export default class Menu extends React.PureComponent {
       <div
         id={`menu-${id}`}
         className={`${styles.root} ${styles[alignment]} ${
-          expandSubItem ? '' : 'show-hover'
-        } ${className}`}
+          !logoAlignment ? '' : styles[logoAlignment]
+        } ${expandSubItem ? '' : 'show-hover'} ${className}`}
         style={style}
       >
         {!showLogo ? (

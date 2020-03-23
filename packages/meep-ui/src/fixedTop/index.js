@@ -15,6 +15,7 @@ export default class FixedTop extends React.PureComponent {
     id: ID_TYPE.isRequired,
     menu: PropTypes.shape({
       iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
+      logoAlignment: PropTypes.oneOf(['LEFT', 'RIGHT']).isRequired,
       pages: PropTypes.arrayOf(
         PropTypes.shape({
           id: ID_TYPE.isRequired,
@@ -28,13 +29,19 @@ export default class FixedTop extends React.PureComponent {
     const {
       /** props */
       id,
-      menu: { iconSize, pages, design },
+      menu: { iconSize, logoAlignment, pages, design },
     } = this.props;
 
     return (
       <Affix offsetTop={0}>
         <header className={styles.root}>
-          <Menu id={id} pages={pages} design={design} iconSize={iconSize} />
+          <Menu
+            id={id}
+            pages={pages}
+            design={design}
+            iconSize={iconSize}
+            logoAlignment={logoAlignment}
+          />
         </header>
       </Affix>
     );

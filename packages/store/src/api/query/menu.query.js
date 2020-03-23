@@ -43,6 +43,7 @@ title {
 notBeDeleted
 menuType
 iconSize
+logoAlignment
 pages {
   ${menuPagesQuery}
   pages {

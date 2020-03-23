@@ -13,6 +13,7 @@ export default Component => {
       id: ID_TYPE.isRequired,
       menu: PropTypes.shape({
         iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
+        logoAlignment: PropTypes.oneOf(['LEFT', 'RIGHT']).isRequired,
         pages: PropTypes.arrayOf(
           PropTypes.shape({
             id: ID_TYPE.isRequired,
@@ -28,6 +29,7 @@ export default Component => {
         id,
         menu: {
           iconSize,
+          logoAlignment,
           pages,
           design: { expandSubItem, ...design },
         },
@@ -39,6 +41,7 @@ export default Component => {
           className={expandSubItem ? '' : styles.root}
           pages={pages}
           iconSize={iconSize}
+          logoAlignment={logoAlignment}
           design={{
             ...design,
             expandSubItem,

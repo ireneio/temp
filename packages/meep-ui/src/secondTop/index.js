@@ -14,6 +14,7 @@ export default class SecondTop extends React.PureComponent {
     id: ID_TYPE.isRequired,
     menu: PropTypes.shape({
       iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
+      logoAlignment: PropTypes.oneOf(['LEFT', 'RIGHT']).isRequired,
       pages: PropTypes.arrayOf(
         PropTypes.shape({
           id: ID_TYPE.isRequired,
@@ -27,7 +28,7 @@ export default class SecondTop extends React.PureComponent {
     const {
       /** props */
       id,
-      menu: { iconSize, pages, design },
+      menu: { iconSize, logoAlignment, pages, design },
     } = this.props;
 
     return (
@@ -35,6 +36,7 @@ export default class SecondTop extends React.PureComponent {
         id={id}
         className={styles.root}
         iconSize={iconSize}
+        logoAlignment={logoAlignment}
         pages={pages}
         design={design}
       />
