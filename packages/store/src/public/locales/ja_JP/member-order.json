@@ -96,7 +96,7 @@
         "CITIZEN_DIGITAL_CERTIFICATE": "自然人証憑キャリア"
       },
       "bar-code": "バーコード：",
-      "love-code": "寄付コード：",
+      "donate-code": "寄付コード：",
       "number": "請求書番号：",
       "date": "発行日：",
       "waiting": "まだ発行されていません",

@@ -17,9 +17,10 @@
   "invoice-e-invoice": "電子發票",
   "wrong-certificate": "自然人憑證條碼錯誤，請重新輸入。",
   "wrong-barcode": "手機條碼錯誤，請重新輸入。",
-  "invoice-donate": "社福團體愛心碼",
-  "invoice-search": "查詢",
-  "wrong-lovecode": "愛心碼錯誤，請重新輸入。",
+  "invoice-donate": "受贈單位捐贈碼",
+  "invoice-donate-description": "請確認捐贈碼輸入正確，發票捐出後無法更改。",
+  "invoice-search": "捐贈碼查詢",
+  "wrong-donate-code": "捐贈碼錯誤，請重新輸入。",
   "error": "發生錯誤",
   "invoice-e-invoice-number": {
     "moile-barcode": "請輸入手機條碼",

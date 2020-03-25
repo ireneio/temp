@@ -18,8 +18,9 @@
   "wrong-certificate": "บาร์โค้ด NPC ไม่ถูกต้อง กรุณากรอกใหม่",
   "wrong-barcode": "บาร์โค้ดมือถือไม่ถูกต้อง กรุณากรอกใหม่",
   "invoice-donate": "ป้อนรหัสการบริจาค NPO",
-  "invoice-search": "สอบถาม",
-  "wrong-lovecode": "รหัสการบริจาค NPO ไม่ถูกต้อง กรุณากรอกใหม่",
+  "invoice-donate-description": null,
+  "invoice-search": null,
+  "wrong-donate-code": "รหัสการบริจาค NPO ไม่ถูกต้อง กรุณากรอกใหม่",
   "error": "เกิดข้อผิดพลาด",
   "invoice-e-invoice-number": {
     "moile-barcode": "ใส่บาร์โค้ด",

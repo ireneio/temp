@@ -18,8 +18,9 @@
   "wrong-certificate": "Mã vạch thẻ Thể Nhân không đúng, xin vui lòng nhập lại.",
   "wrong-barcode": "Mã vạch máy di động không đúng, xin vui lòng nhập lại.",
   "invoice-donate": "Nhập mã an sinh xã hội",
-  "invoice-search": "Tìm kiếm",
-  "wrong-lovecode": "Mã số Trái Tim không đúng, xin vui lòng nhập lại.",
+  "invoice-donate-description": null,
+  "invoice-search": null,
+  "wrong-donate-code": "Mã số Trái Tim không đúng, xin vui lòng nhập lại.",
   "error": "Bị lỗi",
   "invoice-e-invoice-number": {
     "moile-barcode": "Xin nhập mã vạch di động",

@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { Form, Input, message } from 'antd';
+import { Form, Input, message, Button } from 'antd';
 import { warning } from 'fbjs';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
+import { COLOR_TYPE } from 'constants/propTypes';
 
 import { INVOICE_SEARCH_LINK } from './constants';
-import * as styles from './styles/invoice';
+import styles from './styles/invoice.less';
 
 const { Item: FormItem } = Form;
-const { Search } = Input;
 
 @withTranslation('receiver-default-form-item')
 @enhancer
@@ -20,6 +20,7 @@ const { Search } = Input;
 export default class Invoice extends React.PureComponent {
   static propTypes = {
     /** context */
+    colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     getData: PropTypes.func.isRequired,
 
     /** props */
@@ -53,7 +54,7 @@ export default class Invoice extends React.PureComponent {
 
       if (data?.isEInvoiceLoveCodeValid) return callback();
 
-      return callback(t('wrong-lovecode'));
+      return callback(t('wrong-donate-code'));
     } catch (error) {
       return callback(t('error'));
     }
@@ -83,7 +84,7 @@ export default class Invoice extends React.PureComponent {
   };
 
   render() {
-    const { t, style, form } = this.props;
+    const { colors, t, style, form } = this.props;
     const { getFieldValue, getFieldDecorator } = form;
 
     const value = getFieldValue('invoice') || [];
@@ -94,7 +95,7 @@ export default class Invoice extends React.PureComponent {
       case 'TRIPLICATE':
         return (
           <>
-            <div style={styles.itemRoot}>
+            <div className={styles.itemRoot}>
               <FormItem style={style}>
                 {getFieldDecorator('invoiceTitle', {
                   rules: [
@@ -142,34 +143,46 @@ export default class Invoice extends React.PureComponent {
 
       case 'DONATION':
         return (
-          <FormItem style={style}>
-            {getFieldDecorator('invoiceDonate', {
-              rules: [
-                {
-                  required: true,
-                  message: t('is-required'),
-                },
-                isECPAY && {
-                  validator: this.validateLoveCode,
-                },
-              ],
-              validateFirst: true,
-              validateTrigger: 'onBlur',
-            })(
-              <Search
-                placeholder={t('invoice-donate')}
-                enterButton={
-                  <a
+          <div className={styles.donate}>
+            <FormItem style={style}>
+              {getFieldDecorator('invoiceDonate', {
+                rules: [
+                  {
+                    required: true,
+                    message: t('is-required'),
+                  },
+                  {
+                    validator: (rule, donateCode, callback) => {
+                      if (!/^\d{3,7}$/.test(donateCode))
+                        callback(t('wrong-donate-code'));
+                      else callback();
+                    },
+                  },
+                  isECPAY && {
+                    validator: this.validateLoveCode,
+                  },
+                ],
+                validateFirst: true,
+                validateTrigger: 'onBlur',
+              })(
+                <div className={styles.donateInput}>
+                  <Input placeholder={t('invoice-donate')} />
+                  <Button
+                    style={{
+                      color: colors[2],
+                      background: colors[4],
+                      borderColor: colors[4],
+                    }}
                     href={INVOICE_SEARCH_LINK}
                     target="_blank"
-                    rel="noopener noreferrer"
                   >
                     {t('invoice-search')}
-                  </a>
-                }
-              />,
-            )}
-          </FormItem>
+                  </Button>
+                </div>,
+              )}
+            </FormItem>
+            <div>{t('invoice-donate-description')}</div>
+          </div>
         );
 
       case 'MOBILE_BARCODE':

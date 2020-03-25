@@ -96,7 +96,7 @@
         "CITIZEN_DIGITAL_CERTIFICATE": "NPC Barcode"
       },
       "bar-code": "Numéro de code barre:",
-      "love-code": "Code de don d'OBNL:",
+      "donate-code": "Code de don d'OBNL:",
       "number": "Numéro de facture:",
       "date": "Date de publication:",
       "waiting": "Reste à publier",

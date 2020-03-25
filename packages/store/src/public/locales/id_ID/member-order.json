@@ -96,7 +96,7 @@
         "CITIZEN_DIGITAL_CERTIFICATE": "Kode Batang NPC"
       },
       "bar-code": "Nomor Kode Batang:",
-      "love-code": "Kode Donasi NPO:",
+      "donate-code": "Kode Donasi NPO:",
       "number": "Nomor faktur:",
       "date": "Tanggal Terbit:",
       "waiting": "Belum diterbitkan",

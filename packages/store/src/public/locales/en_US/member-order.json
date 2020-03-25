@@ -96,7 +96,7 @@
         "CITIZEN_DIGITAL_CERTIFICATE": "NPC Barcode"
       },
       "bar-code": "Bar Code Number: ",
-      "love-code": "NPO Donation Code: ",
+      "donate-code": "NPO Donation Code: ",
       "number": "Invoice Number: ",
       "date": "Issued Date: ",
       "waiting": "Yet to be Issued",

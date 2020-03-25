@@ -99,7 +99,7 @@ export default React.memo(({ invoices, children }: PropsType) => {
       return children(
         tag,
         <div>
-          {t('blocks.invoice.love-code')}
+          {t('blocks.invoice.donate-code')}
           {loveCode}
         </div>,
       );

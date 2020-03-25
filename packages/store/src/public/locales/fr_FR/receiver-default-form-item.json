@@ -18,8 +18,9 @@
   "wrong-certificate": "Le code à barres NPC est incorrect. Veuillez entrer à nouveau.",
   "wrong-barcode": "Le code à barres mobile est incorrect. Veuillez entrer à nouveau.",
   "invoice-donate": "Entrez le code de don NPO",
-  "invoice-search": "Renseigner",
-  "wrong-lovecode": "Le code de don NPO est incorrect. Veuillez entrer à nouveau.",
+  "invoice-donate-description": null,
+  "invoice-search": null,
+  "wrong-donate-code": "Le code de don NPO est incorrect. Veuillez entrer à nouveau.",
   "error": "Des erreurs sont survenues",
   "invoice-e-invoice-number": {
     "moile-barcode": "Entrez le code-barres",

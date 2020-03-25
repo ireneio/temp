@@ -96,7 +96,7 @@
         "CITIZEN_DIGITAL_CERTIFICATE": "บาร์โค้ด NPC"
       },
       "bar-code": "หมายเลขบาร์โค้ด:",
-      "love-code": "รหัสการบริจาค NPO:",
+      "donate-code": "รหัสการบริจาค NPO:",
       "number": "เลขใบสั่งของ:",
       "date": "วันที่ออก:",
       "waiting": "ยังไม่ออก",

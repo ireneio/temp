@@ -18,8 +18,9 @@
   "wrong-certificate": "Kode Batang NPC salah. Silakan masukkan lagi.",
   "wrong-barcode": "Kode Batang Seluler salah. Silakan masukkan lagi.",
   "invoice-donate": "Masukkan Kode Donasi NPO",
-  "invoice-search": "Menanyakan",
-  "wrong-lovecode": "Kode Donasi NPO salah. Silakan masukkan lagi.",
+  "invoice-donate-description": null,
+  "invoice-search": null,
+  "wrong-donate-code": "Kode Donasi NPO salah. Silakan masukkan lagi.",
   "error": "Terjadi kesalahan",
   "invoice-e-invoice-number": {
     "moile-barcode": "Masukkan kode batang",

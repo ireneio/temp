@@ -96,7 +96,7 @@
         "CITIZEN_DIGITAL_CERTIFICATE": "Código de barras NPC"
       },
       "bar-code": "Codigo de barras:",
-      "love-code": "Código de Donación de NPO:",
+      "donate-code": "Código de Donación de NPO:",
       "number": "Numero de factura:",
       "date": "Fecha de Emisión:",
       "waiting": "Aún no se ha emitido",

@@ -18,8 +18,9 @@
   "wrong-certificate": "自然人証憑バーコードが誤っています。もう一度入力してください。",
   "wrong-barcode": "携帯電話バーコードが誤っています。もう一度入力してください。",
   "invoice-donate": "社会福祉団体コード",
-  "invoice-search": "検索",
-  "wrong-lovecode": "社会福祉団体コードが誤っています。もう一度入力してください。",
+  "invoice-donate-description": null,
+  "invoice-search": null,
+  "wrong-donate-code": "社会福祉団体コードが誤っています。もう一度入力してください。",
   "error": "エラーが発生しました",
   "invoice-e-invoice-number": {
     "moile-barcode": "携帯電話バーコードを読み込んでください",
