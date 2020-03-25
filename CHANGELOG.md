@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.36.17 (2020-03-25)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#888](https://github.com/meepshop/meep-lerna/pull/888) 【優化】 前台結帳頁 - 發票捐贈欄位檢查 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.36.16 (2020-03-23)
 
 #### :bug: Bug Fix
