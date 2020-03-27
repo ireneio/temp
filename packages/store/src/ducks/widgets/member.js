@@ -1,14 +1,11 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import * as Utils from 'utils';
 import { notification } from 'antd';
-import gql from 'graphql-tag';
 
 import { i18n } from '@store/utils/lib/i18n';
-import * as COUNTRY_LOCALE from '@meepshop/meep-ui/lib/locale/country';
 
 import * as Api from 'api';
 import { NOTLOGIN, ISUSER } from 'constants';
-import client from 'apollo/initApollo';
 
 import { cleanProductList } from './lists';
 
@@ -448,300 +445,6 @@ export function* watchUpdateUserFlow() {
   yield takeEvery(UPDATE_USER_REQUEST, updateUserFlow);
 }
 
-/* ******************************** 新增收件人範本 ********************************* */
-const ADD_RECIPIENT_ADDRESS_REQUEST = 'ADD_RECIPIENT_ADDRESS_REQUEST';
-
-export const addRecipientAddress = payload => ({
-  type: ADD_RECIPIENT_ADDRESS_REQUEST,
-  payload,
-});
-
-function* addRecipientAddressFlow({ payload }) {
-  const {
-    memberReducer: { user },
-  } = yield select();
-
-  try {
-    const {
-      data: {
-        addRecipientAddress: { status, recipientAddressId },
-      },
-    } = yield call(Api.addRecipientAddress, payload);
-
-    if (status === 'OK') {
-      const {
-        input: { name, mobile, countryId, cityId, areaId, zipCode, street },
-      } = payload;
-      const countryData = client().readFragment({
-        id: countryId,
-        fragment: gql`
-          fragment getCountryFragment on Country {
-            id
-            name {
-              zh_TW
-              en_US
-              ja_JP
-              vi_VN
-              fr_FR
-              es_ES
-              th_TH
-              id_ID
-            }
-          }
-        `,
-      });
-      const cityData = client().readFragment({
-        id: cityId,
-        fragment: gql`
-          fragment cityFragment on City {
-            id
-            name {
-              zh_TW
-              en_US
-              ja_JP
-              vi_VN
-              fr_FR
-              es_ES
-              th_TH
-              id_ID
-            }
-          }
-        `,
-      });
-      const areaData = client().readFragment({
-        id: areaId,
-        fragment: gql`
-          fragment areaFragment on Area {
-            id
-            name {
-              zh_TW
-              en_US
-              ja_JP
-              vi_VN
-              fr_FR
-              es_ES
-              th_TH
-              id_ID
-            }
-          }
-        `,
-      });
-
-      const country = !countryData.id ? null : countryData.name.en_US;
-      const city = !cityData.id
-        ? null
-        : cityData.name[i18n.language] || cityData.name.zh_TW;
-      const county = !areaData.id
-        ? null
-        : areaData.name[i18n.language] || areaData.name.zh_TW;
-
-      yield put(
-        updateUserSuccess({
-          ...user,
-          recipientData: [
-            ...user.recipientData,
-            {
-              id: recipientAddressId,
-              name,
-              mobile,
-              address: {
-                postalCode: zipCode,
-                yahooCode: {
-                  country,
-                  city,
-                  county,
-                  street,
-                },
-              },
-            },
-          ],
-        }),
-      );
-    }
-  } catch (error) {
-    yield put(updateUserFailure());
-
-    notification.error({
-      message: i18n.t('ducks:update-user-failure-message'),
-      description: error.message,
-    });
-  }
-}
-
-export function* watchAddRecipientAddressFlow() {
-  yield takeEvery(ADD_RECIPIENT_ADDRESS_REQUEST, addRecipientAddressFlow);
-}
-
-/* ******************************** 修改收件人範本 ********************************* */
-const UPDATE_RECIPIENT_ADDRESS_REQUEST = 'UPDATE_RECIPIENT_ADDRESS_REQUEST';
-
-export const updateRecipientAddress = payload => ({
-  type: UPDATE_RECIPIENT_ADDRESS_REQUEST,
-  payload,
-});
-
-function* updateRecipientAddressFlow({
-  payload: { recipientIndexForRedux, ...payload },
-}) {
-  const {
-    memberReducer: { user },
-  } = yield select();
-
-  try {
-    const {
-      data: {
-        updateRecipientAddress: { status },
-      },
-    } = yield call(Api.updateRecipientAddress, payload);
-
-    if (status === 'OK') {
-      const {
-        input: { name, mobile, countryId, cityId, areaId, zipCode, street },
-      } = payload;
-      const countryData = client().readFragment({
-        id: countryId,
-        fragment: gql`
-          fragment getCountryFragment on Country {
-            id
-            name {
-              zh_TW
-              en_US
-              ja_JP
-              vi_VN
-              fr_FR
-              es_ES
-              th_TH
-              id_ID
-            }
-          }
-        `,
-      });
-      const cityData = client().readFragment({
-        id: cityId,
-        fragment: gql`
-          fragment cityFragment on City {
-            id
-            name {
-              zh_TW
-              en_US
-              ja_JP
-              vi_VN
-              fr_FR
-              es_ES
-              th_TH
-              id_ID
-            }
-          }
-        `,
-      });
-      const areaData = client().readFragment({
-        id: areaId,
-        fragment: gql`
-          fragment areaFragment on Area {
-            id
-            name {
-              zh_TW
-              en_US
-              ja_JP
-              vi_VN
-              fr_FR
-              es_ES
-              th_TH
-              id_ID
-            }
-          }
-        `,
-      });
-
-      const country = !countryData.id ? null : countryData.name.en_US;
-      const city = !cityData.id
-        ? null
-        : cityData.name[i18n.language] || cityData.name.zh_TW;
-      const county = !areaData.id
-        ? null
-        : areaData.name[i18n.language] || areaData.name.zh_TW;
-      const recipientData = [...user.recipientData];
-
-      recipientData[recipientIndexForRedux] = {
-        ...recipientData[recipientIndexForRedux],
-        name,
-        mobile,
-        address: {
-          postalCode: zipCode,
-          yahooCode: {
-            country,
-            city,
-            county,
-            street,
-          },
-        },
-      };
-
-      yield put(
-        updateUserSuccess({
-          ...user,
-          recipientData,
-        }),
-      );
-    }
-  } catch (error) {
-    yield put(updateUserFailure());
-
-    notification.error({
-      message: i18n.t('ducks:update-user-failure-message'),
-      description: error.message,
-    });
-  }
-}
-
-export function* watchUpdateRecipientAddressFlow() {
-  yield takeEvery(UPDATE_RECIPIENT_ADDRESS_REQUEST, updateRecipientAddressFlow);
-}
-
-/* ******************************** 刪除收件人範本 ********************************* */
-const DELETE_RECIPIENT_ADDRESS_REQUEST = 'DELETE_RECIPIENT_ADDRESS_REQUEST';
-
-export const deleteRecipientAddress = payload => ({
-  type: DELETE_RECIPIENT_ADDRESS_REQUEST,
-  payload,
-});
-
-function* deleteRecipientAddressFlow({
-  payload: { recipientIndexForRedux, ...payload },
-}) {
-  const {
-    memberReducer: { user },
-  } = yield select();
-
-  try {
-    const {
-      data: {
-        deleteRecipientAddress: { status },
-      },
-    } = yield call(Api.deleteRecipientAddress, payload);
-
-    if (status === 'OK')
-      yield put(
-        updateUserSuccess({
-          ...user,
-          recipientData: user.recipientData.filter(
-            (_, index) => recipientIndexForRedux !== index,
-          ),
-        }),
-      );
-  } catch (error) {
-    yield put(updateUserFailure());
-    notification.error({
-      message: i18n.t('ducks:update-user-failure-message'),
-      description: error.message,
-    });
-  }
-}
-
-export function* watchDeleteRecipientAddressFlow() {
-  yield takeEvery(DELETE_RECIPIENT_ADDRESS_REQUEST, deleteRecipientAddressFlow);
-}
-
 /* ************************************ 退貨申請 ************************************ */
 const CREATE_APPLY_REQUEST = 'CREATE_APPLY_REQUEST';
 const CREATE_APPLY_SUCCESS = 'CREATE_APPLY_SUCCESS';
@@ -1011,12 +714,6 @@ export function* watchSendPaymentNotificationFlow() {
 }
 
 /* ************************************ 送出匯款通知 ************************************ */
-const ADD_RECIPIENT = 'ADD_RECIPIENT';
-
-export const addRecipient = payload => ({
-  type: ADD_RECIPIENT,
-  payload,
-});
 
 /**
  * @name AuthReducer
@@ -1035,15 +732,9 @@ const getUser = _user => {
     _user?.group?.[_user.group.length - 1]?.unlimitedDate || null;
   const mobile = _user?.additionalInfo?.mobile || '';
   const tel = _user?.additionalInfo?.tel || '';
-  const country = _user?.additionalInfo?.address?.yahooCode?.country || null;
-  const city = _user?.additionalInfo?.address?.yahooCode?.city || null;
-  const county = _user?.additionalInfo?.address?.yahooCode?.county || null;
-  const street = _user?.additionalInfo?.address?.yahooCode?.street || null;
   const year = _user?.birthday?.year || null;
   const month = _user?.birthday?.month || null;
   const day = _user?.birthday?.day || null;
-  const recipientData = _user?.recipientData || [];
-  const recipientAddressBook = _user?.recipientAddressBook || [];
   const userNotification = _user.notification || null;
 
   return {
@@ -1060,48 +751,12 @@ const getUser = _user => {
     additionalInfo: {
       mobile,
       tel,
-      address: {
-        yahooCode: {
-          country,
-          city,
-          county,
-          street,
-        },
-      },
     },
     birthday: {
       year,
       month,
       day,
     },
-    recipientData: (_user?.recipientData
-      ? recipientData
-      : recipientAddressBook.map(
-          ({
-            postalCode,
-            yahooCodeCountry,
-            yahooCodeCity,
-            yahooCodeCounty,
-            street: recipientStreet,
-            ...recipient
-          }) => ({
-            ...recipient,
-            address: {
-              postalCode,
-              yahooCode: {
-                country: yahooCodeCountry,
-                city: yahooCodeCity,
-                county: yahooCodeCounty,
-                street: recipientStreet,
-              },
-            },
-          }),
-        )
-    ).filter(recipient =>
-      Object.values(COUNTRY_LOCALE).some(locale =>
-        Object.values(locale).includes(recipient?.address?.yahooCode?.country),
-      ),
-    ),
     notification: userNotification,
   };
 };
@@ -1510,20 +1165,6 @@ export default function(state = initialState, { type, payload }) {
         ...state,
         loading: false,
         loadingTip: '',
-      };
-    }
-
-    case ADD_RECIPIENT: {
-      const { recipient } = payload;
-      const user = state?.user;
-      const recipientData = user?.recipientData;
-
-      return {
-        ...state,
-        user: {
-          ...user,
-          recipientData: [...recipientData, recipient],
-        },
       };
     }
 

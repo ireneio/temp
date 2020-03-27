@@ -14,5 +14,9 @@
     "not-taiwan-mobile": "Khu vực Đài Loan số điện thoại nên là 10 số",
     "not-mobile": "Định dạng điện thoại không hợp lệ",
     "not-number": "Hãy chỉ điền số"
+  },
+  "mutation": {
+    "success": "Hoàn tất cập nhật",
+    "failure": "Cập nhật hội viên : Xảy ra lỗi"
   }
 }

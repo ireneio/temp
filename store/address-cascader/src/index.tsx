@@ -1,29 +1,29 @@
 // graphql typescript
-import { CascaderOptionType } from 'antd/lib/cascader';
-
 import { I18nPropsType } from '@store/utils/lib/i18n';
 
 // import
-import React, { useMemo, useState, useEffect } from 'react';
-import { Query } from '@apollo/react-components';
+import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import { filter } from 'graphql-anywhere';
 import { Cascader, Select, Input } from 'antd';
 
 import ZipCodeInput from './ZipCodeInput';
+import useOptions from './hooks/useOptions';
+import useValue from './hooks/useValue';
+import useZipCodes from './hooks/useZipCodes';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { localeFragmentType } from '@store/utils/lib/fragments/locale';
-
 import {
   getCountriesAddress,
   getCountriesAddress_addressService_countries as getCountriesAddressAddressServiceCountries,
-  getCountriesAddress_getColorList as getCountriesAddressGetColorList,
 } from './__generated__/getCountriesAddress';
 
 // graphql import
 import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
-import localeFragment from '@store/utils/lib/fragments/locale';
+
+import { useOptionsFragment } from './hooks/useOptions';
 
 // typescript definition
 interface PropsType extends Pick<I18nPropsType, 'i18n'> {
@@ -31,52 +31,29 @@ interface PropsType extends Pick<I18nPropsType, 'i18n'> {
   className?: string;
   size?: 'small' | 'default' | 'large';
   placeholder: [string, string];
-  lockedCountry?: string[];
+  shippableCountries: Pick<getCountriesAddressAddressServiceCountries, 'id'>[];
   value?: {
     address?: string[];
     zipCode?: string;
   };
   onChange?: (value: { address?: string[]; zipCode?: string }) => void;
-  countries: getCountriesAddressAddressServiceCountries[];
-  colors: getCountriesAddressGetColorList['colors'];
-}
-
-interface OptionsType {
-  __typename: string;
-  id: string;
-  name: localeFragmentType;
-  children?: OptionsType[];
 }
 
 // definition
-const getOptions = (
-  data: OptionsType[],
-  language: PropsType['i18n']['language'],
-): CascaderOptionType[] =>
-  data.map(({ id, name, children, ...d }) => ({
-    ...d,
-    value: id,
-    label: name[language] || name.zh_TW,
-    children:
-      !children || children.length === 0
-        ? undefined
-        : getOptions(children, language),
-  }));
+const query = gql`
+  query getCountriesAddress {
+    addressService {
+      ...useOptionsFragment
+    }
 
-const findZipcodes = (
-  options: CascaderOptionType[],
-  address: string[] | undefined,
-): null | string[] => {
-  const [id, ...otherIds]: string[] = address || [];
-  const option = options.find(({ value }) => value === id);
-  const zipCodes = option?.zipCodes;
+    getColorList {
+      ...colorListFragment
+    }
+  }
 
-  if (zipCodes) return zipCodes;
-
-  if (!option || otherIds.length === 0) return null;
-
-  return findZipcodes(option.children || [], otherIds);
-};
+  ${colorListFragment}
+  ${useOptionsFragment}
+`;
 
 const AddressCascader = React.memo(
   ({
@@ -86,55 +63,33 @@ const AddressCascader = React.memo(
     className,
     size,
     placeholder,
-    lockedCountry,
+    shippableCountries,
+    onChange,
     value,
-    onChange: propsOnChange,
-    countries,
-    colors,
   }: PropsType): React.ReactElement => {
-    const useValueinState = useState(value);
-    const [
-      { address = undefined, zipCode = undefined } = {},
-      onChange,
-    ] = propsOnChange ? [value, propsOnChange] : useValueinState;
-    const options = useMemo(
-      () =>
-        getOptions(
-          !lockedCountry || lockedCountry.length === 0
-            ? countries
-            : countries.filter(({ id }) => lockedCountry.includes(id)),
-          i18n.language,
-        ),
-      [i18n.language, countries, lockedCountry],
+    const { data } = useQuery<getCountriesAddress>(query);
+    const options = useOptions(
+      filter(
+        useOptionsFragment,
+        data?.addressService || { __typename: 'AddressService', countries: [] },
+      ),
+      shippableCountries,
+      i18n,
     );
-    const zipCodes = useMemo(() => findZipcodes(options, address), [
-      options,
-      address,
-    ]);
-    const addressLength = (address || []).length;
-    const isOnlyOneOption = options.length === 1;
-    const isSelectAddress = addressLength !== 0;
+    const { address, zipCode } = useValue(options, value, onChange);
+    const zipCodes = useZipCodes(options, address);
+    const colors = data?.getColorList?.colors;
 
-    useEffect(() => {
-      if (isOnlyOneOption && addressLength === 0 && !options[0].children)
-        onChange({
-          address: [options[0].value as string],
-          zipCode,
-        });
-    }, [
-      isOnlyOneOption,
-      options.length,
-      addressLength,
-      onChange,
-      zipCode,
-      options,
-    ]);
+    if (!colors || options.length === 0) return <Select loading />;
+
+    const isOnlyOneOption = options.length === 1;
+    const isSelectAddress = (address || []).length !== 0;
 
     return (
       <div
         ref={forwardedRef}
         className={`${styles.root} ${
-          !isSelectAddress || addressLength === 1 ? '' : styles.selectZipCode
+          !isSelectAddress || address?.length === 1 ? '' : styles.selectZipCode
         } ${className}`}
       >
         {isOnlyOneOption && !options[0].children ? (
@@ -144,14 +99,15 @@ const AddressCascader = React.memo(
             size={size}
             placeholder={placeholder[0]}
             value={!address || !isOnlyOneOption ? address : address.slice(1)}
-            onChange={newAddress => {
-              onChange({
-                address: !isOnlyOneOption
-                  ? newAddress
-                  : [options[0].value as string, ...newAddress],
+            onChange={newAddress =>
+              onChange?.({
+                address:
+                  !isOnlyOneOption || newAddress.length === 0
+                    ? newAddress
+                    : [options[0].value as string, ...newAddress],
                 zipCode: undefined,
-              });
-            }}
+              })
+            }
             options={!isOnlyOneOption ? options : options[0].children}
             displayRender={label =>
               (!isSelectAddress || !isOnlyOneOption
@@ -167,9 +123,9 @@ const AddressCascader = React.memo(
             size={size}
             placeholder={placeholder[1]}
             value={zipCode}
-            onChange={newZipCode => {
-              onChange({ address, zipCode: newZipCode });
-            }}
+            onChange={newZipCode =>
+              onChange?.({ address, zipCode: newZipCode })
+            }
             options={zipCodes}
             colors={colors}
           />
@@ -180,62 +136,7 @@ const AddressCascader = React.memo(
 );
 
 export default React.forwardRef(
-  (
-    props: Omit<PropsType, 'forwardedRef' | 'countries' | 'colors'>,
-    ref: PropsType['forwardedRef'],
-  ) => (
-    <Query<getCountriesAddress>
-      query={gql`
-        query getCountriesAddress {
-          addressService {
-            countries {
-              id
-              name {
-                ...localeFragment
-              }
-              children: cities {
-                id
-                name {
-                  ...localeFragment
-                }
-                children: areas {
-                  id
-                  name {
-                    ...localeFragment
-                  }
-                  zipCodes
-                }
-              }
-            }
-          }
-          getColorList {
-            ...colorListFragment
-          }
-        }
-        ${colorListFragment}
-        ${localeFragment}
-      `}
-    >
-      {({ loading, error, data }) => {
-        if (loading || error || !data) return <Select loading />;
-
-        const {
-          addressService: { countries },
-          getColorList,
-        } = data;
-
-        // FIXME should not be null
-        if (!getColorList) return <Select loading />;
-
-        return (
-          <AddressCascader
-            {...props}
-            forwardedRef={ref}
-            countries={countries}
-            colors={getColorList.colors}
-          />
-        );
-      }}
-    </Query>
+  (props: Omit<PropsType, 'forwardedRef'>, ref: PropsType['forwardedRef']) => (
+    <AddressCascader {...props} forwardedRef={ref} />
   ),
 );

@@ -4,23 +4,20 @@ import radium from 'radium';
 import { Form, Input, Cascader } from 'antd';
 
 import { withTranslation } from '@store/utils/lib/i18n';
+import AddressCascader from '@store/address-cascader';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import AddressCascader from 'addressCascader';
 import {
   STORE_SETTING_TYPE,
   SHIPMENT_TEMPLATE_TYPE,
-  COUNTRY_TYPE,
 } from 'constants/propTypes';
 import validateMobile, {
   validateTaiwanMobileNumber,
 } from 'utils/validateMobile';
-import { TAIWAN } from 'locale/country';
 
 import Invoice from './Invoice';
 import ChooseShipmentStore from './ChooseShipmentStore';
 import getInvoiceOptions from './utils/getInvoiceOptions';
-import { ID_NUMBER_CITY_CODE, ID_NUMBER_WEIGHTED } from './constants';
 
 const { Item: FormItem } = Form;
 
@@ -39,14 +36,12 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
     form: PropTypes.shape({}).isRequired, // from LandingPage Form.create()
 
     /** moduleProps */
-    countries: PropTypes.arrayOf(COUNTRY_TYPE.isRequired),
     invoiceIsNeeded: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
     style: {},
     chooseShipmentTemplate: null,
-    countries: null,
   };
 
   componentDidUpdate(preProps) {
@@ -78,10 +73,11 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
 
       // props
       t,
+      i18n,
       style,
       chooseShipmentTemplate,
       form,
-      countries,
+      shippableCountries,
       invoiceIsNeeded,
     } = this.props;
 
@@ -115,43 +111,6 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
           )}
         </FormItem>
 
-        {chooseShipmentTemplate !== 'gmo' ? null : (
-          <FormItem style={style}>
-            {getFieldDecorator('idNumber', {
-              validateTrigger: 'onBlur',
-              rules: [
-                {
-                  required: true,
-                  message: t('is-required'),
-                },
-                {
-                  validator: (rule, value, callback) => {
-                    const id = (value || '').toUpperCase();
-
-                    if (!/^[A-Z](1|2)\d{8}$/i.test(id))
-                      return callback(t('not-id-number'));
-
-                    const [engChar, ...numbers] = id;
-                    const total = [
-                      ...ID_NUMBER_CITY_CODE[engChar.charCodeAt(0) - 65],
-                      ...numbers,
-                    ].reduce(
-                      (result, number, index) =>
-                        result +
-                        parseInt(number, 10) * ID_NUMBER_WEIGHTED[index],
-                      0,
-                    );
-
-                    if (total % 10 !== 0) return callback(t('not-id-number'));
-
-                    return callback();
-                  },
-                },
-              ],
-            })(<Input placeholder={t('id-number')} maxLength={10} />)}
-          </FormItem>
-        )}
-
         {['allpay', 'ezship'].includes(chooseShipmentTemplate) ? (
           <FormItem style={style}>
             <ChooseShipmentStore
@@ -163,7 +122,7 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
         ) : (
           <>
             <FormItem style={style}>
-              {getFieldDecorator('address', {
+              {getFieldDecorator('addressAndZipCode', {
                 rules: [
                   {
                     required: true,
@@ -172,31 +131,16 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
                 ],
               })(
                 <AddressCascader
-                  placeholder={t('area')}
-                  lockedCountry={countries}
+                  i18n={i18n}
+                  placeholder={[t('area'), t('postal-code')]}
+                  shippableCountries={shippableCountries || []}
                   allowClear={false}
                 />,
               )}
             </FormItem>
 
-            {[undefined, ...Object.values(TAIWAN)].includes(
-              getFieldValue('address')?.[0],
-            ) ? null : (
-              <FormItem style={style}>
-                {getFieldDecorator('postalCode', {
-                  validateTrigger: 'onBlur',
-                  rules: [
-                    {
-                      required: true,
-                      message: t('is-required'),
-                    },
-                  ],
-                })(<Input placeholder={t('postal-code')} />)}
-              </FormItem>
-            )}
-
             <FormItem style={style}>
-              {getFieldDecorator('addressDetail', {
+              {getFieldDecorator('street', {
                 validateTrigger: 'onBlur',
                 rules: [
                   {

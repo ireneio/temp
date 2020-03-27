@@ -14,5 +14,9 @@
     "not-taiwan-mobile": "Le numéro de téléphone mobile de Taiwan est de 10 chiffres",
     "not-mobile": "Numéro de portable invalide",
     "not-number": "Cette entrée ne peut contenir que des chiffres"
+  },
+  "mutation": {
+    "success": "Vos informations ont été mises à jour.",
+    "failure": "Informations de mise à jour: une erreur s'est produite"
   }
 }

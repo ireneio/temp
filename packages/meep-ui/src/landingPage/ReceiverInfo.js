@@ -13,7 +13,6 @@ import {
   ISLOGIN_TYPE,
   PAYMENT_TEMPLATE_TYPE,
   SHIPMENT_TEMPLATE_TYPE,
-  COUNTRY_TYPE,
 } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
 
@@ -51,7 +50,6 @@ export default class ReceiverInfo extends React.PureComponent {
     }).isRequired,
 
     /** moduleProps */
-    countries: PropTypes.arrayOf(COUNTRY_TYPE.isRequired),
     addition: ADDITION_TYPE.isRequired,
     required: REQUIRED_TYPE.isRequired,
   };
@@ -59,7 +57,6 @@ export default class ReceiverInfo extends React.PureComponent {
   static defaultProps = {
     choosePaymentTemplate: null,
     chooseShipmentTemplate: null,
-    countries: null,
   };
 
   state = {
@@ -113,7 +110,7 @@ export default class ReceiverInfo extends React.PureComponent {
       t,
       choosePaymentTemplate,
       chooseShipmentTemplate,
-      countries,
+      shippableCountries,
       form,
       addition,
       required,
@@ -244,7 +241,7 @@ export default class ReceiverInfo extends React.PureComponent {
           style={formItemStyle}
           form={form}
           chooseShipmentTemplate={chooseShipmentTemplate}
-          countries={countries}
+          shippableCountries={shippableCountries}
           invoiceIsNeeded={
             addition.includes('invoice') && choosePaymentTemplate !== 'paypal'
           }

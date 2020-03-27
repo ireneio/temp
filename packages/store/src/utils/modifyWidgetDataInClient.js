@@ -217,7 +217,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
             contentWidth: widget.width,
             redirectPage: widget.landingInfo.redirectPage || '/',
             addition: widget.landingInfo.addition,
-            countries: widget.landingInfo.countries || [],
+            shippableCountries: widget.landingInfo.shippableCountries || [],
             required: widget.landingInfo.required,
             productData:
               widget.params && widget.params.ids

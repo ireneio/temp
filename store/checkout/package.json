@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@store/checkout",
+  "description": "Use to build checkout page",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "uuid": "^3.3.3"
+  },
+  "keywords": ["checkout", "store"]
+}

@@ -167,8 +167,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
       expireDate = moment().unix(),
       unlimitedDate = false,
     } = group || {};
-    const { lockedCountry = null, lockedBirthday = null } =
-      store?.setting || {};
+    const { lockedBirthday = null } = store?.setting || {};
     const gmoRememberCardEnabled =
       store?.experiment?.gmoRememberCardEnabled || false;
 
@@ -265,13 +264,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
                 size="large"
                 placeholder={[t('address'), t('zip-code')]}
                 i18n={i18n}
-                lockedCountry={
-                  !lockedCountry
-                    ? undefined
-                    : /** TODO: should not be null in array */ (lockedCountry.filter(
-                        text => text,
-                      ) as string[])
-                }
+                shippableCountries={store?.shippableCountries || []}
               />,
             )}
           </FormItem>
@@ -383,8 +376,10 @@ export default React.memo(
 
             store {
               id
+              shippableCountries {
+                id
+              }
               setting {
-                lockedCountry
                 lockedBirthday
               }
 

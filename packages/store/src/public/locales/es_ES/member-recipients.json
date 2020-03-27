@@ -14,5 +14,9 @@
     "not-taiwan-mobile": "El número de teléfono móvil de Taiwán tiene 10 dígitos.",
     "not-mobile": "Número de teléfono inválido",
     "not-number": "Esta entrada solo puede contener números"
+  },
+  "mutation": {
+    "success": "Su información ha sido actualizada.",
+    "failure": "Actualizar información: se produjo un error"
   }
 }

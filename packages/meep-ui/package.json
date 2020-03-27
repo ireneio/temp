@@ -6,7 +6,10 @@
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.36.17",
   "dependencies": {
+    "@meepshop/landing-page": "^0.1.0",
     "@store/ad-track": "^0.36.13",
+    "@store/address-cascader": "^0.36.13",
+    "@store/checkout": "^0.1.0",
     "@store/gmo-credit-card-form": "^0.36.13",
     "@store/placeholder": "^0.36.13",
     "@store/thumbnail": "^0.36.13",

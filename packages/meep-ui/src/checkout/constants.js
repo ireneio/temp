@@ -4,9 +4,8 @@ export const PRESERVED_FIELDS = [
   'userMobile',
   'name',
   'mobile',
-  'address',
-  'postalCode',
-  'addressDetail',
+  'addressAndZipCode',
+  'street',
   'invoice',
   'invoiceTitle',
   'invoiceVAT',
@@ -17,7 +16,6 @@ export const PRESERVED_FIELDS = [
 ];
 
 export const DEFERRED_FIELDS = [
-  'postalCode',
   'invoiceTitle',
   'invoiceVAT',
   'invoiceAddress',

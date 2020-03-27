@@ -14,5 +14,9 @@
     "not-taiwan-mobile": "台灣區手機號碼應為10碼",
     "not-mobile": "手機格式有誤",
     "not-number": "請輸入純數字"
+  },
+  "mutation": {
+    "success": "更新完成",
+    "failure": "更新會員：發生錯誤"
   }
 }

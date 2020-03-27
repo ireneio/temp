@@ -133,7 +133,6 @@ export default function(state = initialState, { type, payload }) {
       const {
         locale: localeOptions,
         currency: currencyOptions,
-        lockedCountry,
       } = storeSettings;
 
       const settings = {
@@ -149,13 +148,13 @@ export default function(state = initialState, { type, payload }) {
         homePageId: store.homePageId,
         localeOptions: localeOptions || ['zh_TW'], // 用於語系選單
         colors, // 色彩計畫
-        lockedCountry: lockedCountry || [],
         storeCurrency: store.currency || 'TWD', // 幣值轉換欲轉換成的幣值
         customerCurrency: customerCurrency || currencyOptions?.[0] || 'TWD', // default currency
         currencyOptions: currencyOptions || ['TWD'], // 用於幣值選單
       };
 
       return {
+        shippableCountries: store?.shippableCountries || [],
         activities, // 折扣活動
         menus, // 選單
         colors, // FIXME: remove, after remove old enhancer
@@ -164,7 +163,7 @@ export default function(state = initialState, { type, payload }) {
         appLogins, // 第三方應用 ex. fb login
         settings,
         pageAdTrackIDs,
-        experiment: data?.viewer?.store.experiment || {},
+        experiment: store?.experiment || {},
       };
     }
     case GET_STORE_FAILURE: {

@@ -47,7 +47,6 @@ class Recipients extends Component {
       id: PropTypes.string.isRequired,
     }).isRequired,
     lockedBirthday: PropTypes.bool.isRequired,
-    lockedCountry: PropTypes.arrayOf(PropTypes.string).isRequired,
     fbAppId: PropTypes.string.isRequired,
   };
 
@@ -163,7 +162,6 @@ const mapStateToProps = (state, props) => {
     user: Utils.getIn(['memberReducer', 'user'])(state),
     lockedBirthday:
       Utils.getIn(['storeReducer', 'lockedBirthday'])(state) || false,
-    lockedCountry: Utils.getIn(['storeReducer', 'lockedCountry'])(state) || [],
     fbAppId:
       Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };

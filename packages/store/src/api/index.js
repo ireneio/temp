@@ -32,10 +32,6 @@ import updateWishList from './updateWishList.api';
 import updateStockNotificationList from './updateStockNotificationList.api';
 import sendPaymentNotification from './sendPaymentNotification.api';
 
-import addRecipientAddress from './addRecipientAddress.api';
-import updateRecipientAddress from './updateRecipientAddress.api';
-import deleteRecipientAddress from './deleteRecipientAddress.api';
-
 export {
   getPages,
   // 購物車
@@ -62,9 +58,6 @@ export {
   changePassword,
   sendPaymentNotification,
   getActivitiesByProduct,
-  addRecipientAddress,
-  updateRecipientAddress,
-  deleteRecipientAddress,
   // Server-side rendering
   serverIndexInitial,
   serverPagesInitial,

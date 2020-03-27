@@ -14,5 +14,9 @@
     "not-taiwan-mobile": "Nomor ponsel Taiwan adalah 10 digit",
     "not-mobile": "Nomor ponsel tidak valid",
     "not-number": "Entri ini hanya dapat berisi angka"
+  },
+  "mutation": {
+    "success": "Informasi Anda telah diperbarui.",
+    "failure": "Perbarui informasi: Terjadi kesalahan"
   }
 }

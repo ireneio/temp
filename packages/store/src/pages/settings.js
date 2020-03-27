@@ -47,7 +47,6 @@ class Settings extends Component {
       id: PropTypes.string.isRequired,
     }).isRequired,
     lockedBirthday: PropTypes.bool.isRequired,
-    lockedCountry: PropTypes.arrayOf(PropTypes.string).isRequired,
     fbAppId: PropTypes.string.isRequired,
   };
 
@@ -166,7 +165,6 @@ const mapStateToProps = (state, props) => {
     lockedBirthday:
       Utils.getIn(['storeReducer', 'settings', 'lockedBirthday'])(state) ||
       false,
-    lockedCountry: Utils.getIn(['storeReducer', 'lockedCountry'])(state) || [],
     fbAppId:
       Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };

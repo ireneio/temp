@@ -32,6 +32,7 @@ apollo-watch:
 
 tsc-basic:
 	@$(call apollo,mock-types)
+	@$(call apollo,meepshop)
 	@$(call apollo,store)
 	@$(call apollo,admin)
 

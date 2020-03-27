@@ -1,0 +1,104 @@
+// typescript import
+import { DataProxy } from 'apollo-cache';
+import { MutationHookOptions } from '@apollo/react-hooks';
+import { MutationFunction } from '@apollo/react-common';
+
+// import
+import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import { notification } from 'antd';
+
+import { useTranslation } from '@store/utils/lib/i18n';
+
+// graphql typescript
+import {
+  deleteRecipientAddress as deleteRecipientAddressType,
+  deleteRecipientAddressVariables,
+} from './__generated__/deleteRecipientAddress';
+import { useDeleteRecipientAddressGetRecipientAddressBookCache as useDeleteRecipientAddressGetRecipientAddressBookCacheType } from './__generated__/useDeleteRecipientAddressGetRecipientAddressBookCache';
+import { useDeleteRecipientAddressFragment } from './__generated__/useDeleteRecipientAddressFragment';
+
+// definition
+const mutation = gql`
+  mutation deleteRecipientAddress($input: DeleteRecipientAddressInput!) {
+    deleteRecipientAddress(input: $input) {
+      status
+    }
+  }
+`;
+
+export default (): MutationFunction<
+  deleteRecipientAddressType,
+  deleteRecipientAddressVariables
+> => {
+  const { t } = useTranslation('member-recipients');
+  const [deleteRecipientAddress] = useMutation<
+    deleteRecipientAddressType,
+    deleteRecipientAddressVariables
+  >(mutation);
+
+  return ({
+    variables,
+    ...options
+  }: MutationHookOptions<
+    deleteRecipientAddressType,
+    deleteRecipientAddressVariables
+  >) =>
+    deleteRecipientAddress({
+      ...options,
+      variables,
+      update: (
+        cache: DataProxy,
+        { data }: { data: deleteRecipientAddressType },
+      ) => {
+        if (data.deleteRecipientAddress.status !== 'OK') {
+          notification.error({
+            message: t('mutation.failure'),
+          });
+          return;
+        }
+
+        const useDeleteRecipientAddressGetRecipientAddressBookCache = cache.readQuery<
+          useDeleteRecipientAddressGetRecipientAddressBookCacheType
+        >({
+          query: gql`
+            query useDeleteRecipientAddressGetRecipientAddressBookCache {
+              viewer {
+                id
+                recipientAddressBook {
+                  id
+                }
+              }
+            }
+          `,
+        });
+
+        const id = variables?.input?.id;
+        const { id: viewerId, recipientAddressBook } =
+          useDeleteRecipientAddressGetRecipientAddressBookCache?.viewer || {};
+
+        if (!id || !viewerId || !recipientAddressBook) return;
+
+        cache.writeFragment<useDeleteRecipientAddressFragment>({
+          id: viewerId,
+          fragment: gql`
+            fragment useDeleteRecipientAddressFragment on User {
+              id
+              recipientAddressBook {
+                id
+              }
+            }
+          `,
+          data: {
+            __typename: 'User',
+            id: viewerId,
+            recipientAddressBook: recipientAddressBook.filter(
+              ({ id: recipientAddressBookId }) => id !== recipientAddressBookId,
+            ),
+          },
+        });
+
+        notification.success({ message: t('mutation.success') });
+      },
+    });
+};

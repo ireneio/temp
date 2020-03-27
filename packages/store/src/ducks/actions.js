@@ -33,9 +33,6 @@ import {
   updateUser,
   updateUserSuccess,
   updateUserFailure,
-  addRecipientAddress,
-  updateRecipientAddress,
-  deleteRecipientAddress,
   createApply,
   createApplySuccess,
   createApplyFailure,
@@ -54,7 +51,6 @@ import {
   sendPaymentNotification,
   sendPaymentNotificationSuccess,
   sendPaymentNotificationFailure,
-  addRecipient,
 } from './widgets/member';
 
 import { changePassword } from './widgets/others';
@@ -123,9 +119,6 @@ export {
   updateUser,
   updateUserSuccess,
   updateUserFailure,
-  addRecipientAddress,
-  updateRecipientAddress,
-  deleteRecipientAddress,
   // create apply
   createApply,
   createApplySuccess,
@@ -155,8 +148,6 @@ export {
   sendPaymentNotification,
   sendPaymentNotificationSuccess,
   sendPaymentNotificationFailure,
-  // add recipient
-  addRecipient,
   // Initial for server-side rendering
   serverIndexInitial,
   serverPagesInitial,

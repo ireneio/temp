@@ -14,30 +14,11 @@ viewer {
   additionalInfo {
     mobile
     tel
-    address {
-      yahooCode {
-        county
-        city
-        country
-        street
-      }
-    }
   }
   birthday {
     year
     month
     day
-  }
-
-  recipientAddressBook {
-    id
-    name
-    mobile
-    postalCode: zipCode
-    yahooCodeCountry
-    yahooCodeCity
-    yahooCodeCounty
-    street
   }
 
   notification {

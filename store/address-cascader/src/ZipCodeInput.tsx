@@ -21,57 +21,57 @@ interface PropsType {
 // definition
 const { Option } = Select;
 
-const ZipCodeInput = ({
-  size,
-  placeholder,
-  value,
-  onChange,
-  options,
-  colors,
-}: PropsType): React.ReactElement => {
-  useEffect(() => {
-    if (options && options.length === 1 && !value) onChange(options[0]);
-  }, [value, onChange, options]);
+export default React.memo(
+  ({
+    size,
+    placeholder,
+    value,
+    onChange,
+    options,
+    colors,
+  }: PropsType): React.ReactElement => {
+    useEffect(() => {
+      if (options && options.length === 1 && !value) onChange(options[0]);
+    }, [value, onChange, options]);
 
-  if (!options)
+    if (!options)
+      return (
+        <Input
+          size={size}
+          placeholder={placeholder}
+          value={value}
+          onChange={({ target: { value: newValue } }) => onChange(newValue)}
+        />
+      );
+
+    if (options.length === 1)
+      return (
+        <Input
+          className={styles.disabled}
+          style={{
+            background: transformColor(colors[5])
+              .alpha(0.15)
+              .toString(),
+            color: colors[2],
+          }}
+          size={size}
+          placeholder={placeholder}
+          value={options[0]}
+          disabled
+        />
+      );
+
     return (
-      <Input
+      <Select
         size={size}
         placeholder={placeholder}
         value={value}
-        onChange={({ target: { value: newValue } }) => onChange(newValue)}
-      />
+        onChange={onChange}
+      >
+        {options.map(valueValue => (
+          <Option key={valueValue}>{valueValue}</Option>
+        ))}
+      </Select>
     );
-
-  if (options.length === 1)
-    return (
-      <Input
-        className={styles.disabled}
-        style={{
-          background: transformColor(colors[5])
-            .alpha(0.15)
-            .toString(),
-          color: colors[2],
-        }}
-        size={size}
-        placeholder={placeholder}
-        value={options[0]}
-        disabled
-      />
-    );
-
-  return (
-    <Select
-      size={size}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-    >
-      {options.map(valueValue => (
-        <Option key={valueValue}>{valueValue}</Option>
-      ))}
-    </Select>
-  );
-};
-
-export default React.memo(ZipCodeInput);
+  },
+);

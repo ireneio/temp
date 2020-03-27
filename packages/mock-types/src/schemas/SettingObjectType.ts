@@ -10,7 +10,6 @@ import { SettingObjectTypeMock } from './__generated__/SettingObjectTypeMock';
 // eslint-disable-next-line no-unused-expressions
 gql`
   fragment SettingObjectTypeMock on SettingObjectType {
-    lockedCountry
     lockedBirthday
   }
 `;
@@ -18,12 +17,10 @@ gql`
 export default mock.add<SettingObjectTypeMock>('SettingObjectType', [
   () => ({
     __typename: 'SettingObjectType',
-    lockedCountry: null,
     lockedBirthday: false,
   }),
   () => ({
     __typename: 'SettingObjectType',
-    lockedCountry: ['台灣'],
     lockedBirthday: true,
   }),
 ]);

@@ -19,6 +19,9 @@ viewer {
       tel
     }
     locale
+    shippableCountries {
+      id
+    }
     setting {
       order {
         autoAddStock
@@ -50,7 +53,6 @@ viewer {
       }
       locale
       currency
-      lockedCountry
       lockedBirthday
       paidMessage
       adRetentionMilliseconds

@@ -9,7 +9,6 @@ import {
   isEmail,
 } from 'validator';
 
-import * as COUNTRY_LOCALE from 'locale/country';
 import buildPropTypes from 'utils/buildPropTypes';
 
 import CURRENCY from './currency';
@@ -180,11 +179,6 @@ export const SHIPMENT_TEMPLATE_TYPE = PropTypes.oneOf([
   'others',
 ]);
 
-/** test 台灣, 日本 */
-export const COUNTRY_TYPE = PropTypes.oneOf(
-  Object.keys(COUNTRY_LOCALE).map(key => COUNTRY_LOCALE[key].zh_TW),
-);
-
 /**
  * testJSON [{
  *   "en_US": "en_US",
@@ -229,20 +223,6 @@ export const USER_TYPE = PropTypes.shape({
   email: EMAIL_TYPE.isRequired,
   mobile: PropTypes.string,
   groupName: PropTypes.string.isRequired,
-  recipientData: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      mobile: PropTypes.string.isRequired,
-      address: PropTypes.shape({
-        yahooCode: PropTypes.shape({
-          country: PropTypes.string.isRequired,
-          city: PropTypes.string,
-          county: PropTypes.string,
-          street: PropTypes.string.isRequired,
-        }).isRequired,
-      }).isRequired,
-    }).isRequired,
-  ),
 });
 
 export const CUSTOM_TRACKING_TYPE = PropTypes.shape({

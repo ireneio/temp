@@ -10,11 +10,7 @@ import { withTranslation } from '@store/utils/lib/i18n';
 import GmoCreditCardForm from '@store/gmo-credit-card-form';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import {
-  COLOR_TYPE,
-  COUNTRY_TYPE,
-  STORE_SETTING_TYPE,
-} from 'constants/propTypes';
+import { COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
 import getComputeOrderQuery from 'utils/getComputeOrderQuery';
 
 import PaymentDefaultFormItem from 'paymentDefaultFormItem';
@@ -108,17 +104,14 @@ export default class OrderDetail extends React.PureComponent {
 
     /** props */
     t: PropTypes.func.isRequired,
-    countries: PropTypes.arrayOf(COUNTRY_TYPE.isRequired),
     products: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
     isSynchronizeUserInfo: PropTypes.bool,
     isSaveAsReceiverTemplate: PropTypes.bool,
     form: PropTypes.shape({}).isRequired,
-    goToInCheckout: PropTypes.func.isRequired,
     isSubmitting: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
-    countries: null,
     isSynchronizeUserInfo: false,
     isSaveAsReceiverTemplate: false,
   };
@@ -282,7 +275,7 @@ export default class OrderDetail extends React.PureComponent {
 
     e.preventDefault();
 
-    const { form, goToInCheckout } = this.props;
+    const { form, submit } = this.props;
     const {
       computeOrderData,
       products,
@@ -310,7 +303,7 @@ export default class OrderDetail extends React.PureComponent {
       },
       (err, data) => {
         if (!err) {
-          goToInCheckout(this.isPayment, data, {
+          submit(this.isPayment, data, {
             priceInfo,
             activityInfo,
             paymentList,
@@ -373,8 +366,9 @@ export default class OrderDetail extends React.PureComponent {
       /** props */
       t,
       form,
-      countries,
+      shippableCountries,
       isSubmitting,
+      recipientAddressBook,
     } = this.props;
     const {
       showDetail,
@@ -493,7 +487,8 @@ export default class OrderDetail extends React.PureComponent {
 
             <ReceiverInfo
               form={form}
-              countries={countries}
+              shippableCountries={shippableCountries}
+              recipientAddressBook={recipientAddressBook}
               choosePaymentTemplate={(choosePayment || {}).template}
               chooseShipmentTemplate={(chooseShipment || {}).template}
               isSynchronizeUserInfo={isSynchronizeUserInfo}

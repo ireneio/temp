@@ -7,7 +7,6 @@ import { emptyFunction } from 'fbjs';
 import * as ColorList from './ColorList';
 import * as PageInfo from './PageInfo';
 import * as StoreAppList from './StoreAppList';
-import * as SettingObjectType from './SettingObjectType';
 import * as User from './User';
 import * as validatedConvenienceStoreCities from './validatedConvenienceStoreCities';
 import * as viewer from './viewer';
@@ -21,7 +20,6 @@ export default [
   ColorList.resolver,
   PageInfo.resolver,
   StoreAppList.resolver,
-  SettingObjectType.resolver,
   User.resolver,
   validatedConvenienceStoreCities.resolver,
   viewer.resolver,

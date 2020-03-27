@@ -13,10 +13,8 @@ import {
   USER_TYPE,
   PAYMENT_TEMPLATE_TYPE,
   SHIPMENT_TEMPLATE_TYPE,
-  COUNTRY_TYPE,
 } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
-import * as COUNTRY_LOCALE from 'locale/country';
 
 import * as styles from './styles/receiverInfo';
 import {
@@ -45,7 +43,6 @@ export default class ReceiverInfo extends React.PureComponent {
     /** props */
     t: PropTypes.func.isRequired,
     form: PropTypes.shape({}).isRequired,
-    countries: PropTypes.arrayOf(COUNTRY_TYPE.isRequired),
     choosePaymentTemplate: PAYMENT_TEMPLATE_TYPE,
     chooseShipmentTemplate: SHIPMENT_TEMPLATE_TYPE,
     isSynchronizeUserInfo: PropTypes.bool.isRequired,
@@ -56,7 +53,6 @@ export default class ReceiverInfo extends React.PureComponent {
 
   static defaultProps = {
     user: null,
-    countries: null,
     choosePaymentTemplate: null,
     chooseShipmentTemplate: null,
   };
@@ -78,38 +74,32 @@ export default class ReceiverInfo extends React.PureComponent {
     }
   }
 
-  setReceiverWithTemplate = async index => {
+  setReceiverWithTemplate = async id => {
     const {
-      /** context */
-      user,
-
       /** props */
-      i18n,
       form,
+      recipientAddressBook,
     } = this.props;
     const { setFieldsValue } = form;
-    const { recipientData } = user;
-    const { name, mobile, address } = recipientData[index];
-    const { country, city, county, street } = address.yahooCode;
-    const { postalCode } = address;
+    const {
+      name,
+      mobile,
+      country,
+      city,
+      area,
+      street,
+      zipCode,
+    } = recipientAddressBook.find(({ id: recipientId }) => recipientId === id);
 
     await setFieldsValue({
       name,
       mobile,
-      address: [country, city, county]
-        .filter(data => data)
-        .map(data => {
-          const locale = Object.values(COUNTRY_LOCALE).find(countryLocale =>
-            Object.values(countryLocale).includes(data),
-          );
-
-          return !locale ? data : locale[i18n.language] || locale.zh_TW;
-        }),
-      addressDetail: street,
+      addressAndZipCode: {
+        address: [country.id, city?.id, area?.id],
+        zipCode,
+      },
+      street,
     });
-
-    if (!Object.values(COUNTRY_LOCALE.TAIWAN).includes(county))
-      setFieldsValue({ postalCode });
   };
 
   synchronizeUserInfo = ({ target }) => {
@@ -155,13 +145,11 @@ export default class ReceiverInfo extends React.PureComponent {
 
   render() {
     const {
-      /** context */
-      user,
-
       /** props */
       t,
       form,
-      countries,
+      shippableCountries,
+      recipientAddressBook,
       choosePaymentTemplate,
       chooseShipmentTemplate,
       isSynchronizeUserInfo,
@@ -187,20 +175,17 @@ export default class ReceiverInfo extends React.PureComponent {
           </Checkbox>
         </h3>
 
-        {!canSaveAsTemplate ||
-        (user.recipientData || []).length === 0 ? null : (
+        {!canSaveAsTemplate || recipientAddressBook.length === 0 ? null : (
           <FormItem style={formItemStyle}>
             {getFieldDecorator('receiverTemplate')(
               <Select
                 placeholder={t('receiver-template')}
                 onChange={this.setReceiverWithTemplate}
               >
-                {user.recipientData.map(({ name }, index) => (
-                  /* eslint-disable react/no-array-index-key */
-                  <Option key={`${name}-${index}`} value={index}>
+                {recipientAddressBook.map(({ id, name }) => (
+                  <Option key={id} value={id}>
                     {name}
                   </Option>
-                  /* eslint-enable react/no-array-index-key */
                 ))}
               </Select>,
             )}
@@ -258,7 +243,7 @@ export default class ReceiverInfo extends React.PureComponent {
           style={formItemStyle}
           form={form}
           chooseShipmentTemplate={chooseShipmentTemplate}
-          countries={countries}
+          shippableCountries={shippableCountries}
           invoiceIsNeeded={choosePaymentTemplate !== 'paypal'}
         />
 

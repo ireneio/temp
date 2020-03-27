@@ -9,14 +9,12 @@ import uuid from 'uuid/v4';
 import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
+import CheckoutWrapper from '@store/checkout';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { USER_TYPE, LOCATION_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
 import findDOMTop from 'utils/findDOMTop';
-import fetchStreamName from 'utils/fetchStreamName';
-import { TAIWAN } from 'locale/country';
-import getCreateOrderQuery from 'utils/getCreateOrderQuery';
 import createFormData from 'utils/createFormData';
 
 import OrderDetail from './orderDetail';
@@ -85,25 +83,12 @@ export default class Checkout extends React.PureComponent {
     this.isUnmounted = true;
   }
 
-  goToInCheckout = (isPayment, info, otherDetailInfo) => {
-    const { orderInfo, orderOtherDetailInfo } = this.state;
-
-    this.submit({
-      isPayment,
-      orderInfo: !info ? orderInfo : { info },
-      orderOtherDetailInfo: !otherDetailInfo
-        ? orderOtherDetailInfo
-        : otherDetailInfo,
-    });
-  };
-
-  submit = async ({ isPayment, orderInfo, orderOtherDetailInfo }) => {
+  submit = createOrder => async (isPayment, info, otherDetailInfo) => {
     const {
       /** context */
       location,
       user,
       isLogin,
-      getData,
       goTo,
       login,
       dispatchAction,
@@ -113,9 +98,18 @@ export default class Checkout extends React.PureComponent {
       i18n,
       adTrack,
     } = this.props;
-    const { isSubmitting } = this.state;
+    const {
+      orderInfo: prevOrderInfo,
+      orderOtherDetailInfo: prevOrderOtherDetailInfo,
+      isSubmitting,
+    } = this.state;
 
     if (isSubmitting) return;
+
+    const orderInfo = !info ? prevOrderInfo : { info };
+    const orderOtherDetailInfo = !otherDetailInfo
+      ? prevOrderOtherDetailInfo
+      : otherDetailInfo;
 
     // TODO: should rewrite form data controller
     this.setState({ isSubmitting: true, orderInfo });
@@ -126,38 +120,164 @@ export default class Checkout extends React.PureComponent {
       choosePayment,
       isSaveAsReceiverTemplate,
     } = orderOtherDetailInfo;
-    const { userEmail, userPassword, ...fieldValue } = orderInfo.info;
+    const {
+      paymentId,
+      shipmentId,
+      coupon,
+      points,
 
-    let { postalCode = '' } = orderInfo.info;
-
-    if (Object.values(TAIWAN).includes(fieldValue.address?.[0]))
-      await fetchStreamName(fieldValue.address).then(({ zip }) => {
-        postalCode = zip;
-      });
-
-    const orderData = {
-      ...fieldValue,
-      idempotentKey: this.idempotentKey,
-      postalCode,
-      domain,
-      locale: i18n.language || 'zh_TW',
-      userEmail: userEmail || user.email,
+      userEmail,
       userPassword,
-      products,
-      choosePayment,
-      isPayment,
-      isSaveAsReceiverTemplate,
-    };
+      userName,
+      userMobile,
 
-    const result = await getData(...getCreateOrderQuery(orderData));
+      name,
+      mobile,
+      notes,
+
+      // convenience-store or address
+      addressAndZipCode,
+      street,
+      CVSStoreID,
+      CVSStoreName,
+      CVSAddress,
+      cvsType,
+      cvsCode,
+
+      // invoice
+      invoice,
+      invoiceTitle,
+      invoiceVAT,
+      invoiceAddress,
+      invoiceEInvoiceNumber,
+      invoiceDonate,
+
+      // gmo payment
+      isRememberCard,
+      cardHolderName,
+      cardNumber,
+      securityCode,
+      expire,
+      installmentCode,
+    } = orderInfo.info;
+
+    const { error, data } = await createOrder({
+      variables: {
+        createOrderList: {
+          idempotentKey: this.idempotentKey,
+          environment: {
+            domain,
+            locale: i18n.language,
+          },
+          isPayment,
+          products: products
+            .filter(({ type }) => type !== 'gift')
+            .map(({ productId, variantId, quantity = 1 }) => ({
+              productId,
+              variantId,
+              quantity,
+            })),
+          coupon,
+          points,
+          ...(!addressAndZipCode
+            ? {}
+            : {
+                address: {
+                  zipCode: addressAndZipCode.zipCode,
+                  countryId: addressAndZipCode.address[0],
+                  cityId: addressAndZipCode.address[1],
+                  areaId: addressAndZipCode.address[2],
+                  street,
+                },
+              }),
+          payments: [
+            {
+              paymentId,
+              ...(choosePayment.template !== 'gmo' ||
+              choosePayment.accountInfo.gmo.paymentType !== 'Credit'
+                ? {}
+                : {
+                    gmo: {
+                      isRememberCard,
+                      cardHolderName,
+                      cardNumber: cardNumber?.join(''),
+                      securityCode,
+                      expireYear: expire?.format('YYYY'),
+                      expireMonth: expire?.format('M'),
+                      ...(!installmentCode
+                        ? {}
+                        : {
+                            installmentCode:
+                              installmentCode instanceof Array
+                                ? installmentCode[installmentCode.length - 1]
+                                : installmentCode,
+                          }),
+                    },
+                  }),
+            },
+          ],
+          shipments: [
+            {
+              shipmentId,
+              recipient: {
+                saveRecipient: isSaveAsReceiverTemplate,
+                name,
+                email: userEmail || user.email,
+                mobile,
+                comment: notes,
+                receiverStoreID: CVSStoreID,
+                receiverStoreName: CVSStoreName,
+                receiverStoreAddress: CVSAddress,
+              },
+            },
+          ],
+          cvsType,
+          cvsCode,
+          userInfo: {
+            name: userName || name,
+            email: userEmail || user.email,
+            mobile: userMobile || mobile,
+            password: userPassword,
+          },
+          ...(!invoice
+            ? {}
+            : {
+                invoice: {
+                  type: invoice[0],
+                  ...(invoice[1] === 'MEMBERSHIP' ||
+                  invoice[1] === 'MOBILE_BARCODE' ||
+                  invoice[1] === 'CITIZEN_DIGITAL_CERTIFICATE'
+                    ? {
+                        method: 'CARRIER',
+                        carrier: {
+                          type: invoice[1],
+                          code: invoiceEInvoiceNumber,
+                        },
+                      }
+                    : {
+                        method: invoice[1],
+                      }),
+
+                  // method = TRIPLICATE
+                  address: invoiceAddress,
+                  title: invoiceTitle,
+                  ban: invoiceVAT,
+
+                  // method = DONATION
+                  loveCode: invoiceDonate,
+                },
+              }),
+        },
+      },
+    });
 
     if (this.isUnmounted) return;
 
-    const { id, error, formData } = result?.data?.createOrderList?.[0] || {};
-    const { errors } = result || {};
+    const { id, error: createOrderError, formData } =
+      data?.createOrderList?.[0] || {};
 
-    if (error || errors || !id) {
-      const errorMessage = error || errors?.[0]?.message || '';
+    if (error || createOrderError || !id) {
+      const errorMessage = error?.[0]?.message || createOrderError || '';
 
       notification.error({
         message: t('pay-fail'),
@@ -176,29 +296,8 @@ export default class Checkout extends React.PureComponent {
       const nextStep = (firstPurchase = false) => {
         if (this.isUnmounted) return;
 
-        const addRecipient = () => {
-          if (!isSaveAsReceiverTemplate) return;
-
-          dispatchAction('addRecipient', {
-            recipient: {
-              name: fieldValue.name,
-              mobile: fieldValue.mobile,
-              address: {
-                postalCode,
-                yahooCode: {
-                  country: fieldValue.address[0],
-                  city: fieldValue.address[1] || '',
-                  county: fieldValue.address[2] || '',
-                  street: fieldValue.addressDetail,
-                },
-              },
-            },
-          });
-        };
-
         if (formData && formData.url) {
           if (/CashSystemFrontEnd\/Query/.test(formData.url)) {
-            addRecipient();
             dispatchAction('emptyCart');
             goTo({ pathname: `/ezpay/cvcode/${id}` });
             return;
@@ -213,8 +312,7 @@ export default class Checkout extends React.PureComponent {
           return;
         }
 
-        addRecipient();
-        dispatchAction('emptyCart', orderData.points);
+        dispatchAction('emptyCart', points);
         goTo({
           pathname: `/checkout/thank-you-page/${id}`,
           params: {
@@ -251,35 +349,41 @@ export default class Checkout extends React.PureComponent {
     const { url, params } = formData || { params: {} };
 
     return (
-      <>
-        <OrderDetail
-          {...this.props}
-          {...orderOtherDetailInfo}
-          errors={errors}
-          orderInfo={orderInfo}
-          goToInCheckout={this.goToInCheckout}
-          isSubmitting={isSubmitting}
-          onChange={data => {
-            this.setState(data);
-          }}
-        />
+      <CheckoutWrapper>
+        {({ recipientAddressBook, createOrder }) => (
+          <>
+            <OrderDetail
+              {...this.props}
+              {...orderOtherDetailInfo}
+              recipientAddressBook={recipientAddressBook}
+              errors={errors}
+              orderInfo={orderInfo}
+              submit={this.submit(createOrder)}
+              isSubmitting={isSubmitting}
+              onChange={data => {
+                this.setState(data);
+              }}
+            />
 
-        {!formData ? null : (
-          <form
-            ref={this.formRef}
-            action={url}
-            acceptCharset={/hitrust/.test(url) ? 'big5' : 'utf8'}
-            method="POST"
-          >
-            {createFormData(
-              Object.keys(params).map(key => ({
-                name: key,
-                value: params[key] && key === 'orderdesc' ? ' ' : params[key],
-              })),
+            {!formData ? null : (
+              <form
+                ref={this.formRef}
+                action={url}
+                acceptCharset={/hitrust/.test(url) ? 'big5' : 'utf8'}
+                method="POST"
+              >
+                {createFormData(
+                  Object.keys(params).map(key => ({
+                    name: key,
+                    value:
+                      params[key] && key === 'orderdesc' ? ' ' : params[key],
+                  })),
+                )}
+              </form>
             )}
-          </form>
+          </>
         )}
-      </>
+      </CheckoutWrapper>
     );
   }
 }

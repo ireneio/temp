@@ -235,7 +235,7 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
               contentWidth: widget.width,
               redirectPage: widget.landingInfo.redirectPage || '/',
               addition: widget.landingInfo.addition,
-              countries: widget.landingInfo.countries || [],
+              shippableCountries: widget.landingInfo.shippableCountries || [],
               required: widget.landingInfo.required,
               productData,
               agreedMatters: widget.landingInfo.agreedMatters,

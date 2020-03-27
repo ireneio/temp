@@ -6,6 +6,7 @@ import moment from 'moment';
 import { areEqual } from 'fbjs';
 import uuid from 'uuid/v4';
 
+import LandingPageWrapper from '@meepshop/landing-page';
 import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
@@ -23,11 +24,8 @@ import {
 } from 'constants/propTypes';
 import loadData from 'utils/loadData';
 import buildVariantsTree from 'utils/buildVariantsTree';
-import getCreateOrderQuery from 'utils/getCreateOrderQuery';
 import createFormData from 'utils/createFormData';
 import findDOMTop from 'utils/findDOMTop';
-import fetchStreamName from 'utils/fetchStreamName';
-import { TAIWAN } from 'locale/country';
 
 import PaymentInfo from './paymentInfo';
 import ReceiverInfo from './ReceiverInfo';
@@ -151,7 +149,7 @@ export default class LandingPage extends React.PureComponent {
     this.isUnmounted = true;
   }
 
-  submit = e => {
+  submit = createOrderInLandingPage => e => {
     e.preventDefault();
 
     const { form, updateOrderInfo } = this.props;
@@ -160,7 +158,47 @@ export default class LandingPage extends React.PureComponent {
     validateFields(
       async (
         err,
-        { quantity, variant, userEmail, address, ...filedsValue },
+        {
+          quantity,
+          variant,
+
+          paymentId,
+          shipmentId,
+          coupon,
+
+          userEmail,
+          userName,
+          userMobile,
+
+          name,
+          mobile,
+          notes,
+
+          // convenience-store or address
+          addressAndZipCode,
+          street,
+          CVSStoreID,
+          CVSStoreName,
+          CVSAddress,
+          cvsType,
+          cvsCode,
+
+          // invoice
+          invoice,
+          invoiceTitle,
+          invoiceVAT,
+          invoiceAddress,
+          invoiceEInvoiceNumber,
+          invoiceDonate,
+
+          // gmo payment
+          isRememberCard,
+          cardHolderName,
+          cardNumber,
+          securityCode,
+          expire,
+          installmentCode,
+        },
       ) => {
         if (!err) {
           const {
@@ -168,7 +206,6 @@ export default class LandingPage extends React.PureComponent {
             location: { host: domain, pathname },
             user,
             goTo,
-            getData,
             dispatchAction,
 
             /** props */
@@ -187,40 +224,125 @@ export default class LandingPage extends React.PureComponent {
           const { choosePayment } = this.state;
           const { id: productId } = productData || {};
           const [variantId] = variant.slice(-1);
-          const orderData = {
-            ...filedsValue,
-            idempotentKey: uuid(),
-            sourcePage: 'lp',
-            domain,
-            locale: i18n.language || 'zh_TW',
-            userEmail: userEmail || user.email,
-            products: [
-              {
-                productId,
-                variantId,
-                quantity,
-              },
-            ],
-            choosePayment,
-            address,
-            ...(Object.values(TAIWAN).includes(address?.[0]) && {
-              postalCode: await fetchStreamName(address).then(({ zip }) => zip),
-            }),
-            redirectUrl: !redirectPage
-              ? null
-              : `${window.location.origin}${redirectPage}`,
-          };
+          const { data, error } = await createOrderInLandingPage({
+            variables: {
+              createOrderList: {
+                idempotentKey: uuid(),
+                environment: {
+                  domain,
+                  locale: i18n.language,
+                  sourcePage: 'lp',
+                },
+                products: [
+                  {
+                    productId,
+                    variantId,
+                    quantity,
+                  },
+                ],
+                coupon,
+                ...(!addressAndZipCode
+                  ? {}
+                  : {
+                      address: {
+                        zipCode: addressAndZipCode.zipCode,
+                        countryId: addressAndZipCode.address[0],
+                        cityId: addressAndZipCode.address[1],
+                        areaId: addressAndZipCode.address[2],
+                        street,
+                      },
+                    }),
+                payments: [
+                  {
+                    paymentId,
+                    redirectUrl: !redirectPage
+                      ? null
+                      : `${window.location.origin}${redirectPage}`,
+                    ...(choosePayment.template !== 'gmo' ||
+                    choosePayment.accountInfo.gmo.paymentType !== 'Credit'
+                      ? {}
+                      : {
+                          gmo: {
+                            isRememberCard,
+                            cardHolderName,
+                            cardNumber: cardNumber?.join(''),
+                            securityCode,
+                            expireYear: expire?.format('YYYY'),
+                            expireMonth: expire?.format('M'),
+                            ...(!installmentCode
+                              ? {}
+                              : {
+                                  installmentCode:
+                                    installmentCode instanceof Array
+                                      ? installmentCode[
+                                          installmentCode.length - 1
+                                        ]
+                                      : installmentCode,
+                                }),
+                          },
+                        }),
+                  },
+                ],
+                shipments: [
+                  {
+                    shipmentId,
+                    recipient: {
+                      name,
+                      email: userEmail || user.email,
+                      mobile,
+                      comment: notes,
+                      receiverStoreID: CVSStoreID,
+                      receiverStoreName: CVSStoreName,
+                      receiverStoreAddress: CVSAddress,
+                    },
+                  },
+                ],
+                cvsType,
+                cvsCode,
+                userInfo: {
+                  name: userName || name,
+                  email: userEmail || user.email,
+                  mobile: userMobile || mobile,
+                },
+                ...(!invoice
+                  ? {}
+                  : {
+                      invoice: {
+                        type: invoice[0],
+                        ...(invoice[1] === 'MEMBERSHIP' ||
+                        invoice[1] === 'MOBILE_BARCODE' ||
+                        invoice[1] === 'CITIZEN_DIGITAL_CERTIFICATE'
+                          ? {
+                              method: 'CARRIER',
+                              carrier: {
+                                type: invoice[1],
+                                code: invoiceEInvoiceNumber,
+                              },
+                            }
+                          : {
+                              method: invoice[1],
+                            }),
 
-          const result = await getData(...getCreateOrderQuery(orderData));
+                        // method = TRIPLICATE
+                        address: invoiceAddress,
+                        title: invoiceTitle,
+                        ban: invoiceVAT,
+
+                        // method = DONATION
+                        loveCode: invoiceDonate,
+                      },
+                    }),
+              },
+            },
+          });
 
           if (this.isUnmounted) return;
 
-          const { id, orderNo, error, formData } =
-            result?.data?.createOrderList?.[0] || {};
-          const { errors } = result || {};
+          const { id, orderNo, error: createOrderError, formData } =
+            data?.createOrderList?.[0] || {};
 
-          if (error || errors || !id) {
-            const errorMessage = error || errors?.[0]?.message || '';
+          if (error || createOrderError || !id) {
+            const errorMessage = error?.[0]?.message || createOrderError || '';
 
             notification.error({
               message: t('pay-fail'),
@@ -315,96 +437,102 @@ export default class LandingPage extends React.PureComponent {
     const { url, params } = formData || { params: {} };
 
     return (
-      <form
-        ref={this.formRef}
-        style={styles.root}
-        id={id}
-        className={`landingPage-${id}`}
-        {...(formData
-          ? {
-              action: url,
-              acceptCharset: /hitrust/.test(url) ? 'big5' : 'utf8',
-              method: 'POST',
-            }
-          : { onSubmit: this.submit })}
-      >
-        <Style
-          scopeSelector={`.landingPage-${id}`}
-          rules={styles.modifyAntdStyle(colors)}
-        />
-
-        {createFormData(
-          Object.keys(params).map(key => ({
-            name: key,
-            value: params[key] && key === 'orderdesc' ? ' ' : params[key],
-          })),
-        )}
-
-        <StyleRoot style={styles.content(contentWidth)}>
-          <PaymentInfo
-            {...props}
-            {...productData}
-            moduleId={id}
-            ref={this.paymentInfoRef}
-            form={form}
-            changeChoosePayment={payment =>
-              this.setState({ choosePayment: payment })
-            }
-            changeChooseShipmentTemplate={template =>
-              this.setState({ chooseShipmentTemplate: template })
-            }
-            updateComputeOrderList={computeOrderList => {
-              this.storeComputeOrderList = computeOrderList;
-            }}
-          />
-
-          <ReceiverInfo
-            {...props}
-            form={form}
-            choosePaymentTemplate={(choosePayment || {}).template}
-            chooseShipmentTemplate={chooseShipmentTemplate}
-            toggleLogin={this.toggleLogin}
-          />
-
-          {!choosePayment ||
-          choosePayment.template !== 'gmo' ||
-          choosePayment.accountInfo.gmo.paymentType !== 'Credit' ? null : (
-            <GmoCreditCardForm
-              storePaymentId={choosePayment.paymentId}
-              isInstallment={choosePayment.accountInfo.gmo.isInstallment}
-              form={form}
-            />
-          )}
-        </StyleRoot>
-
-        <Divider style={{ ...styles.title(colors), ...styles.argeementText }}>
-          {t('agreement')}
-        </Divider>
-
-        <StyleRoot style={styles.content(contentWidth)}>
-          <div style={styles.agreementInfo(colors)}>
-            {agreedMatters.split(/\n/).map((text, index) => (
-              /* eslint-disable react/no-array-index-key */
-              <div key={index}>{text}</div>
-              /* eslint-enable react/no-array-index-key */
-            ))}
-          </div>
-
-          <Button
-            style={styles.submitButton(colors)}
-            type="primary"
-            htmlType="submit"
-            disabled={(fieldsError =>
-              Object.keys(fieldsError).some(field => fieldsError[field]))(
-              getFieldsError(),
-            )}
-            onClick={() => validateFieldsAndScroll()}
-            loading={isSubmitting}
+      <LandingPageWrapper>
+        {({ createOrderInLandingPage }) => (
+          <form
+            ref={this.formRef}
+            style={styles.root}
+            id={id}
+            className={`landingPage-${id}`}
+            {...(formData
+              ? {
+                  action: url,
+                  acceptCharset: /hitrust/.test(url) ? 'big5' : 'utf8',
+                  method: 'POST',
+                }
+              : { onSubmit: this.submit(createOrderInLandingPage) })}
           >
-            {t('agree-submit')}
-          </Button>
-        </StyleRoot>
-      </form>
+            <Style
+              scopeSelector={`.landingPage-${id}`}
+              rules={styles.modifyAntdStyle(colors)}
+            />
+
+            {createFormData(
+              Object.keys(params).map(key => ({
+                name: key,
+                value: params[key] && key === 'orderdesc' ? ' ' : params[key],
+              })),
+            )}
+
+            <StyleRoot style={styles.content(contentWidth)}>
+              <PaymentInfo
+                {...props}
+                {...productData}
+                moduleId={id}
+                ref={this.paymentInfoRef}
+                form={form}
+                changeChoosePayment={payment =>
+                  this.setState({ choosePayment: payment })
+                }
+                changeChooseShipmentTemplate={template =>
+                  this.setState({ chooseShipmentTemplate: template })
+                }
+                updateComputeOrderList={computeOrderList => {
+                  this.storeComputeOrderList = computeOrderList;
+                }}
+              />
+
+              <ReceiverInfo
+                {...props}
+                form={form}
+                choosePaymentTemplate={(choosePayment || {}).template}
+                chooseShipmentTemplate={chooseShipmentTemplate}
+                toggleLogin={this.toggleLogin}
+              />
+
+              {!choosePayment ||
+              choosePayment.template !== 'gmo' ||
+              choosePayment.accountInfo.gmo.paymentType !== 'Credit' ? null : (
+                <GmoCreditCardForm
+                  storePaymentId={choosePayment.paymentId}
+                  isInstallment={choosePayment.accountInfo.gmo.isInstallment}
+                  form={form}
+                />
+              )}
+            </StyleRoot>
+
+            <Divider
+              style={{ ...styles.title(colors), ...styles.argeementText }}
+            >
+              {t('agreement')}
+            </Divider>
+
+            <StyleRoot style={styles.content(contentWidth)}>
+              <div style={styles.agreementInfo(colors)}>
+                {agreedMatters.split(/\n/).map((text, index) => (
+                  /* eslint-disable react/no-array-index-key */
+                  <div key={index}>{text}</div>
+                  /* eslint-enable react/no-array-index-key */
+                ))}
+              </div>
+
+              <Button
+                style={styles.submitButton(colors)}
+                type="primary"
+                htmlType="submit"
+                disabled={(fieldsError =>
+                  Object.keys(fieldsError).some(field => fieldsError[field]))(
+                  getFieldsError(),
+                )}
+                onClick={() => validateFieldsAndScroll()}
+                loading={isSubmitting}
+              >
+                {t('agree-submit')}
+              </Button>
+            </StyleRoot>
+          </form>
+        )}
+      </LandingPageWrapper>
     );
   }
 }

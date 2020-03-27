@@ -27,36 +27,5 @@ export const ECPAY_CONVENIENCE_STORE_TYPE_ENUM = type => {
 
 export const EZSHIP_CONVENIENCE_STORE_TYPE_ENUM = ['FAMI', 'HILIFE', 'OK'];
 
-export const ID_NUMBER_CITY_CODE = [
-  '10',
-  '11',
-  '12',
-  '13',
-  '14',
-  '15',
-  '16',
-  '17',
-  '34',
-  '18',
-  '19',
-  '20',
-  '21',
-  '22',
-  '35',
-  '23',
-  '24',
-  '25',
-  '26',
-  '27',
-  '28',
-  '29',
-  '32',
-  '30',
-  '31',
-  '33',
-];
-
-export const ID_NUMBER_WEIGHTED = [1, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1];
-
 export const INVOICE_SEARCH_LINK =
   'https://www.einvoice.nat.gov.tw/APCONSUMER/BTC603W/';
