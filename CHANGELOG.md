@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## 0.37.0 (2020-03-27)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#842](https://github.com/meepshop/meep-lerna/pull/842) 前端 - 「前台 checkout & landing page、後台編輯訂單」改用新的 addressService api ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#888](https://github.com/meepshop/meep-lerna/pull/888) 【優化】 前台結帳頁 - 發票捐贈欄位檢查 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#895](https://github.com/meepshop/meep-lerna/pull/895) (@meepshop/store): fix virtualservice ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `store`
+  - [#895](https://github.com/meepshop/meep-lerna/pull/895) (@meepshop/store): fix virtualservice ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.36.17 (2020-03-25)
 
 #### :rocket: New Feature
