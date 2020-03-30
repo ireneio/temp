@@ -1,23 +1,20 @@
 import postGraphql from 'utils/postGraphql';
 
-export default async function({ password, token }) {
-  const variables = {
-    keys: '$updateUserPSList : [UpdateUserPS]',
-    type: 'mutation resetPassword',
-    values: {
-      updateUserPSList: {
-        password,
-        token,
+export default ({ password, token }) =>
+  postGraphql({
+    query: `
+      setUserPasswordByToken(input: $input) {
+        status
+      }
+    `,
+    variables: {
+      keys: '$input: SetUserPasswordByTokenInput!',
+      type: 'mutation setUserPasswordByToken',
+      values: {
+        input: {
+          token,
+          password,
+        },
       },
     },
-  };
-
-  const query = `
-  updateUserPSList(updateUserPSList: $updateUserPSList) {
-      status
-      error
-    }
-  `;
-  const response = await postGraphql({ query, variables });
-  return response;
-}
+  });

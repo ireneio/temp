@@ -632,15 +632,14 @@ export const resetPasswordFailure = () => ({
 
 function* resetPasswordFlow({ payload }) {
   try {
-    const data = yield call(Api.resetPassword, payload);
+    const response = yield call(Api.resetPassword, payload);
 
-    if (data) {
-      /* Handle error */
-      if (data.error) throw new Error(data.error);
-
-      const { error } = Utils.getIn(['data', 'updateUserPSList'])(data);
+    if (response) {
+      const { data, error } = response;
 
       if (error) throw new Error(error);
+      if (data.setUserPasswordByToken.status !== 'SUCCESS')
+        throw new Error(data.setUserPasswordByToken.status);
 
       yield put(resetPasswordSuccess());
       notification.success({ message: i18n.t('ducks:reset-password-success') });
