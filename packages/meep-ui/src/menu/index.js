@@ -220,7 +220,16 @@ export default class Menu extends React.PureComponent {
             }
           >
             {!logo && !isMobile ? (
-              <LogoDesktopDefault />
+              <LogoDesktopDefault
+                style={{
+                  ...(height !== 0 && {
+                    height,
+                  }),
+                  ...(width !== 0 && {
+                    height: width / 5,
+                  }),
+                }}
+              />
             ) : (
               <Link style={{ width: '100%' }} href="/" target="_self">
                 {!logo ? null : (
