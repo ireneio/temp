@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const includes = [];
 
 switch (process.env.APOLLO_TYPE) {

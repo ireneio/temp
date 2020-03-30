@@ -53,6 +53,7 @@ module.exports = {
     '@babel/preset-typescript',
   ],
   plugins: [
+    '@meepshop/images/babel',
     '@babel/transform-runtime',
     '@babel/proposal-optional-chaining',
     '@babel/proposal-nullish-coalescing-operator',

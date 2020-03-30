@@ -1,11 +1,9 @@
 // typescript import
-import { AppContext, AppProps, AppInitialProps } from 'next/app';
+import NextApp, { AppContext, AppProps, AppInitialProps } from 'next/app';
 import { ApolloClient } from 'apollo-client';
 import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
 import { I18nPropsType } from '@admin/utils/lib/i18n';
-
-import { App as NextApp } from '../pages/_app';
 
 // import
 import React from 'react';

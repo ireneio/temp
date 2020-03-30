@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@meepshop/icons",
-  "description": "Icons for meepshop",
+  "description": "Use to handle the all icons for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.37.0",

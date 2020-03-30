@@ -23,7 +23,7 @@ interface PropsType extends AppInitialProps {
 }
 
 // definition
-export class App extends NextApp<PropsType> {
+class App extends NextApp<PropsType> {
   public static getInitialProps = async ({
     Component,
     ctx,

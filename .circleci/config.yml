@@ -91,6 +91,18 @@ jobs:
       - store_artifacts:
           path: coverage
 
+  upload-images:
+    docker:
+      - image: google/cloud-sdk
+
+    steps:
+      - checkout
+      - run: |
+          echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
+          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+      - run: ./.circleci/bin/upload_images.sh stage
+
   deploy-test-branch:
     <<: *defaults
     steps:
@@ -159,6 +171,9 @@ workflows:
               ignore: /test-.*/
             tags:
               ignore: /.*/
+
+      - upload-images:
+          context: org-global
 
       - deploy-test-branch:
           context: org-global

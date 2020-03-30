@@ -36,7 +36,11 @@ export default (
 
       default:
         return {
-          resolvers: {},
+          resolvers: {
+            initializeCache: emptyFunction,
+            introspectionQueryResultDataType: [],
+            default: {},
+          },
           Provider: ({ children }: { children: React.ReactNode }) => children,
         };
     }
@@ -49,6 +53,20 @@ export default (
       <Provider>{node}</Provider>
     </MockTypes>,
   );
+
+  if (mock.tracking.length === 0) {
+    const wrapper = mount(
+      <MockTypes {...resolvers}>
+        <Provider>{node}</Provider>
+      </MockTypes>,
+    );
+
+    if (callback(() => wrapper, []))
+      test('exist', () => {
+        expect(wrapper.exists()).toBeTruthy();
+      });
+    return;
+  }
 
   describe.each(
     cartesianProduct(

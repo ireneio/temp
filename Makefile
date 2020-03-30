@@ -54,7 +54,7 @@ clean:
 	rm -rf **/__generated__
 
 release:
-	@yarn lerna-changelog && \
+	@node -r dotenv/config ./node_modules/.bin/lerna-changelog && \
 		echo "\nPlease copy above logs and edit in CHANGELOG.md. Exit with 'ctrl + c'..." && \
 		read -p ""
 	@vim CHANGELOG.md && \

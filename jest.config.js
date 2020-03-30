@@ -8,10 +8,12 @@ module.exports = {
     '^.+\\.tsx?$': 'babel-jest',
   },
   testMatch: [
+    '**/meepshop/**/src/**/__tests__/**/*.{ts,tsx}',
     '**/store/**/src/**/__tests__/**/*.{ts,tsx}',
     '**/admin/**/src/**/__tests__/**/*.{ts,tsx}',
     '**/packages/locale-parser/**/__tests__/**/*.{ts,tsx}',
   ],
+  testPathIgnorePatterns: ['__tests__/__ignore__'],
   collectCoverage: true,
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: ['/lib/', '/.next/'],

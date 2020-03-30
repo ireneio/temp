@@ -5,28 +5,26 @@ const path = require('path');
 
 // eslint-disable-next-line import/no-dynamic-require
 const { main, name } = require(path.resolve('./package.json'));
+const [, workspaceName] = name.match(/(@.*)\//);
 
 require('output-file-sync')(
-  path.resolve(__dirname, 'story.js'),
+  path.resolve(__dirname, 'stories/index.js'),
   `/* eslint-disable */
 
-import React, { Suspense } from 'react';
-import { storiesOf } from '@storybook/react';
-import { I18nextProvider } from 'react-i18next';
-import nextI18next from 'next-i18next';
+import React from 'react';
+import { storiesOf } from '@storybook/react';${
+    !['@store', '@admin'].includes(workspaceName)
+      ? ''
+      : `
 
-import '${
-    /@admin/.test(name) ? '@admin' : '@store'
-  }/utils/lib/styles/base.less';
-import MockTypes from '@meepshop/mock-types';
-import * as resolvers from '${
-    /@admin/.test(name) ? '@admin' : '@store'
-  }/apollo-client-resolvers';
+import Provider from '@meepshop/mock-types/src/${workspaceName[1].toUpperCase()}${workspaceName.slice(
+          2,
+        )}Provider';
+import '${workspaceName}/utils/lib/styles/base.less';
+import * as resolvers from '${workspaceName}/apollo-client-resolvers';`
+  }
 
-import './combined.less';
-import Provider from '@meepshop/mock-types/src/${
-    /@admin/.test(name) ? 'Admin' : 'Store'
-  }Provider';
+import Wrapper from './Wrapper';
 
 ${(() => {
   if (fs.existsSync(path.resolve('./mock.ts')))
@@ -41,19 +39,21 @@ const props = {}`;
   return `import Component from '${path.resolve(main)}';
 
 const props = {}`;
-})()}
+})()}${
+    ['@store', '@admin'].includes(workspaceName)
+      ? ''
+      : `
+const resolvers = undefined;
+const Provider = ({ children }) => children;`
+  }
 
 storiesOf('${name}', module)
   .add('demo', () => (
-    <I18nextProvider i18n={nextI18next.i18n}>
-      <MockTypes {...resolvers}>
-        <Provider>
-          <Suspense fallback="loading">
-            <Component {...props} />
-          </Suspense>
-        </Provider>
-      </MockTypes>
-    </I18nextProvider>
+    <Wrapper resolvers={resolvers}>
+      <Provider>
+        <Component {...props} />
+      </Provider>
+    </Wrapper>
   ));`,
 );
 
@@ -63,10 +63,17 @@ require('@storybook/react/standalone')({
   mode: 'dev',
   port: 14400,
   configDir: __dirname,
-  staticDir: [
-    /@admin/.test(name)
-      ? path.resolve(__dirname, '../admin/server/src/public')
-      : path.resolve(__dirname, '../packages/store/src/public'),
-  ],
+  staticDir: (() => {
+    switch (workspaceName) {
+      case '@store':
+        return [path.resolve(__dirname, '../packages/store/src/public')];
+
+      case '@admin':
+        return [path.resolve(__dirname, '../admin/server/src/public')];
+
+      default:
+        return [];
+    }
+  })(),
   ci: true,
 });

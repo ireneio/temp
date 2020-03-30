@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "@meepshop/images",
+  "description": "Use to handle the all images with image proxy",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/types.ts",
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/helper-plugin-utils": "^7.8.3",
+    "clipboard": "^2.0.1",
+    "d3-hierarchy": "^1.1.6",
+    "directory-tree": "^2.2.4",
+    "imgproxy": "^0.1.2"
+  },
+  "keywords": ["images"]
+}

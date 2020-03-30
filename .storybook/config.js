@@ -32,6 +32,12 @@ const stories = [
     source: require('../packages/locale-parser/README.md').default,
   },
   {
+    name: '@meepshop/images',
+    pattern: /meepshop\/images$/,
+    path: './meepshop/images/',
+    source: require('../meepshop/images/README.md').default,
+  },
+  {
     name: '@meepshop/icons',
     pattern: /meepshop\/icons$/,
     path: './meepshop/icons/',
@@ -105,7 +111,9 @@ const link = path => ({ href, children }) => {
 
 configure(() => {
   // eslint-disable-next-line import/no-unresolved
-  require('./story.js');
+  require('./stories');
+  require('./stories/images');
+  require('./stories/icons');
 
   window.fbq = action('fbq');
   window.gtag = action('gtag');
