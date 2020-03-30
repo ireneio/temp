@@ -4,7 +4,7 @@
   "description": "Link wrapper for admin to handle next.js link",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.37.0",
+  "version": "0.37.1",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
