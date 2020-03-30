@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.37.1 (2020-03-30)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#889](https://github.com/meepshop/meep-lerna/pull/889) 【優化】 商品列表元件編號＆網址列參數追蹤 ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#891](https://github.com/meepshop/meep-lerna/pull/891) 前端 - 改用新 API：setUserPasswordByToken ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#894](https://github.com/meepshop/meep-lerna/pull/894) 【優化】新開商店 - 預設 logo 佔位圖 ([@piovischioh](https://github.com/piovischioh))
+- `mock-types`
+  - [#897](https://github.com/meepshop/meep-lerna/pull/897) 前端 - 建立 @meepshop/images ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#894](https://github.com/meepshop/meep-lerna/pull/894) 【優化】新開商店 - 預設 logo 佔位圖 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.37.0 (2020-03-27)
 
 #### :boom: Breaking Change
