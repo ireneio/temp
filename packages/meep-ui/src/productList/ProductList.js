@@ -64,6 +64,7 @@ export default class ProductList extends React.PureComponent {
     ).isRequired,
 
     /** props from module */
+    id: PropTypes.string.isRequired,
     t: PropTypes.func.isRequired,
     adTrack: PropTypes.func.isRequired,
     showSort: PropTypes.bool.isRequired,

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { areEqual } from 'fbjs';
+import queryString from 'query-string';
 import { Pagination, Select, Icon } from 'antd';
 import hash from 'hash.js';
 
@@ -19,6 +20,7 @@ import {
   STORE_SETTING_TYPE,
 } from 'constants/propTypes';
 import { PHONE_MEDIA } from 'constants/media';
+import Link from 'deprecated/link';
 
 import ProductCard from './ProductCard';
 import PopUp from './PopUp';
@@ -65,6 +67,7 @@ export default class ProductList extends React.PureComponent {
     ).isRequired,
 
     /** props from module */
+    id: PropTypes.string.isRequired,
     t: PropTypes.func.isRequired,
     adTrack: PropTypes.func.isRequired,
     showSort: PropTypes.bool.isRequired,
@@ -101,6 +104,7 @@ export default class ProductList extends React.PureComponent {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const {
+      id,
       // default params
       params: {
         offset = 0,
@@ -108,15 +112,22 @@ export default class ProductList extends React.PureComponent {
         limit = 20,
         ...restParams
       },
+      location: { search },
       isLogin,
       cart,
       stockNotificationList,
       getData,
     } = nextProps;
 
+    const [pageFromQuery, sortFromQuery] =
+      queryString.parse(search)[id]?.split(',') || [];
+
     const params = {
-      offset,
-      sort,
+      offset:
+        pageFromQuery && parseInt(pageFromQuery, 10)
+          ? (parseInt(pageFromQuery, 10) - 1) * limit
+          : offset,
+      sort: sortFromQuery || sort,
       limit,
       ...restParams,
     };
@@ -153,7 +164,10 @@ export default class ProductList extends React.PureComponent {
     // init
     return {
       products: null,
-      page: parseInt(offset / limit, 10) + 1,
+      page:
+        pageFromQuery && parseInt(pageFromQuery, 10)
+          ? parseInt(pageFromQuery, 10)
+          : parseInt(params.offset / params.limit, 10) + 1,
       params,
       isLogin,
       cart,
@@ -366,28 +380,91 @@ export default class ProductList extends React.PureComponent {
   };
 
   renderPagination = (current, type, originalElement) => {
-    const { t, colors } = this.props;
-    let item;
+    const {
+      id,
+      t,
+      location: { pathname, search },
+      colors,
+    } = this.props;
+    const {
+      page,
+      params: { sort },
+    } = this.state;
+    const query = {
+      ...queryString.parse(search),
+      [id]: `${current},${sort}`,
+    };
 
     switch (type) {
       case 'prev':
-        item = t('prev-page');
-        break;
+        return (
+          <Link
+            href={
+              !current || page === current
+                ? null
+                : `${pathname}?${queryString.stringify(query)}`
+            }
+            style={styles.paginationLink}
+            isStalled
+          >
+            <span style={styles.paginationItem(colors)}>{t('prev-page')}</span>
+          </Link>
+        );
+
       case 'next':
-        item = t('next-page');
-        break;
+        return (
+          <Link
+            href={
+              page === current
+                ? null
+                : `${pathname}?${queryString.stringify(query)}`
+            }
+            style={styles.paginationLink}
+            isStalled
+          >
+            <span style={styles.paginationItem(colors)}>{t('next-page')}</span>
+          </Link>
+        );
+
       case 'page':
-        item = current;
-        break;
+        return (
+          <Link
+            href={
+              page === current
+                ? null
+                : `${pathname}?${queryString.stringify(query)}`
+            }
+            style={styles.paginationLink}
+            isStalled
+          >
+            <span style={styles.paginationItem(colors)}>{current}</span>
+          </Link>
+        );
+
+      case 'jump-next':
+      case 'jump-prev':
+        return (
+          <Link
+            href={
+              page === current
+                ? null
+                : `${pathname}?${queryString.stringify(query)}`
+            }
+            style={styles.paginationLink}
+            isStalled
+          >
+            {originalElement}
+          </Link>
+        );
+
       default:
         return originalElement;
     }
-
-    return <span style={styles.paginationItem(colors)}>{item}</span>;
   };
 
   render() {
     const {
+      id,
       showSort,
       alignment,
       justifyContent,
@@ -406,6 +483,7 @@ export default class ProductList extends React.PureComponent {
       stockNotificationList,
       wishList,
 
+      location: { pathname, search },
       storeSetting,
       colors,
       isLogin,
@@ -465,7 +543,19 @@ export default class ProductList extends React.PureComponent {
                 >
                   {sortOptions.map(option => (
                     <Select.Option key={option.value} value={option.value}>
-                      {t(option.text)}
+                      {sort === option.value ? (
+                        t(option.text)
+                      ) : (
+                        <Link
+                          href={`${pathname}?${queryString.stringify({
+                            ...queryString.parse(search),
+                            [id]: `1,${option.value}`,
+                          })}`}
+                          isStalled
+                        >
+                          <span>{t(option.text)}</span>
+                        </Link>
+                      )}
                     </Select.Option>
                   ))}
                 </Select>

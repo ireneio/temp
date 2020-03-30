@@ -19,16 +19,21 @@ export default class Link extends React.PureComponent {
     style: PropTypes.shape({}),
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.string])
       .isRequired,
+    isStalled: PropTypes.bool,
   };
 
   static defaultProps = {
     href: null,
     target: '_self',
     style: null,
+    isStalled: false,
   };
 
   onClick = e => {
-    const { href, target, goTo } = this.props;
+    // return when clicking with these following key
+    if (e.shiftKey || e.metaKey || e.ctrlKey) return;
+
+    const { href, target, goTo, isStalled } = this.props;
     const { host, pathname, query, hash } = new URL(href);
 
     if (
@@ -46,6 +51,7 @@ export default class Link extends React.PureComponent {
         search: queryString.parse(query),
         hash,
       },
+      isStalled,
     });
   };
 

@@ -17,6 +17,7 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
           /* 產品列表 */
           case 'products': {
             const {
+              id,
               contentWidth,
               params,
               alignItems,
@@ -34,7 +35,7 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
               popUpGalleryView,
             } = widget;
             return {
-              id: uuid(),
+              id,
               module: notBeDeleted ? 'products' : 'products-controlled',
               contentWidth,
               params,

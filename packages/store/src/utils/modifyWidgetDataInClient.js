@@ -15,6 +15,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
         /* 產品列表 */
         case 'products': {
           const {
+            id,
             contentWidth,
             params,
             alignItems,
@@ -32,7 +33,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
             popUpGalleryView,
           } = widget;
           return {
-            id: uuid(),
+            id,
             module: notBeDeleted ? 'products' : 'products-controlled',
             contentWidth,
             params,

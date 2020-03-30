@@ -4,7 +4,7 @@ import { Router } from 'server/routes';
  * @name goTo
  * @description Go to the location by the given pathname
  */
-export default ({ pathname, params = {}, back = false }) => {
+export default ({ pathname, params = {}, back = false, isStalled = false }) => {
   if (!back) {
     if (params.hash) {
       if (pathname) {
@@ -44,7 +44,7 @@ export default ({ pathname, params = {}, back = false }) => {
         window.open(`${window.location.origin}${pathname}${queryString}`);
       else
         Router.pushRoute(`${pathname}${queryString}`).then(() => {
-          window.scrollTo(0, 0);
+          if (!isStalled) window.scrollTo(0, 0);
         });
     }
   } else {
