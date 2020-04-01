@@ -159,7 +159,7 @@ export default class LandingPage extends React.PureComponent {
       async (
         err,
         {
-          quantity,
+          quantity = 1,
           variant,
 
           paymentId,
@@ -233,6 +233,7 @@ export default class LandingPage extends React.PureComponent {
                   locale: i18n.language,
                   sourcePage: 'lp',
                 },
+                isPayment: true,
                 products: [
                   {
                     productId,
