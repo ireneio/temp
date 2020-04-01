@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.37.2 (2020-04-01)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#901](https://github.com/meepshop/meep-lerna/pull/901) 【BUG】 一頁式無法正常結帳，錯誤訊息：物流有金額使用限制(limit:10~5000) ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.37.1 (2020-03-30)
 
 #### :rocket: New Feature
