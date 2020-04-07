@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.38.1 (2020-04-07)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#905](https://github.com/meepshop/meep-lerna/pull/905) 【個別店家】 複製頁面，前台換頁，商品元件未更新 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 # 0.38.0 (2020-04-07)
 
 #### :rocket: New Feature
