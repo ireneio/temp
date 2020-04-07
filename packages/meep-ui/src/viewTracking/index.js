@@ -46,9 +46,9 @@ export default class extends React.Component {
         <div
           style={{
             display: isTriggered ? 'none' : 'block',
-            position: 'absolute',
             width: '100%',
             height: 1,
+            marginTop: -1,
             visibility: 'hidden',
           }}
         />
