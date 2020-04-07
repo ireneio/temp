@@ -140,7 +140,7 @@ export default class ProductList extends React.PureComponent {
       stockNotificationList: prevStockNotificationList,
     } = prevState;
 
-    if (prevStateParams) {
+    if (areEqual(params, prevStateParams)) {
       return {
         isLogin,
         cart,
