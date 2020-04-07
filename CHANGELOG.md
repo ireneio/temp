@@ -1,5 +1,24 @@
 # CHANGELOG
 
+# 0.38.0 (2020-04-07)
+
+#### :rocket: New Feature
+
+- [#898](https://github.com/meepshop/meep-lerna/pull/898) 前端 - 優化 @meepshop/icons ([@HsuTing](https://github.com/HsuTing))
+- [#878](https://github.com/meepshop/meep-lerna/pull/878) 【優化】 前台 - 訂單明細 - 「立即付款」按鈕出現規則 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#903](https://github.com/meepshop/meep-lerna/pull/903) 移除前台 FixedEndsContainer ([@HsuTing](https://github.com/HsuTing))
+  - [#892](https://github.com/meepshop/meep-lerna/pull/892) 【BUG】前/後台 - 圖片出現一條白線 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.37.2 (2020-04-01)
 
 #### :bug: Bug Fix
