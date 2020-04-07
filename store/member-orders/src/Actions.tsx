@@ -44,6 +44,7 @@ export const actionsOrderFragment = gql`
     isAvailableForPayLater @client
     isAvailableForOrderApply @client
     isOrderApplied @client
+    choosePayLaterWhenPlaced
     paymentInfo {
       status
       list {
@@ -111,6 +112,7 @@ class Actions extends React.PureComponent<PropsType, StateType> {
         isOrderApplied,
         paymentInfo,
         shipmentInfo,
+        choosePayLaterWhenPlaced,
       },
       appPlugins: { isReturnOrderInstalled, isReplacementInstalled },
     } = this.props;
@@ -152,7 +154,8 @@ class Actions extends React.PureComponent<PropsType, StateType> {
           </form>
         )}
 
-        {isSkipOtherAction ||
+        {!choosePayLaterWhenPlaced ||
+        isSkipOtherAction ||
         !isAvailableForPayLater ||
         (paymentInfo || { status: -1 }).status !== 0 ? null : (
           <Mutation<payOrderAgain, payOrderAgainVariables>
