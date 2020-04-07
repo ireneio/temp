@@ -54,6 +54,7 @@ module.exports = {
   ],
   plugins: [
     '@meepshop/images/babel',
+    '@meepshop/icons/babel',
     '@babel/transform-runtime',
     '@babel/proposal-optional-chaining',
     '@babel/proposal-nullish-coalescing-operator',

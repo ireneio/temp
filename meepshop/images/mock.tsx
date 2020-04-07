@@ -14,7 +14,7 @@ export default React.memo(() => {
   const [searchKey, setSearchKey] = useState(null);
 
   useEffect(() => {
-    new Clipboard('li', {
+    const clipboard = new Clipboard('li', {
       text: e => e.getAttribute('data-clipboard'),
     }).on('success', ({ text }) => {
       message.success(
@@ -24,6 +24,10 @@ export default React.memo(() => {
         </span>,
       );
     });
+
+    return () => {
+      clipboard.destroy();
+    };
   }, []);
 
   return (

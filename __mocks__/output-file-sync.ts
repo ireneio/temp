@@ -1,2 +1,2 @@
 // definition
-export default jest.fn();
+module.exports = jest.fn();

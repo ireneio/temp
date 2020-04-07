@@ -66,7 +66,9 @@ module.exports = declare(({ assertVersion, types: t }) => {
     },
     visitor: {
       ImportDeclaration: path => {
-        if (!t.isLiteral(path.node.source, { value: '@meepshop/images' }))
+        if (
+          !t.isLiteral(path.get('source').node, { value: '@meepshop/images' })
+        )
           return;
 
         path.get('specifiers').forEach(specifier => {
@@ -75,14 +77,14 @@ module.exports = declare(({ assertVersion, types: t }) => {
 
           if (t.isImportSpecifier(specifier))
             cache.images.push({
-              key: specifier.node.imported.name,
-              localKey: specifier.node.local.name,
+              key: specifier.get('imported').node.name,
+              localKey: specifier.get('local').node.name,
             });
 
           if (t.isImportNamespaceSpecifier(specifier))
             cache.images.push({
               key: hash,
-              localKey: specifier.node.local.name,
+              localKey: specifier.get('local').node.name,
             });
         });
 

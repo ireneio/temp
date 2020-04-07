@@ -5,6 +5,7 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 import { useEffect } from 'react';
 import { message } from 'antd';
 import Clipboard from 'clipboard';
+import { emptyFunction } from 'fbjs';
 
 // definition
 export default (
@@ -12,12 +13,17 @@ export default (
   loading: boolean,
   orderId: string | null | undefined,
 ): void => {
-  useEffect(() => {
-    if (!loading && !orderId)
-      new Clipboard('button[role="copy"]', {
-        text: () => `${t('data-error')}${window.location.href}`,
-      }).on('success', () => {
-        message.success(t('copied'));
-      });
+  useEffect((): (() => void) => {
+    if (loading || orderId) return emptyFunction;
+
+    const clipboard = new Clipboard('button[role="copy"]', {
+      text: () => `${t('data-error')}${window.location.href}`,
+    }).on('success', () => {
+      message.success(t('copied'));
+    });
+
+    return () => {
+      clipboard.destroy();
+    };
   }, [t, loading, orderId]);
 };

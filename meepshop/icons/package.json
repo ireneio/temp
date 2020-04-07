@@ -6,6 +6,14 @@
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.37.1",
   "main": "./index.js",
-  "types": "./src/types.ts",
+  "types": "./src/types.tsx",
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/helper-plugin-utils": "^7.8.3",
+    "clipboard": "^2.0.1",
+    "d3-hierarchy": "^1.1.6",
+    "directory-tree": "^2.2.4",
+    "output-file-sync": "^2.0.1"
+  },
   "keywords": ["icons"]
 }
