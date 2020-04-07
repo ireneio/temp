@@ -80,14 +80,6 @@ const ContainerSwitch = ({
         </MobileLayout>
       );
 
-    case 'FixedEndsContainer':
-      return (
-        <MobileLayout {...props} fixedtop={fixedtop}>
-          <FixedTop {...fixedTopProps} />
-          {blockComponent}
-        </MobileLayout>
-      );
-
     default:
       warning(
         process.env.NODE_ENV === 'production',

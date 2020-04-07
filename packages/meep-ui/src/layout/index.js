@@ -35,7 +35,6 @@ export default class Layout extends React.PureComponent {
       'TwoTopsContainer',
       'FixedTopContainerWithSidebar',
       'TwoTopsContainerWithSidebar',
-      'FixedEndsContainer',
     ]).isRequired,
     backgroundImage: PropTypes.shape({
       files: PropTypes.array.isRequired,
