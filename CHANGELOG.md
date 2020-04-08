@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.38.2 (2020-04-08)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`
+  - [#902](https://github.com/meepshop/meep-lerna/pull/902) 前端 - 改用 User.shippableRecipientAddresses & 移除濾掉收件人範本的 code ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.38.1 (2020-04-07)
 
 #### :bug: Bug Fix
