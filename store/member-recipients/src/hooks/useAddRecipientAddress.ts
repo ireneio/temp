@@ -67,7 +67,7 @@ export default (): MutationFunction<
             query useAddRecipientAddressGetRecipientAddressBookCache {
               viewer {
                 id
-                recipientAddressBook {
+                shippableRecipientAddresses {
                   id
                   name
                   mobile
@@ -89,10 +89,10 @@ export default (): MutationFunction<
         });
 
         const input = variables?.input;
-        const { id: viewerId, recipientAddressBook } =
+        const { id: viewerId, shippableRecipientAddresses } =
           useAddRecipientAddressGetRecipientAddressBookCache?.viewer || {};
 
-        if (!input || !viewerId || !recipientAddressBook) return;
+        if (!input || !viewerId || !shippableRecipientAddresses) return;
 
         const { countryId, cityId, areaId, ...newRecipientAddress } = input;
 
@@ -101,7 +101,7 @@ export default (): MutationFunction<
           fragment: gql`
             fragment useAddRecipientAddressFragment on User {
               id
-              recipientAddressBook {
+              shippableRecipientAddresses {
                 id
                 name
                 mobile
@@ -122,8 +122,8 @@ export default (): MutationFunction<
           data: {
             __typename: 'User',
             id: viewerId,
-            recipientAddressBook: [
-              ...recipientAddressBook,
+            shippableRecipientAddresses: [
+              ...shippableRecipientAddresses,
               {
                 ...newRecipientAddress,
                 __typename: 'RecipientAddress',

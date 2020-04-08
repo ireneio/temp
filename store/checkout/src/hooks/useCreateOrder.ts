@@ -137,7 +137,7 @@ export default (): MutationFunction<createOrderType, createOrderVariables> => {
             query useCreateOrderGetRecipientAddressBookCache {
               viewer {
                 id
-                recipientAddressBook {
+                shippableRecipientAddresses {
                   id
                   name
                   mobile
@@ -158,7 +158,7 @@ export default (): MutationFunction<createOrderType, createOrderVariables> => {
           `,
         });
 
-        const { id, recipientAddressBook } =
+        const { id, shippableRecipientAddresses } =
           useCreateOrderGetRecipientAddressBookCache?.viewer || {};
 
         if (!id) return;
@@ -168,7 +168,7 @@ export default (): MutationFunction<createOrderType, createOrderVariables> => {
           fragment: gql`
             fragment useCreateOrderFragment on User {
               id
-              recipientAddressBook {
+              shippableRecipientAddresses {
                 id
                 name
                 mobile
@@ -189,8 +189,8 @@ export default (): MutationFunction<createOrderType, createOrderVariables> => {
           data: {
             __typename: 'User',
             id,
-            recipientAddressBook: [
-              ...(recipientAddressBook || []),
+            shippableRecipientAddresses: [
+              ...(shippableRecipientAddresses || []),
               {
                 __typename: 'RecipientAddress',
                 // FIXME: createOrder should return the new recipientAddress id

@@ -42,7 +42,7 @@ export default mock.add<UserMock>('User', [
       gender: null,
       additionalInfo: null,
       address: null,
-      recipientAddressBook: [],
+      shippableRecipientAddresses: [],
       birthday: null,
       order: null,
     } as UserMock),
@@ -60,7 +60,7 @@ export default mock.add<UserMock>('User', [
         tel: '02-11111111',
         mobile: '0912345678',
       },
-      recipientAddressBook: [{}],
+      shippableRecipientAddresses: [{}],
       birthday: {
         __typename: 'BirthdayObjectType',
         year: 2019,

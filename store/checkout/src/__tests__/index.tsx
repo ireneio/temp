@@ -6,16 +6,16 @@ import runTest from '@meepshop/mock-types/src/runTest';
 import Checkout from '../index';
 
 // typescript definition
-import { getRecipientAddressBook_viewer_recipientAddressBook as getRecipientAddressBookViewerRecipientAddressBook } from '../__generated__/getRecipientAddressBook';
+import { getRecipientAddressBook_viewer_shippableRecipientAddresses as getRecipientAddressBookViewerShippableRecipientAddresses } from '../__generated__/getRecipientAddressBook';
 
 // definition
 runTest(
   'store',
   <Checkout>
     {({
-      recipientAddressBook,
+      shippableRecipientAddresses,
     }: {
-      recipientAddressBook: getRecipientAddressBookViewerRecipientAddressBook[];
-    }) => <div>{JSON.stringify(recipientAddressBook)}</div>}
+      shippableRecipientAddresses: getRecipientAddressBookViewerShippableRecipientAddresses[];
+    }) => <div>{JSON.stringify(shippableRecipientAddresses)}</div>}
   </Checkout>,
 );

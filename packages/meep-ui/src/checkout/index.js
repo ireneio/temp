@@ -350,12 +350,12 @@ export default class Checkout extends React.PureComponent {
 
     return (
       <CheckoutWrapper>
-        {({ recipientAddressBook, createOrder }) => (
+        {({ shippableRecipientAddresses, createOrder }) => (
           <>
             <OrderDetail
               {...this.props}
               {...orderOtherDetailInfo}
-              recipientAddressBook={recipientAddressBook}
+              shippableRecipientAddresses={shippableRecipientAddresses}
               errors={errors}
               orderInfo={orderInfo}
               submit={this.submit(createOrder)}

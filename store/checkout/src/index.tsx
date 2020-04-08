@@ -9,13 +9,13 @@ import useCreateOrder from './hooks/useCreateOrder';
 // graphql typescript
 import {
   getRecipientAddressBook,
-  getRecipientAddressBook_viewer_recipientAddressBook as getRecipientAddressBookViewerRecipientAddressBook,
+  getRecipientAddressBook_viewer_shippableRecipientAddresses as getRecipientAddressBookViewerShippableRecipientAddresses,
 } from './__generated__/getRecipientAddressBook';
 
 // typescript definition
 interface PropsType {
   children: (data: {
-    recipientAddressBook: getRecipientAddressBookViewerRecipientAddressBook[];
+    shippableRecipientAddresses: getRecipientAddressBookViewerShippableRecipientAddresses[];
     createOrder: ReturnType<typeof useCreateOrder>;
   }) => React.ReactElement;
 }
@@ -25,7 +25,7 @@ const query = gql`
   query getRecipientAddressBook {
     viewer {
       id
-      recipientAddressBook {
+      shippableRecipientAddresses {
         id
         name
         mobile
@@ -41,14 +41,6 @@ const query = gql`
         street
         zipCode
       }
-
-      # TODO: remove after api can auto filter
-      store {
-        id
-        shippableCountries {
-          id
-        }
-      }
     }
   }
 `;
@@ -56,14 +48,10 @@ const query = gql`
 export default React.memo(({ children }: PropsType) => {
   const { data } = useQuery<getRecipientAddressBook>(query);
   const createOrder = useCreateOrder();
-  // TODO: remove after api can auto filter
-  const shippableCountries = data?.viewer?.store?.shippableCountries || [];
-  const recipientAddressBook = data?.viewer?.recipientAddressBook.filter(
-    ({ country }) => shippableCountries.some(({ id }) => id === country?.id),
-  );
+  const shippableRecipientAddresses = data?.viewer?.shippableRecipientAddresses;
 
-  if (!recipientAddressBook)
+  if (!shippableRecipientAddresses)
     return <Spin indicator={<Icon type="loading" spin />} />;
 
-  return children({ recipientAddressBook, createOrder });
+  return children({ shippableRecipientAddresses, createOrder });
 });

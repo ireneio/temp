@@ -24,7 +24,7 @@ const query = gql`
   query getUserRecipients {
     viewer {
       id
-      recipientAddressBook {
+      shippableRecipientAddresses {
         ...formRecipientAddressFragment
         ...useColumnsFragment
       }
@@ -55,8 +55,8 @@ export default React.memo(() => {
   if (!viewer || !colors)
     return <Spin indicator={<Icon type="loading" spin />} />;
 
-  const { recipientAddressBook, store } = viewer;
-  const recipientAddress = recipientAddressBook.find(
+  const { shippableRecipientAddresses, store } = viewer;
+  const recipientAddress = shippableRecipientAddresses.find(
     ({ id }) => id === selectedId,
   );
 
@@ -75,13 +75,7 @@ export default React.memo(() => {
       <Table<useColumnsFragmentType>
         rowKey={({ id }) => id}
         columns={columns}
-        dataSource={filter(
-          useColumnsFragment,
-          // TODO: remove filter after api can auto filter
-          recipientAddressBook.filter(({ country }) =>
-            store?.shippableCountries.some(({ id }) => id === country?.id),
-          ),
-        )}
+        dataSource={filter(useColumnsFragment, shippableRecipientAddresses)}
         pagination={false}
       />
 

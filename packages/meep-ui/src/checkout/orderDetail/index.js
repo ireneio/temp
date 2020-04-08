@@ -368,7 +368,7 @@ export default class OrderDetail extends React.PureComponent {
       form,
       shippableCountries,
       isSubmitting,
-      recipientAddressBook,
+      shippableRecipientAddresses,
     } = this.props;
     const {
       showDetail,
@@ -488,7 +488,7 @@ export default class OrderDetail extends React.PureComponent {
             <ReceiverInfo
               form={form}
               shippableCountries={shippableCountries}
-              recipientAddressBook={recipientAddressBook}
+              shippableRecipientAddresses={shippableRecipientAddresses}
               choosePaymentTemplate={(choosePayment || {}).template}
               chooseShipmentTemplate={(chooseShipment || {}).template}
               isSynchronizeUserInfo={isSynchronizeUserInfo}

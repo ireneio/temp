@@ -65,7 +65,7 @@ export default (): MutationFunction<
             query useDeleteRecipientAddressGetRecipientAddressBookCache {
               viewer {
                 id
-                recipientAddressBook {
+                shippableRecipientAddresses {
                   id
                 }
               }
@@ -74,17 +74,17 @@ export default (): MutationFunction<
         });
 
         const id = variables?.input?.id;
-        const { id: viewerId, recipientAddressBook } =
+        const { id: viewerId, shippableRecipientAddresses } =
           useDeleteRecipientAddressGetRecipientAddressBookCache?.viewer || {};
 
-        if (!id || !viewerId || !recipientAddressBook) return;
+        if (!id || !viewerId || !shippableRecipientAddresses) return;
 
         cache.writeFragment<useDeleteRecipientAddressFragment>({
           id: viewerId,
           fragment: gql`
             fragment useDeleteRecipientAddressFragment on User {
               id
-              recipientAddressBook {
+              shippableRecipientAddresses {
                 id
               }
             }
@@ -92,8 +92,9 @@ export default (): MutationFunction<
           data: {
             __typename: 'User',
             id: viewerId,
-            recipientAddressBook: recipientAddressBook.filter(
-              ({ id: recipientAddressBookId }) => id !== recipientAddressBookId,
+            shippableRecipientAddresses: shippableRecipientAddresses.filter(
+              ({ id: shippableRecipientAddressesId }) =>
+                id !== shippableRecipientAddressesId,
             ),
           },
         });

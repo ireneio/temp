@@ -78,7 +78,7 @@ export default class ReceiverInfo extends React.PureComponent {
     const {
       /** props */
       form,
-      recipientAddressBook,
+      shippableRecipientAddresses,
     } = this.props;
     const { setFieldsValue } = form;
     const {
@@ -89,7 +89,9 @@ export default class ReceiverInfo extends React.PureComponent {
       area,
       street,
       zipCode,
-    } = recipientAddressBook.find(({ id: recipientId }) => recipientId === id);
+    } = shippableRecipientAddresses.find(
+      ({ id: recipientId }) => recipientId === id,
+    );
 
     await setFieldsValue({
       name,
@@ -149,7 +151,7 @@ export default class ReceiverInfo extends React.PureComponent {
       t,
       form,
       shippableCountries,
-      recipientAddressBook,
+      shippableRecipientAddresses,
       choosePaymentTemplate,
       chooseShipmentTemplate,
       isSynchronizeUserInfo,
@@ -175,14 +177,15 @@ export default class ReceiverInfo extends React.PureComponent {
           </Checkbox>
         </h3>
 
-        {!canSaveAsTemplate || recipientAddressBook.length === 0 ? null : (
+        {!canSaveAsTemplate ||
+        shippableRecipientAddresses.length === 0 ? null : (
           <FormItem style={formItemStyle}>
             {getFieldDecorator('receiverTemplate')(
               <Select
                 placeholder={t('receiver-template')}
                 onChange={this.setReceiverWithTemplate}
               >
-                {recipientAddressBook.map(({ id, name }) => (
+                {shippableRecipientAddresses.map(({ id, name }) => (
                   <Option key={id} value={id}>
                     {name}
                   </Option>
