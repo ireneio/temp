@@ -4,7 +4,7 @@
   "description": "Use to handle the all images with image proxy",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.38.0",
+  "version": "0.39.0",
   "main": "./index.js",
   "types": "./src/types.ts",
   "devDependencies": {
