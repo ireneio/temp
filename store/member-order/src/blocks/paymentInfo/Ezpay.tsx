@@ -53,7 +53,7 @@ export default React.memo(({ choosePayment, paymentInfo }: PropsType) => {
         paymentInfo.list?.[0]?.memo?.[0]?.ezpay || {};
 
       return (
-        <>
+        <div>
           <div>
             {t('blocks.payment.cvs-payment-no')}
             {paycode}
@@ -65,7 +65,7 @@ export default React.memo(({ choosePayment, paymentInfo }: PropsType) => {
               .unix(expireDate || 0 /** TODO: should not be null */)
               .format('YYYY/M/D')}
           </div>
-        </>
+        </div>
       );
     }
 

@@ -61,7 +61,7 @@ export default React.memo(({ choosePayment, paymentInfo }: PropsType) => {
 
     case 'ATM':
       return (
-        <>
+        <div>
           <div>
             {t('blocks.payment.bank-code')}
             {BankCode}
@@ -76,12 +76,12 @@ export default React.memo(({ choosePayment, paymentInfo }: PropsType) => {
             {t('blocks.payment.expire-date')}
             {ExpireDate}
           </div>
-        </>
+        </div>
       );
 
     case 'CVS':
       return (
-        <>
+        <div>
           <div>
             {t('blocks.payment.cvs-payment-no')}
             {PaymentNo}
@@ -91,12 +91,12 @@ export default React.memo(({ choosePayment, paymentInfo }: PropsType) => {
             {t('blocks.payment.expire-date')}
             {ExpireDate}
           </div>
-        </>
+        </div>
       );
 
     case 'BARCODE':
       return (
-        <>
+        <div>
           <div>
             {t('blocks.payment.barcode')}
             {Barcode1} {Barcode2} {Barcode3}
@@ -106,7 +106,7 @@ export default React.memo(({ choosePayment, paymentInfo }: PropsType) => {
             {t('blocks.payment.expire-date')}
             {ExpireDate}
           </div>
-        </>
+        </div>
       );
 
     default:
