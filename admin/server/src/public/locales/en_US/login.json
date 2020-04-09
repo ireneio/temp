@@ -1,0 +1,27 @@
+{
+  "email": {
+    "error": "Please enter the correct email address",
+    "placeholder": "Email"
+  },
+  "password": {
+    "error": "Please enter the correct password",
+    "placeholder": "Email"
+  },
+  "helper": {
+    "placeholder": "Login helper"
+  },
+  "cname": {
+    "error": "Please enter cname",
+    "placeholder": "CNAME"
+  },
+  "login": "Login",
+  "not-yet-register": "Don't have an account yet?",
+  "get-registered": "Obtain Store",
+  "submit": {
+    "success": "Login Success",
+    "error": {
+      "title": "Store Closing",
+      "content": "To restart, please contact customer service: (02) 2925-8922"
+    }
+  }
+}

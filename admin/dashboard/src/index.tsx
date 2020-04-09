@@ -1,8 +1,9 @@
 // import
-import React, { useEffect } from 'react';
+import React from 'react';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { useQuery } from '@apollo/react-hooks';
+import Head from 'next/head';
 import { Spin, Icon } from 'antd';
 import moment from 'moment';
 
@@ -25,11 +26,6 @@ import { tutorialSettingObjectTypeFragment } from './tutorial';
 
 // definition
 const Dashboard = (): React.ReactElement => {
-  useEffect(() => {
-    if (window.fbq) window.fbq('track', 'PageView');
-    if (window.gtag) window.gtag('config', 'AW-986719315');
-  });
-
   const getTimezoneResult = useQuery<getTimezone>(
     gql`
       query getTimezone {
@@ -140,82 +136,131 @@ const Dashboard = (): React.ReactElement => {
   } = getDashboardInfo || {};
 
   return (
-    <div className={styles.root}>
-      <div className={styles.content}>
-        <Tutorial
-          name={viewer?.store?.description?.name}
-          id={viewer?.store?.id || ''}
-          setting={filter(
-            tutorialSettingObjectTypeFragment,
-            viewer?.store?.setting,
-          )}
+    <>
+      <Head>
+        {/* <!-- Facebook Pixel Code --> */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '222744027936443');
+              fbq('track', 'PageView');
+            `,
+          }}
         />
-        {isUnpaidBillsDisplayed ? (
-          <div className={styles.payment}>
-            <div className={styles.text}>
-              <Icon type="warning" theme="filled" className={styles.icon} />
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: `
+              <img height="1" width="1" style="display:none"
+                src="https://www.facebook.com/tr?id=222744027936443&ev=PageView&noscript=1"
+              />
+            `,
+          }}
+        />
+        {/* <!-- End Facebook Pixel Code --> */}
+
+        {/* <!-- Global site tag (gtag.js) - Google AdWords: 986719315 --> */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-986719315"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-986719315');
+            `,
+          }}
+        />
+        {/* <!-- End Global site tag (gtag.js) - Google AdWords: 986719315 --> */}
+      </Head>
+
+      <div className={styles.root}>
+        <div className={styles.content}>
+          <Tutorial
+            name={viewer?.store?.description?.name}
+            id={viewer?.store?.id || ''}
+            setting={filter(
+              tutorialSettingObjectTypeFragment,
+              viewer?.store?.setting,
+            )}
+          />
+          {isUnpaidBillsDisplayed ? (
+            <div className={styles.payment}>
+              <div className={styles.text}>
+                <Icon type="warning" theme="filled" className={styles.icon} />
+                <div>
+                  <span className={styles.bold}>{t('payment-dealine')}</span>
+                  <span>{t('payment-text')}</span>
+                </div>
+              </div>
+              <Link href="/bill-payment">
+                <a href="/bill-payment" className={styles.link}>
+                  {t('payment-link')}
+                </a>
+              </Link>
+            </div>
+          ) : null}
+          <div className={styles.events}>
+            <div>
+              <span>{t('pending-order')}</span>
+              <span>{pendingOrder}</span>
+            </div>
+            <div>
+              <span>{t('not-shipped')}</span>
+              <span>{notShipped}</span>
+            </div>
+            <div>
+              <span>{t('orderQA')}</span>
+              <span>{orderQA}</span>
+            </div>
+            <div>
+              <span>{t('productQA')}</span>
+              <span>{productQA}</span>
+            </div>
+          </div>
+          <div className={styles.statistics}>
+            <div>
+              <img src="/images/dashboard/revenue.svg" alt="revenue" />
               <div>
-                <span className={styles.bold}>{t('payment-dealine')}</span>
-                <span>{t('payment-text')}</span>
+                <span>{t('revenue')}</span>
+                <span>{reformatAmount(revenueMonthly)}</span>
               </div>
             </div>
-            <Link href="/bill-payment">
-              <a href="/bill-payment" className={styles.link}>
-                {t('payment-link')}
-              </a>
-            </Link>
-          </div>
-        ) : null}
-        <div className={styles.events}>
-          <div>
-            <span>{t('pending-order')}</span>
-            <span>{pendingOrder}</span>
-          </div>
-          <div>
-            <span>{t('not-shipped')}</span>
-            <span>{notShipped}</span>
-          </div>
-          <div>
-            <span>{t('orderQA')}</span>
-            <span>{orderQA}</span>
-          </div>
-          <div>
-            <span>{t('productQA')}</span>
-            <span>{productQA}</span>
-          </div>
-        </div>
-        <div className={styles.statistics}>
-          <div>
-            <img src="/images/dashboard/revenue.svg" alt="revenue" />
             <div>
-              <span>{t('revenue')}</span>
-              <span>{reformatAmount(revenueMonthly)}</span>
+              <img src="/images/dashboard/cost.svg" alt="cost" />
+              <div>
+                <span>{t('cost')}</span>
+                <span>{reformatAmount(costMonthly)}</span>
+              </div>
             </div>
-          </div>
-          <div>
-            <img src="/images/dashboard/cost.svg" alt="cost" />
             <div>
-              <span>{t('cost')}</span>
-              <span>{reformatAmount(costMonthly)}</span>
+              <img src="/images/dashboard/order.svg" alt="order" />
+              <div>
+                <span>{t('order')}</span>
+                <span className={styles.green}>{orderMonthly}</span>
+              </div>
             </div>
-          </div>
-          <div>
-            <img src="/images/dashboard/order.svg" alt="order" />
             <div>
-              <span>{t('order')}</span>
-              <span className={styles.green}>{orderMonthly}</span>
-            </div>
-          </div>
-          <div>
-            <img src="/images/dashboard/member.svg" alt="member" />
-            <div>
-              <span>{t('member')}</span>
-              <span className={styles.green}>{userCount}</span>
+              <img src="/images/dashboard/member.svg" alt="member" />
+              <div>
+                <span>{t('member')}</span>
+                <span className={styles.green}>{userCount}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

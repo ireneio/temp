@@ -15,6 +15,7 @@
   "dependencies": {
     "@admin/apollo-client-resolvers": "^0.38.0",
     "@admin/dashboard": "^0.38.0",
+    "@admin/login": "^0.1.0",
     "@admin/orders-ecfit": "^0.38.0",
     "@admin/setting-notification": "^0.38.0",
     "@admin/utils": "^0.38.0",

@@ -1,0 +1,27 @@
+{
+  "email": {
+    "error": "Vui lòng nhập địa chỉ email chính xác",
+    "placeholder": "E-mail"
+  },
+  "password": {
+    "error": "Vui lòng nhập đúng mật khẩu",
+    "placeholder": "E-mail"
+  },
+  "helper": {
+    "placeholder": "Đăng nhập trợ giúp"
+  },
+  "cname": {
+    "error": "Vui lòng nhập tên",
+    "placeholder": "CNAME"
+  },
+  "login": "Đăng nhập",
+  "not-yet-register": "Vẫn chưa có tài khoản?",
+  "get-registered": "Lấy cửa hàng",
+  "submit": {
+    "success": "Đăng nhập thành công",
+    "error": {
+      "title": "Đóng cửa hàng",
+      "content": "Để khởi động lại, vui lòng liên hệ với dịch vụ khách hàng: (02) 2925-8922"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="595px" viewBox="0 0 1440 595" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>91C65596-CDE0-44AD-AD6F-2919A2BC878D</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <linearGradient x1="93.1486457%" y1="8.88030582%" x2="1.33928571%" y2="48.6607143%" id="linearGradient-1">
+            <stop stop-color="#C2F7FF" offset="0%"></stop>
+            <stop stop-color="#C1FEF3" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="-137.913233%" id="linearGradient-2">
+            <stop stop-color="#AEF3F3" offset="0%"></stop>
+            <stop stop-color="#7EE7EB" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="admin現階段登入畫面-" transform="translate(0.000000, -305.000000)">
+            <g id="Group-10" transform="translate(-1.000000, 305.000000)">
+                <path d="M0.832052964,93.4006529 C236.169627,-30.9612322 445.530398,-30.9612322 628.914366,93.4006529 C812.298334,217.762538 1083.34829,188.082535 1442.06424,4.36064485 L1442.06424,601.129239 L0.832052964,601.129239 L0.832052964,93.4006529 Z" id="Path-5" fill="url(#linearGradient-1)" opacity="0.558370536"></path>
+                <path d="M1,145.5 L1,595.003852 L1441,595.003852 L1441,239.02613 C1369.8343,283.358711 1218.75759,287.781785 987.769853,252.295353 C641.288252,199.065706 554.493021,302.032028 374.766547,285.880847 C254.948898,275.113394 130.360049,228.319778 1,145.5 Z" id="Path-3" fill="url(#linearGradient-2)" opacity="0.383761161"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,27 @@
+{
+  "email": {
+    "error": "請填入正確電子信箱",
+    "placeholder": "信箱"
+  },
+  "password": {
+    "error": "請填入正確密碼",
+    "placeholder": "密碼"
+  },
+  "helper": {
+    "placeholder": "小幫手登入"
+  },
+  "cname": {
+    "error": "請填入 cname",
+    "placeholder": "CNAME"
+  },
+  "login": "登入",
+  "not-yet-register": "還沒有帳號嗎？",
+  "get-registered": "獲得商店",
+  "submit": {
+    "success": "登入成功",
+    "error": {
+      "title": "商店關閉中",
+      "content": "如要重新啟用，請您聯繫客服：(02)2925-8922"
+    }
+  }
+}

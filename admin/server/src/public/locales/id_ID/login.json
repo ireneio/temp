@@ -1,0 +1,27 @@
+{
+  "email": {
+    "error": "Silakan masukkan alamat email yang benar",
+    "placeholder": "Surel"
+  },
+  "password": {
+    "error": "Silakan masukkan kata sandi yang benar",
+    "placeholder": "Surel"
+  },
+  "helper": {
+    "placeholder": "Pembantu login"
+  },
+  "cname": {
+    "error": "Silakan masukkan cname",
+    "placeholder": "CNAME"
+  },
+  "login": "Gabung",
+  "not-yet-register": "Belum punya akun?",
+  "get-registered": "Dapatkan Toko",
+  "submit": {
+    "success": "Sukses Masuk",
+    "error": {
+      "title": "Penutupan Toko",
+      "content": "Untuk memulai kembali, silakan hubungi layanan pelanggan: (02) 2925-8922"
+    }
+  }
+}

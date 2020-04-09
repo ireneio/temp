@@ -1,6 +1,8 @@
+// import
 import { action } from '@storybook/addon-actions';
 import React from 'react';
 
+// definition
 const router = {
   pathname: 'mock-pathname',
   query: {},

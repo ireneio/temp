@@ -1,1 +1,2 @@
+// definition
 export default 'image';

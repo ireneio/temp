@@ -1,3 +1,4 @@
+// import
 import i18n from 'i18next';
 import {
   initReactI18next,
@@ -7,6 +8,7 @@ import {
 import Backend from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+// definition
 if (process.env.STORYBOOK_RUN)
   i18n
     .use(Backend)

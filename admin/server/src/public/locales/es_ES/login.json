@@ -1,0 +1,27 @@
+{
+  "email": {
+    "error": "Por favor ingrese la dirección de correo electrónico correcta",
+    "placeholder": "Email"
+  },
+  "password": {
+    "error": "Por favor ingrese la contraseña correcta",
+    "placeholder": "Email"
+  },
+  "helper": {
+    "placeholder": "Ayudante de inicio de sesión"
+  },
+  "cname": {
+    "error": "Por favor ingrese cname",
+    "placeholder": "CNAME"
+  },
+  "login": "Iniciar sesión",
+  "not-yet-register": "¿Aún no tienes una cuenta?",
+  "get-registered": "Obtener tienda",
+  "submit": {
+    "success": "Acceso exitoso",
+    "error": {
+      "title": "Cierre de tienda",
+      "content": "Para reiniciar, comuníquese con el servicio al cliente: (02) 2925-8922"
+    }
+  }
+}
