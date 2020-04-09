@@ -1,32 +1,13 @@
 BRANCH=$(shell git branch | grep \* | cut -d ' ' -f2)
 WATCH=""
-
-## docker-compose
-API=https://api.stage.meepcloud.com
-TYPE="store"
-COMPOSE=""
-IP=$(shell ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | awk '{print $1}')
-
-## do not modify
-API_WITHOUT_PROTOCOL=$(subst http://,,$(subst https://,,$(API)))
-ADMIN_HOST=$(shell test $(TYPE) = "store" && echo "" || echo "localhost")
-EXTERNAL_COMPOSE=$(shell test $(COMPOSE) = "" && echo "$(TYPE)" || echo "$(COMPOSE)")
-
-run-docker-compose:
-	@API=$(API) \
-		API_WITHOUT_PROTOCOL=$(API_WITHOUT_PROTOCOL) \
-		DOMAIN=$(DOMAIN) \
-		ADMIN_HOST=$(ADMIN_HOST) \
-		IP=${IP} \
-		docker-compose -f ./docker-compose/basic.yml -f ./docker-compose/$(EXTERNAL_COMPOSE).yml up
+APOLLO_TYPE=mock-types
 
 babel-all:
 	@$(call babel-build)
 
 babel-changed:
-	@$(call babel-build, $(WATCH), --since $(BRANCH))
+	@$(call babel-build,$(WATCH),--since $(BRANCH))
 
-APOLLO_TYPE=mock-types
 apollo-watch:
 	@$(call apollo,$(APOLLO_TYPE),--watch)
 

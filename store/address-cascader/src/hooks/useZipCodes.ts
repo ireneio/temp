@@ -5,7 +5,7 @@ import { CascaderOptionType } from 'antd/lib/cascader';
 import { useMemo } from 'react';
 
 // definition
-const findZipcodes = (
+const findZipCodes = (
   options: CascaderOptionType[],
   address: string[] | undefined,
 ): string[] | null => {
@@ -17,11 +17,11 @@ const findZipcodes = (
 
   if (!option || otherIds.length === 0) return null;
 
-  return findZipcodes(option.children || [], otherIds);
+  return findZipCodes(option.children || [], otherIds);
 };
 
 export default (
   options: CascaderOptionType[],
   address: string[] | undefined,
-): ReturnType<typeof findZipcodes> =>
-  useMemo(() => findZipcodes(options, address), [options, address]);
+): ReturnType<typeof findZipCodes> =>
+  useMemo(() => findZipCodes(options, address), [options, address]);

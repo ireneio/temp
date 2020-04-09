@@ -19,18 +19,6 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 - `apollo:watch`: Watch gql files to build schema typescript.
 - `tsc`: Test typescript.
 - `tsc:watch`: Test typescript with watch mode.
-- `store`, `admin`, `admin:old`: Run `store` and `admin` server with `docker-compose`.
-
-###### Run `store`, `admin`, `admin:old`
-
-- Require `docker`.
-- Because `yarn dev` only watch the changed files, you should modify the files in the package before running `yarn store` or `yarn admin`.
-
-| env     | example                                |
-| ------- | -------------------------------------- |
-| API     | yarn store API=https://api.meepshop.tw |
-| DOMAIN  | yarn store DOMAIN=test.com             |
-| COMPOSE | yarn store COMPOSE=local IP=172.16.0.8 |
 
 #### dependencies
 
