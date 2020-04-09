@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.39.0 (2020-04-09)
+
+#### :boom: Breaking Change
+
+- [#893](https://github.com/meepshop/meep-lerna/pull/893) 【重構】admin login ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#896](https://github.com/meepshop/meep-lerna/pull/896) 【BUG】前台 - 訂單明細 - 付款方式的繳費資訊，變成多列顯示 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#907](https://github.com/meepshop/meep-lerna/pull/907) (@meepshop/frontend) Remove docker-compose ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.38.2 (2020-04-08)
 
 #### :rocket: New Feature
