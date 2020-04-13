@@ -198,6 +198,7 @@ export default class MobileLayout extends React.PureComponent {
                 ...design,
                 showLogo: Boolean(mobileLogoUrl),
                 expandSubItem: true,
+                alignment: 'separate',
                 normal,
                 width: 150,
                 height: 48,
