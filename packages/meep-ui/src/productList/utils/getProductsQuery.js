@@ -55,7 +55,7 @@ export default ({
     }
   }
 
-  if (typeof search === 'string' && search !== '') {
+  if (typeof search === 'string' && search !== '' && !ids) {
     variables.search.filter.or.push(
       {
         type: 'query_string',
@@ -71,7 +71,7 @@ export default ({
     );
   }
 
-  if (typeof tags === 'string' && tags !== '') {
+  if (typeof tags === 'string' && tags !== '' && !ids) {
     const tagsFilter = tags.split(',').map(query => ({
       type: 'exact',
       field: 'tags',
