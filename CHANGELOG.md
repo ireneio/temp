@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.39.1 (2020-04-13)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#911](https://github.com/meepshop/meep-lerna/pull/911) 【BUG】商品列表，有篩選商品關鍵字或標籤，商品顯示錯誤 ([@happycat6323](https://github.com/happycat6323))
+  - [#912](https://github.com/meepshop/meep-lerna/pull/912) 【BUG】 自訂會員註冊與登入頁訊息空白無法顯示登入頁 ([@piovischioh](https://github.com/piovischioh))
+  - [#910](https://github.com/meepshop/meep-lerna/pull/910) 【BUG】手機版選單跑版 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.39.0 (2020-04-09)
 
 #### :boom: Breaking Change
