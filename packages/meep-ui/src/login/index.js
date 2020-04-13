@@ -90,7 +90,7 @@ export default class Login extends React.PureComponent {
 
         {optionsComp}
 
-        {!shopperLoginMessageEnabled ? null : (
+        {!shopperLoginMessageEnabled || !shopperLoginMessage ? null : (
           <>
             <div className={styles.hr} style={{ backgroundColor: colors[5] }} />
             <DraftText
