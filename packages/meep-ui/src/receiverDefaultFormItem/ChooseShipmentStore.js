@@ -16,7 +16,7 @@ import {
 import {
   SHIPMENT_STORE_FIELDS,
   CONVENIENCE_STORE_FIELDS,
-  CONVENIENCE_STORE_SHIPMENT_TYPE_ENUM,
+  ECPAY_SHIPMENT_TYPE_ENUM,
   ECPAY_CONVENIENCE_STORE_TYPE_ENUM,
   EZSHIP_CONVENIENCE_STORE_TYPE_ENUM,
 } from './constants';
@@ -211,9 +211,11 @@ export default class ChooseShipmentStore extends React.PureComponent {
 
         {!openConvenienceStoreMap ? null : (
           <ConvenienceStoreMap
-            shipmentType={CONVENIENCE_STORE_SHIPMENT_TYPE_ENUM(
-              shipmentTemplate,
-            )}
+            shipmentType={
+              shipmentTemplate === 'allpay'
+                ? ECPAY_SHIPMENT_TYPE_ENUM(allpay.logisticsSubType)
+                : 'EZSHIP'
+            }
             storeTypes={
               shipmentTemplate === 'allpay'
                 ? ECPAY_CONVENIENCE_STORE_TYPE_ENUM(allpay.logisticsSubType)

@@ -36,12 +36,10 @@ class StoreDetail extends React.PureComponent<PropsType> {
     } = this.props;
 
     switch (shipmentType) {
-      case 'ECPAY':
-        return !ecpayStoreNumber;
       case 'EZSHIP':
         return !ezshipStoreNumber;
       default:
-        return false;
+        return !ecpayStoreNumber;
     }
   };
 
@@ -120,9 +118,9 @@ class StoreDetail extends React.PureComponent<PropsType> {
                   CVSStoreName: name,
                   CVSAddress: address,
                   CVSStoreID:
-                    shipmentType === 'ECPAY'
-                      ? ecpayStoreNumber
-                      : ezshipStoreNumber,
+                    shipmentType === 'EZSHIP'
+                      ? ezshipStoreNumber
+                      : ecpayStoreNumber,
                   cvsType: type,
                   cvsCode: storeNumber,
                 })

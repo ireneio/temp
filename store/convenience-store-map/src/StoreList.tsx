@@ -31,12 +31,10 @@ class StoreList extends React.PureComponent<PropsType> {
       const { shipmentType } = this.props;
 
       switch (shipmentType) {
-        case 'ECPAY':
-          return !store.ecpayStoreNumber;
         case 'EZSHIP':
           return !store.ezshipStoreNumber;
         default:
-          return false;
+          return !store.ecpayStoreNumber;
       }
     },
   );

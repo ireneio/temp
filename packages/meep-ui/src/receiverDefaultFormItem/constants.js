@@ -6,15 +6,9 @@ export const SHIPMENT_STORE_FIELDS = [
 
 export const CONVENIENCE_STORE_FIELDS = ['cvsType', 'cvsCode'];
 
-export const CONVENIENCE_STORE_SHIPMENT_TYPE_ENUM = type => {
-  switch (type) {
-    case 'allpay':
-      return 'ECPAY';
-    case 'ezship':
-      return 'EZSHIP';
-    default:
-      return '';
-  }
+export const ECPAY_SHIPMENT_TYPE_ENUM = type => {
+  if (/C2C/.test(type)) return 'ECPAY_C2C';
+  return 'ECPAY_B2C';
 };
 
 export const ECPAY_CONVENIENCE_STORE_TYPE_ENUM = type => {
