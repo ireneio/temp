@@ -101,7 +101,6 @@ export default (
               zh_TW: '',
             },
             tags: [],
-            storage: [0, 1],
           })),
         },
         optimisticResponse: {
