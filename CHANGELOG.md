@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.39.2 (2020-04-14)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#899](https://github.com/meepshop/meep-lerna/pull/899) 前端 - 搜尋門市 query input 加上綠界帳號類型（B2C / C2C） ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- [#909](https://github.com/meepshop/meep-lerna/pull/909) 前端 - 避免使用 File.storage ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.39.1 (2020-04-13)
 
 #### :bug: Bug Fix
