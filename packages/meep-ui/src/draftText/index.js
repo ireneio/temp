@@ -10,6 +10,8 @@ import notMemoizedFormatRawContent from './utils/formatRawContent';
 export default class DraftText extends React.PureComponent {
   formatRawContent = memoizeOne(notMemoizedFormatRawContent);
 
+  rawContentToHtml = memoizeOne(draftToHtml);
+
   static propTypes = {
     /** props | testJSON [
      *   "test",
@@ -49,10 +51,10 @@ export default class DraftText extends React.PureComponent {
         style={style}
         dangerouslySetInnerHTML={{
           // FIXME: value should be remove(大量上架)
-          __html: (rawContent ? draftToHtml(rawContent) : value).replace(
-            /<p(| style=".*")><\/p>/g,
-            '<br />',
-          ),
+          __html: (rawContent
+            ? this.rawContentToHtml(rawContent)
+            : value
+          ).replace(/<p(| style=".*")><\/p>/g, '<br />'),
         }}
       />
     );
