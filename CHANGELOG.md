@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.39.3 (2020-04-15)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#915](https://github.com/meepshop/meep-lerna/pull/915) 【個別店家】 前台-文字元件內的小圖片顯示不出來 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.39.2 (2020-04-14)
 
 #### :rocket: New Feature
