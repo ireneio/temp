@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.39.4 (2020-04-16)
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#917](https://github.com/meepshop/meep-lerna/pull/917) 【BUG】 前台 - 選單商品篩選結果顯示錯誤 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.39.3 (2020-04-15)
 
 #### :bug: Bug Fix
