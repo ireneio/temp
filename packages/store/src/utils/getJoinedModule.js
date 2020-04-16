@@ -83,10 +83,11 @@ const getJoinedModule = (
                 query.includedAllTags || widget.params.includedAllTags,
               limit: +query.limit || +widget.params.limit,
               offset: +query.offset || +widget.params.offset,
-              price: query.price || widget.params.price,
-              search: query.search || widget.params.search,
               sort: query.sort || widget.params.sort,
-              tags: query.tags || widget.params.tags,
+              price: query.price || widget.params.price,
+              search:
+                query.search || (!widget.params.ids && widget.params.search),
+              tags: query.tags || (!widget.params.ids && widget.params.tags),
               ...(widget.params.ids
                 ? {
                     sort: 'selections',
@@ -107,15 +108,16 @@ const getJoinedModule = (
               includedAllTags: widget.params.includedAllTags,
               limit: +widget.params.limit,
               offset: +widget.params.offset,
-              price: widget.params.price,
-              search: widget.params.search,
               sort: widget.params.sort,
-              tags: widget.params.tags,
+              price: widget.params.price,
               ...(widget.params.ids
                 ? {
                     sort: 'selections',
                   }
-                : {}),
+                : {
+                    search: widget.params.search,
+                    tags: widget.params.tags,
+                  }),
             },
             cart,
             wishList,

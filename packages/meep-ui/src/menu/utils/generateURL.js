@@ -33,14 +33,10 @@ export default (action, params, isLogin) => {
         offset,
         limit,
         sort: `createdOn-${order}`,
+        price: `${lte},${gte}`,
         ...(search
           ? {
               search,
-            }
-          : {}),
-        ...(gte > 10000
-          ? {
-              price: `${lte},${gte}`,
             }
           : {}),
         ...(tags
