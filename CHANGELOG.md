@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.40.0 (2020-04-21)
+
+#### :boom: Breaking Change
+
+- [#865](https://github.com/meepshop/meep-lerna/pull/865) 【優化】 後台 - Navigation Menu ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#923](https://github.com/meepshop/meep-lerna/pull/923) (@meepshop/frontend) Lock @types/node version for next.js version ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.39.4 (2020-04-16)
 
 #### :bug: Bug Fix
