@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024px" height="1024px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 61.2 (101010) - https://sketch.com -->
+    <title>955202F5-0989-4650-A62E-A0CE336D0C62</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon-切圖" transform="translate(-8.000000, -9270.000000)">
+            <g id="Nav/Icon/ic_folder" transform="translate(8.000000, 9270.000000)">
+                <rect id="bg" fill="#D8D8D8" opacity="0" x="0" y="0" width="1024" height="1024"></rect>
+                <path d="M423.664319,170.666667 C452.195791,170.666667 478.839531,184.925964 494.665944,208.665583 L554.666667,298.666667 L810.666667,298.666667 C857.794965,298.666667 896,336.871701 896,384 L896,768 C896,815.128299 857.794965,853.333333 810.666667,853.333333 L213.333333,853.333333 C166.205035,853.333333 128,815.128299 128,768 L128,256 C128,208.871701 166.205035,170.666667 213.333333,170.666667 L423.664319,170.666667 Z M423.664319,256 L213.333333,256 L213.333333,768 L810.666667,768 L810.666667,384 L554.666667,384 C528.512817,384 503.945187,372.01823 487.841838,351.735716 L483.665042,346.001083 L423.664319,256 Z" id="Rectangle" fill="#707E90"></path>
+            </g>
+        </g>
+    </g>
+</svg>

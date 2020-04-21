@@ -1,0 +1,93 @@
+.root {
+  border-top: 1px solid #e0e1e2;
+
+  &.collapsed :global(.anticon) {
+    margin: 0px;
+    width: 64px;
+    line-height: 56px;
+
+    & > svg {
+      color: #505865;
+    }
+  }
+
+  :global(.ant-menu-inline-collapsed) {
+    width: 64px;
+    border: 0px;
+    background: transparent;
+  }
+
+  :global(.ant-menu-submenu-title) {
+    margin: 0px;
+    padding: 0px !important;
+    height: 56px;
+  }
+}
+
+.item {
+  display: inline-block;
+  margin: 0px 2px;
+  width: 56px;
+  line-height: 56px;
+  font-size: 22px;
+  text-align: center;
+
+  &.selected {
+    background: #e6e7e8;
+
+    :global(.anticon) > svg {
+      fill: #22252b;
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+
+    :global(.anticon) {
+      & > svg,
+      &:hover > svg {
+        fill: rgba(0, 0, 0, 0.25);
+      }
+    }
+  }
+
+  :global(.anticon) {
+    vertical-align: middle;
+
+    &:hover > svg {
+      fill: #3092d0;
+    }
+
+    > svg {
+      vertical-align: middle;
+      fill: #707e90;
+    }
+  }
+}
+
+.popMenu {
+  :global(.ant-menu) {
+    background: #f0f1f2;
+    box-shadow: 2px 0 8px 0 rgba(33, 37, 54, 0.05);
+    border-radius: 0px 2px 2px 0px;
+  }
+
+  :global(.ant-menu-item) {
+    margin: 0px;
+    padding: 0px 16px;
+
+    &:hover,
+    &:global(.ant-menu-item-selected) {
+      color: #3092d0;
+      background: transparent;
+    }
+  }
+
+  :global(.anticon) {
+    font-size: 20px;
+  }
+
+  a {
+    color: inherit;
+  }
+}

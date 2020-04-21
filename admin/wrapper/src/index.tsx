@@ -1,310 +1,159 @@
-// typescript import
-import { I18nPropsType } from '@admin/utils/lib/i18n';
-import { SingletonRouter } from 'next/router';
-import { MenuItemType } from './constants';
-
 // import
 import React from 'react';
-import { withRouter } from 'next/router';
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import { Query } from '@apollo/react-components';
-import { Layout, Menu, Spin, Icon, Popover, Tooltip } from 'antd';
-import memoizeOne from 'memoize-one';
-import { areEqual } from 'fbjs';
+import { filter } from 'graphql-anywhere';
+import { Layout } from 'antd';
 
-import { withTranslation } from '@admin/utils/lib/i18n';
 import Link from '@admin/link';
+import { HamburgerIcon, DoubleRightIcon } from '@meepshop/icons';
 
-import generateMenu from './utils/generateMenu';
-import generateController from './utils/generateController';
+import Menu from './Menu';
+import Footer from './Footer';
+import TextLogo from './images/TextLogo';
+import ImgLogo from './images/ImgLogo';
+import useCollapsed from './hooks/useCollapsed';
+import useTransitionEnd from './hooks/useTransitionEnd';
+import useCheckingAdminStatus from './hooks/useCheckingAdminStatus';
 import styles from './styles/index.less';
 
 // graphql typescript
+import { initAdmin } from './__generated__/initAdmin';
+
+// graphql import
+import { useCollapsedFragment } from './hooks/useCollapsed';
+import { useCheckingAdminStatusFragment } from './hooks/useCheckingAdminStatus';
 import {
-  initAdmin,
-  initAdmin_viewer as initAdminViewer,
-  initAdmin_getStoreAppList as initAdminGetStoreAppList,
-  initAdmin_getAuthorityList as initAdminGetAuthorityList,
-} from './__generated__/initAdmin';
+  useMenuListpermissionObjFragment,
+  useMenuListpermissionStoreAppFragment,
+} from './hooks/useMenuList';
+import { useFooterMenuListFragment } from './hooks/useFooterMenuList';
 
 // typescript definition
-interface PropsType extends I18nPropsType {
-  viewer: initAdminViewer;
-  getStoreAppList: initAdminGetStoreAppList;
-  getAuthorityList: initAdminGetAuthorityList;
-  router: SingletonRouter;
+interface PropsType {
   children: React.ReactNode;
 }
 
 // definition
 const { Content, Sider } = Layout;
-const { Item } = Menu;
 
-class Wrapper extends React.Component<PropsType> {
-  private getMenuParams = memoizeOne(
-    ({
-      viewer,
-      getStoreAppList,
-      getAuthorityList,
-    }: {
-      viewer: initAdminViewer;
-      getStoreAppList: initAdminGetStoreAppList;
-      getAuthorityList: initAdminGetAuthorityList;
-    }) => {
-      const { permission = null } =
-        (getAuthorityList?.data || []).find(
-          list => (list || { id: undefined }).id === viewer.groupId,
-        ) || {};
+const query = gql`
+  query initAdmin {
+    cookies @client {
+      ...useCollapsedFragment
+    }
 
-      return {
-        storeAppList: (getStoreAppList?.data || []).reduce(
-          (list: { [plugin: string]: boolean }, storeApp) => {
-            const { plugin = null, isInstalled = null } = storeApp || {};
-            return {
-              ...list,
-              [plugin || 'unknown']: Boolean(isInstalled),
-            };
-          },
-          {},
-        ),
-        permission,
-        domain: viewer?.store?.domain?.[0] || viewer?.store?.defaultDomain,
-        isMerchant: viewer.role === 'MERCHANT',
-        isClosed: viewer?.store?.adminStatus !== 'OPEN',
-      };
-    },
-    areEqual,
-  );
+    viewer {
+      id
+      role
+      groupId
+      store {
+        id
+        ...useCheckingAdminStatusFragment
+        ...useFooterMenuListFragment
+      }
+    }
 
-  public componentDidMount(): void {
-    this.checkStatus();
-  }
-
-  public componentDidUpdate(): void {
-    this.checkStatus();
-  }
-
-  private checkStatus = (): void => {
-    const { viewer, router } = this.props;
-
-    if (viewer?.store?.adminStatus !== 'OPEN') router.replace('/bill-payment');
-  };
-
-  public render(): React.ReactNode {
-    const {
-      children,
-      router,
-      viewer,
-      getStoreAppList,
-      getAuthorityList,
-      t,
-    } = this.props;
-    const {
-      storeAppList,
-      permission,
-      domain,
-      isMerchant,
-      isClosed,
-    } = this.getMenuParams({ viewer, getStoreAppList, getAuthorityList });
-    const rootPath = router?.pathname.split('/')[1];
-
-    return (
-      <Layout className={styles.layout}>
-        <Sider
-          className={`${styles.sider} ${isClosed && styles.closed}`}
-          width="55"
-        >
-          {isClosed ? (
-            <Link href="/signout">
-              <div className={styles.signout}>
-                <img src="/images/menu/signout.svg" alt={t('signout')} />
-                <span>{t('signout')}</span>
-              </div>
-            </Link>
-          ) : (
-            <>
-              <Menu
-                className={styles.menu}
-                mode="vertical"
-                selectedKeys={[rootPath]}
-              >
-                {generateMenu({
-                  storeAppList,
-                  permission,
-                  isMerchant,
-                }).map(({ src, title, path, sub }: MenuItemType) =>
-                  sub ? (
-                    <Item key={title}>
-                      <Popover
-                        overlayClassName={styles.popover}
-                        placement="rightTop"
-                        content={(sub || []).map(subitem => (
-                          <div key={subitem.title} className={styles.subitem}>
-                            <Link href={subitem.path as string}>
-                              <a href={subitem.path} target={subitem.target}>
-                                <img src={subitem.src} alt={t(subitem.title)} />
-                                <span>{t(subitem.title)}</span>
-                              </a>
-                            </Link>
-                          </div>
-                        ))}
-                      >
-                        <div>
-                          <img src={src} alt={t(title)} />
-                        </div>
-                      </Popover>
-                    </Item>
-                  ) : (
-                    <Item key={title}>
-                      <Tooltip
-                        placement="right"
-                        overlayClassName={styles.tooltip}
-                        title={t(title)}
-                      >
-                        <div>
-                          <Link href={path as string}>
-                            <a href={path}>
-                              <img src={src} alt={t(title)} />
-                            </a>
-                          </Link>
-                        </div>
-                      </Tooltip>
-                    </Item>
-                  ),
-                )}
-              </Menu>
-              <Menu
-                className={styles.menu}
-                mode="vertical"
-                selectedKeys={[rootPath]}
-              >
-                {generateController({
-                  domain,
-                  isMerchant,
-                }).map(({ src, title, sub }: MenuItemType) => (
-                  <Item key={title}>
-                    <Popover
-                      overlayClassName={styles.popover}
-                      placement="rightBottom"
-                      content={(sub || []).map(subitem => (
-                        <div key={subitem.title} className={styles.subitem}>
-                          <Link href={subitem.path as string}>
-                            <a href={subitem.path} target={subitem.target}>
-                              <img src={subitem.src} alt={t(subitem.title)} />
-                              <span>{t(subitem.title)}</span>
-                            </a>
-                          </Link>
-                        </div>
-                      ))}
-                    >
-                      <div key={title}>
-                        <img src={src} alt={t(title)} />
-                      </div>
-                    </Popover>
-                  </Item>
-                ))}
-              </Menu>
-            </>
-          )}
-        </Sider>
-        <Layout>
-          <Content>{children}</Content>
-        </Layout>
-      </Layout>
-    );
-  }
-}
-
-const EnhancedWrapper = withTranslation('common')(withRouter(Wrapper));
-
-const WrapperWithData = ({
-  children,
-}: {
-  children: React.ReactNode;
-}): React.ReactElement => (
-  <Query<initAdmin>
-    query={gql`
-      query initAdmin {
-        viewer {
-          id
-          groupId
-          role
-          store {
-            id
-            adminStatus
-            domain
-            defaultDomain
-          }
-        }
-        getStoreAppList {
-          data {
-            id
-            plugin
-            isInstalled
-          }
-        }
-        getAuthorityList {
-          data {
-            id
-            permission {
-              order {
-                index
-                paymentStatus
-                shipmentStatus
-                status
-                create
-                export
-              }
-              product {
-                index
-                create
-                update
-                remove
-                cost
-                export
-              }
-              design {
-                index
-              }
-              user {
-                index
-                create
-                update
-                export
-                remove
-              }
-              service {
-                index
-                product
-              }
-              store {
-                index
-                payment
-                shipment
-                exportSetting
-              }
-              file {
-                index
-              }
-            }
-          }
+    getAuthorityList {
+      data {
+        id
+        permission {
+          ...useMenuListpermissionObjFragment
         }
       }
-    `}
-  >
-    {({ loading, error, data }) => {
-      if (loading || error)
-        return (
-          <Spin
-            className={styles.spin}
-            indicator={<Icon type="loading" spin />}
-          />
-        );
-      return (
-        <EnhancedWrapper {...(data as PropsType)}>{children}</EnhancedWrapper>
-      );
-    }}
-  </Query>
-);
+    }
 
-export default WrapperWithData;
+    getStoreAppList {
+      data {
+        id
+        ...useMenuListpermissionStoreAppFragment
+      }
+    }
+  }
+
+  ${useCollapsedFragment}
+  ${useCheckingAdminStatusFragment}
+  ${useMenuListpermissionObjFragment}
+  ${useMenuListpermissionStoreAppFragment}
+  ${useFooterMenuListFragment}
+`;
+
+export default React.memo(({ children }: PropsType) => {
+  const { data } = useQuery<initAdmin>(query);
+  const { isDone, collapsed, onBreakpoint, setCollapsed } = useCollapsed(
+    !data?.cookies ? null : filter(useCollapsedFragment, data.cookies),
+  );
+  const [transitionLoading, transitionEnd] = useTransitionEnd(collapsed);
+  const isMerchant = Boolean(data?.viewer?.role === 'MERCHANT');
+  const permission = data?.getAuthorityList?.data?.find(
+    authority => authority?.id === data?.viewer?.groupId,
+  )?.permission;
+  const isNotOpened = useCheckingAdminStatus(
+    !data?.viewer?.store
+      ? null
+      : filter(useCheckingAdminStatusFragment, data.viewer.store),
+  );
+  const LogoTriggerIcon = collapsed ? DoubleRightIcon : HamburgerIcon;
+
+  return (
+    <Layout className={styles.root} hasSider>
+      <Sider
+        className={`${styles.sider} ${!isDone ? styles.hidden : ''}`}
+        collapsed={collapsed}
+        onBreakpoint={onBreakpoint}
+        onTransitionEnd={transitionEnd}
+        breakpoint="lg"
+        width={240}
+        collapsedWidth={64}
+        trigger={null}
+        collapsible
+      >
+        <div
+          className={`${styles.logo} ${collapsed ? styles.collapsed : ''} ${
+            transitionLoading ? styles.loading : ''
+          }`}
+        >
+          <Link href="/" disabled={isNotOpened}>
+            <a className={!isNotOpened ? '' : styles.disabled} href="/">
+              {collapsed ? <ImgLogo /> : <TextLogo />}
+            </a>
+          </Link>
+
+          <LogoTriggerIcon onClick={() => setCollapsed(!collapsed)} />
+        </div>
+
+        <Menu
+          isMerchant={isMerchant}
+          permission={
+            !permission
+              ? null
+              : filter(useMenuListpermissionObjFragment, permission)
+          }
+          storeApps={
+            !data?.getStoreAppList?.data
+              ? null
+              : filter(
+                  useMenuListpermissionStoreAppFragment,
+                  data.getStoreAppList.data,
+                )
+          }
+          collapsed={collapsed}
+          loading={transitionLoading}
+          isNotOpened={isNotOpened}
+        />
+
+        <Footer
+          store={
+            !data?.viewer?.store
+              ? null
+              : filter(useFooterMenuListFragment, data.viewer.store)
+          }
+          collapsed={collapsed}
+          isNotOpened={isNotOpened}
+        />
+      </Sider>
+
+      <Content>{children}</Content>
+    </Layout>
+  );
+});

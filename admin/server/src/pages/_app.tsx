@@ -10,10 +10,10 @@ import { ApolloProvider } from '@apollo/react-components';
 import NextApp from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
+import dynamic from 'next/dynamic';
 
 import '@admin/utils/lib/styles/base.less';
 import { appWithTranslation } from '@admin/utils/lib/i18n';
-import Wrapper from '@admin/wrapper';
 
 import withApollo from '../apollo/withApollo';
 
@@ -23,6 +23,8 @@ interface PropsType extends AppInitialProps {
 }
 
 // definition
+const Wrapper = dynamic(() => import('@admin/wrapper'));
+
 class App extends NextApp<PropsType> {
   public static getInitialProps = async ({
     Component,
@@ -30,7 +32,7 @@ class App extends NextApp<PropsType> {
   }: AppContext): Promise<Omit<PropsType, 'apolloClient'>> => {
     const pageProps: {
       namespacesRequired?: string[];
-    } = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+    } = (await Component.getInitialProps?.(ctx)) || {};
 
     return {
       pageProps: {
@@ -43,11 +45,12 @@ class App extends NextApp<PropsType> {
   public componentDidMount(): void {
     Router.beforePopState(({ as }: { as: string }): boolean => {
       if (!as) window.location.reload();
+
       return true;
     });
   }
 
-  public render(): JSX.Element {
+  public render(): React.ReactElement {
     const {
       Component,
       pageProps,

@@ -2,6 +2,7 @@ const path = require('path');
 
 const findPkgDir = require('find-pkg-dir');
 const kebabCase = require('lodash.kebabcase');
+const { parse: lessParser } = require('postcss-less');
 
 const handleCssRelativePath = (css, filePath) => {
   if (process.env.NODE_ENV !== 'test') return css;
@@ -39,6 +40,33 @@ const generateScopedName = (name, filePath) => {
     .replace(/\//g, '-')
     .replace(/\.less$/, '')}__${name}`;
 };
+
+/**
+ * FIX mixin error
+ * @example
+ * originial code:
+ *   .mixin();
+ *
+ * bug:
+ *   @mixin();
+ *
+ * fix:
+ *   .css-module-classname-mixin();
+ */
+const processCss = (css, filePath) =>
+  (css.match(/@[^ ]*\(/g) || [])
+    .filter(text => !/media/.test(text))
+    .reduce(
+      (result, pattern) =>
+        result.replace(
+          pattern,
+          pattern.replace(
+            /@([\w_-]*)/,
+            (match, name) => `.${generateScopedName(name, filePath)}`,
+          ),
+        ),
+      css,
+    );
 
 module.exports = {
   presets: [
@@ -100,7 +128,9 @@ module.exports = {
       {
         extensions: ['.less'],
         ignore: /antd/,
+        processorOpts: { parser: lessParser },
         preprocessCss,
+        processCss,
         generateScopedName,
         devMode: process.env.NODE_ENV !== 'production',
         keepImport: process.env.NODE_ENV !== 'test',

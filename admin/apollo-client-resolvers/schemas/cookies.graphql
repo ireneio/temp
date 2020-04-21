@@ -1,0 +1,17 @@
+type Cookies {
+  id: ID!
+  menuCollapsed: Boolean!
+}
+
+extend type Query {
+  cookies: Cookies!
+}
+
+extend type Mutation {
+  setCookies(input: SetCookiesInput!): Boolean!
+  refetchCookies: Boolean!
+}
+
+input SetCookiesInput {
+  menuCollapsed: Boolean
+}
