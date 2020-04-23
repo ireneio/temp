@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.40.1 (2020-04-23)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#916](https://github.com/meepshop/meep-lerna/pull/916) 【優化】寄發給「消費者」系統通知信語言設定 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.40.0 (2020-04-21)
 
 #### :boom: Breaking Change
