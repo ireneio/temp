@@ -5,6 +5,7 @@ viewer {
   name
   gender
   email
+  locale
   groupId
   group {
     startDate
@@ -44,6 +45,13 @@ viewer {
     currentBalance
     expiringPoints(expireBy: $expireBy) {
       total
+    }
+  }
+
+  store {
+    id
+    setting {
+      locale
     }
   }
 }

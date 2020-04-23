@@ -49,6 +49,7 @@ export default class MenuItem extends React.PureComponent {
     carts: PropTypes.shape({}).isRequired,
     user: USER_TYPE.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
+    getData: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -108,12 +109,14 @@ export default class MenuItem extends React.PureComponent {
     menuItemStyle: {},
   };
 
-  onClick = () => {
+  onClick = async () => {
     const {
       /** context */
       toggleCart,
       logout,
       setCustomerCurrency,
+      isLogin,
+      getData,
 
       /** props */
       i18n,
@@ -131,7 +134,23 @@ export default class MenuItem extends React.PureComponent {
         break;
 
       case 'locale':
+        if (isLogin !== NOTLOGIN) {
+          await getData(
+            `
+              mutation updateShopperLanguagePreference($input: UpdateShopperLanguagePreferenceInput!) {
+                updateShopperLanguagePreference(input: $input) {
+                  status
+                }
+              }
+            `,
+            {
+              input: { locale: id },
+            },
+          );
+        }
+
         i18n.changeLanguage(id);
+
         break;
 
       case 'currency':

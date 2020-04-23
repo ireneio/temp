@@ -87,6 +87,18 @@ export function* loginFlow({ payload }) {
     if (res.isLoginSuccess || res.userId) {
       const memberData = yield call(Api.updateMemberData);
 
+      const memberCurrentLocale = memberData?.data?.viewer?.locale;
+
+      if (
+        !memberData?.data?.viewer?.store.setting.locale.includes(
+          memberCurrentLocale,
+        )
+      ) {
+        yield call(Api.updateShopperLanguagePreference, i18n.language);
+      } else if (i18n.language !== memberCurrentLocale) {
+        i18n.changeLanguage(memberCurrentLocale);
+      }
+
       notification.success({ message: i18n.t('ducks:login-success') });
 
       if (callback) callback();

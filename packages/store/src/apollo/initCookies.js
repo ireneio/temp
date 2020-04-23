@@ -8,6 +8,8 @@ export default async (client, { req, res }) => {
       query getStoreLocaleAndCurrency {
         viewer {
           id
+          role
+          locale
           store {
             id
             setting {
@@ -19,10 +21,37 @@ export default async (client, { req, res }) => {
       }
     `,
   });
-  const locale = result.data?.viewer?.store.setting.locale || ['zh_TW'];
 
-  if (!locale.includes(req.language))
-    if (req.i18n) await req.i18n.changeLanguage(locale[0]);
+  const locales = result.data?.viewer?.store.setting.locale || ['zh_TW'];
+  const locale = result.data?.viewer?.locale;
+  const isLogin = result.data?.viewer?.role === 'SHOPPER';
+
+  const language = (() => {
+    if (locales.includes(locale)) return locale;
+
+    if (locales.includes(req.language)) return req.language;
+
+    return locales[0];
+  })();
+
+  if (req.i18n && language !== req.language)
+    await req.i18n.changeLanguage(language);
+
+  if (isLogin && language !== locale)
+    await client.mutate({
+      mutation: gql`
+        mutation updateShopperLanguagePreference(
+          $input: UpdateShopperLanguagePreferenceInput!
+        ) {
+          updateShopperLanguagePreference(input: $input) {
+            status
+          }
+        }
+      `,
+      variables: {
+        input: { locale: language },
+      },
+    });
 
   const currencys = result.data?.viewer?.store.setting.currency || ['TWD'];
 

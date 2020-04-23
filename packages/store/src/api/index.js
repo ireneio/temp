@@ -13,6 +13,7 @@ import checkEmailExists from './checkEmailExists.api';
 import sendMaiToForgetPassword from './sendMaiToForgetPassword.api';
 import fbLogin from './fbLogin.api';
 import updateMemberData from './updateMemberData.api';
+import updateShopperLanguagePreference from './updateShopperLanguagePreference.api';
 import resetPassword from './resetPassword.api';
 import getTrackingCode from './getTrackingCode.api';
 import changePassword from './changePassword.api';
@@ -48,6 +49,7 @@ export {
   sendMaiToForgetPassword,
   fbLogin,
   updateMemberData,
+  updateShopperLanguagePreference,
   resetPassword,
   updateUser,
   createOrderApply,

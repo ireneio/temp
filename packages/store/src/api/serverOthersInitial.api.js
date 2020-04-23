@@ -181,10 +181,6 @@ export default async function(context) {
         appId
       }
     }
-    isLogin {
-      isLogin
-      expireTime
-    }
     getCartList(search: $cartSearch) {
       data {
         ${cartQuery}

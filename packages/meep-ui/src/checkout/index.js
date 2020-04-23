@@ -95,7 +95,6 @@ export default class Checkout extends React.PureComponent {
 
       /** props */
       t,
-      i18n,
       adTrack,
     } = this.props;
     const {
@@ -167,7 +166,6 @@ export default class Checkout extends React.PureComponent {
           idempotentKey: this.idempotentKey,
           environment: {
             domain,
-            locale: i18n.language,
           },
           isPayment,
           products: products

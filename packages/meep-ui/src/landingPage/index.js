@@ -210,7 +210,6 @@ export default class LandingPage extends React.PureComponent {
 
             /** props */
             t,
-            i18n,
             adTrack,
             productData,
             redirectPage,
@@ -230,7 +229,6 @@ export default class LandingPage extends React.PureComponent {
                 idempotentKey: uuid(),
                 environment: {
                   domain,
-                  locale: i18n.language,
                   sourcePage: 'lp',
                 },
                 isPayment: true,
