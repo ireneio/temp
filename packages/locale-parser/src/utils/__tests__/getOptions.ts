@@ -3,17 +3,16 @@ import path from 'path';
 
 import { emptyFunction } from 'fbjs';
 
-import cliOptions from '../cliOptions';
+import getOptions from '../getOptions';
 import translate from '../translate';
-import findNull from '../findNull';
 
 // definition
 jest.spyOn(process, 'exit').mockReturnThis();
 
-describe('cli options', () => {
+describe('get options', () => {
   test('translate', async () => {
     expect(
-      await cliOptions([
+      await getOptions([
         'yarn',
         'locale-parser',
         'translate',
@@ -29,25 +28,6 @@ describe('cli options', () => {
       afterEach: translate.afterEach,
       afterAll: emptyFunction,
       end: emptyFunction,
-    });
-  });
-
-  test('find-null', async () => {
-    expect(
-      await cliOptions(['yarn', 'locale-parser', 'find-null', __dirname]),
-    ).toEqual({
-      rootFolder: __dirname,
-      relative: './',
-      localeName: 'en_US',
-      options: {
-        sendGlip: false,
-      },
-      beforeAll: findNull.beforeAll,
-      beforeEach: emptyFunction,
-      run: findNull.run,
-      afterEach: findNull.afterEach,
-      afterAll: findNull.afterAll,
-      end: findNull.end,
     });
   });
 });

@@ -5,7 +5,7 @@ import path from 'path';
 
 import { LOCALES } from '../constants';
 
-import cliOptions from '../utils/cliOptions';
+import getOptions from '../utils/getOptions';
 import localeParser from '../utils/localeParser';
 
 // definition
@@ -25,7 +25,7 @@ process.on('unhandledRejection', err => {
     afterEach,
     afterAll,
     end,
-  } = await cliOptions(process.argv);
+  } = await getOptions(process.argv);
   const localesFolder = path.resolve(rootFolder, relative);
   const files = fs
     .readdirSync(path.resolve(localesFolder, localeName))

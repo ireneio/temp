@@ -136,7 +136,7 @@ module.exports = {
         keepImport: process.env.NODE_ENV !== 'test',
         extractCss:
           process.env.NODE_ENV === 'test'
-            ? path.resolve(__dirname, './.storybook/combined.less')
+            ? false
             : {
                 dir: './lib',
                 relativeRoot: './src',
@@ -148,6 +148,5 @@ module.exports = {
   ignore: [
     '**/__generated__/**',
     ...(process.env.NODE_ENV === 'test' ? [] : ['**/__tests__/**']),
-    './packages/icons/src/types.ts',
   ],
 };

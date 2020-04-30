@@ -5,8 +5,6 @@ import { LocaleType } from './localeParser';
 import { LOCALES } from '../constants';
 
 import getName from './getName';
-import sendGlip from './sendGlip';
-import hasLocaleTag from './hasLocaleTag';
 
 // definition
 class FindNull {
@@ -19,8 +17,6 @@ class FindNull {
   } = {};
 
   private name: string | null = null;
-
-  private shouldSendGlip = false;
 
   private addData = (
     localeKey: keyof typeof LOCALES,
@@ -37,30 +33,19 @@ class FindNull {
   private sendMessage = async (message: string[]): Promise<void> => {
     const { log } = console;
 
-    if (!this.shouldSendGlip || (await hasLocaleTag()))
-      log(
-        message
-          .join('\n')
-          .replace(/\[(.*?)\]\(.*?\)/g, '$1')
-          .replace(/\*\*/g, ''),
-      );
-    else {
-      await sendGlip(message.join('\n'));
-      await sendGlip(`[code]${message.join('\n')}[/code]`);
-    }
+    log(
+      message
+        .join('\n')
+        .replace(/\[(.*?)\]\(.*?\)/g, '$1')
+        .replace(/\*\*/g, ''),
+    );
   };
 
   public beforeAll = (
     rootFolder: string,
     filename: string,
     baseLocale: LocaleType,
-    {
-      sendGlip: shouldSendGlip,
-    }: {
-      sendGlip: boolean;
-    },
   ): void => {
-    this.shouldSendGlip = shouldSendGlip;
     this.name = getName(rootFolder, filename);
     this.addData('en_US', baseLocale);
   };

@@ -4,10 +4,9 @@ import { storiesOf } from '@storybook/react';
 import Icons from '@meepshop/icons/mock';
 
 import './styles/base.less';
-import Wrapper from './Wrapper';
 
-storiesOf('@meepshop/icons', module).add('demo', () => (
-  <Wrapper>
-    <Icons />
-  </Wrapper>
-));
+const demo = () => <Icons />;
+
+if (process.env.STORYBOOK_ENV === 'dev')
+  storiesOf('@meepshop/icons', module).add('demo', demo);
+else storiesOf('@meepshop', module).add('icons', demo);

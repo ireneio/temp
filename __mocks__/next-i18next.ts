@@ -9,26 +9,28 @@ import Backend from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 // definition
-if (process.env.STORYBOOK_RUN)
+const config = {
+  lng: 'zh_TW',
+  fallbackLng: 'zh_TW',
+  interpolation: {
+    escapeValue: false,
+  },
+};
+
+if (process.env.STORYBOOK_ENV)
   i18n
     .use(Backend)
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
-      lng: 'zh_TW',
-      fallbackLng: 'zh_TW',
-      interpolation: {
-        escapeValue: false,
-      },
+      ...config,
+      ns: [],
+      defaultNS: 'common',
     });
 else
   i18n.use(initReactI18next).init({
+    ...config,
     resources: {},
-    lng: 'zh_TW',
-    fallbackLng: 'zh_TW',
-    interpolation: {
-      escapeValue: false,
-    },
   });
 
 export default class NextI18Next {

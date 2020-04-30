@@ -1,7 +1,7 @@
 // typescript import
 import { LOCALES } from '../constants';
 
-import { CliOptionsType } from './cliOptions';
+import { OptionsType } from './getOptions';
 
 // typescript definition
 export interface LocaleType {
@@ -13,7 +13,7 @@ const localeParser = async (
   baseLocale: LocaleType,
   newLocale: LocaleType,
   localeKey: keyof typeof LOCALES,
-  run: CliOptionsType['run'],
+  run: OptionsType['run'],
   prefix: string[] | undefined = [],
 ): Promise<LocaleType> => {
   const output: LocaleType = {};

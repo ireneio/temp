@@ -33,7 +33,6 @@ describe('find null', () => {
           b: null,
         },
       },
-      { sendGlip: false },
     );
     findNull.afterEach('zh_TW', {
       a: {
@@ -55,7 +54,6 @@ describe('find null', () => {
           d: null,
         },
       },
-      { sendGlip: false },
     );
     findNull.afterEach('zh_TW', {
       c: {
@@ -68,16 +66,11 @@ describe('find null', () => {
 
   test('find null in admin@locale', () => {
     findNull.afterAll();
-    findNull.beforeAll(
-      __dirname,
-      'locale.json',
-      {
-        e: {
-          f: 'value',
-        },
+    findNull.beforeAll(__dirname, 'locale.json', {
+      e: {
+        f: 'value',
       },
-      { sendGlip: false },
-    );
+    });
     findNull.afterEach('zh_TW', {
       e: {
         f: null,

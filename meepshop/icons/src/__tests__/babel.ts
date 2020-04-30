@@ -17,7 +17,16 @@ const babelOptions: TransformOptions = {
   filename: path.resolve(__dirname, '../types.tsx'),
   configFile: false,
   babelrc: false,
-  presets: ['@babel/react'],
+  presets: [
+    [
+      '@babel/env',
+      {
+        useBuiltIns: 'usage',
+        corejs: 3,
+      },
+    ],
+    '@babel/react',
+  ],
   plugins: [babel],
 };
 
@@ -53,18 +62,23 @@ describe('babel', () => {
   });
 
   test('transform not types', () => {
-    const expected = `export default 'not transform';`;
-
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore jest mock
     outputFileSync.mockClear();
 
     expect(
-      transformSync(expected, {
+      transformSync(`export default 'not transform';`, {
         ...babelOptions,
         filename: __filename,
       })?.code,
-    ).toBe(expected);
+    ).toBe(`"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _default = 'not transform';
+exports["default"] = _default;`);
     expect(outputFileSync).not.toHaveBeenCalled();
   });
 
@@ -75,7 +89,7 @@ describe('babel', () => {
     })?.code;
 
     expect(result).toMatch(
-      /HomePageIcon: require\("@meepshop\/icons\/lib\/HomePageIcon"\).default/,
+      /HomePageIcon: require\(".*node_modules\/.cache\/icons\/HomePageIcon"\)\["default"\]/,
     );
     expect(result).toMatch(
       /if \(process\.env\.NODE_ENV === "production"\) throw new Error\("Can not use `import \* as icons from '@meepshop\/icons';` in the production mode\."\);/,

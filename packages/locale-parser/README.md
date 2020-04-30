@@ -12,15 +12,17 @@ Use to translate the null value in the locale files with google translation. If 
 
 #### `find-null <root-folter>`
 
-Use to check the null value in the locale files. If you want to send to the `glip`, you can use `--send-glip`.
+Use to check the null value in the locale files.
 
 #### `check-keys <root-folder>`
 
 Use to check the keys in the locale files. In each language, the keys of the locale files should be consistent.
 
-#### `generate-csv <root-folder>`
+#### `generate <root-folder> -o <path-to-output-folder>``
 
-This command will collect the locale files and generate a csv file in the root folder.
+This command will collect the locale files and generate a file in the output folder.
+
+- `-t`, `--types`: This option can be `json` or `csv`. The default value is `json`.
 
 #### `copy <root-folder> -r <path-to-reference-zh_TW-file>`
 
@@ -34,7 +36,7 @@ This command will copy the locale files when the value in `zh_TW` can be found i
 
 ## Add a new command
 
-Add a new function to [here](./src/utils/cliOptions).
+Add a new function to [here](./src/utils/getOptions).
 
 - `rootFolder`: the locale folder
 - `filename`: the locale filename
@@ -49,7 +51,7 @@ Give the options to `beforeAll`. You can parse the command by `commander` and gi
 This function will run before parsing the all languages.
 
 - `enUSLocale`: the locale in `en_US/<filename>`
-- `options`: the `options` from the `cliOptions`
+- `options`: the `options` from the `getOptions`
 
 #### `beforeEach(rootFolder: string, filename: string, localeKey: keyof typeof LOCALES)`
 

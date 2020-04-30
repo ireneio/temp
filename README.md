@@ -8,17 +8,16 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 
 - `clean`: Remove the building files and node_modules.
 - `dev`: Run `dev` mode
-- `preinstall`: Reverse patched packages.
-- `postinstall`: Patch packages.
+- `preinstall`, `postinstall`: Patched packages.
 - `install:all`: Install the all packages.
 - `lint`, `lint:watch`: Run lint.
 - `prod`: Run `prod` mode.
 - `release`: Release the new version.
-- `storybook`: Run `storybook` with the name of the package. `yarn storybook @store/ezpay`
+- `storybook`: Run `storybook` with the name of the package. `yarn storybook @store/ezpay`.
+- `storybook:static`: Use to build the storybook pages.
 - `test`: Run testing.
 - `apollo:watch`: Watch gql files to build schema typescript.
-- `tsc`: Test typescript.
-- `tsc:watch`: Test typescript with watch mode.
+- `tsc`, `tsc:watch`: Test typescript.
 
 #### dependencies
 
@@ -116,11 +115,6 @@ See [@meepshop/mock-types](./packages/mock-types) to learn more detail.
 2. Run `yarn lerna run prod --stream --scope @admin/server` or `yarn lerna run prod --stream --scope @store/server`.
 3. Run `yarn lerna run start --stream --scope @admin/server` or `yarn lerna run start --stream --scope @store/server`.
 
-#### (optional) Add images
-
-1. Add images to the `images` folder.
-2. Give images urls as props in `mock.ts`.
-
 #### Package architecture
 
 ```sh
@@ -171,8 +165,8 @@ workspace(store, admin...)
 - [lint-staged](#lint-staged)
 - [husky](#husky)
 - [jest](#jest)
-- [storybook](#storybook)
-- [circleci](#circleci)
+- [storybook](./.storybook)
+- [circleci](./.circleci)
 
 #### Workspace
 
@@ -180,7 +174,6 @@ workspace(store, admin...)
   - [ ] remove `@meepshop/meep-ui`
   - [ ] move `@meepshop/store` to `@store/server`
 - [store](./store)
-  - [ ] `@meepshop/store` add `next-i18next` and use `express`
 - [admin](./admin)
 
 ## lerna
@@ -215,6 +208,12 @@ In this project, we use `babel` to build the files expect `@store/server` and `@
   ```sh
   // basic usage
   make babel-all
+
+  // run in the watch mode
+  make babel-all WATCH=-w
+
+  // run in the package
+  make babel-all OPTION="--scope @meepshop/package-name"
   ```
 
 - `babel-changed`: Run babel command in the packages which are different from `git branch`.
@@ -223,14 +222,15 @@ In this project, we use `babel` to build the files expect `@store/server` and `@
   // basic usage
   make babel-changed
 
-  // run with watch
+  // run in the watch mode
   make babel-changed WATCH=-w
 
-  // run with branch
+  // compare the branch
   make babel-changed BRANCH=master
   ```
 
-- `postinstall`: Remove `@babel/core` in `next/node_modules`. Remove this command after `next` >= 7.
+- `apollo-watch`: Run apollo-tooling in the watch mode.
+- `tsc-basic`, `tsc`, `tsc:watch`: Run `tsc`.
 - `clean`: Remove `cache`, `lib` and `node_modules`.
 - `release`: Generate `CHANGELOG.md` and release the new version with `lerna`.
 
@@ -307,49 +307,6 @@ For `apollo-clinet`, we run the all combinations with [@meepshop/mock-types](./p
 
 - jest.setup.js
 - jest.config.js
-
-## storybook
-
-We can use [@meepshop/mock-types](./packages/mock-types) to write the demo page with `storybook`. When you run `storybook`, this will generate a `story.js` file in `.storybook`. If you need to add `props` to the component, you can add `mock.ts` in the package folder.
-
-In the page, you can change the mock result with clicking `mock datas` button.
-
-If you want to add the new `README.md` of the new package in `storybook`, you need to add the data of the new `README.md` in `.storybook/config.js`.
-
-```js
-const stories = [
-  ...
-  {
-    name: /** scope name */,
-    pattern: /** this new story pattern */,
-    source: require(/** path to new README */),
-  },
-  ...
-];
-```
-
-#### Relative files
-
-- .storybook
-
-## circleci
-
-- `install`: Install all packages.
-- `lint-and-test`: Run `type checking`, `code style checking`, `unit testing`.
-  - tsc
-  - lint
-  - jest
-- `deploy-test-branch`: Deploy image with `test-*` branch.
-- `deploy`: Deploy image with `v*` tag.
-- `deploy-test`: Deploy image with [meep-github-console](https://github.com/meepshop/meep-github-console).
-
-#### Relative files
-
-- .circleci
-
-#### TODO
-
-- [ ] Remove `prod` in `lint-and-test`
 
 [logo-image]: https://gc.meepcloud.com/meepshop/shop/hire/layout/553dbeef7b3649de2d24767e/images/67797-meepshop_logo_1104x372.png
 [logo-url]: https://github.com/meepshop/meep-lerna

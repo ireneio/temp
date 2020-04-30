@@ -4,6 +4,11 @@ defaults: &defaults
     - image: circleci/node:10.15.3-browsers
   working_directory: ~/repo
 
+gcloud-defaults: &gcloud-defaults
+  docker:
+    - image: google/cloud-sdk
+  working_directory: ~/repo
+
 check-patches: &check-patches
   name: Check patches
   command: |
@@ -19,6 +24,13 @@ save-cache: &save-cache
   key: dependencies-{{ checksum "yarn.lock" }}-{{ checksum "patches.lock" }}
   paths:
     - node_modules
+
+gcloud-login: &gcloud-login
+  name: Gcloud login
+  command: |
+    echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
+    gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+    gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
 
 deploy-docker: &deploy-docker
   name: Deploy docker
@@ -67,15 +79,9 @@ jobs:
       - run:
           name: Check locale files
           command: |
-            yarn lerna exec "babel src -d lib --config-file ../../babel.config.js --verbose -x .ts" \
-              --stream \
-              --scope @meepshop/locale-parser
-            yarn lerna exec "yarn locale-parser check-keys @meepshop/store" \
-              --stream \
-              --scope @meepshop/locale-parser
-            yarn lerna exec "yarn locale-parser check-keys @admin/server" \
-              --stream \
-              --scope @meepshop/locale-parser
+            make babel-all OPTION="--scope @meepshop/locale-parser"
+            yarn locale-parser check-keys @meepshop/store
+            yarn locale-parser check-keys @admin/server
 
       - run:
           name: Check code style
@@ -91,16 +97,37 @@ jobs:
       - store_artifacts:
           path: coverage
 
-  upload-images:
-    docker:
-      - image: google/cloud-sdk
-
+  upload-storybook:
+    <<: *gcloud-defaults
     steps:
       - checkout
-      - run: |
-          echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
-          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+      - run: *gcloud-login
+      - run: *check-patches
+      - restore_cache: *restore-cache
+      - run:
+          name: Install yarn
+          command: |
+            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+            echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+            apt update -y && apt install yarn -y
+            mv /home/circleci/repo/node_modules ~/repo/node_modules
+      - run:
+          name: Build storybook static
+          command: |
+            yarn lerna bootstrap
+            make babel-all OPTION="--scope @meepshop/locale-parser"
+            yarn storybook:static
+      - run:
+          name: Upload storybook
+          command: |
+            gsutil cp -r ./storybook/* gs://storybook.meepshop.com/
+            gsutil iam ch allUsers:objectViewer gs://storybook.meepshop.com/
+
+  upload-images:
+    <<: *gcloud-defaults
+    steps:
+      - checkout
+      - run: *gcloud-login
       - run: ./.circleci/bin/upload_images.sh stage
 
   deploy-test-branch:
@@ -122,26 +149,6 @@ jobs:
       - run: yarn lerna bootstrap
       - setup_remote_docker
       - run: *deploy-docker
-      - run:
-          name: Send locale notifier
-          command: |
-            yarn lerna exec "babel src -d lib --config-file ../../babel.config.js --verbose -x .ts" \
-              --stream \
-              --scope @meepshop/locale-parser
-            yarn lerna exec "yarn locale-parser find-null @meepshop/store --send-glip" \
-              --stream \
-              --scope @meepshop/locale-parser
-            yarn lerna exec "yarn locale-parser find-null @admin/server --send-glip" \
-              --stream \
-              --scope @meepshop/locale-parser
-            yarn lerna exec "yarn locale-parser generate-csv @meepshop/store" \
-              --stream \
-              --scope @meepshop/locale-parser
-            yarn lerna exec "yarn locale-parser generate-csv @admin/server" \
-              --stream \
-              --scope @meepshop/locale-parser
-      - store_artifacts:
-          path: locales
 
   deploy-test:
     <<: *defaults
@@ -171,6 +178,14 @@ workflows:
               ignore: /test-.*/
             tags:
               ignore: /.*/
+
+      - upload-storybook:
+          context: org-global
+          requires:
+            - install
+          filters:
+            branches:
+              only: /master/
 
       - upload-images:
           context: org-global

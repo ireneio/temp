@@ -23,7 +23,9 @@ const imageFolder = nodePath.resolve(__dirname, './images');
 const imageList = d3
   .hierarchy(dirTree(imageFolder, { extensions: /\.(svg|png|jpg|jpeg)$/ }))
   .leaves()
-  .reduce((result, { data: { path, extension } }) => {
+  .reduce((result, { data: { type, path, extension } }) => {
+    if (type === 'directory') return result;
+
     const filePath = nodePath.relative(imageFolder, path);
     const key = filePath
       .replace(extension, '')

@@ -1,9 +1,11 @@
+ROOT=$(shell pwd)
 BRANCH=$(shell git branch | grep \* | cut -d ' ' -f2)
 WATCH=""
 APOLLO_TYPE=mock-types
+OPTION=""
 
 babel-all:
-	@$(call babel-build)
+	@$(call babel-build,$(WATCH),$(OPTION))
 
 babel-changed:
 	@$(call babel-build,$(WATCH),--since $(BRANCH))
@@ -58,4 +60,5 @@ define babel-build
 		--ignore @meepshop/mock-types \
 		--ignore @admin/server \
 		$(2)
+	ln -snf $(ROOT)/packages/locale-parser/lib/bin/index.js ./node_modules/.bin/locale-parser
 endef

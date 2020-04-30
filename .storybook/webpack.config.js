@@ -1,7 +1,13 @@
 /* eslint-disable no-param-reassign */
 const path = require('path');
 
+const babelConfig = require('../babel.config');
+
 module.exports = ({ config }) => {
+  const cssModulesTransformPlugin = babelConfig.plugins.find(
+    plugin => plugin[0] === 'css-modules-transform',
+  );
+
   config.module.rules = [
     {
       test: /\.(tsx?|jsx?)$/,
@@ -11,6 +17,15 @@ module.exports = ({ config }) => {
         options: {
           configFile: path.resolve(__dirname, '../babel.config.js'),
           sourceType: 'unambiguous',
+          plugins: [
+            [
+              cssModulesTransformPlugin[0],
+              {
+                ...cssModulesTransformPlugin[1],
+                extractCss: path.resolve(__dirname, './combined.less'),
+              },
+            ],
+          ],
         },
       },
     },

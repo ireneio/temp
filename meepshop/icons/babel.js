@@ -8,6 +8,7 @@ const { transformSync } = require('@babel/core');
 const outputFileSync = require('output-file-sync');
 const dirTree = require('directory-tree');
 const d3 = require('d3-hierarchy');
+const findCacheDir = require('find-cache-dir');
 
 // definition
 const iconList = d3
@@ -17,7 +18,9 @@ const iconList = d3
     }),
   )
   .leaves()
-  .reduce((result, { data: { name, path } }) => {
+  .reduce((result, { data: { type, name, path } }) => {
+    if (type === 'directory') return result;
+
     const key = name.replace(/\.svg$/, 'Icon');
     const iconName = `${key[0].toUpperCase()}${key.slice(1)}`;
 
@@ -233,7 +236,7 @@ const svgPlugin = declare(({ assertVersion, types: t }) => {
   };
 });
 
-const generateIcon = (iconName, path) => {
+const generateIcon = (folder, iconName, path) => {
   if (!iconList[iconName])
     throw path.buildCodeFrameError(`Can not find icon: \`${iconName}\``);
 
@@ -244,7 +247,7 @@ const generateIcon = (iconName, path) => {
     .replace(/xmlns:xlink/, 'xmlns');
 
   outputFileSync(
-    nodePath.resolve(__dirname, './lib', iconName.replace(/$/, '.js')),
+    nodePath.resolve(folder, iconName.replace(/$/, '.js')),
     transformSync(
       `import React from 'react';
 import Icon from 'antd/lib/icon';
@@ -260,17 +263,13 @@ export default React.memo(props => (
         configFile: false,
         babelrc: false,
         presets: [
-          ...(process.env.NODE_ENV === 'test'
-            ? []
-            : [
-                [
-                  '@babel/env',
-                  {
-                    useBuiltIns: 'usage',
-                    corejs: 3,
-                  },
-                ],
-              ]),
+          [
+            '@babel/env',
+            {
+              useBuiltIns: 'usage',
+              corejs: 3,
+            },
+          ],
           '@babel/react',
         ],
         plugins: [svgPlugin],
@@ -294,6 +293,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
         if (!t.isLiteral(path.get('source').node, { value: '@meepshop/icons' }))
           return;
 
+        const cacheDir = findCacheDir({ name: 'icons', thunk: true });
         const importNamespaceSpecifier = path
           .get('specifiers')
           .find(specifier => t.isImportNamespaceSpecifier(specifier));
@@ -303,7 +303,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
         const localKey = importNamespaceSpecifier.get('local').node.name;
 
         Object.keys(iconList).forEach(key => {
-          generateIcon(key, path);
+          generateIcon(cacheDir(), key, path);
         });
         path
           .getStatementParent()
@@ -339,7 +339,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
                     t.identifier(key),
                     t.memberExpression(
                       t.callExpression(t.identifier('require'), [
-                        t.stringLiteral(`@meepshop/icons/lib/${key}`),
+                        t.stringLiteral(cacheDir(key)),
                       ]),
                       t.identifier('default'),
                     ),
@@ -353,7 +353,11 @@ module.exports = declare(({ assertVersion, types: t }) => {
       ExportNamedDeclaration: path => {
         if (cache.shouldSkip) return;
 
-        generateIcon(path.get('declaration.declarations.0.id').node.name, path);
+        generateIcon(
+          nodePath.resolve(__dirname, './lib'),
+          path.get('declaration.declarations.0.id').node.name,
+          path,
+        );
       },
     },
     post: ({ path }) => {

@@ -57,23 +57,30 @@ storiesOf('${name}', module)
   ));`,
 );
 
-process.env.STORYBOOK_RUN = true;
+process.env.STORYBOOK_ENV = 'dev';
+process.env.NODE_ENV = 'test';
 
 require('@storybook/react/standalone')({
   mode: 'dev',
   port: 14400,
   configDir: __dirname,
-  staticDir: (() => {
+  staticDir: (result => {
     switch (workspaceName) {
       case '@store':
-        return [path.resolve(__dirname, '../packages/store/src/public')];
+        return [
+          ...result,
+          path.resolve(__dirname, '../packages/store/src/public'),
+        ];
 
       case '@admin':
-        return [path.resolve(__dirname, '../admin/server/src/public')];
+        return [
+          ...result,
+          path.resolve(__dirname, '../admin/server/src/public'),
+        ];
 
       default:
-        return [];
+        return result;
     }
-  })(),
+  })([path.resolve(__dirname, './static')]),
   ci: true,
 });

@@ -15,11 +15,11 @@ import { version } from '../../package.json';
 import translate from './translate';
 import findNull from './findNull';
 import checkKeys from './checkKeys';
-import generateCsv from './generateCsv';
+import generate from './generate';
 import copy from './copy';
 
 // typescript definition
-export interface CliOptionsType {
+export interface OptionsType {
   rootFolder: string;
   relative: string;
   localeName: string;
@@ -30,7 +30,7 @@ export interface CliOptionsType {
     rootFolder: string,
     filename: string,
     baseLocale: LocaleType,
-    options: CliOptionsType['options'],
+    options: OptionsType['options'],
   ) => void;
   beforeEach: (
     rootFolder: string,
@@ -55,7 +55,7 @@ export interface CliOptionsType {
 // definition
 const findRootFolder = (
   moduleNameOrPath: string,
-): Pick<CliOptionsType, 'rootFolder' | 'relative'> => {
+): Pick<OptionsType, 'rootFolder' | 'relative'> => {
   try {
     return {
       rootFolder: path.dirname(require.resolve(moduleNameOrPath)),
@@ -69,12 +69,30 @@ const findRootFolder = (
   }
 };
 
-export default (argv: string[]): Promise<CliOptionsType> =>
-  new Promise(resolve => {
-    const program = new commander.Command('locale-parser').version(
-      version,
-      '-v, --version',
-    );
+const getDefaultOptions = (moduleNameOrPath: string): OptionsType => ({
+  ...findRootFolder(moduleNameOrPath),
+  localeName: 'en_US',
+  beforeAll: emptyFunction,
+  beforeEach: emptyFunction,
+  run: emptyFunction.thatReturnsNull,
+  afterEach: emptyFunction,
+  afterAll: emptyFunction,
+  end: emptyFunction,
+});
+
+export default (argv: string[]): Promise<OptionsType> =>
+  new Promise((resolve, reject) => {
+    const program = new commander.Command('locale-parser')
+      .version(version, '-v, --version')
+      .action(({ rawArgs }) => {
+        reject(
+          new Error(
+            chalk`can not find the command: {red locale-parser ${rawArgs
+              .slice(2)
+              .join(' ')}}`,
+          ),
+        );
+      });
 
     program
       .command('translate')
@@ -83,14 +101,8 @@ export default (argv: string[]): Promise<CliOptionsType> =>
       .description('use to translate the locales files')
       .action(moduleNameOrPath => {
         resolve({
-          ...findRootFolder(moduleNameOrPath),
-          localeName: 'en_US',
-          beforeAll: emptyFunction,
-          beforeEach: translate.beforeEach,
-          run: translate.run,
-          afterEach: translate.afterEach,
-          afterAll: emptyFunction,
-          end: emptyFunction,
+          ...getDefaultOptions(moduleNameOrPath),
+          ...translate,
         });
       });
 
@@ -99,20 +111,10 @@ export default (argv: string[]): Promise<CliOptionsType> =>
       .arguments('<root-folder>')
       .usage(chalk`{green <root-rootFolder>}`)
       .description('use to find null in the locales files')
-      .option('--send-glip', 'send messages to glip', false)
-      .action((moduleNameOrPath, { sendGlip }) => {
+      .action(moduleNameOrPath => {
         resolve({
-          ...findRootFolder(moduleNameOrPath),
-          localeName: 'en_US',
-          options: {
-            sendGlip,
-          },
-          beforeAll: findNull.beforeAll,
-          beforeEach: emptyFunction,
-          run: findNull.run,
-          afterEach: findNull.afterEach,
-          afterAll: findNull.afterAll,
-          end: findNull.end,
+          ...getDefaultOptions(moduleNameOrPath),
+          ...findNull,
         });
       });
 
@@ -123,32 +125,32 @@ export default (argv: string[]): Promise<CliOptionsType> =>
       .description('use to check the keys in the locales files')
       .action(moduleNameOrPath => {
         resolve({
-          ...findRootFolder(moduleNameOrPath),
-          localeName: 'en_US',
-          beforeAll: emptyFunction,
-          beforeEach: emptyFunction,
-          run: checkKeys.run,
-          afterEach: emptyFunction,
-          afterAll: checkKeys.afterAll,
-          end: emptyFunction,
+          ...getDefaultOptions(moduleNameOrPath),
+          ...checkKeys,
         });
       });
 
     program
-      .command('generate-csv')
+      .command('generate')
       .arguments('<root-folder>')
       .usage(chalk`{green <root-rootFolder>}`)
-      .description('use to generate csv files')
-      .action(moduleNameOrPath => {
+      .description('use to generate the files')
+      .requiredOption(
+        '-o, --output-folder <folder>',
+        'path to the output folder',
+      )
+      .option(
+        '-t, --type <type>',
+        'the type of the output file(json or csv) [default: json]',
+      )
+      .action((moduleNameOrPath, { outputFolder, type }) => {
         resolve({
-          ...findRootFolder(moduleNameOrPath),
-          localeName: 'en_US',
-          beforeAll: generateCsv.beforeAll,
-          beforeEach: emptyFunction,
-          run: generateCsv.run,
-          afterEach: emptyFunction,
-          afterAll: generateCsv.afterAll,
-          end: generateCsv.end,
+          ...getDefaultOptions(moduleNameOrPath),
+          ...generate,
+          options: {
+            outputFolder,
+            type,
+          },
         });
       });
 
@@ -163,17 +165,12 @@ export default (argv: string[]): Promise<CliOptionsType> =>
       )
       .action((moduleNameOrPath, { relativePath }) => {
         resolve({
-          ...findRootFolder(moduleNameOrPath),
+          ...getDefaultOptions(moduleNameOrPath),
+          ...copy,
           localeName: 'zh_TW',
           options: {
             relativePath,
           },
-          beforeAll: copy.beforeAll,
-          beforeEach: emptyFunction,
-          run: copy.run,
-          afterEach: copy.afterEach,
-          afterAll: emptyFunction,
-          end: emptyFunction,
         });
       });
 
