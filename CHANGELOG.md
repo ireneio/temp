@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.40.2 (2020-04-30)
+
+#### :rocket: New Feature
+
+- `locale-parser`, `mock-types`
+  - [#918](https://github.com/meepshop/meep-lerna/pull/918) Build storybook in circleci ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.40.1 (2020-04-23)
 
 #### :rocket: New Feature
