@@ -4,11 +4,11 @@
   "description": "notification setting for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.40.0",
+  "version": "0.41.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/link": "^0.40.0"
+    "@admin/link": "^0.41.0"
   },
   "keywords": ["admin", "notification", "setting"]
 }

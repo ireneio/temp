@@ -4,7 +4,7 @@
   "description": "Mock graphql type for storybook and testing",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.40.2",
+  "version": "0.41.0",
   "main": "./index.js",
   "scripts": {
     "clean": "rm -rf ./schema.json",
@@ -12,10 +12,10 @@
   },
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/apollo-client-resolvers": "^0.40.0",
-    "@store/ad-track": "^0.40.0",
-    "@store/apollo-client-resolvers": "^0.40.0",
-    "@store/currency": "^0.40.0",
+    "@admin/apollo-client-resolvers": "^0.41.0",
+    "@store/ad-track": "^0.41.0",
+    "@store/apollo-client-resolvers": "^0.41.0",
+    "@store/currency": "^0.41.0",
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-link-schema": "^1.2.4",
     "graphql-tools": "^4.0.6",
