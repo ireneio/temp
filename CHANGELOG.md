@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.41.1 (2020-05-04)
+
+#### :house: Internal
+
+- `store`
+  - [#934](https://github.com/meepshop/meep-lerna/pull/934) 前端 - 前台 調高 CPU 跟 memory ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.41.0 (2020-05-04)
 
 #### :boom: Breaking Change
