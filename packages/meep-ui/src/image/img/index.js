@@ -53,13 +53,15 @@ class Img extends React.PureComponent {
    */
   getSrc = useLarge => {
     const { image, width } = this.props;
-    const url = /(^\/)|(^http)/.test(image) ? image : `//${image}`;
-
-    return useLarge
-      ? `${url}?w=${IMAGE_SUITABLE_WIDTHS.find(
+    const imageWidth = !useLarge
+      ? 60
+      : IMAGE_SUITABLE_WIDTHS.find(
           suitableWidth => suitableWidth > width * window.devicePixelRatio,
-        ) || IMAGE_SUITABLE_WIDTHS.slice(-1)[0]}`
-      : `${url}?w=50`;
+        ) || IMAGE_SUITABLE_WIDTHS.slice(-1)[0];
+
+    return image instanceof Object
+      ? image.scaledSrc[`w${imageWidth}`]
+      : `${/(^\/)|(^http)/.test(image) ? image : `//${image}`}?w=${imageWidth}`;
   };
 
   render() {

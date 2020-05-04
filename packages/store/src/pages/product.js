@@ -95,7 +95,7 @@ class Product extends React.Component {
       i18n,
     } = this.props;
     const url = host + pathname;
-    const productImage = coverImage?.src || '';
+    const productImage = coverImage?.scaledSrc?.w480 || '';
     const keywords = page?.seo?.keywords;
 
     return (
@@ -114,10 +114,7 @@ class Product extends React.Component {
           <meta property="og:type" content="website" />
           <meta property="og:url" content={`https://${url}`} />
           <meta property="og:title" content={productName || storeName} />
-          <meta
-            property="og:image"
-            content={`${productImage || faviconUrl}?w=400`}
-          />
+          <meta property="og:image" content={productImage || faviconUrl} />
           <meta property="og:image:width" content="400" />
           <meta property="og:image:height" content="300" />
           <meta
