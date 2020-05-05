@@ -78,6 +78,8 @@ const query = gql`
   ${useFooterMenuListFragment}
 `;
 
+export const CollapsedContext = React.createContext<boolean | null>(false);
+
 export default React.memo(({ children }: PropsType) => {
   const { data } = useQuery<initAdmin>(query);
   const { isDone, collapsed, onBreakpoint, setCollapsed } = useCollapsed(
@@ -153,7 +155,9 @@ export default React.memo(({ children }: PropsType) => {
         />
       </Sider>
 
-      <Content>{children}</Content>
+      <CollapsedContext.Provider value={transitionLoading ? null : collapsed}>
+        <Content>{children}</Content>
+      </CollapsedContext.Provider>
     </Layout>
   );
 });

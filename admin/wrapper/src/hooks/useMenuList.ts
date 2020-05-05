@@ -23,6 +23,8 @@ import { useMenuListpermissionObjFragment as useMenuListpermissionObjFragmentTyp
 import { useMenuListpermissionStoreAppFragment as useMenuListpermissionStoreAppFragmentType } from './__generated__/useMenuListpermissionStoreAppFragment';
 
 // typescript definition
+export type MenuListType = (string | [string, MenuListType])[];
+
 interface MenuType {
   key: string;
   Icon?: React.ComponentType<IconProps>;
@@ -65,7 +67,7 @@ export const useMenuListpermissionStoreAppFragment = gql`
   }
 `;
 
-const MENU_LIST = [
+export const MENU_LIST: MenuListType = [
   'dashboard',
   'orders',
   'products',

@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@admin/setting-header",
+  "description": "Setting header for admin",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/wrapper": "^0.40.0"
+  },
+  "keywords": ["admin", "header", "setting"]
+}

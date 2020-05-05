@@ -1,4 +1,4 @@
-@import '~antd/lib/style/themes/default.less';
+@import '~@admin/utils/lib/styles/variables.less';
 
 .root {
   padding: 16px 8px 24px;
@@ -8,7 +8,7 @@
   color: #444c56;
   background: transparent;
 
-  @media (max-width: @screen-lg) {
+  @media (max-width: @screen-md-max) {
     .collapsed();
   }
 
@@ -147,6 +147,7 @@
 
 .popMenu {
   user-select: none;
+  background: transparent;
 
   &.loading {
     display: none;
@@ -162,8 +163,14 @@
     }
   }
 
-  &:not(.noSubMenu) :global(.ant-menu) {
-    min-width: 128px;
+  &:not(.noSubMenu) {
+    :global(.ant-menu) {
+      min-width: 128px;
+    }
+
+    :global(.ant-menu-item-group-title) {
+      font-weight: 500;
+    }
   }
 
   :global(.ant-menu) {
@@ -187,7 +194,7 @@
 
   :global(.ant-menu-item) {
     margin: 0px;
-    padding: 0px 0px 0px 16px;
+    padding: 0px 8px 0px 16px;
 
     &:hover,
     &:global(.ant-menu-item-selected) {

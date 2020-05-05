@@ -1,7 +1,8 @@
-@import '~antd/lib/style/themes/default.less';
+@import '~@admin/utils/lib/styles/variables.less';
 
 .root {
   height: 100%;
+  background: #f0f2f5;
 }
 
 .sider {
@@ -10,7 +11,7 @@
   user-select: none;
   z-index: 1;
 
-  @media (max-width: @screen-lg) {
+  @media (max-width: @screen-md-max) {
     flex: 0 0 64px !important;
     max-width: 64px !important;
     min-width: 64px !important;
@@ -30,7 +31,7 @@
   background: linear-gradient(134.73deg, #459dd5 0.07%, #2a84bb 100%);
   overflow: hidden;
 
-  @media (max-width: @screen-lg) {
+  @media (max-width: @screen-md-max) {
     .collapsed();
   }
 
@@ -43,27 +44,20 @@
       display: none;
     }
 
-    &:hover:not(.loading) {
-      a {
-        display: none;
-      }
+    @media (min-width: @screen-lg) {
+      &:hover:not(.loading) {
+        a {
+          display: none;
+        }
 
-      :global(.anticon) {
-        display: inline-block;
+        :global(.anticon) {
+          display: inline-block;
+        }
       }
     }
   }
 
-  a {
-    flex-grow: 1;
-    text-align: center;
-    height: 64px;
-  }
-
-  :global(.anticon) {
-    padding: 20px;
-    cursor: pointer;
-
+  .svg() {
     & > svg {
       fill: #cfe3ef;
     }
@@ -71,6 +65,21 @@
     &:hover > svg {
       fill: #ecf4f9;
     }
+  }
+
+  a {
+    flex-grow: 1;
+    text-align: center;
+    height: 64px;
+
+    .svg();
+  }
+
+  :global(.anticon) {
+    padding: 20px;
+    cursor: pointer;
+
+    .svg();
   }
 }
 

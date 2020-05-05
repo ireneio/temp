@@ -8,7 +8,9 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/link": "^0.41.0"
+    "@admin/link": "^0.41.0",
+    "@admin/setting-header": "^0.1.0",
+    "@admin/utils": "^0.41.0"
   },
   "keywords": ["admin", "notification", "setting"]
 }

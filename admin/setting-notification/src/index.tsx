@@ -10,7 +10,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Query, Mutation } from '@apollo/react-components';
 import {
-  Affix,
   Button,
   Switch,
   Spin,
@@ -23,6 +22,7 @@ import {
 
 import { withTranslation } from '@admin/utils/lib/i18n';
 import Link from '@admin/link';
+import SettingHeader from '@admin/setting-header';
 
 import styles from './styles/index.less';
 
@@ -40,10 +40,6 @@ interface PropsType extends getNotificationsSetting, FormComponentProps {}
 
 // definition
 class SettingNotification extends React.Component<PropsType & I18nPropsType> {
-  public state = {
-    isAffixed: false,
-  };
-
   private value: updateNotificationSettingVariables | null = null;
 
   private rootRef: React.RefObject<HTMLInputElement> = React.createRef();
@@ -140,7 +136,6 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
 
   public render(): React.ReactNode {
     const { t, form, viewer } = this.props;
-    const { isAffixed } = this.state;
     const { getFieldDecorator, resetFields, isFieldsTouched } = form;
     const {
       recipientEmail = '',
@@ -172,14 +167,7 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
             wrapperClassName={styles.spin}
           >
             <div className={styles.root} ref={this.rootRef}>
-              <Affix
-                className={isAffixed ? styles.affixed : ''}
-                offsetTop={56}
-                target={() => this.rootRef.current}
-                onChange={affixed =>
-                  this.setState({ isAffixed: affixed || false })
-                }
-              >
+              <SettingHeader target={() => this.rootRef.current}>
                 <div className={styles.header}>
                   <h1>
                     <Link href="/setting">
@@ -207,7 +195,7 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
                     </div>
                   )}
                 </div>
-              </Affix>
+              </SettingHeader>
 
               <Form className={styles.content} labelAlign="left">
                 <section>
