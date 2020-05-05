@@ -1,0 +1,67 @@
+@import '~@store/utils/lib/styles/variables.less';
+
+.close-view-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #e2f7f4;
+  height: 100%;
+  color: #757d97;
+  font-size: 18px;
+  letter-spacing: 2px;
+  line-height: 30px;
+  text-align: center;
+
+  & > div:nth-child(2) {
+    color: #4a4f5c;
+    font-size: 36px;
+    font-weight: 600;
+    margin: 32px 0px 20px;
+  }
+
+  & > div:nth-child(4) {
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+  }
+
+  :global(.ant-btn-primary) {
+    height: 60px;
+    padding: 16px 42px;
+    font-size: 20px;
+    letter-spacing: 0;
+    line-height: 28px;
+    background-color: #00c5dc;
+    border-color: #00c5dc;
+
+    &:hover {
+      background-color: #00c5dc;
+      border-color: #00c5dc;
+    }
+
+    &:focus {
+      background-color: #00c5dc;
+      border-color: #00c5dc;
+    }
+  }
+
+  @media @phone-media {
+    font-size: 16px;
+    letter-spacing: 1.78px;
+
+    & > img {
+      width: 335px;
+    }
+
+    & > div:nth-child(2) {
+      font-size: 24px;
+      letter-spacing: 4.23px;
+      margin: 16px 0px;
+    }
+
+    & > div:nth-child(4) {
+      letter-spacing: 0.89px;
+      width: 220px;
+    }
+  }
+}

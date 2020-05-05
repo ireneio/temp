@@ -6,4 +6,5 @@ import ImagesContext from './ImagesContext';
 const mockData = { stage: 'stage', prod: 'prod' };
 
 export const dashboardCost = mockData;
+export const storeClose = mockData;
 export default ImagesContext;

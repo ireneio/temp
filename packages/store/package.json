@@ -13,6 +13,7 @@
     "start": "NODE_ENV=production node src/server"
   },
   "dependencies": {
+    "@meepshop/images": "^0.41.0",
     "@meepshop/meep-ui": "^0.41.0",
     "@store/ad-track": "^0.41.0",
     "@store/currency": "^0.41.0",
