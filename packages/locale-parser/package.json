@@ -7,9 +7,6 @@
   "version": "0.41.0",
   "main": "./index.js",
   "bin": "./lib/bin/index.js",
-  "scripts": {
-    "locale-parser": "node ./lib/bin/index.js"
-  },
   "types": "./src/index.tsx",
   "dependencies": {
     "chalk": "^3.0.0",

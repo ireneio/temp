@@ -7,6 +7,7 @@ const { declare } = require('@babel/helper-plugin-utils');
 const { default: Imgproxy } = require('imgproxy');
 const dirTree = require('directory-tree');
 const d3 = require('d3-hierarchy');
+const execa = require('execa');
 
 // definition
 const hash = crypto
@@ -37,10 +38,17 @@ const imageList = d3
           }${filePathKey.slice(1)}`,
         '',
       );
+    const { stdout: imageHash } = execa.sync('git', [
+      'log',
+      '-n',
+      '1',
+      '--pretty=format:%h',
+      path,
+    ]);
 
     return {
       ...result,
-      [key]: filePath,
+      [key]: `${filePath.replace(extension, '')}_${imageHash}${extension}`,
     };
   }, {});
 

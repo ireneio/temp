@@ -1,12 +1,12 @@
 // definition
 const stage =
-  'https://img.meepshop.com/g76sl2YyYvlJdQw6ijVuGmbNnIOt0-MvWLJKMxyYAlg/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvc3RhZ2UvZGFzaGJvYXJkL2Nvc3Quc3Zn';
+  'https://img.meepshop.com/yYcAIpapv6H9G_lko3IDSG20Dg6bDsc45Gdpua6mVY8/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvc3RhZ2UvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn';
 const prod =
-  'https://img.meepshop.com/xbW-zDptiBJ29rMX8b7Mti4fy0QGvCWpRiudUglYW2g/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvcHJvZHVjdGlvbi9kYXNoYm9hcmQvY29zdC5zdmc';
+  'https://img.meepshop.com/SwwW2yGF1O27TPegZ9kIGrFTT4nO0vJAOR0OeVYel5w/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvcHJvZHVjdGlvbi9kYXNoYm9hcmQvY29zdF81ZTE2NjZlOC5zdmc';
 const stageFixed =
-  'https://img.meepshop.com/yLUkVidVWQZj5ZGmU5lUeGd7LGEPNLjBxXVc6_LqIuk/w:30/h:30/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvc3RhZ2UvZGFzaGJvYXJkL2Nvc3Quc3Zn';
+  'https://img.meepshop.com/va51DOZ9OfaBj3YFn_djQdDJZOwJDOyosLMNWi0YlTE/w:30/h:30/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvc3RhZ2UvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn';
 const prodFixed =
-  'https://img.meepshop.com/xzAMhNEn8TWEhrvBoMCm8kOi6Yts7Ec-qh3GNZtuceU/w:30/h:30/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvcHJvZHVjdGlvbi9kYXNoYm9hcmQvY29zdC5zdmc';
+  'https://img.meepshop.com/VZoUUeJT8_-XcgfvFzW6Me0wicoECodMplBK1SOhO94/w:30/h:30/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvcHJvZHVjdGlvbi9kYXNoYm9hcmQvY29zdF81ZTE2NjZlOC5zdmc';
 
 export default [
   // 1.
