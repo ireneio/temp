@@ -72,7 +72,7 @@ class MemberRewardPoints extends React.PureComponent<PropsType> {
         dataIndex: 'startTime',
         render: (
           value: getUserRewardPotinsGetValidUserPointListData['startTime'],
-        ) => (!value ? '-' : moment.unix(value).format('YYYY/MM/DD')),
+        ) => (!value ? '-' : moment.unix(value).format('YYYY/MM/DD HH:mm')),
       },
       {
         title: t('end-time'),
@@ -85,7 +85,7 @@ class MemberRewardPoints extends React.PureComponent<PropsType> {
             : moment
                 .unix(value)
                 .subtract(1, 'seconds')
-                .format('YYYY/MM/DD'),
+                .format('YYYY/MM/DD HH:mm'),
       },
     ],
   );
