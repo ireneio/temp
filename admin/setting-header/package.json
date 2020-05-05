@@ -8,7 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/wrapper": "^0.40.0"
+    "@admin/wrapper": "^0.41.0"
   },
   "keywords": ["admin", "header", "setting"]
 }
