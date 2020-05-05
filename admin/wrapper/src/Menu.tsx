@@ -4,7 +4,7 @@ import { Menu } from 'antd';
 
 import { useTranslation } from '@admin/utils/lib/i18n';
 import Switch, { switchRender } from '@admin/switch';
-import Link, { useRouter } from '@admin/link';
+import Link from '@admin/link';
 import { LeftIcon } from '@meepshop/icons';
 
 import useMenuList from './hooks/useMenuList';
@@ -38,7 +38,6 @@ export default React.memo(
     isNotOpened,
   }: PropsType) => {
     const { t } = useTranslation('common');
-    const router = useRouter();
     const menuList = useMenuList(isMerchant, permission, storeApps);
     const { openKeys, selectedKeys, onOpenChange } = useItemClick(
       menuList,
@@ -59,9 +58,6 @@ export default React.memo(
         {menuList.map(({ key, Icon, items, url }) => (
           <SubMenu
             key={key}
-            onTitleClick={() => {
-              if (url) router.push(url);
-            }}
             disabled={isNotOpened}
             popupOffset={[0, 0]}
             popupClassName={`${styles.popMenu} ${
@@ -70,28 +66,39 @@ export default React.memo(
               selectedKeys.includes(key) ? styles.selected : ''
             }`}
             title={
-              <div
-                className={`${styles.title} ${!items ? styles.noSubMenu : ''} ${
-                  openKeys.includes(key) ||
-                  selectedKeys.includes(key) ||
-                  (collapsed &&
-                    items?.some(({ key: itemKey }) =>
-                      selectedKeys.includes(itemKey),
-                    ))
-                    ? styles.selected
-                    : ''
-                }`}
+              <Switch
+                isTrue={Boolean(url)}
+                render={children => (
+                  <Link href={url as string}>
+                    <a href={url}>{children}</a>
+                  </Link>
+                )}
               >
-                {!Icon ? null : <Icon className={styles.prefixIcon} />}
-
-                {t(key)}
-
-                <LeftIcon
-                  className={`${styles.expandIcon} ${
-                    loading ? styles.loading : ''
+                <div
+                  className={`${styles.title} ${
+                    !items ? styles.noSubMenu : ''
+                  } ${
+                    openKeys.includes(key) ||
+                    selectedKeys.includes(key) ||
+                    (collapsed &&
+                      items?.some(({ key: itemKey }) =>
+                        selectedKeys.includes(itemKey),
+                      ))
+                      ? styles.selected
+                      : ''
                   }`}
-                />
-              </div>
+                >
+                  {!Icon ? null : <Icon className={styles.prefixIcon} />}
+
+                  {t(key)}
+
+                  <LeftIcon
+                    className={`${styles.expandIcon} ${
+                      loading ? styles.loading : ''
+                    }`}
+                  />
+                </div>
+              </Switch>
             }
           >
             {switchRender({
