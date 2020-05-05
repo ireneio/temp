@@ -6,12 +6,11 @@ import { CurrencyType } from '@store/currency';
 // import
 import React from 'react';
 import gql from 'graphql-tag';
-import { filter } from 'graphql-anywhere';
 import { Table } from 'antd';
 import memoizeOne from 'memoize-one';
 import transformColor from 'color';
 
-import Thumbnail, { thumbnailFragment } from '@store/thumbnail';
+import Thumbnail from '@store/thumbnail';
 import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import currencyContext from '@store/currency';
@@ -19,7 +18,10 @@ import currencyContext from '@store/currency';
 import styles from './styles/products.less';
 
 // graphql typescript
-import { productsFragment as productsFragmentType } from './__generated__/productsFragment';
+import {
+  productsFragment as productsFragmentType,
+  productsFragment_coverImage as productsFragmentCoverImage,
+} from './__generated__/productsFragment';
 import {
   getMemberOrder_viewer_order as getMemberOrderViewerOrder,
   getMemberOrder_getColorList as getMemberOrderGetColorList,
@@ -39,7 +41,7 @@ export const productsFragment = gql`
   fragment productsFragment on productsObjectType {
     id
     coverImage {
-      ...thumbnailFragment
+      src
     }
     title {
       ...localeFragment
@@ -54,9 +56,7 @@ export const productsFragment = gql`
     quantity
     retailPrice
   }
-
   ${localeFragment}
-  ${thumbnailFragment}
 `;
 
 class Products extends React.PureComponent<PropsType> {
@@ -72,9 +72,9 @@ class Products extends React.PureComponent<PropsType> {
 
     return [
       {
-        dataIndex: 'coverImage',
-        render: (value: productsFragmentType['coverImage']) => (
-          <Thumbnail image={filter(thumbnailFragment, value)} />
+        dataIndex: 'coverImage.src',
+        render: (value: productsFragmentCoverImage['src']) => (
+          <Thumbnail imgUrl={value} />
         ),
       },
       {

@@ -6,18 +6,23 @@ import Lazy from 'image/img/Lazy';
 
 import Placeholder from '@store/placeholder';
 
+import { COVER_IMAGE_TYPE, GALLERY_TYPE } from 'constants/propTypes';
+
 import ArrowIcon from './ArrowIcon';
 import * as styles from './styles';
 
 @radium
 export default class ProductCarousel extends React.PureComponent {
   static propTypes = {
+    coverImage: COVER_IMAGE_TYPE,
+    galleries: GALLERY_TYPE.isRequired,
     autoPlay: PropTypes.bool.isRequired,
     thumbsPosition: PropTypes.oneOf(['none', 'bottom']).isRequired,
     mode: PropTypes.oneOf(['list', 'detail']),
   };
 
   static defaultProps = {
+    coverImage: null,
     mode: 'detail',
   };
 
@@ -66,9 +71,9 @@ export default class ProductCarousel extends React.PureComponent {
     const { coverImage, galleries } = this.props;
 
     return [
-      ...(coverImage?.scaledSrc ? [coverImage] : []),
+      ...(coverImage?.src ? [coverImage] : []),
       ...(galleries?.[0]?.images || []).filter(
-        image => image?.scaledSrc && image.fileId !== coverImage?.fileId,
+        image => image && image.src && image.fileId !== coverImage?.fileId,
       ),
     ];
   };
@@ -109,19 +114,14 @@ export default class ProductCarousel extends React.PureComponent {
               {images.map(image => (
                 <Lazy key={image.fileId}>
                   {({ useLarge, isClear, onLoad }) => {
-                    const { scaledSrc } = image;
-
+                    const { src } = image;
                     if (useLarge) {
                       const img = new Image();
-
                       img.onload = onLoad;
-                      img.src = scaledSrc.w480;
+                      img.src = `${src}?w=400`;
                     }
-
                     return (
-                      <div
-                        style={styles.showcase({ scaledSrc, mode, isClear })}
-                      />
+                      <div style={styles.showcase({ src, mode, isClear })} />
                     );
                   }}
                 </Lazy>
@@ -142,7 +142,7 @@ export default class ProductCarousel extends React.PureComponent {
               >
                 {images.map(image => (
                   <div key={image.fileId}>
-                    <div style={styles.thumbnail(image, mode)} />
+                    <div style={styles.thumbnail(image.src, mode)} />
                   </div>
                 ))}
               </Slider>

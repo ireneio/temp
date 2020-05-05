@@ -51,11 +51,22 @@ export const IMAGE_TYPE = buildPropTypes('url', value =>
   isURL(value, { require_host: false }),
 );
 
+export const COVER_IMAGE_TYPE = PropTypes.shape({
+  fileId: ID_TYPE.isRequired,
+  src: URL_TYPE,
+});
+
 export const GALLERY_IMAGE_TYPE = PropTypes.shape({
   fileId: ID_TYPE.isRequired,
   isMain: PropTypes.bool.isRequired,
   src: URL_TYPE,
 });
+
+export const GALLERY_TYPE = PropTypes.arrayOf(
+  PropTypes.shape({
+    images: PropTypes.arrayOf(GALLERY_IMAGE_TYPE).isRequired,
+  }).isRequired,
+);
 
 /** testRandom
  * #ffffff,

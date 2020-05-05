@@ -1,36 +1,24 @@
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 
 import Placeholder from '@store/placeholder';
 
 import styles from './styles/index.less';
 
-// graphql typescript
-import { thumbnailFragment as thumbnailFragmentType } from './__generated__/thumbnailFragment';
-
 // typescript definition
 interface PropsType {
-  image: thumbnailFragmentType | null;
+  imgUrl?: string | null;
 }
 
 // definition
-export const thumbnailFragment = gql`
-  fragment thumbnailFragment on Image {
-    scaledSrc {
-      w120
-    }
-  }
-`;
-
-export default ({ image }: PropsType): React.ReactElement => (
+export default ({ imgUrl }: PropsType): React.ReactElement => (
   <div className={styles.wrapper}>
-    {!image ? (
+    {!imgUrl ? (
       <Placeholder />
     ) : (
       <div
         className={styles.image}
-        style={{ backgroundImage: `url(${image.scaledSrc?.w120})` }}
+        style={{ backgroundImage: `url(${imgUrl}?w=80)` }}
       />
     )}
   </div>

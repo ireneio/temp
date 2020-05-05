@@ -5,13 +5,12 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 // import
 import React from 'react';
 import gql from 'graphql-tag';
-import { filter } from 'graphql-anywhere';
 import { Table } from 'antd';
 import moment from 'moment';
 import memoizeOne from 'memoize-one';
 
 import { withTranslation } from '@store/utils/lib/i18n';
-import Thumbnail, { thumbnailFragment } from '@store/thumbnail';
+import Thumbnail from '@store/thumbnail';
 
 import styles from './styles/application.less';
 
@@ -22,7 +21,10 @@ import {
   getMemberOrderApplications_viewer_order_applications_extra as getMemberOrderApplicationsViewerOrderApplicationsExtra,
 } from './__generated__/getMemberOrderApplications';
 import { applicationOrderApplyFragment as applicationOrderApplyFragmentType } from './__generated__/applicationOrderApplyFragment';
-import { applicationProductsObjectTypeFragment as applicationProductsObjectTypeFragmentType } from './__generated__/applicationProductsObjectTypeFragment';
+import {
+  applicationProductsObjectTypeFragment as applicationProductsObjectTypeFragmentType,
+  applicationProductsObjectTypeFragment_coverImage as applicationProductsObjectTypeFragmentCoverImage,
+} from './__generated__/applicationProductsObjectTypeFragment';
 
 // graphql import
 import localeFragment from '@store/utils/lib/fragments/locale';
@@ -59,7 +61,7 @@ export const applicationOrderApplyFragment = gql`
 export const applicationProductsObjectTypeFragment = gql`
   fragment applicationProductsObjectTypeFragment on productsObjectType {
     coverImage {
-      ...thumbnailFragment
+      src
     }
     title {
       ...localeFragment
@@ -72,7 +74,6 @@ export const applicationProductsObjectTypeFragment = gql`
   }
 
   ${localeFragment}
-  ${thumbnailFragment}
 `;
 
 class Application extends React.PureComponent<PropTypes> {
@@ -89,10 +90,10 @@ class Application extends React.PureComponent<PropTypes> {
 
     return [
       {
-        dataIndex: 'product.coverImage',
+        dataIndex: 'product.coverImage.src',
         render: (
-          value: applicationProductsObjectTypeFragmentType['coverImage'],
-        ) => <Thumbnail image={filter(thumbnailFragment, value)} />,
+          value: applicationProductsObjectTypeFragmentCoverImage['src'],
+        ) => <Thumbnail imgUrl={value} />,
         width: '10%',
         align: 'center',
       },

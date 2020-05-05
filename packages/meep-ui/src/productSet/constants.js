@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 
-import { ID_TYPE, LOCALE_TYPE } from 'constants/propTypes';
+import {
+  ID_TYPE,
+  LOCALE_TYPE,
+  COVER_IMAGE_TYPE,
+  GALLERY_TYPE,
+} from 'constants/propTypes';
 
 export const VARIANT_TYPE = PropTypes.shape({
   id: ID_TYPE.isRequired,
@@ -25,6 +30,8 @@ export const PRODUCT_TYPE = PropTypes.shape({
   description: LOCALE_TYPE.isRequired,
   status: PropTypes.oneOf([0, 1]).isRequired,
   title: LOCALE_TYPE.isRequired,
+  coverImage: COVER_IMAGE_TYPE,
+  galleries: GALLERY_TYPE.isRequired,
   variants: PropTypes.arrayOf(VARIANT_TYPE.isRequired).isRequired,
 });
 
