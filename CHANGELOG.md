@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## 0.41.2 (2020-05-05)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#921](https://github.com/meepshop/meep-lerna/pull/921) 【優化】前台關閉畫面 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#919](https://github.com/meepshop/meep-lerna/pull/919) 【優化】前/後台 - 購物金使用規則說明文字 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#937](https://github.com/meepshop/meep-lerna/pull/937) 【BUG】 小幫手帳號 - 點選統計分析被登出 ([@HsuTing](https://github.com/HsuTing))
+  - [#931](https://github.com/meepshop/meep-lerna/pull/931) 【BUG】後台部分頁面無支援另開視窗/分頁 ([@HsuTing](https://github.com/HsuTing))
+  - [#925](https://github.com/meepshop/meep-lerna/pull/925) 【BUG】後台 - Navigation Menu 展開狀態中項目切換顯示錯誤 ([@HsuTing](https://github.com/HsuTing))
+- `locale-parser`
+  - [#930](https://github.com/meepshop/meep-lerna/pull/930) 修正 @meepshop/images 的 img proxy 圖片 cache 問題 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `mock-types`, `store`
+  - [#935](https://github.com/meepshop/meep-lerna/pull/935) Revert "【優化】 resizer 使用 imgproxy - 商品圖片提供 imgproxy 加密連結 API - 前端 (#908)" ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.41.1 (2020-05-04)
 
 #### :house: Internal
