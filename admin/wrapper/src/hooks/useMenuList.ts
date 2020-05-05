@@ -161,7 +161,7 @@ export default (
       'product-service': Boolean(
         isMerchant || permission?.productService?.isEnabled,
       ),
-      analytics: Boolean(isMerchant || apps.analytics),
+      analytics: Boolean(isMerchant && apps.analytics),
       member: Boolean(isMerchant || permission?.member?.isEnabled),
       'member-group': Boolean(apps.memberGroup),
       'member-group-code': Boolean(apps.memberGroupCode),
