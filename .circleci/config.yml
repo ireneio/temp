@@ -48,7 +48,7 @@ deploy-docker: &deploy-docker
       --stream \
       --scope @admin/server \
       --scope @meepshop/store
-    yarn ./.circleci/bin/install.sh
+    ./.circleci/bin/install.sh
     yarn lerna exec \
       "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/deploy_k8s.sh" \
       --parallel \
