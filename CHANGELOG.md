@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.41.3 (2020-05-06)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#929](https://github.com/meepshop/meep-lerna/pull/929) 【BUG】 Chrome 瀏覽器 - 當母選單有設定分頁，且為「另開視窗」時，於平板電腦上點選無反應 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#939](https://github.com/meepshop/meep-lerna/pull/939) (@meepshop/frontend) Fix ci typo error ([@HsuTing](https://github.com/HsuTing))
+  - [#938](https://github.com/meepshop/meep-lerna/pull/938) (@meepshop/frontend) Add install.sh to ci ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.41.2 (2020-05-05)
 
 #### :rocket: New Feature
