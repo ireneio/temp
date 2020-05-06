@@ -273,6 +273,15 @@ export default class MenuItem extends React.PureComponent {
         action === 8 && isLogin !== NOTLOGIN ? 'is-login' : ''
       } menu-${level} ${this.getActive(url)}`,
       onClick: this.onClick,
+
+      // FIXME: T5024 for condition in chrome in iPad
+      onTitleClick: ({ domEvent }) => {
+        if (!navigator.userAgent.includes('iPad') || !newWindow) return;
+
+        domEvent.preventDefault();
+        domEvent.stopPropagation();
+        window.open(url);
+      },
       children: (
         <Link href={url} target={newWindow ? '_blank' : '_self'}>
           {!icon ? (
