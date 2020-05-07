@@ -4,11 +4,11 @@
   "description": "meep-ui for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.41.3",
+  "version": "0.41.4",
   "dependencies": {
     "@meepshop/landing-page": "^0.41.2",
     "@store/ad-track": "^0.41.2",
-    "@store/address-cascader": "^0.41.2",
+    "@store/address-cascader": "^0.41.4",
     "@store/checkout": "^0.41.2",
     "@store/gmo-credit-card-form": "^0.41.2",
     "@store/placeholder": "^0.41.2",
