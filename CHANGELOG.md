@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.41.4 (2020-05-07)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#942](https://github.com/meepshop/meep-lerna/pull/942) 【BUG】前台地址選單，按 x 清除後，需必填 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.41.3 (2020-05-06)
 
 #### :bug: Bug Fix
