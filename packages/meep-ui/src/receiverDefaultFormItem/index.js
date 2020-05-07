@@ -4,7 +4,9 @@ import radium from 'radium';
 import { Form, Input, Cascader } from 'antd';
 
 import { withTranslation } from '@store/utils/lib/i18n';
-import AddressCascader from '@store/address-cascader';
+import AddressCascader, {
+  validateAddressCascader,
+} from '@store/address-cascader';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
@@ -125,8 +127,7 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
               {getFieldDecorator('addressAndZipCode', {
                 rules: [
                   {
-                    required: true,
-                    message: t('is-required'),
+                    validator: validateAddressCascader(t('is-required')),
                   },
                 ],
               })(

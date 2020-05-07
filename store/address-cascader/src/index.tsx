@@ -1,3 +1,6 @@
+// typescript import
+import { ValidationRule } from 'antd/lib/form';
+
 // graphql typescript
 import { I18nPropsType } from '@store/utils/lib/i18n';
 
@@ -54,6 +57,15 @@ const query = gql`
   ${colorListFragment}
   ${useOptionsFragment}
 `;
+
+export const validateAddressCascader = (message: string) => (
+  _: ValidationRule,
+  value: { address?: string[]; zipCode?: string },
+  callback: (message?: string) => void,
+) => {
+  if (!value?.address?.length) callback(message);
+  else callback();
+};
 
 const AddressCascader = React.memo(
   ({

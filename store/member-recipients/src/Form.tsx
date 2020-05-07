@@ -10,7 +10,9 @@ import { Form, Input, Button } from 'antd';
 
 import { useTranslation } from '@store/utils/lib/i18n';
 import validateMobile from '@store/utils/lib/validate/mobile';
-import AddressCascader from '@store/address-cascader';
+import AddressCascader, {
+  validateAddressCascader,
+} from '@store/address-cascader';
 
 import useFormSubmit from './hooks/useFormSubmit';
 import styles from './styles/form.less';
@@ -153,8 +155,7 @@ export default Form.create<PropsType>({
             {getFieldDecorator('addressAndZipCode', {
               rules: [
                 {
-                  required: true,
-                  message: t('form.required'),
+                  validator: validateAddressCascader(t('form.required')),
                 },
               ],
             })(
