@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.41.5 (2020-05-08)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#926](https://github.com/meepshop/meep-lerna/pull/926) 前台 - 移除 less 裡的 @phone-media 改用 antd @screen-sm-max ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#933](https://github.com/meepshop/meep-lerna/pull/933) 【優化】一頁式商店，在選完超取門市後，跳回填結帳資訊 ([@piovischioh](https://github.com/piovischioh))
+  - [#942](https://github.com/meepshop/meep-lerna/pull/942) 【BUG】前台地址選單，按 x 清除後，需必填 ([@happycat6323](https://github.com/happycat6323))
+  - [#929](https://github.com/meepshop/meep-lerna/pull/929) 【BUG】 Chrome 瀏覽器 - 當母選單有設定分頁，且為「另開視窗」時，於平板電腦上點選無反應 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#940](https://github.com/meepshop/meep-lerna/pull/940) 【BUG】後台 - menu 若為縮起，點選商品頁面任一商品，menu 顯示問題 ([@HsuTing](https://github.com/HsuTing))
+  - [#941](https://github.com/meepshop/meep-lerna/pull/941) 【BUG】小幫手帳號 - 登入後台，不應該看見「帳戶設定」＆「帳單與付款」 ([@HsuTing](https://github.com/HsuTing))
+  - [#939](https://github.com/meepshop/meep-lerna/pull/939) (@meepshop/frontend) Fix ci typo error ([@HsuTing](https://github.com/HsuTing))
+  - [#938](https://github.com/meepshop/meep-lerna/pull/938) (@meepshop/frontend) Add install.sh to ci ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.41.4 (2020-05-07)
 
 #### :bug: Bug Fix
