@@ -150,6 +150,7 @@ export default React.memo(({ children }: PropsType) => {
               ? null
               : filter(useFooterMenuListFragment, data.viewer.store)
           }
+          isMerchant={isMerchant}
           collapsed={collapsed}
           isNotOpened={isNotOpened}
         />

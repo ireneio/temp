@@ -37,33 +37,44 @@ export const useFooterMenuListFragment = gql`
 
 export default (
   store: useFooterMenuListFragmentType | null,
+  isMerchant: boolean,
 ): FooterMenuListType => {
   const router = useRouter();
+  const enabledList: { [key: string]: boolean } = useMemo(
+    () => ({
+      'account-setting': isMerchant,
+      'bill-payment': isMerchant,
+    }),
+    [isMerchant],
+  );
   const menuList = useMemo(
-    () => [
-      {
-        key: 'signout',
-        Icon: LogoutIcon,
-        url: '/signout',
-      },
-      {
-        key: 'account-setting',
-        Icon: AccountIcon,
-        url: '/account-setting',
-      },
-      {
-        key: 'bill-payment',
-        Icon: BillingIcon,
-        url: '/bill-payment',
-      },
-      {
-        key: 'go-to-store',
-        Icon: ForwardStoreIcon,
-        url: `//${store?.domain?.[0] || store?.defaultDomain}`,
-        target: '_blank',
-      },
-    ],
-    [store],
+    () =>
+      [
+        {
+          key: 'signout',
+          Icon: LogoutIcon,
+          url: '/signout',
+        },
+        {
+          key: 'account-setting',
+          Icon: AccountIcon,
+          url: '/account-setting',
+        },
+        {
+          key: 'bill-payment',
+          Icon: BillingIcon,
+          url: '/bill-payment',
+        },
+        {
+          key: 'go-to-store',
+          Icon: ForwardStoreIcon,
+          url: `//${store?.domain?.[0] || store?.defaultDomain}`,
+          target: '_blank',
+        },
+      ].filter(({ key }) =>
+        enabledList[key] === undefined ? true : enabledList[key],
+      ),
+    [store, enabledList],
   );
 
   return {
