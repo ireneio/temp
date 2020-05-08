@@ -39,7 +39,10 @@ export default (
   onOpenChange: (openKeys: string[]) => void;
 } => {
   const router = useRouter();
-  const prevPathnameRef = useRef(router.pathname);
+  const prevRef = useRef({
+    pathname: router.pathname,
+    collapsed,
+  });
   const selectedKeys = useMemo(
     () =>
       [
@@ -54,12 +57,18 @@ export default (
     [router],
   );
   const [openKeys, setOpenKeys] = useState<string[]>(
-    findOpenKeys(selectedKeys),
+    collapsed ? [] : findOpenKeys(selectedKeys),
   );
 
-  if (prevPathnameRef.current !== router.pathname) {
-    setOpenKeys(findOpenKeys(selectedKeys));
-    prevPathnameRef.current = router.pathname;
+  if (prevRef.current.pathname !== router.pathname) {
+    if (!collapsed) setOpenKeys(findOpenKeys(selectedKeys));
+
+    prevRef.current.pathname = router.pathname;
+  }
+
+  if (prevRef.current.collapsed !== collapsed) {
+    setOpenKeys(!collapsed ? findOpenKeys(selectedKeys) : []);
+    prevRef.current.collapsed = collapsed;
   }
 
   return {
