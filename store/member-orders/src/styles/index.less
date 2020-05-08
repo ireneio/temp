@@ -7,7 +7,7 @@
   padding: 40px 0px;
   max-width: 1000px;
 
-  @media @phone-media {
+  @media (max-width: @screen-sm-max) {
     padding: 0px 0px 40px;
   }
 
@@ -21,7 +21,7 @@
   }
 
   :global(.ant-table-thead) {
-    @media @phone-media {
+    @media (max-width: @screen-sm-max) {
       display: none;
     }
 
@@ -39,7 +39,7 @@
     padding: 15px;
 
     &:not(:last-child) {
-      @media @phone-media {
+      @media (max-width: @screen-sm-max) {
         display: none;
       }
     }
@@ -47,7 +47,7 @@
     &:last-child {
       display: none;
 
-      @media @phone-media {
+      @media (max-width: @screen-sm-max) {
         display: table-cell;
       }
     }

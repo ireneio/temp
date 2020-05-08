@@ -21,7 +21,7 @@
     padding: 0;
   }
 
-  @media @phone-media {
+  @media (max-width: @screen-sm-max) {
     background-color: #fff;
     overflow: unset;
 
@@ -65,7 +65,7 @@
 }
 
 .overflowHidden {
-  @media @phone-media {
+  @media (max-width: @screen-sm-max) {
     :global(.ant-modal-body) {
       overflow: unset;
     }
@@ -84,7 +84,7 @@
     justify-content: space-between;
   }
 
-  @media @phone-media {
+  @media (max-width: @screen-sm-max) {
     :global(.ant-tabs-tab) {
       padding: 12px 16px;
     }

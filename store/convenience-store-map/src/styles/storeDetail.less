@@ -19,7 +19,7 @@
     display: none;
   }
 
-  @media @phone-media {
+  @media (max-width: @screen-sm-max) {
     overflow: auto;
     height: calc(100% - 55px);
     width: 100%;
@@ -72,7 +72,7 @@
 }
 
 .hidden {
-  @media @phone-media {
+  @media (max-width: @screen-sm-max) {
     top: 100%;
     animation: slideOut 0.3s linear;
   }
@@ -115,7 +115,7 @@
   border: 0px;
   display: block;
 
-  @media @phone-media {
+  @media (max-width: @screen-sm-max) {
     height: 260px;
   }
 }
@@ -135,7 +135,7 @@
     }
   }
 
-  @media @phone-media {
+  @media (max-width: @screen-sm-max) {
     padding: 0px 7px 16px;
   }
 }

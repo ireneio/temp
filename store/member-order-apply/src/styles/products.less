@@ -13,7 +13,7 @@
         white-space: nowrap;
       }
 
-      @media @phone-media {
+      @media (max-width: @screen-sm-max) {
         &:nth-child(5),
         &:nth-child(7),
         &:nth-child(9) {
@@ -34,7 +34,7 @@
         }
       }
 
-      @media @phone-media {
+      @media (max-width: @screen-sm-max) {
         padding: 10px;
       }
     }
@@ -46,7 +46,7 @@
     }
 
     :global(.ant-table-tbody) > tr:not(:global(.ant-table-expanded-row)) > td {
-      @media @phone-media {
+      @media (max-width: @screen-sm-max) {
         border-bottom: 0px;
       }
     }
@@ -55,7 +55,7 @@
       display: none;
       background: transparent;
 
-      @media @phone-media {
+      @media (max-width: @screen-sm-max) {
         display: table-row;
       }
 
@@ -67,7 +67,7 @@
     :global(.ant-table-tbody) > tr > td:nth-child(4) > div {
       display: none;
 
-      @media @phone-media {
+      @media (max-width: @screen-sm-max) {
         display: block;
       }
     }
@@ -75,7 +75,7 @@
     .reason {
       width: 360px;
 
-      @media @phone-media {
+      @media (max-width: @screen-sm-max) {
         width: 100%;
       }
     }

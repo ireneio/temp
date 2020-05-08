@@ -11,7 +11,7 @@
   > *:first-child:nth-last-child(2) ~ * {
     width: calc(50% - 5px);
 
-    @media @phone-media {
+    @media (max-width: @screen-sm-max) {
       width: 100%;
     }
   }
@@ -19,7 +19,7 @@
   > *:first-child:nth-last-child(2) {
     margin: 0px 5px 0px 0px;
 
-    @media @phone-media {
+    @media (max-width: @screen-sm-max) {
       margin: 0px;
     }
   }
@@ -27,7 +27,7 @@
   > *:first-child:nth-last-child(2) ~ * {
     margin: 0px 0px 0px 5px;
 
-    @media @phone-media {
+    @media (max-width: @screen-sm-max) {
       margin: 0px;
     }
   }
@@ -36,7 +36,7 @@
     > *:first-child:nth-last-child(2) {
       width: calc(80% - 5px);
 
-      @media @phone-media {
+      @media (max-width: @screen-sm-max) {
         width: 100%;
       }
     }
@@ -44,7 +44,7 @@
     > *:first-child:nth-last-child(2) ~ * {
       width: calc(20% - 5px);
 
-      @media @phone-media {
+      @media (max-width: @screen-sm-max) {
         width: 100%;
       }
     }
