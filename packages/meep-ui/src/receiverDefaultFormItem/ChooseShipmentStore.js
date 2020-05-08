@@ -48,6 +48,7 @@ export default class ChooseShipmentStore extends React.PureComponent {
     shipmentTemplate: null,
     allpay: null,
     openConvenienceStoreMap: false,
+    scrollY: null,
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
@@ -134,7 +135,8 @@ export default class ChooseShipmentStore extends React.PureComponent {
     // fix ios body overflow: hidden bug
     if (window.getComputedStyle(document.body).position === 'fixed') {
       this.setState({ openConvenienceStoreMap: false }, () => {
-        window.scrollTo(0, 1000);
+        const { scrollY } = this.state;
+        window.scrollTo(0, scrollY);
         document.body.style.overflow = '';
       });
     } else {
@@ -169,7 +171,12 @@ export default class ChooseShipmentStore extends React.PureComponent {
             borderColor: colors[4],
             background: colors[4],
           }}
-          onClick={() => this.setState({ openConvenienceStoreMap: true })}
+          onClick={() =>
+            this.setState({
+              openConvenienceStoreMap: true,
+              scrollY: window.scrollY,
+            })
+          }
         >
           {SHIPMENT_STORE_FIELDS.map(field => getFieldValue(field)).some(
             value => value,
