@@ -25,12 +25,15 @@ export const creditFragment = gql`
 
 export default React.memo(({ paymentInfo }: PropsType) => {
   const { t } = useTranslation('member-order');
+  const card4no = paymentInfo?.list?.[0]?.card4no;
+
+  if (!card4no) return null;
 
   return (
     <div>
       {t('blocks.payment.card-no')}
 
-      {paymentInfo?.list?.[0]?.card4no || ''}
+      {card4no}
     </div>
   );
 });

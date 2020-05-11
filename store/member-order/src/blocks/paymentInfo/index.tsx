@@ -87,6 +87,7 @@ export default React.memo(({ order }: PropsType) => {
     | 'cathay_atm'
     | 'chinatrust'
     | 'hitrust'
+    | 'linepay'
     | undefined
     | null;
 
@@ -95,6 +96,15 @@ export default React.memo(({ order }: PropsType) => {
 
   // TODO: "hitrust" should list in "accountInfo"
   if (template === 'hitrust')
+    return (
+      <>
+        <Credit paymentInfo={filter(creditFragment, paymentInfo)} />
+
+        <Description order={filter(descriptionFragment, order)} />
+      </>
+    );
+
+  if (template === 'linepay')
     return (
       <>
         <Credit paymentInfo={filter(creditFragment, paymentInfo)} />
