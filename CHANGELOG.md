@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.41.7 (2020-05-11)
+
+#### :bug: Bug Fix
+
+- `mock-types`
+  - [#945](https://github.com/meepshop/meep-lerna/pull/945) 修正 apollo-client v2.6.9 core/types 位置 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.41.6 (2020-05-11)
 
 #### :rocket: New Feature
