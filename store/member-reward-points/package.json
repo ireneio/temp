@@ -4,11 +4,11 @@
   "description": "Member reward points page for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.41.5",
+  "version": "0.41.7",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@store/apollo-client-resolvers": "^0.41.2",
+    "@store/apollo-client-resolvers": "^0.41.7",
     "@store/currency": "^0.41.5",
     "@store/utils": "^0.41.5",
     "memoize-one": "^5.1.1",
