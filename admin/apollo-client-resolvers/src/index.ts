@@ -1,6 +1,6 @@
 // typescript import
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { Resolvers } from 'apollo-client/core/types';
+import { Resolvers } from 'apollo-client/lib/core/types';
 import { AppContext } from 'next/app';
 
 // import
