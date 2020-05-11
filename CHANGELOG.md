@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.41.6 (2020-05-11)
+
+#### :rocket: New Feature
+
+- [#904](https://github.com/meepshop/meep-lerna/pull/904) 【功能】 LINE Pay - 前端 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.41.5 (2020-05-08)
 
 #### :rocket: New Feature
