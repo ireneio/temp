@@ -45,14 +45,17 @@
       "bank-code": "Mã ngân hàng để thanh toán: ",
       "virtual-account": "Tài khoản ảo để thanh toán: ",
       "expire-date": "Hạn chót thanh toán: ",
-      "cvs-payment-no": "Mã số thanh toán tại cửa hàng tiện lợi: ",
       "barcode": "Mã vạch thanh toán tại cửa hàng tiện lợi: ",
       "card-no": "4 số cuối thẻ tín dụng: ",
-      "gmo-store-code": "Mã cửa hàng GMO: ",
-      "cathay-atm": {
+      "atm": {
         "bank-name": "Ngân hàng thanh toán:",
         "back-code": "Mã ngân hàng:",
         "account": "Tài khoản thanh toán:",
+        "price": "số lượng đơn đặt hàng:",
+        "expire-date": "Thời hạn thanh toán:"
+      },
+      "cvs": {
+        "pay-code": "Mã số thanh toán tại cửa hàng tiện lợi: ",
         "price": "số lượng đơn đặt hàng:",
         "expire-date": "Thời hạn thanh toán:"
       }

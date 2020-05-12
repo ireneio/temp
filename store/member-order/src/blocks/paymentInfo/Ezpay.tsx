@@ -55,7 +55,7 @@ export default React.memo(({ choosePayment, paymentInfo }: PropsType) => {
       return (
         <div>
           <div>
-            {t('blocks.payment.cvs-payment-no')}
+            {t('blocks.payment.cvs.pay-code')}
             {paycode}
           </div>
 

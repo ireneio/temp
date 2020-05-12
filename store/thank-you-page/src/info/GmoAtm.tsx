@@ -6,30 +6,34 @@ import moment from 'moment';
 import { useTranslation } from '@store/utils/lib/i18n';
 import currencyContext from '@store/currency';
 
-import styles from './styles/cathayAtm.less';
+import styles from './styles/gmoAtm.less';
 
 // graphql typescript
-import { cathayAtmFragment as cathayAtmFragmentType } from './__generated__/cathayAtmFragment';
+import { gmoAtmFragment as gmoAtmFragmentType } from './__generated__/gmoAtmFragment';
 
 // typescript definition
 interface PropsType {
-  order: cathayAtmFragmentType;
+  order: gmoAtmFragmentType;
   children: React.ReactElement;
 }
 
 // definition
-export const cathayAtmFragment = gql`
-  fragment cathayAtmFragment on Order {
+export const gmoAtmFragment = gql`
+  fragment gmoAtmFragment on Order {
     id
     paymentInfo {
       id
       list {
         id
         atm {
-          bankName
           bankCode
           account
           expireDate
+        }
+        accountInfo {
+          gmo {
+            paymentType
+          }
         }
       }
     }
@@ -53,10 +57,6 @@ export default React.memo(({ order, children }: PropsType) => {
 
       <div className={styles.block}>
         {[
-          {
-            key: 'bank-name',
-            value: atm.bankName,
-          },
           {
             key: 'back-code',
             value: atm.bankCode,

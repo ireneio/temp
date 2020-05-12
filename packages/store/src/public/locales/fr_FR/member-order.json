@@ -45,14 +45,17 @@
       "bank-code": "Code bancaire:",
       "virtual-account": "Numéro de compte virtuel:",
       "expire-date": "Date d'échéance:",
-      "cvs-payment-no": "Numéro de paiement en magasin pratique:",
       "barcode": "Code à barres de paiement en magasin pratique:",
       "card-no": "Quatre derniers chiffres de la carte de crédit:",
-      "gmo-store-code": "Code de magasin OGM:",
-      "cathay-atm": {
+      "atm": {
         "bank-name": "Banque payante:",
         "back-code": "Code bancaire:",
         "account": "Compte de paiement:",
+        "price": "montant de la commande:",
+        "expire-date": "Délai de paiement:"
+      },
+      "cvs": {
+        "pay-code": "Numéro de paiement en magasin pratique:",
         "price": "montant de la commande:",
         "expire-date": "Délai de paiement:"
       }

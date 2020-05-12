@@ -1,14 +1,16 @@
 // import
-import React from 'react';
+import React, { useContext } from 'react';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
+import moment from 'moment';
 
 import { useTranslation } from '@store/utils/lib/i18n';
+import currencyContext from '@store/currency';
 
 import Credit from './Credit';
 
 // graphql typescript
-import { gmoFragment as gmoFragmentType } from './__generated__/gmoFragment';
+import { gmoOrderFragment as gmoOrderFragmentType } from './__generated__/gmoOrderFragment';
 import { paymentInfoFragment_paymentInfo_list_accountInfo_gmo as paymentInfoFragmentPaymentInfoListAccountInfoGmo } from './__generated__/paymentInfoFragment';
 
 // graphql import
@@ -17,43 +19,119 @@ import { creditFragment } from './Credit';
 // typescript definition
 interface PropsType {
   choosePayment: paymentInfoFragmentPaymentInfoListAccountInfoGmo['choosePayment'];
-  paymentInfo: gmoFragmentType;
+  order: gmoOrderFragmentType;
 }
 
 // definition
-export const gmoFragment = gql`
-  fragment gmoFragment on paymentInfoType {
-    ...creditFragment
+export const gmoOrderFragment = gql`
+  fragment gmoOrderFragment on Order {
     id
-    list {
+    paymentInfo {
+      ...creditFragment
       id
-      accountInfo {
-        gmo {
-          gmoContractCode: contractCode
+      list {
+        id
+        atm {
+          bankCode
+          account
+          expireDate
+        }
+        cvsPayCode {
+          payCode
+          expireDate
         }
       }
+    }
+
+    priceInfo {
+      total
     }
   }
 
   ${creditFragment}
 `;
 
-export default React.memo(({ choosePayment, paymentInfo }: PropsType) => {
+export default React.memo(({ choosePayment, order }: PropsType) => {
   const { t } = useTranslation('member-order');
-  const gmoContractCode =
-    paymentInfo?.list?.[0]?.accountInfo?.gmo?.gmoContractCode;
+  const { c } = useContext(currencyContext);
 
-  if (!choosePayment || !gmoContractCode) return null;
+  const paymentInfo = order?.paymentInfo;
 
-  return (
-    <div>
-      {t('blocks.payment.gmo-store-code')}
+  if (!choosePayment || !paymentInfo) return null;
 
-      {gmoContractCode}
+  switch (choosePayment) {
+    case 'Credit':
+      return <Credit paymentInfo={filter(creditFragment, paymentInfo)} />;
 
-      {choosePayment !== 'Credit' ? null : (
-        <Credit paymentInfo={filter(creditFragment, paymentInfo)} />
-      )}
-    </div>
-  );
+    case 'ATM': {
+      const atm = order?.paymentInfo?.list?.[0]?.atm;
+
+      if (!atm) return null;
+
+      return (
+        <div>
+          {[
+            {
+              key: 'back-code',
+              value: atm.bankCode,
+            },
+            {
+              key: 'account',
+              value: atm.account,
+            },
+            {
+              key: 'price',
+              value: c(order?.priceInfo?.total || 0),
+            },
+            {
+              key: 'expire-date',
+              value: moment(atm.expireDate).format('YYYY/MM/DD HH:mm:ss'),
+            },
+          ].map(({ key, value }) => (
+            <div key={key}>
+              {t(`blocks.payment.atm.${key}`)}
+
+              {value}
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    case 'KIOSK': {
+      const cvsPayCode = order?.paymentInfo?.list?.[0]?.cvsPayCode;
+
+      if (!cvsPayCode) return null;
+
+      return (
+        <div>
+          {[
+            {
+              key: 'pay-code',
+              value: cvsPayCode.payCode,
+            },
+            {
+              key: 'price',
+              value: c(order?.priceInfo?.total || 0),
+            },
+            {
+              key: 'expire-date',
+              value: moment(cvsPayCode.expireDate).format(
+                'YYYY/MM/DD HH:mm:ss',
+              ),
+            },
+          ].map(({ key, value }) => (
+            <div key={key}>
+              {t(`blocks.payment.cvs.${key}`)}
+
+              {value}
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    default:
+      return null;
+  }
 });

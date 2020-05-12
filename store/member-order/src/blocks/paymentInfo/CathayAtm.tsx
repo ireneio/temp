@@ -70,7 +70,7 @@ export default React.memo(({ order }: PropsType) => {
         },
       ].map(({ key, value }) => (
         <div key={key}>
-          {t(`blocks.payment.cathay-atm.${key}`)}
+          {t(`blocks.payment.atm.${key}`)}
 
           {value}
         </div>

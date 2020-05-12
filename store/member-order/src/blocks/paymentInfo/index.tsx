@@ -22,7 +22,7 @@ import { descriptionFragment } from './Description';
 import { creditFragment } from './Credit';
 import { allpayFragment } from './Allpay';
 import { ezpayFragment } from './Ezpay';
-import { gmoFragment } from './Gmo';
+import { gmoOrderFragment } from './Gmo';
 import { cathayAtmOrderFragment } from './CathayAtm';
 
 // typescript definition
@@ -34,13 +34,13 @@ interface PropsType {
 export const paymentInfoFragment = gql`
   fragment paymentInfoFragment on Order {
     ...descriptionFragment
+    ...gmoOrderFragment
     ...cathayAtmOrderFragment
 
     paymentInfo {
       ...creditFragment
       ...allpayFragment
       ...ezpayFragment
-      ...gmoFragment
       id
       list {
         id
@@ -73,7 +73,7 @@ export const paymentInfoFragment = gql`
   ${creditFragment}
   ${allpayFragment}
   ${ezpayFragment}
-  ${gmoFragment}
+  ${gmoOrderFragment}
   ${cathayAtmOrderFragment}
 `;
 
@@ -150,7 +150,7 @@ export default React.memo(({ order }: PropsType) => {
             choosePayment={
               choosePayment as paymentInfoFragmentPaymentInfoListAccountInfoGmo['choosePayment']
             }
-            paymentInfo={filter(gmoFragment, paymentInfo)}
+            order={filter(gmoOrderFragment, order)}
           />
 
           <Description order={filter(descriptionFragment, order)} />

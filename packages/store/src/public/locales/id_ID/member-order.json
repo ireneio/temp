@@ -45,14 +45,17 @@
       "bank-code": "Kode Bank:",
       "virtual-account": "Nomor Akun Virtual:",
       "expire-date": "Batas tanggal terakhir:",
-      "cvs-payment-no": "Nomor Pembayaran Toko Nyaman:",
       "barcode": "Barcode Pembayaran Toko Nyaman:",
       "card-no": "Empat digit terakhir kartu kredit:",
-      "gmo-store-code": "Kode Toko GMO:",
-      "cathay-atm": {
+      "atm": {
         "bank-name": "Bank pembayar:",
         "back-code": "Kode Bank:",
         "account": "Akun pembayaran:",
+        "price": "jumlah pesanan:",
+        "expire-date": "Periode pembayaran:"
+      },
+      "cvs": {
+        "pay-code": "Nomor Pembayaran Toko Nyaman:",
         "price": "jumlah pesanan:",
         "expire-date": "Periode pembayaran:"
       }

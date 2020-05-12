@@ -45,14 +45,17 @@
       "bank-code": "繳費銀行代碼：",
       "virtual-account": "繳費虛擬帳號：",
       "expire-date": "繳費截止日期：",
-      "cvs-payment-no": "超商繳費代碼：",
       "barcode": "超商繳費條碼：",
       "card-no": "信用卡號末四碼：",
-      "gmo-store-code": "GMO 商店代碼：",
-      "cathay-atm": {
+      "atm": {
         "bank-name": "繳款銀行：",
         "back-code": "銀行代碼：",
         "account": "繳款帳號：",
+        "price": "訂單金額：",
+        "expire-date": "繳款期限："
+      },
+      "cvs": {
+        "pay-code": "超商繳款代碼：",
         "price": "訂單金額：",
         "expire-date": "繳款期限："
       }

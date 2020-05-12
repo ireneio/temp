@@ -5,18 +5,25 @@
   },
   "info": {
     "default": "We have received your order. Please check your order for payment status.",
-    "cathay-atm": "Your order has been received, please make payment within time",
+    "atm": "Your order has been received, please make payment within time",
+    "cvs": null,
     "error": {
       "0": "There are some problems in the information, please check whether the order was successfully established",
       "1": "You can also click to copy the error message and provide the information to the customer service to handle it for you"
     }
   },
-  "cathay-atm": {
+  "atm": {
     "bank-name": "Payment bank",
     "back-code": "Bank Code",
     "account": "Payment account",
     "price": "order amount",
     "expire-date": "Payment period"
+  },
+  "cvs": {
+    "pay-code": null,
+    "price": "order amount",
+    "expire-date": "Payment period",
+    "description": null
   },
   "return": "Back to the homepage",
   "order": "Check My Order",

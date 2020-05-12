@@ -6,6 +6,8 @@ import { filter } from 'graphql-anywhere';
 import { useTranslation } from '@store/utils/lib/i18n';
 
 import CathayAtm from './CathayAtm';
+import GmoAtm from './GmoAtm';
+import GmoCvs from './GmoCvs';
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -13,6 +15,8 @@ import { infoFragment as infoFragmentType } from './__generated__/infoFragment';
 
 // graphql import
 import { cathayAtmFragment } from './CathayAtm';
+import { gmoAtmFragment } from './GmoAtm';
+import { gmoCvsFragment } from './GmoCvs';
 
 // typescript definition
 interface PropsType {
@@ -32,9 +36,13 @@ export const infoFragment = gql`
     }
 
     ...cathayAtmFragment
+    ...gmoAtmFragment
+    ...gmoCvsFragment
   }
 
   ${cathayAtmFragment}
+  ${gmoAtmFragment}
+  ${gmoCvsFragment}
 `;
 
 export default React.memo(({ order }: PropsType) => {
@@ -56,7 +64,24 @@ export default React.memo(({ order }: PropsType) => {
           <p className={styles.root}>{t('info.default')}</p>
         </CathayAtm>
       );
+    case 'gmo': {
+      const paymentType =
+        order?.paymentInfo?.list?.[0]?.accountInfo?.gmo?.paymentType;
 
+      if (paymentType === 'ATM')
+        return (
+          <GmoAtm order={filter(gmoAtmFragment, order)}>
+            <p className={styles.root}>{t('info.default')}</p>
+          </GmoAtm>
+        );
+      if (paymentType === 'KIOSK')
+        return (
+          <GmoCvs order={filter(gmoCvsFragment, order)}>
+            <p className={styles.root}>{t('info.default')}</p>
+          </GmoCvs>
+        );
+      return <p className={styles.root}>{t('info.default')}</p>;
+    }
     default:
       return <p className={styles.root}>{t('info.default')}</p>;
   }

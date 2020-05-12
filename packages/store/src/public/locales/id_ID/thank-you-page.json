@@ -5,18 +5,25 @@
   },
   "info": {
     "default": "Kami telah menerima pesanan Anda. Silakan periksa pesanan Anda untuk status pembayaran.",
-    "cathay-atm": "Pesanan Anda telah diterima, silakan lakukan pembayaran dalam waktu singkat",
+    "atm": "Pesanan Anda telah diterima, silakan lakukan pembayaran dalam waktu singkat",
+    "cvs": null,
     "error": {
       "0": "Ada beberapa masalah dalam informasi, periksa apakah pesanan berhasil dibuat",
       "1": "Anda juga dapat mengklik untuk menyalin pesan kesalahan dan memberikan informasi kepada layanan pelanggan untuk menanganinya untuk Anda"
     }
   },
-  "cathay-atm": {
+  "atm": {
     "bank-name": "Bank pembayaran",
     "back-code": "Kode Bank",
     "account": "Akun pembayaran",
     "price": "jumlah pesanan",
     "expire-date": "Periode pembayaran"
+  },
+  "cvs": {
+    "pay-code": null,
+    "price": "jumlah pesanan",
+    "expire-date": "Periode pembayaran",
+    "description": null
   },
   "return": "Kembali ke beranda",
   "order": "Periksa Pesanan Saya",

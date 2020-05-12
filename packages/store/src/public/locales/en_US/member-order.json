@@ -45,14 +45,17 @@
       "bank-code": "Bank Code: ",
       "virtual-account": "Virtual Account Number: ",
       "expire-date": "Due Date: ",
-      "cvs-payment-no": "Convenient Store Payment Number: ",
       "barcode": "Convenient Store Payment Barcode: ",
       "card-no": "Last four digits of credit card: ",
-      "gmo-store-code": "GMO Store Code: ",
-      "cathay-atm": {
+      "atm": {
         "bank-name": "Paying bank:",
         "back-code": "Bank Code:",
         "account": "Payment account:",
+        "price": "order amount:",
+        "expire-date": "Payment period:"
+      },
+      "cvs": {
+        "pay-code": "Convenient Store Payment Number: ",
         "price": "order amount:",
         "expire-date": "Payment period:"
       }

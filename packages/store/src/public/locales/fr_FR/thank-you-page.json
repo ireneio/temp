@@ -5,18 +5,25 @@
   },
   "info": {
     "default": "Nous avons bien reçu votre commande. Veuillez vérifier l'état de votre paiement dans votre commande.",
-    "cathay-atm": "Votre commande a été reçue, veuillez effectuer le paiement dans les délais",
+    "atm": "Votre commande a été reçue, veuillez effectuer le paiement dans les délais",
+    "cvs": null,
     "error": {
       "0": "Il y a quelques problèmes dans les informations, veuillez vérifier si la commande a été établie avec succès",
       "1": "Vous pouvez également cliquer pour copier le message d'erreur et fournir les informations au service client pour le gérer pour vous"
     }
   },
-  "cathay-atm": {
+  "atm": {
     "bank-name": "Banque de paiement",
     "back-code": "Code bancaire",
     "account": "Compte de paiement",
     "price": "montant de la commande",
     "expire-date": "Délai de paiement"
+  },
+  "cvs": {
+    "pay-code": null,
+    "price": "montant de la commande",
+    "expire-date": "Délai de paiement",
+    "description": null
   },
   "return": "Retour à la page d'accueil",
   "order": "Vérifier ma commande",

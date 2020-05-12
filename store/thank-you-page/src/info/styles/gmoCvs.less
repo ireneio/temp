@@ -1,0 +1,58 @@
+@import '~@store/utils/lib/styles/variables.less';
+
+.root {
+  margin: 24px 0px 32px;
+
+  & > p {
+    margin: 0px 0px 24px;
+    color: #666666;
+    font-size: 22px;
+    letter-spacing: 2.25px;
+    line-height: 30px;
+  }
+}
+
+.block {
+  padding: 24px 0px;
+  max-width: 560px;
+  width: 100vw;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
+
+  & > div:first-child {
+    padding: 0px 96px;
+  }
+
+  & > div:last-child {
+    padding: 0px 83px;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    max-width: 100%;
+
+    & > div:first-child {
+      padding: 0px 38px;
+    }
+
+    & > div:last-child {
+      padding: 0px 8px;
+    }
+  }
+}
+
+.row {
+  display: flex;
+  text-align: left;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  line-height: 40px;
+
+  & > div:first-child {
+    width: 100px;
+  }
+
+  & > div:last-child {
+    font-weight: 500;
+  }
+}
