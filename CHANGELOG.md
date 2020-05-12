@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.41.8 (2020-05-12)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#886](https://github.com/meepshop/meep-lerna/pull/886) 【優化】GMO 超商代碼 or 虛擬帳號 - 前台訂單明細顯示繳費資訊 - Design / 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#927](https://github.com/meepshop/meep-lerna/pull/927) 【優化】選擇 GMO 信用分期付款，需重新輸入卡號 - 前端 ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#932](https://github.com/meepshop/meep-lerna/pull/932) 【個別店家】會員無法登入 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#946](https://github.com/meepshop/meep-lerna/pull/946) (@meepshop/frontend) Set the max package running at the same time ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.41.7 (2020-05-11)
 
 #### :bug: Bug Fix
