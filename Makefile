@@ -5,10 +5,10 @@ APOLLO_TYPE=mock-types
 OPTION=""
 
 babel-all:
-	@$(call babel-build,$(WATCH),$(OPTION))
+	@$(call babel-build,$(WATCH),--concurrency 16 $(OPTION))
 
 babel-changed:
-	@$(call babel-build,$(WATCH),--since $(BRANCH))
+	@$(call babel-build,$(WATCH),--parallel --since $(BRANCH))
 
 apollo-watch:
 	@$(call apollo,$(APOLLO_TYPE),--watch)
@@ -53,7 +53,6 @@ endef
 define babel-build
   yarn lerna exec \
 		"rm -rf lib && babel src -d lib --config-file ../../babel.config.js --verbose -x .js,.ts,.tsx $(1)" \
-		--parallel \
 		--stream \
 		--include-dependencies \
 		--ignore @meepshop/store \
