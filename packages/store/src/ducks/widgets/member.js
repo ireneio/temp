@@ -90,7 +90,7 @@ export function* loginFlow({ payload }) {
       const memberCurrentLocale = memberData?.data?.viewer?.locale;
 
       if (
-        !memberData?.data?.viewer?.store.setting.locale.includes(
+        !memberData?.data?.viewer?.store?.setting?.locale?.includes(
           memberCurrentLocale,
         )
       ) {
