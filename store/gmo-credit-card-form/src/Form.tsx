@@ -17,7 +17,6 @@ import styles from './styles/form.less';
 
 // typescript definition
 interface PropsType extends FormComponentProps, I18nPropsType {
-  exist: boolean;
   isInstallment: boolean;
   storePaymentId: string;
 }

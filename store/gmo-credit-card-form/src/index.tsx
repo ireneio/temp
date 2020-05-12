@@ -65,7 +65,7 @@ class GmoCreditCardForm extends React.PureComponent<PropsType> {
         <h3 className={styles.title}>
           {t('title')}
 
-          {!exist ? null : (
+          {!exist || isInstallment ? null : (
             <div
               className={styles.edit}
               onClick={() => this.setState({ isModified: !isModified })}
@@ -82,7 +82,7 @@ class GmoCreditCardForm extends React.PureComponent<PropsType> {
           initialValue: Boolean(exist && isModified),
         })(<Input type="hidden" />)}
 
-        {exist && !isModified ? (
+        {exist && !isModified && !isInstallment ? (
           <div className={styles.cardNumber}>
             {cardNumberFront}
             ********
@@ -90,32 +90,33 @@ class GmoCreditCardForm extends React.PureComponent<PropsType> {
           </div>
         ) : (
           <Form
-            exist={Boolean(exist) /** TODO should not be null */}
             isInstallment={isInstallment}
             storePaymentId={storePaymentId}
             form={form}
           />
         )}
 
-        {getFieldDecorator('isRememberCard', {
-          valuePropName: 'checked',
-          initialValue:
-            !gmoRememberCardEnabled ||
-            /** FIXME: should not need to check pathname after landingPage is rewritten by the new spec */
-            pathname !== '/checkout' ||
-            Boolean(exist && !isModified),
-        })(
-          <Checkbox
-            className={
-              /** FIXME: should not need to check pathname after landingPage is rewritten by the new spec */
-              !gmoRememberCardEnabled || pathname !== '/checkout'
-                ? styles.hidden
-                : ''
-            }
-          >
-            {t('remember-card')}
-          </Checkbox>,
-        )}
+        {isInstallment
+          ? null
+          : getFieldDecorator('isRememberCard', {
+              valuePropName: 'checked',
+              initialValue:
+                !gmoRememberCardEnabled ||
+                /** FIXME: should not need to check pathname after landingPage is rewritten by the new spec */
+                pathname !== '/checkout' ||
+                Boolean(exist && !isModified),
+            })(
+              <Checkbox
+                className={
+                  /** FIXME: should not need to check pathname after landingPage is rewritten by the new spec */
+                  !gmoRememberCardEnabled || pathname !== '/checkout'
+                    ? styles.hidden
+                    : ''
+                }
+              >
+                {t('remember-card')}
+              </Checkbox>,
+            )}
       </>
     );
   }
