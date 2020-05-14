@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.41.9 (2020-05-14)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#948](https://github.com/meepshop/meep-lerna/pull/948) 前台 - 移除 getStorePaymentList, getStoreShipmentList ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#944](https://github.com/meepshop/meep-lerna/pull/944) 【BUG】新架構 menu background 閃爍 - part 2 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.41.8 (2020-05-12)
 
 #### :rocket: New Feature
