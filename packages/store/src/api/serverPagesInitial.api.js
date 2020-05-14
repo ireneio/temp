@@ -21,7 +21,7 @@ export default async function(context) {
   if (!path) throw new Error('Page path is not defined.');
   const variables = {
     keys:
-      '$pageSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $paymentSearch: searchInputObjectType, $memberGroupFilter: MemberGroupFilterInput, $appLoginSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$pageSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $memberGroupFilter: MemberGroupFilterInput, $appLoginSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverPagesInitial',
     values: {
       pageSearch: {
@@ -71,17 +71,6 @@ export default async function(context) {
       storeAppSearch: {
         size: 100,
         from: 0,
-      },
-      paymentSearch: {
-        filter: {
-          and: [
-            {
-              type: 'exact',
-              field: 'status',
-              query: '1',
-            },
-          ],
-        },
       },
       colorSearch: {
         filter: {
@@ -201,21 +190,6 @@ export default async function(context) {
         ${storeAppQuery}
       }
       total
-    }
-    getStorePaymentList(search: $paymentSearch) {
-      data {
-        id
-        title {
-          zh_TW
-          en_US
-        }
-        template
-        accountInfo {
-          gmo {
-            isInstallment
-          }
-        }
-      }
     }
     getAppLoginList(search: $appLoginSearch) {
       data {
