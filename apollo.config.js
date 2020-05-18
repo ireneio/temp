@@ -37,5 +37,6 @@ module.exports = {
       ? `meepshop-api-stage@${process.env.APOLLO_TAG}`
       : 'meepshop-api-stage',
     includes,
+    excludes: ['**/node_modules/**'],
   },
 };

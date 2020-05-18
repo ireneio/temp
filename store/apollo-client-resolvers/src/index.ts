@@ -1,5 +1,5 @@
 // typescript import
-import { Resolvers } from 'apollo-client/lib/core/types';
+import { Resolvers } from 'apollo-client/core/types';
 
 // import
 import { emptyFunction } from 'fbjs';

@@ -1,5 +1,5 @@
 // import typescript
-import { Resolvers } from 'apollo-client/lib/core/types';
+import { Resolvers } from 'apollo-client/core/types';
 import { IntrospectionResultData } from 'apollo-cache-inmemory';
 
 // import
