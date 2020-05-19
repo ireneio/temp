@@ -47,6 +47,7 @@
       "expire-date": "繳費截止日期：",
       "barcode": "超商繳費條碼：",
       "card-no": "信用卡號末四碼：",
+      "transaction-no": "交易序號：",
       "atm": {
         "bank-name": "繳款銀行：",
         "back-code": "銀行代碼：",

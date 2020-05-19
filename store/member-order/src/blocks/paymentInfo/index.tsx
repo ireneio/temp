@@ -9,6 +9,7 @@ import Allpay from './Allpay';
 import Ezpay from './Ezpay';
 import Gmo from './Gmo';
 import CathayAtm from './CathayAtm';
+import TransactionNo from './TransactionNo';
 
 // graphql typescript
 import {
@@ -24,6 +25,7 @@ import { allpayFragment } from './Allpay';
 import { ezpayFragment } from './Ezpay';
 import { gmoOrderFragment } from './Gmo';
 import { cathayAtmOrderFragment } from './CathayAtm';
+import { transactionNoFragment } from './TransactionNo';
 
 // typescript definition
 interface PropsType {
@@ -41,6 +43,7 @@ export const paymentInfoFragment = gql`
       ...creditFragment
       ...allpayFragment
       ...ezpayFragment
+      ...transactionNoFragment
       id
       list {
         id
@@ -75,6 +78,7 @@ export const paymentInfoFragment = gql`
   ${ezpayFragment}
   ${gmoOrderFragment}
   ${cathayAtmOrderFragment}
+  ${transactionNoFragment}
 `;
 
 export default React.memo(({ order }: PropsType) => {
@@ -107,7 +111,12 @@ export default React.memo(({ order }: PropsType) => {
   if (template === 'linepay')
     return (
       <>
-        <Credit paymentInfo={filter(creditFragment, paymentInfo)} />
+        <div>
+          <Credit paymentInfo={filter(creditFragment, paymentInfo)} />
+          <TransactionNo
+            paymentInfo={filter(transactionNoFragment, paymentInfo)}
+          />
+        </div>
 
         <Description order={filter(descriptionFragment, order)} />
       </>

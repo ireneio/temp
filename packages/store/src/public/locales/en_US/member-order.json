@@ -47,6 +47,7 @@
       "expire-date": "Due Date: ",
       "barcode": "Convenient Store Payment Barcode: ",
       "card-no": "Last four digits of credit card: ",
+      "transaction-no": "Transaction Number:",
       "atm": {
         "bank-name": "Paying bank:",
         "back-code": "Bank Code:",

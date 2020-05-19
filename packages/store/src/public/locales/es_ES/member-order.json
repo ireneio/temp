@@ -47,6 +47,7 @@
       "expire-date": "Fecha de vencimiento:",
       "barcode": "Conveniente código de barras de pago de la tienda:",
       "card-no": "Últimos cuatro dígitos de la tarjeta de crédito:",
+      "transaction-no": "Número de transacción:",
       "atm": {
         "bank-name": "Pagando Banco:",
         "back-code": "Codigo bancario:",

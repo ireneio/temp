@@ -47,6 +47,7 @@
       "expire-date": "Hạn chót thanh toán: ",
       "barcode": "Mã vạch thanh toán tại cửa hàng tiện lợi: ",
       "card-no": "4 số cuối thẻ tín dụng: ",
+      "transaction-no": "Số giao dịch:",
       "atm": {
         "bank-name": "Ngân hàng thanh toán:",
         "back-code": "Mã ngân hàng:",

@@ -47,6 +47,7 @@
       "expire-date": "Batas tanggal terakhir:",
       "barcode": "Barcode Pembayaran Toko Nyaman:",
       "card-no": "Empat digit terakhir kartu kredit:",
+      "transaction-no": "Nomor transaksi:",
       "atm": {
         "bank-name": "Bank pembayar:",
         "back-code": "Kode Bank:",
