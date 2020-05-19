@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.41.10 (2020-05-19)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#949](https://github.com/meepshop/meep-lerna/pull/949) 【功能】新增電子發票是否開放選項 - Design / 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#952](https://github.com/meepshop/meep-lerna/pull/952) 【BUG】後台 - 語言設定已取消前台所選語系問題 ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#951](https://github.com/meepshop/meep-lerna/pull/951) (@meepshop/frontend) Fix typescript ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.41.9 (2020-05-14)
 
 #### :rocket: New Feature
