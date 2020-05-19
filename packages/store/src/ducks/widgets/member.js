@@ -86,18 +86,23 @@ export function* loginFlow({ payload }) {
     // TODO: 不需要兼容 meep-nginx 後可以移除(#553)
     if (res.isLoginSuccess || res.userId) {
       const memberData = yield call(Api.updateMemberData);
+      const locales = memberData?.data?.viewer?.store.setting.locale || [
+        'zh_TW',
+      ];
+      const locale = memberData?.data?.viewer?.locale;
 
-      const memberCurrentLocale = memberData?.data?.viewer?.locale;
+      const language = (() => {
+        if (locales.includes(locale)) return locale;
 
-      if (
-        !memberData?.data?.viewer?.store?.setting?.locale?.includes(
-          memberCurrentLocale,
-        )
-      ) {
+        if (locales.includes(i18n.language)) return i18n.language;
+
+        return locales[0];
+      })();
+
+      if (language !== i18n.language) yield call(i18n.changeLanguage, language);
+
+      if (language !== locale)
         yield call(Api.updateShopperLanguagePreference, i18n.language);
-      } else if (i18n.language !== memberCurrentLocale) {
-        i18n.changeLanguage(memberCurrentLocale);
-      }
 
       notification.success({ message: i18n.t('ducks:login-success') });
 
