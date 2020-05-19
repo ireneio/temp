@@ -27,10 +27,10 @@
     "citizen-digital-certificate": "ใส่บาร์โค้ด"
   },
   "invoice-e-invoice-type": {
-    "membership": "ผู้ให้บริการสมาชิก",
-    "mobile-barcode": "บาร์โค้ดมือถือ",
-    "citizen-digital-certificate": "บาร์โค้ด NPC",
-    "company": "บัญชี บริษัท",
+    "membershipCarrier": "ผู้ให้บริการสมาชิก",
+    "mobileBarCodeCarrier": "บาร์โค้ดมือถือ",
+    "citizenDigitalCertificateCarrier": "บาร์โค้ด NPC",
+    "triplicate": "บัญชี บริษัท",
     "donation": "บริจาค"
   },
   "convenience-store": {

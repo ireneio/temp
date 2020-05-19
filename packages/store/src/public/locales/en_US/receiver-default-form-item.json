@@ -27,10 +27,10 @@
     "citizen-digital-certificate": "Enter barcode"
   },
   "invoice-e-invoice-type": {
-    "membership": "Membership Carrier",
-    "mobile-barcode": "Mobile Barcode",
-    "citizen-digital-certificate": "NPC Barcode",
-    "company": "Company Account",
+    "membershipCarrier": "Membership Carrier",
+    "mobileBarCodeCarrier": "Mobile Barcode",
+    "citizenDigitalCertificateCarrier": "NPC Barcode",
+    "triplicate": "Company Account",
     "donation": "Donate"
   },
   "convenience-store": {

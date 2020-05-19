@@ -27,10 +27,10 @@
     "citizen-digital-certificate": "Masukkan kode batang"
   },
   "invoice-e-invoice-type": {
-    "membership": "Operator Keanggotaan",
-    "mobile-barcode": "Kode Batang Seluler",
-    "citizen-digital-certificate": "Kode Batang NPC",
-    "company": "Akun Perusahaan",
+    "membershipCarrier": "Operator Keanggotaan",
+    "mobileBarCodeCarrier": "Kode Batang Seluler",
+    "citizenDigitalCertificateCarrier": "Kode Batang NPC",
+    "triplicate": "Akun Perusahaan",
     "donation": "Menyumbangkan"
   },
   "convenience-store": {

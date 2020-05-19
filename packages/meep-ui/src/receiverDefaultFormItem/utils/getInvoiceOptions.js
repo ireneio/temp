@@ -1,51 +1,42 @@
 export default ({ storeSetting, t }) => {
   const { invoice } = storeSetting;
-  const methods = Object.keys(invoice?.paper || {}).filter(
-    method => (invoice?.paper || {})[method]?.isEnabled,
+  const paperKeys = Object.keys(invoice?.paper || {}).filter(
+    key => invoice.paper[key].isEnabled,
+  );
+  const electronicKeys = Object.keys(invoice?.electronic || {}).filter(
+    key => key !== 'type' && invoice.electronic[key].isEnabled,
   );
 
   return [
-    ...(methods.length
-      ? [
+    ...(paperKeys.length === 0
+      ? []
+      : [
           {
             value: 'PAPER',
             label: t('invoice-paper'),
-            children: methods.map(method => ({
-              value: method.toUpperCase(),
-              label: t(`invoice-paper-type.${method}`),
+            children: paperKeys.map(key => ({
+              value: key.toUpperCase(),
+              label: t(`invoice-paper-type.${key}`),
             })),
           },
-        ]
-      : []),
-    ...(invoice?.electronic?.isEnabled
-      ? [
+        ]),
+    ...(electronicKeys.length === 0
+      ? []
+      : [
           {
             value: `${invoice?.electronic?.type}_ELECTRONIC`,
             label: t('invoice-e-invoice'),
-            children: [
-              {
-                value: 'MEMBERSHIP',
-                label: t('invoice-e-invoice-type.membership'),
-              },
-              {
-                value: 'MOBILE_BARCODE',
-                label: t('invoice-e-invoice-type.mobile-barcode'),
-              },
-              {
-                value: 'CITIZEN_DIGITAL_CERTIFICATE',
-                label: t('invoice-e-invoice-type.citizen-digital-certificate'),
-              },
-              {
-                value: 'TRIPLICATE',
-                label: t('invoice-e-invoice-type.company'),
-              },
-              {
-                value: 'DONATION',
-                label: t('invoice-e-invoice-type.donation'),
-              },
-            ],
+            children: electronicKeys.map(key => ({
+              value: {
+                triplicate: 'TRIPLICATE',
+                donation: 'DONATION',
+                membershipCarrier: 'MEMBERSHIP',
+                citizenDigitalCertificateCarrier: 'CITIZEN_DIGITAL_CERTIFICATE',
+                mobileBarCodeCarrier: 'MOBILE_BARCODE',
+              }[key],
+              label: t(`invoice-e-invoice-type.${key}`),
+            })),
           },
-        ]
-      : []),
+        ]),
   ];
 };

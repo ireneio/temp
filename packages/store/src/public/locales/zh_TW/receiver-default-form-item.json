@@ -27,10 +27,10 @@
     "citizen-digital-certificate": "請輸入自然人憑證條碼"
   },
   "invoice-e-invoice-type": {
-    "membership": "會員載具",
-    "mobile-barcode": "手機條碼載具",
-    "citizen-digital-certificate": "自然人憑證載具",
-    "company": "公司戶",
+    "membershipCarrier": "會員載具",
+    "mobileBarCodeCarrier": "手機條碼載具",
+    "citizenDigitalCertificateCarrier": "自然人憑證載具",
+    "triplicate": "公司戶",
     "donation": "捐贈"
   },
   "convenience-store": {

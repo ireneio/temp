@@ -27,10 +27,10 @@
     "citizen-digital-certificate": "自然人証憑バーコードを読み込んでください"
   },
   "invoice-e-invoice-type": {
-    "membership": "会員キャリア",
-    "mobile-barcode": "携帯電話バーコードキャリア",
-    "citizen-digital-certificate": "自然人証憑キャリア",
-    "company": "会社",
+    "membershipCarrier": "会員キャリア",
+    "mobileBarCodeCarrier": "携帯電話バーコードキャリア",
+    "citizenDigitalCertificateCarrier": "自然人証憑キャリア",
+    "triplicate": "会社",
     "donation": "寄贈"
   },
   "convenience-store": {

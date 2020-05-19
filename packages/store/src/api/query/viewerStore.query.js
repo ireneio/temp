@@ -47,7 +47,21 @@ viewer {
           }
         }
         electronic {
-          isEnabled
+          triplicate {
+            isEnabled
+          }
+          donation {
+            isEnabled
+          }
+          membershipCarrier {
+            isEnabled
+          }
+          citizenDigitalCertificateCarrier {
+            isEnabled
+          }
+          mobileBarCodeCarrier {
+            isEnabled
+          }
           type
         }
       }

@@ -27,10 +27,10 @@
     "citizen-digital-certificate": "Ingresar código de barras"
   },
   "invoice-e-invoice-type": {
-    "membership": "Portador de Membresía",
-    "mobile-barcode": "Código de barras móvil",
-    "citizen-digital-certificate": "Código de barras NPC",
-    "company": "Cuenta de la compañia",
+    "membershipCarrier": "Portador de Membresía",
+    "mobileBarCodeCarrier": "Código de barras móvil",
+    "citizenDigitalCertificateCarrier": "Código de barras NPC",
+    "triplicate": "Cuenta de la compañia",
     "donation": "Donar"
   },
   "convenience-store": {

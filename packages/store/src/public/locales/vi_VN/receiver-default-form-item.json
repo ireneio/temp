@@ -27,10 +27,10 @@
     "citizen-digital-certificate": "Xin nhập mã vạch chứng nhận kỹ thuật số công dân"
   },
   "invoice-e-invoice-type": {
-    "membership": "Phương tiện hội viên",
-    "mobile-barcode": "Phương tiện mã vạch di động",
-    "citizen-digital-certificate": "Phương tiện chứng nhận kỹ thuật số công dân",
-    "company": "Công ty",
+    "membershipCarrier": "Thành viên vận chuyển",
+    "mobileBarCodeCarrier": "Mã vạch di động",
+    "citizenDigitalCertificateCarrier": "Mã vạch NPC",
+    "triplicate": "Tài khoản công ty",
     "donation": "Tặng"
   },
   "convenience-store": {
