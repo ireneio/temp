@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.41.11 (2020-05-20)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#953](https://github.com/meepshop/meep-lerna/pull/953) 【BUG】後台電子發票勾選選項，前台順序顯示有誤 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.41.10 (2020-05-19)
 
 #### :rocket: New Feature
