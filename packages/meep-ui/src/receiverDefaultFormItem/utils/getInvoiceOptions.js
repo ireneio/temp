@@ -1,11 +1,15 @@
 export default ({ storeSetting, t }) => {
   const { invoice } = storeSetting;
-  const paperKeys = Object.keys(invoice?.paper || {}).filter(
+  const paperKeys = ['duplicate', 'triplicate', 'donation'].filter(
     key => invoice.paper[key].isEnabled,
   );
-  const electronicKeys = Object.keys(invoice?.electronic || {}).filter(
-    key => key !== 'type' && invoice.electronic[key].isEnabled,
-  );
+  const electronicKeys = [
+    'membershipCarrier',
+    'mobileBarCodeCarrier',
+    'citizenDigitalCertificateCarrier',
+    'triplicate',
+    'donation',
+  ].filter(key => key !== 'type' && invoice.electronic[key].isEnabled);
 
   return [
     ...(paperKeys.length === 0
