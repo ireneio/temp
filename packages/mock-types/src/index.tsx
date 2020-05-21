@@ -31,11 +31,12 @@ export default React.memo(
     children: React.ReactNode;
   }) => {
     const { mockTypes, client } = useApollo(props);
-    const [visibleDrawer, setVisibleDrawer] = useState<boolean>(false);
+    const [visibleDrawer, setVisibleDrawer] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     return (
       <ApolloProvider client={client}>
-        {children}
+        {loading ? null : children}
 
         <Button
           className={styles.button}
@@ -81,7 +82,12 @@ export default React.memo(
           {mockTypes.map((type, typeIndex) => (
             <div key={type} className={styles.buttons}>
               {type}:{' '}
-              <MockData client={client} type={type} typeIndex={typeIndex} />
+              <MockData
+                client={client}
+                setLoading={setLoading}
+                type={type}
+                typeIndex={typeIndex}
+              />
             </div>
           ))}
         </Drawer>

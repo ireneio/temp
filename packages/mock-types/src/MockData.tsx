@@ -15,10 +15,12 @@ const { Group: ButtonGroup } = Button;
 export default React.memo(
   ({
     client,
+    setLoading,
     type,
     typeIndex,
   }: {
     client: ApolloClient<NormalizedCacheObject>;
+    setLoading: (loading: boolean) => void;
     type: string;
     typeIndex: number;
   }) => {
@@ -34,14 +36,14 @@ export default React.memo(
             }
             overlayClassName={styles.tooltip}
             title={JSON.stringify(mockData({}, {}), null, 2)}
-            autoAdjustOverflow={false}
-            placement="bottom"
+            placement="left"
           >
             <Button
               disabled={currentIndex === mockIndex}
               onClick={() => {
                 mock.trackingIndex[typeIndex] = mockIndex;
-                client.resetStore();
+                setLoading(true);
+                client.resetStore().then(() => setLoading(false));
                 changeMockData(mockIndex);
               }}
             >

@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const includes = [];
+const includes = ['./preReleaseSchemas/*.graphql'];
 
 switch (process.env.APOLLO_TYPE) {
   case 'meepshop':

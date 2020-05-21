@@ -1,5 +1,4 @@
 // import typescript
-import { NextLink } from 'apollo-link';
 import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
 import { PropsType } from '../index';
@@ -11,7 +10,7 @@ import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from 'apollo-cache-inmemory';
-import { ApolloLink, Observable } from 'apollo-link';
+import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { SchemaLink } from 'apollo-link-schema';
 import { notification } from 'antd';
@@ -64,20 +63,12 @@ export default ({
               });
             });
         }),
-        new ApolloLink(
-          (operation, forward: NextLink) =>
-            new Observable(observer => {
-              const sub = forward(operation).subscribe({
-                next: result => {
-                  setMockTypes([...mock.tracking]);
-                  observer.next(result);
-                },
-              });
+        new ApolloLink((operation, forward) =>
+          forward(operation).map(result => {
+            setMockTypes([...mock.tracking]);
 
-              return () => {
-                if (sub) sub.unsubscribe();
-              };
-            }),
+            return result;
+          }),
         ),
         new SchemaLink({ schema }),
       ]),
