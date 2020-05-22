@@ -83,7 +83,7 @@ export default class LoginForm extends React.PureComponent {
               },
             ],
             validateTrigger: false,
-            normalize: value => value.replace(/\s/g, ''),
+            normalize: value => value?.replace(/\s/g, ''),
           })(
             <Input
               placeholder={t('email-placeholder')}

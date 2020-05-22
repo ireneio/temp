@@ -207,22 +207,18 @@ export const signupFailure = () => ({
 });
 
 function* signupFlow({ payload }) {
-  const { email, password, registeredCode, callback } = payload;
+  const { values, callback } = payload;
 
   try {
     // 檢查信箱是否已註冊
-    const data = yield call(Api.checkEmailExists, { email });
+    const data = yield call(Api.checkEmailExists, { email: values.email });
 
     if (data) {
       if (data?.data?.checkUserInfo?.exists) {
         yield put(signupFailure());
         notification.error({ message: i18n.t('ducks:email-already-exists') });
       } else {
-        yield call(Api.signup, {
-          email,
-          password,
-          registeredCode,
-        });
+        yield call(Api.signup, values);
         yield put(signupSuccess());
         notification.success({ message: i18n.t('ducks:signup-success') });
 
@@ -444,6 +440,13 @@ function* updateUserFlow({ payload }) {
         updateUserSuccess({
           ...user,
           ...payload,
+          address: {
+            country: { id: payload?.address?.countryId },
+            city: { id: payload?.address?.cityId },
+            area: { id: payload?.address?.areaId },
+            street: payload?.address?.street,
+            zipCode: payload?.address?.zipCode,
+          },
         }),
       );
       notification.success({ message: i18n.t('ducks:update-user-success') });
@@ -768,6 +771,7 @@ const getUser = _user => {
       mobile,
       tel,
     },
+    address: _user?.address,
     birthday: {
       year,
       month,

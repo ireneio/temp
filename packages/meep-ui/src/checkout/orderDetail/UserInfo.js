@@ -5,6 +5,9 @@ import { Form, Input } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 
 import { withTranslation } from '@store/utils/lib/i18n';
+import AddressCascader, {
+  validateAddressCascader,
+} from '@store/address-cascader';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ISLOGIN_TYPE } from 'constants/propTypes';
@@ -66,6 +69,9 @@ export default class UserInfo extends React.PureComponent {
       // props
       t,
       form,
+      i18n,
+      user,
+      shippableCountries,
     } = this.props;
     const { getFieldDecorator } = form;
 
@@ -137,6 +143,44 @@ export default class UserInfo extends React.PureComponent {
               },
             ],
           })(<Input placeholder={t('mobile')} />)}
+        </FormItem>
+
+        <FormItem style={formItemStyle}>
+          {getFieldDecorator('userAddressAndZipCode', {
+            ...(user?.address?.country?.id ||
+            user?.address?.city?.id ||
+            user?.address?.area?.id
+              ? {
+                  rules: [
+                    {
+                      validator: validateAddressCascader(t('is-required')),
+                    },
+                  ],
+                }
+              : {}),
+          })(
+            <AddressCascader
+              placeholder={[t('area'), t('postal-code')]}
+              i18n={i18n}
+              shippableCountries={shippableCountries || []}
+            />,
+          )}
+        </FormItem>
+
+        <FormItem style={formItemStyle}>
+          {getFieldDecorator('userStreet', {
+            validateTrigger: 'onBlur',
+            ...(user?.address?.street
+              ? {
+                  rules: [
+                    {
+                      required: true,
+                      message: t('is-required'),
+                    },
+                  ],
+                }
+              : {}),
+          })(<Input placeholder={t('address')} />)}
         </FormItem>
       </div>
     );

@@ -109,16 +109,36 @@ export default class ReceiverInfo extends React.PureComponent {
 
     if (target.checked) {
       const { getFieldsValue, setFieldsValue, validateFields } = form;
-      const { userName, userMobile } = getFieldsValue([
+
+      const {
+        userName,
+        userMobile,
+        userAddressAndZipCode,
+        userStreet,
+      } = getFieldsValue([
         'userName',
         'userMobile',
+        'userAddressAndZipCode',
+        'userStreet',
       ]);
 
       setFieldsValue({
         name: userName,
         mobile: userMobile,
+        addressAndZipCode: userAddressAndZipCode,
+        street: userStreet,
       });
-      validateFields(['userName', 'userMobile', 'name', 'mobile']);
+
+      validateFields([
+        'userName',
+        'userMobile',
+        'userAddressAndZipCode',
+        'userStreet',
+        'name',
+        'mobile',
+        'addressAndZipCode',
+        'street',
+      ]);
     }
 
     changeSynchronizeUserInfo(target.checked);

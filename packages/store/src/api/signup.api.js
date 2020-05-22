@@ -9,7 +9,7 @@ import client from 'apollo/initApollo';
  * @param {String} registeredCode 優惠代碼
  * @returns {Object}
  */
-export default async function({ email, password, registeredCode }) {
+export default async function(values) {
   const variables = {
     keys: '$search: [NewUser]',
     type: 'mutation Signup',
@@ -17,9 +17,7 @@ export default async function({ email, password, registeredCode }) {
       search: [
         {
           type: 'SHOPPER',
-          email,
-          password,
-          registeredCode,
+          ...values,
         },
       ],
     },

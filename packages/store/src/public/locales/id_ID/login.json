@@ -15,5 +15,9 @@
   "promotion-code": "Kode khusus (hanya diperlukan untuk anggota khusus)",
   "password": "Kata sandi",
   "confirm-password": "konfirmasi sandi",
+  "mobile": "Mobile",
+  "address": "Negara",
+  "zip-code": "Kode Pos",
+  "street": "Alamat",
   "send-reset-password-mail": "Setel Ulang Kata Sandi"
 }

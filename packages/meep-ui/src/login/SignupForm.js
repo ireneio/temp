@@ -2,10 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form, Input } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
+import { ApolloConsumer } from '@apollo/react-components';
+import gql from 'graphql-tag';
 
 import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
+import AddressCascader from '@store/address-cascader';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -17,7 +20,7 @@ const { Password } = Input;
 @withTranslation('login')
 @withContext(adTrackContext)
 @enhancer
-export default class SignupForm extends React.PureComponent {
+class SignupForm extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -32,6 +35,49 @@ export default class SignupForm extends React.PureComponent {
 
   state = {
     confirmDirty: false,
+    shippableCountries: [],
+    hasMemberGroupCode: false,
+  };
+
+  componentDidMount() {
+    this.getMemberGroupCodes();
+  }
+
+  getMemberGroupCodes = async () => {
+    const { client } = this.props;
+
+    const {
+      data: {
+        viewer: {
+          store: { shippableCountries, memberGroupCodes },
+        },
+      },
+    } = await client.query({
+      query: gql`
+        query getMemberGroupCodes(
+          $memberGroupCodeFilterInput: MemberGroupCodeFilterInput
+        ) {
+          viewer {
+            id
+            store {
+              id
+              shippableCountries {
+                id
+              }
+              memberGroupCodes(filter: $memberGroupCodeFilterInput) {
+                id
+              }
+            }
+          }
+        }
+      `,
+      variables: { memberGroupCodeFilterInput: { status: 'EXISTED' } },
+    });
+
+    this.setState({
+      shippableCountries,
+      hasMemberGroupCode: !!memberGroupCodes.length,
+    });
   };
 
   handleConfirmBlur = e => {
@@ -45,7 +91,7 @@ export default class SignupForm extends React.PureComponent {
   compareToFirstPassword = (_, value, callback) => {
     const { form, t } = this.props;
 
-    if (value && value !== form.getFieldValue('newPassword'))
+    if (value && value !== form.getFieldValue('password'))
       callback(t('password-is-no-match'));
     else callback();
   };
@@ -72,12 +118,31 @@ export default class SignupForm extends React.PureComponent {
 
     validateFields((err, values) => {
       if (!err) {
-        const { email, newPassword: password, code: registeredCode } = values;
-
-        dispatchAction('signup', {
+        const {
           email,
           password,
           registeredCode,
+          mobile,
+          addressAndZipCode,
+          street,
+        } = values;
+
+        dispatchAction('signup', {
+          values: {
+            email,
+            password,
+            registeredCode,
+            additionalInfo: {
+              mobile,
+            },
+            address: {
+              countryId: addressAndZipCode?.address[0],
+              cityId: addressAndZipCode?.address[1],
+              areaId: addressAndZipCode?.address[2],
+              zipCode: addressAndZipCode?.zipCode,
+              street,
+            },
+          },
           callback: () => {
             handleTypeChange({ options: 'LOGIN' });
             adTrack.completeRegistration();
@@ -96,7 +161,9 @@ export default class SignupForm extends React.PureComponent {
       /** props */
       form: { getFieldDecorator, setFields },
       t,
+      i18n,
     } = this.props;
+    const { shippableCountries, hasMemberGroupCode } = this.state;
 
     return (
       <Form onSubmit={this.handleSubmit}>
@@ -118,7 +185,7 @@ export default class SignupForm extends React.PureComponent {
               },
             ],
             validateTrigger: false,
-            normalize: value => value.replace(/\s/g, ''),
+            normalize: value => value?.replace(/\s/g, ''),
           })(
             <Input
               placeholder={t('email-placeholder')}
@@ -135,7 +202,7 @@ export default class SignupForm extends React.PureComponent {
         </FormItem>
 
         <FormItem>
-          {getFieldDecorator('newPassword', {
+          {getFieldDecorator('password', {
             rules: [
               {
                 required: true,
@@ -168,9 +235,34 @@ export default class SignupForm extends React.PureComponent {
           })(<Password placeholder={t('confirm-password')} size="large" />)}
         </FormItem>
 
-        {!hasStoreAppPlugin('memberGroupCode') ? null : (
+        <FormItem>
+          {getFieldDecorator('mobile')(
+            <Input size="large" placeholder={t('mobile')} />,
+          )}
+        </FormItem>
+
+        <FormItem>
+          {getFieldDecorator('addressAndZipCode')(
+            <AddressCascader
+              size="large"
+              placeholder={[t('address'), t('zip-code')]}
+              i18n={i18n}
+              shippableCountries={shippableCountries || []}
+            />,
+          )}
+        </FormItem>
+
+        <FormItem>
+          {getFieldDecorator('street')(
+            <Input size="large" placeholder={t('street')} />,
+          )}
+        </FormItem>
+
+        {!(
+          hasStoreAppPlugin('memberGroupCode') && hasMemberGroupCode
+        ) ? null : (
           <FormItem>
-            {getFieldDecorator('code', {
+            {getFieldDecorator('registeredCode', {
               rules: [],
             })(
               <Input
@@ -195,3 +287,11 @@ export default class SignupForm extends React.PureComponent {
     );
   }
 }
+
+export default React.memo(({ handleTypeChange }) => (
+  <ApolloConsumer>
+    {client => (
+      <SignupForm client={client} handleTypeChange={handleTypeChange} />
+    )}
+  </ApolloConsumer>
+));

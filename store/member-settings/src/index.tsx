@@ -22,7 +22,9 @@ import {
 import { areEqual } from 'fbjs';
 import moment from 'moment';
 
-import AddressCascader from '@store/address-cascader';
+import AddressCascader, {
+  validateAddressCascader,
+} from '@store/address-cascader';
 import { withTranslation } from '@store/utils/lib/i18n';
 
 import RemoveCreditCardInfo from './RemoveCreditCardInfo';
@@ -33,6 +35,7 @@ import {
   getUserInfo,
   getUserInfo_viewer as getUserInfoViewer,
   getUserInfo_getColorList as getUserInfoGetColorList,
+  getUserInfo_viewer_birthday as getUserInfoViewerBirthday,
 } from './__generated__/getUserInfo';
 
 // graphql import
@@ -126,6 +129,24 @@ class MemberSettings extends React.PureComponent<PropsType> {
     });
   };
 
+  private validator = (
+    value: string | number | null | getUserInfoViewerBirthday,
+  ): object => {
+    const { t } = this.props;
+
+    if (value)
+      return {
+        rules: [
+          {
+            required: true,
+            message: t('form.required'),
+          },
+        ],
+      };
+
+    return {};
+  };
+
   public render(): React.ReactNode {
     const {
       /** HOC */
@@ -192,12 +213,14 @@ class MemberSettings extends React.PureComponent<PropsType> {
             <FormItem>
               {getFieldDecorator('name', {
                 initialValue: name || undefined,
+                ...this.validator(name),
               })(<Input size="large" placeholder={t('name')} />)}
             </FormItem>
 
             <FormItem>
               {getFieldDecorator('gender', {
                 initialValue: gender === null ? undefined : gender,
+                ...this.validator(gender),
               })(
                 <Select
                   size="large"
@@ -221,12 +244,14 @@ class MemberSettings extends React.PureComponent<PropsType> {
             <FormItem>
               {getFieldDecorator('tel', {
                 initialValue: tel || undefined,
+                ...this.validator(tel),
               })(<Input size="large" placeholder={t('tel')} />)}
             </FormItem>
 
             <FormItem>
               {getFieldDecorator('mobile', {
                 initialValue: mobile || undefined,
+                ...this.validator(mobile),
               })(<Input size="large" placeholder={t('mobile')} />)}
             </FormItem>
           </div>
@@ -241,6 +266,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
                     month: !birthday.month ? undefined : birthday.month - 1,
                     day: birthday.day || undefined,
                   }),
+              ...this.validator(birthday),
             })(
               <DatePicker
                 size="large"
@@ -258,6 +284,15 @@ class MemberSettings extends React.PureComponent<PropsType> {
                 >[]).map(({ id }) => id),
                 zipCode,
               },
+              ...(country || city || area
+                ? {
+                    rules: [
+                      {
+                        validator: validateAddressCascader(t('form.required')),
+                      },
+                    ],
+                  }
+                : {}),
             })(
               <AddressCascader
                 className={styles.addressCascader}
@@ -272,6 +307,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
           <FormItem>
             {getFieldDecorator('street', {
               initialValue: street || undefined,
+              ...this.validator(street),
             })(<Input size="large" placeholder={t('street')} />)}
           </FormItem>
 

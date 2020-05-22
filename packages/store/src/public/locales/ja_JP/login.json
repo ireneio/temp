@@ -15,5 +15,9 @@
   "promotion-code": "特別なコード（特別なメンバーにのみ必要）",
   "password": "パスワード",
   "confirm-password": "パスワードを確認",
+  "mobile": "携帯電話",
+  "address": "国",
+  "zip-code": "郵便番号",
+  "street": "住所",
   "send-reset-password-mail": "パスワード再設定メールを送信"
 }

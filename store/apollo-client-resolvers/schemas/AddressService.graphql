@@ -1,3 +1,7 @@
+extend type City {
+  cvsAreas: [Area!]!
+}
+
 extend type Area {
   streets: [String!]!
 }

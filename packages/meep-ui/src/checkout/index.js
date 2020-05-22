@@ -129,6 +129,8 @@ export default class Checkout extends React.PureComponent {
       userPassword,
       userName,
       userMobile,
+      userAddressAndZipCode,
+      userStreet,
 
       name,
       mobile,
@@ -293,6 +295,22 @@ export default class Checkout extends React.PureComponent {
 
       const nextStep = (firstPurchase = false) => {
         if (this.isUnmounted) return;
+
+        dispatchAction('updateUser', {
+          user: {
+            name: userName,
+            additionalInfo: {
+              mobile: userMobile,
+            },
+            address: {
+              countryId: userAddressAndZipCode.address[0],
+              cityId: userAddressAndZipCode.address[1],
+              areaId: userAddressAndZipCode.address[2],
+              zipCode: userAddressAndZipCode.zipCode,
+              street: userStreet,
+            },
+          },
+        });
 
         if (formData && formData.url) {
           if (/CashSystemFrontEnd\/Query/.test(formData.url)) {

@@ -16,6 +16,19 @@ viewer {
     mobile
     tel
   }
+  address {
+    country {
+      id
+    }
+    city {
+      id
+    }
+    area {
+      id
+    }
+    street
+    zipCode
+  }
   birthday {
     year
     month

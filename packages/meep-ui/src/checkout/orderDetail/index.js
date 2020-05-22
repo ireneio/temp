@@ -31,11 +31,16 @@ const { Item: FormItem } = Form;
 @Form.create({
   mapPropsToFields: ({ user, orderInfo, errors }) => {
     const { info, ...data } = orderInfo || {};
-    const { name: userName, additionalInfo = {} } = user || {};
+    const { name: userName, additionalInfo = {}, address } = user || {};
     const { mobile: userMobile } = additionalInfo;
     const fieldsData = {
       userName: data.userName || userName,
       userMobile: data.userMobile || userMobile,
+      userAddressAndZipCode: data.userAddressAndZipCode || {
+        address: [address?.country?.id, address?.city?.id, address?.area?.id],
+        zipCode: address?.zipCode,
+      },
+      userStreet: data.userStreet || address?.street,
       ...data,
       ...(info || {}),
     };
@@ -366,6 +371,7 @@ export default class OrderDetail extends React.PureComponent {
       /** props */
       t,
       form,
+      user,
       shippableCountries,
       isSubmitting,
       shippableRecipientAddresses,
@@ -483,7 +489,11 @@ export default class OrderDetail extends React.PureComponent {
               )}
             </div>
 
-            <UserInfo form={form} />
+            <UserInfo
+              form={form}
+              user={user}
+              shippableCountries={shippableCountries}
+            />
 
             <ReceiverInfo
               form={form}

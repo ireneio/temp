@@ -15,5 +15,9 @@
   "promotion-code": "Mã đặc biệt (chỉ yêu cầu cho các thành viên đặc biệt)",
   "password": "Mật khẩu",
   "confirm-password": "Xác nhận mật khẩu",
+  "mobile": "Điện Thoại",
+  "address": "Quốc gia",
+  "zip-code": "Mã bưu điện",
+  "street": "Địa Chỉ",
   "send-reset-password-mail": "Gửi thư cài đặt lại mật khẩu"
 }

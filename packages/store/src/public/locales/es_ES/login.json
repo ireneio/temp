@@ -15,5 +15,9 @@
   "promotion-code": "Código especial (requerido solo para miembros especiales)",
   "password": "Contraseña",
   "confirm-password": "Confirmar contraseña",
+  "mobile": "Móvil",
+  "address": "País",
+  "zip-code": "Código postal",
+  "street": "Dirección",
   "send-reset-password-mail": "Restablecer la contraseña"
 }

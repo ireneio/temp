@@ -8,6 +8,7 @@ export const resolver = {
         id: string;
         name: { zh_TW: string };
       }[];
-    }) => validatedConvenienceStoreCities.map(city => ({ ...city, areas: [] })),
+    }) =>
+      validatedConvenienceStoreCities.map(city => ({ ...city, cvsAreas: [] })),
   },
 };

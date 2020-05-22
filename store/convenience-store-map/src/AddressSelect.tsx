@@ -88,7 +88,7 @@ class AddressSelect extends React.PureComponent<PropsType> {
       id: selectedOption.value,
       fragment: gql`
         fragment addressSelectCityFragment on City {
-          areas {
+          cvsAreas {
             id
             name {
               zh_TW
@@ -99,7 +99,7 @@ class AddressSelect extends React.PureComponent<PropsType> {
       `,
       data: {
         __typename: 'City',
-        areas:
+        cvsAreas:
           data?.validatedConvenienceStoreAreas.map(
             (
               area: getValidatedConvenienceStoreCitiesValidatedConvenienceStoreCitiesChildren,
@@ -280,7 +280,7 @@ export default React.memo(
               zh_TW
             }
 
-            children: areas @client {
+            children: cvsAreas @client {
               id
               name {
                 zh_TW

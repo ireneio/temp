@@ -15,5 +15,9 @@
   "promotion-code": "特約代碼（僅開通特約會員需填寫）",
   "password": "密碼",
   "confirm-password": "確認密碼",
+  "mobile": "手機",
+  "address": "地區",
+  "zip-code": "郵遞區號",
+  "street": "地址",
   "send-reset-password-mail": "寄送重設密碼信"
 }
