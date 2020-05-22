@@ -1,0 +1,62 @@
+{
+  "title": "Paramètres",
+  "save": "sauver",
+  "cancel": "Annuler",
+  "success": "Enregistré avec succès",
+  "error": "Erreur",
+  "items": {
+    "store": {
+      "title": "Paramètres du magasin",
+      "description": "Stocker des informations de base, des informations sur l'expéditeur, l'interface dorsale et les paramètres de domaine"
+    },
+    "shopping": {
+      "title": "Paramètres de magasinage",
+      "description": "Définir la devise et la langue d'affichage du magasin, les paramètres de prise en charge de la caisse et les fonctionnalités avancées d'adhésion"
+    },
+    "order": {
+      "title": "La gestion des commandes",
+      "description": "Commande automatisée, configuration du courrier d’avis de paiement"
+    },
+    "payment": {
+      "title": "Gestion des paiements",
+      "description": "ECPay, Cathay United Bank, HiTRUSTpay, GMO"
+    },
+    "shipment": {
+      "title": "Gestion des expéditions",
+      "description": "Livraison dans les dépanneurs ECPay, ezShip"
+    },
+    "export": {
+      "title": "Paramètres d'exportation",
+      "description": "Configuration de la commande et champs au format Excel exportés par les membres"
+    },
+    "authorization": {
+      "title": "Paramètres d'autorisation",
+      "description": "Gérer les comptes de connexion et les autorisations"
+    },
+    "third-party": {
+      "title": "Paramètres tiers",
+      "description": "Facebook Store, paramètres de liaison de connexion Facebook"
+    },
+    "notification": {
+      "title": "Paramètres de notification",
+      "description": "Activer et configurer la notification pour recevoir les dernières nouvelles des magasins"
+    },
+    "app": {
+      "title": "Fonction d'extension",
+      "description": "Des fonctions avancées telles que marketing, remise et analyse peuvent être installées"
+    }
+  },
+  "locales": {
+    "zh_TW": "繁體中文",
+    "en_US": "英文",
+    "ja_JP": "日文",
+    "vi_VN": "越南文",
+    "fr_FR": "法文",
+    "es_ES": "西班牙文",
+    "th_TH": "泰文",
+    "id_ID": "印尼文"
+  },
+  "required-checkbox": "Cochez au moins un élément",
+  "required": "Obligatoire",
+  "halfwidth-only": "Doit être alphabet / chiffres sous forme de demi-largeur"
+}

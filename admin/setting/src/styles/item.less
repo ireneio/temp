@@ -1,0 +1,91 @@
+.item {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #00b8d6;
+  background-color: #fff;
+  border-radius: 4px;
+  display: flex;
+  padding: 31px 24px;
+  margin: 0 16px 16px 0;
+  width: 316px;
+  height: 125px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s;
+
+  &:hover {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+
+    > div:first-child {
+      background-color: #b5ecf6;
+    }
+  }
+
+  &.touched::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    bottom: -1px;
+    right: -1px;
+    border-radius: inherit;
+    border: 0 solid #00c5dc;
+    opacity: 0.4;
+    animation: buttonEffect 0.7s;
+    display: block;
+  }
+
+  > div:first-child {
+    height: 64px;
+    width: 64px;
+    min-width: 64px;
+    border-radius: 50px;
+    background-color: #dff5fa;
+    margin-right: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+
+    i {
+      font-size: 32px;
+      color: #6f727d;
+    }
+  }
+
+  > div:last-child {
+    .description {
+      font-size: 13px;
+      line-height: 19px;
+      color: rgba(0, 0, 0, 0.45);
+      padding-top: 2px;
+
+      &.overflowed {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+.tooltip {
+  opacity: 0.95;
+
+  &.invisible {
+    display: none;
+  }
+}
+
+@keyframes buttonEffect {
+  to {
+    opacity: 0;
+    top: -9px;
+    left: -9px;
+    bottom: -9px;
+    right: -9px;
+    border-width: 9px;
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "title": "設定",
+  "save": "セーブ",
+  "cancel": "キャンセル",
+  "success": "正常に保存",
+  "error": "エラー",
+  "items": {
+    "store": {
+      "title": "ストア設定",
+      "description": "ショップの基本情報･送り主情報･バックグラウンドインターフェース及びドメイン設定"
+    },
+    "shopping": {
+      "title": "ショッピング設定",
+      "description": "店舗の表示通貨と言語、チェックアウトサポート設定、高度なメンバーシップ機能を設定する"
+    },
+    "order": {
+      "title": "注文管理",
+      "description": "注文の自動化設定･振込通知メールの設定"
+    },
+    "payment": {
+      "title": "支払い管理",
+      "description": "ECPay、キャセイユナイテッド銀行、HiTRUSTpay、GMO"
+    },
+    "shipment": {
+      "title": "配送管理",
+      "description": "ECPayコンビニ発送･ezShip"
+    },
+    "export": {
+      "title": "エクスポート設定",
+      "description": "注文及び会員にエクスポートするExcelの形式欄の制定"
+    },
+    "authorization": {
+      "title": "許可設定",
+      "description": "ログインアカウント及び権限の管理"
+    },
+    "third-party": {
+      "title": "サードパーティの設定",
+      "description": "Facebook Store･Facebookログインのシリアル接続設定"
+    },
+    "notification": {
+      "title": "通知設定",
+      "description": "店舗の最新ニュースを受信するための通知を有効にして設定します"
+    },
+    "app": {
+      "title": "拡張機能",
+      "description": "マーケティング･割引･分析等高度な機能をインストールして使用することができます。"
+    }
+  },
+  "locales": {
+    "zh_TW": "繁体字中国語",
+    "en_US": "英語",
+    "ja_JP": "日本語",
+    "vi_VN": "ベトナム人",
+    "fr_FR": "フランス語",
+    "es_ES": "スペイン語",
+    "th_TH": "タイ語",
+    "id_ID": "インドネシア人"
+  },
+  "required-checkbox": "少なくとも1つのアイテムをチェックしてください",
+  "required": "必須",
+  "halfwidth-only": "半角形式のアルファベット/数字である必要があります"
+}

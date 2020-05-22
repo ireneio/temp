@@ -1,0 +1,62 @@
+{
+  "title": "Cài đặt",
+  "save": "Tiết kiệm",
+  "cancel": "Hủy bỏ",
+  "success": "đã lưu thành công",
+  "error": "lỗi",
+  "items": {
+    "store": {
+      "title": "Cài đặt cửa hàng",
+      "description": "Lưu trữ thông tin cơ bản, thông tin người gửi, giao diện back-end và cài đặt tên miền"
+    },
+    "shopping": {
+      "title": "Cài đặt mua sắm",
+      "description": "Đặt tiền tệ và ngôn ngữ hiển thị cửa hàng, cài đặt hỗ trợ thanh toán và các tính năng thành viên nâng cao"
+    },
+    "order": {
+      "title": "Quản lý đơn hàng",
+      "description": "Đặt hàng cài đặt tự động, cài đặt thư thông báo thanh toán"
+    },
+    "payment": {
+      "title": "Quản lý thanh toán",
+      "description": "ECPay, Ngân hàng Cathay United, HiTRUSTpay, GMO"
+    },
+    "shipment": {
+      "title": "Quản lý vận chuyển",
+      "description": "Vận chuyển cửa hàng tiện lợi ECPay, ezShip"
+    },
+    "export": {
+      "title": "Xuất cài đặt",
+      "description": "Đặt hàng thiết lập và các trường định dạng Excel xuất thành viên"
+    },
+    "authorization": {
+      "title": "Cài đặt quyền",
+      "description": "Quản lý tài khoản và quyền đăng nhập"
+    },
+    "third-party": {
+      "title": "Cài đặt bên thứ ba",
+      "description": "Cửa hàng Facebook, cài đặt liên kết đăng nhập Facebook"
+    },
+    "notification": {
+      "title": "Thiết lập thông báo",
+      "description": "Bật và đặt thông báo để nhận tin tức mới nhất của các cửa hàng"
+    },
+    "app": {
+      "title": "Chức năng mở rộng",
+      "description": "Các chức năng nâng cao như tiếp thị, giảm giá và phân tích có thể được cài đặt"
+    }
+  },
+  "locales": {
+    "zh_TW": "Truyền thống Trung Quốc",
+    "en_US": "Tiếng Anh",
+    "ja_JP": "tiếng Nhật",
+    "vi_VN": "Tiếng Việt",
+    "fr_FR": "người Pháp",
+    "es_ES": "người Tây Ban Nha",
+    "th_TH": "Thái lan",
+    "id_ID": "Tiếng Indonesia"
+  },
+  "required-checkbox": "Kiểm tra ít nhất một mục",
+  "required": "Cần thiết",
+  "halfwidth-only": "Phải là bảng chữ cái / chữ số ở dạng nửa chiều rộng"
+}

@@ -1,5 +1,6 @@
+// import
 import {
-  ShopSettingOutlineIcon,
+  ShopOutlineIcon,
   PageDesignOutlineIcon,
   ProductManageOutlineIcon,
   CashFlowOutlineIcon,
@@ -14,11 +15,12 @@ import {
   CustomShippingFilledIcon,
 } from '@meepshop/icons';
 
+// definition
 export const TUTORIAL = [
   {
     key: 'store',
-    link: '/setting/store-setting',
-    Icon: ShopSettingOutlineIcon,
+    link: '/setting/store',
+    Icon: ShopOutlineIcon,
   },
   {
     key: 'page',

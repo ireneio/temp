@@ -8,6 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@admin/apollo-client-resolvers": "^0.41.2",
     "@admin/link": "^0.41.2",
     "@admin/switch": "^0.41.2",
     "@admin/utils": "^0.41.2",

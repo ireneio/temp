@@ -13,13 +13,13 @@ import styles from './styles/menu.less';
 
 // graphql typescript
 import { useMenuListpermissionObjFragment as useMenuListpermissionObjFragmentType } from './hooks/__generated__/useMenuListpermissionObjFragment';
-import { useMenuListpermissionStoreAppFragment as useMenuListpermissionStoreAppFragmentType } from './hooks/__generated__/useMenuListpermissionStoreAppFragment';
+import { useMenuListAppsFragment as useMenuListAppsFragmentType } from './hooks/__generated__/useMenuListAppsFragment';
 
 // typescript definition
 interface PropsType {
   isMerchant: boolean;
   permission: useMenuListpermissionObjFragmentType | null;
-  storeApps: (useMenuListpermissionStoreAppFragmentType | null)[] | null;
+  storeApps: useMenuListAppsFragmentType | null;
   collapsed: boolean;
   loading: boolean;
   isNotOpened: boolean;

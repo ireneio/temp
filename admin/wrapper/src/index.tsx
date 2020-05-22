@@ -21,11 +21,18 @@ import styles from './styles/index.less';
 import { initAdmin } from './__generated__/initAdmin';
 
 // graphql import
+import {
+  viewerUserFragment,
+  viewerAuthorityListFragment,
+  viewerAppListFragment,
+  viewerStoreAppListFragment,
+} from '@admin/apollo-client-resolvers/lib/viewer';
+
 import { useCollapsedFragment } from './hooks/useCollapsed';
 import { useCheckingAdminStatusFragment } from './hooks/useCheckingAdminStatus';
 import {
   useMenuListpermissionObjFragment,
-  useMenuListpermissionStoreAppFragment,
+  useMenuListAppsFragment,
 } from './hooks/useMenuList';
 import { useFooterMenuListFragment } from './hooks/useFooterMenuList';
 
@@ -51,30 +58,38 @@ const query = gql`
         id
         ...useCheckingAdminStatusFragment
         ...useFooterMenuListFragment
+        apps @client {
+          ...useMenuListAppsFragment
+        }
       }
+      permission @client {
+        ...useMenuListpermissionObjFragment
+      }
+      ...viewerUserFragment
     }
 
     getAuthorityList {
-      data {
-        id
-        permission {
-          ...useMenuListpermissionObjFragment
-        }
-      }
+      ...viewerAuthorityListFragment
+    }
+
+    getAppList {
+      ...viewerAppListFragment
     }
 
     getStoreAppList {
-      data {
-        id
-        ...useMenuListpermissionStoreAppFragment
-      }
+      ...viewerStoreAppListFragment
     }
   }
+
+  ${viewerUserFragment}
+  ${viewerAuthorityListFragment}
+  ${viewerAppListFragment}
+  ${viewerStoreAppListFragment}
 
   ${useCollapsedFragment}
   ${useCheckingAdminStatusFragment}
   ${useMenuListpermissionObjFragment}
-  ${useMenuListpermissionStoreAppFragment}
+  ${useMenuListAppsFragment}
   ${useFooterMenuListFragment}
 `;
 
@@ -86,10 +101,9 @@ export default React.memo(({ children }: PropsType) => {
     !data?.cookies ? null : filter(useCollapsedFragment, data.cookies),
   );
   const [transitionLoading, transitionEnd] = useTransitionEnd(collapsed);
-  const isMerchant = Boolean(data?.viewer?.role === 'MERCHANT');
-  const permission = data?.getAuthorityList?.data?.find(
-    authority => authority?.id === data?.viewer?.groupId,
-  )?.permission;
+  const isMerchant = data?.viewer?.role === 'MERCHANT';
+  const permission = data?.viewer?.permission;
+  const storeApps = data?.viewer?.store?.apps;
   const isNotOpened = useCheckingAdminStatus(
     !data?.viewer?.store
       ? null
@@ -132,12 +146,7 @@ export default React.memo(({ children }: PropsType) => {
               : filter(useMenuListpermissionObjFragment, permission)
           }
           storeApps={
-            !data?.getStoreAppList?.data
-              ? null
-              : filter(
-                  useMenuListpermissionStoreAppFragment,
-                  data.getStoreAppList.data,
-                )
+            !storeApps ? null : filter(useMenuListAppsFragment, storeApps)
           }
           collapsed={collapsed}
           loading={transitionLoading}

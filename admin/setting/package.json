@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "@admin/setting",
+  "description": "setting for admin",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.41.2",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/apollo-client-resolvers": "^0.41.10",
+    "@admin/link": "^0.41.2",
+    "@admin/setting-header": "^0.41.9",
+    "@admin/utils": "^0.41.2",
+    "@meepshop/icons": "^0.41.2"
+  },
+  "keywords": ["admin", "setting"]
+}

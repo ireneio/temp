@@ -20,7 +20,7 @@ import {
 
 // graphql typescript
 import { useMenuListpermissionObjFragment as useMenuListpermissionObjFragmentType } from './__generated__/useMenuListpermissionObjFragment';
-import { useMenuListpermissionStoreAppFragment as useMenuListpermissionStoreAppFragmentType } from './__generated__/useMenuListpermissionStoreAppFragment';
+import { useMenuListAppsFragment as useMenuListAppsFragmentType } from './__generated__/useMenuListAppsFragment';
 
 // typescript definition
 export type MenuListType = (string | [string, MenuListType])[];
@@ -59,11 +59,28 @@ export const useMenuListpermissionObjFragment = gql`
   }
 `;
 
-export const useMenuListpermissionStoreAppFragment = gql`
-  fragment useMenuListpermissionStoreAppFragment on StoreApp {
-    id
-    plugin
-    isInstalled
+export const useMenuListAppsFragment = gql`
+  fragment useMenuListAppsFragment on Apps {
+    analytics {
+      id
+      isEnabled
+    }
+    memberGroup {
+      id
+      isEnabled
+    }
+    memberGroupCode {
+      id
+      isEnabled
+    }
+    newsletters {
+      id
+      isEnabled
+    }
+    webTrack {
+      id
+      isEnabled
+    }
   }
 `;
 
@@ -138,22 +155,8 @@ const getMenuList = (
 export default (
   isMerchant: boolean,
   permission: useMenuListpermissionObjFragmentType | null,
-  storeApps: (useMenuListpermissionStoreAppFragmentType | null)[] | null,
+  storeApps: useMenuListAppsFragmentType | null,
 ): MenuType[] => {
-  const apps: { [plugin: string]: boolean } = useMemo(
-    () =>
-      (storeApps || []).reduce(
-        (result, storeApp) =>
-          !storeApp
-            ? result
-            : {
-                ...result,
-                [storeApp.plugin as string]: storeApp.isInstalled,
-              },
-        {},
-      ),
-    [storeApps],
-  );
   const enabledList = useMemo(
     () => ({
       orders: Boolean(isMerchant || permission?.orders?.isEnabled),
@@ -161,17 +164,17 @@ export default (
       'product-service': Boolean(
         isMerchant || permission?.productService?.isEnabled,
       ),
-      analytics: Boolean(isMerchant && apps.analytics),
+      analytics: Boolean(isMerchant && storeApps?.analytics.isEnabled),
       member: Boolean(isMerchant || permission?.member?.isEnabled),
-      'member-group': Boolean(apps.memberGroup),
-      'member-group-code': Boolean(apps.memberGroupCode),
+      'member-group': Boolean(storeApps?.memberGroup.isEnabled),
+      'member-group-code': Boolean(storeApps?.memberGroupCode.isEnabled),
       design: Boolean(isMerchant || permission?.design?.isEnabled),
-      newsletter: Boolean(apps.newsletters),
-      'ads-analytics': Boolean(apps.webTrack),
+      newsletter: Boolean(storeApps?.newsletters.isEnabled),
+      'ads-analytics': Boolean(storeApps?.webTrack.isEnabled),
       'file-manager': Boolean(isMerchant || permission?.fileManager?.isEnabled),
       setting: Boolean(isMerchant || permission?.setting?.isEnabled),
     }),
-    [isMerchant, permission, apps],
+    [isMerchant, permission, storeApps],
   );
 
   return useMemo(() => getMenuList(enabledList), [enabledList]);

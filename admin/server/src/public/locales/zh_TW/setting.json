@@ -1,0 +1,62 @@
+{
+  "title": "設定",
+  "save": "儲存",
+  "cancel": "取消",
+  "success": "儲存成功",
+  "error": "錯誤",
+  "items": {
+    "store": {
+      "title": "商店設定",
+      "description": "商店基本資訊、寄件人資訊、後台介面及網域設定"
+    },
+    "shopping": {
+      "title": "購物設定",
+      "description": "設定商店顯示幣別和語言、結帳支援設定和進階會員功能"
+    },
+    "order": {
+      "title": "訂單管理",
+      "description": "訂單自動化設定、匯款通知信設定"
+    },
+    "payment": {
+      "title": "金流管理",
+      "description": "綠界科技、國泰世華、網際威信、GMO等"
+    },
+    "shipment": {
+      "title": "物流管理",
+      "description": "綠界超商寄件、ezShip台灣便利配等"
+    },
+    "export": {
+      "title": "匯出設定",
+      "description": "制定訂單及會員匯出Excel的格式欄位"
+    },
+    "authorization": {
+      "title": "權限設定",
+      "description": "管理登入帳號及權限"
+    },
+    "third-party": {
+      "title": "第三方設定",
+      "description": "Facebook Store、Facebook登入之串接設定"
+    },
+    "notification": {
+      "title": "通知設定",
+      "description": "開啟及制定通知提醒，幫助您迅速更新商店的狀況"
+    },
+    "app": {
+      "title": "擴充功能",
+      "description": "行銷、折扣、分析等進階功能可安裝使用"
+    }
+  },
+  "locales": {
+    "zh_TW": "繁體中文",
+    "en_US": "英文",
+    "ja_JP": "日文",
+    "vi_VN": "越南文",
+    "fr_FR": "法文",
+    "es_ES": "西班牙文",
+    "th_TH": "泰文",
+    "id_ID": "印尼文"
+  },
+  "required-checkbox": "至少勾選一項",
+  "required": "必填",
+  "halfwidth-only": "必須為英數半形文字"
+}

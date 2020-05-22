@@ -7,6 +7,7 @@ import { AppContext } from 'next/app';
 import * as cookies from './cookies';
 import * as PageInfo from './PageInfo';
 import * as selectedOrders from './selectedOrders';
+import * as viewer from './viewer';
 
 // typescript definition
 type CtxType = AppContext['ctx'];
@@ -32,6 +33,7 @@ export const introspectionQueryResultDataType = [];
 export default [
   PageInfo.resolver,
   selectedOrders.resolver,
+  viewer.resolver,
   cookies.resolver,
 ].reduce(
   (result, { Query, Mutation, ...resolver }: Resolvers) => ({

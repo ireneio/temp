@@ -1,0 +1,62 @@
+{
+  "title": "Settings",
+  "save": "Save",
+  "cancel": "Cancel",
+  "success": "Saved successfully",
+  "error": "Error",
+  "items": {
+    "store": {
+      "title": "Store Settings",
+      "description": "Store basic information, sender information, back-end interface and domain settings"
+    },
+    "shopping": {
+      "title": "Shopping Settings",
+      "description": "Set store display currency and language, checkout support settings and advanced membership features"
+    },
+    "order": {
+      "title": "Order Management",
+      "description": "Order automated setting, payment notification mail setting"
+    },
+    "payment": {
+      "title": "Payment Management",
+      "description": "ECPay, Cathay United Bank, HiTRUSTpay, GMO"
+    },
+    "shipment": {
+      "title": "Shipping Management",
+      "description": "ECPay convenience store shipping, ezShip"
+    },
+    "export": {
+      "title": "Export settings",
+      "description": "Order set-up and member exported Excel format fields"
+    },
+    "authorization": {
+      "title": "Permission settings",
+      "description": "Manage Login Accounts and Permissions"
+    },
+    "third-party": {
+      "title": "Third party settings",
+      "description": "Facebook Store, Facebook login linkage settings"
+    },
+    "notification": {
+      "title": "Notification Settings",
+      "description": "Enable and set notification to receive the latest news of the stores"
+    },
+    "app": {
+      "title": "Extension function",
+      "description": "Advanced functions such as marketing, discount, and analysis can be installed"
+    }
+  },
+  "locales": {
+    "zh_TW": "Traditional Chinese",
+    "en_US": "English",
+    "ja_JP": "Japanese",
+    "vi_VN": "Vietnamese",
+    "fr_FR": "French",
+    "es_ES": "Spanish",
+    "th_TH": "Thai",
+    "id_ID": "Indonesian"
+  },
+  "required-checkbox": "Check at least one item",
+  "required": "Required",
+  "halfwidth-only": "Must be alphabet/numerals in half-width form"
+}

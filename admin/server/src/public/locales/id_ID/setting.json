@@ -1,0 +1,62 @@
+{
+  "title": "Pengaturan",
+  "save": "Menyimpan",
+  "cancel": "Membatalkan",
+  "success": "Berhasil disimpan",
+  "error": "Kesalahan",
+  "items": {
+    "store": {
+      "title": "Pengaturan Toko",
+      "description": "Menyimpan informasi dasar, informasi pengirim, antarmuka back-end dan pengaturan domain"
+    },
+    "shopping": {
+      "title": "Pengaturan Belanja",
+      "description": "Atur mata uang tampilan dan bahasa toko, pengaturan dukungan checkout dan fitur keanggotaan lanjutan"
+    },
+    "order": {
+      "title": "Manajemen pesanan",
+      "description": "Memesan pengaturan otomatis, pengaturan email notifikasi pembayaran"
+    },
+    "payment": {
+      "title": "Manajemen Pembayaran",
+      "description": "ECPay, Cathay United Bank, HiTRUSTpay, GMO"
+    },
+    "shipment": {
+      "title": "Manajemen Pengiriman",
+      "description": "Pengiriman toko ECPay, ezShip"
+    },
+    "export": {
+      "title": "Pengaturan ekspor",
+      "description": "Pengaturan pemesanan dan bidang format Excel yang diekspor anggota"
+    },
+    "authorization": {
+      "title": "Pengaturan izin",
+      "description": "Kelola Akun dan Izin Masuk"
+    },
+    "third-party": {
+      "title": "Pengaturan pihak ketiga",
+      "description": "Facebook Store, pengaturan tautan masuk Facebook"
+    },
+    "notification": {
+      "title": "Pengaturan pemberitahuan",
+      "description": "Aktifkan dan atur notifikasi untuk menerima berita terbaru dari toko"
+    },
+    "app": {
+      "title": "Fungsi ekstensi",
+      "description": "Fungsi-fungsi canggih seperti pemasaran, diskon, dan analisis dapat diinstal"
+    }
+  },
+  "locales": {
+    "zh_TW": "Cina tradisional",
+    "en_US": "Inggris",
+    "ja_JP": "Jepang",
+    "vi_VN": "Orang Vietnam",
+    "fr_FR": "Perancis",
+    "es_ES": "Orang Spanyol",
+    "th_TH": "Thai",
+    "id_ID": "bahasa Indonesia"
+  },
+  "required-checkbox": "Periksa setidaknya satu item",
+  "required": "Yg dibutuhkan",
+  "halfwidth-only": "Harus berupa alfabet / angka dalam bentuk setengah lebar"
+}

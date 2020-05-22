@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024px" height="1024px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_shopping_outlines</title>
+    <g id="icon-重構切圖" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_shopping_outlines">
+            <g>
+                <rect id="Rectangle" fill="#000000" opacity="0" x="64" y="64" width="896" height="896"></rect>
+                <path d="M792,337 L673,337 L673,323 C673,234.1 600.9,162 512,162 C423.1,162 351,234.1 351,323 L351,337 L232,337 C216.5125,337 204,349.5125 204,365 L204,834 C204,849.4875 216.5125,862 232,862 L792,862 C807.4875,862 820,849.4875 820,834 L820,365 C820,349.5125 807.4875,337 792,337 Z M414,323 C414,268.8375 457.8375,225 512,225 C566.1625,225 610,268.8375 610,323 L610,337 L414,337 L414,323 Z M757,799 L267,799 L267,400 L351,400 L351,477 C351,480.85 354.15,484 358,484 L407,484 C410.85,484 414,480.85 414,477 L414,400 L610,400 L610,477 C610,480.85 613.15,484 617,484 L666,484 C669.85,484 673,480.85 673,477 L673,400 L757,400 L757,799 Z" id="Shape" fill="#6F727D" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

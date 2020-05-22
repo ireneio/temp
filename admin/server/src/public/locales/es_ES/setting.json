@@ -1,0 +1,62 @@
+{
+  "title": "Configuraciones",
+  "save": "Salvar",
+  "cancel": "Cancelar",
+  "success": "Guardado exitosamente",
+  "error": "Error",
+  "items": {
+    "store": {
+      "title": "Configuraciones de la tienda",
+      "description": "Almacene información básica, información del remitente, interfaz de back-end y configuración de dominio"
+    },
+    "shopping": {
+      "title": "Configuraciones de compras",
+      "description": "Establezca la moneda y el idioma de visualización de la tienda, la configuración de soporte de pago y las funciones avanzadas de membresía"
+    },
+    "order": {
+      "title": "Gestión de pedidos",
+      "description": "Configuración automática de pedidos, configuración de correo de notificación de pago"
+    },
+    "payment": {
+      "title": "El",
+      "description": "ECPay, Cathay United Bank, HiTRUSTpay, OMG"
+    },
+    "shipment": {
+      "title": "Gestión de envíos",
+      "description": "Envío de la tienda de conveniencia ECPay, ezShip"
+    },
+    "export": {
+      "title": "Exportar configuraciones",
+      "description": "Configuración de pedidos y campos de formato Excel exportados por miembros"
+    },
+    "authorization": {
+      "title": "Configuraciones de permisos",
+      "description": "Administrar cuentas de inicio de sesión y permisos"
+    },
+    "third-party": {
+      "title": "Configuraciones de terceros",
+      "description": "Tienda de Facebook, configuración de enlace de inicio de sesión de Facebook"
+    },
+    "notification": {
+      "title": "Configuración de las notificaciones",
+      "description": "Habilite y configure notificaciones para recibir las últimas noticias de las tiendas."
+    },
+    "app": {
+      "title": "Función de extensión",
+      "description": "Se pueden instalar funciones avanzadas como marketing, descuento y análisis."
+    }
+  },
+  "locales": {
+    "zh_TW": "繁體中文",
+    "en_US": "英文",
+    "ja_JP": "日文",
+    "vi_VN": "越南文",
+    "fr_FR": "法文",
+    "es_ES": "西班牙文",
+    "th_TH": "泰文",
+    "id_ID": "印尼文"
+  },
+  "required-checkbox": "Marque al menos un artículo",
+  "required": "Necesaria",
+  "halfwidth-only": "Debe ser alfabeto / números en forma de ancho medio"
+}

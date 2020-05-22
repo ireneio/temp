@@ -17,6 +17,7 @@
     "@admin/dashboard": "^0.41.2",
     "@admin/login": "^0.41.2",
     "@admin/orders-ecfit": "^0.41.2",
+    "@admin/setting": "^0.41.2",
     "@admin/setting-notification": "^0.41.9",
     "@admin/utils": "^0.41.2",
     "@admin/wrapper": "^0.41.9",
