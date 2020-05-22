@@ -25,6 +25,7 @@ export const sku = {
 
 export const description = {
   padding: 0,
+  color: 'initial',
 };
 
 export const activities = {
