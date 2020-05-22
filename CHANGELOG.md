@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.42.0 (2020-05-22)
+
+#### :rocket: New Feature
+
+- Other
+  - [#844](https://github.com/meepshop/meep-lerna/pull/844) 【重構】admin 設定總覽 ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`, `store`
+  - [#877](https://github.com/meepshop/meep-lerna/pull/877) 【優化】前台商品頁使用 product.applicableActivities 取得商品折扣 - 前端 ([@happycat6323](https://github.com/happycat6323))
+  - [#924](https://github.com/meepshop/meep-lerna/pull/924) 【優化】取得會員資料情境 & 特約代碼顯示設定 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#954](https://github.com/meepshop/meep-lerna/pull/954) 【BUG】 前後台 - 商品描述 - 文字顏色問題 ([@happycat6323](https://github.com/happycat6323))
+- `mock-types`
+  - [#956](https://github.com/meepshop/meep-lerna/pull/956) (@meepshop/mock-types) Fix load data error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.41.11 (2020-05-20)
 
 #### :bug: Bug Fix
