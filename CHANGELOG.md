@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.42.1 (2020-05-22)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#957](https://github.com/meepshop/meep-lerna/pull/957) 【BUG】 前台 - 商品描述 - 文字顏色問題 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.42.0 (2020-05-22)
 
 #### :rocket: New Feature
