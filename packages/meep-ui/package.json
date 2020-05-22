@@ -4,7 +4,7 @@
   "description": "meep-ui for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.42.0",
+  "version": "0.42.1",
   "dependencies": {
     "@meepshop/landing-page": "^0.42.0",
     "@store/ad-track": "^0.42.0",
