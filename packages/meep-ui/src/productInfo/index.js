@@ -18,12 +18,7 @@ import Description from './Description';
 import SpecList from './SpecList';
 import QuantityButton from './QuantityButton';
 import AddButton from './AddButton';
-import {
-  PRODUCT_TYPE,
-  ACTIVITY_TYPE,
-  LIST_TYPE,
-  NO_VARIANTS,
-} from './constants';
+import { PRODUCT_TYPE, LIST_TYPE, NO_VARIANTS } from './constants';
 import { findCoordinates, calculateOrderable, reformatVariant } from './utils';
 
 @withTranslation('product-info')
@@ -38,7 +33,6 @@ export default class ProductInfo extends React.PureComponent {
     adTrack: PropTypes.shape({}).isRequired,
     t: PropTypes.func.isRequired,
     productData: PRODUCT_TYPE.isRequired,
-    activityData: ACTIVITY_TYPE,
     stockNotificationList: LIST_TYPE.isRequired, // eslint-disable-line react/no-unused-prop-types
     isInWishList: PropTypes.bool.isRequired,
     mode: PropTypes.oneOf(['list', 'detail']),
@@ -61,7 +55,6 @@ export default class ProductInfo extends React.PureComponent {
   };
 
   static defaultProps = {
-    activityData: null,
     mode: 'detail',
     cart: null,
     container: {},
@@ -290,7 +283,6 @@ export default class ProductInfo extends React.PureComponent {
     const {
       t,
       productData,
-      activityData,
       mode,
       transformCurrency,
       hasStoreAppPlugin,
@@ -352,7 +344,6 @@ export default class ProductInfo extends React.PureComponent {
           <div style={styles.wrapper(mode)}>
             <Description
               productData={productData}
-              activityData={activityData}
               variantInfo={variantInfo}
               transformCurrency={transformCurrency}
               colors={colors}

@@ -7,7 +7,7 @@ import ProductInfo from 'productInfo';
 import ProductCarousel from 'productCarousel';
 import ProductCollection from 'productCollection';
 
-import { PRODUCT_TYPE, ACTIVITY_TYPE, LIST_TYPE } from './constants';
+import { PRODUCT_TYPE, LIST_TYPE } from './constants';
 import * as styles from './styles';
 
 @enhancer // FIX: unnecessary with new context api
@@ -15,7 +15,6 @@ import * as styles from './styles';
 export default class ProductSet extends React.PureComponent {
   static propTypes = {
     productData: PRODUCT_TYPE,
-    activityData: ACTIVITY_TYPE,
     cart: PropTypes.shape({}),
     stockNotificationList: LIST_TYPE.isRequired,
     isInWishList: PropTypes.bool.isRequired,
@@ -24,14 +23,12 @@ export default class ProductSet extends React.PureComponent {
 
   static defaultProps = {
     productData: null,
-    activityData: null,
     cart: null,
   };
 
   render() {
     const {
       productData,
-      activityData,
       cart,
       stockNotificationList,
       isInWishList,
@@ -52,7 +49,6 @@ export default class ProductSet extends React.PureComponent {
           <div style={styles.half}>
             <ProductInfo
               productData={productData}
-              activityData={activityData}
               cart={cart}
               stockNotificationList={stockNotificationList}
               isInWishList={isInWishList}

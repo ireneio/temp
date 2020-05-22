@@ -17,7 +17,6 @@ import updateShopperLanguagePreference from './updateShopperLanguagePreference.a
 import resetPassword from './resetPassword.api';
 import getTrackingCode from './getTrackingCode.api';
 import changePassword from './changePassword.api';
-import getActivitiesByProduct from './getActivitiesByProduct.api';
 
 // Server-side rendering
 import serverIndexInitial from './serverIndexInitial.api';
@@ -59,7 +58,6 @@ export {
   getTrackingCode,
   changePassword,
   sendPaymentNotification,
-  getActivitiesByProduct,
   // Server-side rendering
   serverIndexInitial,
   serverPagesInitial,

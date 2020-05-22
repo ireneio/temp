@@ -90,9 +90,6 @@ export const serverProductInitial = payload => ({
 
 function* serverProductInitialFlow({ payload }) {
   try {
-    const { query } = payload;
-    const { pId } = query;
-
     const data = yield call(Api.serverProductInitial, payload);
 
     if (data.apiErr) {
@@ -104,36 +101,20 @@ function* serverProductInitialFlow({ payload }) {
       yield put(getAuthSuccess(data));
       const product = data?.data?.computeProductList?.data?.[0];
       if (product) {
-        /* Get activities from computeOrderList */
-        const computeOrderData = yield call(Api.getActivitiesByProduct, {
-          ...payload,
-          variantId: product?.variants?.[0]?.id || '',
-          id: pId,
-        });
-        if (computeOrderData.apiErr) {
-          yield put(getStoreFailure(computeOrderData.apiErr));
+        const { page } = product;
+        if (page) {
+          const modifiedPage = yield Utils.getPageWithModifyWidget(
+            page,
+            payload,
+          );
+          yield put(
+            getProductSuccess({
+              ...product,
+              page: modifiedPage,
+            }),
+          );
         } else {
-          const activities =
-            computeOrderData?.data?.computeOrderList?.[0]?.categories?.[0]
-              ?.products?.[0]?.activityInfo || [];
-
-          /* Join activities in corresponding product */
-          const { page } = product;
-          if (page) {
-            const modifiedPage = yield Utils.getPageWithModifyWidget(
-              page,
-              payload,
-            );
-            yield put(
-              getProductSuccess({
-                ...product,
-                activities,
-                page: modifiedPage,
-              }),
-            );
-          } else {
-            yield put(getStoreFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
-          }
+          yield put(getStoreFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
         }
       } else {
         yield put(getStoreFailure({ status: 'ERROR_PRODUCT_NOT_FOUND' }));

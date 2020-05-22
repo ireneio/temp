@@ -35,14 +35,6 @@ export const PRODUCT_TYPE = PropTypes.shape({
   variants: PropTypes.arrayOf(VARIANT_TYPE.isRequired).isRequired,
 });
 
-export const ACTIVITY_TYPE = PropTypes.arrayOf(
-  PropTypes.shape(
-    {
-      title: LOCALE_TYPE.isRequired,
-    }.isRequired,
-  ),
-);
-
 export const LIST_TYPE = PropTypes.arrayOf(
   PropTypes.shape(
     {

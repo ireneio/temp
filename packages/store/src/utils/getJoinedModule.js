@@ -130,7 +130,6 @@ const getJoinedModule = (
             ...widget,
             productData: product,
             cart,
-            activityData: product.activities,
             stockNotificationList,
             isInWishList: !!wishList.find(
               ({ productId }) => product.id === productId,
@@ -142,7 +141,6 @@ const getJoinedModule = (
             ...widget,
             productData: product,
             cart,
-            activityData: product.activities,
             stockNotificationList,
             isInWishList: !!wishList.find(
               ({ productId }) => product.id === productId,

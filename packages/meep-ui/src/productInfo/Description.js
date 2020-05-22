@@ -9,7 +9,7 @@ import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 
 import * as styles from './styles/description';
-import { PRODUCT_TYPE, VARIANT_TYPE, ACTIVITY_TYPE } from './constants';
+import { PRODUCT_TYPE, VARIANT_TYPE } from './constants';
 
 const Description = ({
   t,
@@ -17,7 +17,6 @@ const Description = ({
   productData,
   variantInfo,
   mode,
-  activityData,
   colors,
   transformCurrency,
   isLogin,
@@ -41,9 +40,9 @@ const Description = ({
         style={styles.description}
       />
     )}
-    {activityData && (
+    {productData.applicableActivities && (
       <div style={styles.activities}>
-        {activityData.map(activity =>
+        {productData.applicableActivities.map(activity =>
           !activity.title ? null : (
             <div
               key={activity.title[i18n.language] || activity.title.zh_TW}
@@ -101,7 +100,6 @@ const Description = ({
 Description.propTypes = {
   t: PropTypes.func.isRequired,
   productData: PRODUCT_TYPE.isRequired,
-  activityData: ACTIVITY_TYPE,
   variantInfo: VARIANT_TYPE.isRequired,
   mode: PropTypes.oneOf(['list', 'detail']).isRequired,
   transformCurrency: PropTypes.func.isRequired,
@@ -110,9 +108,5 @@ Description.propTypes = {
   memberSeePrice: PropTypes.bool.isRequired,
 };
 /* eslint-enable react/no-typos */
-
-Description.defaultProps = {
-  activityData: null,
-};
 
 export default withTranslation('product-info')(radium(Description));

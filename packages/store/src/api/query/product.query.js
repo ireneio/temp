@@ -95,6 +95,12 @@ const productQuery = `{
   page {
     ${pageQuery}
   }
+  applicableActivities {
+    title {
+      zh_TW
+    }
+    discountPrice
+  }
 }`;
 
 export default productQuery;

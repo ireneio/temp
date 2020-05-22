@@ -31,43 +31,28 @@ function* getProductFlow({ payload }) {
     } else {
       const product = data?.data?.computeProductList?.data?.[0] || null;
       if (product) {
-        // Get activities from computeOrderList
-        // FIXME: when api join activities data in computeProductList
-        const computeOrderData = yield call(Api.getActivitiesByProduct, {
-          ...payload,
-          variantId: product?.variants?.[0]?.id || '',
-        });
-        if (computeOrderData.apiErr) {
-          yield put(getProductFailure(computeOrderData.apiErr));
-        } else {
-          const activities =
-            computeOrderData?.data?.computeOrderList?.[0]?.categories?.[0]
-              ?.products?.[0]?.activityInfo || [];
+        const { page } = product;
+        const blocks = page.blocks
+          .filter(
+            ({ releaseDateTime }) =>
+              !releaseDateTime ||
+              parseInt(releaseDateTime, 10) * 1000 <= new Date().getTime(),
+          )
+          .map(({ width, componentWidth, widgets, ...block }) => ({
+            ...block,
+            width: [0, null].includes(width) ? 100 : width,
+            componentWidth: componentWidth || 0,
+            // 整理及過濾Client-side rendering時的module資料，未來有可能在api server就幫前端整理好
+            widgets: modifyWidgetDataInClient(widgets, query),
+          }));
 
-          const { page } = product;
-          const blocks = page.blocks
-            .filter(
-              ({ releaseDateTime }) =>
-                !releaseDateTime ||
-                parseInt(releaseDateTime, 10) * 1000 <= new Date().getTime(),
-            )
-            .map(({ width, componentWidth, widgets, ...block }) => ({
-              ...block,
-              width: [0, null].includes(width) ? 100 : width,
-              componentWidth: componentWidth || 0,
-              // 整理及過濾Client-side rendering時的module資料，未來有可能在api server就幫前端整理好
-              widgets: modifyWidgetDataInClient(widgets, query),
-            }));
-
-          const modifiedPage = { ...page, blocks };
-          yield put(
-            getProductSuccess({
-              ...product,
-              activities,
-              page: modifiedPage,
-            }),
-          );
-        }
+        const modifiedPage = { ...page, blocks };
+        yield put(
+          getProductSuccess({
+            ...product,
+            page: modifiedPage,
+          }),
+        );
       } else {
         yield put(getProductFailure({ status: 'ERROR_PRODUCT_NOT_FOUND' }));
       }
