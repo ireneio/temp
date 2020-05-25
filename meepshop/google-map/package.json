@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "@meepshop/google-map",
+  "description": "Meepshop google map module",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "keywords": ["google map", "meepshop"]
+}

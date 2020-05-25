@@ -5,6 +5,8 @@ import mock from '../mock';
 
 import getLocale from './utils/getLocale';
 
+import PageModule from './PageModule';
+
 // graphql typescript
 import { PageMock } from './__generated__/PageMock';
 
@@ -18,6 +20,7 @@ import localeFragment from './fragments/locale';
 gql`
   fragment PageMock on Page {
     id
+    width
     title {
       ...localeFragment
     }
@@ -49,9 +52,53 @@ export default mock.add<
       obj.defaultHomePage?.id ||
       obj.defaultProductListPage?.id ||
       'id',
+    width: null,
     title:
       obj.defaultHomePage?.title ||
       obj.defaultProductListPage?.title ||
       getLocale(obj.node?.id || 'id'),
+    modules: PageModule({}, {}),
+  }),
+  obj => ({
+    __typename: 'Page',
+    id:
+      obj.node?.id ||
+      obj.defaultHomePage?.id ||
+      obj.defaultProductListPage?.id ||
+      'id',
+    width: 940,
+    title:
+      obj.defaultHomePage?.title ||
+      obj.defaultProductListPage?.title ||
+      getLocale(obj.node?.id || 'id'),
+    modules: PageModule({}, {}),
+  }),
+  obj => ({
+    __typename: 'Page',
+    id:
+      obj.node?.id ||
+      obj.defaultHomePage?.id ||
+      obj.defaultProductListPage?.id ||
+      'id',
+    width: 1140,
+    title:
+      obj.defaultHomePage?.title ||
+      obj.defaultProductListPage?.title ||
+      getLocale(obj.node?.id || 'id'),
+    modules: PageModule({}, {}),
+  }),
+  obj => ({
+    __typename: 'Page',
+    id:
+      obj.node?.id ||
+      obj.defaultHomePage?.id ||
+      obj.defaultProductListPage?.id ||
+      'id',
+    width: 1440,
+    title:
+      obj.defaultHomePage?.title ||
+      obj.defaultProductListPage?.title ||
+      getLocale(obj.node?.id || 'id'),
+    modules: PageModule({}, {}),
   }),
 ]);

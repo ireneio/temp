@@ -1,0 +1,23 @@
+enum GroupModuleComponentWidth {
+  WIDTH120
+  WIDTH240
+  WIDTH300
+}
+
+enum GroupModulePadding {
+  PADDING5
+  PADDING10
+  PADDING20
+  PADDING30
+  PADDING40
+  PADDING50
+}
+
+type GroupModule implements Module {
+  id: ID!
+  parentId: ID!
+  percentWidth: PercentWidth!
+  componentWidth: GroupModuleComponentWidth
+  padding: GroupModulePadding
+  releaseTime: DateTime
+}

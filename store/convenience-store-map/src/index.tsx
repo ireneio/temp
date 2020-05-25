@@ -2,7 +2,7 @@
 import { QueryResult } from '@apollo/react-common';
 
 import { I18nPropsType } from '@store/utils/lib/i18n';
-import { phoneMedia } from '@store/utils/lib/styles';
+import { screenSmMax } from '@store/utils/lib/styles';
 
 // import
 import React from 'react';
@@ -153,7 +153,7 @@ class ConvenienceStoreMap extends React.PureComponent<PropsType> {
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              @media ${phoneMedia} {
+              @media (max-width: ${screenSmMax}) {
                 body { position: fixed; }
               }
             `,

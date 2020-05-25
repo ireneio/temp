@@ -16,7 +16,7 @@ import moment from 'moment';
 import transformColor from 'color';
 
 import { withTranslation } from '@store/utils/lib/i18n';
-import { phoneMedia } from '@store/utils/lib/styles';
+import { screenSmMax } from '@store/utils/lib/styles';
 import {
   calculateOrderApply,
   calculateOrderProducts,
@@ -288,7 +288,7 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              @media ${phoneMedia} {
+              @media (max-width: ${screenSmMax}) {
                 .${styles.root} h1 > span:last-child {
                   color: ${transformColor(colors[3]).alpha(0.5)};
                 }

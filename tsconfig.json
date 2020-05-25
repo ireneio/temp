@@ -18,7 +18,8 @@
       "@admin/apollo-client-resolvers/lib/*": ["admin/apollo-client-resolvers/src/*"],
       "@store/utils/lib/*": ["store/utils/src/*"],
       "@store/apollo-client-resolvers/lib/*": ["store/apollo-client-resolvers/src/*"],
-      "@store/ad-track/lib/*": ["store/ad-track/src/*"]
+      "@store/ad-track/lib/*": ["store/ad-track/src/*"],
+      "@meepshop/google-map/lib/*": ["meepshop/google-map/src/*"]
     }
   },
   "include": [

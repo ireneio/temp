@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { phoneMedia } from '@store/utils/lib/styles';
+import { screenSmMax } from '@store/utils/lib/styles';
 
 import {
   ID_TYPE,
@@ -57,7 +57,7 @@ export default class Divider extends React.PureComponent {
                 height: ${height}px;
               }
 
-              @media ${phoneMedia} {
+              @media (max-width: ${screenSmMax}) {
                 #divider-${id} > div {
                   height: ${height / 2}px;
                 }
