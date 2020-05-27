@@ -40,7 +40,7 @@ const Description = ({
         style={styles.description}
       />
     )}
-    {productData.applicableActivities && (
+    {productData.applicableActivities?.length > 0 && (
       <div style={styles.activities}>
         {productData.applicableActivities.map(activity =>
           !activity.title ? null : (
