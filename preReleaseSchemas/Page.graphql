@@ -1,6 +1,5 @@
 scalar NonNegativeInt
 scalar HexColorCode
-scalar EmailAddress
 scalar PhoneNumber
 
 enum PercentWidth {
