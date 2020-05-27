@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.42.3 (2020-05-27)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#959](https://github.com/meepshop/meep-lerna/pull/959) 【優化】商品版型元件 - 商品細節 - 資料顯示間距調整 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- [#966](https://github.com/meepshop/meep-lerna/pull/966) (@meepshop/frontend) Remove existing schema ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.42.2 (2020-05-27)
 
 #### :boom: Breaking Change
