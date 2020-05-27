@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.42.2 (2020-05-27)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`
+  - [#955](https://github.com/meepshop/meep-lerna/pull/955) 重構 block ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#960](https://github.com/meepshop/meep-lerna/pull/960) 【BUG】 粗黑體文字顏色 - 前台顯示異常 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#965](https://github.com/meepshop/meep-lerna/pull/965) (@meepshop/images) Fix testing error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.42.1 (2020-05-22)
 
 #### :bug: Bug Fix
