@@ -27,7 +27,7 @@ const Example = React.memo(() => {
 
 /*compiled by @meepshop/images*/
 import ImagesContext from "@meepshop/images/src/ImagesContext";
-const Example = React.memo(() => {
+const Example = /*#__PURE__*/React.memo(() => {
   const getUrl = useContext(ImagesContext);
   return /*#__PURE__*/React.createElement("img", {
     src: getUrl({
@@ -74,7 +74,7 @@ const Example = React.memo(() => {
 
 /*compiled by @meepshop/images*/
 import ImagesContext from "@meepshop/images/src/ImagesContext";
-const Example = React.memo(() => {
+const Example = /*#__PURE__*/React.memo(() => {
   const getUrl = useContext(ImagesContext);
   return /*#__PURE__*/React.createElement("img", {
     src: getUrl({
