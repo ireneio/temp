@@ -4,7 +4,7 @@
   "description": "Address cascader for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.42.2",
+  "version": "0.42.5",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
