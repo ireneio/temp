@@ -63,7 +63,7 @@ export const validateAddressCascader = (message: string) => (
   value: { address?: string[]; zipCode?: string },
   callback: (message?: string) => void,
 ) => {
-  if (!value?.address?.length) callback(message);
+  if ((value?.address || []).length === 0 || !value?.zipCode) callback(message);
   else callback();
 };
 
