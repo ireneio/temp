@@ -94,11 +94,12 @@ class PayemntInfo extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
-    const { i18n, id, variantsTree } = nextProps;
+    const { i18n, id, variantsTree, isLogin } = nextProps;
 
-    if (id && id !== preState.productId) {
+    if ((id && id !== preState.productId) || isLogin !== preState.isLogin) {
       return {
         productId: id,
+        isLogin,
         variantOptions: getVariantOptions(variantsTree.children, i18n),
         variantMax: 0,
         variantMin: 0,
@@ -113,9 +114,10 @@ class PayemntInfo extends React.PureComponent {
   }
 
   componentDidUpdate(preProps, preState) {
-    const { productId } = this.state;
+    const { productId, isLogin } = this.state;
 
-    if (preState.productId !== productId) this.fetchFirst();
+    if (preState.productId !== productId || preState.isLogin !== isLogin)
+      this.fetchFirst();
   }
 
   componentWillUnmount() {

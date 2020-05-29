@@ -7,6 +7,7 @@ import * as Api from 'api';
 const GET_PRODUCT_REQUEST = 'GET_PRODUCT_REQUEST';
 const GET_PRODUCT_SUCCESS = 'GET_PRODUCT_SUCCESS';
 const GET_PRODUCT_FAILURE = 'GET_PRODUCT_FAILURE';
+const CLEAN_PRODUCT = 'CLEAN_PRODUCT';
 
 export const getProduct = payload => ({
   type: GET_PRODUCT_REQUEST,
@@ -19,6 +20,9 @@ export const getProductSuccess = payload => ({
 export const getProductFailure = payload => ({
   type: GET_PRODUCT_FAILURE,
   payload,
+});
+export const cleanProduct = () => ({
+  type: CLEAN_PRODUCT,
 });
 
 function* getProductFlow({ payload }) {
@@ -81,11 +85,13 @@ export default function(state = initialState, { type, payload }) {
     case GET_PRODUCT_REQUEST:
       return state;
     case GET_PRODUCT_SUCCESS: {
-      return state.concat([payload]);
+      return [...state.filter(product => product.id !== payload.id), payload];
     }
     case GET_PRODUCT_FAILURE: {
       return { error: payload };
     }
+    case CLEAN_PRODUCT:
+      return initialState;
     default:
       return state;
   }

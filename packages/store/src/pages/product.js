@@ -64,6 +64,19 @@ class Product extends React.Component {
 
   static defaultProps = { error: null };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const {
+      dispatchAction,
+      location: { query },
+      isLogin,
+    } = nextProps;
+
+    if (prevState?.isLogin && prevState.isLogin !== isLogin)
+      dispatchAction('getProduct', { id: query.pId, query });
+
+    return { isLogin };
+  }
+
   componentDidMount() {
     const { adTrack, product } = this.props;
 
@@ -155,12 +168,15 @@ const mapStateToProps = (state, props) => {
     location: Utils.uriParser(props),
     fbAppId: state?.storeReducer?.appLogins?.[0]?.appId,
     page: getJoinedPageInProductRoute(state, props),
+    isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     // !!Note: product page ONLY
     product: getProduct(state, props),
     productDescription: getProductDescription(state, props),
   };
 };
 
-export default connect(mapStateToProps)(
-  withTranslation('common')(withContext(adTrackContext)(Product)),
-);
+export default connect(mapStateToProps, dispatch => ({
+  dispatchAction: (actionName, args) => {
+    dispatch(Actions[actionName](args));
+  },
+}))(withTranslation('common')(withContext(adTrackContext)(Product)));

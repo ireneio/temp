@@ -8,6 +8,7 @@ import * as Api from 'api';
 import { NOTLOGIN, ISUSER } from 'constants';
 
 import { cleanProductList } from './lists';
+import { cleanProduct } from './products';
 
 const getCart = data => {
   const changeCart = data?.data?.changeCartList?.[0] || null;
@@ -133,6 +134,7 @@ export function* loginFlow({ payload }) {
 
       yield put(loginSuccess(memberData));
       yield put(cleanProductList());
+      yield put(cleanProduct());
     } else {
       yield put(loginFailure());
       notification.error({

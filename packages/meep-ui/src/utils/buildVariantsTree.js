@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { areEqual } from 'fbjs';
 import * as d3 from 'd3-hierarchy';
 
 import { ID_TYPE, LOCALE_TYPE } from 'constants/propTypes';
@@ -104,9 +105,7 @@ export default propsKey => Component =>
     };
 
     static getDerivedStateFromProps(nextProps, preState) {
-      const { id } = nextProps[propsKey] || {};
-
-      if (id && id !== (preState[propsKey] || {}).id)
+      if (!areEqual(nextProps[propsKey], preState[propsKey]))
         return { [propsKey]: buildTree(nextProps[propsKey]) };
 
       return null;
