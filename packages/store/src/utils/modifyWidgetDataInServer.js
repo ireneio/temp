@@ -124,6 +124,7 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
               newWindow: widget.newWindow,
               files: widget.files,
               customTracking: widget.customTracking,
+              alt: widget.alt,
             };
           }
           /* 語法嵌入 */
@@ -160,6 +161,7 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
               files: widget.files,
               newWindow: widget.newWindow,
               customTracking: widget.customTracking,
+              alt: widget.alt,
             };
           }
           /* 分隔線 */
@@ -283,6 +285,7 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
               files: widget.files,
               newWindow: widget.newWindow,
               customTracking: widget.customTracking,
+              alt: widget.alt,
             };
           }
           /* 文字 */

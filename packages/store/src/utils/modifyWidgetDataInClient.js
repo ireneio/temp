@@ -119,6 +119,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
             newWindow: widget.newWindow,
             files: widget.files,
             customTracking: widget.customTracking,
+            alt: widget.alt,
           };
         }
         /* 語法嵌入 */
@@ -153,6 +154,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
             files: widget.files,
             newWindow: widget.newWindow,
             customTracking: widget.customTracking,
+            alt: widget.alt,
           };
         }
         /* 分隔線 */
@@ -270,6 +272,7 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
             files: widget.files,
             newWindow: widget.newWindow,
             customTracking: widget.customTracking,
+            alt: widget.alt,
           };
         }
         /* 文字 */

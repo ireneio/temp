@@ -56,12 +56,14 @@ export default class ImageText extends React.PureComponent {
         value: PropTypes.string.isRequired,
       }).isRequired,
     }),
+    alt: PropTypes.string,
   };
 
   static defaultProps = {
     files: null,
     newWindow: false,
     customTracking: null,
+    alt: '',
   };
 
   state = {
@@ -99,6 +101,7 @@ export default class ImageText extends React.PureComponent {
       textColor,
       overlayBackgroundColor,
       customTracking,
+      alt,
     } = this.props;
     const { showOverlay } = this.state;
 
@@ -127,7 +130,7 @@ export default class ImageText extends React.PureComponent {
           contentWidth={100}
           newWindow={newWindow}
           alignment="center"
-          alt={header.value || description.value || button.value}
+          alt={alt || header.value || description.value || button.value}
         />
 
         <Link

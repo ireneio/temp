@@ -30,12 +30,14 @@ export default class Carousel extends React.PureComponent {
         value: PropTypes.string.isRequired,
       }).isRequired,
     }),
+    alt: PropTypes.string,
   };
 
   static defaultProps = {
     files: null,
     newWindow: false,
     customTracking: null,
+    alt: '',
   };
 
   state = {
@@ -128,6 +130,7 @@ export default class Carousel extends React.PureComponent {
       enableControls,
       pauseWhenHover,
       customTracking, // 廣告追蹤用
+      alt,
     } = this.props;
     const { imageIndex } = this.state;
     const files = this.getFiles();
@@ -163,7 +166,7 @@ export default class Carousel extends React.PureComponent {
                 newWindow={newWindow}
                 alignment="center"
                 customTracking={customTracking}
-                alt={file?.image}
+                alt={alt}
               />
             </div>
           ))}
