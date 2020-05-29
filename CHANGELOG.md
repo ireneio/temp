@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.42.5 (2020-05-29)
+
+#### :bug: Bug Fix
+
+- [#970](https://github.com/meepshop/meep-lerna/pull/970) 【BUG】後台 - 「新北市新莊區」的訂單，收件人資訊地址欄位沒有出現郵遞區號 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.42.4 (2020-05-29)
 
 #### :rocket: New Feature
