@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.42.4 (2020-05-29)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#962](https://github.com/meepshop/meep-lerna/pull/962) 【功能】圖片元件新增「圖片替代文字」欄位 ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#963](https://github.com/meepshop/meep-lerna/pull/963) 【BUG】會員登入前/後商品頁資訊顯示問題 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.42.3 (2020-05-27)
 
 #### :rocket: New Feature
