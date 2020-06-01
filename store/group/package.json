@@ -4,12 +4,12 @@
   "description": "Store core module to control the all modules",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.42.2",
+  "version": "0.43.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/google-map": "^0.42.2",
-    "@store/utils": "^0.42.2",
+    "@meepshop/google-map": "^0.43.0",
+    "@store/utils": "^0.43.0",
     "d3-hierarchy": "^1.1.6"
   },
   "keywords": ["group", "store"]
