@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.43.0 (2020-06-01)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#797](https://github.com/meepshop/meep-lerna/pull/797) 【優化】頁面設計/頁面管 /page-manager ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.42.5 (2020-05-29)
 
 #### :bug: Bug Fix
