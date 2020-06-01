@@ -32,13 +32,14 @@ export default ({
       }}
       onClick={() =>
         setSelectedIds(
-          !selectedIds.includes(id)
+          !selectedIds.includes(id) && !selectedIds.includes(image) // TODO: should only include id
             ? [...selectedIds, id]
             : selectedIds.filter(existingIds => existingIds !== id),
         )
       }
     >
-      {!selectedIds.includes(id) ? null : (
+      {!selectedIds.includes(id) &&
+      !selectedIds.includes(image) /* TODO: should only include id */ ? null : (
         <div className={styles.selected}>
           <Icon type="check-circle" theme="filled" />
         </div>

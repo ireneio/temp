@@ -1,0 +1,123 @@
+{
+  "title": " ページ管理",
+  "search": null,
+  "page": null,
+  "product-page": "製品テンプレート",
+  "home-page": {
+    "title": "トップページ",
+    "icon-hint": "現在のホームページ"
+  },
+  "custom-page": {
+    "title": null
+  },
+  "default-product-list-page": {
+    "title": null,
+    "hint": null,
+    "icon-hint": null
+  },
+  "template-page": {
+    "title": null,
+    "hint": null
+  },
+  "edit": "編集",
+  "preview": null,
+  "add-new-page": {
+    "hint": null,
+    "page": null,
+    "product-page": null,
+    "add": "作成する",
+    "cancel": " キャンセル"
+  },
+  "form": {
+    "required": "必須(必ず入力して下さい)",
+    "title": {
+      "title": " ページ名",
+      "placeholder": "ページ名を入力してください",
+      "hint": "管理バックエンドプラットフォームの名前"
+    },
+    "path": {
+      "title": " ページのURL名",
+      "placeholder": null
+    },
+    "tabTitle": {
+      "title": " Webページのページング名",
+      "placeholder": null
+    },
+    "keywords": {
+      "title": "SEO キーワード",
+      "placeholder": "キーワードを半角のコマ（服、アクセサリー）で区切ってください",
+      "hint": "Googleはこれらのキーワードをサポートしていません。 キーワードが多すぎると、一部の検索エンジンがスパムWebサイトと見なされます。"
+    },
+    "description": {
+      "title": "SEO 記述",
+      "placeholder": "75語以内で入力してください",
+      "hint": "ウェブサイトで提供されるサービスについて顧客に説明して、ウェブサイトにアクセスしてもらう"
+    },
+    "image": {
+      "title": "SEO 写真",
+      "hint": "検索エンジンSEOスクリーンキャプチャ設定"
+    },
+    "templateType": null,
+    "use-bottom": null
+  },
+  "notice": null,
+  "template-can-not-delete": null,
+  "page-setting": {
+    "hint": "設定",
+    "edit": "リネーム",
+    "seo": null,
+    "copy": "コピー",
+    "delete": "削除する",
+    "home": null,
+    "template": null,
+    "save": "セーブ"
+  },
+  "template": {
+    "DEFAULT": null,
+    "FIXED_TOP": null,
+    "FIXED_TOP_WITH_SIDEBAR": null,
+    "TWO_TOPS": null,
+    "TWO_TOPS_WITH_SIDEBAR": null
+  },
+  "not-find": {
+    "0": null,
+    "1": null
+  },
+  "try-another-word": null,
+  "seo": {
+    "back": " 戻る",
+    "select": "選択してください"
+  },
+  "create-page": {
+    "error": null
+  },
+  "assign-default-home-page": {
+    "success": null,
+    "error": null
+  },
+  "assign-default-product-template-page": {
+    "success": null,
+    "error": null
+  },
+  "delete-page": {
+    "success": null,
+    "error": null,
+    "confirm": {
+      "title": "削除することを確認しますか？",
+      "content": "削除されたページは復元できません。 削除することを確認しますか？",
+      "ok": "確認する",
+      "cancel": " キャンセル"
+    }
+  },
+  "duplicate-page": {
+    "success": null,
+    "error": null
+  },
+  "rename-page-with-seo": {
+    "success": null,
+    "error": {
+      "FAIL_PAGE_PATH_DUPLICATE": "重複したウェブサイト名",
+      "default": "更新に失敗しました"
+    }
+  }
+}

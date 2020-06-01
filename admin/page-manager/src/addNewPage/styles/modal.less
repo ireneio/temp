@@ -1,0 +1,66 @@
+@import '~@admin/utils/lib/styles/variables.less';
+
+.root {
+  :global(.ant-modal-content) {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 100px);
+  }
+
+  :global(.ant-modal-body) {
+    padding: 16px 24px;
+    height: 100%;
+    overflow: scroll;
+  }
+
+  :global(.ant-form-item) {
+    margin: 0px;
+
+    &:not(:first-child) {
+      margin: 24px 0px 0px;
+    }
+
+    &.switch {
+      margin: 16px 0px;
+
+      span {
+        display: inline-block;
+        margin: 0px 0px 0px 8px;
+      }
+    }
+  }
+
+  :global(.anticon.anticon-question-circle) {
+    margin: 0px 0px 0px 5px;
+    color: @primary-color;
+  }
+}
+
+.title {
+  display: block;
+  margin: 0px 0px 8px;
+  line-height: 14px;
+}
+
+.notice {
+  padding: 8px 16px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.65);
+  background: #fafafa;
+}
+
+.templateCanNotDelete {
+  position: absolute;
+  bottom: 16px;
+  color: rgba(0, 0, 0, 0.35);
+  font-size: 12px;
+
+  :global(.anticon) {
+    margin: 0px 5px 0px 0px;
+  }
+}
+
+.tooltip {
+  width: 200px;
+  min-height: 32px;
+}

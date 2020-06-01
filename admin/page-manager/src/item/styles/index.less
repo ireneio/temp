@@ -1,0 +1,41 @@
+.root {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 8px 0px 40px;
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  line-height: 14px;
+  color: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.02);
+
+    :global(.anticon-setting):not(.visible) {
+      display: inline-block;
+    }
+  }
+
+  &.selected {
+    color: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 197, 220, 0.03);
+
+    :global(.anticon-setting) {
+      opacity: 0.65;
+    }
+  }
+
+  & > div:first-child {
+    padding: 14px 0px;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  :global(.anticon-setting):not(.visible) {
+    display: none;
+  }
+}

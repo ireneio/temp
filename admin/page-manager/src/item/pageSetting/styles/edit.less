@@ -1,0 +1,68 @@
+@import '~@admin/utils/lib/styles/variables.less';
+
+.root {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  max-width: 580px;
+  height: 100%;
+  background: #ffffff;
+  border-right: 1px solid #e6e6e6;
+  z-index: 5;
+  transition: left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.title {
+  position: relative;
+  padding: 0px 20px;
+  line-height: 45px;
+  border-bottom: 1px solid #e6e6e6;
+
+  :global(.anticon-close) {
+    position: absolute;
+    right: 0px;
+    padding: 0px 20px;
+    line-height: 45px;
+  }
+}
+
+.form {
+  padding: 32px;
+
+  :global(.ant-form-item-children) {
+    display: flex;
+    width: 100%;
+
+    & > *:first-child {
+      width: calc(7 / 23 * 100%);
+      line-height: 32px;
+      text-align: right;
+      padding: 0px 12px 0px 0px;
+    }
+
+    & > *:last-child {
+      width: calc(16 / 23 * 100%);
+    }
+  }
+
+  :global(.ant-form-explain) {
+    padding: 0px 0px 0px calc(7 / 23 * 100%);
+  }
+
+  :global(.anticon-question-circle) {
+    margin: 0px 0px 0px 4px;
+    color: @primary-color;
+    cursor: pointer;
+  }
+}
+
+.seo {
+  margin: 48px 0px 0px;
+  padding: 48px 0px 0px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tooltip {
+  width: 200px;
+  min-height: 32px;
+}

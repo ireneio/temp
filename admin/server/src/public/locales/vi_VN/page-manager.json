@@ -1,0 +1,123 @@
+{
+  "title": "Quản lý trang",
+  "search": null,
+  "page": null,
+  "product-page": "Mẫu sản phẩm",
+  "home-page": {
+    "title": "Nhà",
+    "icon-hint": "Trang chủ hiện tại"
+  },
+  "custom-page": {
+    "title": null
+  },
+  "default-product-list-page": {
+    "title": null,
+    "hint": null,
+    "icon-hint": null
+  },
+  "template-page": {
+    "title": null,
+    "hint": null
+  },
+  "edit": "Chỉnh sửa",
+  "preview": null,
+  "add-new-page": {
+    "hint": null,
+    "page": null,
+    "product-page": null,
+    "add": "Tạo nên",
+    "cancel": "Hủy bỏ"
+  },
+  "form": {
+    "required": "Cần thiết",
+    "title": {
+      "title": "Tiêu đề trang",
+      "placeholder": "Vui lòng nhập tiêu đề trang",
+      "hint": "Tên của nền tảng quản lý Back-end"
+    },
+    "path": {
+      "title": "Tên URL trang",
+      "placeholder": null
+    },
+    "tabTitle": {
+      "title": "Tên tab trang",
+      "placeholder": null
+    },
+    "keywords": {
+      "title": "SEO từ khóa",
+      "placeholder": "Vui lòng phân tách các từ khóa với hôn mê nửa băng thông (quần áo, phụ kiện)",
+      "hint": "Google không hỗ trợ các từ khóa này. Quá nhiều từ khóa sẽ dẫn đến một số công cụ tìm kiếm bị coi là trang web spam."
+    },
+    "description": {
+      "title": "SEO sự từ chối",
+      "placeholder": "Vui lòng nhập không quá 75 từ",
+      "hint": "Nói cho khách hàng biết thêm về các dịch vụ được cung cấp trên trang web của bạn để thu hút họ ghé thăm trang web của bạn"
+    },
+    "image": {
+      "title": "SEO tấm ảnh",
+      "hint": "Công cụ tìm kiếm Cài đặt chụp màn hình SEO"
+    },
+    "templateType": null,
+    "use-bottom": null
+  },
+  "notice": null,
+  "template-can-not-delete": null,
+  "page-setting": {
+    "hint": "Cài đặt",
+    "edit": "Đổi tên",
+    "seo": null,
+    "copy": "bản sao",
+    "delete": "Xóa bỏ",
+    "home": null,
+    "template": null,
+    "save": "Tiết kiệm"
+  },
+  "template": {
+    "DEFAULT": null,
+    "FIXED_TOP": null,
+    "FIXED_TOP_WITH_SIDEBAR": null,
+    "TWO_TOPS": null,
+    "TWO_TOPS_WITH_SIDEBAR": null
+  },
+  "not-find": {
+    "0": null,
+    "1": null
+  },
+  "try-another-word": null,
+  "seo": {
+    "back": "Trở lại",
+    "select": "Lựa chọn"
+  },
+  "create-page": {
+    "error": null
+  },
+  "assign-default-home-page": {
+    "success": null,
+    "error": null
+  },
+  "assign-default-product-template-page": {
+    "success": null,
+    "error": null
+  },
+  "delete-page": {
+    "success": null,
+    "error": null,
+    "confirm": {
+      "title": "Bạn có xác nhận để xóa?",
+      "content": "Trang đã xóa không thể được khôi phục. Bạn có xác nhận để xóa?",
+      "ok": "Xác nhận",
+      "cancel": "Hủy bỏ"
+    }
+  },
+  "duplicate-page": {
+    "success": null,
+    "error": null
+  },
+  "rename-page-with-seo": {
+    "success": null,
+    "error": {
+      "FAIL_PAGE_PATH_DUPLICATE": "Tên trang web trùng lặp",
+      "default": "Cập nhật thất bại"
+    }
+  }
+}

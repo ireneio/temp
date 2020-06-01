@@ -1,0 +1,123 @@
+{
+  "title": "Manajemen Halaman",
+  "search": null,
+  "page": null,
+  "product-page": "Template Produk",
+  "home-page": {
+    "title": "Rumah",
+    "icon-hint": "Beranda saat ini"
+  },
+  "custom-page": {
+    "title": null
+  },
+  "default-product-list-page": {
+    "title": null,
+    "hint": null,
+    "icon-hint": null
+  },
+  "template-page": {
+    "title": null,
+    "hint": null
+  },
+  "edit": "Edit",
+  "preview": null,
+  "add-new-page": {
+    "hint": null,
+    "page": null,
+    "product-page": null,
+    "add": "Membuat",
+    "cancel": "Membatalkan"
+  },
+  "form": {
+    "required": "Yg dibutuhkan",
+    "title": {
+      "title": "Judul halaman",
+      "placeholder": "Silakan masukkan judul halaman",
+      "hint": "Nama Platform Back-end Manajemen"
+    },
+    "path": {
+      "title": "Nama URL Halaman",
+      "placeholder": null
+    },
+    "tabTitle": {
+      "title": "Nama Tab Halaman",
+      "placeholder": null
+    },
+    "keywords": {
+      "title": "SEO kata kunci",
+      "placeholder": "Pisahkan kata kunci dengan koma setengah lebar (pakaian, aksesori)",
+      "hint": "Google tidak mendukung kata kunci ini. Jumlah kata kunci yang berlebihan akan mengakibatkan beberapa mesin pencari dianggap sebagai situs web spam."
+    },
+    "description": {
+      "title": "Deskripsi SEO",
+      "placeholder": "Harap masukkan tidak lebih dari 75 kata",
+      "hint": "Beri tahu pelanggan lebih lanjut tentang layanan yang disediakan di situs web Anda untuk menarik mereka mengunjungi situs web Anda"
+    },
+    "image": {
+      "title": "SEO Foto",
+      "hint": "Mesin Pencari Pengaturan Layar SEO"
+    },
+    "templateType": null,
+    "use-bottom": null
+  },
+  "notice": null,
+  "template-can-not-delete": null,
+  "page-setting": {
+    "hint": "Pengaturan",
+    "edit": "Ganti nama",
+    "seo": null,
+    "copy": "Salinan",
+    "delete": "Menghapus",
+    "home": null,
+    "template": null,
+    "save": "Menyimpan"
+  },
+  "template": {
+    "DEFAULT": null,
+    "FIXED_TOP": null,
+    "FIXED_TOP_WITH_SIDEBAR": null,
+    "TWO_TOPS": null,
+    "TWO_TOPS_WITH_SIDEBAR": null
+  },
+  "not-find": {
+    "0": null,
+    "1": null
+  },
+  "try-another-word": null,
+  "seo": {
+    "back": "Kembali",
+    "select": "Pilih"
+  },
+  "create-page": {
+    "error": null
+  },
+  "assign-default-home-page": {
+    "success": null,
+    "error": null
+  },
+  "assign-default-product-template-page": {
+    "success": null,
+    "error": null
+  },
+  "delete-page": {
+    "success": null,
+    "error": null,
+    "confirm": {
+      "title": "Apakah Anda mengonfirmasi untuk menghapus?",
+      "content": "Halaman yang dihapus tidak dapat dipulihkan. Apakah Anda mengonfirmasi untuk menghapus?",
+      "ok": "Konfirmasi",
+      "cancel": "Membatalkan"
+    }
+  },
+  "duplicate-page": {
+    "success": null,
+    "error": null
+  },
+  "rename-page-with-seo": {
+    "success": null,
+    "error": {
+      "FAIL_PAGE_PATH_DUPLICATE": "Nama Situs Web Gandakan",
+      "default": "Pembaharuan gagal"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+@import '../../styles/index.less';
+
+.root {
+  min-width: 220px;
+  transform-origin: 0px !important;
+
+  h4 {
+    padding: 5px 16px;
+  }
+
+  :global(.ant-popover-inner-content) {
+    padding: 8px 0px;
+  }
+
+  :global(.ant-popover-arrow) {
+    display: none;
+  }
+}
+
+.title:extend(.title) {
+}
+
+.item {
+  padding: 14px 24px;
+  font-size: 14px;
+  letter-spacing: 0.7px;
+  line-height: 20px;
+  cursor: pointer;
+
+  &:hover {
+    background: #e5e5e5;
+  }
+
+  & > :global(.anticon) {
+    margin: 0px 10px 0px 0px;
+    font-size: 20px;
+    vertical-align: text-bottom;
+    color: #000000;
+    opacity: 0.65;
+  }
+}
+
+.button {
+  font-size: 20px;
+
+  &.visible {
+    transform: rotate(45deg);
+  }
+
+  &.notVisible {
+    transform: rotate(0deg);
+  }
+}

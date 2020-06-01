@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="80px" viewBox="0 0 120 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>55E248B1-DE84-4612-BAC5-BA9D2BC14B60</title>
+    <g id="slice" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-87.000000, -436.000000)" id="頁面選單版型/大/雙置頂">
+            <g transform="translate(87.000000, 436.000000)">
+                <g id="Group-7">
+                    <rect id="background" fill="#FAFBFC" x="0" y="0" width="120" height="80" rx="1"></rect>
+                    <rect id="Rectangle" fill="#FFFFFF" x="0" y="30" width="120" height="50"></rect>
+                    <path d="M115,20 L115,24 L105,24 L105,20 L115,20 Z M85,20 L85,24 L75,24 L75,20 L85,20 Z M100,20 L100,24 L90,24 L90,20 L100,20 Z M70,20 L70,24 L60,24 L60,20 L70,20 Z" id="Combined-Shape" fill-opacity="0.09" fill="#000000"></path>
+                    <rect id="Rectangle" stroke-opacity="0.15" stroke="#000000" x="99.5" y="0.5" width="1" height="13"></rect>
+                    <rect id="Rectangle-Copy-4" stroke-opacity="0.15" stroke="#000000" x="78.5" y="0.5" width="1" height="13"></rect>
+                    <path d="M115,5 L115,9 L105,9 L105,5 L115,5 Z M94,5 L94,9 L84,9 L84,5 L94,5 Z" id="Combined-Shape" fill-opacity="0.09" fill="#000000"></path>
+                    <path d="M120,79 C120,79.5522847 119.552285,80 119,80 L1,80 C0.44771525,80 0,79.5522847 0,79 L0,1 C0,0.44771525 0.44771525,0 1,0 L119,0 C119.552285,0 120,0.44771525 120,1 L120,79 Z M119,30 L1,30 L1,79 L119,79 L119,30 Z M119,15 L1,15 L1,29 L119,29 L119,15 Z M119,1 L1,1 L1,14 L119,14 L119,1 Z" id="Combined-Shape" fill="#8C8C8C"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

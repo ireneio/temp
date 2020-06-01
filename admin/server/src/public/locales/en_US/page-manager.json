@@ -1,0 +1,123 @@
+{
+  "title": "Page Management",
+  "search": null,
+  "page": null,
+  "product-page": "Product Template",
+  "home-page": {
+    "title": "Home",
+    "icon-hint": "Current Homepage"
+  },
+  "custom-page": {
+    "title": null
+  },
+  "default-product-list-page": {
+    "title": null,
+    "hint": null,
+    "icon-hint": null
+  },
+  "template-page": {
+    "title": null,
+    "hint": null
+  },
+  "edit": "Edit",
+  "preview": null,
+  "add-new-page": {
+    "hint": null,
+    "page": null,
+    "product-page": null,
+    "add": "Create",
+    "cancel": "Cancel"
+  },
+  "form": {
+    "required": "Required",
+    "title": {
+      "title": "Page Title",
+      "placeholder": "Please enter page title",
+      "hint": "Name of Management Back-end Platform"
+    },
+    "path": {
+      "title": "Page URL Name",
+      "placeholder": null
+    },
+    "tabTitle": {
+      "title": "Page Tab Name",
+      "placeholder": null
+    },
+    "keywords": {
+      "title": "SEO keywords",
+      "placeholder": "Please separate keywords with halfwidth coma (clothes, accessories)",
+      "hint": "Google does not support these keywords. Excessive amount of keywords will result in some search engines being considered as spam websites."
+    },
+    "description": {
+      "title": "SEO description",
+      "placeholder": "Please enter no more than 75 words",
+      "hint": "Tell customers more about the services provided on your website to attract them to visit your website"
+    },
+    "image": {
+      "title": "SEO Photo",
+      "hint": "Search engine SEO Screen Capture Settings"
+    },
+    "templateType": null,
+    "use-bottom": null
+  },
+  "notice": null,
+  "template-can-not-delete": null,
+  "page-setting": {
+    "hint": "Settings",
+    "edit": "Rename",
+    "seo": null,
+    "copy": "Copy",
+    "delete": "Delete",
+    "home": null,
+    "template": null,
+    "save": "Save"
+  },
+  "template": {
+    "DEFAULT": null,
+    "FIXED_TOP": null,
+    "FIXED_TOP_WITH_SIDEBAR": null,
+    "TWO_TOPS": null,
+    "TWO_TOPS_WITH_SIDEBAR": null
+  },
+  "not-find": {
+    "0": null,
+    "1": null
+  },
+  "try-another-word": null,
+  "seo": {
+    "back": "Back",
+    "select": "Select"
+  },
+  "create-page": {
+    "error": null
+  },
+  "assign-default-home-page": {
+    "success": null,
+    "error": null
+  },
+  "assign-default-product-template-page": {
+    "success": null,
+    "error": null
+  },
+  "delete-page": {
+    "success": null,
+    "error": null,
+    "confirm": {
+      "title": "Do you confirm to delete?",
+      "content": "Deleted page cannot be restored. Do you confirm to delete?",
+      "ok": "Confirm",
+      "cancel": "Cancel"
+    }
+  },
+  "duplicate-page": {
+    "success": null,
+    "error": null
+  },
+  "rename-page-with-seo": {
+    "success": null,
+    "error": {
+      "FAIL_PAGE_PATH_DUPLICATE": "Duplicated Website Name",
+      "default": "Update failed"
+    }
+  }
+}

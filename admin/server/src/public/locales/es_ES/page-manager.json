@@ -1,0 +1,123 @@
+{
+  "title": "Gestión de página",
+  "search": null,
+  "page": null,
+  "product-page": "Plantilla de producto",
+  "home-page": {
+    "title": "Casa",
+    "icon-hint": "Página principal actual"
+  },
+  "custom-page": {
+    "title": null
+  },
+  "default-product-list-page": {
+    "title": null,
+    "hint": null,
+    "icon-hint": null
+  },
+  "template-page": {
+    "title": null,
+    "hint": null
+  },
+  "edit": "Editar",
+  "preview": null,
+  "add-new-page": {
+    "hint": null,
+    "page": null,
+    "product-page": null,
+    "add": "Crear",
+    "cancel": "Cancelar"
+  },
+  "form": {
+    "required": "Necesaria",
+    "title": {
+      "title": "Título de la página",
+      "placeholder": "Por favor ingrese el título de la página",
+      "hint": "Nombre de la plataforma administrativa de administración"
+    },
+    "path": {
+      "title": "Nombre de URL de página",
+      "placeholder": null
+    },
+    "tabTitle": {
+      "title": "Nombre de pestaña de página",
+      "placeholder": null
+    },
+    "keywords": {
+      "title": "SEO palabras clave",
+      "placeholder": "Separe las palabras clave con coma de medio ancho (ropa, accesorios)",
+      "hint": "Google no admite estas palabras clave. Una cantidad excesiva de palabras clave dará como resultado que algunos motores de búsqueda sean considerados sitios web de spam."
+    },
+    "description": {
+      "title": "Descripción de SEO",
+      "placeholder": "Por favor ingrese no más de 75 palabras",
+      "hint": "Dígales a los clientes más sobre los servicios provistos en su sitio web para atraerlos a visitar su sitio web."
+    },
+    "image": {
+      "title": "SEO Foto",
+      "hint": "Configuración de captura de pantalla SEO del motor de búsqueda"
+    },
+    "templateType": null,
+    "use-bottom": null
+  },
+  "notice": null,
+  "template-can-not-delete": null,
+  "page-setting": {
+    "hint": "Configuraciones",
+    "edit": "Rebautizar",
+    "seo": null,
+    "copy": "Dupdo",
+    "delete": "Borrar",
+    "home": null,
+    "template": null,
+    "save": "Salvar"
+  },
+  "template": {
+    "DEFAULT": null,
+    "FIXED_TOP": null,
+    "FIXED_TOP_WITH_SIDEBAR": null,
+    "TWO_TOPS": null,
+    "TWO_TOPS_WITH_SIDEBAR": null
+  },
+  "not-find": {
+    "0": null,
+    "1": null
+  },
+  "try-another-word": null,
+  "seo": {
+    "back": "atrás",
+    "select": "Seleccionar"
+  },
+  "create-page": {
+    "error": null
+  },
+  "assign-default-home-page": {
+    "success": null,
+    "error": null
+  },
+  "assign-default-product-template-page": {
+    "success": null,
+    "error": null
+  },
+  "delete-page": {
+    "success": null,
+    "error": null,
+    "confirm": {
+      "title": "¿Confirmas para eliminar?",
+      "content": "La página eliminada no se puede restaurar. ¿Confirmas para eliminar?",
+      "ok": "Confirmar",
+      "cancel": "Cancelar"
+    }
+  },
+  "duplicate-page": {
+    "success": null,
+    "error": null
+  },
+  "rename-page-with-seo": {
+    "success": null,
+    "error": {
+      "FAIL_PAGE_PATH_DUPLICATE": "Nombre de sitio web duplicado",
+      "default": "Actualización fallida"
+    }
+  }
+}

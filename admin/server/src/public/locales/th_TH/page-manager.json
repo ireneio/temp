@@ -1,0 +1,123 @@
+{
+  "title": "การจัดการหน้า",
+  "search": null,
+  "page": null,
+  "product-page": "เทมเพลตผลิตภัณฑ์",
+  "home-page": {
+    "title": "บ้าน",
+    "icon-hint": "โฮมเพจปัจจุบัน"
+  },
+  "custom-page": {
+    "title": null
+  },
+  "default-product-list-page": {
+    "title": null,
+    "hint": null,
+    "icon-hint": null
+  },
+  "template-page": {
+    "title": null,
+    "hint": null
+  },
+  "edit": "แก้ไข",
+  "preview": null,
+  "add-new-page": {
+    "hint": null,
+    "page": null,
+    "product-page": null,
+    "add": "สร้าง",
+    "cancel": "ยกเลิก"
+  },
+  "form": {
+    "required": "จำเป็นต้องใช้",
+    "title": {
+      "title": "ชื่อหน้า",
+      "placeholder": "กรุณาใส่ชื่อหน้า",
+      "hint": "ชื่อของการจัดการแพลตฟอร์มส่วนหลัง"
+    },
+    "path": {
+      "title": "ชื่อ URL หน้า",
+      "placeholder": null
+    },
+    "tabTitle": {
+      "title": "ชื่อแท็บหน้า",
+      "placeholder": null
+    },
+    "keywords": {
+      "title": "SEO คำหลัก",
+      "placeholder": "โปรดแยกคำหลักด้วย halfwidth coma (เสื้อผ้าอุปกรณ์เสริม)",
+      "hint": "Google ไม่สนับสนุนคำหลักเหล่านี้ คำหลักจำนวนมากเกินไปจะส่งผลให้เครื่องมือค้นหาบางอย่างได้รับการพิจารณาว่าเป็นเว็บไซต์สแปม"
+    },
+    "description": {
+      "title": "คำอธิบาย SEO",
+      "placeholder": "โปรดป้อนไม่เกิน 75 คำ",
+      "hint": "บอกลูกค้าเพิ่มเติมเกี่ยวกับบริการที่มีให้ในเว็บไซต์ของคุณเพื่อดึงดูดให้ลูกค้าเยี่ยมชมเว็บไซต์ของคุณ"
+    },
+    "image": {
+      "title": "SEO ภาพถ่าย",
+      "hint": "การตั้งค่าการจับภาพหน้าจอของเครื่องมือค้นหา SEO"
+    },
+    "templateType": null,
+    "use-bottom": null
+  },
+  "notice": null,
+  "template-can-not-delete": null,
+  "page-setting": {
+    "hint": "การตั้งค่า",
+    "edit": "เปลี่ยนชื่อ",
+    "seo": null,
+    "copy": "สำเนา",
+    "delete": "ลบ",
+    "home": null,
+    "template": null,
+    "save": "บันทึก"
+  },
+  "template": {
+    "DEFAULT": null,
+    "FIXED_TOP": null,
+    "FIXED_TOP_WITH_SIDEBAR": null,
+    "TWO_TOPS": null,
+    "TWO_TOPS_WITH_SIDEBAR": null
+  },
+  "not-find": {
+    "0": null,
+    "1": null
+  },
+  "try-another-word": null,
+  "seo": {
+    "back": "กลับ",
+    "select": "เลือก"
+  },
+  "create-page": {
+    "error": null
+  },
+  "assign-default-home-page": {
+    "success": null,
+    "error": null
+  },
+  "assign-default-product-template-page": {
+    "success": null,
+    "error": null
+  },
+  "delete-page": {
+    "success": null,
+    "error": null,
+    "confirm": {
+      "title": "คุณยืนยันที่จะลบหรือไม่",
+      "content": "หน้าที่ถูกลบไม่สามารถเรียกคืนได้ คุณยืนยันที่จะลบหรือไม่",
+      "ok": "ยืนยัน",
+      "cancel": "ยกเลิก"
+    }
+  },
+  "duplicate-page": {
+    "success": null,
+    "error": null
+  },
+  "rename-page-with-seo": {
+    "success": null,
+    "error": {
+      "FAIL_PAGE_PATH_DUPLICATE": "ชื่อเว็บไซต์ซ้ำ",
+      "default": "การอัพเดทล้มเหลว"
+    }
+  }
+}

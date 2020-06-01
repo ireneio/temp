@@ -1,0 +1,123 @@
+{
+  "title": "頁面設計",
+  "search": "搜尋頁面與商品版型",
+  "page": "頁面",
+  "product-page": "商品版型",
+  "home-page": {
+    "title": "首頁",
+    "icon-hint": "目前首頁"
+  },
+  "custom-page": {
+    "title": "分頁"
+  },
+  "default-product-list-page": {
+    "title": "搜尋結果頁",
+    "hint": "搜尋結果頁為搜尋商品後的顯示畫面且搜尋結果頁為固定頁面",
+    "icon-hint": "目前預設版型"
+  },
+  "template-page": {
+    "title": "商品內容頁",
+    "hint": "商品內容頁為單一商品詳細資訊頁且新增的商品會套用目前預設版型"
+  },
+  "edit": "編輯",
+  "preview": "預覽此頁",
+  "add-new-page": {
+    "hint": "新增頁面或版型",
+    "page": "新增頁面分類",
+    "product-page": "新增商品版型",
+    "add": "新增",
+    "cancel": "取消"
+  },
+  "form": {
+    "required": "必填",
+    "title": {
+      "title": "頁面名稱",
+      "placeholder": "請輸入頁面名稱",
+      "hint": "後台管理用的名稱"
+    },
+    "path": {
+      "title": "頁面網址名稱",
+      "placeholder": "請輸入頁面網址名稱"
+    },
+    "tabTitle": {
+      "title": "網頁分頁名稱",
+      "placeholder": "請輸入網頁分頁名稱"
+    },
+    "keywords": {
+      "title": "SEO 關鍵字",
+      "placeholder": "以半形逗號區分關鍵字（上衣,飾品）",
+      "hint": "Google 不會使用這些關鍵字。過多關鍵字會讓部分搜尋引擎判定為垃圾網站。"
+    },
+    "description": {
+      "title": "SEO 描述",
+      "placeholder": "建議輸入 75 字內",
+      "hint": "告訴消費者更多關於您的網站所提供的服務，吸引他們觀看您的網頁。"
+    },
+    "image": {
+      "title": "SEO 圖片",
+      "hint": "搜尋引擎 SEO 頁面抓圖設定"
+    },
+    "templateType": "頁面選單版型",
+    "use-bottom": "頁腳選單"
+  },
+  "notice": "除頁腳選單外，其餘選單內容在移動裝置上會收入手機選單中。",
+  "template-can-not-delete": "商品內容頁版型在新增之後無法刪除",
+  "page-setting": {
+    "hint": "設定",
+    "edit": "命名",
+    "seo": "命名/SEO",
+    "copy": "複製",
+    "delete": "刪除",
+    "home": "設為目前首頁",
+    "template": "設為目前預設版型",
+    "save": "儲存"
+  },
+  "template": {
+    "DEFAULT": "無選單",
+    "FIXED_TOP": "置頂選單",
+    "FIXED_TOP_WITH_SIDEBAR": "置頂+側邊選單",
+    "TWO_TOPS": "雙置頂選單",
+    "TWO_TOPS_WITH_SIDEBAR": "雙置頂+側邊選單"
+  },
+  "not-find": {
+    "0": "沒有找到與",
+    "1": "相符合的頁面"
+  },
+  "try-another-word": "請試試其他關鍵字",
+  "seo": {
+    "back": "返回",
+    "select": "選取"
+  },
+  "create-page": {
+    "error": "新增失敗"
+  },
+  "assign-default-home-page": {
+    "success": "設為目前首頁成功",
+    "error": "設為目前首頁失敗"
+  },
+  "assign-default-product-template-page": {
+    "success": "設為目前預設版型成功",
+    "error": "設為目前預設版型失敗"
+  },
+  "delete-page": {
+    "success": "頁面已刪除",
+    "error": "頁面刪除失敗",
+    "confirm": {
+      "title": "是否確認刪除？",
+      "content": "頁面刪除後，將無法復原。確定要刪除？",
+      "ok": "確定",
+      "cancel": "取消"
+    }
+  },
+  "duplicate-page": {
+    "success": "頁面已複製",
+    "error": "頁面複製失敗"
+  },
+  "rename-page-with-seo": {
+    "success": "更新成功",
+    "error": {
+      "FAIL_PAGE_PATH_DUPLICATE": "網址名稱重複",
+      "default": "更新失敗"
+    }
+  }
+}

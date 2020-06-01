@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="80px" viewBox="0 0 120 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>19E42695-FC59-46A2-946F-7453F576CF50</title>
+    <g id="slice" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-87.000000, -332.000000)" id="頁面選單版型/大/置頂">
+            <g transform="translate(87.000000, 332.000000)">
+                <g id="Group-6">
+                    <rect id="background" fill="#FAFBFC" x="0" y="0" width="120" height="80" rx="1"></rect>
+                    <rect id="Rectangle" fill="#FFFFFF" x="1" y="15" width="118" height="64"></rect>
+                    <rect id="Rectangle" stroke-opacity="0.15" stroke="#000000" x="99.5" y="0.5" width="1" height="14"></rect>
+                    <rect id="Rectangle-Copy-4" stroke-opacity="0.15" stroke="#000000" x="78.5" y="0.5" width="1" height="14"></rect>
+                    <rect id="Rectangle-Copy-87" fill-opacity="0.09" fill="#000000" x="105" y="5" width="10" height="4"></rect>
+                    <rect id="Rectangle-Copy-88" fill-opacity="0.09" fill="#000000" x="84" y="5" width="10" height="4"></rect>
+                    <path d="M120,79 C120,79.5522847 119.552285,80 119,80 L1,80 C0.44771525,80 0,79.5522847 0,79 L0,1 C0,0.44771525 0.44771525,0 1,0 L119,0 C119.552285,0 120,0.44771525 120,1 L120,79 Z M119,15 L1,15 L1,79 L119,79 L119,15 Z M119,1 L1,1 L1,14 L119,14 L119,1 Z" id="Combined-Shape" fill="#8C8C8C"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

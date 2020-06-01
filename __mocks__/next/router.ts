@@ -5,6 +5,7 @@ import React from 'react';
 // definition
 const router = {
   pathname: 'mock-pathname',
+  asPath: 'mock-path',
   query: {},
   push: window.test ? jest.fn() : action('router push'),
   prefetch: window.test ? jest.fn() : action('router prefetch'),

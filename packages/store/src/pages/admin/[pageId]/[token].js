@@ -12,7 +12,7 @@ const Page = React.memo(({ error, ...props }) => {
   if (error) return <Error error={error} />;
 
   return (
-    <div style={{ userSelect: 'none', pointerEvents: 'none' }}>
+    <div style={{ userSelect: 'none', pointerEvents: 'none', height: '100%' }}>
       <Container {...props} />
     </div>
   );

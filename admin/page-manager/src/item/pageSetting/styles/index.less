@@ -1,0 +1,23 @@
+@import '~@admin/utils/lib/styles/variables.less';
+
+.root :global(.ant-popover-inner-content) {
+  padding: 0px 16px;
+
+  & > div {
+    line-height: 32px;
+    cursor: pointer;
+
+    &:hover {
+      color: @primary-color;
+    }
+  }
+
+  :global(.anticon) {
+    margin: 0px 8px 0px 0px;
+    vertical-align: middle;
+  }
+}
+
+.icon:hover {
+  color: @primary-color;
+}

@@ -10,6 +10,8 @@ interface CustomRes extends NextApiResponse {
 // TODO: remove after rewrite page-manager with dnd, meep-nginx also need to remove
 export default (req: NextApiRequest, res: CustomRes): void => {
   res.redirect(
-    `https://${req.query.domain}/admin/${req.query.pageId}/${req.cookies['x-meepshop-authorization-token']}`,
+    `https://${req.query.domain}/admin/${req.query.pageId}/${
+      req.cookies['x-meepshop-authorization-token']
+    }${!req.query.pId ? '' : `?pId=${req.query.pId}`}`,
   );
 };
