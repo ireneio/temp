@@ -121,7 +121,7 @@ interface Module {
   parentId: ID!
 }
 
-union PageModule = GoogleMapModule | GroupModule | LayoutModule | DividerModule
+union PageModule = GoogleMapModule | GroupModule | LayoutModule | IframeModule | DividerModule
 
 extend type Page {
   modules: [PageModule!]!

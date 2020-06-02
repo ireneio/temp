@@ -1,0 +1,5 @@
+type IframeModule implements Module {
+  id: ID!
+  parentId: ID!
+  htmlCode: String!
+}

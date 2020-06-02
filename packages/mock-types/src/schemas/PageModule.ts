@@ -6,6 +6,7 @@ import mock from '../mock';
 
 import GroupModule from './GroupModule';
 import GoogleMapModule from './GoogleMapModule';
+import IframeModule from './IframeModule';
 import DividerModule from './DividerModule';
 
 // graphql typescript
@@ -29,6 +30,11 @@ gql`
     }
 
     ... on GoogleMapModule {
+      id
+      parentId
+    }
+
+    ... on IframeModule {
       id
       parentId
     }
@@ -88,5 +94,6 @@ const getPageModules = (
 
 export default mock.add<PageModuleMock[]>('PageModule', [
   () => getPageModules(GoogleMapModule),
+  () => getPageModules(IframeModule),
   () => getPageModules(DividerModule),
 ]);
