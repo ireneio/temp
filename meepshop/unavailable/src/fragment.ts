@@ -3,10 +3,7 @@ import gql from 'graphql-tag';
 
 // definition
 export default gql`
-  fragment googleMapFragment on GoogleMapModule {
+  fragment unavailableFragment on UnavailableModule {
     id
-    width
-    height
-    href
   }
 `;

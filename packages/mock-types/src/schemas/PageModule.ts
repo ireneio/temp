@@ -4,10 +4,11 @@ import uuid from 'uuid/v4';
 
 import mock from '../mock';
 
-import GroupModule from './GroupModule';
-import GoogleMapModule from './GoogleMapModule';
-import IframeModule from './IframeModule';
 import DividerModule from './DividerModule';
+import GoogleMapModule from './GoogleMapModule';
+import GroupModule from './GroupModule';
+import IframeModule from './IframeModule';
+import UnavailableModule from './UnavailableModule';
 
 // graphql typescript
 import {
@@ -29,6 +30,11 @@ gql`
       parentId
     }
 
+    ... on DividerModule {
+      id
+      parentId
+    }
+
     ... on GoogleMapModule {
       id
       parentId
@@ -39,7 +45,7 @@ gql`
       parentId
     }
 
-    ... on DividerModule {
+    ... on UnavailableModule {
       id
       parentId
     }
@@ -93,7 +99,8 @@ const getPageModules = (
 ];
 
 export default mock.add<PageModuleMock[]>('PageModule', [
+  () => getPageModules(DividerModule),
   () => getPageModules(GoogleMapModule),
   () => getPageModules(IframeModule),
-  () => getPageModules(DividerModule),
+  () => getPageModules(UnavailableModule),
 ]);

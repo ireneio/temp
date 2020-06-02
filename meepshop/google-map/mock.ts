@@ -1,9 +1,13 @@
+// import
+import uuid from 'uuid/v4';
+
 // graphql typescript
 import { googleMapFragment } from './src/__generated__/googleMapFragment';
 
 // definition
 export default {
   __typename: 'GoogleMapModule',
+  id: uuid(),
   width: 600,
   height: 800,
   href:

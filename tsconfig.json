@@ -19,10 +19,11 @@
       "@store/utils/lib/*": ["store/utils/src/*"],
       "@store/apollo-client-resolvers/lib/*": ["store/apollo-client-resolvers/src/*"],
       "@store/ad-track/lib/*": ["store/ad-track/src/*"],
-      "@meepshop/google-map/lib/*": ["meepshop/google-map/src/*"],
       "@meepshop/utils/lib/*": ["meepshop/utils/src/*"],
+      "@meepshop/divider/lib/*": ["meepshop/divider/src/*"],
+      "@meepshop/google-map/lib/*": ["meepshop/google-map/src/*"],
       "@meepshop/iframe/lib/*": ["meepshop/iframe/src/*"],
-      "@meepshop/divider/lib/*": ["meepshop/divider/src/*"]
+      "@meepshop/unavailable/lib/*": ["meepshop/unavailable/src/*"] 
     }
   },
   "include": [

@@ -1,0 +1,4 @@
+type UnavailableModule implements Module {
+  id: ID!
+  parentId: ID!
+}

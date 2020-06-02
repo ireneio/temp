@@ -3,9 +3,10 @@ import gql from 'graphql-tag';
 import dynamic from 'next/dynamic';
 
 // graphql import
+import dividerFragment from '@meepshop/divider/lib/fragment';
 import googleMapFragment from '@meepshop/google-map/lib/fragment';
 import iframeFragment from '@meepshop/iframe/lib/fragment';
-import dividerFragment from '@meepshop/divider/lib/fragment';
+import unavailableFragment from '@meepshop/unavailable/lib/fragment';
 
 // definition
 export const modulesFragment = gql`
@@ -27,6 +28,13 @@ export const modulesFragment = gql`
         parentId
       }
 
+      ... on DividerModule {
+        __typename
+        id
+        parentId
+        ...dividerFragment
+      }
+
       ... on GoogleMapModule {
         __typename
         id
@@ -41,18 +49,19 @@ export const modulesFragment = gql`
         ...iframeFragment
       }
 
-      ... on DividerModule {
+      ... on UnavailableModule {
         __typename
         id
         parentId
-        ...dividerFragment
+        ...unavailableFragment
       }
     }
   }
 
+  ${dividerFragment}
   ${googleMapFragment}
   ${iframeFragment}
-  ${dividerFragment}
+  ${unavailableFragment}
 `;
 
 export default {
@@ -62,7 +71,8 @@ export default {
   LayoutModule: () => {
     throw new Error('Can not use LayoutModule');
   },
+  DividerModule: dynamic(() => import('@meepshop/divider')),
   GoogleMapModule: dynamic(() => import('@meepshop/google-map')),
   IframeModule: dynamic(() => import('@meepshop/iframe')),
-  DividerModule: dynamic(() => import('@meepshop/divider')),
+  UnavailableModule: dynamic(() => import('@meepshop/unavailable')),
 };
