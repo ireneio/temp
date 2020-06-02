@@ -2,5 +2,4 @@
 import './styles/base.less';
 import './styles/variables.less';
 
-// antd @screen-sm-max
-export const screenSmMax = '767px';
+export { screenSmMax } from '@meepshop/utils/lib/styles';

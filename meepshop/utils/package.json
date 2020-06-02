@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "name": "@meepshop/utils",
+  "description": "Utils tool for meepshop",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "keywords": ["meepshop", "utils"]
+}

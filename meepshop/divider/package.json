@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@meepshop/divider",
+  "description": "Meepshop divider module",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "devDependencies": {
+    "@meepshop/utils": "^0.1.0"
+  },
+  "keywords": ["divider", "meepshop"]
+}

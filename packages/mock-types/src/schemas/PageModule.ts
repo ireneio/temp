@@ -6,6 +6,7 @@ import mock from '../mock';
 
 import GroupModule from './GroupModule';
 import GoogleMapModule from './GoogleMapModule';
+import DividerModule from './DividerModule';
 
 // graphql typescript
 import {
@@ -31,11 +32,17 @@ gql`
       id
       parentId
     }
+
+    ... on DividerModule {
+      id
+      parentId
+    }
   }
 `;
 
 const getPageModules = (
-  getModule: typeof GoogleMapModule,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getModule: any,
 ): PageModuleMock[] => [
   {
     ...GroupModule({}, {}),
@@ -81,4 +88,5 @@ const getPageModules = (
 
 export default mock.add<PageModuleMock[]>('PageModule', [
   () => getPageModules(GoogleMapModule),
+  () => getPageModules(DividerModule),
 ]);
