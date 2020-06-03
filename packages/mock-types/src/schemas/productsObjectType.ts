@@ -10,7 +10,6 @@ import { productsObjectTypeMock } from './__generated__/productsObjectTypeMock';
 // eslint-disable-next-line no-unused-expressions
 gql`
   fragment productsObjectTypeMock on productsObjectType {
-    id
     productId
     sku
     title {
@@ -29,7 +28,6 @@ gql`
 export default mock.add<productsObjectTypeMock>('productsObjectType', [
   () => ({
     __typename: 'productsObjectType',
-    id: 'id',
     productId: 'product id',
     type: 'gift',
     sku: 'sku',
@@ -53,7 +51,6 @@ export default mock.add<productsObjectTypeMock>('productsObjectType', [
   }),
   () => ({
     __typename: 'productsObjectType',
-    id: 'id',
     productId: 'product id',
     type: 'product',
     sku: 'sku',

@@ -24,7 +24,9 @@ export default React.memo(
     type: string;
     typeIndex: number;
   }) => {
-    const [currentIndex, changeMockData] = useState<number>(0);
+    const [currentIndex, changeMockData] = useState<number>(
+      mock.trackingIndex[typeIndex],
+    );
 
     return (
       <ButtonGroup>

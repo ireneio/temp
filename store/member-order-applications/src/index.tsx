@@ -14,6 +14,7 @@ import { withTranslation } from '@store/utils/lib/i18n';
 import Application, { getApplicationStyles } from './Application';
 import styles from './styles/index.less';
 
+// graphql typescript
 import {
   getMemberOrderApplications,
   getMemberOrderApplicationsVariables,
@@ -121,6 +122,7 @@ export default ({ orderId }: { orderId: string }): React.ReactElement => (
           ...colorListFragment
         }
       }
+
       ${applicationOrderApplyFragment}
       ${applicationProductsObjectTypeFragment}
       ${colorListFragment}

@@ -23,12 +23,12 @@ interface OrderPayLaterPropsType {
   isAvailableForPayLater: boolean;
 }
 
-interface Application extends calculateOrderOrderApplyListFragmentData {
-  extra: ApplicationData[];
+interface ApplicationData extends calculateOrderOrderApplyListFragmentData {
+  product: calculateOrderOrderFragmentProducts | null;
 }
 
-interface ApplicationData extends calculateOrderOrderApplyListFragmentData {
-  product: calculateOrderOrderFragmentProducts | {};
+interface Application extends calculateOrderOrderApplyListFragmentData {
+  extra: ApplicationData[];
 }
 
 // definition
@@ -205,7 +205,7 @@ export const calculateOrderApplications = (
                     /** TODO: should not be null */
                     application?.orderProductId ===
                     (product || { id: null }).id,
-                ) || {},
+                ) || null,
             },
           ],
         },
@@ -220,7 +220,7 @@ export const calculateOrderApplications = (
             product =>
               /** TODO: should not be null */
               application?.orderProductId === (product || { id: null }).id,
-          ) || {},
+          ) || null,
       },
     ];
     return applications;

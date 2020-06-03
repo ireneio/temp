@@ -87,6 +87,42 @@ export const viewerAuthorityListFragment = gql`
   }
 `;
 
+const defaultApps = [
+  'webTrack',
+  'memberGroup',
+  'freeGift',
+  'freeShipping',
+  'bulkdiscount',
+  'groupDiscount',
+  'productDiscount',
+  'points',
+  'newsletters',
+  'analytics',
+  'fbLogin',
+  'productAuthority',
+  'productMassUpdate',
+  'memberGroupCode',
+  'coupon',
+  'tagDiscount',
+  'productNotice',
+  'returnOrder',
+  'replacement',
+  'memberSeePrice',
+  'gooddeal',
+  'wishList',
+].reduce(
+  (result, key) => ({
+    ...result,
+    [key]: {
+      __typename: 'Extension',
+      id: key,
+      isInstalled: false,
+      isEnabled: false,
+    },
+  }),
+  { __typename: 'Apps' },
+);
+
 export const resolver = {
   Query: {
     viewer: ({
@@ -99,50 +135,48 @@ export const resolver = {
       getStoreAppList: viewerStoreAppListFragmentType;
       getAppList: viewerAppListFragmentType;
       getAuthorityList: viewerAuthorityListFragmentType;
-    }) => {
-      return {
-        ...viewer,
-        permission:
-          getAuthorityList?.data?.find(list => list?.id === viewer.groupId)
-            ?.permission || null,
-        store: !viewer?.store
-          ? null
-          : {
-              ...viewer.store,
-              apps:
-                getAppList?.data?.reduce(
-                  (
-                    list: {
-                      [plugin: string]: boolean | string;
-                    },
-                    app,
-                  ) => {
-                    if (!app) return list;
-
-                    const { id: appId, plugin } = app;
-
-                    if (!plugin || !appId) return list;
-
-                    const { id, isInstalled } =
-                      getStoreAppList?.data?.find(
-                        storeApp => storeApp?.plugin === plugin,
-                      ) || {};
-
-                    return {
-                      ...list,
-                      [plugin]: {
-                        __typename: 'Extension',
-                        id: appId,
-                        storeAppId: id || null,
-                        isInstalled: Boolean(id),
-                        isEnabled: Boolean(isInstalled),
-                      },
-                    };
+    }) => ({
+      ...viewer,
+      permission:
+        getAuthorityList?.data?.find(list => list?.id === viewer.groupId)
+          ?.permission || null,
+      store: !viewer?.store
+        ? null
+        : {
+            ...viewer.store,
+            apps:
+              getAppList?.data?.reduce(
+                (
+                  list: {
+                    [plugin: string]: boolean | string;
                   },
-                  { __typename: 'Apps' },
-                ) || null,
-            },
-      };
-    },
+                  app,
+                ) => {
+                  if (!app) return list;
+
+                  const { id: appId, plugin } = app;
+
+                  if (!plugin || !appId) return list;
+
+                  const { id, isInstalled } =
+                    getStoreAppList?.data?.find(
+                      storeApp => storeApp?.plugin === plugin,
+                    ) || {};
+
+                  return {
+                    ...list,
+                    [plugin]: {
+                      __typename: 'Extension',
+                      id: appId,
+                      storeAppId: id || null,
+                      isInstalled: Boolean(id),
+                      isEnabled: Boolean(isInstalled),
+                    },
+                  };
+                },
+                defaultApps,
+              ) || null,
+          },
+    }),
   },
 };

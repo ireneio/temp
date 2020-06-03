@@ -243,15 +243,31 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
               applicationStatus
               product {
                 id
+                quantity
+                type
                 coverImage {
                   src
                 }
                 title {
-                  ...localeFragment
+                  zh_TW
+                  en_US
+                  ja_JP
+                  vi_VN
+                  fr_FR
+                  es_ES
+                  th_TH
+                  id_ID
                 }
                 specs {
                   title {
-                    ...localeFragment
+                    zh_TW
+                    en_US
+                    ja_JP
+                    vi_VN
+                    fr_FR
+                    es_ES
+                    th_TH
+                    id_ID
                   }
                 }
               }

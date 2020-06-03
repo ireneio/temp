@@ -67,6 +67,7 @@ import WishlistProduct from './schemas/WishlistProduct';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 const schema = buildClientSchema(schemaJSON);
+let count = 0;
 
 addMockFunctionsToSchema({
   schema,
@@ -124,7 +125,13 @@ addMockFunctionsToSchema({
     userObjectType,
     WishlistProduct,
     Timestamp: () => moment().unix(),
-    DateTime: () => moment().format(),
+    DateTime: (): string => {
+      count += 1;
+
+      return moment()
+        .add(count, 'hour')
+        .format();
+    },
     JSON: (data, _, __, { fieldName }) => data[fieldName],
     URL: () =>
       'https://res.cloudinary.com/cakeresume/image/upload/s--Lv6sj1oB--/c_pad,fl_png8,h_200,w_200/v1509504375/pcotebjqdkfuqbvbt4xc.png',

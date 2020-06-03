@@ -46,7 +46,19 @@ export default (
     }
   })();
   /* eslint-enable global-require */
+  const mockLog = jest.fn();
 
+  global.console.error = (...messages: string[]) => {
+    if (
+      /Warning: An update to [\w%]+ inside a test was not wrapped in act/.test(
+        messages.join(''),
+      )
+    )
+      return;
+
+    mockLog(...messages);
+  };
+  global.console.warn = mockLog;
   mock.init();
   mount(
     <MockTypes {...resolvers}>
@@ -77,8 +89,8 @@ export default (
       ),
     )
       .toArray()
-      // FIXME: @admin/order-ecfit will heap out of memory
-      .slice(0, 300),
+      // FIXME: @admin/page-manager will heap out of memory
+      .slice(0, 80),
   )(
     `mock types testing:
 
@@ -103,6 +115,10 @@ ${mock.tracking.map(type => `  ${type}: %i`).join('\n')}
         test('exist', () => {
           expect(wrapper.exists()).toBeTruthy();
         });
+
+      test('no error and warn', () => {
+        expect(mockLog).not.toHaveBeenCalled();
+      });
     },
   );
 };

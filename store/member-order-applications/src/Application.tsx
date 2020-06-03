@@ -102,15 +102,15 @@ class Application extends React.PureComponent<PropTypes> {
         dataIndex: 'product.title',
         render: (
           value: applicationProductsObjectTypeFragmentType['title'],
-          { applicationInfo, product: { specs } },
+          { applicationInfo, product },
         ) => (
           <>
             <div>{!value ? null : value[language] || value.zh_TW}</div>
 
             <div>
-              {(specs || [])
+              {(product?.specs || [])
                 .map(spec => spec?.title?.[language] || spec?.title?.zh_TW)
-                .filter(spec => spec)
+                .filter(Boolean)
                 .join(' / ')}
             </div>
 
@@ -191,6 +191,7 @@ class Application extends React.PureComponent<PropTypes> {
         </div>
 
         <Table
+          rowKey="id"
           dataSource={data.extra}
           columns={this.columns(t, type, applicationType)}
           pagination={false}
