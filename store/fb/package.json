@@ -1,16 +1,14 @@
 {
   "private": true,
-  "name": "@admin/login",
-  "description": "Admin login page",
+  "name": "@store/fb",
+  "description": "Fb api context",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.43.0",
+  "version": "0.1.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/link": "^0.43.0",
-    "@admin/utils": "^0.43.0",
     "@meepshop/events": "^0.1.0"
   },
-  "keywords": ["admin", "login"]
+  "keywords": ["fb", "store"]
 }

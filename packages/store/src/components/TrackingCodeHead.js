@@ -12,10 +12,7 @@ export default class extends React.Component {
       gtmID: PropTypes.string,
       webMasterID: PropTypes.string,
     }).isRequired,
-    fbAppId: PropTypes.string,
   };
-
-  static defaultProps = { fbAppId: null };
 
   componentDidMount() {
     /* Google Tag Manager (noscript) */
@@ -28,33 +25,6 @@ export default class extends React.Component {
       document.body.appendChild(gtmNoscript);
       window.meepShopStore.gtmIsInstalled = true;
     } /* Google Tag Manager (noscript) - End */
-
-    if (!window.meepShopStore.fbSdkIsInstalled) {
-      const { fbAppId = null } = this.props;
-      /* eslint-disable */
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId: fbAppId,
-          cookie: true,
-          xfbml: true,
-          version: 'v5.0',
-        });
-        window.meepShopStore.fbSdkIsInstalled = true;
-        FB.AppEvents.logPageView();
-      };
-      (function(d, s, id) {
-        var js,
-          fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-          return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      })(document, 'script', 'facebook-jssdk');
-      /* eslint-enable */
-    }
   }
 
   render() {

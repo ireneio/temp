@@ -47,7 +47,6 @@ class Settings extends Component {
       id: PropTypes.string.isRequired,
     }).isRequired,
     lockedBirthday: PropTypes.bool.isRequired,
-    fbAppId: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -81,7 +80,6 @@ class Settings extends Component {
       pageAdTrackIDs,
       colors,
       user,
-      fbAppId,
       dispatchAction,
       t,
     } = this.props;
@@ -95,11 +93,7 @@ class Settings extends Component {
           <link rel="icon" type="image/png" href={faviconUrl} />
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
-        <TrackingCodeHead
-          pathname={pathname}
-          pageAdTrackIDs={pageAdTrackIDs}
-          fbAppId={fbAppId}
-        />
+        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
           <MemberHeader title={t('title.settings')} colors={colors}>
             <MemberSettings dispatchAction={dispatchAction} member={user} />
@@ -165,8 +159,6 @@ const mapStateToProps = (state, props) => {
     lockedBirthday:
       Utils.getIn(['storeReducer', 'settings', 'lockedBirthday'])(state) ||
       false,
-    fbAppId:
-      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 

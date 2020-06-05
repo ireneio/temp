@@ -51,7 +51,6 @@ class Index extends React.Component {
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
     }).isRequired,
-    fbAppId: PropTypes.string.isRequired,
     page: PropTypes.shape(CONST.PAGE_TYPE).isRequired,
   };
 
@@ -68,7 +67,6 @@ class Index extends React.Component {
       location: { host, pathname },
       page,
       pageAdTrackIDs,
-      fbAppId,
       i18n,
     } = this.props;
     const url = host + pathname;
@@ -101,11 +99,7 @@ class Index extends React.Component {
           <meta property="og:locale" content={i18n.language} />
           {/* <!-- End - Facebook Open Graph --> */}
         </Head>
-        <TrackingCodeHead
-          pathname={pathname}
-          pageAdTrackIDs={pageAdTrackIDs}
-          fbAppId={fbAppId}
-        />
+        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props} />
         {/* eslint-disable */}
         <a href="/sitemaps/v1" />
@@ -124,8 +118,6 @@ const mapStateToProps = (state, props) => {
     storeSetting: state.storeReducer.settings,
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     location: Utils.uriParser(props),
-    fbAppId:
-      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
     page: getJoinedHomePage(state, props),
   };
 };

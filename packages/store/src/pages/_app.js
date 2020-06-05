@@ -14,7 +14,9 @@ import NProgress from 'nprogress';
 import { notification } from 'antd';
 import moment from 'moment';
 
+import { EventsProvider } from '@meepshop/events';
 import { appWithTranslation } from '@store/utils/lib/i18n';
+import { FbProvider } from '@store/fb';
 import { CurrencyProvider } from '@store/currency';
 import { AdTrackProvider } from '@store/ad-track';
 
@@ -232,20 +234,25 @@ class MyApp extends App {
           />
           <meta name="format-detection" content="telephone=no" />
         </Head>
+
         <ApolloProvider client={apolloClient}>
-          <CurrencyProvider cookieCurrency={cookieCurrency}>
-            <AdTrackProvider>
-              <Provider store={store}>
-                <Component
-                  {...pageProps}
-                  url={{
-                    asPath: router.asPath,
-                    query: router.query,
-                  }}
-                />
-              </Provider>
-            </AdTrackProvider>
-          </CurrencyProvider>
+          <EventsProvider>
+            <FbProvider>
+              <CurrencyProvider cookieCurrency={cookieCurrency}>
+                <AdTrackProvider>
+                  <Provider store={store}>
+                    <Component
+                      {...pageProps}
+                      url={{
+                        asPath: router.asPath,
+                        query: router.query,
+                      }}
+                    />
+                  </Provider>
+                </AdTrackProvider>
+              </CurrencyProvider>
+            </FbProvider>
+          </EventsProvider>
         </ApolloProvider>
       </>
     );

@@ -37,7 +37,6 @@ class Ezpay extends React.Component {
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
     }).isRequired,
-    fbAppId: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -54,7 +53,6 @@ class Ezpay extends React.Component {
         query: { orderId },
       },
       pageAdTrackIDs,
-      fbAppId,
     } = this.props;
 
     return (
@@ -64,11 +62,7 @@ class Ezpay extends React.Component {
           <link rel="icon" type="image/png" href={faviconUrl} />
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
-        <TrackingCodeHead
-          pathname={pathname}
-          pageAdTrackIDs={pageAdTrackIDs}
-          fbAppId={fbAppId}
-        />
+        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
 
         <EzpayView
           orderId={orderId}
@@ -92,8 +86,6 @@ const mapStateToProps = (state, prevProps) => {
     storeSetting: state.storeReducer.settings,
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     location: Utils.uriParser(prevProps),
-    fbAppId:
-      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 

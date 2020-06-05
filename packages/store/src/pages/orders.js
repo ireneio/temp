@@ -43,7 +43,6 @@ class Orders extends React.Component {
       fbPixelId: PropTypes.string,
     }).isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    fbAppId: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -72,7 +71,6 @@ class Orders extends React.Component {
       location: { pathname },
       pageAdTrackIDs,
       colors,
-      fbAppId,
       t,
     } = this.props;
 
@@ -85,11 +83,7 @@ class Orders extends React.Component {
           <link rel="icon" type="image/png" href={faviconUrl} />
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
-        <TrackingCodeHead
-          pathname={pathname}
-          pageAdTrackIDs={pageAdTrackIDs}
-          fbAppId={fbAppId}
-        />
+        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
           <MemberHeader title={t('title.orders')} colors={colors}>
             <MemberOrders />
@@ -149,8 +143,6 @@ const mapStateToProps = (state, props) => {
     location: Utils.uriParser(props),
     page: getPage(state),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
-    fbAppId:
-      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 

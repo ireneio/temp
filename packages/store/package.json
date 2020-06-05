@@ -13,11 +13,13 @@
     "start": "NODE_ENV=production node src/server"
   },
   "dependencies": {
+    "@meepshop/events": "^0.1.0",
     "@meepshop/images": "^0.43.0",
     "@meepshop/meep-ui": "^0.43.0",
     "@store/ad-track": "^0.43.0",
     "@store/currency": "^0.43.0",
     "@store/ezpay": "^0.43.0",
+    "@store/fb": "^0.1.0",
     "@store/forgot-password": "^0.43.0",
     "@store/member-order": "^0.43.0",
     "@store/member-order-applications": "^0.43.0",

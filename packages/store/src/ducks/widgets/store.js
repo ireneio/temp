@@ -34,7 +34,6 @@ const initialState = {
   color: {},
   apps: [],
   memberGroups: [],
-  appLogins: [],
   settings: {},
   experiment: {},
 };
@@ -126,7 +125,6 @@ export default function(state = initialState, { type, payload }) {
       const { colors } = colorPlan.themes[+colorPlan.selected];
       const apps = data?.getStoreAppList?.data || [];
       const memberGroups = data?.viewer?.store?.memberGroups || [];
-      const appLogins = data?.getAppLoginList?.data || [];
       const store = data?.viewer?.store;
       const storeSettings = data?.viewer?.store?.setting;
       const pageAdTrackIDs = getPageAdTrackIds(data);
@@ -160,7 +158,6 @@ export default function(state = initialState, { type, payload }) {
         colors, // FIXME: remove, after remove old enhancer
         apps: apps.map(app => ({ ...app, isInstalled: !!app.isInstalled })), // 用於判斷擴充功能是否安裝
         memberGroups,
-        appLogins, // 第三方應用 ex. fb login
         settings,
         pageAdTrackIDs,
         experiment: store?.experiment || {},

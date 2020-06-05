@@ -46,7 +46,6 @@ class Wishlist extends Component {
     }).isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     wishList: PropTypes.arrayOf(PropTypes.object).isRequired,
-    fbAppId: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -92,7 +91,6 @@ class Wishlist extends Component {
       pageAdTrackIDs,
       colors,
       wishList,
-      fbAppId,
       dispatchAction,
       t,
     } = this.props;
@@ -108,11 +106,7 @@ class Wishlist extends Component {
           <link rel="icon" type="image/png" href={faviconUrl} />
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
-        <TrackingCodeHead
-          pathname={pathname}
-          pageAdTrackIDs={pageAdTrackIDs}
-          fbAppId={fbAppId}
-        />
+        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
           <MemberHeader title={t('title.wishlist')} colors={colors}>
@@ -178,8 +172,6 @@ const mapStateToProps = (state, props) => {
     page: getPage(state, props),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
     wishList: Utils.getIn(['memberReducer', 'wishList'])(state),
-    fbAppId:
-      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
   };
 };
 

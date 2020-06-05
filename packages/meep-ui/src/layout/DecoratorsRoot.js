@@ -49,7 +49,6 @@ export default class DecoratorsRoot extends React.Component {
         plugin: PropTypes.oneOf(STORE_APP_PLUGINS).isRequired,
       }),
     ).isRequired,
-    fbAppId: PropTypes.string,
 
     /** context func from props */
     setCustomerCurrency: PropTypes.func.isRequired,
@@ -74,7 +73,6 @@ export default class DecoratorsRoot extends React.Component {
   static defaultProps = {
     user: null,
     cname: null,
-    fbAppId: null,
   };
 
   state = {
@@ -93,7 +91,6 @@ export default class DecoratorsRoot extends React.Component {
       customerCurrency,
       location,
       carts,
-      fbAppId,
 
       /** context func from props */
       setCustomerCurrency,
@@ -121,7 +118,6 @@ export default class DecoratorsRoot extends React.Component {
       customerCurrency,
       location,
       carts,
-      fbAppId,
 
       /** context func from props */
       setCustomerCurrency,

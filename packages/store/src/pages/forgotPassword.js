@@ -40,7 +40,6 @@ class ForgotPassword extends Component {
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
     }).isRequired,
-    fbAppId: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -71,7 +70,6 @@ class ForgotPassword extends Component {
       isLogin,
       storeSetting: { storeName, faviconUrl },
       location: { pathname },
-      fbAppId,
       pageAdTrackIDs,
       dispatchAction,
       token,
@@ -86,11 +84,7 @@ class ForgotPassword extends Component {
           <link rel="icon" type="image/png" href={faviconUrl} />
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
-        <TrackingCodeHead
-          pathname={pathname}
-          pageAdTrackIDs={pageAdTrackIDs}
-          fbAppId={fbAppId}
-        />
+        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
           <ForgotPasswordView dispatchAction={dispatchAction} token={token} />
         </Container>
@@ -109,8 +103,6 @@ const mapStateToProps = (state, props) => {
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
-    fbAppId:
-      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
     page: getJoinedForgotPasswordPage(state, props),
   };
 };

@@ -10,6 +10,7 @@
     "@store/ad-track": "^0.43.0",
     "@store/address-cascader": "^0.43.0",
     "@store/checkout": "^0.43.0",
+    "@store/fb": "^0.1.0",
     "@store/gmo-credit-card-form": "^0.43.0",
     "@store/placeholder": "^0.43.0",
     "@store/thumbnail": "^0.43.0",

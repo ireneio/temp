@@ -10,6 +10,7 @@ import { notification } from 'antd';
 import Layout from '@meepshop/meep-ui/lib/layout';
 import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
+import fbContext from '@store/fb';
 import currencyContext from '@store/currency';
 import adTrackContext from '@store/ad-track';
 
@@ -21,6 +22,7 @@ import Spinner from './Spinner';
 const { isBrowser } = UserAgent;
 
 @withTranslation('ducks')
+@withContext(fbContext)
 @withContext(adTrackContext)
 @withContext(currencyContext)
 class Container extends React.Component {
@@ -79,7 +81,6 @@ class Container extends React.Component {
     page: PropTypes.shape({ id: PropTypes.string }).isRequired,
     // login page usage ONLY
     getAuth: PropTypes.func.isRequired,
-    fbAppId: PropTypes.string,
     userAgent: PropTypes.string.isRequired,
     children: PropTypes.element,
   };
@@ -88,7 +89,6 @@ class Container extends React.Component {
     customerCurrency: 'zh_TW',
     carts: null,
     user: null,
-    fbAppId: null,
     children: null,
   };
 
@@ -150,11 +150,12 @@ class Container extends React.Component {
   // eslint-disable-next-line consistent-return
   handleFacebookLogin = ({ from }) => {
     const {
-      fbAppId,
       getAuth,
       userAgent,
       dispatchAction,
       cname,
+      fb,
+      fbAppId,
       adTrack,
       t,
     } = this.props;
@@ -175,74 +176,72 @@ class Container extends React.Component {
       cname !== 'truda-moda' // FIXME: hotfix T2939 (原因不明，可能為FB SDK bug
     ) {
       // Not in-app browser
-      if (window.FB) {
-        try {
-          window.FB.login(
-            async response => {
-              if (response.status === 'connected') {
-                /* Handle login after FB response */
-                const data = await Api.fbLogin(response.authResponse);
+      try {
+        fb.login(
+          async response => {
+            if (response.status === 'connected') {
+              /* Handle login after FB response */
+              const data = await Api.fbLogin(response.authResponse);
 
-                switch (data.status) {
-                  case 200:
-                  case 201: {
-                    const member = await Api.updateMemberData();
-                    const numOfExpiredPoints =
-                      member?.data?.viewer?.rewardPoint.expiringPoints.total;
+              switch (data.status) {
+                case 200:
+                case 201: {
+                  const member = await Api.updateMemberData();
+                  const numOfExpiredPoints =
+                    member?.data?.viewer?.rewardPoint.expiringPoints.total;
 
-                    if (data.status === 201) adTrack.completeRegistration();
+                  if (data.status === 201) adTrack.completeRegistration();
 
-                    if (numOfExpiredPoints > 0)
-                      notification.info({
-                        message: t('expired-points-message'),
-                        description: t('expired-points-description', {
-                          point: numOfExpiredPoints,
-                        }),
-                      });
+                  if (numOfExpiredPoints > 0)
+                    notification.info({
+                      message: t('expired-points-message'),
+                      description: t('expired-points-description', {
+                        point: numOfExpiredPoints,
+                      }),
+                    });
 
-                    getAuth();
+                  getAuth();
 
-                    if (from === 'cart') Utils.goTo({ pathname: '/checkout' });
-                    else if (window.storePreviousPageUrl)
-                      Utils.goTo({ pathname: window.storePreviousPageUrl });
-                    else Utils.goTo({ pathname: '/' });
-                    break;
-                  }
+                  if (from === 'cart') Utils.goTo({ pathname: '/checkout' });
+                  else if (window.storePreviousPageUrl)
+                    Utils.goTo({ pathname: window.storePreviousPageUrl });
+                  else Utils.goTo({ pathname: '/' });
+                  break;
+                }
 
-                  case 2010: {
-                    notification.error({ message: 'FB Access token 失效' });
-                    break;
-                  }
-                  case 2011: {
-                    notification.error({ message: 'FB無法取得email' });
-                    break;
-                  }
-                  case 2003: {
-                    notification.error({ message: '無法取得meepShop token' });
-                    break;
-                  }
-                  case 9999: {
-                    notification.error({ message: '未知的錯誤' });
-                    break;
-                  }
-                  default:
-                    break;
-                } /* Handle login after FB response - End */
-                dispatchAction('hideLoadingStatus');
-              } else {
-                notification.error({
-                  message:
-                    'The person is not logged into this app or we are unable to tell.',
-                });
-                dispatchAction('hideLoadingStatus');
-              }
-            },
-            { scope: 'public_profile,email' },
-          );
-        } catch ({ message, stack }) {
-          // eslint-disable-next-line no-console
-          console.error(`Error: ${message}, Stack: ${JSON.stringify(stack)}`);
-        }
+                case 2010: {
+                  notification.error({ message: 'FB Access token 失效' });
+                  break;
+                }
+                case 2011: {
+                  notification.error({ message: 'FB無法取得email' });
+                  break;
+                }
+                case 2003: {
+                  notification.error({ message: '無法取得meepShop token' });
+                  break;
+                }
+                case 9999: {
+                  notification.error({ message: '未知的錯誤' });
+                  break;
+                }
+                default:
+                  break;
+              } /* Handle login after FB response - End */
+              dispatchAction('hideLoadingStatus');
+            } else {
+              notification.error({
+                message:
+                  'The person is not logged into this app or we are unable to tell.',
+              });
+              dispatchAction('hideLoadingStatus');
+            }
+          },
+          { scope: 'public_profile,email' },
+        );
+      } catch ({ message, stack }) {
+        // eslint-disable-next-line no-console
+        console.error(`Error: ${message}, Stack: ${JSON.stringify(stack)}`);
       }
     } else {
       // in-app browser
@@ -263,7 +262,6 @@ class Container extends React.Component {
       storeAppList,
       storeSetting,
       experiment,
-      fbAppId,
       /* may change */
       isLogin,
       user,
@@ -298,7 +296,6 @@ class Container extends React.Component {
           storeAppList={storeAppList}
           storeSetting={storeSetting}
           experiment={experiment}
-          fbAppId={fbAppId}
           /* may change */
           isLogin={isLogin}
           user={user}

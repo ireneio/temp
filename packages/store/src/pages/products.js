@@ -43,7 +43,6 @@ class Products extends React.Component {
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
     }).isRequired,
-    fbAppId: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -59,7 +58,6 @@ class Products extends React.Component {
       location: { host, pathname },
       page,
       pageAdTrackIDs,
-      fbAppId,
       i18n,
     } = this.props;
     const url = host + pathname;
@@ -93,11 +91,7 @@ class Products extends React.Component {
           <meta property="og:locale" content={i18n.language} />
           {/* <!-- End - Facebook Open Graph --> */}
         </Head>
-        <TrackingCodeHead
-          pathname={pathname}
-          pageAdTrackIDs={pageAdTrackIDs}
-          fbAppId={fbAppId}
-        />
+        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props} />
       </>
     );
@@ -113,8 +107,6 @@ const mapStateToProps = (state, props) => {
     storeSetting: Utils.getIn(['storeReducer', 'settings'])(state),
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     location: Utils.uriParser(props),
-    fbAppId:
-      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
     page: getJoinedProductsPage(state, props),
   };
 };

@@ -19,6 +19,11 @@ export default class Document extends NextDocument {
             sizes="180x180"
             href="/images/apple-touch-icon.png"
           />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: 'var events = new EventTarget();',
+            }}
+          />
         </Head>
 
         <body id="meepshop">

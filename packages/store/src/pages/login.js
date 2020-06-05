@@ -37,13 +37,11 @@ class Login extends Component {
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
     }).isRequired,
-    fbAppId: PropTypes.string,
   };
 
   static defaultProps = {
     error: null,
     // login page ONLY
-    fbAppId: null,
   };
 
   componentDidMount() {
@@ -67,7 +65,6 @@ class Login extends Component {
 
     const {
       isLogin,
-      fbAppId,
       storeSetting,
       storeSetting: { storeName, faviconUrl },
       location: { pathname },
@@ -83,11 +80,7 @@ class Login extends Component {
           <link rel="icon" type="image/png" href={faviconUrl} />
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
-        <TrackingCodeHead
-          pathname={pathname}
-          pageAdTrackIDs={pageAdTrackIDs}
-          fbAppId={fbAppId}
-        />
+        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
           <LoginView storeSetting={storeSetting} />
         </Container>
@@ -106,8 +99,6 @@ const mapStateToProps = (state, props) => {
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
-    fbAppId:
-      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
     page: getJoinedLoginPage(state, props),
   };
 };

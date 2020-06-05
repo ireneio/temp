@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 
+import withContext from '@store/utils/lib/withContext';
+import fbContext from '@store/fb';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import { CONTENT_WIDTH_TYPE, URL_TYPE } from 'constants/propTypes';
 
@@ -8,6 +11,7 @@ import { ASPECT_TYPE } from './propTypes';
 import { RATIOS, DEFAULT_VIDEO_URL } from './constants';
 import styles from './styles/index.less';
 
+@withContext(fbContext)
 @enhancer
 export default class VideoCore extends React.PureComponent {
   videoCoreRef = React.createRef();

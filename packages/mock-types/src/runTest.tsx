@@ -1,4 +1,6 @@
 // import
+import events from 'events';
+
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { mount, ReactWrapper } from 'enzyme';
@@ -9,6 +11,14 @@ import mock from './mock';
 import MockTypes from './index';
 
 // definition
+const mockEvents = new events.EventEmitter();
+
+window.events = {
+  dispatchEvent: (event: Event) => mockEvents.emit(event.toString()),
+  addEventListener: mockEvents.on,
+  removeEventListener: mockEvents.off,
+};
+
 export default (
   testType: 'meepshop' | 'store' | 'admin',
   node: React.ReactNode,

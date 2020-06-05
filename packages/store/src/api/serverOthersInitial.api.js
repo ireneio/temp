@@ -16,7 +16,7 @@ import {
 export default async function(context) {
   const variables = {
     keys:
-      '$menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $memberGroupFilter: MemberGroupFilterInput, $appLoginSearch: searchInputObjectType, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $memberGroupFilter: MemberGroupFilterInput, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverOthersInitial',
     values: {
       menuSearch: {
@@ -68,25 +68,6 @@ export default async function(context) {
       },
       memberGroupFilter: {
         status: 'ENABLED',
-      },
-      appLoginSearch: {
-        size: 50,
-        from: 0,
-        filter: {
-          and: [
-            {
-              type: 'exact',
-              field: 'plugin',
-              query: 'fbLogin',
-            },
-          ],
-        },
-        sort: [
-          {
-            field: 'sort',
-            order: 'asc',
-          },
-        ],
       },
       cartSearch: {
         showDetail: true,
@@ -148,12 +129,6 @@ export default async function(context) {
         ${storeAppQuery}
       }
       total
-    }
-    getAppLoginList(search: $appLoginSearch) {
-      data {
-        id
-        appId
-      }
     }
     getCartList(search: $cartSearch) {
       data {

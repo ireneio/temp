@@ -267,7 +267,6 @@ export const CONTEXT_TYPES = {
   customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
   location: LOCATION_TYPE.isRequired,
   carts: PropTypes.shape({}).isRequired,
-  fbAppId: PropTypes.string,
 
   /** context func from props */
   setCustomerCurrency: PropTypes.func.isRequired,

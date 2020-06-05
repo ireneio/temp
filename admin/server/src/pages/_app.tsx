@@ -12,6 +12,7 @@ import Head from 'next/head';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
 
+import { EventsProvider } from '@meepshop/events';
 import '@admin/utils/lib/styles/base.less';
 import { appWithTranslation } from '@admin/utils/lib/i18n';
 
@@ -67,13 +68,15 @@ class App extends NextApp<PropsType> {
         </Head>
 
         <ApolloProvider client={apolloClient}>
-          {/login/.test(pathname) ? (
-            <Component {...pageProps} />
-          ) : (
-            <Wrapper>
+          <EventsProvider>
+            {/login/.test(pathname) ? (
               <Component {...pageProps} />
-            </Wrapper>
-          )}
+            ) : (
+              <Wrapper>
+                <Component {...pageProps} />
+              </Wrapper>
+            )}
+          </EventsProvider>
         </ApolloProvider>
       </>
     );

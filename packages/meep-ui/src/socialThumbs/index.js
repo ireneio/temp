@@ -1,10 +1,14 @@
 import React from 'react';
 
+import withContext from '@store/utils/lib/withContext';
+import fbContext from '@store/fb';
+
 import { URL_TYPE, ALIGNMENT_TYPE } from 'constants/propTypes';
 
 import { DEFAULT_URL } from './constants';
 import styles from './styles/index.less';
 
+@withContext(fbContext)
 export default class SocialThumbs extends React.PureComponent {
   socialThumbsRef = React.createRef();
 
@@ -22,19 +26,29 @@ export default class SocialThumbs extends React.PureComponent {
     href: DEFAULT_URL,
   };
 
+  isLoaded = false;
+
   componentDidMount() {
-    if (window.FB && window.meepShopStore.fbSdkIsInstalled) {
-      /** reference @meepshop/meep-ui/facebookWall */
-      this.socialThumbsRef.current.removeAttribute('fb-xfbml-state');
-      this.socialThumbsRef.current.removeAttribute('fb-iframe-plugin-query');
-      FB.XFBML.parse(this.socialThumbsRef.current.parentNode);
-    }
+    this.renderSocialThumbs();
   }
 
   componentDidUpdate() {
-    if (window.FB && window.meepShopStore.fbSdkIsInstalled)
-      FB.XFBML.parse(this.socialThumbsRef.current.parentNode);
+    this.renderSocialThumbs();
   }
+
+  renderSocialThumbs = () => {
+    const { fb } = this.props;
+
+    if (!fb) return;
+
+    if (!this.isLoaded) {
+      this.socialThumbsRef.current.removeAttribute('fb-xfbml-state');
+      this.socialThumbsRef.current.removeAttribute('fb-iframe-plugin-query');
+    }
+
+    this.isLoaded = true;
+    fb.XFBML.parse(this.socialThumbsRef.current.parentNode);
+  };
 
   render() {
     const { href, alignment } = this.props;

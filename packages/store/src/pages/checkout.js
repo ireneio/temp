@@ -33,7 +33,6 @@ class Checkout extends React.Component {
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
     }).isRequired,
-    fbAppId: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -58,7 +57,6 @@ class Checkout extends React.Component {
     const {
       storeSetting: { storeName, faviconUrl },
       location: { pathname },
-      fbAppId,
       pageAdTrackIDs,
     } = this.props;
 
@@ -69,11 +67,7 @@ class Checkout extends React.Component {
           <link rel="icon" type="image/png" href={faviconUrl} />
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
-        <TrackingCodeHead
-          pathname={pathname}
-          pageAdTrackIDs={pageAdTrackIDs}
-          fbAppId={fbAppId}
-        />
+        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props} />
       </>
     );
@@ -90,8 +84,6 @@ const mapStateToProps = (state, props) => {
     storeSetting: state.storeReducer.settings,
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     location: Utils.uriParser(props),
-    fbAppId:
-      Utils.getIn(['storeReducer', 'appLogins', 0, 'appId'])(state) || null,
     page: getJoinedCheckoutPage(state, props),
     carts: state.memberReducer.cart,
   };

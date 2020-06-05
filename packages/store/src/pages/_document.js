@@ -24,7 +24,13 @@ export default class MyDocument extends Document {
     return (
       /* eslint-disable */
       <Html lang={lang}>
-        <Head />
+        <Head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: 'var events = new EventTarget();',
+            }}
+          />
+        </Head>
 
         <body id="meepshop">
           <Main />

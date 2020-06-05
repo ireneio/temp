@@ -1,5 +1,7 @@
 // import
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
+
+import eventsContext from '@meepshop/events';
 
 // definition
 export default (): {
@@ -7,30 +9,42 @@ export default (): {
   grecaptchaScript: React.ReactNode;
 } => {
   const grecaptchaRef = useRef<HTMLDivElement>(null);
+  const events = useContext(eventsContext);
 
   useEffect(() => {
-    if (!grecaptchaRef.current || grecaptchaRef.current.innerHTML !== '')
-      return;
-
-    const render = (count: number): void => {
+    const render = (): void => {
       if (
-        window.grecaptcha &&
-        window.grecaptcha.render &&
-        grecaptchaRef.current
+        !grecaptchaRef.current ||
+        grecaptchaRef.current.innerHTML !== '' ||
+        !window.grecaptcha?.render
       )
-        window.grecaptcha.render(grecaptchaRef.current, {
-          sitekey: '6Lf4iDsUAAAAADGIX1WYcChAZrQNEE36rAu3MkOa',
-        });
-      else if (count < 50) setTimeout(render, 100, count + 1);
+        return;
+
+      window.grecaptcha.render(grecaptchaRef.current, {
+        sitekey: '6Lf4iDsUAAAAADGIX1WYcChAZrQNEE36rAu3MkOa',
+      });
     };
 
-    render(0);
-  }, []);
+    render();
+    events.addEventListener('recaptcha-loaded', render);
+  }, [events]);
 
   return {
     grecaptchaRef,
     grecaptchaScript: (
-      <script src="https://www.google.com/recaptcha/api.js" async defer />
+      <>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `function recaptchaLoaded() { window.events.dispatchEvent(new Event('recaptcha-loaded')); }`,
+          }}
+        />
+
+        <script
+          src="https://www.google.com/recaptcha/api.js?onload=recaptchaLoaded"
+          async
+          defer
+        />
+      </>
     ),
   };
 };
