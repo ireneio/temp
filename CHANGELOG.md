@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.43.1 (2020-06-05)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#964](https://github.com/meepshop/meep-lerna/pull/964) 移除 redux 裡的 getAppLoginList 改用 @store/fb ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `mock-types`
+  - [#969](https://github.com/meepshop/meep-lerna/pull/969) 【重構】UnavailableModule ([@HsuTing](https://github.com/HsuTing))
+  - [#974](https://github.com/meepshop/meep-lerna/pull/974) 【重構】語法嵌入元件 ([@happycat6323](https://github.com/happycat6323))
+  - [#968](https://github.com/meepshop/meep-lerna/pull/968) 【重構】分隔線元件 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `mock-types`
+  - [#975](https://github.com/meepshop/meep-lerna/pull/975) (@meepshop/mock-types) Fix ci memory lock ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.43.0 (2020-06-01)
 
 #### :rocket: New Feature
