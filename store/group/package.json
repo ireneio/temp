@@ -4,15 +4,15 @@
   "description": "Store core module to control the all modules",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.43.0",
+  "version": "0.43.1",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/divider": "^0.1.0",
-    "@meepshop/google-map": "^0.43.0",
-    "@meepshop/iframe": "^0.43.0",
-    "@meepshop/unavailable": "^0.1.0",
-    "@store/utils": "^0.43.0",
+    "@meepshop/divider": "^0.43.1",
+    "@meepshop/google-map": "^0.43.1",
+    "@meepshop/iframe": "^0.43.1",
+    "@meepshop/unavailable": "^0.43.1",
+    "@store/utils": "^0.43.1",
     "d3-hierarchy": "^1.1.6"
   },
   "keywords": ["group", "store"]
