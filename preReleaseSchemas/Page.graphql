@@ -47,6 +47,12 @@ type BackgroundImage {
   repeat: Boolean!
 }
 
+enum VideoRatio {
+  Ratio16to9
+  Ratio4to3
+  Ratio16to10
+}
+
 enum ProductsSort {
   LATEST
   NAME
@@ -133,6 +139,7 @@ union PageModule =
   | GoogleMapModule
   | IframeModule
   | UnavailableModule
+  | VideoModule
 
 extend type Page {
   modules: [PageModule!]!

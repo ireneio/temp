@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@meepshop/video",
+  "description": "Meepshop video module",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/context": "^0.1.0",
+    "react-player": "^1.14.2"
+  },
+  "keywords": ["meepshop", "video"]
+}

@@ -111,7 +111,10 @@ module.exports = {
           transform: 'validator/lib/${member}',
         },
         '@meepshop/icons': {
-          transform: key => `@meepshop/icons/lib/${key}`,
+          transform: '@meepshop/icons/lib/${member}',
+        },
+        '@meepshop/context': {
+          transform: '@meepshop/context/lib/${member}',
         },
         /* eslint-enable no-template-curly-in-string */
       },

@@ -8,6 +8,7 @@ import draftTextFragment from '@meepshop/draft-text/lib/fragment';
 import googleMapFragment from '@meepshop/google-map/lib/fragment';
 import iframeFragment from '@meepshop/iframe/lib/fragment';
 import unavailableFragment from '@meepshop/unavailable/lib/fragment';
+import videoFragment from '@meepshop/video/lib/fragment';
 
 // definition
 export const modulesFragment = gql`
@@ -74,6 +75,13 @@ export const modulesFragment = gql`
         parentId
         ...unavailableFragment
       }
+
+      ... on VideoModule {
+        __typename
+        id
+        parentId
+        ...videoFragment
+      }
     }
   }
 
@@ -82,6 +90,7 @@ export const modulesFragment = gql`
   ${googleMapFragment}
   ${iframeFragment}
   ${unavailableFragment}
+  ${videoFragment}
 `;
 
 export default {
@@ -96,4 +105,5 @@ export default {
   GoogleMapModule: dynamic(() => import('@meepshop/google-map')),
   IframeModule: dynamic(() => import('@meepshop/iframe')),
   UnavailableModule: dynamic(() => import('@meepshop/unavailable')),
+  VideoModule: dynamic(() => import('@meepshop/video')),
 };

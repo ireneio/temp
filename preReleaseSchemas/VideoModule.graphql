@@ -1,0 +1,7 @@
+type VideoModule implements Module {
+  id: ID!
+  parentId: ID!
+  width: PositiveInt!
+  ratio: VideoRatio!
+  href: URL!
+}

@@ -10,6 +10,7 @@ import GoogleMapModule from './GoogleMapModule';
 import GroupModule from './GroupModule';
 import IframeModule from './IframeModule';
 import UnavailableModule from './UnavailableModule';
+import VideoModule from './VideoModule';
 
 // graphql typescript
 import {
@@ -52,6 +53,11 @@ gql`
     }
 
     ... on UnavailableModule {
+      id
+      parentId
+    }
+
+    ... on VideoModule {
       id
       parentId
     }
@@ -110,4 +116,5 @@ export default mock.add<PageModuleMock[]>('PageModule', [
   () => getPageModules(GoogleMapModule),
   () => getPageModules(IframeModule),
   () => getPageModules(UnavailableModule),
+  () => getPageModules(VideoModule),
 ]);

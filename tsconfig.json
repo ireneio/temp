@@ -24,7 +24,8 @@
       "@meepshop/draft-text/lib/*": ["meepshop/draft-text/src/*"],
       "@meepshop/google-map/lib/*": ["meepshop/google-map/src/*"],
       "@meepshop/iframe/lib/*": ["meepshop/iframe/src/*"],
-      "@meepshop/unavailable/lib/*": ["meepshop/unavailable/src/*"]
+      "@meepshop/unavailable/lib/*": ["meepshop/unavailable/src/*"],
+      "@meepshop/video/lib/*": ["meepshop/video/src/*"]
     }
   },
   "include": [
