@@ -20,4 +20,6 @@ type GroupModule implements Module {
   componentWidth: GroupModuleComponentWidth
   padding: GroupModulePadding
   releaseTime: DateTime
+  background: HexColorCode
+  backgroundImage: BackgroundImage
 }

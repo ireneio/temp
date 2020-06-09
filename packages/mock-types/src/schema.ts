@@ -12,6 +12,7 @@ import schemaJSON from '../schema';
 import Address from './schemas/Address';
 import AddressService from './schemas/AddressService';
 import Authority from './schemas/Authority';
+import BackgroundImage from './schemas/BackgroundImage';
 import ColorList from './schemas/ColorList';
 import ConvenienceStore from './schemas/ConvenienceStore';
 import DashboardInfo from './schemas/DashboardInfo';
@@ -21,6 +22,8 @@ import ExportFormat from './schemas/ExportFormat';
 import FbPixel from './schemas/FbPixel';
 import FileConnection from './schemas/FileConnection';
 import gtag from './schemas/gtag';
+import HexColorCode from './schemas/HexColorCode';
+import Image from './schemas/Image';
 import GmoBankInstallment from './schemas/GmoBankInstallment';
 import GMOUserInfo from './schemas/GMOUserInfo';
 import MemberGroup from './schemas/MemberGroup';
@@ -75,6 +78,7 @@ addMockFunctionsToSchema({
     Address,
     AddressService,
     Authority,
+    BackgroundImage,
     ColorList,
     ConvenienceStore,
     DashboardInfo,
@@ -84,6 +88,8 @@ addMockFunctionsToSchema({
     FbPixel,
     FileConnection,
     gtag,
+    HexColorCode,
+    Image,
     GmoBankInstallment,
     GMOUserInfo,
     MemberGroup,

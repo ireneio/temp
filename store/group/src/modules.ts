@@ -20,6 +20,17 @@ export const modulesFragment = gql`
         percentWidth
         componentWidth
         padding
+        background
+        backgroundImage {
+          image {
+            id
+            scaledSrc {
+              w1920
+            }
+          }
+          cover
+          repeat
+        }
       }
 
       ... on LayoutModule {

@@ -14,6 +14,7 @@
   "dependencies": {
     "@admin/apollo-client-resolvers": "^0.43.1",
     "@meepshop/events": "^0.43.1",
+    "@meepshop/images": "^0.43.1",
     "@store/ad-track": "^0.43.1",
     "@store/apollo-client-resolvers": "^0.43.1",
     "@store/currency": "^0.43.1",

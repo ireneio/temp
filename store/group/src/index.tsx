@@ -60,7 +60,17 @@ export default React.memo(() => {
         data: modulesFragmentModulesGroupModule;
         children: ModulesType[];
       }[]).map(
-        ({ data: { id, percentWidth, componentWidth, padding }, children }) => (
+        ({
+          data: {
+            id,
+            percentWidth,
+            componentWidth,
+            padding,
+            background,
+            backgroundImage,
+          },
+          children,
+        }) => (
           <div
             key={id}
             id={`block-${id}`}
@@ -68,6 +78,14 @@ export default React.memo(() => {
             style={{
               width: percentWidth.replace(/^WIDTH(.*)$/, '$1%'),
               minWidth: `${componentWidth || 0}px`,
+              backgroundImage: !backgroundImage
+                ? 'initial'
+                : `url(${backgroundImage.image.scaledSrc?.w1920})`,
+              backgroundColor: background || 'transparent',
+              backgroundRepeat: backgroundImage?.repeat
+                ? 'repeat'
+                : 'no-repeat',
+              backgroundSize: backgroundImage?.cover ? '100% auto' : 'auto',
             }}
           >
             {children.map(({ data: childData, children: childModules }) => (

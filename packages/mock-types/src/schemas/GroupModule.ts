@@ -25,6 +25,7 @@ export default mock.add<GroupModuleMock>('GroupModule', [
       componentWidth: null,
       padding: null,
       releaseTime: null,
+      backgroundImage: null,
     } as GroupModuleMock),
   () =>
     ({
@@ -33,5 +34,6 @@ export default mock.add<GroupModuleMock>('GroupModule', [
       componentWidth: null,
       padding: null,
       releaseTime: null,
+      backgroundImage: {},
     } as GroupModuleMock),
 ]);
