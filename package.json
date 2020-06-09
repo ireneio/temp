@@ -62,6 +62,7 @@
     "@types/clipboard": "^2.0.1",
     "@types/color": "^3.0.0",
     "@types/d3-hierarchy": "^1.1.6",
+    "@types/draft-js": "^0.10.40",
     "@types/enzyme": "^3.10.4",
     "@types/jest": "^24.0.23",
     "@types/js-combinatorics": "^0.5.31",

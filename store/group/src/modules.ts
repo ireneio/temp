@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 
 // graphql import
 import dividerFragment from '@meepshop/divider/lib/fragment';
+import draftTextFragment from '@meepshop/draft-text/lib/fragment';
 import googleMapFragment from '@meepshop/google-map/lib/fragment';
 import iframeFragment from '@meepshop/iframe/lib/fragment';
 import unavailableFragment from '@meepshop/unavailable/lib/fragment';
@@ -46,6 +47,13 @@ export const modulesFragment = gql`
         ...dividerFragment
       }
 
+      ... on DraftTextModule {
+        __typename
+        id
+        parentId
+        ...draftTextFragment
+      }
+
       ... on GoogleMapModule {
         __typename
         id
@@ -70,6 +78,7 @@ export const modulesFragment = gql`
   }
 
   ${dividerFragment}
+  ${draftTextFragment}
   ${googleMapFragment}
   ${iframeFragment}
   ${unavailableFragment}
@@ -83,6 +92,7 @@ export default {
     throw new Error('Can not use LayoutModule');
   },
   DividerModule: dynamic(() => import('@meepshop/divider')),
+  DraftTextModule: dynamic(() => import('@meepshop/draft-text')),
   GoogleMapModule: dynamic(() => import('@meepshop/google-map')),
   IframeModule: dynamic(() => import('@meepshop/iframe')),
   UnavailableModule: dynamic(() => import('@meepshop/unavailable')),

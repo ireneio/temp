@@ -9,6 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/divider": "^0.43.1",
+    "@meepshop/draft-text": "^0.1.0",
     "@meepshop/google-map": "^0.43.1",
     "@meepshop/iframe": "^0.43.1",
     "@meepshop/unavailable": "^0.43.1",

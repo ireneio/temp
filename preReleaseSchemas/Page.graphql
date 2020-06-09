@@ -129,6 +129,7 @@ union PageModule =
     GroupModule
   | LayoutModule
   | DividerModule
+  | DraftTextModule
   | GoogleMapModule
   | IframeModule
   | UnavailableModule

@@ -21,9 +21,10 @@
       "@store/ad-track/lib/*": ["store/ad-track/src/*"],
       "@meepshop/utils/lib/*": ["meepshop/utils/src/*"],
       "@meepshop/divider/lib/*": ["meepshop/divider/src/*"],
+      "@meepshop/draft-text/lib/*": ["meepshop/draft-text/src/*"],
       "@meepshop/google-map/lib/*": ["meepshop/google-map/src/*"],
       "@meepshop/iframe/lib/*": ["meepshop/iframe/src/*"],
-      "@meepshop/unavailable/lib/*": ["meepshop/unavailable/src/*"] 
+      "@meepshop/unavailable/lib/*": ["meepshop/unavailable/src/*"]
     }
   },
   "include": [

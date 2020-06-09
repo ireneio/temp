@@ -5,6 +5,7 @@ import uuid from 'uuid/v4';
 import mock from '../mock';
 
 import DividerModule from './DividerModule';
+import DraftTextModule from './DraftTextModule';
 import GoogleMapModule from './GoogleMapModule';
 import GroupModule from './GroupModule';
 import IframeModule from './IframeModule';
@@ -31,6 +32,11 @@ gql`
     }
 
     ... on DividerModule {
+      id
+      parentId
+    }
+
+    ... on DraftTextModule {
       id
       parentId
     }
@@ -100,6 +106,7 @@ const getPageModules = (
 
 export default mock.add<PageModuleMock[]>('PageModule', [
   () => getPageModules(DividerModule),
+  () => getPageModules(DraftTextModule),
   () => getPageModules(GoogleMapModule),
   () => getPageModules(IframeModule),
   () => getPageModules(UnavailableModule),
