@@ -23,7 +23,7 @@ import { modulesFragment } from './modules';
 
 // definition
 const query = gql`
-  query getModules($input: StorePageFilterInput) {
+  query getModules($input: StorePageFilterInput, $productId: ID) {
     viewer {
       id
       store {

@@ -138,6 +138,7 @@ union PageModule =
   | DraftTextModule
   | GoogleMapModule
   | IframeModule
+  | ProductVideoModule
   | UnavailableModule
   | VideoModule
 

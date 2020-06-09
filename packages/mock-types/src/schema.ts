@@ -63,6 +63,7 @@ import UserPoints from './schemas/UserPoints';
 import UserRewardPoint from './schemas/UserRewardPoint';
 import UserMemberGroupObjectType from './schemas/UserMemberGroupObjectType';
 import userObjectType from './schemas/userObjectType';
+import VideoLinkProductCustomField from './schemas/VideoLinkProductCustomField';
 import WishlistProduct from './schemas/WishlistProduct';
 
 // definition
@@ -129,6 +130,7 @@ addMockFunctionsToSchema({
     UserRewardPoint,
     UserMemberGroupObjectType,
     userObjectType,
+    VideoLinkProductCustomField,
     WishlistProduct,
     Timestamp: () => moment().unix(),
     DateTime: (): string => {

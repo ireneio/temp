@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@meepshop/product-video",
+  "description": "Meepshop product video module",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/video": "^0.43.2"
+  },
+  "keywords": ["meepshop", "product video"]
+}
