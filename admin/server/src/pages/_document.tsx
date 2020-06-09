@@ -2,6 +2,8 @@
 import React from 'react';
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 
+import { globalEvents } from '@meepshop/events';
+
 // definition
 export default class Document extends NextDocument {
   public render(): JSX.Element {
@@ -21,7 +23,7 @@ export default class Document extends NextDocument {
           />
           <script
             dangerouslySetInnerHTML={{
-              __html: 'var events = new EventTarget();',
+              __html: globalEvents,
             }}
           />
         </Head>

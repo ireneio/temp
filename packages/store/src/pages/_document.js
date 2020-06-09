@@ -2,6 +2,8 @@ import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import htmlescape from 'htmlescape';
 
+import { globalEvents } from '@meepshop/events';
+
 export default class MyDocument extends Document {
   static async getInitialProps({ req, res, renderPage }) {
     const { html, head, errorHtml, chunks } = renderPage();
@@ -27,7 +29,7 @@ export default class MyDocument extends Document {
         <Head>
           <script
             dangerouslySetInnerHTML={{
-              __html: 'var events = new EventTarget();',
+              __html: globalEvents,
             }}
           />
         </Head>
