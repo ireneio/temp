@@ -9,6 +9,7 @@ import DraftTextModule from './DraftTextModule';
 import GoogleMapModule from './GoogleMapModule';
 import GroupModule from './GroupModule';
 import IframeModule from './IframeModule';
+import ProductDraftTextModule from './ProductDraftTextModule';
 import ProductVideoModule from './ProductVideoModule';
 import UnavailableModule from './UnavailableModule';
 import VideoModule from './VideoModule';
@@ -49,6 +50,11 @@ gql`
     }
 
     ... on IframeModule {
+      id
+      parentId
+    }
+
+    ... on ProductDraftTextModule {
       id
       parentId
     }
@@ -121,6 +127,7 @@ export default mock.add<PageModuleMock[]>('PageModule', [
   () => getPageModules(DraftTextModule),
   () => getPageModules(GoogleMapModule),
   () => getPageModules(IframeModule),
+  () => getPageModules(ProductDraftTextModule),
   () => getPageModules(ProductVideoModule),
   () => getPageModules(UnavailableModule),
   () => getPageModules(VideoModule),

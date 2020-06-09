@@ -7,6 +7,7 @@ import dividerFragment from '@meepshop/divider/lib/fragment';
 import draftTextFragment from '@meepshop/draft-text/lib/fragment';
 import googleMapFragment from '@meepshop/google-map/lib/fragment';
 import iframeFragment from '@meepshop/iframe/lib/fragment';
+import productDraftTextFragment from '@meepshop/product-draft-text/lib/fragment';
 import productVideoFragment from '@meepshop/product-video/lib/fragment';
 import unavailableFragment from '@meepshop/unavailable/lib/fragment';
 import videoFragment from '@meepshop/video/lib/fragment';
@@ -70,6 +71,13 @@ export const modulesFragment = gql`
         ...iframeFragment
       }
 
+      ... on ProductDraftTextModule {
+        __typename
+        id
+        parentId
+        ...productDraftTextFragment
+      }
+
       ... on ProductVideoModule {
         __typename
         id
@@ -97,6 +105,7 @@ export const modulesFragment = gql`
   ${draftTextFragment}
   ${googleMapFragment}
   ${iframeFragment}
+  ${productDraftTextFragment}
   ${productVideoFragment}
   ${unavailableFragment}
   ${videoFragment}
@@ -113,6 +122,7 @@ export default {
   DraftTextModule: dynamic(() => import('@meepshop/draft-text')),
   GoogleMapModule: dynamic(() => import('@meepshop/google-map')),
   IframeModule: dynamic(() => import('@meepshop/iframe')),
+  ProductDraftTextModule: dynamic(() => import('@meepshop/product-draft-text')),
   ProductVideoModule: dynamic(() => import('@meepshop/product-video')),
   UnavailableModule: dynamic(() => import('@meepshop/unavailable')),
   VideoModule: dynamic(() => import('@meepshop/video')),

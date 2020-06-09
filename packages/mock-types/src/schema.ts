@@ -16,6 +16,7 @@ import BackgroundImage from './schemas/BackgroundImage';
 import ColorList from './schemas/ColorList';
 import ConvenienceStore from './schemas/ConvenienceStore';
 import DashboardInfo from './schemas/DashboardInfo';
+import DraftTextProductCustomField from './schemas/DraftTextProductCustomField';
 import ExchangeRate from './schemas/ExchangeRate';
 import ezPaymentReturnListObjectType from './schemas/ezPaymentReturnListObjectType';
 import ExportFormat from './schemas/ExportFormat';
@@ -83,6 +84,7 @@ addMockFunctionsToSchema({
     ColorList,
     ConvenienceStore,
     DashboardInfo,
+    DraftTextProductCustomField,
     ExchangeRate,
     ezPaymentReturnListObjectType,
     ExportFormat,

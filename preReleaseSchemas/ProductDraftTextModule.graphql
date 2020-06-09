@@ -1,0 +1,5 @@
+type ProductDraftTextModule implements Module {
+  id: ID!
+  parentId: ID!
+  product(productId: ID): Product
+}
