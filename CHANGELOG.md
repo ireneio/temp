@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 0.43.2 (2020-06-09)
+
+#### :boom: Breaking Change
+
+- `mock-types`
+  - [#983](https://github.com/meepshop/meep-lerna/pull/983) 【重構】影片元件 ([@HsuTing](https://github.com/HsuTing))
+  - [#984](https://github.com/meepshop/meep-lerna/pull/984) 【重構】文字元件 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `mock-types`
+  - [#972](https://github.com/meepshop/meep-lerna/pull/972) 【優化】 群組增加色彩配置功能 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#985](https://github.com/meepshop/meep-lerna/pull/985) 【BUG】手機版 - 無法顯示頁面 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.43.1 (2020-06-05)
 
 #### :boom: Breaking Change
