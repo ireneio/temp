@@ -4,13 +4,13 @@
   "description": "member order applications",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.43.2",
+  "version": "0.43.3",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@store/apollo-client-resolvers": "^0.43.2",
-    "@store/thumbnail": "^0.43.2",
-    "@store/utils": "^0.43.2",
+    "@store/apollo-client-resolvers": "^0.43.3",
+    "@store/thumbnail": "^0.43.3",
+    "@store/utils": "^0.43.3",
     "color": "^3.0.0",
     "memoize-one": "^5.1.1",
     "moment": "^2.22.1"
