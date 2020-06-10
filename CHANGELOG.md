@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 0.44.0 (2020-06-10)
+
+#### :rocket: New Feature
+
+- [#971](https://github.com/meepshop/meep-lerna/pull/971) 【功能】後台登入頁 - 忘記密碼 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#989](https://github.com/meepshop/meep-lerna/pull/989) 【BUG】 社群分享元件異常 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `mock-types`
+  - [#982](https://github.com/meepshop/meep-lerna/pull/982) (@meepshop/modules) Add new package ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.43.3 (2020-06-10)
 
 #### :boom: Breaking Change
