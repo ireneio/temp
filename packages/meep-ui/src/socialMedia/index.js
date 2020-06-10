@@ -44,8 +44,8 @@ export default class SocialMedia extends React.PureComponent {
       <div className={`${styles.root} ${styles[alignItems]}`}>
         {enableFacebook && <Facebook {...props} />}
         {enableLine && <Line {...props} />}
-        {enableTwitter && <Wechat {...props} />}
-        {enableWechat && <Twitter {...props} />}
+        {enableWechat && <Wechat {...props} />}
+        {enableTwitter && <Twitter {...props} />}
       </div>
     );
   }
