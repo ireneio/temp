@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 0.43.3 (2020-06-10)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#961](https://github.com/meepshop/meep-lerna/pull/961) 【重構】臉書按讚元件 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `store`
+  - [#978](https://github.com/meepshop/meep-lerna/pull/978) 前端 - 修改 babel imgproxy build 特殊處理 ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#988](https://github.com/meepshop/meep-lerna/pull/988) 商品文字元件 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#979](https://github.com/meepshop/meep-lerna/pull/979) 【BUG】後台 - 當頁面設計、色彩配置皆有設定背景圖，預覽畫面跑版 ([@happycat6323](https://github.com/happycat6323))
+- `store`
+  - [#981](https://github.com/meepshop/meep-lerna/pull/981) 【BUG】前台 - 建立訂單，thank-you-page 點選查看訂單，頁面顯示空白 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.43.2 (2020-06-09)
 
 #### :boom: Breaking Change
