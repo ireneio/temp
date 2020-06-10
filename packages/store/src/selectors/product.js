@@ -24,7 +24,7 @@ const getPageId = (_, { pageId }) => pageId;
 
 export const getProduct = createSelector(
   [getProductList, getProductId],
-  (productList, pId) => R.find(R.propEq('id', pId))(productList),
+  (productList, pId) => R.find(R.propEq('id', pId))(productList) || {},
 );
 
 export const getProductDescription = createSelector(
@@ -47,7 +47,10 @@ export const getProductDescription = createSelector(
   },
 );
 
-const getPageByProduct = createSelector(getProduct, product => product.page);
+const getPageByProduct = createSelector(
+  getProduct,
+  product => product.page || {},
+);
 
 const getPage = createSelector(
   [getPageByProduct, getPageId, getPages],
@@ -86,7 +89,7 @@ const getProductCombinedPage = createSelector(
     // productList
     productListCache,
   ) => {
-    const blocks = page.blocks.map(({ widgets, ...block }) => ({
+    const blocks = (page.blocks || []).map(({ widgets, ...block }) => ({
       ...block,
       widgets: getJoinedModule(widgets, {
         query,

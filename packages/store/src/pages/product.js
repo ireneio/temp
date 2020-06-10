@@ -96,11 +96,7 @@ class Product extends React.Component {
       storeSetting: { storeName, storeDescription, faviconUrl },
       location: { host, pathname },
       page,
-      product: {
-        status,
-        coverImage,
-        title: { zh_TW: productName },
-      },
+      product: { status, coverImage, title },
       productDescription,
       pageAdTrackIDs,
       i18n,
@@ -108,6 +104,9 @@ class Product extends React.Component {
     const url = host + pathname;
     const productImage = coverImage?.src || '';
     const keywords = page?.seo?.keywords;
+
+    // eslint-disable-next-line camelcase
+    const productName = title?.zh_TW;
 
     return (
       <>

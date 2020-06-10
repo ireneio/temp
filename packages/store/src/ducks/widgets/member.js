@@ -111,7 +111,7 @@ export function* loginFlow({ payload }) {
       if (from === 'cart') {
         Utils.goTo({ pathname: '/checkout' });
       } else if (from === 'checkout') {
-        // Use callback to go to thank-you-page, so so not go anywhere.
+        // Use callback to go to thank-you-page, so do not go anywhere.
       } else if (from === 'landingPage') {
         // Stay in the landing page, so do not go anywhere.
       } else if (window.storePreviousPageUrl) {
