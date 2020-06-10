@@ -4,17 +4,21 @@ import { ModulesType } from './hooks/useModules';
 // import
 import React from 'react';
 
-import modules from './modules';
+import modules from '@meepshop/modules';
+
 import styles from './styles/layout.less';
 
 // graphql typescript
-import { modulesFragment_modules_GroupModule as modulesFragmentModulesGroupModule } from './__generated__/modulesFragment';
+import { getModules_viewer_store_page_modules_GroupModule as getModulesViewerStorePageModulesGroupModule } from './__generated__/getModules';
 
 // typescript definition
 interface PropsType {
   data: ModulesType['data'];
   childModules: ModulesType[];
-  settings: Pick<modulesFragmentModulesGroupModule, 'componentWidth'> & {
+  settings: Pick<
+    getModulesViewerStorePageModulesGroupModule,
+    'componentWidth'
+  > & {
     level: number;
   };
 }

@@ -175,6 +175,7 @@ workspace(store, admin...)
   - [ ] move `@meepshop/store` to `@store/server`
 - [store](./store)
 - [admin](./admin)
+- [meepshop](./meepshop)
 
 ## lerna
 

@@ -15,11 +15,13 @@ import useModules from './hooks/useModules';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getModules } from './__generated__/getModules';
-import { modulesFragment_modules_GroupModule as modulesFragmentModulesGroupModule } from './__generated__/modulesFragment';
+import {
+  getModules,
+  getModules_viewer_store_page_modules_GroupModule as getModulesViewerStorePageModulesGroupModule,
+} from './__generated__/getModules';
 
 // graphql import
-import { modulesFragment } from './modules';
+import { modulesFragment } from '@meepshop/modules';
 
 // definition
 const query = gql`
@@ -57,7 +59,7 @@ export default React.memo(() => {
       style={{ maxWidth: !maxWidth ? '100%' : `${maxWidth}px` }}
     >
       {(modules as {
-        data: modulesFragmentModulesGroupModule;
+        data: getModulesViewerStorePageModulesGroupModule;
         children: ModulesType[];
       }[]).map(
         ({

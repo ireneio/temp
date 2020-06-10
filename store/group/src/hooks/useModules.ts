@@ -4,23 +4,23 @@ import * as d3 from 'd3-hierarchy';
 
 // graphql typescript
 import {
-  modulesFragment,
-  modulesFragment_modules as modulesFragmentModules,
-} from '../__generated__/modulesFragment';
+  getModules_viewer_store_page as getModulesViewerStorePage,
+  getModules_viewer_store_page_modules as getModulesViewerStorePageModules,
+} from '../__generated__/getModules';
 
 // typescript definition
 export interface ModulesType {
-  data: modulesFragmentModules;
+  data: getModulesViewerStorePageModules;
   children: ModulesType[];
 }
 
 // definition
 const treemap = d3
-  .stratify<modulesFragmentModules>()
+  .stratify<getModulesViewerStorePageModules>()
   .id(({ id }) => id)
   .parentId(({ parentId }) => parentId);
 
-export default (page: modulesFragment | null): ModulesType[] =>
+export default (page: getModulesViewerStorePage | null): ModulesType[] =>
   useMemo(
     () =>
       (!page
@@ -30,6 +30,7 @@ export default (page: modulesFragment | null): ModulesType[] =>
               id: 'root',
             },
             ...page.modules,
-          ] as modulesFragmentModules[]).children || []) as ModulesType[],
+          ] as getModulesViewerStorePageModules[]).children ||
+          []) as ModulesType[],
     [page],
   );

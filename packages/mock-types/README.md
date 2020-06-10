@@ -9,7 +9,7 @@ This package is used to mock `apollo-client` request result.
 
 ```js
 import MockTypes from '@meepshop/mock-types';
-import * as resolvers from '/** worksapce *//apollo-client-resolvers';
+import * as resolvers from '/** worksapce */apollo-client-resolvers';
 
 ...
 <MockTypes {...resolvers}>
@@ -47,7 +47,7 @@ runTest('store' or 'admin', <Component />, (wrapper: ReactWrapper<unknown, unkno
 import gql from 'graphql-tag';
 
 import mock from '../mock';
-import { /** fragment name */ } from './__generated__//** fragment name */';
+import { /** fragment name */ } from './__generated__/** fragment name */';
 
 // eslint-disable-next-line no-unused-expressions
 gql`
@@ -70,7 +70,7 @@ In this file, `gql` is used to build the schema type with `apollo`. In the array
 
 ```js
 ...
-import /** schema type */ from './schema//**schema type */';
+import /** schema type */ from './schema/**schema type */';
 ...
 mocks: {
   /** schema type */,

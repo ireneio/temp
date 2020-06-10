@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "@meepshop/modules",
+  "description": "Use to handle the all modules",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@meepshop/divider": "^0.43.3",
+    "@meepshop/draft-text": "^0.43.3",
+    "@meepshop/google-map": "^0.43.3",
+    "@meepshop/iframe": "^0.43.3",
+    "@meepshop/product-draft-text": "^0.43.3",
+    "@meepshop/product-video": "^0.43.3",
+    "@meepshop/unavailable": "^0.43.3",
+    "@meepshop/video": "^0.43.3"
+  },
+  "keywords": ["meepshop", "modules"]
+}

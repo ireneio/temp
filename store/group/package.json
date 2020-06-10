@@ -8,14 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/divider": "^0.43.3",
-    "@meepshop/draft-text": "^0.43.3",
-    "@meepshop/google-map": "^0.43.3",
-    "@meepshop/iframe": "^0.43.3",
-    "@meepshop/product-draft-text": "^0.43.3",
-    "@meepshop/product-video": "^0.43.3",
-    "@meepshop/unavailable": "^0.43.3",
-    "@meepshop/video": "^0.43.3",
+    "@meepshop/modules": "^0.1.0",
     "@store/utils": "^0.43.3",
     "d3-hierarchy": "^1.1.6"
   },
