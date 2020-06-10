@@ -4,7 +4,7 @@
   "description": "Meepshop draft text module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.43.3",
+  "version": "0.44.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {

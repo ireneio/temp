@@ -4,15 +4,15 @@
   "description": "Wrapper for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.43.3",
+  "version": "0.44.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/apollo-client-resolvers": "^0.43.3",
-    "@admin/link": "^0.43.3",
-    "@admin/switch": "^0.43.3",
-    "@admin/utils": "^0.43.3",
-    "@meepshop/icons": "^0.43.3",
+    "@admin/apollo-client-resolvers": "^0.44.0",
+    "@admin/link": "^0.44.0",
+    "@admin/switch": "^0.44.0",
+    "@admin/utils": "^0.44.0",
+    "@meepshop/icons": "^0.44.0",
     "memoize-one": "^5.1.1"
   },
   "keywords": ["admin", "wrapper"]
