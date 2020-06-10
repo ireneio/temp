@@ -10,7 +10,8 @@
   "dependencies": {
     "@admin/link": "^0.43.3",
     "@admin/utils": "^0.43.3",
-    "@meepshop/events": "^0.43.3"
+    "@meepshop/events": "^0.43.3",
+    "@meepshop/images": "^0.43.3"
   },
   "keywords": ["admin", "login"]
 }

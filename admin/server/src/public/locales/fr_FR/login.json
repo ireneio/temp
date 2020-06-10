@@ -1,25 +1,36 @@
 {
   "email": {
-    "error": "S'il vous plaît entrer la bonne adresse email",
-    "placeholder": "Email"
+    "error": null,
+    "placeholder": null
   },
   "password": {
-    "error": "S'il vous plaît entrer le mot de passe correct",
-    "placeholder": "Email"
+    "error": null,
+    "placeholder": null
   },
   "helper": {
-    "placeholder": "Assistant de connexion"
+    "placeholder": "Assistant de connexion",
+    "is-helper": null
   },
   "cname": {
     "error": "Veuillez entrer cname",
-    "placeholder": "CNAME"
+    "placeholder": null
   },
   "login": "S'identifier",
   "not-yet-register": "Vous n'avez pas encore de compte?",
   "get-registered": "Obtenir un magasin",
+  "back-to-login-page": null,
+  "forget-password": {
+    "title": null,
+    "description": null,
+    "submit": null,
+    "submit-countdown": null,
+    "success": null,
+    "fail": null
+  },
   "submit": {
     "success": "Connexion réussie",
-    "error": {
+    "error": null,
+    "close": {
       "title": "Fermeture de magasin",
       "content": "Pour redémarrer, veuillez contacter le service clientèle: (02) 2925-8922"
     }

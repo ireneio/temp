@@ -18,6 +18,7 @@
     "@admin/login": "^0.43.3",
     "@admin/orders-ecfit": "^0.43.3",
     "@admin/page-manager": "^0.43.3",
+    "@admin/reset-password": "^0.43.0",
     "@admin/setting": "^0.43.3",
     "@admin/setting-notification": "^0.43.3",
     "@admin/utils": "^0.43.3",

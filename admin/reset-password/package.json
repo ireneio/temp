@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@admin/reset-password",
+  "description": "Admin reset password page",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.43.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/link": "^0.43.0",
+    "@admin/utils": "^0.43.0",
+    "@meepshop/images": "^0.43.0"
+  },
+  "keywords": ["admin", "password", "reset"]
+}

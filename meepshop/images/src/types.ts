@@ -19,6 +19,7 @@ const mockScaledSrc = {
 
 /* eslint-disable @typescript-eslint/camelcase */
 export const dashboardCost = mockData;
+export const meepshopLogo = mockData;
 export const dashboardCost_scaledSrc = mockScaledSrc;
 export const pageManagerEmpty = mockData;
 export const pageManagerTopMenu = mockData;

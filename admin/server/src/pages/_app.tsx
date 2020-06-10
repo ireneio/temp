@@ -69,7 +69,7 @@ class App extends NextApp<PropsType> {
 
         <ApolloProvider client={apolloClient}>
           <EventsProvider>
-            {/login/.test(pathname) ? (
+            {/login|reset-password/.test(pathname) ? (
               <Component {...pageProps} />
             ) : (
               <Wrapper>

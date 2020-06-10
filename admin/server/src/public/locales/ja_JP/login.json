@@ -1,25 +1,36 @@
 {
   "email": {
-    "error": "正しいメールアドレスを入力してください",
-    "placeholder": "メールアドレス"
+    "error": null,
+    "placeholder": null
   },
   "password": {
-    "error": "正しいパスワードを入力してください",
-    "placeholder": "Eメール"
+    "error": null,
+    "placeholder": null
   },
   "helper": {
-    "placeholder": "ログインヘルパー"
+    "placeholder": "ログインヘルパー",
+    "is-helper": null
   },
   "cname": {
     "error": "cnameを入力してください",
-    "placeholder": "CNAME"
+    "placeholder": null
   },
   "login": " ログイン",
   "not-yet-register": "まだアカウントを持っていませんか？",
   "get-registered": "ストアを取得",
+  "back-to-login-page": null,
+  "forget-password": {
+    "title": null,
+    "description": null,
+    "submit": null,
+    "submit-countdown": null,
+    "success": null,
+    "fail": null
+  },
   "submit": {
     "success": "ログイン成功",
-    "error": {
+    "error": null,
+    "close": {
       "title": "閉店",
       "content": "再起動するには、カスタマーサービスにお問い合わせください：（02）2925-8922"
     }

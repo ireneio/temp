@@ -6,6 +6,7 @@ import gql from 'graphql-tag';
 
 import { useTranslation } from '@admin/utils/lib/i18n';
 import Link from '@admin/link';
+import getImage, { meepshopLogo } from '@meepshop/images';
 
 import styles from './styles/tutorial.less';
 import { TUTORIAL } from './constants';
@@ -82,10 +83,11 @@ const Tutorial = ({ name, id, setting }: PropsType): React.ReactElement => {
     <div className={styles.welcome}>
       <div className={isTutorialEnabled ? styles.isTutorialEnabled : ''}>
         <img
-          src="/images/dashboard/logo.svg"
+          src={getImage(meepshopLogo)}
           className={styles.logo}
           alt="meepshop"
         />
+
         <div className={styles.text}>
           {!isTutorialEnabled ? (
             <h1>{t('welcome-back', { name })}</h1>

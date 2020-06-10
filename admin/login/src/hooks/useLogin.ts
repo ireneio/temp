@@ -53,7 +53,7 @@ export default (
               password,
               'g-recaptcha-response': gRecaptchaResponse,
               ...(!isHelper
-                ? {}
+                ? { type: 'merchant' }
                 : {
                     type: 'helper',
                     cname,
@@ -62,7 +62,7 @@ export default (
           }).then(res => res.json());
 
           if (error) {
-            message.error(error);
+            message.error(t('submit.error'));
             setLoading(false);
             return;
           }
@@ -84,8 +84,8 @@ export default (
           }
 
           notification.warning({
-            message: t('submit.error.title'),
-            description: t('submit.error.content'),
+            message: t('submit.close.title'),
+            description: t('submit.close.content'),
           });
           setLoading(false);
         });

@@ -1,25 +1,36 @@
 {
   "email": {
-    "error": "請填入正確電子信箱",
-    "placeholder": "信箱"
+    "error": "信箱格式錯誤",
+    "placeholder": "輸入註冊 Email"
   },
   "password": {
-    "error": "請填入正確密碼",
-    "placeholder": "密碼"
+    "error": "密碼格式錯誤",
+    "placeholder": "輸入密碼"
   },
   "helper": {
-    "placeholder": "小幫手登入"
+    "placeholder": "小幫手登入",
+    "is-helper": "我是小幫手"
   },
   "cname": {
-    "error": "請填入 cname",
-    "placeholder": "CNAME"
+    "error": "請輸入 cname",
+    "placeholder": "輸入商店 cname"
   },
   "login": "登入",
   "not-yet-register": "還沒有帳號嗎？",
   "get-registered": "獲得商店",
+  "back-to-login-page": "返回登入頁",
+  "forget-password": {
+    "title": "忘記密碼",
+    "description": "我們將會寄送重設密碼信至您註冊的 Email",
+    "submit": "發送重設密碼信",
+    "submit-countdown": "秒後可重新發送",
+    "success": "重設密碼信已寄出",
+    "fail": "查無此帳號"
+  },
   "submit": {
     "success": "登入成功",
-    "error": {
+    "error": "信箱或密碼輸入錯誤",
+    "close": {
       "title": "商店關閉中",
       "content": "如要重新啟用，請您聯繫客服：(02)2925-8922"
     }

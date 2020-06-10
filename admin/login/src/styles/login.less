@@ -1,0 +1,89 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 40%;
+  min-width: 396px;
+  max-width: 560px;
+
+  :global(.ant-form) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 32px 48px 48px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 0 30px 0 rgba(141, 151, 158, 0.2);
+
+    & > * {
+      width: 100%;
+      max-width: 320px;
+    }
+
+    & > img {
+      margin-bottom: 16px;
+    }
+
+    .recaptcha {
+      width: auto;
+      max-width: 100%;
+    }
+  }
+
+  :global(.ant-form-item) {
+    margin: 0px 0px 16px;
+    height: 40px;
+  }
+
+  :global(.ant-form-explain) {
+    text-align: left;
+  }
+
+  :global(.ant-checkbox-wrapper):hover :global(.ant-checkbox-inner),
+  :global(.ant-checkbox-input):focus + :global(.ant-checkbox-inner),
+  :global(.ant-checkbox-checked):after {
+    border-color: #7783cf;
+  }
+
+  :global(.ant-checkbox-checked) :global(.ant-checkbox-inner) {
+    background-color: #7783cf;
+    border-color: #7783cf;
+  }
+
+  :global(.ant-btn) {
+    height: 48px;
+    margin-top: 40px;
+    border-radius: 50px;
+  }
+}
+
+.helper {
+  display: flex;
+  text-align: left;
+
+  :global(.ant-form-item) {
+    flex-grow: 1;
+  }
+}
+
+.footer {
+  margin: 24px 24px 0px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 16px;
+  line-height: 24px;
+  position: relative;
+
+  & > a {
+    color: #0080a9;
+    font-weight: 500;
+  }
+
+  & > span {
+    color: #0080a9;
+    cursor: pointer;
+    position: absolute;
+    right: 0px;
+  }
+}

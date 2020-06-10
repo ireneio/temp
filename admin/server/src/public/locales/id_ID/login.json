@@ -1,25 +1,36 @@
 {
   "email": {
-    "error": "Silakan masukkan alamat email yang benar",
-    "placeholder": "Surel"
+    "error": null,
+    "placeholder": null
   },
   "password": {
-    "error": "Silakan masukkan kata sandi yang benar",
-    "placeholder": "Surel"
+    "error": null,
+    "placeholder": null
   },
   "helper": {
-    "placeholder": "Pembantu login"
+    "placeholder": "Pembantu login",
+    "is-helper": null
   },
   "cname": {
     "error": "Silakan masukkan cname",
-    "placeholder": "CNAME"
+    "placeholder": null
   },
   "login": "Gabung",
   "not-yet-register": "Belum punya akun?",
   "get-registered": "Dapatkan Toko",
+  "back-to-login-page": null,
+  "forget-password": {
+    "title": null,
+    "description": null,
+    "submit": null,
+    "submit-countdown": null,
+    "success": null,
+    "fail": null
+  },
   "submit": {
     "success": "Sukses Masuk",
-    "error": {
+    "error": null,
+    "close": {
       "title": "Penutupan Toko",
       "content": "Untuk memulai kembali, silakan hubungi layanan pelanggan: (02) 2925-8922"
     }

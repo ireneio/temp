@@ -1,25 +1,36 @@
 {
   "email": {
-    "error": "Please enter the correct email address",
-    "placeholder": "Email"
+    "error": null,
+    "placeholder": null
   },
   "password": {
-    "error": "Please enter the correct password",
-    "placeholder": "Email"
+    "error": null,
+    "placeholder": null
   },
   "helper": {
-    "placeholder": "Login helper"
+    "placeholder": "Login helper",
+    "is-helper": null
   },
   "cname": {
     "error": "Please enter cname",
-    "placeholder": "CNAME"
+    "placeholder": null
   },
   "login": "Login",
   "not-yet-register": "Don't have an account yet?",
   "get-registered": "Obtain Store",
+  "back-to-login-page": null,
+  "forget-password": {
+    "title": null,
+    "description": null,
+    "submit": null,
+    "submit-countdown": null,
+    "success": null,
+    "fail": null
+  },
   "submit": {
     "success": "Login Success",
-    "error": {
+    "error": null,
+    "close": {
       "title": "Store Closing",
       "content": "To restart, please contact customer service: (02) 2925-8922"
     }

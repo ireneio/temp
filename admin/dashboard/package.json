@@ -11,6 +11,7 @@
     "@admin/link": "^0.43.3",
     "@admin/utils": "^0.43.3",
     "@meepshop/icons": "^0.43.3",
+    "@meepshop/images": "^0.43.3",
     "moment": "^2.22.1"
   },
   "keywords": ["admin", "dashboard"]
