@@ -1,8 +1,7 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: next-store
+  name: next-admin
   namespace: default
 data:
-  external.api.host: "https://api.stage.meepcloud.com"
   external.env: "stage"

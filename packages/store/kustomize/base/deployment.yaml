@@ -42,6 +42,11 @@ spec:
             configMapKeyRef:
               name: next-store
               key: external.api.host
+        - name: ENV
+          valueFrom:
+            configMapKeyRef:
+              name: next-store
+              key: external.env
         ports:
         - containerPort: 14401
           name: http-port

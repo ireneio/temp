@@ -2,7 +2,7 @@
 import { FormComponentProps } from 'antd/lib/form';
 
 // import
-import React, { useContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import gql from 'graphql-tag';
 import { useApolloClient } from '@apollo/react-hooks';
@@ -10,7 +10,7 @@ import { Form, Input, Icon, Button, Tooltip } from 'antd';
 
 import { useTranslation } from '@admin/utils/lib/i18n';
 import usePortalTarget from '@admin/utils/lib/hooks/usePortalTarget';
-import ImagesContext, {
+import getImage, {
   pageManagerPageTipPath_w200 as pageManagerPageTipPath,
   pageManagerPageTipTab_w200 as pageManagerPageTipTab,
 } from '@meepshop/images';
@@ -83,7 +83,6 @@ export default Form.create<PropsType>()(
       const client = useApolloClient();
       const portalTarget = usePortalTarget();
       const { t, i18n } = useTranslation('page-manager');
-      const getUrl = useContext(ImagesContext);
       const editSubmit = useEditSubmit(
         validateFields,
         id || 'id' /** TODO should not be null */,
@@ -132,7 +131,7 @@ export default Form.create<PropsType>()(
                       title={
                         <img
                           className={styles.tooltip}
-                          src={getUrl(pageManagerPageTipPath)}
+                          src={getImage(pageManagerPageTipPath)}
                           alt="pageManagerPageTipPath"
                         />
                       }
@@ -183,7 +182,7 @@ export default Form.create<PropsType>()(
                       title={
                         <img
                           className={styles.tooltip}
-                          src={getUrl(pageManagerPageTipTab)}
+                          src={getImage(pageManagerPageTipTab)}
                           alt="pageManagerPageTipTab"
                         />
                       }

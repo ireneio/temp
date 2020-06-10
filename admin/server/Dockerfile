@@ -24,4 +24,5 @@ EXPOSE 14405
 ENV REPO_VERSION={{ build.tag }}
 ENV NODE_ENV=production
 ENV API_HOST=http://meepshop-api:15265
+ENV ENV=stage
 CMD ["yarn", "lerna", "run", "--scope", "@admin/server", "start", "--stream"]

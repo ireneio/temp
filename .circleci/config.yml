@@ -129,7 +129,7 @@ jobs:
     steps:
       - checkout
       - run: *gcloud-login
-      - run: ./.circleci/bin/upload_images.sh stage
+      - run: ./.circleci/bin/upload_images.sh
 
   deploy-test-branch:
     <<: *defaults

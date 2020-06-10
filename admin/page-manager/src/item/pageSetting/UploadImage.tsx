@@ -1,14 +1,12 @@
 // import
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Icon } from 'antd';
 
 import { useTranslation } from '@admin/utils/lib/i18n';
 import usePortalTarget from '@admin/utils/lib/hooks/usePortalTarget';
 import Gallery from '@admin/gallery';
-import ImagesContext, {
-  uploadImage_w56 as uploadImage,
-} from '@meepshop/images';
+import getImage, { uploadImage_w56 as uploadImage } from '@meepshop/images';
 
 import useFindImage from './hooks/useFindImage';
 import styles from './styles/uploadImage.less';
@@ -24,7 +22,6 @@ interface PropsType {
 const UploadImage = React.memo(
   ({ forwardedRef, value, onChange }: PropsType) => {
     const { t } = useTranslation('page-manager');
-    const getUrl = useContext(ImagesContext);
     const portalTarget = usePortalTarget();
     const findImage = useFindImage();
     const [visible, setVisible] = useState(false);
@@ -42,7 +39,7 @@ const UploadImage = React.memo(
         <img
           className={styles.image}
           onClick={() => setVisible(true)}
-          src={getUrl(uploadImage)}
+          src={getImage(uploadImage)}
           alt="upload"
         />
 

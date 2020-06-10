@@ -16,6 +16,6 @@ for image in $(find $imageDir); do
 
     gsFilePath=$folder"/"$filename"_"$hash"."$extension
 
-    gsutil cp $image gs://img.meepcloud.com/assets/$1$gsFilePath
+    gsutil cp $image gs://img.meepcloud.com/assets$gsFilePath
   fi
 done

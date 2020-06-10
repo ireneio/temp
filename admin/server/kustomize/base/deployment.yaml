@@ -36,6 +36,12 @@ spec:
             port: 14405
           initialDelaySeconds: 15
           periodSeconds: 3
+        env:
+        - name: ENV
+          valueFrom:
+            configMapKeyRef:
+              name: next-admin
+              key: external.env
         ports:
         - containerPort: 14405
           name: http-port

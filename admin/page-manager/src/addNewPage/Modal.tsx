@@ -4,11 +4,11 @@ import { FormComponentProps } from 'antd/lib/form';
 import { useTranslation } from '@admin/utils/lib/i18n';
 
 // import
-import React, { useContext } from 'react';
+import React from 'react';
 import gql from 'graphql-tag';
 import { useApolloClient } from '@apollo/react-hooks';
 import { Form, Modal, Input, Switch, Icon, Tooltip } from 'antd';
-import ImagesContext, {
+import getImage, {
   pageManagerPageTipPath_w200 as pageManagerPageTipPath,
   pageManagerPageTipTab_w200 as pageManagerPageTipTab,
 } from '@meepshop/images';
@@ -53,7 +53,6 @@ export default Form.create<PropsType>()(
     }: PropsType) => {
       const client = useApolloClient();
       const { t } = useTranslation('page-manager');
-      const getUrl = useContext(ImagesContext);
       const modalSubmit = useModalSubmit(validateFields, pageType, variables);
       const error = getFieldsError();
 
@@ -91,7 +90,7 @@ export default Form.create<PropsType>()(
                       title={
                         <img
                           className={styles.tooltip}
-                          src={getUrl(pageManagerPageTipPath)}
+                          src={getImage(pageManagerPageTipPath)}
                           alt="pageManagerPageTipPath"
                         />
                       }
@@ -140,7 +139,7 @@ export default Form.create<PropsType>()(
                       title={
                         <img
                           className={styles.tooltip}
-                          src={getUrl(pageManagerPageTipTab)}
+                          src={getImage(pageManagerPageTipTab)}
                           alt="pageManagerPageTipTab"
                         />
                       }

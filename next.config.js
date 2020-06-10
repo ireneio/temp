@@ -82,6 +82,12 @@ module.exports = nextConfig =>
             ...nextConfig.lessLoaderOptions,
             javascriptEnabled: true,
           },
+          publicRuntimeConfig: {
+            ...nextConfig.publicRuntimeConfig,
+            API_HOST: process.env.API_HOST || 'https://api.stage.meepcloud.com',
+            VERSION: process.env.REPO_VERSION || +new Date(),
+            ENV: process.env.ENV || 'stage',
+          },
           webpack: (config, { dev, isServer }) => {
             if (!dev) config.devtool = 'source-map';
 

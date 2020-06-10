@@ -39,9 +39,7 @@ yarn lerna exec "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/deploy_k8s.sh" --stre
 Use to upload the images to the gcd bucket.
 
 ```sh
-./upload_images.sh stage
-// or
-./upload_images.sh production
+./upload_images.sh
 ```
 
 #### `checkNeedPublish`

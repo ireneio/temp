@@ -8,18 +8,37 @@ const { default: Imgproxy } = require('imgproxy');
 const dirTree = require('directory-tree');
 const d3 = require('d3-hierarchy');
 const execa = require('execa');
+const invariant = require('fbjs/lib/invariant');
+
+[
+  'IMGPROXY_KEY_STAGE',
+  'IMGPROXY_SALT_STAGE',
+  'IMGPROXY_KEY_PRODUCTION',
+  'IMGPROXY_SALT_PRODUCTION',
+].forEach(key => {
+  invariant(process.env[key], `process.env.${key} is not defined.`);
+});
 
 // definition
 const hash = crypto
   .createHash('md5')
   .update('@meepshop/images')
   .digest('hex');
-const imgproxy = new Imgproxy({
-  baseUrl: 'https://img.meepshop.com/',
-  key: process.env.IMGPROXY_KEY,
-  salt: process.env.IMGPROXY_SALT,
-  encode: true,
-});
+const imgproxy = {
+  stage: new Imgproxy({
+    baseUrl: 'https://img.meepstage.com/',
+    key: process.env.IMGPROXY_KEY_STAGE,
+    salt: process.env.IMGPROXY_SALT_STAGE,
+    encode: true,
+  }),
+  production: new Imgproxy({
+    baseUrl: 'https://img.meepshop.com/',
+    key: process.env.IMGPROXY_KEY_PRODUCTION,
+    salt: process.env.IMGPROXY_SALT_PRODUCTION,
+    encode: true,
+  }),
+};
+
 const imageFolder = nodePath.resolve(__dirname, './images');
 const imageList = d3
   .hierarchy(dirTree(imageFolder, { extensions: /\.(svg|png|jpg|jpeg)$/ }))
@@ -58,11 +77,12 @@ const getUrl = (key, type, width, height) =>
     !height ? null : result => result.height(height),
     result =>
       result.generateUrl(
-        `gs://img.meepcloud.com/assets/${type}/${imageList[key]}`,
+        `gs://img.meepcloud.com/assets/${imageList[key]}`,
+        !/\.svg$/.test(imageList[key]) ? undefined : 'svg',
       ),
   ]
     .filter(Boolean)
-    .reduce((result, func) => func(result), imgproxy.builder());
+    .reduce((result, func) => func(result), imgproxy[type].builder());
 
 module.exports = declare(({ assertVersion, types: t }) => {
   const cache = {};
@@ -71,7 +91,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
 
   return {
     pre: () => {
-      cache.useImagesContext = false;
+      cache.useGetImage = false;
       cache.images = [];
     },
     visitor: {
@@ -82,8 +102,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
           return;
 
         path.get('specifiers').forEach(specifier => {
-          if (t.isImportDefaultSpecifier(specifier))
-            cache.useImagesContext = true;
+          if (t.isImportDefaultSpecifier(specifier)) cache.useGetImage = true;
 
           if (t.isImportSpecifier(specifier))
             cache.images.push({
@@ -98,14 +117,14 @@ module.exports = declare(({ assertVersion, types: t }) => {
             });
         });
 
-        if (cache.useImagesContext)
+        if (cache.useGetImage)
           path.replaceWith(
             t.importDeclaration(
-              [t.importDefaultSpecifier(t.identifier('ImagesContext'))],
+              [t.importDefaultSpecifier(t.identifier('getImage'))],
               t.stringLiteral(
                 process.env.NODE_ENV === 'test'
-                  ? '@meepshop/images/src/ImagesContext'
-                  : '@meepshop/images/lib/ImagesContext',
+                  ? '@meepshop/images/src/getImage'
+                  : '@meepshop/images/lib/getImage',
               ),
             ),
           );
@@ -162,7 +181,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
                       t.stringLiteral(getUrl(key, 'stage')),
                     ),
                     t.objectProperty(
-                      t.identifier('prod'),
+                      t.identifier('production'),
                       t.stringLiteral(getUrl(key, 'production')),
                     ),
                   ]),
@@ -173,19 +192,25 @@ module.exports = declare(({ assertVersion, types: t }) => {
           return;
         }
 
-        const { key, width, height } = image.key
+        const { key, width, height, useScaledSrc } = image.key
           .split(/_/)
           .reduce((result, str) => {
-            if (/^w/.test(str))
+            if (/^w\d/.test(str))
               return {
                 ...result,
                 width: str.replace(/^w/, ''),
               };
 
-            if (/^h/.test(str))
+            if (/^h\d/.test(str))
               return {
                 ...result,
                 height: str.replace(/^h/, ''),
+              };
+
+            if (/^scaledSrc$/.test(str))
+              return {
+                ...result,
+                useScaledSrc: true,
               };
 
             return {
@@ -197,6 +222,42 @@ module.exports = declare(({ assertVersion, types: t }) => {
         if (!imageList[key])
           throw path.buildCodeFrameError(`Can not find image key: \`${key}\``);
 
+        if (useScaledSrc) {
+          path.replaceWith(
+            t.objectExpression(
+              [
+                '60',
+                '120',
+                '240',
+                '480',
+                '720',
+                '960',
+                '1200',
+                '1440',
+                '1680',
+                '1920',
+              ].map(scaledSrcWidth =>
+                t.objectProperty(
+                  t.identifier(`w${scaledSrcWidth}`),
+                  t.objectExpression([
+                    t.objectProperty(
+                      t.identifier('stage'),
+                      t.stringLiteral(getUrl(key, 'stage', scaledSrcWidth)),
+                    ),
+                    t.objectProperty(
+                      t.identifier('production'),
+                      t.stringLiteral(
+                        getUrl(key, 'production', scaledSrcWidth),
+                      ),
+                    ),
+                  ]),
+                ),
+              ),
+            ),
+          );
+          return;
+        }
+
         path.replaceWith(
           t.objectExpression([
             t.objectProperty(
@@ -204,7 +265,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
               t.stringLiteral(getUrl(key, 'stage', width, height)),
             ),
             t.objectProperty(
-              t.identifier('prod'),
+              t.identifier('production'),
               t.stringLiteral(getUrl(key, 'production', width, height)),
             ),
           ]),

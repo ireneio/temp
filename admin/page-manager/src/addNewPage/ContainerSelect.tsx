@@ -1,9 +1,9 @@
 // import
-import React, { useContext } from 'react';
+import React from 'react';
 import { Icon as AntdIcon } from 'antd';
 
 import { useTranslation } from '@admin/utils/lib/i18n';
-import ImagesContext, {
+import getImage, {
   pageManagerEmpty,
   pageManagerTopMenu,
   pageManagerTopAndSideMenu,
@@ -24,7 +24,6 @@ interface PropsType {
 const ContainerSelect = React.memo(
   ({ forwardedRef, value, onChange }: PropsType) => {
     const { t } = useTranslation('page-manager');
-    const getUrl = useContext(ImagesContext);
 
     return (
       <div ref={forwardedRef}>
@@ -61,7 +60,7 @@ const ContainerSelect = React.memo(
               <AntdIcon type="check-circle" theme="filled" />
             )}
 
-            <img className={styles.icon} src={getUrl(src)} alt={itemValue} />
+            <img className={styles.icon} src={getImage(src)} alt={itemValue} />
 
             <span className={styles.text}>{t(`template.${itemValue}`)}</span>
           </div>

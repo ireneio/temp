@@ -55,6 +55,7 @@ module.exports = ({ config }) => {
     'next/router': path.resolve(__dirname, '../__mocks__/next/router'),
     'next/link': path.resolve(__dirname, '../__mocks__/next/link'),
     'next/head': path.resolve(__dirname, '../__mocks__/next/head'),
+    'next/config': path.resolve(__dirname, '../__mocks__/next/config'),
     'next-i18next': path.resolve(__dirname, '../__mocks__/next-i18next'),
   };
   config.plugins = config.plugins.filter(

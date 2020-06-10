@@ -1,18 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button } from 'antd';
 
 import { useTranslation } from '@store/utils/lib/i18n';
-import ImagesContext, { storeClose } from '@meepshop/images';
+import getImage, { storeClose } from '@meepshop/images';
 
 import './styles/index.less';
 
 export default () => {
   const { t } = useTranslation('common');
-  const getUrl = useContext(ImagesContext);
 
   return (
     <div className="close-view-root">
-      <img src={getUrl(storeClose)} alt="store-close" />
+      <img src={getImage(storeClose)} alt="store-close" />
       <div>{t('close')}</div>
       <div>{t('come-back-soon')}</div>
       <div>Sorry, we are closed and will be back soon.</div>
