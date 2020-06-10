@@ -9,6 +9,7 @@ import googleMapFragment from '@meepshop/google-map/lib/fragment';
 import iframeFragment from '@meepshop/iframe/lib/fragment';
 import productDraftTextFragment from '@meepshop/product-draft-text/lib/fragment';
 import productVideoFragment from '@meepshop/product-video/lib/fragment';
+import socialThumbsFragment from '@meepshop/social-thumbs/lib/fragment';
 import unavailableFragment from '@meepshop/unavailable/lib/fragment';
 import videoFragment from '@meepshop/video/lib/fragment';
 
@@ -85,6 +86,13 @@ export const modulesFragment = gql`
         ...productVideoFragment
       }
 
+      ... on SocialThumbsModule {
+        __typename
+        id
+        parentId
+        ...socialThumbsFragment
+      }
+
       ... on UnavailableModule {
         __typename
         id
@@ -107,6 +115,7 @@ export const modulesFragment = gql`
   ${iframeFragment}
   ${productDraftTextFragment}
   ${productVideoFragment}
+  ${socialThumbsFragment}
   ${unavailableFragment}
   ${videoFragment}
 `;
@@ -124,6 +133,7 @@ export default {
   IframeModule: dynamic(() => import('@meepshop/iframe')),
   ProductDraftTextModule: dynamic(() => import('@meepshop/product-draft-text')),
   ProductVideoModule: dynamic(() => import('@meepshop/product-video')),
+  SocialThumbsModule: dynamic(() => import('@meepshop/social-thumbs')),
   UnavailableModule: dynamic(() => import('@meepshop/unavailable')),
   VideoModule: dynamic(() => import('@meepshop/video')),
 };

@@ -6,11 +6,11 @@
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.43.2",
   "dependencies": {
+    "@meepshop/context": "^0.43.2",
     "@meepshop/landing-page": "^0.43.2",
     "@store/ad-track": "^0.43.2",
     "@store/address-cascader": "^0.43.2",
     "@store/checkout": "^0.43.2",
-    "@store/fb": "^0.43.2",
     "@store/gmo-credit-card-form": "^0.43.2",
     "@store/placeholder": "^0.43.2",
     "@store/thumbnail": "^0.43.2",

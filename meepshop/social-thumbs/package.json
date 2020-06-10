@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@meepshop/social-thumbs",
+  "description": "Meepshop social thumbs module",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/context": "^0.43.2"
+  },
+  "keywords": ["meepshop", "social thumbs"]
+}

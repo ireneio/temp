@@ -1,6 +1,10 @@
 declare interface Window {
   events: EventTarget;
-  FB: {};
+  FB: {
+    XFBML: {
+      parse: (dom: HTMLElement) => void;
+    };
+  };
   fbq: (eventName: string, type: string, option?: {}) => void;
   gtag: (eventName: string, type: string, option?: {}) => void;
   grecaptcha: {

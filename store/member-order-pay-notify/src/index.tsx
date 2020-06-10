@@ -12,6 +12,10 @@ import { useTranslation } from '@store/utils/lib/i18n';
 import { DEFAULT_MESSAGE } from './constants';
 import styles from './styles/index.less';
 
+// graphql typescript
+import { getOrderPaidMessage } from './__generated__/getOrderPaidMessage';
+import { updateOrderPaidMessage as updateOrderPaidMessageType } from './__generated__/updateOrderPaidMessage';
+
 // graphql import
 import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
 
@@ -51,14 +55,17 @@ const query = gql`
 export default Form.create<PropsType>()(
   React.memo(({ orderId, form }: PropsType) => {
     const { t } = useTranslation('member-order-pay-notify');
-
-    const { loading, data } = useQuery(query, { variables: { orderId } });
-
+    const { loading, data } = useQuery<getOrderPaidMessage>(query, {
+      variables: { orderId },
+    });
+    const { getColorList, viewer } = data || {};
+    const setting = viewer?.store?.setting;
+    const order = viewer?.order;
     const [disabledEdit, setDisabledEdit] = useState(
-      Boolean(data?.viewer.order.paidMessage?.length),
+      Boolean(order?.paidMessage?.length),
     );
 
-    const [updateOrderPaidMessage] = useMutation(
+    const [updateOrderPaidMessage] = useMutation<updateOrderPaidMessageType>(
       gql`
         mutation updateOrderPaidMessage($newPaidMessage: [UpdateOrder]) {
           updateOrderList(updateOrderList: $newPaidMessage) {
@@ -77,19 +84,12 @@ export default Form.create<PropsType>()(
       },
     );
 
-    if (loading || !data)
+    if (loading || !setting || !order || !getColorList)
       return <Spin indicator={<Icon type="loading" spin />} />;
 
-    const {
-      viewer: {
-        store: {
-          setting: { paidMessage: customDefaultMessage },
-        },
-        order: { id, orderNo, paidMessage },
-      },
-      getColorList: { colors },
-    } = data;
-
+    const { paidMessage: customDefaultMessage } = setting;
+    const { id, orderNo, paidMessage } = order;
+    const { colors } = getColorList;
     const { getFieldDecorator, getFieldError, validateFields } = form;
 
     return (

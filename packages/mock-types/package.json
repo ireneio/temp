@@ -18,6 +18,7 @@
     "@store/ad-track": "^0.43.2",
     "@store/apollo-client-resolvers": "^0.43.2",
     "@store/currency": "^0.43.2",
+    "@store/fb": "^0.43.2",
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-link-schema": "^1.2.4",
     "graphql-tools": "^4.0.6",

@@ -14,9 +14,9 @@ import NProgress from 'nprogress';
 import { notification } from 'antd';
 import moment from 'moment';
 
-import { EventsProvider } from '@meepshop/events';
 import { appWithTranslation } from '@store/utils/lib/i18n';
-import { FbProvider } from '@store/fb';
+import { EventsProvider } from '@meepshop/events';
+import FbProvider from '@store/fb';
 import { CurrencyProvider } from '@store/currency';
 import { AdTrackProvider } from '@store/ad-track';
 

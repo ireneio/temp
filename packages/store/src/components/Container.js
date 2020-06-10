@@ -10,7 +10,7 @@ import { notification } from 'antd';
 import Layout from '@meepshop/meep-ui/lib/layout';
 import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
-import fbContext from '@store/fb';
+import { fb as fbContext } from '@meepshop/context';
 import currencyContext from '@store/currency';
 import adTrackContext from '@store/ad-track';
 
@@ -155,12 +155,13 @@ class Container extends React.Component {
       dispatchAction,
       cname,
       fb,
-      fbAppId,
+      appId,
+      version,
       adTrack,
       t,
     } = this.props;
 
-    if (!fbAppId)
+    if (!appId)
       return notification.error({
         message: '尚未設定 Facebook APP ID',
       });
@@ -245,7 +246,7 @@ class Container extends React.Component {
       }
     } else {
       // in-app browser
-      window.location.href = `https://www.facebook.com/v5.0/dialog/oauth?client_id=${fbAppId}&redirect_uri=https://${window.meepShopStore.XMeepshopDomain}/fbAuthForLine&scope=email&state=meepShopNextStore${from}`;
+      window.location.href = `https://www.facebook.com/${version}/dialog/oauth?client_id=${appId}&redirect_uri=https://${window.meepShopStore.XMeepshopDomain}/fbAuthForLine&scope=email&state=meepShopNextStore${from}`;
     }
   };
 

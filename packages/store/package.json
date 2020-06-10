@@ -13,6 +13,7 @@
     "start": "NODE_ENV=production node src/server"
   },
   "dependencies": {
+    "@meepshop/context": "^0.43.2",
     "@meepshop/events": "^0.43.2",
     "@meepshop/images": "^0.43.2",
     "@meepshop/meep-ui": "^0.43.2",

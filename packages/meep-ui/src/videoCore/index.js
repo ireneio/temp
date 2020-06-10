@@ -2,7 +2,7 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 
 import withContext from '@store/utils/lib/withContext';
-import fbContext from '@store/fb';
+import { fb as fbContext } from '@meepshop/context';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { CONTENT_WIDTH_TYPE, URL_TYPE } from 'constants/propTypes';
@@ -74,7 +74,7 @@ export default class VideoCore extends React.PureComponent {
   };
 
   render() {
-    const { href, contentWidth, fbAppId } = this.props;
+    const { href, contentWidth, appId, version } = this.props;
     const { height } = this.state;
 
     return (
@@ -86,8 +86,8 @@ export default class VideoCore extends React.PureComponent {
         height={`${height}px`}
         config={{
           facebook: {
-            version: 'v5.0',
-            appId: fbAppId,
+            appId,
+            version,
           },
         }}
         controls

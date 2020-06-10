@@ -5,7 +5,8 @@ import eventsContext from '@meepshop/events';
 
 // definition
 export default (
-  fbAppId: string | null,
+  appId: string | null,
+  version: string,
 ): {
   fb: typeof window['FB'] | null;
   fbScript: React.ReactNode;
@@ -26,17 +27,17 @@ export default (
 
   return {
     fb,
-    fbScript: !fbAppId ? null : (
+    fbScript: !appId ? null : (
       <>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.fbAsyncInit = function() {
                 window.FB.init({
-                  appId: ${fbAppId},
+                  appId: '${appId}',
                   cookie: true,
                   xfbml: true,
-                  version: 'v5.0',
+                  version: '${version}',
                 });
                 window.FB.AppEvents.logPageView();
                 window.events.dispatchEvent(new Event('fb-loaded'));

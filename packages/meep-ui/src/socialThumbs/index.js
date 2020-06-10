@@ -1,7 +1,7 @@
 import React from 'react';
 
 import withContext from '@store/utils/lib/withContext';
-import fbContext from '@store/fb';
+import { fb as fbContext } from '@meepshop/context';
 
 import { URL_TYPE, ALIGNMENT_TYPE } from 'constants/propTypes';
 

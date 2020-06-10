@@ -1,0 +1,6 @@
+type SocialThumbsModule implements Module {
+  id: ID!
+  parentId: ID!
+  href: URL!
+  justifyContent: JustifyContent!
+}

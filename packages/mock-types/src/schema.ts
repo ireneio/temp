@@ -11,6 +11,7 @@ import schemaJSON from '../schema';
 
 import Address from './schemas/Address';
 import AddressService from './schemas/AddressService';
+import AppLogin from './schemas/AppLogin';
 import Authority from './schemas/Authority';
 import BackgroundImage from './schemas/BackgroundImage';
 import ColorList from './schemas/ColorList';
@@ -79,6 +80,7 @@ addMockFunctionsToSchema({
   mocks: {
     Address,
     AddressService,
+    AppLogin,
     Authority,
     BackgroundImage,
     ColorList,

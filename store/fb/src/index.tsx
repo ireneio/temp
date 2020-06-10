@@ -5,20 +5,15 @@ import gql from 'graphql-tag';
 import Head from 'next/head';
 import { Spin, Icon } from 'antd';
 
+import { fb as FbContext } from '@meepshop/context';
+import { version } from '@meepshop/context/lib/fb';
+
 import useFb from './hooks/useFb';
 
 // graphql typescript
 import { getFbAppId } from './__generated__/getFbAppId';
 
 // definition
-const FbContext = React.createContext<{
-  fb: typeof window['FB'] | null;
-  fbAppId: string | null;
-}>({
-  fb: null,
-  fbAppId: null,
-});
-
 const query = gql`
   query getFbAppId {
     getAppLoginList(
@@ -37,10 +32,10 @@ const query = gql`
   }
 `;
 
-export const FbProvider = React.memo(({ children }) => {
+export default React.memo(({ children }) => {
   const { data } = useQuery<getFbAppId>(query);
-  const fbAppId = data?.getAppLoginList?.data?.[0]?.appId || null;
-  const { fb, fbScript } = useFb(fbAppId);
+  const appId = data?.getAppLoginList?.data?.[0]?.appId || null;
+  const { fb, fbScript } = useFb(appId, version);
 
   if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
 
@@ -48,11 +43,9 @@ export const FbProvider = React.memo(({ children }) => {
     <>
       <Head>{fbScript}</Head>
 
-      <FbContext.Provider value={{ fb, fbAppId }}>
+      <FbContext.Provider value={{ fb, appId, version }}>
         {children}
       </FbContext.Provider>
     </>
   );
 });
-
-export default FbContext;
