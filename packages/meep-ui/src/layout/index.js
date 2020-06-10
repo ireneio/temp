@@ -67,7 +67,7 @@ export default class Layout extends React.PureComponent {
   getRootStyle = () => {
     const { backgroundImage, colors, background } = this.props;
 
-    const realBackground = (() => {
+    const colorConfig = (() => {
       const { files, used, repeat, size } = backgroundImage;
       const { image } = files?.[0] || {};
 
@@ -80,12 +80,12 @@ export default class Layout extends React.PureComponent {
         `;
       }
 
-      return background || colors[0];
+      return colors[0];
     })();
 
     return {
       color: colors[3],
-      background: realBackground,
+      background: background || colorConfig,
     };
   };
 
