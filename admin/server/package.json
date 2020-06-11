@@ -4,7 +4,7 @@
   "description": "admin server",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.44.0",
+  "version": "0.44.1",
   "main": "./next.config.js",
   "scripts": {
     "clean": "rm -rf ./src/.next",
@@ -15,7 +15,7 @@
   "dependencies": {
     "@admin/apollo-client-resolvers": "^0.44.0",
     "@admin/dashboard": "^0.44.0",
-    "@admin/login": "^0.44.0",
+    "@admin/login": "^0.44.1",
     "@admin/orders-ecfit": "^0.44.0",
     "@admin/page-manager": "^0.44.0",
     "@admin/reset-password": "^0.44.0",
