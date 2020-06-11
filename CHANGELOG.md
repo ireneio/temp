@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.44.1 (2020-06-11)
+
+#### :bug: Bug Fix
+
+- [#992](https://github.com/meepshop/meep-lerna/pull/992) 【BUG】後台頁面空白 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.44.0 (2020-06-10)
 
 #### :rocket: New Feature
