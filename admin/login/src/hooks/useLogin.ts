@@ -53,7 +53,7 @@ export default (
               password,
               'g-recaptcha-response': gRecaptchaResponse,
               ...(!isHelper
-                ? { type: 'merchant' }
+                ? {}
                 : {
                     type: 'helper',
                     cname,
