@@ -107,6 +107,7 @@ import getImage from "@meepshop/images/src/getImage";`,
   [
     // input
     `import { dashboardCost_scaledSrc as dashboardCost } from '@meepshop/images';
+
 export default dashboardCost;`,
 
     // output

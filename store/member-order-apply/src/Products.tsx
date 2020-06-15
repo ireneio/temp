@@ -7,11 +7,12 @@ import { CurrencyType } from '@store/currency';
 // import
 import React from 'react';
 import gql from 'graphql-tag';
+import { filter } from 'graphql-anywhere';
 import { Table, Input, Select } from 'antd';
 import memoizeOne from 'memoize-one';
 import transformColor from 'color';
 
-import Thumbnail from '@store/thumbnail';
+import Thumbnail, { thumbnailFragment } from '@store/thumbnail';
 import localeFragment from '@store/utils/lib/fragments/locale';
 import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
@@ -23,10 +24,7 @@ import styles from './styles/products.less';
 import { getMemberOrderApply_getColorList as getMemberOrderApplyGetColorList } from './__generated__/getMemberOrderApply';
 
 // graphql import
-import {
-  productsProductsObjectTypeFragment as productsProductsObjectTypeFragmentType,
-  productsProductsObjectTypeFragment_coverImage as productsProductsObjectTypeFragmentCoverImage,
-} from './__generated__/productsProductsObjectTypeFragment';
+import { productsProductsObjectTypeFragment as productsProductsObjectTypeFragmentType } from './__generated__/productsProductsObjectTypeFragment';
 
 // typescript definition
 interface PropsType extends I18nPropsType, CurrencyType {
@@ -79,7 +77,7 @@ export const productsProductsObjectTypeFragment = gql`
     quantity
     type
     coverImage {
-      src
+      ...thumbnailFragment
     }
     title {
       ...localeFragment
@@ -95,6 +93,7 @@ export const productsProductsObjectTypeFragment = gql`
   }
 
   ${localeFragment}
+  ${thumbnailFragment}
 `;
 
 class Products extends React.PureComponent<PropsType, StateType> {
@@ -140,10 +139,10 @@ class Products extends React.PureComponent<PropsType, StateType> {
 
     return [
       {
-        dataIndex: 'coverImage.src',
-        render: (
-          value: productsProductsObjectTypeFragmentCoverImage['src'],
-        ) => <Thumbnail imgUrl={value} />,
+        dataIndex: 'coverImage',
+        render: (value: SelectedProduct['coverImage']) => (
+          <Thumbnail image={filter(thumbnailFragment, value)} />
+        ),
       },
       {
         title: t('product.title'),

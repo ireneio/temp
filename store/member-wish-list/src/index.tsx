@@ -7,12 +7,13 @@ import { I18nPropsType } from '@store/utils/lib/i18n';
 import React from 'react';
 import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
+import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Table } from 'antd';
 import { areEqual } from 'fbjs';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
 
-import Thumbnail from '@store/thumbnail';
+import Thumbnail, { thumbnailFragment } from '@store/thumbnail';
 import { withTranslation } from '@store/utils/lib/i18n';
 
 import styles from './styles/index.less';
@@ -21,7 +22,6 @@ import styles from './styles/index.less';
 import {
   getWishlist,
   getWishlist_viewer_wishlist as getWishlistViewerWishlist,
-  getWishlist_viewer_wishlist_coverImage as getWishlistViewerWishlistCoverImage,
   getWishlist_viewer_wishlist_title as getWishlistViewerWishlistTitle,
   getWishlist_getColorList as getWishlistGetColorList,
 } from './__generated__/getWishlist';
@@ -48,20 +48,20 @@ class MemberWishList extends React.PureComponent<PropsType> {
   private columns = memoizeOne(
     ({ t, dispatchAction }: Pick<PropsType, 't' | 'dispatchAction'>) => [
       {
-        dataIndex: 'coverImage.src',
+        dataIndex: 'coverImage',
         render: (
-          value: getWishlistViewerWishlistCoverImage['src'],
+          value: getWishlistViewerWishlist['coverImage'],
           { productId, isAvailableForSale }: getWishlistViewerWishlist,
         ) =>
           !isAvailableForSale ? (
-            <Thumbnail imgUrl={value} />
+            <Thumbnail image={filter(thumbnailFragment, value)} />
           ) : (
             <a
               href={`/product/${productId}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Thumbnail imgUrl={value} />
+              <Thumbnail image={filter(thumbnailFragment, value)} />
             </a>
           ),
       },
@@ -184,7 +184,7 @@ export default React.memo(
                 zh_TW
               }
               coverImage {
-                src
+                ...thumbnailFragment
               }
               isAvailableForSale
             }
@@ -196,6 +196,7 @@ export default React.memo(
         }
 
         ${colorListFragment}
+        ${thumbnailFragment}
       `}
       fetchPolicy="no-cache"
     >

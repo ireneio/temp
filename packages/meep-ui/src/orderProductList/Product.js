@@ -13,7 +13,6 @@ import {
   COLOR_TYPE,
   LOCALE_TYPE,
   PURCHASE_ITEMS_TYPE,
-  COVER_IMAGE_TYPE,
 } from 'constants/propTypes';
 
 import Select from './Select';
@@ -31,7 +30,6 @@ export default class Product extends React.PureComponent {
     /** props */
     t: PropTypes.func.isRequired,
     error: PropTypes.string,
-    coverImage: COVER_IMAGE_TYPE,
     specs: PropTypes.arrayOf(
       PropTypes.shape({
         title: LOCALE_TYPE.isRequired,
@@ -54,7 +52,6 @@ export default class Product extends React.PureComponent {
 
   static defaultProps = {
     error: null,
-    coverImage: null,
     activityInfo: null,
     specs: null,
   };
@@ -100,7 +97,7 @@ export default class Product extends React.PureComponent {
             />
           )}
 
-          {<Thumbnail imgUrl={coverImage?.src} />}
+          {<Thumbnail image={coverImage} />}
         </td>
 
         <td style={[styles.item, styles.title]}>

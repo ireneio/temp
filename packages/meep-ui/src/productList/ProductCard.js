@@ -105,7 +105,7 @@ const ProductCard = ({
                     ? { onClick: () => handleModalOpen(id) }
                     : {})}
                 >
-                  {!coverImage?.src ? (
+                  {!coverImage?.scaledSrc ? (
                     <Link // eslint-disable-line jsx-a11y/anchor-is-valid
                       href={
                         productListImagePopUpEnabled ? '' : `/product/${id}`
@@ -116,7 +116,7 @@ const ProductCard = ({
                     </Link>
                   ) : (
                     <Image
-                      image={coverImage.src}
+                      image={coverImage}
                       href={
                         productListImagePopUpEnabled ? '' : `/product/${id}`
                       }

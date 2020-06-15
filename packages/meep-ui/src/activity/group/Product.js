@@ -10,12 +10,7 @@ import Image from 'image';
 import Link from 'link';
 import Placeholder from '@store/placeholder';
 import PopUp from 'productList/PopUp';
-import {
-  ID_TYPE,
-  COLOR_TYPE,
-  POSITIVE_NUMBER_TYPE,
-  COVER_IMAGE_TYPE,
-} from 'constants/propTypes';
+import { ID_TYPE, COLOR_TYPE, POSITIVE_NUMBER_TYPE } from 'constants/propTypes';
 import { PHONE_MEDIA } from 'constants/media';
 
 import * as styles from './styles/product';
@@ -34,7 +29,6 @@ export default class Product extends React.PureComponent {
         zh_TW: PropTypes.string.isRequired,
         en_US: PropTypes.string,
       }),
-      coverImage: COVER_IMAGE_TYPE,
       variants: PropTypes.arrayOf(
         PropTypes.shape({
           totalPrice: POSITIVE_NUMBER_TYPE.isRequired,
@@ -119,15 +113,15 @@ export default class Product extends React.PureComponent {
     } = this.props;
     const { openModal, target, isMobile } = this.state;
 
-    const { id, title, coverImage, variants } = product;
+    const { id, title, variants, coverImage } = product;
     const totalPrice = (variants[0] || {}).totalPrice || 0;
 
     return (
       <div style={styles.root}>
         <Style scopeSelector=".ant-modal" rules={styles.modalStyle(colors)} />
-        {coverImage?.src ? (
+        {coverImage?.scaledSrc ? (
           <Image
-            image={coverImage.src}
+            image={coverImage}
             href={`/product/${id}`}
             contentWidth={100}
             newWindow={false}

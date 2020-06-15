@@ -24,10 +24,10 @@ import ExportFormat from './schemas/ExportFormat';
 import FbPixel from './schemas/FbPixel';
 import FileConnection from './schemas/FileConnection';
 import gtag from './schemas/gtag';
-import HexColorCode from './schemas/HexColorCode';
-import Image from './schemas/Image';
 import GmoBankInstallment from './schemas/GmoBankInstallment';
 import GMOUserInfo from './schemas/GMOUserInfo';
+import HexColorCode from './schemas/HexColorCode';
+import Image from './schemas/Image';
 import MemberGroup from './schemas/MemberGroup';
 import NotificationObjectType from './schemas/NotificationObjectType';
 import Order from './schemas/Order';
@@ -93,10 +93,10 @@ addMockFunctionsToSchema({
     FbPixel,
     FileConnection,
     gtag,
-    HexColorCode,
-    Image,
     GmoBankInstallment,
     GMOUserInfo,
+    HexColorCode,
+    Image,
     MemberGroup,
     NotificationObjectType,
     Order,
@@ -145,8 +145,7 @@ addMockFunctionsToSchema({
         .format();
     },
     JSON: (data, _, __, { fieldName }) => data[fieldName],
-    URL: () =>
-      'https://res.cloudinary.com/cakeresume/image/upload/s--Lv6sj1oB--/c_pad,fl_png8,h_200,w_200/v1509504375/pcotebjqdkfuqbvbt4xc.png',
+    URL: (data, _, __, { fieldName }) => data[fieldName],
   },
 });
 
