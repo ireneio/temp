@@ -7,7 +7,7 @@ import { getPagesSuccess } from './pages';
 import { getAuthSuccess } from './member';
 import { getProductSuccess } from './products';
 
-import getPreviewProduct from './getPreviewProduct';
+import previewProduct from './previewProduct';
 
 /* *********************************** Get data at /index for SSR *********************************** */
 const SERVER_INDEX_INITIAL = 'SERVER_INDEX_INITIAL';
@@ -92,14 +92,13 @@ export const serverProductInitial = payload => ({
 
 function* serverProductInitialFlow({ payload }) {
   try {
-    const { query, getUrl } = payload;
+    const { query } = payload;
     const { pId } = query;
     const data = yield call(Api.serverProductInitial, payload);
 
     if (pId === 'preview' && data?.data) {
       const { pageId } = query;
       const pageResponse = yield call(Api.getPages, { ...payload, id: pageId });
-      const previewProduct = getPreviewProduct(getUrl);
 
       previewProduct.page = pageResponse.data?.getPageList?.data[0] || null;
       data.data.computeProductList.data = [previewProduct];

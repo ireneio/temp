@@ -38,10 +38,7 @@ Page.getInitialProps = async ctx => {
   if (!data?.isAdministratorToken)
     return { error: { status: 'ERROR_PAGE_NOT_FOUND' } };
 
-  if (pId)
-    store.dispatch(
-      Actions.serverProductInitial({ ...ctx, getUrl: urls => urls.prod }),
-    );
+  if (pId) store.dispatch(Actions.serverProductInitial(ctx));
   else store.dispatch(Actions.serverOthersInitial(ctx));
 
   const { pagesReducer } = store.getState();
