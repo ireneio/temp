@@ -4,6 +4,6 @@
   "description": "Utils tool for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.44.0",
+  "version": "0.45.0",
   "keywords": ["meepshop", "utils"]
 }
