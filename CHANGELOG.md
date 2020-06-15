@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.45.1 (2020-06-15)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#995](https://github.com/meepshop/meep-lerna/pull/995) (@meepshop/store) Hotfix preview product build error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.45.0 (2020-06-15)
 
 #### :rocket: New Feature
