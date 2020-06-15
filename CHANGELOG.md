@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.45.0 (2020-06-15)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`, `store`
+  - [#936](https://github.com/meepshop/meep-lerna/pull/936) 【優化】 resizer 使用 imgproxy - 商品圖片提供 imgproxy 加密連結 API - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.44.1 (2020-06-11)
 
 #### :bug: Bug Fix
