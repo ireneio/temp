@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.46.1 (2020-06-16)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1001](https://github.com/meepshop/meep-lerna/pull/1001) Fix store kustomize gateways setting ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.46.0 (2020-06-16)
 
 #### :boom: Breaking Change
