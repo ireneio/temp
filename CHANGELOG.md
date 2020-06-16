@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## 0.46.0 (2020-06-16)
+
+#### :boom: Breaking Change
+
+- `mock-types`
+  - [#997](https://github.com/meepshop/meep-lerna/pull/997) (@meepshop/modules): use PageModule fragment ([@piovischioh](https://github.com/piovischioh))
+  - [#990](https://github.com/meepshop/meep-lerna/pull/990) 【重構】facebook 塗鴉牆 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- Other
+  - [#928](https://github.com/meepshop/meep-lerna/pull/928) 【重構】admin 廣告分析 ([@happycat6323](https://github.com/happycat6323))
+- `store`
+  - [#999](https://github.com/meepshop/meep-lerna/pull/999) (@meepshop/store) Use new setting ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#994](https://github.com/meepshop/meep-lerna/pull/994) 【BUG】 Google 網站管理員提示伺服器錯誤 500 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `mock-types`
+  - [#997](https://github.com/meepshop/meep-lerna/pull/997) (@meepshop/modules): use PageModule fragment ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.45.1 (2020-06-15)
 
 #### :bug: Bug Fix
