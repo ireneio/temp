@@ -4,8 +4,6 @@ metadata:
   name: next-store-virtualservice
   namespace: default
 spec:
-  gateways:
-  - admin-gateway
   http:
   - route:
     - destination:

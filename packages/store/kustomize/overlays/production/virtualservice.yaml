@@ -4,5 +4,7 @@ metadata:
   name: next-store-virtualservice
   namespace: default
 spec:
+  gateways:
+  - admin-gateway
   hosts:
   - "*.new.meepshop.com"

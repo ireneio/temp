@@ -4,5 +4,7 @@ metadata:
   name: next-store-virtualservice
   namespace: default
 spec:
+  gateways:
+  - unleash-gateway
   hosts:
   - "*.stage.meepcloud.com"
