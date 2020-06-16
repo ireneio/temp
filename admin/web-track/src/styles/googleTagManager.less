@@ -1,0 +1,66 @@
+@import '~@admin/utils/lib/styles/variables.less';
+
+.title {
+  display: flex;
+  align-items: center;
+  margin-top: 32px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 16px;
+  line-height: 24px;
+
+  & > i {
+    font-size: 14px;
+    color: @primary-color;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+}
+
+.description {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  line-height: 22px;
+  margin: 10px 0px 16px;
+}
+
+.edit {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 16px;
+  line-height: 24px;
+
+  :global(.ant-form-item) {
+    width: 80%;
+    margin-top: 8px;
+  }
+
+  & > button:nth-child(2) {
+    margin-right: 8px;
+  }
+}
+
+.trackCode {
+  & > div:first-child {
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 16px;
+    line-height: 24px;
+
+    & > i {
+      font-size: 14px;
+      margin-left: 8px;
+      cursor: pointer;
+    }
+  }
+
+  & > div:last-child {
+    border-radius: 5px;
+    background-color: #fafafa;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 26px;
+    padding: 12px 20px;
+    margin-top: 8px;
+  }
+}

@@ -92,7 +92,7 @@ export const MENU_LIST: MenuListType = [
   'analytics',
   ['member', ['members', 'member-group', 'member-group-code']],
   ['design', ['page-manager', 'color-manager', 'menu-manager']],
-  ['marketing', ['discount', 'newsletter', 'ads-analytics']],
+  ['marketing', ['discount', 'newsletter', 'web-track']],
   'file-manager',
   'setting',
 ];
@@ -124,7 +124,7 @@ export const URLS: { [key: string]: string } = {
   'menu-manager': '/menus',
   discount: '/marketing-activities',
   newsletter: '/newsletter',
-  'ads-analytics': '/ads-analytics',
+  'web-track': '/web-track',
   'file-manager': '/file-manager',
   setting: '/setting',
 };
@@ -170,7 +170,7 @@ export default (
       'member-group-code': Boolean(storeApps?.memberGroupCode.isEnabled),
       design: Boolean(isMerchant || permission?.design?.isEnabled),
       newsletter: Boolean(storeApps?.newsletters.isEnabled),
-      'ads-analytics': Boolean(storeApps?.webTrack.isEnabled),
+      'web-track': Boolean(storeApps?.webTrack.isEnabled),
       'file-manager': Boolean(isMerchant || permission?.fileManager?.isEnabled),
       setting: Boolean(isMerchant || permission?.setting?.isEnabled),
     }),

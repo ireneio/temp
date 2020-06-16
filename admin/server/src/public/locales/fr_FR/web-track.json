@@ -1,0 +1,66 @@
+{
+  "ad-analytics": "Analyse de la publicité",
+  "track-setting": "Paramètres des outils de suivi",
+  "tip": "Didacticiel sur les paramètres d'affichage",
+  "facebook-pixel": {
+    "title": "Pixels Facebook",
+    "setting": null,
+    "pixel-no": "Nombre de pixels:",
+    "error": "Les erreurs de format de numéro de pixel Facebook, les espaces et les symboles ne sont pas autorisés au centre, à l'avant ou à l'arrière du numéro et doivent comporter 15 ou 16 chiffres.",
+    "dpa": "Annonces de produits dynamiques (DPA)",
+    "dpa-description-1": "Mise à jour du dialogue sur le produit: de 05h00 à 06h00 (GMT + 08h00)",
+    "dpa-description-2": "Veuillez copier l’URL dynamique et la coller sur la plate-forme principale de gestion des publicités Facebook. Le système soumettra et fournira automatiquement un dialogue actualisé sur le produit à Facebook régulièrement.",
+    "copy-dpa-link": "Copier l'URL dynamique",
+    "copied": "Copié dans le presse-papier",
+    "set-pixel-first": "S'il vous plaît définir le nombre de pixels",
+    "dpa-link-tip-1": "Veuillez confirmer le nom du produit créé ou le nom du magasin entré,",
+    "dpa-link-tip-2": "Si vous ne parvenez toujours pas à générer d'URL, veuillez contacter le service clientèle."
+  },
+  "google-analytics": {
+    "title": "Analyse de site Web Google Analytics",
+    "description": "N'oubliez pas d'utiliser Google Analytics pour analyser le service lorsque vous exploitez un site Web. meepShop prend en charge Google Analytics. Tout ce que vous avez à faire est de suivre quelques étapes simples pour analyser et comparer efficacement, en aidant le site Web à investir efficacement dans des lieux avec le plus de trafic possible.",
+    "setting": null,
+    "setting-placeholder": "S'il vous plaît entrer le numéro de suivi GA",
+    "code": "Numéro de piste"
+  },
+  "google-ads": {
+    "description": "Le suivi des conversions d'annonce peut être utilisé pour suivre l'action \"après\" un client a cliqué sur les annonces, y compris l'enregistrement, les achats. Une action est considérée comme une conversion lorsqu'un client a terminé une action que vous avez définie comme étant valable.",
+    "setting": "Modifier les paramètres de suivi",
+    "global-code": "Code mondial:",
+    "global-code-placeholder": "S'il vous plaît entrer le code URL global",
+    "event-setting": "Modifier les paramètres de l'événement",
+    "sign-up": "Inscription terminée:",
+    "begin-checkout": "Commencer la commande:",
+    "purchase": "Achat:",
+    "event-placeholder": "S'il vous plaît entrer extrait de l'événement",
+    "not-setting": "Le réglage n'a pas été fait"
+  },
+  "google-webmaster": {
+    "title": "Console de recherche Google",
+    "webmaster": "Webmaster",
+    "description": "La console de recherche Google vous aide à déterminer le flux de trafic de recherche Google et l'efficacité de votre site Web, à résoudre les problèmes et à différencier votre site Web parmi des milliers de résultats de recherche Google.",
+    "setting": null,
+    "setting-placeholder": null,
+    "trackId": null
+  },
+  "google-tag-manager": {
+    "title": "Outils de gestion de code",
+    "description": "Google Tag Manager est un système de gestion des tags qui peut vous aider à mettre rapidement à jour votre code de suivi et votre extrait de code via les paramètres d'interface utilisateur du site Web et de déploiement des tags.",
+    "setting": "Paramètres d'extrait",
+    "setting-placeholder": "S'il vous plaît entrer le code de suivi",
+    "trackCode": "Code de suivi"
+  },
+  "advanced-customer-track": "Suivi client avancé",
+  "retention-milliseconds-track": {
+    "title": "Personnaliser Stay Time Tracker",
+    "description": "Cette fonctionnalité permet de suivre le comportement des utilisateurs sur toutes les pages grâce aux outils de suivi tiers, à Facebook Pixel et à Google Analytics. Le temps de séjour peut être personnalisé.",
+    "tip-1": "Peut suivre les utilisateurs restant sur une page pendant plus de X secondes.",
+    "tip-2": "Nom de l'événement: meepShop_retention",
+    "setting": "Durée du séjour",
+    "input-seconds": "S'il vous plaît entrer le nombre de seconde"
+  },
+  "required": "Champs obligatoires",
+  "save": "sauver",
+  "cancel": "Annuler",
+  "save-success": "Sauvegarde réussie"
+}

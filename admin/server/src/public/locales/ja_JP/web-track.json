@@ -1,0 +1,66 @@
+{
+  "ad-analytics": "広告分析",
+  "track-setting": "追跡ツールの設定",
+  "tip": "表示設定チュートリアル",
+  "facebook-pixel": {
+    "title": " Facebook ピクセル",
+    "setting": null,
+    "pixel-no": "ピクセル数：",
+    "error": "Facebookピクセル数形式のエラー、スペース、または記号は、番号の中央、前面、または背面に使用できません。15桁または16桁にする必要があります。",
+    "dpa": "動的商品広告（DPA）",
+    "dpa-description-1": "製品ダイアログ更新時間：5:00 AM〜6:00 AM（GMT + 08：00）",
+    "dpa-description-2": "動的なURLをコピーして、Facebook広告管理バックエンドプラットフォームに貼り付けてください。 システムは、更新された製品ダイアログを定期的にFacebookに自動的に送信して提供します。",
+    "copy-dpa-link": "動的URLをコピー",
+    "copied": "クリップボードにコピーしました",
+    "set-pixel-first": "ピクセル数を設定してください",
+    "dpa-link-tip-1": "作成した商品を確認するか、入力した店舗名を確認してください。",
+    "dpa-link-tip-2": "それでもURLを生成できない場合は、カスタマーサービスにお問い合わせください。"
+  },
+  "google-analytics": {
+    "title": "Google Analytics Webサイト分析",
+    "description": "ウェブサイトを運営するときは、Googleアナリティクスを使用してサービスを分析することを忘れないでください。 meepShopはGoogle Analyticsをサポートしています。 あなたがしなければならないのは、いくつかの簡単なステップに従って効果的に分析と比較を行い、ウェブサイトが最もトラフィックの多い場所に効果的に投資するのを支援することです。",
+    "setting": null,
+    "setting-placeholder": "GA追跡番号を入力してください",
+    "code": "トラック番号"
+  },
+  "google-ads": {
+    "description": "広告コンバージョントラッキングを使用して、顧客が広告をクリックした「後」のアクション（登録、購入など）を追跡できます。 お客様が価値のあるアクションを定義すると、アクションはコンバージョンと見なされます。",
+    "setting": "追跡設定の変更",
+    "global-code": "グローバルコード：",
+    "global-code-placeholder": "グローバルURLコードを入力してください",
+    "event-setting": "イベント設定を変更する",
+    "sign-up": "登録完了：",
+    "begin-checkout": "チェックアウトを開始：",
+    "purchase": "購入：",
+    "event-placeholder": "イベントスニペットを入力してください",
+    "not-setting": "設定されていません"
+  },
+  "google-webmaster": {
+    "title": "Google Search Console",
+    "webmaster": " サイト管理者",
+    "description": "Google Search Consoleは、Google検索のトラフィックフローとウェブサイトの効率を判断し、問題を修正し、ウェブサイトを何千ものGoogle検索結果から区別するのに役立ちます。",
+    "setting": null,
+    "setting-placeholder": null,
+    "trackId": null
+  },
+  "google-tag-manager": {
+    "title": "コード管理ツール",
+    "description": "Googleタグマネージャーは、ウェブサイトのユーザーインターフェース設定とタグの展開設定を使用して、トラッキングコードとスニペットをすばやく更新できるタグ管理システムです。",
+    "setting": "スニペット設定",
+    "setting-placeholder": "追跡コードを入力してください",
+    "trackCode": " トラッキングコード"
+  },
+  "advanced-customer-track": "高度な顧客追跡",
+  "retention-milliseconds-track": {
+    "title": "滞在時間トラッカーをカスタマイズする",
+    "description": "この機能は、サードパーティの追跡ツール、Facebook Pixel、Google Analyticsを使用して、すべてのページでのユーザーの滞在行動を追跡でき、滞在時間をカスタマイズできます。",
+    "tip-1": "X秒以上ページに滞在しているユーザーを追跡できます。",
+    "tip-2": "イベント名：meepShop_retention",
+    "setting": "滞在時間の設定",
+    "input-seconds": "秒数を入力してください"
+  },
+  "required": "必須(必ず入力して下さい)",
+  "save": "セーブ",
+  "cancel": " キャンセル",
+  "save-success": "セーブに成功"
+}

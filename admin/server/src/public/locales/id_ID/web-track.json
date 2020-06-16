@@ -1,0 +1,66 @@
+{
+  "ad-analytics": "Analisis Periklanan",
+  "track-setting": "Pengaturan Alat Pelacakan",
+  "tip": "Tutorial Pengaturan Tampilan",
+  "facebook-pixel": {
+    "title": "Pixel Facebook",
+    "setting": null,
+    "pixel-no": "Nomor Piksel:",
+    "error": "Kesalahan format angka, spasi, atau simbol Facebook Pixel tidak diperbolehkan di tengah, depan atau belakang nomor, dan harus 15 digit atau 16 digit.",
+    "dpa": "Iklan Produk Dinamis (DPA)",
+    "dpa-description-1": "Waktu Pembaruan Dialog Produk: 5:00 AM ~ 6:00 AM (GMT + 08:00)",
+    "dpa-description-2": "Silakan salin url dinamis dan tempel di platform back-end manajemen iklan Facebook. Sistem akan secara otomatis mengirimkan dan menyediakan dialog produk yang diperbarui ke Facebook secara teratur.",
+    "copy-dpa-link": "Salin URL Dinamis",
+    "copied": "Disalin ke papan klip",
+    "set-pixel-first": "Silakan tentukan nomor Pixel",
+    "dpa-link-tip-1": "Harap konfirmasi produk yang dibuat atau nama toko yang dimasukkan,",
+    "dpa-link-tip-2": "jika Anda masih tidak dapat membuat url, silakan hubungi layanan pelanggan."
+  },
+  "google-analytics": {
+    "title": "Analisis Situs Web Google Analytics",
+    "description": "Jangan lupa untuk menggunakan Google Analytics untuk menganalisis layanan saat mengoperasikan situs web. meepShop mendukung Google Analytics. Yang harus Anda lakukan adalah mengikuti beberapa langkah sederhana untuk menganalisis dan membandingkan secara efektif, membantu situs web untuk berinvestasi secara efektif di tempat-tempat dengan arus lalu lintas terbanyak.",
+    "setting": null,
+    "setting-placeholder": "Silakan masukkan nomor pelacakan GA",
+    "code": "Nomor pelacak"
+  },
+  "google-ads": {
+    "description": "Pelacakan konversi iklan dapat digunakan untuk melacak tindakan \"setelah\" seorang pelanggan mengklik iklan, termasuk daftar, pembelian. Tindakan dianggap konversi setelah pelanggan menyelesaikan tindakan yang Anda anggap berharga.",
+    "setting": "Ubah Pengaturan Pelacakan",
+    "global-code": "Kode Global:",
+    "global-code-placeholder": "Silakan masukkan kode url global",
+    "event-setting": "Ubah Pengaturan Acara",
+    "sign-up": "Daftar Selesai:",
+    "begin-checkout": "Mulai Checkout:",
+    "purchase": "Membeli:",
+    "event-placeholder": "Silakan masukkan cuplikan acara",
+    "not-setting": "Pengaturan belum dibuat"
+  },
+  "google-webmaster": {
+    "title": "Google Search Console",
+    "webmaster": "Webmaster",
+    "description": "Google Search Console membantu Anda dalam menentukan aliran lalu lintas pencarian Google dan efisiensi situs web Anda, memperbaiki masalah dan membedakan situs web Anda di antara ribuan hasil pencarian Google.",
+    "setting": null,
+    "setting-placeholder": null,
+    "trackId": null
+  },
+  "google-tag-manager": {
+    "title": "Alat Manajemen Kode",
+    "description": "Google Tag Manager adalah sistem manajemen tag yang dapat membantu Anda dengan cepat memperbarui kode pelacakan dan snippet Anda melalui pengaturan antarmuka pengguna situs web dan pengaturan penempatan tag.",
+    "setting": "Pengaturan Cuplikan",
+    "setting-placeholder": "Silakan masukkan kode pelacakan",
+    "trackCode": "Kode lacak"
+  },
+  "advanced-customer-track": "Pelacakan Pelanggan Lanjut",
+  "retention-milliseconds-track": {
+    "title": "Kustomisasi Pelacak Waktu Tetap",
+    "description": "Fitur ini dapat melacak perilaku tinggal pengguna di semua halaman melalui alat pelacakan pihak ketiga, Facebook Pixel dan Google Analytics, dan waktu tinggal dapat disesuaikan.",
+    "tip-1": "Dapat melacak pengguna yang berada di halaman selama lebih dari X detik.",
+    "tip-2": "Nama Acara: meepShop_retention",
+    "setting": "Pengaturan Waktu Tetap",
+    "input-seconds": "Silakan masukkan jumlah detik"
+  },
+  "required": "Yg dibutuhkan",
+  "save": "Menyimpan",
+  "cancel": "Membatalkan",
+  "save-success": "Berhasil Berhemat"
+}

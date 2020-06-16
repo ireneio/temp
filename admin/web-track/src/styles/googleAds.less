@@ -1,0 +1,119 @@
+@import '~@admin/utils/lib/styles/variables.less';
+
+.title {
+  display: flex;
+  align-items: center;
+  margin-top: 32px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 16px;
+  line-height: 24px;
+
+  & > i {
+    font-size: 14px;
+    color: @primary-color;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+}
+
+.description {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  line-height: 22px;
+  margin: 10px 0px 16px;
+}
+
+.item {
+  :global(.ant-form-item) {
+    display: flex;
+  }
+
+  :global(.ant-form-item-required)::before {
+    display: none;
+  }
+
+  :global(.ant-form-item-label) {
+    width: 10%;
+    text-align: right;
+    white-space: normal;
+    word-break: break-all;
+    margin-right: 3px;
+  }
+
+  :global(.ant-form-item-control-wrapper) {
+    width: 80%;
+  }
+
+  & > div:nth-child(2) {
+    color: rgba(0, 0, 0, 0.25);
+    font-size: 16px;
+    line-height: 24px;
+    margin: 32px 0px 16px;
+  }
+}
+
+.button {
+  margin-left: 10%;
+
+  & > button:nth-child(1) {
+    margin-right: 8px;
+  }
+}
+
+.value {
+  & > div {
+    display: flex;
+    align-items: center;
+  }
+
+  & > div > div:first-child {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 16px;
+    line-height: 24px;
+    width: 11%;
+    text-align: right;
+    white-space: normal;
+    word-break: break-all;
+    margin-right: 3px;
+  }
+
+  & > div > div:last-child {
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 26px;
+  }
+
+  & > div:nth-child(2) {
+    margin: 16px 0px 32px;
+
+    & > div:last-child {
+      font-size: 16px;
+      line-height: 32px;
+    }
+  }
+
+  & > div:nth-child(3) {
+    color: rgba(0, 0, 0, 0.65);
+    margin-bottom: 6px;
+  }
+
+  & > .eventSetting {
+    margin-bottom: 24px;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+
+    & > div:last-child {
+      border-radius: 5px;
+      background-color: #fafafa;
+      padding: 12px 20px;
+      width: 80%;
+    }
+
+    .noSetting {
+      color: rgba(0, 0, 0, 0.45);
+    }
+  }
+}

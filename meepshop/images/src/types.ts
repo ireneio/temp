@@ -30,5 +30,15 @@ export const pageManagerPageTipPath_w200 = mockData;
 export const pageManagerPageTipTab_w200 = mockData;
 export const uploadImage_w56 = mockData;
 export const storeClose = mockData;
+export const webTrackFacebook_w130 = mockData;
+export const webTrackFacebookPixelInstruction_w890 = mockData;
+export const webTrackGoogleAnalytics_w224 = mockData;
+export const webTrackGoogleAnalyticsInstruction_w888 = mockData;
+export const webTrackGoogleAds_w172 = mockData;
+export const webTrackGoogleAdsInstruction_w890 = mockData;
+export const webTrackGoogle_w98 = mockData;
+export const webTrackGoogleWebmasterInstruction_w890 = mockData;
+export const webTrackGoogleTagManager_w172 = mockData;
+export const webTrackGoogleTagManagerInstruction_w890 = mockData;
 
 export default getImage;

@@ -1,0 +1,66 @@
+{
+  "ad-analytics": "Analítica publicitaria",
+  "track-setting": "Configuración de herramientas de seguimiento",
+  "tip": "Tutorial de configuración de pantalla",
+  "facebook-pixel": {
+    "title": "Píxeles de Facebook",
+    "setting": null,
+    "pixel-no": "Numero de Pixel:",
+    "error": "El error de formato del número de píxeles de Facebook, el espacio o los símbolos no están permitidos en el medio, el frente o el reverso del número, y deben ser de 15 o 16 dígitos.",
+    "dpa": "Anuncios de productos dinámicos (DPA)",
+    "dpa-description-1": "Hora de actualización del diálogo del producto: 5:00 a.m. ~ 6:00 a.m. (GMT + 08: 00)",
+    "dpa-description-2": "Copie la URL dinámica y péguela en la plataforma de administración de anuncios de Facebook. El sistema enviará automáticamente y proporcionará diálogo actualizado del producto a Facebook regularmente.",
+    "copy-dpa-link": "Copiar URL dinámica",
+    "copied": "Copiado al portapapeles",
+    "set-pixel-first": "Por favor, configure el número de píxeles",
+    "dpa-link-tip-1": "Confirme el producto creado o los nombres de la tienda ingresados,",
+    "dpa-link-tip-2": "Si aún no puede generar la URL, póngase en contacto con el servicio al cliente."
+  },
+  "google-analytics": {
+    "title": "Análisis del sitio web de Google Analytics",
+    "description": "No olvide utilizar Google Analytics para analizar el servicio al operar un sitio web. meepShop es compatible con Google Analytics. Todo lo que tiene que hacer es seguir unos sencillos pasos para analizar y comparar de manera efectiva, ayudando al sitio web a invertir efectivamente los lugares con el mayor flujo de tráfico.",
+    "setting": null,
+    "setting-placeholder": "Ingrese el número de seguimiento de GA",
+    "code": "Número de pista"
+  },
+  "google-ads": {
+    "description": "El seguimiento de conversiones de anuncios se puede utilizar para realizar un seguimiento de la acción \"después de\" que un cliente hizo clic en los anuncios, incluido el registro y las compras. La acción se considera conversión una vez que un cliente completa una acción que usted definió como valiosa.",
+    "setting": "Cambiar la configuración de seguimiento",
+    "global-code": "Código global:",
+    "global-code-placeholder": "Por favor, introduzca el código de URL global",
+    "event-setting": "Cambiar la configuración del evento",
+    "sign-up": "Registro completado:",
+    "begin-checkout": "Iniciar pago:",
+    "purchase": "Compra:",
+    "event-placeholder": "Por favor, introduzca el fragmento de evento",
+    "not-setting": "La configuración no se ha realizado"
+  },
+  "google-webmaster": {
+    "title": "Consola de búsqueda de Google",
+    "webmaster": "Webmaster",
+    "description": "Google Search Console lo ayuda a determinar el flujo de tráfico de búsqueda de Google y la eficiencia de su sitio web, rectificando problemas y diferenciando su sitio web entre miles de resultados de búsqueda de Google.",
+    "setting": null,
+    "setting-placeholder": null,
+    "trackId": null
+  },
+  "google-tag-manager": {
+    "title": "Herramientas de gestión de código",
+    "description": "Google Tag Manager es un sistema de administración de etiquetas que puede ayudarlo a actualizar rápidamente su código de seguimiento y fragmento a través de la configuración de la interfaz de usuario del sitio web y la configuración de implementación de etiquetas.",
+    "setting": "Configuración de fragmentos",
+    "setting-placeholder": "Por favor, introduzca el código de seguimiento",
+    "trackCode": "Codigo de localización"
+  },
+  "advanced-customer-track": "Seguimiento avanzado de clientes",
+  "retention-milliseconds-track": {
+    "title": "Personalizar Stay Time Tracker",
+    "description": "Esta característica puede rastrear el comportamiento de permanencia del usuario en todas las páginas a través de herramientas de seguimiento de terceros, Facebook Pixel y Google Analytics, y el tiempo de permanencia se puede personalizar.",
+    "tip-1": "Puede rastrear a los usuarios que permanecen en una página durante más de X segundos.",
+    "tip-2": "Nombre del evento: meepShop_retention",
+    "setting": "Configuración del tiempo de permanencia",
+    "input-seconds": "Por favor ingrese el número de segundo"
+  },
+  "required": "Necesaria",
+  "save": "Salvar",
+  "cancel": "Cancelar",
+  "save-success": "Ahorra exitosamente"
+}

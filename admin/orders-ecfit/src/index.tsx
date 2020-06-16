@@ -1,4 +1,5 @@
 // typescript import
+import { NextPage } from 'next';
 import { I18nPropsType } from '@admin/utils/lib/i18n';
 
 // import
@@ -81,8 +82,9 @@ const EnhancedOrdersEcfit = withTranslation(['orders-ecfit', 'orders'])(
   OrdersEcfit,
 );
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const OrdersEcfitPage = () => <EnhancedOrdersEcfit />;
+const OrdersEcfitPage: NextPage = React.memo(
+  (): React.ReactElement => <EnhancedOrdersEcfit />,
+);
 
 OrdersEcfitPage.getInitialProps = async () => ({
   namespacesRequired: [

@@ -115,6 +115,15 @@ const svgPlugin = declare(({ assertVersion, types: t }) => {
         );
         break;
 
+      case 'fill-opacity':
+        path.replaceWith(
+          t.jSXAttribute(
+            t.jSXIdentifier('fillOpacity'),
+            t.stringLiteral(path.get('value').node.value),
+          ),
+        );
+        break;
+
       case 'transform': {
         const transform = mergeTransform(path.get('value').node.value);
 

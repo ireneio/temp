@@ -1,0 +1,66 @@
+{
+  "ad-analytics": "Phân tích quảng cáo",
+  "track-setting": "Cài đặt công cụ theo dõi",
+  "tip": "Hướng dẫn cài đặt hiển thị",
+  "facebook-pixel": {
+    "title": "Điểm ảnh trên Facebook",
+    "setting": null,
+    "pixel-no": "Số pixel:",
+    "error": "Lỗi định dạng, không gian hoặc ký hiệu số pixel của Facebook không được phép ở giữa, trước hoặc sau của số và phải là 15 chữ số hoặc 16 chữ số.",
+    "dpa": "Quảng cáo sản phẩm động (DPA)",
+    "dpa-description-1": "Thời gian cập nhật đối thoại sản phẩm: 5:00 AM ~ 6:00 AM (GMT + 08: 00)",
+    "dpa-description-2": "Vui lòng sao chép url động và dán trên nền tảng back-end quản lý quảng cáo của Facebook. Hệ thống sẽ tự động gửi và cung cấp đối thoại sản phẩm được cập nhật cho Facebook thường xuyên.",
+    "copy-dpa-link": "Sao chép URL động",
+    "copied": "Sao chép vào clipboard",
+    "set-pixel-first": "Vui lòng đặt số Pixel",
+    "dpa-link-tip-1": "Vui lòng xác nhận sản phẩm đã tạo hoặc lưu tên đã nhập,",
+    "dpa-link-tip-2": "nếu bạn vẫn không thể tạo url, vui lòng liên hệ với dịch vụ khách hàng."
+  },
+  "google-analytics": {
+    "title": "Phân tích trang web Google Analytics",
+    "description": "Đừng quên sử dụng Google Analytics để phân tích dịch vụ khi vận hành trang web. meepShop hỗ trợ Google Analytics. Tất cả những gì bạn phải làm là làm theo một vài bước đơn giản để phân tích và so sánh hiệu quả, hỗ trợ trang web đầu tư hiệu quả vào những nơi có lưu lượng truy cập nhiều nhất.",
+    "setting": null,
+    "setting-placeholder": "Vui lòng nhập số theo dõi GA",
+    "code": "Số theo dõi"
+  },
+  "google-ads": {
+    "description": "Theo dõi chuyển đổi quảng cáo có thể được sử dụng để theo dõi hành động \"sau khi\" khách hàng nhấp vào quảng cáo, bao gồm đăng ký, mua hàng. Hành động được coi là chuyển đổi khi khách hàng hoàn thành một hành động mà bạn xác định có giá trị.",
+    "setting": "Thay đổi cài đặt theo dõi",
+    "global-code": "Mã toàn cầu:",
+    "global-code-placeholder": "Vui lòng nhập mã url toàn cầu",
+    "event-setting": "Thay đổi cài đặt sự kiện",
+    "sign-up": "Đăng ký đã hoàn thành:",
+    "begin-checkout": "Bắt đầu thanh toán:",
+    "purchase": "Mua, tựa vào, bám vào:",
+    "event-placeholder": "Vui lòng nhập đoạn sự kiện",
+    "not-setting": "Cài đặt chưa được thực hiện"
+  },
+  "google-webmaster": {
+    "title": "Bảng điều khiển tìm kiếm của Google",
+    "webmaster": "Quản trị trang web",
+    "description": "Google Search Console hỗ trợ bạn xác định lưu lượng truy cập tìm kiếm của Google và hiệu quả của trang web của bạn, khắc phục sự cố và phân biệt trang web của bạn trong số hàng ngàn kết quả tìm kiếm của Google.",
+    "setting": null,
+    "setting-placeholder": null,
+    "trackId": null
+  },
+  "google-tag-manager": {
+    "title": "Công cụ quản lý mã",
+    "description": "Trình quản lý thẻ của Google là một hệ thống quản lý thẻ có thể giúp bạn cập nhật nhanh chóng mã theo dõi và đoạn mã thông qua cài đặt giao diện người dùng trang web và cài đặt triển khai thẻ.",
+    "setting": "Cài đặt đoạn trích",
+    "setting-placeholder": "Vui lòng nhập mã theo dõi",
+    "trackCode": "Mã theo dõi"
+  },
+  "advanced-customer-track": "Theo dõi khách hàng nâng cao",
+  "retention-milliseconds-track": {
+    "title": "Tùy chỉnh theo dõi thời gian",
+    "description": "Tính năng này có thể theo dõi hành vi cư trú của người dùng trong tất cả các trang thông qua các công cụ theo dõi của bên thứ ba, Facebook Pixel và Google Analytics và thời gian lưu trú có thể được tùy chỉnh.",
+    "tip-1": "Có thể theo dõi người dùng ở lại trên một trang trong hơn X giây.",
+    "tip-2": "Tên sự kiện: meepShop_ret chú ý",
+    "setting": "Cài đặt thời gian",
+    "input-seconds": "Vui lòng nhập số thứ hai"
+  },
+  "required": "Cần thiết",
+  "save": "Tiết kiệm",
+  "cancel": "Hủy bỏ",
+  "save-success": "Lưu lại thành công"
+}

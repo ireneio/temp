@@ -1,4 +1,5 @@
 // typescript import
+import { NextPage } from 'next';
 import { DataProxy } from 'apollo-cache';
 import { MutationFunction } from '@apollo/react-common';
 import { FormComponentProps } from 'antd/lib/form/Form';
@@ -318,43 +319,47 @@ const EnhancedSettingNotification = Form.create<PropsType>()(
   withTranslation('setting-notification')(SettingNotification),
 );
 
-const SettingNotificationPage = (): React.ReactNode => (
-  <Query<getNotificationsSetting>
-    query={gql`
-      query getNotificationsSetting {
-        viewer {
-          id
-          store {
+const SettingNotificationPage: NextPage = React.memo(
+  (): React.ReactElement => (
+    <Query<getNotificationsSetting>
+      query={gql`
+        query getNotificationsSetting {
+          viewer {
             id
-            setting {
-              emailNotificationEventSubscription {
-                recipientEmail
-                orderCreated
-                orderMessageReceived
-                orderTransferMessageReceived
-                orderReturnedOrExchanged
-                productQAReceived
+            store {
+              id
+              setting {
+                emailNotificationEventSubscription {
+                  recipientEmail
+                  orderCreated
+                  orderMessageReceived
+                  orderTransferMessageReceived
+                  orderReturnedOrExchanged
+                  productQAReceived
+                }
               }
             }
           }
         }
-      }
-    `}
-  >
-    {({ loading, error, data }) => {
-      if (loading || error)
+      `}
+    >
+      {({ loading, error, data }) => {
+        if (loading || error)
+          return (
+            <Spin
+              indicator={<Icon type="loading" spin />}
+              className={styles.spin}
+            />
+          );
+
         return (
-          <Spin
-            indicator={<Icon type="loading" spin />}
-            className={styles.spin}
+          <EnhancedSettingNotification
+            {...(data as Pick<PropsType, 'viewer'>)}
           />
         );
-
-      return (
-        <EnhancedSettingNotification {...(data as Pick<PropsType, 'viewer'>)} />
-      );
-    }}
-  </Query>
+      }}
+    </Query>
+  ),
 );
 
 SettingNotificationPage.getInitialProps = async () => ({

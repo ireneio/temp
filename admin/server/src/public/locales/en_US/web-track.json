@@ -1,0 +1,66 @@
+{
+  "ad-analytics": "Advertising Analytics",
+  "track-setting": "Tracking Tools Settings",
+  "tip": "Display Setting Tutorial",
+  "facebook-pixel": {
+    "title": "Facebook Pixels",
+    "setting": null,
+    "pixel-no": "Pixel Number:",
+    "error": "Facebook Pixel number format error, space or symbols are not allowed in the middle, front or back of the number, and must be 15-digit or 16-digit.",
+    "dpa": "Dynamic Product Ads (DPA)",
+    "dpa-description-1": "Product Dialogue Update Time: 5:00 AM ~ 6:00 AM (GMT+08:00)",
+    "dpa-description-2": "Please copy dynamic url and paste on Facebook advertisement management back-end platform. The system will automatically submit and provide updated product dialogue to Facebook regularly.",
+    "copy-dpa-link": "Copy Dynamic URL",
+    "copied": "Copied to clipboard",
+    "set-pixel-first": "Please set Pixel number",
+    "dpa-link-tip-1": "Please confirm the product created or store names entered,",
+    "dpa-link-tip-2": "if you are still unable to generate url, please contact customer service."
+  },
+  "google-analytics": {
+    "title": "Google Analytics Website Analysis",
+    "description": "Don't forget to use Google Analytics to analyze service when operating a website. meepShop supports Google Analytics. All you have to do is follow a few simple steps to analyze and compare effectively, assisting the website to effectively invest places with the most traffic flow.",
+    "setting": null,
+    "setting-placeholder": "Please enter GA tracking number",
+    "code": "Track Number"
+  },
+  "google-ads": {
+    "description": "Ads conversion tracking can be used to track the action \"after\" a customer clicked the ads, including register, purchases. Action is considered conversion once a customer completed an action you defined valuable.",
+    "setting": "Change Tracking Settings",
+    "global-code": "Global Code:",
+    "global-code-placeholder": "Please enter global url code",
+    "event-setting": "Change Event Settings",
+    "sign-up": "Register Completed:",
+    "begin-checkout": "Start Checkout:",
+    "purchase": "Purchase:",
+    "event-placeholder": "Please enter event snippet",
+    "not-setting": "Setting has not been made"
+  },
+  "google-webmaster": {
+    "title": "Google Search Console",
+    "webmaster": "Webmaster",
+    "description": "Google Search Console assists you in determining the Google search traffic flow and efficiency of your website, rectifying problems and differentiate your website among thousands of Google search results.",
+    "setting": null,
+    "setting-placeholder": null,
+    "trackId": null
+  },
+  "google-tag-manager": {
+    "title": "Code Management Tools",
+    "description": "Google Tag Manager is a tag management system that can help you rapidly update your tracking code and snippet through website user interface setting and tag deployment settings.",
+    "setting": "Snippet Settings",
+    "setting-placeholder": "Please enter tracking code",
+    "trackCode": "Tracking Code"
+  },
+  "advanced-customer-track": "Advanced Customer Tracking",
+  "retention-milliseconds-track": {
+    "title": "Customize Stay Time Tracker",
+    "description": "This feature can track user staying behavior in all pages through third party tracking tools, Facebook Pixel and Google Analytics, and staying time can be customized.",
+    "tip-1": "Can track users staying on a page for more than X seconds.",
+    "tip-2": "Event Name: meepShop_retention",
+    "setting": "Stay Time Settings",
+    "input-seconds": "Please enter number of second"
+  },
+  "required": "Required",
+  "save": "Save",
+  "cancel": "Cancel",
+  "save-success": "Save Successfully"
+}
