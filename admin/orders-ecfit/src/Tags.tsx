@@ -1,5 +1,5 @@
 // typescript import
-import { I18nPropsType } from '@admin/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 import { getEcfitListQueryPropsType } from './constants';
 
@@ -8,7 +8,7 @@ import React from 'react';
 import { Tag } from 'antd';
 import gql from 'graphql-tag';
 
-import { withTranslation } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import { TAGS_KEYS } from './constants';
 import emptyArrayToUndefined from './utils/emptyArrayToUndefined';

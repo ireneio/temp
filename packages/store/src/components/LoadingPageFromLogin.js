@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useTranslation } from '@store/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 export default React.memo(() => {
   const { t } = useTranslation('spinner');

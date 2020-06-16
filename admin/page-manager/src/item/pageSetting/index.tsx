@@ -7,7 +7,7 @@ import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Popover, Tooltip, Icon } from 'antd';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { DefaultLayoutIcon } from '@meepshop/icons';
 
 import Edit, { editFragment } from './Edit';

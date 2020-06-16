@@ -1,14 +1,14 @@
 // typescript import
 import { ColumnProps } from 'antd/lib/table';
 
-import { languageType } from '@store/utils/lib/i18n';
+import { languageType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React, { useMemo } from 'react';
 import gql from 'graphql-tag';
 import { Divider } from 'antd';
 
-import { useTranslation } from '@store/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 import useDeleteRecipientAddress from './useDeleteRecipientAddress';
 import styles from './styles/useColumns.less';

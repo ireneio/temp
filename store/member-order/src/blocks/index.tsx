@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
 
-import { useTranslation } from '@store/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 import PaymentInfo from './paymentInfo';
 import ShipmentInfo from './ShipmentInfo';

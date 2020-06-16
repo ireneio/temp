@@ -1,18 +1,15 @@
-// typescript import
-import { I18nPropsType } from '@store/utils/lib/i18n';
-
 // import
 import { useEffect } from 'react';
 import { message } from 'antd';
 import Clipboard from 'clipboard';
 import { emptyFunction } from 'fbjs';
 
+import { useTranslation } from '@meepshop/utils/lib/i18n';
+
 // definition
-export default (
-  t: I18nPropsType['t'],
-  loading: boolean,
-  orderId: string | null | undefined,
-): void => {
+export default (loading: boolean, orderId: string | null | undefined): void => {
+  const { t } = useTranslation('thank-you-page');
+
   useEffect((): (() => void) => {
     if (loading || orderId) return emptyFunction;
 

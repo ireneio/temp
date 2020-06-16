@@ -5,7 +5,7 @@ import { isFullWidth, isEmail } from 'validator';
 import { ApolloConsumer } from '@apollo/react-components';
 import gql from 'graphql-tag';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
 import AddressCascader from '@store/address-cascader';

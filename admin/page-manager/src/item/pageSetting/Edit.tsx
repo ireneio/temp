@@ -8,12 +8,12 @@ import gql from 'graphql-tag';
 import { useApolloClient } from '@apollo/react-hooks';
 import { Form, Input, Icon, Button, Tooltip } from 'antd';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
-import usePortalTarget from '@admin/utils/lib/hooks/usePortalTarget';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import getImage, {
   pageManagerPageTipPath_w200 as pageManagerPageTipPath,
   pageManagerPageTipTab_w200 as pageManagerPageTipTab,
 } from '@meepshop/images';
+import usePortalTarget from '@admin/utils/lib/hooks/usePortalTarget';
 
 import UploadImage from './UploadImage';
 import useEditSubmit from './hooks/useEditSubmit';

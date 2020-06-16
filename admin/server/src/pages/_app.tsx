@@ -12,9 +12,9 @@ import Head from 'next/head';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
 
+import { appWithTranslation } from '@meepshop/utils/lib/i18n';
 import { EventsProvider } from '@meepshop/events';
 import '@admin/utils/lib/styles/base.less';
-import { appWithTranslation } from '@admin/utils/lib/i18n';
 
 import withApollo from '../apollo/withApollo';
 

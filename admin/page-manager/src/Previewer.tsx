@@ -3,7 +3,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Spin, Button } from 'antd';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import Link from '@admin/link';
 
 import useIframeLoading from './hooks/useIframeLoading';

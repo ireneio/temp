@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { message } from 'antd';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
 import {

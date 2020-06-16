@@ -4,7 +4,7 @@ import radium from 'radium';
 import { Form, Input } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import AddressCascader, {
   validateAddressCascader,
 } from '@store/address-cascader';

@@ -4,9 +4,9 @@ import { Icon, Tabs, List } from 'antd';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
-import Link from '@admin/link';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import getImage, { meepshopLogo } from '@meepshop/images';
+import Link from '@admin/link';
 
 import styles from './styles/tutorial.less';
 import { TUTORIAL } from './constants';

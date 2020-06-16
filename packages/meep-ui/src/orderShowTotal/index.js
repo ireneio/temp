@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import {

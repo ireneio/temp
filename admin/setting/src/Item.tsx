@@ -5,9 +5,9 @@ import { ItemType } from './hooks/useItems';
 import React, { useState, useRef, useCallback } from 'react';
 import { Tooltip } from 'antd';
 
-import Link from '@admin/link';
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import useEffectWithCss from '@admin/utils/lib/hooks/useEffectWithCss';
+import Link from '@admin/link';
 
 import styles from './styles/item.less';
 

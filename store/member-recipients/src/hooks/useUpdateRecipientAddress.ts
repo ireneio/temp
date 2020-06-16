@@ -8,7 +8,7 @@ import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { notification } from 'antd';
 
-import { useTranslation } from '@store/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
 import {

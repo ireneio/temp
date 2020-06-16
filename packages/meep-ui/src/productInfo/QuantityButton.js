@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Select } from 'antd';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import { COLOR_TYPE } from 'constants/propTypes';
 

@@ -3,7 +3,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 
-import { useTranslation } from '@store/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 import NumberInfo from './NumberInfo';
 

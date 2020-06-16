@@ -2,7 +2,7 @@
 import { QueryResult } from '@apollo/react-common';
 import { FormComponentProps } from 'antd/lib/form';
 
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
@@ -22,10 +22,10 @@ import {
 import { areEqual } from 'fbjs';
 import moment from 'moment';
 
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import AddressCascader, {
   validateAddressCascader,
 } from '@store/address-cascader';
-import { withTranslation } from '@store/utils/lib/i18n';
 
 import RemoveCreditCardInfo from './RemoveCreditCardInfo';
 import styles from './styles/index.less';

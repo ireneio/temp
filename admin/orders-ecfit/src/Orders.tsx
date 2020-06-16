@@ -1,7 +1,7 @@
 // typescript import
 import { MutationFunction } from '@apollo/react-common';
 
-import { I18nPropsType } from '@admin/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 import { SetCurrentPropsType } from '@admin/utils/lib/withSetCurrent';
 
 import { getEcfitListQueryPropsType } from './constants';
@@ -14,7 +14,7 @@ import { emptyFunction, areEqual } from 'fbjs';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
 
-import { withTranslation } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withSetCurrent from '@admin/utils/lib/withSetCurrent';
 import Link from '@admin/link';
 

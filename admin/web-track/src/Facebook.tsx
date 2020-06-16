@@ -8,7 +8,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { Tooltip, Icon, Button, Modal, Form, Input, message } from 'antd';
 import Clipboard from 'clipboard';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import getImage, {
   webTrackFacebook_w130 as webTrackFacebook,
   webTrackFacebookPixelInstruction_w890 as webTrackFacebookPixelInstruction,

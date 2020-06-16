@@ -1,12 +1,12 @@
 // typescript import
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React, { useState } from 'react';
 import moment from 'moment';
 import { Icon, Drawer } from 'antd';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import Link from '@store/link';
 
 import styles from './styles/mobileColumn.less';

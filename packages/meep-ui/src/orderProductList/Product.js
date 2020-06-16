@@ -4,7 +4,7 @@ import radium from 'radium';
 import { MdClose as RemoveIcon } from 'react-icons/md';
 import { FaTag as TagIcon } from 'react-icons/fa';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Thumbnail from '@store/thumbnail';

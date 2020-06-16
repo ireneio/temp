@@ -5,7 +5,7 @@ import { FormComponentProps } from 'antd/lib/form';
 import React, { useState } from 'react';
 import { Tooltip, Icon, Button, Modal, Form, Input } from 'antd';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import getImage, {
   webTrackGoogleAds_w172 as webTrackGoogleAds,
   webTrackGoogleAdsInstruction_w890 as webTrackGoogleAdsInstruction,

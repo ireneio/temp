@@ -1,5 +1,5 @@
 // typescript import
-import { I18nPropsType } from '@admin/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
@@ -7,7 +7,7 @@ import { DatePicker as AntdDatePicker } from 'antd';
 import { areEqual } from 'fbjs';
 import moment from 'moment';
 
-import { withTranslation } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import styles from './styles/index.less';
 

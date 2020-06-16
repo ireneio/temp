@@ -7,8 +7,8 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { Spin, Icon } from 'antd';
 
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import SettingHeader from '@admin/setting-header';
-import { useTranslation } from '@admin/utils/lib/i18n';
 
 import useItems from './hooks/useItems';
 import Item from './Item';

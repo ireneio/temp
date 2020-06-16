@@ -1,12 +1,13 @@
 // typescript import
-import { I18nPropsType } from '@store/utils/lib/i18n';
 import { FormComponentProps } from 'antd/lib/form/Form';
+
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
 import { Button, Form, Input } from 'antd';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import styles from './styles/index.less';
 

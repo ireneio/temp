@@ -7,7 +7,7 @@ import { useApolloClient, useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { message, notification } from 'antd';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { useRouter } from '@admin/link';
 
 // graphql typescript

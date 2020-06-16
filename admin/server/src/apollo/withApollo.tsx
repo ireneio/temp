@@ -3,7 +3,7 @@ import NextApp, { AppContext, AppProps, AppInitialProps } from 'next/app';
 import { ApolloClient } from 'apollo-client';
 import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
-import { I18nPropsType } from '@admin/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';

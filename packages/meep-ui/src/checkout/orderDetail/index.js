@@ -6,7 +6,7 @@ import uuid from 'uuid';
 import { MdChevronLeft as ChevronLeftIcon } from 'react-icons/md';
 import transformColor from 'color';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import GmoCreditCardForm from '@store/gmo-credit-card-form';
 
 import { enhancer } from 'layout/DecoratorsRoot';

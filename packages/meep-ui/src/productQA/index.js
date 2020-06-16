@@ -6,7 +6,7 @@ import { MdSubdirectoryArrowRight as ArrowRightIcon } from 'react-icons/md';
 import { isFullWidth, isEmail } from 'validator';
 import moment from 'moment';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, ISLOGIN_TYPE, COLOR_TYPE } from 'constants/propTypes';

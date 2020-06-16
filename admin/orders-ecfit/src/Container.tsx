@@ -1,7 +1,7 @@
 // typescript import
 import { MutationFunction } from '@apollo/react-common';
 
-import { I18nPropsType } from '@admin/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 import { PropsType as DataPickerPropsType } from '@admin/date-picker';
 
 import { getEcfitListQueryPropsType } from './constants';
@@ -15,7 +15,7 @@ import Router from 'next/router';
 import { Spin, Icon, Radio, Input, Button, Badge, Modal } from 'antd';
 import moment from 'moment';
 
-import { withTranslation } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import DatePicker from '@admin/date-picker';
 
 import AdvancedSearch from './AdvancedSearch';

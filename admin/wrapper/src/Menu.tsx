@@ -2,10 +2,10 @@
 import React from 'react';
 import { Menu } from 'antd';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { LeftIcon } from '@meepshop/icons';
 import Switch, { switchRender } from '@admin/switch';
 import Link from '@admin/link';
-import { LeftIcon } from '@meepshop/icons';
 
 import useMenuList from './hooks/useMenuList';
 import useItemClick from './hooks/useItemClick';

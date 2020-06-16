@@ -2,7 +2,7 @@
 import { QueryResult } from '@apollo/react-common';
 import { DataProxy } from 'apollo-cache';
 
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
@@ -10,7 +10,7 @@ import gql from 'graphql-tag';
 import { Mutation } from '@apollo/react-components';
 import { Button, notification } from 'antd';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import styles from './styles/removeCreditCardInfo.less';
 

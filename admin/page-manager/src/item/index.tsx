@@ -7,7 +7,7 @@ import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Tooltip } from 'antd';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import Switch from '@admin/switch';
 
 import PrefixIcon from './PrefixIcon';

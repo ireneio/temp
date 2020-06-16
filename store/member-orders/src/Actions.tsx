@@ -1,7 +1,7 @@
 // typescript import
 import { DataProxy } from 'apollo-cache';
 
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
@@ -10,7 +10,7 @@ import { Mutation } from '@apollo/react-components';
 import { message } from 'antd';
 import { areEqual } from 'fbjs';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import Link from '@store/link';
 
 import styles from './styles/actions.less';

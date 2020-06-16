@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Card, Icon, Tabs } from 'antd';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { AnalyticsSettingIcon } from '@meepshop/icons';
 
 import Facebook from './Facebook';

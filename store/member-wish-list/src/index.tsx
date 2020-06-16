@@ -1,7 +1,7 @@
 // typescript import
 import { QueryResult } from '@apollo/react-common';
 
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
@@ -13,8 +13,8 @@ import { areEqual } from 'fbjs';
 import memoizeOne from 'memoize-one';
 import moment from 'moment';
 
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import Thumbnail, { thumbnailFragment } from '@store/thumbnail';
-import { withTranslation } from '@store/utils/lib/i18n';
 
 import styles from './styles/index.less';
 

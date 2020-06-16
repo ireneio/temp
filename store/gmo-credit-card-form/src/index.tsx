@@ -2,7 +2,7 @@
 import { FormComponentProps } from 'antd/lib/form';
 import { WithRouterProps } from 'next/dist/client/with-router';
 
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
@@ -11,7 +11,7 @@ import gql from 'graphql-tag';
 import { withRouter } from 'next/router';
 import { Spin, Icon, Input, Checkbox } from 'antd';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import Form from './Form';
 import styles from './styles/index.less';

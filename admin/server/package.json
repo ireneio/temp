@@ -25,6 +25,7 @@
     "@admin/web-track": "^0.46.0",
     "@admin/wrapper": "^0.46.0",
     "@meepshop/events": "^0.46.0",
+    "@meepshop/utils": "^0.46.0",
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-link-http": "^1.5.16",
     "body-parser": "^1.18.3",

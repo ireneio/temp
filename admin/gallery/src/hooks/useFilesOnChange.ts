@@ -3,7 +3,7 @@ import { notification } from 'antd';
 import fileType from 'file-type/browser';
 import uuid from 'uuid/v4';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 import useUploadImages from './useUploadImages';
 import { IMAGE_TYPES } from '../constants';

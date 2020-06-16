@@ -4,7 +4,7 @@ import { DataProxy } from 'apollo-cache';
 import { MutationFunction } from '@apollo/react-common';
 import { FormComponentProps } from 'antd/lib/form/Form';
 
-import { I18nPropsType } from '@admin/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
@@ -21,7 +21,7 @@ import {
   message,
 } from 'antd';
 
-import { withTranslation } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import Link from '@admin/link';
 import SettingHeader from '@admin/setting-header';
 

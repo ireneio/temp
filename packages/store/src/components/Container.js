@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 import { UserAgent } from 'fbjs';
 import { notification } from 'antd';
 
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import Layout from '@meepshop/meep-ui/lib/layout';
-import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import { fb as fbContext } from '@meepshop/context';
 import currencyContext from '@store/currency';

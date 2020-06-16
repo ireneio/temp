@@ -3,7 +3,7 @@ import { DataProxy } from 'apollo-cache';
 import { MutationFunction } from '@apollo/react-common';
 import { FormComponentProps } from 'antd/lib/form';
 
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
@@ -11,7 +11,7 @@ import { Query, Mutation } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Spin, Icon, Form, Input, Button, notification } from 'antd';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import styles from './styles/index.less';
 

@@ -6,7 +6,7 @@ import React from 'react';
 import Head from 'next/head';
 import { Form, Input, Checkbox, Button } from 'antd';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 import useGrecaptcha from './hooks/useGrecaptcha';
 import useLogin from './hooks/useLogin';

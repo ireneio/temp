@@ -1,7 +1,8 @@
 // typescript import
-import { I18nPropsType } from '@store/utils/lib/i18n';
 import { MutationFunction } from '@apollo/react-common';
 import { DataProxy } from 'apollo-cache';
+
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 import { PropsType as FormPropsType } from './Form';
 
@@ -15,7 +16,7 @@ import { Spin, Icon, Button, message } from 'antd';
 import moment from 'moment';
 import transformColor from 'color';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import { screenSmMax } from '@store/utils/lib/styles';
 import {
   calculateOrderApply,

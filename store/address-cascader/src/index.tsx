@@ -2,7 +2,7 @@
 import { ValidationRule } from 'antd/lib/form';
 
 // graphql typescript
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';

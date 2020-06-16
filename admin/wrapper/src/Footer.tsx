@@ -2,10 +2,10 @@
 import React from 'react';
 import { Menu, Tooltip } from 'antd';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { MoreIcon } from '@meepshop/icons';
 import Switch from '@admin/switch';
 import Link from '@admin/link';
-import { MoreIcon } from '@meepshop/icons';
 
 import useFooterMenuList from './hooks/useFooterMenuList';
 import styles from './styles/footer.less';

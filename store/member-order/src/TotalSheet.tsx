@@ -1,5 +1,5 @@
 // typescript import
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 import { CurrencyType } from '@store/currency';
 
 // import
@@ -7,7 +7,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import memoizeOne from 'memoize-one';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import currencyContext from '@store/currency';
 

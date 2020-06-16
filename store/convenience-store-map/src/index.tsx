@@ -1,7 +1,7 @@
 // typescript import
 import { QueryResult } from '@apollo/react-common';
 
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 import { screenSmMax } from '@store/utils/lib/styles';
 
 // import
@@ -10,7 +10,7 @@ import { ApolloConsumer } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Modal, Tabs } from 'antd';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import AddressSelect from './AddressSelect';
 import SearchInput from './SearchInput';

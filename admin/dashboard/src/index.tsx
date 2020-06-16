@@ -10,11 +10,11 @@ import Head from 'next/head';
 import { Spin, Icon } from 'antd';
 import moment from 'moment';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import formatAmount from '@admin/utils/lib/formatAmount';
 import Link from '@admin/link';
 
-import Tutorial from './tutorial';
+import Tutorial from './Tutorial';
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -25,7 +25,7 @@ import {
 } from './__generated__/getDashboard';
 
 // graphql import
-import { tutorialSettingObjectTypeFragment } from './tutorial';
+import { tutorialSettingObjectTypeFragment } from './Tutorial';
 
 // definition
 const Dashboard: NextPage = React.memo(

@@ -17,6 +17,7 @@
     "@meepshop/events": "^0.46.0",
     "@meepshop/images": "^0.46.0",
     "@meepshop/meep-ui": "^0.46.0",
+    "@meepshop/utils": "^0.46.0",
     "@store/ad-track": "^0.46.0",
     "@store/currency": "^0.46.0",
     "@store/ezpay": "^0.46.0",

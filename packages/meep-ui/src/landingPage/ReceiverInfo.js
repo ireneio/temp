@@ -4,7 +4,7 @@ import radium from 'radium';
 import { Form, Input, Select, DatePicker } from 'antd';
 import { isAlpha, isFullWidth, isEmail } from 'validator';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import ReceiverDefaultFormItem from 'receiverDefaultFormItem';

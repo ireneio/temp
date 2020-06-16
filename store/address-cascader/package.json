@@ -8,6 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@meepshop/utils": "^0.46.0",
     "@store/utils": "^0.46.0",
     "color": "^3.0.0"
   },

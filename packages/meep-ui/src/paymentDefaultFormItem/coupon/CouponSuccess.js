@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { areEqual } from 'fbjs';
 import moment from 'moment';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, POSITIVE_NUMBER_TYPE } from 'constants/propTypes';

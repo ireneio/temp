@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Icon } from 'antd';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
+import getImage, { uploadImage_w56 as uploadImage } from '@meepshop/images';
 import usePortalTarget from '@admin/utils/lib/hooks/usePortalTarget';
 import Gallery from '@admin/gallery';
-import getImage, { uploadImage_w56 as uploadImage } from '@meepshop/images';
 
 import useFindImage from './hooks/useFindImage';
 import styles from './styles/uploadImage.less';

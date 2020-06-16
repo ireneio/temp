@@ -4,7 +4,7 @@ import radium, { StyleRoot, Style } from 'radium';
 import { warning, areEqual } from 'fbjs';
 import { Modal } from 'antd';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
 

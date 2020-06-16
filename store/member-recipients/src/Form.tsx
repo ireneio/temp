@@ -1,14 +1,14 @@
 // typescript import
 import { FormComponentProps } from 'antd/lib/form';
 
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
 import gql from 'graphql-tag';
 import { Form, Input, Button } from 'antd';
 
-import { useTranslation } from '@store/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import validateMobile from '@store/utils/lib/validate/mobile';
 import AddressCascader, {
   validateAddressCascader,

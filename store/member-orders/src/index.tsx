@@ -1,7 +1,7 @@
 // typescript import
 import { QueryResult } from '@apollo/react-common';
 
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 import { SetCurrentPropsType } from '@store/utils/lib/withSetCurrent';
 
 // import
@@ -15,7 +15,7 @@ import memoizeOne from 'memoize-one';
 import moment from 'moment';
 import transformColor from 'color';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withSetCurrent from '@store/utils/lib/withSetCurrent';
 import Link from '@store/link';
 

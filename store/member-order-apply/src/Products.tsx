@@ -1,7 +1,7 @@
 // typescript import
 import { ColumnProps } from 'antd/lib/table';
 
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 import { CurrencyType } from '@store/currency';
 
 // import
@@ -12,10 +12,9 @@ import { Table, Input, Select } from 'antd';
 import memoizeOne from 'memoize-one';
 import transformColor from 'color';
 
-import Thumbnail, { thumbnailFragment } from '@store/thumbnail';
-import localeFragment from '@store/utils/lib/fragments/locale';
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
+import Thumbnail, { thumbnailFragment } from '@store/thumbnail';
 import currencyContext from '@store/currency';
 
 import styles from './styles/products.less';
@@ -24,6 +23,8 @@ import styles from './styles/products.less';
 import { getMemberOrderApply_getColorList as getMemberOrderApplyGetColorList } from './__generated__/getMemberOrderApply';
 
 // graphql import
+import localeFragment from '@store/utils/lib/fragments/locale';
+
 import { productsProductsObjectTypeFragment as productsProductsObjectTypeFragmentType } from './__generated__/productsProductsObjectTypeFragment';
 
 // typescript definition

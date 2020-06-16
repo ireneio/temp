@@ -8,6 +8,7 @@
   "dependencies": {
     "@meepshop/context": "^0.46.0",
     "@meepshop/landing-page": "^0.46.0",
+    "@meepshop/utils": "^0.46.0",
     "@store/ad-track": "^0.46.0",
     "@store/address-cascader": "^0.46.0",
     "@store/checkout": "^0.46.0",

@@ -1,6 +1,7 @@
 // typescript import
 import { ColumnProps } from 'antd/lib/table';
-import { I18nPropsType } from '@store/utils/lib/i18n';
+
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 import { CurrencyType } from '@store/currency';
 
 // import
@@ -11,9 +12,9 @@ import { Table } from 'antd';
 import memoizeOne from 'memoize-one';
 import transformColor from 'color';
 
-import Thumbnail, { thumbnailFragment } from '@store/thumbnail';
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
+import Thumbnail, { thumbnailFragment } from '@store/thumbnail';
 import currencyContext from '@store/currency';
 
 import styles from './styles/products.less';

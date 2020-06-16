@@ -1,7 +1,7 @@
 // import typescript
 import { FormComponentProps } from 'antd/lib/form';
 
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
@@ -9,7 +9,7 @@ import { Form as AntdForm, DatePicker, Input } from 'antd';
 import moment from 'moment';
 import { isNumeric, isInt } from 'validator';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import CreditCardInput from './CreditCardInput';
 import InstallmentFormItem from './InstallmentFormItem';

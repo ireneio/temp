@@ -2,7 +2,7 @@
 import { QueryResult } from '@apollo/react-common';
 import { DrawerProps } from 'antd/lib/drawer';
 
-import { I18nPropsType } from '@admin/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
@@ -10,7 +10,7 @@ import gql from 'graphql-tag';
 import { Query } from '@apollo/react-components';
 import { Spin, Icon, Drawer, Select, Input, Button, Modal } from 'antd';
 
-import { withTranslation } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import { TYPE_LIST } from './constants';
 import styles from './styles/index.less';

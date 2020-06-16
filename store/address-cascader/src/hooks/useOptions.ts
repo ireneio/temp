@@ -1,7 +1,7 @@
 // graphql typescript
 import { CascaderOptionType } from 'antd/lib/cascader';
 
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import { useMemo } from 'react';

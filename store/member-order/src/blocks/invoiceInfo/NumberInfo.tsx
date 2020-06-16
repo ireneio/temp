@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import gql from 'graphql-tag';
 import moment from 'moment';
 
-import { useTranslation } from '@store/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
 import { numberInfoFragment as numberInfoFragmentType } from './__generated__/numberInfoFragment';

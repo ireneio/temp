@@ -8,7 +8,7 @@ import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { message } from 'antd';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
 import { editFragment as editFragmentType } from '../__generated__/editFragment';

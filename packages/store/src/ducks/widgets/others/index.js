@@ -1,7 +1,7 @@
 import { takeEvery, call } from 'redux-saga/effects';
 import { notification } from 'antd';
 
-import { i18n } from '@store/utils/lib/i18n';
+import { i18n } from '@meepshop/utils/lib/i18n';
 
 import * as Api from 'api';
 

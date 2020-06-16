@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Progress, Button } from 'antd';
 
-import { useTranslation } from '@store/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import Link, { useRouter } from '@store/link';
 
 import Info from './info';
@@ -45,7 +45,7 @@ export default React.memo(() => {
   });
   const order = data?.viewer?.order;
 
-  useClipboard(t, loading, order?.id);
+  useClipboard(loading, order?.id);
   useAdTrack(!order ? order : filter(useAdTrackFragment, order));
 
   if (loading) return <Spin indicator={<Icon type="loading" spin />} />;

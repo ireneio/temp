@@ -1,12 +1,12 @@
 // typescript import
-import { I18nPropsType } from '@store/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
 import { Icon } from 'antd';
 import memoizeOne from 'memoize-one';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import StoreIcon from './StoreIcon';
 import styles from './styles/storeList.less';

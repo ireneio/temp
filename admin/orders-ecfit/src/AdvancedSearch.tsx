@@ -1,5 +1,5 @@
 // typescript import
-import { I18nPropsType } from '@admin/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 import { getEcfitListQueryPropsType } from './constants';
 
@@ -9,7 +9,7 @@ import gql from 'graphql-tag';
 import { Popover, Select, Divider, Button } from 'antd';
 import { areEqual } from 'fbjs';
 
-import { withTranslation } from '@admin/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import { ADVANCED_SEARCH_ITEMS } from './constants';
 import emptyArrayToUndefined from './utils/emptyArrayToUndefined';

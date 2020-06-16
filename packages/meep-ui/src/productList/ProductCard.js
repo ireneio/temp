@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
+import Placeholder from '@store/placeholder';
 
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 import Image from 'image';
 import Link from 'link';
-import Placeholder from '@store/placeholder';
 import DraftText from 'draftText';
 
 import ProductLoader from './ProductLoader';

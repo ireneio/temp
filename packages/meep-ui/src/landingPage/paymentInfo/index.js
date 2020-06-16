@@ -4,7 +4,7 @@ import { Form, Select, InputNumber, Cascader, Modal } from 'antd';
 import { getElementPosition } from 'fbjs';
 import uuid from 'uuid';
 
-import { withTranslation } from '@store/utils/lib/i18n';
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
 

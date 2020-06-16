@@ -5,7 +5,7 @@ import { PropsType } from './index';
 import React from 'react';
 import { Form, Input, Checkbox, Button } from 'antd';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import getImage, { meepshopLogo } from '@meepshop/images';
 
 import useSendResetPasswordEmail from './hooks/useSendResetPasswordEmail';

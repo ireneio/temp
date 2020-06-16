@@ -6,8 +6,8 @@ import moment from 'moment';
 import { areEqual } from 'fbjs';
 import uuid from 'uuid/v4';
 
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import LandingPageWrapper from '@meepshop/landing-page';
-import { withTranslation } from '@store/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import adTrackContext from '@store/ad-track';
 import GmoCreditCardForm from '@store/gmo-credit-card-form';

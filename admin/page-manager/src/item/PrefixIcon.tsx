@@ -2,7 +2,7 @@
 import React from 'react';
 import { Tooltip, Icon } from 'antd';
 
-import { useTranslation } from '@admin/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { DefaultLayoutIcon } from '@meepshop/icons';
 
 import styles from './styles/prefixIcon.less';
