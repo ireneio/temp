@@ -64,11 +64,8 @@ class Product extends React.Component {
   static defaultProps = { error: null };
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const {
-      dispatchAction,
-      location: { query },
-      isLogin,
-    } = nextProps;
+    const { dispatchAction, isLogin } = nextProps;
+    const query = nextProps.location?.query;
 
     if (prevState?.isLogin && prevState.isLogin !== isLogin)
       dispatchAction('getProduct', { id: query.pId, query });
