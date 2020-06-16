@@ -5,7 +5,7 @@ metadata:
     app: next-store
   name: next-store
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
     - port: 14401
       name: http-port
