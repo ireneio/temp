@@ -11,13 +11,11 @@ import styles from './styles/index.less';
 import { videoFragment } from './__generated__/videoFragment';
 
 // definition
-export default React.memo(({ width, ratio, href }: videoFragment) => {
+export default React.memo(({ id, width, ratio, href }: videoFragment) => {
   const { version, appId } = useContext(fbContext);
   const { height, videoRef } = useHeight(ratio);
 
   return (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore FIXME: can not use useRef to class component ref
     <ReactPlayer
       ref={videoRef}
       className={styles.root}
@@ -27,7 +25,8 @@ export default React.memo(({ width, ratio, href }: videoFragment) => {
       config={{
         facebook: {
           version,
-          appId,
+          appId: appId || 'app id',
+          playerId: id,
         },
       }}
       controls

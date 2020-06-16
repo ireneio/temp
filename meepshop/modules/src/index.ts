@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 // graphql import
 import dividerFragment from '@meepshop/divider/lib/fragment';
 import draftTextFragment from '@meepshop/draft-text/lib/fragment';
+import facebookWallFragment from '@meepshop/facebook-wall/lib/fragment';
 import googleMapFragment from '@meepshop/google-map/lib/fragment';
 import iframeFragment from '@meepshop/iframe/lib/fragment';
 import productDraftTextFragment from '@meepshop/product-draft-text/lib/fragment';
@@ -56,6 +57,13 @@ export const modulesFragment = gql`
         id
         parentId
         ...draftTextFragment
+      }
+
+      ... on FacebookWallModule {
+        __typename
+        id
+        parentId
+        ...facebookWallFragment
       }
 
       ... on GoogleMapModule {
@@ -111,6 +119,7 @@ export const modulesFragment = gql`
 
   ${dividerFragment}
   ${draftTextFragment}
+  ${facebookWallFragment}
   ${googleMapFragment}
   ${iframeFragment}
   ${productDraftTextFragment}
@@ -129,6 +138,7 @@ export default {
   },
   DividerModule: dynamic(() => import('@meepshop/divider')),
   DraftTextModule: dynamic(() => import('@meepshop/draft-text')),
+  FacebookWallModule: dynamic(() => import('@meepshop/facebook-wall')),
   GoogleMapModule: dynamic(() => import('@meepshop/google-map')),
   IframeModule: dynamic(() => import('@meepshop/iframe')),
   ProductDraftTextModule: dynamic(() => import('@meepshop/product-draft-text')),

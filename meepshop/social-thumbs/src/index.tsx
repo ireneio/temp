@@ -1,7 +1,8 @@
 // import
-import React from 'react';
+import React, { useRef } from 'react';
 
-import useFbParse from './hooks/useFbParse';
+import useFbParse from '@meepshop/utils/lib/hooks/useFbParse';
+
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -9,7 +10,9 @@ import { socialThumbsFragment } from './__generated__/socialThumbsFragment';
 
 // definition
 export default React.memo(({ href, justifyContent }: socialThumbsFragment) => {
-  const socialThumbsRef = useFbParse(href);
+  const socialThumbsRef = useRef<HTMLDivElement>(null);
+
+  useFbParse(href, socialThumbsRef);
 
   return (
     <div className={`${styles.root} ${styles[justifyContent]}`}>

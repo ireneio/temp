@@ -10,10 +10,12 @@
   "dependencies": {
     "@meepshop/divider": "^0.45.0",
     "@meepshop/draft-text": "^0.45.0",
+    "@meepshop/facebook-wall": "^0.1.0",
     "@meepshop/google-map": "^0.45.0",
     "@meepshop/iframe": "^0.45.0",
     "@meepshop/product-draft-text": "^0.45.0",
     "@meepshop/product-video": "^0.45.0",
+    "@meepshop/social-thumbs": "^0.45.0",
     "@meepshop/unavailable": "^0.45.0",
     "@meepshop/video": "^0.45.0"
   },

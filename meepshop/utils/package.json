@@ -5,5 +5,8 @@
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.45.0",
+  "dependencies": {
+    "@meepshop/context": "^0.45.0"
+  },
   "keywords": ["meepshop", "utils"]
 }

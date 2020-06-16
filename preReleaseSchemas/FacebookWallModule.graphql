@@ -1,0 +1,11 @@
+type FacebookWallModule implements Module {
+  id: ID!
+  parentId: ID!
+  href: URL!
+  justifyContent: JustifyContent!
+  showPosts: Boolean!
+  showFacepile: Boolean!
+  smallHeader: Boolean!
+  hideCover: Boolean!
+  hideCta: Boolean!
+}

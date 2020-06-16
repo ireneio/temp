@@ -1,15 +1,14 @@
 {
   "private": true,
-  "name": "@meepshop/social-thumbs",
-  "description": "Meepshop social thumbs module",
+  "name": "@meepshop/facebook-wall",
+  "description": "Meepshop facebook wall",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.45.0",
+  "version": "0.1.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.45.0",
     "@meepshop/utils": "^0.45.0"
   },
-  "keywords": ["meepshop", "social thumbs"]
+  "keywords": ["facebook wall", "meepshop"]
 }

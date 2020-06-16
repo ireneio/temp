@@ -1,0 +1,21 @@
+.root {
+  display: flex;
+  width: 100%;
+
+  &.FLEX_START {
+    justify-content: flex-start;
+  }
+
+  &.CENTER {
+    justify-content: center;
+  }
+
+  &.FLEX_END {
+    justify-content: flex-end;
+  }
+
+  :global(.fb-page) {
+    width: 100%;
+    max-width: 500px;
+  }
+}

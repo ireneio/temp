@@ -23,6 +23,7 @@
       "@meepshop/utils/lib/*": ["meepshop/utils/src/*"],
       "@meepshop/divider/lib/*": ["meepshop/divider/src/*"],
       "@meepshop/draft-text/lib/*": ["meepshop/draft-text/src/*"],
+      "@meepshop/facebook-wall/lib/*": ["meepshop/facebook-wall/src/*"],
       "@meepshop/google-map/lib/*": ["meepshop/google-map/src/*"],
       "@meepshop/iframe/lib/*": ["meepshop/iframe/src/*"],
       "@meepshop/product-draft-text/lib/*": ["meepshop/product-draft-text/src/*"],

@@ -19,10 +19,10 @@ export default (
   ratio: videoFragment['ratio'],
 ): {
   height: number;
-  videoRef: React.Ref<typeof ReactPlayer & { wrapper: HTMLElement }>;
+  videoRef: React.RefObject<ReactPlayer>;
 } => {
   const [height, setHeight] = useState(0);
-  const videoRef = useRef<typeof ReactPlayer & { wrapper: HTMLElement }>(null);
+  const videoRef = useRef<ReactPlayer>(null);
   const resizeTimeoutRef = useRef<ReturnType<typeof setTimeout>>(
     setTimeout(emptyFunction, 0),
   );
@@ -34,6 +34,8 @@ export default (
       resizeTimeoutRef.current = setTimeout(() => {
         if (!videoRef.current) return;
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore FIXME: react player type error
         setHeight(videoRef.current.wrapper.offsetWidth * RATIO_TO_VALUE[ratio]);
       }, 100);
     };
