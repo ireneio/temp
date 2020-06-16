@@ -14,7 +14,7 @@ import { getModules_viewer_store_page_modules_GroupModule as getModulesViewerSto
 // typescript definition
 interface PropsType {
   data: ModulesType['data'];
-  childModules: ModulesType[];
+  childModules?: ModulesType[];
   settings: Pick<
     getModulesViewerStorePageModulesGroupModule,
     'componentWidth'
@@ -43,13 +43,13 @@ const Layout = React.memo(
               }
         }
       >
-        {__typename !== 'LayoutModule' ? (
+        {__typename !== 'LayoutModule' && __typename !== 'GroupModule' ? (
           <div className={`module ${styles.wrapper}`}>
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <Module {...(data as any)} />
           </div>
         ) : (
-          childModules.map(({ data: childData, children }) => (
+          childModules?.map(({ data: childData, children }) => (
             <Layout
               key={childData.id}
               data={childData}

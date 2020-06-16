@@ -16,104 +16,101 @@ import videoFragment from '@meepshop/video/lib/fragment';
 
 // definition
 export const modulesFragment = gql`
-  fragment modulesFragment on Page {
-    id
-    modules {
-      ... on GroupModule {
-        __typename
-        id
-        parentId
-        percentWidth
-        componentWidth
-        padding
-        background
-        backgroundImage {
-          image {
-            id
-            scaledSrc {
-              w1920
-            }
+  fragment modulesFragment on PageModule {
+    ... on GroupModule {
+      __typename
+      id
+      parentId
+      percentWidth
+      componentWidth
+      padding
+      background
+      backgroundImage {
+        image {
+          id
+          scaledSrc {
+            w1920
           }
-          cover
-          repeat
         }
+        cover
+        repeat
       }
+    }
 
-      ... on LayoutModule {
-        __typename
-        id
-        parentId
-      }
+    ... on LayoutModule {
+      __typename
+      id
+      parentId
+    }
 
-      ... on DividerModule {
-        __typename
-        id
-        parentId
-        ...dividerFragment
-      }
+    ... on DividerModule {
+      __typename
+      id
+      parentId
+      ...dividerFragment
+    }
 
-      ... on DraftTextModule {
-        __typename
-        id
-        parentId
-        ...draftTextFragment
-      }
+    ... on DraftTextModule {
+      __typename
+      id
+      parentId
+      ...draftTextFragment
+    }
 
-      ... on FacebookWallModule {
-        __typename
-        id
-        parentId
-        ...facebookWallFragment
-      }
+    ... on FacebookWallModule {
+      __typename
+      id
+      parentId
+      ...facebookWallFragment
+    }
 
-      ... on GoogleMapModule {
-        __typename
-        id
-        parentId
-        ...googleMapFragment
-      }
+    ... on GoogleMapModule {
+      __typename
+      id
+      parentId
+      ...googleMapFragment
+    }
 
-      ... on IframeModule {
-        __typename
-        id
-        parentId
-        ...iframeFragment
-      }
+    ... on IframeModule {
+      __typename
+      id
+      parentId
+      ...iframeFragment
+    }
 
-      ... on ProductDraftTextModule {
-        __typename
-        id
-        parentId
-        ...productDraftTextFragment
-      }
+    ... on ProductDraftTextModule {
+      __typename
+      id
+      parentId
+      ...productDraftTextFragment
+    }
 
-      ... on ProductVideoModule {
-        __typename
-        id
-        parentId
-        ...productVideoFragment
-      }
+    ... on ProductVideoModule {
+      __typename
+      id
+      parentId
+      ...productVideoFragment
+    }
 
-      ... on SocialThumbsModule {
-        __typename
-        id
-        parentId
-        ...socialThumbsFragment
-      }
+    ... on SocialThumbsModule {
+      __typename
+      id
+      parentId
+      ...socialThumbsFragment
+    }
 
-      ... on UnavailableModule {
-        __typename
-        id
-        parentId
-        ...unavailableFragment
-      }
+    ... on UnavailableModule {
+      __typename
+      id
+      parentId
+      ...unavailableFragment
+    }
 
-      ... on VideoModule {
-        __typename
-        id
-        parentId
-        ...videoFragment
-      }
+    ... on VideoModule {
+      __typename
+      id
+      parentId
+      ...videoFragment
     }
   }
 
@@ -129,7 +126,7 @@ export const modulesFragment = gql`
   ${videoFragment}
 `;
 
-export default {
+const modules = {
   GroupModule: () => {
     throw new Error('Can not use GroupModule');
   },
@@ -147,3 +144,13 @@ export default {
   UnavailableModule: dynamic(() => import('@meepshop/unavailable')),
   VideoModule: dynamic(() => import('@meepshop/video')),
 };
+
+export const modulesDataType = {
+  kind: 'UNION',
+  name: 'PageModule',
+  possibleTypes: Object.keys(modules).map(module => ({
+    name: module,
+  })),
+};
+
+export default modules;

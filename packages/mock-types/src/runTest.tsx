@@ -7,6 +7,8 @@ import { mount, ReactWrapper } from 'enzyme';
 import { cartesianProduct } from 'js-combinatorics';
 import { emptyFunction } from 'fbjs';
 
+import { modulesDataType } from '@meepshop/modules';
+
 import mock from './mock';
 import MockTypes from './index';
 
@@ -48,7 +50,7 @@ export default (
         return {
           resolvers: {
             initializeCache: emptyFunction,
-            introspectionQueryResultDataType: [],
+            introspectionQueryResultDataType: [modulesDataType],
             default: {},
           },
           Provider: ({ children }: { children: React.ReactNode }) => children,

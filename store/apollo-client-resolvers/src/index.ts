@@ -4,6 +4,8 @@ import { Resolvers } from 'apollo-client/core/types';
 // import
 import { emptyFunction } from 'fbjs';
 
+import { modulesDataType } from '@meepshop/modules';
+
 import * as ColorList from './ColorList';
 import * as PageInfo from './PageInfo';
 import * as StoreAppList from './StoreAppList';
@@ -14,7 +16,7 @@ import * as viewer from './viewer';
 // definition
 export const initializeCache = emptyFunction;
 
-export const introspectionQueryResultDataType = [];
+export const introspectionQueryResultDataType = [modulesDataType];
 
 export default [
   ColorList.resolver,

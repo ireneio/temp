@@ -1,36 +1,44 @@
+// typescript import
+import { HierarchyNode } from 'd3-hierarchy';
+
 // import
 import { useMemo } from 'react';
-import * as d3 from 'd3-hierarchy';
+import { stratify } from 'd3-hierarchy';
 
 // graphql typescript
 import {
-  getModules_viewer_store_page as getModulesViewerStorePage,
   getModules_viewer_store_page_modules as getModulesViewerStorePageModules,
+  getModules_viewer_store_page_modules_GroupModule as getModulesViewerStorePageModulesGroupModule,
 } from '../__generated__/getModules';
 
 // typescript definition
 export interface ModulesType {
   data: getModulesViewerStorePageModules;
-  children: ModulesType[];
+  children?: HierarchyNode<getModulesViewerStorePageModules>[];
 }
 
 // definition
-const treemap = d3
-  .stratify<getModulesViewerStorePageModules>()
-  .id(({ id }) => id)
-  .parentId(({ parentId }) => parentId);
+const treemap = stratify<
+  | getModulesViewerStorePageModules
+  | {
+      id: string;
+    }
+>().id(({ id }) => id);
 
-export default (page: getModulesViewerStorePage | null): ModulesType[] =>
+export default (
+  modules: getModulesViewerStorePageModules[] | null,
+): HierarchyNode<getModulesViewerStorePageModulesGroupModule>[] =>
   useMemo(
     () =>
-      (!page
+      !modules
         ? []
-        : treemap([
+        : ((treemap([
             {
               id: 'root',
             },
-            ...page.modules,
-          ] as getModulesViewerStorePageModules[]).children ||
-          []) as ModulesType[],
-    [page],
+            ...modules,
+          ]).children || []) as HierarchyNode<
+            getModulesViewerStorePageModulesGroupModule
+          >[]),
+    [modules],
   );

@@ -4,6 +4,8 @@ import { Resolvers } from 'apollo-client/core/types';
 import { AppContext } from 'next/app';
 
 // import
+import { modulesDataType } from '@meepshop/modules';
+
 import * as cookies from './cookies';
 import * as PageInfo from './PageInfo';
 import * as selectedOrders from './selectedOrders';
@@ -28,7 +30,7 @@ export const initializeCache = <C extends CustomCtx>(
   selectedOrders.initializeCache(cache);
 };
 
-export const introspectionQueryResultDataType = [];
+export const introspectionQueryResultDataType = [modulesDataType];
 
 export default [
   PageInfo.resolver,

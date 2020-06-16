@@ -1,6 +1,3 @@
-// typescript import
-import { ModulesType } from './hooks/useModules';
-
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
@@ -15,10 +12,7 @@ import useModules from './hooks/useModules';
 import styles from './styles/index.less';
 
 // graphql typescript
-import {
-  getModules,
-  getModules_viewer_store_page_modules_GroupModule as getModulesViewerStorePageModulesGroupModule,
-} from './__generated__/getModules';
+import { getModules } from './__generated__/getModules';
 
 // graphql import
 import { modulesFragment } from '@meepshop/modules';
@@ -33,7 +27,9 @@ const query = gql`
         page(input: $input) {
           id
           width
-          ...modulesFragment
+          modules {
+            ...modulesFragment
+          }
         }
       }
     }
@@ -45,9 +41,9 @@ const query = gql`
 export default React.memo(() => {
   const { data } = useQuery<getModules>(query);
   const modules = useModules(
-    !data?.viewer?.store?.page
+    !data?.viewer?.store?.page?.modules
       ? null
-      : filter(modulesFragment, data.viewer.store.page),
+      : filter(modulesFragment, data.viewer.store.page.modules),
   );
   const maxWidth = data?.viewer?.store?.page?.width;
 
@@ -58,10 +54,7 @@ export default React.memo(() => {
       className={styles.root}
       style={{ maxWidth: !maxWidth ? '100%' : `${maxWidth}px` }}
     >
-      {(modules as {
-        data: getModulesViewerStorePageModulesGroupModule;
-        children: ModulesType[];
-      }[]).map(
+      {modules.map(
         ({
           data: {
             id,
@@ -90,7 +83,7 @@ export default React.memo(() => {
               backgroundSize: backgroundImage?.cover ? '100% auto' : 'auto',
             }}
           >
-            {children.map(({ data: childData, children: childModules }) => (
+            {children?.map(({ data: childData, children: childModules }) => (
               <Layout
                 key={childData.id}
                 data={childData}
