@@ -39,7 +39,11 @@ export default Form.create<PropsType>()(
 
     return (
       <div>
-        <img src={getImage(webTrackGoogle)} alt="GoogleWebmaster" />
+        <img
+          className={styles.logo}
+          src={getImage(webTrackGoogle)}
+          alt="GoogleWebmaster"
+        />
         <span className={styles.logoText}>
           {t('google-webmaster.webmaster')}
         </span>
