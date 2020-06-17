@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.46.2 (2020-06-17)
+
+#### :bug: Bug Fix
+
+- [#1003](https://github.com/meepshop/meep-lerna/pull/1003) (@admin/web-track): fix logo style ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- `meep-ui`, `store`
+  - [#1002](https://github.com/meepshop/meep-lerna/pull/1002) (@meepshop/utils) Move i18n to this package ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.46.1 (2020-06-16)
 
 #### :bug: Bug Fix
