@@ -61,6 +61,12 @@ export default (
             }),
           }).then(res => res.json());
 
+          if (error && error === 'Invalid recaptcha response') {
+            message.error(error);
+            setLoading(false);
+            return;
+          }
+
           if (error) {
             message.error(t('submit.error'));
             setLoading(false);
