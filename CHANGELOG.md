@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.46.3 (2020-06-19)
+
+#### :bug: Bug Fix
+
+- [#1006](https://github.com/meepshop/meep-lerna/pull/1006) 【BUG】更換 SEO 圖片，上傳圖片會有錯誤訊息 ([@piovischioh](https://github.com/piovischioh))
+- [#1000](https://github.com/meepshop/meep-lerna/pull/1000) 【BUG】後台登入頁 - 未勾選 reCAPTCHA，按登入，錯誤訊息顯示有誤 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.46.2 (2020-06-17)
 
 #### :bug: Bug Fix
