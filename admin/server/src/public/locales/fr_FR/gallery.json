@@ -2,5 +2,6 @@
   "tag": "Étiquette",
   "title": "Gestionnaire de fichiers",
   "upload": "Télécharger",
-  "save": "sauver"
+  "save": "sauver",
+  "fail": "Échoué"
 }

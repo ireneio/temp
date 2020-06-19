@@ -39,8 +39,6 @@ const query = gql`
           hasNextPage
           endCursor
         }
-
-        total
       }
     }
   }
@@ -96,8 +94,6 @@ export default (
                       ),
                   ),
                 ],
-                total:
-                  (cacheData.viewer?.files?.total || 0) + createFileList.length,
               },
             },
           } as useUploadImagesReadCache,

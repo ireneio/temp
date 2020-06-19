@@ -2,5 +2,6 @@
   "tag": "Etiqueta",
   "title": "Administrador de archivos",
   "upload": "Subir",
-  "save": "Salvar"
+  "save": "Salvar",
+  "fail": "Fallida"
 }

@@ -37,14 +37,15 @@ const readBufferAsDataUrl = (
     reader.readAsDataURL(new Blob([buffer], { type }));
   });
 
-const uploadImageToGcd = async (file: File): Promise<string> => {
+const uploadImageToGcd = async (file: File, type?: string): Promise<string> => {
   const id = uuid();
-  const { gcloud } = await fetch('/upload', {
+  const { gcloud } = await fetch('/api/upload', {
     headers: {
       'content-type': 'application/json',
     },
+    method: 'POST',
     credentials: 'include',
-    body: JSON.stringify({ key: `/files/${id}.${file.type}` }),
+    body: JSON.stringify({ key: `/files/${id}.${type}` }),
   }).then(res => res.json());
 
   if (!gcloud) throw new Error('Can not get gcloud');
@@ -82,9 +83,12 @@ export default (
           if (!imageType || !IMAGE_TYPES.includes(imageType.mime))
             throw new Error('file type is not accepted');
 
+          const type = file.name.split('.').pop();
+
           return {
-            ...file,
-            linkId: await uploadImageToGcd(file),
+            name: file.name,
+            type,
+            linkId: await uploadImageToGcd(file, type),
             image: await readBufferAsDataUrl(imageBuffer, file.type),
           };
         }),
@@ -113,8 +117,8 @@ export default (
       });
     } catch (e) {
       notification.error({
-        message: t('upload.fail.message'),
-        description: t('upload.fail.description'),
+        message: t('fail'),
+        description: e.message,
       });
     }
   };

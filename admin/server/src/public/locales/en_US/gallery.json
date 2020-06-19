@@ -2,5 +2,6 @@
   "tag": "Tag",
   "title": "File Manager",
   "upload": "Upload",
-  "save": "Save"
+  "save": "Save",
+  "fail": "Failed"
 }
