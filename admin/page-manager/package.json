@@ -4,11 +4,11 @@
   "description": "admin page manager page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.46.2",
+  "version": "0.46.3",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/gallery": "^0.46.2",
+    "@admin/gallery": "^0.46.3",
     "@admin/link": "^0.46.0",
     "@admin/switch": "^0.46.0",
     "@admin/utils": "^0.46.2",
