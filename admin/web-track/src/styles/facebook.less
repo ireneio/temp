@@ -17,20 +17,22 @@
 }
 
 .item {
-  display: flex;
-  align-items: center;
+  margin: 0px;
+  height: 60px;
 
-  :global(.ant-form-item) {
-    width: 300px;
-    margin: 0px;
-  }
+  :global(.ant-form-item-children) {
+    display: flex;
+    align-items: center;
+    height: 40px;
 
-  :global(.ant-form-explain) {
-    position: fixed;
-  }
+    & > input {
+      width: 300px;
+      margin: 0px;
+    }
 
-  & > button:nth-child(2) {
-    margin: 0px 8px 0px 16px;
+    & > button:nth-child(2) {
+      margin: 0px 8px 0px 16px;
+    }
   }
 }
 
@@ -55,7 +57,7 @@
 }
 
 .dpa {
-  margin: 40px 0px 16px;
+  margin: 20px 0px 16px;
   color: rgba(0, 0, 0, 0.85);
   font-size: 16px;
   line-height: 24px;

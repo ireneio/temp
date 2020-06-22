@@ -118,23 +118,22 @@ export default Form.create<PropsType>()(
         </Modal>
 
         {editMode ? (
-          <div className={styles.item}>
-            <Item>
-              {getFieldDecorator('pixelId', {
-                initialValue: pixelId,
-                rules: [
-                  {
-                    required: true,
-                    message: t('required'),
-                  },
-                  {
-                    pattern: /^(\d{15}|\d{16})$/,
-                    message: t('facebook-pixel.error'),
-                  },
-                ],
-                validateTrigger: 'onBlur',
-              })(<Input />)}
-            </Item>
+          <Item className={styles.item}>
+            {getFieldDecorator('pixelId', {
+              initialValue: pixelId,
+              rules: [
+                {
+                  required: true,
+                  message: t('required'),
+                },
+                {
+                  pattern: /^(\d{15}|\d{16})$/,
+                  message: t('facebook-pixel.error'),
+                },
+              ],
+              validateTrigger: 'onBlur',
+            })(<Input />)}
+
             <Button
               type="primary"
               onClick={() => {
@@ -155,7 +154,7 @@ export default Form.create<PropsType>()(
               {t('save')}
             </Button>
             <Button onClick={() => setEditMode(false)}>{t('cancel')}</Button>
-          </div>
+          </Item>
         ) : (
           <>
             {pixelId ? (
