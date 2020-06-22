@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.46.4 (2020-06-22)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1010](https://github.com/meepshop/meep-lerna/pull/1010) (@meepshop/store) Modify kustomize setting ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1004](https://github.com/meepshop/meep-lerna/pull/1004) 【優化】手機版搜尋欄顯示規則 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#1009](https://github.com/meepshop/meep-lerna/pull/1009) 【BUG】後台 - 廣告分析/Facebook 像素，填寫編號格式錯誤訊息會浮動 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.46.3 (2020-06-19)
 
 #### :bug: Bug Fix
