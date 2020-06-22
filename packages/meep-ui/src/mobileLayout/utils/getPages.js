@@ -1,6 +1,10 @@
 export default (fixedtop, secondtop, sidebar) => {
   const design =
     fixedtop?.menu.design || secondtop?.menu.design || sidebar?.menu.design;
+  const showSearchbar =
+    fixedtop?.menu.design?.showSearchbar ||
+    secondtop?.menu.design?.showSearchbar ||
+    sidebar?.menu.design?.showSearchbar;
 
   return {
     ...[
@@ -60,6 +64,9 @@ export default (fixedtop, secondtop, sidebar) => {
       },
       { pages: [], headerPages: [] },
     ),
-    design,
+    design: {
+      ...design,
+      showSearchbar,
+    },
   };
 };
