@@ -4,11 +4,12 @@ metadata:
   labels:
     app: next-store
   name: next-store
+  namespace: default
 spec:
-  type: NodePort
   ports:
-    - port: 14401
-      name: http-port
-      targetPort: 14401
+  - name: http-port
+    port: 14401
+    protocol: TCP
+    targetPort: 14401
   selector:
     app: next-store
