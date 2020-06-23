@@ -5,7 +5,7 @@ import { Menu, Tooltip } from 'antd';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { MoreIcon } from '@meepshop/icons';
 import Switch from '@admin/switch';
-import Link from '@admin/link';
+import Link from '@meepshop/link';
 
 import useFooterMenuList from './hooks/useFooterMenuList';
 import styles from './styles/footer.less';

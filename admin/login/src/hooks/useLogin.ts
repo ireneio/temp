@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 import { message, notification } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import { useRouter } from '@admin/link';
+import { useRouter } from '@meepshop/link';
 
 // graphql typescript
 import { refetchCookies as refetchCookiesType } from './__generated__/refetchCookies';

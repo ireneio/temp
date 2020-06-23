@@ -4,7 +4,7 @@ import { FormComponentProps } from 'antd/lib/form';
 // import
 import { useCallback } from 'react';
 
-import { useRouter } from '@admin/link';
+import { useRouter } from '@meepshop/link';
 
 import useCreatePage from './useCreatePage';
 

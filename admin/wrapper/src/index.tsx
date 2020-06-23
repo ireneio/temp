@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Layout } from 'antd';
 
-import Link from '@admin/link';
+import Link from '@meepshop/link';
 import { HamburgerIcon, DoubleRightIcon } from '@meepshop/icons';
 
 import Menu from './Menu';

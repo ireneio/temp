@@ -11,7 +11,7 @@ import {
   BillingIcon,
   ForwardStoreIcon,
 } from '@meepshop/icons';
-import { useRouter } from '@admin/link';
+import { useRouter } from '@meepshop/link';
 
 // graphql typescript
 import { useFooterMenuListFragment as useFooterMenuListFragmentType } from './__generated__/useFooterMenuListFragment';

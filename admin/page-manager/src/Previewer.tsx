@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { Spin, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import Link from '@admin/link';
+import Link from '@meepshop/link';
 
 import useIframeLoading from './hooks/useIframeLoading';
 import styles from './styles/previewer.less';

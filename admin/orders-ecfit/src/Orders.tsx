@@ -16,7 +16,7 @@ import moment from 'moment';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withSetCurrent from '@admin/utils/lib/withSetCurrent';
-import Link from '@admin/link';
+import Link from '@meepshop/link';
 
 import { STATUS_LIST } from './constants';
 import styles from './styles/orders.less';

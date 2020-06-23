@@ -7,7 +7,7 @@ import { Tooltip } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import useEffectWithCss from '@admin/utils/lib/hooks/useEffectWithCss';
-import Link from '@admin/link';
+import Link from '@meepshop/link';
 
 import styles from './styles/item.less';
 

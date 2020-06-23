@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import getImage, { meepshopLogo } from '@meepshop/images';
-import Link from '@admin/link';
+import Link from '@meepshop/link';
 
 import styles from './styles/tutorial.less';
 import { TUTORIAL } from './constants';

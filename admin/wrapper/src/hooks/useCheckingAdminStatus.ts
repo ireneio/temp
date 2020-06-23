@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import gql from 'graphql-tag';
 
-import { useRouter } from '@admin/link';
+import { useRouter } from '@meepshop/link';
 
 // graphql typescript
 import { useCheckingAdminStatusFragment as useCheckingAdminStatusFragmentType } from './__generated__/useCheckingAdminStatusFragment';

@@ -12,7 +12,7 @@ import moment from 'moment';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import formatAmount from '@admin/utils/lib/formatAmount';
-import Link from '@admin/link';
+import Link from '@meepshop/link';
 
 import Tutorial from './Tutorial';
 import styles from './styles/index.less';

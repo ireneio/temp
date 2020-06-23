@@ -2,59 +2,19 @@
 import { Key } from 'path-to-regexp';
 
 // import
+import getConfig from 'next/config';
 import pathToRegexp from 'path-to-regexp';
 
 // definition
-const routes = [
-  {
-    pattern: '/pages/:path',
-    page: 'pages',
-  },
-  {
-    pattern: '/product/:pId',
-    page: 'product',
-  },
-  {
-    pattern: '/checkout/thank-you-page/:orderId',
-    page: 'thankYouPage',
-  },
-  {
-    pattern: '/order/:orderId',
-    page: 'order',
-  },
-  {
-    pattern: '/myorders/:orderId',
-    page: 'order',
-  },
-  {
-    pattern: '/orderApplyList/:orderId',
-    page: 'orderApplyList',
-  },
-  {
-    pattern: '/orderRefund/:orderId',
-    page: 'orderRefund',
-  },
-  {
-    pattern: '/orderExchange/:orderId',
-    page: 'orderExchange',
-  },
-  {
-    pattern: '/payNotify/:orderId',
-    page: 'orderPayNotify',
-  },
-  {
-    pattern: '/orderQA/:orderId',
-    page: 'orderQA',
-  },
-  {
-    pattern: '/forgotPassword/:token',
-    page: 'forgotPassword',
-  },
-  {
-    pattern: '/ezpay/cvcode/:orderId',
-    page: 'ezpay',
-  },
-].map(({ pattern, page }) => {
+const {
+  publicRuntimeConfig: { ROUTES },
+} = getConfig();
+
+const routes: {
+  regexp: RegExp;
+  keys: Key[];
+  page: string;
+}[] = ROUTES.map(({ pattern, page }: { pattern: string; page: string }) => {
   const keys: Key[] = [];
   const regexp = pathToRegexp(pattern, keys);
 

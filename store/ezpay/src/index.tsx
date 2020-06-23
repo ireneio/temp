@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 import moment from 'moment';
 
-import Link, { useRouter } from '@store/link';
+import Link, { useRouter } from '@meepshop/link';
 
 import styles from './styles/index.less';
 

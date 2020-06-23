@@ -8,7 +8,7 @@ import { Form, Input, Button, Icon } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import getImage, { meepshopLogo } from '@meepshop/images';
-import { useRouter } from '@admin/link';
+import { useRouter } from '@meepshop/link';
 
 import useSetUserPasswordByToken from './hooks/useSetUserPasswordByToken';
 

@@ -7,7 +7,7 @@ import moment from 'moment';
 import { Icon, Drawer } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import Link from '@store/link';
+import Link from '@meepshop/link';
 
 import styles from './styles/mobileColumn.less';
 

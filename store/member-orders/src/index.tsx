@@ -17,7 +17,7 @@ import transformColor from 'color';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withSetCurrent from '@store/utils/lib/withSetCurrent';
-import Link from '@store/link';
+import Link from '@meepshop/link';
 
 import MobileColumn, { getMobileStyles } from './MobileColumn';
 import Actions from './Actions';

@@ -4,7 +4,7 @@ import useMenuListType, { MenuListType } from './useMenuList';
 // import
 import { useCallback, useState, useMemo, useRef } from 'react';
 
-import { useRouter } from '@admin/link';
+import { useRouter } from '@meepshop/link';
 
 import { MENU_LIST, URLS } from './useMenuList';
 

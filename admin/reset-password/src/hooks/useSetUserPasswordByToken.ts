@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
-import { useRouter } from '@admin/link';
+import { useRouter } from '@meepshop/link';
 
 // graphql typescript
 import { isResetPasswordTokenValid } from './__generated__/isResetPasswordTokenValid';

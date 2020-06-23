@@ -4,7 +4,7 @@ import usePages, { DataType } from './usePages';
 // import
 import { useMemo, useState, useEffect, useRef, useCallback } from 'react';
 
-import { useRouter } from '@admin/link';
+import { useRouter } from '@meepshop/link';
 
 // graphql typescript
 import { getPagesVariables } from '../__generated__/getPages';

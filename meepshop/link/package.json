@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "@store/link",
-  "description": "Link wrapper for store to handle next.js link",
+  "name": "@meepshop/link",
+  "description": "Link wrapper to handle next.js link",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.46.0",
@@ -10,5 +10,5 @@
   "dependencies": {
     "path-to-regexp": "^3.1.0"
   },
-  "keywords": ["link", "store"]
+  "keywords": ["link", "meepshop"]
 }

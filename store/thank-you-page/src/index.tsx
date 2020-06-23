@@ -6,7 +6,7 @@ import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Progress, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import Link, { useRouter } from '@store/link';
+import Link, { useRouter } from '@meepshop/link';
 
 import Info from './info';
 import useClipboard from './hooks/useClipboard';

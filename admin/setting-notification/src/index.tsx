@@ -22,7 +22,7 @@ import {
 } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import Link from '@admin/link';
+import Link from '@meepshop/link';
 import SettingHeader from '@admin/setting-header';
 
 import styles from './styles/index.less';
