@@ -66,14 +66,15 @@ export default (
         cache.writeQuery<getGtagListType>({
           query,
           data: {
-            getGtagList: getGtagList.map(gtag => {
-              const newGtag = (data?.setGtagSettingsList || []).find(
-                tag => tag?.eventName === gtag?.eventName,
-              );
-
-              if (newGtag) return newGtag;
-              return gtag;
-            }),
+            getGtagList: [
+              ...getGtagList.filter(
+                gtag =>
+                  !(data?.setGtagSettingsList || []).find(
+                    tag => tag?.eventName === gtag?.eventName,
+                  ),
+              ),
+              ...(data?.setGtagSettingsList || []),
+            ],
           },
         });
       },
@@ -95,7 +96,9 @@ export default (
     setGtagSettingsList: useCallback(
       (input: setGtagSettingsListVariablesType) => {
         setGtagSettingsList({
-          variables: input,
+          variables: {
+            setInput: input.setInput?.filter(gtag => gtag?.code !== null),
+          },
         });
       },
       [setGtagSettingsList],
