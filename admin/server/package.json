@@ -4,7 +4,7 @@
   "description": "admin server",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.46.4",
+  "version": "0.46.5",
   "main": "./next.config.js",
   "scripts": {
     "clean": "rm -rf ./src/.next",
@@ -22,7 +22,7 @@
     "@admin/setting": "^0.46.2",
     "@admin/setting-notification": "^0.46.2",
     "@admin/utils": "^0.46.2",
-    "@admin/web-track": "^0.46.4",
+    "@admin/web-track": "^0.46.5",
     "@admin/wrapper": "^0.46.2",
     "@meepshop/events": "^0.46.0",
     "@meepshop/utils": "^0.46.2",
