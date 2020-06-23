@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.46.5 (2020-06-23)
+
+#### :bug: Bug Fix
+
+- [#1012](https://github.com/meepshop/meep-lerna/pull/1012) 【個別店家】 後台 - google ads 事件轉換欄位無法更新 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.46.4 (2020-06-22)
 
 #### :rocket: New Feature
