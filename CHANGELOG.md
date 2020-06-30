@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.47.0 (2020-06-30)
+
+#### :boom: Breaking Change
+
+- `locale-parser`
+  - [#993](https://github.com/meepshop/meep-lerna/pull/993) 修正 @meepshop/locales ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- Other
+  - [#1016](https://github.com/meepshop/meep-lerna/pull/1016) feat(eslintrc) Modify rules ([@happycat6323](https://github.com/happycat6323))
+- `store`
+  - [#1005](https://github.com/meepshop/meep-lerna/pull/1005) (@meepshop/link) Move link wrapper to @meepshop/link ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.46.5 (2020-06-23)
 
 #### :bug: Bug Fix
