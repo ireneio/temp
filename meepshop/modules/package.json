@@ -4,20 +4,20 @@
   "description": "Use to handle the all modules",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.46.2",
+  "version": "0.47.0",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/divider": "^0.46.2",
-    "@meepshop/draft-text": "^0.46.0",
-    "@meepshop/facebook-wall": "^0.46.2",
-    "@meepshop/google-map": "^0.46.0",
-    "@meepshop/iframe": "^0.46.0",
-    "@meepshop/product-draft-text": "^0.46.0",
-    "@meepshop/product-video": "^0.46.0",
-    "@meepshop/social-thumbs": "^0.46.2",
-    "@meepshop/unavailable": "^0.46.0",
-    "@meepshop/video": "^0.46.0"
+    "@meepshop/divider": "^0.47.0",
+    "@meepshop/draft-text": "^0.47.0",
+    "@meepshop/facebook-wall": "^0.47.0",
+    "@meepshop/google-map": "^0.47.0",
+    "@meepshop/iframe": "^0.47.0",
+    "@meepshop/product-draft-text": "^0.47.0",
+    "@meepshop/product-video": "^0.47.0",
+    "@meepshop/social-thumbs": "^0.47.0",
+    "@meepshop/unavailable": "^0.47.0",
+    "@meepshop/video": "^0.47.0"
   },
   "keywords": ["meepshop", "modules"]
 }
