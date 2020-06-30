@@ -8,7 +8,7 @@ import { useMemo } from 'react';
 import gql from 'graphql-tag';
 
 // graphql typescript
-import { localeFragmentType } from '@store/utils/lib/fragments/locale';
+import { localeFragmentType } from '@meepshop/utils/lib/fragments/locale';
 
 import {
   useOptionsFragment as useOptionsFragmentType,
@@ -16,7 +16,7 @@ import {
 } from './__generated__/useOptionsFragment';
 
 // graphql import
-import localeFragment from '@store/utils/lib/fragments/locale';
+import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
 // typescript definition
 interface OptionsType {

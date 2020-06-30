@@ -23,7 +23,7 @@ import styles from './styles/products.less';
 import { getMemberOrderApply_getColorList as getMemberOrderApplyGetColorList } from './__generated__/getMemberOrderApply';
 
 // graphql import
-import localeFragment from '@store/utils/lib/fragments/locale';
+import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
 import { productsProductsObjectTypeFragment as productsProductsObjectTypeFragmentType } from './__generated__/productsProductsObjectTypeFragment';
 

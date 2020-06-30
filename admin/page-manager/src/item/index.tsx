@@ -16,13 +16,13 @@ import useTitleOverflow from './hooks/useTitleOverflow';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { localeFragmentType } from '@admin/utils/lib/fragments/locale';
+import { localeFragmentType } from '@meepshop/utils/lib/fragments/locale';
 
 import { itemFragment as itemFragmentType } from './__generated__/itemFragment';
 import { getPagesVariables } from '../__generated__/getPages';
 
 // graphql import
-import localeFragment from '@admin/utils/lib/fragments/locale';
+import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
 import { pageSettingFragment } from './pageSetting';
 

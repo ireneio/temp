@@ -27,7 +27,7 @@ import {
 } from './__generated__/getMemberOrder';
 
 // graphql import
-import localeFragment from '@store/utils/lib/fragments/locale';
+import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
 // typescript definition
 interface PropsType extends I18nPropsType, CurrencyType {

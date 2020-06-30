@@ -10,13 +10,13 @@ import useIframeLoading from './hooks/useIframeLoading';
 import styles from './styles/previewer.less';
 
 // graphql typescript
-import { localeFragmentType } from '@admin/utils/lib/fragments/locale';
+import { localeFragmentType } from '@meepshop/utils/lib/fragments/locale';
 
 import { previewerStoreFragment as previewerStoreFragmentType } from './__generated__/previewerStoreFragment';
 import { previewerPageFragment as previewerPageFragmentType } from './__generated__/previewerPageFragment';
 
 // graphql import
-import localeFragment from '@admin/utils/lib/fragments/locale';
+import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
 // typescript definition
 interface PropsType {

@@ -15,13 +15,13 @@ import emptyArrayToUndefined from './utils/emptyArrayToUndefined';
 import styles from './styles/tags.less';
 
 // graphql typescript
-import { localeFragmentType } from '@admin/utils/lib/fragments/locale';
+import { localeFragmentType } from '@meepshop/utils/lib/fragments/locale';
 
 import { tagsStorePaymentFragment as tagsStorePaymentFragmentType } from './__generated__/tagsStorePaymentFragment';
 import { tagsStoreShipmentFragment as tagsStoreShipmentFragmentType } from './__generated__/tagsStoreShipmentFragment';
 
 // graphql import
-import localeFragment from '@admin/utils/lib/fragments/locale';
+import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
 // typescript definition
 interface PropsType

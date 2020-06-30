@@ -8,7 +8,7 @@ import { getPages, getPagesVariables } from '../__generated__/getPages';
 import { usePagesPageFragment as usePagesPageFragmentType } from './__generated__/usePagesPageFragment';
 
 // graphql import
-import localeFragment from '@admin/utils/lib/fragments/locale';
+import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
 import { previewerPageFragment } from '../Previewer';
 import { itemFragment } from '../item';

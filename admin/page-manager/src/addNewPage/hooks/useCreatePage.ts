@@ -21,7 +21,7 @@ import {
 } from './__generated__/useCreatePageReadCache';
 
 // graphql import
-import localeFragment from '@admin/utils/lib/fragments/locale';
+import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
 // definition
 const useCreatePageFragment = gql`

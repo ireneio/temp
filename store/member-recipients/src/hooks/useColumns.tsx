@@ -17,7 +17,7 @@ import styles from './styles/useColumns.less';
 import { useColumnsFragment as useColumnsFragmentType } from './__generated__/useColumnsFragment';
 
 // graphql import
-import localeFragment from '@store/utils/lib/fragments/locale';
+import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
 // definition
 export const useColumnsFragment = gql`

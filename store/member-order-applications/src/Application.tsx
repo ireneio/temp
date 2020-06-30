@@ -26,7 +26,7 @@ import { applicationOrderApplyFragment as applicationOrderApplyFragmentType } fr
 import { applicationProductsObjectTypeFragment as applicationProductsObjectTypeFragmentType } from './__generated__/applicationProductsObjectTypeFragment';
 
 // graphql import
-import localeFragment from '@store/utils/lib/fragments/locale';
+import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
 // typescript definition
 interface PropTypes extends I18nPropsType {

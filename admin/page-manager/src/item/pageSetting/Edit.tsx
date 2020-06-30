@@ -20,7 +20,7 @@ import useEditSubmit from './hooks/useEditSubmit';
 import styles from './styles/edit.less';
 
 // graphql typescript
-import { localeFragmentType } from '@admin/utils/lib/fragments/locale';
+import { localeFragmentType } from '@meepshop/utils/lib/fragments/locale';
 
 import { editFragment as editFragmentType } from './__generated__/editFragment';
 import {
@@ -30,7 +30,7 @@ import {
 import { useRenamePageWithSEOCacheVariables } from './hooks/__generated__/useRenamePageWithSEOCache';
 
 // graphql import
-import localeFragment from '@admin/utils/lib/fragments/locale';
+import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
 // typescript definition
 interface PropsType extends FormComponentProps {

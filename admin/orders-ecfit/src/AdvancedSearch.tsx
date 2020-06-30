@@ -16,13 +16,13 @@ import emptyArrayToUndefined from './utils/emptyArrayToUndefined';
 import styles from './styles/advancedSearch.less';
 
 // graphql typescript
-import { localeFragmentType } from '@admin/utils/lib/fragments/locale';
+import { localeFragmentType } from '@meepshop/utils/lib/fragments/locale';
 
 import { advancedSearchStorePaymentFragment as advancedSearchStorePaymentFragmentType } from './__generated__/advancedSearchStorePaymentFragment';
 import { advancedSearchStoreShipmentFragment as advancedSearchStoreShipmentFragmentType } from './__generated__/advancedSearchStoreShipmentFragment';
 
 // graphql import
-import localeFragment from '@admin/utils/lib/fragments/locale';
+import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
 // typescript definition
 interface PropsType
