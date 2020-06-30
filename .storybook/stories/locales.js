@@ -12,14 +12,14 @@ const getAllData = data =>
       ...result,
       ...data[name].map(({ key, ...locale }) => ({
         ...locale,
-        key: `${name.replace(/next-(\w+)@/, '$1/')}@${key}`,
+        key: `${name}/${key}`,
       })),
     ],
     [],
   );
 
-['store', 'admin'].forEach(async name => {
-  const data = await fetch(`/next-${name}.json`).then(res => res.json());
+(async () => {
+  const data = await fetch('/locales.json').then(res => res.json());
   const columns = Object.keys(Object.values(data)[0][0])
     .filter(key => key !== 'key')
     .sort(a => (a === 'zh_TW' ? -1 : 1))
@@ -75,7 +75,7 @@ const getAllData = data =>
           dataIndex: 'key',
           fixed: 'right',
           render: value => {
-            const [kind, story] = value.split(/[@/]/g);
+            const [kind, story] = value.split(/\//g);
 
             return (
               <LinkTo kind={`@meepshop/locales/${kind}`} story={story}>
@@ -105,21 +105,20 @@ const getAllData = data =>
     );
   });
 
-  storiesOf('@meepshop/locales/all', module).add(name, () => <SearchTable />);
+  storiesOf('@meepshop/locales', module).add('all', () => <SearchTable />);
   Object.keys(data).forEach(key => {
-    storiesOf(`@meepshop/locales/${name}`, module).add(
-      key.replace(`next-${name}@`, ''),
-      () => (
-        <div className={styles.root}>
-          <Table
-            columns={columns}
-            dataSource={data[key]}
-            scroll={{ x: 1200 }}
-            pagination={false}
-            bordered
-          />
-        </div>
-      ),
-    );
+    const [name, packageName] = key.split(/\//);
+
+    storiesOf(`@meepshop/locales/${name}`, module).add(packageName, () => (
+      <div className={styles.root}>
+        <Table
+          columns={columns}
+          dataSource={data[key]}
+          scroll={{ x: 1200 }}
+          pagination={false}
+          bordered
+        />
+      </div>
+    ));
   });
-});
+})();

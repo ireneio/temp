@@ -101,9 +101,6 @@ module.exports = {
         antd: {
           transform: key => `antd/lib/${kebabCase(key)}`,
         },
-        lodash: {
-          transform: 'lodash/${member}',
-        },
         fbjs: {
           transform: 'fbjs/lib/${member}',
         },

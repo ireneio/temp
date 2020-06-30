@@ -26,3 +26,7 @@ __generated__
 
 # storybook
 storybook
+
+# locale
+locale.json
+**/src/public/locales

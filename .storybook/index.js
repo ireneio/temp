@@ -64,23 +64,13 @@ require('@storybook/react/standalone')({
   mode: 'dev',
   port: 14400,
   configDir: __dirname,
-  staticDir: (result => {
-    switch (workspaceName) {
-      case '@store':
-        return [
-          ...result,
-          path.resolve(__dirname, '../packages/store/src/public'),
-        ];
-
-      case '@admin':
-        return [
-          ...result,
-          path.resolve(__dirname, '../admin/server/src/public'),
-        ];
-
-      default:
-        return result;
-    }
-  })([path.resolve(__dirname, './static')]),
+  staticDir: [
+    path.resolve(__dirname, './static'),
+    {
+      '@store': path.resolve(__dirname, '../packages/store/src/public'),
+      '@admin': path.resolve(__dirname, '../admin/server/src/public'),
+      '@meepshop': path.resolve(__dirname, '../packages/store/src/public'),
+    }[workspaceName],
+  ],
   ci: true,
 });

@@ -15,7 +15,7 @@
     "prod": "NODE_ENV=production make babel-all",
     "release": "make release",
     "storybook": "yarn storybook:basic && lerna exec ../../.storybook/index.js --stream --scope",
-    "storybook:basic": "lerna run schema --stream --scope @meepshop/mock-types && locale-parser generate @meepshop/store -o ./.storybook/static && locale-parser generate @admin/server -o ./.storybook/static",
+    "storybook:basic": "lerna run schema --stream --scope @meepshop/mock-types && locales generate -o ./.storybook/static/locales.json",
     "storybook:static": "yarn storybook:basic && ./.storybook/static.js && lessc ./.storybook/combined.less storybook/combined.css",
     "test": "lerna run schema --stream --scope @meepshop/mock-types && jest --silent --runInBand",
     "tsc": "make tsc",

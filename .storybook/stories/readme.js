@@ -27,14 +27,19 @@ const stories = [
     source: require('../../packages/mock-types/README.md').default,
   },
   {
-    name: '@meepshop/locale-parser',
-    path: './packages/locale-parser',
-    source: require('../../packages/locale-parser/README.md').default,
-  },
-  {
     name: '@meepshop/modules',
     path: './meepshop/modules',
     source: require('../../meepshop/modules/README.md').default,
+  },
+  {
+    name: '@meepshop/context',
+    path: './meepshop/context',
+    source: require('../../meepshop/context/README.md').default,
+  },
+  {
+    name: '@meepshop/locales',
+    path: './meepshop/locales',
+    source: require('../../meepshop/locales/README.md').default,
   },
   {
     name: '@meepshop/images',
@@ -45,11 +50,6 @@ const stories = [
     name: '@meepshop/icons',
     path: './meepshop/icons',
     source: require('../../meepshop/icons/README.md').default,
-  },
-  {
-    name: '@meepshop/context',
-    path: './meepshop/context',
-    source: require('../../meepshop/context/README.md').default,
   },
   {
     name: '@store/server',

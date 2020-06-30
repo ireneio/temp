@@ -58,5 +58,5 @@ define babel-build
 		--ignore @meepshop/mock-types \
 		--ignore @admin/server \
 		$(2)
-	ln -snf $(ROOT)/packages/locale-parser/lib/bin/index.js ./node_modules/.bin/locale-parser
+	ln -snf $(ROOT)/meepshop/locales/lib/bin/index.js ./node_modules/.bin/locales
 endef

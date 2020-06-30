@@ -37,6 +37,7 @@ deploy-docker: &deploy-docker
   command: |
     yarn tsc:basic
     yarn prod
+    yarn locales link
     yarn lerna run prod \
       --parallel \
       --stream \
@@ -80,9 +81,8 @@ jobs:
       - run:
           name: Check locale files
           command: |
-            make babel-all OPTION="--scope @meepshop/locale-parser"
-            yarn locale-parser check-keys @meepshop/store
-            yarn locale-parser check-keys @admin/server
+            make babel-all OPTION="--scope @meepshop/locales"
+            yarn locales check-keys
 
       - run:
           name: Check code style
@@ -90,6 +90,7 @@ jobs:
             #TODO: remove after removing @meesphop/meep-ui
             yarn prod
             yarn tsc
+            yarn locales link
             yarn lint .
 
       - run:
@@ -116,7 +117,7 @@ jobs:
           name: Build storybook static
           command: |
             yarn lerna bootstrap
-            make babel-all OPTION="--scope @meepshop/locale-parser"
+            make babel-all OPTION="--scope @meepshop/locales"
             yarn storybook:static
       - run:
           name: Upload storybook
