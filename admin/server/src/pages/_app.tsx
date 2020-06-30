@@ -13,6 +13,7 @@ import Router from 'next/router';
 import dynamic from 'next/dynamic';
 
 import { appWithTranslation } from '@meepshop/utils/lib/i18n';
+import { withDomain } from '@meepshop/link';
 import { EventsProvider } from '@meepshop/events';
 import '@admin/utils/lib/styles/base.less';
 
@@ -83,4 +84,4 @@ class App extends NextApp<PropsType> {
   }
 }
 
-export default withApollo(appWithTranslation(App));
+export default withApollo(appWithTranslation(withDomain(App)));

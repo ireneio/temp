@@ -1,4 +1,5 @@
 // typescript import
+import NextApp, { AppContext, AppProps, AppInitialProps } from 'next/app';
 import { LinkProps } from 'next/link';
 
 // import
@@ -9,6 +10,18 @@ import useRouterHook from './hooks/useRouter';
 import getLinkProps from './utils/getLinkProps';
 
 // typescript definition
+type DomainType = string | null;
+
+interface CustomCtx extends AppContext {
+  ctx: AppContext['ctx'] & {
+    req: {
+      headers: {
+        host: string;
+      };
+    };
+  };
+}
+
 interface PropsType extends Omit<LinkProps, 'as' | 'href'> {
   href: string;
   target?: string;
@@ -17,6 +30,36 @@ interface PropsType extends Omit<LinkProps, 'as' | 'href'> {
 }
 
 // definition
+export const DomainContext = React.createContext<DomainType>(null);
+
+export const withDomain = (App: typeof NextApp): React.ComponentType =>
+  class WithDomain extends React.Component<AppProps & { domain: DomainType }> {
+    public static getInitialProps = async (
+      ctx: CustomCtx,
+    ): Promise<AppInitialProps & { domain: DomainType }> => {
+      const {
+        ctx: { req },
+      } = ctx;
+
+      const appProps = await App.getInitialProps(ctx);
+
+      return {
+        ...appProps,
+        domain: req?.headers.host,
+      };
+    };
+
+    public render(): React.ReactNode {
+      const { domain } = this.props;
+
+      return (
+        <DomainContext.Provider value={domain || window.location.host}>
+          <App {...this.props} />
+        </DomainContext.Provider>
+      );
+    }
+  };
+
 export const useRouter = useRouterHook;
 
 export default React.memo(

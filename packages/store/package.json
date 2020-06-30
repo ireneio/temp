@@ -16,6 +16,7 @@
     "@meepshop/context": "^0.47.0",
     "@meepshop/events": "^0.47.0",
     "@meepshop/images": "^0.47.0",
+    "@meepshop/link": "^0.47.0",
     "@meepshop/meep-ui": "^0.47.0",
     "@meepshop/utils": "^0.47.0",
     "@store/ad-track": "^0.47.0",

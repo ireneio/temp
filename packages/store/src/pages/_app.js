@@ -15,6 +15,7 @@ import { notification } from 'antd';
 import moment from 'moment';
 
 import { appWithTranslation } from '@meepshop/utils/lib/i18n';
+import { withDomain } from '@meepshop/link';
 import { EventsProvider } from '@meepshop/events';
 import FbProvider from '@store/fb';
 import { CurrencyProvider } from '@store/currency';
@@ -260,5 +261,7 @@ class MyApp extends App {
 }
 
 export default withApollo(
-  withRedux(configureStore)(withReduxSaga(appWithTranslation(MyApp))),
+  withRedux(configureStore)(
+    withReduxSaga(appWithTranslation(withDomain(MyApp))),
+  ),
 );
