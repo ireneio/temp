@@ -5,10 +5,10 @@
     "error": null
   },
   "confirm-password": {
-    "placeholder": null,
+    "placeholder": "Konfirmasi sandi",
     "error": null
   },
-  "submit-password": null,
+  "submit-password": "konfirmasi sandi",
   "fail": {
     "title": null,
     "description": null

@@ -1,6 +1,6 @@
 {
   "email": {
-    "error": null,
+    "error": "Please enter a valid email address.",
     "placeholder": null
   },
   "password": {
@@ -20,7 +20,7 @@
   "get-registered": "Obtain Store",
   "back-to-login-page": null,
   "forget-password": {
-    "title": null,
+    "title": "Forget password?",
     "description": null,
     "submit": null,
     "submit-countdown": null,

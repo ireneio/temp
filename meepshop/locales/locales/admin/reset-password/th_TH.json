@@ -5,10 +5,10 @@
     "error": null
   },
   "confirm-password": {
-    "placeholder": null,
+    "placeholder": "ยืนยันรหัสผ่าน",
     "error": null
   },
-  "submit-password": null,
+  "submit-password": "ยืนยันรหัสผ่าน",
   "fail": {
     "title": null,
     "description": null

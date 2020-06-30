@@ -1,6 +1,6 @@
 {
   "email": {
-    "error": null,
+    "error": "メールアドレスに誤りがあります",
     "placeholder": null
   },
   "password": {
@@ -20,7 +20,7 @@
   "get-registered": "ストアを取得",
   "back-to-login-page": null,
   "forget-password": {
-    "title": null,
+    "title": "パスワードを忘れた",
     "description": null,
     "submit": null,
     "submit-countdown": null,

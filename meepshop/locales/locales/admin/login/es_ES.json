@@ -1,6 +1,6 @@
 {
   "email": {
-    "error": null,
+    "error": "Por favor, introduce una dirección de correo electrónico válida.",
     "placeholder": null
   },
   "password": {
@@ -20,7 +20,7 @@
   "get-registered": "Obtener tienda",
   "back-to-login-page": null,
   "forget-password": {
-    "title": null,
+    "title": "¿Contraseña olvidada?",
     "description": null,
     "submit": null,
     "submit-countdown": null,

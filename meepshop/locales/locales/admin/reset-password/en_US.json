@@ -5,10 +5,10 @@
     "error": null
   },
   "confirm-password": {
-    "placeholder": null,
+    "placeholder": "Confirm password",
     "error": null
   },
-  "submit-password": null,
+  "submit-password": "Confrim Password",
   "fail": {
     "title": null,
     "description": null

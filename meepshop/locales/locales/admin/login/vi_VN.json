@@ -1,6 +1,6 @@
 {
   "email": {
-    "error": null,
+    "error": "Email chưa đúng",
     "placeholder": null
   },
   "password": {
@@ -20,7 +20,7 @@
   "get-registered": "Lấy cửa hàng",
   "back-to-login-page": null,
   "forget-password": {
-    "title": null,
+    "title": "Quên mật khẩu",
     "description": null,
     "submit": null,
     "submit-countdown": null,

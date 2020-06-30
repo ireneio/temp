@@ -1,6 +1,6 @@
 {
   "email": {
-    "error": null,
+    "error": "Silakan isi alamat email.",
     "placeholder": null
   },
   "password": {
@@ -20,7 +20,7 @@
   "get-registered": "Dapatkan Toko",
   "back-to-login-page": null,
   "forget-password": {
-    "title": null,
+    "title": "Lupa Password?",
     "description": null,
     "submit": null,
     "submit-countdown": null,

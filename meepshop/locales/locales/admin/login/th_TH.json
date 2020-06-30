@@ -1,6 +1,6 @@
 {
   "email": {
-    "error": null,
+    "error": "กรุณาใส่อีเมล์ที่ถูกต้อง.",
     "placeholder": null
   },
   "password": {
@@ -20,7 +20,7 @@
   "get-registered": "รับ Store",
   "back-to-login-page": null,
   "forget-password": {
-    "title": null,
+    "title": "ลืมรหัสผ่าน?",
     "description": null,
     "submit": null,
     "submit-countdown": null,

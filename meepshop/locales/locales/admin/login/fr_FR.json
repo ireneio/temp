@@ -1,6 +1,6 @@
 {
   "email": {
-    "error": null,
+    "error": "S'il vous plaît, mettez une adresse email valide.",
     "placeholder": null
   },
   "password": {
@@ -20,7 +20,7 @@
   "get-registered": "Obtenir un magasin",
   "back-to-login-page": null,
   "forget-password": {
-    "title": null,
+    "title": "Mot de passe oublié?",
     "description": null,
     "submit": null,
     "submit-countdown": null,

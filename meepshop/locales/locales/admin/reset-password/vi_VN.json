@@ -5,10 +5,10 @@
     "error": null
   },
   "confirm-password": {
-    "placeholder": null,
+    "placeholder": "Xác nhận mật khẩu",
     "error": null
   },
-  "submit-password": null,
+  "submit-password": "Xác nhận mật khẩu",
   "fail": {
     "title": null,
     "description": null

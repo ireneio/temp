@@ -5,10 +5,10 @@
     "error": null
   },
   "confirm-password": {
-    "placeholder": null,
+    "placeholder": "新しいパスワードの確認",
     "error": null
   },
-  "submit-password": null,
+  "submit-password": "パスワードを確認",
   "fail": {
     "title": null,
     "description": null
