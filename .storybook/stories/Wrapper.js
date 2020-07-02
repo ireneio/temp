@@ -1,7 +1,10 @@
 import React, { Suspense } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { I18nextProvider } from 'react-i18next';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import nextI18next from 'next-i18next';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import MockTypes from '@meepshop/mock-types';
 
 // eslint-disable-next-line import/extensions, import/no-unresolved

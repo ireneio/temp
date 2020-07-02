@@ -7,7 +7,8 @@ import React, { useState } from 'react';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from '@apollo/react-components';
 import { Drawer, Button, Divider } from 'antd';
-import i18n from 'i18next';
+
+import { i18n } from '@meepshop/utils/lib/i18n';
 
 import MockData from './MockData';
 import useApollo from './hooks/useApollo';

@@ -105,7 +105,10 @@ module.exports = {
       },
     ],
 
-    'import/no-extraneous-dependencies': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      { packageDir: ['.', 'packagejson'] },
+    ],
     'import/prefer-default-export': 'off',
     'import/extensions': [
       'error',

@@ -9,8 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/utils": "^0.47.0",
-    "file-type": "^13.1.2",
-    "uuid": "^3.3.3"
+    "file-type": "^13.1.2"
   },
   "keywords": ["admin", "gallery"]
 }

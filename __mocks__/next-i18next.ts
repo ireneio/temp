@@ -1,11 +1,15 @@
 // import
+// eslint-disable-next-line import/no-extraneous-dependencies
 import i18n from 'i18next';
 import {
   initReactI18next,
   withTranslation,
   useTranslation,
+  // eslint-disable-next-line import/no-extraneous-dependencies
 } from 'react-i18next';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Backend from 'i18next-xhr-backend';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 // definition

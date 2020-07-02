@@ -1,0 +1,17 @@
+diff --git a/node_modules/eslint-plugin-import/lib/rules/no-extraneous-dependencies.js b/node_modules/eslint-plugin-import/lib/rules/no-extraneous-dependencies.js
+index b8d8918..1096cde 100644
+--- a/node_modules/eslint-plugin-import/lib/rules/no-extraneous-dependencies.js
++++ b/node_modules/eslint-plugin-import/lib/rules/no-extraneous-dependencies.js
+@@ -42,7 +42,11 @@ function getDependencies(context, packageDir) {
+       if (!Array.isArray(packageDir)) {
+         paths = [_path2.default.resolve(packageDir)];
+       } else {
+-        paths = packageDir.map(dir => _path2.default.resolve(dir));
++        paths = packageDir.map(
++          dir => dir === 'packagejson'
++            ? _path2.default.dirname(_readPkgUp2.default.sync({ cwd: context.getFilename(), normalize: false }).path)
++            : _path2.default.resolve(dir)
++        );
+       }
+     }
+ 

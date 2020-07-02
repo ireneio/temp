@@ -14,6 +14,7 @@
     "@store/thumbnail": "^0.47.0",
     "@store/utils": "^0.47.0",
     "color": "^3.0.0",
+    "memoize-one": "^5.1.1",
     "moment": "^2.22.1"
   },
   "keywords": ["member", "order", "store"]

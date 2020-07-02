@@ -1,5 +1,6 @@
 // import
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { isFragment } from 'react-is';
 import { Helmet } from 'react-helmet';
 

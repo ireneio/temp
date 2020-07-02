@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { Input, message } from 'antd';
 import Clipboard from 'clipboard';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as images from '@meepshop/images';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import getImage from '@meepshop/images';
 
 import styles from './mock.less';

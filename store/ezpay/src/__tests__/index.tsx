@@ -2,6 +2,7 @@
 import React from 'react';
 import { ReactWrapper } from 'enzyme';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import runTest from '@meepshop/mock-types/src/runTest';
 
 import Ezpay from '../index';

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Input, message } from 'antd';
 import Clipboard from 'clipboard';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as icons from '@meepshop/icons';
 
 import styles from './mock.less';

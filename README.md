@@ -19,28 +19,6 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 - `apollo:watch`: Watch gql files to build schema typescript.
 - `tsc`, `tsc:watch`: Test typescript.
 
-#### dependencies
-
-Add main packages which are used in the most of the packages.
-
-- `@apollo/react-common`
-- `@apollo/react-components`
-- `@apollo/react-ssr`
-- `@apollo/react-hooks`
-- `antd`
-- `apollo`
-- `apollo-cache`
-- `apollo-client`
-- `apollo-link`
-- `apollo-utilities`
-- `graphql`
-- `graphql-anywhere`
-- `graphql-tag`
-- `next`
-- `prop-types`
-- `react`
-- `react-dom`
-
 ###### TODO
 
 - [ ] remove `prop-types`, use `typescript`
@@ -82,6 +60,7 @@ module.exports =
 // import
 import React from 'react';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import runTest from '@meepshop/mock-types/src/runTest';
 
 import /** ComponentName */ from '../index';

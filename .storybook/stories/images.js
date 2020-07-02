@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Images from '@meepshop/images/mock';
 
 import './styles/base.less';
