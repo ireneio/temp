@@ -1,5 +1,39 @@
 # CHANGELOG
 
+## 0.48.0 (2020-07-03)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#914](https://github.com/meepshop/meep-lerna/pull/914) 前端 - 新架構統一改用 @meepshop/images ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`
+  - [#1017](https://github.com/meepshop/meep-lerna/pull/1017) 新增 @meepshop/setting-wrapper 以及 @admin/setting-block ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#1022](https://github.com/meepshop/meep-lerna/pull/1022) 【優化】前台忘記密碼使用新 API，更改錯誤訊息 - 前端 ([@happycat6323](https://github.com/happycat6323))
+- `store`
+  - [#1015](https://github.com/meepshop/meep-lerna/pull/1015) (@meepshop/link) Add DomainProvider to admin/store ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1021](https://github.com/meepshop/meep-lerna/pull/1021) 【BUG】前台 - 前往結帳，在購物車 panel 登入會員，會閃一個商品已下架畫面 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1024](https://github.com/meepshop/meep-lerna/pull/1024) (@meepshop/frontend) Support to check dependencies ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1019](https://github.com/meepshop/meep-lerna/pull/1019) (@meepshop/utils) Move locale fragment ([@HsuTing](https://github.com/HsuTing))
+  - [#1018](https://github.com/meepshop/meep-lerna/pull/1018) (@meepshop/locales) Add more locales ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.47.0 (2020-06-30)
 
 #### :boom: Breaking Change
