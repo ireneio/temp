@@ -132,9 +132,9 @@ export function* loginFlow({ payload }) {
           }),
         });
 
+      yield put(cleanProduct());
       yield put(loginSuccess(memberData));
       yield put(cleanProductList());
-      yield put(cleanProduct());
     } else {
       yield put(loginFailure());
       notification.error({

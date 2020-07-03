@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
+import { isEmpty } from 'fbjs';
+import { Spin, Icon } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
@@ -84,10 +86,13 @@ class Product extends React.Component {
   }
 
   render() {
-    const { error } = this.props;
+    const { error, product } = this.props;
 
     /* Display Error View */
     if (error) return <Error error={error} />;
+
+    if (isEmpty(product))
+      return <Spin indicator={<Icon type="loading" spin />} />;
 
     const {
       storeSetting: { storeName, storeDescription, faviconUrl },
