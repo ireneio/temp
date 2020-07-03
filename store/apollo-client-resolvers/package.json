@@ -4,11 +4,11 @@
   "description": "Apollo-client resolvers for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.48.0",
+  "version": "0.48.1",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/modules": "^0.48.0",
+    "@meepshop/modules": "^0.48.1",
     "apollo-cache-inmemory": "^1.6.3"
   },
   "keywords": ["apollo-client", "resolvers", "store"]
