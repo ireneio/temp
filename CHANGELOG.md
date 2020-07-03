@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.48.1 (2020-07-03)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#976](https://github.com/meepshop/meep-lerna/pull/976) 【功能】商品版型 - 商品資料元件 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1025](https://github.com/meepshop/meep-lerna/pull/1025) (@store/member-order-apply) Fix lint error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.48.0 (2020-07-03)
 
 #### :boom: Breaking Change
