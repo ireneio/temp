@@ -4,9 +4,9 @@
   "description": "Utils tool for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.47.0",
+  "version": "0.48.0",
   "dependencies": {
-    "@meepshop/context": "^0.47.0",
+    "@meepshop/context": "^0.48.0",
     "next-i18next": "^2.0.0"
   },
   "keywords": ["meepshop", "utils"]

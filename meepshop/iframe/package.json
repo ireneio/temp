@@ -4,7 +4,7 @@
   "description": "Meepshop iframe module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.47.0",
+  "version": "0.48.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "keywords": ["iframe", "meepshop"]

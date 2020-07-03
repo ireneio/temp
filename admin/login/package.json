@@ -4,14 +4,14 @@
   "description": "Admin login page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.47.0",
+  "version": "0.48.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/events": "^0.47.0",
-    "@meepshop/images": "^0.47.0",
-    "@meepshop/link": "^0.47.0",
-    "@meepshop/utils": "^0.47.0"
+    "@meepshop/events": "^0.48.0",
+    "@meepshop/images": "^0.48.0",
+    "@meepshop/link": "^0.48.0",
+    "@meepshop/utils": "^0.48.0"
   },
   "keywords": ["admin", "login"]
 }
