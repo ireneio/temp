@@ -8,25 +8,25 @@
   "email-error": "Formato de correo electrónico incorrecto",
   "required": "Necesaria",
   "auto-email-setting": "Configuración de notificaciones",
-  "order": {
+  "orderCreated": {
     "title": "Crear orden",
     "description": "Notificar cuando se crean nuevos pedidos"
   },
-  "order-QA": {
+  "orderMessageReceived": {
     "title": "Orden de preguntas y respuestas",
     "description": "Notificar cuando los consumidores envíen mensajes en los detalles del pedido"
   },
-  "order-applicaiton": {
+  "orderReturnedOrExchanged": {
     "title": "Solicitud de cambio de orden o reembolso",
     "tip": "Esta función requiere la extensión \"Reembolso\" o \"Estado de intercambio\"",
     "description": "Notificar cuando los consumidores envíen un \"solicitar reembolso / cambio\""
   },
-  "payment-notification": {
+  "orderTransferMessageReceived": {
     "title": "Notificación de pago de pedido",
     "tip": "Esta función solo se aplica a pedidos con un monto personalizado y pagados a través de cajeros",
     "description": "Notificar cuando los consumidores brinden información de pago en los detalles del pedido"
   },
-  "product-QA": {
+  "productQAReceived": {
     "title": "Preguntas y respuestas sobre productos",
     "tip": "Esta función requiere un componente de preguntas y respuestas en la página del producto para que los consumidores hagan preguntas o dejen un mensaje",
     "description": "Notificar cuando los consumidores hagan preguntas o dejen mensajes en las preguntas y respuestas del producto en la página del producto"

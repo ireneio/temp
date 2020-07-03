@@ -9,7 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/apollo-client-resolvers": "^0.47.0",
-    "@admin/setting-header": "^0.47.0",
+    "@admin/setting-wrapper": "^0.47.0",
     "@admin/utils": "^0.47.0",
     "@meepshop/icons": "^0.47.0",
     "@meepshop/link": "^0.47.0",

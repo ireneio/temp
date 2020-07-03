@@ -8,25 +8,25 @@
   "email-error": "Email 格式不正確",
   "required": "必填",
   "auto-email-setting": "通知條件設定",
-  "order": {
+  "orderCreated": {
     "title": "訂單成立",
     "description": "新訂單成立時通知"
   },
-  "order-QA": {
+  "orderMessageReceived": {
     "title": "訂單問答",
     "description": "消費者至訂單明細中發送訊息時通知"
   },
-  "order-applicaiton": {
+  "orderReturnedOrExchanged": {
     "title": "訂單退換貨申請",
     "tip": "此功能需安裝擴充功能「退貨」或「換貨狀態」",
     "description": "消費者提出「退／換貨申請」時通知"
   },
-  "payment-notification": {
+  "orderTransferMessageReceived": {
     "title": "訂單匯款通知",
     "tip": "此功能僅適用於自訂金流且為 ATM 匯款交易的訂單",
     "description": "消費者至訂單回覆匯款資訊時通知"
   },
-  "product-QA": {
+  "productQAReceived": {
     "title": "商品問答",
     "tip": "此功能需在商品頁面置入商品問答元件，消費者才能提問或留言",
     "description": "消費者至商品頁內的商品問答區提問或留言時通知"

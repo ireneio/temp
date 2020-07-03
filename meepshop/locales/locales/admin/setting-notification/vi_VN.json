@@ -8,25 +8,25 @@
   "email-error": "Định dạng email không chính xác",
   "required": "Cần thiết",
   "auto-email-setting": "Cài đặt thông báo",
-  "order": {
+  "orderCreated": {
     "title": "Tạo đơn hàng",
     "description": "Thông báo khi đơn hàng mới được tạo"
   },
-  "order-QA": {
+  "orderMessageReceived": {
     "title": "Hỏi và trả lời",
     "description": "Thông báo khi người tiêu dùng gửi tin nhắn theo thứ tự chi tiết"
   },
-  "order-applicaiton": {
+  "orderReturnedOrExchanged": {
     "title": "Đơn xin đổi hoặc hoàn tiền",
     "tip": "Tính năng này yêu cầu tiện ích mở rộng \"Hoàn tiền\" hoặc \"Trạng thái trao đổi\"",
     "description": "Thông báo khi người tiêu dùng gửi \"đăng ký hoàn tiền / trao đổi\""
   },
-  "payment-notification": {
+  "orderTransferMessageReceived": {
     "title": "Thông báo thanh toán đơn hàng",
     "tip": "Tính năng này chỉ áp dụng cho các đơn hàng có số tiền tùy chỉnh và được thanh toán qua ATM",
     "description": "Thông báo khi người tiêu dùng cung cấp thông tin thanh toán theo thứ tự chi tiết"
   },
-  "product-QA": {
+  "productQAReceived": {
     "title": "Hỏi đáp về sản phẩm",
     "tip": "Chức năng này yêu cầu thành phần Hỏi & Đáp trên trang sản phẩm để người tiêu dùng đặt câu hỏi hoặc để lại tin nhắn",
     "description": "Thông báo khi người tiêu dùng đặt câu hỏi hoặc để lại tin nhắn trong Hỏi & Đáp về sản phẩm trên trang sản phẩm"

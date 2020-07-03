@@ -2,8 +2,11 @@
 import React from 'react';
 
 import { EventsProvider } from '@meepshop/events';
+import Wrapper from '@admin/wrapper';
 
 // definition
 export default React.memo(({ children }) => (
-  <EventsProvider>{children}</EventsProvider>
+  <EventsProvider>
+    <Wrapper>{children}</Wrapper>
+  </EventsProvider>
 ));

@@ -8,25 +8,25 @@
   "email-error": "メール形式が正しくありません",
   "required": "必須",
   "auto-email-setting": "通知設定",
-  "order": {
+  "orderCreated": {
     "title": "注文を作成",
     "description": "新しい注文が作成されたときに通知する"
   },
-  "order-QA": {
+  "orderMessageReceived": {
     "title": "注文に関するQ＆A",
     "description": "消費者が注文の詳細でメッセージを送信したときに通知する"
   },
-  "order-applicaiton": {
+  "orderReturnedOrExchanged": {
     "title": "注文の交換または払い戻しの申請",
     "tip": "この機能には、「払い戻し」または「交換ステータス」の拡張機能が必要です",
     "description": "消費者が「払い戻し/交換の申請」を提出したときに通知する"
   },
-  "payment-notification": {
+  "orderTransferMessageReceived": {
     "title": "注文支払い通知",
     "tip": "この機能は、注文金額があり、ATMで支払われた注文にのみ適用されます",
     "description": "消費者が注文の詳細に支払い情報を提供したときに通知する"
   },
-  "product-QA": {
+  "productQAReceived": {
     "title": "製品に関するQ＆A",
     "tip": "この機能では、消費者が質問したりメッセージを残したりするために、製品ページにQ＆Aコンポーネントが必要です",
     "description": "製品ページの製品Q＆Aで消費者が質問したりメッセージを残したときに通知する"

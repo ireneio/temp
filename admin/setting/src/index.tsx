@@ -2,17 +2,16 @@
 import { NextPage } from 'next';
 
 // import
-import React, { useRef } from 'react';
+import React from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { Spin, Icon } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import SettingHeader from '@admin/setting-header';
+import SettingWrapper from '@admin/setting-wrapper';
 
 import useItems from './hooks/useItems';
 import Item from './Item';
-import styles from './styles/index.less';
 
 // graphql typescript
 import { getViewerPermission } from './__generated__/getViewerPermission';
@@ -29,7 +28,6 @@ import { useItemspermissionStoreObjFragment } from './hooks/useItems';
 const Setting: NextPage = React.memo(
   (): React.ReactElement => {
     const { t } = useTranslation('setting');
-    const rootRef = useRef(null);
     const { loading, error, data } = useQuery<getViewerPermission>(
       gql`
         query getViewerPermission {
@@ -63,18 +61,11 @@ const Setting: NextPage = React.memo(
       return <Spin indicator={<Icon type="loading" spin />} />;
 
     return (
-      <div className={styles.root} ref={rootRef}>
-        <SettingHeader target={() => rootRef.current}>
-          <div className={styles.header}>
-            <h1>{t('title')}</h1>
-          </div>
-        </SettingHeader>
-        <div className={styles.content}>
-          {items.map(props => (
-            <Item key={props.item} {...props} />
-          ))}
-        </div>
-      </div>
+      <SettingWrapper title={t('title')}>
+        {items.map(props => (
+          <Item key={props.item} {...props} />
+        ))}
+      </SettingWrapper>
     );
   },
 );

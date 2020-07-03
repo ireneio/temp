@@ -8,25 +8,25 @@
   "email-error": "Format d'e-mail incorrect",
   "required": "Champs obligatoires",
   "auto-email-setting": "Paramètre des notifications",
-  "order": {
+  "orderCreated": {
     "title": "Créer une commande",
     "description": "Avertir lorsque de nouvelles commandes sont créées"
   },
-  "order-QA": {
+  "orderMessageReceived": {
     "title": "Q&A de commande",
     "description": "Notification lorsque les consommateurs envoient des messages dans les détails de la commande"
   },
-  "order-applicaiton": {
+  "orderReturnedOrExchanged": {
     "title": "Demande d'échange de commande ou de remboursement",
     "tip": "Cette fonctionnalité nécessite l'extension \"Refund\" ou \"Exchange Status\"",
     "description": "Avertir lorsque les consommateurs soumettent une \"demande de remboursement / échange\""
   },
-  "payment-notification": {
+  "orderTransferMessageReceived": {
     "title": "Notification de paiement de la commande",
     "tip": "Cette fonctionnalité est uniquement applicable aux commandes avec un montant personnalisé et payées via ATM",
     "description": "Avertir lorsque les consommateurs fournissent des informations de paiement dans les détails de la commande"
   },
-  "product-QA": {
+  "productQAReceived": {
     "title": "Questions et réponses sur le produit",
     "tip": "Cette fonction nécessite un composant Q & A sur la page produit pour que les consommateurs puissent poser des questions ou laisser un message",
     "description": "Avertir lorsque les consommateurs posent des questions ou laissent des messages dans le Q&R du produit sur la page du produit"

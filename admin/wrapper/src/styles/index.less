@@ -1,5 +1,37 @@
 @import '~@admin/utils/lib/styles/variables.less';
 
+@collapsed: {
+  a {
+    width: 100%;
+  }
+
+  :global(.anticon) {
+    display: none;
+  }
+
+  @media (min-width: @screen-lg) {
+    &:hover:not(.loading) {
+      a {
+        display: none;
+      }
+
+      :global(.anticon) {
+        display: inline-block;
+      }
+    }
+  }
+};
+
+@svg: {
+  & > svg {
+    fill: #cfe3ef;
+  }
+
+  &:hover > svg {
+    fill: #ecf4f9;
+  }
+};
+
 .root {
   height: 100%;
   background: #f0f2f5;
@@ -32,54 +64,24 @@
   overflow: hidden;
 
   @media (max-width: @screen-md-max) {
-    .collapsed();
+    @collapsed();
   }
 
   &.collapsed {
-    a {
-      width: 100%;
-    }
-
-    :global(.anticon) {
-      display: none;
-    }
-
-    @media (min-width: @screen-lg) {
-      &:hover:not(.loading) {
-        a {
-          display: none;
-        }
-
-        :global(.anticon) {
-          display: inline-block;
-        }
-      }
-    }
-  }
-
-  .svg() {
-    & > svg {
-      fill: #cfe3ef;
-    }
-
-    &:hover > svg {
-      fill: #ecf4f9;
-    }
+    @collapsed();
   }
 
   a {
+    @svg();
     flex-grow: 1;
     text-align: center;
     height: 64px;
-
-    .svg();
   }
 
   :global(.anticon) {
+    @svg();
     padding: 20px;
     cursor: pointer;
-
-    .svg();
   }
 }
 

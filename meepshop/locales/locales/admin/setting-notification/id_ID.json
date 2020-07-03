@@ -8,25 +8,25 @@
   "email-error": "Format email salah",
   "required": "Yg dibutuhkan",
   "auto-email-setting": "Pengaturan pemberitahuan",
-  "order": {
+  "orderCreated": {
     "title": "Buat pesanan",
     "description": "Beri tahu saat pesanan baru dibuat"
   },
-  "order-QA": {
+  "orderMessageReceived": {
     "title": "Pesan Tanya Jawab",
     "description": "Beri tahu ketika konsumen mengirim pesan dalam detail pesanan"
   },
-  "order-applicaiton": {
+  "orderReturnedOrExchanged": {
     "title": "Aplikasi untuk pertukaran pesanan atau pengembalian uang",
     "tip": "Fitur ini memerlukan ekstensi \"Pengembalian Dana\" atau \"Status Pertukaran\"",
     "description": "Beri tahu ketika konsumen mengajukan \"mengajukan pengembalian uang / penukaran\""
   },
-  "payment-notification": {
+  "orderTransferMessageReceived": {
     "title": "Pesan notifikasi pembayaran",
     "tip": "Fitur ini hanya berlaku untuk pesanan dengan jumlah khusus dan dibayar melalui ATM",
     "description": "Beri tahu ketika konsumen memberikan informasi pembayaran dalam detail pesanan"
   },
-  "product-QA": {
+  "productQAReceived": {
     "title": "T&J Produk",
     "tip": "Fungsi ini membutuhkan komponen T&J pada halaman produk agar konsumen dapat mengajukan pertanyaan atau meninggalkan pesan",
     "description": "Beri tahu ketika konsumen mengajukan pertanyaan atau meninggalkan pesan di Q&A produk di halaman produk"

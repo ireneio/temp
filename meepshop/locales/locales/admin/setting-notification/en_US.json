@@ -8,25 +8,25 @@
   "email-error": "Email format incorrect",
   "required": "Required",
   "auto-email-setting": "Notifications setting",
-  "order": {
+  "orderCreated": {
     "title": "Create order",
     "description": "Notify when new orders are created"
   },
-  "order-QA": {
+  "orderMessageReceived": {
     "title": "Order Q&A",
     "description": "Notify when consumers send messages in order details"
   },
-  "order-applicaiton": {
+  "orderReturnedOrExchanged": {
     "title": "Application for order exchange or refund",
     "tip": "This feature requires the extension \"Refund\" or \"Exchange Status\"",
     "description": "Notify when consumers submits an \"apply for refund/exchange\""
   },
-  "payment-notification": {
+  "orderTransferMessageReceived": {
     "title": "Order payment notification",
     "tip": "This feature is only applicable to orders with custom amount and paid through ATM",
     "description": "Notify when consumers provide payment information in order details"
   },
-  "product-QA": {
+  "productQAReceived": {
     "title": "Product Q&A",
     "tip": "This function requires a Q&A component on the product page for consumers to ask questions or leave a message",
     "description": "Notify when consumers ask questions or leave messages in the product Q&A on the product page"

@@ -101,8 +101,7 @@ workspace(store, admin...)
 ├── package.json
 ├── index.js
 ├── .gitignore (optional)
-├── README (optional)
-├── images (optional)
+├── README.md (optional)
 ├── mock.ts (optional)
 └── src
     ├── __tests__

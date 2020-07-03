@@ -21,7 +21,7 @@ const handleCssRelativePath = (css, filePath) => {
 const preprocessCss = (css, filePath) => {
   const newCss = handleCssRelativePath(css, filePath);
 
-  if (/ignore generateScopedName/.test(newCss)) return newCss;
+  if (/ignore meepshop id/.test(newCss)) return newCss;
 
   if (/@import/.test(newCss))
     return `${newCss.replace(/(@import.*;\n?)+/, '$&:global(#meepshop) {')}}`;
@@ -40,33 +40,6 @@ const generateScopedName = (name, filePath) => {
     .replace(/\//g, '-')
     .replace(/\.less$/, '')}__${name}`;
 };
-
-/**
- * FIX mixin error
- * @example
- * originial code:
- *   .mixin();
- *
- * bug:
- *   @mixin();
- *
- * fix:
- *   .css-module-classname-mixin();
- */
-const processCss = (css, filePath) =>
-  (css.match(/@[^ ]*\(/g) || [])
-    .filter(text => !/media/.test(text))
-    .reduce(
-      (result, pattern) =>
-        result.replace(
-          pattern,
-          pattern.replace(
-            /@([\w_-]*)/,
-            (match, name) => `.${generateScopedName(name, filePath)}`,
-          ),
-        ),
-      css,
-    );
 
 module.exports = {
   presets: [
@@ -130,7 +103,6 @@ module.exports = {
         ignore: /antd/,
         processorOpts: { parser: lessParser },
         preprocessCss,
-        processCss,
         generateScopedName,
         devMode: process.env.NODE_ENV !== 'production',
         keepImport: process.env.NODE_ENV !== 'test',

@@ -1,5 +1,32 @@
 @import '~@admin/utils/lib/styles/variables.less';
 
+@collapsed: {
+  padding: 0px;
+
+  :global(.ant-menu-submenu-title),
+  .title {
+    padding: 0px;
+    width: 64px;
+  }
+
+  .title:hover svg {
+    fill: #505865;
+  }
+
+  .prefixIcon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    width: 64px;
+    height: 40px;
+  }
+
+  .expandIcon {
+    display: none;
+  }
+};
+
 .root {
   padding: 16px 8px 24px;
   height: calc(100% - 64px - 1px - 56px);
@@ -9,34 +36,11 @@
   background: transparent;
 
   @media (max-width: @screen-md-max) {
-    .collapsed();
+    @collapsed();
   }
 
   &.collapsed {
-    padding: 0px;
-
-    :global(.ant-menu-submenu-title),
-    .title {
-      padding: 0px;
-      width: 64px;
-    }
-
-    .title:hover svg {
-      fill: #505865;
-    }
-
-    .prefixIcon {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0px;
-      width: 64px;
-      height: 40px;
-    }
-
-    .expandIcon {
-      display: none;
-    }
+    @collapsed();
   }
 
   :global(.ant-menu-submenu-arrow) {
