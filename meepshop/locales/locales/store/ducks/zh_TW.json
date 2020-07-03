@@ -11,6 +11,7 @@
   "signup-failure-message": "註冊：發生錯誤",
   "forget-password-success": "成功寄送至信箱",
   "forget-password-failure-message": "忘記密碼：發生錯誤",
+  "cannot-find-user": "此信箱未註冊",
   "add-cart-items-success": "已加入購物車",
   "add-cart-items-failure-message": "加入購物車：發生錯誤",
   "update-cart-items-success": "更新購物車完成",

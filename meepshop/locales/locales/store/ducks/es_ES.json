@@ -11,6 +11,7 @@
   "signup-failure-message": "Registrarse: se produjo un error",
   "forget-password-success": "Se ha enviado el enlace para restablecer la contraseña. Por favor revise su bandeja de entrada.",
   "forget-password-failure-message": "Olvidar contraseña: se produjo un error",
+  "cannot-find-user": null,
   "add-cart-items-success": "El artículo ha sido añadido a su carrito.",
   "add-cart-items-failure-message": "Añadir al carrito: se produjo un error",
   "update-cart-items-success": "Los artículos en el carrito han sido actualizados.",

@@ -59,6 +59,7 @@ export default class Login extends React.PureComponent {
 
     const {
       /** context */
+      cname,
       login,
       forgetPassword,
 
@@ -75,6 +76,7 @@ export default class Login extends React.PureComponent {
         if (isForgetPassword) {
           forgetPassword({
             email,
+            cname,
             callback: () => {
               hideLogin();
               notification.success({

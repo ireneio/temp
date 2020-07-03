@@ -259,17 +259,27 @@ export const forgetPasswordFailure = () => ({
   type: FORGET_PASSWORD_FAILURE,
 });
 
-function* forgetPasswordFlow({ payload: { email } }) {
+function* forgetPasswordFlow({ payload: { email, cname } }) {
   try {
-    const data = yield call(Api.sendMaiToForgetPassword, { email });
+    const data = yield call(Api.sendResetPasswordEmail, { email, cname });
 
     /* Handle error */
     if (data.error) throw new Error(data.error);
-    if (data.data.forgotUserPSList && data.data.forgotUserPSList.error)
-      throw new Error(data.data.forgotUserPSList.error[0]);
 
-    yield put(forgetPasswordSuccess());
-    notification.success({ message: i18n.t('ducks:forget-password-success') });
+    switch (data.data.sendResetPasswordEmail.status) {
+      case 'OK':
+        yield put(forgetPasswordSuccess());
+        notification.success({
+          message: i18n.t('ducks:forget-password-success'),
+        });
+        break;
+
+      case 'FAIL_CANNOT_FIND_USER':
+        throw new Error(i18n.t('ducks:cannot-find-user'));
+
+      default:
+        throw new Error(data.data.sendResetPasswordEmail.status);
+    }
   } catch (error) {
     yield put(forgetPasswordFailure());
     notification.error({

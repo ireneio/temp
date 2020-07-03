@@ -11,6 +11,7 @@
   "signup-failure-message": "Sign up: Error occurred",
   "forget-password-success": "Reset password link has been sent. Please check your inbox.",
   "forget-password-failure-message": "Forget Password: Error occurred",
+  "cannot-find-user": null,
   "add-cart-items-success": "The item has been added to your cart.",
   "add-cart-items-failure-message": "Add to cart: Error occurred",
   "update-cart-items-success": "The items in cart have been updated.",

@@ -11,6 +11,7 @@
   "signup-failure-message": "สมัครสมาชิก: เกิดข้อผิดพลาด",
   "forget-password-success": "ส่งลิงค์รีเซ็ตรหัสผ่านแล้ว กรุณาตรวจสอบกล่องจดหมายของคุณ",
   "forget-password-failure-message": "ลืมรหัสผ่าน: เกิดข้อผิดพลาด",
+  "cannot-find-user": null,
   "add-cart-items-success": "เพิ่มสินค้าลงในรถเข็นของคุณแล้ว",
   "add-cart-items-failure-message": "หยิบใส่รถเข็น: เกิดข้อผิดพลาด",
   "update-cart-items-success": "อัปเดตรายการในรถเข็นแล้ว",

@@ -11,6 +11,7 @@
   "signup-failure-message": "Daftar: Terjadi kesalahan",
   "forget-password-success": "Tautan ulang kata sandi telah dikirim. Silakan periksa kotak masuk Anda.",
   "forget-password-failure-message": "Lupa Kata Sandi: Terjadi kesalahan",
+  "cannot-find-user": null,
   "add-cart-items-success": "Item telah ditambahkan ke troli Anda.",
   "add-cart-items-failure-message": "Tambahkan ke troli: Terjadi kesalahan",
   "update-cart-items-success": "Item dalam keranjang telah diperbarui.",

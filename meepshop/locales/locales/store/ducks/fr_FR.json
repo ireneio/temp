@@ -11,6 +11,7 @@
   "signup-failure-message": "Inscription: une erreur s'est produite",
   "forget-password-success": "Le lien de réinitialisation du mot de passe a été envoyé. Veuillez vérifier votre boîte de réception.",
   "forget-password-failure-message": "Oublier le mot de passe: une erreur s'est produite",
+  "cannot-find-user": null,
   "add-cart-items-success": "L'article a été ajouté à votre panier.",
   "add-cart-items-failure-message": "Ajouter au panier: une erreur s'est produite",
   "update-cart-items-success": "Les articles du panier ont été mis à jour.",

@@ -11,6 +11,7 @@
   "signup-failure-message": "新規登録：エラーが発生しました",
   "forget-password-success": "メールボックスへ送信されました",
   "forget-password-failure-message": "パスワード忘れ：エラーが発生しました",
+  "cannot-find-user": null,
   "add-cart-items-success": "商品をカートに入れました",
   "add-cart-items-failure-message": "カートに入れる：エラーが発生しました",
   "update-cart-items-success": "カート内の商品数量を変更しました",

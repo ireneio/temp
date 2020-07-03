@@ -33,11 +33,11 @@ export default class ForgetPassword extends React.PureComponent {
 
   submit = e => {
     e.preventDefault();
-    const { form, forgetPassword } = this.props;
+    const { cname, form, forgetPassword } = this.props;
 
     form.validateFields((err, { email }) => {
       if (!err) {
-        forgetPassword({ email });
+        forgetPassword({ email, cname });
       }
     });
   };

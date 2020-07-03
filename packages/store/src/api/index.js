@@ -10,7 +10,7 @@ import login from './login.api';
 import signout from './signout.api';
 import signup from './signup.api';
 import checkEmailExists from './checkEmailExists.api';
-import sendMaiToForgetPassword from './sendMaiToForgetPassword.api';
+import sendResetPasswordEmail from './sendResetPasswordEmail.api';
 import fbLogin from './fbLogin.api';
 import updateMemberData from './updateMemberData.api';
 import updateShopperLanguagePreference from './updateShopperLanguagePreference.api';
@@ -45,7 +45,7 @@ export {
   signout,
   signup,
   checkEmailExists,
-  sendMaiToForgetPassword,
+  sendResetPasswordEmail,
   fbLogin,
   updateMemberData,
   updateShopperLanguagePreference,

@@ -28,6 +28,7 @@ export default class SendResetPswMailForm extends React.PureComponent {
     e.preventDefault();
 
     const {
+      cname,
       form: { validateFields },
       dispatchAction,
     } = this.props;
@@ -36,7 +37,7 @@ export default class SendResetPswMailForm extends React.PureComponent {
       if (!err) {
         const { email } = values;
 
-        dispatchAction('forgetPassword', { email });
+        dispatchAction('forgetPassword', { email, cname });
       }
     });
   };
