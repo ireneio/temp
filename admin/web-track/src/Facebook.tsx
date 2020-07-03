@@ -9,7 +9,7 @@ import { Tooltip, Icon, Button, Modal, Form, Input, message } from 'antd';
 import Clipboard from 'clipboard';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import getImage, {
+import {
   webTrackFacebook_w130 as webTrackFacebook,
   webTrackFacebookPixelInstruction_w890 as webTrackFacebookPixelInstruction,
 } from '@meepshop/images';
@@ -96,7 +96,7 @@ export default Form.create<PropsType>()(
 
     return (
       <div>
-        <img src={getImage(webTrackFacebook)} alt="facebook" />
+        <img src={webTrackFacebook} alt="facebook" />
 
         <div className={styles.title}>
           <div>{t('facebook-pixel.title')}</div>
@@ -112,7 +112,7 @@ export default Form.create<PropsType>()(
           onCancel={() => openModal(false)}
         >
           <img
-            src={getImage(webTrackFacebookPixelInstruction)}
+            src={webTrackFacebookPixelInstruction}
             alt="FacebookPixelInstruction"
           />
         </Modal>

@@ -41,7 +41,9 @@ const imgproxy = {
 
 const imageFolder = nodePath.resolve(__dirname, './images');
 const imageList = d3
-  .hierarchy(dirTree(imageFolder, { extensions: /\.(svg|png|jpg|jpeg)$/ }))
+  .hierarchy(
+    dirTree(imageFolder, { extensions: /\.(svg|png|jpg|jpeg|gif|ico)$/ }),
+  )
   .leaves()
   .reduce((result, { data: { type, path, extension } }) => {
     if (type === 'directory') return result;
@@ -86,6 +88,19 @@ const getUrl = (key, type, width, height) =>
 
 module.exports = declare(({ assertVersion, types: t }) => {
   const cache = {};
+  const getScaledSrc = (key, width, height) =>
+    t.callExpression(t.identifier('getImage'), [
+      t.objectExpression([
+        t.objectProperty(
+          t.identifier('stage'),
+          t.stringLiteral(getUrl(key, 'stage', width, height)),
+        ),
+        t.objectProperty(
+          t.identifier('production'),
+          t.stringLiteral(getUrl(key, 'production', width, height)),
+        ),
+      ]),
+    ]);
 
   assertVersion(7);
 
@@ -102,19 +117,21 @@ module.exports = declare(({ assertVersion, types: t }) => {
           return;
 
         path.get('specifiers').forEach(specifier => {
-          if (t.isImportDefaultSpecifier(specifier)) cache.useGetImage = true;
-
-          if (t.isImportSpecifier(specifier))
+          if (t.isImportSpecifier(specifier)) {
+            cache.useGetImage = true;
             cache.images.push({
               key: specifier.get('imported').node.name,
               localKey: specifier.get('local').node.name,
             });
+          }
 
-          if (t.isImportNamespaceSpecifier(specifier))
+          if (t.isImportNamespaceSpecifier(specifier)) {
+            cache.useGetImage = true;
             cache.images.push({
               key: hash,
               localKey: specifier.get('local').node.name,
             });
+          }
         });
 
         if (cache.useGetImage)
@@ -141,11 +158,10 @@ module.exports = declare(({ assertVersion, types: t }) => {
 
         if (!image) return;
 
-        path.addComments('inner', [
-          { type: 'CommentBlock', value: 'compiled by @meepshop/images' },
-        ]);
-
         if (image.key === hash) {
+          path.addComments('inner', [
+            { type: 'CommentBlock', value: 'compiled by @meepshop/images' },
+          ]);
           path
             .getStatementParent()
             .insertBefore(
@@ -173,19 +189,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
           path.replaceWith(
             t.objectExpression(
               Object.keys(imageList).map(key =>
-                t.objectProperty(
-                  t.identifier(key),
-                  t.objectExpression([
-                    t.objectProperty(
-                      t.identifier('stage'),
-                      t.stringLiteral(getUrl(key, 'stage')),
-                    ),
-                    t.objectProperty(
-                      t.identifier('production'),
-                      t.stringLiteral(getUrl(key, 'production')),
-                    ),
-                  ]),
-                ),
+                t.objectProperty(t.identifier(key), getScaledSrc(key)),
               ),
             ),
           );
@@ -239,18 +243,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
               ].map(scaledSrcWidth =>
                 t.objectProperty(
                   t.identifier(`w${scaledSrcWidth}`),
-                  t.objectExpression([
-                    t.objectProperty(
-                      t.identifier('stage'),
-                      t.stringLiteral(getUrl(key, 'stage', scaledSrcWidth)),
-                    ),
-                    t.objectProperty(
-                      t.identifier('production'),
-                      t.stringLiteral(
-                        getUrl(key, 'production', scaledSrcWidth),
-                      ),
-                    ),
-                  ]),
+                  getScaledSrc(key, scaledSrcWidth),
                 ),
               ),
             ),
@@ -258,18 +251,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
           return;
         }
 
-        path.replaceWith(
-          t.objectExpression([
-            t.objectProperty(
-              t.identifier('stage'),
-              t.stringLiteral(getUrl(key, 'stage', width, height)),
-            ),
-            t.objectProperty(
-              t.identifier('production'),
-              t.stringLiteral(getUrl(key, 'production', width, height)),
-            ),
-          ]),
-        );
+        path.replaceWith(getScaledSrc(key, width, height));
       },
     },
     post: ({ opts: { filename }, path }) => {

@@ -33,7 +33,7 @@ describe('babel', () => {
       ?.code;
 
     expect(result).toMatch(
-      /dashboardCost: {\n[ ]*stage: ".*",\n[ ]*production: ".*"\n.*}/,
+      /dashboardCost: getImage\({\n[ ]*stage: ".*",\n[ ]*production: ".*"\n.*}\)/,
     );
     expect(result).toMatch(
       /if \(process\.env\.NODE_ENV === "production"\) throw new Error\("Can not use `import \* as images from '@meepshop\/images';` in the production mode\."\);/,

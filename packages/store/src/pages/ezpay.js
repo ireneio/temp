@@ -7,11 +7,6 @@ import { TrackingCodeHead, Error } from 'components';
 import * as Actions from 'ducks/actions';
 
 import EzpayView from '@store/ezpay';
-import ezpayLogo from '@store/ezpay/images/ezpay.png';
-import sevenElevenLogo from '@store/ezpay/images/seven-eleven.png';
-import familyMartLogo from '@store/ezpay/images/family-mart.png';
-import hiLifeLogo from '@store/ezpay/images/hi-life.png';
-import oKmartLogo from '@store/ezpay/images/ok-mart.png';
 
 class Ezpay extends React.Component {
   static getInitialProps = async context => {
@@ -64,14 +59,7 @@ class Ezpay extends React.Component {
         </Head>
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
 
-        <EzpayView
-          orderId={orderId}
-          ezpayLogo={ezpayLogo}
-          sevenElevenLogo={sevenElevenLogo}
-          familyMartLogo={familyMartLogo}
-          hiLifeLogo={hiLifeLogo}
-          oKmartLogo={oKmartLogo}
-        />
+        <EzpayView orderId={orderId} />
       </>
     );
   }

@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import getImage, { meepshopLogo } from '@meepshop/images';
+import { meepshopLogo } from '@meepshop/images';
 import Link from '@meepshop/link';
 
 import styles from './styles/tutorial.less';
@@ -82,11 +82,7 @@ const Tutorial = ({ name, id, setting }: PropsType): React.ReactElement => {
   return (
     <div className={styles.welcome}>
       <div className={isTutorialEnabled ? styles.isTutorialEnabled : ''}>
-        <img
-          src={getImage(meepshopLogo)}
-          className={styles.logo}
-          alt="meepshop"
-        />
+        <img src={meepshopLogo} className={styles.logo} alt="meepshop" />
 
         <div className={styles.text}>
           {!isTutorialEnabled ? (

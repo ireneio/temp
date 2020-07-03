@@ -1,4 +1,4 @@
-import getImage, {
+import {
   previewProductGalleryOneProduct1_scaledSrc as previewProductGalleryOneProduct1,
   previewProductGalleryOneProduct2_scaledSrc as previewProductGalleryOneProduct2,
   previewProductGalleryOneProduct3_scaledSrc as previewProductGalleryOneProduct3,
@@ -7,15 +7,6 @@ import getImage, {
   previewProductGalleryTwoProduct6_scaledSrc as previewProductGalleryTwoProduct6,
   previewProductGalleryTwoProduct7_scaledSrc as previewProductGalleryTwoProduct7,
 } from '@meepshop/images';
-
-const getScaledSrc = images =>
-  Object.keys(images).reduce(
-    (result, key) => ({
-      ...result,
-      [key]: getImage(images[key]),
-    }),
-    {},
-  );
 
 export default {
   id: 'preview',
@@ -48,7 +39,7 @@ export default {
   },
   coverImage: {
     fileId: 'c34eb2cf-33b2-472b-b84b-4bda5956bdfe',
-    scaledSrc: getScaledSrc(previewProductGalleryOneProduct1),
+    scaledSrc: previewProductGalleryOneProduct1,
   },
   galleries: [
     {
@@ -56,22 +47,22 @@ export default {
         {
           fileId: 'c34eb2cf-33b2-472b-b84b-4bda5956bdfe',
           isMain: true,
-          scaledSrc: getScaledSrc(previewProductGalleryOneProduct1),
+          scaledSrc: previewProductGalleryOneProduct1,
         },
         {
           fileId: '4ca6a3e4-6b08-4107-b178-08b96cd26ac0',
           isMain: false,
-          scaledSrc: getScaledSrc(previewProductGalleryOneProduct2),
+          scaledSrc: previewProductGalleryOneProduct2,
         },
         {
           fileId: 'b0b6509d-9117-4a28-a3d1-738c31e0b375',
           isMain: false,
-          scaledSrc: getScaledSrc(previewProductGalleryOneProduct3),
+          scaledSrc: previewProductGalleryOneProduct3,
         },
         {
           fileId: 'f3121800-2b4c-421b-9403-6a64362922b3',
           isMain: false,
-          scaledSrc: getScaledSrc(previewProductGalleryOneProduct4),
+          scaledSrc: previewProductGalleryOneProduct4,
         },
       ],
     },
@@ -80,17 +71,17 @@ export default {
         {
           fileId: 'ea8199ca-3f1b-4853-8869-d0716812d62c',
           isMain: false,
-          scaledSrc: getScaledSrc(previewProductGalleryTwoProduct5),
+          scaledSrc: previewProductGalleryTwoProduct5,
         },
         {
           fileId: '8bf70918-cff6-4b34-a06f-48231470c3f2',
           isMain: false,
-          scaledSrc: getScaledSrc(previewProductGalleryTwoProduct6),
+          scaledSrc: previewProductGalleryTwoProduct6,
         },
         {
           fileId: '0fec546c-5290-448c-bfc6-d622e19415b1',
           isMain: false,
-          scaledSrc: getScaledSrc(previewProductGalleryTwoProduct7),
+          scaledSrc: previewProductGalleryTwoProduct7,
         },
       ],
     },

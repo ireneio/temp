@@ -11,8 +11,14 @@ import { Spin, Icon } from 'antd';
 import moment from 'moment';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import formatAmount from '@admin/utils/lib/formatAmount';
+import {
+  dashboardRevenue_w40 as dashboardRevenue,
+  dashboardCost_w40 as dashboardCost,
+  dashboardOrder_w40 as dashboardOrder,
+  dashboardMember_w40 as dashboardMember,
+} from '@meepshop/images';
 import Link from '@meepshop/link';
+import formatAmount from '@admin/utils/lib/formatAmount';
 
 import Tutorial from './Tutorial';
 import styles from './styles/index.less';
@@ -107,13 +113,9 @@ const Dashboard: NextPage = React.memo(
     );
 
     const { t } = useTranslation('dashboard');
+    const { viewer, getDashboardInfo } = getDashboardResult?.data || {};
 
-    if (
-      getDashboardResult.loading ||
-      getDashboardResult.error ||
-      getTimezoneResult.loading ||
-      getTimezoneResult.error
-    )
+    if (!viewer || !viewer.id || !getDashboardInfo)
       return <Spin indicator={<Icon type="loading" spin />} />;
 
     const reformatAmount = (amount: number | null): string => {
@@ -124,10 +126,9 @@ const Dashboard: NextPage = React.memo(
       return formatAmount({ amount, currency });
     };
 
-    const { viewer, getDashboardInfo } = getDashboardResult.data || {};
     const isUnpaidBillsDisplayed =
-      viewer?.role === 'MERCHANT' &&
-      (viewer?.store?.unpaidBills?.totalCount || 0) > 0;
+      viewer.role === 'MERCHANT' &&
+      (viewer.store?.unpaidBills?.totalCount || 0) > 0;
     const {
       pendingOrder = null,
       notShipped = null,
@@ -137,7 +138,7 @@ const Dashboard: NextPage = React.memo(
       orderMonthly = null,
       revenueMonthly = null,
       costMonthly = null,
-    } = getDashboardInfo || {};
+    } = getDashboardInfo;
 
     return (
       <>
@@ -191,11 +192,11 @@ const Dashboard: NextPage = React.memo(
         <div className={styles.root}>
           <div className={styles.content}>
             <Tutorial
-              name={viewer?.store?.description?.name}
-              id={viewer?.store?.id || ''}
+              name={viewer.store?.description?.name}
+              id={viewer.store?.id || ''}
               setting={filter(
                 tutorialSettingObjectTypeFragment,
-                viewer?.store?.setting,
+                viewer.store?.setting,
               )}
             />
             {isUnpaidBillsDisplayed ? (
@@ -234,28 +235,28 @@ const Dashboard: NextPage = React.memo(
             </div>
             <div className={styles.statistics}>
               <div>
-                <img src="/images/dashboard/revenue.svg" alt="revenue" />
+                <img src={dashboardRevenue} alt="revenue" />
                 <div>
                   <span>{t('revenue')}</span>
                   <span>{reformatAmount(revenueMonthly)}</span>
                 </div>
               </div>
               <div>
-                <img src="/images/dashboard/cost.svg" alt="cost" />
+                <img src={dashboardCost} alt="cost" />
                 <div>
                   <span>{t('cost')}</span>
                   <span>{reformatAmount(costMonthly)}</span>
                 </div>
               </div>
               <div>
-                <img src="/images/dashboard/order.svg" alt="order" />
+                <img src={dashboardOrder} alt="order" />
                 <div>
                   <span>{t('order')}</span>
                   <span className={styles.green}>{orderMonthly}</span>
                 </div>
               </div>
               <div>
-                <img src="/images/dashboard/member.svg" alt="member" />
+                <img src={dashboardMember} alt="member" />
                 <div>
                   <span>{t('member')}</span>
                   <span className={styles.green}>{userCount}</span>

@@ -6,6 +6,8 @@ import uuid from 'uuid/v4';
 import transformColor from 'color';
 import { MdKeyboardArrowDown as ArrowIcon } from 'react-icons/md';
 
+import { logoDesktopDefault } from '@meepshop/images';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
   ID_TYPE,
@@ -25,7 +27,6 @@ import { FONTSIZE_TYPE } from './propTypes';
 import styles from './styles/index.less';
 import notMemoizedGetMenuStyles from './utils/getMenuStyles';
 import notMemoizedGetAllKeys from './utils/getAllKeys';
-import LogoDesktopDefault from './images/LogoDesktopDefault';
 
 export handleModuleData from './utils/handleModuleData';
 
@@ -220,7 +221,8 @@ export default class Menu extends React.PureComponent {
             }
           >
             {!logo && !isMobile ? (
-              <LogoDesktopDefault
+              <img
+                src={logoDesktopDefault}
                 style={{
                   ...(height !== 0 && {
                     height,
@@ -229,6 +231,7 @@ export default class Menu extends React.PureComponent {
                     height: width / 5,
                   }),
                 }}
+                alt="logoDesktopDefault"
               />
             ) : (
               <Link style={{ width: '100%' }} href="/" target="_self">

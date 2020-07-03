@@ -12,7 +12,7 @@ import moment from 'moment';
 import memoizeOne from 'memoize-one';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import Thumbnail, { thumbnailFragment } from '@store/thumbnail';
+import Thumbnail, { thumbnailFragment } from '@meepshop/thumbnail';
 
 import styles from './styles/application.less';
 

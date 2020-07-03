@@ -5,6 +5,8 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 // import
 import React, { useState } from 'react';
 
+import { loginBackground } from '@meepshop/images';
+
 import Login from './Login';
 import ForgetPassword from './ForgetPassword';
 
@@ -25,7 +27,10 @@ const LoginWrapper: NextPage = React.memo(
     }[action];
 
     return (
-      <div className={styles.root}>
+      <div
+        className={styles.root}
+        style={{ backgroundImage: `url('${loginBackground}')` }}
+      >
         <Content setAction={setAction} />
       </div>
     );

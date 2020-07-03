@@ -7,7 +7,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 const withLess = require('@zeit/next-less');
-const withImages = require('next-images');
 const withSourceMaps = require('@zeit/next-source-maps');
 
 const addBabelConfig = config => {
@@ -73,34 +72,32 @@ const serverCssFileSupport = config => {
 
 module.exports = nextConfig =>
   withSourceMaps(
-    withImages(
-      withLess(
-        withBundleAnalyzer({
-          ...nextConfig,
-          pageExtensions: ['js', 'ts', 'tsx'],
-          lessLoaderOptions: {
-            ...nextConfig.lessLoaderOptions,
-            javascriptEnabled: true,
-          },
-          publicRuntimeConfig: {
-            ...nextConfig.publicRuntimeConfig,
-            API_HOST: process.env.API_HOST || 'https://api.stage.meepcloud.com',
-            VERSION: process.env.REPO_VERSION || +new Date(),
-            ENV: process.env.ENV || 'stage',
-          },
-          webpack: (config, { dev, isServer }) => {
-            if (!dev) config.devtool = 'source-map';
+    withLess(
+      withBundleAnalyzer({
+        ...nextConfig,
+        pageExtensions: ['js', 'ts', 'tsx'],
+        lessLoaderOptions: {
+          ...nextConfig.lessLoaderOptions,
+          javascriptEnabled: true,
+        },
+        publicRuntimeConfig: {
+          ...nextConfig.publicRuntimeConfig,
+          API_HOST: process.env.API_HOST || 'https://api.stage.meepcloud.com',
+          VERSION: process.env.REPO_VERSION || +new Date(),
+          ENV: process.env.ENV || 'stage',
+        },
+        webpack: (config, { dev, isServer }) => {
+          if (!dev) config.devtool = 'source-map';
 
-            config.plugins.push(new MomentLocalesPlugin());
-            addBabelConfig(config);
-            addIEPolyfill(config);
-            fixCssLoaderError(config);
+          config.plugins.push(new MomentLocalesPlugin());
+          addBabelConfig(config);
+          addIEPolyfill(config);
+          fixCssLoaderError(config);
 
-            if (isServer) serverCssFileSupport(config);
+          if (isServer) serverCssFileSupport(config);
 
-            return config;
-          },
-        }),
-      ),
+          return config;
+        },
+      }),
     ),
   );

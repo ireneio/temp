@@ -5,9 +5,9 @@ import { MdClose as RemoveIcon } from 'react-icons/md';
 import { FaTag as TagIcon } from 'react-icons/fa';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import Thumbnail from '@meepshop/thumbnail';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import Thumbnail from '@store/thumbnail';
 import {
   ID_TYPE,
   COLOR_TYPE,

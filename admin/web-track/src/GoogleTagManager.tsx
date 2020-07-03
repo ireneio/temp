@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { Tooltip, Icon, Button, Modal, Form, Input } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import getImage, {
+import {
   webTrackGoogleTagManager_w172 as webTrackGoogleTagManager,
   webTrackGoogleTagManagerInstruction_w890 as webTrackGoogleTagManagerInstruction,
 } from '@meepshop/images';
@@ -40,7 +40,7 @@ export default Form.create<PropsType>()(
 
     return (
       <div>
-        <img src={getImage(webTrackGoogleTagManager)} alt="GoogleTagManager" />
+        <img src={webTrackGoogleTagManager} alt="GoogleTagManager" />
 
         <div className={styles.title}>
           <div>{t('google-tag-manager.title')}</div>
@@ -56,7 +56,7 @@ export default Form.create<PropsType>()(
           onCancel={() => openModal(false)}
         >
           <img
-            src={getImage(webTrackGoogleTagManagerInstruction)}
+            src={webTrackGoogleTagManagerInstruction}
             alt="GoogleTagManagerInstruction"
           />
         </Modal>

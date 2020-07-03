@@ -2,7 +2,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Placeholder from '@store/placeholder';
+import { placeholderThumbnail_w120 as placeholderThumbnail } from '@meepshop/images';
 
 import styles from './styles/index.less';
 
@@ -25,13 +25,12 @@ export const thumbnailFragment = gql`
 
 export default ({ image }: PropsType): React.ReactElement => (
   <div className={styles.wrapper}>
-    {!image ? (
-      <Placeholder />
-    ) : (
-      <div
-        className={styles.image}
-        style={{ backgroundImage: `url(${image.scaledSrc?.w120})` }}
-      />
-    )}
+    <div
+      className={styles.image}
+      style={{
+        backgroundImage: `url(${image?.scaledSrc?.w120 ||
+          placeholderThumbnail})`,
+      }}
+    />
   </div>
 );

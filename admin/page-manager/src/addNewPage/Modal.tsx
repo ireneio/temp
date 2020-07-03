@@ -8,7 +8,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { useApolloClient } from '@apollo/react-hooks';
 import { Form, Modal, Input, Switch, Icon, Tooltip } from 'antd';
-import getImage, {
+import {
   pageManagerPageTipPath_w200 as pageManagerPageTipPath,
   pageManagerPageTipTab_w200 as pageManagerPageTipTab,
 } from '@meepshop/images';
@@ -90,7 +90,7 @@ export default Form.create<PropsType>()(
                       title={
                         <img
                           className={styles.tooltip}
-                          src={getImage(pageManagerPageTipPath)}
+                          src={pageManagerPageTipPath}
                           alt="pageManagerPageTipPath"
                         />
                       }
@@ -139,7 +139,7 @@ export default Form.create<PropsType>()(
                       title={
                         <img
                           className={styles.tooltip}
-                          src={getImage(pageManagerPageTipTab)}
+                          src={pageManagerPageTipTab}
                           alt="pageManagerPageTipTab"
                         />
                       }

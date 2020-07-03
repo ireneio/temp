@@ -6,9 +6,9 @@ This package will transform the image string to the `image proxy url`. Only need
 
 ```sh
 import { useContext } from 'react';
-import getImage, { pathToImage } from '@meepshop/images';
+import { pathToImage } from '@meepshop/images';
 
-<img src={getImage(pathToImage)} />
+<img src={pathToImage} />
 ```
 
 ## Environment

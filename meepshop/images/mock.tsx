@@ -5,8 +5,6 @@ import Clipboard from 'clipboard';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as images from '@meepshop/images';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import getImage from '@meepshop/images';
 
 import styles from './mock.less';
 
@@ -42,7 +40,7 @@ export default React.memo(() => {
           .filter(key => (!searchKey ? true : key.includes(searchKey)))
           .map(key => (
             <li key={key} data-clipboard={key}>
-              <img src={getImage(images[key])} alt={key} />
+              <img src={images[key]} alt={key} />
 
               <div>{key}</div>
             </li>

@@ -1,9 +1,11 @@
 import React from 'react';
+
+import { oops_w110 as oops } from '@meepshop/images';
+
 import ErrorPageNotFound from './ErrorPageNotFound';
 import ErrorProductNotFound from './ErrorProductNotFound';
 import ApiError from './ApiError';
 import ServerError from './ServerError';
-import oopsImg from './images/oops.png';
 
 // eslint-disable-next-line react/prop-types
 export default ({ error }) => {
@@ -26,7 +28,7 @@ export default ({ error }) => {
         fontSize: '24px',
       }}
     >
-      <img style={{ paddingTop: 150, width: 110 }} src={oopsImg} alt="oops" />
+      <img style={{ paddingTop: 150, width: 110 }} src={oops} alt="oops" />
 
       <div style={{ textAlign: 'center' }}>
         <h1>Unexpected error.</h1>

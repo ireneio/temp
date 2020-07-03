@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import Placeholder from '@store/placeholder';
+import { placeholderThumbnail_scaledSrc as placeholderThumbnail } from '@meepshop/images';
 
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 import Image from 'image';
-import Link from 'link';
 import DraftText from 'draftText';
 
 import ProductLoader from './ProductLoader';
@@ -105,29 +104,16 @@ const ProductCard = ({
                     ? { onClick: () => handleModalOpen(id) }
                     : {})}
                 >
-                  {!coverImage?.scaledSrc ? (
-                    <Link // eslint-disable-line jsx-a11y/anchor-is-valid
-                      href={
-                        productListImagePopUpEnabled ? '' : `/product/${id}`
-                      }
-                      target="_self"
-                    >
-                      <Placeholder />
-                    </Link>
-                  ) : (
-                    <Image
-                      image={coverImage}
-                      href={
-                        productListImagePopUpEnabled ? '' : `/product/${id}`
-                      }
-                      contentWidth={100}
-                      alignment="center"
-                      newWindow={false}
-                      ratio={1}
-                      isUsingCache={isUsingCache}
-                      alt={title[i18n.language] || title.zh_TW}
-                    />
-                  )}
+                  <Image
+                    image={coverImage || { scaledSrc: placeholderThumbnail }}
+                    href={productListImagePopUpEnabled ? '' : `/product/${id}`}
+                    contentWidth={100}
+                    alignment="center"
+                    newWindow={false}
+                    ratio={1}
+                    isUsingCache={isUsingCache}
+                    alt={title[i18n.language] || title.zh_TW}
+                  />
                 </div>
               )}
 

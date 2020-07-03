@@ -9,7 +9,7 @@ import { useApolloClient } from '@apollo/react-hooks';
 import { Form, Input, Icon, Button, Tooltip } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import getImage, {
+import {
   pageManagerPageTipPath_w200 as pageManagerPageTipPath,
   pageManagerPageTipTab_w200 as pageManagerPageTipTab,
 } from '@meepshop/images';
@@ -131,7 +131,7 @@ export default Form.create<PropsType>()(
                       title={
                         <img
                           className={styles.tooltip}
-                          src={getImage(pageManagerPageTipPath)}
+                          src={pageManagerPageTipPath}
                           alt="pageManagerPageTipPath"
                         />
                       }
@@ -182,7 +182,7 @@ export default Form.create<PropsType>()(
                       title={
                         <img
                           className={styles.tooltip}
-                          src={getImage(pageManagerPageTipTab)}
+                          src={pageManagerPageTipTab}
                           alt="pageManagerPageTipTab"
                         />
                       }

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Button, Icon } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import getImage, { uploadImage_w56 as uploadImage } from '@meepshop/images';
+import { uploadImage_w56 as uploadImage } from '@meepshop/images';
 import usePortalTarget from '@admin/utils/lib/hooks/usePortalTarget';
 import Gallery from '@admin/gallery';
 
@@ -39,7 +39,7 @@ const UploadImage = React.memo(
         <img
           className={styles.image}
           onClick={() => setVisible(true)}
-          src={getImage(uploadImage)}
+          src={uploadImage}
           alt="upload"
         />
 

@@ -4,7 +4,7 @@ import radium, { Style, StyleRoot } from 'radium';
 import Slider from 'react-slick';
 import Lazy from 'image/img/Lazy';
 
-import Placeholder from '@store/placeholder';
+import { placeholderThumbnail_scaledSrc as placeholderThumbnail } from '@meepshop/images';
 
 import ArrowIcon from './ArrowIcon';
 import * as styles from './styles';
@@ -64,27 +64,20 @@ export default class ProductCarousel extends React.PureComponent {
 
   setMainImage = () => {
     const { coverImage, galleries } = this.props;
-
-    return [
+    const images = [
       ...(coverImage?.scaledSrc ? [coverImage] : []),
       ...(galleries?.[0]?.images || []).filter(
         image => image?.scaledSrc && image.fileId !== coverImage?.fileId,
       ),
     ];
+
+    return images.length !== 0 ? images : [{ scaledSrc: placeholderThumbnail }];
   };
 
   render() {
     const { autoPlay, thumbsPosition, mode } = this.props;
     const { slider, navigator } = this.state;
     const images = this.setMainImage();
-
-    if (!images.length) {
-      return (
-        <div style={styles.placeholder(mode)}>
-          <Placeholder />
-        </div>
-      );
-    }
 
     return (
       <div style={styles.root}>

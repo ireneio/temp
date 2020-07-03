@@ -4,11 +4,10 @@ import { areEqual } from 'fbjs';
 import radium, { Style } from 'radium';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { placeholderThumbnail_scaledSrc as placeholderThumbnail } from '@meepshop/images';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
-import Link from 'link';
-import Placeholder from '@store/placeholder';
 import PopUp from 'productList/PopUp';
 import { ID_TYPE, COLOR_TYPE, POSITIVE_NUMBER_TYPE } from 'constants/propTypes';
 import { PHONE_MEDIA } from 'constants/media';
@@ -119,20 +118,16 @@ export default class Product extends React.PureComponent {
     return (
       <div style={styles.root}>
         <Style scopeSelector=".ant-modal" rules={styles.modalStyle(colors)} />
-        {coverImage?.scaledSrc ? (
-          <Image
-            image={coverImage}
-            href={`/product/${id}`}
-            contentWidth={100}
-            newWindow={false}
-            alignment="center"
-            alt={title[i18n.language] || title.zh_TW}
-          />
-        ) : (
-          <Link href={`/product/${id}`} target="_self">
-            <Placeholder />
-          </Link>
-        )}
+
+        <Image
+          image={coverImage || { scaledSrc: placeholderThumbnail }}
+          href={`/product/${id}`}
+          contentWidth={100}
+          newWindow={false}
+          alignment="center"
+          alt={title[i18n.language] || title.zh_TW}
+        />
+
         <div style={styles.productText}>
           <div style={styles.productTitle}>
             {title[i18n.language] || title.zh_TW}

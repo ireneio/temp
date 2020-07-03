@@ -3,7 +3,7 @@ import React from 'react';
 import { Icon as AntdIcon } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import getImage, {
+import {
   pageManagerEmpty,
   pageManagerTopMenu,
   pageManagerTopAndSideMenu,
@@ -60,7 +60,7 @@ const ContainerSelect = React.memo(
               <AntdIcon type="check-circle" theme="filled" />
             )}
 
-            <img className={styles.icon} src={getImage(src)} alt={itemValue} />
+            <img className={styles.icon} src={src} alt={itemValue} />
 
             <span className={styles.text}>{t(`template.${itemValue}`)}</span>
           </div>

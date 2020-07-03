@@ -6,7 +6,7 @@ import React from 'react';
 import { Form, Input, Checkbox, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import getImage, { meepshopLogo } from '@meepshop/images';
+import { meepshopLogo } from '@meepshop/images';
 
 import useSendResetPasswordEmail from './hooks/useSendResetPasswordEmail';
 
@@ -34,7 +34,7 @@ export default Form.create<PropsType>()(
       return (
         <div className={styles.root}>
           <div className={styles.wrapper}>
-            <img src={getImage(meepshopLogo)} alt="meepshop" />
+            <img src={meepshopLogo} alt="meepshop" />
             <div>{t('forget-password.title')}</div>
             <div>{t('forget-password.description')}</div>
 

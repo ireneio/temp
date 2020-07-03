@@ -7,7 +7,7 @@ import React from 'react';
 import { Form, Input, Button, Icon } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import getImage, { meepshopLogo } from '@meepshop/images';
+import { meepshopLogo, loginBackground } from '@meepshop/images';
 import { useRouter } from '@meepshop/link';
 
 import useSetUserPasswordByToken from './hooks/useSetUserPasswordByToken';
@@ -32,10 +32,14 @@ const ResetPasswordWrapper = Form.create<FormComponentProps>()(
       } = useSetUserPasswordByToken();
 
       return (
-        <div className={styles.root}>
+        <div
+          className={styles.root}
+          style={{ backgroundImage: `url('${loginBackground}')` }}
+        >
           {!response ? (
             <div className={styles.wrapper}>
-              <img src={getImage(meepshopLogo)} alt="meepshop" />
+              <img src={meepshopLogo} alt="meepshop" />
+
               <div>{t('set-password')}</div>
 
               <FormItem>

@@ -8,6 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@meepshop/images": "^0.47.0",
     "@meepshop/link": "^0.47.0",
     "@store/utils": "^0.47.0",
     "moment": "^2.22.1"

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { placeholderImage } from '@meepshop/images';
+
 import { POSITIVE_FLOAT_TYPE, POSITIVE_NUMBER_TYPE } from 'constants/propTypes';
 
 import styles from './styles/placeholder.less';
@@ -27,7 +29,7 @@ class Placeholder extends React.PureComponent {
         className={`${styles.root} ${width === 0 ? '' : styles.done}`}
         style={{
           ...(width === 0 ? {} : { height: `${height}px` }),
-          background: 'url("/images/image-placeholder.svg") top / cover',
+          background: `url("${placeholderImage}") top / cover`,
         }}
       />
     );

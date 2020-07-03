@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import getImage, { storeClose } from '@meepshop/images';
+import { storeClose } from '@meepshop/images';
 
 import './styles/index.less';
 
@@ -11,7 +11,7 @@ export default () => {
 
   return (
     <div className="close-view-root">
-      <img src={getImage(storeClose)} alt="store-close" />
+      <img src={storeClose} alt="store-close" />
       <div>{t('close')}</div>
       <div>{t('come-back-soon')}</div>
       <div>Sorry, we are closed and will be back soon.</div>

@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { Tooltip, Icon, Button, Modal, Form, Input } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import getImage, {
+import {
   webTrackGoogleAnalytics_w224 as webTrackGoogleAnalytics,
   webTrackGoogleAnalyticsInstruction_w888 as webTrackGoogleAnalyticsInstruction,
 } from '@meepshop/images';
@@ -37,7 +37,7 @@ export default Form.create<PropsType>()(
 
     return (
       <div>
-        <img src={getImage(webTrackGoogleAnalytics)} alt="GoogleAnalytics" />
+        <img src={webTrackGoogleAnalytics} alt="GoogleAnalytics" />
 
         <div className={styles.title}>
           <div>{t('google-analytics.title')}</div>
@@ -53,7 +53,7 @@ export default Form.create<PropsType>()(
           onCancel={() => openModal(false)}
         >
           <img
-            src={getImage(webTrackGoogleAnalyticsInstruction)}
+            src={webTrackGoogleAnalyticsInstruction}
             alt="GoogleAnalyticsInstruction"
           />
         </Modal>

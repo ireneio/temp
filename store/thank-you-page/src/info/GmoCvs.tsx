@@ -5,8 +5,8 @@ import moment from 'moment';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import currencyContext from '@store/currency';
+import { gmoCsvLogos } from '@meepshop/images';
 
-import CvsLogo from './images/CvsLogo';
 import styles from './styles/gmoCvs.less';
 
 // graphql typescript
@@ -80,7 +80,9 @@ export default React.memo(({ order, children }: PropsType) => {
             </div>
           ))}
         </div>
-        <CvsLogo />
+
+        <img src={gmoCsvLogos} alt="gmo-csv-logos" />
+
         <div>{t('cvs.description')}</div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import Head from 'next/head';
 import { Form, Input, Checkbox, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { loginLogo } from '@meepshop/images';
 
 import useGrecaptcha from './hooks/useGrecaptcha';
 import useLogin from './hooks/useLogin';
@@ -33,7 +34,7 @@ export default Form.create<PropsType>()(
 
           <div className={styles.root}>
             <Form onSubmit={onSubmit}>
-              <img src="/images/login/logo.gif" alt="Meepshop" />
+              <img src={loginLogo} alt="Meepshop" />
 
               <FormItem>
                 {getFieldDecorator('email', {

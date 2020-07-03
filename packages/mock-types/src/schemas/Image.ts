@@ -6,10 +6,7 @@ import { dashboardCost_scaledSrc as dashboardCost } from '@meepshop/images';
 import mock from '../mock';
 
 // graphql typescript
-import {
-  ImageMock,
-  ImageMock_scaledSrc as ImageMockScaledSrc,
-} from './__generated__/ImageMock';
+import { ImageMock } from './__generated__/ImageMock';
 
 // definition
 // eslint-disable-next-line no-unused-expressions
@@ -37,12 +34,9 @@ export default mock.add<ImageMock>('Image', [
   }),
   () => ({
     __typename: 'Image',
-    scaledSrc: Object.keys(dashboardCost).reduce(
-      (result, key: keyof typeof dashboardCost) => ({
-        ...result,
-        [key]: dashboardCost[key].stage,
-      }),
-      { __typename: 'ScaledURLs' } as ImageMockScaledSrc,
-    ),
+    scaledSrc: {
+      ...dashboardCost,
+      __typename: 'ScaledURLs',
+    },
   }),
 ]);

@@ -13,8 +13,8 @@ import memoizeOne from 'memoize-one';
 import transformColor from 'color';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import Thumbnail, { thumbnailFragment } from '@meepshop/thumbnail';
 import withContext from '@store/utils/lib/withContext';
-import Thumbnail, { thumbnailFragment } from '@store/thumbnail';
 import currencyContext from '@store/currency';
 
 import styles from './styles/products.less';
