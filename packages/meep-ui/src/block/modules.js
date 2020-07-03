@@ -1,3 +1,6 @@
+import productDraftText from '@meepshop/product-draft-text';
+import productVideo from '@meepshop/product-video';
+
 import image from 'image';
 import iframe from 'iframe';
 import googlemap from 'googleMap';
@@ -39,10 +42,12 @@ export default {
   'video-core': videoCore,
   'product-collections': productCollections,
   'product-carousell': productCarousell,
+  'product-draftText': productDraftText,
   'product-info': productInfo,
   products: productList.Default,
   'products-controlled': productList.Controlled,
   'product-service': productQA,
+  'product-video': productVideo,
   'draft-text': draftText,
   activity,
   checkout,

@@ -24,7 +24,7 @@ export default class Block extends React.PureComponent {
   };
 
   render() {
-    const { width: maxWidth, blocks } = this.props;
+    const { width: maxWidth, blocks, product } = this.props;
 
     return (
       <div
@@ -64,6 +64,7 @@ export default class Block extends React.PureComponent {
                   componentWidth,
                   padding,
                   level: 1,
+                  product,
                 }}
               />
             ))}

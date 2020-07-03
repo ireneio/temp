@@ -9,6 +9,8 @@
     "@meepshop/context": "^0.48.0",
     "@meepshop/images": "^0.48.0",
     "@meepshop/landing-page": "^0.48.0",
+    "@meepshop/product-draft-text": "^0.48.0",
+    "@meepshop/product-video": "^0.48.0",
     "@meepshop/thumbnail": "^0.48.0",
     "@meepshop/utils": "^0.48.0",
     "@store/ad-track": "^0.48.0",

@@ -283,6 +283,7 @@ class Container extends React.Component {
       customerCurrency,
       backgroundImage,
       page,
+      product,
       children,
     } = this.props;
 
@@ -319,6 +320,7 @@ class Container extends React.Component {
           dispatchAction={dispatchAction}
           /* props(not in context) */
           backgroundImage={backgroundImage} // background-image of page
+          product={product}
           radiumConfig={{ userAgent: location.userAgent }} // for radium media query
           {...page}
         >

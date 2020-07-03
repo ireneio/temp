@@ -51,7 +51,7 @@ export default class Widget extends React.PureComponent {
       'If `widgets` of the `Widget` is `null`, `module` can not be `null.`',
     );
 
-    const { padding, level, componentWidth } = widgetSetting;
+    const { padding, level, componentWidth, product } = widgetSetting;
     const Component = module ? modules[module] : null;
 
     const hasVisibleModule = Boolean(Component) && module !== 'viewTracking';
@@ -94,7 +94,7 @@ export default class Widget extends React.PureComponent {
                 `,
               }}
             />
-            <Component id={id} {...props} />
+            <Component {...props} id={id} product={product} />
           </div>
         ) : (
           widgets.map(({ id: widgetId, ...data }, index) => (

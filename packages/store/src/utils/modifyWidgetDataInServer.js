@@ -104,6 +104,17 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
               contentWidth: widget.contentWidth,
             };
           }
+
+          case 'product-video':
+            return {
+              ...widget,
+              ratio: {
+                '16:9': 'Ratio16to9',
+                '4:3': 'Ratio4to3',
+                '16:10': 'Ratio16to10',
+              }[widget.ratio],
+            };
+
           /* 商品問答 */
           case 'product-service': {
             return {

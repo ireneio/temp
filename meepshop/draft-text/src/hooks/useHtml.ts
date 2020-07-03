@@ -12,7 +12,7 @@ export const format = (value: object): string =>
       name: font,
       family: font,
     })),
-  });
+  }).replace(/<p(| style=".*")><\/p>/g, '<br />');
 
 export default (value: object | null): string =>
   useMemo(() => (!value ? '' : format(value)), [value]);

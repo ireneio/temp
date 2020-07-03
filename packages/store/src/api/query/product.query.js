@@ -14,6 +14,12 @@ const productQuery = `{
     zh_TW
     en_US
   }
+  draftText {
+    value
+  }
+  videoLink {
+    value
+  }
   variantInfo {
     sku
     listPrice
