@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.48.3 (2020-07-06)
+
+#### :bug: Bug Fix
+
+- [#1028](https://github.com/meepshop/meep-lerna/pull/1028) (@meepshop/utils) Fix antd styles ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.48.2 (2020-07-06)
 
 #### :rocket: New Feature
