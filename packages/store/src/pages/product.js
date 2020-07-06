@@ -53,7 +53,6 @@ class Product extends React.Component {
     product: PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.object,
-      variantInfo: PropTypes.object,
       status: PropTypes.number.isRequired,
     }).isRequired,
     pageAdTrackIDs: PropTypes.shape({

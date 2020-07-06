@@ -82,21 +82,18 @@ export default class ProductInfo extends React.PureComponent {
 
     /** REMAINED productData or JUST setState */
     if (id === prevState.id) {
-      const variantInfo = reformatVariant(
-        prevState.variantInfo,
-        stockNotificationList,
-      );
+      const variant = reformatVariant(prevState.variant, stockNotificationList);
       return {
-        variantInfo,
+        variant,
         isInWishList,
         cart,
 
         // check orderable and quantity as well
-        ...calculateOrderable(variantInfo, cart, prevState.quantity),
+        ...calculateOrderable(variant, cart, prevState.quantity),
 
         // change after addToCart/addToNotificationList
         ...(!areEqual(cart, prevState.cart) ||
-        !areEqual(variantInfo, prevState.variantInfo)
+        !areEqual(variant, prevState.variant)
           ? {
               isAddingItem: false,
             }
@@ -118,7 +115,7 @@ export default class ProductInfo extends React.PureComponent {
         id,
         quantity: null,
         coordinates: null,
-        variantInfo: {},
+        variant: {},
         orderable: NO_VARIANTS,
         isInWishList,
         cart,
@@ -137,34 +134,34 @@ export default class ProductInfo extends React.PureComponent {
             },
           }) => stock > 0,
         ) || variantsLeaves[0];
-      const variantInfo = reformatVariant(
+      const variant = reformatVariant(
         variantNode.data.variant,
         stockNotificationList,
       );
 
       return {
         id,
-        quantity: variantInfo.minPurchaseItems,
+        quantity: variant.minPurchaseItems,
         coordinates: findCoordinates(variantNode),
-        variantInfo,
+        variant,
         isInWishList,
         cart,
         ...initState,
-        ...calculateOrderable(variantInfo, cart),
+        ...calculateOrderable(variant, cart),
       };
     }
 
-    const variantInfo = reformatVariant(variants[0], stockNotificationList);
+    const variant = reformatVariant(variants[0], stockNotificationList);
     // 單規格
     return {
       id,
-      quantity: variantInfo.minPurchaseItems,
+      quantity: variant.minPurchaseItems,
       coordinates: null,
-      variantInfo,
+      variant,
       isInWishList,
       cart,
       ...initState,
-      ...calculateOrderable(variantInfo, cart),
+      ...calculateOrderable(variant, cart),
     };
   }
 
@@ -184,7 +181,7 @@ export default class ProductInfo extends React.PureComponent {
     });
     this.setState({
       coordinates: newCoordinates,
-      variantInfo: variantsTree.data.variant,
+      variant: variantsTree.data.variant,
     });
   };
 
@@ -194,7 +191,7 @@ export default class ProductInfo extends React.PureComponent {
 
   addToCart = () => {
     const { adTrack, addCartItems, productData, type } = this.props;
-    const { variantInfo, quantity } = this.state;
+    const { variant, quantity } = this.state;
 
     this.setState({ isAddingItem: true });
 
@@ -202,20 +199,20 @@ export default class ProductInfo extends React.PureComponent {
       [
         {
           productId: productData.id,
-          variantId: variantInfo.id,
+          variantId: variant.id,
           quantity,
         },
       ],
-      variantInfo.totalPrice,
+      variant.totalPrice,
       () => {
         adTrack.addToCart({
           eventName: type === 'pop-up' ? 'ec-popup' : 'ec',
           id: productData.id,
           title: productData.title,
           quantity,
-          sku: variantInfo.sku,
-          specs: variantInfo.specs,
-          price: variantInfo.totalPrice,
+          sku: variant.sku,
+          specs: variant.specs,
+          price: variant.totalPrice,
         });
       },
     );
@@ -260,11 +257,11 @@ export default class ProductInfo extends React.PureComponent {
         this.setState({ isModalOpen: true });
         break;
       case ISUSER: {
-        const { variantInfo } = this.state;
+        const { variant } = this.state;
 
         this.setState({ isAddingItem: true });
         dispatchAction('addToNotificationList', {
-          variantId: variantInfo.id,
+          variantId: variant.id,
         });
         break;
       }
@@ -297,7 +294,7 @@ export default class ProductInfo extends React.PureComponent {
     const {
       coordinates,
       quantity,
-      variantInfo,
+      variant,
       orderable,
       isAddingItem,
       isAddingWish,
@@ -344,7 +341,7 @@ export default class ProductInfo extends React.PureComponent {
           <div style={styles.wrapper(mode)}>
             <Description
               productData={productData}
-              variantInfo={variantInfo}
+              variant={variant}
               transformCurrency={transformCurrency}
               colors={colors}
               isLogin={isLogin}
@@ -365,7 +362,7 @@ export default class ProductInfo extends React.PureComponent {
             )}
             {quantity !== null && (
               <QuantityButton
-                variantInfo={variantInfo}
+                variant={variant}
                 orderable={orderable}
                 quantity={quantity}
                 colors={colors}
@@ -377,7 +374,7 @@ export default class ProductInfo extends React.PureComponent {
             )}
           </div>
           <AddButton
-            variantInfo={variantInfo}
+            variant={variant}
             orderable={orderable}
             addToCart={addToCart}
             addToWishList={addToWishList}

@@ -20,29 +20,6 @@ const productQuery = `{
   videoLink {
     value
   }
-  variantInfo {
-    sku
-    listPrice
-    retailPrice
-    suggestedPrice
-    stock
-    cost
-    vendorSku
-    maxPurchaseLimit
-    minPurchaseItems
-    weight {
-      weight
-      unit
-    }
-    size {
-      width
-      height
-      depth
-      unit
-    }
-    warehouseNumber
-    minRetailPrice
-  }
   coverImage {
     fileId
     scaledSrc {

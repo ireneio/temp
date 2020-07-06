@@ -125,11 +125,11 @@ class PayemntInfo extends React.PureComponent {
     window.removeEventListener('scroll', this.scrollToLandingPage);
   }
 
-  getVariantInfo = variant => {
+  getVariantPrice = variantIds => {
     const { t, variants } = this.props;
-    const [variantId] = variant.slice(-1);
-    const variantInfo = variants.find(({ id }) => id === variantId) || {};
-    let { minPurchaseItems, maxPurchaseLimit } = variantInfo;
+    const [variantId] = variantIds.slice(-1);
+    const variant = variants.find(({ id }) => id === variantId) || {};
+    let { minPurchaseItems, maxPurchaseLimit } = variant;
 
     // minPurchaseItems 最小需等於 1
     minPurchaseItems = minPurchaseItems > 0 ? minPurchaseItems : 1;
@@ -141,20 +141,18 @@ class PayemntInfo extends React.PureComponent {
           ? maxPurchaseLimit
           : minPurchaseItems;
     } else {
-      maxPurchaseLimit = variantInfo.stock;
+      maxPurchaseLimit = variant.stock;
     }
 
     const variantMin = minPurchaseItems;
     const variantMax =
-      maxPurchaseLimit > variantInfo.stock
-        ? variantInfo.stock
-        : maxPurchaseLimit;
+      maxPurchaseLimit > variant.stock ? variant.stock : maxPurchaseLimit;
 
     if (variantMax === 0 || variantMax < variantMin)
       Modal.error({ title: t('no-variant') });
 
     this.trackAddToCart();
-    this.computeOrderList({ variant });
+    this.computeOrderList({ variant: variantIds });
     this.setState({ variantMin, variantMax });
   };
 
@@ -169,11 +167,11 @@ class PayemntInfo extends React.PureComponent {
       const [{ id: variantId }] = variants;
 
       setFieldsValue({ variant: [variantId] });
-      this.getVariantInfo([variantId]);
+      this.getVariantPrice([variantId]);
       this.scrollToLandingPage();
       window.addEventListener('scroll', this.scrollToLandingPage);
     } else if (variant) {
-      this.getVariantInfo(variant);
+      this.getVariantPrice(variant);
     } else if (productId) {
       this.computeOrderList();
     }
@@ -377,7 +375,7 @@ class PayemntInfo extends React.PureComponent {
                       } ${label.join(' / ')}`
                 }
                 allowClear={false}
-                onChange={this.getVariantInfo}
+                onChange={this.getVariantPrice}
               />
             ),
           )}

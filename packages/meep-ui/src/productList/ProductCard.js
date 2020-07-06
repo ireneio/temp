@@ -75,10 +75,9 @@ const ProductCard = ({
             variants,
             showUserPrice,
           } = product;
-          const variantInfo = variants[0] || {};
+          const variant = variants[0] || {};
           const orderable =
-            variants.reduce((prev, variant) => prev + (variant.stock || 0), 0) >
-            0;
+            variants.reduce((prev, { stock }) => prev + (stock || 0), 0) > 0;
           const productListImagePopUpEnabled = type === 'pop-up';
 
           return (
@@ -135,7 +134,7 @@ const ProductCard = ({
 
               {showPrice && (
                 <div style={styles.productPrice}>
-                  {variantInfo.listPrice &&
+                  {variant.listPrice &&
                   (!memberSeePrice ||
                     showUserPrice?.showListPrice ||
                     isLogin === ISUSER) ? (
@@ -144,12 +143,12 @@ const ProductCard = ({
                         {t('list-price')}
 
                         <s style={styles.strike}>
-                          {transformCurrency(variantInfo.listPrice)}
+                          {transformCurrency(variant.listPrice)}
                         </s>
                       </span>
                     </div>
                   ) : null}
-                  {variantInfo.suggestedPrice &&
+                  {variant.suggestedPrice &&
                   (!memberSeePrice ||
                     showUserPrice?.showSuggestedPrice ||
                     isLogin === ISUSER) ? (
@@ -158,16 +157,16 @@ const ProductCard = ({
                         {t('suggested-price')}
 
                         <s style={styles.strike}>
-                          {transformCurrency(variantInfo.suggestedPrice)}
+                          {transformCurrency(variant.suggestedPrice)}
                         </s>
                       </span>
                     </div>
                   ) : null}
-                  {variantInfo.totalPrice ? (
+                  {variant.totalPrice ? (
                     <div style={styles.thePrice}>
                       {memberSeePrice && isLogin !== ISUSER
                         ? t('member-see-price')
-                        : transformCurrency(variantInfo.totalPrice)}
+                        : transformCurrency(variant.totalPrice)}
                     </div>
                   ) : null}
                 </div>

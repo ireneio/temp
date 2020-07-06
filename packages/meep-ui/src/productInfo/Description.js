@@ -15,7 +15,7 @@ const Description = ({
   t,
   i18n,
   productData,
-  variantInfo,
+  variant,
   mode,
   colors,
   transformCurrency,
@@ -28,8 +28,8 @@ const Description = ({
         {productData.title[i18n.language] || productData.title.zh_TW}
       </h1>
     )}
-    {mode === 'detail' && variantInfo.sku && (
-      <div style={styles.sku}>{variantInfo.sku}</div>
+    {mode === 'detail' && variant.sku && (
+      <div style={styles.sku}>{variant.sku}</div>
     )}
     {mode === 'detail' && (
       <DraftText
@@ -58,7 +58,7 @@ const Description = ({
       <div style={styles.price}>
         <div>
           {mode === 'detail' &&
-          variantInfo.listPrice &&
+          variant.listPrice &&
           (!memberSeePrice ||
             productData.showUserPrice?.showListPrice ||
             isLogin === ISUSER) ? (
@@ -66,12 +66,12 @@ const Description = ({
               {t('list-price')}
 
               <s style={styles.strike}>
-                {transformCurrency(variantInfo.listPrice)}
+                {transformCurrency(variant.listPrice)}
               </s>
             </span>
           ) : null}
           {mode === 'detail' &&
-          variantInfo.suggestedPrice &&
+          variant.suggestedPrice &&
           (!memberSeePrice ||
             productData.showUserPrice?.showSuggestedPrice ||
             isLogin === ISUSER) ? (
@@ -79,16 +79,16 @@ const Description = ({
               {t('suggested-price')}
 
               <s style={styles.strike}>
-                {transformCurrency(variantInfo.suggestedPrice)}
+                {transformCurrency(variant.suggestedPrice)}
               </s>
             </span>
           ) : null}
         </div>
-        {variantInfo.totalPrice ? (
+        {variant.totalPrice ? (
           <div style={styles.thePrice}>
             {memberSeePrice && isLogin !== ISUSER
               ? t('member-see-price')
-              : transformCurrency(variantInfo.totalPrice)}
+              : transformCurrency(variant.totalPrice)}
           </div>
         ) : null}
       </div>
@@ -100,7 +100,7 @@ const Description = ({
 Description.propTypes = {
   t: PropTypes.func.isRequired,
   productData: PRODUCT_TYPE.isRequired,
-  variantInfo: VARIANT_TYPE.isRequired,
+  variant: VARIANT_TYPE.isRequired,
   mode: PropTypes.oneOf(['list', 'detail']).isRequired,
   transformCurrency: PropTypes.func.isRequired,
   isLogin: ISLOGIN_TYPE.isRequired,

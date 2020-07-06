@@ -21,7 +21,7 @@ import {
 export default class QuantityButton extends React.Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
-    variantInfo: VARIANT_TYPE.isRequired,
+    variant: VARIANT_TYPE.isRequired,
     orderable: ORDERABLE_TYPE.isRequired,
     quantity: PropTypes.number.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -56,7 +56,7 @@ export default class QuantityButton extends React.Component {
   generateOptions = () => {
     const {
       t,
-      variantInfo,
+      variant,
       orderable,
       quantity,
       cart,
@@ -65,7 +65,7 @@ export default class QuantityButton extends React.Component {
       container,
     } = this.props;
     const { result } = this.state;
-    const { id, stock, maxPurchaseLimit, minPurchaseItems } = variantInfo;
+    const { id, stock, maxPurchaseLimit, minPurchaseItems } = variant;
 
     if (orderable === ORDERABLE) {
       const variantInCart =

@@ -15,7 +15,7 @@ import { VARIANT_TYPE, ORDERABLE_TYPE } from './constants';
 export default class AddButton extends React.Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
-    variantInfo: VARIANT_TYPE.isRequired,
+    variant: VARIANT_TYPE.isRequired,
     orderable: ORDERABLE_TYPE.isRequired,
     isInWishList: PropTypes.bool.isRequired,
     isAddingItem: PropTypes.bool.isRequired,
@@ -34,7 +34,7 @@ export default class AddButton extends React.Component {
   generateAddButton = () => {
     const {
       t,
-      variantInfo,
+      variant,
       addToCart,
       addToNotificationList,
       orderable,
@@ -94,9 +94,9 @@ export default class AddButton extends React.Component {
           {...config}
           loading={isAddingItem}
           onClick={addToNotificationList}
-          disabled={variantInfo.productNotice || isAddingItem}
+          disabled={variant.productNotice || isAddingItem}
         >
-          {variantInfo.productNotice ? t('notice-done') : t('notice-me')}
+          {variant.productNotice ? t('notice-done') : t('notice-me')}
         </Button>
       );
     }
