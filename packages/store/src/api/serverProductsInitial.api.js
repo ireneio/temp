@@ -17,27 +17,11 @@ import {
 export default async function(context) {
   const variables = {
     keys:
-      '$pageSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $memberGroupFilter: MemberGroupFilterInput, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$pageFilter: StorePagesFilterInput, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $memberGroupFilter: MemberGroupFilterInput, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverProductsInitial',
     values: {
-      pageSearch: {
-        size: 50,
-        from: 0,
-        sort: [
-          {
-            field: 'createdOn',
-            order: 'asc',
-          },
-        ],
-        filter: {
-          and: [
-            {
-              type: 'exact',
-              field: 'pageType',
-              query: 'products',
-            },
-          ],
-        },
+      pageFilter: {
+        type: 'PRODUCTS',
       },
       menuSearch: {
         size: 50,
@@ -126,11 +110,17 @@ export default async function(context) {
   const query = `
     ${viewer}
     ${viewerStoreQuery}
-    getPageList(search: $pageSearch) {
-      data {
-        ${pageQuery}
+    viewer {
+      store {
+        pages(first: 1, filter: $pageFilter) {
+          edges {
+            node {
+              ${pageQuery}
+            }
+          }
+          total
+        }
       }
-      total
     }
     getMenuList(search: $menuSearch) {
       data {

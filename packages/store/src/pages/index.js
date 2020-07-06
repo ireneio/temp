@@ -26,7 +26,7 @@ class Index extends React.Component {
         R.isNil(homePageId) &&
         R.isNil(R.find(R.propEq('pageType', 'home'))(pagesReducer))
       ) {
-        store.dispatch(Actions.getPages({ pageType: 'home', query }));
+        store.dispatch(Actions.getPages({ pageType: 'HOME', query }));
       } else if (
         !R.isNil(homePageId) &&
         R.isNil(R.find(R.propEq('id', homePageId))(pagesReducer))

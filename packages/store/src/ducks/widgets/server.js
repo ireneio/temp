@@ -29,11 +29,11 @@ function* serverIndexInitialFlow({ payload }) {
       yield put(getStoreSuccess({ ...data, customerCurrency }));
       yield put(getAuthSuccess(data));
       const homePageId = data?.data?.viewer?.store?.homePageId;
-      const pages = data?.data?.getPageList?.data;
+      const pages = data?.data?.viewer?.store?.pages.edges;
 
       const page = !homePageId
-        ? pages[0]
-        : pages.find(_page => _page.id === homePageId);
+        ? pages[0].node
+        : pages.find(({ node }) => node.id === homePageId)?.node;
 
       const modifiedPage = yield Utils.getPageWithModifyWidget(page, payload);
       yield put(getPagesSuccess(modifiedPage));
@@ -66,7 +66,8 @@ function* serverPagesInitialFlow({ payload }) {
       yield put(getStoreSuccess({ ...data, customerCurrency }));
       yield put(getAuthSuccess(data));
 
-      const page = data?.data?.getPageList?.data?.[0];
+      const page = data?.data?.viewer?.store?.pages.edges[0].node;
+
       if (page) {
         const modifiedPage = yield Utils.getPageWithModifyWidget(page, payload);
         yield put(getPagesSuccess(modifiedPage));
@@ -98,9 +99,9 @@ function* serverProductInitialFlow({ payload }) {
 
     if (pId === 'preview' && data?.data) {
       const { pageId } = query;
-      const pageResponse = yield call(Api.getPages, { ...payload, id: pageId });
+      const pageResponse = yield call(Api.getPage, { ...payload, id: pageId });
 
-      previewProduct.page = pageResponse.data?.getPageList?.data[0] || null;
+      previewProduct.page = pageResponse.data?.viewer?.store?.page || null;
       data.data.computeProductList.data = [previewProduct];
       data.data.computeProductList.total = 1;
     }
@@ -162,7 +163,7 @@ function* serverProductsInitialFlow({ payload }) {
 
       yield put(getStoreSuccess({ ...data, customerCurrency }));
       yield put(getAuthSuccess(data));
-      const page = data?.data?.getPageList?.data?.[0];
+      const page = data?.data?.viewer?.store?.pages.edges[0].node;
       if (page) {
         const modifiedPage = yield Utils.getPageWithModifyWidget(page, payload);
         yield put(getPagesSuccess(modifiedPage));

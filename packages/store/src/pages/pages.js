@@ -31,9 +31,7 @@ class Pages extends React.Component {
     } else {
       const { pagesReducer } = store.getState();
       if (!pagesReducer.find(page => page.path === path)) {
-        store.dispatch(
-          Actions.getPages({ path, pageTypes: ['custom', 'products'], query }),
-        );
+        store.dispatch(Actions.getPages({ pageType: 'CUSTOM', path, query }));
       }
     }
     return { path, userAgent, XMeepshopDomain };

@@ -1,4 +1,5 @@
 import getPages from './getPages.api';
+import getPage from './getPage.api';
 // Cart
 import addItemsToCart from './addItemsToCart.api';
 import updateItemsToCart from './updateItemsToCart.api';
@@ -34,6 +35,7 @@ import sendPaymentNotification from './sendPaymentNotification.api';
 
 export {
   getPages,
+  getPage,
   // 購物車
   addItemsToCart,
   updateItemsToCart,

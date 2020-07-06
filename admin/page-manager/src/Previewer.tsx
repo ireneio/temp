@@ -52,9 +52,7 @@ export default React.memo(
     page: { id, title, pageType, path },
   }: PropsType) => {
     const { t, i18n } = useTranslation('page-manager');
-    const { loading, scale, iframeRef, onLoad, iframeKey } = useIframeLoading(
-      id,
-    );
+    const { loading, scale, iframeRef, onLoad } = useIframeLoading(id);
 
     return (
       <div className={styles.root}>
@@ -64,7 +62,6 @@ export default React.memo(
 
         <Spin wrapperClassName={styles.iframe} spinning={loading}>
           <iframe
-            key={iframeKey}
             ref={iframeRef}
             style={{
               transform: `scale(${scale})`,

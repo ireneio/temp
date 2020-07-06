@@ -14,27 +14,16 @@ export default (
       target: { parentNode: HTMLElement };
     },
   ) => void;
-  iframeKey: string;
 } => {
   const [{ loading, scale }, setLoading] = useState({
     loading: false,
     scale: 0,
   });
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [iframeKey, setIframeKey] = useState(new Date().toString());
 
   useEffect(() => {
     setLoading({ loading: true, scale });
 
-    // FIXME: T5117 remove setIframeKey and setTimeout
-    const timeout = setTimeout(() => {
-      setLoading({ loading: true, scale });
-      setIframeKey(new Date().toString());
-    }, 1000);
-
-    return () => {
-      clearTimeout(timeout);
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, setLoading]);
   useEffect((): (() => void) => {
@@ -71,6 +60,5 @@ export default (
       },
       [],
     ),
-    iframeKey,
   };
 };

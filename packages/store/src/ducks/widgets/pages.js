@@ -30,14 +30,24 @@ export const getPagesFailure = payload => ({
 function* getPagesFlow({ payload }) {
   const { query } = payload;
   try {
-    const data = yield call(Api.getPages, payload);
+    const data = payload.id
+      ? yield call(Api.getPage, payload)
+      : yield call(Api.getPages, payload);
+
     if (data.apiErr) {
       yield put(getPagesFailure(data.apiErr));
     } else {
-      let newPages = data?.data?.getPageList?.data || [];
+      let newPages = payload.id
+        ? [
+            ...(data.data?.viewer?.store?.page
+              ? [{ node: data.data?.viewer?.store?.page }]
+              : []),
+          ]
+        : data?.data?.viewer?.store?.pages.edges || [];
+
       if (newPages.length > 0) {
-        newPages = newPages.map(page => {
-          const blocks = page.blocks
+        newPages = newPages.map(({ node }) => {
+          const blocks = node.blocks
             .filter(
               ({ releaseDateTime }) =>
                 !releaseDateTime ||
@@ -49,7 +59,7 @@ function* getPagesFlow({ payload }) {
               componentWidth: componentWidth || 0,
               widgets: modifyWidgetDataInClient(widgets, query),
             }));
-          return { ...page, blocks };
+          return { ...node, blocks };
         });
         yield put(getPagesSuccess(newPages));
       } else {
