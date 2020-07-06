@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## 0.48.2 (2020-07-06)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#977](https://github.com/meepshop/meep-lerna/pull/977) 前端 - 前後台 移除 getPageList ([@happycat6323](https://github.com/happycat6323))
+  - [#998](https://github.com/meepshop/meep-lerna/pull/998) 【優化】重設密碼錯誤訊息文字（ token 過期） ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- [#1027](https://github.com/meepshop/meep-lerna/pull/1027) 【BUG】新開商店 - 前台商品頁預設商品文字與後台不同 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `store`
+  - [#1007](https://github.com/meepshop/meep-lerna/pull/1007) 前端 - 移除 variantInfo 欄位，改用 product.variants[0] 資料 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#1014](https://github.com/meepshop/meep-lerna/pull/1014) 前端 - createFileList 改給 id 且避免使用 linkId 欄位 Open ([@piovischioh](https://github.com/piovischioh))
+- `mock-types`, `store`
+  - [#1026](https://github.com/meepshop/meep-lerna/pull/1026) (@meepshop/frontend) Modify storybook and mock-types ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.48.1 (2020-07-03)
 
 #### :rocket: New Feature
