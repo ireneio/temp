@@ -11,7 +11,7 @@ import { calculateOrderOrderFragment as calculateOrderOrderFragmentType } from '
 import { calculateOrderOrderApplyListFragment as calculateOrderOrderApplyListFragmentType } from './utils/__generated__/calculateOrderOrderApplyListFragment';
 
 // definition
-export const resolver = {
+export const resolvers = {
   Query: {
     viewer: ({
       viewer,

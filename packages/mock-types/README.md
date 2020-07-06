@@ -5,16 +5,15 @@ This package is used to mock `apollo-client` request result.
 ## How to use in a component
 
 1. Run `yarn schema` to download the schema for the mock types.
-2. Use `MockTypes` like this:
+2. Use `Mock Provider` like this:
 
 ```js
-import MockTypes from '@meepshop/mock-types';
-import * as resolvers from '/** worksapce */apollo-client-resolvers';
+import Provider from '/** worksapce */Provider';
 
 ...
-<MockTypes {...resolvers}>
+<Provider>
   <Component />
-</MockTypes>
+</Provider>
 ...
 ```
 
@@ -25,7 +24,7 @@ import * as resolvers from '/** worksapce */apollo-client-resolvers';
 ```js
 import runTest from '@meepshop/mock-types/src/runTest';
 
-runTest('store' or 'admin', <Component />);
+runTest('meepshop' or 'store' or 'admin', <Component />);
 ```
 
 If you need to test some functions like `onClick`, you can use like this:

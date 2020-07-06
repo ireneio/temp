@@ -123,7 +123,7 @@ const defaultApps = [
   { __typename: 'Apps' },
 );
 
-export const resolver = {
+export const resolvers = {
   Query: {
     viewer: ({
       viewer,

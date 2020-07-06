@@ -13,7 +13,7 @@ interface UserType {
 }
 
 // definition
-export const resolver = {
+export const resolvers = {
   User: {
     tel: ({ additionalInfo }: UserType) => additionalInfo?.tel || null,
     mobile: ({ additionalInfo }: UserType) => additionalInfo?.mobile || null,

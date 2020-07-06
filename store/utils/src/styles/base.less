@@ -1,20 +1,7 @@
 /** ignore meepshop id */
-@import '~antd/dist/antd.less';
+@import '~@meepshop/utils/lib/styles/base.less';
 
 @import './variables.less';
-
-* {
-  /** make scrolling smoothy in safari, ios */
-  -webkit-overflow-scrolling: touch;
-  /* Because the default value of IE is diifferent with other browser */
-  flex-shrink: 1;
-}
-
-html,
-body,
-:global(#__next) {
-  height: 100%;
-}
 
 :global(.ant-cascader-menus) {
   & > div {

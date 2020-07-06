@@ -20,7 +20,7 @@ export const colorListFragment = gql`
   }
 `;
 
-export const resolver = {
+export const resolvers = {
   ColorList: {
     colors: ({ data }: colorListFragmentType) => {
       const { selected = null, themes = null } = data?.[0] || {}; // TODO: should not be null

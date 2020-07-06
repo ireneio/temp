@@ -1,7 +1,7 @@
 // typescript import
 import { Context } from 'react';
 
-import { Subtract } from './types';
+import { Subtract } from '@meepshop/utils/lib/types';
 
 // import
 import React, { useContext } from 'react';

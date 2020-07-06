@@ -10,7 +10,7 @@
   "dependencies": {
     "@meepshop/utils": "^0.48.0",
     "@store/address-cascader": "^0.48.1",
-    "@store/apollo-client-resolvers": "^0.48.1",
+    "@store/apollo": "^0.48.1",
     "@store/utils": "^0.48.0",
     "memoize-one": "^5.1.1"
   },

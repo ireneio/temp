@@ -1,10 +1,7 @@
-// typescript import
-import { NormalizedCacheObject } from 'apollo-cache-inmemory';
-
 // import
 import React, { useState } from 'react';
 import { Button, Tooltip } from 'antd';
-import { ApolloClient } from 'apollo-client';
+import { useApolloClient } from '@apollo/react-hooks';
 
 import mock from './mock';
 import styles from './styles/mockData.less';
@@ -14,16 +11,15 @@ const { Group: ButtonGroup } = Button;
 
 export default React.memo(
   ({
-    client,
     setLoading,
     type,
     typeIndex,
   }: {
-    client: ApolloClient<NormalizedCacheObject>;
     setLoading: (loading: boolean) => void;
     type: string;
     typeIndex: number;
   }) => {
+    const client = useApolloClient();
     const [currentIndex, changeMockData] = useState<number>(
       mock.trackingIndex[typeIndex],
     );

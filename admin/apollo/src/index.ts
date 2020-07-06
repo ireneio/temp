@@ -24,7 +24,7 @@ export interface CustomCtx extends CtxType {
 // definition
 export const initializeCache = <C extends CustomCtx>(
   cache: InMemoryCache,
-  ctx: C | undefined,
+  ctx?: C,
 ): void => {
   cookies.initializeCache(cache, ctx);
   selectedOrders.initializeCache(cache);
@@ -33,14 +33,14 @@ export const initializeCache = <C extends CustomCtx>(
 export const introspectionQueryResultDataType = [modulesDataType];
 
 export default [
-  PageInfo.resolver,
-  selectedOrders.resolver,
-  viewer.resolver,
-  cookies.resolver,
+  PageInfo.resolvers,
+  selectedOrders.resolvers,
+  viewer.resolvers,
+  cookies.resolvers,
 ].reduce(
-  (result, { Query, Mutation, ...resolver }: Resolvers) => ({
+  (result, { Query, Mutation, ...resolvers }: Resolvers) => ({
     ...result,
-    ...resolver,
+    ...resolvers,
     Mutation: {
       ...result.Mutation,
       ...Mutation,

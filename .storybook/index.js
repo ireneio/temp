@@ -6,25 +6,21 @@ const path = require('path');
 // eslint-disable-next-line import/no-dynamic-require
 const { main, name } = require(path.resolve('./package.json'));
 const [, workspaceName] = name.match(/(@.*)\//);
+const upperCaseWorkspaceName = `${workspaceName[1].toUpperCase()}${workspaceName.slice(
+  2,
+)}`;
 
 require('output-file-sync')(
   path.resolve(__dirname, 'stories/index.js'),
   `/* eslint-disable */
 
 import React from 'react';
-import { storiesOf } from '@storybook/react';${
-    !['@store', '@admin'].includes(workspaceName)
-      ? ''
-      : `
+import { storiesOf } from '@storybook/react';
 
-import Provider from '@meepshop/mock-types/src/${workspaceName[1].toUpperCase()}${workspaceName.slice(
-          2,
-        )}Provider';
+import '../combined.less';
+
 import '${workspaceName}/utils/lib/styles/base.less';
-import * as resolvers from '${workspaceName}/apollo-client-resolvers';`
-  }
-
-import Wrapper from './Wrapper';
+import Provider from '@meepshop/mock-types/src/${upperCaseWorkspaceName}Provider';
 
 ${(() => {
   if (fs.existsSync(path.resolve('./mock.ts')))
@@ -39,21 +35,13 @@ const props = {}`;
   return `import Component from '${path.resolve(main)}';
 
 const props = {}`;
-})()}${
-    ['@store', '@admin'].includes(workspaceName)
-      ? ''
-      : `
-const resolvers = undefined;
-const Provider = ({ children }) => children;`
-  }
+})()}
 
 storiesOf('${name}', module)
   .add('demo', () => (
-    <Wrapper resolvers={resolvers}>
-      <Provider>
-        <Component {...props} />
-      </Provider>
-    </Wrapper>
+    <Provider>
+      <Component {...props} />
+    </Provider>
   ));`,
 );
 

@@ -7,19 +7,28 @@ import { mount, ReactWrapper } from 'enzyme';
 import { cartesianProduct } from 'js-combinatorics';
 import { emptyFunction } from 'fbjs';
 
-import { modulesDataType } from '@meepshop/modules';
-
 import mock from './mock';
-import MockTypes from './index';
 
 // definition
 const mockEvents = new events.EventEmitter();
+const mockLog = jest.fn();
 
 window.events = {
   dispatchEvent: (event: Event) => mockEvents.emit(event.toString()),
   addEventListener: mockEvents.on,
   removeEventListener: mockEvents.off,
 };
+global.console.error = (...messages: string[]) => {
+  if (
+    /Warning: An update to [\w%]+ inside a test was not wrapped in act/.test(
+      messages.join(''),
+    )
+  )
+    return;
+
+  mockLog(...messages);
+};
+global.console.warn = mockLog;
 
 export default (
   testType: 'meepshop' | 'store' | 'admin',
@@ -31,59 +40,21 @@ export default (
       ) => void | boolean)
     | undefined = emptyFunction.thatReturnsTrue,
 ): void => {
-  /* eslint-disable global-require */
-  const { resolvers, Provider } = (() => {
-    switch (testType) {
-      case 'store':
-        return {
-          resolvers: require('@store/apollo-client-resolvers'),
-          Provider: require('./StoreProvider').default,
-        };
+  const Provider = {
+    /* eslint-disable global-require */
+    meepshop: require('./MeepshopProvider').default,
+    store: require('./StoreProvider').default,
+    admin: require('./AdminProvider').default,
+    /* eslint-enable global-require */
+  }[testType];
+  const render = (): ReactWrapper<unknown, unknown> =>
+    mount(<Provider>{node}</Provider>);
 
-      case 'admin':
-        return {
-          resolvers: require('@admin/apollo-client-resolvers'),
-          Provider: require('./AdminProvider').default,
-        };
-
-      default:
-        return {
-          resolvers: {
-            initializeCache: emptyFunction,
-            introspectionQueryResultDataType: [modulesDataType],
-            default: {},
-          },
-          Provider: ({ children }: { children: React.ReactNode }) => children,
-        };
-    }
-  })();
-  /* eslint-enable global-require */
-  const mockLog = jest.fn();
-
-  global.console.error = (...messages: string[]) => {
-    if (
-      /Warning: An update to [\w%]+ inside a test was not wrapped in act/.test(
-        messages.join(''),
-      )
-    )
-      return;
-
-    mockLog(...messages);
-  };
-  global.console.warn = mockLog;
   mock.init();
-  mount(
-    <MockTypes {...resolvers}>
-      <Provider>{node}</Provider>
-    </MockTypes>,
-  );
+  render();
 
   if (mock.tracking.length === 0) {
-    const wrapper = mount(
-      <MockTypes {...resolvers}>
-        <Provider>{node}</Provider>
-      </MockTypes>,
-    );
+    const wrapper = render();
 
     if (callback(() => wrapper, []))
       test('exist', () => {
@@ -114,11 +85,7 @@ ${mock.tracking.map(type => `  ${type}: %i`).join('\n')}
 
       beforeAll(async () => {
         await act(async () => {
-          wrapper = mount(
-            <MockTypes {...resolvers}>
-              <Provider>{node}</Provider>
-            </MockTypes>,
-          );
+          wrapper = render();
         });
         wrapper.update();
       });

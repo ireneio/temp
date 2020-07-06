@@ -13,7 +13,7 @@ import { notification } from 'antd';
 import resolvers, {
   initializeCache,
   introspectionQueryResultDataType,
-} from '@store/apollo-client-resolvers';
+} from '@store/apollo';
 
 import shouldPrintError from './shouldPrintError';
 

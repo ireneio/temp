@@ -17,7 +17,7 @@ const fragment = gql`
   }
 `;
 
-export const resolver = {
+export const resolvers = {
   Mutation: {
     setCurrent: (
       _: unknown,

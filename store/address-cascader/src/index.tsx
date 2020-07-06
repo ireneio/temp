@@ -24,7 +24,7 @@ import {
 } from './__generated__/getCountriesAddress';
 
 // graphql import
-import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
+import { colorListFragment } from '@store/apollo/lib/ColorList';
 
 import { useOptionsFragment } from './hooks/useOptions';
 

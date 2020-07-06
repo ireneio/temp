@@ -26,7 +26,7 @@ import {
   viewerAuthorityListFragment,
   viewerAppListFragment,
   viewerStoreAppListFragment,
-} from '@admin/apollo-client-resolvers/lib/viewer';
+} from '@admin/apollo/lib/viewer';
 
 import { useCollapsedFragment } from './hooks/useCollapsed';
 import { useCheckingAdminStatusFragment } from './hooks/useCheckingAdminStatus';

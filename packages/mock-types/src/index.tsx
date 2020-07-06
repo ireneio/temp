@@ -3,7 +3,7 @@ import { Resolvers } from 'apollo-client/core/types';
 import { IntrospectionResultData } from 'apollo-cache-inmemory';
 
 // import
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from '@apollo/react-components';
 import { Drawer, Button, Divider } from 'antd';
@@ -11,6 +11,7 @@ import { Drawer, Button, Divider } from 'antd';
 import { i18n } from '@meepshop/utils/lib/i18n';
 
 import MockData from './MockData';
+import mock from './mock';
 import useApollo from './hooks/useApollo';
 import styles from './styles/index.less';
 
@@ -31,9 +32,14 @@ export default React.memo(
   }: PropsType & {
     children: React.ReactNode;
   }) => {
-    const { mockTypes, client } = useApollo(props);
+    const client = useApollo(props);
+    const [mockTypes, setMockTypes] = useState<string[]>([]);
     const [visibleDrawer, setVisibleDrawer] = useState(false);
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+      if (!loading) setMockTypes(mock.tracking);
+    }, [loading]);
 
     return (
       <ApolloProvider client={client}>
@@ -84,7 +90,6 @@ export default React.memo(
             <div key={type} className={styles.buttons}>
               {type}:{' '}
               <MockData
-                client={client}
                 setLoading={setLoading}
                 type={type}
                 typeIndex={typeIndex}

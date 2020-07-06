@@ -22,7 +22,7 @@ import {
   calculateOrderApply,
   calculateOrderProducts,
   calculateOrderApplications,
-} from '@store/apollo-client-resolvers/lib/utils/calculateOrder';
+} from '@store/apollo/lib/utils/calculateOrder';
 
 import Products, { getProductsStyles } from './Products';
 import Form from './Form';
@@ -43,11 +43,11 @@ import { getOrderCache } from './__generated__/getOrderCache';
 import { memberOrderApplyFragment } from './__generated__/memberOrderApplyFragment';
 
 // graphql import
-import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
+import { colorListFragment } from '@store/apollo/lib/ColorList';
 import {
   calculateOrderOrderFragment,
   calculateOrderOrderApplyListFragment,
-} from '@store/apollo-client-resolvers/lib/utils/calculateOrder';
+} from '@store/apollo/lib/utils/calculateOrder';
 import {
   productsProductsObjectTypeFragment,
   productsOrderApplyFragment,

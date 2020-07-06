@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "@store/apollo-client-resolvers",
-  "description": "Apollo-client resolvers for store",
+  "name": "@store/apollo",
+  "description": "Apollo client for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.48.1",
@@ -11,5 +11,5 @@
     "@meepshop/modules": "^0.48.1",
     "apollo-cache-inmemory": "^1.6.3"
   },
-  "keywords": ["apollo-client", "resolvers", "store"]
+  "keywords": ["apollo client", "store"]
 }

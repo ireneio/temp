@@ -14,7 +14,7 @@ import { getUserRecipients } from './__generated__/getUserRecipients';
 import { useColumnsFragment as useColumnsFragmentType } from './hooks/__generated__/useColumnsFragment';
 
 // graphql import
-import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
+import { colorListFragment } from '@store/apollo/lib/ColorList';
 
 import { formRecipientAddressFragment, formStoreFragment } from './Form';
 import { useColumnsFragment } from './hooks/useColumns';

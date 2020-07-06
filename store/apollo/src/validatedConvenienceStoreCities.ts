@@ -1,5 +1,5 @@
 // definition
-export const resolver = {
+export const resolvers = {
   Query: {
     validatedConvenienceStoreCities: ({
       validatedConvenienceStoreCities,

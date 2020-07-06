@@ -8,7 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/apollo-client-resolvers": "^0.48.1",
+    "@admin/apollo": "^0.48.1",
     "@admin/switch": "^0.48.0",
     "@admin/utils": "^0.48.0",
     "@meepshop/icons": "^0.48.0",

@@ -4,7 +4,7 @@ import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { PropsType } from '../index';
 
 // import
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { ApolloClient } from 'apollo-client';
 import {
   InMemoryCache,
@@ -25,12 +25,8 @@ export default ({
   initializeCache,
   introspectionQueryResultDataType,
   default: resolvers,
-}: PropsType): {
-  mockTypes: string[];
-  client: ApolloClient<NormalizedCacheObject>;
-} => {
-  const [mockTypes, setMockTypes] = useState<string[]>([]);
-  const client = useMemo(() => {
+}: PropsType): ApolloClient<NormalizedCacheObject> =>
+  useMemo(() => {
     const cache = new InMemoryCache({
       dataIdFromObject: ({ id }) => id,
       fragmentMatcher: new IntrospectionFragmentMatcher({
@@ -63,20 +59,7 @@ export default ({
               });
             });
         }),
-        new ApolloLink((operation, forward) =>
-          forward(operation).map(result => {
-            setMockTypes([...mock.tracking]);
-
-            return result;
-          }),
-        ),
         new SchemaLink({ schema }),
       ]),
     });
   }, [initializeCache, introspectionQueryResultDataType, resolvers]);
-
-  return {
-    mockTypes,
-    client,
-  };
-};

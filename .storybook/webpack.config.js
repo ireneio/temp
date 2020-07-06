@@ -1,9 +1,15 @@
 /* eslint-disable no-param-reassign */
+const fs = require('fs');
 const path = require('path');
 
 const babelConfig = require('../babel.config');
 
 module.exports = ({ config }) => {
+  // eslint-disable-next-line import/no-dynamic-require, global-require
+  const { name } = require(path.resolve('./package.json'));
+
+  const moduleFragmentName = `${name}/lib/fragment`;
+  const moduleFragmentPath = path.resolve('./src/fragment.ts');
   const cssModulesTransformPlugin = babelConfig.plugins.find(
     plugin => plugin[0] === 'css-modules-transform',
   );
@@ -52,6 +58,11 @@ module.exports = ({ config }) => {
   config.resolve.extensions = ['.ts', '.tsx', ...config.resolve.extensions];
   config.resolve.alias = {
     ...config.resolve.alias,
+    ...(!fs.existsSync(moduleFragmentPath)
+      ? {}
+      : {
+          [moduleFragmentName]: moduleFragmentPath,
+        }),
     'next/router': path.resolve(__dirname, '../__mocks__/next/router'),
     'next/link': path.resolve(__dirname, '../__mocks__/next/link'),
     'next/head': path.resolve(__dirname, '../__mocks__/next/head'),

@@ -46,7 +46,7 @@ export const initializeCache = <C extends CustomCtx>(
   });
 };
 
-export const resolver = {
+export const resolvers = {
   Mutation: {
     refetchCookies: (_: unknown, __: unknown, { cache }: ContextType) => {
       cache.writeQuery<setCookiesCache>({

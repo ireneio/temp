@@ -7,7 +7,7 @@ switch (process.env.APOLLO_TYPE) {
     includes.push(
       './meepshop/**/src/**/*.{ts,tsx}',
       './meepshop/**/mock.{ts,tsx}',
-      './store/apollo-client-resolvers/schemas/*.graphql',
+      './store/apollo/schemas/*.graphql',
       './store/**/src/**/*.{ts,tsx}',
       './store/**/mock.{ts,tsx}',
     );
@@ -17,7 +17,7 @@ switch (process.env.APOLLO_TYPE) {
     includes.push(
       './meepshop/**/src/**/*.{ts,tsx}',
       './meepshop/**/mock.{ts,tsx}',
-      './admin/apollo-client-resolvers/schemas/*.graphql',
+      './admin/apollo/schemas/*.graphql',
       './admin/**/src/**/*.{ts,tsx}',
       './admin/**/mock.{ts,tsx}',
     );

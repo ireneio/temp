@@ -23,7 +23,7 @@ import {
 } from './__generated__/getMemberOrderApplications';
 
 // graphql import
-import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
+import { colorListFragment } from '@store/apollo/lib/ColorList';
 import {
   applicationOrderApplyFragment,
   applicationProductsObjectTypeFragment,

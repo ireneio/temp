@@ -19,16 +19,16 @@ export const initializeCache = emptyFunction;
 export const introspectionQueryResultDataType = [modulesDataType];
 
 export default [
-  ColorList.resolver,
-  PageInfo.resolver,
-  StoreAppList.resolver,
-  User.resolver,
-  validatedConvenienceStoreCities.resolver,
-  viewer.resolver,
+  ColorList.resolvers,
+  PageInfo.resolvers,
+  StoreAppList.resolvers,
+  User.resolvers,
+  validatedConvenienceStoreCities.resolvers,
+  viewer.resolvers,
 ].reduce(
-  (result, { Query, Mutation, ...resolver }: Resolvers) => ({
+  (result, { Query, Mutation, ...resolvers }: Resolvers) => ({
     ...result,
-    ...resolver,
+    ...resolvers,
     Query: {
       ...result.Query,
       ...Query,

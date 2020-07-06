@@ -37,12 +37,12 @@ import {
 } from './__generated__/getOrders';
 
 // graphql import
-import { colorListFragment } from '@store/apollo-client-resolvers/lib/ColorList';
+import { colorListFragment } from '@store/apollo/lib/ColorList';
 import {
   calculateOrderOrderFragment,
   calculateOrderOrderApplyListFragment,
-} from '@store/apollo-client-resolvers/lib/utils/calculateOrder';
-import { storeAppListFragment } from '@store/apollo-client-resolvers/lib/StoreAppList';
+} from '@store/apollo/lib/utils/calculateOrder';
+import { storeAppListFragment } from '@store/apollo/lib/StoreAppList';
 
 import { actionsOrderFragment, actionsStoreAppListFragment } from './Actions';
 

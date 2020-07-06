@@ -20,7 +20,7 @@ import { getViewerPermission } from './__generated__/getViewerPermission';
 import {
   viewerUserFragment,
   viewerAuthorityListFragment,
-} from '@admin/apollo-client-resolvers/lib/viewer';
+} from '@admin/apollo/lib/viewer';
 
 import { useItemspermissionStoreObjFragment } from './hooks/useItems';
 

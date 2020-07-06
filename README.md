@@ -67,7 +67,7 @@ import /** ComponentName */ from '../index';
 import props from '../../mock';
 
 // definition
-runTest('store' or 'admin', </** ComponentName */ {...props} />);
+runTest('meepshop' or 'store' or 'admin', </** ComponentName */ {...props} />);
 ```
 
 5. Now, you can start to write your component in `src/index.ts`.

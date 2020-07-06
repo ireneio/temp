@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "@admin/apollo-client-resolvers",
-  "description": "Apollo-client resolvers for admin",
+  "name": "@admin/apollo",
+  "description": "Apollo client for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.48.1",
@@ -13,5 +13,5 @@
     "js-cookie": "^2.2.1",
     "moment": "^2.22.1"
   },
-  "keywords": ["admin", "apollo-client", "resolvers"]
+  "keywords": ["admin", "apollo client"]
 }
