@@ -1,24 +1,22 @@
 const colorQuery = `
-id,
-selected,
+id
+selected
 themes {
-  no,
+  no
   colors
-},
+}
 pageInfo {
-  opacity,
+  opacity
   image {
     used
   }
-},
+}
 imgInfo {
-  used,
-  repeat,
-  size,
+  used
+  repeat
+  size
   files {
-    href,
-    image,
-    path
+    image
   }
 }
 `;

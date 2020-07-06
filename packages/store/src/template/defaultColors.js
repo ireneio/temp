@@ -69,10 +69,7 @@ export default {
     size: false,
     files: [
       {
-        href: null,
         image: null,
-        path: null,
-        linkId: null,
       },
     ],
   },

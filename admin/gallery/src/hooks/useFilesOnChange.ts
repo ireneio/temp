@@ -88,7 +88,7 @@ export default (
           return {
             name: file.name,
             type,
-            linkId: await uploadImageToGcd(file, type),
+            id: await uploadImageToGcd(file, type),
             image: await readBufferAsDataUrl(imageBuffer, file.type),
           };
         }),
@@ -96,10 +96,10 @@ export default (
 
       await uploadImage({
         variables: {
-          createFileList: data.map(({ name, type, linkId }) => ({
+          createFileList: data.map(({ id, name, type }) => ({
+            id,
             name,
             type,
-            linkId,
             description: {
               // eslint-disable-next-line @typescript-eslint/camelcase
               zh_TW: '',
