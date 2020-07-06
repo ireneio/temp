@@ -1,6 +1,5 @@
 {
   "password-is-required": "กรุณาใส่รหัสผ่าน",
-  "password-placeholder": "รหัสผ่าน",
-  "reset-password": "ตั้งค่าใหม่",
-  "forget-password": "รีเซ็ตรหัสผ่าน"
+  "password-placeholder": null,
+  "reset-password": null
 }

@@ -30,6 +30,7 @@
   "add-stock-notification-list-failure-message": "Pemberitahuan ketersediaan produk: Terjadi kesalahan",
   "get-order-failure-message": "Menerima pesanan: Terjadi kesalahan",
   "reset-password-success": "Berhasil mengatur ulang",
+  "reset-password-token-error": null,
   "reset-password-failure-message": "Reset kata sandi: Terjadi kesalahan",
   "send-payment-notification-success": "Berhasil dikirim",
   "send-payment-notification-failure-message": "Notifikasi pembayaran",

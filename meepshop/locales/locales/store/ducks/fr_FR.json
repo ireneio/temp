@@ -30,6 +30,7 @@
   "add-stock-notification-list-failure-message": "Notification de disponibilité du produit: une erreur s'est produite",
   "get-order-failure-message": "Acquérir la commande: une erreur s'est produite",
   "reset-password-success": "Réinitialisation réussie",
+  "reset-password-token-error": null,
   "reset-password-failure-message": "Réinitialisation du mot de passe: une erreur s'est produite",
   "send-payment-notification-success": "Envoyé avec succès",
   "send-payment-notification-failure-message": "Notification de paiement: une erreur s'est produite",

@@ -1,5 +1,20 @@
-.wrapper {
+.root {
   text-align: center;
-  max-width: 300px;
-  margin: 20vh auto;
+  max-width: 500px;
+  margin: 56px auto;
+  padding: 0px 15px;
+  box-sizing: content-box;
+
+  :global(.ant-form-item) {
+    height: 40px;
+    margin: 0px;
+  }
+
+  :global(.ant-form-explain) {
+    text-align: left;
+  }
+
+  button {
+    margin-top: 24px;
+  }
 }

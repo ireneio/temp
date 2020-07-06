@@ -44,8 +44,7 @@ const ForgotPassword = React.memo(
     };
 
     return (
-      <Form className={styles.wrapper} onSubmit={handleSubmit}>
-        <h3>{t('forget-password')}</h3>
+      <Form className={styles.root} onSubmit={handleSubmit}>
         <Form.Item>
           {getFieldDecorator('password', {
             rules: [
@@ -61,11 +60,10 @@ const ForgotPassword = React.memo(
             />,
           )}
         </Form.Item>
-        <Form.Item>
-          <Button htmlType="submit" size="large">
-            {t('reset-password')}
-          </Button>
-        </Form.Item>
+
+        <Button htmlType="submit" size="large">
+          {t('reset-password')}
+        </Button>
       </Form>
     );
   },

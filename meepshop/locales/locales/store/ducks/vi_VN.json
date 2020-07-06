@@ -30,6 +30,7 @@
   "add-stock-notification-list-failure-message": "Thêm vào thông báo có thể đặt hàng : Xảy ra lỗi",
   "get-order-failure-message": "Nhận đơn hàng : Xảy ra lỗi",
   "reset-password-success": "Hoàn tất cài đặt lại",
+  "reset-password-token-error": null,
   "reset-password-failure-message": "Cài đặt lại mật khẩu : Xảy ra lỗi",
   "send-payment-notification-success": "Đã gửi đi",
   "send-payment-notification-failure-message": "Gửi thông báo chuyển tiền : Xảy ra lỗi",

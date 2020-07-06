@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 
+import { withTranslation } from '@meepshop/utils/lib/i18n';
 import ForgotPasswordView from '@store/forgot-password';
 
 import * as Utils from 'utils';
 import { Container, TrackingCodeHead, Error } from 'components';
+import MemberHeader from 'components/MemberHeader';
 import { Router } from 'server/routes';
 import { getJoinedForgotPasswordPage } from 'selectors/forgotPassword';
 import * as Actions from 'ducks/actions';
@@ -73,6 +75,8 @@ class ForgotPassword extends Component {
       pageAdTrackIDs,
       dispatchAction,
       token,
+      colors,
+      t,
     } = this.props;
 
     return isLogin === 'ISUSER' ? (
@@ -86,7 +90,9 @@ class ForgotPassword extends Component {
         </Head>
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
-          <ForgotPasswordView dispatchAction={dispatchAction} token={token} />
+          <MemberHeader title={t('title.reset-password')} colors={colors}>
+            <ForgotPasswordView dispatchAction={dispatchAction} token={token} />
+          </MemberHeader>
         </Container>
       </>
     );
@@ -104,6 +110,7 @@ const mapStateToProps = (state, props) => {
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getJoinedForgotPasswordPage(state, props),
+    colors: Utils.getIn(['storeReducer', 'colors'])(state),
   };
 };
 
@@ -111,4 +118,4 @@ export default connect(mapStateToProps, dispatch => ({
   dispatchAction: (actionName, args) => {
     dispatch(Actions[actionName](args));
   },
-}))(ForgotPassword);
+}))(withTranslation('common')(ForgotPassword));

@@ -670,12 +670,25 @@ function* resetPasswordFlow({ payload }) {
       const { data, error } = response;
 
       if (error) throw new Error(error);
-      if (data.setUserPasswordByToken.status !== 'SUCCESS')
-        throw new Error(data.setUserPasswordByToken.status);
 
-      yield put(resetPasswordSuccess());
-      notification.success({ message: i18n.t('ducks:reset-password-success') });
-      Utils.goTo({ pathname: '/login' });
+      switch (data.setUserPasswordByToken.status) {
+        case 'SUCCESS':
+          yield put(resetPasswordSuccess());
+          notification.success({
+            message: i18n.t('ducks:reset-password-success'),
+          });
+          Utils.goTo({ pathname: '/login' });
+          break;
+        case 'FAIL_TOKEN_TIMEOUT':
+        case 'FAIL_TOKEN_NOT_FOUND':
+          yield put(resetPasswordFailure());
+          notification.error({
+            message: i18n.t('ducks:reset-password-token-error'),
+          });
+          break;
+        default:
+          throw new Error(data.setUserPasswordByToken.status);
+      }
     }
   } catch (error) {
     yield put(resetPasswordFailure());

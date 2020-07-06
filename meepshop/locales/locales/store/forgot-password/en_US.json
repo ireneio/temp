@@ -1,6 +1,5 @@
 {
   "password-is-required": "Please enter password.",
-  "password-placeholder": "Password",
-  "reset-password": "Reset",
-  "forget-password": "Reset Password"
+  "password-placeholder": null,
+  "reset-password": null
 }

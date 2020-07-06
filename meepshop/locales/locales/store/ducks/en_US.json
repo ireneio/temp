@@ -30,6 +30,7 @@
   "add-stock-notification-list-failure-message": "Product availability notification: Error occurred",
   "get-order-failure-message": "Acquire order: Error occurred",
   "reset-password-success": "Successfully reset",
+  "reset-password-token-error": null,
   "reset-password-failure-message": "Password reset: Error occurred",
   "send-payment-notification-success": "Successfully sent",
   "send-payment-notification-failure-message": "Payment Notification: Error occurred",

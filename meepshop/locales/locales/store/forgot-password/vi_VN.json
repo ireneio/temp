@@ -1,6 +1,5 @@
 {
   "password-is-required": "Xin nhập mật khẩu",
-  "password-placeholder": "Mật khẩu",
-  "reset-password": "Xác nhận",
-  "forget-password": "Quên mật khẩu"
+  "password-placeholder": null,
+  "reset-password": null
 }

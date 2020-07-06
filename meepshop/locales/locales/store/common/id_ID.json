@@ -16,7 +16,8 @@
     "reward-points": "Poin Hadiah",
     "settings": "Info Anggota",
     "wishlist": "Daftar keinginan",
-    "logout": "keluar"
+    "logout": "keluar",
+    "reset-password": "Setel Ulang Kata Sandi"
   },
   "locale": "Inggris"
 }

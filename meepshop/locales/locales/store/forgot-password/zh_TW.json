@@ -1,6 +1,5 @@
 {
   "password-is-required": "請輸入密碼",
-  "password-placeholder": "密碼",
-  "reset-password": "確認重設",
-  "forget-password": "重設密碼"
+  "password-placeholder": "輸入新密碼",
+  "reset-password": "確認密碼"
 }

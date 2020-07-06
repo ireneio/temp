@@ -16,7 +16,8 @@
     "reward-points": "ポイント",
     "settings": "会員情報",
     "wishlist": "お気に入りに入れる",
-    "logout": "ログアウト"
+    "logout": "ログアウト",
+    "reset-password": "パスワード再設定"
   },
   "locale": "日本語"
 }

@@ -30,6 +30,7 @@
   "add-stock-notification-list-failure-message": "在庫通知の設定：エラーが発生しました",
   "get-order-failure-message": "オーダーを取る：エラーが発生しました",
   "reset-password-success": "パスワードをリセットしました",
+  "reset-password-token-error": null,
   "reset-password-failure-message": "パスワードのリセット：エラーが発生しました",
   "send-payment-notification-success": "送りました",
   "send-payment-notification-failure-message": "振込通知：エラーが発生しました",
