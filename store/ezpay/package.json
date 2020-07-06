@@ -4,13 +4,13 @@
   "description": "Ezpay page for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.48.0",
+  "version": "0.48.2",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/images": "^0.48.0",
     "@meepshop/link": "^0.48.0",
-    "@store/utils": "^0.48.0",
+    "@store/utils": "^0.48.2",
     "moment": "^2.22.1"
   },
   "keywords": ["ezpship page", "store"]

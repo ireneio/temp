@@ -4,13 +4,13 @@
   "description": "Address cascader for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.48.1",
+  "version": "0.48.2",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/utils": "^0.48.0",
-    "@store/apollo": "^0.48.1",
-    "@store/utils": "^0.48.0",
+    "@meepshop/utils": "^0.48.2",
+    "@store/apollo": "^0.48.2",
+    "@store/utils": "^0.48.2",
     "color": "^3.0.0"
   },
   "keywords": ["address", "cascader", "store"]
