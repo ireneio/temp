@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "@admin/tooltip",
+  "description": "tooltip components",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.48.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "keywords": ["admin", "tooltip"]
+}
