@@ -8,7 +8,7 @@ import { Tooltip, Icon } from 'antd';
 import styles from './styles/index.less';
 
 // typescript definition
-interface PropsType extends AbstractTooltipProps {
+interface PropsType extends Omit<AbstractTooltipProps, 'children'> {
   title: React.ReactNode;
   iconClassName?: string;
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
