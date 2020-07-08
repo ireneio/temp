@@ -1,6 +1,9 @@
 {
   "tag": "Nhãn",
   "title": "Quản lý tập tin",
+  "suggestion": null,
+  "no-pictures": null,
+  "add-pictures": null,
   "upload": "Tải lên",
   "save": "Tiết kiệm",
   "fail": "Thất bại"

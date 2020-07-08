@@ -1,6 +1,9 @@
 {
   "tag": "Etiqueta",
   "title": "Administrador de archivos",
+  "suggestion": null,
+  "no-pictures": null,
+  "add-pictures": null,
   "upload": "Subir",
   "save": "Salvar",
   "fail": "Fallida"

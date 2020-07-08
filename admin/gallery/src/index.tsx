@@ -6,6 +6,7 @@ import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { uploadPicture_w100 as uploadPicture } from '@meepshop/images';
 
 import Card from './Card';
 import ImageUpload from './ImageUpload';
@@ -159,19 +160,39 @@ export default React.memo(
             </div>
           </div>
 
-          <div className={styles.body} onScroll={loadMoreImages}>
-            {data.viewer?.files?.edges.map(({ node: { id, image } }) => (
-              <Card
-                key={id || 'id' /** TODO should not be null */}
-                id={id || 'id' /** TODO should not be null */}
-                image={image || '' /** TODO should not be null */}
-                selectedIds={selectedIds}
-                setSelectedIds={ids =>
-                  setSelectedIds(multiple ? ids : ids.slice(-1))
-                }
-              />
-            ))}
-          </div>
+          {!data.viewer?.files?.edges.length ? (
+            <div className={styles.noPicture}>
+              <img src={uploadPicture} alt="uploadPicture" />
+              <div>{t('no-pictures')}</div>
+              <Button
+                onClick={() => imageUploadRef.current?.click()}
+                type="primary"
+                size="large"
+              >
+                {t('add-pictures')}
+              </Button>
+
+              <div>{t('suggestion')}</div>
+            </div>
+          ) : (
+            <>
+              <div className={styles.suggestion}>{t('suggestion')}</div>
+
+              <div className={styles.body} onScroll={loadMoreImages}>
+                {data.viewer?.files?.edges.map(({ node: { id, image } }) => (
+                  <Card
+                    key={id || 'id' /** TODO should not be null */}
+                    id={id || 'id' /** TODO should not be null */}
+                    image={image || '' /** TODO should not be null */}
+                    selectedIds={selectedIds}
+                    setSelectedIds={ids =>
+                      setSelectedIds(multiple ? ids : ids.slice(-1))
+                    }
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     );

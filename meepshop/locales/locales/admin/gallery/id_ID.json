@@ -1,6 +1,9 @@
 {
   "tag": "Menandai",
   "title": "Manajer File",
+  "suggestion": null,
+  "no-pictures": null,
+  "add-pictures": null,
   "upload": "Unggah",
   "save": "Menyimpan",
   "fail": "Gagal"

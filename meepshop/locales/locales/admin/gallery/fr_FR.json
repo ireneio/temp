@@ -1,6 +1,9 @@
 {
   "tag": "Étiquette",
   "title": "Gestionnaire de fichiers",
+  "suggestion": null,
+  "no-pictures": null,
+  "add-pictures": null,
   "upload": "Télécharger",
   "save": "sauver",
   "fail": "Échoué"

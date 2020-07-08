@@ -47,6 +47,7 @@ export const placeholderThumbnail_scaledSrc = mockScaledSrc;
 export const spinner_w100 = mockData;
 export const storeClose = mockData;
 export const uploadImage_w56 = mockData;
+export const uploadPicture_w100 = mockData;
 export const webTrackFacebook_w130 = mockData;
 export const webTrackFacebookPixelInstruction_w890 = mockData;
 export const webTrackGoogle_w98 = mockData;

@@ -1,6 +1,9 @@
 {
   "tag": " タグ",
   "title": "ライブラリ",
+  "suggestion": null,
+  "no-pictures": null,
+  "add-pictures": null,
   "upload": " アップロード",
   "save": "セーブ",
   "fail": "失敗"

@@ -1,6 +1,9 @@
 {
   "tag": "Tag",
   "title": "File Manager",
+  "suggestion": null,
+  "no-pictures": null,
+  "add-pictures": null,
   "upload": "Upload",
   "save": "Save",
   "fail": "Failed"
