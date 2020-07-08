@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.49.0 (2020-07-08)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#958](https://github.com/meepshop/meep-lerna/pull/958) 【重構】admin 文字編輯器 ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#958](https://github.com/meepshop/meep-lerna/pull/958) 【重構】admin 文字編輯器 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `meep-ui`, `store`
+  - [#958](https://github.com/meepshop/meep-lerna/pull/958) 【重構】admin 文字編輯器 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#1030](https://github.com/meepshop/meep-lerna/pull/1030) (@admin/tooltip): add admin tooltip ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.48.3 (2020-07-06)
 
 #### :bug: Bug Fix
