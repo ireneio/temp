@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.49.1 (2020-07-08)
+
+#### :rocket: New Feature
+
+- [#1020](https://github.com/meepshop/meep-lerna/pull/1020) 【優化】新增上傳圖片限制提示文字 - 解析度小於 5000 萬 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.49.0 (2020-07-08)
 
 #### :boom: Breaking Change
