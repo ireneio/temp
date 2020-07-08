@@ -1,8 +1,8 @@
 // import
 import React from 'react';
 
-import useRawContent from './hooks/useRawContent';
-import useHtml from './hooks/useHtml';
+import useRawContent from '@meepshop/utils/lib/hooks/useRawContent';
+import useHtml from '@meepshop/utils/lib/hooks/useHtml';
 import styles from './styles/index.less';
 
 // graphql typescript

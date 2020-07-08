@@ -58,7 +58,7 @@ const handleDataType = (
   type: string;
   data?: Omit<DataType, 'text-align'>;
 } => {
-  if (/^align-.*$/.test(type))
+  if (/^align-.*$/.test(type)) {
     return {
       type: 'unstyled',
       data: {
@@ -66,10 +66,11 @@ const handleDataType = (
         textAlign: type.replace(/^align-/, ''),
       },
     };
+  }
 
   const { 'text-align': textAlign, ...rest } = data || {};
 
-  if (textAlign)
+  if (textAlign) {
     return {
       type,
       data: {
@@ -77,6 +78,7 @@ const handleDataType = (
         textAlign,
       },
     };
+  }
 
   return {
     type,
@@ -84,8 +86,7 @@ const handleDataType = (
   };
 };
 
-// TODO: only for @meepshop/meep-ui
-export const foramt = (value: string | null): object | null => {
+export const formatRawContent = (value?: string | null): object | null => {
   try {
     if (!value || !/entityMap/.test(value)) return null;
 
@@ -134,10 +135,9 @@ export const foramt = (value: string | null): object | null => {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Error: failed to format content', `[${value}]`);
-
     return null;
   }
 };
 
-export default (value: string | null): object | null =>
-  useMemo(() => foramt(value), [value]);
+export default (value?: string | null): object | null =>
+  useMemo(() => formatRawContent(value), [value]);

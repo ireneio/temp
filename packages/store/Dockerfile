@@ -5,7 +5,6 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Copy default files
-COPY ./patches ./patches
 COPY ./package.json ./package.json
 COPY ./yarn.lock ./yarn.lock
 COPY ./lerna.json ./lerna.json

@@ -8,7 +8,6 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 
 - `clean`: Remove the building files and node_modules.
 - `dev`: Run `dev` mode
-- `preinstall`, `postinstall`: Patched packages.
 - `install:all`: Install the all packages.
 - `lint`, `lint:watch`: Run lint.
 - `prod`: Run `prod` mode.

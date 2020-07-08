@@ -1,12 +1,13 @@
 // import
 import { useMemo } from 'react';
+
+// import
 import { convertRawToHTML } from 'braft-convert';
 
 import { FONTFAMILY } from '../constants';
 
 // definition
-// TODO: only for @meepshop/meep-ui
-export const format = (value: object): string =>
+export const RawToHTML = (value: object): string =>
   convertRawToHTML(value, {
     fontFamilies: FONTFAMILY.map(font => ({
       name: font,
@@ -14,5 +15,5 @@ export const format = (value: object): string =>
     })),
   }).replace(/<p(| style="[^>]*")><\/p>/g, '<br />');
 
-export default (value: object | null): string =>
-  useMemo(() => (!value ? '' : format(value)), [value]);
+export default (value?: object | null): string =>
+  useMemo(() => (!value ? '' : RawToHTML(value)), [value]);

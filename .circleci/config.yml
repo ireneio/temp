@@ -9,19 +9,12 @@ gcloud-defaults: &gcloud-defaults
     - image: google/cloud-sdk
   working_directory: ~/repo
 
-check-patches: &check-patches
-  name: Check patches
-  command: |
-    for patch in $(ls ./patches); do
-      cat ./patches/$patch >> patches.lock
-    done
-
 restore-cache: &restore-cache
   keys:
-    - dependencies-{{ checksum "yarn.lock" }}-{{ checksum "patches.lock" }}
+    - dependencies-{{ checksum "yarn.lock" }}
 
 save-cache: &save-cache
-  key: dependencies-{{ checksum "yarn.lock" }}-{{ checksum "patches.lock" }}
+  key: dependencies-{{ checksum "yarn.lock" }}
   paths:
     - node_modules
 
@@ -62,7 +55,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: *check-patches
 
       - restore_cache: *restore-cache
       - run:
@@ -74,7 +66,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: *check-patches
       - restore_cache: *restore-cache
       - run: yarn lerna bootstrap
 
@@ -104,7 +95,6 @@ jobs:
     steps:
       - checkout
       - run: *gcloud-login
-      - run: *check-patches
       - restore_cache: *restore-cache
       - run:
           name: Install yarn
@@ -136,7 +126,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: *check-patches
       - restore_cache: *restore-cache
       - run: yarn lerna bootstrap
       - setup_remote_docker
@@ -146,7 +135,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: *check-patches
       - restore_cache: *restore-cache
       - run: yarn lerna bootstrap
       - setup_remote_docker
