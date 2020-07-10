@@ -4,7 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-ISTIOCTL_VERSION=1.5.0
+ISTIOCTL_VERSION=1.5.4
 
 # install kubectl
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.14.0/bin/linux/amd64/kubectl
