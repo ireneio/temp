@@ -4,19 +4,17 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-ISTIOCTL_VERSION=1.5.4
-
 # install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.14.0/bin/linux/amd64/kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl
 chmod +x ./kubectl
 mv ./kubectl /tmp/
 
 # install istioctl
-curl -sLO https://github.com/istio/istio/releases/download/${ISTIOCTL_VERSION}/istio-${ISTIOCTL_VERSION}-linux.tar.gz
-tar zxf istio-${ISTIOCTL_VERSION}-linux.tar.gz
-sudo mv istio-${ISTIOCTL_VERSION}/bin/istioctl /usr/local/bin/istioctl
-rm istio-${ISTIOCTL_VERSION}-linux.tar.gz
-rm -r istio-${ISTIOCTL_VERSION}
+curl -sLO https://github.com/istio/istio/releases/download/$ISTIOCTL_VERSION/istio-$ISTIOCTL_VERSION-linux.tar.gz
+tar zxf istio-$ISTIOCTL_VERSION-linux.tar.gz
+sudo mv istio-$ISTIOCTL_VERSION/bin/istioctl /usr/local/bin/istioctl
+rm istio-$ISTIOCTL_VERSION-linux.tar.gz
+rm -r istio-$ISTIOCTL_VERSION
 
 curl -s https://api.github.com/repos/kubernetes-sigs/kustomize/releases |\
  grep browser_download |\
