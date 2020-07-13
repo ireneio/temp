@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.49.2 (2020-07-13)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#967](https://github.com/meepshop/meep-lerna/pull/967) 【重構】廣告分析元件 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `mock-types`
+  - [#996](https://github.com/meepshop/meep-lerna/pull/996) 【重構】社群分享元件 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#1036](https://github.com/meepshop/meep-lerna/pull/1036) (@meepshop/front-end): upgrade istio ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#1036](https://github.com/meepshop/meep-lerna/pull/1036) (@meepshop/front-end): upgrade istio ([@piovischioh](https://github.com/piovischioh))
+- [#1034](https://github.com/meepshop/meep-lerna/pull/1034) (@meepshop/front-end): upgrade istio ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.49.1 (2020-07-08)
 
 #### :rocket: New Feature
