@@ -3,8 +3,8 @@ import React, { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
-import { emptyFunction } from 'fbjs';
 
+import { adTrack as AdTrackContext } from '@meepshop/context';
 import CurrencyContext from '@store/currency';
 
 import useAdTrackIds from './hooks/useAdTrackIds';
@@ -19,20 +19,6 @@ interface PropsType {
 }
 
 // definition
-const AdTrackContext = React.createContext<{
-  adTrack: ReturnType<typeof useAdTrack>;
-}>({
-  adTrack: {
-    addToCart: emptyFunction,
-    viewProduct: emptyFunction,
-    search: emptyFunction,
-    addToWishList: emptyFunction,
-    completeRegistration: emptyFunction,
-    beginCheckout: emptyFunction,
-    purchase: emptyFunction,
-  },
-});
-
 const query = gql`
   query getAdTrack {
     getFbPixel {
@@ -55,7 +41,7 @@ const query = gql`
   }
 `;
 
-export const AdTrackProvider = React.memo(({ children }: PropsType) => {
+export default React.memo(({ children }: PropsType) => {
   const { data } = useQuery<getAdTrack>(query);
   const { currency } = useContext(CurrencyContext);
   const adTrackIds = useAdTrackIds(data);
@@ -68,14 +54,8 @@ export const AdTrackProvider = React.memo(({ children }: PropsType) => {
   if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
 
   return (
-    <AdTrackContext.Provider
-      value={{
-        adTrack,
-      }}
-    >
+    <AdTrackContext.Provider value={adTrack}>
       {children}
     </AdTrackContext.Provider>
   );
 });
-
-export default AdTrackContext;

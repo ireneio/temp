@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { isEmpty } from 'fbjs';
 import { Spin, Icon } from 'antd';
 
+import { adTrack as adTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
-import adTrackContext from '@store/ad-track';
 
 import * as Utils from 'utils';
 import { Container, TrackingCodeHead, Error } from 'components';
@@ -169,4 +169,8 @@ export default connect(mapStateToProps, dispatch => ({
   dispatchAction: (actionName, args) => {
     dispatch(Actions[actionName](args));
   },
-}))(withTranslation('common')(withContext(adTrackContext)(Product)));
+}))(
+  withTranslation('common')(
+    withContext(adTrackContext, adTrack => ({ adTrack }))(Product),
+  ),
+);

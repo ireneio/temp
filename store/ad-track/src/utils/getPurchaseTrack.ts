@@ -1,32 +1,13 @@
 // typescript import
+import { AdTrackType } from '@meepshop/context/lib/adTrack';
+
 import useAdTrackIds from '../hooks/useAdTrackIds';
 
 // graphql typescript
 import { getAdTrack_viewer_store as getAdTrackViewerStore } from '../__generated__/getAdTrack';
 
 // typescript definition
-export interface OptionType {
-  orderNo: string;
-  products: {
-    productId: string;
-    sku: string;
-    type: string;
-    title: {
-      zh_TW: string;
-    };
-    specs: {
-      title: {
-        zh_TW: string;
-      };
-    }[];
-    totalPrice: number;
-    quantity: number;
-  }[];
-  total: number;
-  currency: string;
-  shipmentFee: number;
-  paymentFee: number;
-}
+type productsType = Parameters<AdTrackType['purchase']>[0]['products'];
 
 // definition
 export default ({
@@ -43,7 +24,7 @@ export default ({
   currency,
   shipmentFee,
   paymentFee,
-}: OptionType) => {
+}: Parameters<AdTrackType['purchase']>[0]) => {
   if (window.fbq && fbPixelId)
     window.fbq('track', 'Purchase', {
       // eslint-disable-next-line @typescript-eslint/camelcase
@@ -62,9 +43,7 @@ export default ({
       value: total - shipmentFee - paymentFee,
       shipping: shipmentFee,
       items: products
-        .filter(
-          ({ type }: OptionType['products'][number]) => type === 'product',
-        )
+        .filter(({ type }: productsType[number]) => type === 'product')
         .map(
           ({
             sku,
@@ -72,7 +51,7 @@ export default ({
             specs,
             totalPrice,
             quantity,
-          }: OptionType['products'][number]) => ({
+          }: productsType[number]) => ({
             id: sku,
             name: title.zh_TW,
             variant: (specs || [])

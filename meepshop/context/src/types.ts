@@ -1,4 +1,5 @@
 // import
+export { default as adTrack } from './adTrack';
 export { default as fb } from './fb';
 
 // definition

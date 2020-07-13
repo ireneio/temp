@@ -6,7 +6,7 @@ import { EventsProvider } from '@meepshop/events';
 import * as resolvers from '@store/apollo';
 import FbProvider from '@store/fb';
 import { CurrencyProvider } from '@store/currency';
-import { AdTrackProvider } from '@store/ad-track';
+import AdTrackProvider from '@store/ad-track';
 
 import MockTypes from './index';
 

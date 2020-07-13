@@ -1,15 +1,15 @@
 {
   "private": true,
-  "name": "@store/ad-track",
-  "description": "Use to call gtag and fpq",
+  "name": "@meepshop/view-tracking",
+  "description": "Meepshop view tracking module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.49.0",
+  "version": "0.1.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/context": "^0.49.0",
-    "@store/currency": "^0.49.0"
+    "react-visibility-sensor": "^5.1.1"
   },
-  "keywords": ["ad", "fbq", "gtag", "track"]
+  "keywords": ["meepshop", "view tracking"]
 }

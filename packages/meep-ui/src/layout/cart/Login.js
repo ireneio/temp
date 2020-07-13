@@ -9,9 +9,9 @@ import {
   FaFacebook as FacebookIcon,
 } from 'react-icons/fa';
 
+import { adTrack as adTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
-import adTrackContext from '@store/ad-track';
 
 import DraftText from 'draftText';
 
@@ -24,7 +24,7 @@ const { Item: FormItem } = Form;
 const { Password } = Input;
 
 @withTranslation('cart')
-@withContext(adTrackContext)
+@withContext(adTrackContext, adTrack => ({ adTrack }))
 @Form.create()
 @enhancer
 @radium

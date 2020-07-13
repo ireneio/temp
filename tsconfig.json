@@ -18,7 +18,6 @@
       "@admin/apollo/lib/*": ["admin/apollo/src/*"],
       "@store/utils/lib/*": ["store/utils/src/*"],
       "@store/apollo/lib/*": ["store/apollo/src/*"],
-      "@store/ad-track/lib/*": ["store/ad-track/src/*"],
       "@meepshop/context/lib/*": ["meepshop/context/src/*"],
       "@meepshop/utils/lib/*": ["meepshop/utils/src/*"],
       "@meepshop/divider/lib/*": ["meepshop/divider/src/*"],
@@ -31,7 +30,8 @@
       "@meepshop/social-media/lib/*": ["meepshop/social-media/src/*"],
       "@meepshop/social-thumbs/lib/*": ["meepshop/social-thumbs/src/*"],
       "@meepshop/unavailable/lib/*": ["meepshop/unavailable/src/*"],
-      "@meepshop/video/lib/*": ["meepshop/video/src/*"]
+      "@meepshop/video/lib/*": ["meepshop/video/src/*"],
+      "@meepshop/view-tracking/lib/*": ["meepshop/view-tracking/src/*"]
     }
   },
   "include": [

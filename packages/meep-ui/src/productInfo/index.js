@@ -4,9 +4,9 @@ import radium, { StyleRoot, Style } from 'radium';
 import { warning, areEqual } from 'fbjs';
 import { Modal } from 'antd';
 
+import { adTrack as adTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
-import adTrackContext from '@store/ad-track';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
@@ -22,7 +22,7 @@ import { PRODUCT_TYPE, LIST_TYPE, NO_VARIANTS } from './constants';
 import { findCoordinates, calculateOrderable, reformatVariant } from './utils';
 
 @withTranslation('product-info')
-@withContext(adTrackContext)
+@withContext(adTrackContext, adTrack => ({ adTrack }))
 @enhancer
 @buildVariantsTree('productData')
 @radium

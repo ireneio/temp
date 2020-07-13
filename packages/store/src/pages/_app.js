@@ -19,7 +19,7 @@ import { withDomain } from '@meepshop/link';
 import { EventsProvider } from '@meepshop/events';
 import FbProvider from '@store/fb';
 import { CurrencyProvider } from '@store/currency';
-import { AdTrackProvider } from '@store/ad-track';
+import AdTrackProvider from '@store/ad-track';
 
 import { Error, CloseView, StoreNotExistsView } from 'components';
 import { Router } from 'server/routes';

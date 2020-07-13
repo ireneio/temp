@@ -1,12 +1,8 @@
 // typescript import
+import { AdTrackType } from '@meepshop/context/lib/adTrack';
 import { CurrencyType } from '@store/currency';
 
 import useAdTrackIds from '../hooks/useAdTrackIds';
-
-// typescript definition
-interface OptionType {
-  total: number;
-}
 
 // definition
 export default ({
@@ -17,7 +13,7 @@ export default ({
   currency,
 }: ReturnType<typeof useAdTrackIds> & {
   currency: CurrencyType['currency'];
-}) => ({ total }: OptionType) => {
+}) => ({ total }: Parameters<AdTrackType['beginCheckout']>[0]) => {
   if (window.fbq && fbPixelId)
     window.fbq('track', 'InitiateCheckout', {
       value: total,

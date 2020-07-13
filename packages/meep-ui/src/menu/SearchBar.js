@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Input } from 'antd';
 
+import { adTrack as adTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
-import adTrackContext from '@store/ad-track';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 
@@ -12,7 +12,7 @@ import Icon from './Icon';
 import styles from './styles/searchBar.less';
 
 @withTranslation('menu')
-@withContext(adTrackContext)
+@withContext(adTrackContext, adTrack => ({ adTrack }))
 @enhancer
 export default class SearchBar extends React.PureComponent {
   preValue = '';

@@ -1,0 +1,5 @@
+type ViewTrackingModule implements Module {
+  id: ID!
+  parentId: ID!
+  tracking: Tracking!
+}

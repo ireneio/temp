@@ -1,14 +1,17 @@
 // typescript import
-import { OptionType } from '@store/ad-track/lib/utils/getPurchaseTrack';
+import { AdTrackType } from '@meepshop/context/lib/adTrack';
 
 // import
 import { useEffect, useContext } from 'react';
 import gql from 'graphql-tag';
 
-import adTrackContext from '@store/ad-track';
+import { adTrack as adTrackContext } from '@meepshop/context';
 
 // graphql typescript
 import { useAdTrackFragment as useAdTrackFragmentType } from './__generated__/useAdTrackFragment';
+
+// typescript definition
+type productsType = Parameters<AdTrackType['purchase']>[0]['products'];
 
 // definition
 export const useAdTrackFragment = gql`
@@ -42,7 +45,7 @@ export const useAdTrackFragment = gql`
 `;
 
 export default (order: useAdTrackFragmentType | null | undefined): void => {
-  const { adTrack } = useContext(adTrackContext);
+  const adTrack = useContext(adTrackContext);
 
   useEffect(() => {
     if (order)
@@ -50,15 +53,14 @@ export default (order: useAdTrackFragmentType | null | undefined): void => {
         orderNo: order.orderNo || '', // FIXME: should not be null
         products: (order.products || []).reduce(
           // FIXME: should not be null
-          (result: OptionType['products'], data) => {
+          (result: productsType, data) => {
             if (!data) return result;
 
             const product = result.find(
               ({ productId }) => productId === data.productId,
             );
 
-            if (!product)
-              return [...result, data as OptionType['products'][number]];
+            if (!product) return [...result, data as productsType[number]];
 
             product.quantity += data.quantity || 0;
 

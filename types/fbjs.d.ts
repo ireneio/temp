@@ -5,6 +5,7 @@ declare module 'fbjs' {
   export namespace emptyFunction {
     export function thatReturnsTrue(): true;
     export function thatReturnsNull(): null;
+    export function thatReturnsArgument<V>(argu: V): V;
   }
 
   export function areEqual(a: unknown, b: unknown): boolean;

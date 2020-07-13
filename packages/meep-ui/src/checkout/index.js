@@ -6,9 +6,9 @@ import { notification } from 'antd';
 import { areEqual } from 'fbjs';
 import uuid from 'uuid/v4';
 
+import { adTrack as adTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
-import adTrackContext from '@store/ad-track';
 import CheckoutWrapper from '@store/checkout';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -20,7 +20,7 @@ import createFormData from 'utils/createFormData';
 import OrderDetail from './orderDetail';
 
 @withTranslation('checkout')
-@withContext(adTrackContext)
+@withContext(adTrackContext, adTrack => ({ adTrack }))
 @enhancer
 export default class Checkout extends React.PureComponent {
   formRef = React.createRef();

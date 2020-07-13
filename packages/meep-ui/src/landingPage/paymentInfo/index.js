@@ -4,9 +4,9 @@ import { Form, Select, InputNumber, Cascader, Modal } from 'antd';
 import { getElementPosition } from 'fbjs';
 import uuid from 'uuid';
 
+import { adTrack as adTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
-import adTrackContext from '@store/ad-track';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import PaymentDefaultFormItem from 'paymentDefaultFormItem';
@@ -34,7 +34,7 @@ const { Item: FormItem } = Form;
 const { Option } = Select;
 
 @withTranslation('landing-page')
-@withContext(adTrackContext)
+@withContext(adTrackContext, adTrack => ({ adTrack }))
 @enhancer
 @mockPaymentInfoRef
 class PayemntInfo extends React.PureComponent {

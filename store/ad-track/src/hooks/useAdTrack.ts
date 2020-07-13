@@ -1,4 +1,5 @@
 // typescript import
+import { AdTrackType } from '@meepshop/context/lib/adTrack';
 import { CurrencyType } from '@store/currency';
 
 import useAdTrackIds from './useAdTrackIds';
@@ -6,6 +7,7 @@ import useAdTrackIds from './useAdTrackIds';
 // import
 import { useMemo } from 'react';
 
+import getViewTrack from '../utils/getViewTrack';
 import getAddToCartTrack from '../utils/getAddToCartTrack';
 import getViewProductTrack from '../utils/getViewProductTrack';
 import getSearchTrack from '../utils/getSearchTrack';
@@ -23,17 +25,10 @@ export default (
     cname: getAdTrackViewerStore['cname'];
     currency: CurrencyType['currency'];
   },
-): {
-  addToCart: ReturnType<typeof getAddToCartTrack>;
-  viewProduct: ReturnType<typeof getViewProductTrack>;
-  search: ReturnType<typeof getSearchTrack>;
-  addToWishList: ReturnType<typeof getAddToWishListTrack>;
-  completeRegistration: ReturnType<typeof getCompleteRegistrationTrack>;
-  beginCheckout: ReturnType<typeof getBeginCheckoutTrack>;
-  purchase: ReturnType<typeof getPurchaseTrack>;
-} =>
+): AdTrackType =>
   useMemo(
     () => ({
+      view: getViewTrack,
       addToCart: getAddToCartTrack(data),
       viewProduct: getViewProductTrack(data),
       search: getSearchTrack(data),

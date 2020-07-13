@@ -1,22 +1,13 @@
 // typescript import
-import useAdTrackIds from '../hooks/useAdTrackIds';
+import { AdTrackType } from '@meepshop/context/lib/adTrack';
 
-// typescript definition
-interface OptionType {
-  searchString: string;
-  products: {
-    id: string;
-    title: {
-      zh_TW: string;
-    };
-  }[];
-}
+import useAdTrackIds from '../hooks/useAdTrackIds';
 
 // definition
 export default ({ fbPixelId, gaId }: ReturnType<typeof useAdTrackIds>) => ({
   searchString,
   products,
-}: OptionType) => {
+}: Parameters<AdTrackType['search']>[0]) => {
   if (window.fbq && fbPixelId)
     // eslint-disable-next-line @typescript-eslint/camelcase
     window.fbq('track', 'Search', { search_string: searchString });

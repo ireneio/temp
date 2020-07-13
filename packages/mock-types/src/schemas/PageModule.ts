@@ -16,6 +16,7 @@ import SocialMediaModule from './SocialMediaModule';
 import SocialThumbsModule from './SocialThumbsModule';
 import UnavailableModule from './UnavailableModule';
 import VideoModule from './VideoModule';
+import ViewTrackingModule from './ViewTrackingModule';
 
 // graphql typescript
 import {
@@ -91,6 +92,11 @@ gql`
       id
       parentId
     }
+
+    ... on ViewTrackingModule {
+      id
+      parentId
+    }
   }
 `;
 
@@ -152,4 +158,5 @@ export default mock.add<PageModuleMock[]>('PageModule', [
   () => getPageModules(SocialThumbsModule),
   () => getPageModules(UnavailableModule),
   () => getPageModules(VideoModule),
+  () => getPageModules(ViewTrackingModule),
 ]);

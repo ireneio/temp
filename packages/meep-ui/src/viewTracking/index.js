@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import VisibilitySensor from 'react-visibility-sensor';
 
+import { adTrack as adTrackContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
+
+@withContext(adTrackContext, adTrack => ({ adTrack }))
 export default class extends React.Component {
   static propTypes = {
     customTracking: PropTypes.objectOf({
@@ -18,19 +22,14 @@ export default class extends React.Component {
 
   handleVisible = isVisible => {
     const { isTriggered } = this.state;
-    const { customTracking } = this.props;
+    const { adTrack, customTracking } = this.props;
     const { eventLabel, eventCategory } = customTracking;
 
     if (isVisible && !isTriggered) {
-      if (window.fbq) window.fbq('track', eventLabel);
-      if (window.gtag) {
-        window.gtag('event', 'meepShop_view', {
-          event_category:
-            (eventCategory?.status && eventCategory?.value) || eventLabel,
-          event_label: eventLabel,
-          non_interaction: true,
-        });
-      }
+      adTrack.view(
+        eventLabel,
+        !eventCategory?.status ? null : eventCategory?.value || eventLabel,
+      );
       this.setState({ isTriggered: true });
     }
   };

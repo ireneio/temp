@@ -6,10 +6,10 @@ import moment from 'moment';
 import { areEqual } from 'fbjs';
 import uuid from 'uuid/v4';
 
+import { adTrack as adTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import LandingPageWrapper from '@meepshop/landing-page';
 import withContext from '@store/utils/lib/withContext';
-import adTrackContext from '@store/ad-track';
 import GmoCreditCardForm from '@store/gmo-credit-card-form';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -55,7 +55,7 @@ import * as styles from './styles';
   onValuesChange: ({ updateOrderInfo }, changedValues, allValues) =>
     updateOrderInfo(allValues),
 })
-@withContext(adTrackContext)
+@withContext(adTrackContext, adTrack => ({ adTrack }))
 @withTranslation('landing-page')
 @radium
 export default class LandingPage extends React.PureComponent {

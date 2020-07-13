@@ -145,6 +145,7 @@ union PageModule =
   | SocialThumbsModule
   | UnavailableModule
   | VideoModule
+  | ViewTrackingModule
 
 extend type Page {
   modules: [PageModule!]!

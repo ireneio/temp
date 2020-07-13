@@ -1,31 +1,11 @@
 // typescript import
+import { AdTrackType } from '@meepshop/context/lib/adTrack';
 import { CurrencyType } from '@store/currency';
 
 import useAdTrackIds from '../hooks/useAdTrackIds';
 
 // graphql typescript
 import { getAdTrack_viewer_store as getAdTrackViewerStore } from '../__generated__/getAdTrack';
-
-// typescript definition
-interface OptionType {
-  eventName: 'ec-popup' | 'ec' | 'lp';
-  id: string;
-  title: {
-    zh_TW: string;
-  };
-  quantity: number;
-  sku: string;
-  specs:
-    | [
-        {
-          title: {
-            zh_TW: string;
-          };
-        },
-      ]
-    | null;
-  price: number;
-}
 
 // definition
 export default ({
@@ -36,7 +16,15 @@ export default ({
 }: ReturnType<typeof useAdTrackIds> & {
   cname: getAdTrackViewerStore['cname'];
   currency: CurrencyType['currency'];
-}) => ({ eventName, id, title, quantity, sku, specs, price }: OptionType) => {
+}) => ({
+  eventName,
+  id,
+  title,
+  quantity,
+  sku,
+  specs,
+  price,
+}: Parameters<AdTrackType['addToCart']>[0]) => {
   if (window.fbq && fbPixelId) {
     // For: T3163
     if (

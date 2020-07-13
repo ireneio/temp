@@ -14,6 +14,7 @@ import socialMediaFragment from '@meepshop/social-media/lib/fragment';
 import socialThumbsFragment from '@meepshop/social-thumbs/lib/fragment';
 import unavailableFragment from '@meepshop/unavailable/lib/fragment';
 import videoFragment from '@meepshop/video/lib/fragment';
+import viewTrackingFragment from '@meepshop/view-tracking/lib/fragment';
 
 // definition
 export const modulesFragment = gql`
@@ -120,6 +121,13 @@ export const modulesFragment = gql`
       parentId
       ...videoFragment
     }
+
+    ... on ViewTrackingModule {
+      __typename
+      id
+      parentId
+      ...viewTrackingFragment
+    }
   }
 
   ${dividerFragment}
@@ -133,6 +141,7 @@ export const modulesFragment = gql`
   ${socialThumbsFragment}
   ${unavailableFragment}
   ${videoFragment}
+  ${viewTrackingFragment}
 `;
 
 const modules = {
@@ -153,6 +162,7 @@ const modules = {
   SocialThumbsModule: dynamic(() => import('@meepshop/social-thumbs')),
   UnavailableModule: dynamic(() => import('@meepshop/unavailable')),
   VideoModule: dynamic(() => import('@meepshop/video')),
+  ViewTrackingModule: dynamic(() => import('@meepshop/view-tracking')),
 };
 
 export const modulesDataType = {
