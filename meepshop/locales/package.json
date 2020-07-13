@@ -4,7 +4,7 @@
   "description": "Use to parse the locales files and translate the content with google.",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.49.1",
+  "version": "0.49.2",
   "main": "./index.js",
   "bin": "./lib/bin/index.js",
   "types": "./src/index.ts",
