@@ -4,11 +4,11 @@
   "description": "Apollo client for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.49.2",
+  "version": "0.50.0",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/modules": "^0.49.2",
+    "@meepshop/modules": "^0.50.0",
     "apollo-cache-inmemory": "^1.6.3",
     "js-cookie": "^2.2.1",
     "moment": "^2.22.1"
