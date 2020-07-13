@@ -28,6 +28,7 @@
       "@meepshop/iframe/lib/*": ["meepshop/iframe/src/*"],
       "@meepshop/product-draft-text/lib/*": ["meepshop/product-draft-text/src/*"],
       "@meepshop/product-video/lib/*": ["meepshop/product-video/src/*"],
+      "@meepshop/social-media/lib/*": ["meepshop/social-media/src/*"],
       "@meepshop/social-thumbs/lib/*": ["meepshop/social-thumbs/src/*"],
       "@meepshop/unavailable/lib/*": ["meepshop/unavailable/src/*"],
       "@meepshop/video/lib/*": ["meepshop/video/src/*"]

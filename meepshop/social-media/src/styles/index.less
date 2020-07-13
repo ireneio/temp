@@ -1,0 +1,38 @@
+@import '~@meepshop/utils/lib/styles/variables.less';
+
+.root {
+  display: flex;
+  width: 100%;
+
+  &.FLEX_START {
+    justify-content: flex-start;
+  }
+
+  &.CENTER {
+    justify-content: center;
+  }
+
+  &.FLEX_END {
+    justify-content: flex-end;
+  }
+
+  > a {
+    padding: 8px;
+    height: 40px;
+
+    @media (max-width: @screen-sm-max) {
+      padding: 8px;
+      height: 48px;
+    }
+
+    > svg {
+      width: 24px;
+      height: 24px;
+
+      @media (max-width: @screen-sm-max) {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+}

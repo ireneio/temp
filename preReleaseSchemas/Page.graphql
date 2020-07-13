@@ -141,6 +141,7 @@ union PageModule =
   | IframeModule
   | ProductDraftTextModule
   | ProductVideoModule
+  | SocialMediaModule
   | SocialThumbsModule
   | UnavailableModule
   | VideoModule

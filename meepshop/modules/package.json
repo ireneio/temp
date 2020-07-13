@@ -15,6 +15,7 @@
     "@meepshop/iframe": "^0.49.0",
     "@meepshop/product-draft-text": "^0.49.0",
     "@meepshop/product-video": "^0.49.0",
+    "@meepshop/social-media": "^0.44.0",
     "@meepshop/social-thumbs": "^0.49.0",
     "@meepshop/unavailable": "^0.49.0",
     "@meepshop/video": "^0.49.0"
