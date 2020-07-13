@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.50.0 (2020-07-13)
+
+#### :bug: Bug Fix
+
+- `mock-types`
+  - [#1037](https://github.com/meepshop/meep-lerna/pull/1037) (@meepshop/frontend) HotFix graphql version error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.49.2 (2020-07-13)
 
 #### :boom: Breaking Change
