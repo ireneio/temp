@@ -1,6 +1,6 @@
 // import
 import { buildClientSchema } from 'graphql';
-import { addMockFunctionsToSchema } from 'graphql-tools';
+import { addMocksToSchema } from 'graphql-tools';
 import moment from 'moment';
 
 // Generate by command
@@ -75,7 +75,7 @@ import WishlistProduct from './schemas/WishlistProduct';
 const schema = buildClientSchema(schemaJSON);
 let count = 0;
 
-addMockFunctionsToSchema({
+addMocksToSchema({
   schema,
   mocks: {
     Address,
