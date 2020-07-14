@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@meepshop/product-iframe",
+  "description": "Meepshop product iframe",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.50.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/iframe": "^0.50.0"
+  },
+  "keywords": ["iframe", "meepshop", "product"]
+}

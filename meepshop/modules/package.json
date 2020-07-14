@@ -14,6 +14,7 @@
     "@meepshop/google-map": "^0.50.0",
     "@meepshop/iframe": "^0.50.0",
     "@meepshop/product-draft-text": "^0.50.0",
+    "@meepshop/product-iframe": "^0.50.0",
     "@meepshop/product-video": "^0.50.0",
     "@meepshop/social-media": "^0.50.0",
     "@meepshop/social-thumbs": "^0.50.0",

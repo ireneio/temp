@@ -26,6 +26,7 @@
       "@meepshop/google-map/lib/*": ["meepshop/google-map/src/*"],
       "@meepshop/iframe/lib/*": ["meepshop/iframe/src/*"],
       "@meepshop/product-draft-text/lib/*": ["meepshop/product-draft-text/src/*"],
+      "@meepshop/product-iframe/lib/*": ["meepshop/product-iframe/src/*"],
       "@meepshop/product-video/lib/*": ["meepshop/product-video/src/*"],
       "@meepshop/social-media/lib/*": ["meepshop/social-media/src/*"],
       "@meepshop/social-thumbs/lib/*": ["meepshop/social-thumbs/src/*"],
