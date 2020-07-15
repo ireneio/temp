@@ -4,7 +4,7 @@
   "description": "thank you page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.50.0",
+  "version": "0.50.1",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -12,8 +12,8 @@
     "@meepshop/images": "^0.50.0",
     "@meepshop/link": "^0.50.0",
     "@meepshop/utils": "^0.50.0",
-    "@store/currency": "^0.50.0",
-    "@store/utils": "^0.50.0",
+    "@store/currency": "^0.50.1",
+    "@store/utils": "^0.50.1",
     "clipboard": "^2.0.1",
     "moment": "^2.22.1"
   },

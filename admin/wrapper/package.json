@@ -4,11 +4,11 @@
   "description": "Wrapper for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.50.0",
+  "version": "0.50.1",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/apollo": "^0.50.0",
+    "@admin/apollo": "^0.50.1",
     "@admin/switch": "^0.50.0",
     "@admin/utils": "^0.50.0",
     "@meepshop/icons": "^0.50.0",
