@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.50.1 (2020-07-15)
+
+#### :rocket: New Feature
+
+- `mock-types`
+  - [#1043](https://github.com/meepshop/meep-lerna/pull/1043) 【重構】商品語法嵌入元件 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `mock-types`
+  - [#1038](https://github.com/meepshop/meep-lerna/pull/1038) (@meepshop/mock-types) Fix testing ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.50.0 (2020-07-13)
 
 #### :bug: Bug Fix
