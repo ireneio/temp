@@ -6,11 +6,14 @@ export const root = colors => ({
   flexShrink: 0,
   width: '100%',
   padding: '30px',
-  color: colors[2],
-  background: colors[4],
+  color: colors[3],
+  background: colors[0],
+  boxShadow: '0 -2px 15px 0 rgba(102,102,102,0.15)',
   [PHONE_MEDIA]: {
     display: 'block',
-    padding: '0px',
+    padding: '10px 10px 83px',
+    borderTop: `1px solid ${colors[5]}`,
+    boxShadow: 'none',
   },
 });
 
@@ -25,8 +28,8 @@ export const buttonRoot = {
 
 export const button = colors => ({
   width: '100%',
-  height: '50px',
+  height: '40px',
   color: colors[2],
-  background: colors[1],
+  background: colors[4],
   border: '0px',
 });
