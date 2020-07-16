@@ -20,8 +20,6 @@
   "remove-cart-items-failure-message": "Xóa Sản phẩm : Xảy ra lỗi",
   "update-user-success": "Hoàn tất cập nhật",
   "update-user-failure-message": "Cập nhật hội viên : Xảy ra lỗi",
-  "create-apply-success": "Đăng ký thàng công",
-  "create-apply-failure-message": "Xin đổi trả hàng : Xảy ra lỗi",
   "add-order-message-success": "Đã gửi",
   "add-order-message-failure-message": "Gửi hỏi đáp đơn hàng : Xảy ra lỗi",
   "update-wishlist-success": "Hoàn tất",

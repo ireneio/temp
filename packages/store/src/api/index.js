@@ -27,7 +27,6 @@ import serverProductsInitial from './serverProductsInitial.api';
 import serverOthersInitial from './serverOthersInitial.api';
 
 import updateUser from './updateUser.api';
-import createOrderApply from './createOrderApply.api';
 import addOrderMessage from './addOrderMessage.api';
 import updateWishList from './updateWishList.api';
 import updateStockNotificationList from './updateStockNotificationList.api';
@@ -53,7 +52,6 @@ export {
   updateShopperLanguagePreference,
   resetPassword,
   updateUser,
-  createOrderApply,
   addOrderMessage,
   updateWishList,
   updateStockNotificationList,

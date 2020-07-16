@@ -9,7 +9,6 @@ import {
   activityQuery,
   cartQuery,
   pointsQuery,
-  orderApplyQuery,
   webTrackQuery,
   stockNotificationQuery,
 } from './query';
@@ -21,7 +20,7 @@ export default async function(context) {
   if (!path) throw new Error('Page path is not defined.');
   const variables = {
     keys:
-      '$pageFilter: StorePagesFilterInput, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $memberGroupFilter: MemberGroupFilterInput, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $orderApplySearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+      '$pageFilter: StorePagesFilterInput, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $memberGroupFilter: MemberGroupFilterInput, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
     type: 'query serverPagesInitial',
     values: {
       pageFilter: {
@@ -82,15 +81,6 @@ export default async function(context) {
         showDetail: true,
       },
       notificationSearch: {},
-      orderApplySearch: {
-        size: 100,
-        sort: [
-          {
-            field: 'createdOn',
-            order: 'desc',
-          },
-        ],
-      },
       hasUseablePoints: true,
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
       webTrackSearch: {
@@ -159,11 +149,6 @@ export default async function(context) {
     getStockNotificationList(search: $notificationSearch) {
       data {
         ${stockNotificationQuery}
-      }
-    }
-    getOrderApplyList(search: $orderApplySearch) {
-      data {
-        ${orderApplyQuery}
       }
     }
     getValidUserPointList(hasUseablePoints: $hasUseablePoints) {

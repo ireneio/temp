@@ -20,8 +20,6 @@
   "remove-cart-items-failure-message": "商品の削除：エラーが発生しました",
   "update-user-success": "会員情報が更新しました",
   "update-user-failure-message": "会員情報の更新：エラーが発生しました",
-  "create-apply-success": "お申し込みを受け付けました",
-  "create-apply-failure-message": "返品/交換の申し込み：エラーが発生しました",
   "add-order-message-success": "送りました",
   "add-order-message-failure-message": "注文に関するQ&Aを送る：エラーが発生しました",
   "update-wishlist-success": "更新しました",

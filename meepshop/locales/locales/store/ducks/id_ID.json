@@ -20,8 +20,6 @@
   "remove-cart-items-failure-message": "Hapus item: Terjadi kesalahan",
   "update-user-success": "Informasi Anda telah diperbarui.",
   "update-user-failure-message": "Perbarui informasi: Terjadi kesalahan",
-  "create-apply-success": "Aplikasi Anda telah berhasil.",
-  "create-apply-failure-message": "Kembali / Penggantian: Terjadi kesalahan",
   "add-order-message-success": "Telah berhasil dikirim.",
   "add-order-message-failure-message": "Kirim Q&A pesanan: Terjadi kesalahan",
   "update-wishlist-success": "Diperbarui",

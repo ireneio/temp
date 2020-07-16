@@ -33,9 +33,6 @@ import {
   updateUser,
   updateUserSuccess,
   updateUserFailure,
-  createApply,
-  createApplySuccess,
-  createApplyFailure,
   addOrderMessage,
   addOrderMessageSuccess,
   addOrderMessageFailure,
@@ -119,10 +116,6 @@ export {
   updateUser,
   updateUserSuccess,
   updateUserFailure,
-  // create apply
-  createApply,
-  createApplySuccess,
-  createApplyFailure,
   // products
   getProduct,
   getProductSuccess,

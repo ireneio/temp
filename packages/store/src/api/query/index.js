@@ -9,7 +9,6 @@ import productQuery from './product.query';
 import wishListQuery from './wishList.query';
 import computeOrderQuery from './computeOrder.query';
 import pointsQuery from './points.query';
-import orderApplyQuery from './orderApply.query';
 import orderMessageQuery from './orderMessage.query';
 import webTrackQuery from './webTrack.query';
 import stockNotificationQuery from './stockNotification.query';
@@ -28,7 +27,6 @@ export {
   wishListQuery,
   computeOrderQuery,
   pointsQuery,
-  orderApplyQuery,
   orderMessageQuery,
   webTrackQuery,
   stockNotificationQuery,

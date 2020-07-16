@@ -20,8 +20,6 @@
   "remove-cart-items-failure-message": "ลบรายการ: เกิดข้อผิดพลาด",
   "update-user-success": "ข้อมูลของคุณได้รับการปรับปรุง",
   "update-user-failure-message": "อัปเดตข้อมูล: เกิดข้อผิดพลาด",
-  "create-apply-success": "ใบสมัครของคุณประสบความสำเร็จ",
-  "create-apply-failure-message": "Return / Replacement: เกิดข้อผิดพลาด",
   "add-order-message-success": "ส่งเรียบร้อยแล้ว",
   "add-order-message-failure-message": "ส่งคำถาม & คำสั่งซื้อ: เกิดข้อผิดพลาด",
   "update-wishlist-success": "Updated",

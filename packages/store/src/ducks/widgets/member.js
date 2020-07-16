@@ -477,44 +477,6 @@ export function* watchUpdateUserFlow() {
   yield takeEvery(UPDATE_USER_REQUEST, updateUserFlow);
 }
 
-/* ************************************ 退貨申請 ************************************ */
-const CREATE_APPLY_REQUEST = 'CREATE_APPLY_REQUEST';
-const CREATE_APPLY_SUCCESS = 'CREATE_APPLY_SUCCESS';
-const CREATE_APPLY_FAILURE = 'CREATE_APPLY_FAILURE';
-
-export const createApply = payload => ({
-  type: CREATE_APPLY_REQUEST,
-  payload,
-});
-export const createApplySuccess = payload => ({
-  type: CREATE_APPLY_SUCCESS,
-  payload,
-});
-export const createApplyFailure = () => ({
-  type: CREATE_APPLY_FAILURE,
-});
-
-function* createApplyFlow({ payload }) {
-  try {
-    const data = yield call(Api.createOrderApply, payload);
-
-    if (data) {
-      yield put(createApplySuccess(data));
-      notification.success({ message: i18n.t('ducks:create-apply-success') });
-      Utils.goTo({ pathname: '/orders' });
-    }
-  } catch (error) {
-    yield put(createApplyFailure());
-    notification.error({
-      message: i18n.t('ducks:create-apply-failure-message'),
-      description: error.message,
-    });
-  }
-}
-export function* watchCreateApplyFlow() {
-  yield takeEvery(CREATE_APPLY_REQUEST, createApplyFlow);
-}
-
 /* ************************************ 發送訂單問答 ************************************ */
 const ADD_ORDER_MESSAGE_REQUEST = 'ADD_ORDER_MESSAGE_REQUEST';
 const ADD_ORDER_MESSAGE_SUCCESS = 'ADD_ORDER_MESSAGE_SUCCESS';
@@ -823,7 +785,6 @@ const getMemberData = payload => {
     : null;
 
   const stockNotificationList = data?.getStockNotificationList?.data || [];
-  const orderApply = data?.getOrderApplyList?.data || [];
   const userPoints = data?.getValidUserPointList?.data || [];
 
   return {
@@ -833,7 +794,6 @@ const getMemberData = payload => {
     wishList,
     currentBalance,
     stockNotificationList,
-    orderApply,
     userPoints,
     loading: false,
     loadingTip: '',
@@ -847,7 +807,6 @@ const initialState = {
   wishList: [],
   stockNotificationList: [],
   orders: [],
-  orderApply: [],
   loading: false,
   loadingTip: '',
 };
@@ -1032,29 +991,6 @@ export default function(state = initialState, { type, payload }) {
       };
     }
     case UPDATE_USER_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    case CREATE_APPLY_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-        loadingTip: CREATE_APPLY_REQUEST,
-      };
-    }
-    case CREATE_APPLY_SUCCESS: {
-      const orderApplyItem = payload?.data?.createOrderApplyList?.[0];
-      return {
-        ...state,
-        orderApply: state.orderApply.concat(orderApplyItem),
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    case CREATE_APPLY_FAILURE: {
       return {
         ...state,
         loading: false,
