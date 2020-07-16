@@ -188,7 +188,7 @@ class SignupForm extends React.PureComponent {
             normalize: value => value?.replace(/\s/g, ''),
           })(
             <Input
-              placeholder={t('email-placeholder')}
+              placeholder={t('email')}
               size="large"
               onChange={({ target: { value } }) => {
                 setFields({
