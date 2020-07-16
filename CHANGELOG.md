@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.50.2 (2020-07-16)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1040](https://github.com/meepshop/meep-lerna/pull/1040) 【優化】會員註冊顯示「必填」欄位 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- `store`
+  - [#1039](https://github.com/meepshop/meep-lerna/pull/1039) 前端 - 移除不必要的 getOrderApplyList API call ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.50.1 (2020-07-15)
 
 #### :rocket: New Feature
