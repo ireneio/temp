@@ -27,7 +27,10 @@ module.exports = proxy(API_HOST, {
         } (${os.hostname()})`,
       );
 
-    if (!userReq.headers['x-meepshop-authorization-token']) {
+    if (
+      !userReq.headers['x-meepshop-authorization-token'] ||
+      proxyRes.headers['x-meepshop-authorization-token']
+    ) {
       const newToken = proxyRes.headers['x-meepshop-authorization-token'] || '';
 
       // TODO: remove this when api removing set-cookie
