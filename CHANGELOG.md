@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.50.3 (2020-07-17)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1048](https://github.com/meepshop/meep-lerna/pull/1048) 【BUG】 前台 - 多規格商品加入購物車，於購物車 panel 更改數量，商品消失 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.50.2 (2020-07-16)
 
 #### :rocket: New Feature
