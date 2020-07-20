@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.51.0 (2020-07-20)
+
+#### :boom: Breaking Change
+
+- `mock-types`, `store`
+  - [#1023](https://github.com/meepshop/meep-lerna/pull/1023) 統一 apollo-client 寫法 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.50.3 (2020-07-17)
 
 #### :bug: Bug Fix
