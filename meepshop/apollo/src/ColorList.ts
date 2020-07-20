@@ -25,11 +25,7 @@ export const resolvers = {
     colors: ({ data }: colorListFragmentType) => {
       const { selected = null, themes = null } = data?.[0] || {}; // TODO: should not be null
 
-      return (
-        (themes || [])[parseInt(selected || '0', 10)] || {
-          colors: [],
-        }
-      ).colors; // TODO: should not be null
+      return themes?.[parseInt(selected || '0', 10)]?.colors || []; // TODO: should not be null
     },
   },
 };

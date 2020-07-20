@@ -48,7 +48,11 @@ export default (
     /* eslint-enable global-require */
   }[testType];
   const render = (): ReactWrapper<unknown, unknown> =>
-    mount(<Provider>{node}</Provider>);
+    mount(
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore FIXME can not give next props in the testing mode
+      <Provider>{node}</Provider>,
+    );
 
   mock.init();
   render();

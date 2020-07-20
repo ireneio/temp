@@ -1,7 +1,5 @@
 // typescript import
-import { InMemoryCache } from 'apollo-cache-inmemory';
-
-import { ContextType } from './constants';
+import { ContextType } from '@meepshop/apollo';
 
 // import
 import gql from 'graphql-tag';
@@ -40,10 +38,10 @@ const pageInfo = {
   endCursor: null,
 };
 
-export const initializeCache = (cache: InMemoryCache): void => {
+export const initializeCache = (cache: ContextType['cache']): void => {
   // TODO: remove after orderlist move to next-admin
   if (
-    process.browser &&
+    typeof window !== 'undefined' &&
     moment().diff(
       moment(localStorage.getItem('selectedOrders-timeout') || undefined),
       'minutes',
@@ -52,9 +50,10 @@ export const initializeCache = (cache: InMemoryCache): void => {
   )
     localStorage.removeItem('selectedOrders');
 
-  const selectedOrders: string[] = !process.browser
-    ? []
-    : JSON.parse(localStorage.getItem('selectedOrders') || '[]');
+  const selectedOrders: string[] =
+    typeof window === 'undefined'
+      ? []
+      : JSON.parse(localStorage.getItem('selectedOrders') || '[]');
 
   cache.writeQuery<initializeSelectedOrders>({
     query,
@@ -107,7 +106,7 @@ export const resolvers = {
       });
 
       // TODO: remove after orderlist move to next-admin
-      if (process.browser) {
+      if (typeof window !== 'undefined') {
         localStorage.setItem('selectedOrders', JSON.stringify(ids));
         localStorage.setItem('selectedOrders-timeout', moment().format());
       }

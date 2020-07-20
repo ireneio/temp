@@ -119,7 +119,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
       });
 
     // TODO: remove after print move to next-admin
-    if (process.browser)
+    if (typeof window !== 'undefined')
       localStorage.setItem('ecfitOrders-variables', JSON.stringify(variables));
   }
 
@@ -479,7 +479,7 @@ const EnhancedContainer = withTranslation('orders-ecfit')(Container);
 
 // TODO: remove after print move to next-admin
 if (
-  process.browser &&
+  typeof window !== 'undefined' &&
   moment().diff(
     moment(localStorage.getItem('selectedOrders-timeout') || undefined),
     'minutes',
@@ -490,7 +490,7 @@ if (
 
 const initVariables = (() => {
   // TODO: remove after orderlist move to next-admin
-  if (process.browser) {
+  if (typeof window !== 'undefined') {
     const variables = JSON.parse(
       localStorage.getItem('ecfitOrders-variables') || '{}',
     );

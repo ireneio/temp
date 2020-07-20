@@ -1,6 +1,7 @@
+import initApollo from '@meepshop/apollo/lib/initApollo';
+
 import postGraphql from 'utils/postGraphql';
 import getIn from 'utils/getIn';
-import client from 'apollo/initApollo';
 
 /**
  * @description 註冊
@@ -42,6 +43,6 @@ export default async function(values) {
     data = { error: 'Unexpected error' };
   }
 
-  client().resetStore();
+  initApollo({ name: 'store' }).resetStore();
   return data;
 }

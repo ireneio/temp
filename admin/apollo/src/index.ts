@@ -1,57 +1,92 @@
 // typescript import
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { Resolvers } from 'apollo-client/core/types';
-import { AppContext } from 'next/app';
+import { ApolloClient } from 'apollo-client';
+import { NormalizedCacheObject } from 'apollo-cache-inmemory';
+
+import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { CustomCtxType } from '@meepshop/apollo';
 
 // import
-import { modulesDataType } from '@meepshop/modules';
+import gql from 'graphql-tag';
+
+import { buildWithApollo } from '@meepshop/apollo';
 
 import * as cookies from './cookies';
-import * as PageInfo from './PageInfo';
 import * as selectedOrders from './selectedOrders';
 import * as viewer from './viewer';
 
+// graphql typescript
+import { getAdminLocale } from './__generated__/getAdminLocale';
+
 // typescript definition
-type CtxType = AppContext['ctx'];
-export interface CustomCtx extends CtxType {
-  req: CtxType['req'] & {
-    cookies: {
-      [key: string]: string;
-    };
-  };
+interface ReqType {
+  i18n: I18nPropsType['i18n'];
+  language: I18nPropsType['i18n']['language'];
 }
 
 // definition
-export const initializeCache = <C extends CustomCtx>(
-  cache: InMemoryCache,
-  ctx?: C,
-): void => {
-  cookies.initializeCache(cache, ctx);
-  selectedOrders.initializeCache(cache);
-};
+const shouldIgnoreErrorMessages = [
+  'FAIL_TIMEOUT',
+  'FAIL_UNKNOWN_ECFIT_ERROR_CODE',
+  'FAIL_01_FIELD_ORDER_NO_BLANK',
+  'FAIL_02_FIELD_INVOICED_BLANK',
+  'FAIL_03_FIELD_BAN_WRONG',
+  'FAIL_04_FIELD_NPO_WRONG',
+  'FAIL_05_BAN_NOT_ALLOWED_WHEN_NPO_FILLED',
+  'FAIL_06_FIELD_DEMAND_CANNOT_BE_Y_WHEN_NPO_FILLED',
+  'FAIL_07_INCOMPLETE_CUSTOMER_INFO',
+  'FAIL_08_BLANK_ORDER_PRODUCT_OR_PRODUCT_QUANTITY_ZERO',
+  'FAIL_09_FIELD_AMOUNT_WRONG',
+  'FAIL_10_UNKNOWN_ERROR',
+  'FAIL_11_ORDER_NOT_FOUND',
+  'FAIL_12_FIELD_ARRIVE_LESS_THAN_NOW',
+  'FAIL_13_DUPLICATE_ORDER_NO',
+  'FAIL_14_WRONG_PRODUCT_BARCODE',
+  'FAIL_15_FIELD_LOGISTICS_ID_WRONG',
+  'FAIL_16_PRODUCT_NOT_FOUND',
+  'FAIL_17_FIELD_ARRIVE_TYPE_WRONG',
+  'FAIL_18_FILED_CREDIT_NO_WRONG',
+  'FAIL_19_BUYER_REQUIRED_WHEN_FIELD_INVOICED_IS_Y',
+  'FAIL_20_NO_BUYER_WHEN_FIELD_INVOICED_IS_N',
+  'FAIL_21_FIELD_EMAIL_FORMAT_ERROR',
+  'FAIL_22_FIELD_TAX_TYPE_WRONG',
+  'FAIL_23_FIELD_CLEARANCE_MARK_WRONG',
+  'FAIL_24_FIELD_PHONE_FORMAT_ERROR',
+  'FAIL_41_FIELD_CODE_REQUIRED',
+  'FAIL_42_STORE_PICK_UP_REQUIRE_CODE',
+  'FAIL_43_CODE_NOT_ALLOWED_WHEN_NOT_STORE_PICK_UP',
+  'FAIL_01_ORDER_NOT_FOUND',
+  'FAIL_02_ORDER_STATUS_CANCELED_OR_CLOSED',
+  'FAIL_03_ORDER_STATUS_WRONG_OR_NOT_ALLOWED',
+];
 
-export const introspectionQueryResultDataType = [modulesDataType];
+const query = gql`
+  query getAdminLocale {
+    viewer {
+      id
+      store {
+        id
+        locale
+      }
+    }
+  }
+`;
 
-export default [
-  PageInfo.resolvers,
-  selectedOrders.resolvers,
-  viewer.resolvers,
-  cookies.resolvers,
-].reduce(
-  (result, { Query, Mutation, ...resolvers }: Resolvers) => ({
-    ...result,
-    ...resolvers,
-    Mutation: {
-      ...result.Mutation,
-      ...Mutation,
-    },
-    Query: {
-      ...result.Query,
-      ...Query,
-    },
-  }),
-  {
-    Query: {},
-    Mutation: {},
+export default buildWithApollo({
+  name: 'admin',
+  initializeCache: [cookies.initializeCache, selectedOrders.initializeCache],
+  resolvers: [cookies.resolvers, selectedOrders.resolvers, viewer.resolvers],
+  errorFilter: ({ message }: Error) =>
+    !shouldIgnoreErrorMessages.includes(message),
+  initCookies: async (
+    client: ApolloClient<NormalizedCacheObject>,
+    { ctx: { req } }: CustomCtxType<ReqType>,
+  ) => {
+    if (!req) return;
+
+    const result = await client.query<getAdminLocale>({ query });
+    const locale = result?.data.viewer?.store?.locale || 'zh_TW';
+
+    if (req.i18n && locale !== req.language)
+      await req.i18n.changeLanguage(locale);
   },
-);
+});

@@ -1,4 +1,4 @@
-import client from 'apollo/initApollo';
+import initApollo from '@meepshop/apollo/lib/initApollo';
 
 // for api server to auth
 export default async function(response) {
@@ -16,7 +16,7 @@ export default async function(response) {
     if (res.status === 200) {
       data = await res.json();
       // FIXME: should signout with apollo
-      client().resetStore();
+      initApollo({ name: 'store' }).resetStore();
 
       switch (data.code) {
         case 200: // 登入成功

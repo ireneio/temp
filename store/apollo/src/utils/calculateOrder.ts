@@ -1,8 +1,6 @@
 // import
 import gql from 'graphql-tag';
 
-import { PAYMENT_CAN_PAID_LATER } from '../constants';
-
 // graphql typescript
 import {
   calculateOrderOrderFragment as calculateOrderOrderFragmentType,
@@ -90,6 +88,26 @@ export const calculateOrderOrderApplyListFragment = gql`
   }
 `;
 
+const PAYMENT_CAN_PAID_LATER = {
+  allpay: {
+    Credit: true,
+    WebATM: true,
+    ATM: false,
+    CVS: false,
+    BARCODE: false,
+  },
+  ezpay: {
+    Credit: false,
+    CS: false,
+    ATM: false,
+    WEBATM: false,
+    MMK: false,
+  },
+  hitrust: true,
+  gmo: false,
+  custom: false,
+};
+
 export const calculateOrderApply = (
   order: calculateOrderOrderFragmentType,
   getOrderApplyList: calculateOrderOrderApplyListFragmentType,
@@ -127,8 +145,7 @@ export const calculateOrderApply = (
     return (
       result ||
       (quantity || 0) -
-        ((orderApplyProducts || { quantity: 0 }).quantity ||
-          0) /** TODO: should not be null */ >
+        (orderApplyProducts?.quantity || 0) /** TODO: should not be null */ >
         0
     );
   }, false);
@@ -203,8 +220,7 @@ export const calculateOrderApplications = (
                 order.products.find(
                   product =>
                     /** TODO: should not be null */
-                    application?.orderProductId ===
-                    (product || { id: null }).id,
+                    application?.orderProductId === (product?.id || null),
                 ) || null,
             },
           ],
@@ -219,7 +235,7 @@ export const calculateOrderApplications = (
           order.products.find(
             product =>
               /** TODO: should not be null */
-              application?.orderProductId === (product || { id: null }).id,
+              application?.orderProductId === (product?.id || null),
           ) || null,
       },
     ];
@@ -233,7 +249,7 @@ export const calculateOrderProducts = (
   order.products.map(product => {
     if (!product) return product;
 
-    const application = (getOrderApplyList.data || []).find(
+    const application = getOrderApplyList.data?.find(
       app => app && app.orderProductId === product.id,
     );
 

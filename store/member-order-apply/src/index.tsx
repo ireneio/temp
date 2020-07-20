@@ -43,11 +43,12 @@ import { getOrderCache } from './__generated__/getOrderCache';
 import { memberOrderApplyFragment } from './__generated__/memberOrderApplyFragment';
 
 // graphql import
-import { colorListFragment } from '@store/apollo/lib/ColorList';
+import { colorListFragment } from '@meepshop/apollo/lib/ColorList';
 import {
   calculateOrderOrderFragment,
   calculateOrderOrderApplyListFragment,
 } from '@store/apollo/lib/utils/calculateOrder';
+
 import {
   productsProductsObjectTypeFragment,
   productsOrderApplyFragment,

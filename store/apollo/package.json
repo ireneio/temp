@@ -8,7 +8,9 @@
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/modules": "^0.50.1",
+    "@meepshop/apollo": "^0.50.1",
+    "@meepshop/utils": "^0.50.0",
+    "@store/utils": "^0.50.1",
     "apollo-cache-inmemory": "^1.6.3"
   },
   "keywords": ["apollo client", "store"]

@@ -29,7 +29,7 @@ import {
 } from './__generated__/getMemberOrder';
 
 // graphql import
-import { colorListFragment } from '@store/apollo/lib/ColorList';
+import { colorListFragment } from '@meepshop/apollo/lib/ColorList';
 
 import { notFoundFragment } from './NotFound';
 import { productsFragment } from './Products';

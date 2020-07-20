@@ -37,7 +37,7 @@ import {
 } from './__generated__/getOrders';
 
 // graphql import
-import { colorListFragment } from '@store/apollo/lib/ColorList';
+import { colorListFragment } from '@meepshop/apollo/lib/ColorList';
 import {
   calculateOrderOrderFragment,
   calculateOrderOrderApplyListFragment,

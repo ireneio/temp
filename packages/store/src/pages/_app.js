@@ -9,7 +9,6 @@ import getConfig from 'next/config';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
-import { ApolloProvider } from '@apollo/react-components';
 import NProgress from 'nprogress';
 import { notification } from 'antd';
 import moment from 'moment';
@@ -17,6 +16,7 @@ import moment from 'moment';
 import { appWithTranslation } from '@meepshop/utils/lib/i18n';
 import { withDomain } from '@meepshop/link';
 import { EventsProvider } from '@meepshop/events';
+import withApollo from '@store/apollo';
 import FbProvider from '@store/fb';
 import { CurrencyProvider } from '@store/currency';
 import AdTrackProvider from '@store/ad-track';
@@ -26,7 +26,6 @@ import { Router } from 'server/routes';
 import * as Utils from 'utils';
 import configureStore from 'ducks/store';
 import * as Actions from 'ducks/actions';
-import withApollo from 'apollo/withApollo';
 
 import '../public/nprogress.less';
 
@@ -68,20 +67,21 @@ class MyApp extends App {
        * Because we connot get page data when token expired, we need to check
        * 401 error before page navigation. We also
        */
-      const response = await fetch(isServer ? `${API_HOST}/graphql` : '/api', {
-        method: 'post',
-        headers: isServer
-          ? {
-              'content-type': 'application/json',
-              'x-meepshop-domain': req.get('x-meepshop-domain'),
-              'x-meepshop-authorization-token': req.get(
-                'x-meepshop-authorization-token',
-              ),
-            }
-          : { 'content-type': 'application/json' },
-        credentials: isServer ? 'include' : 'same-origin',
-        body: JSON.stringify({
-          query: `
+      const response = await fetch(
+        isServer ? `${API_HOST}/graphql` : '/api/graphql',
+        {
+          method: 'post',
+          headers: isServer
+            ? {
+                'content-type': 'application/json',
+                'x-meepshop-domain': req.headers.host,
+                'x-meepshop-authorization-token':
+                  req.cookies['x-meepshop-authorization-token'],
+              }
+            : { 'content-type': 'application/json' },
+          credentials: isServer ? 'include' : 'same-origin',
+          body: JSON.stringify({
+            query: `
               query checkStore {
                 viewer {
                   store {
@@ -90,8 +90,9 @@ class MyApp extends App {
                 }
               }
             `,
-        }),
-      });
+          }),
+        },
+      );
 
       if (isServer && response.status >= 400 && response.status !== 403) {
         console.log(
@@ -149,7 +150,7 @@ class MyApp extends App {
             'common',
           ],
         },
-        cookieCurrency: req?.currency,
+        cookieCurrency: req?.cookies.currency,
       };
     } catch (error) {
       console.log(error);
@@ -214,7 +215,6 @@ class MyApp extends App {
       pageProps,
       cookieCurrency,
       router,
-      apolloClient,
       store,
     } = this.props;
 
@@ -236,25 +236,23 @@ class MyApp extends App {
           <meta name="format-detection" content="telephone=no" />
         </Head>
 
-        <ApolloProvider client={apolloClient}>
-          <EventsProvider>
-            <FbProvider>
-              <CurrencyProvider cookieCurrency={cookieCurrency}>
-                <AdTrackProvider>
-                  <Provider store={store}>
-                    <Component
-                      {...pageProps}
-                      url={{
-                        asPath: router.asPath,
-                        query: router.query,
-                      }}
-                    />
-                  </Provider>
-                </AdTrackProvider>
-              </CurrencyProvider>
-            </FbProvider>
-          </EventsProvider>
-        </ApolloProvider>
+        <EventsProvider>
+          <FbProvider>
+            <CurrencyProvider cookieCurrency={cookieCurrency}>
+              <AdTrackProvider>
+                <Provider store={store}>
+                  <Component
+                    {...pageProps}
+                    url={{
+                      asPath: router.asPath,
+                      query: router.query,
+                    }}
+                  />
+                </Provider>
+              </AdTrackProvider>
+            </CurrencyProvider>
+          </FbProvider>
+        </EventsProvider>
       </>
     );
   }

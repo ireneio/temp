@@ -34,7 +34,7 @@ const nextI18next = new NextI18Next({
     'th_TH',
     'id_ID',
   ],
-  localePath: !process.browser ? 'src/public/locales' : 'locales',
+  localePath: typeof window === 'undefined' ? 'src/public/locales' : 'locales',
   // we use 'null' to fall back
   fallbackLng: 'zh_TW',
   returnNull: false,

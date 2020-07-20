@@ -8,8 +8,8 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@meepshop/apollo": "^0.50.1",
     "@meepshop/utils": "^0.50.0",
-    "@store/apollo": "^0.50.1",
     "@store/currency": "^0.50.1",
     "@store/utils": "^0.50.1",
     "memoize-one": "^5.1.1",

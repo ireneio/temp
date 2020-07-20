@@ -1,12 +1,9 @@
 // typescript import
 import { AppContext, AppInitialProps } from 'next/app';
-import { ApolloClient } from 'apollo-client';
-import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
 // import
 import 'isomorphic-unfetch';
 import React from 'react';
-import { ApolloProvider } from '@apollo/react-components';
 import NextApp from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
@@ -16,22 +13,16 @@ import { appWithTranslation } from '@meepshop/utils/lib/i18n';
 import { withDomain } from '@meepshop/link';
 import { EventsProvider } from '@meepshop/events';
 import '@admin/utils/lib/styles/base.less';
-
-import withApollo from '../apollo/withApollo';
-
-// typescript definition
-interface PropsType extends AppInitialProps {
-  apolloClient: ApolloClient<NormalizedCacheObject>;
-}
+import withApollo from '@admin/apollo';
 
 // definition
 const Wrapper = dynamic(() => import('@admin/wrapper'));
 
-class App extends NextApp<PropsType> {
+class App extends NextApp<AppInitialProps> {
   public static getInitialProps = async ({
     Component,
     ctx,
-  }: AppContext): Promise<Omit<PropsType, 'apolloClient'>> => {
+  }: AppContext): Promise<AppInitialProps> => {
     const pageProps: {
       namespacesRequired?: string[];
     } = (await Component.getInitialProps?.(ctx)) || {};
@@ -56,7 +47,6 @@ class App extends NextApp<PropsType> {
     const {
       Component,
       pageProps,
-      apolloClient,
       router: { pathname },
     } = this.props;
 
@@ -68,17 +58,15 @@ class App extends NextApp<PropsType> {
           <meta name="viewport" content="" />
         </Head>
 
-        <ApolloProvider client={apolloClient}>
-          <EventsProvider>
-            {/login|reset-password/.test(pathname) ? (
+        <EventsProvider>
+          {/login|reset-password/.test(pathname) ? (
+            <Component {...pageProps} />
+          ) : (
+            <Wrapper>
               <Component {...pageProps} />
-            ) : (
-              <Wrapper>
-                <Component {...pageProps} />
-              </Wrapper>
-            )}
-          </EventsProvider>
-        </ApolloProvider>
+            </Wrapper>
+          )}
+        </EventsProvider>
       </>
     );
   }

@@ -1,12 +1,15 @@
 require('dotenv').config();
 
-const includes = ['./preReleaseSchemas/*.graphql'];
+const includes = [
+  './preReleaseSchemas/*.graphql',
+  './meepshop/apollo/schemas/*.graphql',
+  './meepshop/**/src/**/*.{ts,tsx}',
+  './meepshop/**/mock.{ts,tsx}',
+];
 
 switch (process.env.APOLLO_TYPE) {
   case 'store':
     includes.push(
-      './meepshop/**/src/**/*.{ts,tsx}',
-      './meepshop/**/mock.{ts,tsx}',
       './store/apollo/schemas/*.graphql',
       './store/**/src/**/*.{ts,tsx}',
       './store/**/mock.{ts,tsx}',
@@ -15,8 +18,6 @@ switch (process.env.APOLLO_TYPE) {
 
   case 'admin':
     includes.push(
-      './meepshop/**/src/**/*.{ts,tsx}',
-      './meepshop/**/mock.{ts,tsx}',
       './admin/apollo/schemas/*.graphql',
       './admin/**/src/**/*.{ts,tsx}',
       './admin/**/mock.{ts,tsx}',

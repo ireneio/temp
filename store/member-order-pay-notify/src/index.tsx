@@ -17,7 +17,7 @@ import { getOrderPaidMessage } from './__generated__/getOrderPaidMessage';
 import { updateOrderPaidMessage as updateOrderPaidMessageType } from './__generated__/updateOrderPaidMessage';
 
 // graphql import
-import { colorListFragment } from '@store/apollo/lib/ColorList';
+import { colorListFragment } from '@meepshop/apollo/lib/ColorList';
 
 // typescript definition
 interface PropsType extends FormComponentProps {

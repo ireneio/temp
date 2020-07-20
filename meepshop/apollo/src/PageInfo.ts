@@ -1,11 +1,12 @@
 // typescript import
-import { ContextType } from './constants';
+import { ContextType } from './index';
 
 // import
 import gql from 'graphql-tag';
 
 // graphql typescript
-import { SetCurrentInput } from '../../../__generated__/admin';
+// TODO: should use __generated__/meepshop
+import { SetCurrentInput } from '../../../__generated__/store';
 
 import { pageInfoFragment } from './__generated__/pageInfoFragment';
 

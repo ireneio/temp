@@ -20,6 +20,7 @@ const { default: nextI18next } = require('@meepshop/utils/lib/i18n');
 const { publicRuntimeConfig } = require('../../next.config');
 const routes = require('./routes');
 const { api, signin, fbAuthForLine } = require('./routers');
+const mapCookiesToHeaders = require('./mapCookiesToHeaders');
 
 const { VERSION, STORE_DOMAIN } = publicRuntimeConfig;
 const port = parseInt(process.env.PORT, 10) || 14401;
@@ -92,26 +93,11 @@ module.exports = app.prepare().then(
         await next();
         debug(`id=${req.logId}, modifier=out`);
       });
+
       server.use((req, res, next) => {
-        try {
-          if (STORE_DOMAIN) req.headers.host = STORE_DOMAIN;
-          req.headers['x-meepshop-domain'] = req.get('host');
-          req.headers['x-meepshop-authorization-token'] =
-            req.cookies['x-meepshop-authorization-token'] || null;
-          req.headers['accept-language'] =
-            (req.cookies['next-i18next'] || '').replace('_', '-') || null;
-          req.currency = req.cookies.currency;
-          delete req.cookies;
-          next();
-        } catch (error) {
-          console.log(`Server Error ${error.message} (${os.hostname()})`);
-          throw error;
-        }
-      });
-      server.use(async (req, res, next) => {
-        debug(`id=${req.logId}, router=in`);
-        await next();
-        debug(`id=${req.logId}, router=out`);
+        if (STORE_DOMAIN) req.headers.host = STORE_DOMAIN;
+
+        next();
       });
 
       // routes
@@ -146,12 +132,12 @@ module.exports = app.prepare().then(
       });
 
       // api
-      server.post('/api', api);
+      server.post('/api/graphql', mapCookiesToHeaders, api);
 
       // auth
-      server.post('/signin', signin('/auth/login'));
-      server.post('/fbAuth', signin('/facebook/fbLogin'));
-      server.get('/fbAuthForLine', fbAuthForLine);
+      server.post('/signin', mapCookiesToHeaders, signin('/auth/login'));
+      server.post('/fbAuth', mapCookiesToHeaders, signin('/facebook/fbLogin'));
+      server.get('/fbAuthForLine', mapCookiesToHeaders, fbAuthForLine);
       server.get('/signout', (req, res) => {
         res.cookie('x-meepshop-authorization-token', '', {
           maxAge: 0,

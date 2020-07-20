@@ -14,20 +14,22 @@ export default async ({ res, req, query, variables, isServer }) => {
       variables: variables.values,
     };
 
-    const response = await fetch(isServer ? `${API_HOST}/graphql` : '/api', {
-      method: 'post',
-      headers: isServer
-        ? {
-            'content-type': 'application/json',
-            'x-meepshop-domain': req.get('x-meepshop-domain'),
-            'x-meepshop-authorization-token': req.get(
-              'x-meepshop-authorization-token',
-            ),
-          }
-        : { 'content-type': 'application/json' },
-      credentials: isServer ? 'include' : 'same-origin',
-      body: JSON.stringify(graphql),
-    });
+    const response = await fetch(
+      isServer ? `${API_HOST}/graphql` : '/api/graphql',
+      {
+        method: 'post',
+        headers: isServer
+          ? {
+              'content-type': 'application/json',
+              'x-meepshop-domain': req.headers.host,
+              'x-meepshop-authorization-token':
+                req.cookies['x-meepshop-authorization-token'],
+            }
+          : { 'content-type': 'application/json' },
+        credentials: isServer ? 'include' : 'same-origin',
+        body: JSON.stringify(graphql),
+      },
+    );
 
     if (response.status < 400) {
       const data = await response.json();

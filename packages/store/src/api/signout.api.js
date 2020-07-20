@@ -1,4 +1,4 @@
-import client from 'apollo/initApollo';
+import initApollo from '@meepshop/apollo/lib/initApollo';
 
 export default async function() {
   const res = await fetch('/signout', {
@@ -8,7 +8,7 @@ export default async function() {
 
   if (res.status < 400) {
     // FIXME: should signout with apollo
-    client().resetStore();
+    initApollo({ name: 'store' }).resetStore();
     window.sessionStorage.clear();
     return true;
   }

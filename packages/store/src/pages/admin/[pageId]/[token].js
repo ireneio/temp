@@ -2,6 +2,8 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { connect } from 'react-redux';
 
+import initApollo from '@meepshop/apollo/lib/initApollo';
+
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
 import { getJoinedPageInPagesRoute } from 'selectors/pages';
@@ -19,12 +21,12 @@ const Page = React.memo(({ error, ...props }) => {
 });
 
 Page.getInitialProps = async ctx => {
-  const { isServer, query, store, XMeepshopDomain, userAgent, client } = ctx;
+  const { isServer, query, store, XMeepshopDomain, userAgent } = ctx;
 
   if (!isServer) return { error: { status: 'ERROR_PAGE_NOT_FOUND' } };
 
   const { pageId, token, pId } = query;
-  const { data } = await client.query({
+  const { data } = await initApollo({ name: 'store' }, null, { ctx }).query({
     query: gql`
       query checkAdminToken($token: String!) {
         isAdministratorToken(token: $token)

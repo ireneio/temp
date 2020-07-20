@@ -27,7 +27,7 @@ import {
 } from './__generated__/getWishlist';
 
 // graphql import
-import { colorListFragment } from '@store/apollo/lib/ColorList';
+import { colorListFragment } from '@meepshop/apollo/lib/ColorList';
 
 // typescript definition
 interface PropsType

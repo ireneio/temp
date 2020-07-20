@@ -1,5 +1,5 @@
 // typescript import
-import { ContextType } from './constants';
+import { ContextType } from '@meepshop/apollo';
 
 // import
 import gql from 'graphql-tag';

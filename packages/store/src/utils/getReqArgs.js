@@ -14,7 +14,7 @@ export default (isServer, req) => {
     const userAgent = req.get('user-agent');
 
     return {
-      XMeepshopDomain: req.get('x-meepshop-domain'),
+      XMeepshopDomain: req.headers.host,
       userAgent,
     };
   }

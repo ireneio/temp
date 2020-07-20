@@ -18,6 +18,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import nextI18next from 'next-i18next';
 
 // definition
+// TODO: remove after next-i18next upgrade
 const config = {
   lng: 'zh_TW',
   fallbackLng: 'zh_TW',

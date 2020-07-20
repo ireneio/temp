@@ -20,6 +20,7 @@
       "@store/apollo/lib/*": ["store/apollo/src/*"],
       "@meepshop/context/lib/*": ["meepshop/context/src/*"],
       "@meepshop/utils/lib/*": ["meepshop/utils/src/*"],
+      "@meepshop/apollo/lib/*": ["meepshop/apollo/src/*"],
       "@meepshop/divider/lib/*": ["meepshop/divider/src/*"],
       "@meepshop/draft-text/lib/*": ["meepshop/draft-text/src/*"],
       "@meepshop/facebook-wall/lib/*": ["meepshop/facebook-wall/src/*"],

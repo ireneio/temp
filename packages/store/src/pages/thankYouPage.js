@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 
+import initApollo from '@meepshop/apollo/lib/initApollo';
 import ThankYouPageView from '@store/thank-you-page';
 
 import { TrackingCodeHead, Error } from 'components';
@@ -10,7 +11,6 @@ import * as Utils from 'utils';
 import { getJoinedThankYouPage } from 'selectors/thankYouPage';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
-import client from 'apollo/initApollo';
 
 class ThankYouPage extends React.Component {
   static getInitialProps = async context => {
@@ -18,7 +18,7 @@ class ThankYouPage extends React.Component {
 
     if (isServer) store.dispatch(Actions.serverOthersInitial(context));
     // FIXME: remove after checkout using apollo-client
-    else client().resetStore();
+    else initApollo({ name: 'store' }).resetStore();
 
     return {
       userAgent,

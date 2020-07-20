@@ -68,6 +68,10 @@ module.exports = ({ config }) => {
     'next/head': path.resolve(__dirname, '../__mocks__/next/head'),
     'next/config': path.resolve(__dirname, '../__mocks__/next/config'),
     'next-i18next': path.resolve(__dirname, '../__mocks__/next-i18next'),
+    'apollo-link-http': path.resolve(
+      __dirname,
+      '../__mocks__/apollo-link-http',
+    ),
   };
   config.plugins = config.plugins.filter(
     ({ constructor }) => constructor.name !== 'ProgressPlugin',

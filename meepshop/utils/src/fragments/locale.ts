@@ -4,9 +4,10 @@ import gql from 'graphql-tag';
 // graphql typescript
 import { localeFragment } from './__generated__/localeFragment';
 
-// definition
+// typescript definition
 export type localeFragmentType = localeFragment;
 
+// definition
 export default gql`
   fragment localeFragment on Locale {
     zh_TW

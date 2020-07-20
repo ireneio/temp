@@ -1,12 +1,16 @@
 // typescript import
-import NextApp, { AppContext, AppProps, AppInitialProps } from 'next/app';
+import { AppContext, AppProps } from 'next/app';
 import { LinkProps } from 'next/link';
+
+import {
+  NextAppType,
+  NextAppGetInitialPropsType,
+} from '@meepshop/utils/lib/types';
 
 // import
 import React, { useMemo } from 'react';
 import Link from 'next/link';
 
-import useRouterHook from './hooks/useRouter';
 import getLinkProps from './utils/getLinkProps';
 
 // typescript definition
@@ -22,6 +26,10 @@ interface CustomCtx extends AppContext {
   };
 }
 
+interface WithDomainPropsType extends AppProps {
+  domain: DomainType;
+}
+
 interface PropsType extends Omit<LinkProps, 'as' | 'href'> {
   href: string;
   target?: string;
@@ -30,37 +38,29 @@ interface PropsType extends Omit<LinkProps, 'as' | 'href'> {
 }
 
 // definition
+export { default as useRouter } from './hooks/useRouter';
+
 export const DomainContext = React.createContext<DomainType>(null);
 
-export const withDomain = (App: typeof NextApp): React.ComponentType =>
-  class WithDomain extends React.Component<AppProps & { domain: DomainType }> {
-    public static getInitialProps = async (
-      ctx: CustomCtx,
-    ): Promise<AppInitialProps & { domain: DomainType }> => {
-      const {
-        ctx: { req },
-      } = ctx;
+export const withDomain = (App: NextAppType): NextAppType => {
+  const WithDomain = ({
+    domain,
+    ...props
+  }: WithDomainPropsType): React.ReactElement => (
+    <DomainContext.Provider value={domain || window.location.host}>
+      <App {...props} />
+    </DomainContext.Provider>
+  );
 
-      const appProps = await App.getInitialProps(ctx);
+  WithDomain.getInitialProps = async (
+    ctx: CustomCtx,
+  ): Promise<NextAppGetInitialPropsType<WithDomainPropsType>> => ({
+    ...(await App.getInitialProps(ctx)),
+    domain: ctx.ctx.req?.headers.host,
+  });
 
-      return {
-        ...appProps,
-        domain: req?.headers.host,
-      };
-    };
-
-    public render(): React.ReactNode {
-      const { domain } = this.props;
-
-      return (
-        <DomainContext.Provider value={domain || window.location.host}>
-          <App {...this.props} />
-        </DomainContext.Provider>
-      );
-    }
-  };
-
-export const useRouter = useRouterHook;
+  return WithDomain;
+};
 
 export default React.memo(
   ({ href, target, children, disabled, ...props }: PropsType) => {

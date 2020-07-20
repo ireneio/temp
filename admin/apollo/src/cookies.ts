@@ -1,8 +1,5 @@
 // typescript import
-import { InMemoryCache } from 'apollo-cache-inmemory';
-
-import { CustomCtx } from './index';
-import { ContextType } from './constants';
+import { CustomCtxType, ContextType } from '@meepshop/apollo';
 
 // import
 import gql from 'graphql-tag';
@@ -16,6 +13,13 @@ import {
   setCookiesCache_cookies as setCookiesCacheCookies,
 } from './__generated__/setCookiesCache';
 
+// typescript definition
+interface ReqType {
+  cookies: {
+    [key: string]: string;
+  };
+}
+
 // definition
 const query = gql`
   query setCookiesCache {
@@ -26,17 +30,19 @@ const query = gql`
   }
 `;
 
-const getCookies = <C extends CustomCtx>(ctx?: C): setCookiesCacheCookies => ({
+const getCookies = <C extends CustomCtxType<ReqType>>(
+  ctx?: C,
+): setCookiesCacheCookies => ({
   __typename: 'Cookies',
   id: 'cookies',
   menuCollapsed:
-    (ctx ? ctx.req.cookies.menuCollapsed : cookie.get('menuCollapsed')) ===
+    (ctx ? ctx?.ctx.req.cookies.menuCollapsed : cookie.get('menuCollapsed')) ===
     'true',
 });
 
-export const initializeCache = <C extends CustomCtx>(
-  cache: InMemoryCache,
-  ctx: C | undefined,
+export const initializeCache = <C extends CustomCtxType>(
+  cache: ContextType['cache'],
+  ctx?: C,
 ): void => {
   cache.writeQuery<setCookiesCache>({
     query,
