@@ -4,7 +4,7 @@
   "description": "Manage the all context",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.50.0",
+  "version": "0.51.0",
   "main": "./index.js",
   "types": "./src/types.ts",
   "keywords": ["context", "meepshop"]
