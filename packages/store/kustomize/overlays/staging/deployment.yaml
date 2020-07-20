@@ -11,10 +11,3 @@ spec:
     spec:
       containers:
         - name: next-store
-          resources:
-            limits:
-              cpu: 200m
-              memory: 1200Mi
-            requests:
-              cpu: 100m
-              memory: 600Mi
