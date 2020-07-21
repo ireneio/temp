@@ -33,7 +33,12 @@
     "begin-checkout": "Start Checkout:",
     "purchase": "Purchase:",
     "event-placeholder": "Please enter event snippet",
-    "not-setting": "Setting has not been made"
+    "not-setting": "Setting has not been made",
+    "dpa": "Dynamic Product Ads (DPA)",
+    "dpa-description-1": "Product Dialogue Update Time: 5:00 AM ~ 6:00 AM (GMT+08:00)",
+    "dpa-description-2": null,
+    "copy-dpa-link": "Copy Dynamic URL",
+    "copied": "Copied to clipboard"
   },
   "google-webmaster": {
     "title": "Google Search Console",

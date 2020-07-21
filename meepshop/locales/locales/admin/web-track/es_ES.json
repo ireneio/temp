@@ -33,7 +33,12 @@
     "begin-checkout": "Iniciar pago:",
     "purchase": "Compra:",
     "event-placeholder": "Por favor, introduzca el fragmento de evento",
-    "not-setting": "La configuración no se ha realizado"
+    "not-setting": "La configuración no se ha realizado",
+    "dpa": "Anuncios de productos dinámicos (DPA)",
+    "dpa-description-1": "Hora de actualización del diálogo del producto: 5:00 a.m. ~ 6:00 a.m. (GMT + 08: 00)",
+    "dpa-description-2": null,
+    "copy-dpa-link": "Copiar URL dinámica",
+    "copied": "Copiada al portapapeles"
   },
   "google-webmaster": {
     "title": "Consola de búsqueda de Google",

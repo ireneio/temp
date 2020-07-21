@@ -33,7 +33,12 @@
     "begin-checkout": "Bắt đầu thanh toán:",
     "purchase": "Mua, tựa vào, bám vào:",
     "event-placeholder": "Vui lòng nhập đoạn sự kiện",
-    "not-setting": "Cài đặt chưa được thực hiện"
+    "not-setting": "Cài đặt chưa được thực hiện",
+    "dpa": "Quảng cáo sản phẩm động (DPA)",
+    "dpa-description-1": "Thời gian cập nhật đối thoại sản phẩm: 5:00 AM ~ 6:00 AM (GMT + 08: 00)",
+    "dpa-description-2": null,
+    "copy-dpa-link": "Sao chép URL động",
+    "copied": "Sao chép vào clipboard"
   },
   "google-webmaster": {
     "title": "Bảng điều khiển tìm kiếm của Google",

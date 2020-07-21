@@ -2,9 +2,12 @@
 import { FormComponentProps } from 'antd/lib/form';
 
 // import
-import React, { useState } from 'react';
-import { Tooltip, Icon, Button, Modal, Form, Input } from 'antd';
+import React, { useState, useEffect } from 'react';
+import gql from 'graphql-tag';
+import { Icon, Button, Modal, Form, Input, message } from 'antd';
+import Clipboard from 'clipboard';
 
+import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   webTrackGoogleAds_w172 as webTrackGoogleAds,
@@ -24,9 +27,19 @@ interface PropsType extends FormComponentProps {
   signUpCode: string | null;
   beginCheckoutCode: string | null;
   purchaseCode: string | null;
+  googleFeedsLink: string | null;
 }
 
 // definition
+export const googleAdsStoreFragment = gql`
+  fragment googleAdsStoreFragment on Store {
+    id
+    setting {
+      googleFeedsLink
+    }
+  }
+`;
+
 const { Item } = Form;
 const { TextArea } = Input;
 
@@ -37,6 +50,7 @@ export default Form.create<PropsType>()(
       signUpCode,
       beginCheckoutCode,
       purchaseCode,
+      googleFeedsLink,
       form,
     }: PropsType) => {
       const { t } = useTranslation('web-track');
@@ -46,15 +60,34 @@ export default Form.create<PropsType>()(
 
       const { getFieldDecorator, validateFields, getFieldValue } = form;
 
+      useEffect(() => {
+        const clipboard = new Clipboard('#googleFeedsLink', {
+          text: () => googleFeedsLink || '',
+        }).on('success', () => {
+          message.success({
+            content: t('google-ads.copied'),
+            duration: 2,
+            icon: <Icon type="check-circle" />,
+          });
+        });
+
+        return () => {
+          clipboard.destroy();
+        };
+      }, [t, googleFeedsLink]);
+
       return (
         <div>
           <img src={webTrackGoogleAds} alt="GoogleAds" />
 
           <div className={styles.title}>
             <div>Google Ads</div>
-            <Tooltip arrowPointAtCenter placement="bottomLeft" title={t('tip')}>
-              <Icon type="question-circle-o" onClick={() => openModal(true)} />
-            </Tooltip>
+            <Tooltip
+              arrowPointAtCenter
+              placement="bottomLeft"
+              title={t('tip')}
+              onClick={() => openModal(true)}
+            />
           </div>
 
           <Modal
@@ -199,6 +232,18 @@ export default Form.create<PropsType>()(
               </div>
             </div>
           )}
+
+          <div className={styles.dpa}>
+            {t('google-ads.dpa')}
+            <div>
+              <div>{t('google-ads.dpa-description-1')}</div>
+              <div>{t('google-ads.dpa-description-2')}</div>
+            </div>
+          </div>
+
+          <Button disabled={!googleFeedsLink} id="googleFeedsLink">
+            {t('google-ads.copy-dpa-link')}
+          </Button>
         </div>
       );
     },

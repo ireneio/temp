@@ -6,14 +6,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import gql from 'graphql-tag';
 import { useApolloClient } from '@apollo/react-hooks';
-import { Form, Input, Icon, Button, Tooltip } from 'antd';
+import { Form, Input, Icon, Button } from 'antd';
 
+import Tooltip from '@admin/tooltip';
+import usePortalTarget from '@admin/utils/lib/hooks/usePortalTarget';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   pageManagerPageTipPath_w200 as pageManagerPageTipPath,
   pageManagerPageTipTab_w200 as pageManagerPageTipTab,
 } from '@meepshop/images';
-import usePortalTarget from '@admin/utils/lib/hooks/usePortalTarget';
 
 import UploadImage from './UploadImage';
 import useEditSubmit from './hooks/useEditSubmit';
@@ -108,9 +109,7 @@ export default Form.create<PropsType>()(
               <span>
                 {t('form.title.title')}
 
-                <Tooltip title={t('form.title.hint')}>
-                  <Icon type="question-circle" theme="filled" />
-                </Tooltip>
+                <Tooltip title={t('form.title.hint')} />
               </span>
 
               {getFieldDecorator('title', {
@@ -135,9 +134,7 @@ export default Form.create<PropsType>()(
                           alt="pageManagerPageTipPath"
                         />
                       }
-                    >
-                      <Icon type="question-circle" theme="filled" />
-                    </Tooltip>
+                    />
                   </span>
 
                   {getFieldDecorator('path', {
@@ -186,9 +183,7 @@ export default Form.create<PropsType>()(
                           alt="pageManagerPageTipTab"
                         />
                       }
-                    >
-                      <Icon type="question-circle" theme="filled" />
-                    </Tooltip>
+                    />
                   </span>
 
                   {getFieldDecorator('tabTitle', {
@@ -207,9 +202,7 @@ export default Form.create<PropsType>()(
                   <span>
                     {t('form.keywords.title')}
 
-                    <Tooltip title={t('form.keywords.hint')}>
-                      <Icon type="question-circle" theme="filled" />
-                    </Tooltip>
+                    <Tooltip title={t('form.keywords.hint')} />
                   </span>
 
                   {getFieldDecorator('keywords', {
@@ -221,9 +214,7 @@ export default Form.create<PropsType>()(
                   <span>
                     {t('form.description.title')}
 
-                    <Tooltip title={t('form.description.hint')}>
-                      <Icon type="question-circle" theme="filled" />
-                    </Tooltip>
+                    <Tooltip title={t('form.description.hint')} />
                   </span>
 
                   {getFieldDecorator('description', {
@@ -235,9 +226,7 @@ export default Form.create<PropsType>()(
                   <span>
                     {t('form.image.title')}
 
-                    <Tooltip title={t('form.image.hint')}>
-                      <Icon type="question-circle" theme="filled" />
-                    </Tooltip>
+                    <Tooltip title={t('form.image.hint')} />
                   </span>
 
                   {getFieldDecorator('image', {

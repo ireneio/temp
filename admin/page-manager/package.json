@@ -10,6 +10,7 @@
   "dependencies": {
     "@admin/gallery": "^0.51.0",
     "@admin/switch": "^0.51.0",
+    "@admin/tooltip": "^0.51.0",
     "@admin/utils": "^0.51.0",
     "@admin/wrapper": "^0.51.0",
     "@meepshop/icons": "^0.51.0",

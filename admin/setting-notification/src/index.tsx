@@ -4,6 +4,7 @@ import { DataProxy } from 'apollo-cache';
 import { MutationFunction } from '@apollo/react-common';
 import { FormComponentProps } from 'antd/lib/form/Form';
 
+import Tooltip from '@admin/tooltip';
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
@@ -15,7 +16,6 @@ import {
   Switch,
   Spin,
   Input,
-  Tooltip,
   Icon,
   Form,
   Divider,
@@ -260,11 +260,7 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
                         <div>
                           <span>{t(`${key}.title`)}</span>
 
-                          {!tip ? null : (
-                            <Tooltip title={t(`${key}.tip`)}>
-                              <Icon type="question-circle-o" />
-                            </Tooltip>
-                          )}
+                          {!tip ? null : <Tooltip title={t(`${key}.tip`)} />}
                         </div>
 
                         <div>{t(`${key}.description`)}</div>

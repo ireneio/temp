@@ -7,7 +7,9 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import React from 'react';
 import gql from 'graphql-tag';
 import { useApolloClient } from '@apollo/react-hooks';
-import { Form, Modal, Input, Switch, Icon, Tooltip } from 'antd';
+import { Form, Modal, Input, Switch, Icon } from 'antd';
+
+import Tooltip from '@admin/tooltip';
 import {
   pageManagerPageTipPath_w200 as pageManagerPageTipPath,
   pageManagerPageTipTab_w200 as pageManagerPageTipTab,
@@ -94,9 +96,7 @@ export default Form.create<PropsType>()(
                           alt="pageManagerPageTipPath"
                         />
                       }
-                    >
-                      <Icon type="question-circle" />
-                    </Tooltip>
+                    />
                   </span>
 
                   {getFieldDecorator('path', {
@@ -143,9 +143,7 @@ export default Form.create<PropsType>()(
                           alt="pageManagerPageTipTab"
                         />
                       }
-                    >
-                      <Icon type="question-circle" />
-                    </Tooltip>
+                    />
                   </span>
 
                   {getFieldDecorator('tabTitle', {

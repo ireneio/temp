@@ -8,6 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@admin/tooltip": "^0.51.0",
     "@admin/utils": "^0.51.0",
     "@meepshop/icons": "^0.51.0",
     "@meepshop/images": "^0.51.0",

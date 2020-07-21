@@ -20,7 +20,7 @@ export default React.memo(
     <Tooltip {...restProps}>
       <Icon
         className={`${styles.icon} ${iconClassName || ''}`}
-        type="question-circle-o"
+        type="question-circle"
         onClick={onClick}
       />
     </Tooltip>

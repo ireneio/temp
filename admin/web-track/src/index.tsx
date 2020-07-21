@@ -27,6 +27,7 @@ import { getWebTrack } from './__generated__/getWebTrack';
 
 // graphql import
 import { facebookFbPixelFragment, facebookStoreFragment } from './Facebook';
+import { googleAdsStoreFragment } from './GoogleAds';
 import { useGtagListFragment } from './hooks/useGtagList';
 import { useWebTrackListFragment } from './hooks/useWebTrackList';
 import { advancedSettingFragment } from './AdvancedSetting';
@@ -41,6 +42,7 @@ const query = gql`
       store {
         ...advancedSettingFragment
         ...facebookStoreFragment
+        ...googleAdsStoreFragment
       }
     }
 
@@ -61,6 +63,7 @@ const query = gql`
 
   ${advancedSettingFragment}
   ${facebookStoreFragment}
+  ${googleAdsStoreFragment}
   ${facebookFbPixelFragment}
   ${useGtagListFragment}
   ${useWebTrackListFragment}
@@ -104,6 +107,9 @@ const WebTrack: NextPage = React.memo(
                   signUpCode={gtagList?.sign_up?.code || null}
                   beginCheckoutCode={gtagList?.begin_checkout?.code || null}
                   purchaseCode={gtagList?.purchase?.code || null}
+                  googleFeedsLink={
+                    data?.viewer?.store?.setting?.googleFeedsLink || null
+                  }
                 />
               </TabPane>
               <TabPane tab={t('google-webmaster.title')} key="googleWebmaster">

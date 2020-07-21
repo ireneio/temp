@@ -33,7 +33,12 @@
     "begin-checkout": "開始結帳：",
     "purchase": "購買：",
     "event-placeholder": "請輸入事件程式碼片段",
-    "not-setting": "未設定"
+    "not-setting": "未設定",
+    "dpa": "動態廣告 (DPA)",
+    "dpa-description-1": "產品目錄更新時間：5:00 AM ~ 6:00 AM (GMT+08:00)",
+    "dpa-description-2": "請複製動態檔案網址，貼至 Google Merchant 帳戶設定動態饋給，Google 會依設定排程擷取。",
+    "copy-dpa-link": "複製動態檔案網址",
+    "copied": "已複製到剪貼簿"
   },
   "google-webmaster": {
     "title": "Google 網站管理員",

@@ -33,7 +33,12 @@
     "begin-checkout": "Mulai Checkout:",
     "purchase": "Membeli:",
     "event-placeholder": "Silakan masukkan cuplikan acara",
-    "not-setting": "Pengaturan belum dibuat"
+    "not-setting": "Pengaturan belum dibuat",
+    "dpa": "Iklan Produk Dinamis (DPA)",
+    "dpa-description-1": "Waktu Pembaruan Dialog Produk: 5:00 AM ~ 6:00 AM (GMT + 08:00)",
+    "dpa-description-2": null,
+    "copy-dpa-link": "Salin URL Dinamis",
+    "copied": "Disalin ke papan klip"
   },
   "google-webmaster": {
     "title": "Google Search Console",

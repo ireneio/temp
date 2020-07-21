@@ -5,9 +5,18 @@ import { FormComponentProps } from 'antd/lib/form';
 import React, { useState, useEffect } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
-import { Tooltip, Icon, Button, Modal, Form, Input, message } from 'antd';
+import {
+  Tooltip as AntdTooltip,
+  Icon,
+  Button,
+  Modal,
+  Form,
+  Input,
+  message,
+} from 'antd';
 import Clipboard from 'clipboard';
 
+import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   webTrackFacebook_w130 as webTrackFacebook,
@@ -81,10 +90,14 @@ export default Form.create<PropsType>()(
       },
     );
     useEffect(() => {
-      const clipboard = new Clipboard('button[role="copy"]', {
+      const clipboard = new Clipboard('#fbDPALink', {
         text: () => fbDPALink || '',
       }).on('success', () => {
-        message.success(t('facebook-pixel.copied'));
+        message.success({
+          content: t('facebook-pixel.copied'),
+          duration: 2,
+          icon: <Icon type="check-circle" />,
+        });
       });
 
       return () => {
@@ -100,9 +113,12 @@ export default Form.create<PropsType>()(
 
         <div className={styles.title}>
           <div>{t('facebook-pixel.title')}</div>
-          <Tooltip arrowPointAtCenter placement="bottomLeft" title={t('tip')}>
-            <Icon type="question-circle-o" onClick={() => openModal(true)} />
-          </Tooltip>
+          <Tooltip
+            arrowPointAtCenter
+            placement="bottomLeft"
+            title={t('tip')}
+            onClick={() => openModal(true)}
+          />
         </div>
 
         <Modal
@@ -179,7 +195,7 @@ export default Form.create<PropsType>()(
           </div>
         </div>
 
-        <Tooltip
+        <AntdTooltip
           placement="bottom"
           overlayStyle={{
             maxWidth: '440px',
@@ -192,13 +208,12 @@ export default Form.create<PropsType>()(
             </>
           }
         >
-          {/* eslint-disable-next-line jsx-a11y/aria-role */}
-          <Button disabled={!pixelId || !fbDPALink} role="copy">
+          <Button disabled={!pixelId || !fbDPALink} id="fbDPALink">
             {pixelId
               ? t('facebook-pixel.copy-dpa-link')
               : t('facebook-pixel.set-pixel-first')}
           </Button>
-        </Tooltip>
+        </AntdTooltip>
       </div>
     );
   }),

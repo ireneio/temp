@@ -33,7 +33,12 @@
     "begin-checkout": "เริ่มชำระเงิน:",
     "purchase": "ซื้อ:",
     "event-placeholder": "โปรดป้อนข้อมูลเหตุการณ์",
-    "not-setting": "ยังไม่ได้ทำการตั้งค่า"
+    "not-setting": "ยังไม่ได้ทำการตั้งค่า",
+    "dpa": "โฆษณาผลิตภัณฑ์แบบไดนามิก (DPA)",
+    "dpa-description-1": "เวลาอัปเดตการเจรจาผลิตภัณฑ์: 5:00 น. ~ 6:00 น. (GMT + 08: 00)",
+    "dpa-description-2": null,
+    "copy-dpa-link": "คัดลอก URL แบบไดนามิก",
+    "copied": "คัดลอกไปที่คลิปบอร์ดแล้ว"
   },
   "google-webmaster": {
     "title": "Google Search Console",

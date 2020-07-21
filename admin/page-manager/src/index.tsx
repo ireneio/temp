@@ -6,8 +6,9 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
-import { Spin, Input, Tooltip, Icon, Collapse } from 'antd';
+import { Spin, Input, Icon, Collapse } from 'antd';
 
+import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 import AddNewPage from './addNewPage';
@@ -137,9 +138,7 @@ const PageManager: NextPage = React.memo(
                             : ` (${subData.length})`}
 
                           {!hint ? null : (
-                            <Tooltip title={t(`${subKey}.hint`)}>
-                              <Icon type="question-circle" />
-                            </Tooltip>
+                            <Tooltip title={t(`${subKey}.hint`)} />
                           )}
                         </>
                       }

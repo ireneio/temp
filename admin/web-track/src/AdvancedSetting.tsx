@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
-import { Switch, Tooltip, Icon, message, Button, InputNumber } from 'antd';
+import { Switch, message, Button, InputNumber } from 'antd';
 
+import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 import styles from './styles/advancedSetting.less';
@@ -96,9 +97,7 @@ export default React.memo(({ store }: PropsType) => {
                 <div>{t('retention-milliseconds-track.tip-2')}</div>
               </>
             }
-          >
-            <Icon type="question-circle-o" />
-          </Tooltip>
+          />
         </div>
 
         <div>{t('retention-milliseconds-track.description')}</div>

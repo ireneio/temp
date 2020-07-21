@@ -33,7 +33,12 @@
     "begin-checkout": "チェックアウトを開始：",
     "purchase": "購入：",
     "event-placeholder": "イベントスニペットを入力してください",
-    "not-setting": "設定されていません"
+    "not-setting": "設定されていません",
+    "dpa": "動的商品広告（DPA）",
+    "dpa-description-1": "製品ダイアログの更新時間：5:00 AM〜6:00 AM（GMT + 08：00）",
+    "dpa-description-2": null,
+    "copy-dpa-link": "動的URLをコピー",
+    "copied": "クリップボードにコピーしました"
   },
   "google-webmaster": {
     "title": "Google Search Console",

@@ -33,7 +33,12 @@
     "begin-checkout": "Commencer la commande:",
     "purchase": "Achat:",
     "event-placeholder": "S'il vous plaît entrer extrait de l'événement",
-    "not-setting": "Le réglage n'a pas été fait"
+    "not-setting": "Le réglage n'a pas été fait",
+    "dpa": "Annonces de produits dynamiques (DPA)",
+    "dpa-description-1": "Heure de mise à jour du dialogue produit: 5 h 00 à 6 h 00 (GMT + 08: 00)",
+    "dpa-description-2": null,
+    "copy-dpa-link": "Copier l'URL dynamique",
+    "copied": "Copié dans le presse-papier"
   },
   "google-webmaster": {
     "title": "Console de recherche Google",

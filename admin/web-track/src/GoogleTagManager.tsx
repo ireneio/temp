@@ -3,8 +3,9 @@ import { FormComponentProps } from 'antd/lib/form';
 
 // import
 import React, { useState } from 'react';
-import { Tooltip, Icon, Button, Modal, Form, Input } from 'antd';
+import { Icon, Button, Modal, Form, Input } from 'antd';
 
+import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   webTrackGoogleTagManager_w172 as webTrackGoogleTagManager,
@@ -44,9 +45,12 @@ export default Form.create<PropsType>()(
 
         <div className={styles.title}>
           <div>{t('google-tag-manager.title')}</div>
-          <Tooltip arrowPointAtCenter placement="bottomLeft" title={t('tip')}>
-            <Icon type="question-circle-o" onClick={() => openModal(true)} />
-          </Tooltip>
+          <Tooltip
+            arrowPointAtCenter
+            placement="bottomLeft"
+            title={t('tip')}
+            onClick={() => openModal(true)}
+          />
         </div>
 
         <Modal
