@@ -13,6 +13,7 @@
   "invoice-paper": "Factura en papel",
   "invoice-title": "Cobrar a:",
   "invoice-number": "IVA no",
+  "wrong-invoice-number": null,
   "invoice-address": "Dirección postal de la factura",
   "invoice-e-invoice": "Factura electrónica",
   "wrong-certificate": "El código de barras NPC es incorrecto. Por favor ingrese nuevamente.",

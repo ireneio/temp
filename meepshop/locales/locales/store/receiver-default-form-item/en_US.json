@@ -13,6 +13,7 @@
   "invoice-paper": "Paper invoice",
   "invoice-title": "Bill to: ",
   "invoice-number": "VAT No.",
+  "wrong-invoice-number": null,
   "invoice-address": "Invoice Mailing Address",
   "invoice-e-invoice": "e-Invoice",
   "wrong-certificate": "NPC Barcode is incorrect. Please enter again.",

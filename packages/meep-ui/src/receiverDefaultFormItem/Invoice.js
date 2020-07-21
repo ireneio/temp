@@ -37,6 +37,29 @@ export default class Invoice extends React.PureComponent {
     style: {},
   };
 
+  validateInvoiceVAT = async (rule, value, callback) => {
+    const { t, getData } = this.props;
+
+    try {
+      const { data, errors } = await getData(`
+        query isBANValid {
+          isBANValid(ban: "${value}")
+        }
+      `);
+
+      if (errors) {
+        warning(!errors.length, JSON.stringify(errors));
+        message.error(t('error'));
+      }
+
+      if (data?.isBANValid) return callback();
+
+      return callback(t('wrong-invoice-number'));
+    } catch (error) {
+      return callback(t('error'));
+    }
+  };
+
   validateLoveCode = async (rule, value, callback) => {
     const { t, getData } = this.props;
 
@@ -114,6 +137,9 @@ export default class Invoice extends React.PureComponent {
                     {
                       required: true,
                       message: t('is-required'),
+                    },
+                    {
+                      validator: this.validateInvoiceVAT,
                     },
                   ],
                   validateTrigger: 'onBlur',

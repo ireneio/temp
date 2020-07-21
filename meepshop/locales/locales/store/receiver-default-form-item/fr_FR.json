@@ -13,6 +13,7 @@
   "invoice-paper": "Facture papier",
   "invoice-title": "Facturer:",
   "invoice-number": "Numéro de TVA.",
+  "wrong-invoice-number": null,
   "invoice-address": "Adresse postale de facturation",
   "invoice-e-invoice": "e-facture",
   "wrong-certificate": "Le code à barres NPC est incorrect. Veuillez entrer à nouveau.",

@@ -13,6 +13,7 @@
   "invoice-paper": "紙本發票",
   "invoice-title": "發票抬頭",
   "invoice-number": "統一編號",
+  "wrong-invoice-number": "統一編號錯誤，請重新輸入。",
   "invoice-address": "發票地址",
   "invoice-e-invoice": "電子發票",
   "wrong-certificate": "自然人憑證條碼錯誤，請重新輸入。",

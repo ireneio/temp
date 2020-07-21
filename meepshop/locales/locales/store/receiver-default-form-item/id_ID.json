@@ -13,6 +13,7 @@
   "invoice-paper": "Faktur kertas",
   "invoice-title": "Pembayaran kepada:",
   "invoice-number": "Tidak. PPN",
+  "wrong-invoice-number": null,
   "invoice-address": "Alamat Pengiriman Faktur",
   "invoice-e-invoice": "e-Faktur",
   "wrong-certificate": "Kode Batang NPC salah. Silakan masukkan lagi.",

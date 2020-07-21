@@ -13,6 +13,7 @@
   "invoice-paper": "Hóa đơn giấy",
   "invoice-title": "Hóa đơn",
   "invoice-number": "Mã số thuế",
+  "wrong-invoice-number": null,
   "invoice-address": "Địa chỉ hóa đơn",
   "invoice-e-invoice": "Hóa đơn điện tử",
   "wrong-certificate": "Mã vạch thẻ Thể Nhân không đúng, xin vui lòng nhập lại.",

@@ -13,6 +13,7 @@
   "invoice-paper": "ใบแจ้งหนี้กระดาษ",
   "invoice-title": "ส่งเบิกไปที่:",
   "invoice-number": "หมายเลข VAT",
+  "wrong-invoice-number": null,
   "invoice-address": "ที่อยู่สำหรับส่งใบแจ้งหนี้",
   "invoice-e-invoice": "E-ใบแจ้งหนี้",
   "wrong-certificate": "บาร์โค้ด NPC ไม่ถูกต้อง กรุณากรอกใหม่",

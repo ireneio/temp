@@ -13,6 +13,7 @@
   "invoice-paper": "紙の請求書",
   "invoice-title": "発票の宛名",
   "invoice-number": "統一編号（法人番号）",
+  "wrong-invoice-number": null,
   "invoice-address": "発票住所",
   "invoice-e-invoice": "電子発票",
   "wrong-certificate": "自然人証憑バーコードが誤っています。もう一度入力してください。",
