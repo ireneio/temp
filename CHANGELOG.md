@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## 0.52.0 (2020-07-21)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1032](https://github.com/meepshop/meep-lerna/pull/1032) 【優化】檢查統一編號 - 前端 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#1029](https://github.com/meepshop/meep-lerna/pull/1029) 【功能】Google Shopping Ads ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#1033](https://github.com/meepshop/meep-lerna/pull/1033) 【功能】 LINE Pay 手機付款網址跳轉優化 ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#1050](https://github.com/meepshop/meep-lerna/pull/1050) (@meepshop/store) Remove resources limit ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#1052](https://github.com/meepshop/meep-lerna/pull/1052) (@meepshop/store) Modify code style ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.51.0 (2020-07-20)
 
 #### :boom: Breaking Change
