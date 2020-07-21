@@ -15,8 +15,19 @@ import {
 
 export default async function(context) {
   const variables = {
-    keys:
-      '$pageFilter: StorePagesFilterInput, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $memberGroupFilter: MemberGroupFilterInput, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+    keys: `
+      $pageFilter: StorePagesFilterInput,
+      $menuSearch: searchInputObjectType,
+      $colorSearch: searchInputObjectType,
+      $activitySearch: searchInputObjectType,
+      $storeAppSearch: searchInputObjectType,
+      $memberGroupFilter: MemberGroupFilterInput,
+      $cartSearch: searchInputObjectType,
+      $notificationSearch: searchInputObjectType,
+      $hasUseablePoints: Boolean!,
+      $expireBy: Int!,
+      $webTrackSearch: searchInputObjectType
+    `,
     type: 'query serverProductsInitial',
     values: {
       pageFilter: {

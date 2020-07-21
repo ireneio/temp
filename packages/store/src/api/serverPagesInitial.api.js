@@ -19,8 +19,19 @@ export default async function(context) {
   } = context;
   if (!path) throw new Error('Page path is not defined.');
   const variables = {
-    keys:
-      '$pageFilter: StorePagesFilterInput, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $memberGroupFilter: MemberGroupFilterInput, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+    keys: `
+      $pageFilter: StorePagesFilterInput,
+      $menuSearch: searchInputObjectType,
+      $colorSearch: searchInputObjectType,
+      $activitySearch: searchInputObjectType,
+      $storeAppSearch: searchInputObjectType,
+      $memberGroupFilter: MemberGroupFilterInput,
+      $cartSearch: searchInputObjectType,
+      $notificationSearch: searchInputObjectType,
+      $hasUseablePoints: Boolean!,
+      $expireBy: Int!,
+      $webTrackSearch: searchInputObjectType
+    `,
     type: 'query serverPagesInitial',
     values: {
       pageFilter: {

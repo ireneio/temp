@@ -19,8 +19,19 @@ export default async function(context) {
   } = context;
   if (!pId) throw new Error('Product id is not defined.');
   const variables = {
-    keys:
-      '$productSearch: searchInputObjectType, $menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $memberGroupFilter: MemberGroupFilterInput, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+    keys: `
+      $productSearch: searchInputObjectType,
+      $menuSearch: searchInputObjectType,
+      $colorSearch: searchInputObjectType,
+      $activitySearch: searchInputObjectType,
+      $storeAppSearch: searchInputObjectType,
+      $memberGroupFilter: MemberGroupFilterInput,
+      $cartSearch: searchInputObjectType,
+      $notificationSearch: searchInputObjectType,
+      $hasUseablePoints: Boolean!,
+      $expireBy: Int!,
+      $webTrackSearch: searchInputObjectType
+    `,
     type: 'query serverProductInitial',
     values: {
       productSearch: {

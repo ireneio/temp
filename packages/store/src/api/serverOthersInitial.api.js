@@ -14,8 +14,18 @@ import {
 
 export default async function(context) {
   const variables = {
-    keys:
-      '$menuSearch: searchInputObjectType, $colorSearch: searchInputObjectType, $activitySearch: searchInputObjectType, $storeAppSearch: searchInputObjectType, $memberGroupFilter: MemberGroupFilterInput, $cartSearch: searchInputObjectType, $notificationSearch: searchInputObjectType, $hasUseablePoints: Boolean!, $expireBy: Int!, $webTrackSearch: searchInputObjectType',
+    keys: `
+      $menuSearch: searchInputObjectType,
+      $colorSearch: searchInputObjectType,
+      $activitySearch: searchInputObjectType,
+      $storeAppSearch: searchInputObjectType,
+      $memberGroupFilter: MemberGroupFilterInput,
+      $cartSearch: searchInputObjectType,
+      $notificationSearch: searchInputObjectType,
+      $hasUseablePoints: Boolean!,
+      $expireBy: Int!,
+      $webTrackSearch: searchInputObjectType
+    `,
     type: 'query serverOthersInitial',
     values: {
       menuSearch: {
