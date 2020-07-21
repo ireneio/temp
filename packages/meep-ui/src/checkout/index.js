@@ -312,20 +312,25 @@ export default class Checkout extends React.PureComponent {
           },
         });
 
-        if (formData && formData.url) {
+        if (formData?.url) {
           if (/CashSystemFrontEnd\/Query/.test(formData.url)) {
             dispatchAction('emptyCart');
             goTo({ pathname: `/ezpay/cvcode/${id}` });
             return;
           }
 
-          if (formData.type === 'GET') {
+          if (formData.type === 'POST') {
+            this.setState({ formData });
+            return;
+          }
+
+          if (!formData.url?.startsWith('line')) {
             window.location = formData.url;
             return;
           }
 
-          this.setState({ formData });
-          return;
+          // hack for linepay in mobile devices
+          window.location = formData.url;
         }
 
         dispatchAction('emptyCart', points);

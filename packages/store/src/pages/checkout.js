@@ -42,7 +42,7 @@ class Checkout extends React.Component {
   componentDidMount() {
     const { location, carts, adTrack } = this.props;
 
-    if (location.search === '')
+    if (location.search === '' && carts)
       adTrack.beginCheckout({
         total: carts.priceInfo.total,
       });
