@@ -4,12 +4,12 @@
   "description": "Setting wrapper for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.52.0",
+  "version": "0.53.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/wrapper": "^0.52.0",
-    "@meepshop/link": "^0.52.0"
+    "@admin/wrapper": "^0.53.0",
+    "@meepshop/link": "^0.53.0"
   },
   "keywords": ["admin", "setting", "wrapper"]
 }
