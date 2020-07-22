@@ -32,7 +32,6 @@ class Img extends React.PureComponent {
     image: IMAGE_TYPE.isRequired,
     alignment: ALIGNMENT_TYPE.isRequired,
     contentWidth: CONTENT_WIDTH_TYPE.isRequired,
-    isUsingCache: PropTypes.bool,
 
     /** ignore */
     forwardedRef: PropTypes.shape({}).isRequired,
@@ -45,23 +44,33 @@ class Img extends React.PureComponent {
     alt: '',
     customTracking: null,
     className: '',
-    isUsingCache: false,
   };
 
   /** 當useLarge為true時，表示已觸發sensor，此時生命週期已完成did mount，
    *  可直接使用device pixel ratio; 否則使用小圖。
    */
-  getSrc = useLarge => {
+  getSrc = (isError, useLarge) => {
     const { image, width } = this.props;
     const imageWidth = !useLarge
       ? 60
       : IMAGE_SUITABLE_WIDTHS.find(
           suitableWidth => suitableWidth > width * window.devicePixelRatio,
         ) || IMAGE_SUITABLE_WIDTHS.slice(-1)[0];
+    const url =
+      image instanceof Object
+        ? image.scaledSrc[`w${imageWidth}`]
+        : `${
+            /(^\/)|(^http)/.test(image) ? image : `//${image}`
+          }?w=${imageWidth}`;
 
-    return image instanceof Object
-      ? image.scaledSrc[`w${imageWidth}`]
-      : `${/(^\/)|(^http)/.test(image) ? image : `//${image}`}?w=${imageWidth}`;
+    if (!(image instanceof Object) || !isError) return url;
+
+    const originUrl = atob(url.split('/').slice(-1)).replace(
+      'gs://img.meepcloud.com/',
+      'https://gc.meepcloud.com/',
+    );
+
+    return `${originUrl}?w=${imageWidth}`;
   };
 
   render() {
@@ -72,7 +81,7 @@ class Img extends React.PureComponent {
       className,
       alignment,
       contentWidth,
-      isUsingCache,
+      image,
 
       /** ignore */
       forwardedRef,
@@ -83,32 +92,23 @@ class Img extends React.PureComponent {
       <div className={`${styles.root} ${styles[alignment]} ${className}`}>
         <div ref={forwardedRef} style={{ width: `${contentWidth}%` }}>
           <Link {...linkProps}>
-            {isUsingCache ? (
-              <img
-                style={{ width: '100%' }}
-                src={this.getSrc(true)}
-                onClick={this.clickTracking(customTracking)}
-                alt={alt}
-              />
-            ) : (
-              <Lazy>
-                {({ useLarge, isClear, onLoad, onError }) => (
-                  <img
-                    style={{
-                      width: '100%',
-                      filter: !isClear && 'blur(10px) brightness(80%)',
-                      transform: !isClear && 'scale(1.01)',
-                      transition: 'all 0.5s ease-in',
-                    }}
-                    src={this.getSrc(useLarge)}
-                    onClick={this.clickTracking(customTracking)}
-                    onLoad={onLoad}
-                    onError={onError}
-                    alt={alt}
-                  />
-                )}
-              </Lazy>
-            )}
+            <Lazy image={image}>
+              {({ useLarge, isClear, isError, onLoad, onError }) => (
+                <img
+                  style={{
+                    width: '100%',
+                    filter: !isClear && 'blur(10px) brightness(80%)',
+                    transform: !isClear && 'scale(1.01)',
+                    transition: 'all 0.5s ease-in',
+                  }}
+                  src={this.getSrc(isError, useLarge)}
+                  onClick={this.clickTracking(customTracking)}
+                  onLoad={onLoad}
+                  onError={onError}
+                  alt={alt}
+                />
+              )}
+            </Lazy>
           </Link>
         </div>
       </div>

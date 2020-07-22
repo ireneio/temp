@@ -209,7 +209,6 @@ export default class ProductList extends React.PureComponent {
             products: cached,
             isDefaultProducts: productListCache.isDefaultProducts,
             isLoading: false,
-            isUsingCache: true,
           });
         } else {
           // get rid of it once expired
@@ -224,7 +223,6 @@ export default class ProductList extends React.PureComponent {
       this.setState({
         products: getData(...getProductsQuery(params)),
         isLoading: true,
-        isUsingCache: false,
       });
       return;
     }
@@ -430,7 +428,6 @@ export default class ProductList extends React.PureComponent {
       isGrid,
       isLoading,
       isMobile,
-      isUsingCache,
     } = this.state;
     // FIXME: custom sorting workaround
     const total =
@@ -509,7 +506,6 @@ export default class ProductList extends React.PureComponent {
               isLogin={isLogin}
               transformCurrency={transformCurrency}
               memberSeePrice={hasStoreAppPlugin('memberSeePrice')}
-              isUsingCache={isUsingCache}
             />
 
             <div style={styles.pagination}>

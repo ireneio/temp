@@ -2,16 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import VisibilitySensor from 'react-visibility-sensor';
 
+const cache = [];
+
 export default class Lazy extends React.PureComponent {
   state = {
     useLarge: false, // 是否開始使用大圖
     isClear: false, // 是否清除模糊
+    isError: false,
     activeSensor: true, // 是否關閉sernsor
   };
 
   static propTypes = {
     /** ignore */
     children: PropTypes.func.isRequired,
+  };
+
+  static getDerivedStateFromProps = (newProps, prevState) => {
+    const { image } = newProps;
+
+    if (cache.includes(image instanceof Object ? image.scaledSrc.w1920 : image))
+      return {
+        ...prevState,
+        useLarge: true,
+        isClear: true,
+        activeSensor: false,
+      };
+
+    return null;
   };
 
   handleVisibilityChange = isVisible => {
@@ -24,17 +41,28 @@ export default class Lazy extends React.PureComponent {
   };
 
   onLoad = () => {
+    const { image } = this.props;
     const { useLarge } = this.state;
-    // 大圖的onload完成，才清除模糊遮罩。
-    if (useLarge) this.setState({ isClear: true });
+
+    if (!useLarge) return;
+
+    cache.push(image instanceof Object ? image.scaledSrc.w1920 : image);
+    this.setState({ isClear: true });
   };
 
   // 如果img onload發生錯誤，則不需要模糊 & lazy loading
-  onError = () => this.setState({ isClear: true, activeSensor: false });
+  onError = () => {
+    const { isError } = this.state;
+
+    if (isError) return;
+
+    this.setState({ activeSensor: false, isError: true });
+  };
 
   render() {
-    const { useLarge, activeSensor, isClear } = this.state;
+    const { useLarge, activeSensor, isClear, isError } = this.state;
     const { children } = this.props;
+
     return (
       <VisibilitySensor
         onChange={this.handleVisibilityChange}
@@ -49,6 +77,7 @@ export default class Lazy extends React.PureComponent {
           {children({
             useLarge,
             isClear,
+            isError,
             onLoad: this.onLoad,
             onError: this.onError,
           })}
