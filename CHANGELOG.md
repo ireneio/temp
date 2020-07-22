@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.53.0 (2020-07-22)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1044](https://github.com/meepshop/meep-lerna/pull/1044) 前後台 - 圖片元件、圖片文字元件、輪播元件 改用 image proxy ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.52.0 (2020-07-21)
 
 #### :rocket: New Feature
