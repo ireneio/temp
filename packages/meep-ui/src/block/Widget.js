@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { warning } from 'fbjs';
 import radium, { StyleRoot } from 'radium';
 
-import { screenSmMax } from '@store/utils/lib/styles';
-
 import { WIDGETSETTING_TYPE } from './constants';
 import modules from './modules';
 
@@ -86,7 +84,7 @@ export default class Widget extends React.PureComponent {
                     padding: ${hasVisibleModule ? padding / 2 : 0}px;
                   }
 
-                  @media (max-width: ${screenSmMax}) {
+                  @media (max-width: ${styles.screenSmMax}) {
                     #wrapper-${id} {
                       padding: ${hasVisibleModule ? padding / 4 : 0}px;
                     }

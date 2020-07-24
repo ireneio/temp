@@ -13,6 +13,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/apollo": "^0.53.0",
+    "@admin/utils": "^0.53.0",
     "@admin/wrapper": "^0.53.0",
     "@graphql-tools/mock": "^6.0.12",
     "@meepshop/apollo": "^0.53.0",
@@ -23,6 +24,7 @@
     "@store/apollo": "^0.53.0",
     "@store/currency": "^0.53.0",
     "@store/fb": "^0.53.0",
+    "@store/utils": "^0.53.0",
     "apollo-link-schema": "^1.2.4",
     "js-combinatorics": "^0.6.1",
     "moment": "^2.24.0"

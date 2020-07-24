@@ -5,8 +5,6 @@ import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon } from 'antd';
 
-import { screenSmMax } from '@store/utils/lib/styles';
-
 import Layout from './Layout';
 import useModules from './hooks/useModules';
 import styles from './styles/index.less';
@@ -104,7 +102,7 @@ export default React.memo(() => {
                     '0px'} / 2);
                 }
 
-                @media (max-width: ${screenSmMax}) {
+                @media (max-width: ${styles.screenSmMax}) {
                   #block-${id},
                   #block-${id} .module {
                     padding: calc(${padding?.replace(/^PADDING(.*)$/, '$1px') ||

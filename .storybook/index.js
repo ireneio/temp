@@ -19,7 +19,6 @@ import { storiesOf } from '@storybook/react';
 
 import '../combined.less';
 
-import '${workspaceName}/utils/lib/styles/base.less';
 import Provider from '@meepshop/mock-types/src/${upperCaseWorkspaceName}Provider';
 
 ${(() => {

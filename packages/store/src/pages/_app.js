@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 import 'isomorphic-unfetch';
-import '@store/utils/lib/styles/base.less';
+import '@store/utils/styles/base.less';
 import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';

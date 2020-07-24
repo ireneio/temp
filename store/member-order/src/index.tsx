@@ -11,7 +11,6 @@ import moment from 'moment';
 import transformColor from 'color';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import { screenSmMax } from '@store/utils/lib/styles';
 
 import NotFound from './NotFound';
 import Products from './Products';
@@ -91,7 +90,7 @@ const MemberOrder = React.memo(
       <style
         dangerouslySetInnerHTML={{
           __html: `
-            @media (max-width: ${screenSmMax}) {
+            @media (max-width: ${styles.screenSmMax}) {
               .${styles.root} h1 > span:last-child {
                 color: ${transformColor(colors[3]).alpha(0.5)};
               }

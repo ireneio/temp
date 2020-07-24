@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { screenSmMax } from '@store/utils/lib/styles';
-
 import {
   ID_TYPE,
   COLOR_TYPE,
@@ -57,7 +55,7 @@ export default class Divider extends React.PureComponent {
                 height: ${height}px;
               }
 
-              @media (max-width: ${screenSmMax}) {
+              @media (max-width: ${styles.screenSmMax}) {
                 #divider-${id} > div {
                   height: ${height / 2}px;
                 }

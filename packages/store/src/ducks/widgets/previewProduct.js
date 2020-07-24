@@ -1,11 +1,11 @@
 import {
-  previewProductGalleryOneProduct1_scaledSrc as previewProductGalleryOneProduct1,
-  previewProductGalleryOneProduct2_scaledSrc as previewProductGalleryOneProduct2,
-  previewProductGalleryOneProduct3_scaledSrc as previewProductGalleryOneProduct3,
-  previewProductGalleryOneProduct4_scaledSrc as previewProductGalleryOneProduct4,
-  previewProductGalleryTwoProduct5_scaledSrc as previewProductGalleryTwoProduct5,
-  previewProductGalleryTwoProduct6_scaledSrc as previewProductGalleryTwoProduct6,
-  previewProductGalleryTwoProduct7_scaledSrc as previewProductGalleryTwoProduct7,
+  previewProductShirtGalleryOneProduct1_scaledSrc as previewProductShirtGalleryOneProduct1,
+  previewProductShirtGalleryOneProduct2_scaledSrc as previewProductShirtGalleryOneProduct2,
+  previewProductShirtGalleryOneProduct3_scaledSrc as previewProductShirtGalleryOneProduct3,
+  previewProductShirtGalleryOneProduct4_scaledSrc as previewProductShirtGalleryOneProduct4,
+  previewProductShirtGalleryTwoProduct5_scaledSrc as previewProductShirtGalleryTwoProduct5,
+  previewProductShirtGalleryTwoProduct6_scaledSrc as previewProductShirtGalleryTwoProduct6,
+  previewProductShirtGalleryTwoProduct7_scaledSrc as previewProductShirtGalleryTwoProduct7,
 } from '@meepshop/images';
 
 export default {
@@ -24,7 +24,7 @@ export default {
   },
   coverImage: {
     fileId: 'c34eb2cf-33b2-472b-b84b-4bda5956bdfe',
-    scaledSrc: previewProductGalleryOneProduct1,
+    scaledSrc: previewProductShirtGalleryOneProduct1,
   },
   galleries: [
     {
@@ -32,22 +32,22 @@ export default {
         {
           fileId: 'c34eb2cf-33b2-472b-b84b-4bda5956bdfe',
           isMain: true,
-          scaledSrc: previewProductGalleryOneProduct1,
+          scaledSrc: previewProductShirtGalleryOneProduct1,
         },
         {
           fileId: '4ca6a3e4-6b08-4107-b178-08b96cd26ac0',
           isMain: false,
-          scaledSrc: previewProductGalleryOneProduct2,
+          scaledSrc: previewProductShirtGalleryOneProduct2,
         },
         {
           fileId: 'b0b6509d-9117-4a28-a3d1-738c31e0b375',
           isMain: false,
-          scaledSrc: previewProductGalleryOneProduct3,
+          scaledSrc: previewProductShirtGalleryOneProduct3,
         },
         {
           fileId: 'f3121800-2b4c-421b-9403-6a64362922b3',
           isMain: false,
-          scaledSrc: previewProductGalleryOneProduct4,
+          scaledSrc: previewProductShirtGalleryOneProduct4,
         },
       ],
     },
@@ -56,17 +56,17 @@ export default {
         {
           fileId: 'ea8199ca-3f1b-4853-8869-d0716812d62c',
           isMain: false,
-          scaledSrc: previewProductGalleryTwoProduct5,
+          scaledSrc: previewProductShirtGalleryTwoProduct5,
         },
         {
           fileId: '8bf70918-cff6-4b34-a06f-48231470c3f2',
           isMain: false,
-          scaledSrc: previewProductGalleryTwoProduct6,
+          scaledSrc: previewProductShirtGalleryTwoProduct6,
         },
         {
           fileId: '0fec546c-5290-448c-bfc6-d622e19415b1',
           isMain: false,
-          scaledSrc: previewProductGalleryTwoProduct7,
+          scaledSrc: previewProductShirtGalleryTwoProduct7,
         },
       ],
     },

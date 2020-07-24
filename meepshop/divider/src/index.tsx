@@ -1,8 +1,6 @@
 // import
 import React from 'react';
 
-import { screenSmMax } from '@meepshop/utils/lib/styles';
-
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -37,7 +35,7 @@ export default React.memo(
               height: ${height}px;
             }
 
-            @media (max-width: ${screenSmMax}) {
+            @media (max-width: ${styles.screenSmMax}) {
               #divider-${id} > div {
                 height: ${height / 2}px;
               }

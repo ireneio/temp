@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 
-import { screenSmMax } from '@store/utils/lib/styles';
-
 import { enhancer } from 'layout/DecoratorsRoot';
 
 import Widget from './Widget';
@@ -47,7 +45,7 @@ export default class Block extends React.PureComponent {
                   #block-${id} {
                     padding: ${padding / 2}px;
                   }
-                  @media (max-width: ${screenSmMax}) {
+                  @media (max-width: ${styles.screenSmMax}) {
                     #block-${id} {
                       padding: ${padding / 4}px;
                     }

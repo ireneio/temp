@@ -12,7 +12,7 @@ import dynamic from 'next/dynamic';
 import { appWithTranslation } from '@meepshop/utils/lib/i18n';
 import { withDomain } from '@meepshop/link';
 import { EventsProvider } from '@meepshop/events';
-import '@admin/utils/lib/styles/base.less';
+import '@admin/utils/styles/base.less';
 import withApollo from '@admin/apollo';
 
 // definition
