@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.53.1 (2020-07-24)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1055](https://github.com/meepshop/meep-lerna/pull/1055) 【BUG】未登入狀態，應被導到登入頁 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1031](https://github.com/meepshop/meep-lerna/pull/1031) (@meepshop/utils) Move screenSmMax, add antd ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.53.0 (2020-07-22)
 
 #### :rocket: New Feature
