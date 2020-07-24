@@ -58,7 +58,7 @@ class ThankYouPage extends React.Component {
   }
 
   render() {
-    const { error } = this.props;
+    const { isLogin, error } = this.props;
 
     /* Display Error View */
     if (error) return <Error error={error} />;
@@ -69,7 +69,9 @@ class ThankYouPage extends React.Component {
       pageAdTrackIDs,
     } = this.props;
 
-    return (
+    return isLogin === 'NOTLOGIN' ? (
+      <div>未登入</div>
+    ) : (
       <>
         <Head>
           <title>{storeName}</title>
@@ -91,6 +93,7 @@ const mapStateToProps = (state, props) => {
   return {
     storeSetting: state.storeReducer.settings,
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
+    isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getJoinedThankYouPage(state, props),
   };
