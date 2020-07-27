@@ -43,7 +43,6 @@ class RewardPoints extends Component {
       fbPixelId: PropTypes.string,
     }).isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    userPoints: PropTypes.arrayOf(PropTypes.object).isRequired,
     currentBalance: PropTypes.number.isRequired,
   };
 
@@ -149,7 +148,6 @@ const mapStateToProps = (state, props) => {
     location: Utils.uriParser(props),
     page: getPage(state, props),
     colors: Utils.getIn(['storeReducer', 'colors'])(state),
-    userPoints: Utils.getIn(['memberReducer', 'userPoints'])(state),
     currentBalance: Utils.getIn(['memberReducer', 'currentBalance'])(state),
   };
 };

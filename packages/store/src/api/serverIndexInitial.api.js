@@ -8,7 +8,6 @@ import {
   colorQuery,
   activityQuery,
   cartQuery,
-  pointsQuery,
   webTrackQuery,
   stockNotificationQuery,
 } from './query';
@@ -24,7 +23,6 @@ export default async context => {
       $memberGroupFilter: MemberGroupFilterInput,
       $cartSearch: searchInputObjectType,
       $notificationSearch: searchInputObjectType,
-      $hasUseablePoints: Boolean!,
       $expireBy: Int!,
       $webTrackSearch: searchInputObjectType
     `,
@@ -87,7 +85,6 @@ export default async context => {
         showDetail: true,
       },
       notificationSearch: {},
-      hasUseablePoints: true,
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
       webTrackSearch: {
         filter: {
@@ -156,12 +153,6 @@ export default async context => {
       data {
         ${stockNotificationQuery}
       }
-    }
-    getValidUserPointList(hasUseablePoints: $hasUseablePoints) {
-      data {
-        ${pointsQuery}
-      }
-      total
     }
     getFbPixel {
       pixelId

@@ -691,7 +691,6 @@ const getMemberData = payload => {
     : null;
 
   const stockNotificationList = data?.getStockNotificationList?.data || [];
-  const userPoints = data?.getValidUserPointList?.data || [];
 
   return {
     isLogin,
@@ -700,7 +699,6 @@ const getMemberData = payload => {
     wishList,
     currentBalance,
     stockNotificationList,
-    userPoints,
     loading: false,
     loadingTip: '',
   };
