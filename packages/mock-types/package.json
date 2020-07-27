@@ -17,7 +17,7 @@
     "@admin/wrapper": "^0.53.1",
     "@graphql-tools/mock": "^6.0.12",
     "@meepshop/apollo": "^0.53.1",
-    "@meepshop/events": "^0.53.0",
+    "@meepshop/context": "^0.53.0",
     "@meepshop/images": "^0.53.1",
     "@meepshop/utils": "^0.53.1",
     "@store/ad-track": "^0.53.1",

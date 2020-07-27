@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { appWithTranslation } from '@meepshop/utils/lib/i18n';
-import { EventsProvider } from '@meepshop/events';
+import { EventsProvider } from '@meepshop/context/lib/events';
 import '@store/utils/styles/base.less';
 import withApollo from '@store/apollo';
 import FbProvider from '@store/fb';

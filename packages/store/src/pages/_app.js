@@ -14,8 +14,8 @@ import { notification } from 'antd';
 import moment from 'moment';
 
 import { appWithTranslation } from '@meepshop/utils/lib/i18n';
+import { EventsProvider } from '@meepshop/context/lib/events';
 import { withDomain } from '@meepshop/link';
-import { EventsProvider } from '@meepshop/events';
 import withApollo from '@store/apollo';
 import FbProvider from '@store/fb';
 import { CurrencyProvider } from '@store/currency';

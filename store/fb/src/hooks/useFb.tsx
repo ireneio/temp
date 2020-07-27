@@ -1,7 +1,7 @@
 // import
 import React, { useState, useEffect, useContext } from 'react';
 
-import eventsContext from '@meepshop/events';
+import { events as eventsContext } from '@meepshop/context';
 
 // definition
 export default (

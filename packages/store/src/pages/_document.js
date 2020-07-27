@@ -2,7 +2,7 @@ import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import htmlescape from 'htmlescape';
 
-import { globalEvents } from '@meepshop/events';
+import { globalEvents } from '@meepshop/context/lib/events';
 
 export default class MyDocument extends Document {
   static async getInitialProps({ req, res, renderPage }) {
