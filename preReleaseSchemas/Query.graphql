@@ -1,0 +1,4 @@
+extend type Query {
+  # T6262 remove
+  getOrderExportDownload(ids: orderExportDownload): downloadUri
+}
