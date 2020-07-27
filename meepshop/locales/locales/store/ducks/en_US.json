@@ -20,8 +20,6 @@
   "remove-cart-items-failure-message": "Delete item: Error occurred",
   "update-user-success": "Your information has been updated.",
   "update-user-failure-message": "Update information: Error occurred",
-  "add-order-message-success": "It has been successfully submitted.",
-  "add-order-message-failure-message": "Submit order Q&A: Error occurred",
   "update-wishlist-success": "Updated",
   "update-wishlist-failure-message": "Wishlist: Error occurred",
   "add-stock-notification-list-success": "Added",

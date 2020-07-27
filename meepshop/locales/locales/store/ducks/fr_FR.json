@@ -20,8 +20,6 @@
   "remove-cart-items-failure-message": "Supprimer l'élément: une erreur s'est produite",
   "update-user-success": "Vos informations ont été mises à jour.",
   "update-user-failure-message": "Informations de mise à jour: une erreur s'est produite",
-  "add-order-message-success": "Il a été soumis avec succès.",
-  "add-order-message-failure-message": "Soumettre la commande Q&R: Une erreur s'est produite",
   "update-wishlist-success": "Mis à jour",
   "update-wishlist-failure-message": "Liste de souhaits: une erreur s'est produite",
   "add-stock-notification-list-success": "Ajoutée",

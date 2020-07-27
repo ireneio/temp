@@ -20,8 +20,6 @@
   "remove-cart-items-failure-message": "移除商品：發生錯誤",
   "update-user-success": "更新完成",
   "update-user-failure-message": "更新會員：發生錯誤",
-  "add-order-message-success": "已發送",
-  "add-order-message-failure-message": "發送訂單問答：發生錯誤",
   "update-wishlist-success": "完成",
   "update-wishlist-failure-message": "願望清單：發生錯誤",
   "add-stock-notification-list-success": "已加入",

@@ -33,9 +33,6 @@ import {
   updateUser,
   updateUserSuccess,
   updateUserFailure,
-  addOrderMessage,
-  addOrderMessageSuccess,
-  addOrderMessageFailure,
   updateWishList,
   updateWishListSuccess,
   updateWishListFailure,
@@ -123,10 +120,6 @@ export {
   // lists
   saveProductList,
   cleanProductList,
-  // add order message
-  addOrderMessage,
-  addOrderMessageSuccess,
-  addOrderMessageFailure,
   // update wish list
   updateWishList,
   updateWishListSuccess,

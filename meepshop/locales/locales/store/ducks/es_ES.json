@@ -20,8 +20,6 @@
   "remove-cart-items-failure-message": "Eliminar elemento: se produjo un error",
   "update-user-success": "Su información ha sido actualizada.",
   "update-user-failure-message": "Actualizar información: se produjo un error",
-  "add-order-message-success": "Se ha enviado correctamente.",
-  "add-order-message-failure-message": "Enviar pedido Preguntas y respuestas: se produjo un error",
   "update-wishlist-success": "Actualizada",
   "update-wishlist-failure-message": "Lista de deseos: se produjo un error",
   "add-stock-notification-list-success": "Adicional",

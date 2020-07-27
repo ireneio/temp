@@ -477,51 +477,6 @@ export function* watchUpdateUserFlow() {
   yield takeEvery(UPDATE_USER_REQUEST, updateUserFlow);
 }
 
-/* ************************************ 發送訂單問答 ************************************ */
-const ADD_ORDER_MESSAGE_REQUEST = 'ADD_ORDER_MESSAGE_REQUEST';
-const ADD_ORDER_MESSAGE_SUCCESS = 'ADD_ORDER_MESSAGE_SUCCESS';
-const ADD_ORDER_MESSAGE_FAILURE = 'ADD_ORDER_MESSAGE_FAILURE';
-
-export const addOrderMessage = payload => ({
-  type: ADD_ORDER_MESSAGE_REQUEST,
-  payload,
-});
-export const addOrderMessageSuccess = payload => ({
-  type: ADD_ORDER_MESSAGE_SUCCESS,
-  payload,
-});
-export const addOrderMessageFailure = () => ({
-  type: ADD_ORDER_MESSAGE_FAILURE,
-});
-
-function* addOrderMessageFlow({ payload }) {
-  try {
-    const data = yield call(Api.addOrderMessage, payload);
-
-    if (data.apiErr) {
-      yield put(addOrderMessageFailure());
-      notification.error({
-        message: i18n.t('ducks:add-order-message-failure-message'),
-        description: data.apiErr.message,
-      });
-    } else {
-      yield put(addOrderMessageSuccess(data));
-      notification.success({
-        message: i18n.t('ducks:add-order-message-success'),
-      });
-    }
-  } catch (error) {
-    yield put(addOrderMessageFailure());
-    notification.error({
-      message: i18n.t('ducks:add-order-message-failure-message'),
-      description: error.message,
-    });
-  }
-}
-export function* watchAddOrderMessageFlow() {
-  yield takeEvery(ADD_ORDER_MESSAGE_REQUEST, addOrderMessageFlow);
-}
-
 /* ************************************ 加入/移除願望清單 ************************************ */
 const UPDATE_WISHLIST_REQUEST = 'UPDATE_WISHLIST_REQUEST';
 const UPDATE_WISHLIST_SUCCESS = 'UPDATE_WISHLIST_SUCCESS';
@@ -991,27 +946,6 @@ export default (state = initialState, { type, payload }) => {
       };
     }
     case UPDATE_USER_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    case ADD_ORDER_MESSAGE_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-        loadingTip: ADD_ORDER_MESSAGE_REQUEST,
-      };
-    }
-    case ADD_ORDER_MESSAGE_SUCCESS: {
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    case ADD_ORDER_MESSAGE_FAILURE: {
       return {
         ...state,
         loading: false,
