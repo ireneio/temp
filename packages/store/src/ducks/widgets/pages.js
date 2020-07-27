@@ -77,7 +77,7 @@ export function* watchGetPagesFlow() {
 
 const initialState = [];
 
-export default function(state = initialState, { type, payload }) {
+export default (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_PAGES_REQUEST:
       return state;
@@ -90,4 +90,4 @@ export default function(state = initialState, { type, payload }) {
     default:
       return state;
   }
-}
+};

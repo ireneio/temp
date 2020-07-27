@@ -1,7 +1,7 @@
 import postGraphql from 'utils/postGraphql';
 import { pageQuery } from './query';
 
-export default async function({ path, pageType, ...context }) {
+export default async ({ path, pageType, ...context }) => {
   const variables = {
     type: 'query getPages',
     keys: '$filter: StorePagesFilterInput',
@@ -35,4 +35,4 @@ export default async function({ path, pageType, ...context }) {
   });
 
   return response;
-}
+};

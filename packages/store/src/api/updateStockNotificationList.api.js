@@ -1,7 +1,7 @@
 import postGraphql from 'utils/postGraphql';
 import { stockNotificationQuery } from './query';
 
-export default async function({ variantId }) {
+export default async ({ variantId }) => {
   const variables = {
     keys: '$updateStockNotificationList: [UpdateStockNotification]',
     type: 'mutation updateStockNotificationList',
@@ -24,4 +24,4 @@ export default async function({ variantId }) {
     variables,
   });
   return response;
-}
+};

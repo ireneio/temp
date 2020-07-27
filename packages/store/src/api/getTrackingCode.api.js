@@ -1,7 +1,7 @@
 import postGraphql from 'utils/postGraphql';
 import { webTrackQuery } from './query';
 
-export default async function({ isServer = true, XMeepshopDomain }) {
+export default async ({ isServer = true, XMeepshopDomain }) => {
   const variables = {
     keys: '$webTrackSearch: searchInputObjectType',
     type: 'query getTrackingCode',
@@ -48,4 +48,4 @@ export default async function({ isServer = true, XMeepshopDomain }) {
     XMeepshopDomain,
   });
   return response;
-}
+};

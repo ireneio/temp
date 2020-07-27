@@ -1,7 +1,7 @@
 import postGraphql from 'utils/postGraphql';
 import { orderMessageQuery } from './query';
 
-export default async function({ text, orderId }) {
+export default async ({ text, orderId }) => {
   const variables = {
     keys: '$input: AddOrderMessageInput!',
     type: 'mutation Mutation',
@@ -22,4 +22,4 @@ export default async function({ text, orderId }) {
     variables,
   });
   return response;
-}
+};

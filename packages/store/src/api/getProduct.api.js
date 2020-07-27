@@ -1,7 +1,7 @@
 import postGraphql from 'utils/postGraphql';
 import { productQuery } from './query';
 
-export default async function({ id, ...context }) {
+export default async ({ id, ...context }) => {
   const variables = {
     keys: '$search: searchInputObjectType',
     type: 'query getProduct',
@@ -43,4 +43,4 @@ export default async function({ id, ...context }) {
     variables,
   });
   return response;
-}
+};

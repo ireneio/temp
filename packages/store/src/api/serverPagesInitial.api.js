@@ -13,7 +13,7 @@ import {
   stockNotificationQuery,
 } from './query';
 
-export default async function(context) {
+export default async context => {
   const {
     query: { path },
   } = context;
@@ -189,4 +189,4 @@ export default async function(context) {
     variables,
   });
   return response;
-}
+};

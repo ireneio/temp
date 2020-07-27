@@ -113,7 +113,7 @@ const getPageAdTrackIds = data => {
   };
 };
 
-export default function(state = initialState, { type, payload }) {
+export default (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_STORE_SUCCESS: {
       const { data, customerCurrency /* from cookie */ } = payload;
@@ -175,4 +175,4 @@ export default function(state = initialState, { type, payload }) {
     default:
       return state;
   }
-}
+};

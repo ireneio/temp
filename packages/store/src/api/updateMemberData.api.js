@@ -6,7 +6,7 @@ import {
   stockNotificationQuery,
 } from './query';
 
-export default async function(args = {}) {
+export default async (args = {}) => {
   const { isServer, XMeepshopDomain, cookie } = args;
   const variables = {
     keys:
@@ -50,4 +50,4 @@ export default async function(args = {}) {
     cookie,
   });
   return response;
-}
+};

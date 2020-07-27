@@ -13,7 +13,7 @@ import {
   stockNotificationQuery,
 } from './query';
 
-export default async function(context) {
+export default async context => {
   const variables = {
     keys: `
       $pageFilter: StorePagesFilterInput,
@@ -184,4 +184,4 @@ export default async function(context) {
     variables,
   });
   return response;
-}
+};

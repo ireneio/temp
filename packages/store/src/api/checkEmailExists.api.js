@@ -1,6 +1,6 @@
 import postGraphql from 'utils/postGraphql';
 
-export default async function({ email }) {
+export default async ({ email }) => {
   const variables = {
     keys: '$search: searchInputObjectType',
     type: 'query CheckEmailExists',
@@ -33,4 +33,4 @@ export default async function({ email }) {
     variables,
   });
   return response;
-}
+};

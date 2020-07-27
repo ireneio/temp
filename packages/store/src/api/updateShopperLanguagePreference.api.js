@@ -1,6 +1,6 @@
 import postGraphql from 'utils/postGraphql';
 
-export default async function(locale) {
+export default async locale => {
   const variables = {
     keys: '$input: UpdateShopperLanguagePreferenceInput!',
     type: 'mutation updateShopperLanguagePreference',
@@ -23,4 +23,4 @@ export default async function(locale) {
   });
 
   return response;
-}
+};

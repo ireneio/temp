@@ -1,6 +1,6 @@
 import initApollo from '@meepshop/apollo/lib/initApollo';
 
-export default async function() {
+export default async () => {
   const res = await fetch('/signout', {
     method: 'get',
     credentials: 'same-origin',
@@ -14,4 +14,4 @@ export default async function() {
   }
 
   return false;
-}
+};

@@ -1,6 +1,6 @@
 import postGraphql from 'utils/postGraphql';
 
-export default async function(user) {
+export default async user => {
   const variables = {
     keys: '$input: UpdateShopperInfoInput!',
     type: 'mutation updateShopperInformation',
@@ -19,4 +19,4 @@ export default async function(user) {
     variables,
   });
   return response;
-}
+};

@@ -811,7 +811,7 @@ const initialState = {
   loadingTip: '',
 };
 
-export default function(state = initialState, { type, payload }) {
+export default (state = initialState, { type, payload }) => {
   switch (type) {
     /* 檢查登入狀態 */
     case AUTH_REQUEST:
@@ -1152,4 +1152,4 @@ export default function(state = initialState, { type, payload }) {
     default:
       return state;
   }
-}
+};

@@ -80,7 +80,7 @@ export function* watchGetProductFlow() {
 
 const initialState = [];
 
-export default function(state = initialState, { type, payload }) {
+export default (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_PRODUCT_REQUEST:
       return state;
@@ -95,4 +95,4 @@ export default function(state = initialState, { type, payload }) {
     default:
       return state;
   }
-}
+};

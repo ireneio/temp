@@ -1,6 +1,6 @@
 import postGraphql from 'utils/postGraphql';
 
-export default async function({ currentPassword, newPassword }) {
+export default async ({ currentPassword, newPassword }) => {
   const variables = {
     keys: '$changeUserPassword: ChangeUserPassword',
     type: 'mutation ChangePassword',
@@ -22,4 +22,4 @@ export default async function({ currentPassword, newPassword }) {
     variables,
   });
   return response;
-}
+};

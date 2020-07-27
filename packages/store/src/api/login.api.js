@@ -1,6 +1,6 @@
 import initApollo from '@meepshop/apollo/lib/initApollo';
 
-export default async function({ email, password }) {
+export default async ({ email, password }) => {
   try {
     const res = await fetch('/signin', {
       method: 'post',
@@ -23,4 +23,4 @@ export default async function({ email, password }) {
   } catch (error) {
     return { error: error.message };
   }
-}
+};

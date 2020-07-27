@@ -2,7 +2,7 @@ import * as R from 'ramda';
 import postGraphql from 'utils/postGraphql';
 import { productQuery } from './query';
 
-export default async function(args = {}) {
+export default async (args = {}) => {
   const {
     isServer,
     XMeepshopDomain,
@@ -133,4 +133,4 @@ export default async function(args = {}) {
     cookie,
   });
   return response;
-}
+};

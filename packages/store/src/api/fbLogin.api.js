@@ -1,7 +1,7 @@
 import initApollo from '@meepshop/apollo/lib/initApollo';
 
 // for api server to auth
-export default async function(response) {
+export default async response => {
   let data;
   try {
     const res = await fetch('/fbAuth', {
@@ -39,4 +39,4 @@ export default async function(response) {
   } catch (error) {
     return { error: error.message };
   }
-}
+};

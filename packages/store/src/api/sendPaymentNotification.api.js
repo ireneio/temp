@@ -1,6 +1,6 @@
 import postGraphql from 'utils/postGraphql';
 
-export default async function({ id, paidMessage }) {
+export default async ({ id, paidMessage }) => {
   const variables = {
     keys: '$updateOrderList: [UpdateOrder]',
     type: 'mutation sendPaymentNotification',
@@ -23,4 +23,4 @@ export default async function({ id, paidMessage }) {
   `;
   const response = await postGraphql({ query, variables });
   return response;
-}
+};

@@ -1,6 +1,6 @@
 import modifyWidgetDataInServer from './modifyWidgetDataInServer';
 
-export default async function(page, context) {
+export default async (page, context) => {
   // 整理data為了符合Layout Component結構，未來有可能在api server就幫前端整理好
   let blocks = page.blocks.filter(
     ({ releaseDateTime }) =>
@@ -20,4 +20,4 @@ export default async function(page, context) {
     ...page,
     blocks,
   };
-}
+};

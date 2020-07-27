@@ -1,7 +1,7 @@
 import postGraphql from 'utils/postGraphql';
 import { cartQuery } from './query';
 
-export default async function({ items = [], isServer, cookie }) {
+export default async ({ items = [], isServer, cookie }) => {
   const variables = {
     keys: '$search: [ChangeCart]',
     type: 'mutation removeItemsToCart',
@@ -26,4 +26,4 @@ export default async function({ items = [], isServer, cookie }) {
     cookie,
   });
   return response;
-}
+};

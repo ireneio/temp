@@ -10,7 +10,7 @@ import getIn from 'utils/getIn';
  * @param {String} registeredCode 優惠代碼
  * @returns {Object}
  */
-export default async function(values) {
+export default async values => {
   const variables = {
     keys: '$search: [NewUser]',
     type: 'mutation Signup',
@@ -45,4 +45,4 @@ export default async function(values) {
 
   initApollo({ name: 'store' }).resetStore();
   return data;
-}
+};
