@@ -28,8 +28,6 @@
   "reset-password-success": "Successfully reset",
   "reset-password-token-error": null,
   "reset-password-failure-message": "Password reset: Error occurred",
-  "send-payment-notification-success": "Successfully sent",
-  "send-payment-notification-failure-message": "Payment Notification: Error occurred",
   "change-password-success": "Successfully updated",
   "change-password-failure-message": "Change Password: Error occurred"
 }

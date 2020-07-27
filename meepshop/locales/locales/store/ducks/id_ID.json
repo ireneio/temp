@@ -28,8 +28,6 @@
   "reset-password-success": "Berhasil mengatur ulang",
   "reset-password-token-error": null,
   "reset-password-failure-message": "Reset kata sandi: Terjadi kesalahan",
-  "send-payment-notification-success": "Berhasil dikirim",
-  "send-payment-notification-failure-message": "Notifikasi pembayaran",
   "change-password-success": "Berhasil diperbaharui",
   "change-password-failure-message": "Ubah Kata Sandi: Terjadi kesalahan"
 }

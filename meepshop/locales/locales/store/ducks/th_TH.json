@@ -28,8 +28,6 @@
   "reset-password-success": "รีเซ็ตสำเร็จแล้ว",
   "reset-password-token-error": null,
   "reset-password-failure-message": "รีเซ็ตรหัสผ่าน: เกิดข้อผิดพลาด",
-  "send-payment-notification-success": "ส่งสำเร็จแล้ว",
-  "send-payment-notification-failure-message": "การแจ้งการชำระเงิน: เกิดข้อผิดพลาด",
   "change-password-success": "อัปเดตสำเร็จแล้ว",
   "change-password-failure-message": "เปลี่ยนรหัสผ่าน: เกิดข้อผิดพลาด"
 }

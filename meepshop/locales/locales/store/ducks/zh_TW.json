@@ -28,8 +28,6 @@
   "reset-password-success": "重置完成",
   "reset-password-token-error": "設定密碼連結已過期，為了您的帳戶安全考量，請您重新申請連結。",
   "reset-password-failure-message": "重置密碼：發生錯誤",
-  "send-payment-notification-success": "已送出",
-  "send-payment-notification-failure-message": "送出匯款通知：發生錯誤",
   "change-password-success": "更改密碼成功",
   "change-password-failure-message": "更改密碼：發生錯誤"
 }

@@ -42,9 +42,6 @@ import {
   resetPassword,
   resetPasswordSuccess,
   resetPasswordFailure,
-  sendPaymentNotification,
-  sendPaymentNotificationSuccess,
-  sendPaymentNotificationFailure,
 } from './widgets/member';
 
 import { changePassword } from './widgets/others';
@@ -130,10 +127,6 @@ export {
   addToNotificationListFailure,
   // change password
   changePassword,
-  // pay notify
-  sendPaymentNotification,
-  sendPaymentNotificationSuccess,
-  sendPaymentNotificationFailure,
   // Initial for server-side rendering
   serverIndexInitial,
   serverPagesInitial,

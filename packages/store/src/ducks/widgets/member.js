@@ -627,55 +627,6 @@ export const emptyCart = usePoints => ({
   payload: { usePoints },
 });
 
-/* ************************************ 送出匯款通知 ************************************ */
-const SEND_PAYMENT_NOTIFICATION_REQUEST = 'SEND_PAYMENT_NOTIFICATION_REQUEST';
-const SEND_PAYMENT_NOTIFICATION_SUCCESS = 'SEND_PAYMENT_NOTIFICATION_SUCCESS';
-const SEND_PAYMENT_NOTIFICATION_FAILURE = 'SEND_PAYMENT_NOTIFICATION_FAILURE';
-
-export const sendPaymentNotification = payload => ({
-  type: SEND_PAYMENT_NOTIFICATION_REQUEST,
-  payload,
-});
-
-export const sendPaymentNotificationSuccess = payload => ({
-  type: SEND_PAYMENT_NOTIFICATION_SUCCESS,
-  payload,
-});
-
-export const sendPaymentNotificationFailure = () => ({
-  type: SEND_PAYMENT_NOTIFICATION_FAILURE,
-});
-
-function* sendPaymentNotificationFlow({ payload }) {
-  try {
-    const data = yield call(Api.sendPaymentNotification, payload);
-
-    if (data) {
-      const updateOrder = data?.data?.updateOrderList?.[0];
-
-      yield put(sendPaymentNotificationSuccess(updateOrder));
-      notification.success({
-        message: i18n.t('ducks:send-payment-notification-success'),
-      });
-    }
-  } catch (error) {
-    yield put(sendPaymentNotificationFailure());
-    notification.error({
-      message: i18n.t('ducks:send-payment-notification-failure-message'),
-      description: error.message,
-    });
-  }
-}
-
-export function* watchSendPaymentNotificationFlow() {
-  yield takeEvery(
-    SEND_PAYMENT_NOTIFICATION_REQUEST,
-    sendPaymentNotificationFlow,
-  );
-}
-
-/* ************************************ 送出匯款通知 ************************************ */
-
 /**
  * @name AuthReducer
  * @description data related member
@@ -1048,38 +999,6 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         currentBalance: state.currentBalance - (usePoints || 0),
         cart: null,
-      };
-    }
-    case SEND_PAYMENT_NOTIFICATION_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-        loadingTip: SEND_PAYMENT_NOTIFICATION_REQUEST,
-      };
-    }
-    case SEND_PAYMENT_NOTIFICATION_SUCCESS: {
-      const { id: orderId, paidMessage } = payload;
-      const newOrders = state.orders.map(order => {
-        if (order.id === orderId) {
-          return {
-            ...order,
-            paidMessage,
-          };
-        }
-        return order;
-      });
-      return {
-        ...state,
-        orders: newOrders,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    case SEND_PAYMENT_NOTIFICATION_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
       };
     }
 

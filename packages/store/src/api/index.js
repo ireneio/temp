@@ -29,7 +29,6 @@ import serverOthersInitial from './serverOthersInitial.api';
 import updateUser from './updateUser.api';
 import updateWishList from './updateWishList.api';
 import updateStockNotificationList from './updateStockNotificationList.api';
-import sendPaymentNotification from './sendPaymentNotification.api';
 
 export {
   getPages,
@@ -55,7 +54,6 @@ export {
   updateStockNotificationList,
   getTrackingCode,
   changePassword,
-  sendPaymentNotification,
   // Server-side rendering
   serverIndexInitial,
   serverPagesInitial,

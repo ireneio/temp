@@ -28,8 +28,6 @@
   "reset-password-success": "Restablecer exitosamente",
   "reset-password-token-error": null,
   "reset-password-failure-message": "Restablecimiento de contraseña: se produjo un error",
-  "send-payment-notification-success": "Enviado exitosamente",
-  "send-payment-notification-failure-message": "Notificación de pago: se produjo un error",
   "change-password-success": "Actualizado exitosamente",
   "change-password-failure-message": "Cambiar contraseña: se produjo un error"
 }

@@ -28,8 +28,6 @@
   "reset-password-success": "Réinitialisation réussie",
   "reset-password-token-error": null,
   "reset-password-failure-message": "Réinitialisation du mot de passe: une erreur s'est produite",
-  "send-payment-notification-success": "Envoyé avec succès",
-  "send-payment-notification-failure-message": "Notification de paiement: une erreur s'est produite",
   "change-password-success": "Mise à jour réussie",
   "change-password-failure-message": "Changer le mot de passe: une erreur s'est produite"
 }
