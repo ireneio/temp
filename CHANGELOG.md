@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 0.53.2 (2020-07-27)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1056](https://github.com/meepshop/meep-lerna/pull/1056) 前端 - 移除 getValidUserPointList ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1061](https://github.com/meepshop/meep-lerna/pull/1061) (@meepshop/store) Fix lint error with eslint-plugin-react ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#1058](https://github.com/meepshop/meep-lerna/pull/1058) 前端 - 移除 sendPaymentNotification ([@HsuTing](https://github.com/HsuTing))
+  - [#1057](https://github.com/meepshop/meep-lerna/pull/1057) 前端 - 移除 addOrderMessage ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`, `store`
+  - [#1054](https://github.com/meepshop/meep-lerna/pull/1054) (@meepshop/context) Move @meepshop/events ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1060](https://github.com/meepshop/meep-lerna/pull/1060) (@meepshop/frontend) Fix schema error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.53.1 (2020-07-24)
 
 #### :bug: Bug Fix
