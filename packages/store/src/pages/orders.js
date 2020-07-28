@@ -42,7 +42,6 @@ class Orders extends React.Component {
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
     }).isRequired,
-    colors: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
 
   static defaultProps = { error: null };
@@ -70,7 +69,6 @@ class Orders extends React.Component {
       storeSetting: { storeName, faviconUrl },
       location: { pathname },
       pageAdTrackIDs,
-      colors,
       t,
     } = this.props;
 
@@ -85,7 +83,7 @@ class Orders extends React.Component {
         </Head>
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
-          <MemberHeader title={t('title.orders')} colors={colors}>
+          <MemberHeader title={t('title.orders')}>
             <MemberOrders />
           </MemberHeader>
         </Container>
@@ -142,7 +140,6 @@ const mapStateToProps = (state, props) => {
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getPage(state),
-    colors: Utils.getIn(['storeReducer', 'colors'])(state),
   };
 };
 

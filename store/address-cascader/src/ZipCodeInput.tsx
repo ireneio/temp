@@ -1,12 +1,11 @@
 // import
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Input, Select } from 'antd';
 import transformColor from 'color';
 
-import styles from './styles/zipCodeInput.less';
+import { colors as colorsContext } from '@meepshop/context';
 
-// graphql typescript
-import { getCountriesAddress_getColorList as getCountriesAddressGetColorList } from './__generated__/getCountriesAddress';
+import styles from './styles/zipCodeInput.less';
 
 // typescript definition
 interface PropsType {
@@ -15,7 +14,6 @@ interface PropsType {
   value?: string;
   onChange: (value: string) => void;
   options: null | string[];
-  colors: getCountriesAddressGetColorList['colors'];
 }
 
 // definition
@@ -28,8 +26,9 @@ export default React.memo(
     value,
     onChange,
     options,
-    colors,
   }: PropsType): React.ReactElement => {
+    const colors = useContext(colorsContext);
+
     useEffect(() => {
       if (options && options.length === 1 && !value) onChange(options[0]);
     }, [value, onChange, options]);

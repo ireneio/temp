@@ -5,7 +5,6 @@ import {
   pageQuery,
   storeAppQuery,
   menuQuery,
-  colorQuery,
   activityQuery,
   cartQuery,
   webTrackQuery,
@@ -17,7 +16,6 @@ export default async context => {
     keys: `
       $pageFilter: StorePagesFilterInput,
       $menuSearch: searchInputObjectType,
-      $colorSearch: searchInputObjectType,
       $activitySearch: searchInputObjectType,
       $storeAppSearch: searchInputObjectType,
       $memberGroupFilter: MemberGroupFilterInput,
@@ -47,11 +45,6 @@ export default async context => {
       storeAppSearch: {
         size: 100,
         from: 0,
-      },
-      colorSearch: {
-        filter: {
-          and: [],
-        },
       },
       activitySearch: {
         size: 50,
@@ -126,9 +119,17 @@ export default async context => {
       }
       total
     }
-    getColorList(search: $colorSearch) {
+    getColorList {
       data {
-        ${colorQuery}
+        id
+        imgInfo {
+          used
+          repeat
+          size
+          files {
+            image
+          }
+        }
       }
       total
     }

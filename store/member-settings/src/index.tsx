@@ -3,6 +3,7 @@ import { QueryResult } from '@apollo/react-common';
 import { FormComponentProps } from 'antd/lib/form';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { ColorsType } from '@meepshop/context/lib/colors';
 
 // import
 import React from 'react';
@@ -23,6 +24,8 @@ import { areEqual } from 'fbjs';
 import moment from 'moment';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { colors as colorsContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
 import AddressCascader, {
   validateAddressCascader,
 } from '@store/address-cascader';
@@ -34,13 +37,10 @@ import styles from './styles/index.less';
 import {
   getUserInfo,
   getUserInfo_viewer as getUserInfoViewer,
-  getUserInfo_getColorList as getUserInfoGetColorList,
   getUserInfo_viewer_birthday as getUserInfoViewerBirthday,
 } from './__generated__/getUserInfo';
 
 // graphql import
-import { colorListFragment } from '@meepshop/apollo/lib/ColorList';
-
 import { removeCreditCardInfoFragment } from './RemoveCreditCardInfo';
 
 // typescript definition
@@ -54,7 +54,7 @@ interface PropsType
   // TODO: remove after removing redux
   member?: unknown;
   viewer: getUserInfoViewer;
-  colors: getUserInfoGetColorList['colors'];
+  colors: ColorsType;
 }
 
 // definition
@@ -332,7 +332,6 @@ class MemberSettings extends React.PureComponent<PropsType> {
           {!gmoRememberCardEnabled || !hasGmoCreditCard ? null : (
             <RemoveCreditCardInfo
               viewer={filter(removeCreditCardInfoFragment, viewer)}
-              colors={colors}
               /** FIXME: should update hasGmoCreditCard in cache after creating order */
               refetch={refetch}
             />
@@ -344,7 +343,9 @@ class MemberSettings extends React.PureComponent<PropsType> {
 }
 
 const EnhancedMemberSettings = withTranslation('member-settings')(
-  Form.create<PropsType>()(MemberSettings),
+  Form.create<Omit<PropsType, 'colors'>>()(
+    withContext(colorsContext, colors => ({ colors }))(MemberSettings),
+  ),
 );
 
 export default React.memo(
@@ -426,13 +427,8 @@ export default React.memo(
 
             hasGmoCreditCard
           }
-
-          getColorList {
-            ...colorListFragment
-          }
         }
 
-        ${colorListFragment}
         ${removeCreditCardInfoFragment}
       `}
       /** FIXME: should update hasGmoCreditCard in cache after creating order */
@@ -442,15 +438,13 @@ export default React.memo(
         if (loading || error || !data)
           return <Spin indicator={<Icon type="loading" spin />} />;
 
-        const { viewer, getColorList } = data;
+        const { viewer } = data;
 
-        if (!viewer || !getColorList)
-          return <Spin indicator={<Icon type="loading" spin />} />;
+        if (!viewer) return <Spin indicator={<Icon type="loading" spin />} />;
 
         return (
           <EnhancedMemberSettings
             viewer={viewer}
-            colors={getColorList.colors}
             refetch={refetch}
             dispatchAction={dispatchAction}
             member={member}

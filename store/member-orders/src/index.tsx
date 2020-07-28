@@ -2,6 +2,7 @@
 import { QueryResult } from '@apollo/react-common';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { ColorsType } from '@meepshop/context/lib/colors';
 import { SetCurrentPropsType } from '@store/utils/lib/withSetCurrent';
 
 // import
@@ -16,7 +17,9 @@ import moment from 'moment';
 import transformColor from 'color';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { colors as colorsContext } from '@meepshop/context';
 import withSetCurrent from '@store/utils/lib/withSetCurrent';
+import withContext from '@store/utils/lib/withContext';
 import Link from '@meepshop/link';
 
 import MobileColumn, { getMobileStyles } from './MobileColumn';
@@ -32,12 +35,10 @@ import {
   getOrders_viewer_orders_edges_node as getOrdersViewerOrdersEdgesNode,
   getOrders_viewer_orders_edges_node_paymentInfo as getOrdersViewerOrdersEdgesNodePaymentInfo,
   getOrders_viewer_orders_edges_node_shipmentInfo as getOrdersViewerOrdersEdgesNodeShipmentInfo,
-  getOrders_getColorList as getOrdersGetColorList,
   getOrders_getStoreAppList as getOrdersGetStoreAppList,
 } from './__generated__/getOrders';
 
 // graphql import
-import { colorListFragment } from '@meepshop/apollo/lib/ColorList';
 import {
   calculateOrderOrderFragment,
   calculateOrderOrderApplyListFragment,
@@ -56,7 +57,7 @@ interface PropsType
     > {
   orders: getOrdersViewerOrders;
   appPlugins: getOrdersGetStoreAppList;
-  colors: getOrdersGetColorList['colors'];
+  colors: ColorsType;
 }
 
 interface StateType {
@@ -308,7 +309,9 @@ class MemberOrders extends React.PureComponent<PropsType> {
 }
 
 const EnhancedMemberOrders = withTranslation('member-orders')(
-  withSetCurrent('member-orders')(MemberOrders),
+  withSetCurrent('member-orders')(
+    withContext(colorsContext, colors => ({ colors }))(MemberOrders),
+  ),
 );
 
 export default React.memo(() => (
@@ -347,10 +350,6 @@ export default React.memo(() => (
           }
         }
 
-        getColorList {
-          ...colorListFragment
-        }
-
         getOrderApplyList(
           search: { size: 100, sort: [{ field: "createdOn", order: "desc" }] }
         ) {
@@ -363,7 +362,6 @@ export default React.memo(() => (
         }
       }
 
-      ${colorListFragment}
       ${calculateOrderOrderFragment}
       ${calculateOrderOrderApplyListFragment}
       ${storeAppListFragment}
@@ -378,9 +376,9 @@ export default React.memo(() => (
       if (loading || error || !data)
         return <Spin indicator={<Icon type="loading" spin />} />;
 
-      const { viewer, getColorList, getStoreAppList } = data;
+      const { viewer, getStoreAppList } = data;
 
-      if (!viewer || !getColorList || !getStoreAppList)
+      if (!viewer || !getStoreAppList)
         return <Spin indicator={<Icon type="loading" spin />} />;
 
       const { orders } = viewer;
@@ -391,7 +389,6 @@ export default React.memo(() => (
       return (
         <EnhancedMemberOrders
           orders={orders}
-          colors={getColorList.colors}
           appPlugins={getStoreAppList}
           variables={variables}
           fetchMore={fetchMore}

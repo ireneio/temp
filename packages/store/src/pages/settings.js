@@ -42,7 +42,6 @@ class Settings extends Component {
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
     }).isRequired,
-    colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     user: PropTypes.shape({
       id: PropTypes.string.isRequired,
     }).isRequired,
@@ -78,7 +77,6 @@ class Settings extends Component {
       storeSetting: { storeName, faviconUrl },
       location: { pathname },
       pageAdTrackIDs,
-      colors,
       user,
       dispatchAction,
       t,
@@ -95,7 +93,7 @@ class Settings extends Component {
         </Head>
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
-          <MemberHeader title={t('title.settings')} colors={colors}>
+          <MemberHeader title={t('title.settings')}>
             <MemberSettings dispatchAction={dispatchAction} member={user} />
           </MemberHeader>
         </Container>
@@ -154,7 +152,6 @@ const mapStateToProps = (state, props) => {
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getPage(state, props),
-    colors: Utils.getIn(['storeReducer', 'colors'])(state),
     user: user && Selectors.getJoinedUser(state),
     lockedBirthday:
       Utils.getIn(['storeReducer', 'settings', 'lockedBirthday'])(state) ||

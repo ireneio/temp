@@ -1,5 +1,4 @@
 import * as Utils from 'utils';
-import { DEFAULT_COLORS } from 'template';
 
 /* ****************************************** 商店基本資料與設定 ****************************************** */
 const GET_STORE_SUCCESS = 'GET_STORE_SUCCESS';
@@ -121,8 +120,6 @@ export default (state = initialState, { type, payload }) => {
       const menus = (data?.getMenuList?.data || []).map(menu =>
         Utils.setDefaultValueForMenuDesign(menu),
       );
-      const colorPlan = data?.getColorList?.data?.[0] || DEFAULT_COLORS;
-      const { colors } = colorPlan.themes[+colorPlan.selected];
       const apps = data?.getStoreAppList?.data || [];
       const memberGroups = data?.viewer?.store?.memberGroups || [];
       const store = data?.viewer?.store;
@@ -135,7 +132,7 @@ export default (state = initialState, { type, payload }) => {
 
       const settings = {
         ...storeSettings,
-        backgroundImage: colorPlan.imgInfo,
+        backgroundImage: data?.getColorList?.data?.[0]?.imgInfo,
         storeName: store?.description?.name || '',
         storeDescription: store?.description?.introduction || '',
         cname: store.cname,
@@ -145,7 +142,6 @@ export default (state = initialState, { type, payload }) => {
         mobileLogoUrl: store?.mobileLogoImage?.src || '',
         homePageId: store.homePageId,
         localeOptions: localeOptions || ['zh_TW'], // 用於語系選單
-        colors, // 色彩計畫
         storeCurrency: store.currency || 'TWD', // 幣值轉換欲轉換成的幣值
         customerCurrency: customerCurrency || currencyOptions?.[0] || 'TWD', // default currency
         currencyOptions: currencyOptions || ['TWD'], // 用於幣值選單
@@ -155,7 +151,6 @@ export default (state = initialState, { type, payload }) => {
         shippableCountries: store?.shippableCountries || [],
         activities, // 折扣活動
         menus, // 選單
-        colors, // FIXME: remove, after remove old enhancer
         apps: apps.map(app => ({ ...app, isInstalled: !!app.isInstalled })), // 用於判斷擴充功能是否安裝
         memberGroups,
         settings,

@@ -42,7 +42,6 @@ class PasswordChange extends Component {
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
     }).isRequired,
-    colors: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
 
   static defaultProps = { error: null };
@@ -74,7 +73,6 @@ class PasswordChange extends Component {
       storeSetting: { storeName, faviconUrl },
       location: { pathname },
       pageAdTrackIDs,
-      colors,
       t,
     } = this.props;
 
@@ -89,7 +87,7 @@ class PasswordChange extends Component {
         </Head>
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
-          <MemberHeader title={t('title.change-password')} colors={colors}>
+          <MemberHeader title={t('title.change-password')}>
             <MemberPasswordChange />
           </MemberHeader>
         </Container>
@@ -146,7 +144,6 @@ const mapStateToProps = (state, props) => {
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getPage(state, props),
-    colors: Utils.getIn(['storeReducer', 'colors'])(state),
   };
 };
 

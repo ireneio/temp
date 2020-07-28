@@ -2,6 +2,7 @@
 export { default as adTrack } from './adTrack';
 export { default as fb } from './fb';
 export { default as events } from './events';
+export { default as colors } from './colors';
 
 // definition
 throw new Error(

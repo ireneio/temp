@@ -15,6 +15,7 @@ import moment from 'moment';
 
 import { appWithTranslation } from '@meepshop/utils/lib/i18n';
 import { EventsProvider } from '@meepshop/context/lib/events';
+import { ColorsProvider } from '@meepshop/context/lib/colors';
 import { withDomain } from '@meepshop/link';
 import withApollo from '@store/apollo';
 import FbProvider from '@store/fb';
@@ -238,19 +239,21 @@ class MyApp extends App {
 
         <EventsProvider>
           <FbProvider>
-            <CurrencyProvider cookieCurrency={cookieCurrency}>
-              <AdTrackProvider>
-                <Provider store={store}>
-                  <Component
-                    {...pageProps}
-                    url={{
-                      asPath: router.asPath,
-                      query: router.query,
-                    }}
-                  />
-                </Provider>
-              </AdTrackProvider>
-            </CurrencyProvider>
+            <ColorsProvider>
+              <CurrencyProvider cookieCurrency={cookieCurrency}>
+                <AdTrackProvider>
+                  <Provider store={store}>
+                    <Component
+                      {...pageProps}
+                      url={{
+                        asPath: router.asPath,
+                        query: router.query,
+                      }}
+                    />
+                  </Provider>
+                </AdTrackProvider>
+              </CurrencyProvider>
+            </ColorsProvider>
           </FbProvider>
         </EventsProvider>
       </>

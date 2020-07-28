@@ -3,6 +3,7 @@ import { QueryResult } from '@apollo/react-common';
 import { DataProxy } from 'apollo-cache';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { ColorsType } from '@meepshop/context/lib/colors';
 
 // import
 import React from 'react';
@@ -11,14 +12,13 @@ import { Mutation } from '@apollo/react-components';
 import { Button, notification } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { colors as colorsContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
 
 import styles from './styles/removeCreditCardInfo.less';
 
 // graphql typescript
-import {
-  getUserInfo,
-  getUserInfo_getColorList as getUserInfoGetColorList,
-} from './__generated__/getUserInfo';
+import { getUserInfo } from './__generated__/getUserInfo';
 import { removeCreditCardInfoFragment as removeCreditCardInfoFragmentType } from './__generated__/removeCreditCardInfoFragment';
 import { removeCreditCard } from './__generated__/removeCreditCard';
 
@@ -28,7 +28,7 @@ interface PropsType
     /** FIXME: should update hasGmoCreditCard in cache after creating order */
     Pick<QueryResult<getUserInfo>, 'refetch'> {
   viewer: removeCreditCardInfoFragmentType;
-  colors: getUserInfoGetColorList['colors'];
+  colors: ColorsType;
 }
 
 // definition
@@ -126,4 +126,6 @@ class RemoveCreditCardInfo extends React.PureComponent<PropsType> {
   }
 }
 
-export default withTranslation('member-settings')(RemoveCreditCardInfo);
+export default withTranslation('member-settings')(
+  withContext(colorsContext, colors => ({ colors }))(RemoveCreditCardInfo),
+);

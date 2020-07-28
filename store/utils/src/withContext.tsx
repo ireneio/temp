@@ -8,15 +8,15 @@ import { Subtract } from '@meepshop/utils/lib/types';
 import React, { useContext } from 'react';
 
 // definition
-export default <C extends object>(
+export default <C extends object, NP = C>(
   hocContext: Context<C>,
-  mapProps = emptyFunction.thatReturnsArgument,
+  mapProps: (argu: C) => NP = emptyFunction.thatReturnsArgument,
 ) => <P extends object>(
   Component: React.ComponentType<P> & {
     getInitialProps?: () => void;
   },
 ) => {
-  const WithContext: React.FunctionComponent<Subtract<P, C>> & {
+  const WithContext: React.FunctionComponent<Subtract<P, NP>> & {
     getInitialProps?: () => void;
   } = (props: P) => (
     <Component {...props} {...mapProps(useContext(hocContext))} />

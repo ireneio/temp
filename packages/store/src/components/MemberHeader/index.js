@@ -1,28 +1,37 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { colors as colorsContext } from '@meepshop/context';
+
 import * as Utils from 'utils';
 
 import './styles/index.less';
 
-export default (
-  { title = '', goBackToOrders, colors, children }, // eslint-disable-line
-) => (
-  <div className="member-root">
-    <div
-      className="title"
-      style={{ backgroundColor: colors[4], color: colors[2] }}
-    >
-      {goBackToOrders && (
+export default React.memo(
+  (
+    { title = '', goBackToOrders, children }, // eslint-disable-line
+  ) => {
+    const colors = useContext(colorsContext);
+
+    return (
+      <div className="member-root">
         <div
-          className="arrow"
-          onClick={() => Utils.goTo({ pathname: '/orders' })}
+          className="title"
+          style={{ backgroundColor: colors[4], color: colors[2] }}
         >
-          <i style={{ borderColor: colors[2] }} />
+          {goBackToOrders && (
+            <div
+              className="arrow"
+              onClick={() => Utils.goTo({ pathname: '/orders' })}
+            >
+              <i style={{ borderColor: colors[2] }} />
+            </div>
+          )}
+
+          {title}
         </div>
-      )}
 
-      {title}
-    </div>
-
-    {children}
-  </div>
+        {children}
+      </div>
+    );
+  },
 );

@@ -24,8 +24,6 @@ import {
 } from './__generated__/getCountriesAddress';
 
 // graphql import
-import { colorListFragment } from '@meepshop/apollo/lib/ColorList';
-
 import { useOptionsFragment } from './hooks/useOptions';
 
 // typescript definition
@@ -48,13 +46,8 @@ const query = gql`
     addressService {
       ...useOptionsFragment
     }
-
-    getColorList {
-      ...colorListFragment
-    }
   }
 
-  ${colorListFragment}
   ${useOptionsFragment}
 `;
 
@@ -90,9 +83,8 @@ const AddressCascader = React.memo(
     );
     const { address, zipCode } = useValue(options, value, onChange);
     const zipCodes = useZipCodes(options, address);
-    const colors = data?.getColorList?.colors;
 
-    if (!colors || options.length === 0) return <Select loading />;
+    if (options.length === 0) return <Select loading />;
 
     const isOnlyOneOption = options.length === 1;
     const isSelectAddress = (address || []).length !== 0;
@@ -139,7 +131,6 @@ const AddressCascader = React.memo(
               onChange?.({ address, zipCode: newZipCode })
             }
             options={zipCodes}
-            colors={colors}
           />
         )}
       </div>

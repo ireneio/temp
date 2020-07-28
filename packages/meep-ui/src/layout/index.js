@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import { UserAgent } from 'fbjs';
 
+import { colors as colorsContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
+
 import Context from 'context';
 import { COLOR_TYPE } from 'constants/propTypes';
 
@@ -12,6 +15,7 @@ import DecoratorsRoot from './DecoratorsRoot';
 import ContainerSwitch from './ContainerSwitch';
 import styles from './styles/index.less';
 
+@withContext(colorsContext, colors => ({ colors }))
 @radium
 export default class Layout extends React.PureComponent {
   /*
@@ -106,7 +110,7 @@ export default class Layout extends React.PureComponent {
     return (
       <Context {...props}>
         <DecoratorsRoot {...props} colors={colors} carts={carts} cname={cname}>
-          <GlobalStyles />
+          <GlobalStyles colors={colors} />
 
           <div
             style={{

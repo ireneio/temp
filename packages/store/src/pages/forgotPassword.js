@@ -75,7 +75,6 @@ class ForgotPassword extends Component {
       pageAdTrackIDs,
       dispatchAction,
       token,
-      colors,
       t,
     } = this.props;
 
@@ -90,7 +89,7 @@ class ForgotPassword extends Component {
         </Head>
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
-          <MemberHeader title={t('title.reset-password')} colors={colors}>
+          <MemberHeader title={t('title.reset-password')}>
             <ForgotPasswordView dispatchAction={dispatchAction} token={token} />
           </MemberHeader>
         </Container>
@@ -110,7 +109,6 @@ const mapStateToProps = (state, props) => {
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getJoinedForgotPasswordPage(state, props),
-    colors: Utils.getIn(['storeReducer', 'colors'])(state),
   };
 };
 

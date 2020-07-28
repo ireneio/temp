@@ -2,7 +2,7 @@
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
-import React from 'react';
+import React, { useContext } from 'react';
 import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
@@ -11,6 +11,7 @@ import moment from 'moment';
 import transformColor from 'color';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { colors as colorsContext } from '@meepshop/context';
 
 import NotFound from './NotFound';
 import Products from './Products';
@@ -24,12 +25,9 @@ import {
   getMemberOrder,
   getMemberOrderVariables,
   getMemberOrder_viewer_order as getMemberOrderViewerOrder,
-  getMemberOrder_getColorList as getMemberOrderGetColorList,
 } from './__generated__/getMemberOrder';
 
 // graphql import
-import { colorListFragment } from '@meepshop/apollo/lib/ColorList';
-
 import { notFoundFragment } from './NotFound';
 import { productsFragment } from './Products';
 import { totalSheetFragment } from './TotalSheet';
@@ -39,7 +37,6 @@ import { qaOrderMessageFragment } from './Qa';
 // typescript definition
 interface PropsType extends I18nPropsType {
   order: getMemberOrderViewerOrder;
-  colors: getMemberOrderGetColorList['colors'];
 }
 
 // definition
@@ -55,51 +52,50 @@ const MemberOrder = React.memo(
       messages,
       ...order
     },
-    colors,
-  }: PropsType) => (
-    <div className={styles.root} style={{ color: colors[3] }}>
-      <div className={styles.wrapper}>
-        <h1>
-          <span>{`${t('order-number')}${orderNo || ''}`}</span>
+  }: PropsType) => {
+    const colors = useContext(colorsContext);
 
-          <span>
-            <span>{t('created-on')}</span>
+    return (
+      <div className={styles.root} style={{ color: colors[3] }}>
+        <div className={styles.wrapper}>
+          <h1>
+            <span>{`${t('order-number')}${orderNo || ''}`}</span>
 
-            {moment.unix(createdOn || 0).format('YYYY/MM/DD')}
-          </span>
-        </h1>
+            <span>
+              <span>{t('created-on')}</span>
 
-        <Products products={products} colors={colors} />
+              {moment.unix(createdOn || 0).format('YYYY/MM/DD')}
+            </span>
+          </h1>
 
-        <TotalSheet order={filter(totalSheetFragment, { ...order, id })} />
+          <Products products={products} />
 
-        <Blocks
-          order={filter(blocksFragment, { ...order, id })}
-          colors={colors}
-        />
+          <TotalSheet order={filter(totalSheetFragment, { ...order, id })} />
 
-        {environment?.sourcePage === 'lp' ? null : (
-          <Qa
-            messages={filter(qaOrderMessageFragment, messages)}
-            orderId={id}
-            colors={colors}
-          />
-        )}
-      </div>
+          <Blocks order={filter(blocksFragment, { ...order, id })} />
 
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            @media (max-width: ${styles.screenSmMax}) {
-              .${styles.root} h1 > span:last-child {
-                color: ${transformColor(colors[3]).alpha(0.5)};
+          {environment?.sourcePage === 'lp' ? null : (
+            <Qa
+              messages={filter(qaOrderMessageFragment, messages)}
+              orderId={id}
+            />
+          )}
+        </div>
+
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              @media (max-width: ${styles.screenSmMax}) {
+                .${styles.root} h1 > span:last-child {
+                  color: ${transformColor(colors[3]).alpha(0.5)};
+                }
               }
-            }
-          `,
-        }}
-      />
-    </div>
-  ),
+            `,
+          }}
+        />
+      </div>
+    );
+  },
 );
 
 const EnhancedMemberOrder = withTranslation('member-order')(MemberOrder);
@@ -128,16 +124,13 @@ export default ({ orderId }: { orderId: string }): React.ReactElement => (
             ...blocksFragment
           }
         }
-        getColorList {
-          ...colorListFragment
-        }
       }
+
       ${notFoundFragment}
       ${productsFragment}
       ${totalSheetFragment}
       ${blocksFragment}
       ${qaOrderMessageFragment}
-      ${colorListFragment}
     `}
     variables={{ orderId }}
   >
@@ -146,13 +139,12 @@ export default ({ orderId }: { orderId: string }): React.ReactElement => (
         return <Spin indicator={<Icon type="loading" spin />} />;
 
       const order = data?.viewer?.order;
-      const colors = data?.getColorList?.colors || [];
 
       if (!order) {
         return <NotFound user={filter(notFoundFragment, data?.viewer)} />;
       }
 
-      return <EnhancedMemberOrder colors={colors} order={order} />;
+      return <EnhancedMemberOrder order={order} />;
     }}
   </Query>
 );

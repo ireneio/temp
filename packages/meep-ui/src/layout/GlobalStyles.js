@@ -1,18 +1,11 @@
 import React from 'react';
 import transformColor from 'color';
 
-import { contextProvider } from 'context';
-
 import './styles/globalStyles.less';
 
-const { enhancer } = contextProvider('storeSetting');
-
-@enhancer
 export default class GlobalStyles extends React.PureComponent {
   render() {
-    const {
-      storeSetting: { colors },
-    } = this.props;
+    const { colors } = this.props;
 
     return (
       <style

@@ -1,9 +1,11 @@
 // import
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Table } from 'antd';
+
+import { colors as colorsContext } from '@meepshop/context';
 
 import Form from './Form';
 import useColumns from './hooks/useColumns';
@@ -12,9 +14,6 @@ import styles from './styles/index.less';
 // graphql typescript
 import { getUserRecipients } from './__generated__/getUserRecipients';
 import { useColumnsFragment as useColumnsFragmentType } from './hooks/__generated__/useColumnsFragment';
-
-// graphql import
-import { colorListFragment } from '@meepshop/apollo/lib/ColorList';
 
 import { formRecipientAddressFragment, formStoreFragment } from './Form';
 import { useColumnsFragment } from './hooks/useColumns';
@@ -33,27 +32,21 @@ const query = gql`
         ...formStoreFragment
       }
     }
-
-    getColorList {
-      ...colorListFragment
-    }
   }
 
   ${formRecipientAddressFragment}
   ${useColumnsFragment}
   ${formStoreFragment}
-  ${colorListFragment}
 `;
 
 export default React.memo(() => {
+  const colors = useContext(colorsContext);
   const { data } = useQuery<getUserRecipients>(query);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const columns = useColumns(setSelectedId);
-  const colors = data?.getColorList?.colors;
   const viewer = data?.viewer;
 
-  if (!viewer || !colors)
-    return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!viewer) return <Spin indicator={<Icon type="loading" spin />} />;
 
   const { shippableRecipientAddresses, store } = viewer;
   const recipientAddress = shippableRecipientAddresses.find(
@@ -80,7 +73,6 @@ export default React.memo(() => {
       />
 
       <Form
-        colors={colors}
         recipientAddress={
           !recipientAddress
             ? null

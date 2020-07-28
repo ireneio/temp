@@ -4,33 +4,29 @@ import { MutationFunction } from '@apollo/react-common';
 import { FormComponentProps } from 'antd/lib/form';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { ColorsType } from '@meepshop/context/lib/colors';
 
 // import
 import React from 'react';
-import { Query, Mutation } from '@apollo/react-components';
+import { Mutation } from '@apollo/react-components';
 import gql from 'graphql-tag';
-import { Spin, Icon, Form, Input, Button, notification } from 'antd';
+import { Form, Input, Button, notification } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { colors as colorsContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
 
 import styles from './styles/index.less';
 
 // graphql typescript
 import {
-  getColor,
-  getColor_getColorList as getColorGetColorList,
-} from './__generated__/getColor';
-import {
   memberChangePassword,
   memberChangePasswordVariables,
 } from './__generated__/memberChangePassword';
 
-// graphql import
-import { colorListFragment } from '@meepshop/apollo/lib/ColorList';
-
 // typescript definition
 interface PropsType extends I18nPropsType, FormComponentProps {
-  colors: getColorGetColorList['colors'];
+  colors: ColorsType;
 }
 
 // definition
@@ -191,32 +187,8 @@ class MemberPasswordChange extends React.PureComponent<PropsType> {
   }
 }
 
-const EnhancedMemberPasswordChange = withTranslation('member-password-change')(
-  Form.create<PropsType>()(MemberPasswordChange),
+export default withTranslation('member-password-change')(
+  Form.create<Omit<PropsType, 'colors'>>()(
+    withContext(colorsContext, colors => ({ colors }))(MemberPasswordChange),
+  ),
 );
-
-export default React.memo(() => (
-  <Query<getColor>
-    query={gql`
-      query getColor {
-        getColorList {
-          ...colorListFragment
-        }
-      }
-
-      ${colorListFragment}
-    `}
-  >
-    {({ loading, error, data }) => {
-      if (loading || error || !data)
-        return <Spin indicator={<Icon type="loading" spin />} />;
-
-      const { getColorList } = data;
-
-      if (!getColorList)
-        return <Spin indicator={<Icon type="loading" spin />} />;
-
-      return <EnhancedMemberPasswordChange colors={getColorList.colors} />;
-    }}
-  </Query>
-));

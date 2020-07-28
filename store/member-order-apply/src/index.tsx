@@ -3,6 +3,7 @@ import { MutationFunction } from '@apollo/react-common';
 import { DataProxy } from 'apollo-cache';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { ColorsType } from '@meepshop/context/lib/colors';
 
 import { PropsType as FormPropsType } from './Form';
 
@@ -17,6 +18,8 @@ import moment from 'moment';
 import transformColor from 'color';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { colors as colorsContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
 import {
   calculateOrderApply,
   calculateOrderProducts,
@@ -32,7 +35,6 @@ import {
   getMemberOrderApply,
   getMemberOrderApplyVariables,
   getMemberOrderApply_viewer_order as getMemberOrderApplyViewerOrder,
-  getMemberOrderApply_getColorList as getMemberOrderApplyGetColorList,
 } from './__generated__/getMemberOrderApply';
 import {
   createOrderApply,
@@ -42,7 +44,6 @@ import { getOrderCache } from './__generated__/getOrderCache';
 import { memberOrderApplyFragment } from './__generated__/memberOrderApplyFragment';
 
 // graphql import
-import { colorListFragment } from '@meepshop/apollo/lib/ColorList';
 import {
   calculateOrderOrderFragment,
   calculateOrderOrderApplyListFragment,
@@ -58,7 +59,7 @@ import {
 interface PropsType extends I18nPropsType {
   type: 'refund' | 'exchange';
   order: getMemberOrderApplyViewerOrder;
-  colors: getMemberOrderApplyGetColorList['colors'];
+  colors: ColorsType;
 }
 
 interface StateType {
@@ -437,77 +438,65 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
 }
 
 const EnhancedMemberOrderApply = withTranslation('member-order-apply')(
-  MemberOrderApply,
+  withContext(colorsContext, colors => ({ colors }))(MemberOrderApply),
 );
 
-export default ({
-  type,
-  orderId,
-}: {
-  type: 'refund' | 'exchange';
-  orderId: string;
-}): React.ReactElement => (
-  <Query<getMemberOrderApply, getMemberOrderApplyVariables>
-    query={gql`
-      query getMemberOrderApply($orderId: ID!) {
-        viewer {
-          id
-          order(orderId: $orderId) {
+export default React.memo(
+  ({ type, orderId }: { type: 'refund' | 'exchange'; orderId: string }) => (
+    <Query<getMemberOrderApply, getMemberOrderApplyVariables>
+      query={gql`
+        query getMemberOrderApply($orderId: ID!) {
+          viewer {
             id
-            orderNo
-            createdOn
-            products {
-              ...productsProductsObjectTypeFragment
-            }
-            shipmentInfo {
-              list {
-                id
-                recipient {
-                  name
-                  mobile
+            order(orderId: $orderId) {
+              id
+              orderNo
+              createdOn
+              products {
+                ...productsProductsObjectTypeFragment
+              }
+              shipmentInfo {
+                list {
+                  id
+                  recipient {
+                    name
+                    mobile
+                  }
                 }
               }
+              address {
+                fullAddress
+              }
             }
-            address {
-              fullAddress
+          }
+
+          # TODO: use new api
+          getOrderApplyList(
+            search: { size: 100, sort: [{ field: "createdOn", order: "desc" }] }
+          ) {
+            data {
+              ...productsOrderApplyFragment
             }
           }
         }
 
-        # TODO: use new api
-        getOrderApplyList(
-          search: { size: 100, sort: [{ field: "createdOn", order: "desc" }] }
-        ) {
-          data {
-            ...productsOrderApplyFragment
-          }
-        }
+        ${productsProductsObjectTypeFragment}
+        ${productsOrderApplyFragment}
+      `}
+      variables={{
+        orderId,
+      }}
+    >
+      {({ loading, error, data }) => {
+        if (loading || error)
+          return <Spin indicator={<Icon type="loading" spin />} />;
 
-        getColorList {
-          ...colorListFragment
-        }
-      }
+        const order = data?.viewer?.order;
 
-      ${productsProductsObjectTypeFragment}
-      ${productsOrderApplyFragment}
-      ${colorListFragment}
-    `}
-    variables={{
-      orderId,
-    }}
-  >
-    {({ loading, error, data }) => {
-      if (loading || error)
-        return <Spin indicator={<Icon type="loading" spin />} />;
+        if (!order) return <Spin indicator={<Icon type="loading" spin />} />;
 
-      const order = data?.viewer?.order;
-      const colors = data?.getColorList?.colors || [];
-
-      if (!order) return <Spin indicator={<Icon type="loading" spin />} />;
-
-      return (
-        <EnhancedMemberOrderApply type={type} order={order} colors={colors} />
-      );
-    }}
-  </Query>
+        return <EnhancedMemberOrderApply type={type} order={order} />;
+      }}
+    </Query>
+  ),
 );

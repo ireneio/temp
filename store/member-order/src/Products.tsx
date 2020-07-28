@@ -2,6 +2,7 @@
 import { ColumnProps } from 'antd/lib/table';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { ColorsType } from '@meepshop/context/lib/colors';
 import { CurrencyType } from '@store/currency';
 
 // import
@@ -13,6 +14,7 @@ import memoizeOne from 'memoize-one';
 import transformColor from 'color';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { colors as colorsContext } from '@meepshop/context';
 import Thumbnail, { thumbnailFragment } from '@meepshop/thumbnail';
 import withContext from '@store/utils/lib/withContext';
 import currencyContext from '@store/currency';
@@ -21,10 +23,7 @@ import styles from './styles/products.less';
 
 // graphql typescript
 import { productsFragment as productsFragmentType } from './__generated__/productsFragment';
-import {
-  getMemberOrder_viewer_order as getMemberOrderViewerOrder,
-  getMemberOrder_getColorList as getMemberOrderGetColorList,
-} from './__generated__/getMemberOrder';
+import { getMemberOrder_viewer_order as getMemberOrderViewerOrder } from './__generated__/getMemberOrder';
 
 // graphql import
 import localeFragment from '@meepshop/utils/lib/fragments/locale';
@@ -32,7 +31,7 @@ import localeFragment from '@meepshop/utils/lib/fragments/locale';
 // typescript definition
 interface PropsType extends I18nPropsType, CurrencyType {
   products: getMemberOrderViewerOrder['products'];
-  colors: getMemberOrderGetColorList['colors'];
+  colors: ColorsType;
 }
 
 // definition
@@ -180,7 +179,9 @@ class Products extends React.PureComponent<PropsType> {
 }
 
 const EnhancedProducts = withTranslation('member-order')(
-  withContext(currencyContext)(Products),
+  withContext(currencyContext)(
+    withContext(colorsContext, colors => ({ colors }))(Products),
+  ),
 );
 
 export default EnhancedProducts;

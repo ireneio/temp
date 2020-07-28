@@ -44,7 +44,6 @@ class Wishlist extends Component {
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
     }).isRequired,
-    colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     wishList: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
@@ -89,7 +88,6 @@ class Wishlist extends Component {
       storeSetting: { storeName, faviconUrl },
       location: { pathname },
       pageAdTrackIDs,
-      colors,
       wishList,
       dispatchAction,
       t,
@@ -109,7 +107,7 @@ class Wishlist extends Component {
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
-          <MemberHeader title={t('title.wishlist')} colors={colors}>
+          <MemberHeader title={t('title.wishlist')}>
             <MemberWishlist
               wishListFromRedux={wishList}
               dispatchAction={dispatchAction}
@@ -170,7 +168,6 @@ const mapStateToProps = (state, props) => {
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getPage(state, props),
-    colors: Utils.getIn(['storeReducer', 'colors'])(state),
     wishList: Utils.getIn(['memberReducer', 'wishList'])(state),
   };
 };

@@ -1,5 +1,6 @@
 // typescript import
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { ColorsType } from '@meepshop/context/lib/colors';
 import { CurrencyType } from '@store/currency';
 
 // import
@@ -11,6 +12,7 @@ import memoizeOne from 'memoize-one';
 import moment from 'moment';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { colors as colorsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 import currencyContext from '@store/currency';
 
@@ -21,17 +23,13 @@ import {
   getUserRewardPotins,
   getUserRewardPotins_viewer_rewardPoint as getUserRewardPotinsViewerRewardPoint,
   getUserRewardPotins_getValidUserPointList_data as getUserRewardPotinsGetValidUserPointListData,
-  getUserRewardPotins_getColorList as getUserRewardPotinsGetColorList,
 } from './__generated__/getUserRewardPotins';
-
-// graphql import
-import { colorListFragment } from '@meepshop/apollo/lib/ColorList';
 
 // typescript definition
 interface PropsType extends I18nPropsType, CurrencyType {
   currentBalance: getUserRewardPotinsViewerRewardPoint['currentBalance'];
   userPoints: getUserRewardPotinsGetValidUserPointListData[];
-  colors: getUserRewardPotinsGetColorList['colors'];
+  colors: ColorsType;
 }
 
 // definition
@@ -156,7 +154,9 @@ class MemberRewardPoints extends React.PureComponent<PropsType> {
 }
 
 const EnhancedMemberRewardPoints = withTranslation('member-reward-points')(
-  withContext(currencyContext)(MemberRewardPoints),
+  withContext(currencyContext)(
+    withContext(colorsContext, colors => ({ colors }))(MemberRewardPoints),
+  ),
 );
 
 export default React.memo(() => (
@@ -185,13 +185,7 @@ export default React.memo(() => (
             startTime
           }
         }
-
-        getColorList {
-          ...colorListFragment
-        }
       }
-
-      ${colorListFragment}
     `}
     fetchPolicy="no-cache"
   >
@@ -199,10 +193,10 @@ export default React.memo(() => (
       if (loading || error || !data)
         return <Spin indicator={<Icon type="loading" spin />} />;
 
-      const { viewer, getValidUserPointList, getColorList } = data;
+      const { viewer, getValidUserPointList } = data;
       const userPoints = getValidUserPointList?.data;
 
-      if (!viewer || !userPoints || !getColorList)
+      if (!viewer || !userPoints)
         return <Spin indicator={<Icon type="loading" spin />} />;
 
       const currentBalance =
@@ -217,7 +211,6 @@ export default React.memo(() => (
               Boolean,
             ) as PropsType['userPoints'] /** TODO: should not be null */
           }
-          colors={getColorList.colors}
         />
       );
     }}

@@ -2,12 +2,13 @@
 import { FormComponentProps } from 'antd/lib/form';
 
 // import
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Spin, Icon, Form, Input, Button, Modal, notification } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { colors as colorsContext } from '@meepshop/context';
 
 import { DEFAULT_MESSAGE } from './constants';
 import styles from './styles/index.less';
@@ -15,9 +16,6 @@ import styles from './styles/index.less';
 // graphql typescript
 import { getOrderPaidMessage } from './__generated__/getOrderPaidMessage';
 import { updateOrderPaidMessage as updateOrderPaidMessageType } from './__generated__/updateOrderPaidMessage';
-
-// graphql import
-import { colorListFragment } from '@meepshop/apollo/lib/ColorList';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
@@ -43,22 +41,17 @@ const query = gql`
         }
       }
     }
-
-    getColorList {
-      ...colorListFragment
-    }
   }
-
-  ${colorListFragment}
 `;
 
 export default Form.create<PropsType>()(
   React.memo(({ orderId, form }: PropsType) => {
     const { t } = useTranslation('member-order-pay-notify');
+    const colors = useContext(colorsContext);
     const { loading, data } = useQuery<getOrderPaidMessage>(query, {
       variables: { orderId },
     });
-    const { getColorList, viewer } = data || {};
+    const { viewer } = data || {};
     const setting = viewer?.store?.setting;
     const order = viewer?.order;
     const [disabledEdit, setDisabledEdit] = useState(
@@ -84,12 +77,11 @@ export default Form.create<PropsType>()(
       },
     );
 
-    if (loading || !setting || !order || !getColorList)
+    if (loading || !setting || !order)
       return <Spin indicator={<Icon type="loading" spin />} />;
 
     const { paidMessage: customDefaultMessage } = setting;
     const { id, orderNo, paidMessage } = order;
-    const { colors } = getColorList;
     const { getFieldDecorator, getFieldError, validateFields } = form;
 
     return (

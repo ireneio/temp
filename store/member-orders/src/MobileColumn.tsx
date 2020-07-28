@@ -1,5 +1,6 @@
 // typescript import
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { ColorsType } from '@meepshop/context/lib/colors';
 
 // import
 import React, { useState } from 'react';
@@ -12,10 +13,7 @@ import Link from '@meepshop/link';
 import styles from './styles/mobileColumn.less';
 
 // graphql typescript
-import {
-  getOrders_viewer_orders_edges_node as getOrdersViewerOrdersEdgesNode,
-  getOrders_getColorList as getOrdersGetColorList,
-} from './__generated__/getOrders';
+import { getOrders_viewer_orders_edges_node as getOrdersViewerOrdersEdgesNode } from './__generated__/getOrders';
 
 // typescript definition
 interface PropsType extends I18nPropsType, getOrdersViewerOrdersEdgesNode {
@@ -106,9 +104,7 @@ const MobileColumn = React.memo(
 /**
  * Mobile style will render to many times. Should not use style dom.
  */
-export const getMobileStyles = (
-  colors: getOrdersGetColorList['colors'],
-): string => `
+export const getMobileStyles = (colors: ColorsType): string => `
   .${styles.drawer} {
     color: ${colors[3]};
   }

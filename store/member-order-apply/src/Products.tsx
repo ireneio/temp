@@ -2,6 +2,7 @@
 import { ColumnProps } from 'antd/lib/table';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { ColorsType } from '@meepshop/context/lib/colors';
 import { CurrencyType } from '@store/currency';
 
 // import
@@ -18,9 +19,6 @@ import withContext from '@store/utils/lib/withContext';
 import currencyContext from '@store/currency';
 
 import styles from './styles/products.less';
-
-// graphql typescript
-import { getMemberOrderApply_getColorList as getMemberOrderApplyGetColorList } from './__generated__/getMemberOrderApply';
 
 // graphql import
 import localeFragment from '@meepshop/utils/lib/fragments/locale';
@@ -305,9 +303,7 @@ class Products extends React.PureComponent<PropsType, StateType> {
   }
 }
 
-export const getProductsStyles = (
-  colors: getMemberOrderApplyGetColorList['colors'],
-): string => `
+export const getProductsStyles = (colors: ColorsType): string => `
   .${styles.root} .ant-table-tbody > tr:hover > td {
     background: ${transformColor(colors[4]).alpha(0.1)};
   }

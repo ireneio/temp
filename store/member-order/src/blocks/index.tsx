@@ -1,10 +1,11 @@
 // import
-import React from 'react';
+import React, { useContext } from 'react';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { colors as colorsContext } from '@meepshop/context';
 
 import PaymentInfo from './paymentInfo';
 import ShipmentInfo from './ShipmentInfo';
@@ -12,7 +13,6 @@ import InvoiceInfo from './invoiceInfo';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getMemberOrder_getColorList as getMemberOrderGetColorList } from '../__generated__/getMemberOrder';
 import { blocksFragment as blocksFragmentType } from './__generated__/blocksFragment';
 
 // graphql import
@@ -23,7 +23,6 @@ import { invoiceInfoFragment } from './invoiceInfo';
 // typescript definition
 interface PropsType {
   order: blocksFragmentType;
-  colors: getMemberOrderGetColorList['colors'];
 }
 
 // definition
@@ -77,9 +76,9 @@ export const blocksFragment = gql`
 
 export default React.memo(
   ({
-    colors,
     order: { userInfo, shipmentInfo, paymentInfo, status, invoices, ...order },
   }: PropsType) => {
+    const colors = useContext(colorsContext);
     const { t } = useTranslation('member-order');
     const shipmentObj = shipmentInfo?.list?.[0];
     const paymentObj = paymentInfo?.list?.[0];

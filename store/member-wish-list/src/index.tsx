@@ -2,6 +2,7 @@
 import { QueryResult } from '@apollo/react-common';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { ColorsType } from '@meepshop/context/lib/colors';
 
 // import
 import React from 'react';
@@ -14,7 +15,9 @@ import memoizeOne from 'memoize-one';
 import moment from 'moment';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { colors as colorsContext } from '@meepshop/context';
 import Thumbnail, { thumbnailFragment } from '@meepshop/thumbnail';
+import withContext from '@store/utils/lib/withContext';
 
 import styles from './styles/index.less';
 
@@ -23,11 +26,7 @@ import {
   getWishlist,
   getWishlist_viewer_wishlist as getWishlistViewerWishlist,
   getWishlist_viewer_wishlist_title as getWishlistViewerWishlistTitle,
-  getWishlist_getColorList as getWishlistGetColorList,
 } from './__generated__/getWishlist';
-
-// graphql import
-import { colorListFragment } from '@meepshop/apollo/lib/ColorList';
 
 // typescript definition
 interface PropsType
@@ -36,7 +35,7 @@ interface PropsType
     Pick<QueryResult<getWishlist>, 'refetch'> {
   viewerId: string;
   wishlist: getWishlistViewerWishlist[];
-  colors: getWishlistGetColorList['colors'];
+  colors: ColorsType;
 
   // TODO: remove after removing redux
   wishListFromRedux?: unknown;
@@ -163,7 +162,9 @@ class MemberWishList extends React.PureComponent<PropsType> {
 }
 
 const EnhancedMemberWishList = withTranslation('member-wish-list')(
-  MemberWishList,
+  withContext(colorsContext, colors => ({
+    colors,
+  }))(MemberWishList),
 );
 
 export default React.memo(
@@ -189,13 +190,8 @@ export default React.memo(
               isAvailableForSale
             }
           }
-
-          getColorList {
-            ...colorListFragment
-          }
         }
 
-        ${colorListFragment}
         ${thumbnailFragment}
       `}
       fetchPolicy="no-cache"
@@ -204,13 +200,12 @@ export default React.memo(
         if (loading || error || !data)
           return <Spin indicator={<Icon type="loading" spin />} />;
 
-        const { viewer, getColorList } = data;
+        const { viewer } = data;
         // TODO: should not be null id
         const id = viewer?.id || 'null id';
         const wishlist = viewer?.wishlist;
 
-        if (!wishlist || !getColorList)
-          return <Spin indicator={<Icon type="loading" spin />} />;
+        if (!wishlist) return <Spin indicator={<Icon type="loading" spin />} />;
 
         return (
           <EnhancedMemberWishList
@@ -220,7 +215,6 @@ export default React.memo(
                 Boolean,
               ) as PropsType['wishlist'] /** TODO: should not be null */
             }
-            colors={getColorList.colors}
             refetch={refetch}
             dispatchAction={dispatchAction}
             wishListFromRedux={wishListFromRedux}

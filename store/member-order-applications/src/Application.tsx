@@ -2,6 +2,7 @@
 import { ColumnProps } from 'antd/lib/table';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { ColorsType } from '@meepshop/context/lib/colors';
 
 // import
 import React from 'react';
@@ -18,7 +19,6 @@ import styles from './styles/application.less';
 
 // graphql typescript
 import {
-  getMemberOrderApplications_getColorList as getMemberOrderApplicationsGetColorList,
   getMemberOrderApplications_viewer_order_applications as getMemberOrderApplicationsViewerOrderApplications,
   getMemberOrderApplications_viewer_order_applications_extra as getMemberOrderApplicationsViewerOrderApplicationsExtra,
 } from './__generated__/getMemberOrderApplications';
@@ -203,9 +203,7 @@ class Application extends React.PureComponent<PropTypes> {
   }
 }
 
-export const getApplicationStyles = (
-  colors: getMemberOrderApplicationsGetColorList['colors'],
-): string => `
+export const getApplicationStyles = (colors: ColorsType): string => `
   .${styles.tag} {
     color: ${colors[2]};
     background: ${colors[4]};

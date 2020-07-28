@@ -2,6 +2,7 @@
 import { DataProxy } from 'apollo-cache';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { ColorsType } from '@meepshop/context/lib/colors';
 
 // import
 import React from 'react';
@@ -12,15 +13,14 @@ import { Button, notification } from 'antd';
 import moment from 'moment';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { colors as colorsContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
 
 import styles from './styles/qa.less';
 
 // graphql typescript
 import { qaOrderMessageFragment as qaOrderMessageFragmentType } from './__generated__/qaOrderMessageFragment';
-import {
-  getMemberOrder_viewer_order as getMemberOrderViewerOrder,
-  getMemberOrder_getColorList as getMemberOrderGetColorList,
-} from './__generated__/getMemberOrder';
+import { getMemberOrder_viewer_order as getMemberOrderViewerOrder } from './__generated__/getMemberOrder';
 import {
   addNewMessage,
   addNewMessageVariables,
@@ -31,7 +31,7 @@ import { qaOrderFragment } from './__generated__/qaOrderFragment';
 interface PropsType extends I18nPropsType {
   messages: getMemberOrderViewerOrder['messages'];
   orderId: getMemberOrderViewerOrder['id'];
-  colors: getMemberOrderGetColorList['colors'];
+  colors: ColorsType;
 }
 
 interface StateType {
@@ -236,4 +236,6 @@ class Qa extends React.PureComponent<PropsType, StateType> {
   }
 }
 
-export default withTranslation('member-order')(Qa);
+export default withTranslation('member-order')(
+  withContext(colorsContext, colors => ({ colors }))(Qa),
+);

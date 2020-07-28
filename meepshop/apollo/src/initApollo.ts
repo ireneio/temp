@@ -20,7 +20,6 @@ import getConfig from 'next/config';
 
 import { modulesDataType } from '@meepshop/modules';
 
-import * as ColorList from './ColorList';
 import * as PageInfo from './PageInfo';
 import mergeResolvers from './utils/mergeResolvers';
 import errorLink from './utils/errorLink';
@@ -72,10 +71,7 @@ const create = (
     connectToDevTools: typeof window !== 'undefined',
     ssrMode: typeof window === 'undefined',
     cache,
-    resolvers: [...resolvers, ColorList.resolvers, PageInfo.resolvers].reduce(
-      mergeResolvers,
-      {},
-    ),
+    resolvers: [...resolvers, PageInfo.resolvers].reduce(mergeResolvers, {}),
     link: ApolloLink.from([
       errorLink(errorFilter),
       new HttpLink({

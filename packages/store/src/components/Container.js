@@ -28,7 +28,6 @@ class Container extends React.Component {
   static propTypes = {
     /* never change */
     cname: PropTypes.string.isRequired,
-    colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     storeAppList: PropTypes.arrayOf(PropTypes.object).isRequired,
     storeSetting: PropTypes.shape({
       invoice: PropTypes.object.isRequired,
@@ -258,7 +257,6 @@ class Container extends React.Component {
     const {
       /* never change */
       cname,
-      colors,
       storeAppList,
       storeSetting,
       experiment,
@@ -292,7 +290,6 @@ class Container extends React.Component {
         <Layout
           /* never change */
           cname={cname}
-          colors={colors}
           storeCurrency={storeCurrency}
           storeAppList={storeAppList}
           storeSetting={storeSetting}
@@ -336,7 +333,7 @@ const mapStateToProps = state => {
   if (error) return { error };
 
   const {
-    storeReducer: { colors, settings, pageAdTrackIDs, experiment },
+    storeReducer: { settings, pageAdTrackIDs, experiment },
     memberReducer: { user, isLogin, cart, loading, loadingTip },
     loadingStatus: { loading: isLoading },
   } = state;
@@ -345,7 +342,6 @@ const mapStateToProps = state => {
   return {
     /* never change */
     cname,
-    colors,
     storeAppList: getStoreAppList(state),
     storeSetting: settings,
     pageAdTrackIDs,
