@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.54.0 (2020-07-28)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1053](https://github.com/meepshop/meep-lerna/pull/1053) 移除 getColorList 改用 @meepshop/context ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.53.2 (2020-07-27)
 
 #### :boom: Breaking Change
