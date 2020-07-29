@@ -78,6 +78,7 @@ export const viewerAuthorityListFragment = gql`
           payment
           shipment
           exportSetting
+          ableToEditNotificationSetting
         }
         file {
           index

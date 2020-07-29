@@ -27,6 +27,7 @@ export const useItemspermissionStoreObjFragment = gql`
     payment
     shipment
     exportSetting
+    ableToEditNotificationSetting
   }
 `;
 
@@ -97,7 +98,12 @@ export default (
           item: 'notification',
           path: '/setting/notification',
           Icon: NotificationOutlineIcon,
-          auth: isMerchant || Boolean(storePermission?.index),
+          auth:
+            isMerchant ||
+            Boolean(
+              storePermission?.index &&
+                storePermission?.ableToEditNotificationSetting,
+            ),
         },
         {
           item: 'app',
