@@ -151,7 +151,7 @@ class MyApp extends App {
             'common',
           ],
         },
-        cookieCurrency: req?.cookies.currency,
+        cookieCurrency: req?.currency,
       };
     } catch (error) {
       console.log(error);
