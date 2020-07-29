@@ -1,6 +1,6 @@
 {
   "title": "Mẫu đơn đặt hàng xuất khẩu",
-  "maskId": {
+  "exportFormatId": {
     "title": "Xuất khẩu mặt hàng",
     "placeholder": "Vui lòng chọn nhóm áp dụng"
   },

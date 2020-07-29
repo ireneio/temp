@@ -1,6 +1,6 @@
 {
   "title": "Formulario de pedido de exportación",
-  "maskId": {
+  "exportFormatId": {
     "title": "Exportar artículos",
     "placeholder": "Por favor seleccione el grupo aplicable"
   },

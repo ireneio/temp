@@ -1,6 +1,6 @@
 {
   "title": "注文フォームをエクスポート",
-  "maskId": {
+  "exportFormatId": {
     "title": "アイテムをエクスポート",
     "placeholder": "該当するグループを選択してください"
   },

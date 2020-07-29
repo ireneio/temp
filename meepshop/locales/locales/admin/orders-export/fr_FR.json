@@ -1,6 +1,6 @@
 {
   "title": "Bon de commande d'exportation",
-  "maskId": {
+  "exportFormatId": {
     "title": "Exporter des articles",
     "placeholder": "Veuillez sélectionner le groupe applicable"
   },

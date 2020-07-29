@@ -1,6 +1,6 @@
 {
   "title": "表單匯出",
-  "maskId": {
+  "exportFormatId": {
     "title": "匯出項目",
     "placeholder": "請選擇適用群組"
   },

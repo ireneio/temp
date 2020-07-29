@@ -1,6 +1,6 @@
 {
   "title": "Export order form",
-  "maskId": {
+  "exportFormatId": {
     "title": "Export Items",
     "placeholder": "Please select applicable group"
   },

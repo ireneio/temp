@@ -1,6 +1,6 @@
 {
   "title": "Formulir pemesanan ekspor",
-  "maskId": {
+  "exportFormatId": {
     "title": "Barang Ekspor",
     "placeholder": "Silakan pilih grup yang berlaku"
   },
