@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.54.1 (2020-07-29)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1064](https://github.com/meepshop/meep-lerna/pull/1064) 判斷 Guest Token 是否合法 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1042](https://github.com/meepshop/meep-lerna/pull/1042) 【優化】權限設定/商店管理 - 新增「通知設定」- Design / 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1062](https://github.com/meepshop/meep-lerna/pull/1062) 【BUG】ecfit 的訂單匯出壞掉了 ([@happycat6323](https://github.com/happycat6323))
+- `store`
+  - [#1059](https://github.com/meepshop/meep-lerna/pull/1059) 【BUG】首次購物 - thank-you-page 查看訂單，訂單明細頁面空白 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.54.0 (2020-07-28)
 
 #### :boom: Breaking Change
