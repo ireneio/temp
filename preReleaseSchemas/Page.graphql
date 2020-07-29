@@ -139,6 +139,7 @@ union PageModule =
   | FacebookWallModule
   | GoogleMapModule
   | IframeModule
+  | ImageModule
   | ProductDraftTextModule
   | ProductIframeModule
   | ProductVideoModule

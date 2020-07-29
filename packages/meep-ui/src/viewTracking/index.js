@@ -26,7 +26,8 @@ export default class extends React.Component {
     const { eventLabel, eventCategory } = customTracking;
 
     if (isVisible && !isTriggered) {
-      adTrack.view(
+      adTrack.custom(
+        'meepShop_view',
         eventLabel,
         !eventCategory?.status ? null : eventCategory?.value || eventLabel,
       );

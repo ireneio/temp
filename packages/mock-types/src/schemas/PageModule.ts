@@ -10,6 +10,7 @@ import FacebookWallModule from './FacebookWallModule';
 import GoogleMapModule from './GoogleMapModule';
 import GroupModule from './GroupModule';
 import IframeModule from './IframeModule';
+import ImageModule from './ImageModule';
 import ProductDraftTextModule from './ProductDraftTextModule';
 import ProductIframeModule from './ProductIframeModule';
 import ProductVideoModule from './ProductVideoModule';
@@ -60,6 +61,11 @@ gql`
     }
 
     ... on IframeModule {
+      id
+      parentId
+    }
+
+    ... on ImageModule {
       id
       parentId
     }
@@ -158,6 +164,7 @@ export default mock.add<PageModuleMock[]>('PageModule', [
   () => getPageModules(FacebookWallModule),
   () => getPageModules(GoogleMapModule),
   () => getPageModules(IframeModule),
+  () => getPageModules(ImageModule),
   () => getPageModules(ProductDraftTextModule),
   () => getPageModules(ProductIframeModule),
   () => getPageModules(ProductVideoModule),

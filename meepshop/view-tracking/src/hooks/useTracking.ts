@@ -20,7 +20,7 @@ export default ({
     visible => {
       if (isTriggered || !visible) return;
 
-      adTrack.view(name, category);
+      adTrack.custom('meepShop_view', name, category);
       setIsTriggered(true);
     },
     [name, category, adTrack, isTriggered],

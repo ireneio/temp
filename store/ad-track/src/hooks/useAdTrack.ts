@@ -7,7 +7,7 @@ import useAdTrackIds from './useAdTrackIds';
 // import
 import { useMemo } from 'react';
 
-import getViewTrack from '../utils/getViewTrack';
+import getCustomTrack from '../utils/getCustomTrack';
 import getAddToCartTrack from '../utils/getAddToCartTrack';
 import getViewProductTrack from '../utils/getViewProductTrack';
 import getSearchTrack from '../utils/getSearchTrack';
@@ -28,7 +28,7 @@ export default (
 ): AdTrackType =>
   useMemo(
     () => ({
-      view: getViewTrack,
+      custom: getCustomTrack,
       addToCart: getAddToCartTrack(data),
       viewProduct: getViewProductTrack(data),
       search: getSearchTrack(data),

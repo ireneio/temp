@@ -3,7 +3,11 @@ import React from 'react';
 import { emptyFunction } from 'fbjs';
 
 // typescript definition
-type viewType = (name: string, category: string | null) => void;
+type customType = (
+  action: string,
+  name: string,
+  category: string | null,
+) => void;
 
 type addToCartType = (options: {
   eventName: 'ec-popup' | 'ec' | 'lp';
@@ -72,7 +76,7 @@ type purchaseType = (options: {
 }) => void;
 
 export interface AdTrackType {
-  view: viewType;
+  custom: customType;
   addToCart: addToCartType;
   viewProduct: viewProductType;
   search: searchType;
@@ -84,7 +88,7 @@ export interface AdTrackType {
 
 // definition
 export default React.createContext<AdTrackType>({
-  view: emptyFunction,
+  custom: emptyFunction,
   addToCart: emptyFunction,
   viewProduct: emptyFunction,
   search: emptyFunction,

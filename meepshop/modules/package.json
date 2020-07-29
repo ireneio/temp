@@ -13,6 +13,7 @@
     "@meepshop/facebook-wall": "^0.54.0",
     "@meepshop/google-map": "^0.54.0",
     "@meepshop/iframe": "^0.54.0",
+    "@meepshop/image": "^0.50.0",
     "@meepshop/product-draft-text": "^0.54.0",
     "@meepshop/product-iframe": "^0.54.0",
     "@meepshop/product-video": "^0.54.0",

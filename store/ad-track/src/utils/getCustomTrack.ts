@@ -1,9 +1,13 @@
 // definition
-export default (name: string, category: string | null): void => {
+export default (
+  action: string,
+  name: string,
+  category: string | null,
+): void => {
   if (window.fbq) window.fbq('track', name);
 
   if (window.gtag)
-    window.gtag('event', 'meepShop_view', {
+    window.gtag('event', action, {
       ...(!category
         ? {}
         : {

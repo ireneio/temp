@@ -1,0 +1,40 @@
+.root {
+  display: flex;
+  width: 100%;
+
+  & > div {
+    display: flex;
+    overflow: hidden;
+  }
+
+  &.FLEX_START {
+    justify-content: flex-start;
+  }
+
+  &.CENTER {
+    justify-content: center;
+  }
+
+  &.FLEX_END {
+    justify-content: flex-end;
+  }
+}
+
+.image {
+  width: 100%;
+  transition: all 0.5s ease-in;
+}
+
+.placeholder {
+  flex: 1 0 600px;
+  min-height: 240px;
+}
+
+.blur {
+  filter: blur(10px) brightness(80%);
+  transform: scale(1.01);
+}
+
+.link {
+  cursor: pointer;
+}

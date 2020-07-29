@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "@meepshop/image",
+  "description": "Meepshop image module",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.50.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/context": "^0.54.0",
+    "@meepshop/images": "^0.54.0",
+    "@meepshop/link": "^0.54.0",
+    "react-visibility-sensor": "^5.1.1"
+  },
+  "keywords": ["image", "meepshop"]
+}
