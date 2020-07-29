@@ -59,28 +59,50 @@ Router.onRouteChangeError = () => NProgress.done();
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
-    const { isServer, req, res, store } = ctx;
+    const { req, res, store } = ctx;
     let pageProps = {};
-    const { XMeepshopDomain, userAgent } = Utils.getReqArgs(isServer, req);
+    const { XMeepshopDomain, userAgent } = Utils.getReqArgs(
+      typeof window === 'undefined',
+      req,
+    );
 
     try {
-      /**
-       * Because we connot get page data when token expired, we need to check
-       * 401 error before page navigation. We also
-       */
+      if (typeof window === 'undefined') {
+        const { valid } = await fetch(`${API_HOST}/auth/validate_token`, {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({
+            token: req.cookies['x-meepshop-authorization-token'],
+          }),
+        }).then(result => result.json());
+
+        if (!valid) {
+          res.cookie('x-meepshop-authorization-token', '', {
+            maxAge: 0,
+            httpOnly: true,
+          });
+          delete req.cookies['x-meepshop-authorization-token'];
+        }
+      }
+
       const response = await fetch(
-        isServer ? `${API_HOST}/graphql` : '/api/graphql',
+        typeof window === 'undefined' ? `${API_HOST}/graphql` : '/api/graphql',
         {
           method: 'post',
-          headers: isServer
-            ? {
-                'content-type': 'application/json',
-                'x-meepshop-domain': req.headers.host,
-                'x-meepshop-authorization-token':
-                  req.cookies['x-meepshop-authorization-token'],
-              }
-            : { 'content-type': 'application/json' },
-          credentials: isServer ? 'include' : 'same-origin',
+          headers:
+            typeof window === 'undefined'
+              ? {
+                  'content-type': 'application/json',
+                  'x-meepshop-domain': req.headers.host,
+                  'x-meepshop-authorization-token':
+                    req.cookies['x-meepshop-authorization-token'],
+                }
+              : { 'content-type': 'application/json' },
+          credentials:
+            typeof window === 'undefined' ? 'include' : 'same-origin',
           body: JSON.stringify({
             query: `
               query checkStore {
@@ -95,7 +117,11 @@ class MyApp extends App {
         },
       );
 
-      if (isServer && response.status >= 400 && response.status !== 403) {
+      if (
+        typeof window === 'undefined' &&
+        response.status >= 400 &&
+        response.status !== 403
+      ) {
         console.log(
           `Check >> ${response.status} (${XMeepshopDomain}) ${JSON.stringify(
             req.headers,
@@ -116,7 +142,7 @@ class MyApp extends App {
        * to prevent 401 error.
        */
       if (response.status === 401) {
-        if (isServer) {
+        if (typeof window === 'undefined') {
           res.cookie('x-meepshop-authorization-token', '', {
             maxAge: 0,
             httpOnly: true,
@@ -155,7 +181,7 @@ class MyApp extends App {
       };
     } catch (error) {
       console.log(error);
-      if (!isServer) {
+      if (typeof window !== 'undefined') {
         Utils.logToServer({
           type: 'getInitialProps in _app',
           message: error.message,
