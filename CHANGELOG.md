@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.54.2 (2020-07-30)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`
+  - [#1046](https://github.com/meepshop/meep-lerna/pull/1046) 【重構】圖片元件 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1069](https://github.com/meepshop/meep-lerna/pull/1069) 【BUG】後台 - 頁面設計＆色彩配置背景圖片問題 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.54.1 (2020-07-29)
 
 #### :rocket: New Feature
