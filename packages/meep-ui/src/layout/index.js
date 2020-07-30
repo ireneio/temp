@@ -78,7 +78,7 @@ export default class Layout extends React.PureComponent {
       if (used && image) {
         return `
           ${colors[0]}
-          url(${`//${image}`})
+          url(${/^http/.test(image) ? image : `//${image}`})
           ${repeat ? 'repeat' : 'no-repeat'} top left /
           ${size ? '100%' : 'auto'} auto
         `;
