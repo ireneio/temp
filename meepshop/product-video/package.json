@@ -4,11 +4,11 @@
   "description": "Meepshop product video module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.54.2",
+  "version": "0.55.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/video": "^0.54.2"
+    "@meepshop/video": "^0.55.0"
   },
   "keywords": ["meepshop", "product video"]
 }
