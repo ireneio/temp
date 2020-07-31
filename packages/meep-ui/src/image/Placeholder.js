@@ -20,18 +20,23 @@ class Placeholder extends React.PureComponent {
   };
 
   render() {
-    const { ratio, forwardedRef, width } = this.props;
+    const { ratio, forwardedRef, width, contentWidth, alignment } = this.props;
     const height = Math.floor(width * ratio);
 
     return (
-      <div
-        ref={forwardedRef}
-        className={`${styles.root} ${width === 0 ? '' : styles.done}`}
-        style={{
-          ...(width === 0 ? {} : { height: `${height}px` }),
-          background: `url("${placeholderImage}") top / cover`,
-        }}
-      />
+      <div className={`${styles.root} ${styles[alignment]}`}>
+        <div ref={forwardedRef} style={{ width: `${contentWidth}%` }}>
+          <div
+            className={`
+              ${styles.placeholder} ${width === 0 ? '' : styles.done}
+            `}
+            style={{
+              ...(width === 0 ? {} : { height: `${height}px` }),
+              background: `url("${placeholderImage}") top / cover`,
+            }}
+          />
+        </div>
+      </div>
     );
   }
 }
