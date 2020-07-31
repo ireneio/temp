@@ -1,39 +1,3 @@
 extend type User {
   permission: permissionObj
 }
-
-type Apps {
-  webTrack: Extension!
-  memberGroup: Extension!
-  freeGift: Extension!
-  freeShipping: Extension!
-  bulkdiscount: Extension!
-  groupDiscount: Extension!
-  productDiscount: Extension!
-  points: Extension!
-  newsletters: Extension!
-  analytics: Extension!
-  fbLogin: Extension!
-  productAuthority: Extension!
-  productMassUpdate: Extension!
-  memberGroupCode: Extension!
-  coupon: Extension!
-  tagDiscount: Extension!
-  productNotice: Extension!
-  returnOrder: Extension!
-  replacement: Extension!
-  memberSeePrice: Extension!
-  gooddeal: Extension!
-  wishList: Extension!
-}
-
-type Extension {
-  id: ID!
-  storeAppId: ID
-  isInstalled: Boolean!
-  isEnabled: Boolean!
-}
-
-extend type Store {
-  apps: Apps
-}

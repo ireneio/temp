@@ -13,7 +13,7 @@ import Layout from '@meepshop/meep-ui/lib/layout';
 import withContext from '@store/utils/lib/withContext';
 import currencyContext from '@store/currency';
 
-import { getJoinedUser, getStoreAppList } from 'selectors';
+import { getJoinedUser } from 'selectors';
 import * as Actions from 'ducks/actions';
 
 import Spinner from './Spinner';
@@ -28,7 +28,6 @@ class Container extends React.Component {
   static propTypes = {
     /* never change */
     cname: PropTypes.string.isRequired,
-    storeAppList: PropTypes.arrayOf(PropTypes.object).isRequired,
     storeSetting: PropTypes.shape({
       invoice: PropTypes.object.isRequired,
     }).isRequired,
@@ -257,7 +256,6 @@ class Container extends React.Component {
     const {
       /* never change */
       cname,
-      storeAppList,
       storeSetting,
       experiment,
       /* may change */
@@ -291,7 +289,6 @@ class Container extends React.Component {
           /* never change */
           cname={cname}
           storeCurrency={storeCurrency}
-          storeAppList={storeAppList}
           storeSetting={storeSetting}
           experiment={experiment}
           /* may change */
@@ -342,7 +339,6 @@ const mapStateToProps = state => {
   return {
     /* never change */
     cname,
-    storeAppList: getStoreAppList(state),
     storeSetting: settings,
     pageAdTrackIDs,
     experiment,

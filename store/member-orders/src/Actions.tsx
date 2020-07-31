@@ -2,6 +2,7 @@
 import { DataProxy } from 'apollo-cache';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { AppsType } from '@meepshop/context/lib/apps';
 
 // import
 import React from 'react';
@@ -11,15 +12,16 @@ import { message } from 'antd';
 import { areEqual } from 'fbjs';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { apps as appsContext } from '@meepshop/context';
 import Link from '@meepshop/link';
+import withContext from '@store/utils/lib/withContext';
 
 import styles from './styles/actions.less';
 
 // graphql typescript
 import createOrderFragment from '@store/utils/lib/fragments/createOrder';
 
-import { actionsOrderFragment as actionsOrderFragmentType } from './__generated__/actionsOrderFragment';
-import { actionsStoreAppListFragment as actionsStoreAppListFragmentType } from './__generated__/actionsStoreAppListFragment';
+import { actionsFragment as actionsFragmentType } from './__generated__/actionsFragment';
 import {
   payOrderAgain,
   payOrderAgainVariables,
@@ -28,8 +30,8 @@ import {
 
 // typescript definition
 interface PropsType extends I18nPropsType {
-  order: actionsOrderFragmentType;
-  appPlugins: actionsStoreAppListFragmentType;
+  apps: AppsType;
+  order: actionsFragmentType;
 }
 
 interface StateType {
@@ -37,8 +39,8 @@ interface StateType {
 }
 
 // definition
-export const actionsOrderFragment = gql`
-  fragment actionsOrderFragment on Order {
+export const actionsFragment = gql`
+  fragment actionsFragment on Order {
     id
     status
     isAvailableForPayLater @client
@@ -56,14 +58,6 @@ export const actionsOrderFragment = gql`
     shipmentInfo {
       status
     }
-  }
-`;
-
-export const actionsStoreAppListFragment = gql`
-  fragment actionsStoreAppListFragment on StoreAppList {
-    total # can not only have client side schema in the fragment
-    isReturnOrderInstalled: isPluginInstalled(pluginName: "returnOrder") @client
-    isReplacementInstalled: isPluginInstalled(pluginName: "replacement") @client
   }
 `;
 
@@ -104,6 +98,7 @@ class Actions extends React.PureComponent<PropsType, StateType> {
   public render(): React.ReactNode {
     const {
       t,
+      apps,
       order: {
         id,
         status,
@@ -114,7 +109,6 @@ class Actions extends React.PureComponent<PropsType, StateType> {
         shipmentInfo,
         choosePayLaterWhenPlaced,
       },
-      appPlugins: { isReturnOrderInstalled, isReplacementInstalled },
     } = this.props;
     const { formData } = this.state;
     const isSkipOtherAction = ![0, 3].includes(status === null ? -1 : status); // TODO: should not be null
@@ -207,13 +201,13 @@ class Actions extends React.PureComponent<PropsType, StateType> {
           <>
             {!isAvailableForOrderApply ? null : (
               <>
-                {!isReturnOrderInstalled ? null : (
+                {!apps.returnOrder.isInstalled ? null : (
                   <Link href={`/orderRefund/${id}`}>
                     <a href={`/orderRefund/${id}`}>{t('order.return')}</a>
                   </Link>
                 )}
 
-                {!isReplacementInstalled ? null : (
+                {!apps.replacement.isInstalled ? null : (
                   <Link href={`/orderExchange/${id}`}>
                     <a href={`/orderExchange/${id}`}>{t('order.replace')}</a>
                   </Link>
@@ -239,4 +233,6 @@ class Actions extends React.PureComponent<PropsType, StateType> {
   }
 }
 
-export default withTranslation('member-orders')(Actions);
+export default withTranslation('member-orders')(
+  withContext(appsContext, apps => ({ apps }))(Actions),
+);

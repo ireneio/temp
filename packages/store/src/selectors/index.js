@@ -18,7 +18,6 @@ export const getMemberGroups = state =>
   getIn(['storeReducer', 'memberGroups'])(state) || [];
 export const getActivities = state =>
   getIn(['storeReducer', 'activities'])(state) || [];
-export const getStoreAppList = state => state.storeReducer.apps || [];
 export const getStockNotificationList = state =>
   getIn(['memberReducer', 'stockNotificationList'])(state) || [];
 export const getWishList = state =>
@@ -193,7 +192,6 @@ export const getJoinedModulePage = createSelector(
     // getProduct,
     getCart,
     getActivities,
-    getStoreAppList,
     getStockNotificationList,
     getWishList,
     // getProductListCache
@@ -208,7 +206,6 @@ export const getJoinedModulePage = createSelector(
     // product,
     cart,
     activities,
-    storeApps,
     stockNotificationList,
     wishList,
     // productList
@@ -224,7 +221,6 @@ export const getJoinedModulePage = createSelector(
         // product,
         cart,
         activities,
-        storeApps,
         stockNotificationList,
         wishList,
         // productList

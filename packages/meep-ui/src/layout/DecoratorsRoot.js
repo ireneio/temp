@@ -5,8 +5,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { warning } from 'fbjs';
 
+import { apps as appsContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
 import generateConverter from '@store/currency/lib/utils/generateConverter';
 
 import {
@@ -19,8 +20,6 @@ import {
   CONTEXT_TYPES,
 } from 'constants/propTypes';
 
-import { STORE_APP_PLUGINS } from './constants';
-
 export const enhancer = Component =>
   class Enhancer extends React.Component {
     static contextTypes = CONTEXT_TYPES;
@@ -30,6 +29,7 @@ export const enhancer = Component =>
     }
   };
 
+@withContext(appsContext, apps => ({ apps }))
 // eslint-disable-next-line react/no-multi-comp
 export default class DecoratorsRoot extends React.Component {
   static propTypes = {
@@ -43,12 +43,6 @@ export default class DecoratorsRoot extends React.Component {
     customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
     location: LOCATION_TYPE.isRequired,
     carts: PropTypes.shape({}).isRequired,
-    storeAppList: PropTypes.arrayOf(
-      PropTypes.shape({
-        isInstalled: PropTypes.bool.isRequired,
-        plugin: PropTypes.oneOf(STORE_APP_PLUGINS).isRequired,
-      }),
-    ).isRequired,
 
     /** context func from props */
     setCustomerCurrency: PropTypes.func.isRequired,
@@ -144,16 +138,9 @@ export default class DecoratorsRoot extends React.Component {
   }
 
   hasStoreAppPlugin = pluginName => {
-    const { storeAppList } = this.props;
+    const { apps } = this.props;
 
-    warning(
-      STORE_APP_PLUGINS.includes(pluginName),
-      `${pluginName} is not in \`store app list\``,
-    );
-
-    return storeAppList.some(
-      ({ isInstalled, plugin }) => plugin === pluginName && isInstalled,
-    );
+    return apps[pluginName].isInstalled;
   };
 
   toggleCart = changeCartStatus => () => {

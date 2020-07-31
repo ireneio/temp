@@ -12,7 +12,6 @@ import {
   getActivities,
   getQuery,
   getCart,
-  getStoreAppList,
   getStockNotificationList,
   getWishList,
   getProductListCache,
@@ -42,7 +41,6 @@ export const getJoinedModulePage = createSelector(
     // getProduct,
     getCart,
     getActivities,
-    getStoreAppList,
     getStockNotificationList,
     getWishList,
     // getProductListCache
@@ -57,7 +55,6 @@ export const getJoinedModulePage = createSelector(
     // product,
     cart,
     activities,
-    storeApps,
     stockNotificationList,
     wishList,
     // productList
@@ -74,7 +71,6 @@ export const getJoinedModulePage = createSelector(
           // product,
           cart,
           activities,
-          storeApps,
           stockNotificationList,
           wishList,
           // productList

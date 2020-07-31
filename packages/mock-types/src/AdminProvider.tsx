@@ -3,6 +3,7 @@ import React from 'react';
 
 import { appWithTranslation } from '@meepshop/utils/lib/i18n';
 import { EventsProvider } from '@meepshop/context/lib/events';
+import { AppsProvider } from '@meepshop/context/lib/apps';
 import '@admin/utils/styles/base.less';
 import withApollo from '@admin/apollo';
 import Wrapper from '@admin/wrapper';
@@ -18,9 +19,11 @@ export default withApollo(
   appWithTranslation(
     React.memo(({ children }) => (
       <EventsProvider>
-        <MockTypes>
-          <AdminWrapper>{children}</AdminWrapper>
-        </MockTypes>
+        <AppsProvider>
+          <MockTypes>
+            <AdminWrapper>{children}</AdminWrapper>
+          </MockTypes>
+        </AppsProvider>
       </EventsProvider>
     )),
   ),

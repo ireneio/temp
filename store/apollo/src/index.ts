@@ -10,7 +10,6 @@ import gql from 'graphql-tag';
 
 import { buildWithApollo } from '@meepshop/apollo';
 
-import * as StoreAppList from './StoreAppList';
 import * as User from './User';
 import * as validatedConvenienceStoreCities from './validatedConvenienceStoreCities';
 import * as viewer from './viewer';
@@ -64,7 +63,6 @@ const mutation = gql`
 export default buildWithApollo({
   name: 'store',
   resolvers: [
-    StoreAppList.resolvers,
     User.resolvers,
     validatedConvenienceStoreCities.resolvers,
     viewer.resolvers,

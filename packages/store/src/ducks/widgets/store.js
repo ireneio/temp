@@ -31,7 +31,6 @@ const initialState = {
   activities: [],
   menus: [],
   color: {},
-  apps: [],
   memberGroups: [],
   settings: {},
   experiment: {},
@@ -120,7 +119,6 @@ export default (state = initialState, { type, payload }) => {
       const menus = (data?.getMenuList?.data || []).map(menu =>
         Utils.setDefaultValueForMenuDesign(menu),
       );
-      const apps = data?.getStoreAppList?.data || [];
       const memberGroups = data?.viewer?.store?.memberGroups || [];
       const store = data?.viewer?.store;
       const storeSettings = data?.viewer?.store?.setting;
@@ -151,7 +149,6 @@ export default (state = initialState, { type, payload }) => {
         shippableCountries: store?.shippableCountries || [],
         activities, // 折扣活動
         menus, // 選單
-        apps: apps.map(app => ({ ...app, isInstalled: !!app.isInstalled })), // 用於判斷擴充功能是否安裝
         memberGroups,
         settings,
         pageAdTrackIDs,

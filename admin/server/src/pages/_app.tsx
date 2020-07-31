@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic';
 
 import { appWithTranslation } from '@meepshop/utils/lib/i18n';
 import { EventsProvider } from '@meepshop/context/lib/events';
+import { AppsProvider } from '@meepshop/context/lib/apps';
 import { withDomain } from '@meepshop/link';
 import '@admin/utils/styles/base.less';
 import withApollo from '@admin/apollo';
@@ -62,9 +63,11 @@ class App extends NextApp<AppInitialProps> {
           {/login|reset-password/.test(pathname) ? (
             <Component {...pageProps} />
           ) : (
-            <Wrapper>
-              <Component {...pageProps} />
-            </Wrapper>
+            <AppsProvider>
+              <Wrapper>
+                <Component {...pageProps} />
+              </Wrapper>
+            </AppsProvider>
           )}
         </EventsProvider>
       </>

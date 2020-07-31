@@ -24,16 +24,11 @@ import { initAdmin } from './__generated__/initAdmin';
 import {
   viewerUserFragment,
   viewerAuthorityListFragment,
-  viewerAppListFragment,
-  viewerStoreAppListFragment,
 } from '@admin/apollo/lib/viewer';
 
 import { useCollapsedFragment } from './hooks/useCollapsed';
 import { useCheckingAdminStatusFragment } from './hooks/useCheckingAdminStatus';
-import {
-  useMenuListpermissionObjFragment,
-  useMenuListAppsFragment,
-} from './hooks/useMenuList';
+import { useMenuListFragment } from './hooks/useMenuList';
 import { useFooterMenuListFragment } from './hooks/useFooterMenuList';
 
 // typescript definition
@@ -58,12 +53,9 @@ const query = gql`
         id
         ...useCheckingAdminStatusFragment
         ...useFooterMenuListFragment
-        apps @client {
-          ...useMenuListAppsFragment
-        }
       }
       permission @client {
-        ...useMenuListpermissionObjFragment
+        ...useMenuListFragment
       }
       ...viewerUserFragment
     }
@@ -71,25 +63,14 @@ const query = gql`
     getAuthorityList {
       ...viewerAuthorityListFragment
     }
-
-    getAppList {
-      ...viewerAppListFragment
-    }
-
-    getStoreAppList {
-      ...viewerStoreAppListFragment
-    }
   }
 
   ${viewerUserFragment}
   ${viewerAuthorityListFragment}
-  ${viewerAppListFragment}
-  ${viewerStoreAppListFragment}
 
   ${useCollapsedFragment}
   ${useCheckingAdminStatusFragment}
-  ${useMenuListpermissionObjFragment}
-  ${useMenuListAppsFragment}
+  ${useMenuListFragment}
   ${useFooterMenuListFragment}
 `;
 
@@ -103,7 +84,6 @@ export default React.memo(({ children }: PropsType) => {
   const [transitionLoading, transitionEnd] = useTransitionEnd(collapsed);
   const isMerchant = data?.viewer?.role === 'MERCHANT';
   const permission = data?.viewer?.permission;
-  const storeApps = data?.viewer?.store?.apps;
   const isNotOpened = useCheckingAdminStatus(
     !data?.viewer?.store
       ? null
@@ -141,12 +121,7 @@ export default React.memo(({ children }: PropsType) => {
         <Menu
           isMerchant={isMerchant}
           permission={
-            !permission
-              ? null
-              : filter(useMenuListpermissionObjFragment, permission)
-          }
-          storeApps={
-            !storeApps ? null : filter(useMenuListAppsFragment, storeApps)
+            !permission ? null : filter(useMenuListFragment, permission)
           }
           collapsed={collapsed}
           loading={transitionLoading}

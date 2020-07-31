@@ -2,7 +2,7 @@
 import { IconProps } from 'antd/lib/icon';
 
 // import
-import { useMemo } from 'react';
+import { useMemo, useContext } from 'react';
 import gql from 'graphql-tag';
 
 import {
@@ -17,10 +17,10 @@ import {
   FolderIcon,
   SettingIcon,
 } from '@meepshop/icons';
+import { apps as appsContext } from '@meepshop/context';
 
 // graphql typescript
-import { useMenuListpermissionObjFragment as useMenuListpermissionObjFragmentType } from './__generated__/useMenuListpermissionObjFragment';
-import { useMenuListAppsFragment as useMenuListAppsFragmentType } from './__generated__/useMenuListAppsFragment';
+import { useMenuListFragment as useMenuListFragmentType } from './__generated__/useMenuListFragment';
 
 // typescript definition
 export type MenuListType = (string | [string, MenuListType])[];
@@ -33,8 +33,8 @@ interface MenuType {
 }
 
 // definition
-export const useMenuListpermissionObjFragment = gql`
-  fragment useMenuListpermissionObjFragment on permissionObj {
+export const useMenuListFragment = gql`
+  fragment useMenuListFragment on permissionObj {
     orders: order {
       isEnabled: index
     }
@@ -55,31 +55,6 @@ export const useMenuListpermissionObjFragment = gql`
     }
     setting: store {
       isEnabled: index
-    }
-  }
-`;
-
-export const useMenuListAppsFragment = gql`
-  fragment useMenuListAppsFragment on Apps {
-    analytics {
-      id
-      isEnabled
-    }
-    memberGroup {
-      id
-      isEnabled
-    }
-    memberGroupCode {
-      id
-      isEnabled
-    }
-    newsletters {
-      id
-      isEnabled
-    }
-    webTrack {
-      id
-      isEnabled
     }
   }
 `;
@@ -154,9 +129,9 @@ const getMenuList = (
 
 export default (
   isMerchant: boolean,
-  permission: useMenuListpermissionObjFragmentType | null,
-  storeApps: useMenuListAppsFragmentType | null,
+  permission: useMenuListFragmentType | null,
 ): MenuType[] => {
+  const apps = useContext(appsContext);
   const enabledList = useMemo(
     () => ({
       orders: Boolean(isMerchant || permission?.orders?.isEnabled),
@@ -164,17 +139,17 @@ export default (
       'product-service': Boolean(
         isMerchant || permission?.productService?.isEnabled,
       ),
-      analytics: Boolean(isMerchant && storeApps?.analytics.isEnabled),
+      analytics: Boolean(isMerchant && apps.analytics.isInstalled),
       member: Boolean(isMerchant || permission?.member?.isEnabled),
-      'member-group': Boolean(storeApps?.memberGroup.isEnabled),
-      'member-group-code': Boolean(storeApps?.memberGroupCode.isEnabled),
+      'member-group': Boolean(apps.memberGroup.isInstalled),
+      'member-group-code': Boolean(apps.memberGroupCode.isInstalled),
       design: Boolean(isMerchant || permission?.design?.isEnabled),
-      newsletter: Boolean(storeApps?.newsletters.isEnabled),
-      'web-track': Boolean(storeApps?.webTrack.isEnabled),
+      newsletter: Boolean(apps.newsletters.isInstalled),
+      'web-track': Boolean(apps.webTrack.isInstalled),
       'file-manager': Boolean(isMerchant || permission?.fileManager?.isEnabled),
       setting: Boolean(isMerchant || permission?.setting?.isEnabled),
     }),
-    [isMerchant, permission, storeApps],
+    [isMerchant, permission, apps],
   );
 
   return useMemo(() => getMenuList(enabledList), [enabledList]);

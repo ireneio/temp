@@ -3,8 +3,6 @@ import gql from 'graphql-tag';
 
 // graphql typescript
 import { viewerUserFragment as viewerUserFragmentType } from './__generated__/viewerUserFragment';
-import { viewerStoreAppListFragment as viewerStoreAppListFragmentType } from './__generated__/viewerStoreAppListFragment';
-import { viewerAppListFragment as viewerAppListFragmentType } from './__generated__/viewerAppListFragment';
 import { viewerAuthorityListFragment as viewerAuthorityListFragmentType } from './__generated__/viewerAuthorityListFragment';
 
 // definition
@@ -14,26 +12,6 @@ export const viewerUserFragment = gql`
     groupId
     store {
       id
-    }
-  }
-`;
-
-export const viewerStoreAppListFragment = gql`
-  fragment viewerStoreAppListFragment on StoreAppList {
-    data {
-      id
-      appId
-      plugin
-      isInstalled
-    }
-  }
-`;
-
-export const viewerAppListFragment = gql`
-  fragment viewerAppListFragment on AppList {
-    data {
-      id
-      plugin
     }
   }
 `;
@@ -88,96 +66,19 @@ export const viewerAuthorityListFragment = gql`
   }
 `;
 
-const defaultApps = [
-  'webTrack',
-  'memberGroup',
-  'freeGift',
-  'freeShipping',
-  'bulkdiscount',
-  'groupDiscount',
-  'productDiscount',
-  'points',
-  'newsletters',
-  'analytics',
-  'fbLogin',
-  'productAuthority',
-  'productMassUpdate',
-  'memberGroupCode',
-  'coupon',
-  'tagDiscount',
-  'productNotice',
-  'returnOrder',
-  'replacement',
-  'memberSeePrice',
-  'gooddeal',
-  'wishList',
-].reduce(
-  (result, key) => ({
-    ...result,
-    [key]: {
-      __typename: 'Extension',
-      id: key,
-      isInstalled: false,
-      isEnabled: false,
-    },
-  }),
-  { __typename: 'Apps' },
-);
-
 export const resolvers = {
   Query: {
     viewer: ({
       viewer,
-      getStoreAppList,
-      getAppList,
       getAuthorityList,
     }: {
       viewer: viewerUserFragmentType;
-      getStoreAppList: viewerStoreAppListFragmentType;
-      getAppList: viewerAppListFragmentType;
       getAuthorityList: viewerAuthorityListFragmentType;
     }) => ({
       ...viewer,
       permission:
         getAuthorityList?.data?.find(list => list?.id === viewer.groupId)
           ?.permission || null,
-      store: !viewer?.store
-        ? null
-        : {
-            ...viewer.store,
-            apps:
-              getAppList?.data?.reduce(
-                (
-                  list: {
-                    [plugin: string]: boolean | string;
-                  },
-                  app,
-                ) => {
-                  if (!app) return list;
-
-                  const { id: appId, plugin } = app;
-
-                  if (!plugin || !appId) return list;
-
-                  const { id, isInstalled } =
-                    getStoreAppList?.data?.find(
-                      storeApp => storeApp?.plugin === plugin,
-                    ) || {};
-
-                  return {
-                    ...list,
-                    [plugin]: {
-                      __typename: 'Extension',
-                      id: appId,
-                      storeAppId: id || null,
-                      isInstalled: Boolean(id),
-                      isEnabled: Boolean(isInstalled),
-                    },
-                  };
-                },
-                defaultApps,
-              ) || null,
-          },
     }),
   },
 };

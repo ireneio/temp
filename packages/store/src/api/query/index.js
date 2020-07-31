@@ -1,6 +1,5 @@
 import localeQuery from './locale.query';
 import pageQuery from './page.query';
-import storeAppQuery from './storeApp.query';
 import menuQuery from './menu.query';
 import activityQuery from './activity.query';
 import cartQuery from './cart.query';
@@ -16,7 +15,6 @@ import viewerStoreQuery from './viewerStore.query';
 export {
   localeQuery,
   pageQuery,
-  storeAppQuery,
   menuQuery,
   activityQuery,
   cartQuery,

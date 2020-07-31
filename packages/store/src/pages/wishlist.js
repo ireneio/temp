@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { apps as appsContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
 import MemberWishlist from '@store/member-wish-list';
 
 import * as Utils from 'utils';
@@ -31,7 +33,6 @@ class Wishlist extends Component {
   static propTypes = {
     error: PropTypes.string,
     isLogin: PropTypes.string.isRequired,
-    storeAppList: PropTypes.arrayOf(PropTypes.object).isRequired,
     storeSetting: PropTypes.shape({
       storeName: PropTypes.string.isRequired,
       faviconUrl: PropTypes.string.isRequired,
@@ -60,22 +61,14 @@ class Wishlist extends Component {
   }
 
   componentDidUpdate() {
-    const { isLogin } = this.props;
+    const { apps, isLogin } = this.props;
 
     if (isLogin === 'NOTLOGIN') {
       Router.pushRoute('/login');
-    } else if (!this.hasWishListAppPlugin()) {
+    } else if (!apps.wishList.isInstalled) {
       Router.pushRoute('/');
     }
   }
-
-  hasWishListAppPlugin = () => {
-    const { storeAppList } = this.props;
-
-    return storeAppList.find(
-      ({ isInstalled, plugin }) => plugin === 'wishList' && isInstalled,
-    );
-  };
 
   render() {
     const { error } = this.props;
@@ -84,18 +77,19 @@ class Wishlist extends Component {
     if (error) return <Error error={error} />;
 
     const {
+      t,
+      apps,
       isLogin,
       storeSetting: { storeName, faviconUrl },
       location: { pathname },
       pageAdTrackIDs,
       wishList,
       dispatchAction,
-      t,
     } = this.props;
 
     if (isLogin === 'NOTLOGIN') return <div>未登入</div>;
 
-    if (!this.hasWishListAppPlugin()) return <div />;
+    if (!apps.wishList.isInstalled) return null;
 
     return (
       <>
@@ -162,7 +156,6 @@ const mapStateToProps = (state, props) => {
   );
 
   return {
-    storeAppList: Selectors.getStoreAppList(state),
     storeSetting: state.storeReducer.settings,
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
@@ -176,4 +169,8 @@ export default connect(mapStateToProps, dispatch => ({
   dispatchAction: (actionName, args) => {
     dispatch(Actions[actionName](args));
   },
-}))(withTranslation('common')(Wishlist));
+}))(
+  withTranslation('common')(
+    withContext(appsContext, apps => ({ apps }))(Wishlist),
+  ),
+);

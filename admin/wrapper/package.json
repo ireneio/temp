@@ -11,6 +11,7 @@
     "@admin/apollo": "^0.54.2",
     "@admin/switch": "^0.54.2",
     "@admin/utils": "^0.54.2",
+    "@meepshop/context": "^0.54.2",
     "@meepshop/icons": "^0.54.2",
     "@meepshop/link": "^0.54.2",
     "@meepshop/utils": "^0.54.2",

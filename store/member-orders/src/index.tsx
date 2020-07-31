@@ -35,7 +35,6 @@ import {
   getOrders_viewer_orders_edges_node as getOrdersViewerOrdersEdgesNode,
   getOrders_viewer_orders_edges_node_paymentInfo as getOrdersViewerOrdersEdgesNodePaymentInfo,
   getOrders_viewer_orders_edges_node_shipmentInfo as getOrdersViewerOrdersEdgesNodeShipmentInfo,
-  getOrders_getStoreAppList as getOrdersGetStoreAppList,
 } from './__generated__/getOrders';
 
 // graphql import
@@ -43,9 +42,8 @@ import {
   calculateOrderOrderFragment,
   calculateOrderOrderApplyListFragment,
 } from '@store/apollo/lib/utils/calculateOrder';
-import { storeAppListFragment } from '@store/apollo/lib/StoreAppList';
 
-import { actionsOrderFragment, actionsStoreAppListFragment } from './Actions';
+import { actionsFragment } from './Actions';
 
 // typescript definition
 interface PropsType
@@ -56,7 +54,6 @@ interface PropsType
       'fetchMore' | 'variables'
     > {
   orders: getOrdersViewerOrders;
-  appPlugins: getOrdersGetStoreAppList;
   colors: ColorsType;
 }
 
@@ -86,75 +83,67 @@ class MemberOrders extends React.PureComponent<PropsType> {
     return null;
   }
 
-  private columns = memoizeOne(
-    ({ t, appPlugins }: Pick<PropsType, 't' | 'appPlugins'>) => [
-      {
-        title: t('date'),
-        dataIndex: 'node.createdOn',
-        render: (value: getOrdersViewerOrdersEdgesNode['createdOn']) =>
-          moment
-            .unix(value || 0 /** TODO: should not be null */)
-            .format('YYYY/MM/DD'),
-        width: 130,
-      },
-      {
-        title: t('order.no'),
-        dataIndex: 'node.orderNo',
-        render: (
-          value: getOrdersViewerOrdersEdgesNode['orderNo'],
-          { node: { id } }: getOrdersViewerOrdersEdges,
-        ) => (
-          <Link href={`/order/${id}`}>
-            <a href={`/order/${id}`}>{value}</a>
-          </Link>
-        ),
-        width: 150,
-      },
-      {
-        title: t('payment.title'),
-        dataIndex: 'node.paymentInfo.status',
-        render: (value: getOrdersViewerOrdersEdgesNodePaymentInfo['status']) =>
-          t(`payment.${value}`),
-        width: 130,
-      },
-      {
-        title: t('shipment.title'),
-        dataIndex: 'node.shipmentInfo.status',
-        render: (value: getOrdersViewerOrdersEdgesNodeShipmentInfo['status']) =>
-          t(`shipment.${value}`),
-        width: 130,
-      },
-      {
-        title: t('status.title'),
-        dataIndex: 'node.status',
-        render: (value: getOrdersViewerOrdersEdgesNode['status']) =>
-          t(`status.${value}`),
-        width: 130,
-      },
-      {
-        key: 'action',
-        dataIndex: 'node',
-        render: (value: getOrdersViewerOrdersEdgesNode) => (
-          <Actions
-            order={filter(actionsOrderFragment, value)}
-            appPlugins={filter(actionsStoreAppListFragment, appPlugins)}
-          />
-        ),
-      },
-      {
-        key: 'mobileStyle',
-        dataIndex: 'node',
-        render: (value: getOrdersViewerOrdersEdgesNode) => (
-          <MobileColumn {...value}>
-            <Actions
-              order={filter(actionsOrderFragment, value)}
-              appPlugins={filter(actionsStoreAppListFragment, appPlugins)}
-            />
-          </MobileColumn>
-        ),
-      },
-    ],
-  );
+  private columns = memoizeOne(({ t }: Pick<PropsType, 't'>) => [
+    {
+      title: t('date'),
+      dataIndex: 'node.createdOn',
+      render: (value: getOrdersViewerOrdersEdgesNode['createdOn']) =>
+        moment
+          .unix(value || 0 /** TODO: should not be null */)
+          .format('YYYY/MM/DD'),
+      width: 130,
+    },
+    {
+      title: t('order.no'),
+      dataIndex: 'node.orderNo',
+      render: (
+        value: getOrdersViewerOrdersEdgesNode['orderNo'],
+        { node: { id } }: getOrdersViewerOrdersEdges,
+      ) => (
+        <Link href={`/order/${id}`}>
+          <a href={`/order/${id}`}>{value}</a>
+        </Link>
+      ),
+      width: 150,
+    },
+    {
+      title: t('payment.title'),
+      dataIndex: 'node.paymentInfo.status',
+      render: (value: getOrdersViewerOrdersEdgesNodePaymentInfo['status']) =>
+        t(`payment.${value}`),
+      width: 130,
+    },
+    {
+      title: t('shipment.title'),
+      dataIndex: 'node.shipmentInfo.status',
+      render: (value: getOrdersViewerOrdersEdgesNodeShipmentInfo['status']) =>
+        t(`shipment.${value}`),
+      width: 130,
+    },
+    {
+      title: t('status.title'),
+      dataIndex: 'node.status',
+      render: (value: getOrdersViewerOrdersEdgesNode['status']) =>
+        t(`status.${value}`),
+      width: 130,
+    },
+    {
+      key: 'action',
+      dataIndex: 'node',
+      render: (value: getOrdersViewerOrdersEdgesNode) => (
+        <Actions order={filter(actionsFragment, value)} />
+      ),
+    },
+    {
+      key: 'mobileStyle',
+      dataIndex: 'node',
+      render: (value: getOrdersViewerOrdersEdgesNode) => (
+        <MobileColumn {...value}>
+          <Actions order={filter(actionsFragment, value)} />
+        </MobileColumn>
+      ),
+    },
+  ]);
 
   private changePage = (newCurrent: number): void => {
     const {
@@ -237,7 +226,6 @@ class MemberOrders extends React.PureComponent<PropsType> {
         },
       },
       colors,
-      appPlugins,
       variables: { first: pageSize },
     } = this.props;
     const { loading } = this.state;
@@ -271,7 +259,7 @@ class MemberOrders extends React.PureComponent<PropsType> {
             current * pageSize,
             (current + 1) * pageSize,
           )}
-          columns={this.columns({ t, appPlugins })}
+          columns={this.columns({ t })}
           loading={loading}
           rowKey={
             ({ node: { id } }) =>
@@ -334,7 +322,7 @@ export default React.memo(() => (
                 }
                 status
                 ...calculateOrderOrderFragment
-                ...actionsOrderFragment
+                ...actionsFragment
               }
             }
 
@@ -355,18 +343,11 @@ export default React.memo(() => (
         ) {
           ...calculateOrderOrderApplyListFragment
         }
-
-        getStoreAppList {
-          ...storeAppListFragment
-          ...actionsStoreAppListFragment
-        }
       }
 
       ${calculateOrderOrderFragment}
       ${calculateOrderOrderApplyListFragment}
-      ${storeAppListFragment}
-      ${actionsOrderFragment}
-      ${actionsStoreAppListFragment}
+      ${actionsFragment}
     `}
     variables={{
       first: 10,
@@ -376,10 +357,9 @@ export default React.memo(() => (
       if (loading || error || !data)
         return <Spin indicator={<Icon type="loading" spin />} />;
 
-      const { viewer, getStoreAppList } = data;
+      const { viewer } = data;
 
-      if (!viewer || !getStoreAppList)
-        return <Spin indicator={<Icon type="loading" spin />} />;
+      if (!viewer) return <Spin indicator={<Icon type="loading" spin />} />;
 
       const { orders } = viewer;
 
@@ -389,7 +369,6 @@ export default React.memo(() => (
       return (
         <EnhancedMemberOrders
           orders={orders}
-          appPlugins={getStoreAppList}
           variables={variables}
           fetchMore={fetchMore}
         />

@@ -9,8 +9,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { apps as appsContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
+
 import { USER_TYPE, STORE_SETTING_TYPE, LOCATION_TYPE } from './propTypes';
-import { STORE_APP_PLUGINS } from './constant';
 import {
   StoreSettingContext,
   FuncContext,
@@ -20,16 +22,15 @@ import {
 
 export contextProvider from './utils/contextProvider';
 
+@withContext(appsContext, apps => ({ apps }))
 export default class Context extends React.PureComponent {
   /* eslint-disable react/destructuring-assignment */
   func = {
     goTo: this.props.goTo,
     hasStoreAppPlugin: pluginName => {
-      const { storeAppList } = this.props;
+      const { apps } = this.props;
 
-      return storeAppList.some(
-        ({ isInstalled, plugin }) => plugin === pluginName && isInstalled,
-      );
+      return apps[pluginName].isInstalled;
     },
   };
   /* eslint-disable react/destructuring-assignment */
@@ -39,12 +40,6 @@ export default class Context extends React.PureComponent {
     user: USER_TYPE,
     storeSetting: STORE_SETTING_TYPE.isRequired,
     location: LOCATION_TYPE.isRequired,
-    storeAppList: PropTypes.arrayOf(
-      PropTypes.shape({
-        isInstalled: PropTypes.bool.isRequired,
-        plugin: PropTypes.oneOf(STORE_APP_PLUGINS).isRequired,
-      }),
-    ).isRequired,
 
     /** func | ignore */
     goTo: PropTypes.func.isRequired,

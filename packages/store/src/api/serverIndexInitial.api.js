@@ -3,7 +3,6 @@ import {
   viewer,
   viewerStoreQuery,
   pageQuery,
-  storeAppQuery,
   menuQuery,
   activityQuery,
   cartQuery,
@@ -17,7 +16,6 @@ export default async context => {
       $pageFilter: StorePagesFilterInput,
       $menuSearch: searchInputObjectType,
       $activitySearch: searchInputObjectType,
-      $storeAppSearch: searchInputObjectType,
       $memberGroupFilter: MemberGroupFilterInput,
       $cartSearch: searchInputObjectType,
       $notificationSearch: searchInputObjectType,
@@ -41,10 +39,6 @@ export default async context => {
             order: 'desc',
           },
         ],
-      },
-      storeAppSearch: {
-        size: 100,
-        from: 0,
       },
       activitySearch: {
         size: 50,
@@ -136,12 +130,6 @@ export default async context => {
     getActivityList(search: $activitySearch) {
       data {
         ${activityQuery}
-      }
-      total
-    }
-    getStoreAppList(search: $storeAppSearch) {
-      data {
-        ${storeAppQuery}
       }
       total
     }
