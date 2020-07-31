@@ -1,4 +1,4 @@
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: next-store-virtualservice
@@ -7,4 +7,25 @@ spec:
   gateways:
   - unleash-gateway
   hosts:
-  - "*.stage.meepcloud.com"
+  - '*.stage.meepcloud.com'
+  http:
+  - match:
+    - uri:
+        exact: /robots.txt
+    - uri:
+        exact: /pages/sitemap.xml
+    - uri:
+        exact: /sitemap.xml
+    - uri:
+        exact: /product/sitemap.xml
+    name: sitemap
+    route:
+    - destination:
+        host: meep-nginx
+        port:
+          number: 8080
+  - route:
+    - destination:
+        host: next-store
+        port:
+          number: 14401
