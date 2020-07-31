@@ -30,14 +30,12 @@ export const descriptionFragment = gql`
 `;
 
 export default React.memo(({ order }: PropsType) => {
-  const paidMessage = order.paidMessage?.slice(-1)[0]?.note?.split('\n');
+  const paidMessage = order.paidMessage?.slice(-1)[0]?.note || '';
   const description = order.paymentInfo?.list?.[0]?.description || '';
 
   return (
     <>
-      {!paidMessage
-        ? null
-        : paidMessage.map(text => <div key={text}>{text}</div>)}
+      {!paidMessage ? null : <pre>{paidMessage}</pre>}
 
       {!description ? null : <pre>{description}</pre>}
     </>
