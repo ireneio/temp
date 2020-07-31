@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.55.0 (2020-07-31)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1065](https://github.com/meepshop/meep-lerna/pull/1065) 前端 - 移除 getStoreAppList 改用 @meepshop/context ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1066](https://github.com/meepshop/meep-lerna/pull/1066) 【BUG】前台 - 匯款通知訂單，付款方式顯示的付款資訊分隔線有誤 ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`
+  - [#1067](https://github.com/meepshop/meep-lerna/pull/1067) 【BUG】前後台圖片元件佔位圖，元件寬度和水平對齊顯示錯誤 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- `store`
+  - [#1070](https://github.com/meepshop/meep-lerna/pull/1070) (@meepshop/store) Add new config ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.54.2 (2020-07-30)
 
 #### :rocket: New Feature
