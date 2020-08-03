@@ -1,9 +1,9 @@
- type ImageModule implements Module {
-    id: ID!
-    parentId: ID!
-    image: Image
-    link: Link
-    width: PositiveInt!
-    justifyContent: JustifyContent!
-    alt: String!
-  }
+type ImageModule implements Module {
+  id: ID!
+  parentId: ID!
+  image: Image
+  link: Link
+  width: PositiveInt!
+  justifyContent: JustifyContent!
+  alt: String!
+}

@@ -19,20 +19,28 @@ import ConvenienceStore from './schemas/ConvenienceStore';
 import DashboardInfo from './schemas/DashboardInfo';
 import DraftTextProductCustomField from './schemas/DraftTextProductCustomField';
 import ExchangeRate from './schemas/ExchangeRate';
-import ezPaymentReturnListObjectType from './schemas/ezPaymentReturnListObjectType';
 import ExportFormat from './schemas/ExportFormat';
+import ezPaymentReturnListObjectType from './schemas/ezPaymentReturnListObjectType';
 import FbPixel from './schemas/FbPixel';
 import FileConnection from './schemas/FileConnection';
-import gtag from './schemas/gtag';
-import GmoBankInstallment from './schemas/GmoBankInstallment';
 import GMOUserInfo from './schemas/GMOUserInfo';
+import GmoBankInstallment from './schemas/GmoBankInstallment';
+import groupProductsObjectType from './schemas/groupProductsObjectType';
+import gtag from './schemas/gtag';
 import HexColorCode from './schemas/HexColorCode';
 import Image from './schemas/Image';
 import MemberGroup from './schemas/MemberGroup';
 import NotificationObjectType from './schemas/NotificationObjectType';
 import Order from './schemas/Order';
-import OrderConnection from './schemas/OrderConnection';
 import OrderApplyList from './schemas/OrderApplyList';
+import OrderConnection from './schemas/OrderConnection';
+import Page from './schemas/Page';
+import PageConnection from './schemas/PageConnection';
+import PaymentAccountForCathay from './schemas/PaymentAccountForCathay';
+import PaymentAccountForEzpay from './schemas/PaymentAccountForEzpay';
+import PaymentForAllpay from './schemas/PaymentForAllpay';
+import paymentInfoType from './schemas/paymentInfoType';
+import paymentObjectType from './schemas/paymentObjectType';
 import permissionDesignObj from './schemas/permissionDesignObj';
 import permissionFileObj from './schemas/permissionFileObj';
 import permissionOrderObj from './schemas/permissionOrderObj';
@@ -40,30 +48,23 @@ import permissionProductObj from './schemas/permissionProductObj';
 import permissionServiceObj from './schemas/permissionServiceObj';
 import permissionStoreObj from './schemas/permissionStoreObj';
 import permissionUserObj from './schemas/permissionUserObj';
-import paymentInfoType from './schemas/paymentInfoType';
-import paymentObjectType from './schemas/paymentObjectType';
-import productsObjectType from './schemas/productsObjectType';
 import priceObjectType from './schemas/priceObjectType';
-import Page from './schemas/Page';
-import PageConnection from './schemas/PageConnection';
-import PaymentAccountForEzpay from './schemas/PaymentAccountForEzpay';
-import PaymentAccountForCathay from './schemas/PaymentAccountForCathay';
-import PaymentForAllpay from './schemas/PaymentForAllpay';
+import productsObjectType from './schemas/productsObjectType';
 import RecipientAddress from './schemas/RecipientAddress';
 import RecipientObjectType from './schemas/RecipientObjectType';
-import shipmentInfoType from './schemas/shipmentInfoType';
-import shipmentObjectType from './schemas/shipmentObjectType';
-import StorePayment from './schemas/StorePayment';
-import StoreShipment from './schemas/StoreShipment';
-import StoreEcfitSettings from './schemas/StoreEcfitSettings';
+import SettingObjectType from './schemas/SettingObjectType';
 import Store from './schemas/Store';
 import StoreApp from './schemas/StoreApp';
-import SettingObjectType from './schemas/SettingObjectType';
+import StoreEcfitSettings from './schemas/StoreEcfitSettings';
+import StorePayment from './schemas/StorePayment';
+import StoreShipment from './schemas/StoreShipment';
+import shipmentInfoType from './schemas/shipmentInfoType';
+import shipmentObjectType from './schemas/shipmentObjectType';
 import TagList from './schemas/TagList';
 import User from './schemas/User';
+import UserMemberGroupObjectType from './schemas/UserMemberGroupObjectType';
 import UserPoints from './schemas/UserPoints';
 import UserRewardPoint from './schemas/UserRewardPoint';
-import UserMemberGroupObjectType from './schemas/UserMemberGroupObjectType';
 import userObjectType from './schemas/userObjectType';
 import VideoLinkProductCustomField from './schemas/VideoLinkProductCustomField';
 import WishlistProduct from './schemas/WishlistProduct';
@@ -88,20 +89,28 @@ export default addMocksToSchema({
     DashboardInfo,
     DraftTextProductCustomField,
     ExchangeRate,
-    ezPaymentReturnListObjectType,
     ExportFormat,
+    ezPaymentReturnListObjectType,
     FbPixel,
     FileConnection,
-    gtag,
-    GmoBankInstallment,
     GMOUserInfo,
+    GmoBankInstallment,
+    groupProductsObjectType,
+    gtag,
     HexColorCode,
     Image,
     MemberGroup,
     NotificationObjectType,
     Order,
-    OrderConnection,
     OrderApplyList,
+    OrderConnection,
+    Page,
+    PageConnection,
+    PaymentAccountForCathay,
+    PaymentAccountForEzpay,
+    PaymentForAllpay,
+    paymentInfoType,
+    paymentObjectType,
     permissionDesignObj,
     permissionFileObj,
     permissionOrderObj,
@@ -109,30 +118,23 @@ export default addMocksToSchema({
     permissionServiceObj,
     permissionStoreObj,
     permissionUserObj,
-    paymentInfoType,
-    paymentObjectType,
-    productsObjectType,
     priceObjectType,
-    Page,
-    PageConnection,
-    PaymentAccountForEzpay,
-    PaymentAccountForCathay,
-    PaymentForAllpay,
+    productsObjectType,
     RecipientAddress,
     RecipientObjectType,
-    shipmentInfoType,
-    shipmentObjectType,
-    StorePayment,
-    StoreShipment,
-    StoreEcfitSettings,
+    SettingObjectType,
     Store,
     StoreApp,
-    SettingObjectType,
+    StoreEcfitSettings,
+    StorePayment,
+    StoreShipment,
+    shipmentInfoType,
+    shipmentObjectType,
     TagList,
     User,
+    UserMemberGroupObjectType,
     UserPoints,
     UserRewardPoint,
-    UserMemberGroupObjectType,
     userObjectType,
     VideoLinkProductCustomField,
     WishlistProduct,

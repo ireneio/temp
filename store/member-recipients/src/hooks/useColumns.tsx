@@ -14,14 +14,14 @@ import useDeleteRecipientAddress from './useDeleteRecipientAddress';
 import styles from './styles/useColumns.less';
 
 // graphql typescript
-import { useColumnsFragment as useColumnsFragmentType } from './__generated__/useColumnsFragment';
+import { useColumnsRecipientAddressFragment as useColumnsRecipientAddressFragmentType } from './__generated__/useColumnsRecipientAddressFragment';
 
 // graphql import
 import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
 // definition
-export const useColumnsFragment = gql`
-  fragment useColumnsFragment on RecipientAddress {
+export const useColumnsRecipientAddressFragment = gql`
+  fragment useColumnsRecipientAddressFragment on RecipientAddress {
     id
     name
     mobile
@@ -52,7 +52,7 @@ export const useColumnsFragment = gql`
 
 export default (
   setSelectedId: (id: string | null) => void,
-): ColumnProps<useColumnsFragmentType>[] => {
+): ColumnProps<useColumnsRecipientAddressFragmentType>[] => {
   const { t, i18n } = useTranslation('member-recipients');
   const deleteRecipientAddress = useDeleteRecipientAddress();
 
@@ -67,7 +67,13 @@ export default (
         dataIndex: 'address',
         render: (
           _: unknown,
-          { country, city, area, zipCode, street }: useColumnsFragmentType,
+          {
+            country,
+            city,
+            area,
+            zipCode,
+            street,
+          }: useColumnsRecipientAddressFragmentType,
         ) =>
           [
             zipCode,
@@ -95,7 +101,7 @@ export default (
       {
         key: 'action',
         dataIndex: 'id',
-        render: (value: useColumnsFragmentType['id']) => (
+        render: (value: useColumnsRecipientAddressFragmentType['id']) => (
           <>
             <span
               className={styles.action}
@@ -121,7 +127,7 @@ export default (
         key: 'mobileStyle',
         dataIndex: 'id',
         render: (
-          value: useColumnsFragmentType['id'],
+          value: useColumnsRecipientAddressFragmentType['id'],
           {
             name,
             mobile,
@@ -130,7 +136,7 @@ export default (
             city,
             area,
             street,
-          }: useColumnsFragmentType,
+          }: useColumnsRecipientAddressFragmentType,
         ) => (
           <div className={styles.mobile}>
             <span>{t('name')}</span>

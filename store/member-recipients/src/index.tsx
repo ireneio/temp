@@ -13,10 +13,10 @@ import styles from './styles/index.less';
 
 // graphql typescript
 import { getUserRecipients } from './__generated__/getUserRecipients';
-import { useColumnsFragment as useColumnsFragmentType } from './hooks/__generated__/useColumnsFragment';
+import { useColumnsRecipientAddressFragment as useColumnsRecipientAddressFragmentType } from './hooks/__generated__/useColumnsRecipientAddressFragment';
 
 import { formRecipientAddressFragment, formStoreFragment } from './Form';
-import { useColumnsFragment } from './hooks/useColumns';
+import { useColumnsRecipientAddressFragment } from './hooks/useColumns';
 
 // definition
 const query = gql`
@@ -25,7 +25,7 @@ const query = gql`
       id
       shippableRecipientAddresses {
         ...formRecipientAddressFragment
-        ...useColumnsFragment
+        ...useColumnsRecipientAddressFragment
       }
 
       store {
@@ -35,7 +35,7 @@ const query = gql`
   }
 
   ${formRecipientAddressFragment}
-  ${useColumnsFragment}
+  ${useColumnsRecipientAddressFragment}
   ${formStoreFragment}
 `;
 
@@ -65,10 +65,13 @@ export default React.memo(() => {
         }}
       />
 
-      <Table<useColumnsFragmentType>
+      <Table<useColumnsRecipientAddressFragmentType>
         rowKey={({ id }) => id}
         columns={columns}
-        dataSource={filter(useColumnsFragment, shippableRecipientAddresses)}
+        dataSource={filter(
+          useColumnsRecipientAddressFragment,
+          shippableRecipientAddresses,
+        )}
         pagination={false}
       />
 
