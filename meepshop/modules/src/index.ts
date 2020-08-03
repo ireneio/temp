@@ -9,6 +9,7 @@ import facebookWallFragment from '@meepshop/facebook-wall/lib/fragment';
 import googleMapFragment from '@meepshop/google-map/lib/fragment';
 import iframeFragment from '@meepshop/iframe/lib/fragment';
 import imageFragment from '@meepshop/image/lib/fragment';
+import menuFragment from '@meepshop/menu/lib/fragment';
 import productDraftTextFragment from '@meepshop/product-draft-text/lib/fragment';
 import productIframeFragment from '@meepshop/product-iframe/lib/fragment';
 import productVideoFragment from '@meepshop/product-video/lib/fragment';
@@ -19,6 +20,12 @@ import videoFragment from '@meepshop/video/lib/fragment';
 import viewTrackingFragment from '@meepshop/view-tracking/lib/fragment';
 
 // definition
+export {
+  contextUserFragment,
+  ModulesProvider,
+  default as ModulesContext,
+} from './context';
+
 export const modulesFragment = gql`
   fragment modulesFragment on PageModule {
     ... on GroupModule {
@@ -89,6 +96,13 @@ export const modulesFragment = gql`
       ...imageFragment
     }
 
+    ... on MenuModule {
+      __typename
+      id
+      parentId
+      ...menuFragment
+    }
+
     ... on ProductDraftTextModule {
       __typename
       id
@@ -152,6 +166,7 @@ export const modulesFragment = gql`
   ${googleMapFragment}
   ${iframeFragment}
   ${imageFragment}
+  ${menuFragment}
   ${productDraftTextFragment}
   ${productIframeFragment}
   ${productVideoFragment}
@@ -175,6 +190,7 @@ const modules = {
   GoogleMapModule: dynamic(() => import('@meepshop/google-map')),
   IframeModule: dynamic(() => import('@meepshop/iframe')),
   ImageModule: dynamic(() => import('@meepshop/image')),
+  MenuModule: dynamic(() => import('@meepshop/menu')),
   ProductDraftTextModule: dynamic(() => import('@meepshop/product-draft-text')),
   ProductIframeModule: dynamic(() => import('@meepshop/product-iframe')),
   ProductVideoModule: dynamic(() => import('@meepshop/product-video')),

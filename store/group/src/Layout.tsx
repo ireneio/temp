@@ -4,7 +4,7 @@ import { ModulesType } from './hooks/useModules';
 // import
 import React from 'react';
 
-import modules from '@meepshop/modules';
+import modules, { ModulesContext } from '@meepshop/modules';
 
 import styles from './styles/layout.less';
 
@@ -45,8 +45,12 @@ const Layout = React.memo(
       >
         {__typename !== 'LayoutModule' && __typename !== 'GroupModule' ? (
           <div className={`module ${styles.wrapper}`}>
-            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-            <Module {...(data as any)} />
+            <ModulesContext.Consumer>
+              {value => (
+                /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+                <Module {...(data as any)} {...value[__typename]} />
+              )}
+            </ModulesContext.Consumer>
           </div>
         ) : (
           childModules?.map(({ data: childData, children }) => (
