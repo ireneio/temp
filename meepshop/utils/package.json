@@ -4,9 +4,9 @@
   "description": "Utils tool for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.55.0",
+  "version": "0.55.1",
   "dependencies": {
-    "@meepshop/context": "^0.55.0",
+    "@meepshop/context": "^0.55.1",
     "braft-convert": "^2.3.0",
     "draft-js": "^0.11.5",
     "next-i18next": "^2.0.0"
