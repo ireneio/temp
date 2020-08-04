@@ -16,7 +16,7 @@ fi
 # kustomize deployment
 cd ./kustomize/overlays/staging
 kustomize edit set image asia.gcr.io/instant-matter-785/${PACKAGE_NAME}=asia.gcr.io/instant-matter-785/${PACKAGE_NAME}:${VERSION}
-kustomize build . | istioctl kube-inject -f - | /tmp/kubectl apply -f -
+kustomize build . | /tmp/kubectl apply -f -
 
 if [[ $CIRCLE_TAG =~ ^v[0-9.]*$ ]]; then
   # release bot
