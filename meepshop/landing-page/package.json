@@ -4,7 +4,7 @@
   "description": "Meepshop landing page module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.55.1",
+  "version": "0.56.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "keywords": ["landing page", "meepshop"]
