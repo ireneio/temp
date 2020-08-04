@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.56.1 (2020-08-04)
+
+#### :bug: Bug Fix
+
+- [#1087](https://github.com/meepshop/meep-lerna/pull/1087) (@meepshop/front-end): remove istioctl ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#1087](https://github.com/meepshop/meep-lerna/pull/1087) (@meepshop/front-end): remove istioctl ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.56.0 (2020-08-04)
 
 #### :bug: Bug Fix
