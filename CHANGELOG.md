@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.56.0 (2020-08-04)
+
+#### :bug: Bug Fix
+
+- [#1085](https://github.com/meepshop/meep-lerna/pull/1085) (@meepshop/front-end): remove kube-inject ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#1085](https://github.com/meepshop/meep-lerna/pull/1085) (@meepshop/front-end): remove kube-inject ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.55.1 (2020-08-04)
 
 #### :rocket: New Feature
