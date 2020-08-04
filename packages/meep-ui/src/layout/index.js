@@ -133,7 +133,7 @@ export default class Layout extends React.PureComponent {
             {experiment.hiddingMeepshopMaxInFooterEnabled ? null : (
               <footer className={styles.footer}>
                 <a
-                  href="http://www.meepshopmax.com/?p=new-store-page"
+                  href="https://meepshop.cc/8h1kG"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
