@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.55.1 (2020-08-04)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1078](https://github.com/meepshop/meep-lerna/pull/1078) 【優化】更換：meepShop MAX 極速開店 URL ([@piovischioh](https://github.com/piovischioh))
+- `mock-types`
+  - [#1081](https://github.com/meepshop/meep-lerna/pull/1081) Add modules context ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1072](https://github.com/meepshop/meep-lerna/pull/1072) 【BUG】 一頁式購物車 - FB pixel AddToCart Event 異常 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `mock-types`
+  - [#1082](https://github.com/meepshop/meep-lerna/pull/1082) (@meepshop/cart) Pre rewrite cart ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.55.0 (2020-07-31)
 
 #### :boom: Breaking Change
