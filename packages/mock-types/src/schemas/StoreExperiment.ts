@@ -11,7 +11,7 @@ import { StoreExperimentMock } from './__generated__/StoreExperimentMock';
 gql`
   fragment StoreExperimentMock on StoreExperiment {
     ecfitEnabled
-    isGoodDealEnable
+    isGoodDealEnabled
   }
 `;
 
@@ -19,11 +19,11 @@ export default mock.add<StoreExperimentMock>('StoreExperiment', [
   () => ({
     __typename: 'StoreExperiment',
     ecfitEnabled: true,
-    isGoodDealEnable: true,
+    isGoodDealEnabled: true,
   }),
   () => ({
     __typename: 'StoreExperiment',
     ecfitEnabled: false,
-    isGoodDealEnable: false,
+    isGoodDealEnabled: false,
   }),
 ]);
