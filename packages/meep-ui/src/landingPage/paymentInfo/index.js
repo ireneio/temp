@@ -42,8 +42,6 @@ class PayemntInfo extends React.PureComponent {
 
   checkQuantityTimeout = null;
 
-  trackTimeout = null;
-
   cacheResult = [];
 
   static propTypes = {
@@ -125,7 +123,7 @@ class PayemntInfo extends React.PureComponent {
     window.removeEventListener('scroll', this.scrollToLandingPage);
   }
 
-  getVariantPrice = variantIds => {
+  getVariantPrice = (variantIds, skipTrack = false) => {
     const { t, variants } = this.props;
     const [variantId] = variantIds.slice(-1);
     const variant = variants.find(({ id }) => id === variantId) || {};
@@ -151,7 +149,8 @@ class PayemntInfo extends React.PureComponent {
     if (variantMax === 0 || variantMax < variantMin)
       Modal.error({ title: t('no-variant') });
 
-    this.trackAddToCart();
+    if (!skipTrack) this.trackAddToCart();
+
     this.computeOrderList({ variant: variantIds });
     this.setState({ variantMin, variantMax });
   };
@@ -167,7 +166,7 @@ class PayemntInfo extends React.PureComponent {
       const [{ id: variantId }] = variants;
 
       setFieldsValue({ variant: [variantId] });
-      this.getVariantPrice([variantId]);
+      this.getVariantPrice([variantId], true);
       this.scrollToLandingPage();
       window.addEventListener('scroll', this.scrollToLandingPage);
     } else if (variant) {
@@ -183,7 +182,7 @@ class PayemntInfo extends React.PureComponent {
       document.querySelector(`.landingPage-${moduleId}`),
     );
 
-    if (y <= 0 && this.isTracked) {
+    if (y <= 0 && !this.isTracked) {
       this.trackAddToCart(() =>
         window.removeEventListener('scroll', this.scrollToLandingPage),
       );
@@ -193,29 +192,26 @@ class PayemntInfo extends React.PureComponent {
   trackAddToCart = (callback = () => {}) => {
     if (this.isTracked) return;
 
-    clearTimeout(this.trackTimeout);
-    this.trackTimeout = setTimeout(() => {
-      const { adTrack, form, title, variants } = this.props;
-      const { productId } = this.state;
-      const [variantId] = form.getFieldValue('variant').slice(-1);
-      const { quantity } = form.getFieldsValue();
-      const variant =
-        variants.find(
-          ({ id: currentVariantId }) => currentVariantId === variantId,
-        ) || {};
+    const { adTrack, form, title, variants } = this.props;
+    const { productId } = this.state;
+    const [variantId] = form.getFieldValue('variant').slice(-1);
+    const { quantity } = form.getFieldsValue();
+    const variant =
+      variants.find(
+        ({ id: currentVariantId }) => currentVariantId === variantId,
+      ) || {};
 
-      adTrack.addToCart({
-        eventName: 'lp',
-        id: productId,
-        title,
-        quantity,
-        sku: variant.sku,
-        specs: variant.specs,
-        price: variant.totalPrice,
-      });
-      this.isTracked = true;
-      callback();
-    }, 5000);
+    adTrack.addToCart({
+      eventName: 'lp',
+      id: productId,
+      title,
+      quantity,
+      sku: variant.sku,
+      specs: variant.specs,
+      price: variant.totalPrice,
+    });
+    this.isTracked = true;
+    callback();
   };
 
   computeOrderList = async (fieldsValue = {}) => {
@@ -375,7 +371,7 @@ class PayemntInfo extends React.PureComponent {
                       } ${label.join(' / ')}`
                 }
                 allowClear={false}
-                onChange={this.getVariantPrice}
+                onChange={variantIds => this.getVariantPrice(variantIds)}
               />
             ),
           )}
