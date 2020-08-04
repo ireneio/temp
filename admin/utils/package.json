@@ -4,9 +4,9 @@
   "description": "Utils tool for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.56.0",
+  "version": "0.56.1",
   "dependencies": {
-    "@meepshop/utils": "^0.56.0"
+    "@meepshop/utils": "^0.56.1"
   },
   "keywords": ["admin", "utils"]
 }
