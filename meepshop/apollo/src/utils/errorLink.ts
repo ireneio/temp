@@ -32,7 +32,7 @@ export default (errorFilter: errorFilterType): ReturnType<typeof onError> =>
     if (
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore https://github.com/apollographql/apollo-link/issues/536
-      networkError.statusCode === 401 &&
+      networkError?.statusCode === 401 &&
       typeof window !== 'undefined' &&
       window.location.pathname !== '/login'
     ) {

@@ -56,6 +56,7 @@ import SettingObjectType from './schemas/SettingObjectType';
 import Store from './schemas/Store';
 import StoreApp from './schemas/StoreApp';
 import StoreEcfitSettings from './schemas/StoreEcfitSettings';
+import StoreExperiment from './schemas/StoreExperiment';
 import StorePayment from './schemas/StorePayment';
 import StoreShipment from './schemas/StoreShipment';
 import shipmentInfoType from './schemas/shipmentInfoType';
@@ -126,6 +127,7 @@ export default addMocksToSchema({
     Store,
     StoreApp,
     StoreEcfitSettings,
+    StoreExperiment,
     StorePayment,
     StoreShipment,
     shipmentInfoType,

@@ -192,12 +192,7 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
             buttons={
               !isFieldsTouched() ? null : (
                 <div>
-                  <Button
-                    onClick={() => resetFields()}
-                    style={{ marginRight: '18px' }}
-                  >
-                    {t('cancel')}
-                  </Button>
+                  <Button onClick={() => resetFields()}>{t('cancel')}</Button>
 
                   <Button
                     onClick={this.updateNotification(
