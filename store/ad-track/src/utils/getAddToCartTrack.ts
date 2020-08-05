@@ -4,17 +4,12 @@ import { CurrencyType } from '@store/currency';
 
 import useAdTrackIds from '../hooks/useAdTrackIds';
 
-// graphql typescript
-import { getAdTrack_viewer_store as getAdTrackViewerStore } from '../__generated__/getAdTrack';
-
 // definition
 export default ({
-  cname,
   fbPixelId,
   gaId,
   currency,
 }: ReturnType<typeof useAdTrackIds> & {
-  cname: getAdTrackViewerStore['cname'];
   currency: CurrencyType['currency'];
 }) => ({
   eventName,
@@ -25,46 +20,19 @@ export default ({
   specs,
   price,
 }: Parameters<AdTrackType['addToCart']>[0]) => {
-  if (window.fbq && fbPixelId) {
-    // For: T3163
-    if (
-      ['beeding', 'bellatest'].includes(
-        cname || '' /** TODO: should not be null */,
-      ) &&
-      ['ec-popup', 'ec'].includes(eventName)
-    )
-      window.fbq(
-        'trackCustom',
-        eventName === 'ec-popup' ? 'AddToCart_PopUp' : 'FKMK',
-        {
-          // eslint-disable-next-line @typescript-eslint/camelcase
-          content_ids: [id],
-          // eslint-disable-next-line @typescript-eslint/camelcase
-          content_type: 'product',
-          value: price,
-          currency,
-        },
-      );
-
-    if (eventName === 'ec-popup')
-      window.fbq('trackCustom', 'AddToCart_PopUp', {
+  if (window.fbq && fbPixelId)
+    window.fbq(
+      eventName === 'ec-popup' ? 'trackCustom' : 'track',
+      eventName === 'ec-popup' ? 'AddToCart_PopUp' : 'AddToCart',
+      {
         // eslint-disable-next-line @typescript-eslint/camelcase
         content_ids: [id],
         // eslint-disable-next-line @typescript-eslint/camelcase
         content_type: 'product',
         value: price,
         currency,
-      });
-    else
-      window.fbq('track', 'AddToCart', {
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        content_ids: [id],
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        content_type: 'product',
-        value: price,
-        currency,
-      });
-  }
+      },
+    );
 
   if (window.gtag && gaId)
     window.gtag('event', 'add_to_cart', {
