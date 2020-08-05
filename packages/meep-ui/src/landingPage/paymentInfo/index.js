@@ -124,7 +124,7 @@ class PayemntInfo extends React.PureComponent {
   }
 
   getVariantPrice = (variantIds, skipTrack = false) => {
-    const { t, variants } = this.props;
+    const { t, variants, addition } = this.props;
     const [variantId] = variantIds.slice(-1);
     const variant = variants.find(({ id }) => id === variantId) || {};
     let { minPurchaseItems, maxPurchaseLimit } = variant;
@@ -149,14 +149,15 @@ class PayemntInfo extends React.PureComponent {
     if (variantMax === 0 || variantMax < variantMin)
       Modal.error({ title: t('no-variant') });
 
-    if (!skipTrack) this.trackAddToCart();
+    if (!skipTrack && !addition.includes('quantity'))
+      this.trackAddToCart({ variant: variantIds, quantity: 1 });
 
     this.computeOrderList({ variant: variantIds });
     this.setState({ variantMin, variantMax });
   };
 
   fetchFirst = () => {
-    const { form, variants } = this.props;
+    const { form, variants, addition } = this.props;
     const { productId } = this.state;
 
     const { getFieldValue, setFieldsValue } = form;
@@ -168,7 +169,9 @@ class PayemntInfo extends React.PureComponent {
       setFieldsValue({ variant: [variantId] });
       this.getVariantPrice([variantId], true);
       this.scrollToLandingPage();
-      window.addEventListener('scroll', this.scrollToLandingPage);
+
+      if (!addition.includes('quantity'))
+        window.addEventListener('scroll', this.scrollToLandingPage);
     } else if (variant) {
       this.getVariantPrice(variant);
     } else if (productId) {
@@ -177,29 +180,29 @@ class PayemntInfo extends React.PureComponent {
   };
 
   scrollToLandingPage = () => {
-    const { moduleId } = this.props;
+    const { form, moduleId } = this.props;
     const { y } = getElementPosition(
       document.querySelector(`.landingPage-${moduleId}`),
     );
 
     if (y <= 0 && !this.isTracked) {
-      this.trackAddToCart(() =>
+      this.trackAddToCart(form.getFieldsValue(), () =>
         window.removeEventListener('scroll', this.scrollToLandingPage),
       );
     }
   };
 
-  trackAddToCart = (callback = () => {}) => {
+  trackAddToCart = ({ variant: variantIds, quantity }, callback = () => {}) => {
     if (this.isTracked) return;
 
-    const { adTrack, form, title, variants } = this.props;
+    const { adTrack, title, variants } = this.props;
     const { productId } = this.state;
-    const [variantId] = form.getFieldValue('variant').slice(-1);
-    const { quantity } = form.getFieldsValue();
-    const variant =
-      variants.find(
-        ({ id: currentVariantId }) => currentVariantId === variantId,
-      ) || {};
+    const variantId = variantIds.slice(-1)[0];
+    const variant = variants.find(
+      ({ id: currentVariantId }) => currentVariantId === variantId,
+    );
+
+    if (!variant) return;
 
     adTrack.addToCart({
       eventName: 'lp',
@@ -296,10 +299,11 @@ class PayemntInfo extends React.PureComponent {
   };
 
   checkQuantity = quantity => {
+    const { form } = this.props;
     const { variantMin, variantMax } = this.state;
 
     clearTimeout(this.checkQuantityTimeout);
-    this.trackAddToCart();
+    this.trackAddToCart({ variant: form.getFieldValue('variant'), quantity });
 
     if (variantMin <= quantity && quantity <= variantMax) {
       this.checkQuantityTimeout = setTimeout(() => {
