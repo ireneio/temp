@@ -66,7 +66,7 @@ function* serverPagesInitialFlow({ payload }) {
       yield put(getStoreSuccess({ ...data, customerCurrency }));
       yield put(getAuthSuccess(data));
 
-      const page = data?.data?.viewer?.store?.pages.edges[0].node;
+      const page = data?.data?.viewer?.store?.pages.edges[0]?.node;
 
       if (page) {
         const modifiedPage = yield Utils.getPageWithModifyWidget(page, payload);
