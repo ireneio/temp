@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.56.2 (2020-08-05)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1090](https://github.com/meepshop/meep-lerna/pull/1090) 【BUG】 一頁式購物車 - FB pixel AddToCart Event 異常 ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#1088](https://github.com/meepshop/meep-lerna/pull/1088) (@meepshop/mock-types) Fix type field ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `mock-types`
+  - [#1086](https://github.com/meepshop/meep-lerna/pull/1086) (@admin/setting-wrapper) Pre #1013 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.56.1 (2020-08-04)
 
 #### :bug: Bug Fix
