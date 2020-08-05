@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.56.3 (2020-08-05)
+
+#### :bug: Bug Fix
+
+- [#1077](https://github.com/meepshop/meep-lerna/pull/1077) 【優化】前台 - 日文翻譯 ([@HsuTing](https://github.com/HsuTing))
+- [#1073](https://github.com/meepshop/meep-lerna/pull/1073) 【BUG】 AddToCart_PopUpp 事件會重複觸發 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.56.2 (2020-08-05)
 
 #### :bug: Bug Fix
