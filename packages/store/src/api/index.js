@@ -7,6 +7,7 @@ import removeItemsToCart from './removeItemsToCart.api';
 
 import getProduct from './getProduct.api';
 import getProductList from './getProductList.api';
+import getDefaultStoreProducts from './getDefaultStoreProducts.api';
 import login from './login.api';
 import signout from './signout.api';
 import signup from './signup.api';
@@ -40,6 +41,7 @@ export {
   // 商品
   getProduct,
   getProductList,
+  getDefaultStoreProducts,
   login,
   signout,
   signup,

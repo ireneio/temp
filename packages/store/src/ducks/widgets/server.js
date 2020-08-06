@@ -7,8 +7,6 @@ import { getPagesSuccess } from './pages';
 import { getAuthSuccess } from './member';
 import { getProductSuccess } from './products';
 
-import previewProduct from './previewProduct';
-
 /* *********************************** Get data at /index for SSR *********************************** */
 const SERVER_INDEX_INITIAL = 'SERVER_INDEX_INITIAL';
 
@@ -100,9 +98,16 @@ function* serverProductInitialFlow({ payload }) {
     if (pId === 'preview' && data?.data) {
       const { pageId } = query;
       const pageResponse = yield call(Api.getPage, { ...payload, id: pageId });
+      const defaultStoreProductsResponse = yield call(
+        Api.getDefaultStoreProducts,
+        payload,
+      );
+      const { defaultStoreProducts } = defaultStoreProductsResponse.data;
 
-      previewProduct.page = pageResponse.data?.viewer?.store?.page || null;
-      data.data.computeProductList.data = [previewProduct];
+      defaultStoreProducts.id = 'preview';
+      defaultStoreProducts.page =
+        pageResponse.data?.viewer?.store?.page || null;
+      data.data.computeProductList.data = [defaultStoreProducts];
       data.data.computeProductList.total = 1;
     }
 
