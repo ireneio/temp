@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.56.4 (2020-08-06)
+
+#### :bug: Bug Fix
+* `store`
+  * [#1089](https://github.com/meepshop/meep-lerna/pull/1089) 【BUG】前台 - 「我的收藏」頁面空白 ([@piovischioh](https://github.com/piovischioh))
+  * [#1092](https://github.com/meepshop/meep-lerna/pull/1092) (@meepshop/store): fix pages initial flow ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+* `store`
+  * [#1063](https://github.com/meepshop/meep-lerna/pull/1063) 預設商品 schema - 前端 ([@HsuTing](https://github.com/HsuTing))
+  * [#1092](https://github.com/meepshop/meep-lerna/pull/1092) (@meepshop/store): fix pages initial flow ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.56.3 (2020-08-05)
 
 #### :bug: Bug Fix
