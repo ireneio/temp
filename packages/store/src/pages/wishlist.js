@@ -51,24 +51,20 @@ class Wishlist extends Component {
   static defaultProps = { error: null };
 
   componentDidMount() {
-    const { isLogin } = this.props;
-
-    if (isLogin === 'NOTLOGIN') {
-      Router.pushRoute('/login');
-    } else if (!this.hasWishListAppPlugin()) {
-      Router.pushRoute('/');
-    }
+    this.checkPermission();
   }
 
   componentDidUpdate() {
+    this.checkPermission();
+  }
+
+  checkPermission = () => {
     const { apps, isLogin } = this.props;
 
-    if (isLogin === 'NOTLOGIN') {
-      Router.pushRoute('/login');
-    } else if (!apps.wishList.isInstalled) {
-      Router.pushRoute('/');
-    }
-  }
+    if (isLogin === 'NOTLOGIN') Router.pushRoute('/login');
+
+    if (!apps.wishList.isInstalled) Router.pushRoute('/');
+  };
 
   render() {
     const { error } = this.props;
