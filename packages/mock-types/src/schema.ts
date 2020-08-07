@@ -29,6 +29,7 @@ import groupProductsObjectType from './schemas/groupProductsObjectType';
 import gtag from './schemas/gtag';
 import HexColorCode from './schemas/HexColorCode';
 import Image from './schemas/Image';
+import Link from './schemas/Link';
 import MemberGroup from './schemas/MemberGroup';
 import NotificationObjectType from './schemas/NotificationObjectType';
 import Order from './schemas/Order';
@@ -100,6 +101,7 @@ export default addMocksToSchema({
     gtag,
     HexColorCode,
     Image,
+    Link,
     MemberGroup,
     NotificationObjectType,
     Order,

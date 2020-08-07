@@ -1,12 +1,10 @@
 // typescript import
-import {
-  NormalizedCacheObject,
-  IntrospectionResultData,
-} from 'apollo-cache-inmemory';
+import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { Resolvers } from 'apollo-client/core/types';
 
 import { CustomCtxType } from './index';
 import { errorFilterType } from './utils/errorLink';
+import { IntrospectionQueryResultDataType } from './utils/createIntrospectionQueryResultDataType';
 
 // import
 import { ApolloClient } from 'apollo-client';
@@ -18,16 +16,17 @@ import { HttpLink } from 'apollo-link-http';
 import { ApolloLink } from 'apollo-link';
 import getConfig from 'next/config';
 
-import { modulesDataType } from '@meepshop/modules';
+import modules from '@meepshop/modules';
 
 import * as PageInfo from './PageInfo';
 import mergeResolvers from './utils/mergeResolvers';
 import errorLink from './utils/errorLink';
+import createIntrospectionQueryResultDataType from './utils/createIntrospectionQueryResultDataType';
 
 // typescript definition
 export interface ConfigType {
   name: string;
-  introspectionQueryResultDataType?: IntrospectionResultData['__schema']['types'];
+  introspectionQueryResultData?: IntrospectionQueryResultDataType;
   initializeCache?: ((cache: InMemoryCache, ctx?: CustomCtxType) => void)[];
   resolvers?: Resolvers[];
   errorFilter?: errorFilterType;
@@ -43,7 +42,7 @@ let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 const create = (
   {
     name,
-    introspectionQueryResultDataType = [],
+    introspectionQueryResultData = {},
     initializeCache = [],
     resolvers = [],
     errorFilter = Boolean,
@@ -56,7 +55,19 @@ const create = (
     fragmentMatcher: new IntrospectionFragmentMatcher({
       introspectionQueryResultData: {
         __schema: {
-          types: [...introspectionQueryResultDataType, modulesDataType],
+          types: createIntrospectionQueryResultDataType({
+            ...introspectionQueryResultData,
+            PageModule: Object.keys(modules),
+            Link: [
+              'GroupLink',
+              'PageLink',
+              'ProductLink',
+              'ProductsLink',
+              'EmailLink',
+              'PhoneLink',
+              'CustomLink',
+            ],
+          }),
         },
       },
     }),

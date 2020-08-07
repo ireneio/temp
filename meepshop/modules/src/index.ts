@@ -201,12 +201,4 @@ const modules = {
   ViewTrackingModule: dynamic(() => import('@meepshop/view-tracking')),
 };
 
-export const modulesDataType = {
-  kind: 'UNION',
-  name: 'PageModule',
-  possibleTypes: Object.keys(modules).map(module => ({
-    name: module,
-  })),
-};
-
 export default modules;
