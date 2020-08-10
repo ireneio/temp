@@ -9,14 +9,8 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERS
 chmod +x ./kubectl
 mv ./kubectl /tmp/
 
-curl -s https://api.github.com/repos/kubernetes-sigs/kustomize/releases |\
- grep browser_download |\
- grep linux |\
- grep kustomize_kustomize |\
- head -n1 |\
- cut -d '"' -f 4 |\
- xargs curl -O -L
-sudo mv kustomize_kustomize.*_linux_amd64 /usr/local/bin/kustomize
+curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+sudo mv kustomize /usr/local/bin/kustomize
 chmod u+x /usr/local/bin/kustomize
 
 # kubernetes config
