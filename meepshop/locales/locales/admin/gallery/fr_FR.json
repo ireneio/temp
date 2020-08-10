@@ -2,8 +2,8 @@
   "tag": "Étiquette",
   "title": "Gestionnaire de fichiers",
   "suggestion": null,
-  "no-pictures": null,
-  "add-pictures": null,
+  "no-pictures": "Pas d'image actuellement",
+  "add-pictures": "Ajouter une nouvelle image",
   "upload": "Télécharger",
   "save": "sauver",
   "fail": "Échoué"

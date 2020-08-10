@@ -2,8 +2,8 @@
   "tag": "Nhãn",
   "title": "Quản lý tập tin",
   "suggestion": null,
-  "no-pictures": null,
-  "add-pictures": null,
+  "no-pictures": "Hiện tại không có hình ảnh",
+  "add-pictures": "Thêm hình ảnh mới",
   "upload": "Tải lên",
   "save": "Tiết kiệm",
   "fail": "Thất bại"

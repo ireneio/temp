@@ -2,8 +2,8 @@
   "tag": "แท็ก",
   "title": "ตัวจัดการไฟล์",
   "suggestion": null,
-  "no-pictures": null,
-  "add-pictures": null,
+  "no-pictures": "ไม่มีรูปภาพในขณะนี้",
+  "add-pictures": "เพิ่มรูปภาพใหม่",
   "upload": "ที่อัพโหลด",
   "save": "บันทึก",
   "fail": "ล้มเหลว"

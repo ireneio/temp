@@ -2,8 +2,8 @@
   "tag": "Tag",
   "title": "File Manager",
   "suggestion": null,
-  "no-pictures": null,
-  "add-pictures": null,
+  "no-pictures": "Currently No Image",
+  "add-pictures": "Add New Image",
   "upload": "Upload",
   "save": "Save",
   "fail": "Failed"

@@ -2,8 +2,8 @@
   "tag": "Menandai",
   "title": "Manajer File",
   "suggestion": null,
-  "no-pictures": null,
-  "add-pictures": null,
+  "no-pictures": "Saat ini Tidak Ada Gambar",
+  "add-pictures": "Tambahkan Gambar Baru",
   "upload": "Unggah",
   "save": "Menyimpan",
   "fail": "Gagal"

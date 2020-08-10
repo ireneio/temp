@@ -2,8 +2,8 @@
   "tag": "Etiqueta",
   "title": "Administrador de archivos",
   "suggestion": null,
-  "no-pictures": null,
-  "add-pictures": null,
+  "no-pictures": "Actualmente sin imagen",
+  "add-pictures": "Añadir nueva imagen",
   "upload": "Subir",
   "save": "Salvar",
   "fail": "Fallida"
