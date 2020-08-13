@@ -174,11 +174,7 @@ export default class ImageText extends React.PureComponent {
               {!button.show ? null : (
                 <div
                   className={styles.button}
-                  style={buttonStyle(
-                    button.fontSize,
-                    textColor,
-                    overlayBackgroundColor,
-                  )}
+                  style={buttonStyle(button.fontSize, textColor)}
                 >
                   {button.value}
                 </div>
