@@ -2,8 +2,8 @@ import transformColor from 'color';
 
 import { PHONE_MEDIA } from 'constants/media';
 
-export const modifyAntdStyle = colors => ({
-  width: '70%',
+export const modifyAntdStyle = (colors, width) => ({
+  width: `${width}%`,
 
   '.ant-list': {
     margin: '0px 0px 20px',
@@ -33,6 +33,8 @@ export const modifyAntdStyle = colors => ({
 
   mediaQueries: {
     [PHONE_MEDIA.replace(/@media /, '')]: {
+      width: '90%',
+
       '.ant-list-item': {
         display: 'block',
       },

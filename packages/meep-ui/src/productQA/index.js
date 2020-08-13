@@ -110,6 +110,7 @@ export default class PrdoductQA extends React.PureComponent {
       /** props */
       t,
       form: { getFieldDecorator, resetFields },
+      contentWidth,
       productId,
     } = this.props;
     const { QAList, showQAIndex } = this.state;
@@ -118,7 +119,7 @@ export default class PrdoductQA extends React.PureComponent {
       <Form className={`productQA-${productId}`} onSubmit={this.submit}>
         <Style
           scopeSelector={`.productQA-${productId}`}
-          rules={styles.modifyAntdStyle(colors)}
+          rules={styles.modifyAntdStyle(colors, contentWidth)}
         />
 
         <List
