@@ -62,6 +62,9 @@ module.exports = ({ config }) => {
       ? {}
       : {
           [moduleFragmentName]: moduleFragmentPath,
+          '@meepshop/image-text/lib/fragment': path.resolve(
+            '../image-text/src/fragment.ts',
+          ),
         }),
     'next/router': path.resolve(__dirname, '../__mocks__/next/router'),
     'next/link': path.resolve(__dirname, '../__mocks__/next/link'),

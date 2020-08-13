@@ -140,6 +140,7 @@ union PageModule =
   | GoogleMapModule
   | IframeModule
   | ImageModule
+  | ImageTextModule
   | MenuModule
   | ProductDraftTextModule
   | ProductIframeModule

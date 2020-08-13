@@ -1,0 +1,101 @@
+@import '~@meepshop/utils/styles/variables.less';
+
+@value screenSmMax from '@meepshop/utils/styles/variables.less';
+
+.root {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  padding: 8% 10%;
+  overflow: hidden;
+  transition: all 0.25s ease-in;
+
+  &.LEFT_TOP {
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  &.CENTER_TOP {
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &.RIGHT_TOP {
+    align-items: flex-start;
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  &.LEFT_CENTER {
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  &.CENTER_CENTER {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &.RIGHT_CENTER {
+    align-items: center;
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  &.LEFT_BOTTOM {
+    align-items: flex-end;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  &.CENTER_BOTTOM {
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &.RIGHT_BOTTOM {
+    align-items: flex-end;
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    padding: 8%;
+  }
+}
+
+.wrapper {
+  word-break: break-word;
+  max-width: 75%;
+
+  @media (max-width: @screen-sm-max) {
+    max-width: 100%;
+  }
+}
+
+.title {
+  line-height: 1.2em;
+  letter-spacing: 0.02em;
+}
+
+.description {
+  margin: 0.2em auto 1em;
+  line-height: 1.4em;
+  letter-spacing: 0.05em;
+}
+
+.button {
+  width: fit-content;
+  padding: 0.4em 1em;
+  line-height: 1.4em;
+  letter-spacing: 0.05em;
+  font-weight: 300;
+}

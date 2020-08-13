@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@meepshop/image-text",
+  "description": "Meepshop image text module",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.56.1",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/image": "^0.56.1",
+    "@meepshop/utils": "^0.56.1",
+    "color": "^3.0.0"
+  },
+  "keywords": ["image text", "meepshop"]
+}

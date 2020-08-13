@@ -19,6 +19,7 @@ type ModuleNamesType =
   | 'GoogleMapModule'
   | 'IframeModule'
   | 'ImageModule'
+  | 'ImageTextModule'
   | 'ProductDraftTextModule'
   | 'ProductIframeModule'
   | 'ProductVideoModule'
@@ -45,6 +46,7 @@ const defaultContext = {
   GoogleMapModule: {},
   IframeModule: {},
   ImageModule: {},
+  ImageTextModule: {},
   MenuModule: {
     user: null,
   },

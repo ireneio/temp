@@ -1,5 +1,7 @@
 // import
-import { useMemo } from 'react';
+import { useMemo, useContext, useCallback } from 'react';
+
+import { adTrack as adTrackContext } from '@meepshop/context';
 
 // graphql typescript
 import {
@@ -29,23 +31,40 @@ const generateProductsUrl = (link: imageFragmentLinkProductsLink): string =>
     link.searchKey ? `&search=${link.searchKey}` : ''
   }${link.tags ? `&tags=${link.tags.join(',')}` : ''}`;
 
-export default (link: imageFragmentLink | null): string | null =>
-  useMemo(
-    () =>
-      !link
-        ? null
-        : {
-            EmailLink: `mailTo:${(link as imageFragmentLinkEmailLink).email}`,
-            PhoneLink: `tel:${(link as imageFragmentLinkPhoneLink).phone}`,
-            GroupLink: `#${(link as imageFragmentLinkGroupLink).group?.id}`,
-            PageLink: `/pages/${(link as imageFragmentLinkPageLink).page?.id}`,
-            ProductLink: `/product/${
-              (link as imageFragmentLinkProductLink).product?.id
-            }`,
-            ProductsLink: generateProductsUrl(
-              link as imageFragmentLinkProductsLink,
-            ),
-            CustomLink: (link as imageFragmentLinkCustomLink).href,
-          }[link.__typename],
-    [link],
-  );
+export default (
+  link: imageFragmentLink | null,
+): { href: string | null; setAdTrack: () => void } => {
+  const adTrack = useContext(adTrackContext);
+
+  return {
+    href: useMemo(
+      () =>
+        !link
+          ? null
+          : {
+              EmailLink: `mailTo:${(link as imageFragmentLinkEmailLink).email}`,
+              PhoneLink: `tel:${(link as imageFragmentLinkPhoneLink).phone}`,
+              GroupLink: `#${(link as imageFragmentLinkGroupLink).group?.id}`,
+              PageLink: `/pages/${
+                (link as imageFragmentLinkPageLink).page?.id
+              }`,
+              ProductLink: `/product/${
+                (link as imageFragmentLinkProductLink).product?.id
+              }`,
+              ProductsLink: generateProductsUrl(
+                link as imageFragmentLinkProductsLink,
+              ),
+              CustomLink: (link as imageFragmentLinkCustomLink).href,
+            }[link.__typename],
+      [link],
+    ),
+    setAdTrack: useCallback(() => {
+      if (link?.tracking)
+        adTrack.custom(
+          'meepShop_click',
+          link?.tracking?.name || '',
+          link?.tracking?.category || null,
+        );
+    }, [link, adTrack]),
+  };
+};
