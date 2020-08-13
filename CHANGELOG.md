@@ -1,18 +1,48 @@
 # CHANGELOG
 
+## 0.56.5 (2020-08-13)
+
+#### :rocket: New Feature
+
+- `mock-types`
+  - [#1096](https://github.com/meepshop/meep-lerna/pull/1096) 【重構】圖片文字元件 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#1091](https://github.com/meepshop/meep-lerna/pull/1091) (@meepshop/locales) Add more locales ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1100](https://github.com/meepshop/meep-lerna/pull/1100) 【優化】FB、IG 的 in-app-browser - 無法兩指放大頁面 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#1102](https://github.com/meepshop/meep-lerna/pull/1102) 【BUG】 後台 -「自訂停留秒數追蹤」開關自動關閉 ([@HsuTing](https://github.com/HsuTing))
+  - [#1098](https://github.com/meepshop/meep-lerna/pull/1098) (circleci) Fix kustomize install ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#1099](https://github.com/meepshop/meep-lerna/pull/1099) 【BUG】圖片文字元件，按鈕 hover 時，文字 color 應為白色 ([@happycat6323](https://github.com/happycat6323))
+- `mock-types`
+  - [#1094](https://github.com/meepshop/meep-lerna/pull/1094) (@meepshop/apollo) Fix link union type ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.56.4 (2020-08-06)
 
 #### :bug: Bug Fix
-* `store`
-  * [#1089](https://github.com/meepshop/meep-lerna/pull/1089) 【BUG】前台 - 「我的收藏」頁面空白 ([@piovischioh](https://github.com/piovischioh))
-  * [#1092](https://github.com/meepshop/meep-lerna/pull/1092) (@meepshop/store): fix pages initial flow ([@piovischioh](https://github.com/piovischioh))
+
+- `store`
+  - [#1089](https://github.com/meepshop/meep-lerna/pull/1089) 【BUG】前台 - 「我的收藏」頁面空白 ([@piovischioh](https://github.com/piovischioh))
+  - [#1092](https://github.com/meepshop/meep-lerna/pull/1092) (@meepshop/store): fix pages initial flow ([@piovischioh](https://github.com/piovischioh))
 
 #### :house: Internal
-* `store`
-  * [#1063](https://github.com/meepshop/meep-lerna/pull/1063) 預設商品 schema - 前端 ([@HsuTing](https://github.com/HsuTing))
-  * [#1092](https://github.com/meepshop/meep-lerna/pull/1092) (@meepshop/store): fix pages initial flow ([@piovischioh](https://github.com/piovischioh))
+
+- `store`
+  - [#1063](https://github.com/meepshop/meep-lerna/pull/1063) 預設商品 schema - 前端 ([@HsuTing](https://github.com/HsuTing))
+  - [#1092](https://github.com/meepshop/meep-lerna/pull/1092) (@meepshop/store): fix pages initial flow ([@piovischioh](https://github.com/piovischioh))
 
 #### Committers: 2
+
 - Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
 - [@piovischioh](https://github.com/piovischioh)
 
