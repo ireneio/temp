@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.56.6 (2020-08-13)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1075](https://github.com/meepshop/meep-lerna/pull/1075) 【BUG】前後台商品問答元件，設定元件寬度沒有效果 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.56.5 (2020-08-13)
 
 #### :rocket: New Feature
