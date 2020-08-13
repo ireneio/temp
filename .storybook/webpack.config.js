@@ -6,10 +6,11 @@ const babelConfig = require('../babel.config');
 
 module.exports = ({ config }) => {
   // eslint-disable-next-line import/no-dynamic-require, global-require
-  const { name } = require(path.resolve('./package.json'));
+  const { dependencies } = require(path.resolve(
+    __dirname,
+    '../meepshop/modules/package.json',
+  ));
 
-  const moduleFragmentName = `${name}/lib/fragment`;
-  const moduleFragmentPath = path.resolve('./src/fragment.ts');
   const cssModulesTransformPlugin = babelConfig.plugins.find(
     plugin => plugin[0] === 'css-modules-transform',
   );
@@ -58,14 +59,21 @@ module.exports = ({ config }) => {
   config.resolve.extensions = ['.ts', '.tsx', ...config.resolve.extensions];
   config.resolve.alias = {
     ...config.resolve.alias,
-    ...(!fs.existsSync(moduleFragmentPath)
-      ? {}
-      : {
-          [moduleFragmentName]: moduleFragmentPath,
-          '@meepshop/image-text/lib/fragment': path.resolve(
-            '../image-text/src/fragment.ts',
-          ),
-        }),
+    ...Object.keys(dependencies).reduce((result, key) => {
+      const moduleFragmentName = `${key}/lib/fragment`;
+      const moduleFragmentPath = path.resolve(
+        __dirname,
+        key.replace(/@/, '../'),
+        './src/fragment.ts',
+      );
+
+      return !fs.existsSync(moduleFragmentPath)
+        ? result
+        : {
+            ...result,
+            [moduleFragmentName]: moduleFragmentPath,
+          };
+    }, {}),
     'next/router': path.resolve(__dirname, '../__mocks__/next/router'),
     'next/link': path.resolve(__dirname, '../__mocks__/next/link'),
     'next/head': path.resolve(__dirname, '../__mocks__/next/head'),
