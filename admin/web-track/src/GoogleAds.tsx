@@ -2,10 +2,9 @@
 import { FormComponentProps } from 'antd/lib/form';
 
 // import
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import gql from 'graphql-tag';
-import { Icon, Button, Modal, Form, Input, message } from 'antd';
-import Clipboard from 'clipboard';
+import { Button, Modal, Form, Input } from 'antd';
 
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -15,7 +14,7 @@ import {
 } from '@meepshop/images';
 
 import useGtagList from './hooks/useGtagList';
-
+import useClipboard from './hooks/useClipboard';
 import styles from './styles/googleAds.less';
 
 // graphql typescript
@@ -57,24 +56,13 @@ export default Form.create<PropsType>()(
       const [isOpen, openModal] = useState(false);
       const [editMode, setEditMode] = useState(false);
       const { setGtagSettingsList } = useGtagList();
-
       const { getFieldDecorator, validateFields, getFieldValue } = form;
 
-      useEffect(() => {
-        const clipboard = new Clipboard('#googleFeedsLink', {
-          text: () => googleFeedsLink || '',
-        }).on('success', () => {
-          message.success({
-            content: t('google-ads.copied'),
-            duration: 2,
-            icon: <Icon type="check-circle" />,
-          });
-        });
-
-        return () => {
-          clipboard.destroy();
-        };
-      }, [t, googleFeedsLink]);
+      useClipboard(
+        googleFeedsLink || '',
+        '#googleFeedsLink',
+        t('google-ads.copied'),
+      );
 
       return (
         <div>

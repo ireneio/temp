@@ -5,7 +5,7 @@ import { NextPage } from 'next';
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import { Card, Icon, Tabs } from 'antd';
+import { Spin, Card, Icon, Tabs } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { AnalyticsSettingIcon } from '@meepshop/icons';
@@ -76,6 +76,8 @@ const WebTrack: NextPage = React.memo(
     const { gtagList } = useGtagList(data?.getGtagList);
     const { webTrackList } = useWebTrackList(data?.getWebTrackList?.data);
 
+    if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
+
     return (
       <div className={styles.root}>
         <div className={styles.header}>{t('ad-analytics')}</div>
@@ -92,8 +94,8 @@ const WebTrack: NextPage = React.memo(
             <Tabs defaultActiveKey="facebook" tabPosition="left">
               <TabPane tab="Facebook" key="facebook">
                 <Facebook
-                  pixelId={data?.getFbPixel?.pixelId || null}
-                  fbDPALink={data?.viewer?.store?.setting?.fbDPALink || null}
+                  pixelId={data.getFbPixel?.pixelId || null}
+                  fbDPALink={data.viewer?.store?.setting?.fbDPALink || null}
                 />
               </TabPane>
               <TabPane tab="Google Analytics" key="googleAnalytics">
@@ -108,7 +110,7 @@ const WebTrack: NextPage = React.memo(
                   beginCheckoutCode={gtagList?.begin_checkout?.code || null}
                   purchaseCode={gtagList?.purchase?.code || null}
                   googleFeedsLink={
-                    data?.viewer?.store?.setting?.googleFeedsLink || null
+                    data.viewer?.store?.setting?.googleFeedsLink || null
                   }
                 />
               </TabPane>
@@ -133,7 +135,7 @@ const WebTrack: NextPage = React.memo(
               </>
             }
           >
-            <AdvancedSetting store={data?.viewer?.store || null} />
+            <AdvancedSetting store={data.viewer?.store || null} />
           </Card>
         </div>
       </div>

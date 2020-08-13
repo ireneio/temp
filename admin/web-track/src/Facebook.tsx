@@ -2,7 +2,7 @@
 import { FormComponentProps } from 'antd/lib/form';
 
 // import
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import {
@@ -14,7 +14,6 @@ import {
   Input,
   message,
 } from 'antd';
-import Clipboard from 'clipboard';
 
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -23,6 +22,7 @@ import {
   webTrackFacebookPixelInstruction_w890 as webTrackFacebookPixelInstruction,
 } from '@meepshop/images';
 
+import useClipboard from './hooks/useClipboard';
 import styles from './styles/facebook.less';
 
 // graphql typescript
@@ -89,21 +89,8 @@ export default Form.create<PropsType>()(
         },
       },
     );
-    useEffect(() => {
-      const clipboard = new Clipboard('#fbDPALink', {
-        text: () => fbDPALink || '',
-      }).on('success', () => {
-        message.success({
-          content: t('facebook-pixel.copied'),
-          duration: 2,
-          icon: <Icon type="check-circle" />,
-        });
-      });
 
-      return () => {
-        clipboard.destroy();
-      };
-    }, [t, fbDPALink]);
+    useClipboard(fbDPALink || '', '#fbDPALink', t('facebook-pixel.copied'));
 
     const { getFieldDecorator, validateFields } = form;
 

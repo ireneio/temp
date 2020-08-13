@@ -6,10 +6,18 @@ export default (prevResolvers: Resolvers, newResolvers: Resolvers): Resolvers =>
   Object.keys(newResolvers).reduce(
     (result: Resolvers, key: string) => ({
       ...result,
-      [key]: {
-        ...result[key],
-        ...newResolvers[key],
-      },
+      [key]: Object.keys(newResolvers[key]).reduce(
+        (fieldResult: Resolvers[string], field: string) => ({
+          ...fieldResult,
+          [field]: !fieldResult?.[field]
+            ? newResolvers[key][field]
+            : (...argu) => ({
+                ...fieldResult[field](...argu),
+                ...newResolvers[key][field](...argu),
+              }),
+        }),
+        result[key],
+      ),
     }),
     prevResolvers,
   );
