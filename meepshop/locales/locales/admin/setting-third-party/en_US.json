@@ -1,0 +1,68 @@
+{
+  "title": "Third party settings",
+  "save": "Save",
+  "cancel": "Cancel",
+  "required": "Required",
+  "error": "Update failed",
+  "facebook": {
+    "title": "Facebook integration",
+    "description": "Allow consumers to use their Facebook account to register with one click and log in to your online store to become a member, without having to go through a complicated registration process, providing a convenient shopping experience",
+    "toggle": {
+      "title": "Facebook login",
+      "description": "Allow consumers to use their Facebook account to register with one click and log in to your online store to become a member, without having to go through a complicated registration process, providing a convenient shopping experience"
+    },
+    "sub-title": {
+      "title": "Facebook application",
+      "tip": "After you create an application with your Facebook Developers account, you can get it in the basic settings"
+    },
+    "appId": {
+      "title": "Application ID",
+      "placeholder": null
+    },
+    "appSecret": {
+      "title": "Application key",
+      "placeholder": null
+    }
+  },
+  "ecfit": {
+    "title": "ECFIT Third Party Logistics Service",
+    "description": "One-stop e-commerce logistics integration system offers a complete service including assisting the store in product delivery, and it needs to do linkage setting after signing a contract with ECFIT.",
+    "toggle": {
+      "title": "ECFIT Linking Service"
+    },
+    "serviceType": {
+      "title": "Service Type",
+      "INTERTIDAL": "ECFIT Intertidal cloud logistics integration",
+      "THIRD_PARTY_STORAGE": "Third party warehousing logistics"
+    },
+    "companyToken": {
+      "title": "Company token",
+      "placeholder": "Please enter {company}",
+      "tip": "Provided after signing a contract with ECFIT, set up with the company's English name abbreviation and Uniform Invoice Number."
+    },
+    "apiKey": {
+      "title": "API encryption key",
+      "placeholder": "Please enter the encryption key",
+      "tip": "It can be generated in the back-end of the ECFIT system and copied and pasted here."
+    }
+  },
+  "goodDeal": {
+    "title": "GoodDeal Synchronized Inventory",
+    "description": "A warehousing and logistics integration center offers a complete service including assisting the store in product delivery. This service needs to do linkage setting after signing a contract with GoodDeal.",
+    "toggle": {
+      "title": "GoodDeal Synchronized Inventory"
+    },
+    "corporationId": {
+      "title": "Customer code",
+      "placeholder": "Please enter the customer code"
+    },
+    "apiKey": {
+      "title": "API key",
+      "placeholder": "Please enter the encryption key"
+    },
+    "alert": {
+      "0": "Please enter the linkage information and activate the function. Please notify by mail after the setting is completed.",
+      "1": "Customer service will help you activate it."
+    }
+  }
+}

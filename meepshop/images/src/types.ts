@@ -17,6 +17,9 @@ const mockScaledSrc = {
 /* eslint-disable @typescript-eslint/camelcase */
 export const adminAppleTouchIcon_w180_h180 = mockData;
 export const adminFavicon = mockData;
+export const adminSettingThirdPartyEcfit = mockData;
+export const adminSettingThirdPartyFacebook = mockData;
+export const adminSettingThirdPartyGoodDeal = mockData;
 export const dashboardCost_w40 = mockData;
 export const dashboardLogo_w160 = mockData;
 export const dashboardMember_w40 = mockData;

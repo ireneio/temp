@@ -1,0 +1,68 @@
+{
+  "title": "サードパーティの設定",
+  "save": "セーブ",
+  "cancel": " キャンセル",
+  "required": "必須(必ず入力して下さい)",
+  "error": "更新に失敗しました",
+  "facebook": {
+    "title": "Facebook統合",
+    "description": "複雑な登録プロセスを経ることなく、消費者がFacebookアカウントを使用してワンクリックで登録し、オンラインストアにログインしてメンバーになることを許可し、便利なショッピング体験を提供します",
+    "toggle": {
+      "title": "フェイスブックログイン",
+      "description": "複雑な登録プロセスを経ることなく、消費者がFacebookアカウントを使用してワンクリックで登録し、オンラインストアにログインしてメンバーになることを許可し、便利なショッピング体験を提供します"
+    },
+    "sub-title": {
+      "title": "Facebookアプリケーション",
+      "tip": "Facebook Developersアカウントでアプリケーションを作成したら、基本設定で取得できます"
+    },
+    "appId": {
+      "title": "アプリケーションID",
+      "placeholder": null
+    },
+    "appSecret": {
+      "title": "アプリケーションキー",
+      "placeholder": null
+    }
+  },
+  "ecfit": {
+    "title": "ECFIT第三者物流サービス",
+    "description": "ワンストップEコマース物流統合システムは、ショップの入出庫等のトータルサービスをサポートし、ECFITと契約後シリアル接続設定をする必要があります。",
+    "toggle": {
+      "title": "ECFITシリアル接続サービス"
+    },
+    "serviceType": {
+      "title": "利用サービスのタイプ",
+      "INTERTIDAL": "ECFIT Intertidal クラウド物流統合",
+      "THIRD_PARTY_STORAGE": "第三者倉庫管理ロジスティクス"
+    },
+    "companyToken": {
+      "title": "会社トークン",
+      "placeholder": "{company}をご入力下さい。",
+      "tip": "ECFITとの契約提携後に、会社の英語の略称、統一番号を設定してご提供致します。"
+    },
+    "apiKey": {
+      "title": "API暗号化キー",
+      "placeholder": "暗号化キーを入力して下さい。",
+      "tip": "ECFITシステムのバックグラウンドを通じてもたらすことができ、ここにコピーを貼り付けることができます。"
+    }
+  },
+  "goodDeal": {
+    "title": "GoodDeal同期在庫",
+    "description": "倉庫管理ロジスティクス統合センターは、ショップの入出庫等のトータルサービスをサポートします。このサービスは、GoodDealと契約後シリアル接続設定をする必要があります。",
+    "toggle": {
+      "title": "GoodDeal同期在庫"
+    },
+    "corporationId": {
+      "title": "顧客コード",
+      "placeholder": "顧客コードを入力してください。"
+    },
+    "apiKey": {
+      "title": "APIキー",
+      "placeholder": "暗号化キーを入力して下さい。"
+    },
+    "alert": {
+      "0": "シリアル接続情報を入力してスイッチを入れで下さい。設定が完了したらご連絡下さい。",
+      "1": "カスタマーサービスセンターによるサポートを開設"
+    }
+  }
+}

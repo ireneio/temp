@@ -1,0 +1,68 @@
+{
+  "title": "Pengaturan pihak ketiga",
+  "save": "Menyimpan",
+  "cancel": "Membatalkan",
+  "required": "Yg dibutuhkan",
+  "error": "Pembaharuan gagal",
+  "facebook": {
+    "title": "Tautan Facebook",
+    "description": "Bolehkan konsumen menggunakan akun Facebook mereka untuk mendaftar dengan satu klik dan masuk ke toko online Anda untuk menjadi anggota, tanpa harus melalui proses pendaftaran yang rumit, memberikan pengalaman berbelanja yang nyaman",
+    "toggle": {
+      "title": "Login Facebook",
+      "description": "Bolehkan konsumen menggunakan akun Facebook mereka untuk mendaftar dengan satu klik dan masuk ke toko online Anda untuk menjadi anggota, tanpa harus melalui proses pendaftaran yang rumit, memberikan pengalaman berbelanja yang nyaman"
+    },
+    "sub-title": {
+      "title": "Aplikasi Facebook",
+      "tip": "Login sekali klik Facebook, konsumen dapat menggunakan akun FB mereka untuk menjadi anggota Anda tanpa registrasi"
+    },
+    "appId": {
+      "title": "ID Aplikasi",
+      "placeholder": null
+    },
+    "appSecret": {
+      "title": "Kunci aplikasi",
+      "placeholder": null
+    }
+  },
+  "ecfit": {
+    "title": "ECFIT Layanan Logistik Pihak Ketiga",
+    "description": "Sistem integrasi logistik e-commerce satu atap menawarkan layanan lengkap termasuk membantu toko dalam pengiriman produk, dan perlu melakukan pengaturan hubungan setelah menandatangani kontrak dengan ECFIT.",
+    "toggle": {
+      "title": "Layanan Menghubungkan ECFIT"
+    },
+    "serviceType": {
+      "title": "Jenis Layanan",
+      "INTERTIDAL": "ECFIT Integrasi logistik cloud intertidal",
+      "THIRD_PARTY_STORAGE": "Logistik pergudangan pihak ketiga"
+    },
+    "companyToken": {
+      "title": "Token perusahaan",
+      "placeholder": "Silakan masukkan {company}",
+      "tip": "Disediakan setelah menandatangani kontrak dengan ECFIT, disiapkan dengan singkatan nama Bahasa Inggris perusahaan dan Nomor Faktur Seragam."
+    },
+    "apiKey": {
+      "title": "Kunci enkripsi API",
+      "placeholder": "Silakan masukkan kunci enkripsi",
+      "tip": "Ini dapat dihasilkan di back-end sistem ECFIT dan disalin dan ditempel di sini."
+    }
+  },
+  "goodDeal": {
+    "title": "Inventaris Tersinkronisasi GoodDeal",
+    "description": "Pusat integrasi pergudangan dan logistik menawarkan layanan lengkap termasuk membantu toko dalam pengiriman produk. Layanan ini perlu melakukan pengaturan tautan setelah menandatangani kontrak dengan GoodDeal.",
+    "toggle": {
+      "title": "Inventaris Tersinkronisasi GoodDeal"
+    },
+    "corporationId": {
+      "title": "Kode pelanggan",
+      "placeholder": "Silakan masukkan kode pelanggan"
+    },
+    "apiKey": {
+      "title": "Kunci API",
+      "placeholder": "Silakan masukkan kunci enkripsi"
+    },
+    "alert": {
+      "0": "Silakan masukkan informasi tautan dan aktifkan fungsinya. Harap beri tahu melalui surat setelah pengaturan selesai.",
+      "1": "Layanan pelanggan akan membantu Anda mengaktifkannya."
+    }
+  }
+}

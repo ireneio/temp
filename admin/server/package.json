@@ -21,6 +21,7 @@
     "@admin/reset-password": "^0.56.1",
     "@admin/setting": "^0.56.5",
     "@admin/setting-notification": "^0.56.5",
+    "@admin/setting-third-party": "^0.1.0",
     "@admin/utils": "^0.56.2",
     "@admin/web-track": "^0.56.5",
     "@admin/wrapper": "^0.56.5",

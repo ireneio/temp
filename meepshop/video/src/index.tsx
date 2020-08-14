@@ -25,7 +25,7 @@ export default React.memo(({ id, width, ratio, href }: videoFragment) => {
       config={{
         facebook: {
           version,
-          appId: appId || 'app id',
+          appId,
           playerId: id,
         },
       }}

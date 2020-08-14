@@ -1,0 +1,68 @@
+{
+  "title": "Cài đặt bên thứ ba",
+  "save": "Tiết kiệm",
+  "cancel": "Hủy bỏ",
+  "required": "Cần thiết",
+  "error": "Cập nhật thất bại",
+  "facebook": {
+    "title": "Liên kết Facebook",
+    "description": "Cho phép người tiêu dùng sử dụng tài khoản Facebook của họ để đăng ký chỉ bằng một cú nhấp chuột và đăng nhập vào cửa hàng trực tuyến của bạn để trở thành thành viên, mà không phải trải qua quá trình đăng ký phức tạp, mang lại trải nghiệm mua sắm thuận tiện.",
+    "toggle": {
+      "title": "đăng nhập Facebook",
+      "description": "Cho phép người tiêu dùng sử dụng tài khoản Facebook của họ để đăng ký chỉ bằng một cú nhấp chuột và đăng nhập vào cửa hàng trực tuyến của bạn để trở thành thành viên, mà không phải trải qua quá trình đăng ký phức tạp, mang lại trải nghiệm mua sắm thuận tiện."
+    },
+    "sub-title": {
+      "title": "Ứng dụng Facebook",
+      "tip": "Đăng nhập bằng một cú nhấp chuột của Facebook, người tiêu dùng có thể sử dụng tài khoản FB của họ để trở thành thành viên của bạn mà không cần đăng ký"
+    },
+    "appId": {
+      "title": "ID ứng dụng",
+      "placeholder": null
+    },
+    "appSecret": {
+      "title": "Khóa ứng dụng",
+      "placeholder": null
+    }
+  },
+  "ecfit": {
+    "title": "Dịch vụ hậu cần của bên thứ ba ECFIT",
+    "description": "Hệ thống tích hợp hậu cần thương mại điện tử một cửa cung cấp một dịch vụ hoàn chỉnh bao gồm hỗ trợ cửa hàng phân phối sản phẩm và cần thực hiện cài đặt liên kết sau khi ký hợp đồng với ECFIT.",
+    "toggle": {
+      "title": "Dịch vụ liên kết ECFIT"
+    },
+    "serviceType": {
+      "title": "loại dịch vụ",
+      "INTERTIDAL": "ECFIT Tích hợp hậu cần đám mây",
+      "THIRD_PARTY_STORAGE": "Hậu cần kho bãi của bên thứ ba"
+    },
+    "companyToken": {
+      "title": "Mã thông báo của công ty",
+      "placeholder": "Vui lòng nhập {công ty}",
+      "tip": "Được cung cấp sau khi ký hợp đồng với ECFIT, được thiết lập với tên viết tắt tên tiếng Anh và Số hóa đơn thống nhất của công ty."
+    },
+    "apiKey": {
+      "title": "Khóa mã hóa API",
+      "placeholder": "Vui lòng nhập khóa mã hóa",
+      "tip": "Nó có thể được tạo ở mặt sau của hệ thống ECFIT và được sao chép và dán ở đây."
+    }
+  },
+  "goodDeal": {
+    "title": "Hàng tồn kho được đồng bộ hóa GoodDeal",
+    "description": "Một trung tâm tích hợp kho và hậu cần cung cấp một dịch vụ hoàn chỉnh bao gồm hỗ trợ cửa hàng trong việc giao sản phẩm. Dịch vụ này cần thực hiện cài đặt liên kết sau khi ký hợp đồng với GoodDeal.",
+    "toggle": {
+      "title": "Hàng tồn kho được đồng bộ hóa GoodDeal"
+    },
+    "corporationId": {
+      "title": "Mã khách hàng",
+      "placeholder": "Vui lòng nhập mã khách hàng"
+    },
+    "apiKey": {
+      "title": "Mã API",
+      "placeholder": "Vui lòng nhập khóa mã hóa"
+    },
+    "alert": {
+      "0": "Vui lòng nhập thông tin liên kết và kích hoạt chức năng. Vui lòng thông báo qua thư sau khi cài đặt hoàn tất.",
+      "1": "Dịch vụ khách hàng sẽ giúp bạn kích hoạt nó."
+    }
+  }
+}

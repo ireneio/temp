@@ -17,10 +17,14 @@ module.exports = async (req, res) => {
       body: JSON.stringify({
         query: `
           query getAppLogin {
-            getAppLoginList {
-              data {
-                appId
-                appSecret
+            viewer {
+              id
+              store {
+                id
+                facebookSetting {
+                  appId
+                  appSecret
+                }
               }
             }
           }
@@ -35,16 +39,11 @@ module.exports = async (req, res) => {
 
     /* Get FB app secret - End */
     const data = await appIdResponse.json();
-    const appId =
+    const { appId, appSecret } =
       data &&
-      data.data.getAppLoginList &&
-      data.data.getAppLoginList.data.length > 0 &&
-      data.data.getAppLoginList.data[0].appId;
-    const appSecret =
-      data &&
-      data.data.getAppLoginList &&
-      data.data.getAppLoginList.data.length > 0 &&
-      data.data.getAppLoginList.data[0].appSecret;
+      data.viewer &&
+      data.viewer.store &&
+      data.viewer.store.facebookSetting;
 
     if (!appSecret) throw new Error('No app secret.');
 

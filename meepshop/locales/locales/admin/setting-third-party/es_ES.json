@@ -1,0 +1,68 @@
+{
+  "title": "Configuraciones de terceros",
+  "save": "Salvar",
+  "cancel": "Cancelar",
+  "required": "Necesaria",
+  "error": "Actualización fallida",
+  "facebook": {
+    "title": "Enlace de Facebook",
+    "description": "Permita que los consumidores utilicen su cuenta de Facebook para registrarse con un solo clic e iniciar sesión en su tienda en línea para convertirse en miembro, sin tener que pasar por un complicado proceso de registro, lo que brinda una experiencia de compra conveniente",
+    "toggle": {
+      "title": "Inicio de sesión de Facebook",
+      "description": "Permita que los consumidores utilicen su cuenta de Facebook para registrarse con un solo clic e iniciar sesión en su tienda en línea para convertirse en miembro, sin tener que pasar por un complicado proceso de registro, lo que brinda una experiencia de compra conveniente"
+    },
+    "sub-title": {
+      "title": "Aplicación de Facebook",
+      "tip": "Inicio de sesión con un clic de Facebook, los consumidores pueden usar su cuenta de FB para convertirse en su miembro sin registrarse"
+    },
+    "appId": {
+      "title": "ID de aplicación",
+      "placeholder": null
+    },
+    "appSecret": {
+      "title": "Clave de aplicación",
+      "placeholder": null
+    }
+  },
+  "ecfit": {
+    "title": "Servicio de logística de terceros ECFIT",
+    "description": "El sistema integral de integración de logística de comercio electrónico ofrece un servicio completo que incluye ayudar a la tienda en la entrega del producto, y debe establecer una conexión después de firmar un contrato con ECFIT.",
+    "toggle": {
+      "title": "Servicio de enlace ECFIT"
+    },
+    "serviceType": {
+      "title": "Tipo de servicio",
+      "INTERTIDAL": "Integración de logística de nube intermareal ECFIT",
+      "THIRD_PARTY_STORAGE": "Logística de almacenamiento de terceros"
+    },
+    "companyToken": {
+      "title": "Ficha de la empresa",
+      "placeholder": "Por favor, introduzca {empresa}",
+      "tip": "Proporcionado después de firmar un contrato con ECFIT, establecido con la abreviatura del nombre en inglés de la compañía y el número de factura uniforme."
+    },
+    "apiKey": {
+      "title": "Clave de cifrado API",
+      "placeholder": "Por favor, introduzca la clave de cifrado",
+      "tip": "Puede generarse en el back-end del sistema ECFIT y copiarse y pegarse aquí."
+    }
+  },
+  "goodDeal": {
+    "title": "Inventario sincronizado de GoodDeal",
+    "description": "Un centro de integración de almacenamiento y logística ofrece un servicio completo que incluye ayudar a la tienda en la entrega del producto. Este servicio debe realizar la configuración de vinculación después de firmar un contrato con GoodDeal.",
+    "toggle": {
+      "title": "Inventario sincronizado de GoodDeal"
+    },
+    "corporationId": {
+      "title": "Código de cliente",
+      "placeholder": "Por favor ingrese el código del cliente"
+    },
+    "apiKey": {
+      "title": "Clave API",
+      "placeholder": "Por favor, introduzca la clave de cifrado"
+    },
+    "alert": {
+      "0": "Ingrese la información de enlace y active la función. Notifíquelo por correo después de completar la configuración.",
+      "1": "El servicio al cliente lo ayudará a activarlo."
+    }
+  }
+}
