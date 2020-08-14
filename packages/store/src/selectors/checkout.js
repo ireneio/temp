@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { getIn } from 'utils';
 import { fixedtop, secondtop, fixedbottom, sidebar } from 'template';
 import {
   getMenus,
@@ -28,10 +27,6 @@ const getCheckoutPage = (state, prevProps) => ({
             {
               id: 'checkout',
               module: 'checkout',
-              products:
-                getIn(['memberReducer', 'cart', 'categories', 'products'])(
-                  state,
-                ) || [],
               orderInfo: prevProps.orderInfo, // 超商門市
               shippableCountries: state.storeReducer.shippableCountries,
             },

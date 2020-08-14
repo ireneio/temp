@@ -12,7 +12,6 @@ const getJoinedModule = (
     localeItemsTemplate,
     currencyItemsTemplate,
     product,
-    cart,
     activities,
     stockNotificationList,
     wishList,
@@ -69,7 +68,6 @@ const getJoinedModule = (
             activity: activities.find(activity => activity.id === widget.value),
             wishList: wishList.map(wishItem => ({ productId: wishItem.id })),
             stockNotificationList,
-            cart,
           };
         }
 
@@ -93,7 +91,6 @@ const getJoinedModule = (
                   }
                 : {}),
             },
-            cart,
             wishList,
             stockNotificationList,
             productListCache,
@@ -118,7 +115,6 @@ const getJoinedModule = (
                     tags: widget.params.tags,
                   }),
             },
-            cart,
             wishList,
             stockNotificationList,
             productListCache,
@@ -128,7 +124,6 @@ const getJoinedModule = (
           return {
             ...widget,
             productData: product,
-            cart,
             stockNotificationList,
             isInWishList: !!wishList.find(
               ({ productId }) => product.id === productId,
@@ -139,7 +134,6 @@ const getJoinedModule = (
           return {
             ...widget,
             productData: product,
-            cart,
             stockNotificationList,
             isInWishList: !!wishList.find(
               ({ productId }) => product.id === productId,
@@ -184,7 +178,6 @@ const getJoinedModule = (
         localeItemsTemplate,
         currencyItemsTemplate,
         product,
-        cart,
         activities,
         stockNotificationList,
         wishList,

@@ -25,7 +25,6 @@ export default async ({ id, ...context }) => {
         ],
         showVariants: true,
         showMainFile: true,
-        showCartlockQty: true,
       },
     },
   };

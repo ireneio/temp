@@ -31,13 +31,8 @@ export default class Group extends React.PureComponent {
         }).isRequired,
       ),
     }).isRequired,
-    cart: PropTypes.shape({}),
     wishList: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     stockNotificationList: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  };
-
-  static defaultProps = {
-    cart: null,
   };
 
   state = {
@@ -157,7 +152,6 @@ export default class Group extends React.PureComponent {
     const {
       /** context */
       colors,
-      cart,
 
       /** props */
       i18n,
@@ -213,7 +207,6 @@ export default class Group extends React.PureComponent {
                     id,
                     ...product,
                   }}
-                  cart={cart}
                   wishList={wishList}
                   stockNotificationList={stockNotificationList}
                 />

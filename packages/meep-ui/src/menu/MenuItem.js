@@ -46,7 +46,6 @@ export default class MenuItem extends React.PureComponent {
     isLogin: ISLOGIN_TYPE.isRequired,
     logout: PropTypes.func.isRequired,
     setCustomerCurrency: PropTypes.func.isRequired,
-    carts: PropTypes.shape({}).isRequired,
     user: USER_TYPE.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
@@ -213,8 +212,6 @@ export default class MenuItem extends React.PureComponent {
       /** context */
       toggleCart,
       isLogin,
-      // TODO: carts should not be undefined
-      carts,
       hasStoreAppPlugin,
 
       /** props */

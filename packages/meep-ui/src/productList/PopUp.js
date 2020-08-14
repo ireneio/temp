@@ -22,7 +22,6 @@ export default class PopUp extends React.PureComponent {
 
     type: PropTypes.oneOf(['original', 'pop-up']).isRequired,
     popUpGalleryView: PropTypes.oneOf(['one', 'two', 'all', 'none']).isRequired,
-    cart: PropTypes.shape({}),
     wishList: PropTypes.arrayOf(
       PropTypes.shape({
         productId: ID_TYPE.isRequired,
@@ -39,7 +38,6 @@ export default class PopUp extends React.PureComponent {
   };
 
   static defaultProps = {
-    cart: null,
     target: null,
     isMobile: null,
   };
@@ -48,7 +46,6 @@ export default class PopUp extends React.PureComponent {
     const {
       type,
       popUpGalleryView,
-      cart,
       stockNotificationList,
       wishList,
       target,
@@ -70,7 +67,6 @@ export default class PopUp extends React.PureComponent {
           <ProductInfo
             mode="list"
             productData={product}
-            cart={cart}
             stockNotificationList={stockNotificationList}
             isInWishList={wishList.some(item => item.productId === target)}
             showButton={false}
@@ -103,7 +99,6 @@ export default class PopUp extends React.PureComponent {
         <ProductInfo
           mode="list"
           productData={product}
-          cart={cart}
           stockNotificationList={stockNotificationList}
           isInWishList={wishList.some(item => item.productId === target)}
           showButton={false}

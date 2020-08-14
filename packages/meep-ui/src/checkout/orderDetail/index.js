@@ -109,7 +109,6 @@ export default class OrderDetail extends React.PureComponent {
 
     /** props */
     t: PropTypes.func.isRequired,
-    products: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
     isSynchronizeUserInfo: PropTypes.bool,
     isSaveAsReceiverTemplate: PropTypes.bool,
     form: PropTypes.shape({}).isRequired,
@@ -128,7 +127,7 @@ export default class OrderDetail extends React.PureComponent {
       shipmentList: [],
     },
     // eslint-disable-next-line react/destructuring-assignment
-    products: this.props.products,
+    products: this.props.carts?.categories.products || [],
     choosePayment: null,
     chooseShipment: null,
     productHasError: false,

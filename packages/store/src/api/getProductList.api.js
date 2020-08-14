@@ -40,7 +40,6 @@ export default async (args = {}) => {
         ],
         showVariants: true,
         showMainFile: true,
-        showCartlockQty: true,
       },
     },
   };

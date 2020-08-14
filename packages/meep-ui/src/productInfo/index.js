@@ -36,7 +36,6 @@ export default class ProductInfo extends React.PureComponent {
     stockNotificationList: LIST_TYPE.isRequired, // eslint-disable-line react/no-unused-prop-types
     isInWishList: PropTypes.bool.isRequired,
     mode: PropTypes.oneOf(['list', 'detail']),
-    cart: PropTypes.shape({}),
     container: PropTypes.shape({}),
     isMobile: PropTypes.bool,
     type: PropTypes.string,
@@ -45,6 +44,7 @@ export default class ProductInfo extends React.PureComponent {
     showButton: PropTypes.bool.isRequired,
 
     /** props from context */
+    carts: PropTypes.shape({}),
     isLogin: ISLOGIN_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
@@ -56,7 +56,7 @@ export default class ProductInfo extends React.PureComponent {
 
   static defaultProps = {
     mode: 'detail',
-    cart: null,
+    carts: null,
     container: {},
     isMobile: null,
     type: null,
@@ -65,7 +65,7 @@ export default class ProductInfo extends React.PureComponent {
   static getDerivedStateFromProps(nextProps, prevState) {
     const {
       productData,
-      cart,
+      carts,
       isInWishList,
       stockNotificationList,
     } = nextProps;
@@ -86,13 +86,13 @@ export default class ProductInfo extends React.PureComponent {
       return {
         variant,
         isInWishList,
-        cart,
+        carts,
 
         // check orderable and quantity as well
-        ...calculateOrderable(variant, cart, prevState.quantity),
+        ...calculateOrderable(variant, carts, prevState.quantity),
 
         // change after addToCart/addToNotificationList
-        ...(!areEqual(cart, prevState.cart) ||
+        ...(!areEqual(carts, prevState.carts) ||
         !areEqual(variant, prevState.variant)
           ? {
               isAddingItem: false,
@@ -118,7 +118,7 @@ export default class ProductInfo extends React.PureComponent {
         variant: {},
         orderable: NO_VARIANTS,
         isInWishList,
-        cart,
+        carts,
         ...initState,
       };
     }
@@ -145,9 +145,9 @@ export default class ProductInfo extends React.PureComponent {
         coordinates: findCoordinates(variantNode),
         variant,
         isInWishList,
-        cart,
+        carts,
         ...initState,
-        ...calculateOrderable(variant, cart),
+        ...calculateOrderable(variant, carts),
       };
     }
 
@@ -159,9 +159,9 @@ export default class ProductInfo extends React.PureComponent {
       coordinates: null,
       variant,
       isInWishList,
-      cart,
+      carts,
       ...initState,
-      ...calculateOrderable(variant, cart),
+      ...calculateOrderable(variant, carts),
     };
   }
 
@@ -283,7 +283,6 @@ export default class ProductInfo extends React.PureComponent {
       mode,
       transformCurrency,
       hasStoreAppPlugin,
-      cart,
       container,
       goTo,
       showButton,
@@ -366,7 +365,6 @@ export default class ProductInfo extends React.PureComponent {
                 orderable={orderable}
                 quantity={quantity}
                 colors={colors}
-                cart={cart}
                 onChangeQuantity={onChangeQuantity}
                 name={name}
                 container={container}

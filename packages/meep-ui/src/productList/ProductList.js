@@ -51,7 +51,6 @@ export default class ProductList extends React.PureComponent {
     productListCache: PropTypes.shape({}).isRequired,
 
     /** props for ProductInfo */
-    cart: PropTypes.shape({}),
     wishList: PropTypes.arrayOf(
       PropTypes.shape({
         productId: ID_TYPE.isRequired,
@@ -81,6 +80,7 @@ export default class ProductList extends React.PureComponent {
     popUpGalleryView: PropTypes.oneOf(['one', 'two', 'all', 'none']),
 
     /** props from context */
+    carts: PropTypes.shape({}),
     locale: ONE_OF_LOCALE_TYPE.isRequired,
     location: LOCATION_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -93,7 +93,7 @@ export default class ProductList extends React.PureComponent {
   };
 
   static defaultProps = {
-    cart: null,
+    carts: null,
     type: 'original',
     popUpGalleryView: 'one',
   };
@@ -109,7 +109,7 @@ export default class ProductList extends React.PureComponent {
       },
       location: { search },
       isLogin,
-      cart,
+      carts,
       stockNotificationList,
       getData,
     } = nextProps;
@@ -126,14 +126,14 @@ export default class ProductList extends React.PureComponent {
       params: prevStateParams,
       isGrid = true,
       isLogin: prevIsLogin,
-      cart: prevCart,
+      carts: prevCarts,
       stockNotificationList: prevStockNotificationList,
     } = prevState;
 
     if (areEqual(params, prevStateParams)) {
       return {
         isLogin,
-        cart,
+        carts,
         stockNotificationList,
         // fetchProducts when login status changed
         ...(isLogin !== prevIsLogin && {
@@ -141,7 +141,7 @@ export default class ProductList extends React.PureComponent {
           isLoading: true,
         }),
         // close modal after adding
-        ...(!areEqual(cart, prevCart) ||
+        ...(!areEqual(carts, prevCarts) ||
         !areEqual(stockNotificationList, prevStockNotificationList)
           ? {
               isOpen: false,
@@ -157,7 +157,7 @@ export default class ProductList extends React.PureComponent {
       page: parseInt(params.offset / params.limit, 10) + 1,
       params,
       isLogin,
-      cart,
+      carts,
       stockNotificationList,
       isGrid,
       target: null,
@@ -408,7 +408,6 @@ export default class ProductList extends React.PureComponent {
       popUpGalleryView,
 
       t,
-      cart,
       stockNotificationList,
       wishList,
 
@@ -528,7 +527,6 @@ export default class ProductList extends React.PureComponent {
               onCancel={this.handleModalClose}
               type={type}
               popUpGalleryView={popUpGalleryView}
-              cart={cart}
               stockNotificationList={stockNotificationList}
               wishList={wishList}
               target={target}

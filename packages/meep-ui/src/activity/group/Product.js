@@ -34,7 +34,7 @@ export default class Product extends React.PureComponent {
         }),
       ).isRequired,
     }),
-    cart: PropTypes.shape({}),
+    carts: PropTypes.shape({}),
     wishList: PropTypes.arrayOf(
       PropTypes.shape({
         productId: ID_TYPE.isRequired,
@@ -49,22 +49,22 @@ export default class Product extends React.PureComponent {
 
   static defaultProps = {
     product: null,
-    cart: null,
+    carts: null,
   };
 
   state = {
     openModal: false,
     target: null,
-    cart: null,
+    carts: null,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { cart } = nextProps;
+    const { carts } = nextProps;
 
-    if (areEqual(cart, prevState.cart)) return null;
+    if (areEqual(carts, prevState.carts)) return null;
 
     return {
-      cart,
+      carts,
       openModal: false,
     };
   }
@@ -106,7 +106,6 @@ export default class Product extends React.PureComponent {
       t,
       i18n,
       product,
-      cart,
       wishList,
       stockNotificationList,
     } = this.props;
@@ -154,7 +153,6 @@ export default class Product extends React.PureComponent {
           onCancel={this.toggleModal}
           type="original"
           popUpGalleryView="one"
-          cart={cart}
           stockNotificationList={stockNotificationList}
           wishList={wishList}
           target={target}

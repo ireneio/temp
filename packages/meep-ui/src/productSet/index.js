@@ -15,7 +15,6 @@ import * as styles from './styles';
 export default class ProductSet extends React.PureComponent {
   static propTypes = {
     productData: PRODUCT_TYPE,
-    cart: PropTypes.shape({}),
     stockNotificationList: LIST_TYPE.isRequired,
     isInWishList: PropTypes.bool.isRequired,
     showButton: PropTypes.bool.isRequired,
@@ -23,13 +22,11 @@ export default class ProductSet extends React.PureComponent {
 
   static defaultProps = {
     productData: null,
-    cart: null,
   };
 
   render() {
     const {
       productData,
-      cart,
       stockNotificationList,
       isInWishList,
       showButton,
@@ -49,7 +46,6 @@ export default class ProductSet extends React.PureComponent {
           <div style={styles.half}>
             <ProductInfo
               productData={productData}
-              cart={cart}
               stockNotificationList={stockNotificationList}
               isInWishList={isInWishList}
               showButton={showButton}

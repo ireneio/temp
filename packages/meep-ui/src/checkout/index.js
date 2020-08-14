@@ -42,7 +42,6 @@ export default class Checkout extends React.PureComponent {
     t: PropTypes.func.isRequired,
     adTrack: PropTypes.shape({}).isRequired,
     orderInfo: PropTypes.shape({}),
-    products: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
   };
 
   static defaultProps = {

@@ -25,7 +25,6 @@ export default class Activity extends React.PureComponent {
         ).isRequired,
       }).isRequired,
     }),
-    cart: PropTypes.shape({}),
     wishList: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     stockNotificationList: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     t: PropTypes.func.isRequired,
@@ -34,14 +33,12 @@ export default class Activity extends React.PureComponent {
   static defaultProps = {
     background: '#fafafa',
     activity: null,
-    cart: null,
   };
 
   render() {
     const {
       activity,
       background,
-      cart,
       wishList,
       stockNotificationList,
       t,
@@ -58,7 +55,6 @@ export default class Activity extends React.PureComponent {
             key={id}
             group={group}
             background={background}
-            cart={cart}
             wishList={wishList}
             stockNotificationList={stockNotificationList}
           />

@@ -5,6 +5,7 @@ import { Select } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 
+import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles/category';
@@ -17,6 +18,7 @@ import {
 } from './constants';
 
 @withTranslation('product-info')
+@enhancer
 @radium
 export default class QuantityButton extends React.Component {
   static propTypes = {
@@ -25,14 +27,14 @@ export default class QuantityButton extends React.Component {
     orderable: ORDERABLE_TYPE.isRequired,
     quantity: PropTypes.number.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    cart: PropTypes.shape({}),
+    carts: PropTypes.shape({}),
     onChangeQuantity: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
     container: PropTypes.shape({}).isRequired,
   };
 
   static defaultProps = {
-    cart: null,
+    carts: null,
   };
 
   state = {
@@ -59,7 +61,7 @@ export default class QuantityButton extends React.Component {
       variant,
       orderable,
       quantity,
-      cart,
+      carts,
       onChangeQuantity,
       name,
       container,
@@ -68,10 +70,10 @@ export default class QuantityButton extends React.Component {
     const { id, stock, maxPurchaseLimit, minPurchaseItems } = variant;
 
     if (orderable === ORDERABLE) {
-      const variantInCart =
-        cart &&
-        cart.categories.products.find(product => product.variantId === id);
-      const quantityInCart = variantInCart ? variantInCart.quantity : 0;
+      const variantInCart = carts?.categories.products.find(
+        product => product.variantId === id,
+      );
+      const quantityInCart = variantInCart?.quantity || 0;
 
       // 上限為最高購買量或庫存，取低減購物車內含量
       const max =

@@ -32,15 +32,15 @@ export const reformatVariant = (variant, stockNotificationList) => {
   };
 };
 
-export const calculateOrderable = (variant, cart, quantity) => {
+export const calculateOrderable = (variant, carts, quantity) => {
   const { id, stock, minPurchaseItems, maxPurchaseLimit } = variant;
 
   // 第一步：庫存（有庫存且大於最低購買量）
   if (stock && stock >= minPurchaseItems) {
-    const variantInCart =
-      cart &&
-      cart.categories.products.find(product => product.variantId === id);
-    const quantityInCart = variantInCart ? variantInCart.quantity : 0;
+    const variantInCart = carts?.categories.products.find(
+      product => product.variantId === id,
+    );
+    const quantityInCart = variantInCart?.quantity || 0;
 
     // 第二步： 購物車內含量（不超過最高購買量或庫存）
     if (quantityInCart >= maxPurchaseLimit || quantityInCart >= stock) {

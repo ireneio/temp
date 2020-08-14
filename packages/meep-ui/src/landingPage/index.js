@@ -206,7 +206,6 @@ export default class LandingPage extends React.PureComponent {
             location: { host: domain, pathname },
             user,
             goTo,
-            dispatchAction,
 
             /** props */
             t,
@@ -375,7 +374,6 @@ export default class LandingPage extends React.PureComponent {
 
             if (formData && formData.url) {
               if (/CashSystemFrontEnd\/Query/.test(formData.url)) {
-                dispatchAction('emptyCart');
                 goTo({
                   pathname: `/ezpay/cvcode/${id}`,
                   params: {

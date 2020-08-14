@@ -12,7 +12,6 @@ export const getPages = state => state.pagesReducer;
 export const getHomePageId = state =>
   getIn(['storeReducer', 'settings', 'homePageId'])(state) || null;
 
-export const getCart = state => getIn(['memberReducer', 'cart'])(state) || null;
 export const getUser = state => getIn(['memberReducer', 'user'])(state) || null;
 export const getMemberGroups = state =>
   getIn(['storeReducer', 'memberGroups'])(state) || [];
@@ -190,7 +189,6 @@ export const getJoinedModulePage = createSelector(
     getLocaleItemsTemplate,
     getCurrencyItemsTemplate,
     // getProduct,
-    getCart,
     getActivities,
     getStockNotificationList,
     getWishList,
@@ -204,7 +202,6 @@ export const getJoinedModulePage = createSelector(
     localeItemsTemplate,
     currencyItemsTemplate,
     // product,
-    cart,
     activities,
     stockNotificationList,
     wishList,
@@ -219,7 +216,6 @@ export const getJoinedModulePage = createSelector(
         localeItemsTemplate,
         currencyItemsTemplate,
         // product,
-        cart,
         activities,
         stockNotificationList,
         wishList,
