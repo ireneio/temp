@@ -27,10 +27,6 @@ viewer {
         autoAddStock
         afterPaymentFail
       }
-      cart {
-        cartlock
-        cartlockTime
-      }
       design {
         footerSite
       }

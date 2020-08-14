@@ -47,7 +47,6 @@ export default async context => {
         ],
         showVariants: true,
         showMainFile: true,
-        showCartlockQty: true,
       },
       menuSearch: {
         size: 50,

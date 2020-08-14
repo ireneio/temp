@@ -78,12 +78,6 @@ const productQuery = `{
     warehouseNumber
     status
   }
-  supplier
-  purchasable
-  purchasableTime {
-    start
-    end
-  }
   specs {
     id
     title {
