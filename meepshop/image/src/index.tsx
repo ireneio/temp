@@ -20,9 +20,15 @@ interface PropsType extends imageFragment {
 export default React.memo(
   ({ id, image, link, width, justifyContent, alt, children }: PropsType) => {
     const { href, setAdTrack } = useLink(link);
-    const { imageRef, imageURL, active, setActive, isClear, onLoad } = useImage(
-      image,
-    );
+    const {
+      imageRef,
+      imageURL,
+      active,
+      setActive,
+      isClear,
+      isPlaceholder,
+      onLoad,
+    } = useImage(image);
 
     return (
       <div id={id} className={`${styles.root} ${styles[justifyContent]}`}>
@@ -49,7 +55,7 @@ export default React.memo(
                 className={`
                   ${styles.image}
                   ${isClear ? '' : styles.blur}
-                  ${image?.id ? '' : styles.placeholder}
+                  ${!isPlaceholder ? '' : styles.placeholder}
                 `}
                 src={imageURL}
                 onLoad={() => onLoad()}

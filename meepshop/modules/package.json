@@ -8,6 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
+    "@meepshop/carousel": "^0.55.0",
     "@meepshop/divider": "^0.57.0",
     "@meepshop/draft-text": "^0.57.0",
     "@meepshop/facebook-wall": "^0.57.0",

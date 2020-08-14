@@ -134,6 +134,7 @@ interface Module {
 union PageModule =
     GroupModule
   | LayoutModule
+  | CarouselModule
   | DividerModule
   | DraftTextModule
   | FacebookWallModule

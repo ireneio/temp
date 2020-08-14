@@ -43,6 +43,7 @@ export default (
   active: boolean;
   setActive: (active: boolean) => void;
   isClear: boolean;
+  isPlaceholder: boolean;
   onLoad: () => void;
 } => {
   const [currentWidth, setCurrentWidth] = useState(0);
@@ -52,7 +53,7 @@ export default (
   const imageRef = useRef<HTMLDivElement>(null);
   const isMountedRef = useRef(false);
 
-  const imageURL = useMemo(() => {
+  const { imageURL, isPlaceholder } = useMemo(() => {
     const imageWidth = active
       ? 'w60'
       : `w${IMAGE_SUITABLE_WIDTHS.find(
@@ -60,7 +61,12 @@ export default (
             suitableWidth > currentWidth * window.devicePixelRatio,
         ) || IMAGE_SUITABLE_WIDTHS.slice(-1)[0]}`;
 
-    return image?.scaledSrc?.[imageWidth as WidthType] || placeholderImage;
+    const imageScaledSrc = image?.scaledSrc?.[imageWidth as WidthType];
+
+    return {
+      imageURL: imageScaledSrc || placeholderImage,
+      isPlaceholder: !imageScaledSrc,
+    };
   }, [active, currentWidth, image]);
 
   useEffect((): (() => void) => {
@@ -93,6 +99,7 @@ export default (
     active,
     setActive,
     isClear,
+    isPlaceholder,
     onLoad: useCallback(() => {
       if (!active) {
         setIsClear(true);

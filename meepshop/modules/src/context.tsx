@@ -13,6 +13,7 @@ import { menuUserFragment } from '@meepshop/menu/lib/fragment';
 
 // typescript definition
 type ModuleNamesType =
+  | 'CarouselModule'
   | 'DividerModule'
   | 'DraftTextModule'
   | 'FacebookWallModule'
@@ -40,6 +41,7 @@ interface PropsType {
 
 // definition
 const defaultContext = {
+  CarouselModule: {},
   DividerModule: {},
   DraftTextModule: {},
   FacebookWallModule: {},

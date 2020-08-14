@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import dynamic from 'next/dynamic';
 
 // graphql import
+import carouselFragment from '@meepshop/carousel/lib/fragment';
 import dividerFragment from '@meepshop/divider/lib/fragment';
 import draftTextFragment from '@meepshop/draft-text/lib/fragment';
 import facebookWallFragment from '@meepshop/facebook-wall/lib/fragment';
@@ -53,6 +54,13 @@ export const modulesFragment = gql`
       __typename
       id
       parentId
+    }
+
+    ... on CarouselModule {
+      __typename
+      id
+      parentId
+      ...carouselFragment
     }
 
     ... on DividerModule {
@@ -168,6 +176,7 @@ export const modulesFragment = gql`
     }
   }
 
+  ${carouselFragment}
   ${dividerFragment}
   ${draftTextFragment}
   ${facebookWallFragment}
@@ -193,6 +202,7 @@ const modules = {
   LayoutModule: () => {
     throw new Error('Can not use LayoutModule');
   },
+  CarouselModule: dynamic(() => import('@meepshop/carousel')),
   DividerModule: dynamic(() => import('@meepshop/divider')),
   DraftTextModule: dynamic(() => import('@meepshop/draft-text')),
   FacebookWallModule: dynamic(() => import('@meepshop/facebook-wall')),

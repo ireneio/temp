@@ -1,0 +1,16 @@
+type CarouselModuleImage {
+  image: Image
+  link: Link
+}
+
+type CarouselModule implements Module {
+  id: ID!
+  parentId: ID!
+  images: [CarouselModuleImage!]
+  width: PositiveInt!
+  autoPlay: Boolean!
+  hoverPause: Boolean!
+  showIndicator: Boolean!
+  showController: Boolean!
+  alt: String!
+}

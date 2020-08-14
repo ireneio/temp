@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@meepshop/carousel",
+  "description": "Meepshop carousel module",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.55.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/image": "^0.57.0",
+    "@meepshop/utils": "^0.57.0"
+  },
+  "keywords": ["carousel", "meepshop"]
+}

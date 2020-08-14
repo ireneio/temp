@@ -4,6 +4,7 @@ import uuid from 'uuid/v4';
 
 import mock from '../mock';
 
+import CarouselModule from './CarouselModule';
 import DividerModule from './DividerModule';
 import DraftTextModule from './DraftTextModule';
 import FacebookWallModule from './FacebookWallModule';
@@ -38,6 +39,11 @@ gql`
     }
 
     ... on LayoutModule {
+      id
+      parentId
+    }
+
+    ... on CarouselModule {
       id
       parentId
     }
@@ -171,6 +177,7 @@ const getPageModules = (
 ];
 
 export default mock.add<PageModuleMock[]>('PageModule', [
+  () => getPageModules(CarouselModule),
   () => getPageModules(DividerModule),
   () => getPageModules(DraftTextModule),
   () => getPageModules(FacebookWallModule),
