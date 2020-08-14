@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.57.0 (2020-08-14)
+
+#### :boom: Breaking Change
+
+- `mock-types`, `store`
+  - [#1013](https://github.com/meepshop/meep-lerna/pull/1013) 【優化】後台/第三方設定：新增預設應用程式編號 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1103](https://github.com/meepshop/meep-lerna/pull/1103) 【BUG】 文字元件 - 「新視窗打開連結」設定失效 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- `store`
+  - [#1095](https://github.com/meepshop/meep-lerna/pull/1095) 前端 - 避免 query unused fields ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#1097](https://github.com/meepshop/meep-lerna/pull/1097) 前端 - 統一改用 enhancer carts ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1104](https://github.com/meepshop/meep-lerna/pull/1104) (@meepshop/frontend) Should auto replace modules fragment path ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.56.6 (2020-08-13)
 
 #### :bug: Bug Fix
