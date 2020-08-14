@@ -125,7 +125,7 @@ export const formatRawContent = (value?: string | null): object | null => {
           data: {
             ...data,
             href: url,
-            taget: targetOption,
+            target: targetOption,
           },
         };
       }
