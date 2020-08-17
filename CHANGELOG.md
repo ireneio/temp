@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.58.0 (2020-08-17)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1076](https://github.com/meepshop/meep-lerna/pull/1076) Add currency to @meepshop/context ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#1093](https://github.com/meepshop/meep-lerna/pull/1093) 前端 - 移除 redux 裡面 getCartList 改用 apollo-client ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1106](https://github.com/meepshop/meep-lerna/pull/1106) 【優化】移除 fb graphql api v3 改用 v8 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#1084](https://github.com/meepshop/meep-lerna/pull/1084) Add @meepshop/product-amount-select ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#1083](https://github.com/meepshop/meep-lerna/pull/1083) 【重構】輪播圖片元件 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.57.0 (2020-08-14)
 
 #### :boom: Breaking Change
