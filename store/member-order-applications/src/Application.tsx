@@ -2,7 +2,7 @@
 import { ColumnProps } from 'antd/lib/table';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { ColorsType } from '@meepshop/context/lib/colors';
+import { ColorsType } from '@meepshop/context/lib/Colors';
 
 // import
 import React from 'react';

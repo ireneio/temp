@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import ReactPlayer from 'react-player';
 
-import { fb as fbContext } from '@meepshop/context';
+import { Fb as FbContext } from '@meepshop/context';
 
 import useHeight from './hooks/useHeight';
 import styles from './styles/index.less';
@@ -12,7 +12,7 @@ import { videoFragment } from './__generated__/videoFragment';
 
 // definition
 export default React.memo(({ id, width, ratio, href }: videoFragment) => {
-  const { version, appId } = useContext(fbContext);
+  const { version, appId } = useContext(FbContext);
   const { height, videoRef } = useHeight(ratio);
 
   return (

@@ -5,8 +5,8 @@ import { isFullWidth, isEmail } from 'validator';
 import { ApolloConsumer } from '@apollo/react-components';
 import gql from 'graphql-tag';
 
-import { adTrack as adTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 import AddressCascader from '@store/address-cascader';
 
@@ -18,7 +18,7 @@ const { Password } = Input;
 
 @Form.create()
 @withTranslation('login')
-@withContext(adTrackContext, adTrack => ({ adTrack }))
+@withContext(AdTrackContext, adTrack => ({ adTrack }))
 @enhancer
 class SignupForm extends React.PureComponent {
   static propTypes = {

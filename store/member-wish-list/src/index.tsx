@@ -2,7 +2,7 @@
 import { QueryResult } from '@apollo/react-common';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { ColorsType } from '@meepshop/context/lib/colors';
+import { ColorsType } from '@meepshop/context/lib/Colors';
 
 // import
 import React from 'react';
@@ -15,7 +15,7 @@ import memoizeOne from 'memoize-one';
 import moment from 'moment';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import { colors as colorsContext } from '@meepshop/context';
+import { Colors as ColorsContext } from '@meepshop/context';
 import Thumbnail, { thumbnailFragment } from '@meepshop/thumbnail';
 import withContext from '@store/utils/lib/withContext';
 
@@ -162,7 +162,7 @@ class MemberWishList extends React.PureComponent<PropsType> {
 }
 
 const EnhancedMemberWishList = withTranslation('member-wish-list')(
-  withContext(colorsContext, colors => ({
+  withContext(ColorsContext, colors => ({
     colors,
   }))(MemberWishList),
 );

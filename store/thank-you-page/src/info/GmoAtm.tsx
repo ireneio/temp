@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import moment from 'moment';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import { currency as currencyContext } from '@meepshop/context';
+import { Currency as CurrencyContext } from '@meepshop/context';
 
 import styles from './styles/gmoAtm.less';
 
@@ -46,7 +46,7 @@ export const gmoAtmFragment = gql`
 
 export default React.memo(({ order, children }: PropsType) => {
   const { t } = useTranslation('thank-you-page');
-  const { c } = useContext(currencyContext);
+  const { c } = useContext(CurrencyContext);
   const atm = order?.paymentInfo?.list?.[0]?.atm;
 
   if (!atm) return children;

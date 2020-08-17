@@ -7,8 +7,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  apps as appsContext,
-  currency as currencyContext,
+  Apps as AppsContext,
+  Currency as CurrencyContext,
 } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
@@ -30,8 +30,8 @@ export const enhancer = Component =>
     }
   };
 
-@withContext(appsContext, apps => ({ apps }))
-@withContext(currencyContext)
+@withContext(AppsContext, apps => ({ apps }))
+@withContext(CurrencyContext)
 // eslint-disable-next-line react/no-multi-comp
 export default class DecoratorsRoot extends React.Component {
   static propTypes = {

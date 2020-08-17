@@ -6,8 +6,8 @@ import queryString from 'query-string';
 import { Pagination, Select, Icon } from 'antd';
 import hash from 'hash.js';
 
-import { adTrack as adTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -30,7 +30,7 @@ import getProductsQuery, {
 } from './utils/getProductsQuery';
 
 @withTranslation('product-list')
-@withContext(adTrackContext, adTrack => ({ adTrack }))
+@withContext(AdTrackContext, adTrack => ({ adTrack }))
 @enhancer
 @radium
 export default class ProductList extends React.PureComponent {

@@ -5,7 +5,7 @@ import { filter } from 'graphql-anywhere';
 import moment from 'moment';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import { currency as currencyContext } from '@meepshop/context';
+import { Currency as CurrencyContext } from '@meepshop/context';
 
 import Credit from './Credit';
 
@@ -53,7 +53,7 @@ export const gmoOrderFragment = gql`
 
 export default React.memo(({ choosePayment, order }: PropsType) => {
   const { t } = useTranslation('member-order');
-  const { c } = useContext(currencyContext);
+  const { c } = useContext(CurrencyContext);
 
   const paymentInfo = order?.paymentInfo;
 

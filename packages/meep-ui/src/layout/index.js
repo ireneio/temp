@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { Query } from '@apollo/react-components';
 import { UserAgent } from 'fbjs';
 
-import { colors as colorsContext } from '@meepshop/context';
+import { Colors as ColorsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
 import Context from 'context';
@@ -30,7 +30,7 @@ const query = gql`
   ${cartFragment}
 `;
 
-@withContext(colorsContext, colors => ({ colors }))
+@withContext(ColorsContext, colors => ({ colors }))
 @radium
 export default class Layout extends React.PureComponent {
   /*

@@ -5,8 +5,8 @@ import { Form, Input, Button, Modal, notification } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 import { MdLock as LockIcon } from 'react-icons/md';
 
-import { adTrack as adTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -27,7 +27,7 @@ let storeEmail = null;
   }),
 })
 @withTranslation('landing-page')
-@withContext(adTrackContext, adTrack => ({ adTrack }))
+@withContext(AdTrackContext, adTrack => ({ adTrack }))
 @radium
 export default class Login extends React.PureComponent {
   static propTypes = {

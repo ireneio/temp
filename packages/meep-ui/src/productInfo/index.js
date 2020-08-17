@@ -6,8 +6,8 @@ import gql from 'graphql-tag';
 import { warning, areEqual } from 'fbjs';
 import { Modal, notification } from 'antd';
 
-import { adTrack as adTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
 import cartFragment from 'layout/cart/fragment';
@@ -25,7 +25,7 @@ import { PRODUCT_TYPE, LIST_TYPE, NO_VARIANTS } from './constants';
 import { findCoordinates, calculateOrderable, reformatVariant } from './utils';
 
 @withTranslation('product-info')
-@withContext(adTrackContext, adTrack => ({ adTrack }))
+@withContext(AdTrackContext, adTrack => ({ adTrack }))
 @enhancer
 @buildVariantsTree('productData')
 @radium

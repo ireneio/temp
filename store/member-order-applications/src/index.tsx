@@ -10,7 +10,7 @@ import transformColor from 'color';
 import moment from 'moment';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import { colors as colorsContext } from '@meepshop/context';
+import { Colors as ColorsContext } from '@meepshop/context';
 
 import Application, { getApplicationStyles } from './Application';
 import styles from './styles/index.less';
@@ -36,7 +36,7 @@ interface PropTypes extends I18nPropsType {
 // definition
 const MemberOrderApplications = React.memo(
   ({ t, order: { orderNo, createdOn, applications } }: PropTypes) => {
-    const colors = useContext(colorsContext);
+    const colors = useContext(ColorsContext);
 
     return (
       <div className={styles.root}>

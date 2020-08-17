@@ -9,7 +9,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { apps as appsContext } from '@meepshop/context';
+import { Apps as AppsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
 import { USER_TYPE, STORE_SETTING_TYPE, LOCATION_TYPE } from './propTypes';
@@ -22,7 +22,7 @@ import {
 
 export contextProvider from './utils/contextProvider';
 
-@withContext(appsContext, apps => ({ apps }))
+@withContext(AppsContext, apps => ({ apps }))
 export default class Context extends React.PureComponent {
   /* eslint-disable react/destructuring-assignment */
   func = {

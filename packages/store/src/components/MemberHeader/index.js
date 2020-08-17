@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { colors as colorsContext } from '@meepshop/context';
+import { Colors as ColorsContext } from '@meepshop/context';
 
 import * as Utils from 'utils';
 
@@ -10,7 +10,7 @@ export default React.memo(
   (
     { title = '', goBackToOrders, children }, // eslint-disable-line
   ) => {
-    const colors = useContext(colorsContext);
+    const colors = useContext(ColorsContext);
 
     return (
       <div className="member-root">

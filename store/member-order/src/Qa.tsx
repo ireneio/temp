@@ -2,7 +2,7 @@
 import { DataProxy } from 'apollo-cache';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { ColorsType } from '@meepshop/context/lib/colors';
+import { ColorsType } from '@meepshop/context/lib/Colors';
 
 // import
 import React from 'react';
@@ -13,7 +13,7 @@ import { Button, notification } from 'antd';
 import moment from 'moment';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import { colors as colorsContext } from '@meepshop/context';
+import { Colors as ColorsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
 import styles from './styles/qa.less';
@@ -237,5 +237,5 @@ class Qa extends React.PureComponent<PropsType, StateType> {
 }
 
 export default withTranslation('member-order')(
-  withContext(colorsContext, colors => ({ colors }))(Qa),
+  withContext(ColorsContext, colors => ({ colors }))(Qa),
 );

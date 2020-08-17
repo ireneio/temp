@@ -11,7 +11,7 @@ import moment from 'moment';
 import transformColor from 'color';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import { colors as colorsContext } from '@meepshop/context';
+import { Colors as ColorsContext } from '@meepshop/context';
 
 import NotFound from './NotFound';
 import Products from './Products';
@@ -53,7 +53,7 @@ const MemberOrder = React.memo(
       ...order
     },
   }: PropsType) => {
-    const colors = useContext(colorsContext);
+    const colors = useContext(ColorsContext);
 
     return (
       <div className={styles.root} style={{ color: colors[3] }}>

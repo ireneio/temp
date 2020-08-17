@@ -1,7 +1,7 @@
 // import
 import React, { useEffect, useRef, useContext } from 'react';
 
-import { events as eventsContext } from '@meepshop/context';
+import { Events as EventsContext } from '@meepshop/context';
 
 // definition
 export default (): {
@@ -9,7 +9,7 @@ export default (): {
   grecaptchaScript: React.ReactNode;
 } => {
   const grecaptchaRef = useRef<HTMLDivElement>(null);
-  const events = useContext(eventsContext);
+  const events = useContext(EventsContext);
 
   useEffect(() => {
     const render = (): void => {

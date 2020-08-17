@@ -4,7 +4,7 @@ import memoizeOne from 'memoize-one';
 import { Menu } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import { currency as currencyContext } from '@meepshop/context';
+import { Currency as CurrencyContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -32,7 +32,7 @@ import styles from './styles/menuItem.less';
 const { Item: AntdMenuItem, SubMenu } = Menu;
 
 @withTranslation('common')
-@withContext(currencyContext)
+@withContext(CurrencyContext)
 @enhancer
 export default class MenuItem extends React.PureComponent {
   generateURL = memoizeOne(notMemoizedGenerateURL);

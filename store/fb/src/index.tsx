@@ -5,8 +5,8 @@ import gql from 'graphql-tag';
 import Head from 'next/head';
 import { Spin, Icon } from 'antd';
 
-import { fb as FbContext } from '@meepshop/context';
-import { version, defaultAppId } from '@meepshop/context/lib/fb';
+import { Fb as FbContext } from '@meepshop/context';
+import { version, defaultAppId } from '@meepshop/context/lib/Fb';
 
 import useFb from './hooks/useFb';
 

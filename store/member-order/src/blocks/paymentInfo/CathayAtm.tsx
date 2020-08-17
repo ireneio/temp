@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import moment from 'moment';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import { currency as currencyContext } from '@meepshop/context';
+import { Currency as CurrencyContext } from '@meepshop/context';
 
 // graphql typescript
 import { cathayAtmOrderFragment as cathayAtmOrderFragmentType } from './__generated__/cathayAtmOrderFragment';
@@ -40,7 +40,7 @@ export const cathayAtmOrderFragment = gql`
 
 export default React.memo(({ order }: PropsType) => {
   const { t } = useTranslation('member-order');
-  const { c } = useContext(currencyContext);
+  const { c } = useContext(CurrencyContext);
   const atm = order?.paymentInfo?.list?.[0]?.atm;
 
   if (!atm) return null;

@@ -1,14 +1,14 @@
 import React from 'react';
 
+import { Fb as FbContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
-import { fb as fbContext } from '@meepshop/context';
 
 import { URL_TYPE, ALIGNMENT_TYPE } from 'constants/propTypes';
 
 import { DEFAULT_URL } from './constants';
 import styles from './styles/index.less';
 
-@withContext(fbContext)
+@withContext(FbContext)
 export default class SocialThumbs extends React.PureComponent {
   socialThumbsRef = React.createRef();
 

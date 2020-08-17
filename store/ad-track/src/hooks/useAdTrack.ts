@@ -1,6 +1,6 @@
 // typescript import
-import { AdTrackType } from '@meepshop/context/lib/adTrack';
-import { CurrencyType } from '@meepshop/context/lib/currency';
+import { AdTrackType } from '@meepshop/context/lib/AdTrack';
+import { CurrencyType } from '@meepshop/context/lib/Currency';
 
 import useAdTrackIds from './useAdTrackIds';
 

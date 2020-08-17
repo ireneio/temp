@@ -2,7 +2,7 @@
 import { DataProxy } from 'apollo-cache';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { AppsType } from '@meepshop/context/lib/apps';
+import { AppsType } from '@meepshop/context/lib/Apps';
 
 // import
 import React from 'react';
@@ -12,7 +12,7 @@ import { message } from 'antd';
 import { areEqual } from 'fbjs';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import { apps as appsContext } from '@meepshop/context';
+import { Apps as AppsContext } from '@meepshop/context';
 import Link from '@meepshop/link';
 import withContext from '@store/utils/lib/withContext';
 
@@ -234,5 +234,5 @@ class Actions extends React.PureComponent<PropsType, StateType> {
 }
 
 export default withTranslation('member-orders')(
-  withContext(appsContext, apps => ({ apps }))(Actions),
+  withContext(AppsContext, apps => ({ apps }))(Actions),
 );

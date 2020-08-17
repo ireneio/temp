@@ -3,7 +3,7 @@ import { QueryResult } from '@apollo/react-common';
 import { DataProxy } from 'apollo-cache';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { ColorsType } from '@meepshop/context/lib/colors';
+import { ColorsType } from '@meepshop/context/lib/Colors';
 
 // import
 import React from 'react';
@@ -12,7 +12,7 @@ import { Mutation } from '@apollo/react-components';
 import { Button, notification } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import { colors as colorsContext } from '@meepshop/context';
+import { Colors as ColorsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
 import styles from './styles/removeCreditCardInfo.less';
@@ -127,5 +127,5 @@ class RemoveCreditCardInfo extends React.PureComponent<PropsType> {
 }
 
 export default withTranslation('member-settings')(
-  withContext(colorsContext, colors => ({ colors }))(RemoveCreditCardInfo),
+  withContext(ColorsContext, colors => ({ colors }))(RemoveCreditCardInfo),
 );

@@ -1,12 +1,12 @@
 // typescript import
-import { CurrencyType } from '@meepshop/context/lib/currency';
+import { CurrencyType } from '@meepshop/context/lib/Currency';
 
 // import
 import { useCallback } from 'react';
 import gql from 'graphql-tag';
 import fx from 'money';
 
-import { format } from '@meepshop/context/lib/currency';
+import { format } from '@meepshop/context/lib/Currency';
 
 // graphql typescript
 import { useFormatFragment as useFormatFragmentType } from './__generated__/useFormatFragment';

@@ -11,7 +11,7 @@ import { Spin, Icon } from 'antd';
 import moment from 'moment';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import { currency as currencyContext } from '@meepshop/context';
+import { Currency as CurrencyContext } from '@meepshop/context';
 import {
   dashboardRevenue_w40 as dashboardRevenue,
   dashboardCost_w40 as dashboardCost,
@@ -36,7 +36,7 @@ import { tutorialSettingObjectTypeFragment } from './Tutorial';
 // definition
 const Dashboard: NextPage = React.memo(
   (): React.ReactElement => {
-    const { c } = useContext(currencyContext);
+    const { c } = useContext(CurrencyContext);
     const getTimezoneResult = useQuery<getTimezone>(
       gql`
         query getTimezone {

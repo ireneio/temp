@@ -9,7 +9,7 @@ import gql from 'graphql-tag';
 import { Form, Input, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import { colors as colorsContext } from '@meepshop/context';
+import { Colors as ColorsContext } from '@meepshop/context';
 import validateMobile from '@store/utils/lib/validate/mobile';
 import AddressCascader, {
   validateAddressCascader,
@@ -100,7 +100,7 @@ export default Form.create<PropsType>({
       store,
       cancel,
     }: PropsType) => {
-      const colors = useContext(colorsContext);
+      const colors = useContext(ColorsContext);
       const { t, i18n } = useTranslation('member-recipients');
       const submit = useFormSubmit(
         validateFields,

@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { isEmpty } from 'fbjs';
 import { Spin, Icon } from 'antd';
 
-import { adTrack as adTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
 import * as Utils from 'utils';
@@ -171,6 +171,6 @@ export default connect(mapStateToProps, dispatch => ({
   },
 }))(
   withTranslation('common')(
-    withContext(adTrackContext, adTrack => ({ adTrack }))(Product),
+    withContext(AdTrackContext, adTrack => ({ adTrack }))(Product),
   ),
 );

@@ -6,7 +6,7 @@ import uuid from 'uuid';
 import { MdChevronLeft as ChevronLeftIcon } from 'react-icons/md';
 import transformColor from 'color';
 
-import { adTrack as adTrackContext } from '@meepshop/context';
+import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import GmoCreditCardForm from '@store/gmo-credit-card-form';
@@ -91,7 +91,7 @@ const { Item: FormItem } = Form;
   },
 })
 @withTranslation('checkout')
-@withContext(adTrackContext)
+@withContext(AdTrackContext)
 @enhancer
 @radium
 export default class OrderDetail extends React.PureComponent {

@@ -1,6 +1,6 @@
 // typescript import
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { CurrencyType } from '@meepshop/context/lib/currency';
+import { CurrencyType } from '@meepshop/context/lib/Currency';
 
 // import
 import React from 'react';
@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 import memoizeOne from 'memoize-one';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import { currency as currencyContext } from '@meepshop/context';
+import { Currency as CurrencyContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
 import styles from './styles/totalSheet.less';
@@ -202,5 +202,5 @@ class TotalSheet extends React.PureComponent<PropsType> {
 }
 
 export default withTranslation('member-order')(
-  withContext(currencyContext)(TotalSheet),
+  withContext(CurrencyContext)(TotalSheet),
 );

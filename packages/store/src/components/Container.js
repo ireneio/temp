@@ -7,12 +7,12 @@ import { connect } from 'react-redux';
 import { UserAgent } from 'fbjs';
 import { notification } from 'antd';
 
-import {
-  adTrack as adTrackContext,
-  fb as fbContext,
-  currency as currencyContext,
-} from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import {
+  AdTrack as AdTrackContext,
+  Fb as FbContext,
+  Currency as CurrencyContext,
+} from '@meepshop/context';
 import Layout from '@meepshop/meep-ui/lib/layout';
 import withContext from '@store/utils/lib/withContext';
 
@@ -24,9 +24,9 @@ import Spinner from './Spinner';
 const { isBrowser } = UserAgent;
 
 @withTranslation('ducks')
-@withContext(adTrackContext, adTrack => ({ adTrack }))
-@withContext(currencyContext)
-@withContext(fbContext)
+@withContext(AdTrackContext, adTrack => ({ adTrack }))
+@withContext(CurrencyContext)
+@withContext(FbContext)
 class Container extends React.Component {
   static propTypes = {
     /* never change */

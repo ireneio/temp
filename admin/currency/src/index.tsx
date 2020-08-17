@@ -5,8 +5,8 @@ import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 import { emptyFunction } from 'fbjs';
 
-import { currency as CurrencyContext } from '@meepshop/context';
-import { format } from '@meepshop/context/lib/currency';
+import { Currency as CurrencyContext } from '@meepshop/context';
+import { format } from '@meepshop/context/lib/Currency';
 
 // graphql typescript
 import { getAdminCurrency } from './__generated__/getAdminCurrency';

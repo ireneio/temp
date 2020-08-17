@@ -1,7 +1,7 @@
 // import
 import React, { useState, useEffect, useContext } from 'react';
 
-import { events as eventsContext } from '@meepshop/context';
+import { Events as EventsContext } from '@meepshop/context';
 
 // definition
 export default (
@@ -12,7 +12,7 @@ export default (
   fbScript: React.ReactNode;
 } => {
   const [fb, setFb] = useState<typeof window['FB'] | null>(null);
-  const events = useContext(eventsContext);
+  const events = useContext(EventsContext);
 
   useEffect(() => {
     const isLoaded = (): void => {

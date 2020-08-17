@@ -2,8 +2,8 @@
 import React from 'react';
 
 import { appWithTranslation } from '@meepshop/utils/lib/i18n';
-import { EventsProvider } from '@meepshop/context/lib/events';
-import { AppsProvider } from '@meepshop/context/lib/apps';
+import { EventsProvider } from '@meepshop/context/lib/Events';
+import { AppsProvider } from '@meepshop/context/lib/Apps';
 import '@admin/utils/styles/base.less';
 import withApollo from '@admin/apollo';
 import CurrencyProvider from '@admin/currency';

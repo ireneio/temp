@@ -2,7 +2,7 @@
 import React from 'react';
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 
-import { globalEvents } from '@meepshop/context/lib/events';
+import { globalEvents } from '@meepshop/context/lib/Events';
 import {
   adminFavicon,
   adminAppleTouchIcon_w180_h180 as adminAppleTouchIcon,

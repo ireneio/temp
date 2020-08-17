@@ -1,11 +1,11 @@
 // typescript import
-import { AdTrackType } from '@meepshop/context/lib/adTrack';
+import { AdTrackType } from '@meepshop/context/lib/AdTrack';
 
 // import
 import { useEffect, useContext } from 'react';
 import gql from 'graphql-tag';
 
-import { adTrack as adTrackContext } from '@meepshop/context';
+import { AdTrack as AdTrackContext } from '@meepshop/context';
 
 // graphql typescript
 import { useAdTrackFragment as useAdTrackFragmentType } from './__generated__/useAdTrackFragment';
@@ -45,7 +45,7 @@ export const useAdTrackFragment = gql`
 `;
 
 export default (order: useAdTrackFragmentType | null | undefined): void => {
-  const adTrack = useContext(adTrackContext);
+  const adTrack = useContext(AdTrackContext);
 
   useEffect(() => {
     if (order)

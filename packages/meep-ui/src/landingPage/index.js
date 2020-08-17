@@ -6,8 +6,8 @@ import moment from 'moment';
 import { areEqual } from 'fbjs';
 import uuid from 'uuid/v4';
 
-import { adTrack as adTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { AdTrack as AdTrackContext } from '@meepshop/context';
 import LandingPageWrapper from '@meepshop/landing-page';
 import withContext from '@store/utils/lib/withContext';
 import GmoCreditCardForm from '@store/gmo-credit-card-form';
@@ -55,7 +55,7 @@ import * as styles from './styles';
   onValuesChange: ({ updateOrderInfo }, changedValues, allValues) =>
     updateOrderInfo(allValues),
 })
-@withContext(adTrackContext, adTrack => ({ adTrack }))
+@withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withTranslation('landing-page')
 @radium
 export default class LandingPage extends React.PureComponent {

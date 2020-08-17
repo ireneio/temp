@@ -1,5 +1,5 @@
 // typescript import
-import { AdTrackType } from '@meepshop/context/lib/adTrack';
+import { AdTrackType } from '@meepshop/context/lib/AdTrack';
 
 import useAdTrackIds from '../hooks/useAdTrackIds';
 

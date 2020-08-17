@@ -2,8 +2,8 @@
 import { ColumnProps } from 'antd/lib/table';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { ColorsType } from '@meepshop/context/lib/colors';
-import { CurrencyType } from '@meepshop/context/lib/currency';
+import { ColorsType } from '@meepshop/context/lib/Colors';
+import { CurrencyType } from '@meepshop/context/lib/Currency';
 
 // import
 import React from 'react';
@@ -15,8 +15,8 @@ import transformColor from 'color';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import {
-  colors as colorsContext,
-  currency as currencyContext,
+  Colors as ColorsContext,
+  Currency as CurrencyContext,
 } from '@meepshop/context';
 import Thumbnail, { thumbnailFragment } from '@meepshop/thumbnail';
 import withContext from '@store/utils/lib/withContext';
@@ -181,8 +181,8 @@ class Products extends React.PureComponent<PropsType> {
 }
 
 const EnhancedProducts = withTranslation('member-order')(
-  withContext(currencyContext)(
-    withContext(colorsContext, colors => ({ colors }))(Products),
+  withContext(CurrencyContext)(
+    withContext(ColorsContext, colors => ({ colors }))(Products),
   ),
 );
 

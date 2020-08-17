@@ -1,7 +1,7 @@
 // typescript import
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { ColorsType } from '@meepshop/context/lib/colors';
-import { CurrencyType } from '@meepshop/context/lib/currency';
+import { ColorsType } from '@meepshop/context/lib/Colors';
+import { CurrencyType } from '@meepshop/context/lib/Currency';
 
 // import
 import React from 'react';
@@ -13,8 +13,8 @@ import moment from 'moment';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import {
-  colors as colorsContext,
-  currency as currencyContext,
+  Colors as ColorsContext,
+  Currency as CurrencyContext,
 } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
@@ -156,8 +156,8 @@ class MemberRewardPoints extends React.PureComponent<PropsType> {
 }
 
 const EnhancedMemberRewardPoints = withTranslation('member-reward-points')(
-  withContext(currencyContext)(
-    withContext(colorsContext, colors => ({ colors }))(MemberRewardPoints),
+  withContext(CurrencyContext)(
+    withContext(ColorsContext, colors => ({ colors }))(MemberRewardPoints),
   ),
 );
 

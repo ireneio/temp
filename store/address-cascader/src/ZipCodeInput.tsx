@@ -3,7 +3,7 @@ import React, { useEffect, useContext } from 'react';
 import { Input, Select } from 'antd';
 import transformColor from 'color';
 
-import { colors as colorsContext } from '@meepshop/context';
+import { Colors as ColorsContext } from '@meepshop/context';
 
 import styles from './styles/zipCodeInput.less';
 
@@ -27,7 +27,7 @@ export default React.memo(
     onChange,
     options,
   }: PropsType): React.ReactElement => {
-    const colors = useContext(colorsContext);
+    const colors = useContext(ColorsContext);
 
     useEffect(() => {
       if (options && options.length === 1 && !value) onChange(options[0]);

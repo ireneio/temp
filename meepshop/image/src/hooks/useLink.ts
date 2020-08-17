@@ -1,7 +1,7 @@
 // import
 import { useMemo, useContext, useCallback } from 'react';
 
-import { adTrack as adTrackContext } from '@meepshop/context';
+import { AdTrack as AdTrackContext } from '@meepshop/context';
 
 // graphql typescript
 import {
@@ -34,7 +34,7 @@ const generateProductsUrl = (link: imageFragmentLinkProductsLink): string =>
 export default (
   link: imageFragmentLink | null,
 ): { href: string | null; setAdTrack: () => void } => {
-  const adTrack = useContext(adTrackContext);
+  const adTrack = useContext(AdTrackContext);
 
   return {
     href: useMemo(

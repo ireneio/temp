@@ -5,8 +5,8 @@ import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 
 import {
-  adTrack as AdTrackContext,
-  currency as currencyContext,
+  AdTrack as AdTrackContext,
+  Currency as CurrencyContext,
 } from '@meepshop/context';
 
 import useAdTrackIds from './hooks/useAdTrackIds';
@@ -45,7 +45,7 @@ const query = gql`
 
 export default React.memo(({ children }: PropsType) => {
   const { data } = useQuery<getAdTrack>(query);
-  const { currency } = useContext(currencyContext);
+  const { currency } = useContext(CurrencyContext);
   const adTrackIds = useAdTrackIds(data);
   const adTrack = useAdTrack({
     ...adTrackIds,

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import { apps as appsContext } from '@meepshop/context';
+import { Apps as AppsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 import MemberWishlist from '@store/member-wish-list';
 
@@ -167,6 +167,6 @@ export default connect(mapStateToProps, dispatch => ({
   },
 }))(
   withTranslation('common')(
-    withContext(appsContext, apps => ({ apps }))(Wishlist),
+    withContext(AppsContext, apps => ({ apps }))(Wishlist),
   ),
 );

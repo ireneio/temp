@@ -1,6 +1,6 @@
 // typescript import
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { ColorsType } from '@meepshop/context/lib/colors';
+import { ColorsType } from '@meepshop/context/lib/Colors';
 
 // import
 import React, { useState } from 'react';

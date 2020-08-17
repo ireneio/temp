@@ -17,7 +17,7 @@ import {
   FolderIcon,
   SettingIcon,
 } from '@meepshop/icons';
-import { apps as appsContext } from '@meepshop/context';
+import { Apps as AppsContext } from '@meepshop/context';
 
 // graphql typescript
 import { useMenuListFragment as useMenuListFragmentType } from './__generated__/useMenuListFragment';
@@ -131,7 +131,7 @@ export default (
   isMerchant: boolean,
   permission: useMenuListFragmentType | null,
 ): MenuType[] => {
-  const apps = useContext(appsContext);
+  const apps = useContext(AppsContext);
   const enabledList = useMemo(
     () => ({
       orders: Boolean(isMerchant || permission?.orders?.isEnabled),

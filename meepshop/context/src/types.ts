@@ -1,10 +1,10 @@
 // import
-export { default as adTrack } from './adTrack';
-export { default as fb } from './fb';
-export { default as events } from './events';
-export { default as colors } from './colors';
-export { default as apps } from './apps';
-export { default as currency } from './currency';
+export { default as AdTrack } from './AdTrack';
+export { default as Apps } from './Apps';
+export { default as Colors } from './Colors';
+export { default as Currency } from './Currency';
+export { default as Events } from './Events';
+export { default as Fb } from './Fb';
 
 // definition
 throw new Error(

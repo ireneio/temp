@@ -3,7 +3,7 @@ import { MutationFunction } from '@apollo/react-common';
 import { DataProxy } from 'apollo-cache';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { ColorsType } from '@meepshop/context/lib/colors';
+import { ColorsType } from '@meepshop/context/lib/Colors';
 
 import { PropsType as FormPropsType } from './Form';
 
@@ -18,7 +18,7 @@ import moment from 'moment';
 import transformColor from 'color';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import { colors as colorsContext } from '@meepshop/context';
+import { Colors as ColorsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 import {
   calculateOrderApply,
@@ -438,7 +438,7 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
 }
 
 const EnhancedMemberOrderApply = withTranslation('member-order-apply')(
-  withContext(colorsContext, colors => ({ colors }))(MemberOrderApply),
+  withContext(ColorsContext, colors => ({ colors }))(MemberOrderApply),
 );
 
 export default React.memo(

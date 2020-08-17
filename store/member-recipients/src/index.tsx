@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Table } from 'antd';
 
-import { colors as colorsContext } from '@meepshop/context';
+import { Colors as ColorsContext } from '@meepshop/context';
 
 import Form from './Form';
 import useColumns from './hooks/useColumns';
@@ -40,7 +40,7 @@ const query = gql`
 `;
 
 export default React.memo(() => {
-  const colors = useContext(colorsContext);
+  const colors = useContext(ColorsContext);
   const { data } = useQuery<getUserRecipients>(query);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const columns = useColumns(setSelectedId);

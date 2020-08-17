@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 import { Spin, Icon, Form, Input, Button, Modal, notification } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import { colors as colorsContext } from '@meepshop/context';
+import { Colors as ColorsContext } from '@meepshop/context';
 
 import { DEFAULT_MESSAGE } from './constants';
 import styles from './styles/index.less';
@@ -47,7 +47,7 @@ const query = gql`
 export default Form.create<PropsType>()(
   React.memo(({ orderId, form }: PropsType) => {
     const { t } = useTranslation('member-order-pay-notify');
-    const colors = useContext(colorsContext);
+    const colors = useContext(ColorsContext);
     const { loading, data } = useQuery<getOrderPaidMessage>(query, {
       variables: { orderId },
     });

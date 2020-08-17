@@ -2,7 +2,7 @@
 import { QueryResult } from '@apollo/react-common';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { ColorsType } from '@meepshop/context/lib/colors';
+import { ColorsType } from '@meepshop/context/lib/Colors';
 import { SetCurrentPropsType } from '@store/utils/lib/withSetCurrent';
 
 // import
@@ -17,7 +17,7 @@ import moment from 'moment';
 import transformColor from 'color';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import { colors as colorsContext } from '@meepshop/context';
+import { Colors as ColorsContext } from '@meepshop/context';
 import withSetCurrent from '@store/utils/lib/withSetCurrent';
 import withContext from '@store/utils/lib/withContext';
 import Link from '@meepshop/link';
@@ -298,7 +298,7 @@ class MemberOrders extends React.PureComponent<PropsType> {
 
 const EnhancedMemberOrders = withTranslation('member-orders')(
   withSetCurrent('member-orders')(
-    withContext(colorsContext, colors => ({ colors }))(MemberOrders),
+    withContext(ColorsContext, colors => ({ colors }))(MemberOrders),
   ),
 );
 

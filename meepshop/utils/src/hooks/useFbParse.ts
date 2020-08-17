@@ -1,11 +1,11 @@
 // import
 import React, { useContext, useRef, useEffect } from 'react';
 
-import { fb as fbContext } from '@meepshop/context';
+import { Fb as FbContext } from '@meepshop/context';
 
 // definition
 export default (href: string, fbRef: React.RefObject<HTMLDivElement>): void => {
-  const { fb } = useContext(fbContext);
+  const { fb } = useContext(FbContext);
   const isLoadedRef = useRef<boolean>(false);
 
   useEffect(() => {

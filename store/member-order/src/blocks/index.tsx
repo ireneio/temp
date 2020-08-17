@@ -5,7 +5,7 @@ import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import { colors as colorsContext } from '@meepshop/context';
+import { Colors as ColorsContext } from '@meepshop/context';
 
 import PaymentInfo from './paymentInfo';
 import ShipmentInfo from './ShipmentInfo';
@@ -78,7 +78,7 @@ export default React.memo(
   ({
     order: { userInfo, shipmentInfo, paymentInfo, status, invoices, ...order },
   }: PropsType) => {
-    const colors = useContext(colorsContext);
+    const colors = useContext(ColorsContext);
     const { t } = useTranslation('member-order');
     const shipmentObj = shipmentInfo?.list?.[0];
     const paymentObj = paymentInfo?.list?.[0];

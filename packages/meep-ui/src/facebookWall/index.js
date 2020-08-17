@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Fb as FbContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
-import { fb as fbContext } from '@meepshop/context';
 
 import { URL_TYPE, ALIGNMENT_TYPE } from 'constants/propTypes';
 
 import { DEFAULT_FACEBOOK_URL } from './constants';
 import styles from './styles/index.less';
 
-@withContext(fbContext)
+@withContext(FbContext)
 export default class FacebookWall extends React.PureComponent {
   facebookWallRef = React.createRef();
 

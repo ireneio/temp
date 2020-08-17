@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import VisibilitySensor from 'react-visibility-sensor';
 
-import { adTrack as adTrackContext } from '@meepshop/context';
+import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
-@withContext(adTrackContext, adTrack => ({ adTrack }))
+@withContext(AdTrackContext, adTrack => ({ adTrack }))
 export default class extends React.Component {
   static propTypes = {
     customTracking: PropTypes.objectOf({
