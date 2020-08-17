@@ -380,31 +380,14 @@ export default class ProductInfo extends React.PureComponent {
             mutation={gql`
               mutation addProductToCartMutation($search: [ChangeCart]) {
                 changeCartList(changeCartList: $search) {
+                  id
                   ...cartFragment
                 }
               }
 
               ${cartFragment}
             `}
-            update={(cache, { data }) => {
-              cache.writeQuery({
-                query: gql`
-                  query updateCartCache {
-                    getCartList(search: { showDetail: true }) {
-                      data {
-                        ...cartFragment
-                      }
-                    }
-                  }
-
-                  ${cartFragment}
-                `,
-                data: {
-                  getCartList: {
-                    data: data.changeCartList,
-                  },
-                },
-              });
+            update={() => {
               notification.success({ message: t('add-product-to-cart') });
             }}
           >

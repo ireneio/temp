@@ -95,6 +95,7 @@ export default class Product extends React.PureComponent {
               mutation={gql`
                 mutation removeProductFromCartMutation($search: [ChangeCart]) {
                   changeCartList(changeCartList: $search) {
+                    id
                     ...cartFragment
                   }
                 }
