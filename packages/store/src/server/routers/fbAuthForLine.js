@@ -65,7 +65,7 @@ module.exports = async (req, res) => {
     if (!state.match(/meepShopNextStore/gm))
       throw new Error('State is not matched!');
 
-    const fbApi = `https://graph.facebook.com/v3.0/oauth/access_token?client_id=${appId}&redirect_uri=https://${req.get(
+    const fbApi = `https://graph.facebook.com/v8.0/oauth/access_token?client_id=${appId}&redirect_uri=https://${req.get(
       'host',
     )}/fbAuthForLine&client_secret=${appSecret}&code=${code}`;
     const responseFromFB = await fetch(fbApi, {
