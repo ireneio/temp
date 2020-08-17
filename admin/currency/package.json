@@ -4,11 +4,11 @@
   "description": "Currency context for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.1.0",
+  "version": "0.58.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.57.0"
+    "@meepshop/context": "^0.58.0"
   },
   "keywords": ["admin", "context", "currency"]
 }

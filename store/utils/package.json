@@ -4,9 +4,9 @@
   "description": "Utils tool for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.57.0",
+  "version": "0.58.0",
   "dependencies": {
-    "@meepshop/utils": "^0.57.0",
+    "@meepshop/utils": "^0.58.0",
     "validator": "^12.0.0"
   },
   "keywords": ["store", "utils"]
