@@ -4,7 +4,7 @@ import { Menu } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { LeftIcon } from '@meepshop/icons';
-import Switch, { switchRender } from '@admin/switch';
+import Switch, { switchRender } from '@meepshop/switch';
 import Link from '@meepshop/link';
 
 import useMenuList from './hooks/useMenuList';

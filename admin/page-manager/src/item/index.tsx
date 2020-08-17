@@ -8,7 +8,7 @@ import { filter } from 'graphql-anywhere';
 import { Tooltip } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import Switch from '@admin/switch';
+import Switch from '@meepshop/switch';
 
 import PrefixIcon from './PrefixIcon';
 import PageSetting from './pageSetting';

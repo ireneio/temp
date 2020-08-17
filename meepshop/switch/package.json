@@ -1,11 +1,11 @@
 {
   "private": true,
-  "name": "@admin/switch",
+  "name": "@meepshop/switch",
   "description": "Use to switch the components",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.58.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
-  "keywords": ["admin", "switch"]
+  "keywords": ["meepshop", "switch"]
 }

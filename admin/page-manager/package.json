@@ -9,13 +9,13 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/gallery": "^0.58.0",
-    "@admin/switch": "^0.58.0",
     "@admin/tooltip": "^0.58.0",
     "@admin/utils": "^0.58.0",
     "@admin/wrapper": "^0.58.0",
     "@meepshop/icons": "^0.58.0",
     "@meepshop/images": "^0.58.0",
     "@meepshop/link": "^0.58.0",
+    "@meepshop/switch": "^0.58.0",
     "@meepshop/utils": "^0.58.0"
   },
   "keywords": ["admin", "page-mangaer"]
