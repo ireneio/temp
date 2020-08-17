@@ -8,5 +8,7 @@
   "not-found-content": "Vượt quá lượng mua lớn nhất hoặc không phù hợp định dạng",
   "more-options": "…hoặc tự nhập thêm",
   "gift": "tặng phẩm",
-  "gift-exchange-is-completed": "Đã hoàn thành tặng quà"
+  "gift-exchange-is-completed": "Đã hoàn thành tặng quà",
+  "remove-product-from-cart": "Hoàn tất cập nhật giỏ hàng",
+  "update-product-in-cart": "Hoàn tất cập nhật giỏ hàng"
 }

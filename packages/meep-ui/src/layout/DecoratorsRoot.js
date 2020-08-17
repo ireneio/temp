@@ -52,9 +52,6 @@ export default class DecoratorsRoot extends React.Component {
     fbLogin: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
     forgetPassword: PropTypes.func.isRequired,
-    addCartItems: PropTypes.func.isRequired,
-    updateCartItems: PropTypes.func.isRequired,
-    removeCartItems: PropTypes.func.isRequired,
     getApiUrl: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
 
@@ -71,6 +68,7 @@ export default class DecoratorsRoot extends React.Component {
 
   state = {
     isShowCart: false,
+    isCartUpdating: false,
   };
 
   getChildContext() {
@@ -94,13 +92,10 @@ export default class DecoratorsRoot extends React.Component {
       fbLogin,
       logout,
       forgetPassword,
-      addCartItems,
-      updateCartItems,
-      removeCartItems,
       getApiUrl,
       dispatchAction,
     } = this.props;
-    const { isShowCart } = this.state;
+    const { isShowCart, isCartUpdating } = this.state;
 
     return {
       /** context variables from props */
@@ -121,18 +116,17 @@ export default class DecoratorsRoot extends React.Component {
       fbLogin,
       logout,
       forgetPassword,
-      addCartItems,
-      updateCartItems,
-      removeCartItems,
       getApiUrl,
       dispatchAction,
 
       /** context variable from DecoratorsRoot */
       isShowCart,
+      isCartUpdating,
 
       /** context func from DecoratorsRoot */
       hasStoreAppPlugin: this.hasStoreAppPlugin,
       toggleCart: this.toggleCart,
+      updateCart: this.updateCart,
       transformCurrency: generateConverter(storeCurrency, customerCurrency),
     };
   }
@@ -149,6 +143,12 @@ export default class DecoratorsRoot extends React.Component {
     this.setState({
       isShowCart:
         changeCartStatus !== undefined ? changeCartStatus : !isShowCart,
+    });
+  };
+
+  updateCart = isCartUpdating => {
+    this.setState({
+      isCartUpdating,
     });
   };
 

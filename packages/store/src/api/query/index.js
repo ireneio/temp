@@ -2,7 +2,6 @@ import localeQuery from './locale.query';
 import pageQuery from './page.query';
 import menuQuery from './menu.query';
 import activityQuery from './activity.query';
-import cartQuery from './cart.query';
 import productQuery from './product.query';
 import wishListQuery from './wishList.query';
 import computeOrderQuery from './computeOrder.query';
@@ -17,7 +16,6 @@ export {
   pageQuery,
   menuQuery,
   activityQuery,
-  cartQuery,
   productQuery,
   wishListQuery,
   computeOrderQuery,

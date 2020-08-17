@@ -6,9 +6,6 @@ import {
   watchGetSignoutFlow,
   watchSignupFlow,
   watchForgetPasswordFlow,
-  watchAddCartItemsFlow,
-  watchUpdateCartItemsFlow,
-  watchRemoveCartItemsFlow,
   watchUpdateUserFlow,
   watchUpdateWishListFlow,
   watchAddToNotificationListFlow,
@@ -31,9 +28,6 @@ import { watchChangePasswordFlow } from './widgets/others';
 
 function* rootSaga() {
   yield all([
-    watchAddCartItemsFlow(),
-    watchUpdateCartItemsFlow(),
-    watchRemoveCartItemsFlow(),
     watchGetAuthFlow(),
     watchGetLoginFlow(),
     watchGetSignoutFlow(),

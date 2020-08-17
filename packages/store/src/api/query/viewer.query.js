@@ -66,7 +66,6 @@ viewer {
   }
 
   rewardPoint {
-    currentBalance
     expiringPoints(expireBy: $expireBy) {
       total
     }

@@ -10,16 +10,6 @@ import { NOTLOGIN, ISUSER } from 'constants';
 import { cleanProductList } from './lists';
 import { cleanProduct } from './products';
 
-const getCart = data => {
-  const changeCart = data?.data?.changeCartList?.[0] || null;
-  if (changeCart)
-    return {
-      ...changeCart,
-      categories: changeCart?.categories?.[0],
-    };
-  return null;
-};
-
 /* ********************************* 檢查登入狀態 ********************************* */
 const AUTH_REQUEST = 'AUTH_REQUEST';
 const AUTH_SUCCESS = 'AUTH_SUCCESS';
@@ -292,132 +282,6 @@ export function* watchForgetPasswordFlow() {
   yield takeEvery(FORGET_PASSWORD_REQUEST, forgetPasswordFlow);
 }
 
-/* ************************************ 新增購物車商品 ************************************ */
-const ADD_CART_ITEMS_REQUEST = 'ADD_CART_ITEMS_REQUEST';
-const ADD_CART_ITEMS_SUCCESS = 'ADD_CART_ITEMS_SUCCESS';
-const ADD_CART_ITEMS_FAILURE = 'ADD_CART_ITEMS_FAILURE';
-
-/**
- * @name addCartItems
- * @param {Array} items = [productId, variantId, quantity ]
- */
-export const addCartItems = (items, price, callback) => ({
-  type: ADD_CART_ITEMS_REQUEST,
-  payload: { items, price, callback },
-});
-export const addCartItemsSuccess = payload => ({
-  type: ADD_CART_ITEMS_SUCCESS,
-  payload,
-});
-export const addCartItemsFailure = () => ({
-  type: ADD_CART_ITEMS_FAILURE,
-});
-
-function* AddCartItemsFlow({ payload: { price, callback, ...payload } }) {
-  try {
-    const data = yield call(Api.addItemsToCart, payload);
-
-    if (data) {
-      const cart = getCart(data);
-
-      if (callback) callback();
-
-      yield put(addCartItemsSuccess(cart));
-      notification.success({ message: i18n.t('ducks:add-cart-items-success') });
-    }
-  } catch (error) {
-    notification.error({
-      message: i18n.t('ducks:add-cart-items-failure-message'),
-      description: error.message,
-    });
-    yield put(addCartItemsFailure());
-  }
-}
-export function* watchAddCartItemsFlow() {
-  yield takeEvery(ADD_CART_ITEMS_REQUEST, AddCartItemsFlow);
-}
-
-/* ************************************ 更改購物車商品數量 ************************************ */
-const UPDATE_CART_ITEMS_REQUEST = 'UPDATE_CART_ITEMS_REQUEST';
-const UPDATE_CART_ITEMS_SUCCESS = 'UPDATE_CART_ITEMS_SUCCESS';
-const UPDATE_CART_ITEMS_FAILURE = 'UPDATE_CART_ITEMS_FAILURE';
-
-export const updateCartItems = items => ({
-  type: UPDATE_CART_ITEMS_REQUEST,
-  payload: { items },
-});
-export const updateCartItemsSuccess = payload => ({
-  type: UPDATE_CART_ITEMS_SUCCESS,
-  payload,
-});
-export const updateCartItemsFailure = () => ({
-  type: UPDATE_CART_ITEMS_FAILURE,
-});
-
-function* UpdateCartItemsFlow({ payload }) {
-  try {
-    const data = yield call(Api.updateItemsToCart, payload);
-
-    if (data) {
-      const cart = getCart(data);
-
-      yield put(updateCartItemsSuccess(cart));
-      notification.success({
-        message: i18n.t('ducks:update-cart-items-success'),
-      });
-    }
-  } catch (error) {
-    yield put(updateCartItemsFailure());
-    notification.error({
-      message: i18n.t('ducks:update-cart-items-failure-message'),
-      description: error.message,
-    });
-  }
-}
-export function* watchUpdateCartItemsFlow() {
-  yield takeEvery(UPDATE_CART_ITEMS_REQUEST, UpdateCartItemsFlow);
-}
-
-/* ************************************ 移除購物車商品 ************************************ */
-const REMOVE_CART_ITEMS_REQUEST = 'REMOVE_CART_ITEMS_REQUEST';
-const REMOVE_CART_ITEMS_SUCCESS = 'REMOVE_CART_ITEMS_SUCCESS';
-const REMOVE_CART_ITEMS_FAILURE = 'REMOVE_CART_ITEMS_FAILURE';
-
-export const removeCartItems = items => ({
-  type: REMOVE_CART_ITEMS_REQUEST,
-  payload: { items },
-});
-export const removeCartItemsSuccess = payload => ({
-  type: REMOVE_CART_ITEMS_SUCCESS,
-  payload,
-});
-export const removeCartItemsFailure = () => ({
-  type: REMOVE_CART_ITEMS_FAILURE,
-});
-
-function* removeCartItemsFlow({ payload }) {
-  try {
-    const data = yield call(Api.removeItemsToCart, payload);
-    if (data) {
-      const cart = getCart(data);
-
-      yield put(removeCartItemsSuccess(cart));
-      notification.success({
-        message: i18n.t('ducks:remove-cart-items-success'),
-      });
-    }
-  } catch (error) {
-    yield put(removeCartItemsFailure());
-    notification.error({
-      message: i18n.t('ducks:remove-cart-items-failure-message'),
-      description: error.message,
-    });
-  }
-}
-export function* watchRemoveCartItemsFlow() {
-  yield takeEvery(REMOVE_CART_ITEMS_REQUEST, removeCartItemsFlow);
-}
-
 /* ************************************ 更新會員資料 ************************************ */
 const UPDATE_USER_REQUEST = 'UPDATE_USER_REQUEST';
 const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
@@ -619,14 +483,6 @@ export function* watchResetPasswordFlow() {
   yield takeEvery(RESET_PASSWORD_REQUEST, resetPasswordFlow);
 }
 
-/* ************************************ 成立訂單，清空購物車 ************************************ */
-const EMPTY_CART = 'EMPTY_CART';
-
-export const emptyCart = usePoints => ({
-  type: EMPTY_CART,
-  payload: { usePoints },
-});
-
 /**
  * @name AuthReducer
  * @description data related member
@@ -682,22 +538,14 @@ const getMemberData = payload => {
   const user = viewer ? getUser(viewer) : null;
   const isLogin = viewer?.role === 'SHOPPER' ? ISUSER : NOTLOGIN;
   const wishList = viewer?.wishlist || [];
-  const currentBalance = viewer?.rewardPoint.currentBalance || 0;
 
   // TODO: 未改為Viewer
-  const cartData = data?.getCartList?.data?.[0] || null;
-  const cart = cartData
-    ? { ...cartData, categories: cartData?.categories?.[0] }
-    : null;
-
   const stockNotificationList = data?.getStockNotificationList?.data || [];
 
   return {
     isLogin,
     user,
-    cart,
     wishList,
-    currentBalance,
     stockNotificationList,
     loading: false,
     loadingTip: '',
@@ -707,7 +555,6 @@ const getMemberData = payload => {
 const initialState = {
   isLogin: NOTLOGIN,
   user: null,
-  cart: null,
   wishList: [],
   stockNotificationList: [],
   orders: [],
@@ -803,75 +650,6 @@ export default (state = initialState, { type, payload }) => {
         loadingTip: '',
       };
     case FORGET_PASSWORD_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    /* 新增購物車商品 */
-    case ADD_CART_ITEMS_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-        loadingTip: ADD_CART_ITEMS_REQUEST,
-      };
-    }
-    case ADD_CART_ITEMS_SUCCESS: {
-      return {
-        ...state,
-        cart: payload,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    case ADD_CART_ITEMS_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    /* 更改購物車商品數量 */
-    case UPDATE_CART_ITEMS_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-        loadingTip: UPDATE_CART_ITEMS_REQUEST,
-      };
-    }
-    case UPDATE_CART_ITEMS_SUCCESS: {
-      return {
-        ...state,
-        cart: payload,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    case UPDATE_CART_ITEMS_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    /* 移除購物車商品 */
-    case REMOVE_CART_ITEMS_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-        loadingTip: REMOVE_CART_ITEMS_REQUEST,
-      };
-    }
-    case REMOVE_CART_ITEMS_SUCCESS: {
-      return {
-        ...state,
-        cart: payload,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    case REMOVE_CART_ITEMS_FAILURE: {
       return {
         ...state,
         loading: false,
@@ -988,15 +766,6 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         loading: false,
         loadingTip: '',
-      };
-    }
-    case EMPTY_CART: {
-      const { usePoints } = payload;
-
-      return {
-        ...state,
-        currentBalance: state.currentBalance - (usePoints || 0),
-        cart: null,
       };
     }
 

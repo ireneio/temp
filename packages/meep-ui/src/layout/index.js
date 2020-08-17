@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
+import gql from 'graphql-tag';
+import { Query } from '@apollo/react-components';
 import { UserAgent } from 'fbjs';
 
 import { colors as colorsContext } from '@meepshop/context';
@@ -11,9 +13,22 @@ import { COLOR_TYPE } from 'constants/propTypes';
 
 import GlobalStyles from './GlobalStyles';
 import Cart from './cart';
+import cartFragment from './cart/fragment';
 import DecoratorsRoot from './DecoratorsRoot';
 import ContainerSwitch from './ContainerSwitch';
 import styles from './styles/index.less';
+
+const query = gql`
+  query getCart {
+    getCartList(search: { showDetail: true }) {
+      data {
+        ...cartFragment
+      }
+    }
+  }
+
+  ${cartFragment}
+`;
 
 @withContext(colorsContext, colors => ({ colors }))
 @radium
@@ -32,7 +47,6 @@ export default class Layout extends React.PureComponent {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     background: COLOR_TYPE,
     cname: PropTypes.string,
-    carts: PropTypes.shape({}),
     container: PropTypes.oneOf([
       'DefaultContainer',
       'FixedTopContainer',
@@ -55,7 +69,6 @@ export default class Layout extends React.PureComponent {
   static defaultProps = {
     background: null,
     cname: null,
-    carts: null,
     children: null,
   };
 
@@ -101,51 +114,69 @@ export default class Layout extends React.PureComponent {
       colors,
       background,
       blocks,
-      carts,
       container,
       experiment,
       ...props
     } = this.props;
 
     return (
-      <Context {...props}>
-        <DecoratorsRoot {...props} colors={colors} carts={carts} cname={cname}>
-          <GlobalStyles colors={colors} />
+      <Query query={query}>
+        {({ data }) => {
+          const carts = data?.getCartList?.data?.[0];
 
-          <div
-            style={{
-              ...this.getRootStyle(),
-              ...(shouldGetFixed && { height: 0 }),
-            }}
-            className={styles.root}
-            ref={this.rootRef}
-          >
-            <div className={styles.container}>
-              <ContainerSwitch
+          return (
+            <Context {...props}>
+              <DecoratorsRoot
                 {...props}
-                key={container}
-                containerName={container}
-                carts={carts}
-                blocks={blocks}
-              />
-            </div>
+                colors={colors}
+                cname={cname}
+                carts={
+                  !carts
+                    ? null
+                    : {
+                        ...carts,
+                        categories: carts.categories?.[0] || null,
+                      }
+                }
+              >
+                <GlobalStyles colors={colors} />
 
-            {experiment.hiddingMeepshopMaxInFooterEnabled ? null : (
-              <footer className={styles.footer}>
-                <a
-                  href="https://meepshop.cc/8h1kG"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <div
+                  style={{
+                    ...this.getRootStyle(),
+                    ...(shouldGetFixed && { height: 0 }),
+                  }}
+                  className={styles.root}
+                  ref={this.rootRef}
                 >
-                  meepShop MAX 極速開店
-                </a>
-              </footer>
-            )}
+                  <div className={styles.container}>
+                    <ContainerSwitch
+                      {...props}
+                      key={container}
+                      containerName={container}
+                      blocks={blocks}
+                    />
+                  </div>
 
-            <Cart carts={carts} />
-          </div>
-        </DecoratorsRoot>
-      </Context>
+                  {experiment.hiddingMeepshopMaxInFooterEnabled ? null : (
+                    <footer className={styles.footer}>
+                      <a
+                        href="https://meepshop.cc/8h1kG"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        meepShop MAX 極速開店
+                      </a>
+                    </footer>
+                  )}
+
+                  <Cart />
+                </div>
+              </DecoratorsRoot>
+            </Context>
+          );
+        }}
+      </Query>
     );
   }
 }

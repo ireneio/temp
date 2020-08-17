@@ -4,7 +4,6 @@ import {
   viewerStoreQuery,
   menuQuery,
   activityQuery,
-  cartQuery,
   webTrackQuery,
   stockNotificationQuery,
 } from './query';
@@ -15,7 +14,6 @@ export default async context => {
       $menuSearch: searchInputObjectType,
       $activitySearch: searchInputObjectType,
       $memberGroupFilter: MemberGroupFilterInput,
-      $cartSearch: searchInputObjectType,
       $notificationSearch: searchInputObjectType,
       $expireBy: Int!,
       $webTrackSearch: searchInputObjectType
@@ -62,9 +60,6 @@ export default async context => {
       },
       memberGroupFilter: {
         status: 'ENABLED',
-      },
-      cartSearch: {
-        showDetail: true,
       },
       notificationSearch: {},
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
@@ -115,11 +110,6 @@ export default async context => {
         ${activityQuery}
       }
       total
-    }
-    getCartList(search: $cartSearch) {
-      data {
-        ${cartQuery}
-      }
     }
     getStockNotificationList(search: $notificationSearch) {
       data {

@@ -313,7 +313,6 @@ export default class Checkout extends React.PureComponent {
 
         if (formData?.url) {
           if (/CashSystemFrontEnd\/Query/.test(formData.url)) {
-            dispatchAction('emptyCart');
             goTo({ pathname: `/ezpay/cvcode/${id}` });
             return;
           }
@@ -332,7 +331,6 @@ export default class Checkout extends React.PureComponent {
           window.location = formData.url;
         }
 
-        dispatchAction('emptyCart', points);
         goTo({
           pathname: `/checkout/thank-you-page/${id}`,
           params: {

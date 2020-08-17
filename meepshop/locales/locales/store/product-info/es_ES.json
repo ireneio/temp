@@ -15,5 +15,6 @@
   "sold-out": "Agotado",
   "no-variants": "No hay especificaciones disponibles.",
   "not-found-content": "El número de artículos que se pueden comprar puede superar su límite o el formato no es válido.",
-  "more-options": "... o ingrese la CANTIDAD deseada"
+  "more-options": "... o ingrese la CANTIDAD deseada",
+  "add-product-to-cart": "El artículo ha sido añadido a su carrito."
 }

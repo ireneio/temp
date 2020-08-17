@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Mutation } from '@apollo/react-components';
+import gql from 'graphql-tag';
+import { notification } from 'antd';
 import radium from 'radium';
 import { MdClose as RemoveIcon } from 'react-icons/md';
 import { FaTag as TagIcon } from 'react-icons/fa';
@@ -7,6 +10,7 @@ import { FaTag as TagIcon } from 'react-icons/fa';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import Thumbnail from '@meepshop/thumbnail';
 
+import cartFragment from 'layout/cart/fragment';
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
   ID_TYPE,
@@ -25,7 +29,6 @@ export default class Product extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    removeCartItems: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -60,7 +63,7 @@ export default class Product extends React.PureComponent {
     const {
       /** context */
       colors,
-      removeCartItems,
+      updateCart,
 
       /** props */
       t,
@@ -88,13 +91,41 @@ export default class Product extends React.PureComponent {
       >
         <td style={styles.imgBlock}>
           {type !== 'product' ? null : (
-            <RemoveIcon
-              style={styles.removeIcon(colors)}
-              onClick={() => {
-                onChange({ cartId, quantity: 0 });
-                removeCartItems([{ cartId }]);
-              }}
-            />
+            <Mutation
+              mutation={gql`
+                mutation removeProductFromCartMutation($search: [ChangeCart]) {
+                  changeCartList(changeCartList: $search) {
+                    ...cartFragment
+                  }
+                }
+
+                ${cartFragment}
+              `}
+            >
+              {removeProductFromCartMutation => (
+                <RemoveIcon
+                  style={styles.removeIcon(colors)}
+                  onClick={async () => {
+                    updateCart(true);
+                    await removeProductFromCartMutation({
+                      variables: {
+                        search: {
+                          productsInfo: {
+                            deleteData: cartId,
+                          },
+                        },
+                      },
+                    });
+
+                    updateCart(false);
+                    onChange({ cartId, quantity: 0 });
+                    notification.success({
+                      message: t('remove-product-from-cart'),
+                    });
+                  }}
+                />
+              )}
+            </Mutation>
           )}
 
           {<Thumbnail image={coverImage} />}

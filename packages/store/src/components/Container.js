@@ -53,7 +53,6 @@ class Container extends React.Component {
       search: PropTypes.string.isRequired,
       userAgent: PropTypes.string.isRequired,
     }).isRequired,
-    carts: PropTypes.shape({ activityInfo: PropTypes.array }),
     loading: PropTypes.bool.isRequired,
     loadingTip: PropTypes.string.isRequired,
     /* func to modify data */
@@ -61,9 +60,6 @@ class Container extends React.Component {
     login: PropTypes.func.isRequired,
     forgetPassword: PropTypes.func.isRequired,
     signout: PropTypes.func.isRequired,
-    addCartItems: PropTypes.func.isRequired,
-    updateCartItems: PropTypes.func.isRequired,
-    removeCartItems: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
     /* props(not in context) */
     storeCurrency: PropTypes.string.isRequired,
@@ -84,7 +80,6 @@ class Container extends React.Component {
 
   static defaultProps = {
     customerCurrency: 'zh_TW',
-    carts: null,
     user: null,
     children: null,
   };
@@ -262,16 +257,12 @@ class Container extends React.Component {
       isLogin,
       user,
       location,
-      carts,
       loading,
       loadingTip,
       /* func */
       login,
       forgetPassword,
       signout,
-      addCartItems,
-      updateCartItems,
-      removeCartItems,
       dispatchAction,
       /* props(not in context) */
       storeCurrency,
@@ -295,7 +286,6 @@ class Container extends React.Component {
           isLogin={isLogin}
           user={user}
           location={location}
-          carts={carts}
           customerCurrency={customerCurrency}
           /* func to modify data */
           goTo={Utils.goTo}
@@ -306,9 +296,6 @@ class Container extends React.Component {
           /* use dispatchAction */
           login={login}
           forgetPassword={forgetPassword}
-          addCartItems={addCartItems}
-          updateCartItems={updateCartItems}
-          removeCartItems={removeCartItems}
           logout={signout}
           dispatchAction={dispatchAction}
           /* props(not in context) */
@@ -331,7 +318,7 @@ const mapStateToProps = state => {
 
   const {
     storeReducer: { settings, pageAdTrackIDs, experiment },
-    memberReducer: { user, isLogin, cart, loading, loadingTip },
+    memberReducer: { user, isLogin, loading, loadingTip },
     loadingStatus: { loading: isLoading },
   } = state;
   const { cname, storeCurrency, customerCurrency, backgroundImage } = settings;
@@ -345,7 +332,6 @@ const mapStateToProps = state => {
     /* may chnage */
     isLogin,
     user: user && getJoinedUser(state),
-    carts: cart,
     loading: isLoading || loading,
     loadingTip,
     /* props(not in context) */
@@ -360,9 +346,6 @@ const mapDispatchToProps = dispatch => ({
   signout: bindActionCreators(Actions.signout, dispatch),
   login: bindActionCreators(Actions.login, dispatch),
   forgetPassword: bindActionCreators(Actions.forgetPassword, dispatch),
-  addCartItems: bindActionCreators(Actions.addCartItems, dispatch),
-  updateCartItems: bindActionCreators(Actions.updateCartItems, dispatch),
-  removeCartItems: bindActionCreators(Actions.removeCartItems, dispatch),
   getAuth: bindActionCreators(Actions.getAuth, dispatch),
   dispatchAction: (actionName, args) => {
     dispatch(Actions[actionName](args));

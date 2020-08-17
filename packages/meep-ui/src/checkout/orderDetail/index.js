@@ -6,7 +6,9 @@ import uuid from 'uuid';
 import { MdChevronLeft as ChevronLeftIcon } from 'react-icons/md';
 import transformColor from 'color';
 
+import { adTrack as adTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import withContext from '@store/utils/lib/withContext';
 import GmoCreditCardForm from '@store/gmo-credit-card-form';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -89,12 +91,15 @@ const { Item: FormItem } = Form;
   },
 })
 @withTranslation('checkout')
+@withContext(adTrackContext)
 @enhancer
 @radium
 export default class OrderDetail extends React.PureComponent {
   isEmptyCart = false;
 
   isPayment = true;
+
+  isTracked = false;
 
   cacheResult = [];
 
@@ -188,8 +193,9 @@ export default class OrderDetail extends React.PureComponent {
 
       /** props */
       t,
+      adTrack,
     } = this.props;
-    const { products } = this.state;
+    const { products, computeOrderData } = this.state;
 
     if (products.length === 0) {
       this.isEmptyCart = true;
@@ -197,6 +203,11 @@ export default class OrderDetail extends React.PureComponent {
         title: t('cart-is-empty'),
         okText: t('confirm-go-to'),
         onOk: () => goTo({ pathname: '/' }),
+      });
+    } else if (!this.isTracked && computeOrderData.total) {
+      this.isTracked = true;
+      adTrack.beginCheckout({
+        total: computeOrderData.total,
       });
     }
   };

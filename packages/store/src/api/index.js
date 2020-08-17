@@ -1,9 +1,5 @@
 import getPages from './getPages.api';
 import getPage from './getPage.api';
-// Cart
-import addItemsToCart from './addItemsToCart.api';
-import updateItemsToCart from './updateItemsToCart.api';
-import removeItemsToCart from './removeItemsToCart.api';
 
 import getProduct from './getProduct.api';
 import getProductList from './getProductList.api';
@@ -34,10 +30,6 @@ import updateStockNotificationList from './updateStockNotificationList.api';
 export {
   getPages,
   getPage,
-  // 購物車
-  addItemsToCart,
-  updateItemsToCart,
-  removeItemsToCart,
   // 商品
   getProduct,
   getProductList,

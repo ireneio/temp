@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 
-import { adTrack as adTrackContext } from '@meepshop/context';
-import withContext from '@store/utils/lib/withContext';
-
 import * as Utils from 'utils';
 import { Container, TrackingCodeHead, Error } from 'components';
 import { getJoinedCheckoutPage } from 'selectors/checkout';
@@ -38,15 +35,6 @@ class Checkout extends React.Component {
   static defaultProps = {
     error: null,
   };
-
-  componentDidMount() {
-    const { location, carts, adTrack } = this.props;
-
-    if (location.search === '' && carts)
-      adTrack.beginCheckout({
-        total: carts.priceInfo.total,
-      });
-  }
 
   render() {
     const { error } = this.props;
@@ -85,10 +73,7 @@ const mapStateToProps = (state, props) => {
     pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     location: Utils.uriParser(props),
     page: getJoinedCheckoutPage(state, props),
-    carts: state.memberReducer.cart,
   };
 };
 
-export default connect(mapStateToProps)(
-  withContext(adTrackContext, adTrack => ({ adTrack }))(Checkout),
-);
+export default connect(mapStateToProps)(Checkout);

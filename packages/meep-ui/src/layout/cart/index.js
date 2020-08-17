@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // FIXME remove
 import { StyleRoot } from 'radium';
 import { warning } from 'fbjs';
-import { Drawer, Icon } from 'antd';
+import { Spin, Drawer, Icon } from 'antd';
 import { FaAngleRight as AngleRightIcon } from 'react-icons/fa';
 import { MdKeyboardBackspace as ArrowLeftIcon } from 'react-icons/md';
 
@@ -19,11 +19,6 @@ export default class Cart extends React.PureComponent {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     isShowCart: PropTypes.bool.isRequired,
     toggleCart: PropTypes.func.isRequired,
-    carts: PropTypes.shape({}),
-  };
-
-  static defaultProps = {
-    carts: null,
   };
 
   state = {
@@ -53,7 +48,7 @@ export default class Cart extends React.PureComponent {
   };
 
   render() {
-    const { colors, isShowCart, toggleCart, carts } = this.props;
+    const { colors, isShowCart, toggleCart, isCartUpdating } = this.props;
     const { nowCart, history } = this.state;
 
     return (
@@ -64,48 +59,50 @@ export default class Cart extends React.PureComponent {
         onClose={toggleCart(false)}
         width="100vw"
       >
-        <AngleRightIcon
-          className={styles.angleRightIcon}
-          style={{
-            display: isShowCart ? 'initial' : 'none',
-            color: colors[2],
-            background: colors[4],
-          }}
-          onClick={toggleCart(false)}
-        />
-
-        <StyleRoot
-          className={`${styles.body} ${
-            nowCart === 'product list' ? '' : styles.hasMinHeight
-          }`}
-          style={{ background: colors[0], color: colors[3] }}
+        <Spin
+          wrapperClassName={styles.spin}
+          spinning={isCartUpdating}
+          indicator={<Icon type="loading" spin />}
         >
-          <div
-            className={styles.header}
+          <AngleRightIcon
+            className={styles.angleRightIcon}
             style={{
-              background: colors[0],
-              borderBottom:
-                nowCart === 'product list' ? `1px solid ${colors[5]}` : '0px',
+              display: isShowCart ? 'initial' : 'none',
+              color: colors[2],
+              background: colors[4],
             }}
-          >
-            {history.length === 0 ? (
-              <div />
-            ) : (
-              <ArrowLeftIcon className={styles.icon} onClick={this.goBack} />
-            )}
-            <Icon
-              type="close"
-              className={styles.closeIcon}
-              onClick={toggleCart(false)}
-            />
-          </div>
-
-          <CartSwitch
-            carts={carts}
-            nowCart={nowCart}
-            goToInCart={this.goToInCart}
+            onClick={toggleCart(false)}
           />
-        </StyleRoot>
+
+          <StyleRoot
+            className={`${styles.body} ${
+              nowCart === 'product list' ? '' : styles.hasMinHeight
+            }`}
+            style={{ background: colors[0], color: colors[3] }}
+          >
+            <div
+              className={styles.header}
+              style={{
+                background: colors[0],
+                borderBottom:
+                  nowCart === 'product list' ? `1px solid ${colors[5]}` : '0px',
+              }}
+            >
+              {history.length === 0 ? (
+                <div />
+              ) : (
+                <ArrowLeftIcon className={styles.icon} onClick={this.goBack} />
+              )}
+              <Icon
+                type="close"
+                className={styles.closeIcon}
+                onClick={toggleCart(false)}
+              />
+            </div>
+
+            <CartSwitch nowCart={nowCart} goToInCart={this.goToInCart} />
+          </StyleRoot>
+        </Spin>
       </Drawer>
     );
   }

@@ -8,5 +8,7 @@
   "not-found-content": "超過最大購買量或格式不符",
   "more-options": "⋯⋯或自行輸入更多",
   "gift": "贈品",
-  "gift-exchange-is-completed": "贈送完畢"
+  "gift-exchange-is-completed": "贈送完畢",
+  "remove-product-from-cart": "更新購物車完成",
+  "update-product-in-cart": "更新購物車完成"
 }

@@ -52,7 +52,7 @@ export default class QuantityButton extends React.Component {
 
     if (orderable === ORDERABLE) {
       const quantityInCart =
-        cart?.categories.products.find(product => product.variantId === id)
+        carts?.categories.products.find(product => product.variantId === id)
           ?.quantity || 0;
 
       return (

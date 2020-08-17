@@ -8,5 +8,7 @@
   "not-found-content": "最大購買量をオーバーしているか様式が合っていません",
   "more-options": "…あるいは、自分で更に入力して下さい",
   "gift": "プレゼント",
-  "gift-exchange-is-completed": "プレゼント配布終了"
+  "gift-exchange-is-completed": "プレゼント配布終了",
+  "remove-product-from-cart": "カート内の商品数量を変更しました",
+  "update-product-in-cart": "カート内の商品数量を変更しました"
 }

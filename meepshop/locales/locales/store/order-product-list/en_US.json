@@ -8,5 +8,7 @@
   "not-found-content": "The number of purchasable items might surpass its limit or the format is invalid.",
   "more-options": "… or key in desired QTY",
   "gift": "Free Gift",
-  "gift-exchange-is-completed": "Out of Stock"
+  "gift-exchange-is-completed": "Out of Stock",
+  "remove-product-from-cart": "The items in cart have been updated.",
+  "update-product-in-cart": "The items in cart have been updated."
 }

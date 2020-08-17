@@ -137,6 +137,9 @@ export default (): MutationFunction<createOrderType, createOrderVariables> => {
             query useCreateOrderGetRecipientAddressBookCache {
               viewer {
                 id
+                rewardPoint {
+                  currentBalance
+                }
                 shippableRecipientAddresses {
                   id
                   name
@@ -160,6 +163,9 @@ export default (): MutationFunction<createOrderType, createOrderVariables> => {
 
         const { id, shippableRecipientAddresses } =
           useCreateOrderGetRecipientAddressBookCache?.viewer || {};
+        const currentBalance =
+          useCreateOrderGetRecipientAddressBookCache?.viewer?.rewardPoint
+            ?.currentBalance || 0;
 
         if (!id) return;
 
@@ -168,6 +174,9 @@ export default (): MutationFunction<createOrderType, createOrderVariables> => {
           fragment: gql`
             fragment useCreateOrderFragment on User {
               id
+              rewardPoint {
+                currentBalance
+              }
               shippableRecipientAddresses {
                 id
                 name
@@ -189,6 +198,10 @@ export default (): MutationFunction<createOrderType, createOrderVariables> => {
           data: {
             __typename: 'User',
             id,
+            rewardPoint: {
+              __typename: 'UserRewardPoint',
+              currentBalance: currentBalance - (createOrderList?.points || 0),
+            },
             shippableRecipientAddresses: [
               ...(shippableRecipientAddresses || []),
               {

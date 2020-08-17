@@ -8,5 +8,7 @@
   "not-found-content": "Jumlah barang yang dapat dibeli mungkin melebihi batasnya atau formatnya tidak valid.",
   "more-options": "... atau masukkan QTY yang diinginkan",
   "gift": "Hadiah gratis",
-  "gift-exchange-is-completed": "Kehabisan persediaan"
+  "gift-exchange-is-completed": "Kehabisan persediaan",
+  "remove-product-from-cart": "Item dalam keranjang telah diperbarui.",
+  "update-product-in-cart": "Item dalam keranjang telah diperbarui."
 }

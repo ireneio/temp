@@ -5,7 +5,7 @@ import ProductList from './ProductList';
 import Login from './Login';
 import ForgetPassword from './ForgetPassword';
 
-const CartSwitch = ({ nowCart, goToInCart, ...props }) => {
+const CartSwitch = ({ nowCart, goToInCart }) => {
   switch (nowCart) {
     case 'login':
       return <Login goToInCart={goToInCart} />;
@@ -14,9 +14,7 @@ const CartSwitch = ({ nowCart, goToInCart, ...props }) => {
       return <ForgetPassword goToInCart={goToInCart} />;
 
     default: {
-      const { carts } = props;
-
-      return <ProductList carts={carts} goToInCart={goToInCart} />;
+      return <ProductList goToInCart={goToInCart} />;
     }
   }
 };
@@ -24,12 +22,7 @@ const CartSwitch = ({ nowCart, goToInCart, ...props }) => {
 CartSwitch.propTypes = {
   nowCart: PropTypes.oneOf(['product list', 'login', 'forget password'])
     .isRequired,
-  carts: PropTypes.shape({}),
   goToInCart: PropTypes.func.isRequired,
-};
-
-CartSwitch.defaultProps = {
-  carts: null,
 };
 
 export default CartSwitch;

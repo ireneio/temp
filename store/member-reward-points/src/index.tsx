@@ -187,7 +187,6 @@ export default React.memo(() => (
         }
       }
     `}
-    fetchPolicy="no-cache"
   >
     {({ loading, error, data }) => {
       if (loading || error || !data)

@@ -42,7 +42,6 @@ class RewardPoints extends Component {
       gaID: PropTypes.string,
       fbPixelId: PropTypes.string,
     }).isRequired,
-    currentBalance: PropTypes.number.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -145,7 +144,6 @@ const mapStateToProps = (state, props) => {
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getPage(state, props),
-    currentBalance: Utils.getIn(['memberReducer', 'currentBalance'])(state),
   };
 };
 
