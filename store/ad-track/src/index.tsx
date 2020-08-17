@@ -4,8 +4,10 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 
-import { adTrack as AdTrackContext } from '@meepshop/context';
-import CurrencyContext from '@store/currency';
+import {
+  adTrack as AdTrackContext,
+  currency as currencyContext,
+} from '@meepshop/context';
 
 import useAdTrackIds from './hooks/useAdTrackIds';
 import useAdTrack from './hooks/useAdTrack';
@@ -43,7 +45,7 @@ const query = gql`
 
 export default React.memo(({ children }: PropsType) => {
   const { data } = useQuery<getAdTrack>(query);
-  const { currency } = useContext(CurrencyContext);
+  const { currency } = useContext(currencyContext);
   const adTrackIds = useAdTrackIds(data);
   const adTrack = useAdTrack({
     ...adTrackIds,

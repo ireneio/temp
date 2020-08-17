@@ -1,6 +1,6 @@
 // typescript import
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { CurrencyType } from '@store/currency';
+import { CurrencyType } from '@meepshop/context/lib/currency';
 
 // import
 import React from 'react';
@@ -8,8 +8,8 @@ import gql from 'graphql-tag';
 import memoizeOne from 'memoize-one';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { currency as currencyContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
-import currencyContext from '@store/currency';
 
 import styles from './styles/totalSheet.less';
 

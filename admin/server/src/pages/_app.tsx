@@ -15,6 +15,7 @@ import { AppsProvider } from '@meepshop/context/lib/apps';
 import { withDomain } from '@meepshop/link';
 import '@admin/utils/styles/base.less';
 import withApollo from '@admin/apollo';
+import CurrencyProvider from '@admin/currency';
 
 // definition
 const Wrapper = dynamic(() => import('@admin/wrapper'));
@@ -64,9 +65,11 @@ class App extends NextApp<AppInitialProps> {
             <Component {...pageProps} />
           ) : (
             <AppsProvider>
-              <Wrapper>
-                <Component {...pageProps} />
-              </Wrapper>
+              <CurrencyProvider>
+                <Wrapper>
+                  <Component {...pageProps} />
+                </Wrapper>
+              </CurrencyProvider>
             </AppsProvider>
           )}
         </EventsProvider>

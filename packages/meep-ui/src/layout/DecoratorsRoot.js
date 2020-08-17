@@ -6,13 +6,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { apps as appsContext } from '@meepshop/context';
+import {
+  apps as appsContext,
+  currency as currencyContext,
+} from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
-import generateConverter from '@store/currency/lib/utils/generateConverter';
 
 import {
   COLOR_TYPE,
-  ONE_OF_CURRENCY_TYPE,
   ISLOGIN_TYPE,
   LOCATION_TYPE,
   USER_TYPE,
@@ -30,6 +31,7 @@ export const enhancer = Component =>
   };
 
 @withContext(appsContext, apps => ({ apps }))
+@withContext(currencyContext)
 // eslint-disable-next-line react/no-multi-comp
 export default class DecoratorsRoot extends React.Component {
   static propTypes = {
@@ -39,8 +41,6 @@ export default class DecoratorsRoot extends React.Component {
     isLogin: ISLOGIN_TYPE.isRequired,
     storeSetting: STORE_SETTING_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    storeCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
-    customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
     location: LOCATION_TYPE.isRequired,
     carts: PropTypes.shape({}).isRequired,
 
@@ -79,8 +79,6 @@ export default class DecoratorsRoot extends React.Component {
       isLogin,
       storeSetting,
       colors,
-      storeCurrency,
-      customerCurrency,
       location,
       carts,
 
@@ -94,6 +92,7 @@ export default class DecoratorsRoot extends React.Component {
       forgetPassword,
       getApiUrl,
       dispatchAction,
+      c,
     } = this.props;
     const { isShowCart, isCartUpdating } = this.state;
 
@@ -104,7 +103,6 @@ export default class DecoratorsRoot extends React.Component {
       isLogin,
       storeSetting,
       colors,
-      customerCurrency,
       location,
       carts,
 
@@ -127,7 +125,7 @@ export default class DecoratorsRoot extends React.Component {
       hasStoreAppPlugin: this.hasStoreAppPlugin,
       toggleCart: this.toggleCart,
       updateCart: this.updateCart,
-      transformCurrency: generateConverter(storeCurrency, customerCurrency),
+      transformCurrency: c,
     };
   }
 

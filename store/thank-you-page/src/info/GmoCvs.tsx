@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import moment from 'moment';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import currencyContext from '@store/currency';
+import { currency as currencyContext } from '@meepshop/context';
 import { gmoCsvLogos } from '@meepshop/images';
 
 import styles from './styles/gmoCvs.less';

@@ -2,15 +2,20 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import { filter } from 'graphql-anywhere';
 import { Spin, Icon } from 'antd';
-import { emptyFunction } from 'fbjs';
 
-import generateConverter from './utils/generateConverter';
-import initFx from './utils/initFx';
-import { DEFAULT_FX } from './constants';
+import { currency as CurrencyContext } from '@meepshop/context';
+
+import useInitFx from './hooks/useInitFx';
+import useFormat from './hooks/useFormat';
 
 // graphql typescript
 import { getStoreCurrency } from './__generated__/getStoreCurrency';
+
+// graphql import
+import { useInitFxFragment } from './hooks/useInitFx';
+import { useFormatFragment } from './hooks/useFormat';
 
 // typescript definition
 interface PropsType {
@@ -18,61 +23,52 @@ interface PropsType {
   children: React.ReactNode;
 }
 
-export interface CurrencyType {
-  c: (price: number) => string;
-  setCurrency: (currency: string) => void;
-  currency: string;
-}
-
 // definition
-const CurrencyContext = React.createContext<CurrencyType>({
-  c: generateConverter('TWD', 'TWD'),
-  setCurrency: emptyFunction,
-  currency: 'TWD',
-});
-
-export const CurrencyProvider = React.memo(
-  ({ cookieCurrency, children }: PropsType) => {
-    const { loading, error, data } = useQuery<getStoreCurrency>(
-      gql`
-        query getStoreCurrency {
-          viewer {
+export default React.memo(({ cookieCurrency, children }: PropsType) => {
+  const { loading, error, data } = useQuery<getStoreCurrency>(
+    gql`
+      query getStoreCurrency {
+        viewer {
+          id
+          store {
             id
-            store {
-              id
-              currency
-            }
-          }
-
-          exchangeRateService {
-            base
-            rates
-            timestamp
+            ...useFormatFragment
           }
         }
-      `,
-    );
-    const [currency, setCurrency] = useState<string>(cookieCurrency);
 
-    if (loading || error)
-      return <Spin indicator={<Icon type="loading" spin />} />;
+        exchangeRateService {
+          ...useInitFxFragment
+        }
+      }
 
-    const storeCurrency = data?.viewer?.store?.currency || 'TWD';
+      ${useFormatFragment}
+      ${useInitFxFragment}
+    `,
+  );
+  const [currency, setCurrency] = useState<string>(cookieCurrency);
+  const c = useFormat(
+    currency,
+    !data?.viewer?.store ? null : filter(useFormatFragment, data.viewer.store),
+  );
 
-    initFx(data?.exchangeRateService || DEFAULT_FX);
+  useInitFx(
+    !data?.exchangeRateService
+      ? null
+      : filter(useInitFxFragment, data.exchangeRateService),
+  );
 
-    return (
-      <CurrencyContext.Provider
-        value={{
-          c: generateConverter(storeCurrency, currency),
-          setCurrency,
-          currency,
-        }}
-      >
-        {children}
-      </CurrencyContext.Provider>
-    );
-  },
-);
+  if (loading || error)
+    return <Spin indicator={<Icon type="loading" spin />} />;
 
-export default CurrencyContext;
+  return (
+    <CurrencyContext.Provider
+      value={{
+        c,
+        setCurrency,
+        currency,
+      }}
+    >
+      {children}
+    </CurrencyContext.Provider>
+  );
+});

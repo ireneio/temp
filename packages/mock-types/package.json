@@ -13,6 +13,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/apollo": "^0.57.0",
+    "@admin/currency": "^0.1.0",
     "@admin/utils": "^0.57.0",
     "@admin/wrapper": "^0.57.0",
     "@graphql-tools/mock": "^6.0.12",

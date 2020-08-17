@@ -2,7 +2,7 @@
 import { NextPage } from 'next';
 
 // import
-import React from 'react';
+import React, { useContext } from 'react';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { useQuery } from '@apollo/react-hooks';
@@ -11,6 +11,7 @@ import { Spin, Icon } from 'antd';
 import moment from 'moment';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { currency as currencyContext } from '@meepshop/context';
 import {
   dashboardRevenue_w40 as dashboardRevenue,
   dashboardCost_w40 as dashboardCost,
@@ -18,7 +19,6 @@ import {
   dashboardMember_w40 as dashboardMember,
 } from '@meepshop/images';
 import Link from '@meepshop/link';
-import formatAmount from '@admin/utils/lib/formatAmount';
 
 import Tutorial from './Tutorial';
 import styles from './styles/index.less';
@@ -36,6 +36,7 @@ import { tutorialSettingObjectTypeFragment } from './Tutorial';
 // definition
 const Dashboard: NextPage = React.memo(
   (): React.ReactElement => {
+    const { c } = useContext(currencyContext);
     const getTimezoneResult = useQuery<getTimezone>(
       gql`
         query getTimezone {
@@ -70,7 +71,6 @@ const Dashboard: NextPage = React.memo(
             role
             store {
               id
-              currency
               description {
                 name
               }
@@ -117,14 +117,6 @@ const Dashboard: NextPage = React.memo(
 
     if (!viewer || !viewer.id || !getDashboardInfo)
       return <Spin indicator={<Icon type="loading" spin />} />;
-
-    const reformatAmount = (amount: number | null): string => {
-      if (amount === null) return '';
-
-      const currency = getDashboardResult.data?.viewer?.store?.currency;
-
-      return formatAmount({ amount, currency });
-    };
 
     const isUnpaidBillsDisplayed =
       viewer.role === 'MERCHANT' &&
@@ -238,14 +230,14 @@ const Dashboard: NextPage = React.memo(
                 <img src={dashboardRevenue} alt="revenue" />
                 <div>
                   <span>{t('revenue')}</span>
-                  <span>{reformatAmount(revenueMonthly)}</span>
+                  <span>{c(revenueMonthly || 0)}</span>
                 </div>
               </div>
               <div>
                 <img src={dashboardCost} alt="cost" />
                 <div>
                   <span>{t('cost')}</span>
-                  <span>{reformatAmount(costMonthly)}</span>
+                  <span>{c(costMonthly || 0)}</span>
                 </div>
               </div>
               <div>

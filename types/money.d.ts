@@ -7,7 +7,9 @@ declare module 'money' {
   const fx: {
     (input: number): Property;
     base: string;
-    rates: string[];
+    rates: {
+      [key: string]: number;
+    };
     timestamp: string;
   };
 

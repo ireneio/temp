@@ -4,6 +4,7 @@ export { default as fb } from './fb';
 export { default as events } from './events';
 export { default as colors } from './colors';
 export { default as apps } from './apps';
+export { default as currency } from './currency';
 
 // definition
 throw new Error(

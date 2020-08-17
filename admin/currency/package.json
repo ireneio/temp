@@ -1,14 +1,14 @@
 {
   "private": true,
-  "name": "@store/ad-track",
-  "description": "Use to call gtag and fpq",
+  "name": "@admin/currency",
+  "description": "Currency context for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.57.0",
+  "version": "0.1.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/context": "^0.57.0"
   },
-  "keywords": ["ad", "fbq", "gtag", "track"]
+  "keywords": ["admin", "context", "currency"]
 }

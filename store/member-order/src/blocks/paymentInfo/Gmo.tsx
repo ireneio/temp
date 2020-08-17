@@ -5,7 +5,7 @@ import { filter } from 'graphql-anywhere';
 import moment from 'moment';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import currencyContext from '@store/currency';
+import { currency as currencyContext } from '@meepshop/context';
 
 import Credit from './Credit';
 

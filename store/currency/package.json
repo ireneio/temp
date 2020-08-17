@@ -8,8 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@store/utils": "^0.57.0",
-    "memoize-one": "^5.1.1",
+    "@meepshop/context": "^0.57.0",
     "money": "^0.2.0"
   },
   "keywords": ["context", "currency", "store"]

@@ -3,7 +3,7 @@ import { ColumnProps } from 'antd/lib/table';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 import { ColorsType } from '@meepshop/context/lib/colors';
-import { CurrencyType } from '@store/currency';
+import { CurrencyType } from '@meepshop/context/lib/currency';
 
 // import
 import React from 'react';
@@ -14,9 +14,9 @@ import memoizeOne from 'memoize-one';
 import transformColor from 'color';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { currency as currencyContext } from '@meepshop/context';
 import Thumbnail, { thumbnailFragment } from '@meepshop/thumbnail';
 import withContext from '@store/utils/lib/withContext';
-import currencyContext from '@store/currency';
 
 import styles from './styles/products.less';
 

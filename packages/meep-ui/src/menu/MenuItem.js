@@ -4,13 +4,14 @@ import memoizeOne from 'memoize-one';
 import { Menu } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { currency as currencyContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
 import {
   LOCATION_TYPE,
   ONE_OF_LOCALE_TYPE,
-  ONE_OF_CURRENCY_TYPE,
   ISLOGIN_TYPE,
   ID_TYPE,
   URL_TYPE,
@@ -31,6 +32,7 @@ import styles from './styles/menuItem.less';
 const { Item: AntdMenuItem, SubMenu } = Menu;
 
 @withTranslation('common')
+@withContext(currencyContext)
 @enhancer
 export default class MenuItem extends React.PureComponent {
   generateURL = memoizeOne(notMemoizedGenerateURL);
@@ -42,7 +44,6 @@ export default class MenuItem extends React.PureComponent {
     toggleCart: PropTypes.func.isRequired,
     location: LOCATION_TYPE.isRequired,
     locale: ONE_OF_LOCALE_TYPE.isRequired,
-    customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
     logout: PropTypes.func.isRequired,
     setCustomerCurrency: PropTypes.func.isRequired,
@@ -187,7 +188,7 @@ export default class MenuItem extends React.PureComponent {
       /** context */
       location: { pathname, search },
       locale,
-      customerCurrency,
+      currency,
 
       /** props */
       id,
@@ -199,7 +200,7 @@ export default class MenuItem extends React.PureComponent {
         return /\/login/.test(pathname) ? 'is-active' : '';
 
       default:
-        if (id === locale || id === customerCurrency) return styles.fontBold;
+        if (id === locale || id === currency) return styles.fontBold;
 
         return url === decodeURIComponent(`${pathname}${search}`)
           ? 'is-active'

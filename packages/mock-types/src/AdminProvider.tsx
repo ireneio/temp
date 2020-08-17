@@ -6,6 +6,7 @@ import { EventsProvider } from '@meepshop/context/lib/events';
 import { AppsProvider } from '@meepshop/context/lib/apps';
 import '@admin/utils/styles/base.less';
 import withApollo from '@admin/apollo';
+import CurrencyProvider from '@admin/currency';
 import Wrapper from '@admin/wrapper';
 
 import MockTypes from './index';
@@ -20,9 +21,11 @@ export default withApollo(
     React.memo(({ children }) => (
       <EventsProvider>
         <AppsProvider>
-          <MockTypes>
-            <AdminWrapper>{children}</AdminWrapper>
-          </MockTypes>
+          <CurrencyProvider>
+            <AdminWrapper>
+              <MockTypes>{children}</MockTypes>
+            </AdminWrapper>
+          </CurrencyProvider>
         </AppsProvider>
       </EventsProvider>
     )),

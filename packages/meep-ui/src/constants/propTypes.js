@@ -11,7 +11,6 @@ import {
 
 import buildPropTypes from 'utils/buildPropTypes';
 
-import CURRENCY from './currency';
 import { PAPER_TYPE, ELECYTONIC_TYPE } from './invoice';
 import * as ISLOGIN from './isLogin';
 
@@ -141,9 +140,6 @@ export const ONE_OF_LOCALE_TYPE = PropTypes.oneOf([
   'id_ID',
 ]);
 
-/** test oneOfCurrency */
-export const ONE_OF_CURRENCY_TYPE = PropTypes.oneOf(CURRENCY);
-
 export const FB_ACCOUNT_TYPE = PropTypes.oneOf(['fanPageId', 'personal']);
 
 export const ALIGNMENT_TYPE = PropTypes.oneOf(['left', 'center', 'right']);
@@ -253,7 +249,6 @@ export const CONTEXT_TYPES = {
   storeSetting: STORE_SETTING_TYPE.isRequired,
   colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
   locale: ONE_OF_LOCALE_TYPE.isRequired,
-  customerCurrency: ONE_OF_CURRENCY_TYPE.isRequired,
   location: LOCATION_TYPE.isRequired,
   carts: PropTypes.shape({}).isRequired,
 

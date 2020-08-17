@@ -20,7 +20,7 @@ import { AppsProvider } from '@meepshop/context/lib/apps';
 import { withDomain } from '@meepshop/link';
 import withApollo from '@store/apollo';
 import FbProvider from '@store/fb';
-import { CurrencyProvider } from '@store/currency';
+import CurrencyProvider from '@store/currency';
 import AdTrackProvider from '@store/ad-track';
 
 import { Error, CloseView, StoreNotExistsView } from 'components';
@@ -178,7 +178,7 @@ class MyApp extends App {
             'common',
           ],
         },
-        cookieCurrency: req?.currency,
+        cookieCurrency: req?.cookies.currency,
       };
     } catch (error) {
       console.log(error);

@@ -25,7 +25,9 @@ import {
 interface ReqType {
   i18n: I18nPropsType['i18n'];
   language: I18nPropsType['i18n']['language'];
-  currency: string;
+  cookies: {
+    currency: string;
+  };
 }
 
 interface ResType {
@@ -102,11 +104,11 @@ export default buildWithApollo({
         });
     }
 
-    if (!req.currency || !currencys.includes(req.currency)) {
+    if (!req.cookies.currency || !currencys.includes(req.cookies.currency)) {
       const currency = currencys?.[0];
 
       if (currency) {
-        req.currency = currency;
+        req.cookies.currency = currency;
         res.cookie('currency', currency);
       }
     }

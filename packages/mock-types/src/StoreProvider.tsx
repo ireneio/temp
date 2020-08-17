@@ -8,7 +8,7 @@ import { AppsProvider } from '@meepshop/context/lib/apps';
 import '@store/utils/styles/base.less';
 import withApollo from '@store/apollo';
 import FbProvider from '@store/fb';
-import { CurrencyProvider } from '@store/currency';
+import CurrencyProvider from '@store/currency';
 import AdTrackProvider from '@store/ad-track';
 
 import MockTypes from './index';

@@ -7,11 +7,14 @@ import { connect } from 'react-redux';
 import { UserAgent } from 'fbjs';
 import { notification } from 'antd';
 
-import { adTrack as adTrackContext, fb as fbContext } from '@meepshop/context';
+import {
+  adTrack as adTrackContext,
+  fb as fbContext,
+  currency as currencyContext,
+} from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import Layout from '@meepshop/meep-ui/lib/layout';
 import withContext from '@store/utils/lib/withContext';
-import currencyContext from '@store/currency';
 
 import { getJoinedUser } from 'selectors';
 import * as Actions from 'ducks/actions';

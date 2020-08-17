@@ -9,6 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/utils": "^0.57.0",
+    "@meepshop/context": "^0.57.0",
     "@meepshop/icons": "^0.57.0",
     "@meepshop/images": "^0.57.0",
     "@meepshop/link": "^0.57.0",
