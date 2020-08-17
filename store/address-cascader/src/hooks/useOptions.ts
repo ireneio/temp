@@ -11,9 +11,9 @@ import gql from 'graphql-tag';
 import { localeFragmentType } from '@meepshop/utils/lib/fragments/locale';
 
 import {
-  useOptionsFragment as useOptionsFragmentType,
-  useOptionsFragment_countries as useOptionsFragmentCountries,
-} from './__generated__/useOptionsFragment';
+  useOptionsAddressServiceFragment as useOptionsAddressServiceFragmentType,
+  useOptionsAddressServiceFragment_countries as useOptionsAddressServiceFragmentCountries,
+} from './__generated__/useOptionsAddressServiceFragment';
 
 // graphql import
 import localeFragment from '@meepshop/utils/lib/fragments/locale';
@@ -27,8 +27,8 @@ interface OptionsType {
 }
 
 // definition
-export const useOptionsFragment = gql`
-  fragment useOptionsFragment on AddressService {
+export const useOptionsAddressServiceFragment = gql`
+  fragment useOptionsAddressServiceFragment on AddressService {
     countries {
       id
       name {
@@ -70,8 +70,8 @@ const getOptions = (
   }));
 
 export default (
-  { countries }: useOptionsFragmentType,
-  shippableCountries: Pick<useOptionsFragmentCountries, 'id'>[],
+  { countries }: useOptionsAddressServiceFragmentType,
+  shippableCountries: Pick<useOptionsAddressServiceFragmentCountries, 'id'>[],
   { language }: I18nPropsType['i18n'],
 ): ReturnType<typeof getOptions> =>
   useMemo(

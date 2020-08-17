@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { Select } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import ProductAmountSelect from '@meepshop/product-amount-select';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -37,24 +37,6 @@ export default class QuantityButton extends React.Component {
     carts: null,
   };
 
-  state = {
-    result: null,
-  };
-
-  onSearch = ({ value, max, min }) => {
-    const result = value && parseInt(value, 10);
-
-    this.setState(
-      result && result >= min && result <= max
-        ? {
-            result,
-          }
-        : {
-            result: null,
-          },
-    );
-  };
-
   generateOptions = () => {
     const {
       t,
@@ -66,83 +48,32 @@ export default class QuantityButton extends React.Component {
       name,
       container,
     } = this.props;
-    const { result } = this.state;
     const { id, stock, maxPurchaseLimit, minPurchaseItems } = variant;
 
     if (orderable === ORDERABLE) {
-      const variantInCart = carts?.categories.products.find(
-        product => product.variantId === id,
-      );
-      const quantityInCart = variantInCart?.quantity || 0;
-
-      // 上限為最高購買量或庫存，取低減購物車內含量
-      const max =
-        maxPurchaseLimit < stock
-          ? maxPurchaseLimit - quantityInCart
-          : stock - quantityInCart;
-      // 下限為最低購買量減購物車內含量
-      const min =
-        minPurchaseItems > quantityInCart
-          ? minPurchaseItems - quantityInCart
-          : 1;
-
-      if (max - min > 99) {
-        const vision = [];
-
-        for (let value = min; value <= min + 99; value += 1) {
-          vision.push(
-            <Select.Option key={value} value={value}>
-              {value}
-            </Select.Option>,
-          );
-        }
-
-        return (
-          <Select
-            showSearch
-            dropdownMatchSelectWidth={false}
-            dropdownClassName={name}
-            value={quantity}
-            onChange={onChangeQuantity}
-            notFoundContent={t('not-found-content')}
-            onSearch={value => {
-              this.onSearch({ value, max, min });
-            }}
-            getPopupContainer={() => container.current || document.body}
-          >
-            {result ? (
-              <Select.Option value={result}>{result}</Select.Option>
-            ) : (
-              vision.concat([
-                <Select.Option key="MORE" title={t('more-options')} disabled>
-                  {t('more-options')}
-                </Select.Option>,
-              ])
-            )}
-          </Select>
-        );
-      }
-
-      const options = [];
-
-      for (let value = min; value <= max; value += 1) {
-        options.push(
-          <Select.Option key={value} value={value}>
-            {value}
-          </Select.Option>,
-        );
-      }
+      const quantityInCart =
+        cart?.categories.products.find(product => product.variantId === id)
+          ?.quantity || 0;
 
       return (
-        <Select
-          dropdownMatchSelectWidth={false}
+        <ProductAmountSelect
+          variant={{
+            ...variant,
+            maxPurchaseLimit:
+              maxPurchaseLimit > quantityInCart
+                ? maxPurchaseLimit - quantityInCart
+                : 0,
+            minPurchaseItems:
+              minPurchaseItems > quantityInCart
+                ? minPurchaseItems - quantityInCart
+                : 0,
+            stock: stock > quantityInCart ? stock - quantityInCart : 0,
+          }}
           dropdownClassName={name}
-          onChange={onChangeQuantity}
           value={quantity}
+          onChange={onChangeQuantity}
           getPopupContainer={() => container.current || document.body}
-        >
-          {options}
-        </Select>
+        />
       );
     }
 

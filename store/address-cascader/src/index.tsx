@@ -24,7 +24,7 @@ import {
 } from './__generated__/getCountriesAddress';
 
 // graphql import
-import { useOptionsFragment } from './hooks/useOptions';
+import { useOptionsAddressServiceFragment } from './hooks/useOptions';
 
 // typescript definition
 interface PropsType extends Pick<I18nPropsType, 'i18n'> {
@@ -44,11 +44,11 @@ interface PropsType extends Pick<I18nPropsType, 'i18n'> {
 const query = gql`
   query getCountriesAddress {
     addressService {
-      ...useOptionsFragment
+      ...useOptionsAddressServiceFragment
     }
   }
 
-  ${useOptionsFragment}
+  ${useOptionsAddressServiceFragment}
 `;
 
 export const validateAddressCascader = (message: string) => (
@@ -75,7 +75,7 @@ const AddressCascader = React.memo(
     const { data } = useQuery<getCountriesAddress>(query);
     const options = useOptions(
       filter(
-        useOptionsFragment,
+        useOptionsAddressServiceFragment,
         data?.addressService || { __typename: 'AddressService', countries: [] },
       ),
       shippableCountries,
