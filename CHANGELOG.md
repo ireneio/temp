@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.58.1 (2020-08-17)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1110](https://github.com/meepshop/meep-lerna/pull/1110) (@meepshop/meep-ui) Fix add product to cart error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1108](https://github.com/meepshop/meep-lerna/pull/1108) (@meepshop/switch) Move @admin/switch to @meepshop/switch ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.58.0 (2020-08-17)
 
 #### :boom: Breaking Change
