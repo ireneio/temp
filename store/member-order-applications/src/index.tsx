@@ -35,7 +35,7 @@ interface PropTypes extends I18nPropsType {
 
 // definition
 const MemberOrderApplications = React.memo(
-  ({ t, order: { orderNo, createdOn, applications } }: PropTypes) => {
+  ({ t, order: { orderNo, createdAt, applications } }: PropTypes) => {
     const colors = useContext(ColorsContext);
 
     return (
@@ -61,7 +61,7 @@ const MemberOrderApplications = React.memo(
             <span>
               <span>{t('order-date')}</span>
 
-              {moment.unix(createdOn || 0).format('YYYY/MM/DD')}
+              {moment(createdAt).format('YYYY/MM/DD')}
             </span>
           </h1>
           {applications.map(app => (
@@ -90,7 +90,7 @@ export default React.memo(({ orderId }: { orderId: string }) => (
           order(orderId: $orderId) {
             id
             orderNo
-            createdOn
+            createdAt
             products {
               id
               ...applicationProductsObjectTypeFragment
@@ -113,7 +113,7 @@ export default React.memo(({ orderId }: { orderId: string }) => (
 
         # TODO: use new api
         getOrderApplyList(
-          search: { size: 100, sort: [{ field: "createdOn", order: "desc" }] }
+          search: { size: 100, sort: [{ field: "createdAt", order: "desc" }] }
         ) {
           data {
             id

@@ -11,7 +11,7 @@ export const GET_PRODUCT_QA_LIST = `
         ]
       }
       sort: {
-        field: "createdOn"
+        field: "createdAt"
         order: "desc"
       }
     }) {
@@ -19,7 +19,7 @@ export const GET_PRODUCT_QA_LIST = `
         userEmail
         qa {
           question
-          createdOn
+          createdAt
         }
       }
     }
@@ -32,7 +32,7 @@ export const CREATE_PRODUCT_QA = `
       userEmail
       qa {
         question
-        createdOn
+        createdAt
       }
     }
   }

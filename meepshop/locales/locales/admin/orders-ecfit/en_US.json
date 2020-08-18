@@ -85,7 +85,7 @@
     "order-status": "Order status",
     "recipient": "Recipient",
     "amount": "Amount",
-    "create-on": "Establish time",
+    "create-at": "Establish time",
     "send-time": "Delivery time",
     "fail-reason": "Reason for failure"
   },

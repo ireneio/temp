@@ -154,7 +154,7 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
         }
 
         getOrderApplyList(
-          search: { size: 100, sort: [{ field: "createdOn", order: "desc" }] }
+          search: { size: 100, sort: [{ field: "createdAt", order: "desc" }] }
         ) {
           ...calculateOrderOrderApplyListFragment
         }
@@ -209,7 +209,7 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
             orderProductId
             returnId
             applicationType
-            createdOn
+            createdAt
             recipient {
               name
               mobile
@@ -229,7 +229,7 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
               orderProductId
               returnId
               applicationType
-              createdOn
+              createdAt
               recipient {
                 name
                 mobile
@@ -306,7 +306,7 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
       t,
 
       /** props */
-      order: { orderNo, createdOn, ...order },
+      order: { orderNo, createdAt, ...order },
       colors,
       type,
     } = this.props;
@@ -335,9 +335,9 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
           </span>
 
           <span>
-            <span>{t('created-on')}</span>
+            <span>{t('created-at')}</span>
 
-            {moment.unix(createdOn || 0).format('YYYY/MM/DD')}
+            {moment(createdAt).format('YYYY/MM/DD')}
           </span>
         </h1>
 
@@ -451,7 +451,7 @@ export default React.memo(
             order(orderId: $orderId) {
               id
               orderNo
-              createdOn
+              createdAt
               products {
                 ...productsProductsObjectTypeFragment
               }
@@ -472,7 +472,7 @@ export default React.memo(
 
           # TODO: use new api
           getOrderApplyList(
-            search: { size: 100, sort: [{ field: "createdOn", order: "desc" }] }
+            search: { size: 100, sort: [{ field: "createdAt", order: "desc" }] }
           ) {
             data {
               ...productsOrderApplyFragment

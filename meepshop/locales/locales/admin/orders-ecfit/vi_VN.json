@@ -85,7 +85,7 @@
     "order-status": "Tình trạng đặt hàng",
     "recipient": "Người nhận",
     "amount": "Số tiền",
-    "create-on": "Thiết lập thời gian",
+    "create-at": "Thiết lập thời gian",
     "send-time": "Thời gian giao hàng",
     "fail-reason": "Lý do thất bại"
   },

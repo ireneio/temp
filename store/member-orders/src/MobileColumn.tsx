@@ -25,7 +25,7 @@ const MobileColumn = React.memo(
   ({
     t,
     id,
-    createdOn,
+    createdAt,
     orderNo,
     paymentInfo,
     shipmentInfo,
@@ -37,11 +37,7 @@ const MobileColumn = React.memo(
     return (
       <>
         <div className={styles.root} onClick={() => toggleDrawer(true)}>
-          <div>
-            {moment
-              .unix(createdOn || 0 /** TODO: should not be null */)
-              .format('YYYY/MM/DD')}
-          </div>
+          <div>{moment(createdAt).format('YYYY/MM/DD')}</div>
 
           <h4>
             {t('order.no')}：<div className={styles.link}>{orderNo}</div>

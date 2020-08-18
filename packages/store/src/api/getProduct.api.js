@@ -19,7 +19,7 @@ export default async ({ id, ...context }) => {
         },
         sort: [
           {
-            field: 'createdOn',
+            field: 'createdAt',
             order: 'desc',
           },
         ],

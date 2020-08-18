@@ -86,11 +86,9 @@ class MemberOrders extends React.PureComponent<PropsType> {
   private columns = memoizeOne(({ t }: Pick<PropsType, 't'>) => [
     {
       title: t('date'),
-      dataIndex: 'node.createdOn',
-      render: (value: getOrdersViewerOrdersEdgesNode['createdOn']) =>
-        moment
-          .unix(value || 0 /** TODO: should not be null */)
-          .format('YYYY/MM/DD'),
+      dataIndex: 'node.createdAt',
+      render: (value: getOrdersViewerOrdersEdgesNode['createdAt']) =>
+        moment(value).format('YYYY/MM/DD'),
       width: 130,
     },
     {
@@ -312,7 +310,7 @@ export default React.memo(() => (
             edges {
               node {
                 id
-                createdOn
+                createdAt
                 orderNo
                 paymentInfo {
                   status
@@ -339,7 +337,7 @@ export default React.memo(() => (
         }
 
         getOrderApplyList(
-          search: { size: 100, sort: [{ field: "createdOn", order: "desc" }] }
+          search: { size: 100, sort: [{ field: "createdAt", order: "desc" }] }
         ) {
           ...calculateOrderOrderApplyListFragment
         }

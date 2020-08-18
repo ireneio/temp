@@ -84,7 +84,7 @@ export const ordersOrderConnectionFragment = gql`
         priceInfo {
           total
         }
-        createdOn
+        createdAt
         lastEcfitRequestRecord {
           createdAt
           response
@@ -195,11 +195,10 @@ class Orders extends React.PureComponent<PropsType, StateType> {
         dataIndex: 'node.priceInfo.total',
       },
       {
-        title: t('orders.create-on'),
-        dataIndex: 'node.createdOn',
-        render: (value: ordersOrderConnectionFragmentEdgesNode['createdOn']) =>
-          // TODO: should not be null
-          !value ? null : moment.unix(value).format('YYYY/MM/DD HH:mm:ss'),
+        title: t('orders.create-at'),
+        dataIndex: 'node.createdAt',
+        render: (value: ordersOrderConnectionFragmentEdgesNode['createdAt']) =>
+          !value ? null : moment(value).format('YYYY/MM/DD HH:mm:ss'),
       },
       ...(variables?.filter?.ecfitSentStatus !== 'SENT_SUCCESSFUL'
         ? []

@@ -20,7 +20,7 @@ export default async ({ offset = 0, limit = 20, ...context }) => {
         },
         sort: [
           {
-            field: 'createdOn',
+            field: 'createdAt',
             order: 'desc',
           },
         ],

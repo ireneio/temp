@@ -85,7 +85,7 @@
     "order-status": "Status pemesanan",
     "recipient": "Penerima",
     "amount": "Jumlah",
-    "create-on": "Tetapkan waktu",
+    "create-at": "Tetapkan waktu",
     "send-time": "Waktu pengiriman",
     "fail-reason": "Alasan kegagalan"
   },

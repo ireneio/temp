@@ -85,7 +85,7 @@
     "order-status": "訂單狀態",
     "recipient": "收件人",
     "amount": "金額",
-    "create-on": "建立時間",
+    "create-at": "建立時間",
     "send-time": "傳送時間",
     "fail-reason": "失敗原因"
   },

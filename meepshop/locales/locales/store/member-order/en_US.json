@@ -1,6 +1,6 @@
 {
   "order-number": "Order Number: ",
-  "created-on": "Order Date: ",
+  "created-at": "Order Date: ",
   "not-found": "Order not found, please confirm that you are logged in to the correct account.",
   "product": {
     "title": "Item",

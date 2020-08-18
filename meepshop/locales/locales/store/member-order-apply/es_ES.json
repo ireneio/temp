@@ -1,6 +1,6 @@
 {
   "order-no": "Número de orden:",
-  "created-on": "Fecha de orden:",
+  "created-at": "Fecha de orden:",
   "product": {
     "title": "ít",
     "spec": "Especulación",

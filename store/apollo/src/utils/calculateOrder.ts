@@ -70,7 +70,7 @@ export const calculateOrderOrderApplyListFragment = gql`
       orderProductId
       returnId
       applicationType
-      createdOn
+      createdAt
       recipient {
         name
         mobile

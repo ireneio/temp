@@ -1,6 +1,6 @@
 {
   "order-number": "Số đơn hàng: ",
-  "created-on": "Ngày đặt hàng: ",
+  "created-at": "Ngày đặt hàng: ",
   "not-found": "Không tìm thấy đơn hàng, vui lòng xác nhận rằng bạn đã đăng nhập vào đúng tài khoản.",
   "product": {
     "title": "Số hiệu/ Tên sản phẩm",

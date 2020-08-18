@@ -85,7 +85,7 @@
     "order-status": "Statut de la commande",
     "recipient": "Bénéficiaire",
     "amount": "Montante",
-    "create-on": "Établir le temps",
+    "create-at": "Établir le temps",
     "send-time": "Heure de livraison",
     "fail-reason": "Raison de l'échec"
   },

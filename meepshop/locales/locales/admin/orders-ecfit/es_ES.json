@@ -85,7 +85,7 @@
     "order-status": "Estado del pedido",
     "recipient": "Recipiente",
     "amount": "Cantidad",
-    "create-on": "Establecer tiempo",
+    "create-at": "Establecer tiempo",
     "send-time": "El tiempo de entrega",
     "fail-reason": "Motivo del fracaso"
   },

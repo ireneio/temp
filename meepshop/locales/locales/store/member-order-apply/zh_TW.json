@@ -1,6 +1,6 @@
 {
   "order-no": "訂單編號：",
-  "created-on": "訂購日：",
+  "created-at": "訂購日：",
   "product": {
     "title": "商品名稱",
     "spec": "規格",

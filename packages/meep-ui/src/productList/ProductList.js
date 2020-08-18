@@ -103,7 +103,7 @@ export default class ProductList extends React.PureComponent {
       // default params
       params: {
         offset = 0,
-        sort = 'createdOn-desc',
+        sort = 'createdAt-desc',
         limit = 20,
         ...restParams
       },
@@ -453,7 +453,7 @@ export default class ProductList extends React.PureComponent {
                   value={
                     sortOptions.some(option => option.value === sort)
                       ? sort
-                      : 'createdOn-desc'
+                      : 'createdAt-desc'
                   }
                   size="large"
                   disabled={isDefaultProducts}

@@ -45,7 +45,7 @@ const MemberOrder = React.memo(
     t,
     order: {
       orderNo,
-      createdOn,
+      createdAt,
       products,
       environment,
       id,
@@ -62,9 +62,9 @@ const MemberOrder = React.memo(
             <span>{`${t('order-number')}${orderNo || ''}`}</span>
 
             <span>
-              <span>{t('created-on')}</span>
+              <span>{t('created-at')}</span>
 
-              {moment.unix(createdOn || 0).format('YYYY/MM/DD')}
+              {moment(createdAt).format('YYYY/MM/DD')}
             </span>
           </h1>
 
@@ -110,7 +110,7 @@ export default ({ orderId }: { orderId: string }): React.ReactElement => (
           order(orderId: $orderId) {
             id
             orderNo
-            createdOn
+            createdAt
             products {
               ...productsFragment
             }

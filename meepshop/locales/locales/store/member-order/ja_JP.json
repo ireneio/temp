@@ -1,6 +1,6 @@
 {
   "order-number": "注文番号：",
-  "created-on": "注文日：",
+  "created-at": "注文日：",
   "not-found": "注文が見つかりません。正しいアカウントにログインしていることを確認してください。",
   "product": {
     "title": "商品番号/品名",

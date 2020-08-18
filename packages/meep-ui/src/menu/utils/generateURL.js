@@ -32,7 +32,7 @@ export default (action, params, isLogin) => {
       const query = {
         offset,
         limit,
-        sort: `createdOn-${order}`,
+        sort: `createdAt-${order}`,
         price: `${lte},${gte}`,
         ...(search
           ? {

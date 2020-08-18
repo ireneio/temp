@@ -40,7 +40,7 @@ export const applicationOrderApplyFragment = gql`
     orderProductId
     returnId
     applicationType
-    createdOn
+    createdAt
     recipient {
       name
       mobile
@@ -160,7 +160,7 @@ class Application extends React.PureComponent<PropTypes> {
       /** props */
       data,
     } = this.props;
-    const { applicationType, createdOn, recipient } = data;
+    const { applicationType, createdAt, recipient } = data;
     const type = t(`type.${applicationType}`);
 
     return (
@@ -172,7 +172,7 @@ class Application extends React.PureComponent<PropTypes> {
           </h4>
           <h4>
             {t('date')}
-            {moment.unix(createdOn || 0).format('YYYY/MM/DD')}
+            {moment(createdAt).format('YYYY/MM/DD')}
           </h4>
           {applicationType === 'return' ? null : (
             <>

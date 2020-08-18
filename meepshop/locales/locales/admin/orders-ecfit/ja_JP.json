@@ -85,7 +85,7 @@
     "order-status": "注文の状況",
     "recipient": "受取人",
     "amount": "量",
-    "create-on": "時間を確立する",
+    "create-at": "時間を確立する",
     "send-time": "納期",
     "fail-reason": "失敗の理由"
   },

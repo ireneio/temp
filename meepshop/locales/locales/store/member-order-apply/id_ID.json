@@ -1,6 +1,6 @@
 {
   "order-no": "Jumlah order:",
-  "created-on": "Tanggal pemesanan:",
+  "created-at": "Tanggal pemesanan:",
   "product": {
     "title": "Barang",
     "spec": "Spec",

@@ -48,7 +48,7 @@ export const SORT_OPTIONS = (ids, value) => [
         },
       ]
     : []),
-  ...(value === 'createdOn-asc'
+  ...(value === 'createdAt-asc'
     ? [
         {
           text: 'oldest',
@@ -58,7 +58,7 @@ export const SORT_OPTIONS = (ids, value) => [
     : []),
   {
     text: 'latest',
-    value: 'createdOn-desc',
+    value: 'createdAt-desc',
   },
   {
     text: 'title',

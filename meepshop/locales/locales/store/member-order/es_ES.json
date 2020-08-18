@@ -1,6 +1,6 @@
 {
   "order-number": "Número de orden:",
-  "created-on": "Fecha de orden:",
+  "created-at": "Fecha de orden:",
   "not-found": "Pedido no encontrado, confirme que ha iniciado sesión en la cuenta correcta.",
   "product": {
     "title": "ít",

@@ -1,6 +1,6 @@
 {
   "order-no": "Số hiệu đơn hàng: ",
-  "created-on": "Ngày đặt hàng: ",
+  "created-at": "Ngày đặt hàng: ",
   "product": {
     "title": "Tên sản phẩm",
     "spec": "Quy cách",

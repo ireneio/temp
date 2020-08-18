@@ -22,7 +22,7 @@ type SortType = 'LATEST' | 'NAME' | 'PRICE_ASC' | 'PRICE_DESC';
 const generateProductsUrl = (link: imageFragmentLinkProductsLink): string =>
   `/products?sort=${
     {
-      LATEST: 'createdOn-desc',
+      LATEST: 'createdAt-desc',
       NAME: 'title.zh_TW-asc',
       PRICE_ASC: 'variantInfo.firstRetailPrice-asc',
       PRICE_DESC: 'variantInfo.firstRetailPrice-desc',

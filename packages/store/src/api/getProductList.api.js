@@ -34,7 +34,7 @@ export default async (args = {}) => {
         },
         sort: [
           {
-            field: 'createdOn',
+            field: 'createdAt',
             order: 'desc',
           },
         ],

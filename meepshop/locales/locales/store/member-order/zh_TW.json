@@ -1,6 +1,6 @@
 {
   "order-number": "訂單編號：",
-  "created-on": "訂購日：",
+  "created-at": "訂購日：",
   "not-found": "無此訂單，請確認是否登入正確的帳號。",
   "product": {
     "title": "商品編號/名稱",

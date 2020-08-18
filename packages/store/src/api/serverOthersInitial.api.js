@@ -28,7 +28,7 @@ export default async context => {
         },
         sort: [
           {
-            field: 'createdOn',
+            field: 'createdAt',
             order: 'desc',
           },
         ],

@@ -1,6 +1,6 @@
 {
   "order-no": "Numéro de commande:",
-  "created-on": "Date de commande:",
+  "created-at": "Date de commande:",
   "product": {
     "title": "Article",
     "spec": "Spec",

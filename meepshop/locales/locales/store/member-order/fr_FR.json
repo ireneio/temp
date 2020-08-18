@@ -1,6 +1,6 @@
 {
   "order-number": "Numéro de commande:",
-  "created-on": "Date de commande:",
+  "created-at": "Date de commande:",
   "not-found": "Commande introuvable, veuillez confirmer que vous êtes connecté au bon compte.",
   "product": {
     "title": "Article",

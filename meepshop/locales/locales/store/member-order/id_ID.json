@@ -1,6 +1,6 @@
 {
   "order-number": "Jumlah order:",
-  "created-on": "Tanggal pemesanan:",
+  "created-at": "Tanggal pemesanan:",
   "not-found": "Pesanan tidak ditemukan, harap konfirmasi bahwa Anda masuk ke akun yang benar.",
   "product": {
     "title": "Barang",

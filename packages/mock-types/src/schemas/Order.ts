@@ -14,7 +14,7 @@ gql`
     id
     orderNo
     status
-    createdOn
+    createdAt
     paidMessage {
       note
     }
@@ -33,7 +33,7 @@ export default mock.add<
     id: orderId || obj?.node?.id || 'id',
     orderNo: (orderId || obj?.node?.id || 'orderNo').slice(0, 8),
     status: 0,
-    createdOn: moment().unix(),
+    createdAt: moment().toISOString(),
     paidMessage: [
       {
         __typename: 'PaidMessageObject',
@@ -46,7 +46,7 @@ export default mock.add<
     id: orderId || obj?.node?.id || 'id',
     orderNo: (orderId || obj?.node?.id || 'orderNo').slice(0, 8),
     status: 1,
-    createdOn: moment().unix(),
+    createdAt: moment().toISOString(),
     paidMessage: null,
   }),
   (obj, { orderId }) => ({
@@ -54,7 +54,7 @@ export default mock.add<
     id: orderId || obj?.node?.id || 'id',
     orderNo: (orderId || obj?.node?.id || 'orderNo').slice(0, 8),
     status: 2,
-    createdOn: moment().unix(),
+    createdAt: moment().toISOString(),
     paidMessage: null,
   }),
   (obj, { orderId }) => ({
@@ -62,7 +62,7 @@ export default mock.add<
     id: orderId || obj?.node?.id || 'id',
     orderNo: (orderId || obj?.node?.id || 'orderNo').slice(0, 8),
     status: 3,
-    createdOn: moment().unix(),
+    createdAt: moment().toISOString(),
     paidMessage: null,
   }),
 ]);

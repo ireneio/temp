@@ -127,7 +127,7 @@ export default class PrdoductQA extends React.PureComponent {
           itemLayout="horizontal"
           dataSource={QAList}
           renderItem={({ qa, userEmail }, index) => {
-            const [{ question, createdOn }, ...replay] = qa;
+            const [{ question, createdAt }, ...replay] = qa;
             const [email] = (userEmail || '').split(/@/);
 
             return (
@@ -153,11 +153,11 @@ export default class PrdoductQA extends React.PureComponent {
                         : replay.map(
                             ({
                               question: replayQuestion,
-                              createdOn: replayCreatedOn,
+                              createdAt: replayCreatedAt,
                             }) => (
                               <div style={styles.replayContent(colors)}>
                                 <pre>{replayQuestion}</pre>(
-                                {moment(replayCreatedOn * 1000).format(
+                                {moment(replayCreatedAt).format(
                                   'YYYY/MM/DD HH:mm:ss',
                                 )}
                                 )
@@ -169,7 +169,7 @@ export default class PrdoductQA extends React.PureComponent {
                 }
                 actions={[
                   `${email.length > 5 ? email.slice(0, 5) : email}*****`,
-                  moment(createdOn * 1000).format('YYYY/MM/DD HH:mm:ss'),
+                  moment(createdAt).format('YYYY/MM/DD HH:mm:ss'),
                 ]}
               >
                 <ListItemMeta description={<pre>{question}</pre>} />
