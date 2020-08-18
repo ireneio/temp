@@ -387,7 +387,34 @@ export default class ProductInfo extends React.PureComponent {
 
               ${cartFragment}
             `}
-            update={() => {
+            update={(cache, { data }) => {
+              const query = gql`
+                query updateCartCache {
+                  getCartList(search: { showDetail: true }) {
+                    data {
+                      ...cartFragment
+                    }
+                  }
+                }
+
+                ${cartFragment}
+              `;
+
+              const cart = cache.readQuery({
+                query,
+              });
+
+              if (cart.getCartList.data[0] === null)
+                cache.writeQuery({
+                  query,
+                  data: {
+                    getCartList: {
+                      __typename: 'OrderList',
+                      data: data.changeCartList,
+                    },
+                  },
+                });
+
               notification.success({ message: t('add-product-to-cart') });
             }}
           >
