@@ -28,6 +28,7 @@ interface PropsType extends AppProps {
 export interface CustomCtxType<Req = {}, Res = {}> extends AppContext {
   ctx: AppContext['ctx'] & {
     req: Req & {
+      logId: string;
       cookies: {
         'x-meepshop-authorization-token': string;
       };
@@ -67,7 +68,7 @@ export const buildWithApollo = ({ initCookies, ...config }: ConfigType) => (
     const {
       Component,
       router,
-      ctx: { res },
+      ctx: { res, req },
     } = ctx;
     const client = initApollo(config, undefined, ctx);
 
@@ -95,7 +96,7 @@ export const buildWithApollo = ({ initCookies, ...config }: ConfigType) => (
       } catch (e) {
         if (!shouldIgnoreUnauthorizedError(e.networkError))
           // eslint-disable-next-line no-console
-          console.error('Error while running `getDataFromTree`', e);
+          console.error(req.logId, 'Error while running `getDataFromTree`', e);
       }
 
       Head.rewind();
