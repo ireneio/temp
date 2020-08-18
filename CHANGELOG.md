@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.60.0 (2020-08-18)
+## 0.59.0 (2020-08-18)
 
 #### :boom: Breaking Change
 
