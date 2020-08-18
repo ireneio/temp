@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.60.0 (2020-08-18)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1074](https://github.com/meepshop/meep-lerna/pull/1074) 前端 - 改用 at timestamp ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1074](https://github.com/meepshop/meep-lerna/pull/1074) 前端 - 改用 at timestamp ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1074](https://github.com/meepshop/meep-lerna/pull/1074) 前端 - 改用 at timestamp ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.58.2 (2020-08-18)
 
 #### :bug: Bug Fix
