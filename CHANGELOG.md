@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.58.2 (2020-08-18)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1111](https://github.com/meepshop/meep-lerna/pull/1111) (@meepshop/meep-ui) Should overwrite cart when getCartList.data[0] is null ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1109](https://github.com/meepshop/meep-lerna/pull/1109) Rename context name to uppercase name ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.58.1 (2020-08-17)
 
 #### :bug: Bug Fix
