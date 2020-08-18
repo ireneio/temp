@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.59.1 (2020-08-18)
+
+#### :house: Internal
+
+- [#1112](https://github.com/meepshop/meep-lerna/pull/1112) (@meepshop/apollo) Add logId ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.59.0 (2020-08-18)
 
 #### :boom: Breaking Change
