@@ -3,6 +3,7 @@
   "save": "儲存",
   "cancel": "取消",
   "required": "必填",
+  "success": "儲存成功",
   "error": "更新失敗",
   "facebook": {
     "title": "Facebook整合功能",

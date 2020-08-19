@@ -3,6 +3,7 @@
   "save": "セーブ",
   "cancel": " キャンセル",
   "required": "必須(必ず入力して下さい)",
+  "success": "セーブに成功",
   "error": "更新に失敗しました",
   "facebook": {
     "title": "Facebook統合",

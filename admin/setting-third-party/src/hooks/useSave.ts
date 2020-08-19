@@ -60,6 +60,7 @@ export default (
             ]);
 
           resetFields();
+          message.success(t('success'));
         } catch (error) {
           message.error(t('error'));
         }

@@ -3,6 +3,7 @@
   "save": "sauver",
   "cancel": "Annuler",
   "required": "Champs obligatoires",
+  "success": "Sauvegarde réussie",
   "error": "Mise à jour a échoué",
   "facebook": {
     "title": "Lien Facebook",

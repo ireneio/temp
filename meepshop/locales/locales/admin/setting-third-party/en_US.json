@@ -3,6 +3,7 @@
   "save": "Save",
   "cancel": "Cancel",
   "required": "Required",
+  "success": "Save Successfully",
   "error": "Update failed",
   "facebook": {
     "title": "Facebook integration",
