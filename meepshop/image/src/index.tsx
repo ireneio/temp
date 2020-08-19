@@ -51,7 +51,7 @@ export default React.memo(
               }}
             >
               <img
-                alt={alt}
+                alt={alt || ''}
                 className={`
                   ${styles.image}
                   ${isClear ? '' : styles.blur}

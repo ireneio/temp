@@ -28,5 +28,5 @@ type ImageTextModule implements Module {
   color: HexColorCode!
   hoverColor: HexColorCode
   position: ImageTextModulePosition!
-  alt: String!
+  alt: String
 }

@@ -12,6 +12,7 @@ import iframeFragment from '@meepshop/iframe/lib/fragment';
 import imageFragment from '@meepshop/image/lib/fragment';
 import imageTextFragment from '@meepshop/image-text/lib/fragment';
 import menuFragment from '@meepshop/menu/lib/fragment';
+import productCollectionsFragment from '@meepshop/product-collections/lib/fragment';
 import productDraftTextFragment from '@meepshop/product-draft-text/lib/fragment';
 import productIframeFragment from '@meepshop/product-iframe/lib/fragment';
 import productVideoFragment from '@meepshop/product-video/lib/fragment';
@@ -119,6 +120,13 @@ export const modulesFragment = gql`
       ...menuFragment
     }
 
+    ... on ProductCollectionsModule {
+      __typename
+      id
+      parentId
+      ...productCollectionsFragment
+    }
+
     ... on ProductDraftTextModule {
       __typename
       id
@@ -185,6 +193,7 @@ export const modulesFragment = gql`
   ${imageFragment}
   ${imageTextFragment}
   ${menuFragment}
+  ${productCollectionsFragment}
   ${productDraftTextFragment}
   ${productIframeFragment}
   ${productVideoFragment}
@@ -211,6 +220,9 @@ const modules = {
   ImageModule: dynamic(() => import('@meepshop/image')),
   ImageTextModule: dynamic(() => import('@meepshop/image-text')),
   MenuModule: dynamic(() => import('@meepshop/menu')),
+  ProductCollectionsModule: dynamic(() =>
+    import('@meepshop/product-collections'),
+  ),
   ProductDraftTextModule: dynamic(() => import('@meepshop/product-draft-text')),
   ProductIframeModule: dynamic(() => import('@meepshop/product-iframe')),
   ProductVideoModule: dynamic(() => import('@meepshop/product-video')),

@@ -12,5 +12,5 @@ type CarouselModule implements Module {
   hoverPause: Boolean!
   showIndicator: Boolean!
   showController: Boolean!
-  alt: String!
+  alt: String
 }

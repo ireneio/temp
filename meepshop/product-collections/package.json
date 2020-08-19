@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@meepshop/product-collections",
+  "description": "Meepshop product collections",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.56.1",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/image": "^0.59.0",
+    "@meepshop/utils": "^0.59.0"
+  },
+  "keywords": ["collections", "meepshop", "product"]
+}

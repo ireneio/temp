@@ -14,6 +14,7 @@ import IframeModule from './IframeModule';
 import ImageModule from './ImageModule';
 import ImageTextModule from './ImageTextModule';
 import MenuModule from './MenuModule';
+import ProductCollectionsModule from './ProductCollectionsModule';
 import ProductDraftTextModule from './ProductDraftTextModule';
 import ProductIframeModule from './ProductIframeModule';
 import ProductVideoModule from './ProductVideoModule';
@@ -84,6 +85,11 @@ gql`
     }
 
     ... on MenuModule {
+      id
+      parentId
+    }
+
+    ... on ProductCollectionsModule {
       id
       parentId
     }
@@ -186,6 +192,7 @@ export default mock.add<PageModuleMock[]>('PageModule', [
   () => getPageModules(ImageModule),
   () => getPageModules(ImageTextModule),
   () => getPageModules(MenuModule),
+  () => getPageModules(ProductCollectionsModule),
   () => getPageModules(ProductDraftTextModule),
   () => getPageModules(ProductIframeModule),
   () => getPageModules(ProductVideoModule),

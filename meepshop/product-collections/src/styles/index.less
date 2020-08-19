@@ -1,0 +1,33 @@
+@import '~@meepshop/utils/styles/variables.less';
+
+.root {
+  width: 100%;
+
+  &.ORIGIN {
+    padding: 15px 0px;
+  }
+
+  &.SIDE {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+  }
+}
+
+.img {
+  &.ORIGIN {
+    width: 100%;
+    padding: 15px 0px;
+  }
+
+  &.SIDE {
+    width: 50%;
+    padding: 15px;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    div {
+      width: 100% !important;
+    }
+  }
+}

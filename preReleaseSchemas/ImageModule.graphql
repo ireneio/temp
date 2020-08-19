@@ -5,5 +5,5 @@ type ImageModule implements Module {
   link: Link
   width: PositiveInt!
   justifyContent: JustifyContent!
-  alt: String!
+  alt: String
 }
