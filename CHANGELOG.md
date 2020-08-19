@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.59.2 (2020-08-19)
+
+#### :rocket: New Feature
+
+- Other
+  - [#1114](https://github.com/meepshop/meep-lerna/pull/1114) 【BUG】後台 - 第三方設定，儲存資料後，無出現反饋訊息 ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#1105](https://github.com/meepshop/meep-lerna/pull/1105) 【重構】商品照片集元件 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.59.1 (2020-08-18)
 
 #### :house: Internal
