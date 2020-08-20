@@ -5,7 +5,7 @@ export const infoStyle = colors => ({
 
   // ant-select
   '.ant-select': {
-    minWidth: '60px',
+    minWidth: '80px',
   },
   '.ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active': {
     boxShadow: 'none',
@@ -26,9 +26,9 @@ export const infoStyle = colors => ({
   },
   '.ant-select-dropdown-menu': {
     borderRadius: '4px',
+    backgroundColor: colors[0],
   },
   '.ant-select-dropdown-menu li': {
-    backgroundColor: colors[0],
     color: colors[3],
     whiteSpace: 'unset',
     wordBreak: 'break-all',
