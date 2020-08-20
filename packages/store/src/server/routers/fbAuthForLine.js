@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
       );
 
     /* Get FB app secret - End */
-    const data = await appIdResponse.json();
+    const { data } = await appIdResponse.json();
     const { appId, appSecret } =
       data &&
       data.viewer &&
