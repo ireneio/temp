@@ -65,10 +65,12 @@ class Img extends React.PureComponent {
 
     if (!(image instanceof Object) || !isError) return url;
 
-    const originUrl = atob(url.split('/').slice(-1)).replace(
-      'gs://img.meepcloud.com/',
-      'https://gc.meepcloud.com/',
-    );
+    const originUrl = atob(
+      url
+        .replace(/\.[\w]+$/, '')
+        .split('/')
+        .slice(-1),
+    ).replace('gs://img.meepcloud.com/', 'https://gc.meepcloud.com/');
 
     return `${originUrl}?w=${imageWidth}`;
   };

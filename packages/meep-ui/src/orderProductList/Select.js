@@ -40,7 +40,6 @@ export default class Select extends React.PureComponent {
     maxPurchaseLimit: PURCHASE_ITEMS_TYPE.isRequired,
     productHasError: PropTypes.bool.isRequired,
     onChange: PropTypes.func.isRequired,
-    orderProductListRef: PropTypes.shape({}).isRequired,
   };
 
   static defaultProps = {
@@ -78,7 +77,6 @@ export default class Select extends React.PureComponent {
       error,
       onChange,
       productHasError,
-      orderProductListRef,
       ...props
     } = this.props;
 
@@ -142,7 +140,12 @@ export default class Select extends React.PureComponent {
                     message: t('update-product-in-cart'),
                   });
                 }}
-                getPopupContainer={() => orderProductListRef.current}
+                // TODO: remove after refactoring cart
+                getPopupContainer={() =>
+                  document.querySelector(
+                    '.meepshop-meep-ui__layout-cart-index__body',
+                  ) || document.body
+                }
               />
             )}
           </Mutation>

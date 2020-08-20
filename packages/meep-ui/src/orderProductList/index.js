@@ -14,8 +14,6 @@ import * as styles from './styles';
 @withTranslation('order-product-list')
 @radium
 export default class OrderProductList extends React.PureComponent {
-  orderProductListRef = React.createRef();
-
   static propTypes = {
     /** props */
     t: PropTypes.func.isRequired,
@@ -58,10 +56,7 @@ export default class OrderProductList extends React.PureComponent {
 
     return (
       <div style={[styles.root, style]}>
-        <div
-          ref={this.orderProductListRef}
-          style={styles.productList(products.length === 0)}
-        >
+        <div style={styles.productList(products.length === 0)}>
           {products.length === 0 ? (
             <>
               <EmptyCartIcon />
@@ -77,7 +72,6 @@ export default class OrderProductList extends React.PureComponent {
                     productId={productId}
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${productId}-${index}`}
-                    orderProductListRef={this.orderProductListRef}
                     onChange={onChange}
                     productHasError={productHasError}
                   />
