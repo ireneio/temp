@@ -4,14 +4,14 @@
   "description": "Member wish list page for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.59.2",
+  "version": "0.59.3",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/context": "^0.59.2",
     "@meepshop/thumbnail": "^0.59.2",
     "@meepshop/utils": "^0.59.2",
-    "@store/utils": "^0.59.2",
+    "@store/utils": "^0.59.3",
     "memoize-one": "^5.1.1",
     "moment": "^2.22.1"
   },
