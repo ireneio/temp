@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.59.3 (2020-08-20)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1116](https://github.com/meepshop/meep-lerna/pull/1116) 【BUG】 手機版 - 無法使用 Facebook 登入 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#1117](https://github.com/meepshop/meep-lerna/pull/1117) 【BUG】 手機版 - 商品頁輸入購買數量，該數字無顯示 ([@piovischioh](https://github.com/piovischioh))
+  - [#1115](https://github.com/meepshop/meep-lerna/pull/1115) 【BUG】手機版 - 於購物車 panel 更改商品數量，顯示異常 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.59.2 (2020-08-19)
 
 #### :rocket: New Feature
