@@ -4,16 +4,7 @@ import { FormComponentProps } from 'antd/lib/form';
 // import
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
-import {
-  Tooltip as AntdTooltip,
-  Icon,
-  Button,
-  Modal,
-  Form,
-  Input,
-  message,
-} from 'antd';
+import { Tooltip as AntdTooltip, Icon, Button, Modal, Form, Input } from 'antd';
 
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -22,27 +13,20 @@ import {
   webTrackFacebookPixelInstruction_w890 as webTrackFacebookPixelInstruction,
 } from '@meepshop/images';
 
+import useSetFbPixel from './hooks/useSetFbPixel';
 import useClipboard from './hooks/useClipboard';
 import styles from './styles/facebook.less';
 
 // graphql typescript
-import { setFbPixel as setFbPixelType } from './__generated__/setFbPixel';
-import { getFbPixel as getFbPixelType } from './__generated__/getFbPixel';
+import { facebookStoreFragment as facebookStoreFragmentType } from './__generated__/facebookStoreFragment';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
-  pixelId: string | null;
-  fbDPALink: string | null;
+  store: facebookStoreFragmentType;
 }
 
 // definition
 const { Item } = Form;
-
-export const facebookFbPixelFragment = gql`
-  fragment facebookFbPixelFragment on FbPixel {
-    pixelId
-  }
-`;
 
 export const facebookStoreFragment = gql`
   fragment facebookStoreFragment on Store {
@@ -50,49 +34,28 @@ export const facebookStoreFragment = gql`
     setting {
       fbDPALink
     }
+    adTrack @client {
+      facebookPixelId
+    }
   }
 `;
 
 export default Form.create<PropsType>()(
-  React.memo(({ pixelId, fbDPALink, form }: PropsType) => {
+  React.memo(({ form, store }: PropsType) => {
+    const { getFieldDecorator, validateFields } = form;
+    const {
+      id,
+      adTrack: { facebookPixelId },
+    } = store;
+    const fbDPALink = store.setting?.fbDPALink || null;
     const { t } = useTranslation('web-track');
     const [isOpen, openModal] = useState(false);
     const [editMode, setEditMode] = useState(false);
-    const [setFbPixel] = useMutation<setFbPixelType>(
-      gql`
-        mutation setFbPixel($input: FbPixelInput!) {
-          setFbPixel(input: $input) {
-            ...facebookFbPixelFragment
-          }
-        }
-        ${facebookFbPixelFragment}
-      `,
-      {
-        update: (cache, { data }) => {
-          message.success(t('save-success'));
-          cache.writeQuery<getFbPixelType>({
-            query: gql`
-              query getFbPixel {
-                getFbPixel {
-                  ...facebookFbPixelFragment
-                }
-              }
-              ${facebookFbPixelFragment}
-            `,
-            data: {
-              getFbPixel: {
-                __typename: 'FbPixel',
-                pixelId: data?.setFbPixel?.pixelId || null,
-              },
-            },
-          });
-        },
-      },
+    const setFbPixel = useSetFbPixel(
+      id || 'null-id' /** TODO: should be not null */,
     );
 
     useClipboard(fbDPALink || '', '#fbDPALink', t('facebook-pixel.copied'));
-
-    const { getFieldDecorator, validateFields } = form;
 
     return (
       <div>
@@ -122,8 +85,8 @@ export default Form.create<PropsType>()(
 
         {editMode ? (
           <Item className={styles.item}>
-            {getFieldDecorator('pixelId', {
-              initialValue: pixelId,
+            {getFieldDecorator('facebookPixelId', {
+              initialValue: facebookPixelId,
               rules: [
                 {
                   required: true,
@@ -140,17 +103,17 @@ export default Form.create<PropsType>()(
             <Button
               type="primary"
               onClick={() => {
-                validateFields((errors, values) => {
-                  if (!errors) {
-                    setFbPixel({
-                      variables: {
-                        input: {
-                          pixelId: values.pixelId,
-                        },
+                validateFields(async (errors, values) => {
+                  if (errors) return;
+
+                  setFbPixel({
+                    variables: {
+                      input: {
+                        pixelId: values.facebookPixelId,
                       },
-                    });
-                    setEditMode(false);
-                  }
+                    },
+                  });
+                  setEditMode(false);
                 });
               }}
             >
@@ -160,10 +123,10 @@ export default Form.create<PropsType>()(
           </Item>
         ) : (
           <>
-            {pixelId ? (
+            {facebookPixelId ? (
               <div className={styles.pixelNo}>
                 <div>{t('facebook-pixel.pixel-no')}</div>
-                <div>{pixelId}</div>
+                <div>{facebookPixelId}</div>
                 <Icon type="edit" onClick={() => setEditMode(true)} />
               </div>
             ) : (
@@ -195,8 +158,8 @@ export default Form.create<PropsType>()(
             </>
           }
         >
-          <Button disabled={!pixelId || !fbDPALink} id="fbDPALink">
-            {pixelId
+          <Button disabled={!facebookPixelId || !fbDPALink} id="fbDPALink">
+            {facebookPixelId
               ? t('facebook-pixel.copy-dpa-link')
               : t('facebook-pixel.set-pixel-first')}
           </Button>

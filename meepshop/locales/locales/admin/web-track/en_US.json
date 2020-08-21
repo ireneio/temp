@@ -21,7 +21,7 @@
     "description": "Don't forget to use Google Analytics to analyze service when operating a website. meepShop supports Google Analytics. All you have to do is follow a few simple steps to analyze and compare effectively, assisting the website to effectively invest places with the most traffic flow.",
     "setting": null,
     "setting-placeholder": "Please enter GA tracking number",
-    "code": "Track Number"
+    "googleAnalyticsId": "Track Number"
   },
   "google-ads": {
     "description": "Ads conversion tracking can be used to track the action \"after\" a customer clicked the ads, including register, purchases. Action is considered conversion once a customer completed an action you defined valuable.",
@@ -46,14 +46,14 @@
     "description": "Google Search Console assists you in determining the Google search traffic flow and efficiency of your website, rectifying problems and differentiate your website among thousands of Google search results.",
     "setting": null,
     "setting-placeholder": null,
-    "trackId": null
+    "googleSearchConsoleVerificationHtml": null
   },
   "google-tag-manager": {
     "title": "Code Management Tools",
     "description": "Google Tag Manager is a tag management system that can help you rapidly update your tracking code and snippet through website user interface setting and tag deployment settings.",
     "setting": "Snippet Settings",
     "setting-placeholder": "Please enter tracking code",
-    "trackCode": "Tracking Code"
+    "googleTagManager": "Tracking Code"
   },
   "advanced-customer-track": "Advanced Customer Tracking",
   "retention-milliseconds-track": {

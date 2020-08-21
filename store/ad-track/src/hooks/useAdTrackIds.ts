@@ -8,15 +8,11 @@ import {
 } from '../__generated__/getAdTrack';
 
 // definition
-const getCode = (
+const getTrackingId = (
   getGtagList: getAdTrack['getGtagList'] | undefined,
   callback: (data: getAdTrackGetGtagList) => boolean,
-): getAdTrackGetGtagList['code'] => getGtagList?.find(callback)?.code || null;
-
-const getMatch = (
-  code: getAdTrackGetGtagList['code'],
-  reg: RegExp,
-): string | null => code?.match(reg)?.[0] || null;
+): getAdTrackGetGtagList['trackingId'] =>
+  getGtagList?.find(callback)?.trackingId || null;
 
 export default (
   data: getAdTrack | undefined,
@@ -31,42 +27,30 @@ export default (
   useMemo(
     () => ({
       fbPixelId: data?.getFbPixel?.pixelId || null,
-      gaId: getCode(
+      gaId: getTrackingId(
         data?.getGtagList,
         ({ type, eventName }: getAdTrackGetGtagList) =>
           type === 'google_analytics' && eventName === 'analytics_config',
       ),
-      googleAdsConversionID: getMatch(
-        getCode(
-          data?.getGtagList,
-          ({ type, eventName }: getAdTrackGetGtagList) =>
-            type === 'google_adwords' && eventName === 'adwords_config',
-        ),
-        /AW-[0-9]*(?='\);)/gm,
+      googleAdsConversionID: getTrackingId(
+        data?.getGtagList,
+        ({ type, eventName }: getAdTrackGetGtagList) =>
+          type === 'google_adwords' && eventName === 'adwords_config',
       ),
-      googleAdsSignupLabel: getMatch(
-        getCode(
-          data?.getGtagList,
-          ({ type, eventName }: getAdTrackGetGtagList) =>
-            type === 'google_adwords' && eventName === 'sign_up',
-        ),
-        /AW-.*(?='}\);)/gm,
+      googleAdsSignupLabel: getTrackingId(
+        data?.getGtagList,
+        ({ type, eventName }: getAdTrackGetGtagList) =>
+          type === 'google_adwords' && eventName === 'sign_up',
       ),
-      googleAdsCheckoutLabel: getMatch(
-        getCode(
-          data?.getGtagList,
-          ({ type, eventName }: getAdTrackGetGtagList) =>
-            type === 'google_adwords' && eventName === 'begin_checkout',
-        ),
-        /AW-.*(?='}\);)/gm,
+      googleAdsCheckoutLabel: getTrackingId(
+        data?.getGtagList,
+        ({ type, eventName }: getAdTrackGetGtagList) =>
+          type === 'google_adwords' && eventName === 'begin_checkout',
       ),
-      googleAdsCompleteOrderId: getMatch(
-        getCode(
-          data?.getGtagList,
-          ({ type, eventName }: getAdTrackGetGtagList) =>
-            type === 'google_adwords' && eventName === 'purchase',
-        ),
-        /AW-.*(?='}\);)/gm,
+      googleAdsCompleteOrderId: getTrackingId(
+        data?.getGtagList,
+        ({ type, eventName }: getAdTrackGetGtagList) =>
+          type === 'google_adwords' && eventName === 'purchase',
       ),
     }),
     [data],

@@ -33,6 +33,7 @@ export default async ({ isServer = true, XMeepshopDomain }) => {
       type
       eventName
       code
+      trackingId
     }
     getWebTrackList(search: $webTrackSearch) {
       data {

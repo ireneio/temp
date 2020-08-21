@@ -12,18 +12,18 @@ import Tooltip from '@admin/tooltip';
 import styles from './styles/facebook.less';
 
 // graphql typescript
-import { facebookFragment as facebookFragmentType } from './__generated__/facebookFragment';
+import { facebookFacebookSettingFragment as facebookFacebookSettingFragmentType } from './__generated__/facebookFacebookSettingFragment';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
-  facebookSetting: facebookFragmentType;
+  facebookSetting: facebookFacebookSettingFragmentType;
 }
 
 // definition
 const { Item: FormItem } = Form;
 
-export const facebookFragment = gql`
-  fragment facebookFragment on FacebookSetting {
+export const facebookFacebookSettingFragment = gql`
+  fragment facebookFacebookSettingFragment on FacebookSetting {
     appId
     appSecret
   }

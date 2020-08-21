@@ -20,7 +20,7 @@ import GoodDeal from '../GoodDeal';
 import { useBlocksFragment as useBlocksFragmentType } from './__generated__/useBlocksFragment';
 
 // graphql import
-import { facebookFragment } from '../Facebook';
+import { facebookFacebookSettingFragment } from '../Facebook';
 import { ecfitFragment } from '../Ecfit';
 import { goodDealFragment } from '../GoodDeal';
 
@@ -42,7 +42,7 @@ export const useBlocksFragment = gql`
     }
 
     facebookSetting {
-      ...facebookFragment
+      ...facebookFacebookSettingFragment
       isLoginEnabled
     }
 
@@ -59,7 +59,7 @@ export const useBlocksFragment = gql`
     }
   }
 
-  ${facebookFragment}
+  ${facebookFacebookSettingFragment}
   ${ecfitFragment}
   ${goodDealFragment}
 `;
@@ -79,7 +79,10 @@ export default (
           component: !store?.facebookSetting ? null : (
             <FaceBook
               form={form}
-              facebookSetting={filter(facebookFragment, store.facebookSetting)}
+              facebookSetting={filter(
+                facebookFacebookSettingFragment,
+                store.facebookSetting,
+              )}
             />
           ),
         },

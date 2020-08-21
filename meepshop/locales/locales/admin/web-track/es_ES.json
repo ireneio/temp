@@ -21,7 +21,7 @@
     "description": "No olvide utilizar Google Analytics para analizar el servicio al operar un sitio web. meepShop es compatible con Google Analytics. Todo lo que tiene que hacer es seguir unos sencillos pasos para analizar y comparar de manera efectiva, ayudando al sitio web a invertir efectivamente los lugares con el mayor flujo de tráfico.",
     "setting": null,
     "setting-placeholder": "Ingrese el número de seguimiento de GA",
-    "code": "Número de pista"
+    "googleAnalyticsId": "Número de pista"
   },
   "google-ads": {
     "description": "El seguimiento de conversiones de anuncios se puede utilizar para realizar un seguimiento de la acción \"después de\" que un cliente hizo clic en los anuncios, incluido el registro y las compras. La acción se considera conversión una vez que un cliente completa una acción que usted definió como valiosa.",
@@ -46,14 +46,14 @@
     "description": "Google Search Console lo ayuda a determinar el flujo de tráfico de búsqueda de Google y la eficiencia de su sitio web, rectificando problemas y diferenciando su sitio web entre miles de resultados de búsqueda de Google.",
     "setting": null,
     "setting-placeholder": null,
-    "trackId": null
+    "googleSearchConsoleVerificationHtml": null
   },
   "google-tag-manager": {
     "title": "Herramientas de gestión de código",
     "description": "Google Tag Manager es un sistema de administración de etiquetas que puede ayudarlo a actualizar rápidamente su código de seguimiento y fragmento a través de la configuración de la interfaz de usuario del sitio web y la configuración de implementación de etiquetas.",
     "setting": "Configuración de fragmentos",
     "setting-placeholder": "Por favor, introduzca el código de seguimiento",
-    "trackCode": "Codigo de localización"
+    "googleTagManager": "Codigo de localización"
   },
   "advanced-customer-track": "Seguimiento avanzado de clientes",
   "retention-milliseconds-track": {

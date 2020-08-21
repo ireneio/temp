@@ -123,6 +123,7 @@ export default async context => {
       type
       eventName
       code
+      trackingId
     }
     getWebTrackList(search: $webTrackSearch) {
       data {

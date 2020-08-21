@@ -5,6 +5,7 @@ import { NextPage } from 'next';
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import { filter } from 'graphql-anywhere';
 import { Spin, Card, Icon, Tabs } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -17,19 +18,23 @@ import GoogleWebmaster from './GoogleWebmaster';
 import GoogleTagManager from './GoogleTagManager';
 import AdvancedSetting from './AdvancedSetting';
 
-import useGtagList from './hooks/useGtagList';
-import useWebTrackList from './hooks/useWebTrackList';
-
 import styles from './styles/index.less';
 
 // graphql typescript
 import { getWebTrack } from './__generated__/getWebTrack';
 
 // graphql import
-import { facebookFbPixelFragment, facebookStoreFragment } from './Facebook';
-import { googleAdsStoreFragment } from './GoogleAds';
-import { useGtagListFragment } from './hooks/useGtagList';
-import { useWebTrackListFragment } from './hooks/useWebTrackList';
+import {
+  storeAdTrackFbPixelFragment,
+  storeAdTrackGtagFragment,
+  storeAdTrackWebTrackFragment,
+} from '@meepshop/apollo/lib/StoreAdTrack';
+
+import { facebookStoreFragment } from './Facebook';
+import { googleAnalyticsFragment } from './GoogleAnalytics';
+import { googleAdsFragment } from './GoogleAds';
+import { googleWebmasterFragment } from './GoogleWebmaster';
+import { googleTagManagerFragment } from './GoogleTagManager';
 import { advancedSettingFragment } from './AdvancedSetting';
 
 // definition
@@ -40,43 +45,49 @@ const query = gql`
     viewer {
       id
       store {
-        ...advancedSettingFragment
         ...facebookStoreFragment
-        ...googleAdsStoreFragment
+        ...googleAnalyticsFragment
+        ...googleAdsFragment
+        ...googleWebmasterFragment
+        ...googleTagManagerFragment
+        ...advancedSettingFragment
       }
     }
 
     getFbPixel {
-      ...facebookFbPixelFragment
+      ...storeAdTrackFbPixelFragment
     }
 
     getGtagList {
-      ...useGtagListFragment
+      ...storeAdTrackGtagFragment
+      code
     }
 
     getWebTrackList {
       data {
-        ...useWebTrackListFragment
+        ...storeAdTrackWebTrackFragment
       }
     }
   }
 
-  ${advancedSettingFragment}
+  ${storeAdTrackFbPixelFragment}
+  ${storeAdTrackGtagFragment}
+  ${storeAdTrackWebTrackFragment}
   ${facebookStoreFragment}
-  ${googleAdsStoreFragment}
-  ${facebookFbPixelFragment}
-  ${useGtagListFragment}
-  ${useWebTrackListFragment}
+  ${googleAnalyticsFragment}
+  ${googleAdsFragment}
+  ${googleWebmasterFragment}
+  ${googleTagManagerFragment}
+  ${advancedSettingFragment}
 `;
 
 const WebTrack: NextPage = React.memo(
   (): React.ReactElement => {
     const { t } = useTranslation('web-track');
     const { data } = useQuery<getWebTrack>(query);
-    const { gtagList } = useGtagList(data?.getGtagList);
-    const { webTrackList } = useWebTrackList(data?.getWebTrackList?.data);
+    const store = data?.viewer?.store;
 
-    if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
+    if (!store) return <Spin indicator={<Icon type="loading" spin />} />;
 
     return (
       <div className={styles.root}>
@@ -93,35 +104,24 @@ const WebTrack: NextPage = React.memo(
           >
             <Tabs defaultActiveKey="facebook" tabPosition="left">
               <TabPane tab="Facebook" key="facebook">
-                <Facebook
-                  pixelId={data.getFbPixel?.pixelId || null}
-                  fbDPALink={data.viewer?.store?.setting?.fbDPALink || null}
-                />
+                <Facebook store={filter(facebookStoreFragment, store)} />
               </TabPane>
               <TabPane tab="Google Analytics" key="googleAnalytics">
                 <GoogleAnalytics
-                  code={gtagList?.analytics_config?.code || null}
+                  store={filter(googleAnalyticsFragment, store)}
                 />
               </TabPane>
               <TabPane tab="Google Ads" key="googleAds">
-                <GoogleAds
-                  adwordsConfigCode={gtagList?.adwords_config?.code || null}
-                  signUpCode={gtagList?.sign_up?.code || null}
-                  beginCheckoutCode={gtagList?.begin_checkout?.code || null}
-                  purchaseCode={gtagList?.purchase?.code || null}
-                  googleFeedsLink={
-                    data.viewer?.store?.setting?.googleFeedsLink || null
-                  }
-                />
+                <GoogleAds store={filter(googleAdsFragment, store)} />
               </TabPane>
               <TabPane tab={t('google-webmaster.title')} key="googleWebmaster">
                 <GoogleWebmaster
-                  webTrack={webTrackList?.google_webmaster || null}
+                  store={filter(googleWebmasterFragment, store)}
                 />
               </TabPane>
               <TabPane tab="Google Tag Manager" key="googleTagManager">
                 <GoogleTagManager
-                  webTrack={webTrackList?.google_tag_manager || null}
+                  store={filter(googleTagManagerFragment, store)}
                 />
               </TabPane>
             </Tabs>
@@ -135,7 +135,7 @@ const WebTrack: NextPage = React.memo(
               </>
             }
           >
-            <AdvancedSetting store={data.viewer?.store || null} />
+            <AdvancedSetting store={filter(advancedSettingFragment, store)} />
           </Card>
         </div>
       </div>

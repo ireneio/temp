@@ -19,6 +19,7 @@ import getConfig from 'next/config';
 import modules from '@meepshop/modules';
 
 import * as PageInfo from './PageInfo';
+import * as StoreAdTrack from './StoreAdTrack';
 import mergeResolvers from './utils/mergeResolvers';
 import errorLink from './utils/errorLink';
 import createIntrospectionQueryResultDataType from './utils/createIntrospectionQueryResultDataType';
@@ -82,7 +83,11 @@ const create = (
     connectToDevTools: typeof window !== 'undefined',
     ssrMode: typeof window === 'undefined',
     cache,
-    resolvers: [...resolvers, PageInfo.resolvers].reduce(mergeResolvers, {}),
+    resolvers: [
+      ...resolvers,
+      PageInfo.resolvers,
+      StoreAdTrack.resolvers,
+    ].reduce(mergeResolvers, {}),
     link: ApolloLink.from([
       errorLink(errorFilter),
       new HttpLink({

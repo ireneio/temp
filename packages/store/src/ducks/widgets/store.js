@@ -48,50 +48,43 @@ const getPageAdTrackIds = data => {
   );
   const gaID = (gaData && gaData.code) || null;
   /* Google Ads conversion ID */
-  const googleAdsConfigData = gtagList.find(
-    ({ type, eventName }) =>
-      type === 'google_adwords' && eventName === 'adwords_config',
-  );
   const googleAdsConversionID =
-    (googleAdsConfigData?.code || '').match(/AW-[0-9]*(?='\);)/gm)?.[0] || null;
+    gtagList.find(
+      ({ type, eventName }) =>
+        type === 'google_adwords' && eventName === 'adwords_config',
+    )?.trackingId || null;
   /* Google Ads conversion Label - Signup */
-  const googleAdsSignupData = gtagList.find(
-    ({ type, eventName }) =>
-      type === 'google_adwords' && eventName === 'sign_up',
-  );
   const googleAdsSignupLabel =
-    (googleAdsSignupData?.code || '').match(/AW-.*(?='}\);)/gm)?.[0] || null;
+    gtagList.find(
+      ({ type, eventName }) =>
+        type === 'google_adwords' && eventName === 'sign_up',
+    )?.trackingId || null;
   /* Google Ads conversion Label - Checkout */
-  const googleAdsCheckoutData = gtagList.find(
-    ({ type, eventName }) =>
-      type === 'google_adwords' && eventName === 'begin_checkout',
-  );
   const googleAdsCheckoutLabel =
-    (googleAdsCheckoutData?.code || '').match(/AW-.*(?='}\);)/gm)?.[0] || null;
+    gtagList.find(
+      ({ type, eventName }) =>
+        type === 'google_adwords' && eventName === 'begin_checkout',
+    )?.trackingId || null;
   /* Google Ads conversion Label - CompleteOrder */
-  const googleAdsCompleteOrderData = gtagList.find(
-    ({ type, eventName }) =>
-      type === 'google_adwords' && eventName === 'purchase',
-  );
   const googleAdsCompleteOrderLabel =
-    (googleAdsCompleteOrderData?.code || '').match(/AW-.*(?='}\);)/gm)?.[0] ||
-    null;
+    gtagList.find(
+      ({ type, eventName }) =>
+        type === 'google_adwords' && eventName === 'purchase',
+    )?.trackingId || null;
+
+  const gtmID =
+    gtagList.find(
+      ({ type, eventName }) =>
+        type === 'google_tag_manager' && eventName === 'tag_manager',
+    )?.trackingId || null;
 
   const webTrackList = data?.getWebTrackList?.data || [];
   let webMasterID = null;
-  let gtmID = null;
   if (webTrackList) {
     webTrackList.forEach(webTrack => {
       switch (webTrack?.trackType) {
         case 'google_webmaster': {
           webMasterID = webTrack?.trackId || null;
-          break;
-        }
-        case 'google_tag_manager': {
-          gtmID =
-            (webTrack?.trackPage?.[0]?.trackCode || '').match(
-              /GTM-.*(?=('\)|"))/gm,
-            )?.[0] || null;
           break;
         }
         default:

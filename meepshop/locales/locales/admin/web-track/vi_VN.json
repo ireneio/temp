@@ -21,7 +21,7 @@
     "description": "Đừng quên sử dụng Google Analytics để phân tích dịch vụ khi vận hành trang web. meepShop hỗ trợ Google Analytics. Tất cả những gì bạn phải làm là làm theo một vài bước đơn giản để phân tích và so sánh hiệu quả, hỗ trợ trang web đầu tư hiệu quả vào những nơi có lưu lượng truy cập nhiều nhất.",
     "setting": null,
     "setting-placeholder": "Vui lòng nhập số theo dõi GA",
-    "code": "Số theo dõi"
+    "googleAnalyticsId": "Số theo dõi"
   },
   "google-ads": {
     "description": "Theo dõi chuyển đổi quảng cáo có thể được sử dụng để theo dõi hành động \"sau khi\" khách hàng nhấp vào quảng cáo, bao gồm đăng ký, mua hàng. Hành động được coi là chuyển đổi khi khách hàng hoàn thành một hành động mà bạn xác định có giá trị.",
@@ -46,14 +46,14 @@
     "description": "Google Search Console hỗ trợ bạn xác định lưu lượng truy cập tìm kiếm của Google và hiệu quả của trang web của bạn, khắc phục sự cố và phân biệt trang web của bạn trong số hàng ngàn kết quả tìm kiếm của Google.",
     "setting": null,
     "setting-placeholder": null,
-    "trackId": null
+    "googleSearchConsoleVerificationHtml": null
   },
   "google-tag-manager": {
     "title": "Công cụ quản lý mã",
     "description": "Trình quản lý thẻ của Google là một hệ thống quản lý thẻ có thể giúp bạn cập nhật nhanh chóng mã theo dõi và đoạn mã thông qua cài đặt giao diện người dùng trang web và cài đặt triển khai thẻ.",
     "setting": "Cài đặt đoạn trích",
     "setting-placeholder": "Vui lòng nhập mã theo dõi",
-    "trackCode": "Mã theo dõi"
+    "googleTagManager": "Mã theo dõi"
   },
   "advanced-customer-track": "Theo dõi khách hàng nâng cao",
   "retention-milliseconds-track": {

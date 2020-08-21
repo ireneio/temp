@@ -21,7 +21,7 @@
     "description": "經營一個網站別忘記使用 Google Analytics 分析服務，meepShop 支援 Google Analytics，您只要簡易的幾個步驟就可以有效的分析比對，幫助網站有效投資在流量來源最多的地方。",
     "setting": "設定追蹤編號",
     "setting-placeholder": "請輸入 GA 追蹤編號",
-    "code": "追蹤編號："
+    "googleAnalyticsId": "追蹤編號："
   },
   "google-ads": {
     "description": "廣告轉換追蹤可用來追蹤客戶點擊廣告「之後」的動作，包括註冊、 購買產品等。當客戶完成您定義為具有價值的動作時，這些動作即稱為轉換。",
@@ -46,14 +46,14 @@
     "description": "透過 Google Search Console 協助你衡量網站的 Google 搜尋流量和成效、修正問題，並讓你的網站從眾多 Google 搜尋結果中脫穎而出。",
     "setting": "HTML標記驗證",
     "setting-placeholder": "請輸入驗證碼語法",
-    "trackId": "HTML標記驗證碼："
+    "googleSearchConsoleVerificationHtml": "HTML標記驗證碼："
   },
   "google-tag-manager": {
     "title": "代碼管理工具",
     "description": "Google 代碼管理工具是一套代碼管理系統，透過網頁式使用者介面設置及部署代碼設定，方便您快速更新追蹤程式碼和相關程式碼片段。這樣不但能減少錯誤，想要修改代碼時也不必每次都找開發人員幫忙。",
     "setting": "程式碼片段設定",
     "setting-placeholder": "請輸入追蹤程式碼",
-    "trackCode": "追蹤程式碼"
+    "googleTagManager": "追蹤程式碼"
   },
   "advanced-customer-track": "進階顧客追蹤",
   "retention-milliseconds-track": {

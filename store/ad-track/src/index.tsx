@@ -30,7 +30,7 @@ const query = gql`
     getGtagList {
       type
       eventName
-      code
+      trackingId
     }
 
     viewer {

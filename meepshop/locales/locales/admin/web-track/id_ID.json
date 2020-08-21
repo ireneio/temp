@@ -21,7 +21,7 @@
     "description": "Jangan lupa untuk menggunakan Google Analytics untuk menganalisis layanan saat mengoperasikan situs web. meepShop mendukung Google Analytics. Yang harus Anda lakukan adalah mengikuti beberapa langkah sederhana untuk menganalisis dan membandingkan secara efektif, membantu situs web untuk berinvestasi secara efektif di tempat-tempat dengan arus lalu lintas terbanyak.",
     "setting": null,
     "setting-placeholder": "Silakan masukkan nomor pelacakan GA",
-    "code": "Nomor pelacak"
+    "googleAnalyticsId": "Nomor pelacak"
   },
   "google-ads": {
     "description": "Pelacakan konversi iklan dapat digunakan untuk melacak tindakan \"setelah\" seorang pelanggan mengklik iklan, termasuk daftar, pembelian. Tindakan dianggap konversi setelah pelanggan menyelesaikan tindakan yang Anda anggap berharga.",
@@ -46,14 +46,14 @@
     "description": "Google Search Console membantu Anda dalam menentukan aliran lalu lintas pencarian Google dan efisiensi situs web Anda, memperbaiki masalah dan membedakan situs web Anda di antara ribuan hasil pencarian Google.",
     "setting": null,
     "setting-placeholder": null,
-    "trackId": null
+    "googleSearchConsoleVerificationHtml": null
   },
   "google-tag-manager": {
     "title": "Alat Manajemen Kode",
     "description": "Google Tag Manager adalah sistem manajemen tag yang dapat membantu Anda dengan cepat memperbarui kode pelacakan dan snippet Anda melalui pengaturan antarmuka pengguna situs web dan pengaturan penempatan tag.",
     "setting": "Pengaturan Cuplikan",
     "setting-placeholder": "Silakan masukkan kode pelacakan",
-    "trackCode": "Kode lacak"
+    "googleTagManager": "Kode lacak"
   },
   "advanced-customer-track": "Pelacakan Pelanggan Lanjut",
   "retention-milliseconds-track": {

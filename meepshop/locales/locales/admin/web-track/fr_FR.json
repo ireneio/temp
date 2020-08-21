@@ -21,7 +21,7 @@
     "description": "N'oubliez pas d'utiliser Google Analytics pour analyser le service lorsque vous exploitez un site Web. meepShop prend en charge Google Analytics. Tout ce que vous avez à faire est de suivre quelques étapes simples pour analyser et comparer efficacement, en aidant le site Web à investir efficacement dans des lieux avec le plus de trafic possible.",
     "setting": null,
     "setting-placeholder": "S'il vous plaît entrer le numéro de suivi GA",
-    "code": "Numéro de piste"
+    "googleAnalyticsId": "Numéro de piste"
   },
   "google-ads": {
     "description": "Le suivi des conversions d'annonce peut être utilisé pour suivre l'action \"après\" un client a cliqué sur les annonces, y compris l'enregistrement, les achats. Une action est considérée comme une conversion lorsqu'un client a terminé une action que vous avez définie comme étant valable.",
@@ -46,14 +46,14 @@
     "description": "La console de recherche Google vous aide à déterminer le flux de trafic de recherche Google et l'efficacité de votre site Web, à résoudre les problèmes et à différencier votre site Web parmi des milliers de résultats de recherche Google.",
     "setting": null,
     "setting-placeholder": null,
-    "trackId": null
+    "googleSearchConsoleVerificationHtml": null
   },
   "google-tag-manager": {
     "title": "Outils de gestion de code",
     "description": "Google Tag Manager est un système de gestion des tags qui peut vous aider à mettre rapidement à jour votre code de suivi et votre extrait de code via les paramètres d'interface utilisateur du site Web et de déploiement des tags.",
     "setting": "Paramètres d'extrait",
     "setting-placeholder": "S'il vous plaît entrer le code de suivi",
-    "trackCode": "Code de suivi"
+    "googleTagManager": "Code de suivi"
   },
   "advanced-customer-track": "Suivi client avancé",
   "retention-milliseconds-track": {

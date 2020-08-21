@@ -10,6 +10,7 @@
   "dependencies": {
     "@admin/tooltip": "^0.59.2",
     "@admin/utils": "^0.59.2",
+    "@meepshop/apollo": "^0.59.2",
     "@meepshop/icons": "^0.59.2",
     "@meepshop/images": "^0.59.2",
     "@meepshop/utils": "^0.59.2",

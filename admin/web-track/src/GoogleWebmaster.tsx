@@ -3,6 +3,7 @@ import { FormComponentProps } from 'antd/lib/form';
 
 // import
 import React, { useState } from 'react';
+import gql from 'graphql-tag';
 import { Icon, Button, Modal, Form, Input } from 'antd';
 
 import Tooltip from '@admin/tooltip';
@@ -12,31 +13,46 @@ import {
   webTrackGoogleWebmasterInstruction_w890 as webTrackGoogleWebmasterInstruction,
 } from '@meepshop/images';
 
-import useWebTrackList from './hooks/useWebTrackList';
-
+import useUpdateGoogleSearchConsoleVerificationHtml from './hooks/useUpdateGoogleSearchConsoleVerificationHtml';
 import styles from './styles/googleWebmaster.less';
 
 // graphql typescript
-import { getWebTrack_getWebTrackList_data as getWebTrackGetWebTrackListData } from './__generated__/getWebTrack';
+import { googleWebmasterFragment as googleWebmasterFragmentType } from './__generated__/googleWebmasterFragment';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
-  webTrack: getWebTrackGetWebTrackListData | null;
+  store: googleWebmasterFragmentType;
 }
 
 // definition
+export const googleWebmasterFragment = gql`
+  fragment googleWebmasterFragment on Store {
+    id
+    adTrack @client {
+      googleSearchConsoleVerificationHtmlId
+      googleSearchConsoleVerificationHtml
+    }
+  }
+`;
+
 const { Item } = Form;
 
 export default Form.create<PropsType>()(
-  React.memo(({ webTrack, form }: PropsType) => {
+  React.memo(({ form, store }: PropsType) => {
+    const { getFieldDecorator, validateFields } = form;
+    const {
+      id,
+      adTrack: {
+        googleSearchConsoleVerificationHtmlId,
+        googleSearchConsoleVerificationHtml,
+      },
+    } = store;
     const { t } = useTranslation('web-track');
+    const updateGoogleSearchConsoleVerificationHtml = useUpdateGoogleSearchConsoleVerificationHtml(
+      id || 'null-id' /** TODO: should be not null */,
+    );
     const [isOpen, openModal] = useState(false);
     const [editMode, setEditMode] = useState(false);
-    const { updateWebTrackList } = useWebTrackList();
-
-    const id = webTrack?.id || '';
-    const trackId = webTrack?.trackId;
-    const { getFieldDecorator, validateFields } = form;
 
     return (
       <div>
@@ -78,8 +94,8 @@ export default Form.create<PropsType>()(
         {editMode ? (
           <div className={styles.item}>
             <Item>
-              {getFieldDecorator('trackId', {
-                initialValue: trackId,
+              {getFieldDecorator('googleSearchConsoleVerificationHtml', {
+                initialValue: googleSearchConsoleVerificationHtml,
               })(
                 <Input
                   placeholder={t('google-webmaster.setting-placeholder')}
@@ -89,18 +105,20 @@ export default Form.create<PropsType>()(
             <Button
               type="primary"
               onClick={() => {
-                validateFields((errors, values) => {
-                  if (!errors) {
-                    updateWebTrackList({
+                validateFields(async (errors, values) => {
+                  if (errors || !googleSearchConsoleVerificationHtmlId) return;
+
+                  await updateGoogleSearchConsoleVerificationHtml({
+                    variables: {
                       updateWebTrackList: [
                         {
-                          id,
-                          trackId: values.trackId,
+                          id: googleSearchConsoleVerificationHtmlId,
+                          trackId: values.googleSearchConsoleVerificationHtml,
                         },
                       ],
-                    });
-                    setEditMode(false);
-                  }
+                    },
+                  });
+                  setEditMode(false);
                 });
               }}
             >
@@ -110,10 +128,12 @@ export default Form.create<PropsType>()(
           </div>
         ) : (
           <>
-            {trackId ? (
-              <div className={styles.trackId}>
-                <div>{t('google-webmaster.trackId')}</div>
-                <div>{trackId}</div>
+            {googleSearchConsoleVerificationHtml ? (
+              <div className={styles.googleSearchConsoleVerificationHtml}>
+                <div>
+                  {t('google-webmaster.googleSearchConsoleVerificationHtml')}
+                </div>
+                <div>{googleSearchConsoleVerificationHtml}</div>
                 <Icon type="edit" onClick={() => setEditMode(true)} />
               </div>
             ) : (

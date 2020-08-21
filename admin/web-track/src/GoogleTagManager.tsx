@@ -3,6 +3,7 @@ import { FormComponentProps } from 'antd/lib/form';
 
 // import
 import React, { useState } from 'react';
+import gql from 'graphql-tag';
 import { Icon, Button, Modal, Form, Input } from 'antd';
 
 import Tooltip from '@admin/tooltip';
@@ -12,32 +13,70 @@ import {
   webTrackGoogleTagManagerInstruction_w890 as webTrackGoogleTagManagerInstruction,
 } from '@meepshop/images';
 
-import useWebTrackList from './hooks/useWebTrackList';
-
+import useSetGtagSettingsList from './hooks/useSetGtagSettingsList';
 import styles from './styles/googleTagManager.less';
 
 // graphql typescript
-import { getWebTrack_getWebTrackList_data as getWebTrackGetWebTrackListData } from './__generated__/getWebTrack';
+import { googleTagManagerFragment as googleTagManagerFragmentType } from './__generated__/googleTagManagerFragment';
+import { updateGoogleTagManagerCache } from './__generated__/updateGoogleTagManagerCache';
+import { gtagTypeEnum, gtagEventNameEnum } from '../../../__generated__/admin';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
-  webTrack: getWebTrackGetWebTrackListData | null;
+  store: googleTagManagerFragmentType;
 }
 
 // definition
+export const googleTagManagerFragment = gql`
+  fragment googleTagManagerFragment on Store {
+    id
+    adTrack @client {
+      googleTagManager {
+        raw
+      }
+    }
+  }
+`;
+
 const { Item } = Form;
 const { TextArea } = Input;
 
 export default Form.create<PropsType>()(
-  React.memo(({ webTrack, form }: PropsType) => {
+  React.memo(({ form, store }: PropsType) => {
+    const { getFieldDecorator, validateFields } = form;
+    const {
+      id,
+      adTrack: { googleTagManager },
+    } = store;
     const { t } = useTranslation('web-track');
+    const setGtagSettingsList = useSetGtagSettingsList((cache, data) => {
+      cache.writeFragment<updateGoogleTagManagerCache>({
+        id: id || 'null-id' /** TODO: should be not null */,
+        fragment: gql`
+          fragment updateGoogleTagManagerCache on Store {
+            id
+            adTrack @client {
+              googleTagManager {
+                raw
+              }
+            }
+          }
+        `,
+        data: {
+          __typename: 'Store',
+          id: id || 'null-id' /** TODO: should be not null */,
+          adTrack: {
+            __typename: 'StoreAdTrack',
+            googleTagManager: {
+              __typename: 'AdTrackCode',
+              raw: data?.setGtagSettingsList?.[0]?.code || null,
+            },
+          },
+        },
+      });
+    });
     const [isOpen, openModal] = useState(false);
     const [editMode, setEditMode] = useState(false);
-    const { updateWebTrackList } = useWebTrackList();
-
-    const id = webTrack?.id || '';
-    const trackCode = webTrack?.trackPage?.[0]?.trackCode;
-    const { getFieldDecorator, validateFields } = form;
 
     return (
       <div>
@@ -71,10 +110,10 @@ export default Form.create<PropsType>()(
 
         {editMode ? (
           <div className={styles.edit}>
-            {t('google-tag-manager.trackCode')}
+            {t('google-tag-manager.googleTagManager')}
             <Item>
-              {getFieldDecorator('trackCode', {
-                initialValue: trackCode,
+              {getFieldDecorator('googleTagManager', {
+                initialValue: googleTagManager.raw,
               })(
                 <TextArea
                   rows={5}
@@ -85,22 +124,25 @@ export default Form.create<PropsType>()(
             <Button
               type="primary"
               onClick={() => {
-                validateFields((errors, values) => {
-                  if (!errors) {
-                    updateWebTrackList({
-                      updateWebTrackList: [
+                validateFields(async (errors, values) => {
+                  if (errors) return;
+
+                  await setGtagSettingsList({
+                    variables: {
+                      setInput: [
                         {
-                          id,
-                          trackPage: [
-                            {
-                              trackCode: values.trackCode,
-                            },
-                          ],
+                          code: values.googleTagManager,
+                          type: 'google_tag_manager' as gtagTypeEnum,
+                          eventName: 'tag_manager' as gtagEventNameEnum,
+                          trackingId:
+                            values.googleTagManager.match(
+                              /id=(GTM-[\w/-]+)[&'"]/,
+                            )?.[1] || null,
                         },
                       ],
-                    });
-                    setEditMode(false);
-                  }
+                    },
+                  });
+                  setEditMode(false);
                 });
               }}
             >
@@ -110,13 +152,13 @@ export default Form.create<PropsType>()(
           </div>
         ) : (
           <>
-            {trackCode ? (
-              <div className={styles.trackCode}>
+            {googleTagManager.raw ? (
+              <div className={styles.googleTagManager}>
                 <div>
-                  {t('google-tag-manager.trackCode')}
+                  {t('google-tag-manager.googleTagManager')}
                   <Icon type="edit" onClick={() => setEditMode(true)} />
                 </div>
-                <div>{trackCode}</div>
+                <div>{googleTagManager.raw}</div>
               </div>
             ) : (
               <Button onClick={() => setEditMode(true)}>

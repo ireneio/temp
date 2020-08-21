@@ -21,7 +21,7 @@
     "description": "ウェブサイトを運営するときは、Googleアナリティクスを使用してサービスを分析することを忘れないでください。 meepShopはGoogle Analyticsをサポートしています。 あなたがしなければならないのは、いくつかの簡単なステップに従って効果的に分析と比較を行い、ウェブサイトが最もトラフィックの多い場所に効果的に投資するのを支援することです。",
     "setting": null,
     "setting-placeholder": "GA追跡番号を入力してください",
-    "code": "トラック番号"
+    "googleAnalyticsId": "トラック番号"
   },
   "google-ads": {
     "description": "広告コンバージョントラッキングを使用して、顧客が広告をクリックした「後」のアクション（登録、購入など）を追跡できます。 お客様が価値のあるアクションを定義すると、アクションはコンバージョンと見なされます。",
@@ -46,14 +46,14 @@
     "description": "Google Search Consoleは、Google検索のトラフィックフローとウェブサイトの効率を判断し、問題を修正し、ウェブサイトを何千ものGoogle検索結果から区別するのに役立ちます。",
     "setting": null,
     "setting-placeholder": null,
-    "trackId": null
+    "googleSearchConsoleVerificationHtml": null
   },
   "google-tag-manager": {
     "title": "コード管理ツール",
     "description": "Googleタグマネージャーは、ウェブサイトのユーザーインターフェース設定とタグの展開設定を使用して、トラッキングコードとスニペットをすばやく更新できるタグ管理システムです。",
     "setting": "スニペット設定",
     "setting-placeholder": "追跡コードを入力してください",
-    "trackCode": " トラッキングコード"
+    "googleTagManager": " トラッキングコード"
   },
   "advanced-customer-track": "高度な顧客追跡",
   "retention-milliseconds-track": {
