@@ -12,8 +12,9 @@ export default (prevResolvers: Resolvers, newResolvers: Resolvers): Resolvers =>
           [field]: !fieldResult?.[field]
             ? newResolvers[key][field]
             : (...argu) => ({
-                ...fieldResult[field](...argu),
+                // FIXME: should newResolvers overwrite fieldResult
                 ...newResolvers[key][field](...argu),
+                ...fieldResult[field](...argu),
               }),
         }),
         result[key],
