@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.60.0 (2020-08-21)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1101](https://github.com/meepshop/meep-lerna/pull/1101) 修改廣告分析相關 schema - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1119](https://github.com/meepshop/meep-lerna/pull/1119) 【BUG】 前台 - 語系若為英文，無法完成綠界稍後付款 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.59.3 (2020-08-20)
 
 #### :bug: Bug Fix
