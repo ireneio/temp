@@ -19,14 +19,15 @@ import withContext from '@store/utils/lib/withContext';
 import styles from './styles/actions.less';
 
 // graphql typescript
-import createOrderFragment from '@store/utils/lib/fragments/createOrder';
-
 import { actionsFragment as actionsFragmentType } from './__generated__/actionsFragment';
 import {
   payOrderAgain,
   payOrderAgainVariables,
   payOrderAgain_paymentAgainOrderList_formData as payOrderAgainPaymentAgainOrderListFormData,
 } from './__generated__/payOrderAgain';
+
+// graphql import
+import createOrderFragment from '@meepshop/utils/lib/fragments/createOrder';
 
 // typescript definition
 interface PropsType extends I18nPropsType {
@@ -160,6 +161,7 @@ class Actions extends React.PureComponent<PropsType, StateType> {
                 paymentAgainOrderList(
                   paymentAgainOrderList: $paymentAgainOrderList
                 ) {
+                  id
                   ...createOrderFragment
                 }
               }

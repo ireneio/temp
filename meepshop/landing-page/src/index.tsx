@@ -12,6 +12,9 @@ import {
   createOrderInLandingPageVariables,
 } from './__generated__/createOrderInLandingPage';
 
+// graphql import
+import createOrderFragment from '@meepshop/utils/lib/fragments/createOrder';
+
 // typescript definition
 interface PropsType {
   children: (data: {
@@ -27,80 +30,11 @@ const mutation = gql`
   mutation createOrderInLandingPage($createOrderList: [NewOrder]) {
     createOrderList(createOrderList: $createOrderList) {
       id
-      orderNo
-      error: _error
-      formData {
-        params {
-          MerchantID
-          MerchantTradeNo
-          MerchantTradeDate
-          PaymentType
-          TotalAmount
-          TradeDesc
-          ItemName
-          ReturnURL
-          ChoosePayment
-          CheckMacValue
-          PaymentInfoURL
-          OrderResultURL
-          ClientRedirectURL
-          ExpireDate
-          CreditInstallment
-          Redeem
-          UnionPay
-          ClientBackURL
-          AlipayItemName
-          AlipayItemCounts
-          AlipayItemPrice
-          Email
-          PhoneNo
-          UserName
-          IgnorePayment
-          DeviceSource
-          NeedExtraPaidInfo
-          HashKey
-          HashIV
-          Type
-          storeid
-          ordernumber
-          amount
-          orderdesc
-          depositflag
-          queryflag
-          e03
-          returnURL
-          merUpdateURL
-          payment_code
-          trans_code
-          mode
-          MerchantNumber
-          OrderNumber
-          Amount
-          ApproveFlag
-          DepositFlag
-          Englishmode
-          iphonepage
-          OrderURL
-          op
-          checksum
-          merchantnumber
-          paymenttype
-          paytitle
-          paymemo
-          returnvalue
-          nexturl
-          hash
-          bankid
-          Language
-          strRqXML
-          URLEnc
-          merID
-        }
-        url
-        type
-      }
+      ...createOrderFragment
     }
   }
+
+  ${createOrderFragment}
 `;
 
 export default React.memo(({ children }: PropsType) => {

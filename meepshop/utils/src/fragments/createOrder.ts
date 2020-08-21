@@ -5,9 +5,11 @@ import gql from 'graphql-tag';
 export default gql`
   fragment createOrderFragment on Order {
     id
+    orderNo
     error: _error
     formData {
       url
+      type
       params {
         MerchantID
         MerchantTradeNo
@@ -69,6 +71,7 @@ export default gql`
         nexturl
         hash
         bankid
+        Language
         strRqXML
         URLEnc
         merID

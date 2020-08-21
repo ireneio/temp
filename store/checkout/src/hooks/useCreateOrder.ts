@@ -16,90 +16,19 @@ import {
 import { useCreateOrderFragment } from './__generated__/useCreateOrderFragment';
 import { useCreateOrderGetRecipientAddressBookCache as useCreateOrderGetRecipientAddressBookCacheType } from './__generated__/useCreateOrderGetRecipientAddressBookCache';
 
+// graphql import
+import createOrderFragment from '@meepshop/utils/lib/fragments/createOrder';
+
 // definition
 const mutation = gql`
   mutation createOrder($createOrderList: [NewOrder]) {
     createOrderList(createOrderList: $createOrderList) {
       id
-      orderNo
-      error: _error
-      formData {
-        params {
-          MerchantID
-          MerchantTradeNo
-          MerchantTradeDate
-          PaymentType
-          TotalAmount
-          TradeDesc
-          ItemName
-          ReturnURL
-          ChoosePayment
-          CheckMacValue
-          PaymentInfoURL
-          OrderResultURL
-          ClientRedirectURL
-          ExpireDate
-          CreditInstallment
-          Redeem
-          UnionPay
-          ClientBackURL
-          ExpireDate
-          CreditInstallment
-          Redeem
-          UnionPay
-          ClientBackURL
-          AlipayItemName
-          AlipayItemCounts
-          AlipayItemPrice
-          Email
-          PhoneNo
-          UserName
-          IgnorePayment
-          DeviceSource
-          NeedExtraPaidInfo
-          HashKey
-          HashIV
-          Type
-          storeid
-          ordernumber
-          amount
-          orderdesc
-          depositflag
-          queryflag
-          e03
-          returnURL
-          merUpdateURL
-          payment_code
-          trans_code
-          mode
-          MerchantNumber
-          OrderNumber
-          Amount
-          ApproveFlag
-          DepositFlag
-          Englishmode
-          iphonepage
-          OrderURL
-          op
-          checksum
-          merchantnumber
-          paymenttype
-          paytitle
-          paymemo
-          returnvalue
-          nexturl
-          hash
-          bankid
-          Language
-          strRqXML
-          URLEnc
-          merID
-        }
-        url
-        type
-      }
+      ...createOrderFragment
     }
   }
+
+  ${createOrderFragment}
 `;
 
 export default (): MutationFunction<createOrderType, createOrderVariables> => {
