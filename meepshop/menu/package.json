@@ -4,7 +4,7 @@
   "description": "",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.59.2",
+  "version": "0.60.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "keywords": ["meepshop", "menu"]
