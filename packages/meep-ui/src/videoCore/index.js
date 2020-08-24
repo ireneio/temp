@@ -40,8 +40,13 @@ export default class VideoCore extends React.PureComponent {
   };
 
   componentDidMount() {
+    this.renderFacebookVideo();
     this.resize();
     window.addEventListener('resize', this.resize);
+  }
+
+  componentDidUpdate() {
+    this.renderFacebookVideo();
   }
 
   componentWillUnmount() {
@@ -71,6 +76,24 @@ export default class VideoCore extends React.PureComponent {
         height: this.videoCoreRef.current.wrapper.offsetWidth * RATIOS[aspect],
       });
     }, 100);
+  };
+
+  renderFacebookVideo = () => {
+    const { fb, href } = this.props;
+
+    if (!fb || !/facebook/.test(href)) return;
+
+    if (!this.isLoaded) {
+      this.videoCoreRef.current.wrapper.childNodes[0].removeAttribute(
+        'fb-xfbml-state',
+      );
+      this.videoCoreRef.current.wrapper.childNodes[0].removeAttribute(
+        'fb-iframe-plugin-query',
+      );
+    }
+
+    this.isLoaded = true;
+    fb.XFBML.parse(this.videoCoreRef.current.wrapper);
   };
 
   render() {

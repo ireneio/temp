@@ -1,7 +1,8 @@
 // import
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import ReactPlayer from 'react-player';
 
+import useFbParse from '@meepshop/utils/lib/hooks/useFbParse';
 import { Fb as FbContext } from '@meepshop/context';
 
 import useHeight from './hooks/useHeight';
@@ -14,6 +15,14 @@ import { videoFragment } from './__generated__/videoFragment';
 export default React.memo(({ id, width, ratio, href }: videoFragment) => {
   const { version, appId } = useContext(FbContext);
   const { height, videoRef } = useHeight(ratio);
+  const fbRef = useRef(null);
+
+  fbRef.current = /facebook/.test(href)
+    ? // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore react-player typescript error
+      videoRef.current?.wrapper.childNodes[0]
+    : null;
+  useFbParse(href, fbRef);
 
   return (
     <ReactPlayer
