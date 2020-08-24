@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.60.1 (2020-08-24)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1121](https://github.com/meepshop/meep-lerna/pull/1121) 【個別店家】 影片嵌入元件若為 FB 影片連結，前台無法顯示 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1122](https://github.com/meepshop/meep-lerna/pull/1122) (@meepshop/apollo) Fix merge error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.60.0 (2020-08-21)
 
 #### :boom: Breaking Change
