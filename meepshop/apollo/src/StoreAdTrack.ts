@@ -60,7 +60,7 @@ export const resolvers = {
       getWebTrackList,
     }: DefaultDataType) => ({
       __typename: 'StoreAdTrack',
-      facebookPixelId: getFbPixel?.pixelId,
+      facebookPixelId: getFbPixel?.pixelId || null,
       // initialize fields data
       ...Object.values(gtagKeys).reduce(
         (result, key) => ({
