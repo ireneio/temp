@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
+import gql from 'graphql-tag';
+import { Query } from '@apollo/react-components';
 import { Form, Input, Button } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 import { MdLock as LockIcon } from 'react-icons/md';
@@ -23,6 +25,20 @@ import styles from './styles/login.less';
 const { Item: FormItem } = Form;
 const { Password } = Input;
 
+const query = gql`
+  query getFbIsLoginEnabled {
+    viewer {
+      id
+      store {
+        id
+        facebookSetting {
+          isLoginEnabled
+        }
+      }
+    }
+  }
+`;
+
 @withTranslation('cart')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @Form.create()
@@ -35,7 +51,6 @@ export default class Login extends React.PureComponent {
     goTo: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
     fbLogin: PropTypes.func.isRequired,
-    hasStoreAppPlugin: PropTypes.func.isRequired,
     toggleCart: PropTypes.func.isRequired,
 
     /** props */
@@ -75,7 +90,6 @@ export default class Login extends React.PureComponent {
       goTo,
       toggleCart,
       fbLogin,
-      hasStoreAppPlugin,
 
       /** props */
       t,
@@ -86,121 +100,136 @@ export default class Login extends React.PureComponent {
     const { getFieldDecorator, setFields } = form;
 
     return (
-      <div
-        className={styles.root}
-        style={shopperLoginMessageEnabled ? { flexGrow: 0 } : {}}
-      >
-        <div>{t('member-login')}</div>
+      <Query query={query}>
+        {({ data }) => {
+          const isFbLoginEnabled =
+            data?.viewer?.store?.facebookSetting.isLoginEnabled;
 
-        <Form onSubmit={this.submit}>
-          <FormItem>
-            {getFieldDecorator('email', {
-              rules: [
-                {
-                  required: true,
-                  message: t('email-is-required'),
-                },
-                {
-                  validator: (rule, value, callback) => {
-                    if (value && (isFullWidth(value) || !isEmail(value)))
-                      callback(t('is-invalid-email'));
-                    else callback();
-                  },
-                },
-              ],
-              validateTrigger: false,
-              normalize: value => value.replace(/\s/g, ''),
-            })(
-              <Input
-                placeholder={t('email-placeholder')}
-                onChange={({ target: { value } }) => {
-                  setFields({
-                    email: {
-                      value,
-                    },
-                  });
-                }}
-                size="large"
-              />,
-            )}
-          </FormItem>
-
-          <FormItem>
-            {getFieldDecorator('password', {
-              rules: [
-                {
-                  required: true,
-                  message: t('password-is-required'),
-                },
-              ],
-            })(
-              <Password placeholder={t('password-placeholder')} size="large" />,
-            )}
-          </FormItem>
-
-          <div className={styles.buttonRoot}>
-            <div onClick={() => goToInCart('forget password', 'login')}>
-              <LockIcon />
-              {t('forget-password')}
-            </div>
-
-            <Button
-              style={{ color: colors[3], borderColor: colors[3] }}
-              type="primary"
-              htmlType="submit"
-              ghost
+          return (
+            <div
+              className={styles.root}
+              style={shopperLoginMessageEnabled ? { flexGrow: 0 } : {}}
             >
-              {t('login')}
-            </Button>
-          </div>
-        </Form>
+              <div>{t('member-login')}</div>
 
-        <div className={styles.buttonRootExtend}>
-          <div>
-            <Button
-              style={{ color: colors[3], borderColor: colors[3] }}
-              type="primary"
-              ghost
-              onClick={() => {
-                toggleCart(false)();
-                goTo({ pathname: '/checkout' });
-              }}
-            >
-              <div>
-                <ShoppingCartIcon
-                  style={{ color: colors[0], backgroundColor: colors[3] }}
-                />
-                <div>{t('first-time')}</div>
-              </div>
-            </Button>
-          </div>
+              <Form onSubmit={this.submit}>
+                <FormItem>
+                  {getFieldDecorator('email', {
+                    rules: [
+                      {
+                        required: true,
+                        message: t('email-is-required'),
+                      },
+                      {
+                        validator: (rule, value, callback) => {
+                          if (value && (isFullWidth(value) || !isEmail(value)))
+                            callback(t('is-invalid-email'));
+                          else callback();
+                        },
+                      },
+                    ],
+                    validateTrigger: false,
+                    normalize: value => value.replace(/\s/g, ''),
+                  })(
+                    <Input
+                      placeholder={t('email-placeholder')}
+                      onChange={({ target: { value } }) => {
+                        setFields({
+                          email: {
+                            value,
+                          },
+                        });
+                      }}
+                      size="large"
+                    />,
+                  )}
+                </FormItem>
 
-          {!hasStoreAppPlugin('fbLogin') ? null : (
-            <div>
-              <Button
-                className={styles.fbButton}
-                ghost
-                onClick={() => fbLogin({ from: 'cart' })}
-              >
-                <div>
-                  <FacebookIcon className={styles.fbIcon} />
-                  <div>{t('fb-login')}</div>
+                <FormItem>
+                  {getFieldDecorator('password', {
+                    rules: [
+                      {
+                        required: true,
+                        message: t('password-is-required'),
+                      },
+                    ],
+                  })(
+                    <Password
+                      qplaceholder={t('password-placeholder')}
+                      size="large"
+                    />,
+                  )}
+                </FormItem>
+
+                <div className={styles.buttonRoot}>
+                  <div onClick={() => goToInCart('forget password', 'login')}>
+                    <LockIcon />
+                    {t('forget-password')}
+                  </div>
+
+                  <Button
+                    style={{ color: colors[3], borderColor: colors[3] }}
+                    type="primary"
+                    htmlType="submit"
+                    ghost
+                  >
+                    {t('login')}
+                  </Button>
                 </div>
-              </Button>
-            </div>
-          )}
-        </div>
+              </Form>
 
-        {!shopperLoginMessageEnabled || !shopperLoginMessage ? null : (
-          <>
-            <div className={styles.hr} style={{ backgroundColor: colors[5] }} />
-            <DraftText
-              style={{ padding: '0px 0px 10px 0px' }}
-              value={shopperLoginMessage}
-            />
-          </>
-        )}
-      </div>
+              <div className={styles.buttonRootExtend}>
+                <div>
+                  <Button
+                    style={{ color: colors[3], borderColor: colors[3] }}
+                    type="primary"
+                    ghost
+                    onClick={() => {
+                      toggleCart(false)();
+                      goTo({ pathname: '/checkout' });
+                    }}
+                  >
+                    <div>
+                      <ShoppingCartIcon
+                        style={{ color: colors[0], backgroundColor: colors[3] }}
+                      />
+                      <div>{t('first-time')}</div>
+                    </div>
+                  </Button>
+                </div>
+
+                {!isFbLoginEnabled ? null : (
+                  <div>
+                    <Button
+                      className={styles.fbButton}
+                      ghost
+                      onClick={() => fbLogin({ from: 'cart' })}
+                    >
+                      <div>
+                        <FacebookIcon className={styles.fbIcon} />
+                        <div>{t('fb-login')}</div>
+                      </div>
+                    </Button>
+                  </div>
+                )}
+              </div>
+
+              {!shopperLoginMessageEnabled || !shopperLoginMessage ? null : (
+                <>
+                  <div
+                    className={styles.hr}
+                    style={{ backgroundColor: colors[5] }}
+                  />
+                  <DraftText
+                    style={{ padding: '0px 0px 10px 0px' }}
+                    value={shopperLoginMessage}
+                  />
+                </>
+              )}
+            </div>
+          );
+        }}
+      </Query>
     );
   }
 }

@@ -19,7 +19,6 @@ export type AppsType = Record<
   | 'points'
   | 'newsletters'
   | 'analytics'
-  | 'fbLogin'
   | 'productAuthority'
   | 'productMassUpdate'
   | 'memberGroupCode'
@@ -50,7 +49,6 @@ const defaultApps = [
   'points',
   'newsletters',
   'analytics',
-  'fbLogin',
   'productAuthority',
   'productMassUpdate',
   'memberGroupCode',
