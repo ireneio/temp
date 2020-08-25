@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.60.4 (2020-08-25)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1123](https://github.com/meepshop/meep-lerna/pull/1123) 【BUG】 後台已設定好 FB 登入相關設定，但前台未顯示 FB 登入按鈕 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.60.3 (2020-08-25)
 
 #### :bug: Bug Fix
