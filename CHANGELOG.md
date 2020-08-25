@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.60.3 (2020-08-25)
+
+#### :bug: Bug Fix
+
+- [#1127](https://github.com/meepshop/meep-lerna/pull/1127) 【BUG】 後台 - 廣告分析一直在跑圈圈 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.60.2 (2020-08-25)
 
 #### :bug: Bug Fix
