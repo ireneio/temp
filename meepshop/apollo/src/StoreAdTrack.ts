@@ -61,6 +61,9 @@ export const resolvers = {
     }: DefaultDataType) => ({
       __typename: 'StoreAdTrack',
       facebookPixelId: getFbPixel?.pixelId || null,
+      googleSearchConsoleVerificationHtmlId: null,
+      googleSearchConsoleVerificationHtml: null,
+      googleAnalyticsId: null,
       // initialize fields data
       ...Object.values(gtagKeys).reduce(
         (result, key) => ({
@@ -74,10 +77,7 @@ export const resolvers = {
                   extractedId: null,
                 },
         }),
-        {
-          googleSearchConsoleVerificationHtmlId: null,
-          googleSearchConsoleVerificationHtml: null,
-        },
+        {},
       ),
       ...getGtagList?.reduce((result, data) => {
         if (data?.eventName === 'analytics_config')
