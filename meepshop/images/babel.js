@@ -64,6 +64,7 @@ const imageList = d3
       '-n',
       '1',
       '--pretty=format:%h',
+      '--abbrev=8',
       path,
     ]);
 

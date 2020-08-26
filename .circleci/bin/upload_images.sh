@@ -5,7 +5,7 @@ imageDir="$dir/../../meepshop/images/images"
 
 for image in $(find $imageDir); do
   if [[ $(file -b $image) =~ 'image' ]]; then
-    hash=$(git log -n 1 --pretty=format:%h $image)
+    hash=$(git log -n 1 --pretty=format:%h --abbrev=8 $image)
 
     folder=$(dirname -- $image)
     folder="${folder/$imageDir/}"
