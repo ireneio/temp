@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.60.5 (2020-08-27)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#1120](https://github.com/meepshop/meep-lerna/pull/1120) 【優化】廣告追蹤 - 瀏覽商品頁補商品價格 ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1132](https://github.com/meepshop/meep-lerna/pull/1132) 【BUG】 後台/編輯訂單 - 收件人姓名可儲存特殊符號，導致後台小白單無法列印 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#1130](https://github.com/meepshop/meep-lerna/pull/1130) (@meepshop/images): add abbrev format option ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.60.4 (2020-08-25)
 
 #### :bug: Bug Fix
