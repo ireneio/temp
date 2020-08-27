@@ -154,7 +154,7 @@ export default class ReceiverInfo extends React.PureComponent {
 
                       case 'allpay':
                         return callback(
-                          /[\^'`!@#%&*+\\"<>|_[\] ,，\d]/.test(value) ||
+                          /[\^'`!@#%&*+$~\-(){\\"<>|_[\] ,，\d]/.test(value) ||
                             (isAlpha(value)
                               ? value.length > 10 || value.length < 4
                               : value.length > 5 || value.length < 2)
