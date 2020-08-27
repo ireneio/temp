@@ -6,8 +6,6 @@ import { isEmpty } from 'fbjs';
 import { Spin, Icon } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import { AdTrack as AdTrackContext } from '@meepshop/context';
-import withContext from '@store/utils/lib/withContext';
 
 import * as Utils from 'utils';
 import { Container, TrackingCodeHead, Error } from 'components';
@@ -72,16 +70,6 @@ class Product extends React.Component {
       dispatchAction('getProduct', { id: query.pId, query });
 
     return { isLogin };
-  }
-
-  componentDidMount() {
-    const { adTrack, product } = this.props;
-
-    if (product)
-      adTrack.viewProduct({
-        id: product.id,
-        title: product.title,
-      });
   }
 
   render() {
@@ -169,8 +157,4 @@ export default connect(mapStateToProps, dispatch => ({
   dispatchAction: (actionName, args) => {
     dispatch(Actions[actionName](args));
   },
-}))(
-  withTranslation('common')(
-    withContext(AdTrackContext, adTrack => ({ adTrack }))(Product),
-  ),
-);
+}))(withTranslation('common')(Product));

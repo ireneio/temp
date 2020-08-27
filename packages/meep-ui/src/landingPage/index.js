@@ -136,7 +136,11 @@ export default class LandingPage extends React.PureComponent {
 
     if (productData && this.needToTrackViewProduct) {
       setTimeout(() => {
-        adTrack.viewProduct({ id: productData.id, title: productData.title });
+        adTrack.viewProduct({
+          id: productData.id,
+          title: productData.title,
+          price: productData.variants[0].totalPrice,
+        });
         this.needToTrackViewProduct = false;
       }, 5000);
     }

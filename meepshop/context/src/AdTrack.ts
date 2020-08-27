@@ -34,6 +34,7 @@ type viewProductType = (options: {
   title: {
     zh_TW: string;
   };
+  price: string;
 }) => void;
 
 type searchType = (options: {

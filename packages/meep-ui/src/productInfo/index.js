@@ -167,6 +167,19 @@ export default class ProductInfo extends React.PureComponent {
     };
   }
 
+  componentDidMount() {
+    const { adTrack, productData } = this.props;
+    const { variant } = this.state;
+
+    if (!productData) return;
+
+    adTrack.viewProduct({
+      id: productData.id,
+      title: productData.title,
+      price: variant.totalPrice,
+    });
+  }
+
   onChangeSpec = (level, value) => {
     const { coordinates, isAddingItem } = this.state;
     let {
