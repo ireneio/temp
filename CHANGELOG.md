@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.60.6 (2020-08-27)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1134](https://github.com/meepshop/meep-lerna/pull/1134) 【BUG】 前台 - 綠界超商物流訂單，收件人姓名可儲存特殊符號，導致後台小白單無法列印 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.60.5 (2020-08-27)
 
 #### :rocket: New Feature
