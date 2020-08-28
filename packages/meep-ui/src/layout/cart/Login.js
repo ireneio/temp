@@ -155,7 +155,7 @@ export default class Login extends React.PureComponent {
                     ],
                   })(
                     <Password
-                      qplaceholder={t('password-placeholder')}
+                      placeholder={t('password-placeholder')}
                       size="large"
                     />,
                   )}
