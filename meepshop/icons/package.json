@@ -4,7 +4,7 @@
   "description": "Use to handle the all icons for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.60.0",
+  "version": "0.61.0",
   "main": "./index.js",
   "types": "./src/types.tsx",
   "devDependencies": {
