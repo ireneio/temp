@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
-import {
-  FaChevronLeft as ChevronLeftIcon,
-  FaChevronRight as ChevronRightIcon,
-} from 'react-icons/fa';
+import { Icon } from 'antd';
 
 import Image from 'image';
 import { CONTENT_WIDTH_TYPE } from 'constants/propTypes';
@@ -178,7 +175,7 @@ export default class Carousel extends React.PureComponent {
             style={styles.control('left')}
             onClick={() => this.setState({ imageIndex: imageIndex - 1 })}
           >
-            <ChevronLeftIcon style={styles.chevronIcon} />
+            <Icon type="left" style={styles.chevronIcon} />
           </StyleRoot>
         )}
 
@@ -188,7 +185,7 @@ export default class Carousel extends React.PureComponent {
             style={styles.control('right')}
             onClick={() => this.setState({ imageIndex: imageIndex + 1 })}
           >
-            <ChevronRightIcon style={styles.chevronIcon} />
+            <Icon type="right" style={styles.chevronIcon} />
           </StyleRoot>
         )}
 

@@ -56,3 +56,4 @@ export const ShopOutlineIcon = MockIcon;
 export const ShoppingOutlineIcon = MockIcon;
 export const ThirdPartyOutlineIcon = MockIcon;
 export const AnalyticsSettingIcon = MockIcon;
+export const ViewReplyIcon = MockIcon;

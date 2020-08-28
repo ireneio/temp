@@ -6,11 +6,16 @@ export const modifyAntdStyle = (colors, width) => ({
   width: `${width}%`,
 
   '.ant-list': {
-    margin: '0px 0px 20px',
+    margin: '0px 0px 8px',
   },
 
   '.ant-list-item': {
+    alignItems: 'flex-start',
     borderBottom: `1px solid ${colors[3]}`,
+  },
+
+  '.anticon': {
+    marginRight: '2px',
   },
 
   '.ant-list-item > .ant-list-item-extra-wrap': {
@@ -51,14 +56,13 @@ export const modifyAntdStyle = (colors, width) => ({
 });
 
 export const replay = colors => ({
+  width: '100%',
   color: colors[4],
   cursor: 'pointer',
   userSelect: 'none',
+  marginTop: '8px',
+  fontWeight: 500,
 });
-
-export const arrowRightIcon = {
-  verticalAlign: 'text-top',
-};
 
 export const replayContent = colors => ({
   width: '100%',

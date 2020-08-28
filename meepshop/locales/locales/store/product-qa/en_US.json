@@ -1,4 +1,6 @@
 {
+  "view-reply": null,
+  "hide-reply": null,
   "email": "Email",
   "content": "Inquiry",
   "can-not-send": "Failed to submit",

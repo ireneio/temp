@@ -1,0 +1,6 @@
+type ProductQaModule implements Module {
+  id: ID!
+  parentId: ID!
+  width: PositiveInt!
+  product(productId: ID): Product
+}

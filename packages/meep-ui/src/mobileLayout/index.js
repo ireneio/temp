@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import memoizeOne from 'memoize-one';
 import { areEqual, emptyFunction } from 'fbjs';
-import { Affix, Drawer } from 'antd';
+import { Affix, Drawer, Icon } from 'antd';
 import transformColor from 'color';
-import { FaBars as BarsIcon } from 'react-icons/fa';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
@@ -92,7 +91,10 @@ export default class MobileLayout extends React.PureComponent {
           <header className={styles.header} style={normal}>
             <div className={styles.barsIcon}>
               {pages.length === 0 ? null : (
-                <BarsIcon onClick={() => this.setState({ visible: true })} />
+                <Icon
+                  type="menu"
+                  onClick={() => this.setState({ visible: true })}
+                />
               )}
             </div>
 

@@ -1,4 +1,6 @@
 {
+  "view-reply": null,
+  "hide-reply": null,
   "email": "Email",
   "content": "Investigación",
   "can-not-send": "Error al enviar",

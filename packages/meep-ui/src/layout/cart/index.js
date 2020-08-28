@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { StyleRoot } from 'radium';
 import { warning } from 'fbjs';
 import { Spin, Drawer, Icon } from 'antd';
-import { FaAngleRight as AngleRightIcon } from 'react-icons/fa';
-import { MdKeyboardBackspace as ArrowLeftIcon } from 'react-icons/md';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -64,16 +62,6 @@ export default class Cart extends React.PureComponent {
           spinning={isCartUpdating}
           indicator={<Icon type="loading" spin />}
         >
-          <AngleRightIcon
-            className={styles.angleRightIcon}
-            style={{
-              display: isShowCart ? 'initial' : 'none',
-              color: colors[2],
-              background: colors[4],
-            }}
-            onClick={toggleCart(false)}
-          />
-
           <StyleRoot
             className={`${styles.body} ${
               nowCart === 'product list' ? '' : styles.hasMinHeight
@@ -91,7 +79,11 @@ export default class Cart extends React.PureComponent {
               {history.length === 0 ? (
                 <div />
               ) : (
-                <ArrowLeftIcon className={styles.icon} onClick={this.goBack} />
+                <Icon
+                  type="arrow-left"
+                  className={styles.icon}
+                  onClick={this.goBack}
+                />
               )}
               <Icon
                 type="close"

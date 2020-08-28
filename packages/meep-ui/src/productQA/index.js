@@ -2,11 +2,11 @@ import React from 'react';
 import radium, { Style } from 'radium';
 import PropTypes from 'prop-types';
 import { Form, List, Input, Button, message } from 'antd';
-import { MdSubdirectoryArrowRight as ArrowRightIcon } from 'react-icons/md';
 import { isFullWidth, isEmail } from 'validator';
 import moment from 'moment';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { ViewReplyIcon } from '@meepshop/icons';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, ISLOGIN_TYPE, COLOR_TYPE } from 'constants/propTypes';
@@ -41,7 +41,7 @@ export default class PrdoductQA extends React.PureComponent {
 
   state = {
     QAList: [],
-    showQAIndex: -1,
+    showQAIndex: [],
   };
 
   componentDidMount() {
@@ -140,15 +140,19 @@ export default class PrdoductQA extends React.PureComponent {
                         style={styles.replay(colors)}
                         onClick={() =>
                           this.setState({
-                            showQAIndex: showQAIndex === index ? -1 : index,
+                            showQAIndex: showQAIndex.includes(index)
+                              ? showQAIndex.filter(i => i !== index)
+                              : [...showQAIndex, index],
                           })
                         }
                       >
-                        <ArrowRightIcon style={styles.arrowRightIcon} />
-                        View Reply
+                        <ViewReplyIcon />
+                        {showQAIndex.includes(index)
+                          ? t('hide-reply')
+                          : t('view-reply')}
                       </div>
 
-                      {showQAIndex !== index
+                      {!showQAIndex.includes(index)
                         ? null
                         : replay.map(
                             ({
@@ -156,11 +160,12 @@ export default class PrdoductQA extends React.PureComponent {
                               createdAt: replayCreatedAt,
                             }) => (
                               <div style={styles.replayContent(colors)}>
-                                <pre>{replayQuestion}</pre>(
-                                {moment(replayCreatedAt).format(
-                                  'YYYY/MM/DD HH:mm:ss',
-                                )}
-                                )
+                                <pre>{replayQuestion}</pre>
+                                <div>
+                                  {`(${moment(replayCreatedAt).format(
+                                    'YYYY/MM/DD HH:mm:ss',
+                                  )})`}
+                                </div>
                               </div>
                             ),
                           )}

@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import gql from 'graphql-tag';
 import { Query } from '@apollo/react-components';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Icon } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
-import { MdLock as LockIcon } from 'react-icons/md';
 import {
   FaShoppingCart as ShoppingCartIcon,
   FaFacebook as FacebookIcon,
@@ -163,7 +162,7 @@ export default class Login extends React.PureComponent {
 
                 <div className={styles.buttonRoot}>
                   <div onClick={() => goToInCart('forget password', 'login')}>
-                    <LockIcon />
+                    <Icon type="lock" theme="filled" />
                     {t('forget-password')}
                   </div>
 

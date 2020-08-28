@@ -33,6 +33,7 @@
       "@meepshop/product-collections/lib/*": ["meepshop/product-collections/src/*"],
       "@meepshop/product-draft-text/lib/*": ["meepshop/product-draft-text/src/*"],
       "@meepshop/product-iframe/lib/*": ["meepshop/product-iframe/src/*"],
+      "@meepshop/product-qa/lib/*": ["meepshop/product-qa/src/*"],
       "@meepshop/product-video/lib/*": ["meepshop/product-video/src/*"],
       "@meepshop/social-media/lib/*": ["meepshop/social-media/src/*"],
       "@meepshop/social-thumbs/lib/*": ["meepshop/social-thumbs/src/*"],

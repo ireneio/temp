@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { Form, Input, Button, Modal, notification } from 'antd';
+import { Form, Input, Button, Modal, notification, Icon } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
-import { MdLock as LockIcon } from 'react-icons/md';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
@@ -181,7 +180,7 @@ export default class Login extends React.PureComponent {
                   this.setState({ isForgetPassword: true });
                 }}
               >
-                <LockIcon />
+                <Icon type="lock" theme="filled" />
 
                 {t('forget-password')}
               </div>

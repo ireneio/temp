@@ -146,6 +146,7 @@ union PageModule =
   | ProductCollectionsModule
   | ProductDraftTextModule
   | ProductIframeModule
+  | ProductQaModule
   | ProductVideoModule
   | SocialMediaModule
   | SocialThumbsModule

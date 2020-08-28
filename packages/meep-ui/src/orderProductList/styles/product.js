@@ -28,10 +28,12 @@ export const removeIcon = colors => ({
   position: 'absolute',
   top: 'calc(-8px + 20px)',
   right: '-8px',
-  fill: colors[2],
+  color: colors[2],
   background: colors[4],
   borderRadius: '50%',
   cursor: 'pointer',
+  fontSize: '9px',
+  lineHeight: '13px',
 });
 
 /** title */
@@ -54,6 +56,7 @@ export const activity = colors => ({
 
 export const tagIcon = {
   margin: '0px 5px',
+  fontＳize: '16px',
 };
 
 /** gift */

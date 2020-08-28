@@ -60,6 +60,7 @@ export const closeIcon = {
   width: '24px',
   height: '24px',
   cursor: 'pointer',
+  fontSize: '18px',
 };
 
 export const orderProductList = colors => ({

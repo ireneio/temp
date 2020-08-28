@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "@meepshop/product-qa",
+  "description": "Meepshop product qa",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.54.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/context": "^0.60.0",
+    "@meepshop/icons": "^0.60.0",
+    "@meepshop/utils": "^0.60.0",
+    "color": "^3.0.0",
+    "validator": "^12.0.0"
+  },
+  "keywords": ["meepshop", "product", "qa"]
+}

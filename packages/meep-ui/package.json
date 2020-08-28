@@ -7,6 +7,7 @@
   "version": "0.60.6",
   "dependencies": {
     "@meepshop/context": "^0.60.5",
+    "@meepshop/icons": "^0.60.0",
     "@meepshop/images": "^0.60.5",
     "@meepshop/landing-page": "^0.60.5",
     "@meepshop/product-amount-select": "^0.60.5",

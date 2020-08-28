@@ -15,6 +15,7 @@ import menuFragment from '@meepshop/menu/lib/fragment';
 import productCollectionsFragment from '@meepshop/product-collections/lib/fragment';
 import productDraftTextFragment from '@meepshop/product-draft-text/lib/fragment';
 import productIframeFragment from '@meepshop/product-iframe/lib/fragment';
+import productQaFragment from '@meepshop/product-qa/lib/fragment';
 import productVideoFragment from '@meepshop/product-video/lib/fragment';
 import socialMediaFragment from '@meepshop/social-media/lib/fragment';
 import socialThumbsFragment from '@meepshop/social-thumbs/lib/fragment';
@@ -141,6 +142,13 @@ export const modulesFragment = gql`
       ...productIframeFragment
     }
 
+    ... on ProductQaModule {
+      __typename
+      id
+      parentId
+      ...productQaFragment
+    }
+
     ... on ProductVideoModule {
       __typename
       id
@@ -196,6 +204,7 @@ export const modulesFragment = gql`
   ${productCollectionsFragment}
   ${productDraftTextFragment}
   ${productIframeFragment}
+  ${productQaFragment}
   ${productVideoFragment}
   ${socialMediaFragment}
   ${socialThumbsFragment}
@@ -225,6 +234,7 @@ const modules = {
   ),
   ProductDraftTextModule: dynamic(() => import('@meepshop/product-draft-text')),
   ProductIframeModule: dynamic(() => import('@meepshop/product-iframe')),
+  ProductQaModule: dynamic(() => import('@meepshop/product-qa')),
   ProductVideoModule: dynamic(() => import('@meepshop/product-video')),
   SocialMediaModule: dynamic(() => import('@meepshop/social-media')),
   SocialThumbsModule: dynamic(() => import('@meepshop/social-thumbs')),

@@ -20,6 +20,7 @@
     "@meepshop/product-collections": "^0.60.5",
     "@meepshop/product-draft-text": "^0.60.5",
     "@meepshop/product-iframe": "^0.60.0",
+    "@meepshop/product-qa": "^0.54.0",
     "@meepshop/product-video": "^0.60.5",
     "@meepshop/social-media": "^0.60.5",
     "@meepshop/social-thumbs": "^0.60.5",

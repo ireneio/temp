@@ -1,4 +1,6 @@
 {
+  "view-reply": null,
+  "hide-reply": null,
   "email": "Email",
   "content": "Enquête",
   "can-not-send": "Échec de soumission",

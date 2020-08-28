@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Mutation } from '@apollo/react-components';
 import gql from 'graphql-tag';
-import { notification } from 'antd';
+import { notification, Icon } from 'antd';
 import radium from 'radium';
-import { MdClose as RemoveIcon } from 'react-icons/md';
-import { FaTag as TagIcon } from 'react-icons/fa';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import Thumbnail from '@meepshop/thumbnail';
@@ -104,7 +102,8 @@ export default class Product extends React.PureComponent {
               `}
             >
               {removeProductFromCartMutation => (
-                <RemoveIcon
+                <Icon
+                  type="close"
                   style={styles.removeIcon(colors)}
                   onClick={async () => {
                     updateCart(true);
@@ -150,7 +149,7 @@ export default class Product extends React.PureComponent {
             <div style={styles.activity(colors)}>
               {activityInfo.map(({ title: activityTitle }) => (
                 <>
-                  <TagIcon style={styles.tagIcon} />
+                  <Icon type="tag" theme="filled" style={styles.tagIcon} />
 
                   {activityTitle[i18n.language] || activityTitle.zh_TW}
                 </>

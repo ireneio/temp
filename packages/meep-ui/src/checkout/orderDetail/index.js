@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
-import { Form, InputNumber, Button, Modal } from 'antd';
+import { Form, InputNumber, Button, Modal, Icon } from 'antd';
 import uuid from 'uuid';
-import { MdChevronLeft as ChevronLeftIcon } from 'react-icons/md';
 import transformColor from 'color';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
@@ -540,7 +539,7 @@ export default class OrderDetail extends React.PureComponent {
                   style={{ color: colors[3] }}
                   onClick={() => goTo({ back: true })}
                 >
-                  <ChevronLeftIcon className={styles.continueShoppingIcon} />
+                  <Icon type="left" className={styles.continueShoppingIcon} />
 
                   {t('continue-shopping')}
                 </div>

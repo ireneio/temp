@@ -5,11 +5,13 @@ import { filter } from 'graphql-anywhere';
 
 // graphql typescript
 import { ContextType as MenuContextType } from '@meepshop/menu/lib/fragment';
+import { ContextType as ProductQaContextType } from '@meepshop/product-qa/lib/fragment';
 
 import { contextUserFragment as contextUserFragmentType } from './__generated__/contextUserFragment';
 
 // graphql import
 import { menuUserFragment } from '@meepshop/menu/lib/fragment';
+import { productQaUserFragment } from '@meepshop/product-qa/lib/fragment';
 
 // typescript definition
 type ModuleNamesType =
@@ -24,6 +26,7 @@ type ModuleNamesType =
   | 'ProductCollectionsModule'
   | 'ProductDraftTextModule'
   | 'ProductIframeModule'
+  | 'ProductQaModule'
   | 'ProductVideoModule'
   | 'SocialMediaModule'
   | 'SocialThumbsModule'
@@ -33,6 +36,7 @@ type ModuleNamesType =
 
 interface ModulesType extends Record<ModuleNamesType, {}> {
   MenuModule: MenuContextType;
+  ProductQaModule: ProductQaContextType;
 }
 
 interface PropsType {
@@ -56,6 +60,9 @@ const defaultContext = {
   ProductCollectionsModule: {},
   ProductDraftTextModule: {},
   ProductIframeModule: {},
+  ProductQaModule: {
+    user: null,
+  },
   ProductVideoModule: {},
   SocialMediaModule: {},
   SocialThumbsModule: {},
@@ -69,9 +76,11 @@ export const contextUserFragment = gql`
   fragment contextUserFragment on User {
     id
     ...menuUserFragment
+    ...productQaUserFragment
   }
 
   ${menuUserFragment}
+  ${productQaUserFragment}
 `;
 
 export const ModulesProvider = React.memo(({ user, children }: PropsType) => (
@@ -80,6 +89,9 @@ export const ModulesProvider = React.memo(({ user, children }: PropsType) => (
       ...defaultContext,
       MenuModule: {
         user: !user ? null : filter(menuUserFragment, user),
+      },
+      ProductQaModule: {
+        user: !user ? null : filter(productQaUserFragment, user),
       },
     }}
   >
