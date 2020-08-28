@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 0.61.0 (2020-08-28)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1118](https://github.com/meepshop/meep-lerna/pull/1118) Add cookies to @meepshop/context ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`
+  - [#1068](https://github.com/meepshop/meep-lerna/pull/1068) 【重構】商品問答元件 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1133](https://github.com/meepshop/meep-lerna/pull/1133) 【BUG】前台 - 購物車 panel 登入會員，「密碼」placeholder 消失 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.60.6 (2020-08-27)
 
 #### :bug: Bug Fix
