@@ -1,9 +1,11 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import memoizeOne from 'memoize-one';
 import { Menu } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import initApollo from '@meepshop/apollo/lib/initApollo';
 import { Currency as CurrencyContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
@@ -37,7 +39,9 @@ const { Item: AntdMenuItem, SubMenu } = Menu;
 export default class MenuItem extends React.PureComponent {
   generateURL = memoizeOne(notMemoizedGenerateURL);
 
-  SubMenu = withTranslation('common')(enhancer(MenuItem));
+  SubMenu = withTranslation('common')(
+    withContext(CurrencyContext)(enhancer(MenuItem)),
+  );
 
   static propTypes = {
     /** context, TODO: remove */
@@ -46,7 +50,6 @@ export default class MenuItem extends React.PureComponent {
     locale: ONE_OF_LOCALE_TYPE.isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
     logout: PropTypes.func.isRequired,
-    setCustomerCurrency: PropTypes.func.isRequired,
     user: USER_TYPE.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
@@ -114,7 +117,6 @@ export default class MenuItem extends React.PureComponent {
       /** context */
       toggleCart,
       logout,
-      setCustomerCurrency,
       isLogin,
       getData,
 
@@ -122,6 +124,8 @@ export default class MenuItem extends React.PureComponent {
       i18n,
       id,
       action,
+      setCurrency,
+      user,
     } = this.props;
 
     switch (action) {
@@ -147,6 +151,20 @@ export default class MenuItem extends React.PureComponent {
               input: { locale: id },
             },
           );
+          initApollo({ name: 'store' }).writeFragment({
+            id: user.id,
+            fragment: gql`
+              fragment updateLocaleCache on User {
+                id
+                locale
+              }
+            `,
+            data: {
+              __typename: 'User',
+              id: user.id,
+              locale: id,
+            },
+          });
         }
 
         i18n.changeLanguage(id);
@@ -154,7 +172,7 @@ export default class MenuItem extends React.PureComponent {
         break;
 
       case 'currency':
-        setCustomerCurrency(id);
+        setCurrency(id);
         break;
 
       default:

@@ -22,9 +22,7 @@ function* serverIndexInitialFlow({ payload }) {
     if (data.apiErr) {
       yield put(getStoreFailure(data.apiErr));
     } else {
-      const { currency: customerCurrency } = payload.req;
-
-      yield put(getStoreSuccess({ ...data, customerCurrency }));
+      yield put(getStoreSuccess(data));
       yield put(getAuthSuccess(data));
       const homePageId = data?.data?.viewer?.store?.homePageId;
       const pages = data?.data?.viewer?.store?.pages.edges;
@@ -59,9 +57,7 @@ function* serverPagesInitialFlow({ payload }) {
     if (data.apiErr) {
       yield put(getStoreFailure(data.apiErr));
     } else {
-      const { currency: customerCurrency } = payload.req;
-
-      yield put(getStoreSuccess({ ...data, customerCurrency }));
+      yield put(getStoreSuccess(data));
       yield put(getAuthSuccess(data));
 
       const page = data?.data?.viewer?.store?.pages.edges[0]?.node;
@@ -114,9 +110,7 @@ function* serverProductInitialFlow({ payload }) {
     if (data.apiErr) {
       yield put(getStoreFailure(data.apiErr));
     } else {
-      const { currency: customerCurrency } = payload.req;
-
-      yield put(getStoreSuccess({ ...data, customerCurrency }));
+      yield put(getStoreSuccess(data));
       yield put(getAuthSuccess(data));
 
       const product = data?.data?.computeProductList?.data?.[0];
@@ -164,9 +158,7 @@ function* serverProductsInitialFlow({ payload }) {
     if (data.apiErr) {
       yield put(getStoreFailure(data.apiErr));
     } else {
-      const { currency: customerCurrency } = payload.req;
-
-      yield put(getStoreSuccess({ ...data, customerCurrency }));
+      yield put(getStoreSuccess(data));
       yield put(getAuthSuccess(data));
       const page = data?.data?.viewer?.store?.pages.edges[0].node;
       if (page) {
@@ -199,9 +191,7 @@ function* serverOthersInitialFlow({ payload }) {
     if (data.apiErr) {
       yield put(getStoreFailure(data.apiErr));
     } else {
-      const { currency: customerCurrency } = payload.req;
-
-      yield put(getStoreSuccess({ ...data, customerCurrency }));
+      yield put(getStoreSuccess(data));
       yield put(getAuthSuccess(data));
     }
   } catch ({ message }) {

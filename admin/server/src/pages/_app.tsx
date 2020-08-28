@@ -17,6 +17,8 @@ import '@admin/utils/styles/base.less';
 import withApollo from '@admin/apollo';
 import CurrencyProvider from '@admin/currency';
 
+import withCookies from '../utils/withCookies';
+
 // definition
 const Wrapper = dynamic(() => import('@admin/wrapper'));
 
@@ -78,4 +80,4 @@ class App extends NextApp<AppInitialProps> {
   }
 }
 
-export default withApollo(appWithTranslation(withDomain(App)));
+export default withApollo(appWithTranslation(withCookies(withDomain(App))));

@@ -107,7 +107,7 @@ const getPageAdTrackIds = data => {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_STORE_SUCCESS: {
-      const { data, customerCurrency /* from cookie */ } = payload;
+      const { data } = payload;
       const activities = data?.getActivityList?.data || [];
       const menus = (data?.getMenuList?.data || []).map(menu =>
         Utils.setDefaultValueForMenuDesign(menu),
@@ -133,8 +133,6 @@ export default (state = initialState, { type, payload }) => {
         mobileLogoUrl: store?.mobileLogoImage?.src || '',
         homePageId: store.homePageId,
         localeOptions: localeOptions || ['zh_TW'], // 用於語系選單
-        storeCurrency: store.currency || 'TWD', // 幣值轉換欲轉換成的幣值
-        customerCurrency: customerCurrency || currencyOptions?.[0] || 'TWD', // default currency
         currencyOptions: currencyOptions || ['TWD'], // 用於幣值選單
       };
 
@@ -151,11 +149,6 @@ export default (state = initialState, { type, payload }) => {
     case GET_STORE_FAILURE: {
       const error = payload;
       return { error };
-    }
-    /* 更改幣值 */
-    case SET_CURRENCY: {
-      const { settings } = state;
-      return { ...state, settings: { ...settings, customerCurrency: payload } };
     }
     default:
       return state;

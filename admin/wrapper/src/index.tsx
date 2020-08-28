@@ -26,7 +26,6 @@ import {
   viewerAuthorityListFragment,
 } from '@admin/apollo/lib/viewer';
 
-import { useCollapsedFragment } from './hooks/useCollapsed';
 import { useCheckingAdminStatusFragment } from './hooks/useCheckingAdminStatus';
 import { useMenuListFragment } from './hooks/useMenuList';
 import { useFooterMenuListFragment } from './hooks/useFooterMenuList';
@@ -41,10 +40,6 @@ const { Content, Sider } = Layout;
 
 const query = gql`
   query initAdmin {
-    cookies @client {
-      ...useCollapsedFragment
-    }
-
     viewer {
       id
       role
@@ -68,7 +63,6 @@ const query = gql`
   ${viewerUserFragment}
   ${viewerAuthorityListFragment}
 
-  ${useCollapsedFragment}
   ${useCheckingAdminStatusFragment}
   ${useMenuListFragment}
   ${useFooterMenuListFragment}
@@ -78,9 +72,7 @@ export const CollapsedContext = React.createContext<boolean | null>(false);
 
 export default React.memo(({ children }: PropsType) => {
   const { data } = useQuery<initAdmin>(query);
-  const { isDone, collapsed, onBreakpoint, setCollapsed } = useCollapsed(
-    !data?.cookies ? null : filter(useCollapsedFragment, data.cookies),
-  );
+  const { isDone, collapsed, onBreakpoint, setCollapsed } = useCollapsed();
   const [transitionLoading, transitionEnd] = useTransitionEnd(collapsed);
   const isMerchant = data?.viewer?.role === 'MERCHANT';
   const permission = data?.viewer?.permission;

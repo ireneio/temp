@@ -27,6 +27,7 @@ interface PropsType extends AppProps {
 
 export interface CustomCtxType<Req = {}, Res = {}> extends AppContext {
   ctx: AppContext['ctx'] & {
+    client: ApolloClient<NormalizedCacheObject>;
     req: Req & {
       logId: string;
       cookies: {
@@ -37,20 +38,13 @@ export interface CustomCtxType<Req = {}, Res = {}> extends AppContext {
   };
 }
 
-interface ConfigType extends initApolloConfigType {
-  initCookies?: (
-    client: ApolloClient<NormalizedCacheObject>,
-    ctx: CustomCtxType,
-  ) => void;
-}
-
 export interface ContextType {
   cache: InMemoryCache;
   client: ApolloClient<NormalizedCacheObject>;
 }
 
 // definition
-export const buildWithApollo = ({ initCookies, ...config }: ConfigType) => (
+export const buildWithApollo = (config: initApolloConfigType) => (
   App: NextAppType,
 ): NextAppType => {
   const WithApollo = ({
@@ -72,15 +66,7 @@ export const buildWithApollo = ({ initCookies, ...config }: ConfigType) => (
     } = ctx;
     const client = initApollo(config, undefined, ctx);
 
-    if (initCookies && typeof window === 'undefined') {
-      try {
-        await initCookies(client, ctx);
-      } catch (e) {
-        if (!shouldIgnoreUnauthorizedError(e.networkError))
-          // eslint-disable-next-line no-console
-          console.error('Error while changing language', e);
-      }
-    }
+    ctx.ctx.client = client;
 
     const appProps = await App.getInitialProps(ctx);
 

@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "@meepshop/cookies",
+  "description": "Cookies context for meepshop",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/apollo": "^0.60.5",
+    "@meepshop/utils": "^0.60.5",
+    "apollo-cache-inmemory": "^1.6.3",
+    "js-cookie": "^2.2.1"
+  },
+  "keywords": ["context", "cookies", "meepshop"]
+}

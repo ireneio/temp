@@ -21,7 +21,7 @@ export default withApollo(
         <FbProvider>
           <ColorsProvider>
             <AppsProvider>
-              <CurrencyProvider cookieCurrency="TWD">
+              <CurrencyProvider>
                 <AdTrackProvider>
                   <MockTypes>{children}</MockTypes>
                 </AdTrackProvider>

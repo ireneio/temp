@@ -45,7 +45,6 @@ export default class DecoratorsRoot extends React.Component {
     carts: PropTypes.shape({}).isRequired,
 
     /** context func from props */
-    setCustomerCurrency: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
@@ -83,7 +82,6 @@ export default class DecoratorsRoot extends React.Component {
       carts,
 
       /** context func from props */
-      setCustomerCurrency,
       goTo,
       getData,
       login,
@@ -107,7 +105,6 @@ export default class DecoratorsRoot extends React.Component {
       carts,
 
       /** context func from props */
-      setCustomerCurrency,
       goTo,
       getData,
       login,

@@ -1,8 +1,10 @@
+import gql from 'graphql-tag';
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import * as Utils from 'utils';
 import { notification } from 'antd';
 
 import { i18n } from '@meepshop/utils/lib/i18n';
+import initApollo from '@meepshop/apollo/lib/initApollo';
 
 import * as Api from 'api';
 import { NOTLOGIN, ISUSER } from 'constants';
@@ -92,8 +94,23 @@ export function* loginFlow({ payload }) {
 
       if (language !== i18n.language) yield call(i18n.changeLanguage, language);
 
-      if (language !== locale)
+      if (language !== locale) {
         yield call(Api.updateShopperLanguagePreference, i18n.language);
+        initApollo({ name: 'store' }).writeFragment({
+          id: memberData?.data?.viewer?.id,
+          fragment: gql`
+            fragment updateLocaleCache on User {
+              id
+              locale
+            }
+          `,
+          data: {
+            __typename: 'User',
+            id: memberData?.data?.viewer?.id,
+            locale: language,
+          },
+        });
+      }
 
       notification.success({ message: i18n.t('ducks:login-success') });
 

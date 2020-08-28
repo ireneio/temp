@@ -15,6 +15,7 @@
   "dependencies": {
     "@meepshop/apollo": "^0.60.5",
     "@meepshop/context": "^0.60.5",
+    "@meepshop/cookies": "^0.1.0",
     "@meepshop/images": "^0.60.5",
     "@meepshop/link": "^0.60.5",
     "@meepshop/meep-ui": "^0.60.6",

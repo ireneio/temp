@@ -9,6 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/context": "^0.60.5",
+    "@meepshop/cookies": "^0.1.0",
     "money": "^0.2.0"
   },
   "keywords": ["context", "currency", "store"]

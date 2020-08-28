@@ -9,9 +9,6 @@
   "types": "./src/index.ts",
   "dependencies": {
     "@meepshop/apollo": "^0.60.5",
-    "@meepshop/utils": "^0.60.5",
-    "apollo-cache-inmemory": "^1.6.3",
-    "js-cookie": "^2.2.1",
     "moment": "^2.22.1"
   },
   "keywords": ["admin", "apollo client"]

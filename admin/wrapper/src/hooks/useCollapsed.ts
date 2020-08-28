@@ -1,65 +1,37 @@
 // import
-import { useEffect, useState, useCallback } from 'react';
-import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { useContext, useEffect, useState, useCallback } from 'react';
 
-// graphql typescript
-import { useCollapsedFragment as useCollapsedFragmentType } from './__generated__/useCollapsedFragment';
-import {
-  setMenuCollapsed,
-  setMenuCollapsedVariables,
-} from './__generated__/setMenuCollapsed';
+import CookiesContext from '@meepshop/cookies';
 
 // definition
-export const useCollapsedFragment = gql`
-  fragment useCollapsedFragment on Cookies {
-    id
-    menuCollapsed
-  }
-`;
-
-export default (
-  cookies: useCollapsedFragmentType | null | undefined,
-): {
+export default (): {
   isDone: boolean;
   collapsed: boolean;
   onBreakpoint: (breakpoint: boolean) => void;
   setCollapsed: (collapsed: boolean) => void;
 } => {
+  const { cookies, setCookie } = useContext(CookiesContext);
   const [isDone, setIsDone] = useState(false);
   const [isOnBreakpoint, setIsOnBreakpoint] = useState<null | boolean>(null);
-  const [setCookies] = useMutation<
-    setMenuCollapsed,
-    setMenuCollapsedVariables
-  >(gql`
-    mutation setMenuCollapsed($input: SetCookiesInput!) {
-      setCookies(input: $input) @client
-    }
-  `);
+  const [collapsed, setCollapsed] = useState(cookies.menuCollapsed === 'true');
 
   useEffect(() => {
-    if (
-      typeof window !== 'undefined' &&
-      Boolean(cookies) &&
-      isOnBreakpoint !== null
-    )
+    if (typeof window !== 'undefined' && isOnBreakpoint !== null)
       setIsDone(true);
   }, [cookies, isOnBreakpoint]);
 
   return {
     isDone,
-    collapsed: Boolean(cookies?.menuCollapsed || isOnBreakpoint),
+    collapsed: Boolean(collapsed || isOnBreakpoint),
     onBreakpoint: setIsOnBreakpoint,
     setCollapsed: useCallback(
-      (collapsed: boolean) => {
-        if (!isOnBreakpoint)
-          setCookies({
-            variables: {
-              input: { menuCollapsed: collapsed },
-            },
-          });
+      (newCollapsed: boolean) => {
+        if (isOnBreakpoint) return;
+
+        setCollapsed(newCollapsed);
+        setCookie('menuCollapsed', newCollapsed.toString());
       },
-      [isOnBreakpoint, setCookies],
+      [isOnBreakpoint, setCookie],
     ),
   };
 };

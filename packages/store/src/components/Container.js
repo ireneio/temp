@@ -59,14 +59,11 @@ class Container extends React.Component {
     loading: PropTypes.bool.isRequired,
     loadingTip: PropTypes.string.isRequired,
     /* func to modify data */
-    setCustomerCurrency: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
     forgetPassword: PropTypes.func.isRequired,
     signout: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
     /* props(not in context) */
-    storeCurrency: PropTypes.string.isRequired,
-    customerCurrency: PropTypes.string,
     backgroundImage: PropTypes.shape({
       files: PropTypes.array.isRequired,
       repeat: PropTypes.bool.isRequired,
@@ -82,7 +79,6 @@ class Container extends React.Component {
   };
 
   static defaultProps = {
-    customerCurrency: 'zh_TW',
     user: null,
     children: null,
   };
@@ -132,15 +128,6 @@ class Container extends React.Component {
       }, adRetentionMilliseconds);
     }
   }
-
-  setCustomerCurrency = id => {
-    const { setCustomerCurrency, setCurrency, currency } = this.props;
-    if (id === currency) return;
-
-    document.cookie = `currency=${id}; path=/`;
-    setCurrency(id);
-    setCustomerCurrency(id);
-  };
 
   // eslint-disable-next-line consistent-return
   handleFacebookLogin = ({ from }) => {
@@ -268,8 +255,6 @@ class Container extends React.Component {
       signout,
       dispatchAction,
       /* props(not in context) */
-      storeCurrency,
-      customerCurrency,
       backgroundImage,
       page,
       product,
@@ -282,20 +267,17 @@ class Container extends React.Component {
         <Layout
           /* never change */
           cname={cname}
-          storeCurrency={storeCurrency}
           storeSetting={storeSetting}
           experiment={experiment}
           /* may change */
           isLogin={isLogin}
           user={user}
           location={location}
-          customerCurrency={customerCurrency}
           /* func to modify data */
           goTo={Utils.goTo}
           fbLogin={this.handleFacebookLogin}
           getData={Utils.getData}
           getApiUrl={Utils.getApiUrl}
-          setCustomerCurrency={this.setCustomerCurrency}
           /* use dispatchAction */
           login={login}
           forgetPassword={forgetPassword}
@@ -324,7 +306,7 @@ const mapStateToProps = state => {
     memberReducer: { user, isLogin, loading, loadingTip },
     loadingStatus: { loading: isLoading },
   } = state;
-  const { cname, storeCurrency, customerCurrency, backgroundImage } = settings;
+  const { cname, backgroundImage } = settings;
 
   return {
     /* never change */
@@ -338,14 +320,11 @@ const mapStateToProps = state => {
     loading: isLoading || loading,
     loadingTip,
     /* props(not in context) */
-    storeCurrency,
-    customerCurrency,
     backgroundImage,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  setCustomerCurrency: bindActionCreators(Actions.setCurrency, dispatch),
   signout: bindActionCreators(Actions.signout, dispatch),
   login: bindActionCreators(Actions.login, dispatch),
   forgetPassword: bindActionCreators(Actions.forgetPassword, dispatch),

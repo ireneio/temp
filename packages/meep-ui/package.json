@@ -6,6 +6,7 @@
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.60.6",
   "dependencies": {
+    "@meepshop/apollo": "^0.60.5",
     "@meepshop/context": "^0.60.5",
     "@meepshop/icons": "^0.60.0",
     "@meepshop/images": "^0.60.5",

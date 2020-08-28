@@ -10,6 +10,8 @@ export interface CurrencyType {
 }
 
 // definition
+export const defaultCurrency = 'TWD';
+
 export const format = (currency: string, price: number): string =>
   (() => {
     switch (currency) {
@@ -39,5 +41,5 @@ export const format = (currency: string, price: number): string =>
 export default React.createContext<CurrencyType>({
   c: (price: number) => format('TWD', price),
   setCurrency: emptyFunction,
-  currency: 'TWD',
+  currency: defaultCurrency,
 });

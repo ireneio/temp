@@ -1,27 +1,8 @@
-// typescript import
-import { ApolloClient } from 'apollo-client';
-import { NormalizedCacheObject } from 'apollo-cache-inmemory';
-
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { CustomCtxType } from '@meepshop/apollo';
-
 // import
-import gql from 'graphql-tag';
-
 import { buildWithApollo } from '@meepshop/apollo';
 
-import * as cookies from './cookies';
 import * as selectedOrders from './selectedOrders';
 import * as viewer from './viewer';
-
-// graphql typescript
-import { getAdminLocale } from './__generated__/getAdminLocale';
-
-// typescript definition
-interface ReqType {
-  i18n: I18nPropsType['i18n'];
-  language: I18nPropsType['i18n']['language'];
-}
 
 // definition
 const shouldIgnoreErrorMessages = [
@@ -59,34 +40,10 @@ const shouldIgnoreErrorMessages = [
   'FAIL_03_ORDER_STATUS_WRONG_OR_NOT_ALLOWED',
 ];
 
-const query = gql`
-  query getAdminLocale {
-    viewer {
-      id
-      store {
-        id
-        locale
-      }
-    }
-  }
-`;
-
 export default buildWithApollo({
   name: 'admin',
-  initializeCache: [cookies.initializeCache, selectedOrders.initializeCache],
-  resolvers: [cookies.resolvers, selectedOrders.resolvers, viewer.resolvers],
+  initializeCache: [selectedOrders.initializeCache],
+  resolvers: [selectedOrders.resolvers, viewer.resolvers],
   errorFilter: ({ message }: Error) =>
     !shouldIgnoreErrorMessages.includes(message),
-  initCookies: async (
-    client: ApolloClient<NormalizedCacheObject>,
-    { ctx: { req } }: CustomCtxType<ReqType>,
-  ) => {
-    if (!req) return;
-
-    const result = await client.query<getAdminLocale>({ query });
-    const locale = result?.data.viewer?.store?.locale || 'zh_TW';
-
-    if (req.i18n && locale !== req.language)
-      await req.i18n.changeLanguage(locale);
-  },
 });

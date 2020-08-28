@@ -27,6 +27,7 @@
     "@admin/web-track": "^0.60.5",
     "@admin/wrapper": "^0.60.5",
     "@meepshop/context": "^0.60.5",
+    "@meepshop/cookies": "^0.1.0",
     "@meepshop/images": "^0.60.5",
     "@meepshop/link": "^0.60.5",
     "@meepshop/utils": "^0.60.5",

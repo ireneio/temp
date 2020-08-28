@@ -253,7 +253,6 @@ export const CONTEXT_TYPES = {
   carts: PropTypes.shape({}).isRequired,
 
   /** context func from props */
-  setCustomerCurrency: PropTypes.func.isRequired,
   goTo: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   getData: PropTypes.func.isRequired,

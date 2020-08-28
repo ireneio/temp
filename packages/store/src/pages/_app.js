@@ -28,6 +28,7 @@ import { Router } from 'server/routes';
 import * as Utils from 'utils';
 import configureStore from 'ducks/store';
 import * as Actions from 'ducks/actions';
+import withCookies from 'utils/withCookies';
 
 import '../public/nprogress.less';
 
@@ -178,7 +179,6 @@ class MyApp extends App {
             'common',
           ],
         },
-        cookieCurrency: req?.cookies.currency,
       };
     } catch (error) {
       console.log(error);
@@ -241,7 +241,6 @@ class MyApp extends App {
       storeNotFound,
       Component,
       pageProps,
-      cookieCurrency,
       router,
       store,
     } = this.props;
@@ -268,7 +267,7 @@ class MyApp extends App {
           <FbProvider>
             <ColorsProvider>
               <AppsProvider>
-                <CurrencyProvider cookieCurrency={cookieCurrency}>
+                <CurrencyProvider>
                   <AdTrackProvider>
                     <Provider store={store}>
                       <Component
@@ -292,6 +291,6 @@ class MyApp extends App {
 
 export default withApollo(
   withRedux(configureStore)(
-    withReduxSaga(appWithTranslation(withDomain(MyApp))),
+    withReduxSaga(appWithTranslation(withCookies(withDomain(MyApp)))),
   ),
 );

@@ -3,15 +3,11 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import { useCallback, useState } from 'react';
-import { useApolloClient, useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { useApolloClient } from '@apollo/react-hooks';
 import { message, notification } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { useRouter } from '@meepshop/link';
-
-// graphql typescript
-import { refetchCookies as refetchCookiesType } from './__generated__/refetchCookies';
 
 // definition
 export default (
@@ -24,11 +20,6 @@ export default (
   const { t } = useTranslation('login');
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [refetchCookies] = useMutation<refetchCookiesType>(gql`
-    mutation refetchCookies {
-      refetchCookies @client
-    }
-  `);
 
   return {
     loading,
@@ -75,16 +66,14 @@ export default (
 
           if (adminStatus === 'OPEN') {
             message.success(t('submit.success'));
-            client.resetStore();
-            refetchCookies();
+            await client.resetStore();
             router.push('/');
             return;
           }
 
           if (type === 'merchant') {
             message.success(t('submit.success'));
-            client.resetStore();
-            refetchCookies();
+            await client.resetStore();
             router.push('/bill-payment');
             return;
           }
@@ -96,7 +85,7 @@ export default (
           setLoading(false);
         });
       },
-      [client, t, router, refetchCookies, validateFields],
+      [client, t, router, validateFields],
     ),
   };
 };
