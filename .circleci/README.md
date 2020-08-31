@@ -61,7 +61,3 @@ yarn lerna exec "node ../../.circleci/bin/getPackageName.js" --stream --scope <s
 // in ci
 yarn lerna exec "node ${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/getPackageName.js" --stream --scope <scope name>
 ```
-
-## TODO
-
-- [ ] Remove `prod` in `lint-and-test`

@@ -18,10 +18,6 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 - `apollo:watch`: Watch gql files to build schema typescript.
 - `tsc`, `tsc:watch`: Test typescript.
 
-###### TODO
-
-- [ ] remove `prop-types`, use `typescript`
-
 ## How to write a new package
 
 In each package, we use `less`, `typescript` and `apollo-client`, and we should not add any package in the dependencies packages of `@meepshop/front-end`.
@@ -148,8 +144,6 @@ workspace(store, admin...)
 #### Workspace
 
 - [packages](./packages)
-  - [ ] remove `@meepshop/meep-ui`
-  - [ ] move `@meepshop/store` to `@store/server`
 - [store](./store)
 - [admin](./admin)
 - [meepshop](./meepshop)
@@ -216,10 +210,6 @@ In this project, we use `babel` to build the files expect `@store/server` and `@
 
 - Makefile
 
-#### TOOD
-
-- [ ] `babel-build` should use `--ignore @meeshop/*` after removing `@meepshop/meep-ui`.
-
 ## typescript
 
 For static type checking, we use `typescript`. This will check the all files whose file extension is `.ts` or `.tsx`. The 3rd modules are defined in `node_modules/@type` and `types`. For `apollo-client`, we need to add graphql types. we use `apollo` to auto generate graphql types in `__generated__`.
@@ -238,10 +228,6 @@ Other eslint config is base on `airbnb` and `pretter`.
 
 - .eslintrc.js
 - .eslintignore
-
-#### TODO
-
-- [ ] only test `.ts`, `.tsx`.
 
 ## prettier
 
@@ -264,10 +250,6 @@ Run some commands with git staged files.
 #### Relative files
 
 - .lintstagedrc.js
-
-#### TODO
-
-- [ ] remove `*.js`
 
 ## husky
 
