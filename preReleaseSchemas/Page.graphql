@@ -2,10 +2,6 @@ scalar NonNegativeInt
 scalar HexColorCode
 scalar PhoneNumber
 
-extend type Image {
-  id: ID!
-}
-
 enum PercentWidth {
   WIDTH10
   WIDTH20
