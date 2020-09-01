@@ -2,12 +2,12 @@
 import gql from 'graphql-tag';
 
 // graphql typescript
-import { viewerUserFragment as viewerUserFragmentType } from './__generated__/viewerUserFragment';
-import { viewerAuthorityListFragment as viewerAuthorityListFragmentType } from './__generated__/viewerAuthorityListFragment';
+import { userUserFragment as userUserFragmentType } from './__generated__/userUserFragment';
+import { userAuthorityListFragment as userAuthorityListFragmentType } from './__generated__/userAuthorityListFragment';
 
 // definition
-export const viewerUserFragment = gql`
-  fragment viewerUserFragment on User {
+export const userUserFragment = gql`
+  fragment userUserFragment on User {
     id
     groupId
     store {
@@ -16,8 +16,8 @@ export const viewerUserFragment = gql`
   }
 `;
 
-export const viewerAuthorityListFragment = gql`
-  fragment viewerAuthorityListFragment on AuthorityList {
+export const userAuthorityListFragment = gql`
+  fragment userAuthorityListFragment on AuthorityList {
     data {
       id
       permission {
@@ -67,18 +67,29 @@ export const viewerAuthorityListFragment = gql`
 `;
 
 export const resolvers = {
+  User: {
+    permission: ({
+      groupId,
+      getAuthorityList,
+    }: userUserFragmentType & {
+      getAuthorityList?: userAuthorityListFragmentType;
+    }) =>
+      getAuthorityList?.data?.find(list => list?.id === groupId)?.permission ||
+      null,
+  },
   Query: {
     viewer: ({
       viewer,
       getAuthorityList,
     }: {
-      viewer: viewerUserFragmentType;
-      getAuthorityList: viewerAuthorityListFragmentType;
-    }) => ({
-      ...viewer,
-      permission:
-        getAuthorityList?.data?.find(list => list?.id === viewer.groupId)
-          ?.permission || null,
-    }),
+      viewer?: userUserFragmentType;
+      getAuthorityList: userAuthorityListFragmentType;
+    }) =>
+      !viewer
+        ? null
+        : {
+            ...viewer,
+            getAuthorityList,
+          },
   },
 };

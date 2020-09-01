@@ -22,6 +22,7 @@ import styles from './styles/products.less';
 
 // graphql import
 import localeFragment from '@meepshop/utils/lib/fragments/locale';
+import { productsObjectTypeProductsObjectTypeFragment } from '@store/apollo/lib/productsObjectType';
 
 import { productsProductsObjectTypeFragment as productsProductsObjectTypeFragmentType } from './__generated__/productsProductsObjectTypeFragment';
 
@@ -46,30 +47,6 @@ export interface SelectedProduct
 }
 
 // definition
-export const productsOrderApplyFragment = gql`
-  fragment productsOrderApplyFragment on OrderApply {
-    id
-    orderId
-    orderProductId
-    returnId
-    applicationType
-    createdAt
-    recipient {
-      name
-      mobile
-      address {
-        streetAddress
-      }
-    }
-    applicationInfo {
-      comment
-    }
-    quantity
-    status
-    applicationStatus
-  }
-`;
-
 export const productsProductsObjectTypeFragment = gql`
   fragment productsProductsObjectTypeFragment on productsObjectType {
     id
@@ -89,10 +66,12 @@ export const productsProductsObjectTypeFragment = gql`
     quantity
     retailPrice
     unappliedQuantity @client
+    ...productsObjectTypeProductsObjectTypeFragment
   }
 
   ${localeFragment}
   ${thumbnailFragment}
+  ${productsObjectTypeProductsObjectTypeFragment}
 `;
 
 class Products extends React.PureComponent<PropsType, StateType> {

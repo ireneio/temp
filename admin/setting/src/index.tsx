@@ -18,9 +18,9 @@ import { getViewerPermission } from './__generated__/getViewerPermission';
 
 // graphql import
 import {
-  viewerUserFragment,
-  viewerAuthorityListFragment,
-} from '@admin/apollo/lib/viewer';
+  userUserFragment,
+  userAuthorityListFragment,
+} from '@admin/apollo/lib/User';
 
 import { useItemspermissionStoreObjFragment } from './hooks/useItems';
 
@@ -39,16 +39,16 @@ const Setting: NextPage = React.memo(
                 ...useItemspermissionStoreObjFragment
               }
             }
-            ...viewerUserFragment
+            ...userUserFragment
           }
 
           getAuthorityList {
-            ...viewerAuthorityListFragment
+            ...userAuthorityListFragment
           }
         }
 
-        ${viewerUserFragment}
-        ${viewerAuthorityListFragment}
+        ${userUserFragment}
+        ${userAuthorityListFragment}
 
         ${useItemspermissionStoreObjFragment}
       `,

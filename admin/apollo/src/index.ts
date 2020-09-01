@@ -2,7 +2,7 @@
 import { buildWithApollo } from '@meepshop/apollo';
 
 import * as selectedOrders from './selectedOrders';
-import * as viewer from './viewer';
+import * as User from './User';
 
 // definition
 const shouldIgnoreErrorMessages = [
@@ -43,7 +43,7 @@ const shouldIgnoreErrorMessages = [
 export default buildWithApollo({
   name: 'admin',
   initializeCache: [selectedOrders.initializeCache],
-  resolvers: [selectedOrders.resolvers, viewer.resolvers],
+  resolvers: [selectedOrders.resolvers, User.resolvers],
   errorFilter: ({ message }: Error) =>
     !shouldIgnoreErrorMessages.includes(message),
 });

@@ -11,11 +11,26 @@ export default (prevResolvers: Resolvers, newResolvers: Resolvers): Resolvers =>
           ...fieldResult,
           [field]: !fieldResult?.[field]
             ? newResolvers[key][field]
-            : (...argu) => ({
-                // FIXME: should newResolvers overwrite fieldResult
-                ...newResolvers[key][field](...argu),
-                ...fieldResult[field](...argu),
-              }),
+            : (...argu) => {
+                const prevData = fieldResult[field](...argu);
+                const newData = newResolvers[key][field](...argu);
+
+                if (!prevData || !newData) return null;
+
+                if (prevData instanceof Array && newData instanceof Array)
+                  return (prevData.length > newData.length
+                    ? prevData
+                    : newData
+                  ).map((_, index) => ({
+                    ...prevData[index],
+                    ...newData[index],
+                  }));
+
+                return {
+                  ...prevData,
+                  ...newData,
+                };
+              },
         }),
         result[key],
       ),

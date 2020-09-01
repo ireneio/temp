@@ -36,9 +36,7 @@ interface PropTypes extends I18nPropsType {
 // definition
 export const applicationOrderApplyFragment = gql`
   fragment applicationOrderApplyFragment on OrderApply {
-    orderId
-    orderProductId
-    returnId
+    id
     applicationType
     createdAt
     recipient {
@@ -59,6 +57,7 @@ export const applicationOrderApplyFragment = gql`
 
 export const applicationProductsObjectTypeFragment = gql`
   fragment applicationProductsObjectTypeFragment on productsObjectType {
+    id
     coverImage {
       ...thumbnailFragment
     }

@@ -41,6 +41,8 @@ import {
 } from './__generated__/getUserInfo';
 
 // graphql import
+import { userFragment } from '@meepshop/apollo/lib/User';
+
 import { removeCreditCardInfoFragment } from './RemoveCreditCardInfo';
 
 // typescript definition
@@ -357,14 +359,10 @@ export default React.memo(
       query={gql`
         query getUserInfo {
           viewer {
+            ...userFragment
             ...removeCreditCardInfoFragment
             id
             groupId
-            groupServer: group {
-              startDate
-              expireDate
-              unlimitedDate
-            }
             group: groupClient @client {
               id
               type
@@ -429,6 +427,7 @@ export default React.memo(
           }
         }
 
+        ${userFragment}
         ${removeCreditCardInfoFragment}
       `}
       /** FIXME: should update hasGmoCreditCard in cache after creating order */

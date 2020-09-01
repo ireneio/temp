@@ -22,9 +22,9 @@ import { initAdmin } from './__generated__/initAdmin';
 
 // graphql import
 import {
-  viewerUserFragment,
-  viewerAuthorityListFragment,
-} from '@admin/apollo/lib/viewer';
+  userUserFragment,
+  userAuthorityListFragment,
+} from '@admin/apollo/lib/User';
 
 import { useCheckingAdminStatusFragment } from './hooks/useCheckingAdminStatus';
 import { useMenuListFragment } from './hooks/useMenuList';
@@ -52,16 +52,16 @@ const query = gql`
       permission @client {
         ...useMenuListFragment
       }
-      ...viewerUserFragment
+      ...userUserFragment
     }
 
     getAuthorityList {
-      ...viewerAuthorityListFragment
+      ...userAuthorityListFragment
     }
   }
 
-  ${viewerUserFragment}
-  ${viewerAuthorityListFragment}
+  ${userUserFragment}
+  ${userAuthorityListFragment}
 
   ${useCheckingAdminStatusFragment}
   ${useMenuListFragment}

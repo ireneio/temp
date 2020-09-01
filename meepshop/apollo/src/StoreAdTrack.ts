@@ -8,11 +8,11 @@ import { storeAdTrackWebTrackFragment as storeAdTrackWebTrackFragmentType } from
 
 // typescript definition
 interface DefaultDataType {
-  getFbPixel: storeAdTrackFbPixelFragmentType;
-  getGtagList: (storeAdTrackGtagFragmentType & {
+  getFbPixel?: storeAdTrackFbPixelFragmentType;
+  getGtagList?: (storeAdTrackGtagFragmentType & {
     code?: string;
   })[];
-  getWebTrackList: {
+  getWebTrackList?: {
     data: storeAdTrackWebTrackFragmentType[];
   };
 }
@@ -118,12 +118,15 @@ export const resolvers = {
       getFbPixel,
       getGtagList,
       getWebTrackList,
-    }: DefaultDataType & { store: {} }) => ({
-      ...store,
-      getFbPixel,
-      getGtagList,
-      getWebTrackList,
-    }),
+    }: DefaultDataType & { store?: {} }) =>
+      !store
+        ? null
+        : {
+            ...store,
+            getFbPixel,
+            getGtagList,
+            getWebTrackList,
+          },
   },
   Query: {
     viewer: ({
@@ -131,11 +134,14 @@ export const resolvers = {
       getFbPixel,
       getGtagList,
       getWebTrackList,
-    }: DefaultDataType & { viewer: {} }) => ({
-      ...viewer,
-      getFbPixel,
-      getGtagList,
-      getWebTrackList,
-    }),
+    }: DefaultDataType & { viewer?: {} }) =>
+      !viewer
+        ? null
+        : {
+            ...viewer,
+            getFbPixel,
+            getGtagList,
+            getWebTrackList,
+          },
   },
 };

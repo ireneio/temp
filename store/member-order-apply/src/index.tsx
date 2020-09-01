@@ -1,6 +1,5 @@
 // typescript import
 import { MutationFunction } from '@apollo/react-common';
-import { DataProxy } from 'apollo-cache';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 import { ColorsType } from '@meepshop/context/lib/Colors';
@@ -20,11 +19,6 @@ import transformColor from 'color';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import { Colors as ColorsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
-import {
-  calculateOrderApply,
-  calculateOrderProducts,
-  calculateOrderApplications,
-} from '@store/apollo/lib/utils/calculateOrder';
 
 import Products, { getProductsStyles } from './Products';
 import Form from './Form';
@@ -40,18 +34,17 @@ import {
   createOrderApply,
   createOrderApplyVariables,
 } from './__generated__/createOrderApply';
-import { getOrderCache } from './__generated__/getOrderCache';
-import { memberOrderApplyFragment } from './__generated__/memberOrderApplyFragment';
 
 // graphql import
+import { productsObjectTypeOrderApplyFragment } from '@store/apollo/lib/productsObjectType';
 import {
-  calculateOrderOrderFragment,
-  calculateOrderOrderApplyListFragment,
-} from '@store/apollo/lib/utils/calculateOrder';
+  createOrderApplyWithOrderOrderClientFragment,
+  createOrderApplyWithOrderOrderFragment,
+  createOrderApplyWithOrderOrderApplyFragment,
+} from '@store/apollo/lib/createOrderApplyWithOrder';
 
 import {
   productsProductsObjectTypeFragment,
-  productsOrderApplyFragment,
   SelectedProduct,
 } from './Products';
 
@@ -103,6 +96,7 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
 
     return createApplication({
       variables: {
+        orderId: id,
         createOrderApplyList: {
           applicationType: type === 'refund' ? 'return' : 'replace',
           orderId: id || 'null id' /** TODO: should be not null */,
@@ -133,171 +127,6 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
         },
       },
     });
-  };
-
-  private updateApplications = (
-    store: DataProxy,
-    { data: { createOrderApplyList } }: { data: createOrderApply },
-  ): void => {
-    const {
-      order: { id },
-    } = this.props;
-
-    const query = gql`
-      query getOrderCache($orderId: ID!) {
-        viewer {
-          id
-          order(orderId: $orderId) {
-            id
-            ...calculateOrderOrderFragment
-          }
-        }
-
-        getOrderApplyList(
-          search: { size: 100, sort: [{ field: "createdAt", order: "desc" }] }
-        ) {
-          ...calculateOrderOrderApplyListFragment
-        }
-      }
-
-      ${calculateOrderOrderFragment}
-      ${calculateOrderOrderApplyListFragment}
-    `;
-
-    const cache = store.readQuery<getOrderCache>({
-      query,
-      variables: {
-        orderId: id,
-      },
-    });
-
-    const Applications = cache?.getOrderApplyList?.data;
-
-    if (!Applications || !createOrderApplyList) return;
-
-    const getOrderApplyList = {
-      __typename: 'OrderApplyList' as 'OrderApplyList',
-      data: [...createOrderApplyList, ...Applications],
-    };
-
-    store.writeQuery<getOrderCache>({
-      query,
-      data: {
-        getOrderApplyList,
-      } as getOrderCache,
-    });
-
-    const order = cache?.viewer?.order;
-
-    if (!id || !order) return;
-
-    store.writeFragment<memberOrderApplyFragment>({
-      id,
-      fragment: gql`
-        fragment memberOrderApplyFragment on Order {
-          status
-          isOrderApplied @client
-          isAvailableForOrderApply @client
-          products {
-            id
-            unappliedQuantity @client
-          }
-
-          applications @client {
-            id
-            orderId
-            orderProductId
-            returnId
-            applicationType
-            createdAt
-            recipient {
-              name
-              mobile
-              address {
-                streetAddress
-              }
-            }
-            applicationInfo {
-              comment
-            }
-            quantity
-            status
-            applicationStatus
-            extra {
-              id
-              orderId
-              orderProductId
-              returnId
-              applicationType
-              createdAt
-              recipient {
-                name
-                mobile
-                address {
-                  streetAddress
-                }
-              }
-              applicationInfo {
-                comment
-              }
-              quantity
-              status
-              applicationStatus
-              product {
-                id
-                quantity
-                type
-                coverImage {
-                  scaledSrc {
-                    w60
-                    w120
-                    w240
-                    w480
-                    w720
-                    w960
-                    w1200
-                    w1440
-                    w1680
-                    w1920
-                  }
-                }
-                title {
-                  zh_TW
-                  en_US
-                  ja_JP
-                  vi_VN
-                  fr_FR
-                  es_ES
-                  th_TH
-                  id_ID
-                }
-                specs {
-                  title {
-                    zh_TW
-                    en_US
-                    ja_JP
-                    vi_VN
-                    fr_FR
-                    es_ES
-                    th_TH
-                    id_ID
-                  }
-                }
-              }
-            }
-          }
-        }
-      `,
-      data: {
-        __typename: 'Order',
-        status: 3,
-        products: calculateOrderProducts(order, getOrderApplyList),
-        applications: calculateOrderApplications(order, getOrderApplyList),
-        ...calculateOrderApply(order, getOrderApplyList),
-      } as memberOrderApplyFragment,
-    });
-
-    Router.push('/orders');
   };
 
   public render(): React.ReactNode {
@@ -406,17 +235,27 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
             mutation={gql`
               mutation createOrderApply(
                 $createOrderApplyList: [NewOrderApply]
+                $orderId: ID!
               ) {
                 createOrderApplyList(
                   createOrderApplyList: $createOrderApplyList
                 ) {
-                  ...productsOrderApplyFragment
+                  id
+                  ...createOrderApplyWithOrderOrderApplyFragment
+                }
+
+                createOrderApplyWithOrder(orderId: $orderId) @client {
+                  id
+                  ...createOrderApplyWithOrderOrderClientFragment
                 }
               }
 
-              ${productsOrderApplyFragment}
+              ${createOrderApplyWithOrderOrderApplyFragment}
+              ${createOrderApplyWithOrderOrderClientFragment}
             `}
-            update={this.updateApplications}
+            update={() => {
+              Router.push('/orders');
+            }}
           >
             {createApplication => (
               <Button
@@ -453,6 +292,7 @@ export default React.memo(
               orderNo
               createdAt
               products {
+                id
                 ...productsProductsObjectTypeFragment
               }
               shipmentInfo {
@@ -467,21 +307,25 @@ export default React.memo(
               address {
                 fullAddress
               }
+              ...createOrderApplyWithOrderOrderFragment
             }
           }
 
           # TODO: use new api
           getOrderApplyList(
-            search: { size: 100, sort: [{ field: "createdAt", order: "desc" }] }
+            search: { sort: [{ field: "createdAt", order: "desc" }] }
           ) {
             data {
-              ...productsOrderApplyFragment
+              ...createOrderApplyWithOrderOrderApplyFragment
+              ...productsObjectTypeOrderApplyFragment
             }
           }
         }
 
+        ${createOrderApplyWithOrderOrderFragment}
+        ${createOrderApplyWithOrderOrderApplyFragment}
+        ${productsObjectTypeOrderApplyFragment}
         ${productsProductsObjectTypeFragment}
-        ${productsOrderApplyFragment}
       `}
       variables={{
         orderId,

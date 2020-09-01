@@ -39,9 +39,9 @@ import {
 
 // graphql import
 import {
-  calculateOrderOrderFragment,
-  calculateOrderOrderApplyListFragment,
-} from '@store/apollo/lib/utils/calculateOrder';
+  orderOrderFragment,
+  orderOrderApplyFragment,
+} from '@store/apollo/lib/Order';
 
 import { actionsFragment } from './Actions';
 
@@ -319,7 +319,7 @@ export default React.memo(() => (
                   status
                 }
                 status
-                ...calculateOrderOrderFragment
+                ...orderOrderFragment
                 ...actionsFragment
               }
             }
@@ -337,14 +337,16 @@ export default React.memo(() => (
         }
 
         getOrderApplyList(
-          search: { size: 100, sort: [{ field: "createdAt", order: "desc" }] }
+          search: { sort: [{ field: "createdAt", order: "desc" }] }
         ) {
-          ...calculateOrderOrderApplyListFragment
+          data {
+            ...orderOrderApplyFragment
+          }
         }
       }
 
-      ${calculateOrderOrderFragment}
-      ${calculateOrderOrderApplyListFragment}
+      ${orderOrderFragment}
+      ${orderOrderApplyFragment}
       ${actionsFragment}
     `}
     variables={{

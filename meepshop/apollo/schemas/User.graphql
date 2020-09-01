@@ -1,0 +1,9 @@
+extend type MemberGroup {
+  expireDate: Timestamp!
+  startDate: Timestamp!
+  unlimitedDate: Boolean!
+}
+
+extend type User {
+  groupClient: MemberGroup
+}

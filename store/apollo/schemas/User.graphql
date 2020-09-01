@@ -1,11 +1,4 @@
 extend type User {
-  groupClient: MemberGroup
   tel: String
   mobile: String
-}
-
-extend type MemberGroup {
-  expireDate: Timestamp!
-  startDate: Timestamp!
-  unlimitedDate: Boolean!
 }

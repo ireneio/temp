@@ -24,6 +24,11 @@ import {
 
 // graphql import
 import {
+  orderOrderFragment,
+  orderOrderApplyFragment,
+} from '@store/apollo/lib/Order';
+
+import {
   applicationOrderApplyFragment,
   applicationProductsObjectTypeFragment,
 } from './Application';
@@ -108,20 +113,24 @@ export default React.memo(({ orderId }: { orderId: string }) => (
                 }
               }
             }
+            ...orderOrderFragment
           }
         }
 
         # TODO: use new api
         getOrderApplyList(
-          search: { size: 100, sort: [{ field: "createdAt", order: "desc" }] }
+          search: { sort: [{ field: "createdAt", order: "desc" }] }
         ) {
           data {
             id
             ...applicationOrderApplyFragment
+            ...orderOrderApplyFragment
           }
         }
       }
 
+      ${orderOrderFragment}
+      ${orderOrderApplyFragment}
       ${applicationOrderApplyFragment}
       ${applicationProductsObjectTypeFragment}
     `}
