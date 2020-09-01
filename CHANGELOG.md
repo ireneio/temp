@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.61.2 (2020-09-01)
+
+#### :bug: Bug Fix
+
+- [#1143](https://github.com/meepshop/meep-lerna/pull/1143) (@meepshop/apollo) Fix missing import ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.61.1 (2020-09-01)
 
 #### :boom: Breaking Change
