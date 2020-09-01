@@ -14,8 +14,7 @@ export const shouldIgnoreUnauthorizedError = (
   networkError: ErrorResponse['networkError'],
 ): boolean =>
   Boolean(
-    typeof window === 'undefined' &&
-      networkError &&
+    networkError &&
       'statusCode' in networkError &&
       networkError.statusCode === 401 &&
       'result' in networkError &&
@@ -34,7 +33,7 @@ export default (errorFilter: errorFilterType): ReturnType<typeof onError> =>
       // @ts-ignore https://github.com/apollographql/apollo-link/issues/536
       networkError?.statusCode === 401 &&
       typeof window !== 'undefined' &&
-      window.location.pathname !== '/login'
+      !/\/(login|reset-password)/.test(window.location.pathname)
     ) {
       errorLog({
         message: '請重新登入',
