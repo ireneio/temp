@@ -4,11 +4,11 @@
   "description": "Use to select the images for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.61.0",
+  "version": "0.61.1",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/images": "^0.61.0",
+    "@meepshop/images": "^0.61.1",
     "@meepshop/utils": "^0.61.0",
     "file-type": "^13.1.2"
   },
