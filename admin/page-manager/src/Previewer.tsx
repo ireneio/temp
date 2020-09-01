@@ -1,3 +1,6 @@
+// typescript import
+import { languageType } from '@meepshop/utils/lib/i18n';
+
 // import
 import React from 'react';
 import gql from 'graphql-tag';
@@ -10,8 +13,6 @@ import useIframeLoading from './hooks/useIframeLoading';
 import styles from './styles/previewer.less';
 
 // graphql typescript
-import { localeFragmentType } from '@meepshop/utils/lib/fragments/locale';
-
 import { previewerStoreFragment as previewerStoreFragmentType } from './__generated__/previewerStoreFragment';
 import { previewerPageFragment as previewerPageFragmentType } from './__generated__/previewerPageFragment';
 
@@ -57,7 +58,7 @@ export default React.memo(
     return (
       <div className={styles.root}>
         <div className={styles.title}>
-          {title?.[i18n.language as keyof localeFragmentType] || title?.zh_TW}
+          {title?.[i18n.language as languageType] || title?.zh_TW}
         </div>
 
         <Spin wrapperClassName={styles.iframe} spinning={loading}>

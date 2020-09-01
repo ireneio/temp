@@ -1,4 +1,6 @@
 // typescript import
+import { languageType } from '@meepshop/utils/lib/i18n';
+
 import useSelectedPageType from '../hooks/useSelectedPage';
 
 // import
@@ -16,8 +18,6 @@ import useTitleOverflow from './hooks/useTitleOverflow';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { localeFragmentType } from '@meepshop/utils/lib/fragments/locale';
-
 import { itemFragment as itemFragmentType } from './__generated__/itemFragment';
 import { getPagesVariables } from '../__generated__/getPages';
 
@@ -69,8 +69,7 @@ export default React.memo(
   }: PropsType) => {
     const { i18n } = useTranslation('page-manager');
     const title =
-      page.title?.[i18n.language as keyof localeFragmentType] ||
-      page.title?.zh_TW;
+      page.title?.[i18n.language as languageType] || page.title?.zh_TW;
     const { titleRef, isOverflow } = useTitleOverflow(
       editVisibleId === page.id,
       title,

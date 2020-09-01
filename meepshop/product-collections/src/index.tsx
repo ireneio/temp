@@ -1,3 +1,6 @@
+// typescript import
+import { languageType } from '@meepshop/utils/lib/i18n';
+
 // import
 import React from 'react';
 
@@ -7,8 +10,6 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { localeFragmentType } from '@meepshop/utils/lib/fragments/locale';
-
 import {
   productCollectionsFragment,
   productCollectionsFragment_product_galleries_images as productCollectionsFragmentProductGalleriesImages,
@@ -46,7 +47,7 @@ export default React.memo(
               width={percentWidth.split('WIDTH')[1]}
               justifyContent={'CENTER' as JustifyContent}
               alt={
-                product?.title?.[i18n.language as keyof localeFragmentType] ||
+                product?.title?.[i18n.language as languageType] ||
                 product?.title?.zh_TW ||
                 null
               }

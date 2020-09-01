@@ -1,6 +1,8 @@
 // typescript import
 import { FormComponentProps } from 'antd/lib/form';
 
+import { languageType } from '@meepshop/utils/lib/i18n';
+
 // import
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -21,8 +23,6 @@ import useEditSubmit from './hooks/useEditSubmit';
 import styles from './styles/edit.less';
 
 // graphql typescript
-import { localeFragmentType } from '@meepshop/utils/lib/fragments/locale';
-
 import { editFragment as editFragmentType } from './__generated__/editFragment';
 import {
   checkIfPageExistsBeforeRenamingSeo,
@@ -115,8 +115,7 @@ export default Form.create<PropsType>()(
               {getFieldDecorator('title', {
                 rules: [{ required: true, message: t('form.required') }],
                 initialValue:
-                  title?.[i18n.language as keyof localeFragmentType] ||
-                  title?.zh_TW,
+                  title?.[i18n.language as languageType] || title?.zh_TW,
               })(<Input placeholder={t('form.title.placeholder')} />)}
             </FormItem>
 
