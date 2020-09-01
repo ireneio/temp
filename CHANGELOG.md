@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.61.1 (2020-09-01)
+
+#### :boom: Breaking Change
+
+- [#1124](https://github.com/meepshop/meep-lerna/pull/1124) Modify client side schema ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#1135](https://github.com/meepshop/meep-lerna/pull/1135) 前端 - 改用新的儲存 image 欄位 (前置） ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1142](https://github.com/meepshop/meep-lerna/pull/1142) (@meepshop/apollo) Fix shouldIgnoreUnauthorizedError ([@happycat6323](https://github.com/happycat6323))
+- [#1140](https://github.com/meepshop/meep-lerna/pull/1140) (preReleaseSchemas/Page): remove Image id ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- [#1138](https://github.com/meepshop/meep-lerna/pull/1138) (@meepshop/frontend) Use languageType ([@HsuTing](https://github.com/HsuTing))
+- [#1141](https://github.com/meepshop/meep-lerna/pull/1141) (@meepshop/frontend) Remove TODO list ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.61.0 (2020-08-28)
 
 #### :boom: Breaking Change
