@@ -20,6 +20,7 @@ import modules from '@meepshop/modules';
 
 import * as PageInfo from './PageInfo';
 import * as StoreAdTrack from './StoreAdTrack';
+import * as User from './User';
 import mergeResolvers from './utils/mergeResolvers';
 import errorLink from './utils/errorLink';
 import createIntrospectionQueryResultDataType from './utils/createIntrospectionQueryResultDataType';
@@ -87,6 +88,7 @@ const create = (
       ...resolvers,
       PageInfo.resolvers,
       StoreAdTrack.resolvers,
+      User.resolvers,
     ].reduce(mergeResolvers, {}),
     link: ApolloLink.from([
       errorLink(errorFilter),
