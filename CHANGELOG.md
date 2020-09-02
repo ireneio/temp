@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.62.0 (2020-09-02)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1129](https://github.com/meepshop/meep-lerna/pull/1129) 前端 - 移除 getWebTrackList, getGtagList, getFbPixel 改用 @store/ad-track ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#1146](https://github.com/meepshop/meep-lerna/pull/1146) Image 和 GalleryImage 用 id 取代 fileId - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.61.2 (2020-09-01)
 
 #### :bug: Bug Fix
