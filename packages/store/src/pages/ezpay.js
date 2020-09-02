@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 import * as Utils from 'utils';
-import { TrackingCodeHead, Error } from 'components';
+import { Error } from 'components';
 import * as Actions from 'ducks/actions';
 
 import EzpayView from '@store/ezpay';
@@ -28,10 +28,6 @@ class Ezpay extends React.Component {
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
-    pageAdTrackIDs: PropTypes.shape({
-      gaID: PropTypes.string,
-      fbPixelId: PropTypes.string,
-    }).isRequired,
   };
 
   static defaultProps = { error: null };
@@ -44,10 +40,8 @@ class Ezpay extends React.Component {
     const {
       storeSetting: { storeName, faviconUrl },
       location: {
-        pathname,
         query: { orderId },
       },
-      pageAdTrackIDs,
     } = this.props;
 
     return (
@@ -57,7 +51,6 @@ class Ezpay extends React.Component {
           <link rel="icon" type="image/png" href={faviconUrl} />
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
 
         <EzpayView orderId={orderId} />
       </>
@@ -72,7 +65,6 @@ const mapStateToProps = (state, prevProps) => {
 
   return {
     storeSetting: state.storeReducer.settings,
-    pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     location: Utils.uriParser(prevProps),
   };
 };

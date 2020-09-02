@@ -13,7 +13,6 @@ import fbLogin from './fbLogin.api';
 import updateMemberData from './updateMemberData.api';
 import updateShopperLanguagePreference from './updateShopperLanguagePreference.api';
 import resetPassword from './resetPassword.api';
-import getTrackingCode from './getTrackingCode.api';
 import changePassword from './changePassword.api';
 
 // Server-side rendering
@@ -46,7 +45,6 @@ export {
   updateUser,
   updateWishList,
   updateStockNotificationList,
-  getTrackingCode,
   changePassword,
   // Server-side rendering
   serverIndexInitial,

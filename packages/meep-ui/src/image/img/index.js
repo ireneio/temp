@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { areEqual } from 'fbjs';
 import memoizeOne from 'memoize-one';
 
+import { AdTrack as AdTrackContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
+
 import Link from 'link';
 import {
   IMAGE_TYPE,
@@ -20,6 +23,7 @@ import styles from './styles/index.less';
 
 const { enhancer } = contextProvider('storeSetting');
 
+@withContext(AdTrackContext, adTrack => ({ adTrack }))
 @enhancer
 class Img extends React.PureComponent {
   clickTracking = memoizeOne(notMemoizedClickTracking, areEqual);
@@ -84,6 +88,7 @@ class Img extends React.PureComponent {
       alignment,
       contentWidth,
       image,
+      adTrack,
 
       /** ignore */
       forwardedRef,
@@ -104,7 +109,7 @@ class Img extends React.PureComponent {
                     transition: 'all 0.5s ease-in',
                   }}
                   src={this.getSrc(isError, useLarge)}
-                  onClick={this.clickTracking(customTracking)}
+                  onClick={this.clickTracking(customTracking, adTrack)}
                   onLoad={onLoad}
                   onError={onError}
                   alt={alt}

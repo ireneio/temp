@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { connect } from 'react-redux';
 
 import * as Utils from 'utils';
-import { Container, TrackingCodeHead, Error } from 'components';
+import { Container, Error } from 'components';
 import { getJoinedCheckoutPage } from 'selectors/checkout';
 import * as Actions from 'ducks/actions';
 
@@ -26,10 +26,6 @@ class Checkout extends React.Component {
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
-    pageAdTrackIDs: PropTypes.shape({
-      gaID: PropTypes.string,
-      fbPixelId: PropTypes.string,
-    }).isRequired,
   };
 
   static defaultProps = {
@@ -44,8 +40,6 @@ class Checkout extends React.Component {
 
     const {
       storeSetting: { storeName, faviconUrl },
-      location: { pathname },
-      pageAdTrackIDs,
     } = this.props;
 
     return (
@@ -55,7 +49,6 @@ class Checkout extends React.Component {
           <link rel="icon" type="image/png" href={faviconUrl} />
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props} />
       </>
     );
@@ -70,7 +63,6 @@ const mapStateToProps = (state, props) => {
 
   return {
     storeSetting: state.storeReducer.settings,
-    pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     location: Utils.uriParser(props),
     page: getJoinedCheckoutPage(state, props),
   };

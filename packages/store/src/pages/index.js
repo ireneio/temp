@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import * as Utils from 'utils';
-import { Container, TrackingCodeHead, Error } from 'components';
+import { Container, Error } from 'components';
 import { getJoinedHomePage } from 'selectors';
 import * as Actions from 'ducks/actions';
 import * as CONST from 'constants';
@@ -47,10 +47,6 @@ class Index extends React.Component {
       host: PropTypes.string.isRequired,
       pathname: PropTypes.string.isRequired,
     }).isRequired,
-    pageAdTrackIDs: PropTypes.shape({
-      gaID: PropTypes.string,
-      fbPixelId: PropTypes.string,
-    }).isRequired,
     page: PropTypes.shape(CONST.PAGE_TYPE).isRequired,
   };
 
@@ -66,7 +62,6 @@ class Index extends React.Component {
       storeSetting: { storeName, storeDescription, faviconUrl },
       location: { host, pathname },
       page,
-      pageAdTrackIDs,
       i18n,
     } = this.props;
     const url = host + pathname;
@@ -99,7 +94,6 @@ class Index extends React.Component {
           <meta property="og:locale" content={i18n.language} />
           {/* <!-- End - Facebook Open Graph --> */}
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props} />
         {/* eslint-disable */}
         <a href="/sitemaps/v1" />
@@ -116,7 +110,6 @@ const mapStateToProps = (state, props) => {
 
   return {
     storeSetting: state.storeReducer.settings,
-    pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     location: Utils.uriParser(props),
     page: getJoinedHomePage(state, props),
   };

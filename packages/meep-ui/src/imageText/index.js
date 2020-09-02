@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
+import { AdTrack as AdTrackContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
 import Link from 'deprecated/link';
@@ -21,6 +24,7 @@ import {
 } from './styles';
 import styles from './styles/index.less';
 
+@withContext(AdTrackContext, adTrack => ({ adTrack }))
 @enhancer
 @radium
 export default class ImageText extends React.PureComponent {
@@ -102,26 +106,10 @@ export default class ImageText extends React.PureComponent {
       overlayBackgroundColor,
       customTracking,
       alt,
+      adTrack,
     } = this.props;
     const { showOverlay } = this.state;
-
     const href = this.generateUrl();
-
-    let handleClickTracking;
-    if (customTracking?.status) {
-      const { eventLabel, eventCategory } = customTracking;
-      handleClickTracking = () => {
-        if (window.fbq) window.fbq('track', eventLabel);
-        if (window.gtag) {
-          window.gtag('event', 'meepShop_click', {
-            event_category:
-              (eventCategory?.status && eventCategory?.value) || eventLabel,
-            event_label: eventLabel,
-            non_interaction: true,
-          });
-        }
-      };
-    }
 
     return (
       <div className={styles.root} style={{ width: `${contentWidth}%` }}>
@@ -147,7 +135,17 @@ export default class ImageText extends React.PureComponent {
             })}
             onMouseEnter={() => this.handleOverlay(true)}
             onMouseLeave={() => this.handleOverlay(false)}
-            onClick={handleClickTracking}
+            onClick={() => {
+              if (customTracking?.status) {
+                const { eventLabel, eventCategory } = customTracking;
+
+                adTrack.custom(
+                  'meepShop_click',
+                  eventLabel,
+                  (eventCategory?.status && eventCategory?.value) || eventLabel,
+                );
+              }
+            }}
           >
             <StyleRoot
               className={styles.container}

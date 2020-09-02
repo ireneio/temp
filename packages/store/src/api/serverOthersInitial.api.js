@@ -4,7 +4,6 @@ import {
   viewerStoreQuery,
   menuQuery,
   activityQuery,
-  webTrackQuery,
   stockNotificationQuery,
 } from './query';
 
@@ -16,7 +15,6 @@ export default async context => {
       $memberGroupFilter: MemberGroupFilterInput,
       $notificationSearch: searchInputObjectType,
       $expireBy: Int!,
-      $webTrackSearch: searchInputObjectType
     `,
     type: 'query serverOthersInitial',
     values: {
@@ -63,22 +61,6 @@ export default async context => {
       },
       notificationSearch: {},
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
-      webTrackSearch: {
-        filter: {
-          or: [
-            {
-              type: 'exact',
-              field: 'trackType',
-              query: 'google_webmaster',
-            },
-            {
-              type: 'exact',
-              field: 'trackType',
-              query: 'google_tag_manager',
-            },
-          ],
-        },
-      },
     },
   };
 
@@ -114,20 +96,6 @@ export default async context => {
     getStockNotificationList(search: $notificationSearch) {
       data {
         ${stockNotificationQuery}
-      }
-    }
-    getFbPixel {
-      pixelId
-    }
-    getGtagList {
-      type
-      eventName
-      code
-      trackingId
-    }
-    getWebTrackList(search: $webTrackSearch) {
-      data {
-        ${webTrackQuery}
       }
     }
   `;

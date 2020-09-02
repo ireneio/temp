@@ -1,18 +1,15 @@
 import { emptyFunction } from 'fbjs';
 
-export default customTracking => {
+export default (customTracking, adTrack) => {
   const { status, eventLabel, eventCategory } = customTracking || {};
 
   if (!status) return emptyFunction;
 
   return () => {
-    if (window.fbq) window.fbq('track', eventLabel);
-    if (window.gtag)
-      window.gtag('event', 'meepShop_click', {
-        event_category:
-          (eventCategory?.status && eventCategory?.value) || eventLabel,
-        event_label: eventLabel,
-        non_interaction: true,
-      });
+    adTrack.custom(
+      'meepShop_click',
+      eventLabel,
+      (eventCategory?.status && eventCategory?.value) || eventLabel,
+    );
   };
 };

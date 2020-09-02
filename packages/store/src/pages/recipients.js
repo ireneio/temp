@@ -10,7 +10,7 @@ import MemberRecipients from '@store/member-recipients';
 import * as Utils from 'utils';
 import * as Selectors from 'selectors';
 import * as Template from 'template';
-import { Container, TrackingCodeHead, Error } from 'components';
+import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
@@ -37,10 +37,6 @@ class Recipients extends Component {
     }).isRequired,
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
-    }).isRequired,
-    pageAdTrackIDs: PropTypes.shape({
-      gaID: PropTypes.string,
-      fbPixelId: PropTypes.string,
     }).isRequired,
     user: PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -75,8 +71,6 @@ class Recipients extends Component {
     const {
       isLogin,
       storeSetting: { storeName, faviconUrl },
-      location: { pathname },
-      pageAdTrackIDs,
       user,
       dispatchAction,
       t,
@@ -91,7 +85,6 @@ class Recipients extends Component {
           <link rel="icon" type="image/png" href={faviconUrl} />
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
           <MemberHeader title={t('title.recipients')}>
             <MemberRecipients member={user} dispatchAction={dispatchAction} />
@@ -146,7 +139,6 @@ const mapStateToProps = (state, props) => {
 
   return {
     storeSetting: state.storeReducer.settings,
-    pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getPage(state, props),

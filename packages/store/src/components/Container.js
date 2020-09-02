@@ -34,16 +34,6 @@ class Container extends React.Component {
     storeSetting: PropTypes.shape({
       invoice: PropTypes.object.isRequired,
     }).isRequired,
-    pageAdTrackIDs: PropTypes.shape({
-      fbPixelId: PropTypes.string.isRequired,
-      gaID: PropTypes.string.isRequired,
-      webMasterID: PropTypes.string.isRequired,
-      gtmID: PropTypes.string.isRequired,
-      googleAdsConversionID: PropTypes.string.isRequired,
-      googleAdsSignupLabel: PropTypes.string.isRequired,
-      googleAdsCheckoutLabel: PropTypes.string.isRequired,
-      googleAdsCompleteOrderLabel: PropTypes.string.isRequired,
-    }).isRequired,
     /* may chnage */
     isLogin: PropTypes.string.isRequired,
     user: PropTypes.shape({ id: PropTypes.string }),
@@ -106,27 +96,6 @@ class Container extends React.Component {
         Utils.logToServer({ type: 'unhandledrejection', message, stack });
       },
     );
-    // Retention features
-    const {
-      pageAdTrackIDs,
-      storeSetting: { adRetentionMilliseconds, adRetentionMillisecondsEnabled },
-    } = this.props;
-    if (adRetentionMillisecondsEnabled) {
-      setTimeout(() => {
-        // FB Pixel
-        if (window.fbq && pageAdTrackIDs.fbPixelId) {
-          window.fbq('track', 'meepShop_retention');
-        }
-        // GA
-        if (window.gtag && pageAdTrackIDs.gaID) {
-          window.gtag('event', 'meepShop_retention', {
-            event_category: 'meepShop_retention',
-            event_label: 'meepShop_retention',
-            non_interaction: true,
-          });
-        }
-      }, adRetentionMilliseconds);
-    }
   }
 
   // eslint-disable-next-line consistent-return
@@ -302,7 +271,7 @@ const mapStateToProps = state => {
   if (error) return { error };
 
   const {
-    storeReducer: { settings, pageAdTrackIDs, experiment },
+    storeReducer: { settings, experiment },
     memberReducer: { user, isLogin, loading, loadingTip },
     loadingStatus: { loading: isLoading },
   } = state;
@@ -312,7 +281,6 @@ const mapStateToProps = state => {
     /* never change */
     cname,
     storeSetting: settings,
-    pageAdTrackIDs,
     experiment,
     /* may chnage */
     isLogin,

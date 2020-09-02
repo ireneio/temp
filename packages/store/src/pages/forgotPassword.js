@@ -7,7 +7,7 @@ import { withTranslation } from '@meepshop/utils/lib/i18n';
 import ForgotPasswordView from '@store/forgot-password';
 
 import * as Utils from 'utils';
-import { Container, TrackingCodeHead, Error } from 'components';
+import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
 import { Router } from 'server/routes';
 import { getJoinedForgotPasswordPage } from 'selectors/forgotPassword';
@@ -38,10 +38,6 @@ class ForgotPassword extends Component {
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
-    pageAdTrackIDs: PropTypes.shape({
-      gaID: PropTypes.string,
-      fbPixelId: PropTypes.string,
-    }).isRequired,
   };
 
   static defaultProps = { error: null };
@@ -71,8 +67,6 @@ class ForgotPassword extends Component {
     const {
       isLogin,
       storeSetting: { storeName, faviconUrl },
-      location: { pathname },
-      pageAdTrackIDs,
       dispatchAction,
       token,
       t,
@@ -87,7 +81,6 @@ class ForgotPassword extends Component {
           <link rel="icon" type="image/png" href={faviconUrl} />
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
           <MemberHeader title={t('title.reset-password')}>
             <ForgotPasswordView dispatchAction={dispatchAction} token={token} />
@@ -105,7 +98,6 @@ const mapStateToProps = (state, props) => {
 
   return {
     storeSetting: state.storeReducer.settings,
-    pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getJoinedForgotPasswordPage(state, props),

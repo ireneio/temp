@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import initApollo from '@meepshop/apollo/lib/initApollo';
 import ThankYouPageView from '@store/thank-you-page';
 
-import { TrackingCodeHead, Error } from 'components';
+import { Error } from 'components';
 import * as Utils from 'utils';
 import { getJoinedThankYouPage } from 'selectors/thankYouPage';
 import { Router } from 'server/routes';
@@ -37,10 +37,6 @@ class ThankYouPage extends React.Component {
       pathname: PropTypes.string.isRequired,
       href: PropTypes.string.isRequired,
     }).isRequired,
-    pageAdTrackIDs: PropTypes.shape({
-      gaID: PropTypes.string,
-      fbPixelId: PropTypes.string,
-    }).isRequired,
   };
 
   static defaultProps = { error: null };
@@ -65,8 +61,6 @@ class ThankYouPage extends React.Component {
 
     const {
       storeSetting: { storeName, faviconUrl },
-      location: { pathname },
-      pageAdTrackIDs,
     } = this.props;
 
     return isLogin === 'NOTLOGIN' ? (
@@ -78,7 +72,6 @@ class ThankYouPage extends React.Component {
           <link rel="icon" type="image/png" href={faviconUrl} />
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <ThankYouPageView />
       </>
     );
@@ -92,7 +85,6 @@ const mapStateToProps = (state, props) => {
 
   return {
     storeSetting: state.storeReducer.settings,
-    pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getJoinedThankYouPage(state, props),

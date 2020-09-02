@@ -8,7 +8,7 @@ import { Spin, Icon } from 'antd';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import * as Utils from 'utils';
-import { Container, TrackingCodeHead, Error } from 'components';
+import { Container, Error } from 'components';
 import ProductDiscontinued from 'components/ProductDiscontinued';
 import {
   getProduct,
@@ -53,10 +53,6 @@ class Product extends React.Component {
       title: PropTypes.object,
       status: PropTypes.number.isRequired,
     }).isRequired,
-    pageAdTrackIDs: PropTypes.shape({
-      gaID: PropTypes.string,
-      fbPixelId: PropTypes.string,
-    }).isRequired,
     productDescription: PropTypes.string.isRequired,
   };
 
@@ -87,7 +83,6 @@ class Product extends React.Component {
       page,
       product: { status, coverImage, title },
       productDescription,
-      pageAdTrackIDs,
       i18n,
     } = this.props;
     const url = host + pathname;
@@ -124,7 +119,6 @@ class Product extends React.Component {
           <meta property="og:locale" content={i18n.language} />
           {/* <!-- End - Facebook Open Graph --> */}
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
 
         {status ? (
           <Container {...this.props} />
@@ -143,7 +137,6 @@ const mapStateToProps = (state, props) => {
 
   return {
     storeSetting: state?.storeReducer?.settings,
-    pageAdTrackIDs: state?.storeReducer?.pageAdTrackIDs,
     location: Utils.uriParser(props),
     page: getJoinedPageInProductRoute(state, props),
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),

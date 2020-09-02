@@ -6,7 +6,6 @@ import productQuery from './product.query';
 import wishListQuery from './wishList.query';
 import computeOrderQuery from './computeOrder.query';
 import orderMessageQuery from './orderMessage.query';
-import webTrackQuery from './webTrack.query';
 import stockNotificationQuery from './stockNotification.query';
 import viewer from './viewer.query';
 import viewerStoreQuery from './viewerStore.query';
@@ -20,7 +19,6 @@ export {
   wishListQuery,
   computeOrderQuery,
   orderMessageQuery,
-  webTrackQuery,
   stockNotificationQuery,
   viewer,
   viewerStoreQuery,

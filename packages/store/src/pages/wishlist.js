@@ -12,7 +12,7 @@ import MemberWishlist from '@store/member-wish-list';
 import * as Utils from 'utils';
 import * as Selectors from 'selectors';
 import * as Template from 'template';
-import { Container, TrackingCodeHead, Error } from 'components';
+import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
@@ -41,10 +41,6 @@ class Wishlist extends Component {
       pathname: PropTypes.string.isRequired,
     }).isRequired,
     locale: PropTypes.string.isRequired,
-    pageAdTrackIDs: PropTypes.shape({
-      gaID: PropTypes.string,
-      fbPixelId: PropTypes.string,
-    }).isRequired,
     wishList: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
@@ -77,8 +73,6 @@ class Wishlist extends Component {
       apps,
       isLogin,
       storeSetting: { storeName, faviconUrl },
-      location: { pathname },
-      pageAdTrackIDs,
       wishList,
       dispatchAction,
     } = this.props;
@@ -94,8 +88,6 @@ class Wishlist extends Component {
           <link rel="icon" type="image/png" href={faviconUrl} />
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
           <MemberHeader title={t('title.wishlist')}>
             <MemberWishlist
@@ -153,7 +145,6 @@ const mapStateToProps = (state, props) => {
 
   return {
     storeSetting: state.storeReducer.settings,
-    pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getPage(state, props),

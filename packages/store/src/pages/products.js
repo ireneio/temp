@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 
 import * as Utils from 'utils';
-import { Container, TrackingCodeHead, Error } from 'components';
+import { Container, Error } from 'components';
 import { getJoinedProductsPage } from 'selectors/products';
 import * as Actions from 'ducks/actions';
 
@@ -39,10 +39,6 @@ class Products extends React.Component {
     page: PropTypes.shape({
       seo: PropTypes.object,
     }).isRequired,
-    pageAdTrackIDs: PropTypes.shape({
-      gaID: PropTypes.string,
-      fbPixelId: PropTypes.string,
-    }).isRequired,
   };
 
   static defaultProps = { error: null };
@@ -57,7 +53,6 @@ class Products extends React.Component {
       storeSetting: { storeName, storeDescription, faviconUrl },
       location: { host, pathname },
       page,
-      pageAdTrackIDs,
       i18n,
     } = this.props;
     const url = host + pathname;
@@ -91,7 +86,6 @@ class Products extends React.Component {
           <meta property="og:locale" content={i18n.language} />
           {/* <!-- End - Facebook Open Graph --> */}
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props} />
       </>
     );
@@ -105,7 +99,6 @@ const mapStateToProps = (state, props) => {
 
   return {
     storeSetting: Utils.getIn(['storeReducer', 'settings'])(state),
-    pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     location: Utils.uriParser(props),
     page: getJoinedProductsPage(state, props),
   };

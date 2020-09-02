@@ -23,8 +23,9 @@ export default (): RouterType => {
   return {
     ...router,
     domain,
-    // FIXME: remove if after next.js upgrade, router should not be null
+    // FIXME: remove query, ashPath after next.js upgrade, we should use AppTree with getDataFromTree
     query: router?.query || {},
+    asPath: router?.asPath || '',
     hash: router?.asPath.match(/(#[^?]*)/)?.[0].replace(/^#/, '') || null,
     push: (href: string, options?: {}) => {
       const linkProps = getLinkProps(href);

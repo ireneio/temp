@@ -36,74 +36,6 @@ const initialState = {
   experiment: {},
 };
 
-const getPageAdTrackIds = data => {
-  /* FB Pixel */
-  const fbPixelId = data?.getFbPixel?.pixelId || null;
-
-  const gtagList = data?.getGtagList || [];
-  /* Google analytics */
-  const gaData = gtagList.find(
-    ({ type, eventName }) =>
-      type === 'google_analytics' && eventName === 'analytics_config',
-  );
-  const gaID = (gaData && gaData.code) || null;
-  /* Google Ads conversion ID */
-  const googleAdsConversionID =
-    gtagList.find(
-      ({ type, eventName }) =>
-        type === 'google_adwords' && eventName === 'adwords_config',
-    )?.trackingId || null;
-  /* Google Ads conversion Label - Signup */
-  const googleAdsSignupLabel =
-    gtagList.find(
-      ({ type, eventName }) =>
-        type === 'google_adwords' && eventName === 'sign_up',
-    )?.trackingId || null;
-  /* Google Ads conversion Label - Checkout */
-  const googleAdsCheckoutLabel =
-    gtagList.find(
-      ({ type, eventName }) =>
-        type === 'google_adwords' && eventName === 'begin_checkout',
-    )?.trackingId || null;
-  /* Google Ads conversion Label - CompleteOrder */
-  const googleAdsCompleteOrderLabel =
-    gtagList.find(
-      ({ type, eventName }) =>
-        type === 'google_adwords' && eventName === 'purchase',
-    )?.trackingId || null;
-
-  const gtmID =
-    gtagList.find(
-      ({ type, eventName }) =>
-        type === 'google_tag_manager' && eventName === 'tag_manager',
-    )?.trackingId || null;
-
-  const webTrackList = data?.getWebTrackList?.data || [];
-  let webMasterID = null;
-  if (webTrackList) {
-    webTrackList.forEach(webTrack => {
-      switch (webTrack?.trackType) {
-        case 'google_webmaster': {
-          webMasterID = webTrack?.trackId || null;
-          break;
-        }
-        default:
-          break;
-      }
-    });
-  }
-  return {
-    fbPixelId,
-    gaID,
-    webMasterID,
-    gtmID,
-    googleAdsConversionID,
-    googleAdsSignupLabel,
-    googleAdsCheckoutLabel,
-    googleAdsCompleteOrderLabel,
-  };
-};
-
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_STORE_SUCCESS: {
@@ -115,7 +47,6 @@ export default (state = initialState, { type, payload }) => {
       const memberGroups = data?.viewer?.store?.memberGroups || [];
       const store = data?.viewer?.store;
       const storeSettings = data?.viewer?.store?.setting;
-      const pageAdTrackIDs = getPageAdTrackIds(data);
       const {
         locale: localeOptions,
         currency: currencyOptions,
@@ -142,7 +73,6 @@ export default (state = initialState, { type, payload }) => {
         menus, // 選單
         memberGroups,
         settings,
-        pageAdTrackIDs,
         experiment: store?.experiment || {},
       };
     }

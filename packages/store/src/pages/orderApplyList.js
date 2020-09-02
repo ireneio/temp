@@ -7,7 +7,7 @@ import { createSelector } from 'reselect';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import MemberOrderApplicatons from '@store/member-order-applications';
 
-import { Container, TrackingCodeHead, Error } from 'components';
+import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
 import * as Utils from 'utils';
 import * as Selectors from 'selectors';
@@ -45,10 +45,6 @@ class OrderApplyList extends React.Component {
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
-    pageAdTrackIDs: PropTypes.shape({
-      gaID: PropTypes.string,
-      fbPixelId: PropTypes.string,
-    }).isRequired,
   };
 
   static defaultProps = { error: null };
@@ -78,8 +74,6 @@ class OrderApplyList extends React.Component {
     const {
       isLogin,
       storeSetting: { storeName, faviconUrl },
-      location: { pathname },
-      pageAdTrackIDs,
       orderId,
       t,
     } = this.props;
@@ -93,7 +87,6 @@ class OrderApplyList extends React.Component {
           <link rel="icon" type="image/png" href={faviconUrl} />
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
-        <TrackingCodeHead pathname={pathname} pageAdTrackIDs={pageAdTrackIDs} />
         <Container {...this.props}>
           <MemberHeader title={t('title.order-apply-list')} goBackToOrders>
             <MemberOrderApplicatons orderId={orderId} />
@@ -148,7 +141,6 @@ const mapStateToProps = (state, props) => {
 
   return {
     storeSetting: state.storeReducer.settings,
-    pageAdTrackIDs: Utils.getIn(['storeReducer', 'pageAdTrackIDs'])(state),
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getPage(state, props),
