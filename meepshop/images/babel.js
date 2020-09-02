@@ -8,6 +8,7 @@ const { default: Imgproxy } = require('imgproxy');
 const dirTree = require('directory-tree');
 const d3 = require('d3-hierarchy');
 const execa = require('execa');
+const outputFileSync = require('output-file-sync');
 const invariant = require('fbjs/lib/invariant');
 
 [
@@ -257,6 +258,34 @@ module.exports = declare(({ assertVersion, types: t }) => {
     },
     post: ({ opts: { filename }, path }) => {
       if (filename !== nodePath.resolve(__dirname, './src/types.ts')) return;
+
+      outputFileSync(
+        nodePath.resolve(__dirname, './defaultTypes.ts'),
+        `// Only for typescript, do not import
+// definition
+export const mockData = 'image';
+export const mockScaledSrc = {
+  w60: mockData,
+  w120: mockData,
+  w240: mockData,
+  w480: mockData,
+  w720: mockData,
+  w960: mockData,
+  w1200: mockData,
+  w1440: mockData,
+  w1680: mockData,
+  w1920: mockData,
+};
+
+/* eslint-disable @typescript-eslint/camelcase */
+${Object.keys(imageList)
+  .map(
+    key => `export const ${key} = mockData;
+export const ${key}_scaledSrc = mockScaledSrc;`,
+  )
+  .join('\n')}
+`,
+      );
 
       path.replaceWith(
         t.program([

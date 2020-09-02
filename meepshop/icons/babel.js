@@ -288,15 +288,9 @@ export default React.memo(props => (
 };
 
 module.exports = declare(({ assertVersion, types: t }) => {
-  const cache = {};
-
   assertVersion(7);
 
   return {
-    pre: ({ opts: { filename } }) => {
-      cache.shouldSkip =
-        filename !== nodePath.resolve(__dirname, './src/types.tsx');
-    },
     visitor: {
       ImportDeclaration: path => {
         if (!t.isLiteral(path.get('source').node, { value: '@meepshop/icons' }))
@@ -359,18 +353,37 @@ module.exports = declare(({ assertVersion, types: t }) => {
           ]),
         );
       },
-      ExportNamedDeclaration: path => {
-        if (cache.shouldSkip) return;
-
-        generateIcon(
-          nodePath.resolve(__dirname, './lib'),
-          path.get('declaration.declarations.0.id').node.name,
-          path,
-        );
-      },
     },
-    post: ({ path }) => {
-      if (cache.shouldSkip) return;
+    post: ({ opts: { filename }, path }) => {
+      if (filename !== nodePath.resolve(__dirname, './src/types.tsx')) return;
+
+      Object.keys(iconList).forEach(key => {
+        generateIcon(nodePath.resolve(__dirname, './lib'), key, path);
+      });
+      outputFileSync(
+        nodePath.resolve(__dirname, './defaultTypes.tsx'),
+        `// Only for typescript, do not import
+// typescript import
+import { IconProps, CustomIconComponentProps } from 'antd/lib/icon';
+
+// import
+import React from 'react';
+import { Icon } from 'antd';
+
+// definition
+const Component = React.memo((props: CustomIconComponentProps) => (
+  <svg {...props} viewBox="64 64 896 896" />
+));
+
+const MockIcon = React.memo((props: IconProps) => (
+  <Icon {...props} component={Component} />
+));
+
+${Object.keys(iconList)
+  .map(key => `export const ${key} = MockIcon;`)
+  .join('\n')}
+`,
+      );
 
       path.replaceWith(
         t.program([

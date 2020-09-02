@@ -5,7 +5,6 @@ import path from 'path';
 export default [
   [
     path.resolve(__dirname, '../../../lib/HomePageIcon.js'),
-    1,
     `import React from 'react';
 import Icon from 'antd/lib/icon';
 
@@ -25,7 +24,6 @@ export default React.memo(props => (
   ],
   [
     path.resolve(__dirname, '../../../lib/HomeDeliveryFilledIcon.js'),
-    2,
     `import React from 'react';
 import Icon from 'antd/lib/icon';
 
@@ -41,4 +39,4 @@ export default React.memo(props => (
   <Icon {...props} component={Component} />
 ));`,
   ],
-] as [string, number, string][];
+] as [string, string][];

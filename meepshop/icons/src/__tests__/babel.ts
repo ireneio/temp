@@ -46,12 +46,11 @@ describe('babel', () => {
           babelOptions,
         )?.code,
       ).toBe('throw new Error("This file is only for typescript.");');
-      expect(outputFileSync).toHaveBeenCalledTimes(2);
+      expect(outputFileSync).toHaveBeenCalled();
     });
 
-    test.each(testings)('output file: %s', (filePath, index, content) => {
-      expect(outputFileSync).toHaveBeenNthCalledWith(
-        index,
+    test.each(testings)('output file: %s', (filePath, content) => {
+      expect(outputFileSync).toHaveBeenCalledWith(
         filePath,
         transformSync(content, {
           ...babelOptions,
@@ -94,17 +93,5 @@ exports["default"] = _default;`);
     expect(result).toMatch(
       /if \(process\.env\.NODE_ENV === "production"\) throw new Error\("Can not use `import \* as icons from '@meepshop\/icons';` in the production mode\."\);/,
     );
-  });
-
-  test('can not find icon key', () => {
-    expect(
-      () =>
-        transformSync(
-          `// definition
-    // Only for typescript, do not import
-export const notFoundKeyIcon = 'icon';`,
-          babelOptions,
-        )?.code,
-    ).toThrow(`Can not find icon: \`notFoundKeyIcon\``);
   });
 });
