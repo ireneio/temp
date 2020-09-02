@@ -18,7 +18,7 @@ export default gql`
       }
       galleries {
         images {
-          fileId
+          id
           scaledSrc {
             ...imageScaledURLsFragment
           }

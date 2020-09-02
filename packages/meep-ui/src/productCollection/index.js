@@ -44,9 +44,9 @@ export default class ProductCollection extends React.PureComponent {
       >
         {images
           .filter(image => image?.scaledSrc)
-          .map(({ fileId, ...image }) => (
+          .map(({ id, ...image }) => (
             <div
-              key={fileId}
+              key={id}
               className={`${styles.imgWrapper} ${styles[align]} ${
                 mode === 'list' ? styles[mode] : ''
               }`}

@@ -156,7 +156,7 @@ export default class PopUp extends React.PureComponent {
                   }
                 }
                 coverImage {
-                  fileId
+                  id
                   scaledSrc {
                     w60
                     w120
@@ -172,7 +172,7 @@ export default class PopUp extends React.PureComponent {
                 }
                 galleries {
                   images {
-                    fileId
+                    id
                     isMain
                     scaledSrc {
                       w60

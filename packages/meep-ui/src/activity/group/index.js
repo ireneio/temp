@@ -104,7 +104,7 @@ export default class Group extends React.PureComponent {
           en_US
         }
         coverImage {
-          fileId
+          id
           scaledSrc {
             w60
             w120

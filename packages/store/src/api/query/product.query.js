@@ -21,7 +21,7 @@ const productQuery = `{
     value
   }
   coverImage {
-    fileId
+    id
     scaledSrc {
       w60
       w120
@@ -37,7 +37,7 @@ const productQuery = `{
   }
   galleries {
     images {
-      fileId
+      id
       isMain
       scaledSrc {
         w60

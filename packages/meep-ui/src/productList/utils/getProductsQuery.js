@@ -118,7 +118,7 @@ export default ({
             totalPrice
           }
           coverImage {
-            fileId
+            id
             scaledSrc {
               w60
               w120

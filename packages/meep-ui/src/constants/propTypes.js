@@ -51,7 +51,7 @@ export const IMAGE_TYPE = buildPropTypes('url', value =>
 );
 
 export const GALLERY_IMAGE_TYPE = PropTypes.shape({
-  fileId: ID_TYPE.isRequired,
+  id: ID_TYPE.isRequired,
   isMain: PropTypes.bool.isRequired,
   src: URL_TYPE,
 });

@@ -67,7 +67,7 @@ export default class ProductCarousel extends React.PureComponent {
     const images = [
       ...(coverImage?.scaledSrc ? [coverImage] : []),
       ...(galleries?.[0]?.images || []).filter(
-        image => image?.scaledSrc && image.fileId !== coverImage?.fileId,
+        image => image?.scaledSrc && image.id !== coverImage?.id,
       ),
     ];
 
@@ -100,7 +100,7 @@ export default class ProductCarousel extends React.PureComponent {
               prevArrow={<ArrowIcon type="left-circle" />}
             >
               {images.map(image => (
-                <Lazy key={image.fileId}>
+                <Lazy key={image.id}>
                   {({ useLarge, isClear, onLoad }) => {
                     const { scaledSrc } = image;
 
@@ -134,7 +134,7 @@ export default class ProductCarousel extends React.PureComponent {
                 afterChange={this.setSlickActive}
               >
                 {images.map(image => (
-                  <div key={image.fileId}>
+                  <div key={image.id}>
                     <div style={styles.thumbnail(image, mode)} />
                   </div>
                 ))}

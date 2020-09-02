@@ -31,16 +31,16 @@ export default React.memo(
 
     return !images.length ? null : (
       <div className={`${styles.root} ${styles[productCollectionsType]}`}>
-        {images.map(({ fileId, scaledSrc }) => (
+        {images.map(({ id, scaledSrc }) => (
           <div
-            key={fileId}
+            key={id}
             className={`${styles.img} ${styles[productCollectionsType]}`}
           >
             <Image
-              id={fileId}
+              id={id}
               image={{
                 __typename: 'Image',
-                id: fileId,
+                id,
                 scaledSrc,
               }}
               link={null}
