@@ -45,9 +45,6 @@ class Product extends React.Component {
       host: PropTypes.string.isRequired,
       pathname: PropTypes.string.isRequired,
     }).isRequired,
-    page: PropTypes.shape({
-      seo: PropTypes.object,
-    }).isRequired,
     product: PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.object,
@@ -80,14 +77,12 @@ class Product extends React.Component {
     const {
       storeSetting: { storeName, storeDescription, faviconUrl },
       location: { host, pathname },
-      page,
       product: { status, coverImage, title },
       productDescription,
       i18n,
     } = this.props;
     const url = host + pathname;
     const productImage = coverImage?.scaledSrc?.w480 || '';
-    const keywords = page?.seo?.keywords;
 
     // eslint-disable-next-line camelcase
     const productName = title?.zh_TW;
@@ -100,7 +95,7 @@ class Product extends React.Component {
             name="description"
             content={productDescription || storeDescription}
           />
-          <meta name="keywords" content={keywords} />
+          <meta name="keywords" content={productName || storeName} />
           <link rel="icon" type="image/png" href={faviconUrl} />
           <link rel="apple-touch-icon" href={faviconUrl} />
 
