@@ -4,7 +4,6 @@ import menuQuery from './menu.query';
 import activityQuery from './activity.query';
 import productQuery from './product.query';
 import wishListQuery from './wishList.query';
-import computeOrderQuery from './computeOrder.query';
 import orderMessageQuery from './orderMessage.query';
 import stockNotificationQuery from './stockNotification.query';
 import viewer from './viewer.query';
@@ -17,7 +16,6 @@ export {
   activityQuery,
   productQuery,
   wishListQuery,
-  computeOrderQuery,
   orderMessageQuery,
   stockNotificationQuery,
   viewer,

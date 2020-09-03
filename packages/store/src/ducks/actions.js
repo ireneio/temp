@@ -2,7 +2,7 @@ import { getPages, getPagesSuccess, getPagesFailure } from './widgets/pages';
 
 import { showLoadingStatus, hideLoadingStatus } from './widgets/loading';
 
-import { getStoreSuccess, getStoreFailure, setCurrency } from './widgets/store';
+import { getStoreSuccess, getStoreFailure } from './widgets/store';
 
 import {
   getAuth,
@@ -60,7 +60,6 @@ export {
   // store
   getStoreSuccess,
   getStoreFailure,
-  setCurrency,
   // auth
   getAuth,
   getAuthSuccess,

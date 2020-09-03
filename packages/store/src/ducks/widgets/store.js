@@ -13,16 +13,6 @@ export const getStoreFailure = payload => ({
   payload,
 });
 
-/* ****************************************** 更改幣值 ****************************************** */
-const SET_CURRENCY = 'SET_CURRENCY';
-/**
- * @param {String} id 幣值代號，如：'TWD', 'USD'
- */
-export const setCurrency = id => ({
-  type: SET_CURRENCY,
-  payload: id,
-});
-
 /**
  * @name StoreReducer
  * @description 存放商店資料，語言，幣值

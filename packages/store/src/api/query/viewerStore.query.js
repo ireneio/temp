@@ -11,7 +11,6 @@ viewer {
       introduction
     }
     timezone
-    currency
     contact {
       name
       email
