@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.62.1 (2020-09-03)
+
+#### :rocket: New Feature
+
+- [#1147](https://github.com/meepshop/meep-lerna/pull/1147) (@meepshop/images, @meepshop/icons) Auto generate typescript ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1149](https://github.com/meepshop/meep-lerna/pull/1149) 【BUG】修正商品頁 Keywords 資料來源 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- `store`
+  - [#1145](https://github.com/meepshop/meep-lerna/pull/1145) Remove currency in redux ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.62.0 (2020-09-02)
 
 #### :boom: Breaking Change
