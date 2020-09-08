@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.62.2 (2020-09-08)
+
+#### :rocket: New Feature
+
+- [#1148](https://github.com/meepshop/meep-lerna/pull/1148) [next-admin] add setGaViewId ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.62.1 (2020-09-03)
 
 #### :rocket: New Feature
