@@ -65,5 +65,23 @@
       "0": "Please enter the linkage information and activate the function. Please notify by mail after the setting is completed.",
       "1": "Customer service will help you activate it."
     }
+  },
+  "gaViewId": {
+    "title": null,
+    "description": null,
+    "items": {
+      "0": {
+        "title": null,
+        "tooltip": null,
+        "link": null
+      },
+      "1": {
+        "title": null,
+        "tooltip": null,
+        "link": null,
+        "caution": null
+      }
+    },
+    "error": null
   }
 }

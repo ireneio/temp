@@ -6,14 +6,14 @@
   "success": "儲存成功",
   "error": "更新失敗",
   "facebook": {
-    "title": "Facebook整合功能",
+    "title": "Facebook 整合功能",
     "description": "需使用您的 Facebook 帳號註冊 Facebook Developers 帳號，填寫應用程式資料後才能使用整合功能",
     "toggle": {
       "title": "Facebook 登入",
       "description": "讓消費者可以使用 Facebook 帳戶一鍵註冊、登入您的網店成為會員，不需經過繁複的註冊程序，提供便利的購物體驗"
     },
     "sub-title": {
-      "title": "Facebook應用程式資料",
+      "title": "Facebook 應用程式資料",
       "tip": "使用 Facebook Developers 帳號建立應用程式後，可在設定的基本資料內取得"
     },
     "appId": {
@@ -26,10 +26,10 @@
     }
   },
   "ecfit": {
-    "title": "ECFIT第三方後勤服務",
-    "description": "一站式的電商後勤整合系統，協助店家進出貨等完整服務，需與ECFIT簽約後做串接設定",
+    "title": "ECFIT 第三方後勤服務",
+    "description": "一站式的電商後勤整合系統，協助店家進出貨等完整服務，需與 ECFIT 簽約後做串接設定",
     "toggle": {
-      "title": "ECFIT串接服務"
+      "title": "ECFIT 串接服務"
     },
     "serviceType": {
       "title": "使用服務類型",
@@ -37,33 +37,51 @@
       "THIRD_PARTY_STORAGE": "第三方倉儲物流"
     },
     "companyToken": {
-      "title": "公司token",
+      "title": "公司 token",
       "placeholder": "請輸入{company}",
-      "tip": "與ECFIT簽約合作後提供，以公司英文名稱縮寫、統一編號設定"
+      "tip": "與 ECFIT 簽約合作後提供，以公司英文名稱縮寫、統一編號設定"
     },
     "apiKey": {
-      "title": "API加密金鑰",
+      "title": "API 加密金鑰",
       "placeholder": "請輸入加密金鑰",
-      "tip": "可透過ECFIT系統後台產生，並複製到此貼上"
+      "tip": "可透過 ECFIT 系統後台產生，並複製到此貼上"
     }
   },
   "goodDeal": {
-    "title": "GoodDeal同步庫存",
-    "description": "倉儲物流整合中心，協助店家進出貨等完整服務，此服務需與GoodDeal簽約後做串接設定",
+    "title": "GoodDeal 同步庫存",
+    "description": "倉儲物流整合中心，協助店家進出貨等完整服務，此服務需與 GoodDeal 簽約後做串接設定",
     "toggle": {
-      "title": "GoodDeal同步庫存"
+      "title": "GoodDeal 同步庫存"
     },
     "corporationId": {
       "title": "客戶代碼",
       "placeholder": "請輸入客戶代碼"
     },
     "apiKey": {
-      "title": "API金鑰",
+      "title": "API 金鑰",
       "placeholder": "請輸入加密金鑰"
     },
     "alert": {
-      "0": "請填入串接資訊並將開關開啟，設定完成後請來信",
-      "1": "由客服為您協助開通"
+      "0": "請填入串接資訊並將開關開啟，設定完成後請來信 ",
+      "1": " 由客服為您協助開通"
     }
+  },
+  "gaViewId": {
+    "title": "Google Analytics 數據讀取",
+    "description": "需先至 Google Analytics 新增 meepShop 服務帳戶 ID 至使用者，並開啟「檢視及分析」 權限才能正常讀取數據。",
+    "items": {
+      "0": {
+        "title": "meepShop 服務帳戶 ID",
+        "tooltip": "將 meepShop 服務帳戶 ID 新增至使用者",
+        "link": "Google Analytics 新增使用者"
+      },
+      "1": {
+        "title": "資料檢視 ID",
+        "tooltip": "如何設置資料檢視 ID",
+        "link": "Google Analytics 新增資料檢視",
+        "caution": "設置資料檢視 ID 後才可使用智慧轉換元件，建議元件使用期間內不要變更設定，以維持數據精確度。"
+      }
+    },
+    "error": "資料檢視 ID 無效"
   }
 }

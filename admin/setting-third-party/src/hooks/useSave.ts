@@ -2,7 +2,8 @@
 import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
-import { useCallback } from 'react';
+import { useState, useCallback } from 'react';
+import gql from 'graphql-tag';
 import { message } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -10,70 +11,102 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import useUpdateFacebookSetting from './useUpdateFacebookSetting';
 import useUpdateEcfitSettings from './useUpdateEcfitSettings';
 import useUpdateGoodDealSettings from './useUpdateGoodDealSettings';
+import useSetGaViewId from './useSetGaViewId';
+
+// graphql typescript
+import { useSaveFragment as useSaveFragmentType } from './__generated__/useSaveFragment';
+
+// typescript definition
+interface ReturnType {
+  save: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  loading: boolean;
+}
 
 // definition
+export const useSaveFragment = gql`
+  fragment useSaveFragment on Store {
+    id
+    experiment {
+      isSmartConversionModuleEnabled
+    }
+  }
+`;
+
 export default (
   { validateFields, resetFields }: FormComponentProps['form'],
-  storeId: string | null,
-): ((e: React.MouseEvent<HTMLButtonElement>) => void) => {
+  store: useSaveFragmentType | null,
+): ReturnType => {
+  const [loading, setLoading] = useState(false);
   const { t } = useTranslation('setting-third-party');
   const updateFacebookSetting = useUpdateFacebookSetting();
   const updateEcfitSettings = useUpdateEcfitSettings();
   const updateGoodDealSettings = useUpdateGoodDealSettings();
+  const setGaViewId = useSetGaViewId();
 
-  return useCallback(
-    e => {
-      e.preventDefault();
-      validateFields(async (err, { facebook, ecfit, goodDeal }) => {
-        if (err || !storeId) return;
+  return {
+    loading,
+    save: useCallback(
+      e => {
+        e.preventDefault();
+        validateFields(async (err, { facebook, ecfit, goodDeal, gaViewId }) => {
+          if (err || !store?.id) return;
 
-        try {
-          if (facebook) {
-            const { status: isLoginEnabled, ...input } = facebook;
+          setLoading(true);
 
-            await updateFacebookSetting(storeId, {
-              ...input,
-              isLoginEnabled,
-            });
-          }
+          try {
+            if (facebook) {
+              const { status: isLoginEnabled, ...input } = facebook;
 
-          if (ecfit) {
-            const { status: isEnabled, ...input } = ecfit;
+              await updateFacebookSetting(store.id, {
+                ...input,
+                isLoginEnabled,
+              });
+            }
 
-            await updateEcfitSettings(storeId, {
-              ...input,
-              isEnabled,
-            });
-          }
+            if (ecfit) {
+              const { status: isEnabled, ...input } = ecfit;
 
-          if (goodDeal)
-            await updateGoodDealSettings([
-              {
-                id: storeId,
-                setting: {
-                  gooddeal: {
-                    ...goodDeal,
-                    status: goodDeal.status ? 1 : 0,
+              await updateEcfitSettings(store.id, {
+                ...input,
+                isEnabled,
+              });
+            }
+
+            if (goodDeal)
+              await updateGoodDealSettings([
+                {
+                  id: store.id,
+                  setting: {
+                    gooddeal: {
+                      ...goodDeal,
+                      status: goodDeal.status ? 1 : 0,
+                    },
                   },
                 },
-              },
-            ]);
+              ]);
 
-          resetFields();
-          message.success(t('success'));
-        } catch (error) {
-          message.error(t('error'));
-        }
-      });
-    },
-    [
-      validateFields,
-      resetFields,
-      storeId,
-      t,
-      updateFacebookSetting,
-      updateEcfitSettings,
-      updateGoodDealSettings,
-    ],
-  );
+            if (store.experiment?.isSmartConversionModuleEnabled)
+              await setGaViewId(store.id, gaViewId || null);
+
+            resetFields();
+            message.success(t('success'));
+          } catch (error) {
+            message.error(t('error'));
+          }
+
+          setLoading(false);
+        });
+      },
+      [
+        validateFields,
+        resetFields,
+        store,
+        t,
+        updateFacebookSetting,
+        updateEcfitSettings,
+        updateGoodDealSettings,
+        setGaViewId,
+      ],
+    ),
+  };
 };

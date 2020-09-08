@@ -10,11 +10,13 @@ import {
   adminSettingThirdPartyEcfit,
   adminSettingThirdPartyFacebook,
   adminSettingThirdPartyGoodDeal,
+  webTrackGoogleAnalytics_w224 as webTrackGoogleAnalytics,
 } from '@meepshop/images';
 
 import FaceBook from '../Facebook';
 import Ecfit from '../Ecfit';
 import GoodDeal from '../GoodDeal';
+import GoogleAnalytics from '../GaViewId';
 
 // graphql typescript
 import { useBlocksFragment as useBlocksFragmentType } from './__generated__/useBlocksFragment';
@@ -23,13 +25,15 @@ import { useBlocksFragment as useBlocksFragmentType } from './__generated__/useB
 import { facebookFacebookSettingFragment } from '../Facebook';
 import { ecfitFragment } from '../Ecfit';
 import { goodDealFragment } from '../GoodDeal';
+import { gaViewIdFragment } from '../GaViewId';
 
 // typescript definition
 interface BlockType {
   key: string;
   src: string;
-  initialValue: boolean;
-  useToggleDescription: boolean;
+  useToggle: boolean;
+  initialValue?: boolean;
+  useToggleDescription?: boolean;
   component: React.ReactNode;
 }
 
@@ -39,6 +43,7 @@ export const useBlocksFragment = gql`
     experiment {
       ecfitEnabled
       isGoodDealEnabled
+      isSmartConversionModuleEnabled
     }
 
     facebookSetting {
@@ -57,11 +62,14 @@ export const useBlocksFragment = gql`
         status
       }
     }
+
+    ...gaViewIdFragment
   }
 
   ${facebookFacebookSettingFragment}
   ${ecfitFragment}
   ${goodDealFragment}
+  ${gaViewIdFragment}
 `;
 
 export default (
@@ -74,6 +82,7 @@ export default (
         {
           key: 'facebook',
           src: adminSettingThirdPartyFacebook,
+          useToggle: true,
           initialValue: Boolean(store?.facebookSetting?.isLoginEnabled),
           useToggleDescription: true,
           component: !store?.facebookSetting ? null : (
@@ -91,6 +100,7 @@ export default (
           : {
               key: 'ecfit',
               src: adminSettingThirdPartyEcfit,
+              useToggle: true,
               initialValue: Boolean(store?.storeEcfitSettings?.isEnabled),
               useToggleDescription: false,
               component: !store?.storeEcfitSettings ? null : (
@@ -108,6 +118,7 @@ export default (
           : {
               key: 'goodDeal',
               src: adminSettingThirdPartyGoodDeal,
+              useToggle: true,
               initialValue: store?.setting?.storeGoodDealSettings?.status === 1,
               useToggleDescription: false,
               component: !store?.setting?.storeGoodDealSettings ? null : (
@@ -117,6 +128,19 @@ export default (
                     goodDealFragment,
                     store.setting.storeGoodDealSettings,
                   )}
+                />
+              ),
+            },
+        !store?.experiment?.isSmartConversionModuleEnabled
+          ? null
+          : {
+              key: 'gaViewId',
+              src: webTrackGoogleAnalytics,
+              useToggle: false,
+              component: (
+                <GoogleAnalytics
+                  form={form}
+                  gaViewId={store?.gaViewId || null}
                 />
               ),
             },

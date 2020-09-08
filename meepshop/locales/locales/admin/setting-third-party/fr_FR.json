@@ -65,5 +65,23 @@
       "0": "Veuillez saisir les informations de liaison et activer la fonction. S'il vous plaît aviser par courrier après le réglage est terminé.",
       "1": "Le service client vous aidera à l'activer."
     }
+  },
+  "gaViewId": {
+    "title": null,
+    "description": null,
+    "items": {
+      "0": {
+        "title": null,
+        "tooltip": null,
+        "link": null
+      },
+      "1": {
+        "title": null,
+        "tooltip": null,
+        "link": null,
+        "caution": null
+      }
+    },
+    "error": null
   }
 }

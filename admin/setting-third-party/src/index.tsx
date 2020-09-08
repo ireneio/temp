@@ -25,6 +25,7 @@ import { getThirdPartySetting } from './__generated__/getThirdPartySetting';
 
 // graphql import
 import { useBlocksFragment } from './hooks/useBlocks';
+import { useSaveFragment } from './hooks/useSave';
 
 // definition
 const query = gql`
@@ -34,11 +35,13 @@ const query = gql`
       store {
         id
         ...useBlocksFragment
+        ...useSaveFragment
       }
     }
   }
 
   ${useBlocksFragment}
+  ${useSaveFragment}
 `;
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -47,7 +50,11 @@ const SettingThirdParty: NextPage = Form.create<FormComponentProps>()(
   React.memo(({ form }: FormComponentProps) => {
     const { data } = useQuery<getThirdPartySetting>(query);
     const { t } = useTranslation('setting-third-party');
-    const save = useSave(form, data?.viewer?.store?.id || null);
+
+    const { loading, save } = useSave(
+      form,
+      !data?.viewer?.store ? null : filter(useSaveFragment, data.viewer.store),
+    );
     const blocks = useBlocks(
       form,
       !data?.viewer?.store
@@ -71,7 +78,7 @@ const SettingThirdParty: NextPage = Form.create<FormComponentProps>()(
             <div>
               <Button onClick={() => resetFields()}>{t('cancel')}</Button>
 
-              <Button onClick={save} type="primary">
+              <Button onClick={save} type="primary" loading={loading}>
                 {t('save')}
               </Button>
             </div>
@@ -81,7 +88,14 @@ const SettingThirdParty: NextPage = Form.create<FormComponentProps>()(
         <Form className={styles.root} labelAlign="left">
           {blocks.map(
             (
-              { key, src, initialValue, useToggleDescription, component },
+              {
+                key,
+                src,
+                useToggle,
+                initialValue,
+                useToggleDescription,
+                component,
+              },
               index,
             ) => (
               <React.Fragment key={key}>
@@ -91,24 +105,28 @@ const SettingThirdParty: NextPage = Form.create<FormComponentProps>()(
                 >
                   <img src={src} alt={key} />
 
-                  <div className={styles.item}>
-                    {getFieldDecorator(`${key}.status`, {
-                      initialValue,
-                      valuePropName: 'checked',
-                    })(<Switch />)}
+                  {useToggle ? (
+                    <div className={styles.item}>
+                      {getFieldDecorator(`${key}.status`, {
+                        initialValue,
+                        valuePropName: 'checked',
+                      })(<Switch />)}
 
-                    <div>
-                      <h3>{t(`${key}.toggle.title`)}</h3>
+                      <div>
+                        <h3>{t(`${key}.toggle.title`)}</h3>
 
-                      {!useToggleDescription ? null : (
-                        <p>{t(`${key}.toggle.description`)}</p>
-                      )}
+                        {!useToggleDescription ? null : (
+                          <p>{t(`${key}.toggle.description`)}</p>
+                        )}
 
-                      {!getFieldValue(`${key}.status`) ? null : (
-                        <div className={styles.fields}>{component}</div>
-                      )}
+                        {!getFieldValue(`${key}.status`) ? null : (
+                          <div className={styles.fields}>{component}</div>
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    component
+                  )}
                 </SettingBlock>
 
                 {index === blocks.length - 1 ? null : <Divider />}

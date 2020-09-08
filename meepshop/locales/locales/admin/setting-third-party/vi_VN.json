@@ -65,5 +65,23 @@
       "0": "Vui lòng nhập thông tin liên kết và kích hoạt chức năng. Vui lòng thông báo qua thư sau khi cài đặt hoàn tất.",
       "1": "Dịch vụ khách hàng sẽ giúp bạn kích hoạt nó."
     }
+  },
+  "gaViewId": {
+    "title": null,
+    "description": null,
+    "items": {
+      "0": {
+        "title": null,
+        "tooltip": null,
+        "link": null
+      },
+      "1": {
+        "title": null,
+        "tooltip": null,
+        "link": null,
+        "caution": null
+      }
+    },
+    "error": null
   }
 }

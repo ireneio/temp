@@ -65,5 +65,23 @@
       "0": "Silakan masukkan informasi tautan dan aktifkan fungsinya. Harap beri tahu melalui surat setelah pengaturan selesai.",
       "1": "Layanan pelanggan akan membantu Anda mengaktifkannya."
     }
+  },
+  "gaViewId": {
+    "title": null,
+    "description": null,
+    "items": {
+      "0": {
+        "title": null,
+        "tooltip": null,
+        "link": null
+      },
+      "1": {
+        "title": null,
+        "tooltip": null,
+        "link": null,
+        "caution": null
+      }
+    },
+    "error": null
   }
 }

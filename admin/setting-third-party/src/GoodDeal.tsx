@@ -59,7 +59,7 @@ export default React.memo(
           )}
         </div>
 
-        <div className={styles.alert}>
+        <div className={styles.caution}>
           {t('goodDeal.alert.0')}
 
           <span>service@meepshop.com</span>

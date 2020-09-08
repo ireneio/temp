@@ -65,5 +65,23 @@
       "0": "シリアル接続情報を入力してスイッチを入れで下さい。設定が完了したらご連絡下さい。",
       "1": "カスタマーサービスセンターによるサポートを開設"
     }
+  },
+  "gaViewId": {
+    "title": null,
+    "description": null,
+    "items": {
+      "0": {
+        "title": null,
+        "tooltip": null,
+        "link": null
+      },
+      "1": {
+        "title": null,
+        "tooltip": null,
+        "link": null,
+        "caution": null
+      }
+    },
+    "error": null
   }
 }

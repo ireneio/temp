@@ -17,7 +17,7 @@ interface PropsType extends Omit<AbstractTooltipProps, 'children'> {
 // definition
 export default React.memo(
   ({ iconClassName, onClick, ...restProps }: PropsType) => (
-    <Tooltip {...restProps}>
+    <Tooltip overlayClassName={styles.overlay} {...restProps}>
       <Icon
         className={`${styles.icon} ${iconClassName || ''}`}
         type="question-circle"

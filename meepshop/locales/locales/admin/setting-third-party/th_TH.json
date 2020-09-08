@@ -65,5 +65,23 @@
       "0": "โปรดป้อนข้อมูลการเชื่อมโยงและเปิดใช้งานฟังก์ชั่น โปรดแจ้งทางอีเมลหลังจากการตั้งค่าเสร็จสมบูรณ์",
       "1": "ฝ่ายบริการลูกค้าจะช่วยคุณเปิดใช้งาน"
     }
+  },
+  "gaViewId": {
+    "title": null,
+    "description": null,
+    "items": {
+      "0": {
+        "title": null,
+        "tooltip": null,
+        "link": null
+      },
+      "1": {
+        "title": null,
+        "tooltip": null,
+        "link": null,
+        "caution": null
+      }
+    },
+    "error": null
   }
 }

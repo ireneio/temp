@@ -65,5 +65,23 @@
       "0": "Ingrese la información de enlace y active la función. Notifíquelo por correo después de completar la configuración.",
       "1": "El servicio al cliente lo ayudará a activarlo."
     }
+  },
+  "gaViewId": {
+    "title": null,
+    "description": null,
+    "items": {
+      "0": {
+        "title": null,
+        "tooltip": null,
+        "link": null
+      },
+      "1": {
+        "title": null,
+        "tooltip": null,
+        "link": null,
+        "caution": null
+      }
+    },
+    "error": null
   }
 }
