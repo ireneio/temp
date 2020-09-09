@@ -30,6 +30,7 @@
       "@meepshop/image/lib/*": ["meepshop/image/src/*"],
       "@meepshop/image-text/lib/*": ["meepshop/image-text/src/*"],
       "@meepshop/menu/lib/*": ["meepshop/menu/src/*"],
+      "@meepshop/product-carousel/lib/*": ["meepshop/product-carousel/src/*"],
       "@meepshop/product-collections/lib/*": ["meepshop/product-collections/src/*"],
       "@meepshop/product-draft-text/lib/*": ["meepshop/product-draft-text/src/*"],
       "@meepshop/product-iframe/lib/*": ["meepshop/product-iframe/src/*"],

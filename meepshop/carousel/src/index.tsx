@@ -1,5 +1,8 @@
+// typescript import
+import { CarouselProps } from 'antd/lib/carousel';
+
 // import
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Carousel, Icon } from 'antd';
 
 import Image from '@meepshop/image';
@@ -15,6 +18,12 @@ import {
 import { JustifyContent } from '../../../__generated__/meepshop';
 
 // definition
+export interface PropsType
+  extends carouselFragment,
+    Omit<CarouselProps, 'asNavFor'> {
+  carouselRef?: React.Ref<Carousel>;
+  asNavFor?: React.RefObject<Carousel>;
+}
 
 // FIXME: react-slick bug : unknown props `currentSlide`, `slideCount`
 // https://github.com/akiran/react-slick/pull/1453
@@ -42,7 +51,17 @@ export default React.memo(
     showIndicator,
     showController,
     alt,
-  }: carouselFragment) => {
+    carouselRef,
+    asNavFor,
+    ...props
+  }: PropsType) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [sliderRef, setSliderRef] = useState<any>();
+
+    useEffect(() => {
+      if (asNavFor?.current) setSliderRef(asNavFor.current);
+    }, [asNavFor]);
+
     const displayedImages = !images?.length
       ? (DEFAULT_IMAGES as carouselFragmentImages[])
       : images;
@@ -50,12 +69,16 @@ export default React.memo(
     return (
       <div className={styles.root} style={{ width: `${width}%` }}>
         <Carousel
+          {...props}
+          ref={carouselRef || null}
+          asNavFor={sliderRef}
           autoplay={autoPlay}
           pauseOnHover={hoverPause}
           dots={showIndicator}
           arrows={showController}
           nextArrow={<CustomArrow type="right" />}
           prevArrow={<CustomArrow type="left" />}
+          adaptiveHeight
         >
           {displayedImages.map(({ image, link }) => (
             <Image

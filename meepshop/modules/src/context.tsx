@@ -23,6 +23,7 @@ type ModuleNamesType =
   | 'IframeModule'
   | 'ImageModule'
   | 'ImageTextModule'
+  | 'ProductCarouselModule'
   | 'ProductCollectionsModule'
   | 'ProductDraftTextModule'
   | 'ProductIframeModule'
@@ -57,6 +58,7 @@ const defaultContext = {
   MenuModule: {
     user: null,
   },
+  ProductCarouselModule: {},
   ProductCollectionsModule: {},
   ProductDraftTextModule: {},
   ProductIframeModule: {},

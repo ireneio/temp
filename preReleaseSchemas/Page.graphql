@@ -139,6 +139,7 @@ union PageModule =
   | ImageModule
   | ImageTextModule
   | MenuModule
+  | ProductCarouselModule
   | ProductCollectionsModule
   | ProductDraftTextModule
   | ProductIframeModule
