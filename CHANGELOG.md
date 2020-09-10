@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.62.3 (2020-09-10)
+
+#### :rocket: New Feature
+
+- `mock-types`
+  - [#1113](https://github.com/meepshop/meep-lerna/pull/1113) 【重構】商品主圖元件 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- `meep-ui`
+  - [#1151](https://github.com/meepshop/meep-lerna/pull/1151) 【優化】 GA 事件 - 加入購物車/購買/瀏覽商品「商品 ID」統一 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.62.2 (2020-09-08)
 
 #### :rocket: New Feature
