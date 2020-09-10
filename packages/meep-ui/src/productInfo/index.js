@@ -229,7 +229,6 @@ export default class ProductInfo extends React.PureComponent {
       id: productData.id,
       title: productData.title,
       quantity,
-      sku: variant.sku,
       specs: variant.specs,
       price: variant.totalPrice,
     });

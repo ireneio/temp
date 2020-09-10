@@ -24,7 +24,7 @@ export default (
   const { currency } = useContext(CurrencyContext);
 
   return useCallback(
-    ({ eventName, id, title, quantity, sku, specs, price }) => {
+    ({ eventName, id, title, quantity, specs, price }) => {
       if (!adTrack) return;
 
       const { facebookPixelId, googleAnalyticsId } = adTrack;
@@ -49,7 +49,7 @@ export default (
           event_label: eventName === 'ec-popup' ? 'popup' : 'general',
           items: [
             {
-              id: sku,
+              id,
               name: title.zh_TW,
               variant: !specs
                 ? ''

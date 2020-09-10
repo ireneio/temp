@@ -68,13 +68,13 @@ export default (
             .filter(({ type }: productsType[number]) => type === 'product')
             .map(
               ({
-                sku,
+                id,
                 title,
                 specs,
                 totalPrice,
                 quantity,
               }: productsType[number]) => ({
-                id: sku,
+                id,
                 name: title.zh_TW,
                 variant: (specs || [])
                   .map(

@@ -22,7 +22,6 @@ export const useAdTrackFragment = gql`
       id
       productId
       type
-      sku
       title {
         zh_TW
       }
@@ -56,11 +55,13 @@ export default (order: useAdTrackFragmentType | null | undefined): void => {
           (result: productsType, data) => {
             if (!data) return result;
 
-            const product = result.find(
-              ({ productId }) => productId === data.productId,
-            );
+            const product = result.find(({ id }) => id === data.productId);
 
-            if (!product) return [...result, data as productsType[number]];
+            if (!product)
+              return [
+                ...result,
+                { ...data, id: data.productId } as productsType[number],
+              ];
 
             product.quantity += data.quantity || 0;
 

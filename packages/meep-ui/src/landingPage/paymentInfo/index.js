@@ -209,7 +209,6 @@ class PayemntInfo extends React.PureComponent {
       id: productId,
       title,
       quantity,
-      sku: variant.sku,
       specs: variant.specs,
       price: variant.totalPrice,
     });

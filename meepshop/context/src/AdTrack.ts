@@ -16,7 +16,6 @@ type addToCartType = (options: {
     zh_TW: string;
   };
   quantity: number;
-  sku: string;
   specs:
     | [
         {
@@ -56,8 +55,8 @@ type beginCheckoutType = (options: { total: number }) => void;
 type purchaseType = (options: {
   orderNo: string;
   products: {
+    id: string;
     productId: string;
-    sku: string;
     type: string;
     title: {
       zh_TW: string;
