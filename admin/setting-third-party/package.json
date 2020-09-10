@@ -4,16 +4,16 @@
   "description": "Third part setting for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.62.2",
+  "version": "0.62.3",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/setting-block": "^0.62.0",
-    "@admin/setting-wrapper": "^0.62.1",
-    "@admin/tooltip": "^0.62.2",
-    "@admin/utils": "^0.62.0",
-    "@meepshop/images": "^0.62.1",
-    "@meepshop/utils": "^0.62.0"
+    "@admin/setting-block": "^0.62.3",
+    "@admin/setting-wrapper": "^0.62.3",
+    "@admin/tooltip": "^0.62.3",
+    "@admin/utils": "^0.62.3",
+    "@meepshop/images": "^0.62.3",
+    "@meepshop/utils": "^0.62.3"
   },
   "keywords": ["admin", "setting", "third part"]
 }

@@ -4,19 +4,19 @@
   "description": "admin page manager page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.62.2",
+  "version": "0.62.3",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/gallery": "^0.62.1",
-    "@admin/tooltip": "^0.62.2",
-    "@admin/utils": "^0.62.0",
-    "@admin/wrapper": "^0.62.1",
-    "@meepshop/icons": "^0.62.1",
-    "@meepshop/images": "^0.62.1",
-    "@meepshop/link": "^0.62.0",
-    "@meepshop/switch": "^0.62.0",
-    "@meepshop/utils": "^0.62.0"
+    "@admin/gallery": "^0.62.3",
+    "@admin/tooltip": "^0.62.3",
+    "@admin/utils": "^0.62.3",
+    "@admin/wrapper": "^0.62.3",
+    "@meepshop/icons": "^0.62.3",
+    "@meepshop/images": "^0.62.3",
+    "@meepshop/link": "^0.62.3",
+    "@meepshop/switch": "^0.62.3",
+    "@meepshop/utils": "^0.62.3"
   },
   "keywords": ["admin", "page-mangaer"]
 }
