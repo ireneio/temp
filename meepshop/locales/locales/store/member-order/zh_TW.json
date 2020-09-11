@@ -79,6 +79,23 @@
         "id": "門市代號：",
         "name": "門市名稱：",
         "address": "門市地址："
+      },
+      "logistic": {
+        "status": {
+          "title": "貨運狀態：",
+          "PROCESSING": "處理中",
+          "WAITING_FOR_DELIVERY": "等待配送",
+          "DELIVERING": "配送中",
+          "ALREADY_DELIVERED": "已送達",
+          "PICKED_UP": "已取件",
+          "RETURNING": "退回中",
+          "RETURNED": "已退回",
+          "CVS_CLOSED": "關轉店",
+          "PROBLEM_CASE": "問題件",
+          "CANCELED": "物流單取消",
+          "MANUAL_PROCESSING": "人工處理"
+        },
+        "updated-at": "更新時間："
       }
     },
     "invoice": {

@@ -9,6 +9,7 @@ import { Colors as ColorsContext } from '@meepshop/context';
 
 import PaymentInfo from './paymentInfo';
 import ShipmentInfo from './ShipmentInfo';
+import LogisticTracking from './LogisticTracking';
 import InvoiceInfo from './invoiceInfo';
 import styles from './styles/index.less';
 
@@ -18,6 +19,7 @@ import { blocksFragment as blocksFragmentType } from './__generated__/blocksFrag
 // graphql import
 import { paymentInfoFragment } from './paymentInfo';
 import { shipmentInfoFragment } from './ShipmentInfo';
+import { logisticTrackingFragment } from './LogisticTracking';
 import { invoiceInfoFragment } from './invoiceInfo';
 
 // typescript definition
@@ -68,15 +70,27 @@ export const blocksFragment = gql`
     }
     status
     ...paymentInfoFragment
+    latestLogisticTracking {
+      ...logisticTrackingFragment
+    }
   }
   ${paymentInfoFragment}
   ${shipmentInfoFragment}
+  ${logisticTrackingFragment}
   ${invoiceInfoFragment}
 `;
 
 export default React.memo(
   ({
-    order: { userInfo, shipmentInfo, paymentInfo, status, invoices, ...order },
+    order: {
+      userInfo,
+      shipmentInfo,
+      paymentInfo,
+      status,
+      invoices,
+      latestLogisticTracking,
+      ...order
+    },
   }: PropsType) => {
     const colors = useContext(ColorsContext);
     const { t } = useTranslation('member-order');
@@ -166,6 +180,14 @@ export default React.memo(
               <ShipmentInfo
                 shipmentInfo={filter(shipmentInfoFragment, shipmentObj)}
               />
+              {!latestLogisticTracking ? null : (
+                <LogisticTracking
+                  latestLogisticTracking={filter(
+                    logisticTrackingFragment,
+                    latestLogisticTracking,
+                  )}
+                />
+              )}
             </div>
           )}
         </div>

@@ -79,6 +79,23 @@
         "id": "ショップコード：",
         "name": "ショップ名：",
         "address": "ショップ住所："
+      },
+      "logistic": {
+        "status": {
+          "title": null,
+          "PROCESSING": null,
+          "WAITING_FOR_DELIVERY": null,
+          "DELIVERING": null,
+          "ALREADY_DELIVERED": null,
+          "PICKED_UP": null,
+          "RETURNING": null,
+          "RETURNED": null,
+          "CVS_CLOSED": null,
+          "PROBLEM_CASE": null,
+          "CANCELED": null,
+          "MANUAL_PROCESSING": null
+        },
+        "updated-at": null
       }
     },
     "invoice": {
