@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.62.4 (2020-09-11)
+
+#### :rocket: New Feature
+
+- [#1144](https://github.com/meepshop/meep-lerna/pull/1144) 【功能】綠界超商 - 訂單明細 - 貨態同步 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.62.3 (2020-09-10)
 
 #### :rocket: New Feature
