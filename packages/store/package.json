@@ -4,7 +4,7 @@
   "description": "store for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.62.3",
+  "version": "0.62.4",
   "main": "./next.config.js",
   "scripts": {
     "clean": "rm -rf ./src/.next",
@@ -26,7 +26,7 @@
     "@store/ezpay": "^0.62.3",
     "@store/fb": "^0.62.3",
     "@store/forgot-password": "^0.62.3",
-    "@store/member-order": "^0.62.3",
+    "@store/member-order": "^0.62.4",
     "@store/member-order-applications": "^0.62.3",
     "@store/member-order-apply": "^0.62.3",
     "@store/member-order-pay-notify": "^0.62.3",
