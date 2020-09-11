@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.62.5 (2020-09-11)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1156](https://github.com/meepshop/meep-lerna/pull/1156) (@meepshop/store) Upgrade replicas ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.62.4 (2020-09-11)
 
 #### :rocket: New Feature
