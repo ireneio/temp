@@ -20,18 +20,7 @@ type WidthType =
   | 'w1920';
 
 // definition
-const IMAGE_SUITABLE_WIDTHS = [
-  60,
-  120,
-  240,
-  480,
-  720,
-  960,
-  1200,
-  1440,
-  1680,
-  1920,
-];
+const IMAGE_SUITABLE_WIDTHS = [120, 240, 480, 720, 960, 1200, 1440, 1680, 1920];
 
 const imageCache: string[] = [];
 
@@ -87,11 +76,11 @@ export default (
   });
 
   useEffect(() => {
-    if (imageCache.includes(imageURL)) {
+    if (isPlaceholder || imageCache.includes(imageURL)) {
       setActive(false);
       setIsClear(true);
     }
-  }, [imageURL]);
+  }, [isPlaceholder, imageURL]);
 
   return {
     imageRef,
