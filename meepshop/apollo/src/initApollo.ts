@@ -20,7 +20,6 @@ import modules from '@meepshop/modules';
 
 import * as PageInfo from './PageInfo';
 import * as StoreAdTrack from './StoreAdTrack';
-import * as User from './User';
 import * as fbLogin from './fbLogin';
 import * as login from './login';
 import * as logout from './logout';
@@ -91,7 +90,6 @@ const create = (
       ...resolvers,
       PageInfo.resolvers,
       StoreAdTrack.resolvers,
-      User.resolvers,
       fbLogin.resolvers,
       login.resolvers,
       logout.resolvers,

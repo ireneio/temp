@@ -41,8 +41,6 @@ import {
 } from './__generated__/getUserInfo';
 
 // graphql import
-import { userFragment } from '@meepshop/apollo/lib/User';
-
 import { removeCreditCardInfoFragment } from './RemoveCreditCardInfo';
 
 // typescript definition
@@ -163,6 +161,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
     } = this.props;
     const {
       group,
+      memberGroup,
       name,
       email,
       gender,
@@ -181,15 +180,12 @@ class MemberSettings extends React.PureComponent<PropsType> {
       street = null,
       zipCode = null,
     } = address || {};
-
-    // TODO: should not be null
     const {
-      name: groupName = '',
-      type = 'normal',
       startDate = moment().unix(),
       expireDate = moment().unix(),
       unlimitedDate = false,
-    } = group || {};
+    } = group?.slice(-1)[0] || {};
+    const { name: groupName = '', type = 'normal' } = memberGroup || {};
     const { lockedBirthday = null } = store?.setting || {};
     const gmoRememberCardEnabled =
       store?.experiment?.gmoRememberCardEnabled || false;
@@ -359,17 +355,17 @@ export default React.memo(
       query={gql`
         query getUserInfo {
           viewer {
-            ...userFragment
             ...removeCreditCardInfoFragment
             id
-            groupId
-            group: groupClient @client {
-              id
-              type
-              name
+            group {
               startDate
               expireDate
               unlimitedDate
+            }
+            memberGroup {
+              id
+              type
+              name
             }
             name
             email
@@ -427,7 +423,6 @@ export default React.memo(
           }
         }
 
-        ${userFragment}
         ${removeCreditCardInfoFragment}
       `}
       /** FIXME: should update hasGmoCreditCard in cache after creating order */
