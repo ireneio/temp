@@ -23,7 +23,7 @@ import { getPages, getPagesVariables } from './__generated__/getPages';
 
 // graphql import
 import { previewerStoreFragment, previewerPageFragment } from './Previewer';
-import { itemFragment } from './item';
+import { itemPageFragment } from './item';
 import { usePagesStoreFragment } from './hooks/usePages';
 
 // definition
@@ -33,7 +33,7 @@ const query = gql`
   query getPages(
     $homePagesFilter: StorePagesFilterInput
     $customPagesFilter: StorePagesFilterInput
-    $templatePagesFilter: StorePagesFilterInput
+    $productTemplatePageFilter: StorePagesFilterInput
   ) {
     viewer {
       id
@@ -59,7 +59,7 @@ const PageManager: NextPage = React.memo(
       variables: {
         homePagesFilter: { type: 'HOME' },
         customPagesFilter: { type: 'CUSTOM' },
-        templatePagesFilter: { type: 'TEMPLATE' },
+        productTemplatePageFilter: { type: 'TEMPLATE' },
       },
     } as { variables: getPagesVariables });
     const pages = usePages(data || null, variables);
@@ -96,8 +96,8 @@ const PageManager: NextPage = React.memo(
                     ...variables.customPagesFilter,
                     searchTerm: value,
                   },
-                  templatePagesFilter: {
-                    ...variables.templatePagesFilter,
+                  productTemplatePageFilter: {
+                    ...variables.productTemplatePageFilter,
                     searchTerm: value,
                   },
                 });
@@ -143,14 +143,13 @@ const PageManager: NextPage = React.memo(
                         </>
                       }
                     >
-                      {subData.map(({ id, isHomePage, ...page }) => (
+                      {subData.map(({ id, ...page }) => (
                         <Item
                           key={id || 'id' /** TODO: should not be null */}
-                          page={filter(itemFragment, {
+                          page={filter(itemPageFragment, {
                             ...page,
                             id,
                           })}
-                          isHomePage={isHomePage}
                           variables={variables}
                           selectedPage={selectedPage}
                           setSelectedPage={setSelectedPage}

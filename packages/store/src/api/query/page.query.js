@@ -76,7 +76,6 @@ fixedbottom {
   ${fixedbottomQuery}
 }
 notBeDeleted
-isProductDefault
 path
 pageType
 useExternalLink

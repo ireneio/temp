@@ -12,7 +12,7 @@ import { message } from 'antd';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { getPages_viewer_store_homePage_edges as getPagesViewerStoreHomePageEdges } from '../../../__generated__/getPages';
+import { getPages_viewer_store_homePages_edges as getPagesViewerStoreHomePagesEdges } from '../../../__generated__/getPages';
 import { editFragment as editFragmentType } from '../__generated__/editFragment';
 import {
   duplicatePage as duplicatePageType,
@@ -35,7 +35,8 @@ const useDuplicatePageFragment = gql`
       title {
         ...localeFragment
       }
-      isDefaultTemplatePage: isProductDefault
+      isDefaultHomePage @client
+      isDefaultProductTemplatePage @client
       path
       addressTitle
       seo {
@@ -53,25 +54,28 @@ const query = gql`
   query useDuplicatePageReadCache(
     $homePagesFilter: StorePagesFilterInput
     $customPagesFilter: StorePagesFilterInput
-    $templatePagesFilter: StorePagesFilterInput
+    $productTemplatePageFilter: StorePagesFilterInput
   ) {
     viewer {
       id
       store {
         id
-        homePage: pages(first: 500, filter: $homePagesFilter) {
+        homePages: pages(first: 500, filter: $homePagesFilter) {
           edges {
             ...useDuplicatePageFragment
           }
         }
 
-        customPage: pages(first: 500, filter: $customPagesFilter) {
+        customPages: pages(first: 500, filter: $customPagesFilter) {
           edges {
             ...useDuplicatePageFragment
           }
         }
 
-        templatePage: pages(first: 500, filter: $templatePagesFilter) {
+        productTemplatePage: pages(
+          first: 500
+          filter: $productTemplatePageFilter
+        ) {
           edges {
             ...useDuplicatePageFragment
           }
@@ -88,7 +92,6 @@ export default (
   pageType: editFragmentType['pageType'],
   variables: useDuplicatePageReadCacheVariables,
   setSelectedPage: ReturnType<typeof useSelectedPageType>['setSelectedPage'],
-  isHomePage: boolean,
 ): (() => void) => {
   const { t } = useTranslation('page-manager');
   const [duplicatePage] = useMutation<
@@ -121,7 +124,7 @@ export default (
           query,
           variables,
         });
-        const duplicatedPage: getPagesViewerStoreHomePageEdges | null =
+        const duplicatedPage: getPagesViewerStoreHomePagesEdges | null =
           data.duplicatePage?.duplicatedPage;
 
         if (!storeData || !duplicatedPage) return;
@@ -137,31 +140,32 @@ export default (
               ...storeData.viewer,
               store: {
                 ...storeData.viewer?.store,
-                homePage: {
-                  ...storeData.viewer?.store?.homePage,
+                homePages: {
+                  ...storeData.viewer?.store?.homePages,
                   edges: [
                     ...(duplicatedPage.node.pageType !== 'home'
                       ? []
                       : [duplicatedPage]),
-                    ...(storeData.viewer?.store?.homePage.edges || []),
+                    ...(storeData.viewer?.store?.homePages.edges || []),
                   ],
                 },
-                customPage: {
-                  ...storeData.viewer?.store?.customPage,
+                customPages: {
+                  ...storeData.viewer?.store?.customPages,
                   edges: [
                     ...(duplicatedPage.node.pageType !== 'custom'
                       ? []
                       : [duplicatedPage]),
-                    ...(storeData.viewer?.store?.customPage.edges || []),
+                    ...(storeData.viewer?.store?.customPages.edges || []),
                   ],
                 },
-                templatePage: {
-                  ...storeData.viewer?.store?.templatePage,
+                productTemplatePage: {
+                  ...storeData.viewer?.store?.productTemplatePage,
                   edges: [
                     ...(duplicatedPage.node.pageType !== 'template'
                       ? []
                       : [duplicatedPage]),
-                    ...(storeData.viewer?.store?.templatePage.edges || []),
+                    ...(storeData.viewer?.store?.productTemplatePage.edges ||
+                      []),
                   ],
                 },
               },
@@ -184,15 +188,12 @@ export default (
         },
       } as duplicatePageVariables,
     }).then(({ data }: { data: duplicatePageType }) => {
-      const duplicatedPage: getPagesViewerStoreHomePageEdges | null =
+      const duplicatedPage: getPagesViewerStoreHomePagesEdges | null =
         data.duplicatePage?.duplicatedPage;
 
       if (!duplicatedPage) return;
 
-      setSelectedPage({
-        ...duplicatedPage.node,
-        isHomePage,
-      });
+      setSelectedPage(duplicatedPage.node);
     });
-  }, [id, pageType, setSelectedPage, isHomePage, duplicatePage]);
+  }, [id, pageType, setSelectedPage, duplicatePage]);
 };

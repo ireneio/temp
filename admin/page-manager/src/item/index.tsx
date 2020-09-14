@@ -18,13 +18,17 @@ import useTitleOverflow from './hooks/useTitleOverflow';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { itemFragment as itemFragmentType } from './__generated__/itemFragment';
+import { itemPageFragment as itemPageFragmentType } from './__generated__/itemPageFragment';
 import { getPagesVariables } from '../__generated__/getPages';
 
 // graphql import
 import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
-import { pageSettingFragment } from './pageSetting';
+import {
+  pageSettingStoreFragment,
+  pageSettingPageFragment,
+} from './pageSetting';
+import { prefixIconStoreFragment, prefixIconPageFragment } from './PrefixIcon';
 
 // typescript definition
 interface PropsType
@@ -32,8 +36,7 @@ interface PropsType
     ReturnType<typeof useSelectedPageType>,
     'selectedPage' | 'setSelectedPage'
   > {
-  page: itemFragmentType;
-  isHomePage: boolean;
+  page: itemPageFragmentType;
   variables: getPagesVariables;
   pageSettingId: string | null;
   setPageSettingId: (pageSettingId: string | null) => void;
@@ -42,9 +45,21 @@ interface PropsType
 }
 
 // definition
-export const itemFragment = gql`
-  fragment itemFragment on Page {
-    ...pageSettingFragment
+export const itemStoreFragment = gql`
+  fragment itemStoreFragment on Store {
+    id
+    ...pageSettingStoreFragment
+    ...prefixIconStoreFragment
+  }
+
+  ${pageSettingStoreFragment}
+  ${prefixIconStoreFragment}
+`;
+
+export const itemPageFragment = gql`
+  fragment itemPageFragment on Page {
+    ...pageSettingPageFragment
+    ...prefixIconPageFragment
     id
     title {
       ...localeFragment
@@ -52,13 +67,13 @@ export const itemFragment = gql`
   }
 
   ${localeFragment}
-  ${pageSettingFragment}
+  ${pageSettingPageFragment}
+  ${prefixIconPageFragment}
 `;
 
 export default React.memo(
   ({
     page,
-    isHomePage,
     variables,
     selectedPage,
     setSelectedPage,
@@ -89,26 +104,14 @@ export default React.memo(
             page.id !== selectedPage?.id ? '' : styles.selected
           }`}
         >
-          <div
-            ref={titleRef}
-            onClick={() =>
-              setSelectedPage({
-                ...page,
-                isHomePage,
-              })
-            }
-          >
-            <PrefixIcon
-              isHomePage={isHomePage}
-              isDefaultTemplatePage={page.isDefaultTemplatePage}
-            />
+          <div ref={titleRef} onClick={() => setSelectedPage(page)}>
+            <PrefixIcon page={filter(prefixIconPageFragment, page)} />
 
             {title}
           </div>
 
           <PageSetting
-            page={filter(pageSettingFragment, page)}
-            isHomePage={isHomePage}
+            page={filter(pageSettingPageFragment, page)}
             className={pageSettingId === page.id ? styles.visible : ''}
             visible={pageSettingId === page.id}
             onVisibleChange={visible =>

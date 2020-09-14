@@ -17,7 +17,6 @@ gql`
     edges {
       node {
         id
-        isProductDefault
       }
     }
     pageInfo {
@@ -69,7 +68,6 @@ export default mock.add<
                 node: {
                   __typename: 'Page',
                   id: `${filter?.type.toLowerCase() || 'home'}-page-id`,
-                  isProductDefault: filter?.type === 'TEMPLATE',
                 },
               }
             : {
@@ -77,7 +75,6 @@ export default mock.add<
                 node: {
                   __typename: 'Page',
                   id: uuid(),
-                  isProductDefault: false,
                 },
               },
         )

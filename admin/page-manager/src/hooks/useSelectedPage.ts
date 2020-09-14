@@ -1,5 +1,5 @@
 // typescript import
-import usePages, { DataType } from './usePages';
+import usePages from './usePages';
 
 // import
 import { useMemo, useState, useEffect, useRef, useCallback } from 'react';
@@ -8,6 +8,7 @@ import { useRouter } from '@meepshop/link';
 
 // graphql typescript
 import { getPagesVariables } from '../__generated__/getPages';
+import { usePagesPageFragment as usePagesPageFragmentType } from './__generated__/usePagesPageFragment';
 
 // definition
 const ALL_ACTIVE_KEY = [
@@ -20,7 +21,7 @@ const ALL_ACTIVE_KEY = [
 const getFirstPageByHash = (
   pages: ReturnType<typeof usePages>,
   hash: string | null,
-): DataType | null =>
+): usePagesPageFragmentType | null =>
   !hash
     ? null
     : pages.reduce(
@@ -33,7 +34,7 @@ const getFirstPageByHash = (
         null,
       );
 
-const getCollapseActiveKey = (selectedPage: DataType): string =>
+const getCollapseActiveKey = (selectedPage: usePagesPageFragmentType): string =>
   `${
     selectedPage.pageType === 'products'
       ? 'default-product-list'
@@ -45,8 +46,8 @@ export default (
   variables: getPagesVariables,
   loading: boolean,
 ): {
-  selectedPage: DataType | null;
-  setSelectedPage: (selectedPage: DataType | null) => void;
+  selectedPage: usePagesPageFragmentType | null;
+  setSelectedPage: (selectedPage: usePagesPageFragmentType | null) => void;
   collapseActiveKey: string | string[];
   setCollapseActiveKey: (collapseActiveKey: string) => void;
 } => {
@@ -61,9 +62,10 @@ export default (
   const [collapseActiveKey, setCollapseActiveKey] = useState<string | string[]>(
     !firstPageByHash ? 'home-page' : getCollapseActiveKey(firstPageByHash),
   );
-  const [selectedPage, setSelectedPage] = useState<DataType | null>(
-    firstPageByHash,
-  );
+  const [
+    selectedPage,
+    setSelectedPage,
+  ] = useState<usePagesPageFragmentType | null>(firstPageByHash);
   const setSelectedPageWithCollapseActiveKey = useCallback(page => {
     setSelectedPage(page);
 

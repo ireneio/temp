@@ -11,35 +11,30 @@ import { usePagesPageFragment as usePagesPageFragmentType } from './__generated_
 import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
 import { previewerPageFragment } from '../Previewer';
-import { itemFragment } from '../item';
-
-// typescript definition
-export interface DataType extends usePagesPageFragmentType {
-  isHomePage: boolean;
-}
+import { itemStoreFragment, itemPageFragment } from '../item';
 
 // definition
 export const usePagesPageFragment = gql`
   fragment usePagesPageFragment on Page {
-    ...itemFragment
+    ...itemPageFragment
     ...previewerPageFragment
     id
     title {
       ...localeFragment
     }
-    isDefaultTemplatePage: isProductDefault
   }
 
   ${localeFragment}
-  ${itemFragment}
+  ${itemPageFragment}
   ${previewerPageFragment}
 `;
 
 export const usePagesStoreFragment = gql`
   fragment usePagesStoreFragment on Store {
+    ...itemStoreFragment
+
     id
-
-    homePage: pages(first: 500, filter: $homePagesFilter) {
+    homePages: pages(first: 500, filter: $homePagesFilter) {
       edges {
         node {
           ...usePagesPageFragment
@@ -47,23 +42,19 @@ export const usePagesStoreFragment = gql`
       }
     }
 
-    customPage: pages(first: 500, filter: $customPagesFilter) {
+    customPages: pages(first: 500, filter: $customPagesFilter) {
       edges {
         node {
           ...usePagesPageFragment
         }
       }
-    }
-
-    defaultHomePage {
-      id
     }
 
     defaultProductListPage {
       ...usePagesPageFragment
     }
 
-    templatePage: pages(first: 500, filter: $templatePagesFilter) {
+    productTemplatePage: pages(first: 500, filter: $productTemplatePageFilter) {
       edges {
         node {
           ...usePagesPageFragment
@@ -73,16 +64,8 @@ export const usePagesStoreFragment = gql`
   }
 
   ${usePagesPageFragment}
+  ${itemStoreFragment}
 `;
-
-const formatData = (
-  data: { node: usePagesPageFragmentType }[],
-  homePageId: string | null,
-): DataType[] =>
-  data.map(({ node }: { node: usePagesPageFragmentType }) => ({
-    ...node,
-    isHomePage: node.id === homePageId,
-  }));
 
 export default (
   data: getPages | null,
@@ -96,7 +79,7 @@ export default (
       | 'default-product-list-page'
       | 'template-page';
     hint: boolean;
-    data: DataType[];
+    data: usePagesPageFragmentType[];
   }[];
 }[] =>
   useMemo(() => {
@@ -105,11 +88,10 @@ export default (
     if (!store) return [];
 
     const {
-      homePage,
-      customPage,
-      defaultHomePage,
+      homePages,
+      customPages,
       defaultProductListPage,
-      templatePage,
+      productTemplatePage,
     } = filter(usePagesStoreFragment, store);
 
     return [
@@ -119,12 +101,16 @@ export default (
           {
             key: 'home-page',
             hint: false,
-            data: formatData(homePage.edges, defaultHomePage.id),
+            data: homePages.edges.map(
+              ({ node }: { node: usePagesPageFragmentType }) => node,
+            ),
           },
           {
             key: 'custom-page',
             hint: false,
-            data: formatData(customPage.edges, defaultHomePage.id),
+            data: customPages.edges.map(
+              ({ node }: { node: usePagesPageFragmentType }) => node,
+            ),
           },
         ],
       },
@@ -134,20 +120,20 @@ export default (
           {
             key: 'default-product-list-page',
             hint: true,
-            data: formatData(
+            data:
               !variables.homePagesFilter?.searchTerm ||
-                new RegExp(variables.homePagesFilter.searchTerm).test(
-                  defaultProductListPage.title.zh_TW,
-                )
-                ? [{ node: defaultProductListPage }]
+              new RegExp(variables.homePagesFilter.searchTerm).test(
+                defaultProductListPage.title.zh_TW,
+              )
+                ? [defaultProductListPage]
                 : [],
-              defaultHomePage.id,
-            ),
           },
           {
             key: 'template-page',
             hint: true,
-            data: formatData(templatePage.edges, defaultHomePage.id),
+            data: productTemplatePage.edges.map(
+              ({ node }: { node: usePagesPageFragmentType }) => node,
+            ),
           },
         ],
       },

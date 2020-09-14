@@ -16,6 +16,8 @@ import {
 } from './__generated__/assignDefaultHomePage';
 import { useAssignDefaultHomePageReadCache } from './__generated__/useAssignDefaultHomePageReadCache';
 import { useAssignDefaultHomePageFragment } from './__generated__/useAssignDefaultHomePageFragment';
+import { useAssignDefaultHomePageUpdateNewPageFragment } from './__generated__/useAssignDefaultHomePageUpdateNewPageFragment';
+import { useAssignDefaultHomePageUpdatePrevPageFragment } from './__generated__/useAssignDefaultHomePageUpdatePrevPageFragment';
 
 // definition
 export default (id: string): (() => void) => {
@@ -48,12 +50,17 @@ export default (id: string): (() => void) => {
                 id
                 store {
                   id
+                  defaultHomePage {
+                    id
+                  }
                 }
               }
             }
           `,
         });
         const storeId = storeData?.viewer?.store?.id;
+        const prevDefaultHomagePageId =
+          storeData?.viewer?.store?.defaultHomePage.id;
 
         if (!storeId) return;
 
@@ -76,6 +83,38 @@ export default (id: string): (() => void) => {
             },
           },
         });
+
+        cache.writeFragment<useAssignDefaultHomePageUpdateNewPageFragment>({
+          id,
+          fragment: gql`
+            fragment useAssignDefaultHomePageUpdateNewPageFragment on Page {
+              id
+              isDefaultHomePage @client
+            }
+          `,
+          data: {
+            __typename: 'Page',
+            id,
+            isDefaultHomePage: true,
+          },
+        });
+
+        if (prevDefaultHomagePageId)
+          cache.writeFragment<useAssignDefaultHomePageUpdatePrevPageFragment>({
+            id: prevDefaultHomagePageId,
+            fragment: gql`
+              fragment useAssignDefaultHomePageUpdatePrevPageFragment on Page {
+                id
+                isDefaultHomePage @client
+              }
+            `,
+            data: {
+              __typename: 'Page',
+              id: prevDefaultHomagePageId,
+              isDefaultHomePage: false,
+            },
+          });
+
         message.success(t('assign-default-home-page.success'));
       },
     },

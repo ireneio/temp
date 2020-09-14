@@ -16,6 +16,8 @@ import {
 } from './__generated__/assignDefaultProductTemplatePage';
 import { useAssignDefaultProductTemplatePageReadCache } from './__generated__/useAssignDefaultProductTemplatePageReadCache';
 import { useAssignDefaultProductTemplatePageFragment } from './__generated__/useAssignDefaultProductTemplatePageFragment';
+import { useAssignDefaultProductTemplatePageUpdateNewPageFragment } from './__generated__/useAssignDefaultProductTemplatePageUpdateNewPageFragment';
+import { useAssignDefaultProductTemplatePageUpdatePrevPageFragment } from './__generated__/useAssignDefaultProductTemplatePageUpdatePrevPageFragment';
 
 // definition
 export default (id: string): (() => void) => {
@@ -52,13 +54,8 @@ export default (id: string): (() => void) => {
                 id
                 store {
                   id
-                  templatePage: pages(first: 500, filter: { type: TEMPLATE }) {
-                    edges {
-                      node {
-                        id
-                        isProductDefault
-                      }
-                    }
+                  defaultProductTemplatePage {
+                    id
                   }
                 }
               }
@@ -66,40 +63,66 @@ export default (id: string): (() => void) => {
           `,
         });
         const storeId = storeData?.viewer?.store?.id;
-        const templatePage = storeData?.viewer?.store?.templatePage;
+        const prevDefaultProductTemplatePageId =
+          storeData?.viewer?.store?.defaultProductTemplatePage.id;
 
-        if (!storeId || !templatePage) return;
+        if (!storeId) return;
 
         cache.writeFragment<useAssignDefaultProductTemplatePageFragment>({
           id: storeId,
           fragment: gql`
             fragment useAssignDefaultProductTemplatePageFragment on Store {
               id
-              templatePage: pages(first: 500, filter: { type: TEMPLATE }) {
-                edges {
-                  node {
-                    id
-                    isProductDefault
-                  }
-                }
+              defaultProductTemplatePage {
+                id
               }
             }
           `,
           data: {
             __typename: 'Store',
             id: storeId,
-            templatePage: {
-              ...templatePage,
-              edges: (templatePage.edges || []).map(({ node, ...edge }) => ({
-                ...edge,
-                node: {
-                  ...node,
-                  isProductDefault: node.id === id,
-                },
-              })),
+            defaultProductTemplatePage: {
+              __typename: 'Page',
+              id,
             },
           },
         });
+
+        cache.writeFragment<
+          useAssignDefaultProductTemplatePageUpdateNewPageFragment
+        >({
+          id,
+          fragment: gql`
+            fragment useAssignDefaultProductTemplatePageUpdateNewPageFragment on Page {
+              id
+              isDefaultProductTemplatePage @client
+            }
+          `,
+          data: {
+            __typename: 'Page',
+            id,
+            isDefaultProductTemplatePage: true,
+          },
+        });
+
+        if (prevDefaultProductTemplatePageId)
+          cache.writeFragment<
+            useAssignDefaultProductTemplatePageUpdatePrevPageFragment
+          >({
+            id: prevDefaultProductTemplatePageId,
+            fragment: gql`
+              fragment useAssignDefaultProductTemplatePageUpdatePrevPageFragment on Page {
+                id
+                isDefaultProductTemplatePage @client
+              }
+            `,
+            data: {
+              __typename: 'Page',
+              id: prevDefaultProductTemplatePageId,
+              isDefaultProductTemplatePage: false,
+            },
+          });
+
         message.success(t('assign-default-product-template-page.success'));
       },
     },

@@ -12,20 +12,37 @@ import useDeletePage from './useDeletePage';
 
 // graphql typescript
 import { getPagesVariables } from '../../../__generated__/getPages';
-import { usePageSettingItemsFragment as usePageSettingItemsFragmentType } from './__generated__/usePageSettingItemsFragment';
+import { usePageSettingItemsPageFragment as usePageSettingItemsPageFragmentType } from './__generated__/usePageSettingItemsPageFragment';
 
 // definition
-export const usePageSettingItemsFragment = gql`
-  fragment usePageSettingItemsFragment on Page {
+export const usePageSettingItemsStoreFragment = gql`
+  fragment usePageSettingItemsStoreFragment on Store {
+    id
+    defaultHomePage {
+      id
+    }
+    defaultProductTemplatePage {
+      id
+    }
+  }
+`;
+
+export const usePageSettingItemsPageFragment = gql`
+  fragment usePageSettingItemsPageFragment on Page {
     id
     pageType
-    isDefaultTemplatePage: isProductDefault
+    isDefaultHomePage @client
+    isDefaultProductTemplatePage @client
   }
 `;
 
 export default (
-  { id, pageType, isDefaultTemplatePage }: usePageSettingItemsFragmentType,
-  isHomePage: boolean,
+  {
+    id,
+    pageType,
+    isDefaultHomePage,
+    isDefaultProductTemplatePage,
+  }: usePageSettingItemsPageFragmentType,
   edit: () => void,
   variables: getPagesVariables,
   setSelectedPage: ReturnType<typeof useSelectedPageType>['setSelectedPage'],
@@ -40,9 +57,9 @@ export default (
       case 'home':
         return [
           'edit',
-          isHomePage ? null : 'home',
+          isDefaultHomePage ? null : 'home',
           'copy',
-          isHomePage ? null : 'delete',
+          isDefaultHomePage ? null : 'delete',
         ].filter(Boolean) as string[];
 
       case 'custom':
@@ -55,10 +72,10 @@ export default (
         return [
           'edit',
           'copy',
-          isDefaultTemplatePage ? null : 'template',
+          isDefaultProductTemplatePage ? null : 'template',
         ].filter(Boolean) as string[];
     }
-  }, [pageType, isHomePage, isDefaultTemplatePage]);
+  }, [pageType, isDefaultHomePage, isDefaultProductTemplatePage]);
 
   return {
     icons,
@@ -73,7 +90,6 @@ export default (
         pageType,
         variables,
         setSelectedPage,
-        isHomePage,
       ),
       delete: useDeletePage(
         id || 'id' /** TODO should not be null */,

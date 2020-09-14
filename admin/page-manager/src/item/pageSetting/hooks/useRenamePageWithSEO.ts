@@ -27,13 +27,13 @@ const query = gql`
   query useRenamePageWithSEOCache(
     $homePagesFilter: StorePagesFilterInput
     $customPagesFilter: StorePagesFilterInput
-    $templatePagesFilter: StorePagesFilterInput
+    $productTemplatePageFilter: StorePagesFilterInput
   ) {
     viewer {
       id
       store {
         id
-        homePage: pages(first: 500, filter: $homePagesFilter) {
+        homePages: pages(first: 500, filter: $homePagesFilter) {
           edges {
             node {
               id
@@ -41,7 +41,7 @@ const query = gql`
           }
         }
 
-        customPage: pages(first: 500, filter: $customPagesFilter) {
+        customPages: pages(first: 500, filter: $customPagesFilter) {
           edges {
             node {
               id
@@ -49,7 +49,10 @@ const query = gql`
           }
         }
 
-        templatePage: pages(first: 500, filter: $templatePagesFilter) {
+        productTemplatePage: pages(
+          first: 500
+          filter: $productTemplatePageFilter
+        ) {
           edges {
             node {
               id
@@ -125,48 +128,50 @@ export default (
                 ...storeData.viewer,
                 store: {
                   ...storeData.viewer?.store,
-                  homePage: {
-                    ...storeData.viewer?.store?.homePage,
+                  homePages: {
+                    ...storeData.viewer?.store?.homePages,
                     edges:
                       pageType !== 'home'
-                        ? storeData.viewer?.store?.homePage.edges || []
+                        ? storeData.viewer?.store?.homePages.edges || []
                         : [
                             {
                               __typename: 'PageEdge',
                               node: { __typename: 'Page', id: input.pageId },
                             },
                             ...(
-                              storeData.viewer?.store?.homePage.edges || []
+                              storeData.viewer?.store?.homePages.edges || []
                             ).filter(({ node: { id } }) => id !== input.pageId),
                           ],
                   },
-                  customPage: {
-                    ...storeData.viewer?.store?.customPage,
+                  customPages: {
+                    ...storeData.viewer?.store?.customPages,
                     edges:
                       pageType !== 'custom'
-                        ? storeData.viewer?.store?.customPage.edges || []
+                        ? storeData.viewer?.store?.customPages.edges || []
                         : [
                             {
                               __typename: 'PageEdge',
                               node: { __typename: 'Page', id: input.pageId },
                             },
                             ...(
-                              storeData.viewer?.store?.customPage.edges || []
+                              storeData.viewer?.store?.customPages.edges || []
                             ).filter(({ node: { id } }) => id !== input.pageId),
                           ],
                   },
-                  templatePage: {
-                    ...storeData.viewer?.store?.templatePage,
+                  productTemplatePage: {
+                    ...storeData.viewer?.store?.productTemplatePage,
                     edges:
                       pageType !== 'template'
-                        ? storeData.viewer?.store?.templatePage.edges || []
+                        ? storeData.viewer?.store?.productTemplatePage.edges ||
+                          []
                         : [
                             {
                               __typename: 'PageEdge',
                               node: { __typename: 'Page', id: input.pageId },
                             },
                             ...(
-                              storeData.viewer?.store?.templatePage.edges || []
+                              storeData.viewer?.store?.productTemplatePage
+                                .edges || []
                             ).filter(({ node: { id } }) => id !== input.pageId),
                           ],
                   },

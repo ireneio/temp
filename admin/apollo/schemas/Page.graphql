@@ -1,0 +1,4 @@
+extend type Page {
+  isDefaultHomePage: Boolean!
+  isDefaultProductTemplatePage: Boolean!
+}

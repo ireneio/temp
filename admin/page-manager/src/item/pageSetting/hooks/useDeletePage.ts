@@ -24,13 +24,13 @@ const query = gql`
   query useDeletePageReadCache(
     $homePagesFilter: StorePagesFilterInput
     $customPagesFilter: StorePagesFilterInput
-    $templatePagesFilter: StorePagesFilterInput
+    $productTemplatePageFilter: StorePagesFilterInput
   ) {
     viewer {
       id
       store {
         id
-        homePage: pages(first: 500, filter: $homePagesFilter) {
+        homePages: pages(first: 500, filter: $homePagesFilter) {
           edges {
             node {
               id
@@ -38,7 +38,7 @@ const query = gql`
           }
         }
 
-        customPage: pages(first: 500, filter: $customPagesFilter) {
+        customPages: pages(first: 500, filter: $customPagesFilter) {
           edges {
             node {
               id
@@ -46,7 +46,10 @@ const query = gql`
           }
         }
 
-        templatePage: pages(first: 500, filter: $templatePagesFilter) {
+        productTemplatePage: pages(
+          first: 500
+          filter: $productTemplatePageFilter
+        ) {
           edges {
             node {
               id
@@ -99,21 +102,21 @@ export default (
               ...storeData.viewer,
               store: {
                 ...storeData.viewer?.store,
-                homePage: {
-                  ...storeData.viewer?.store?.homePage,
-                  edges: storeData.viewer?.store?.homePage.edges.filter(
+                homePages: {
+                  ...storeData.viewer?.store?.homePages,
+                  edges: storeData.viewer?.store?.homePages.edges.filter(
                     ({ node }) => node.id !== id,
                   ),
                 },
-                customPage: {
-                  ...storeData.viewer?.store?.customPage,
-                  edges: storeData.viewer?.store?.customPage.edges.filter(
+                customPages: {
+                  ...storeData.viewer?.store?.customPages,
+                  edges: storeData.viewer?.store?.customPages.edges.filter(
                     ({ node }) => node.id !== id,
                   ),
                 },
-                templatePage: {
-                  ...storeData.viewer?.store?.templatePage,
-                  edges: storeData.viewer?.store?.templatePage.edges.filter(
+                productTemplatePage: {
+                  ...storeData.viewer?.store?.productTemplatePage,
+                  edges: storeData.viewer?.store?.productTemplatePage.edges.filter(
                     ({ node }) => node.id !== id,
                   ),
                 },

@@ -11,20 +11,23 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { DefaultLayoutIcon } from '@meepshop/icons';
 
 import Edit, { editFragment } from './Edit';
-import usePageSettingItems, {
-  usePageSettingItemsFragment,
-} from './hooks/usePageSettingItems';
+import usePageSettingItems from './hooks/usePageSettingItems';
 import useEditOffset from './hooks/useEditOffset';
 import styles from './styles/index.less';
 
 // graphql typescript
 import { getPagesVariables } from '../../__generated__/getPages';
-import { pageSettingFragment as pageSettingFragmentType } from './__generated__/pageSettingFragment';
+import { pageSettingPageFragment as pageSettingPageFragmentType } from './__generated__/pageSettingPageFragment';
+
+// graphql import
+import {
+  usePageSettingItemsStoreFragment,
+  usePageSettingItemsPageFragment,
+} from './hooks/usePageSettingItems';
 
 // typescript definition
 interface PropsType {
-  page: pageSettingFragmentType;
-  isHomePage: boolean;
+  page: pageSettingPageFragmentType;
   className: string;
   visible: boolean;
   onVisibleChange: (visible: boolean) => void;
@@ -35,22 +38,30 @@ interface PropsType {
 }
 
 // definition
-export const pageSettingFragment = gql`
-  fragment pageSettingFragment on Page {
+export const pageSettingStoreFragment = gql`
+  fragment pageSettingStoreFragment on Store {
+    id
+    ...usePageSettingItemsStoreFragment
+  }
+
+  ${usePageSettingItemsStoreFragment}
+`;
+
+export const pageSettingPageFragment = gql`
+  fragment pageSettingPageFragment on Page {
     ...editFragment
-    ...usePageSettingItemsFragment
+    ...usePageSettingItemsPageFragment
     id
     pageType
   }
 
   ${editFragment}
-  ${usePageSettingItemsFragment}
+  ${usePageSettingItemsPageFragment}
 `;
 
 export default React.memo(
   ({
     page,
-    isHomePage,
     className,
     visible,
     onVisibleChange,
@@ -62,8 +73,7 @@ export default React.memo(
     const { pageType } = page;
     const { t } = useTranslation('page-manager');
     const { icons, events } = usePageSettingItems(
-      filter(usePageSettingItemsFragment, page),
-      isHomePage,
+      filter(usePageSettingItemsPageFragment, page),
       () => onEditVisibleChange(true),
       variables,
       setSelectedPage,
