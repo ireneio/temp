@@ -12,7 +12,7 @@ export default [
   // 1.
   [
     // input
-    `import React, { useContext } from 'react';
+    `import React from 'react';
 
 import { dashboardCost } from '@meepshop/images';
 
@@ -21,7 +21,7 @@ const Example = React.memo(() =>
 );`,
 
     // output
-    `import React, { useContext } from 'react';
+    `import React from 'react';
 
 /*compiled by @meepshop/images*/
 import getImage from "@meepshop/images/src/getImage";
@@ -52,7 +52,7 @@ export default getImage({
   // 3.
   [
     // input
-    `import React, { useContext } from 'react';
+    `import React from 'react';
 
 import { dashboardCost_w30_h30 as dashboardCost } from '@meepshop/images';
 
@@ -61,7 +61,7 @@ const Example = React.memo(() =>
 );`,
 
     // output
-    `import React, { useContext } from 'react';
+    `import React from 'react';
 
 /*compiled by @meepshop/images*/
 import getImage from "@meepshop/images/src/getImage";
@@ -147,5 +147,19 @@ export default {
     production: "https://img.meepshop.com/bfj6pexAO2MqqfUVzg0FaDzFcqB_Zp7ZJGtgfMxYkms/w:1920/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg"
   })
 };`,
+  ],
+
+  // 8.
+  [
+    // input
+    `import { dashboardCost_react as DashboardCost } from '@meepshop/images';
+
+export default DashboardCost;`,
+
+    // output
+    `/*compiled by @meepshop/images*/
+const DashboardCost = require("next/dynamic").default(() => import("@meepshop/images/lib/dashboardCost"));
+
+export default DashboardCost;`,
   ],
 ];

@@ -1,10 +1,8 @@
 // import
 import React from 'react';
 
-import { useRouter } from '@meepshop/link';
-
+import useIconStyle from './hooks/useIconStyle';
 import useSocialMedias from './hooks/useSocialMedias';
-
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -21,28 +19,23 @@ export default React.memo(
     showTwitter,
     showWechat,
   }: socialMediaFragment) => {
-    const { domain, pathname } = useRouter();
-    const url = `https://${domain}/${pathname}`;
+    const iconStyle = useIconStyle(color, socialMediaType);
     const socialMedias = useSocialMedias(
       socialMediaType,
-      color,
       showFacebook,
       showLine,
       showTwitter,
       showWechat,
-      url,
     );
 
     return (
       <div className={`${styles.root} ${styles[justifyContent]}`}>
-        {socialMedias.map(socialMedia => (
-          <a
-            key={socialMedia?.key}
-            target="_blank"
-            rel="noopener noreferrer"
-            href={socialMedia?.url}
-          >
-            {socialMedia?.icon}
+        {socialMedias.map(({ key, url, Icon }) => (
+          <a key={key} target="_blank" rel="noopener noreferrer" href={url}>
+            <Icon
+              className={`${styles[key]} ${styles[socialMediaType]}`}
+              style={iconStyle}
+            />
           </a>
         ))}
       </div>

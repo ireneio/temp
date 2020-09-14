@@ -36,3 +36,57 @@
     }
   }
 }
+
+.facebook {
+  fill: #369;
+
+  &.CIRCLE circle {
+    fill: transparent;
+  }
+}
+
+.line {
+  fill: #0c0;
+
+  &.CIRCLE {
+    g:first-child > path {
+      fill: transparent !important;
+    }
+
+    g:last-child > path {
+      stroke: transparent !important;
+    }
+  }
+
+  path + path:last-child {
+    fill: #fff;
+  }
+}
+
+.twitter {
+  fill: #39f;
+
+  &.CIRCLE circle {
+    fill: transparent;
+  }
+}
+
+.wechat {
+  fill: #2dc100;
+
+  &:not(.NONE):not(.CIRCLE) {
+    path {
+      fill: #fff;
+    }
+  }
+
+  &.CIRCLE {
+    circle {
+      fill: transparent;
+    }
+
+    path {
+      stroke: transparent !important;
+    }
+  }
+}

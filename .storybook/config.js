@@ -12,13 +12,18 @@ configure(() => {
     require('./stories');
     require('./stories/readme');
   } else {
-    const link = document.createElement('link');
+    const addLink = href => {
+      const link = document.createElement('link');
 
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.href = 'combined.css';
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = href;
 
-    document.getElementsByTagName('head')[0].appendChild(link);
+      document.getElementsByTagName('head')[0].appendChild(link);
+    };
+
+    addLink('https://cdnjs.cloudflare.com/ajax/libs/antd/3.26.15/antd.min.css');
+    addLink('combined.css');
   }
 
   require('./stories/images');

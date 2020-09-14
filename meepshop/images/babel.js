@@ -1,15 +1,19 @@
 // import
+const fs = require('fs');
 const nodePath = require('path');
 const crypto = require('crypto');
 
 require('dotenv').config({ path: nodePath.resolve(__dirname, '../../.env') });
 const { declare } = require('@babel/helper-plugin-utils');
+const { transformSync } = require('@babel/core');
 const { default: Imgproxy } = require('imgproxy');
 const dirTree = require('directory-tree');
 const d3 = require('d3-hierarchy');
 const execa = require('execa');
 const outputFileSync = require('output-file-sync');
 const invariant = require('fbjs/lib/invariant');
+
+const svgPlugin = require('@meepshop/icons/svgPlugin');
 
 [
   'IMGPROXY_KEY_STAGE',
@@ -88,7 +92,53 @@ const getUrl = (key, type, width, height) =>
     .filter(Boolean)
     .reduce((result, func) => func(result), imgproxy[type].builder());
 
+const generateCompoent = (imageName, path) => {
+  if (!imageList[imageName])
+    throw path.buildCodeFrameError(`Can not find image: \`${imageName}\``);
+
+  const content = fs
+    .readFileSync(
+      nodePath.resolve(
+        imageFolder,
+        imageList[imageName].replace(/_.*/, '.svg'),
+      ),
+      'utf-8',
+    )
+    .replace(/<\?xml version="1.0" encoding="UTF-8"\?>/, '')
+    .replace(/<!-- .* -->/, '')
+    .replace(/xmlns:xlink/g, 'xmlns')
+    .replace(/xlink:href/g, 'xmlns');
+
+  outputFileSync(
+    nodePath.resolve(imageFolder, '../lib', imageName.replace(/$/, '.js')),
+    transformSync(
+      `import React from 'react';
+
+export default React.memo(props => (
+  ${content}
+));`,
+      {
+        configFile: false,
+        babelrc: false,
+        presets: [
+          [
+            '@babel/env',
+            {
+              useBuiltIns: 'usage',
+              corejs: 3,
+            },
+          ],
+          '@babel/react',
+        ],
+        plugins: [[svgPlugin, { keepSize: true }]],
+      },
+    ).code,
+  );
+};
+
 module.exports = declare(({ assertVersion, types: t }) => {
+  assertVersion(7);
+
   const cache = {};
   const getScaledSrc = (key, width, height) =>
     t.callExpression(t.identifier('getImage'), [
@@ -104,7 +154,194 @@ module.exports = declare(({ assertVersion, types: t }) => {
       ]),
     ]);
 
-  assertVersion(7);
+  const replaceWithComponent = (path, localKey, key) => {
+    path.insertAfter(
+      t.variableDeclaration('const', [
+        t.variableDeclarator(
+          t.identifier(localKey),
+          t.callExpression(
+            t.memberExpression(
+              t.callExpression(t.identifier('require'), [
+                t.stringLiteral('next/dynamic'),
+              ]),
+              t.identifier('default'),
+            ),
+            [
+              t.arrowFunctionExpression(
+                [],
+                t.callExpression(t.import(), [
+                  t.stringLiteral(
+                    `@meepshop/images/lib/${key.replace(/_react$/, '')}`,
+                  ),
+                ]),
+              ),
+            ],
+          ),
+        ),
+      ]),
+    );
+    generateCompoent(key.replace(/_react$/, ''), path);
+  };
+
+  const replaceWithGetImage = path => {
+    path.replaceWith(
+      t.importDeclaration(
+        [t.importDefaultSpecifier(t.identifier('getImage'))],
+        t.stringLiteral(
+          process.env.NODE_ENV === 'test'
+            ? '@meepshop/images/src/getImage'
+            : '@meepshop/images/lib/getImage',
+        ),
+      ),
+    );
+  };
+
+  const replaceWithAllImages = (path, localKey) => {
+    path.addComments('inner', [
+      { type: 'CommentBlock', value: 'compiled by @meepshop/images' },
+    ]);
+    path
+      .getStatementParent()
+      .insertBefore(
+        t.ifStatement(
+          t.binaryExpression(
+            '===',
+            t.memberExpression(
+              t.memberExpression(t.identifier('process'), t.identifier('env')),
+              t.identifier('NODE_ENV'),
+            ),
+            t.stringLiteral('production'),
+          ),
+          t.throwStatement(
+            t.newExpression(t.identifier('Error'), [
+              t.stringLiteral(
+                `Can not use \`import * as ${localKey} from '@meepshop/images';\` in the production mode.`,
+              ),
+            ]),
+          ),
+        ),
+      );
+    path.replaceWith(
+      t.objectExpression(
+        Object.keys(imageList).map(key =>
+          t.objectProperty(t.identifier(key), getScaledSrc(key)),
+        ),
+      ),
+    );
+  };
+
+  const replaceWithImage = (path, originalKey) => {
+    const { key, width, height, useScaledSrc } = originalKey
+      .split(/_/)
+      .reduce((result, str) => {
+        if (/^w\d/.test(str))
+          return {
+            ...result,
+            width: str.replace(/^w/, ''),
+          };
+
+        if (/^h\d/.test(str))
+          return {
+            ...result,
+            height: str.replace(/^h/, ''),
+          };
+
+        if (/^scaledSrc$/.test(str))
+          return {
+            ...result,
+            useScaledSrc: true,
+          };
+
+        return {
+          ...result,
+          key: str,
+        };
+      }, {});
+
+    if (!imageList[key])
+      throw path.buildCodeFrameError(`Can not find image key: \`${key}\``);
+
+    if (useScaledSrc) {
+      path.replaceWith(
+        t.objectExpression(
+          [
+            '60',
+            '120',
+            '240',
+            '480',
+            '720',
+            '960',
+            '1200',
+            '1440',
+            '1680',
+            '1920',
+          ].map(scaledSrcWidth =>
+            t.objectProperty(
+              t.identifier(`w${scaledSrcWidth}`),
+              getScaledSrc(key, scaledSrcWidth),
+            ),
+          ),
+        ),
+      );
+      return;
+    }
+
+    path.replaceWith(getScaledSrc(key, width, height));
+  };
+
+  const generateDefaultTypes = (path, filename) => {
+    if (filename !== nodePath.resolve(__dirname, './src/types.ts')) return;
+
+    outputFileSync(
+      nodePath.resolve(__dirname, './defaultTypes.tsx'),
+      `// Only for typescript, do not import
+// import
+import React from 'react';
+
+// typescript definition
+interface PropsType {
+  className?: string;
+}
+
+// definition
+export const mockData = 'image';
+export const mockScaledSrc = {
+  w60: mockData,
+  w120: mockData,
+  w240: mockData,
+  w480: mockData,
+  w720: mockData,
+  w960: mockData,
+  w1200: mockData,
+  w1440: mockData,
+  w1680: mockData,
+  w1920: mockData,
+};
+export const mockComponent = React.memo((props: PropsType) => (
+  <svg {...props} />
+));
+
+/* eslint-disable @typescript-eslint/camelcase */
+${Object.keys(imageList)
+  .map(
+    key => `export const ${key} = mockData;
+export const ${key}_scaledSrc = mockScaledSrc;
+export const ${key}_react = mockComponent;`,
+  )
+  .join('\n')}
+`,
+    );
+
+    path.replaceWith(
+      t.program([
+        t.throwStatement(
+          t.newExpression(t.identifier('Error'), [
+            t.stringLiteral('This file is only for typescript.'),
+          ]),
+        ),
+      ]),
+    );
+  };
 
   return {
     pre: () => {
@@ -120,11 +357,14 @@ module.exports = declare(({ assertVersion, types: t }) => {
 
         path.get('specifiers').forEach(specifier => {
           if (t.isImportSpecifier(specifier)) {
-            cache.useGetImage = true;
-            cache.images.push({
-              key: specifier.get('imported').node.name,
-              localKey: specifier.get('local').node.name,
-            });
+            const key = specifier.get('imported').node.name;
+            const localKey = specifier.get('local').node.name;
+
+            if (/_react$/.test(key)) replaceWithComponent(path, localKey, key);
+            else {
+              cache.useGetImage = true;
+              cache.images.push({ key, localKey });
+            }
           }
 
           if (t.isImportNamespaceSpecifier(specifier)) {
@@ -136,22 +376,12 @@ module.exports = declare(({ assertVersion, types: t }) => {
           }
         });
 
-        if (cache.useGetImage)
-          path.replaceWith(
-            t.importDeclaration(
-              [t.importDefaultSpecifier(t.identifier('getImage'))],
-              t.stringLiteral(
-                process.env.NODE_ENV === 'test'
-                  ? '@meepshop/images/src/getImage'
-                  : '@meepshop/images/lib/getImage',
-              ),
-            ),
-          );
-        else path.remove();
-
         path.addComments('leading', [
           { type: 'CommentBlock', value: 'compiled by @meepshop/images' },
         ]);
+
+        if (cache.useGetImage) replaceWithGetImage(path);
+        else path.remove();
       },
       Identifier: path => {
         const image = cache.images.find(
@@ -160,142 +390,12 @@ module.exports = declare(({ assertVersion, types: t }) => {
 
         if (!image) return;
 
-        if (image.key === hash) {
-          path.addComments('inner', [
-            { type: 'CommentBlock', value: 'compiled by @meepshop/images' },
-          ]);
-          path
-            .getStatementParent()
-            .insertBefore(
-              t.ifStatement(
-                t.binaryExpression(
-                  '===',
-                  t.memberExpression(
-                    t.memberExpression(
-                      t.identifier('process'),
-                      t.identifier('env'),
-                    ),
-                    t.identifier('NODE_ENV'),
-                  ),
-                  t.stringLiteral('production'),
-                ),
-                t.throwStatement(
-                  t.newExpression(t.identifier('Error'), [
-                    t.stringLiteral(
-                      `Can not use \`import * as ${image.localKey} from '@meepshop/images';\` in the production mode.`,
-                    ),
-                  ]),
-                ),
-              ),
-            );
-          path.replaceWith(
-            t.objectExpression(
-              Object.keys(imageList).map(key =>
-                t.objectProperty(t.identifier(key), getScaledSrc(key)),
-              ),
-            ),
-          );
-          return;
-        }
-
-        const { key, width, height, useScaledSrc } = image.key
-          .split(/_/)
-          .reduce((result, str) => {
-            if (/^w\d/.test(str))
-              return {
-                ...result,
-                width: str.replace(/^w/, ''),
-              };
-
-            if (/^h\d/.test(str))
-              return {
-                ...result,
-                height: str.replace(/^h/, ''),
-              };
-
-            if (/^scaledSrc$/.test(str))
-              return {
-                ...result,
-                useScaledSrc: true,
-              };
-
-            return {
-              ...result,
-              key: str,
-            };
-          }, {});
-
-        if (!imageList[key])
-          throw path.buildCodeFrameError(`Can not find image key: \`${key}\``);
-
-        if (useScaledSrc) {
-          path.replaceWith(
-            t.objectExpression(
-              [
-                '60',
-                '120',
-                '240',
-                '480',
-                '720',
-                '960',
-                '1200',
-                '1440',
-                '1680',
-                '1920',
-              ].map(scaledSrcWidth =>
-                t.objectProperty(
-                  t.identifier(`w${scaledSrcWidth}`),
-                  getScaledSrc(key, scaledSrcWidth),
-                ),
-              ),
-            ),
-          );
-          return;
-        }
-
-        path.replaceWith(getScaledSrc(key, width, height));
+        if (image.key === hash) replaceWithAllImages(path, image.localKey);
+        else replaceWithImage(path, image.key);
       },
     },
     post: ({ opts: { filename }, path }) => {
-      if (filename !== nodePath.resolve(__dirname, './src/types.ts')) return;
-
-      outputFileSync(
-        nodePath.resolve(__dirname, './defaultTypes.ts'),
-        `// Only for typescript, do not import
-// definition
-export const mockData = 'image';
-export const mockScaledSrc = {
-  w60: mockData,
-  w120: mockData,
-  w240: mockData,
-  w480: mockData,
-  w720: mockData,
-  w960: mockData,
-  w1200: mockData,
-  w1440: mockData,
-  w1680: mockData,
-  w1920: mockData,
-};
-
-/* eslint-disable @typescript-eslint/camelcase */
-${Object.keys(imageList)
-  .map(
-    key => `export const ${key} = mockData;
-export const ${key}_scaledSrc = mockScaledSrc;`,
-  )
-  .join('\n')}
-`,
-      );
-
-      path.replaceWith(
-        t.program([
-          t.throwStatement(
-            t.newExpression(t.identifier('Error'), [
-              t.stringLiteral('This file is only for typescript.'),
-            ]),
-          ),
-        ]),
-      );
+      generateDefaultTypes(path, filename);
     },
   };
 });

@@ -7,11 +7,13 @@ import { Layout } from 'antd';
 
 import Link from '@meepshop/link';
 import { HamburgerIcon, DoubleRightIcon } from '@meepshop/icons';
+import {
+  adminWrapperTextLogo_react as AdminWrapperTextLogo,
+  adminWrapperImgLogo_react as AdminWrapperImgLogo,
+} from '@meepshop/images';
 
 import Menu from './Menu';
 import Footer from './Footer';
-import TextLogo from './images/TextLogo';
-import ImgLogo from './images/ImgLogo';
 import useCollapsed from './hooks/useCollapsed';
 import useTransitionEnd from './hooks/useTransitionEnd';
 import useCheckingAdminStatus from './hooks/useCheckingAdminStatus';
@@ -103,7 +105,7 @@ export default React.memo(({ children }: PropsType) => {
         >
           <Link href="/" disabled={isNotOpened}>
             <a className={!isNotOpened ? '' : styles.disabled} href="/">
-              {collapsed ? <ImgLogo /> : <TextLogo />}
+              {collapsed ? <AdminWrapperImgLogo /> : <AdminWrapperTextLogo />}
             </a>
           </Link>
 

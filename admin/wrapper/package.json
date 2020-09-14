@@ -13,6 +13,7 @@
     "@meepshop/context": "^0.62.3",
     "@meepshop/cookies": "^0.62.3",
     "@meepshop/icons": "^0.62.3",
+    "@meepshop/images": "^0.62.3",
     "@meepshop/link": "^0.62.3",
     "@meepshop/switch": "^0.62.3",
     "@meepshop/utils": "^0.62.3",

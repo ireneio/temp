@@ -5,6 +5,7 @@ import { TransformOptions } from '@babel/core';
 import path from 'path';
 
 import { transformSync, transformFileSync } from '@babel/core';
+import outputFileSync from 'output-file-sync';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore need to use js
@@ -26,6 +27,14 @@ export default images;`;
 describe('babel', () => {
   test.each(testings)('%s', (content: string, expected: string) => {
     expect(transformSync(content, babelOptions)?.code).toBe(expected);
+  });
+
+  test('check output react component', () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore jest mock
+    expect(outputFileSync.mock.calls[0][0]).toBe(
+      path.resolve(__dirname, '../../lib/dashboardCost.js'),
+    );
   });
 
   test(testingImportNamespaceSpecifier, () => {
