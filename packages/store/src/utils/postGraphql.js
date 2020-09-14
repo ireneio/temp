@@ -48,7 +48,10 @@ export default async ({ res, req, query, variables, isServer }) => {
           return null;
         }
         notification.error({ message: 'Error: unknown user' });
-        await fetch('/signout', { method: 'get', credentials: 'same-origin' });
+        await fetch('/api/auth/logout', {
+          method: 'post',
+          credentials: 'same-origin',
+        });
         window.location.reload();
         return null;
       }

@@ -51,9 +51,9 @@ export default (
     () =>
       [
         {
-          key: 'signout',
+          key: 'logout',
           Icon: LogoutIcon,
-          url: '/signout',
+          url: '/api/auth/logout',
         },
         {
           key: 'account-setting',

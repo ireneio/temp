@@ -1,0 +1,12 @@
+enum LogoutResponseEnum {
+  OK
+  FAIL
+}
+
+type LogoutResponse {
+  status: LogoutResponseEnum!
+}
+
+extend type Mutation {
+  logout: LogoutResponse!
+}

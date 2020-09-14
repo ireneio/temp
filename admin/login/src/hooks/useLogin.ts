@@ -2,12 +2,16 @@
 import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
-import { useCallback, useState } from 'react';
-import { useApolloClient } from '@apollo/react-hooks';
+import { useCallback } from 'react';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
 import { message, notification } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { useRouter } from '@meepshop/link';
+
+// graphql typescript
+import { login as loginType, loginVariables } from './__generated__/login';
 
 // definition
 export default (
@@ -16,10 +20,45 @@ export default (
   loading: boolean;
   onSubmit: (e: React.FormEvent<HTMLElement>) => void;
 } => {
-  const client = useApolloClient();
   const { t } = useTranslation('login');
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const [login, { loading }] = useMutation<loginType, loginVariables>(
+    gql`
+      mutation login($input: LoginInput!) {
+        login(input: $input) @client {
+          status
+          role
+          adminStatus
+        }
+      }
+    `,
+    {
+      onCompleted: ({ login: { status, adminStatus, role } }: loginType) => {
+        switch (status) {
+          case 'INVALID_RECAPTCHA_RESPONSE':
+            message.error('Invalid recaptcha response');
+            break;
+
+          case 'FAIL':
+            message.error(t('submit.error'));
+            break;
+
+          default:
+            if (adminStatus === 'OPEN') {
+              message.success(t('submit.success'));
+              router.push('/');
+            } else if (role === 'MERCHANT') {
+              message.success(t('submit.success'));
+              router.push('/bill-payment');
+            } else
+              notification.warning({
+                message: t('submit.close.title'),
+                description: t('submit.close.content'),
+              });
+        }
+      },
+    },
+  );
 
   return {
     loading,
@@ -32,60 +71,23 @@ export default (
           const gRecaptchaResponse = window.grecaptcha.getResponse();
 
           window.grecaptcha.reset();
-          setLoading(true);
-
-          const { error, type, adminStatus } = await fetch('/api/auth/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
+          await login({
+            variables: {
+              input: {
+                email,
+                password,
+                gRecaptchaResponse,
+                ...(!isHelper
+                  ? {}
+                  : {
+                      cname,
+                    }),
+              },
             },
-            body: JSON.stringify({
-              email,
-              password,
-              'g-recaptcha-response': gRecaptchaResponse,
-              ...(!isHelper
-                ? {}
-                : {
-                    type: 'helper',
-                    cname,
-                  }),
-            }),
-          }).then(res => res.json());
-
-          if (error && error === 'Invalid recaptcha response') {
-            message.error(error);
-            setLoading(false);
-            return;
-          }
-
-          if (error) {
-            message.error(t('submit.error'));
-            setLoading(false);
-            return;
-          }
-
-          if (adminStatus === 'OPEN') {
-            message.success(t('submit.success'));
-            await client.resetStore();
-            router.push('/');
-            return;
-          }
-
-          if (type === 'merchant') {
-            message.success(t('submit.success'));
-            await client.resetStore();
-            router.push('/bill-payment');
-            return;
-          }
-
-          notification.warning({
-            message: t('submit.close.title'),
-            description: t('submit.close.content'),
           });
-          setLoading(false);
         });
       },
-      [client, t, router, validateFields],
+      [validateFields, login],
     ),
   };
 };

@@ -135,10 +135,18 @@ module.exports = app.prepare().then(
       server.post('/api/graphql', mapCookiesToHeaders, api);
 
       // auth
-      server.post('/signin', mapCookiesToHeaders, signin('/auth/login'));
-      server.post('/fbAuth', mapCookiesToHeaders, signin('/facebook/fbLogin'));
+      server.post(
+        '/api/auth/login',
+        mapCookiesToHeaders,
+        signin('/auth/login'),
+      );
+      server.post(
+        '/api/auth/fbLogin',
+        mapCookiesToHeaders,
+        signin('/facebook/fbLogin'),
+      );
       server.get('/fbAuthForLine', mapCookiesToHeaders, fbAuthForLine);
-      server.get('/signout', (req, res) => {
+      server.post('/api/auth/logout', (req, res) => {
         res.cookie('x-meepshop-authorization-token', '', {
           maxAge: 0,
           httpOnly: true,

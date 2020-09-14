@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as Api from 'api';
-import * as Utils from 'utils';
+import gql from 'graphql-tag';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { UserAgent } from 'fbjs';
 import { notification } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import initApollo from '@meepshop/apollo/lib/initApollo';
 import {
   AdTrack as AdTrackContext,
   Fb as FbContext,
@@ -16,6 +16,8 @@ import {
 import Layout from '@meepshop/meep-ui/lib/layout';
 import withContext from '@store/utils/lib/withContext';
 
+import * as Api from 'api';
+import * as Utils from 'utils';
 import { getJoinedUser } from 'selectors';
 import * as Actions from 'ducks/actions';
 
@@ -133,16 +135,28 @@ class Container extends React.Component {
           async response => {
             if (response.status === 'connected') {
               /* Handle login after FB response */
-              const data = await Api.fbLogin(response.authResponse);
+              const { data } = await initApollo({ name: 'store' }).mutate({
+                mutation: gql`
+                  mutation fbLogin($input: FbLoginInput!) {
+                    fbLogin(input: $input) @client {
+                      status
+                    }
+                  }
+                `,
+                variables: {
+                  input: { accessToken: response.authResponse.accessToken },
+                },
+              });
 
-              switch (data.status) {
-                case 200:
-                case 201: {
+              switch (data.fbLogin.status) {
+                case 'OK':
+                case 'FIRST_LOGIN': {
                   const member = await Api.updateMemberData();
                   const numOfExpiredPoints =
                     member?.data?.viewer?.rewardPoint.expiringPoints.total;
 
-                  if (data.status === 201) adTrack.completeRegistration();
+                  if (data.fbLogin.status === 'FIRST_LOGIN')
+                    adTrack.completeRegistration();
 
                   if (numOfExpiredPoints > 0)
                     notification.info({
@@ -161,25 +175,23 @@ class Container extends React.Component {
                   break;
                 }
 
-                case 2010: {
+                case 'EXPIRED_ACCESS_TOKEN':
                   notification.error({ message: 'FB Access token 失效' });
                   break;
-                }
-                case 2011: {
+
+                case 'CANNOT_GET_EMAIL':
                   notification.error({ message: 'FB無法取得email' });
                   break;
-                }
-                case 2003: {
+
+                case 'INVALID_TOKEN':
                   notification.error({ message: '無法取得meepShop token' });
                   break;
-                }
-                case 9999: {
+
+                default:
                   notification.error({ message: '未知的錯誤' });
                   break;
-                }
-                default:
-                  break;
-              } /* Handle login after FB response - End */
+              }
+              /* Handle login after FB response - End */
               dispatchAction('hideLoadingStatus');
             } else {
               notification.error({

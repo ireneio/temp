@@ -26,7 +26,10 @@ const getData = async (query, variables, retryTimes = 0) => {
        */
       if (data?.errors?.[0]?.message === 'userId not exist') {
         notification.error({ message: 'Error: unknown user' });
-        await fetch('/signout', { method: 'get', credentials: 'same-origin' });
+        await fetch('/api/auth/logout', {
+          method: 'post',
+          credentials: 'same-origin',
+        });
         window.location.reload();
         return null;
       }

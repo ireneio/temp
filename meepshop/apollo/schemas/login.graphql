@@ -1,0 +1,23 @@
+input LoginInput {
+  email: EmailAddress!
+  password: String!
+  gRecaptchaResponse: String
+  cname: String
+}
+
+enum LoginResponseEnum {
+  OK
+  FAIL
+  INVALID_RECAPTCHA_RESPONSE
+}
+
+type LoginResponse {
+  status: LoginResponseEnum!
+  message: String
+  role: ViewerTypeEnum
+  adminStatus: AdminStatusEnum
+}
+
+extend type Mutation {
+  login(input: LoginInput!): LoginResponse!
+}

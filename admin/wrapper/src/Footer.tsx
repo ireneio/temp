@@ -52,8 +52,7 @@ export default React.memo(
                     <MenuItem
                       key={key}
                       disabled={
-                        isNotOpened &&
-                        !['signout', 'bill-payment'].includes(key)
+                        isNotOpened && !['logout', 'bill-payment'].includes(key)
                       }
                     >
                       <Icon />
@@ -72,14 +71,14 @@ export default React.memo(
               href={url}
               target={target}
               disabled={
-                isNotOpened && !['signout', 'bill-payment'].includes(key)
+                isNotOpened && !['logout', 'bill-payment'].includes(key)
               }
             >
               <a
                 className={`${styles.item} ${
                   selectedKeys.includes(key) ? styles.selected : ''
                 } ${
-                  isNotOpened && !['signout', 'bill-payment'].includes(key)
+                  isNotOpened && !['logout', 'bill-payment'].includes(key)
                     ? styles.disabled
                     : ''
                 }`}

@@ -1,0 +1,22 @@
+input FbLoginInput {
+  accessToken: String!
+}
+
+enum FbLoginResponseEnum {
+  OK
+  FAIL
+  FIRST_LOGIN
+  EXPIRED_ACCESS_TOKEN
+  CANNOT_GET_EMAIL
+  INVALID_TOKEN
+  UNKNOWN_ERROR
+}
+
+type FbLoginResponse {
+  status: FbLoginResponseEnum!
+  message: String
+}
+
+extend type Mutation {
+  fbLogin(input: FbLoginInput!): FbLoginResponse!
+}

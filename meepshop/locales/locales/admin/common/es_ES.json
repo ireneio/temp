@@ -22,5 +22,5 @@
   "account-setting": "Configuraciones de la cuenta",
   "bill-payment": "Facturas y pago",
   "go-to-store": "Ir a la tienda",
-  "signout": "Cerrar sesión"
+  "logout": "Cerrar sesión"
 }

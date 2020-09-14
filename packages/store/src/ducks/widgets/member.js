@@ -74,10 +74,22 @@ export function* loginFlow({ payload }) {
   const { email, password, callback, from } = payload;
 
   try {
-    const res = yield call(Api.login, { email, password });
+    const { data } = yield call(() =>
+      initApollo({ name: 'store' }).mutate({
+        mutation: gql`
+          mutation login($input: LoginInput!) {
+            login(input: $input) @client {
+              status
+            }
+          }
+        `,
+        variables: {
+          input: { email, password },
+        },
+      }),
+    );
 
-    // TODO: 不需要兼容 meep-nginx 後可以移除(#553)
-    if (res.isLoginSuccess || res.userId) {
+    if (data.login.status === 'OK') {
       const memberData = yield call(Api.updateMemberData);
       const locales = memberData?.data?.viewer?.store.setting.locale || [
         'zh_TW',
@@ -175,9 +187,19 @@ export const signoutFailure = () => ({
 
 function* signoutFlow() {
   try {
-    const isSuccess = yield call(Api.signout);
+    const { data } = yield call(() =>
+      initApollo({ name: 'store' }).mutate({
+        mutation: gql`
+          mutation logout {
+            logout @client {
+              status
+            }
+          }
+        `,
+      }),
+    );
 
-    if (isSuccess) {
+    if (data.logout.status === 'OK') {
       const memberData = yield call(Api.updateMemberData);
 
       yield put(signoutSuccess(memberData.data));
