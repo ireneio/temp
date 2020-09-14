@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 0.63.0 (2020-09-14)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1154](https://github.com/meepshop/meep-lerna/pull/1154) Add auth mutation client side schema ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `mock-types`, `store`
+  - [#1152](https://github.com/meepshop/meep-lerna/pull/1152) 前端 - 改用 Store.defaultProductTemplatePage ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1153](https://github.com/meepshop/meep-lerna/pull/1153) 前端 - 前端會員資料使用 Viewer.memberGroup ([@HsuTing](https://github.com/HsuTing))
+  - [#1157](https://github.com/meepshop/meep-lerna/pull/1157) @meepshop/images support svg component ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#1154](https://github.com/meepshop/meep-lerna/pull/1154) Add auth mutation client side schema ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1161](https://github.com/meepshop/meep-lerna/pull/1161) (@meepshop/image): fix unchanged imageURL ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.62.6 (2020-09-14)
 
 #### :bug: Bug Fix
