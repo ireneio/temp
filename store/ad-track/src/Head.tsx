@@ -97,7 +97,7 @@ export default React.memo(
                   ${
                     !googleAnalyticsId
                       ? ''
-                      : `gtag('config', '${googleAnalyticsId}', { page_path: '${router.pathname}' });`
+                      : `gtag('config', '${googleAnalyticsId}', { page_path: '${router.asPath}' });`
                   }
                   ${
                     !googleAdwordsConfig.extractedId
