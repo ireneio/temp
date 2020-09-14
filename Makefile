@@ -8,7 +8,7 @@ babel-all:
 	@$(call babel-build,$(WATCH),--concurrency 16 $(OPTION))
 
 babel-changed:
-	@$(call babel-build,$(WATCH),--parallel --since $(BRANCH))
+	@$(call babel-build,$(WATCH),--parallel --exclude-dependents --since $(BRANCH))
 
 apollo-watch:
 	@$(call apollo,$(APOLLO_TYPE),--watch)
@@ -51,7 +51,7 @@ endef
 
 define babel-build
   yarn lerna exec \
-		"rm -rf lib && babel src -d lib --config-file ../../babel.config.js --verbose -x .js,.ts,.tsx $(1)" \
+		"babel src -d lib --delete-dir-on-start --config-file ../../babel.config.js --verbose -x .js,.ts,.tsx $(1)" \
 		--stream \
 		--include-dependencies \
 		--ignore @meepshop/store \

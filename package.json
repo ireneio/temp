@@ -129,7 +129,7 @@
     "hooks": {
       "pre-commit": "yarn tsc && lint-staged",
       "post-merge": "make babel-all",
-      "post-checkout": "make babel-changed BRANCH=master"
+      "post-checkout": "make babel-all OPTION=\"--exclude-dependents --since master\""
     }
   },
   "resolutions": {
