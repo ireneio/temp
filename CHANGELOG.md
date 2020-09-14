@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.62.6 (2020-09-14)
+
+#### :bug: Bug Fix
+
+- [#1159](https://github.com/meepshop/meep-lerna/pull/1159) 【調查】 GA 瀏覽事件觸發網址異常 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.62.5 (2020-09-11)
 
 #### :bug: Bug Fix
