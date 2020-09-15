@@ -49,9 +49,9 @@ export default (order: useAdTrackFragmentType | null | undefined): void => {
   useEffect(() => {
     if (order)
       adTrack.purchase({
-        orderNo: order.orderNo || '', // FIXME: should not be null
+        orderNo: order.orderNo || '', // SHOULD_NOT_BE_NULL
         products: (order.products || []).reduce(
-          // FIXME: should not be null
+          // SHOULD_NOT_BE_NULL
           (result: productsType, data) => {
             if (!data) return result;
 
@@ -69,10 +69,10 @@ export default (order: useAdTrackFragmentType | null | undefined): void => {
           },
           [],
         ),
-        total: order.priceInfo?.total || 0, // FIXME: should not be null
-        currency: order.priceInfo?.currency || 'TWD', // FIXME: should not be null
-        shipmentFee: order.priceInfo?.shipmentFee || 0, // FIXME: should not be null
-        paymentFee: order.priceInfo?.paymentFee || 0, // FIXME: should not be null
+        total: order.priceInfo?.total || 0, // SHOULD_NOT_BE_NULL
+        currency: order.priceInfo?.currency || 'TWD', // SHOULD_NOT_BE_NULL
+        shipmentFee: order.priceInfo?.shipmentFee || 0, // SHOULD_NOT_BE_NULL
+        paymentFee: order.priceInfo?.paymentFee || 0, // SHOULD_NOT_BE_NULL
       });
   }, [order, adTrack]);
 };

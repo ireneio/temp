@@ -106,7 +106,7 @@ export const resolvers = {
                   product:
                     products.find(
                       product =>
-                        /** TODO: should not be null */
+                        /** SHOULD_NOT_BE_NULL */
                         getOrderApply?.orderProductId === (product?.id || null),
                     ) || null,
                 },
@@ -121,7 +121,7 @@ export const resolvers = {
             product:
               products.find(
                 product =>
-                  /** TODO: should not be null */
+                  /** SHOULD_NOT_BE_NULL */
                   getOrderApply?.orderProductId === (product?.id || null),
               ) || null,
           },
@@ -169,7 +169,7 @@ export const resolvers = {
 
       return products.reduce((result, product) => {
         const { id: productId = null, quantity = 0, type = 'gift' } =
-          product || {}; /** TODO: should not be null */
+          product || {}; /** SHOULD_NOT_BE_NULL */
 
         if (type === 'gift') return result;
 
@@ -180,7 +180,7 @@ export const resolvers = {
         if (
           orderApplyProduct &&
           [0, 3].includes(
-            orderApplyProduct.status || 0 /** TODO: should not be null */,
+            orderApplyProduct.status || 0 /** SHOULD_NOT_BE_NULL */,
           )
         )
           return result;
@@ -188,7 +188,7 @@ export const resolvers = {
         return (
           result ||
           (quantity || 0) -
-            (orderApplyProduct?.quantity || 0) /** TODO: should not be null */ >
+            (orderApplyProduct?.quantity || 0) /** SHOULD_NOT_BE_NULL */ >
             0
         );
       }, false);

@@ -151,7 +151,7 @@ class Products extends React.PureComponent<PropsType> {
 
   public render(): React.ReactNode {
     const { t, c, colors, products } = this.props;
-    // TODO: should not be null[]
+    // SHOULD_NOT_BE_NULL
     const filteredProducts = products.filter(
       product => product,
     ) as productsFragmentType[];

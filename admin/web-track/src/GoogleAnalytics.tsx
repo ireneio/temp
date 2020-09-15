@@ -48,7 +48,7 @@ export default Form.create<PropsType>()(
     const { t } = useTranslation('web-track');
     const setGtagSettingsList = useSetGtagSettingsList((cache, data) => {
       cache.writeFragment<updateGoogleAnalyticsCache>({
-        id: id || 'null-id' /** TODO: should be not null */,
+        id: id || 'null-id' /** SHOULD_NOT_BE_NULL */,
         fragment: gql`
           fragment updateGoogleAnalyticsCache on Store {
             id
@@ -59,7 +59,7 @@ export default Form.create<PropsType>()(
         `,
         data: {
           __typename: 'Store',
-          id: id || 'null-id' /** TODO: should be not null */,
+          id: id || 'null-id' /** SHOULD_NOT_BE_NULL */,
           adTrack: {
             __typename: 'StoreAdTrack',
             googleAnalyticsId: data?.setGtagSettingsList?.[0]?.code || null,

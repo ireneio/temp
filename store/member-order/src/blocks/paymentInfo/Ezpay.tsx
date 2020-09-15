@@ -48,7 +48,7 @@ export default React.memo(({ choosePayment, paymentInfo }: PropsType) => {
       return <Credit paymentInfo={filter(creditFragment, paymentInfo)} />;
 
     case 'MMK': {
-      // TODO: should not be null
+      // SHOULD_NOT_BE_NULL
       const { paycode, expireDate } =
         paymentInfo.list?.[0]?.memo?.[0]?.ezpay || {};
 
@@ -62,7 +62,7 @@ export default React.memo(({ choosePayment, paymentInfo }: PropsType) => {
           <div>
             {t('blocks.payment.expire-date')}
             {moment
-              .unix(expireDate || 0 /** TODO: should not be null */)
+              .unix(expireDate || 0 /** SHOULD_NOT_BE_NULL */)
               .format('YYYY/M/D')}
           </div>
         </div>

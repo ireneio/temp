@@ -51,9 +51,7 @@ export default Form.create<PropsType>()(
     const { t } = useTranslation('web-track');
     const [isOpen, openModal] = useState(false);
     const [editMode, setEditMode] = useState(false);
-    const setFbPixel = useSetFbPixel(
-      id || 'null-id' /** TODO: should be not null */,
-    );
+    const setFbPixel = useSetFbPixel(id || 'null-id' /** SHOULD_NOT_BE_NULL */);
 
     useClipboard(fbDPALink || '', '#fbDPALink', t('facebook-pixel.copied'));
 

@@ -84,7 +84,7 @@ export default React.memo(
           </Link>
 
           {!['custom', 'products'].includes(
-            pageType || '' /** TODO: should not be null */,
+            pageType || '' /** SHOULD_NOT_BE_NULL */,
           ) ? null : (
             <a
               href={`//${domain?.[0] || defaultDomain}/${

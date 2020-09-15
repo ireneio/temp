@@ -86,7 +86,7 @@ export default Form.create<PropsType>()(
       const { t, i18n } = useTranslation('page-manager');
       const editSubmit = useEditSubmit(
         validateFields,
-        id || 'id' /** TODO should not be null */,
+        id || 'id' /** SHOULD_NOT_BE_NULL */,
         pageType,
         variables,
         onClose,
@@ -194,7 +194,7 @@ export default Form.create<PropsType>()(
             )}
 
             {!['home', 'custom', 'products'].includes(
-              pageType || '' /** TODO should noe be null */,
+              pageType || '' /** SHOULD_NOT_BE_NULL */,
             ) ? null : (
               <div className={styles.seo}>
                 <FormItem>

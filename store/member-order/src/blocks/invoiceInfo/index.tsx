@@ -48,7 +48,7 @@ export default React.memo(({ invoices, children }: PropsType) => {
 
   if (!invoices || invoices.length === 0) return null;
 
-  // TODO: invoices should not be null[]
+  // SHOULD_NOT_BE_NULL
   const [invoice] = (invoices.filter(
     Boolean,
   ) as invoiceInfoFragmentType[]).slice(-1);

@@ -135,7 +135,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
         dataIndex: 'node.orderNo',
         render: (
           value: ordersOrderConnectionFragmentEdgesNode['orderNo'],
-          // TODO: should not be null
+          // SHOULD_NOT_BE_NULL
           { node: { id } }: ordersOrderConnectionFragmentEdges,
         ) => (
           <>
@@ -158,7 +158,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
       {
         title: t('orders.payment-status'),
         dataIndex: 'node.paymentInfo.status',
-        // TODO: should not be null
+        // SHOULD_NOT_BE_NULL
         render: (
           value: ordersOrderConnectionFragmentEdgesNodePaymentInfo['status'],
         ) =>
@@ -169,7 +169,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
       {
         title: t('orders.shipment-status'),
         dataIndex: 'node.shipmentInfo.status',
-        // TODO: should not be null
+        // SHOULD_NOT_BE_NULL
         render: (
           value: ordersOrderConnectionFragmentEdgesNodeShipmentInfo['status'],
         ) =>
@@ -180,7 +180,7 @@ class Orders extends React.PureComponent<PropsType, StateType> {
       {
         title: t('orders.order-status'),
         dataIndex: 'node.status',
-        // TODO: should not be null
+        // SHOULD_NOT_BE_NULL
         render: (value: ordersOrderConnectionFragmentEdgesNode['status']) =>
           value === null
             ? null
@@ -346,18 +346,16 @@ class Orders extends React.PureComponent<PropsType, StateType> {
           columns={this.columns({ t, i18n }, variables)}
           loading={loading}
           rowClassName={({ node: { id } }) =>
-            runningIds.includes(id || 'null-id' /** TODO: should be not null */)
+            runningIds.includes(id || 'null-id' /** SHOULD_NOT_BE_NULL */)
               ? styles.running
               : ''
           }
           rowKey={
-            ({ node: { id } }) =>
-              id || 'null-id' /** TODO: should be not null */
+            ({ node: { id } }) => id || 'null-id' /** SHOULD_NOT_BE_NULL */
           }
           rowSelection={{
             selectedRowKeys: selectedOrders.edges.map(
-              ({ node: { id } }) =>
-                id || 'null-id' /** TODO: should be not null */,
+              ({ node: { id } }) => id || 'null-id' /** SHOULD_NOT_BE_NULL */,
             ),
             onChange: ids =>
               setOrdersToSelectedOrdersMutation({

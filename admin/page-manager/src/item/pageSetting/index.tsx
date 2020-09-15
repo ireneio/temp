@@ -103,7 +103,7 @@ export default React.memo(
               {t(
                 `page-setting.${
                   ['home', 'custom', 'products'].includes(
-                    pageType || '' /** TODO should noe be null */,
+                    pageType || '' /** SHOULD_NOT_BE_NULL */,
                   ) && icon === 'edit'
                     ? 'seo'
                     : icon

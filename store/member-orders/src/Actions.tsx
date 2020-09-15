@@ -112,7 +112,7 @@ class Actions extends React.PureComponent<PropsType, StateType> {
       },
     } = this.props;
     const { formData } = this.state;
-    const isSkipOtherAction = ![0, 3].includes(status === null ? -1 : status); // TODO: should not be null
+    const isSkipOtherAction = ![0, 3].includes(status === null ? -1 : status); // SHOULD_NOT_BE_NULL
     const { url = '', params = {} } = formData || {
       url: undefined,
       params: undefined,
@@ -125,7 +125,7 @@ class Actions extends React.PureComponent<PropsType, StateType> {
       [],
     );
 
-    // TODO: should not be null
+    // SHOULD_NOT_BE_NULL
     const template = paymentInfo?.list?.[0]?.template;
 
     return (
@@ -177,9 +177,9 @@ class Actions extends React.PureComponent<PropsType, StateType> {
                     variables: {
                       paymentAgainOrderList: [
                         {
-                          orderId: id || 'null-id', // TODO: should not be null
+                          orderId: id || 'null-id', // SHOULD_NOT_BE_NULL
                           paymentId:
-                            paymentInfo?.list?.[0]?.paymentId || 'null-id', // TODO: should not be null
+                            paymentInfo?.list?.[0]?.paymentId || 'null-id', // SHOULD_NOT_BE_NULL
                         },
                       ],
                     },

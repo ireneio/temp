@@ -80,21 +80,18 @@ export default (
   return {
     icons,
     events: {
-      home: useAssignDefaultHomePage(id || 'id' /** TODO should not be null */),
+      home: useAssignDefaultHomePage(id || 'id' /** SHOULD_NOT_BE_NULL */),
       template: useAssignDefaultProductTemplatePage(
-        id || 'id' /** TODO should not be null */,
+        id || 'id' /** SHOULD_NOT_BE_NULL */,
       ),
       edit,
       copy: useDuplicatePage(
-        id || 'id' /** TODO should not be null */,
+        id || 'id' /** SHOULD_NOT_BE_NULL */,
         pageType,
         variables,
         setSelectedPage,
       ),
-      delete: useDeletePage(
-        id || 'id' /** TODO should not be null */,
-        variables,
-      ),
+      delete: useDeletePage(id || 'id' /** SHOULD_NOT_BE_NULL */, variables),
     },
   };
 };

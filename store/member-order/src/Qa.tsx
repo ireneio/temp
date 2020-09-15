@@ -85,7 +85,7 @@ class Qa extends React.PureComponent<PropsType, StateType> {
 
     const { newMessage } = this.state;
     const fragment = {
-      // TODO: id should not be null
+      // SHOULD_NOT_BE_NULL
       id: orderId || 'null id',
       fragment: gql`
         fragment qaOrderFragment on Order {
@@ -136,7 +136,7 @@ class Qa extends React.PureComponent<PropsType, StateType> {
       orderId,
     } = this.props;
     const { newMessage } = this.state;
-    // TODO: should not be null[]
+    // SHOULD_NOT_BE_NULL
     const filteredMessages = messages.filter(
       message => message,
     ) as qaOrderMessageFragmentType[];
@@ -217,7 +217,7 @@ class Qa extends React.PureComponent<PropsType, StateType> {
                   addOrderMessage({
                     variables: {
                       input: {
-                        // TODO: id should not be null
+                        // SHOULD_NOT_BE_NULL
                         orderId: orderId || 'null id',
                         text: newMessage,
                       },

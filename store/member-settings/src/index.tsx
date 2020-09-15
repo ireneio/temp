@@ -259,7 +259,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
               initialValue: !birthday
                 ? undefined
                 : moment({
-                    // TODO should not be null
+                    // SHOULD_NOT_BE_NULL
                     year: birthday.year || undefined,
                     month: !birthday.month ? undefined : birthday.month - 1,
                     day: birthday.day || undefined,
@@ -311,7 +311,7 @@ class MemberSettings extends React.PureComponent<PropsType> {
 
           <FormItem>
             {getFieldDecorator('isNotCancelEmail', {
-              // TODO: should not be null
+              // SHOULD_NOT_BE_NULL
               initialValue: !notification?.newsletters?.cancelEmail,
               valuePropName: 'checked',
             })(<Checkbox>{t('isNotCancelEmail')}</Checkbox>)}

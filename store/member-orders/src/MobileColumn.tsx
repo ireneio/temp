@@ -50,7 +50,7 @@ const MobileColumn = React.memo(
               {t(
                 `payment.${
                   paymentInfo?.status
-                  /** TODO: should not be null */
+                  /** SHOULD_NOT_BE_NULL */
                 }`,
               )}
             </div>
@@ -61,7 +61,7 @@ const MobileColumn = React.memo(
               {t(
                 `shipment.${
                   shipmentInfo?.status
-                  /** TODO: should not be null */
+                  /** SHOULD_NOT_BE_NULL */
                 }`,
               )}
             </div>

@@ -49,7 +49,7 @@ export default Form.create<PropsType>()(
     } = store;
     const { t } = useTranslation('web-track');
     const updateGoogleSearchConsoleVerificationHtml = useUpdateGoogleSearchConsoleVerificationHtml(
-      id || 'null-id' /** TODO: should be not null */,
+      id || 'null-id' /** SHOULD_NOT_BE_NULL */,
     );
     const [isOpen, openModal] = useState(false);
     const [editMode, setEditMode] = useState(false);

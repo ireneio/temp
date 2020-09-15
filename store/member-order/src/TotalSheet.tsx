@@ -160,7 +160,7 @@ class TotalSheet extends React.PureComponent<PropsType> {
         </div>
 
         {this.generateActivityInfo(t).map(({ id, title, discountPrice }) => (
-          // TODO: should not be null
+          // SHOULD_NOT_BE_NULL
           <div key={id || 'null id'}>
             <div>{title}</div>
             <div>{c(-1 * discountPrice)}</div>

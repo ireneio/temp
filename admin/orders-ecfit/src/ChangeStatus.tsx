@@ -165,7 +165,7 @@ class ChangeTypes extends React.PureComponent<PropsType> {
 
     await Promise.all(
       edges.map(async ({ node: { id } }) => {
-        // TODO: should not be null
+        // SHOULD_NOT_BE_NULL
         if (!id || runningIds.includes(id)) return;
 
         await updateOrderMutation({
@@ -209,7 +209,7 @@ class ChangeTypes extends React.PureComponent<PropsType> {
     }
 
     const fragment = {
-      // TODO: should not be null id
+      // SHOULD_NOT_BE_NULL
       id: newOrder?.id || 'null id',
       fragment: gql`
         fragment changeStatusOrderFragment on Order {

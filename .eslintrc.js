@@ -38,7 +38,7 @@ module.exports = {
     'no-warning-comments': [
       'warn',
       {
-        terms: ['todo', 'fixme'],
+        terms: ['todo', 'fixme', 'SHOULD_NOT_BE_NULL'],
         location: 'anywhere',
       },
     ],

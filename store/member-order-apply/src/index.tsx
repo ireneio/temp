@@ -99,14 +99,14 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
         orderId: id,
         createOrderApplyList: {
           applicationType: type === 'refund' ? 'return' : 'replace',
-          orderId: id || 'null id' /** TODO: should be not null */,
+          orderId: id || 'null id' /** SHOULD_NOT_BE_NULL */,
           orderProducts: selectedProducts.map(
             ({
               id: productId,
               reason: comment,
               quantitySelected: quantity,
             }) => ({
-              id: productId || 'null id' /** TODO: should be not null */,
+              id: productId || 'null id' /** SHOULD_NOT_BE_NULL */,
               quantity,
               applicationInfo: {
                 comment,

@@ -71,7 +71,7 @@ const MemberOrderApplications = React.memo(
           </h1>
           {applications.map(app => (
             <Application
-              // TODO: id should not be null
+              // SHOULD_NOT_BE_NULL
               key={app.id || 'null id'}
               data={app}
             />

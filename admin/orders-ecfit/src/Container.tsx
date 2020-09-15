@@ -172,7 +172,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
     const { variables, selectedOrders } = this.props;
     const { isEnabled } = this.state;
     const ecfitSentStatus = variables?.filter?.ecfitSentStatus;
-    // TODO: should not be null
+    // SHOULD_NOT_BE_NULL
     const selectedIds = selectedOrders.edges.map(
       ({ node: { id } }) => id || 'null-id',
     );
@@ -227,7 +227,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
       selectedOrders: currentSelectedOrders,
       fetchMore,
     } = this.props;
-    // TODO: should not be null
+    // SHOULD_NOT_BE_NULL
     const currentSelectedIds = currentSelectedOrders.edges.map(
       ({ node: { id } }) => id || 'null-id',
     );
@@ -250,7 +250,7 @@ class Container extends React.PureComponent<PropsType, StateType> {
                 ...(previousResult?.viewer.ecfitOrders?.edges || []).filter(
                   ({ node: { id } }) =>
                     !successIds.includes(
-                      id || 'null id' /** TODO: should not be null */,
+                      id || 'null id' /** SHOULD_NOT_BE_NULL */,
                     ),
                 ),
                 ...(fetchMoreResult?.viewer?.ecfitOrders?.edges || []),
@@ -602,7 +602,7 @@ export default React.memo(
             ecfitOrders={ecfitOrders}
             isEnabled={
               data?.viewer?.store?.storeEcfitSettings?.isEnabled ||
-              false /** TODO: should not be null */
+              false /** SHOULD_NOT_BE_NULL */
             }
             storePayments={storePayments}
             storeShipments={storeShipments}

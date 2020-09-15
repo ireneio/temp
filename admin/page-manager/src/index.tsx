@@ -145,7 +145,7 @@ const PageManager: NextPage = React.memo(
                     >
                       {subData.map(({ id, ...page }) => (
                         <Item
-                          key={id || 'id' /** TODO: should not be null */}
+                          key={id || 'id' /** SHOULD_NOT_BE_NULL */}
                           page={filter(itemPageFragment, {
                             ...page,
                             id,

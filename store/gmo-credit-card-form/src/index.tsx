@@ -172,7 +172,7 @@ export default React.memo(
                 exist: false,
                 cardNumberFront: null,
                 cardNumberLater: null,
-              }) /** TODO: should not be null */
+              }) /** SHOULD_NOT_BE_NULL */
             }
             isInstallment={isInstallment}
             storePaymentId={storePaymentId}

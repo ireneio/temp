@@ -260,8 +260,7 @@ class MemberOrders extends React.PureComponent<PropsType> {
           columns={this.columns({ t })}
           loading={loading}
           rowKey={
-            ({ node: { id } }) =>
-              id || 'null-id' /** TODO: should be not null */
+            ({ node: { id } }) => id || 'null-id' /** SHOULD_NOT_BE_NULL */
           }
           pagination={false}
         />
@@ -363,7 +362,7 @@ export default React.memo(() => (
 
       const { orders } = viewer;
 
-      // TODO: should not be null
+      // SHOULD_NOT_BE_NULL
       if (!orders) return <Spin indicator={<Icon type="loading" spin />} />;
 
       return (

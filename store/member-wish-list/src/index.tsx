@@ -201,7 +201,7 @@ export default React.memo(
           return <Spin indicator={<Icon type="loading" spin />} />;
 
         const { viewer } = data;
-        // TODO: should not be null id
+        // SHOULD_NOT_BE_NULL
         const id = viewer?.id || 'null id';
         const wishlist = viewer?.wishlist;
 
@@ -213,7 +213,7 @@ export default React.memo(
             wishlist={
               wishlist.filter(
                 Boolean,
-              ) as PropsType['wishlist'] /** TODO: should not be null */
+              ) as PropsType['wishlist'] /** SHOULD_NOT_BE_NULL */
             }
             refetch={refetch}
             dispatchAction={dispatchAction}

@@ -90,7 +90,7 @@ export default (
                   ...(cacheData.viewer?.files?.edges || []).filter(
                     ({ node }) =>
                       !/^data:/.test(
-                        node?.image || '' /** TODO: should not be null */,
+                        node?.image || '' /** SHOULD_NOT_BE_NULL */,
                       ),
                   ),
                 ],

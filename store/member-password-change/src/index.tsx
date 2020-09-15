@@ -71,7 +71,7 @@ class MemberPasswordChange extends React.PureComponent<PropsType> {
       t,
       form: { resetFields },
     } = this.props;
-    const status = changeUserPassword?.status; // TODO: should not be null
+    const status = changeUserPassword?.status; // SHOULD_NOT_BE_NULL
 
     if (status === 0) {
       notification.success({

@@ -65,7 +65,7 @@ class MemberRewardPoints extends React.PureComponent<PropsType> {
         dataIndex: 'points',
         render: (
           value: getUserRewardPotinsGetValidUserPointListData['points'],
-        ) => c(value || 0 /** TODO: should not be null */),
+        ) => c(value || 0 /** SHOULD_NOT_BE_NULL */),
       },
       {
         title: t('start-time'),
@@ -96,7 +96,7 @@ class MemberRewardPoints extends React.PureComponent<PropsType> {
   }: getUserRewardPotinsGetValidUserPointListData): string => {
     if (
       (endTime && moment().diff(moment.unix(endTime)) > 0) ||
-      (points || 0) /** TODO: should not be null */ <= 0
+      (points || 0) /** SHOULD_NOT_BE_NULL */ <= 0
     )
       return styles.outdate;
 
@@ -201,8 +201,7 @@ export default React.memo(() => (
         return <Spin indicator={<Icon type="loading" spin />} />;
 
       const currentBalance =
-        viewer?.rewardPoint?.currentBalance ||
-        0; /** TODO: should not be null */
+        viewer?.rewardPoint?.currentBalance || 0; /** SHOULD_NOT_BE_NULL */
 
       return (
         <EnhancedMemberRewardPoints
@@ -210,7 +209,7 @@ export default React.memo(() => (
           userPoints={
             userPoints.filter(
               Boolean,
-            ) as PropsType['userPoints'] /** TODO: should not be null */
+            ) as PropsType['userPoints'] /** SHOULD_NOT_BE_NULL */
           }
         />
       );

@@ -101,7 +101,7 @@ export default React.memo<{
           <div>
             {moment((expireDate || 0) * 1000).format(
               'YYYY / MM / DD',
-            ) /** TODO should not ne bull */}
+            ) /** SHOULD_NOT_BE_NULL */}
           </div>
         </div>
 

@@ -107,7 +107,7 @@ export default React.memo(
 
           {data.getTagList?.data?.[0]?.tags?.map(tag => (
             <div
-              key={tag || '' /** TODO should not be null */}
+              key={tag || '' /** SHOULD_NOT_BE_NULL */}
               className={`${styles.tag} ${
                 !tagList.includes(tag) ? '' : styles.selected
               }`}
@@ -181,9 +181,9 @@ export default React.memo(
               <div className={styles.body} onScroll={loadMoreImages}>
                 {data.viewer?.files?.edges.map(({ node: { id, image } }) => (
                   <Card
-                    key={id || 'id' /** TODO should not be null */}
-                    id={id || 'id' /** TODO should not be null */}
-                    image={image || '' /** TODO should not be null */}
+                    key={id || 'id' /** SHOULD_NOT_BE_NULL */}
+                    id={id || 'id' /** SHOULD_NOT_BE_NULL */}
+                    image={image || '' /** SHOULD_NOT_BE_NULL */}
                     selectedIds={selectedIds}
                     setSelectedIds={ids =>
                       setSelectedIds(multiple ? ids : ids.slice(-1))

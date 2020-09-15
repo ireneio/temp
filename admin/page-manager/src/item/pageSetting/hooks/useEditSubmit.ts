@@ -40,7 +40,7 @@ export default (
                   tabTitle,
                 }),
             ...(!['home', 'custom', 'products'].includes(
-              pageType || '' /** TODO should noe be null */,
+              pageType || '' /** SHOULD_NOT_BE_NULL */,
             )
               ? {}
               : {
