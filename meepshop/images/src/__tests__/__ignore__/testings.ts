@@ -162,4 +162,19 @@ const DashboardCost = require("next/dynamic").default(() => import("@meepshop/im
 
 export default DashboardCost;`,
   ],
+
+  // 9.
+  [
+    // input
+    `export { dashboardCost_w30_h30 as dashboardCost, dashboardCost_react as DashboardCost } from '@meepshop/images';`,
+
+    // output
+    `/*compiled by @meepshop/images*/
+import getImage from "@meepshop/images/src/getImage";
+export const DashboardCost = require("next/dynamic").default(() => import("@meepshop/images/lib/dashboardCost"));
+export const dashboardCost = getImage({
+  stage: "${stageFixed}",
+  production: "${productionFixed}"
+});`,
+  ],
 ];

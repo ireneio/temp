@@ -74,6 +74,7 @@ module.exports = declare(
         case 'stroke':
         case 'stroke-width':
         case 'mask':
+        case 'filter':
           path.remove();
           break;
 
@@ -159,12 +160,22 @@ module.exports = declare(
         }));
 
     const removeTags = path => {
-      if (
-        ['title', 'desc', 'defs', 'mask'].includes(
-          path.get('openingElement.name').node.name,
-        )
-      )
+      const componentName = path.get('openingElement.name').node.name;
+
+      if (['title', 'desc', 'defs', 'mask'].includes(componentName))
         path.remove();
+
+      if (componentName === 'rect') {
+        const isTransparentRect = path
+          .get('openingElement.attributes')
+          .some(
+            attribute =>
+              attribute.get('name').node.name === 'opacity' &&
+              attribute.get('value').node.value === '0',
+          );
+
+        if (isTransparentRect) path.remove();
+      }
     };
 
     const mergeGTag = path => {

@@ -383,6 +383,57 @@ export const ${key}_react = mockComponent;`,
         if (cache.useGetImage) replaceWithGetImage(path);
         else path.remove();
       },
+      ExportNamedDeclaration: path => {
+        if (
+          !t.isLiteral(path.get('source').node, { value: '@meepshop/images' })
+        )
+          return;
+
+        path.get('specifiers').forEach(specifier => {
+          if (!t.isExportSpecifier(specifier)) return;
+
+          const key = specifier.get('local').node.name;
+          const localKey = specifier.get('exported').node.name;
+
+          if (/_react$/.test(key)) {
+            replaceWithComponent(path, localKey, key);
+            path
+              .getNextSibling()
+              .replaceWith(
+                t.exportNamedDeclaration(path.getNextSibling().node, []),
+              );
+            return;
+          }
+
+          path.insertAfter(
+            t.exportNamedDeclaration(
+              t.variableDeclaration('const', [
+                t.variableDeclarator(
+                  t.identifier(localKey),
+                  t.stringLiteral(hash),
+                ),
+              ]),
+              [],
+            ),
+          );
+
+          const initPath = path
+            .getNextSibling()
+            .get('declaration.declarations.0.init');
+
+          if (initPath.node.value !== hash)
+            throw initPath.buildCodeFrameError(
+              `init path should be hash: ${hash}`,
+            );
+
+          replaceWithImage(initPath, key);
+        });
+
+        path.addComments('leading', [
+          { type: 'CommentBlock', value: 'compiled by @meepshop/images' },
+        ]);
+        replaceWithGetImage(path);
+      },
       Identifier: path => {
         const image = cache.images.find(
           ({ localKey }) => path.node.name === localKey,
