@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.63.1 (2020-09-22)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1172](https://github.com/meepshop/meep-lerna/pull/1172) 前端 - 移除 redux 裡面 updateUser ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1171](https://github.com/meepshop/meep-lerna/pull/1171) 前端 - 移除 redux 裡面 resetPassword ([@HsuTing](https://github.com/HsuTing))
+  - [#1168](https://github.com/meepshop/meep-lerna/pull/1168) 前端 - seo 改用 image proxy ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1165](https://github.com/meepshop/meep-lerna/pull/1165) (@meepshop/images) Remove filter attribute and support export images ([@HsuTing](https://github.com/HsuTing))
+- [#1164](https://github.com/meepshop/meep-lerna/pull/1164) (@meepshop/frontend) Rename not null comments ([@HsuTing](https://github.com/HsuTing))
+- [#1162](https://github.com/meepshop/meep-lerna/pull/1162) (@meepshop/frontend) Fix babel command ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.63.0 (2020-09-14)
 
 #### :boom: Breaking Change
