@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 
-import initApollo from '@meepshop/apollo/lib/initApollo';
 import ThankYouPageView from '@store/thank-you-page';
 
 import { Error } from 'components';
@@ -17,8 +16,6 @@ class ThankYouPage extends React.Component {
     const { isServer, XMeepshopDomain, userAgent, store } = context;
 
     if (isServer) store.dispatch(Actions.serverOthersInitial(context));
-    // FIXME: remove after checkout using apollo-client
-    else initApollo({ name: 'store' }).resetStore();
 
     return {
       userAgent,

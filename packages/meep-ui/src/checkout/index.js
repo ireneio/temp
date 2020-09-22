@@ -82,7 +82,11 @@ export default class Checkout extends React.PureComponent {
     this.isUnmounted = true;
   }
 
-  submit = createOrder => async (isPayment, info, otherDetailInfo) => {
+  submit = (createOrder, updateUser) => async (
+    isPayment,
+    info,
+    otherDetailInfo,
+  ) => {
     const {
       /** context */
       location,
@@ -90,7 +94,6 @@ export default class Checkout extends React.PureComponent {
       isLogin,
       goTo,
       login,
-      dispatchAction,
 
       /** props */
       t,
@@ -295,18 +298,20 @@ export default class Checkout extends React.PureComponent {
       const nextStep = (firstPurchase = false) => {
         if (this.isUnmounted) return;
 
-        dispatchAction('updateUser', {
-          user: {
-            name: userName,
-            additionalInfo: {
-              mobile: userMobile,
-            },
-            address: {
-              countryId: userAddressAndZipCode.address[0],
-              cityId: userAddressAndZipCode.address[1],
-              areaId: userAddressAndZipCode.address[2],
-              zipCode: userAddressAndZipCode.zipCode,
-              street: userStreet,
+        updateUser({
+          variables: {
+            input: {
+              name: userName,
+              additionalInfo: {
+                mobile: userMobile,
+              },
+              address: {
+                countryId: userAddressAndZipCode.address[0],
+                cityId: userAddressAndZipCode.address[1],
+                areaId: userAddressAndZipCode.address[2],
+                zipCode: userAddressAndZipCode.zipCode,
+                street: userStreet,
+              },
             },
           },
         });
@@ -368,15 +373,27 @@ export default class Checkout extends React.PureComponent {
 
     return (
       <CheckoutWrapper>
-        {({ shippableRecipientAddresses, createOrder }) => (
+        {({
+          name,
+          mobile,
+          address,
+          shippableRecipientAddresses,
+          createOrder,
+          updateUser,
+        }) => (
           <>
             <OrderDetail
               {...this.props}
               {...orderOtherDetailInfo}
+              user={{
+                name,
+                mobile,
+                address,
+              }}
               shippableRecipientAddresses={shippableRecipientAddresses}
               errors={errors}
               orderInfo={orderInfo}
-              submit={this.submit(createOrder)}
+              submit={this.submit(createOrder, updateUser)}
               isSubmitting={isSubmitting}
               onChange={data => {
                 this.setState(data);

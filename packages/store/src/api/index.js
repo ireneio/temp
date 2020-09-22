@@ -19,7 +19,6 @@ import serverProductInitial from './serverProductInitial.api';
 import serverProductsInitial from './serverProductsInitial.api';
 import serverOthersInitial from './serverOthersInitial.api';
 
-import updateUser from './updateUser.api';
 import updateWishList from './updateWishList.api';
 import updateStockNotificationList from './updateStockNotificationList.api';
 
@@ -36,7 +35,6 @@ export {
   updateMemberData,
   updateShopperLanguagePreference,
   resetPassword,
-  updateUser,
   updateWishList,
   updateStockNotificationList,
   changePassword,

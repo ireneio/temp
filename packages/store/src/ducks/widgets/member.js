@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { takeEvery, put, call, select } from 'redux-saga/effects';
+import { takeEvery, put, call } from 'redux-saga/effects';
 import * as Utils from 'utils';
 import { notification } from 'antd';
 
@@ -321,65 +321,6 @@ export function* watchForgetPasswordFlow() {
   yield takeEvery(FORGET_PASSWORD_REQUEST, forgetPasswordFlow);
 }
 
-/* ************************************ 更新會員資料 ************************************ */
-const UPDATE_USER_REQUEST = 'UPDATE_USER_REQUEST';
-const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
-const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
-
-export const updateUser = ({ user }) => ({
-  type: UPDATE_USER_REQUEST,
-  payload: user,
-});
-export const updateUserSuccess = payload => ({
-  type: UPDATE_USER_SUCCESS,
-  payload,
-});
-export const updateUserFailure = () => ({
-  type: UPDATE_USER_FAILURE,
-});
-
-function* updateUserFlow({ payload }) {
-  const {
-    memberReducer: { user },
-  } = yield select();
-
-  try {
-    const {
-      data: {
-        updateShopperInformation: { status },
-      },
-    } = yield call(Api.updateUser, payload);
-
-    if (status === 'OK') {
-      yield put(
-        updateUserSuccess({
-          ...user,
-          ...payload,
-          address: {
-            country: { id: payload?.address?.countryId },
-            city: { id: payload?.address?.cityId },
-            area: { id: payload?.address?.areaId },
-            street: payload?.address?.street,
-            zipCode: payload?.address?.zipCode,
-          },
-        }),
-      );
-      notification.success({ message: i18n.t('ducks:update-user-success') });
-    } else {
-      throw Error(status);
-    }
-  } catch (error) {
-    yield put(updateUserFailure());
-    notification.error({
-      message: i18n.t('ducks:update-user-failure-message'),
-      description: error.message,
-    });
-  }
-}
-export function* watchUpdateUserFlow() {
-  yield takeEvery(UPDATE_USER_REQUEST, updateUserFlow);
-}
-
 /* ************************************ 加入/移除願望清單 ************************************ */
 const UPDATE_WISHLIST_REQUEST = 'UPDATE_WISHLIST_REQUEST';
 const UPDATE_WISHLIST_SUCCESS = 'UPDATE_WISHLIST_SUCCESS';
@@ -689,29 +630,6 @@ export default (state = initialState, { type, payload }) => {
         loadingTip: '',
       };
     case FORGET_PASSWORD_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    /* 更新會員資料 */
-    case UPDATE_USER_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-        loadingTip: UPDATE_USER_REQUEST,
-      };
-    }
-    case UPDATE_USER_SUCCESS: {
-      return {
-        ...state,
-        user: getUser(payload),
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    case UPDATE_USER_FAILURE: {
       return {
         ...state,
         loading: false,

@@ -38,10 +38,16 @@ const mutation = gql`
 `;
 
 export default React.memo(({ children }: PropsType) => {
-  const [createOrderInLandingPage] = useMutation<
+  const [createOrderInLandingPage, { client }] = useMutation<
     createOrderInLandingPageType,
     createOrderInLandingPageVariables
-  >(mutation);
+  >(mutation, {
+    onCompleted: () => {
+      if (!client) return;
+
+      client.resetStore();
+    },
+  });
 
   return children({ createOrderInLandingPage });
 });

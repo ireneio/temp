@@ -20,9 +20,6 @@ import {
   forgetPassword,
   forgetPasswordSuccess,
   forgetPasswordFailure,
-  updateUser,
-  updateUserSuccess,
-  updateUserFailure,
   updateWishList,
   updateWishListSuccess,
   updateWishListFailure,
@@ -84,10 +81,6 @@ export {
   resetPassword,
   resetPasswordSuccess,
   resetPasswordFailure,
-  // user
-  updateUser,
-  updateUserSuccess,
-  updateUserFailure,
   // products
   getProduct,
   getProductSuccess,
