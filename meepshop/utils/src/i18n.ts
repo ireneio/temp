@@ -23,20 +23,23 @@ export interface I18nPropsType extends WithTranslation {
 }
 
 // definition
+export const languages: languageType[] = [
+  'zh_TW',
+  'en_US',
+  'ja_JP',
+  'vi_VN',
+  'fr_FR',
+  'es_ES',
+  'th_TH',
+  'id_ID',
+];
+
 const nextI18next = new NextI18Next({
-  defaultLanguage: 'zh_TW',
-  otherLanguages: [
-    'en_US',
-    'ja_JP',
-    'vi_VN',
-    'fr_FR',
-    'es_ES',
-    'th_TH',
-    'id_ID',
-  ],
+  defaultLanguage: languages[0],
+  otherLanguages: languages.slice(1),
   localePath: typeof window === 'undefined' ? 'src/public/locales' : 'locales',
   // we use 'null' to fall back
-  fallbackLng: 'zh_TW',
+  fallbackLng: languages[0],
   returnNull: false,
 });
 

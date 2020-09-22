@@ -56,24 +56,36 @@ module.exports = ({ config }) => {
     ...config.module.rules,
   ];
 
+  const addFragmentAlias = (key, fragment) => {
+    const moduleFragmentName = `${key}/lib/${fragment}`;
+    const moduleFragmentPath = path.resolve(
+      __dirname,
+      key.replace(/@/, '../'),
+      // TODO: remove fragment.ts when all fragments move to fragments folder
+      fragment === 'fragment'
+        ? './src/fragment.ts'
+        : './src/fragments/index.ts',
+    );
+
+    return !fs.existsSync(moduleFragmentPath)
+      ? {}
+      : {
+          [moduleFragmentName]: moduleFragmentPath,
+        };
+  };
+
   config.resolve.extensions = ['.ts', '.tsx', ...config.resolve.extensions];
   config.resolve.alias = {
     ...config.resolve.alias,
-    ...Object.keys(dependencies).reduce((result, key) => {
-      const moduleFragmentName = `${key}/lib/fragment`;
-      const moduleFragmentPath = path.resolve(
-        __dirname,
-        key.replace(/@/, '../'),
-        './src/fragment.ts',
-      );
-
-      return !fs.existsSync(moduleFragmentPath)
-        ? result
-        : {
-            ...result,
-            [moduleFragmentName]: moduleFragmentPath,
-          };
-    }, {}),
+    ...Object.keys(dependencies).reduce(
+      (result, key) => ({
+        ...result,
+        // TODO: remove fragment when all fragments move to fragments folder
+        ...addFragmentAlias(key, 'fragment'),
+        ...addFragmentAlias(key, 'fragments'),
+      }),
+      {},
+    ),
     'next/router': path.resolve(__dirname, '../__mocks__/next/router'),
     'next/link': path.resolve(__dirname, '../__mocks__/next/link'),
     'next/head': path.resolve(__dirname, '../__mocks__/next/head'),
