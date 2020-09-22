@@ -407,62 +407,6 @@ export function* watchAddToNotificationListFlow() {
   );
 }
 
-/* ************************************ 重置密碼 ************************************ */
-const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
-const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
-const RESET_PASSWORD_FAILURE = 'RESET_PASSWORD_FAILURE';
-
-export const resetPassword = payload => ({
-  type: RESET_PASSWORD_REQUEST,
-  payload,
-});
-export const resetPasswordSuccess = () => ({
-  type: RESET_PASSWORD_SUCCESS,
-});
-export const resetPasswordFailure = () => ({
-  type: RESET_PASSWORD_FAILURE,
-});
-
-function* resetPasswordFlow({ payload }) {
-  try {
-    const response = yield call(Api.resetPassword, payload);
-
-    if (response) {
-      const { data, error } = response;
-
-      if (error) throw new Error(error);
-
-      switch (data.setUserPasswordByToken.status) {
-        case 'SUCCESS':
-          yield put(resetPasswordSuccess());
-          notification.success({
-            message: i18n.t('ducks:reset-password-success'),
-          });
-          Utils.goTo({ pathname: '/login' });
-          break;
-        case 'FAIL_TOKEN_TIMEOUT':
-        case 'FAIL_TOKEN_NOT_FOUND':
-          yield put(resetPasswordFailure());
-          notification.error({
-            message: i18n.t('ducks:reset-password-token-error'),
-          });
-          break;
-        default:
-          throw new Error(data.setUserPasswordByToken.status);
-      }
-    }
-  } catch (error) {
-    yield put(resetPasswordFailure());
-    notification.error({
-      message: i18n.t('ducks:reset-password-failure-message'),
-      description: error.message,
-    });
-  }
-}
-export function* watchResetPasswordFlow() {
-  yield takeEvery(RESET_PASSWORD_REQUEST, resetPasswordFlow);
-}
-
 /**
  * @name AuthReducer
  * @description data related member
@@ -698,27 +642,6 @@ export default (state = initialState, { type, payload }) => {
       };
     }
     case ADD_STOCK_NOTIFICATION_LIST_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    case RESET_PASSWORD_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-        loadingTip: RESET_PASSWORD_REQUEST,
-      };
-    }
-    case RESET_PASSWORD_SUCCESS: {
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    case RESET_PASSWORD_FAILURE: {
       return {
         ...state,
         loading: false,

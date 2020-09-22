@@ -1,5 +1,8 @@
 {
   "password-is-required": "Por favor, ingrese contraseña.",
   "password-placeholder": null,
-  "reset-password": null
+  "reset-password": null,
+  "success": "Restablecer exitosamente",
+  "error": null,
+  "fail": "Restablecimiento de contraseña: se produjo un error"
 }

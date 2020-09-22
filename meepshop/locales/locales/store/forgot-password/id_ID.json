@@ -1,5 +1,8 @@
 {
   "password-is-required": "Silakan masukkan kata sandi.",
   "password-placeholder": null,
-  "reset-password": null
+  "reset-password": null,
+  "success": "Berhasil mengatur ulang",
+  "error": null,
+  "fail": "Reset kata sandi: Terjadi kesalahan"
 }

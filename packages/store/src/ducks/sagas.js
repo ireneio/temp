@@ -8,7 +8,6 @@ import {
   watchForgetPasswordFlow,
   watchUpdateWishListFlow,
   watchAddToNotificationListFlow,
-  watchResetPasswordFlow,
 } from './widgets/member';
 
 import { watchGetProductFlow } from './widgets/products';
@@ -36,7 +35,6 @@ function* rootSaga() {
     watchForgetPasswordFlow(),
     watchUpdateWishListFlow(),
     watchAddToNotificationListFlow(),
-    watchResetPasswordFlow(),
     watchChangePasswordFlow(),
     // server
     watchServerIndexInitialFlow(),

@@ -26,9 +26,6 @@ import {
   addToNotificationList,
   addToNotificationListSuccess,
   addToNotificationListFailure,
-  resetPassword,
-  resetPasswordSuccess,
-  resetPasswordFailure,
 } from './widgets/member';
 
 import { changePassword } from './widgets/others';
@@ -77,10 +74,6 @@ export {
   forgetPassword,
   forgetPasswordSuccess,
   forgetPasswordFailure,
-  // resetPassword
-  resetPassword,
-  resetPasswordSuccess,
-  resetPasswordFailure,
   // products
   getProduct,
   getProductSuccess,

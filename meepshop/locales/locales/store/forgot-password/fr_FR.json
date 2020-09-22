@@ -1,5 +1,8 @@
 {
   "password-is-required": "Veuillez entrer le mot de passe.",
   "password-placeholder": null,
-  "reset-password": null
+  "reset-password": null,
+  "success": "Réinitialisation réussie",
+  "error": null,
+  "fail": "Réinitialisation du mot de passe: une erreur s'est produite"
 }

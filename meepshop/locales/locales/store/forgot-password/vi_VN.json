@@ -1,5 +1,8 @@
 {
   "password-is-required": "Xin nhập mật khẩu",
   "password-placeholder": null,
-  "reset-password": null
+  "reset-password": null,
+  "success": "Hoàn tất cài đặt lại",
+  "error": null,
+  "fail": "Cài đặt lại mật khẩu : Xảy ra lỗi"
 }

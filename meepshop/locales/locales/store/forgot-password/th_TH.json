@@ -1,5 +1,8 @@
 {
   "password-is-required": "กรุณาใส่รหัสผ่าน",
   "password-placeholder": null,
-  "reset-password": null
+  "reset-password": null,
+  "success": "รีเซ็ตสำเร็จแล้ว",
+  "error": null,
+  "fail": "รีเซ็ตรหัสผ่าน: เกิดข้อผิดพลาด"
 }

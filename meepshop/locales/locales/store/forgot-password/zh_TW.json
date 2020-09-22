@@ -1,5 +1,8 @@
 {
   "password-is-required": "請輸入密碼",
   "password-placeholder": "輸入新密碼",
-  "reset-password": "確認密碼"
+  "reset-password": "確認密碼",
+  "success": "重置完成",
+  "error": "設定密碼連結已過期，為了您的帳戶安全考量，請您重新申請連結。",
+  "fail": "重置密碼：發生錯誤"
 }

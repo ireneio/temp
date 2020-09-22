@@ -1,5 +1,8 @@
 {
   "password-is-required": "パスワードを入力してください",
   "password-placeholder": null,
-  "reset-password": null
+  "reset-password": null,
+  "success": "パスワードをリセットしました",
+  "error": null,
+  "fail": "パスワードのリセット：エラーが発生しました"
 }

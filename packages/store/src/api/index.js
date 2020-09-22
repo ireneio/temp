@@ -9,7 +9,6 @@ import checkEmailExists from './checkEmailExists.api';
 import sendResetPasswordEmail from './sendResetPasswordEmail.api';
 import updateMemberData from './updateMemberData.api';
 import updateShopperLanguagePreference from './updateShopperLanguagePreference.api';
-import resetPassword from './resetPassword.api';
 import changePassword from './changePassword.api';
 
 // Server-side rendering
@@ -34,7 +33,6 @@ export {
   sendResetPasswordEmail,
   updateMemberData,
   updateShopperLanguagePreference,
-  resetPassword,
   updateWishList,
   updateStockNotificationList,
   changePassword,
