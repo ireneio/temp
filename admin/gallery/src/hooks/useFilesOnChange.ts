@@ -111,7 +111,10 @@ export default (
           createFileList: data.map(({ image }) => ({
             __typename: 'File',
             id: uuid(),
-            image,
+            scaledSrc: {
+              __typename: 'ScaledURLs',
+              w480: image,
+            },
           })),
         },
       });

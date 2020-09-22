@@ -17,10 +17,12 @@ export default (): ((id: string) => string | null | undefined) => {
         fragment: gql`
           fragment useFindImageFragment on File {
             id
-            image
+            scaledSrc {
+              w480
+            }
           }
         `,
-      })?.image,
+      })?.scaledSrc.w480,
     [client],
   );
 };

@@ -8,7 +8,7 @@ import styles from './styles/card.less';
 // typescript definition
 interface PropsType {
   id: string;
-  image: string;
+  src: string;
   selectedIds: string[];
   setSelectedIds: (selectedIds: string[]) => void;
 }
@@ -16,7 +16,7 @@ interface PropsType {
 // definition
 export default ({
   id,
-  image,
+  src,
   selectedIds,
   setSelectedIds,
 }: PropsType): React.ReactElement => {
@@ -28,18 +28,18 @@ export default ({
       className={styles.root}
       style={{
         height: `${height}px`,
-        backgroundImage: `url("${/^data:/.test(image) ? '' : '//'}${image}")`,
+        backgroundImage: `url("${src}")`,
       }}
       onClick={() =>
         setSelectedIds(
-          !selectedIds.includes(id) && !selectedIds.includes(image) // TODO: should only include id
+          !selectedIds.includes(id) && !selectedIds.includes(src) // TODO: should only include id
             ? [...selectedIds, id]
             : selectedIds.filter(existingIds => existingIds !== id),
         )
       }
     >
       {!selectedIds.includes(id) &&
-      !selectedIds.includes(image) /* TODO: should only include id */ ? null : (
+      !selectedIds.includes(src) /* TODO: should only include id */ ? null : (
         <div className={styles.selected}>
           <Icon type="check-circle" theme="filled" />
         </div>

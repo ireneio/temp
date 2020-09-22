@@ -31,7 +31,9 @@ const query = gql`
         edges {
           node {
             id
-            image
+            scaledSrc {
+              w480
+            }
           }
         }
 
@@ -52,7 +54,9 @@ export default (
       mutation uploadImages($createFileList: [NewFile]) {
         createFileList(createFileList: $createFileList) {
           id
-          image
+          scaledSrc {
+            w480
+          }
         }
       }
     `,
@@ -88,10 +92,7 @@ export default (
                     node,
                   })),
                   ...(cacheData.viewer?.files?.edges || []).filter(
-                    ({ node }) =>
-                      !/^data:/.test(
-                        node?.image || '' /** SHOULD_NOT_BE_NULL */,
-                      ),
+                    ({ node }) => !/^data:/.test(node?.scaledSrc.w480 || ''),
                   ),
                 ],
               },

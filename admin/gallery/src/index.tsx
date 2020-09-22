@@ -42,7 +42,9 @@ const query = gql`
         edges {
           node {
             id
-            image
+            scaledSrc {
+              w480
+            }
           }
         }
 
@@ -179,17 +181,19 @@ export default React.memo(
               <div className={styles.suggestion}>{t('suggestion')}</div>
 
               <div className={styles.body} onScroll={loadMoreImages}>
-                {data.viewer?.files?.edges.map(({ node: { id, image } }) => (
-                  <Card
-                    key={id || 'id' /** SHOULD_NOT_BE_NULL */}
-                    id={id || 'id' /** SHOULD_NOT_BE_NULL */}
-                    image={image || '' /** SHOULD_NOT_BE_NULL */}
-                    selectedIds={selectedIds}
-                    setSelectedIds={ids =>
-                      setSelectedIds(multiple ? ids : ids.slice(-1))
-                    }
-                  />
-                ))}
+                {data.viewer?.files?.edges.map(
+                  ({ node: { id, scaledSrc } }) => (
+                    <Card
+                      key={id || 'id' /** SHOULD_NOT_BE_NULL */}
+                      id={id || 'id' /** SHOULD_NOT_BE_NULL */}
+                      src={scaledSrc.w480}
+                      selectedIds={selectedIds}
+                      setSelectedIds={ids =>
+                        setSelectedIds(multiple ? ids : ids.slice(-1))
+                      }
+                    />
+                  ),
+                )}
               </div>
             </>
           )}

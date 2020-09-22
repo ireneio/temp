@@ -32,7 +32,7 @@ const UploadImage = React.memo(
           <div className={styles.root} onClick={() => onChange?.(null)}>
             <Icon type="close-circle" />
 
-            <img className={styles.image} src={`//${value}`} alt="previewer" />
+            <img className={styles.image} src={value} alt="previewer" />
           </div>
         )}
 
