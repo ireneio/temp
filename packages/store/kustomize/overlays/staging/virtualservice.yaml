@@ -24,6 +24,15 @@ spec:
         host: meep-nginx
         port:
           number: 8080
+  - match:
+    - queryParams:
+        resetCart:
+          regex: "^(ture|false)$"
+    route:
+    - destination:
+        host: cart-generator
+        port:
+          number: 14401
   - route:
     - destination:
         host: next-store
