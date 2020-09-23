@@ -8,3 +8,9 @@ spec:
   - admin-gateway
   hosts:
   - "*.new.meepshop.com"
+  http:
+  - route:
+    - destination:
+        host: next-store
+        port:
+          number: 14401

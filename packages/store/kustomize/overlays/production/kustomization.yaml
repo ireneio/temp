@@ -4,6 +4,6 @@ bases:
   - ../../base
 resources:
   - configmap.yaml
+  - virtualservice.yaml
 patchesStrategicMerge:
   - deployment.yaml
-  - virtualservice.yaml
