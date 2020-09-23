@@ -27,7 +27,7 @@ spec:
   - match:
     - queryParams:
         resetCart:
-          regex: "^(ture|false)$"
+          regex: "^(true|false)$"
     route:
     - destination:
         host: cart-generator
