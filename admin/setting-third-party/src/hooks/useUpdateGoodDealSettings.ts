@@ -20,6 +20,7 @@ const mutation = gql`
       setting {
         storeGoodDealSettings: gooddeal {
           ...goodDealFragment
+          status
         }
       }
     }
