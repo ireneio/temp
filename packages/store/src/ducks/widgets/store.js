@@ -30,7 +30,7 @@ export default (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_STORE_SUCCESS: {
       const { data } = payload;
-      const activities = data?.getActivityList?.data || [];
+      const activities = data?.viewer?.store?.activities || [];
       const menus = (data?.getMenuList?.data || []).map(menu =>
         Utils.setDefaultValueForMenuDesign(menu),
       );

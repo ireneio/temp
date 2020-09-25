@@ -13,10 +13,10 @@ export default async context => {
     keys: `
       $pageFilter: StorePagesFilterInput,
       $menuSearch: searchInputObjectType,
-      $activitySearch: searchInputObjectType,
       $memberGroupFilter: MemberGroupFilterInput,
       $notificationSearch: searchInputObjectType,
       $expireBy: Int!,
+      $activitiesFilter: StoreActivitiesFilterInput,
     `,
     type: 'query serverProductsInitial',
     values: {
@@ -36,36 +36,15 @@ export default async context => {
           },
         ],
       },
-      activitySearch: {
-        size: 50,
-        from: 0,
-        filter: {
-          and: [
-            {
-              type: 'exact',
-              field: 'status',
-              query: '1',
-            },
-          ],
-          not: [
-            {
-              type: 'exact',
-              field: 'plugin',
-              query: 'usePoints',
-            },
-            {
-              type: 'exact',
-              field: 'plugin',
-              query: 'sendPoints',
-            },
-          ],
-        },
-      },
       memberGroupFilter: {
         status: 'ENABLED',
       },
       notificationSearch: {},
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
+      activitiesFilter: {
+        status: 1,
+        plugin: 'groupDiscount',
+      },
     },
   };
 
@@ -81,6 +60,10 @@ export default async context => {
             }
           }
           total
+        }
+
+        activities(filter: $activitiesFilter) {
+          ${activityQuery}
         }
       }
     }
@@ -101,12 +84,6 @@ export default async context => {
             image
           }
         }
-      }
-      total
-    }
-    getActivityList(search: $activitySearch) {
-      data {
-        ${activityQuery}
       }
       total
     }
