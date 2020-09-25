@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.64.0 (2020-09-25)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1176](https://github.com/meepshop/meep-lerna/pull/1176) store setting logos use scaledSrc url ([@HsuTing](https://github.com/HsuTing))
+  - [#1179](https://github.com/meepshop/meep-lerna/pull/1179) 【功能】KooData 直播購物車 - 購物車置入商品 URL ([@HsuTing](https://github.com/HsuTing))
+  - [#1178](https://github.com/meepshop/meep-lerna/pull/1178) 【功能】KooData 直播購物車 - 購物車置入商品 URL ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1184](https://github.com/meepshop/meep-lerna/pull/1184) 【BUG】後台 - 第三方設定，GoodDeal 同步庫存開關異常 ([@HsuTing](https://github.com/HsuTing))
+  - [#1175](https://github.com/meepshop/meep-lerna/pull/1175) 【BUG】 前台 - 會員註冊頁面，越南文翻譯錯誤 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#1183](https://github.com/meepshop/meep-lerna/pull/1183) (@meepshop/store) Fix typo error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#1173](https://github.com/meepshop/meep-lerna/pull/1173) 前端 - 改使用 Store.activity/activities ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#1177](https://github.com/meepshop/meep-lerna/pull/1177) (@meepshop/frontend) Modify storybook ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.63.1 (2020-09-22)
 
 #### :boom: Breaking Change
