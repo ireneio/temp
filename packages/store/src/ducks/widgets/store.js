@@ -49,9 +49,9 @@ export default (state = initialState, { type, payload }) => {
         storeDescription: store?.description?.introduction || '',
         cname: store.cname,
         domain: store.domain,
-        faviconUrl: store?.faviconImage?.src || '',
-        logoUrl: store?.logoImage?.src || '',
-        mobileLogoUrl: store?.mobileLogoImage?.src || '',
+        faviconUrl: store?.faviconImage?.scaledSrc.w60 || '',
+        logoUrl: store?.logoImage?.scaledSrc.h200 || '',
+        mobileLogoUrl: store?.mobileLogoImage?.scaledSrc.w250 || '',
         homePageId: store.homePageId,
         localeOptions: localeOptions || ['zh_TW'], // 用於語系選單
         currencyOptions: currencyOptions || ['TWD'], // 用於幣值選單

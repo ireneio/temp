@@ -70,13 +70,22 @@ viewer {
       shopperLoginMessage
     }
     logoImage {
-      src
+      id
+      scaledSrc {
+        h200
+      }
     }
     mobileLogoImage {
-      src
+      id
+      scaledSrc {
+        w250
+      }
     }
     faviconImage {
-      src
+      id
+      scaledSrc {
+        w60
+      }
     }
     homePageId
 
