@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.64.1 (2020-09-28)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#1167](https://github.com/meepshop/meep-lerna/pull/1167) 【優化】改用新的儲存 image 欄位 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1188](https://github.com/meepshop/meep-lerna/pull/1188) 【個別店家】 IE 瀏覽器 - 前台無法顯示 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- [#1185](https://github.com/meepshop/meep-lerna/pull/1185) (@meepshop/images) Remove not used tags ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.64.0 (2020-09-25)
 
 #### :rocket: New Feature
