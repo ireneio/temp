@@ -31,9 +31,7 @@ switch (process.env.APOLLO_TYPE) {
 
 module.exports = {
   client: {
-    service: process.env.APOLLO_TAG
-      ? `meepshop-api-stage@${process.env.APOLLO_TAG}`
-      : 'meepshop-api-stage',
+    service: 'meepshop-api-stage',
     includes,
     excludes: ['**/node_modules/**'],
   },
