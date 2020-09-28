@@ -26,6 +26,7 @@ const addIEPolyfill = config => {
       'core-js/modules/es.object.assign',
       'core-js/modules/es.symbol',
       'core-js/modules/es.array.from',
+      'core-js/modules/es.array.fill',
     ].forEach(polyfill => {
       if (
         entries['main.js'] &&
