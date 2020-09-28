@@ -53,8 +53,11 @@ export default class SearchBar extends React.PureComponent {
 
     return (
       <Icon
-        font="search"
-        direction="left"
+        image={{
+          __typename: 'DefaultIcon',
+          icon: 'SEARCH',
+        }}
+        imagePosition="LEFT"
         onClick={() => this.setState({ showSearchBar: !showSearchBar })}
       >
         {!showSearchBar ? null : (

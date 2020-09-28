@@ -56,7 +56,6 @@ export default class MenuItem extends React.PureComponent {
 
     /** props */
     t: PropTypes.func.isRequired,
-    icon: PropTypes.shape({}),
     iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
     params: PropTypes.shape({
       path: PropTypes.string,
@@ -105,7 +104,6 @@ export default class MenuItem extends React.PureComponent {
 
   static defaultProps = {
     /** props */
-    icon: null,
     params: null,
 
     /** ignore */
@@ -234,7 +232,8 @@ export default class MenuItem extends React.PureComponent {
       hasStoreAppPlugin,
 
       /** props */
-      icon: propsIcon,
+      image,
+      imagePosition,
       params,
       id: itemId,
       action,
@@ -263,13 +262,14 @@ export default class MenuItem extends React.PureComponent {
       );
 
     const url = this.generateURL(action, params, isLogin);
-    const icon = !(action === 8 && isLogin !== NOTLOGIN)
-      ? propsIcon
+    const iconProps = !(action === 8 && isLogin !== NOTLOGIN)
+      ? { image, imagePosition }
       : {
-          ...propsIcon,
-          font: propsIcon?.image ? null : propsIcon?.font || 'person',
-          image: propsIcon?.font ? null : propsIcon?.image,
-          direction: !title ? 'only' : propsIcon?.direction || null,
+          image: image || {
+            __typename: 'DefaultIcon',
+            icon: 'PERSON',
+          },
+          imagePosition: !title ? 'ONLY' : imagePosition,
         };
 
     let pages = propsPages;
@@ -300,10 +300,10 @@ export default class MenuItem extends React.PureComponent {
       },
       children: (
         <Link href={url} target={newWindow ? '_blank' : '_self'}>
-          {!icon ? (
+          {!iconProps.image ? (
             title
           ) : (
-            <Icon {...icon} iconSize={iconSize}>
+            <Icon {...iconProps} iconSize={iconSize}>
               {title}
             </Icon>
           )}
