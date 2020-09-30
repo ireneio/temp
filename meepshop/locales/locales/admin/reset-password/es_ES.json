@@ -1,21 +1,21 @@
 {
-  "set-password": null,
+  "set-password": "Configurar la clave",
   "password": {
-    "placeholder": null,
-    "error": null
+    "placeholder": "Introduzca una nueva contraseña",
+    "error": "La contraseña debe tener 6 o más caracteres alfanuméricos"
   },
   "confirm-password": {
     "placeholder": "Confirmar contraseña",
-    "error": null
+    "error": "Las dos contraseñas no son iguales"
   },
   "submit-password": "Confirmar contraseña",
   "fail": {
-    "title": null,
-    "description": null
+    "title": "El enlace de configuración de contraseña ha caducado",
+    "description": "Dado que este enlace ha caducado, por el bien de la seguridad de su cuenta, vuelva a solicitar el enlace."
   },
   "success": {
     "title": "Establecer contraseña correcta",
-    "description": null
+    "description": "La nueva contraseña se estableció correctamente, puede usar esta contraseña para iniciar sesión"
   },
-  "back-to-login-page": null
+  "back-to-login-page": "Volver a la página de inicio de sesión"
 }

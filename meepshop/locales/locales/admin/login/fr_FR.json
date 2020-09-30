@@ -1,35 +1,35 @@
 {
   "email": {
     "error": "S'il vous plaît, mettez une adresse email valide.",
-    "placeholder": null
+    "placeholder": "Entrez l'e-mail d'inscription"
   },
   "password": {
-    "error": null,
-    "placeholder": null
+    "error": "Le format du mot de passe est incorrect",
+    "placeholder": "Entrer le mot de passe"
   },
   "helper": {
     "placeholder": "Assistant de connexion",
-    "is-helper": null
+    "is-helper": "Je suis une aide"
   },
   "cname": {
     "error": "Veuillez entrer cname",
-    "placeholder": null
+    "placeholder": "Entrez le nom du magasin"
   },
   "login": "S'identifier",
   "not-yet-register": "Vous n'avez pas encore de compte?",
   "get-registered": "Obtenir un magasin",
-  "back-to-login-page": null,
+  "back-to-login-page": "Retour à la page de connexion",
   "forget-password": {
     "title": "Mot de passe oublié?",
-    "description": null,
-    "submit": null,
-    "submit-countdown": null,
-    "success": null,
-    "fail": null
+    "description": "Nous enverrons une lettre de réinitialisation de mot de passe à votre adresse e-mail enregistrée",
+    "submit": "Envoyer une lettre de réinitialisation de mot de passe",
+    "submit-countdown": "Renvoyer en quelques secondes",
+    "success": "Une lettre de réinitialisation du mot de passe a été envoyée",
+    "fail": "Pas de tel compte"
   },
   "submit": {
     "success": "Connexion réussie",
-    "error": null,
+    "error": "Boîte aux lettres ou mot de passe incorrect",
     "close": {
       "title": "Fermeture de magasin",
       "content": "Pour redémarrer, veuillez contacter le service clientèle: (02) 2925-8922"

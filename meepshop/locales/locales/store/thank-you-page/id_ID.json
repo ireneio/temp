@@ -6,7 +6,7 @@
   "info": {
     "default": "Kami telah menerima pesanan Anda. Silakan periksa pesanan Anda untuk status pembayaran.",
     "atm": "Pesanan Anda telah diterima, silakan lakukan pembayaran dalam waktu singkat",
-    "cvs": null,
+    "cvs": "Pesanan Anda telah diterima, harap lakukan pembayaran di Super Business Opportunity Desk tepat waktu",
     "error": {
       "0": "Ada beberapa masalah dalam informasi, periksa apakah pesanan berhasil dibuat",
       "1": "Anda juga dapat mengklik untuk menyalin pesan kesalahan dan memberikan informasi kepada layanan pelanggan untuk menanganinya untuk Anda"
@@ -20,10 +20,10 @@
     "expire-date": "Periode pembayaran"
   },
   "cvs": {
-    "pay-code": null,
+    "pay-code": "Kode pembayaran",
     "price": "jumlah pesanan",
     "expire-date": "Periode pembayaran",
-    "description": null
+    "description": "Kode ini dapat dicetak dan dibayar di 7-11, FamilyMart, Supermarket OK, Lairfu dan peluang bisnis super lainnya"
   },
   "return": "Kembali ke beranda",
   "order": "Periksa Pesanan Saya",

@@ -1,30 +1,30 @@
 {
   "title": "Quản lý trang",
-  "search": null,
-  "page": null,
+  "search": "Trang tìm kiếm và phiên bản sản phẩm",
+  "page": "trang",
   "product-page": "Mẫu sản phẩm",
   "home-page": {
     "title": "Nhà",
     "icon-hint": "Trang chủ hiện tại"
   },
   "custom-page": {
-    "title": null
+    "title": "Phân trang"
   },
   "default-product-list-page": {
-    "title": null,
-    "hint": null,
-    "icon-hint": null
+    "title": "Trang kết quả tìm kiếm",
+    "hint": "Trang kết quả tìm kiếm là màn hình hiển thị sau khi tìm kiếm sản phẩm và trang kết quả tìm kiếm là trang cố định",
+    "icon-hint": "Phiên bản mặc định hiện tại"
   },
   "template-page": {
-    "title": null,
-    "hint": null
+    "title": "Trang nội dung sản phẩm",
+    "hint": "Trang nội dung sản phẩm là một trang chi tiết sản phẩm duy nhất và các sản phẩm mới sẽ sử dụng bố cục mặc định hiện tại"
   },
   "edit": "Chỉnh sửa",
-  "preview": null,
+  "preview": "Xem trước trang này",
   "add-new-page": {
-    "hint": null,
-    "page": null,
-    "product-page": null,
+    "hint": "Thêm trang hoặc bố cục",
+    "page": "Danh mục trang mới",
+    "product-page": "Phiên bản sản phẩm mới",
     "add": "Tạo nên",
     "cancel": "Hủy bỏ"
   },
@@ -37,11 +37,11 @@
     },
     "path": {
       "title": "Tên URL trang",
-      "placeholder": null
+      "placeholder": "Vui lòng nhập tên URL của trang"
     },
     "tabTitle": {
       "title": "Tên tab trang",
-      "placeholder": null
+      "placeholder": "Vui lòng nhập tên trang trang"
     },
     "keywords": {
       "title": "SEO từ khóa",
@@ -57,51 +57,51 @@
       "title": "SEO tấm ảnh",
       "hint": "Công cụ tìm kiếm Cài đặt chụp màn hình SEO"
     },
-    "templateType": null,
-    "use-bottom": null
+    "templateType": "Bố cục menu trang",
+    "use-bottom": "Menu chân trang"
   },
-  "notice": null,
-  "template-can-not-delete": null,
+  "notice": "Ngoại trừ menu chân trang, phần còn lại của nội dung menu sẽ được đưa vào menu điện thoại trên thiết bị di động.",
+  "template-can-not-delete": "Không thể xóa bố cục trang nội dung sản phẩm sau khi thêm",
   "page-setting": {
     "hint": "Cài đặt",
     "edit": "Đổi tên",
-    "seo": null,
+    "seo": "Đặt tên / SEO",
     "copy": "bản sao",
     "delete": "Xóa bỏ",
-    "home": null,
-    "template": null,
+    "home": "Đặt làm trang chủ hiện tại",
+    "template": "Đặt làm bố cục mặc định hiện tại",
     "save": "Tiết kiệm"
   },
   "template": {
-    "DEFAULT": null,
-    "FIXED_TOP": null,
-    "FIXED_TOP_WITH_SIDEBAR": null,
-    "TWO_TOPS": null,
-    "TWO_TOPS_WITH_SIDEBAR": null
+    "DEFAULT": "Không có menu",
+    "FIXED_TOP": "Thực đơn hấp dẫn",
+    "FIXED_TOP_WITH_SIDEBAR": "Trên cùng + menu bên",
+    "TWO_TOPS": "Menu kép trên cùng",
+    "TWO_TOPS_WITH_SIDEBAR": "Menu đôi trên cùng + bên"
   },
   "not-find": {
-    "0": null,
-    "1": null
+    "0": "Không tìm thấy với",
+    "1": "Các trang phù hợp"
   },
-  "try-another-word": null,
+  "try-another-word": "Vui lòng thử các từ khóa khác",
   "seo": {
     "back": "Trở lại",
     "select": "Lựa chọn"
   },
   "create-page": {
-    "error": null
+    "error": "Thêm không thành công"
   },
   "assign-default-home-page": {
-    "success": null,
-    "error": null
+    "success": "Đặt làm trang chủ hiện tại thành công",
+    "error": "Đặt làm trang chủ hiện tại không thành công"
   },
   "assign-default-product-template-page": {
-    "success": null,
-    "error": null
+    "success": "Đặt thành phiên bản mặc định hiện tại thành công",
+    "error": "Không đặt được bố cục mặc định hiện tại"
   },
   "delete-page": {
-    "success": null,
-    "error": null,
+    "success": "Trang đã bị xóa",
+    "error": "Xóa trang không thành công",
     "confirm": {
       "title": "Bạn có xác nhận để xóa?",
       "content": "Trang đã xóa không thể được khôi phục. Bạn có xác nhận để xóa?",
@@ -110,11 +110,11 @@
     }
   },
   "duplicate-page": {
-    "success": null,
-    "error": null
+    "success": "Đã sao chép trang",
+    "error": "Sao chép trang không thành công"
   },
   "rename-page-with-seo": {
-    "success": null,
+    "success": "hoàn thành cập nhật",
     "error": {
       "FAIL_PAGE_PATH_DUPLICATE": "Tên trang web trùng lặp",
       "default": "Cập nhật thất bại"

@@ -1,8 +1,8 @@
 {
   "password-is-required": "Please enter password.",
-  "password-placeholder": null,
-  "reset-password": null,
+  "password-placeholder": "Enter a new password",
+  "reset-password": "Confrim Password",
   "success": "Successfully reset",
-  "error": null,
+  "error": "The password setting link has expired. For the sake of your account security, please reapply for the link.",
   "fail": "Password reset: Error occurred"
 }

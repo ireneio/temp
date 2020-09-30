@@ -1,35 +1,35 @@
 {
   "email": {
     "error": "Please enter a valid email address.",
-    "placeholder": null
+    "placeholder": "Enter registration Email"
   },
   "password": {
-    "error": null,
-    "placeholder": null
+    "error": "Password format is wrong",
+    "placeholder": "enter password"
   },
   "helper": {
     "placeholder": "Login helper",
-    "is-helper": null
+    "is-helper": "I am a helper"
   },
   "cname": {
     "error": "Please enter cname",
-    "placeholder": null
+    "placeholder": "Enter store cname"
   },
   "login": "Login",
   "not-yet-register": "Don't have an account yet?",
   "get-registered": "Obtain Store",
-  "back-to-login-page": null,
+  "back-to-login-page": "Back to login page",
   "forget-password": {
     "title": "Forget password?",
-    "description": null,
-    "submit": null,
-    "submit-countdown": null,
-    "success": null,
-    "fail": null
+    "description": "We will send a password reset letter to your registered Email",
+    "submit": "Send password reset letter",
+    "submit-countdown": "Resend in seconds",
+    "success": "Password reset letter has been sent",
+    "fail": "No such account"
   },
   "submit": {
     "success": "Login Success",
-    "error": null,
+    "error": "Incorrect mailbox or password input",
     "close": {
       "title": "Store Closing",
       "content": "To restart, please contact customer service: (02) 2925-8922"

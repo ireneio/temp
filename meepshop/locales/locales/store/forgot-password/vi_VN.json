@@ -1,8 +1,8 @@
 {
   "password-is-required": "Xin nhập mật khẩu",
-  "password-placeholder": null,
-  "reset-password": null,
+  "password-placeholder": "Nhập mật khẩu mới",
+  "reset-password": "Xác nhận mật khẩu",
   "success": "Hoàn tất cài đặt lại",
-  "error": null,
+  "error": "Liên kết cài đặt mật khẩu đã hết hạn. Để bảo mật tài khoản của bạn, vui lòng đăng ký lại liên kết.",
   "fail": "Cài đặt lại mật khẩu : Xảy ra lỗi"
 }

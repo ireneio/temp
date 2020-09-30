@@ -1,6 +1,6 @@
 {
-  "view-reply": null,
-  "hide-reply": null,
+  "view-reply": "Ver respuesta",
+  "hide-reply": "Ocultar respuesta",
   "email": "Email",
   "content": "Investigación",
   "can-not-send": "Error al enviar",

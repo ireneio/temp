@@ -4,7 +4,7 @@
   "tip": "Tutorial de configuración de pantalla",
   "facebook-pixel": {
     "title": "Píxeles de Facebook",
-    "setting": null,
+    "setting": "Establecer el número de píxeles",
     "pixel-no": "Numero de Pixel:",
     "error": "El error de formato del número de píxeles de Facebook, el espacio o los símbolos no están permitidos en el medio, el frente o el reverso del número, y deben ser de 15 o 16 dígitos.",
     "dpa": "Anuncios de productos dinámicos (DPA)",
@@ -19,7 +19,7 @@
   "google-analytics": {
     "title": "Análisis del sitio web de Google Analytics",
     "description": "No olvide utilizar Google Analytics para analizar el servicio al operar un sitio web. meepShop es compatible con Google Analytics. Todo lo que tiene que hacer es seguir unos sencillos pasos para analizar y comparar de manera efectiva, ayudando al sitio web a invertir efectivamente los lugares con el mayor flujo de tráfico.",
-    "setting": null,
+    "setting": "Establecer número de seguimiento",
     "setting-placeholder": "Ingrese el número de seguimiento de GA",
     "googleAnalyticsId": "Número de pista"
   },
@@ -36,7 +36,7 @@
     "not-setting": "La configuración no se ha realizado",
     "dpa": "Anuncios de productos dinámicos (DPA)",
     "dpa-description-1": "Hora de actualización del diálogo del producto: 5:00 a.m. ~ 6:00 a.m. (GMT + 08: 00)",
-    "dpa-description-2": null,
+    "dpa-description-2": "Copie la URL del archivo dinámico y péguelo en su cuenta de Google Merchant para configurar el feed. Google lo recuperará de acuerdo con el programa establecido.",
     "copy-dpa-link": "Copiar URL dinámica",
     "copied": "Copiada al portapapeles"
   },
@@ -44,9 +44,9 @@
     "title": "Consola de búsqueda de Google",
     "webmaster": "Webmaster",
     "description": "Google Search Console lo ayuda a determinar el flujo de tráfico de búsqueda de Google y la eficiencia de su sitio web, rectificando problemas y diferenciando su sitio web entre miles de resultados de búsqueda de Google.",
-    "setting": null,
-    "setting-placeholder": null,
-    "googleSearchConsoleVerificationHtml": null
+    "setting": "Verificación de marcado HTML",
+    "setting-placeholder": "Ingrese la sintaxis del código de verificación",
+    "googleSearchConsoleVerificationHtml": "Código de verificación de etiqueta HTML:"
   },
   "google-tag-manager": {
     "title": "Herramientas de gestión de código",

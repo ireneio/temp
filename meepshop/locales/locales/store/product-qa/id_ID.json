@@ -1,6 +1,6 @@
 {
-  "view-reply": null,
-  "hide-reply": null,
+  "view-reply": "Lihat balasan",
+  "hide-reply": "Sembunyikan balasan",
   "email": "Surel",
   "content": "Penyelidikan",
   "can-not-send": "Gagal mengirim",

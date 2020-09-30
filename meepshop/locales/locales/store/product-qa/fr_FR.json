@@ -1,6 +1,6 @@
 {
-  "view-reply": null,
-  "hide-reply": null,
+  "view-reply": "Afficher la réponse",
+  "hide-reply": "Masquer la réponse",
   "email": "Email",
   "content": "Enquête",
   "can-not-send": "Échec de soumission",

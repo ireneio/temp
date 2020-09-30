@@ -1,21 +1,21 @@
 {
-  "set-password": null,
+  "set-password": "ตั้งรหัสผ่าน",
   "password": {
-    "placeholder": null,
-    "error": null
+    "placeholder": "ป้อนรหัสผ่านใหม่",
+    "error": "รหัสผ่านต้องเป็นอักขระที่เป็นตัวเลขและตัวอักษร 6 ตัวขึ้นไป"
   },
   "confirm-password": {
     "placeholder": "ยืนยันรหัสผ่าน",
-    "error": null
+    "error": "รหัสผ่านทั้งสองไม่เหมือนกัน"
   },
   "submit-password": "ยืนยันรหัสผ่าน",
   "fail": {
-    "title": null,
-    "description": null
+    "title": "ลิงก์การตั้งรหัสผ่านหมดอายุแล้ว",
+    "description": "เนื่องจากลิงก์นี้หมดอายุแล้วเพื่อความปลอดภัยของบัญชีของคุณโปรดสมัครลิงก์อีกครั้ง"
   },
   "success": {
     "title": "การตั้งค่ารหัสผ่านสำเร็จ",
-    "description": null
+    "description": "ตั้งรหัสผ่านใหม่เรียบร้อยแล้วคุณสามารถใช้รหัสผ่านนี้เพื่อเข้าสู่ระบบ"
   },
-  "back-to-login-page": null
+  "back-to-login-page": "กลับไปที่หน้าเข้าสู่ระบบ"
 }

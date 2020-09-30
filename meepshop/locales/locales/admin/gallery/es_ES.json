@@ -1,7 +1,7 @@
 {
   "tag": "Etiqueta",
   "title": "Administrador de archivos",
-  "suggestion": null,
+  "suggestion": "Tamaño de imagen sugerido: cada imagen no supera los 50 millones de píxeles, y la longitud y el ancho máximos son 5000 * 5000px",
   "no-pictures": "Actualmente sin imagen",
   "add-pictures": "Añadir nueva imagen",
   "upload": "Subir",

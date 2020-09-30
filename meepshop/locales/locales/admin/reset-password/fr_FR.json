@@ -1,21 +1,21 @@
 {
-  "set-password": null,
+  "set-password": "Définir le mot de passe",
   "password": {
-    "placeholder": null,
-    "error": null
+    "placeholder": "entrer un nouveau mot de passe",
+    "error": "Le mot de passe doit contenir au moins 6 caractères alphanumériques"
   },
   "confirm-password": {
     "placeholder": "Confirmez le mot de passe",
-    "error": null
+    "error": "Les deux mots de passe ne sont pas les mêmes"
   },
   "submit-password": "Confirmez le mot de passe",
   "fail": {
-    "title": null,
-    "description": null
+    "title": "Le lien de configuration du mot de passe a expiré",
+    "description": "Étant donné que ce lien a expiré, pour des raisons de sécurité de votre compte, veuillez faire une nouvelle demande pour le lien."
   },
   "success": {
     "title": "Définition du succès du mot de passe",
-    "description": null
+    "description": "Le nouveau mot de passe est défini avec succès, vous pouvez utiliser ce mot de passe pour vous connecter"
   },
-  "back-to-login-page": null
+  "back-to-login-page": "Retour à la page de connexion"
 }

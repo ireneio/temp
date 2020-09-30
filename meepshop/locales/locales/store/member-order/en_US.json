@@ -82,20 +82,20 @@
       },
       "logistic": {
         "status": {
-          "title": null,
-          "PROCESSING": null,
-          "WAITING_FOR_DELIVERY": null,
-          "DELIVERING": null,
-          "ALREADY_DELIVERED": null,
-          "PICKED_UP": null,
-          "RETURNING": null,
-          "RETURNED": null,
-          "CVS_CLOSED": null,
-          "PROBLEM_CASE": null,
-          "CANCELED": null,
-          "MANUAL_PROCESSING": null
+          "title": "Shipping status:",
+          "PROCESSING": "Processing",
+          "WAITING_FOR_DELIVERY": "Waiting for delivery",
+          "DELIVERING": "In delivery",
+          "ALREADY_DELIVERED": "arrived",
+          "PICKED_UP": "Picked up",
+          "RETURNING": "Returning",
+          "RETURNED": "Returned",
+          "CVS_CLOSED": "Turn off shop",
+          "PROBLEM_CASE": "Problem piece",
+          "CANCELED": "Logistics order cancellation",
+          "MANUAL_PROCESSING": "Manual processing"
         },
-        "updated-at": null
+        "updated-at": "Update time:"
       }
     },
     "invoice": {

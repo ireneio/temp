@@ -1,8 +1,8 @@
 {
   "password-is-required": "Silakan masukkan kata sandi.",
-  "password-placeholder": null,
-  "reset-password": null,
+  "password-placeholder": "Masukan kata sandi yang baru",
+  "reset-password": "konfirmasi sandi",
   "success": "Berhasil mengatur ulang",
-  "error": null,
+  "error": "Tautan pengaturan kata sandi telah kedaluwarsa. Demi keamanan akun Anda, ajukan permohonan kembali untuk tautan tersebut.",
   "fail": "Reset kata sandi: Terjadi kesalahan"
 }

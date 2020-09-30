@@ -82,20 +82,20 @@
       },
       "logistic": {
         "status": {
-          "title": null,
-          "PROCESSING": null,
-          "WAITING_FOR_DELIVERY": null,
-          "DELIVERING": null,
-          "ALREADY_DELIVERED": null,
-          "PICKED_UP": null,
-          "RETURNING": null,
-          "RETURNED": null,
-          "CVS_CLOSED": null,
-          "PROBLEM_CASE": null,
-          "CANCELED": null,
-          "MANUAL_PROCESSING": null
+          "title": "配送状況：",
+          "PROCESSING": "処理",
+          "WAITING_FOR_DELIVERY": "配達待ち",
+          "DELIVERING": "配達中",
+          "ALREADY_DELIVERED": "到着した",
+          "PICKED_UP": "拾った",
+          "RETURNING": "戻る",
+          "RETURNED": "戻ってきた",
+          "CVS_CLOSED": "ショップの電源を切る",
+          "PROBLEM_CASE": "問題点",
+          "CANCELED": "物流注文のキャンセル",
+          "MANUAL_PROCESSING": "手動処理"
         },
-        "updated-at": null
+        "updated-at": "更新時間："
       }
     },
     "invoice": {

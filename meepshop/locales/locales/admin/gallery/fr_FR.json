@@ -1,7 +1,7 @@
 {
   "tag": "Étiquette",
   "title": "Gestionnaire de fichiers",
-  "suggestion": null,
+  "suggestion": "Taille d'image suggérée: chaque image ne dépasse pas 50 millions de pixels, et la longueur et la largeur maximales sont de 5000 * 5000px",
   "no-pictures": "Pas d'image actuellement",
   "add-pictures": "Ajouter une nouvelle image",
   "upload": "Télécharger",

@@ -1,35 +1,35 @@
 {
   "email": {
     "error": "Por favor, introduce una dirección de correo electrónico válida.",
-    "placeholder": null
+    "placeholder": "Ingrese el correo electrónico de registro"
   },
   "password": {
-    "error": null,
-    "placeholder": null
+    "error": "El formato de la contraseña es incorrecto",
+    "placeholder": "introducir la contraseña"
   },
   "helper": {
     "placeholder": "Ayudante de inicio de sesión",
-    "is-helper": null
+    "is-helper": "Soy un ayudante"
   },
   "cname": {
     "error": "Por favor ingrese cname",
-    "placeholder": null
+    "placeholder": "Ingrese el cname de la tienda"
   },
   "login": "Iniciar sesión",
   "not-yet-register": "¿Aún no tienes una cuenta?",
   "get-registered": "Obtener tienda",
-  "back-to-login-page": null,
+  "back-to-login-page": "Volver a la página de inicio de sesión",
   "forget-password": {
     "title": "¿Contraseña olvidada?",
-    "description": null,
-    "submit": null,
-    "submit-countdown": null,
-    "success": null,
-    "fail": null
+    "description": "Le enviaremos una carta de restablecimiento de contraseña a su correo electrónico registrado",
+    "submit": "Enviar carta de restablecimiento de contraseña",
+    "submit-countdown": "Reenviar en segundos",
+    "success": "Se envió una carta para restablecer la contraseña",
+    "fail": "No hay tal cuenta"
   },
   "submit": {
     "success": "Acceso exitoso",
-    "error": null,
+    "error": "Entrada incorrecta de buzón o contraseña",
     "close": {
       "title": "Cierre de tienda",
       "content": "Para reiniciar, comuníquese con el servicio al cliente: (02) 2925-8922"

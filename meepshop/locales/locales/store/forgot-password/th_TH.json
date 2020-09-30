@@ -1,8 +1,8 @@
 {
   "password-is-required": "กรุณาใส่รหัสผ่าน",
-  "password-placeholder": null,
-  "reset-password": null,
+  "password-placeholder": "ป้อนรหัสผ่านใหม่",
+  "reset-password": "ยืนยันรหัสผ่าน",
   "success": "รีเซ็ตสำเร็จแล้ว",
-  "error": null,
+  "error": "ลิงก์การตั้งค่ารหัสผ่านหมดอายุแล้วเพื่อความปลอดภัยของบัญชีของคุณโปรดสมัครลิงก์อีกครั้ง",
   "fail": "รีเซ็ตรหัสผ่าน: เกิดข้อผิดพลาด"
 }

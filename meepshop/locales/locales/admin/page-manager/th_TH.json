@@ -1,30 +1,30 @@
 {
   "title": "การจัดการหน้า",
-  "search": null,
-  "page": null,
+  "search": "หน้าค้นหาและเวอร์ชันผลิตภัณฑ์",
+  "page": "หน้า",
   "product-page": "เทมเพลตผลิตภัณฑ์",
   "home-page": {
     "title": "บ้าน",
     "icon-hint": "โฮมเพจปัจจุบัน"
   },
   "custom-page": {
-    "title": null
+    "title": "เลขหน้า"
   },
   "default-product-list-page": {
-    "title": null,
-    "hint": null,
-    "icon-hint": null
+    "title": "หน้าผลการค้นหา",
+    "hint": "หน้าผลการค้นหาคือหน้าจอแสดงผลหลังจากค้นหาผลิตภัณฑ์และหน้าผลการค้นหาเป็นหน้าที่คงที่",
+    "icon-hint": "เวอร์ชันเริ่มต้นปัจจุบัน"
   },
   "template-page": {
-    "title": null,
-    "hint": null
+    "title": "หน้าเนื้อหาผลิตภัณฑ์",
+    "hint": "หน้าเนื้อหาผลิตภัณฑ์เป็นหน้ารายละเอียดผลิตภัณฑ์เดียวและผลิตภัณฑ์ใหม่จะใช้เค้าโครงเริ่มต้นปัจจุบัน"
   },
   "edit": "แก้ไข",
-  "preview": null,
+  "preview": "ดูตัวอย่างหน้านี้",
   "add-new-page": {
-    "hint": null,
-    "page": null,
-    "product-page": null,
+    "hint": "เพิ่มหน้าหรือเค้าโครง",
+    "page": "หมวดหมู่หน้าใหม่",
+    "product-page": "เวอร์ชันผลิตภัณฑ์ใหม่",
     "add": "สร้าง",
     "cancel": "ยกเลิก"
   },
@@ -37,11 +37,11 @@
     },
     "path": {
       "title": "ชื่อ URL หน้า",
-      "placeholder": null
+      "placeholder": "โปรดป้อนชื่อ URL ของเพจ"
     },
     "tabTitle": {
       "title": "ชื่อแท็บหน้า",
-      "placeholder": null
+      "placeholder": "กรุณากรอกชื่อเพจ"
     },
     "keywords": {
       "title": "SEO คำหลัก",
@@ -57,51 +57,51 @@
       "title": "SEO ภาพถ่าย",
       "hint": "การตั้งค่าการจับภาพหน้าจอของเครื่องมือค้นหา SEO"
     },
-    "templateType": null,
-    "use-bottom": null
+    "templateType": "เค้าโครงเมนูหน้า",
+    "use-bottom": "เมนูส่วนท้าย"
   },
-  "notice": null,
-  "template-can-not-delete": null,
+  "notice": "ยกเว้นเมนูส่วนท้ายเนื้อหาเมนูที่เหลือจะรวมอยู่ในเมนูโทรศัพท์บนอุปกรณ์มือถือ",
+  "template-can-not-delete": "ไม่สามารถลบเค้าโครงหน้าเนื้อหาผลิตภัณฑ์ได้หลังจากเพิ่ม",
   "page-setting": {
     "hint": "การตั้งค่า",
     "edit": "เปลี่ยนชื่อ",
-    "seo": null,
+    "seo": "การตั้งชื่อ / SEO",
     "copy": "สำเนา",
     "delete": "ลบ",
-    "home": null,
-    "template": null,
+    "home": "ตั้งเป็นหน้าแรกปัจจุบัน",
+    "template": "ตั้งเป็นเค้าโครงเริ่มต้นปัจจุบัน",
     "save": "บันทึก"
   },
   "template": {
-    "DEFAULT": null,
-    "FIXED_TOP": null,
-    "FIXED_TOP_WITH_SIDEBAR": null,
-    "TWO_TOPS": null,
-    "TWO_TOPS_WITH_SIDEBAR": null
+    "DEFAULT": "ไม่มีเมนู",
+    "FIXED_TOP": "เมนูเหนียว",
+    "FIXED_TOP_WITH_SIDEBAR": "เมนูด้านบน + ด้านข้าง",
+    "TWO_TOPS": "เมนูด้านบนแบบคู่",
+    "TWO_TOPS_WITH_SIDEBAR": "เมนูคู่ด้านบน + ด้านข้าง"
   },
   "not-find": {
-    "0": null,
-    "1": null
+    "0": "ไม่พบกับ",
+    "1": "หน้าที่ตรงกัน"
   },
-  "try-another-word": null,
+  "try-another-word": "โปรดลองใช้คำหลักอื่น ๆ",
   "seo": {
     "back": "กลับ",
     "select": "เลือก"
   },
   "create-page": {
-    "error": null
+    "error": "เพิ่มไม่สำเร็จ"
   },
   "assign-default-home-page": {
-    "success": null,
-    "error": null
+    "success": "ตั้งเป็นความสำเร็จในหน้าแรกปัจจุบัน",
+    "error": "ตั้งเป็นหน้าแรกปัจจุบันล้มเหลว"
   },
   "assign-default-product-template-page": {
-    "success": null,
-    "error": null
+    "success": "ตั้งค่าเป็นเวอร์ชันเริ่มต้นปัจจุบันสำเร็จ",
+    "error": "ไม่สามารถตั้งค่ารูปแบบเริ่มต้นปัจจุบัน"
   },
   "delete-page": {
-    "success": null,
-    "error": null,
+    "success": "ลบเพจแล้ว",
+    "error": "การลบหน้าล้มเหลว",
     "confirm": {
       "title": "คุณยืนยันที่จะลบหรือไม่",
       "content": "หน้าที่ถูกลบไม่สามารถเรียกคืนได้ คุณยืนยันที่จะลบหรือไม่",
@@ -110,11 +110,11 @@
     }
   },
   "duplicate-page": {
-    "success": null,
-    "error": null
+    "success": "คัดลอกหน้าแล้ว",
+    "error": "การคัดลอกหน้าล้มเหลว"
   },
   "rename-page-with-seo": {
-    "success": null,
+    "success": "การอัปเดตเสร็จสมบูรณ์",
     "error": {
       "FAIL_PAGE_PATH_DUPLICATE": "ชื่อเว็บไซต์ซ้ำ",
       "default": "การอัพเดทล้มเหลว"

@@ -18,11 +18,11 @@
     },
     "appId": {
       "title": "ID แอปพลิเคชัน",
-      "placeholder": null
+      "placeholder": "รหัสแอป Facebook"
     },
     "appSecret": {
       "title": "รหัสแอปพลิเคชัน",
-      "placeholder": null
+      "placeholder": "ความลับของแอพ Facebook"
     }
   },
   "ecfit": {
@@ -67,21 +67,21 @@
     }
   },
   "gaViewId": {
-    "title": null,
-    "description": null,
+    "title": "อ่านข้อมูล Google Analytics",
+    "description": "คุณต้องเพิ่มรหัสบัญชีบริการ meepShop ให้กับผู้ใช้ใน Google Analytics และเปิดใช้งานสิทธิ์ \"ดูและวิเคราะห์\" เพื่ออ่านข้อมูลตามปกติ",
     "items": {
       "0": {
-        "title": null,
-        "tooltip": null,
-        "link": null
+        "title": "รหัสบัญชีบริการ meepShop",
+        "tooltip": "เพิ่มรหัสบัญชีบริการ meepShop ให้กับผู้ใช้",
+        "link": "Google Analytics เพิ่มผู้ใช้"
       },
       "1": {
-        "title": null,
-        "tooltip": null,
-        "link": null,
-        "caution": null
+        "title": "รหัสมุมมองข้อมูล",
+        "tooltip": "วิธีตั้งค่า ID มุมมองข้อมูล",
+        "link": "มุมมองข้อมูลใหม่ของ Google Analytics",
+        "caution": "ส่วนประกอบการแปลงอัจฉริยะสามารถใช้ได้หลังจากตั้งค่า ID มุมมองข้อมูลเท่านั้นขอแนะนำว่าอย่าเปลี่ยนการตั้งค่าระหว่างช่วงการใช้งานคอมโพเนนต์เพื่อรักษาความถูกต้องของข้อมูล"
       }
     },
-    "error": null
+    "error": "รหัสมุมมองข้อมูลไม่ถูกต้อง"
   }
 }

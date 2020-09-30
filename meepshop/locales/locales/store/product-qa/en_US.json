@@ -1,6 +1,6 @@
 {
-  "view-reply": null,
-  "hide-reply": null,
+  "view-reply": "View reply",
+  "hide-reply": "Hide reply",
   "email": "Email",
   "content": "Inquiry",
   "can-not-send": "Failed to submit",

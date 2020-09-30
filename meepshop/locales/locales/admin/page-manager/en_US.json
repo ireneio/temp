@@ -1,30 +1,30 @@
 {
   "title": "Page Management",
-  "search": null,
-  "page": null,
+  "search": "Search page and product version",
+  "page": "page",
   "product-page": "Product Template",
   "home-page": {
     "title": "Home",
     "icon-hint": "Current Homepage"
   },
   "custom-page": {
-    "title": null
+    "title": "Pagination"
   },
   "default-product-list-page": {
-    "title": null,
-    "hint": null,
-    "icon-hint": null
+    "title": "Search results page",
+    "hint": "The search result page is the display screen after searching for the product and the search result page is a fixed page",
+    "icon-hint": "Current default version"
   },
   "template-page": {
-    "title": null,
-    "hint": null
+    "title": "Product content page",
+    "hint": "The product content page is a single product detail page and new products will use the current default layout"
   },
   "edit": "Edit",
-  "preview": null,
+  "preview": "Preview this page",
   "add-new-page": {
-    "hint": null,
-    "page": null,
-    "product-page": null,
+    "hint": "Add page or layout",
+    "page": "New page category",
+    "product-page": "New product version",
     "add": "Create",
     "cancel": "Cancel"
   },
@@ -37,11 +37,11 @@
     },
     "path": {
       "title": "Page URL Name",
-      "placeholder": null
+      "placeholder": "Please enter the page URL name"
     },
     "tabTitle": {
       "title": "Page Tab Name",
-      "placeholder": null
+      "placeholder": "Please enter the page page name"
     },
     "keywords": {
       "title": "SEO keywords",
@@ -57,51 +57,51 @@
       "title": "SEO Photo",
       "hint": "Search engine SEO Screen Capture Settings"
     },
-    "templateType": null,
-    "use-bottom": null
+    "templateType": "Page menu layout",
+    "use-bottom": "Footer menu"
   },
-  "notice": null,
-  "template-can-not-delete": null,
+  "notice": "Except for the footer menu, the rest of the menu content will be included in the phone menu on the mobile device.",
+  "template-can-not-delete": "Product content page layout cannot be deleted after adding",
   "page-setting": {
     "hint": "Settings",
     "edit": "Rename",
-    "seo": null,
+    "seo": "Naming/SEO",
     "copy": "Copy",
     "delete": "Delete",
-    "home": null,
-    "template": null,
+    "home": "Set as current homepage",
+    "template": "Set as current default layout",
     "save": "Save"
   },
   "template": {
-    "DEFAULT": null,
-    "FIXED_TOP": null,
-    "FIXED_TOP_WITH_SIDEBAR": null,
-    "TWO_TOPS": null,
-    "TWO_TOPS_WITH_SIDEBAR": null
+    "DEFAULT": "No menu",
+    "FIXED_TOP": "Sticky menu",
+    "FIXED_TOP_WITH_SIDEBAR": "Top + side menu",
+    "TWO_TOPS": "Dual top menu",
+    "TWO_TOPS_WITH_SIDEBAR": "Double top + side menu"
   },
   "not-find": {
-    "0": null,
-    "1": null
+    "0": "Not found with",
+    "1": "Matching pages"
   },
-  "try-another-word": null,
+  "try-another-word": "Please try other keywords",
   "seo": {
     "back": "Back",
     "select": "Select"
   },
   "create-page": {
-    "error": null
+    "error": "Add failed"
   },
   "assign-default-home-page": {
-    "success": null,
-    "error": null
+    "success": "Set as current homepage success",
+    "error": "Set as current homepage failed"
   },
   "assign-default-product-template-page": {
-    "success": null,
-    "error": null
+    "success": "Set to the current default version successfully",
+    "error": "Failed to set current default layout"
   },
   "delete-page": {
-    "success": null,
-    "error": null,
+    "success": "Page deleted",
+    "error": "Page deletion failed",
     "confirm": {
       "title": "Do you confirm to delete?",
       "content": "Deleted page cannot be restored. Do you confirm to delete?",
@@ -110,11 +110,11 @@
     }
   },
   "duplicate-page": {
-    "success": null,
-    "error": null
+    "success": "Page copied",
+    "error": "Page copy failed"
   },
   "rename-page-with-seo": {
-    "success": null,
+    "success": "update completed",
     "error": {
       "FAIL_PAGE_PATH_DUPLICATE": "Duplicated Website Name",
       "default": "Update failed"

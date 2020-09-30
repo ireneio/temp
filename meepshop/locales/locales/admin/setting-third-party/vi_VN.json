@@ -18,11 +18,11 @@
     },
     "appId": {
       "title": "ID ứng dụng",
-      "placeholder": null
+      "placeholder": "ID ứng dụng Facebook"
     },
     "appSecret": {
       "title": "Khóa ứng dụng",
-      "placeholder": null
+      "placeholder": "Bí mật ứng dụng Facebook"
     }
   },
   "ecfit": {
@@ -67,21 +67,21 @@
     }
   },
   "gaViewId": {
-    "title": null,
-    "description": null,
+    "title": "Dữ liệu Google Analytics đã đọc",
+    "description": "Bạn cần thêm ID tài khoản dịch vụ meepShop cho người dùng trong Google Analytics và bật quyền \"Xem và phân tích\" để đọc dữ liệu bình thường.",
     "items": {
       "0": {
-        "title": null,
-        "tooltip": null,
-        "link": null
+        "title": "ID tài khoản dịch vụ meepShop",
+        "tooltip": "Thêm ID tài khoản dịch vụ meepShop cho người dùng",
+        "link": "Google Analytics thêm người dùng"
       },
       "1": {
-        "title": null,
-        "tooltip": null,
-        "link": null,
-        "caution": null
+        "title": "ID chế độ xem dữ liệu",
+        "tooltip": "Cách thiết lập ID chế độ xem dữ liệu",
+        "link": "Chế độ xem dữ liệu mới của Google Analytics",
+        "caution": "Thành phần chuyển đổi thông minh chỉ có thể được sử dụng sau khi đặt ID chế độ xem dữ liệu. Bạn không nên thay đổi cài đặt trong thời gian sử dụng thành phần để duy trì độ chính xác của dữ liệu."
       }
     },
-    "error": null
+    "error": "ID chế độ xem dữ liệu không hợp lệ"
   }
 }

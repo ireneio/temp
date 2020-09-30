@@ -1,35 +1,35 @@
 {
   "email": {
     "error": "กรุณาใส่อีเมล์ที่ถูกต้อง.",
-    "placeholder": null
+    "placeholder": "กรอกอีเมลลงทะเบียน"
   },
   "password": {
-    "error": null,
-    "placeholder": null
+    "error": "รูปแบบรหัสผ่านไม่ถูกต้อง",
+    "placeholder": "ใส่รหัสผ่าน"
   },
   "helper": {
     "placeholder": "ผู้ช่วยเข้าสู่ระบบ",
-    "is-helper": null
+    "is-helper": "ฉันเป็นผู้ช่วยเหลือ"
   },
   "cname": {
     "error": "กรุณาใส่ชื่อ",
-    "placeholder": null
+    "placeholder": "ป้อนชื่อร้านค้า"
   },
   "login": "เข้าสู่ระบบ",
   "not-yet-register": "อย่ามีบัญชีหรือยัง?",
   "get-registered": "รับ Store",
-  "back-to-login-page": null,
+  "back-to-login-page": "กลับไปที่หน้าเข้าสู่ระบบ",
   "forget-password": {
     "title": "ลืมรหัสผ่าน?",
-    "description": null,
-    "submit": null,
-    "submit-countdown": null,
-    "success": null,
-    "fail": null
+    "description": "เราจะส่งจดหมายรีเซ็ตรหัสผ่านไปยังอีเมลที่คุณลงทะเบียนไว้",
+    "submit": "ส่งจดหมายรีเซ็ตรหัสผ่าน",
+    "submit-countdown": "ส่งใหม่ในไม่กี่วินาที",
+    "success": "ส่งจดหมายรีเซ็ตรหัสผ่านแล้ว",
+    "fail": "ไม่มีบัญชีดังกล่าว"
   },
   "submit": {
     "success": "เข้าสู่ระบบสำเร็จ",
-    "error": null,
+    "error": "ใส่กล่องจดหมายหรือรหัสผ่านไม่ถูกต้อง",
     "close": {
       "title": "ปิดร้านค้า",
       "content": "หากต้องการรีสตาร์ทโปรดติดต่อฝ่ายบริการลูกค้า: (02) 2925-8922"

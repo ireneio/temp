@@ -1,8 +1,8 @@
 {
   "password-is-required": "Veuillez entrer le mot de passe.",
-  "password-placeholder": null,
-  "reset-password": null,
+  "password-placeholder": "entrer un nouveau mot de passe",
+  "reset-password": "Confirmez le mot de passe",
   "success": "Réinitialisation réussie",
-  "error": null,
+  "error": "Le lien de configuration du mot de passe a expiré. Pour des raisons de sécurité de votre compte, veuillez réappliquer le lien.",
   "fail": "Réinitialisation du mot de passe: une erreur s'est produite"
 }

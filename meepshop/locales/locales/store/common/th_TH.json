@@ -1,7 +1,7 @@
 {
   "close": "ออกจากบริการ",
-  "come-back-soon": null,
-  "want-to-open-store": null,
+  "come-back-soon": "ขอขอบคุณที่มาเราจะกลับมาโดยเร็วที่สุด!",
+  "want-to-open-store": "ผมอยากเปิดร้านด้วย",
   "product-is-discontinued": "อ๊ะ! ผลิตภัณฑ์นี้ถูกยกเลิก",
   "back-to-homepage": "กลับไปที่หน้าแรก",
   "title": {

@@ -4,7 +4,7 @@
   "tip": "Tutorial Pengaturan Tampilan",
   "facebook-pixel": {
     "title": "Pixel Facebook",
-    "setting": null,
+    "setting": "Atur nomor piksel",
     "pixel-no": "Nomor Piksel:",
     "error": "Kesalahan format angka, spasi, atau simbol Facebook Pixel tidak diperbolehkan di tengah, depan atau belakang nomor, dan harus 15 digit atau 16 digit.",
     "dpa": "Iklan Produk Dinamis (DPA)",
@@ -19,7 +19,7 @@
   "google-analytics": {
     "title": "Analisis Situs Web Google Analytics",
     "description": "Jangan lupa untuk menggunakan Google Analytics untuk menganalisis layanan saat mengoperasikan situs web. meepShop mendukung Google Analytics. Yang harus Anda lakukan adalah mengikuti beberapa langkah sederhana untuk menganalisis dan membandingkan secara efektif, membantu situs web untuk berinvestasi secara efektif di tempat-tempat dengan arus lalu lintas terbanyak.",
-    "setting": null,
+    "setting": "Tetapkan nomor pelacakan",
     "setting-placeholder": "Silakan masukkan nomor pelacakan GA",
     "googleAnalyticsId": "Nomor pelacak"
   },
@@ -36,7 +36,7 @@
     "not-setting": "Pengaturan belum dibuat",
     "dpa": "Iklan Produk Dinamis (DPA)",
     "dpa-description-1": "Waktu Pembaruan Dialog Produk: 5:00 AM ~ 6:00 AM (GMT + 08:00)",
-    "dpa-description-2": null,
+    "dpa-description-2": "Salin URL file dinamis dan tempel ke akun Google Merchant Anda untuk menyiapkan feed. Google akan mengambilnya sesuai dengan jadwal yang ditetapkan.",
     "copy-dpa-link": "Salin URL Dinamis",
     "copied": "Disalin ke papan klip"
   },
@@ -44,9 +44,9 @@
     "title": "Google Search Console",
     "webmaster": "Webmaster",
     "description": "Google Search Console membantu Anda dalam menentukan aliran lalu lintas pencarian Google dan efisiensi situs web Anda, memperbaiki masalah dan membedakan situs web Anda di antara ribuan hasil pencarian Google.",
-    "setting": null,
-    "setting-placeholder": null,
-    "googleSearchConsoleVerificationHtml": null
+    "setting": "Verifikasi markup HTML",
+    "setting-placeholder": "Harap masukkan sintaks kode verifikasi",
+    "googleSearchConsoleVerificationHtml": "Kode verifikasi tag HTML:"
   },
   "google-tag-manager": {
     "title": "Alat Manajemen Kode",

@@ -6,7 +6,7 @@
   "info": {
     "default": "Đã nhận được đơn hàng của bạn，vui lòng kiểm tra đơn hàng，xác nhận kiểm tra trạng thái thanh toán của bạn",
     "atm": "Đơn hàng của bạn đã được nhận, vui lòng thanh toán trong thời gian",
-    "cvs": null,
+    "cvs": "Đơn đặt hàng của bạn đã được nhận, vui lòng thanh toán tại Quầy Cơ hội Kinh doanh Siêu trong thời gian",
     "error": {
       "0": "Có một số vấn đề trong thông tin, vui lòng kiểm tra xem đơn hàng đã được thiết lập thành công chưa",
       "1": "Bạn cũng có thể nhấp để sao chép thông báo lỗi và cung cấp thông tin cho dịch vụ khách hàng để xử lý nó cho bạn"
@@ -20,10 +20,10 @@
     "expire-date": "Thời hạn thanh toán"
   },
   "cvs": {
-    "pay-code": null,
+    "pay-code": "Mã thanh toán",
     "price": "số lượng đơn đặt hàng",
     "expire-date": "Thời hạn thanh toán",
-    "description": null
+    "description": "Mã này có thể được in và thanh toán tại 7-11, FamilyMart, Siêu thị OK, Lairfu và các cơ hội kinh doanh siêu việt khác"
   },
   "return": "Trở về trang chủ",
   "order": "Truy vấn đơn hàng",

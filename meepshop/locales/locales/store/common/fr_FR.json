@@ -1,7 +1,7 @@
 {
   "close": "Hors service",
-  "come-back-soon": null,
-  "want-to-open-store": null,
+  "come-back-soon": "Merci d'être venu, nous reviendrons dans les plus brefs délais!",
+  "want-to-open-store": "Je veux aussi ouvrir une boutique",
   "product-is-discontinued": "Oops! Ce produit a été abandonné.",
   "back-to-homepage": "Retour à la page d'accueil",
   "title": {

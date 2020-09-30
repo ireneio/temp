@@ -1,8 +1,8 @@
 {
   "password-is-required": "パスワードを入力してください",
-  "password-placeholder": null,
-  "reset-password": null,
+  "password-placeholder": "新しいパスワードを入力",
+  "reset-password": "パスワードを確認",
   "success": "パスワードをリセットしました",
-  "error": null,
+  "error": "パスワード設定リンクの有効期限が切れています。アカウントのセキュリティを確保するため、リンクを再申請してください。",
   "fail": "パスワードのリセット：エラーが発生しました"
 }

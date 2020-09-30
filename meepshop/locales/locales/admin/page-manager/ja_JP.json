@@ -1,30 +1,30 @@
 {
   "title": " ページ管理",
-  "search": null,
-  "page": null,
+  "search": "検索ページと製品バージョン",
+  "page": "ページ",
   "product-page": "製品テンプレート",
   "home-page": {
     "title": "トップページ",
     "icon-hint": "現在のホームページ"
   },
   "custom-page": {
-    "title": null
+    "title": "ページネーション"
   },
   "default-product-list-page": {
-    "title": null,
-    "hint": null,
-    "icon-hint": null
+    "title": "検索結果ページ",
+    "hint": "検索結果ページは商品検索後の表示画面、検索結果ページは固定ページ",
+    "icon-hint": "現在のデフォルトバージョン"
   },
   "template-page": {
-    "title": null,
-    "hint": null
+    "title": "商品内容ページ",
+    "hint": "製品コンテンツページは単一の製品詳細ページであり、新製品は現在のデフォルトレイアウトを使用します"
   },
   "edit": "編集",
-  "preview": null,
+  "preview": "このページをプレビュー",
   "add-new-page": {
-    "hint": null,
-    "page": null,
-    "product-page": null,
+    "hint": "ページまたはレイアウトを追加",
+    "page": "新しいページカテゴリ",
+    "product-page": "新製品バージョン",
     "add": "作成する",
     "cancel": " キャンセル"
   },
@@ -37,11 +37,11 @@
     },
     "path": {
       "title": " ページのURL名",
-      "placeholder": null
+      "placeholder": "ページのURL名を入力してください"
     },
     "tabTitle": {
       "title": " Webページのページング名",
-      "placeholder": null
+      "placeholder": "ページページ名を入力してください"
     },
     "keywords": {
       "title": "SEO キーワード",
@@ -57,51 +57,51 @@
       "title": "SEO 写真",
       "hint": "検索エンジンSEOスクリーンキャプチャ設定"
     },
-    "templateType": null,
-    "use-bottom": null
+    "templateType": "ページメニューのレイアウト",
+    "use-bottom": "フッターメニュー"
   },
-  "notice": null,
-  "template-can-not-delete": null,
+  "notice": "フッターメニューを除き、残りのメニューコンテンツはモバイルデバイスの電話メニューに含まれます。",
+  "template-can-not-delete": "追加後に製品コンテンツページレイアウトを削除することはできません",
   "page-setting": {
     "hint": "設定",
     "edit": "リネーム",
-    "seo": null,
+    "seo": "ネーミング/ SEO",
     "copy": "コピー",
     "delete": "削除する",
-    "home": null,
-    "template": null,
+    "home": "現在のホームページに設定",
+    "template": "現在のデフォルトレイアウトとして設定",
     "save": "セーブ"
   },
   "template": {
-    "DEFAULT": null,
-    "FIXED_TOP": null,
-    "FIXED_TOP_WITH_SIDEBAR": null,
-    "TWO_TOPS": null,
-    "TWO_TOPS_WITH_SIDEBAR": null
+    "DEFAULT": "メニューなし",
+    "FIXED_TOP": "付箋メニュー",
+    "FIXED_TOP_WITH_SIDEBAR": "トップ+サイドメニュー",
+    "TWO_TOPS": "デュアルトップメニュー",
+    "TWO_TOPS_WITH_SIDEBAR": "ダブルトップ+サイドメニュー"
   },
   "not-find": {
-    "0": null,
-    "1": null
+    "0": "で見つかりません",
+    "1": "一致するページ"
   },
-  "try-another-word": null,
+  "try-another-word": "他のキーワードをお試しください",
   "seo": {
     "back": " 戻る",
     "select": "選択してください"
   },
   "create-page": {
-    "error": null
+    "error": "追加できませんでした"
   },
   "assign-default-home-page": {
-    "success": null,
-    "error": null
+    "success": "現在のホームページの成功として設定",
+    "error": "現在のホームページとして設定できませんでした"
   },
   "assign-default-product-template-page": {
-    "success": null,
-    "error": null
+    "success": "現在のデフォルトバージョンに正常に設定されました",
+    "error": "現在のデフォルトのレイアウトを設定できませんでした"
   },
   "delete-page": {
-    "success": null,
-    "error": null,
+    "success": "ページを削除しました",
+    "error": "ページを削除できませんでした",
     "confirm": {
       "title": "削除することを確認しますか？",
       "content": "削除されたページは復元できません。 削除することを確認しますか？",
@@ -110,11 +110,11 @@
     }
   },
   "duplicate-page": {
-    "success": null,
-    "error": null
+    "success": "ページをコピーしました",
+    "error": "ページのコピーに失敗しました"
   },
   "rename-page-with-seo": {
-    "success": null,
+    "success": "更新が完了しました",
     "error": {
       "FAIL_PAGE_PATH_DUPLICATE": "重複したウェブサイト名",
       "default": "更新に失敗しました"

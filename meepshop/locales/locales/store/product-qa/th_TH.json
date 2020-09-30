@@ -1,6 +1,6 @@
 {
-  "view-reply": null,
-  "hide-reply": null,
+  "view-reply": "ดูการตอบกลับ",
+  "hide-reply": "ซ่อนการตอบกลับ",
   "email": "อีเมล์",
   "content": "การสอบสวน",
   "can-not-send": "ไม่สามารถส่ง",

@@ -18,11 +18,11 @@
     },
     "appId": {
       "title": "アプリケーションID",
-      "placeholder": null
+      "placeholder": "FacebookアプリID"
     },
     "appSecret": {
       "title": "アプリケーションキー",
-      "placeholder": null
+      "placeholder": "Facebookアプリシークレット"
     }
   },
   "ecfit": {
@@ -67,21 +67,21 @@
     }
   },
   "gaViewId": {
-    "title": null,
-    "description": null,
+    "title": "Googleアナリティクスデータの読み取り",
+    "description": "GoogleアナリティクスでmeepShopサービスアカウントIDをユーザーに追加し、「表示と分析」権限を有効にしてデータを正常に読み取る必要があります。",
     "items": {
       "0": {
-        "title": null,
-        "tooltip": null,
-        "link": null
+        "title": "meepShopサービスアカウントID",
+        "tooltip": "meepShopサービスアカウントIDをユーザーに追加する",
+        "link": "Google Analyticsユーザーを追加"
       },
       "1": {
-        "title": null,
-        "tooltip": null,
-        "link": null,
-        "caution": null
+        "title": "データビューID",
+        "tooltip": "データビューIDの設定方法",
+        "link": "Googleアナリティクスの新しいデータビュー",
+        "caution": "スマート変換コンポーネントは、データビューIDを設定した後にのみ使用できます。データの精度を維持するために、コンポーネントの使用期間中は設定を変更しないことをお勧めします。"
       }
     },
-    "error": null
+    "error": "無効なデータビューID"
   }
 }

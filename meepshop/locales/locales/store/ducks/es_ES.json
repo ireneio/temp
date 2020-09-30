@@ -11,7 +11,7 @@
   "signup-failure-message": "Registrarse: se produjo un error",
   "forget-password-success": "Se ha enviado el enlace para restablecer la contraseña. Por favor revise su bandeja de entrada.",
   "forget-password-failure-message": "Olvidar contraseña: se produjo un error",
-  "cannot-find-user": null,
+  "cannot-find-user": "Este buzón no está registrado",
   "add-cart-items-success": "El artículo ha sido añadido a su carrito.",
   "add-cart-items-failure-message": "Añadir al carrito: se produjo un error",
   "update-cart-items-success": "Los artículos en el carrito han sido actualizados.",
@@ -26,7 +26,7 @@
   "add-stock-notification-list-failure-message": "Notificación de disponibilidad del producto: se produjo un error",
   "get-order-failure-message": "Adquirir orden: se produjo un error",
   "reset-password-success": "Restablecer exitosamente",
-  "reset-password-token-error": null,
+  "reset-password-token-error": "El enlace de configuración de contraseña ha caducado. Por el bien de la seguridad de su cuenta, vuelva a solicitar el enlace.",
   "reset-password-failure-message": "Restablecimiento de contraseña: se produjo un error",
   "change-password-success": "Actualizado exitosamente",
   "change-password-failure-message": "Cambiar contraseña: se produjo un error"

@@ -1,30 +1,30 @@
 {
   "title": "Manajemen Halaman",
-  "search": null,
-  "page": null,
+  "search": "Halaman pencarian dan versi produk",
+  "page": "halaman",
   "product-page": "Template Produk",
   "home-page": {
     "title": "Rumah",
     "icon-hint": "Beranda saat ini"
   },
   "custom-page": {
-    "title": null
+    "title": "Penomoran halaman"
   },
   "default-product-list-page": {
-    "title": null,
-    "hint": null,
-    "icon-hint": null
+    "title": "Halaman hasil pencarian",
+    "hint": "Halaman hasil pencarian adalah tampilan layar setelah mencari produk dan halaman hasil pencarian adalah halaman tetap",
+    "icon-hint": "Versi default saat ini"
   },
   "template-page": {
-    "title": null,
-    "hint": null
+    "title": "Halaman konten produk",
+    "hint": "Halaman konten produk adalah halaman detail produk tunggal dan produk baru akan menggunakan tata letak default saat ini"
   },
   "edit": "Edit",
-  "preview": null,
+  "preview": "Pratinjau halaman ini",
   "add-new-page": {
-    "hint": null,
-    "page": null,
-    "product-page": null,
+    "hint": "Tambahkan halaman atau tata letak",
+    "page": "Kategori halaman baru",
+    "product-page": "Versi produk baru",
     "add": "Membuat",
     "cancel": "Membatalkan"
   },
@@ -37,11 +37,11 @@
     },
     "path": {
       "title": "Nama URL Halaman",
-      "placeholder": null
+      "placeholder": "Harap masukkan nama URL halaman"
     },
     "tabTitle": {
       "title": "Nama Tab Halaman",
-      "placeholder": null
+      "placeholder": "Harap masukkan nama halaman halaman"
     },
     "keywords": {
       "title": "SEO kata kunci",
@@ -57,51 +57,51 @@
       "title": "SEO Foto",
       "hint": "Mesin Pencari Pengaturan Layar SEO"
     },
-    "templateType": null,
-    "use-bottom": null
+    "templateType": "Tata letak menu halaman",
+    "use-bottom": "Menu footer"
   },
-  "notice": null,
-  "template-can-not-delete": null,
+  "notice": "Kecuali untuk menu footer, konten menu lainnya akan dimasukkan ke dalam menu telepon di perangkat seluler.",
+  "template-can-not-delete": "Tata letak halaman konten produk tidak dapat dihapus setelah ditambahkan",
   "page-setting": {
     "hint": "Pengaturan",
     "edit": "Ganti nama",
-    "seo": null,
+    "seo": "Penamaan / SEO",
     "copy": "Salinan",
     "delete": "Menghapus",
-    "home": null,
-    "template": null,
+    "home": "Tetapkan sebagai beranda saat ini",
+    "template": "Setel sebagai tata letak default saat ini",
     "save": "Menyimpan"
   },
   "template": {
-    "DEFAULT": null,
-    "FIXED_TOP": null,
-    "FIXED_TOP_WITH_SIDEBAR": null,
-    "TWO_TOPS": null,
-    "TWO_TOPS_WITH_SIDEBAR": null
+    "DEFAULT": "Tidak ada menu",
+    "FIXED_TOP": "Menu lengket",
+    "FIXED_TOP_WITH_SIDEBAR": "Menu atas + samping",
+    "TWO_TOPS": "Menu ganda atas",
+    "TWO_TOPS_WITH_SIDEBAR": "Menu sisi + atas ganda"
   },
   "not-find": {
-    "0": null,
-    "1": null
+    "0": "Tidak ditemukan dengan",
+    "1": "Halaman yang cocok"
   },
-  "try-another-word": null,
+  "try-another-word": "Silakan coba kata kunci lain",
   "seo": {
     "back": "Kembali",
     "select": "Pilih"
   },
   "create-page": {
-    "error": null
+    "error": "Penambahan gagal"
   },
   "assign-default-home-page": {
-    "success": null,
-    "error": null
+    "success": "Tetapkan sebagai beranda yang sukses saat ini",
+    "error": "Gagal disetel sebagai beranda saat ini"
   },
   "assign-default-product-template-page": {
-    "success": null,
-    "error": null
+    "success": "Berhasil menyetel ke versi default saat ini",
+    "error": "Gagal menyetel tata letak default saat ini"
   },
   "delete-page": {
-    "success": null,
-    "error": null,
+    "success": "Halaman dihapus",
+    "error": "Penghapusan halaman gagal",
     "confirm": {
       "title": "Apakah Anda mengonfirmasi untuk menghapus?",
       "content": "Halaman yang dihapus tidak dapat dipulihkan. Apakah Anda mengonfirmasi untuk menghapus?",
@@ -110,11 +110,11 @@
     }
   },
   "duplicate-page": {
-    "success": null,
-    "error": null
+    "success": "Halaman disalin",
+    "error": "Salinan halaman gagal"
   },
   "rename-page-with-seo": {
-    "success": null,
+    "success": "pembaruan selesai",
     "error": {
       "FAIL_PAGE_PATH_DUPLICATE": "Nama Situs Web Gandakan",
       "default": "Pembaharuan gagal"

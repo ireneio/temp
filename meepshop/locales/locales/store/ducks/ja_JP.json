@@ -11,7 +11,7 @@
   "signup-failure-message": "新規登録：エラーが発生しました",
   "forget-password-success": "メールボックスへ送信されました",
   "forget-password-failure-message": "パスワード忘れ：エラーが発生しました",
-  "cannot-find-user": null,
+  "cannot-find-user": "このメールボックスは登録されていません",
   "add-cart-items-success": "商品をカートに入れました",
   "add-cart-items-failure-message": "カートに入れる：エラーが発生しました",
   "update-cart-items-success": "カート内の商品数量を変更しました",
@@ -26,7 +26,7 @@
   "add-stock-notification-list-failure-message": "在庫通知の設定：エラーが発生しました",
   "get-order-failure-message": "オーダーを取る：エラーが発生しました",
   "reset-password-success": "パスワードをリセットしました",
-  "reset-password-token-error": null,
+  "reset-password-token-error": "パスワード設定リンクの有効期限が切れています。アカウントのセキュリティを確保するため、リンクを再申請してください。",
   "reset-password-failure-message": "パスワードのリセット：エラーが発生しました",
   "change-password-success": "更新しました",
   "change-password-failure-message": "エラーが発生しました"

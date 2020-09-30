@@ -1,7 +1,7 @@
 {
   "tag": "Nhãn",
   "title": "Quản lý tập tin",
-  "suggestion": null,
+  "suggestion": "Kích thước hình ảnh đề xuất: mỗi hình ảnh không vượt quá 50 triệu pixel và chiều dài và chiều rộng tối đa là 5000 * 5000px",
   "no-pictures": "Hiện tại không có hình ảnh",
   "add-pictures": "Thêm hình ảnh mới",
   "upload": "Tải lên",

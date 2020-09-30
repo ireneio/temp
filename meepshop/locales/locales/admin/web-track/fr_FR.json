@@ -4,7 +4,7 @@
   "tip": "Didacticiel sur les paramètres d'affichage",
   "facebook-pixel": {
     "title": "Pixels Facebook",
-    "setting": null,
+    "setting": "Définir le numéro de pixel",
     "pixel-no": "Nombre de pixels:",
     "error": "Les erreurs de format de numéro de pixel Facebook, les espaces et les symboles ne sont pas autorisés au centre, à l'avant ou à l'arrière du numéro et doivent comporter 15 ou 16 chiffres.",
     "dpa": "Annonces de produits dynamiques (DPA)",
@@ -19,7 +19,7 @@
   "google-analytics": {
     "title": "Analyse de site Web Google Analytics",
     "description": "N'oubliez pas d'utiliser Google Analytics pour analyser le service lorsque vous exploitez un site Web. meepShop prend en charge Google Analytics. Tout ce que vous avez à faire est de suivre quelques étapes simples pour analyser et comparer efficacement, en aidant le site Web à investir efficacement dans des lieux avec le plus de trafic possible.",
-    "setting": null,
+    "setting": "Définir le numéro de suivi",
     "setting-placeholder": "S'il vous plaît entrer le numéro de suivi GA",
     "googleAnalyticsId": "Numéro de piste"
   },
@@ -36,7 +36,7 @@
     "not-setting": "Le réglage n'a pas été fait",
     "dpa": "Annonces de produits dynamiques (DPA)",
     "dpa-description-1": "Heure de mise à jour du dialogue produit: 5 h 00 à 6 h 00 (GMT + 08: 00)",
-    "dpa-description-2": null,
+    "dpa-description-2": "Veuillez copier l'URL du fichier dynamique et la coller dans votre compte Google Merchant pour configurer le flux. Google le récupérera selon le calendrier défini.",
     "copy-dpa-link": "Copier l'URL dynamique",
     "copied": "Copié dans le presse-papier"
   },
@@ -44,9 +44,9 @@
     "title": "Console de recherche Google",
     "webmaster": "Webmaster",
     "description": "La console de recherche Google vous aide à déterminer le flux de trafic de recherche Google et l'efficacité de votre site Web, à résoudre les problèmes et à différencier votre site Web parmi des milliers de résultats de recherche Google.",
-    "setting": null,
-    "setting-placeholder": null,
-    "googleSearchConsoleVerificationHtml": null
+    "setting": "Vérification du balisage HTML",
+    "setting-placeholder": "Veuillez saisir la syntaxe du code de vérification",
+    "googleSearchConsoleVerificationHtml": "Code de vérification de la balise HTML:"
   },
   "google-tag-manager": {
     "title": "Outils de gestion de code",

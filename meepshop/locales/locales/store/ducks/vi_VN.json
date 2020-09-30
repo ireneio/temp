@@ -11,7 +11,7 @@
   "signup-failure-message": "Đăng ký : Xảy ra lỗi",
   "forget-password-success": "Đã gửi đến hộp thư",
   "forget-password-failure-message": "Quên mật khẩu : Xảy ra lỗi",
-  "cannot-find-user": null,
+  "cannot-find-user": "Hộp thư này chưa được đăng ký",
   "add-cart-items-success": "Đã được thêm vào giỏ hàng",
   "add-cart-items-failure-message": "Thêm vào giỏ hàng : Xảy ra lỗi",
   "update-cart-items-success": "Hoàn tất cập nhật giỏ hàng",
@@ -26,7 +26,7 @@
   "add-stock-notification-list-failure-message": "Thêm vào thông báo có thể đặt hàng : Xảy ra lỗi",
   "get-order-failure-message": "Nhận đơn hàng : Xảy ra lỗi",
   "reset-password-success": "Hoàn tất cài đặt lại",
-  "reset-password-token-error": null,
+  "reset-password-token-error": "Liên kết cài đặt mật khẩu đã hết hạn. Để bảo mật tài khoản của bạn, vui lòng đăng ký lại liên kết.",
   "reset-password-failure-message": "Cài đặt lại mật khẩu : Xảy ra lỗi",
   "change-password-success": "Hoàn tất",
   "change-password-failure-message": "Xảy ra lỗi"

@@ -4,7 +4,7 @@
   "tip": "表示設定チュートリアル",
   "facebook-pixel": {
     "title": " Facebook ピクセル",
-    "setting": null,
+    "setting": "ピクセル数を設定する",
     "pixel-no": "ピクセル数：",
     "error": "Facebookピクセル数形式のエラー、スペース、または記号は、番号の中央、前面、または背面に使用できません。15桁または16桁にする必要があります。",
     "dpa": "動的商品広告（DPA）",
@@ -19,7 +19,7 @@
   "google-analytics": {
     "title": "Google Analytics Webサイト分析",
     "description": "ウェブサイトを運営するときは、Googleアナリティクスを使用してサービスを分析することを忘れないでください。 meepShopはGoogle Analyticsをサポートしています。 あなたがしなければならないのは、いくつかの簡単なステップに従って効果的に分析と比較を行い、ウェブサイトが最もトラフィックの多い場所に効果的に投資するのを支援することです。",
-    "setting": null,
+    "setting": "追跡番号を設定",
     "setting-placeholder": "GA追跡番号を入力してください",
     "googleAnalyticsId": "トラック番号"
   },
@@ -36,7 +36,7 @@
     "not-setting": "設定されていません",
     "dpa": "動的商品広告（DPA）",
     "dpa-description-1": "製品ダイアログの更新時間：5:00 AM〜6:00 AM（GMT + 08：00）",
-    "dpa-description-2": null,
+    "dpa-description-2": "ダイナミックファイルのURLをコピーしてGoogle Merchantアカウントに貼り付け、フィードを設定してください。Googleは設定されたスケジュールに従ってフィードを取得します。",
     "copy-dpa-link": "動的URLをコピー",
     "copied": "クリップボードにコピーしました"
   },
@@ -44,9 +44,9 @@
     "title": "Google Search Console",
     "webmaster": " サイト管理者",
     "description": "Google Search Consoleは、Google検索のトラフィックフローとウェブサイトの効率を判断し、問題を修正し、ウェブサイトを何千ものGoogle検索結果から区別するのに役立ちます。",
-    "setting": null,
-    "setting-placeholder": null,
-    "googleSearchConsoleVerificationHtml": null
+    "setting": "HTMLマークアップ検証",
+    "setting-placeholder": "確認コードの構文を入力してください",
+    "googleSearchConsoleVerificationHtml": "HTMLタグ確認コード："
   },
   "google-tag-manager": {
     "title": "コード管理ツール",

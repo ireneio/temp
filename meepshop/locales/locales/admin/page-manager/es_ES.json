@@ -1,30 +1,30 @@
 {
   "title": "Gestión de página",
-  "search": null,
-  "page": null,
+  "search": "Página de búsqueda y versión del producto",
+  "page": "página",
   "product-page": "Plantilla de producto",
   "home-page": {
     "title": "Casa",
     "icon-hint": "Página principal actual"
   },
   "custom-page": {
-    "title": null
+    "title": "Paginación"
   },
   "default-product-list-page": {
-    "title": null,
-    "hint": null,
-    "icon-hint": null
+    "title": "Página de resultados de búsqueda",
+    "hint": "La página de resultados de búsqueda es la pantalla de visualización después de buscar el producto y la página de resultados de búsqueda es una página fija.",
+    "icon-hint": "Versión predeterminada actual"
   },
   "template-page": {
-    "title": null,
-    "hint": null
+    "title": "Página de contenido del producto",
+    "hint": "La página de contenido del producto es una página de detalles de un solo producto y los nuevos productos utilizarán el diseño predeterminado actual"
   },
   "edit": "Editar",
-  "preview": null,
+  "preview": "Vista previa de esta página",
   "add-new-page": {
-    "hint": null,
-    "page": null,
-    "product-page": null,
+    "hint": "Agregar página o diseño",
+    "page": "Nueva categoría de página",
+    "product-page": "Nueva versión del producto",
     "add": "Crear",
     "cancel": "Cancelar"
   },
@@ -37,11 +37,11 @@
     },
     "path": {
       "title": "Nombre de URL de página",
-      "placeholder": null
+      "placeholder": "Ingrese el nombre de la URL de la página"
     },
     "tabTitle": {
       "title": "Nombre de pestaña de página",
-      "placeholder": null
+      "placeholder": "Ingrese el nombre de la página"
     },
     "keywords": {
       "title": "SEO palabras clave",
@@ -57,51 +57,51 @@
       "title": "SEO Foto",
       "hint": "Configuración de captura de pantalla SEO del motor de búsqueda"
     },
-    "templateType": null,
-    "use-bottom": null
+    "templateType": "Diseño de menú de página",
+    "use-bottom": "Menú de pie de página"
   },
-  "notice": null,
-  "template-can-not-delete": null,
+  "notice": "A excepción del menú de pie de página, el resto del contenido del menú se incluirá en el menú del teléfono en el dispositivo móvil.",
+  "template-can-not-delete": "El diseño de la página de contenido del producto no se puede eliminar después de agregar",
   "page-setting": {
     "hint": "Configuraciones",
     "edit": "Rebautizar",
-    "seo": null,
+    "seo": "Naming / SEO",
     "copy": "Dupdo",
     "delete": "Borrar",
-    "home": null,
-    "template": null,
+    "home": "Establecer como página de inicio actual",
+    "template": "Establecer como diseño predeterminado actual",
     "save": "Salvar"
   },
   "template": {
-    "DEFAULT": null,
-    "FIXED_TOP": null,
-    "FIXED_TOP_WITH_SIDEBAR": null,
-    "TWO_TOPS": null,
-    "TWO_TOPS_WITH_SIDEBAR": null
+    "DEFAULT": "Sin menú",
+    "FIXED_TOP": "Menú pegajoso",
+    "FIXED_TOP_WITH_SIDEBAR": "Menú superior + lateral",
+    "TWO_TOPS": "Menú superior doble",
+    "TWO_TOPS_WITH_SIDEBAR": "Menú doble superior + lateral"
   },
   "not-find": {
-    "0": null,
-    "1": null
+    "0": "No encontrado con",
+    "1": "Páginas coincidentes"
   },
-  "try-another-word": null,
+  "try-another-word": "Pruebe con otras palabras clave",
   "seo": {
     "back": "atrás",
     "select": "Seleccionar"
   },
   "create-page": {
-    "error": null
+    "error": "Agregar falló"
   },
   "assign-default-home-page": {
-    "success": null,
-    "error": null
+    "success": "Establecer como éxito de la página de inicio actual",
+    "error": "No se pudo establecer como página de inicio actual"
   },
   "assign-default-product-template-page": {
-    "success": null,
-    "error": null
+    "success": "Establecer correctamente la versión predeterminada actual",
+    "error": "No se pudo establecer el diseño predeterminado actual"
   },
   "delete-page": {
-    "success": null,
-    "error": null,
+    "success": "Página eliminada",
+    "error": "Error al eliminar la página",
     "confirm": {
       "title": "¿Confirmas para eliminar?",
       "content": "La página eliminada no se puede restaurar. ¿Confirmas para eliminar?",
@@ -110,11 +110,11 @@
     }
   },
   "duplicate-page": {
-    "success": null,
-    "error": null
+    "success": "Página copiada",
+    "error": "Error al copiar la página"
   },
   "rename-page-with-seo": {
-    "success": null,
+    "success": "actualización completada",
     "error": {
       "FAIL_PAGE_PATH_DUPLICATE": "Nombre de sitio web duplicado",
       "default": "Actualización fallida"

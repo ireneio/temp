@@ -1,6 +1,6 @@
 {
-  "view-reply": null,
-  "hide-reply": null,
+  "view-reply": "返信を表示",
+  "hide-reply": "返信を非表示",
   "email": "メールアドレス",
   "content": "質問する",
   "can-not-send": "送信できません",

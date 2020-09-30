@@ -11,7 +11,7 @@
   "signup-failure-message": "สมัครสมาชิก: เกิดข้อผิดพลาด",
   "forget-password-success": "ส่งลิงค์รีเซ็ตรหัสผ่านแล้ว กรุณาตรวจสอบกล่องจดหมายของคุณ",
   "forget-password-failure-message": "ลืมรหัสผ่าน: เกิดข้อผิดพลาด",
-  "cannot-find-user": null,
+  "cannot-find-user": "กล่องจดหมายนี้ไม่ได้ลงทะเบียน",
   "add-cart-items-success": "เพิ่มสินค้าลงในรถเข็นของคุณแล้ว",
   "add-cart-items-failure-message": "หยิบใส่รถเข็น: เกิดข้อผิดพลาด",
   "update-cart-items-success": "อัปเดตรายการในรถเข็นแล้ว",
@@ -26,7 +26,7 @@
   "add-stock-notification-list-failure-message": "การแจ้งเตือนความพร้อมใช้งานผลิตภัณฑ์: เกิดข้อผิดพลาด",
   "get-order-failure-message": "รับคำสั่งซื้อ: เกิดข้อผิดพลาด",
   "reset-password-success": "รีเซ็ตสำเร็จแล้ว",
-  "reset-password-token-error": null,
+  "reset-password-token-error": "ลิงก์การตั้งค่ารหัสผ่านหมดอายุแล้วเพื่อความปลอดภัยของบัญชีของคุณโปรดสมัครลิงก์อีกครั้ง",
   "reset-password-failure-message": "รีเซ็ตรหัสผ่าน: เกิดข้อผิดพลาด",
   "change-password-success": "อัปเดตสำเร็จแล้ว",
   "change-password-failure-message": "เปลี่ยนรหัสผ่าน: เกิดข้อผิดพลาด"

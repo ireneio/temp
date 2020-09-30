@@ -6,7 +6,7 @@
   "info": {
     "default": "Hemos recibido tu pedido. Por favor revise su orden para el estado del pago.",
     "atm": "Su pedido ha sido recibido, realice el pago a tiempo",
-    "cvs": null,
+    "cvs": "Su pedido ha sido recibido, realice el pago en el Super Business Opportunity Desk dentro del tiempo",
     "error": {
       "0": "Hay algunos problemas en la información, verifique si el pedido se estableció correctamente",
       "1": "También puede hacer clic para copiar el mensaje de error y proporcionar la información al servicio al cliente para que lo maneje por usted"
@@ -20,10 +20,10 @@
     "expire-date": "Periodo de pago"
   },
   "cvs": {
-    "pay-code": null,
+    "pay-code": "Código de pago",
     "price": "Total de la orden",
     "expire-date": "Periodo de pago",
-    "description": null
+    "description": "Este código se puede imprimir y pagar en 7-11, FamilyMart, OK Supermarket, Lairfu y otras oportunidades de súper negocios"
   },
   "return": "Volver a la página de inicio",
   "order": "Verifica mi pedido",

@@ -4,7 +4,7 @@
   "tip": "Display Setting Tutorial",
   "facebook-pixel": {
     "title": "Facebook Pixels",
-    "setting": null,
+    "setting": "Set the pixel number",
     "pixel-no": "Pixel Number:",
     "error": "Facebook Pixel number format error, space or symbols are not allowed in the middle, front or back of the number, and must be 15-digit or 16-digit.",
     "dpa": "Dynamic Product Ads (DPA)",
@@ -19,7 +19,7 @@
   "google-analytics": {
     "title": "Google Analytics Website Analysis",
     "description": "Don't forget to use Google Analytics to analyze service when operating a website. meepShop supports Google Analytics. All you have to do is follow a few simple steps to analyze and compare effectively, assisting the website to effectively invest places with the most traffic flow.",
-    "setting": null,
+    "setting": "Set tracking number",
     "setting-placeholder": "Please enter GA tracking number",
     "googleAnalyticsId": "Track Number"
   },
@@ -36,7 +36,7 @@
     "not-setting": "Setting has not been made",
     "dpa": "Dynamic Product Ads (DPA)",
     "dpa-description-1": "Product Dialogue Update Time: 5:00 AM ~ 6:00 AM (GMT+08:00)",
-    "dpa-description-2": null,
+    "dpa-description-2": "Please copy the URL of the dynamic file and paste it into your Google Merchant account to set up the feed. Google will retrieve it according to the set schedule.",
     "copy-dpa-link": "Copy Dynamic URL",
     "copied": "Copied to clipboard"
   },
@@ -44,9 +44,9 @@
     "title": "Google Search Console",
     "webmaster": "Webmaster",
     "description": "Google Search Console assists you in determining the Google search traffic flow and efficiency of your website, rectifying problems and differentiate your website among thousands of Google search results.",
-    "setting": null,
-    "setting-placeholder": null,
-    "googleSearchConsoleVerificationHtml": null
+    "setting": "HTML markup verification",
+    "setting-placeholder": "Please enter the verification code syntax",
+    "googleSearchConsoleVerificationHtml": "HTML tag verification code:"
   },
   "google-tag-manager": {
     "title": "Code Management Tools",

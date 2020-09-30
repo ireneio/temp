@@ -1,6 +1,6 @@
 {
-  "view-reply": null,
-  "hide-reply": null,
+  "view-reply": "Xem câu trả lời",
+  "hide-reply": "Ẩn câu trả lời",
   "email": "Email",
   "content": "Tôi muốn hỏi",
   "can-not-send": "Không thể gửi",

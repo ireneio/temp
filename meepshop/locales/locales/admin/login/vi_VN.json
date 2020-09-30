@@ -1,35 +1,35 @@
 {
   "email": {
     "error": "Email chưa đúng",
-    "placeholder": null
+    "placeholder": "Nhập Email đăng ký"
   },
   "password": {
-    "error": null,
-    "placeholder": null
+    "error": "Định dạng mật khẩu sai",
+    "placeholder": "nhập mật khẩu"
   },
   "helper": {
     "placeholder": "Đăng nhập trợ giúp",
-    "is-helper": null
+    "is-helper": "Tôi là người trợ giúp"
   },
   "cname": {
     "error": "Vui lòng nhập tên",
-    "placeholder": null
+    "placeholder": "Nhập tên cửa hàng"
   },
   "login": "Đăng nhập",
   "not-yet-register": "Vẫn chưa có tài khoản?",
   "get-registered": "Lấy cửa hàng",
-  "back-to-login-page": null,
+  "back-to-login-page": "Quay lại trang đăng nhập",
   "forget-password": {
     "title": "Quên mật khẩu",
-    "description": null,
-    "submit": null,
-    "submit-countdown": null,
-    "success": null,
-    "fail": null
+    "description": "Chúng tôi sẽ gửi thư đặt lại mật khẩu đến Email đã đăng ký của bạn",
+    "submit": "Gửi thư đặt lại mật khẩu",
+    "submit-countdown": "Gửi lại sau vài giây",
+    "success": "Thư đặt lại mật khẩu đã được gửi đi",
+    "fail": "Không có tài khoản như vậy"
   },
   "submit": {
     "success": "Đăng nhập thành công",
-    "error": null,
+    "error": "Hộp thư hoặc mật khẩu nhập không chính xác",
     "close": {
       "title": "Đóng cửa hàng",
       "content": "Để khởi động lại, vui lòng liên hệ với dịch vụ khách hàng: (02) 2925-8922"

@@ -11,7 +11,7 @@
   "signup-failure-message": "Sign up: Error occurred",
   "forget-password-success": "Reset password link has been sent. Please check your inbox.",
   "forget-password-failure-message": "Forget Password: Error occurred",
-  "cannot-find-user": null,
+  "cannot-find-user": "This mailbox is not registered",
   "add-cart-items-success": "The item has been added to your cart.",
   "add-cart-items-failure-message": "Add to cart: Error occurred",
   "update-cart-items-success": "The items in cart have been updated.",
@@ -26,7 +26,7 @@
   "add-stock-notification-list-failure-message": "Product availability notification: Error occurred",
   "get-order-failure-message": "Acquire order: Error occurred",
   "reset-password-success": "Successfully reset",
-  "reset-password-token-error": null,
+  "reset-password-token-error": "The password setting link has expired. For the sake of your account security, please reapply for the link.",
   "reset-password-failure-message": "Password reset: Error occurred",
   "change-password-success": "Successfully updated",
   "change-password-failure-message": "Change Password: Error occurred"

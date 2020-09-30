@@ -1,21 +1,21 @@
 {
-  "set-password": null,
+  "set-password": "Đặt mật khẩu",
   "password": {
-    "placeholder": null,
-    "error": null
+    "placeholder": "Nhập mật khẩu mới",
+    "error": "Mật khẩu phải có 6 ký tự chữ và số trở lên"
   },
   "confirm-password": {
     "placeholder": "Xác nhận mật khẩu",
-    "error": null
+    "error": "Hai mật khẩu không giống nhau"
   },
   "submit-password": "Xác nhận mật khẩu",
   "fail": {
-    "title": null,
-    "description": null
+    "title": "Liên kết cài đặt mật khẩu đã hết hạn",
+    "description": "Vì liên kết này đã hết hạn, vì lợi ích bảo mật tài khoản của bạn, vui lòng đăng ký lại liên kết."
   },
   "success": {
     "title": "Đặt mật khẩu thành công",
-    "description": null
+    "description": "Mật khẩu mới được đặt thành công, bạn có thể sử dụng mật khẩu này để đăng nhập"
   },
-  "back-to-login-page": null
+  "back-to-login-page": "Quay lại trang đăng nhập"
 }

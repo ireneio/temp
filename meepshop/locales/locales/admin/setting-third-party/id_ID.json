@@ -18,11 +18,11 @@
     },
     "appId": {
       "title": "ID Aplikasi",
-      "placeholder": null
+      "placeholder": "ID Aplikasi Facebook"
     },
     "appSecret": {
       "title": "Kunci aplikasi",
-      "placeholder": null
+      "placeholder": "Rahasia Aplikasi Facebook"
     }
   },
   "ecfit": {
@@ -67,21 +67,21 @@
     }
   },
   "gaViewId": {
-    "title": null,
-    "description": null,
+    "title": "Pembacaan data Google Analytics",
+    "description": "Anda perlu menambahkan ID akun layanan meepShop untuk pengguna di Google Analytics dan mengaktifkan izin \"Lihat dan Analisis\" untuk membaca data seperti biasa.",
     "items": {
       "0": {
-        "title": null,
-        "tooltip": null,
-        "link": null
+        "title": "ID akun layanan meepShop",
+        "tooltip": "Tambahkan ID akun layanan meepShop ke pengguna",
+        "link": "Google Analytics menambahkan pengguna"
       },
       "1": {
-        "title": null,
-        "tooltip": null,
-        "link": null,
-        "caution": null
+        "title": "ID tampilan data",
+        "tooltip": "Cara menyiapkan ID tampilan data",
+        "link": "Tampilan data baru Google Analytics",
+        "caution": "Komponen konversi pintar hanya dapat digunakan setelah mengatur ID tampilan data. Disarankan untuk tidak mengubah pengaturan selama periode penggunaan komponen untuk menjaga akurasi data."
       }
     },
-    "error": null
+    "error": "ID tampilan data tidak valid"
   }
 }

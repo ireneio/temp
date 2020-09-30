@@ -11,7 +11,7 @@
   "signup-failure-message": "Daftar: Terjadi kesalahan",
   "forget-password-success": "Tautan ulang kata sandi telah dikirim. Silakan periksa kotak masuk Anda.",
   "forget-password-failure-message": "Lupa Kata Sandi: Terjadi kesalahan",
-  "cannot-find-user": null,
+  "cannot-find-user": "Kotak surat ini tidak terdaftar",
   "add-cart-items-success": "Item telah ditambahkan ke troli Anda.",
   "add-cart-items-failure-message": "Tambahkan ke troli: Terjadi kesalahan",
   "update-cart-items-success": "Item dalam keranjang telah diperbarui.",
@@ -26,7 +26,7 @@
   "add-stock-notification-list-failure-message": "Pemberitahuan ketersediaan produk: Terjadi kesalahan",
   "get-order-failure-message": "Menerima pesanan: Terjadi kesalahan",
   "reset-password-success": "Berhasil mengatur ulang",
-  "reset-password-token-error": null,
+  "reset-password-token-error": "Tautan pengaturan kata sandi telah kedaluwarsa. Demi keamanan akun Anda, ajukan permohonan kembali untuk tautan tersebut.",
   "reset-password-failure-message": "Reset kata sandi: Terjadi kesalahan",
   "change-password-success": "Berhasil diperbaharui",
   "change-password-failure-message": "Ubah Kata Sandi: Terjadi kesalahan"

@@ -6,7 +6,7 @@
   "info": {
     "default": "We have received your order. Please check your order for payment status.",
     "atm": "Your order has been received, please make payment within time",
-    "cvs": null,
+    "cvs": "Your order has been received, please make payment at the Super Business Opportunity Desk within time",
     "error": {
       "0": "There are some problems in the information, please check whether the order was successfully established",
       "1": "You can also click to copy the error message and provide the information to the customer service to handle it for you"
@@ -20,10 +20,10 @@
     "expire-date": "Payment period"
   },
   "cvs": {
-    "pay-code": null,
+    "pay-code": "Payment code",
     "price": "order amount",
     "expire-date": "Payment period",
-    "description": null
+    "description": "This code can be printed and paid at 7-11, FamilyMart, OK Supermarket, Lairfu and other super business opportunities"
   },
   "return": "Back to the homepage",
   "order": "Check My Order",

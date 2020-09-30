@@ -18,11 +18,11 @@
     },
     "appId": {
       "title": "Application ID",
-      "placeholder": null
+      "placeholder": "Facebook App ID"
     },
     "appSecret": {
       "title": "Application key",
-      "placeholder": null
+      "placeholder": "Facebook App Secret"
     }
   },
   "ecfit": {
@@ -67,21 +67,21 @@
     }
   },
   "gaViewId": {
-    "title": null,
-    "description": null,
+    "title": "Google Analytics data read",
+    "description": "You need to add the meepShop service account ID to the user in Google Analytics and enable the \"View and Analysis\" permission to read the data normally.",
     "items": {
       "0": {
-        "title": null,
-        "tooltip": null,
-        "link": null
+        "title": "meepShop service account ID",
+        "tooltip": "Add meepShop service account ID to user",
+        "link": "Google Analytics add user"
       },
       "1": {
-        "title": null,
-        "tooltip": null,
-        "link": null,
-        "caution": null
+        "title": "Data view ID",
+        "tooltip": "How to set up data view ID",
+        "link": "Google Analytics new data view",
+        "caution": "The smart conversion component can only be used after setting the data view ID. It is recommended not to change the settings during the component usage period to maintain data accuracy."
       }
     },
-    "error": null
+    "error": "Invalid data view ID"
   }
 }

@@ -1,35 +1,35 @@
 {
   "email": {
     "error": "Silakan isi alamat email.",
-    "placeholder": null
+    "placeholder": "Masukkan Email pendaftaran"
   },
   "password": {
-    "error": null,
-    "placeholder": null
+    "error": "Format kata sandi salah",
+    "placeholder": "Masukkan kata kunci"
   },
   "helper": {
     "placeholder": "Pembantu login",
-    "is-helper": null
+    "is-helper": "Saya seorang penolong"
   },
   "cname": {
     "error": "Silakan masukkan cname",
-    "placeholder": null
+    "placeholder": "Masukkan nama toko"
   },
   "login": "Gabung",
   "not-yet-register": "Belum punya akun?",
   "get-registered": "Dapatkan Toko",
-  "back-to-login-page": null,
+  "back-to-login-page": "Kembali ke halaman login",
   "forget-password": {
     "title": "Lupa Password?",
-    "description": null,
-    "submit": null,
-    "submit-countdown": null,
-    "success": null,
-    "fail": null
+    "description": "Kami akan mengirimkan surat pengaturan ulang kata sandi ke Email Anda yang terdaftar",
+    "submit": "Kirim surat pengaturan ulang kata sandi",
+    "submit-countdown": "Kirim ulang dalam hitungan detik",
+    "success": "Surat pengaturan ulang kata sandi telah dikirim",
+    "fail": "Tidak ada akun seperti itu"
   },
   "submit": {
     "success": "Sukses Masuk",
-    "error": null,
+    "error": "Kotak surat atau masukan kata sandi salah",
     "close": {
       "title": "Penutupan Toko",
       "content": "Untuk memulai kembali, silakan hubungi layanan pelanggan: (02) 2925-8922"

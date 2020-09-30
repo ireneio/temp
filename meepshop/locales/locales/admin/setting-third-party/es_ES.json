@@ -18,11 +18,11 @@
     },
     "appId": {
       "title": "ID de aplicación",
-      "placeholder": null
+      "placeholder": "ID de aplicación de Facebook"
     },
     "appSecret": {
       "title": "Clave de aplicación",
-      "placeholder": null
+      "placeholder": "Secreto de la aplicación de Facebook"
     }
   },
   "ecfit": {
@@ -67,21 +67,21 @@
     }
   },
   "gaViewId": {
-    "title": null,
-    "description": null,
+    "title": "Lectura de datos de Google Analytics",
+    "description": "Debe agregar el ID de la cuenta de servicio meepShop al usuario en Google Analytics y habilitar el permiso \"Ver y análisis\" para leer los datos normalmente.",
     "items": {
       "0": {
-        "title": null,
-        "tooltip": null,
-        "link": null
+        "title": "ID de cuenta de servicio meepShop",
+        "tooltip": "Agregar ID de cuenta de servicio meepShop al usuario",
+        "link": "Google Analytics agregar usuario"
       },
       "1": {
-        "title": null,
-        "tooltip": null,
-        "link": null,
-        "caution": null
+        "title": "ID de vista de datos",
+        "tooltip": "Cómo configurar el ID de vista de datos",
+        "link": "Nueva vista de datos de Google Analytics",
+        "caution": "El componente de conversión inteligente solo se puede usar después de configurar el ID de vista de datos. Se recomienda no cambiar la configuración durante el período de uso del componente para mantener la precisión de los datos."
       }
     },
-    "error": null
+    "error": "ID de vista de datos no válido"
   }
 }

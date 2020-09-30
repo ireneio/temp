@@ -4,7 +4,7 @@
   "tip": "แสดงการสอนการตั้งค่า",
   "facebook-pixel": {
     "title": "พิกเซล Facebook",
-    "setting": null,
+    "setting": "กำหนดจำนวนพิกเซล",
     "pixel-no": "จำนวนพิกเซล:",
     "error": "ข้อผิดพลาดของรูปแบบตัวเลขพิกเซล Facebook, พื้นที่หรือสัญลักษณ์ไม่ได้รับอนุญาตอยู่ตรงกลางด้านหน้าหรือด้านหลังของตัวเลขและต้องเป็น 15 หลักหรือ 16 หลัก",
     "dpa": "โฆษณาผลิตภัณฑ์แบบไดนามิก (DPA)",
@@ -19,7 +19,7 @@
   "google-analytics": {
     "title": "การวิเคราะห์เว็บไซต์ Google Analytics",
     "description": "อย่าลืมใช้ Google Analytics เพื่อวิเคราะห์บริการเมื่อใช้งานเว็บไซต์ meepShop รองรับ Google Analytics สิ่งที่คุณต้องทำคือทำตามขั้นตอนง่าย ๆ ในการวิเคราะห์และเปรียบเทียบอย่างมีประสิทธิภาพช่วยเว็บไซต์ในการลงทุนในสถานที่ที่มีการไหลของข้อมูลมากที่สุด",
-    "setting": null,
+    "setting": "ตั้งค่าหมายเลขติดตาม",
     "setting-placeholder": "โปรดป้อนหมายเลขติดตาม GA",
     "googleAnalyticsId": "หมายเลขแทร็ก"
   },
@@ -36,7 +36,7 @@
     "not-setting": "ยังไม่ได้ทำการตั้งค่า",
     "dpa": "โฆษณาผลิตภัณฑ์แบบไดนามิก (DPA)",
     "dpa-description-1": "เวลาอัปเดตการเจรจาผลิตภัณฑ์: 5:00 น. ~ 6:00 น. (GMT + 08: 00)",
-    "dpa-description-2": null,
+    "dpa-description-2": "โปรดคัดลอก URL ของไฟล์ไดนามิกและวางลงในบัญชี Google Merchant ของคุณเพื่อกำหนดค่าฟีด Google จะเรียกคืนตามกำหนดเวลาที่ตั้งไว้",
     "copy-dpa-link": "คัดลอก URL แบบไดนามิก",
     "copied": "คัดลอกไปที่คลิปบอร์ดแล้ว"
   },
@@ -44,9 +44,9 @@
     "title": "Google Search Console",
     "webmaster": "ผู้ดูแลเว็บ",
     "description": "Google Search Console ช่วยคุณในการกำหนดปริมาณการค้นหาและประสิทธิภาพของเว็บไซต์ของคุณแก้ไขปัญหาและสร้างความแตกต่างให้กับเว็บไซต์ของคุณจากผลการค้นหาของ Google หลายพันรายการ",
-    "setting": null,
-    "setting-placeholder": null,
-    "googleSearchConsoleVerificationHtml": null
+    "setting": "การตรวจสอบมาร์กอัป HTML",
+    "setting-placeholder": "โปรดป้อนไวยากรณ์รหัสยืนยัน",
+    "googleSearchConsoleVerificationHtml": "รหัสยืนยันแท็ก HTML:"
   },
   "google-tag-manager": {
     "title": "เครื่องมือการจัดการรหัส",
