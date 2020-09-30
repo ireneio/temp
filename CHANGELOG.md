@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 0.64.2 (2020-09-30)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1194](https://github.com/meepshop/meep-lerna/pull/1194) Revert "【優化】改用新的儲存 image 欄位 - 前端 (#1167)" ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#1186](https://github.com/meepshop/meep-lerna/pull/1186) 【BUG】 會員註冊頁 - 語言翻譯未完全 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1195](https://github.com/meepshop/meep-lerna/pull/1195) (@store/member-password-change) Fix typescript error ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#1187](https://github.com/meepshop/meep-lerna/pull/1187) 【BUG】側邊選單 - 分頁名稱前後台不一樣 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1190](https://github.com/meepshop/meep-lerna/pull/1190) (@meepshop/frontend) Remove not used env variables ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.64.1 (2020-09-28)
 
 #### :rocket: New Feature
