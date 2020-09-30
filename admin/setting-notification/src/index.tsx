@@ -24,8 +24,8 @@ import {
 import { isFullWidth, isEmail } from 'validator';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import SettingWrapper from '@admin/setting-wrapper';
-import SettingBlock from '@admin/setting-block';
+import Header from '@admin/header';
+import Block from '@admin/block';
 
 import styles from './styles/index.less';
 
@@ -187,7 +187,7 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
         onError={this.onError}
       >
         {(updateNotificationMutation, { loading }) => (
-          <SettingWrapper
+          <Header
             title={t('title')}
             buttons={
               !isFieldsTouched() ? null : (
@@ -208,7 +208,7 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
             }
           >
             <Form className={styles.root} labelAlign="left">
-              <SettingBlock
+              <Block
                 title={t('auto-email')}
                 description={t('auto-email-description')}
               >
@@ -263,9 +263,9 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
                     </div>
                   ))}
                 </div>
-              </SettingBlock>
+              </Block>
             </Form>
-          </SettingWrapper>
+          </Header>
         )}
       </Mutation>
     );

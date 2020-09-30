@@ -8,7 +8,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { Spin, Icon } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import SettingWrapper from '@admin/setting-wrapper';
+import Header from '@admin/header';
 
 import useItems from './hooks/useItems';
 import Item from './Item';
@@ -61,11 +61,11 @@ const Setting: NextPage = React.memo(
       return <Spin indicator={<Icon type="loading" spin />} />;
 
     return (
-      <SettingWrapper title={t('title')}>
+      <Header title={t('title')}>
         {items.map(props => (
           <Item key={props.item} {...props} />
         ))}
-      </SettingWrapper>
+      </Header>
     );
   },
 );

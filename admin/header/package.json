@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "@admin/setting-wrapper",
-  "description": "Setting wrapper for admin",
+  "name": "@admin/header",
+  "description": "Header for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.64.1",
@@ -11,5 +11,5 @@
     "@admin/wrapper": "^0.64.1",
     "@meepshop/link": "^0.64.0"
   },
-  "keywords": ["admin", "setting", "wrapper"]
+  "keywords": ["admin", "header"]
 }

@@ -1,11 +1,11 @@
 {
   "private": true,
-  "name": "@admin/setting-block",
-  "description": "Setting block for admin",
+  "name": "@admin/block",
+  "description": "Block for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.64.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
-  "keywords": ["admin", "setting block"]
+  "keywords": ["admin", "block"]
 }

@@ -10,8 +10,8 @@ import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Form, Button, Switch, Divider } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import SettingWrapper from '@admin/setting-wrapper';
-import SettingBlock from '@admin/setting-block';
+import Header from '@admin/header';
+import Block from '@admin/block';
 
 // Use to copy mixin.less
 import './styles/mixin.less';
@@ -71,7 +71,7 @@ const SettingThirdParty: NextPage = Form.create<FormComponentProps>()(
     if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
 
     return (
-      <SettingWrapper
+      <Header
         title={t('title')}
         buttons={
           !isFieldsTouched() ? null : (
@@ -99,7 +99,7 @@ const SettingThirdParty: NextPage = Form.create<FormComponentProps>()(
               index,
             ) => (
               <React.Fragment key={key}>
-                <SettingBlock
+                <Block
                   title={t(`${key}.title`)}
                   description={t(`${key}.description`)}
                 >
@@ -127,14 +127,14 @@ const SettingThirdParty: NextPage = Form.create<FormComponentProps>()(
                   ) : (
                     component
                   )}
-                </SettingBlock>
+                </Block>
 
                 {index === blocks.length - 1 ? null : <Divider />}
               </React.Fragment>
             ),
           )}
         </Form>
-      </SettingWrapper>
+      </Header>
     );
   }),
 );
