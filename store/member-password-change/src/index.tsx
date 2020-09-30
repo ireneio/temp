@@ -73,6 +73,8 @@ class MemberPasswordChange extends React.PureComponent<PropsType> {
     } = this.props;
     const status = changeUserPassword?.status; // SHOULD_NOT_BE_NULL
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore FIXME: T6730
     if (status === 0) {
       notification.success({
         message: t('success'),
