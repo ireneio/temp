@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## 0.64.3 (2020-10-05)
+
+#### :boom: Breaking Change
+
+- [#1198](https://github.com/meepshop/meep-lerna/pull/1198) (@admin/block, @admin/header) Rename @admin/header and @admin/block ([@happycat6323](https://github.com/happycat6323))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#1174](https://github.com/meepshop/meep-lerna/pull/1174) 前台 - 移除 redux 裡面 updateShopperLanguagePreference ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#1182](https://github.com/meepshop/meep-lerna/pull/1182) KooData 直播購物車 - 購物車置入商品 URL ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#1192](https://github.com/meepshop/meep-lerna/pull/1192) 【調查】apollo client reset store error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#1160](https://github.com/meepshop/meep-lerna/pull/1160) 【BUG】後台 - 頁面設計/商品內容版型 - 商品細節、商品文字＆商品影片元件無顯示佔位圖 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.64.2 (2020-09-30)
 
 #### :boom: Breaking Change
