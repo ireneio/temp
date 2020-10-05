@@ -94,16 +94,15 @@ function* serverProductInitialFlow({ payload }) {
     if (pId === 'preview' && data?.data) {
       const { pageId } = query;
       const pageResponse = yield call(Api.getPage, { ...payload, id: pageId });
-      const defaultStoreProductsResponse = yield call(
-        Api.getDefaultStoreProducts,
+      const defaultStoreProductResponse = yield call(
+        Api.getDefaultStoreProduct,
         payload,
       );
-      const { defaultStoreProducts } = defaultStoreProductsResponse.data;
+      const { defaultStoreProduct } = defaultStoreProductResponse.data;
 
-      defaultStoreProducts.id = 'preview';
-      defaultStoreProducts.page =
-        pageResponse.data?.viewer?.store?.page || null;
-      data.data.computeProductList.data = [defaultStoreProducts];
+      defaultStoreProduct.id = 'preview';
+      defaultStoreProduct.page = pageResponse.data?.viewer?.store?.page || null;
+      data.data.computeProductList.data = [defaultStoreProduct];
       data.data.computeProductList.total = 1;
     }
 

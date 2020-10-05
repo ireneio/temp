@@ -4,9 +4,9 @@ export default context =>
   postGraphql({
     ...context,
     query: `
-      defaultStoreProducts (filter: SHIRT)
+      defaultStoreProduct
     `,
     variables: {
-      type: 'query getDefaultStoreProducts',
+      type: 'query getDefaultStoreProduct',
     },
   });

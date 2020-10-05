@@ -3,7 +3,7 @@ import getPage from './getPage.api';
 
 import getProduct from './getProduct.api';
 import getProductList from './getProductList.api';
-import getDefaultStoreProducts from './getDefaultStoreProducts.api';
+import getDefaultStoreProduct from './getDefaultStoreProduct.api';
 import signup from './signup.api';
 import checkEmailExists from './checkEmailExists.api';
 import sendResetPasswordEmail from './sendResetPasswordEmail.api';
@@ -27,7 +27,7 @@ export {
   // 商品
   getProduct,
   getProductList,
-  getDefaultStoreProducts,
+  getDefaultStoreProduct,
   signup,
   checkEmailExists,
   sendResetPasswordEmail,
