@@ -166,110 +166,112 @@ export default class Checkout extends React.PureComponent {
 
     const { error, data } = await createOrder({
       variables: {
-        createOrderList: {
-          idempotentKey: this.idempotentKey,
-          environment: {
-            domain,
-          },
-          isPayment,
-          products: products
-            .filter(({ type }) => type !== 'gift')
-            .map(({ productId, variantId, quantity = 1 }) => ({
-              productId,
-              variantId,
-              quantity,
-            })),
-          coupon,
-          points,
-          ...(!addressAndZipCode
-            ? {}
-            : {
-                address: {
-                  zipCode: addressAndZipCode.zipCode,
-                  countryId: addressAndZipCode.address[0],
-                  cityId: addressAndZipCode.address[1],
-                  areaId: addressAndZipCode.address[2],
-                  street,
-                },
-              }),
-          payments: [
-            {
-              paymentId,
-              ...(choosePayment.template !== 'gmo' ||
-              choosePayment.accountInfo.gmo.paymentType !== 'Credit'
-                ? {}
-                : {
-                    gmo: {
-                      isRememberCard,
-                      cardHolderName,
-                      cardNumber: cardNumber?.join(''),
-                      securityCode,
-                      expireYear: expire?.format('YYYY'),
-                      expireMonth: expire?.format('M'),
-                      ...(!installmentCode
-                        ? {}
-                        : {
-                            installmentCode:
-                              installmentCode instanceof Array
-                                ? installmentCode[installmentCode.length - 1]
-                                : installmentCode,
-                          }),
-                    },
-                  }),
+        createOrderList: [
+          {
+            idempotentKey: this.idempotentKey,
+            environment: {
+              domain,
             },
-          ],
-          shipments: [
-            {
-              shipmentId,
-              recipient: {
-                saveRecipient: isSaveAsReceiverTemplate,
-                name,
-                email: userEmail || user.email,
-                mobile,
-                comment: notes,
-                receiverStoreID: CVSStoreID,
-                receiverStoreName: CVSStoreName,
-                receiverStoreAddress: CVSAddress,
+            isPayment,
+            products: products
+              .filter(({ type }) => type !== 'gift')
+              .map(({ productId, variantId, quantity = 1 }) => ({
+                productId,
+                variantId,
+                quantity,
+              })),
+            coupon,
+            points,
+            ...(!addressAndZipCode
+              ? {}
+              : {
+                  address: {
+                    zipCode: addressAndZipCode.zipCode,
+                    countryId: addressAndZipCode.address[0],
+                    cityId: addressAndZipCode.address[1],
+                    areaId: addressAndZipCode.address[2],
+                    street,
+                  },
+                }),
+            payments: [
+              {
+                paymentId,
+                ...(choosePayment.template !== 'gmo' ||
+                choosePayment.accountInfo.gmo.paymentType !== 'Credit'
+                  ? {}
+                  : {
+                      gmo: {
+                        isRememberCard,
+                        cardHolderName,
+                        cardNumber: cardNumber?.join(''),
+                        securityCode,
+                        expireYear: expire?.format('YYYY'),
+                        expireMonth: expire?.format('M'),
+                        ...(!installmentCode
+                          ? {}
+                          : {
+                              installmentCode:
+                                installmentCode instanceof Array
+                                  ? installmentCode[installmentCode.length - 1]
+                                  : installmentCode,
+                            }),
+                      },
+                    }),
               },
-            },
-          ],
-          cvsType,
-          cvsCode,
-          userInfo: {
-            name: userName || name,
-            email: userEmail || user.email,
-            mobile: userMobile || mobile,
-            password: userPassword,
-          },
-          ...(!invoice
-            ? {}
-            : {
-                invoice: {
-                  type: invoice[0],
-                  ...(invoice[1] === 'MEMBERSHIP' ||
-                  invoice[1] === 'MOBILE_BARCODE' ||
-                  invoice[1] === 'CITIZEN_DIGITAL_CERTIFICATE'
-                    ? {
-                        method: 'CARRIER',
-                        carrier: {
-                          type: invoice[1],
-                          code: invoiceEInvoiceNumber,
-                        },
-                      }
-                    : {
-                        method: invoice[1],
-                      }),
-
-                  // method = TRIPLICATE
-                  address: invoiceAddress,
-                  title: invoiceTitle,
-                  ban: invoiceVAT,
-
-                  // method = DONATION
-                  loveCode: invoiceDonate,
+            ],
+            shipments: [
+              {
+                shipmentId,
+                recipient: {
+                  saveRecipient: isSaveAsReceiverTemplate,
+                  name,
+                  email: userEmail || user.email,
+                  mobile,
+                  comment: notes,
+                  receiverStoreID: CVSStoreID,
+                  receiverStoreName: CVSStoreName,
+                  receiverStoreAddress: CVSAddress,
                 },
-              }),
-        },
+              },
+            ],
+            cvsType,
+            cvsCode,
+            userInfo: {
+              name: userName || name,
+              email: userEmail || user.email,
+              mobile: userMobile || mobile,
+              password: userPassword,
+            },
+            ...(!invoice
+              ? {}
+              : {
+                  invoice: {
+                    type: invoice[0],
+                    ...(invoice[1] === 'MEMBERSHIP' ||
+                    invoice[1] === 'MOBILE_BARCODE' ||
+                    invoice[1] === 'CITIZEN_DIGITAL_CERTIFICATE'
+                      ? {
+                          method: 'CARRIER',
+                          carrier: {
+                            type: invoice[1],
+                            code: invoiceEInvoiceNumber,
+                          },
+                        }
+                      : {
+                          method: invoice[1],
+                        }),
+
+                    // method = TRIPLICATE
+                    address: invoiceAddress,
+                    title: invoiceTitle,
+                    ban: invoiceVAT,
+
+                    // method = DONATION
+                    loveCode: invoiceDonate,
+                  },
+                }),
+          },
+        ],
       },
     });
 

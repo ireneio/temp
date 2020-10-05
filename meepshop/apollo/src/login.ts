@@ -60,7 +60,7 @@ export const resolvers = {
               message: error,
             };
 
-      client.resetStore();
+      await client.resetStore();
 
       return {
         ...defaultResponse,

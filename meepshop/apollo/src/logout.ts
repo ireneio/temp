@@ -16,7 +16,7 @@ export const resolvers = {
           status: 'FAIL',
         };
 
-      client.resetStore();
+      await client.resetStore();
 
       return {
         __typename: 'LogoutResponse',

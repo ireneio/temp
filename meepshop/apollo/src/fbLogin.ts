@@ -34,12 +34,12 @@ export const resolvers = {
 
       switch (code) {
         case 200:
-          client.resetStore();
+          await client.resetStore();
 
           return { ...defaultResponse, status: 'OK' };
 
         case 201:
-          client.resetStore();
+          await client.resetStore();
 
           return { ...defaultResponse, status: 'FIRST_LOGIN' };
 

@@ -42,10 +42,10 @@ export default React.memo(({ children }: PropsType) => {
     createOrderInLandingPageType,
     createOrderInLandingPageVariables
   >(mutation, {
-    onCompleted: () => {
+    onCompleted: async () => {
       if (!client) return;
 
-      client.resetStore();
+      await client.resetStore();
     },
   });
 

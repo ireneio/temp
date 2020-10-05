@@ -1,5 +1,8 @@
 // typescript import
-import { MutationFunction } from '@apollo/react-common';
+import {
+  MutationFunction,
+  MutationFunctionOptions,
+} from '@apollo/react-common';
 
 // import
 import { useMutation } from '@apollo/react-hooks';
@@ -30,14 +33,21 @@ export default (): MutationFunction<createOrderType, createOrderVariables> => {
   const [createOrder, { client }] = useMutation<
     createOrderType,
     createOrderVariables
-  >(mutation, {
+  >(mutation);
+
+  return async ({
+    variables,
+    ...options
+  }: MutationFunctionOptions<createOrderType, createOrderVariables>) => {
+    const result = await createOrder({
+      ...options,
+      variables,
+    });
+
     // FIXME: should update order, orders, hasGmoCreditCard, user, shippableRecipientAddresses
-    onCompleted: () => {
-      if (!client) return;
+    if (client && !variables?.createOrderList?.[0]?.userInfo?.password)
+      await client.resetStore();
 
-      client.resetStore();
-    },
-  });
-
-  return createOrder;
+    return result;
+  };
 };

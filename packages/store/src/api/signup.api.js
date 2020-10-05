@@ -43,6 +43,7 @@ export default async values => {
     data = { error: 'Unexpected error' };
   }
 
-  initApollo({ name: 'store' }).resetStore();
+  await initApollo({ name: 'store' }).resetStore();
+
   return data;
 };
