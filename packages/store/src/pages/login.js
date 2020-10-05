@@ -41,13 +41,6 @@ class Login extends Component {
     if (isLogin === 'ISUSER') Router.pushRoute('/');
   }
 
-  componentDidUpdate(nextProps) {
-    const { isLogin } = nextProps;
-
-    if (isLogin === 'ISUSER' && window.storePreviousPageUrl !== '/login')
-      Router.pushRoute(window.storePreviousPageUrl || '/');
-  }
-
   render() {
     const { error } = this.props;
 

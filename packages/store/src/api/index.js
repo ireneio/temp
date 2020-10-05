@@ -8,7 +8,6 @@ import signup from './signup.api';
 import checkEmailExists from './checkEmailExists.api';
 import sendResetPasswordEmail from './sendResetPasswordEmail.api';
 import updateMemberData from './updateMemberData.api';
-import updateShopperLanguagePreference from './updateShopperLanguagePreference.api';
 import changePassword from './changePassword.api';
 
 // Server-side rendering
@@ -32,7 +31,6 @@ export {
   checkEmailExists,
   sendResetPasswordEmail,
   updateMemberData,
-  updateShopperLanguagePreference,
   updateWishList,
   updateStockNotificationList,
   changePassword,

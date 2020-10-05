@@ -118,14 +118,12 @@ export default class MenuItem extends React.PureComponent {
       toggleCart,
       logout,
       isLogin,
-      getData,
 
       /** props */
       i18n,
       id,
       action,
       setCurrency,
-      user,
     } = this.props;
 
     switch (action) {
@@ -138,34 +136,22 @@ export default class MenuItem extends React.PureComponent {
         break;
 
       case 'locale':
-        if (isLogin !== NOTLOGIN) {
-          await getData(
-            `
-              mutation updateShopperLanguagePreference($input: UpdateShopperLanguagePreferenceInput!) {
+        if (isLogin !== NOTLOGIN)
+          await initApollo({ name: 'store' }).mutate({
+            mutation: gql`
+              mutation updateShopperLanguagePreference(
+                $input: UpdateShopperLanguagePreferenceInput!
+              ) {
                 updateShopperLanguagePreference(input: $input) {
                   status
+                  updateCache(input: $input) @client
                 }
               }
             `,
-            {
+            variables: {
               input: { locale: id },
             },
-          );
-          initApollo({ name: 'store' }).writeFragment({
-            id: user.id,
-            fragment: gql`
-              fragment updateLocaleCache on User {
-                id
-                locale
-              }
-            `,
-            data: {
-              __typename: 'User',
-              id: user.id,
-              locale: id,
-            },
           });
-        }
 
         i18n.changeLanguage(id);
 

@@ -39,12 +39,11 @@ const {
 notification.config({ placement: 'topRight', duration: 1.5 });
 
 Router.onRouteChangeStart = url => {
-  // save previous page
-  const { pathname, search } = window.location;
-  window.storePreviousPageUrl = `${pathname}${search}`;
+  if (url !== Router.router.asPath)
+    window.storePreviousPageUrl = Router.router.asPath;
+
   window.storePreviousOffset = window.pageYOffset;
 
-  console.log(`Loading: ${url}`);
   NProgress.configure({ showSpinner: false });
   NProgress.start();
 };

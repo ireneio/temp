@@ -27,9 +27,11 @@ const mutation = gql`
   ) {
     updateShopperLanguagePreference(input: $input) {
       status
+      updateCache(input: $input) @client
     }
   }
 `;
+let isLoading = false;
 
 export default withCookies(
   async ({ client, i18n, language: currentLanguage, cookie }) => {
@@ -49,32 +51,18 @@ export default withCookies(
     if (language) {
       if (language !== currentLanguage) await i18n.changeLanguage(language);
 
-      if (isLogin && language !== locale)
+      if (!isLoading && isLogin && language !== locale) {
+        isLoading = true;
         await client.mutate({
           mutation,
           variables: {
             input: { locale: language },
           },
-          update: (cache, { updateShopperLanguagePreference }) => {
-            if (updateShopperLanguagePreference?.status !== 'OK') return;
-
-            // TODO: should write in the client side schema when redux removed
-            cache.writeFragment({
-              id: data.viewer.id,
-              fragment: gql`
-                fragment updateLocaleCache on User {
-                  id
-                  locale
-                }
-              `,
-              data: {
-                __typename: 'User',
-                id: data.viewer.id,
-                locale: language,
-              },
-            });
+          onCompleted: () => {
+            isLoading = false;
           },
         });
+      }
     }
 
     if (

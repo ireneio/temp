@@ -91,38 +91,6 @@ export function* loginFlow({ payload }) {
 
     if (data.login.status === 'OK') {
       const memberData = yield call(Api.updateMemberData);
-      const locales = memberData?.data?.viewer?.store.setting.locale || [
-        'zh_TW',
-      ];
-      const locale = memberData?.data?.viewer?.locale;
-
-      const language = (() => {
-        if (locales.includes(locale)) return locale;
-
-        if (locales.includes(i18n.language)) return i18n.language;
-
-        return locales[0];
-      })();
-
-      if (language !== i18n.language) yield call(i18n.changeLanguage, language);
-
-      if (language !== locale) {
-        yield call(Api.updateShopperLanguagePreference, i18n.language);
-        initApollo({ name: 'store' }).writeFragment({
-          id: memberData?.data?.viewer?.id,
-          fragment: gql`
-            fragment updateLocaleCache on User {
-              id
-              locale
-            }
-          `,
-          data: {
-            __typename: 'User',
-            id: memberData?.data?.viewer?.id,
-            locale: language,
-          },
-        });
-      }
 
       notification.success({ message: i18n.t('ducks:login-success') });
 
