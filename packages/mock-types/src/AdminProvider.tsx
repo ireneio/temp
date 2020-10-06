@@ -19,15 +19,15 @@ const AdminWrapper = process.env.STORYBOOK_ENV
 export default withApollo(
   appWithTranslation(
     React.memo(({ children }) => (
-      <EventsProvider>
-        <AppsProvider>
-          <CurrencyProvider>
-            <AdminWrapper>
-              <MockTypes>{children}</MockTypes>
-            </AdminWrapper>
-          </CurrencyProvider>
-        </AppsProvider>
-      </EventsProvider>
+      <MockTypes>
+        <EventsProvider>
+          <AppsProvider>
+            <CurrencyProvider>
+              <AdminWrapper>{children}</AdminWrapper>
+            </CurrencyProvider>
+          </AppsProvider>
+        </EventsProvider>
+      </MockTypes>
     )),
   ),
 );

@@ -17,19 +17,19 @@ import MockTypes from './index';
 export default withApollo(
   appWithTranslation(
     React.memo(({ children }) => (
-      <EventsProvider>
-        <FbProvider>
-          <ColorsProvider>
-            <AppsProvider>
-              <CurrencyProvider>
-                <AdTrackProvider>
-                  <MockTypes>{children}</MockTypes>
-                </AdTrackProvider>
-              </CurrencyProvider>
-            </AppsProvider>
-          </ColorsProvider>
-        </FbProvider>
-      </EventsProvider>
+      <MockTypes>
+        <EventsProvider>
+          <FbProvider>
+            <ColorsProvider>
+              <AppsProvider>
+                <CurrencyProvider>
+                  <AdTrackProvider>{children}</AdTrackProvider>
+                </CurrencyProvider>
+              </AppsProvider>
+            </ColorsProvider>
+          </FbProvider>
+        </EventsProvider>
+      </MockTypes>
     )),
   ),
 );

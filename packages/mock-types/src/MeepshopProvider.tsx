@@ -13,11 +13,11 @@ import MockTypes from './index';
 export default withApollo(
   appWithTranslation(
     React.memo(({ children }) => (
-      <ColorsProvider>
-        <AppsProvider>
-          <MockTypes>{children}</MockTypes>
-        </AppsProvider>
-      </ColorsProvider>
+      <MockTypes>
+        <ColorsProvider>
+          <AppsProvider>{children}</AppsProvider>
+        </ColorsProvider>
+      </MockTypes>
     )),
   ),
 );
