@@ -95,7 +95,8 @@
           "CANCELED": "Pembatalan pesanan logistik",
           "MANUAL_PROCESSING": "Pemrosesan manual"
         },
-        "updated-at": "Perbarui waktu:"
+        "updated-at": "Perbarui waktu:",
+        "tip": null
       }
     },
     "invoice": {

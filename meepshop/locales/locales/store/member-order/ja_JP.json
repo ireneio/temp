@@ -95,7 +95,8 @@
           "CANCELED": "物流注文のキャンセル",
           "MANUAL_PROCESSING": "手動処理"
         },
-        "updated-at": "更新時間："
+        "updated-at": "更新時間：",
+        "tip": null
       }
     },
     "invoice": {

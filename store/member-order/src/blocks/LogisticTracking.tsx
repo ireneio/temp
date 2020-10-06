@@ -5,6 +5,8 @@ import moment from 'moment';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
+import styles from './styles/index.less';
+
 // graphql typescript
 import { logisticTrackingFragment as logisticTrackingFragmentType } from './__generated__/logisticTrackingFragment';
 
@@ -37,6 +39,8 @@ export default React.memo(
 
           {moment(updatedAt).format('YYYY/MM/DD HH:mm:ss')}
         </div>
+
+        <div className={styles.tip}>{t('blocks.shipment.logistic.tip')}</div>
       </div>
     );
   },

@@ -95,7 +95,8 @@
           "CANCELED": "Logistics order cancellation",
           "MANUAL_PROCESSING": "Manual processing"
         },
-        "updated-at": "Update time:"
+        "updated-at": "Update time:",
+        "tip": null
       }
     },
     "invoice": {

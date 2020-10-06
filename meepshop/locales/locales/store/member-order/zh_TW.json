@@ -95,7 +95,8 @@
           "CANCELED": "物流單取消",
           "MANUAL_PROCESSING": "人工處理"
         },
-        "updated-at": "更新時間："
+        "updated-at": "更新時間：",
+        "tip": "因第三方資訊回傳的關係，貨運狀態會有時間上的誤差，您可以透過查詢物流狀態查看最新資訊。"
       }
     },
     "invoice": {

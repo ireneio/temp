@@ -95,7 +95,8 @@
           "CANCELED": "การยกเลิกคำสั่งซื้อโลจิสติกส์",
           "MANUAL_PROCESSING": "การประมวลผลด้วยตนเอง"
         },
-        "updated-at": "เวลาอัปเดต:"
+        "updated-at": "เวลาอัปเดต:",
+        "tip": null
       }
     },
     "invoice": {

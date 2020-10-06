@@ -95,7 +95,8 @@
           "CANCELED": "Hủy đơn hàng hậu cần",
           "MANUAL_PROCESSING": "Xử lý thủ công"
         },
-        "updated-at": "Cập nhật thời gian:"
+        "updated-at": "Cập nhật thời gian:",
+        "tip": null
       }
     },
     "invoice": {

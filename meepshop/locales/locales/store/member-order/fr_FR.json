@@ -95,7 +95,8 @@
           "CANCELED": "Annulation de commande logistique",
           "MANUAL_PROCESSING": "Traitement manuel"
         },
-        "updated-at": "Temps de mise à jour:"
+        "updated-at": "Temps de mise à jour:",
+        "tip": null
       }
     },
     "invoice": {
