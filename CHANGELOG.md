@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.65.0 (2020-10-06)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1191](https://github.com/meepshop/meep-lerna/pull/1191) 修正 購物車 update cache 行為 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#1200](https://github.com/meepshop/meep-lerna/pull/1200) 【優化】綠界貨態同步 - 後台文字解釋 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.64.3 (2020-10-05)
 
 #### :boom: Breaking Change
