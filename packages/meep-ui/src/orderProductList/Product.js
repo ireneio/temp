@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Mutation } from '@apollo/react-components';
-import gql from 'graphql-tag';
 import { notification, Icon } from 'antd';
 import radium from 'radium';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import CartContext from '@meepshop/cart';
 import Thumbnail from '@meepshop/thumbnail';
+import withContext from '@store/utils/lib/withContext';
 
-import cartFragment from 'layout/cart/fragment';
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
   ID_TYPE,
@@ -21,6 +20,7 @@ import Select from './Select';
 import * as styles from './styles/product';
 
 @withTranslation('order-product-list')
+@withContext(CartContext)
 @enhancer
 @radium
 export default class Product extends React.PureComponent {
@@ -77,6 +77,7 @@ export default class Product extends React.PureComponent {
       title,
       onChange,
       productHasError,
+      removeProductFromCart,
       ...props
     } = this.props;
 
@@ -89,43 +90,28 @@ export default class Product extends React.PureComponent {
       >
         <td style={styles.imgBlock}>
           {type !== 'product' ? null : (
-            <Mutation
-              mutation={gql`
-                mutation removeProductFromCartMutation($search: [ChangeCart]) {
-                  changeCartList(changeCartList: $search) {
-                    id
-                    ...cartFragment
-                  }
-                }
-
-                ${cartFragment}
-              `}
-            >
-              {removeProductFromCartMutation => (
-                <Icon
-                  type="close"
-                  style={styles.removeIcon(colors)}
-                  onClick={async () => {
-                    updateCart(true);
-                    await removeProductFromCartMutation({
-                      variables: {
-                        search: {
-                          productsInfo: {
-                            deleteData: cartId,
-                          },
-                        },
+            <Icon
+              type="close"
+              style={styles.removeIcon(colors)}
+              onClick={async () => {
+                updateCart(true);
+                await removeProductFromCart({
+                  variables: {
+                    search: {
+                      productsInfo: {
+                        deleteData: cartId,
                       },
-                    });
+                    },
+                  },
+                });
 
-                    updateCart(false);
-                    onChange({ cartId, quantity: 0 });
-                    notification.success({
-                      message: t('remove-product-from-cart'),
-                    });
-                  }}
-                />
-              )}
-            </Mutation>
+                updateCart(false);
+                onChange({ cartId, quantity: 0 });
+                notification.success({
+                  message: t('remove-product-from-cart'),
+                });
+              }}
+            />
           )}
 
           {<Thumbnail image={coverImage} />}

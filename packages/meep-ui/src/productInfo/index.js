@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
-import { Mutation } from '@apollo/react-components';
-import gql from 'graphql-tag';
 import { warning, areEqual } from 'fbjs';
 import { Modal, notification } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
+import CartContext from '@meepshop/cart';
 import withContext from '@store/utils/lib/withContext';
 
-import cartFragment from 'layout/cart/fragment';
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER, NOTLOGIN, ISADMIN } from 'constants/isLogin';
@@ -26,6 +24,7 @@ import { findCoordinates, calculateOrderable, reformatVariant } from './utils';
 
 @withTranslation('product-info')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
+@withContext(CartContext)
 @enhancer
 @buildVariantsTree('productData')
 @radium
@@ -204,13 +203,13 @@ export default class ProductInfo extends React.PureComponent {
     this.setState({ quantity: value });
   };
 
-  addToCart = async addProductToCartMutation => {
-    const { adTrack, productData, type } = this.props;
+  addToCart = async () => {
+    const { t, adTrack, productData, type, addProductToCart } = this.props;
     const { variant, quantity } = this.state;
 
     this.setState({ isAddingItem: true });
 
-    await addProductToCartMutation({
+    await addProductToCart({
       variables: {
         search: {
           productsInfo: {
@@ -223,7 +222,6 @@ export default class ProductInfo extends React.PureComponent {
         },
       },
     });
-
     adTrack.addToCart({
       eventName: type === 'pop-up' ? 'ec-popup' : 'ec',
       id: productData.id,
@@ -232,6 +230,7 @@ export default class ProductInfo extends React.PureComponent {
       specs: variant.specs,
       price: variant.totalPrice,
     });
+    notification.success({ message: t('add-product-to-cart') });
   };
 
   addToWishList = () => {
@@ -388,67 +387,22 @@ export default class ProductInfo extends React.PureComponent {
             )}
           </div>
 
-          <Mutation
-            mutation={gql`
-              mutation addProductToCartMutation($search: [ChangeCart]) {
-                changeCartList(changeCartList: $search) {
-                  id
-                  ...cartFragment
-                }
-              }
-
-              ${cartFragment}
-            `}
-            update={(cache, { data }) => {
-              const query = gql`
-                query updateCartCache {
-                  getCartList(search: { showDetail: true }) {
-                    data {
-                      ...cartFragment
-                    }
-                  }
-                }
-
-                ${cartFragment}
-              `;
-
-              const cart = cache.readQuery({
-                query,
-              });
-
-              if (cart.getCartList.data[0] === null)
-                cache.writeQuery({
-                  query,
-                  data: {
-                    getCartList: {
-                      __typename: 'OrderList',
-                      data: data.changeCartList,
-                    },
-                  },
-                });
-
-              notification.success({ message: t('add-product-to-cart') });
-            }}
-          >
-            {addProductToCartMutation => (
-              <AddButton
-                variant={variant}
-                orderable={orderable}
-                addToCart={() => addToCart(addProductToCartMutation)}
-                addToWishList={addToWishList}
-                addToNotificationList={addToNotificationList}
-                colors={colors}
-                hasStoreAppPlugin={hasStoreAppPlugin}
-                isInWishList={isInWishList}
-                isLogin={isLogin}
-                goTo={goTo}
-                isAddingItem={isAddingItem}
-                isAddingWish={isAddingWish}
-                mode={mode}
-                isMobile={isMobile}
-              />
-            )}
-          </Mutation>
+          <AddButton
+            variant={variant}
+            orderable={orderable}
+            addToCart={addToCart}
+            addToWishList={addToWishList}
+            addToNotificationList={addToNotificationList}
+            colors={colors}
+            hasStoreAppPlugin={hasStoreAppPlugin}
+            isInWishList={isInWishList}
+            isLogin={isLogin}
+            goTo={goTo}
+            isAddingItem={isAddingItem}
+            isAddingWish={isAddingWish}
+            mode={mode}
+            isMobile={isMobile}
+          />
         </StyleRoot>
       </div>
     );

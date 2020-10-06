@@ -1,10 +1,11 @@
-// @flow
-
+// import
 import gql from 'graphql-tag';
 
+// graphql import
 import localeFragment from '@meepshop/utils/lib/fragments/locale';
 import { thumbnailFragment } from '@meepshop/thumbnail';
 
+// definition
 export default gql`
   fragment cartFragment on Order {
     id

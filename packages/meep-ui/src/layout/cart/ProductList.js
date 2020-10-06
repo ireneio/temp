@@ -54,7 +54,7 @@ export default class ProductList extends React.PureComponent {
 
     if (isLogin === NOTLOGIN) return goToInCart('login', 'product list');
 
-    toggleCart(false)();
+    toggleCart(false);
     return goTo({ pathname: '/checkout' });
   };
 
@@ -84,7 +84,9 @@ export default class ProductList extends React.PureComponent {
         {pathname === 'checkout' ? null : (
           <Button
             type="primary"
-            onClick={products.length === 0 ? toggleCart(false) : this.submit}
+            onClick={
+              products.length === 0 ? () => toggleCart(false) : this.submit
+            }
           >
             {t(products.length === 0 ? 'go-back-to-store' : 'bill')}
           </Button>

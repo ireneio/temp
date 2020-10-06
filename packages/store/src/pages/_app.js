@@ -17,6 +17,7 @@ import { appWithTranslation } from '@meepshop/utils/lib/i18n';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
+import { CartProvider } from '@meepshop/cart';
 import { withDomain } from '@meepshop/link';
 import withApollo from '@store/apollo';
 import FbProvider from '@store/fb';
@@ -268,15 +269,17 @@ class MyApp extends App {
               <AppsProvider>
                 <CurrencyProvider>
                   <AdTrackProvider>
-                    <Provider store={store}>
-                      <Component
-                        {...pageProps}
-                        url={{
-                          asPath: router.asPath,
-                          query: router.query,
-                        }}
-                      />
-                    </Provider>
+                    <CartProvider>
+                      <Provider store={store}>
+                        <Component
+                          {...pageProps}
+                          url={{
+                            asPath: router.asPath,
+                            query: router.query,
+                          }}
+                        />
+                      </Provider>
+                    </CartProvider>
                   </AdTrackProvider>
                 </CurrencyProvider>
               </AppsProvider>

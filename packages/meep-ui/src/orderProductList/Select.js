@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Mutation } from '@apollo/react-components';
-import gql from 'graphql-tag';
 import radium, { Style } from 'radium';
 import { notification } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import CartContext from '@meepshop/cart';
 import ProductAmountSelect from '@meepshop/product-amount-select';
+import withContext from '@store/utils/lib/withContext';
 
-import cartFragment from 'layout/cart/fragment';
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
   ID_TYPE,
@@ -21,6 +20,7 @@ import * as styles from './styles/select';
 import { item as itemStyle } from './styles/product';
 
 @withTranslation('order-product-list')
+@withContext(CartContext)
 @enhancer
 @radium
 export default class Select extends React.PureComponent {
@@ -77,6 +77,7 @@ export default class Select extends React.PureComponent {
       error,
       onChange,
       productHasError,
+      updateProductInCart,
       ...props
     } = this.props;
 
@@ -102,53 +103,38 @@ export default class Select extends React.PureComponent {
             !error ? '' : 'has-error'
           }`}
         >
-          <Mutation
-            mutation={gql`
-              mutation updateProductInCartMutation($search: [ChangeCart]) {
-                changeCartList(changeCartList: $search) {
-                  id
-                  ...cartFragment
-                }
-              }
-
-              ${cartFragment}
-            `}
-          >
-            {updateProductInCartMutation => (
-              <ProductAmountSelect
-                variant={props}
-                defaultValue={quantity}
-                value={quantity}
-                onChange={async value => {
-                  updateCart(true);
-                  await updateProductInCartMutation({
-                    variables: {
-                      search: {
-                        productsInfo: {
-                          updateData: {
-                            id: cartId,
-                            quantity: value,
-                          },
-                        },
+          <ProductAmountSelect
+            variant={props}
+            defaultValue={quantity}
+            value={quantity}
+            onChange={async value => {
+              updateCart(true);
+              await updateProductInCart({
+                variables: {
+                  search: {
+                    productsInfo: {
+                      updateData: {
+                        id: cartId,
+                        quantity: value,
                       },
                     },
-                  });
+                  },
+                },
+              });
 
-                  updateCart(false);
-                  onChange({ cartId, quantity: value });
-                  notification.success({
-                    message: t('update-product-in-cart'),
-                  });
-                }}
-                // TODO: remove after refactoring cart
-                getPopupContainer={() =>
-                  document.querySelector(
-                    '.meepshop-meep-ui__layout-cart-index__body',
-                  ) || document.body
-                }
-              />
-            )}
-          </Mutation>
+              updateCart(false);
+              onChange({ cartId, quantity: value });
+              notification.success({
+                message: t('update-product-in-cart'),
+              });
+            }}
+            // TODO: remove after refactoring cart
+            getPopupContainer={() =>
+              document.querySelector(
+                '.meepshop-meep-ui__layout-cart-index__body',
+              ) || document.body
+            }
+          />
 
           {!error ? null : (
             <div className="ant-form-explain">{t('product-over-stock')}</div>

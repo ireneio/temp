@@ -6,11 +6,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import withContext from '@store/utils/lib/withContext';
 import {
   Apps as AppsContext,
   Currency as CurrencyContext,
 } from '@meepshop/context';
-import withContext from '@store/utils/lib/withContext';
+import CartContext from '@meepshop/cart';
 
 import {
   COLOR_TYPE,
@@ -32,6 +33,7 @@ export const enhancer = Component =>
 
 @withContext(AppsContext, apps => ({ apps }))
 @withContext(CurrencyContext)
+@withContext(CartContext)
 // eslint-disable-next-line react/no-multi-comp
 export default class DecoratorsRoot extends React.Component {
   static propTypes = {
@@ -66,7 +68,6 @@ export default class DecoratorsRoot extends React.Component {
   };
 
   state = {
-    isShowCart: false,
     isCartUpdating: false,
   };
 
@@ -79,7 +80,9 @@ export default class DecoratorsRoot extends React.Component {
       storeSetting,
       colors,
       location,
+      cartIsOpened,
       carts,
+      toggleCart,
 
       /** context func from props */
       goTo,
@@ -92,7 +95,7 @@ export default class DecoratorsRoot extends React.Component {
       dispatchAction,
       c,
     } = this.props;
-    const { isShowCart, isCartUpdating } = this.state;
+    const { isCartUpdating } = this.state;
 
     return {
       /** context variables from props */
@@ -115,12 +118,12 @@ export default class DecoratorsRoot extends React.Component {
       dispatchAction,
 
       /** context variable from DecoratorsRoot */
-      isShowCart,
+      isShowCart: cartIsOpened,
       isCartUpdating,
 
       /** context func from DecoratorsRoot */
       hasStoreAppPlugin: this.hasStoreAppPlugin,
-      toggleCart: this.toggleCart,
+      toggleCart,
       updateCart: this.updateCart,
       transformCurrency: c,
     };
@@ -130,15 +133,6 @@ export default class DecoratorsRoot extends React.Component {
     const { apps } = this.props;
 
     return apps[pluginName].isInstalled;
-  };
-
-  toggleCart = changeCartStatus => () => {
-    const { isShowCart } = this.state;
-
-    this.setState({
-      isShowCart:
-        changeCartStatus !== undefined ? changeCartStatus : !isShowCart,
-    });
   };
 
   updateCart = isCartUpdating => {

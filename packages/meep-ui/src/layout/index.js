@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import gql from 'graphql-tag';
-import { Query } from '@apollo/react-components';
 import { UserAgent } from 'fbjs';
 
 import { Colors as ColorsContext } from '@meepshop/context';
@@ -13,22 +11,9 @@ import { COLOR_TYPE } from 'constants/propTypes';
 
 import GlobalStyles from './GlobalStyles';
 import Cart from './cart';
-import cartFragment from './cart/fragment';
 import DecoratorsRoot from './DecoratorsRoot';
 import ContainerSwitch from './ContainerSwitch';
 import styles from './styles/index.less';
-
-const query = gql`
-  query getCart {
-    getCartList(search: { showDetail: true }) {
-      data {
-        ...cartFragment
-      }
-    }
-  }
-
-  ${cartFragment}
-`;
 
 @withContext(ColorsContext, colors => ({ colors }))
 @radium
@@ -120,63 +105,43 @@ export default class Layout extends React.PureComponent {
     } = this.props;
 
     return (
-      <Query query={query}>
-        {({ data }) => {
-          const carts = data?.getCartList?.data?.[0];
+      <Context {...props}>
+        <DecoratorsRoot {...props} colors={colors} cname={cname}>
+          <GlobalStyles colors={colors} />
 
-          return (
-            <Context {...props}>
-              <DecoratorsRoot
+          <div
+            style={{
+              ...this.getRootStyle(),
+              ...(shouldGetFixed && { height: 0 }),
+            }}
+            className={styles.root}
+            ref={this.rootRef}
+          >
+            <div className={styles.container}>
+              <ContainerSwitch
                 {...props}
-                colors={colors}
-                cname={cname}
-                carts={
-                  !carts
-                    ? null
-                    : {
-                        ...carts,
-                        categories: carts.categories?.[0] || null,
-                      }
-                }
-              >
-                <GlobalStyles colors={colors} />
+                key={container}
+                containerName={container}
+                blocks={blocks}
+              />
+            </div>
 
-                <div
-                  style={{
-                    ...this.getRootStyle(),
-                    ...(shouldGetFixed && { height: 0 }),
-                  }}
-                  className={styles.root}
-                  ref={this.rootRef}
+            {experiment.hiddingMeepshopMaxInFooterEnabled ? null : (
+              <footer className={styles.footer}>
+                <a
+                  href="https://meepshop.cc/8h1kG"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <div className={styles.container}>
-                    <ContainerSwitch
-                      {...props}
-                      key={container}
-                      containerName={container}
-                      blocks={blocks}
-                    />
-                  </div>
+                  meepShop MAX 極速開店
+                </a>
+              </footer>
+            )}
 
-                  {experiment.hiddingMeepshopMaxInFooterEnabled ? null : (
-                    <footer className={styles.footer}>
-                      <a
-                        href="https://meepshop.cc/8h1kG"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        meepShop MAX 極速開店
-                      </a>
-                    </footer>
-                  )}
-
-                  <Cart />
-                </div>
-              </DecoratorsRoot>
-            </Context>
-          );
-        }}
-      </Query>
+            <Cart />
+          </div>
+        </DecoratorsRoot>
+      </Context>
     );
   }
 }

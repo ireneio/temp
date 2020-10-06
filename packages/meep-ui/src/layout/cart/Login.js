@@ -184,7 +184,7 @@ export default class Login extends React.PureComponent {
                     type="primary"
                     ghost
                     onClick={() => {
-                      toggleCart(false)();
+                      toggleCart(false);
                       goTo({ pathname: '/checkout' });
                     }}
                   >

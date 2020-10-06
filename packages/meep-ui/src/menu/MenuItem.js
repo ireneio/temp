@@ -115,6 +115,7 @@ export default class MenuItem extends React.PureComponent {
   onClick = async () => {
     const {
       /** context */
+      isShowCart,
       toggleCart,
       logout,
       isLogin,
@@ -128,7 +129,7 @@ export default class MenuItem extends React.PureComponent {
 
     switch (action) {
       case 5:
-        toggleCart()();
+        toggleCart(!isShowCart);
         break;
 
       case 'logout':

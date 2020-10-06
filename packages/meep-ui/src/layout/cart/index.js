@@ -54,7 +54,7 @@ export default class Cart extends React.PureComponent {
         className={styles.root}
         visible={isShowCart}
         closable={false}
-        onClose={toggleCart(false)}
+        onClose={() => toggleCart(false)}
         width="100vw"
       >
         <Spin
@@ -88,7 +88,7 @@ export default class Cart extends React.PureComponent {
               <Icon
                 type="close"
                 className={styles.closeIcon}
-                onClick={toggleCart(false)}
+                onClick={() => toggleCart(false)}
               />
             </div>
 
