@@ -13,7 +13,7 @@ import {
   imageFragment_link_ProductLink as imageFragmentLinkProductLink,
   imageFragment_link_ProductsLink as imageFragmentLinkProductsLink,
   imageFragment_link_CustomLink as imageFragmentLinkCustomLink,
-} from '../__generated__/imageFragment';
+} from '../fragments/__generated__/imageFragment';
 
 // typescript definition
 type SortType = 'LATEST' | 'NAME' | 'PRICE_ASC' | 'PRICE_DESC';

@@ -1,23 +1,15 @@
 // typescript import
 import { ContextType } from './index';
 
-// import
-import gql from 'graphql-tag';
-
 // graphql typescript
 // TODO: should use __generated__/meepshop
 import { SetCurrentInput } from '../../../__generated__/store';
+import { pageInfoFragment } from './fragments/__generated__/pageInfoFragment';
 
-import { pageInfoFragment } from './__generated__/pageInfoFragment';
+// graphql import
+import fragment from './fragments/pageInfo';
 
 // definition
-const fragment = gql`
-  fragment pageInfoFragment on CurrentInfo {
-    id
-    current
-  }
-`;
-
 export const resolvers = {
   Mutation: {
     setCurrent: (

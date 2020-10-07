@@ -1,10 +1,7 @@
-// import
-import gql from 'graphql-tag';
-
 // graphql typescript
-import { storeAdTrackFbPixelFragment as storeAdTrackFbPixelFragmentType } from './__generated__/storeAdTrackFbPixelFragment';
-import { storeAdTrackGtagFragment as storeAdTrackGtagFragmentType } from './__generated__/storeAdTrackGtagFragment';
-import { storeAdTrackWebTrackFragment as storeAdTrackWebTrackFragmentType } from './__generated__/storeAdTrackWebTrackFragment';
+import { storeAdTrackFbPixelFragment as storeAdTrackFbPixelFragmentType } from './fragments/__generated__/storeAdTrackFbPixelFragment';
+import { storeAdTrackGtagFragment as storeAdTrackGtagFragmentType } from './fragments/__generated__/storeAdTrackGtagFragment';
+import { storeAdTrackWebTrackFragment as storeAdTrackWebTrackFragmentType } from './fragments/__generated__/storeAdTrackWebTrackFragment';
 
 // typescript definition
 interface DefaultDataType {
@@ -16,28 +13,6 @@ interface DefaultDataType {
     data: storeAdTrackWebTrackFragmentType[];
   };
 }
-
-// definition
-export const storeAdTrackFbPixelFragment = gql`
-  fragment storeAdTrackFbPixelFragment on FbPixel {
-    pixelId
-  }
-`;
-
-export const storeAdTrackGtagFragment = gql`
-  fragment storeAdTrackGtagFragment on gtag {
-    eventName
-    trackingId
-  }
-`;
-
-export const storeAdTrackWebTrackFragment = gql`
-  fragment storeAdTrackWebTrackFragment on WebTrack {
-    id
-    trackType
-    trackId
-  }
-`;
 
 /* eslint-disable @typescript-eslint/camelcase */
 const gtagKeys = {

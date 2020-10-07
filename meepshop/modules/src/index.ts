@@ -3,15 +3,15 @@ import gql from 'graphql-tag';
 import dynamic from 'next/dynamic';
 
 // graphql import
-import carouselFragment from '@meepshop/carousel/lib/fragment';
-import dividerFragment from '@meepshop/divider/lib/fragment';
-import draftTextFragment from '@meepshop/draft-text/lib/fragment';
-import facebookWallFragment from '@meepshop/facebook-wall/lib/fragment';
-import googleMapFragment from '@meepshop/google-map/lib/fragment';
-import iframeFragment from '@meepshop/iframe/lib/fragment';
-import imageFragment from '@meepshop/image/lib/fragment';
-import imageTextFragment from '@meepshop/image-text/lib/fragment';
-import menuFragment from '@meepshop/menu/lib/fragment';
+import carouselFragment from '@meepshop/carousel/lib/fragments';
+import dividerFragment from '@meepshop/divider/lib/fragments';
+import draftTextFragment from '@meepshop/draft-text/lib/fragments';
+import facebookWallFragment from '@meepshop/facebook-wall/lib/fragments';
+import googleMapFragment from '@meepshop/google-map/lib/fragments';
+import iframeFragment from '@meepshop/iframe/lib/fragments';
+import imageFragment from '@meepshop/image/lib/fragments';
+import imageTextFragment from '@meepshop/image-text/lib/fragments';
+import menuFragment from '@meepshop/menu/lib/fragments';
 import productCarouselFragment from '@meepshop/product-carousel/lib/fragment';
 import productCollectionsFragment from '@meepshop/product-collections/lib/fragment';
 import productDraftTextFragment from '@meepshop/product-draft-text/lib/fragment';

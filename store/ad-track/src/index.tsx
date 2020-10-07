@@ -26,7 +26,7 @@ import {
   storeAdTrackFbPixelFragment,
   storeAdTrackGtagFragment,
   storeAdTrackWebTrackFragment,
-} from '@meepshop/apollo/lib/StoreAdTrack';
+} from '@meepshop/apollo/lib/fragments/storeAdTrack';
 
 import { headFragment } from './Head';
 import { useRetentionFragment } from './hooks/useRetention';

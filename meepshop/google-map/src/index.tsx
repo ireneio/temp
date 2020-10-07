@@ -5,7 +5,7 @@ import useHeight from './hooks/useHeight';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { googleMapFragment } from './__generated__/googleMapFragment';
+import { googleMapFragment } from './fragments/__generated__/googleMapFragment';
 
 // definition
 export default React.memo(({ width, height, href }: googleMapFragment) => {

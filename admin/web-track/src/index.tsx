@@ -28,7 +28,7 @@ import {
   storeAdTrackFbPixelFragment,
   storeAdTrackGtagFragment,
   storeAdTrackWebTrackFragment,
-} from '@meepshop/apollo/lib/StoreAdTrack';
+} from '@meepshop/apollo/lib/fragments/storeAdTrack';
 
 import { facebookStoreFragment } from './Facebook';
 import { googleAnalyticsFragment } from './GoogleAnalytics';

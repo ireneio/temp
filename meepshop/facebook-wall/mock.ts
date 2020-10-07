@@ -2,7 +2,7 @@
 import uuid from 'uuid/v4';
 
 // graphql typescript
-import { facebookWallFragment } from './src/__generated__/facebookWallFragment';
+import { facebookWallFragment } from './src/fragments/__generated__/facebookWallFragment';
 
 // definition
 export default {

@@ -9,7 +9,7 @@ import useImage from './hooks/useImage';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { imageFragment } from './__generated__/imageFragment';
+import { imageFragment } from './fragments/__generated__/imageFragment';
 
 // typescript definition
 interface PropsType extends imageFragment {

@@ -7,7 +7,7 @@ import Image from '@meepshop/image';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { imageTextFragment } from './__generated__/imageTextFragment';
+import { imageTextFragment } from './fragments/__generated__/imageTextFragment';
 import { JustifyContent } from '../../../__generated__/meepshop';
 
 // definition

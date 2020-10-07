@@ -6,7 +6,7 @@ import localeFragment from '@meepshop/utils/lib/fragments/locale';
 import {
   imageImageFragment,
   imageScaledURLsFragment,
-} from '@meepshop/image/lib/fragment';
+} from '@meepshop/image/lib/fragments';
 
 // definition
 export default gql`

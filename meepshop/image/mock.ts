@@ -2,7 +2,7 @@
 import uuid from 'uuid/v4';
 
 // graphql typescript
-import { imageFragment } from './src/__generated__/imageFragment';
+import { imageFragment } from './src/fragments/__generated__/imageFragment';
 
 // definition
 export default {

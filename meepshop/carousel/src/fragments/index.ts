@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import {
   imageImageFragment,
   imageLinkFragment,
-} from '@meepshop/image/lib/fragment';
+} from '@meepshop/image/lib/fragments';
 
 // definition
 export default gql`

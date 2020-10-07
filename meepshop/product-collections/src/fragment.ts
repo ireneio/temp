@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 
 // graphql import
 import localeFragment from '@meepshop/utils/lib/fragments/locale';
-import { imageScaledURLsFragment } from '@meepshop/image/lib/fragment';
+import { imageScaledURLsFragment } from '@meepshop/image/lib/fragments';
 
 // definition
 export default gql`

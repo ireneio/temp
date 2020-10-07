@@ -14,7 +14,7 @@ import styles from './styles/index.less';
 import {
   carouselFragment,
   carouselFragment_images as carouselFragmentImages,
-} from './__generated__/carouselFragment';
+} from './fragments/__generated__/carouselFragment';
 import { JustifyContent } from '../../../__generated__/meepshop';
 
 // definition

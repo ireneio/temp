@@ -6,7 +6,7 @@ import useHtml from '@meepshop/utils/lib/hooks/useHtml';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { draftTextFragment } from './__generated__/draftTextFragment';
+import { draftTextFragment } from './fragments/__generated__/draftTextFragment';
 
 // definition
 export default React.memo(({ content }: draftTextFragment) => {

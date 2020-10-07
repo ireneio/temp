@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from 'react';
 import { emptyFunction } from 'fbjs';
 
 // graphql typescript
-import { googleMapFragment } from '../__generated__/googleMapFragment';
+import { googleMapFragment } from '../fragments/__generated__/googleMapFragment';
 
 // definition
 export default ({

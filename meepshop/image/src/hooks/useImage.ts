@@ -4,7 +4,7 @@ import { useRef, useState, useEffect, useCallback, useMemo } from 'react';
 import { placeholderImage } from '@meepshop/images';
 
 // graphql typescript
-import { imageFragment_image as imageFragmentImage } from '../__generated__/imageFragment';
+import { imageFragment_image as imageFragmentImage } from '../fragments/__generated__/imageFragment';
 
 // typescript definition
 type WidthType =
