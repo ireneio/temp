@@ -25,12 +25,22 @@ params {
   size
   displayMemberGroup
 }
-icon {
-  use
-  font
-  image
-  direction
+image {
+  __typename
+  ... on Image {
+    id
+    scaledSrc {
+      w60
+      w120
+      w240
+    }
+  }
+
+  ... on DefaultIcon {
+    icon
+  }
 }
+imagePosition
 newWindow
 `;
 

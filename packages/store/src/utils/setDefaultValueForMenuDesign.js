@@ -1,18 +1,11 @@
 export const handlePages = (pages, removeIcon = false) =>
   (pages || []).map(
-    ({ pages: subPages, newWindow, params, icon, ...page }) => ({
+    ({ pages: subPages, newWindow, params, image, ...page }) => ({
       ...page,
       newWindow: !!newWindow,
       params: params || {},
       pages: handlePages(subPages),
-      icon:
-        removeIcon && !icon?.use
-          ? null
-          : {
-              direction: icon?.direction || 'right',
-              font: icon?.font || null,
-              image: icon?.image || null,
-            },
+      image: removeIcon ? null : image,
     }),
   );
 

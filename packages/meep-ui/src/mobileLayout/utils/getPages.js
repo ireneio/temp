@@ -19,7 +19,7 @@ export default (fixedtop, secondtop, sidebar) => {
           action,
         };
 
-        delete newPage.icon;
+        delete newPage.image;
 
         if (
           [...pages, ...headerPages].some(
@@ -48,10 +48,11 @@ export default (fixedtop, secondtop, sidebar) => {
               ...headerPages,
               {
                 ...newPage,
-                icon: {
-                  font: action === 5 ? 'shopping_cart' : 'person',
-                  direction: 'only',
+                image: {
+                  __typename: 'DefaultIcon',
+                  icon: action === 5 ? 'SHOPPING_CART' : 'PERSON',
                 },
+                imagePosition: 'ONLY',
               },
             ].sort((a, b) => b.action - a.action),
           };
