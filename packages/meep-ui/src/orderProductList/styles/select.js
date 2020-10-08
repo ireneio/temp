@@ -26,4 +26,8 @@ export const modifyAntdStyle = colors => ({
   '.ant-form-explain': {
     margin: '0px',
   },
+
+  '.ant-select': {
+    fontSize: '16px',
+  },
 });
