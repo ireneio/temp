@@ -25,11 +25,23 @@ export default class Icon extends React.PureComponent {
   };
 
   render() {
-    const { iconSize, font, image, onClick, direction, children } = this.props;
+    const {
+      iconSize,
+      font,
+      image,
+      onClick,
+      direction,
+      isModule,
+      children,
+    } = this.props;
     const MdIcon = icons[font || ''];
 
     return (
-      <div className={`${styles.root} ${styles[direction] || ''}`}>
+      <div
+        className={`${styles.root} ${styles[direction] || ''} ${
+          !isModule ? styles.wrap : ''
+        }`}
+      >
         {!MdIcon ? null : (
           <MdIcon
             style={{ fontSize: `${iconSize}px` }}

@@ -228,6 +228,7 @@ export default class MenuItem extends React.PureComponent {
       pages: propsPages,
       newWindow,
       level,
+      isModule,
 
       /** ignore */
       menuItemStyle,
@@ -290,7 +291,7 @@ export default class MenuItem extends React.PureComponent {
           {!icon ? (
             title
           ) : (
-            <Icon {...icon} iconSize={iconSize}>
+            <Icon {...icon} iconSize={iconSize} isModule={isModule}>
               {title}
             </Icon>
           )}

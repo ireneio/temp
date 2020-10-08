@@ -169,6 +169,7 @@ export default class Menu extends React.PureComponent {
       openKeys,
       className,
       reverseSearch,
+      isModule,
       ...props
     } = this.props;
     const { isMobile } = this.state;
@@ -303,6 +304,7 @@ export default class Menu extends React.PureComponent {
                       fontSize: `${fontSize - 2}px`,
                     }
               }
+              isModule={isModule}
             />
           ))}
         </AntdMenu>

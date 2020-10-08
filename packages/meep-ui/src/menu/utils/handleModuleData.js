@@ -48,6 +48,7 @@ export default Component => {
             // TODO: module should not have width
             width: 0,
           }}
+          isModule
         />
       );
     }
