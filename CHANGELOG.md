@@ -1,5 +1,38 @@
 # CHANGELOG
 
+## 0.65.1 (2020-10-08)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#1196](https://github.com/meepshop/meep-lerna/pull/1196) 【優化】改用新的儲存 image 欄位 - 前端 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1202](https://github.com/meepshop/meep-lerna/pull/1202) feat move fragment to fragments folder ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1205](https://github.com/meepshop/meep-lerna/pull/1205) 【BUG】 手機版 - 選單元件文字內容跑版 ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`, `store`
+  - [#1199](https://github.com/meepshop/meep-lerna/pull/1199) 【BUG】 android - 無法兩指將網頁放大縮小 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1207](https://github.com/meepshop/meep-lerna/pull/1207) (@meepshop/frontend) Fix patch version error ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#1201](https://github.com/meepshop/meep-lerna/pull/1201) (@meepshop/mock-types) Fix render error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- Other
+  - [#1207](https://github.com/meepshop/meep-lerna/pull/1207) (@meepshop/frontend) Fix patch version error ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#1201](https://github.com/meepshop/meep-lerna/pull/1201) (@meepshop/mock-types) Fix render error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.65.0 (2020-10-06)
 
 #### :boom: Breaking Change
