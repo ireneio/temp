@@ -17,7 +17,14 @@ export default class Icon extends React.PureComponent {
   };
 
   render() {
-    const { iconSize, image, imagePosition, onClick, isModule, children } = this.props;
+    const {
+      iconSize,
+      image,
+      imagePosition,
+      onClick,
+      isModule,
+      children,
+    } = this.props;
     const MdIcon =
       image?.__typename !== 'DefaultIcon'
         ? () => null
