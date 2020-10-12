@@ -24,7 +24,7 @@ import FbProvider from '@store/fb';
 import CurrencyProvider from '@store/currency';
 import AdTrackProvider from '@store/ad-track';
 
-import { Error, CloseView, StoreNotExistsView } from 'components';
+import { Error, CloseView, StoreNotExistsView, BackToTop } from 'components';
 import { Router } from 'server/routes';
 import * as Utils from 'utils';
 import configureStore from 'ducks/store';
@@ -276,6 +276,8 @@ class MyApp extends App {
                           }}
                         />
                       </Provider>
+      
+                      <BackToTop />
                     </CartProvider>
                   </AdTrackProvider>
                 </CurrencyProvider>

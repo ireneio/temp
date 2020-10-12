@@ -4,6 +4,7 @@ import CloseView from './CloseView';
 import StoreNotExistsView from './StoreNotExistsView';
 import Container from './Container';
 import Spinner from './Spinner';
+import BackToTop from './BackToTop';
 
 export {
   LoadingPageFromLogin,
@@ -12,4 +13,5 @@ export {
   Spinner,
   CloseView,
   StoreNotExistsView,
+  BackToTop,
 };
