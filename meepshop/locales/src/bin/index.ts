@@ -1,4 +1,7 @@
 #! /usr/bin/env node
+// typescript import
+import { CacheType as FindNullCacheType } from '../commands/findNull';
+
 // import
 import fs from 'fs';
 import path from 'path';
@@ -27,13 +30,18 @@ process.on('unhandledRejection', err => {
 
 (async () => {
   const localeKeys = Object.keys(LOCALES) as (keyof typeof LOCALES)[];
-  const { command, repoPath, options } = await getOptions(process.argv);
+  const {
+    command,
+    options: { repoPath, ...options },
+  } = await getOptions(process.argv);
   const { log } = console;
 
   switch (command) {
-    case 'translate':
+    case 'translate': {
+      const nullFiles = findNull(repoPath);
+
       translate(
-        repoPath,
+        nullFiles,
         !options?.reference ? 'en_US' : 'zh_TW',
         !options?.reference
           ? googleTranslate
@@ -43,6 +51,7 @@ process.on('unhandledRejection', err => {
         },
       );
       break;
+    }
 
     case 'find-null': {
       const nullFiles = findNull(repoPath);
@@ -160,6 +169,31 @@ process.on('unhandledRejection', err => {
         );
       });
       break;
+
+    case 'auto-translate': {
+      const nullFiles = options.paths
+        ?.split(',')
+        .reduce((result: FindNullCacheType, key: string) => {
+          const folderPath = path.dirname(path.resolve(key));
+
+          return result[folderPath]
+            ? result
+            : {
+                ...result,
+                ...findNull(folderPath),
+              };
+        }, {});
+
+      if (!nullFiles) break;
+
+      Object.keys(LOCALES).forEach((key: keyof typeof LOCALES) => {
+        LOCALES[key] = LOCALES[key].replace(/en/, 'zh-CN');
+      });
+      translate(nullFiles, 'zh_TW', googleTranslate, (filePath, data) => {
+        outputFileSync(filePath, `${JSON.stringify(data, null, 2)}\n`);
+      });
+      break;
+    }
 
     default:
       throw new Error(`can not find command: ${command}`);

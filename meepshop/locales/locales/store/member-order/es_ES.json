@@ -96,7 +96,7 @@
           "MANUAL_PROCESSING": "Procesamiento manual"
         },
         "updated-at": "Tiempo de actualizacion:",
-        "tip": null
+        "tip": "Debido a la devolución de información de terceros, habrá un error de tiempo en el estado del envío. Puede consultar la información más reciente consultando el estado de la logística."
       }
     },
     "invoice": {

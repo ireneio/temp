@@ -19,12 +19,18 @@ describe('get options', () => {
     ${'./old-admin'}
   `('command work with repoPath = $repoPath', async ({ repoPath }) => {
     expect(
-      await getOptions([...defaultArgu, 'find-null', repoPath].filter(Boolean)),
+      await getOptions([
+        ...defaultArgu,
+        'find-null',
+        ...(!repoPath ? [] : ['--repo-path', repoPath]),
+      ]),
     ).toEqual({
       command: 'find-null',
-      repoPath: path.resolve(
-        repoPath || path.resolve(__dirname, '../../../locales'),
-      ),
+      options: {
+        repoPath: path.resolve(
+          repoPath || path.resolve(__dirname, '../../../locales'),
+        ),
+      },
     });
   });
 });

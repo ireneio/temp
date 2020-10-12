@@ -96,7 +96,7 @@
           "MANUAL_PROCESSING": "Pemrosesan manual"
         },
         "updated-at": "Perbarui waktu:",
-        "tip": null
+        "tip": "Karena pengembalian informasi pihak ketiga, akan ada kesalahan waktu dalam status pengiriman. Anda dapat memeriksa informasi terbaru dengan menanyakan status logistik."
       }
     },
     "invoice": {

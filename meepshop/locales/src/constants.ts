@@ -2,9 +2,10 @@
 /* eslint-disable @typescript-eslint/camelcase */
 export const LOCALES = {
   zh_TW: '',
-  en_US: '',
+  en_US:
+    'https://translate.google.com/?hl=zh-TW#view=home&op=translate&sl=en&tl=en',
   fr_FR:
-    'https://translate.google.com.tw/?hl=zh-TW#view=home&op=translate&sl=en&tl=fr',
+    'https://translate.google.com/?hl=zh-TW#view=home&op=translate&sl=en&tl=fr',
   es_ES:
     'https://translate.google.com/?hl=zh-TW#view=home&op=translate&sl=en&tl=es',
   ja_JP:

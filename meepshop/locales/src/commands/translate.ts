@@ -1,14 +1,13 @@
 // typescript import
 import { DataType } from '../utils/walker';
 import { LOCALES } from '../constants';
+import { CacheType as FindNullCacheType } from './findNull';
 
 // import
 import path from 'path';
 
 import chalk from 'chalk';
 import ora from 'ora';
-
-import findNull from './findNull';
 
 import joinValue from '../utils/joinValue';
 import getValue from '../utils/getValue';
@@ -20,7 +19,7 @@ interface CacheType {
 
 // definition
 export default async (
-  repoPath: string,
+  nullFiles: FindNullCacheType,
   referenceLocale: keyof typeof LOCALES,
   translate: (
     referenceValue: string,
@@ -28,8 +27,6 @@ export default async (
   ) => Promise<string> | string | null,
   callback: (filePath: string, cache: DataType) => void,
 ): Promise<void> => {
-  const nullFiles = findNull(repoPath);
-
   await Object.keys(nullFiles).reduce(async (result, folderPath) => {
     const nullKeys = nullFiles[folderPath];
 

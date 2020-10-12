@@ -5,7 +5,7 @@ import { LOCALES } from '../constants';
 import walker from '../utils/walker';
 
 // typescript definition
-interface CacheType {
+export interface CacheType {
   [key: string]: {
     [key: string]: (keyof typeof LOCALES)[];
   };

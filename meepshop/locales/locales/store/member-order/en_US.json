@@ -96,7 +96,7 @@
           "MANUAL_PROCESSING": "Manual processing"
         },
         "updated-at": "Update time:",
-        "tip": null
+        "tip": "Due to the return of third-party information, there will be a time error in the shipping status. You can check the latest information by querying the logistics status."
       }
     },
     "invoice": {

@@ -16,14 +16,23 @@ export interface OptionsType {
     | 'link'
     | 'unlink'
     | 'update'
-    | 'create';
-  repoPath: string;
-  options?: {
+    | 'create'
+    | 'auto-translate';
+  options: {
+    repoPath: string;
     [key: string]: string | undefined;
   };
 }
 
 // definition
+const repoPathOptions: [string, string] = [
+  '--repo-path <repoPath>',
+  'the path of the repo',
+];
+const defaultRepoPath = path.resolve(__dirname, '../../locales');
+const getDefaultRepoPath = (repoPath: string): string =>
+  path.resolve(repoPath || defaultRepoPath);
+
 export default (argv: string[]): Promise<OptionsType> =>
   new Promise((resolve, reject) => {
     const program = new commander.Command('locales')
@@ -42,13 +51,11 @@ export default (argv: string[]): Promise<OptionsType> =>
       (
         command: Exclude<
           OptionsType['command'],
-          'generate' | 'translate' | 'create'
+          'generate' | 'translate' | 'create' | 'auto-translate'
         >,
       ) => {
         program
           .command(command)
-          .arguments('[repoPath]')
-          .usage(chalk`{green [repoPath]}`)
           .description(
             {
               'find-null': 'find `null` in the locales files',
@@ -58,12 +65,13 @@ export default (argv: string[]): Promise<OptionsType> =>
               update: 'update the keys of the locale files',
             }[command],
           )
-          .action(repoPath => {
+          .option(...repoPathOptions)
+          .action(({ repoPath }) => {
             resolve({
               command,
-              repoPath: path.resolve(
-                repoPath || path.resolve(__dirname, '../../locales'),
-              ),
+              options: {
+                repoPath: getDefaultRepoPath(repoPath),
+              },
             });
           });
       },
@@ -71,20 +79,17 @@ export default (argv: string[]): Promise<OptionsType> =>
 
     program
       .command('translate')
-      .arguments('[repoPath]')
-      .usage(chalk`{green [repoPath]}`)
       .description('translate `null` in the locales files')
+      .option(...repoPathOptions)
       .option(
         '-r, --reference <reference>',
         'the reference folder to translate locales',
       )
-      .action((repoPath, { reference }) => {
+      .action(({ repoPath, reference }) => {
         resolve({
           command: 'translate',
-          repoPath: path.resolve(
-            repoPath || path.resolve(__dirname, '../../locales'),
-          ),
           options: {
+            repoPath: getDefaultRepoPath(repoPath),
             reference,
           },
         });
@@ -92,17 +97,13 @@ export default (argv: string[]): Promise<OptionsType> =>
 
     program
       .command('generate')
-      .arguments('[repoPath]')
-      .usage(chalk`{green [repoPath]}`)
       .description('generate the files in a josn file')
       .option('-o, --output-folder <folder>', 'path to the output folder')
-      .action((repoPath, { outputFolder }) => {
+      .action(({ outputFolder }) => {
         resolve({
           command: 'generate',
-          repoPath: path.resolve(
-            repoPath || path.resolve(__dirname, '../../locales'),
-          ),
           options: {
+            repoPath: defaultRepoPath,
             outputFolder,
           },
         });
@@ -110,21 +111,32 @@ export default (argv: string[]): Promise<OptionsType> =>
 
     program
       .command('create')
-      .arguments('[repoPath]')
-      .usage(chalk`{green [repoPath]}`)
       .description('use to create the new locale files')
       .requiredOption(
         '-p, --package-name <packageName>',
         'the name of the new locale files',
       )
-      .action((repoPath, { packageName }) => {
+      .action(({ packageName }) => {
         resolve({
           command: 'create',
-          repoPath: path.resolve(
-            repoPath || path.resolve(__dirname, '../../locales'),
-          ),
           options: {
+            repoPath: defaultRepoPath,
             packageName,
+          },
+        });
+      });
+
+    program
+      .command('auto-translate')
+      .arguments('<paths...>')
+      .usage(chalk`{green <paths...>}`)
+      .description('use to translate the locale files with git commit')
+      .action(paths => {
+        resolve({
+          command: 'auto-translate',
+          options: {
+            repoPath: defaultRepoPath,
+            paths: paths.join(','),
           },
         });
       });

@@ -2,6 +2,7 @@
 import path from 'path';
 
 import './__ignore__/mock';
+import findNull from '../findNull';
 import translate from '../translate';
 import googleTranslate from '../../utils/googleTranslate';
 
@@ -12,10 +13,14 @@ test('translate', async () => {
 
   expect(
     await new Promise(resolve =>
-      translate(repoPath, 'en_US', googleTranslate, (filePath, data) =>
-        resolve({
-          [filePath]: data,
-        }),
+      translate(
+        findNull(repoPath),
+        'en_US',
+        googleTranslate,
+        (filePath, data) =>
+          resolve({
+            [filePath]: data,
+          }),
       ),
     ),
   ).toEqual({

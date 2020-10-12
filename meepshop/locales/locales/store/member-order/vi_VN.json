@@ -96,7 +96,7 @@
           "MANUAL_PROCESSING": "Xử lý thủ công"
         },
         "updated-at": "Cập nhật thời gian:",
-        "tip": null
+        "tip": "Do việc trả lại thông tin của bên thứ ba nên tình trạng vận chuyển sẽ có lỗi thời gian. Bạn có thể kiểm tra thông tin mới nhất bằng cách truy vấn trạng thái hậu cần."
       }
     },
     "invoice": {

@@ -96,7 +96,7 @@
           "MANUAL_PROCESSING": "Traitement manuel"
         },
         "updated-at": "Temps de mise à jour:",
-        "tip": null
+        "tip": "En raison du retour d'informations de tiers, il y aura une erreur de temps dans le statut d'expédition. Vous pouvez vérifier les dernières informations en interrogeant le statut logistique."
       }
     },
     "invoice": {
