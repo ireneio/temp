@@ -276,7 +276,7 @@ class MyApp extends App {
                           }}
                         />
                       </Provider>
-      
+
                       <BackToTop />
                     </CartProvider>
                   </AdTrackProvider>
