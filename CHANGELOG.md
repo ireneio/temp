@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.66.0 (2020-10-12)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1189](https://github.com/meepshop/meep-lerna/pull/1189) 【功能】回到頁面頂端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1209](https://github.com/meepshop/meep-lerna/pull/1209) (@meepshop/meep-ui) Fix code style ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.65.1 (2020-10-08)
 
 #### :rocket: New Feature
