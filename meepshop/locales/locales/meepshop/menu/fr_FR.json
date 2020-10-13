@@ -1,0 +1,18 @@
+{
+  "search": "chercher",
+  "zh_TW": "繁體中文",
+  "en_US": "English",
+  "ja_JP": "日本語",
+  "vi_VN": "tiếng việt",
+  "fr_FR": "Le français",
+  "es_ES": "Espanol",
+  "th_TH": "อังกฤษ",
+  "id_ID": "Inggris",
+  "ORDERS": "Mes commandes",
+  "SETTINGS": "Infos membres",
+  "RECIPIENTS": "Choisissez dans le carnet d'adresses",
+  "PASSWORD_CHANGE": "Changer le mot de passe",
+  "WISHLIST": "Liste de souhaits",
+  "REWARD_POINTS": "Points de récompense",
+  "LOGOUT": "Connectez - Out"
+}

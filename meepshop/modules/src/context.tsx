@@ -8,9 +8,13 @@ import { ContextType as MenuContextType } from '@meepshop/menu/lib/fragments';
 import { ContextType as ProductQaContextType } from '@meepshop/product-qa/lib/fragment';
 
 import { contextUserFragment as contextUserFragmentType } from './__generated__/contextUserFragment';
+import { contextOrderFragment as contextOrderFragmentType } from './__generated__/contextOrderFragment';
 
 // graphql import
-import { menuUserFragment } from '@meepshop/menu/lib/fragments';
+import {
+  menuUserFragment,
+  menuOrderFragment,
+} from '@meepshop/menu/lib/fragments';
 import { productQaUserFragment } from '@meepshop/product-qa/lib/fragment';
 
 // typescript definition
@@ -42,6 +46,7 @@ interface ModulesType extends Record<ModuleNamesType, {}> {
 
 interface PropsType {
   user: contextUserFragmentType | null;
+  order: contextOrderFragmentType | null;
   children: React.ReactNode;
 }
 
@@ -57,6 +62,7 @@ const defaultContext = {
   ImageTextModule: {},
   MenuModule: {
     user: null,
+    order: null,
   },
   ProductCarouselModule: {},
   ProductCollectionsModule: {},
@@ -85,20 +91,32 @@ export const contextUserFragment = gql`
   ${productQaUserFragment}
 `;
 
-export const ModulesProvider = React.memo(({ user, children }: PropsType) => (
-  <ModulesContext.Provider
-    value={{
-      ...defaultContext,
-      MenuModule: {
-        user: !user ? null : filter(menuUserFragment, user),
-      },
-      ProductQaModule: {
-        user: !user ? null : filter(productQaUserFragment, user),
-      },
-    }}
-  >
-    {children}
-  </ModulesContext.Provider>
-));
+export const contextOrderFragment = gql`
+  fragment contextOrderFragment on Order {
+    id
+    ...menuOrderFragment
+  }
+
+  ${menuOrderFragment}
+`;
+
+export const ModulesProvider = React.memo(
+  ({ user, order, children }: PropsType) => (
+    <ModulesContext.Provider
+      value={{
+        ...defaultContext,
+        MenuModule: {
+          user: !user ? null : filter(menuUserFragment, user),
+          order: !order ? null : filter(menuOrderFragment, order),
+        },
+        ProductQaModule: {
+          user: !user ? null : filter(productQaUserFragment, user),
+        },
+      }}
+    >
+      {children}
+    </ModulesContext.Provider>
+  ),
+);
 
 export default ModulesContext;

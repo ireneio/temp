@@ -15,7 +15,11 @@ import styles from './styles/index.less';
 import { getModules } from './__generated__/getModules';
 
 // graphql import
-import { modulesFragment, contextUserFragment } from '@meepshop/modules';
+import {
+  modulesFragment,
+  contextUserFragment,
+  contextOrderFragment,
+} from '@meepshop/modules';
 
 // definition
 const query = gql`
@@ -34,10 +38,18 @@ const query = gql`
       }
       ...contextUserFragment
     }
+
+    getCartList(search: { showDetail: true }) {
+      data {
+        id
+        ...contextOrderFragment
+      }
+    }
   }
 
   ${modulesFragment}
   ${contextUserFragment}
+  ${contextOrderFragment}
 `;
 
 export default React.memo(() => {
@@ -53,7 +65,12 @@ export default React.memo(() => {
 
   return (
     <ModulesProvider
-      user={!data?.viewer ? null : filter(contextUserFragment, data.viewer)}
+      user={!data.viewer ? null : filter(contextUserFragment, data.viewer)}
+      order={
+        !data.getCartList?.data?.[0]
+          ? null
+          : filter(contextOrderFragment, data.getCartList.data[0])
+      }
     >
       <div
         className={styles.root}

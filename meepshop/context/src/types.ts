@@ -1,6 +1,7 @@
 // import
 export { default as AdTrack } from './AdTrack';
 export { default as Apps } from './Apps';
+export { default as Cart } from './Cart';
 export { default as Colors } from './Colors';
 export { default as Currency } from './Currency';
 export { default as Events } from './Events';

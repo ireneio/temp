@@ -27,6 +27,7 @@ import viewTrackingFragment from '@meepshop/view-tracking/lib/fragment';
 // definition
 export {
   contextUserFragment,
+  contextOrderFragment,
   ModulesProvider,
   default as ModulesContext,
 } from './context';

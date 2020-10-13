@@ -1,0 +1,18 @@
+{
+  "search": "ค้นหา",
+  "zh_TW": "繁體中文",
+  "en_US": "English",
+  "ja_JP": "日本語",
+  "vi_VN": "tiếng việt",
+  "fr_FR": "Le français",
+  "es_ES": "Espanol",
+  "th_TH": "อังกฤษ",
+  "id_ID": "Inggris",
+  "ORDERS": "คำสั่งซื้อของฉัน",
+  "SETTINGS": "ข้อมูลสมาชิก",
+  "RECIPIENTS": "เลือกจากสมุดที่อยู่",
+  "PASSWORD_CHANGE": "เปลี่ยนรหัสผ่าน",
+  "WISHLIST": "รายการที่ต้องการ",
+  "REWARD_POINTS": "คะแนนสะสม",
+  "LOGOUT": "ออกจากระบบ"
+}

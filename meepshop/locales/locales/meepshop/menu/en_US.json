@@ -1,0 +1,18 @@
+{
+  "search": "search",
+  "zh_TW": "繁體中文",
+  "en_US": "English",
+  "ja_JP": "日本語",
+  "vi_VN": "tiếng việt",
+  "fr_FR": "Le français",
+  "es_ES": "Espanol",
+  "th_TH": "อังกฤษ",
+  "id_ID": "Inggris",
+  "ORDERS": "My Orders",
+  "SETTINGS": "Member Info",
+  "RECIPIENTS": "Choose from Address Book",
+  "PASSWORD_CHANGE": "Change Password",
+  "WISHLIST": "Wish list",
+  "REWARD_POINTS": "Reward Points",
+  "LOGOUT": "logout"
+}

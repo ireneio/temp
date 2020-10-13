@@ -295,12 +295,17 @@ module.exports = declare(({ assertVersion, types: t }) => {
     outputFileSync(
       nodePath.resolve(__dirname, './defaultTypes.tsx'),
       `// Only for typescript, do not import
+// typescript import
+import { CSSProperties } from 'react';
+
 // import
 import React from 'react';
 
 // typescript definition
 interface PropsType {
   className?: string;
+  style?: CSSProperties;
+  onClick?: () => void;
 }
 
 // definition

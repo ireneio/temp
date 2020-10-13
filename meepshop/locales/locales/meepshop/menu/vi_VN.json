@@ -1,0 +1,18 @@
+{
+  "search": "Tìm kiếm",
+  "zh_TW": "繁體中文",
+  "en_US": "English",
+  "ja_JP": "日本語",
+  "vi_VN": "tiếng việt",
+  "fr_FR": "Le français",
+  "es_ES": "Espanol",
+  "th_TH": "อังกฤษ",
+  "id_ID": "Inggris",
+  "ORDERS": "quản lý đơn hàng",
+  "SETTINGS": "thông tin hội viên",
+  "RECIPIENTS": "Mẫu người nhận",
+  "PASSWORD_CHANGE": "Thay đổi mật mã",
+  "WISHLIST": "Tích lũy của tôi",
+  "REWARD_POINTS": "Tiền mua hàng",
+  "LOGOUT": "logout"
+}

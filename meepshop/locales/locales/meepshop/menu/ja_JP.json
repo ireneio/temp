@@ -1,0 +1,18 @@
+{
+  "search": "探す",
+  "zh_TW": "繁體中文",
+  "en_US": "English",
+  "ja_JP": "日本語",
+  "vi_VN": "tiếng việt",
+  "fr_FR": "Le français",
+  "es_ES": "Espanol",
+  "th_TH": "อังกฤษ",
+  "id_ID": "Inggris",
+  "ORDERS": "注文管理",
+  "SETTINGS": "会員情報",
+  "RECIPIENTS": "受取人テンプレート",
+  "PASSWORD_CHANGE": "パスワードを変更する",
+  "WISHLIST": "お気に入りに入れる",
+  "REWARD_POINTS": "ポイント",
+  "LOGOUT": "ログアウト"
+}
