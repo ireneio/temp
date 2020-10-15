@@ -99,8 +99,13 @@ workspace(store, admin...)
 ├── README.md (optional)
 ├── mock.ts (optional)
 └── src
-    ├── __tests__
+    ├── __tests__ (optional)
+    ├── styles, hooks, gqls, utils
+    ├── sub-components (optional)
+    │   ├── styles, hooks, gqls, utils
+    │   ├── constants.ts (optional)
     │   └── index.tsx
+    ├── constants.ts (optional)
     └── index.tsx
 ```
 
