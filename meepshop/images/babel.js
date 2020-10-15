@@ -110,7 +110,7 @@ const generateCompoent = (imageName, path) => {
     .replace(/xlink:href/g, 'xmlns');
 
   outputFileSync(
-    nodePath.resolve(imageFolder, '../lib', imageName.replace(/$/, '.js')),
+    nodePath.resolve(imageFolder, './lib', imageName.replace(/$/, '.js')),
     transformSync(
       `import React from 'react';
 
@@ -171,7 +171,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
                 [],
                 t.callExpression(t.import(), [
                   t.stringLiteral(
-                    `@meepshop/images/lib/${key.replace(/_react$/, '')}`,
+                    `@meepshop/images/images/lib/${key.replace(/_react$/, '')}`,
                   ),
                 ]),
               ),

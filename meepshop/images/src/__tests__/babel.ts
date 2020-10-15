@@ -33,7 +33,7 @@ describe('babel', () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore jest mock
     expect(outputFileSync.mock.calls[0][0]).toBe(
-      path.resolve(__dirname, '../../lib/dashboardCost.js'),
+      path.resolve(__dirname, '../../images/lib/dashboardCost.js'),
     );
   });
 
