@@ -5,38 +5,35 @@ import { MutationFunction } from '@apollo/react-common';
 
 // import
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { notification } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
+
+// graphql import
+import {
+  addRecipientAddress,
+  useAddRecipientAddressGetCache,
+  useAddRecipientAddressFragment,
+} from '../gqls/useAddRecipientAddress';
 
 // graphql typescript
 import {
   addRecipientAddress as addRecipientAddressType,
   addRecipientAddressVariables,
-} from './__generated__/addRecipientAddress';
-import { useAddRecipientAddressGetRecipientAddressBookCache as useAddRecipientAddressGetRecipientAddressBookCacheType } from './__generated__/useAddRecipientAddressGetRecipientAddressBookCache';
-import { useAddRecipientAddressFragment } from './__generated__/useAddRecipientAddressFragment';
+} from '../gqls/__generated__/addRecipientAddress';
+import { useAddRecipientAddressGetCache as useAddRecipientAddressGetCacheType } from '../gqls/__generated__/useAddRecipientAddressGetCache';
+import { useAddRecipientAddressFragment as useAddRecipientAddressFragmentType } from '../gqls/__generated__/useAddRecipientAddressFragment';
 
 // definition
-const mutation = gql`
-  mutation addRecipientAddress($input: AddRecipientAddressInput!) {
-    addRecipientAddress(input: $input) {
-      status
-      recipientAddressId
-    }
-  }
-`;
-
 export default (): MutationFunction<
   addRecipientAddressType,
   addRecipientAddressVariables
 > => {
   const { t } = useTranslation('member-recipients');
-  const [addRecipientAddress] = useMutation<
+  const [mutation] = useMutation<
     addRecipientAddressType,
     addRecipientAddressVariables
-  >(mutation);
+  >(addRecipientAddress);
 
   return ({
     variables,
@@ -45,7 +42,7 @@ export default (): MutationFunction<
     addRecipientAddressType,
     addRecipientAddressVariables
   >) =>
-    addRecipientAddress({
+    mutation({
       ...options,
       variables,
       update: (
@@ -60,65 +57,23 @@ export default (): MutationFunction<
         }
 
         const { recipientAddressId } = data.addRecipientAddress;
-        const useAddRecipientAddressGetRecipientAddressBookCache = cache.readQuery<
-          useAddRecipientAddressGetRecipientAddressBookCacheType
+        const useAddRecipientAddressCache = cache.readQuery<
+          useAddRecipientAddressGetCacheType
         >({
-          query: gql`
-            query useAddRecipientAddressGetRecipientAddressBookCache {
-              viewer {
-                id
-                shippableRecipientAddresses {
-                  id
-                  name
-                  mobile
-                  country {
-                    id
-                  }
-                  city {
-                    id
-                  }
-                  area {
-                    id
-                  }
-                  zipCode
-                  street
-                }
-              }
-            }
-          `,
+          query: useAddRecipientAddressGetCache,
         });
 
         const input = variables?.input;
         const { id: viewerId, shippableRecipientAddresses } =
-          useAddRecipientAddressGetRecipientAddressBookCache?.viewer || {};
+          useAddRecipientAddressCache?.viewer || {};
 
         if (!input || !viewerId || !shippableRecipientAddresses) return;
 
         const { countryId, cityId, areaId, ...newRecipientAddress } = input;
 
-        cache.writeFragment<useAddRecipientAddressFragment>({
+        cache.writeFragment<useAddRecipientAddressFragmentType>({
           id: viewerId,
-          fragment: gql`
-            fragment useAddRecipientAddressFragment on User {
-              id
-              shippableRecipientAddresses {
-                id
-                name
-                mobile
-                country {
-                  id
-                }
-                city {
-                  id
-                }
-                area {
-                  id
-                }
-                zipCode
-                street
-              }
-            }
-          `,
+          fragment: useAddRecipientAddressFragment,
           data: {
             __typename: 'User',
             id: viewerId,
@@ -146,7 +101,7 @@ export default (): MutationFunction<
                     },
               },
             ],
-          } as useAddRecipientAddressFragment,
+          } as useAddRecipientAddressFragmentType,
         });
 
         notification.success({ message: t('mutation.success') });

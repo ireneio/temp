@@ -5,7 +5,6 @@ import { MutationFunction } from '@apollo/react-common';
 
 // import
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { notification } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -14,27 +13,25 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   updateRecipientAddress as updateRecipientAddressType,
   updateRecipientAddressVariables,
-} from './__generated__/updateRecipientAddress';
-import { useUpdateRecipientAddressFragment } from './__generated__/useUpdateRecipientAddressFragment';
+} from '../gqls/__generated__/updateRecipientAddress';
+import { useUpdateRecipientAddressFragment as useUpdateRecipientAddressFragmentType } from '../gqls/__generated__/useUpdateRecipientAddressFragment';
+
+// graphql import
+import {
+  updateRecipientAddress,
+  useUpdateRecipientAddressFragment,
+} from '../gqls/useUpdateRecipientAddress';
 
 // definition
-const mutation = gql`
-  mutation updateRecipientAddress($input: UpdateRecipientAddressInput!) {
-    updateRecipientAddress(input: $input) {
-      status
-    }
-  }
-`;
-
 export default (): MutationFunction<
   updateRecipientAddressType,
   updateRecipientAddressVariables
 > => {
   const { t } = useTranslation('member-recipients');
-  const [updateRecipientAddress] = useMutation<
+  const [mutation] = useMutation<
     updateRecipientAddressType,
     updateRecipientAddressVariables
-  >(mutation);
+  >(updateRecipientAddress);
 
   return ({
     variables,
@@ -43,7 +40,7 @@ export default (): MutationFunction<
     updateRecipientAddressType,
     updateRecipientAddressVariables
   >) =>
-    updateRecipientAddress({
+    mutation({
       ...options,
       variables,
       update: (
@@ -61,26 +58,9 @@ export default (): MutationFunction<
 
         const { id, countryId, cityId, areaId, ...newRecipientAddress } = input;
 
-        cache.writeFragment<useUpdateRecipientAddressFragment>({
+        cache.writeFragment<useUpdateRecipientAddressFragmentType>({
           id,
-          fragment: gql`
-            fragment useUpdateRecipientAddressFragment on RecipientAddress {
-              id
-              name
-              mobile
-              country {
-                id
-              }
-              city {
-                id
-              }
-              area {
-                id
-              }
-              zipCode
-              street
-            }
-          `,
+          fragment: useUpdateRecipientAddressFragment,
           data: {
             ...newRecipientAddress,
             __typename: 'RecipientAddress',
@@ -101,7 +81,7 @@ export default (): MutationFunction<
                   __typename: 'Area',
                   id: areaId,
                 },
-          } as useUpdateRecipientAddressFragment,
+          } as useUpdateRecipientAddressFragmentType,
         });
 
         notification.success({ message: t('mutation.success') });

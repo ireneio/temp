@@ -5,51 +5,17 @@ import { languageType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React, { useMemo } from 'react';
-import gql from 'graphql-tag';
 import { Divider } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 import useDeleteRecipientAddress from './useDeleteRecipientAddress';
-import styles from './styles/useColumns.less';
+import styles from '../styles/useColumns.less';
 
 // graphql typescript
-import { useColumnsRecipientAddressFragment as useColumnsRecipientAddressFragmentType } from './__generated__/useColumnsRecipientAddressFragment';
-
-// graphql import
-import localeFragment from '@meepshop/utils/lib/fragments/locale';
+import { useColumnsRecipientAddressFragment as useColumnsRecipientAddressFragmentType } from '../gqls/__generated__/useColumnsRecipientAddressFragment';
 
 // definition
-export const useColumnsRecipientAddressFragment = gql`
-  fragment useColumnsRecipientAddressFragment on RecipientAddress {
-    id
-    name
-    mobile
-    country {
-      id
-      name {
-        ...localeFragment
-      }
-    }
-    city {
-      id
-      name {
-        ...localeFragment
-      }
-    }
-    area {
-      id
-      name {
-        ...localeFragment
-      }
-    }
-    zipCode
-    street
-  }
-
-  ${localeFragment}
-`;
-
 export default (
   setSelectedId: (id: string | null) => void,
 ): ColumnProps<useColumnsRecipientAddressFragmentType>[] => {

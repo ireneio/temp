@@ -1,7 +1,6 @@
 // import
 import React, { useState, useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Table } from 'antd';
 
@@ -12,36 +11,18 @@ import useColumns from './hooks/useColumns';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getUserRecipients } from './__generated__/getUserRecipients';
-import { useColumnsRecipientAddressFragment as useColumnsRecipientAddressFragmentType } from './hooks/__generated__/useColumnsRecipientAddressFragment';
+import { getUserRecipients as getUserRecipientsType } from './gqls/__generated__/getUserRecipients';
+import { useColumnsRecipientAddressFragment as useColumnsRecipientAddressFragmentType } from './gqls/__generated__/useColumnsRecipientAddressFragment';
 
-import { formRecipientAddressFragment, formStoreFragment } from './Form';
-import { useColumnsRecipientAddressFragment } from './hooks/useColumns';
+// graphql import
+import getUserRecipients from './gqls';
+import { formStoreFragment, formRecipientAddressFragment } from './gqls/form';
+import useColumnsRecipientAddressFragment from './gqls/useColumns';
 
 // definition
-const query = gql`
-  query getUserRecipients {
-    viewer {
-      id
-      shippableRecipientAddresses {
-        ...formRecipientAddressFragment
-        ...useColumnsRecipientAddressFragment
-      }
-
-      store {
-        ...formStoreFragment
-      }
-    }
-  }
-
-  ${formRecipientAddressFragment}
-  ${useColumnsRecipientAddressFragment}
-  ${formStoreFragment}
-`;
-
 export default React.memo(() => {
   const colors = useContext(ColorsContext);
-  const { data } = useQuery<getUserRecipients>(query);
+  const { data } = useQuery<getUserRecipientsType>(getUserRecipients);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const columns = useColumns(setSelectedId);
   const viewer = data?.viewer;

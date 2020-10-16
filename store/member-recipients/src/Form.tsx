@@ -5,7 +5,6 @@ import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React, { useContext } from 'react';
-import gql from 'graphql-tag';
 import { Form, Input, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -19,8 +18,8 @@ import useFormSubmit from './hooks/useFormSubmit';
 import styles from './styles/form.less';
 
 // graphql typescript
-import { formRecipientAddressFragment as formRecipientAddressFragmentType } from './__generated__/formRecipientAddressFragment';
-import { formStoreFragment as formStoreFragmentType } from './__generated__/formStoreFragment';
+import { formRecipientAddressFragment as formRecipientAddressFragmentType } from './gqls/__generated__/formRecipientAddressFragment';
+import { formStoreFragment as formStoreFragmentType } from './gqls/__generated__/formStoreFragment';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
@@ -31,34 +30,6 @@ interface PropsType extends FormComponentProps {
 
 // definition
 const { Item: FormItem } = Form;
-
-export const formRecipientAddressFragment = gql`
-  fragment formRecipientAddressFragment on RecipientAddress {
-    id
-    name
-    mobile
-    country {
-      id
-    }
-    city {
-      id
-    }
-    area {
-      id
-    }
-    zipCode
-    street
-  }
-`;
-
-export const formStoreFragment = gql`
-  fragment formStoreFragment on Store {
-    id
-    shippableCountries {
-      id
-    }
-  }
-`;
 
 export default Form.create<PropsType>({
   mapPropsToFields: ({ recipientAddress }) => ({

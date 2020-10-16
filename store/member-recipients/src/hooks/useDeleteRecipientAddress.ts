@@ -5,7 +5,6 @@ import { MutationFunction } from '@apollo/react-common';
 
 // import
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { notification } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -14,28 +13,27 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   deleteRecipientAddress as deleteRecipientAddressType,
   deleteRecipientAddressVariables,
-} from './__generated__/deleteRecipientAddress';
-import { useDeleteRecipientAddressGetRecipientAddressBookCache as useDeleteRecipientAddressGetRecipientAddressBookCacheType } from './__generated__/useDeleteRecipientAddressGetRecipientAddressBookCache';
-import { useDeleteRecipientAddressFragment } from './__generated__/useDeleteRecipientAddressFragment';
+} from '../gqls/__generated__/deleteRecipientAddress';
+import { useDeleteRecipientAddressGetCache as useDeleteRecipientAddressGetCacheType } from '../gqls/__generated__/useDeleteRecipientAddressGetCache';
+import { useDeleteRecipientAddressFragment as useDeleteRecipientAddressFragmentType } from '../gqls/__generated__/useDeleteRecipientAddressFragment';
+
+// graphql import
+import {
+  deleteRecipientAddress,
+  useDeleteRecipientAddressGetCache,
+  useDeleteRecipientAddressFragment,
+} from '../gqls/useDeleteRecipientAddress';
 
 // definition
-const mutation = gql`
-  mutation deleteRecipientAddress($input: DeleteRecipientAddressInput!) {
-    deleteRecipientAddress(input: $input) {
-      status
-    }
-  }
-`;
-
 export default (): MutationFunction<
   deleteRecipientAddressType,
   deleteRecipientAddressVariables
 > => {
   const { t } = useTranslation('member-recipients');
-  const [deleteRecipientAddress] = useMutation<
+  const [mutation] = useMutation<
     deleteRecipientAddressType,
     deleteRecipientAddressVariables
-  >(mutation);
+  >(deleteRecipientAddress);
 
   return ({
     variables,
@@ -44,7 +42,7 @@ export default (): MutationFunction<
     deleteRecipientAddressType,
     deleteRecipientAddressVariables
   >) =>
-    deleteRecipientAddress({
+    mutation({
       ...options,
       variables,
       update: (
@@ -58,37 +56,21 @@ export default (): MutationFunction<
           return;
         }
 
-        const useDeleteRecipientAddressGetRecipientAddressBookCache = cache.readQuery<
-          useDeleteRecipientAddressGetRecipientAddressBookCacheType
+        const useDeleteRecipientAddressCache = cache.readQuery<
+          useDeleteRecipientAddressGetCacheType
         >({
-          query: gql`
-            query useDeleteRecipientAddressGetRecipientAddressBookCache {
-              viewer {
-                id
-                shippableRecipientAddresses {
-                  id
-                }
-              }
-            }
-          `,
+          query: useDeleteRecipientAddressGetCache,
         });
 
         const id = variables?.input?.id;
         const { id: viewerId, shippableRecipientAddresses } =
-          useDeleteRecipientAddressGetRecipientAddressBookCache?.viewer || {};
+          useDeleteRecipientAddressCache?.viewer || {};
 
         if (!id || !viewerId || !shippableRecipientAddresses) return;
 
-        cache.writeFragment<useDeleteRecipientAddressFragment>({
+        cache.writeFragment<useDeleteRecipientAddressFragmentType>({
           id: viewerId,
-          fragment: gql`
-            fragment useDeleteRecipientAddressFragment on User {
-              id
-              shippableRecipientAddresses {
-                id
-              }
-            }
-          `,
+          fragment: useDeleteRecipientAddressFragment,
           data: {
             __typename: 'User',
             id: viewerId,
