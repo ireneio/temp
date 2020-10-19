@@ -4,7 +4,7 @@
   "description": "tooltip components",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.66.0",
+  "version": "0.66.1",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "keywords": ["admin", "tooltip"]
