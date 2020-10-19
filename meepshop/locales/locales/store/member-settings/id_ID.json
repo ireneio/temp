@@ -27,5 +27,9 @@
     "submit": "Hapus informasi transaksi kartu kredit",
     "fail": "Hapus Gagal",
     "success": "Berhasil dihapus"
+  },
+  "update-user": {
+    "success": "Informasi Anda telah diperbarui.",
+    "fail": "Perbarui informasi: Terjadi kesalahan"
   }
 }

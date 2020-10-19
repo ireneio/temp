@@ -96,7 +96,7 @@ export default ({
             }
 
             notification.success({
-              message: t('udpate-user.success'),
+              message: t('update-user.success'),
             });
 
             const viewerCache = cache.readQuery<useSubmitReadCache>({

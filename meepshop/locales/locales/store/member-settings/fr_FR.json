@@ -27,5 +27,9 @@
     "submit": "Supprimer les informations de transaction par carte de crédit",
     "fail": "Supprimer échoué",
     "success": "Supprimé avec succès"
+  },
+  "update-user": {
+    "success": "Vos informations ont été mises à jour.",
+    "fail": "Informations de mise à jour: une erreur s'est produite"
   }
 }

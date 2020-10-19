@@ -27,5 +27,9 @@
     "submit": "移除信用卡交易資料",
     "fail": "移除失敗",
     "success": "移除成功"
+  },
+  "update-user": {
+    "success": "更新完成",
+    "fail": "更新會員：發生錯誤"
   }
 }

@@ -27,5 +27,9 @@
     "submit": "Eliminar la información de transacción de la tarjeta de crédito",
     "fail": "Eliminar fallido",
     "success": "Eliminado con éxito"
+  },
+  "update-user": {
+    "success": "Su información ha sido actualizada.",
+    "fail": "Actualizar información: se produjo un error"
   }
 }

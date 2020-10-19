@@ -27,5 +27,9 @@
     "submit": "Remove credit card transaction information",
     "fail": "Remove Failed",
     "success": "Removed successfully"
+  },
+  "update-user": {
+    "success": "Your information has been updated.",
+    "fail": "Update information: Error occurred"
   }
 }

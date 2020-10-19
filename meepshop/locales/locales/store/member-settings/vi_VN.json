@@ -27,5 +27,9 @@
     "submit": "Xóa thông tin giao dịch thẻ tín dụng",
     "fail": "Xóa không thành công",
     "success": "Đã xóa thành công"
+  },
+  "update-user": {
+    "success": "Hoàn tất cập nhật",
+    "fail": "Cập nhật hội viên : Xảy ra lỗi"
   }
 }
