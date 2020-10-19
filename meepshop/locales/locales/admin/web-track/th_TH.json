@@ -25,6 +25,7 @@
   },
   "google-ads": {
     "description": "การติดตามการแปลงโฆษณาสามารถใช้เพื่อติดตามการกระทำ \"หลังจาก\" ลูกค้าคลิกโฆษณารวมถึงการลงทะเบียนการซื้อ การกระทำถือเป็นการแปลงเมื่อลูกค้าทำการกระทำที่คุณกำหนดไว้มีค่า",
+    "warning": null,
     "setting": "เปลี่ยนการตั้งค่าการติดตาม",
     "global-code": "รหัสสากล:",
     "global-code-placeholder": "กรุณาใส่รหัส URL ทั่วโลก",
@@ -38,7 +39,9 @@
     "dpa-description-1": "เวลาอัปเดตการเจรจาผลิตภัณฑ์: 5:00 น. ~ 6:00 น. (GMT + 08: 00)",
     "dpa-description-2": "โปรดคัดลอก URL ของไฟล์ไดนามิกและวางลงในบัญชี Google Merchant ของคุณเพื่อกำหนดค่าฟีด Google จะเรียกคืนตามกำหนดเวลาที่ตั้งไว้",
     "copy-dpa-link": "คัดลอก URL แบบไดนามิก",
-    "copied": "คัดลอกไปที่คลิปบอร์ดแล้ว"
+    "copied": "คัดลอกไปที่คลิปบอร์ดแล้ว",
+    "parse-config-fail": null,
+    "parse-fail": null
   },
   "google-webmaster": {
     "title": "Google Search Console",
@@ -51,9 +54,11 @@
   "google-tag-manager": {
     "title": "เครื่องมือการจัดการรหัส",
     "description": "Google เครื่องจัดการแท็กเป็นระบบการจัดการแท็กที่สามารถช่วยให้คุณอัปเดตรหัสติดตามและตัวอย่างได้อย่างรวดเร็วผ่านการตั้งค่าส่วนต่อประสานผู้ใช้เว็บไซต์และการตั้งค่าการใช้งานแท็ก",
+    "warning": null,
     "setting": "การตั้งค่าตัวอย่าง",
     "setting-placeholder": "กรุณาใส่รหัสติดตาม",
-    "googleTagManager": "รหัสติดตาม"
+    "googleTagManager": "รหัสติดตาม",
+    "parse-fail": null
   },
   "advanced-customer-track": "การติดตามลูกค้าขั้นสูง",
   "retention-milliseconds-track": {

@@ -25,6 +25,7 @@
   },
   "google-ads": {
     "description": "Pelacakan konversi iklan dapat digunakan untuk melacak tindakan \"setelah\" seorang pelanggan mengklik iklan, termasuk daftar, pembelian. Tindakan dianggap konversi setelah pelanggan menyelesaikan tindakan yang Anda anggap berharga.",
+    "warning": null,
     "setting": "Ubah Pengaturan Pelacakan",
     "global-code": "Kode Global:",
     "global-code-placeholder": "Silakan masukkan kode url global",
@@ -38,7 +39,9 @@
     "dpa-description-1": "Waktu Pembaruan Dialog Produk: 5:00 AM ~ 6:00 AM (GMT + 08:00)",
     "dpa-description-2": "Salin URL file dinamis dan tempel ke akun Google Merchant Anda untuk menyiapkan feed. Google akan mengambilnya sesuai dengan jadwal yang ditetapkan.",
     "copy-dpa-link": "Salin URL Dinamis",
-    "copied": "Disalin ke papan klip"
+    "copied": "Disalin ke papan klip",
+    "parse-config-fail": null,
+    "parse-fail": null
   },
   "google-webmaster": {
     "title": "Google Search Console",
@@ -51,9 +54,11 @@
   "google-tag-manager": {
     "title": "Alat Manajemen Kode",
     "description": "Google Tag Manager adalah sistem manajemen tag yang dapat membantu Anda dengan cepat memperbarui kode pelacakan dan snippet Anda melalui pengaturan antarmuka pengguna situs web dan pengaturan penempatan tag.",
+    "warning": null,
     "setting": "Pengaturan Cuplikan",
     "setting-placeholder": "Silakan masukkan kode pelacakan",
-    "googleTagManager": "Kode lacak"
+    "googleTagManager": "Kode lacak",
+    "parse-fail": null
   },
   "advanced-customer-track": "Pelacakan Pelanggan Lanjut",
   "retention-milliseconds-track": {

@@ -31,7 +31,6 @@ export default (
       mutation setGtagSettingsList($setInput: [setGtagInput]) {
         setGtagSettingsList(setInput: $setInput) {
           ...storeAdTrackGtagFragment
-          code
         }
       }
 

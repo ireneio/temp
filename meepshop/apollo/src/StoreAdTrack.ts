@@ -6,9 +6,7 @@ import { storeAdTrackWebTrackFragment as storeAdTrackWebTrackFragmentType } from
 // typescript definition
 interface DefaultDataType {
   getFbPixel?: storeAdTrackFbPixelFragmentType;
-  getGtagList?: (storeAdTrackGtagFragmentType & {
-    code?: string;
-  })[];
+  getGtagList?: storeAdTrackGtagFragmentType[];
   getWebTrackList?: {
     data: storeAdTrackWebTrackFragmentType[];
   };
@@ -43,14 +41,7 @@ export const resolvers = {
       ...Object.values(gtagKeys).reduce(
         (result, key) => ({
           ...result,
-          [key]:
-            key === 'googleAnalyticsId'
-              ? null
-              : {
-                  __typename: 'AdTrackCode',
-                  raw: null,
-                  extractedId: null,
-                },
+          [key]: null,
         }),
         {},
       ),
@@ -67,11 +58,7 @@ export const resolvers = {
           ? result
           : {
               ...result,
-              [key]: {
-                __typename: 'AdTrackCode',
-                raw: data?.code,
-                extractedId: data?.trackingId,
-              },
+              [key]: data?.trackingId,
             };
       }, {}),
       ...getWebTrackList?.data?.reduce(

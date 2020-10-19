@@ -25,6 +25,7 @@
   },
   "google-ads": {
     "description": "Ads conversion tracking can be used to track the action \"after\" a customer clicked the ads, including register, purchases. Action is considered conversion once a customer completed an action you defined valuable.",
+    "warning": null,
     "setting": "Change Tracking Settings",
     "global-code": "Global Code:",
     "global-code-placeholder": "Please enter global url code",
@@ -38,7 +39,9 @@
     "dpa-description-1": "Product Dialogue Update Time: 5:00 AM ~ 6:00 AM (GMT+08:00)",
     "dpa-description-2": "Please copy the URL of the dynamic file and paste it into your Google Merchant account to set up the feed. Google will retrieve it according to the set schedule.",
     "copy-dpa-link": "Copy Dynamic URL",
-    "copied": "Copied to clipboard"
+    "copied": "Copied to clipboard",
+    "parse-config-fail": null,
+    "parse-fail": null
   },
   "google-webmaster": {
     "title": "Google Search Console",
@@ -51,9 +54,11 @@
   "google-tag-manager": {
     "title": "Code Management Tools",
     "description": "Google Tag Manager is a tag management system that can help you rapidly update your tracking code and snippet through website user interface setting and tag deployment settings.",
+    "warning": null,
     "setting": "Snippet Settings",
     "setting-placeholder": "Please enter tracking code",
-    "googleTagManager": "Tracking Code"
+    "googleTagManager": "Tracking Code",
+    "parse-fail": null
   },
   "advanced-customer-track": "Advanced Customer Tracking",
   "retention-milliseconds-track": {

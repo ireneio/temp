@@ -15,12 +15,8 @@ export const useBeginCheckoutFragment = gql`
   fragment useBeginCheckoutFragment on StoreAdTrack {
     facebookPixelId
     googleAnalyticsId
-    googleAdwordsConfig {
-      extractedId
-    }
-    googleAdwordsBeginCheckout {
-      extractedId
-    }
+    googleAdwordsConfig
+    googleAdwordsBeginCheckout
   }
 `;
 
@@ -55,14 +51,10 @@ export default (
           value: total,
         });
 
-      if (
-        window.gtag &&
-        googleAdwordsConfig.extractedId &&
-        googleAdwordsBeginCheckout.extractedId
-      )
+      if (window.gtag && googleAdwordsConfig && googleAdwordsBeginCheckout)
         window.gtag('event', 'conversion', {
           // eslint-disable-next-line @typescript-eslint/camelcase
-          send_to: googleAdwordsBeginCheckout.extractedId,
+          send_to: googleAdwordsBeginCheckout,
         });
     },
     [adTrack, currency],

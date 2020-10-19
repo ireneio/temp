@@ -19,12 +19,8 @@ export const headFragment = gql`
     googleSearchConsoleVerificationHtml
     facebookPixelId
     googleAnalyticsId
-    googleAdwordsConfig {
-      extractedId
-    }
-    googleTagManager {
-      extractedId
-    }
+    googleAdwordsConfig
+    googleTagManager
   }
 `;
 
@@ -80,11 +76,11 @@ export default React.memo(
           </>
         )}
 
-        {!googleAnalyticsId && !googleAdwordsConfig.extractedId ? null : (
+        {!googleAnalyticsId && !googleAdwordsConfig ? null : (
           <>
             <script
               src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId ||
-                googleAdwordsConfig.extractedId}`}
+                googleAdwordsConfig}`}
               async
             />
 
@@ -100,9 +96,9 @@ export default React.memo(
                       : `gtag('config', '${googleAnalyticsId}', { page_path: '${router.asPath}' });`
                   }
                   ${
-                    !googleAdwordsConfig.extractedId
+                    !googleAdwordsConfig
                       ? ''
-                      : `gtag('config', '${googleAdwordsConfig.extractedId}');`
+                      : `gtag('config', '${googleAdwordsConfig}');`
                   }
                 `,
               }}
@@ -110,7 +106,7 @@ export default React.memo(
           </>
         )}
 
-        {!googleTagManager.extractedId ? null : (
+        {!googleTagManager ? null : (
           <>
             <script
               dangerouslySetInnerHTML={{
@@ -119,7 +115,7 @@ export default React.memo(
                   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                  })(window,document,'script','dataLayer','${googleTagManager.extractedId}');
+                  })(window,document,'script','dataLayer','${googleTagManager}');
                 `,
               }}
             />
@@ -128,7 +124,7 @@ export default React.memo(
               dangerouslySetInnerHTML={{
                 __html: `
                   <iframe
-                    src="https://www.googletagmanager.com/ns.html?id=${googleTagManager.extractedId}"
+                    src="https://www.googletagmanager.com/ns.html?id=${googleTagManager}"
                     height="0"
                     width="0"
                     style="display:none;visibility:hidden"

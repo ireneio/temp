@@ -3,8 +3,7 @@ import { FormComponentProps } from 'antd/lib/form';
 
 // import
 import React, { useState } from 'react';
-import gql from 'graphql-tag';
-import { Button, Modal, Form, Input } from 'antd';
+import { Button, Modal, Form, Input, Icon } from 'antd';
 
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -18,9 +17,12 @@ import useSetGtagSettingsList from './hooks/useSetGtagSettingsList';
 import styles from './styles/googleAds.less';
 
 // graphql typescript
-import { googleAdsFragment as googleAdsFragmentType } from './__generated__/googleAdsFragment';
-import { updateGoogleAdsCache } from './__generated__/updateGoogleAdsCache';
+import { googleAdsFragment as googleAdsFragmentType } from './fragments/__generated__/googleAdsFragment';
+import { updateGoogleAdsCacheFragment as updateGoogleAdsCacheFragmentType } from './fragments/__generated__/updateGoogleAdsCacheFragment';
 import { gtagTypeEnum, gtagEventNameEnum } from '../../../__generated__/admin';
+
+// graphql import
+import { updateGoogleAdsCacheFragment } from './fragments/googleAds';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
@@ -28,31 +30,16 @@ interface PropsType extends FormComponentProps {
 }
 
 // definition
-export const googleAdsFragment = gql`
-  fragment googleAdsFragment on Store {
-    id
-    setting {
-      googleFeedsLink
-    }
-    adTrack @client {
-      googleAdwordsConfig {
-        raw
-      }
-      googleAdwordsSignUp {
-        raw
-      }
-      googleAdwordsBeginCheckout {
-        raw
-      }
-      googleAdwordsPurchase {
-        raw
-      }
-    }
-  }
-`;
-
 const { Item } = Form;
 const { TextArea } = Input;
+const parseGoogleAdwordsConfig = (value: string | null): string | null =>
+  value?.match(/['"](AW-[0-9]+)['"]/)?.[1] ||
+  value?.match(/^(AW-[0-9]+)$/)?.[1] ||
+  null;
+const parseGoogleAdsCode = (value: string | null): string | null =>
+  value?.match(/['"](AW-[\w/-]+)['"]/)?.[1] ||
+  value?.match(/^(AW-[\w/-]+)$/)?.[1] ||
+  null;
 
 export default Form.create<PropsType>()(
   React.memo(({ form, store }: PropsType) => {
@@ -69,60 +56,30 @@ export default Form.create<PropsType>()(
     const googleFeedsLink = store.setting?.googleFeedsLink;
     const { t } = useTranslation('web-track');
     const setGtagSettingsList = useSetGtagSettingsList((cache, data) => {
-      cache.writeFragment<updateGoogleAdsCache>({
+      cache.writeFragment<updateGoogleAdsCacheFragmentType>({
         id: id || 'null-id' /** SHOULD_NOT_BE_NULL */,
-        fragment: gql`
-          fragment updateGoogleAdsCache on Store {
-            id
-            adTrack @client {
-              googleAdwordsConfig {
-                raw
-              }
-              googleAdwordsSignUp {
-                raw
-              }
-              googleAdwordsBeginCheckout {
-                raw
-              }
-              googleAdwordsPurchase {
-                raw
-              }
-            }
-          }
-        `,
+        fragment: updateGoogleAdsCacheFragment,
         data: {
           __typename: 'Store',
           id: id || 'null-id' /** SHOULD_NOT_BE_NULL */,
           adTrack: {
             __typename: 'StoreAdTrack',
-            googleAdwordsConfig: {
-              __typename: 'AdTrackCode',
-              raw:
-                data?.setGtagSettingsList?.find(
-                  gtag => gtag?.eventName === 'adwords_config',
-                )?.code || null,
-            },
-            googleAdwordsSignUp: {
-              __typename: 'AdTrackCode',
-              raw:
-                data?.setGtagSettingsList?.find(
-                  gtag => gtag?.eventName === 'sign_up',
-                )?.code || null,
-            },
-            googleAdwordsBeginCheckout: {
-              __typename: 'AdTrackCode',
-              raw:
-                data?.setGtagSettingsList?.find(
-                  gtag => gtag?.eventName === 'begin_checkout',
-                )?.code || null,
-            },
-            googleAdwordsPurchase: {
-              __typename: 'AdTrackCode',
-              raw:
-                data?.setGtagSettingsList?.find(
-                  gtag => gtag?.eventName === 'purchase',
-                )?.code || null,
-            },
+            googleAdwordsConfig:
+              data?.setGtagSettingsList?.find(
+                gtag => gtag?.eventName === 'adwords_config',
+              )?.trackingId || null,
+            googleAdwordsSignUp:
+              data?.setGtagSettingsList?.find(
+                gtag => gtag?.eventName === 'sign_up',
+              )?.trackingId || null,
+            googleAdwordsBeginCheckout:
+              data?.setGtagSettingsList?.find(
+                gtag => gtag?.eventName === 'begin_checkout',
+              )?.trackingId || null,
+            googleAdwordsPurchase:
+              data?.setGtagSettingsList?.find(
+                gtag => gtag?.eventName === 'purchase',
+              )?.trackingId || null,
           },
         },
       });
@@ -161,11 +118,17 @@ export default Form.create<PropsType>()(
 
         <div className={styles.description}>{t('google-ads.description')}</div>
 
+        <div className={styles.warning}>
+          <Icon type="exclamation-circle" />
+
+          {t('google-ads.warning')}
+        </div>
+
         {editMode ? (
           <div className={styles.item}>
             <Item label={t('google-ads.global-code')}>
               {getFieldDecorator('googleAdwordsConfig', {
-                initialValue: googleAdwordsConfig.raw,
+                initialValue: googleAdwordsConfig,
                 ...(getFieldValue('googleAdwordsSignUp') ||
                 getFieldValue('googleAdwordsBeginCheckout') ||
                 getFieldValue('googleAdwordsPurchase')
@@ -174,6 +137,13 @@ export default Form.create<PropsType>()(
                         {
                           required: true,
                           message: t('required'),
+                        },
+                        {
+                          validator: (_, value, callback) => {
+                            if (value && !parseGoogleAdwordsConfig(value))
+                              callback(t('google-ads.parse-config-fail'));
+                            else callback();
+                          },
                         },
                       ],
                     }
@@ -188,20 +158,62 @@ export default Form.create<PropsType>()(
 
             <Item label={t('google-ads.sign-up')}>
               {getFieldDecorator('googleAdwordsSignUp', {
-                initialValue: googleAdwordsSignUp.raw,
-              })(<TextArea placeholder={t('google-ads.event-placeholder')} />)}
+                initialValue: googleAdwordsSignUp,
+                rules: [
+                  {
+                    validator: (_, value, callback) => {
+                      if (value && !parseGoogleAdsCode(value))
+                        callback(t('google-ads.parse-fail'));
+                      else callback();
+                    },
+                  },
+                ],
+              })(
+                <TextArea
+                  placeholder={t('google-ads.event-placeholder')}
+                  autoSize={{ minRows: 1, maxRows: 4 }}
+                />,
+              )}
             </Item>
 
             <Item label={t('google-ads.begin-checkout')}>
               {getFieldDecorator('googleAdwordsBeginCheckout', {
-                initialValue: googleAdwordsBeginCheckout.raw,
-              })(<TextArea placeholder={t('google-ads.event-placeholder')} />)}
+                initialValue: googleAdwordsBeginCheckout,
+                rules: [
+                  {
+                    validator: (_, value, callback) => {
+                      if (value && !parseGoogleAdsCode(value))
+                        callback(t('google-ads.parse-fail'));
+                      else callback();
+                    },
+                  },
+                ],
+              })(
+                <TextArea
+                  placeholder={t('google-ads.event-placeholder')}
+                  autoSize={{ minRows: 1, maxRows: 4 }}
+                />,
+              )}
             </Item>
 
             <Item label={t('google-ads.purchase')}>
               {getFieldDecorator('googleAdwordsPurchase', {
-                initialValue: googleAdwordsPurchase.raw,
-              })(<TextArea placeholder={t('google-ads.event-placeholder')} />)}
+                initialValue: googleAdwordsPurchase,
+                rules: [
+                  {
+                    validator: (_, value, callback) => {
+                      if (value && !parseGoogleAdsCode(value))
+                        callback(t('google-ads.parse-fail'));
+                      else callback();
+                    },
+                  },
+                ],
+              })(
+                <TextArea
+                  placeholder={t('google-ads.event-placeholder')}
+                  autoSize={{ minRows: 1, maxRows: 4 }}
+                />,
+              )}
             </Item>
 
             <div className={styles.button}>
@@ -215,40 +227,32 @@ export default Form.create<PropsType>()(
                       variables: {
                         setInput: [
                           {
-                            code: values.googleAdwordsConfig,
                             type: 'google_adwords' as gtagTypeEnum,
                             eventName: 'adwords_config' as gtagEventNameEnum,
-                            trackingId:
-                              values.googleAdwordsConfig?.match(
-                                /['"](AW-[0-9]+)['"]/,
-                              )?.[1] || null,
+                            trackingId: parseGoogleAdwordsConfig(
+                              values.googleAdwordsConfig,
+                            ),
                           },
                           {
-                            code: values.googleAdwordsSignUp,
                             type: 'google_adwords' as gtagTypeEnum,
                             eventName: 'sign_up' as gtagEventNameEnum,
-                            trackingId:
-                              values.googleAdwordsSignUp?.match(
-                                /['"](AW-[\w/-]+)['"]/,
-                              )?.[1] || null,
+                            trackingId: parseGoogleAdsCode(
+                              values.googleAdwordsSignUp,
+                            ),
                           },
                           {
-                            code: values.googleAdwordsBeginCheckout,
                             type: 'google_adwords' as gtagTypeEnum,
                             eventName: 'begin_checkout' as gtagEventNameEnum,
-                            trackingId:
-                              values.googleAdwordsBeginCheckout?.match(
-                                /['"](AW-[\w/-]+)['"]/,
-                              )?.[1] || null,
+                            trackingId: parseGoogleAdsCode(
+                              values.googleAdwordsBeginCheckout,
+                            ),
                           },
                           {
-                            code: values.googleAdwordsPurchase,
                             type: 'google_adwords' as gtagTypeEnum,
                             eventName: 'purchase' as gtagEventNameEnum,
-                            trackingId:
-                              values.googleAdwordsPurchase?.match(
-                                /['"](AW-[\w/-]+)['"]/,
-                              )?.[1] || null,
+                            trackingId: parseGoogleAdsCode(
+                              values.googleAdwordsPurchase,
+                            ),
                           },
                         ],
                       },
@@ -270,34 +274,29 @@ export default Form.create<PropsType>()(
 
             <div>
               <div>{t('google-ads.global-code')}</div>
-              <div>{googleAdwordsConfig.raw}</div>
+              <div>{googleAdwordsConfig}</div>
             </div>
 
             <div>{t('google-ads.event-setting')}</div>
 
             <div className={styles.eventSetting}>
               <div>{t('google-ads.sign-up')}</div>
-              <div
-                className={`${!googleAdwordsSignUp.raw && styles.noSetting}`}
-              >
-                {googleAdwordsSignUp.raw || t('google-ads.not-setting')}
+              <div className={`${!googleAdwordsSignUp && styles.noSetting}`}>
+                {googleAdwordsSignUp || t('google-ads.not-setting')}
               </div>
             </div>
             <div className={styles.eventSetting}>
               <div>{t('google-ads.begin-checkout')}</div>
               <div
-                className={`${!googleAdwordsBeginCheckout.raw &&
-                  styles.noSetting}`}
+                className={`${!googleAdwordsBeginCheckout && styles.noSetting}`}
               >
-                {googleAdwordsBeginCheckout.raw || t('google-ads.not-setting')}
+                {googleAdwordsBeginCheckout || t('google-ads.not-setting')}
               </div>
             </div>
             <div className={styles.eventSetting}>
               <div>{t('google-ads.purchase')}</div>
-              <div
-                className={`${!googleAdwordsPurchase.raw && styles.noSetting}`}
-              >
-                {googleAdwordsPurchase.raw || t('google-ads.not-setting')}
+              <div className={`${!googleAdwordsPurchase && styles.noSetting}`}>
+                {googleAdwordsPurchase || t('google-ads.not-setting')}
               </div>
             </div>
           </div>

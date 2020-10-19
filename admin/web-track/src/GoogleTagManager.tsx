@@ -3,7 +3,6 @@ import { FormComponentProps } from 'antd/lib/form';
 
 // import
 import React, { useState } from 'react';
-import gql from 'graphql-tag';
 import { Icon, Button, Modal, Form, Input } from 'antd';
 
 import Tooltip from '@admin/tooltip';
@@ -17,9 +16,11 @@ import useSetGtagSettingsList from './hooks/useSetGtagSettingsList';
 import styles from './styles/googleTagManager.less';
 
 // graphql typescript
-import { googleTagManagerFragment as googleTagManagerFragmentType } from './__generated__/googleTagManagerFragment';
-import { updateGoogleTagManagerCache } from './__generated__/updateGoogleTagManagerCache';
+import { googleTagManagerFragment as googleTagManagerFragmentType } from './fragments/__generated__/googleTagManagerFragment';
 import { gtagTypeEnum, gtagEventNameEnum } from '../../../__generated__/admin';
+
+// graphql import
+import googleTagManagerFragment from './fragments/googleTagManager';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
@@ -27,19 +28,12 @@ interface PropsType extends FormComponentProps {
 }
 
 // definition
-export const googleTagManagerFragment = gql`
-  fragment googleTagManagerFragment on Store {
-    id
-    adTrack @client {
-      googleTagManager {
-        raw
-      }
-    }
-  }
-`;
-
 const { Item } = Form;
 const { TextArea } = Input;
+const parseGoogleTagManager = (value: string | null): string | null =>
+  value?.match(/id=(GTM-[\w/-]+)[&'"]/)?.[1] ||
+  value?.match(/^(GTM-[\w/-]+)$/)?.[1] ||
+  null;
 
 export default Form.create<PropsType>()(
   React.memo(({ form, store }: PropsType) => {
@@ -50,27 +44,16 @@ export default Form.create<PropsType>()(
     } = store;
     const { t } = useTranslation('web-track');
     const setGtagSettingsList = useSetGtagSettingsList((cache, data) => {
-      cache.writeFragment<updateGoogleTagManagerCache>({
+      cache.writeFragment<googleTagManagerFragmentType>({
         id: id || 'null-id' /** SHOULD_NOT_BE_NULL */,
-        fragment: gql`
-          fragment updateGoogleTagManagerCache on Store {
-            id
-            adTrack @client {
-              googleTagManager {
-                raw
-              }
-            }
-          }
-        `,
+        fragment: googleTagManagerFragment,
         data: {
           __typename: 'Store',
           id: id || 'null-id' /** SHOULD_NOT_BE_NULL */,
           adTrack: {
             __typename: 'StoreAdTrack',
-            googleTagManager: {
-              __typename: 'AdTrackCode',
-              raw: data?.setGtagSettingsList?.[0]?.code || null,
-            },
+            googleTagManager:
+              data?.setGtagSettingsList?.[0]?.trackingId || null,
           },
         },
       });
@@ -108,16 +91,31 @@ export default Form.create<PropsType>()(
           {t('google-tag-manager.description')}
         </div>
 
+        <div className={styles.warning}>
+          <Icon type="exclamation-circle" />
+
+          {t('google-tag-manager.warning')}
+        </div>
+
         {editMode ? (
           <div className={styles.edit}>
             {t('google-tag-manager.googleTagManager')}
             <Item>
               {getFieldDecorator('googleTagManager', {
-                initialValue: googleTagManager.raw,
+                initialValue: googleTagManager,
+                rules: [
+                  {
+                    validator: (_, value, callback) => {
+                      if (value && !parseGoogleTagManager(value))
+                        callback(t('google-tag-manager.parse-fail'));
+                      else callback();
+                    },
+                  },
+                ],
               })(
                 <TextArea
-                  rows={5}
                   placeholder={t('google-tag-manager.setting-placeholder')}
+                  autoSize={{ minRows: 1, maxRows: 4 }}
                 />,
               )}
             </Item>
@@ -131,13 +129,11 @@ export default Form.create<PropsType>()(
                     variables: {
                       setInput: [
                         {
-                          code: values.googleTagManager,
                           type: 'google_tag_manager' as gtagTypeEnum,
                           eventName: 'tag_manager' as gtagEventNameEnum,
-                          trackingId:
-                            values.googleTagManager.match(
-                              /id=(GTM-[\w/-]+)[&'"]/,
-                            )?.[1] || null,
+                          trackingId: parseGoogleTagManager(
+                            values.googleTagManager,
+                          ),
                         },
                       ],
                     },
@@ -152,13 +148,13 @@ export default Form.create<PropsType>()(
           </div>
         ) : (
           <>
-            {googleTagManager.raw ? (
+            {googleTagManager ? (
               <div className={styles.googleTagManager}>
                 <div>
                   {t('google-tag-manager.googleTagManager')}
                   <Icon type="edit" onClick={() => setEditMode(true)} />
                 </div>
-                <div>{googleTagManager.raw}</div>
+                <div>{googleTagManager}</div>
               </div>
             ) : (
               <Button onClick={() => setEditMode(true)}>

@@ -3,7 +3,6 @@ import { FormComponentProps } from 'antd/lib/form';
 
 // import
 import React, { useState } from 'react';
-import gql from 'graphql-tag';
 import { Tooltip as AntdTooltip, Icon, Button, Modal, Form, Input } from 'antd';
 
 import Tooltip from '@admin/tooltip';
@@ -18,7 +17,7 @@ import useClipboard from './hooks/useClipboard';
 import styles from './styles/facebook.less';
 
 // graphql typescript
-import { facebookStoreFragment as facebookStoreFragmentType } from './__generated__/facebookStoreFragment';
+import { facebookStoreFragment as facebookStoreFragmentType } from './fragments/__generated__/facebookStoreFragment';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
@@ -27,18 +26,6 @@ interface PropsType extends FormComponentProps {
 
 // definition
 const { Item } = Form;
-
-export const facebookStoreFragment = gql`
-  fragment facebookStoreFragment on Store {
-    id
-    setting {
-      fbDPALink
-    }
-    adTrack @client {
-      facebookPixelId
-    }
-  }
-`;
 
 export default Form.create<PropsType>()(
   React.memo(({ form, store }: PropsType) => {

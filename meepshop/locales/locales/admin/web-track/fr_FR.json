@@ -25,6 +25,7 @@
   },
   "google-ads": {
     "description": "Le suivi des conversions d'annonce peut être utilisé pour suivre l'action \"après\" un client a cliqué sur les annonces, y compris l'enregistrement, les achats. Une action est considérée comme une conversion lorsqu'un client a terminé une action que vous avez définie comme étant valable.",
+    "warning": null,
     "setting": "Modifier les paramètres de suivi",
     "global-code": "Code mondial:",
     "global-code-placeholder": "S'il vous plaît entrer le code URL global",
@@ -38,7 +39,9 @@
     "dpa-description-1": "Heure de mise à jour du dialogue produit: 5 h 00 à 6 h 00 (GMT + 08: 00)",
     "dpa-description-2": "Veuillez copier l'URL du fichier dynamique et la coller dans votre compte Google Merchant pour configurer le flux. Google le récupérera selon le calendrier défini.",
     "copy-dpa-link": "Copier l'URL dynamique",
-    "copied": "Copié dans le presse-papier"
+    "copied": "Copié dans le presse-papier",
+    "parse-config-fail": null,
+    "parse-fail": null
   },
   "google-webmaster": {
     "title": "Console de recherche Google",
@@ -51,9 +54,11 @@
   "google-tag-manager": {
     "title": "Outils de gestion de code",
     "description": "Google Tag Manager est un système de gestion des tags qui peut vous aider à mettre rapidement à jour votre code de suivi et votre extrait de code via les paramètres d'interface utilisateur du site Web et de déploiement des tags.",
+    "warning": null,
     "setting": "Paramètres d'extrait",
     "setting-placeholder": "S'il vous plaît entrer le code de suivi",
-    "googleTagManager": "Code de suivi"
+    "googleTagManager": "Code de suivi",
+    "parse-fail": null
   },
   "advanced-customer-track": "Suivi client avancé",
   "retention-milliseconds-track": {

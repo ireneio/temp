@@ -20,12 +20,8 @@ export const usePurchaseFragment = gql`
     adTrack @client {
       facebookPixelId
       googleAnalyticsId
-      googleAdwordsConfig {
-        extractedId
-      }
-      googleAdwordsPurchase {
-        extractedId
-      }
+      googleAdwordsConfig
+      googleAdwordsPurchase
     }
   }
 `;
@@ -88,14 +84,10 @@ export default (
             ),
         });
 
-      if (
-        window.gtag &&
-        googleAdwordsConfig.extractedId &&
-        googleAdwordsPurchase.extractedId
-      )
+      if (window.gtag && googleAdwordsConfig && googleAdwordsPurchase)
         window.gtag('event', 'conversion', {
           // eslint-disable-next-line @typescript-eslint/camelcase
-          send_to: googleAdwordsPurchase.extractedId,
+          send_to: googleAdwordsPurchase,
         });
     },
     [store],

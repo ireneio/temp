@@ -13,7 +13,10 @@ import {
   setFbPixel as setFbPixelType,
   setFbPixelVariables,
 } from './__generated__/setFbPixel';
-import { updateFacebookCache } from './__generated__/updateFacebookCache';
+import { updateFacebookCacheFragment as updateFacebookCacheFragmentType } from './fragments/__generated__/updateFacebookCacheFragment';
+
+// graphql import
+import updateFacebookCacheFragment from './fragments/useSetFbPixel';
 
 // definition
 export default (
@@ -31,16 +34,9 @@ export default (
     {
       update: (cache, { data }) => {
         message.success(t('save-success'));
-        cache.writeFragment<updateFacebookCache>({
+        cache.writeFragment<updateFacebookCacheFragmentType>({
           id: storeId,
-          fragment: gql`
-            fragment updateFacebookCache on Store {
-              id
-              adTrack @client {
-                facebookPixelId
-              }
-            }
-          `,
+          fragment: updateFacebookCacheFragment,
           data: {
             __typename: 'Store',
             id: storeId,

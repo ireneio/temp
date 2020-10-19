@@ -10,8 +10,8 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import styles from './styles/advancedSetting.less';
 
 // graphql typescript
-import { advancedSettingFragment as advancedSettingFragmentType } from './__generated__/advancedSettingFragment';
 import { updateAdRetentionMilliseconds as updateAdRetentionMillisecondsType } from './__generated__/updateAdRetentionMilliseconds';
+import { advancedSettingFragment as advancedSettingFragmentType } from './fragments/__generated__/advancedSettingFragment';
 
 // typescript definition
 interface PropsType {
@@ -19,16 +19,6 @@ interface PropsType {
 }
 
 // definition
-export const advancedSettingFragment = gql`
-  fragment advancedSettingFragment on Store {
-    id
-    setting {
-      adRetentionMillisecondsEnabled
-      adRetentionMilliseconds
-    }
-  }
-`;
-
 export default React.memo(({ store }: PropsType) => {
   const { t } = useTranslation('web-track');
 

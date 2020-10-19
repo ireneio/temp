@@ -11,6 +11,9 @@ import { Spin, Card, Icon, Tabs } from 'antd';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { AnalyticsSettingIcon } from '@meepshop/icons';
 
+// Use to copy mixin.less
+import './styles/mixin.less';
+
 import Facebook from './Facebook';
 import GoogleAnalytics from './GoogleAnalytics';
 import GoogleAds from './GoogleAds';
@@ -30,12 +33,14 @@ import {
   storeAdTrackWebTrackFragment,
 } from '@meepshop/apollo/lib/gqls/storeAdTrack';
 
-import { facebookStoreFragment } from './Facebook';
-import { googleAnalyticsFragment } from './GoogleAnalytics';
-import { googleAdsFragment } from './GoogleAds';
-import { googleWebmasterFragment } from './GoogleWebmaster';
-import { googleTagManagerFragment } from './GoogleTagManager';
-import { advancedSettingFragment } from './AdvancedSetting';
+import {
+  facebookStoreFragment,
+  googleAnalyticsFragment,
+  googleAdsFragment,
+  googleWebmasterFragment,
+  googleTagManagerFragment,
+  advancedSettingFragment,
+} from './fragments';
 
 // definition
 const { TabPane } = Tabs;
@@ -60,7 +65,6 @@ const query = gql`
 
     getGtagList {
       ...storeAdTrackGtagFragment
-      code
     }
 
     getWebTrackList {

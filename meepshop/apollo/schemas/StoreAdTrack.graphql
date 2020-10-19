@@ -1,21 +1,16 @@
-type AdTrackCode {
-  raw: String
-  extractedId: String
-}
-
 type StoreAdTrack {
   facebookPixelId: ID
-  googleAdwordsConfig: AdTrackCode!
-  googleAdwordsSignUp: AdTrackCode!
-  googleAdwordsBeginCheckout: AdTrackCode!
-  googleAdwordsPurchase: AdTrackCode!
+  googleAdwordsConfig: String
+  googleAdwordsSignUp: String
+  googleAdwordsBeginCheckout: String
+  googleAdwordsPurchase: String
   googleAnalyticsId: ID
   """
   FIXME: only for update webTrackList
   """
   googleSearchConsoleVerificationHtmlId: ID
   googleSearchConsoleVerificationHtml: String
-  googleTagManager: AdTrackCode!
+  googleTagManager: String
 }
 
 extend type Store {

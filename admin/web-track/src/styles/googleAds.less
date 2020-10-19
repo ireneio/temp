@@ -1,23 +1,15 @@
-.title {
-  display: flex;
-  align-items: center;
-  margin-top: 32px;
-  color: rgba(0, 0, 0, 0.85);
-  font-size: 16px;
-  line-height: 24px;
+@import './mixin.less';
 
-  & > i {
-    font-size: 14px;
-    margin-left: 8px;
-    cursor: pointer;
-  }
+.title {
+  @title();
 }
 
 .description {
-  color: rgba(0, 0, 0, 0.65);
-  font-size: 14px;
-  line-height: 22px;
-  margin: 10px 0px 16px;
+  @description();
+}
+
+.warning {
+  @warning();
 }
 
 .item {
@@ -39,6 +31,10 @@
 
   :global(.ant-form-item-control-wrapper) {
     width: 80%;
+  }
+
+  input:global(.ant-input) {
+    max-width: 300px;
   }
 
   & > div:nth-child(2) {
@@ -116,15 +112,5 @@
 }
 
 .dpa {
-  margin: 20px 0px 16px;
-  color: rgba(0, 0, 0, 0.85);
-  font-size: 16px;
-  line-height: 24px;
-
-  & > div {
-    color: rgba(0, 0, 0, 0.65);
-    font-size: 14px;
-    line-height: 20px;
-    margin-top: 10px;
-  }
+  @dpa();
 }

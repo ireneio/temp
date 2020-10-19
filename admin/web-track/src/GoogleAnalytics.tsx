@@ -3,7 +3,6 @@ import { FormComponentProps } from 'antd/lib/form';
 
 // import
 import React, { useState } from 'react';
-import gql from 'graphql-tag';
 import { Icon, Button, Modal, Form, Input } from 'antd';
 
 import Tooltip from '@admin/tooltip';
@@ -17,9 +16,11 @@ import useSetGtagSettingsList from './hooks/useSetGtagSettingsList';
 import styles from './styles/googleAnalytics.less';
 
 // graphql typescript
-import { googleAnalyticsFragment as googleAnalyticsFragmentType } from './__generated__/googleAnalyticsFragment';
-import { updateGoogleAnalyticsCache } from './__generated__/updateGoogleAnalyticsCache';
+import { googleAnalyticsFragment as googleAnalyticsFragmentType } from './fragments/__generated__/googleAnalyticsFragment';
 import { gtagTypeEnum, gtagEventNameEnum } from '../../../__generated__/admin';
+
+// graphql import
+import googleAnalyticsFragment from './fragments/googleAnalytics';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
@@ -27,15 +28,6 @@ interface PropsType extends FormComponentProps {
 }
 
 // definition
-export const googleAnalyticsFragment = gql`
-  fragment googleAnalyticsFragment on Store {
-    id
-    adTrack @client {
-      googleAnalyticsId
-    }
-  }
-`;
-
 const { Item } = Form;
 
 export default Form.create<PropsType>()(
@@ -47,22 +39,16 @@ export default Form.create<PropsType>()(
     } = store;
     const { t } = useTranslation('web-track');
     const setGtagSettingsList = useSetGtagSettingsList((cache, data) => {
-      cache.writeFragment<updateGoogleAnalyticsCache>({
+      cache.writeFragment<googleAnalyticsFragmentType>({
         id: id || 'null-id' /** SHOULD_NOT_BE_NULL */,
-        fragment: gql`
-          fragment updateGoogleAnalyticsCache on Store {
-            id
-            adTrack @client {
-              googleAnalyticsId
-            }
-          }
-        `,
+        fragment: googleAnalyticsFragment,
         data: {
           __typename: 'Store',
           id: id || 'null-id' /** SHOULD_NOT_BE_NULL */,
           adTrack: {
             __typename: 'StoreAdTrack',
-            googleAnalyticsId: data?.setGtagSettingsList?.[0]?.code || null,
+            googleAnalyticsId:
+              data?.setGtagSettingsList?.[0]?.trackingId || null,
           },
         },
       });
@@ -121,7 +107,6 @@ export default Form.create<PropsType>()(
                     variables: {
                       setInput: [
                         {
-                          code: values.googleAnalyticsId,
                           type: 'google_analytics' as gtagTypeEnum,
                           eventName: 'analytics_config' as gtagEventNameEnum,
                           trackingId: values.googleAnalyticsId,

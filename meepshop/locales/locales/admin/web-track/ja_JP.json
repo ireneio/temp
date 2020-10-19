@@ -25,6 +25,7 @@
   },
   "google-ads": {
     "description": "広告コンバージョントラッキングを使用して、顧客が広告をクリックした「後」のアクション（登録、購入など）を追跡できます。 お客様が価値のあるアクションを定義すると、アクションはコンバージョンと見なされます。",
+    "warning": null,
     "setting": "追跡設定の変更",
     "global-code": "グローバルコード：",
     "global-code-placeholder": "グローバルURLコードを入力してください",
@@ -38,7 +39,9 @@
     "dpa-description-1": "製品ダイアログの更新時間：5:00 AM〜6:00 AM（GMT + 08：00）",
     "dpa-description-2": "ダイナミックファイルのURLをコピーしてGoogle Merchantアカウントに貼り付け、フィードを設定してください。Googleは設定されたスケジュールに従ってフィードを取得します。",
     "copy-dpa-link": "動的URLをコピー",
-    "copied": "クリップボードにコピーしました"
+    "copied": "クリップボードにコピーしました",
+    "parse-config-fail": null,
+    "parse-fail": null
   },
   "google-webmaster": {
     "title": "Google Search Console",
@@ -51,9 +54,11 @@
   "google-tag-manager": {
     "title": "コード管理ツール",
     "description": "Googleタグマネージャーは、ウェブサイトのユーザーインターフェース設定とタグの展開設定を使用して、トラッキングコードとスニペットをすばやく更新できるタグ管理システムです。",
+    "warning": null,
     "setting": "スニペット設定",
     "setting-placeholder": "追跡コードを入力してください",
-    "googleTagManager": " トラッキングコード"
+    "googleTagManager": " トラッキングコード",
+    "parse-fail": null
   },
   "advanced-customer-track": "高度な顧客追跡",
   "retention-milliseconds-track": {

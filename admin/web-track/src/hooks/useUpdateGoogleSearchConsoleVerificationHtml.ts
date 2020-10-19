@@ -13,10 +13,12 @@ import {
   updateGoogleSearchConsoleVerificationHtml as updateGoogleSearchConsoleVerificationHtmlType,
   updateGoogleSearchConsoleVerificationHtmlVariables,
 } from './__generated__/updateGoogleSearchConsoleVerificationHtml';
-import { updateGoogleSearchConsoleVerificationHtmlCache } from './__generated__/updateGoogleSearchConsoleVerificationHtmlCache';
+import { updateGoogleSearchConsoleVerificationHtmlCacheFragment as updateGoogleSearchConsoleVerificationHtmlCacheFragmentType } from './fragments/__generated__/updateGoogleSearchConsoleVerificationHtmlCacheFragment';
 
 // graphql import
 import { storeAdTrackWebTrackFragment } from '@meepshop/apollo/lib/gqls/storeAdTrack';
+
+import updateGoogleSearchConsoleVerificationHtmlCacheFragment from './fragments/useUpdateGoogleSearchConsoleVerificationHtml';
 
 // definition
 export default (
@@ -44,16 +46,11 @@ export default (
     {
       update: (cache, { data }) => {
         message.success(t('save-success'));
-        cache.writeFragment<updateGoogleSearchConsoleVerificationHtmlCache>({
+        cache.writeFragment<
+          updateGoogleSearchConsoleVerificationHtmlCacheFragmentType
+        >({
           id: storeId,
-          fragment: gql`
-            fragment updateGoogleSearchConsoleVerificationHtmlCache on Store {
-              id
-              adTrack @client {
-                googleSearchConsoleVerificationHtml
-              }
-            }
-          `,
+          fragment: updateGoogleSearchConsoleVerificationHtmlCacheFragment,
           data: {
             __typename: 'Store',
             id: storeId,

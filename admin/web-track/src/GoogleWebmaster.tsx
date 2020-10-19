@@ -3,7 +3,6 @@ import { FormComponentProps } from 'antd/lib/form';
 
 // import
 import React, { useState } from 'react';
-import gql from 'graphql-tag';
 import { Icon, Button, Modal, Form, Input } from 'antd';
 
 import Tooltip from '@admin/tooltip';
@@ -17,7 +16,7 @@ import useUpdateGoogleSearchConsoleVerificationHtml from './hooks/useUpdateGoogl
 import styles from './styles/googleWebmaster.less';
 
 // graphql typescript
-import { googleWebmasterFragment as googleWebmasterFragmentType } from './__generated__/googleWebmasterFragment';
+import { googleWebmasterFragment as googleWebmasterFragmentType } from './fragments/__generated__/googleWebmasterFragment';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
@@ -25,16 +24,6 @@ interface PropsType extends FormComponentProps {
 }
 
 // definition
-export const googleWebmasterFragment = gql`
-  fragment googleWebmasterFragment on Store {
-    id
-    adTrack @client {
-      googleSearchConsoleVerificationHtmlId
-      googleSearchConsoleVerificationHtml
-    }
-  }
-`;
-
 const { Item } = Form;
 
 export default Form.create<PropsType>()(

@@ -25,6 +25,7 @@
   },
   "google-ads": {
     "description": "Theo dõi chuyển đổi quảng cáo có thể được sử dụng để theo dõi hành động \"sau khi\" khách hàng nhấp vào quảng cáo, bao gồm đăng ký, mua hàng. Hành động được coi là chuyển đổi khi khách hàng hoàn thành một hành động mà bạn xác định có giá trị.",
+    "warning": null,
     "setting": "Thay đổi cài đặt theo dõi",
     "global-code": "Mã toàn cầu:",
     "global-code-placeholder": "Vui lòng nhập mã url toàn cầu",
@@ -38,7 +39,9 @@
     "dpa-description-1": "Thời gian cập nhật đối thoại sản phẩm: 5:00 AM ~ 6:00 AM (GMT + 08: 00)",
     "dpa-description-2": "Vui lòng sao chép URL của tệp động và dán vào tài khoản Google Merchant của bạn để thiết lập nguồn cấp dữ liệu. Google sẽ truy xuất tệp đó theo lịch trình đã đặt.",
     "copy-dpa-link": "Sao chép URL động",
-    "copied": "Sao chép vào clipboard"
+    "copied": "Sao chép vào clipboard",
+    "parse-config-fail": null,
+    "parse-fail": null
   },
   "google-webmaster": {
     "title": "Bảng điều khiển tìm kiếm của Google",
@@ -51,9 +54,11 @@
   "google-tag-manager": {
     "title": "Công cụ quản lý mã",
     "description": "Trình quản lý thẻ của Google là một hệ thống quản lý thẻ có thể giúp bạn cập nhật nhanh chóng mã theo dõi và đoạn mã thông qua cài đặt giao diện người dùng trang web và cài đặt triển khai thẻ.",
+    "warning": null,
     "setting": "Cài đặt đoạn trích",
     "setting-placeholder": "Vui lòng nhập mã theo dõi",
-    "googleTagManager": "Mã theo dõi"
+    "googleTagManager": "Mã theo dõi",
+    "parse-fail": null
   },
   "advanced-customer-track": "Theo dõi khách hàng nâng cao",
   "retention-milliseconds-track": {

@@ -12,12 +12,8 @@ import { useCompleteRegistrationFragment as useCompleteRegistrationFragmentType 
 export const useCompleteRegistrationFragment = gql`
   fragment useCompleteRegistrationFragment on StoreAdTrack {
     facebookPixelId
-    googleAdwordsConfig {
-      extractedId
-    }
-    googleAdwordsSignUp {
-      extractedId
-    }
+    googleAdwordsConfig
+    googleAdwordsSignUp
   }
 `;
 
@@ -36,13 +32,9 @@ export default (
     if (window.fbq && facebookPixelId)
       window.fbq('track', 'CompleteRegistration');
 
-    if (
-      window.gtag &&
-      googleAdwordsConfig.extractedId &&
-      googleAdwordsSignUp.extractedId
-    )
+    if (window.gtag && googleAdwordsConfig && googleAdwordsSignUp)
       window.gtag('event', 'conversion', {
         // eslint-disable-next-line @typescript-eslint/camelcase
-        send_to: googleAdwordsSignUp.extractedId,
+        send_to: googleAdwordsSignUp,
       });
   }, [adTrack]);
