@@ -1,5 +1,43 @@
 # CHANGELOG
 
+## 0.66.1 (2020-10-19)
+
+#### :boom: Breaking Change
+
+- [#1210](https://github.com/meepshop/meep-lerna/pull/1210) 【優化】廣告分析 - Google Ads & GTM（ schema 合併 ）- 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1180](https://github.com/meepshop/meep-lerna/pull/1180) 【重構】月租 - 後台帳戶設定 - 前端 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#1210](https://github.com/meepshop/meep-lerna/pull/1210) 【優化】廣告分析 - Google Ads & GTM（ schema 合併 ）- 前端 ([@HsuTing](https://github.com/HsuTing))
+  - [#1139](https://github.com/meepshop/meep-lerna/pull/1139) 【重構】選單元件 ([@HsuTing](https://github.com/HsuTing))
+  - [#1211](https://github.com/meepshop/meep-lerna/pull/1211) 【功能】自動翻譯 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1216](https://github.com/meepshop/meep-lerna/pull/1216) 【BUG】前台 - 會員資料更新成功，出現 update-user.success ([@HsuTing](https://github.com/HsuTing))
+  - [#1221](https://github.com/meepshop/meep-lerna/pull/1221) (@meepshop/images) Move lib folder to images ([@HsuTing](https://github.com/HsuTing))
+
+#### :memo: Documentation
+
+- [#1222](https://github.com/meepshop/meep-lerna/pull/1222) (@meepshop/meep-lerna) Modify README ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1224](https://github.com/meepshop/meep-lerna/pull/1224) (@meepshop/\*) Rename fragments to gqls ([@HsuTing](https://github.com/HsuTing))
+- [#1225](https://github.com/meepshop/meep-lerna/pull/1225) (@meepshop/menu) Rename fragments to gqls ([@HsuTing](https://github.com/HsuTing))
+- [#1223](https://github.com/meepshop/meep-lerna/pull/1223) (@store/member-recipients) Move less file and add gqls folder ([@HsuTing](https://github.com/HsuTing))
+- [#1221](https://github.com/meepshop/meep-lerna/pull/1221) (@meepshop/images) Move lib folder to images ([@HsuTing](https://github.com/HsuTing))
+- [#1211](https://github.com/meepshop/meep-lerna/pull/1211) 【功能】自動翻譯 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.66.0 (2020-10-12)
 
 #### :rocket: New Feature
