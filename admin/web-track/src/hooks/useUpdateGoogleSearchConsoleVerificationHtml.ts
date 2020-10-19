@@ -16,7 +16,7 @@ import {
 import { updateGoogleSearchConsoleVerificationHtmlCache } from './__generated__/updateGoogleSearchConsoleVerificationHtmlCache';
 
 // graphql import
-import { storeAdTrackWebTrackFragment } from '@meepshop/apollo/lib/fragments/storeAdTrack';
+import { storeAdTrackWebTrackFragment } from '@meepshop/apollo/lib/gqls/storeAdTrack';
 
 // definition
 export default (

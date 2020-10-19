@@ -3,58 +3,34 @@ import { MutationTuple } from '@apollo/react-hooks/lib/types';
 
 // import
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
 // graphql typescript
 import {
   addProductToCart as addProductToCartType,
   addProductToCartVariables,
-} from './__generated__/addProductToCart';
-import { updateCartCache } from './__generated__/updateCartCache';
+} from '../gqls/__generated__/addProductToCart';
+import { updateCartCache as updateCartCacheType } from '../gqls/__generated__/updateCartCache';
 
 // graphql import
-import cartFragment from '../fragments';
+import { addProductToCart, updateCartCache } from '../gqls/useAddProductToCart';
 
 // definition
-const mutation = gql`
-  mutation addProductToCart($search: [ChangeCart]) {
-    changeCartList(changeCartList: $search) {
-      id
-      ...cartFragment
-    }
-  }
-
-  ${cartFragment}
-`;
-
 export default (): MutationTuple<
   addProductToCartType,
   addProductToCartVariables
 >[0] => {
-  const [addProductToCart] = useMutation<
+  const [mutation] = useMutation<
     addProductToCartType,
     addProductToCartVariables
-  >(mutation, {
+  >(addProductToCart, {
     update: (cache, { data }) => {
-      const query = gql`
-        query updateCartCache {
-          getCartList(search: { showDetail: true }) {
-            data {
-              ...cartFragment
-            }
-          }
-        }
-
-        ${cartFragment}
-      `;
-
-      const cartCache = cache.readQuery<updateCartCache>({
-        query,
+      const cartCache = cache.readQuery<updateCartCacheType>({
+        query: updateCartCache,
       });
 
       if (cartCache?.getCartList?.data?.[0] === null && data?.changeCartList)
-        cache.writeQuery<updateCartCache>({
-          query,
+        cache.writeQuery<updateCartCacheType>({
+          query: updateCartCache,
           data: {
             getCartList: {
               __typename: 'OrderList',
@@ -65,5 +41,5 @@ export default (): MutationTuple<
     },
   });
 
-  return addProductToCart;
+  return mutation;
 };

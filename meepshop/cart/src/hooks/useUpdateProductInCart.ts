@@ -3,37 +3,25 @@ import { MutationTuple } from '@apollo/react-hooks/lib/types';
 
 // import
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
 // graphql typescript
 import {
   updateProductInCart as updateProductInCartType,
   updateProductInCartVariables,
-} from './__generated__/updateProductInCart';
+} from '../gqls/__generated__/updateProductInCart';
 
 // graphql import
-import cartFragment from '../fragments';
+import updateProductInCart from '../gqls/useUpdateProductInCart';
 
 // definition
-const mutation = gql`
-  mutation updateProductInCart($search: [ChangeCart]) {
-    changeCartList(changeCartList: $search) {
-      id
-      ...cartFragment
-    }
-  }
-
-  ${cartFragment}
-`;
-
 export default (): MutationTuple<
   updateProductInCartType,
   updateProductInCartVariables
 >[0] => {
-  const [updateProductInCart] = useMutation<
+  const [mutation] = useMutation<
     updateProductInCartType,
     updateProductInCartVariables
-  >(mutation);
+  >(updateProductInCart);
 
-  return updateProductInCart;
+  return mutation;
 };

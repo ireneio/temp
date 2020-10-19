@@ -1,7 +1,7 @@
 // graphql typescript
-import { storeAdTrackFbPixelFragment as storeAdTrackFbPixelFragmentType } from './fragments/__generated__/storeAdTrackFbPixelFragment';
-import { storeAdTrackGtagFragment as storeAdTrackGtagFragmentType } from './fragments/__generated__/storeAdTrackGtagFragment';
-import { storeAdTrackWebTrackFragment as storeAdTrackWebTrackFragmentType } from './fragments/__generated__/storeAdTrackWebTrackFragment';
+import { storeAdTrackFbPixelFragment as storeAdTrackFbPixelFragmentType } from './gqls/__generated__/storeAdTrackFbPixelFragment';
+import { storeAdTrackGtagFragment as storeAdTrackGtagFragmentType } from './gqls/__generated__/storeAdTrackGtagFragment';
+import { storeAdTrackWebTrackFragment as storeAdTrackWebTrackFragmentType } from './gqls/__generated__/storeAdTrackWebTrackFragment';
 
 // typescript definition
 interface DefaultDataType {

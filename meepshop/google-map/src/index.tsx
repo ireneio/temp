@@ -1,15 +1,21 @@
 // import
 import React from 'react';
+import { filter } from 'graphql-anywhere';
 
 import useHeight from './hooks/useHeight';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { googleMapFragment } from './fragments/__generated__/googleMapFragment';
+import { googleMapFragment } from './gqls/__generated__/googleMapFragment';
+
+// graphql import
+import useHeightFragment from './gqls/useHeight';
 
 // definition
-export default React.memo(({ width, height, href }: googleMapFragment) => {
-  const { currentHeight, iframeRef } = useHeight({ width, height });
+export default React.memo(({ width, href, ...props }: googleMapFragment) => {
+  const { currentHeight, iframeRef } = useHeight(
+    filter(useHeightFragment, { ...props, width }),
+  );
 
   return (
     <iframe

@@ -7,7 +7,7 @@ import useWidth from './hooks/useWidth';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { facebookWallFragment } from './fragments/__generated__/facebookWallFragment';
+import { facebookWallFragment } from './gqls/__generated__/facebookWallFragment';
 
 // definition
 export default React.memo(

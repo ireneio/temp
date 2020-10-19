@@ -4,10 +4,10 @@ import { ContextType } from './index';
 // graphql typescript
 // TODO: should use __generated__/meepshop
 import { SetCurrentInput } from '../../../__generated__/store';
-import { pageInfoFragment } from './fragments/__generated__/pageInfoFragment';
+import { pageInfoFragment as pageInfoFragmentType } from './gqls/__generated__/pageInfoFragment';
 
 // graphql import
-import fragment from './fragments/pageInfo';
+import pageInfoFragment from './gqls/pageInfo';
 
 // definition
 export const resolvers = {
@@ -17,9 +17,9 @@ export const resolvers = {
       { input: { pageId, current } }: { input: SetCurrentInput },
       { cache }: ContextType,
     ) => {
-      cache.writeFragment<pageInfoFragment>({
+      cache.writeFragment<pageInfoFragmentType>({
         id: pageId,
-        fragment,
+        fragment: pageInfoFragment,
         data: {
           __typename: 'CurrentInfo',
           id: pageId,

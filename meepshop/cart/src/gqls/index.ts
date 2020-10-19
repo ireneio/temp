@@ -6,7 +6,7 @@ import localeFragment from '@meepshop/utils/lib/fragments/locale';
 import { thumbnailFragment } from '@meepshop/thumbnail';
 
 // definition
-export default gql`
+export const cartFragment = gql`
   fragment cartFragment on Order {
     id
     categories {
@@ -69,4 +69,16 @@ export default gql`
 
   ${thumbnailFragment}
   ${localeFragment}
+`;
+
+export const getCart = gql`
+  query getCart {
+    getCartList(search: { showDetail: true }) {
+      data {
+        ...cartFragment
+      }
+    }
+  }
+
+  ${cartFragment}
 `;

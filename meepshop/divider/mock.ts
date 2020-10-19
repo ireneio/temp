@@ -2,7 +2,7 @@
 import uuid from 'uuid/v4';
 
 // graphql typescript
-import { dividerFragment } from './src/fragments/__generated__/dividerFragment';
+import { dividerFragment } from './src/gqls/__generated__/dividerFragment';
 
 // definition
 export default {

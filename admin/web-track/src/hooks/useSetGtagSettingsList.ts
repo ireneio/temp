@@ -16,7 +16,7 @@ import {
 } from './__generated__/setGtagSettingsList';
 
 // graphql import
-import { storeAdTrackGtagFragment } from '@meepshop/apollo/lib/fragments/storeAdTrack';
+import { storeAdTrackGtagFragment } from '@meepshop/apollo/lib/gqls/storeAdTrack';
 
 // definition
 export default (

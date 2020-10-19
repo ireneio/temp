@@ -2,7 +2,7 @@
 import uuid from 'uuid/v4';
 
 // graphql typescript
-import { googleMapFragment } from './src/fragments/__generated__/googleMapFragment';
+import { googleMapFragment } from './src/gqls/__generated__/googleMapFragment';
 
 // definition
 export default {

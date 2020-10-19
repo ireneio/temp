@@ -1,7 +1,6 @@
 // import
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { emptyFunction } from 'fbjs';
 
 import useAddProductToCart from './hooks/useAddProductToCart';
@@ -10,27 +9,15 @@ import useRemoveProductFromCart from './hooks/useRemoveProductFromCart';
 
 // graphql typescript
 import {
-  getCart,
+  getCart as getCartType,
   getCart_getCartList_data as getCartGetCartListData,
   getCart_getCartList_data_categories as getCartGetCartListDataCategories,
-} from './__generated__/getCart';
+} from './gqls/__generated__/getCart';
 
 // graphql import
-import cartFragment from './fragments';
+import { getCart } from './gqls';
 
 // definition
-const query = gql`
-  query getCart {
-    getCartList(search: { showDetail: true }) {
-      data {
-        ...cartFragment
-      }
-    }
-  }
-
-  ${cartFragment}
-`;
-
 const CartContext = React.createContext<{
   cartIsOpened: boolean;
   toggleCart: (cartIsOpened: boolean) => void;
@@ -59,7 +46,7 @@ const CartContext = React.createContext<{
 });
 
 export const CartProvider = React.memo(({ children }) => {
-  const { data } = useQuery<getCart>(query);
+  const { data } = useQuery<getCartType>(getCart);
   const addProductToCart = useAddProductToCart();
   const updateProductInCart = useUpdateProductInCart();
   const removeProductFromCart = useRemoveProductFromCart();

@@ -4,11 +4,11 @@ import dynamic from 'next/dynamic';
 
 // graphql import
 import carouselFragment from '@meepshop/carousel/lib/fragments';
-import dividerFragment from '@meepshop/divider/lib/fragments';
-import draftTextFragment from '@meepshop/draft-text/lib/fragments';
-import facebookWallFragment from '@meepshop/facebook-wall/lib/fragments';
-import googleMapFragment from '@meepshop/google-map/lib/fragments';
-import iframeFragment from '@meepshop/iframe/lib/fragments';
+import dividerFragment from '@meepshop/divider/lib/gqls';
+import draftTextFragment from '@meepshop/draft-text/lib/gqls';
+import facebookWallFragment from '@meepshop/facebook-wall/lib/gqls';
+import googleMapFragment from '@meepshop/google-map/lib/gqls';
+import iframeFragment from '@meepshop/iframe/lib/gqls';
 import imageFragment from '@meepshop/image/lib/fragments';
 import imageTextFragment from '@meepshop/image-text/lib/fragments';
 import menuFragment from '@meepshop/menu/lib/gqls';

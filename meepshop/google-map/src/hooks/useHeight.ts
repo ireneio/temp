@@ -3,13 +3,13 @@ import { useRef, useState, useEffect } from 'react';
 import { emptyFunction } from 'fbjs';
 
 // graphql typescript
-import { googleMapFragment } from '../fragments/__generated__/googleMapFragment';
+import { useHeightFragment } from '../gqls/__generated__/useHeightFragment';
 
 // definition
 export default ({
   width,
   height,
-}: Pick<googleMapFragment, 'width' | 'height'>): {
+}: useHeightFragment): {
   currentHeight: number;
   iframeRef: React.Ref<HTMLIFrameElement>;
 } => {
