@@ -10,23 +10,13 @@ import {
 import {
   usePagesWithActionUserFragment,
   usePagesWithActionMenuPageObjectTypeFragment,
-} from '../hooks/fragments/usePagesWithAction';
+} from './usePagesWithAction';
 import {
   useClickUserFragment,
   useClickMenuPageObjectTypeFragment,
-} from '../hooks/fragments/useClick';
+} from './useClick';
 
 // definition
-export {
-  titleUserFragment,
-  titleMenuPageObjectTypeFragment,
-  titleMenuDesignObjectTypeFragment,
-  usePagesWithActionUserFragment,
-  usePagesWithActionMenuPageObjectTypeFragment,
-  useClickUserFragment,
-  useClickMenuPageObjectTypeFragment,
-};
-
 export const menuItemUserFragment = gql`
   fragment menuItemUserFragment on User {
     id

@@ -17,17 +17,19 @@ import {
   titleMenuPageObjectTypeFragment as titleMenuPageObjectTypeFragmentType,
   titleMenuPageObjectTypeFragment_image_Image as titleMenuPageObjectTypeFragmentImageImageType,
   titleMenuPageObjectTypeFragment_image_DefaultIcon as titleMenuPageObjectTypeFragmentDefaultIconDefaultIconType,
-} from './fragments/__generated__/titleMenuPageObjectTypeFragment';
-import { titleMenuDesignObjectTypeFragment as titleMenuDesignObjectTypeFragmentType } from './fragments/__generated__/titleMenuDesignObjectTypeFragment';
-import { titleUserFragment as titleUserFragmentType } from './fragments/__generated__/titleUserFragment';
+} from './gqls/__generated__/titleMenuPageObjectTypeFragment';
+import { titleMenuDesignObjectTypeFragment as titleMenuDesignObjectTypeFragmentType } from './gqls/__generated__/titleMenuDesignObjectTypeFragment';
+import { titleUserFragment as titleUserFragmentType } from './gqls/__generated__/titleUserFragment';
 
 // graphql import
 import {
   useTitleUserFragment,
   useTitleMenuPageObjectTypeFragment,
+} from './gqls/useTitle';
+import {
   useHrefUserFragment,
   useHrefMenuPageObjectTypeFragment,
-} from './fragments/title';
+} from './gqls/useHref';
 
 // typescript definition
 interface PropsType {

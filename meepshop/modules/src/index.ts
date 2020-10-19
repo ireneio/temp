@@ -11,7 +11,7 @@ import googleMapFragment from '@meepshop/google-map/lib/fragments';
 import iframeFragment from '@meepshop/iframe/lib/fragments';
 import imageFragment from '@meepshop/image/lib/fragments';
 import imageTextFragment from '@meepshop/image-text/lib/fragments';
-import menuFragment from '@meepshop/menu/lib/fragments';
+import menuFragment from '@meepshop/menu/lib/gqls';
 import productCarouselFragment from '@meepshop/product-carousel/lib/fragment';
 import productCollectionsFragment from '@meepshop/product-collections/lib/fragment';
 import productDraftTextFragment from '@meepshop/product-draft-text/lib/fragment';

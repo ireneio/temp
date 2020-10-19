@@ -11,10 +11,10 @@ import useClick from './hooks/useClick';
 import { ACION_TYPES } from './constants';
 
 // graphql typescript
-import { menuItemUserFragment as menuItemUserFragmentType } from './fragments/__generated__/menuItemUserFragment';
-import { menuItemOrderFragment as menuItemOrderFragmentType } from './fragments/__generated__/menuItemOrderFragment';
-import { menuItemMenuPageObjectTypeFragment as menuItemMenuPageObjectTypeFragmentType } from './fragments/__generated__/menuItemMenuPageObjectTypeFragment';
-import { menuItemMenuDesignObjectTypeFragment as menuItemMenuDesignObjectTypeFragmentType } from './fragments/__generated__/menuItemMenuDesignObjectTypeFragment';
+import { menuItemUserFragment as menuItemUserFragmentType } from './gqls/__generated__/menuItemUserFragment';
+import { menuItemOrderFragment as menuItemOrderFragmentType } from './gqls/__generated__/menuItemOrderFragment';
+import { menuItemMenuPageObjectTypeFragment as menuItemMenuPageObjectTypeFragmentType } from './gqls/__generated__/menuItemMenuPageObjectTypeFragment';
+import { menuItemMenuDesignObjectTypeFragment as menuItemMenuDesignObjectTypeFragmentType } from './gqls/__generated__/menuItemMenuDesignObjectTypeFragment';
 
 // graphql import
 import {
@@ -22,14 +22,20 @@ import {
   menuItemOrderFragment,
   menuItemMenuPageObjectTypeFragment,
   menuItemMenuDesignObjectTypeFragment,
+} from './gqls/menuItem';
+import {
   titleUserFragment,
   titleMenuPageObjectTypeFragment,
   titleMenuDesignObjectTypeFragment,
+} from './gqls/title';
+import {
   usePagesWithActionUserFragment,
   usePagesWithActionMenuPageObjectTypeFragment,
+} from './gqls/usePagesWithAction';
+import {
   useClickUserFragment,
   useClickMenuPageObjectTypeFragment,
-} from './fragments/menuItem';
+} from './gqls/useClick';
 
 // typescript definition
 export interface PropsType {

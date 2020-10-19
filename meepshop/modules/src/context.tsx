@@ -4,17 +4,14 @@ import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 
 // graphql typescript
-import { ContextType as MenuContextType } from '@meepshop/menu/lib/fragments';
+import { ContextType as MenuContextType } from '@meepshop/menu/lib/gqls';
 import { ContextType as ProductQaContextType } from '@meepshop/product-qa/lib/fragment';
 
 import { contextUserFragment as contextUserFragmentType } from './__generated__/contextUserFragment';
 import { contextOrderFragment as contextOrderFragmentType } from './__generated__/contextOrderFragment';
 
 // graphql import
-import {
-  menuUserFragment,
-  menuOrderFragment,
-} from '@meepshop/menu/lib/fragments';
+import { menuUserFragment, menuOrderFragment } from '@meepshop/menu/lib/gqls';
 import { productQaUserFragment } from '@meepshop/product-qa/lib/fragment';
 
 // typescript definition

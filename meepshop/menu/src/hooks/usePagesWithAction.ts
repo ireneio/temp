@@ -9,8 +9,8 @@ import { Apps as AppsContext } from '@meepshop/context';
 import { ACION_TYPES } from '../constants';
 
 // graphql typescript
-import { usePagesWithActionUserFragment as usePagesWithActionUserFragmentType } from './fragments/__generated__/usePagesWithActionUserFragment';
-import { usePagesWithActionMenuPageObjectTypeFragment as usePagesWithActionMenuPageObjectTypeFragmentType } from './fragments/__generated__/usePagesWithActionMenuPageObjectTypeFragment';
+import { usePagesWithActionUserFragment as usePagesWithActionUserFragmentType } from '../gqls/__generated__/usePagesWithActionUserFragment';
+import { usePagesWithActionMenuPageObjectTypeFragment as usePagesWithActionMenuPageObjectTypeFragmentType } from '../gqls/__generated__/usePagesWithActionMenuPageObjectTypeFragment';
 
 // definition
 export default (

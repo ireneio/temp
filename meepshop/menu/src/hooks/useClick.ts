@@ -1,6 +1,5 @@
 // import
 import { useContext, useCallback } from 'react';
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -13,13 +12,21 @@ import { ACION_TYPES } from '../constants';
 
 // graphql typescript
 import { LocaleEnum } from '../../../../__generated__/meepshop';
-import { useClickUserFragment as useClickUserFragmentType } from './fragments/__generated__/useClickUserFragment';
-import { useClickMenuPageObjectTypeFragment as useClickMenuPageObjectTypeFragmentType } from './fragments/__generated__/useClickMenuPageObjectTypeFragment';
+import { useClickUserFragment as useClickUserFragmentType } from '../gqls/__generated__/useClickUserFragment';
+import { useClickMenuPageObjectTypeFragment as useClickMenuPageObjectTypeFragmentType } from '../gqls/__generated__/useClickMenuPageObjectTypeFragment';
 import {
   updateShopperLanguagePreference as updateShopperLanguagePreferenceType,
   updateShopperLanguagePreferenceVariables,
-} from './__generated__/updateShopperLanguagePreference';
-import { logout as logoutType } from './__generated__/logout';
+} from '../gqls/__generated__/updateShopperLanguagePreference';
+import { logout as logoutType } from '../gqls/__generated__/logout';
+import { updateLocaleCache as updateLocaleCacheType } from '../gqls/__generated__/updateLocaleCache';
+
+// graphql import
+import {
+  updateShopperLanguagePreference,
+  logout,
+  updateLocaleCache,
+} from '../gqls/useClick';
 
 // definition
 export default (
@@ -29,30 +36,11 @@ export default (
   const { i18n } = useTranslation('menu');
   const { cartIsOpened, toggleCart } = useContext(CartContext);
   const { setCurrency } = useContext(CurrencyContext);
-  const [updateShopperLanguagePreference] = useMutation<
+  const [updateShopperLanguagePreferenceMutation] = useMutation<
     updateShopperLanguagePreferenceType,
     updateShopperLanguagePreferenceVariables
-  >(
-    gql`
-      mutation updateShopperLanguagePreference(
-        $input: UpdateShopperLanguagePreferenceInput!
-      ) {
-        ## FIXME: T6711
-        updateShopperLanguagePreference(input: $input) {
-          status
-        }
-      }
-    `,
-  );
-  const [logout] = useMutation<logoutType>(
-    gql`
-      mutation logout {
-        logout @client {
-          status
-        }
-      }
-    `,
-  );
+  >(updateShopperLanguagePreference);
+  const [logoutMutation] = useMutation<logoutType>(logout);
 
   return useCallback(async () => {
     const { action } = page;
@@ -63,7 +51,7 @@ export default (
         break;
 
       case 'LOGOUT':
-        logout();
+        logoutMutation();
         break;
 
       case 'zh_TW':
@@ -77,21 +65,16 @@ export default (
         const userId = user?.id;
 
         if (user?.role === 'SHOPPER' && userId)
-          await updateShopperLanguagePreference({
+          await updateShopperLanguagePreferenceMutation({
             variables: {
               input: { locale: ACION_TYPES[action || 0] as LocaleEnum },
             },
             update: (cache, { data }) => {
               if (data?.updateShopperLanguagePreference.status !== 'OK') return;
 
-              cache.writeFragment({
+              cache.writeFragment<updateLocaleCacheType>({
                 id: userId,
-                fragment: gql`
-                  fragment updateLocaleCache on User {
-                    id
-                    locale
-                  }
-                `,
+                fragment: updateLocaleCache,
                 data: {
                   __typename: 'User',
                   id: userId,
@@ -127,7 +110,7 @@ export default (
     cartIsOpened,
     toggleCart,
     setCurrency,
-    updateShopperLanguagePreference,
-    logout,
+    updateShopperLanguagePreferenceMutation,
+    logoutMutation,
   ]);
 };

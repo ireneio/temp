@@ -8,8 +8,8 @@ import {
   DefaultIconEnum,
   ImagePositionEnum,
 } from '../../../../__generated__/meepshop';
-import { menuFragment_menu_pages as menuFragmentMenuPages } from '../fragments/__generated__/menuFragment';
-import { usePagesWithSearchBarFragment as usePagesWithSearchBarFragmentType } from './fragments/__generated__/usePagesWithSearchBarFragment';
+import { menuFragment_menu_pages as menuFragmentMenuPages } from '../gqls/__generated__/menuFragment';
+import { usePagesWithSearchBarFragment as usePagesWithSearchBarFragmentType } from '../gqls/__generated__/usePagesWithSearchBarFragment';
 
 // definition
 export default (

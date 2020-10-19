@@ -4,8 +4,8 @@ import { useMemo } from 'react';
 import { ACION_TYPES } from '../constants';
 
 // graphql typescript
-import { useHrefUserFragment as useHrefUserFragmentType } from './fragments/__generated__/useHrefUserFragment';
-import { useHrefMenuPageObjectTypeFragment as useHrefMenuPageObjectTypeFragmentType } from './fragments/__generated__/useHrefMenuPageObjectTypeFragment';
+import { useHrefUserFragment as useHrefUserFragmentType } from '../gqls/__generated__/useHrefUserFragment';
+import { useHrefMenuPageObjectTypeFragment as useHrefMenuPageObjectTypeFragmentType } from '../gqls/__generated__/useHrefMenuPageObjectTypeFragment';
 
 // definition
 export default (

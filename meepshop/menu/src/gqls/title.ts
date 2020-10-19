@@ -5,20 +5,13 @@ import gql from 'graphql-tag';
 import {
   useTitleUserFragment,
   useTitleMenuPageObjectTypeFragment,
-} from '../hooks/fragments/useTitle';
+} from './useTitle';
 import {
   useHrefUserFragment,
   useHrefMenuPageObjectTypeFragment,
-} from '../hooks/fragments/useHref';
+} from './useHref';
 
 // definition
-export {
-  useTitleUserFragment,
-  useTitleMenuPageObjectTypeFragment,
-  useHrefUserFragment,
-  useHrefMenuPageObjectTypeFragment,
-};
-
 export const titleUserFragment = gql`
   fragment titleUserFragment on User {
     id

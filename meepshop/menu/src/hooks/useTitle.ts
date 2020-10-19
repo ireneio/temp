@@ -9,8 +9,8 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { ACION_TYPES } from '../constants';
 
 // graphql typescript
-import { useTitleUserFragment as useTitleUserFragmentType } from './fragments/__generated__/useTitleUserFragment';
-import { useTitleMenuPageObjectTypeFragment as useTitleMenuPageObjectTypeFragmentType } from './fragments/__generated__/useTitleMenuPageObjectTypeFragment';
+import { useTitleUserFragment as useTitleUserFragmentType } from '../gqls/__generated__/useTitleUserFragment';
+import { useTitleMenuPageObjectTypeFragment as useTitleMenuPageObjectTypeFragmentType } from '../gqls/__generated__/useTitleMenuPageObjectTypeFragment';
 
 // definition
 export default (

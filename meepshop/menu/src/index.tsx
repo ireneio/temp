@@ -1,5 +1,5 @@
 // typescript import
-import { ContextType } from './fragments';
+import { ContextType } from './gqls';
 
 // import
 import React from 'react';
@@ -10,7 +10,7 @@ import MenuItem from './MenuItem';
 import usePagesWithSearchBar from './hooks/usePagesWithSearchBar';
 
 // graphql typescript
-import { menuFragment } from './fragments/__generated__/menuFragment';
+import { menuFragment } from './gqls/__generated__/menuFragment';
 
 // graphql import
 import {
@@ -18,8 +18,8 @@ import {
   menuItemOrderFragment,
   menuItemMenuPageObjectTypeFragment,
   menuItemMenuDesignObjectTypeFragment,
-  usePagesWithSearchBarFragment,
-} from './fragments';
+} from './gqls/menuItem';
+import usePagesWithSearchBarFragment from './gqls/usePagesWithSearchBar';
 
 // typescript definition
 export interface PropsType extends menuFragment, ContextType {}

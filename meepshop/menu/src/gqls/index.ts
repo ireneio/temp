@@ -12,7 +12,7 @@ import {
   menuItemMenuPageObjectTypeFragment,
   menuItemMenuDesignObjectTypeFragment,
 } from './menuItem';
-import usePagesWithSearchBarFragment from '../hooks/fragments/usePagesWithSearchBar';
+import usePagesWithSearchBarFragment from './usePagesWithSearchBar';
 
 // typescript definition
 export interface ContextType {
@@ -21,14 +21,6 @@ export interface ContextType {
 }
 
 // definition
-export {
-  menuItemUserFragment,
-  menuItemOrderFragment,
-  menuItemMenuPageObjectTypeFragment,
-  menuItemMenuDesignObjectTypeFragment,
-  usePagesWithSearchBarFragment,
-};
-
 export const menuUserFragment = gql`
   fragment menuUserFragment on User {
     id
