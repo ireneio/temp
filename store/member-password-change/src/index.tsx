@@ -73,9 +73,7 @@ class MemberPasswordChange extends React.PureComponent<PropsType> {
     } = this.props;
     const status = changeUserPassword?.status; // SHOULD_NOT_BE_NULL
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore FIXME: T6730
-    if (status === 0) {
+    if (status === 'OK') {
       notification.success({
         message: t('success'),
       });
@@ -117,8 +115,8 @@ class MemberPasswordChange extends React.PureComponent<PropsType> {
     return (
       <Mutation<memberChangePassword, memberChangePasswordVariables>
         mutation={gql`
-          mutation memberChangePassword($input: ChangeUserPassword) {
-            changeUserPassword(changeUserPassword: $input) {
+          mutation memberChangePassword($input: ChangeUserPasswordInput) {
+            changeUserPassword(input: $input) {
               status
             }
           }

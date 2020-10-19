@@ -1,0 +1,54 @@
+{
+  "title": "Cài đặt tài khoản",
+  "save": "Tiết kiệm",
+  "cancel": "Hủy bỏ",
+  "success": "Lưu lại thành công",
+  "error": "Cập nhật thất bại",
+  "account": {
+    "title": null,
+    "description": null,
+    "account": null,
+    "change-password": null,
+    "required": "Cần thiết",
+    "confirm-change": null,
+    "name": {
+      "label": "Tên",
+      "placeholder": null
+    },
+    "mobile": {
+      "label": "Chi tiết liên lạc",
+      "placeholder": null
+    },
+    "tel": {
+      "label": null,
+      "placeholder": null
+    },
+    "current-password": null,
+    "password": {
+      "label": null,
+      "error": null
+    },
+    "confirm-password": {
+      "label": "Vui lòng nhập lại mật khẩu mới",
+      "error": null
+    },
+    "update-password-success": "Cập nhật mật khẩu thành công",
+    "update-password-fail": "Không cập nhật mật khẩu",
+    "user-not-found": "Không tìm thấy người dùng",
+    "incorrect-current-password": "Lỗi mật khẩu cũ"
+  },
+  "plan": {
+    "title": null,
+    "description-1": null,
+    "description-2": null,
+    "service": null,
+    "privacy": null,
+    "current-plan": null,
+    "contract-plan": null,
+    "contact-consultant": null,
+    "monthly-plan": null,
+    "test-store": null,
+    "free-trial": null,
+    "upgrade-plan": null
+  }
+}

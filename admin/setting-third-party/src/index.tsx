@@ -73,6 +73,7 @@ const SettingThirdParty: NextPage = Form.create<FormComponentProps>()(
     return (
       <Header
         title={t('title')}
+        backTo="/setting"
         buttons={
           !isFieldsTouched() ? null : (
             <div>

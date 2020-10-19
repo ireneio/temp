@@ -27,7 +27,5 @@
   "get-order-failure-message": "Menerima pesanan: Terjadi kesalahan",
   "reset-password-success": "Berhasil mengatur ulang",
   "reset-password-token-error": "Tautan pengaturan kata sandi telah kedaluwarsa. Demi keamanan akun Anda, ajukan permohonan kembali untuk tautan tersebut.",
-  "reset-password-failure-message": "Reset kata sandi: Terjadi kesalahan",
-  "change-password-success": "Berhasil diperbaharui",
-  "change-password-failure-message": "Ubah Kata Sandi: Terjadi kesalahan"
+  "reset-password-failure-message": "Reset kata sandi: Terjadi kesalahan"
 }

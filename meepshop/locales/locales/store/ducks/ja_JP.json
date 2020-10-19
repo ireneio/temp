@@ -27,7 +27,5 @@
   "get-order-failure-message": "オーダーを取る：エラーが発生しました",
   "reset-password-success": "パスワードをリセットしました",
   "reset-password-token-error": "パスワード設定リンクの有効期限が切れています。アカウントのセキュリティを確保するため、リンクを再申請してください。",
-  "reset-password-failure-message": "パスワードのリセット：エラーが発生しました",
-  "change-password-success": "更新しました",
-  "change-password-failure-message": "エラーが発生しました"
+  "reset-password-failure-message": "パスワードのリセット：エラーが発生しました"
 }

@@ -1,0 +1,54 @@
+{
+  "title": "帳戶設定",
+  "save": "儲存",
+  "cancel": "取消",
+  "success": "儲存成功",
+  "error": "更新失敗",
+  "account": {
+    "title": "帳戶資訊",
+    "description": "我們將使用此聯絡資訊與您聯絡。為了您帳號的安全，建議定期更新您的密碼。",
+    "account": "後台登入帳號",
+    "change-password": "變更密碼",
+    "required": "必填",
+    "confirm-change": "確認變更",
+    "name": {
+      "label": "姓名",
+      "placeholder": "請輸入聯絡人姓名"
+    },
+    "mobile": {
+      "label": "手機",
+      "placeholder": "請輸入用於聯絡的手機號碼"
+    },
+    "tel": {
+      "label": "聯絡電話",
+      "placeholder": "請輸入用於聯絡的電話號碼"
+    },
+    "current-password": "目前密碼",
+    "password": {
+      "label": "新密碼",
+      "error": "密碼須為 6 碼以上的半形英數字"
+    },
+    "confirm-password": {
+      "label": "確認新密碼",
+      "error": "兩次密碼不相同"
+    },
+    "update-password-success": "修改密碼成功",
+    "update-password-fail": "修改密碼失敗",
+    "user-not-found": "未知的使用者",
+    "incorrect-current-password": "舊密碼輸入錯誤"
+  },
+  "plan": {
+    "title": "我的方案",
+    "description-1": "您可為您的商店挑選最適切的服務方案",
+    "description-2": "檢閱我們的",
+    "service": "服務條款",
+    "privacy": "隱私條款",
+    "current-plan": "目前方案",
+    "contract-plan": "合約方案",
+    "contact-consultant": "若有更換方案的需求，請聯繫您的開店顧問為您客製專屬的方案。",
+    "monthly-plan": "月繳方案",
+    "test-store": "測試商店",
+    "free-trial": "免費試用將在 15 天後到期",
+    "upgrade-plan": "升級方案"
+  }
+}

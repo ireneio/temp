@@ -189,6 +189,7 @@ class SettingNotification extends React.Component<PropsType & I18nPropsType> {
         {(updateNotificationMutation, { loading }) => (
           <Header
             title={t('title')}
+            backTo="/setting"
             buttons={
               !isFieldsTouched() ? null : (
                 <div>

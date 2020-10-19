@@ -1,0 +1,54 @@
+{
+  "title": " アカウント設定",
+  "save": "セーブ",
+  "cancel": " キャンセル",
+  "success": "セーブに成功",
+  "error": "更新に失敗しました",
+  "account": {
+    "title": null,
+    "description": null,
+    "account": null,
+    "change-password": null,
+    "required": "必須(必ず入力して下さい)",
+    "confirm-change": null,
+    "name": {
+      "label": "名",
+      "placeholder": null
+    },
+    "mobile": {
+      "label": " ご連絡方法",
+      "placeholder": null
+    },
+    "tel": {
+      "label": null,
+      "placeholder": null
+    },
+    "current-password": null,
+    "password": {
+      "label": null,
+      "error": null
+    },
+    "confirm-password": {
+      "label": " 新パスワードの確認",
+      "error": null
+    },
+    "update-password-success": "パスワードを正常に更新する",
+    "update-password-fail": "パスワードの更新に失敗する",
+    "user-not-found": "ユーザーが見つかりません",
+    "incorrect-current-password": "古いパスワードエラー"
+  },
+  "plan": {
+    "title": null,
+    "description-1": null,
+    "description-2": null,
+    "service": null,
+    "privacy": null,
+    "current-plan": null,
+    "contract-plan": null,
+    "contact-consultant": null,
+    "monthly-plan": null,
+    "test-store": null,
+    "free-trial": null,
+    "upgrade-plan": null
+  }
+}

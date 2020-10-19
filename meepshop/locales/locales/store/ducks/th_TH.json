@@ -27,7 +27,5 @@
   "get-order-failure-message": "รับคำสั่งซื้อ: เกิดข้อผิดพลาด",
   "reset-password-success": "รีเซ็ตสำเร็จแล้ว",
   "reset-password-token-error": "ลิงก์การตั้งค่ารหัสผ่านหมดอายุแล้วเพื่อความปลอดภัยของบัญชีของคุณโปรดสมัครลิงก์อีกครั้ง",
-  "reset-password-failure-message": "รีเซ็ตรหัสผ่าน: เกิดข้อผิดพลาด",
-  "change-password-success": "อัปเดตสำเร็จแล้ว",
-  "change-password-failure-message": "เปลี่ยนรหัสผ่าน: เกิดข้อผิดพลาด"
+  "reset-password-failure-message": "รีเซ็ตรหัสผ่าน: เกิดข้อผิดพลาด"
 }

@@ -1,0 +1,54 @@
+{
+  "title": "Configuraciones de la cuenta",
+  "save": "Salvar",
+  "cancel": "Cancelar",
+  "success": "Ahorra exitosamente",
+  "error": "Actualización fallida",
+  "account": {
+    "title": null,
+    "description": null,
+    "account": null,
+    "change-password": null,
+    "required": "Necesaria",
+    "confirm-change": null,
+    "name": {
+      "label": "Nombre",
+      "placeholder": null
+    },
+    "mobile": {
+      "label": "Detalles de contacto",
+      "placeholder": null
+    },
+    "tel": {
+      "label": null,
+      "placeholder": null
+    },
+    "current-password": null,
+    "password": {
+      "label": null,
+      "error": null
+    },
+    "confirm-password": {
+      "label": "Por favor, vuelva a ingresar la nueva contraseña",
+      "error": null
+    },
+    "update-password-success": "Actualice la contraseña correctamente",
+    "update-password-fail": "Error al actualizar la contraseña",
+    "user-not-found": "Usuario no encontrado",
+    "incorrect-current-password": "Error de contraseña anterior"
+  },
+  "plan": {
+    "title": null,
+    "description-1": null,
+    "description-2": null,
+    "service": null,
+    "privacy": null,
+    "current-plan": null,
+    "contract-plan": null,
+    "contact-consultant": null,
+    "monthly-plan": null,
+    "test-store": null,
+    "free-trial": null,
+    "upgrade-plan": null
+  }
+}

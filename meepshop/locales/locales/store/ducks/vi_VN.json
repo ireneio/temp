@@ -27,7 +27,5 @@
   "get-order-failure-message": "Nhận đơn hàng : Xảy ra lỗi",
   "reset-password-success": "Hoàn tất cài đặt lại",
   "reset-password-token-error": "Liên kết cài đặt mật khẩu đã hết hạn. Để bảo mật tài khoản của bạn, vui lòng đăng ký lại liên kết.",
-  "reset-password-failure-message": "Cài đặt lại mật khẩu : Xảy ra lỗi",
-  "change-password-success": "Hoàn tất",
-  "change-password-failure-message": "Xảy ra lỗi"
+  "reset-password-failure-message": "Cài đặt lại mật khẩu : Xảy ra lỗi"
 }

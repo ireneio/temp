@@ -28,8 +28,6 @@ import {
   addToNotificationListFailure,
 } from './widgets/member';
 
-import { changePassword } from './widgets/others';
-
 import {
   getProduct,
   getProductSuccess,
@@ -89,8 +87,6 @@ export {
   addToNotificationList,
   addToNotificationListSuccess,
   addToNotificationListFailure,
-  // change password
-  changePassword,
   // Initial for server-side rendering
   serverIndexInitial,
   serverPagesInitial,

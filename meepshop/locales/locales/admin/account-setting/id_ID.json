@@ -1,0 +1,54 @@
+{
+  "title": "Pengaturan akun",
+  "save": "Menyimpan",
+  "cancel": "Membatalkan",
+  "success": "Berhasil Berhemat",
+  "error": "Pembaharuan gagal",
+  "account": {
+    "title": null,
+    "description": null,
+    "account": null,
+    "change-password": null,
+    "required": "Yg dibutuhkan",
+    "confirm-change": null,
+    "name": {
+      "label": "Nama",
+      "placeholder": null
+    },
+    "mobile": {
+      "label": "Rincian Kontak",
+      "placeholder": null
+    },
+    "tel": {
+      "label": null,
+      "placeholder": null
+    },
+    "current-password": null,
+    "password": {
+      "label": null,
+      "error": null
+    },
+    "confirm-password": {
+      "label": "Harap masukkan kembali kata sandi baru",
+      "error": null
+    },
+    "update-password-success": "Perbarui Kata Sandi Berhasil",
+    "update-password-fail": "Gagal Memperbarui Kata Sandi",
+    "user-not-found": "Pengguna tidak ditemukan",
+    "incorrect-current-password": "Kesalahan Kata Sandi Lama"
+  },
+  "plan": {
+    "title": null,
+    "description-1": null,
+    "description-2": null,
+    "service": null,
+    "privacy": null,
+    "current-plan": null,
+    "contract-plan": null,
+    "contact-consultant": null,
+    "monthly-plan": null,
+    "test-store": null,
+    "free-trial": null,
+    "upgrade-plan": null
+  }
+}

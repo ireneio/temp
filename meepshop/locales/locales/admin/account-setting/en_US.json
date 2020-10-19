@@ -1,0 +1,54 @@
+{
+  "title": "Account Settings",
+  "save": "Save",
+  "cancel": "Cancel",
+  "success": "Save Successfully",
+  "error": "Update failed",
+  "account": {
+    "title": null,
+    "description": null,
+    "account": null,
+    "change-password": null,
+    "required": "Required",
+    "confirm-change": null,
+    "name": {
+      "label": "Name",
+      "placeholder": null
+    },
+    "mobile": {
+      "label": "Contact Details",
+      "placeholder": null
+    },
+    "tel": {
+      "label": null,
+      "placeholder": null
+    },
+    "current-password": null,
+    "password": {
+      "label": null,
+      "error": null
+    },
+    "confirm-password": {
+      "label": "Please re-enter new password",
+      "error": null
+    },
+    "update-password-success": "Update Password Successfully",
+    "update-password-fail": "Fail to Update Password",
+    "user-not-found": "User Not Found",
+    "incorrect-current-password": "Old Password Error"
+  },
+  "plan": {
+    "title": null,
+    "description-1": null,
+    "description-2": null,
+    "service": null,
+    "privacy": null,
+    "current-plan": null,
+    "contract-plan": null,
+    "contact-consultant": null,
+    "monthly-plan": null,
+    "test-store": null,
+    "free-trial": null,
+    "upgrade-plan": null
+  }
+}

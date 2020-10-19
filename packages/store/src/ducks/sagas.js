@@ -22,8 +22,6 @@ import {
   watchServerOthersInitialFlow,
 } from './widgets/server';
 
-import { watchChangePasswordFlow } from './widgets/others';
-
 function* rootSaga() {
   yield all([
     watchGetAuthFlow(),
@@ -35,7 +33,6 @@ function* rootSaga() {
     watchForgetPasswordFlow(),
     watchUpdateWishListFlow(),
     watchAddToNotificationListFlow(),
-    watchChangePasswordFlow(),
     // server
     watchServerIndexInitialFlow(),
     watchServerPagesInitialFlow(),

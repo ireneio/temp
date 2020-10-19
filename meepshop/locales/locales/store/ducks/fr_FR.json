@@ -27,7 +27,5 @@
   "get-order-failure-message": "Acquérir la commande: une erreur s'est produite",
   "reset-password-success": "Réinitialisation réussie",
   "reset-password-token-error": "Le lien de configuration du mot de passe a expiré. Pour des raisons de sécurité de votre compte, veuillez réappliquer le lien.",
-  "reset-password-failure-message": "Réinitialisation du mot de passe: une erreur s'est produite",
-  "change-password-success": "Mise à jour réussie",
-  "change-password-failure-message": "Changer le mot de passe: une erreur s'est produite"
+  "reset-password-failure-message": "Réinitialisation du mot de passe: une erreur s'est produite"
 }

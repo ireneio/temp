@@ -1,0 +1,54 @@
+{
+  "title": "Paramètres du compte",
+  "save": "sauver",
+  "cancel": "Annuler",
+  "success": "Sauvegarde réussie",
+  "error": "Mise à jour a échoué",
+  "account": {
+    "title": null,
+    "description": null,
+    "account": null,
+    "change-password": null,
+    "required": "Champs obligatoires",
+    "confirm-change": null,
+    "name": {
+      "label": "prénom",
+      "placeholder": null
+    },
+    "mobile": {
+      "label": "Détails du contact",
+      "placeholder": null
+    },
+    "tel": {
+      "label": null,
+      "placeholder": null
+    },
+    "current-password": null,
+    "password": {
+      "label": null,
+      "error": null
+    },
+    "confirm-password": {
+      "label": "Veuillez ressaisir le nouveau mot de passe",
+      "error": null
+    },
+    "update-password-success": "Mise à jour du mot de passe avec succès",
+    "update-password-fail": "Echec de la mise à jour du mot de passe",
+    "user-not-found": "Utilisateur non trouvé",
+    "incorrect-current-password": "Ancien mot de passe Erreur"
+  },
+  "plan": {
+    "title": null,
+    "description-1": null,
+    "description-2": null,
+    "service": null,
+    "privacy": null,
+    "current-plan": null,
+    "contract-plan": null,
+    "contact-consultant": null,
+    "monthly-plan": null,
+    "test-store": null,
+    "free-trial": null,
+    "upgrade-plan": null
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "title": "การตั้งค่าบัญชี",
+  "save": "บันทึก",
+  "cancel": "ยกเลิก",
+  "success": "บันทึกเรียบร้อยแล้ว",
+  "error": "การอัพเดทล้มเหลว",
+  "account": {
+    "title": null,
+    "description": null,
+    "account": null,
+    "change-password": null,
+    "required": "จำเป็นต้องใช้",
+    "confirm-change": null,
+    "name": {
+      "label": "ชื่อ",
+      "placeholder": null
+    },
+    "mobile": {
+      "label": "รายละเอียดการติดต่อ",
+      "placeholder": null
+    },
+    "tel": {
+      "label": null,
+      "placeholder": null
+    },
+    "current-password": null,
+    "password": {
+      "label": null,
+      "error": null
+    },
+    "confirm-password": {
+      "label": "กรุณาใส่รหัสผ่านใหม่",
+      "error": null
+    },
+    "update-password-success": "อัปเดตรหัสผ่านสำเร็จ",
+    "update-password-fail": "ไม่สามารถอัปเดตรหัสผ่าน",
+    "user-not-found": "ไม่พบชื่อผู้ใช้",
+    "incorrect-current-password": "ข้อผิดพลาดรหัสผ่านเก่า"
+  },
+  "plan": {
+    "title": null,
+    "description-1": null,
+    "description-2": null,
+    "service": null,
+    "privacy": null,
+    "current-plan": null,
+    "contract-plan": null,
+    "contact-consultant": null,
+    "monthly-plan": null,
+    "test-store": null,
+    "free-trial": null,
+    "upgrade-plan": null
+  }
+}

@@ -27,7 +27,5 @@
   "get-order-failure-message": "Adquirir orden: se produjo un error",
   "reset-password-success": "Restablecer exitosamente",
   "reset-password-token-error": "El enlace de configuración de contraseña ha caducado. Por el bien de la seguridad de su cuenta, vuelva a solicitar el enlace.",
-  "reset-password-failure-message": "Restablecimiento de contraseña: se produjo un error",
-  "change-password-success": "Actualizado exitosamente",
-  "change-password-failure-message": "Cambiar contraseña: se produjo un error"
+  "reset-password-failure-message": "Restablecimiento de contraseña: se produjo un error"
 }

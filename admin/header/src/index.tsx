@@ -2,7 +2,7 @@
 import React, { useState, useContext, useRef } from 'react';
 import { Affix, Icon } from 'antd';
 
-import Link, { useRouter } from '@meepshop/link';
+import Link from '@meepshop/link';
 import { CollapsedContext } from '@admin/wrapper';
 
 import styles from './styles/index.less';
@@ -10,13 +10,13 @@ import styles from './styles/index.less';
 // typescript definition
 interface PropsType {
   title: string;
+  backTo?: string;
   buttons?: React.ReactNode;
   children?: React.ReactNode;
 }
 
 // definition
-export default React.memo(({ title, buttons, children }: PropsType) => {
-  const { pathname } = useRouter();
+export default React.memo(({ title, backTo, buttons, children }: PropsType) => {
   const collapsed = useContext(CollapsedContext);
   const rootRef = useRef(null);
   const [isAffixed, setIsAffixed] = useState(false);
@@ -32,9 +32,9 @@ export default React.memo(({ title, buttons, children }: PropsType) => {
       >
         <div className={styles.header}>
           <h1>
-            {pathname === '/setting' ? null : (
-              <Link href="/setting">
-                <a href="/setting">
+            {!backTo ? null : (
+              <Link href={backTo}>
+                <a href={backTo}>
                   <Icon className={styles.leftIcon} type="left" />
                 </a>
               </Link>

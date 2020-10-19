@@ -27,7 +27,5 @@
   "get-order-failure-message": "Acquire order: Error occurred",
   "reset-password-success": "Successfully reset",
   "reset-password-token-error": "The password setting link has expired. For the sake of your account security, please reapply for the link.",
-  "reset-password-failure-message": "Password reset: Error occurred",
-  "change-password-success": "Successfully updated",
-  "change-password-failure-message": "Change Password: Error occurred"
+  "reset-password-failure-message": "Password reset: Error occurred"
 }

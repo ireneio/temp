@@ -13,6 +13,7 @@
     "start": "NODE_ENV=production node src/server"
   },
   "dependencies": {
+    "@admin/account-setting": "^0.63.1",
     "@admin/apollo": "^0.66.0",
     "@admin/currency": "^0.66.0",
     "@admin/dashboard": "^0.66.0",

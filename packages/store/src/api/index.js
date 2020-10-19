@@ -8,7 +8,6 @@ import signup from './signup.api';
 import checkEmailExists from './checkEmailExists.api';
 import sendResetPasswordEmail from './sendResetPasswordEmail.api';
 import updateMemberData from './updateMemberData.api';
-import changePassword from './changePassword.api';
 
 // Server-side rendering
 import serverIndexInitial from './serverIndexInitial.api';
@@ -33,7 +32,6 @@ export {
   updateMemberData,
   updateWishList,
   updateStockNotificationList,
-  changePassword,
   // Server-side rendering
   serverIndexInitial,
   serverPagesInitial,
