@@ -31,7 +31,7 @@ const query = gql`
       }
     }
 
-    getDefaultExportFormat(type: order_default) {
+    orderDefaultExportFormats {
       id
       name
     }
@@ -75,10 +75,8 @@ export default (): {
     loading,
     options: {
       exportFormatId: [
-        ...(data?.getDefaultExportFormat ? [data.getDefaultExportFormat] : []),
-        ...(data?.getExportFormatList?.data
-          ? data.getExportFormatList.data.filter(d => d !== null)
-          : []),
+        ...(data?.orderDefaultExportFormats || []),
+        ...(data?.getExportFormatList?.data?.filter(Boolean) || []),
       ],
       fileType: [
         {
