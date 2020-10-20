@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.66.3 (2020-10-20)
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#1234](https://github.com/meepshop/meep-lerna/pull/1234) (@meepshop/store, @meepshop/meep-ui) Remove onCompleted ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.66.2 (2020-10-20)
 
 #### :boom: Breaking Change
