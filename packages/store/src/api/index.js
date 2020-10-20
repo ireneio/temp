@@ -6,7 +6,6 @@ import getProductList from './getProductList.api';
 import getDefaultStoreProduct from './getDefaultStoreProduct.api';
 import signup from './signup.api';
 import checkEmailExists from './checkEmailExists.api';
-import sendResetPasswordEmail from './sendResetPasswordEmail.api';
 import updateMemberData from './updateMemberData.api';
 
 // Server-side rendering
@@ -28,7 +27,6 @@ export {
   getDefaultStoreProduct,
   signup,
   checkEmailExists,
-  sendResetPasswordEmail,
   updateMemberData,
   updateWishList,
   updateStockNotificationList,

@@ -1,10 +1,12 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Button, Modal, notification, Icon } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import initApollo from '@meepshop/apollo/lib/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
@@ -33,7 +35,6 @@ export default class Login extends React.PureComponent {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     login: PropTypes.func.isRequired,
-    forgetPassword: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -60,41 +61,67 @@ export default class Login extends React.PureComponent {
       /** context */
       cname,
       login,
-      forgetPassword,
 
       /** props */
       t,
-      adTrack,
-      form,
+      form: { validateFields },
       hideLogin,
+      adTrack,
     } = this.props;
     const { isForgetPassword } = this.state;
 
-    form.validateFields((err, { email, password }) => {
-      if (!err) {
-        if (isForgetPassword) {
-          forgetPassword({
-            email,
-            cname,
-            callback: () => {
-              hideLogin();
-              notification.success({
-                message: t('send-success'),
-              });
-            },
-          });
-        } else {
-          login({
-            email,
-            password,
-            from: 'landingPage',
-            callback: () => {
-              hideLogin();
-              adTrack.completeRegistration();
-            },
-          });
-        }
-      }
+    validateFields((err, { email, password }) => {
+      if (err) return;
+
+      if (isForgetPassword)
+        initApollo({ name: 'store' }).mutate({
+          mutation: gql`
+            mutation sendResetPasswordEmailFromLandingPage(
+              $input: SendResetPasswordEmailInput!
+            ) {
+              sendResetPasswordEmail(input: $input) {
+                status
+              }
+            }
+          `,
+          variables: {
+            input: { email, cname, type: 'SHOPPER' },
+          },
+          update: (cache, { data }) => {
+            switch (data.sendResetPasswordEmail.status) {
+              case 'OK':
+                notification.success({
+                  message: t('ducks:forget-password-success'),
+                });
+                hideLogin();
+                break;
+
+              case 'FAIL_CANNOT_FIND_USER':
+                notification.error({
+                  message: t('ducks:forget-password-failure-message'),
+                  description: t('ducks:cannot-find-user'),
+                });
+                break;
+
+              default:
+                notification.error({
+                  message: t('ducks:forget-password-failure-message'),
+                  description: data.sendResetPasswordEmail.status,
+                });
+                break;
+            }
+          },
+        });
+      else
+        login({
+          email,
+          password,
+          from: 'landingPage',
+          callback: () => {
+            hideLogin();
+            adTrack.completeRegistration();
+          },
+        });
     });
   };
 

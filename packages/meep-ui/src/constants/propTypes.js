@@ -258,7 +258,6 @@ export const CONTEXT_TYPES = {
   getData: PropTypes.func.isRequired,
   fbLogin: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  forgetPassword: PropTypes.func.isRequired,
   getApiUrl: PropTypes.func.isRequired,
   dispatchAction: PropTypes.func.isRequired,
 

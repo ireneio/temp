@@ -1,9 +1,11 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, notification } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import initApollo from '@meepshop/apollo/lib/initApollo';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -28,17 +30,51 @@ export default class SendResetPswMailForm extends React.PureComponent {
     e.preventDefault();
 
     const {
+      t,
       cname,
       form: { validateFields },
-      dispatchAction,
     } = this.props;
 
-    validateFields((err, values) => {
-      if (!err) {
-        const { email } = values;
+    validateFields((err, { email }) => {
+      if (err) return;
 
-        dispatchAction('forgetPassword', { email, cname });
-      }
+      initApollo({ name: 'store' }).mutate({
+        mutation: gql`
+          mutation sendResetPasswordEmailFromLogin(
+            $input: SendResetPasswordEmailInput!
+          ) {
+            sendResetPasswordEmail(input: $input) {
+              status
+            }
+          }
+        `,
+        variables: {
+          input: { email, cname, type: 'SHOPPER' },
+        },
+        onCompleted: ({ sendResetPasswordEmail }) => {
+          switch (sendResetPasswordEmail.status) {
+            case 'OK':
+              notification.success({
+                message: t('ducks:forget-password-success'),
+              });
+              break;
+
+            case 'FAIL_CANNOT_FIND_USER':
+              notification.error({
+                message: t('ducks:forget-password-failure-message'),
+                description: t('ducks:cannot-find-user'),
+              });
+              break;
+
+            default:
+              notification.error({
+                message: t('ducks:forget-password-failure-message'),
+                description: sendResetPasswordEmail.status,
+              });
+              break;
+          }
+        },
+      });
     });
   };
 

@@ -52,7 +52,6 @@ export default class DecoratorsRoot extends React.Component {
     login: PropTypes.func.isRequired,
     fbLogin: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
-    forgetPassword: PropTypes.func.isRequired,
     getApiUrl: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
 
@@ -90,7 +89,6 @@ export default class DecoratorsRoot extends React.Component {
       login,
       fbLogin,
       logout,
-      forgetPassword,
       getApiUrl,
       dispatchAction,
       c,
@@ -113,7 +111,6 @@ export default class DecoratorsRoot extends React.Component {
       login,
       fbLogin,
       logout,
-      forgetPassword,
       getApiUrl,
       dispatchAction,
 

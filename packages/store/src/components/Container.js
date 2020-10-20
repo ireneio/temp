@@ -52,7 +52,6 @@ class Container extends React.Component {
     loadingTip: PropTypes.string.isRequired,
     /* func to modify data */
     login: PropTypes.func.isRequired,
-    forgetPassword: PropTypes.func.isRequired,
     signout: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
     /* props(not in context) */
@@ -232,7 +231,6 @@ class Container extends React.Component {
       loadingTip,
       /* func */
       login,
-      forgetPassword,
       signout,
       dispatchAction,
       /* props(not in context) */
@@ -261,7 +259,6 @@ class Container extends React.Component {
           getApiUrl={Utils.getApiUrl}
           /* use dispatchAction */
           login={login}
-          forgetPassword={forgetPassword}
           logout={signout}
           dispatchAction={dispatchAction}
           /* props(not in context) */
@@ -307,7 +304,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   signout: bindActionCreators(Actions.signout, dispatch),
   login: bindActionCreators(Actions.login, dispatch),
-  forgetPassword: bindActionCreators(Actions.forgetPassword, dispatch),
   getAuth: bindActionCreators(Actions.getAuth, dispatch),
   dispatchAction: (actionName, args) => {
     dispatch(Actions[actionName](args));

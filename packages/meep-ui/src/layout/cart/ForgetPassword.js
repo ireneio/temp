@@ -1,10 +1,12 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, notification } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import initApollo from '@meepshop/apollo/lib/initApollo';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -21,7 +23,6 @@ export default class ForgetPassword extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    forgetPassword: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -33,12 +34,52 @@ export default class ForgetPassword extends React.PureComponent {
 
   submit = e => {
     e.preventDefault();
-    const { cname, form, forgetPassword } = this.props;
+    const {
+      t,
+      cname,
+      form: { validateFields },
+    } = this.props;
 
-    form.validateFields((err, { email }) => {
-      if (!err) {
-        forgetPassword({ email, cname });
-      }
+    validateFields((err, { email }) => {
+      if (err) return;
+
+      initApollo({ name: 'store' }).mutate({
+        mutation: gql`
+          mutation sendResetPasswordEmailFromCart(
+            $input: SendResetPasswordEmailInput!
+          ) {
+            sendResetPasswordEmail(input: $input) {
+              status
+            }
+          }
+        `,
+        variables: {
+          input: { email, cname, type: 'SHOPPER' },
+        },
+        onCompleted: ({ sendResetPasswordEmail }) => {
+          switch (sendResetPasswordEmail.status) {
+            case 'OK':
+              notification.success({
+                message: t('ducks:forget-password-success'),
+              });
+              break;
+
+            case 'FAIL_CANNOT_FIND_USER':
+              notification.error({
+                message: t('ducks:forget-password-failure-message'),
+                description: t('ducks:cannot-find-user'),
+              });
+              break;
+
+            default:
+              notification.error({
+                message: t('ducks:forget-password-failure-message'),
+                description: sendResetPasswordEmail.status,
+              });
+              break;
+          }
+        },
+      });
     });
   };
 

@@ -17,9 +17,6 @@ import {
   signout,
   signoutSuccess,
   signoutFailure,
-  forgetPassword,
-  forgetPasswordSuccess,
-  forgetPasswordFailure,
   updateWishList,
   updateWishListSuccess,
   updateWishListFailure,
@@ -68,10 +65,6 @@ export {
   signout,
   signoutSuccess,
   signoutFailure,
-  // resetforgetPassword
-  forgetPassword,
-  forgetPasswordSuccess,
-  forgetPasswordFailure,
   // products
   getProduct,
   getProductSuccess,

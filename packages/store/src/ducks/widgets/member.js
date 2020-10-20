@@ -236,59 +236,6 @@ export function* watchSignupFlow() {
   yield takeEvery(SIGNUP_REQUEST, signupFlow);
 }
 
-/* ********************************* 忘記密碼 ********************************* */
-const FORGET_PASSWORD_REQUEST = 'FORGET_PASSWORD_REQUEST';
-const FORGET_PASSWORD_SUCCESS = 'FORGET_PASSWORD_SUCCESS';
-const FORGET_PASSWORD_FAILURE = 'RESET_PASSWORD_FAILURE';
-
-/**
- * @name forgetPassword
- * @param {Object} payload = { email, callback }
- */
-export const forgetPassword = payload => ({
-  type: FORGET_PASSWORD_REQUEST,
-  payload,
-});
-export const forgetPasswordSuccess = () => ({
-  type: FORGET_PASSWORD_SUCCESS,
-});
-export const forgetPasswordFailure = () => ({
-  type: FORGET_PASSWORD_FAILURE,
-});
-
-function* forgetPasswordFlow({ payload: { email, cname } }) {
-  try {
-    const data = yield call(Api.sendResetPasswordEmail, { email, cname });
-
-    /* Handle error */
-    if (data.error) throw new Error(data.error);
-
-    switch (data.data.sendResetPasswordEmail.status) {
-      case 'OK':
-        yield put(forgetPasswordSuccess());
-        notification.success({
-          message: i18n.t('ducks:forget-password-success'),
-        });
-        break;
-
-      case 'FAIL_CANNOT_FIND_USER':
-        throw new Error(i18n.t('ducks:cannot-find-user'));
-
-      default:
-        throw new Error(data.data.sendResetPasswordEmail.status);
-    }
-  } catch (error) {
-    yield put(forgetPasswordFailure());
-    notification.error({
-      message: i18n.t('ducks:forget-password-failure-message'),
-      description: error.message,
-    });
-  }
-}
-export function* watchForgetPasswordFlow() {
-  yield takeEvery(FORGET_PASSWORD_REQUEST, forgetPasswordFlow);
-}
-
 /* ************************************ 加入/移除願望清單 ************************************ */
 const UPDATE_WISHLIST_REQUEST = 'UPDATE_WISHLIST_REQUEST';
 const UPDATE_WISHLIST_SUCCESS = 'UPDATE_WISHLIST_SUCCESS';
@@ -522,26 +469,6 @@ export default (state = initialState, { type, payload }) => {
         loadingTip: '',
       };
     case SIGNUP_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    /* 重設密碼（忘記密碼） */
-    case FORGET_PASSWORD_REQUEST:
-      return {
-        ...state,
-        loading: false,
-        loadingTip: FORGET_PASSWORD_REQUEST,
-      };
-    case FORGET_PASSWORD_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    case FORGET_PASSWORD_FAILURE: {
       return {
         ...state,
         loading: false,
