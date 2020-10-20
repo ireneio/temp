@@ -58,10 +58,8 @@ export default withCookies(
           variables: {
             input: { locale: language },
           },
-          onCompleted: () => {
-            isLoading = false;
-          },
         });
+        isLoading = false;
       }
     }
 

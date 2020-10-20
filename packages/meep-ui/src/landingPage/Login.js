@@ -87,8 +87,8 @@ export default class Login extends React.PureComponent {
           variables: {
             input: { email, cname, type: 'SHOPPER' },
           },
-          update: (cache, { data }) => {
-            switch (data.sendResetPasswordEmail.status) {
+          update: (cache, { data: { sendResetPasswordEmail } }) => {
+            switch (sendResetPasswordEmail.status) {
               case 'OK':
                 notification.success({
                   message: t('ducks:forget-password-success'),
@@ -106,7 +106,7 @@ export default class Login extends React.PureComponent {
               default:
                 notification.error({
                   message: t('ducks:forget-password-failure-message'),
-                  description: data.sendResetPasswordEmail.status,
+                  description: sendResetPasswordEmail.status,
                 });
                 break;
             }

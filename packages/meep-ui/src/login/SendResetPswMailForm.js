@@ -51,7 +51,7 @@ export default class SendResetPswMailForm extends React.PureComponent {
         variables: {
           input: { email, cname, type: 'SHOPPER' },
         },
-        onCompleted: ({ sendResetPasswordEmail }) => {
+        update: (cache, { data: { sendResetPasswordEmail } }) => {
           switch (sendResetPasswordEmail.status) {
             case 'OK':
               notification.success({
