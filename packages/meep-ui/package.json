@@ -4,9 +4,9 @@
   "description": "meep-ui for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.66.1",
+  "version": "0.66.2",
   "dependencies": {
-    "@meepshop/apollo": "^0.66.1",
+    "@meepshop/apollo": "^0.66.2",
     "@meepshop/cart": "^0.66.1",
     "@meepshop/context": "^0.66.1",
     "@meepshop/icons": "^0.66.1",
