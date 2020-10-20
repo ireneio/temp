@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.66.2 (2020-10-20)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1213](https://github.com/meepshop/meep-lerna/pull/1213) 前台 - 移除 redux 裡面 sendResetPasswordEmail ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#1206](https://github.com/meepshop/meep-lerna/pull/1206) 前端 - Use new API to get template export formats ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1232](https://github.com/meepshop/meep-lerna/pull/1232) (@meepshop/frontend) Remove pre-release schema ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.66.1 (2020-10-19)
 
 #### :boom: Breaking Change
