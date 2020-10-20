@@ -1,5 +1,0 @@
-type MenuModule implements Module {
-  id: ID!
-  parentId: ID!
-  menu: Menu
-}

@@ -1,7 +1,0 @@
-type GoogleMapModule implements Module {
-  id: ID!
-  parentId: ID!
-  width: PositiveInt!
-  height: PositiveInt!
-  href: URL!
-}

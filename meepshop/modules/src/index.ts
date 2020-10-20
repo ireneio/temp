@@ -60,6 +60,12 @@ export const modulesFragment = gql`
       parentId
     }
 
+    ... on ActivityModule {
+      __typename
+      id
+      parentId
+    }
+
     ... on CarouselModule {
       __typename
       id
@@ -116,6 +122,12 @@ export const modulesFragment = gql`
       ...imageTextFragment
     }
 
+    ... on LandingPageModule {
+      __typename
+      id
+      parentId
+    }
+
     ... on MenuModule {
       __typename
       id
@@ -151,6 +163,12 @@ export const modulesFragment = gql`
       ...productIframeFragment
     }
 
+    ... on ProductInfoModule {
+      __typename
+      id
+      parentId
+    }
+
     ... on ProductQaModule {
       __typename
       id
@@ -163,6 +181,18 @@ export const modulesFragment = gql`
       id
       parentId
       ...productVideoFragment
+    }
+
+    ... on ProductsModule {
+      __typename
+      id
+      parentId
+    }
+
+    ... on SmartConversionModule {
+      __typename
+      id
+      parentId
     }
 
     ... on SocialMediaModule {
@@ -223,12 +253,15 @@ export const modulesFragment = gql`
   ${viewTrackingFragment}
 `;
 
-const modules = {
+export default {
   GroupModule: () => {
     throw new Error('Can not use GroupModule');
   },
   LayoutModule: () => {
     throw new Error('Can not use LayoutModule');
+  },
+  ActivityModule: () => {
+    throw new Error('Can not use ActivityModule');
   },
   CarouselModule: dynamic(() => import('@meepshop/carousel')),
   DividerModule: dynamic(() => import('@meepshop/divider')),
@@ -238,6 +271,9 @@ const modules = {
   IframeModule: dynamic(() => import('@meepshop/iframe')),
   ImageModule: dynamic(() => import('@meepshop/image')),
   ImageTextModule: dynamic(() => import('@meepshop/image-text')),
+  LandingPageModule: () => {
+    throw new Error('Can not use LandingPageModule');
+  },
   MenuModule: dynamic(() => import('@meepshop/menu')),
   ProductCarouselModule: dynamic(() => import('@meepshop/product-carousel')),
   ProductCollectionsModule: dynamic(() =>
@@ -245,13 +281,20 @@ const modules = {
   ),
   ProductDraftTextModule: dynamic(() => import('@meepshop/product-draft-text')),
   ProductIframeModule: dynamic(() => import('@meepshop/product-iframe')),
+  ProductInfoModule: () => {
+    throw new Error('Can not use ProductInfoModule');
+  },
   ProductQaModule: dynamic(() => import('@meepshop/product-qa')),
   ProductVideoModule: dynamic(() => import('@meepshop/product-video')),
+  ProductsModule: () => {
+    throw new Error('Can not use ProductsModule');
+  },
+  SmartConversionModule: () => {
+    throw new Error('Can not use SmartConversionModule');
+  },
   SocialMediaModule: dynamic(() => import('@meepshop/social-media')),
   SocialThumbsModule: dynamic(() => import('@meepshop/social-thumbs')),
   UnavailableModule: dynamic(() => import('@meepshop/unavailable')),
   VideoModule: dynamic(() => import('@meepshop/video')),
   ViewTrackingModule: dynamic(() => import('@meepshop/view-tracking')),
 };
-
-export default modules;

@@ -1,4 +1,0 @@
-type LayoutModule implements Module {
-  id: ID!
-  parentId: ID!
-}

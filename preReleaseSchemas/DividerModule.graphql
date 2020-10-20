@@ -1,9 +1,0 @@
-type DividerModule implements Module {
-  id: ID!
-  parentId: ID!
-  width: PositiveInt!
-  height: PositiveInt!
-  justifyContent: JustifyContent!
-  borderRadius: NonNegativeInt!
-  background: HexColorCode
-}

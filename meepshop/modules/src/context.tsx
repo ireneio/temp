@@ -3,6 +3,8 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 
+import modules from './index';
+
 // graphql typescript
 import { ContextType as MenuContextType } from '@meepshop/menu/lib/gqls';
 import { ContextType as ProductQaContextType } from '@meepshop/product-qa/lib/fragment';
@@ -15,28 +17,11 @@ import { menuUserFragment, menuOrderFragment } from '@meepshop/menu/lib/gqls';
 import { productQaUserFragment } from '@meepshop/product-qa/lib/fragment';
 
 // typescript definition
-type ModuleNamesType =
-  | 'CarouselModule'
-  | 'DividerModule'
-  | 'DraftTextModule'
-  | 'FacebookWallModule'
-  | 'GoogleMapModule'
-  | 'IframeModule'
-  | 'ImageModule'
-  | 'ImageTextModule'
-  | 'ProductCarouselModule'
-  | 'ProductCollectionsModule'
-  | 'ProductDraftTextModule'
-  | 'ProductIframeModule'
-  | 'ProductQaModule'
-  | 'ProductVideoModule'
-  | 'SocialMediaModule'
-  | 'SocialThumbsModule'
-  | 'UnavailableModule'
-  | 'VideoModule'
-  | 'ViewTrackingModule';
-
-interface ModulesType extends Record<ModuleNamesType, {}> {
+interface ModulesType
+  extends Omit<
+    Record<keyof typeof modules, {}>,
+    'GroupModule' | 'LayoutModule'
+  > {
   MenuModule: MenuContextType;
   ProductQaModule: ProductQaContextType;
 }
@@ -49,31 +34,23 @@ interface PropsType {
 
 // definition
 const defaultContext = {
-  CarouselModule: {},
-  DividerModule: {},
-  DraftTextModule: {},
-  FacebookWallModule: {},
-  GoogleMapModule: {},
-  IframeModule: {},
-  ImageModule: {},
-  ImageTextModule: {},
+  ...Object.keys(modules || {}).reduce(
+    (result, key: keyof typeof modules) =>
+      ['GroupModule', 'LayoutModule'].includes(key)
+        ? result
+        : {
+            ...result,
+            [key]: {},
+          },
+    {} as Record<keyof ModulesType, {}>,
+  ),
   MenuModule: {
     user: null,
     order: null,
   },
-  ProductCarouselModule: {},
-  ProductCollectionsModule: {},
-  ProductDraftTextModule: {},
-  ProductIframeModule: {},
   ProductQaModule: {
     user: null,
   },
-  ProductVideoModule: {},
-  SocialMediaModule: {},
-  SocialThumbsModule: {},
-  UnavailableModule: {},
-  VideoModule: {},
-  ViewTrackingModule: {},
 };
 const ModulesContext = React.createContext<ModulesType>(defaultContext);
 

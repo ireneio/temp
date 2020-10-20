@@ -1,5 +1,0 @@
-type ProductIframeModule implements Module {
-  id: ID!
-  parentId: ID!
-  product(productId: ID): Product
-}
