@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.66.4 (2020-10-21)
+
+#### :rocket: New Feature
+
+- Other
+  - [#1214](https://github.com/meepshop/meep-lerna/pull/1214) member-reward-points 改成 function component ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1208](https://github.com/meepshop/meep-lerna/pull/1208) member-wish-list 改成 function component ([@Lexiwu](https://github.com/Lexiwu))
+- `generators`
+  - [#1235](https://github.com/meepshop/meep-lerna/pull/1235) (@meepshop/generators) Can create a new package ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- Other
+  - [#1217](https://github.com/meepshop/meep-lerna/pull/1217) [DEV_TOOLS] CI Dockerhub Credentials - 前端 ([@happycat6323](https://github.com/happycat6323))
+- `generators`
+  - [#1235](https://github.com/meepshop/meep-lerna/pull/1235) (@meepshop/generators) Can create a new package ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.66.3 (2020-10-20)
 
 #### :bug: Bug Fix
