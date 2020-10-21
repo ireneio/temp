@@ -7,6 +7,7 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 #### scripts
 
 - `clean`: Remove the building files and node_modules.
+- `generate`: Use to generate the new files.
 - `dev`: Run `dev` mode
 - `install:all`: Install the all packages.
 - `lint`, `lint:watch`: Run lint.
@@ -20,52 +21,9 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 
 ## How to write a new package
 
-In each package, we use `less`, `typescript` and `apollo-client`, and we should not add any package in the dependencies packages of `@meepshop/front-end`.
-
-1. Add the new folder in `workspace(store, admin...)`.
-2. Add `package.json` in the folder, and copy this:
-
+```sh
+yarn generate TEMPLATE=Package
 ```
-{
-  "private": true,
-  "name": /** add new name, for example: @store/test */,
-  "description": /** add new description */,
-  "license": "ISC",
-  "author": "meepshop <admin@meepshop.com>",
-  "version": "0.1.0",
-  "main": "./index.js",
-  "types": "./src/index.tsx",
-  "keywords": /** add new keywords */
-}
-```
-
-3. Add `index.js` in the folder, and copy this:
-
-```js
-/* eslint-disable */
-module.exports =
-  process.env.NODE_ENV === 'test'
-    ? require('./src/index.tsx')
-    : require('./lib/index.js');
-```
-
-4. Add `src/__tests__/index.tsx` in the folder, and copy this:
-
-```js
-// import
-import React from 'react';
-
-// eslint-disable-next-line import/no-extraneous-dependencies
-import runTest from '@meepshop/mock-types/src/runTest';
-
-import /** ComponentName */ from '../index';
-import props from '../../mock';
-
-// definition
-runTest('meepshop' or 'store' or 'admin', </** ComponentName */ {...props} />);
-```
-
-5. Now, you can start to write your component in `src/index.ts`.
 
 #### Write component with storybook
 

@@ -1,0 +1,78 @@
+// import
+import path from 'path';
+
+import camelCase from 'lodash.camelcase';
+
+import Base from './Base';
+
+// definition
+export default class Package extends Base {
+  public async prompting(): Promise<void> {
+    this.state = await this.prompt([
+      {
+        type: 'list',
+        name: 'workspace',
+        message: 'Choose workspace',
+        choices: ['meepshop', 'store', 'admin'],
+      },
+      {
+        name: 'name',
+        message: 'Package name',
+        validate: str => (str.length > 0 ? true : 'Can not empty.'),
+      },
+      {
+        name: 'description',
+        message: 'Package description',
+        validate: str => (str.length > 0 ? true : 'Can not empty.'),
+      },
+      {
+        name: 'keywords',
+        message: 'Package keywords (comma to split)',
+        filter: words => words.split(/\s*,\s*/g),
+      },
+    ]);
+  }
+
+  public writing(): void {
+    const { workspace, name, description, keywords } = this.state;
+    const packageName = `@${workspace}/${name}`;
+    const componentName = camelCase(name as string).replace(/^([\w])/, str =>
+      str.toUpperCase(),
+    );
+
+    this.composeWith(path.resolve(__dirname, './Component'), {
+      state: { packageName, componentPath: 'index' },
+    });
+    this.fs.writeJSON(this.destinationPath('package.json'), {
+      private: true,
+      name: packageName,
+      description,
+      license: 'ISC',
+      author: 'meepshop <admin@meepshop.com>',
+      version: '0.1.0',
+      main: './index.js',
+      types: './src/index.tsx',
+      keywords,
+    });
+    this.fs.copyTpl(
+      this.templatePath('index.js.tmpl'),
+      this.destinationPath('index.js'),
+    );
+    this.fs.copyTpl(
+      this.templatePath('testing.tsx.tmpl'),
+      this.destinationPath('src/__tests__/index.tsx'),
+      { workspace, componentName },
+    );
+  }
+
+  public install(): void {
+    const { workspace, name } = this.state;
+
+    this.spawnCommand('git', ['add', `${workspace}/${name}`]);
+    this.spawnCommand('git', [
+      'commit',
+      '-m',
+      `feat(@${workspace}/${name}): Add new package`,
+    ]);
+  }
+}

@@ -10,6 +10,9 @@ babel-all:
 babel-changed:
 	@$(call babel-build,$(WATCH),--parallel --exclude-dependents --since $(BRANCH))
 
+generate:
+	@yarn yo ./packages/generators/lib/${TEMPLATE}.js
+
 apollo-watch:
 	@$(call apollo,$(APOLLO_TYPE),--watch)
 
