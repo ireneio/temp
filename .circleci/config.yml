@@ -2,11 +2,17 @@ version: 2
 defaults: &defaults
   docker:
     - image: circleci/node:10.15.3-browsers
+      auth:
+        username: meep
+        password: $DOCKERHUB_PASSWORD
   working_directory: ~/repo
 
 gcloud-defaults: &gcloud-defaults
   docker:
     - image: google/cloud-sdk
+      auth:
+        username: meep
+        password: $DOCKERHUB_PASSWORD
   working_directory: ~/repo
 
 restore-cache: &restore-cache
@@ -155,6 +161,7 @@ workflows:
   test-and-deploy:
     jobs:
       - install:
+          context: org-global
           filters:
             tags:
               only: /.*/
