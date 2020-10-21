@@ -89,7 +89,10 @@ const link = path => ({ href, children }) => {
       </a>
     );
 
-  const url = `https://github.com/meepshop/meep-lerna/tree/master/${path}/${href}`;
+  const url = `https://github.com/meepshop/meep-lerna/tree/master/${path}/${href.replace(
+    /README.md/,
+    '',
+  )}`;
   const { pathname } = new URL(url);
   const story = stories.find(
     ({ pathname: storyPathname }) => storyPathname === pathname,

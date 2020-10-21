@@ -56,21 +56,19 @@ module.exports = ({ config }) => {
     ...config.module.rules,
   ];
 
-  const addFragmentAlias = (key, fragment) => {
-    const moduleFragmentName = `${key}/lib/${fragment}`;
-    const moduleFragmentPath = path.resolve(
+  const addGqlsAlias = (key, gqls) => {
+    const moduleGqlsName = `${key}/lib/${gqls}`;
+    const moduleGqlsPath = path.resolve(
       __dirname,
       key.replace(/@/, '../'),
       // TODO: remove fragment.ts when all fragments move to fragments folder
-      fragment === 'fragment'
-        ? './src/fragment.ts'
-        : './src/fragments/index.ts',
+      gqls === 'fragment' ? './src/fragment.ts' : `./src/${gqls}/index.ts`,
     );
 
-    return !fs.existsSync(moduleFragmentPath)
+    return !fs.existsSync(moduleGqlsPath)
       ? {}
       : {
-          [moduleFragmentName]: moduleFragmentPath,
+          [moduleGqlsName]: moduleGqlsPath,
         };
   };
 
@@ -81,8 +79,9 @@ module.exports = ({ config }) => {
       (result, key) => ({
         ...result,
         // TODO: remove fragment when all fragments move to fragments folder
-        ...addFragmentAlias(key, 'fragment'),
-        ...addFragmentAlias(key, 'fragments'),
+        ...addGqlsAlias(key, 'fragment'),
+        ...addGqlsAlias(key, 'fragments'),
+        ...addGqlsAlias(key, 'gqls'),
       }),
       {},
     ),

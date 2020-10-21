@@ -4,7 +4,7 @@ Use to handle the all modules.
 
 ## How to add a new module
 
-1. Create a default project, you can see [here](../../#how-to-write-a-new-package).
+1. Create a default project, you can see [here](../../README.md#how-to-write-a-new-package).
 2. Add `src/fragment.ts` in the new package:
 
 ```js
@@ -69,6 +69,15 @@ export default {
   /** module type */: dynamic(() => import('/** module name */')),
   ...
 };
+
+// src/context.tsc
+...
+const defaultContext = {
+  ...
+  /** module type */: {},
+  ...
+}
+...
 ```
 
 5. Modify `tsconfig.json`:
