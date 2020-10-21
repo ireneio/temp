@@ -4,15 +4,15 @@
   "description": "notification setting for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.66.2",
+  "version": "0.66.4",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/block": "^0.66.2",
-    "@admin/header": "^0.66.2",
-    "@admin/tooltip": "^0.66.1",
-    "@admin/utils": "^0.66.1",
-    "@meepshop/utils": "^0.66.1",
+    "@admin/block": "^0.66.4",
+    "@admin/header": "^0.66.4",
+    "@admin/tooltip": "^0.66.4",
+    "@admin/utils": "^0.66.4",
+    "@meepshop/utils": "^0.66.4",
     "validator": "^12.0.0"
   },
   "keywords": ["admin", "notification", "setting"]
