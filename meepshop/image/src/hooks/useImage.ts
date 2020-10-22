@@ -4,7 +4,7 @@ import { useRef, useState, useEffect, useCallback, useMemo } from 'react';
 import { placeholderImage } from '@meepshop/images';
 
 // graphql typescript
-import { imageFragment_image as imageFragmentImage } from '../fragments/__generated__/imageFragment';
+import { useImageImageFragment } from '../gqls/__generated__/useImageImageFragment';
 
 // typescript definition
 type WidthType =
@@ -25,7 +25,7 @@ const IMAGE_SUITABLE_WIDTHS = [120, 240, 480, 720, 960, 1200, 1440, 1680, 1920];
 const imageCache: string[] = [];
 
 export default (
-  image: imageFragmentImage | null,
+  image: useImageImageFragment | null,
 ): {
   imageRef: React.Ref<HTMLDivElement>;
   imageURL: string;

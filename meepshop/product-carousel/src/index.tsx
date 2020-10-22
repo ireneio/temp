@@ -4,6 +4,7 @@ import { Carousel as AntdCarousel } from 'antd';
 
 // import
 import React, { useRef } from 'react';
+import { filter } from 'graphql-anywhere';
 
 import Carousel from '@meepshop/carousel';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -13,7 +14,12 @@ import useSlickActive from './hooks/useSlickActive';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { productCarouselFragment } from './__generated__/productCarouselFragment';
+import { productCarouselFragment } from './gqls/__generated__/productCarouselFragment';
+
+// graphql import
+import carouselFragment from '@meepshop/carousel/lib/gqls';
+
+import useImagesFragment from './gqls/useImages';
 
 // definition
 export default React.memo(
@@ -21,8 +27,23 @@ export default React.memo(
     const { i18n } = useTranslation();
     const carouselRef = useRef<AntdCarousel>(null);
     const bottomRef = useRef<AntdCarousel>(null);
-    const images = useImages(product);
+    const images = useImages(
+      !product ? null : filter(useImagesFragment, product),
+    );
     const setSlickActive = useSlickActive(bottomRef);
+    const defaultCarouselProps = {
+      __typename: 'CarouselModule' as 'CarouselModule',
+      id,
+      images,
+      autoPlay,
+      alt:
+        product?.title?.[i18n.language as languageType] ||
+        product?.title?.zh_TW ||
+        null,
+      width: 100,
+      hoverPause: false,
+      showIndicator: false,
+    };
 
     return (
       <div className={styles.root}>
@@ -34,45 +55,27 @@ export default React.memo(
           }`}
         >
           <Carousel
-            id={id}
-            images={images}
-            width={100}
-            autoPlay={autoPlay}
-            hoverPause={false}
-            showIndicator={false}
-            showController
-            alt={
-              product?.title?.[i18n.language as languageType] ||
-              product?.title?.zh_TW ||
-              null
-            }
-            carouselRef={carouselRef}
-            asNavFor={bottomRef}
-            __typename="CarouselModule"
+            {...filter(carouselFragment, {
+              ...defaultCarouselProps,
+              showController: true,
+              carouselRef,
+              asNavFor: bottomRef,
+            })}
           />
         </div>
 
         {productCarouselType === 'NONE' || images?.length === 1 ? null : (
           <div className={styles.bottom}>
             <Carousel
-              id={id}
-              images={images}
-              width={100}
-              autoPlay={autoPlay}
-              hoverPause={false}
-              showIndicator={false}
-              showController={false}
-              alt={
-                product?.title?.[i18n.language as languageType] ||
-                product?.title?.zh_TW ||
-                null
-              }
-              carouselRef={bottomRef}
-              asNavFor={carouselRef}
-              slidesToShow={(images || []).length > 4 ? 4 : images?.length}
-              focusOnSelect
-              afterChange={setSlickActive}
-              __typename="CarouselModule"
+              {...filter(carouselFragment, {
+                ...defaultCarouselProps,
+                showController: false,
+                focusOnSelect: true,
+                carouselRef: bottomRef,
+                asNavFor: carouselRef,
+                slidesToShow: (images || []).length > 4 ? 4 : images?.length,
+                afterChange: setSlickActive,
+              })}
             />
           </div>
         )}

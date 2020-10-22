@@ -1,5 +1,5 @@
 // typescript import
-import { PropsType } from '@meepshop/carousel/lib/index';
+import { PropsType } from '@meepshop/carousel';
 
 // import
 import { useMemo } from 'react';
@@ -8,38 +8,25 @@ import { placeholderThumbnail_scaledSrc as placeholderThumbnail } from '@meepsho
 
 // graphql typescript
 import {
-  productCarouselFragment_product as productCarouselFragmentProduct,
-  productCarouselFragment_product_galleries_images as productCarouselFragmentProductGalleriesImages,
-} from '../__generated__/productCarouselFragment';
+  useImagesFragment,
+  useImagesFragment_galleries_images as useImagesFragmentGalleriesImages,
+} from '../gqls/__generated__/useImagesFragment';
 
 // definition
-export type CarouselModuleImage = 'CarouselModuleImage';
-export type Image = 'Image';
-export type ScaledURLs = 'ScaledURLs';
-
-export default (
-  product: productCarouselFragmentProduct | null,
-): PropsType['images'] =>
+export default (product: useImagesFragment | null): PropsType['images'] =>
   useMemo(() => {
-    const images = [
+    const images: PropsType['images'] = [
       ...(product?.coverImage?.scaledSrc ? [product.coverImage] : []),
-      ...((product?.galleries?.[0]?.images || []).filter(
-        (image: productCarouselFragmentProductGalleriesImages | null) =>
-          image?.scaledSrc && image.id !== product?.coverImage?.id,
-      ) as productCarouselFragmentProductGalleriesImages[]),
-    ].map(({ id, scaledSrc }) => ({
-      __typename: 'CarouselModuleImage' as CarouselModuleImage,
+      ...(product?.galleries?.[0]?.images || []).filter(
+        image => image?.scaledSrc && image.id !== product?.coverImage?.id,
+      ),
+    ].map(({ id, scaledSrc }: useImagesFragmentGalleriesImages) => ({
+      __typename: 'CarouselModuleImage',
       link: null,
       image: {
-        __typename: 'Image' as Image,
+        __typename: 'Image',
         id,
-        ...(scaledSrc
-          ? {
-              scaledSrc: {
-                ...scaledSrc,
-              },
-            }
-          : { scaledSrc: null }),
+        scaledSrc,
       },
     }));
 
@@ -47,13 +34,13 @@ export default (
       ? images
       : [
           {
-            __typename: 'CarouselModuleImage' as CarouselModuleImage,
+            __typename: 'CarouselModuleImage',
             link: null,
             image: {
-              __typename: 'Image' as Image,
+              __typename: 'Image',
               id: 'product-carousel-placeholder-id',
               scaledSrc: {
-                __typename: 'ScaledURLs' as ScaledURLs,
+                __typename: 'ScaledURLs',
                 ...placeholderThumbnail,
               },
             },

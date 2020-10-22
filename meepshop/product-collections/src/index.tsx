@@ -3,6 +3,7 @@ import { languageType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
+import { filter } from 'graphql-anywhere';
 
 import Image from '@meepshop/image';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -10,11 +11,14 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import styles from './styles/index.less';
 
 // graphql typescript
+import { JustifyContent } from '../../../__generated__/meepshop';
 import {
   productCollectionsFragment,
   productCollectionsFragment_product_galleries_images as productCollectionsFragmentProductGalleriesImages,
-} from './__generated__/productCollectionsFragment';
-import { JustifyContent } from '../../../__generated__/meepshop';
+} from './gqls/__generated__/productCollectionsFragment';
+
+// graphql import
+import imageFragment from '@meepshop/image/lib/gqls';
 
 // definition
 export default React.memo(
@@ -37,21 +41,22 @@ export default React.memo(
             className={`${styles.img} ${styles[productCollectionsType]}`}
           >
             <Image
-              id={id}
-              image={{
-                __typename: 'Image',
+              {...filter(imageFragment, {
+                __typename: 'ImageModule',
                 id,
-                scaledSrc,
-              }}
-              link={null}
-              width={percentWidth.split('WIDTH')[1]}
-              justifyContent={'CENTER' as JustifyContent}
-              alt={
-                product?.title?.[i18n.language as languageType] ||
-                product?.title?.zh_TW ||
-                null
-              }
-              __typename="ImageModule"
+                image: {
+                  __typename: 'Image',
+                  id,
+                  scaledSrc,
+                },
+                link: null,
+                width: percentWidth.replace(/WIDTH/, ''),
+                justifyContent: 'CENTER' as JustifyContent,
+                alt:
+                  product?.title?.[i18n.language as languageType] ||
+                  product?.title?.zh_TW ||
+                  null,
+              })}
             />
           </div>
         ))}

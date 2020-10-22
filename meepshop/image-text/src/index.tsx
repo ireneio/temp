@@ -1,5 +1,6 @@
 // import
 import React from 'react';
+import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
 
 import Image from '@meepshop/image';
@@ -7,16 +8,16 @@ import Image from '@meepshop/image';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { imageTextFragment } from './fragments/__generated__/imageTextFragment';
 import { JustifyContent } from '../../../__generated__/meepshop';
+import { imageTextFragment } from './gqls/__generated__/imageTextFragment';
+
+// graphql import
+import imageFragment from '@meepshop/image/lib/gqls';
 
 // definition
 export default React.memo(
   ({
     id,
-    image,
-    link,
-    width,
     title,
     description,
     button,
@@ -24,17 +25,16 @@ export default React.memo(
     color,
     hoverColor,
     position,
-    alt,
+    ...props
   }: imageTextFragment) => (
     <>
       <Image
-        id={`image-text-${id}`}
-        image={image}
-        link={link}
-        width={width}
-        justifyContent={'CENTER' as JustifyContent}
-        alt={alt}
-        __typename="ImageModule"
+        {...filter(imageFragment, {
+          ...props,
+          __typename: 'ImageModule',
+          id: `image-text-${id}`,
+          justifyContent: 'CENTER' as JustifyContent,
+        })}
       >
         <div className={`${styles.root} ${styles[position]}`}>
           <div className={styles.wrapper} style={{ color }}>

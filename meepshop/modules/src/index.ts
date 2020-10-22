@@ -3,17 +3,17 @@ import gql from 'graphql-tag';
 import dynamic from 'next/dynamic';
 
 // graphql import
-import carouselFragment from '@meepshop/carousel/lib/fragments';
+import carouselFragment from '@meepshop/carousel/lib/gqls';
 import dividerFragment from '@meepshop/divider/lib/gqls';
 import draftTextFragment from '@meepshop/draft-text/lib/gqls';
 import facebookWallFragment from '@meepshop/facebook-wall/lib/gqls';
 import googleMapFragment from '@meepshop/google-map/lib/gqls';
 import iframeFragment from '@meepshop/iframe/lib/gqls';
-import imageFragment from '@meepshop/image/lib/fragments';
-import imageTextFragment from '@meepshop/image-text/lib/fragments';
+import imageFragment from '@meepshop/image/lib/gqls';
+import imageTextFragment from '@meepshop/image-text/lib/gqls';
 import menuFragment from '@meepshop/menu/lib/gqls';
-import productCarouselFragment from '@meepshop/product-carousel/lib/fragment';
-import productCollectionsFragment from '@meepshop/product-collections/lib/fragment';
+import productCarouselFragment from '@meepshop/product-carousel/lib/gqls';
+import productCollectionsFragment from '@meepshop/product-collections/lib/gqls';
 import productDraftTextFragment from '@meepshop/product-draft-text/lib/fragment';
 import productIframeFragment from '@meepshop/product-iframe/lib/fragment';
 import productQaFragment from '@meepshop/product-qa/lib/fragment';

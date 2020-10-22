@@ -3,6 +3,7 @@ import { CarouselProps } from 'antd/lib/carousel';
 
 // import
 import React, { useEffect, useState } from 'react';
+import { filter } from 'graphql-anywhere';
 import { Carousel, Icon } from 'antd';
 
 import Image from '@meepshop/image';
@@ -11,11 +12,11 @@ import { DEFAULT_IMAGES } from './constants';
 import styles from './styles/index.less';
 
 // graphql typescript
-import {
-  carouselFragment,
-  carouselFragment_images as carouselFragmentImages,
-} from './fragments/__generated__/carouselFragment';
 import { JustifyContent } from '../../../__generated__/meepshop';
+import { carouselFragment } from './gqls/__generated__/carouselFragment';
+
+// graphql import
+import imageFragment from '@meepshop/image/lib/gqls';
 
 // definition
 export interface PropsType
@@ -57,14 +58,11 @@ export default React.memo(
   }: PropsType) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [sliderRef, setSliderRef] = useState<any>();
+    const displayedImages = !images?.length ? DEFAULT_IMAGES : images;
 
     useEffect(() => {
       if (asNavFor?.current) setSliderRef(asNavFor.current);
     }, [asNavFor]);
-
-    const displayedImages = !images?.length
-      ? (DEFAULT_IMAGES as carouselFragmentImages[])
-      : images;
 
     return (
       <div className={styles.root} style={{ width: `${width}%` }}>
@@ -82,14 +80,16 @@ export default React.memo(
         >
           {displayedImages.map(({ image, link }) => (
             <Image
+              {...filter(imageFragment, {
+                __typename: 'ImageModule',
+                id: image?.id || 'null-id',
+                image,
+                link,
+                width: 100,
+                justifyContent: 'CENTER' as JustifyContent,
+                alt,
+              })}
               key={image?.id || 'null-id'}
-              id={image?.id || 'null-id'}
-              image={image}
-              link={link}
-              width={100}
-              justifyContent={'CENTER' as JustifyContent}
-              alt={alt}
-              __typename="ImageModule"
             />
           ))}
         </Carousel>

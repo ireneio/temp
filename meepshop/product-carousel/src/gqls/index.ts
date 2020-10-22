@@ -3,10 +3,8 @@ import gql from 'graphql-tag';
 
 // graphql import
 import localeFragment from '@meepshop/utils/lib/fragments/locale';
-import {
-  imageImageFragment,
-  imageScaledURLsFragment,
-} from '@meepshop/image/lib/fragments';
+
+import useImagesFragment from './useImages';
 
 // definition
 export default gql`
@@ -19,21 +17,10 @@ export default gql`
       title {
         ...localeFragment
       }
-      coverImage {
-        ...imageImageFragment
-      }
-      galleries {
-        images {
-          id
-          scaledSrc {
-            ...imageScaledURLsFragment
-          }
-        }
-      }
+      ...useImagesFragment
     }
   }
 
   ${localeFragment}
-  ${imageImageFragment}
-  ${imageScaledURLsFragment}
+  ${useImagesFragment}
 `;

@@ -5,21 +5,21 @@ import { AdTrack as AdTrackContext } from '@meepshop/context';
 
 // graphql typescript
 import {
-  imageFragment_link as imageFragmentLink,
-  imageFragment_link_EmailLink as imageFragmentLinkEmailLink,
-  imageFragment_link_PhoneLink as imageFragmentLinkPhoneLink,
-  imageFragment_link_GroupLink as imageFragmentLinkGroupLink,
-  imageFragment_link_PageLink as imageFragmentLinkPageLink,
-  imageFragment_link_ProductLink as imageFragmentLinkProductLink,
-  imageFragment_link_ProductsLink as imageFragmentLinkProductsLink,
-  imageFragment_link_CustomLink as imageFragmentLinkCustomLink,
-} from '../fragments/__generated__/imageFragment';
+  useLinkFragment as useLinkFragmentLink,
+  useLinkFragment_EmailLink as useLinkFragmentLinkEmailLink,
+  useLinkFragment_PhoneLink as useLinkFragmentLinkPhoneLink,
+  useLinkFragment_GroupLink as useLinkFragmentLinkGroupLink,
+  useLinkFragment_PageLink as useLinkFragmentLinkPageLink,
+  useLinkFragment_ProductLink as useLinkFragmentLinkProductLink,
+  useLinkFragment_ProductsLink as useLinkFragmentLinkProductsLink,
+  useLinkFragment_CustomLink as useLinkFragmentLinkCustomLink,
+} from '../gqls/__generated__/useLinkFragment';
 
 // typescript definition
 type SortType = 'LATEST' | 'NAME' | 'PRICE_ASC' | 'PRICE_DESC';
 
 // definition
-const generateProductsUrl = (link: imageFragmentLinkProductsLink): string =>
+const generateProductsUrl = (link: useLinkFragmentLinkProductsLink): string =>
   `/products?sort=${
     {
       LATEST: 'createdAt-desc',
@@ -32,7 +32,7 @@ const generateProductsUrl = (link: imageFragmentLinkProductsLink): string =>
   }${link.tags ? `&tags=${link.tags.join(',')}` : ''}`;
 
 export default (
-  link: imageFragmentLink | null,
+  link: useLinkFragmentLink | null,
 ): { href: string | null; setAdTrack: () => void } => {
   const adTrack = useContext(AdTrackContext);
 
@@ -42,19 +42,21 @@ export default (
         !link
           ? null
           : {
-              EmailLink: `mailTo:${(link as imageFragmentLinkEmailLink).email}`,
-              PhoneLink: `tel:${(link as imageFragmentLinkPhoneLink).phone}`,
-              GroupLink: `#${(link as imageFragmentLinkGroupLink).group?.id}`,
+              EmailLink: `mailTo:${
+                (link as useLinkFragmentLinkEmailLink).email
+              }`,
+              PhoneLink: `tel:${(link as useLinkFragmentLinkPhoneLink).phone}`,
+              GroupLink: `#${(link as useLinkFragmentLinkGroupLink).group?.id}`,
               PageLink: `/pages/${
-                (link as imageFragmentLinkPageLink).page?.id
+                (link as useLinkFragmentLinkPageLink).page?.id
               }`,
               ProductLink: `/product/${
-                (link as imageFragmentLinkProductLink).product?.id
+                (link as useLinkFragmentLinkProductLink).product?.id
               }`,
               ProductsLink: generateProductsUrl(
-                link as imageFragmentLinkProductsLink,
+                link as useLinkFragmentLinkProductsLink,
               ),
-              CustomLink: (link as imageFragmentLinkCustomLink).href,
+              CustomLink: (link as useLinkFragmentLinkCustomLink).href,
             }[link.__typename],
       [link],
     ),

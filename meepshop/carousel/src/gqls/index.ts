@@ -3,9 +3,9 @@ import gql from 'graphql-tag';
 
 // graphql import
 import {
-  imageImageFragment,
-  imageLinkFragment,
-} from '@meepshop/image/lib/fragments';
+  useImageImageFragment,
+  useLinkFragment,
+} from '@meepshop/image/lib/gqls';
 
 // definition
 export default gql`
@@ -13,10 +13,10 @@ export default gql`
     id
     images {
       image {
-        ...imageImageFragment
+        ...useImageImageFragment
       }
       link {
-        ...imageLinkFragment
+        ...useLinkFragment
       }
     }
     width
@@ -27,6 +27,6 @@ export default gql`
     alt
   }
 
-  ${imageImageFragment}
-  ${imageLinkFragment}
+  ${useImageImageFragment}
+  ${useLinkFragment}
 `;

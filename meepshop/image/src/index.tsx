@@ -1,5 +1,6 @@
 // import
 import React from 'react';
+import { filter } from 'graphql-anywhere';
 import VisibilitySensor from 'react-visibility-sensor';
 
 import Link from '@meepshop/link';
@@ -9,7 +10,11 @@ import useImage from './hooks/useImage';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { imageFragment } from './fragments/__generated__/imageFragment';
+import { imageFragment } from './gqls/__generated__/imageFragment';
+
+// graphql import
+import useLinkFragment from './gqls/useLink';
+import { useImageImageFragment } from './gqls/useImage';
 
 // typescript definition
 interface PropsType extends imageFragment {
@@ -19,7 +24,9 @@ interface PropsType extends imageFragment {
 // definition
 export default React.memo(
   ({ id, image, link, width, justifyContent, alt, children }: PropsType) => {
-    const { href, setAdTrack } = useLink(link);
+    const { href, setAdTrack } = useLink(
+      !link ? null : filter(useLinkFragment, link),
+    );
     const {
       imageRef,
       imageURL,
@@ -28,7 +35,7 @@ export default React.memo(
       isClear,
       isPlaceholder,
       onLoad,
-    } = useImage(image);
+    } = useImage(!image ? null : filter(useImageImageFragment, image));
 
     return (
       <div id={id} className={`${styles.root} ${styles[justifyContent]}`}>
