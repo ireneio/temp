@@ -1,105 +1,105 @@
 const viewerStoreQuery = `
-viewer {
-  id
-  store {
+  viewer {
     id
-    name
-    cname
-    domain
-    description {
-      name
-      introduction
-    }
-    timezone
-    contact {
-      name
-      email
-      mobile
-      tel
-    }
-    locale
-    shippableCountries {
+    store {
       id
-    }
-    setting {
-      order {
-        autoAddStock
-        afterPaymentFail
+      name
+      cname
+      domain
+      description {
+        name
+        introduction
       }
-      design {
-        footerSite
-      }
-      invoice {
-        paper {
-          duplicate {
-            isEnabled
-          }
-          triplicate {
-            isEnabled
-          }
-          donation {
-            isEnabled
-          }
-        }
-        electronic {
-          triplicate {
-            isEnabled
-          }
-          donation {
-            isEnabled
-          }
-          membershipCarrier {
-            isEnabled
-          }
-          citizenDigitalCertificateCarrier {
-            isEnabled
-          }
-          mobileBarCodeCarrier {
-            isEnabled
-          }
-          type
-        }
+      timezone
+      contact {
+        name
+        email
+        mobile
+        tel
       }
       locale
-      currency
-      lockedBirthday
-      paidMessage
-      adRetentionMilliseconds
-      adRetentionMillisecondsEnabled
-      shopperLoginMessageEnabled
-      shopperLoginMessage
-    }
-    logoImage {
-      id
-      scaledSrc {
-        h200
+      shippableCountries {
+        id
       }
-    }
-    mobileLogoImage {
-      id
-      scaledSrc {
-        w250
+      setting {
+        order {
+          autoAddStock
+          afterPaymentFail
+        }
+        design {
+          footerSite
+        }
+        invoice {
+          paper {
+            duplicate {
+              isEnabled
+            }
+            triplicate {
+              isEnabled
+            }
+            donation {
+              isEnabled
+            }
+          }
+          electronic {
+            triplicate {
+              isEnabled
+            }
+            donation {
+              isEnabled
+            }
+            membershipCarrier {
+              isEnabled
+            }
+            citizenDigitalCertificateCarrier {
+              isEnabled
+            }
+            mobileBarCodeCarrier {
+              isEnabled
+            }
+            type
+          }
+        }
+        locale
+        currency
+        lockedBirthday
+        paidMessage
+        adRetentionMilliseconds
+        adRetentionMillisecondsEnabled
+        shopperLoginMessageEnabled
+        shopperLoginMessage
       }
-    }
-    faviconImage {
-      id
-      scaledSrc {
-        w60
+      logoImage {
+        id
+        scaledSrc {
+          h200
+        }
       }
-    }
-    homePageId
+      mobileLogoImage {
+        id
+        scaledSrc {
+          w250
+        }
+      }
+      faviconImage {
+        id
+        scaledSrc {
+          w60
+        }
+      }
+      homePageId
 
-    experiment {
-      hiddingMeepshopMaxInFooterEnabled
-    }
+      experiment {
+        hiddingMeepshopMaxInFooterEnabled
+      }
 
-    memberGroups(filter: $memberGroupFilter) {
-      id
-      name
-      type
+      memberGroups(filter: $memberGroupFilter) {
+        id
+        name
+        type
+      }
     }
   }
-}
 `;
 
 export default viewerStoreQuery;

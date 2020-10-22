@@ -1,5 +1,6 @@
 import productDraftText from '@meepshop/product-draft-text';
 import productVideo from '@meepshop/product-video';
+import smartConversion from '@meepshop/smart-conversion';
 
 import image from 'image';
 import iframe from 'iframe';
@@ -54,4 +55,5 @@ export default {
   menu: handleModuleData(menu),
   product: productSet,
   viewTracking,
+  'smart-conversion': smartConversion,
 };

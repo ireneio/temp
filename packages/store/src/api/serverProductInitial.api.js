@@ -11,6 +11,7 @@ import {
 export default async context => {
   const {
     query: { pId },
+    req: { cookies },
   } = context;
   if (!pId) throw new Error('Product id is not defined.');
   const variables = {
@@ -20,6 +21,7 @@ export default async context => {
       $memberGroupFilter: MemberGroupFilterInput,
       $notificationSearch: searchInputObjectType,
       $expireBy: Int!,
+      $smartConversionToken: String,
       $activitiesFilter: StoreActivitiesFilterInput,
     `,
     type: 'query serverProductInitial',
@@ -62,6 +64,7 @@ export default async context => {
       },
       notificationSearch: {},
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
+      smartConversionToken: cookies?.smartConversionToken,
       activitiesFilter: {
         status: 1,
         plugin: 'groupDiscount',

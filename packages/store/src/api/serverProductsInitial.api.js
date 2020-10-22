@@ -9,6 +9,9 @@ import {
 } from './query';
 
 export default async context => {
+  const {
+    req: { cookies },
+  } = context;
   const variables = {
     keys: `
       $pageFilter: StorePagesFilterInput,
@@ -16,6 +19,7 @@ export default async context => {
       $memberGroupFilter: MemberGroupFilterInput,
       $notificationSearch: searchInputObjectType,
       $expireBy: Int!,
+      $smartConversionToken: String,
       $activitiesFilter: StoreActivitiesFilterInput,
     `,
     type: 'query serverProductsInitial',
@@ -41,6 +45,7 @@ export default async context => {
       },
       notificationSearch: {},
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
+      smartConversionToken: cookies?.smartConversionToken,
       activitiesFilter: {
         status: 1,
         plugin: 'groupDiscount',

@@ -1,5 +1,6 @@
 // import
 import gql from 'graphql-tag';
+import uuid from 'uuid/v4';
 
 import { withCookies } from '@meepshop/cookies';
 
@@ -69,11 +70,20 @@ export default withCookies(
     ) {
       const currency = currencys?.[0];
 
-      if (currency) cookie.set('currency', currency);
+      if (currency)
+        cookie.set('currency', currency, {
+          maxAge: 30 * 24 * 60 * 60 * 1000,
+        });
     }
+
+    if (!cookie.get('smartConversionToken'))
+      cookie.set('smartConversionToken', uuid(), {
+        expires: new Date(253402300000000),
+      });
 
     return {
       currency: cookie.get('currency'),
+      smartConversionToken: cookie.get('smartConversionToken'),
     };
   },
 );

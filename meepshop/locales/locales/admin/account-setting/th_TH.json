@@ -5,32 +5,32 @@
   "success": "บันทึกเรียบร้อยแล้ว",
   "error": "การอัพเดทล้มเหลว",
   "account": {
-    "title": null,
-    "description": null,
-    "account": null,
-    "change-password": null,
+    "title": "ข้อมูลเกี่ยวกับบัญชี",
+    "description": "เราจะใช้ข้อมูลการติดต่อนี้เพื่อติดต่อคุณ เพื่อความปลอดภัยของบัญชีของคุณขอแนะนำให้อัปเดตรหัสผ่านของคุณเป็นประจำ",
+    "account": "บัญชีเข้าสู่ระบบหลังเวที",
+    "change-password": "เปลี่ยนรหัสผ่าน",
     "required": "จำเป็นต้องใช้",
-    "confirm-change": null,
+    "confirm-change": "ยืนยันการเปลี่ยนแปลง",
     "name": {
       "label": "ชื่อ",
-      "placeholder": null
+      "placeholder": "กรุณากรอกชื่อผู้ติดต่อ"
     },
     "mobile": {
       "label": "รายละเอียดการติดต่อ",
-      "placeholder": null
+      "placeholder": "กรุณากรอกหมายเลขโทรศัพท์มือถือที่ใช้ในการติดต่อ"
     },
     "tel": {
-      "label": null,
-      "placeholder": null
+      "label": "เบอร์ติดต่อ",
+      "placeholder": "กรุณากรอกหมายเลขโทรศัพท์สำหรับติดต่อ"
     },
-    "current-password": null,
+    "current-password": "รหัสผ่านปัจจุบัน",
     "password": {
-      "label": null,
-      "error": null
+      "label": "รหัสผ่านใหม่",
+      "error": "รหัสผ่านต้องเป็นอักขระที่เป็นตัวอักษรและตัวเลขคละกัน 6 ตัวขึ้นไป"
     },
     "confirm-password": {
       "label": "กรุณาใส่รหัสผ่านใหม่",
-      "error": null
+      "error": "รหัสผ่านแตกต่างกัน"
     },
     "update-password-success": "อัปเดตรหัสผ่านสำเร็จ",
     "update-password-fail": "ไม่สามารถอัปเดตรหัสผ่าน",
@@ -38,17 +38,17 @@
     "incorrect-current-password": "ข้อผิดพลาดรหัสผ่านเก่า"
   },
   "plan": {
-    "title": null,
-    "description-1": null,
-    "description-2": null,
-    "service": null,
-    "privacy": null,
-    "current-plan": null,
-    "contract-plan": null,
-    "contact-consultant": null,
-    "monthly-plan": null,
-    "test-store": null,
-    "free-trial": null,
-    "upgrade-plan": null
+    "title": "แผนของฉัน",
+    "description-1": "คุณสามารถเลือกแผนบริการที่เหมาะสมที่สุดสำหรับร้านของคุณ",
+    "description-2": "ตรวจสอบ",
+    "service": "เงื่อนไขการให้บริการ",
+    "privacy": "นโยบายความเป็นส่วนตัว",
+    "current-plan": "แผนปัจจุบัน",
+    "contract-plan": "แผนสัญญา",
+    "contact-consultant": "หากคุณต้องการเปลี่ยนแผนโปรดติดต่อที่ปรึกษาร้านค้าของคุณเพื่อปรับแต่งแผนพิเศษสำหรับคุณ",
+    "monthly-plan": "แผนการชำระเงินรายเดือน",
+    "test-store": "ร้านค้าทดสอบ",
+    "free-trial": "การทดลองใช้ฟรีจะหมดอายุใน 15 วัน",
+    "upgrade-plan": "แผนอัปเกรด"
   }
 }

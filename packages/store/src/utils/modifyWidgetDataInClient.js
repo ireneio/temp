@@ -6,7 +6,7 @@ import uuid from 'uuid/v4';
  * 希望以後後端直接處理...
  */
 
-export default function modifyWidgetDataInClient(widgets = [], query) {
+export default function modifyWidgetDataInClient(widgets = [], query, page) {
   // FIXME: prevent malformed widget data
   if (!Array.isArray(widgets)) return [];
   const mWidgets = widgets.map(widget => {
@@ -313,13 +313,21 @@ export default function modifyWidgetDataInClient(widgets = [], query) {
             menuId: widget.menuId,
           };
         }
+        /* 智慧轉換 */
+        case 'smart-conversion': {
+          const { smartConversionModule } = page;
+          return {
+            ...widget,
+            ...smartConversionModule,
+          };
+        }
         default:
           return widget;
       }
     }
     return {
       id: uuid(),
-      widgets: modifyWidgetDataInClient(widget.widgets, query),
+      widgets: modifyWidgetDataInClient(widget.widgets, query, page),
     };
   });
   return mWidgets;

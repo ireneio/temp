@@ -2,6 +2,7 @@
 import { ApolloClient } from 'apollo-client';
 import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { AppContext, AppProps } from 'next/app';
+import { CookieAttributes } from 'js-cookie';
 
 import {
   NextAppType,
@@ -26,7 +27,7 @@ export interface CookiesType {
   cookies: {
     [key: string]: string | undefined;
   };
-  setCookie: (key: string, value: string) => void;
+  setCookie: (key: string, value: string, options?: CookieAttributes) => void;
 }
 
 export type getCookiesArgumentType = Parameters<getCookiesType>[0];
@@ -41,7 +42,7 @@ interface CustomCtx extends AppContext {
       cookies: CookiesType['cookies'];
     };
     res: {
-      cookie: (key: string, value: string) => void;
+      cookie: (key: string, value: string, options?: CookieAttributes) => void;
     };
   };
 }
@@ -83,43 +84,46 @@ export const withCookies = (getCookies: getCookiesType) => (
     const {
       ctx: { client, res, req },
     } = ctx;
-    const appProps = await App.getInitialProps(ctx);
+    let initialCookies = {};
 
     try {
-      return {
-        ...appProps,
-        initialCookies: await getCookies(
-          typeof window === 'undefined'
-            ? {
-                client,
-                i18n: req.i18n,
-                language: req.language,
-                cookie: {
-                  get: (key: string) => req.cookies[key],
-                  set: (key: string, value: string) => {
-                    req.cookies[key] = value;
-                    res.cookie(key, value);
-                  },
+      initialCookies = await getCookies(
+        typeof window === 'undefined'
+          ? {
+              client,
+              i18n: req.i18n,
+              language: req.language,
+              cookie: {
+                get: (key: string) => req.cookies[key],
+                set: (
+                  key: string,
+                  value: string,
+                  options?: CookieAttributes,
+                ) => {
+                  req.cookies[key] = value;
+                  res.cookie(key, value, options);
                 },
-              }
-            : {
-                client,
-                i18n: i18n as I18nPropsType['i18n'],
-                language: i18n.language as languageType,
-                cookie,
               },
-        ),
-      };
+            }
+          : {
+              client,
+              i18n: i18n as I18nPropsType['i18n'],
+              language: i18n.language as languageType,
+              cookie,
+            },
+      );
     } catch (e) {
       if (!shouldIgnoreUnauthorizedError(e.networkError))
         // eslint-disable-next-line no-console
         console.error(req?.logId, 'Error while running `getCookies`', e);
-
-      return {
-        ...appProps,
-        initialCookies: {},
-      };
     }
+
+    const appProps = await App.getInitialProps(ctx);
+
+    return {
+      ...appProps,
+      initialCookies,
+    };
   };
 
   return WithCookies;

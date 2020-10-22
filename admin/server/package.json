@@ -24,6 +24,7 @@
     "@admin/setting": "^0.66.4",
     "@admin/setting-notification": "^0.66.4",
     "@admin/setting-third-party": "^0.66.4",
+    "@admin/smart-conversion-analysis": "^0.62.0",
     "@admin/utils": "^0.66.4",
     "@admin/web-track": "^0.66.4",
     "@admin/wrapper": "^0.66.4",

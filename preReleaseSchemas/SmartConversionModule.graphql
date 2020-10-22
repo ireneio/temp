@@ -1,0 +1,18 @@
+enum FetchSmartConversionModuleGADataResponseStatusEnum {
+  OK
+  FAIL_MODULE_NOT_FOUND
+  FAIL_GA_SERVER_ERROR
+  FAIL_GA_AUTH_ERROR
+  FAIL_DB_ERROR
+}
+
+type FetchSmartConversionModuleGADataResponse {
+  status: FetchSmartConversionModuleGADataResponseStatusEnum
+  smartConversionModule: SmartConversionModule
+}
+
+extend type Mutation {
+  fetchSmartConversionModuleGAData(
+    smartConversionModuleId: ID!
+  ): FetchSmartConversionModuleGADataResponse!
+}

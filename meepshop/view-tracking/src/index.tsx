@@ -8,9 +8,14 @@ import styles from './styles/index.less';
 // graphql typescript
 import { viewTrackingFragment } from './__generated__/viewTrackingFragment';
 
+// typescript definition
+interface PropsType extends viewTrackingFragment {
+  custom?: string;
+}
+
 // definition
-export default React.memo(({ tracking }: viewTrackingFragment) => {
-  const { isTriggered, visibleChange } = useTracking(tracking);
+export default React.memo(({ tracking, custom }: PropsType) => {
+  const { isTriggered, visibleChange } = useTracking(tracking, custom);
 
   return (
     <VisibilitySensor

@@ -21,6 +21,7 @@ import ExchangeRate from './schemas/ExchangeRate';
 import ExportFormat from './schemas/ExportFormat';
 import ezPaymentReturnListObjectType from './schemas/ezPaymentReturnListObjectType';
 import FbPixel from './schemas/FbPixel';
+import FetchSmartConversionModuleGADataResponse from './schemas/FetchSmartConversionModuleGADataResponse';
 import FileConnection from './schemas/FileConnection';
 import GMOUserInfo from './schemas/GMOUserInfo';
 import GmoBankInstallment from './schemas/GmoBankInstallment';
@@ -53,6 +54,7 @@ import productsObjectType from './schemas/productsObjectType';
 import RecipientAddress from './schemas/RecipientAddress';
 import RecipientObjectType from './schemas/RecipientObjectType';
 import SettingObjectType from './schemas/SettingObjectType';
+import SmartConversionModule from './schemas/SmartConversionModule';
 import Store from './schemas/Store';
 import StoreApp from './schemas/StoreApp';
 import StoreEcfitSettings from './schemas/StoreEcfitSettings';
@@ -92,6 +94,7 @@ export default addMocksToSchema({
     ExportFormat,
     ezPaymentReturnListObjectType,
     FbPixel,
+    FetchSmartConversionModuleGADataResponse,
     FileConnection,
     GMOUserInfo,
     GmoBankInstallment,
@@ -124,6 +127,7 @@ export default addMocksToSchema({
     RecipientAddress,
     RecipientObjectType,
     SettingObjectType,
+    SmartConversionModule,
     Store,
     StoreApp,
     StoreEcfitSettings,

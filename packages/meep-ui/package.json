@@ -18,6 +18,7 @@
     "@meepshop/product-amount-select": "^0.66.4",
     "@meepshop/product-draft-text": "^0.66.4",
     "@meepshop/product-video": "^0.66.4",
+    "@meepshop/smart-conversion": "^0.62.0",
     "@meepshop/thumbnail": "^0.66.4",
     "@meepshop/utils": "^0.66.4",
     "@store/checkout": "^0.66.4",

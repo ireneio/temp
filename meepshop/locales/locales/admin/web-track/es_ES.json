@@ -25,7 +25,7 @@
   },
   "google-ads": {
     "description": "El seguimiento de conversiones de anuncios se puede utilizar para realizar un seguimiento de la acción \"después de\" que un cliente hizo clic en los anuncios, incluido el registro y las compras. La acción se considera conversión una vez que un cliente completa una acción que usted definió como valiosa.",
-    "warning": null,
+    "warning": "El sistema realizará la conversión de datos al guardar y solo retendrá el ID de código global y el número de evento después de completar",
     "setting": "Cambiar la configuración de seguimiento",
     "global-code": "Código global:",
     "global-code-placeholder": "Por favor, introduzca el código de URL global",
@@ -40,8 +40,8 @@
     "dpa-description-2": "Copie la URL del archivo dinámico y péguelo en su cuenta de Google Merchant para configurar el feed. Google lo recuperará de acuerdo con el programa establecido.",
     "copy-dpa-link": "Copiar URL dinámica",
     "copied": "Copiada al portapapeles",
-    "parse-config-fail": null,
-    "parse-fail": null
+    "parse-config-fail": "Error de formato de código global",
+    "parse-fail": "Error de formato de código"
   },
   "google-webmaster": {
     "title": "Consola de búsqueda de Google",
@@ -54,11 +54,11 @@
   "google-tag-manager": {
     "title": "Herramientas de gestión de código",
     "description": "Google Tag Manager es un sistema de administración de etiquetas que puede ayudarlo a actualizar rápidamente su código de seguimiento y fragmento a través de la configuración de la interfaz de usuario del sitio web y la configuración de implementación de etiquetas.",
-    "warning": null,
+    "warning": "El sistema realizará la conversión de datos al guardar, y solo retendrá el ID del código global y el número de evento después de la finalización",
     "setting": "Configuración de fragmentos",
     "setting-placeholder": "Por favor, introduzca el código de seguimiento",
     "googleTagManager": "Codigo de localización",
-    "parse-fail": null
+    "parse-fail": "Error de formato de código"
   },
   "advanced-customer-track": "Seguimiento avanzado de clientes",
   "retention-milliseconds-track": {

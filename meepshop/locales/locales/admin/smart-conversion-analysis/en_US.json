@@ -1,0 +1,28 @@
+{
+  "title": null,
+  "status": {
+    "INIT": null,
+    "ONGOING": null,
+    "END": null
+  },
+  "smart-conversion": null,
+  "page-title": null,
+  "period": null,
+  "day": null,
+  "ended-at": null,
+  "updated-at": null,
+  "stop-updating": null,
+  "sample": null,
+  "best-converison": null,
+  "sample-no": null,
+  "event-name": null,
+  "transaction": null,
+  "transaction-unit": null,
+  "conversion": null,
+  "transaction-ratio": null,
+  "pie-chart": null,
+  "error": null,
+  "contact": null,
+  "close": null,
+  "service": null
+}

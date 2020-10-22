@@ -5,32 +5,32 @@
   "success": "Ahorra exitosamente",
   "error": "Actualización fallida",
   "account": {
-    "title": null,
-    "description": null,
-    "account": null,
-    "change-password": null,
+    "title": "Información de la cuenta",
+    "description": "Usaremos esta información de contacto para comunicarnos con usted. Para la seguridad de su cuenta, se recomienda actualizar su contraseña con regularidad.",
+    "account": "Cuenta de inicio de sesión backstage",
+    "change-password": "Cambia la contraseña",
     "required": "Necesaria",
-    "confirm-change": null,
+    "confirm-change": "Confirmar cambio",
     "name": {
       "label": "Nombre",
-      "placeholder": null
+      "placeholder": "Ingrese el nombre de la persona de contacto"
     },
     "mobile": {
       "label": "Detalles de contacto",
-      "placeholder": null
+      "placeholder": "Introduzca el número de teléfono móvil utilizado para el contacto."
     },
     "tel": {
-      "label": null,
-      "placeholder": null
+      "label": "Número de contacto",
+      "placeholder": "Ingrese el número de teléfono de contacto"
     },
-    "current-password": null,
+    "current-password": "Contraseña actual",
     "password": {
-      "label": null,
-      "error": null
+      "label": "nueva contraseña",
+      "error": "La contraseña debe tener 6 o más caracteres alfanuméricos"
     },
     "confirm-password": {
       "label": "Por favor, vuelva a ingresar la nueva contraseña",
-      "error": null
+      "error": "Las dos contraseñas no son iguales"
     },
     "update-password-success": "Actualice la contraseña correctamente",
     "update-password-fail": "Error al actualizar la contraseña",
@@ -38,17 +38,17 @@
     "incorrect-current-password": "Error de contraseña anterior"
   },
   "plan": {
-    "title": null,
-    "description-1": null,
-    "description-2": null,
-    "service": null,
-    "privacy": null,
-    "current-plan": null,
-    "contract-plan": null,
-    "contact-consultant": null,
-    "monthly-plan": null,
-    "test-store": null,
-    "free-trial": null,
-    "upgrade-plan": null
+    "title": "Mi plan",
+    "description-1": "Puedes elegir el plan de servicio más adecuado para tu tienda",
+    "description-2": "Revise nuestro",
+    "service": "Términos de servicio",
+    "privacy": "Política de privacidad",
+    "current-plan": "Plan actual",
+    "contract-plan": "Plan de contrato",
+    "contact-consultant": "Si necesita cambiar el plan, comuníquese con el asesor de su tienda para personalizar el plan exclusivo para usted.",
+    "monthly-plan": "Plan de pago mensual",
+    "test-store": "Tienda de prueba",
+    "free-trial": "La prueba gratuita vencerá en 15 días",
+    "upgrade-plan": "Plan de actualización"
   }
 }

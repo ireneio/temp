@@ -6,7 +6,11 @@ import uuid from 'uuid/v4';
  * 希望以後後端直接處理...
  */
 
-export default async function modifyWidgetDataInServer(widgets = [], context) {
+export default async function modifyWidgetDataInServer(
+  widgets = [],
+  context,
+  page,
+) {
   const { query = {} } = context;
   // FIXME: prevent malformed widget data
   if (!Array.isArray(widgets)) return [];
@@ -327,13 +331,21 @@ export default async function modifyWidgetDataInServer(widgets = [], context) {
               menuId: widget.menuId,
             };
           }
+          /* 智慧轉換 */
+          case 'smart-conversion': {
+            const { smartConversionModule } = page;
+            return {
+              ...widget,
+              ...smartConversionModule,
+            };
+          }
           default:
             return widget;
         }
       }
       return {
         id: uuid(),
-        widgets: await modifyWidgetDataInServer(widget.widgets, context),
+        widgets: await modifyWidgetDataInServer(widget.widgets, context, page),
       };
     }),
   );

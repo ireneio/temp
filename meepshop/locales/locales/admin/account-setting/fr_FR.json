@@ -5,32 +5,32 @@
   "success": "Sauvegarde réussie",
   "error": "Mise à jour a échoué",
   "account": {
-    "title": null,
-    "description": null,
-    "account": null,
-    "change-password": null,
+    "title": "Information sur le compte",
+    "description": "Nous utiliserons ces informations de contact pour vous contacter. Pour la sécurité de votre compte, il est recommandé de mettre à jour régulièrement votre mot de passe.",
+    "account": "Compte de connexion Backstage",
+    "change-password": "Changer le mot de passe",
     "required": "Champs obligatoires",
-    "confirm-change": null,
+    "confirm-change": "Confirmer le changement",
     "name": {
       "label": "prénom",
-      "placeholder": null
+      "placeholder": "Veuillez saisir le nom de la personne de contact"
     },
     "mobile": {
       "label": "Détails du contact",
-      "placeholder": null
+      "placeholder": "Veuillez saisir le numéro de téléphone mobile utilisé pour le contact"
     },
     "tel": {
-      "label": null,
-      "placeholder": null
+      "label": "Numéro de contact",
+      "placeholder": "Veuillez entrer le numéro de téléphone pour le contact"
     },
-    "current-password": null,
+    "current-password": "Mot de passe actuel",
     "password": {
-      "label": null,
-      "error": null
+      "label": "nouveau mot de passe",
+      "error": "Le mot de passe doit contenir au moins 6 caractères alphanumériques"
     },
     "confirm-password": {
       "label": "Veuillez ressaisir le nouveau mot de passe",
-      "error": null
+      "error": "Les deux mots de passe ne sont pas les mêmes"
     },
     "update-password-success": "Mise à jour du mot de passe avec succès",
     "update-password-fail": "Echec de la mise à jour du mot de passe",
@@ -38,17 +38,17 @@
     "incorrect-current-password": "Ancien mot de passe Erreur"
   },
   "plan": {
-    "title": null,
-    "description-1": null,
-    "description-2": null,
-    "service": null,
-    "privacy": null,
-    "current-plan": null,
-    "contract-plan": null,
-    "contact-consultant": null,
-    "monthly-plan": null,
-    "test-store": null,
-    "free-trial": null,
-    "upgrade-plan": null
+    "title": "Mon plan",
+    "description-1": "Vous pouvez choisir le plan de service le plus adapté à votre magasin",
+    "description-2": "Consultez notre",
+    "service": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité",
+    "current-plan": "Plan actuel",
+    "contract-plan": "Plan de contrat",
+    "contact-consultant": "Si vous avez besoin de modifier le plan, veuillez contacter votre conseiller en magasin pour personnaliser le plan exclusif pour vous.",
+    "monthly-plan": "Plan de paiement mensuel",
+    "test-store": "Magasin de test",
+    "free-trial": "L'essai gratuit expirera dans 15 jours",
+    "upgrade-plan": "Plan de mise à niveau"
   }
 }

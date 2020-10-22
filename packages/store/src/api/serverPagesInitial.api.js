@@ -11,6 +11,7 @@ import {
 export default async context => {
   const {
     query: { path },
+    req: { cookies },
   } = context;
   if (!path) throw new Error('Page path is not defined.');
   const variables = {
@@ -20,6 +21,7 @@ export default async context => {
       $memberGroupFilter: MemberGroupFilterInput,
       $notificationSearch: searchInputObjectType,
       $expireBy: Int!,
+      $smartConversionToken: String,
       $activitiesFilter: StoreActivitiesFilterInput,
     `,
     type: 'query serverPagesInitial',
@@ -46,6 +48,7 @@ export default async context => {
       },
       notificationSearch: {},
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
+      smartConversionToken: cookies?.smartConversionToken,
       activitiesFilter: {
         status: 1,
         plugin: 'groupDiscount',

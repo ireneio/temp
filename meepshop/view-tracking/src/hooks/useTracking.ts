@@ -7,10 +7,10 @@ import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { viewTrackingFragment } from '../__generated__/viewTrackingFragment';
 
 // definition
-export default ({
-  name,
-  category,
-}: viewTrackingFragment['tracking']): {
+export default (
+  { name, category }: viewTrackingFragment['tracking'],
+  custom?: string,
+): {
   isTriggered: boolean;
   visibleChange: (visible: boolean) => void;
 } => {
@@ -20,10 +20,10 @@ export default ({
     visible => {
       if (isTriggered || !visible) return;
 
-      adTrack.custom('meepShop_view', name, category);
+      adTrack.custom(custom || 'meepShop_view', name, category);
       setIsTriggered(true);
     },
-    [name, category, adTrack, isTriggered],
+    [name, category, adTrack, isTriggered, custom],
   );
 
   return {

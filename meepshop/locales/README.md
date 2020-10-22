@@ -14,4 +14,4 @@ This package is used to manage the locales files.
 ## Add a new locale file
 
 1. Create a default project, you can see [here](../../#how-to-write-a-new-package). If the package exist, you can skip this step.
-2. Run `locale create -p <package name>`.
+2. Run `locales create -p <package name>`.

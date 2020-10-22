@@ -5,32 +5,32 @@
   "success": "Lưu lại thành công",
   "error": "Cập nhật thất bại",
   "account": {
-    "title": null,
-    "description": null,
-    "account": null,
-    "change-password": null,
+    "title": "Thông tin tài khoản",
+    "description": "Chúng tôi sẽ sử dụng thông tin liên hệ này để liên hệ với bạn. Để bảo mật cho tài khoản của bạn, bạn nên cập nhật mật khẩu thường xuyên.",
+    "account": "Tài khoản đăng nhập hậu trường",
+    "change-password": "Đổi mật khẩu",
     "required": "Cần thiết",
-    "confirm-change": null,
+    "confirm-change": "Xác nhận thay đổi",
     "name": {
       "label": "Tên",
-      "placeholder": null
+      "placeholder": "Vui lòng nhập tên của người liên hệ"
     },
     "mobile": {
       "label": "Chi tiết liên lạc",
-      "placeholder": null
+      "placeholder": "Vui lòng nhập số điện thoại di động được sử dụng để liên hệ"
     },
     "tel": {
-      "label": null,
-      "placeholder": null
+      "label": "Số liên lạc",
+      "placeholder": "Vui lòng nhập số điện thoại để liên hệ"
     },
-    "current-password": null,
+    "current-password": "Mật khẩu hiện tại",
     "password": {
-      "label": null,
-      "error": null
+      "label": "mật khẩu mới",
+      "error": "Mật khẩu phải có 6 ký tự chữ và số trở lên"
     },
     "confirm-password": {
       "label": "Vui lòng nhập lại mật khẩu mới",
-      "error": null
+      "error": "Hai mật khẩu không giống nhau"
     },
     "update-password-success": "Cập nhật mật khẩu thành công",
     "update-password-fail": "Không cập nhật mật khẩu",
@@ -38,17 +38,17 @@
     "incorrect-current-password": "Lỗi mật khẩu cũ"
   },
   "plan": {
-    "title": null,
-    "description-1": null,
-    "description-2": null,
-    "service": null,
-    "privacy": null,
-    "current-plan": null,
-    "contract-plan": null,
-    "contact-consultant": null,
-    "monthly-plan": null,
-    "test-store": null,
-    "free-trial": null,
-    "upgrade-plan": null
+    "title": "Kế hoạch của tôi",
+    "description-1": "Bạn có thể chọn gói dịch vụ phù hợp nhất cho cửa hàng của mình",
+    "description-2": "Xem lại của chúng tôi",
+    "service": "Điều khoản dịch vụ",
+    "privacy": "Chính sách bảo mật",
+    "current-plan": "Kế hoạch hiện tại",
+    "contract-plan": "Kế hoạch hợp đồng",
+    "contact-consultant": "Nếu bạn cần thay đổi kế hoạch, vui lòng liên hệ với nhà tư vấn cửa hàng của bạn để tùy chỉnh kế hoạch dành riêng cho bạn.",
+    "monthly-plan": "Gói thanh toán hàng tháng",
+    "test-store": "Cửa hàng thử nghiệm",
+    "free-trial": "Bản dùng thử miễn phí sẽ hết hạn sau 15 ngày",
+    "upgrade-plan": "Nâng cấp kế hoạch"
   }
 }

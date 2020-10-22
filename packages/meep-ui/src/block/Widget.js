@@ -44,6 +44,8 @@ export default class Widget extends React.PureComponent {
   render() {
     const { module, widgets, widgetSetting, id, ...props } = this.props;
 
+    if (module === 'smart-conversion' && !props.displaySample) return null;
+
     warning(
       widgets || (!widgets && module),
       'If `widgets` of the `Widget` is `null`, `module` can not be `null.`',

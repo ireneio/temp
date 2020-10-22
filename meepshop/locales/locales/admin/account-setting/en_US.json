@@ -5,32 +5,32 @@
   "success": "Save Successfully",
   "error": "Update failed",
   "account": {
-    "title": null,
-    "description": null,
-    "account": null,
-    "change-password": null,
+    "title": "Account information",
+    "description": "We will use this contact information to contact you. For the security of your account, it is recommended to update your password regularly.",
+    "account": "Backstage login account",
+    "change-password": "Change password",
     "required": "Required",
-    "confirm-change": null,
+    "confirm-change": "Confirm change",
     "name": {
       "label": "Name",
-      "placeholder": null
+      "placeholder": "Please enter the name of the contact person"
     },
     "mobile": {
       "label": "Contact Details",
-      "placeholder": null
+      "placeholder": "Please enter the mobile phone number used for contact"
     },
     "tel": {
-      "label": null,
-      "placeholder": null
+      "label": "Contact number",
+      "placeholder": "Please enter the phone number for contact"
     },
-    "current-password": null,
+    "current-password": "Current password",
     "password": {
-      "label": null,
-      "error": null
+      "label": "new password",
+      "error": "The password must be 6 or more alphanumeric characters"
     },
     "confirm-password": {
       "label": "Please re-enter new password",
-      "error": null
+      "error": "The two passwords are not the same"
     },
     "update-password-success": "Update Password Successfully",
     "update-password-fail": "Fail to Update Password",
@@ -38,17 +38,17 @@
     "incorrect-current-password": "Old Password Error"
   },
   "plan": {
-    "title": null,
-    "description-1": null,
-    "description-2": null,
-    "service": null,
-    "privacy": null,
-    "current-plan": null,
-    "contract-plan": null,
-    "contact-consultant": null,
-    "monthly-plan": null,
-    "test-store": null,
-    "free-trial": null,
-    "upgrade-plan": null
+    "title": "My plan",
+    "description-1": "You can choose the most suitable service plan for your store",
+    "description-2": "Review our",
+    "service": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "current-plan": "Current plan",
+    "contract-plan": "Contract plan",
+    "contact-consultant": "If you need to change the plan, please contact your store consultant to customize the exclusive plan for you.",
+    "monthly-plan": "Monthly payment plan",
+    "test-store": "Test store",
+    "free-trial": "Free trial will expire in 15 days",
+    "upgrade-plan": "Upgrade plan"
   }
 }

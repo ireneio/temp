@@ -1,5 +1,5 @@
 module.exports = {
-  setupFiles: ['./jest.setup'],
+  setupFiles: ['./jest.setup', 'jest-canvas-mock'],
   moduleNameMapper: {
     '^.+\\.png$': '<rootDir>/__mocks__/image.ts',
   },

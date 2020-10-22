@@ -5,32 +5,32 @@
   "success": "Berhasil Berhemat",
   "error": "Pembaharuan gagal",
   "account": {
-    "title": null,
-    "description": null,
-    "account": null,
-    "change-password": null,
+    "title": "Informasi Akun",
+    "description": "Kami akan menggunakan informasi kontak ini untuk menghubungi Anda. Untuk keamanan akun Anda, disarankan untuk memperbarui kata sandi Anda secara teratur.",
+    "account": "Akun login Backstage",
+    "change-password": "Ganti kata sandi",
     "required": "Yg dibutuhkan",
-    "confirm-change": null,
+    "confirm-change": "Konfirmasikan perubahan",
     "name": {
       "label": "Nama",
-      "placeholder": null
+      "placeholder": "Harap masukkan nama narahubung"
     },
     "mobile": {
       "label": "Rincian Kontak",
-      "placeholder": null
+      "placeholder": "Silakan masukkan nomor ponsel yang digunakan untuk kontak"
     },
     "tel": {
-      "label": null,
-      "placeholder": null
+      "label": "Nomor kontak",
+      "placeholder": "Silakan masukkan nomor telepon untuk dihubungi"
     },
-    "current-password": null,
+    "current-password": "Kata sandi saat ini",
     "password": {
-      "label": null,
-      "error": null
+      "label": "kata sandi baru",
+      "error": "Kata sandi harus terdiri dari 6 atau lebih karakter alfanumerik"
     },
     "confirm-password": {
       "label": "Harap masukkan kembali kata sandi baru",
-      "error": null
+      "error": "Kedua kata sandi itu tidak sama"
     },
     "update-password-success": "Perbarui Kata Sandi Berhasil",
     "update-password-fail": "Gagal Memperbarui Kata Sandi",
@@ -38,17 +38,17 @@
     "incorrect-current-password": "Kesalahan Kata Sandi Lama"
   },
   "plan": {
-    "title": null,
-    "description-1": null,
-    "description-2": null,
-    "service": null,
-    "privacy": null,
-    "current-plan": null,
-    "contract-plan": null,
-    "contact-consultant": null,
-    "monthly-plan": null,
-    "test-store": null,
-    "free-trial": null,
-    "upgrade-plan": null
+    "title": "Rencana saya",
+    "description-1": "Anda dapat memilih paket layanan yang paling sesuai untuk toko Anda",
+    "description-2": "Tinjau kami",
+    "service": "Persyaratan Layanan",
+    "privacy": "Rahasia pribadi",
+    "current-plan": "Rencana saat ini",
+    "contract-plan": "Rencana kontrak",
+    "contact-consultant": "Jika Anda perlu mengubah paket, harap hubungi konsultan toko Anda untuk menyesuaikan paket eksklusif untuk Anda.",
+    "monthly-plan": "Paket pembayaran bulanan",
+    "test-store": "Toko uji",
+    "free-trial": "Uji coba gratis akan berakhir dalam 15 hari",
+    "upgrade-plan": "Paket upgrade"
   }
 }

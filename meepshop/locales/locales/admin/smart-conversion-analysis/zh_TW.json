@@ -1,0 +1,28 @@
+{
+  "title": "測試成效",
+  "status": {
+    "INIT": "未開始",
+    "ONGOING": "測試進行中",
+    "END": "測試結束"
+  },
+  "smart-conversion": "智慧轉換",
+  "page-title": "測試頁面名稱",
+  "period": "測試期間",
+  "day": "({days} 天)",
+  "ended-at": "測試結束時間",
+  "updated-at": "數據更新時間",
+  "stop-updating": "數據停止更新",
+  "sample": "樣本數據",
+  "best-converison": "最佳轉換率",
+  "sample-no": "樣本圖",
+  "event-name": "事件名稱",
+  "transaction": "交易次數",
+  "transaction-unit": "{transaction} 筆",
+  "conversion": "轉換率",
+  "transaction-ratio": "交易量佔比",
+  "pie-chart": "圓餅圖",
+  "error": "很抱歉，數據似乎出了點問題",
+  "contact": "請您與客服聯繫，我們將儘速為您處理",
+  "close": "關閉頁面",
+  "service": "客服專線："
+}

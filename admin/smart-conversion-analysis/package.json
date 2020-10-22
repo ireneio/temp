@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@admin/smart-conversion-analysis",
+  "description": "smart-conversion result",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.62.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/images": "^0.66.4",
+    "@meepshop/utils": "^0.66.4",
+    "bizcharts": "^4.0.14"
+  },
+  "keywords": ["admin", "smart-conversion"]
+}

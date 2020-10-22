@@ -57,7 +57,7 @@ function* getPagesFlow({ payload }) {
               ...block,
               width: width || 100,
               componentWidth: componentWidth || 0,
-              widgets: modifyWidgetDataInClient(widgets, query),
+              widgets: modifyWidgetDataInClient(widgets, query, node),
             }));
           return { ...node, blocks };
         });

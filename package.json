@@ -105,6 +105,7 @@
     "find-pkg-dir": "^2.0.0",
     "husky": "^3.1.0",
     "jest": "^24.9.0",
+    "jest-canvas-mock": "^2.2.0",
     "lerna": "^3.19.0",
     "lerna-changelog": "^0.8.3",
     "less": "^3.10.3",

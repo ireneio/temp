@@ -5,32 +5,32 @@
   "success": "セーブに成功",
   "error": "更新に失敗しました",
   "account": {
-    "title": null,
-    "description": null,
-    "account": null,
-    "change-password": null,
+    "title": "口座情報",
+    "description": "この連絡先情報を使用して連絡します。 アカウントのセキュリティのため、パスワードは定期的に更新することをお勧めします。",
+    "account": "バックステージログインアカウント",
+    "change-password": "パスワードを変更する",
     "required": "必須(必ず入力して下さい)",
-    "confirm-change": null,
+    "confirm-change": "変更を確認する",
     "name": {
       "label": "名",
-      "placeholder": null
+      "placeholder": "担当者名を入力してください"
     },
     "mobile": {
       "label": " ご連絡方法",
-      "placeholder": null
+      "placeholder": "お問い合わせ先の携帯電話番号を入力してください"
     },
     "tel": {
-      "label": null,
-      "placeholder": null
+      "label": "連絡先",
+      "placeholder": "連絡先の電話番号を入力してください"
     },
-    "current-password": null,
+    "current-password": "現在のパスワード",
     "password": {
-      "label": null,
-      "error": null
+      "label": "新しいパスワード",
+      "error": "パスワードは6文字以上である必要があります"
     },
     "confirm-password": {
       "label": " 新パスワードの確認",
-      "error": null
+      "error": "2つのパスワードは同じではありません"
     },
     "update-password-success": "パスワードを正常に更新する",
     "update-password-fail": "パスワードの更新に失敗する",
@@ -38,17 +38,17 @@
     "incorrect-current-password": "古いパスワードエラー"
   },
   "plan": {
-    "title": null,
-    "description-1": null,
-    "description-2": null,
-    "service": null,
-    "privacy": null,
-    "current-plan": null,
-    "contract-plan": null,
-    "contact-consultant": null,
-    "monthly-plan": null,
-    "test-store": null,
-    "free-trial": null,
-    "upgrade-plan": null
+    "title": "私の計画",
+    "description-1": "お店に最適なサービスプランをお選びいただけます",
+    "description-2": "私たちのレビュー",
+    "service": "利用規約",
+    "privacy": "個人情報保護方針",
+    "current-plan": "現在の計画",
+    "contract-plan": "契約プラン",
+    "contact-consultant": "プランを変更する必要がある場合は、ストアコンサルタントに連絡して、専用プランをカスタマイズしてください。",
+    "monthly-plan": "月払いプラン",
+    "test-store": "テストストア",
+    "free-trial": "無料トライアルは15日で期限切れになります",
+    "upgrade-plan": "アップグレードプラン"
   }
 }
