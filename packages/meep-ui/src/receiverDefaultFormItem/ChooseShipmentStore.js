@@ -4,7 +4,7 @@ import radium from 'radium';
 import { Form, Input, Button } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import ConvenienceStoreMap from '@store/convenience-store-map';
+import ConvenienceStoreMap from '@meepshop/convenience-store-map';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import {

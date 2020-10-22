@@ -1,13 +1,10 @@
 // import
 import React, { useState } from 'react';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
-
 import AddressCascader from './src';
 
 // definition
 export default React.memo(() => {
-  const { i18n } = useTranslation('common');
   const [emptyValue, onChangeEmptyValue] = useState(undefined);
   const [existingValue, onChangeExistingValue] = useState({
     address: [
@@ -26,7 +23,6 @@ export default React.memo(() => {
   return (
     <>
       <AddressCascader
-        i18n={i18n}
         value={emptyValue}
         onChange={newValue => onChangeEmptyValue(newValue)}
         shippableCountries={[]}
@@ -34,7 +30,6 @@ export default React.memo(() => {
       />
 
       <AddressCascader
-        i18n={i18n}
         value={existingValue}
         onChange={newValue => onChangeExistingValue(newValue)}
         shippableCountries={[]}
@@ -42,7 +37,6 @@ export default React.memo(() => {
       />
 
       <AddressCascader
-        i18n={i18n}
         value={lockedValue}
         onChange={newValue => onChangeLockedValue(newValue)}
         shippableCountries={[{ id: 'a1e4aa6c-5a52-408a-9ede-471b10b1e265' }]}
@@ -50,7 +44,6 @@ export default React.memo(() => {
       />
 
       <AddressCascader
-        i18n={i18n}
         value={lockedExistingValue}
         onChange={newValue => onChangeLockedExistingValue(newValue)}
         shippableCountries={[{ id: '6cd709bd-3d05-47a4-b86d-b54e64af0538' }]}

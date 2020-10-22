@@ -8,7 +8,7 @@ import transformColor from 'color';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
-import GmoCreditCardForm from '@store/gmo-credit-card-form';
+import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';

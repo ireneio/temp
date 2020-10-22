@@ -6,7 +6,7 @@ import { Form, Input, Cascader } from 'antd';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import AddressCascader, {
   validateAddressCascader,
-} from '@store/address-cascader';
+} from '@meepshop/address-cascader';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
@@ -75,7 +75,6 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
 
       // props
       t,
-      i18n,
       style,
       chooseShipmentTemplate,
       form,
@@ -132,7 +131,6 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
                 ],
               })(
                 <AddressCascader
-                  i18n={i18n}
                   placeholder={[t('area'), t('postal-code')]}
                   shippableCountries={shippableCountries || []}
                   allowClear={false}

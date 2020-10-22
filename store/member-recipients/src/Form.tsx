@@ -1,8 +1,6 @@
 // typescript import
 import { FormComponentProps } from 'antd/lib/form';
 
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-
 // import
 import React, { useContext } from 'react';
 import { Form, Input, Button } from 'antd';
@@ -12,7 +10,7 @@ import { Colors as ColorsContext } from '@meepshop/context';
 import validateMobile from '@store/utils/lib/validate/mobile';
 import AddressCascader, {
   validateAddressCascader,
-} from '@store/address-cascader';
+} from '@meepshop/address-cascader';
 
 import useFormSubmit from './hooks/useFormSubmit';
 import styles from './styles/form.less';
@@ -72,7 +70,7 @@ export default Form.create<PropsType>({
       cancel,
     }: PropsType) => {
       const colors = useContext(ColorsContext);
-      const { t, i18n } = useTranslation('member-recipients');
+      const { t } = useTranslation('member-recipients');
       const submit = useFormSubmit(
         validateFields,
         recipientAddress?.id,
@@ -133,7 +131,6 @@ export default Form.create<PropsType>({
                 className={styles.addressCascader}
                 size="large"
                 placeholder={[t('address'), t('zip-code')]}
-                i18n={i18n as I18nPropsType['i18n']}
                 shippableCountries={store?.shippableCountries || []}
               />,
             )}

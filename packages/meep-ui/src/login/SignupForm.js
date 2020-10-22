@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
-import AddressCascader from '@store/address-cascader';
+import AddressCascader from '@meepshop/address-cascader';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -161,7 +161,6 @@ class SignupForm extends React.PureComponent {
       /** props */
       form: { getFieldDecorator, setFields },
       t,
-      i18n,
     } = this.props;
     const { shippableCountries, hasMemberGroupCode } = this.state;
 
@@ -246,7 +245,6 @@ class SignupForm extends React.PureComponent {
             <AddressCascader
               size="large"
               placeholder={[t('address'), t('zip-code')]}
-              i18n={i18n}
               shippableCountries={shippableCountries || []}
             />,
           )}

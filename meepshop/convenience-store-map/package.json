@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "@store/convenience-store-map",
-  "description": "Convenience store map for store",
+  "name": "@meepshop/convenience-store-map",
+  "description": "Convenience store map for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.66.4",
@@ -9,8 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/utils": "^0.66.4",
-    "@store/utils": "^0.66.4",
     "memoize-one": "^5.0.4"
   },
-  "keywords": ["convenience store map", "store"]
+  "keywords": ["convenience store map", "meepshop"]
 }

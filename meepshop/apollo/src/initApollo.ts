@@ -23,6 +23,7 @@ import * as StoreAdTrack from './StoreAdTrack';
 import * as fbLogin from './fbLogin';
 import * as login from './login';
 import * as logout from './logout';
+import * as validatedConvenienceStoreCities from './validatedConvenienceStoreCities';
 import mergeResolvers from './utils/mergeResolvers';
 import errorLink from './utils/errorLink';
 import createIntrospectionQueryResultDataType from './utils/createIntrospectionQueryResultDataType';
@@ -93,6 +94,7 @@ const create = (
       fbLogin.resolvers,
       login.resolvers,
       logout.resolvers,
+      validatedConvenienceStoreCities.resolvers,
     ].reduce(mergeResolvers, {}),
     link: ApolloLink.from([
       errorLink(errorFilter),

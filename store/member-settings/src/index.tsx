@@ -1,8 +1,6 @@
 // typescript import
 import { FormComponentProps } from 'antd/lib/form';
 
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-
 // import
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
@@ -23,7 +21,7 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { Colors as ColorsContext } from '@meepshop/context';
 import AddressCascader, {
   validateAddressCascader,
-} from '@store/address-cascader';
+} from '@meepshop/address-cascader';
 
 import RemoveCreditCardInfo from './RemoveCreditCardInfo';
 import useValidator from './hooks/useValidator';
@@ -102,7 +100,7 @@ const query = gql`
 
 export default Form.create<FormComponentProps>()(
   React.memo(({ form }: FormComponentProps) => {
-    const { t, i18n } = useTranslation('member-settings');
+    const { t } = useTranslation('member-settings');
     const colors = useContext(ColorsContext);
     const validator = useValidator();
     const submit = useSubmit(form);
@@ -249,7 +247,6 @@ export default Form.create<FormComponentProps>()(
                 className={styles.addressCascader}
                 size="large"
                 placeholder={[t('address'), t('zip-code')]}
-                i18n={i18n as I18nPropsType['i18n']}
                 shippableCountries={store?.shippableCountries || []}
               />,
             )}

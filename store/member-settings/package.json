@@ -8,10 +8,10 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@meepshop/address-cascader": "^0.66.4",
     "@meepshop/apollo": "^0.66.4",
     "@meepshop/context": "^0.66.4",
     "@meepshop/utils": "^0.66.4",
-    "@store/address-cascader": "^0.66.4",
     "@store/utils": "^0.66.4",
     "moment": "^2.22.1"
   },

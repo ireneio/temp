@@ -1,7 +1,8 @@
+// typescript import
+import { I18n, languageType } from '@meepshop/utils/lib/i18n';
+
 // graphql typescript
 import { CascaderOptionType } from 'antd/lib/cascader';
-
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import { useMemo } from 'react';
@@ -57,12 +58,12 @@ export const useOptionsAddressServiceFragment = gql`
 
 const getOptions = (
   data: OptionsType[],
-  language: I18nPropsType['i18n']['language'],
+  language: I18n['language'],
 ): CascaderOptionType[] =>
   data.map(({ id, name, children, ...d }) => ({
     ...d,
     value: id,
-    label: name[language] || name.zh_TW,
+    label: name[language as languageType] || name.zh_TW,
     children:
       !children || children.length === 0
         ? undefined
@@ -72,7 +73,7 @@ const getOptions = (
 export default (
   { countries }: useOptionsAddressServiceFragmentType,
   shippableCountries: Pick<useOptionsAddressServiceFragmentCountries, 'id'>[],
-  { language }: I18nPropsType['i18n'],
+  { language }: I18n,
 ): ReturnType<typeof getOptions> =>
   useMemo(
     () =>

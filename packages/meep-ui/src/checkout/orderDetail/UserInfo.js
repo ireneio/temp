@@ -7,7 +7,7 @@ import { isFullWidth, isEmail } from 'validator';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import AddressCascader, {
   validateAddressCascader,
-} from '@store/address-cascader';
+} from '@meepshop/address-cascader';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ISLOGIN_TYPE } from 'constants/propTypes';
@@ -69,7 +69,6 @@ export default class UserInfo extends React.PureComponent {
       // props
       t,
       form,
-      i18n,
       user,
       shippableCountries,
     } = this.props;
@@ -161,7 +160,6 @@ export default class UserInfo extends React.PureComponent {
           })(
             <AddressCascader
               placeholder={[t('area'), t('postal-code')]}
-              i18n={i18n}
               shippableCountries={shippableCountries || []}
             />,
           )}

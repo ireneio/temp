@@ -1,15 +1,14 @@
 // typescript import
 import { ValidationRule } from 'antd/lib/form';
 
-// graphql typescript
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Cascader, Select, Input } from 'antd';
+
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 import ZipCodeInput from './ZipCodeInput';
 import useOptions from './hooks/useOptions';
@@ -27,7 +26,7 @@ import {
 import { useOptionsAddressServiceFragment } from './hooks/useOptions';
 
 // typescript definition
-interface PropsType extends Pick<I18nPropsType, 'i18n'> {
+interface PropsType {
   forwardedRef: React.Ref<HTMLDivElement>;
   className?: string;
   size?: 'small' | 'default' | 'large';
@@ -64,7 +63,6 @@ const AddressCascader = React.memo(
   ({
     // props
     forwardedRef,
-    i18n,
     className,
     size,
     placeholder,
@@ -72,6 +70,7 @@ const AddressCascader = React.memo(
     onChange,
     value,
   }: PropsType): React.ReactElement => {
+    const { i18n } = useTranslation();
     const { data } = useQuery<getCountriesAddress>(query);
     const options = useOptions(
       filter(

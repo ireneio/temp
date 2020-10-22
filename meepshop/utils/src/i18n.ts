@@ -5,6 +5,8 @@ import { WithTranslation } from 'next-i18next';
 import NextI18Next from 'next-i18next';
 
 // typescript definition
+export { I18n } from 'next-i18next';
+
 export type languageType =
   | 'zh_TW'
   | 'en_US'
