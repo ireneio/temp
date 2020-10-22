@@ -4,12 +4,12 @@
   "description": "Meepshop carousel module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.66.4",
+  "version": "0.67.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/image": "^0.66.4",
-    "@meepshop/utils": "^0.66.4"
+    "@meepshop/image": "^0.67.0",
+    "@meepshop/utils": "^0.67.0"
   },
   "keywords": ["carousel", "meepshop"]
 }

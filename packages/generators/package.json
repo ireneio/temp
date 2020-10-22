@@ -4,7 +4,7 @@
   "description": "Manage template generators",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.66.4",
+  "version": "0.67.0",
   "dependencies": {
     "lodash.camelcase": "^4.3.0",
     "yeoman-generator": "^4.12.0"

@@ -4,15 +4,15 @@
   "description": "Meepshop menu module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.66.4",
+  "version": "0.67.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.66.4",
-    "@meepshop/images": "^0.66.4",
-    "@meepshop/link": "^0.66.4",
-    "@meepshop/switch": "^0.66.4",
-    "@meepshop/utils": "^0.66.4"
+    "@meepshop/context": "^0.67.0",
+    "@meepshop/images": "^0.67.0",
+    "@meepshop/link": "^0.67.0",
+    "@meepshop/switch": "^0.67.0",
+    "@meepshop/utils": "^0.67.0"
   },
   "keywords": ["meepshop", "menu"]
 }
