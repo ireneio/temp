@@ -1,5 +1,38 @@
 # CHANGELOG
 
+## 0.67.0 (2020-10-22)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1137](https://github.com/meepshop/meep-lerna/pull/1137) 【功能】智慧轉換元件 ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`
+  - [#1238](https://github.com/meepshop/meep-lerna/pull/1238) (@store/\*): move packages to @meepshop ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1137](https://github.com/meepshop/meep-lerna/pull/1137) 【功能】智慧轉換元件 ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- [#1231](https://github.com/meepshop/meep-lerna/pull/1231) (@meepshop/frontend) Fix storybook ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1137](https://github.com/meepshop/meep-lerna/pull/1137) 【功能】智慧轉換元件 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#1227](https://github.com/meepshop/meep-lerna/pull/1227) (@meepshop/images\*) Rename fragments to gqls ([@HsuTing](https://github.com/HsuTing))
+  - [#1231](https://github.com/meepshop/meep-lerna/pull/1231) (@meepshop/frontend) Fix storybook ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#1238](https://github.com/meepshop/meep-lerna/pull/1238) (@store/\*): move packages to @meepshop ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.66.4 (2020-10-21)
 
 #### :rocket: New Feature
