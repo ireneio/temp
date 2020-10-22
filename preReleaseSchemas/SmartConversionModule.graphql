@@ -13,6 +13,6 @@ type FetchSmartConversionModuleGADataResponse {
 
 extend type Mutation {
   fetchSmartConversionModuleGAData(
-    smartConversionModuleId: ID!
+    pageId: ID!
   ): FetchSmartConversionModuleGADataResponse!
 }
