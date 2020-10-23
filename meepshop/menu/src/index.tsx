@@ -10,7 +10,7 @@ import MenuItem from './MenuItem';
 import usePagesWithSearchBar from './hooks/usePagesWithSearchBar';
 
 // graphql typescript
-import { menuFragment } from './gqls/__generated__/menuFragment';
+import { menuMenuModuleFragment } from './gqls/__generated__/menuMenuModuleFragment';
 
 // graphql import
 import {
@@ -22,7 +22,7 @@ import {
 import usePagesWithSearchBarFragment from './gqls/usePagesWithSearchBar';
 
 // typescript definition
-export interface PropsType extends menuFragment, ContextType {}
+export interface PropsType extends menuMenuModuleFragment, ContextType {}
 
 // definition
 export default React.memo(({ menu, user, order }: PropsType) => {

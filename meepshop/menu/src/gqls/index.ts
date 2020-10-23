@@ -39,8 +39,8 @@ export const menuOrderFragment = gql`
   ${menuItemOrderFragment}
 `;
 
-export default gql`
-  fragment menuFragment on MenuModule {
+export const menuMenuModuleFragment = gql`
+  fragment menuMenuModuleFragment on MenuModule {
     id
     menu {
       id

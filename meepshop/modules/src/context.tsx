@@ -7,14 +7,14 @@ import modules from './index';
 
 // graphql typescript
 import { ContextType as MenuContextType } from '@meepshop/menu/lib/gqls';
-import { ContextType as ProductQaContextType } from '@meepshop/product-qa/lib/fragment';
+import { ContextType as ProductQaContextType } from '@meepshop/product-qa/lib/gqls';
 
 import { contextUserFragment as contextUserFragmentType } from './__generated__/contextUserFragment';
 import { contextOrderFragment as contextOrderFragmentType } from './__generated__/contextOrderFragment';
 
 // graphql import
 import { menuUserFragment, menuOrderFragment } from '@meepshop/menu/lib/gqls';
-import { productQaUserFragment } from '@meepshop/product-qa/lib/fragment';
+import { productQaUserFragment } from '@meepshop/product-qa/lib/gqls';
 
 // typescript definition
 interface ModulesType

@@ -11,12 +11,12 @@ import googleMapFragment from '@meepshop/google-map/lib/gqls';
 import iframeFragment from '@meepshop/iframe/lib/gqls';
 import imageFragment from '@meepshop/image/lib/gqls';
 import imageTextFragment from '@meepshop/image-text/lib/gqls';
-import menuFragment from '@meepshop/menu/lib/gqls';
+import { menuMenuModuleFragment } from '@meepshop/menu/lib/gqls';
 import productCarouselFragment from '@meepshop/product-carousel/lib/gqls';
 import productCollectionsFragment from '@meepshop/product-collections/lib/gqls';
 import productDraftTextFragment from '@meepshop/product-draft-text/lib/fragment';
 import productIframeFragment from '@meepshop/product-iframe/lib/fragment';
-import productQaFragment from '@meepshop/product-qa/lib/fragment';
+import { productQaProductQaModuleFragment } from '@meepshop/product-qa/lib/gqls';
 import productVideoFragment from '@meepshop/product-video/lib/fragment';
 import socialMediaFragment from '@meepshop/social-media/lib/fragment';
 import socialThumbsFragment from '@meepshop/social-thumbs/lib/fragment';
@@ -132,7 +132,7 @@ export const modulesFragment = gql`
       __typename
       id
       parentId
-      ...menuFragment
+      ...menuMenuModuleFragment
     }
 
     ... on ProductCarouselModule {
@@ -173,7 +173,7 @@ export const modulesFragment = gql`
       __typename
       id
       parentId
-      ...productQaFragment
+      ...productQaProductQaModuleFragment
     }
 
     ... on ProductVideoModule {
@@ -239,12 +239,12 @@ export const modulesFragment = gql`
   ${iframeFragment}
   ${imageFragment}
   ${imageTextFragment}
-  ${menuFragment}
+  ${menuMenuModuleFragment}
   ${productCarouselFragment}
   ${productCollectionsFragment}
   ${productDraftTextFragment}
   ${productIframeFragment}
-  ${productQaFragment}
+  ${productQaProductQaModuleFragment}
   ${productVideoFragment}
   ${socialMediaFragment}
   ${socialThumbsFragment}

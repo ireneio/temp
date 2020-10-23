@@ -8,13 +8,13 @@ import {
   DefaultIconEnum,
   ImagePositionEnum,
 } from '../../../../__generated__/meepshop';
-import { menuFragment_menu_pages as menuFragmentMenuPages } from '../gqls/__generated__/menuFragment';
+import { menuMenuModuleFragment_menu_pages as menuMenuModuleFragmentMenuPages } from '../gqls/__generated__/menuMenuModuleFragment';
 import { usePagesWithSearchBarFragment as usePagesWithSearchBarFragmentType } from '../gqls/__generated__/usePagesWithSearchBarFragment';
 
 // definition
 export default (
   design: usePagesWithSearchBarFragmentType | null,
-): menuFragmentMenuPages[] =>
+): menuMenuModuleFragmentMenuPages[] =>
   useMemo(
     () =>
       !design?.showSearchbar

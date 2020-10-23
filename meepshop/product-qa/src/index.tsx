@@ -3,6 +3,7 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import React, { useContext, useState } from 'react';
+import { filter } from 'graphql-anywhere';
 import moment from 'moment';
 import transformColor from 'color';
 import { isFullWidth, isEmail } from 'validator';
@@ -16,11 +17,16 @@ import useCreateProductQA from './hooks/useCreateProductQA';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { productQaFragment } from './__generated__/productQaFragment';
-import { productQaUserFragment } from './__generated__/productQaUserFragment';
+import { productQaProductQaModuleFragment } from './gqls/__generated__/productQaProductQaModuleFragment';
+import { productQaUserFragment } from './gqls/__generated__/productQaUserFragment';
+
+// graphql import
+import { useCreateProductQAFragment } from './gqls/useCreateProductQA';
 
 // typescript definition
-export interface PropsType extends FormComponentProps, productQaFragment {
+export interface PropsType
+  extends FormComponentProps,
+    productQaProductQaModuleFragment {
   user: productQaUserFragment;
 }
 
@@ -38,22 +44,16 @@ export default Form.create<FormComponentProps>()(
     }: PropsType) => {
       const { t } = useTranslation('product-qa');
       const colors = useContext(ColorsContext);
-      const [publicViewableQas, setPublicViewableQas] = useState(
-        product?.publicViewableQas || [],
-      );
       const [showReplyQAIndex, setShowReplyQAIndex] = useState<number[]>([]);
-      const { createProductQA } = useCreateProductQA({
+      const createProductQA = useCreateProductQA(
+        !product ? null : filter(useCreateProductQAFragment, product),
         resetFields,
-        publicViewableQas,
-        setPublicViewableQas,
-      });
-
-      const isLogin = user.role === 'SHOPPER';
+      );
 
       return (
         <div className={styles.root} style={{ width: `${width}%` }}>
           <div className={styles.qa}>
-            {publicViewableQas.map((productQa, index) => {
+            {product?.publicViewableQas?.map((productQa, index) => {
               if (!productQa?.qa) return null;
 
               const { qa, userEmail } = productQa;
@@ -127,7 +127,7 @@ export default Form.create<FormComponentProps>()(
             })}
           </div>
 
-          {!isLogin ? null : (
+          {user.role !== 'SHOPPER' ? null : (
             <FormItem>
               {getFieldDecorator('userEmail', {
                 rules: [
@@ -190,17 +190,19 @@ export default Form.create<FormComponentProps>()(
                 validateFields((errors, { userEmail, question }) => {
                   if (!errors) {
                     createProductQA({
-                      createProductQA: [
-                        {
-                          productId: product?.id || 'null-id',
-                          qa: [
-                            {
-                              question,
-                            },
-                          ],
-                          ...(!userEmail ? {} : { userEmail }),
-                        },
-                      ],
+                      variables: {
+                        createProductQA: [
+                          {
+                            productId: product?.id || 'null-id',
+                            qa: [
+                              {
+                                question,
+                              },
+                            ],
+                            ...(!userEmail ? {} : { userEmail }),
+                          },
+                        ],
+                      },
                     });
                   }
                 });

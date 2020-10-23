@@ -4,6 +4,9 @@ import gql from 'graphql-tag';
 // graphql typescript
 import { productQaUserFragment as productQaUserFragmentType } from './__generated__/productQaUserFragment';
 
+// graphql import
+import { useCreateProductQAFragment } from './useCreateProductQA';
+
 // typescript definition
 export interface ContextType {
   user: productQaUserFragmentType | null;
@@ -17,8 +20,8 @@ export const productQaUserFragment = gql`
   }
 `;
 
-export default gql`
-  fragment productQaFragment on ProductQaModule {
+export const productQaProductQaModuleFragment = gql`
+  fragment productQaProductQaModuleFragment on ProductQaModule {
     id
     width
     product(productId: $productId) {
@@ -31,6 +34,9 @@ export default gql`
           createdAt
         }
       }
+      ...useCreateProductQAFragment
     }
   }
+
+  ${useCreateProductQAFragment}
 `;
