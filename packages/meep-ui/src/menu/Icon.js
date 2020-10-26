@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './styles/icon.less';
-import * as icons from './icons';
+import icons from './icons';
 
 export default class Icon extends React.PureComponent {
   static propTypes = {
@@ -25,10 +25,10 @@ export default class Icon extends React.PureComponent {
       isModule,
       children,
     } = this.props;
-    const DefaultIcon =
+    const MdIcon =
       image?.__typename !== 'DefaultIcon'
         ? () => null
-        : icons[image.icon || ''];
+        : icons[image.icon?.toLowerCase() || ''];
 
     return (
       <div
@@ -37,9 +37,9 @@ export default class Icon extends React.PureComponent {
         }`}
       >
         {image?.__typename !== 'DefaultIcon' ? null : (
-          <DefaultIcon
-            className={styles.icon}
+          <MdIcon
             style={{ fontSize: `${iconSize}px` }}
+            className={styles.icon}
             onClick={onClick}
           />
         )}
@@ -47,9 +47,10 @@ export default class Icon extends React.PureComponent {
         {image?.__typename !== 'Image' ? null : (
           <img
             className={styles.icon}
-            style={{ fontSize: `${iconSize}px` }}
             src={image.scaledSrc.w60}
             srcSet={`${image.scaledSrc.w60} 1x, ${image.scaledSrc.w120} 2x, ${image.scaledSrc.w240} 3x`}
+            width={iconSize}
+            height={iconSize}
             alt={image}
           />
         )}

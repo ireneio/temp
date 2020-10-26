@@ -5,13 +5,13 @@ import gql from 'graphql-tag';
 import { Query } from '@apollo/react-components';
 import { Form, Input, Button, Icon } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
+import {
+  FaShoppingCart as ShoppingCartIcon,
+  FaFacebook as FacebookIcon,
+} from 'react-icons/fa';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
-import {
-  menuIconsShoppingCart_react as ShoppingCartIcon,
-  facebook_react as FacebookIcon,
-} from '@meepshop/images';
 import withContext from '@store/utils/lib/withContext';
 
 import DraftText from 'draftText';
@@ -190,7 +190,7 @@ export default class Login extends React.PureComponent {
                   >
                     <div>
                       <ShoppingCartIcon
-                        style={{ fill: colors[0], backgroundColor: colors[3] }}
+                        style={{ color: colors[0], backgroundColor: colors[3] }}
                       />
                       <div>{t('first-time')}</div>
                     </div>

@@ -35,14 +35,12 @@ export default (
         default:
           return `
             color: ${color};
-            fill: ${color};
             background: ${background};
           `;
 
         case 1:
           return `
             color: ${color};
-            fill: ${color};
             background: ${background};
             border: 2px solid ${borderColor};
           `;
@@ -50,14 +48,12 @@ export default (
         case 2:
           return `
             color: ${color};
-            fill: ${color};
             border-bottom: 1px solid ${borderColor};
           `;
 
         case 3:
           return `
             color: ${color};
-            fill: ${color};
             background: ${background};
             box-shadow: inset 0px -5px ${borderColor};
           `;
@@ -77,14 +73,12 @@ export default (
         default:
           return `
             color: ${color};
-            fill: ${color};
             background: ${background};
           `;
 
         case 1:
           return `
             color: ${color};
-            fill: ${color};
             background: ${background};
             border: 2px solid ${borderColor};
           `;
@@ -92,14 +86,12 @@ export default (
         case 2:
           return `
             color: ${color};
-            fill: ${color};
             border-bottom: 1px solid ${borderColor};
           `;
 
         case 3:
           return `
             color: ${color};
-            fill: ${color};
             background: ${background};
             box-shadow: inset 0px -5px ${borderColor};
           `;
