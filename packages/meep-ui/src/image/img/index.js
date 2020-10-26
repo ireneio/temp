@@ -6,6 +6,7 @@ import memoizeOne from 'memoize-one';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
+import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
 import {
   IMAGE_TYPE,
@@ -15,13 +16,10 @@ import {
   CUSTOM_TRACKING_TYPE,
 } from 'constants/propTypes';
 import notMemoizedClickTracking from 'utils/notMemoizedClickTracking';
-import { contextProvider } from 'context';
 
 import Lazy from './Lazy';
 import { IMAGE_SUITABLE_WIDTHS } from '../constants';
 import styles from './styles/index.less';
-
-const { enhancer } = contextProvider('storeSetting');
 
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @enhancer

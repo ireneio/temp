@@ -12,9 +12,6 @@ export const getPages = state => state.pagesReducer;
 export const getHomePageId = state =>
   getIn(['storeReducer', 'settings', 'homePageId'])(state) || null;
 
-export const getUser = state => getIn(['memberReducer', 'user'])(state) || null;
-export const getMemberGroups = state =>
-  getIn(['storeReducer', 'memberGroups'])(state) || [];
 export const getActivities = state =>
   getIn(['storeReducer', 'activities'])(state) || [];
 export const getStockNotificationList = state =>
@@ -55,19 +52,6 @@ export const getCurrencyItemsTemplate = createSelector(
 
       return option ? [...options, option] : options;
     }, []),
-);
-
-export const getJoinedUser = createSelector(
-  [getUser, getMemberGroups],
-  (user, memberGroups) => {
-    const groupId = getIn(['groupId'])(user);
-    const memberGroup = R.find(R.propEq('id', groupId))(memberGroups);
-
-    return R.pipe(
-      R.assocPath(['groupName'], memberGroup && memberGroup.name),
-      R.assocPath(['groupType'], memberGroup && memberGroup.type),
-    )(user);
-  },
 );
 
 export const getJoinedPage = (

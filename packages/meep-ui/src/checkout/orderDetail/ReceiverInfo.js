@@ -10,7 +10,6 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import ReceiverDefaultFormItem from 'receiverDefaultFormItem';
 import {
   ISLOGIN_TYPE,
-  USER_TYPE,
   PAYMENT_TEMPLATE_TYPE,
   SHIPMENT_TEMPLATE_TYPE,
 } from 'constants/propTypes';
@@ -37,7 +36,6 @@ export default class ReceiverInfo extends React.PureComponent {
 
   static propTypes = {
     /** context */
-    user: USER_TYPE,
     isLogin: ISLOGIN_TYPE.isRequired,
 
     /** props */
@@ -52,7 +50,6 @@ export default class ReceiverInfo extends React.PureComponent {
   };
 
   static defaultProps = {
-    user: null,
     choosePaymentTemplate: null,
     chooseShipmentTemplate: null,
   };

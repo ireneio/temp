@@ -18,7 +18,6 @@ import withContext from '@store/utils/lib/withContext';
 
 import * as Api from 'api';
 import * as Utils from 'utils';
-import { getJoinedUser } from 'selectors';
 import * as Actions from 'ducks/actions';
 
 import Spinner from './Spinner';
@@ -38,7 +37,6 @@ class Container extends React.Component {
     }).isRequired,
     /* may chnage */
     isLogin: PropTypes.string.isRequired,
-    user: PropTypes.shape({ id: PropTypes.string }),
     location: PropTypes.shape({
       hash: PropTypes.string.isRequired,
       host: PropTypes.string.isRequired,
@@ -70,7 +68,6 @@ class Container extends React.Component {
   };
 
   static defaultProps = {
-    user: null,
     children: null,
   };
 
@@ -225,7 +222,6 @@ class Container extends React.Component {
       experiment,
       /* may change */
       isLogin,
-      user,
       location,
       loading,
       loadingTip,
@@ -250,7 +246,6 @@ class Container extends React.Component {
           experiment={experiment}
           /* may change */
           isLogin={isLogin}
-          user={user}
           location={location}
           /* func to modify data */
           goTo={Utils.goTo}
@@ -281,7 +276,7 @@ const mapStateToProps = state => {
 
   const {
     storeReducer: { settings, experiment },
-    memberReducer: { user, isLogin, loading, loadingTip },
+    memberReducer: { isLogin, loading, loadingTip },
     loadingStatus: { loading: isLoading },
   } = state;
   const { cname, backgroundImage } = settings;
@@ -293,7 +288,6 @@ const mapStateToProps = state => {
     experiment,
     /* may chnage */
     isLogin,
-    user: user && getJoinedUser(state),
     loading: isLoading || loading,
     loadingTip,
     /* props(not in context) */

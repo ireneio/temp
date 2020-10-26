@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import URL from 'url-parse';
 import queryString from 'query-string';
 
-import { contextProvider } from 'context';
+import { enhancer } from 'layout/DecoratorsRoot';
 import { URL_TYPE, HASH_TYPE } from 'constants/propTypes';
 
 import styles from './styles/index.less';
-
-const { enhancer } = contextProvider('func');
 
 @enhancer
 export default class Link extends React.PureComponent {

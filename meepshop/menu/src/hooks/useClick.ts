@@ -3,10 +3,8 @@ import { useContext, useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import {
-  Cart as CartContext,
-  Currency as CurrencyContext,
-} from '@meepshop/context';
+import { Currency as CurrencyContext } from '@meepshop/context';
+import CartContext from '@meepshop/cart';
 
 import { ACION_TYPES } from '../constants';
 

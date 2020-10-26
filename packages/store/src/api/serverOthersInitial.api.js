@@ -11,7 +11,6 @@ export default async context => {
   const variables = {
     keys: `
       $menuSearch: searchInputObjectType,
-      $memberGroupFilter: MemberGroupFilterInput,
       $notificationSearch: searchInputObjectType,
       $expireBy: Int!,
       $activitiesFilter: StoreActivitiesFilterInput,
@@ -30,9 +29,6 @@ export default async context => {
             order: 'desc',
           },
         ],
-      },
-      memberGroupFilter: {
-        status: 'ENABLED',
       },
       notificationSearch: {},
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days

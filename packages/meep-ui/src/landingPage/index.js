@@ -16,7 +16,6 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import {
   ID_TYPE,
   URL_TYPE,
-  USER_TYPE,
   LOCATION_TYPE,
   COLOR_TYPE,
   ISLOGIN_TYPE,
@@ -71,7 +70,6 @@ export default class LandingPage extends React.PureComponent {
 
   static propTypes = {
     /** context */
-    user: USER_TYPE,
     cname: PropTypes.string,
     location: LOCATION_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -105,7 +103,6 @@ export default class LandingPage extends React.PureComponent {
   };
 
   static defaultProps = {
-    user: null,
     cname: null,
     productData: null,
   };

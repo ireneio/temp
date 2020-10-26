@@ -38,9 +38,6 @@ class Settings extends Component {
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
-    user: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired,
     lockedBirthday: PropTypes.bool.isRequired,
   };
 
@@ -71,8 +68,6 @@ class Settings extends Component {
     const {
       isLogin,
       storeSetting: { storeName, faviconUrl },
-      user,
-      dispatchAction,
       t,
     } = this.props;
 
@@ -87,7 +82,7 @@ class Settings extends Component {
         </Head>
         <Container {...this.props}>
           <MemberHeader title={t('title.settings')}>
-            <MemberSettings dispatchAction={dispatchAction} member={user} />
+            <MemberSettings />
           </MemberHeader>
         </Container>
       </>
@@ -137,22 +132,15 @@ const mapStateToProps = (state, props) => {
       ),
   );
 
-  const user = Utils.getIn(['memberReducer', 'user'])(state);
-
   return {
     storeSetting: state.storeReducer.settings,
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getPage(state, props),
-    user: user && Selectors.getJoinedUser(state),
     lockedBirthday:
       Utils.getIn(['storeReducer', 'settings', 'lockedBirthday'])(state) ||
       false,
   };
 };
 
-export default connect(mapStateToProps, dispatch => ({
-  dispatchAction: (actionName, args) => {
-    dispatch(Actions[actionName](args));
-  },
-}))(withTranslation('common')(Settings));
+export default connect(mapStateToProps)(withTranslation('common')(Settings));

@@ -19,7 +19,6 @@ import {
   URL_TYPE,
   POSITIVE_NUMBER_TYPE,
   LOCALE_TYPE,
-  USER_TYPE,
 } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
 import removeContextTpyesFromProps from 'utils/removeContextTpyesFromProps';
@@ -50,7 +49,6 @@ export default class MenuItem extends React.PureComponent {
     locale: ONE_OF_LOCALE_TYPE.isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
     logout: PropTypes.func.isRequired,
-    user: USER_TYPE.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
 
@@ -179,8 +177,8 @@ export default class MenuItem extends React.PureComponent {
     } = this.props;
 
     if (action === 8 && isLogin !== NOTLOGIN)
-      return params.displayMemberGroup && user.groupName
-        ? user.groupName
+      return params.displayMemberGroup && user?.memberGroup?.name
+        ? user.memberGroup.name
         : null;
 
     return title[i18n.language] || title.zh_TW;

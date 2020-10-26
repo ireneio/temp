@@ -6,7 +6,6 @@ import { UserAgent } from 'fbjs';
 import { Colors as ColorsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
-import Context from 'context';
 import { COLOR_TYPE } from 'constants/propTypes';
 
 import GlobalStyles from './GlobalStyles';
@@ -105,43 +104,41 @@ export default class Layout extends React.PureComponent {
     } = this.props;
 
     return (
-      <Context {...props}>
-        <DecoratorsRoot {...props} colors={colors} cname={cname}>
-          <GlobalStyles colors={colors} />
+      <DecoratorsRoot {...props} cname={cname}>
+        <GlobalStyles colors={colors} />
 
-          <div
-            style={{
-              ...this.getRootStyle(),
-              ...(shouldGetFixed && { height: 0 }),
-            }}
-            className={styles.root}
-            ref={this.rootRef}
-          >
-            <div className={styles.container}>
-              <ContainerSwitch
-                {...props}
-                key={container}
-                containerName={container}
-                blocks={blocks}
-              />
-            </div>
-
-            {experiment.hiddingMeepshopMaxInFooterEnabled ? null : (
-              <footer className={styles.footer}>
-                <a
-                  href="https://meepshop.cc/8h1kG"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  meepShop MAX 極速開店
-                </a>
-              </footer>
-            )}
-
-            <Cart />
+        <div
+          style={{
+            ...this.getRootStyle(),
+            ...(shouldGetFixed && { height: 0 }),
+          }}
+          className={styles.root}
+          ref={this.rootRef}
+        >
+          <div className={styles.container}>
+            <ContainerSwitch
+              {...props}
+              key={container}
+              containerName={container}
+              blocks={blocks}
+            />
           </div>
-        </DecoratorsRoot>
-      </Context>
+
+          {experiment.hiddingMeepshopMaxInFooterEnabled ? null : (
+            <footer className={styles.footer}>
+              <a
+                href="https://meepshop.cc/8h1kG"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                meepShop MAX 極速開店
+              </a>
+            </footer>
+          )}
+
+          <Cart />
+        </div>
+      </DecoratorsRoot>
     );
   }
 }

@@ -38,9 +38,6 @@ class Recipients extends Component {
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
-    user: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired,
     lockedBirthday: PropTypes.bool.isRequired,
   };
 
@@ -71,8 +68,6 @@ class Recipients extends Component {
     const {
       isLogin,
       storeSetting: { storeName, faviconUrl },
-      user,
-      dispatchAction,
       t,
     } = this.props;
 
@@ -87,7 +82,7 @@ class Recipients extends Component {
         </Head>
         <Container {...this.props}>
           <MemberHeader title={t('title.recipients')}>
-            <MemberRecipients member={user} dispatchAction={dispatchAction} />
+            <MemberRecipients />
           </MemberHeader>
         </Container>
       </>
@@ -142,14 +137,9 @@ const mapStateToProps = (state, props) => {
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getPage(state, props),
-    user: Utils.getIn(['memberReducer', 'user'])(state),
     lockedBirthday:
       Utils.getIn(['storeReducer', 'lockedBirthday'])(state) || false,
   };
 };
 
-export default connect(mapStateToProps, dispatch => ({
-  dispatchAction: (actionName, args) => {
-    dispatch(Actions[actionName](args));
-  },
-}))(withTranslation('common')(Recipients));
+export default connect(mapStateToProps)(withTranslation('common')(Recipients));

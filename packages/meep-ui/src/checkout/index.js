@@ -12,7 +12,7 @@ import withContext from '@store/utils/lib/withContext';
 import CheckoutWrapper from '@store/checkout';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import { USER_TYPE, LOCATION_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
+import { LOCATION_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
 import findDOMTop from 'utils/findDOMTop';
 import createFormData from 'utils/createFormData';
@@ -29,7 +29,6 @@ export default class Checkout extends React.PureComponent {
 
   static propTypes = {
     /** context */
-    user: USER_TYPE,
     location: LOCATION_TYPE.isRequired,
     cname: PropTypes.string.isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
@@ -45,7 +44,6 @@ export default class Checkout extends React.PureComponent {
   };
 
   static defaultProps = {
-    user: null,
     orderInfo: null,
   };
 

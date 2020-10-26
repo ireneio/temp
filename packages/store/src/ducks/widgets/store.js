@@ -21,7 +21,6 @@ const initialState = {
   activities: [],
   menus: [],
   color: {},
-  memberGroups: [],
   settings: {},
   experiment: {},
 };
@@ -34,7 +33,6 @@ export default (state = initialState, { type, payload }) => {
       const menus = (data?.getMenuList?.data || []).map(menu =>
         Utils.setDefaultValueForMenuDesign(menu),
       );
-      const memberGroups = data?.viewer?.store?.memberGroups || [];
       const store = data?.viewer?.store;
       const storeSettings = data?.viewer?.store?.setting;
       const {
@@ -61,7 +59,6 @@ export default (state = initialState, { type, payload }) => {
         shippableCountries: store?.shippableCountries || [],
         activities, // 折扣活動
         menus, // 選單
-        memberGroups,
         settings,
         experiment: store?.experiment || {},
       };

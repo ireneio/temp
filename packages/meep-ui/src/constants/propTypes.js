@@ -203,13 +203,6 @@ export const LOCATION_TYPE = PropTypes.shape({
   search: PropTypes.string.isRequired,
 });
 
-export const USER_TYPE = PropTypes.shape({
-  name: PropTypes.string,
-  email: EMAIL_TYPE.isRequired,
-  mobile: PropTypes.string,
-  groupName: PropTypes.string.isRequired,
-});
-
 export const CUSTOM_TRACKING_TYPE = PropTypes.shape({
   status: PropTypes.bool.isRequired,
   eventLabel: PropTypes.string.isRequired,
@@ -243,7 +236,6 @@ export const STORE_SETTING_TYPE = PropTypes.shape({
 /** TODO remove */
 export const CONTEXT_TYPES = {
   /** context variables from props */
-  user: USER_TYPE,
   cname: PropTypes.string,
   isLogin: ISLOGIN_TYPE.isRequired,
   storeSetting: STORE_SETTING_TYPE.isRequired,

@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { enhancer } from 'layout/DecoratorsRoot';
 import { ALIGNMENT_TYPE, COLOR_TYPE } from 'constants/propTypes';
-import { contextProvider } from 'context';
+
 import { Facebook, Line, Wechat, Twitter } from './ShareButtons';
-
 import styles from './styles/index.less';
-
-const { enhancer } = contextProvider('location');
 
 @enhancer
 export default class SocialMedia extends React.PureComponent {

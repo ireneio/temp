@@ -322,59 +322,11 @@ export function* watchAddToNotificationListFlow() {
   );
 }
 
-/**
- * @name AuthReducer
- * @description data related member
- */
-
-const getUser = _user => {
-  const id = _user?.id || '';
-  const name = _user?.name || '';
-  const gender = _user?.gender || null;
-  const email = _user?.email || '';
-  const groupId = _user?.groupId || null;
-  const startDate = _user?.group?.[_user.group.length - 1]?.startDate || null;
-  const expireDate = _user?.group?.[_user.group.length - 1]?.expireDate || null;
-  const unlimitedDate =
-    _user?.group?.[_user.group.length - 1]?.unlimitedDate || null;
-  const mobile = _user?.additionalInfo?.mobile || '';
-  const tel = _user?.additionalInfo?.tel || '';
-  const year = _user?.birthday?.year || null;
-  const month = _user?.birthday?.month || null;
-  const day = _user?.birthday?.day || null;
-  const userNotification = _user.notification || null;
-
-  return {
-    id,
-    name,
-    email,
-    gender,
-    groupId,
-    group: {
-      startDate,
-      expireDate,
-      unlimitedDate,
-    },
-    additionalInfo: {
-      mobile,
-      tel,
-    },
-    address: _user?.address,
-    birthday: {
-      year,
-      month,
-      day,
-    },
-    notification: userNotification,
-  };
-};
-
 const getMemberData = payload => {
   const { data } = payload;
 
   // 已改用新API: Viewer
   const viewer = data?.viewer;
-  const user = viewer ? getUser(viewer) : null;
   const isLogin = viewer?.role === 'SHOPPER' ? ISUSER : NOTLOGIN;
   const wishList = viewer?.wishlist || [];
 
@@ -383,7 +335,6 @@ const getMemberData = payload => {
 
   return {
     isLogin,
-    user,
     wishList,
     stockNotificationList,
     loading: false,
@@ -393,7 +344,6 @@ const getMemberData = payload => {
 
 const initialState = {
   isLogin: NOTLOGIN,
-  user: null,
   wishList: [],
   stockNotificationList: [],
   orders: [],
