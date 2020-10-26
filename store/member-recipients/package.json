@@ -4,14 +4,14 @@
   "description": "Member recipients for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.67.0",
+  "version": "0.67.1",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/address-cascader": "^0.67.0",
-    "@meepshop/context": "^0.67.0",
-    "@meepshop/utils": "^0.67.0",
-    "@store/utils": "^0.67.0",
+    "@meepshop/address-cascader": "^0.67.1",
+    "@meepshop/context": "^0.67.1",
+    "@meepshop/utils": "^0.67.1",
+    "@store/utils": "^0.67.1",
     "memoize-one": "^5.1.1"
   },
   "keywords": ["member", "recipients", "store"]
