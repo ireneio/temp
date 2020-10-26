@@ -9,16 +9,13 @@ import modules, { ModulesContext } from '@meepshop/modules';
 import styles from './styles/layout.less';
 
 // graphql typescript
-import { getModules_viewer_store_page_modules_GroupModule as getModulesViewerStorePageModulesGroupModule } from './__generated__/getModules';
+import { groupFragment_modules_GroupModule as groupFragmentModulesGroupModule } from './gqls/__generated__/groupFragment';
 
 // typescript definition
 interface PropsType {
   data: ModulesType['data'];
   childModules?: ModulesType[];
-  settings: Pick<
-    getModulesViewerStorePageModulesGroupModule,
-    'componentWidth'
-  > & {
+  settings: Pick<groupFragmentModulesGroupModule, 'componentWidth'> & {
     level: number;
   };
 }

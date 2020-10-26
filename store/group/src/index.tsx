@@ -1,9 +1,6 @@
 // import
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
-import { Spin, Icon } from 'antd';
 
 import { ModulesProvider } from '@meepshop/modules';
 
@@ -12,7 +9,10 @@ import useModules from './hooks/useModules';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getModules } from './__generated__/getModules';
+import { contextUserFragment as contextUserFragmentType } from '@meepshop/modules/src/__generated__/contextUserFragment';
+import { contextOrderFragment as contextOrderFragmentType } from '@meepshop/modules/src/__generated__/contextOrderFragment';
+
+import { groupFragment as groupFragmentType } from './gqls/__generated__/groupFragment';
 
 // graphql import
 import {
@@ -21,56 +21,24 @@ import {
   contextOrderFragment,
 } from '@meepshop/modules';
 
+// typescript definition
+interface PropsType {
+  page: groupFragmentType | null;
+  user: contextUserFragmentType | null;
+  order: contextOrderFragmentType | null;
+}
+
 // definition
-const query = gql`
-  query getModules($input: StorePageFilterInput, $productId: ID) {
-    viewer {
-      id
-      store {
-        id
-        page(input: $input) {
-          id
-          width
-          modules {
-            ...modulesFragment
-          }
-        }
-      }
-      ...contextUserFragment
-    }
-
-    getCartList(search: { showDetail: true }) {
-      data {
-        id
-        ...contextOrderFragment
-      }
-    }
-  }
-
-  ${modulesFragment}
-  ${contextUserFragment}
-  ${contextOrderFragment}
-`;
-
-export default React.memo(() => {
-  const { data } = useQuery<getModules>(query);
+export default React.memo(({ page, user, order }: PropsType) => {
   const modules = useModules(
-    !data?.viewer?.store?.page?.modules
-      ? null
-      : filter(modulesFragment, data.viewer.store.page.modules),
+    !page?.modules ? null : filter(modulesFragment, page.modules),
   );
-  const maxWidth = data?.viewer?.store?.page?.width;
-
-  if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
+  const maxWidth = page?.width;
 
   return (
     <ModulesProvider
-      user={!data.viewer ? null : filter(contextUserFragment, data.viewer)}
-      order={
-        !data.getCartList?.data?.[0]
-          ? null
-          : filter(contextOrderFragment, data.getCartList.data[0])
-      }
+      user={!user ? null : filter(contextUserFragment, user)}
+      order={!order ? null : filter(contextOrderFragment, order)}
     >
       <div
         className={styles.root}

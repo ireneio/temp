@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "@meepshop/page",
+  "description": "Control the all components in a page",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "keywords": ["meepshop", "page"]
+}

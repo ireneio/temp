@@ -7,27 +7,27 @@ import { stratify } from 'd3-hierarchy';
 
 // graphql typescript
 import {
-  getModules_viewer_store_page_modules as getModulesViewerStorePageModules,
-  getModules_viewer_store_page_modules_GroupModule as getModulesViewerStorePageModulesGroupModule,
-} from '../__generated__/getModules';
+  groupFragment_modules as groupFragmentModules,
+  groupFragment_modules_GroupModule as groupFragmentModulesGroupModule,
+} from '../gqls/__generated__/groupFragment';
 
 // typescript definition
 export interface ModulesType {
-  data: getModulesViewerStorePageModules;
-  children?: HierarchyNode<getModulesViewerStorePageModules>[];
+  data: groupFragmentModules;
+  children?: HierarchyNode<groupFragmentModules>[];
 }
 
 // definition
 const treemap = stratify<
-  | getModulesViewerStorePageModules
+  | groupFragmentModules
   | {
       id: string;
     }
 >().id(({ id }) => id);
 
 export default (
-  modules: getModulesViewerStorePageModules[] | null,
-): HierarchyNode<getModulesViewerStorePageModulesGroupModule>[] =>
+  modules: groupFragmentModules[] | null,
+): HierarchyNode<groupFragmentModulesGroupModule>[] =>
   useMemo(
     () =>
       !modules
@@ -38,7 +38,7 @@ export default (
             },
             ...modules,
           ]).children || []) as HierarchyNode<
-            getModulesViewerStorePageModulesGroupModule
+            groupFragmentModulesGroupModule
           >[]),
     [modules],
   );

@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@store/page",
+  "description": "Use to render a page",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/link": "^0.67.0",
+    "@meepshop/page": "^0.1.0",
+    "@store/group": "^0.67.0"
+  },
+  "keywords": ["page", "store"]
+}
