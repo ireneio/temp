@@ -4,7 +4,7 @@
     <g id="T3883" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="slice" transform="translate(-291.000000, -111.000000)">
             <g id="ic_default_speaker_outline2" transform="translate(291.000000, 111.000000)">
-                <rect id="Rectangle" x="0" y="0" width="32" height="32"></rect>
+                <rect id="Rectangle" x="0" y="0" width="32" height="32" opacity="0"></rect>
                 <path d="M24.413125,5.4971875 L24.413125,26.5028125 L13.83875,19.983125 L13.4165625,19.7228125 L7.586875,19.7228125 L7.586875,12.2771875 L13.4165625,12.2771875 L13.83875,12.016875 L24.413125,5.4971875 M26.163125,2.3625 L12.9203125,10.5271875 L5.836875,10.5271875 L5.836875,21.4728125 L12.9203125,21.4728125 L26.163125,29.6375 L26.163125,2.3625 Z" id="Shape" fill="#040000" fill-rule="nonzero"></path>
             </g>
         </g>
