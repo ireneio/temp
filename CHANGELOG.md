@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## 0.67.1 (2020-10-26)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1218](https://github.com/meepshop/meep-lerna/pull/1218) 前台 - 移除 redux 裡面 user ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `mock-types`
+  - [#1239](https://github.com/meepshop/meep-lerna/pull/1239) 改用新的 modules 欄位 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1243](https://github.com/meepshop/meep-lerna/pull/1243) (@meepshop/frontend) Lock antd ([@HsuTing](https://github.com/HsuTing))
+  - [#1240](https://github.com/meepshop/meep-lerna/pull/1240) (@meepshop/menu, @meepshop/product-qa) Rename fragment and fix update cache ([@HsuTing](https://github.com/HsuTing))
+  - [#1241](https://github.com/meepshop/meep-lerna/pull/1241) (@meepshop/frontend) Fix testing ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1240](https://github.com/meepshop/meep-lerna/pull/1240) (@meepshop/menu, @meepshop/product-qa) Rename fragment and fix update cache ([@HsuTing](https://github.com/HsuTing))
+- [#1241](https://github.com/meepshop/meep-lerna/pull/1241) (@meepshop/frontend) Fix testing ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.67.0 (2020-10-22)
 
 #### :boom: Breaking Change
