@@ -205,6 +205,10 @@ export default class OrderDetail extends React.PureComponent {
     } else if (!this.isTracked && computeOrderData.total) {
       this.isTracked = true;
       adTrack.beginCheckout({
+        products: products.map(({ productId, ...product }) => ({
+          ...product,
+          id: productId,
+        })),
         total: computeOrderData.total,
       });
     }

@@ -50,7 +50,23 @@ type addToWishListType = () => void;
 
 type completeRegistrationType = () => void;
 
-type beginCheckoutType = (options: { total: number }) => void;
+type beginCheckoutType = (options: {
+  products: {
+    id: string;
+    type: string;
+    title: {
+      zh_TW: string;
+    };
+    specs: {
+      title: {
+        zh_TW: string;
+      };
+    }[];
+    totalPrice: number;
+    quantity: number;
+  }[];
+  total: number;
+}) => void;
 
 type purchaseType = (options: {
   orderNo: string;

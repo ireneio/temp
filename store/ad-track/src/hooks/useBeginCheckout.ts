@@ -10,6 +10,9 @@ import { Currency as CurrencyContext } from '@meepshop/context';
 // graphql typescript
 import { useBeginCheckoutFragment as useBeginCheckoutFragmentType } from './__generated__/useBeginCheckoutFragment';
 
+// typescript definition
+type productsType = Parameters<AdTrackType['beginCheckout']>[0]['products'];
+
 // definition
 export const useBeginCheckoutFragment = gql`
   fragment useBeginCheckoutFragment on StoreAdTrack {
@@ -26,7 +29,7 @@ export default (
   const { currency } = useContext(CurrencyContext);
 
   return useCallback(
-    ({ total }) => {
+    ({ products, total }) => {
       if (!adTrack) return;
 
       const {
@@ -43,11 +46,29 @@ export default (
         });
 
       if (window.gtag && googleAnalyticsId)
-        window.gtag('event', 'set_checkout_option', {
-          // eslint-disable-next-line @typescript-eslint/camelcase
-          checkout_step: 1,
-          // eslint-disable-next-line @typescript-eslint/camelcase
-          checkout_option: 'visa',
+        window.gtag('event', 'begin_checkout', {
+          items: products
+            .filter(({ type }: productsType[number]) => type === 'product')
+            .map(
+              ({
+                id,
+                title,
+                specs,
+                totalPrice,
+                quantity,
+              }: productsType[number]) => ({
+                id,
+                name: title.zh_TW,
+                variant: (specs || [])
+                  .map(
+                    ({ title: specTitle }: { title: { zh_TW: string } }) =>
+                      specTitle.zh_TW,
+                  )
+                  .join('/'),
+                price: totalPrice,
+                quantity,
+              }),
+            ),
           value: total,
         });
 
