@@ -55,11 +55,13 @@ export default (
             id,
             email: data.email,
             name: data.name,
-            additionalInfo: {
-              __typename: 'AdditionalInfoObjectType',
-              mobile: data?.additionalInfo?.mobile,
-              tel: data?.additionalInfo?.tel,
-            },
+            additionalInfo: !data.additionalInfo
+              ? null
+              : {
+                  __typename: 'AdditionalInfoObjectType',
+                  mobile: data.additionalInfo.mobile,
+                  tel: data.additionalInfo.tel,
+                },
           },
         });
 
