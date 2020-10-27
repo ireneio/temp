@@ -4,7 +4,7 @@
   "description": "admin server",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.67.2",
+  "version": "0.67.3",
   "main": "./next.config.js",
   "scripts": {
     "clean": "rm -rf ./src/.next",
@@ -13,7 +13,7 @@
     "start": "NODE_ENV=production node src/server"
   },
   "dependencies": {
-    "@admin/account-setting": "^0.67.2",
+    "@admin/account-setting": "^0.67.3",
     "@admin/apollo": "^0.67.2",
     "@admin/currency": "^0.67.2",
     "@admin/dashboard": "^0.67.2",
