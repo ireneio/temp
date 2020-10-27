@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.67.2 (2020-10-27)
+
+#### :rocket: New Feature
+
+- [#1219](https://github.com/meepshop/meep-lerna/pull/1219) member-orders 改成 function component ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1237](https://github.com/meepshop/meep-lerna/pull/1237) 【BUG】 GA 缺少結帳的工作階段 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.67.1 (2020-10-26)
 
 #### :boom: Breaking Change
