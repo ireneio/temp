@@ -1,0 +1,30 @@
+// import
+import gql from 'graphql-tag';
+
+// graphql import
+import { orderOrderFragment } from '@store/apollo/lib/Order';
+import { actionsFragment } from './actions';
+
+// definition
+export default gql`
+  fragment useColumnsOrdersFragment on OrderEdge {
+    node {
+      id
+      createdAt
+      orderNo
+      paymentInfo {
+        status
+      }
+      shipmentInfo {
+        status
+      }
+      status
+      choosePayLaterWhenPlaced
+      ...orderOrderFragment
+      ...actionsFragment
+    }
+  }
+
+  ${orderOrderFragment}
+  ${actionsFragment}
+`;

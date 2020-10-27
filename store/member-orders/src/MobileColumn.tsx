@@ -1,5 +1,4 @@
 // typescript import
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 import { ColorsType } from '@meepshop/context/lib/Colors';
 
 // import
@@ -7,23 +6,22 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import { Icon, Drawer } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import Link from '@meepshop/link';
 
 import styles from './styles/mobileColumn.less';
 
 // graphql typescript
-import { getOrders_viewer_orders_edges_node as getOrdersViewerOrdersEdgesNode } from './__generated__/getOrders';
+import { useColumnsOrdersFragment_node as useColumnsOrdersFragmentNode } from './gqls/__generated__/useColumnsOrdersFragment';
 
 // typescript definition
-interface PropsType extends I18nPropsType, getOrdersViewerOrdersEdgesNode {
+interface PropsType extends useColumnsOrdersFragmentNode {
   children: React.ReactNode;
 }
 
 // definition
-const MobileColumn = React.memo(
+export default React.memo(
   ({
-    t,
     id,
     createdAt,
     orderNo,
@@ -32,6 +30,7 @@ const MobileColumn = React.memo(
     status,
     children,
   }: PropsType) => {
+    const { t } = useTranslation('member-orders');
     const [drawerVisible, toggleDrawer] = useState(false);
 
     return (
@@ -109,5 +108,3 @@ export const getMobileStyles = (colors: ColorsType): string => `
     background: ${colors[4]};
   }
 `;
-
-export default withTranslation('member-orders')(MobileColumn);
