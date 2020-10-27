@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.67.3 (2020-10-27)
+
+#### :bug: Bug Fix
+
+- [#1249](https://github.com/meepshop/meep-lerna/pull/1249) 【BUG】後台帳戶設定，當手機和聯絡電話從來都沒有輸入過資料時，編輯姓名存儲時會有 bug ([@happycat6323](https://github.com/happycat6323))
+- [#1248](https://github.com/meepshop/meep-lerna/pull/1248) (@meepshop/front-end): remove pre-released scm graphql ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#1248](https://github.com/meepshop/meep-lerna/pull/1248) (@meepshop/front-end): remove pre-released scm graphql ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.67.2 (2020-10-27)
 
 #### :rocket: New Feature
