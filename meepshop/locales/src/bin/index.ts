@@ -135,6 +135,15 @@ process.on('unhandledRejection', err => {
       link(repoPath, (_, linkedPath) => {
         if (fs.existsSync(linkedPath)) fs.unlinkSync(linkedPath);
       });
+      ['@meepshop/store', '@admin/server'].forEach(packageName => {
+        const linkedPath = path.resolve(
+          require.resolve(packageName),
+          '../src/public/locales',
+        );
+
+        if (fs.existsSync(linkedPath))
+          fs.rmdirSync(linkedPath, { recursive: true });
+      });
       break;
 
     case 'update': {

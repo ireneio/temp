@@ -10,19 +10,15 @@ export default class Component extends Base {
       {
         name: 'packageName',
         message: 'Package name',
-        validate: str => (str.length > 0 ? true : 'Can not empty.'),
-        when: !this.state.packageName,
+        validate: str => (/^@/.test(str) ? true : 'Should be @workspace/name.'),
       },
       {
         name: 'componentPath',
         message: 'Component path',
+        filter: words => words.replace(/\.tsx?$/, ''),
         validate: str => (str.length > 0 ? true : 'Can not empty.'),
-        when: !this.state.componentPath,
       },
-    ]).then(result => ({
-      ...this.state,
-      ...result,
-    }));
+    ]);
     const [workspace, name] = packageName.replace('@', '').split(/\//);
 
     this.state = {

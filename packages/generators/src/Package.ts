@@ -1,4 +1,5 @@
 // import
+import fs from 'fs';
 import path from 'path';
 
 import camelCase from 'lodash.camelcase';
@@ -63,16 +64,29 @@ export default class Package extends Base {
       this.destinationPath('src/__tests__/index.tsx'),
       { workspace, componentName },
     );
+
+    fs.symlinkSync(
+      this.destinationPath(''),
+      path.resolve(__dirname, '../../../node_modules', packageName),
+    );
   }
 
   public install(): void {
     const { workspace, name } = this.state;
+    const packageFolder = `${workspace}/${name}`;
 
-    this.spawnCommand('git', ['add', `${workspace}/${name}`]);
-    this.spawnCommand('git', [
+    this.spawnCommandSync('locales', ['create', '-p', `@${packageFolder}`]);
+    this.spawnCommandSync('git', [
+      'add',
+      packageFolder,
+      `${path.dirname(
+        require.resolve('@meepshop/locales'),
+      )}/locales/${packageFolder}`,
+    ]);
+    this.spawnCommandSync('git', [
       'commit',
       '-m',
-      `feat(@${workspace}/${name}): Add new package`,
+      `feat(@${packageFolder}): Add new package`,
     ]);
   }
 }
