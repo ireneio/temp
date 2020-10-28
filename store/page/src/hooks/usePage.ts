@@ -49,13 +49,13 @@ interface DataType extends Omit<usePageFragment, 'viewer'> {
 // definition
 export default (): DataType | null => {
   const { pathname, query } = useRouter();
-  const { data: homePageData } = useQuery<
+  const { data: homePageData, error: homePageError } = useQuery<
     getHomePageType,
     getHomePageVariables
   >(getHomePage, {
     skip: pathname !== '/',
   });
-  const { data: customPageData } = useQuery<
+  const { data: customPageData, error: customPageError } = useQuery<
     getCustomPageType,
     getCustomPageVariables
   >(getCustomPage, {
@@ -64,7 +64,7 @@ export default (): DataType | null => {
       path: query.path as string,
     },
   });
-  const { data: productPageData } = useQuery<
+  const { data: productPageData, error: productPageError } = useQuery<
     getProductPageType,
     getProductPageVariables
   >(getProductPage, {
@@ -73,12 +73,18 @@ export default (): DataType | null => {
       productId: query.pId as string,
     },
   });
-  const { data: productsPageData } = useQuery<
+  const { data: productsPageData, error: productsPageError } = useQuery<
     getProductsPageType,
     getProductsPageVariables
   >(getProductsPage, {
     skip: pathname !== '/products',
   });
+
+  const error =
+    homePageError || customPageError || productPageError || productsPageError;
+
+  // FIXME: only use for old modules
+  if (error) throw error;
 
   if (homePageData)
     return {

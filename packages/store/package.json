@@ -37,6 +37,7 @@
     "@store/member-reward-points": "^0.67.2",
     "@store/member-settings": "^0.67.2",
     "@store/member-wish-list": "^0.67.2",
+    "@store/page": "^0.67.2",
     "@store/thank-you-page": "^0.67.2",
     "@store/utils": "^0.67.2",
     "body-parser": "^1.18.3",
