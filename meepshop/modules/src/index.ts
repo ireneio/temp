@@ -18,6 +18,7 @@ import productDraftTextFragment from '@meepshop/product-draft-text/lib/fragment'
 import productIframeFragment from '@meepshop/product-iframe/lib/fragment';
 import { productQaProductQaModuleFragment } from '@meepshop/product-qa/lib/gqls';
 import productVideoFragment from '@meepshop/product-video/lib/fragment';
+import smartConversionFragment from '@meepshop/smart-conversion/lib/gqls';
 import socialMediaFragment from '@meepshop/social-media/lib/fragment';
 import socialThumbsFragment from '@meepshop/social-thumbs/lib/fragment';
 import unavailableFragment from '@meepshop/unavailable/lib/fragment';
@@ -193,6 +194,7 @@ export const modulesFragment = gql`
       __typename
       id
       parentId
+      ...smartConversionFragment
     }
 
     ... on SocialMediaModule {
@@ -246,6 +248,7 @@ export const modulesFragment = gql`
   ${productIframeFragment}
   ${productQaProductQaModuleFragment}
   ${productVideoFragment}
+  ${smartConversionFragment}
   ${socialMediaFragment}
   ${socialThumbsFragment}
   ${unavailableFragment}
@@ -289,9 +292,7 @@ export default {
   ProductsModule: () => {
     throw new Error('Can not use ProductsModule');
   },
-  SmartConversionModule: () => {
-    throw new Error('Can not use SmartConversionModule');
-  },
+  SmartConversionModule: dynamic(() => import('@meepshop/smart-conversion')),
   SocialMediaModule: dynamic(() => import('@meepshop/social-media')),
   SocialThumbsModule: dynamic(() => import('@meepshop/social-thumbs')),
   UnavailableModule: dynamic(() => import('@meepshop/unavailable')),

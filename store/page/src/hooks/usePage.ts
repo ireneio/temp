@@ -1,6 +1,8 @@
 // import
+import { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
+import CookiesContext from '@meepshop/cookies';
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
@@ -48,12 +50,16 @@ interface DataType extends Omit<usePageFragment, 'viewer'> {
 
 // definition
 export default (): DataType | null => {
+  const { cookies } = useContext(CookiesContext);
   const { pathname, query } = useRouter();
   const { data: homePageData, error: homePageError } = useQuery<
     getHomePageType,
     getHomePageVariables
   >(getHomePage, {
     skip: pathname !== '/',
+    variables: {
+      smartConversionToken: cookies.smartConversionToken,
+    },
   });
   const { data: customPageData, error: customPageError } = useQuery<
     getCustomPageType,
@@ -61,6 +67,7 @@ export default (): DataType | null => {
   >(getCustomPage, {
     skip: pathname !== '/pages',
     variables: {
+      smartConversionToken: cookies.smartConversionToken,
       path: query.path as string,
     },
   });
@@ -70,6 +77,7 @@ export default (): DataType | null => {
   >(getProductPage, {
     skip: pathname !== '/product',
     variables: {
+      smartConversionToken: cookies.smartConversionToken,
       productId: query.pId as string,
     },
   });
@@ -78,6 +86,9 @@ export default (): DataType | null => {
     getProductsPageVariables
   >(getProductsPage, {
     skip: pathname !== '/products',
+    variables: {
+      smartConversionToken: cookies.smartConversionToken,
+    },
   });
 
   const error =

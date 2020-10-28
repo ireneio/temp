@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 export default gql`
   fragment productDraftTextFragment on ProductDraftTextModule {
     id
-    product(productId: $productId) {
+    product {
       id
       draftText {
         value

@@ -23,6 +23,7 @@
     "@meepshop/product-iframe": "^0.67.1",
     "@meepshop/product-qa": "^0.67.2",
     "@meepshop/product-video": "^0.67.2",
+    "@meepshop/smart-conversion": "^0.67.2",
     "@meepshop/social-media": "^0.67.2",
     "@meepshop/social-thumbs": "^0.67.2",
     "@meepshop/unavailable": "^0.67.1",

@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 export default gql`
   fragment productIframeFragment on ProductIframeModule {
     id
-    product(productId: $productId) {
+    product {
       id
       info {
         zh_TW

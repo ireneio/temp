@@ -7,7 +7,7 @@ export default gql`
     id
     width
     ratio
-    product(productId: $productId) {
+    product {
       id
       videoLink {
         value

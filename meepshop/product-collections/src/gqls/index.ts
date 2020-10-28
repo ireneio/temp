@@ -11,7 +11,7 @@ export default gql`
     id
     productCollectionsType
     percentWidth
-    product(productId: $productId) {
+    product {
       id
       title {
         ...localeFragment

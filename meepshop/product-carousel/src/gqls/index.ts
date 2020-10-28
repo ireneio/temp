@@ -12,7 +12,7 @@ export default gql`
     id
     productCarouselType
     autoPlay
-    product(productId: $productId) {
+    product {
       id
       title {
         ...localeFragment

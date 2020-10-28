@@ -24,7 +24,7 @@ export const productQaProductQaModuleFragment = gql`
   fragment productQaProductQaModuleFragment on ProductQaModule {
     id
     width
-    product(productId: $productId) {
+    product {
       id
       publicViewableQas {
         userEmail
