@@ -2,8 +2,7 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
 
-import { DomainContext } from '../index';
-
+import DomainContext from '../Domain';
 import getLinkProps from '../utils/getLinkProps';
 
 // typescript definition
@@ -18,15 +17,16 @@ interface RouterType
 // definition
 export default (): RouterType => {
   const router = useRouter();
-  const domain = useContext(DomainContext);
+  const { domain, serverRouter } = useContext(DomainContext);
+  // FIXME: remove query, ashPath after next.js upgrade, we should use AppTree with getDataFromTree
+  const newRouter = (typeof window === 'undefined'
+    ? serverRouter
+    : router) as ReturnType<typeof useRouter>;
 
   return {
-    ...router,
+    ...newRouter,
     domain,
-    // FIXME: remove query, ashPath after next.js upgrade, we should use AppTree with getDataFromTree
-    query: router?.query || {},
-    asPath: router?.asPath || '',
-    hash: router?.asPath.match(/(#[^?]*)/)?.[0].replace(/^#/, '') || null,
+    hash: newRouter.asPath.match(/(#[^?]*)/)?.[0].replace(/^#/, '') || null,
     push: (href: string, options?: {}) => {
       const linkProps = getLinkProps(href);
 
