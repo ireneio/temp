@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.68.0 (2020-10-28)
+
+#### :rocket: New Feature
+
+- Other
+  - [#1250](https://github.com/meepshop/meep-lerna/pull/1250) (@meepshop/product-\*) Remove product id ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#1252](https://github.com/meepshop/meep-lerna/pull/1252) 前端 - 新元件防護機制 ([@HsuTing](https://github.com/HsuTing))
+- `generators`
+  - [#1246](https://github.com/meepshop/meep-lerna/pull/1246) (@meepshop/generators) Add page generator ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1242](https://github.com/meepshop/meep-lerna/pull/1242) 修正 ssr router error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `generators`
+  - [#1246](https://github.com/meepshop/meep-lerna/pull/1246) (@meepshop/generators) Add page generator ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.67.3 (2020-10-27)
 
 #### :bug: Bug Fix
