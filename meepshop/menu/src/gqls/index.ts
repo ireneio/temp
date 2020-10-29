@@ -12,7 +12,7 @@ import {
   menuItemMenuPageObjectTypeFragment,
   menuItemMenuDesignObjectTypeFragment,
 } from './menuItem';
-import usePagesWithSearchBarFragment from './usePagesWithSearchBar';
+import { usePagesWithSearchBarFragment } from './usePagesWithSearchBar';
 
 // typescript definition
 export interface ContextType {

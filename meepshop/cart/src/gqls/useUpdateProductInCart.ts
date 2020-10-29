@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { cartFragment } from './index';
 
 // definition
-export default gql`
+export const updateProductInCart = gql`
   mutation updateProductInCart($search: [ChangeCart]) {
     changeCartList(changeCartList: $search) {
       id

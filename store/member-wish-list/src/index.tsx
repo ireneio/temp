@@ -11,15 +11,15 @@ import { Colors as ColorsContext } from '@meepshop/context';
 
 import styles from './styles/index.less';
 
-// graphql import
-import getWishlist from './gqls';
-import useColumnsFragment from './gqls/useColumns';
-
 // graphql typescript
 import {
   getWishlist as getWishlistType,
   getWishlist_viewer_wishlist as getWishlistViewerWishlistType,
 } from './gqls/__generated__/getWishlist';
+
+// graphql import
+import { getWishlist } from './gqls';
+import { useColumnsFragment } from './gqls/useColumns';
 
 // typescript definition
 // TODO: remove after removing redux

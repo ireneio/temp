@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
 // definition
-export default gql`
+export const useColumnsRecipientAddressFragment = gql`
   fragment useColumnsRecipientAddressFragment on RecipientAddress {
     id
     name

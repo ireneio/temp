@@ -8,7 +8,7 @@ import {
 } from '@meepshop/image/lib/gqls';
 
 // definition
-export default gql`
+export const imageTextFragment = gql`
   fragment imageTextFragment on ImageTextModule {
     id
     image {

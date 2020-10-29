@@ -21,8 +21,8 @@ import {
 import { useColumnsOrdersFragment as useColumnsOrdersFragmentType } from './gqls/__generated__/useColumnsOrdersFragment';
 
 // graphql import
-import getOrders from './gqls';
-import useColumnsOrdersFragment from './gqls/useColumns';
+import { getOrders } from './gqls';
+import { useColumnsOrdersFragment } from './gqls/useColumns';
 import { changePageFragment } from './gqls/useChangePage';
 
 // definition

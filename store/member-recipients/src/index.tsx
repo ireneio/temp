@@ -15,9 +15,9 @@ import { getUserRecipients as getUserRecipientsType } from './gqls/__generated__
 import { useColumnsRecipientAddressFragment as useColumnsRecipientAddressFragmentType } from './gqls/__generated__/useColumnsRecipientAddressFragment';
 
 // graphql import
-import getUserRecipients from './gqls';
+import { getUserRecipients } from './gqls';
 import { formStoreFragment, formRecipientAddressFragment } from './gqls/form';
-import useColumnsRecipientAddressFragment from './gqls/useColumns';
+import { useColumnsRecipientAddressFragment } from './gqls/useColumns';
 
 // definition
 export default React.memo(() => {

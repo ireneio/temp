@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const useLinkFragment = gql`
   fragment useLinkFragment on Link {
     ... on EmailLink {
       email

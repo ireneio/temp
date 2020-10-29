@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const usePayOrderAgainFragment = gql`
   fragment usePayOrderAgainFragment on Order {
     id
     paymentInfo {

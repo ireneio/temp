@@ -6,7 +6,7 @@ import { orderOrderFragment } from '@store/apollo/lib/Order';
 import { actionsFragment } from './actions';
 
 // definition
-export default gql`
+export const useColumnsOrdersFragment = gql`
   fragment useColumnsOrdersFragment on OrderEdge {
     node {
       id

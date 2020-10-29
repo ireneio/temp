@@ -12,7 +12,7 @@ import { JustifyContent } from '../../../__generated__/meepshop';
 import { imageTextFragment } from './gqls/__generated__/imageTextFragment';
 
 // graphql import
-import imageFragment from '@meepshop/image/lib/gqls';
+import { imageFragment } from '@meepshop/image/lib/gqls';
 
 // definition
 export default React.memo(

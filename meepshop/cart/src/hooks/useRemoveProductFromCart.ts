@@ -11,7 +11,7 @@ import {
 } from '../gqls/__generated__/removeProductFromCart';
 
 // graphql import
-import removeProductFromCart from '../gqls/useRemoveProductFromCart';
+import { removeProductFromCart } from '../gqls/useRemoveProductFromCart';
 
 // definition
 export default (): MutationTuple<

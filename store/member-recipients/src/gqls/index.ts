@@ -3,10 +3,10 @@ import gql from 'graphql-tag';
 
 // graphql import
 import { formRecipientAddressFragment, formStoreFragment } from './form';
-import useColumnsRecipientAddressFragment from './useColumns';
+import { useColumnsRecipientAddressFragment } from './useColumns';
 
 // definition
-export default gql`
+export const getUserRecipients = gql`
   query getUserRecipients {
     viewer {
       id

@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const fetchSmartConversionModuleGAData = gql`
   mutation fetchSmartConversionModuleGAData($pageId: ID!) {
     fetchSmartConversionModuleGAData(pageId: $pageId) {
       status

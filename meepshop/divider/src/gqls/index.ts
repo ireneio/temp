@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const dividerFragment = gql`
   fragment dividerFragment on DividerModule {
     id
     width

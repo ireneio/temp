@@ -6,7 +6,7 @@ import localeFragment from '@meepshop/utils/lib/fragments/locale';
 import { useImageScaledURLsFragment } from '@meepshop/image/lib/gqls';
 
 // definition
-export default gql`
+export const productCollectionsFragment = gql`
   fragment productCollectionsFragment on ProductCollectionsModule {
     id
     productCollectionsType

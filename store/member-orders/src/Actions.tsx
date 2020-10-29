@@ -13,7 +13,7 @@ import usePayOrderAgain from './hooks/usePayOrderAgain';
 import { actionsFragment as actionsFragmentType } from './gqls/__generated__/actionsFragment';
 
 // graphql import
-import usePayOrderAgainFragment from './gqls/usePayOrderAgain';
+import { usePayOrderAgainFragment } from './gqls/usePayOrderAgain';
 
 // typescript definition
 interface PropsType {

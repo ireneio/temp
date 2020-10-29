@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const facebookWallFragment = gql`
   fragment facebookWallFragment on FacebookWallModule {
     id
     href

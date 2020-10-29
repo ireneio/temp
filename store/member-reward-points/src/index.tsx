@@ -21,8 +21,8 @@ import {
 } from './gqls/__generated__/getUserRewardPotins';
 
 // graphql import
-import getUserRewardPotins from './gqls';
-import useColumnsUserPointsFragment from './gqls/useColumns';
+import { getUserRewardPotins } from './gqls';
+import { useColumnsUserPointsFragment } from './gqls/useColumns';
 
 // definition
 export default React.memo(() => {

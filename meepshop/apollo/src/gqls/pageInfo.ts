@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const pageInfoFragment = gql`
   fragment pageInfoFragment on CurrentInfo {
     id
     current

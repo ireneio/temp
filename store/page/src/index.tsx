@@ -9,7 +9,7 @@ import Group from '@store/group';
 import usePage from './hooks/usePage';
 
 // graphql import
-import pageFragment from '@meepshop/page/lib/gqls';
+import { pageFragment } from '@meepshop/page/lib/gqls';
 import {
   groupFragment,
   contextUserFragment,

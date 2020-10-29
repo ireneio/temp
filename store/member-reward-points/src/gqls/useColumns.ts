@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const useColumnsUserPointsFragment = gql`
   fragment useColumnsUserPointsFragment on UserPoints {
     id
     title {

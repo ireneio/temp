@@ -9,7 +9,7 @@ import styles from './styles/index.less';
 import { googleMapFragment } from './gqls/__generated__/googleMapFragment';
 
 // graphql import
-import useHeightFragment from './gqls/useHeight';
+import { useHeightFragment } from './gqls/useHeight';
 
 // definition
 export default React.memo(({ width, href, ...props }: googleMapFragment) => {

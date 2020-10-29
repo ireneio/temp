@@ -13,7 +13,7 @@ import styles from './styles/index.less';
 import { imageFragment } from './gqls/__generated__/imageFragment';
 
 // graphql import
-import useLinkFragment from './gqls/useLink';
+import { useLinkFragment } from './gqls/useLink';
 import { useImageImageFragment } from './gqls/useImage';
 
 // typescript definition

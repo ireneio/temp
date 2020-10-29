@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { thumbnailFragment } from '@meepshop/thumbnail';
 
 // definition
-export default gql`
+export const useColumnsFragment = gql`
   fragment useColumnsFragment on WishlistProduct {
     id
     coverImage {

@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { useImageImageFragment } from '@meepshop/image/lib/gqls/useImage';
 
 // definition
-export default gql`
+export const smartConversionFragment = gql`
   fragment smartConversionFragment on SmartConversionModule {
     id
     displaySample(token: $smartConversionToken) {

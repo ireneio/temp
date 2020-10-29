@@ -7,7 +7,7 @@ import { SetCurrentInput } from '../../../__generated__/store';
 import { pageInfoFragment as pageInfoFragmentType } from './gqls/__generated__/pageInfoFragment';
 
 // graphql import
-import pageInfoFragment from './gqls/pageInfo';
+import { pageInfoFragment } from './gqls/pageInfo';
 
 // definition
 export const resolvers = {

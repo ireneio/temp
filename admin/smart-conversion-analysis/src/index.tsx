@@ -15,14 +15,16 @@ import moment from 'moment';
 import Samples from './Samples';
 import Error from './Error';
 import styles from './styles/index.less';
-import mutation from './gqls';
 import { MOMENT_FORMAT } from './constants';
 
 // graphql typescript
 import {
-  fetchSmartConversionModuleGAData,
+  fetchSmartConversionModuleGAData as fetchSmartConversionModuleGADataType,
   fetchSmartConversionModuleGADataVariables,
 } from './gqls/__generated__/fetchSmartConversionModuleGAData';
+
+// graphql import
+import { fetchSmartConversionModuleGAData } from './gqls';
 
 // typescript definition
 interface PropsType {
@@ -35,14 +37,14 @@ const Chart = dynamic(() => import('./Chart'), { ssr: false });
 const SmartConversionAnalysis: NextPage = React.memo(
   ({ pageId }: PropsType) => {
     const { t } = useTranslation('smart-conversion-analysis');
-    const [fetchData, { data, loading, error }] = useMutation<
-      fetchSmartConversionModuleGAData,
+    const [mutation, { data, loading, error }] = useMutation<
+      fetchSmartConversionModuleGADataType,
       fetchSmartConversionModuleGADataVariables
-    >(mutation);
+    >(fetchSmartConversionModuleGAData);
 
     useEffect(() => {
-      fetchData({ variables: { pageId } });
-    }, [fetchData, pageId]);
+      mutation({ variables: { pageId } });
+    }, [mutation, pageId]);
 
     if (loading) return <Spin indicator={<Icon type="loading" spin />} />;
 

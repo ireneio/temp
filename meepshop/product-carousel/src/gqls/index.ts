@@ -4,10 +4,10 @@ import gql from 'graphql-tag';
 // graphql import
 import localeFragment from '@meepshop/utils/lib/fragments/locale';
 
-import useImagesFragment from './useImages';
+import { useImagesFragment } from './useImages';
 
 // definition
-export default gql`
+export const productCarouselFragment = gql`
   fragment productCarouselFragment on ProductCarouselModule {
     id
     productCarouselType

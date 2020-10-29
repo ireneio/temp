@@ -4,10 +4,10 @@ import gql from 'graphql-tag';
 // graphql import
 import { orderOrderApplyFragment } from '@store/apollo/lib/Order';
 
-import useColumnsOrdersFragment from './useColumns';
+import { useColumnsOrdersFragment } from './useColumns';
 
 // definition
-export default gql`
+export const getOrders = gql`
   query getOrders($first: PositiveInt!, $cursor: String) {
     viewer {
       id

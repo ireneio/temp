@@ -8,7 +8,7 @@ import {
 } from '@meepshop/image/lib/gqls';
 
 // definition
-export default gql`
+export const useImagesFragment = gql`
   fragment useImagesFragment on Product {
     id
     coverImage {

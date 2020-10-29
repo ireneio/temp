@@ -2,10 +2,10 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import useHeightFragment from './useHeight';
+import { useHeightFragment } from './useHeight';
 
 // definition
-export default gql`
+export const googleMapFragment = gql`
   fragment googleMapFragment on GoogleMapModule {
     id
     href

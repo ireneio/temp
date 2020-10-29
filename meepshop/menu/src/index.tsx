@@ -19,7 +19,7 @@ import {
   menuItemMenuPageObjectTypeFragment,
   menuItemMenuDesignObjectTypeFragment,
 } from './gqls/menuItem';
-import usePagesWithSearchBarFragment from './gqls/usePagesWithSearchBar';
+import { usePagesWithSearchBarFragment } from './gqls/usePagesWithSearchBar';
 
 // typescript definition
 export interface PropsType extends menuMenuModuleFragment, ContextType {}

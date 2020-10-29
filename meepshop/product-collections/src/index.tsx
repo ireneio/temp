@@ -18,7 +18,7 @@ import {
 } from './gqls/__generated__/productCollectionsFragment';
 
 // graphql import
-import imageFragment from '@meepshop/image/lib/gqls';
+import { imageFragment } from '@meepshop/image/lib/gqls';
 
 // definition
 export default React.memo(

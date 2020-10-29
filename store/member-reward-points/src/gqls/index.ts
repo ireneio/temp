@@ -2,10 +2,10 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import useColumnsUserPointsFragment from './useColumns';
+import { useColumnsUserPointsFragment } from './useColumns';
 
 // definition
-export default gql`
+export const getUserRewardPotins = gql`
   query getUserRewardPotins {
     viewer {
       id

@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import pageFragment from '@meepshop/page/lib/gqls';
+import { pageFragment } from '@meepshop/page/lib/gqls';
 import {
   groupFragment,
   contextUserFragment,

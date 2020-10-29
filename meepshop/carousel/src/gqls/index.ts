@@ -8,7 +8,7 @@ import {
 } from '@meepshop/image/lib/gqls';
 
 // definition
-export default gql`
+export const carouselFragment = gql`
   fragment carouselFragment on CarouselModule {
     id
     images {
