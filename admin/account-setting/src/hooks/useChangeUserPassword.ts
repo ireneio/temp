@@ -3,14 +3,19 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import React, { useCallback } from 'react';
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { message } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { changeUserPassword as changeUserPasswordType } from './__generated__/changeUserPassword';
+import {
+  changeUserPassword as changeUserPasswordType,
+  changeUserPasswordVariables,
+} from '../gqls/__generated__/changeUserPassword';
+
+// graphql import
+import { changeUserPassword } from '../gqls/useChangeUserPassword';
 
 // definition
 export default (
@@ -27,37 +32,31 @@ export default (
     setOpenModal(false);
   }, [resetFields, setOpenModal]);
 
-  const [changeUserPassword] = useMutation<changeUserPasswordType>(
-    gql`
-      mutation changeUserPassword($input: ChangeUserPasswordInput) {
-        changeUserPassword(input: $input) {
-          status
-        }
-      }
-    `,
-    {
-      onCompleted: data => {
-        const status = data?.changeUserPassword?.status;
+  const [mutation] = useMutation<
+    changeUserPasswordType,
+    changeUserPasswordVariables
+  >(changeUserPassword, {
+    onCompleted: data => {
+      const status = data?.changeUserPassword?.status;
 
-        switch (status) {
-          case 'OK': {
-            closeModal();
-            message.success(t('account.update-password-success'));
-            break;
-          }
-          case 'FAIL_USER_NOT_FOUND':
-            message.error(t('account.user-not-found'));
-            break;
-          case 'FAIL_INCORRECT_CURRENT_PASSWORD':
-            message.error(t('account.incorrect-current-password'));
-            break;
-          default:
-            message.error(t('account.update-password-fail'));
-            break;
+      switch (status) {
+        case 'OK': {
+          closeModal();
+          message.success(t('account.update-password-success'));
+          break;
         }
-      },
+        case 'FAIL_USER_NOT_FOUND':
+          message.error(t('account.user-not-found'));
+          break;
+        case 'FAIL_INCORRECT_CURRENT_PASSWORD':
+          message.error(t('account.incorrect-current-password'));
+          break;
+        default:
+          message.error(t('account.update-password-fail'));
+          break;
+      }
     },
-  );
+  });
 
   return {
     changeUserPassword: useCallback(
@@ -66,13 +65,13 @@ export default (
 
         validateFields((errors, { currentPassword, newPassword }) => {
           if (!errors) {
-            changeUserPassword({
+            mutation({
               variables: { input: { currentPassword, newPassword } },
             });
           }
         });
       },
-      [validateFields, changeUserPassword],
+      [validateFields, mutation],
     ),
     closeModal,
   };

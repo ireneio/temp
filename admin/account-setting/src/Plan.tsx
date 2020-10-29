@@ -3,7 +3,6 @@ import { languageType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import Block from '@admin/block';
@@ -11,10 +10,7 @@ import Block from '@admin/block';
 import styles from './styles/plan.less';
 
 // graphql typescript
-import { getMerchantAccount_viewer as getMerchantAccountViewer } from './__generated__/getMerchantAccount';
-
-// graphql import
-import localeFragment from '@meepshop/utils/lib/fragments/locale';
+import { getMerchantAccount_viewer as getMerchantAccountViewer } from './gqls/__generated__/getMerchantAccount';
 
 // typescript definition
 interface PropsType {
@@ -22,26 +18,6 @@ interface PropsType {
 }
 
 // definition
-export const planFragment = gql`
-  fragment planFragment on User {
-    store {
-      id
-      setting {
-        billing {
-          billingType
-        }
-      }
-      plan {
-        name {
-          ...localeFragment
-        }
-      }
-    }
-  }
-
-  ${localeFragment}
-`;
-
 export default React.memo(({ viewer }: PropsType) => {
   const { t, i18n } = useTranslation('account-setting');
 

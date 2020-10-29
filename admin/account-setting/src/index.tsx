@@ -5,7 +5,6 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { Form, Button, Divider } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -17,32 +16,18 @@ import useSave from './hooks/useSave';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getMerchantAccount } from './__generated__/getMerchantAccount';
+import { getMerchantAccount as getMerchantAccountType } from './gqls/__generated__/getMerchantAccount';
 
 // graphql import
-import { accountFragment } from './Account';
-import { planFragment } from './Plan';
+import { getMerchantAccount } from './gqls';
 
 // definition
-const query = gql`
-  query getMerchantAccount {
-    viewer {
-      id
-      ...accountFragment
-      ...planFragment
-    }
-  }
-
-  ${accountFragment}
-  ${planFragment}
-`;
-
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore FIXME: remove after use antd v4 form hook
 const AccountSetting: NextPage = Form.create<FormComponentProps>()(
   React.memo(({ form }: FormComponentProps) => {
     const { resetFields, isFieldsTouched } = form;
-    const { data } = useQuery<getMerchantAccount>(query);
+    const { data } = useQuery<getMerchantAccountType>(getMerchantAccount);
     const { t } = useTranslation('account-setting');
     const { loading, save } = useSave(form, data?.viewer?.id || null);
 

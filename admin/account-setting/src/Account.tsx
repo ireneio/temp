@@ -3,7 +3,6 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import React, { useState } from 'react';
-import gql from 'graphql-tag';
 import { Form, Button, Input, Divider } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -14,7 +13,7 @@ import ChangePassword from './ChangePassword';
 import styles from './styles/account.less';
 
 // graphql typescript
-import { getMerchantAccount_viewer as getMerchantAccountViewer } from './__generated__/getMerchantAccount';
+import { getMerchantAccount_viewer as getMerchantAccountViewer } from './gqls/__generated__/getMerchantAccount';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
@@ -23,18 +22,6 @@ interface PropsType extends FormComponentProps {
 
 // definition
 const { Item: FormItem } = Form;
-
-export const accountFragment = gql`
-  fragment accountFragment on User {
-    id
-    email
-    name
-    additionalInfo {
-      mobile
-      tel
-    }
-  }
-`;
 
 export default React.memo(
   ({ form: { getFieldDecorator }, viewer }: PropsType) => {
