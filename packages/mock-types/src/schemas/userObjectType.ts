@@ -1,22 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { userObjectTypeMock } from './__generated__/userObjectTypeMock';
+import { userObjectTypeMockFragment } from './gqls/__generated__/userObjectTypeMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment userObjectTypeMock on userObjectType {
-    name
-    email
-    mobile
-  }
-`;
-
-export default mock.add<userObjectTypeMock>('userObjectType', [
+export default mock.add<userObjectTypeMockFragment>('userObjectType', [
   () => ({
     __typename: 'userObjectType',
     name: 'name',

@@ -1,23 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { GroupModuleMock } from './__generated__/GroupModuleMock';
+import { groupModuleMockFragment } from './gqls/__generated__/groupModuleMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment GroupModuleMock on GroupModule {
-    percentWidth
-    componentWidth
-    padding
-    releaseTime
-  }
-`;
-
-export default mock.add<GroupModuleMock>('GroupModule', [
+export default mock.add<groupModuleMockFragment>('GroupModule', [
   () =>
     ({
       __typename: 'GroupModule',
@@ -26,7 +14,7 @@ export default mock.add<GroupModuleMock>('GroupModule', [
       padding: null,
       releaseTime: null,
       backgroundImage: null,
-    } as GroupModuleMock),
+    } as groupModuleMockFragment),
   () =>
     ({
       __typename: 'GroupModule',
@@ -35,5 +23,5 @@ export default mock.add<GroupModuleMock>('GroupModule', [
       padding: null,
       releaseTime: null,
       backgroundImage: {},
-    } as GroupModuleMock),
+    } as groupModuleMockFragment),
 ]);

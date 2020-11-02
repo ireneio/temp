@@ -1,23 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { priceObjectTypeMock } from './__generated__/priceObjectTypeMock';
+import { priceObjectTypeMockFragment } from './gqls/__generated__/priceObjectTypeMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment priceObjectTypeMock on priceObjectType {
-    total
-    shipmentFee
-    paymentFee
-    currency
-  }
-`;
-
-export default mock.add<priceObjectTypeMock>('priceObjectType', [
+export default mock.add<priceObjectTypeMockFragment>('priceObjectType', [
   () => ({
     __typename: 'priceObjectType',
     total: 100,

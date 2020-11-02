@@ -1,20 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { shipmentInfoTypeMock } from './__generated__/shipmentInfoTypeMock';
+import { shipmentInfoTypeMockFragment } from './gqls/__generated__/shipmentInfoTypeMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment shipmentInfoTypeMock on shipmentInfoType {
-    status
-  }
-`;
-
-export default mock.add<shipmentInfoTypeMock>('shipmentInfoType', [
+export default mock.add<shipmentInfoTypeMockFragment>('shipmentInfoType', [
   () => ({
     __typename: 'shipmentInfoType',
     status: 0,

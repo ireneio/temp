@@ -1,28 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { StoreEcfitSettingsMock } from './__generated__/StoreEcfitSettingsMock';
-
-// graphql import
-import localeFragment from './fragments/locale';
+import { storeEcfitSettingsMockFragment } from './gqls/__generated__/storeEcfitSettingsMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment StoreEcfitSettingsMock on StoreEcfitSettings {
-    isEnabled
-    serviceType
-    companyToken
-    apiKey
-  }
-
-  ${localeFragment}
-`;
-
-export default mock.add<StoreEcfitSettingsMock>('StoreEcfitSettings', [
+export default mock.add<storeEcfitSettingsMockFragment>('StoreEcfitSettings', [
   () =>
     ({
       __typename: 'StoreEcfitSettings',
@@ -30,7 +13,7 @@ export default mock.add<StoreEcfitSettingsMock>('StoreEcfitSettings', [
       serviceType: 'INTERTIDAL',
       companyToken: 'companyToken',
       apiKey: 'apiKey',
-    } as StoreEcfitSettingsMock),
+    } as storeEcfitSettingsMockFragment),
   () =>
     ({
       __typename: 'StoreEcfitSettings',
@@ -38,10 +21,10 @@ export default mock.add<StoreEcfitSettingsMock>('StoreEcfitSettings', [
       serviceType: 'THIRD_PARTY_STORAGE',
       companyToken: 'companyToken',
       apiKey: 'apiKey',
-    } as StoreEcfitSettingsMock),
+    } as storeEcfitSettingsMockFragment),
   () =>
     ({
       __typename: 'StoreEcfitSettings',
       isEnabled: false,
-    } as StoreEcfitSettingsMock),
+    } as storeEcfitSettingsMockFragment),
 ]);

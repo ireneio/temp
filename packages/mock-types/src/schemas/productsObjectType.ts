@@ -1,31 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { productsObjectTypeMock } from './__generated__/productsObjectTypeMock';
+import { productsObjectTypeMockFragment } from './gqls/__generated__/productsObjectTypeMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment productsObjectTypeMock on productsObjectType {
-    productId
-    sku
-    title {
-      zh_TW
-    }
-    specs {
-      title {
-        zh_TW
-      }
-    }
-    totalPrice
-    quantity
-  }
-`;
-
-export default mock.add<productsObjectTypeMock>('productsObjectType', [
+export default mock.add<productsObjectTypeMockFragment>('productsObjectType', [
   () => ({
     __typename: 'productsObjectType',
     productId: 'product id',

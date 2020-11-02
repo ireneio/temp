@@ -1,37 +1,20 @@
 // import
-import gql from 'graphql-tag';
 import uuid from 'uuid/v4';
 
 import mock from '../mock';
 
 // graphql typescript
 import {
-  FileConnectionMock,
-  FileConnectionMock_edges as FileConnectionMockEdges,
-} from './__generated__/FileConnectionMock';
+  fileConnectionMockFragment,
+  fileConnectionMockFragment_edges as fileConnectionMockFragmentEdges,
+} from './gqls/__generated__/fileConnectionMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment FileConnectionMock on FileConnection {
-    edges {
-      node {
-        id
-        image
-      }
-    }
-    pageInfo {
-      endCursor
-    }
-    total
-  }
-`;
-
-const cache: FileConnectionMockEdges[] = [];
+const cache: fileConnectionMockFragmentEdges[] = [];
 const MAX_TOTAL = 50;
 
 export default mock.add<
-  FileConnectionMock,
+  fileConnectionMockFragment,
   {},
   {
     first: number;
@@ -42,7 +25,7 @@ export default mock.add<
     const cacheIndex = !after
       ? 0
       : cache.findIndex(({ node: { id } }) => id === after);
-    const edges: FileConnectionMockEdges[] = [];
+    const edges: fileConnectionMockFragmentEdges[] = [];
 
     if (cacheIndex !== -1 && cacheIndex + 1 <= cache.length - 1)
       edges.push(...cache.slice(cacheIndex, cacheIndex + first));

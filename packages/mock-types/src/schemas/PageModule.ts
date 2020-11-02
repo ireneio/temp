@@ -1,5 +1,4 @@
 // import
-import gql from 'graphql-tag';
 import uuid from 'uuid/v4';
 
 import mock from '../mock';
@@ -28,130 +27,15 @@ import ViewTrackingModule from './ViewTrackingModule';
 
 // graphql typescript
 import {
-  PageModuleMock,
-  PageModuleMock_LayoutModule as PageModuleMockLayoutModule,
-} from './__generated__/PageModuleMock';
+  pageModuleMockFragment,
+  pageModuleMockFragment_LayoutModule as pageModuleMockFragmentLayoutModule,
+} from './gqls/__generated__/pageModuleMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment PageModuleMock on PageModule {
-    ... on GroupModule {
-      id
-      parentId
-    }
-
-    ... on LayoutModule {
-      id
-      parentId
-    }
-
-    ... on CarouselModule {
-      id
-      parentId
-    }
-
-    ... on DividerModule {
-      id
-      parentId
-    }
-
-    ... on FacebookWallModule {
-      id
-      parentId
-    }
-
-    ... on DraftTextModule {
-      id
-      parentId
-    }
-
-    ... on GoogleMapModule {
-      id
-      parentId
-    }
-
-    ... on IframeModule {
-      id
-      parentId
-    }
-
-    ... on ImageModule {
-      id
-      parentId
-    }
-
-    ... on ImageTextModule {
-      id
-      parentId
-    }
-
-    ... on MenuModule {
-      id
-      parentId
-    }
-
-    ... on ProductCarouselModule {
-      id
-      parentId
-    }
-
-    ... on ProductCollectionsModule {
-      id
-      parentId
-    }
-
-    ... on ProductDraftTextModule {
-      id
-      parentId
-    }
-
-    ... on ProductIframeModule {
-      id
-      parentId
-    }
-
-    ... on ProductQaModule {
-      id
-      parentId
-    }
-
-    ... on ProductVideoModule {
-      id
-      parentId
-    }
-
-    ... on SocialMediaModule {
-      id
-      parentId
-    }
-
-    ... on SocialThumbsModule {
-      id
-      parentId
-    }
-
-    ... on UnavailableModule {
-      id
-      parentId
-    }
-
-    ... on VideoModule {
-      id
-      parentId
-    }
-
-    ... on ViewTrackingModule {
-      id
-      parentId
-    }
-  }
-`;
-
 const getPageModules = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getModule: any,
-): PageModuleMock[] => [
+): pageModuleMockFragment[] => [
   {
     ...GroupModule({}, {}),
     id: 'group-id',
@@ -161,22 +45,22 @@ const getPageModules = (
     __typename: 'LayoutModule',
     id: 'layout-id-1',
     parentId: 'group-id',
-  } as PageModuleMockLayoutModule,
+  } as pageModuleMockFragmentLayoutModule,
   {
     __typename: 'LayoutModule',
     id: 'layout-id-2',
     parentId: 'group-id',
-  } as PageModuleMockLayoutModule,
+  } as pageModuleMockFragmentLayoutModule,
   {
     __typename: 'LayoutModule',
     id: 'layout-id-3',
     parentId: 'layout-id-2',
-  } as PageModuleMockLayoutModule,
+  } as pageModuleMockFragmentLayoutModule,
   {
     __typename: 'LayoutModule',
     id: 'layout-id-4',
     parentId: 'layout-id-2',
-  } as PageModuleMockLayoutModule,
+  } as pageModuleMockFragmentLayoutModule,
   {
     ...getModule({}, {}),
     id: uuid(),
@@ -194,7 +78,7 @@ const getPageModules = (
   },
 ];
 
-export default mock.add<PageModuleMock[]>('PageModule', [
+export default mock.add<pageModuleMockFragment[]>('PageModule', [
   () => getPageModules(CarouselModule),
   () => getPageModules(DividerModule),
   () => getPageModules(DraftTextModule),

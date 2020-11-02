@@ -1,30 +1,21 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { ProductQaModuleMock } from './__generated__/ProductQaModuleMock';
+import { productQaModuleMockFragment } from './gqls/__generated__/productQaModuleMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment ProductQaModuleMock on ProductQaModule {
-    width
-  }
-`;
-
-export default mock.add<ProductQaModuleMock>('ProductQaModule', [
+export default mock.add<productQaModuleMockFragment>('ProductQaModule', [
   () =>
     ({
       __typename: 'ProductQaModule',
       width: '100',
       product: null,
-    } as ProductQaModuleMock),
+    } as productQaModuleMockFragment),
   () =>
     ({
       __typename: 'ProductQaModule',
       width: '100',
       product: {},
-    } as ProductQaModuleMock),
+    } as productQaModuleMockFragment),
 ]);

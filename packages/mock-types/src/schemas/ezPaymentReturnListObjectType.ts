@@ -1,25 +1,13 @@
 // import
-import gql from 'graphql-tag';
 import moment from 'moment';
 
 import mock from '../mock';
 
 // graphql typescript
-import { ezPaymentReturnListObjectTypeMock } from './__generated__/ezPaymentReturnListObjectTypeMock';
+import { ezPaymentReturnListObjectTypeMockFragment } from './gqls/__generated__/ezPaymentReturnListObjectTypeMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment ezPaymentReturnListObjectTypeMock on ezPaymentReturnListObjectType {
-    paycode
-    storeName
-    orderNumber
-    amount
-    expireDate
-  }
-`;
-
-export default mock.add<ezPaymentReturnListObjectTypeMock>(
+export default mock.add<ezPaymentReturnListObjectTypeMockFragment>(
   'ezPaymentReturnListObjectType',
   [
     () => ({

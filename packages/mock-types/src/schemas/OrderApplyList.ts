@@ -1,25 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { OrderApplyListMock } from './__generated__/OrderApplyListMock';
+import { orderApplyListMockFragment } from './gqls/__generated__/orderApplyListMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment OrderApplyListMock on OrderApplyList {
-    data {
-      orderId
-      orderProductId
-      quantity
-      status
-    }
-  }
-`;
-
-export default mock.add<OrderApplyListMock>('OrderApplyList', [
+export default mock.add<orderApplyListMockFragment>('OrderApplyList', [
   () => ({
     __typename: 'OrderApplyList',
     data: [

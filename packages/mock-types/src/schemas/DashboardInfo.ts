@@ -1,27 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { DashboardInfoMock } from './__generated__/DashboardInfoMock';
+import { dashboardInfoMockFragment } from './gqls/__generated__/dashboardInfoMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment DashboardInfoMock on DashboardInfo {
-    pendingOrder
-    notShipped
-    orderQA
-    productQA
-    userCount
-    orderMonthly
-    revenueMonthly
-    costMonthly
-  }
-`;
-
-export default mock.add<DashboardInfoMock>('DashboardInfo', [
+export default mock.add<dashboardInfoMockFragment>('DashboardInfo', [
   () => ({
     __typename: 'DashboardInfo',
     pendingOrder: 1,

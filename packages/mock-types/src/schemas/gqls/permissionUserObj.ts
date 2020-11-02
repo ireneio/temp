@@ -1,0 +1,13 @@
+// import
+import gql from 'graphql-tag';
+
+// definition
+export const permissionUserObjMockFragment = gql`
+  fragment permissionUserObjMockFragment on permissionUserObj {
+    index
+    create
+    update
+    remove
+    export
+  }
+`;

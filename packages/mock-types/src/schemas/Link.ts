@@ -1,92 +1,13 @@
 // import
-import gql from 'graphql-tag';
 import uuid from 'uuid/v4';
 
 import mock from '../mock';
 
 // graphql typescript
-import { LinkMock } from './__generated__/LinkMock';
+import { linkMockFragment } from './gqls/__generated__/linkMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment LinkMock on Link {
-    ... on EmailLink {
-      email
-      newWindow
-      tracking {
-        name
-        category
-      }
-    }
-
-    ... on PhoneLink {
-      phone
-      newWindow
-      tracking {
-        name
-        category
-      }
-    }
-
-    ... on GroupLink {
-      group {
-        id
-      }
-      newWindow
-      tracking {
-        name
-        category
-      }
-    }
-
-    ... on PageLink {
-      page {
-        id
-      }
-      newWindow
-      tracking {
-        name
-        category
-      }
-    }
-
-    ... on ProductLink {
-      product {
-        id
-      }
-      newWindow
-      tracking {
-        name
-        category
-      }
-    }
-
-    ... on ProductsLink {
-      sort
-      searchKey
-      minPrice
-      maxPrice
-      tags
-      newWindow
-      tracking {
-        name
-        category
-      }
-    }
-
-    ... on CustomLink {
-      href
-      newWindow
-      tracking {
-        name
-        category
-      }
-    }
-  }
-`;
-
-export default mock.add<LinkMock>('Link', [
+export default mock.add<linkMockFragment>('Link', [
   () =>
     ({
       __typename: 'EmailLink',
@@ -96,7 +17,7 @@ export default mock.add<LinkMock>('Link', [
         name: 'tracking',
         category: null,
       },
-    } as LinkMock),
+    } as linkMockFragment),
   () =>
     ({
       __typename: 'PhoneLink',
@@ -106,7 +27,7 @@ export default mock.add<LinkMock>('Link', [
         name: 'tracking',
         category: null,
       },
-    } as LinkMock),
+    } as linkMockFragment),
   () =>
     ({
       __typename: 'GroupLink',
@@ -118,7 +39,7 @@ export default mock.add<LinkMock>('Link', [
         name: 'tracking',
         category: null,
       },
-    } as LinkMock),
+    } as linkMockFragment),
   () =>
     ({
       __typename: 'PageLink',
@@ -130,7 +51,7 @@ export default mock.add<LinkMock>('Link', [
         name: 'tracking',
         category: null,
       },
-    } as LinkMock),
+    } as linkMockFragment),
   () =>
     ({
       __typename: 'ProductLink',
@@ -142,7 +63,7 @@ export default mock.add<LinkMock>('Link', [
         name: 'tracking',
         category: null,
       },
-    } as LinkMock),
+    } as linkMockFragment),
   () =>
     ({
       __typename: 'ProductsLink',
@@ -156,7 +77,7 @@ export default mock.add<LinkMock>('Link', [
         name: 'tracking',
         category: null,
       },
-    } as LinkMock),
+    } as linkMockFragment),
   () =>
     ({
       __typename: 'CustomLink',
@@ -166,5 +87,5 @@ export default mock.add<LinkMock>('Link', [
         name: 'tracking',
         category: null,
       },
-    } as LinkMock),
+    } as linkMockFragment),
 ]);

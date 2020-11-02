@@ -1,20 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { FbPixelMock } from './__generated__/FbPixelMock';
+import { fbPixelMockFragment } from './gqls/__generated__/fbPixelMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment FbPixelMock on FbPixel {
-    pixelId
-  }
-`;
-
-export default mock.add<FbPixelMock>('FbPixel', [
+export default mock.add<fbPixelMockFragment>('FbPixel', [
   () => ({
     __typename: 'FbPixel',
     pixelId: 'pixelId',

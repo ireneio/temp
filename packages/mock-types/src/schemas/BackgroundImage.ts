@@ -1,21 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { BackgroundImageMock } from './__generated__/BackgroundImageMock';
+import { backgroundImageMockFragment } from './gqls/__generated__/backgroundImageMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment BackgroundImageMock on BackgroundImage {
-    cover
-    repeat
-  }
-`;
-
-export default mock.add<BackgroundImageMock>('BackgroundImage', [
+export default mock.add<backgroundImageMockFragment>('BackgroundImage', [
   () => ({
     __typename: 'BackgroundImage',
     image: {},

@@ -1,36 +1,20 @@
 // import
-import gql from 'graphql-tag';
 import uuid from 'uuid/v4';
 
 import mock from '../mock';
 
 // graphql typescript
 import {
-  OrderConnectionMock,
-  OrderConnectionMock_edges as OrderConnectionMockEdges,
-} from './__generated__/OrderConnectionMock';
+  orderConnectionMockFragment,
+  orderConnectionMockFragment_edges as orderConnectionMockFragmentEdges,
+} from './gqls/__generated__/orderConnectionMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment OrderConnectionMock on OrderConnection {
-    edges {
-      node {
-        id
-      }
-    }
-    pageInfo {
-      endCursor
-    }
-    total
-  }
-`;
-
-const cache: OrderConnectionMockEdges[] = [];
+const cache: orderConnectionMockFragmentEdges[] = [];
 const MAX_TOTAL = 50;
 
 export default mock.add<
-  OrderConnectionMock,
+  orderConnectionMockFragment,
   {},
   {
     first: number;
@@ -41,7 +25,7 @@ export default mock.add<
     const cacheIndex = !after
       ? 0
       : cache.findIndex(({ node: { id } }) => id === after);
-    const edges: OrderConnectionMockEdges[] = [];
+    const edges: orderConnectionMockFragmentEdges[] = [];
 
     if (cacheIndex !== -1 && cacheIndex + 1 <= cache.length - 1)
       edges.push(...cache.slice(cacheIndex, cacheIndex + first));

@@ -1,26 +1,20 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { permissionDesignObjMock } from './__generated__/permissionDesignObjMock';
+import { permissionDesignObjMockFragment } from './gqls/__generated__/permissionDesignObjMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment permissionDesignObjMock on permissionDesignObj {
-    index
-  }
-`;
-
-export default mock.add<permissionDesignObjMock>('permissionDesignObj', [
-  () => ({
-    __typename: 'permissionDesignObj',
-    index: true,
-  }),
-  () => ({
-    __typename: 'permissionDesignObj',
-    index: false,
-  }),
-]);
+export default mock.add<permissionDesignObjMockFragment>(
+  'permissionDesignObj',
+  [
+    () => ({
+      __typename: 'permissionDesignObj',
+      index: true,
+    }),
+    () => ({
+      __typename: 'permissionDesignObj',
+      index: false,
+    }),
+  ],
+);

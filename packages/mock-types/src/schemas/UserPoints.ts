@@ -1,27 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { UserPointsMock } from './__generated__/UserPointsMock';
+import { userPointsMockFragment } from './gqls/__generated__/userPointsMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment UserPointsMock on UserPoints {
-    title {
-      zh_TW
-    }
-    activity {
-      zh_TW
-    }
-    note
-    points
-  }
-`;
-
-export default mock.add<UserPointsMock>('UserPoints', [
+export default mock.add<userPointsMockFragment>('UserPoints', [
   () => ({
     __typename: 'UserPoints',
     title: {

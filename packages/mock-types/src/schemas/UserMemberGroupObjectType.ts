@@ -1,20 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { UserMemberGroupObjectTypeMock } from './__generated__/UserMemberGroupObjectTypeMock';
+import { userMemberGroupObjectTypeMockFragment } from './gqls/__generated__/userMemberGroupObjectTypeMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment UserMemberGroupObjectTypeMock on UserMemberGroupObjectType {
-    unlimitedDate
-  }
-`;
-
-export default mock.add<UserMemberGroupObjectTypeMock>(
+export default mock.add<userMemberGroupObjectTypeMockFragment>(
   'UserMemberGroupObjectType',
   [
     () => ({

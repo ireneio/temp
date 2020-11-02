@@ -1,22 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { GoogleMapModuleMock } from './__generated__/GoogleMapModuleMock';
+import { googleMapModuleMockFragment } from './gqls/__generated__/googleMapModuleMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment GoogleMapModuleMock on GoogleMapModule {
-    width
-    height
-    href
-  }
-`;
-
-export default mock.add<GoogleMapModuleMock>('GoogleMapModule', [
+export default mock.add<googleMapModuleMockFragment>('GoogleMapModule', [
   () => ({
     __typename: 'GoogleMapModule',
     width: 800,

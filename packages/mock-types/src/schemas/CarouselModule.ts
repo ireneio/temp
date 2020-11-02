@@ -1,25 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { CarouselModuleMock } from './__generated__/CarouselModuleMock';
+import { carouselModuleMockFragment } from './gqls/__generated__/carouselModuleMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment CarouselModuleMock on CarouselModule {
-    width
-    autoPlay
-    hoverPause
-    showIndicator
-    showController
-    alt
-  }
-`;
-
-export default mock.add<CarouselModuleMock>('CarouselModule', [
+export default mock.add<carouselModuleMockFragment>('CarouselModule', [
   () =>
     ({
       __typename: 'CarouselModule',
@@ -30,7 +16,7 @@ export default mock.add<CarouselModuleMock>('CarouselModule', [
       showIndicator: true,
       showController: true,
       alt: 'carouselModule',
-    } as CarouselModuleMock),
+    } as carouselModuleMockFragment),
   () =>
     ({
       __typename: 'CarouselModule',
@@ -41,5 +27,5 @@ export default mock.add<CarouselModuleMock>('CarouselModule', [
       showIndicator: true,
       showController: true,
       alt: 'carouselModule',
-    } as CarouselModuleMock),
+    } as carouselModuleMockFragment),
 ]);

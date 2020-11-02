@@ -1,38 +1,22 @@
 // import
-import gql from 'graphql-tag';
 import uuid from 'uuid/v4';
 
 import mock from '../mock';
 
 // graphql typescript
 import {
-  PageConnectionMock,
-  PageConnectionMock_edges as PageConnectionMockEdges,
-} from './__generated__/PageConnectionMock';
+  pageConnectionMockFragment,
+  pageConnectionMockFragment_edges as pageConnectionMockFragmentEdges,
+} from './gqls/__generated__/pageConnectionMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment PageConnectionMock on PageConnection {
-    edges {
-      node {
-        id
-      }
-    }
-    pageInfo {
-      endCursor
-    }
-    total
-  }
-`;
-
 const cache: {
-  [key: string]: PageConnectionMockEdges[];
+  [key: string]: pageConnectionMockFragmentEdges[];
 } = {};
 const MAX_TOTAL = 50;
 
 export default mock.add<
-  PageConnectionMock,
+  pageConnectionMockFragment,
   {},
   {
     first: number;
@@ -47,7 +31,7 @@ export default mock.add<
     const cacheIndex = !after
       ? 0
       : typeCache.findIndex(({ node: { id } }) => id === after);
-    const edges: PageConnectionMockEdges[] = [];
+    const edges: pageConnectionMockFragmentEdges[] = [];
 
     if (cacheIndex !== -1 && cacheIndex + 1 <= typeCache.length - 1)
       edges.push(...typeCache.slice(cacheIndex, cacheIndex + first));
@@ -78,7 +62,7 @@ export default mock.add<
                 },
               },
         )
-        .map((data: PageConnectionMockEdges) => ({
+        .map((data: pageConnectionMockFragmentEdges) => ({
           ...data,
           node: {
             ...data.node,

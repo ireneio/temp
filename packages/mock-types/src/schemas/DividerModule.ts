@@ -1,24 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { DividerModuleMock } from './__generated__/DividerModuleMock';
+import { dividerModuleMockFragment } from './gqls/__generated__/dividerModuleMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment DividerModuleMock on DividerModule {
-    width
-    height
-    justifyContent
-    borderRadius
-    background
-  }
-`;
-
-export default mock.add<DividerModuleMock>('DividerModule', [
+export default mock.add<dividerModuleMockFragment>('DividerModule', [
   () =>
     ({
       __typename: 'DividerModule',
@@ -27,7 +14,7 @@ export default mock.add<DividerModuleMock>('DividerModule', [
       justifyContent: 'FLEX_START',
       borderRadius: 0,
       background: '#cccccc',
-    } as DividerModuleMock),
+    } as dividerModuleMockFragment),
   () =>
     ({
       __typename: 'DividerModule',
@@ -36,7 +23,7 @@ export default mock.add<DividerModuleMock>('DividerModule', [
       justifyContent: 'CENTER',
       borderRadius: 0,
       background: '#000000',
-    } as DividerModuleMock),
+    } as dividerModuleMockFragment),
   () =>
     ({
       __typename: 'DividerModule',
@@ -45,5 +32,5 @@ export default mock.add<DividerModuleMock>('DividerModule', [
       justifyContent: 'FLEX_END',
       borderRadius: 0,
       background: '#cccccc',
-    } as DividerModuleMock),
+    } as dividerModuleMockFragment),
 ]);

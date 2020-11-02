@@ -1,27 +1,16 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { MemberGroupMock } from './__generated__/MemberGroupMock';
+import { memberGroupMockFragment } from './gqls/__generated__/memberGroupMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment MemberGroupMock on MemberGroup {
-    id
-    name
-    type
-  }
-`;
-
-export default mock.add<MemberGroupMock>('MemberGroup', [
+export default mock.add<memberGroupMockFragment>('MemberGroup', [
   () =>
     ({
       __typename: 'MemberGroup',
       id: 'helper-permission',
       name: 'name',
       type: 'custom',
-    } as MemberGroupMock),
+    } as memberGroupMockFragment),
 ]);

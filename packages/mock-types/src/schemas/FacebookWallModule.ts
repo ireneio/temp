@@ -1,28 +1,13 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { FacebookWallModuleMock } from './__generated__/FacebookWallModuleMock';
+import { facebookWallModuleMockFragment } from './gqls/__generated__/facebookWallModuleMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment FacebookWallModuleMock on FacebookWallModule {
-    href
-    justifyContent
-    showPosts
-    showFacepile
-    smallHeader
-    hideCover
-    hideCta
-  }
-`;
-
 const href = 'https://www.facebook.com/meepshop';
 
-export default mock.add<FacebookWallModuleMock>('FacebookWallModule', [
+export default mock.add<facebookWallModuleMockFragment>('FacebookWallModule', [
   () =>
     ({
       __typename: 'FacebookWallModule',
@@ -33,7 +18,7 @@ export default mock.add<FacebookWallModuleMock>('FacebookWallModule', [
       smallHeader: true,
       hideCover: true,
       hideCta: true,
-    } as FacebookWallModuleMock),
+    } as facebookWallModuleMockFragment),
   () =>
     ({
       __typename: 'FacebookWallModule',
@@ -44,7 +29,7 @@ export default mock.add<FacebookWallModuleMock>('FacebookWallModule', [
       smallHeader: false,
       hideCover: false,
       hideCta: false,
-    } as FacebookWallModuleMock),
+    } as facebookWallModuleMockFragment),
   () =>
     ({
       __typename: 'FacebookWallModule',
@@ -55,5 +40,5 @@ export default mock.add<FacebookWallModuleMock>('FacebookWallModule', [
       smallHeader: true,
       hideCover: false,
       hideCta: true,
-    } as FacebookWallModuleMock),
+    } as facebookWallModuleMockFragment),
 ]);

@@ -1,22 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { ImageModuleMock } from './__generated__/ImageModuleMock';
+import { imageModuleMockFragment } from './gqls/__generated__/imageModuleMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment ImageModuleMock on ImageModule {
-    width
-    justifyContent
-    alt
-  }
-`;
-
-export default mock.add<ImageModuleMock>('ImageModule', [
+export default mock.add<imageModuleMockFragment>('ImageModule', [
   () =>
     ({
       __typename: 'ImageModule',
@@ -25,7 +14,7 @@ export default mock.add<ImageModuleMock>('ImageModule', [
       width: 100,
       justifyContent: 'FLEX_START',
       alt: 'alt',
-    } as ImageModuleMock),
+    } as imageModuleMockFragment),
   () =>
     ({
       __typename: 'ImageModule',
@@ -34,5 +23,5 @@ export default mock.add<ImageModuleMock>('ImageModule', [
       width: 100,
       justifyContent: 'FLEX_START',
       alt: 'alt',
-    } as ImageModuleMock),
+    } as imageModuleMockFragment),
 ]);

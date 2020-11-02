@@ -11,10 +11,13 @@ import schemaJSON from '../schema';
 
 import Address from './schemas/Address';
 import AddressService from './schemas/AddressService';
+import Area from './schemas/Area';
 import Authority from './schemas/Authority';
 import BackgroundImage from './schemas/BackgroundImage';
+import City from './schemas/City';
 import ColorList from './schemas/ColorList';
 import ConvenienceStore from './schemas/ConvenienceStore';
+import Country from './schemas/Country';
 import DashboardInfo from './schemas/DashboardInfo';
 import DraftTextProductCustomField from './schemas/DraftTextProductCustomField';
 import ExchangeRate from './schemas/ExchangeRate';
@@ -30,6 +33,7 @@ import gtag from './schemas/gtag';
 import HexColorCode from './schemas/HexColorCode';
 import Image from './schemas/Image';
 import Link from './schemas/Link';
+import Locale from './schemas/Locale';
 import MemberGroup from './schemas/MemberGroup';
 import NotificationObjectType from './schemas/NotificationObjectType';
 import Order from './schemas/Order';
@@ -84,10 +88,13 @@ export default addMocksToSchema({
   mocks: {
     Address,
     AddressService,
+    Area,
     Authority,
     BackgroundImage,
+    City,
     ColorList,
     ConvenienceStore,
+    Country,
     DashboardInfo,
     DraftTextProductCustomField,
     ExchangeRate,
@@ -103,6 +110,7 @@ export default addMocksToSchema({
     HexColorCode,
     Image,
     Link,
+    Locale,
     MemberGroup,
     NotificationObjectType,
     Order,

@@ -1,25 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { ColorListMock } from './__generated__/ColorListMock';
+import { colorListMockFragment } from './gqls/__generated__/colorListMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment ColorListMock on ColorList {
-    data {
-      selected
-      themes {
-        colors
-      }
-    }
-  }
-`;
-
-export default mock.add<ColorListMock>('ColorList', [
+export default mock.add<colorListMockFragment>('ColorList', [
   () => ({
     __typename: 'ColorList',
     data: [

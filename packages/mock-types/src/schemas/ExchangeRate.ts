@@ -1,22 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { ExchangeRateMock } from './__generated__/ExchangeRateMock';
+import { exchangeRateMockFragment } from './gqls/__generated__/exchangeRateMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment ExchangeRateMock on ExchangeRate {
-    base
-    rates
-    timestamp
-  }
-`;
-
-export default mock.add<ExchangeRateMock>('ExchangeRate', [
+export default mock.add<exchangeRateMockFragment>('ExchangeRate', [
   () => ({
     __typename: 'ExchangeRate',
     base: 'USD',

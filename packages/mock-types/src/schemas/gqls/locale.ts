@@ -2,8 +2,8 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
-  fragment localeFragment on Locale {
+export const localeMockFragment = gql`
+  fragment localeMockFragment on Locale {
     zh_TW
     en_US
     ja_JP

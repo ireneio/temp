@@ -1,29 +1,13 @@
 // import
-import gql from 'graphql-tag';
 import moment from 'moment';
 
 import mock from '../mock';
 
 // graphql typescript
-import { paymentObjectTypeMock } from './__generated__/paymentObjectTypeMock';
+import { paymentObjectTypeMockFragment } from './gqls/__generated__/paymentObjectTypeMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment paymentObjectTypeMock on paymentObjectType {
-    name
-    template
-    description
-    atm {
-      bankName
-      bankCode
-      account
-      expireDate
-    }
-  }
-`;
-
-export default mock.add<paymentObjectTypeMock>('paymentObjectType', [
+export default mock.add<paymentObjectTypeMockFragment>('paymentObjectType', [
   () =>
     ({
       __typename: 'paymentObjectType',
@@ -31,7 +15,7 @@ export default mock.add<paymentObjectTypeMock>('paymentObjectType', [
       template: 'custom',
       description: 'payment description',
       atm: null,
-    } as paymentObjectTypeMock),
+    } as paymentObjectTypeMockFragment),
   () =>
     ({
       __typename: 'paymentObjectType',
@@ -39,7 +23,7 @@ export default mock.add<paymentObjectTypeMock>('paymentObjectType', [
       template: 'allpay',
       description: null,
       atm: null,
-    } as paymentObjectTypeMock),
+    } as paymentObjectTypeMockFragment),
   () =>
     ({
       __typename: 'paymentObjectType',
@@ -47,7 +31,7 @@ export default mock.add<paymentObjectTypeMock>('paymentObjectType', [
       template: 'ezpay',
       description: null,
       atm: null,
-    } as paymentObjectTypeMock),
+    } as paymentObjectTypeMockFragment),
   () =>
     ({
       __typename: 'paymentObjectType',
@@ -55,7 +39,7 @@ export default mock.add<paymentObjectTypeMock>('paymentObjectType', [
       template: 'hitrust',
       description: null,
       atm: null,
-    } as paymentObjectTypeMock),
+    } as paymentObjectTypeMockFragment),
   () =>
     ({
       __typename: 'paymentObjectType',
@@ -63,7 +47,7 @@ export default mock.add<paymentObjectTypeMock>('paymentObjectType', [
       template: 'gmo',
       description: null,
       atm: null,
-    } as paymentObjectTypeMock),
+    } as paymentObjectTypeMockFragment),
   () =>
     ({
       __typename: 'paymentObjectType',
@@ -71,7 +55,7 @@ export default mock.add<paymentObjectTypeMock>('paymentObjectType', [
       template: 'cathay',
       description: null,
       atm: null,
-    } as paymentObjectTypeMock),
+    } as paymentObjectTypeMockFragment),
   () =>
     ({
       __typename: 'paymentObjectType',
@@ -85,5 +69,5 @@ export default mock.add<paymentObjectTypeMock>('paymentObjectType', [
         account: 'xxxxxxxxxxxxx',
         expireDate: moment().format(),
       },
-    } as paymentObjectTypeMock),
+    } as paymentObjectTypeMockFragment),
 ]);

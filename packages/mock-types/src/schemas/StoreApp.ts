@@ -1,21 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { StoreAppMock } from './__generated__/StoreAppMock';
+import { storeAppMockFragment } from './gqls/__generated__/storeAppMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment StoreAppMock on StoreApp {
-    isInstalled
-    plugin
-  }
-`;
-
-export default mock.add<StoreAppMock>('StoreApp', [
+export default mock.add<storeAppMockFragment>('StoreApp', [
   () => ({
     __typename: 'StoreApp',
     isInstalled: 1,

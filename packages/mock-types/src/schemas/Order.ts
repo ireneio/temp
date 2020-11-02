@@ -1,28 +1,14 @@
 // import
-import gql from 'graphql-tag';
 import moment from 'moment';
 
 import mock from '../mock';
 
 // graphql typescript
-import { OrderMock } from './__generated__/OrderMock';
+import { orderMockFragment } from './gqls/__generated__/orderMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment OrderMock on Order {
-    id
-    orderNo
-    status
-    createdAt
-    paidMessage {
-      note
-    }
-  }
-`;
-
 export default mock.add<
-  OrderMock,
+  orderMockFragment,
   {
     node: { id: string };
   },

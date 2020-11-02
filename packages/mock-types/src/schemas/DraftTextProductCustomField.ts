@@ -1,20 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { DraftTextProductCustomFieldMock } from './__generated__/DraftTextProductCustomFieldMock';
+import { draftTextProductCustomFieldMockFragment } from './gqls/__generated__/draftTextProductCustomFieldMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment DraftTextProductCustomFieldMock on DraftTextProductCustomField {
-    value
-  }
-`;
-
-export default mock.add<DraftTextProductCustomFieldMock>(
+export default mock.add<draftTextProductCustomFieldMockFragment>(
   'DraftTextProductCustomField',
   [
     () => ({

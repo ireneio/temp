@@ -1,22 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { GMOUserInfoMock } from './__generated__/GMOUserInfoMock';
+import { gmoUserInfoMockFragment } from './gqls/__generated__/gmoUserInfoMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment GMOUserInfoMock on GMOUserInfo {
-    exist
-    cardNumberFront
-    cardNumberLater
-  }
-`;
-
-export default mock.add<GMOUserInfoMock>('GMOUserInfo', [
+export default mock.add<gmoUserInfoMockFragment>('GMOUserInfo', [
   () => ({
     __typename: 'GMOUserInfo',
     exist: true,

@@ -1,31 +1,22 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { PaymentAccountForCathayMock } from './__generated__/PaymentAccountForCathayMock';
+import { paymentAccountForCathayMockFragment } from './gqls/__generated__/paymentAccountForCathayMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment PaymentAccountForCathayMock on PaymentAccountForCathay {
-    type
-  }
-`;
-
-export default mock.add<PaymentAccountForCathayMock>(
+export default mock.add<paymentAccountForCathayMockFragment>(
   'PaymentAccountForCathay',
   [
     () =>
       ({
         __typename: 'PaymentAccountForCathay',
         type: 'CREDIT',
-      } as PaymentAccountForCathayMock),
+      } as paymentAccountForCathayMockFragment),
     () =>
       ({
         __typename: 'PaymentAccountForCathay',
         type: 'ATM',
-      } as PaymentAccountForCathayMock),
+      } as paymentAccountForCathayMockFragment),
   ],
 );

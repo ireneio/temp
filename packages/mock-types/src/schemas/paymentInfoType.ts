@@ -1,20 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { paymentInfoTypeMock } from './__generated__/paymentInfoTypeMock';
+import { paymentInfoTypeMockFragment } from './gqls/__generated__/paymentInfoTypeMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment paymentInfoTypeMock on paymentInfoType {
-    status
-  }
-`;
-
-export default mock.add<paymentInfoTypeMock>('paymentInfoType', [
+export default mock.add<paymentInfoTypeMockFragment>('paymentInfoType', [
   () => ({
     __typename: 'paymentInfoType',
     status: 0,

@@ -1,27 +1,13 @@
 // import
-import gql from 'graphql-tag';
 import uuid from 'uuid/v4';
 
 import mock from '../mock';
 
 // graphql typescript
-import { ConvenienceStoreMock } from './__generated__/ConvenienceStoreMock';
+import { convenienceStoreMockFragment } from './gqls/__generated__/convenienceStoreMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment ConvenienceStoreMock on ConvenienceStore {
-    storeNumber
-    famiServiceNumber
-    name
-    address
-    phones
-    ecpayStoreNumber
-    ezshipStoreNumber
-  }
-`;
-
-export default mock.add<ConvenienceStoreMock>('ConvenienceStore', [
+export default mock.add<convenienceStoreMockFragment>('ConvenienceStore', [
   () => ({
     __typename: 'ConvenienceStore',
     storeNumber: uuid(),

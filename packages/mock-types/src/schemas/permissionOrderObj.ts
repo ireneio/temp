@@ -1,25 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { permissionOrderObjMock } from './__generated__/permissionOrderObjMock';
+import { permissionOrderObjMockFragment } from './gqls/__generated__/permissionOrderObjMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment permissionOrderObjMock on permissionOrderObj {
-    index
-    paymentStatus
-    shipmentStatus
-    status
-    create
-    export
-  }
-`;
-
-export default mock.add<permissionOrderObjMock>('permissionOrderObj', [
+export default mock.add<permissionOrderObjMockFragment>('permissionOrderObj', [
   () => ({
     __typename: 'permissionOrderObj',
     index: true,

@@ -1,23 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { ViewTrackingModuleMock } from './__generated__/ViewTrackingModuleMock';
+import { viewTrackingModuleMockFragment } from './gqls/__generated__/viewTrackingModuleMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment ViewTrackingModuleMock on ViewTrackingModule {
-    tracking {
-      name
-      category
-    }
-  }
-`;
-
-export default mock.add<ViewTrackingModuleMock>('ViewTrackingModule', [
+export default mock.add<viewTrackingModuleMockFragment>('ViewTrackingModule', [
   () =>
     ({
       __typename: 'ViewTrackingModule',
@@ -26,7 +14,7 @@ export default mock.add<ViewTrackingModuleMock>('ViewTrackingModule', [
         name: 'tracking',
         category: null,
       },
-    } as ViewTrackingModuleMock),
+    } as viewTrackingModuleMockFragment),
   () =>
     ({
       __typename: 'ViewTrackingModule',
@@ -35,5 +23,5 @@ export default mock.add<ViewTrackingModuleMock>('ViewTrackingModule', [
         name: 'tracking',
         category: 'category',
       },
-    } as ViewTrackingModuleMock),
+    } as viewTrackingModuleMockFragment),
 ]);

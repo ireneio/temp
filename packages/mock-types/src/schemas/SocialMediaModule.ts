@@ -1,26 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { SocialMediaModuleMock } from './__generated__/SocialMediaModuleMock';
+import { socialMediaModuleMockFragment } from './gqls/__generated__/socialMediaModuleMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment SocialMediaModuleMock on SocialMediaModule {
-    socialMediaType
-    justifyContent
-    color
-    showFacebook
-    showLine
-    showWechat
-    showTwitter
-  }
-`;
-
-export default mock.add<SocialMediaModuleMock>('SocialMediaModule', [
+export default mock.add<socialMediaModuleMockFragment>('SocialMediaModule', [
   () =>
     ({
       __typename: 'SocialMediaModule',
@@ -31,7 +16,7 @@ export default mock.add<SocialMediaModuleMock>('SocialMediaModule', [
       showLine: true,
       showWechat: true,
       showTwitter: true,
-    } as SocialMediaModuleMock),
+    } as socialMediaModuleMockFragment),
   () =>
     ({
       __typename: 'SocialMediaModule',
@@ -42,7 +27,7 @@ export default mock.add<SocialMediaModuleMock>('SocialMediaModule', [
       showLine: true,
       showWechat: true,
       showTwitter: true,
-    } as SocialMediaModuleMock),
+    } as socialMediaModuleMockFragment),
   () =>
     ({
       __typename: 'SocialMediaModule',
@@ -53,7 +38,7 @@ export default mock.add<SocialMediaModuleMock>('SocialMediaModule', [
       showLine: true,
       showWechat: true,
       showTwitter: true,
-    } as SocialMediaModuleMock),
+    } as socialMediaModuleMockFragment),
   () =>
     ({
       __typename: 'SocialMediaModule',
@@ -64,5 +49,5 @@ export default mock.add<SocialMediaModuleMock>('SocialMediaModule', [
       showLine: true,
       showWechat: true,
       showTwitter: true,
-    } as SocialMediaModuleMock),
+    } as socialMediaModuleMockFragment),
 ]);

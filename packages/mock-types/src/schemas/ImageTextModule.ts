@@ -1,37 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { ImageTextModuleMock } from './__generated__/ImageTextModuleMock';
+import { imageTextModuleMockFragment } from './gqls/__generated__/imageTextModuleMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment ImageTextModuleMock on ImageTextModule {
-    width
-    title {
-      content
-      fontSize
-    }
-    description {
-      content
-      fontSize
-    }
-    button {
-      content
-      fontSize
-    }
-    titleBold
-    color
-    hoverColor
-    position
-    alt
-  }
-`;
-
-export default mock.add<ImageTextModuleMock>('ImageTextModule', [
+export default mock.add<imageTextModuleMockFragment>('ImageTextModule', [
   () =>
     ({
       __typename: 'ImageTextModule',
@@ -58,5 +32,5 @@ export default mock.add<ImageTextModuleMock>('ImageTextModule', [
       hoverColor: '#cccccc',
       position: 'LEFT_TOP',
       alt: 'ImageTextModule',
-    } as ImageTextModuleMock),
+    } as imageTextModuleMockFragment),
 ]);

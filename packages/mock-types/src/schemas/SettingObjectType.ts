@@ -1,20 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { SettingObjectTypeMock } from './__generated__/SettingObjectTypeMock';
+import { settingObjectTypeMockFragment } from './gqls/__generated__/settingObjectTypeMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment SettingObjectTypeMock on SettingObjectType {
-    lockedBirthday
-  }
-`;
-
-export default mock.add<SettingObjectTypeMock>('SettingObjectType', [
+export default mock.add<settingObjectTypeMockFragment>('SettingObjectType', [
   () => ({
     __typename: 'SettingObjectType',
     lockedBirthday: false,

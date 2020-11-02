@@ -1,20 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { VideoLinkProductCustomFieldMock } from './__generated__/VideoLinkProductCustomFieldMock';
+import { videoLinkProductCustomFieldMockFragment } from './gqls/__generated__/videoLinkProductCustomFieldMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment VideoLinkProductCustomFieldMock on VideoLinkProductCustomField {
-    value
-  }
-`;
-
-export default mock.add<VideoLinkProductCustomFieldMock>(
+export default mock.add<videoLinkProductCustomFieldMockFragment>(
   'VideoLinkProductCustomField',
   [
     () => ({

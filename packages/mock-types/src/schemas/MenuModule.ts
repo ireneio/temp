@@ -1,22 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { MenuModuleMock } from './__generated__/MenuModuleMock';
+import { menuModuleMockFragment } from './gqls/__generated__/menuModuleMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment MenuModuleMock on MenuModule {
-    menu {
-      id
-    }
-  }
-`;
-
-export default mock.add<MenuModuleMock>('MenuModule', [
+export default mock.add<menuModuleMockFragment>('MenuModule', [
   () => ({
     __typename: 'MenuModule',
     menu: {

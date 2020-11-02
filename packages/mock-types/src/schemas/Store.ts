@@ -1,48 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
-import getLocale from './utils/getLocale';
-
 // graphql typescript
-import { StoreMock } from './__generated__/StoreMock';
-
-// graphql import
-import localeFragment from './fragments/locale';
+import { storeMockFragment } from './gqls/__generated__/storeMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment StoreMock on Store {
-    adminStatus
-    domain
-    currency
-    unpaidBills {
-      totalCount
-    }
-
-    defaultHomePage {
-      id
-      pageType
-      title {
-        ...localeFragment
-      }
-    }
-
-    defaultProductListPage {
-      id
-      pageType
-      title {
-        ...localeFragment
-      }
-    }
-  }
-
-  ${localeFragment}
-`;
-
-export default mock.add<StoreMock>('Store', [
+export default mock.add<storeMockFragment>('Store', [
   () =>
     ({
       __typename: 'Store',
@@ -57,15 +20,23 @@ export default mock.add<StoreMock>('Store', [
         __typename: 'Page',
         id: 'home-page-id',
         pageType: 'home',
-        title: getLocale('home-page-id'),
+        title: {
+          __typename: 'Locale',
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          zh_TW: 'home-page-id',
+        },
       },
       defaultProductListPage: {
         __typename: 'Page',
         id: 'default-product-list-page-id',
         pageType: 'products',
-        title: getLocale('default-product-list-page-id'),
+        title: {
+          __typename: 'Locale',
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          zh_TW: 'default-product-list-page-id',
+        },
       },
-    } as StoreMock),
+    } as storeMockFragment),
   () =>
     ({
       __typename: 'Store',
@@ -80,13 +51,21 @@ export default mock.add<StoreMock>('Store', [
         __typename: 'Page',
         id: 'home-page-id',
         pageType: 'home',
-        title: getLocale('home-page-id'),
+        title: {
+          __typename: 'Locale',
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          zh_TW: 'home-page-id',
+        },
       },
       defaultProductListPage: {
         __typename: 'Page',
         id: 'default-product-list-page-id',
         pageType: 'products',
-        title: getLocale('default-product-list-page-id'),
+        title: {
+          __typename: 'Locale',
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          zh_TW: 'default-product-list-page-id',
+        },
       },
-    } as StoreMock),
+    } as storeMockFragment),
 ]);

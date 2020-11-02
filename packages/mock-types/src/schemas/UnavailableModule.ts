@@ -1,24 +1,16 @@
 // import
-import gql from 'graphql-tag';
 import uuid from 'uuid/v4';
 
 import mock from '../mock';
 
 // graphql typescript
-import { UnavailableModuleMock } from './__generated__/UnavailableModuleMock';
+import { unavailableModuleMockFragment } from './gqls/__generated__/unavailableModuleMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment UnavailableModuleMock on UnavailableModule {
-    id
-  }
-`;
-
-export default mock.add<UnavailableModuleMock>('UnavailableModule', [
+export default mock.add<unavailableModuleMockFragment>('UnavailableModule', [
   () =>
     ({
       __typename: 'UnavailableModule',
       id: uuid(),
-    } as UnavailableModuleMock),
+    } as unavailableModuleMockFragment),
 ]);

@@ -1,36 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { UserMock } from './__generated__/UserMock';
+import { userMockFragment } from './gqls/__generated__/userMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment UserMock on User {
-    role
-    order(orderId: "test") {
-      id
-    }
-    groupId
-    name
-    email
-    gender
-    additionalInfo {
-      tel
-      mobile
-    }
-    birthday {
-      year
-      month
-      day
-    }
-  }
-`;
-
-export default mock.add<UserMock>('User', [
+export default mock.add<userMockFragment>('User', [
   () =>
     ({
       __typename: 'User',
@@ -45,7 +20,7 @@ export default mock.add<UserMock>('User', [
       shippableRecipientAddresses: [],
       birthday: null,
       order: null,
-    } as UserMock),
+    } as userMockFragment),
   () =>
     ({
       __typename: 'User',
@@ -71,5 +46,5 @@ export default mock.add<UserMock>('User', [
         __typename: 'Order',
         id: 'order-id',
       },
-    } as UserMock),
+    } as userMockFragment),
 ]);

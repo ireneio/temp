@@ -1,51 +1,23 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
-import getCountry from './utils/getCountry';
-
 // graphql typescript
-import { AddressServiceMock } from './__generated__/AddressServiceMock';
-
-// graphql import
-import localeFragment from './fragments/locale';
+import { addressServiceMockFragment } from './gqls/__generated__/addressServiceMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment AddressServiceMock on AddressService {
-    countries {
-      id
-      name {
-        ...localeFragment
-      }
-      cities {
-        id
-        name {
-          ...localeFragment
-        }
-        areas {
-          id
-          name {
-            ...localeFragment
-          }
-          zipCodes
-        }
-      }
-    }
-  }
-
-  ${localeFragment}
-`;
-
-export default mock.add<AddressServiceMock>('AddressService', [
+export default mock.add<addressServiceMockFragment>('AddressService', [
   () =>
     ({
       __typename: 'AddressService',
       countries: [
-        getCountry('a1e4aa6c-5a52-408a-9ede-471b10b1e265'),
-        getCountry('6cd709bd-3d05-47a4-b86d-b54e64af0538'),
+        {
+          __typename: 'Country',
+          id: 'a1e4aa6c-5a52-408a-9ede-471b10b1e265',
+        },
+        {
+          __typename: 'Country',
+          id: '6cd709bd-3d05-47a4-b86d-b54e64af0538',
+        },
       ],
-    } as AddressServiceMock),
+    } as addressServiceMockFragment),
 ]);

@@ -62,7 +62,7 @@ module.exports = ({ config }) => {
       __dirname,
       key.replace(/@/, '../'),
       // TODO: remove fragment.ts when all fragments move to fragments folder
-      gqls === 'fragment' ? './src/fragment.ts' : `./src/${gqls}/index.ts`,
+      gqls === 'fragment' ? './src/fragment.ts' : `./src/${gqls}`,
     );
 
     return !fs.existsSync(moduleGqlsPath)

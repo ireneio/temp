@@ -1,34 +1,23 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { gtagMock } from './__generated__/gtagMock';
+import { gtagMockFragment } from './gqls/__generated__/gtagMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment gtagMock on gtag {
-    type
-    eventName
-    code
-  }
-`;
-
-export default mock.add<gtagMock>('gtag', [
+export default mock.add<gtagMockFragment>('gtag', [
   () =>
     ({
       __typename: 'gtag',
       type: 'google_analytics',
       eventName: 'analytics_config',
       code: 'google_analytics analytics_config',
-    } as gtagMock),
+    } as gtagMockFragment),
   () =>
     ({
       __typename: 'gtag',
       type: 'google_adwords',
       eventName: 'purchase',
       code: `gtag('event', 'conversion', {'send_to': 'AW-google_adwords-purchase'});`,
-    } as gtagMock),
+    } as gtagMockFragment),
 ]);

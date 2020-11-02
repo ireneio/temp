@@ -1,22 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { StoreExperimentMock } from './__generated__/StoreExperimentMock';
+import { storeExperimentMockFragment } from './gqls/__generated__/storeExperimentMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment StoreExperimentMock on StoreExperiment {
-    ecfitEnabled
-    hiddingMeepshopMaxInFooterEnabled
-    isGoodDealEnabled
-  }
-`;
-
-export default mock.add<StoreExperimentMock>('StoreExperiment', [
+export default mock.add<storeExperimentMockFragment>('StoreExperiment', [
   () => ({
     __typename: 'StoreExperiment',
     ecfitEnabled: true,

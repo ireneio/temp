@@ -1,20 +1,11 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
 // graphql typescript
-import { permissionFileObjMock } from './__generated__/permissionFileObjMock';
+import { permissionFileObjMockFragment } from './gqls/__generated__/permissionFileObjMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment permissionFileObjMock on permissionFileObj {
-    index
-  }
-`;
-
-export default mock.add<permissionFileObjMock>('permissionFileObj', [
+export default mock.add<permissionFileObjMockFragment>('permissionFileObj', [
   () => ({
     __typename: 'permissionFileObj',
     index: true,

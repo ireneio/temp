@@ -1,31 +1,17 @@
 // import
-import gql from 'graphql-tag';
-
 import mock from '../mock';
 
-import getLocale from './utils/getLocale';
-
 // graphql typescript
-import { StoreShipmentMock } from './__generated__/StoreShipmentMock';
-
-// graphql import
-import localeFragment from './fragments/locale';
+import { storeShipmentMockFragment } from './gqls/__generated__/storeShipmentMockFragment';
 
 // definition
-// eslint-disable-next-line no-unused-expressions
-gql`
-  fragment StoreShipmentMock on StoreShipment {
-    title {
-      ...localeFragment
-    }
-  }
-
-  ${localeFragment}
-`;
-
-export default mock.add<StoreShipmentMock>('StoreShipment', [
+export default mock.add<storeShipmentMockFragment>('StoreShipment', [
   () => ({
     __typename: 'StoreShipment',
-    title: getLocale('shipment'),
+    title: {
+      __typename: 'Locale',
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      zh_TW: 'shipment',
+    },
   }),
 ]);
