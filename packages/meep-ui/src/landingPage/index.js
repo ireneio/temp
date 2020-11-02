@@ -376,20 +376,6 @@ export default class LandingPage extends React.PureComponent {
             if (this.isUnmounted) return;
 
             if (formData && formData.url) {
-              if (/CashSystemFrontEnd\/Query/.test(formData.url)) {
-                goTo({
-                  pathname: `/ezpay/cvcode/${id}`,
-                  params: {
-                    search: !redirectPage
-                      ? {}
-                      : {
-                          redirectUrl: redirectPage,
-                        },
-                  },
-                });
-                return;
-              }
-
               if (formData.type === 'GET') {
                 window.location = formData.url;
                 return;

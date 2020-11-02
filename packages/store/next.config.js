@@ -60,10 +60,6 @@ module.exports = basicConfig({
         pattern: '/forgotPassword/:token',
         page: 'forgotPassword',
       },
-      {
-        pattern: '/ezpay/cvcode/:orderId',
-        page: 'ezpay',
-      },
     ],
   },
   lessLoaderOptions: {

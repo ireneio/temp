@@ -48,9 +48,6 @@ module.exports = routes
   // 忘記密碼
   .add('forgotPassword', '/forgotPassword/:token', 'forgotPassword')
 
-  // 藍星金流 付款頁面
-  .add('ezpay', '/ezpay/cvcode/:orderId', 'ezpay')
-
   // unsubscribe email
   .add('unsubscribe', '/unsubscribe/:userId', '/unsubscribe/[userId]')
 

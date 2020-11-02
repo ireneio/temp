@@ -148,7 +148,6 @@ export const PAYMENT_TEMPLATE_TYPE = PropTypes.oneOf([
   'allpay',
   'hitrust',
   'gmo',
-  'ezpay',
   'cathay',
   'chinatrust',
   'paypal',

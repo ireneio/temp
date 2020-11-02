@@ -317,11 +317,6 @@ export default class Checkout extends React.PureComponent {
         });
 
         if (formData?.url) {
-          if (/CashSystemFrontEnd\/Query/.test(formData.url)) {
-            goTo({ pathname: `/ezpay/cvcode/${id}` });
-            return;
-          }
-
           if (formData.type === 'POST') {
             this.setState({ formData });
             return;
