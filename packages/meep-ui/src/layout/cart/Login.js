@@ -66,7 +66,7 @@ export default class Login extends React.PureComponent {
 
   submit = e => {
     e.preventDefault();
-    const { form, login, adTrack } = this.props;
+    const { form, login, adTrack, toggleCart } = this.props;
 
     form.validateFields((err, { email, password }) => {
       if (!err) {
@@ -75,6 +75,7 @@ export default class Login extends React.PureComponent {
           password,
           from: 'cart',
           callback: () => {
+            toggleCart(false);
             adTrack.completeRegistration();
           },
         });
