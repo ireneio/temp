@@ -39,6 +39,7 @@
     "@store/member-wish-list": "^0.68.0",
     "@store/page": "^0.68.0",
     "@store/thank-you-page": "^0.68.0",
+    "@store/unsubscribe-email": "^0.1.0",
     "@store/utils": "^0.68.0",
     "body-parser": "^1.18.3",
     "color": "^3.0.0",

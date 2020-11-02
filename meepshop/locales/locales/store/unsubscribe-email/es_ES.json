@@ -1,0 +1,8 @@
+{
+  "title": "Te has dado de baja",
+  "message": {
+    "0": "Desafortunadamente, ha decidido dejar de suscribirse a las ofertas de nuestra tienda y ya no recibirá correos electrónicos relacionados.",
+    "1": "Para recibir la oferta nuevamente, puede volver a suscribirse en el perfil de miembro después de iniciar sesión."
+  },
+  "back": "Volver a la tienda"
+}

@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@store/unsubscribe-email",
+  "description": "Use to unsubscribe email",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/link": "^0.68.0",
+    "@meepshop/utils": "^0.68.0"
+  },
+  "keywords": ["store", "unsubscribe email"]
+}
