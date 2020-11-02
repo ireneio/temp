@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## 0.68.1 (2020-11-02)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1236](https://github.com/meepshop/meep-lerna/pull/1236) 【優化】移除藍新 Ezpay 金流 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1204](https://github.com/meepshop/meep-lerna/pull/1204) 【功能】電子報取消訂閱 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1257](https://github.com/meepshop/meep-lerna/pull/1257) 【BUG】前往結帳 - 購物車 panel 登入會員，panel 無消失 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#1253](https://github.com/meepshop/meep-lerna/pull/1253) (@meepshop/frontend) Remove antd lock ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1258](https://github.com/meepshop/meep-lerna/pull/1258) (@admin/account-setting) Rename fragment ([@happycat6323](https://github.com/happycat6323))
+- [#1254](https://github.com/meepshop/meep-lerna/pull/1254) (@meepshop/frontend) Rename gqls ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.68.0 (2020-10-28)
 
 #### :rocket: New Feature
