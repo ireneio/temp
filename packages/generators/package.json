@@ -4,7 +4,7 @@
   "description": "Manage template generators",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.68.0",
+  "version": "0.68.1",
   "dependencies": {
     "lodash.camelcase": "^4.3.0",
     "validator": "^12.0.0",
