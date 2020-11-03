@@ -23,6 +23,7 @@
       "@meepshop/utils/lib/*": ["meepshop/utils/src/*"],
       "@meepshop/apollo/lib/*": ["meepshop/apollo/src/*"],
       "@meepshop/page/lib/*": ["meepshop/page/src/*"],
+      "@meepshop/modules/lib/*": ["meepshop/modules/src/*"],
       "@meepshop/carousel/lib/*": ["meepshop/carousel/src/*"],
       "@meepshop/divider/lib/*": ["meepshop/divider/src/*"],
       "@meepshop/draft-text/lib/*": ["meepshop/draft-text/src/*"],

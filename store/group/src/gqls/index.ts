@@ -2,15 +2,9 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import {
-  modulesFragment,
-  contextUserFragment,
-  contextOrderFragment,
-} from '@meepshop/modules';
+import { modulesFragment } from '@meepshop/modules/lib/gqls';
 
 // definition
-export { contextUserFragment, contextOrderFragment };
-
 export const groupFragment = gql`
   fragment groupFragment on Page {
     id

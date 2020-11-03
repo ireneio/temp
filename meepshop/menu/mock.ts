@@ -6,8 +6,7 @@ import { dashboardCost_scaledSrc as dashboardCost } from '@meepshop/images';
 
 // graphql typescript
 import { ImagePositionEnum } from '../../__generated__/meepshop';
-
-import { PropsType } from './src/index';
+import { menuFragment } from './src/gqls/__generated__/menuFragment';
 
 // definition
 const ACTIONS: number[] = [].constructor
@@ -30,8 +29,8 @@ const IMAGES = ['ONLY', 'UPON', 'LEFT', 'RIGHT', 'BELOW'].map(
 );
 
 const generateMenuPages = (
-  pages: NonNullable<PropsType['menu']>['pages'] = null,
-): NonNullable<PropsType['menu']>['pages'] =>
+  pages: NonNullable<menuFragment['menu']>['pages'] = null,
+): NonNullable<menuFragment['menu']>['pages'] =>
   ACTIONS.map((action: number) => ({
     ...(IMAGES[action] || { image: null, imagePosition: null }),
     __typename: 'MenuPageObjectType' as 'MenuPageObjectType',
@@ -80,37 +79,42 @@ export default {
       showSearchbar: true,
     },
   },
-  order: {
-    __typename: 'Order',
-    id: uuid(),
-    categories: [
+  cart: {
+    __typename: 'OrderList',
+    data: [
       {
-        __typename: 'groupProductsObjectType',
+        __typename: 'Order',
         id: uuid(),
-        products: [
+        categories: [
           {
-            __typename: 'productsObjectType',
+            __typename: 'groupProductsObjectType',
             id: uuid(),
-            type: 'gift',
-            quantity: 10,
-          },
-          {
-            __typename: 'productsObjectType',
-            id: uuid(),
-            type: 'product',
-            quantity: 3,
-          },
-          {
-            __typename: 'productsObjectType',
-            id: uuid(),
-            type: 'product',
-            quantity: 5,
+            products: [
+              {
+                __typename: 'productsObjectType',
+                id: uuid(),
+                type: 'gift',
+                quantity: 10,
+              },
+              {
+                __typename: 'productsObjectType',
+                id: uuid(),
+                type: 'product',
+                quantity: 3,
+              },
+              {
+                __typename: 'productsObjectType',
+                id: uuid(),
+                type: 'product',
+                quantity: 5,
+              },
+            ],
           },
         ],
       },
     ],
   },
-  user: {
+  viewer: {
     __typename: 'User',
     id: uuid(),
     role: 'SHOPPER',
@@ -139,4 +143,4 @@ export default {
       },
     },
   },
-} as PropsType;
+} as menuFragment;

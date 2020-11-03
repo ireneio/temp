@@ -10,11 +10,7 @@ import usePage from './hooks/usePage';
 
 // graphql import
 import { pageFragment } from '@meepshop/page/lib/gqls';
-import {
-  groupFragment,
-  contextUserFragment,
-  contextOrderFragment,
-} from '@store/group/lib/gqls';
+import { groupFragment } from '@store/group/lib/gqls';
 
 // definition
 export default React.memo(() => {
@@ -35,12 +31,6 @@ export default React.memo(() => {
           !data.viewer?.store?.page
             ? null
             : filter(groupFragment, data.viewer.store.page)
-        }
-        user={!data.viewer ? null : filter(contextUserFragment, data.viewer)}
-        order={
-          !data.getCartList?.data?.[0]
-            ? null
-            : filter(contextOrderFragment, data.getCartList.data[0])
         }
       />
     </Page>

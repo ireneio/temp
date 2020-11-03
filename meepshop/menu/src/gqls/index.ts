@@ -1,10 +1,6 @@
 // import
 import gql from 'graphql-tag';
 
-// graphql typescript
-import { menuUserFragment as menuUserFragmentType } from './__generated__/menuUserFragment';
-import { menuOrderFragment as menuOrderFragmentType } from './__generated__/menuOrderFragment';
-
 // graphql import
 import {
   menuItemUserFragment,
@@ -14,33 +10,9 @@ import {
 } from './menuItem';
 import { usePagesWithSearchBarFragment } from './usePagesWithSearchBar';
 
-// typescript definition
-export interface ContextType {
-  user: menuUserFragmentType | null;
-  order: menuOrderFragmentType | null;
-}
-
 // definition
-export const menuUserFragment = gql`
-  fragment menuUserFragment on User {
-    id
-    ...menuItemUserFragment
-  }
-
-  ${menuItemUserFragment}
-`;
-
-export const menuOrderFragment = gql`
-  fragment menuOrderFragment on Order {
-    id
-    ...menuItemOrderFragment
-  }
-
-  ${menuItemOrderFragment}
-`;
-
-export const menuMenuModuleFragment = gql`
-  fragment menuMenuModuleFragment on MenuModule {
+export const menuFragment = gql`
+  fragment menuFragment on MenuModule {
     id
     menu {
       id
@@ -61,9 +33,21 @@ export const menuMenuModuleFragment = gql`
         ...usePagesWithSearchBarFragment
       }
     }
+    viewer {
+      id
+      ...menuItemUserFragment
+    }
+    cart {
+      data {
+        id
+        ...menuItemOrderFragment
+      }
+    }
   }
 
   ${menuItemMenuPageObjectTypeFragment}
   ${menuItemMenuDesignObjectTypeFragment}
   ${usePagesWithSearchBarFragment}
+  ${menuItemUserFragment}
+  ${menuItemOrderFragment}
 `;

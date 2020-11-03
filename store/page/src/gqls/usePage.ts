@@ -3,11 +3,7 @@ import gql from 'graphql-tag';
 
 // graphql import
 import { pageFragment } from '@meepshop/page/lib/gqls';
-import {
-  groupFragment,
-  contextUserFragment,
-  contextOrderFragment,
-} from '@store/group/lib/gqls';
+import { groupFragment } from '@store/group/lib/gqls';
 
 // definition
 const usePageFragment = gql`
@@ -20,20 +16,10 @@ const usePageFragment = gql`
           ...pageFragment
         }
       }
-      ...contextUserFragment
-    }
-
-    getCartList(search: { showDetail: true }) {
-      data {
-        id
-        ...contextOrderFragment
-      }
     }
   }
 
   ${pageFragment}
-  ${contextUserFragment}
-  ${contextOrderFragment}
 `;
 
 export const getHomePage = gql`

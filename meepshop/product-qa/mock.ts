@@ -45,7 +45,7 @@ export default {
       },
     ],
   },
-  user: {
+  viewer: {
     __typename: 'User',
     id: uuid(),
     role: 'SHOPPER',

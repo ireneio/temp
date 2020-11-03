@@ -17,18 +17,13 @@ import useCreateProductQA from './hooks/useCreateProductQA';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { productQaProductQaModuleFragment } from './gqls/__generated__/productQaProductQaModuleFragment';
-import { productQaUserFragment } from './gqls/__generated__/productQaUserFragment';
+import { productQaFragment } from './gqls/__generated__/productQaFragment';
 
 // graphql import
 import { useCreateProductQAFragment } from './gqls/useCreateProductQA';
 
 // typescript definition
-export interface PropsType
-  extends FormComponentProps,
-    productQaProductQaModuleFragment {
-  user: productQaUserFragment;
-}
+export interface PropsType extends FormComponentProps, productQaFragment {}
 
 // definition
 const { Item: FormItem } = Form;
@@ -39,7 +34,7 @@ export default Form.create<FormComponentProps>()(
     ({
       width,
       product,
-      user,
+      viewer,
       form: { getFieldDecorator, resetFields, validateFields },
     }: PropsType) => {
       const { t } = useTranslation('product-qa');
@@ -127,7 +122,7 @@ export default Form.create<FormComponentProps>()(
             })}
           </div>
 
-          {user.role !== 'SHOPPER' ? null : (
+          {viewer?.role !== 'SHOPPER' ? null : (
             <FormItem>
               {getFieldDecorator('userEmail', {
                 rules: [

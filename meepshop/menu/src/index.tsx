@@ -1,6 +1,3 @@
-// typescript import
-import { ContextType } from './gqls';
-
 // import
 import React from 'react';
 import { filter } from 'graphql-anywhere';
@@ -10,7 +7,7 @@ import MenuItem from './MenuItem';
 import usePagesWithSearchBar from './hooks/usePagesWithSearchBar';
 
 // graphql typescript
-import { menuMenuModuleFragment } from './gqls/__generated__/menuMenuModuleFragment';
+import { menuFragment } from './gqls/__generated__/menuFragment';
 
 // graphql import
 import {
@@ -21,11 +18,8 @@ import {
 } from './gqls/menuItem';
 import { usePagesWithSearchBarFragment } from './gqls/usePagesWithSearchBar';
 
-// typescript definition
-export interface PropsType extends menuMenuModuleFragment, ContextType {}
-
 // definition
-export default React.memo(({ menu, user, order }: PropsType) => {
+export default React.memo(({ menu, cart, viewer }: menuFragment) => {
   const pagesWithSearchBar = usePagesWithSearchBar(
     !menu?.design ? null : filter(usePagesWithSearchBarFragment, menu.design),
   );
@@ -37,8 +31,12 @@ export default React.memo(({ menu, user, order }: PropsType) => {
         !page ? null : (
           <MenuItem
             key={page.id}
-            user={!user ? null : filter(menuItemUserFragment, user)}
-            order={!order ? null : filter(menuItemOrderFragment, order)}
+            user={!viewer ? null : filter(menuItemUserFragment, viewer)}
+            order={
+              !cart?.data?.[0]
+                ? null
+                : filter(menuItemOrderFragment, cart.data[0])
+            }
             page={{
               ...filter(menuItemMenuPageObjectTypeFragment, page),
               pages: page.pages,
