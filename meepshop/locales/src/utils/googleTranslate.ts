@@ -1,16 +1,15 @@
-// import
-import puppeteer from 'puppeteer';
+// typescript import
+import { Page } from 'puppeteer';
 
+// import
 import { LOCALES } from '../constants';
 
 // definition
 export default async (
   referenceValue: string,
   targetLocale: keyof typeof LOCALES,
+  page: Page,
 ): Promise<string> => {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-
   await page.goto(LOCALES[targetLocale]);
   await page.type('textarea', referenceValue);
   await new Promise((resolve, reject) => {
@@ -33,8 +32,6 @@ export default async (
     '.translation',
     (e: HTMLElement) => e.innerText,
   );
-
-  await browser.close();
 
   return output;
 };

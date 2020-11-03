@@ -1,4 +1,6 @@
 // typescript import
+import { Page } from 'puppeteer';
+
 import { DataType } from '../utils/walker';
 import { LOCALES } from '../constants';
 import { CacheType as FindNullCacheType } from './findNull';
@@ -8,6 +10,7 @@ import path from 'path';
 
 import chalk from 'chalk';
 import ora from 'ora';
+import puppeteer from 'puppeteer';
 
 import joinValue from '../utils/joinValue';
 import getValue from '../utils/getValue';
@@ -24,9 +27,13 @@ export default async (
   translate: (
     referenceValue: string,
     targetLocale: keyof typeof LOCALES,
+    page: Page,
   ) => Promise<string> | string | null,
   callback: (filePath: string, cache: DataType) => void,
 ): Promise<void> => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
   await Object.keys(nullFiles).reduce(async (result, folderPath) => {
     const nullKeys = nullFiles[folderPath];
 
@@ -58,7 +65,7 @@ export default async (
         const spinner = ora(
           chalk`{cyan ${key}} translate {gray [${referenceLocale}] ${referenceValue}}`,
         ).start();
-        const output = await translate(referenceValue, targetLocale);
+        const output = await translate(referenceValue, targetLocale, page);
 
         if (!output) {
           spinner.succeed(
@@ -75,4 +82,6 @@ export default async (
       }, subResult);
     }, result);
   }, Promise.resolve());
+
+  await browser.close();
 };

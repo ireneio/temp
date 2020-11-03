@@ -110,13 +110,9 @@ export default (argv: string[]): Promise<OptionsType> =>
       });
 
     program
-      .command('create')
+      .command('create <package-name>')
       .description('use to create the new locale files')
-      .requiredOption(
-        '-p, --package-name <packageName>',
-        'the name of the new locale files',
-      )
-      .action(({ packageName }) => {
+      .action(packageName => {
         resolve({
           command: 'create',
           options: {
@@ -127,9 +123,7 @@ export default (argv: string[]): Promise<OptionsType> =>
       });
 
     program
-      .command('auto-translate')
-      .arguments('<paths...>')
-      .usage(chalk`{green <paths...>}`)
+      .command('auto-translate <paths...>')
       .description('use to translate the locale files with git commit')
       .action(paths => {
         resolve({
