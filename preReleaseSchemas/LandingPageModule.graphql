@@ -1,0 +1,3 @@
+extend type LandingPageModule {
+  viewer: User
+}
