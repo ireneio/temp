@@ -1,0 +1,35 @@
+.root {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0px 0px;
+  line-height: 24px;
+}
+
+.pagination {
+  user-select: none;
+  font-size: 16px;
+
+  :global(.anticon-left),
+  :global(.anticon-right) {
+    font-size: 16px;
+    vertical-align: middle;
+    cursor: pointer;
+
+    &.disabled {
+      color: #e8e8e8;
+      cursor: not-allowed;
+    }
+  }
+
+  :global(.anticon-left) {
+    margin: 0px 8px 0px 0px;
+  }
+
+  :global(.anticon-right) {
+    margin: 0px 0px 0px 8px;
+  }
+}
+
+.pageSize {
+  margin: 0px 0px 0px 16px;
+}

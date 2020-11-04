@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@admin/table",
+  "description": "Admin table component with antd",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "@admin/utils": "^0.68.0",
+    "@meepshop/utils": "^0.68.0"
+  },
+  "keywords": ["admin", "table"]
+}
