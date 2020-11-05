@@ -10,9 +10,6 @@ babel-all:
 babel-changed:
 	@$(call babel-build,$(WATCH),--parallel --exclude-dependents --since $(BRANCH))
 
-generate:
-	@yarn yo ./packages/generators/lib/${TEMPLATE}.js
-
 apollo-watch:
 	@$(call apollo,$(APOLLO_TYPE),--watch)
 
@@ -62,5 +59,6 @@ define babel-build
 		--ignore @admin/server \
 		$(2)
 	ln -snf $(ROOT)/meepshop/locales/lib/bin/index.js ./node_modules/.bin/locales
+	ln -snf $(ROOT)/packages/generate/lib/bin/index.js ./node_modules/.bin/generate
 	ln -snf $(ROOT)/packages/storybook/lib/bin/index.js ./node_modules/.bin/storybook
 endef

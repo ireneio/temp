@@ -7,7 +7,6 @@
     "apollo:watch": "make apollo-watch",
     "clean": "lerna run clean --stream && lerna clean && make clean",
     "dev": "make babel-changed WATCH=-w",
-    "generate": "make generate",
     "preinstall": "patch-package --reverse || echo \"no patch packages\"",
     "postinstall": "patch-package",
     "install:all": "yarn install && lerna bootstrap",

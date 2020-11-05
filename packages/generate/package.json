@@ -1,13 +1,16 @@
 {
   "private": true,
-  "name": "@meepshop/generators",
-  "description": "Manage template generators",
+  "name": "@meepshop/generate",
+  "description": "Generate template",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.68.1",
+  "bin": "./lib/bin/index.js",
   "dependencies": {
+    "commander": "^4.0.1",
     "lodash.camelcase": "^4.3.0",
     "validator": "^12.0.0",
+    "yeoman-environment": "^2.10.3",
     "yeoman-generator": "^4.12.0"
   },
   "keywords": ["generators", "meepshop"]
