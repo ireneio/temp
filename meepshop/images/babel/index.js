@@ -3,7 +3,9 @@ const fs = require('fs');
 const nodePath = require('path');
 const crypto = require('crypto');
 
-require('dotenv').config({ path: nodePath.resolve(__dirname, '../../.env') });
+require('dotenv').config({
+  path: nodePath.resolve(__dirname, '../../../.env'),
+});
 const { declare } = require('@babel/helper-plugin-utils');
 const { transformSync } = require('@babel/core');
 const { default: Imgproxy } = require('imgproxy');
@@ -13,7 +15,7 @@ const execa = require('execa');
 const outputFileSync = require('output-file-sync');
 const invariant = require('fbjs/lib/invariant');
 
-const svgPlugin = require('@meepshop/icons/svgPlugin');
+const svgPlugin = require('@meepshop/icons/babel/svgPlugin');
 
 [
   'IMGPROXY_KEY_STAGE',
@@ -44,7 +46,7 @@ const imgproxy = {
   }),
 };
 
-const imageFolder = nodePath.resolve(__dirname, './images');
+const imageFolder = nodePath.resolve(__dirname, '../images');
 const imageList = d3
   .hierarchy(
     dirTree(imageFolder, { extensions: /\.(svg|png|jpg|jpeg|gif|ico)$/ }),
@@ -290,7 +292,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
   };
 
   const generateDefaultTypes = (path, filename) => {
-    if (filename !== nodePath.resolve(__dirname, './src/types.ts')) return;
+    if (filename !== nodePath.resolve(__dirname, '../src/types.ts')) return;
 
     outputFileSync(
       nodePath.resolve(__dirname, './defaultTypes.tsx'),

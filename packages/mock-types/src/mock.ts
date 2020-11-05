@@ -88,9 +88,13 @@ class Mock {
   };
 
   private getContext = (info: GraphQLResolveInfo): ContextType => ({
-    isList: isListType(
-      isNonNullType(info.returnType) ? info.returnType.ofType : info.returnType,
-    ),
+    isList: !info
+      ? false
+      : isListType(
+          isNonNullType(info.returnType)
+            ? info.returnType.ofType
+            : info.returnType,
+        ),
   });
 }
 

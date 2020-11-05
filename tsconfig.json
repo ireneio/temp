@@ -48,10 +48,22 @@
     }
   },
   "include": [
-    "types/*",
+    "types/**/*.ts",
+    "packages/**/mock.ts",
+    "packages/**/mock.tsx",
+    "packages/**/mock/**/*",
     "packages/**/src/**/*",
+    "meepshop/**/mock.ts",
+    "meepshop/**/mock.tsx",
+    "meepshop/**/mock/**/*",
     "meepshop/**/src/**/*",
+    "store/**/mock.ts",
+    "store/**/mock.tsx",
+    "store/**/mock/**/*",
     "store/**/src/**/*",
+    "admin/**/mock.ts",
+    "admin/**/mock.tsx",
+    "admin/**/mock/**/*",
     "admin/**/src/**/*"
   ],
   "exclude": [

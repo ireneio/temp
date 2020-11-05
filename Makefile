@@ -54,7 +54,7 @@ endef
 
 define babel-build
   yarn lerna exec \
-		"babel src -d lib --delete-dir-on-start --config-file ../../babel.config.js --verbose -x .js,.ts,.tsx $(1)" \
+		"babel src -d lib --delete-dir-on-start --root-mode upward --verbose -x .js,.ts,.tsx $(1)" \
 		--stream \
 		--include-dependencies \
 		--ignore @meepshop/store \
@@ -62,4 +62,5 @@ define babel-build
 		--ignore @admin/server \
 		$(2)
 	ln -snf $(ROOT)/meepshop/locales/lib/bin/index.js ./node_modules/.bin/locales
+	ln -snf $(ROOT)/packages/storybook/lib/bin/index.js ./node_modules/.bin/storybook
 endef

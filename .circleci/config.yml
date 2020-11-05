@@ -113,12 +113,14 @@ jobs:
           name: Build storybook static
           command: |
             yarn lerna bootstrap
-            make babel-all OPTION="--scope @meepshop/locales"
-            yarn storybook:static
+            make babel-all OPTION="--scope @meepshop/locales --scope @meepshop/storybook"
+            yarn storybook:pre
+            yarn storybook generate @meepshop/locales
+            yarn storybook build
       - run:
           name: Upload storybook
           command: |
-            gsutil cp -r ./storybook/* gs://storybook.meepshop.com/
+            gsutil cp -r ./packages/storybook/docs/* gs://storybook.meepshop.com/
             gsutil iam ch allUsers:objectViewer gs://storybook.meepshop.com/
 
   upload-images:

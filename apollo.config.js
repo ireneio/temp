@@ -4,6 +4,7 @@ const includes = [
   './preReleaseSchemas/*.graphql',
   './meepshop/apollo/schemas/*.graphql',
   './meepshop/**/src/**/*.{ts,tsx}',
+  './meepshop/**/mock/**/*.{ts,tsx}',
   './meepshop/**/mock.{ts,tsx}',
 ];
 
@@ -12,6 +13,7 @@ switch (process.env.APOLLO_TYPE) {
     includes.push(
       './store/apollo/schemas/*.graphql',
       './store/**/src/**/*.{ts,tsx}',
+      './store/**/mcok/**/*.{ts,tsx}',
       './store/**/mock.{ts,tsx}',
     );
     break;
@@ -20,6 +22,7 @@ switch (process.env.APOLLO_TYPE) {
     includes.push(
       './admin/apollo/schemas/*.graphql',
       './admin/**/src/**/*.{ts,tsx}',
+      './admin/**/mock/**/*.{ts,tsx}',
       './admin/**/mock.{ts,tsx}',
     );
     break;

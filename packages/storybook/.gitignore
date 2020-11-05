@@ -1,0 +1,9 @@
+# basic
+cache
+combined.less
+
+# build
+docs
+
+# locales
+locales.json

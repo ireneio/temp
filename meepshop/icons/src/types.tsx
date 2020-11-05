@@ -1,3 +1,3 @@
 // Only for typescript, do not import
 // import
-export * from '../defaultTypes';
+export * from '../babel/defaultTypes';

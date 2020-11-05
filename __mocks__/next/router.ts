@@ -1,6 +1,7 @@
 // import
-import { action } from '@storybook/addon-actions';
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { action } from '@storybook/addon-actions';
 
 // definition
 const router = {

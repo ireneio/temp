@@ -1,3 +1,6 @@
+// typescript import
+import { PropsType } from './src';
+
 // import
 import React, { useState } from 'react';
 
@@ -5,8 +8,10 @@ import AddressCascader from './src';
 
 // definition
 export default React.memo(() => {
-  const [emptyValue, onChangeEmptyValue] = useState(undefined);
-  const [existingValue, onChangeExistingValue] = useState({
+  const [emptyValue, onChangeEmptyValue] = useState<PropsType['value']>(
+    undefined,
+  );
+  const [existingValue, onChangeExistingValue] = useState<PropsType['value']>({
     address: [
       'a1e4aa6c-5a52-408a-9ede-471b10b1e265',
       '804df1c0-b99d-482b-9014-1fa49dc9b428',
@@ -14,8 +19,12 @@ export default React.memo(() => {
     ],
     zipCode: '199',
   });
-  const [lockedValue, onChangeLockedValue] = useState(undefined);
-  const [lockedExistingValue, onChangeLockedExistingValue] = useState({
+  const [lockedValue, onChangeLockedValue] = useState<PropsType['value']>(
+    undefined,
+  );
+  const [lockedExistingValue, onChangeLockedExistingValue] = useState<
+    PropsType['value']
+  >({
     address: ['6cd709bd-3d05-47a4-b86d-b54e64af0538'],
     zipCode: '123',
   });

@@ -26,7 +26,7 @@ import {
 import { useOptionsAddressServiceFragment } from './hooks/useOptions';
 
 // typescript definition
-interface PropsType {
+export interface PropsType {
   forwardedRef: React.Ref<HTMLDivElement>;
   className?: string;
   size?: 'small' | 'default' | 'large';

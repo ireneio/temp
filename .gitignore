@@ -24,9 +24,6 @@ __generated__
 # env
 .env
 
-# storybook
-storybook
-
 # locale
 locale.json
 **/src/public/locales

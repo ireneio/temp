@@ -6,17 +6,17 @@ import Clipboard from 'clipboard';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as icons from '@meepshop/icons';
 
-import styles from './mock.less';
+import styles from './styles/index.less';
 
 // definition
 const { Search } = Input;
 
 export default React.memo(() => {
-  const [searchKey, setSearchKey] = useState(null);
+  const [searchKey, setSearchKey] = useState('');
 
   useEffect(() => {
     const clipboard = new Clipboard('li', {
-      text: e => e.getAttribute('data-clipboard'),
+      text: e => e.getAttribute('data-clipboard') || '',
     }).on('success', ({ text }) => {
       message.success(
         <span>
@@ -39,7 +39,7 @@ export default React.memo(() => {
         {Object.keys(icons)
           .filter(key => (!searchKey ? true : key.includes(searchKey)))
           .map(key => {
-            const Icon = icons[key];
+            const Icon = icons[key as keyof typeof icons];
 
             return (
               <li key={key} data-clipboard={`<${key} />`}>

@@ -5,7 +5,7 @@ import Wrapper from './src';
 
 // definition
 export default React.memo(() => (
-  <Wrapper>
+  <Wrapper isTrue={false} render={children => <div>{children}</div>}>
     <div>content</div>
   </Wrapper>
 ));

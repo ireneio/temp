@@ -13,8 +13,7 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 - `lint`, `lint:watch`: Run lint.
 - `prod`: Run `prod` mode.
 - `release`: Release the new version.
-- `storybook`: Run `storybook` with the name of the package.
-- `storybook:static`: Use to build the storybook pages.
+- `storybook:pre`: Run this command before running `storybook` command.
 - `test`: Run testing.
 - `apollo:watch`: Watch gql files to build schema typescript.
 - `tsc`, `tsc:watch`: Test typescript.
@@ -29,8 +28,9 @@ yarn generate TEMPLATE=Package
 
 Before `new schema` can work, you can use `storybook` to write the new component. In this mode, you can mock the result from `apollo-client`.
 
-1. Run `yarn storybook /** scope name, for exampe: @store/thank-you-page`.
-2. (optional) If you need to give the props to component, you can add `mock.ts`. See [@meepshop/mock-types](./packages/mock-types) to learn more detail.
+1. Run `yarn storybook dev <workspace>` to get the more information.
+2. Use `yarn storybook generate <package-name>` to generate the package story.
+3. (optional) If you need to give the props to component, you can add `mock.ts`. See [@meepshop/storybook](./packages/storybook) to learn more detail.
 
 #### Write component with dev server
 
@@ -101,7 +101,7 @@ workspace(store, admin...)
 - [lint-staged](#lint-staged)
 - [husky](#husky)
 - [jest](#jest)
-- [storybook](./.storybook)
+- [storybook](./packages/storybook)
 - [circleci](./.circleci)
 
 #### Workspace

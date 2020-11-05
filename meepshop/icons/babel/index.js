@@ -14,7 +14,7 @@ const svgPlugin = require('./svgPlugin');
 // definition
 const iconList = d3
   .hierarchy(
-    dirTree(nodePath.resolve(__dirname, './icons'), {
+    dirTree(nodePath.resolve(__dirname, '../icons'), {
       extensions: /\.svg$/,
     }),
   )
@@ -136,10 +136,10 @@ module.exports = declare(({ assertVersion, types: t }) => {
   };
 
   const generateIconAndDefaultTypes = (path, filename) => {
-    if (filename !== nodePath.resolve(__dirname, './src/types.tsx')) return;
+    if (filename !== nodePath.resolve(__dirname, '../src/types.tsx')) return;
 
     Object.keys(iconList).forEach(key => {
-      generateIcon(nodePath.resolve(__dirname, './lib'), key, path);
+      generateIcon(nodePath.resolve(__dirname, '../lib'), key, path);
     });
     outputFileSync(
       nodePath.resolve(__dirname, './defaultTypes.tsx'),
