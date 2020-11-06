@@ -63,7 +63,8 @@ export default class Link extends React.PureComponent {
     const url =
       !href || /(^#)|(^\/)|(^http)|(^tel:+)/.test(href) ? href : `//${href}`;
 
-    if (!url) return children;
+    if (!url)
+      return <span className={`${styles.link} ${className}`}>{children}</span>;
 
     return (
       <a
