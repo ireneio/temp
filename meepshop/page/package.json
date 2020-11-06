@@ -4,7 +4,7 @@
   "description": "Control the all components in a page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.68.1",
+  "version": "0.68.2",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "keywords": ["meepshop", "page"]

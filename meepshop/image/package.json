@@ -4,13 +4,13 @@
   "description": "Meepshop image module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.68.1",
+  "version": "0.68.2",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.68.1",
-    "@meepshop/images": "^0.68.1",
-    "@meepshop/link": "^0.68.1",
+    "@meepshop/context": "^0.68.2",
+    "@meepshop/images": "^0.68.2",
+    "@meepshop/link": "^0.68.2",
     "react-visibility-sensor": "^5.1.1"
   },
   "keywords": ["image", "meepshop"]
