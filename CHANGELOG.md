@@ -1,5 +1,46 @@
 # CHANGELOG
 
+## 0.68.2 (2020-11-06)
+
+#### :boom: Breaking Change
+
+- Other
+  - [#1261](https://github.com/meepshop/meep-lerna/pull/1261) 【優化】合併廣告分析 schema - 前端 ([@HsuTing](https://github.com/HsuTing))
+  - [#1263](https://github.com/meepshop/meep-lerna/pull/1263) 移除 @meepshop/module 的 conext ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#1260](https://github.com/meepshop/meep-lerna/pull/1260) (@meepshop/mock-types) Add gqls folder ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#1233](https://github.com/meepshop/meep-lerna/pull/1233) date-picker 改成 function component ([@Lexiwu](https://github.com/Lexiwu))
+- [#1259](https://github.com/meepshop/meep-lerna/pull/1259) 【新增】@admin/table ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1270](https://github.com/meepshop/meep-lerna/pull/1270) 【BUG】 前台 - 置頂選單「購物車」文字跑版 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#1266](https://github.com/meepshop/meep-lerna/pull/1266) (@meepshop/frontend) Fix schema ([@HsuTing](https://github.com/HsuTing))
+  - [#1264](https://github.com/meepshop/meep-lerna/pull/1264) (@meepshop/locales) Fix auto translate ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- Other
+  - [#1262](https://github.com/meepshop/meep-lerna/pull/1262) 前端 - 移除 showDetail:true ([@HsuTing](https://github.com/HsuTing))
+  - [#1264](https://github.com/meepshop/meep-lerna/pull/1264) (@meepshop/locales) Fix auto translate ([@HsuTing](https://github.com/HsuTing))
+- `generate`
+  - [#1268](https://github.com/meepshop/meep-lerna/pull/1268) (@meepshop/locales, @meepshop/generate) Fix translate testing and add generate cli ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`, `storybook`
+  - [#1267](https://github.com/meepshop/meep-lerna/pull/1267) (@meepshop/storybook) Fix storybook ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#1260](https://github.com/meepshop/meep-lerna/pull/1260) (@meepshop/mock-types) Add gqls folder ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.68.1 (2020-11-02)
 
 #### :boom: Breaking Change
