@@ -18,7 +18,7 @@ export const addProductToCart = gql`
 
 export const updateCartCache = gql`
   query updateCartCache {
-    getCartList(search: { showDetail: true }) {
+    getCartList {
       data {
         ...cartFragment
       }

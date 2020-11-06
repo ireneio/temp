@@ -73,7 +73,7 @@ export const cartFragment = gql`
 
 export const getCart = gql`
   query getCart {
-    getCartList(search: { showDetail: true }) {
+    getCartList {
       data {
         ...cartFragment
       }
