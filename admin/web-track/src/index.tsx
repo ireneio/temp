@@ -4,7 +4,6 @@ import { NextPage } from 'next';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Spin, Card, Icon, Tabs } from 'antd';
 
@@ -24,71 +23,23 @@ import AdvancedSetting from './AdvancedSetting';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getWebTrack } from './__generated__/getWebTrack';
+import { getWebTrack as getWebTrackType } from './gqls/__generated__/getWebTrack';
 
 // graphql import
-import {
-  storeAdTrackFbPixelFragment,
-  storeAdTrackGtagFragment,
-  storeAdTrackWebTrackFragment,
-} from '@meepshop/apollo/lib/gqls/storeAdTrack';
-
-import {
-  facebookStoreFragment,
-  googleAnalyticsFragment,
-  googleAdsFragment,
-  googleWebmasterFragment,
-  googleTagManagerFragment,
-  advancedSettingFragment,
-} from './fragments';
+import { getWebTrack } from './gqls';
+import { facebookStoreFragment } from './gqls/facebook';
+import { googleAnalyticsFragment } from './gqls/googleAnalytics';
+import { googleAdsStoreFragment } from './gqls/googleAds';
+import { googleWebmasterFragment } from './gqls/googleWebmaster';
+import { googleTagManagerFragment } from './gqls/googleTagManager';
+import { advancedSettingFragment } from './gqls/advancedSetting';
 
 // definition
 const { TabPane } = Tabs;
-
-const query = gql`
-  query getWebTrack {
-    viewer {
-      id
-      store {
-        ...facebookStoreFragment
-        ...googleAnalyticsFragment
-        ...googleAdsFragment
-        ...googleWebmasterFragment
-        ...googleTagManagerFragment
-        ...advancedSettingFragment
-      }
-    }
-
-    getFbPixel {
-      ...storeAdTrackFbPixelFragment
-    }
-
-    getGtagList {
-      ...storeAdTrackGtagFragment
-    }
-
-    getWebTrackList {
-      data {
-        ...storeAdTrackWebTrackFragment
-      }
-    }
-  }
-
-  ${storeAdTrackFbPixelFragment}
-  ${storeAdTrackGtagFragment}
-  ${storeAdTrackWebTrackFragment}
-  ${facebookStoreFragment}
-  ${googleAnalyticsFragment}
-  ${googleAdsFragment}
-  ${googleWebmasterFragment}
-  ${googleTagManagerFragment}
-  ${advancedSettingFragment}
-`;
-
 const WebTrack: NextPage = React.memo(
   (): React.ReactElement => {
     const { t } = useTranslation('web-track');
-    const { data } = useQuery<getWebTrack>(query);
+    const { data } = useQuery<getWebTrackType>(getWebTrack);
     const store = data?.viewer?.store;
 
     if (!store) return <Spin indicator={<Icon type="loading" spin />} />;
@@ -116,7 +67,7 @@ const WebTrack: NextPage = React.memo(
                 />
               </TabPane>
               <TabPane tab="Google Ads" key="googleAds">
-                <GoogleAds store={filter(googleAdsFragment, store)} />
+                <GoogleAds store={filter(googleAdsStoreFragment, store)} />
               </TabPane>
               <TabPane tab={t('google-webmaster.title')} key="googleWebmaster">
                 <GoogleWebmaster

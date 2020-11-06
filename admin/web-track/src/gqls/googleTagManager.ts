@@ -2,10 +2,10 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const googleTagManagerFragment = gql`
   fragment googleTagManagerFragment on Store {
     id
-    adTrack @client {
+    adTracks {
       googleTagManager
     }
   }

@@ -1,8 +1,8 @@
 // typescript import
-import { MutationTuple } from '@apollo/react-hooks';
+import { FormComponentProps } from 'antd/lib/form';
 
 // import
-import gql from 'graphql-tag';
+import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { message } from 'antd';
 
@@ -12,58 +12,68 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   updateGoogleSearchConsoleVerificationHtml as updateGoogleSearchConsoleVerificationHtmlType,
   updateGoogleSearchConsoleVerificationHtmlVariables,
-} from './__generated__/updateGoogleSearchConsoleVerificationHtml';
-import { updateGoogleSearchConsoleVerificationHtmlCacheFragment as updateGoogleSearchConsoleVerificationHtmlCacheFragmentType } from './fragments/__generated__/updateGoogleSearchConsoleVerificationHtmlCacheFragment';
+} from '../gqls/__generated__/updateGoogleSearchConsoleVerificationHtml';
+import { useUpdateGoogleSearchConsoleVerificationHtmlFragment as useUpdateGoogleSearchConsoleVerificationHtmlFragmentType } from '../gqls/__generated__/useUpdateGoogleSearchConsoleVerificationHtmlFragment';
 
 // graphql import
-import { storeAdTrackWebTrackFragment } from '@meepshop/apollo/lib/gqls/storeAdTrack';
-
-import updateGoogleSearchConsoleVerificationHtmlCacheFragment from './fragments/useUpdateGoogleSearchConsoleVerificationHtml';
+import {
+  useUpdateGoogleSearchConsoleVerificationHtmlFragment,
+  updateGoogleSearchConsoleVerificationHtml,
+} from '../gqls/useUpdateGoogleSearchConsoleVerificationHtml';
 
 // definition
 export default (
   storeId: string,
-): MutationTuple<
-  updateGoogleSearchConsoleVerificationHtmlType,
-  updateGoogleSearchConsoleVerificationHtmlVariables
->[0] => {
+  { validateFields }: FormComponentProps['form'],
+): (() => Promise<boolean>) => {
   const { t } = useTranslation('web-track');
-  const [updateGoogleSearchConsoleVerificationHtml] = useMutation<
+  const [mutation] = useMutation<
     updateGoogleSearchConsoleVerificationHtmlType,
     updateGoogleSearchConsoleVerificationHtmlVariables
-  >(
-    gql`
-      mutation updateGoogleSearchConsoleVerificationHtml(
-        $updateWebTrackList: [UpdateWebTrack]
-      ) {
-        updateWebTrackList(updateWebTrackList: $updateWebTrackList) {
-          ...storeAdTrackWebTrackFragment
-        }
-      }
+  >(updateGoogleSearchConsoleVerificationHtml);
 
-      ${storeAdTrackWebTrackFragment}
-    `,
-    {
-      update: (cache, { data }) => {
-        message.success(t('save-success'));
-        cache.writeFragment<
-          updateGoogleSearchConsoleVerificationHtmlCacheFragmentType
-        >({
-          id: storeId,
-          fragment: updateGoogleSearchConsoleVerificationHtmlCacheFragment,
-          data: {
-            __typename: 'Store',
-            id: storeId,
-            adTrack: {
-              __typename: 'StoreAdTrack',
-              googleSearchConsoleVerificationHtml:
-                data?.updateWebTrackList?.[0]?.trackId || null,
+  return useCallback(
+    () =>
+      new Promise(resolve => {
+        validateFields((errors, { googleSearchConsoleVerificationHtml }) => {
+          if (errors) {
+            resolve(false);
+            return;
+          }
+
+          mutation({
+            variables: {
+              input: googleSearchConsoleVerificationHtml,
             },
-          },
-        });
-      },
-    },
-  );
+            update: (cache, { data }) => {
+              if (
+                data?.setGoogleSearchConsoleVerificationHtml.status !== 'OK'
+              ) {
+                message.success(t('save-fail'));
+                resolve(false);
+                return;
+              }
 
-  return updateGoogleSearchConsoleVerificationHtml;
+              cache.writeFragment<
+                useUpdateGoogleSearchConsoleVerificationHtmlFragmentType
+              >({
+                id: storeId,
+                fragment: useUpdateGoogleSearchConsoleVerificationHtmlFragment,
+                data: {
+                  __typename: 'Store',
+                  id: storeId,
+                  adTracks: {
+                    __typename: 'AdTracks',
+                    googleSearchConsoleVerificationHtml,
+                  },
+                },
+              });
+              message.success(t('save-success'));
+              resolve(true);
+            },
+          });
+        });
+      }),
+    [storeId, validateFields, t, mutation],
+  );
 };

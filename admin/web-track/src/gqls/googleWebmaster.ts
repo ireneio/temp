@@ -2,11 +2,10 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const googleWebmasterFragment = gql`
   fragment googleWebmasterFragment on Store {
     id
-    adTrack @client {
-      googleSearchConsoleVerificationHtmlId
+    adTracks {
       googleSearchConsoleVerificationHtml
     }
   }

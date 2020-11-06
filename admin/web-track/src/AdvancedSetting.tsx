@@ -1,6 +1,5 @@
 // import
 import React, { useState } from 'react';
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { Switch, message, Button, InputNumber } from 'antd';
 
@@ -10,8 +9,14 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import styles from './styles/advancedSetting.less';
 
 // graphql typescript
-import { updateAdRetentionMilliseconds as updateAdRetentionMillisecondsType } from './__generated__/updateAdRetentionMilliseconds';
-import { advancedSettingFragment as advancedSettingFragmentType } from './fragments/__generated__/advancedSettingFragment';
+import {
+  updateAdRetentionMilliseconds as updateAdRetentionMillisecondsType,
+  updateAdRetentionMillisecondsVariables,
+} from './gqls/__generated__/updateAdRetentionMilliseconds';
+import { advancedSettingFragment as advancedSettingFragmentType } from './gqls/__generated__/advancedSettingFragment';
+
+// graphql import
+import { updateAdRetentionMilliseconds } from './gqls/advancedSetting';
 
 // typescript definition
 interface PropsType {
@@ -33,41 +38,31 @@ export default React.memo(({ store }: PropsType) => {
     defaultAdRetentionMilliseconds,
   );
 
-  const [updateAdRetentionMilliseconds] = useMutation<
-    updateAdRetentionMillisecondsType
-  >(
-    gql`
-      mutation updateAdRetentionMilliseconds($updateStoreList: [UpdateStore]) {
-        updateStoreList(updateStoreList: $updateStoreList) {
-          id
-          setting {
-            adRetentionMilliseconds
-            adRetentionMillisecondsEnabled
-          }
-        }
-      }
-    `,
-    {
-      update: () => {
-        message.success(t('save-success'));
-      },
+  const [mutation] = useMutation<
+    updateAdRetentionMillisecondsType,
+    updateAdRetentionMillisecondsVariables
+  >(updateAdRetentionMilliseconds, {
+    onCompleted: () => {
+      message.success(t('save-success'));
     },
-  );
+  });
 
   return (
     <div className={styles.root}>
       <Switch
         defaultChecked={adRetentionMillisecondsEnabled}
         onChange={value => {
-          updateAdRetentionMilliseconds({
+          mutation({
             variables: {
-              updateStoreList: {
-                id: storeId,
-                setting: {
-                  adRetentionMillisecondsEnabled: value,
-                  adRetentionMilliseconds,
+              updateStoreList: [
+                {
+                  id: storeId || 'null id', // SHOULD_NOT_BE_NULL
+                  setting: {
+                    adRetentionMillisecondsEnabled: value,
+                    adRetentionMilliseconds,
+                  },
                 },
-              },
+              ],
             },
           });
           setEditMode(false);
@@ -112,14 +107,16 @@ export default React.memo(({ store }: PropsType) => {
             <Button
               type="primary"
               onClick={() => {
-                updateAdRetentionMilliseconds({
+                mutation({
                   variables: {
-                    updateStoreList: {
-                      id: storeId,
-                      setting: {
-                        adRetentionMilliseconds,
+                    updateStoreList: [
+                      {
+                        id: storeId || 'null id', // SHOULD_NOT_BE_NULL
+                        setting: {
+                          adRetentionMilliseconds,
+                        },
                       },
-                    },
+                    ],
                   },
                 });
                 setEditMode(false);

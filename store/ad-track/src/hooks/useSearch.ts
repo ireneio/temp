@@ -3,25 +3,19 @@ import { AdTrackType } from '@meepshop/context/lib/AdTrack';
 
 // import
 import { useCallback } from 'react';
-import gql from 'graphql-tag';
 
 // graphql typescript
-import { useSearchFragment as useSearchFragmentType } from './__generated__/useSearchFragment';
+import { useSearchFragment as useSearchFragmentType } from '../gqls/__generated__/useSearchFragment';
 
 // definition
-export const useSearchFragment = gql`
-  fragment useSearchFragment on StoreAdTrack {
-    facebookPixelId
-    googleAnalyticsId
-  }
-`;
-
-export default (adTrack: useSearchFragmentType | null): AdTrackType['search'] =>
+export default (
+  adTracks: useSearchFragmentType | null,
+): AdTrackType['search'] =>
   useCallback(
     ({ searchString, products }) => {
-      if (!adTrack) return;
+      if (!adTracks) return;
 
-      const { facebookPixelId, googleAnalyticsId } = adTrack;
+      const { facebookPixelId, googleAnalyticsId } = adTracks;
 
       if (window.fbq && facebookPixelId)
         // eslint-disable-next-line @typescript-eslint/camelcase
@@ -37,5 +31,5 @@ export default (adTrack: useSearchFragmentType | null): AdTrackType['search'] =>
           })),
         });
     },
-    [adTrack],
+    [adTracks],
   );

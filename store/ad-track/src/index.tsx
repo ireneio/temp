@@ -1,7 +1,6 @@
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon } from 'antd';
 
@@ -19,24 +18,19 @@ import useBeginCheckout from './hooks/useBeginCheckout';
 import usePurchase from './hooks/usePurchase';
 
 // graphql typescript
-import { getAdTrack } from './__generated__/getAdTrack';
+import { getAdTrack as getAdTrackType } from './gqls/__generated__/getAdTrack';
 
 // graphql import
-import {
-  storeAdTrackFbPixelFragment,
-  storeAdTrackGtagFragment,
-  storeAdTrackWebTrackFragment,
-} from '@meepshop/apollo/lib/gqls/storeAdTrack';
-
-import { headFragment } from './Head';
-import { useRetentionFragment } from './hooks/useRetention';
-import { useAddToCartFragment } from './hooks/useAddToCart';
-import { useViewProductFragment } from './hooks/useViewProduct';
-import { useSearchFragment } from './hooks/useSearch';
-import { useAddToWishListFragment } from './hooks/useAddToWishList';
-import { useCompleteRegistrationFragment } from './hooks/useCompleteRegistration';
-import { useBeginCheckoutFragment } from './hooks/useBeginCheckout';
-import { usePurchaseFragment } from './hooks/usePurchase';
+import { getAdTrack } from './gqls';
+import { headFragment } from './gqls/head';
+import { useRetentionFragment } from './gqls/useRetention';
+import { useAddToCartFragment } from './gqls/useAddToCart';
+import { useViewProductFragment } from './gqls/useViewProduct';
+import { useSearchFragment } from './gqls/useSearch';
+import { useAddToWishListFragment } from './gqls/useAddToWishList';
+import { useCompleteRegistrationFragment } from './gqls/useCompleteRegistration';
+import { useBeginCheckoutFragment } from './gqls/useBeginCheckout';
+import { usePurchaseFragment } from './gqls/usePurchase';
 
 // typescript definition
 interface PropsType {
@@ -44,78 +38,29 @@ interface PropsType {
 }
 
 // definition
-const query = gql`
-  query getAdTrack {
-    getFbPixel {
-      ...storeAdTrackFbPixelFragment
-    }
-
-    getGtagList {
-      ...storeAdTrackGtagFragment
-    }
-
-    getWebTrackList {
-      data {
-        ...storeAdTrackWebTrackFragment
-      }
-    }
-
-    viewer {
-      id
-      store {
-        id
-        ...useRetentionFragment
-        ...usePurchaseFragment
-        adTrack @client {
-          ...headFragment
-          ...useAddToCartFragment
-          ...useViewProductFragment
-          ...useSearchFragment
-          ...useAddToWishListFragment
-          ...useCompleteRegistrationFragment
-          ...useBeginCheckoutFragment
-        }
-      }
-    }
-  }
-
-  ${storeAdTrackFbPixelFragment}
-  ${storeAdTrackGtagFragment}
-  ${storeAdTrackWebTrackFragment}
-  ${headFragment}
-  ${useRetentionFragment}
-  ${useAddToCartFragment}
-  ${useViewProductFragment}
-  ${useSearchFragment}
-  ${useAddToWishListFragment}
-  ${useCompleteRegistrationFragment}
-  ${useBeginCheckoutFragment}
-  ${usePurchaseFragment}
-`;
-
 export default React.memo(({ children }: PropsType) => {
-  const { data } = useQuery<getAdTrack>(query);
+  const { data } = useQuery<getAdTrackType>(getAdTrack);
   const store = data?.viewer?.store;
-  const adTrack = store?.adTrack;
+  const adTracks = store?.adTracks;
 
   const custom = useCustom();
   const addToCart = useAddToCart(
-    !adTrack ? null : filter(useAddToCartFragment, adTrack),
+    !adTracks ? null : filter(useAddToCartFragment, adTracks),
   );
   const viewProduct = useViewProduct(
-    !adTrack ? null : filter(useViewProductFragment, adTrack),
+    !adTracks ? null : filter(useViewProductFragment, adTracks),
   );
   const search = useSearch(
-    !adTrack ? null : filter(useSearchFragment, adTrack),
+    !adTracks ? null : filter(useSearchFragment, adTracks),
   );
   const addToWishList = useAddToWishList(
-    !adTrack ? null : filter(useAddToWishListFragment, adTrack),
+    !adTracks ? null : filter(useAddToWishListFragment, adTracks),
   );
   const completeRegistration = useCompleteRegistration(
-    !adTrack ? null : filter(useCompleteRegistrationFragment, adTrack),
+    !adTracks ? null : filter(useCompleteRegistrationFragment, adTracks),
   );
   const beginCheckout = useBeginCheckout(
-    !adTrack ? null : filter(useBeginCheckoutFragment, adTrack),
+    !adTracks ? null : filter(useBeginCheckoutFragment, adTracks),
   );
   const purchase = usePurchase(
     !store ? null : filter(usePurchaseFragment, store),
@@ -123,11 +68,11 @@ export default React.memo(({ children }: PropsType) => {
 
   useRetention(!store ? null : filter(useRetentionFragment, store));
 
-  if (!adTrack) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!adTracks) return <Spin indicator={<Icon type="loading" spin />} />;
 
   return (
     <>
-      <Head adTrack={filter(headFragment, adTrack)} />
+      <Head adTracks={filter(headFragment, adTracks)} />
 
       <AdTrackContext.Provider
         value={{

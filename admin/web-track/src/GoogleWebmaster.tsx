@@ -16,7 +16,7 @@ import useUpdateGoogleSearchConsoleVerificationHtml from './hooks/useUpdateGoogl
 import styles from './styles/googleWebmaster.less';
 
 // graphql typescript
-import { googleWebmasterFragment as googleWebmasterFragmentType } from './fragments/__generated__/googleWebmasterFragment';
+import { googleWebmasterFragment as googleWebmasterFragmentType } from './gqls/__generated__/googleWebmasterFragment';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
@@ -28,17 +28,15 @@ const { Item } = Form;
 
 export default Form.create<PropsType>()(
   React.memo(({ form, store }: PropsType) => {
-    const { getFieldDecorator, validateFields } = form;
+    const { getFieldDecorator } = form;
     const {
       id,
-      adTrack: {
-        googleSearchConsoleVerificationHtmlId,
-        googleSearchConsoleVerificationHtml,
-      },
+      adTracks: { googleSearchConsoleVerificationHtml },
     } = store;
     const { t } = useTranslation('web-track');
     const updateGoogleSearchConsoleVerificationHtml = useUpdateGoogleSearchConsoleVerificationHtml(
       id || 'null-id' /** SHOULD_NOT_BE_NULL */,
+      form,
     );
     const [isOpen, openModal] = useState(false);
     const [editMode, setEditMode] = useState(false);
@@ -93,22 +91,9 @@ export default Form.create<PropsType>()(
             </Item>
             <Button
               type="primary"
-              onClick={() => {
-                validateFields(async (errors, values) => {
-                  if (errors || !googleSearchConsoleVerificationHtmlId) return;
-
-                  await updateGoogleSearchConsoleVerificationHtml({
-                    variables: {
-                      updateWebTrackList: [
-                        {
-                          id: googleSearchConsoleVerificationHtmlId,
-                          trackId: values.googleSearchConsoleVerificationHtml,
-                        },
-                      ],
-                    },
-                  });
+              onClick={async () => {
+                if (await updateGoogleSearchConsoleVerificationHtml())
                   setEditMode(false);
-                });
               }}
             >
               {t('save')}

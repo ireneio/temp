@@ -17,7 +17,7 @@ import useClipboard from './hooks/useClipboard';
 import styles from './styles/facebook.less';
 
 // graphql typescript
-import { facebookStoreFragment as facebookStoreFragmentType } from './fragments/__generated__/facebookStoreFragment';
+import { facebookStoreFragment as facebookStoreFragmentType } from './gqls/__generated__/facebookStoreFragment';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
@@ -32,7 +32,7 @@ export default Form.create<PropsType>()(
     const { getFieldDecorator, validateFields } = form;
     const {
       id,
-      adTrack: { facebookPixelId },
+      adTracks: { facebookPixelId },
     } = store;
     const fbDPALink = store.setting?.fbDPALink || null;
     const { t } = useTranslation('web-track');

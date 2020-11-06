@@ -16,11 +16,11 @@ import useSetGtagSettingsList from './hooks/useSetGtagSettingsList';
 import styles from './styles/googleTagManager.less';
 
 // graphql typescript
-import { googleTagManagerFragment as googleTagManagerFragmentType } from './fragments/__generated__/googleTagManagerFragment';
 import { gtagTypeEnum, gtagEventNameEnum } from '../../../__generated__/admin';
+import { googleTagManagerFragment as googleTagManagerFragmentType } from './gqls/__generated__/googleTagManagerFragment';
 
 // graphql import
-import googleTagManagerFragment from './fragments/googleTagManager';
+import { googleTagManagerFragment } from './gqls/googleTagManager';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
@@ -40,7 +40,7 @@ export default Form.create<PropsType>()(
     const { getFieldDecorator, validateFields } = form;
     const {
       id,
-      adTrack: { googleTagManager },
+      adTracks: { googleTagManager },
     } = store;
     const { t } = useTranslation('web-track');
     const setGtagSettingsList = useSetGtagSettingsList((cache, data) => {
@@ -50,8 +50,8 @@ export default Form.create<PropsType>()(
         data: {
           __typename: 'Store',
           id: id || 'null-id' /** SHOULD_NOT_BE_NULL */,
-          adTrack: {
-            __typename: 'StoreAdTrack',
+          adTracks: {
+            __typename: 'AdTracks',
             googleTagManager:
               data?.setGtagSettingsList?.[0]?.trackingId || null,
           },

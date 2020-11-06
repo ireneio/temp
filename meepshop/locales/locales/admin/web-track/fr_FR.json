@@ -72,5 +72,6 @@
   "required": "Champs obligatoires",
   "save": "sauver",
   "cancel": "Annuler",
-  "save-success": "Sauvegarde réussie"
+  "save-success": "Sauvegarde réussie",
+  "save-fail": "Échec de la sauvegarde"
 }

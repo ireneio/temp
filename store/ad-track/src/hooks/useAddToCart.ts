@@ -3,31 +3,23 @@ import { AdTrackType } from '@meepshop/context/lib/AdTrack';
 
 // import
 import { useCallback, useContext } from 'react';
-import gql from 'graphql-tag';
 
 import { Currency as CurrencyContext } from '@meepshop/context';
 
 // graphql typescript
-import { useAddToCartFragment as useAddToCartFragmentType } from './__generated__/useAddToCartFragment';
+import { useAddToCartFragment as useAddToCartFragmentType } from '../gqls/__generated__/useAddToCartFragment';
 
 // definition
-export const useAddToCartFragment = gql`
-  fragment useAddToCartFragment on StoreAdTrack {
-    facebookPixelId
-    googleAnalyticsId
-  }
-`;
-
 export default (
-  adTrack: useAddToCartFragmentType | null,
+  adTracks: useAddToCartFragmentType | null,
 ): AdTrackType['addToCart'] => {
   const { currency } = useContext(CurrencyContext);
 
   return useCallback(
     ({ eventName, id, title, quantity, specs, price }) => {
-      if (!adTrack) return;
+      if (!adTracks) return;
 
-      const { facebookPixelId, googleAnalyticsId } = adTrack;
+      const { facebookPixelId, googleAnalyticsId } = adTracks;
 
       if (window.fbq && facebookPixelId)
         window.fbq(
@@ -62,6 +54,6 @@ export default (
           ],
         });
     },
-    [adTrack, currency],
+    [adTracks, currency],
   );
 };

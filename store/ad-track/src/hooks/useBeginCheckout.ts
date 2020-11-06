@@ -3,41 +3,31 @@ import { AdTrackType } from '@meepshop/context/lib/AdTrack';
 
 // import
 import { useCallback, useContext } from 'react';
-import gql from 'graphql-tag';
 
 import { Currency as CurrencyContext } from '@meepshop/context';
 
 // graphql typescript
-import { useBeginCheckoutFragment as useBeginCheckoutFragmentType } from './__generated__/useBeginCheckoutFragment';
+import { useBeginCheckoutFragment as useBeginCheckoutFragmentType } from '../gqls/__generated__/useBeginCheckoutFragment';
 
 // typescript definition
 type productsType = Parameters<AdTrackType['beginCheckout']>[0]['products'];
 
 // definition
-export const useBeginCheckoutFragment = gql`
-  fragment useBeginCheckoutFragment on StoreAdTrack {
-    facebookPixelId
-    googleAnalyticsId
-    googleAdwordsConfig
-    googleAdwordsBeginCheckout
-  }
-`;
-
 export default (
-  adTrack: useBeginCheckoutFragmentType | null,
+  adTracks: useBeginCheckoutFragmentType | null,
 ): AdTrackType['beginCheckout'] => {
   const { currency } = useContext(CurrencyContext);
 
   return useCallback(
     ({ products, total }) => {
-      if (!adTrack) return;
+      if (!adTracks) return;
 
       const {
         facebookPixelId,
         googleAnalyticsId,
         googleAdwordsConfig,
         googleAdwordsBeginCheckout,
-      } = adTrack;
+      } = adTracks;
 
       if (window.fbq && facebookPixelId)
         window.fbq('track', 'InitiateCheckout', {
@@ -78,6 +68,6 @@ export default (
           send_to: googleAdwordsBeginCheckout,
         });
     },
-    [adTrack, currency],
+    [adTracks, currency],
   );
 };

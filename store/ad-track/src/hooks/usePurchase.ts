@@ -4,28 +4,13 @@ import { AdTrackType } from '@meepshop/context/lib/AdTrack';
 // import
 import { useCallback } from 'react';
 
-import gql from 'graphql-tag';
-
 // graphql typescript
-import { usePurchaseFragment as usePurchaseFragmentType } from './__generated__/usePurchaseFragment';
+import { usePurchaseFragment as usePurchaseFragmentType } from '../gqls/__generated__/usePurchaseFragment';
 
 // typescript definition
 type productsType = Parameters<AdTrackType['purchase']>[0]['products'];
 
 // definition
-export const usePurchaseFragment = gql`
-  fragment usePurchaseFragment on Store {
-    id
-    cname
-    adTrack @client {
-      facebookPixelId
-      googleAnalyticsId
-      googleAdwordsConfig
-      googleAdwordsPurchase
-    }
-  }
-`;
-
 export default (
   store: usePurchaseFragmentType | null,
 ): AdTrackType['purchase'] =>
@@ -35,7 +20,7 @@ export default (
 
       const {
         cname,
-        adTrack: {
+        adTracks: {
           facebookPixelId,
           googleAnalyticsId,
           googleAdwordsConfig,

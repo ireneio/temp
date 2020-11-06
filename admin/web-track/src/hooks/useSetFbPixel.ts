@@ -2,7 +2,6 @@
 import { MutationTuple } from '@apollo/react-hooks';
 
 // import
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { message } from 'antd';
 
@@ -12,36 +11,30 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   setFbPixel as setFbPixelType,
   setFbPixelVariables,
-} from './__generated__/setFbPixel';
-import { updateFacebookCacheFragment as updateFacebookCacheFragmentType } from './fragments/__generated__/updateFacebookCacheFragment';
+} from '../gqls/__generated__/setFbPixel';
+import { useSetFbPixelFragment as useSetFbPixelFragmentType } from '../gqls/__generated__/useSetFbPixelFragment';
 
 // graphql import
-import updateFacebookCacheFragment from './fragments/useSetFbPixel';
+import { useSetFbPixelFragment, setFbPixel } from '../gqls/useSetFbPixel';
 
 // definition
 export default (
   storeId: string,
 ): MutationTuple<setFbPixelType, setFbPixelVariables>[0] => {
   const { t } = useTranslation('web-track');
-  const [setFbPixel] = useMutation<setFbPixelType, setFbPixelVariables>(
-    gql`
-      mutation setFbPixel($input: FbPixelInput!) {
-        setFbPixel(input: $input) {
-          pixelId
-        }
-      }
-    `,
+  const [mutation] = useMutation<setFbPixelType, setFbPixelVariables>(
+    setFbPixel,
     {
       update: (cache, { data }) => {
         message.success(t('save-success'));
-        cache.writeFragment<updateFacebookCacheFragmentType>({
+        cache.writeFragment<useSetFbPixelFragmentType>({
           id: storeId,
-          fragment: updateFacebookCacheFragment,
+          fragment: useSetFbPixelFragment,
           data: {
             __typename: 'Store',
             id: storeId,
-            adTrack: {
-              __typename: 'StoreAdTrack',
+            adTracks: {
+              __typename: 'AdTracks',
               facebookPixelId: data?.setFbPixel?.pixelId || null,
             },
           },
@@ -50,5 +43,5 @@ export default (
     },
   );
 
-  return setFbPixel;
+  return mutation;
 };

@@ -72,5 +72,6 @@
   "required": "必須(必ず入力して下さい)",
   "save": "セーブ",
   "cancel": " キャンセル",
-  "save-success": "セーブに成功"
+  "save-success": "セーブに成功",
+  "save-fail": "保存に失敗する"
 }

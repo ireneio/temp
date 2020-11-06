@@ -72,5 +72,6 @@
   "required": "Necesaria",
   "save": "Salvar",
   "cancel": "Cancelar",
-  "save-success": "Ahorra exitosamente"
+  "save-success": "Ahorra exitosamente",
+  "save-fail": "No guardar"
 }

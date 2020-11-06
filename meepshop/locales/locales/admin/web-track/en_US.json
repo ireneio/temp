@@ -72,5 +72,6 @@
   "required": "Required",
   "save": "Save",
   "cancel": "Cancel",
-  "save-success": "Save Successfully"
+  "save-success": "Save Successfully",
+  "save-fail": "Fail to Save"
 }

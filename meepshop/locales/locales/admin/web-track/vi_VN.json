@@ -72,5 +72,6 @@
   "required": "Cần thiết",
   "save": "Tiết kiệm",
   "cancel": "Hủy bỏ",
-  "save-success": "Lưu lại thành công"
+  "save-success": "Lưu lại thành công",
+  "save-fail": "Không thể lưu"
 }

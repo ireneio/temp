@@ -2,13 +2,13 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const facebookStoreFragment = gql`
   fragment facebookStoreFragment on Store {
     id
     setting {
       fbDPALink
     }
-    adTrack @client {
+    adTracks {
       facebookPixelId
     }
   }

@@ -3,31 +3,23 @@ import { AdTrackType } from '@meepshop/context/lib/AdTrack';
 
 // import
 import { useCallback, useContext } from 'react';
-import gql from 'graphql-tag';
 
 import { Currency as CurrencyContext } from '@meepshop/context';
 
 // graphql typescript
-import { useViewProductFragment as useViewProductFragmentType } from './__generated__/useViewProductFragment';
+import { useViewProductFragment as useViewProductFragmentType } from '../gqls/__generated__/useViewProductFragment';
 
 // definition
-export const useViewProductFragment = gql`
-  fragment useViewProductFragment on StoreAdTrack {
-    facebookPixelId
-    googleAnalyticsId
-  }
-`;
-
 export default (
-  adTrack: useViewProductFragmentType | null,
+  adTracks: useViewProductFragmentType | null,
 ): AdTrackType['viewProduct'] => {
   const { currency } = useContext(CurrencyContext);
 
   return useCallback(
     ({ id, title, price }) => {
-      if (!adTrack) return;
+      if (!adTracks) return;
 
-      const { facebookPixelId, googleAnalyticsId } = adTrack;
+      const { facebookPixelId, googleAnalyticsId } = adTracks;
 
       if (window.fbq && facebookPixelId)
         window.fbq('track', 'ViewContent', {
@@ -52,6 +44,6 @@ export default (
           ],
         });
     },
-    [adTrack, currency],
+    [adTracks, currency],
   );
 };

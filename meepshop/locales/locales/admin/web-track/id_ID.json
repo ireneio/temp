@@ -72,5 +72,6 @@
   "required": "Yg dibutuhkan",
   "save": "Menyimpan",
   "cancel": "Membatalkan",
-  "save-success": "Berhasil Berhemat"
+  "save-success": "Berhasil Berhemat",
+  "save-fail": "Gagal Menyimpan"
 }

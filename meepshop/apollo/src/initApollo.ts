@@ -19,7 +19,6 @@ import getConfig from 'next/config';
 import modules from '@meepshop/modules';
 
 import * as PageInfo from './PageInfo';
-import * as StoreAdTrack from './StoreAdTrack';
 import * as fbLogin from './fbLogin';
 import * as login from './login';
 import * as logout from './logout';
@@ -90,7 +89,6 @@ const create = (
     resolvers: [
       ...resolvers,
       PageInfo.resolvers,
-      StoreAdTrack.resolvers,
       fbLogin.resolvers,
       login.resolvers,
       logout.resolvers,

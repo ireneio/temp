@@ -1,32 +1,21 @@
 // import
 import React from 'react';
 import Head from 'next/head';
-import gql from 'graphql-tag';
 
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { headFragment as headFragmentType } from './__generated__/headFragment';
+import { headFragment as headFragmentType } from './gqls/__generated__/headFragment';
 
 // typescript definition
 interface PropsType {
-  adTrack: headFragmentType;
+  adTracks: headFragmentType;
 }
 
 // definition
-export const headFragment = gql`
-  fragment headFragment on StoreAdTrack {
-    googleSearchConsoleVerificationHtml
-    facebookPixelId
-    googleAnalyticsId
-    googleAdwordsConfig
-    googleTagManager
-  }
-`;
-
 export default React.memo(
   ({
-    adTrack: {
+    adTracks: {
       googleSearchConsoleVerificationHtml,
       facebookPixelId,
       googleAnalyticsId,

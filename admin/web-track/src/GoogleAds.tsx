@@ -17,16 +17,16 @@ import useSetGtagSettingsList from './hooks/useSetGtagSettingsList';
 import styles from './styles/googleAds.less';
 
 // graphql typescript
-import { googleAdsFragment as googleAdsFragmentType } from './fragments/__generated__/googleAdsFragment';
-import { updateGoogleAdsCacheFragment as updateGoogleAdsCacheFragmentType } from './fragments/__generated__/updateGoogleAdsCacheFragment';
 import { gtagTypeEnum, gtagEventNameEnum } from '../../../__generated__/admin';
+import { googleAdsStoreFragment as googleAdsStoreFragmentType } from './gqls/__generated__/googleAdsStoreFragment';
+import { googleAdsStoreUpdateCacheFragment as googleAdsStoreUpdateCacheFragmentType } from './gqls/__generated__/googleAdsStoreUpdateCacheFragment';
 
 // graphql import
-import { updateGoogleAdsCacheFragment } from './fragments/googleAds';
+import { googleAdsStoreUpdateCacheFragment } from './gqls/googleAds';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
-  store: googleAdsFragmentType;
+  store: googleAdsStoreFragmentType;
 }
 
 // definition
@@ -46,7 +46,7 @@ export default Form.create<PropsType>()(
     const { getFieldDecorator, validateFields, getFieldValue } = form;
     const {
       id,
-      adTrack: {
+      adTracks: {
         googleAdwordsConfig,
         googleAdwordsSignUp,
         googleAdwordsBeginCheckout,
@@ -56,14 +56,14 @@ export default Form.create<PropsType>()(
     const googleFeedsLink = store.setting?.googleFeedsLink;
     const { t } = useTranslation('web-track');
     const setGtagSettingsList = useSetGtagSettingsList((cache, data) => {
-      cache.writeFragment<updateGoogleAdsCacheFragmentType>({
+      cache.writeFragment<googleAdsStoreUpdateCacheFragmentType>({
         id: id || 'null-id' /** SHOULD_NOT_BE_NULL */,
-        fragment: updateGoogleAdsCacheFragment,
+        fragment: googleAdsStoreUpdateCacheFragment,
         data: {
           __typename: 'Store',
           id: id || 'null-id' /** SHOULD_NOT_BE_NULL */,
-          adTrack: {
-            __typename: 'StoreAdTrack',
+          adTracks: {
+            __typename: 'AdTracks',
             googleAdwordsConfig:
               data?.setGtagSettingsList?.find(
                 gtag => gtag?.eventName === 'adwords_config',

@@ -72,5 +72,6 @@
   "required": "必填",
   "save": "儲存",
   "cancel": "取消",
-  "save-success": "儲存成功"
+  "save-success": "儲存成功",
+  "save-fail": "儲存失敗"
 }

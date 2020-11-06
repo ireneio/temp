@@ -1,27 +1,12 @@
 // import
 import { useEffect, useRef } from 'react';
-import gql from 'graphql-tag';
 
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { useRetentionFragment as useRetentionFragmentType } from './__generated__/useRetentionFragment';
+import { useRetentionFragment as useRetentionFragmentType } from '../gqls/__generated__/useRetentionFragment';
 
 // definition
-export const useRetentionFragment = gql`
-  fragment useRetentionFragment on Store {
-    id
-    setting {
-      adRetentionMilliseconds
-      adRetentionMillisecondsEnabled
-    }
-    adTrack @client {
-      facebookPixelId
-      googleAnalyticsId
-    }
-  }
-`;
-
 export default (store: useRetentionFragmentType | null): void => {
   const router = useRouter();
   const prevAsPathRef = useRef('');
@@ -31,7 +16,7 @@ export default (store: useRetentionFragmentType | null): void => {
 
     const { adRetentionMilliseconds, adRetentionMillisecondsEnabled } =
       store.setting || {};
-    const { facebookPixelId, googleAnalyticsId } = store.adTrack;
+    const { facebookPixelId, googleAnalyticsId } = store.adTracks;
 
     if (adRetentionMillisecondsEnabled)
       setTimeout(() => {
