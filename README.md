@@ -21,7 +21,7 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 ## How to write a new package
 
 ```sh
-yarn generate TEMPLATE=Package
+yarn generate Package
 ```
 
 #### Write component with storybook
