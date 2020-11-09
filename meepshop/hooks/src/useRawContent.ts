@@ -4,7 +4,7 @@ import { RawDraftContentState, RawDraftInlineStyleRange } from 'draft-js';
 // import
 import { useMemo } from 'react';
 
-import { COLORS, FONTFAMILY } from '../constants';
+import { COLORS, FONTFAMILY } from './constants';
 
 // typescript definition
 interface DataType {

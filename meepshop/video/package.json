@@ -9,7 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/context": "^0.68.2",
-    "@meepshop/utils": "^0.68.2",
+    "@meepshop/hooks": "^0.1.0",
     "react-player": "^1.14.2"
   },
   "keywords": ["meepshop", "video"]

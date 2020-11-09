@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 // import
 import { convertRawToHTML } from 'braft-convert';
 
-import { FONTFAMILY } from '../constants';
+import { FONTFAMILY } from './constants';
 
 // definition
 export const RawToHTML = (value: object): string =>

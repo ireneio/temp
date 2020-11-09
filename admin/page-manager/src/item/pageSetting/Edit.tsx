@@ -10,9 +10,9 @@ import gql from 'graphql-tag';
 import { useApolloClient } from '@apollo/react-hooks';
 import { Form, Input, Icon, Button } from 'antd';
 
-import Tooltip from '@admin/tooltip';
-import usePortalTarget from '@admin/utils/lib/hooks/usePortalTarget';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
+import Tooltip from '@admin/tooltip';
+import { usePortalTarget } from '@admin/hooks';
 import {
   pageManagerPageTipPath_w200 as pageManagerPageTipPath,
   pageManagerPageTipTab_w200 as pageManagerPageTipTab,

@@ -6,8 +6,8 @@ import React, { useState, useMemo } from 'react';
 import BraftEditor from 'braft-editor';
 import ColorPicker from 'braft-extensions/dist/color-picker';
 
-import useRawContent from '@meepshop/utils/lib/hooks/useRawContent';
-import { FONTFAMILY } from '@meepshop/utils/lib/constants';
+import { useRawContent } from '@meepshop/hooks';
+import { FONTFAMILY } from '@meepshop/hooks/lib/constants';
 
 import useLanguage from './hooks/useLanguage';
 import { CONTROLS, FONTSIZES } from './constants';

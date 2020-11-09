@@ -6,7 +6,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import { Tooltip } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import useEffectWithCss from '@admin/utils/lib/hooks/useEffectWithCss';
+import { useEffectWithCss } from '@admin/hooks';
 import Link from '@meepshop/link';
 
 import styles from './styles/item.less';

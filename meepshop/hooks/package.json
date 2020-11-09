@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@meepshop/hooks",
+  "description": "Use to manage react hooks",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/types.ts",
+  "dependencies": {
+    "@meepshop/context": "^0.68.2",
+    "braft-convert": "^2.3.0",
+    "draft-js": "^0.11.5"
+  },
+  "keywords": ["meepshop", "react hooks"]
+}

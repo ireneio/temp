@@ -75,7 +75,7 @@ export default class Package extends Base {
     const { workspace, name } = this.state;
     const packageFolder = `${workspace}/${name}`;
 
-    this.spawnCommandSync('locales', ['create', '-p', `@${packageFolder}`]);
+    this.spawnCommandSync('locales', ['create', `@${packageFolder}`]);
     this.spawnCommandSync('git', [
       'add',
       packageFolder,

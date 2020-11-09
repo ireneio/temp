@@ -2,8 +2,8 @@
 import React, { useContext, useRef } from 'react';
 import ReactPlayer from 'react-player';
 
-import useFbParse from '@meepshop/utils/lib/hooks/useFbParse';
 import { Fb as FbContext } from '@meepshop/context';
+import { useFbParse } from '@meepshop/hooks';
 
 import useHeight from './hooks/useHeight';
 import styles from './styles/index.less';

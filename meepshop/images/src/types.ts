@@ -30,3 +30,5 @@ export const webTrackGoogleAnalyticsInstruction_w888 = mockData;
 export const webTrackGoogleTagManager_w172 = mockData;
 export const webTrackGoogleTagManagerInstruction_w890 = mockData;
 export const webTrackGoogleWebmasterInstruction_w890 = mockData;
+
+throw new Error('Do not import');

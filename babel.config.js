@@ -86,6 +86,12 @@ module.exports = {
         '@meepshop/context': {
           transform: '@meepshop/context/lib/${member}',
         },
+        '@meepshop/hooks': {
+          transform: '@meepshop/hooks/lib/${member}',
+        },
+        '@admin/hooks': {
+          transform: '@admin/hooks/lib/${member}',
+        },
         /* eslint-enable no-template-curly-in-string */
       },
     ],

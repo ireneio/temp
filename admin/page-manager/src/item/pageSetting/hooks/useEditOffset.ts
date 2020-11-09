@@ -2,8 +2,8 @@
 import React, { useRef, useState, useContext, useCallback } from 'react';
 import { getElementPosition } from 'fbjs';
 
+import { useEffectWithCss } from '@admin/hooks';
 import { CollapsedContext } from '@admin/wrapper';
-import useEffectWithCss from '@admin/utils/lib/hooks/useEffectWithCss';
 
 // definition
 export default (): {

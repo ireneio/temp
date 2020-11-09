@@ -1,7 +1,7 @@
 // import
 import React, { useRef } from 'react';
 
-import useFbParse from '@meepshop/utils/lib/hooks/useFbParse';
+import { useFbParse } from '@meepshop/hooks';
 
 import styles from './styles/index.less';
 

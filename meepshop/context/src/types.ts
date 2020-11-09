@@ -5,8 +5,7 @@ export { default as Colors } from './Colors';
 export { default as Currency } from './Currency';
 export { default as Events } from './Events';
 export { default as Fb } from './Fb';
+export { default as Sensor } from './Sensor';
 
 // definition
-throw new Error(
-  'Do not import `@meepshop/context`, use `@meepshop/context/lib/<name>`',
-);
+throw new Error('Do not import');

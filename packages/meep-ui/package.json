@@ -12,6 +12,7 @@
     "@meepshop/context": "^0.68.2",
     "@meepshop/convenience-store-map": "^0.68.2",
     "@meepshop/gmo-credit-card-form": "^0.68.2",
+    "@meepshop/hooks": "^0.1.0",
     "@meepshop/icons": "^0.68.2",
     "@meepshop/images": "^0.68.2",
     "@meepshop/landing-page": "^0.68.2",

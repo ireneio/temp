@@ -1,7 +1,7 @@
 // import
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-import useEffectWithCss from '@admin/utils/lib/hooks/useEffectWithCss';
+import { useEffectWithCss } from '@admin/hooks';
 
 // definition
 export default (

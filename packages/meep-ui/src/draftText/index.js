@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import memoizeOne from 'memoize-one';
 import { convertFromRaw } from 'draft-js';
 
-import { formatRawContent } from '@meepshop/utils/lib/hooks/useRawContent';
-import { RawToHTML } from '@meepshop/utils/lib/hooks/useHtml';
+import { formatRawContent } from '@meepshop/hooks/lib/useRawContent';
+import { RawToHTML } from '@meepshop/hooks/lib/useHtml';
 
 import styles from './styles/index.less';
 
