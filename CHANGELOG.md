@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## 0.68.3 (2020-11-10)
+
+#### :rocket: New Feature
+
+- `generate`, `meep-ui`
+  - [#1271](https://github.com/meepshop/meep-lerna/pull/1271) (@meepshop/hooks, @admin/hooks) Add new package ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1279](https://github.com/meepshop/meep-lerna/pull/1279) 【BUG】 手機版 - 前台訂單明細選選樂折扣金額與後台不同 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#1274](https://github.com/meepshop/meep-lerna/pull/1274) (@meepshop/front-end)Remove landingPageModule pre-release ([@HsuTing](https://github.com/HsuTing))
+  - [#1273](https://github.com/meepshop/meep-lerna/pull/1273) (@meepshop/front-end) Ignore @meepshop/utils style transform ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`
+  - [#1279](https://github.com/meepshop/meep-lerna/pull/1279) 【BUG】 手機版 - 前台訂單明細選選樂折扣金額與後台不同 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#1275](https://github.com/meepshop/meep-lerna/pull/1275) 前端 - 移除 filter 之前檢查 null ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.68.2 (2020-11-06)
 
 #### :boom: Breaking Change
