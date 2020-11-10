@@ -41,7 +41,7 @@ export default Form.create<FormComponentProps>()(
       const colors = useContext(ColorsContext);
       const [showReplyQAIndex, setShowReplyQAIndex] = useState<number[]>([]);
       const createProductQA = useCreateProductQA(
-        !product ? null : filter(useCreateProductQAFragment, product),
+        filter(useCreateProductQAFragment, product),
         resetFields,
       );
 

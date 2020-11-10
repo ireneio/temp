@@ -40,33 +40,25 @@ interface PropsType {
 // definition
 export default React.memo(({ children }: PropsType) => {
   const { data } = useQuery<getAdTrackType>(getAdTrack);
-  const store = data?.viewer?.store;
-  const adTracks = store?.adTracks;
+  const store = data?.viewer?.store || null;
+  const adTracks = store?.adTracks || null;
 
   const custom = useCustom();
-  const addToCart = useAddToCart(
-    !adTracks ? null : filter(useAddToCartFragment, adTracks),
-  );
-  const viewProduct = useViewProduct(
-    !adTracks ? null : filter(useViewProductFragment, adTracks),
-  );
-  const search = useSearch(
-    !adTracks ? null : filter(useSearchFragment, adTracks),
-  );
+  const addToCart = useAddToCart(filter(useAddToCartFragment, adTracks));
+  const viewProduct = useViewProduct(filter(useViewProductFragment, adTracks));
+  const search = useSearch(filter(useSearchFragment, adTracks));
   const addToWishList = useAddToWishList(
-    !adTracks ? null : filter(useAddToWishListFragment, adTracks),
+    filter(useAddToWishListFragment, adTracks),
   );
   const completeRegistration = useCompleteRegistration(
-    !adTracks ? null : filter(useCompleteRegistrationFragment, adTracks),
+    filter(useCompleteRegistrationFragment, adTracks),
   );
   const beginCheckout = useBeginCheckout(
-    !adTracks ? null : filter(useBeginCheckoutFragment, adTracks),
+    filter(useBeginCheckoutFragment, adTracks),
   );
-  const purchase = usePurchase(
-    !store ? null : filter(usePurchaseFragment, store),
-  );
+  const purchase = usePurchase(filter(usePurchaseFragment, store));
 
-  useRetention(!store ? null : filter(useRetentionFragment, store));
+  useRetention(filter(useRetentionFragment, store));
 
   if (!adTracks) return <Spin indicator={<Icon type="loading" spin />} />;
 

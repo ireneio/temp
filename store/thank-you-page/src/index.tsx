@@ -43,10 +43,10 @@ export default React.memo(() => {
   const { loading, data } = useQuery<getOrderInThankYouPage>(query, {
     variables: { orderId: router.query.orderId },
   });
-  const order = data?.viewer?.order;
+  const order = data?.viewer?.order || null;
 
-  useClipboard(loading, order?.id);
-  useAdTrack(!order ? order : filter(useAdTrackFragment, order));
+  useClipboard(loading, order?.id || null);
+  useAdTrack(filter(useAdTrackFragment, order));
 
   if (loading) return <Spin indicator={<Icon type="loading" spin />} />;
 
@@ -62,7 +62,7 @@ export default React.memo(() => {
 
         <h1>{!order ? t('title.error') : t('title.default')}</h1>
 
-        <Info order={!order ? order : filter(infoFragment, order)} />
+        <Info order={filter(infoFragment, order)} />
 
         <div className={styles.buttonRoot}>
           <Link href={!order ? '/orders' : '/'}>

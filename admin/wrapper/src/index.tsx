@@ -79,9 +79,7 @@ export default React.memo(({ children }: PropsType) => {
   const isMerchant = data?.viewer?.role === 'MERCHANT';
   const permission = data?.viewer?.permission;
   const isNotOpened = useCheckingAdminStatus(
-    !data?.viewer?.store
-      ? null
-      : filter(useCheckingAdminStatusFragment, data.viewer.store),
+    filter(useCheckingAdminStatusFragment, data?.viewer?.store || null),
   );
   const LogoTriggerIcon = collapsed ? DoubleRightIcon : HamburgerIcon;
 
@@ -114,20 +112,14 @@ export default React.memo(({ children }: PropsType) => {
 
         <Menu
           isMerchant={isMerchant}
-          permission={
-            !permission ? null : filter(useMenuListFragment, permission)
-          }
+          permission={filter(useMenuListFragment, permission || null)}
           collapsed={collapsed}
           loading={transitionLoading}
           isNotOpened={isNotOpened}
         />
 
         <Footer
-          store={
-            !data?.viewer?.store
-              ? null
-              : filter(useFooterMenuListFragment, data.viewer.store)
-          }
+          store={filter(useFooterMenuListFragment, data?.viewer?.store || null)}
           isMerchant={isMerchant}
           collapsed={collapsed}
           isNotOpened={isNotOpened}

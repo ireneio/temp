@@ -92,9 +92,7 @@ class Application extends React.PureComponent<PropTypes> {
         dataIndex: 'product.coverImage',
         render: (
           value: applicationProductsObjectTypeFragmentType['coverImage'],
-        ) => (
-          <Thumbnail image={!value ? null : filter(thumbnailFragment, value)} />
-        ),
+        ) => <Thumbnail image={filter(thumbnailFragment, value || null)} />,
         width: '10%',
         align: 'center',
       },

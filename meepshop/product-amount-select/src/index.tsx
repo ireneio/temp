@@ -40,7 +40,7 @@ const ProductAmountSelect = React.memo(
   ({ forwardedRef, variant, onChange, className, ...props }: PropsType) => {
     const { t } = useTranslation('product-amount-select');
     const { options, onSearch, setSearchValue } = useOptions(
-      !variant ? null : filter(useOptionsVariantFragment, variant),
+      filter(useOptionsVariantFragment, variant),
     );
 
     return (

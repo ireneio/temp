@@ -18,6 +18,7 @@ export const fetchSmartConversionModuleGAData = gql`
         samples {
           eventName
           image {
+            id
             scaledSrc {
               w480
             }

@@ -119,7 +119,7 @@ class Products extends React.PureComponent<PropsType, StateType> {
       {
         dataIndex: 'coverImage',
         render: (value: SelectedProduct['coverImage']) => (
-          <Thumbnail image={filter(thumbnailFragment, value)} />
+          <Thumbnail image={filter(thumbnailFragment, value || null)} />
         ),
       },
       {

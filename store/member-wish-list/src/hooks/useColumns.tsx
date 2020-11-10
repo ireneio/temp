@@ -32,14 +32,14 @@ export default (
           { productId, isAvailableForSale }: useColumnsFragment,
         ) =>
           !isAvailableForSale ? (
-            <Thumbnail image={filter(thumbnailFragment, value)} />
+            <Thumbnail image={filter(thumbnailFragment, value || null)} />
           ) : (
             <a
               href={`/product/${productId}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Thumbnail image={filter(thumbnailFragment, value)} />
+              <Thumbnail image={filter(thumbnailFragment, value || null)} />
             </a>
           ),
       },

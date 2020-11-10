@@ -30,9 +30,8 @@ export default React.memo(() => {
   if (!viewer) return <Spin indicator={<Icon type="loading" spin />} />;
 
   const { shippableRecipientAddresses, store } = viewer;
-  const recipientAddress = shippableRecipientAddresses.find(
-    ({ id }) => id === selectedId,
-  );
+  const recipientAddress =
+    shippableRecipientAddresses.find(({ id }) => id === selectedId) || null;
 
   return (
     <div className={styles.root}>
@@ -57,12 +56,11 @@ export default React.memo(() => {
       />
 
       <Form
-        recipientAddress={
-          !recipientAddress
-            ? null
-            : filter(formRecipientAddressFragment, recipientAddress)
-        }
-        store={!store ? null : filter(formStoreFragment, store)}
+        recipientAddress={filter(
+          formRecipientAddressFragment,
+          recipientAddress,
+        )}
+        store={filter(formStoreFragment, store)}
         cancel={() => setSelectedId(null)}
       />
     </div>

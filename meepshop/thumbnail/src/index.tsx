@@ -17,6 +17,7 @@ interface PropsType {
 // definition
 export const thumbnailFragment = gql`
   fragment thumbnailFragment on Image {
+    id
     scaledSrc {
       w120
     }

@@ -52,11 +52,11 @@ const { Item, SubMenu } = Menu;
 const MenuItem = React.memo(
   ({ user, order, page: { action, ...page }, design, ...props }: PropsType) => {
     const pagesWithAction = usePagesWithAction(
-      !user ? null : filter(usePagesWithActionUserFragment, user),
+      filter(usePagesWithActionUserFragment, user),
       filter(usePagesWithActionMenuPageObjectTypeFragment, { ...page, action }),
     );
     const click = useClick(
-      !user ? null : filter(useClickUserFragment, user),
+      filter(useClickUserFragment, user),
       filter(useClickMenuPageObjectTypeFragment, { ...page, action }),
     );
     const pages = pagesWithAction || page?.pages || [];
@@ -81,16 +81,12 @@ const MenuItem = React.memo(
         {pages.length === 0 ? (
           <Item {...props} onClick={click}>
             <Title
-              user={!user ? null : filter(titleUserFragment, user)}
+              user={filter(titleUserFragment, user)}
               page={filter(titleMenuPageObjectTypeFragment, {
                 ...page,
                 action,
               })}
-              design={
-                !design
-                  ? null
-                  : filter(titleMenuDesignObjectTypeFragment, design)
-              }
+              design={filter(titleMenuDesignObjectTypeFragment, design)}
             />
           </Item>
         ) : (
@@ -99,16 +95,12 @@ const MenuItem = React.memo(
             onTitleClick={click}
             title={
               <Title
-                user={!user ? null : filter(titleUserFragment, user)}
+                user={filter(titleUserFragment, user)}
                 page={filter(titleMenuPageObjectTypeFragment, {
                   ...page,
                   action,
                 })}
-                design={
-                  !design
-                    ? null
-                    : filter(titleMenuDesignObjectTypeFragment, design)
-                }
+                design={filter(titleMenuDesignObjectTypeFragment, design)}
               />
             }
           >
@@ -116,17 +108,13 @@ const MenuItem = React.memo(
               !subPage ? null : (
                 <MenuItem
                   key={subPage.id}
-                  order={!order ? null : filter(menuItemOrderFragment, order)}
-                  user={!user ? null : filter(menuItemUserFragment, user)}
+                  order={filter(menuItemOrderFragment, order)}
+                  user={filter(menuItemUserFragment, user)}
                   page={{
                     ...filter(menuItemMenuPageObjectTypeFragment, subPage),
                     pages: subPage.pages,
                   }}
-                  design={
-                    !design
-                      ? null
-                      : filter(menuItemMenuDesignObjectTypeFragment, design)
-                  }
+                  design={filter(menuItemMenuDesignObjectTypeFragment, design)}
                 />
               ),
             )}

@@ -43,7 +43,7 @@ export const useAdTrackFragment = gql`
   }
 `;
 
-export default (order: useAdTrackFragmentType | null | undefined): void => {
+export default (order: useAdTrackFragmentType | null): void => {
   const adTrack = useContext(AdTrackContext);
 
   useEffect(() => {

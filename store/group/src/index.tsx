@@ -19,9 +19,7 @@ interface PropsType {
 
 // definition
 export default React.memo(({ page }: PropsType) => {
-  const modules = useModules(
-    !page?.modules ? null : filter(modulesFragment, page.modules),
-  );
+  const modules = useModules(filter(modulesFragment, page?.modules || null));
   const maxWidth = page?.width;
 
   return (

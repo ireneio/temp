@@ -93,9 +93,7 @@ export default React.memo(
     const imageUploadRef = useRef<HTMLInputElement>(null);
     const loadMoreImages = useLoadMoreImages(
       fetchMore,
-      !data?.viewer?.files?.pageInfo
-        ? null
-        : filter(useLoadMoreImagesFragment, data.viewer.files.pageInfo),
+      filter(useLoadMoreImagesFragment, data?.viewer?.files?.pageInfo || null),
     );
     const tagList = variables.filter?.tagList || [];
 

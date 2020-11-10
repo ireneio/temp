@@ -7,7 +7,7 @@ import { emptyFunction } from 'fbjs';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // definition
-export default (loading: boolean, orderId: string | null | undefined): void => {
+export default (loading: boolean, orderId: string | null): void => {
   const { t } = useTranslation('thank-you-page');
 
   useEffect((): (() => void) => {

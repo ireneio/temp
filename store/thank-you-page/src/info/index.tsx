@@ -20,7 +20,7 @@ import { gmoCvsFragment } from './GmoCvs';
 
 // typescript definition
 interface PropsType {
-  order: infoFragmentType | null | undefined;
+  order: infoFragmentType | null;
 }
 
 // definition

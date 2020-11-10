@@ -53,13 +53,11 @@ const SettingThirdParty: NextPage = Form.create<FormComponentProps>()(
 
     const { loading, save } = useSave(
       form,
-      !data?.viewer?.store ? null : filter(useSaveFragment, data.viewer.store),
+      filter(useSaveFragment, data?.viewer?.store || null),
     );
     const blocks = useBlocks(
       form,
-      !data?.viewer?.store
-        ? null
-        : filter(useBlocksFragment, data.viewer.store),
+      filter(useBlocksFragment, data?.viewer?.store || null),
     );
     const {
       getFieldDecorator,

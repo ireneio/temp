@@ -14,9 +14,7 @@ export const useCheckingAdminStatusFragment = gql`
   }
 `;
 
-export default (
-  store: useCheckingAdminStatusFragmentType | undefined | null,
-): boolean => {
+export default (store: useCheckingAdminStatusFragmentType | null): boolean => {
   const router = useRouter();
   const isNotOpened = Boolean(store && store.adminStatus !== 'OPEN');
 

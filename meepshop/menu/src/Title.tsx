@@ -47,7 +47,7 @@ export default React.memo(
   }: PropsType) => {
     const [visible, setVisible] = useState(false);
     const title = useTitle(
-      !user ? null : filter(useTitleUserFragment, user),
+      filter(useTitleUserFragment, user),
       filter(useTitleMenuPageObjectTypeFragment, { ...page, action }),
     );
     const image = useMemo(
@@ -60,7 +60,7 @@ export default React.memo(
       [user, page, action],
     );
     const href = useHref(
-      !user ? null : filter(useHrefUserFragment, user),
+      filter(useHrefUserFragment, user),
       filter(useHrefMenuPageObjectTypeFragment, { ...page, action }),
     );
     const Icon = useIcon(

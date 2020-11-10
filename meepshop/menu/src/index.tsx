@@ -20,8 +20,9 @@ import { usePagesWithSearchBarFragment } from './gqls/usePagesWithSearchBar';
 
 // definition
 export default React.memo(({ menu, cart, viewer }: menuFragment) => {
+  const design = menu?.design || null;
   const pagesWithSearchBar = usePagesWithSearchBar(
-    !menu?.design ? null : filter(usePagesWithSearchBarFragment, menu.design),
+    filter(usePagesWithSearchBarFragment, design),
   );
   const pages = [...(menu?.pages || []), ...pagesWithSearchBar];
 
@@ -31,21 +32,13 @@ export default React.memo(({ menu, cart, viewer }: menuFragment) => {
         !page ? null : (
           <MenuItem
             key={page.id}
-            user={!viewer ? null : filter(menuItemUserFragment, viewer)}
-            order={
-              !cart?.data?.[0]
-                ? null
-                : filter(menuItemOrderFragment, cart.data[0])
-            }
+            user={filter(menuItemUserFragment, viewer)}
+            order={filter(menuItemOrderFragment, cart?.data?.[0] || null)}
             page={{
               ...filter(menuItemMenuPageObjectTypeFragment, page),
               pages: page.pages,
             }}
-            design={
-              !menu?.design
-                ? null
-                : filter(menuItemMenuDesignObjectTypeFragment, menu.design)
-            }
+            design={filter(menuItemMenuDesignObjectTypeFragment, design)}
           />
         ),
       )}

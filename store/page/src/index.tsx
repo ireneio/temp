@@ -20,19 +20,12 @@ export default React.memo(() => {
 
   return (
     <Page
-      storeExperiment={
-        !data.viewer?.store?.experiment
-          ? null
-          : filter(pageFragment, data.viewer.store.experiment)
-      }
+      storeExperiment={filter(
+        pageFragment,
+        data?.viewer?.store?.experiment || null,
+      )}
     >
-      <Group
-        page={
-          !data.viewer?.store?.page
-            ? null
-            : filter(groupFragment, data.viewer.store.page)
-        }
-      />
+      <Group page={filter(groupFragment, data?.viewer?.store?.page || null)} />
     </Page>
   );
 });

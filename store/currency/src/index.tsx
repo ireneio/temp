@@ -53,14 +53,10 @@ export default React.memo(({ children }: PropsType) => {
   );
   const c = useFormat(
     currency,
-    !data?.viewer?.store ? null : filter(useFormatFragment, data.viewer.store),
+    filter(useFormatFragment, data?.viewer?.store || null),
   );
 
-  useInitFx(
-    !data?.exchangeRateService
-      ? null
-      : filter(useInitFxFragment, data.exchangeRateService),
-  );
+  useInitFx(filter(useInitFxFragment, data?.exchangeRateService || null));
   useEffect(() => {
     if (cookies.currency && prevCookiesCurrencyRef.current !== cookies.currency)
       setCurrency(cookies.currency || defaultCurrency);

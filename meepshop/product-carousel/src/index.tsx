@@ -27,9 +27,7 @@ export default React.memo(
     const { i18n } = useTranslation();
     const carouselRef = useRef<AntdCarousel>(null);
     const bottomRef = useRef<AntdCarousel>(null);
-    const images = useImages(
-      !product ? null : filter(useImagesFragment, product),
-    );
+    const images = useImages(filter(useImagesFragment, product));
     const setSlickActive = useSlickActive(bottomRef);
     const defaultCarouselProps = {
       __typename: 'CarouselModule' as 'CarouselModule',
