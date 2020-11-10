@@ -41,7 +41,7 @@ export const totalSheetFragment = gql`
     }
 
     activityInfo {
-      id
+      activityId: id
       plugin
       discountPrice
       title {
@@ -65,7 +65,7 @@ class TotalSheet extends React.PureComponent<PropsType> {
     ) as totalSheetFragmentActivityInfo[];
 
     return filterActivityInfo.reduce(
-      (result, { id, plugin, discountPrice, title }) => {
+      (result, { activityId, plugin, discountPrice, title }) => {
         const {
           i18n: { language },
         } = this.props;
@@ -74,7 +74,7 @@ class TotalSheet extends React.PureComponent<PropsType> {
         if (!discountPrice || plugin === 'freeShipping') return result;
 
         const activity = result.find(
-          ({ id: activityId }) => activityId === id,
+          ({ activityId: targetId }) => targetId === activityId,
         ) as { discountPrice: number } | undefined;
 
         // first add
@@ -84,7 +84,7 @@ class TotalSheet extends React.PureComponent<PropsType> {
               return [
                 ...result,
                 {
-                  id,
+                  activityId,
                   discountPrice,
                   title: t('sheet.reward'),
                 },
@@ -95,7 +95,7 @@ class TotalSheet extends React.PureComponent<PropsType> {
               return [
                 ...result,
                 {
-                  id,
+                  activityId,
                   discountPrice,
                   title: t('sheet.coupon'),
                 },
@@ -105,14 +105,13 @@ class TotalSheet extends React.PureComponent<PropsType> {
               return [
                 ...result,
                 {
-                  id,
+                  activityId,
                   discountPrice,
                   title: title?.[language] || title?.zh_TW,
                 },
               ];
           }
         }
-
         // count discountPrice
         activity.discountPrice += discountPrice;
         return result;
@@ -159,13 +158,15 @@ class TotalSheet extends React.PureComponent<PropsType> {
           <div>{c(productPrice)}</div>
         </div>
 
-        {this.generateActivityInfo(t).map(({ id, title, discountPrice }) => (
-          // SHOULD_NOT_BE_NULL
-          <div key={id || 'null id'}>
-            <div>{title}</div>
-            <div>{c(-1 * discountPrice)}</div>
-          </div>
-        ))}
+        {this.generateActivityInfo(t).map(
+          ({ activityId, title, discountPrice }) => (
+            // SHOULD_NOT_BE_NULL
+            <div key={activityId || 'null id'}>
+              <div>{title}</div>
+              <div>{c(-1 * discountPrice)}</div>
+            </div>
+          ),
+        )}
 
         <div>
           <div>{t('sheet.shipment')}</div>
