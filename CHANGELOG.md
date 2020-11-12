@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.68.4 (2020-11-12)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1284](https://github.com/meepshop/meep-lerna/pull/1284) 【BUG】 前台 - 使用商品滿額折扣和購物金折抵，折扣顯示異常 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#1285](https://github.com/meepshop/meep-lerna/pull/1285) (@meepshop/images): rename image ([@piovischioh](https://github.com/piovischioh))
+  - [#1281](https://github.com/meepshop/meep-lerna/pull/1281) (@meepshop/front-end) Remove ProductQaModule pre-release ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1283](https://github.com/meepshop/meep-lerna/pull/1283) (@meepshop/images): upload images for mail ([@piovischioh](https://github.com/piovischioh))
+- [#1282](https://github.com/meepshop/meep-lerna/pull/1282) (@meepshop/images): add images for mail ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.68.3 (2020-11-10)
 
 #### :rocket: New Feature
