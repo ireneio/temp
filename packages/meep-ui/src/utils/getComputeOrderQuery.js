@@ -3,7 +3,7 @@ export default ({ coupon, points, paymentId, shipmentId, products }) => [
   mutation computeOrderList($computeOrderList: [NewOrder]) {
     computeOrderList(computeOrderList: $computeOrderList) {
       activityInfo {
-        id
+        activityId: id
         discountPrice
         title {
           zh_TW
