@@ -2,7 +2,7 @@
 import { IconProps } from 'antd/lib/icon';
 
 // import
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import gql from 'graphql-tag';
 
 import {
@@ -76,6 +76,10 @@ export default (
       ),
     [store, enabledList],
   );
+
+  useEffect(() => {
+    if (enabledList[router.pathname.slice(1)] === false) router.push('/');
+  }, [enabledList, router]);
 
   return {
     selectedKeys: useMemo(

@@ -2,7 +2,7 @@
 import { IconProps } from 'antd/lib/icon';
 
 // import
-import { useMemo, useContext } from 'react';
+import { useMemo, useContext, useEffect } from 'react';
 import gql from 'graphql-tag';
 
 import {
@@ -18,6 +18,7 @@ import {
   SettingIcon,
 } from '@meepshop/icons';
 import { Apps as AppsContext } from '@meepshop/context';
+import { useRouter } from '@meepshop/link';
 
 // graphql typescript
 import { useMenuListFragment as useMenuListFragmentType } from './__generated__/useMenuListFragment';
@@ -55,6 +56,7 @@ export const useMenuListFragment = gql`
     }
     setting: store {
       isEnabled: index
+      ableToEditNotificationSetting
     }
   }
 `;
@@ -102,6 +104,7 @@ export const URLS: { [key: string]: string } = {
   'web-track': '/web-track',
   'file-manager': '/file-manager',
   setting: '/setting',
+  'setting/notification': '/setting/notification',
 };
 
 const getMenuList = (
@@ -131,6 +134,7 @@ export default (
   isMerchant: boolean,
   permission: useMenuListFragmentType | null,
 ): MenuType[] => {
+  const router = useRouter();
   const apps = useContext(AppsContext);
   const enabledList = useMemo(
     () => ({
@@ -148,9 +152,22 @@ export default (
       'web-track': Boolean(apps.webTrack.isInstalled),
       'file-manager': Boolean(isMerchant || permission?.fileManager?.isEnabled),
       setting: Boolean(isMerchant || permission?.setting?.isEnabled),
+      'setting/notification': Boolean(
+        isMerchant ||
+          (permission?.setting?.isEnabled &&
+            permission?.setting?.ableToEditNotificationSetting),
+      ),
     }),
     [isMerchant, permission, apps],
   );
+
+  useEffect(() => {
+    const currentKey = Object.keys(URLS).find(
+      key => URLS[key] === router.pathname,
+    ) as keyof typeof enabledList;
+
+    if (currentKey && enabledList[currentKey] === false) router.push('/');
+  }, [enabledList, router]);
 
   return useMemo(() => getMenuList(enabledList), [enabledList]);
 };
