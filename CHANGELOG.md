@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 0.68.5 (2020-11-13)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1276](https://github.com/meepshop/meep-lerna/pull/1276) 前端 - 移除 getStockNotificationList ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#1272](https://github.com/meepshop/meep-lerna/pull/1272) admin/orders-ecfit 使用 admin/table ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- [#1289](https://github.com/meepshop/meep-lerna/pull/1289) (@meepshop/frontend) Fix schema error ([@HsuTing](https://github.com/HsuTing))
+- [#1265](https://github.com/meepshop/meep-lerna/pull/1265) 【BUG】後台頁面權限問題 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@happycat6323](https://github.com/happycat6323)
+
 ## 0.68.4 (2020-11-12)
 
 #### :bug: Bug Fix
