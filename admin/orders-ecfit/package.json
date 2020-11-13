@@ -10,6 +10,7 @@
   "dependencies": {
     "@admin/date-picker": "^0.68.3",
     "@admin/orders-export": "^0.68.3",
+    "@admin/table": "^0.68.3",
     "@admin/utils": "^0.68.3",
     "@meepshop/link": "^0.68.3",
     "@meepshop/utils": "^0.68.3",

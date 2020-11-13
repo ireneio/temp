@@ -44,3 +44,64 @@
     cursor: pointer;
   }
 }
+
+.running {
+  position: relative;
+  color: rgb(197, 197, 197);
+  background: transparent;
+
+  &:hover > td {
+    color: rgb(197, 197, 197);
+    background: transparent;
+  }
+
+  :global(.ant-checkbox-wrapper) {
+    display: none;
+  }
+
+  :global(.ant-spin) {
+    position: absolute;
+    left: calc(50% - 10px);
+  }
+}
+
+.tableContainer {
+  :global(.ant-table-row):not(.running) {
+    :global(.ant-spin) {
+      display: none;
+    }
+
+    :global(.ant-spin-dot-spin) {
+      animation: initial;
+    }
+  }
+}
+
+.selected {
+  color: @primary-color;
+}
+
+.pagination {
+  user-select: none;
+  font-size: 16px;
+
+  :global(.anticon-left),
+  :global(.anticon-right) {
+    font-size: 16px;
+    vertical-align: middle;
+    cursor: pointer;
+
+    &.disabled {
+      color: #e8e8e8;
+      cursor: not-allowed;
+    }
+  }
+
+  :global(.anticon-left) {
+    margin: 0px 8px 0px 0px;
+  }
+
+  :global(.anticon-right) {
+    margin: 0px 0px 0px 8px;
+  }
+}

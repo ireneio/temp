@@ -23,16 +23,13 @@ export default React.memo(({ onChange, value: propsValue }: PropsType) => {
   const preValueRef = useRef<PropsType['value']>(propsValue);
   const { t } = useTranslation('date-picker');
   const [type, setType] = useState<typeof DATE_TYPE[number]>('today');
-  const [value, setValue] = useState<PropsType['value']>(propsValue);
-
-  useEffect(() => {
-    if (onChange) onChange(value);
-  }, [onChange, value]);
+  const stateValue = useState<PropsType['value']>(propsValue);
+  const [value, setValue] = !onChange ? stateValue : [propsValue, onChange];
 
   useEffect(() => {
     if (!areEqual(propsValue, preValueRef.current)) setValue(propsValue);
     preValueRef.current = propsValue;
-  }, [propsValue, preValueRef]);
+  }, [propsValue, preValueRef, setValue]);
 
   return (
     <RangePicker

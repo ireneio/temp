@@ -4,7 +4,7 @@ import { QueryResult } from '@apollo/react-common';
 import {
   getEcfitList,
   getEcfitListVariables,
-} from './__generated__/getEcfitList';
+} from './gqls/__generated__/getEcfitList';
 
 // typescript definition
 export type getEcfitListQueryPropsType = QueryResult<
