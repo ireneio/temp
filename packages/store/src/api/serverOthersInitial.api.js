@@ -1,17 +1,10 @@
 import postGraphql from 'utils/postGraphql';
-import {
-  viewer,
-  viewerStoreQuery,
-  menuQuery,
-  activityQuery,
-  stockNotificationQuery,
-} from './query';
+import { viewer, viewerStoreQuery, menuQuery, activityQuery } from './query';
 
 export default async context => {
   const variables = {
     keys: `
       $menuSearch: searchInputObjectType,
-      $notificationSearch: searchInputObjectType,
       $expireBy: Int!,
       $activitiesFilter: StoreActivitiesFilterInput,
     `,
@@ -30,7 +23,6 @@ export default async context => {
           },
         ],
       },
-      notificationSearch: {},
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
       activitiesFilter: {
         status: 1,
@@ -61,11 +53,6 @@ export default async context => {
         }
       }
       total
-    }
-    getStockNotificationList(search: $notificationSearch) {
-      data {
-        ${stockNotificationQuery}
-      }
     }
     viewer {
       store {

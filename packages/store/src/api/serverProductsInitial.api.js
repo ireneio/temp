@@ -5,7 +5,6 @@ import {
   pageQuery,
   menuQuery,
   activityQuery,
-  stockNotificationQuery,
 } from './query';
 
 export default async context => {
@@ -16,7 +15,6 @@ export default async context => {
     keys: `
       $pageFilter: StorePagesFilterInput,
       $menuSearch: searchInputObjectType,
-      $notificationSearch: searchInputObjectType,
       $expireBy: Int!,
       $smartConversionToken: String,
       $activitiesFilter: StoreActivitiesFilterInput,
@@ -39,7 +37,6 @@ export default async context => {
           },
         ],
       },
-      notificationSearch: {},
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
       smartConversionToken: cookies?.smartConversionToken,
       activitiesFilter: {
@@ -87,11 +84,6 @@ export default async context => {
         }
       }
       total
-    }
-    getStockNotificationList(search: $notificationSearch) {
-      data {
-        ${stockNotificationQuery}
-      }
     }
   `;
 

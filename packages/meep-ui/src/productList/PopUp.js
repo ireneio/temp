@@ -27,11 +27,6 @@ export default class PopUp extends React.PureComponent {
         productId: ID_TYPE.isRequired,
       }),
     ).isRequired,
-    stockNotificationList: PropTypes.arrayOf(
-      PropTypes.shape({
-        variantId: ID_TYPE.isRequired,
-      }),
-    ).isRequired,
 
     target: PropTypes.string,
     isMobile: PropTypes.bool,
@@ -43,14 +38,7 @@ export default class PopUp extends React.PureComponent {
   };
 
   generateDetails = product => {
-    const {
-      type,
-      popUpGalleryView,
-      stockNotificationList,
-      wishList,
-      target,
-      isMobile,
-    } = this.props;
+    const { type, popUpGalleryView, wishList, target, isMobile } = this.props;
 
     if (type === 'pop-up') {
       return (
@@ -67,7 +55,6 @@ export default class PopUp extends React.PureComponent {
           <ProductInfo
             mode="list"
             productData={product}
-            stockNotificationList={stockNotificationList}
             isInWishList={wishList.some(item => item.productId === target)}
             showButton={false}
             container={this.rootRef}
@@ -99,7 +86,6 @@ export default class PopUp extends React.PureComponent {
         <ProductInfo
           mode="list"
           productData={product}
-          stockNotificationList={stockNotificationList}
           isInWishList={wishList.some(item => item.productId === target)}
           showButton={false}
           container={this.rootRef}

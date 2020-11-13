@@ -278,50 +278,6 @@ export function* watchUpdateWishListFlow() {
 }
 
 /* ************************************ 加入可訂購通知 ************************************ */
-const ADD_STOCK_NOTIFICATION_LIST_REQUEST =
-  'ADD_STOCK_NOTIFICATION_LIST_REQUEST';
-const ADD_STOCK_NOTIFICATION_LIST_SUCCESS =
-  'ADD_STOCK_NOTIFICATION_LIST_SUCCESS';
-const ADD_STOCK_NOTIFICATION_LIST_FAILURE =
-  'ADD_STOCK_NOTIFICATION_LIST_FAILURE';
-
-export const addToNotificationList = payload => ({
-  type: ADD_STOCK_NOTIFICATION_LIST_REQUEST,
-  payload,
-});
-export const addToNotificationListSuccess = payload => ({
-  type: ADD_STOCK_NOTIFICATION_LIST_SUCCESS,
-  payload,
-});
-export const addToNotificationListFailure = () => ({
-  type: ADD_STOCK_NOTIFICATION_LIST_FAILURE,
-});
-
-function* addToNotificationListFlow({ payload }) {
-  try {
-    const data = yield call(Api.updateStockNotificationList, payload);
-
-    if (data) {
-      yield put(addToNotificationListSuccess(data));
-      notification.success({
-        message: i18n.t('ducks:add-stock-notification-list-success'),
-      });
-    }
-  } catch (error) {
-    yield put(addToNotificationListFailure());
-    notification.error({
-      message: i18n.t('ducks:add-stock-notification-list-failure-message'),
-      description: error.message,
-    });
-  }
-}
-export function* watchAddToNotificationListFlow() {
-  yield takeEvery(
-    ADD_STOCK_NOTIFICATION_LIST_REQUEST,
-    addToNotificationListFlow,
-  );
-}
-
 const getMemberData = payload => {
   const { data } = payload;
 
@@ -330,13 +286,9 @@ const getMemberData = payload => {
   const isLogin = viewer?.role === 'SHOPPER' ? ISUSER : NOTLOGIN;
   const wishList = viewer?.wishlist || [];
 
-  // TODO: 未改為Viewer
-  const stockNotificationList = data?.getStockNotificationList?.data || [];
-
   return {
     isLogin,
     wishList,
-    stockNotificationList,
     loading: false,
     loadingTip: '',
   };
@@ -345,7 +297,6 @@ const getMemberData = payload => {
 const initialState = {
   isLogin: NOTLOGIN,
   wishList: [],
-  stockNotificationList: [],
   orders: [],
   loading: false,
   loadingTip: '',
@@ -462,31 +413,6 @@ export default (state = initialState, { type, payload }) => {
     }
 
     case UPDATE_WISHLIST_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    case ADD_STOCK_NOTIFICATION_LIST_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-        loadingTip: ADD_STOCK_NOTIFICATION_LIST_REQUEST,
-      };
-    }
-    case ADD_STOCK_NOTIFICATION_LIST_SUCCESS: {
-      const stockNotification = payload?.data?.updateStockNotificationList?.[0];
-      return {
-        ...state,
-        stockNotificationList: state.stockNotificationList.concat([
-          stockNotification,
-        ]),
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    case ADD_STOCK_NOTIFICATION_LIST_FAILURE: {
       return {
         ...state,
         loading: false,

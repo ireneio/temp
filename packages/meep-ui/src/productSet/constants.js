@@ -27,11 +27,3 @@ export const PRODUCT_TYPE = PropTypes.shape({
   title: LOCALE_TYPE.isRequired,
   variants: PropTypes.arrayOf(VARIANT_TYPE.isRequired).isRequired,
 });
-
-export const LIST_TYPE = PropTypes.arrayOf(
-  PropTypes.shape(
-    {
-      variantId: ID_TYPE.isRequired,
-    }.isRequired,
-  ),
-);

@@ -7,7 +7,7 @@ import ProductInfo from 'productInfo';
 import ProductCarousel from 'productCarousel';
 import ProductCollection from 'productCollection';
 
-import { PRODUCT_TYPE, LIST_TYPE } from './constants';
+import { PRODUCT_TYPE } from './constants';
 import * as styles from './styles';
 
 @enhancer // FIX: unnecessary with new context api
@@ -15,7 +15,6 @@ import * as styles from './styles';
 export default class ProductSet extends React.PureComponent {
   static propTypes = {
     productData: PRODUCT_TYPE,
-    stockNotificationList: LIST_TYPE.isRequired,
     isInWishList: PropTypes.bool.isRequired,
     showButton: PropTypes.bool.isRequired,
   };
@@ -25,12 +24,7 @@ export default class ProductSet extends React.PureComponent {
   };
 
   render() {
-    const {
-      productData,
-      stockNotificationList,
-      isInWishList,
-      showButton,
-    } = this.props;
+    const { productData, isInWishList, showButton } = this.props;
 
     return (
       <StyleRoot>
@@ -46,7 +40,6 @@ export default class ProductSet extends React.PureComponent {
           <div style={styles.half}>
             <ProductInfo
               productData={productData}
-              stockNotificationList={stockNotificationList}
               isInWishList={isInWishList}
               showButton={showButton}
             />

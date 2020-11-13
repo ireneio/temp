@@ -5,7 +5,6 @@ import activityQuery from './activity.query';
 import productQuery from './product.query';
 import wishListQuery from './wishList.query';
 import orderMessageQuery from './orderMessage.query';
-import stockNotificationQuery from './stockNotification.query';
 import viewer from './viewer.query';
 import viewerStoreQuery from './viewerStore.query';
 
@@ -17,7 +16,6 @@ export {
   productQuery,
   wishListQuery,
   orderMessageQuery,
-  stockNotificationQuery,
   viewer,
   viewerStoreQuery,
 };

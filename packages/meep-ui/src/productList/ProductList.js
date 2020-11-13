@@ -408,7 +408,6 @@ export default class ProductList extends React.PureComponent {
       popUpGalleryView,
 
       t,
-      stockNotificationList,
       wishList,
 
       location: { pathname, search },
@@ -527,7 +526,6 @@ export default class ProductList extends React.PureComponent {
               onCancel={this.handleModalClose}
               type={type}
               popUpGalleryView={popUpGalleryView}
-              stockNotificationList={stockNotificationList}
               wishList={wishList}
               target={target}
               isMobile={isMobile}

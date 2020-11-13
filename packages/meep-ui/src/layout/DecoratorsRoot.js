@@ -23,6 +23,12 @@ const query = gql`
         name
       }
     }
+
+    getStockNotificationList {
+      data {
+        variantId
+      }
+    }
   }
 `;
 
@@ -73,6 +79,7 @@ export default React.memo(
           dispatchAction,
 
           user: data?.viewer || null,
+          stockNotificationList: data?.getStockNotificationList?.data || [],
           colors,
           hasStoreAppPlugin: pluginName => apps[pluginName].isInstalled,
           transformCurrency: c,

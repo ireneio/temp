@@ -20,9 +20,6 @@ import {
   updateWishList,
   updateWishListSuccess,
   updateWishListFailure,
-  addToNotificationList,
-  addToNotificationListSuccess,
-  addToNotificationListFailure,
 } from './widgets/member';
 
 import {
@@ -76,10 +73,6 @@ export {
   updateWishList,
   updateWishListSuccess,
   updateWishListFailure,
-  // add to notification list
-  addToNotificationList,
-  addToNotificationListSuccess,
-  addToNotificationListFailure,
   // Initial for server-side rendering
   serverIndexInitial,
   serverPagesInitial,

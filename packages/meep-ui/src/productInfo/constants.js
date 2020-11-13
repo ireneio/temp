@@ -32,14 +32,6 @@ export const PRODUCT_TYPE = PropTypes.shape({
   }),
 });
 
-export const LIST_TYPE = PropTypes.arrayOf(
-  PropTypes.shape(
-    {
-      variantId: ID_TYPE.isRequired,
-    }.isRequired,
-  ),
-);
-
 export const ORDERABLE = 'ORDERABLE';
 export const OUT_OF_STOCK = 'OUT_OF_STOCK';
 export const LIMITED = 'LIMITED';

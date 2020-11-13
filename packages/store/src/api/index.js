@@ -15,7 +15,6 @@ import serverProductsInitial from './serverProductsInitial.api';
 import serverOthersInitial from './serverOthersInitial.api';
 
 import updateWishList from './updateWishList.api';
-import updateStockNotificationList from './updateStockNotificationList.api';
 
 export {
   getPages,
@@ -27,7 +26,6 @@ export {
   checkEmailExists,
   updateMemberData,
   updateWishList,
-  updateStockNotificationList,
   // Server-side rendering
   serverIndexInitial,
   serverPagesInitial,

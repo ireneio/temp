@@ -5,7 +5,6 @@ import {
   getPages,
   getMenus,
   getActivities,
-  getStockNotificationList,
   getWishList,
   getLogoUrl,
   getMobileLogoUrl,
@@ -29,7 +28,6 @@ const getProductsCombinedPage = createSelector(
     getCurrencyItemsTemplate,
     // getProduct,
     getActivities,
-    getStockNotificationList,
     getWishList,
     // getProductListCache
     getProductListCache,
@@ -42,7 +40,6 @@ const getProductsCombinedPage = createSelector(
     currencyItemsTemplate,
     // product,
     activities,
-    stockNotificationList,
     wishList,
     // productList
     productListCache,
@@ -56,7 +53,6 @@ const getProductsCombinedPage = createSelector(
         currencyItemsTemplate,
         // product,
         activities,
-        stockNotificationList,
         wishList,
         // productList
         productListCache,

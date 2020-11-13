@@ -1,10 +1,12 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { warning, areEqual } from 'fbjs';
 import { Modal, notification } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import initApollo from '@meepshop/apollo/lib/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import CartContext from '@meepshop/cart';
 import withContext from '@store/utils/lib/withContext';
@@ -19,7 +21,7 @@ import Description from './Description';
 import SpecList from './SpecList';
 import QuantityButton from './QuantityButton';
 import AddButton from './AddButton';
-import { PRODUCT_TYPE, LIST_TYPE, NO_VARIANTS } from './constants';
+import { PRODUCT_TYPE, NO_VARIANTS } from './constants';
 import { findCoordinates, calculateOrderable, reformatVariant } from './utils';
 
 @withTranslation('product-info')
@@ -35,7 +37,6 @@ export default class ProductInfo extends React.PureComponent {
     adTrack: PropTypes.shape({}).isRequired,
     t: PropTypes.func.isRequired,
     productData: PRODUCT_TYPE.isRequired,
-    stockNotificationList: LIST_TYPE.isRequired, // eslint-disable-line react/no-unused-prop-types
     isInWishList: PropTypes.bool.isRequired,
     mode: PropTypes.oneOf(['list', 'detail']),
     container: PropTypes.shape({}),
@@ -263,7 +264,7 @@ export default class ProductInfo extends React.PureComponent {
   };
 
   addToNotificationList = () => {
-    const { isLogin, dispatchAction } = this.props;
+    const { isLogin, stockNotificationList } = this.props;
 
     switch (isLogin) {
       case ISADMIN:
@@ -275,8 +276,47 @@ export default class ProductInfo extends React.PureComponent {
         const { variant } = this.state;
 
         this.setState({ isAddingItem: true });
-        dispatchAction('addToNotificationList', {
-          variantId: variant.id,
+        initApollo({ name: 'store' }).mutate({
+          mutation: gql`
+            mutation addStockNotificationList(
+              $updateStockNotificationList: [UpdateStockNotification]
+            ) {
+              updateStockNotificationList(
+                updateStockNotificationList: $updateStockNotificationList
+              ) {
+                variantId
+              }
+            }
+          `,
+          variables: {
+            updateStockNotificationList: {
+              variantId: variant.id,
+            },
+          },
+          update: (cache, { data: { updateStockNotificationList } }) => {
+            if (updateStockNotificationList.length === 0) return;
+
+            cache.writeQuery({
+              query: gql`
+                query updateStockNotification {
+                  getStockNotificationList {
+                    data {
+                      variantId
+                    }
+                  }
+                }
+              `,
+              data: {
+                getStockNotificationList: {
+                  __typename: 'StockNotificationList',
+                  data: [
+                    ...stockNotificationList,
+                    ...updateStockNotificationList,
+                  ],
+                },
+              },
+            });
+          },
         });
         break;
       }
