@@ -3,6 +3,6 @@
   "addDate": "Añadido",
   "cancel": "retirar",
   "notAvailableForSale": "(No disponible)",
-  "ok": "Terminada",
-  "error": "Lista de deseos: se produjo un error"
+  "success": "llevar a cabo",
+  "fail": "fracaso"
 }

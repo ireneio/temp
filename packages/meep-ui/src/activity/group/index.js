@@ -31,7 +31,6 @@ export default class Group extends React.PureComponent {
         }).isRequired,
       ),
     }).isRequired,
-    wishList: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   };
 
   state = {
@@ -156,7 +155,6 @@ export default class Group extends React.PureComponent {
       i18n,
       background,
       group,
-      wishList,
     } = this.props;
     const { params, products, total } = this.state;
 
@@ -205,7 +203,6 @@ export default class Group extends React.PureComponent {
                     id,
                     ...product,
                   }}
-                  wishList={wishList}
                 />
               ))
             ) : (

@@ -2,19 +2,24 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { useColumnsFragment } from './useColumns';
+import {
+  useColumnsWishlistProductFragment,
+  useColumnsUserFragment,
+} from './useColumns';
 
 // definition
 export const getWishlist = gql`
   query getWishlist {
     viewer {
       id
-      wishlist {
+      wishList: wishlist {
         id
-        ...useColumnsFragment
+        ...useColumnsWishlistProductFragment
       }
+      ...useColumnsUserFragment
     }
   }
 
-  ${useColumnsFragment}
+  ${useColumnsWishlistProductFragment}
+  ${useColumnsUserFragment}
 `;

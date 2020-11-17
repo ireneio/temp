@@ -3,6 +3,6 @@
   "addDate": "Menambahkan",
   "cancel": "Menghapus",
   "notAvailableForSale": "(Tidak tersedia)",
-  "ok": "Lengkap",
-  "error": "Wishlist: Terjadi kesalahan"
+  "success": "bawa",
+  "fail": "kegagalan"
 }

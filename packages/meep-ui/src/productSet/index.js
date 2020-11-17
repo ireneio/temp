@@ -15,7 +15,6 @@ import * as styles from './styles';
 export default class ProductSet extends React.PureComponent {
   static propTypes = {
     productData: PRODUCT_TYPE,
-    isInWishList: PropTypes.bool.isRequired,
     showButton: PropTypes.bool.isRequired,
   };
 
@@ -24,7 +23,7 @@ export default class ProductSet extends React.PureComponent {
   };
 
   render() {
-    const { productData, isInWishList, showButton } = this.props;
+    const { productData, showButton } = this.props;
 
     return (
       <StyleRoot>
@@ -38,11 +37,7 @@ export default class ProductSet extends React.PureComponent {
             />
           </div>
           <div style={styles.half}>
-            <ProductInfo
-              productData={productData}
-              isInWishList={isInWishList}
-              showButton={showButton}
-            />
+            <ProductInfo productData={productData} showButton={showButton} />
           </div>
           <div style={styles.block}>
             <ProductCollection

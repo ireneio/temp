@@ -37,7 +37,6 @@ export default class ProductInfo extends React.PureComponent {
     adTrack: PropTypes.shape({}).isRequired,
     t: PropTypes.func.isRequired,
     productData: PRODUCT_TYPE.isRequired,
-    isInWishList: PropTypes.bool.isRequired,
     mode: PropTypes.oneOf(['list', 'detail']),
     container: PropTypes.shape({}),
     isMobile: PropTypes.bool,
@@ -65,12 +64,7 @@ export default class ProductInfo extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const {
-      productData,
-      carts,
-      isInWishList,
-      stockNotificationList,
-    } = nextProps;
+    const { productData, carts, stockNotificationList } = nextProps;
 
     if (!productData) return null;
 
@@ -78,7 +72,6 @@ export default class ProductInfo extends React.PureComponent {
 
     const initState = {
       isAddingItem: false,
-      isAddingWish: false,
       isModalOpen: false,
     };
 
@@ -87,7 +80,6 @@ export default class ProductInfo extends React.PureComponent {
       const variant = reformatVariant(prevState.variant, stockNotificationList);
       return {
         variant,
-        isInWishList,
         carts,
 
         // check orderable and quantity as well
@@ -98,13 +90,6 @@ export default class ProductInfo extends React.PureComponent {
         !areEqual(variant, prevState.variant)
           ? {
               isAddingItem: false,
-            }
-          : {}),
-
-        // change after addToWishList
-        ...(isInWishList !== prevState.isInWishList
-          ? {
-              isAddingWish: false,
             }
           : {}),
       };
@@ -119,7 +104,6 @@ export default class ProductInfo extends React.PureComponent {
         coordinates: null,
         variant: {},
         orderable: NO_VARIANTS,
-        isInWishList,
         carts,
         ...initState,
       };
@@ -146,7 +130,6 @@ export default class ProductInfo extends React.PureComponent {
         quantity: variant.minPurchaseItems,
         coordinates: findCoordinates(variantNode),
         variant,
-        isInWishList,
         carts,
         ...initState,
         ...calculateOrderable(variant, carts),
@@ -160,7 +143,6 @@ export default class ProductInfo extends React.PureComponent {
       quantity: variant.minPurchaseItems,
       coordinates: null,
       variant,
-      isInWishList,
       carts,
       ...initState,
       ...calculateOrderable(variant, carts),
@@ -232,35 +214,6 @@ export default class ProductInfo extends React.PureComponent {
       price: variant.totalPrice,
     });
     notification.success({ message: t('add-product-to-cart') });
-  };
-
-  addToWishList = () => {
-    const {
-      adTrack,
-      productData,
-      isInWishList,
-      isLogin,
-      dispatchAction,
-    } = this.props;
-
-    switch (isLogin) {
-      case ISADMIN:
-        return;
-      case NOTLOGIN:
-        this.setState({ isModalOpen: true });
-        break;
-      case ISUSER:
-        this.setState({ isAddingWish: true });
-        dispatchAction('updateWishList', {
-          [isInWishList ? 'remove' : 'add']: productData.id,
-          callback: () => {
-            adTrack.addToWishList();
-          },
-        });
-        break;
-      default:
-        break;
-    }
   };
 
   addToNotificationList = () => {
@@ -351,15 +304,12 @@ export default class ProductInfo extends React.PureComponent {
       variant,
       orderable,
       isAddingItem,
-      isAddingWish,
       isModalOpen,
-      isInWishList,
     } = this.state;
     const {
       name,
       onChangeSpec,
       onChangeQuantity,
-      addToWishList,
       addToCart,
       addToNotificationList,
     } = this;
@@ -428,18 +378,17 @@ export default class ProductInfo extends React.PureComponent {
           </div>
 
           <AddButton
+            productId={productData.id}
             variant={variant}
             orderable={orderable}
+            openModal={() => this.setState({ isModalOpen: true })}
             addToCart={addToCart}
-            addToWishList={addToWishList}
             addToNotificationList={addToNotificationList}
             colors={colors}
             hasStoreAppPlugin={hasStoreAppPlugin}
-            isInWishList={isInWishList}
             isLogin={isLogin}
             goTo={goTo}
             isAddingItem={isAddingItem}
-            isAddingWish={isAddingWish}
             mode={mode}
             isMobile={isMobile}
           />

@@ -14,8 +14,6 @@ export const getHomePageId = state =>
 
 export const getActivities = state =>
   getIn(['storeReducer', 'activities'])(state) || [];
-export const getWishList = state =>
-  getIn(['memberReducer', 'wishList'])(state) || [];
 
 export const getMenus = state => getIn(['storeReducer', 'menus'])(state);
 export const getLogoUrl = state =>
@@ -172,7 +170,6 @@ export const getJoinedModulePage = createSelector(
     getCurrencyItemsTemplate,
     // getProduct,
     getActivities,
-    getWishList,
     // getProductListCache
     getProductListCache,
   ],
@@ -184,7 +181,6 @@ export const getJoinedModulePage = createSelector(
     currencyItemsTemplate,
     // product,
     activities,
-    wishList,
     // productList
     productListCache,
   ) => {
@@ -197,7 +193,6 @@ export const getJoinedModulePage = createSelector(
         currencyItemsTemplate,
         // product,
         activities,
-        wishList,
         // productList
         productListCache,
       }),

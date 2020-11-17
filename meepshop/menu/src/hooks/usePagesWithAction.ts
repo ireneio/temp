@@ -35,7 +35,7 @@ export default (
               'settings',
               'recipients',
               'passwordChange',
-              ...(apps.wishList.isInstalled ? ['wishlist'] : []),
+              ...(apps.wishList.isInstalled ? ['wishList'] : []),
               'rewardPoints',
               'logout',
             ].map((key: string) => ({

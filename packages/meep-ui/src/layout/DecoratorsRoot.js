@@ -3,13 +3,13 @@ import React, { useContext, useState } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 
-import withContext from '@store/utils/lib/withContext';
 import {
   Apps as AppsContext,
   Currency as CurrencyContext,
   Colors as ColorsContext,
 } from '@meepshop/context';
 import CartContext from '@meepshop/cart';
+import withContext from '@store/utils/lib/withContext';
 
 const EnhancerContext = React.createContext({});
 const query = gql`
@@ -18,9 +18,15 @@ const query = gql`
       id
       name
       email
+      role
       memberGroup {
         id
         name
+      }
+
+      wishList: wishlist {
+        id
+        productId
       }
     }
 

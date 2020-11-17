@@ -3,6 +3,6 @@
   "addDate": "Thời gian gia nhập",
   "cancel": "Hủy bỏ",
   "notAvailableForSale": "(Hàng đã gỡ xuống)",
-  "ok": "Hoàn tất",
-  "error": "Danh sách mong muốn : Xảy ra lỗi"
+  "success": "thực hiện",
+  "fail": "sự thất bại"
 }

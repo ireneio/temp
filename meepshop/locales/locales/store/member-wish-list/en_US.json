@@ -3,6 +3,6 @@
   "addDate": "Added On",
   "cancel": "Remove",
   "notAvailableForSale": "(Not Available)",
-  "ok": "Completed",
-  "error": "Wishlist: Error occurred"
+  "success": "carry out",
+  "fail": "failure"
 }

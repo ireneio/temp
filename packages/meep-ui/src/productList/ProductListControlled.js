@@ -54,11 +54,6 @@ export default class ProductList extends React.PureComponent {
     productListCache: PropTypes.shape({}).isRequired,
 
     /** props for ProductInfo */
-    wishList: PropTypes.arrayOf(
-      PropTypes.shape({
-        productId: ID_TYPE.isRequired,
-      }),
-    ).isRequired,
     stockNotificationList: PropTypes.arrayOf(
       PropTypes.shape({
         variantId: ID_TYPE.isRequired,
@@ -475,7 +470,6 @@ export default class ProductList extends React.PureComponent {
       popUpGalleryView,
 
       t,
-      wishList,
 
       location: { pathname, search },
       storeSetting,
@@ -604,7 +598,6 @@ export default class ProductList extends React.PureComponent {
               onCancel={this.handleModalClose}
               type={type}
               popUpGalleryView={popUpGalleryView}
-              wishList={wishList}
               target={target}
               isMobile={isMobile}
             />

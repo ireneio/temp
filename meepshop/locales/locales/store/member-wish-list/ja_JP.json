@@ -3,6 +3,6 @@
   "addDate": "追加日",
   "cancel": "キャンセル",
   "notAvailableForSale": "（この商品は現在取り扱っておりません）",
-  "ok": "完了",
-  "error": "ほしい物リスト：エラーが発生しました"
+  "success": "実施する",
+  "fail": "失敗"
 }

@@ -17,9 +17,6 @@ import {
   signout,
   signoutSuccess,
   signoutFailure,
-  updateWishList,
-  updateWishListSuccess,
-  updateWishListFailure,
 } from './widgets/member';
 
 import {
@@ -69,10 +66,6 @@ export {
   // lists
   saveProductList,
   cleanProductList,
-  // update wish list
-  updateWishList,
-  updateWishListSuccess,
-  updateWishListFailure,
   // Initial for server-side rendering
   serverIndexInitial,
   serverPagesInitial,

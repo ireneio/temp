@@ -28,7 +28,7 @@ export const ACION_TYPES = [
   'SETTINGS',
   'RECIPIENTS',
   'PASSWORD_CHANGE',
-  'WISHLIST',
+  'WISH_LIST',
   'REWARD_POINTS',
   'LOGOUT',
 ];

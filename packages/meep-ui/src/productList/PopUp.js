@@ -5,7 +5,6 @@ import gql from 'graphql-tag';
 import { Spin, Icon, Modal } from 'antd';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import { ID_TYPE } from 'constants/propTypes';
 import ProductCarousel from 'productCarousel';
 import ProductInfo from 'productInfo';
 import ProductCollection from 'productCollection';
@@ -22,11 +21,6 @@ export default class PopUp extends React.PureComponent {
 
     type: PropTypes.oneOf(['original', 'pop-up']).isRequired,
     popUpGalleryView: PropTypes.oneOf(['one', 'two', 'all', 'none']).isRequired,
-    wishList: PropTypes.arrayOf(
-      PropTypes.shape({
-        productId: ID_TYPE.isRequired,
-      }),
-    ).isRequired,
 
     target: PropTypes.string,
     isMobile: PropTypes.bool,
@@ -38,7 +32,7 @@ export default class PopUp extends React.PureComponent {
   };
 
   generateDetails = product => {
-    const { type, popUpGalleryView, wishList, target, isMobile } = this.props;
+    const { type, popUpGalleryView, isMobile } = this.props;
 
     if (type === 'pop-up') {
       return (
@@ -55,7 +49,6 @@ export default class PopUp extends React.PureComponent {
           <ProductInfo
             mode="list"
             productData={product}
-            isInWishList={wishList.some(item => item.productId === target)}
             showButton={false}
             container={this.rootRef}
             isMobile={isMobile}
@@ -86,7 +79,6 @@ export default class PopUp extends React.PureComponent {
         <ProductInfo
           mode="list"
           productData={product}
-          isInWishList={wishList.some(item => item.productId === target)}
           showButton={false}
           container={this.rootRef}
           isMobile={isMobile}

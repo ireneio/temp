@@ -25,7 +25,6 @@ export default class Activity extends React.PureComponent {
         ).isRequired,
       }).isRequired,
     }),
-    wishList: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     t: PropTypes.func.isRequired,
   };
 
@@ -35,7 +34,7 @@ export default class Activity extends React.PureComponent {
   };
 
   render() {
-    const { activity, background, wishList, t } = this.props;
+    const { activity, background, t } = this.props;
     const { groups } = (activity || {}).target || {};
 
     if (!activity)
@@ -44,12 +43,7 @@ export default class Activity extends React.PureComponent {
     return (
       <div style={styles.root}>
         {groups.map(({ id, ...group }) => (
-          <Group
-            key={id}
-            group={group}
-            background={background}
-            wishList={wishList}
-          />
+          <Group key={id} group={group} background={background} />
         ))}
       </div>
     );

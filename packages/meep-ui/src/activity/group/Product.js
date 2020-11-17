@@ -35,11 +35,6 @@ export default class Product extends React.PureComponent {
       ).isRequired,
     }),
     carts: PropTypes.shape({}),
-    wishList: PropTypes.arrayOf(
-      PropTypes.shape({
-        productId: ID_TYPE.isRequired,
-      }),
-    ).isRequired,
   };
 
   static defaultProps = {
@@ -101,7 +96,6 @@ export default class Product extends React.PureComponent {
       t,
       i18n,
       product,
-      wishList,
     } = this.props;
     const { openModal, target, isMobile } = this.state;
 
@@ -147,7 +141,6 @@ export default class Product extends React.PureComponent {
           onCancel={this.toggleModal}
           type="original"
           popUpGalleryView="one"
-          wishList={wishList}
           target={target}
           isMobile={isMobile}
         />

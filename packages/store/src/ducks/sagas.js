@@ -5,7 +5,6 @@ import {
   watchGetLoginFlow,
   watchGetSignoutFlow,
   watchSignupFlow,
-  watchUpdateWishListFlow,
 } from './widgets/member';
 
 import { watchGetProductFlow } from './widgets/products';
@@ -28,7 +27,6 @@ function* rootSaga() {
     watchSignupFlow(),
     watchGetPagesFlow(),
     watchGetProductFlow(),
-    watchUpdateWishListFlow(),
     // server
     watchServerIndexInitialFlow(),
     watchServerPagesInitialFlow(),

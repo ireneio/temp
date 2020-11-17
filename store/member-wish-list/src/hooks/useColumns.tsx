@@ -7,29 +7,36 @@ import { Icon } from 'antd';
 import { filter } from 'graphql-anywhere';
 import moment from 'moment';
 
-import Thumbnail, { thumbnailFragment } from '@meepshop/thumbnail';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
+import Thumbnail, { thumbnailFragment } from '@meepshop/thumbnail';
 
+import useRemove from './useRemove';
 import styles from '../styles/useColumns.less';
 
 // graphql typescript
 import {
-  useColumnsFragment,
-  useColumnsFragment_title as useColumnsFragmenTitle,
-} from '../gqls/__generated__/useColumnsFragment';
+  useColumnsWishlistProductFragment,
+  useColumnsWishlistProductFragment_title as useColumnsFragmenTitle,
+} from '../gqls/__generated__/useColumnsWishlistProductFragment';
+import { useColumnsUserFragment } from '../gqls/__generated__/useColumnsUserFragment';
 
+// graphql import
+import { useRemoveFragment } from '../gqls/useRemove';
+
+// definition
 export default (
-  dispatchAction: (dispatchName: string, data: unknown) => void,
-): ColumnProps<useColumnsFragment>[] => {
+  user: useColumnsUserFragment | null,
+): ColumnProps<useColumnsWishlistProductFragment>[] => {
   const { t } = useTranslation('member-wish-list');
+  const remove = useRemove(filter(useRemoveFragment, user));
 
   return useMemo(
     () => [
       {
         dataIndex: 'coverImage',
         render: (
-          value: useColumnsFragment['coverImage'],
-          { productId, isAvailableForSale }: useColumnsFragment,
+          value: useColumnsWishlistProductFragment['coverImage'],
+          { productId, isAvailableForSale }: useColumnsWishlistProductFragment,
         ) =>
           !isAvailableForSale ? (
             <Thumbnail image={filter(thumbnailFragment, value || null)} />
@@ -48,7 +55,7 @@ export default (
         title: t('productTitle'),
         render: (
           value: useColumnsFragmenTitle['zh_TW'],
-          { productId, isAvailableForSale }: useColumnsFragment,
+          { productId, isAvailableForSale }: useColumnsWishlistProductFragment,
         ) =>
           !isAvailableForSale ? (
             <span className={styles.notAvailableForSale}>
@@ -70,8 +77,8 @@ export default (
         title: t('addDate'),
         className: styles.addDate,
         render: (
-          value: useColumnsFragment['createdAt'],
-          { isAvailableForSale }: useColumnsFragment,
+          value: useColumnsWishlistProductFragment['createdAt'],
+          { isAvailableForSale }: useColumnsWishlistProductFragment,
         ) => (
           <span style={{ opacity: isAvailableForSale ? 1 : 0.5 }}>
             {isAvailableForSale ? moment.unix(value).format('YYYY/MM/DD') : '-'}
@@ -82,14 +89,11 @@ export default (
         dataIndex: 'productId',
         title: t('cancel'),
         className: styles.icon,
-        render: (value: useColumnsFragment['productId']) => (
-          <Icon
-            type="close"
-            onClick={() => dispatchAction('updateWishList', { remove: value })}
-          />
+        render: (value: useColumnsWishlistProductFragment['productId']) => (
+          <Icon type="close" onClick={() => remove({ productId: value })} />
         ),
       },
     ],
-    [t, dispatchAction],
+    [t, remove],
   );
 };

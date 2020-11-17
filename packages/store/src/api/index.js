@@ -14,8 +14,6 @@ import serverProductInitial from './serverProductInitial.api';
 import serverProductsInitial from './serverProductsInitial.api';
 import serverOthersInitial from './serverOthersInitial.api';
 
-import updateWishList from './updateWishList.api';
-
 export {
   getPages,
   getPage,
@@ -25,7 +23,6 @@ export {
   signup,
   checkEmailExists,
   updateMemberData,
-  updateWishList,
   // Server-side rendering
   serverIndexInitial,
   serverPagesInitial,

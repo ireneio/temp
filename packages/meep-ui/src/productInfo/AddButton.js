@@ -2,9 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Button, Icon } from 'antd';
+import gql from 'graphql-tag';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import initApollo from '@meepshop/apollo/lib/initApollo';
 
+import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 
@@ -12,16 +15,18 @@ import styles from './styles/addButton.less';
 import { VARIANT_TYPE, ORDERABLE_TYPE } from './constants';
 
 @withTranslation('product-info')
+@enhancer
 export default class AddButton extends React.Component {
+  state = {
+    loading: false,
+  };
+
   static propTypes = {
     t: PropTypes.func.isRequired,
     variant: VARIANT_TYPE.isRequired,
     orderable: ORDERABLE_TYPE.isRequired,
-    isInWishList: PropTypes.bool.isRequired,
     isAddingItem: PropTypes.bool.isRequired,
-    isAddingWish: PropTypes.bool.isRequired,
     addToCart: PropTypes.func.isRequired,
-    addToWishList: PropTypes.func.isRequired,
     addToNotificationList: PropTypes.func.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
@@ -115,16 +120,110 @@ export default class AddButton extends React.Component {
     );
   };
 
+  addProductLToWishList = () => {
+    const { user, productId } = this.props;
+
+    return initApollo({ name: 'store' }).mutate({
+      mutation: gql`
+        mutation addProductLToWishList($input: AddWishlistProductInput!) {
+          addWishlistProduct(input: $input) {
+            success
+            wishlistProduct {
+              id
+              productId
+            }
+          }
+        }
+      `,
+      variables: {
+        input: { productId },
+      },
+      update: (cache, { data: { addWishlistProduct } }) => {
+        if (!addWishlistProduct.success) return;
+
+        cache.writeFragment({
+          id: user.id,
+          fragment: gql`
+            fragment updateWishListAddCacheFragment on User {
+              id
+              wishList: wishlist {
+                id
+                productId
+              }
+            }
+          `,
+          data: {
+            __typename: 'User',
+            id: user.id,
+            wishList: [
+              ...(user?.wishList || []),
+              {
+                ...addWishlistProduct.wishlistProduct,
+                __typename: 'WishlistProduct',
+              },
+            ],
+          },
+        });
+      },
+    });
+  };
+
+  removeProductFromWishList = () => {
+    const { user, productId } = this.props;
+
+    return initApollo({ name: 'store' }).mutate({
+      mutation: gql`
+        mutation removeProductFromWishList(
+          $input: RemoveWishlistProductInput!
+        ) {
+          removeWishlistProduct(input: $input) {
+            success
+          }
+        }
+      `,
+      variables: {
+        input: { productId },
+      },
+      update: (cache, { data: { removeWishlistProduct } }) => {
+        if (!removeWishlistProduct.success) return;
+
+        cache.writeFragment({
+          id: user.id,
+          fragment: gql`
+            fragment updateWishListRemoveCacheFragment on User {
+              id
+              wishList: wishlist {
+                id
+              }
+            }
+          `,
+          data: {
+            __typename: 'User',
+            id: user.id,
+            wishList: (user?.wishList || []).filter(
+              ({ productId: wishListProductId }) =>
+                wishListProductId !== productId,
+            ),
+          },
+        });
+      },
+    });
+  };
+
   render() {
     const {
-      isInWishList,
       colors,
-      addToWishList,
-      isAddingWish,
       mode,
       isMobile,
       hasStoreAppPlugin,
+      productId,
+      user,
+      openModal,
     } = this.props;
+    const { loading } = this.state;
+    const isInWishList = (user?.wishList || []).some(
+      ({ productId: wishListProductId }) => wishListProductId === productId,
+    );
 
     return isMobile ? (
       ReactDOM.createPortal(
@@ -142,11 +241,23 @@ export default class AddButton extends React.Component {
               border: `1px solid ${isInWishList ? colors[4] : colors[5]}`,
               color: isInWishList ? colors[4] : colors[5],
             }}
-            onClick={addToWishList}
-            loading={isAddingWish}
-            disabled={isAddingWish}
+            onClick={async () => {
+              if (user.role === 'GUEST') {
+                openModal();
+                return;
+              }
+
+              this.setState({ loading: true });
+
+              if (isInWishList) await this.removeProductFromWishList();
+              else await this.addProductLToWishList();
+
+              this.setState({ loading: false });
+            }}
+            loading={loading}
+            disabled={loading}
           >
-            {isAddingWish ? null : (
+            {loading ? null : (
               <Icon type="heart" theme={isInWishList ? 'filled' : 'outlined'} />
             )}
           </Button>

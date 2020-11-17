@@ -236,59 +236,15 @@ export function* watchSignupFlow() {
   yield takeEvery(SIGNUP_REQUEST, signupFlow);
 }
 
-/* ************************************ 加入/移除願望清單 ************************************ */
-const UPDATE_WISHLIST_REQUEST = 'UPDATE_WISHLIST_REQUEST';
-const UPDATE_WISHLIST_SUCCESS = 'UPDATE_WISHLIST_SUCCESS';
-const UPDATE_WISHLIST_FAILURE = 'UPDATE_WISHLIST_FAILURE';
-
-export const updateWishList = payload => ({
-  type: UPDATE_WISHLIST_REQUEST,
-  payload,
-});
-export const updateWishListSuccess = payload => ({
-  type: UPDATE_WISHLIST_SUCCESS,
-  payload,
-});
-export const updateWishListFailure = () => ({
-  type: UPDATE_WISHLIST_FAILURE,
-});
-
-function* updateWishListFlow({ payload: { callback, ...payload } }) {
-  try {
-    const data = yield call(Api.updateWishList, payload);
-
-    if (data) {
-      if (callback) callback();
-
-      yield put(updateWishListSuccess(data));
-      notification.success({
-        message: i18n.t('ducks:update-wishlist-success'),
-      });
-    }
-  } catch (error) {
-    yield put(updateWishListFailure());
-    notification.error({
-      message: i18n.t('ducks:update-wishlist-failure-message'),
-      description: error.message,
-    });
-  }
-}
-export function* watchUpdateWishListFlow() {
-  yield takeEvery(UPDATE_WISHLIST_REQUEST, updateWishListFlow);
-}
-
-/* ************************************ 加入可訂購通知 ************************************ */
 const getMemberData = payload => {
   const { data } = payload;
 
   // 已改用新API: Viewer
   const viewer = data?.viewer;
   const isLogin = viewer?.role === 'SHOPPER' ? ISUSER : NOTLOGIN;
-  const wishList = viewer?.wishlist || [];
 
   return {
     isLogin,
-    wishList,
     loading: false,
     loadingTip: '',
   };
@@ -296,7 +252,6 @@ const getMemberData = payload => {
 
 const initialState = {
   isLogin: NOTLOGIN,
-  wishList: [],
   orders: [],
   loading: false,
   loadingTip: '',
@@ -370,49 +325,6 @@ export default (state = initialState, { type, payload }) => {
         loadingTip: '',
       };
     case SIGNUP_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    case UPDATE_WISHLIST_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-        loadingTip: UPDATE_WISHLIST_REQUEST,
-      };
-    }
-    case UPDATE_WISHLIST_SUCCESS: {
-      const { wishList } = state;
-      const newState = {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-
-      if (payload?.data?.removeWishlistProduct) {
-        const { productId } = payload.data.removeWishlistProduct;
-
-        return {
-          ...newState,
-          wishList: wishList.filter(({ productId: id }) => id !== productId),
-        };
-      }
-
-      if (payload?.data?.addWishlistProduct) {
-        const { wishlistProduct } = payload.data.addWishlistProduct;
-
-        return {
-          ...newState,
-          wishList: [wishlistProduct, ...wishList],
-        };
-      }
-
-      return newState;
-    }
-
-    case UPDATE_WISHLIST_FAILURE: {
       return {
         ...state,
         loading: false,

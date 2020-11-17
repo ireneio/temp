@@ -11,7 +11,6 @@ import {
   getCurrencyItemsTemplate,
   getActivities,
   getQuery,
-  getWishList,
   getProductListCache,
 } from './index';
 
@@ -38,7 +37,6 @@ export const getJoinedModulePage = createSelector(
     getCurrencyItemsTemplate,
     // getProduct,
     getActivities,
-    getWishList,
     // getProductListCache
     getProductListCache,
   ],
@@ -50,7 +48,6 @@ export const getJoinedModulePage = createSelector(
     currencyItemsTemplate,
     // product,
     activities,
-    wishList,
     // productList
     productListCache,
   ) => {
@@ -64,7 +61,6 @@ export const getJoinedModulePage = createSelector(
           currencyItemsTemplate,
           // product,
           activities,
-          wishList,
           // productList
           productListCache,
         }),
