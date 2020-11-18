@@ -17,6 +17,7 @@
     "@meepshop/cart": "^0.68.4",
     "@meepshop/context": "^0.68.3",
     "@meepshop/cookies": "^0.68.4",
+    "@meepshop/form-data": "^0.1.0",
     "@meepshop/images": "^0.68.4",
     "@meepshop/link": "^0.68.3",
     "@meepshop/meep-ui": "^0.68.5",

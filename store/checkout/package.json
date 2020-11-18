@@ -8,7 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/utils": "^0.68.3"
+    "@meepshop/form-data": "^0.1.0"
   },
   "keywords": ["checkout", "store"]
 }

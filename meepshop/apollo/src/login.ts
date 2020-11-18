@@ -8,7 +8,6 @@ export const resolvers = {
   Mutation: {
     login: async (
       _: unknown,
-      // TODO: should use graphql type
       {
         input: { email, password, gRecaptchaResponse, cname },
       }: { input: LoginInput },

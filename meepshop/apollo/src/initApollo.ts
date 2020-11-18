@@ -20,6 +20,7 @@ import modules from '@meepshop/modules';
 
 import * as PageInfo from './PageInfo';
 import * as fbLogin from './fbLogin';
+import * as log from './log';
 import * as login from './login';
 import * as logout from './logout';
 import * as validatedConvenienceStoreCities from './validatedConvenienceStoreCities';
@@ -90,6 +91,7 @@ const create = (
       ...resolvers,
       PageInfo.resolvers,
       fbLogin.resolvers,
+      log.resolvers,
       login.resolvers,
       logout.resolvers,
       validatedConvenienceStoreCities.resolvers,

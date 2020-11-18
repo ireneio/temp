@@ -126,7 +126,7 @@ module.exports = app.prepare().then(
       });
       server.post('/log', (req, res) => {
         console.log(
-          `#LOG#(${req.get('host')}) >>>  ${JSON.stringify(req.body.data)}`,
+          `#LOG#(${req.get('host')}) >>>  ${JSON.stringify(req.body)}`,
         );
         res.end();
       });

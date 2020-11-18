@@ -3,10 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { notification } from 'antd';
-import { areEqual } from 'fbjs';
 import uuid from 'uuid/v4';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
+import FormDataContext from '@meepshop/form-data';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import CheckoutWrapper from '@store/checkout';
@@ -15,12 +15,12 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import { LOCATION_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
 import findDOMTop from 'utils/findDOMTop';
-import createFormData from 'utils/createFormData';
 
 import OrderDetail from './orderDetail';
 
 @withTranslation('checkout')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
+@withContext(FormDataContext, setFormData => ({ setFormData }))
 @enhancer
 export default class Checkout extends React.PureComponent {
   formRef = React.createRef();
@@ -52,7 +52,6 @@ export default class Checkout extends React.PureComponent {
     orderInfo: this.props.orderInfo,
     orderOtherDetailInfo: null,
     isSubmitting: false,
-    formData: null,
     errors: {},
   };
 
@@ -67,13 +66,6 @@ export default class Checkout extends React.PureComponent {
         findDOMTop(document.getElementById('choose-shipment-store')),
       );
     }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { formData } = this.state;
-
-    if (formData && !areEqual(formData, prevState.formData))
-      this.formRef.current.submit();
   }
 
   componentWillUnmount() {
@@ -96,6 +88,7 @@ export default class Checkout extends React.PureComponent {
       /** props */
       t,
       adTrack,
+      setFormData,
     } = this.props;
     const {
       orderInfo: prevOrderInfo,
@@ -317,13 +310,8 @@ export default class Checkout extends React.PureComponent {
         });
 
         if (formData?.url) {
-          if (formData.type === 'POST') {
-            this.setState({ formData });
-            return;
-          }
-
           if (!formData.url?.startsWith('line')) {
-            window.location = formData.url;
+            setFormData(formData);
             return;
           }
 
@@ -362,9 +350,7 @@ export default class Checkout extends React.PureComponent {
       orderOtherDetailInfo,
       errors,
       isSubmitting,
-      formData,
     } = this.state;
-    const { url, params } = formData || { params: {} };
 
     return (
       <CheckoutWrapper>
@@ -376,42 +362,23 @@ export default class Checkout extends React.PureComponent {
           createOrder,
           updateUser,
         }) => (
-          <>
-            <OrderDetail
-              {...this.props}
-              {...orderOtherDetailInfo}
-              user={{
-                name,
-                mobile,
-                address,
-              }}
-              shippableRecipientAddresses={shippableRecipientAddresses}
-              errors={errors}
-              orderInfo={orderInfo}
-              submit={this.submit(createOrder, updateUser)}
-              isSubmitting={isSubmitting}
-              onChange={data => {
-                this.setState(data);
-              }}
-            />
-
-            {!formData ? null : (
-              <form
-                ref={this.formRef}
-                action={url}
-                acceptCharset={/hitrust/.test(url) ? 'big5' : 'utf8'}
-                method="POST"
-              >
-                {createFormData(
-                  Object.keys(params).map(key => ({
-                    name: key,
-                    value:
-                      params[key] && key === 'orderdesc' ? ' ' : params[key],
-                  })),
-                )}
-              </form>
-            )}
-          </>
+          <OrderDetail
+            {...this.props}
+            {...orderOtherDetailInfo}
+            user={{
+              name,
+              mobile,
+              address,
+            }}
+            shippableRecipientAddresses={shippableRecipientAddresses}
+            errors={errors}
+            orderInfo={orderInfo}
+            submit={this.submit(createOrder, updateUser)}
+            isSubmitting={isSubmitting}
+            onChange={data => {
+              this.setState(data);
+            }}
+          />
         )}
       </CheckoutWrapper>
     );

@@ -1,0 +1,17 @@
+enum LogTypeEnum {
+  CREATE_ORDER_FORM_DATA
+}
+
+input LogInput {
+  type: LogTypeEnum!
+  data: JSON!
+}
+
+enum LogResponseEnum {
+  OK
+  FAIL
+}
+
+extend type Mutation {
+  log(input: LogInput!): LogResponseEnum!
+}

@@ -6,33 +6,31 @@ import { MutationFunction } from '@apollo/react-common';
 
 // import
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
 // graphql typescript
 import {
   updateUserAfterCreatingOrder as updateUserAfterCreatingOrderType,
   updateUserAfterCreatingOrderVariables,
-} from './__generated__/updateUserAfterCreatingOrder';
-import { useUpdateUserCache as useUpdateUserCacheType } from './__generated__/useUpdateUserCache';
-import { useUpdateUserUpdateCache } from './__generated__/useUpdateUserUpdateCache';
+} from '../gqls/__generated__/updateUserAfterCreatingOrder';
+import { getUserCache as getUserCacheType } from '../gqls/__generated__/getUserCache';
+import { useUpdateUserFragment as useUpdateUserFragmentType } from '../gqls/__generated__/useUpdateUserFragment';
+
+// graphql import
+import {
+  updateUserAfterCreatingOrder,
+  getUserCache,
+  useUpdateUserFragment,
+} from '../gqls/useUpdateUser';
 
 // definition
-const mutation = gql`
-  mutation updateUserAfterCreatingOrder($input: UpdateShopperInfoInput!) {
-    updateShopperInformation(input: $input) {
-      status
-    }
-  }
-`;
-
 export default (): MutationFunction<
   updateUserAfterCreatingOrderType,
   updateUserAfterCreatingOrderVariables
 > => {
-  const [updateUserAfterCreatingOrder] = useMutation<
+  const [mutation] = useMutation<
     updateUserAfterCreatingOrderType,
     updateUserAfterCreatingOrderVariables
-  >(mutation);
+  >(updateUserAfterCreatingOrder);
 
   return ({
     variables,
@@ -41,7 +39,7 @@ export default (): MutationFunction<
     updateUserAfterCreatingOrderType,
     updateUserAfterCreatingOrderVariables
   >) =>
-    updateUserAfterCreatingOrder({
+    mutation({
       ...options,
       variables,
       update: (
@@ -50,47 +48,20 @@ export default (): MutationFunction<
       ) => {
         if (data.updateShopperInformation.status !== 'OK' || !variables) return;
 
-        const useUpdateUserCache = cache.readQuery<useUpdateUserCacheType>({
-          query: gql`
-            query useUpdateUserCache {
-              viewer {
-                id
-              }
-            }
-          `,
+        const userCache = cache.readQuery<getUserCacheType>({
+          query: getUserCache,
         });
 
-        const { id } = useUpdateUserCache?.viewer || {};
+        const { id } = userCache?.viewer || {};
         const countryId = variables.input?.address?.countryId;
         const cityId = variables.input?.address?.cityId;
         const areaId = variables.input?.address?.areaId;
 
         if (!id) return;
 
-        cache.writeFragment<useUpdateUserUpdateCache>({
+        cache.writeFragment<useUpdateUserFragmentType>({
           id,
-          fragment: gql`
-            fragment useUpdateUserUpdateCache on User {
-              id
-              name
-              additionalInfo {
-                mobile
-              }
-              address {
-                country {
-                  id
-                }
-                city {
-                  id
-                }
-                area {
-                  id
-                }
-                street
-                zipCode
-              }
-            }
-          `,
+          fragment: useUpdateUserFragment,
           data: {
             __typename: 'User',
             id,

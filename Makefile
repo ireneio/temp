@@ -14,9 +14,9 @@ apollo-watch:
 	@$(call apollo,$(APOLLO_TYPE),--watch)
 
 tsc-basic:
-	@$(call apollo,meepshop)
 	@$(call apollo,store)
 	@$(call apollo,admin)
+	@$(call apollo,meepshop)
 
 tsc:
 	@make tsc-basic

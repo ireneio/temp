@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@meepshop/form-data",
+  "description": "form data for creating order",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "react-adaptive-hooks": "^0.0.8"
+  },
+  "keywords": ["data", "form", "meepshop"]
+}

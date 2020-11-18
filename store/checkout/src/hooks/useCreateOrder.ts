@@ -6,40 +6,28 @@ import {
 
 // import
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
 // graphql typescript
 import {
   createOrder as createOrderType,
   createOrderVariables,
-} from './__generated__/createOrder';
+} from '../gqls/__generated__/createOrder';
 
 // graphql import
-import createOrderFragment from '@meepshop/utils/lib/fragments/createOrder';
+import { createOrder } from '../gqls/useCreateOrder';
 
 // definition
-const mutation = gql`
-  mutation createOrder($createOrderList: [NewOrder]) {
-    createOrderList(createOrderList: $createOrderList) {
-      id
-      ...createOrderFragment
-    }
-  }
-
-  ${createOrderFragment}
-`;
-
 export default (): MutationFunction<createOrderType, createOrderVariables> => {
-  const [createOrder, { client }] = useMutation<
+  const [mutation, { client }] = useMutation<
     createOrderType,
     createOrderVariables
-  >(mutation);
+  >(createOrder);
 
   return async ({
     variables,
     ...options
   }: MutationFunctionOptions<createOrderType, createOrderVariables>) => {
-    const result = await createOrder({
+    const result = await mutation({
       ...options,
       variables,
     });
