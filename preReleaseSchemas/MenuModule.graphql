@@ -1,4 +1,0 @@
-extend type MenuModule {
-  viewer: User
-  cart: OrderList
-}

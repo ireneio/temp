@@ -12,6 +12,7 @@ export const useLinkFragment = gql`
         category
       }
     }
+
     ... on PhoneLink {
       phone
       newWindow
@@ -20,6 +21,7 @@ export const useLinkFragment = gql`
         category
       }
     }
+
     ... on GroupLink {
       group {
         id
@@ -30,6 +32,15 @@ export const useLinkFragment = gql`
         category
       }
     }
+
+    ... on HomeLink {
+      newWindow
+      tracking {
+        name
+        category
+      }
+    }
+
     ... on PageLink {
       page {
         id
@@ -40,6 +51,7 @@ export const useLinkFragment = gql`
         category
       }
     }
+
     ... on ProductLink {
       product {
         id
@@ -50,6 +62,7 @@ export const useLinkFragment = gql`
         category
       }
     }
+
     ... on ProductsLink {
       sort
       searchKey
@@ -62,6 +75,7 @@ export const useLinkFragment = gql`
         category
       }
     }
+
     ... on CustomLink {
       href
       newWindow

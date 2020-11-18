@@ -47,6 +47,7 @@ export default (
               }`,
               PhoneLink: `tel:${(link as useLinkFragmentLinkPhoneLink).phone}`,
               GroupLink: `#${(link as useLinkFragmentLinkGroupLink).group?.id}`,
+              HomeLink: '/',
               PageLink: `/pages/${
                 (link as useLinkFragmentLinkPageLink).page?.id
               }`,
