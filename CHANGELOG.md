@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.69.0 (2020-11-18)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1290](https://github.com/meepshop/meep-lerna/pull/1290) 前端 - 移除 redux 裡面 updateWishList ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#1280](https://github.com/meepshop/meep-lerna/pull/1280) 前端 - 埋 trace code 在 submit formData 之前 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1292](https://github.com/meepshop/meep-lerna/pull/1292) (@meepshop/frontend) Fix schemas ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.68.5 (2020-11-13)
 
 #### :boom: Breaking Change
