@@ -48,6 +48,8 @@ export const modalStyle = colors => ({
       padding: '0',
       height: '100%',
       width: '100% !important',
+      maxWidth: 'initial !important',
+
       '.ant-modal-content': {
         borderRadius: '0',
         height: '100%',
