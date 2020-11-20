@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.69.1 (2020-11-20)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1288](https://github.com/meepshop/meep-lerna/pull/1288) 【優化】頁腳選單 title 對齊位置 ([@piovischioh](https://github.com/piovischioh))
+  - [#1294](https://github.com/meepshop/meep-lerna/pull/1294) 【BUG】手機版 - 選單元件若有購物車功能，顯示商品數量異常 ([@piovischioh](https://github.com/piovischioh))
+  - [#1287](https://github.com/meepshop/meep-lerna/pull/1287) 【BUG】選單箭頭 icon 大小顯示有誤 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh
+
 ## 0.69.0 (2020-11-18)
 
 #### :boom: Breaking Change
