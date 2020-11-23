@@ -62,7 +62,6 @@ const viewerStoreQuery = `
         }
         locale
         currency
-        lockedBirthday
         paidMessage
         adRetentionMilliseconds
         adRetentionMillisecondsEnabled

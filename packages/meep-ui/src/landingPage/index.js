@@ -24,7 +24,6 @@ import {
 import loadData from 'utils/loadData';
 import buildVariantsTree from 'utils/buildVariantsTree';
 import createFormData from 'utils/createFormData';
-import findDOMTop from 'utils/findDOMTop';
 
 import PaymentInfo from './paymentInfo';
 import ReceiverInfo from './ReceiverInfo';
@@ -65,12 +64,10 @@ export default class LandingPage extends React.PureComponent {
   /** just for adTrack, not use in state */
   storeComputeOrderList = null;
 
-  // eslint-disable-next-line react/destructuring-assignment
-  needToTrackViewProduct = this.props.location.hash !== 'choose-shipment-store';
+  needToTrackViewProduct = true;
 
   static propTypes = {
     /** context */
-    cname: PropTypes.string,
     location: LOCATION_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
@@ -103,7 +100,6 @@ export default class LandingPage extends React.PureComponent {
   };
 
   static defaultProps = {
-    cname: null,
     productData: null,
   };
 
@@ -113,19 +109,6 @@ export default class LandingPage extends React.PureComponent {
     formData: null,
     isSubmitting: false,
   };
-
-  componentDidMount() {
-    if (global.window) {
-      const { location } = this.props;
-
-      if (location.hash !== 'choose-shipment-store') return;
-
-      window.scrollTo(
-        0,
-        findDOMTop(document.getElementById('choose-shipment-store')),
-      );
-    }
-  }
 
   componentDidUpdate(prevProps, prevState) {
     const { adTrack, productData } = this.props;

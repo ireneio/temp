@@ -21,9 +21,10 @@ const Page = React.memo(({ error, ...props }) => {
 });
 
 Page.getInitialProps = async ctx => {
-  const { isServer, query, store, XMeepshopDomain, userAgent } = ctx;
+  const { query, store, XMeepshopDomain, userAgent } = ctx;
 
-  if (!isServer) return { error: { status: 'ERROR_PAGE_NOT_FOUND' } };
+  if (typeof window !== 'undefined')
+    return { error: { status: 'ERROR_PAGE_NOT_FOUND' } };
 
   const { pageId, token, pId } = query;
   const { data } = await initApollo({ name: 'store' }, null, { ctx }).query({

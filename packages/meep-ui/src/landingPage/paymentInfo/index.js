@@ -10,12 +10,7 @@ import withContext from '@store/utils/lib/withContext';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import PaymentDefaultFormItem from 'paymentDefaultFormItem';
-import {
-  ID_TYPE,
-  LOCALE_TYPE,
-  COLOR_TYPE,
-  STORE_SETTING_TYPE,
-} from 'constants/propTypes';
+import { ID_TYPE, LOCALE_TYPE, COLOR_TYPE } from 'constants/propTypes';
 import getComputeOrderQuery from 'utils/getComputeOrderQuery';
 
 import { ADDITION_TYPE } from '../constants';
@@ -46,7 +41,6 @@ class PayemntInfo extends React.PureComponent {
 
   static propTypes = {
     /** context */
-    storeSetting: STORE_SETTING_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     transformCurrency: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,

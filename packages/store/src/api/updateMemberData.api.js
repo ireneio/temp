@@ -2,7 +2,7 @@ import postGraphql from 'utils/postGraphql';
 import { viewer } from './query';
 
 export default async (args = {}) => {
-  const { isServer, XMeepshopDomain, cookie } = args;
+  const { XMeepshopDomain, cookie } = args;
   const variables = {
     keys: '$expireBy: Int!',
     type: 'query updateMemberData',
@@ -18,7 +18,6 @@ export default async (args = {}) => {
   const response = await postGraphql({
     query,
     variables,
-    isServer,
     XMeepshopDomain,
     cookie,
   });

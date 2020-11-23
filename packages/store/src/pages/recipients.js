@@ -17,9 +17,10 @@ import * as Actions from 'ducks/actions';
 
 class Recipients extends Component {
   static getInitialProps = async context => {
-    const { isServer, XMeepshopDomain, userAgent, store } = context;
+    const { XMeepshopDomain, userAgent, store } = context;
 
-    if (isServer) store.dispatch(Actions.serverOthersInitial(context));
+    if (typeof window === 'undefined')
+      store.dispatch(Actions.serverOthersInitial(context));
 
     return {
       userAgent,
@@ -38,7 +39,6 @@ class Recipients extends Component {
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
-    lockedBirthday: PropTypes.bool.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -137,8 +137,6 @@ const mapStateToProps = (state, props) => {
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getPage(state, props),
-    lockedBirthday:
-      Utils.getIn(['storeReducer', 'lockedBirthday'])(state) || false,
   };
 };
 

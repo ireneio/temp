@@ -14,7 +14,6 @@ import CheckoutWrapper from '@store/checkout';
 import { enhancer } from 'layout/DecoratorsRoot';
 import { LOCATION_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
-import findDOMTop from 'utils/findDOMTop';
 
 import OrderDetail from './orderDetail';
 
@@ -30,7 +29,6 @@ export default class Checkout extends React.PureComponent {
   static propTypes = {
     /** context */
     location: LOCATION_TYPE.isRequired,
-    cname: PropTypes.string.isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
     getData: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
@@ -54,19 +52,6 @@ export default class Checkout extends React.PureComponent {
     isSubmitting: false,
     errors: {},
   };
-
-  componentDidMount() {
-    if (global.window) {
-      const { location } = this.props;
-
-      if (location.hash !== 'choose-shipment-store') return;
-
-      window.scrollTo(
-        0,
-        findDOMTop(document.getElementById('choose-shipment-store')),
-      );
-    }
-  }
 
   componentWillUnmount() {
     this.isUnmounted = true;

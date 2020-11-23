@@ -1,6 +1,5 @@
 /**
  * @name getReqArgs
- * @argument {boolean} isServer is server side or client sode
  * @argument {Object} req requset or window
  */
 import getConfig from 'next/config';
@@ -9,8 +8,8 @@ const {
   publicRuntimeConfig: { STORE_DOMAIN },
 } = getConfig();
 
-export default (isServer, req) => {
-  if (isServer) {
+export default req => {
+  if (typeof window === 'undefined') {
     const userAgent = req.get('user-agent');
 
     return {

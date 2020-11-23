@@ -78,14 +78,7 @@ class Container extends React.Component {
       resizeEvent.initUIEvent('resize', true, false, window, 0);
       window.dispatchEvent(resizeEvent);
     }
-    // Fix iOS checkout/lp 選完超商後未跳回收件人資料區塊
-    if (
-      window.location.search.match(/shipmentTemplate=/g) &&
-      window.location.search.match(/tradeNo=/g) &&
-      window.location.hash === ''
-    ) {
-      Utils.goTo({ params: { hash: '#choose-shipment-store' } });
-    }
+
     // handle error
     window.addEventListener(
       'unhandledrejection',
@@ -102,7 +95,6 @@ class Container extends React.Component {
       getAuth,
       userAgent,
       dispatchAction,
-      cname,
       fb,
       appId,
       version,
@@ -121,9 +113,7 @@ class Container extends React.Component {
       !userAgent.match(/Line/gm) &&
       !userAgent.match(/Instagram/gm) &&
       !userAgent.match(/FBAN/gm) && // FIXME: T3144
-      !userAgent.match(/FBAV/gm) &&
-      cname !== 'imint' && // FIXME: T2945
-      cname !== 'truda-moda' // FIXME: hotfix T2939 (原因不明，可能為FB SDK bug
+      !userAgent.match(/FBAV/gm)
     ) {
       // Not in-app browser
       try {
@@ -251,7 +241,6 @@ class Container extends React.Component {
           goTo={Utils.goTo}
           fbLogin={this.handleFacebookLogin}
           getData={Utils.getData}
-          getApiUrl={Utils.getApiUrl}
           /* use dispatchAction */
           login={login}
           logout={signout}

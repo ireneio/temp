@@ -13,12 +13,12 @@ import * as CONST from 'constants';
 
 class Pages extends React.Component {
   static getInitialProps = async context => {
-    const { res, isServer, XMeepshopDomain, userAgent, store, query } = context;
+    const { res, XMeepshopDomain, userAgent, store, query } = context;
     const { path, pId } = query;
 
     if (pId) {
       // Redirect /pages/{PRODUCT-NAME}?pId={PRODUCT-ID} to /product/{PRODUCT-ID}
-      if (isServer) {
+      if (typeof window === 'undefined') {
         res.redirect(302, `/product/${pId}`);
       } else {
         Utils.goTo({ pathname: `/product/${pId}` });
@@ -26,7 +26,7 @@ class Pages extends React.Component {
       return {};
     }
 
-    if (isServer) {
+    if (typeof window === 'undefined') {
       store.dispatch(Actions.serverPagesInitial(context));
     } else {
       const { pagesReducer } = store.getState();

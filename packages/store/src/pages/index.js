@@ -14,10 +14,11 @@ import * as CONST from 'constants';
 
 class Index extends React.Component {
   static getInitialProps = async context => {
-    const { isServer, XMeepshopDomain, userAgent, store, query } = context;
-    if (isServer) {
+    const { XMeepshopDomain, userAgent, store, query } = context;
+
+    if (typeof window === 'undefined')
       store.dispatch(Actions.serverIndexInitial(context));
-    } else {
+    else {
       const { storeReducer, pagesReducer } = store.getState();
       const {
         settings: { homePageId },

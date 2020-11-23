@@ -180,10 +180,7 @@ export default class ReceiverInfo extends React.PureComponent {
 
     return (
       <div style={blockStyle}>
-        <h3
-          id="choose-shipment-store"
-          style={[titleStyle, styles.receiverTitle]}
-        >
+        <h3 style={[titleStyle, styles.receiverTitle]}>
           {t('receiver-info')}
 
           <Checkbox

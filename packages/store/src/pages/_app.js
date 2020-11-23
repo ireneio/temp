@@ -64,10 +64,7 @@ class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     const { req, res, store } = ctx;
     let pageProps = {};
-    const { XMeepshopDomain, userAgent } = Utils.getReqArgs(
-      typeof window === 'undefined',
-      req,
-    );
+    const { XMeepshopDomain, userAgent } = Utils.getReqArgs(req);
 
     try {
       if (typeof window === 'undefined') {

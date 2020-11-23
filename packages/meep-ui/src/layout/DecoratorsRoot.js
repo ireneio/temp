@@ -54,7 +54,6 @@ export default React.memo(
     login,
     fbLogin,
     logout,
-    getApiUrl,
     dispatchAction,
 
     children,
@@ -81,7 +80,6 @@ export default React.memo(
           login,
           fbLogin,
           logout,
-          getApiUrl,
           dispatchAction,
 
           user: data?.viewer || null,

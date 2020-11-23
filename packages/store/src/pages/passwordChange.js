@@ -17,9 +17,10 @@ import * as Actions from 'ducks/actions';
 
 class PasswordChange extends Component {
   static getInitialProps = async context => {
-    const { isServer, XMeepshopDomain, userAgent, store } = context;
+    const { XMeepshopDomain, userAgent, store } = context;
 
-    if (isServer) store.dispatch(Actions.serverOthersInitial(context));
+    if (typeof window === 'undefined')
+      store.dispatch(Actions.serverOthersInitial(context));
 
     return {
       userAgent,

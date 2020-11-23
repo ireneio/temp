@@ -5,7 +5,7 @@ const {
   publicRuntimeConfig: { API_HOST },
 } = getConfig();
 
-export default async ({ res, req, query, variables, isServer }) => {
+export default async ({ res, req, query, variables }) => {
   try {
     const graphql = {
       query: `${variables.type}${variables.keys ? `(${variables.keys})` : ''} {
@@ -15,18 +15,19 @@ export default async ({ res, req, query, variables, isServer }) => {
     };
 
     const response = await fetch(
-      isServer ? `${API_HOST}/graphql` : '/api/graphql',
+      typeof window === 'undefined' ? `${API_HOST}/graphql` : '/api/graphql',
       {
         method: 'post',
-        headers: isServer
-          ? {
-              'content-type': 'application/json',
-              'x-meepshop-domain': req.headers.host,
-              'x-meepshop-authorization-token':
-                req.cookies['x-meepshop-authorization-token'],
-            }
-          : { 'content-type': 'application/json' },
-        credentials: isServer ? 'include' : 'same-origin',
+        headers:
+          typeof window === 'undefined'
+            ? {
+                'content-type': 'application/json',
+                'x-meepshop-domain': req.headers.host,
+                'x-meepshop-authorization-token':
+                  req.cookies['x-meepshop-authorization-token'],
+              }
+            : { 'content-type': 'application/json' },
+        credentials: typeof window === 'undefined' ? 'include' : 'same-origin',
         body: JSON.stringify(graphql),
       },
     );
@@ -39,7 +40,7 @@ export default async ({ res, req, query, variables, isServer }) => {
        * Only happened in computeProductList, computeOrderList query
        */
       if (data?.errors?.[0]?.message === 'userId not exist') {
-        if (isServer) {
+        if (typeof window === 'undefined') {
           res.cookie('x-meepshop-authorization-token', '', {
             maxAge: 0,
             httpOnly: true,
@@ -61,7 +62,7 @@ export default async ({ res, req, query, variables, isServer }) => {
 
     /* Handle token is expired */
     if (response.status === 401) {
-      if (isServer) {
+      if (typeof window === 'undefined') {
         res.cookie('x-meepshop-authorization-token', '', {
           maxAge: 0,
           httpOnly: true,
@@ -82,7 +83,7 @@ export default async ({ res, req, query, variables, isServer }) => {
       );
     }
 
-    if (isServer) {
+    if (typeof window === 'undefined') {
       const os = require('os'); // eslint-disable-line
       throw new Error(
         `${response.status} ${response.statusText} - ${os.hostname()}`,

@@ -19,9 +19,10 @@ import * as Actions from 'ducks/actions';
 
 class Wishlist extends Component {
   static getInitialProps = async context => {
-    const { isServer, XMeepshopDomain, userAgent, store } = context;
+    const { XMeepshopDomain, userAgent, store } = context;
 
-    if (isServer) store.dispatch(Actions.serverOthersInitial(context));
+    if (typeof window === 'undefined')
+      store.dispatch(Actions.serverOthersInitial(context));
 
     return {
       userAgent,
@@ -41,7 +42,6 @@ class Wishlist extends Component {
       pathname: PropTypes.string.isRequired,
     }).isRequired,
     locale: PropTypes.string.isRequired,
-    wishList: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   static defaultProps = { error: null };
@@ -73,8 +73,6 @@ class Wishlist extends Component {
       apps,
       isLogin,
       storeSetting: { storeName, faviconUrl },
-      wishList,
-      dispatchAction,
     } = this.props;
 
     if (isLogin === 'NOTLOGIN') return <div>未登入</div>;
@@ -90,10 +88,7 @@ class Wishlist extends Component {
         </Head>
         <Container {...this.props}>
           <MemberHeader title={t('title.wishlist')}>
-            <MemberWishlist
-              wishListFromRedux={wishList}
-              dispatchAction={dispatchAction}
-            />
+            <MemberWishlist />
           </MemberHeader>
         </Container>
       </>
@@ -148,7 +143,6 @@ const mapStateToProps = (state, props) => {
     isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getPage(state, props),
-    wishList: Utils.getIn(['memberReducer', 'wishList'])(state),
   };
 };
 

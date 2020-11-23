@@ -11,10 +11,11 @@ import * as Actions from 'ducks/actions';
 
 class Login extends Component {
   static getInitialProps = async context => {
-    const { isServer, XMeepshopDomain, userAgent, store } = context;
-    if (isServer) {
+    const { XMeepshopDomain, userAgent, store } = context;
+
+    if (typeof window === 'undefined')
       store.dispatch(Actions.serverOthersInitial(context));
-    }
+
     return { userAgent, XMeepshopDomain };
   };
 

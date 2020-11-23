@@ -19,8 +19,8 @@ const AUTH_FAILURE = 'AUTH_FAILURE';
 
 /**
  * @name getAuth
- * @description Client-side getAuth() & Server-side getAuth({ isServer, XMeepshopDomain, cookie })
- * @param {Object} payload = { isServer, XMeepshopDomain, cookie }
+ * @description Client-side getAuth() & Server-side getAuth({ XMeepshopDomain, cookie })
+ * @param {Object} payload = { XMeepshopDomain, cookie }
  */
 export const getAuth = payload => ({
   type: AUTH_REQUEST,

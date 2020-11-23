@@ -16,15 +16,15 @@ import * as Actions from 'ducks/actions';
 class ForgotPassword extends Component {
   static getInitialProps = async context => {
     const {
-      isServer,
       store,
       req,
       query: { token },
     } = context;
-    const { XMeepshopDomain, userAgent } = Utils.getReqArgs(isServer, req);
-    if (isServer) {
+    const { XMeepshopDomain, userAgent } = Utils.getReqArgs(req);
+
+    if (typeof window === 'undefined')
       store.dispatch(Actions.serverOthersInitial(context));
-    }
+
     return { token, userAgent, XMeepshopDomain };
   };
 

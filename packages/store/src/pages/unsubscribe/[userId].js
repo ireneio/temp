@@ -9,10 +9,11 @@ import * as Actions from 'ducks/actions';
 
 class UnsubscribeEmailPage extends React.PureComponent {
   static getInitialProps = async context => {
-    const { isServer, store } = context;
+    const { store } = context;
     const result = await UnsubscribeEmail.getInitialProps();
 
-    if (isServer) store.dispatch(Actions.serverOthersInitial(context));
+    if (typeof window === 'undefined')
+      store.dispatch(Actions.serverOthersInitial(context));
 
     return result;
   };

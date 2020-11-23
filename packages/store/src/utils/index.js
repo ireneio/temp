@@ -1,5 +1,4 @@
 import getStateError from './getStateError';
-import getApiUrl from './getApiUrl';
 import goTo from './goTo';
 import getData from './getData';
 import getIn from './getIn';
@@ -12,7 +11,6 @@ import logToServer from './logToServer';
 
 export {
   getStateError,
-  getApiUrl,
   goTo,
   getData,
   getIn,

@@ -120,9 +120,7 @@ export default class ReceiverInfo extends React.PureComponent {
 
     return (
       <div style={blockStyle}>
-        <h3 id="choose-shipment-store" style={titleStyle(colors)}>
-          {t('receiver-info')}
-        </h3>
+        <h3 style={titleStyle(colors)}>{t('receiver-info')}</h3>
 
         <div style={styles.nameRoot}>
           <FormItem style={formItemStyle}>

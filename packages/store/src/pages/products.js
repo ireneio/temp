@@ -12,12 +12,13 @@ import * as Actions from 'ducks/actions';
 
 class Products extends React.Component {
   static getInitialProps = async context => {
-    const { isServer, XMeepshopDomain, userAgent, store, query } = context;
+    const { XMeepshopDomain, userAgent, store, query } = context;
 
-    if (isServer) {
+    if (typeof window === 'undefined')
       store.dispatch(Actions.serverProductsInitial(context));
-    } else {
+    else {
       const { pagesReducer } = store.getState();
+
       if (!pagesReducer.find(page => page.pageType === 'products')) {
         store.dispatch(Actions.getPages({ pageType: 'PRODUCTS', query }));
       }

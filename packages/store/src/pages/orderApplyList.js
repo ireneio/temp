@@ -18,14 +18,14 @@ import * as Actions from 'ducks/actions';
 class OrderApplyList extends React.Component {
   static getInitialProps = async context => {
     const {
-      isServer,
       XMeepshopDomain,
       userAgent,
       store,
       query: { orderId },
     } = context;
 
-    if (isServer) store.dispatch(Actions.serverOthersInitial(context));
+    if (typeof window === 'undefined')
+      store.dispatch(Actions.serverOthersInitial(context));
 
     return {
       orderId,
