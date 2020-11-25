@@ -1,3 +1,6 @@
+// typescript import
+import { MenuItemProps } from 'antd/lib/menu/MenuItem';
+
 // import
 import React from 'react';
 import { filter } from 'graphql-anywhere';
@@ -38,7 +41,7 @@ import {
 } from './gqls/useClick';
 
 // typescript definition
-export interface PropsType {
+export interface PropsType extends MenuItemProps {
   user: menuItemUserFragmentType | null;
   order: menuItemOrderFragmentType | null;
   page: menuItemMenuPageObjectTypeFragmentType & {

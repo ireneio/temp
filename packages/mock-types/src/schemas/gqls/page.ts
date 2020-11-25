@@ -9,5 +9,7 @@ export const pageMockFragment = gql`
     title {
       zh_TW
     }
+    useBottom
+    container
   }
 `;

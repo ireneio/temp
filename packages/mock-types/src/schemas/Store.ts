@@ -36,6 +36,12 @@ export default mock.add<storeMockFragment>('Store', [
           zh_TW: 'default-product-list-page-id',
         },
       },
+      logoImage: {
+        __typename: 'Image',
+      },
+      mobileLogoImage: {
+        __typename: 'Image',
+      },
     } as storeMockFragment),
   () =>
     ({
@@ -67,5 +73,7 @@ export default mock.add<storeMockFragment>('Store', [
           zh_TW: 'default-product-list-page-id',
         },
       },
+      logoImage: null,
+      mobileLogoImage: null,
     } as storeMockFragment),
 ]);

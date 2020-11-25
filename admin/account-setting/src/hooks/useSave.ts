@@ -13,6 +13,7 @@ import {
   updateUserList as updateUserListType,
   updateUserListVariables,
 } from '../gqls/__generated__/updateUserList';
+import { accountFragment as accountFragmentType } from '../gqls/__generated__/accountFragment';
 
 // graphql import
 import { updateUserList } from '../gqls/useSave';
@@ -42,7 +43,7 @@ export default (
 
       message.success(t('success'));
 
-      cache.writeFragment({
+      cache.writeFragment<accountFragmentType>({
         id,
         fragment: accountFragment,
         data: {

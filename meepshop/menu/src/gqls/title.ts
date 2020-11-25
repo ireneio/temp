@@ -55,6 +55,6 @@ export const titleMenuPageObjectTypeFragment = gql`
 
 export const titleMenuDesignObjectTypeFragment = gql`
   fragment titleMenuDesignObjectTypeFragment on MenuDesignObjectType {
-    fontSize
+    iconSize
   }
 `;

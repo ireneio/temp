@@ -46,6 +46,8 @@ export default mock.add<
           zh_TW: obj.node?.id || 'id',
         },
       modules: PageModule({}, {}),
+      useBottom: false,
+      container: 'DefaultContainer',
     } as pageMockFragment),
   obj =>
     ({
@@ -64,6 +66,8 @@ export default mock.add<
           zh_TW: obj.node?.id || 'id',
         },
       modules: PageModule({}, {}),
+      useBottom: true,
+      container: 'FixedTopContainer',
     } as pageMockFragment),
   obj =>
     ({
@@ -81,6 +85,8 @@ export default mock.add<
           zh_TW: obj.node?.id || 'id',
         },
       modules: PageModule({}, {}),
+      useBottom: true,
+      container: 'Sidebar',
     } as pageMockFragment),
   obj =>
     ({
@@ -98,5 +104,45 @@ export default mock.add<
           zh_TW: obj.node?.id || 'id',
         },
       modules: PageModule({}, {}),
+      useBottom: true,
+      container: 'TwoTopsContainer',
+    } as pageMockFragment),
+  obj =>
+    ({
+      __typename: 'Page',
+      id:
+        obj.node?.id ||
+        obj.defaultHomePage?.id ||
+        obj.defaultProductListPage?.id ||
+        'id',
+      width: 1440,
+      title: obj.defaultHomePage?.title ||
+        obj.defaultProductListPage?.title || {
+          __typename: 'Locale',
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          zh_TW: obj.node?.id || 'id',
+        },
+      modules: PageModule({}, {}),
+      useBottom: true,
+      container: 'FixedTopContainerWithSidebar',
+    } as pageMockFragment),
+  obj =>
+    ({
+      __typename: 'Page',
+      id:
+        obj.node?.id ||
+        obj.defaultHomePage?.id ||
+        obj.defaultProductListPage?.id ||
+        'id',
+      width: 1440,
+      title: obj.defaultHomePage?.title ||
+        obj.defaultProductListPage?.title || {
+          __typename: 'Locale',
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          zh_TW: obj.node?.id || 'id',
+        },
+      modules: PageModule({}, {}),
+      useBottom: true,
+      container: 'TwoTopsContainerWithSidebar',
     } as pageMockFragment),
 ]);

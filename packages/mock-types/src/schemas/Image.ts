@@ -10,13 +10,13 @@ import { imageMockFragment } from './gqls/__generated__/imageMockFragment';
 export default mock.add<imageMockFragment>('Image', [
   () => ({
     __typename: 'Image',
-    scaledSrc: null,
-  }),
-  () => ({
-    __typename: 'Image',
     scaledSrc: {
       ...dashboardCost,
       __typename: 'ScaledURLs',
     },
+  }),
+  () => ({
+    __typename: 'Image',
+    scaledSrc: null,
   }),
 ]);

@@ -7,10 +7,11 @@ import Switch from '@meepshop/switch';
 import { menuIconsPerson_scaledSrc as menuIconsPerson } from '@meepshop/images';
 
 import SearchBar from './SearchBar';
-import { ACION_TYPES } from './constants';
 import useTitle from './hooks/useTitle';
 import useHref from './hooks/useHref';
 import useIcon from './hooks/useIcon';
+import styles from './styles/title.less';
+import { ACION_TYPES } from './constants';
 
 // graphql typescript
 import {
@@ -85,9 +86,9 @@ export default React.memo(
                 {(image as titleMenuPageObjectTypeFragmentImageImageType)
                   ?.__typename !== 'Image' ? null : (
                   <img
+                    className={styles.img}
                     style={{
-                      width: `${design?.fontSize}px`,
-                      height: `${design?.fontSize}px`,
+                      fontSize: `${design?.iconSize || 24}px`,
                     }}
                     src={
                       (image as titleMenuPageObjectTypeFragmentImageImageType)
@@ -110,7 +111,7 @@ export default React.memo(
                 {(image as titleMenuPageObjectTypeFragmentDefaultIconDefaultIconType)
                   ?.__typename !== 'DefaultIcon' ? null : (
                   <Icon
-                    style={{ fontSize: `${design?.fontSize}px` }}
+                    style={{ fontSize: `${design?.iconSize || 24}px` }}
                     onClick={() => {
                       if (ACION_TYPES[action || 0] === 'SEARCH_BAR')
                         setVisible(!visible);

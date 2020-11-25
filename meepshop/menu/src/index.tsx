@@ -20,10 +20,13 @@ import { usePagesWithSearchBarFragment } from './gqls/usePagesWithSearchBar';
 
 // definition
 export default React.memo(({ menu, cart, viewer }: menuFragment) => {
-  const design = menu?.design || null;
   const pagesWithSearchBar = usePagesWithSearchBar(
-    filter(usePagesWithSearchBarFragment, design),
+    filter(usePagesWithSearchBarFragment, menu?.design || null),
   );
+
+  if (!menu) return null;
+
+  const { design } = menu;
   const pages = [...(menu?.pages || []), ...pagesWithSearchBar];
 
   return pages.length === 0 ? null : (

@@ -37,10 +37,7 @@ type resolverType<
 // definition
 class Mock {
   public schemas: {
-    [key: string]: ((
-      arg0: { [key: string]: unknown },
-      arg1: { [key: string]: unknown },
-    ) => unknown)[];
+    [key: string]: resolverType<unknown>[];
   } = {};
 
   public tracking: string[] = [];

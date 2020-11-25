@@ -14,7 +14,7 @@ const ACTIONS: number[] = [].constructor
   .map((_: unknown, index: number) => index)
   .filter((index: number) => index !== 4);
 
-const IMAGES = ['ONLY', 'UPON', 'LEFT', 'RIGHT', 'BELOW'].map(
+const IMAGES = ['ONLY', 'UPON', 'LEFT', 'RIGHT', null, 'BELOW'].map(
   (imagePosition: ImagePositionEnum) => ({
     image: {
       __typename: 'Image' as 'Image',
@@ -75,7 +75,7 @@ export default {
     pages: generateMenuPages(generateMenuPages(generateMenuPages())),
     design: {
       __typename: 'MenuDesignObjectType',
-      fontSize: 14,
+      iconSize: 24,
       showSearchbar: true,
     },
   },

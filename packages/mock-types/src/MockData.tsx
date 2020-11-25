@@ -33,7 +33,7 @@ export default React.memo(
               mockIndex
             }
             overlayClassName={styles.tooltip}
-            title={JSON.stringify(mockData({}, {}), null, 2)}
+            title={JSON.stringify(mockData({}, {}, { isList: false }), null, 2)}
             placement="left"
           >
             <Button
