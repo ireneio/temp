@@ -19,17 +19,29 @@ import {
 type SortType = 'LATEST' | 'NAME' | 'PRICE_ASC' | 'PRICE_DESC';
 
 // definition
-const generateProductsUrl = (link: useLinkFragmentLinkProductsLink): string =>
-  `/products?sort=${
-    {
-      LATEST: 'createdAt-desc',
-      NAME: 'title.zh_TW-asc',
-      PRICE_ASC: 'variantInfo.firstRetailPrice-asc',
-      PRICE_DESC: 'variantInfo.firstRetailPrice-desc',
-    }[link.sort as SortType]
-  }&price=${link.minPrice},${link.maxPrice}${
-    link.searchKey ? `&search=${link.searchKey}` : ''
-  }${link.tags ? `&tags=${link.tags.join(',')}` : ''}`;
+const generateProductsUrl = ({
+  sort,
+  retailPriceRange,
+  searchKey,
+  tags,
+}: useLinkFragmentLinkProductsLink): string =>
+  [
+    `/products?sort=${
+      {
+        LATEST: 'createdAt-desc',
+        NAME: 'title.zh_TW-asc',
+        PRICE_ASC: 'variantInfo.firstRetailPrice-asc',
+        PRICE_DESC: 'variantInfo.firstRetailPrice-desc',
+      }[sort as SortType]
+    }`,
+    !retailPriceRange
+      ? null
+      : `price=${retailPriceRange.min},${retailPriceRange.max}`,
+    !searchKey ? null : `search=${searchKey}`,
+    !tags ? null : `tags=${tags.join(',')}`,
+  ]
+    .filter(Boolean)
+    .join('&');
 
 export default (
   link: useLinkFragmentLink | null,

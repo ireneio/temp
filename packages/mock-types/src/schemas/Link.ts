@@ -69,8 +69,10 @@ export default mock.add<linkMockFragment>('Link', [
       __typename: 'ProductsLink',
       sort: 'LATEST',
       searchKey: 'searchKey',
-      minPrice: 0,
-      maxPrice: 100,
+      retailPriceRange: {
+        min: 0,
+        max: 100,
+      },
       tags: ['tag1', 'tag2'],
       newWindow: true,
       tracking: {

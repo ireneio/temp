@@ -66,8 +66,10 @@ export const useLinkFragment = gql`
     ... on ProductsLink {
       sort
       searchKey
-      minPrice
-      maxPrice
+      retailPriceRange {
+        min
+        max
+      }
       tags
       newWindow
       tracking {
