@@ -2,6 +2,7 @@
 import gql from 'graphql-tag';
 
 // graphql import
+import { logoUserFragment, logoMenuDesignObjectTypeFragment } from './logo';
 import {
   menuItemUserFragment,
   menuItemOrderFragment,
@@ -11,43 +12,73 @@ import {
 import { usePagesWithSearchBarFragment } from './usePagesWithSearchBar';
 
 // definition
-export const menuFragment = gql`
-  fragment menuFragment on MenuModule {
+export const menuUserFragment = gql`
+  fragment menuUserFragment on User {
     id
-    menu {
+    ...menuItemUserFragment
+  }
+
+  ${menuItemUserFragment}
+`;
+
+export const menuOrderListFragment = gql`
+  fragment menuOrderListFragment on OrderList {
+    data {
       id
+      ...menuItemOrderFragment
+    }
+  }
+
+  ${menuItemOrderFragment}
+`;
+
+export const menuMenuFragment = gql`
+  fragment menuMenuFragment on Menu {
+    id
+    pages {
+      id
+      ...menuItemMenuPageObjectTypeFragment
       pages {
         id
         ...menuItemMenuPageObjectTypeFragment
         pages {
           id
           ...menuItemMenuPageObjectTypeFragment
-          pages {
-            id
-            ...menuItemMenuPageObjectTypeFragment
-          }
         }
       }
-      design {
-        ...menuItemMenuDesignObjectTypeFragment
-        ...usePagesWithSearchBarFragment
-      }
     }
-    viewer {
-      id
-      ...menuItemUserFragment
-    }
-    cart {
-      data {
-        id
-        ...menuItemOrderFragment
-      }
+    design {
+      ...logoMenuDesignObjectTypeFragment
+      ...menuItemMenuDesignObjectTypeFragment
+      ...usePagesWithSearchBarFragment
     }
   }
 
+  ${logoMenuDesignObjectTypeFragment}
   ${menuItemMenuPageObjectTypeFragment}
   ${menuItemMenuDesignObjectTypeFragment}
   ${usePagesWithSearchBarFragment}
-  ${menuItemUserFragment}
-  ${menuItemOrderFragment}
+`;
+
+export const menuMenuModuleFragment = gql`
+  fragment menuMenuModuleFragment on MenuModule {
+    id
+    menu {
+      id
+      ...menuMenuFragment
+    }
+    viewer {
+      id
+      ...logoUserFragment
+      ...menuUserFragment
+    }
+    cart {
+      ...menuOrderListFragment
+    }
+  }
+
+  ${logoUserFragment}
+  ${menuMenuFragment}
+  ${menuUserFragment}
+  ${menuOrderListFragment}
 `;

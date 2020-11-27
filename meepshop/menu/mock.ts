@@ -6,7 +6,7 @@ import { dashboardCost_scaledSrc as dashboardCost } from '@meepshop/images';
 
 // graphql typescript
 import { ImagePositionEnum } from '../../__generated__/meepshop';
-import { menuFragment } from './src/gqls/__generated__/menuFragment';
+import { menuMenuModuleFragment } from './src/gqls/__generated__/menuMenuModuleFragment';
 
 // definition
 const ACTIONS: number[] = [].constructor
@@ -29,8 +29,8 @@ const IMAGES = ['ONLY', 'UPON', 'LEFT', 'RIGHT', null, 'BELOW'].map(
 );
 
 const generateMenuPages = (
-  pages: NonNullable<menuFragment['menu']>['pages'] = null,
-): NonNullable<menuFragment['menu']>['pages'] =>
+  pages: NonNullable<menuMenuModuleFragment['menu']>['pages'] = null,
+): NonNullable<menuMenuModuleFragment['menu']>['pages'] =>
   ACTIONS.map((action: number) => ({
     ...(IMAGES[action] || { image: null, imagePosition: null }),
     __typename: 'MenuPageObjectType' as 'MenuPageObjectType',
@@ -143,4 +143,4 @@ export default {
       },
     },
   },
-} as menuFragment;
+} as menuMenuModuleFragment;

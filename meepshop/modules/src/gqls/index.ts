@@ -10,7 +10,7 @@ import { googleMapFragment } from '@meepshop/google-map/lib/gqls';
 import { iframeFragment } from '@meepshop/iframe/lib/gqls';
 import { imageFragment } from '@meepshop/image/lib/gqls';
 import { imageTextFragment } from '@meepshop/image-text/lib/gqls';
-import { menuFragment } from '@meepshop/menu/lib/gqls';
+import { menuMenuModuleFragment } from '@meepshop/menu/lib/gqls';
 import { productCarouselFragment } from '@meepshop/product-carousel/lib/gqls';
 import { productCollectionsFragment } from '@meepshop/product-collections/lib/gqls';
 import productDraftTextFragment from '@meepshop/product-draft-text/lib/fragment';
@@ -125,7 +125,7 @@ export const modulesFragment = gql`
       __typename
       id
       parentId
-      ...menuFragment
+      ...menuMenuModuleFragment
     }
 
     ... on ProductCarouselModule {
@@ -233,7 +233,7 @@ export const modulesFragment = gql`
   ${iframeFragment}
   ${imageFragment}
   ${imageTextFragment}
-  ${menuFragment}
+  ${menuMenuModuleFragment}
   ${productCarouselFragment}
   ${productCollectionsFragment}
   ${productDraftTextFragment}

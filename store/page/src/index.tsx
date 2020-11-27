@@ -9,23 +9,27 @@ import Group from '@store/group';
 import usePage from './hooks/usePage';
 
 // graphql import
-import { pageFragment } from '@meepshop/page/lib/gqls';
+import {
+  pageUserFragment,
+  pageOrderListFragment,
+  pagePageFragment,
+} from '@meepshop/page/lib/gqls';
 import { groupFragment } from '@store/group/lib/gqls';
 
 // definition
 export default React.memo(() => {
   const data = usePage();
+  const page = data?.viewer?.store?.page;
 
-  if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!data || !page) return <Spin indicator={<Icon type="loading" spin />} />;
 
   return (
     <Page
-      storeExperiment={filter(
-        pageFragment,
-        data?.viewer?.store?.experiment || null,
-      )}
+      viewer={filter(pageUserFragment, data?.viewer || null)}
+      cart={filter(pageOrderListFragment, data?.getCartList || null)}
+      page={filter(pagePageFragment, page)}
     >
-      <Group page={filter(groupFragment, data?.viewer?.store?.page || null)} />
+      <Group page={filter(groupFragment, page)} />
     </Page>
   );
 });

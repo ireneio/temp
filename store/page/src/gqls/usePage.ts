@@ -2,7 +2,11 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { pageFragment } from '@meepshop/page/lib/gqls';
+import {
+  pageUserFragment,
+  pageOrderListFragment,
+  pagePageFragment,
+} from '@meepshop/page/lib/gqls';
 import { groupFragment } from '@store/group/lib/gqls';
 
 // definition
@@ -10,16 +14,16 @@ const usePageFragment = gql`
   fragment usePageFragment on Query {
     viewer {
       id
-      store {
-        id
-        experiment {
-          ...pageFragment
-        }
-      }
+      ...pageUserFragment
+    }
+
+    getCartList {
+      ...pageOrderListFragment
     }
   }
 
-  ${pageFragment}
+  ${pageUserFragment}
+  ${pageOrderListFragment}
 `;
 
 export const getHomePage = gql`
@@ -31,6 +35,7 @@ export const getHomePage = gql`
         defaultHomePage {
           id
           ...groupFragment
+          ...pagePageFragment
         }
       }
     }
@@ -39,6 +44,7 @@ export const getHomePage = gql`
 
   ${usePageFragment}
   ${groupFragment}
+  ${pagePageFragment}
 `;
 
 export const getCustomPage = gql`
@@ -50,6 +56,7 @@ export const getCustomPage = gql`
         customPage(path: $path) {
           id
           ...groupFragment
+          ...pagePageFragment
         }
       }
     }
@@ -58,6 +65,7 @@ export const getCustomPage = gql`
 
   ${usePageFragment}
   ${groupFragment}
+  ${pagePageFragment}
 `;
 
 export const getProductPage = gql`
@@ -71,6 +79,7 @@ export const getProductPage = gql`
           page {
             id
             ...groupFragment
+            ...pagePageFragment
           }
         }
       }
@@ -80,6 +89,7 @@ export const getProductPage = gql`
 
   ${usePageFragment}
   ${groupFragment}
+  ${pagePageFragment}
 `;
 
 export const getProductsPage = gql`
@@ -91,6 +101,7 @@ export const getProductsPage = gql`
         defaultProductListPage {
           id
           ...groupFragment
+          ...pagePageFragment
         }
       }
     }
@@ -99,4 +110,5 @@ export const getProductsPage = gql`
 
   ${usePageFragment}
   ${groupFragment}
+  ${pagePageFragment}
 `;

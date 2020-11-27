@@ -3,13 +3,18 @@ import React from 'react';
 import { filter } from 'graphql-anywhere';
 import { Menu } from 'antd';
 
+import Logo from './Logo';
 import MenuItem from './MenuItem';
 import usePagesWithSearchBar from './hooks/usePagesWithSearchBar';
 
 // graphql typescript
-import { menuFragment } from './gqls/__generated__/menuFragment';
+import { menuMenuModuleFragment } from './gqls/__generated__/menuMenuModuleFragment';
 
 // graphql import
+import {
+  logoUserFragment,
+  logoMenuDesignObjectTypeFragment,
+} from './gqls/logo';
 import {
   menuItemUserFragment,
   menuItemOrderFragment,
@@ -19,7 +24,7 @@ import {
 import { usePagesWithSearchBarFragment } from './gqls/usePagesWithSearchBar';
 
 // definition
-export default React.memo(({ menu, cart, viewer }: menuFragment) => {
+export default React.memo(({ menu, cart, viewer }: menuMenuModuleFragment) => {
   const pagesWithSearchBar = usePagesWithSearchBar(
     filter(usePagesWithSearchBarFragment, menu?.design || null),
   );
@@ -30,21 +35,28 @@ export default React.memo(({ menu, cart, viewer }: menuFragment) => {
   const pages = [...(menu?.pages || []), ...pagesWithSearchBar];
 
   return pages.length === 0 ? null : (
-    <Menu>
-      {pages.map(page =>
-        !page ? null : (
-          <MenuItem
-            key={page.id}
-            user={filter(menuItemUserFragment, viewer)}
-            order={filter(menuItemOrderFragment, cart?.data?.[0] || null)}
-            page={{
-              ...filter(menuItemMenuPageObjectTypeFragment, page),
-              pages: page.pages,
-            }}
-            design={filter(menuItemMenuDesignObjectTypeFragment, design)}
-          />
-        ),
-      )}
-    </Menu>
+    <div>
+      <Logo
+        viewer={filter(logoUserFragment, viewer)}
+        design={filter(logoMenuDesignObjectTypeFragment, design)}
+      />
+
+      <Menu>
+        {pages.map(page =>
+          !page ? null : (
+            <MenuItem
+              key={page.id}
+              user={filter(menuItemUserFragment, viewer)}
+              order={filter(menuItemOrderFragment, cart?.data?.[0] || null)}
+              page={{
+                ...filter(menuItemMenuPageObjectTypeFragment, page),
+                pages: page.pages,
+              }}
+              design={filter(menuItemMenuDesignObjectTypeFragment, design)}
+            />
+          ),
+        )}
+      </Menu>
+    </div>
   );
 });
