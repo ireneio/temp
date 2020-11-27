@@ -278,7 +278,36 @@ export default class OrderDetail extends React.PureComponent {
         activityInfo,
         priceInfo,
       },
-      products: newProducts,
+      products: newProducts.map(product => {
+        const { error, type, stock, minPurchaseItems } = product;
+
+        if (error && /Product not online/.test(error))
+          return {
+            ...product,
+            error: 'PRODUCT_NOT_ONLINE',
+          };
+
+        if (type !== 'product' && (!stock || stock <= 0 || error))
+          return {
+            ...product,
+            error: 'GIFT_OUT_OF_STOCK',
+          };
+
+        if (
+          !stock ||
+          stock <= 0 ||
+          (stock > 0 && (minPurchaseItems || 0) > stock)
+        )
+          return {
+            ...product,
+            error: 'PRODUCT_SOLD_OUT',
+          };
+
+        return {
+          ...product,
+          error: null,
+        };
+      }),
       choosePayment: paymentList.find(({ paymentId: id }) => id === paymentId),
       chooseShipment: shipmentList.find(
         ({ shipmentId: id }) => id === shipmentId,

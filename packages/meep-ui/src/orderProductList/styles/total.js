@@ -5,7 +5,7 @@ export const root = colors => ({
   justifyContent: 'space-between',
   flexShrink: 0,
   width: '100%',
-  padding: '30px',
+  padding: '32px 24px',
   color: colors[3],
   background: colors[0],
   boxShadow: '0 -2px 15px 0 rgba(102,102,102,0.15)',

@@ -5,5 +5,6 @@
   "not-choose-shipment": "未選擇",
   "shipment": "運費",
   "free-shipment": "免運費",
-  "grand-total": "訂單總金額"
+  "grand-total": "訂單總金額",
+  "subtotal": "小計"
 }

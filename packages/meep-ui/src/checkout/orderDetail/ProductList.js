@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 import { Icon } from 'antd';
+import transformColor from 'color';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -11,6 +12,7 @@ import { loadAnimation } from 'utils/addAnimation';
 import OrderProductList from 'orderProductList';
 
 import * as styles from './styles/productList';
+import * as lessStyles from './styles/productList.less';
 
 @enhancer
 @radium
@@ -94,7 +96,10 @@ export default class ProductList extends React.PureComponent {
         </div>
 
         <OrderProductList
-          style={styles.orderProductList(colors, showDetail)}
+          className={lessStyles.orderProductList}
+          style={{
+            borderLeft: `20px solid ${transformColor(colors[4]).alpha(0.15)}`,
+          }}
           products={products}
           activityInfo={activityInfo}
           priceInfo={priceInfo}

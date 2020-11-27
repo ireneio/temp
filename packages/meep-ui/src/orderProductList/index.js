@@ -1,94 +1,90 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import radium from 'radium';
+import React, { useContext } from 'react';
+import { Table } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { Colors as ColorsContext } from '@meepshop/context';
+import { emptyCart_react as EmptyCart } from '@meepshop/images';
 
-import { ID_TYPE } from 'constants/propTypes';
+import { enhancer } from 'layout/DecoratorsRoot';
 
-import Product from './Product';
-import EmptyCartIcon from './EmptyCartIcon';
 import Total from './Total';
-import * as styles from './styles';
+import useColumns from './hooks/useColumns';
+import styles from './styles/index.less';
 
-@withTranslation('order-product-list')
-@radium
-export default class OrderProductList extends React.PureComponent {
-  static propTypes = {
-    /** props */
-    t: PropTypes.func.isRequired,
-    style: PropTypes.shape({}),
-    onChange: PropTypes.func,
-    products: PropTypes.arrayOf(
-      PropTypes.shape({
-        cartId: ID_TYPE.isRequired,
-      }).isRequired,
-    ),
-    activityInfo: PropTypes.arrayOf(PropTypes.shape({})),
-    priceInfo: PropTypes.shape({}),
-    isChoosenSipment: PropTypes.bool,
-    productHasError: PropTypes.bool.isRequired,
-    children: PropTypes.node,
-  };
-
-  static defaultProps = {
-    style: {},
-    onChange: () => {},
-    products: [],
-    priceInfo: {},
-    activityInfo: null,
-    isChoosenSipment: false,
-    children: null,
-  };
-
-  render() {
-    const {
-      t,
+export default enhancer(
+  React.memo(
+    ({
+      className,
       style,
-      onChange,
       children,
-      productHasError,
       products,
       priceInfo,
       activityInfo,
       isChoosenSipment,
-    } = this.props;
+      productHasError,
+      updateCart,
+      onChange,
+    }) => {
+      const { t } = useTranslation('order-product-list');
+      const colors = useContext(ColorsContext);
+      const columns = useColumns({ productHasError, updateCart, onChange });
 
-    return (
-      <div style={[styles.root, style]}>
-        <div style={styles.productList(products.length === 0)}>
-          {products.length === 0 ? (
-            <>
-              <EmptyCartIcon />
+      return (
+        <div className={`${styles.root} ${className}`} style={style}>
+          <div
+            className={`${styles.productList} ${
+              products.length !== 0 ? '' : styles.empty
+            }`}
+          >
+            {products.length === 0 ? (
+              <>
+                <EmptyCart className={styles.emptyCart} />
 
-              <p style={styles.emptyCartText}>{t('empty-cart')}</p>
-            </>
-          ) : (
-            <table style={styles.table}>
-              <tbody>
-                {products.map(({ productId, ...product }, index) => (
-                  <Product
-                    {...product}
-                    productId={productId}
-                    // eslint-disable-next-line react/no-array-index-key
-                    key={`${productId}-${index}`}
-                    onChange={onChange}
-                    productHasError={productHasError}
-                  />
-                ))}
-              </tbody>
-            </table>
-          )}
+                <p className={styles.emptyCartText}>{t('empty-cart')}</p>
+              </>
+            ) : (
+              <>
+                <Table
+                  className={styles.table}
+                  dataSource={products}
+                  columns={columns}
+                  rowKey={({ id }) => id}
+                  onRow={({ error }) => ({
+                    style:
+                      !productHasError || error !== 'PRODUCT_NOT_ONLINE'
+                        ? {}
+                        : {
+                            background: colors[5],
+                          },
+                  })}
+                  showHeader={false}
+                  pagination={false}
+                />
+
+                <style
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                      .${styles.table} .ant-select-selection {
+                        color: ${colors[3]};
+                        border-color: ${colors[5]};
+                        background: transparent;
+                      }
+                    `,
+                  }}
+                />
+              </>
+            )}
+          </div>
+
+          <Total
+            {...priceInfo}
+            isChoosenSipment={isChoosenSipment}
+            activityInfo={activityInfo || []}
+          >
+            {children}
+          </Total>
         </div>
-
-        <Total
-          {...priceInfo}
-          isChoosenSipment={isChoosenSipment}
-          activityInfo={activityInfo || []}
-        >
-          {children}
-        </Total>
-      </div>
-    );
-  }
-}
+      );
+    },
+  ),
+);

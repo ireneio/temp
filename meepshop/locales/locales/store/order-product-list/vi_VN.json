@@ -1,14 +1,14 @@
 {
   "empty-cart": "Bạn vẫn chưa chọn mua bất kỳ sản phẩm nào",
-  "product-status-off": "hàng đã được gởi đi",
-  "product-status-off-warning": "Xin xóa sản phẩm đã xuống kệ",
+  "product-not-online": "hàng đã được gởi đi",
+  "product-not-online-warning": "Xin xóa sản phẩm đã xuống kệ",
   "product-sold-out": "Đã bán hết",
   "product-sold-out-warning": "Xin xóa sản phẩm đã bán hết",
   "product-over-stock": "Vượt quá số lượng có thể mua",
   "not-found-content": "Vượt quá lượng mua lớn nhất hoặc không phù hợp định dạng",
   "more-options": "…hoặc tự nhập thêm",
   "gift": "tặng phẩm",
-  "gift-exchange-is-completed": "Đã hoàn thành tặng quà",
+  "gift-out-of-stock": "Đã hoàn thành tặng quà",
   "remove-product-from-cart": "Hoàn tất cập nhật giỏ hàng",
   "update-product-in-cart": "Hoàn tất cập nhật giỏ hàng"
 }

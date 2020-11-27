@@ -1,14 +1,14 @@
 {
   "empty-cart": "รถเข็นของคุณว่างเปล่า",
-  "product-status-off": "ไม่ว่าง",
-  "product-status-off-warning": "โปรดลบรายการนี้",
+  "product-not-online": "ไม่ว่าง",
+  "product-not-online-warning": "โปรดลบรายการนี้",
   "product-sold-out": "สินค้าหมด",
   "product-sold-out-warning": "โปรดลบรายการนี้",
   "product-over-stock": "สินค้ามีจำนวน จำกัด",
   "not-found-content": "จำนวนรายการที่ซื้อได้อาจเกินขีด จำกัด หรือรูปแบบไม่ถูกต้อง",
   "more-options": "... หรือป้อนจำนวนที่ต้องการ",
   "gift": "ของขวัญฟรี",
-  "gift-exchange-is-completed": "สินค้าหมด",
+  "gift-out-of-stock": "สินค้าหมด",
   "remove-product-from-cart": "อัปเดตรายการในรถเข็นแล้ว",
   "update-product-in-cart": "อัปเดตรายการในรถเข็นแล้ว"
 }

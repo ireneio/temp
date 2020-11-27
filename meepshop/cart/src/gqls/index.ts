@@ -3,7 +3,6 @@ import gql from 'graphql-tag';
 
 // graphql import
 import localeFragment from '@meepshop/utils/lib/fragments/locale';
-import { thumbnailFragment } from '@meepshop/thumbnail';
 
 // definition
 export const cartFragment = gql`
@@ -41,10 +40,14 @@ export const cartFragment = gql`
           ...localeFragment
         }
         coverImage {
-          ...thumbnailFragment
+          id
+          scaledSrc {
+            w120
+          }
         }
         type
-        error: _error
+        _error
+        error @client
       }
     }
 
@@ -67,7 +70,6 @@ export const cartFragment = gql`
     }
   }
 
-  ${thumbnailFragment}
   ${localeFragment}
 `;
 

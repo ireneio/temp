@@ -1,5 +1,3 @@
-import transformColor from 'color';
-
 import { PHONE_MEDIA } from 'constants/media';
 import addAnimation from 'utils/addAnimation';
 
@@ -62,18 +60,3 @@ export const closeIcon = {
   cursor: 'pointer',
   fontSize: '18px',
 };
-
-export const orderProductList = colors => ({
-  position: 'fixed',
-  top: '0px',
-  right: '0px',
-  width: '560px',
-  height: '100%',
-  borderLeft: `20px solid ${transformColor(colors[4]).alpha(0.15)}`,
-  [PHONE_MEDIA]: {
-    position: 'initial',
-    width: '100%',
-    height: 'calc(100% - 65px)',
-    borderLeft: '0px',
-  },
-});

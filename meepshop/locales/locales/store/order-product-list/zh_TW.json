@@ -1,14 +1,14 @@
 {
   "empty-cart": "您還沒有選購任何商品",
-  "product-status-off": "此商品已下架",
-  "product-status-off-warning": "請先刪除下架商品",
+  "product-not-online": "此商品已下架",
+  "product-not-online-warning": "請先移除下架商品",
   "product-sold-out": "已售完",
-  "product-sold-out-warning": "請先刪除售完產品",
+  "product-sold-out-warning": "請先移除售完產品",
   "product-over-stock": "超出可購買量",
   "not-found-content": "超過最大購買量或格式不符",
   "more-options": "⋯⋯或自行輸入更多",
   "gift": "贈品",
-  "gift-exchange-is-completed": "贈送完畢",
+  "gift-out-of-stock": "贈送完畢",
   "remove-product-from-cart": "更新購物車完成",
   "update-product-in-cart": "更新購物車完成"
 }

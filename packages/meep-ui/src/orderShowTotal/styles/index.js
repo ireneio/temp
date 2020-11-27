@@ -15,7 +15,7 @@ export const root = {
 export const item = {
   display: 'flex',
   justifyContent: 'space-between',
-  padding: '5px 0px',
+  padding: '8px 0px 0px',
   [PHONE_MEDIA]: {
     padding: '0',
     marginBottom: '8px',
@@ -23,7 +23,7 @@ export const item = {
 };
 
 export const total = {
-  padding: '15px 0px 5px',
+  padding: '16px 0px 0px',
   fontSize: '18px',
   [PHONE_MEDIA]: {
     padding: '0',

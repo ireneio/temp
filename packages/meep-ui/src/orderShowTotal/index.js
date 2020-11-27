@@ -97,7 +97,7 @@ export default class OrderShowTotal extends React.PureComponent {
 
     return (
       <div style={[styles.root, style]}>
-        <div style={styles.item}>
+        <div style={{ ...styles.item, padding: '0px' }}>
           <div>{t('total')}</div>
 
           <div>{transformCurrency(productPrice)}</div>
@@ -149,7 +149,9 @@ export default class OrderShowTotal extends React.PureComponent {
         )}
 
         <div style={[styles.item, styles.total]}>
-          <div>{t('grand-total')}</div>
+          <div>
+            {pathname !== '/checkout' ? t('subtotal') : t('grand-total')}
+          </div>
 
           <div style={styles.totalPrice}>{transformCurrency(total)}</div>
         </div>

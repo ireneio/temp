@@ -5,5 +5,6 @@
   "not-choose-shipment": "Las opciones no están seleccionadas",
   "shipment": "Gastos de envío",
   "free-shipment": "Gratis",
-  "grand-total": "Total"
+  "grand-total": "Total",
+  "subtotal": "Total parcial"
 }
