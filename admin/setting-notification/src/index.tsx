@@ -1,53 +1,38 @@
 // typescript import
 import { NextPage } from 'next';
-import { DataProxy } from 'apollo-cache';
-import { MutationFunction } from '@apollo/react-common';
 import { FormComponentProps } from 'antd/lib/form/Form';
-
-import Tooltip from '@admin/tooltip';
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
-import gql from 'graphql-tag';
-import { Query, Mutation } from '@apollo/react-components';
-import {
-  Button,
-  Switch,
-  Spin,
-  Input,
-  Icon,
-  Form,
-  Divider,
-  message,
-} from 'antd';
+import { Button, Switch, Spin, Input, Icon, Form, Divider } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
+import { filter } from 'graphql-anywhere';
+import { useQuery } from '@apollo/react-hooks';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
+
 import Header from '@admin/header';
 import Block from '@admin/block';
+import Tooltip from '@admin/tooltip';
+
+import useUpdateNotificationSetting from './hooks/useUpdateNotificationSetting';
 
 import styles from './styles/index.less';
 
 // graphql typescript
 import {
-  getNotificationsSetting,
-  getNotificationsSetting_viewer_store_setting_emailNotificationEventSubscription as getNotificationsSettingViewerStoreSettingEmailNotificationEventSubscription,
-} from './__generated__/getNotificationsSetting';
-import {
-  updateNotificationSetting,
-  updateNotificationSettingVariables,
-} from './__generated__/updateNotificationSetting';
-import { getStoreId } from './__generated__/getStoreId';
-import { settingNotificationFragment } from './__generated__/settingNotificationFragment';
+  getNotificationsSetting as getNotificationsSettingType,
+  getNotificationsSetting_viewer_store_setting_emailNotificationEventSubscription as getNotificationsSettingViewerStoreSettingEmailNotificationEventSubscriptionType,
+} from './gqls/__generated__/getNotificationsSetting';
 
-// typescript definition
-interface PropsType extends getNotificationsSetting, FormComponentProps {}
+// graphql import
+import { getNotificationsSetting } from './gqls/index';
+import { useUpdateNotificationSettingFragment } from './gqls/useUpdateNotificationSetting';
 
 // definition
 const ITEM_FILEDS: {
   key: Exclude<
-    keyof getNotificationsSettingViewerStoreSettingEmailNotificationEventSubscription,
+    keyof getNotificationsSettingViewerStoreSettingEmailNotificationEventSubscriptionType,
     'recipientEmail'
   >;
   tip?: boolean;
@@ -72,247 +57,107 @@ const ITEM_FILEDS: {
   },
 ];
 
-class SettingNotification extends React.Component<PropsType & I18nPropsType> {
-  private value: updateNotificationSettingVariables | null = null;
-
-  private updateNotification = (
-    mutate: MutationFunction<
-      updateNotificationSetting,
-      updateNotificationSettingVariables
-    >,
-  ) => () => {
-    const {
-      form: { validateFields },
-    } = this.props;
-
-    validateFields((err, value) => {
-      this.value = value;
-      if (!err) {
-        mutate({ variables: { value } });
-      }
-    });
-  };
-
-  private updataCache = (
-    cache: DataProxy,
-    {
-      data: {
-        setStoreEmailNotificationEventSubscription: { status },
-      },
-    }: { data: updateNotificationSetting },
-  ): void => {
-    if (status !== 'SUCCESS') {
-      this.onError();
-      return;
-    }
-
-    const { t, form } = this.props;
-    const user = cache.readQuery<getStoreId>({
-      query: gql`
-        query getStoreId {
-          viewer {
-            id
-            store {
-              id
-            }
-          }
-        }
-      `,
-    });
-    const id = user?.viewer?.store?.id;
-
-    if (!id) {
-      this.onError();
-      return;
-    }
-
-    cache.writeFragment<settingNotificationFragment>({
-      id,
-      fragment: gql`
-        fragment settingNotificationFragment on Store {
-          setting {
-            emailNotificationEventSubscription {
-              recipientEmail
-              orderCreated
-              orderMessageReceived
-              orderTransferMessageReceived
-              orderReturnedOrExchanged
-              productQAReceived
-            }
-          }
-        }
-      `,
-      data: {
-        __typename: 'Store',
-        setting: {
-          __typename: 'SettingObjectType',
-          emailNotificationEventSubscription: {
-            __typename: 'StoreEmailNotificationEventSubscription',
-            ...this.value,
-          },
-        },
-      } as settingNotificationFragment,
-    });
-
-    form.resetFields();
-    message.success(t('success'));
-  };
-
-  private onError = (): void => {
-    const { t, form } = this.props;
-
-    form.resetFields();
-    message.error(t('error'));
-  };
-
-  public render(): React.ReactNode {
-    const { t, form, viewer } = this.props;
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore FIXME: remove after use antd v4 form hook
+const SettingNotificationPage: NextPage = Form.create<FormComponentProps>()(
+  React.memo(({ form }: FormComponentProps) => {
+    const { t } = useTranslation('setting-notification');
     const { getFieldDecorator, resetFields, isFieldsTouched } = form;
-    const { recipientEmail = '', ...data } =
-      viewer?.store?.setting?.emailNotificationEventSubscription ||
-      ({} as getNotificationsSettingViewerStoreSettingEmailNotificationEventSubscription);
+    const { data } = useQuery<getNotificationsSettingType>(
+      getNotificationsSetting,
+    );
+
+    const { updateNotification, loading } = useUpdateNotificationSetting(
+      form,
+      filter(useUpdateNotificationSettingFragment, data?.viewer?.store || null),
+    );
+
+    if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
+
+    const { recipientEmail = '', ...emailNotificationEventSubscription } =
+      data?.viewer?.store?.setting?.emailNotificationEventSubscription ||
+      ({} as getNotificationsSettingViewerStoreSettingEmailNotificationEventSubscriptionType);
 
     return (
-      <Mutation<updateNotificationSetting, updateNotificationSettingVariables>
-        mutation={gql`
-          mutation updateNotificationSetting(
-            $value: StoreEmailNotificationEventSubscriptionInput!
-          ) {
-            setStoreEmailNotificationEventSubscription(input: $value) {
-              status
-            }
-          }
-        `}
-        update={this.updataCache}
-        onError={this.onError}
-      >
-        {(updateNotificationMutation, { loading }) => (
-          <Header
-            title={t('title')}
-            backTo="/setting"
-            buttons={
-              !isFieldsTouched() ? null : (
-                <div>
-                  <Button onClick={() => resetFields()}>{t('cancel')}</Button>
+      <Header
+        title={t('title')}
+        backTo="/setting"
+        buttons={
+          !isFieldsTouched() ? null : (
+            <div>
+              <Button onClick={() => resetFields()}>{t('cancel')}</Button>
 
-                  <Button
-                    onClick={this.updateNotification(
-                      updateNotificationMutation,
-                    )}
-                    loading={loading}
-                    type="primary"
-                  >
-                    {t('save')}
-                  </Button>
-                </div>
-              )
-            }
-          >
-            <Form className={styles.root} labelAlign="left">
-              <Block
-                title={t('auto-email')}
-                description={t('auto-email-description')}
+              <Button
+                onClick={updateNotification}
+                loading={loading}
+                type="primary"
               >
-                <div>
-                  <h3 className={styles.title}>{t('email')}</h3>
-
-                  <Form.Item>
-                    {getFieldDecorator('recipientEmail', {
-                      initialValue: recipientEmail,
-                      rules: [
-                        {
-                          required: true,
-                          message: t('required'),
-                        },
-                        {
-                          validator: (_, value, callback) => {
-                            if (
-                              value &&
-                              (isFullWidth(value) || !isEmail(value))
-                            )
-                              callback(t('email-error'));
-                            else callback();
-                          },
-                        },
-                      ],
-                      validateTrigger: 'onBlur',
-                    })(<Input />)}
-                  </Form.Item>
-                </div>
-
-                <Divider />
-
-                <div>
-                  <h3>{t('auto-email-setting')}</h3>
-
-                  {ITEM_FILEDS.map(({ key, tip }) => (
-                    <div key={key} className={styles.item}>
-                      {getFieldDecorator(key, {
-                        initialValue: Boolean(data[key]),
-                        valuePropName: 'checked',
-                      })(<Switch />)}
-
-                      <div>
-                        <div>
-                          <span>{t(`${key}.title`)}</span>
-
-                          {!tip ? null : <Tooltip title={t(`${key}.tip`)} />}
-                        </div>
-
-                        <div>{t(`${key}.description`)}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </Block>
-            </Form>
-          </Header>
-        )}
-      </Mutation>
-    );
-  }
-}
-
-const EnhancedSettingNotification = Form.create<PropsType>()(
-  withTranslation('setting-notification')(SettingNotification),
-);
-
-const SettingNotificationPage: NextPage = React.memo(
-  (): React.ReactElement => (
-    <Query<getNotificationsSetting>
-      query={gql`
-        query getNotificationsSetting {
-          viewer {
-            id
-            store {
-              id
-              setting {
-                emailNotificationEventSubscription {
-                  recipientEmail
-                  orderCreated
-                  orderMessageReceived
-                  orderTransferMessageReceived
-                  orderReturnedOrExchanged
-                  productQAReceived
-                }
-              }
-            }
-          }
+                {t('save')}
+              </Button>
+            </div>
+          )
         }
-      `}
-    >
-      {({ loading, error, data }) => {
-        if (loading || error)
-          return <Spin indicator={<Icon type="loading" spin />} />;
+      >
+        <Form className={styles.root} labelAlign="left">
+          <Block
+            title={t('auto-email')}
+            description={t('auto-email-description')}
+          >
+            <div>
+              <h3 className={styles.title}>{t('email')}</h3>
 
-        return (
-          <EnhancedSettingNotification
-            {...(data as Pick<PropsType, 'viewer'>)}
-          />
-        );
-      }}
-    </Query>
-  ),
+              <Form.Item>
+                {getFieldDecorator('recipientEmail', {
+                  initialValue: recipientEmail,
+                  rules: [
+                    {
+                      required: true,
+                      message: t('required'),
+                    },
+                    {
+                      validator: (_, value, callback) => {
+                        if (value && (isFullWidth(value) || !isEmail(value)))
+                          callback(t('email-error'));
+                        else callback();
+                      },
+                    },
+                  ],
+                  validateTrigger: 'onBlur',
+                })(<Input />)}
+              </Form.Item>
+            </div>
+
+            <Divider />
+
+            <div>
+              <h3>{t('auto-email-setting')}</h3>
+
+              {ITEM_FILEDS.map(({ key, tip }) => (
+                <div key={key} className={styles.item}>
+                  {getFieldDecorator(key, {
+                    initialValue: Boolean(
+                      emailNotificationEventSubscription[key],
+                    ),
+                    valuePropName: 'checked',
+                  })(<Switch />)}
+
+                  <div>
+                    <div>
+                      <span>{t(`${key}.title`)}</span>
+
+                      {!tip ? null : <Tooltip title={t(`${key}.tip`)} />}
+                    </div>
+
+                    <div>{t(`${key}.description`)}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Block>
+        </Form>
+      </Header>
+    );
+  }),
 );
 
 SettingNotificationPage.getInitialProps = async () => ({
