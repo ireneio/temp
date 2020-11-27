@@ -1,5 +1,39 @@
 # CHANGELOG
 
+## 0.69.2 (2020-11-27)
+
+#### :boom: Breaking Change
+
+- `meep-ui`
+  - [#1197](https://github.com/meepshop/meep-lerna/pull/1197) 【優化】點擊購物車商品主圖後，前往商品頁 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1197](https://github.com/meepshop/meep-lerna/pull/1197) 【優化】點擊購物車商品主圖後，前往商品頁 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1293](https://github.com/meepshop/meep-lerna/pull/1293) setting-notification 改成 function component ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1255](https://github.com/meepshop/meep-lerna/pull/1255) 前端 - page && menu 套用欄位 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `mock-types`
+  - [#1303](https://github.com/meepshop/meep-lerna/pull/1303) (@meepshop/images) Fix types error ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1298](https://github.com/meepshop/meep-lerna/pull/1298) (@meepshop/frontend) Upgrade @types/react, @types/react-dom ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `mock-types`
+  - [#1301](https://github.com/meepshop/meep-lerna/pull/1301) (@meepshop/mock-types, @meepshop/menu) Add more mock types and fix detail ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#1297](https://github.com/meepshop/meep-lerna/pull/1297) 前端 - 移除 not used props and isServer ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.69.1 (2020-11-20)
 
 #### :bug: Bug Fix
