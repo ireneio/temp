@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.69.3 (2020-11-30)
+
+#### :bug: Bug Fix
+
+- [#1305](https://github.com/meepshop/meep-lerna/pull/1305) 【BUG】沒吃到設定 primary-color ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.69.2 (2020-11-27)
 
 #### :boom: Breaking Change
