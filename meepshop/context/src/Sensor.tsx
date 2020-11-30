@@ -1,7 +1,7 @@
 // import
 import React, { useState, useEffect } from 'react';
 
-import styles from '@meepshop/utils/styles/base.less';
+import styles from '@meepshop/utils/styles/variables.less';
 
 // typescript definition
 interface SensorType {
