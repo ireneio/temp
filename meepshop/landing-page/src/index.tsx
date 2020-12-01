@@ -14,6 +14,9 @@ import {
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
 
+// Use to copy mixin.less
+import './styles/mixin.less';
+
 import Price from './Price';
 import Shopping from './Shopping';
 import Receiver from './receiver';
