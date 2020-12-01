@@ -4,8 +4,8 @@ import { filter } from 'graphql-anywhere';
 import VisibilitySensor from 'react-visibility-sensor';
 
 import Link from '@meepshop/link';
+import useLink from '@meepshop/hooks/lib/useLink';
 
-import useLink from './hooks/useLink';
 import useImage from './hooks/useImage';
 import styles from './styles/index.less';
 
@@ -13,7 +13,8 @@ import styles from './styles/index.less';
 import { imageFragment } from './gqls/__generated__/imageFragment';
 
 // graphql import
-import { useLinkFragment } from './gqls/useLink';
+import { useLinkFragment } from '@meepshop/hooks/lib/gqls/useLink';
+
 import { useImageImageFragment } from './gqls/useImage';
 
 // typescript definition

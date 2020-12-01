@@ -16,6 +16,7 @@
     "@meepshop/iframe": "^0.69.0",
     "@meepshop/image": "^0.69.3",
     "@meepshop/image-text": "^0.69.3",
+    "@meepshop/landing-page": "^0.69.0",
     "@meepshop/menu": "^0.69.3",
     "@meepshop/product-carousel": "^0.69.3",
     "@meepshop/product-collections": "^0.69.3",

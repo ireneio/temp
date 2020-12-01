@@ -16,4 +16,9 @@ export default mock.add<storeAppMockFragment>('StoreApp', [
     isInstalled: 1,
     plugin: 'replacement',
   }),
+  () => ({
+    __typename: 'StoreApp',
+    isInstalled: 1,
+    plugin: 'coupon',
+  }),
 ]);

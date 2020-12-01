@@ -12,6 +12,7 @@ import GroupModule from './GroupModule';
 import IframeModule from './IframeModule';
 import ImageModule from './ImageModule';
 import ImageTextModule from './ImageTextModule';
+import LandingPageModule from './LandingPageModule';
 import MenuModule from './MenuModule';
 import ProductCarouselModule from './ProductCarouselModule';
 import ProductCollectionsModule from './ProductCollectionsModule';
@@ -87,6 +88,7 @@ export default mock.add<pageModuleMockFragment[]>('PageModule', [
   () => getPageModules(IframeModule),
   () => getPageModules(ImageModule),
   () => getPageModules(ImageTextModule),
+  () => getPageModules(LandingPageModule),
   () => getPageModules(MenuModule),
   () => getPageModules(ProductCarouselModule),
   () => getPageModules(ProductCollectionsModule),

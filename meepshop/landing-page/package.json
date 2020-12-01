@@ -8,7 +8,18 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/utils": "^0.69.0"
+    "@meepshop/address-cascader": "^0.69.0",
+    "@meepshop/context": "^0.69.0",
+    "@meepshop/convenience-store-map": "^0.69.0",
+    "@meepshop/form-data": "^0.69.0",
+    "@meepshop/gmo-credit-card-form": "^0.69.0",
+    "@meepshop/hooks": "^0.69.0",
+    "@meepshop/link": "^0.69.0",
+    "@meepshop/product-amount-select": "^0.69.0",
+    "@meepshop/utils": "^0.69.0",
+    "color": "^3.0.0",
+    "d3-hierarchy": "^1.1.6",
+    "validator": "^12.0.0"
   },
   "keywords": ["landing page", "meepshop"]
 }

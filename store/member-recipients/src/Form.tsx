@@ -5,12 +5,12 @@ import { FormComponentProps } from 'antd/lib/form';
 import React, { useContext } from 'react';
 import { Form, Input, Button } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
-import { Colors as ColorsContext } from '@meepshop/context';
-import validateMobile from '@store/utils/lib/validate/mobile';
 import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/address-cascader';
+import { Colors as ColorsContext } from '@meepshop/context';
+import validateMobile from '@meepshop/utils/lib/validate/mobile';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 import useFormSubmit from './hooks/useFormSubmit';
 import styles from './styles/form.less';

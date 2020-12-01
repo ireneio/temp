@@ -9,6 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/context": "^0.69.3",
+    "@meepshop/hooks": "^0.69.3",
     "@meepshop/images": "^0.69.2",
     "@meepshop/link": "^0.69.0",
     "react-visibility-sensor": "^5.1.1"

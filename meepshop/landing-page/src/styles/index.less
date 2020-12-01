@@ -1,0 +1,53 @@
+@import '~@meepshop/utils/styles/variables.less';
+
+.root {
+  padding: 40px 0px;
+  width: 100%;
+
+  & > div {
+    margin: 0 auto;
+  }
+
+  .divider {
+    letter-spacing: 0.7px;
+    margin: 0px 0px 20px 0px;
+    padding: 10px 0px;
+    white-space: nowrap;
+    font-size: 20px;
+  }
+
+  .agreement {
+    margin: 0px 3px 30px;
+    padding: 15px 20px;
+    height: 220px;
+    font-size: 14px;
+    line-height: 21px;
+    color: black;
+    background: white;
+    border-radius: 2px;
+    overflow: scroll;
+    font-family: @font-family;
+  }
+
+  .submit {
+    display: block;
+    margin: 0px auto;
+    width: 150px;
+    height: 50px;
+  }
+
+  :global(.ant-cascader-picker .ant-cascader-input.ant-input),
+  :global(.ant-select .ant-select-selection--single),
+  input:global(.ant-input),
+  textarea:global(.ant-input) {
+    width: 100%;
+    font-size: 16px;
+    resize: none;
+  }
+
+  :global(.ant-collapse, .ant-collapse
+      > .ant-collapse-item
+      > .ant-collapse-header, .ant-collapse-content) {
+    color: inherit;
+  }
+}

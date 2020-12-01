@@ -1,3 +1,6 @@
+// typescript import
+import { ValidationRule } from 'antd/lib/form';
+
 // import
 import { isMobilePhone, isInt, isLength } from 'validator';
 
@@ -12,12 +15,8 @@ export default {
       notMobile: string;
       notNumber: string;
     },
-    chooseShipmentTemplate?: string,
-  ) => (
-    _: unknown,
-    value: string | undefined,
-    callback: (message?: string) => void,
-  ) => {
+    chooseShipmentTemplate?: string | null,
+  ): ValidationRule['validator'] => (_, value, callback) => {
     const isPhone = isMobilePhone(value || '', 'any');
     const isNumber = isInt(value || '');
     const isTenNumber =

@@ -46,7 +46,8 @@ export default (
               variant: !specs
                 ? ''
                 : specs
-                    .map(({ title: specTitle }) => specTitle.zh_TW)
+                    .map(spec => spec?.title?.zh_TW)
+                    .filter(Boolean)
                     .join('/'),
               quantity,
               price,

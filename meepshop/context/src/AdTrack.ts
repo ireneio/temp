@@ -17,13 +17,11 @@ type addToCartType = (options: {
   };
   quantity: number;
   specs:
-    | [
-        {
-          title: {
-            zh_TW: string;
-          };
-        },
-      ]
+    | ({
+        title: {
+          zh_TW: string | null;
+        } | null;
+      } | null)[]
     | null;
   price: number;
 }) => void;

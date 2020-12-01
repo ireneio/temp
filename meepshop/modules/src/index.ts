@@ -20,9 +20,7 @@ export default {
   IframeModule: dynamic(() => import('@meepshop/iframe')),
   ImageModule: dynamic(() => import('@meepshop/image')),
   ImageTextModule: dynamic(() => import('@meepshop/image-text')),
-  LandingPageModule: () => {
-    throw new Error('Can not use LandingPageModule');
-  },
+  LandingPageModule: dynamic(() => import('@meepshop/landing-page')),
   MenuModule: dynamic(() => import('@meepshop/menu')),
   ProductCarouselModule: dynamic(() => import('@meepshop/product-carousel')),
   ProductCollectionsModule: dynamic(() =>

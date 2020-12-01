@@ -1,0 +1,25 @@
+@import '../../styles/mixin.less';
+
+.root {
+  margin: 0px auto;
+  max-width: 350px;
+
+  .formItem {
+    @formItem();
+  }
+
+  .buttonRoot {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .forgetPassword {
+    cursor: pointer;
+  }
+
+  .button {
+    width: 120px;
+    height: 50px;
+    border-radius: 0px;
+  }
+}

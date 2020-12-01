@@ -2,8 +2,9 @@
 import gql from 'graphql-tag';
 
 // graphql import
+import { useLinkFragment } from '@meepshop/hooks/lib/gqls/useLink';
+
 import { useImageScaledURLsFragment, useImageImageFragment } from './useImage';
-import { useLinkFragment } from './useLink';
 
 // definition
 export { useImageScaledURLsFragment, useImageImageFragment, useLinkFragment };
