@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.69.4 (2020-12-04)
+
+#### :rocket: New Feature
+
+- Other
+  - [#1300](https://github.com/meepshop/meep-lerna/pull/1300) 【優化】後台 - 設定頁 header 樣式 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `mock-types`
+  - [#1229](https://github.com/meepshop/meep-lerna/pull/1229) 【重構】一頁式購物車元件 ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1306](https://github.com/meepshop/meep-lerna/pull/1306) 【BUG】前台商品主圖沒有判斷 devicePixelRatio - 前端 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#1312](https://github.com/meepshop/meep-lerna/pull/1312) (@meepshop/locales): remove store/landing-page ([@piovischioh](https://github.com/piovischioh))
+  - [#1310](https://github.com/meepshop/meep-lerna/pull/1310) (@meepshop/frontend) Remove pre-release menu schema ([@HsuTing](https://github.com/HsuTing))
+  - [#1308](https://github.com/meepshop/meep-lerna/pull/1308) (@meepshop/landing-page) Fix styles import error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `mock-types`
+  - [#1229](https://github.com/meepshop/meep-lerna/pull/1229) 【重構】一頁式購物車元件 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh
+
 ## 0.69.3 (2020-11-30)
 
 #### :bug: Bug Fix
