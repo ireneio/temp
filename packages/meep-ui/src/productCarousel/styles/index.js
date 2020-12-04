@@ -87,8 +87,8 @@ export const arrow = {
   fontSize: '18px',
 };
 
-export const showcase = ({ scaledSrc, mode, isClear }) => ({
-  backgroundImage: isClear ? `url(${scaledSrc.w480})` : `url(${scaledSrc.w60})`,
+export const showcase = ({ scaledSrc, mode, isClear, width }) => ({
+  backgroundImage: `url(${scaledSrc[width]})`,
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center center',

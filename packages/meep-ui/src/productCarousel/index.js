@@ -104,16 +104,25 @@ export default class ProductCarousel extends React.PureComponent {
                   {({ useLarge, isClear, onLoad }) => {
                     const { scaledSrc } = image;
 
+                    let width = 'w60';
+
                     if (useLarge) {
+                      width = window?.devicePixelRatio > 1 ? 'w960' : 'w480';
+
                       const img = new Image();
 
                       img.onload = onLoad;
-                      img.src = scaledSrc.w480;
+                      img.src = scaledSrc[width];
                     }
 
                     return (
                       <div
-                        style={styles.showcase({ scaledSrc, mode, isClear })}
+                        style={styles.showcase({
+                          scaledSrc,
+                          mode,
+                          isClear,
+                          width,
+                        })}
                       />
                     );
                   }}
