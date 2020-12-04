@@ -71,6 +71,7 @@ const SettingThirdParty: NextPage = Form.create<FormComponentProps>()(
     return (
       <Header
         title={t('title')}
+        prevTitle={t('setting:title')}
         backTo="/setting"
         buttons={
           !isFieldsTouched() ? null : (
@@ -139,7 +140,7 @@ const SettingThirdParty: NextPage = Form.create<FormComponentProps>()(
 );
 
 SettingThirdParty.getInitialProps = async () => ({
-  namespacesRequired: ['setting-third-party'],
+  namespacesRequired: ['setting', 'setting-third-party'],
 });
 
 export default SettingThirdParty;

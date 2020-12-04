@@ -81,6 +81,7 @@ const SettingNotificationPage: NextPage = Form.create<FormComponentProps>()(
     return (
       <Header
         title={t('title')}
+        prevTitle={t('setting:title')}
         backTo="/setting"
         buttons={
           !isFieldsTouched() ? null : (
@@ -161,7 +162,7 @@ const SettingNotificationPage: NextPage = Form.create<FormComponentProps>()(
 );
 
 SettingNotificationPage.getInitialProps = async () => ({
-  namespacesRequired: ['setting-notification'],
+  namespacesRequired: ['setting', 'setting-notification'],
 });
 
 export default SettingNotificationPage;

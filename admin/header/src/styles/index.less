@@ -1,7 +1,19 @@
 @import '~@admin/utils/styles/variables.less';
 
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .root {
-  padding: 56px 32px;
+  padding: 54px 32px 32px;
   height: 100%;
   color: rgba(0, 0, 0, 0.85);
   overflow: auto;
@@ -22,17 +34,9 @@
   &.collapsed > :global(.ant-affix) {
     width: calc(100% - 64px) !important;
   }
-}
 
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translate3d(0, -100%, 0);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
+  .header h1 a {
+    display: none;
   }
 }
 
@@ -45,16 +49,24 @@
   height: 100%;
 
   h1 {
+    position: relative;
     margin: 0px;
     font-size: 24px;
     font-weight: normal;
     letter-spacing: 1.2px;
     line-height: 32px;
     color: rgba(0, 0, 0, 0.65);
+
+    a {
+      position: absolute;
+      bottom: 40px;
+      font-size: 14px;
+      line-height: 22px;
+    }
   }
 
   :global(.ant-btn):not(:last-child) {
-    margin: 0px 24px 0px 0px;
+    margin: 0px 8px 0px 0px;
   }
 }
 
