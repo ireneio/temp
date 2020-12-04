@@ -4,11 +4,11 @@
   "description": "Use to manage react hooks",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.69.3",
+  "version": "0.69.4",
   "main": "./index.js",
   "types": "./src/types.ts",
   "dependencies": {
-    "@meepshop/context": "^0.69.3",
+    "@meepshop/context": "^0.69.4",
     "braft-convert": "^2.3.0",
     "draft-js": "^0.11.5"
   },
