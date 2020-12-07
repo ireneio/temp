@@ -41,7 +41,7 @@ export default ({ samples }: PropsType): React.ReactElement => {
           scale={{
             transactionPercentage: {
               formatter: (val: number) => {
-                return `${val * 100}%`;
+                return `${val}%`;
               },
             },
           }}
@@ -69,8 +69,7 @@ export default ({ samples }: PropsType): React.ReactElement => {
               {
                 offset: 30,
                 content: sample => {
-                  return `${sample.name}\n${sample.transactionPercentage *
-                    100}%`;
+                  return `${sample.name}\n${sample.transactionPercentage}%`;
                 },
                 style: {
                   fontSize: 16,

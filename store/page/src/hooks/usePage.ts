@@ -58,7 +58,7 @@ export default (): DataType | null => {
   >(getHomePage, {
     skip: pathname !== '/',
     variables: {
-      smartConversionToken: cookies.smartConversionToken,
+      identity: cookies.identity,
     },
   });
   const { data: customPageData, error: customPageError } = useQuery<
@@ -67,7 +67,7 @@ export default (): DataType | null => {
   >(getCustomPage, {
     skip: pathname !== '/pages',
     variables: {
-      smartConversionToken: cookies.smartConversionToken,
+      identity: cookies.identity,
       path: query.path as string,
     },
   });
@@ -77,7 +77,7 @@ export default (): DataType | null => {
   >(getProductPage, {
     skip: pathname !== '/product',
     variables: {
-      smartConversionToken: cookies.smartConversionToken,
+      identity: cookies.identity,
       productId: query.pId as string,
     },
   });
@@ -87,7 +87,7 @@ export default (): DataType | null => {
   >(getProductsPage, {
     skip: pathname !== '/products',
     variables: {
-      smartConversionToken: cookies.smartConversionToken,
+      identity: cookies.identity,
     },
   });
 

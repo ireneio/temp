@@ -18,7 +18,7 @@ interface PropsType {
 export default ({ samples }: PropsType): React.ReactElement => {
   const { t } = useTranslation('smart-conversion-analysis');
   const best = samples.reduce((prev, current) =>
-    prev.conversionRate > current.conversionRate ? prev : current,
+    prev.conversionRate >= current.conversionRate ? prev : current,
   );
 
   return (
@@ -37,12 +37,14 @@ export default ({ samples }: PropsType): React.ReactElement => {
                   </h1>
                 )}
                 <h2>{`${t('sample-no')}${index + 1}`}</h2>
-                <div
-                  style={{
-                    backgroundImage: `url(${image?.scaledSrc?.w480 ||
-                      placeholderImage})`,
-                  }}
-                />
+                <div className={styles.image}>
+                  <div
+                    style={{
+                      backgroundImage: `url(${image?.scaledSrc?.w480 ||
+                        placeholderImage})`,
+                    }}
+                  />
+                </div>
                 <span>{t('event-name')}</span>
                 <p>{eventName}</p>
                 <span>{t('transaction')}</span>
@@ -50,8 +52,9 @@ export default ({ samples }: PropsType): React.ReactElement => {
                   {t('transaction-unit', { transaction: transactionCount })}
                 </p>
                 <span>{t('conversion')}</span>
-                <p className={isTheBest ? styles.best : ''}>{`${conversionRate *
-                  100}%`}</p>
+                <p
+                  className={isTheBest ? styles.best : ''}
+                >{`${conversionRate}%`}</p>
               </div>
             );
           },

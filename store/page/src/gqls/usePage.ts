@@ -27,7 +27,7 @@ const usePageFragment = gql`
 `;
 
 export const getHomePage = gql`
-  query getHomePage($smartConversionToken: String) {
+  query getHomePage($identity: String) {
     viewer {
       id
       store {
@@ -48,7 +48,7 @@ export const getHomePage = gql`
 `;
 
 export const getCustomPage = gql`
-  query getCustomPage($smartConversionToken: String, $path: String!) {
+  query getCustomPage($identity: String, $path: String!) {
     viewer {
       id
       store {
@@ -69,7 +69,7 @@ export const getCustomPage = gql`
 `;
 
 export const getProductPage = gql`
-  query getProductPage($smartConversionToken: String, $productId: ID!) {
+  query getProductPage($identity: String, $productId: ID!) {
     viewer {
       id
       store {
@@ -93,7 +93,7 @@ export const getProductPage = gql`
 `;
 
 export const getProductsPage = gql`
-  query getProductsPage($smartConversionToken: String) {
+  query getProductsPage($identity: String) {
     viewer {
       id
       store {

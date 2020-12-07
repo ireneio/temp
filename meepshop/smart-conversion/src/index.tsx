@@ -11,7 +11,15 @@ import { smartConversionFragment } from './gqls/__generated__/smartConversionFra
 
 // definition
 export default React.memo(
-  ({ id, displaySample, width, align, imageAlt }: smartConversionFragment) => {
+  ({
+    id,
+    displaySample,
+    width,
+    align,
+    imageAlt,
+    page,
+  }: smartConversionFragment) => {
+    // 實驗未開始 displaySample 會等於 null
     if (!displaySample) return null;
 
     const { image, eventName } = displaySample;
@@ -35,7 +43,7 @@ export default React.memo(
             name: eventName,
             category: 'meepShop_test',
           }}
-          custom="meepShop_test"
+          custom={page.id || 'null-id' /** SHOULD_NOT_BE_NULL */}
         />
       </div>
     );

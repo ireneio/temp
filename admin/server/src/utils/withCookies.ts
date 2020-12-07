@@ -36,7 +36,7 @@ export default withCookies(
     if (locale !== language) await i18n.changeLanguage(locale);
 
     return {
-      menuCollapsed: cookie.get('menuCollapsed'),
+      menuCollapsed: cookie.get('menu-collapsed'),
     };
   },
 );

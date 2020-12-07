@@ -16,4 +16,7 @@ export default {
   width: 100,
   align: 'CENTER',
   imageAlt: 'imageAlt',
+  page: {
+    id: 'page-id',
+  },
 } as smartConversionFragment;

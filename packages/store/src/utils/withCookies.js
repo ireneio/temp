@@ -76,14 +76,14 @@ export default withCookies(
         });
     }
 
-    if (!cookie.get('smartConversionToken'))
-      cookie.set('smartConversionToken', uuid(), {
-        expires: new Date(253402300000000),
+    if (!cookie.get('identity'))
+      cookie.set('identity', uuid(), {
+        expires: new Date((2 ** 31 - 1) * 1000),
       });
 
     return {
       currency: cookie.get('currency'),
-      smartConversionToken: cookie.get('smartConversionToken'),
+      identity: cookie.get('identity'),
     };
   },
 );

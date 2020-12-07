@@ -1,30 +1,24 @@
 // typescript import
 import { NextPage } from 'next';
 
+import { languageType } from '@meepshop/utils/lib/i18n';
+
 // import
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import { useMutation } from '@apollo/react-hooks';
 import { Spin, Icon } from 'antd';
 
 import { meepshopLogo } from '@meepshop/images';
+import { useRouter } from '@meepshop/link';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import moment from 'moment';
 
 import Samples from './Samples';
 import Error from './Error';
+import useSmartConversionModule from './hooks/useSmartConversionModule';
 import styles from './styles/index.less';
 import { MOMENT_FORMAT } from './constants';
-
-// graphql typescript
-import {
-  fetchSmartConversionModuleGAData as fetchSmartConversionModuleGADataType,
-  fetchSmartConversionModuleGADataVariables,
-} from './gqls/__generated__/fetchSmartConversionModuleGAData';
-
-// graphql import
-import { fetchSmartConversionModuleGAData } from './gqls';
 
 // typescript definition
 interface PropsType {
@@ -36,27 +30,26 @@ const Chart = dynamic(() => import('./Chart'), { ssr: false });
 
 const SmartConversionAnalysis: NextPage = React.memo(
   ({ pageId }: PropsType) => {
-    const { t } = useTranslation('smart-conversion-analysis');
-    const [mutation, { data, loading, error }] = useMutation<
-      fetchSmartConversionModuleGADataType,
-      fetchSmartConversionModuleGADataVariables
-    >(fetchSmartConversionModuleGAData);
+    const { query } = useRouter();
+    const {
+      t,
+      i18n: { language },
+    } = useTranslation('smart-conversion-analysis');
+    const {
+      loading,
+      error,
+      smartConversionModule,
+      timezone,
+    } = useSmartConversionModule({
+      isEnd: query.end === 'true',
+      pageId,
+    });
 
-    useEffect(() => {
-      mutation({ variables: { pageId } });
-    }, [mutation, pageId]);
-
-    if (loading) return <Spin indicator={<Icon type="loading" spin />} />;
-
-    if (
-      error ||
-      !data?.fetchSmartConversionModuleGAData.smartConversionModule ||
-      data.fetchSmartConversionModuleGAData.status !== 'OK'
-    )
-      return <Error />;
+    if (loading || error || !smartConversionModule)
+      return <Spin indicator={<Icon type="loading" spin />} />;
 
     const {
-      pageTitle,
+      page,
       status,
       startAt,
       endAt,
@@ -64,8 +57,14 @@ const SmartConversionAnalysis: NextPage = React.memo(
       actualEndAt,
       lastGAUpdatedAt,
       samples,
-    } = data.fetchSmartConversionModuleGAData.smartConversionModule;
-    const isEnd = status === 'END';
+    } = smartConversionModule;
+
+    // 未曾自 GA 取得數據 lastGAUpdatedAt 會等於 null
+    if (!lastGAUpdatedAt) return <Error />;
+
+    const isStatusEnd = status === 'END';
+    const pageTitle =
+      page.title?.[language as languageType] || page.title?.zh_TW;
 
     return (
       <>
@@ -89,24 +88,34 @@ const SmartConversionAnalysis: NextPage = React.memo(
               <div>
                 <span>{t('period')}</span>
                 <div>
-                  {`${moment(startAt).format(MOMENT_FORMAT)} ~ ${moment(
-                    endAt,
-                  ).format(MOMENT_FORMAT)} ${t('day', { days: durationDays })}`}
+                  {`${moment(startAt)
+                    .utcOffset(timezone)
+                    .format(MOMENT_FORMAT)} ~ ${moment(endAt)
+                    .utcOffset(timezone)
+                    .format(MOMENT_FORMAT)} ${t('day', {
+                    days: durationDays,
+                  })}`}
                 </div>
               </div>
 
-              {!isEnd ? null : (
+              {!isStatusEnd ? null : (
                 <div>
                   <span>{t('ended-at')}</span>
-                  <div>{moment(actualEndAt).format(MOMENT_FORMAT)}</div>
+                  <div>
+                    {moment(actualEndAt)
+                      .utcOffset(timezone)
+                      .format(MOMENT_FORMAT)}
+                  </div>
                 </div>
               )}
 
               <div>
                 <span>{t('updated-at')}</span>
                 <div>
-                  {moment(lastGAUpdatedAt).format(MOMENT_FORMAT)}
-                  {!isEnd ? null : (
+                  {moment(lastGAUpdatedAt)
+                    .utcOffset(timezone)
+                    .format(MOMENT_FORMAT)}
+                  {!isStatusEnd ? null : (
                     <span>
                       <Icon type="history" />
                       {t('stop-updating')}

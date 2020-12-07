@@ -2,11 +2,6 @@
   display: flex;
   width: 100%;
 
-  & > div {
-    display: flex;
-    overflow: hidden;
-  }
-
   &.FLEX_START {
     justify-content: flex-start;
   }
@@ -22,6 +17,7 @@
 
 .wrapper {
   position: relative;
+  overflow: hidden;
 }
 
 .link {
@@ -34,8 +30,8 @@
 }
 
 .placeholder {
-  flex: 1 0 600px;
   min-height: 240px;
+  object-fit: cover;
 }
 
 .blur {

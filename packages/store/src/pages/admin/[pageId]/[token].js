@@ -3,6 +3,8 @@ import gql from 'graphql-tag';
 import { connect } from 'react-redux';
 
 import initApollo from '@meepshop/apollo/lib/initApollo';
+import { AdTrack as AdTrackContext } from '@meepshop/context';
+import { defaultAdTrack } from '@meepshop/context/lib/AdTrack';
 
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
@@ -14,9 +16,13 @@ const Page = React.memo(({ error, ...props }) => {
   if (error) return <Error error={error} />;
 
   return (
-    <div style={{ userSelect: 'none', pointerEvents: 'none', height: '100%' }}>
-      <Container {...props} />
-    </div>
+    <AdTrackContext.Provider value={defaultAdTrack}>
+      <div
+        style={{ userSelect: 'none', pointerEvents: 'none', height: '100%' }}
+      >
+        <Container {...props} />
+      </div>
+    </AdTrackContext.Provider>
   );
 });
 

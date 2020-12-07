@@ -29,7 +29,7 @@ export default (): {
         if (isOnBreakpoint) return;
 
         setCollapsed(newCollapsed);
-        setCookie('menuCollapsed', newCollapsed.toString());
+        setCookie('menu-collapsed', newCollapsed.toString());
       },
       [isOnBreakpoint, setCookie],
     ),

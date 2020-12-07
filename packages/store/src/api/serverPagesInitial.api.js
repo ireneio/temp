@@ -18,7 +18,7 @@ export default async context => {
       $pageFilter: StorePagesFilterInput,
       $menuSearch: searchInputObjectType,
       $expireBy: Int!,
-      $smartConversionToken: String,
+      $identity: String,
       $activitiesFilter: StoreActivitiesFilterInput,
     `,
     type: 'query serverPagesInitial',
@@ -41,7 +41,7 @@ export default async context => {
         ],
       },
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
-      smartConversionToken: cookies?.smartConversionToken,
+      identity: cookies?.identity,
       activitiesFilter: {
         status: 1,
         plugin: 'groupDiscount',

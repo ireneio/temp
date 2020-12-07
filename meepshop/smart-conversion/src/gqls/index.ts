@@ -8,7 +8,7 @@ import { useImageImageFragment } from '@meepshop/image/lib/gqls';
 export const smartConversionFragment = gql`
   fragment smartConversionFragment on SmartConversionModule {
     id
-    displaySample(token: $smartConversionToken) {
+    displaySample(token: $identity) {
       eventName
       image {
         ...useImageImageFragment
@@ -17,6 +17,9 @@ export const smartConversionFragment = gql`
     width
     align
     imageAlt
+    page {
+      id
+    }
   }
 
   ${useImageImageFragment}

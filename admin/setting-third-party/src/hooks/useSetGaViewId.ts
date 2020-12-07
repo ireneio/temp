@@ -29,7 +29,7 @@ export default (): ((
 
   return useCallback(
     async (storeId: string, gaViewId: string) =>
-      new Promise(resolve =>
+      new Promise((resolve, reject) =>
         setGaViewId({
           variables: {
             gaViewId,
@@ -37,6 +37,7 @@ export default (): ((
           update: (cache, { data }) => {
             if (data?.setGAViewId !== 'OK') {
               message.error(t('gaViewId.error'));
+              reject(new Error('can not update ga view id'));
               return;
             }
 

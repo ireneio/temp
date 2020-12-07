@@ -5,7 +5,7 @@ import { productQuery } from './query';
 
 export default async ({ id, ...context }) => {
   const variables = {
-    keys: '$search: searchInputObjectType, $smartConversionToken: String',
+    keys: '$search: searchInputObjectType, $identity: String',
     type: 'query getProduct',
     values: {
       search: {
@@ -28,7 +28,7 @@ export default async ({ id, ...context }) => {
         showVariants: true,
         showMainFile: true,
       },
-      smartConversionToken: cookie.get('smartConversionToken'),
+      identity: cookie.get('identity'),
     },
   };
   const query = `

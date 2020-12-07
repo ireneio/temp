@@ -7,7 +7,6 @@ export const smartConversionModuleMockFragment = gql`
     id
     status
     durationDays
-    pageTitle
     samples {
       eventName
       transactionCount

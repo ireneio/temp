@@ -101,7 +101,7 @@ export interface AdTrackType {
 }
 
 // definition
-export default React.createContext<AdTrackType>({
+export const defaultAdTrack = {
   custom: emptyFunction,
   addToCart: emptyFunction,
   viewProduct: emptyFunction,
@@ -110,4 +110,6 @@ export default React.createContext<AdTrackType>({
   completeRegistration: emptyFunction,
   beginCheckout: emptyFunction,
   purchase: emptyFunction,
-});
+};
+
+export default React.createContext<AdTrackType>(defaultAdTrack);

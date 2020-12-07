@@ -6,13 +6,13 @@ import { pageQuery } from './query';
 export default async ({ path, pageType, ...context }) => {
   const variables = {
     type: 'query getPages',
-    keys: '$filter: StorePagesFilterInput, $smartConversionToken: String',
+    keys: '$filter: StorePagesFilterInput, $identity: String',
     values: {
       filter: {
         path,
         type: pageType,
       },
-      smartConversionToken: cookie.get('smartConversionToken'),
+      identity: cookie.get('identity'),
     },
   };
 

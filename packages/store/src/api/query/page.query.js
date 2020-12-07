@@ -93,7 +93,7 @@ const pageQuery = `
   blocks:blocksRaw
   smartConversionModule {
     id
-    displaySample(token: $smartConversionToken) {
+    displaySample(token: $identity) {
       eventName
       image {
         id
@@ -114,6 +114,9 @@ const pageQuery = `
     width
     align
     imageAlt
+    page {
+      id
+    }
   }
 `;
 
