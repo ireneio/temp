@@ -13,5 +13,4 @@ module.exports = {
   '*.md': ['yarn prettier --parser markdown --write', 'git add'],
   '*.less': ['yarn prettier --parser less --write', 'git add'],
   '*.graphql': ['yarn prettier --parser graphql --write', 'git add'],
-  '**/locales/locales/**/*.json': ['yarn locales auto-translate', 'git add'],
 };
