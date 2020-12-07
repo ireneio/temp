@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.70.0 (2020-12-07)
+
+#### :bug: Bug Fix
+
+- `mock-types`, `store`
+  - [#1278](https://github.com/meepshop/meep-lerna/pull/1278) 【功能】智慧轉換元件 - 前端 - 後期修正 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.69.4 (2020-12-04)
 
 #### :rocket: New Feature
