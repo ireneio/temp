@@ -4,7 +4,7 @@
   "description": "Meepshop unavailable module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.69.0",
+  "version": "0.70.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "keywords": ["meepshop", "unavailable"]

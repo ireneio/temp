@@ -4,16 +4,16 @@
   "description": "Meepshop menu module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.69.4",
+  "version": "0.70.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/cart": "^0.69.4",
-    "@meepshop/context": "^0.69.4",
-    "@meepshop/images": "^0.69.2",
-    "@meepshop/link": "^0.69.4",
-    "@meepshop/switch": "^0.69.0",
-    "@meepshop/utils": "^0.69.4"
+    "@meepshop/cart": "^0.70.0",
+    "@meepshop/context": "^0.70.0",
+    "@meepshop/images": "^0.70.0",
+    "@meepshop/link": "^0.70.0",
+    "@meepshop/switch": "^0.70.0",
+    "@meepshop/utils": "^0.70.0"
   },
   "keywords": ["meepshop", "menu"]
 }
