@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.70.1 (2020-12-09)
+
+#### :rocket: New Feature
+
+- [#1304](https://github.com/meepshop/meep-lerna/pull/1304) 調整 gallery ([@Lexiwu](https://github.com/Lexiwu))
+- [#1314](https://github.com/meepshop/meep-lerna/pull/1314) 調整 @admin/tooltip ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- [#1315](https://github.com/meepshop/meep-lerna/pull/1315) 修 translate ([@Lexiwu](https://github.com/Lexiwu))
+- [#1313](https://github.com/meepshop/meep-lerna/pull/1313) 移除 google auto translate ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 1
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.70.0 (2020-12-07)
 
 #### :bug: Bug Fix
