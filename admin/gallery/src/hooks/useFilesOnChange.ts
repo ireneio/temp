@@ -9,7 +9,7 @@ import useUploadImages from './useUploadImages';
 import { IMAGE_TYPES } from '../constants';
 
 // graphql typescript
-import { getImagesVariables } from '../__generated__/getImages';
+import { getImagesVariables as getImagesVariablesType } from '../gqls/__generated__/getImages';
 
 // definition
 const readImageBuffer = (file: File): Promise<ArrayBuffer> =>
@@ -66,7 +66,7 @@ const uploadImageToGcd = async (file: File, type?: string): Promise<string> => {
 };
 
 export default (
-  variables: getImagesVariables,
+  variables: getImagesVariablesType,
 ): ((e: React.ChangeEvent<HTMLInputElement>) => Promise<void>) => {
   const uploadImage = useUploadImages(variables);
   const { t } = useTranslation('gallery');
@@ -113,7 +113,18 @@ export default (
             id: uuid(),
             scaledSrc: {
               __typename: 'ScaledURLs',
+              h200: image,
+              w60: image,
+              w120: image,
+              w240: image,
+              w250: image,
               w480: image,
+              w720: image,
+              w960: image,
+              w1200: image,
+              w1440: image,
+              w1680: image,
+              w1920: image,
             },
           })),
         },

@@ -5,22 +5,24 @@ import { Icon } from 'antd';
 import useHeight from './hooks/useHeight';
 import styles from './styles/card.less';
 
+// graphql typescript
+import { getImages_viewer_files_edges_node as getImagesViewerFilesEdgesNodeType } from './gqls/__generated__/getImages';
+
 // typescript definition
 interface PropsType {
-  id: string;
-  src: string;
-  selectedIds: string[];
-  setSelectedIds: (selectedIds: string[]) => void;
+  node: getImagesViewerFilesEdgesNodeType;
+  selectedImgs: getImagesViewerFilesEdgesNodeType[];
+  setSelectedImgs: (selectedImgs: getImagesViewerFilesEdgesNodeType[]) => void;
 }
 
 // definition
 export default ({
-  id,
-  src,
-  selectedIds,
-  setSelectedIds,
+  node,
+  selectedImgs,
+  setSelectedImgs,
 }: PropsType): React.ReactElement => {
   const { rootRef, height } = useHeight();
+  const selected = selectedImgs.some(img => img?.id === node.id);
 
   return (
     <div
@@ -28,18 +30,17 @@ export default ({
       className={styles.root}
       style={{
         height: `${height}px`,
-        backgroundImage: `url("${src}")`,
+        backgroundImage: `url("${node.scaledSrc.w480}")`,
       }}
-      onClick={() =>
-        setSelectedIds(
-          !selectedIds.includes(id) && !selectedIds.includes(src) // TODO: should only include id
-            ? [...selectedIds, id]
-            : selectedIds.filter(existingIds => existingIds !== id),
-        )
-      }
+      onClick={() => {
+        setSelectedImgs(
+          !selected
+            ? [...selectedImgs, node]
+            : selectedImgs.filter(existingIds => existingIds.id !== node.id),
+        );
+      }}
     >
-      {!selectedIds.includes(id) &&
-      !selectedIds.includes(src) /* TODO: should only include id */ ? null : (
+      {!selected ? null : (
         <div className={styles.selected}>
           <Icon type="check-circle" theme="filled" />
         </div>

@@ -3,23 +3,18 @@ import { QueryResult } from '@apollo/react-common';
 
 // import
 import { useCallback } from 'react';
-import gql from 'graphql-tag';
 import { getScrollPosition } from 'fbjs';
 
 // graphql typescript
-import { getImages, getImagesVariables } from '../__generated__/getImages';
-import { useLoadMoreImagesFragment as useLoadMoreImagesFragmentType } from './__generated__/useLoadMoreImagesFragment';
+import {
+  getImages as getImagesType,
+  getImagesVariables as getImagesVariablesType,
+} from '../gqls/__generated__/getImages';
+import { useLoadMoreImagesFragment as useLoadMoreImagesFragmentType } from '../gqls/__generated__/useLoadMoreImagesFragment';
 
 // definition
-export const useLoadMoreImagesFragment = gql`
-  fragment useLoadMoreImagesFragment on PageInfo {
-    hasNextPage
-    endCursor
-  }
-`;
-
 export default (
-  fetchMore: QueryResult<getImages, getImagesVariables>['fetchMore'],
+  fetchMore: QueryResult<getImagesType, getImagesVariablesType>['fetchMore'],
   pageInfo: useLoadMoreImagesFragmentType | null,
 ): ((
   e: React.UIEvent<HTMLDivElement> & {

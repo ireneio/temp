@@ -1,28 +1,35 @@
 // import
-import { useCallback } from 'react';
-import gql from 'graphql-tag';
-import { useApolloClient } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 
 // graphql typescript
-import { useFindImageFragment } from './__generated__/useFindImageFragment';
+import {
+  getImage as getImageType,
+  getImageVariables as getImageVariablesType,
+  getImage_viewer_file as getImageViewerFileType,
+} from '../gqls/__generated__/getImage';
+
+// graphql import
+import { getImage } from '../gqls/useFindImage';
 
 // definition
-export default (): ((id: string) => string | null | undefined) => {
-  const client = useApolloClient();
+export default (url: string | undefined): getImageViewerFileType | null => {
+  const id = url
+    ? atob(
+        url
+          .replace(/\.[\w]+$/, '')
+          .split('/')
+          .slice(-1)[0],
+      )
+        .replace('gs://img.meepcloud.com/', 'https://gc.meepcloud.com/')
+        .replace(/\.[\w]+$/, '')
+        .split('/')
+        .slice(-1)[0]
+    : null;
 
-  return useCallback(
-    (id: string) =>
-      client.readFragment<useFindImageFragment>({
-        id,
-        fragment: gql`
-          fragment useFindImageFragment on File {
-            id
-            scaledSrc {
-              w480
-            }
-          }
-        `,
-      })?.scaledSrc.w480,
-    [client],
-  );
+  const { data } = useQuery<getImageType, getImageVariablesType>(getImage, {
+    skip: !id,
+    variables: { id: id as string },
+  });
+
+  return data?.viewer?.file || null;
 };

@@ -6,12 +6,12 @@ import styles from './styles/imageUpload.less';
 import { IMAGE_TYPES } from './constants';
 
 // graphql typescript
-import { getImagesVariables } from './__generated__/getImages';
+import { getImagesVariables as getImagesVariablesType } from './gqls/__generated__/getImages';
 
 // typescript definition
 interface PropsType {
   forwardedRef: React.Ref<HTMLInputElement>;
-  variables: getImagesVariables;
+  variables: getImagesVariablesType;
   multiple?: boolean;
 }
 

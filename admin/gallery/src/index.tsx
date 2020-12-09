@@ -1,7 +1,6 @@
 // import
 import React, { useState, useRef } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Button } from 'antd';
 
@@ -14,64 +13,40 @@ import useLoadMoreImages from './hooks/useLoadMoreImages';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getImages, getImagesVariables } from './__generated__/getImages';
+import {
+  getImages as getImagesType,
+  getImagesVariables as getImagesVariablesType,
+  getImages_viewer_files_edges_node as getImagesViewerFilesEdgesNodeType,
+} from './gqls/__generated__/getImages';
 
 // graphql import
-import { useLoadMoreImagesFragment } from './hooks/useLoadMoreImages';
+import { getImages } from './gqls/index';
+import { useLoadMoreImagesFragment } from './gqls/useLoadMoreImages';
 
 // typescript definition
-interface PropsType {
+export interface PropsType {
   buttons?: React.ReactNode;
-  value?: string | string[];
-  onChange?: (ids: string | string[]) => void;
+  value?:
+    | null
+    | getImagesViewerFilesEdgesNodeType
+    | getImagesViewerFilesEdgesNodeType[];
+  onChange?: (
+    imgs:
+      | getImagesViewerFilesEdgesNodeType
+      | getImagesViewerFilesEdgesNodeType[],
+  ) => void;
   buttonText?: string;
   multiple?: boolean;
 }
 
 // definition
-const query = gql`
-  query getImages(
-    $search: searchInputObjectType
-    $first: PositiveInt
-    $after: String
-    $filter: FileFilterInput
-  ) {
-    viewer {
-      id
-      files(first: $first, after: $after, filter: $filter) {
-        edges {
-          node {
-            id
-            scaledSrc {
-              w480
-            }
-          }
-        }
-
-        pageInfo {
-          ...useLoadMoreImagesFragment
-        }
-      }
-    }
-
-    getTagList(search: $search) {
-      data {
-        id
-        tags
-      }
-    }
-  }
-
-  ${useLoadMoreImagesFragment}
-`;
-
 export default React.memo(
   ({ buttons, value, onChange, buttonText, multiple }: PropsType) => {
     const { t } = useTranslation('gallery');
     const { error, data, variables, refetch, fetchMore } = useQuery<
-      getImages,
-      getImagesVariables
-    >(query, {
+      getImagesType,
+      getImagesVariablesType
+    >(getImages, {
       variables: {
         search: {
           filter: {
@@ -87,9 +62,15 @@ export default React.memo(
         first: 100,
       },
     });
-    const [selectedIds, setSelectedIds] = useState<string[]>(
-      value instanceof Array ? value : ([value].filter(Boolean) as string[]),
+
+    const [selectedImgs, setSelectedImgs] = useState<
+      getImagesViewerFilesEdgesNodeType[]
+    >(
+      value instanceof Array
+        ? value
+        : ([value].filter(Boolean) as getImagesViewerFilesEdgesNodeType[]),
     );
+
     const imageUploadRef = useRef<HTMLInputElement>(null);
     const loadMoreImages = useLoadMoreImages(
       fetchMore,
@@ -147,10 +128,10 @@ export default React.memo(
                 {t('upload')}
               </Button>
 
-              {selectedIds.length === 0 ? null : (
+              {selectedImgs.length === 0 ? null : (
                 <Button
                   onClick={() =>
-                    onChange?.(multiple ? selectedIds : selectedIds[0])
+                    onChange?.(multiple ? selectedImgs : selectedImgs[0])
                   }
                   type="primary"
                 >
@@ -177,21 +158,17 @@ export default React.memo(
           ) : (
             <>
               <div className={styles.suggestion}>{t('suggestion')}</div>
-
               <div className={styles.body} onScroll={loadMoreImages}>
-                {data.viewer?.files?.edges.map(
-                  ({ node: { id, scaledSrc } }) => (
-                    <Card
-                      key={id || 'id' /** SHOULD_NOT_BE_NULL */}
-                      id={id || 'id' /** SHOULD_NOT_BE_NULL */}
-                      src={scaledSrc.w480}
-                      selectedIds={selectedIds}
-                      setSelectedIds={ids =>
-                        setSelectedIds(multiple ? ids : ids.slice(-1))
-                      }
-                    />
-                  ),
-                )}
+                {data.viewer?.files?.edges.map(({ node }) => (
+                  <Card
+                    key={node.id || 'id' /** SHOULD_NOT_BE_NULL */}
+                    node={node}
+                    selectedImgs={selectedImgs}
+                    setSelectedImgs={imgs => {
+                      setSelectedImgs(multiple ? imgs : imgs.slice(-1));
+                    }}
+                  />
+                ))}
               </div>
             </>
           )}

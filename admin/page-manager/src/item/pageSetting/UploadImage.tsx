@@ -1,3 +1,6 @@
+// typescript import
+import { PropsType as GalleryPropsType } from '@admin/gallery';
+
 // import
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
@@ -14,7 +17,7 @@ import styles from './styles/uploadImage.less';
 // typescript definition
 interface PropsType {
   value?: string;
-  onChange?: (value: string | null) => void;
+  onChange?: (value: GalleryPropsType['value']) => void;
   forwardedRef: React.Ref<HTMLDivElement>;
 }
 
@@ -23,7 +26,7 @@ const UploadImage = React.memo(
   ({ forwardedRef, value, onChange }: PropsType) => {
     const { t } = useTranslation('page-manager');
     const portalTarget = usePortalTarget();
-    const findImage = useFindImage();
+    const findImage = useFindImage(value);
     const [visible, setVisible] = useState(false);
 
     return (
@@ -54,16 +57,10 @@ const UploadImage = React.memo(
                     </Button>
                   }
                   buttonText={t('seo.select')}
-                  value={value}
-                  onChange={(id: string) => {
-                    if (onChange)
-                      onChange(
-                        findImage(
-                          id,
-                        ) /** TODO should remove, should use id to save */ ||
-                          '',
-                      );
-
+                  value={findImage}
+                  onChange={(node: GalleryPropsType['value']) => {
+                    if (onChange && !Array.isArray(node))
+                      onChange(node?.scaledSrc?.w480 || null);
                     setVisible(false);
                   }}
                 />

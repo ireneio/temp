@@ -4,79 +4,48 @@ import { MutationTuple } from '@apollo/react-hooks';
 
 // import
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
 // graphql typescript
 import {
   uploadImages as uploadImagesType,
-  uploadImagesVariables,
-} from './__generated__/uploadImages';
+  uploadImagesVariables as uploadImagesVariablesType,
+} from '../gqls/__generated__/uploadImages';
+import {
+  useUploadImagesReadCache as useUploadImagesReadCacheType,
+  useUploadImagesReadCacheVariables as useUploadImagesReadCacheVariablesType,
+} from '../gqls/__generated__/useUploadImagesReadCache';
+
+import { getImagesVariables as getImagesVariablesType } from '../gqls/__generated__/getImages';
+
+// graphql import
 import {
   useUploadImagesReadCache,
-  useUploadImagesReadCacheVariables,
-} from './__generated__/useUploadImagesReadCache';
-
-import { getImagesVariables } from '../__generated__/getImages';
+  uploadImages,
+} from '../gqls/useUploadImages';
 
 // definition
-const query = gql`
-  query useUploadImagesReadCache(
-    $first: PositiveInt
-    $after: String
-    $filter: FileFilterInput
-  ) {
-    viewer {
-      id
-      files(first: $first, after: $after, filter: $filter) {
-        edges {
-          node {
-            id
-            scaledSrc {
-              w480
-            }
-          }
-        }
-
-        pageInfo {
-          hasNextPage
-          endCursor
-        }
-      }
-    }
-  }
-`;
-
 export default (
-  variables: getImagesVariables,
-): MutationTuple<uploadImagesType, uploadImagesVariables>[0] => {
-  const [uploadImages] = useMutation<uploadImagesType, uploadImagesVariables>(
-    gql`
-      mutation uploadImages($createFileList: [NewFile]) {
-        createFileList(createFileList: $createFileList) {
-          id
-          scaledSrc {
-            w480
-          }
-        }
-      }
-    `,
+  variables: getImagesVariablesType,
+): MutationTuple<uploadImagesType, uploadImagesVariablesType>[0] => {
+  const [mutation] = useMutation<uploadImagesType, uploadImagesVariablesType>(
+    uploadImages,
     {
       update: (cache: DataProxy, { data }: { data: uploadImagesType }) => {
         if (!data) return;
 
         const { createFileList } = data;
-        const cacheData = cache.readQuery<useUploadImagesReadCache>({
-          query,
+        const cacheData = cache.readQuery<useUploadImagesReadCacheType>({
+          query: useUploadImagesReadCache,
           variables,
         });
 
         if (!cacheData || !createFileList) return;
 
         cache.writeQuery<
-          useUploadImagesReadCache,
-          useUploadImagesReadCacheVariables
+          useUploadImagesReadCacheType,
+          useUploadImagesReadCacheVariablesType
         >({
-          query,
+          query: useUploadImagesReadCache,
           variables,
           data: {
             ...cacheData,
@@ -92,16 +61,20 @@ export default (
                     node,
                   })),
                   ...(cacheData.viewer?.files?.edges || []).filter(
-                    ({ node }) => !/^data:/.test(node?.scaledSrc.w480 || ''),
+                    ({ node }) => {
+                      return Object.values(node.scaledSrc).every(
+                        src => !/^data:/.test(src),
+                      );
+                    },
                   ),
                 ],
               },
             },
-          } as useUploadImagesReadCache,
+          } as useUploadImagesReadCacheType,
         });
       },
     },
   );
 
-  return uploadImages;
+  return mutation;
 };
