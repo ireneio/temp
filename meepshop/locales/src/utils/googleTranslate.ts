@@ -18,7 +18,7 @@ export default async (
         if (count > 50) return reject(new Error('timeout'));
 
         try {
-          if (await page.$('.copybutton')) return resolve();
+          if (await page.$('[aria-label="複製譯文"]')) return resolve();
           // eslint-disable-next-line no-empty
         } catch (e) {}
 
@@ -29,7 +29,7 @@ export default async (
   });
 
   const output = await page.$eval(
-    '.translation',
+    '.JLqJ4b.ChMk0b',
     (e: HTMLElement) => e.innerText,
   );
 
