@@ -8,7 +8,7 @@ import { Tooltip, Icon } from 'antd';
 import styles from './styles/index.less';
 
 // typescript definition
-interface PropsType extends Omit<AbstractTooltipProps, 'children'> {
+interface PropsType extends AbstractTooltipProps {
   title: React.ReactNode;
   iconClassName?: string;
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
@@ -16,13 +16,15 @@ interface PropsType extends Omit<AbstractTooltipProps, 'children'> {
 
 // definition
 export default React.memo(
-  ({ iconClassName, onClick, ...restProps }: PropsType) => (
+  ({ iconClassName, onClick, children, ...restProps }: PropsType) => (
     <Tooltip overlayClassName={styles.overlay} {...restProps}>
-      <Icon
-        className={`${styles.icon} ${iconClassName || ''}`}
-        type="question-circle"
-        onClick={onClick}
-      />
+      {children || (
+        <Icon
+          className={`${styles.icon} ${iconClassName || ''}`}
+          type="question-circle"
+          onClick={onClick}
+        />
+      )}
     </Tooltip>
   ),
 );
