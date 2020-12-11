@@ -2,8 +2,8 @@
 import gql from 'graphql-tag';
 
 // definition
-export const menuIconMockFragment = gql`
-  fragment menuIconMockFragment on MenuIcon {
+export const iconMockFragment = gql`
+  fragment iconMockFragment on Icon {
     ... on Image {
       __typename
     }

@@ -31,13 +31,13 @@ import GmoBankInstallment from './schemas/GmoBankInstallment';
 import groupProductsObjectType from './schemas/groupProductsObjectType';
 import gtag from './schemas/gtag';
 import HexColorCode from './schemas/HexColorCode';
+import Icon from './schemas/Icon';
 import Image from './schemas/Image';
 import Link from './schemas/Link';
 import Locale from './schemas/Locale';
 import MemberGroup from './schemas/MemberGroup';
 import Menu from './schemas/Menu';
 import MenuDesignObjectType from './schemas/MenuDesignObjectType';
-import MenuIcon from './schemas/MenuIcon';
 import MenuPageObjectType from './schemas/MenuPageObjectType';
 import MenuPageParamsObjectType from './schemas/MenuPageParamsObjectType';
 import NotificationObjectType from './schemas/NotificationObjectType';
@@ -113,13 +113,13 @@ export default addMocksToSchema({
     groupProductsObjectType,
     gtag,
     HexColorCode,
+    Icon,
     Image,
     Link,
     Locale,
     MemberGroup,
     Menu,
     MenuDesignObjectType,
-    MenuIcon,
     MenuPageObjectType,
     MenuPageParamsObjectType,
     NotificationObjectType,
