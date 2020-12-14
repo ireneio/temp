@@ -25,4 +25,13 @@ if [[ $CIRCLE_TAG =~ ^v[0-9.]*$ ]]; then
     \"activity\": \"Release Bot\",
     \"title\": \"$PACKAGE_NAME: $VERSION\"
   }" https://hooks.glip.com/webhook/57916ea2-14b4-488c-8cb9-95efe808cae2
+
+ curl -X POST https://zulip.meepshop.com/api/v1/messages \
+    -u "${ZULIP_BOT_EMAIL}:${ZULIP_BOT_API_KEY}" \
+    -d "type=stream" \
+    -d "to=dev/deployment" \
+    -d "topic=[stage] frontEnd" \
+    -d "content=🟢 Release \
+    $PACKAGE_NAME: $VERSION
+    "
 fi
