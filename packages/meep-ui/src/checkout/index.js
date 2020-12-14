@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { notification } from 'antd';
 import uuid from 'uuid/v4';
 
+import initApollo from '@meepshop/apollo/lib/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import FormDataContext from '@meepshop/form-data';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
@@ -273,10 +274,10 @@ export default class Checkout extends React.PureComponent {
     } else {
       if (global.window) window.sessionStorage.clear();
 
-      const nextStep = (firstPurchase = false) => {
+      const nextStep = async (firstPurchase = false) => {
         if (this.isUnmounted) return;
 
-        updateUser({
+        await updateUser({
           variables: {
             input: {
               name: userName,
@@ -296,6 +297,7 @@ export default class Checkout extends React.PureComponent {
 
         if (formData?.url) {
           if (!formData.url?.startsWith('line')) {
+            initApollo({ name: 'store' }).stop();
             setFormData(formData);
             return;
           }
@@ -325,7 +327,7 @@ export default class Checkout extends React.PureComponent {
         return;
       }
 
-      nextStep();
+      await nextStep();
     }
   };
 
