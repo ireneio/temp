@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.70.2 (2020-12-14)
+
+#### :rocket: New Feature
+
+- [#1317](https://github.com/meepshop/meep-lerna/pull/1317) 【優化】後台第三方設定說明文字 ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1320](https://github.com/meepshop/meep-lerna/pull/1320) 【BUG】送出訂單會有 network error ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#1324](https://github.com/meepshop/meep-lerna/pull/1324) (@meepshop/mock-types) Fix type name ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.70.1 (2020-12-09)
 
 #### :rocket: New Feature
