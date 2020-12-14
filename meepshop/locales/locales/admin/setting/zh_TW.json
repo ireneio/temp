@@ -35,7 +35,7 @@
     },
     "third-party": {
       "title": "第三方設定",
-      "description": "Facebook Store、Facebook登入之串接設定"
+      "description": "設定 Facebook 登入、Google Analytics 數據讀取等串接服務"
     },
     "notification": {
       "title": "通知設定",
