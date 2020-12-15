@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.71.0 (2020-12-15)
+
+#### :boom: Breaking Change
+
+- `meep-ui`
+  - [#1321](https://github.com/meepshop/meep-lerna/pull/1321) 將 call Login api 的順序改在 CreateOrder 之前 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#1316](https://github.com/meepshop/meep-lerna/pull/1316) 前端 - WishlistProduct.createdAt 改為 DateTime ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.70.2 (2020-12-14)
 
 #### :rocket: New Feature
