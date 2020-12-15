@@ -33,7 +33,6 @@ export default class Checkout extends React.PureComponent {
     isLogin: ISLOGIN_TYPE.isRequired,
     getData: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
-    login: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
 
     /** props */
@@ -69,7 +68,7 @@ export default class Checkout extends React.PureComponent {
       user,
       isLogin,
       goTo,
-      login,
+      dispatchAction,
 
       /** props */
       t,
@@ -140,6 +139,30 @@ export default class Checkout extends React.PureComponent {
       expire,
       installmentCode,
     } = orderInfo.info;
+
+    if (isLogin === NOTLOGIN && userEmail && userPassword) {
+      await new Promise(resolve => {
+        dispatchAction('signup', {
+          values: {
+            email: userEmail,
+            password: userPassword,
+          },
+          callback: () => {
+            adTrack.completeRegistration();
+            resolve();
+          },
+        });
+      });
+
+      await new Promise(resolve => {
+        dispatchAction('login', {
+          email: userEmail,
+          password: userPassword,
+          callback: resolve,
+          from: 'checkout',
+        });
+      });
+    }
 
     const { error, data } = await createOrder({
       variables: {
@@ -217,7 +240,6 @@ export default class Checkout extends React.PureComponent {
               name: userName || name,
               email: userEmail || user.email,
               mobile: userMobile || mobile,
-              password: userPassword,
             },
             ...(!invoice
               ? {}
@@ -271,64 +293,48 @@ export default class Checkout extends React.PureComponent {
 
       this.idempotentKey = uuid();
       this.setState({ isSubmitting: false });
-    } else {
-      if (global.window) window.sessionStorage.clear();
+      return;
+    }
 
-      const nextStep = async (firstPurchase = false) => {
-        if (this.isUnmounted) return;
+    if (global.window) window.sessionStorage.clear();
 
-        await updateUser({
-          variables: {
-            input: {
-              name: userName,
-              additionalInfo: {
-                mobile: userMobile,
-              },
-              address: {
-                countryId: userAddressAndZipCode.address[0],
-                cityId: userAddressAndZipCode.address[1],
-                areaId: userAddressAndZipCode.address[2],
-                zipCode: userAddressAndZipCode.zipCode,
-                street: userStreet,
-              },
-            },
+    await updateUser({
+      variables: {
+        input: {
+          name: userName,
+          additionalInfo: {
+            mobile: userMobile,
           },
-        });
-
-        if (formData?.url) {
-          if (!formData.url?.startsWith('line')) {
-            initApollo({ name: 'store' }).stop();
-            setFormData(formData);
-            return;
-          }
-
-          // hack for linepay in mobile devices
-          window.location = formData.url;
-        }
-
-        goTo({
-          pathname: `/checkout/thank-you-page/${id}`,
-          params: {
-            search: { firstPurchase },
+          address: {
+            countryId: userAddressAndZipCode.address[0],
+            cityId: userAddressAndZipCode.address[1],
+            areaId: userAddressAndZipCode.address[2],
+            zipCode: userAddressAndZipCode.zipCode,
+            street: userStreet,
           },
-        });
-      };
+        },
+      },
+    });
 
-      if (isLogin === NOTLOGIN) {
-        login({
-          email: userEmail,
-          password: userPassword,
-          callback: () => {
-            adTrack.completeRegistration();
-            nextStep(true);
-          },
-          from: 'checkout',
-        });
+    if (this.isUnmounted) return;
+
+    if (formData?.url) {
+      if (!formData.url?.startsWith('line')) {
+        initApollo({ name: 'store' }).stop();
+        setFormData(formData);
         return;
       }
 
-      await nextStep();
+      // hack for linepay in mobile devices
+      window.location = formData.url;
     }
+
+    goTo({
+      pathname: `/checkout/thank-you-page/${id}`,
+      params: {
+        search: { firstPurchase: isLogin === NOTLOGIN },
+      },
+    });
   };
 
   render() {
