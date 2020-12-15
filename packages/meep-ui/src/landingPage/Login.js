@@ -6,7 +6,7 @@ import { Form, Input, Button, Modal, notification, Icon } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import initApollo from '@meepshop/apollo/lib/initApollo';
+import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 

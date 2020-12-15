@@ -7,7 +7,7 @@ import { UserAgent } from 'fbjs';
 import { notification } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import initApollo from '@meepshop/apollo/lib/initApollo';
+import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import {
   AdTrack as AdTrackContext,
   Fb as FbContext,

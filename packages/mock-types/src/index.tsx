@@ -1,8 +1,9 @@
 // import
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Drawer, Button, Divider } from 'antd';
 
 import { i18n } from '@meepshop/utils/lib/i18n';
+import { ApolloNetworkStatusContext } from '@meepshop/apollo';
 
 import MockData from './MockData';
 import mock from './mock';
@@ -15,10 +16,11 @@ export default React.memo(({ children }) => {
   const [mockTypes, setMockTypes] = useState<string[]>([]);
   const [visibleDrawer, setVisibleDrawer] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { numPendingQueries } = useContext(ApolloNetworkStatusContext);
 
   useEffect(() => {
-    if (!loading) setMockTypes(mock.tracking);
-  }, [loading]);
+    if (numPendingQueries === 0) setMockTypes(mock.tracking);
+  }, [numPendingQueries]);
 
   return (
     <>

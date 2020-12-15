@@ -38,11 +38,12 @@ export default React.memo(
           >
             <Button
               disabled={currentIndex === mockIndex}
-              onClick={() => {
+              onClick={async () => {
                 mock.trackingIndex[typeIndex] = mockIndex;
                 setLoading(true);
-                client.resetStore().then(() => setLoading(false));
+                await client.resetStore();
                 changeMockData(mockIndex);
+                setLoading(false);
               }}
             >
               data {mockIndex + 1}

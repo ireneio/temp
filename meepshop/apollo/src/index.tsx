@@ -9,7 +9,7 @@ import {
   NextAppGetInitialPropsType,
 } from '@meepshop/utils/lib/types';
 
-import { ConfigType as initApolloConfigType } from './initApollo';
+import { ConfigType as initApolloConfigType } from './utils/initApollo';
 
 // import
 import React from 'react';
@@ -17,8 +17,11 @@ import Head from 'next/head';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { getDataFromTree } from '@apollo/react-ssr';
 
-import initApollo from './initApollo';
+import initApollo from './utils/initApollo';
 import { shouldIgnoreUnauthorizedError } from './utils/errorLink';
+import ApolloNetworkStatusContext, {
+  ApolloNetworkStatusProvider,
+} from './context/ApolloNetworkStatus';
 
 // typescript definition
 interface PropsType extends AppProps {
@@ -44,6 +47,8 @@ export interface ContextType {
 }
 
 // definition
+export { ApolloNetworkStatusContext };
+
 export const buildWithApollo = (config: initApolloConfigType) => (
   App: NextAppType,
 ): NextAppType => {
@@ -52,7 +57,9 @@ export const buildWithApollo = (config: initApolloConfigType) => (
     ...props
   }: PropsType): React.ReactElement => (
     <ApolloProvider client={initApollo(config, apolloState)}>
-      <App {...props} />
+      <ApolloNetworkStatusProvider>
+        <App {...props} />
+      </ApolloNetworkStatusProvider>
     </ApolloProvider>
   );
 
@@ -76,7 +83,9 @@ export const buildWithApollo = (config: initApolloConfigType) => (
       try {
         await getDataFromTree(
           <ApolloProvider client={client}>
-            <App {...appProps} Component={Component} router={router} />
+            <ApolloNetworkStatusProvider>
+              <App {...appProps} Component={Component} router={router} />
+            </ApolloNetworkStatusProvider>
           </ApolloProvider>,
         );
       } catch (e) {

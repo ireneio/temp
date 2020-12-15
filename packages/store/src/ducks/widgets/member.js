@@ -4,7 +4,7 @@ import * as Utils from 'utils';
 import { notification } from 'antd';
 
 import { i18n } from '@meepshop/utils/lib/i18n';
-import initApollo from '@meepshop/apollo/lib/initApollo';
+import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 
 import * as Api from 'api';
 import { NOTLOGIN, ISUSER } from 'constants';

@@ -2,7 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { connect } from 'react-redux';
 
-import initApollo from '@meepshop/apollo/lib/initApollo';
+import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { defaultAdTrack } from '@meepshop/context/lib/AdTrack';
 

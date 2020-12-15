@@ -5,7 +5,7 @@ import { Button, Icon } from 'antd';
 import gql from 'graphql-tag';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import initApollo from '@meepshop/apollo/lib/initApollo';
+import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';

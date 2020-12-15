@@ -5,7 +5,7 @@ import memoizeOne from 'memoize-one';
 import { Menu } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import initApollo from '@meepshop/apollo/lib/initApollo';
+import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { Currency as CurrencyContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 

@@ -1,4 +1,4 @@
-import initApollo from '@meepshop/apollo/lib/initApollo';
+import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 
 import postGraphql from 'utils/postGraphql';
 import getIn from 'utils/getIn';

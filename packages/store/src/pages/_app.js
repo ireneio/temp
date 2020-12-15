@@ -9,7 +9,6 @@ import getConfig from 'next/config';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
-import NProgress from 'nprogress';
 import { notification } from 'antd';
 import moment from 'moment';
 
@@ -32,8 +31,6 @@ import configureStore from 'ducks/store';
 import * as Actions from 'ducks/actions';
 import withCookies from 'utils/withCookies';
 
-import '../public/nprogress.less';
-
 const {
   publicRuntimeConfig: { API_HOST },
 } = getConfig();
@@ -45,9 +42,6 @@ Router.onRouteChangeStart = url => {
     window.storePreviousPageUrl = Router.router.asPath;
 
   window.storePreviousOffset = window.pageYOffset;
-
-  NProgress.configure({ showSpinner: false });
-  NProgress.start();
 };
 
 Router.onRouteChangeComplete = () => {
@@ -55,10 +49,7 @@ Router.onRouteChangeComplete = () => {
     window.scrollTo(0, window.storeCurrentOffset);
     window.storeCurrentOffset = undefined;
   }
-  NProgress.done();
 };
-
-Router.onRouteChangeError = () => NProgress.done();
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {

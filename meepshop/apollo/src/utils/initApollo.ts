@@ -2,9 +2,10 @@
 import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { Resolvers } from 'apollo-client/core/types';
 
-import { CustomCtxType } from './index';
-import { errorFilterType } from './utils/errorLink';
-import { IntrospectionQueryResultDataType } from './utils/createIntrospectionQueryResultDataType';
+import { CustomCtxType } from '../index';
+
+import { errorFilterType } from './errorLink';
+import { IntrospectionQueryResultDataType } from './createIntrospectionQueryResultDataType';
 
 // import
 import { ApolloClient } from 'apollo-client';
@@ -14,20 +15,22 @@ import {
 } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import { ApolloLink } from 'apollo-link';
+import { createNetworkStatusNotifier } from 'react-apollo-network-status';
 import getConfig from 'next/config';
 
 import modules from '@meepshop/modules';
 
-import * as fbLogin from './fbLogin';
-import * as log from './log';
-import * as login from './login';
-import * as logout from './logout';
-import * as PageInfo from './PageInfo';
-import * as productsObjectType from './productsObjectType';
-import * as validatedConvenienceStoreCities from './validatedConvenienceStoreCities';
-import mergeResolvers from './utils/mergeResolvers';
-import errorLink from './utils/errorLink';
-import createIntrospectionQueryResultDataType from './utils/createIntrospectionQueryResultDataType';
+import * as fbLogin from '../fbLogin';
+import * as log from '../log';
+import * as login from '../login';
+import * as logout from '../logout';
+import * as PageInfo from '../PageInfo';
+import * as productsObjectType from '../productsObjectType';
+import * as validatedConvenienceStoreCities from '../validatedConvenienceStoreCities';
+
+import mergeResolvers from './mergeResolvers';
+import errorLink from './errorLink';
+import createIntrospectionQueryResultDataType from './createIntrospectionQueryResultDataType';
 
 // typescript definition
 export interface ConfigType {
@@ -39,6 +42,7 @@ export interface ConfigType {
 }
 
 // definition
+const { link, useApolloNetworkStatus } = createNetworkStatusNotifier();
 const {
   publicRuntimeConfig: { API_HOST, VERSION },
 } = getConfig();
@@ -100,6 +104,7 @@ const create = (
     ].reduce(mergeResolvers, {}),
     link: ApolloLink.from([
       errorLink(errorFilter),
+      link,
       new HttpLink({
         uri:
           typeof window !== 'undefined'
@@ -117,6 +122,8 @@ const create = (
     ]),
   });
 };
+
+export { useApolloNetworkStatus };
 
 export default (
   config: ConfigType,

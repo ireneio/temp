@@ -6,7 +6,7 @@ import { warning, areEqual } from 'fbjs';
 import { Modal, notification } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import initApollo from '@meepshop/apollo/lib/initApollo';
+import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import CartContext from '@meepshop/cart';
 import withContext from '@store/utils/lib/withContext';
