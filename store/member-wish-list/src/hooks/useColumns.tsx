@@ -81,7 +81,7 @@ export default (
           { isAvailableForSale }: useColumnsWishlistProductFragment,
         ) => (
           <span style={{ opacity: isAvailableForSale ? 1 : 0.5 }}>
-            {isAvailableForSale ? moment.unix(value).format('YYYY/MM/DD') : '-'}
+            {isAvailableForSale ? moment(value).format('YYYY/MM/DD') : '-'}
           </span>
         ),
       },
