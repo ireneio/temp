@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { notification } from 'antd';
 import uuid from 'uuid/v4';
 
-import initApollo from '@meepshop/apollo/lib/initApollo';
+import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import FormDataContext from '@meepshop/form-data';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
