@@ -4,7 +4,7 @@
   "description": "Generate template",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.70.0",
+  "version": "0.71.0",
   "bin": "./lib/bin/index.js",
   "dependencies": {
     "commander": "^4.0.1",
