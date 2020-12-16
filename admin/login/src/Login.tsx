@@ -1,5 +1,5 @@
 // typescript import
-import { PropsType } from './index';
+import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import React from 'react';
@@ -13,6 +13,11 @@ import useGrecaptcha from './hooks/useGrecaptcha';
 import useLogin from './hooks/useLogin';
 
 import styles from './styles/login.less';
+
+// typescript definition
+interface PropsType extends FormComponentProps {
+  setAction: (input: 'LOGIN' | 'FORGET_PASSWORD') => void;
+}
 
 // definition
 const { Item: FormItem } = Form;

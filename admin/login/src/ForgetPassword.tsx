@@ -1,5 +1,5 @@
 // typescript import
-import { PropsType } from './index';
+import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import React from 'react';
@@ -14,6 +14,11 @@ import styles from './styles/forgetPassword.less';
 
 // graphql typescript
 import { UserTypeEnum } from '../../../__generated__/admin';
+
+// typescript definition
+interface PropsType extends FormComponentProps {
+  setAction: (input: 'LOGIN' | 'FORGET_PASSWORD') => void;
+}
 
 // definition
 const { Item: FormItem } = Form;

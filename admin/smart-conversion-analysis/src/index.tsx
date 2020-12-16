@@ -23,12 +23,13 @@ import { MOMENT_FORMAT } from './constants';
 // typescript definition
 interface PropsType {
   pageId: string;
+  namespacesRequired: string[];
 }
 
 // definition
 const Chart = dynamic(() => import('./Chart'), { ssr: false });
 
-const SmartConversionAnalysis: NextPage = React.memo(
+const SmartConversionAnalysis: NextPage<PropsType> = React.memo(
   ({ pageId }: PropsType) => {
     const { query } = useRouter();
     const {
@@ -137,7 +138,7 @@ const SmartConversionAnalysis: NextPage = React.memo(
 
 SmartConversionAnalysis.getInitialProps = async ({ query }) => ({
   namespacesRequired: ['smart-conversion-analysis'],
-  pageId: query.pageId,
+  pageId: query.pageId as string,
 });
 
 export default SmartConversionAnalysis;

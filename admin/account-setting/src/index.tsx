@@ -21,10 +21,16 @@ import { getMerchantAccount as getMerchantAccountType } from './gqls/__generated
 // graphql import
 import { getMerchantAccount } from './gqls';
 
+// typescript definition
+interface PropsType {
+  form?: FormComponentProps['form'];
+  namespacesRequired: string[];
+}
+
 // definition
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore FIXME: remove after use antd v4 form hook
-const AccountSetting: NextPage = Form.create<FormComponentProps>()(
+const AccountSetting: NextPage<PropsType> = Form.create<PropsType>()(
   React.memo(({ form }: FormComponentProps) => {
     const { resetFields, isFieldsTouched } = form;
     const { data } = useQuery<getMerchantAccountType>(getMerchantAccount);

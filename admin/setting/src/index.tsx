@@ -24,8 +24,13 @@ import {
 
 import { useItemspermissionStoreObjFragment } from './hooks/useItems';
 
+// typescript definition
+interface PropsType {
+  namespacesRequired: string[];
+}
+
 // definition
-const Setting: NextPage = React.memo(
+const Setting: NextPage<PropsType> = React.memo(
   (): React.ReactElement => {
     const { t } = useTranslation('setting');
     const { loading, error, data } = useQuery<getViewerPermission>(

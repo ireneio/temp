@@ -16,6 +16,11 @@ import styles from './styles/index.less';
 // graphql typescript
 import { getStoreName } from './__generated__/getStoreName';
 
+// typescript definition
+interface PropsType {
+  namespacesRequired: string[];
+}
+
 // definition
 const query = gql`
   query getStoreName {
@@ -31,7 +36,7 @@ const query = gql`
   }
 `;
 
-const UnsubscribeEmail: NextPage = React.memo(() => {
+const UnsubscribeEmail: NextPage<PropsType> = React.memo(() => {
   const { t } = useTranslation('unsubscribe-email');
   const { data } = useQuery<getStoreName>(query);
   const { loading } = useUnsubscribeEdm();

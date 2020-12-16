@@ -26,6 +26,11 @@ import { previewerStoreFragment, previewerPageFragment } from './Previewer';
 import { itemPageFragment } from './item';
 import { usePagesStoreFragment } from './hooks/usePages';
 
+// typescript definition
+interface PropsType {
+  namespacesRequired: string[];
+}
+
 // definition
 const { Search } = Input;
 const { Panel } = Collapse;
@@ -49,7 +54,7 @@ const query = gql`
   ${usePagesStoreFragment}
 `;
 
-const PageManager: NextPage = React.memo(
+const PageManager: NextPage<PropsType> = React.memo(
   (): React.ReactElement => {
     const { t } = useTranslation('page-manager');
     const { loading, error, data, variables, refetch } = useQuery<

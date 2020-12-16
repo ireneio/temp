@@ -5,6 +5,7 @@ import React from 'react';
 import runTest from '@meepshop/mock-types/src/runTest';
 
 import AccountSetting from '../index';
+import props from '../../mock';
 
 // definition
-runTest('admin', <AccountSetting />);
+runTest('admin', <AccountSetting {...props} />);

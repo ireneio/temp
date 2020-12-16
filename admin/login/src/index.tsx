@@ -1,6 +1,5 @@
 // typescript import
 import { NextPage } from 'next';
-import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import React, { useState } from 'react';
@@ -13,11 +12,12 @@ import ForgetPassword from './ForgetPassword';
 import styles from './styles/index.less';
 
 // typescript definition
-export interface PropsType extends FormComponentProps {
-  setAction: (input: 'LOGIN' | 'FORGET_PASSWORD') => void;
+interface PropsType {
+  namespacesRequired: string[];
 }
 
-const LoginWrapper: NextPage = React.memo(
+// definition
+const LoginWrapper: NextPage<PropsType> = React.memo(
   (): React.ReactElement => {
     const [action, setAction] = useState<'LOGIN' | 'FORGET_PASSWORD'>('LOGIN');
 

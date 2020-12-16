@@ -27,6 +27,12 @@ import { getThirdPartySetting } from './__generated__/getThirdPartySetting';
 import { useBlocksFragment } from './hooks/useBlocks';
 import { useSaveFragment } from './hooks/useSave';
 
+// typescript definition
+interface PropsType {
+  form?: FormComponentProps['form'];
+  namespacesRequired: string[];
+}
+
 // definition
 const query = gql`
   query getThirdPartySetting {
@@ -46,7 +52,7 @@ const query = gql`
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore FIXME: remove after use antd v4 form hook
-const SettingThirdParty: NextPage = Form.create<FormComponentProps>()(
+const SettingThirdParty: NextPage<PropsType> = Form.create<PropsType>()(
   React.memo(({ form }: FormComponentProps) => {
     const { data } = useQuery<getThirdPartySetting>(query);
     const { t } = useTranslation('setting-third-party');

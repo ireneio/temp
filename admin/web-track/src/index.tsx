@@ -34,9 +34,14 @@ import { googleWebmasterFragment } from './gqls/googleWebmaster';
 import { googleTagManagerFragment } from './gqls/googleTagManager';
 import { advancedSettingFragment } from './gqls/advancedSetting';
 
+// typescript definition
+interface PropsType {
+  namespacesRequired: string[];
+}
+
 // definition
 const { TabPane } = Tabs;
-const WebTrack: NextPage = React.memo(
+const WebTrack: NextPage<PropsType> = React.memo(
   (): React.ReactElement => {
     const { t } = useTranslation('web-track');
     const { data } = useQuery<getWebTrackType>(getWebTrack);

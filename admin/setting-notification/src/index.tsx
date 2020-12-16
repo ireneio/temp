@@ -29,6 +29,12 @@ import {
 import { getNotificationsSetting } from './gqls/index';
 import { useUpdateNotificationSettingFragment } from './gqls/useUpdateNotificationSetting';
 
+// typescript definition
+interface PropsType {
+  form?: FormComponentProps['form'];
+  namespacesRequired: string[];
+}
+
 // definition
 const ITEM_FILEDS: {
   key: Exclude<
@@ -59,7 +65,7 @@ const ITEM_FILEDS: {
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore FIXME: remove after use antd v4 form hook
-const SettingNotificationPage: NextPage = Form.create<FormComponentProps>()(
+const SettingNotificationPage: NextPage<PropsType> = Form.create<PropsType>()(
   React.memo(({ form }: FormComponentProps) => {
     const { t } = useTranslation('setting-notification');
     const { getFieldDecorator, resetFields, isFieldsTouched } = form;

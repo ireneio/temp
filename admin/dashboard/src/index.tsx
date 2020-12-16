@@ -33,8 +33,13 @@ import {
 // graphql import
 import { tutorialSettingObjectTypeFragment } from './Tutorial';
 
+// typescript definition
+interface PropsType {
+  namespacesRequired: string[];
+}
+
 // definition
-const Dashboard: NextPage = React.memo(
+const Dashboard: NextPage<PropsType> = React.memo(
   (): React.ReactElement => {
     const { c } = useContext(CurrencyContext);
     const getTimezoneResult = useQuery<getTimezone>(

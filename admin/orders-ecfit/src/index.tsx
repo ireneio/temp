@@ -13,6 +13,11 @@ import { withTranslation } from '@meepshop/utils/lib/i18n';
 import Container from './Container';
 import styles from './styles/index.less';
 
+// typescript definition
+interface PropsType {
+  namespacesRequired: string[];
+}
+
 // definition
 const { Option } = Select;
 
@@ -83,7 +88,7 @@ const EnhancedOrdersEcfit = withTranslation(['orders-ecfit', 'orders'])(
   OrdersEcfit,
 );
 
-const OrdersEcfitPage: NextPage = React.memo(
+const OrdersEcfitPage: NextPage<PropsType> = React.memo(
   (): React.ReactElement => <EnhancedOrdersEcfit />,
 );
 
