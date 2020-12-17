@@ -9,21 +9,20 @@ import { useMemo } from 'react';
 import gql from 'graphql-tag';
 
 // graphql typescript
-import { localeFragmentType } from '@meepshop/utils/lib/fragments/locale';
-
 import {
   useOptionsAddressServiceFragment as useOptionsAddressServiceFragmentType,
   useOptionsAddressServiceFragment_countries as useOptionsAddressServiceFragmentCountries,
+  useOptionsAddressServiceFragment_countries_name as useOptionsAddressServiceFragmentCountriesName,
 } from './__generated__/useOptionsAddressServiceFragment';
 
 // graphql import
-import localeFragment from '@meepshop/utils/lib/fragments/locale';
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 // typescript definition
 interface OptionsType {
   __typename: string;
   id: string;
-  name: localeFragmentType;
+  name: useOptionsAddressServiceFragmentCountriesName;
   children?: OptionsType[];
 }
 

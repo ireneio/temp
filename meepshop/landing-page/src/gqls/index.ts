@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 
 // graphql import
 import { useLinkFragment } from '@meepshop/hooks/lib/gqls/useLink';
-import localeFragment from '@meepshop/utils/lib/fragments/locale';
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 import { shoppingLandingPageModuleFragment } from './shopping';
 import { receiverFragment } from '../receiver/gqls';

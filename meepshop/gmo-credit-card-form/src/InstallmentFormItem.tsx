@@ -22,7 +22,7 @@ import {
 } from './__generated__/getGmoAvailableInstallments';
 
 // graphql import
-import localeFragment from '@meepshop/utils/lib/fragments/locale';
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 // typescript definition
 interface PropsType

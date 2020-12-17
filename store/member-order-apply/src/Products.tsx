@@ -21,7 +21,7 @@ import withContext from '@store/utils/lib/withContext';
 import styles from './styles/products.less';
 
 // graphql import
-import localeFragment from '@meepshop/utils/lib/fragments/locale';
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 import { productsObjectTypeProductsObjectTypeFragment } from '@store/apollo/lib/productsObjectType';
 
 import { productsProductsObjectTypeFragment as productsProductsObjectTypeFragmentType } from './__generated__/productsProductsObjectTypeFragment';

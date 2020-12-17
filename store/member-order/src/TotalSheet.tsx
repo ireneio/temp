@@ -20,7 +20,7 @@ import {
 } from './__generated__/totalSheetFragment';
 
 // graphql import
-import localeFragment from '@meepshop/utils/lib/fragments/locale';
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 // typescript definition
 interface PropsType extends I18nPropsType, CurrencyType {

@@ -16,13 +16,14 @@ import emptyArrayToUndefined from './utils/emptyArrayToUndefined';
 import styles from './styles/advancedSearch.less';
 
 // graphql typescript
-import { localeFragmentType } from '@meepshop/utils/lib/fragments/locale';
-
-import { advancedSearchStorePaymentFragment as advancedSearchStorePaymentFragmentType } from './__generated__/advancedSearchStorePaymentFragment';
+import {
+  advancedSearchStorePaymentFragment as advancedSearchStorePaymentFragmentType,
+  advancedSearchStorePaymentFragment_title as advancedSearchStorePaymentFragmentTitle,
+} from './__generated__/advancedSearchStorePaymentFragment';
 import { advancedSearchStoreShipmentFragment as advancedSearchStoreShipmentFragmentType } from './__generated__/advancedSearchStoreShipmentFragment';
 
 // graphql import
-import localeFragment from '@meepshop/utils/lib/fragments/locale';
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 // typescript definition
 interface PropsType
@@ -92,7 +93,7 @@ class AdvancedSearch extends React.PureComponent<PropsType, StateType> {
           shipmentIdList: storeShipments,
         }[optionsKey] as {
           id: string;
-          title: localeFragmentType;
+          title: advancedSearchStorePaymentFragmentTitle;
         }[]).map(({ id, title }) => (
           <Option key={id} value={id}>
             {title[i18n.language] || title.zh_TW}

@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import createOrderFragment from '@meepshop/utils/lib/fragments/createOrder';
+import { createOrderFragment } from '@meepshop/utils/lib/gqls/createOrder';
 
 // definition
 export const payOrderAgain = gql`

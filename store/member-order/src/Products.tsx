@@ -28,7 +28,7 @@ import { productsFragment as productsFragmentType } from './__generated__/produc
 import { getMemberOrder_viewer_order as getMemberOrderViewerOrder } from './__generated__/getMemberOrder';
 
 // graphql import
-import localeFragment from '@meepshop/utils/lib/fragments/locale';
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 // typescript definition
 interface PropsType extends I18nPropsType, CurrencyType {

@@ -31,7 +31,7 @@ import {
 import { useRenamePageWithSEOCacheVariables } from './hooks/__generated__/useRenamePageWithSEOCache';
 
 // graphql import
-import localeFragment from '@meepshop/utils/lib/fragments/locale';
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 // typescript definition
 interface PropsType extends FormComponentProps {

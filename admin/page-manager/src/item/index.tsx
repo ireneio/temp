@@ -22,7 +22,7 @@ import { itemPageFragment as itemPageFragmentType } from './__generated__/itemPa
 import { getPagesVariables } from '../__generated__/getPages';
 
 // graphql import
-import localeFragment from '@meepshop/utils/lib/fragments/locale';
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 import {
   pageSettingStoreFragment,

@@ -55,14 +55,10 @@ const serverCssFileSupport = config => {
 
   config.entry = async () => {
     const entries = await originalEntry();
-    const prefix =
-      process.cwd() === path.resolve(__dirname, './admin/server')
-        ? '@admin'
-        : '@store';
 
     Object.keys(entries).forEach(filename => {
       entries[filename] = [
-        `${prefix}/utils/lib/handleCssImport.js`,
+        '@meepshop/utils/lib/handleCssImport.js',
         ...entries[filename],
       ];
     });

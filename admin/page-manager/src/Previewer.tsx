@@ -17,7 +17,7 @@ import { previewerStoreFragment as previewerStoreFragmentType } from './__genera
 import { previewerPageFragment as previewerPageFragmentType } from './__generated__/previewerPageFragment';
 
 // graphql import
-import localeFragment from '@meepshop/utils/lib/fragments/locale';
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 // typescript definition
 interface PropsType {

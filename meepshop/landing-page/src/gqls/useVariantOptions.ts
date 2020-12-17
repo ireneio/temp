@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import localeFragment from '@meepshop/utils/lib/fragments/locale';
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 // definition
 export const useVariantOptionsFragment = gql`
