@@ -163,7 +163,7 @@ module.exports = app.prepare().then(
 
       // others
       server.post('/checkout/thank-you-page/:id', (req, res) => {
-        res.redirect(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
+        res.redirect(`https://${req.get('host')}${req.originalUrl}`);
       });
 
       server.get('*', (req, res) => handler(req, res));
