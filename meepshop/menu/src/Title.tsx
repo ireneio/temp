@@ -19,8 +19,8 @@ import {
   titleMenuPageObjectTypeFragment_image_Image as titleMenuPageObjectTypeFragmentImageImageType,
   titleMenuPageObjectTypeFragment_image_DefaultIcon as titleMenuPageObjectTypeFragmentDefaultIconDefaultIconType,
 } from './gqls/__generated__/titleMenuPageObjectTypeFragment';
-import { titleMenuDesignObjectTypeFragment as titleMenuDesignObjectTypeFragmentType } from './gqls/__generated__/titleMenuDesignObjectTypeFragment';
 import { titleUserFragment as titleUserFragmentType } from './gqls/__generated__/titleUserFragment';
+import { titleMenuDesignObjectTypeFragment as titleMenuDesignObjectTypeFragmentType } from './gqls/__generated__/titleMenuDesignObjectTypeFragment';
 
 // graphql import
 import {
@@ -77,12 +77,18 @@ export default React.memo(
       >
         <Switch
           isTrue={Boolean(href)}
-          render={children => <a href={href || ''}>{children}</a>}
+          render={children => (
+            <a className={styles.link} href={href || ''}>
+              {children}
+            </a>
+          )}
         >
           <Switch
             isTrue={Boolean(image)}
             render={children => (
-              <div className={imagePosition ? 'TODO' : ''}>
+              <div
+                className={`${styles.root} ${styles[imagePosition || 'LEFT']}`}
+              >
                 {(image as titleMenuPageObjectTypeFragmentImageImageType)
                   ?.__typename !== 'Image' ? null : (
                   <img

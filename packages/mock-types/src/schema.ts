@@ -13,6 +13,7 @@ import Address from './schemas/Address';
 import AddressService from './schemas/AddressService';
 import Area from './schemas/Area';
 import Authority from './schemas/Authority';
+import activeParamsObjectType from './schemas/activeParamsObjectType';
 import BackgroundImage from './schemas/BackgroundImage';
 import City from './schemas/City';
 import ColorList from './schemas/ColorList';
@@ -31,6 +32,7 @@ import GmoBankInstallment from './schemas/GmoBankInstallment';
 import groupProductsObjectType from './schemas/groupProductsObjectType';
 import gtag from './schemas/gtag';
 import HexColorCode from './schemas/HexColorCode';
+import hoverParamsObjectType from './schemas/hoverParamsObjectType';
 import Icon from './schemas/Icon';
 import Image from './schemas/Image';
 import Link from './schemas/Link';
@@ -41,6 +43,7 @@ import MenuDesignObjectType from './schemas/MenuDesignObjectType';
 import MenuPageObjectType from './schemas/MenuPageObjectType';
 import MenuPageParamsObjectType from './schemas/MenuPageParamsObjectType';
 import NotificationObjectType from './schemas/NotificationObjectType';
+import nornalParamsObjectType from './schemas/nornalParamsObjectType';
 import Order from './schemas/Order';
 import OrderApplyList from './schemas/OrderApplyList';
 import OrderConnection from './schemas/OrderConnection';
@@ -95,6 +98,7 @@ export default addMocksToSchema({
     AddressService,
     Area,
     Authority,
+    activeParamsObjectType,
     BackgroundImage,
     City,
     ColorList,
@@ -113,6 +117,7 @@ export default addMocksToSchema({
     groupProductsObjectType,
     gtag,
     HexColorCode,
+    hoverParamsObjectType,
     Icon,
     Image,
     Link,
@@ -123,6 +128,7 @@ export default addMocksToSchema({
     MenuPageObjectType,
     MenuPageParamsObjectType,
     NotificationObjectType,
+    nornalParamsObjectType,
     Order,
     OrderApplyList,
     OrderConnection,

@@ -11,7 +11,8 @@ import Switch from '@meepshop/switch';
 import Title from './Title';
 import usePagesWithAction from './hooks/usePagesWithAction';
 import useClick from './hooks/useClick';
-import { ACION_TYPES } from './constants';
+import styles from './styles/menuItem.less';
+import { ACION_TYPES, BUILTIN_PLACEMENTS } from './constants';
 
 // graphql typescript
 import { menuItemUserFragment as menuItemUserFragmentType } from './gqls/__generated__/menuItemUserFragment';
@@ -63,6 +64,7 @@ const MenuItem = React.memo(
       filter(useClickMenuPageObjectTypeFragment, { ...page, action }),
     );
     const pages = pagesWithAction || page?.pages || [];
+    const { level } = props;
 
     return (
       <Switch
@@ -82,7 +84,11 @@ const MenuItem = React.memo(
         )}
       >
         {pages.length === 0 ? (
-          <Item {...props} onClick={click}>
+          <Item
+            {...props}
+            className={`${styles.root} ${styles[`menu-${level}`]}`}
+            onClick={click}
+          >
             <Title
               user={filter(titleUserFragment, user)}
               page={filter(titleMenuPageObjectTypeFragment, {
@@ -95,7 +101,12 @@ const MenuItem = React.memo(
         ) : (
           <SubMenu
             {...props}
+            className={`${styles.root} ${styles[`menu-${level}`]}`}
+            popupClassName={styles.popup}
             onTitleClick={click}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-ignore antd does not include rc-menu typescript
+            builtinPlacements={level === 1 ? BUILTIN_PLACEMENTS : undefined}
             title={
               <Title
                 user={filter(titleUserFragment, user)}

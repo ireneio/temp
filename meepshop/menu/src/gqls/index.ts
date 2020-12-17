@@ -9,6 +9,7 @@ import {
   menuItemMenuPageObjectTypeFragment,
   menuItemMenuDesignObjectTypeFragment,
 } from './menuItem';
+import { stylesFragment } from './styles';
 import { usePagesWithSearchBarFragment } from './usePagesWithSearchBar';
 
 // definition
@@ -35,6 +36,7 @@ export const menuOrderListFragment = gql`
 export const menuMenuFragment = gql`
   fragment menuMenuFragment on Menu {
     id
+    logoAlignment
     pages {
       id
       ...menuItemMenuPageObjectTypeFragment
@@ -48,8 +50,18 @@ export const menuMenuFragment = gql`
       }
     }
     design {
+      alignment
+      expandSubItem
+      normal: nornal {
+        color
+        background
+      }
+      opacity
+      font
+      fontSize
       ...logoMenuDesignObjectTypeFragment
       ...menuItemMenuDesignObjectTypeFragment
+      ...stylesFragment
       ...usePagesWithSearchBarFragment
     }
   }
@@ -57,6 +69,7 @@ export const menuMenuFragment = gql`
   ${logoMenuDesignObjectTypeFragment}
   ${menuItemMenuPageObjectTypeFragment}
   ${menuItemMenuDesignObjectTypeFragment}
+  ${stylesFragment}
   ${usePagesWithSearchBarFragment}
 `;
 

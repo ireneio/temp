@@ -5,7 +5,7 @@ import { languages } from '@meepshop/utils/lib/i18n';
 import { dashboardCost_scaledSrc as dashboardCost } from '@meepshop/images';
 
 // graphql typescript
-import { ImagePositionEnum } from '../../__generated__/meepshop';
+import { AlignmentEnum, ImagePositionEnum } from '../../__generated__/meepshop';
 import { menuMenuModuleFragment } from './src/gqls/__generated__/menuMenuModuleFragment';
 
 // definition
@@ -72,11 +72,22 @@ export default {
   menu: {
     __typename: 'Menu',
     id: uuid(),
+    logoAlignment: 'LEFT' as AlignmentEnum,
     pages: generateMenuPages(generateMenuPages(generateMenuPages())),
     design: {
       __typename: 'MenuDesignObjectType',
       iconSize: 24,
+      fontSize: 14,
       showSearchbar: true,
+      alignment: 'LEFT',
+      expandSubItem: false,
+      showLogo: true,
+      pattern: 0,
+      normal: null,
+      active: null,
+      hover: null,
+      opacity: 1,
+      font: '黑體',
     },
   },
   cart: {
@@ -141,6 +152,8 @@ export default {
           'MYR',
         ],
       },
+      logoImage: null,
+      mobileLogoImage: null,
     },
   },
 } as menuMenuModuleFragment;
