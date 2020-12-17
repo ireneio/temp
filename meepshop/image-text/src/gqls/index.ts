@@ -2,10 +2,7 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import {
-  useImageImageFragment,
-  useLinkFragment,
-} from '@meepshop/image/lib/gqls';
+import { useImageImageFragment, useLinkFragment } from '@meepshop/image/gqls';
 
 // definition
 export const imageTextFragment = gql`

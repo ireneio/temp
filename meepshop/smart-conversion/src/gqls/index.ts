@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { useImageImageFragment } from '@meepshop/image/lib/gqls';
+import { useImageImageFragment } from '@meepshop/image/gqls';
 
 // definition
 export const smartConversionFragment = gql`

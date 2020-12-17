@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const socialMediaFragment = gql`
   fragment socialMediaFragment on SocialMediaModule {
     id
     socialMediaType

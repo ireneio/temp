@@ -6,7 +6,7 @@ import useSocialMedias from './hooks/useSocialMedias';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { socialMediaFragment } from './__generated__/socialMediaFragment';
+import { socialMediaFragment } from './gqls/__generated__/socialMediaFragment';
 
 // definition
 export default React.memo(

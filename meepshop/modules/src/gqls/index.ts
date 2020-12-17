@@ -2,28 +2,28 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { carouselFragment } from '@meepshop/carousel/lib/gqls';
-import { dividerFragment } from '@meepshop/divider/lib/gqls';
-import { draftTextFragment } from '@meepshop/draft-text/lib/gqls';
-import { facebookWallFragment } from '@meepshop/facebook-wall/lib/gqls';
-import { googleMapFragment } from '@meepshop/google-map/lib/gqls';
-import { iframeFragment } from '@meepshop/iframe/lib/gqls';
-import { imageFragment } from '@meepshop/image/lib/gqls';
-import { imageTextFragment } from '@meepshop/image-text/lib/gqls';
-import { landingPageLandingPageModuleFragment } from '@meepshop/landing-page/lib/gqls';
-import { menuMenuModuleFragment } from '@meepshop/menu/lib/gqls';
-import { productCarouselFragment } from '@meepshop/product-carousel/lib/gqls';
-import { productCollectionsFragment } from '@meepshop/product-collections/lib/gqls';
-import productDraftTextFragment from '@meepshop/product-draft-text/lib/fragment';
-import productIframeFragment from '@meepshop/product-iframe/lib/fragment';
-import { productQaFragment } from '@meepshop/product-qa/lib/gqls';
-import productVideoFragment from '@meepshop/product-video/lib/fragment';
-import { smartConversionFragment } from '@meepshop/smart-conversion/lib/gqls';
-import socialMediaFragment from '@meepshop/social-media/lib/fragment';
-import socialThumbsFragment from '@meepshop/social-thumbs/lib/fragment';
-import unavailableFragment from '@meepshop/unavailable/lib/fragment';
-import videoFragment from '@meepshop/video/lib/fragment';
-import viewTrackingFragment from '@meepshop/view-tracking/lib/fragment';
+import { carouselFragment } from '@meepshop/carousel/gqls';
+import { dividerFragment } from '@meepshop/divider/gqls';
+import { draftTextFragment } from '@meepshop/draft-text/gqls';
+import { facebookWallFragment } from '@meepshop/facebook-wall/gqls';
+import { googleMapFragment } from '@meepshop/google-map/gqls';
+import { iframeFragment } from '@meepshop/iframe/gqls';
+import { imageFragment } from '@meepshop/image/gqls';
+import { imageTextFragment } from '@meepshop/image-text/gqls';
+import { landingPageLandingPageModuleFragment } from '@meepshop/landing-page/gqls';
+import { menuMenuModuleFragment } from '@meepshop/menu/gqls';
+import { productCarouselFragment } from '@meepshop/product-carousel/gqls';
+import { productCollectionsFragment } from '@meepshop/product-collections/gqls';
+import { productDraftTextFragment } from '@meepshop/product-draft-text/gqls';
+import { productIframeFragment } from '@meepshop/product-iframe/gqls';
+import { productQaFragment } from '@meepshop/product-qa/gqls';
+import { productVideoFragment } from '@meepshop/product-video/gqls';
+import { smartConversionFragment } from '@meepshop/smart-conversion/gqls';
+import { socialMediaFragment } from '@meepshop/social-media/gqls';
+import { socialThumbsFragment } from '@meepshop/social-thumbs/gqls';
+import { unavailableFragment } from '@meepshop/unavailable/gqls';
+import { videoFragment } from '@meepshop/video/gqls';
+import { viewTrackingFragment } from '@meepshop/view-tracking/gqls';
 
 // definition
 export const modulesFragment = gql`

@@ -16,7 +16,7 @@ import { JustifyContent } from '../../../__generated__/meepshop';
 import { carouselFragment } from './gqls/__generated__/carouselFragment';
 
 // graphql import
-import { imageFragment } from '@meepshop/image/lib/gqls';
+import { imageFragment } from '@meepshop/image/gqls';
 
 // definition
 export interface PropsType

@@ -4,7 +4,7 @@ import React from 'react';
 import DraftText from '@meepshop/draft-text';
 
 // graphql typescript
-import { productDraftTextFragment } from './__generated__/productDraftTextFragment';
+import { productDraftTextFragment } from './gqls/__generated__/productDraftTextFragment';
 
 // definition
 export default React.memo(({ id, product }: productDraftTextFragment) =>

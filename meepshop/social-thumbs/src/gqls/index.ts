@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const socialThumbsFragment = gql`
   fragment socialThumbsFragment on SocialThumbsModule {
     id
     href

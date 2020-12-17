@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const productIframeFragment = gql`
   fragment productIframeFragment on ProductIframeModule {
     id
     product {

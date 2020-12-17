@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const productDraftTextFragment = gql`
   fragment productDraftTextFragment on ProductDraftTextModule {
     id
     product {

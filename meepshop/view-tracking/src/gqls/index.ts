@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const viewTrackingFragment = gql`
   fragment viewTrackingFragment on ViewTrackingModule {
     id
     tracking {

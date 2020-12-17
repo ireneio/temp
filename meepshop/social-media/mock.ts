@@ -2,7 +2,7 @@
 import uuid from 'uuid/v4';
 
 // graphql typescript
-import { socialMediaFragment } from './src/__generated__/socialMediaFragment';
+import { socialMediaFragment } from './src/gqls/__generated__/socialMediaFragment';
 
 // definition
 export default {

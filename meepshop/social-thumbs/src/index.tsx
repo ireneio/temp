@@ -6,7 +6,7 @@ import { useFbParse } from '@meepshop/hooks';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { socialThumbsFragment } from './__generated__/socialThumbsFragment';
+import { socialThumbsFragment } from './gqls/__generated__/socialThumbsFragment';
 
 // definition
 export default React.memo(({ href, justifyContent }: socialThumbsFragment) => {

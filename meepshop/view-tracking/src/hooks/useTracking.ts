@@ -4,7 +4,7 @@ import { useContext, useState, useCallback } from 'react';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 
 // graphql typescript
-import { viewTrackingFragment } from '../__generated__/viewTrackingFragment';
+import { viewTrackingFragment } from '../gqls/__generated__/viewTrackingFragment';
 
 // definition
 export default (

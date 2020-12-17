@@ -6,7 +6,7 @@ import useTracking from './hooks/useTracking';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { viewTrackingFragment } from './__generated__/viewTrackingFragment';
+import { viewTrackingFragment } from './gqls/__generated__/viewTrackingFragment';
 
 // typescript definition
 interface PropsType extends viewTrackingFragment {

@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const unavailableFragment = gql`
   fragment unavailableFragment on UnavailableModule {
     id
   }

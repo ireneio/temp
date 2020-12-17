@@ -10,7 +10,7 @@ import styles from './styles/index.less';
 import { groupFragment as groupFragmentType } from './gqls/__generated__/groupFragment';
 
 // graphql import
-import { modulesFragment } from '@meepshop/modules/lib/gqls';
+import { modulesFragment } from '@meepshop/modules/gqls';
 
 // typescript definition
 interface PropsType {

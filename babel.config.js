@@ -41,6 +41,22 @@ const generateScopedName = (name, filePath) => {
     .replace(/\.less$/, '')}__${name}`;
 };
 
+const modulesGqlsAlias = (() => {
+  // eslint-disable-next-line global-require, import/no-dynamic-require
+  const { dependencies } = require(path.resolve(
+    require.resolve('@meepshop/modules'),
+    '../package.json',
+  ));
+
+  return Object.keys(dependencies).reduce(
+    (result, key) => ({
+      ...result,
+      [`${key}/gqls`]: `${key}/lib/gqls`,
+    }),
+    {},
+  );
+})();
+
 module.exports = {
   presets: [
     [
@@ -100,6 +116,13 @@ module.exports = {
       {
         root: ['./src'],
         cwd: 'packagejson',
+        alias: {
+          ...modulesGqlsAlias,
+          // FIXME: should auto add or checking
+          '@store/group/gqls': '@store/group/lib/gqls',
+          '@meepshop/page/gqls': '@meepshop/page/lib/gqls',
+          '@meepshop/modules/gqls': '@meepshop/modules/lib/gqls',
+        },
       },
     ],
     [

@@ -13,8 +13,8 @@ import {
   pageUserFragment,
   pageOrderListFragment,
   pagePageFragment,
-} from '@meepshop/page/lib/gqls';
-import { groupFragment } from '@store/group/lib/gqls';
+} from '@meepshop/page/gqls';
+import { groupFragment } from '@store/group/gqls';
 
 // definition
 export default React.memo(() => {

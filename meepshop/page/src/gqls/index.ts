@@ -6,7 +6,7 @@ import {
   menuUserFragment,
   menuOrderListFragment,
   menuMenuFragment,
-} from '@meepshop/menu/lib/gqls';
+} from '@meepshop/menu/gqls';
 
 // definition
 export const pageUserFragment = gql`

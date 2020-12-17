@@ -12,7 +12,7 @@ import { pageOrderListFragment } from './gqls/__generated__/pageOrderListFragmen
 import { pagePageFragment } from './gqls/__generated__/pagePageFragment';
 
 // graphql import
-import { menuMenuModuleFragment } from '@meepshop/menu/lib/gqls';
+import { menuMenuModuleFragment } from '@meepshop/menu/gqls';
 
 // typescript definition
 interface PropsType {

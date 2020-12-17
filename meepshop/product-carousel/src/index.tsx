@@ -17,7 +17,7 @@ import styles from './styles/index.less';
 import { productCarouselFragment } from './gqls/__generated__/productCarouselFragment';
 
 // graphql import
-import { carouselFragment } from '@meepshop/carousel/lib/gqls';
+import { carouselFragment } from '@meepshop/carousel/gqls';
 
 import { useImagesFragment } from './gqls/useImages';
 

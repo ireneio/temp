@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const videoFragment = gql`
   fragment videoFragment on VideoModule {
     id
     width

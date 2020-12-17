@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import {
   useImageImageFragment,
   useImageScaledURLsFragment,
-} from '@meepshop/image/lib/gqls';
+} from '@meepshop/image/gqls';
 
 // definition
 export const useImagesFragment = gql`
