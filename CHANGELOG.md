@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.71.1 (2020-12-17)
+
+#### :rocket: New Feature
+
+- `mock-types`
+  - [#1277](https://github.com/meepshop/meep-lerna/pull/1277) 套用 pattern and default style ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `mock-types`, `store`
+  - [#1326](https://github.com/meepshop/meep-lerna/pull/1326) (@meepshop/frontend) Add nprogress to apollo-client ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1336](https://github.com/meepshop/meep-lerna/pull/1336) 【BUG】建立綠界信用卡訂單，頁面出現「你要提交的資訊未受到保護」 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#1330](https://github.com/meepshop/meep-lerna/pull/1330) (@meepshop/meep-ui) Fix path error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1332](https://github.com/meepshop/meep-lerna/pull/1332) (@meepshop/utils) Move files ([@HsuTing](https://github.com/HsuTing))
+- [#1329](https://github.com/meepshop/meep-lerna/pull/1329) (@admin/\*) Add namespacesRequired to propsType ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.71.0 (2020-12-15)
 
 #### :boom: Breaking Change
