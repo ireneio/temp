@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.71.2 (2020-12-18)
+
+#### :boom: Breaking Change
+
+- [#1331](https://github.com/meepshop/meep-lerna/pull/1331) 內部開單 - 消費者匯款通知 API 改用 updateOrder - 前端 ([@HsuTing](https://github.com/HsuTing))
+- [#1334](https://github.com/meepshop/meep-lerna/pull/1334) (@meepshop/\*) Remove lib path ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1327](https://github.com/meepshop/meep-lerna/pull/1327) 前端 - Avoid querying store.setting.design ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.71.1 (2020-12-17)
 
 #### :rocket: New Feature
