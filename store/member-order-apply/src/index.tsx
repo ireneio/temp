@@ -2,7 +2,7 @@
 import { MutationFunction } from '@apollo/react-common';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { ColorsType } from '@meepshop/context/lib/Colors';
+import { ColorsType } from '@meepshop/context';
 
 import { PropsType as FormPropsType } from './Form';
 

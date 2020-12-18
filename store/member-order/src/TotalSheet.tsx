@@ -1,6 +1,6 @@
 // typescript import
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { CurrencyType } from '@meepshop/context/lib/Currency';
+import { CurrencyType } from '@meepshop/context';
 
 // import
 import React from 'react';

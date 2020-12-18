@@ -1,5 +1,5 @@
 // typescript import
-import { CurrencyType } from '@meepshop/context/lib/Currency';
+import { CurrencyType } from '@meepshop/context';
 
 // import
 import { useCallback } from 'react';

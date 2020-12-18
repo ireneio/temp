@@ -1,5 +1,5 @@
 // typescript import
-import { AdTrackType } from '@meepshop/context/lib/AdTrack';
+import { AdTrackType } from '@meepshop/context';
 
 // import
 import { useEffect, useContext } from 'react';

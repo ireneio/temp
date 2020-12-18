@@ -122,6 +122,7 @@ module.exports = {
           '@store/group/gqls': '@store/group/lib/gqls',
           '@meepshop/page/gqls': '@meepshop/page/lib/gqls',
           '@meepshop/modules/gqls': '@meepshop/modules/lib/gqls',
+          '@meepshop/form-data/gqls': '@meepshop/form-data/lib/gqls',
         },
       },
     ],

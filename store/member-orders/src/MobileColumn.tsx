@@ -1,5 +1,5 @@
 // typescript import
-import { ColorsType } from '@meepshop/context/lib/Colors';
+import { ColorsType } from '@meepshop/context';
 
 // import
 import React, { useState } from 'react';

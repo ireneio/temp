@@ -2,8 +2,7 @@
 import { ColumnProps } from 'antd/lib/table';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { ColorsType } from '@meepshop/context/lib/Colors';
-import { CurrencyType } from '@meepshop/context/lib/Currency';
+import { ColorsType, CurrencyType } from '@meepshop/context';
 
 // import
 import React from 'react';

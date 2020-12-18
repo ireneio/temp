@@ -4,7 +4,7 @@ import { MutationFunction } from '@apollo/react-common';
 import { FormComponentProps } from 'antd/lib/form';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { ColorsType } from '@meepshop/context/lib/Colors';
+import { ColorsType } from '@meepshop/context';
 
 // import
 import React from 'react';

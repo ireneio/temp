@@ -2,7 +2,7 @@
 import { DataProxy } from 'apollo-cache';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-import { ColorsType } from '@meepshop/context/lib/Colors';
+import { ColorsType } from '@meepshop/context';
 
 // import
 import React from 'react';

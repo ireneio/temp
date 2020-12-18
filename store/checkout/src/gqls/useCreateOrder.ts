@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { formDataFragment } from '@meepshop/form-data/lib/gqls';
+import { formDataFragment } from '@meepshop/form-data/gqls';
 
 // definition
 export const createOrder = gql`
