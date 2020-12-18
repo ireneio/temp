@@ -26,9 +26,6 @@ const viewerStoreQuery = `
           autoAddStock
           afterPaymentFail
         }
-        design {
-          footerSite
-        }
         invoice {
           paper {
             duplicate {
