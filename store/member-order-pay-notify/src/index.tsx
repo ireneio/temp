@@ -4,7 +4,6 @@ import { FormComponentProps } from 'antd/lib/form';
 // import
 import React, { useState, useContext } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { Spin, Icon, Form, Input, Button, Modal, notification } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -14,8 +13,14 @@ import { DEFAULT_MESSAGE } from './constants';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getOrderPaidMessage } from './__generated__/getOrderPaidMessage';
-import { updateOrderPaidMessage as updateOrderPaidMessageType } from './__generated__/updateOrderPaidMessage';
+import { getOrderPaidMessage as getOrderPaidMessageType } from './gqls/__generated__/getOrderPaidMessage';
+import {
+  updateOrderPaidMessage as updateOrderPaidMessageType,
+  updateOrderPaidMessageVariables,
+} from './gqls/__generated__/updateOrderPaidMessage';
+
+// graphql import
+import { getOrderPaidMessage, updateOrderPaidMessage } from './gqls';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
@@ -23,34 +28,16 @@ interface PropsType extends FormComponentProps {
 }
 
 // definition
-const query = gql`
-  query getOrderPaidMessage($orderId: ID!) {
-    viewer {
-      id
-      store {
-        id
-        setting {
-          paidMessage
-        }
-      }
-      order(orderId: $orderId) {
-        id
-        orderNo
-        paidMessage {
-          note
-        }
-      }
-    }
-  }
-`;
-
 export default Form.create<PropsType>()(
   React.memo(({ orderId, form }: PropsType) => {
     const { t } = useTranslation('member-order-pay-notify');
     const colors = useContext(ColorsContext);
-    const { loading, data } = useQuery<getOrderPaidMessage>(query, {
-      variables: { orderId },
-    });
+    const { loading, data } = useQuery<getOrderPaidMessageType>(
+      getOrderPaidMessage,
+      {
+        variables: { orderId },
+      },
+    );
     const { viewer } = data || {};
     const setting = viewer?.store?.setting;
     const order = viewer?.order;
@@ -58,24 +45,15 @@ export default Form.create<PropsType>()(
       Boolean(order?.paidMessage?.length),
     );
 
-    const [updateOrderPaidMessage] = useMutation<updateOrderPaidMessageType>(
-      gql`
-        mutation updateOrderPaidMessage($newPaidMessage: [UpdateOrder]) {
-          updateOrderList(updateOrderList: $newPaidMessage) {
-            id
-            paidMessage {
-              note
-            }
-          }
-        }
-      `,
-      {
-        update: () => {
-          notification.success({ message: t('send-success') });
-          setDisabledEdit(true);
-        },
+    const [mutation] = useMutation<
+      updateOrderPaidMessageType,
+      updateOrderPaidMessageVariables
+    >(updateOrderPaidMessage, {
+      update: () => {
+        notification.success({ message: t('send-success') });
+        setDisabledEdit(true);
       },
-    );
+    });
 
     if (loading || !setting || !order)
       return <Spin indicator={<Icon type="loading" spin />} />;
@@ -121,12 +99,12 @@ export default Form.create<PropsType>()(
                         DEFAULT_MESSAGE;
 
                       if (message !== prevMessage)
-                        updateOrderPaidMessage({
+                        mutation({
                           variables: {
-                            newPaidMessage: {
-                              id,
+                            updateOrder: {
+                              id: id as string,
                               paidMessage: {
-                                createData: { note: message },
+                                createData: [{ note: message }],
                               },
                             },
                           },
