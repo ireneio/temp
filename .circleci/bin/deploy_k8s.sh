@@ -31,7 +31,5 @@ if [[ $CIRCLE_TAG =~ ^v[0-9.]*$ ]]; then
     -d "type=stream" \
     -d "to=dev/deployment" \
     -d "topic=[stage] frontEnd" \
-    -d "content=🟢 Release \
-    $PACKAGE_NAME: $VERSION
-    "
+    -d "content=Release $PACKAGE_NAME: $VERSION"
 fi
