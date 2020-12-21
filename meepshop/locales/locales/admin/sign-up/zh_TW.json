@@ -1,0 +1,27 @@
+{
+  "account": {
+    "error": "信箱格式不符",
+    "email-has-been-used": "信箱已被使用",
+    "placeholder": "輸入 Email 做為後台登入帳號"
+  },
+  "password": {
+    "error": "密碼須為 6 碼以上的半形英數字",
+    "placeholder": "輸入密碼"
+  },
+  "confirm-password": {
+    "error": "兩次密碼不相同",
+    "placeholder": "確認密碼"
+  },
+  "sign-up-now": "立即註冊",
+  "free-trial": "立即註冊即可免費試用 15 天",
+  "agree": "註冊即表示同意 meepshop 的 ",
+  "and": " 與 ",
+  "service-policy": "服務條款",
+  "privacy-policy": "隱私條款",
+  "had-store": "已有商店？",
+  "go-to-login": "前往登入",
+  "sign-up-success": "註冊成功！完成驗證即可啟用商店",
+  "email-has-been-sent-1": "驗證信已寄送至 ",
+  "email-has-been-sent-2": "，若您沒有收到驗證信，請您嘗試重新註冊。 ",
+  "back-to-login-page": "返回登入頁"
+}

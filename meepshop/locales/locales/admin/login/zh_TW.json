@@ -1,7 +1,7 @@
 {
   "email": {
     "error": "信箱格式錯誤",
-    "placeholder": "輸入註冊 Email"
+    "placeholder": "輸入帳號"
   },
   "password": {
     "error": "密碼格式錯誤",
@@ -18,6 +18,7 @@
   "login": "登入",
   "not-yet-register": "還沒有帳號嗎？",
   "get-registered": "獲得商店",
+  "sign-up-now": "立即註冊",
   "back-to-login-page": "返回登入頁",
   "forget-password": {
     "title": "忘記密碼",

@@ -1,0 +1,22 @@
+{
+  "title": null,
+  "description": null,
+  "cname": {
+    "label": null,
+    "tooltip": null,
+    "error": null,
+    "cname-has-been-used": null,
+    "placeholder": null
+  },
+  "currency": {
+    "label": null,
+    "tooltip": null,
+    "TWD": null,
+    "JPY": null,
+    "USD": null,
+    "VND": null,
+    "EUR": null
+  },
+  "can-not-change-after-setting": null,
+  "create-store": null
+}

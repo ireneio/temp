@@ -1,0 +1,6 @@
+diff a/meepshop/locales/locales/admin/web-track/fr_FR.json b/meepshop/locales/locales/admin/web-track/fr_FR.json	(rejected hunks)
+@@ -43,2 +43,2 @@
+-    "parse-config-fail": null,
+-    "parse-fail": null
++    "parse-config-fail": "Erreur de format de code global",
++    "parse-fail": "Erreur de format de code"

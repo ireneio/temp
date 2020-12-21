@@ -25,7 +25,7 @@
   },
   "google-ads": {
     "description": "El seguimiento de conversiones de anuncios se puede utilizar para realizar un seguimiento de la acción \"después de\" que un cliente hizo clic en los anuncios, incluido el registro y las compras. La acción se considera conversión una vez que un cliente completa una acción que usted definió como valiosa.",
-    "warning": "El sistema realizará la conversión de datos al guardar y solo retendrá el ID de código global y el número de evento después de completar",
+    "warning": "El sistema realizará la conversión de datos al guardar, y solo retendrá el ID del código global y el número de evento después de la finalización",
     "setting": "Cambiar la configuración de seguimiento",
     "global-code": "Código global:",
     "global-code-placeholder": "Por favor, introduzca el código de URL global",

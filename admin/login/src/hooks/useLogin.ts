@@ -43,6 +43,10 @@ export default (
             message.error(t('submit.error'));
             break;
 
+          case 'MERCHANT_APPLICANT':
+            router.push('/set-up-store');
+            break;
+
           default:
             if (adminStatus === 'OPEN') {
               message.success(t('submit.success'));

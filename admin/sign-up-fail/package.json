@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@admin/sign-up-fail",
+  "description": "Admin sign up fail",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.60.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/images": "^0.71.0",
+    "@meepshop/link": "^0.71.1",
+    "@meepshop/utils": "^0.71.1"
+  },
+  "keywords": ["admin", "sign up fail"]
+}

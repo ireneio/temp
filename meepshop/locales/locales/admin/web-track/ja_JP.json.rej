@@ -1,0 +1,9 @@
+diff a/meepshop/locales/locales/admin/web-track/ja_JP.json b/meepshop/locales/locales/admin/web-track/ja_JP.json	(rejected hunks)
+@@ -43,2 +43,2 @@
+-    "parse-config-fail": null,
+-    "parse-fail": null
++    "parse-config-fail": "グローバルコードフォーマットエラー",
++    "parse-fail": "コードフォーマットエラー"
+@@ -57 +57 @@
+-    "warning": null,
++    "warning": "システムは保存時にデータ変換を実行し、完了後にのみグローバルコードIDとイベント番号を保持します",

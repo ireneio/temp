@@ -33,7 +33,9 @@ export default (errorFilter: errorFilterType): ReturnType<typeof onError> =>
       // @ts-ignore https://github.com/apollographql/apollo-link/issues/536
       networkError?.statusCode === 401 &&
       typeof window !== 'undefined' &&
-      !/\/(login|reset-password)/.test(window.location.pathname)
+      !/\/(login|sign-up|set-up-store|sign-up-fail|reset-password)/.test(
+        window.location.pathname,
+      )
     ) {
       errorLog({
         message: '請重新登入',

@@ -16,7 +16,11 @@ export const useCheckingAdminStatusFragment = gql`
 
 export default (store: useCheckingAdminStatusFragmentType | null): boolean => {
   const router = useRouter();
-  const isNotOpened = Boolean(store && store.adminStatus !== 'OPEN');
+
+  // FIXME: remove store.adminStatus when complete migration
+  const isNotOpened = Boolean(
+    store && store.adminStatus && store.adminStatus !== 'OPEN',
+  );
 
   useEffect(() => {
     if (isNotOpened) router.replace('/bill-payment');

@@ -1,0 +1,9 @@
+diff a/meepshop/locales/locales/admin/web-track/id_ID.json b/meepshop/locales/locales/admin/web-track/id_ID.json	(rejected hunks)
+@@ -43,2 +43,2 @@
+-    "parse-config-fail": null,
+-    "parse-fail": null
++    "parse-config-fail": "Kesalahan format kode global",
++    "parse-fail": "Kesalahan format kode"
+@@ -57 +57 @@
+-    "warning": null,
++    "warning": "Sistem akan melakukan konversi data saat menyimpan, dan hanya menyimpan ID kode global dan nomor acara setelah selesai",

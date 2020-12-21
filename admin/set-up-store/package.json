@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "@admin/set-up-store",
+  "description": "Admin set up store",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.60.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/tooltip": "^0.71.0",
+    "@meepshop/cookies": "^0.71.2",
+    "@meepshop/images": "^0.71.0",
+    "@meepshop/link": "^0.71.1",
+    "@meepshop/utils": "^0.71.1"
+  },
+  "keywords": ["admin", "set up store"]
+}

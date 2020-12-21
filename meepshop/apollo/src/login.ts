@@ -59,6 +59,13 @@ export const resolvers = {
               message: error,
             };
 
+      if (type === 'merchant_applicant') {
+        return {
+          ...defaultResponse,
+          status: 'MERCHANT_APPLICANT',
+        };
+      }
+
       await client.resetStore();
 
       return {

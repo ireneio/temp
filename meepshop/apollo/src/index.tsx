@@ -35,6 +35,7 @@ export interface CustomCtxType<Req = {}, Res = {}> extends AppContext {
       logId: string;
       cookies: {
         'x-meepshop-authorization-token': string;
+        'merchant-applicant-verify-token': string;
       };
     };
     res: Res;

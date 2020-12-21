@@ -63,7 +63,9 @@ class App extends NextApp<AppInitialProps> {
         </Head>
 
         <EventsProvider>
-          {/login|reset-password|smart-conversion-analysis/.test(pathname) ? (
+          {/login|sign-up|set-up-store|sign-up-fail|reset-password|smart-conversion-analysis/.test(
+            pathname,
+          ) ? (
             <Component {...pageProps} />
           ) : (
             <AppsProvider>

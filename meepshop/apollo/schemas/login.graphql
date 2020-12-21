@@ -9,6 +9,7 @@ enum LoginResponseEnum {
   OK
   FAIL
   INVALID_RECAPTCHA_RESPONSE
+  MERCHANT_APPLICANT
 }
 
 type LoginResponse {

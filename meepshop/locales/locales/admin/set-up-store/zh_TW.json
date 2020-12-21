@@ -1,0 +1,22 @@
+{
+  "title": "驗證成功！",
+  "description": "只差一步即可啟用商店",
+  "cname": {
+    "label": "商店網址",
+    "tooltip": "您可以輸入 4~20 個半形小寫英數字或 - 符號做為商店網址",
+    "error": "網址格式不符",
+    "cname-has-been-used": "網址已被使用",
+    "placeholder": "輸入網址"
+  },
+  "currency": {
+    "label": "基礎幣別",
+    "tooltip": "系統將根據您選擇的幣別來成立訂單與收取費用",
+    "TWD": "台幣",
+    "JPY": "日幣",
+    "USD": "美金",
+    "VND": "越南盾",
+    "EUR": "歐元"
+  },
+  "can-not-change-after-setting": "需留意此處設定之後無法自行變更",
+  "create-store": "啟用商店"
+}

@@ -1,0 +1,27 @@
+{
+  "account": {
+    "error": null,
+    "email-has-been-used": null,
+    "placeholder": null
+  },
+  "password": {
+    "error": null,
+    "placeholder": null
+  },
+  "confirm-password": {
+    "error": null,
+    "placeholder": null
+  },
+  "sign-up-now": null,
+  "free-trial": null,
+  "agree": null,
+  "and": null,
+  "service-policy": null,
+  "privacy-policy": null,
+  "had-store": null,
+  "go-to-login": null,
+  "sign-up-success": null,
+  "email-has-been-sent-1": null,
+  "email-has-been-sent-2": null,
+  "back-to-login-page": null
+}

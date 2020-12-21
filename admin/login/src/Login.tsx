@@ -6,6 +6,7 @@ import React from 'react';
 import Head from 'next/head';
 import { Form, Input, Checkbox, Button } from 'antd';
 
+// import Link from '@meepshop/link';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { loginLogo } from '@meepshop/images';
 
@@ -124,6 +125,11 @@ export default Form.create<PropsType>()(
               >
                 {t('get-registered')}
               </a>
+
+              {/* FIXME: when /sign-up is officially online
+              <Link href="/sign-up">
+                <a href="/sign-up">{t('sign-up-now')}</a>
+              </Link> */}
 
               <span onClick={() => setAction('FORGET_PASSWORD')}>
                 {t('forget-password.title')}
