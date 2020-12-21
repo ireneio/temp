@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.72.0 (2020-12-21)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1131](https://github.com/meepshop/meep-lerna/pull/1131) 【功能】月租 - 後台註冊 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- [#1339](https://github.com/meepshop/meep-lerna/pull/1339) adjust release message for zulip ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :house: Internal
+
+- [#1337](https://github.com/meepshop/meep-lerna/pull/1337) (@meepshop/frontend) Remove lib path ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.71.2 (2020-12-18)
 
 #### :boom: Breaking Change
