@@ -1,9 +1,0 @@
-diff a/meepshop/locales/locales/admin/web-track/en_US.json b/meepshop/locales/locales/admin/web-track/en_US.json	(rejected hunks)
-@@ -43,2 +43,2 @@
--    "parse-config-fail": null,
--    "parse-fail": null
-+    "parse-config-fail": "Global code format error",
-+    "parse-fail": "Code format error"
-@@ -57 +57 @@
--    "warning": null,
-+    "warning": "The system will perform data conversion when saving, and only retain the global code ID and event number after completion",

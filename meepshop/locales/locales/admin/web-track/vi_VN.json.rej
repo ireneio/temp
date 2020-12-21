@@ -1,9 +1,0 @@
-diff a/meepshop/locales/locales/admin/web-track/vi_VN.json b/meepshop/locales/locales/admin/web-track/vi_VN.json	(rejected hunks)
-@@ -43,2 +43,2 @@
--    "parse-config-fail": null,
--    "parse-fail": null
-+    "parse-config-fail": "Lỗi định dạng mã toàn cầu",
-+    "parse-fail": "Lỗi định dạng mã"
-@@ -57 +57 @@
--    "warning": null,
-+    "warning": "Hệ thống sẽ thực hiện chuyển đổi dữ liệu khi lưu và chỉ giữ lại ID mã toàn cục và số sự kiện sau khi hoàn thành",

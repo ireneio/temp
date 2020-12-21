@@ -1,9 +1,0 @@
-diff a/meepshop/locales/locales/admin/web-track/th_TH.json b/meepshop/locales/locales/admin/web-track/th_TH.json	(rejected hunks)
-@@ -43,2 +43,2 @@
--    "parse-config-fail": null,
--    "parse-fail": null
-+    "parse-config-fail": "ข้อผิดพลาดรูปแบบรหัสสากล",
-+    "parse-fail": "ข้อผิดพลาดรูปแบบรหัส"
-@@ -57 +57 @@
--    "warning": null,
-+    "warning": "ระบบจะทำการแปลงข้อมูลเมื่อทำการบันทึกและจะเก็บเฉพาะรหัสรหัสส่วนกลางและหมายเลขเหตุการณ์หลังจากเสร็จสิ้น",
