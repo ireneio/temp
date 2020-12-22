@@ -1,6 +1,6 @@
 {
-  "title": null,
-  "description": null,
-  "please-register-again": null,
-  "go-to-sign-up": null
+  "title": "Mail link is invalid",
+  "description": "The verification link has expired or the registered email has been used",
+  "please-register-again": "For your account security considerations, please re-register",
+  "go-to-sign-up": "Go to register"
 }

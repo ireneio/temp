@@ -1,22 +1,22 @@
 {
-  "title": null,
-  "description": null,
+  "title": "検証は成功です！",
+  "description": "ストアをアクティブ化するための残りのステップは1つだけです",
   "cname": {
-    "label": null,
-    "tooltip": null,
-    "error": null,
-    "cname-has-been-used": null,
-    "placeholder": null
+    "label": "ストアURL",
+    "tooltip": "4〜20個の半分の形の小文字の英数字を入力するか、ストアのURLとして入力できます",
+    "error": "URL形式が一致しません",
+    "cname-has-been-used": "URLが使用されました",
+    "placeholder": "URLを入力"
   },
   "currency": {
-    "label": null,
-    "tooltip": null,
-    "TWD": null,
-    "JPY": null,
-    "USD": null,
-    "VND": null,
-    "EUR": null
+    "label": "基本通貨",
+    "tooltip": "システムが注文を設定し、選択した通貨に応じて料金を請求します",
+    "TWD": "台湾ドル",
+    "JPY": "日本円",
+    "USD": "米ドル",
+    "VND": "ベトナムドン",
+    "EUR": "ユーロ"
   },
-  "can-not-change-after-setting": null,
-  "create-store": null
+  "can-not-change-after-setting": "後で変更することはできません",
+  "create-store": "ストアを有効にする"
 }

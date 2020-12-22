@@ -1,22 +1,22 @@
 {
-  "title": null,
-  "description": null,
+  "title": "การตรวจสอบสำเร็จ!",
+  "description": "เหลืออีกเพียงขั้นตอนเดียวในการเปิดใช้งานร้านค้า",
   "cname": {
-    "label": null,
-    "tooltip": null,
-    "error": null,
-    "cname-has-been-used": null,
-    "placeholder": null
+    "label": "URL ร้านค้า",
+    "tooltip": "คุณสามารถป้อนตัวอักษรพิมพ์เล็กครึ่งตัวครึ่งตัว 4 ~ 20 ตัวหรือเป็น URL ร้านค้า",
+    "error": "รูปแบบ URL ไม่ตรงกัน",
+    "cname-has-been-used": "ถูกใช้แล้ว",
+    "placeholder": "ป้อน URL"
   },
   "currency": {
-    "label": null,
-    "tooltip": null,
-    "TWD": null,
-    "JPY": null,
-    "USD": null,
-    "VND": null,
-    "EUR": null
+    "label": "สกุลเงินหลัก",
+    "tooltip": "ตั้งค่าคำสั่งซื้อและเรียกเก็บค่าธรรมเนียมตามสกุลเงินที่คุณเลือก",
+    "TWD": "ดอลลาร์ไต้หวัน",
+    "JPY": "เยนญี่ปุ่น",
+    "USD": "ดอลล่าร์",
+    "VND": "ดงเวียดนาม",
+    "EUR": "EUR"
   },
-  "can-not-change-after-setting": null,
-  "create-store": null
+  "can-not-change-after-setting": "โปรดทราบว่าคุณไม่สามารถเปลี่ยนแปลงได้หลังจากตั้งค่าที่นี่แล้ว",
+  "create-store": "เปิดใช้งานร้านค้า"
 }

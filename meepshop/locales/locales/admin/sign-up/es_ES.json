@@ -1,27 +1,27 @@
 {
   "account": {
-    "error": null,
-    "email-has-been-used": null,
-    "placeholder": null
+    "error": "El formato del buzón no coincide",
+    "email-has-been-used": "Se ha utilizado el buzón",
+    "placeholder": "Ingrese el correo electrónico como cuenta de inicio de sesión en segundo plano"
   },
   "password": {
-    "error": null,
-    "placeholder": null
+    "error": "La contraseña debe tener 6 o más caracteres alfanuméricos",
+    "placeholder": "introducir la contraseña"
   },
   "confirm-password": {
-    "error": null,
-    "placeholder": null
+    "error": "Las dos contraseñas no son iguales",
+    "placeholder": "Confirmar contraseña"
   },
-  "sign-up-now": null,
-  "free-trial": null,
-  "agree": null,
-  "and": null,
-  "service-policy": null,
-  "privacy-policy": null,
-  "had-store": null,
-  "go-to-login": null,
-  "sign-up-success": null,
-  "email-has-been-sent-1": null,
-  "email-has-been-sent-2": null,
-  "back-to-login-page": null
+  "sign-up-now": "Regístrate ahora",
+  "free-trial": "Regístrese ahora para una prueba gratuita de 15 días",
+  "agree": "Registrarse significa aceptar meepshop",
+  "and": "versus",
+  "service-policy": "párrafo",
+  "privacy-policy": "Política de privacidad",
+  "had-store": "¿Ya tienes una tienda?",
+  "go-to-login": "Ir a iniciar sesión",
+  "sign-up-success": "¡registración exitosa!",
+  "email-has-been-sent-1": "La carta de verificación se ha enviado a",
+  "email-has-been-sent-2": ", Si no recibió la carta de verificación, intente registrarse nuevamente.",
+  "back-to-login-page": "Volver a la página de inicio de sesión"
 }

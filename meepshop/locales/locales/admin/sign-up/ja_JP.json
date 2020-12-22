@@ -1,27 +1,27 @@
 {
   "account": {
-    "error": null,
-    "email-has-been-used": null,
-    "placeholder": null
+    "error": "メールボックスの形式が一致しません",
+    "email-has-been-used": "メールボックスが使用されました",
+    "placeholder": "バックグラウンドログインアカウントとしてEmailを入力します"
   },
   "password": {
-    "error": null,
-    "placeholder": null
+    "error": "パスワードは6文字以上である必要があります",
+    "placeholder": "パスワードを入力する"
   },
   "confirm-password": {
-    "error": null,
-    "placeholder": null
+    "error": "2つのパスワードは同じではありません",
+    "placeholder": "パスワードを認証する"
   },
-  "sign-up-now": null,
-  "free-trial": null,
-  "agree": null,
-  "and": null,
-  "service-policy": null,
-  "privacy-policy": null,
-  "had-store": null,
-  "go-to-login": null,
-  "sign-up-success": null,
-  "email-has-been-sent-1": null,
-  "email-has-been-sent-2": null,
-  "back-to-login-page": null
+  "sign-up-now": "今すぐサインアップ",
+  "free-trial": "今すぐサインアップして15日間の無料トライアルに",
+  "agree": "登録とは、meepshopに同意することを意味します",
+  "and": "対",
+  "service-policy": "利用規約",
+  "privacy-policy": "個人情報保護方針",
+  "had-store": "すでにお店はありますか？",
+  "go-to-login": "ログインに移動",
+  "sign-up-success": "登録完了！",
+  "email-has-been-sent-1": "確認書がに送信されました",
+  "email-has-been-sent-2": "、確認書が届かない場合は、再度登録してください。",
+  "back-to-login-page": "ログインページに戻る"
 }

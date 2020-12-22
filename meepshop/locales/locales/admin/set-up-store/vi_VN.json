@@ -1,22 +1,22 @@
 {
-  "title": null,
-  "description": null,
+  "title": "Xác minh thành công!",
+  "description": "Chỉ còn một bước để kích hoạt cửa hàng",
   "cname": {
-    "label": null,
-    "tooltip": null,
-    "error": null,
-    "cname-has-been-used": null,
-    "placeholder": null
+    "label": "URL lưu trữ",
+    "tooltip": "Bạn có thể nhập 4 ~ 20 chữ số và chữ thường nửa hình nửa chữ hoặc-làm URL cửa hàng",
+    "error": "Định dạng URL không khớp",
+    "cname-has-been-used": "URL đã được sử dụng",
+    "placeholder": "Nhập URL"
   },
   "currency": {
-    "label": null,
-    "tooltip": null,
-    "TWD": null,
-    "JPY": null,
-    "USD": null,
-    "VND": null,
-    "EUR": null
+    "label": "Tiền tệ cơ bản",
+    "tooltip": "Hệ thống sẽ thiết lập đơn hàng và tính phí theo loại tiền bạn đã chọn",
+    "TWD": "Đô la Đài Loan",
+    "JPY": "Yen Nhật",
+    "USD": "đô la Mỹ",
+    "VND": "Đồng việt nam",
+    "EUR": "EUR"
   },
-  "can-not-change-after-setting": null,
-  "create-store": null
+  "can-not-change-after-setting": "Xin lưu ý rằng bạn không thể thay đổi nó sau khi đặt ở đây",
+  "create-store": "Bật cửa hàng"
 }

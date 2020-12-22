@@ -1,6 +1,6 @@
 {
-  "title": null,
-  "description": null,
-  "please-register-again": null,
-  "go-to-sign-up": null
+  "title": "Liên kết thư không hợp lệ",
+  "description": "Liên kết xác minh đã hết hạn hoặc email đăng ký đã được sử dụng",
+  "please-register-again": "Để xem xét bảo mật tài khoản của bạn, vui lòng đăng ký lại",
+  "go-to-sign-up": "Đi đăng ký"
 }

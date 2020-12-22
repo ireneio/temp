@@ -1,22 +1,22 @@
 {
-  "title": null,
-  "description": null,
+  "title": "Verifikasi berhasil!",
+  "description": "Hanya satu langkah tersisa untuk mengaktifkan toko",
   "cname": {
-    "label": null,
-    "tooltip": null,
-    "error": null,
-    "cname-has-been-used": null,
-    "placeholder": null
+    "label": "URL toko",
+    "tooltip": "Anda dapat memasukkan 4 ~ 20 alfanumerik huruf kecil berbentuk setengah atau sebagai URL toko",
+    "error": "Format URL tidak cocok",
+    "cname-has-been-used": "URL telah digunakan",
+    "placeholder": "Masukkan URL"
   },
   "currency": {
-    "label": null,
-    "tooltip": null,
-    "TWD": null,
-    "JPY": null,
-    "USD": null,
-    "VND": null,
-    "EUR": null
+    "label": "Mata uang dasar",
+    "tooltip": "Sistem akan mengatur pesanan dan mengenakan biaya sesuai dengan mata uang yang Anda pilih",
+    "TWD": "Dolar Taiwan",
+    "JPY": "Yen jepang",
+    "USD": "USD",
+    "VND": "Dong Vietnam",
+    "EUR": "EUR"
   },
-  "can-not-change-after-setting": null,
-  "create-store": null
+  "can-not-change-after-setting": "Harap dicatat bahwa Anda tidak dapat mengubahnya setelah pengaturan di sini",
+  "create-store": "Aktifkan penyimpanan"
 }

@@ -1,6 +1,6 @@
 {
-  "title": null,
-  "description": null,
-  "please-register-again": null,
-  "go-to-sign-up": null
+  "title": "ลิงก์อีเมลไม่ถูกต้อง",
+  "description": "ลิงก์ยืนยันหมดอายุหรืออีเมลที่ลงทะเบียนถูกใช้แล้ว",
+  "please-register-again": "สำหรับการพิจารณาด้านความปลอดภัยของบัญชีของคุณโปรดลงทะเบียนใหม่",
+  "go-to-sign-up": "ไปลงทะเบียน"
 }

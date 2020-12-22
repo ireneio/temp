@@ -1,6 +1,6 @@
 {
-  "title": null,
-  "description": null,
-  "please-register-again": null,
-  "go-to-sign-up": null
+  "title": "El enlace de correo no es válido",
+  "description": "El enlace de verificación ha caducado o se ha utilizado el correo electrónico registrado",
+  "please-register-again": "Para consideraciones de seguridad de la cuenta, vuelva a registrarse",
+  "go-to-sign-up": "Ir a registrarse"
 }

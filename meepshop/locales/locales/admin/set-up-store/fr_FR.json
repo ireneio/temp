@@ -1,22 +1,22 @@
 {
-  "title": null,
-  "description": null,
+  "title": "La vérification est réussie!",
+  "description": "Il ne reste plus qu'une étape pour activer la boutique",
   "cname": {
-    "label": null,
-    "tooltip": null,
-    "error": null,
-    "cname-has-been-used": null,
-    "placeholder": null
+    "label": "URL du magasin",
+    "tooltip": "Vous pouvez entrer 4 à 20 caractères alphanumériques minuscules en demi-forme ou comme URL du magasin",
+    "error": "Le format de l'URL ne correspond pas",
+    "cname-has-been-used": "L'URL a été utilisée",
+    "placeholder": "Entrer l'URL"
   },
   "currency": {
-    "label": null,
-    "tooltip": null,
-    "TWD": null,
-    "JPY": null,
-    "USD": null,
-    "VND": null,
-    "EUR": null
+    "label": "Devise de base",
+    "tooltip": "Le système configurera une commande et facturera des frais en fonction de la devise que vous avez sélectionnée",
+    "TWD": "Dollar de Taïwan",
+    "JPY": "Yen japonais",
+    "USD": "USD",
+    "VND": "Dong vietnamien",
+    "EUR": "EUR"
   },
-  "can-not-change-after-setting": null,
-  "create-store": null
+  "can-not-change-after-setting": "Veuillez noter que vous ne pouvez pas le modifier après avoir défini ici",
+  "create-store": "Activer le magasin"
 }

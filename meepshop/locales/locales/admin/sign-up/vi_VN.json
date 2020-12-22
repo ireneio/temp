@@ -1,27 +1,27 @@
 {
   "account": {
-    "error": null,
-    "email-has-been-used": null,
-    "placeholder": null
+    "error": "Định dạng hộp thư không khớp",
+    "email-has-been-used": "Hộp thư đã được sử dụng",
+    "placeholder": "Nhập Email làm tài khoản đăng nhập nền"
   },
   "password": {
-    "error": null,
-    "placeholder": null
+    "error": "Mật khẩu phải có 6 ký tự chữ và số trở lên",
+    "placeholder": "nhập mật khẩu"
   },
   "confirm-password": {
-    "error": null,
-    "placeholder": null
+    "error": "Hai mật khẩu không giống nhau",
+    "placeholder": "Xác nhận mật khẩu"
   },
-  "sign-up-now": null,
-  "free-trial": null,
-  "agree": null,
-  "and": null,
-  "service-policy": null,
-  "privacy-policy": null,
-  "had-store": null,
-  "go-to-login": null,
-  "sign-up-success": null,
-  "email-has-been-sent-1": null,
-  "email-has-been-sent-2": null,
-  "back-to-login-page": null
+  "sign-up-now": "Đăng ký ngay",
+  "free-trial": "Đăng ký ngay bây giờ để dùng thử miễn phí 15 ngày",
+  "agree": "Đăng ký có nghĩa là đồng ý với meepshop",
+  "and": "đấu với",
+  "service-policy": "Điều khoản dịch vụ",
+  "privacy-policy": "Chính sách bảo mật",
+  "had-store": "Đã có một cửa hàng?",
+  "go-to-login": "Đi đến đăng nhập",
+  "sign-up-success": "đăng ký thành công!",
+  "email-has-been-sent-1": "Thư xác minh đã được gửi đến",
+  "email-has-been-sent-2": ", Nếu bạn không nhận được thư xác minh, vui lòng thử đăng ký lại.",
+  "back-to-login-page": "Quay lại trang đăng nhập"
 }

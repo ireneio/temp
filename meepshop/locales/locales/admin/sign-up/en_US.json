@@ -1,27 +1,27 @@
 {
   "account": {
-    "error": null,
-    "email-has-been-used": null,
-    "placeholder": null
+    "error": "Mailbox format does not match",
+    "email-has-been-used": "Mailbox has been used",
+    "placeholder": "Enter Email as the background login account"
   },
   "password": {
-    "error": null,
-    "placeholder": null
+    "error": "The password must be 6 or more alphanumeric characters",
+    "placeholder": "enter password"
   },
   "confirm-password": {
-    "error": null,
-    "placeholder": null
+    "error": "The two passwords are not the same",
+    "placeholder": "confirm password"
   },
-  "sign-up-now": null,
-  "free-trial": null,
-  "agree": null,
-  "and": null,
-  "service-policy": null,
-  "privacy-policy": null,
-  "had-store": null,
-  "go-to-login": null,
-  "sign-up-success": null,
-  "email-has-been-sent-1": null,
-  "email-has-been-sent-2": null,
-  "back-to-login-page": null
+  "sign-up-now": "Sign up now",
+  "free-trial": "Sign up now for a free 15-day trial",
+  "agree": "Registration means agreeing to meepshop",
+  "and": "versus",
+  "service-policy": "Terms of Service",
+  "privacy-policy": "Privacy Policy",
+  "had-store": "Already have a store?",
+  "go-to-login": "Go to login",
+  "sign-up-success": "registration success!",
+  "email-has-been-sent-1": "The verification letter has been sent to",
+  "email-has-been-sent-2": ", If you did not receive the verification letter, please try to register again.",
+  "back-to-login-page": "Back to login page"
 }

@@ -1,27 +1,27 @@
 {
   "account": {
-    "error": null,
-    "email-has-been-used": null,
-    "placeholder": null
+    "error": "Le format de la boîte aux lettres ne correspond pas",
+    "email-has-been-used": "La boîte aux lettres a été utilisée",
+    "placeholder": "Entrez Email comme compte de connexion en arrière-plan"
   },
   "password": {
-    "error": null,
-    "placeholder": null
+    "error": "Le mot de passe doit contenir au moins 6 caractères alphanumériques",
+    "placeholder": "Entrer le mot de passe"
   },
   "confirm-password": {
-    "error": null,
-    "placeholder": null
+    "error": "Les deux mots de passe ne sont pas les mêmes",
+    "placeholder": "Confirmez le mot de passe"
   },
-  "sign-up-now": null,
-  "free-trial": null,
-  "agree": null,
-  "and": null,
-  "service-policy": null,
-  "privacy-policy": null,
-  "had-store": null,
-  "go-to-login": null,
-  "sign-up-success": null,
-  "email-has-been-sent-1": null,
-  "email-has-been-sent-2": null,
-  "back-to-login-page": null
+  "sign-up-now": "S'inscrire maintenant",
+  "free-trial": "Inscrivez-vous maintenant pour un essai gratuit de 15 jours",
+  "agree": "S'inscrire signifie accepter meepshop",
+  "and": "contre",
+  "service-policy": "Conditions d'utilisation",
+  "privacy-policy": "Politique de confidentialité",
+  "had-store": "Vous avez déjà un magasin?",
+  "go-to-login": "Aller à la connexion",
+  "sign-up-success": "inscription réussie!",
+  "email-has-been-sent-1": "La lettre de vérification a été envoyée à",
+  "email-has-been-sent-2": ", Si vous n'avez pas reçu la lettre de vérification, veuillez réessayer de vous inscrire.",
+  "back-to-login-page": "Retour à la page de connexion"
 }

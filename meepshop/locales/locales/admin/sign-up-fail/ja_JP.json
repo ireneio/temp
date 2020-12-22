@@ -1,6 +1,6 @@
 {
-  "title": null,
-  "description": null,
-  "please-register-again": null,
-  "go-to-sign-up": null
+  "title": "結び目の失敗",
+  "description": "確認リンクの有効期限が切れているか、登録済みのメールが使用されています",
+  "please-register-again": "アカウントのセキュリティを考慮して、再登録してください",
+  "go-to-sign-up": "登録に移動"
 }

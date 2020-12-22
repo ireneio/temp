@@ -1,6 +1,6 @@
 {
-  "title": null,
-  "description": null,
-  "please-register-again": null,
-  "go-to-sign-up": null
+  "title": "Tautan surat tidak valid",
+  "description": "Tautan verifikasi telah kedaluwarsa atau email terdaftar telah digunakan",
+  "please-register-again": "Untuk pertimbangan keamanan akun Anda, silakan daftar ulang",
+  "go-to-sign-up": "Pergi untuk mendaftar"
 }

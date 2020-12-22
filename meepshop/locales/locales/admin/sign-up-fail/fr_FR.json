@@ -1,6 +1,6 @@
 {
-  "title": null,
-  "description": null,
-  "please-register-again": null,
-  "go-to-sign-up": null
+  "title": "Le lien de messagerie n'est pas valide",
+  "description": "Le lien de vérification a expiré ou l'e-mail enregistré a été utilisé",
+  "please-register-again": "Considérations relatives à la sécurité des utilisateurs, veuillez vous réinscrire",
+  "go-to-sign-up": "Allez vous inscrire"
 }

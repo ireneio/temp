@@ -1,27 +1,27 @@
 {
   "account": {
-    "error": null,
-    "email-has-been-used": null,
-    "placeholder": null
+    "error": "Format kotak surat tidak cocok",
+    "email-has-been-used": "Kotak surat telah digunakan",
+    "placeholder": "Masukkan Email sebagai akun login latar belakang"
   },
   "password": {
-    "error": null,
-    "placeholder": null
+    "error": "Kata sandi harus terdiri dari 6 atau lebih karakter alfanumerik",
+    "placeholder": "Masukkan kata kunci"
   },
   "confirm-password": {
-    "error": null,
-    "placeholder": null
+    "error": "Kedua kata sandi itu tidak sama",
+    "placeholder": "konfirmasi sandi"
   },
-  "sign-up-now": null,
-  "free-trial": null,
-  "agree": null,
-  "and": null,
-  "service-policy": null,
-  "privacy-policy": null,
-  "had-store": null,
-  "go-to-login": null,
-  "sign-up-success": null,
-  "email-has-been-sent-1": null,
-  "email-has-been-sent-2": null,
-  "back-to-login-page": null
+  "sign-up-now": "Daftar sekarang",
+  "free-trial": "Daftar sekarang untuk uji coba gratis selama 15 hari",
+  "agree": "Pendaftaran berarti menyetujui meepshop",
+  "and": "melawan",
+  "service-policy": "Persyaratan Layanan",
+  "privacy-policy": "Kebijakan pribadi",
+  "had-store": "toko?",
+  "go-to-login": "Masuk ke login",
+  "sign-up-success": "registrasi berhasil!",
+  "email-has-been-sent-1": "Surat verifikasi telah dikirim ke",
+  "email-has-been-sent-2": ", Jika Anda tidak menerima surat verifikasi, silakan coba mendaftar lagi.",
+  "back-to-login-page": "Kembali ke halaman login"
 }

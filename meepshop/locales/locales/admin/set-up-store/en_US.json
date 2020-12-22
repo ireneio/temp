@@ -1,22 +1,22 @@
 {
-  "title": null,
-  "description": null,
+  "title": "The verification is successful!",
+  "description": "Only one step left to activate the store",
   "cname": {
-    "label": null,
-    "tooltip": null,
-    "error": null,
-    "cname-has-been-used": null,
-    "placeholder": null
+    "label": "Store URL",
+    "tooltip": "You can enter 4~20 half-shaped lowercase alphanumerics or-as the store URL",
+    "error": "URL format does not match",
+    "cname-has-been-used": "URL has been used",
+    "placeholder": "Enter URL"
   },
   "currency": {
-    "label": null,
-    "tooltip": null,
-    "TWD": null,
-    "JPY": null,
-    "USD": null,
-    "VND": null,
-    "EUR": null
+    "label": "Base currency",
+    "tooltip": "The system will set up an order and charge a fee according to the currency you selected",
+    "TWD": "Taiwan Dollar",
+    "JPY": "Japanese Yen",
+    "USD": "USD",
+    "VND": "Vietnamese Dong",
+    "EUR": "EUR"
   },
-  "can-not-change-after-setting": null,
-  "create-store": null
+  "can-not-change-after-setting": "You can’t change it after setting",
+  "create-store": "Enable store"
 }

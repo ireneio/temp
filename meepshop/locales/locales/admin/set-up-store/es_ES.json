@@ -1,22 +1,22 @@
 {
-  "title": null,
-  "description": null,
+  "title": "¡La verificación es exitosa!",
+  "description": "Solo queda un paso para activar la tienda",
   "cname": {
-    "label": null,
-    "tooltip": null,
-    "error": null,
-    "cname-has-been-used": null,
-    "placeholder": null
+    "label": "URL de la tienda",
+    "tooltip": "Puede ingresar entre 4 y 20 caracteres alfanuméricos en minúsculas en forma de medio o como la URL de la tienda",
+    "error": "El formato de URL no coincide",
+    "cname-has-been-used": "Se ha utilizado la URL",
+    "placeholder": "Introducir URL"
   },
   "currency": {
-    "label": null,
-    "tooltip": null,
-    "TWD": null,
-    "JPY": null,
-    "USD": null,
-    "VND": null,
-    "EUR": null
+    "label": "Moneda base",
+    "tooltip": "El sistema configurará un pedido y cobrará una tarifa de acuerdo con la moneda que seleccionó.",
+    "TWD": "Dólar taiwanés",
+    "JPY": "Yen japonés",
+    "USD": "Dólar estadounidense",
+    "VND": "Dong vietnamita",
+    "EUR": "EUR"
   },
-  "can-not-change-after-setting": null,
-  "create-store": null
+  "can-not-change-after-setting": "Tenga en cuenta que no puede cambiarlo después de configurarlo aquí",
+  "create-store": "Habilitar tienda"
 }
