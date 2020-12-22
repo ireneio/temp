@@ -14,13 +14,14 @@ import transformColor from 'color';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import { Currency as CurrencyContext } from '@meepshop/context';
-import Thumbnail, { thumbnailFragment } from '@meepshop/thumbnail';
+import Thumbnail from '@meepshop/thumbnail';
 import withContext from '@store/utils/lib/withContext';
 
 import styles from './styles/products.less';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 import { productsObjectTypeProductsObjectTypeFragment } from '@store/apollo/lib/productsObjectType';
 
 import { productsProductsObjectTypeFragment as productsProductsObjectTypeFragmentType } from './__generated__/productsProductsObjectTypeFragment';

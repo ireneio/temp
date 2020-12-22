@@ -1,22 +1,17 @@
 // typescript import
-import { I18n, languageType } from '@meepshop/utils/lib/i18n';
-
-// graphql typescript
 import { CascaderOptionType } from 'antd/lib/cascader';
+
+import { I18n, languageType } from '@meepshop/utils/lib/i18n';
 
 // import
 import { useMemo } from 'react';
-import gql from 'graphql-tag';
 
 // graphql typescript
 import {
   useOptionsAddressServiceFragment as useOptionsAddressServiceFragmentType,
   useOptionsAddressServiceFragment_countries as useOptionsAddressServiceFragmentCountries,
   useOptionsAddressServiceFragment_countries_name as useOptionsAddressServiceFragmentCountriesName,
-} from './__generated__/useOptionsAddressServiceFragment';
-
-// graphql import
-import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+} from '../gqls/__generated__/useOptionsAddressServiceFragment';
 
 // typescript definition
 interface OptionsType {
@@ -27,34 +22,6 @@ interface OptionsType {
 }
 
 // definition
-export const useOptionsAddressServiceFragment = gql`
-  fragment useOptionsAddressServiceFragment on AddressService {
-    countries {
-      id
-      name {
-        ...localeFragment
-      }
-
-      children: cities {
-        id
-        name {
-          ...localeFragment
-        }
-
-        children: areas {
-          id
-          name {
-            ...localeFragment
-          }
-          zipCodes
-        }
-      }
-    }
-  }
-
-  ${localeFragment}
-`;
-
 const getOptions = (
   data: OptionsType[],
   language: I18n['language'],

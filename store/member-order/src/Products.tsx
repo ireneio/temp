@@ -17,7 +17,7 @@ import {
   Colors as ColorsContext,
   Currency as CurrencyContext,
 } from '@meepshop/context';
-import Thumbnail, { thumbnailFragment } from '@meepshop/thumbnail';
+import Thumbnail from '@meepshop/thumbnail';
 import withContext from '@store/utils/lib/withContext';
 
 import styles from './styles/products.less';
@@ -28,6 +28,7 @@ import { getMemberOrder_viewer_order as getMemberOrderViewerOrder } from './__ge
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 
 // typescript definition
 interface PropsType extends I18nPropsType, CurrencyType {

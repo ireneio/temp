@@ -1,11 +1,13 @@
 // import
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 
 // graphql typescript
-import { getApps } from './__generated__/getApps';
+import { getApps as getAppsType } from './gqls/__generated__/getApps';
+
+// graphql import
+import { getApps } from './gqls/apps';
 
 // typescript definition
 export type AppsType = Record<
@@ -73,28 +75,8 @@ const defaultApps = [
 );
 const AppsContext = React.createContext<typeof defaultApps>(defaultApps);
 
-const query = gql`
-  query getApps {
-    getStoreAppList {
-      data {
-        id
-        appId
-        plugin
-        isInstalled
-      }
-    }
-
-    getAppList {
-      data {
-        id
-        plugin
-      }
-    }
-  }
-`;
-
 export const AppsProvider = React.memo(({ children }) => {
-  const { data } = useQuery<getApps>(query);
+  const { data } = useQuery<getAppsType>(getApps);
   const apps = useMemo(
     () =>
       (data?.getAppList?.data || []).reduce((result: AppsType, app) => {

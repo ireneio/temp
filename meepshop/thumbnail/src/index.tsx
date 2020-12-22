@@ -1,13 +1,12 @@
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 
 import { placeholderThumbnail_w120 as placeholderThumbnail } from '@meepshop/images';
 
 import styles from './styles/index.less';
 
 // graphql typescript
-import { thumbnailFragment as thumbnailFragmentType } from './__generated__/thumbnailFragment';
+import { thumbnailFragment as thumbnailFragmentType } from './gqls/__generated__/thumbnailFragment';
 
 // typescript definition
 interface PropsType {
@@ -15,15 +14,6 @@ interface PropsType {
 }
 
 // definition
-export const thumbnailFragment = gql`
-  fragment thumbnailFragment on Image {
-    id
-    scaledSrc {
-      w120
-    }
-  }
-`;
-
 export default ({ image }: PropsType): React.ReactElement => (
   <div className={styles.wrapper}>
     <div

@@ -1,11 +1,13 @@
 // import
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { Spin, Icon } from 'antd';
 
 // graphql typescript
-import { getColors } from './__generated__/getColors';
+import { getColors as getColorsType } from './gqls/__generated__/getColors';
+
+// graphql import
+import { getColors } from './gqls/colors';
 
 // typescript definition
 export type ColorsType = string[];
@@ -13,23 +15,8 @@ export type ColorsType = string[];
 // definition
 const ColorsContext = React.createContext<ColorsType>([]);
 
-const query = gql`
-  query getColors {
-    getColorList {
-      data {
-        id
-        selected
-        themes {
-          id
-          colors
-        }
-      }
-    }
-  }
-`;
-
 export const ColorsProvider = React.memo(({ children }) => {
-  const { data } = useQuery<getColors>(query);
+  const { data } = useQuery<getColorsType>(getColors);
   const colors = useMemo(() => {
     const { selected = null, themes = null } =
       data?.getColorList?.data?.[0] || {};

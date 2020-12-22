@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { thumbnailFragment } from '@meepshop/thumbnail';
+import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 
 import { useRemoveFragment } from './useRemove';
 

@@ -13,7 +13,7 @@ import moment from 'moment';
 import memoizeOne from 'memoize-one';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import Thumbnail, { thumbnailFragment } from '@meepshop/thumbnail';
+import Thumbnail from '@meepshop/thumbnail';
 
 import styles from './styles/application.less';
 
@@ -27,6 +27,7 @@ import { applicationProductsObjectTypeFragment as applicationProductsObjectTypeF
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 
 // typescript definition
 interface PropTypes extends I18nPropsType {

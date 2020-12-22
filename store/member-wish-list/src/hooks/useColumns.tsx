@@ -8,7 +8,7 @@ import { filter } from 'graphql-anywhere';
 import moment from 'moment';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import Thumbnail, { thumbnailFragment } from '@meepshop/thumbnail';
+import Thumbnail from '@meepshop/thumbnail';
 
 import useRemove from './useRemove';
 import styles from '../styles/useColumns.less';
@@ -21,6 +21,8 @@ import {
 import { useColumnsUserFragment } from '../gqls/__generated__/useColumnsUserFragment';
 
 // graphql import
+import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
+
 import { useRemoveFragment } from '../gqls/useRemove';
 
 // definition

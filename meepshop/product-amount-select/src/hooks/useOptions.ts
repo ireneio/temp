@@ -1,11 +1,10 @@
 // import
 import { useState, useMemo, useCallback } from 'react';
-import gql from 'graphql-tag';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { useOptionsVariantFragment as useOptionsVariantFragmentType } from './__generated__/useOptionsVariantFragment';
+import { useOptionsVariantFragment as useOptionsVariantFragmentType } from '../gqls/__generated__/useOptionsVariantFragment';
 
 // typescropt
 interface OptionsType {
@@ -19,15 +18,6 @@ interface OptionsType {
 }
 
 // definition
-export const useOptionsVariantFragment = gql`
-  fragment useOptionsVariantFragment on Variant {
-    id
-    minPurchaseItems
-    maxPurchaseLimit
-    stock
-  }
-`;
-
 const formatNumber = (value: number | null | undefined): number =>
   !value ? 0 : value;
 

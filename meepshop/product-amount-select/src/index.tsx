@@ -12,10 +12,10 @@ import useOptions from './hooks/useOptions';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { useOptionsVariantFragment as useOptionsVariantFragmentType } from './hooks/__generated__/useOptionsVariantFragment';
+import { productAmountSelectFragment as productAmountSelectFragmentType } from './gqls/__generated__/productAmountSelectFragment';
 
 // graphql import
-import { useOptionsVariantFragment } from './hooks/useOptions';
+import { useOptionsVariantFragment } from './gqls/useOptions';
 
 // typescript definition
 export interface PropsType
@@ -28,12 +28,10 @@ export interface PropsType
     | 'children'
   > {
   forwardedRef: React.Ref<Select>;
-  variant: useOptionsVariantFragmentType | null;
+  variant: productAmountSelectFragmentType | null;
 }
 
 // definition
-export { useOptionsVariantFragment };
-
 const { Option } = Select;
 
 const ProductAmountSelect = React.memo(

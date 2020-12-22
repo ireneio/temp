@@ -2,4 +2,4 @@
 export * from './src/gqls';
 
 // definition
-throw new Error('Do not import');
+if (process.env.NODE_ENV !== 'test') throw new Error('Do not import');

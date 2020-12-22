@@ -4,7 +4,6 @@ import { ValidationRule } from 'antd/lib/form';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Cascader, Select, Input } from 'antd';
 
@@ -18,12 +17,13 @@ import styles from './styles/index.less';
 
 // graphql typescript
 import {
-  getCountriesAddress,
+  getCountriesAddress as getCountriesAddressType,
   getCountriesAddress_addressService_countries as getCountriesAddressAddressServiceCountries,
-} from './__generated__/getCountriesAddress';
+} from './gqls/__generated__/getCountriesAddress';
 
 // graphql import
-import { useOptionsAddressServiceFragment } from './hooks/useOptions';
+import { getCountriesAddress } from './gqls';
+import { useOptionsAddressServiceFragment } from './gqls/useOptions';
 
 // typescript definition
 export interface PropsType {
@@ -40,16 +40,6 @@ export interface PropsType {
 }
 
 // definition
-const query = gql`
-  query getCountriesAddress {
-    addressService {
-      ...useOptionsAddressServiceFragment
-    }
-  }
-
-  ${useOptionsAddressServiceFragment}
-`;
-
 export const validateAddressCascader = (message: string) => (
   _: ValidationRule,
   value: { address?: string[]; zipCode?: string },
@@ -71,7 +61,7 @@ const AddressCascader = React.memo(
     value,
   }: PropsType): React.ReactElement => {
     const { i18n } = useTranslation();
-    const { data } = useQuery<getCountriesAddress>(query);
+    const { data } = useQuery<getCountriesAddressType>(getCountriesAddress);
     const options = useOptions(
       filter(
         useOptionsAddressServiceFragment,
