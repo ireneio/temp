@@ -1,0 +1,76 @@
+.root {
+  margin: 12px 0px 0px;
+  padding: 24px 32px 32px;
+  max-width: 717px;
+  font-size: 14px;
+  border-radius: 4px;
+  background: #ffffff;
+
+  & > div {
+    display: flex;
+    justify-content: space-between;
+
+    & > div:first-child {
+      margin: 0px 32px 0px 0px;
+      width: 96px;
+      word-break: break-word;
+      color: #626c82;
+    }
+
+    &:not(:last-child) {
+      margin: 0px 0px 24px;
+    }
+  }
+}
+
+.before {
+  color: rgba(0, 0, 0, 0.45);
+  text-decoration: line-through;
+}
+
+.productsChangeDelta {
+  flex-grow: 1;
+
+  & > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000000;
+
+    &:not(:last-child) {
+      margin: 0px 0px 16px;
+    }
+
+    & > div:first-child {
+      margin: 0px 24px 0px 0px;
+    }
+  }
+}
+
+.sku {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.spec {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.border {
+  height: 1px;
+  background: #e6ebf1;
+}
+
+.orderTotalAmountDelta {
+  font-size: 16px;
+
+  & > div:first-child {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.85);
+  }
+
+  .after {
+    font-weight: 500;
+    color: #202e99;
+  }
+}

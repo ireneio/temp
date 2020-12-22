@@ -1,0 +1,22 @@
+{
+  "title": "meepShop order change record",
+  "orderNo": "Order number",
+  "createdAt": "Order creation time",
+  "sub-title": "Order change record",
+  "all-items": {
+    "open": "Expand all items",
+    "close": "Hide all details"
+  },
+  "empty": "There is currently no order change record",
+  "load-more": "View more change records",
+  "total-changed": "This total amount change",
+  "detail": {
+    "open": "Details",
+    "close": "Hide details",
+    "productsChangeDelta": "Item quantity change",
+    "productsAmountDelta": "Commodity total",
+    "adjustAmountDelta": "Amount change",
+    "orderTotalAmountDelta": "The total amount of orders"
+  },
+  "merchant": "Master account"
+}

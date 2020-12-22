@@ -47,11 +47,14 @@ import nornalParamsObjectType from './schemas/nornalParamsObjectType';
 import Order from './schemas/Order';
 import OrderApplyList from './schemas/OrderApplyList';
 import OrderConnection from './schemas/OrderConnection';
+import OrderProductDelta from './schemas/OrderProductDelta';
+import OrderUpdateActor from './schemas/OrderUpdateActor';
 import Page from './schemas/Page';
 import PageConnection from './schemas/PageConnection';
 import PaymentAccountForCathay from './schemas/PaymentAccountForCathay';
 import PaymentAccountForEzpay from './schemas/PaymentAccountForEzpay';
 import PaymentForAllpay from './schemas/PaymentForAllpay';
+import PriceDelta from './schemas/PriceDelta';
 import paymentInfoType from './schemas/paymentInfoType';
 import paymentObjectType from './schemas/paymentObjectType';
 import permissionDesignObj from './schemas/permissionDesignObj';
@@ -132,11 +135,14 @@ export default addMocksToSchema({
     Order,
     OrderApplyList,
     OrderConnection,
+    OrderProductDelta,
+    OrderUpdateActor,
     Page,
     PageConnection,
     PaymentAccountForCathay,
     PaymentAccountForEzpay,
     PaymentForAllpay,
+    PriceDelta,
     paymentInfoType,
     paymentObjectType,
     permissionDesignObj,

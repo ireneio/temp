@@ -1,0 +1,22 @@
+{
+  "title": "meepShop 訂單變更記錄",
+  "orderNo": "訂單編號",
+  "createdAt": "訂單建立時間",
+  "sub-title": "訂單變更紀錄",
+  "all-items": {
+    "open": "展開所有細項",
+    "close": "隱藏所有細項"
+  },
+  "empty": "目前無訂單變更記錄",
+  "load-more": "查看更多變更記錄",
+  "total-changed": "本次總金額變更",
+  "detail": {
+    "open": "細項",
+    "close": "隱藏細項",
+    "productsChangeDelta": "商品數量變更",
+    "productsAmountDelta": "商品總計",
+    "adjustAmountDelta": "金額變更",
+    "orderTotalAmountDelta": "訂單總金額"
+  },
+  "merchant": "主帳號"
+}

@@ -1,0 +1,22 @@
+{
+  "title": "meepShop注文変更レコード",
+  "orderNo": "注文番号",
+  "createdAt": "注文作成時間",
+  "sub-title": "注文変更記録",
+  "all-items": {
+    "open": "すべてのアイテムを展開",
+    "close": "すべての詳細を非表示"
+  },
+  "empty": "現在、注文変更の記録はありません",
+  "load-more": "変更記録をもっと見る",
+  "total-changed": "この合計金額の変化",
+  "detail": {
+    "open": "詳細",
+    "close": "詳細を非表示",
+    "productsChangeDelta": "アイテム数量変更",
+    "productsAmountDelta": "商品合計",
+    "adjustAmountDelta": "金額変更",
+    "orderTotalAmountDelta": "注文の合計額"
+  },
+  "merchant": "マスターアカウント"
+}

@@ -1,0 +1,22 @@
+{
+  "title": "meepShop catatan perubahan pesanan",
+  "orderNo": "Jumlah order",
+  "createdAt": "Waktu pembuatan pesanan",
+  "sub-title": "Catatan perubahan pesanan",
+  "all-items": {
+    "open": "Luaskan semua item",
+    "close": "Sembunyikan semua detail"
+  },
+  "empty": "Saat ini tidak ada catatan perubahan pesanan",
+  "load-more": "Lihat lebih banyak catatan perubahan",
+  "total-changed": "Jumlah total ini berubah",
+  "detail": {
+    "open": "Detail",
+    "close": "Sembunyikan detail",
+    "productsChangeDelta": "Perubahan kuantitas barang",
+    "productsAmountDelta": "Komoditas total",
+    "adjustAmountDelta": "Jumlah perubahan",
+    "orderTotalAmountDelta": "Jumlah total pesanan"
+  },
+  "merchant": "Akun master"
+}

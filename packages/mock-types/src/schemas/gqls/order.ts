@@ -11,5 +11,16 @@ export const orderMockFragment = gql`
     paidMessage {
       note
     }
+    orderHistoryRecords {
+      productsChangeDelta {
+        __typename
+      }
+      productsAmountDelta {
+        __typename
+      }
+      adjustAmountDelta {
+        __typename
+      }
+    }
   }
 `;

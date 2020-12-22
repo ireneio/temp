@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "@admin/order-history-records",
+  "description": "Use to show order history records",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/context": "0.70.0",
+    "@meepshop/icons": "0.70.0",
+    "@meepshop/images": "0.70.0",
+    "@meepshop/link": "0.70.0",
+    "@meepshop/utils": "0.70.0"
+  },
+  "keywords": ["admin", "history records", "order"]
+}

@@ -1,0 +1,80 @@
+.root {
+  align-items: stretch;
+  border-bottom: 0px;
+
+  &:not(:last-child) {
+    margin: 0px 0px 24px;
+  }
+
+  &:last-child .border > div {
+    display: none;
+  }
+}
+
+.time {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  text-align: right;
+}
+
+.border {
+  padding: 11px 16px 0px;
+
+  svg circle {
+    &:nth-child(1) {
+      fill: #c4c9eb;
+    }
+
+    &:nth-child(2) {
+      fill: #c4c9eb;
+    }
+
+    &:nth-child(3) {
+      fill: #9ea6dd;
+    }
+  }
+
+  & > div {
+    margin: 0px auto;
+    width: 0px;
+    height: calc(100% + 30px);
+    border-right: 1px dashed #c4cad5;
+  }
+}
+
+.detail {
+  flex-grow: 1;
+}
+
+.before {
+  margin: 0px 0px 0px 8px;
+  color: #8c8c8c;
+  text-decoration: line-through;
+}
+
+.action {
+  display: inline-block;
+  margin: 0px 0px 0px 24px;
+  padding: 2px 0px;
+  font-size: 12px;
+  text-decoration: underline;
+  vertical-align: text-top;
+  cursor: pointer;
+  user-select: none;
+
+  &:before {
+    content: '';
+    position: relative;
+    top: 2px;
+    display: inline-block;
+    margin: 0px 8px 0px 0px;
+    width: 1px;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.45);
+  }
+}
+
+.actor {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.65);
+}

@@ -1,0 +1,22 @@
+{
+  "title": "registro de cambio de pedido de meepShop",
+  "orderNo": "Número de orden",
+  "createdAt": "Hora de creación de la orden",
+  "sub-title": "Registro de cambio de orden",
+  "all-items": {
+    "open": "Expandir todos los elementos",
+    "close": "Ocultar todos los detalles"
+  },
+  "empty": "Actualmente no hay registro de cambio de orden",
+  "load-more": "Ver más registros de cambios",
+  "total-changed": "Esta cantidad total cambia",
+  "detail": {
+    "open": "Detalles",
+    "close": "Ocultar detalles",
+    "productsChangeDelta": "Cambio de cantidad de artículo",
+    "productsAmountDelta": "Total de productos básicos",
+    "adjustAmountDelta": "Cambio de cantidad",
+    "orderTotalAmountDelta": "La cantidad total de pedidos"
+  },
+  "merchant": "Cuenta principal"
+}

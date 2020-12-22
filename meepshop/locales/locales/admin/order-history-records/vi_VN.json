@@ -1,0 +1,22 @@
+{
+  "title": "hồ sơ thay đổi đơn hàng của meepShop",
+  "orderNo": "Số đơn hàng",
+  "createdAt": "Thời gian tạo đơn hàng",
+  "sub-title": "Hồ sơ thay đổi đơn hàng",
+  "all-items": {
+    "open": "Mở rộng tất cả các mục",
+    "close": "Ẩn tất cả các chi tiết"
+  },
+  "empty": "Hiện tại không có hồ sơ thay đổi đơn hàng",
+  "load-more": "Xem thêm các bản ghi thay đổi",
+  "total-changed": "Số tiền thay đổi",
+  "detail": {
+    "open": "Chi tiết",
+    "close": "Ẩn chi tiết",
+    "productsChangeDelta": "Thay đổi số lượng mặt hàng",
+    "productsAmountDelta": "Tổng số hàng hóa",
+    "adjustAmountDelta": "Số tiền thay đổi",
+    "orderTotalAmountDelta": "Tổng số lượng đơn đặt hàng"
+  },
+  "merchant": "Tài khoản chủ"
+}
