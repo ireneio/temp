@@ -1,11 +1,11 @@
 // typescript import
 import { Context } from 'react';
-import { emptyFunction } from 'fbjs';
 
 import { Subtract } from '@meepshop/utils/lib/types';
 
 // import
 import React, { useContext } from 'react';
+import { emptyFunction } from 'fbjs';
 
 // definition
 export default <C extends object, NP = C>(
