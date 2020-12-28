@@ -9,7 +9,9 @@
   "types": "./src/types.ts",
   "dependencies": {
     "@meepshop/context": "^0.72.0",
+    "@meepshop/utils": "^0.72.0",
     "braft-convert": "^2.3.0",
+    "d3-hierarchy": "^1.1.6",
     "draft-js": "^0.11.5"
   },
   "keywords": ["meepshop", "react hooks"]
