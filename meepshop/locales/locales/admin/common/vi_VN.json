@@ -22,5 +22,10 @@
   "account-setting": "Cài đặt tài khoản",
   "bill-payment": "Hóa đơn và thanh toán",
   "go-to-store": "Đi đến cửa hàng",
+  "upgrade-plan": "Nâng cấp kế hoạch",
+  "free-trial": "Bản dùng thử miễn phí sẽ có tại",
+  "expire-in-days": "Hết hạn sau ngày",
+  "free-trial-next-day": "Bản dùng thử miễn phí sẽ có vào ngày hôm sau",
+  "expire": "trưởng thành",
   "logout": "Đăng xuất"
 }

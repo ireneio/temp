@@ -3,8 +3,6 @@ import { IconProps } from 'antd/lib/icon';
 
 // import
 import { useMemo, useContext, useEffect } from 'react';
-import gql from 'graphql-tag';
-
 import {
   HomeIcon,
   OrderIcon,
@@ -21,7 +19,7 @@ import { Apps as AppsContext } from '@meepshop/context';
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { useMenuListFragment as useMenuListFragmentType } from './__generated__/useMenuListFragment';
+import { useMenuListFragment as useMenuListFragmentType } from '../gqls/__generated__/useMenuListFragment';
 
 // typescript definition
 export type MenuListType = (string | [string, MenuListType])[];
@@ -34,33 +32,6 @@ interface MenuType {
 }
 
 // definition
-export const useMenuListFragment = gql`
-  fragment useMenuListFragment on permissionObj {
-    orders: order {
-      isEnabled: index
-    }
-    products: product {
-      isEnabled: index
-    }
-    productService: service {
-      isEnabled: product
-    }
-    member: user {
-      isEnabled: index
-    }
-    design {
-      isEnabled: index
-    }
-    fileManager: file {
-      isEnabled: index
-    }
-    setting: store {
-      isEnabled: index
-      ableToEditNotificationSetting
-    }
-  }
-`;
-
 export const MENU_LIST: MenuListType = [
   'dashboard',
   'orders',

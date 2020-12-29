@@ -43,6 +43,14 @@
     @collapsed();
   }
 
+  &.isTrial {
+    height: calc(100% - 64px - 1px - 56px - 148px);
+
+    &.collapsed {
+      height: calc(100% - 64px - 1px - 56px - 80px);
+    }
+  }
+
   :global(.ant-menu-submenu-arrow) {
     display: none;
   }

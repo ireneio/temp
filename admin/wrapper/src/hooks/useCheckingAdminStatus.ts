@@ -1,18 +1,10 @@
 // import
 import { useEffect } from 'react';
-import gql from 'graphql-tag';
 
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { useCheckingAdminStatusFragment as useCheckingAdminStatusFragmentType } from './__generated__/useCheckingAdminStatusFragment';
-
-// definition
-export const useCheckingAdminStatusFragment = gql`
-  fragment useCheckingAdminStatusFragment on Store {
-    adminStatus
-  }
-`;
+import { useCheckingAdminStatusFragment as useCheckingAdminStatusFragmentType } from '../gqls/__generated__/useCheckingAdminStatusFragment';
 
 export default (store: useCheckingAdminStatusFragmentType | null): boolean => {
   const router = useRouter();

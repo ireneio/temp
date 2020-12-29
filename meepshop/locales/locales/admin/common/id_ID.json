@@ -22,5 +22,10 @@
   "account-setting": "Pengaturan akun",
   "bill-payment": "Tagihan dan pembayaran",
   "go-to-store": "Pergi ke toko",
+  "upgrade-plan": "Paket upgrade",
+  "free-trial": "Uji coba gratis akan dimulai pada",
+  "expire-in-days": "Kedaluwarsa dalam beberapa hari",
+  "free-trial-next-day": "Uji coba gratis akan dilakukan pada hari berikutnya",
+  "expire": "kematangan",
   "logout": "Keluar"
 }

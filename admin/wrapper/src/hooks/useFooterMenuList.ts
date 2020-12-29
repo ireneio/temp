@@ -3,8 +3,6 @@ import { IconProps } from 'antd/lib/icon';
 
 // import
 import { useMemo, useEffect } from 'react';
-import gql from 'graphql-tag';
-
 import {
   LogoutIcon,
   AccountIcon,
@@ -14,7 +12,7 @@ import {
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { useFooterMenuListFragment as useFooterMenuListFragmentType } from './__generated__/useFooterMenuListFragment';
+import { useFooterMenuListFragment as useFooterMenuListFragmentType } from '../gqls/__generated__/useFooterMenuListFragment';
 
 // typescript definition
 interface FooterMenuListType {
@@ -28,13 +26,6 @@ interface FooterMenuListType {
 }
 
 // definition
-export const useFooterMenuListFragment = gql`
-  fragment useFooterMenuListFragment on Store {
-    domain
-    defaultDomain
-  }
-`;
-
 export default (
   store: useFooterMenuListFragmentType | null,
   isMerchant: boolean,

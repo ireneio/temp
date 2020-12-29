@@ -22,5 +22,10 @@
   "account-setting": "Paramètres du compte",
   "bill-payment": "Factures et paiement",
   "go-to-store": "Aller au magasin",
+  "upgrade-plan": "Plan de mise à niveau",
+  "free-trial": "L'essai gratuit aura lieu à",
+  "expire-in-days": "Expire dans jours",
+  "free-trial-next-day": "L'essai gratuit aura lieu le lendemain",
+  "expire": "maturité",
   "logout": "Connectez - Out"
 }

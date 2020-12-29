@@ -11,7 +11,7 @@ import useFooterMenuList from './hooks/useFooterMenuList';
 import styles from './styles/footer.less';
 
 // graphql typescript
-import { useFooterMenuListFragment as useFooterMenuListFragmentType } from './hooks/__generated__/useFooterMenuListFragment';
+import { useFooterMenuListFragment as useFooterMenuListFragmentType } from './gqls/__generated__/useFooterMenuListFragment';
 
 // typescript definition
 interface PropsType {

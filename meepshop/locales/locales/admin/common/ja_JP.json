@@ -22,5 +22,10 @@
   "account-setting": "アカウント設定",
   "bill-payment": "請求書と支払い",
   "go-to-store": "ストアへ",
+  "upgrade-plan": "アップグレードプラン",
+  "free-trial": "無料トライアルは",
+  "expire-in-days": "数日で期限切れ",
+  "free-trial-next-day": "無料トライアルは翌日となります",
+  "expire": "成熟",
   "logout": "ログアウト"
 }

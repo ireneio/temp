@@ -22,5 +22,10 @@
   "account-setting": "帳戶設定",
   "bill-payment": "帳單與付款",
   "go-to-store": "前往商店",
+  "upgrade-plan": "升級方案",
+  "free-trial": "免費試用將在 ",
+  "expire-in-days": " 天後到期",
+  "free-trial-next-day": "免費試用將在隔日 ",
+  "expire": " 到期",
   "logout": "登出"
 }

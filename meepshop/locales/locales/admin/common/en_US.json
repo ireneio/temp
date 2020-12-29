@@ -22,5 +22,10 @@
   "account-setting": "Account Settings",
   "bill-payment": "Bills and payment",
   "go-to-store": "Go to Store",
+  "upgrade-plan": "Upgrade plan",
+  "free-trial": "The free trial will be at",
+  "expire-in-days": "Expires in days",
+  "free-trial-next-day": "The free trial will be on the next day",
+  "expire": "maturity",
   "logout": "Logout"
 }

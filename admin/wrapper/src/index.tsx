@@ -1,7 +1,6 @@
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Layout } from 'antd';
 
@@ -13,6 +12,7 @@ import {
 } from '@meepshop/images';
 
 import Menu from './Menu';
+import TrialReminder from './TrialReminder';
 import Footer from './Footer';
 import useCollapsed from './hooks/useCollapsed';
 import useTransitionEnd from './hooks/useTransitionEnd';
@@ -20,17 +20,13 @@ import useCheckingAdminStatus from './hooks/useCheckingAdminStatus';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { initAdmin } from './__generated__/initAdmin';
+import { initAdmin as initAdminType } from './gqls/__generated__/initAdmin';
 
 // graphql import
-import {
-  userUserFragment,
-  userAuthorityListFragment,
-} from '@admin/apollo/lib/User';
-
-import { useCheckingAdminStatusFragment } from './hooks/useCheckingAdminStatus';
-import { useMenuListFragment } from './hooks/useMenuList';
-import { useFooterMenuListFragment } from './hooks/useFooterMenuList';
+import { initAdmin } from './gqls';
+import { useCheckingAdminStatusFragment } from './gqls/useCheckingAdminStatus';
+import { useMenuListFragment } from './gqls/useMenuList';
+import { useFooterMenuListFragment } from './gqls/useFooterMenuList';
 
 // typescript definition
 interface PropsType {
@@ -40,40 +36,10 @@ interface PropsType {
 // definition
 const { Content, Sider } = Layout;
 
-const query = gql`
-  query initAdmin {
-    viewer {
-      id
-      role
-      groupId
-      store {
-        id
-        ...useCheckingAdminStatusFragment
-        ...useFooterMenuListFragment
-      }
-      permission @client {
-        ...useMenuListFragment
-      }
-      ...userUserFragment
-    }
-
-    getAuthorityList {
-      ...userAuthorityListFragment
-    }
-  }
-
-  ${userUserFragment}
-  ${userAuthorityListFragment}
-
-  ${useCheckingAdminStatusFragment}
-  ${useMenuListFragment}
-  ${useFooterMenuListFragment}
-`;
-
 export const CollapsedContext = React.createContext<boolean | null>(false);
 
 export default React.memo(({ children }: PropsType) => {
-  const { data } = useQuery<initAdmin>(query);
+  const { data } = useQuery<initAdminType>(initAdmin);
   const { isDone, collapsed, onBreakpoint, setCollapsed } = useCollapsed();
   const [transitionLoading, transitionEnd] = useTransitionEnd(collapsed);
   const isMerchant = data?.viewer?.role === 'MERCHANT';
@@ -82,6 +48,10 @@ export default React.memo(({ children }: PropsType) => {
     filter(useCheckingAdminStatusFragment, data?.viewer?.store || null),
   );
   const LogoTriggerIcon = collapsed ? DoubleRightIcon : HamburgerIcon;
+
+  // FIXME: add && metaData?.adminStatus === 'VALID' when complete migration
+  const isTrial =
+    data?.viewer?.store?.metaData?.accountType === 'TRIAL' || false;
 
   return (
     <Layout className={styles.root} hasSider>
@@ -111,12 +81,20 @@ export default React.memo(({ children }: PropsType) => {
         </div>
 
         <Menu
+          isTrial={isTrial}
           isMerchant={isMerchant}
           permission={filter(useMenuListFragment, permission || null)}
           collapsed={collapsed}
           loading={transitionLoading}
           isNotOpened={isNotOpened}
         />
+
+        {!isTrial ? null : (
+          <TrialReminder
+            trialExpireAt={data?.viewer?.store?.metaData?.trialExpireAt || null}
+            collapsed={collapsed}
+          />
+        )}
 
         <Footer
           store={filter(useFooterMenuListFragment, data?.viewer?.store || null)}

@@ -12,10 +12,11 @@ import useItemClick from './hooks/useItemClick';
 import styles from './styles/menu.less';
 
 // graphql typescript
-import { useMenuListFragment as useMenuListFragmentType } from './hooks/__generated__/useMenuListFragment';
+import { useMenuListFragment as useMenuListFragmentType } from './gqls/__generated__/useMenuListFragment';
 
 // typescript definition
 interface PropsType {
+  isTrial: boolean;
   isMerchant: boolean;
   permission: useMenuListFragmentType | null;
   collapsed: boolean;
@@ -27,7 +28,14 @@ interface PropsType {
 const { Item: MenuItem, SubMenu, ItemGroup } = Menu;
 
 export default React.memo(
-  ({ isMerchant, permission, collapsed, loading, isNotOpened }: PropsType) => {
+  ({
+    isTrial,
+    isMerchant,
+    permission,
+    collapsed,
+    loading,
+    isNotOpened,
+  }: PropsType) => {
     const { t } = useTranslation('common');
     const menuList = useMenuList(isMerchant, permission);
     const { openKeys, selectedKeys, onOpenChange } = useItemClick(
@@ -39,7 +47,7 @@ export default React.memo(
       <Menu
         className={`${styles.root} ${collapsed ? styles.collapsed : ''} ${
           isNotOpened ? styles.isNotOpened : ''
-        }`}
+        } ${isTrial ? styles.isTrial : ''}`}
         openKeys={openKeys}
         selectedKeys={selectedKeys}
         onOpenChange={onOpenChange}

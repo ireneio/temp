@@ -22,5 +22,10 @@
   "account-setting": "การตั้งค่าบัญชี",
   "bill-payment": "ตั๋วเงินและการชำระเงิน",
   "go-to-store": "ไปที่ร้านค้า",
+  "upgrade-plan": "แผนอัปเกรด",
+  "free-trial": "ทดลองใช้ฟรีจะอยู่ที่",
+  "expire-in-days": "หมดอายุในวัน",
+  "free-trial-next-day": "ทดลองใช้งานฟรีในวันถัดไป",
+  "expire": "วุฒิภาวะ",
   "logout": "ออกจากระบบ"
 }

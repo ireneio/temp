@@ -22,5 +22,10 @@
   "account-setting": "Configuraciones de la cuenta",
   "bill-payment": "Facturas y pago",
   "go-to-store": "Ir a la tienda",
+  "upgrade-plan": "Plan de actualización",
+  "free-trial": "La prueba gratuita será en",
+  "expire-in-days": "Caduca en dias",
+  "free-trial-next-day": "La prueba gratuita será al día siguiente.",
+  "expire": "madurez",
   "logout": "Cerrar sesión"
 }
