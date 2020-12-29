@@ -1,6 +1,12 @@
 {
-  "close": "Out of Service",
-  "come-back-soon": "Thank you for coming, we will be back as soon as possible!",
+  "CLOSED": {
+    "title": "Store closing",
+    "description": "Thank you for coming, we will be back as soon as possible!"
+  },
+  "RESTED": {
+    "title": "Store suspension of service",
+    "description": "Thank you for your visit, our shop is currently on vacation, we will come back as soon as possible."
+  },
   "want-to-open-store": "I want to open a shop too",
   "product-is-discontinued": "Oops! This product has been discontinued.",
   "back-to-homepage": "Back to the homepage",

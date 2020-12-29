@@ -1,6 +1,12 @@
 {
-  "close": "サービス一時停止中です。",
-  "come-back-soon": "来てくれてありがとう、できるだけ早く戻ってきます！",
+  "CLOSED": {
+    "title": "閉店",
+    "description": "来てくれてありがとう、私たちはできるだけ早く戻ってきます！"
+  },
+  "RESTED": {
+    "title": "店舗のサービス停止",
+    "description": "ご来店ありがとうございました。当店は現在休業中ですので、お早めにご来店いたします。"
+  },
   "want-to-open-store": "私も出店したい",
   "product-is-discontinued": "この商品は販売を終了しました",
   "back-to-homepage": "ホームへ",

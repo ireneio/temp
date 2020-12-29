@@ -99,7 +99,10 @@ class MyApp extends App {
               query checkStore {
                 viewer {
                   store {
-                    storeStatus
+                    adminStatus
+                    metaData {
+                      storeStatus
+                    }
                   }
                 }
               }
@@ -122,10 +125,15 @@ class MyApp extends App {
 
       if (response.status < 400) {
         const data = await response.json();
-        const storeStatus = data?.data?.viewer.store.storeStatus;
+        const storeStatus = data?.data?.viewer.store.metaData.storeStatus;
+        const adminStatus = data?.data?.viewer.store.adminStatus;
 
         /* The store is closed */
-        if (storeStatus === 0) return { closed: true, pageProps };
+        if (storeStatus === 'CLOSE')
+          return {
+            closed: adminStatus === 'OPEN' ? 'RESTED' : 'CLOSED',
+            pageProps,
+          };
       }
 
       /**
@@ -234,10 +242,10 @@ class MyApp extends App {
       store,
     } = this.props;
 
-    /* Hnadle error */
+    /* Handle error */
     if (error) return <Error error={error} />;
     /* Store is closed */
-    if (closed) return <CloseView />;
+    if (closed) return <CloseView closed={closed} />;
     /* Store not found */
     if (storeNotFound) return <StoreNotExistsView />;
 

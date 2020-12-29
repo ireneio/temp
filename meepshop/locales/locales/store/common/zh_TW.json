@@ -1,6 +1,12 @@
 {
-  "close": "商店關閉中",
-  "come-back-soon": "感謝您的蒞臨，我們會盡快回來！",
+  "CLOSED": {
+    "title": "商店關閉中",
+    "description": "感謝您的蒞臨，我們會盡快回來！"
+  },
+  "RESTED": {
+    "title": "商店暫停服務",
+    "description": "感謝您的蒞臨，本店目前休假中，我們會盡快回來。"
+  },
   "want-to-open-store": "我也想要開店",
   "product-is-discontinued": "抱歉，此商品已下架",
   "back-to-homepage": "回首頁",

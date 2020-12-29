@@ -6,15 +6,19 @@ import { storeClose } from '@meepshop/images';
 
 import './styles/index.less';
 
-export default () => {
+export default ({ closed }) => {
   const { t } = useTranslation('common');
 
   return (
     <div className="close-view-root">
       <img src={storeClose} alt="store-close" />
-      <div>{t('close')}</div>
-      <div>{t('come-back-soon')}</div>
-      <div>Sorry, we are closed and will be back soon.</div>
+      <div>{t(`${closed}.title`)}</div>
+      <div>{t(`${closed}.description`)}</div>
+      <div>
+        {closed === 'RESTED'
+          ? 'Sorry, we are temporarily closed and will be back soon.'
+          : 'Sorry, we are closed and will be back soon.'}
+      </div>
       <Button
         type="primary"
         shape="round"

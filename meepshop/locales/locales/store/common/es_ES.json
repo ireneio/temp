@@ -1,6 +1,12 @@
 {
-  "close": "Fuera de servicio",
-  "come-back-soon": "Gracias por venir, ¡volveremos lo antes posible!",
+  "CLOSED": {
+    "title": "Cierre de tienda",
+    "description": "Gracias por venir, ¡volveremos lo antes posible!"
+  },
+  "RESTED": {
+    "title": "Suspensión del servicio por tienda",
+    "description": "Gracias por venir, nuestra tienda se encuentra actualmente de vacaciones, volveremos lo antes posible."
+  },
   "want-to-open-store": "Yo también quiero abrir una tienda",
   "product-is-discontinued": "¡Uy! Este producto ha sido descontinuado.",
   "back-to-homepage": "Volver a la página de inicio",
