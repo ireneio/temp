@@ -4,15 +4,15 @@
   "description": "Use to show order history records",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.1.0",
+  "version": "0.73.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "0.72.0",
-    "@meepshop/icons": "0.72.0",
-    "@meepshop/images": "0.72.0",
-    "@meepshop/link": "0.72.0",
-    "@meepshop/utils": "0.72.0"
+    "@meepshop/context": "^0.73.0",
+    "@meepshop/icons": "^0.73.0",
+    "@meepshop/images": "^0.73.0",
+    "@meepshop/link": "^0.73.0",
+    "@meepshop/utils": "^0.73.0"
   },
   "keywords": ["admin", "history records", "order"]
 }
