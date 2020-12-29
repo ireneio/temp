@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="232px" height="221px" viewBox="0 0 232 221" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>C3BA2B7D-73D0-492E-A9C7-3D152CE4DC35</title>
+    <defs>
+        <path d="M15,0 L217,0 C225.284271,-3.29815278e-15 232,6.71572875 232,15 L232,221 L232,221 L0,221 L0,15 C7.61826213e-16,6.71572875 6.71572875,1.52179594e-15 15,0 Z" id="path-1"></path>
+        <path d="M214,451 C302.73375,451 308.067083,316.078438 230,46.2353129 C220,108.235313 178,91.2353129 114,112.235313 C63.3168205,128.865731 54.0478554,181.17899 -1,180.235313 C-1.66666667,288.078438 -1.66666667,361.666667 -1,401 C-2.26929586e-13,460 80.8993753,451 214,451 Z" id="path-3"></path>
+        <filter x="-7.9%" y="-5.6%" width="115.7%" height="111.1%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="7.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M215.5,491.764687 C304.23375,491.764687 309.567083,356.843125 231.5,87 C221.5,149 179.5,132 115.5,153 C64.8168205,169.630418 55.5478554,221.943678 0.5,221 C-0.166666667,328.843125 -0.166666667,402.431354 0.5,441.764687 C1.5,500.764687 82.3993753,491.764687 215.5,491.764687 Z" id="path-5"></path>
+        <filter x="-7.9%" y="-5.6%" width="115.7%" height="111.1%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="7.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="選擇方案" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="選擇方案-Default" transform="translate(-328.000000, -206.000000)">
+            <g id="blueCard" transform="translate(328.000000, 206.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#B0E9F3" fill-rule="nonzero" xlink:href="#path-1"></use>
+                <g id="Oval" opacity="0.604027158" mask="url(#mask-2)">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                    <use fill="#DFF5FA" fill-rule="evenodd" xlink:href="#path-3"></use>
+                </g>
+                <g id="Oval-Copy-2" opacity="0.604027158" mask="url(#mask-2)">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                    <use fill="#7CDAEB" fill-rule="evenodd" xlink:href="#path-5"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

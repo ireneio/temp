@@ -1,0 +1,15 @@
+{
+  "number": "nomor kartu",
+  "expiry": "tanggal kadaluarsa",
+  "ccv": "Kode keamanan",
+  "please-enter-ccv": "Harap masukkan tiga kode di bagian belakang kartu",
+  "check-number": "Harap periksa apakah nomor kartu sudah benar",
+  "check-expiry": "Harap periksa apakah tanggal kedaluwarsa sudah benar",
+  "check-ccv": "Harap periksa apakah kode keamanan sudah benar",
+  "card-type-unknown": {
+    "title": "Maaf, kartu kredit yang Anda masukkan belum didukung",
+    "description": "Saat ini, hanya VISA, MasterCard, JCB, Union Pay, AMEX yang didukung. Harap ubah kartu Anda dan bayar lagi."
+  },
+  "loading": "Mengonfirmasi informasi pembayaran Anda, jangan tutup halaman",
+  "ok": "menentukan"
+}

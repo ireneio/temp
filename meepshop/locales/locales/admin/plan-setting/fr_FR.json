@@ -1,0 +1,72 @@
+{
+  "account-setting": "Paramètres du compte",
+  "full-feature-open": "Les fonctions complètes sont ouvertes, vous n'êtes donc pas limité par le plan",
+  "appointment-consultation": "Quelques doutes? Prenez rendez-vous dès maintenant pour une consultation individuelle gratuite!",
+  "plan": {
+    "monthly": "mois",
+    "yearly": "an",
+    "monthly-payment": "Paiement mensuel",
+    "yearly-payment": "Paiement annuel",
+    "yearly-payment-tips": "Choisissez le plan de paiement annuel pour obtenir plus de rabais",
+    "save": "enregistrer",
+    "yearly-payment-only": "Limite du plan de paiement annuel",
+    "most-popular-choice": "Le choix le plus populaire",
+    "avlProductNum": "Nombre de produits sur les étagères",
+    "unlimited": "illimité",
+    "space": "espace",
+    "freeDataGB": "Données gratuites / mois",
+    "orderFeeRate": "Frais de transaction",
+    "upgrade-plan": "Plan de mise à niveau maintenant",
+    "appointment": "Personne de rendez-vous",
+    "appointment-tips": "Un plan de paiement annuel limité est fourni et une consultation gratuite vous fournira la remise surprise la plus personnalisée"
+  },
+  "payment": {
+    "back-to": "Options",
+    "title": "Bref, profitez à la fois du site officiel de la marque et de la boutique d'une page!",
+    "billing-method": "Méthode de facturation",
+    "per-yearly": "Par an",
+    "per-monthly": "par mois",
+    "save": "enregistrer",
+    "credit-card-information": "Informations sur la carte de crédit",
+    "bind-credit-card": "Le système liera votre carte de crédit pour assurer la continuité de votre magasin.",
+    "automatic-renewal": "Une fois le paiement effectué, le système se renouvellera automatiquement selon le mode de facturation et vous pourrez le modifier à tout moment dans les paramètres du compte.",
+    "try-to-swipe": "Afin de vérifier la validité de votre carte de crédit, il essaiera de rafraîchir 1 $ NT lors de la liaison, mais aucun frais réel ne sera facturé. Après la liaison, le système renouvellera automatiquement l'abonnement selon la méthode de facturation, et vous pouvez le modifier à tout moment dans les paramètres du compte.",
+    "purchase-item": "Acheter un article",
+    "yearly-payment-plan": "Plan de paiement annuel",
+    "monthly-payment-plan": "Plan de paiement mensuel",
+    "expiry": "date d'expiration",
+    "billing-for-first-yearly": "Facturation la première année",
+    "billing-for-first-monthly": "Facturation pour le premier mois",
+    "discount": "Frais de période d'essai réduits",
+    "total": "total",
+    "total-for-first-yearly": "Total pour la première année",
+    "total-for-first-monthly": "Total pour le premier mois",
+    "USD-exchange-rate-today": "Taux de change USD aujourd'hui",
+    "congratulation-no-payment": "toutes nos félicitations! Éligible pour aucun paiement après remise",
+    "confirm-payment": "Confirmer le paiement",
+    "verify-credit-card": "Vérifier la carte de crédit",
+    "agree-confirm-payment": "Lorsque vous cliquez sur OK pour payer, vous acceptez de meepShop",
+    "agree-verify-credit-card": "Lorsque vous validez votre carte de crédit, vous acceptez les règles de meepShop",
+    "service": "Conditions d'utilisation",
+    "and": "contre",
+    "privacy": "Politique de confidentialité",
+    "success": {
+      "title": "Le paiement a réussi!",
+      "verify-title": "La vérification de la carte de crédit a réussi!",
+      "description": "Merci d'utiliser meepShop, vous serez redirigé vers la page de gestion ..."
+    },
+    "warning": {
+      "title": "Le montant du paiement a été mis à jour",
+      "description": "Lorsque vous payez à 00h00 ou à midi, le système vous refacturera en fonction des jours restants."
+    },
+    "fail": {
+      "title": "Échec du paiement, veuillez réessayer",
+      "description": "Veuillez vérifier les informations de votre carte de crédit et la limite de votre carte de crédit avant d'effectuer un autre paiement. Si le paiement échoue à nouveau. Veuillez contacter la banque émettrice."
+    },
+    "verify-fail": {
+      "title": "échec de la vérification",
+      "description": "Veuillez réessayer plus tard ou contacter votre banque émettrice"
+    },
+    "ok": "déterminer"
+  }
+}

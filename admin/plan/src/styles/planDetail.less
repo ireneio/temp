@@ -1,0 +1,198 @@
+.root {
+  width: 232px;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px -15px #A8BFEC;
+  padding: 40px 0px 32px;
+  text-align: center;
+  position: relative;
+
+  .popular {
+    color: #362708;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 18px;
+    position: absolute;
+    top: 5px;
+    left: 79px;
+  }
+
+  .name {
+    color: #0A1940;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    line-height: 25px;
+  }
+
+  .fee {
+    color: #0A1940;
+    font-size: 12px;
+    line-height: 20px;
+    margin: 22px 0px 24px;
+
+    span {
+      font-size: 56px;
+      font-weight: 500;
+      line-height: 48px;
+      margin: 0px 8px;
+    }
+  }
+
+  .switch {
+    display: flex;
+    justify-content: center;
+    color: #004A65;
+    font-size: 10px;
+    line-height: 14px;
+    cursor: pointer;
+    margin-bottom: 64px;
+
+    &.yearly {
+      margin-bottom: 10px;
+    }
+
+    & > div {
+      padding: 4px 13px;
+      border: 1px solid #004A65;
+      background-color: #B0E9F3;
+    }
+
+    & > div:nth-child(1){
+      border-radius: 12px 0px 0px 12px;
+    }
+
+    & > div:nth-child(2){
+      border-radius: 0px 12px 12px 0px;
+    }
+
+    & > div:hover {
+      color: #ffffff;
+      background-color: #004A65;
+    }
+
+    .selected {
+      color: #ffffff;
+      background-color: #004A65;
+    }
+  }
+
+  .save {
+    width: fit-content;
+    border-radius: 6px;
+    background-color: rgba(255,255,255,0.7);
+    color: #004A65;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 20px;
+    padding: 0px 12px;
+    margin: 0px auto 34px;
+  }
+
+  .yearlyOnly {
+    width: fit-content;
+    border-radius: 12.1px;
+    background-color: rgba(255,255,255,0.7);
+    margin: 0px auto 64px;
+    padding: 0px 20px;
+    color: #0A1940;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+
+  .item {
+    color: #212536;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 22px;
+    margin-bottom: 10px;
+
+    & > span {
+      color: #626C82;
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      line-height: 22px;
+      margin-left: 4px;
+    }
+
+    &.free {
+      color: #00B8D6;
+
+      & > span {
+        color: #00B8D6;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+
+  :global(.ant-btn) {
+    width: 152px;
+    margin-top: 6px;
+    font-weight: 500;
+
+    &.upgradePlan {
+      color: #ffffff;
+      background-color: #004A65;
+      border-color: #004A65;
+
+      &:hover {
+        background-color: #106F92;
+      }
+
+      &:active {
+        background-color: #023649;
+      }
+    }
+
+    &.appointment {
+      color: rgba(0,0,0,0.65);
+      background-color: #FFFFFF;
+      border-color: #E6EBF1;
+
+      &:hover {
+        background-color: #F0F3F7;
+      }
+
+      &:active {
+        background-color: #E6EBF1;
+      }
+    }
+
+    &.gold {
+      color: #362708;
+      background-color: #FFE76B;
+      border-color: #FFE76B;
+
+      &:hover {
+        background-color: #FFD914;
+      }
+
+      &:active {
+        background-color: #F7D527;
+      }
+    }
+  }
+}
+
+.popover {
+  max-width: 216px;
+  color: #363B4A;
+  font-size: 12px;
+  line-height: 18px;
+
+  :global(.ant-popover-inner-content) {
+    display: flex;
+    padding: 5px 8px;
+  }
+
+  :global(.anticon-star) {
+    color: #FFD52A;
+    font-size: 16px;
+    vertical-align: text-bottom;
+    margin-right: 4px;
+  }
+}

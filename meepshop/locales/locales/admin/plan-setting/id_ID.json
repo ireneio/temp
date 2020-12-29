@@ -1,0 +1,72 @@
+{
+  "account-setting": "Pengaturan akun",
+  "full-feature-open": "Fungsi lengkap terbuka, jadi Anda tidak dibatasi oleh rencana",
+  "appointment-consultation": "Ada keraguan? Buatlah janji untuk konsultasi gratis satu lawan satu dengan orang yang berdedikasi!",
+  "plan": {
+    "monthly": "bulan",
+    "yearly": "tahun",
+    "monthly-payment": "Pembayaran bulanan",
+    "yearly-payment": "Pembayaran tahunan",
+    "yearly-payment-tips": "Pilih paket pembayaran tahunan untuk mendapatkan lebih banyak diskon",
+    "save": "menyimpan",
+    "yearly-payment-only": "Batas paket pembayaran tahunan",
+    "most-popular-choice": "Pilihan paling populer",
+    "avlProductNum": "Jumlah produk di rak",
+    "unlimited": "tak terbatas",
+    "space": "ruang",
+    "freeDataGB": "Data gratis / bulan",
+    "orderFeeRate": "Biaya transaksi",
+    "upgrade-plan": "Tingkatkan paket sekarang",
+    "appointment": "Penunjukan orang",
+    "appointment-tips": "Paket pembayaran tahunan terbatas disediakan, dan konsultasi gratis akan memberi Anda diskon kejutan yang paling disesuaikan"
+  },
+  "payment": {
+    "back-to": "Pilihan",
+    "title": "Satu langkah singkat, nikmati situs web resmi merek dan toko satu halaman pada saat yang bersamaan!",
+    "billing-method": "Metode penagihan",
+    "per-yearly": "Per tahun",
+    "per-monthly": "per bulan",
+    "save": "menyimpan",
+    "credit-card-information": "Informasi Kartu Kredit",
+    "bind-credit-card": "Sistem akan mengikat kartu kredit Anda untuk memastikan kelangsungan toko Anda.",
+    "automatic-renewal": "Setelah pembayaran selesai, sistem akan diperpanjang secara otomatis sesuai dengan metode penagihan, dan Anda dapat mengubahnya kapan saja di pengaturan akun.",
+    "try-to-swipe": "Untuk memverifikasi validitas kartu kredit Anda, ini akan mencoba menyegarkan NT $ 1 saat mengikat, tetapi tidak ada biaya sebenarnya yang akan dibebankan. Setelah mengikat, sistem akan secara otomatis memperbarui langganan sesuai dengan metode penagihan, dan Anda dapat mengubahnya kapan saja di pengaturan akun.",
+    "purchase-item": "Membeli barang",
+    "yearly-payment-plan": "Paket pembayaran tahunan",
+    "monthly-payment-plan": "Paket pembayaran bulanan",
+    "expiry": "tanggal kadaluarsa",
+    "billing-for-first-yearly": "Penagihan untuk tahun pertama",
+    "billing-for-first-monthly": "Penagihan untuk bulan pertama",
+    "discount": "Biaya masa percobaan berdiskon",
+    "total": "total",
+    "total-for-first-yearly": "Total untuk tahun pertama",
+    "total-for-first-monthly": "Total untuk bulan pertama",
+    "USD-exchange-rate-today": "Nilai tukar USD hari ini",
+    "congratulation-no-payment": "Selamat! Berhak untuk tidak ada pembayaran setelah diskon",
+    "confirm-payment": "Konfirmasi pembayaran",
+    "verify-credit-card": "Verifikasi kartu kredit",
+    "agree-confirm-payment": "Saat Anda mengklik Oke untuk membayar, Anda setuju dengan meepShop's",
+    "agree-verify-credit-card": "Saat Anda memverifikasi kartu kredit, Anda setuju dengan meepShop’s",
+    "service": "Persyaratan Layanan",
+    "and": "melawan",
+    "privacy": "Kebijakan pribadi",
+    "success": {
+      "title": "Pembayaran berhasil!",
+      "verify-title": "Verifikasi kartu kredit berhasil!",
+      "description": "Terima kasih telah menggunakan meepShop, Anda akan diarahkan ke halaman manajemen ..."
+    },
+    "warning": {
+      "title": "Jumlah pembayaran telah diperbarui",
+      "description": "Ketika Anda membayar pada pukul 00:00 atau 12:00, sistem akan menagih Anda kembali berdasarkan hari yang tersisa."
+    },
+    "fail": {
+      "title": "Pembayaran gagal, coba lagi",
+      "description": "Harap periksa informasi kartu kredit dan batas kartu kredit Anda sebelum melakukan pembayaran lain. Jika pembayaran gagal lagi. Harap hubungi bank penerbit."
+    },
+    "verify-fail": {
+      "title": "verifikasi gagal",
+      "description": "Harap coba lagi nanti atau hubungi bank penerbit Anda"
+    },
+    "ok": "menentukan"
+  }
+}

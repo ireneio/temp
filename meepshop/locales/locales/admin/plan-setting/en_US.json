@@ -1,0 +1,72 @@
+{
+  "account-setting": "Account settings",
+  "full-feature-open": "Complete functions are open, so you are not limited by the plan",
+  "appointment-consultation": "Any doubts? Make an appointment now for a free one-on-one consultation!",
+  "plan": {
+    "monthly": "month",
+    "yearly": "year",
+    "monthly-payment": "Monthly payment",
+    "yearly-payment": "Annual payment",
+    "yearly-payment-tips": "Choose the annual payment plan to get more discounts",
+    "save": "save",
+    "yearly-payment-only": "Annual payment plan limit",
+    "most-popular-choice": "The most popular choice",
+    "avlProductNum": "Number of products on the shelves",
+    "unlimited": "unlimited",
+    "space": "space",
+    "freeDataGB": "Free data /month",
+    "orderFeeRate": "Transaction fee",
+    "upgrade-plan": "Upgrade plan now",
+    "appointment": "Appointment person",
+    "appointment-tips": "Limited annual payment plan is provided, and free consultation will provide you with the most customized surprise discount"
+  },
+  "payment": {
+    "back-to": "Options",
+    "title": "One step short, enjoy the brand's official website and one-page shop at the same time!",
+    "billing-method": "Billing method",
+    "per-yearly": "Per year",
+    "per-monthly": "per month",
+    "save": "save",
+    "credit-card-information": "Credit card information",
+    "bind-credit-card": "The system will bind your credit card to ensure the continuity of your store.",
+    "automatic-renewal": "After the payment is completed, the system will automatically renew according to the billing method, and you can change it at any time in the account settings.",
+    "try-to-swipe": "In order to verify the validity of your credit card, it will try to refresh NT$1 when binding, but no actual charge will be made. After binding, the system will automatically renew the subscription according to the billing method, and you can change it at any time in the account settings.",
+    "purchase-item": "Purchase item",
+    "yearly-payment-plan": "Annual payment plan",
+    "monthly-payment-plan": "Monthly payment plan",
+    "expiry": "expiry date",
+    "billing-for-first-yearly": "Billing for the first year",
+    "billing-for-first-monthly": "Billing for the first month",
+    "discount": "Discounted trial period fee",
+    "total": "total",
+    "total-for-first-yearly": "Total for the first year",
+    "total-for-first-monthly": "Total for the first month",
+    "USD-exchange-rate-today": "USD exchange rate today",
+    "congratulation-no-payment": "congratulations! Eligible for no payment after discount",
+    "confirm-payment": "Confirm payment",
+    "verify-credit-card": "Verify credit card",
+    "agree-confirm-payment": "When you click OK to pay, you agree to meepShop's",
+    "agree-verify-credit-card": "When you verify your credit card, you agree to meepShop’s",
+    "service": "Terms of Service",
+    "and": "versus",
+    "privacy": "Privacy Policy",
+    "success": {
+      "title": "Payment succeeded!",
+      "verify-title": "Credit card verification succeeded!",
+      "description": "Thank you for using meepShop, you will be redirected to the management page..."
+    },
+    "warning": {
+      "title": "The payment amount has been updated",
+      "description": "When you pay at 00:00 or 12:00, the system will re-bill you based on the remaining days."
+    },
+    "fail": {
+      "title": "Payment failed, please try again",
+      "description": "Please check your credit card information and credit card limit before making another payment. If the payment fails again. Please contact the issuing bank."
+    },
+    "verify-fail": {
+      "title": "verification failed",
+      "description": "Please try again later or contact your issuing bank"
+    },
+    "ok": "determine"
+  }
+}

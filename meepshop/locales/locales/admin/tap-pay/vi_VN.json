@@ -1,0 +1,15 @@
+{
+  "number": "số thẻ",
+  "expiry": "ngày hết hạn",
+  "ccv": "Mã bảo mật",
+  "please-enter-ccv": "Vui lòng nhập ba mã ở mặt sau của thẻ",
+  "check-number": "Vui lòng kiểm tra xem số thẻ có đúng không",
+  "check-expiry": "Vui lòng kiểm tra xem ngày hết hạn có chính xác không",
+  "check-ccv": "Vui lòng kiểm tra xem mã bảo mật có đúng không",
+  "card-type-unknown": {
+    "title": "Xin lỗi, thẻ tín dụng bạn đã nhập chưa được hỗ trợ",
+    "description": "Hiện tại, chỉ hỗ trợ VISA, MasterCard, JCB, Union Pay, AMEX. Vui lòng đổi thẻ và thanh toán lại."
+  },
+  "loading": "Xác nhận thông tin thanh toán của bạn, vui lòng không đóng trang",
+  "ok": "mục đích"
+}

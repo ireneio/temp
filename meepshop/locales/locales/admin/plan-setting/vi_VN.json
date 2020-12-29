@@ -1,0 +1,72 @@
+{
+  "account-setting": "Cài đặt tài khoản",
+  "full-feature-open": "Các chức năng hoàn chỉnh đang mở, vì vậy bạn không bị giới hạn bởi gói",
+  "appointment-consultation": "Có nghi ngờ gì không? Hãy đặt lịch hẹn ngay bây giờ để được tư vấn trực tiếp miễn phí!",
+  "plan": {
+    "monthly": "tháng",
+    "yearly": "năm",
+    "monthly-payment": "Thanh toán hàng tháng",
+    "yearly-payment": "Thanh toán hàng năm",
+    "yearly-payment-tips": "Chọn gói thanh toán hàng năm để nhận được nhiều chiết khấu hơn",
+    "save": "tiết kiệm",
+    "yearly-payment-only": "Giới hạn gói thanh toán hàng năm",
+    "most-popular-choice": "Sự lựa chọn phổ biến nhất",
+    "avlProductNum": "Số lượng sản phẩm trên kệ",
+    "unlimited": "vô hạn",
+    "space": "không gian",
+    "freeDataGB": "Dữ liệu miễn phí / tháng",
+    "orderFeeRate": "Phí giao dịch",
+    "upgrade-plan": "Nâng cấp gói ngay bây giờ",
+    "appointment": "Người chỉ định",
+    "appointment-tips": "Gói thanh toán hàng năm có hạn được cung cấp và tư vấn miễn phí sẽ cung cấp cho bạn mức chiết khấu bất ngờ tùy chỉnh nhất"
+  },
+  "payment": {
+    "back-to": "Tùy chọn",
+    "title": "Chỉ một bước ngắn, hãy tận hưởng trang web chính thức của thương hiệu và cửa hàng một trang cùng một lúc!",
+    "billing-method": "Phương thức thanh toán",
+    "per-yearly": "Mỗi năm",
+    "per-monthly": "mỗi tháng",
+    "save": "tiết kiệm",
+    "credit-card-information": "Thông tin thẻ tín dụng",
+    "bind-credit-card": "Hệ thống sẽ ràng buộc thẻ tín dụng của bạn để đảm bảo tính liên tục của cửa hàng.",
+    "automatic-renewal": "Sau khi thanh toán xong, hệ thống sẽ tự động gia hạn theo phương thức xuất hóa đơn, bạn có thể thay đổi bất cứ lúc nào trong phần cài đặt tài khoản.",
+    "try-to-swipe": "Để xác minh tính hợp lệ của thẻ tín dụng của bạn, thẻ sẽ cố gắng làm mới 1 Đài tệ khi bị ràng buộc, nhưng sẽ không bị tính phí thực tế. Sau khi ràng buộc, hệ thống sẽ tự động gia hạn đăng ký theo phương thức thanh toán và bạn có thể thay đổi bất kỳ lúc nào trong phần cài đặt tài khoản.",
+    "purchase-item": "Mua hàng",
+    "yearly-payment-plan": "Gói thanh toán hàng năm",
+    "monthly-payment-plan": "Gói thanh toán hàng tháng",
+    "expiry": "ngày hết hạn",
+    "billing-for-first-yearly": "Thanh toán cho năm đầu tiên",
+    "billing-for-first-monthly": "Thanh toán cho tháng đầu tiên",
+    "discount": "Giảm phí thời gian dùng thử",
+    "total": "toàn bộ",
+    "total-for-first-yearly": "Tổng cộng cho năm đầu tiên",
+    "total-for-first-monthly": "Tổng cho tháng đầu tiên",
+    "USD-exchange-rate-today": "Tỷ giá USD hôm nay",
+    "congratulation-no-payment": "Xin chúc mừng! Đủ điều kiện để không thanh toán sau chiết khấu",
+    "confirm-payment": "Xác nhận thanh toán",
+    "verify-credit-card": "Xác minh thẻ tín dụng",
+    "agree-confirm-payment": "Khi bạn bấm OK để thanh toán tức là bạn đã đồng ý với của meepShop",
+    "agree-verify-credit-card": "Khi bạn xác minh thẻ tín dụng của mình, bạn đồng ý với meepShop’s",
+    "service": "Điều khoản dịch vụ",
+    "and": "đấu với",
+    "privacy": "Chính sách bảo mật",
+    "success": {
+      "title": "Thanh toán thành công!",
+      "verify-title": "Xác minh thẻ tín dụng thành công!",
+      "description": "Cảm ơn bạn đã sử dụng meepShop, bạn sẽ được chuyển đến trang quản lý ..."
+    },
+    "warning": {
+      "title": "Số tiền thanh toán đã được cập nhật",
+      "description": "Khi bạn thanh toán vào lúc 00:00 hoặc 12:00, hệ thống sẽ tính lại hóa đơn cho bạn dựa trên số ngày còn lại."
+    },
+    "fail": {
+      "title": "Thanh toán không thành công, vui lòng thử lại",
+      "description": "Vui lòng kiểm tra thông tin thẻ tín dụng và hạn mức thẻ tín dụng của bạn trước khi thực hiện một khoản thanh toán khác. Nếu thanh toán không thành công một lần nữa. Vui lòng liên hệ với ngân hàng phát hành."
+    },
+    "verify-fail": {
+      "title": "xác minh không hoàn thành",
+      "description": "Vui lòng thử lại sau hoặc liên hệ với ngân hàng phát hành của bạn"
+    },
+    "ok": "mục đích"
+  }
+}

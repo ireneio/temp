@@ -10,6 +10,7 @@
   "dependencies": {
     "@admin/block": "^0.72.0",
     "@admin/header": "^0.72.0",
+    "@meepshop/link": "^0.72.0",
     "@meepshop/utils": "^0.72.0"
   },
   "keywords": ["account", "admin", "setting"]

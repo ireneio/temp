@@ -1,0 +1,72 @@
+{
+  "account-setting": "帳戶設定",
+  "full-feature-open": "完整功能全開放，讓您不被方案所限",
+  "appointment-consultation": "有任何疑惑嗎？ 立即預約專人一對一免費諮詢！",
+  "plan": {
+    "monthly": "月",
+    "yearly": "年",
+    "monthly-payment": "月繳",
+    "yearly-payment": "年繳",
+    "yearly-payment-tips": "選擇年繳方案獲得更多優惠",
+    "save": "節省",
+    "yearly-payment-only": "年繳方案限定",
+    "most-popular-choice": "最多人的選擇",
+    "avlProductNum": "上架商品數",
+    "unlimited": "無限",
+    "space": "空間",
+    "freeDataGB": "免費流量 /月",
+    "orderFeeRate": "成交手續費",
+    "upgrade-plan": "馬上升級方案",
+    "appointment": "預約專人",
+    "appointment-tips": "限定年繳方案提供，免費諮詢專人為您提供最客製的驚喜優惠"
+  },
+  "payment": {
+    "back-to": "選擇方案",
+    "title": "還差一步，同時享有品牌官網與一頁式商店！",
+    "billing-method": "計費方式",
+    "per-yearly": "每年",
+    "per-monthly": "每月",
+    "save": "節省",
+    "credit-card-information": "信用卡資料",
+    "bind-credit-card": "系統將為您綁定信用卡，保障您的商店延續。",
+    "automatic-renewal": "完成付款後，系統會依計費方式自動續訂，您可以隨時在帳戶設定中變更。",
+    "try-to-swipe": "為驗證您的信用卡有效性，綁定時會試刷新台幣 1 元，但不會實際扣款。完成綁定後，系統會依計費方式自動續訂，您可以隨時在帳戶設定中變更。",
+    "purchase-item": "購買項目",
+    "yearly-payment-plan": "年繳方案",
+    "monthly-payment-plan": "月繳方案",
+    "expiry": "到期日",
+    "billing-for-first-yearly": "首年計費",
+    "billing-for-first-monthly": "首月計費",
+    "discount": "已折抵試用期費用",
+    "total": "總計",
+    "total-for-first-yearly": "首年總計",
+    "total-for-first-monthly": "首月總計",
+    "USD-exchange-rate-today": "本日美金匯率",
+    "congratulation-no-payment": "恭喜您！折抵後符合不需付款資格",
+    "confirm-payment": "確定付款",
+    "verify-credit-card": "驗證信用卡",
+    "agree-confirm-payment": "當您點擊確定付款即表示同意 meepShop 的 ",
+    "agree-verify-credit-card": "當您驗證信用卡即表示同意 meepShop 的 ",
+    "service": "服務條款",
+    "and": " 與 ",
+    "privacy": "隱私條款",
+    "success": {
+      "title": "付款成功！",
+      "verify-title": "信用卡驗證成功！",
+      "description": "感謝您使用 meepShop，即將跳轉至管理頁面 ..."
+    },
+    "warning": {
+      "title": "本次付款金額已更新",
+      "description": "當您在 00:00 或 12:00 的時段付款，系統會依據剩餘天數為您重新計費。"
+    },
+    "fail": {
+      "title": "付款失敗，請再試一次",
+      "description": "請檢查您的信用卡資料與刷卡額度後重新付款。若再次付款失敗。請您與發卡銀行聯繫。"
+    },
+    "verify-fail": {
+      "title": "驗證失敗",
+      "description": "請您稍後再試或與您的發卡銀行聯繫"
+    },
+    "ok": "確定"
+  }
+}

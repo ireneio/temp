@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "@admin/plan",
+  "description": "Admin plan list",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.63.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/tap-pay": "^0.63.0",
+    "@admin/utils": "^0.72.0",
+    "@meepshop/context": "^0.72.0",
+    "@meepshop/images": "^0.72.0",
+    "@meepshop/link": "^0.72.0",
+    "@meepshop/utils": "^0.72.0"
+  },
+  "keywords": ["admin", "plan"]
+}

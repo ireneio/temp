@@ -1,0 +1,15 @@
+{
+  "number": "número de tarjeta",
+  "expiry": "fecha de caducidad",
+  "ccv": "Código de seguridad",
+  "please-enter-ccv": "Ingrese los tres códigos en el reverso de la tarjeta",
+  "check-number": "Compruebe si el número de tarjeta es correcto",
+  "check-expiry": "Comprueba si la fecha de caducidad es correcta.",
+  "check-ccv": "Compruebe si el código de seguridad es correcto",
+  "card-type-unknown": {
+    "title": "Lo sentimos, la tarjeta de crédito que ingresó aún no es compatible",
+    "description": "Actualmente, solo se admiten VISA, MasterCard, JCB, Union Pay, AMEX. Cambie su tarjeta y pague nuevamente."
+  },
+  "loading": "Confirmando su información de pago, no cierre la página",
+  "ok": "determinar"
+}

@@ -3,8 +3,10 @@ import { languageType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
+import { Button } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
+import Link from '@meepshop/link';
 import Block from '@admin/block';
 
 import styles from './styles/plan.less';
@@ -21,6 +23,7 @@ interface PropsType {
 export default React.memo(({ viewer }: PropsType) => {
   const { t, i18n } = useTranslation('account-setting');
 
+  const accountType = viewer?.store?.metaData?.accountType;
   const billingType = viewer?.store?.setting?.billing?.billingType;
   const planName = viewer?.store?.plan?.name;
 
@@ -79,6 +82,16 @@ export default React.memo(({ viewer }: PropsType) => {
           <>
             <div className={styles.currentPlan}>{t('plan.current-plan')}</div>
             <div className={styles.plan}>{t('plan.test-store')}</div>
+          </>
+        )}
+
+        {accountType !== 'TRIAL' ? null : (
+          <>
+            <div className={styles.trial}>{t('plan.free-trial')}</div>
+
+            <Link href="/account-setting/plan-setting">
+              <Button type="primary">{t('plan.upgrade-plan')}</Button>
+            </Link>
           </>
         )}
       </div>

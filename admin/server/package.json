@@ -20,6 +20,7 @@
     "@admin/login": "^0.72.0",
     "@admin/orders-ecfit": "^0.72.0",
     "@admin/page-manager": "^0.72.0",
+    "@admin/plan-setting": "^0.63.0",
     "@admin/reset-password": "^0.72.0",
     "@admin/set-up-store": "^0.72.0",
     "@admin/setting": "^0.72.0",

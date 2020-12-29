@@ -1,0 +1,72 @@
+{
+  "account-setting": "Configuraciones de la cuenta",
+  "full-feature-open": "Las funciones completas están abiertas, por lo que no está limitado por el plan",
+  "appointment-consultation": "¿Alguna duda? ¡Concierte una cita ahora para una consulta personalizada gratuita!",
+  "plan": {
+    "monthly": "mes",
+    "yearly": "año",
+    "monthly-payment": "Mensualidad",
+    "yearly-payment": "Pago anual",
+    "yearly-payment-tips": "Elija el plan de pago anual para obtener más descuentos",
+    "save": "salvar",
+    "yearly-payment-only": "Límite del plan de pago anual",
+    "most-popular-choice": "La elección más popular",
+    "avlProductNum": "Número de productos en los estantes",
+    "unlimited": "ilimitado",
+    "space": "espacio",
+    "freeDataGB": "Datos gratis / mes",
+    "orderFeeRate": "Tarifa de transacción",
+    "upgrade-plan": "Actualizar plan ahora",
+    "appointment": "Persona de la cita",
+    "appointment-tips": "Se proporciona un plan de pago anual limitado y una consulta gratuita le proporcionará el descuento sorpresa más personalizado"
+  },
+  "payment": {
+    "back-to": "Opciones",
+    "title": "¡Con un paso corto, disfrute del sitio web oficial de la marca y de la tienda de una página al mismo tiempo!",
+    "billing-method": "Método de facturación",
+    "per-yearly": "Por año",
+    "per-monthly": "por mes",
+    "save": "salvar",
+    "credit-card-information": "Información de tarjeta de crédito",
+    "bind-credit-card": "El sistema vinculará su tarjeta de crédito para garantizar la continuidad de su tienda.",
+    "automatic-renewal": "Una vez completado el pago, el sistema se renovará automáticamente de acuerdo con el método de facturación y puede cambiarlo en cualquier momento en la configuración de la cuenta.",
+    "try-to-swipe": "Para verificar la validez de su tarjeta de crédito, intentará actualizar NT $ 1 al momento de la vinculación, pero no se realizará ningún cargo real. Una vez completada la vinculación, el sistema renovará automáticamente la suscripción de acuerdo con el método de facturación y puede cambiarla en cualquier momento en la configuración de la cuenta.",
+    "purchase-item": "Adquirir artículo",
+    "yearly-payment-plan": "Plan de pago anual",
+    "monthly-payment-plan": "Plan de pago mensual",
+    "expiry": "fecha de caducidad",
+    "billing-for-first-yearly": "Facturación del primer año",
+    "billing-for-first-monthly": "Facturación del primer mes",
+    "discount": "Tarifa de período de prueba con descuento",
+    "total": "total",
+    "total-for-first-yearly": "Total del primer año",
+    "total-for-first-monthly": "Total del primer mes",
+    "USD-exchange-rate-today": "Tipo de cambio USD hoy",
+    "congratulation-no-payment": "¡Felicidades! Elegible para ningún pago después del descuento",
+    "confirm-payment": "Confirmar pago",
+    "verify-credit-card": "Verificar tarjeta de crédito",
+    "agree-confirm-payment": "Cuando haces clic en Aceptar para pagar, aceptas las",
+    "agree-verify-credit-card": "Cuando verifica su tarjeta de crédito, acepta las",
+    "service": "Términos de servicio",
+    "and": "versus",
+    "privacy": "Política de privacidad",
+    "success": {
+      "title": "¡Pago exitoso!",
+      "verify-title": "¡La verificación de la tarjeta de crédito se realizó correctamente!",
+      "description": "Gracias por usar meepShop, será redirigido a la página de administración ..."
+    },
+    "warning": {
+      "title": "El monto del pago se ha actualizado",
+      "description": "Cuando pague a las 00:00 o 12:00, el sistema le volverá a facturar según los días restantes."
+    },
+    "fail": {
+      "title": "Pago fallido, inténtelo de nuevo",
+      "description": "Verifique la información de su tarjeta de crédito y el límite de la tarjeta de crédito antes de realizar otro pago. Si el pago vuelve a fallar. Comuníquese con el banco emisor."
+    },
+    "verify-fail": {
+      "title": "Fallo en la verificación",
+      "description": "Vuelva a intentarlo más tarde o póngase en contacto con su banco emisor."
+    },
+    "ok": "determinar"
+  }
+}

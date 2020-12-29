@@ -9,6 +9,9 @@ export const planFragment = gql`
   fragment planFragment on User {
     store {
       id
+      metaData {
+        accountType
+      }
       setting {
         billing {
           billingType

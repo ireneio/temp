@@ -1,0 +1,15 @@
+{
+  "number": "numéro de carte",
+  "expiry": "date d'expiration",
+  "ccv": "Code de sécurité",
+  "please-enter-ccv": "Veuillez saisir les trois codes au dos de la carte",
+  "check-number": "Veuillez vérifier si le numéro de carte est correct",
+  "check-expiry": "Veuillez vérifier si la date d'expiration est correcte",
+  "check-ccv": "Veuillez vérifier si le code de sécurité est correct",
+  "card-type-unknown": {
+    "title": "Désolé, la carte de crédit que vous avez saisie n'est pas encore prise en charge",
+    "description": "Actuellement, seuls VISA, MasterCard, JCB, Union Pay et AMEX sont pris en charge. Veuillez changer votre carte et payer à nouveau."
+  },
+  "loading": "En confirmant vos informations de paiement, veuillez ne pas fermer la page",
+  "ok": "déterminer"
+}

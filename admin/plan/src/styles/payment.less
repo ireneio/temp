@@ -1,0 +1,180 @@
+@import '~@admin/utils/styles/variables.less';
+
+.backTo {
+  font-size: 14px;
+  line-height: 22px;
+  cursor: pointer;
+  transition: color 0.3s;
+
+  :global(.anticon) {
+    margin-right: 6px;
+  }
+
+  &:hover {
+    color: @primary-color;
+  }
+}
+
+.title {
+  color: rgba(0,0,0,0.65);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  margin: 40px 0px;
+  text-align: center;
+}
+
+.bill {
+  width: 1000px;
+  display: flex;
+  justify-content: center;
+  color: #626C82;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: normal;
+  word-break: break-word;
+
+  & > div {
+    background-color: #ffffff;
+    border-radius: 4px;
+    width: 296px;
+    height: fit-content;
+    padding: 32px;
+
+    &:first-child {
+      width: 512px;
+      margin-right: 24px;
+    }
+  }
+
+  .save {
+    color: #FEAD45;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    position: absolute;
+    right: 24px;
+  }
+
+  .prompt {
+    background-color: #FAFAFA;
+    padding: 8px 16px;
+    color: rgba(0,0,0,0.65);
+    font-size: 12px;
+    line-height: 22px;
+    margin-top: 16px;
+
+    & > div:last-child {
+      color: rgba(0,0,0,0.45);
+      line-height: 20px;
+      margin-top: 2px;
+    }
+  }
+
+  .plan {
+    color: rgba(0,0,0,0.65);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    line-height: 24px;
+    margin: 16px 0px 4px;
+  }
+
+  .expiryDate {
+    color: rgba(0,0,0,0.65);
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .billing {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(0,0,0,0.65);
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 4px;
+
+    & > div:first-child {
+      margin-right: 16px;
+    }
+  }
+
+  .discount {
+    color: rgba(0,0,0,0.45);
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .total {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(0,0,0,0.65);
+    font-size: 14px;
+    line-height: 22px;
+
+    & > div:last-child {
+      color: rgba(0,0,0,0.65);
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      line-height: 28px;
+      margin-left: 16px;
+    }
+  }
+
+  .exchangeRate {
+    color: rgba(0,0,0,0.25);
+    font-size: 12px;
+    line-height: 20px;
+    text-align: right;
+  }
+
+  .congratulation {
+    color: #363B4A;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .agree {
+    color: rgba(0,0,0,0.45);
+    font-size: 12px;
+    line-height: 20px;
+
+    & > a {
+      color: #00C8E4;
+    }
+  }
+
+  :global(.ant-radio-group) {
+    width: 100%;
+    margin: 16px 0px 40px;
+  }
+
+  :global(.ant-radio-wrapper) {
+    display: block;
+    border: 1px solid #E8E8E8;
+    border-radius: 4px 4px 0px 0px;
+    padding: 12px 24px;
+
+    &:last-child {
+      border-top: unset;
+      border-radius: 0px 0px 4px 4px;
+    }
+  }
+
+  :global(.ant-divider) {
+    width: 264px;
+    color: rgba(0,0,0,0.09);
+    margin: 16px -16px;
+  }
+
+  :global(.anticon) {
+    margin-right: 4px;
+  }
+
+  :global(.ant-btn) {
+    width: 100%;
+    margin: 16px auto 8px;
+  }
+}

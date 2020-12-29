@@ -1,0 +1,72 @@
+{
+  "account-setting": "アカウント設定",
+  "full-feature-open": "完全な機能が開いているので、プランに制限されません",
+  "appointment-consultation": "どんな疑いも？ 今すぐ無料の1対1の相談を予約してください！",
+  "plan": {
+    "monthly": "月",
+    "yearly": "年",
+    "monthly-payment": "毎月の支払額",
+    "yearly-payment": "年払い",
+    "yearly-payment-tips": "より多くの割引を受けるには、年間支払いプランを選択してください",
+    "save": "セーブ",
+    "yearly-payment-only": "年間支払いプランの制限",
+    "most-popular-choice": "最も人気のある選択肢",
+    "avlProductNum": "棚にある製品の数",
+    "unlimited": "無制限",
+    "space": "スペース",
+    "freeDataGB": "無料データ/月",
+    "orderFeeRate": "取引手数料",
+    "upgrade-plan": "今すぐアップグレードプラン",
+    "appointment": "任命者",
+    "appointment-tips": "限られた年間支払いプランが提供され、無料相談はあなたに最もカスタマイズされた驚きの割引を提供します"
+  },
+  "payment": {
+    "back-to": "オプション",
+    "title": "一歩足を踏み入れて、ブランドの公式ウェブサイトと1ページのショップを同時にお楽しみください！",
+    "billing-method": "請求方法",
+    "per-yearly": "1年当たり",
+    "per-monthly": "月額",
+    "save": "セーブ",
+    "credit-card-information": "クレジットカード情報",
+    "bind-credit-card": "システムは、ストアの継続性を確保するためにクレジットカードをバインドします。",
+    "automatic-renewal": "支払いが完了すると、システムは請求方法に従って自動的に更新され、アカウント設定でいつでも変更できます。",
+    "try-to-swipe": "クレジットカードの有効性を確認するために、バインド時にNT $ 1を更新しようとしますが、実際の請求は行われません。 バインド後、システムは請求方法に従ってサブスクリプションを自動的に更新し、アカウント設定でいつでも変更できます。",
+    "purchase-item": "アイテムを購入する",
+    "yearly-payment-plan": "年間支払いプラン",
+    "monthly-payment-plan": "月払いプラン",
+    "expiry": "有効期限",
+    "billing-for-first-yearly": "初年度の請求",
+    "billing-for-first-monthly": "最初の月の請求",
+    "discount": "割引試用期間料金",
+    "total": "合計",
+    "total-for-first-yearly": "初年度の合計",
+    "total-for-first-monthly": "最初の月の合計",
+    "USD-exchange-rate-today": "今日の米ドル為替レート",
+    "congratulation-no-payment": "おめでとう！ 割引後の支払いなしの対象",
+    "confirm-payment": "支払いを確認する",
+    "verify-credit-card": "クレジットカードを確認する",
+    "agree-confirm-payment": "[OK]をクリックして支払うと、meepShopに同意したことになります",
+    "agree-verify-credit-card": "クレジットカードを確認すると、meepShopの",
+    "service": "利用規約",
+    "and": "対",
+    "privacy": "個人情報保護方針",
+    "success": {
+      "title": "支払いに成功しました！",
+      "verify-title": "クレジットカードの確認に成功しました！",
+      "description": "meepShopをご利用いただきありがとうございます。管理ページにリダイレクトされます..."
+    },
+    "warning": {
+      "title": "お支払い金額を更新しました",
+      "description": "00:00または12:00に支払うと、残りの日に基づいてシステムが再請求します。"
+    },
+    "fail": {
+      "title": "支払いに失敗しました。もう一度お試しください",
+      "description": "別の支払いを行う前に、クレジットカード情報とクレジットカード制限を確認してください。 支払いが再度失敗した場合。 発行銀行にお問い合わせください。"
+    },
+    "verify-fail": {
+      "title": "検証に失敗しました",
+      "description": "後でもう一度試すか、発行銀行に連絡してください"
+    },
+    "ok": "決定する"
+  }
+}

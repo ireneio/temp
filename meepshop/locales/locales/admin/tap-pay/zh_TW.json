@@ -1,0 +1,15 @@
+{
+  "number": "卡號",
+  "expiry": "到期日",
+  "ccv": "安全碼",
+  "please-enter-ccv": "請輸入卡片背後三碼",
+  "check-number": "請檢查卡號是否正確",
+  "check-expiry": "請檢查到期日是否正確",
+  "check-ccv": "請檢查安全碼是否正確",
+  "card-type-unknown": {
+    "title": "很抱歉，暫不支援您輸入的信用卡",
+    "description": "目前僅支援使用 VISA、MasterCard、JCB、Union Pay、AMEX ，請您更換卡片後重新付款。"
+  },
+  "loading": "正在確認您的付款資訊，切勿關閉頁面",
+  "ok": "確定"
+}

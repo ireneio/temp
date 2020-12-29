@@ -1,0 +1,15 @@
+{
+  "number": "card number",
+  "expiry": "expiry date",
+  "ccv": "Security code",
+  "please-enter-ccv": "Please enter the three codes on the back of the card",
+  "check-number": "Please check if the card number is correct",
+  "check-expiry": "Please check if the expiration date is correct",
+  "check-ccv": "Please check if the security code is correct",
+  "card-type-unknown": {
+    "title": "Sorry, the credit card you entered is not supported yet",
+    "description": "Currently, only VISA, MasterCard, JCB, Union Pay, AMEX are supported. Please change your card and pay again."
+  },
+  "loading": "Confirming your payment information, please do not close the page",
+  "ok": "determine"
+}
