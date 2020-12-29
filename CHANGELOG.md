@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## 0.73.0 (2020-12-29)
+
+#### :rocket: New Feature
+
+- Other
+  - [#1155](https://github.com/meepshop/meep-lerna/pull/1155) 【功能】月租 - 後台試用期倒數提醒 - 前端 ([@happycat6323](https://github.com/happycat6323))
+  - [#1170](https://github.com/meepshop/meep-lerna/pull/1170) 【功能】月租 - 後台選擇方案 - 前端 ([@happycat6323](https://github.com/happycat6323))
+  - [#1348](https://github.com/meepshop/meep-lerna/pull/1348) (@store/utils) Add withHook HOC ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#913](https://github.com/meepshop/meep-lerna/pull/913) 【功能】後台 - 暫停營運 - 前端 ([@happycat6323](https://github.com/happycat6323))
+- `mock-types`
+  - [#1323](https://github.com/meepshop/meep-lerna/pull/1323) 後台 - 訂單歷程頁面 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1346](https://github.com/meepshop/meep-lerna/pull/1346) (babel.config) Add @meepshop/thumbnail/gqls in module-resolver ([@happycat6323](https://github.com/happycat6323))
+- [#1345](https://github.com/meepshop/meep-lerna/pull/1345) (@meepshop/locales) Update locales ([@happycat6323](https://github.com/happycat6323))
+- [#1343](https://github.com/meepshop/meep-lerna/pull/1343) (@admin/order-history-records) Fix version error ([@HsuTing](https://github.com/HsuTing))
+- [#1342](https://github.com/meepshop/meep-lerna/pull/1342) (@meepshop/locales) Delete .rej ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- [#1358](https://github.com/meepshop/meep-lerna/pull/1358) (@meepshop/hooks): add useVariantsTree ([@piovischioh](https://github.com/piovischioh))
+- [#1341](https://github.com/meepshop/meep-lerna/pull/1341) (@meepshop/\*) Move fragments to gqls ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.72.0 (2020-12-21)
 
 #### :rocket: New Feature
