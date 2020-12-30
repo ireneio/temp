@@ -1,0 +1,59 @@
+.root {
+  :global(.ant-table-row) {
+    height: 65px;
+
+    &:hover {
+      :global(.admin-redirects__useColumns__actions) {
+        display: block;
+      }
+    }
+  }
+}
+
+.top {
+  display: flex;
+  width: 100%;
+  margin: 0 auto 16px;
+  background-color: 'red';
+
+  > div {
+    flex: 1;
+    padding-right: 10px;
+    margin-bottom: 0;
+    align-self: center;
+  }
+
+  > button {
+    flex: none;
+    width: auto;
+    font-size: 16px;
+    align-self: center;
+    height: 40px;
+
+    &.editIcon {
+      display: none;
+    }
+  }
+
+  h1 {
+    font-size: 24px;
+    letter-spacing: 1.2px;
+    font-weight: normal;
+  }
+}
+
+.total {
+  margin-left: 4px;
+  color: #ccc;
+  align-self: center;
+}
+
+.row {
+  td {
+    padding: 16px 12px;
+
+    &:nth-child(1) {
+      color: rgba(0, 0, 0, 0.65);
+    }
+  }
+}

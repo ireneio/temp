@@ -42,6 +42,12 @@ export default mock.add<storeMockFragment>('Store', [
       mobileLogoImage: {
         __typename: 'Image',
       },
+      routingRules: [].constructor
+        .apply({}, new Array(2))
+        .map((_: undefined, index: number) => ({
+          __typename: 'RoutingRule',
+          id: `routing-${index}`,
+        })),
     } as storeMockFragment),
   () =>
     ({
@@ -75,5 +81,6 @@ export default mock.add<storeMockFragment>('Store', [
       },
       logoImage: null,
       mobileLogoImage: null,
+      routingRules: [],
     } as storeMockFragment),
 ]);

@@ -19,11 +19,19 @@ export interface PropsType<T>
 
 // definition
 export default React.memo(
-  ({ optional, pagination, children, locale, ...props }: PropsType<{}>) => (
+  ({
+    optional,
+    pagination,
+    children,
+    locale,
+    dataSource,
+    ...props
+  }: PropsType<{}>) => (
     <div className={styles.root}>
       {children}
       <Table
         {...props}
+        dataSource={dataSource}
         className={styles.table}
         locale={{
           ...locale,
@@ -36,7 +44,9 @@ export default React.memo(
         }}
         pagination={false}
       />
-      <Pagination {...pagination} optional={optional} />
+      {(dataSource || []).length === 0 ? null : (
+        <Pagination {...pagination} optional={optional} />
+      )}
     </div>
   ),
 );

@@ -26,5 +26,9 @@ export const storeMockFragment = gql`
         zh_TW
       }
     }
+
+    routingRules {
+      id
+    }
   }
 `;

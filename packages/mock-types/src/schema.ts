@@ -68,6 +68,7 @@ import priceObjectType from './schemas/priceObjectType';
 import productsObjectType from './schemas/productsObjectType';
 import RecipientAddress from './schemas/RecipientAddress';
 import RecipientObjectType from './schemas/RecipientObjectType';
+import RoutingRule from './schemas/RoutingRule';
 import SettingObjectType from './schemas/SettingObjectType';
 import SmartConversionModule from './schemas/SmartConversionModule';
 import Store from './schemas/Store';
@@ -156,6 +157,7 @@ export default addMocksToSchema({
     productsObjectType,
     RecipientAddress,
     RecipientObjectType,
+    RoutingRule,
     SettingObjectType,
     SmartConversionModule,
     Store,
