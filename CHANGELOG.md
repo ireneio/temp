@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.73.1 (2021-01-04)
+
+#### :rocket: New Feature
+
+- `mock-types`
+  - [#1286](https://github.com/meepshop/meep-lerna/pull/1286) skip - 【功能】網址管理工具 - 網址重新導向 - 前端 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- [#1347](https://github.com/meepshop/meep-lerna/pull/1347) T2076 - N312 【優化】收件人範本 - 點選編輯時，應跳至頁面下方的輸入文字區塊 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.73.0 (2020-12-29)
 
 #### :rocket: New Feature
