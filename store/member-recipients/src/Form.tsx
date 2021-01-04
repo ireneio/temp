@@ -78,7 +78,7 @@ export default Form.create<PropsType>({
       );
 
       return (
-        <Form className={styles.root} onSubmit={submit}>
+        <Form id="recipient" className={styles.root} onSubmit={submit}>
           <style
             dangerouslySetInnerHTML={{
               __html: `
@@ -98,6 +98,7 @@ export default Form.create<PropsType>({
                   message: t('form.required'),
                 },
               ],
+              validateTrigger: 'onBlur',
             })(<Input size="large" placeholder={t('name')} />)}
           </FormItem>
 
@@ -116,6 +117,7 @@ export default Form.create<PropsType>({
                   }),
                 },
               ],
+              validateTrigger: 'onBlur',
             })(<Input size="large" placeholder={t('mobile')} maxLength={20} />)}
           </FormItem>
 
@@ -126,6 +128,7 @@ export default Form.create<PropsType>({
                   validator: validateAddressCascader(t('form.required')),
                 },
               ],
+              validateTrigger: 'onBlur',
             })(
               <AddressCascader
                 className={styles.addressCascader}
@@ -144,6 +147,7 @@ export default Form.create<PropsType>({
                   message: t('form.required'),
                 },
               ],
+              validateTrigger: 'onBlur',
             })(<Input size="large" placeholder={t('street')} />)}
           </FormItem>
 

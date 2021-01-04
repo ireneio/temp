@@ -8,6 +8,7 @@ import React, { useMemo } from 'react';
 import { Divider } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
+import Link from '@meepshop/link';
 
 import useDeleteRecipientAddress from './useDeleteRecipientAddress';
 import styles from '../styles/useColumns.less';
@@ -69,12 +70,14 @@ export default (
         dataIndex: 'id',
         render: (value: useColumnsRecipientAddressFragmentType['id']) => (
           <>
-            <span
-              className={styles.action}
-              onClick={() => setSelectedId(value)}
-            >
-              {t('edit')}
-            </span>
+            <Link href="#recipient">
+              <span
+                className={styles.action}
+                onClick={() => setSelectedId(value)}
+              >
+                {t('edit')}
+              </span>
+            </Link>
 
             <Divider type="vertical" />
 
@@ -129,12 +132,14 @@ export default (
 
             <span />
             <div>
-              <span
-                className={styles.action}
-                onClick={() => setSelectedId(value)}
-              >
-                {t('edit')}
-              </span>
+              <Link href="#recipient">
+                <span
+                  className={styles.action}
+                  onClick={() => setSelectedId(value)}
+                >
+                  {t('edit')}
+                </span>
+              </Link>
 
               <Divider type="vertical" />
 
