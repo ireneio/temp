@@ -6,14 +6,12 @@ import { iframeModuleMockFragment } from './gqls/__generated__/iframeModuleMockF
 
 // definition
 export default mock.add<iframeModuleMockFragment>('IframeModule', [
-  () =>
-    ({
-      __typename: 'IframeModule',
-      htmlCode: '<div>iframe_with_normal_tag</div>',
-    } as iframeModuleMockFragment),
-  () =>
-    ({
-      __typename: 'IframeModule',
-      htmlCode: '<div style="color: red;">iframe_with_normal_tag</div>',
-    } as iframeModuleMockFragment),
+  () => ({
+    __typename: 'IframeModule',
+    htmlCode: '<div>iframe_with_normal_tag</div>',
+  }),
+  () => ({
+    __typename: 'IframeModule',
+    htmlCode: '<div style="color: red;">iframe_with_normal_tag</div>',
+  }),
 ]);

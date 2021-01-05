@@ -4,90 +4,95 @@ import uuid from 'uuid/v4';
 import mock from '../mock';
 
 // graphql typescript
+import { ProductsSort } from '../../../../__generated__/meepshop';
 import { linkMockFragment } from './gqls/__generated__/linkMockFragment';
 
 // definition
 export default mock.add<linkMockFragment>('Link', [
-  () =>
-    ({
-      __typename: 'EmailLink',
-      email: 'bella@meepshop.com',
-      newWindow: true,
-      tracking: {
-        name: 'tracking',
-        category: null,
-      },
-    } as linkMockFragment),
-  () =>
-    ({
-      __typename: 'PhoneLink',
-      phone: '0912123123',
-      newWindow: true,
-      tracking: {
-        name: 'tracking',
-        category: null,
-      },
-    } as linkMockFragment),
-  () =>
-    ({
-      __typename: 'GroupLink',
-      group: {
-        id: 'group',
-      },
-      newWindow: true,
-      tracking: {
-        name: 'tracking',
-        category: null,
-      },
-    } as linkMockFragment),
-  () =>
-    ({
-      __typename: 'PageLink',
-      page: {
-        id: 'page',
-      },
-      newWindow: true,
-      tracking: {
-        name: 'tracking',
-        category: null,
-      },
-    } as linkMockFragment),
-  () =>
-    ({
-      __typename: 'ProductLink',
-      product: {
-        id: uuid(),
-      },
-      newWindow: true,
-      tracking: {
-        name: 'tracking',
-        category: null,
-      },
-    } as linkMockFragment),
-  () =>
-    ({
-      __typename: 'ProductsLink',
-      sort: 'LATEST',
-      searchKey: 'searchKey',
-      retailPriceRange: {
-        min: 0,
-        max: 100,
-      },
-      tags: ['tag1', 'tag2'],
-      newWindow: true,
-      tracking: {
-        name: 'tracking',
-        category: null,
-      },
-    } as linkMockFragment),
-  () =>
-    ({
-      __typename: 'CustomLink',
-      href: 'https://bellatest.stage.meepcloud.com',
-      newWindow: true,
-      tracking: {
-        name: 'tracking',
-        category: null,
-      },
-    } as linkMockFragment),
+  () => ({
+    __typename: 'EmailLink',
+    email: 'bella@meepshop.com',
+    newWindow: true,
+    tracking: {
+      __typename: 'Tracking',
+      name: 'tracking',
+      category: null,
+    },
+  }),
+  () => ({
+    __typename: 'PhoneLink',
+    phone: '0912123123',
+    newWindow: true,
+    tracking: {
+      __typename: 'Tracking',
+      name: 'tracking',
+      category: null,
+    },
+  }),
+  () => ({
+    __typename: 'GroupLink',
+    group: {
+      __typename: 'GroupModule',
+      id: 'group',
+    },
+    newWindow: true,
+    tracking: {
+      __typename: 'Tracking',
+      name: 'tracking',
+      category: null,
+    },
+  }),
+  () => ({
+    __typename: 'PageLink',
+    page: {
+      __typename: 'Page',
+      id: 'page',
+    },
+    newWindow: true,
+    tracking: {
+      __typename: 'Tracking',
+      name: 'tracking',
+      category: null,
+    },
+  }),
+  () => ({
+    __typename: 'ProductLink',
+    product: {
+      __typename: 'Product',
+      id: uuid(),
+    },
+    newWindow: true,
+    tracking: {
+      __typename: 'Tracking',
+      name: 'tracking',
+      category: null,
+    },
+  }),
+  () => ({
+    __typename: 'ProductsLink',
+    sort: 'LATEST' as ProductsSort,
+    searchKey: 'searchKey',
+    retailPriceRange: {
+      __typename: 'MinMaxFloatRange',
+      min: 0,
+      max: 100,
+    },
+    tags: ['tag1', 'tag2'],
+    newWindow: true,
+    tracking: {
+      __typename: 'Tracking',
+      name: 'tracking',
+      category: null,
+    },
+  }),
+  () => ({
+    __typename: 'CustomLink',
+    href: 'https://bellatest.stage.meepcloud.com',
+    newWindow: true,
+    tracking: {
+      __typename: 'Tracking',
+      name: 'tracking',
+      category: null,
+    },
+  }),
 ]);

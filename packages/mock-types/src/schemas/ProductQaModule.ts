@@ -6,16 +6,14 @@ import { productQaModuleMockFragment } from './gqls/__generated__/productQaModul
 
 // definition
 export default mock.add<productQaModuleMockFragment>('ProductQaModule', [
-  () =>
-    ({
-      __typename: 'ProductQaModule',
-      width: '100',
-      product: null,
-    } as productQaModuleMockFragment),
-  () =>
-    ({
-      __typename: 'ProductQaModule',
-      width: '100',
-      product: {},
-    } as productQaModuleMockFragment),
+  () => ({
+    __typename: 'ProductQaModule',
+    width: '100',
+    product: null,
+  }),
+  () => ({
+    __typename: 'ProductQaModule',
+    width: '100',
+    product: {},
+  }),
 ]);

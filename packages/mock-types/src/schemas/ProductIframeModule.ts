@@ -8,15 +8,13 @@ import { productIframeModuleMockFragment } from './gqls/__generated__/productIfr
 export default mock.add<productIframeModuleMockFragment>(
   'ProductIframeModule',
   [
-    () =>
-      ({
-        __typename: 'ProductIframeModule',
-        product: null,
-      } as productIframeModuleMockFragment),
-    () =>
-      ({
-        __typename: 'ProductIframeModule',
-        product: {},
-      } as productIframeModuleMockFragment),
+    () => ({
+      __typename: 'ProductIframeModule',
+      product: null,
+    }),
+    () => ({
+      __typename: 'ProductIframeModule',
+      product: {},
+    }),
   ],
 );

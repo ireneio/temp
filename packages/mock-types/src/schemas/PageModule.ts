@@ -27,10 +27,7 @@ import VideoModule from './VideoModule';
 import ViewTrackingModule from './ViewTrackingModule';
 
 // graphql typescript
-import {
-  pageModuleMockFragment,
-  pageModuleMockFragment_LayoutModule as pageModuleMockFragmentLayoutModule,
-} from './gqls/__generated__/pageModuleMockFragment';
+import { pageModuleMockFragment } from './gqls/__generated__/pageModuleMockFragment';
 
 // definition
 const getPageModules = (
@@ -46,22 +43,22 @@ const getPageModules = (
     __typename: 'LayoutModule',
     id: 'layout-id-1',
     parentId: 'group-id',
-  } as pageModuleMockFragmentLayoutModule,
+  },
   {
     __typename: 'LayoutModule',
     id: 'layout-id-2',
     parentId: 'group-id',
-  } as pageModuleMockFragmentLayoutModule,
+  },
   {
     __typename: 'LayoutModule',
     id: 'layout-id-3',
     parentId: 'layout-id-2',
-  } as pageModuleMockFragmentLayoutModule,
+  },
   {
     __typename: 'LayoutModule',
     id: 'layout-id-4',
     parentId: 'layout-id-2',
-  } as pageModuleMockFragmentLayoutModule,
+  },
   {
     ...getModule({}, {}),
     id: uuid(),

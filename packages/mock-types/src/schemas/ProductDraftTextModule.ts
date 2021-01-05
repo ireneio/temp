@@ -8,15 +8,13 @@ import { productDraftTextModuleMockFragment } from './gqls/__generated__/product
 export default mock.add<productDraftTextModuleMockFragment>(
   'ProductDraftTextModule',
   [
-    () =>
-      ({
-        __typename: 'ProductDraftTextModule',
-        product: null,
-      } as productDraftTextModuleMockFragment),
-    () =>
-      ({
-        __typename: 'ProductDraftTextModule',
-        product: {},
-      } as productDraftTextModuleMockFragment),
+    () => ({
+      __typename: 'ProductDraftTextModule',
+      product: null,
+    }),
+    () => ({
+      __typename: 'ProductDraftTextModule',
+      product: {},
+    }),
   ],
 );

@@ -6,14 +6,12 @@ import { landingPageModuleMockFragment } from './gqls/__generated__/landingPageM
 
 // definition
 export default mock.add<landingPageModuleMockFragment>('LandingPageModule', [
-  () =>
-    ({
-      __typename: 'LandingPageModule',
-      width: 100,
-    } as landingPageModuleMockFragment),
-  () =>
-    ({
-      __typename: 'LandingPageModule',
-      width: 50,
-    } as landingPageModuleMockFragment),
+  () => ({
+    __typename: 'LandingPageModule',
+    width: 100,
+  }),
+  () => ({
+    __typename: 'LandingPageModule',
+    width: 50,
+  }),
 ]);
