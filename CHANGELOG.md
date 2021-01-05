@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.73.2 (2021-01-05)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1350](https://github.com/meepshop/meep-lerna/pull/1350) 【優化】訂單/商品問答 - 網址超連結功能 ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- [#1360](https://github.com/meepshop/meep-lerna/pull/1360) 【BUG 沒有帶正確的 token 給 meepshop-api ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.73.1 (2021-01-04)
 
 #### :rocket: New Feature
