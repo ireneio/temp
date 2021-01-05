@@ -55,7 +55,7 @@ export const modifyAntdStyle = (colors, width) => ({
   },
 });
 
-export const replay = colors => ({
+export const reply = colors => ({
   width: '100%',
   color: colors[4],
   cursor: 'pointer',
@@ -64,7 +64,7 @@ export const replay = colors => ({
   fontWeight: 500,
 });
 
-export const replayContent = colors => ({
+export const replyContent = colors => ({
   width: '100%',
   margin: '10px 0px 0px',
   padding: '12px 18px',

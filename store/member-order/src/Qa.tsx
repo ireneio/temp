@@ -12,6 +12,8 @@ import transformColor from 'color';
 import { Button, notification } from 'antd';
 import moment from 'moment';
 
+import withHook from '@store/utils/lib/withHook';
+import { useAutoLinker } from '@meepshop/hooks';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import { Colors as ColorsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
@@ -28,7 +30,10 @@ import {
 import { qaOrderFragment } from './__generated__/qaOrderFragment';
 
 // typescript definition
-interface PropsType extends I18nPropsType {
+interface HooksProps {
+  autoLinker: ReturnType<typeof useAutoLinker>;
+}
+interface PropsType extends I18nPropsType, HooksProps {
   messages: getMemberOrderViewerOrder['messages'];
   orderId: getMemberOrderViewerOrder['id'];
   colors: ColorsType;
@@ -134,6 +139,7 @@ class Qa extends React.PureComponent<PropsType, StateType> {
       colors,
       messages,
       orderId,
+      autoLinker,
     } = this.props;
     const { newMessage } = this.state;
     // SHOULD_NOT_BE_NULL
@@ -169,7 +175,9 @@ class Qa extends React.PureComponent<PropsType, StateType> {
                     .toString(),
                 }}
               >
-                <pre>{text}</pre>
+                <pre
+                  dangerouslySetInnerHTML={{ __html: autoLinker.link(text) }}
+                />
 
                 <p
                   style={{
@@ -237,5 +245,9 @@ class Qa extends React.PureComponent<PropsType, StateType> {
 }
 
 export default withTranslation('member-order')(
-  withContext(ColorsContext, colors => ({ colors }))(Qa),
+  withContext(ColorsContext, colors => ({ colors }))(
+    withHook<PropsType, HooksProps>(() => ({
+      autoLinker: useAutoLinker(),
+    }))(Qa),
+  ),
 );

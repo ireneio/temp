@@ -5,14 +5,16 @@ import { Subtract } from '@meepshop/utils/lib/types';
 import React from 'react';
 
 // definition
-export default <P extends object, NP = P>(hook: (props: P) => NP) => (
-  Component: React.ComponentType<NP> & {
+export default <Props extends {}, HooksProps>(
+  hook: (props: Props) => HooksProps,
+) => (
+  Component: React.ComponentType<Props & HooksProps> & {
     getInitialProps?: () => void;
   },
 ) => {
-  const WithHook: React.FunctionComponent<Subtract<P, NP>> & {
+  const WithHook: React.FunctionComponent<Subtract<Props, HooksProps>> & {
     getInitialProps?: () => void;
-  } = (props: P) => <Component {...props} {...hook(props)} />;
+  } = (props: Props) => <Component {...props} {...hook(props)} />;
 
   WithHook.getInitialProps = Component.getInitialProps;
 

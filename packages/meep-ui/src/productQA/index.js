@@ -5,6 +5,8 @@ import { Form, List, Input, Button, message } from 'antd';
 import { isFullWidth, isEmail } from 'validator';
 import moment from 'moment';
 
+import withHook from '@store/utils/lib/withHook';
+import { useAutoLinker } from '@meepshop/hooks';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import { ViewReplyIcon } from '@meepshop/icons';
 
@@ -23,6 +25,7 @@ const { TextArea } = Input;
 @enhancer
 @Form.create()
 @withTranslation('product-qa')
+@withHook(() => ({ autoLinker: useAutoLinker() }))
 @radium
 export default class PrdoductQA extends React.PureComponent {
   static propTypes = {
@@ -112,6 +115,7 @@ export default class PrdoductQA extends React.PureComponent {
       form: { getFieldDecorator, resetFields },
       contentWidth,
       productId,
+      autoLinker,
     } = this.props;
     const { QAList, showQAIndex } = this.state;
 
@@ -127,7 +131,7 @@ export default class PrdoductQA extends React.PureComponent {
           itemLayout="horizontal"
           dataSource={QAList}
           renderItem={({ qa, userEmail }, index) => {
-            const [{ question, createdAt }, ...replay] = qa;
+            const [{ question, createdAt }, ...reply] = qa;
             const [email] = (userEmail || '').split(/@/);
 
             return (
@@ -137,7 +141,7 @@ export default class PrdoductQA extends React.PureComponent {
                   qa.length === 1 ? null : (
                     <>
                       <div
-                        style={styles.replay(colors)}
+                        style={styles.reply(colors)}
                         onClick={() =>
                           this.setState({
                             showQAIndex: showQAIndex.includes(index)
@@ -154,15 +158,19 @@ export default class PrdoductQA extends React.PureComponent {
 
                       {!showQAIndex.includes(index)
                         ? null
-                        : replay.map(
+                        : reply.map(
                             ({
-                              question: replayQuestion,
-                              createdAt: replayCreatedAt,
+                              question: replyQuestion,
+                              createdAt: replyCreatedAt,
                             }) => (
-                              <div style={styles.replayContent(colors)}>
-                                <pre>{replayQuestion}</pre>
+                              <div style={styles.replyContent(colors)}>
+                                <pre
+                                  dangerouslySetInnerHTML={{
+                                    __html: autoLinker.link(replyQuestion),
+                                  }}
+                                />
                                 <div>
-                                  {`(${moment(replayCreatedAt).format(
+                                  {`(${moment(replyCreatedAt).format(
                                     'YYYY/MM/DD HH:mm:ss',
                                   )})`}
                                 </div>
@@ -177,7 +185,15 @@ export default class PrdoductQA extends React.PureComponent {
                   moment(createdAt).format('YYYY/MM/DD HH:mm:ss'),
                 ]}
               >
-                <ListItemMeta description={<pre>{question}</pre>} />
+                <ListItemMeta
+                  description={
+                    <pre
+                      dangerouslySetInnerHTML={{
+                        __html: autoLinker.link(question),
+                      }}
+                    />
+                  }
+                />
               </ListItem>
             );
           }}

@@ -9,6 +9,7 @@ import transformColor from 'color';
 import { isFullWidth, isEmail } from 'validator';
 import { Form, Input, Button } from 'antd';
 
+import { useAutoLinker } from '@meepshop/hooks';
 import { ViewReplyIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { Colors as ColorsContext } from '@meepshop/context';
@@ -44,6 +45,7 @@ export default Form.create<FormComponentProps>()(
         filter(useCreateProductQAFragment, product),
         resetFields,
       );
+      const autoLinker = useAutoLinker();
 
       return (
         <div className={styles.root} style={{ width: `${width}%` }}>
@@ -61,7 +63,11 @@ export default Form.create<FormComponentProps>()(
               return (
                 <div key={id} style={{ borderColor: colors[3] }}>
                   <div className={styles.question}>
-                    <pre>{question}</pre>
+                    <pre
+                      dangerouslySetInnerHTML={{
+                        __html: autoLinker.link(question || ''),
+                      }}
+                    />
 
                     <div>
                       <div>
@@ -108,7 +114,11 @@ export default Form.create<FormComponentProps>()(
                               )}`,
                             }}
                           >
-                            <pre>{replyQa.question}</pre>
+                            <pre
+                              dangerouslySetInnerHTML={{
+                                __html: autoLinker.link(replyQa.question || ''),
+                              }}
+                            />
                             <div>
                               {`(${moment(replyQa.createdAt).format(
                                 'YYYY/MM/DD HH:mm:ss',

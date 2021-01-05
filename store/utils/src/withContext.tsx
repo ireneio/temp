@@ -8,17 +8,17 @@ import React, { useContext } from 'react';
 import { emptyFunction } from 'fbjs';
 
 // definition
-export default <C extends object, NP = C>(
+export default <C, ContextProps = C>(
   hocContext: Context<C>,
-  mapProps: (argu: C) => NP = emptyFunction.thatReturnsArgument,
-) => <P extends object>(
-  Component: React.ComponentType<P> & {
+  mapProps: (argu: C) => ContextProps = emptyFunction.thatReturnsArgument,
+) => <Props extends {}>(
+  Component: React.ComponentType<Props & ContextProps> & {
     getInitialProps?: () => void;
   },
 ) => {
-  const WithContext: React.FunctionComponent<Subtract<P, NP>> & {
+  const WithContext: React.FunctionComponent<Subtract<Props, ContextProps>> & {
     getInitialProps?: () => void;
-  } = (props: P) => (
+  } = (props: Props) => (
     <Component {...props} {...mapProps(useContext(hocContext))} />
   );
 
