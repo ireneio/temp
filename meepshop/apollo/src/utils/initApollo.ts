@@ -116,9 +116,9 @@ const create = (
           : {
               'x-meepshop-domain': ctx.ctx.req.headers.host,
               'x-meepshop-authorization-token':
-                ctx.ctx.req.cookies['x-meepshop-authorization-token'],
+                ctx.ctx.req.cookies['x-meepshop-authorization-token'] || '',
               'merchant-applicant-verify-token':
-                ctx.ctx.req.cookies['merchant-applicant-verify-token'],
+                ctx.ctx.req.cookies['merchant-applicant-verify-token'] || '',
             },
       }),
     ]),
