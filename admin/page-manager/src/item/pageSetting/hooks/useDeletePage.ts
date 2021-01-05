@@ -98,31 +98,35 @@ export default (
           query,
           data: {
             ...storeData,
-            viewer: {
-              ...storeData.viewer,
-              store: {
-                ...storeData.viewer?.store,
-                homePages: {
-                  ...storeData.viewer?.store?.homePages,
-                  edges: storeData.viewer?.store?.homePages.edges.filter(
-                    ({ node }) => node.id !== id,
-                  ),
+            viewer: !storeData.viewer
+              ? null
+              : {
+                  ...storeData.viewer,
+                  store: !storeData.viewer.store
+                    ? null
+                    : {
+                        ...storeData.viewer.store,
+                        homePages: {
+                          ...storeData.viewer.store.homePages,
+                          edges: storeData.viewer.store.homePages.edges.filter(
+                            ({ node }) => node.id !== id,
+                          ),
+                        },
+                        customPages: {
+                          ...storeData.viewer.store.customPages,
+                          edges: storeData.viewer.store.customPages.edges.filter(
+                            ({ node }) => node.id !== id,
+                          ),
+                        },
+                        productTemplatePage: {
+                          ...storeData.viewer.store.productTemplatePage,
+                          edges: storeData.viewer.store.productTemplatePage.edges.filter(
+                            ({ node }) => node.id !== id,
+                          ),
+                        },
+                      },
                 },
-                customPages: {
-                  ...storeData.viewer?.store?.customPages,
-                  edges: storeData.viewer?.store?.customPages.edges.filter(
-                    ({ node }) => node.id !== id,
-                  ),
-                },
-                productTemplatePage: {
-                  ...storeData.viewer?.store?.productTemplatePage,
-                  edges: storeData.viewer?.store?.productTemplatePage.edges.filter(
-                    ({ node }) => node.id !== id,
-                  ),
-                },
-              },
-            },
-          } as useDeletePageReadCache,
+          },
           variables,
         });
         message.success(t('delete-page.success'));

@@ -13,6 +13,7 @@ import {
 import {
   useUploadImagesReadCache as useUploadImagesReadCacheType,
   useUploadImagesReadCacheVariables as useUploadImagesReadCacheVariablesType,
+  useUploadImagesReadCache_viewer_files_edges_node as useUploadImagesReadCacheViewerFilesEdgesNode,
 } from '../gqls/__generated__/useUploadImagesReadCache';
 
 import { getImagesVariables as getImagesVariablesType } from '../gqls/__generated__/getImages';
@@ -49,28 +50,31 @@ export default (
           variables,
           data: {
             ...cacheData,
-            viewer: {
-              ...cacheData.viewer,
-              __typename: 'User',
-              files: {
-                ...cacheData.viewer?.files,
-                __typename: 'FileConnection',
-                edges: [
-                  ...createFileList.map(node => ({
-                    __typename: 'FileEdge',
-                    node,
-                  })),
-                  ...(cacheData.viewer?.files?.edges || []).filter(
-                    ({ node }) => {
-                      return Object.values(node.scaledSrc).every(
-                        src => !/^data:/.test(src),
-                      );
-                    },
-                  ),
-                ],
-              },
-            },
-          } as useUploadImagesReadCacheType,
+            viewer: !cacheData.viewer
+              ? null
+              : {
+                  ...cacheData.viewer,
+                  files: !cacheData.viewer.files
+                    ? null
+                    : {
+                        ...cacheData.viewer.files,
+                        edges: [
+                          ...createFileList.map((
+                            // SHOULD_NOT_BE_NULL
+                            node: useUploadImagesReadCacheViewerFilesEdgesNode,
+                          ) => ({
+                            __typename: 'FileEdge' as const,
+                            node,
+                          })),
+                          ...cacheData.viewer.files.edges.filter(({ node }) =>
+                            Object.values(node.scaledSrc).every(
+                              src => !/^data:/.test(src),
+                            ),
+                          ),
+                        ],
+                      },
+                },
+          },
         });
       },
     },

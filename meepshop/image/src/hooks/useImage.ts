@@ -4,20 +4,10 @@ import { useRef, useState, useEffect, useCallback, useMemo } from 'react';
 import { placeholderImage } from '@meepshop/images';
 
 // graphql typescript
-import { useImageImageFragment } from '../gqls/__generated__/useImageImageFragment';
-
-// typescript definition
-type WidthType =
-  | 'w60'
-  | 'w120'
-  | 'w240'
-  | 'w480'
-  | 'w720'
-  | 'w960'
-  | 'w1200'
-  | 'w1440'
-  | 'w1680'
-  | 'w1920';
+import {
+  useImageImageFragment,
+  useImageImageFragment_scaledSrc as useImageImageFragmentScaledSrc,
+} from '../gqls/__generated__/useImageImageFragment';
 
 // definition
 const IMAGE_SUITABLE_WIDTHS = [120, 240, 480, 720, 960, 1200, 1440, 1680, 1920];
@@ -50,7 +40,8 @@ export default (
             suitableWidth > currentWidth * window.devicePixelRatio,
         ) || IMAGE_SUITABLE_WIDTHS.slice(-1)[0]}`;
 
-    const imageScaledSrc = image?.scaledSrc?.[imageWidth as WidthType];
+    const imageScaledSrc =
+      image?.scaledSrc?.[imageWidth as keyof useImageImageFragmentScaledSrc];
 
     return {
       imageURL: imageScaledSrc || placeholderImage,

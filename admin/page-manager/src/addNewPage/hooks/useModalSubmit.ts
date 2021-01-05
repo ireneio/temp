@@ -9,9 +9,9 @@ import { useRouter } from '@meepshop/link';
 import useCreatePage from './useCreatePage';
 
 // graphql typescript
+import { PageTypeEnum } from '../../../../../__generated__/admin';
 import { getPagesVariables } from '../../__generated__/getPages';
 import { usePagesPageFragment as usePagesPageFragmentType } from '../../hooks/__generated__/usePagesPageFragment';
-import { createPageVariables } from './__generated__/createPage';
 
 // definition
 export default (
@@ -30,15 +30,14 @@ export default (
         createPage({
           variables: {
             input: {
-              // TODO: remove, use PageTypeEnum
-              type: pageType?.toUpperCase() || 'HOME',
+              type: (pageType?.toUpperCase() || 'HOME') as PageTypeEnum,
               title,
               path,
               tabTitle,
               templateType,
               useBottom,
             },
-          } as createPageVariables,
+          },
         }).then(({ data }) => {
           if (data?.createPage?.status !== 'OK') return;
 

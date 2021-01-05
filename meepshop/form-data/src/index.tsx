@@ -11,6 +11,7 @@ import {
 } from './gqls/__generated__/formDataFragment';
 
 // graphql typescript
+import { LogTypeEnum } from '../../../__generated__/meepshop';
 import {
   logFormData as logFormDataType,
   logFormDataVariables,
@@ -44,13 +45,13 @@ export const FormDataProvider = React.memo(({ children }) => {
       mutation({
         variables: {
           input: {
-            type: 'CREATE_ORDER_FORM_DATA',
+            type: 'CREATE_ORDER_FORM_DATA' as LogTypeEnum,
             data: {
               formData,
               effectiveConnectionType,
             },
           },
-        } as logFormDataVariables,
+        },
       });
   }, [formData, effectiveConnectionType, mutation]);
 

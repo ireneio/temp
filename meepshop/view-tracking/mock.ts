@@ -1,15 +1,13 @@
 // import
 import uuid from 'uuid/v4';
 
-// graphql typescript
-import { viewTrackingFragment } from './src/gqls/__generated__/viewTrackingFragment';
-
 // definition
 export default {
+  __typename: 'ViewTrackingModule' as const,
   id: uuid(),
-  __typename: 'ViewTrackingModule',
   tracking: {
-    __typename: 'Tracking',
+    __typename: 'Tracking' as const,
     name: 'tracking',
+    category: null,
   },
-} as viewTrackingFragment;
+};

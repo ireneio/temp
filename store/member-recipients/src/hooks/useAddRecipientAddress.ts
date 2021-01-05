@@ -22,7 +22,10 @@ import {
   addRecipientAddressVariables,
 } from '../gqls/__generated__/addRecipientAddress';
 import { useAddRecipientAddressGetCache as useAddRecipientAddressGetCacheType } from '../gqls/__generated__/useAddRecipientAddressGetCache';
-import { useAddRecipientAddressFragment as useAddRecipientAddressFragmentType } from '../gqls/__generated__/useAddRecipientAddressFragment';
+import {
+  useAddRecipientAddressFragment as useAddRecipientAddressFragmentType,
+  useAddRecipientAddressFragment_shippableRecipientAddresses as useAddRecipientAddressFragmentShippableRecipientAddresses,
+} from '../gqls/__generated__/useAddRecipientAddressFragment';
 
 // definition
 export default (): MutationFunction<
@@ -77,31 +80,35 @@ export default (): MutationFunction<
           data: {
             __typename: 'User',
             id: viewerId,
-            shippableRecipientAddresses: [
-              ...shippableRecipientAddresses,
-              {
-                ...newRecipientAddress,
-                __typename: 'RecipientAddress',
-                id: recipientAddressId,
-                country: {
-                  __typename: 'Country',
-                  id: countryId,
-                },
-                city: !cityId
-                  ? null
-                  : {
-                      __typename: 'City',
-                      id: cityId,
-                    },
-                area: !areaId
-                  ? null
-                  : {
-                      __typename: 'Area',
-                      id: areaId,
-                    },
-              },
-            ],
-          } as useAddRecipientAddressFragmentType,
+            shippableRecipientAddresses: !recipientAddressId
+              ? shippableRecipientAddresses
+              : [
+                  ...shippableRecipientAddresses,
+                  {
+                    ...(newRecipientAddress as useAddRecipientAddressFragmentShippableRecipientAddresses),
+                    __typename: 'RecipientAddress',
+                    id: recipientAddressId,
+                    country: !countryId
+                      ? null
+                      : {
+                          __typename: 'Country',
+                          id: countryId,
+                        },
+                    city: !cityId
+                      ? null
+                      : {
+                          __typename: 'City',
+                          id: cityId,
+                        },
+                    area: !areaId
+                      ? null
+                      : {
+                          __typename: 'Area',
+                          id: areaId,
+                        },
+                  },
+                ],
+          },
         });
 
         notification.success({ message: t('mutation.success') });

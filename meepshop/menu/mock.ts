@@ -5,7 +5,11 @@ import { languages } from '@meepshop/utils/lib/i18n';
 import { dashboardCost_scaledSrc as dashboardCost } from '@meepshop/images';
 
 // graphql typescript
-import { AlignmentEnum, ImagePositionEnum } from '../../__generated__/meepshop';
+import {
+  AlignmentEnum,
+  ViewerTypeEnum,
+  ImagePositionEnum,
+} from '../../__generated__/meepshop';
 import { menuMenuModuleFragment } from './src/gqls/__generated__/menuMenuModuleFragment';
 
 // definition
@@ -17,11 +21,11 @@ const ACTIONS: number[] = [].constructor
 const IMAGES = ['ONLY', 'UPON', 'LEFT', 'RIGHT', null, 'BELOW'].map(
   (imagePosition: ImagePositionEnum) => ({
     image: {
-      __typename: 'Image' as 'Image',
+      __typename: 'Image' as const,
       id: uuid(),
       scaledSrc: {
         ...dashboardCost,
-        __typename: 'ScaledURLs' as 'ScaledURLs',
+        __typename: 'ScaledURLs' as const,
       },
     },
     imagePosition,
@@ -33,11 +37,11 @@ const generateMenuPages = (
 ): NonNullable<menuMenuModuleFragment['menu']>['pages'] =>
   ACTIONS.map((action: number) => ({
     ...(IMAGES[action] || { image: null, imagePosition: null }),
-    __typename: 'MenuPageObjectType' as 'MenuPageObjectType',
+    __typename: 'MenuPageObjectType' as const,
     id: uuid(),
     action,
     title: {
-      __typename: 'Locale' as 'Locale',
+      __typename: 'Locale' as const,
       /* eslint-disable @typescript-eslint/camelcase */
       zh_TW: `action ${action}`,
       en_US: `action ${action}`,
@@ -50,7 +54,7 @@ const generateMenuPages = (
       /* eslint-enable @typescript-eslint/camelcase */
     },
     params: {
-      __typename: 'MenuPageParamsObjectType',
+      __typename: 'MenuPageParamsObjectType' as const,
       displayMemberGroup: true,
       pageId: 'home',
       path: '',
@@ -67,15 +71,15 @@ const generateMenuPages = (
   }));
 
 export default {
-  __typename: 'MenuModule',
+  __typename: 'MenuModule' as const,
   id: uuid(),
   menu: {
-    __typename: 'Menu',
+    __typename: 'Menu' as const,
     id: uuid(),
     logoAlignment: 'LEFT' as AlignmentEnum,
     pages: generateMenuPages(generateMenuPages(generateMenuPages())),
     design: {
-      __typename: 'MenuDesignObjectType',
+      __typename: 'MenuDesignObjectType' as const,
       iconSize: 24,
       fontSize: 14,
       showSearchbar: true,
@@ -91,30 +95,30 @@ export default {
     },
   },
   cart: {
-    __typename: 'OrderList',
+    __typename: 'OrderList' as const,
     data: [
       {
-        __typename: 'Order',
+        __typename: 'Order' as const,
         id: uuid(),
         categories: [
           {
-            __typename: 'groupProductsObjectType',
+            __typename: 'groupProductsObjectType' as const,
             id: uuid(),
             products: [
               {
-                __typename: 'productsObjectType',
+                __typename: 'productsObjectType' as const,
                 id: uuid(),
                 type: 'gift',
                 quantity: 10,
               },
               {
-                __typename: 'productsObjectType',
+                __typename: 'productsObjectType' as const,
                 id: uuid(),
                 type: 'product',
                 quantity: 3,
               },
               {
-                __typename: 'productsObjectType',
+                __typename: 'productsObjectType' as const,
                 id: uuid(),
                 type: 'product',
                 quantity: 5,
@@ -126,19 +130,19 @@ export default {
     ],
   },
   viewer: {
-    __typename: 'User',
+    __typename: 'User' as const,
     id: uuid(),
-    role: 'SHOPPER',
+    role: 'SHOPPER' as ViewerTypeEnum,
     memberGroup: {
-      __typename: 'MemberGroup',
+      __typename: 'MemberGroup' as const,
       id: uuid(),
       name: 'group name',
     },
     store: {
-      __typename: 'Store',
+      __typename: 'Store' as const,
       id: uuid(),
       setting: {
-        __typename: 'SettingObjectType',
+        __typename: 'SettingObjectType' as const,
         locale: languages,
         currency: [
           'TWD',
@@ -156,4 +160,4 @@ export default {
       mobileLogoImage: null,
     },
   },
-} as menuMenuModuleFragment;
+};

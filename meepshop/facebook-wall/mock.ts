@@ -2,17 +2,17 @@
 import uuid from 'uuid/v4';
 
 // graphql typescript
-import { facebookWallFragment } from './src/gqls/__generated__/facebookWallFragment';
+import { JustifyContent } from '../../__generated__/meepshop';
 
 // definition
 export default {
-  __typename: 'FacebookWallModule',
+  __typename: 'FacebookWallModule' as const,
   id: uuid(),
   href: 'https://www.facebook.com/meepshop',
-  justifyContent: 'CENTER',
+  justifyContent: 'CENTER' as JustifyContent,
   showPosts: true,
   showFacepile: true,
   smallHeader: true,
   hideCover: true,
   hideCta: true,
-} as facebookWallFragment;
+};

@@ -73,7 +73,7 @@ export default (
                       ...value,
                     },
                   },
-                } as useUpdateNotificationSettingFragmentType,
+                },
               });
 
               resetFields();

@@ -124,60 +124,72 @@ export default (
             query,
             data: {
               ...storeData,
-              viewer: {
-                ...storeData.viewer,
-                store: {
-                  ...storeData.viewer?.store,
-                  homePages: {
-                    ...storeData.viewer?.store?.homePages,
-                    edges:
-                      pageType !== 'home'
-                        ? storeData.viewer?.store?.homePages.edges || []
-                        : [
-                            {
-                              __typename: 'PageEdge',
-                              node: { __typename: 'Page', id: input.pageId },
-                            },
-                            ...(
-                              storeData.viewer?.store?.homePages.edges || []
-                            ).filter(({ node: { id } }) => id !== input.pageId),
-                          ],
+              viewer: !storeData.viewer
+                ? null
+                : {
+                    ...storeData.viewer,
+                    store: !storeData.viewer.store
+                      ? null
+                      : {
+                          ...storeData.viewer.store,
+                          homePages: {
+                            ...storeData.viewer.store.homePages,
+                            edges:
+                              pageType !== 'home'
+                                ? storeData.viewer.store.homePages.edges
+                                : [
+                                    {
+                                      __typename: 'PageEdge',
+                                      node: {
+                                        __typename: 'Page',
+                                        id: input.pageId,
+                                      },
+                                    },
+                                    ...storeData.viewer.store.homePages.edges.filter(
+                                      ({ node: { id } }) => id !== input.pageId,
+                                    ),
+                                  ],
+                          },
+                          customPages: {
+                            ...storeData.viewer.store.customPages,
+                            edges:
+                              pageType !== 'custom'
+                                ? storeData.viewer.store.customPages.edges
+                                : [
+                                    {
+                                      __typename: 'PageEdge',
+                                      node: {
+                                        __typename: 'Page',
+                                        id: input.pageId,
+                                      },
+                                    },
+                                    ...storeData.viewer.store.customPages.edges.filter(
+                                      ({ node: { id } }) => id !== input.pageId,
+                                    ),
+                                  ],
+                          },
+                          productTemplatePage: {
+                            ...storeData.viewer.store.productTemplatePage,
+                            edges:
+                              pageType !== 'template'
+                                ? storeData.viewer.store.productTemplatePage
+                                    .edges
+                                : [
+                                    {
+                                      __typename: 'PageEdge',
+                                      node: {
+                                        __typename: 'Page',
+                                        id: input.pageId,
+                                      },
+                                    },
+                                    ...storeData.viewer.store.productTemplatePage.edges.filter(
+                                      ({ node: { id } }) => id !== input.pageId,
+                                    ),
+                                  ],
+                          },
+                        },
                   },
-                  customPages: {
-                    ...storeData.viewer?.store?.customPages,
-                    edges:
-                      pageType !== 'custom'
-                        ? storeData.viewer?.store?.customPages.edges || []
-                        : [
-                            {
-                              __typename: 'PageEdge',
-                              node: { __typename: 'Page', id: input.pageId },
-                            },
-                            ...(
-                              storeData.viewer?.store?.customPages.edges || []
-                            ).filter(({ node: { id } }) => id !== input.pageId),
-                          ],
-                  },
-                  productTemplatePage: {
-                    ...storeData.viewer?.store?.productTemplatePage,
-                    edges:
-                      pageType !== 'template'
-                        ? storeData.viewer?.store?.productTemplatePage.edges ||
-                          []
-                        : [
-                            {
-                              __typename: 'PageEdge',
-                              node: { __typename: 'Page', id: input.pageId },
-                            },
-                            ...(
-                              storeData.viewer?.store?.productTemplatePage
-                                .edges || []
-                            ).filter(({ node: { id } }) => id !== input.pageId),
-                          ],
-                  },
-                },
-              },
-            } as useRenamePageWithSEOCache,
+            },
             variables,
           });
           cache.writeFragment<useRenamePageWithSEOFragment>({
@@ -203,7 +215,7 @@ export default (
               title: {
                 __typename: 'Locale',
                 // eslint-disable-next-line @typescript-eslint/camelcase
-                zh_TW: input.title,
+                zh_TW: input.title || null,
               },
               path: input.path || null,
               addressTitle: input.tabTitle || null,
@@ -215,7 +227,7 @@ export default (
                     description: input.seo.description || null,
                     image: input.seo.image || null,
                   },
-            } as useRenamePageWithSEOFragment,
+            },
           });
           message.success(t('rename-page-with-seo.success'));
         },

@@ -12,6 +12,7 @@ import { message } from 'antd';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
+import { PageTypeEnum } from '../../../../../../__generated__/admin';
 import { getPages_viewer_store_homePages_edges as getPagesViewerStoreHomePagesEdges } from '../../../__generated__/getPages';
 import { editFragment as editFragmentType } from '../__generated__/editFragment';
 import {
@@ -136,41 +137,44 @@ export default (
           query,
           data: {
             ...storeData,
-            viewer: {
-              ...storeData.viewer,
-              store: {
-                ...storeData.viewer?.store,
-                homePages: {
-                  ...storeData.viewer?.store?.homePages,
-                  edges: [
-                    ...(duplicatedPage.node.pageType !== 'home'
-                      ? []
-                      : [duplicatedPage]),
-                    ...(storeData.viewer?.store?.homePages.edges || []),
-                  ],
+            viewer: !storeData.viewer
+              ? null
+              : {
+                  ...storeData.viewer,
+                  store: !storeData.viewer.store
+                    ? null
+                    : {
+                        ...storeData.viewer.store,
+                        homePages: {
+                          ...storeData.viewer.store.homePages,
+                          edges: [
+                            ...(duplicatedPage.node.pageType !== 'home'
+                              ? []
+                              : [duplicatedPage]),
+                            ...storeData.viewer.store.homePages.edges,
+                          ],
+                        },
+                        customPages: {
+                          ...storeData.viewer.store.customPages,
+                          edges: [
+                            ...(duplicatedPage.node.pageType !== 'custom'
+                              ? []
+                              : [duplicatedPage]),
+                            ...storeData.viewer.store.customPages.edges,
+                          ],
+                        },
+                        productTemplatePage: {
+                          ...storeData.viewer.store.productTemplatePage,
+                          edges: [
+                            ...(duplicatedPage.node.pageType !== 'template'
+                              ? []
+                              : [duplicatedPage]),
+                            ...storeData.viewer.store.productTemplatePage.edges,
+                          ],
+                        },
+                      },
                 },
-                customPages: {
-                  ...storeData.viewer?.store?.customPages,
-                  edges: [
-                    ...(duplicatedPage.node.pageType !== 'custom'
-                      ? []
-                      : [duplicatedPage]),
-                    ...(storeData.viewer?.store?.customPages.edges || []),
-                  ],
-                },
-                productTemplatePage: {
-                  ...storeData.viewer?.store?.productTemplatePage,
-                  edges: [
-                    ...(duplicatedPage.node.pageType !== 'template'
-                      ? []
-                      : [duplicatedPage]),
-                    ...(storeData.viewer?.store?.productTemplatePage.edges ||
-                      []),
-                  ],
-                },
-              },
-            },
-          } as useDuplicatePageReadCache,
+          },
           variables,
         });
         message.success(t('duplicate-page.success'));
@@ -183,10 +187,9 @@ export default (
       variables: {
         input: {
           pageId: id,
-          // TODO: remove, use PageTypeEnum
-          pageType: pageType?.toUpperCase() || 'HOME',
+          pageType: (pageType?.toUpperCase() || 'HOME') as PageTypeEnum,
         },
-      } as duplicatePageVariables,
+      },
     }).then(({ data }: { data: duplicatePageType }) => {
       const duplicatedPage: getPagesViewerStoreHomePagesEdges | null =
         data.duplicatePage?.duplicatedPage;

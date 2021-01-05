@@ -61,7 +61,7 @@ class TotalSheet extends React.PureComponent<PropsType> {
     if (!activityInfo) return [];
 
     const filterActivityInfo = activityInfo.filter(
-      _ => _,
+      Boolean,
     ) as totalSheetFragmentActivityInfo[];
 
     return filterActivityInfo.reduce(

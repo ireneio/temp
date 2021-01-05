@@ -2,15 +2,15 @@
 import uuid from 'uuid/v4';
 
 // graphql typescript
-import { dividerFragment } from './src/gqls/__generated__/dividerFragment';
+import { JustifyContent } from '../../__generated__/meepshop';
 
 // definition
 export default {
-  __typename: 'DividerModule',
+  __typename: 'DividerModule' as const,
   id: uuid(),
   width: 100,
   height: 50,
-  justifyContent: 'CENTER',
+  justifyContent: 'CENTER' as JustifyContent,
   borderRadius: 0,
   background: '#cccccc',
-} as dividerFragment;
+};

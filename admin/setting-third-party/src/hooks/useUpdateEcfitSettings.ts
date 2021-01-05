@@ -11,7 +11,10 @@ import {
   updateEcfitSettings as updateEcfitSettingsType,
   updateEcfitSettingsVariables,
 } from './__generated__/updateEcfitSettings';
-import { useUpdateEcfitSettingsWriteCache } from './__generated__/useUpdateEcfitSettingsWriteCache';
+import {
+  useUpdateEcfitSettingsWriteCache,
+  useUpdateEcfitSettingsWriteCache_storeEcfitSettings as useUpdateEcfitSettingsWriteCacheStoreEcfitSettings,
+} from './__generated__/useUpdateEcfitSettingsWriteCache';
 
 // definition
 const mutation = gql`
@@ -64,9 +67,9 @@ export default (): ((
                 __typename: 'Store',
                 id: storeId,
                 storeEcfitSettings: {
-                  ...input,
+                  ...(input as useUpdateEcfitSettingsWriteCacheStoreEcfitSettings),
                   __typename: 'StoreEcfitSettings',
-                } as useUpdateEcfitSettingsWriteCache['storeEcfitSettings'],
+                },
               },
             });
           },

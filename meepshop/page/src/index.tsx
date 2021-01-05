@@ -28,7 +28,7 @@ export default React.memo(
   ({ viewer, cart, page, Menu: LayoutMenu = Menu, children }: PropsType) => {
     const container = page?.container || 'DefaultContainer';
     const defaultMenuProps = {
-      __typename: 'MenuModule' as 'MenuModule',
+      __typename: 'MenuModule' as const,
       viewer,
       cart,
     };

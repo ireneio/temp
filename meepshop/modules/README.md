@@ -34,7 +34,7 @@ export default {
   __typename: /** module type */,
   id: uuid(),
   ... other fields
-} as /** module fragment */;
+};
 ```
 
 4. Add `module` to `@meepshop/modules`:

@@ -21,6 +21,7 @@ import withContext from '@store/utils/lib/withContext';
 import styles from './styles/qa.less';
 
 // graphql typescript
+import { MessageBearer } from '../../../__generated__/store';
 import { qaOrderMessageFragment as qaOrderMessageFragmentType } from './__generated__/qaOrderMessageFragment';
 import { getMemberOrder_viewer_order as getMemberOrderViewerOrder } from './__generated__/getMemberOrder';
 import {
@@ -111,16 +112,17 @@ class Qa extends React.PureComponent<PropsType, StateType> {
       ...fragment,
       data: {
         __typename: 'Order',
+        id: fragment.id,
         messages: [
           ...order.messages,
           {
-            text: newMessage,
-            bearer: 'CUSTOMER',
-            createdAt: moment().format(),
             __typename: 'OrderMessage',
+            text: newMessage,
+            bearer: 'CUSTOMER' as MessageBearer,
+            createdAt: moment().format(),
           },
         ],
-      } as qaOrderFragment,
+      },
     });
 
     this.setState({ newMessage: '' }, () =>
@@ -144,7 +146,7 @@ class Qa extends React.PureComponent<PropsType, StateType> {
     const { newMessage } = this.state;
     // SHOULD_NOT_BE_NULL
     const filteredMessages = messages.filter(
-      message => message,
+      Boolean,
     ) as qaOrderMessageFragmentType[];
 
     return (

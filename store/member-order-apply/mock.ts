@@ -1,4 +1,4 @@
 export default {
   orderId: 'order-id',
-  type: 'exchange' as 'exchange' | 'refund',
+  type: 'exchange' as const,
 };

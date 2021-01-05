@@ -19,6 +19,7 @@ import useSelectedPage from './hooks/useSelectedPage';
 import styles from './styles/index.less';
 
 // graphql typescript
+import { PageTypeEnum } from '../../../__generated__/admin';
 import { getPages, getPagesVariables } from './__generated__/getPages';
 
 // graphql import
@@ -62,11 +63,11 @@ const PageManager: NextPage<PropsType> = React.memo(
       getPagesVariables
     >(query, {
       variables: {
-        homePagesFilter: { type: 'HOME' },
-        customPagesFilter: { type: 'CUSTOM' },
-        productTemplatePageFilter: { type: 'TEMPLATE' },
+        homePagesFilter: { type: 'HOME' as PageTypeEnum },
+        customPagesFilter: { type: 'CUSTOM' as PageTypeEnum },
+        productTemplatePageFilter: { type: 'TEMPLATE' as PageTypeEnum },
       },
-    } as { variables: getPagesVariables });
+    });
     const pages = usePages(data || null, variables);
     const {
       selectedPage,

@@ -62,13 +62,15 @@ export default (): MutationFunction<
           id,
           fragment: useUpdateRecipientAddressFragment,
           data: {
-            ...newRecipientAddress,
+            ...(newRecipientAddress as useUpdateRecipientAddressFragmentType),
             __typename: 'RecipientAddress',
             id,
-            country: {
-              __typename: 'Country',
-              id: countryId,
-            },
+            country: !countryId
+              ? null
+              : {
+                  __typename: 'Country',
+                  id: countryId,
+                },
             city: !cityId
               ? null
               : {
@@ -81,7 +83,7 @@ export default (): MutationFunction<
                   __typename: 'Area',
                   id: areaId,
                 },
-          } as useUpdateRecipientAddressFragmentType,
+          },
         });
 
         notification.success({ message: t('mutation.success') });

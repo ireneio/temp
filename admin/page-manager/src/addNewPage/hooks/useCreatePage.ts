@@ -127,35 +127,44 @@ export default (
           query,
           data: {
             ...storeData,
-            viewer: {
-              ...storeData.viewer,
-              store: {
-                ...storeData.viewer?.store,
-                homePages: {
-                  ...storeData.viewer?.store?.homePages,
-                  edges: [
-                    ...(newPage.node.pageType !== 'home' ? [] : [newPage]),
-                    ...(storeData.viewer?.store?.homePages.edges || []),
-                  ],
+            viewer: !storeData.viewer
+              ? null
+              : {
+                  ...storeData.viewer,
+                  store: !storeData.viewer.store
+                    ? null
+                    : {
+                        ...storeData.viewer.store,
+                        homePages: {
+                          ...storeData.viewer.store.homePages,
+                          edges: [
+                            ...(newPage.node.pageType !== 'home'
+                              ? []
+                              : [newPage]),
+                            ...storeData.viewer.store.homePages.edges,
+                          ],
+                        },
+                        customPages: {
+                          ...storeData.viewer.store.customPages,
+                          edges: [
+                            ...(newPage.node.pageType !== 'custom'
+                              ? []
+                              : [newPage]),
+                            ...storeData.viewer.store.customPages.edges,
+                          ],
+                        },
+                        productTemplatePage: {
+                          ...storeData.viewer.store.productTemplatePage,
+                          edges: [
+                            ...(newPage.node.pageType !== 'template'
+                              ? []
+                              : [newPage]),
+                            ...storeData.viewer.store.productTemplatePage.edges,
+                          ],
+                        },
+                      },
                 },
-                customPages: {
-                  ...storeData.viewer?.store?.customPages,
-                  edges: [
-                    ...(newPage.node.pageType !== 'custom' ? [] : [newPage]),
-                    ...(storeData.viewer?.store?.customPages.edges || []),
-                  ],
-                },
-                productTemplatePage: {
-                  ...storeData.viewer?.store?.productTemplatePage,
-                  edges: [
-                    ...(newPage.node.pageType !== 'template' ? [] : [newPage]),
-                    ...(storeData.viewer?.store?.productTemplatePage.edges ||
-                      []),
-                  ],
-                },
-              },
-            },
-          } as useCreatePageReadCache,
+          },
           variables,
         });
       },

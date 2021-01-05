@@ -7,8 +7,8 @@ import { useCallback } from 'react';
 import useRenamePageWithSEO from './useRenamePageWithSEO';
 
 // graphql typescript
+import { PageTypeEnum } from '../../../../../../__generated__/admin';
 import { editFragment as editFragmentType } from '../__generated__/editFragment';
-import { renamePageWithSEOVariables } from './__generated__/renamePageWithSEO';
 import { useRenamePageWithSEOCacheVariables } from './__generated__/useRenamePageWithSEOCache';
 
 // definition
@@ -31,8 +31,7 @@ export default (
           renamePageWithSEO({
             pageId: id,
             title,
-            // TODO: remove, use PageTypeEnum
-            type: pageType?.toUpperCase() || 'HOME',
+            type: (pageType?.toUpperCase() || 'HOME') as PageTypeEnum,
             ...(pageType !== 'custom'
               ? {}
               : {
@@ -50,7 +49,7 @@ export default (
                     image,
                   },
                 }),
-          } as renamePageWithSEOVariables['input']).then(() => onClose());
+          }).then(() => onClose());
         },
       );
     },

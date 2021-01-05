@@ -2,22 +2,31 @@
 import uuid from 'uuid/v4';
 
 // graphql typescript
-import { productCarouselFragment } from './src/gqls/__generated__/productCarouselFragment';
+import { ProductCarouselModuleType } from '../../__generated__/meepshop';
 
 // definition
 export default {
-  __typename: 'ProductCarouselModule',
+  __typename: 'ProductCarouselModule' as const,
   id: uuid(),
-  productCarouselType: 'BOTTOM',
+  productCarouselType: 'BOTTOM' as ProductCarouselModuleType,
   autoPlay: false,
   product: {
-    __typename: 'Product',
+    __typename: 'Product' as const,
     id: uuid(),
     title: {
-      __typename: 'Locale',
-      zh_TW: 'title', // eslint-disable-line @typescript-eslint/camelcase
+      __typename: 'Locale' as const,
+      /* eslint-disable @typescript-eslint/camelcase */
+      zh_TW: 'title',
+      en_US: null,
+      ja_JP: null,
+      vi_VN: null,
+      fr_FR: null,
+      es_ES: null,
+      th_TH: null,
+      id_ID: null,
+      /* eslint-enable @typescript-eslint/camelcase */
     },
     coverImage: null,
     galleries: null,
   },
-} as productCarouselFragment;
+};

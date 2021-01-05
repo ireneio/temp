@@ -39,4 +39,4 @@ export default React.memo(props => (
   <Icon {...props} component={Component} />
 ));`,
   ],
-] as [string, string][];
+];

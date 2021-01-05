@@ -108,7 +108,7 @@ export const resolvers = {
       const applications = orderCache?.getOrderApplyList?.data;
       const order = orderCache?.viewer?.order;
       const getOrderApplyList = {
-        __typename: 'OrderApplyList' as 'OrderApplyList',
+        __typename: 'OrderApplyList' as const,
         data: [...(createOrderApplyList || []), ...(applications || [])],
       };
 

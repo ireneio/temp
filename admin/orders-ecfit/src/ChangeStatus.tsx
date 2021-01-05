@@ -199,6 +199,7 @@ class ChangeTypes extends React.PureComponent<PropsType> {
       });
   };
 
+  // FIXME: Should remove, apollo-client would auto update
   private updateOrderStatus = (
     cache: DataProxy,
     { data: { updateOrder: newOrder } }: { data: updateOrder },
@@ -231,20 +232,18 @@ class ChangeTypes extends React.PureComponent<PropsType> {
     cache.writeFragment<changeStatusOrderFragment>({
       ...fragment,
       data: {
-        ...order,
         __typename: 'Order',
-        status: newOrder?.status,
+        id: fragment.id,
+        status: newOrder.status,
         shipmentInfo: {
-          ...order?.shipmentInfo,
-          ...newOrder?.shipmentInfo,
           __typename: 'shipmentInfoType',
+          status: newOrder.shipmentInfo?.status || null,
         },
         paymentInfo: {
-          ...order?.paymentInfo,
-          ...newOrder?.paymentInfo,
           __typename: 'paymentInfoType',
+          status: newOrder.paymentInfo?.status || null,
         },
-      } as changeStatusOrderFragment,
+      },
     });
   };
 

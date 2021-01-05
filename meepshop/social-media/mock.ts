@@ -2,17 +2,20 @@
 import uuid from 'uuid/v4';
 
 // graphql typescript
-import { socialMediaFragment } from './src/gqls/__generated__/socialMediaFragment';
+import {
+  SocialMediaModuleType,
+  JustifyContent,
+} from '../../__generated__/meepshop';
 
 // definition
 export default {
-  __typename: 'SocialMediaModule',
+  __typename: 'SocialMediaModule' as const,
   id: uuid(),
-  socialMediaType: 'ORIGIN',
-  justifyContent: 'FLEX_START',
+  socialMediaType: 'ORIGIN' as SocialMediaModuleType,
+  justifyContent: 'FLEX_START' as JustifyContent,
   color: '#cccccc',
   showFacebook: true,
   showLine: true,
   showWechat: true,
   showTwitter: true,
-} as socialMediaFragment;
+};

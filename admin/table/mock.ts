@@ -1,6 +1,3 @@
-// typescript import
-import { PropsType } from './src';
-
 // import
 import { emptyFunction } from 'fbjs';
 
@@ -17,4 +14,4 @@ export default {
   columns: [],
   dataSource: [],
   locale: { emptyText: '無重新導向資料' },
-} as PropsType<{}>;
+};

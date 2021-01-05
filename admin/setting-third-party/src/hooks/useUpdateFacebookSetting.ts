@@ -11,7 +11,10 @@ import {
   updateFacebookSetting as updateFacebookSettingType,
   updateFacebookSettingVariables,
 } from './__generated__/updateFacebookSetting';
-import { useUpdateFacebookSettingWriteCache } from './__generated__/useUpdateFacebookSettingWriteCache';
+import {
+  useUpdateFacebookSettingWriteCache,
+  useUpdateFacebookSettingWriteCache_facebookSetting as useUpdateFacebookSettingWriteCacheFacebookSetting,
+} from './__generated__/useUpdateFacebookSettingWriteCache';
 
 // definition
 const mutation = gql`
@@ -63,9 +66,9 @@ export default (): ((
                 __typename: 'Store',
                 id: storeId,
                 facebookSetting: {
-                  ...input,
+                  ...(input as useUpdateFacebookSettingWriteCacheFacebookSetting),
                   __typename: 'FacebookSetting',
-                } as useUpdateFacebookSettingWriteCache['facebookSetting'],
+                },
               },
             });
           },

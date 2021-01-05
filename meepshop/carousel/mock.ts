@@ -1,12 +1,9 @@
 // import
 import uuid from 'uuid/v4';
 
-// graphql typescript
-import { carouselFragment } from './src/gqls/__generated__/carouselFragment';
-
 // definition
 export default {
-  __typename: 'CarouselModule',
+  __typename: 'CarouselModule' as const,
   id: uuid(),
   images: [],
   width: 50,
@@ -15,4 +12,4 @@ export default {
   showIndicator: true,
   showController: true,
   alt: 'carouselModule',
-} as carouselFragment;
+};

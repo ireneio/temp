@@ -70,17 +70,22 @@ export default (
     (coupon?: string) =>
       mutation({
         variables: {
-          paymentId,
-          shipmentId,
-          coupon: coupon || getFieldValue('coupon'),
-          products: [
+          computeOrderList: [
             {
-              productId,
-              variantId: variantId?.slice(-1)[0],
-              quantity: isQuantityRequired ? quantity ?? 1 : 1,
+              computeType: 'cart',
+              payments: [{ paymentId }],
+              shipments: [{ shipmentId }],
+              coupon: coupon || getFieldValue('coupon'),
+              products: [
+                {
+                  productId,
+                  variantId: variantId?.slice(-1)[0],
+                  quantity: isQuantityRequired ? quantity ?? 1 : 1,
+                },
+              ],
             },
           ],
-        } as computeOrderInLandingPageVariables,
+        },
       }),
     [
       mutation,

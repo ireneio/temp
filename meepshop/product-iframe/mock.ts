@@ -1,20 +1,17 @@
 // import
 import uuid from 'uuid/v4';
 
-// graphql typescript
-import { productIframeFragment } from './src/gqls/__generated__/productIframeFragment';
-
 // definition
 export default {
-  __typename: 'ProductIframeModule',
+  __typename: 'ProductIframeModule' as const,
   id: uuid(),
   product: {
-    __typename: 'Product',
+    __typename: 'Product' as const,
     id: uuid(),
     info: {
-      __typename: 'Locale',
+      __typename: 'Locale' as const,
       // eslint-disable-next-line @typescript-eslint/camelcase
       zh_TW: '<div style="color: blue;">iframe_with_normal_tag</div>',
     },
   },
-} as productIframeFragment;
+};

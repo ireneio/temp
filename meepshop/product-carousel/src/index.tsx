@@ -30,7 +30,7 @@ export default React.memo(
     const images = useImages(filter(useImagesFragment, product));
     const setSlickActive = useSlickActive(bottomRef);
     const defaultCarouselProps = {
-      __typename: 'CarouselModule' as 'CarouselModule',
+      __typename: 'CarouselModule' as const,
       id,
       images,
       autoPlay,
