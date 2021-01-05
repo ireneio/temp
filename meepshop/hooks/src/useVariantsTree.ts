@@ -23,10 +23,13 @@ export interface DefaultLeaf {
 }
 
 // definition
-export default <Leaf extends DefaultLeaf>({
-  specs,
-  variants,
-}: useVariantsTreeFragment): HierarchyNode<Leaf>[] | undefined => {
+export default <Leaf extends DefaultLeaf>(
+  product: useVariantsTreeFragment | null,
+): HierarchyNode<Leaf>[] | undefined => {
+  if (!product) return undefined;
+
+  const { specs, variants } = product;
+
   if (!specs || !specs.length || !variants) return undefined;
 
   return useMemo(() => {
@@ -63,6 +66,7 @@ export default <Leaf extends DefaultLeaf>({
           const { keys, ...category } = specsStore[specId];
           const key = `${preKey}-${title?.zh_TW}`;
           const parent = preKey;
+
           preKey = key;
 
           if (keys.includes(key) && index !== variantSpecs.length - 1)
