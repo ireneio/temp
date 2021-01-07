@@ -13,8 +13,8 @@ spec:
         - name: next-admin
           resources:
             limits:
-              cpu: 200m
-              memory: 600Mi
+              cpu: 1000m
+              memory: 700Mi
             requests:
-              cpu: 100m
-              memory: 300Mi
+              cpu: 600m
+              memory: 400Mi
