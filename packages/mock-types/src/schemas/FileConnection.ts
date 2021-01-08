@@ -42,8 +42,6 @@ export default mock.add<
           node: {
             __typename: 'File',
             id: uuid(),
-            image:
-              'res.cloudinary.com/cakeresume/image/upload/s--Lv6sj1oB--/c_pad,fl_png8,h_200,w_200/v1509504375/pcotebjqdkfuqbvbt4xc.png',
           },
         }));
 

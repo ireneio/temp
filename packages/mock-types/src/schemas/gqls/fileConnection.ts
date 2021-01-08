@@ -7,7 +7,6 @@ export const fileConnectionMockFragment = gql`
     edges {
       node {
         id
-        image
       }
     }
     pageInfo {
