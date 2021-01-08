@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.74.0 (2021-01-08)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1349](https://github.com/meepshop/meep-lerna/pull/1349) T7249 - LandingPage SignUp api - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `mock-types`
+  - [#1371](https://github.com/meepshop/meep-lerna/pull/1371) (@meepshop/mock-types) Fix types ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.73.3 (2021-01-07)
 
 #### :bug: Bug Fix
