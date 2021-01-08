@@ -7,14 +7,14 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
 import {
-  landingPageUserFragment_store_setting as landingPageUserFragmentStoreSetting,
-  landingPageUserFragment_store_setting_invoice_paper as landingPageUserFragmentStoreSettingInvoicePaper,
-  landingPageUserFragment_store_setting_invoice_electronic as landingPageUserFragmentStoreSettingInvoiceElectronic,
-} from '../../gqls/__generated__/landingPageUserFragment';
+  useInvoiceOptionsFragment,
+  useInvoiceOptionsFragment_invoice_paper as useInvoiceOptionsFragmentInvoicePaper,
+  useInvoiceOptionsFragment_invoice_electronic as useInvoiceOptionsFragmentInvoiceElectronic,
+} from '../gqls/__generated__/useInvoiceOptionsFragment';
 
 // definition
 export default (
-  storeSetting?: landingPageUserFragmentStoreSetting | null,
+  storeSetting?: useInvoiceOptionsFragment | null,
 ): CascaderOptionType[] => {
   const { t } = useTranslation('landing-page');
 
@@ -25,17 +25,14 @@ export default (
     const paperKeys = Object.keys(invoice?.paper || {}).filter(
       key =>
         invoice?.paper?.[
-          key as keyof Omit<
-            landingPageUserFragmentStoreSettingInvoicePaper,
-            '__typename'
-          >
+          key as keyof Omit<useInvoiceOptionsFragmentInvoicePaper, '__typename'>
         ]?.isEnabled,
     );
     const electronicKeys = Object.keys(invoice?.electronic || {}).filter(
       key =>
         invoice?.electronic?.[
           key as keyof Omit<
-            landingPageUserFragmentStoreSettingInvoiceElectronic,
+            useInvoiceOptionsFragmentInvoiceElectronic,
             '__typename' | 'type'
           >
         ]?.isEnabled,
@@ -70,7 +67,7 @@ export default (
                   mobileBarCodeCarrier: 'MOBILE_BARCODE',
                 }[
                   key as keyof Omit<
-                    landingPageUserFragmentStoreSettingInvoiceElectronic,
+                    useInvoiceOptionsFragmentInvoiceElectronic,
                     '__typename' | 'type'
                   >
                 ],

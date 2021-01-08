@@ -4,9 +4,27 @@ import gql from 'graphql-tag';
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
+import { useInvoiceOptionsFragment } from './useInvoiceOptions';
+
 // definition
-export const receiverFragment = gql`
-  fragment receiverFragment on LandingPageModule {
+export const receiverUserFragment = gql`
+  fragment receiverUserFragment on User {
+    id
+    role
+    store {
+      id
+      cname
+      setting {
+        ...useInvoiceOptionsFragment
+      }
+    }
+  }
+
+  ${useInvoiceOptionsFragment}
+`;
+
+export const receiverLandingPageModuleFragment = gql`
+  fragment receiverLandingPageModuleFragment on LandingPageModule {
     shippableCountries {
       id
       name {

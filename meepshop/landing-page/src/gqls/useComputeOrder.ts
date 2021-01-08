@@ -6,7 +6,7 @@ import { shoppingOrderFragment } from './shopping';
 import { priceFragment } from './price';
 import { usePaymentsOrderFragment } from './usePayments';
 import { useShipmentsOrderFragment } from './useShipments';
-import { useSubmitFragment } from './useSubmit';
+import { useSubmitOrderFragment } from './useSubmit';
 
 // definition
 export const computeOrderInLandingPage = gql`
@@ -18,7 +18,7 @@ export const computeOrderInLandingPage = gql`
       ...priceFragment
       ...usePaymentsOrderFragment
       ...useShipmentsOrderFragment
-      ...useSubmitFragment
+      ...useSubmitOrderFragment
     }
   }
 
@@ -26,5 +26,5 @@ export const computeOrderInLandingPage = gql`
   ${priceFragment}
   ${usePaymentsOrderFragment}
   ${useShipmentsOrderFragment}
-  ${useSubmitFragment}
+  ${useSubmitOrderFragment}
 `;

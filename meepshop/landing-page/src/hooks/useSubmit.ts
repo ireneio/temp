@@ -1,6 +1,5 @@
 // typescript import
 import { FormComponentProps } from 'antd/lib/form/Form';
-import { MutationFunction } from '@apollo/react-common';
 
 import { UseComputeOrderType } from './useComputeOrder';
 
@@ -16,17 +15,12 @@ import { useRouter } from '@meepshop/link';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 
+import useCreateOrder from './useCreateOrder';
+
 // graphql typescript
-import {
-  landingPageLandingPageModuleFragment,
-  landingPageLandingPageModuleFragment_product as landingPageLandingPageModuleFragmentProduct,
-  landingPageLandingPageModuleFragment_redirectPage as landingPageLandingPageModuleFragmentRedirectPage,
-} from '../gqls/__generated__/landingPageLandingPageModuleFragment';
-import {
-  createOrderInLandingPage as createOrderInLandingPageType,
-  createOrderInLandingPageVariables,
-} from '../gqls/__generated__/createOrderInLandingPage';
-import { useSubmitFragment } from '../gqls/__generated__/useSubmitFragment';
+import { useSubmitUserFragment } from '../gqls/__generated__/useSubmitUserFragment';
+import { useSubmitOrderFragment } from '../gqls/__generated__/useSubmitOrderFragment';
+import { useSubmitLandingPageModuleFragment } from '../gqls/__generated__/useSubmitLandingPageModuleFragment';
 import {
   InvoiceMethodEnum,
   SourcePageTypeEnum,
@@ -35,19 +29,19 @@ import {
 // graphql import
 import { useLinkFragment } from '@meepshop/hooks/lib/gqls/useLink';
 
+import { useCreateOrderFragment } from '../gqls/useCreateOrder';
+
 // graphql definition
-interface PropsType {
-  viewer: landingPageLandingPageModuleFragment['viewer'];
-  product: landingPageLandingPageModuleFragmentProduct | null;
-  redirectPage: landingPageLandingPageModuleFragmentRedirectPage | null;
+interface SubmitArguType extends useSubmitLandingPageModuleFragment {
+  viewer: useSubmitUserFragment | null;
+  order: useSubmitOrderFragment | null;
   form: FormComponentProps['form'];
-  createOrderInLandingPage: MutationFunction<
-    createOrderInLandingPageType,
-    createOrderInLandingPageVariables
-  >;
-  isCreatingOrder: boolean;
-  order: useSubmitFragment | null;
   payment: UseComputeOrderType['payment'];
+}
+
+interface SubmitReturnType {
+  loading: boolean;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 // definition
@@ -56,72 +50,75 @@ export default ({
   product,
   redirectPage,
   form,
-  createOrderInLandingPage,
-  isCreatingOrder,
   order,
   payment,
-}: PropsType): ((e: React.FormEvent<HTMLFormElement>) => void) => {
+}: SubmitArguType): SubmitReturnType => {
+  const [mutation, { loading, client }] = useCreateOrder(
+    filter(useCreateOrderFragment, viewer),
+  );
   const { t } = useTranslation('landing-page');
-  const { domain, pathname, push } = useRouter();
+  const router = useRouter();
   const adTrack = useContext(AdTrackContext);
   const setFormData = useContext(FormDataContext);
   const { href } = useLink(filter(useLinkFragment, redirectPage));
-  const { validateFields } = form;
 
-  return useCallback(
-    (e: React.FormEvent<HTMLFormElement>): void => {
-      e.preventDefault();
+  return {
+    loading,
+    onSubmit: useCallback(
+      (e: React.FormEvent<HTMLFormElement>): void => {
+        const { validateFields, resetFields } = form;
 
-      validateFields(
-        async (
-          err,
-          {
-            quantity = 1,
-            variant,
+        e.preventDefault();
+        validateFields(
+          async (
+            err,
+            {
+              quantity = 1,
+              variant,
 
-            paymentId,
-            shipmentId,
-            coupon,
+              paymentId,
+              shipmentId,
+              coupon,
 
-            userEmail,
-            userName,
-            userMobile,
+              userEmail,
+              userName,
+              userMobile,
 
-            name,
-            mobile,
-            notes,
+              name,
+              mobile,
+              notes,
 
-            // convenience-store or address
-            addressAndZipCode,
-            street,
-            CVSStoreID,
-            CVSStoreName,
-            CVSAddress,
-            cvsType,
-            cvsCode,
+              // convenience-store or address
+              addressAndZipCode,
+              street,
+              CVSStoreID,
+              CVSStoreName,
+              CVSAddress,
+              cvsType,
+              cvsCode,
 
-            // invoice
-            invoice,
-            invoiceTitle,
-            invoiceVAT,
-            invoiceAddress,
-            invoiceEInvoiceNumber,
-            invoiceDonate,
+              // invoice
+              invoice,
+              invoiceTitle,
+              invoiceVAT,
+              invoiceAddress,
+              invoiceEInvoiceNumber,
+              invoiceDonate,
 
-            // gmo payment
-            isRememberCard,
-            cardHolderName,
-            cardNumber,
-            securityCode,
-            expire,
-            installmentCode,
-          },
-        ) => {
-          if (!err) {
-            if (isCreatingOrder) return;
+              // gmo payment
+              isRememberCard,
+              cardHolderName,
+              cardNumber,
+              securityCode,
+              expire,
+              installmentCode,
+            },
+          ) => {
+            if (err || loading) return;
 
+            const { domain, asPath, push } = router;
             const [variantId] = variant.slice(-1);
-            const { data, errors } = await createOrderInLandingPage({
+            const { data, errors } = await mutation({
               variables: {
                 createOrderList: [
                   {
@@ -252,50 +249,59 @@ export default ({
                   ? '原取件門市暫停服務，請重新選擇！'
                   : errorMessage,
               });
-            } else {
-              notification.success({
-                message: t('pay-success'),
-              });
+              return;
+            }
 
-              // SHOULD_NOT_BE_NULL
-              adTrack.purchase({
-                orderNo: orderNo || '',
-                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-                // @ts-ignore
-                products: order?.categories?.[0]?.products,
-                total: order?.priceInfo?.total || 0,
-                currency: order?.priceInfo?.currency || '',
-                shipmentFee: order?.priceInfo?.shipmentFee || 0,
-                paymentFee: order?.priceInfo?.paymentFee || 0,
-              });
+            notification.success({
+              message: t('pay-success'),
+            });
 
-              if (formData) {
+            // SHOULD_NOT_BE_NULL
+            adTrack.purchase({
+              orderNo: orderNo || '',
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // @ts-ignore
+              products: order?.categories?.[0]?.products,
+              total: order?.priceInfo?.total || 0,
+              currency: order?.priceInfo?.currency || '',
+              shipmentFee: order?.priceInfo?.shipmentFee || 0,
+              paymentFee: order?.priceInfo?.paymentFee || 0,
+            });
+
+            if (formData?.url) {
+              if (!formData.url?.startsWith('line')) {
+                if (client) client.stop();
+
                 setFormData(formData);
                 return;
               }
 
-              if (pathname === href) window.scrollTo(0, 0);
-              else push(href || '/');
+              // hack for linepay in mobile devices
+              push(formData.url);
             }
-          }
-        },
-      );
-    },
-    [
-      adTrack,
-      createOrderInLandingPage,
-      domain,
-      href,
-      isCreatingOrder,
-      order,
-      pathname,
-      payment,
-      product,
-      push,
-      t,
-      viewer,
-      validateFields,
-      setFormData,
-    ],
-  );
+
+            if (asPath === href) {
+              window.scrollTo(0, 0);
+              resetFields();
+            } else push(href || '/');
+          },
+        );
+      },
+      [
+        viewer,
+        product,
+        form,
+        order,
+        payment,
+        mutation,
+        loading,
+        client,
+        t,
+        router,
+        adTrack,
+        setFormData,
+        href,
+      ],
+    ),
+  };
 };

@@ -1,0 +1,19 @@
+input LandingPageAccessTokenInput {
+  email: EmailAddress!
+}
+
+enum LandingPageAccessTokenResponseEnum {
+  OK
+  FAIL
+}
+
+type LandingPageAccessTokenResponse {
+  status: LandingPageAccessTokenResponseEnum!
+  message: String
+}
+
+extend type Mutation {
+  landingPageAccessToken(
+    input: LandingPageAccessTokenInput!
+  ): LandingPageAccessTokenResponse!
+}

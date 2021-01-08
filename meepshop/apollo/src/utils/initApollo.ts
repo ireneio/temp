@@ -21,6 +21,7 @@ import getConfig from 'next/config';
 import modules from '@meepshop/modules';
 
 import * as fbLogin from '../fbLogin';
+import * as landingPageAccessToken from '../landingPageAccessToken';
 import * as log from '../log';
 import * as login from '../login';
 import * as logout from '../logout';
@@ -95,6 +96,7 @@ const create = (
     resolvers: [
       ...resolvers,
       fbLogin.resolvers,
+      landingPageAccessToken.resolvers,
       log.resolvers,
       login.resolvers,
       logout.resolvers,

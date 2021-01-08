@@ -1,27 +1,68 @@
 // typescript import
-import { MutationFunction } from '@apollo/react-common';
+import { MutationTuple } from '@apollo/react-hooks';
+import { MutationFunctionOptions } from '@apollo/react-common';
 
 // import
+import { useMemo, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
+import { ApolloClient } from 'apollo-client';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { HttpLink } from 'apollo-link-http';
+import { ApolloLink } from 'apollo-link';
+import getConfig from 'next/config';
 
 // graphql typescript
+import {
+  landingPageAccessToken as landingPageAccessTokenType,
+  landingPageAccessTokenVariables,
+} from '../gqls/__generated__/landingPageAccessToken';
 import {
   createOrderInLandingPage as createOrderInLandingPageType,
   createOrderInLandingPageVariables,
 } from '../gqls/__generated__/createOrderInLandingPage';
+import { useCreateOrderFragment as useCreateOrderFragmentType } from '../gqls/__generated__/useCreateOrderFragment';
 
 // graphql import
-import { createOrderInLandingPage } from '../gqls/useCreateOrder';
+import {
+  landingPageAccessToken,
+  createOrderInLandingPage,
+} from '../gqls/useCreateOrder';
+
+// typescript definition
+type createOrderType = MutationTuple<
+  createOrderInLandingPageType,
+  createOrderInLandingPageVariables
+>;
 
 // definition
-export default (): {
-  createOrderInLandingPage: MutationFunction<
-    createOrderInLandingPageType,
-    createOrderInLandingPageVariables
-  >;
-  isCreatingOrder: boolean;
-} => {
-  const [mutation, { loading, client }] = useMutation<
+const {
+  publicRuntimeConfig: { VERSION },
+} = getConfig();
+
+export default (
+  viewer: useCreateOrderFragmentType | null,
+): [createOrderType[0], Pick<createOrderType[1], 'loading' | 'client'>] => {
+  const firstPurchaseClient = useMemo(
+    () =>
+      new ApolloClient({
+        name: 'landing-page',
+        version: VERSION,
+        cache: new InMemoryCache(),
+        link: ApolloLink.from([
+          new HttpLink({
+            uri: '/api/landing-page/graphql',
+            credentials: 'include',
+          }),
+        ]),
+      }),
+    [],
+  );
+  const [firstPurchaseLoading, setFirstPurchaseLoading] = useState(false);
+  const [landingPageAccessTokenMutation] = useMutation<
+    landingPageAccessTokenType,
+    landingPageAccessTokenVariables
+  >(landingPageAccessToken);
+  const [createOrderInLandingPageMutation, { loading, client }] = useMutation<
     createOrderInLandingPageType,
     createOrderInLandingPageVariables
   >(createOrderInLandingPage, {
@@ -32,8 +73,70 @@ export default (): {
     },
   });
 
-  return {
-    createOrderInLandingPage: mutation,
-    isCreatingOrder: loading,
-  };
+  return useMemo(
+    () =>
+      viewer?.role === 'SHOPPER'
+        ? [createOrderInLandingPageMutation, { loading, client }]
+        : [
+            async (
+              options: MutationFunctionOptions<
+                createOrderInLandingPageType,
+                createOrderInLandingPageVariables
+              >,
+            ) => {
+              const email =
+                options.variables?.createOrderList?.[0]?.userInfo?.email;
+
+              if (!email) return { errors: [] };
+
+              setFirstPurchaseLoading(true);
+
+              const {
+                data: accessTokenData,
+              } = await landingPageAccessTokenMutation({
+                variables: {
+                  input: { email },
+                },
+              });
+
+              if (accessTokenData?.landingPageAccessToken.status !== 'OK') {
+                setFirstPurchaseLoading(false);
+
+                return { errors: [] };
+              }
+
+              const {
+                data: createOrderData,
+                errors,
+              } = await firstPurchaseClient.mutate<
+                createOrderInLandingPageType,
+                createOrderInLandingPageVariables
+              >({
+                ...options,
+                mutation: createOrderInLandingPage,
+                fetchPolicy: 'no-cache',
+              });
+
+              if (client) await client.resetStore();
+
+              setFirstPurchaseLoading(false);
+
+              return {
+                data: !createOrderData ? undefined : createOrderData,
+                errors: !errors ? undefined : [...errors],
+              };
+            },
+            { loading: firstPurchaseLoading, client },
+          ],
+    [
+      viewer,
+      firstPurchaseClient,
+      firstPurchaseLoading,
+      setFirstPurchaseLoading,
+      landingPageAccessTokenMutation,
+      createOrderInLandingPageMutation,
+      loading,
+      client,
+    ],
+  );
 };

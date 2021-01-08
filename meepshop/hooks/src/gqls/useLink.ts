@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 export const useLinkFragment = gql`
   fragment useLinkFragment on Link {
     ... on EmailLink {
+      __typename
       email
       newWindow
       tracking {
@@ -14,6 +15,7 @@ export const useLinkFragment = gql`
     }
 
     ... on PhoneLink {
+      __typename
       phone
       newWindow
       tracking {
@@ -23,6 +25,7 @@ export const useLinkFragment = gql`
     }
 
     ... on GroupLink {
+      __typename
       group {
         id
       }
@@ -34,6 +37,7 @@ export const useLinkFragment = gql`
     }
 
     ... on HomeLink {
+      __typename
       newWindow
       tracking {
         name
@@ -42,6 +46,7 @@ export const useLinkFragment = gql`
     }
 
     ... on PageLink {
+      __typename
       page {
         id
       }
@@ -53,6 +58,7 @@ export const useLinkFragment = gql`
     }
 
     ... on ProductLink {
+      __typename
       product {
         id
       }
@@ -64,6 +70,7 @@ export const useLinkFragment = gql`
     }
 
     ... on ProductsLink {
+      __typename
       sort
       searchKey
       retailPriceRange {
@@ -79,6 +86,7 @@ export const useLinkFragment = gql`
     }
 
     ... on CustomLink {
+      __typename
       href
       newWindow
       tracking {

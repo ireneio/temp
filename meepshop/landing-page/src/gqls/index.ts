@@ -2,68 +2,26 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { useLinkFragment } from '@meepshop/hooks/lib/gqls/useLink';
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 import { shoppingLandingPageModuleFragment } from './shopping';
-import { receiverFragment } from '../receiver/gqls';
+import {
+  receiverUserFragment,
+  receiverLandingPageModuleFragment,
+} from '../receiver/gqls';
 import { usePaymentsLandingPageModuleFragment } from './usePayments';
 import { useShipmentsLandingPageModuleFragment } from './useShipments';
+import {
+  useSubmitUserFragment,
+  useSubmitLandingPageModuleFragment,
+} from './useSubmit';
 
 // definition
-const landingPageUserFragment = gql`
-  fragment landingPageUserFragment on User {
-    id
-    role
-    email
-    store {
-      id
-      cname
-      setting {
-        invoice {
-          paper {
-            duplicate {
-              isEnabled
-            }
-            triplicate {
-              isEnabled
-            }
-            donation {
-              isEnabled
-            }
-          }
-          electronic {
-            type
-            triplicate {
-              isEnabled
-            }
-            donation {
-              isEnabled
-            }
-            membershipCarrier {
-              isEnabled
-            }
-            citizenDigitalCertificateCarrier {
-              isEnabled
-            }
-            mobileBarCodeCarrier {
-              isEnabled
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 export const landingPageLandingPageModuleFragment = gql`
   fragment landingPageLandingPageModuleFragment on LandingPageModule {
     id
     width
     agreedMatters
-    redirectPage {
-      ...useLinkFragment
-    }
     product {
       id
       title {
@@ -76,20 +34,24 @@ export const landingPageLandingPageModuleFragment = gql`
     }
 
     viewer {
-      ...landingPageUserFragment
+      id
+      ...receiverUserFragment
+      ...useSubmitUserFragment
     }
 
     ...shoppingLandingPageModuleFragment
-    ...receiverFragment
+    ...receiverLandingPageModuleFragment
     ...usePaymentsLandingPageModuleFragment
     ...useShipmentsLandingPageModuleFragment
+    ...useSubmitLandingPageModuleFragment
   }
 
-  ${useLinkFragment}
   ${localeFragment}
-  ${landingPageUserFragment}
   ${shoppingLandingPageModuleFragment}
-  ${receiverFragment}
+  ${receiverUserFragment}
+  ${receiverLandingPageModuleFragment}
   ${usePaymentsLandingPageModuleFragment}
   ${useShipmentsLandingPageModuleFragment}
+  ${useSubmitUserFragment}
+  ${useSubmitLandingPageModuleFragment}
 `;

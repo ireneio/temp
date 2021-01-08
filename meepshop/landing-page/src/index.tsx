@@ -1,5 +1,4 @@
 // typescript import
-import { MutationFunction } from '@apollo/react-common';
 import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
@@ -21,27 +20,30 @@ import Price from './Price';
 import Shopping from './Shopping';
 import Receiver from './receiver';
 import styles from './styles/index.less';
-import useCreateOrder from './hooks/useCreateOrder';
 import useComputeOrder from './hooks/useComputeOrder';
 import useSubmit from './hooks/useSubmit';
 
 // graphql typescript
-import {
-  createOrderInLandingPage as createOrderInLandingPageType,
-  createOrderInLandingPageVariables,
-} from './gqls/__generated__/createOrderInLandingPage';
 import { landingPageLandingPageModuleFragment } from './gqls/__generated__/landingPageLandingPageModuleFragment';
-import { receiverFragment as receiverFragmentType } from './receiver/gqls/__generated__/receiverFragment';
+import { receiverLandingPageModuleFragment as receiverLandingPageModuleFragmentType } from './receiver/gqls/__generated__/receiverLandingPageModuleFragment';
 import { shoppingLandingPageModuleFragment as shoppingLandingPageModuleFragmentType } from './gqls/__generated__/shoppingLandingPageModuleFragment';
+import { useSubmitLandingPageModuleFragment as useSubmitLandingPageModuleFragmentType } from './gqls/__generated__/useSubmitLandingPageModuleFragment';
 
 // graphql import
-import { receiverFragment } from './receiver/gqls';
+import {
+  receiverUserFragment,
+  receiverLandingPageModuleFragment,
+} from './receiver/gqls';
 import {
   shoppingLandingPageModuleFragment,
   shoppingOrderFragment,
 } from './gqls/shopping';
 import { priceFragment } from './gqls/price';
-import { useSubmitFragment } from './gqls/useSubmit';
+import {
+  useSubmitUserFragment,
+  useSubmitLandingPageModuleFragment,
+  useSubmitOrderFragment,
+} from './gqls/useSubmit';
 
 // typescript definition
 export interface PropsType
@@ -49,22 +51,6 @@ export interface PropsType
     FormComponentProps {}
 
 // definition
-export const LandingPageWrapper = React.memo(
-  ({
-    children,
-  }: {
-    children: (props: {
-      createOrderInLandingPage: MutationFunction<
-        createOrderInLandingPageType,
-        createOrderInLandingPageVariables
-      >;
-    }) => React.ReactElement;
-  }) => {
-    const { createOrderInLandingPage } = useCreateOrder();
-    return children({ createOrderInLandingPage });
-  },
-);
-
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore FIXME: remove after use antd v4 form hook
 export default Form.create<PropsType>()(
@@ -78,15 +64,12 @@ export default Form.create<PropsType>()(
       storePayments,
       storeShipments,
       agreedMatters,
-      redirectPage,
       viewer,
     } = props;
 
     const { t } = useTranslation('landing-page');
     const adTrack = useContext(AdTrackContext);
     const colors = useContext(ColorsContext);
-    // TODO: combine useCreateOrder and useSubmit after removing LandingPageWrapper
-    const { createOrderInLandingPage, isCreatingOrder } = useCreateOrder();
     const {
       computeOrder,
       order,
@@ -101,14 +84,14 @@ export default Form.create<PropsType>()(
       product?.id,
       Boolean(quantity?.required),
     );
-    const onSubmit = useSubmit({
-      viewer,
-      product,
-      redirectPage,
+    const { loading, onSubmit } = useSubmit({
+      ...filter<useSubmitLandingPageModuleFragmentType, PropsType>(
+        useSubmitLandingPageModuleFragment,
+        props,
+      ),
+      viewer: filter(useSubmitUserFragment, viewer),
+      order: filter(useSubmitOrderFragment, order),
       form,
-      createOrderInLandingPage,
-      isCreatingOrder,
-      order: filter(useSubmitFragment, order),
       payment,
     });
 
@@ -155,12 +138,12 @@ export default Form.create<PropsType>()(
             <Price order={filter(priceFragment, order)} />
 
             <Receiver
-              {...filter<receiverFragmentType, PropsType>(
-                receiverFragment,
+              {...filter<receiverLandingPageModuleFragmentType, PropsType>(
+                receiverLandingPageModuleFragment,
                 props,
               )}
+              viewer={filter(receiverUserFragment, viewer)}
               form={form}
-              viewer={viewer}
               shipment={shipment}
             />
 
@@ -190,7 +173,7 @@ export default Form.create<PropsType>()(
                 getFieldsError(),
               )}
               onClick={() => validateFieldsAndScroll()}
-              loading={isCreatingOrder}
+              loading={loading}
             >
               {t('agree-submit')}
             </Button>

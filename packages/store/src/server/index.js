@@ -19,7 +19,10 @@ const { default: nextI18next } = require('@meepshop/utils/lib/i18n');
 
 const { publicRuntimeConfig } = require('../../next.config');
 const routes = require('./routes');
-const { api, signin, fbAuthForLine } = require('./routers');
+const api = require('./routers/api');
+const signin = require('./routers/signin');
+const fbAuthForLine = require('./routers/fbAuthForLine');
+const landingPageAccessToken = require('./routers/landingPageAccessToken');
 const mapCookiesToHeaders = require('./mapCookiesToHeaders');
 
 const { VERSION, STORE_DOMAIN } = publicRuntimeConfig;
@@ -133,6 +136,7 @@ module.exports = app.prepare().then(
 
       // api
       server.post('/api/graphql', mapCookiesToHeaders, api);
+      server.post('/api/landing-page/graphql', mapCookiesToHeaders, api);
 
       // auth
       server.post(
@@ -153,6 +157,11 @@ module.exports = app.prepare().then(
         });
         res.status(200).end();
       });
+      server.post(
+        '/auth/landing_page/access_token',
+        mapCookiesToHeaders,
+        landingPageAccessToken,
+      );
 
       // For facebook fan page connect
       server.post('/', (req, res) => handler(req, res));

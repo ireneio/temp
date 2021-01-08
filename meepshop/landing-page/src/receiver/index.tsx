@@ -5,6 +5,7 @@ import { UseComputeOrderType } from '../hooks/useComputeOrder';
 
 // import
 import React, { useContext } from 'react';
+import { filter } from 'graphql-anywhere';
 import { Form, Select, Cascader, Input, DatePicker } from 'antd';
 import { isAlpha, isFullWidth, isEmail } from 'validator';
 
@@ -23,13 +24,16 @@ import useCheckUser from './hooks/useCheckUser';
 import useInvoiceOptions from './hooks/useInvoiceOptions';
 
 // graphql typescript
-import { receiverFragment } from './gqls/__generated__/receiverFragment';
-import { landingPageLandingPageModuleFragment } from '../gqls/__generated__/landingPageLandingPageModuleFragment';
+import { receiverUserFragment } from './gqls/__generated__/receiverUserFragment';
+import { receiverLandingPageModuleFragment } from './gqls/__generated__/receiverLandingPageModuleFragment';
+
+// graphql import
+import { useInvoiceOptionsFragment } from './gqls/useInvoiceOptions';
 
 // typescript definition
-interface PropsType extends receiverFragment {
+interface PropsType extends receiverLandingPageModuleFragment {
   form: FormComponentProps['form'];
-  viewer: landingPageLandingPageModuleFragment['viewer'];
+  viewer: receiverUserFragment | null;
   shipment: UseComputeOrderType['shipment'];
 }
 
@@ -51,7 +55,9 @@ export default React.memo(
   }: PropsType) => {
     const colors = useContext(ColorsContext);
     const { t } = useTranslation('landing-page');
-    const invoiceOptions = useInvoiceOptions(viewer?.store?.setting);
+    const invoiceOptions = useInvoiceOptions(
+      filter(useInvoiceOptionsFragment, viewer?.store?.setting || null),
+    );
     const { showLogin, setShowLogin, checkUser } = useCheckUser();
 
     const isLogin = viewer?.role === 'SHOPPER';
