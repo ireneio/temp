@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.75.0 (2021-01-11)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#1333](https://github.com/meepshop/meep-lerna/pull/1333) 【功能】快速滑動按鈕設定 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.74.0 (2021-01-08)
 
 #### :boom: Breaking Change
