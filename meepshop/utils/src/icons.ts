@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+/* eslint-disable @typescript-eslint/camelcase */
 export {
   menuIconsAddShoppingCart_react as ADD_SHOPPING_CART,
   menuIconsAttachMoney_react as ATTACH_MONEY,

@@ -1,38 +1,32 @@
+// import
 import React, { useContext } from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { BackTop, Icon } from 'antd';
 
 import { Colors as ColorsContext } from '@meepshop/context';
 
-import './styles/backToTop.less';
+import styles from './styles/backToTop.less';
 
-const query = gql`
-  query getBackToTopSetting {
-    viewer {
-      id
-      store {
-        id
-        setting {
-          backToTopButtonEnabled
-        }
-      }
-    }
-  }
-`;
+// graphql typescript
+import { backToTopFragment as backToTopFragmentType } from './gqls/__generated__/backToTopFragment';
 
-export default React.memo(() => {
+// typescript definition
+interface PropsType {
+  store: backToTopFragmentType;
+}
+
+// definition
+export default React.memo(({ store }: PropsType) => {
   const colors = useContext(ColorsContext);
-  const { data } = useQuery(query);
+
   const backToTopButtonEnabled =
-    data?.viewer?.store?.setting.backToTopButtonEnabled || false;
+    store?.setting?.backToTopButtonEnabled || false;
 
   if (!backToTopButtonEnabled) return null;
 
   return (
     <BackTop
+      className={styles.root}
       visibilityHeight={typeof window === 'undefined' ? 0 : window.innerHeight}
-      className="backToTop"
     >
       <Icon
         style={{

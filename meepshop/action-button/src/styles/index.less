@@ -1,0 +1,25 @@
+@import '~@meepshop/utils/styles/variables.less';
+
+.root {
+  & > div {
+    transition-timing-function: ease-out;
+    transition-duration: 0.4s;
+    right: 24px;
+    bottom: 100px;
+
+    @media (max-width: @screen-sm-max) {
+      right: 16px;
+      bottom: 120px;
+    }
+  }
+
+  & > div:last-child {
+    right: 24px;
+    bottom: 40px;
+
+    @media (max-width: @screen-sm-max) {
+      right: 16px;
+      bottom: 60px;
+    }
+  }
+}

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import * as icons from '@meepshop/utils/lib/icons';
+
 import styles from './styles/icon.less';
-import * as icons from './icons';
 
 export default class Icon extends React.PureComponent {
   static propTypes = {

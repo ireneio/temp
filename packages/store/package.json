@@ -13,6 +13,7 @@
     "start": "NODE_ENV=production node src/server"
   },
   "dependencies": {
+    "@meepshop/action-button": "^0.71.0",
     "@meepshop/apollo": "^0.74.0",
     "@meepshop/cart": "^0.74.0",
     "@meepshop/context": "^0.74.0",

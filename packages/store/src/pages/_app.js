@@ -12,6 +12,7 @@ import withReduxSaga from 'next-redux-saga';
 import { notification } from 'antd';
 import moment from 'moment';
 
+import ActionButton from '@meepshop/action-button';
 import { appWithTranslation } from '@meepshop/utils/lib/i18n';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';
@@ -24,7 +25,7 @@ import FbProvider from '@store/fb';
 import CurrencyProvider from '@store/currency';
 import AdTrackProvider from '@store/ad-track';
 
-import { Error, CloseView, StoreNotExistsView, BackToTop } from 'components';
+import { Error, CloseView, StoreNotExistsView } from 'components';
 import { Router } from 'server/routes';
 import * as Utils from 'utils';
 import configureStore from 'ducks/store';
@@ -275,7 +276,7 @@ class MyApp extends App {
                           />
                         </Provider>
 
-                        <BackToTop />
+                        <ActionButton />
                       </FormDataProvider>
                     </CartProvider>
                   </AdTrackProvider>

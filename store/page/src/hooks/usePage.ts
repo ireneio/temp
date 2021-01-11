@@ -35,7 +35,7 @@ import {
   getProductsPage,
 } from '../gqls/usePage';
 
-// typecript definition
+// typescript definition
 interface DataType extends Omit<usePageFragment, 'viewer'> {
   viewer:
     | (Omit<getHomePageViewer, 'store'> & {
