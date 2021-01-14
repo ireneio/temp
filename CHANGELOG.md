@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.75.1 (2021-01-14)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1328](https://github.com/meepshop/meep-lerna/pull/1328) 【功能】修正新增/編輯會員與小幫手 email - Design/前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- [#1362](https://github.com/meepshop/meep-lerna/pull/1362) 【功能】智慧轉換元件 - 前端 - 後期修正 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.75.0 (2021-01-11)
 
 #### :rocket: New Feature
