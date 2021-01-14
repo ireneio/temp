@@ -31,7 +31,7 @@ import {
 interface ReturnType {
   loading: boolean;
   error?: ApolloError | boolean;
-  serviceStatus: 'PROCESSING' | 'DONE';
+  isServiceUndone: boolean;
   smartConversionModule?: useSmartConversionModuleFragment | null;
   timezone: number;
 }
@@ -84,9 +84,10 @@ export default ({ pageId }: { pageId: string }): ReturnType => {
   return {
     loading: queryFromPage.loading || loading || queryFromService.loading,
     error: queryFromPage.error || error || queryFromService.error,
-    serviceStatus:
-      queryFromService.data?.smartConversionModuleProcessorService.status ||
-      'DONE',
+    isServiceUndone:
+      isOnGoing &&
+      queryFromService.data?.smartConversionModuleProcessorService.status !==
+        'DONE',
     smartConversionModule:
       queryFromPage.data?.viewer?.store?.page?.smartConversionModule,
     timezone,

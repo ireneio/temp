@@ -38,14 +38,14 @@ const SmartConversionAnalysis: NextPage<PropsType> = React.memo(
     const {
       loading,
       error,
-      serviceStatus,
+      isServiceUndone,
       smartConversionModule,
       timezone,
     } = useSmartConversionModule({
       pageId,
     });
 
-    if (loading || error || serviceStatus !== 'DONE' || !smartConversionModule)
+    if (loading || error || !smartConversionModule || isServiceUndone)
       return <Loading />;
 
     const {
