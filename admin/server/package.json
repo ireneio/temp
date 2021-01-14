@@ -4,7 +4,7 @@
   "description": "admin server",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.75.1",
+  "version": "0.75.2",
   "main": "./next.config.js",
   "scripts": {
     "clean": "rm -rf ./src/.next",
@@ -28,7 +28,7 @@
     "@admin/setting-third-party": "^0.75.1",
     "@admin/sign-up": "^0.75.0",
     "@admin/sign-up-fail": "^0.75.0",
-    "@admin/smart-conversion-analysis": "^0.75.1",
+    "@admin/smart-conversion-analysis": "^0.75.2",
     "@admin/utils": "^0.75.0",
     "@admin/web-track": "^0.75.0",
     "@admin/wrapper": "^0.75.0",
