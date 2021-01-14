@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.75.2 (2021-01-14)
+
+#### :bug: Bug Fix
+
+- [#1378](https://github.com/meepshop/meep-lerna/pull/1378) 【功能】智慧轉換元件 - 前端 - 後期修正 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.75.1 (2021-01-14)
 
 #### :rocket: New Feature
