@@ -179,6 +179,8 @@ class SignupForm extends React.PureComponent {
                 validator: (rule, value, callback) => {
                   if (value && (isFullWidth(value) || !isEmail(value)))
                     callback(t('is-invalid-email'));
+                  else if (/[A-Z]/.test(value.split('@')[1]))
+                    callback(t('use-lowercase-letters'));
                   else callback();
                 },
               },

@@ -1,6 +1,7 @@
 {
   "email-is-required": "Por favor ingrese su correo electrónico.",
   "is-invalid-email": "Por favor, introduce una dirección de correo electrónico válida.",
+  "use-lowercase-letters": "@ Utilice letras minúsculas",
   "email-placeholder": "Email",
   "password-is-required": "Por favor, ingrese contraseña.",
   "password-placeholder": "Contraseña",

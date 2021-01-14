@@ -1,6 +1,7 @@
 {
   "email-is-required": "メールアドレスを入力してください",
   "is-invalid-email": "メールアドレスに誤りがあります",
+  "use-lowercase-letters": "@小文字を使用してください",
   "email-placeholder": "メールアドレス",
   "password-is-required": "パスワードを入力してください",
   "password-placeholder": "パスワード",

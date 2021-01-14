@@ -1,6 +1,7 @@
 {
   "email-is-required": "กรุณาใส่อีเมล",
   "is-invalid-email": "กรุณาใส่อีเมล์ที่ถูกต้อง.",
+  "use-lowercase-letters": "@ โปรดใช้อักษรตัวพิมพ์เล็ก",
   "email-placeholder": "อีเมล์",
   "password-is-required": "กรุณาใส่รหัสผ่าน",
   "password-placeholder": "รหัสผ่าน",
