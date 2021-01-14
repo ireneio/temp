@@ -7,69 +7,88 @@ import { useQuery, useMutation, useLazyQuery } from '@apollo/react-hooks';
 
 // graphql typescript
 import {
-  fetchSmartConversionModuleGAData as fetchSmartConversionModuleGADataType,
-  fetchSmartConversionModuleGADataVariables,
-} from '../gqls/__generated__/fetchSmartConversionModuleGAData';
-import {
   getSmartConversionModuleGAData as getSmartConversionModuleGADataType,
   getSmartConversionModuleGADataVariables,
 } from '../gqls/__generated__/getSmartConversionModuleGAData';
-import { getStoreTimeZone as getStoreTimeZoneType } from '../gqls/__generated__/getStoreTimeZone';
+import {
+  requestFetchSmartConversionModuleGAData as requestFetchSmartConversionModuleGADataType,
+  requestFetchSmartConversionModuleGADataVariables,
+} from '../gqls/__generated__/requestFetchSmartConversionModuleGAData';
+import {
+  smartConversionModuleProcessorService as smartConversionModuleProcessorServiceType,
+  smartConversionModuleProcessorServiceVariables,
+} from '../gqls/__generated__/smartConversionModuleProcessorService';
 import { useSmartConversionModuleFragment } from '../gqls/__generated__/useSmartConversionModuleFragment';
 
 // graphql import
 import {
-  fetchSmartConversionModuleGAData,
+  requestFetchSmartConversionModuleGAData,
   getSmartConversionModuleGAData,
-  getStoreTimeZone,
+  smartConversionModuleProcessorService,
 } from '../gqls/useSmartConversionModule';
 
-// definition
-export default ({
-  isEnd,
-  pageId,
-}: {
-  isEnd: boolean;
-  pageId: string;
-}): {
+// typescript definition
+interface ReturnType {
   loading: boolean;
   error?: ApolloError | boolean;
+  serviceStatus: 'PROCESSING' | 'DONE';
   smartConversionModule?: useSmartConversionModuleFragment | null;
   timezone: number;
-} => {
-  const { data } = useQuery<getStoreTimeZoneType>(getStoreTimeZone);
-  const [query, queryResult] = useLazyQuery<
+}
+
+// definition
+export default ({ pageId }: { pageId: string }): ReturnType => {
+  const queryFromPage = useQuery<
     getSmartConversionModuleGADataType,
     getSmartConversionModuleGADataVariables
-  >(getSmartConversionModuleGAData);
-  const [mutate, mutationResult] = useMutation<
-    fetchSmartConversionModuleGADataType,
-    fetchSmartConversionModuleGADataVariables
-  >(fetchSmartConversionModuleGAData);
-  const timezone = parseInt(data?.viewer?.store?.timezone || '+8', 10);
+  >(getSmartConversionModuleGAData, {
+    variables: { pageId },
+  });
+  const [initService, { loading, error }] = useMutation<
+    requestFetchSmartConversionModuleGADataType,
+    requestFetchSmartConversionModuleGADataVariables
+  >(requestFetchSmartConversionModuleGAData, {
+    variables: {
+      pageId,
+    },
+  });
+  const [queryService, queryFromService] = useLazyQuery<
+    smartConversionModuleProcessorServiceType,
+    smartConversionModuleProcessorServiceVariables
+  >(smartConversionModuleProcessorService, {
+    onCompleted: serviceData => {
+      if (serviceData?.smartConversionModuleProcessorService.status !== 'DONE')
+        setTimeout(() => {
+          queryFromService.refetch();
+        }, 1000);
+    },
+  });
+
+  const timezone = parseInt(
+    queryFromPage.data?.viewer?.store?.timezone || '+8',
+    10,
+  );
+  const isOnGoing =
+    queryFromPage.data?.viewer?.store?.page?.smartConversionModule?.status ===
+    'ONGOING';
 
   useEffect(() => {
-    if (isEnd) {
-      query({ variables: { pageId } });
-    } else {
-      mutate({ variables: { pageId } });
-    }
-  }, [query, mutate, isEnd, pageId]);
+    if (isOnGoing)
+      initService().then(result => {
+        const queryId =
+          result.data?.requestFetchSmartConversionModuleGAData.queryId;
+        if (queryId) queryService({ variables: { pageId, queryId } });
+      });
+  }, [pageId, isOnGoing, initService, queryService]);
 
-  return isEnd
-    ? {
-        loading: queryResult.loading,
-        error: queryResult.error,
-        smartConversionModule:
-          queryResult.data?.viewer?.store?.page?.smartConversionModule,
-        timezone,
-      }
-    : {
-        loading: mutationResult.loading,
-        error: mutationResult.error,
-        smartConversionModule:
-          mutationResult.data?.fetchSmartConversionModuleGAData
-            .smartConversionModule,
-        timezone,
-      };
+  return {
+    loading: queryFromPage.loading || loading || queryFromService.loading,
+    error: queryFromPage.error || error || queryFromService.error,
+    serviceStatus:
+      queryFromService.data?.smartConversionModuleProcessorService.status ||
+      'DONE',
+    smartConversionModule:
+      queryFromPage.data?.viewer?.store?.page?.smartConversionModule,
+    timezone,
+  };
 };

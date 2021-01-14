@@ -24,5 +24,6 @@
   "error": "Xin lỗi, có vẻ như đã xảy ra sự cố với dữ liệu",
   "contact": "Vui lòng liên hệ với bộ phận chăm sóc khách hàng, chúng tôi sẽ xử lý nó cho bạn trong thời gian sớm nhất",
   "close": "Đóng trang",
-  "service": "Hotline Dịch vụ Khách hàng:"
+  "service": "Hotline Dịch vụ Khách hàng:",
+  "loading": "Đang tải dữ liệu ..."
 }

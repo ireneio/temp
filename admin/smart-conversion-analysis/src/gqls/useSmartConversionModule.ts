@@ -50,13 +50,39 @@ export const fetchSmartConversionModuleGAData = gql`
   ${useSmartConversionModuleFragment}
 `;
 
+export const requestFetchSmartConversionModuleGAData = gql`
+  mutation requestFetchSmartConversionModuleGAData($pageId: ID!) {
+    requestFetchSmartConversionModuleGAData(pageId: $pageId) {
+      status
+      queryId
+    }
+  }
+`;
+
+export const smartConversionModuleProcessorService = gql`
+  query smartConversionModuleProcessorService($pageId: ID!, $queryId: ID!) {
+    smartConversionModuleProcessorService(
+      input: { pageId: $pageId, queryId: $queryId }
+    ) {
+      status
+      smartConversionModule {
+        ...useSmartConversionModuleFragment
+      }
+    }
+  }
+
+  ${useSmartConversionModuleFragment}
+`;
+
 export const getSmartConversionModuleGAData = gql`
   query getSmartConversionModuleGAData($pageId: ID) {
     viewer {
       id
       store {
         id
+        timezone
         page(input: { pageId: $pageId }) {
+          id
           smartConversionModule {
             ...useSmartConversionModuleFragment
           }
@@ -66,16 +92,4 @@ export const getSmartConversionModuleGAData = gql`
   }
 
   ${useSmartConversionModuleFragment}
-`;
-
-export const getStoreTimeZone = gql`
-  query getStoreTimeZone {
-    viewer {
-      id
-      store {
-        id
-        timezone
-      }
-    }
-  }
 `;

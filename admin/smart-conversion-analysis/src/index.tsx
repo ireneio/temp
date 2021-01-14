@@ -7,15 +7,15 @@ import { languageType } from '@meepshop/utils/lib/i18n';
 import React from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import { Spin, Icon } from 'antd';
+import { Icon } from 'antd';
 
 import { meepshopLogo } from '@meepshop/images';
-import { useRouter } from '@meepshop/link';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import moment from 'moment';
 
-import Samples from './Samples';
 import Error from './Error';
+import Loading from './Loading';
+import Samples from './Samples';
 import useSmartConversionModule from './hooks/useSmartConversionModule';
 import styles from './styles/index.less';
 import { MOMENT_FORMAT } from './constants';
@@ -31,7 +31,6 @@ const Chart = dynamic(() => import('./Chart'), { ssr: false });
 
 const SmartConversionAnalysis: NextPage<PropsType> = React.memo(
   ({ pageId }: PropsType) => {
-    const { query } = useRouter();
     const {
       t,
       i18n: { language },
@@ -39,15 +38,15 @@ const SmartConversionAnalysis: NextPage<PropsType> = React.memo(
     const {
       loading,
       error,
+      serviceStatus,
       smartConversionModule,
       timezone,
     } = useSmartConversionModule({
-      isEnd: query.end === 'true',
       pageId,
     });
 
-    if (loading || error || !smartConversionModule)
-      return <Spin indicator={<Icon type="loading" spin />} />;
+    if (loading || error || serviceStatus !== 'DONE' || !smartConversionModule)
+      return <Loading />;
 
     const {
       page,

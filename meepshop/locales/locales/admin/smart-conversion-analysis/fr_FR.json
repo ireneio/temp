@@ -24,5 +24,6 @@
   "error": "Désolé, il semble y avoir un problème avec les données",
   "contact": "Veuillez contacter le service client, nous le traiterons pour vous dans les plus brefs délais",
   "close": "Fermer la page",
-  "service": "Hotline du service client:"
+  "service": "Hotline du service client:",
+  "loading": "Chargement des données ..."
 }

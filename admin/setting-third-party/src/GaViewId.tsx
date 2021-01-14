@@ -54,7 +54,7 @@ export default React.memo(({ form, gaViewId }: PropsType) => {
             iconClassName={styles.tip}
           />
         </div>
-        <div>meepshop-api@instant-matter-785.iam.gserviceaccount.com</div>
+        <div>scm-processor@instant-matter-785.iam.gserviceaccount.com</div>
       </div>
 
       <Divider />

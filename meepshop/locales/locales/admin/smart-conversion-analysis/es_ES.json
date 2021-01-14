@@ -24,5 +24,6 @@
   "error": "Lo siento, parece que hay algún problema con los datos.",
   "contact": "Comuníquese con el servicio al cliente, lo manejaremos por usted lo antes posible.",
   "close": "Cerrar pagina",
-  "service": "Línea directa de servicio al cliente:"
+  "service": "Línea directa de servicio al cliente:",
+  "loading": "Carga de datos ..."
 }

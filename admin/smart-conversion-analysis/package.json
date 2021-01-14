@@ -9,7 +9,6 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/images": "^0.75.0",
-    "@meepshop/link": "^0.75.0",
     "@meepshop/utils": "^0.75.0",
     "bizcharts": "^4.0.14"
   },

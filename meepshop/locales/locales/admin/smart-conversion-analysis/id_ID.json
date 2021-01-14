@@ -24,5 +24,6 @@
   "error": "Maaf, sepertinya ada yang salah dengan data",
   "contact": "Silakan hubungi layanan pelanggan, kami akan menanganinya untuk Anda sesegera mungkin",
   "close": "Tutup halaman",
-  "service": "Hotline Layanan Pelanggan:"
+  "service": "Hotline Layanan Pelanggan:",
+  "loading": "Pemuatan data ..."
 }

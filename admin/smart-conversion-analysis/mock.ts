@@ -1,5 +1,5 @@
 // definition
 export default {
-  moduleId: 'moduleId',
+  pageId: 'pageId',
   namespacesRequired: [],
 };

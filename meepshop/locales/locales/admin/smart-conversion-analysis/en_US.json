@@ -24,5 +24,6 @@
   "error": "Sorry, there seems to be something wrong with the data",
   "contact": "Please contact customer service, we will handle it for you as soon as possible",
   "close": "Close page",
-  "service": "Customer Service Hotline:"
+  "service": "Customer Service Hotline:",
+  "loading": "Loading data..."
 }
