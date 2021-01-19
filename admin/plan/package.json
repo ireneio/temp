@@ -4,7 +4,7 @@
   "description": "Admin plan list",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.75.0",
+  "version": "0.75.3",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
