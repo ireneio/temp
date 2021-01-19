@@ -116,7 +116,7 @@ export default React.memo(({ plan, setPlan }: PropsType) => {
               <div>
                 {t(`payment.billing-for-first-${feeType.toLowerCase()}`)}
               </div>
-              <div>{`USD ${quotation?.total.usd}`}</div>
+              <div>{`USD ${quotation?.total.amount}`}</div>
             </div>
           )}
 
@@ -137,7 +137,7 @@ export default React.memo(({ plan, setPlan }: PropsType) => {
             </div>
             <div>
               {isTWD ? 'TWD ' : 'USD '}
-              {quotation?.total[isTWD ? 'twd' : 'usd']}
+              {quotation?.total.amount}
             </div>
           </div>
 

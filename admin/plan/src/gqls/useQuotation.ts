@@ -3,10 +3,9 @@ import gql from 'graphql-tag';
 
 // definition
 const storeBillFeeAmountFragment = gql`
-  fragment storeBillFeeAmountFragment on StoreBillFeeAmount {
-    usd
-    twd
-    local
+  fragment storeBillFeeAmountFragment on Money {
+    amount
+    currency
   }
 `;
 

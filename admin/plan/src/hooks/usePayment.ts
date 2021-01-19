@@ -104,7 +104,7 @@ export default (
             input: {
               planId: plan.id,
               feeType,
-              twdFee: quotation.total.twd,
+              amountUSD: quotation.total.amount,
               tappayPrime: prime,
             },
           },
