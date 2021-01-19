@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.75.3 (2021-01-19)
+
+#### :bug: Bug Fix
+
+- [#1383](https://github.com/meepshop/meep-lerna/pull/1383) 【功能】智慧轉換元件 - 前端 - 後期修正 ([@piovischioh](https://github.com/piovischioh))
+- [#1384](https://github.com/meepshop/meep-lerna/pull/1384) (@admin/plan) Fix schema ([@happycat6323](https://github.com/happycat6323))
+- [#1382](https://github.com/meepshop/meep-lerna/pull/1382) (@meepshop/frontend) Fix lock error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1383](https://github.com/meepshop/meep-lerna/pull/1383) 【功能】智慧轉換元件 - 前端 - 後期修正 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.75.2 (2021-01-14)
 
 #### :bug: Bug Fix
