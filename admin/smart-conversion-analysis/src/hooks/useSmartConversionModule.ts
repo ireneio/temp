@@ -55,14 +55,7 @@ export default ({ pageId }: { pageId: string }): ReturnType => {
   const [queryService, queryFromService] = useLazyQuery<
     smartConversionModuleProcessorServiceType,
     smartConversionModuleProcessorServiceVariables
-  >(smartConversionModuleProcessorService, {
-    onCompleted: serviceData => {
-      if (serviceData?.smartConversionModuleProcessorService.status !== 'DONE')
-        setTimeout(() => {
-          queryFromService.refetch();
-        }, 1000);
-    },
-  });
+  >(smartConversionModuleProcessorService);
 
   const timezone = parseInt(
     queryFromPage.data?.viewer?.store?.timezone || '+8',
@@ -80,6 +73,16 @@ export default ({ pageId }: { pageId: string }): ReturnType => {
         if (queryId) queryService({ variables: { pageId, queryId } });
       });
   }, [pageId, isOnGoing, initService, queryService]);
+
+  useEffect(() => {
+    if (
+      queryFromService.data?.smartConversionModuleProcessorService.status ===
+      'PROCESSING'
+    )
+      queryFromService.startPolling(1000);
+
+    return () => queryFromService.stopPolling?.();
+  }, [queryFromService]);
 
   return {
     loading: queryFromPage.loading || loading || queryFromService.loading,
