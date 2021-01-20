@@ -85,12 +85,14 @@ export default (argv: string[]): Promise<OptionsType> =>
         '-r, --reference <reference>',
         'the reference folder to translate locales',
       )
-      .action(({ repoPath, reference }) => {
+      .option('-l, --lang <language>', 'reference language')
+      .action(({ repoPath, reference, lang }) => {
         resolve({
           command: 'translate',
           options: {
             repoPath: getDefaultRepoPath(repoPath),
             reference,
+            lang,
           },
         });
       });
@@ -110,14 +112,15 @@ export default (argv: string[]): Promise<OptionsType> =>
       });
 
     program
-      .command('create <package-name>')
+      .command('create <folder-name>')
       .description('use to create the new locale files')
-      .action(packageName => {
+      .option(...repoPathOptions)
+      .action((folderName, { repoPath }) => {
         resolve({
           command: 'create',
           options: {
-            repoPath: defaultRepoPath,
-            packageName,
+            repoPath: getDefaultRepoPath(repoPath),
+            folderName,
           },
         });
       });

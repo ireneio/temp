@@ -97,7 +97,7 @@ const mappingPackageNames: {
   ),
 };
 
-export const linkLocaleFile = (
+const linkLocaleFile = (
   repoPath: string,
   callback: (targetPath: string, linkedPath: string) => void = linkFile,
   filePath: string,

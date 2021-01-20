@@ -20,6 +20,7 @@ export default (
   referenceFolder: string,
 ): ((
   referenceValue: string,
+  referenceLocale: keyof typeof LOCALES,
   targetLocale: keyof typeof LOCALES,
 ) => string | null) => {
   let cache: CacheType = {};
@@ -40,7 +41,11 @@ export default (
     },
   );
 
-  return (referenceValue: string, targetLocale: keyof typeof LOCALES) => {
+  return (
+    referenceValue: string,
+    _: keyof typeof LOCALES,
+    targetLocale: keyof typeof LOCALES,
+  ) => {
     const existingKey = Object.keys(cache).find(key =>
       Object.values(cache[key]).includes(referenceValue),
     );

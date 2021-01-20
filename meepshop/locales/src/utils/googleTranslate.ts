@@ -7,10 +7,18 @@ import { LOCALES } from '../constants';
 // definition
 export default async (
   referenceValue: string,
+  referenceLocale: keyof typeof LOCALES,
   targetLocale: keyof typeof LOCALES,
   page: Page,
 ): Promise<string> => {
-  await page.goto(LOCALES[targetLocale]);
+  await page.goto(
+    referenceLocale === 'zh_TW'
+      ? LOCALES[targetLocale]
+      : LOCALES[targetLocale].replace(
+          /zh-CN/,
+          referenceLocale.replace(/_.*/, ''),
+        ),
+  );
   await page.type('textarea', referenceValue);
   await new Promise((resolve, reject) => {
     const checking = (count: number): NodeJS.Timer =>

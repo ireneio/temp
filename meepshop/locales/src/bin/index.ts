@@ -20,7 +20,7 @@ import translate from '../commands/translate';
 import findNull from '../commands/findNull';
 import checkKeys from '../commands/checkKeys';
 import generate from '../commands/generate';
-import link, { linkLocaleFile } from '../commands/link';
+import link from '../commands/link';
 import update from '../commands/update';
 
 // definition
@@ -42,13 +42,13 @@ process.on('unhandledRejection', err => {
 
       translate(
         nullFiles,
-        !options?.reference ? 'en_US' : 'zh_TW',
         !options?.reference
           ? googleTranslate
           : localTranslate(options.reference),
         (filePath, data) => {
           outputFileSync(filePath, `${JSON.stringify(data, null, 2)}\n`);
         },
+        options.lang as keyof typeof LOCALES,
       );
       break;
     }
@@ -162,19 +162,9 @@ process.on('unhandledRejection', err => {
 
     case 'create':
       localeKeys.forEach(localeKey => {
-        const name = `${localeKey}.json`;
-        const filePath = path.resolve(
-          repoPath,
-          `./${options?.packageName?.replace(/^@/, '')}/${name}`,
-        );
-
-        outputFileSync(filePath, '{}\n');
-        linkLocaleFile(
-          repoPath,
-          undefined,
-          filePath,
-          `${localeKey}.json`,
-          '.json',
+        outputFileSync(
+          path.resolve(repoPath, `./${options?.folderName}/${localeKey}.json`),
+          '{}\n',
         );
       });
       break;
@@ -195,10 +185,7 @@ process.on('unhandledRejection', err => {
 
       if (!nullFiles) break;
 
-      Object.keys(LOCALES).forEach((key: keyof typeof LOCALES) => {
-        LOCALES[key] = LOCALES[key].replace(/en/, 'zh-CN');
-      });
-      translate(nullFiles, 'zh_TW', googleTranslate, (filePath, data) => {
+      translate(nullFiles, googleTranslate, (filePath, data) => {
         outputFileSync(filePath, `${JSON.stringify(data, null, 2)}\n`);
       });
       break;

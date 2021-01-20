@@ -18,14 +18,10 @@ test('translate', async () => {
   result.mockResolvedValue('こんにちは');
   expect(
     await new Promise(resolve =>
-      translate(
-        findNull(repoPath),
-        'en_US',
-        googleTranslate,
-        (filePath, data) =>
-          resolve({
-            [filePath]: data,
-          }),
+      translate(findNull(repoPath), googleTranslate, (filePath, data) =>
+        resolve({
+          [filePath]: data,
+        }),
       ),
     ),
   ).toEqual({

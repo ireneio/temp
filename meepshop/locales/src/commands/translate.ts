@@ -23,13 +23,14 @@ interface CacheType {
 // definition
 export default async (
   nullFiles: FindNullCacheType,
-  referenceLocale: keyof typeof LOCALES,
   translate: (
     referenceValue: string,
+    referenceLocale: keyof typeof LOCALES,
     targetLocale: keyof typeof LOCALES,
     page: Page,
   ) => Promise<string> | string | null,
   callback: (filePath: string, cache: DataType) => void,
+  referenceLocale: keyof typeof LOCALES = 'zh_TW',
 ): Promise<void> => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -65,7 +66,12 @@ export default async (
         const spinner = ora(
           chalk`{cyan ${key}} translate {gray [${referenceLocale}] ${referenceValue}}`,
         ).start();
-        const output = await translate(referenceValue, targetLocale, page);
+        const output = await translate(
+          referenceValue,
+          referenceLocale,
+          targetLocale,
+          page,
+        );
 
         if (!output) {
           spinner.succeed(
