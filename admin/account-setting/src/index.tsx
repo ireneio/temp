@@ -16,7 +16,7 @@ import useSave from './hooks/useSave';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getMerchantAccount as getMerchantAccountType } from './gqls/__generated__/getMerchantAccount';
+import { getMerchantAccount as getMerchantAccountType } from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { getMerchantAccount } from './gqls';

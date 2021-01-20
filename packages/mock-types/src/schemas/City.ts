@@ -5,7 +5,7 @@ import { ContextType, fieldsType } from '../mock';
 import mock from '../mock';
 
 // graphql typescript
-import { cityMockFragment } from './gqls/__generated__/cityMockFragment';
+import { cityMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 const cities: cityMockFragment[] = [

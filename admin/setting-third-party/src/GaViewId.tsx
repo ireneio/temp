@@ -12,7 +12,7 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import styles from './styles/googleAnalytics.less';
 
 // graphql typescript
-import { gaViewIdFragment as gaViewIdFragmentType } from './__generated__/gaViewIdFragment';
+import { gaViewIdFragment as gaViewIdFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType extends FormComponentProps {

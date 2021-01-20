@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { creditFragment as creditFragmentType } from './__generated__/creditFragment';
+import { creditFragment as creditFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType {

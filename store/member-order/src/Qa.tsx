@@ -21,14 +21,14 @@ import withContext from '@store/utils/lib/withContext';
 import styles from './styles/qa.less';
 
 // graphql typescript
-import { MessageBearer } from '../../../__generated__/store';
-import { qaOrderMessageFragment as qaOrderMessageFragmentType } from './__generated__/qaOrderMessageFragment';
-import { getMemberOrder_viewer_order as getMemberOrderViewerOrder } from './__generated__/getMemberOrder';
 import {
+  MessageBearer,
+  qaOrderMessageFragment as qaOrderMessageFragmentType,
+  getMemberOrder_viewer_order as getMemberOrderViewerOrder,
   addNewMessage,
   addNewMessageVariables,
-} from './__generated__/addNewMessage';
-import { qaOrderFragment } from './__generated__/qaOrderFragment';
+  qaOrderFragment,
+} from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface HooksProps {

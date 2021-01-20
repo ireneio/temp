@@ -7,7 +7,7 @@ import mock from '../mock';
 import {
   fileConnectionMockFragment,
   fileConnectionMockFragment_edges as fileConnectionMockFragmentEdges,
-} from './gqls/__generated__/fileConnectionMockFragment';
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 const cache: fileConnectionMockFragmentEdges[] = [];

@@ -12,7 +12,7 @@ import StoreIcon from './StoreIcon';
 import styles from './styles/storeList.less';
 
 // graphql typescript
-import { getValidatedConvenienceStores_validatedConvenienceStores as getValidatedConvenienceStoresValidatedConvenienceStores } from './__generated__/getValidatedConvenienceStores';
+import { getValidatedConvenienceStores_validatedConvenienceStores as getValidatedConvenienceStoresValidatedConvenienceStores } from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 interface PropsType extends I18nPropsType {

@@ -12,8 +12,8 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   createProductQA as createProductQAType,
   createProductQAVariables,
-} from '../gqls/__generated__/createProductQA';
-import { useCreateProductQAFragment as useCreateProductQAFragmentType } from '../gqls/__generated__/useCreateProductQAFragment';
+  useCreateProductQAFragment as useCreateProductQAFragmentType,
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import {

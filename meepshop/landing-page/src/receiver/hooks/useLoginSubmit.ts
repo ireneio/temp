@@ -11,15 +11,13 @@ import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { UserTypeEnum } from '../../../../../__generated__/admin';
 import {
+  UserTypeEnum,
   loginFromLandingPage as loginFromLandingPageType,
   loginFromLandingPageVariables,
-} from '../gqls/__generated__/loginFromLandingPage';
-import {
   forgotPasswordFromLandingPage as forgotPasswordFromLandingPageType,
   forgotPasswordFromLandingPageVariables,
-} from '../gqls/__generated__/forgotPasswordFromLandingPage';
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import {

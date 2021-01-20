@@ -14,10 +14,12 @@ import useDeleteRoutingRule from './useDeleteRoutingRule';
 import styles from '../styles/useColumns.less';
 
 // graphql typescript
-import { useColumnsStoreFragment as useColumnsStoreFragmentType } from '../gqls/__generated__/useColumnsStoreFragment';
-import { useColumnsRoutingRuleFragment as useColumnsRoutingRuleFragmentType } from '../gqls/__generated__/useColumnsRoutingRuleFragment';
-import { modalFragmet as modalFragmetType } from '../gqls/__generated__/modalFragmet';
-import { useDeleteRoutingRuleFragment as useDeleteRoutingRuleFragmentType } from '../gqls/__generated__/useDeleteRoutingRuleFragment';
+import {
+  useColumnsStoreFragment as useColumnsStoreFragmentType,
+  useColumnsRoutingRuleFragment as useColumnsRoutingRuleFragmentType,
+  modalFragmet as modalFragmetType,
+  useDeleteRoutingRuleFragment as useDeleteRoutingRuleFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { useDeleteRoutingRuleFragment } from '../gqls/useDeleteRoutingRule';

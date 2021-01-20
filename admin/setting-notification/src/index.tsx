@@ -23,7 +23,7 @@ import styles from './styles/index.less';
 import {
   getNotificationsSetting as getNotificationsSettingType,
   getNotificationsSetting_viewer_store_setting_emailNotificationEventSubscription as getNotificationsSettingViewerStoreSettingEmailNotificationEventSubscriptionType,
-} from './gqls/__generated__/getNotificationsSetting';
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { getNotificationsSetting } from './gqls/index';

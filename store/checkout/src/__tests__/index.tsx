@@ -6,8 +6,8 @@ import runTest from '@meepshop/mock-types/src/runTest';
 
 import Checkout from '../index';
 
-// typescript definition
-import { getCheckoutInfo_viewer_shippableRecipientAddresses as getCheckoutInfoViewerShippableRecipientAddresses } from '../gqls/__generated__/getCheckoutInfo';
+// graphql typescript
+import { getCheckoutInfo_viewer_shippableRecipientAddresses as getCheckoutInfoViewerShippableRecipientAddresses } from '@meepshop/types/gqls/store';
 
 // definition
 runTest(

@@ -9,8 +9,8 @@ import {
   AlignmentEnum,
   ViewerTypeEnum,
   ImagePositionEnum,
-} from '../../__generated__/meepshop';
-import { menuMenuModuleFragment } from './src/gqls/__generated__/menuMenuModuleFragment';
+  menuMenuModuleFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 const ACTIONS: number[] = [].constructor

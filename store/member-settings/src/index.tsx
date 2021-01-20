@@ -29,7 +29,7 @@ import useSubmit from './hooks/useSubmit';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getUserInfo } from './__generated__/getUserInfo';
+import { getUserInfo } from '@meepshop/types/gqls/store';
 
 // definition
 const { Item: FormItem } = Form;

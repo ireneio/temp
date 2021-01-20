@@ -4,8 +4,11 @@ import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 
 // graphql typescript
-import { getPages, getPagesVariables } from '../__generated__/getPages';
-import { usePagesPageFragment as usePagesPageFragmentType } from './__generated__/usePagesPageFragment';
+import {
+  getPages,
+  getPagesVariables,
+  usePagesPageFragment as usePagesPageFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';

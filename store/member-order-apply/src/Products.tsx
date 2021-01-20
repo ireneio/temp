@@ -19,12 +19,13 @@ import withContext from '@store/utils/lib/withContext';
 
 import styles from './styles/products.less';
 
+// graphql typescript
+import { productsProductsObjectTypeFragment as productsProductsObjectTypeFragmentType } from '@meepshop/types/gqls/store';
+
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 import { productsObjectTypeProductsObjectTypeFragment } from '@store/apollo/lib/productsObjectType';
-
-import { productsProductsObjectTypeFragment as productsProductsObjectTypeFragmentType } from './__generated__/productsProductsObjectTypeFragment';
 
 // typescript definition
 interface PropsType extends I18nPropsType, CurrencyType {

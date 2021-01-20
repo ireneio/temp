@@ -2,8 +2,10 @@
 import gql from 'graphql-tag';
 
 // graphql typescript
-import { productsObjectTypeProductsObjectTypeFragment as productsObjectTypeProductsObjectTypeFragmentType } from './__generated__/productsObjectTypeProductsObjectTypeFragment';
-import { productsObjectTypeOrderApplyFragment as productsObjectTypeOrderApplyFragmentType } from './__generated__/productsObjectTypeOrderApplyFragment';
+import {
+  productsObjectTypeProductsObjectTypeFragment as productsObjectTypeProductsObjectTypeFragmentType,
+  productsObjectTypeOrderApplyFragment as productsObjectTypeOrderApplyFragmentType,
+} from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface DefaultDataType {

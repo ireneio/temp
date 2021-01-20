@@ -15,12 +15,10 @@ import getConfig from 'next/config';
 import {
   landingPageAccessToken as landingPageAccessTokenType,
   landingPageAccessTokenVariables,
-} from '../gqls/__generated__/landingPageAccessToken';
-import {
   createOrderInLandingPage as createOrderInLandingPageType,
   createOrderInLandingPageVariables,
-} from '../gqls/__generated__/createOrderInLandingPage';
-import { useCreateOrderFragment as useCreateOrderFragmentType } from '../gqls/__generated__/useCreateOrderFragment';
+  useCreateOrderFragment as useCreateOrderFragmentType,
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import {

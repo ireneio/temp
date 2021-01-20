@@ -4,7 +4,7 @@ import uuid from 'uuid/v4';
 import mock from '../mock';
 
 // graphql typescript
-import { convenienceStoreMockFragment } from './gqls/__generated__/convenienceStoreMockFragment';
+import { convenienceStoreMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<convenienceStoreMockFragment>('ConvenienceStore', [

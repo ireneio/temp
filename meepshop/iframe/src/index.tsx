@@ -4,7 +4,7 @@ import React from 'react';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { iframeFragment } from './gqls/__generated__/iframeFragment';
+import { iframeFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default React.memo(({ htmlCode }: iframeFragment) => (

@@ -12,17 +12,15 @@ import { message } from 'antd';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { PageTypeEnum } from '../../../../../../__generated__/admin';
-import { getPages_viewer_store_homePages_edges as getPagesViewerStoreHomePagesEdges } from '../../../__generated__/getPages';
-import { editFragment as editFragmentType } from '../__generated__/editFragment';
 import {
+  PageTypeEnum,
+  getPages_viewer_store_homePages_edges as getPagesViewerStoreHomePagesEdges,
+  editFragment as editFragmentType,
   duplicatePage as duplicatePageType,
   duplicatePageVariables,
-} from './__generated__/duplicatePage';
-import {
   useDuplicatePageReadCache,
   useDuplicatePageReadCacheVariables,
-} from './__generated__/useDuplicatePageReadCache';
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';

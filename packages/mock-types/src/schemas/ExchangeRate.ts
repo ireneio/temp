@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { exchangeRateMockFragment } from './gqls/__generated__/exchangeRateMockFragment';
+import { exchangeRateMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<exchangeRateMockFragment>('ExchangeRate', [

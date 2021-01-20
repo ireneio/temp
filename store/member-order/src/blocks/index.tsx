@@ -14,7 +14,7 @@ import InvoiceInfo from './invoiceInfo';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { blocksFragment as blocksFragmentType } from './__generated__/blocksFragment';
+import { blocksFragment as blocksFragmentType } from '@meepshop/types/gqls/store';
 
 // graphql import
 import { paymentInfoFragment } from './paymentInfo';

@@ -18,7 +18,7 @@ import {
   getOrderHistoryRecords as getOrderHistoryRecordsType,
   getOrderHistoryRecordsVariables,
   getOrderHistoryRecords_viewer_order_orderHistoryRecords as getOrderHistoryRecordsViewerOrderOrderHistoryRecords,
-} from './gqls/__generated__/getOrderHistoryRecords';
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { getOrderHistoryRecords } from './gqls';

@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { colorListMockFragment } from './gqls/__generated__/colorListMockFragment';
+import { colorListMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<colorListMockFragment>('ColorList', [

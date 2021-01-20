@@ -19,7 +19,7 @@ import { Apps as AppsContext } from '@meepshop/context';
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { useMenuListFragment as useMenuListFragmentType } from '../gqls/__generated__/useMenuListFragment';
+import { useMenuListFragment as useMenuListFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 export type MenuListType = (string | [string, MenuListType])[];

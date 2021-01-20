@@ -18,7 +18,7 @@ import {
 } from '@meepshop/icons';
 
 // graphql typescript
-import { useItemspermissionStoreObjFragment as useItemspermissionStoreObjFragmentType } from './__generated__/useItemspermissionStoreObjFragment';
+import { useItemspermissionStoreObjFragment as useItemspermissionStoreObjFragmentType } from '@meepshop/types/gqls/admin';
 
 // definition
 export const useItemspermissionStoreObjFragment = gql`

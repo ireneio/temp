@@ -4,7 +4,7 @@ import uuid from 'uuid/v4';
 import mock from '../mock';
 
 // graphql typescript
-import { wishlistProductMockFragment } from './gqls/__generated__/wishlistProductMockFragment';
+import { wishlistProductMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<wishlistProductMockFragment>('WishlistProduct', [

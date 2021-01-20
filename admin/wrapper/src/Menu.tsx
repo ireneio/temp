@@ -12,7 +12,7 @@ import useItemClick from './hooks/useItemClick';
 import styles from './styles/menu.less';
 
 // graphql typescript
-import { useMenuListFragment as useMenuListFragmentType } from './gqls/__generated__/useMenuListFragment';
+import { useMenuListFragment as useMenuListFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType {

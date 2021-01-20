@@ -25,12 +25,10 @@ import styles from './styles/container.less';
 import {
   getEcfitList as getEcfitListType,
   getEcfitListVariables as getEcfitListVariablesType,
-} from './gqls/__generated__/getEcfitList';
-import {
   setOrdersToSelectedOrders as setOrdersToSelectedOrdersType,
   setOrdersToSelectedOrdersVariables as setOrdersToSelectedOrdersVariablesType,
-} from './gqls/__generated__/setOrdersToSelectedOrders';
-import { useColumnsFragment_edges as useColumnsFragmentEdgesType } from './gqls/__generated__/useColumnsFragment';
+  useColumnsFragment_edges as useColumnsFragmentEdgesType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import {

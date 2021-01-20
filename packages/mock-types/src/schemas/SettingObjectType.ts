@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { settingObjectTypeMockFragment } from './gqls/__generated__/settingObjectTypeMockFragment';
+import { settingObjectTypeMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<settingObjectTypeMockFragment>('SettingObjectType', [

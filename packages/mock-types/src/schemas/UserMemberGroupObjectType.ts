@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { userMemberGroupObjectTypeMockFragment } from './gqls/__generated__/userMemberGroupObjectTypeMockFragment';
+import { userMemberGroupObjectTypeMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<userMemberGroupObjectTypeMockFragment>(

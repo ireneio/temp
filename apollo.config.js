@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const includes = [
   './preReleaseSchemas/*.graphql',
   './meepshop/apollo/schemas/*.graphql',

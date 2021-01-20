@@ -1,10 +1,7 @@
 // typescript import
 import { AppContext, AppProps } from 'next/app';
 
-import {
-  NextAppType,
-  NextAppGetInitialPropsType,
-} from '@meepshop/utils/lib/types';
+import { NextAppType, NextAppGetInitialPropsType } from '@meepshop/types';
 
 // import
 import React from 'react';

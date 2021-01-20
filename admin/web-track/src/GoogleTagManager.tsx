@@ -16,8 +16,11 @@ import useSetGtagSettingsList from './hooks/useSetGtagSettingsList';
 import styles from './styles/googleTagManager.less';
 
 // graphql typescript
-import { gtagTypeEnum, gtagEventNameEnum } from '../../../__generated__/admin';
-import { googleTagManagerFragment as googleTagManagerFragmentType } from './gqls/__generated__/googleTagManagerFragment';
+import {
+  gtagTypeEnum,
+  gtagEventNameEnum,
+  googleTagManagerFragment as googleTagManagerFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { googleTagManagerFragment } from './gqls/googleTagManager';

@@ -8,7 +8,7 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { logisticTrackingFragment as logisticTrackingFragmentType } from './__generated__/logisticTrackingFragment';
+import { logisticTrackingFragment as logisticTrackingFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType {

@@ -4,7 +4,7 @@ import uuid from 'uuid/v4';
 import imageMock from '@meepshop/image/mock';
 
 // graphql typescript
-import { ImageTextModulePosition } from '../../__generated__/meepshop';
+import { ImageTextModulePosition } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default {

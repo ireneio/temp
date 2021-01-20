@@ -19,10 +19,10 @@ import {
   getValidatedConvenienceStoreCities,
   getValidatedConvenienceStoreCities_validatedConvenienceStoreCities as getValidatedConvenienceStoreCitiesValidatedConvenienceStoreCities,
   getValidatedConvenienceStoreCities_validatedConvenienceStoreCities_children as getValidatedConvenienceStoreCitiesValidatedConvenienceStoreCitiesChildren,
-} from './__generated__/getValidatedConvenienceStoreCities';
-import { getValidatedConvenienceStoreAreas } from './__generated__/getValidatedConvenienceStoreAreas';
-import { addressSelectCityFragment } from './__generated__/addressSelectCityFragment';
-import { addressSelectAreaFragment } from './__generated__/addressSelectAreaFragment';
+  getValidatedConvenienceStoreAreas,
+  addressSelectCityFragment,
+  addressSelectAreaFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 interface PropsType

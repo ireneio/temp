@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { JustifyContent } from '../../../../__generated__/meepshop';
-import { dividerModuleMockFragment } from './gqls/__generated__/dividerModuleMockFragment';
+import {
+  JustifyContent,
+  dividerModuleMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<dividerModuleMockFragment>('DividerModule', [

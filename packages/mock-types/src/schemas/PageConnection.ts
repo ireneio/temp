@@ -7,7 +7,7 @@ import mock from '../mock';
 import {
   pageConnectionMockFragment,
   pageConnectionMockFragment_edges as pageConnectionMockFragmentEdges,
-} from './gqls/__generated__/pageConnectionMockFragment';
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 const cache: {

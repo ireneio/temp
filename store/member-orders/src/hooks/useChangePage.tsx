@@ -6,12 +6,13 @@ import { useCallback, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
 // graphql typescript
-import { getOrders, getOrdersVariables } from '../gqls/__generated__/getOrders';
 import {
+  getOrders,
+  getOrdersVariables,
   setOrdersCurrent as setOrdersCurrentType,
   setOrdersCurrentVariables as setOrdersCurrentVariablesType,
-} from '../gqls/__generated__/setOrdersCurrent';
-import { changePageFragment as changePageFragmentType } from '../gqls/__generated__/changePageFragment';
+  changePageFragment as changePageFragmentType,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { setOrdersCurrent } from '../gqls/useChangePage';

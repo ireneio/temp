@@ -13,7 +13,7 @@ import useInitFx from './hooks/useInitFx';
 import useFormat from './hooks/useFormat';
 
 // graphql typescript
-import { getStoreCurrency } from './__generated__/getStoreCurrency';
+import { getStoreCurrency } from '@meepshop/types/gqls/store';
 
 // graphql import
 import { useInitFxFragment } from './hooks/useInitFx';

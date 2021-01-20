@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { AdminStatusEnum } from '../../../../__generated__/meepshop';
-import { storeMockFragment } from './gqls/__generated__/storeMockFragment';
+import {
+  AdminStatusEnum,
+  storeMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<storeMockFragment>('Store', [

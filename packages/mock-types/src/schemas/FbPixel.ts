@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { fbPixelMockFragment } from './gqls/__generated__/fbPixelMockFragment';
+import { fbPixelMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<fbPixelMockFragment>('FbPixel', [

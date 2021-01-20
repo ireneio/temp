@@ -13,11 +13,11 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   assignDefaultProductTemplatePage as assignDefaultProductTemplatePageType,
   assignDefaultProductTemplatePageVariables,
-} from './__generated__/assignDefaultProductTemplatePage';
-import { useAssignDefaultProductTemplatePageReadCache } from './__generated__/useAssignDefaultProductTemplatePageReadCache';
-import { useAssignDefaultProductTemplatePageFragment } from './__generated__/useAssignDefaultProductTemplatePageFragment';
-import { useAssignDefaultProductTemplatePageUpdateNewPageFragment } from './__generated__/useAssignDefaultProductTemplatePageUpdateNewPageFragment';
-import { useAssignDefaultProductTemplatePageUpdatePrevPageFragment } from './__generated__/useAssignDefaultProductTemplatePageUpdatePrevPageFragment';
+  useAssignDefaultProductTemplatePageReadCache,
+  useAssignDefaultProductTemplatePageFragment,
+  useAssignDefaultProductTemplatePageUpdateNewPageFragment,
+  useAssignDefaultProductTemplatePageUpdatePrevPageFragment,
+} from '@meepshop/types/gqls/admin';
 
 // definition
 export default (id: string): (() => void) => {

@@ -19,7 +19,7 @@ import GoodDeal from '../GoodDeal';
 import GoogleAnalytics from '../GaViewId';
 
 // graphql typescript
-import { useBlocksFragment as useBlocksFragmentType } from './__generated__/useBlocksFragment';
+import { useBlocksFragment as useBlocksFragmentType } from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { facebookFacebookSettingFragment } from '../Facebook';

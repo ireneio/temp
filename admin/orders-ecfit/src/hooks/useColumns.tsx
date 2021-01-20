@@ -20,7 +20,7 @@ import {
   useColumnsFragment_edges_node_lastEcfitRequestRecord as useColumnsFragmentEdgesNodeLastEcfitRequestRecordType,
   useColumnsFragment_edges_node_paymentInfo as useColumnsFragmentEdgesNodePaymentInfoType,
   useColumnsFragment_edges_node_shipmentInfo as useColumnsFragmentEdgesNodeShipmentInfoType,
-} from '../gqls/__generated__/useColumnsFragment';
+} from '@meepshop/types/gqls/admin';
 
 // definition
 export default (

@@ -6,7 +6,7 @@ import moment from 'moment';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { numberInfoFragment as numberInfoFragmentType } from './__generated__/numberInfoFragment';
+import { numberInfoFragment as numberInfoFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType {

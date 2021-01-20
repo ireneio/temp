@@ -2,7 +2,7 @@
 import uuid from 'uuid/v4';
 
 // graphql typescript
-import { VideoRatio } from '../../__generated__/meepshop';
+import { VideoRatio } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default {

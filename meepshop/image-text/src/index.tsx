@@ -8,8 +8,10 @@ import Image from '@meepshop/image';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { JustifyContent } from '../../../__generated__/meepshop';
-import { imageTextFragment } from './gqls/__generated__/imageTextFragment';
+import {
+  JustifyContent,
+  imageTextFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { imageFragment } from '@meepshop/image/gqls';

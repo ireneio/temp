@@ -5,8 +5,8 @@ import mock from '../mock';
 import {
   ProductCollectionsModuleType,
   PercentWidth,
-} from '../../../../__generated__/meepshop';
-import { productCollectionsModuleMockFragment } from './gqls/__generated__/productCollectionsModuleMockFragment';
+  productCollectionsModuleMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<productCollectionsModuleMockFragment>(

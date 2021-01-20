@@ -12,8 +12,8 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   createRoutingRule as createRoutingRuleType,
   createRoutingRuleVariables as createRoutingRuleVariablesType,
-} from '../gqls/__generated__/createRoutingRule';
-import { useCreateRoutingRuleFragment as useCreateRoutingRuleFragmentType } from '../gqls/__generated__/useCreateRoutingRuleFragment';
+  useCreateRoutingRuleFragment as useCreateRoutingRuleFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import {

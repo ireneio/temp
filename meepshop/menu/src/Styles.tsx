@@ -8,7 +8,7 @@ import { DEFAULT_COLOR_WITH_PATTERN } from './constants';
 import styles from './styles/menuItem.less';
 
 // graphql typescript
-import { stylesFragment } from './gqls/__generated__/stylesFragment';
+import { stylesFragment } from '@meepshop/types/gqls/meepshop';
 
 // typescript defintion
 interface PropsType {

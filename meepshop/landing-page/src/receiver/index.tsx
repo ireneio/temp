@@ -24,8 +24,10 @@ import useCheckUser from './hooks/useCheckUser';
 import useInvoiceOptions from './hooks/useInvoiceOptions';
 
 // graphql typescript
-import { receiverUserFragment } from './gqls/__generated__/receiverUserFragment';
-import { receiverLandingPageModuleFragment } from './gqls/__generated__/receiverLandingPageModuleFragment';
+import {
+  receiverUserFragment,
+  receiverLandingPageModuleFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { useInvoiceOptionsFragment } from './gqls/useInvoiceOptions';

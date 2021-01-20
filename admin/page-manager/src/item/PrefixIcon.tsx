@@ -9,7 +9,7 @@ import { DefaultLayoutIcon } from '@meepshop/icons';
 import styles from './styles/prefixIcon.less';
 
 // graphql typescript
-import { prefixIconPageFragment as prefixIconPageFragmentType } from './__generated__/prefixIconPageFragment';
+import { prefixIconPageFragment as prefixIconPageFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType {

@@ -3,7 +3,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 // graphql typescript
-import { descriptionFragment as descriptionFragmentType } from './__generated__/descriptionFragment';
+import { descriptionFragment as descriptionFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType {

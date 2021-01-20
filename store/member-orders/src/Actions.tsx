@@ -10,7 +10,7 @@ import styles from './styles/actions.less';
 import usePayOrderAgain from './hooks/usePayOrderAgain';
 
 // graphql typescript
-import { actionsFragment as actionsFragmentType } from './gqls/__generated__/actionsFragment';
+import { actionsFragment as actionsFragmentType } from '@meepshop/types/gqls/store';
 
 // graphql import
 import { usePayOrderAgainFragment } from './gqls/usePayOrderAgain';

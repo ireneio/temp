@@ -5,9 +5,11 @@ import { Sensor as SensorContext } from '@meepshop/context';
 import { logoDesktopDefault_scaledSrc as logoDesktopDefault } from '@meepshop/images';
 import Link from '@meepshop/link';
 
-// typescript import
-import { logoUserFragment } from './gqls/__generated__/logoUserFragment';
-import { logoMenuDesignObjectTypeFragment } from './gqls/__generated__/logoMenuDesignObjectTypeFragment';
+// graphql typescript
+import {
+  logoUserFragment,
+  logoMenuDesignObjectTypeFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 interface PropsType {

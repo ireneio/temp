@@ -18,10 +18,12 @@ import useChangePage from './hooks/useChangePage';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getRedirects as getRedirectsType } from './gqls/__generated__/getRedirects';
-import { useColumnsStoreFragment as useColumnsStoreFragmentType } from './gqls/__generated__/useColumnsStoreFragment';
-import { useColumnsRoutingRuleFragment as useColumnsRoutingRuleFragmentType } from './gqls/__generated__/useColumnsRoutingRuleFragment';
-import { modalFragmet as modalFragmetType } from './gqls/__generated__/modalFragmet';
+import {
+  getRedirects as getRedirectsType,
+  useColumnsStoreFragment as useColumnsStoreFragmentType,
+  useColumnsRoutingRuleFragment as useColumnsRoutingRuleFragmentType,
+  modalFragmet as modalFragmetType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { getRedirects } from './gqls';

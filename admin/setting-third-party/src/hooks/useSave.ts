@@ -14,7 +14,7 @@ import useUpdateGoodDealSettings from './useUpdateGoodDealSettings';
 import useSetGaViewId from './useSetGaViewId';
 
 // graphql typescript
-import { useSaveFragment as useSaveFragmentType } from './__generated__/useSaveFragment';
+import { useSaveFragment as useSaveFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface ReturnType {

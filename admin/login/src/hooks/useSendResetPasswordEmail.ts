@@ -10,7 +10,7 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   sendResetPasswordEmail as sendResetPasswordEmailType,
   sendResetPasswordEmailVariables as sendResetPasswordEmailVariablesType,
-} from './__generated__/sendResetPasswordEmail';
+} from '@meepshop/types/gqls/admin';
 
 // definition
 export default (): {

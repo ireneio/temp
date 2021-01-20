@@ -20,7 +20,7 @@ import useCheckingAdminStatus from './hooks/useCheckingAdminStatus';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { initAdmin as initAdminType } from './gqls/__generated__/initAdmin';
+import { initAdmin as initAdminType } from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { initAdmin } from './gqls';

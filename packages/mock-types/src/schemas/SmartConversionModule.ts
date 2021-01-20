@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { SmartConversionModuleStatusEnum } from '../../../../__generated__/meepshop';
-import { smartConversionModuleMockFragment } from './gqls/__generated__/smartConversionModuleMockFragment';
+import {
+  SmartConversionModuleStatusEnum,
+  smartConversionModuleMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<smartConversionModuleMockFragment>(

@@ -10,8 +10,10 @@ import { Currency as CurrencyContext } from '@meepshop/context';
 import Credit from './Credit';
 
 // graphql typescript
-import { gmoOrderFragment as gmoOrderFragmentType } from './__generated__/gmoOrderFragment';
-import { paymentInfoFragment_paymentInfo_list_accountInfo_gmo as paymentInfoFragmentPaymentInfoListAccountInfoGmo } from './__generated__/paymentInfoFragment';
+import {
+  gmoOrderFragment as gmoOrderFragmentType,
+  paymentInfoFragment_paymentInfo_list_accountInfo_gmo as paymentInfoFragmentPaymentInfoListAccountInfoGmo,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { creditFragment } from './Credit';

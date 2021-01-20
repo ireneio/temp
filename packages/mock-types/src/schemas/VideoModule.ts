@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { VideoRatio } from '../../../../__generated__/meepshop';
-import { videoModuleMockFragment } from './gqls/__generated__/videoModuleMockFragment';
+import {
+  VideoRatio,
+  videoModuleMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 const href =

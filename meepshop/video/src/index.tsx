@@ -9,7 +9,7 @@ import useHeight from './hooks/useHeight';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { videoFragment } from './gqls/__generated__/videoFragment';
+import { videoFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default React.memo(({ id, width, ratio, href }: videoFragment) => {

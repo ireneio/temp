@@ -4,17 +4,15 @@ import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { getActionButtonSetting as getActionButtonSettingType } from '../gqls/__generated__/getActionButtonSetting';
 import {
+  getActionButtonSetting as getActionButtonSettingType,
   getHomePageActionButtonSetting as getHomePageActionButtonSettingType,
   getHomePageActionButtonSetting_viewer as getHomePageActionButtonSettingViewer,
   getHomePageActionButtonSetting_viewer_store as getHomePageActionButtonSettingViewerStore,
   getHomePageActionButtonSetting_viewer_store_page as getHomePageActionButtonSettingViewerStorePage,
-} from '../gqls/__generated__/getHomePageActionButtonSetting';
-import {
   getCustomPageActionButtonSetting as getCustomPageActionButtonSettingType,
   getCustomPageActionButtonSettingVariables,
-} from '../gqls/__generated__/getCustomPageActionButtonSetting';
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import {

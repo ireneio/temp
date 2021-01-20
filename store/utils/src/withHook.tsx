@@ -1,5 +1,5 @@
 // typescript import
-import { Subtract } from '@meepshop/utils/lib/types';
+import { Subtract } from '@meepshop/types';
 
 // import
 import React from 'react';

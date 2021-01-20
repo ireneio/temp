@@ -1,7 +1,8 @@
 // typescript import
 import { ContextType } from './index';
 
-import { LoginInput } from '../../../__generated__/admin';
+// graphql typescript
+import { LoginInput } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export const resolvers = {

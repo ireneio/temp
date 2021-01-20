@@ -10,11 +10,11 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 // graphql import
 import { useValidateLoveCode } from '../gqls/useValidateLoveCode';
 
-// grapqhql typescript
+// graphql typescript
 import {
   useValidateLoveCode as useValidateLoveCodeType,
   useValidateLoveCodeVariables,
-} from '../gqls/__generated__/useValidateLoveCode';
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default (): ValidationRule['validator'] => {

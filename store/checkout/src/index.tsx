@@ -12,7 +12,7 @@ import {
   getCheckoutInfo_viewer as getCheckoutInfoViewer,
   getCheckoutInfo_viewer_additionalInfo as getCheckoutInfoViewerAdditionalInfo,
   getCheckoutInfo_viewer_shippableRecipientAddresses as getCheckoutInfoViewerShippableRecipientAddresses,
-} from './gqls/__generated__/getCheckoutInfo';
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { getCheckoutInfo } from './gqls';

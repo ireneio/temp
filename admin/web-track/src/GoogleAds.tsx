@@ -17,9 +17,12 @@ import useSetGtagSettingsList from './hooks/useSetGtagSettingsList';
 import styles from './styles/googleAds.less';
 
 // graphql typescript
-import { gtagTypeEnum, gtagEventNameEnum } from '../../../__generated__/admin';
-import { googleAdsStoreFragment as googleAdsStoreFragmentType } from './gqls/__generated__/googleAdsStoreFragment';
-import { googleAdsStoreUpdateCacheFragment as googleAdsStoreUpdateCacheFragmentType } from './gqls/__generated__/googleAdsStoreUpdateCacheFragment';
+import {
+  gtagTypeEnum,
+  gtagEventNameEnum,
+  googleAdsStoreFragment as googleAdsStoreFragmentType,
+  googleAdsStoreUpdateCacheFragment as googleAdsStoreUpdateCacheFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { googleAdsStoreUpdateCacheFragment } from './gqls/googleAds';

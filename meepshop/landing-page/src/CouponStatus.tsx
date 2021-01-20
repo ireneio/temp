@@ -12,7 +12,7 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import styles from './styles/couponStatus.less';
 
 // graphql typescript
-import { couponStatusFragment } from './gqls/__generated__/couponStatusFragment';
+import { couponStatusFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 const TIME_FORMAT = 'YYYY/MM/DD';

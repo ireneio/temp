@@ -11,8 +11,10 @@ import useDuplicatePage from './useDuplicatePage';
 import useDeletePage from './useDeletePage';
 
 // graphql typescript
-import { getPagesVariables } from '../../../__generated__/getPages';
-import { usePageSettingItemsPageFragment as usePageSettingItemsPageFragmentType } from './__generated__/usePageSettingItemsPageFragment';
+import {
+  getPagesVariables,
+  usePageSettingItemsPageFragment as usePageSettingItemsPageFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // definition
 export const usePageSettingItemsStoreFragment = gql`

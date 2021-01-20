@@ -7,7 +7,7 @@ import { useCallback } from 'react';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { useValidatorFragment as useValidatorFragmentType } from '../gqls/__generated__/useValidatorFragment';
+import { useValidatorFragment as useValidatorFragmentType } from '@meepshop/types/gqls/admin';
 
 // definition
 export default (

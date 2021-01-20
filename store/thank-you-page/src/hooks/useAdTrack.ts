@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 
 // graphql typescript
-import { useAdTrackFragment as useAdTrackFragmentType } from './__generated__/useAdTrackFragment';
+import { useAdTrackFragment as useAdTrackFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 type productsType = Parameters<AdTrackType['purchase']>[0]['products'];

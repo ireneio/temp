@@ -12,8 +12,8 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   updateGoogleSearchConsoleVerificationHtml as updateGoogleSearchConsoleVerificationHtmlType,
   updateGoogleSearchConsoleVerificationHtmlVariables,
-} from '../gqls/__generated__/updateGoogleSearchConsoleVerificationHtml';
-import { useUpdateGoogleSearchConsoleVerificationHtmlFragment as useUpdateGoogleSearchConsoleVerificationHtmlFragmentType } from '../gqls/__generated__/useUpdateGoogleSearchConsoleVerificationHtmlFragment';
+  useUpdateGoogleSearchConsoleVerificationHtmlFragment as useUpdateGoogleSearchConsoleVerificationHtmlFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import {

@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { viewTrackingModuleMockFragment } from './gqls/__generated__/viewTrackingModuleMockFragment';
+import { viewTrackingModuleMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<viewTrackingModuleMockFragment>('ViewTrackingModule', [

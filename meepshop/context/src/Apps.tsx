@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { Spin, Icon } from 'antd';
 
 // graphql typescript
-import { getApps as getAppsType } from './gqls/__generated__/getApps';
+import { getApps as getAppsType } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { getApps } from './gqls/apps';

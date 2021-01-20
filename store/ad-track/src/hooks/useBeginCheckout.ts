@@ -7,7 +7,7 @@ import { useCallback, useContext } from 'react';
 import { Currency as CurrencyContext } from '@meepshop/context';
 
 // graphql typescript
-import { useBeginCheckoutFragment as useBeginCheckoutFragmentType } from '../gqls/__generated__/useBeginCheckoutFragment';
+import { useBeginCheckoutFragment as useBeginCheckoutFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 type productsType = Parameters<AdTrackType['beginCheckout']>[0]['products'];

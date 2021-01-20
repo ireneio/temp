@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { VideoRatio } from '../../../../__generated__/meepshop';
-import { productVideoModuleMockFragment } from './gqls/__generated__/productVideoModuleMockFragment';
+import {
+  VideoRatio,
+  productVideoModuleMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<productVideoModuleMockFragment>('ProductVideoModule', [

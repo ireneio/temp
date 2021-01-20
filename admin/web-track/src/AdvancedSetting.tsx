@@ -12,8 +12,8 @@ import styles from './styles/advancedSetting.less';
 import {
   updateAdRetentionMilliseconds as updateAdRetentionMillisecondsType,
   updateAdRetentionMillisecondsVariables,
-} from './gqls/__generated__/updateAdRetentionMilliseconds';
-import { advancedSettingFragment as advancedSettingFragmentType } from './gqls/__generated__/advancedSettingFragment';
+  advancedSettingFragment as advancedSettingFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { updateAdRetentionMilliseconds } from './gqls/advancedSetting';

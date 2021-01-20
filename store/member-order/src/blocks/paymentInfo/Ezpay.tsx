@@ -9,8 +9,10 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import Credit from './Credit';
 
 // graphql typescript
-import { ezpayFragment as ezpayFragmentType } from './__generated__/ezpayFragment';
-import { paymentInfoFragment_paymentInfo_list_accountInfo_ezpay as paymentInfoFragmentPaymentInfoListAccountInfoEzpay } from './__generated__/paymentInfoFragment';
+import {
+  ezpayFragment as ezpayFragmentType,
+  paymentInfoFragment_paymentInfo_list_accountInfo_ezpay as paymentInfoFragmentPaymentInfoListAccountInfoEzpay,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { creditFragment } from './Credit';

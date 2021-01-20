@@ -5,7 +5,7 @@ import { AdTrackType } from '@meepshop/context';
 import { useCallback } from 'react';
 
 // graphql typescript
-import { useCompleteRegistrationFragment as useCompleteRegistrationFragmentType } from '../gqls/__generated__/useCompleteRegistrationFragment';
+import { useCompleteRegistrationFragment as useCompleteRegistrationFragmentType } from '@meepshop/types/gqls/store';
 
 // definition
 export default (

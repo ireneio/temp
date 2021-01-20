@@ -12,7 +12,7 @@ import GmoCreditCardForm from '../index';
 import { props } from '../../mock';
 
 // graphql typescript
-import { getGMOUserVariables } from '../__generated__/getGMOUser';
+import { getGMOUserVariables } from '@meepshop/types/gqls/meepshop';
 
 // definition
 const EnhancedGmoCreditCardForm = Form.create<

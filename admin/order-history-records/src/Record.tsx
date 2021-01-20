@@ -12,7 +12,7 @@ import Detail from './Detail';
 import styles from './styles/record.less';
 
 // graphql typescript
-import { recordFragment } from './gqls/__generated__/recordFragment';
+import { recordFragment } from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { detailFragment } from './gqls/detail';

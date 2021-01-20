@@ -8,7 +8,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { message } from 'antd';
 
 // graphql typescript
-import { applyForStore as applyForStoreType } from './__generated__/applyForStore';
+import { applyForStore as applyForStoreType } from '@meepshop/types/gqls/admin';
 
 // definition
 export default ({

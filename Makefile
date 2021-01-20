@@ -1,30 +1,22 @@
 ROOT=$(shell pwd)
 BRANCH=$(shell git branch | grep \* | cut -d ' ' -f2)
 WATCH=""
-APOLLO_TYPE=mock-types
 OPTION=""
+
+migration:
+	@for workspace in meepshop admin store packages; do \
+		for filePath in $(shell find ./$$workspace -name __generated__ -type d); do \
+			rm -rf $$filePath; \
+		  done; \
+		done
+	@node migration.js $(shell git grep -rl __generated__ meepshop admin store packages)
+	@echo "TODO: should remove migration"
 
 babel-all:
 	@$(call babel-build,$(WATCH),--concurrency 16 $(OPTION))
 
 babel-changed:
 	@$(call babel-build,$(WATCH),--parallel --exclude-dependents --since $(BRANCH))
-
-apollo-watch:
-	@$(call apollo,$(APOLLO_TYPE),--watch)
-
-tsc-basic:
-	@$(call apollo,store)
-	@$(call apollo,admin)
-	@$(call apollo,meepshop)
-
-tsc:
-	@make tsc-basic
-	@tsc
-
-tsc-watch:
-	@make tsc-basic
-	@tsc -w
 
 clean:
 	rm -rf ./node_modules
@@ -44,20 +36,16 @@ release:
 		git commit -m "chore(root): add CHANGELOG.md"
 	@yarn lerna version
 
-define apollo
-	echo "- $(1)"
-	APOLLO_TYPE=$(1) yarn apollo client:codegen --target=typescript --globalTypesFile=./__generated__/$(1).ts $(2)
-endef
-
 define babel-build
   yarn lerna exec \
 		"babel src -d lib --delete-dir-on-start --root-mode upward --verbose -x .js,.ts,.tsx $(1)" \
 		--stream \
 		--include-dependencies \
-		--ignore @meepshop/store \
 		--ignore @meepshop/mock-types \
+		--ignore @meepshop/store \
 		--ignore @admin/server \
 		$(2)
+	ln -snf $(ROOT)/meepshop/types/lib/bin/index.js ./node_modules/.bin/types
 	ln -snf $(ROOT)/meepshop/locales/lib/bin/index.js ./node_modules/.bin/locales
 	ln -snf $(ROOT)/packages/generate/lib/bin/index.js ./node_modules/.bin/generate
 	ln -snf $(ROOT)/packages/storybook/lib/bin/index.js ./node_modules/.bin/storybook

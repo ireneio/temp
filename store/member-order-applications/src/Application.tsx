@@ -21,9 +21,9 @@ import styles from './styles/application.less';
 import {
   getMemberOrderApplications_viewer_order_applications as getMemberOrderApplicationsViewerOrderApplications,
   getMemberOrderApplications_viewer_order_applications_extra as getMemberOrderApplicationsViewerOrderApplicationsExtra,
-} from './__generated__/getMemberOrderApplications';
-import { applicationOrderApplyFragment as applicationOrderApplyFragmentType } from './__generated__/applicationOrderApplyFragment';
-import { applicationProductsObjectTypeFragment as applicationProductsObjectTypeFragmentType } from './__generated__/applicationProductsObjectTypeFragment';
+  applicationOrderApplyFragment as applicationOrderApplyFragmentType,
+  applicationProductsObjectTypeFragment as applicationProductsObjectTypeFragmentType,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';

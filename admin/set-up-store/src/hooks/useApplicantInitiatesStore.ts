@@ -11,7 +11,7 @@ import CookiesContext from '@meepshop/cookies';
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { applicantInitiatesStore as applicantInitiatesStoreType } from './__generated__/applicantInitiatesStore';
+import { applicantInitiatesStore as applicantInitiatesStoreType } from '@meepshop/types/gqls/admin';
 
 // definition
 export default ({

@@ -17,7 +17,7 @@ import useClipboard from './hooks/useClipboard';
 import styles from './styles/facebook.less';
 
 // graphql typescript
-import { facebookStoreFragment as facebookStoreFragmentType } from './gqls/__generated__/facebookStoreFragment';
+import { facebookStoreFragment as facebookStoreFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType extends FormComponentProps {

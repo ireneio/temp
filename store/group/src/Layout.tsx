@@ -9,7 +9,7 @@ import modules from '@meepshop/modules';
 import styles from './styles/layout.less';
 
 // graphql typescript
-import { groupFragment_modules_GroupModule as groupFragmentModulesGroupModule } from './gqls/__generated__/groupFragment';
+import { groupFragment_modules_GroupModule as groupFragmentModulesGroupModule } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType {

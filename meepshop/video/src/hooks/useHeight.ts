@@ -6,7 +6,7 @@ import { useRef, useState, useEffect } from 'react';
 import { emptyFunction } from 'fbjs';
 
 // graphql typescript
-import { videoFragment } from '../gqls/__generated__/videoFragment';
+import { videoFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 const RATIO_TO_VALUE = {

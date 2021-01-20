@@ -4,7 +4,7 @@ import moment from 'moment';
 import mock from '../mock';
 
 // graphql typescript
-import { ezPaymentReturnListObjectTypeMockFragment } from './gqls/__generated__/ezPaymentReturnListObjectTypeMockFragment';
+import { ezPaymentReturnListObjectTypeMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<ezPaymentReturnListObjectTypeMockFragment>(

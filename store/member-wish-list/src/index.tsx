@@ -10,8 +10,10 @@ import useColumns from './hooks/useColumns';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getWishlist as getWishlistType } from './gqls/__generated__/getWishlist';
-import { useColumnsWishlistProductFragment as useColumnsWishlistProductFragmentType } from './gqls/__generated__/useColumnsWishlistProductFragment';
+import {
+  getWishlist as getWishlistType,
+  useColumnsWishlistProductFragment as useColumnsWishlistProductFragmentType,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { getWishlist } from './gqls';

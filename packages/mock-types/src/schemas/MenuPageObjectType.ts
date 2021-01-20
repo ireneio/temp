@@ -5,8 +5,10 @@ import { ContextType, fieldsType } from '../mock';
 import mock from '../mock';
 
 // graphql typescript
-import { ImagePositionEnum } from '../../../../__generated__/meepshop';
-import { menuPageObjectTypeMockFragment } from './gqls/__generated__/menuPageObjectTypeMockFragment';
+import {
+  ImagePositionEnum,
+  menuPageObjectTypeMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 const getPage = (action: number): menuPageObjectTypeMockFragment => ({

@@ -1,5 +1,5 @@
 // graphql typescript
-import { carouselFragment_images as carouselFragmentImages } from './gqls/__generated__/carouselFragment';
+import { carouselFragment_images as carouselFragmentImages } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export const DEFAULT_IMAGES: carouselFragmentImages[] = [

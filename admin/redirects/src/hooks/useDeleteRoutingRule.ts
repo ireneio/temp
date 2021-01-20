@@ -9,9 +9,8 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   deleteRoutingRule as deleteRoutingRuleType,
   deleteRoutingRuleVariables as deleteRoutingRuleVariablesType,
-} from '../gqls/__generated__/deleteRoutingRule';
-
-import { useDeleteRoutingRuleFragment as useDeleteRoutingRuleFragmentType } from '../gqls/__generated__/useDeleteRoutingRuleFragment';
+  useDeleteRoutingRuleFragment as useDeleteRoutingRuleFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import {

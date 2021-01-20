@@ -7,9 +7,9 @@ import { ACION_TYPES } from '../constants';
 import {
   DefaultIconEnum,
   ImagePositionEnum,
-} from '../../../../__generated__/meepshop';
-import { menuMenuModuleFragment_menu_pages as menuMenuModuleFragmentMenuPages } from '../gqls/__generated__/menuMenuModuleFragment';
-import { usePagesWithSearchBarFragment as usePagesWithSearchBarFragmentType } from '../gqls/__generated__/usePagesWithSearchBarFragment';
+  menuMenuModuleFragment_menu_pages as menuMenuModuleFragmentMenuPages,
+  usePagesWithSearchBarFragment as usePagesWithSearchBarFragmentType,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default (

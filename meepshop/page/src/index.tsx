@@ -7,9 +7,11 @@ import Menu from '@meepshop/menu';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { pageUserFragment } from './gqls/__generated__/pageUserFragment';
-import { pageOrderListFragment } from './gqls/__generated__/pageOrderListFragment';
-import { pagePageFragment } from './gqls/__generated__/pagePageFragment';
+import {
+  pageUserFragment,
+  pageOrderListFragment,
+  pagePageFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { menuMenuModuleFragment } from '@meepshop/menu/gqls';

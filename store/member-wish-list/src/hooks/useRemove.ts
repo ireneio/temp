@@ -11,8 +11,8 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   removeProductFromWishList as removeProductFromWishListType,
   removeProductFromWishListVariables,
-} from '../gqls/__generated__/removeProductFromWishList';
-import { useRemoveFragment as useRemoveFragmentType } from '../gqls/__generated__/useRemoveFragment';
+  useRemoveFragment as useRemoveFragmentType,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import {

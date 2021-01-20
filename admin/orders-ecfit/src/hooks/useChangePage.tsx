@@ -9,8 +9,8 @@ import { useMutation } from '@apollo/react-hooks';
 import {
   setEcfitOrderCurrent as setEcfitOrderCurrentType,
   setEcfitOrderCurrentVariables as setEcfitOrderCurrentVariablesType,
-} from '../gqls/__generated__/setEcfitOrderCurrent';
-import { useChangePageFragment as useChangePageFragmentType } from '../gqls/__generated__/useChangePageFragment';
+  useChangePageFragment as useChangePageFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { setEcfitOrderCurrent } from '../gqls/useChangePage';

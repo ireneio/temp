@@ -16,7 +16,7 @@ import useUpdateGoogleSearchConsoleVerificationHtml from './hooks/useUpdateGoogl
 import styles from './styles/googleWebmaster.less';
 
 // graphql typescript
-import { googleWebmasterFragment as googleWebmasterFragmentType } from './gqls/__generated__/googleWebmasterFragment';
+import { googleWebmasterFragment as googleWebmasterFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType extends FormComponentProps {

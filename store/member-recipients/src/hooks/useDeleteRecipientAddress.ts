@@ -13,9 +13,9 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   deleteRecipientAddress as deleteRecipientAddressType,
   deleteRecipientAddressVariables,
-} from '../gqls/__generated__/deleteRecipientAddress';
-import { useDeleteRecipientAddressGetCache as useDeleteRecipientAddressGetCacheType } from '../gqls/__generated__/useDeleteRecipientAddressGetCache';
-import { useDeleteRecipientAddressFragment as useDeleteRecipientAddressFragmentType } from '../gqls/__generated__/useDeleteRecipientAddressFragment';
+  useDeleteRecipientAddressGetCache as useDeleteRecipientAddressGetCacheType,
+  useDeleteRecipientAddressFragment as useDeleteRecipientAddressFragmentType,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import {

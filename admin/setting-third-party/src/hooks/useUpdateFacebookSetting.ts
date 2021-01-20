@@ -10,11 +10,9 @@ import gql from 'graphql-tag';
 import {
   updateFacebookSetting as updateFacebookSettingType,
   updateFacebookSettingVariables,
-} from './__generated__/updateFacebookSetting';
-import {
   useUpdateFacebookSettingWriteCache,
   useUpdateFacebookSettingWriteCache_facebookSetting as useUpdateFacebookSettingWriteCacheFacebookSetting,
-} from './__generated__/useUpdateFacebookSettingWriteCache';
+} from '@meepshop/types/gqls/admin';
 
 // definition
 const mutation = gql`

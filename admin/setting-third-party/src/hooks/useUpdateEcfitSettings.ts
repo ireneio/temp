@@ -10,11 +10,9 @@ import gql from 'graphql-tag';
 import {
   updateEcfitSettings as updateEcfitSettingsType,
   updateEcfitSettingsVariables,
-} from './__generated__/updateEcfitSettings';
-import {
   useUpdateEcfitSettingsWriteCache,
   useUpdateEcfitSettingsWriteCache_storeEcfitSettings as useUpdateEcfitSettingsWriteCacheStoreEcfitSettings,
-} from './__generated__/useUpdateEcfitSettingsWriteCache';
+} from '@meepshop/types/gqls/admin';
 
 // definition
 const mutation = gql`

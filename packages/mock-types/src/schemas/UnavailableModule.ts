@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { unavailableModuleMockFragment } from './gqls/__generated__/unavailableModuleMockFragment';
+import { unavailableModuleMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<unavailableModuleMockFragment>('UnavailableModule', [

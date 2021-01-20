@@ -2,7 +2,7 @@
 import { useMemo } from 'react';
 
 // graphql typescript
-import { SocialMediaModuleType } from '../../../../__generated__/meepshop';
+import { SocialMediaModuleType } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default (

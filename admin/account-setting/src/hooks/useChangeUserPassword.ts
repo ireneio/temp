@@ -12,7 +12,7 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   changeUserPassword as changeUserPasswordType,
   changeUserPasswordVariables,
-} from '../gqls/__generated__/changeUserPassword';
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { changeUserPassword } from '../gqls/useChangeUserPassword';

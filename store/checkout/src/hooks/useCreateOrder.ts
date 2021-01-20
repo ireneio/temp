@@ -11,7 +11,7 @@ import { useMutation } from '@apollo/react-hooks';
 import {
   createOrder as createOrderType,
   createOrderVariables,
-} from '../gqls/__generated__/createOrder';
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { createOrder } from '../gqls/useCreateOrder';

@@ -20,8 +20,8 @@ import styles from './styles/modal.less';
 import {
   modalFragmet as modalFragmetType,
   modalFragmet_routingRules as modalFragmetRoutingRulesType,
-} from './gqls/__generated__/modalFragmet';
-import { useCreateRoutingRuleFragment as useCreateRoutingRuleFragmentType } from './gqls/__generated__/useCreateRoutingRuleFragment';
+  useCreateRoutingRuleFragment as useCreateRoutingRuleFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { useCreateRoutingRuleFragment } from './gqls/useCreateRoutingRule';

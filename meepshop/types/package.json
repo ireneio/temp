@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@meepshop/types",
+  "description": "Use to handle the global apollo-client types",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "bin": "./lib/bin/index.js",
+  "types": "./index.ts",
+  "dependencies": {
+    "commander": "^4.0.1",
+    "execa": "^4.0.0"
+  },
+  "keywords": ["apollo-client", "meepshop", "types"]
+}

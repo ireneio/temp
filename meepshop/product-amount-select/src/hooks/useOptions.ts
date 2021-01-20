@@ -4,7 +4,7 @@ import { useState, useMemo, useCallback } from 'react';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { useOptionsVariantFragment as useOptionsVariantFragmentType } from '../gqls/__generated__/useOptionsVariantFragment';
+import { useOptionsVariantFragment as useOptionsVariantFragmentType } from '@meepshop/types/gqls/meepshop';
 
 // typescropt
 interface OptionsType {

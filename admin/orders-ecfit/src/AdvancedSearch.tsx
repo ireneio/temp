@@ -19,8 +19,8 @@ import styles from './styles/advancedSearch.less';
 import {
   advancedSearchStorePaymentFragment as advancedSearchStorePaymentFragmentType,
   advancedSearchStorePaymentFragment_title as advancedSearchStorePaymentFragmentTitle,
-} from './__generated__/advancedSearchStorePaymentFragment';
-import { advancedSearchStoreShipmentFragment as advancedSearchStoreShipmentFragmentType } from './__generated__/advancedSearchStoreShipmentFragment';
+  advancedSearchStoreShipmentFragment as advancedSearchStoreShipmentFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';

@@ -1,5 +1,5 @@
 // graphql typescript
-import { productsObjectTypeFragment as productsObjectTypeFragmentType } from './gqls/__generated__/productsObjectTypeFragment';
+import { productsObjectTypeFragment as productsObjectTypeFragmentType } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export const resolvers = {

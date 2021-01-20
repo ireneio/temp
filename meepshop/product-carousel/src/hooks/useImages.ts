@@ -10,7 +10,7 @@ import { placeholderThumbnail_scaledSrc as placeholderThumbnail } from '@meepsho
 import {
   useImagesFragment,
   useImagesFragment_galleries_images as useImagesFragmentGalleriesImages,
-} from '../gqls/__generated__/useImagesFragment';
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default (product: useImagesFragment | null): PropsType['images'] =>

@@ -11,11 +11,11 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { JustifyContent } from '../../../__generated__/meepshop';
 import {
+  JustifyContent,
   productCollectionsFragment,
   productCollectionsFragment_product_galleries_images as productCollectionsFragmentProductGalleriesImages,
-} from './gqls/__generated__/productCollectionsFragment';
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { imageFragment } from '@meepshop/image/gqls';

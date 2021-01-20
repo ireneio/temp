@@ -9,7 +9,7 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { Currency as CurrencyContext } from '@meepshop/context';
 
 // graphql typescript
-import { useColumnsUserPointsFragment } from '../gqls/__generated__/useColumnsUserPointsFragment';
+import { useColumnsUserPointsFragment } from '@meepshop/types/gqls/store';
 
 // definition
 export default (): ColumnProps<useColumnsUserPointsFragment>[] => {

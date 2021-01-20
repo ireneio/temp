@@ -21,7 +21,7 @@ import useSave from './hooks/useSave';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getThirdPartySetting } from './__generated__/getThirdPartySetting';
+import { getThirdPartySetting } from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { useBlocksFragment } from './hooks/useBlocks';

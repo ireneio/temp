@@ -20,12 +20,10 @@ import {
 import {
   addRecipientAddress as addRecipientAddressType,
   addRecipientAddressVariables,
-} from '../gqls/__generated__/addRecipientAddress';
-import { useAddRecipientAddressGetCache as useAddRecipientAddressGetCacheType } from '../gqls/__generated__/useAddRecipientAddressGetCache';
-import {
+  useAddRecipientAddressGetCache as useAddRecipientAddressGetCacheType,
   useAddRecipientAddressFragment as useAddRecipientAddressFragmentType,
   useAddRecipientAddressFragment_shippableRecipientAddresses as useAddRecipientAddressFragmentShippableRecipientAddresses,
-} from '../gqls/__generated__/useAddRecipientAddressFragment';
+} from '@meepshop/types/gqls/store';
 
 // definition
 export default (): MutationFunction<

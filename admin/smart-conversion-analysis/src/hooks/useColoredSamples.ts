@@ -6,7 +6,7 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { COLORS } from '../constants';
 
 // graphql typescript
-import { fetchSmartConversionModuleGAData_fetchSmartConversionModuleGAData_smartConversionModule_samples as fetchSmartConversionModuleGADataFetchSmartConversionModuleGADataSmartConversionModuleSamples } from '../gqls/__generated__/fetchSmartConversionModuleGAData';
+import { fetchSmartConversionModuleGAData_fetchSmartConversionModuleGAData_smartConversionModule_samples as fetchSmartConversionModuleGADataFetchSmartConversionModuleGADataSmartConversionModuleSamples } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface ModifiedSample {

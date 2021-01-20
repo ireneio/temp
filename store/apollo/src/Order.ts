@@ -5,8 +5,8 @@ import gql from 'graphql-tag';
 import {
   orderOrderFragment as orderOrderFragmentType,
   orderOrderFragment_products as orderOrderFragmentProducts,
-} from './__generated__/orderOrderFragment';
-import { orderOrderApplyFragment as orderOrderApplyFragmentType } from './__generated__/orderOrderApplyFragment';
+  orderOrderApplyFragment as orderOrderApplyFragmentType,
+} from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface DefaultDataType {

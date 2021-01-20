@@ -14,7 +14,7 @@ import useDeleteRecipientAddress from './useDeleteRecipientAddress';
 import styles from '../styles/useColumns.less';
 
 // graphql typescript
-import { useColumnsRecipientAddressFragment as useColumnsRecipientAddressFragmentType } from '../gqls/__generated__/useColumnsRecipientAddressFragment';
+import { useColumnsRecipientAddressFragment as useColumnsRecipientAddressFragmentType } from '@meepshop/types/gqls/store';
 
 // definition
 export default (

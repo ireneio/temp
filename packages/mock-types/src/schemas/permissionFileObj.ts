@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { permissionFileObjMockFragment } from './gqls/__generated__/permissionFileObjMockFragment';
+import { permissionFileObjMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<permissionFileObjMockFragment>('permissionFileObj', [

@@ -11,7 +11,7 @@ import GmoCvs from './GmoCvs';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { infoFragment as infoFragmentType } from './__generated__/infoFragment';
+import { infoFragment as infoFragmentType } from '@meepshop/types/gqls/store';
 
 // graphql import
 import { cathayAtmFragment } from './CathayAtm';

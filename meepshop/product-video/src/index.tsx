@@ -4,7 +4,7 @@ import React from 'react';
 import Video from '@meepshop/video';
 
 // graphql typescript
-import { productVideoFragment } from './gqls/__generated__/productVideoFragment';
+import { productVideoFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default React.memo(

@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import fx from 'money';
 
 // graphql typescript
-import { useInitFxFragment as useInitFxFragmentType } from './__generated__/useInitFxFragment';
+import { useInitFxFragment as useInitFxFragmentType } from '@meepshop/types/gqls/store';
 
 // definition
 export const useInitFxFragment = gql`

@@ -11,7 +11,7 @@ import { version, defaultAppId } from '@meepshop/context/lib/Fb';
 import useFb from './hooks/useFb';
 
 // graphql typescript
-import { getFbAppId } from './__generated__/getFbAppId';
+import { getFbAppId } from '@meepshop/types/gqls/store';
 
 // definition
 const query = gql`

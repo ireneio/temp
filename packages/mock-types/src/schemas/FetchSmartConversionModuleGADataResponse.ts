@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { FetchSmartConversionModuleGADataResponseStatusEnum } from '../../../../__generated__/meepshop';
-import { fetchSmartConversionModuleGADataResponseMockFragment } from './gqls/__generated__/fetchSmartConversionModuleGADataResponseMockFragment';
+import {
+  FetchSmartConversionModuleGADataResponseStatusEnum,
+  fetchSmartConversionModuleGADataResponseMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<fetchSmartConversionModuleGADataResponseMockFragment>(

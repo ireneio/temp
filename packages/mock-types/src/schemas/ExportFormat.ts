@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { exportFormatMockFragment } from './gqls/__generated__/exportFormatMockFragment';
+import { exportFormatMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<exportFormatMockFragment>('ExportFormat', [

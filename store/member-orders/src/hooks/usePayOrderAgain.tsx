@@ -10,8 +10,8 @@ import {
   payOrderAgain as payOrderAgainType,
   payOrderAgainVariables as payOrderAgainVariablesType,
   payOrderAgain_paymentAgainOrderList_formData as payOrderAgainPaymentAgainOrderListFormDataType,
-} from '../gqls/__generated__/payOrderAgain';
-import { usePayOrderAgainFragment as usePayOrderAgainFragmentType } from '../gqls/__generated__/usePayOrderAgainFragment';
+  usePayOrderAgainFragment as usePayOrderAgainFragmentType,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { payOrderAgain } from '../gqls/actions';

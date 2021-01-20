@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { backgroundImageMockFragment } from './gqls/__generated__/backgroundImageMockFragment';
+import { backgroundImageMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<backgroundImageMockFragment>('BackgroundImage', [

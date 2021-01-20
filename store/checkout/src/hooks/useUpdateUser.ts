@@ -11,9 +11,9 @@ import { useMutation } from '@apollo/react-hooks';
 import {
   updateUserAfterCreatingOrder as updateUserAfterCreatingOrderType,
   updateUserAfterCreatingOrderVariables,
-} from '../gqls/__generated__/updateUserAfterCreatingOrder';
-import { getUserCache as getUserCacheType } from '../gqls/__generated__/getUserCache';
-import { useUpdateUserFragment as useUpdateUserFragmentType } from '../gqls/__generated__/useUpdateUserFragment';
+  getUserCache as getUserCacheType,
+  useUpdateUserFragment as useUpdateUserFragmentType,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import {

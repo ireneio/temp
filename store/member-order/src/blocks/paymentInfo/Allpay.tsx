@@ -8,8 +8,10 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import Credit from './Credit';
 
 // graphql typescript
-import { allpayFragment as allpayFragmentType } from './__generated__/allpayFragment';
-import { paymentInfoFragment_paymentInfo_list_accountInfo_allpay as paymentInfoFragmentPaymentInfoListAccountInfoAllpay } from './__generated__/paymentInfoFragment';
+import {
+  allpayFragment as allpayFragmentType,
+  paymentInfoFragment_paymentInfo_list_accountInfo_allpay as paymentInfoFragmentPaymentInfoListAccountInfoAllpay,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { creditFragment } from './Credit';

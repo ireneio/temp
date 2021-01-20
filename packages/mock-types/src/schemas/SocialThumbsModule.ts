@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { JustifyContent } from '../../../../__generated__/meepshop';
-import { socialThumbsModuleMockFragment } from './gqls/__generated__/socialThumbsModuleMockFragment';
+import {
+  JustifyContent,
+  socialThumbsModuleMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 const href = 'https://www.google.com.tw';

@@ -5,8 +5,8 @@ import mock from '../mock';
 import {
   SocialMediaModuleType,
   JustifyContent,
-} from '../../../../__generated__/meepshop';
-import { socialMediaModuleMockFragment } from './gqls/__generated__/socialMediaModuleMockFragment';
+  socialMediaModuleMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<socialMediaModuleMockFragment>('SocialMediaModule', [

@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { iframeModuleMockFragment } from './gqls/__generated__/iframeModuleMockFragment';
+import { iframeModuleMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<iframeModuleMockFragment>('IframeModule', [

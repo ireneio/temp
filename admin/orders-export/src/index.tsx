@@ -2,8 +2,6 @@
 import { DrawerProps } from 'antd/lib/drawer';
 import { FormComponentProps } from 'antd/lib/form/Form';
 
-import { RequestExportFileInput } from '../../../__generated__/admin';
-
 // import
 import React from 'react';
 import { Form, Spin, Icon, Drawer, Select, Input, Button } from 'antd';
@@ -12,6 +10,9 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 import useOrderExport from './hooks/useOrderExport';
 import styles from './styles/index.less';
+
+// graphql typescript
+import { RequestExportFileInput } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType

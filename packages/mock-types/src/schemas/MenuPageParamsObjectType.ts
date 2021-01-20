@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { menuPageParamsObjectTypeMockFragment } from './gqls/__generated__/menuPageParamsObjectTypeMockFragment';
+import { menuPageParamsObjectTypeMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<menuPageParamsObjectTypeMockFragment>(

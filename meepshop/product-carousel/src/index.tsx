@@ -14,7 +14,7 @@ import useSlickActive from './hooks/useSlickActive';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { productCarouselFragment } from './gqls/__generated__/productCarouselFragment';
+import { productCarouselFragment } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { carouselFragment } from '@meepshop/carousel/gqls';

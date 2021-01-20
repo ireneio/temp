@@ -7,7 +7,7 @@ import { Colors as ColorsContext } from '@meepshop/context';
 import styles from './styles/backToTop.less';
 
 // graphql typescript
-import { backToTopFragment as backToTopFragmentType } from './gqls/__generated__/backToTopFragment';
+import { backToTopFragment as backToTopFragmentType } from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 interface PropsType {

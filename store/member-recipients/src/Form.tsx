@@ -16,8 +16,10 @@ import useFormSubmit from './hooks/useFormSubmit';
 import styles from './styles/form.less';
 
 // graphql typescript
-import { formRecipientAddressFragment as formRecipientAddressFragmentType } from './gqls/__generated__/formRecipientAddressFragment';
-import { formStoreFragment as formStoreFragmentType } from './gqls/__generated__/formStoreFragment';
+import {
+  formRecipientAddressFragment as formRecipientAddressFragmentType,
+  formStoreFragment as formStoreFragmentType,
+} from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType extends FormComponentProps {

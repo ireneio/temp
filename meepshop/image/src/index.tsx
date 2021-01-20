@@ -10,7 +10,7 @@ import useImage from './hooks/useImage';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { imageFragment } from './gqls/__generated__/imageFragment';
+import { imageFragment } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { useLinkFragment } from '@meepshop/hooks/lib/gqls/useLink';

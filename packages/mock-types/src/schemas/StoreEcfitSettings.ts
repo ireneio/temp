@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { EcfitServiceTypeEnum } from '../../../../__generated__/meepshop';
-import { storeEcfitSettingsMockFragment } from './gqls/__generated__/storeEcfitSettingsMockFragment';
+import {
+  EcfitServiceTypeEnum,
+  storeEcfitSettingsMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<storeEcfitSettingsMockFragment>('StoreEcfitSettings', [

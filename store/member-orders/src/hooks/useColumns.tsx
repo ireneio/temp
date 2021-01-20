@@ -18,7 +18,7 @@ import {
   useColumnsOrdersFragment_node as useColumnsOrdersFragmentNode,
   useColumnsOrdersFragment_node_paymentInfo as useColumnsOrdersFragmentNodePaymentInfo,
   useColumnsOrdersFragment_node_shipmentInfo as useColumnsOrdersFragmentNodeShipmentInfo,
-} from '../gqls/__generated__/useColumnsOrdersFragment';
+} from '@meepshop/types/gqls/store';
 
 // import graphql
 import { actionsFragment } from '../gqls/actions';

@@ -16,10 +16,13 @@ import { STATUS_LIST } from './constants';
 import styles from './styles/changeStatus.less';
 
 // graphql typescript
-import { changeStatusOrderConnectionFragment as changeStatusOrderConnectionFragmentType } from './__generated__/changeStatusOrderConnectionFragment';
-import { updateOrder, updateOrderVariables } from './__generated__/updateOrder';
-import { changeStatusOrderFragment } from './__generated__/changeStatusOrderFragment';
-import { UpdateOrder } from '../../../__generated__/admin';
+import {
+  changeStatusOrderConnectionFragment as changeStatusOrderConnectionFragmentType,
+  updateOrder,
+  updateOrderVariables,
+  changeStatusOrderFragment,
+  UpdateOrder,
+} from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType extends I18nPropsType {

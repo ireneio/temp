@@ -13,7 +13,7 @@ import {
   useVariantOptionsFragment,
   useVariantOptionsFragment_variants as useVariantOptionsFragmentVariants,
   useVariantOptionsFragment_specs_title as useVariantOptionsFragmentSpecsTitle,
-} from '../gqls/__generated__/useVariantOptionsFragment';
+} from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 interface Leaf {

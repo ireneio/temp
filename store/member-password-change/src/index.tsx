@@ -22,7 +22,7 @@ import styles from './styles/index.less';
 import {
   memberChangePassword,
   memberChangePasswordVariables,
-} from './__generated__/memberChangePassword';
+} from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType extends I18nPropsType, FormComponentProps {

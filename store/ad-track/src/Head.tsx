@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { headFragment as headFragmentType } from './gqls/__generated__/headFragment';
+import { headFragment as headFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType {

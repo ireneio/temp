@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { shipmentInfoFragment as shipmentInfoFragmentType } from './__generated__/shipmentInfoFragment';
+import { shipmentInfoFragment as shipmentInfoFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType {

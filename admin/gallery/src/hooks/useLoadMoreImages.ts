@@ -9,8 +9,8 @@ import { getScrollPosition } from 'fbjs';
 import {
   getImages as getImagesType,
   getImagesVariables as getImagesVariablesType,
-} from '../gqls/__generated__/getImages';
-import { useLoadMoreImagesFragment as useLoadMoreImagesFragmentType } from '../gqls/__generated__/useLoadMoreImagesFragment';
+  useLoadMoreImagesFragment as useLoadMoreImagesFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // definition
 export default (

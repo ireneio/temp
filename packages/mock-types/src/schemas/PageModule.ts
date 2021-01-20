@@ -27,7 +27,7 @@ import VideoModule from './VideoModule';
 import ViewTrackingModule from './ViewTrackingModule';
 
 // graphql typescript
-import { pageModuleMockFragment } from './gqls/__generated__/pageModuleMockFragment';
+import { pageModuleMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 const getPageModules = (

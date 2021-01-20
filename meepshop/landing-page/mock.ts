@@ -4,7 +4,7 @@
 import uuid from 'uuid/v4';
 
 // graphql typescript
-import { ProductsSort } from '../../__generated__/meepshop';
+import { ProductsSort } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default {

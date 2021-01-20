@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { CathayPaymentTypeEnum } from '../../../../__generated__/meepshop';
-import { paymentAccountForCathayMockFragment } from './gqls/__generated__/paymentAccountForCathayMockFragment';
+import {
+  CathayPaymentTypeEnum,
+  paymentAccountForCathayMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<paymentAccountForCathayMockFragment>(

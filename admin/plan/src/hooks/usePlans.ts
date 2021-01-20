@@ -8,7 +8,7 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   publicPlans as publicPlansType,
   publicPlans_publicPlans as publicPlansPublicPlans,
-} from '../gqls/__generated__/publicPlans';
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { publicPlans } from '../gqls/usePlans';

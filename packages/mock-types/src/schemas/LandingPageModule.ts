@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { landingPageModuleMockFragment } from './gqls/__generated__/landingPageModuleMockFragment';
+import { landingPageModuleMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<landingPageModuleMockFragment>('LandingPageModule', [

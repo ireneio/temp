@@ -7,7 +7,7 @@ import useModules from './hooks/useModules';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { groupFragment as groupFragmentType } from './gqls/__generated__/groupFragment';
+import { groupFragment as groupFragmentType } from '@meepshop/types/gqls/store';
 
 // graphql import
 import { modulesFragment } from '@meepshop/modules/gqls';

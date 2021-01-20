@@ -1,5 +1,5 @@
-// typescript import
-import { LogInput } from '../../../__generated__/meepshop';
+// graphql typescript
+import { LogInput } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export const resolvers = {

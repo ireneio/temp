@@ -7,7 +7,7 @@ import gql from 'graphql-tag';
 import {
   updateGoodDealSettings as updateGoodDealSettingsType,
   updateGoodDealSettingsVariables,
-} from './__generated__/updateGoodDealSettings';
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { goodDealFragment } from '../GoodDeal';

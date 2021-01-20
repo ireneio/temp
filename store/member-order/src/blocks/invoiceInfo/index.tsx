@@ -8,8 +8,10 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import NumberInfo from './NumberInfo';
 
 // graphql typescript
-import { blocksFragment as blocksFragmentType } from '../__generated__/blocksFragment';
-import { invoiceInfoFragment as invoiceInfoFragmentType } from './__generated__/invoiceInfoFragment';
+import {
+  blocksFragment as blocksFragmentType,
+  invoiceInfoFragment as invoiceInfoFragmentType,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { numberInfoFragment } from './NumberInfo';

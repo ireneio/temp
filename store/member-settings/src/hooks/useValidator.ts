@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { getUserInfo_viewer_birthday as getUserInfoViewerBirthday } from '../__generated__/getUserInfo';
+import { getUserInfo_viewer_birthday as getUserInfoViewerBirthday } from '@meepshop/types/gqls/store';
 
 // typescript definition
 type ValueType = string | number | null | getUserInfoViewerBirthday;

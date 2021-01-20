@@ -18,9 +18,9 @@ import {
   titleMenuPageObjectTypeFragment as titleMenuPageObjectTypeFragmentType,
   titleMenuPageObjectTypeFragment_image_Image as titleMenuPageObjectTypeFragmentImageImageType,
   titleMenuPageObjectTypeFragment_image_DefaultIcon as titleMenuPageObjectTypeFragmentDefaultIconDefaultIconType,
-} from './gqls/__generated__/titleMenuPageObjectTypeFragment';
-import { titleUserFragment as titleUserFragmentType } from './gqls/__generated__/titleUserFragment';
-import { titleMenuDesignObjectTypeFragment as titleMenuDesignObjectTypeFragmentType } from './gqls/__generated__/titleMenuDesignObjectTypeFragment';
+  titleUserFragment as titleUserFragmentType,
+  titleMenuDesignObjectTypeFragment as titleMenuDesignObjectTypeFragmentType,
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import {

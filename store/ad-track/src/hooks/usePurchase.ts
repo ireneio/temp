@@ -5,7 +5,7 @@ import { AdTrackType } from '@meepshop/context';
 import { useCallback } from 'react';
 
 // graphql typescript
-import { usePurchaseFragment as usePurchaseFragmentType } from '../gqls/__generated__/usePurchaseFragment';
+import { usePurchaseFragment as usePurchaseFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 type productsType = Parameters<AdTrackType['purchase']>[0]['products'];

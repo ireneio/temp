@@ -17,8 +17,8 @@ import styles from '../styles/useColumns.less';
 import {
   useColumnsWishlistProductFragment,
   useColumnsWishlistProductFragment_title as useColumnsFragmenTitle,
-} from '../gqls/__generated__/useColumnsWishlistProductFragment';
-import { useColumnsUserFragment } from '../gqls/__generated__/useColumnsUserFragment';
+  useColumnsUserFragment,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { thumbnailFragment } from '@meepshop/thumbnail/gqls';

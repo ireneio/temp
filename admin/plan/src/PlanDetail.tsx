@@ -12,7 +12,7 @@ import { planBlueBackground, planGoldBackground } from '@meepshop/images';
 import styles from './styles/planDetail.less';
 
 // graphql typescript
-import { StoreBillPlanItemFeeTypeEnum } from '../../../__generated__/admin';
+import { StoreBillPlanItemFeeTypeEnum } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType {

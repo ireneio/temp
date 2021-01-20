@@ -6,26 +6,20 @@ import CookiesContext from '@meepshop/cookies';
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { usePageFragment } from '../gqls/__generated__/usePageFragment';
 import {
+  usePageFragment,
   getHomePage as getHomePageType,
   getHomePageVariables,
   getHomePage_viewer as getHomePageViewer,
   getHomePage_viewer_store as getHomePageViewerStore,
   getHomePage_viewer_store_defaultHomePage as getHomePageViewerStoreDefaultHomePage,
-} from '../gqls/__generated__/getHomePage';
-import {
   getCustomPage as getCustomPageType,
   getCustomPageVariables,
-} from '../gqls/__generated__/getCustomPage';
-import {
   getProductPage as getProductPageType,
   getProductPageVariables,
-} from '../gqls/__generated__/getProductPage';
-import {
   getProductsPage as getProductsPageType,
   getProductsPageVariables,
-} from '../gqls/__generated__/getProductsPage';
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import {

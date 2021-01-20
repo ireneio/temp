@@ -9,15 +9,15 @@ import CartContext from '@meepshop/cart';
 import { ACION_TYPES } from '../constants';
 
 // graphql typescript
-import { LocaleEnum } from '../../../../__generated__/meepshop';
-import { useClickUserFragment as useClickUserFragmentType } from '../gqls/__generated__/useClickUserFragment';
-import { useClickMenuPageObjectTypeFragment as useClickMenuPageObjectTypeFragmentType } from '../gqls/__generated__/useClickMenuPageObjectTypeFragment';
 import {
+  LocaleEnum,
+  useClickUserFragment as useClickUserFragmentType,
+  useClickMenuPageObjectTypeFragment as useClickMenuPageObjectTypeFragmentType,
   updateShopperLanguagePreference as updateShopperLanguagePreferenceType,
   updateShopperLanguagePreferenceVariables,
-} from '../gqls/__generated__/updateShopperLanguagePreference';
-import { logout as logoutType } from '../gqls/__generated__/logout';
-import { updateLocaleCache as updateLocaleCacheType } from '../gqls/__generated__/updateLocaleCache';
+  logout as logoutType,
+  updateLocaleCache as updateLocaleCacheType,
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import {

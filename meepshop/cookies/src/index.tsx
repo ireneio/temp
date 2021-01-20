@@ -4,10 +4,7 @@ import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { AppContext, AppProps } from 'next/app';
 import { CookieAttributes } from 'js-cookie';
 
-import {
-  NextAppType,
-  NextAppGetInitialPropsType,
-} from '@meepshop/utils/lib/types';
+import { NextAppType, NextAppGetInitialPropsType } from '@meepshop/types';
 import { I18nPropsType, languageType } from '@meepshop/utils/lib/i18n';
 
 import { getCookiesType } from './hooks/useCookies';

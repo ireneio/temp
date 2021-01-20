@@ -6,11 +6,11 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { isResetPasswordTokenValid } from './__generated__/isResetPasswordTokenValid';
 import {
+  isResetPasswordTokenValid,
   setUserPasswordByToken as setUserPasswordByTokenType,
   setUserPasswordByTokenVariables as setUserPasswordByTokenVariablesType,
-} from './__generated__/setUserPasswordByToken';
+} from '@meepshop/types/gqls/admin';
 
 // definition
 export default (): {

@@ -13,7 +13,7 @@ import {
   useLinkFragment_ProductLink as useLinkFragmentLinkProductLink,
   useLinkFragment_ProductsLink as useLinkFragmentLinkProductsLink,
   useLinkFragment_CustomLink as useLinkFragmentLinkCustomLink,
-} from './gqls/__generated__/useLinkFragment';
+} from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 type SortType = 'LATEST' | 'NAME' | 'PRICE_ASC' | 'PRICE_DESC';

@@ -15,8 +15,7 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 - `release`: Release the new version.
 - `storybook:pre`: Run this command before running `storybook` command.
 - `test`: Run testing.
-- `apollo:watch`: Watch gql files to build schema typescript.
-- `tsc`, `tsc:watch`: Test typescript.
+- `tsc`: Run typescript.
 
 ## How to write a new package
 

@@ -5,11 +5,11 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 import { useMemo } from 'react';
 
 // graphql typescript
-import { usePaymentsLandingPageModuleFragment_storePayments as usePaymentsLandingPageModuleFragmentStorePayments } from '../gqls/__generated__/usePaymentsLandingPageModuleFragment';
 import {
+  usePaymentsLandingPageModuleFragment_storePayments as usePaymentsLandingPageModuleFragmentStorePayments,
   usePaymentsOrderFragment_categories as usePaymentsOrderFragmentCategories,
   usePaymentsOrderFragment_categories_paymentList as PaymentType,
-} from '../gqls/__generated__/usePaymentsOrderFragment';
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default (

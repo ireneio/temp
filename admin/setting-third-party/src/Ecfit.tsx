@@ -12,7 +12,7 @@ import Tooltip from '@admin/tooltip';
 import styles from './styles/ecfit.less';
 
 // graphql typescript
-import { ecfitFragment as ecfitFragmentType } from './__generated__/ecfitFragment';
+import { ecfitFragment as ecfitFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType extends FormComponentProps {

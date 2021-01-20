@@ -14,7 +14,7 @@ import useAdTrack from './hooks/useAdTrack';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getOrderInThankYouPage } from './__generated__/getOrderInThankYouPage';
+import { getOrderInThankYouPage } from '@meepshop/types/gqls/store';
 
 // graphql import
 import { infoFragment } from './info';

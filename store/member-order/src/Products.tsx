@@ -23,8 +23,10 @@ import withContext from '@store/utils/lib/withContext';
 import styles from './styles/products.less';
 
 // graphql typescript
-import { productsFragment as productsFragmentType } from './__generated__/productsFragment';
-import { getMemberOrder_viewer_order as getMemberOrderViewerOrder } from './__generated__/getMemberOrder';
+import {
+  productsFragment as productsFragmentType,
+  getMemberOrder_viewer_order as getMemberOrderViewerOrder,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';

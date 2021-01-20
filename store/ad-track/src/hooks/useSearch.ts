@@ -5,7 +5,7 @@ import { AdTrackType } from '@meepshop/context';
 import { useCallback } from 'react';
 
 // graphql typescript
-import { useSearchFragment as useSearchFragmentType } from '../gqls/__generated__/useSearchFragment';
+import { useSearchFragment as useSearchFragmentType } from '@meepshop/types/gqls/store';
 
 // definition
 export default (

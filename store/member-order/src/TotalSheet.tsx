@@ -17,7 +17,7 @@ import styles from './styles/totalSheet.less';
 import {
   totalSheetFragment as totalSheetFragmentType,
   totalSheetFragment_activityInfo as totalSheetFragmentActivityInfo,
-} from './__generated__/totalSheetFragment';
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';

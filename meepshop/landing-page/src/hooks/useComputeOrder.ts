@@ -14,11 +14,11 @@ import {
   computeOrderInLandingPage as computeOrderInLandingPageType,
   computeOrderInLandingPage_computeOrderList as computeOrderInLandingPageComputeOrderList,
   computeOrderInLandingPageVariables,
-} from '../gqls/__generated__/computeOrderInLandingPage';
-import { usePaymentsLandingPageModuleFragment_storePayments as usePaymentsLandingPageModuleFragmentStorePayments } from '../gqls/__generated__/usePaymentsLandingPageModuleFragment';
-import { useShipmentsLandingPageModuleFragment_storeShipments as useShipmentsLandingPageModuleFragmentStoreShipments } from '../gqls/__generated__/useShipmentsLandingPageModuleFragment';
-import { usePaymentsOrderFragment_categories_paymentList as PaymentType } from '../gqls/__generated__/usePaymentsOrderFragment';
-import { useShipmentsOrderFragment_categories_shipmentList as ShipmentType } from '../gqls/__generated__/useShipmentsOrderFragment';
+  usePaymentsLandingPageModuleFragment_storePayments as usePaymentsLandingPageModuleFragmentStorePayments,
+  useShipmentsLandingPageModuleFragment_storeShipments as useShipmentsLandingPageModuleFragmentStoreShipments,
+  usePaymentsOrderFragment_categories_paymentList as PaymentType,
+  useShipmentsOrderFragment_categories_shipmentList as ShipmentType,
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { computeOrderInLandingPage } from '../gqls/useComputeOrder';

@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { hoverParamsObjectTypeMockFragment } from './gqls/__generated__/hoverParamsObjectTypeMockFragment';
+import { hoverParamsObjectTypeMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<hoverParamsObjectTypeMockFragment>(

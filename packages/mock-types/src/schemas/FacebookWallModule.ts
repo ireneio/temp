@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { JustifyContent } from '../../../../__generated__/meepshop';
-import { facebookWallModuleMockFragment } from './gqls/__generated__/facebookWallModuleMockFragment';
+import {
+  JustifyContent,
+  facebookWallModuleMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 const href = 'https://www.facebook.com/meepshop';

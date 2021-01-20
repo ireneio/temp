@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 import { withCookies } from '@meepshop/cookies';
 
 // graphql typescript
-import { initAdminCookies } from './__generated__/initAdminCookies';
+import { initAdminCookies } from '@meepshop/types/gqls/admin';
 
 // definition
 const query = gql`

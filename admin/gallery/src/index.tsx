@@ -17,7 +17,7 @@ import {
   getImages as getImagesType,
   getImagesVariables as getImagesVariablesType,
   getImages_viewer_files_edges_node as getImagesViewerFilesEdgesNodeType,
-} from './gqls/__generated__/getImages';
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { getImages } from './gqls/index';

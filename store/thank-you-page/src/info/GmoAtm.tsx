@@ -9,7 +9,7 @@ import { Currency as CurrencyContext } from '@meepshop/context';
 import styles from './styles/gmoAtm.less';
 
 // graphql typescript
-import { gmoAtmFragment as gmoAtmFragmentType } from './__generated__/gmoAtmFragment';
+import { gmoAtmFragment as gmoAtmFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType {

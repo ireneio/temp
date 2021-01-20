@@ -21,7 +21,7 @@ import {
   getGMOUser,
   getGMOUserVariables,
   getGMOUser_gmoUser as getGMOUserGmoUser,
-} from './__generated__/getGMOUser';
+} from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 export interface PropsType

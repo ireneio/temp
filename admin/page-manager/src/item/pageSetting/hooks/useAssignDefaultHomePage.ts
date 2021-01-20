@@ -13,11 +13,11 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   assignDefaultHomePage as assignDefaultHomePageType,
   assignDefaultHomePageVariables,
-} from './__generated__/assignDefaultHomePage';
-import { useAssignDefaultHomePageReadCache } from './__generated__/useAssignDefaultHomePageReadCache';
-import { useAssignDefaultHomePageFragment } from './__generated__/useAssignDefaultHomePageFragment';
-import { useAssignDefaultHomePageUpdateNewPageFragment } from './__generated__/useAssignDefaultHomePageUpdateNewPageFragment';
-import { useAssignDefaultHomePageUpdatePrevPageFragment } from './__generated__/useAssignDefaultHomePageUpdatePrevPageFragment';
+  useAssignDefaultHomePageReadCache,
+  useAssignDefaultHomePageFragment,
+  useAssignDefaultHomePageUpdateNewPageFragment,
+  useAssignDefaultHomePageUpdatePrevPageFragment,
+} from '@meepshop/types/gqls/admin';
 
 // definition
 export default (id: string): (() => void) => {

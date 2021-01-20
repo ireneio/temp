@@ -15,7 +15,7 @@ import styles from './styles/chart.less';
 import useColoredSamples from './hooks/useColoredSamples';
 
 // graphql typescript
-import { fetchSmartConversionModuleGAData_fetchSmartConversionModuleGAData_smartConversionModule_samples as fetchSmartConversionModuleGADataFetchSmartConversionModuleGADataSmartConversionModuleSamples } from './gqls/__generated__/fetchSmartConversionModuleGAData';
+import { fetchSmartConversionModuleGAData_fetchSmartConversionModuleGAData_smartConversionModule_samples as fetchSmartConversionModuleGADataFetchSmartConversionModuleGADataSmartConversionModuleSamples } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType {

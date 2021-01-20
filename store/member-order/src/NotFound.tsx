@@ -10,7 +10,7 @@ import { withTranslation } from '@meepshop/utils/lib/i18n';
 import styles from './styles/notFound.less';
 
 // graphql typescript
-import { notFoundFragment as notFoundFragmentType } from './__generated__/notFoundFragment';
+import { notFoundFragment as notFoundFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType extends I18nPropsType {

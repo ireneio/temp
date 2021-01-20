@@ -9,11 +9,11 @@ import { useLazyQuery } from '@apollo/react-hooks';
 // graphql import
 import { useCheckUser } from '../gqls/useCheckUser';
 
-// grapqhql typescript
+// graphql typescript
 import {
   useCheckUser as useCheckUserType,
   useCheckUserVariables,
-} from '../gqls/__generated__/useCheckUser';
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default (): {

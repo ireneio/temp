@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from 'react';
 import { emptyFunction } from 'fbjs';
 
 // graphql typescript
-import { useHeightFragment } from '../gqls/__generated__/useHeightFragment';
+import { useHeightFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default ({

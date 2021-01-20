@@ -9,14 +9,11 @@ import { useMutation } from '@apollo/react-hooks';
 import {
   uploadImages as uploadImagesType,
   uploadImagesVariables as uploadImagesVariablesType,
-} from '../gqls/__generated__/uploadImages';
-import {
   useUploadImagesReadCache as useUploadImagesReadCacheType,
   useUploadImagesReadCacheVariables as useUploadImagesReadCacheVariablesType,
   useUploadImagesReadCache_viewer_files_edges_node as useUploadImagesReadCacheViewerFilesEdgesNode,
-} from '../gqls/__generated__/useUploadImagesReadCache';
-
-import { getImagesVariables as getImagesVariablesType } from '../gqls/__generated__/getImages';
+  getImagesVariables as getImagesVariablesType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import {

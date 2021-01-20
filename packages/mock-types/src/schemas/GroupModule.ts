@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { PercentWidth } from '../../../../__generated__/meepshop';
-import { groupModuleMockFragment } from './gqls/__generated__/groupModuleMockFragment';
+import {
+  PercentWidth,
+  groupModuleMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<groupModuleMockFragment>('GroupModule', [

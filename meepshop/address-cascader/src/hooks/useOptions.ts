@@ -11,7 +11,7 @@ import {
   useOptionsAddressServiceFragment as useOptionsAddressServiceFragmentType,
   useOptionsAddressServiceFragment_countries as useOptionsAddressServiceFragmentCountries,
   useOptionsAddressServiceFragment_countries_name as useOptionsAddressServiceFragmentCountriesName,
-} from '../gqls/__generated__/useOptionsAddressServiceFragment';
+} from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 interface OptionsType {

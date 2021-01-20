@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { ImagePositionEnum } from '../../../../__generated__/meepshop';
-import { menuMenuMockFragment } from './gqls/__generated__/menuMenuMockFragment';
+import {
+  ImagePositionEnum,
+  menuMenuMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 const ACTIONS: number[] = [].constructor

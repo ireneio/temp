@@ -7,9 +7,11 @@ import { useCallback } from 'react';
 import useRenamePageWithSEO from './useRenamePageWithSEO';
 
 // graphql typescript
-import { PageTypeEnum } from '../../../../../../__generated__/admin';
-import { editFragment as editFragmentType } from '../__generated__/editFragment';
-import { useRenamePageWithSEOCacheVariables } from './__generated__/useRenamePageWithSEOCache';
+import {
+  PageTypeEnum,
+  editFragment as editFragmentType,
+  useRenamePageWithSEOCacheVariables,
+} from '@meepshop/types/gqls/admin';
 
 // definition
 export default (

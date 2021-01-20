@@ -18,7 +18,7 @@ import StoreDetail from './StoreDetail';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getValidatedConvenienceStores } from './__generated__/getValidatedConvenienceStores';
+import { getValidatedConvenienceStores } from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 interface PropsType

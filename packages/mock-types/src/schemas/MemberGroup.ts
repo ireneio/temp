@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { MemberGroupTypeEnum } from '../../../../__generated__/meepshop';
-import { memberGroupMockFragment } from './gqls/__generated__/memberGroupMockFragment';
+import {
+  MemberGroupTypeEnum,
+  memberGroupMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<memberGroupMockFragment>('MemberGroup', [

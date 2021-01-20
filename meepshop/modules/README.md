@@ -27,7 +27,7 @@ export default gql`
 import uuid from 'uuid/v4';
 
 // graphql typescript
-import { /** module fragment */ } from './src/__generated__/** module fragment */';
+import { /** module fragment */ } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default {
@@ -104,7 +104,7 @@ import gql from 'graphql-tag';
 import mock from '../mock';
 
 // graphql typescript
-import { /** module type */Mock } from './__generated__/** module type */Mock';
+import { /** module type */Mock } from '@meepshop/types/gqls/meepshop';
 
 // definition
 // eslint-disable-next-line no-unused-expressions

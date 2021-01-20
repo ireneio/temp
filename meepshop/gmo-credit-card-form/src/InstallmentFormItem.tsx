@@ -19,7 +19,7 @@ import styles from './styles/installmentFormItem.less';
 import {
   getGmoAvailableInstallments,
   getGmoAvailableInstallmentsVariables,
-} from './__generated__/getGmoAvailableInstallments';
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';

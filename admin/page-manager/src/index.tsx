@@ -19,8 +19,11 @@ import useSelectedPage from './hooks/useSelectedPage';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { PageTypeEnum } from '../../../__generated__/admin';
-import { getPages, getPagesVariables } from './__generated__/getPages';
+import {
+  PageTypeEnum,
+  getPages,
+  getPagesVariables,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { previewerStoreFragment, previewerPageFragment } from './Previewer';

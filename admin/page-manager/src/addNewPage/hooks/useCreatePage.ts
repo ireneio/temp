@@ -10,15 +10,13 @@ import { message } from 'antd';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { getPages_viewer_store_homePages_edges as getPagesViewerStoreHomePagesEdges } from '../../__generated__/getPages';
 import {
+  getPages_viewer_store_homePages_edges as getPagesViewerStoreHomePagesEdges,
   createPage as createPageType,
   createPageVariables,
-} from './__generated__/createPage';
-import {
   useCreatePageReadCache,
   useCreatePageReadCacheVariables,
-} from './__generated__/useCreatePageReadCache';
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';

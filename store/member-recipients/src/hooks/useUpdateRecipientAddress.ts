@@ -13,8 +13,8 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   updateRecipientAddress as updateRecipientAddressType,
   updateRecipientAddressVariables,
-} from '../gqls/__generated__/updateRecipientAddress';
-import { useUpdateRecipientAddressFragment as useUpdateRecipientAddressFragmentType } from '../gqls/__generated__/useUpdateRecipientAddressFragment';
+  useUpdateRecipientAddressFragment as useUpdateRecipientAddressFragmentType,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import {

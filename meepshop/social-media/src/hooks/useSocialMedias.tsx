@@ -22,7 +22,7 @@ import {
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { SocialMediaModuleType } from '../../../../__generated__/meepshop';
+import { SocialMediaModuleType } from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 type SocialMediasType = {

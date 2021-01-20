@@ -5,9 +5,11 @@ import { ContextType } from '@meepshop/apollo';
 import gql from 'graphql-tag';
 
 // graphql typescript
-import { createOrderApplyWithOrderOrderApplyFragment as createOrderApplyWithOrderOrderApplyFragmentType } from './__generated__/createOrderApplyWithOrderOrderApplyFragment';
-import { getOrderCache } from './__generated__/getOrderCache';
-import { updateOrderApplyCache } from './__generated__/updateOrderApplyCache';
+import {
+  createOrderApplyWithOrderOrderApplyFragment as createOrderApplyWithOrderOrderApplyFragmentType,
+  getOrderCache,
+  updateOrderApplyCache,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { orderOrderFragment, orderOrderApplyFragment } from './Order';

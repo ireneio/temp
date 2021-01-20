@@ -2,9 +2,11 @@
 import { ContextType } from './index';
 
 // graphql typescript
-// TODO: should use __generated__/meepshop
-import { SetCurrentInput } from '../../../__generated__/store';
-import { pageInfoFragment as pageInfoFragmentType } from './gqls/__generated__/pageInfoFragment';
+import {
+  SetCurrentInput,
+  pageInfoFragment as pageInfoFragmentType,
+} from '@meepshop/types/gqls/store';
+/* TODO: should use @meepshop/types/gqls/meepshop */
 
 // graphql import
 import { pageInfoFragment } from './gqls/pageInfo';

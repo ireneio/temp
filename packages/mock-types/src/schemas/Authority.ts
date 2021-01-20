@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { authorityMockFragment } from './gqls/__generated__/authorityMockFragment';
+import { authorityMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<authorityMockFragment>('Authority', [

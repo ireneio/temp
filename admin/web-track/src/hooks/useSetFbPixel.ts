@@ -11,8 +11,8 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   setFbPixel as setFbPixelType,
   setFbPixelVariables,
-} from '../gqls/__generated__/setFbPixel';
-import { useSetFbPixelFragment as useSetFbPixelFragmentType } from '../gqls/__generated__/useSetFbPixelFragment';
+  useSetFbPixelFragment as useSetFbPixelFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { useSetFbPixelFragment, setFbPixel } from '../gqls/useSetFbPixel';

@@ -7,7 +7,7 @@ import { placeholderImage } from '@meepshop/images';
 import {
   useImageImageFragment,
   useImageImageFragment_scaledSrc as useImageImageFragmentScaledSrc,
-} from '../gqls/__generated__/useImageImageFragment';
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 const IMAGE_SUITABLE_WIDTHS = [120, 240, 480, 720, 960, 1200, 1440, 1680, 1920];

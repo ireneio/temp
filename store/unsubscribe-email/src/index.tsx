@@ -14,7 +14,7 @@ import useUnsubscribeEdm from './hooks/useUnsubscribeEdm';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getStoreName } from './__generated__/getStoreName';
+import { getStoreName } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType {

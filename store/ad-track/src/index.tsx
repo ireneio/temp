@@ -18,7 +18,7 @@ import useBeginCheckout from './hooks/useBeginCheckout';
 import usePurchase from './hooks/usePurchase';
 
 // graphql typescript
-import { getAdTrack as getAdTrackType } from './gqls/__generated__/getAdTrack';
+import { getAdTrack as getAdTrackType } from '@meepshop/types/gqls/store';
 
 // graphql import
 import { getAdTrack } from './gqls';

@@ -6,11 +6,11 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import useExportFileService from './useExportFileService';
 
 // graphql typescript
-import { getExportFormat } from './__generated__/getExportFormat';
 import {
+  getExportFormat,
   requestExportFile as requestExportFileType,
   requestExportFileVariables as requestExportFileVariablesType,
-} from './__generated__/requestExportFile';
+} from '@meepshop/types/gqls/admin';
 
 // definition
 const query = gql`

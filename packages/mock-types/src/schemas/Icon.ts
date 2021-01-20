@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { DefaultIconEnum } from '../../../../__generated__/meepshop';
-import { iconMockFragment } from './gqls/__generated__/iconMockFragment';
+import {
+  DefaultIconEnum,
+  iconMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<iconMockFragment>('Icon', [

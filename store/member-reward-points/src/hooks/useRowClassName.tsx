@@ -5,7 +5,7 @@ import moment from 'moment';
 import styles from '../styles/useRowClassName.less';
 
 // graphql typescript
-import { getUserRewardPotins_getValidUserPointList_data as getUserRewardPotinsGetValidUserPointListDataType } from '../gqls/__generated__/getUserRewardPotins';
+import { getUserRewardPotins_getValidUserPointList_data as getUserRewardPotinsGetValidUserPointListDataType } from '@meepshop/types/gqls/store';
 
 // definition
 export default (): ((

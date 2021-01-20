@@ -6,9 +6,10 @@ import gql from 'graphql-tag';
 import moment from 'moment';
 
 // graphql typescript
-import { SetOrdersToSelectedOrdersInput } from '../../../__generated__/admin';
-
-import { initializeSelectedOrders } from './__generated__/initializeSelectedOrders';
+import {
+  SetOrdersToSelectedOrdersInput,
+  initializeSelectedOrders,
+} from '@meepshop/types/gqls/admin';
 
 // definition
 const query = gql`

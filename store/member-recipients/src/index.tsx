@@ -11,8 +11,10 @@ import useColumns from './hooks/useColumns';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getUserRecipients as getUserRecipientsType } from './gqls/__generated__/getUserRecipients';
-import { useColumnsRecipientAddressFragment as useColumnsRecipientAddressFragmentType } from './gqls/__generated__/useColumnsRecipientAddressFragment';
+import {
+  getUserRecipients as getUserRecipientsType,
+  useColumnsRecipientAddressFragment as useColumnsRecipientAddressFragmentType,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { getUserRecipients } from './gqls';

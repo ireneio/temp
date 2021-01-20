@@ -17,8 +17,8 @@ import useChangePage from './hooks/useChangePage';
 import {
   getOrders as getOrdersType,
   getOrdersVariables as getOrdersVariablesType,
-} from './gqls/__generated__/getOrders';
-import { useColumnsOrdersFragment as useColumnsOrdersFragmentType } from './gqls/__generated__/useColumnsOrdersFragment';
+  useColumnsOrdersFragment as useColumnsOrdersFragmentType,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { getOrders } from './gqls';

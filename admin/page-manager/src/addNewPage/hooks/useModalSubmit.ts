@@ -9,9 +9,11 @@ import { useRouter } from '@meepshop/link';
 import useCreatePage from './useCreatePage';
 
 // graphql typescript
-import { PageTypeEnum } from '../../../../../__generated__/admin';
-import { getPagesVariables } from '../../__generated__/getPages';
-import { usePagesPageFragment as usePagesPageFragmentType } from '../../hooks/__generated__/usePagesPageFragment';
+import {
+  PageTypeEnum,
+  getPagesVariables,
+  usePagesPageFragment as usePagesPageFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // definition
 export default (

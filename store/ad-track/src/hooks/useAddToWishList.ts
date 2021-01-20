@@ -5,7 +5,7 @@ import { AdTrackType } from '@meepshop/context';
 import { useCallback } from 'react';
 
 // graphql typescript
-import { useAddToWishListFragment as useAddToWishListFragmentType } from '../gqls/__generated__/useAddToWishListFragment';
+import { useAddToWishListFragment as useAddToWishListFragmentType } from '@meepshop/types/gqls/store';
 
 // definition
 export default (

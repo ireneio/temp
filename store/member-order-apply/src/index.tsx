@@ -29,11 +29,9 @@ import {
   getMemberOrderApply,
   getMemberOrderApplyVariables,
   getMemberOrderApply_viewer_order as getMemberOrderApplyViewerOrder,
-} from './__generated__/getMemberOrderApply';
-import {
   createOrderApply,
   createOrderApplyVariables,
-} from './__generated__/createOrderApply';
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { productsObjectTypeOrderApplyFragment } from '@store/apollo/lib/productsObjectType';

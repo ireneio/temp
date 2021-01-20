@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { gmoBankInstallmentMockFragment } from './gqls/__generated__/gmoBankInstallmentMockFragment';
+import { gmoBankInstallmentMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<gmoBankInstallmentMockFragment>('GmoBankInstallment', [

@@ -18,13 +18,13 @@ import { AdTrack as AdTrackContext } from '@meepshop/context';
 import useCreateOrder from './useCreateOrder';
 
 // graphql typescript
-import { useSubmitUserFragment } from '../gqls/__generated__/useSubmitUserFragment';
-import { useSubmitOrderFragment } from '../gqls/__generated__/useSubmitOrderFragment';
-import { useSubmitLandingPageModuleFragment } from '../gqls/__generated__/useSubmitLandingPageModuleFragment';
 import {
+  useSubmitUserFragment,
+  useSubmitOrderFragment,
+  useSubmitLandingPageModuleFragment,
   InvoiceMethodEnum,
   SourcePageTypeEnum,
-} from '../../../../__generated__/meepshop';
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { useLinkFragment } from '@meepshop/hooks/lib/gqls/useLink';

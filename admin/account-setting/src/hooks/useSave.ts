@@ -12,8 +12,8 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   updateUserList as updateUserListType,
   updateUserListVariables,
-} from '../gqls/__generated__/updateUserList';
-import { accountFragment as accountFragmentType } from '../gqls/__generated__/accountFragment';
+  accountFragment as accountFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { updateUserList } from '../gqls/useSave';

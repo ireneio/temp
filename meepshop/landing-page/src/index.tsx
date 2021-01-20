@@ -24,10 +24,12 @@ import useComputeOrder from './hooks/useComputeOrder';
 import useSubmit from './hooks/useSubmit';
 
 // graphql typescript
-import { landingPageLandingPageModuleFragment } from './gqls/__generated__/landingPageLandingPageModuleFragment';
-import { receiverLandingPageModuleFragment as receiverLandingPageModuleFragmentType } from './receiver/gqls/__generated__/receiverLandingPageModuleFragment';
-import { shoppingLandingPageModuleFragment as shoppingLandingPageModuleFragmentType } from './gqls/__generated__/shoppingLandingPageModuleFragment';
-import { useSubmitLandingPageModuleFragment as useSubmitLandingPageModuleFragmentType } from './gqls/__generated__/useSubmitLandingPageModuleFragment';
+import {
+  landingPageLandingPageModuleFragment,
+  receiverLandingPageModuleFragment as receiverLandingPageModuleFragmentType,
+  shoppingLandingPageModuleFragment as shoppingLandingPageModuleFragmentType,
+  useSubmitLandingPageModuleFragment as useSubmitLandingPageModuleFragmentType,
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import {

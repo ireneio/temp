@@ -12,7 +12,7 @@ import Switch from '@meepshop/switch';
 import styles from './styles/trialReminder.less';
 
 // graphql typescript
-import { storeMetaDataFragment as storeMetaDataFragmentType } from './gqls/__generated__/storeMetaDataFragment';
+import { storeMetaDataFragment as storeMetaDataFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType {

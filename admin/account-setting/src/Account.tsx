@@ -13,7 +13,7 @@ import ChangePassword from './ChangePassword';
 import styles from './styles/account.less';
 
 // graphql typescript
-import { getMerchantAccount_viewer as getMerchantAccountViewer } from './gqls/__generated__/getMerchantAccount';
+import { getMerchantAccount_viewer as getMerchantAccountViewer } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType extends FormComponentProps {

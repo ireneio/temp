@@ -13,11 +13,11 @@ import { DEFAULT_MESSAGE } from './constants';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getOrderPaidMessage as getOrderPaidMessageType } from './gqls/__generated__/getOrderPaidMessage';
 import {
+  getOrderPaidMessage as getOrderPaidMessageType,
   updateOrderPaidMessage as updateOrderPaidMessageType,
   updateOrderPaidMessageVariables,
-} from './gqls/__generated__/updateOrderPaidMessage';
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { getOrderPaidMessage, updateOrderPaidMessage } from './gqls';

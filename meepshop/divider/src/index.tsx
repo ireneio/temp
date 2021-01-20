@@ -4,7 +4,7 @@ import React from 'react';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { dividerFragment } from './gqls/__generated__/dividerFragment';
+import { dividerFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default React.memo(

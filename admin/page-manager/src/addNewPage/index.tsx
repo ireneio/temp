@@ -9,8 +9,10 @@ import Modal from './Modal';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getPagesVariables } from '../__generated__/getPages';
-import { usePagesPageFragment as usePagesPageFragmentType } from '../hooks/__generated__/usePagesPageFragment';
+import {
+  getPagesVariables,
+  usePagesPageFragment as usePagesPageFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // definition
 export default React.memo(({ variables }: { variables: getPagesVariables }) => {

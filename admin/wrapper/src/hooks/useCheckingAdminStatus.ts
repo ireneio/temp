@@ -4,8 +4,9 @@ import { useEffect } from 'react';
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { useCheckingAdminStatusFragment as useCheckingAdminStatusFragmentType } from '../gqls/__generated__/useCheckingAdminStatusFragment';
+import { useCheckingAdminStatusFragment as useCheckingAdminStatusFragmentType } from '@meepshop/types/gqls/admin';
 
+// definition
 export default (store: useCheckingAdminStatusFragmentType | null): boolean => {
   const router = useRouter();
 

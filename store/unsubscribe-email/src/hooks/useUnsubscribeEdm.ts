@@ -9,7 +9,7 @@ import { useRouter } from '@meepshop/link';
 import {
   unsubscribeEdm as unsubscribeEdmType,
   unsubscribeEdmVariables,
-} from './__generated__/unsubscribeEdm';
+} from '@meepshop/types/gqls/store';
 
 // definition
 const mutation = gql`

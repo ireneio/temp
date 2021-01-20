@@ -13,7 +13,7 @@ import useSendResetPasswordEmail from './hooks/useSendResetPasswordEmail';
 import styles from './styles/forgetPassword.less';
 
 // graphql typescript
-import { UserTypeEnum } from '../../../__generated__/admin';
+import { UserTypeEnum } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType extends FormComponentProps {

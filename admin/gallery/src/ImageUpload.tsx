@@ -6,7 +6,7 @@ import styles from './styles/imageUpload.less';
 import { IMAGE_TYPES } from './constants';
 
 // graphql typescript
-import { getImagesVariables as getImagesVariablesType } from './gqls/__generated__/getImages';
+import { getImagesVariables as getImagesVariablesType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType {

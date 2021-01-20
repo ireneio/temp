@@ -8,7 +8,7 @@ import { Form } from 'antd';
 import GmoCreditCardForm from './src';
 
 // graphql typescript
-import { getGMOUserVariables } from './src/__generated__/getGMOUser';
+import { getGMOUserVariables } from '@meepshop/types/gqls/meepshop';
 
 // definition
 const EnhancedGmoCreditCardForm = Form.create<

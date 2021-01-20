@@ -6,7 +6,7 @@ import useHeight from './hooks/useHeight';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { googleMapFragment } from './gqls/__generated__/googleMapFragment';
+import { googleMapFragment } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { useHeightFragment } from './gqls/useHeight';

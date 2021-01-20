@@ -8,14 +8,10 @@ import { emptyFunction } from 'fbjs';
 import {
   formDataFragment as formDataFragmentType,
   formDataFragment_params as formDataFragmentParams,
-} from './gqls/__generated__/formDataFragment';
-
-// graphql typescript
-import { LogTypeEnum } from '../../../__generated__/meepshop';
-import {
+  LogTypeEnum,
   logFormData as logFormDataType,
   logFormDataVariables,
-} from './gqls/__generated__/logFormData';
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { logFormData } from './gqls';

@@ -10,11 +10,11 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 // graphql import
 import { useValidateBarCode } from '../gqls/useValidateBarCode';
 
-// grapqhql typescript
+// graphql typescript
 import {
   useValidateBarCode as useValidateBarCodeType,
   useValidateBarCodeVariables,
-} from '../gqls/__generated__/useValidateBarCode';
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default (): ValidationRule['validator'] => {

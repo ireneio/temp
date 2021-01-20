@@ -12,7 +12,7 @@ import {
   getCart as getCartType,
   getCart_getCartList_data as getCartGetCartListData,
   getCart_getCartList_data_categories as getCartGetCartListDataCategories,
-} from './gqls/__generated__/getCart';
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { getCart } from './gqls';

@@ -10,13 +10,13 @@ import { useQuery } from '@apollo/react-hooks';
 import { Currency as CurrencyContext } from '@meepshop/context';
 
 // graphql typescript
-import { StoreBillPlanItemFeeTypeEnum } from '../../../../__generated__/admin';
 import {
+  StoreBillPlanItemFeeTypeEnum,
   quotation as quotationType,
   quotationVariables,
   quotation_quotation_monthly as quotationQuotationMonthly,
   quotation_quotation_yearly as quotationQuotationYearly,
-} from '../gqls/__generated__/quotation';
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { quotation as query } from '../gqls/useQuotation';

@@ -9,7 +9,7 @@ import fx from 'money';
 import { format } from '@meepshop/context/lib/Currency';
 
 // graphql typescript
-import { useFormatFragment as useFormatFragmentType } from './__generated__/useFormatFragment';
+import { useFormatFragment as useFormatFragmentType } from '@meepshop/types/gqls/store';
 
 // definition
 export const useFormatFragment = gql`

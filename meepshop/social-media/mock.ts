@@ -5,7 +5,7 @@ import uuid from 'uuid/v4';
 import {
   SocialMediaModuleType,
   JustifyContent,
-} from '../../__generated__/meepshop';
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default {

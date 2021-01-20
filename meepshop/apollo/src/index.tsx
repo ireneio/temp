@@ -4,10 +4,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloClient } from 'apollo-client';
 import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
-import {
-  NextAppType,
-  NextAppGetInitialPropsType,
-} from '@meepshop/utils/lib/types';
+import { NextAppType, NextAppGetInitialPropsType } from '@meepshop/types';
 
 import { ConfigType as initApolloConfigType } from './utils/initApollo';
 

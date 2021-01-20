@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { googleMapModuleMockFragment } from './gqls/__generated__/googleMapModuleMockFragment';
+import { googleMapModuleMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<googleMapModuleMockFragment>('GoogleMapModule', [

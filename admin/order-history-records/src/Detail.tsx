@@ -7,7 +7,7 @@ import { Currency as CurrencyContext } from '@meepshop/context';
 import styles from './styles/detail.less';
 
 // graphql typescript
-import { detailFragment } from './gqls/__generated__/detailFragment';
+import { detailFragment } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType {

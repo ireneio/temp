@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { useRetentionFragment as useRetentionFragmentType } from '../gqls/__generated__/useRetentionFragment';
+import { useRetentionFragment as useRetentionFragmentType } from '@meepshop/types/gqls/store';
 
 // definition
 export default (store: useRetentionFragmentType | null): void => {

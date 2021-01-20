@@ -4,8 +4,10 @@ import moment from 'moment';
 import mock from '../mock';
 
 // graphql typescript
-import { PaymentTemplateEnum } from '../../../../__generated__/meepshop';
-import { paymentObjectTypeMockFragment } from './gqls/__generated__/paymentObjectTypeMockFragment';
+import {
+  PaymentTemplateEnum,
+  paymentObjectTypeMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<paymentObjectTypeMockFragment>('paymentObjectType', [

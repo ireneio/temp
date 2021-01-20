@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { productQaModuleMockFragment } from './gqls/__generated__/productQaModuleMockFragment';
+import { productQaModuleMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<productQaModuleMockFragment>('ProductQaModule', [

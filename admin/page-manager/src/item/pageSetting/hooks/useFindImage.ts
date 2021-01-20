@@ -6,7 +6,7 @@ import {
   getImage as getImageType,
   getImageVariables as getImageVariablesType,
   getImage_viewer_file as getImageViewerFileType,
-} from '../gqls/__generated__/getImage';
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { getImage } from '../gqls/useFindImage';

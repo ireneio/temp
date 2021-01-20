@@ -15,10 +15,12 @@ import styles from './styles/menuItem.less';
 import { ACION_TYPES, BUILTIN_PLACEMENTS } from './constants';
 
 // graphql typescript
-import { menuItemUserFragment as menuItemUserFragmentType } from './gqls/__generated__/menuItemUserFragment';
-import { menuItemOrderFragment as menuItemOrderFragmentType } from './gqls/__generated__/menuItemOrderFragment';
-import { menuItemMenuPageObjectTypeFragment as menuItemMenuPageObjectTypeFragmentType } from './gqls/__generated__/menuItemMenuPageObjectTypeFragment';
-import { menuItemMenuDesignObjectTypeFragment as menuItemMenuDesignObjectTypeFragmentType } from './gqls/__generated__/menuItemMenuDesignObjectTypeFragment';
+import {
+  menuItemUserFragment as menuItemUserFragmentType,
+  menuItemOrderFragment as menuItemOrderFragmentType,
+  menuItemMenuPageObjectTypeFragment as menuItemMenuPageObjectTypeFragmentType,
+  menuItemMenuDesignObjectTypeFragment as menuItemMenuDesignObjectTypeFragmentType,
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import {

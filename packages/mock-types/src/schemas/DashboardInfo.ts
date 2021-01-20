@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { dashboardInfoMockFragment } from './gqls/__generated__/dashboardInfoMockFragment';
+import { dashboardInfoMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<dashboardInfoMockFragment>('DashboardInfo', [

@@ -9,16 +9,12 @@ import { useQuery, useMutation, useLazyQuery } from '@apollo/react-hooks';
 import {
   getSmartConversionModuleGAData as getSmartConversionModuleGADataType,
   getSmartConversionModuleGADataVariables,
-} from '../gqls/__generated__/getSmartConversionModuleGAData';
-import {
   requestFetchSmartConversionModuleGAData as requestFetchSmartConversionModuleGADataType,
   requestFetchSmartConversionModuleGADataVariables,
-} from '../gqls/__generated__/requestFetchSmartConversionModuleGAData';
-import {
   smartConversionModuleProcessorService as smartConversionModuleProcessorServiceType,
   smartConversionModuleProcessorServiceVariables,
-} from '../gqls/__generated__/smartConversionModuleProcessorService';
-import { useSmartConversionModuleFragment } from '../gqls/__generated__/useSmartConversionModuleFragment';
+  useSmartConversionModuleFragment,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import {

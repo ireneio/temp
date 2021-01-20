@@ -12,7 +12,7 @@ import {
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { useFooterMenuListFragment as useFooterMenuListFragmentType } from '../gqls/__generated__/useFooterMenuListFragment';
+import { useFooterMenuListFragment as useFooterMenuListFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface FooterMenuListType {

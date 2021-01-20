@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { notificationObjectTypeMockFragment } from './gqls/__generated__/notificationObjectTypeMockFragment';
+import { notificationObjectTypeMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<notificationObjectTypeMockFragment>(

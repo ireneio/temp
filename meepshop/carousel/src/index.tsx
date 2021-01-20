@@ -12,8 +12,10 @@ import { DEFAULT_IMAGES } from './constants';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { JustifyContent } from '../../../__generated__/meepshop';
-import { carouselFragment } from './gqls/__generated__/carouselFragment';
+import {
+  JustifyContent,
+  carouselFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { imageFragment } from '@meepshop/image/gqls';

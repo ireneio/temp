@@ -6,7 +6,7 @@ import useHeight from './hooks/useHeight';
 import styles from './styles/card.less';
 
 // graphql typescript
-import { getImages_viewer_files_edges_node as getImagesViewerFilesEdgesNodeType } from './gqls/__generated__/getImages';
+import { getImages_viewer_files_edges_node as getImagesViewerFilesEdgesNodeType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType {

@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { ViewerTypeEnum } from '../../../../__generated__/meepshop';
-import { orderUpdateActorMockFragment } from './gqls/__generated__/orderUpdateActorMockFragment';
+import {
+  ViewerTypeEnum,
+  orderUpdateActorMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<orderUpdateActorMockFragment>('OrderUpdateActor', [

@@ -23,9 +23,9 @@ import styles from './styles/modal.less';
 import {
   checkIfPageExistsBeforeCreatingPage,
   checkIfPageExistsBeforeCreatingPageVariables,
-} from './__generated__/checkIfPageExistsBeforeCreatingPage';
-import { getPagesVariables } from '../__generated__/getPages';
-import { usePagesPageFragment as usePagesPageFragmentType } from '../hooks/__generated__/usePagesPageFragment';
+  getPagesVariables,
+  usePagesPageFragment as usePagesPageFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType extends FormComponentProps {

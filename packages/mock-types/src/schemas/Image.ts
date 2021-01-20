@@ -4,7 +4,7 @@ import { dashboardCost_scaledSrc as dashboardCost } from '@meepshop/images';
 import mock from '../mock';
 
 // graphql typescript
-import { imageMockFragment } from './gqls/__generated__/imageMockFragment';
+import { imageMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<imageMockFragment>('Image', [

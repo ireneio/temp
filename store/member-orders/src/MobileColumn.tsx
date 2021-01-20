@@ -12,7 +12,7 @@ import Link from '@meepshop/link';
 import styles from './styles/mobileColumn.less';
 
 // graphql typescript
-import { useColumnsOrdersFragment_node as useColumnsOrdersFragmentNode } from './gqls/__generated__/useColumnsOrdersFragment';
+import { useColumnsOrdersFragment_node as useColumnsOrdersFragmentNode } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType extends useColumnsOrdersFragmentNode {

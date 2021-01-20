@@ -22,8 +22,10 @@ import useVariantOptions from './hooks/useVariantOptions';
 import styles from './styles/shopping.less';
 
 // graphql typescript
-import { shoppingLandingPageModuleFragment } from './gqls/__generated__/shoppingLandingPageModuleFragment';
-import { shoppingOrderFragment } from './gqls/__generated__/shoppingOrderFragment';
+import {
+  shoppingLandingPageModuleFragment,
+  shoppingOrderFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { couponStatusFragment } from './gqls/couponStatus';

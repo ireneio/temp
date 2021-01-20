@@ -7,7 +7,7 @@ import { useMemo } from 'react';
 import * as icons from '../icons';
 
 // graphql typescript
-import { DefaultIconEnum } from '../../../../__generated__/meepshop';
+import { DefaultIconEnum } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default (icon: DefaultIconEnum): typeof mockComponent | (() => null) =>

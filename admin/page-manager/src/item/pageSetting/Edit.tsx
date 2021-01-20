@@ -23,12 +23,12 @@ import useEditSubmit from './hooks/useEditSubmit';
 import styles from './styles/edit.less';
 
 // graphql typescript
-import { editFragment as editFragmentType } from './__generated__/editFragment';
 import {
+  editFragment as editFragmentType,
   checkIfPageExistsBeforeRenamingSeo,
   checkIfPageExistsBeforeRenamingSeoVariables,
-} from './__generated__/checkIfPageExistsBeforeRenamingSeo';
-import { useRenamePageWithSEOCacheVariables } from './hooks/__generated__/useRenamePageWithSEOCache';
+  useRenamePageWithSEOCacheVariables,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';

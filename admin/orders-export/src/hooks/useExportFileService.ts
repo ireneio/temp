@@ -7,7 +7,7 @@ import { Modal } from 'antd';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { exportFileService as exportFileServiceType } from './__generated__/exportFileService';
+import { exportFileService as exportFileServiceType } from '@meepshop/types/gqls/admin';
 
 // definition
 const query = gql`

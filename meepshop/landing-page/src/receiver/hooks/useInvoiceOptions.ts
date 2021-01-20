@@ -10,7 +10,7 @@ import {
   useInvoiceOptionsFragment,
   useInvoiceOptionsFragment_invoice_paper as useInvoiceOptionsFragmentInvoicePaper,
   useInvoiceOptionsFragment_invoice_electronic as useInvoiceOptionsFragmentInvoiceElectronic,
-} from '../gqls/__generated__/useInvoiceOptionsFragment';
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default (

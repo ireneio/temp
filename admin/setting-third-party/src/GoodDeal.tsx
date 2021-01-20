@@ -11,7 +11,7 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import styles from './styles/goodDeal.less';
 
 // graphql typescript
-import { goodDealFragment as goodDealFragmentType } from './__generated__/goodDealFragment';
+import { goodDealFragment as goodDealFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType extends FormComponentProps {

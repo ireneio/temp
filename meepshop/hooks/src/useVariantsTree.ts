@@ -11,7 +11,7 @@ import {
   useVariantsTreeFragment_specs as useVariantsTreeFragmentSpecs,
   useVariantsTreeFragment_variants as useVariantsTreeFragmentVariants,
   useVariantsTreeFragment_variants_specs_title as useVariantsTreeFragmentVariantsSpecsTitle,
-} from './gqls/__generated__/useVariantsTreeFragment';
+} from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 export interface DefaultLeaf {

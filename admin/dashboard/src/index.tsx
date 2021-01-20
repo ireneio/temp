@@ -24,11 +24,11 @@ import Tutorial from './Tutorial';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getTimezone } from './__generated__/getTimezone';
 import {
+  getTimezone,
   getDashboard,
   getDashboardVariables,
-} from './__generated__/getDashboard';
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { tutorialSettingObjectTypeFragment } from './Tutorial';

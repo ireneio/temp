@@ -13,10 +13,10 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   createEcfitOrder as createEcfitOrderType,
   createEcfitOrderVariables as createEcfitOrderVariablesType,
-} from '../gqls/__generated__/createEcfitOrder';
-import { useUpdateCreateEcfitOrdersOrderConnectionFragment as useUpdateCreateEcfitOrdersOrderConnectionFragmentType } from '../gqls/__generated__/useUpdateCreateEcfitOrdersOrderConnectionFragment';
-import { useUpdateCreateEciftOrderFragment as useUpdateCreateEciftOrderFragmentType } from '../gqls/__generated__/useUpdateCreateEciftOrderFragment';
-import { useUpdateCreateEcfitOrdersStoreFragment as useUpdateCreateEcfitOrdersStoreFragmentType } from '../gqls/__generated__/useUpdateCreateEcfitOrdersStoreFragment';
+  useUpdateCreateEcfitOrdersOrderConnectionFragment as useUpdateCreateEcfitOrdersOrderConnectionFragmentType,
+  useUpdateCreateEciftOrderFragment as useUpdateCreateEciftOrderFragmentType,
+  useUpdateCreateEcfitOrdersStoreFragment as useUpdateCreateEcfitOrdersStoreFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import {

@@ -7,8 +7,10 @@ import { useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { getPagesVariables } from '../__generated__/getPages';
-import { usePagesPageFragment as usePagesPageFragmentType } from './__generated__/usePagesPageFragment';
+import {
+  getPagesVariables,
+  usePagesPageFragment as usePagesPageFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // definition
 const ALL_ACTIVE_KEY = [

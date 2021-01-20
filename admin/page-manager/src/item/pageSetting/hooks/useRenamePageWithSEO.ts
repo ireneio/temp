@@ -11,16 +11,14 @@ import { message } from 'antd';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { editFragment as editFragmentType } from '../__generated__/editFragment';
 import {
+  editFragment as editFragmentType,
   renamePageWithSEO as renamePageWithSEOType,
   renamePageWithSEOVariables,
-} from './__generated__/renamePageWithSEO';
-import {
   useRenamePageWithSEOCache,
   useRenamePageWithSEOCacheVariables,
-} from './__generated__/useRenamePageWithSEOCache';
-import { useRenamePageWithSEOFragment } from './__generated__/useRenamePageWithSEOFragment';
+  useRenamePageWithSEOFragment,
+} from '@meepshop/types/gqls/admin';
 
 // definition
 const query = gql`

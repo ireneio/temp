@@ -23,6 +23,7 @@ module.exports = {
   },
   plugins: ['import'],
   settings: {
+    'import/internal-regex': ['@meepshop/types'],
     'import/resolver': {
       node: {
         extensions: ['.js', '.ts', '.tsx'],

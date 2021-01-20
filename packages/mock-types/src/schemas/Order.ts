@@ -4,7 +4,7 @@ import moment from 'moment';
 import mock from '../mock';
 
 // graphql typescript
-import { orderMockFragment } from './gqls/__generated__/orderMockFragment';
+import { orderMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<

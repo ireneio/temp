@@ -8,7 +8,7 @@ import useGoToButton from './hooks/useGoToButton';
 import styles from './styles/goToButton.less';
 
 // graphql typescript
-import { goToButtonFragment_goToButton as goToButtonFragmentGoToButton } from './gqls/__generated__/goToButtonFragment';
+import { goToButtonFragment_goToButton as goToButtonFragmentGoToButton } from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 interface PropsType {

@@ -14,7 +14,7 @@ import { DEFAULT_COLOR_WITH_PATTERN } from './constants';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { menuMenuModuleFragment } from './gqls/__generated__/menuMenuModuleFragment';
+import { menuMenuModuleFragment } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import {

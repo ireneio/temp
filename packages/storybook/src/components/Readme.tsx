@@ -11,6 +11,7 @@ import mockTypesSource from '../../../mock-types/README.md';
 import modulesSource from '../../../../meepshop/modules/README.md';
 import contextSource from '../../../../meepshop/context/README.md';
 import localesSource from '../../../../meepshop/locales/README.md';
+import typesSource from '../../../../meepshop/types/README.md';
 import imagesSource from '../../../../meepshop/images/README.md';
 import iconsSource from '../../../../meepshop/icons/README.md';
 import storeSource from '../../../store/README.md';
@@ -52,6 +53,11 @@ const stories = [
     name: '@meepshop/locales',
     path: './meepshop/locales',
     source: localesSource,
+  },
+  {
+    name: '@meepshop/types',
+    path: './meepshop/types',
+    source: typesSource,
   },
   {
     name: '@meepshop/images',

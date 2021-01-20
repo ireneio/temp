@@ -5,8 +5,10 @@ import { ContextType } from '@meepshop/apollo';
 import gql from 'graphql-tag';
 
 // graphql typescript
-import { updateShopperInfoResponseReadCache } from './__generated__/updateShopperInfoResponseReadCache';
-import { updateShopperInfoResponseUpdateCache } from './__generated__/updateShopperInfoResponseUpdateCache';
+import {
+  updateShopperInfoResponseReadCache,
+  updateShopperInfoResponseUpdateCache,
+} from '@meepshop/types/gqls/store';
 
 // typescript definition
 // FIXME: should use graphql typescript

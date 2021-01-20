@@ -16,7 +16,7 @@ import {
   paymentInfoFragment as paymentInfoFragmentType,
   paymentInfoFragment_paymentInfo_list_accountInfo_ezpay as paymentInfoFragmentPaymentInfoListAccountInfoEzpay,
   paymentInfoFragment_paymentInfo_list_accountInfo_gmo as paymentInfoFragmentPaymentInfoListAccountInfoGmo,
-} from './__generated__/paymentInfoFragment';
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { descriptionFragment } from './Description';

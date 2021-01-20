@@ -16,8 +16,10 @@ import useEditOffset from './hooks/useEditOffset';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getPagesVariables } from '../../__generated__/getPages';
-import { pageSettingPageFragment as pageSettingPageFragmentType } from './__generated__/pageSettingPageFragment';
+import {
+  getPagesVariables,
+  pageSettingPageFragment as pageSettingPageFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import {

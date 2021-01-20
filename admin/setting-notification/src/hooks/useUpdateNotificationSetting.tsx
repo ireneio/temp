@@ -13,8 +13,8 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   updateNotificationSetting as updateNotificationSettingType,
   updateNotificationSettingVariables as updateNotificationSettingVariablesType,
-} from '../gqls/__generated__/updateNotificationSetting';
-import { useUpdateNotificationSettingFragment as useUpdateNotificationSettingFragmentType } from '../gqls/__generated__/useUpdateNotificationSettingFragment';
+  useUpdateNotificationSettingFragment as useUpdateNotificationSettingFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // grpahql import
 import {

@@ -14,9 +14,9 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   updateUser as updateUserType,
   updateUserVariables,
-} from './__generated__/updateUser';
-import { useSubmitReadCache } from './__generated__/useSubmitReadCache';
-import { useSubmitUpdateCache } from './__generated__/useSubmitUpdateCache';
+  useSubmitReadCache,
+  useSubmitUpdateCache,
+} from '@meepshop/types/gqls/store';
 
 // definition
 const mutation = gql`

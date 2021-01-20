@@ -8,7 +8,7 @@ import { useMutation } from '@apollo/react-hooks';
 import {
   removeProductFromCart as removeProductFromCartType,
   removeProductFromCartVariables,
-} from '../gqls/__generated__/removeProductFromCart';
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { removeProductFromCart } from '../gqls/useRemoveProductFromCart';

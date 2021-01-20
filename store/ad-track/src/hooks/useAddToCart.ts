@@ -7,7 +7,7 @@ import { useCallback, useContext } from 'react';
 import { Currency as CurrencyContext } from '@meepshop/context';
 
 // graphql typescript
-import { useAddToCartFragment as useAddToCartFragmentType } from '../gqls/__generated__/useAddToCartFragment';
+import { useAddToCartFragment as useAddToCartFragmentType } from '@meepshop/types/gqls/store';
 
 // definition
 export default (

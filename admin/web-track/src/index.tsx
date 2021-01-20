@@ -23,7 +23,7 @@ import AdvancedSetting from './AdvancedSetting';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getWebTrack as getWebTrackType } from './gqls/__generated__/getWebTrack';
+import { getWebTrack as getWebTrackType } from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { getWebTrack } from './gqls';

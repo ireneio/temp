@@ -5,7 +5,7 @@ import { ContextType, fieldsType } from '../mock';
 import mock from '../mock';
 
 // graphql typescript
-import { areaMockFragment } from './gqls/__generated__/areaMockFragment';
+import { areaMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 const areas: areaMockFragment[] = [

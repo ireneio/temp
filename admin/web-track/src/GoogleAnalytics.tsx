@@ -16,8 +16,11 @@ import useSetGtagSettingsList from './hooks/useSetGtagSettingsList';
 import styles from './styles/googleAnalytics.less';
 
 // graphql typescript
-import { gtagTypeEnum, gtagEventNameEnum } from '../../../__generated__/admin';
-import { googleAnalyticsFragment as googleAnalyticsFragmentType } from './gqls/__generated__/googleAnalyticsFragment';
+import {
+  gtagTypeEnum,
+  gtagEventNameEnum,
+  googleAnalyticsFragment as googleAnalyticsFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { googleAnalyticsFragment } from './gqls/googleAnalytics';

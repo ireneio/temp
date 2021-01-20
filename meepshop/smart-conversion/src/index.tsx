@@ -7,7 +7,7 @@ import ViewTracking from '@meepshop/view-tracking';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { smartConversionFragment } from './gqls/__generated__/smartConversionFragment';
+import { smartConversionFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default React.memo(

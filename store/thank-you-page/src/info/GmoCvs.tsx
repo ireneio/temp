@@ -10,7 +10,7 @@ import { gmoCsvLogos } from '@meepshop/images';
 import styles from './styles/gmoCvs.less';
 
 // graphql typescript
-import { gmoCvsFragment as gmoCvsFragmentType } from './__generated__/gmoCvsFragment';
+import { gmoCvsFragment as gmoCvsFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType {

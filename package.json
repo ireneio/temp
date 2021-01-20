@@ -4,7 +4,6 @@
   "license": "ISC",
   "workspaces": ["packages/*", "meepshop/*", "store/*", "admin/*"],
   "scripts": {
-    "apollo:watch": "make apollo-watch",
     "clean": "lerna run clean --stream && lerna clean && make clean",
     "dev": "make babel-changed WATCH=-w",
     "preinstall": "patch-package --reverse || echo \"no patch packages\"",
@@ -14,11 +13,8 @@
     "lint:watch": "yarn lint -w --rule \"prettier/prettier: off\" --quiet",
     "prod": "NODE_ENV=production make babel-all",
     "release": "make release",
-    "storybook:pre": "lerna run schema --stream --scope @meepshop/mock-types && locales generate -o ./packages/storybook/locales.json",
-    "test": "lerna run schema --stream --scope @meepshop/mock-types && jest --silent --runInBand",
-    "tsc": "make tsc",
-    "tsc:basic": "make tsc-basic",
-    "tsc:watch": "make tsc-watch"
+    "storybook:pre": "lerna run client:download-schema --stream --scope @meepshop/mock-types && locales generate -o ./packages/storybook/locales.json",
+    "test": "lerna run client:download-schema --stream --scope @meepshop/mock-types && jest --silent --runInBand"
   },
   "dependencies": {
     "@apollo/react-common": "^3.1.3",
@@ -127,7 +123,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn tsc && lint-staged",
+      "pre-commit": "make migration && types codegen all && tsc && lint-staged",
       "post-merge": "make babel-all",
       "post-checkout": "make babel-all OPTION=\"--exclude-dependents --since master\""
     }

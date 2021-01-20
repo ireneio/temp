@@ -12,7 +12,7 @@ import useOptions from './hooks/useOptions';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { productAmountSelectFragment as productAmountSelectFragmentType } from './gqls/__generated__/productAmountSelectFragment';
+import { productAmountSelectFragment as productAmountSelectFragmentType } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { useOptionsVariantFragment } from './gqls/useOptions';

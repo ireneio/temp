@@ -5,8 +5,8 @@ import mock from '../mock';
 import {
   gtagTypeEnum,
   gtagEventNameEnum,
-} from '../../../../__generated__/meepshop';
-import { gtagMockFragment } from './gqls/__generated__/gtagMockFragment';
+  gtagMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<gtagMockFragment>('gtag', [

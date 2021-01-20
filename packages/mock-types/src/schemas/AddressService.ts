@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { addressServiceMockFragment } from './gqls/__generated__/addressServiceMockFragment';
+import { addressServiceMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<addressServiceMockFragment>('AddressService', [

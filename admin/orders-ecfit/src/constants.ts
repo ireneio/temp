@@ -1,10 +1,11 @@
-// graphql typescript
+// typescript import
 import { QueryResult } from '@apollo/react-common';
 
+// graphql typescript
 import {
   getEcfitList,
   getEcfitListVariables,
-} from './gqls/__generated__/getEcfitList';
+} from '@meepshop/types/gqls/admin';
 
 // typescript definition
 export type getEcfitListQueryPropsType = QueryResult<

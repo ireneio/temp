@@ -13,11 +13,9 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   deletePage as deletePageType,
   deletePageVariables,
-} from './__generated__/deletePage';
-import {
   useDeletePageReadCache,
   useDeletePageReadCacheVariables,
-} from './__generated__/useDeletePageReadCache';
+} from '@meepshop/types/gqls/admin';
 
 // definition
 const query = gql`

@@ -10,11 +10,11 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 // graphql import
 import { useValidateInvoiceVAT } from '../gqls/useValidateInvoiceVAT';
 
-// grapqhql typescript
+// graphql typescript
 import {
   useValidateInvoiceVAT as useValidateInvoiceVATType,
   useValidateInvoiceVATVariables,
-} from '../gqls/__generated__/useValidateInvoiceVAT';
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default (): ValidationRule['validator'] => {

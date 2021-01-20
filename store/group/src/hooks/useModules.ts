@@ -9,7 +9,7 @@ import { stratify } from 'd3-hierarchy';
 import {
   groupFragment_modules as groupFragmentModules,
   groupFragment_modules_GroupModule as groupFragmentModulesGroupModule,
-} from '../gqls/__generated__/groupFragment';
+} from '@meepshop/types/gqls/store';
 
 // typescript definition
 export interface ModulesType {

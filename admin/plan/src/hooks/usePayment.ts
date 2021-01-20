@@ -11,15 +11,13 @@ import { Modal, message } from 'antd';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { StoreBillPlanItemFeeTypeEnum } from '../../../../__generated__/admin';
 import {
+  StoreBillPlanItemFeeTypeEnum,
   launchStore as launchStoreType,
   launchStoreVariables,
-} from '../gqls/__generated__/launchStore';
-import {
   quotation_quotation_monthly as quotationQuotationMonthly,
   quotation_quotation_yearly as quotationQuotationYearly,
-} from '../gqls/__generated__/quotation';
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { launchStore } from '../gqls/usePayment';

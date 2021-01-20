@@ -14,7 +14,7 @@ import { useRouter } from '@meepshop/link';
 import {
   resetPassword as resetPasswordType,
   resetPasswordVariables,
-} from './__generated__/resetPassword';
+} from '@meepshop/types/gqls/store';
 
 // definition
 const mutation = gql`

@@ -46,7 +46,7 @@ runTest('store' or 'admin', <Component />, (wrapper: ReactWrapper<unknown, unkno
 import gql from 'graphql-tag';
 
 import mock from '../mock';
-import { /** fragment name */ } from './__generated__/** fragment name */';
+import { /** fragment name */ } from '@meepshop/types/gqls/meepshop';
 
 // eslint-disable-next-line no-unused-expressions
 gql`

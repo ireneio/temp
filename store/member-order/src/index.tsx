@@ -25,7 +25,7 @@ import {
   getMemberOrder,
   getMemberOrderVariables,
   getMemberOrder_viewer_order as getMemberOrderViewerOrder,
-} from './__generated__/getMemberOrder';
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { notFoundFragment } from './NotFound';

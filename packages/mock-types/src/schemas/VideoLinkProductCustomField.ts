@@ -2,7 +2,7 @@
 import mock from '../mock';
 
 // graphql typescript
-import { videoLinkProductCustomFieldMockFragment } from './gqls/__generated__/videoLinkProductCustomFieldMockFragment';
+import { videoLinkProductCustomFieldMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<videoLinkProductCustomFieldMockFragment>(

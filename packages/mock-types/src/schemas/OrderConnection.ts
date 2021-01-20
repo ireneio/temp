@@ -7,7 +7,7 @@ import mock from '../mock';
 import {
   orderConnectionMockFragment,
   orderConnectionMockFragment_edges as orderConnectionMockFragmentEdges,
-} from './gqls/__generated__/orderConnectionMockFragment';
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 const cache: orderConnectionMockFragmentEdges[] = [];

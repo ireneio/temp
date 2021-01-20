@@ -1,4 +1,4 @@
-// import typescript
+// typescript import
 import { FormComponentProps } from 'antd/lib/form';
 
 import { I18nPropsType } from '@meepshop/utils/lib/i18n';

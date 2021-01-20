@@ -7,7 +7,7 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { Currency as CurrencyContext } from '@meepshop/context';
 
 // graphql typescript
-import { cathayAtmOrderFragment as cathayAtmOrderFragmentType } from './__generated__/cathayAtmOrderFragment';
+import { cathayAtmOrderFragment as cathayAtmOrderFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType {

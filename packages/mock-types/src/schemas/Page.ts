@@ -3,7 +3,7 @@ import mock from '../mock';
 import PageModule from './PageModule';
 
 // graphql typescript
-import { pageMockFragment } from './gqls/__generated__/pageMockFragment';
+import { pageMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 const defaultTitle = {

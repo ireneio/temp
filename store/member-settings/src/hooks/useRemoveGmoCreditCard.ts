@@ -9,10 +9,12 @@ import { notification } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
-// graphql typescrip
-import { removeGmoCreditCard as removeGmoCreditCardType } from './__generated__/removeGmoCreditCard';
-import { useRemoveGmoCreditCardReadCache } from './__generated__/useRemoveGmoCreditCardReadCache';
-import { useRemoveGmoCreditCardUpdateCache } from './__generated__/useRemoveGmoCreditCardUpdateCache';
+// graphql typescript
+import {
+  removeGmoCreditCard as removeGmoCreditCardType,
+  useRemoveGmoCreditCardReadCache,
+  useRemoveGmoCreditCardUpdateCache,
+} from '@meepshop/types/gqls/store';
 
 // definition
 const mutation = gql`

@@ -13,8 +13,10 @@ import useIframeLoading from './hooks/useIframeLoading';
 import styles from './styles/previewer.less';
 
 // graphql typescript
-import { previewerStoreFragment as previewerStoreFragmentType } from './__generated__/previewerStoreFragment';
-import { previewerPageFragment as previewerPageFragmentType } from './__generated__/previewerPageFragment';
+import {
+  previewerStoreFragment as previewerStoreFragmentType,
+  previewerPageFragment as previewerPageFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';

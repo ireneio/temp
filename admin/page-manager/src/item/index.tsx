@@ -18,8 +18,10 @@ import useTitleOverflow from './hooks/useTitleOverflow';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { itemPageFragment as itemPageFragmentType } from './__generated__/itemPageFragment';
-import { getPagesVariables } from '../__generated__/getPages';
+import {
+  itemPageFragment as itemPageFragmentType,
+  getPagesVariables,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';

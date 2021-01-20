@@ -18,8 +18,8 @@ import styles from './styles/tags.less';
 import {
   tagsStorePaymentFragment as tagsStorePaymentFragmentType,
   tagsStorePaymentFragment_title as tagsStorePaymentFragmentTitle,
-} from './__generated__/tagsStorePaymentFragment';
-import { tagsStoreShipmentFragment as tagsStoreShipmentFragmentType } from './__generated__/tagsStoreShipmentFragment';
+  tagsStoreShipmentFragment as tagsStoreShipmentFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';

@@ -18,7 +18,7 @@ import styles from './styles/index.less';
 import {
   getUserRewardPotins as getUserRewardPotinsType,
   getUserRewardPotins_getValidUserPointList_data as getUserRewardPotinsGetValidUserPointListDataType,
-} from './gqls/__generated__/getUserRewardPotins';
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { getUserRewardPotins } from './gqls';

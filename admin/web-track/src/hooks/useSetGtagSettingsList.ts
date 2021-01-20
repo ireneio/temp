@@ -12,7 +12,7 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   setGtagSettingsList as setGtagSettingsListType,
   setGtagSettingsListVariables,
-} from '../gqls/__generated__/setGtagSettingsList';
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { setGtagSettingsList } from '../gqls/useSetGtagSettingsList';

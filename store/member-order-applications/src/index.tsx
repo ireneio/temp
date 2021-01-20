@@ -20,7 +20,7 @@ import {
   getMemberOrderApplications,
   getMemberOrderApplicationsVariables,
   getMemberOrderApplications_viewer_order as getMemberOrderApplicationsViewerOrder,
-} from './__generated__/getMemberOrderApplications';
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import {

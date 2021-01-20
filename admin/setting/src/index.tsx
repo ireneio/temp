@@ -14,7 +14,7 @@ import useItems from './hooks/useItems';
 import Item from './Item';
 
 // graphql typescript
-import { getViewerPermission } from './__generated__/getViewerPermission';
+import { getViewerPermission } from '@meepshop/types/gqls/admin';
 
 // graphql import
 import {

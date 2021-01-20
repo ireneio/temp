@@ -2,8 +2,10 @@
 import mock from '../mock';
 
 // graphql typescript
-import { ImageTextModulePosition } from '../../../../__generated__/meepshop';
-import { imageTextModuleMockFragment } from './gqls/__generated__/imageTextModuleMockFragment';
+import {
+  ImageTextModulePosition,
+  imageTextModuleMockFragment,
+} from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<imageTextModuleMockFragment>('ImageTextModule', [

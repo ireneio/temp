@@ -2,8 +2,10 @@
 import gql from 'graphql-tag';
 
 // graphql typescript
-import { userUserFragment as userUserFragmentType } from './__generated__/userUserFragment';
-import { userAuthorityListFragment as userAuthorityListFragmentType } from './__generated__/userAuthorityListFragment';
+import {
+  userUserFragment as userUserFragmentType,
+  userAuthorityListFragment as userAuthorityListFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // definition
 export const userUserFragment = gql`

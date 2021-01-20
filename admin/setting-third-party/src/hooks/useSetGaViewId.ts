@@ -7,11 +7,11 @@ import { message } from 'antd';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
-import { useSetGAViewIdWriteCache } from './__generated__/useSetGAViewIdWriteCache';
 import {
+  useSetGAViewIdWriteCache,
   setGaViewId as setGaViewIdType,
   setGaViewIdVariables,
-} from './__generated__/setGaViewId';
+} from '@meepshop/types/gqls/admin';
 
 // definition
 export default (): ((

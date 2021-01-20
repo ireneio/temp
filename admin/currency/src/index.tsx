@@ -9,7 +9,7 @@ import { Currency as CurrencyContext } from '@meepshop/context';
 import { format } from '@meepshop/context/lib/Currency';
 
 // graphql typescript
-import { getAdminCurrency } from './__generated__/getAdminCurrency';
+import { getAdminCurrency } from '@meepshop/types/gqls/admin';
 
 // definition
 const query = gql`

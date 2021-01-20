@@ -5,7 +5,7 @@ import { ContextType, fieldsType } from '../mock';
 import mock from '../mock';
 
 // graphql typescript
-import { routingRuleFragment as routingRuleFragmentType } from './gqls/__generated__/routingRuleFragment';
+import { routingRuleFragment as routingRuleFragmentType } from '@meepshop/types/gqls/meepshop';
 
 // definition
 const findRouting = (id: string): routingRuleFragmentType => ({

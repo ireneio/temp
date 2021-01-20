@@ -7,7 +7,7 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import styles from './styles/price.less';
 
 // graphql typescript
-import { priceFragment } from './gqls/__generated__/priceFragment';
+import { priceFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default React.memo(({ order }: { order: priceFragment | null }) => {

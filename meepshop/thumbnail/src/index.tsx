@@ -6,7 +6,7 @@ import { placeholderThumbnail_w120 as placeholderThumbnail } from '@meepshop/ima
 import styles from './styles/index.less';
 
 // graphql typescript
-import { thumbnailFragment as thumbnailFragmentType } from './gqls/__generated__/thumbnailFragment';
+import { thumbnailFragment as thumbnailFragmentType } from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 interface PropsType {

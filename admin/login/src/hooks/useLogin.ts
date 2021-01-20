@@ -11,7 +11,7 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { login as loginType, loginVariables } from './__generated__/login';
+import { login as loginType, loginVariables } from '@meepshop/types/gqls/admin';
 
 // definition
 export default (

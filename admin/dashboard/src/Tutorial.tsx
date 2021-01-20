@@ -12,12 +12,12 @@ import styles from './styles/tutorial.less';
 import { TUTORIAL } from './constants';
 
 // graphql typescript
-import { tutorialSettingObjectTypeFragment as tutorialSettingObjectTypeFragmentType } from './__generated__/tutorialSettingObjectTypeFragment';
 import {
+  tutorialSettingObjectTypeFragment as tutorialSettingObjectTypeFragmentType,
   adminSetIsTutorialEnabled,
   adminSetIsTutorialEnabledVariables,
-} from './__generated__/adminSetIsTutorialEnabled';
-import { tutorialStoreFragment } from './__generated__/tutorialStoreFragment';
+  tutorialStoreFragment,
+} from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType {

@@ -12,7 +12,7 @@ import Tooltip from '@admin/tooltip';
 import styles from './styles/facebook.less';
 
 // graphql typescript
-import { facebookFacebookSettingFragment as facebookFacebookSettingFragmentType } from './__generated__/facebookFacebookSettingFragment';
+import { facebookFacebookSettingFragment as facebookFacebookSettingFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType extends FormComponentProps {

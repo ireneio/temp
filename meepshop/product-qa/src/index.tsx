@@ -18,7 +18,7 @@ import useCreateProductQA from './hooks/useCreateProductQA';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { productQaFragment } from './gqls/__generated__/productQaFragment';
+import { productQaFragment } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { useCreateProductQAFragment } from './gqls/useCreateProductQA';

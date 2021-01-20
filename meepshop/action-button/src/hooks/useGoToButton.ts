@@ -4,7 +4,7 @@ import { useContext, useCallback } from 'react';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 
 // graphql typescript
-import { goToButtonFragment_goToButton as goToButtonFragmentGoToButton } from '../gqls/__generated__/goToButtonFragment';
+import { goToButtonFragment_goToButton as goToButtonFragmentGoToButton } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default (

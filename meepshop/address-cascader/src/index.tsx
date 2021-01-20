@@ -19,7 +19,7 @@ import styles from './styles/index.less';
 import {
   getCountriesAddress as getCountriesAddressType,
   getCountriesAddress_addressService_countries as getCountriesAddressAddressServiceCountries,
-} from './gqls/__generated__/getCountriesAddress';
+} from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { getCountriesAddress } from './gqls';

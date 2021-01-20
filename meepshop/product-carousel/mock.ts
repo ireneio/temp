@@ -2,7 +2,7 @@
 import uuid from 'uuid/v4';
 
 // graphql typescript
-import { ProductCarouselModuleType } from '../../__generated__/meepshop';
+import { ProductCarouselModuleType } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default {
