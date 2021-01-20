@@ -23,7 +23,7 @@ module.exports = {
   },
   plugins: ['import'],
   settings: {
-    'import/internal-regex': ['@meepshop/types'],
+    'import/internal-regex': '@meepshop/(types|mock-types)',
     'import/resolver': {
       node: {
         extensions: ['.js', '.ts', '.tsx'],
@@ -108,6 +108,7 @@ module.exports = {
 
     'import/no-extraneous-dependencies': [
       'error',
+      // FIXME: https://github.com/benmosher/eslint-plugin-import/pull/1696
       { packageDir: ['.', 'packagejson'] },
     ],
     'import/prefer-default-export': 'off',

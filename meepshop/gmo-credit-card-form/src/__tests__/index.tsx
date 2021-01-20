@@ -5,7 +5,6 @@ import { PropsType } from '../index';
 import React from 'react';
 import { Form } from 'antd';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import runTest from '@meepshop/mock-types/src/runTest';
 
 import GmoCreditCardForm from '../index';

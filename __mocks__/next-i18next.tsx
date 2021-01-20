@@ -1,21 +1,17 @@
 // import
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { Suspense } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import i18n from 'i18next';
 import {
   initReactI18next,
   withTranslation,
   useTranslation,
   I18nextProvider,
-  // eslint-disable-next-line import/no-extraneous-dependencies
 } from 'react-i18next';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Backend from 'i18next-xhr-backend';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import LanguageDetector from 'i18next-browser-languagedetector';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import nextI18next from 'next-i18next';
+/* eslint-enable import/no-extraneous-dependencies */
 
 // definition
 // TODO: remove after next-i18next upgrade
