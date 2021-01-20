@@ -34,8 +34,8 @@ gcloud-login: &gcloud-login
 deploy-docker: &deploy-docker
   name: Deploy docker
   command: |
-    yarn types codegen all
     yarn prod
+    yarn types codegen all
     yarn locales link
     yarn lerna run prod \
       --parallel \
