@@ -6,7 +6,7 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 
 #### scripts
 
-- `clean`: Remove the building files and node_modules.
+- `clean`: Remove cache, lib, generated typescript and node_modules.
 - `generate`: Use to generate the new files.
 - `dev`: Run `dev` mode
 - `install:all`: Install the all packages.
@@ -17,24 +17,25 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 - `test`: Run testing.
 - `tsc`: Run typescript.
 
-## How to write a new package
+## Write packages with template 
 
 ```sh
-yarn generate Package
+yarn generate <Package/Page/Component>
 ```
 
-#### Write component with storybook
+#### Write packages with storybook
 
 Before `new schema` can work, you can use `storybook` to write the new component. In this mode, you can mock the result from `apollo-client`.
 
-1. Run `yarn storybook dev <workspace>` to get the more information.
-2. Use `yarn storybook generate <package-name>` to generate the package story.
-3. (optional) If you need to give the props to component, you can add `mock.ts`. See [@meepshop/storybook](./packages/storybook) to learn more detail.
+1. Run `yarn storybook:pre` once.
+2. Run `yarn storybook dev <workspace>` to host `storybook`.
+3. Use `yarn storybook generate <package-name>` to generate the package story.
+4. (optional) If you need to give the props to component, you can add `mock.ts`. See [@meepshop/storybook](./packages/storybook) to learn more detail.
 
-#### Write component with dev server
+#### Write packages with dev server
 
 1. Run `yarn dev`.
-2. Run `yarn lerna run dev --stream --scope @admin/server` or `yarn lerna run dev --stream --scope @store/server`.
+2. Run `yarn lerna run dev --stream --scope @admin/server` or `yarn lerna run dev --stream --scope @meepshop/store`.
 
 #### Write unit testing
 
