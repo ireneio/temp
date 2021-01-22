@@ -19,7 +19,8 @@
   "address": "Pays / Ville / Canton",
   "zip-code": "code postal",
   "street": "Adresse",
-  "isNotCancelEmail": "Abonnez-vous à la newsletter",
+  "newsletters": "Abonnez-vous à la newsletter",
+  "rewardPointReminderSubscription": "Lettre de notification d'expiration du paiement de l'abonnement",
   "submit": "Mise à jour",
   "remove-credit-card-info": {
     "title": "Informations sur les transactions par carte de crédit",

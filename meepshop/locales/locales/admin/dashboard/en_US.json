@@ -54,7 +54,7 @@
   "orderQA": "Order Q & A",
   "productQA": "Product Q & A",
   "revenue": "Revenue of This Month",
-  "cost": "Cost of This Month",
+  "numberOfReminderSentMonthly": "Notification letter for the expiry of this month's shopping deposit",
   "order": "Orders of This month",
   "member": "Number of Members"
 }

@@ -2,7 +2,8 @@
 import Router from 'next/router';
 
 // definition
-Router.query.userId = 'user-id';
+Router.query.userid = 'user-id';
+Router.query.from = 'edm';
 
 export default {
   namespacesRequired: [],

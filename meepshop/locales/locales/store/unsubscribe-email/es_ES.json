@@ -1,8 +1,13 @@
 {
   "title": "Te has dado de baja",
-  "message": {
+  "edm": {
     "0": "Desafortunadamente, ha decidido dejar de suscribirse a las ofertas de nuestra tienda y ya no recibirá correos electrónicos relacionados.",
     "1": "Para recibir la oferta nuevamente, puede volver a suscribirse en el perfil de miembro después de iniciar sesión."
+  },
+  "reward-point-reminder": {
+    "title": null,
+    "0": null,
+    "1": null
   },
   "back": "Volver a la tienda"
 }

@@ -19,7 +19,8 @@
   "address": "国/都道府県/市区町村",
   "zip-code": "郵便番号",
   "street": "住所",
-  "isNotCancelEmail": "ニュースレターを購読する",
+  "newsletters": "ニュースレターを購読する",
+  "rewardPointReminderSubscription": "サブスクリプション支払い満了の通知書",
   "submit": "情報を更新",
   "remove-credit-card-info": {
     "title": "クレジットカード取引情報",

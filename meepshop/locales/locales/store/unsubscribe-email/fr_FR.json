@@ -1,8 +1,13 @@
 {
   "title": "Vous vous êtes désabonné",
-  "message": {
+  "edm": {
     "0": "Malheureusement, vous avez décidé de ne plus vous abonner aux offres de notre boutique et vous ne recevrez plus d'e-mails associés.",
     "1": "Pour recevoir à nouveau l'offre, vous pouvez vous réinscrire dans le profil du membre après vous être connecté."
+  },
+  "reward-point-reminder": {
+    "title": null,
+    "0": null,
+    "1": null
   },
   "back": "Retour à la boutique"
 }

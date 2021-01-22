@@ -4,7 +4,6 @@ import { FormComponentProps } from 'antd/lib/form';
 // import
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import {
   Spin,
   Icon,
@@ -29,88 +28,29 @@ import useSubmit from './hooks/useSubmit';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getUserInfo } from '@meepshop/types/gqls/store';
+import { getUserInfo as getUserInfoType } from '@meepshop/types/gqls/store';
+
+// graphql import
+import { getUserInfo } from './gqls';
 
 // definition
 const { Item: FormItem } = Form;
 const { Option } = Select;
-const query = gql`
-  query getUserInfo {
-    viewer {
-      id
-      group {
-        startDate
-        expireDate
-        unlimitedDate
-      }
-      memberGroup {
-        id
-        type
-        name
-      }
-      name
-      email
-      gender
-      tel @client
-      mobile @client
-      additionalInfo {
-        # for client
-        tel
-        mobile
-      }
-      address {
-        country {
-          id
-        }
-        city {
-          id
-        }
-        area {
-          id
-        }
-        street
-        zipCode
-      }
-      birthday {
-        year
-        month
-        day
-      }
-      notification {
-        newsletters {
-          cancelEmail
-        }
-      }
-      store {
-        id
-        shippableCountries {
-          id
-        }
-        setting {
-          lockedBirthday
-        }
-        experiment {
-          gmoRememberCardEnabled
-        }
-      }
-      hasGmoCreditCard
-    }
-  }
-`;
 
 export default Form.create<FormComponentProps>()(
   React.memo(({ form }: FormComponentProps) => {
     const { t } = useTranslation('member-settings');
     const colors = useContext(ColorsContext);
     const validator = useValidator();
-    const submit = useSubmit(form);
-    const { data } = useQuery<getUserInfo>(query);
+    const { data } = useQuery<getUserInfoType>(getUserInfo);
+    const submit = useSubmit(form, data?.viewer?.id || null);
     const viewer = data?.viewer;
 
     if (!viewer) return <Spin indicator={<Icon type="loading" spin />} />;
 
     const { getFieldDecorator } = form;
     const {
+      id,
       group,
       memberGroup,
       name,
@@ -137,7 +77,7 @@ export default Form.create<FormComponentProps>()(
       unlimitedDate = false,
     } = group?.slice(-1)[0] || {};
     const { name: groupName = '', type = 'normal' } = memberGroup || {};
-    const { lockedBirthday = null } = store?.setting || {};
+    const { lockedBirthday = null, rewardPointReminder } = store?.setting || {};
     const gmoRememberCardEnabled =
       store?.experiment?.gmoRememberCardEnabled || false;
 
@@ -230,7 +170,7 @@ export default Form.create<FormComponentProps>()(
               initialValue: {
                 address: ([country, city, area].filter(Boolean) as NonNullable<
                   typeof country | typeof city | typeof area
-                >[]).map(({ id }) => id),
+                >[]).map(({ id: itemId }) => itemId),
                 zipCode,
               },
               ...(country || city || area
@@ -259,13 +199,25 @@ export default Form.create<FormComponentProps>()(
             })(<Input size="large" placeholder={t('street')} />)}
           </FormItem>
 
-          <FormItem>
-            {getFieldDecorator('isNotCancelEmail', {
+          <div className={styles.checkboxGroup}>
+            {getFieldDecorator('isNotCancelNewslettersEmail', {
               // SHOULD_NOT_BE_NULL
               initialValue: !notification?.newsletters?.cancelEmail,
               valuePropName: 'checked',
-            })(<Checkbox>{t('isNotCancelEmail')}</Checkbox>)}
-          </FormItem>
+            })(<Checkbox>{t('newsletters')}</Checkbox>)}
+
+            {!rewardPointReminder?.isEnabled
+              ? null
+              : getFieldDecorator(
+                  'isNotCancelRewardPointReminderSubscriptionEmail',
+                  {
+                    // SHOULD_NOT_BE_NULL
+                    initialValue: !notification?.rewardPointReminderSubscription
+                      ?.cancelEmail,
+                    valuePropName: 'checked',
+                  },
+                )(<Checkbox>{t('rewardPointReminderSubscription')}</Checkbox>)}
+          </div>
 
           <Button
             className={styles.submit}
@@ -278,7 +230,7 @@ export default Form.create<FormComponentProps>()(
           </Button>
 
           {!gmoRememberCardEnabled || !hasGmoCreditCard ? null : (
-            <RemoveCreditCardInfo />
+            <RemoveCreditCardInfo id={id} />
           )}
         </Form>
       </div>

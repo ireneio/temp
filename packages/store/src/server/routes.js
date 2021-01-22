@@ -49,7 +49,7 @@ module.exports = routes
   .add('forgotPassword', '/forgotPassword/:token', 'forgotPassword')
 
   // unsubscribe email
-  .add('unsubscribe', '/unsubscribe/:userId', '/unsubscribe/[userId]')
+  .add('unsubscribe', '/unsubscribe', '/unsubscribe')
 
   // sitemaps(products): for crawler
   .add('sitemaps/v1', '/sitemaps/v1', 'sitemaps/v1')

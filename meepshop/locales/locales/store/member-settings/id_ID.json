@@ -19,7 +19,8 @@
   "address": "Negara / Kota / Kotamadya",
   "zip-code": "Kode Pos",
   "street": "Alamat",
-  "isNotCancelEmail": "Berlangganan Newsletter",
+  "newsletters": "Berlangganan Newsletter",
+  "rewardPointReminderSubscription": "Surat pemberitahuan berakhirnya pembayaran langganan",
   "submit": "Memperbarui",
   "remove-credit-card-info": {
     "title": "Informasi transaksi kartu kredit",

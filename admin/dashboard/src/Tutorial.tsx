@@ -2,7 +2,6 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { Icon, Tabs, List } from 'antd';
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { meepshopLogo } from '@meepshop/images';
@@ -14,10 +13,16 @@ import { TUTORIAL } from './constants';
 // graphql typescript
 import {
   tutorialSettingObjectTypeFragment as tutorialSettingObjectTypeFragmentType,
-  adminSetIsTutorialEnabled,
+  adminSetIsTutorialEnabled as adminSetIsTutorialEnabledType,
   adminSetIsTutorialEnabledVariables,
-  tutorialStoreFragment,
+  tutorialStoreFragment as tutorialStoreFragmentType,
 } from '@meepshop/types/gqls/admin';
+
+// graphql import
+import {
+  adminSetIsTutorialEnabled,
+  tutorialStoreFragment,
+} from './gqls/tutorial';
 
 // typescript definition
 interface PropsType {
@@ -27,52 +32,32 @@ interface PropsType {
 }
 
 // definition
-export const tutorialSettingObjectTypeFragment = gql`
-  fragment tutorialSettingObjectTypeFragment on SettingObjectType {
-    isTutorialEnabled
-  }
-`;
-
 const Tutorial = ({ name, id, setting }: PropsType): React.ReactElement => {
   const { t } = useTranslation('dashboard');
   const isTutorialEnabled = setting?.isTutorialEnabled ?? true;
   const [isInitial, setInitial] = useState(true);
   const [activeKey, setActiveKey] = useState('store');
   const [setIsTutorialEnabled] = useMutation<
-    adminSetIsTutorialEnabled,
+    adminSetIsTutorialEnabledType,
     adminSetIsTutorialEnabledVariables
-  >(
-    gql`
-      mutation adminSetIsTutorialEnabled($input: SetIsTutorialEnabledInput!) {
-        setIsTutorialEnabled(input: $input) {
-          success
-        }
-      }
-    `,
-    {
-      update: (cache, { data }) => {
-        if (!data?.setIsTutorialEnabled.success) return;
+  >(adminSetIsTutorialEnabled, {
+    update: (cache, { data }) => {
+      if (!data?.setIsTutorialEnabled.success) return;
 
-        cache.writeFragment<tutorialStoreFragment>({
+      cache.writeFragment<tutorialStoreFragmentType>({
+        id,
+        fragment: tutorialStoreFragment,
+        data: {
+          __typename: 'Store',
           id,
-          fragment: gql`
-            fragment tutorialStoreFragment on Store {
-              setting {
-                isTutorialEnabled
-              }
-            }
-          `,
-          data: {
-            __typename: 'Store',
-            setting: {
-              __typename: 'SettingObjectType',
-              isTutorialEnabled: !isTutorialEnabled,
-            },
+          setting: {
+            __typename: 'SettingObjectType',
+            isTutorialEnabled: !isTutorialEnabled,
           },
-        });
-      },
+        },
+      });
     },
-  );
+  });
 
   useLayoutEffect(() => {
     setActiveKey(localStorage.getItem(`${id}-tutorial`) || 'store');

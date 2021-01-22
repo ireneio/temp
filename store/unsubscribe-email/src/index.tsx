@@ -4,17 +4,19 @@ import { NextPage } from 'next';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { Spin, Icon, Divider, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
-import Link from '@meepshop/link';
+import Link, { useRouter } from '@meepshop/link';
 
-import useUnsubscribeEdm from './hooks/useUnsubscribeEdm';
+import useUnsubscribe from './hooks/useUnsubscribe';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getStoreName } from '@meepshop/types/gqls/store';
+import { getStoreName as getStoreNameType } from '@meepshop/types/gqls/store';
+
+// graphql import
+import { getStoreName } from './gqls';
 
 // typescript definition
 interface PropsType {
@@ -22,24 +24,11 @@ interface PropsType {
 }
 
 // definition
-const query = gql`
-  query getStoreName {
-    viewer {
-      id
-      store {
-        id
-        description {
-          name
-        }
-      }
-    }
-  }
-`;
-
 const UnsubscribeEmail: NextPage<PropsType> = React.memo(() => {
   const { t } = useTranslation('unsubscribe-email');
-  const { data } = useQuery<getStoreName>(query);
-  const { loading } = useUnsubscribeEdm();
+  const { query } = useRouter();
+  const { data } = useQuery<getStoreNameType>(getStoreName);
+  const { loading } = useUnsubscribe();
   const name = data?.viewer?.store?.description?.name;
 
   if (loading) return <Spin indicator={<Icon type="loading" spin />} />;
@@ -50,10 +39,13 @@ const UnsubscribeEmail: NextPage<PropsType> = React.memo(() => {
         <h1>
           {t('title')}
           <span>{name}</span>
+          {query?.from !== 'reward-point-reminder'
+            ? null
+            : t('reward-point-reminder.title')}
         </h1>
-        <p>{t('message.0')}</p>
+        <p>{t(`${query?.from}.0`)}</p>
         <Divider />
-        <p>{t('message.1')}</p>
+        <p>{t(`${query?.from}.1`)}</p>
 
         <Link href="/">
           <Button size="large" type="primary">

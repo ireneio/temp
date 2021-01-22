@@ -54,7 +54,7 @@
   "orderQA": "Q & A de commande",
   "productQA": "Questions et réponses sur le produit",
   "revenue": "Revenus de ce mois",
-  "cost": "Coût de ce mois",
+  "numberOfReminderSentMonthly": "Lettre de notification pour l'expiration de l'acompte de ce mois",
   "order": "Commandes de ce mois",
   "member": "Nombre de membres"
 }

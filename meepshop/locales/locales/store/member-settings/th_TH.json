@@ -19,7 +19,8 @@
   "address": "ประเทศ / เมือง / เขตการปกครอง",
   "zip-code": "รหัสไปรษณีย์",
   "street": "ที่อยู่",
-  "isNotCancelEmail": "สมัครรับจดหมายข่าว",
+  "newsletters": "สมัครรับจดหมายข่าว",
+  "rewardPointReminderSubscription": "จดหมายแจ้งการหมดอายุการชำระเงินการสมัครสมาชิก",
   "submit": "ปรับปรุง",
   "remove-credit-card-info": {
     "title": "ข้อมูลการทำธุรกรรมบัตรเครดิต",

@@ -19,7 +19,8 @@
   "address": "Country / City / Township",
   "zip-code": "Postal Code",
   "street": "Address",
-  "isNotCancelEmail": "Subscribe Newsletter",
+  "newsletters": "Subscribe Newsletter",
+  "rewardPointReminderSubscription": "Notification letter of subscription payment expiry",
   "submit": "Update",
   "remove-credit-card-info": {
     "title": "Credit card transaction information",

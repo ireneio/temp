@@ -19,7 +19,8 @@
   "address": "國家/縣市/鄉鎮",
   "zip-code": "郵遞區號",
   "street": "地址",
-  "isNotCancelEmail": "訂閱商店資訊及優惠方案",
+  "newsletters": "訂閱商店資訊及優惠方案",
+  "rewardPointReminderSubscription": "訂閱購物金到期通知信",
   "submit": "更新資料",
   "remove-credit-card-info": {
     "title": "信用卡交易資料",

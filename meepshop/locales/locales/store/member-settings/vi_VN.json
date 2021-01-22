@@ -19,7 +19,8 @@
   "address": "Quốc gia / Thành phố / Quận Huyện",
   "zip-code": "Mã bưu điện",
   "street": "Địa Chỉ",
-  "isNotCancelEmail": "Đăng kí nhận tin nhắn thông tin và khuyến mại",
+  "newsletters": "Đăng kí nhận tin nhắn thông tin và khuyến mại",
+  "rewardPointReminderSubscription": "Thư thông báo về việc hết hạn thanh toán đăng ký",
   "submit": "Cập nhật thông tin",
   "remove-credit-card-info": {
     "title": "Thông tin giao dịch thẻ tín dụng",

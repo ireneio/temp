@@ -9,10 +9,10 @@ import useRemoveGmoCreditCard from './hooks/useRemoveGmoCreditCard';
 import styles from './styles/removeCreditCardInfo.less';
 
 // definition
-export default React.memo(() => {
+export default React.memo(({ id }: { id: string | null }) => {
   const { t } = useTranslation('member-settings');
   const colors = useContext(ColorsContext);
-  const removeGmoCreditCard = useRemoveGmoCreditCard();
+  const removeGmoCreditCard = useRemoveGmoCreditCard(id);
 
   return (
     <>

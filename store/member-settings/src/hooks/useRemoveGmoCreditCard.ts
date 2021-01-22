@@ -3,7 +3,6 @@ import { DataProxy } from 'apollo-cache';
 import { MutationTuple } from '@apollo/react-hooks';
 
 // import
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { notification } from 'antd';
 
@@ -12,22 +11,21 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 // graphql typescript
 import {
   removeGmoCreditCard as removeGmoCreditCardType,
-  useRemoveGmoCreditCardReadCache,
-  useRemoveGmoCreditCardUpdateCache,
+  useRemoveGmoCreditCardUpdateCache as useRemoveGmoCreditCardUpdateCacheType,
 } from '@meepshop/types/gqls/store';
 
-// definition
-const mutation = gql`
-  mutation removeGmoCreditCard {
-    removeGmoCreditCard {
-      status
-    }
-  }
-`;
+// graphql import
+import {
+  removeGmoCreditCard,
+  useRemoveGmoCreditCardUpdateCache,
+} from '../gqls/useRemoveGmoCreditCard';
 
-export default (): MutationTuple<removeGmoCreditCardType, unknown>[0] => {
+// definition
+export default (
+  id: string | null,
+): MutationTuple<removeGmoCreditCardType, unknown>[0] => {
   const { t } = useTranslation('member-settings');
-  const [removeGmoCreditCard] = useMutation<removeGmoCreditCardType>(mutation, {
+  const [mutation] = useMutation<removeGmoCreditCardType>(removeGmoCreditCard, {
     update: (cache: DataProxy, { data }: { data: removeGmoCreditCardType }) => {
       if (data.removeGmoCreditCard.status !== 'SUCCESS') {
         notification.error({
@@ -40,27 +38,11 @@ export default (): MutationTuple<removeGmoCreditCardType, unknown>[0] => {
         message: t('remove-credit-card-info.success'),
       });
 
-      const viewerCache = cache.readQuery<useRemoveGmoCreditCardReadCache>({
-        query: gql`
-          query useRemoveGmoCreditCardReadCache {
-            viewer {
-              id
-            }
-          }
-        `,
-      });
-      const id = viewerCache?.viewer?.id;
-
       if (!id) return;
 
-      cache.writeFragment<useRemoveGmoCreditCardUpdateCache>({
+      cache.writeFragment<useRemoveGmoCreditCardUpdateCacheType>({
         id,
-        fragment: gql`
-          fragment useRemoveGmoCreditCardUpdateCache on User {
-            id
-            hasGmoCreditCard
-          }
-        `,
+        fragment: useRemoveGmoCreditCardUpdateCache,
         data: {
           __typename: 'User',
           id,
@@ -70,5 +52,5 @@ export default (): MutationTuple<removeGmoCreditCardType, unknown>[0] => {
     },
   });
 
-  return removeGmoCreditCard;
+  return mutation;
 };

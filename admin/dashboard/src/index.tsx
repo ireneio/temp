@@ -3,7 +3,6 @@ import { NextPage } from 'next';
 
 // import
 import React, { useContext } from 'react';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
@@ -14,7 +13,7 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { Currency as CurrencyContext } from '@meepshop/context';
 import {
   dashboardRevenue_w40 as dashboardRevenue,
-  dashboardCost_w40 as dashboardCost,
+  dashboardEmail_w40 as dashboardEmail,
   dashboardOrder_w40 as dashboardOrder,
   dashboardMember_w40 as dashboardMember,
 } from '@meepshop/images';
@@ -25,13 +24,14 @@ import styles from './styles/index.less';
 
 // graphql typescript
 import {
-  getTimezone,
-  getDashboard,
+  getTimezone as getTimezoneType,
+  getDashboard as getDashboardType,
   getDashboardVariables,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { tutorialSettingObjectTypeFragment } from './Tutorial';
+import { getDashboard, getTimezone } from './gqls';
+import { tutorialSettingObjectTypeFragment } from './gqls/tutorial';
 
 // typescript definition
 interface PropsType {
@@ -42,80 +42,38 @@ interface PropsType {
 const Dashboard: NextPage<PropsType> = React.memo(
   (): React.ReactElement => {
     const { c } = useContext(CurrencyContext);
-    const getTimezoneResult = useQuery<getTimezone>(
-      gql`
-        query getTimezone {
-          viewer {
-            id
-            store {
-              id
-              timezone
-            }
-          }
-        }
-      `,
-    );
+    const getTimezoneResult = useQuery<getTimezoneType>(getTimezone);
 
     const timezone = getTimezoneResult.data?.viewer?.store?.timezone;
 
-    const getDashboardResult = useQuery<getDashboard, getDashboardVariables>(
-      gql`
-        query getDashboard($info: DashboardInfoInput) {
-          getDashboardInfo(getDashboardInfo: $info) {
-            pendingOrder
-            notShipped
-            orderQA
-            productQA
-            userCount
-            orderMonthly
-            revenueMonthly
-            costMonthly
-          }
-          viewer {
-            id
-            role
-            store {
-              id
-              description {
-                name
-              }
-              unpaidBills {
-                totalCount
-              }
-              setting {
-                ...tutorialSettingObjectTypeFragment
-              }
-            }
-          }
-        }
-        ${tutorialSettingObjectTypeFragment}
-      `,
-      {
-        skip: !timezone,
-        variables: {
-          info: {
-            pendingOrder: true,
-            notShipped: true,
-            orderQA: true,
-            productQA: true,
-            userCount: true,
-            orderMonthly: true,
-            revenueMonthly: true,
-            costMonthly: true,
-            timeRange: {
-              start: moment()
-                .utcOffset(parseFloat(timezone || '+8'))
-                .startOf('month')
-                .format('X'),
-              end: moment()
-                .utcOffset(parseFloat(timezone || '+8'))
-                .endOf('month')
-                .format('X'),
-            },
+    const getDashboardResult = useQuery<
+      getDashboardType,
+      getDashboardVariables
+    >(getDashboard, {
+      skip: !timezone,
+      variables: {
+        info: {
+          pendingOrder: true,
+          notShipped: true,
+          orderQA: true,
+          productQA: true,
+          userCount: true,
+          orderMonthly: true,
+          revenueMonthly: true,
+          numberOfReminderSentMonthly: true,
+          timeRange: {
+            start: moment()
+              .utcOffset(parseFloat(timezone || '+8'))
+              .startOf('month')
+              .format('X'),
+            end: moment()
+              .utcOffset(parseFloat(timezone || '+8'))
+              .endOf('month')
+              .format('X'),
           },
         },
       },
-    );
+    });
 
     const { t } = useTranslation('dashboard');
     const { viewer, getDashboardInfo } = getDashboardResult?.data || {};
@@ -134,7 +92,7 @@ const Dashboard: NextPage<PropsType> = React.memo(
       userCount = null,
       orderMonthly = null,
       revenueMonthly = null,
-      costMonthly = null,
+      numberOfReminderSentMonthly = null,
     } = getDashboardInfo;
 
     return (
@@ -238,25 +196,30 @@ const Dashboard: NextPage<PropsType> = React.memo(
                   <span>{c(revenueMonthly || 0)}</span>
                 </div>
               </div>
-              <div>
-                <img src={dashboardCost} alt="cost" />
-                <div>
-                  <span>{t('cost')}</span>
-                  <span>{c(costMonthly || 0)}</span>
-                </div>
-              </div>
+
               <div>
                 <img src={dashboardOrder} alt="order" />
                 <div>
                   <span>{t('order')}</span>
-                  <span className={styles.green}>{orderMonthly}</span>
+                  <span>{orderMonthly}</span>
                 </div>
               </div>
+
               <div>
                 <img src={dashboardMember} alt="member" />
                 <div>
                   <span>{t('member')}</span>
                   <span className={styles.green}>{userCount}</span>
+                </div>
+              </div>
+
+              <div>
+                <img src={dashboardEmail} alt="email" />
+                <div>
+                  <span>{t('numberOfReminderSentMonthly')}</span>
+                  <span className={styles.green}>
+                    {numberOfReminderSentMonthly}
+                  </span>
                 </div>
               </div>
             </div>

@@ -11,6 +11,6 @@ export const dashboardInfoMockFragment = gql`
     userCount
     orderMonthly
     revenueMonthly
-    costMonthly
+    numberOfReminderSentMonthly
   }
 `;

@@ -54,7 +54,7 @@
   "orderQA": "訂單問答",
   "productQA": "商品問答",
   "revenue": "本月營收總額",
-  "cost": "本月成本",
+  "numberOfReminderSentMonthly": "本月購物金到期通知信",
   "order": "本月訂單數",
   "member": "會員人數"
 }

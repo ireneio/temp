@@ -1,8 +1,13 @@
 {
   "title": "You have unsubscribed",
-  "message": {
+  "edm": {
     "0": "Unfortunately, you have decided to stop subscribing to our store offers, and you will no longer receive any related emails.",
     "1": "To receive the offer again, you can re-subscribe in the member profile after logging in."
+  },
+  "reward-point-reminder": {
+    "title": null,
+    "0": null,
+    "1": null
   },
   "back": "Back to shop"
 }

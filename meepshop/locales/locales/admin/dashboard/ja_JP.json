@@ -54,7 +54,7 @@
   "orderQA": "注文についてのお問い合わせ",
   "productQA": "商品についてのお問い合わせ",
   "revenue": "今月の売上高総額",
-  "cost": "今月の注文数",
+  "numberOfReminderSentMonthly": "今月のショッピングデポジットの有効期限の通知書",
   "order": "今月の注文数",
   "member": "会員数"
 }

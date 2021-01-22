@@ -19,7 +19,8 @@
   "address": "País / ciudad / municipio",
   "zip-code": "Código postal",
   "street": "Dirección",
-  "isNotCancelEmail": "Suscribirse al boletín informativo",
+  "newsletters": "Suscribirse al boletín informativo",
+  "rewardPointReminderSubscription": "Carta de notificación de vencimiento del pago de la suscripción",
   "submit": "Actualizar",
   "remove-credit-card-info": {
     "title": "Información de transacción de tarjeta de crédito",

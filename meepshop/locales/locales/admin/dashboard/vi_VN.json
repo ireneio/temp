@@ -54,7 +54,7 @@
   "orderQA": "Hỏi và trả lời",
   "productQA": "Hỏi đáp về sản phẩm",
   "revenue": "Doanh thu của tháng này",
-  "cost": "Chi phí của tháng này",
+  "numberOfReminderSentMonthly": "Thư thông báo hết hạn trong tháng này",
   "order": "Đơn đặt hàng của tháng này",
   "member": "Số thành viên"
 }

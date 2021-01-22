@@ -15,6 +15,6 @@ export default mock.add<dashboardInfoMockFragment>('DashboardInfo', [
     userCount: 5,
     orderMonthly: 6,
     revenueMonthly: 7,
-    costMonthly: 8,
+    numberOfReminderSentMonthly: 8,
   }),
 ]);

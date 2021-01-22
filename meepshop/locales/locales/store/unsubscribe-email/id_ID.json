@@ -1,8 +1,13 @@
 {
   "title": "Anda telah berhenti berlangganan",
-  "message": {
+  "edm": {
     "0": "Sayangnya, Anda telah memutuskan untuk berhenti berlangganan penawaran toko kami, dan Anda tidak akan lagi menerima email terkait.",
     "1": "Untuk menerima tawaran itu lagi, Anda dapat berlangganan kembali di profil anggota setelah masuk."
+  },
+  "reward-point-reminder": {
+    "title": null,
+    "0": null,
+    "1": null
   },
   "back": "Kembali ke toko"
 }

@@ -54,7 +54,7 @@
   "orderQA": "Orden de preguntas y respuestas",
   "productQA": "Producto Q & A",
   "revenue": "Ingresos de este mes",
-  "cost": "Costo de este mes",
+  "numberOfReminderSentMonthly": "Carta de notificación para el vencimiento del depósito de compras de este mes",
   "order": "Órdenes de este mes",
   "member": "Número de miembros"
 }

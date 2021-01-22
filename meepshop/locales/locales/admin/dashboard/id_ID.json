@@ -54,7 +54,7 @@
   "orderQA": "Q & A Pemesanan",
   "productQA": "Tanya Jawab Produk",
   "revenue": "Penghasilan Bulan Ini",
-  "cost": "Biaya Bulan Ini",
+  "numberOfReminderSentMonthly": "Surat pemberitahuan berakhirnya deposit belanja bulan ini",
   "order": "Pesanan bulan ini",
   "member": "Jumlah anggota"
 }

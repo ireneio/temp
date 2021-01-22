@@ -11,6 +11,7 @@ export const dashboardCost_w40 = mockData;
 export const dashboardLogo_w160 = mockData;
 export const dashboardMember_w40 = mockData;
 export const dashboardOrder_w40 = mockData;
+export const dashboardEmail_w40 = mockData;
 export const dashboardRevenue_w40 = mockData;
 export const oops_w110 = mockData;
 export const pageManagerPageTipPath_w200 = mockData;

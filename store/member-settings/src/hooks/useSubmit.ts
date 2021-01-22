@@ -5,7 +5,6 @@ import { DataProxy } from 'apollo-cache';
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { notification } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -14,25 +13,20 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   updateUser as updateUserType,
   updateUserVariables,
-  useSubmitReadCache,
-  useSubmitUpdateCache,
+  useSubmitUpdateCache as useSubmitUpdateCacheType,
 } from '@meepshop/types/gqls/store';
 
-// definition
-const mutation = gql`
-  mutation updateUser($input: UpdateShopperInfoInput!) {
-    updateShopperInformation(input: $input) {
-      status
-    }
-  }
-`;
+// graphql import
+import { updateUser, useSubmitUpdateCache } from '../gqls/useSubmit';
 
-export default ({
-  validateFieldsAndScroll,
-}: FormComponentProps['form']): ((e: React.FormEvent<HTMLElement>) => void) => {
+// definition
+export default (
+  { validateFieldsAndScroll }: FormComponentProps['form'],
+  id: string | null,
+): ((e: React.FormEvent<HTMLElement>) => void) => {
   const { t } = useTranslation('member-settings');
-  const [updateUser] = useMutation<updateUserType, updateUserVariables>(
-    mutation,
+  const [mutation] = useMutation<updateUserType, updateUserVariables>(
+    updateUser,
   );
 
   return useCallback(
@@ -49,7 +43,8 @@ export default ({
           mobile = null,
           birthday = null,
           street = null,
-          isNotCancelEmail = false,
+          isNotCancelNewslettersEmail = false,
+          isNotCancelRewardPointReminderSubscriptionEmail = false,
           addressAndZipCode: { address, zipCode } = {
             address: [],
             zipCode: null,
@@ -78,12 +73,15 @@ export default ({
           },
           notification: {
             newsletters: {
-              cancelEmail: !isNotCancelEmail,
+              cancelEmail: !isNotCancelNewslettersEmail,
+            },
+            rewardPointReminderSubscription: {
+              cancelEmail: !isNotCancelRewardPointReminderSubscriptionEmail,
             },
           },
         };
 
-        updateUser({
+        mutation({
           variables: {
             input,
           },
@@ -99,55 +97,11 @@ export default ({
               message: t('update-user.success'),
             });
 
-            const viewerCache = cache.readQuery<useSubmitReadCache>({
-              query: gql`
-                query useSubmitReadCache {
-                  viewer {
-                    id
-                  }
-                }
-              `,
-            });
-            const id = viewerCache?.viewer?.id;
-
             if (!id) return;
 
-            cache.writeFragment<useSubmitUpdateCache>({
+            cache.writeFragment<useSubmitUpdateCacheType>({
               id,
-              fragment: gql`
-                fragment useSubmitUpdateCache on User {
-                  id
-                  name
-                  gender
-                  birthday {
-                    year
-                    month
-                    day
-                  }
-                  additionalInfo {
-                    tel
-                    mobile
-                  }
-                  address {
-                    country {
-                      id
-                    }
-                    city {
-                      id
-                    }
-                    area {
-                      id
-                    }
-                    street
-                    zipCode
-                  }
-                  notification {
-                    newsletters {
-                      cancelEmail
-                    }
-                  }
-                }
-              `,
+              fragment: useSubmitUpdateCache,
               data: {
                 ...input,
                 __typename: 'User',
@@ -197,6 +151,6 @@ export default ({
         });
       });
     },
-    [validateFieldsAndScroll, t, updateUser],
+    [id, validateFieldsAndScroll, t, mutation],
   );
 };
