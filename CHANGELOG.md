@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## 0.75.4 (2021-01-22)
+
+#### :boom: Breaking Change
+
+- `mock-types`, `storybook`
+  - [#1373](https://github.com/meepshop/meep-lerna/pull/1373) (@meepshop/types) Add types package ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `mock-types`, `store`
+  - [#1295](https://github.com/meepshop/meep-lerna/pull/1295) 【功能】購物金到期提醒 - 前端 ([@happycat6323](https://github.com/happycat6323))
+- `generate`
+  - [#1380](https://github.com/meepshop/meep-lerna/pull/1380) (@meepshop/locales) Use google translate as default ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1392](https://github.com/meepshop/meep-lerna/pull/1392) skip - (@meepshop/frontend): resolve bizcharts ([@piovischioh](https://github.com/piovischioh))
+- [#1388](https://github.com/meepshop/meep-lerna/pull/1388) (@meepshop/frontend) Fix deploy fail ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `generate`
+  - [#1374](https://github.com/meepshop/meep-lerna/pull/1374) (@meepshop/frontend) Ignore @meepshop/mock-types import ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`, `storybook`
+  - [#1373](https://github.com/meepshop/meep-lerna/pull/1373) (@meepshop/types) Add types package ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.75.3 (2021-01-19)
 
 #### :bug: Bug Fix
