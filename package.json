@@ -131,6 +131,7 @@
   "resolutions": {
     "@types/query-string": "6.2.0",
     "@types/node": "13.11.1",
+    "bizcharts": "4.0.17",
     "query-string": "5.1.1",
     "next": "9.1.2"
   }

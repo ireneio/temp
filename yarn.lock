@@ -86,27 +86,13 @@
     "@antv/util" "^2.0.9"
     tslib "^1.10.0"
 
-"@antv/component@^0.6.0", "@antv/component@~0.6.1":
+"@antv/component@^0.6.0", "@antv/component@^0.6.3", "@antv/component@~0.6.1":
   version "0.6.3"
   resolved "https://registry.yarnpkg.com/@antv/component/-/component-0.6.3.tgz#3bb4cedbe985e831bfb378a9e672a46c0422a5a7"
   integrity sha512-hCVkJt7TEPrTLcX5SS6UTSYl8lwuSg/36Gj/VmtrPqxOyrBKo132O70YIHH3B+yGTiFOyBybVwZbuqqEomfdYA==
   dependencies:
     "@antv/dom-util" "~2.0.1"
     "@antv/g-base" "~0.4.0"
-    "@antv/matrix-util" "^3.1.0-beta.1"
-    "@antv/path-util" "~2.0.7"
-    "@antv/scale" "~0.3.1"
-    "@antv/util" "~2.0.0"
-    fecha "~4.2.0"
-    tslib "^1.10.0"
-
-"@antv/component@^0.7.2":
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/@antv/component/-/component-0.7.3.tgz#49733abc3ee8ec46f5c491c15bc6a2ad2a673f99"
-  integrity sha512-N2nYqtLT9F4I91fsv6/6fY5Mh1bG2gwQjzNP0CwwM7U/gJot+RUpAhIXaJNGsqyw+iaohlBm039+8selXt5stw==
-  dependencies:
-    "@antv/dom-util" "~2.0.1"
-    "@antv/g-base" "~0.5.0"
     "@antv/matrix-util" "^3.1.0-beta.1"
     "@antv/path-util" "~2.0.7"
     "@antv/scale" "~0.3.1"
@@ -151,22 +137,6 @@
     d3-timer "^1.0.9"
     detect-browser "^5.1.0"
 
-"@antv/g-base@~0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@antv/g-base/-/g-base-0.5.0.tgz#628f784efaa8fda6050d8b20f5ed66853ea431a6"
-  integrity sha512-JGwOYwxFM0ominFJDG/kVm7/DiP8aVzLYbXbokBSBbMawKEdUdvnCNuhzXBoHkcTQhUXRDMRmtnSKNMRTYbY6g==
-  dependencies:
-    "@antv/event-emitter" "^0.1.1"
-    "@antv/g-math" "^0.1.4"
-    "@antv/matrix-util" "^3.1.0-beta.1"
-    "@antv/path-util" "~2.0.5"
-    "@antv/util" "~2.0.0"
-    "@types/d3-timer" "^1.0.9"
-    d3-ease "^1.0.5"
-    d3-interpolate "^1.3.2"
-    d3-timer "^1.0.9"
-    detect-browser "^5.1.0"
-
 "@antv/g-canvas@^0.4.0", "@antv/g-canvas@~0.4.0":
   version "0.4.14"
   resolved "https://registry.yarnpkg.com/@antv/g-canvas/-/g-canvas-0.4.14.tgz#fb97afdc997ad8fdfd07a4104547c46c61a1b28a"
@@ -186,7 +156,7 @@
     "@antv/event-emitter" "~0.1.2"
     d3-ease "^1.0.5"
 
-"@antv/g-math@^0.1.3", "@antv/g-math@^0.1.4":
+"@antv/g-math@^0.1.3":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@antv/g-math/-/g-math-0.1.4.tgz#3c61c85ed5f841d9d7852a3a5bb1aeea38e92280"
   integrity sha512-kB3nL6WI+K5bxUBd1U7uvrZVr6K5TXzvfJIFI1o/WjB80gieHty8M6Hrfkg/kztS5FwE/ykoIRmSP3WwzcjyQw==
@@ -204,7 +174,7 @@
     "@antv/util" "~2.0.0"
     detect-browser "^4.6.0"
 
-"@antv/g2@4.0.15", "@antv/g2@~4.0.9":
+"@antv/g2@~4.0.15", "@antv/g2@~4.0.9":
   version "4.0.15"
   resolved "https://registry.yarnpkg.com/@antv/g2/-/g2-4.0.15.tgz#68eeee5befd9f2e654f7655f8d3d2935cdd526b8"
   integrity sha512-KgTpcaHn3hXBLPFbaBYbHk4CGvbMYxw5u4Du15goaHxzejCiCsaTZYCag081DcetwyVgSCv0jgAdlMj+zxxPIA==
@@ -224,10 +194,10 @@
     "@antv/util" "~2.0.5"
     tslib "^2.0.0"
 
-"@antv/g2plot@1.1.23":
-  version "1.1.23"
-  resolved "https://registry.yarnpkg.com/@antv/g2plot/-/g2plot-1.1.23.tgz#ee9ea2839bef52b1baed01f954d5e0052246228a"
-  integrity sha512-49j5R5OxBG/SW6SbtbVohqCcCY1KHcLDw3l2PmMxo8lx0cIKFlHnl4wV0SwPg98gRGDwkPLB6qOGwLntZOEZKg==
+"@antv/g2plot@~1.1.28":
+  version "1.1.28"
+  resolved "https://registry.yarnpkg.com/@antv/g2plot/-/g2plot-1.1.28.tgz#6d5df145aa49a17e0f0edc55052be054bea63216"
+  integrity sha512-A/+yuuUM6KPOXk95Hqo8RJqu/dGXFvBB/YlAg8i80AQ56MNLb9TEwGByADpVicta5VeH6h3k36m4xdePIWADIg==
   dependencies:
     "@antv/component" "~0.6.1"
     "@antv/coord" "~0.3.0"
@@ -7440,14 +7410,14 @@ binaryextensions@^2.1.2:
   resolved "https://registry.yarnpkg.com/binaryextensions/-/binaryextensions-2.3.0.tgz#1d269cbf7e6243ea886aa41453c3651ccbe13c22"
   integrity sha512-nAihlQsYGyc5Bwq6+EsubvANYGExeJKHDO3RjnvwU042fawQTQfM3Kxn7IHUXQOz4bzfwsGYYHGSvXyW4zOGLg==
 
-bizcharts@^4.0.14:
-  version "4.0.14"
-  resolved "https://registry.yarnpkg.com/bizcharts/-/bizcharts-4.0.14.tgz#2e431c1fe373d60ffbe3d36ef73a15b6bcc291e8"
-  integrity sha512-qIhlWMMzTpeXuT45ThTWhJCta7pRlPhFDtwVW1yZbx90UHEM+iFkXH2BnMSbrCtA+lHlZipvHISjDyAkbC+cxQ==
+bizcharts@4.0.17, bizcharts@^4.0.14:
+  version "4.0.17"
+  resolved "https://registry.yarnpkg.com/bizcharts/-/bizcharts-4.0.17.tgz#900a363f1ec81c10604e87a63fd862ec168fd648"
+  integrity sha512-NSphtQbHKBYFnBUTniXjkDXLQCm5cd5cIgui7AqMRKbSltvYULoFhSya2YrZrqj2hsGnX3O0OepJ6xHh4vf9gg==
   dependencies:
-    "@antv/component" "^0.7.2"
-    "@antv/g2" "4.0.15"
-    "@antv/g2plot" "1.1.23"
+    "@antv/component" "^0.6.3"
+    "@antv/g2" "~4.0.15"
+    "@antv/g2plot" "~1.1.28"
     "@antv/util" "^2.0.5"
     d3-color "^1.4.1"
     react-reconciler "^0.25.1"
