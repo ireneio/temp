@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.75.6 (2021-01-25)
+
+#### :bug: Bug Fix
+
+- [#1394](https://github.com/meepshop/meep-lerna/pull/1394) (@meepshop/gmo-credit-card-form) Add @meepshop/link dependency ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.75.5 (2021-01-25)
 
 #### :boom: Breaking Change
