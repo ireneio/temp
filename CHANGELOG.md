@@ -1,5 +1,40 @@
 # CHANGELOG
 
+## 0.75.5 (2021-01-25)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1344](https://github.com/meepshop/meep-lerna/pull/1344) T7360 - 前台 - 修正選單功能 bug ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `generate`, `meep-ui`
+  - [#1318](https://github.com/meepshop/meep-lerna/pull/1318) T2024 - 【優化】 結帳頁面 - GMO 信用卡 - 欄位體驗優化 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#1344](https://github.com/meepshop/meep-lerna/pull/1344) T7360 - 前台 - 修正選單功能 bug ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1389](https://github.com/meepshop/meep-lerna/pull/1389) 【BUG】後台已開啟快速滑動按鈕開關，但預覽頁面無出現按鈕 ([@happycat6323](https://github.com/happycat6323))
+
+#### :memo: Documentation
+
+- `storybook`
+  - [#1390](https://github.com/meepshop/meep-lerna/pull/1390) skip - docs(@meepshop/frontend): modify readme ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#1393](https://github.com/meepshop/meep-lerna/pull/1393) (@store/unsubscribe-email) Modify detail ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 4
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.75.4 (2021-01-22)
 
 #### :boom: Breaking Change
