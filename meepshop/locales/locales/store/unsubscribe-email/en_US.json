@@ -5,9 +5,9 @@
     "1": "To receive the offer again, you can re-subscribe in the member profile after logging in."
   },
   "reward-point-reminder": {
-    "title": null,
-    "0": null,
-    "1": null
+    "0": "Unfortunately you have decided to stop your subscription.",
+    "1": "To receive the notification email again, you can re-subscribe in the member profile after logging in.",
+    "title": "Reminder of expiry purchase"
   },
   "back": "Back to shop"
 }

@@ -17,7 +17,7 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 - `test`: Run testing.
 - `tsc`: Run typescript.
 
-## Write packages with template 
+## Write packages with template
 
 ```sh
 yarn generate <Package/Page/Component>

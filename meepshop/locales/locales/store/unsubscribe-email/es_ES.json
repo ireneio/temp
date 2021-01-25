@@ -5,9 +5,9 @@
     "1": "Para recibir la oferta nuevamente, puede volver a suscribirse en el perfil de miembro después de iniciar sesión."
   },
   "reward-point-reminder": {
-    "title": null,
-    "0": null,
-    "1": null
+    "0": "Desafortunadamente, ha decidido detener su suscripción.",
+    "1": "Para recibir el correo electrónico de notificación nuevamente, puede volver a suscribirse en el perfil de miembro después de iniciar sesión.",
+    "title": "Recordatorio de compra por vencimiento"
   },
   "back": "Volver a la tienda"
 }

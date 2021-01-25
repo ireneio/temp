@@ -5,9 +5,9 @@
     "1": "Để nhận lại ưu đãi, bạn có thể đăng ký lại trong hồ sơ thành viên sau khi đăng nhập."
   },
   "reward-point-reminder": {
-    "title": null,
-    "0": null,
-    "1": null
+    "0": "Rất tiếc, bạn đã quyết định dừng đăng ký của mình.",
+    "1": "Để nhận lại email thông báo, bạn có thể đăng ký lại trong hồ sơ thành viên sau khi đăng nhập.",
+    "title": "Nhắc nhở mua hàng hết hạn"
   },
   "back": "Quay trở lại cửa hàng"
 }

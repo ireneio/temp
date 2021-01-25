@@ -5,9 +5,9 @@
     "1": "Untuk menerima tawaran itu lagi, Anda dapat berlangganan kembali di profil anggota setelah masuk."
   },
   "reward-point-reminder": {
-    "title": null,
-    "0": null,
-    "1": null
+    "0": "Sayangnya Anda telah memutuskan untuk berhenti berlangganan.",
+    "1": "Setelah Anda menerima email pemberitahuan lagi, Anda dapat berlangganan kembali di profil anggota setelah masuk.",
+    "title": "Pengingat pembelian kedaluwarsa"
   },
   "back": "Kembali ke toko"
 }

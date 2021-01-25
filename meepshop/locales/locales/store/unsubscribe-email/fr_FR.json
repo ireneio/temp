@@ -5,9 +5,9 @@
     "1": "Pour recevoir à nouveau l'offre, vous pouvez vous réinscrire dans le profil du membre après vous être connecté."
   },
   "reward-point-reminder": {
-    "title": null,
-    "0": null,
-    "1": null
+    "0": "Malheureusement, vous avez décidé d'arrêter votre abonnement.",
+    "1": "Pour recevoir à nouveau l'e-mail de notification, vous pouvez vous réinscrire dans le profil du membre après vous être connecté.",
+    "title": "Rappel de l'achat expiré"
   },
   "back": "Retour à la boutique"
 }
