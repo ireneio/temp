@@ -1,22 +1,18 @@
+.cardNumber :global(.ant-input) {
+  letter-spacing: 1.5px;
+}
+
 .expireAndSecurityCode {
   display: flex;
 
   :global(.ant-form-item) {
     &:first-child {
-      flex-grow: 1;
+      flex: 7;
     }
 
     &:last-child {
-      width: 125px;
+      flex: 4;
       margin: 0px 0px 0px 10px;
-    }
-  }
-
-  :global(.ant-calendar-picker) {
-    width: 100%;
-
-    :global(.ant-input-number-handler-wrap) {
-      display: none;
     }
   }
 }

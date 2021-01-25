@@ -5281,10 +5281,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/validator@^10.11.3":
-  version "10.11.3"
-  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-10.11.3.tgz#945799bef24a953c5bc02011ca8ad79331a3ef25"
-  integrity sha512-GKF2VnEkMmEeEGvoo03ocrP9ySMuX1ypKazIYMlsjfslfBMhOAtC5dmEWKdJioW4lJN7MZRS88kalTsVClyQ9w==
+"@types/validator@^13.1.3":
+  version "13.1.3"
+  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.1.3.tgz#366b394aa3fbeed2392bf0a20ded606fa4a3d35e"
+  integrity sha512-DaOWN1zf7j+8nHhqXhIgNmS+ltAC53NXqGxYuBhWqWgqolRhddKzfZU814lkHQSTG0IUfQxU7Cg0gb8fFWo2mA==
 
 "@types/vinyl@*":
   version "2.0.4"
@@ -20323,6 +20323,11 @@ reusify@^1.0.0:
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.0.4.tgz#90da382b1e126efc02146e90845a88db12925d76"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
 
+rifm@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/rifm/-/rifm-0.12.0.tgz#8d3a9dc0de9c190e0de9bdc8861a91a221dc1341"
+  integrity sha512-PqOl+Mo2lyqrKiD34FPlnQ+ksD3F+a62TQlphiZshgriyHdfjn6jGyqUZhd+s3nsMYXwXYDdjrrv8wX7QsOG3g==
+
 rimraf@2, rimraf@2.6.3, rimraf@^2.2.8, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2, rimraf@^2.6.3:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.3.tgz#b2d104fe0d8fb27cf9e0a1cda8262dd3833c6cab"
@@ -22704,10 +22709,10 @@ validate-npm-package-name@^3.0.0:
   dependencies:
     builtins "^1.0.3"
 
-validator@^12.0.0:
-  version "12.0.0"
-  resolved "https://registry.yarnpkg.com/validator/-/validator-12.0.0.tgz#fb33221f5320abe2422cda2f517dc3838064e813"
-  integrity sha512-r5zA1cQBEOgYlesRmSEwc9LkbfNLTtji+vWyaHzRZUxCTHdsX3bd+sdHfs5tGZ2W6ILGGsxWxCNwT/h3IY/3ng==
+validator@^13.5.2:
+  version "13.5.2"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-13.5.2.tgz#c97ae63ed4224999fb6f42c91eaca9567fe69a46"
+  integrity sha512-mD45p0rvHVBlY2Zuy3F3ESIe1h5X58GPfAtslBjY7EtTqGquZTj+VX/J4RnHWN8FKq0C9WRVt1oWAcytWRuYLQ==
 
 vary@~1.1.2:
   version "1.1.2"

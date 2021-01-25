@@ -21,7 +21,7 @@
     "apollo-link-http": "^1.5.16",
     "color": "^3.0.0",
     "d3-hierarchy": "^1.1.6",
-    "validator": "^12.0.0"
+    "validator": "^13.5.2"
   },
   "keywords": ["landing page", "meepshop"]
 }

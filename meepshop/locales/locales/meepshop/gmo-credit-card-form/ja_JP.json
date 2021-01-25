@@ -3,6 +3,7 @@
   "modify": "修正",
   "cancel": "キャンセル",
   "remember-card": "クレジットカード番号、セキュリティコード、その他の支払い情報をGMO Payment Gateway、Inc.、Taipei Branchに保管することに同意します",
+  "cardNumber": "クレジットカード番号",
   "expire": "有効期限",
   "securityCode": "セキュリティーコード",
   "cardHolderName": "カード名義人",
@@ -12,7 +13,8 @@
   "form": {
     "required": "入力必須項目",
     "cardNumberError": "クレジットカード番号ではありません",
-    "securityCodeError": "セキュリティーコードではありません"
+    "securityCodeError": "セキュリティーコードではありません",
+    "invalidDate": "無効な日付"
   },
   "not-gmo-bank": "このカード発行銀行は分割払いを提供していません。次の銀行のクレジットカードを使用するか、支払い方法を変更してください",
   "dot": "、"

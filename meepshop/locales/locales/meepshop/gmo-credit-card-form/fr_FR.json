@@ -3,6 +3,7 @@
   "modify": "Changement",
   "cancel": "Annuler",
   "remember-card": "J'accepte de conserver le numéro de carte de crédit, le code de sécurité et d'autres informations de paiement à GMO Payment Gateway, Inc., succursale de Taipei",
+  "cardNumber": "Numéro de Carte de Crédit",
   "expire": "Date d'expiration'",
   "securityCode": "CVV",
   "cardHolderName": "Nom sur carte",
@@ -12,7 +13,8 @@
   "form": {
     "required": "Champs obligatoires",
     "cardNumberError": "numéro de carte invalide",
-    "securityCodeError": "CVV invalide"
+    "securityCodeError": "CVV invalide",
+    "invalidDate": "Date invalide"
   },
   "not-gmo-bank": "Cette banque émettrice de la carte n'offre pas de versements, veuillez utiliser la carte de crédit des banques suivantes ou modifier votre mode de paiement",
   "dot": "、"

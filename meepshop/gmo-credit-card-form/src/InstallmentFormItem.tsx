@@ -1,81 +1,65 @@
 // typescript import
-import { QueryResult } from '@apollo/react-common';
-import { CascaderOptionType } from 'antd/lib/cascader';
-
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { languageType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
-import { Query } from '@apollo/react-components';
-import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
 import { Cascader, Select } from 'antd';
-import memoizeOne from 'memoize-one';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 
+import useOptions from './hooks/useOptions';
 import styles from './styles/installmentFormItem.less';
 
 // graphql typescript
 import {
-  getGmoAvailableInstallments,
-  getGmoAvailableInstallmentsVariables,
+  getGmoAvailableInstallments as getGmoAvailableInstallmentsType,
+  getGmoAvailableInstallmentsVariables as getGmoAvailableInstallmentsVariablesType,
 } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
-import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+import { getGmoAvailableInstallments } from './gqls/installmentFormItem';
 
 // typescript definition
-interface PropsType
-  extends I18nPropsType,
-    getGmoAvailableInstallments,
-    Pick<
-      QueryResult<
-        getGmoAvailableInstallments,
-        getGmoAvailableInstallmentsVariables
-      >,
-      'refetch'
-    > {
+interface PropsType {
   forwardedRef: React.Ref<Cascader | Select>;
   cardNumber: string;
   value?: string[];
   onChange?: (value: string[]) => void;
-  disabled: boolean;
+  storePaymentId: string;
 }
 
 // definition
 const { Option } = Select;
+const InstallmentForm = React.memo(
+  ({
+    cardNumber,
+    storePaymentId,
+    value,
+    onChange,
+    forwardedRef,
+  }: PropsType) => {
+    const { t, i18n } = useTranslation('gmo-credit-card-form');
+    const cardNumberFormat = cardNumber.replace(/ - /g, '');
 
-class InstallmentFormItem extends React.PureComponent<PropsType> {
-  private getOptions = memoizeOne(
-    (
-      allGmoBankInstallments: PropsType['allGmoBankInstallments'],
-      t: PropsType['t'],
-      i18n: PropsType['i18n'],
-    ): CascaderOptionType[] =>
-      allGmoBankInstallments.map(({ name, code, installments }, index) => ({
-        value: index.toString(),
-        label: name[i18n.language] || name.zh_TW,
-        children: installments.map(installment => ({
-          value: `${code || ''}${installment}`,
-          label: `${installment} ${t('installment')}`,
-        })),
-      })),
-  );
+    const { data, error, loading } = useQuery<
+      getGmoAvailableInstallmentsType,
+      getGmoAvailableInstallmentsVariablesType
+    >(getGmoAvailableInstallments, {
+      variables: {
+        storePaymentId,
+        bin: cardNumberFormat,
+      },
+      fetchPolicy: 'network-only',
+      skip: cardNumberFormat.length !== 16,
+    });
 
-  public render(): React.ReactNode {
-    const {
-      // HOC
-      t,
-      i18n,
+    const allGmoBankInstallments = data?.allGmoBankInstallments || null;
+    const gmoBankInstallment = data?.gmoBankInstallment || null;
+    const disabled =
+      cardNumberFormat.length !== 16 || Boolean(loading || error || !data);
 
-      // props
-      forwardedRef,
-      disabled,
-      value,
-      onChange,
-      gmoBankInstallment,
-      allGmoBankInstallments,
-    } = this.props;
+    const options = useOptions(allGmoBankInstallments);
 
     if (!gmoBankInstallment && !allGmoBankInstallments)
       return (
@@ -93,7 +77,7 @@ class InstallmentFormItem extends React.PureComponent<PropsType> {
           ref={forwardedRef as React.Ref<Cascader>}
           className={styles.root}
           placeholder={`${t('bank')} / ${t('installments')}`}
-          options={this.getOptions(allGmoBankInstallments, t, i18n)}
+          options={options}
           value={value}
           onChange={onChange}
           disabled={disabled}
@@ -101,7 +85,6 @@ class InstallmentFormItem extends React.PureComponent<PropsType> {
       );
 
     const { installments, code } = gmoBankInstallment;
-
     return (
       <>
         <Select
@@ -124,75 +107,19 @@ class InstallmentFormItem extends React.PureComponent<PropsType> {
             <h4>{t('not-gmo-bank')}</h4>
 
             {allGmoBankInstallments
-              .map(({ name }) => name[i18n.language] || name.zh_TW)
+              ?.map(
+                ({ name }) => name[i18n.language as languageType] || name.zh_TW,
+              )
               .join(t('dot'))}
           </div>
         )}
       </>
     );
-  }
-}
-
-const EnhancedInstallmentFormItem = withTranslation('gmo-credit-card-form')(
-  InstallmentFormItem,
+  },
 );
 
 export default React.forwardRef(
-  (
-    {
-      cardNumber,
-      storePaymentId,
-      value,
-      onChange,
-    }: Pick<PropsType, 'cardNumber' | 'value' | 'onChange'> & {
-      storePaymentId: string;
-    },
-    ref: PropsType['forwardedRef'],
-  ) => (
-    <Query<getGmoAvailableInstallments, getGmoAvailableInstallmentsVariables>
-      query={gql`
-        query getGmoAvailableInstallments(
-          $storePaymentId: String!
-          $bin: String!
-        ) {
-          gmoBankInstallment(storePaymentId: $storePaymentId, bin: $bin) {
-            name {
-              ...localeFragment
-            }
-            code
-            installments
-          }
-
-          allGmoBankInstallments(storePaymentId: $storePaymentId) {
-            name {
-              ...localeFragment
-            }
-            code
-            installments
-          }
-        }
-
-        ${localeFragment}
-      `}
-      variables={{
-        storePaymentId,
-        bin: cardNumber,
-      }}
-      skip={cardNumber.length !== 16}
-    >
-      {({ loading, error, data, refetch }) => (
-        <EnhancedInstallmentFormItem
-          {...(data as getGmoAvailableInstallments)}
-          forwardedRef={ref}
-          cardNumber={cardNumber}
-          value={value}
-          onChange={onChange}
-          disabled={
-            cardNumber.length !== 16 || Boolean(loading || error || !data)
-          }
-          refetch={refetch}
-        />
-      )}
-    </Query>
+  (props: Omit<PropsType, 'forwardedRef'>, ref: PropsType['forwardedRef']) => (
+    <InstallmentForm {...props} forwardedRef={ref} />
   ),
 );

@@ -9,7 +9,7 @@
   "dependencies": {
     "commander": "^4.0.1",
     "lodash.camelcase": "^4.3.0",
-    "validator": "^12.0.0",
+    "validator": "^13.5.2",
     "yeoman-environment": "^2.10.3",
     "yeoman-generator": "^4.12.0"
   },

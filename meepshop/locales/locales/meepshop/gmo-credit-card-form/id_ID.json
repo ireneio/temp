@@ -3,6 +3,7 @@
   "modify": "Perubahan",
   "cancel": "Membatalkan",
   "remember-card": "Saya setuju untuk menyimpan nomor kartu kredit, kode keamanan dan informasi pembayaran lainnya ke GMO Payment Gateway, Inc., Cabang Taipei",
+  "cardNumber": "nomor kartu kredit",
   "expire": "Tanggal kadaluarsa'",
   "securityCode": "CVV",
   "cardHolderName": "Nama di kartu",
@@ -12,7 +13,8 @@
   "form": {
     "required": "Yg dibutuhkan",
     "cardNumberError": "Nomor kartu tidak valid",
-    "securityCodeError": "CVV tidak valid"
+    "securityCodeError": "CVV tidak valid",
+    "invalidDate": "Tanggal tidak berlaku"
   },
   "not-gmo-bank": "Bank penerbit kartu ini tidak menawarkan cicilan, silakan gunakan kartu kredit dari bank-bank berikut atau ubah metode pembayaran Anda",
   "dot": "、"

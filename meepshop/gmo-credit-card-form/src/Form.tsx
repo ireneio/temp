@@ -1,105 +1,45 @@
 // typescript import
 import { FormComponentProps } from 'antd/lib/form';
 
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-
 // import
 import React from 'react';
-import { Form as AntdForm, DatePicker, Input } from 'antd';
-import moment from 'moment';
-import { isNumeric, isInt } from 'validator';
+import { Form, Input } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 import CreditCardInput from './CreditCardInput';
+import ExpireInput from './ExpireInput';
 import InstallmentFormItem from './InstallmentFormItem';
+import useValidator from './hooks/useValidator';
 import styles from './styles/form.less';
 
 // typescript definition
-interface PropsType extends FormComponentProps, I18nPropsType {
+interface PropsType extends FormComponentProps {
   isInstallment: boolean;
   storePaymentId: string;
 }
 
 // definition
-const { Item: FormItem } = AntdForm;
-const { MonthPicker } = DatePicker;
+const { Item: FormItem } = Form;
 
-class Form extends React.PureComponent<PropsType> {
-  public render(): React.ReactNode {
+export default React.memo(
+  ({
+    form: { getFieldDecorator, getFieldValue },
+    isInstallment,
+    storePaymentId,
+  }: PropsType) => {
+    const { t } = useTranslation('gmo-credit-card-form');
     const {
-      // HOC
-      form: { getFieldDecorator, getFieldValue },
-      t,
-
-      // props
-      isInstallment,
-      storePaymentId,
-    } = this.props;
+      validateCardNumber,
+      validateExpire,
+      validateSecurityCode,
+    } = useValidator();
 
     return (
       <>
         <FormItem>
-          {getFieldDecorator('cardNumber', {
-            rules: [
-              {
-                type: 'array',
-                required: true,
-                message: t('form.required'),
-              },
-              {
-                validator: (_, value, callback) => {
-                  if (!isNumeric((value || []).join('')))
-                    return callback(t('form.cardNumberError'));
-
-                  return callback();
-                },
-              },
-            ],
-          })(<CreditCardInput />)}
-        </FormItem>
-
-        <div className={styles.expireAndSecurityCode}>
-          <FormItem>
-            {getFieldDecorator('expire', {
-              rules: [
-                {
-                  required: true,
-                  message: t('form.required'),
-                },
-              ],
-            })(
-              <MonthPicker
-                placeholder={t('expire')}
-                disabledDate={current =>
-                  Boolean(current && current < moment().endOf('day'))
-                }
-              />,
-            )}
-          </FormItem>
-
-          <FormItem>
-            {getFieldDecorator('securityCode', {
-              rules: [
-                {
-                  required: true,
-                  message: t('form.required'),
-                },
-                {
-                  validator: (_, value, callback) => {
-                    if (!isInt(value || '', { min: 0, max: 999 }))
-                      return callback(t('form.securityCodeError'));
-
-                    return callback();
-                  },
-                },
-              ],
-            })(<Input maxLength={3} placeholder={t('securityCode')} />)}
-          </FormItem>
-        </div>
-
-        <FormItem>
           {getFieldDecorator('cardHolderName', {
+            validateTrigger: 'onBlur',
             rules: [
               {
                 required: true,
@@ -108,6 +48,58 @@ class Form extends React.PureComponent<PropsType> {
             ],
           })(<Input placeholder={t('cardHolderName')} />)}
         </FormItem>
+
+        <div className={styles.cardNumber}>
+          <FormItem>
+            {getFieldDecorator('cardNumber', {
+              validateTrigger: 'onBlur',
+              validateFirst: true,
+              rules: [
+                {
+                  required: true,
+                  message: t('form.required'),
+                },
+                {
+                  validator: validateCardNumber,
+                },
+              ],
+            })(<CreditCardInput />)}
+          </FormItem>
+        </div>
+
+        <div className={styles.expireAndSecurityCode}>
+          <FormItem>
+            {getFieldDecorator('expire', {
+              validateTrigger: 'onBlur',
+              validateFirst: true,
+              rules: [
+                {
+                  required: true,
+                  message: t('form.required'),
+                },
+                {
+                  validator: validateExpire,
+                },
+              ],
+            })(<ExpireInput />)}
+          </FormItem>
+
+          <FormItem>
+            {getFieldDecorator('securityCode', {
+              validateTrigger: 'onBlur',
+              validateFirst: true,
+              rules: [
+                {
+                  required: true,
+                  message: t('form.required'),
+                },
+                {
+                  validator: validateSecurityCode,
+                },
+              ],
+            })(<Input maxLength={3} placeholder={t('securityCode')} />)}
+          </FormItem>
+        </div>
 
         {!isInstallment ? null : (
           <FormItem>
@@ -121,14 +113,12 @@ class Form extends React.PureComponent<PropsType> {
             })(
               <InstallmentFormItem
                 storePaymentId={storePaymentId}
-                cardNumber={(getFieldValue('cardNumber') || []).join('')}
+                cardNumber={getFieldValue('cardNumber') || ''}
               />,
             )}
           </FormItem>
         )}
       </>
     );
-  }
-}
-
-export default withTranslation('gmo-credit-card-form')(Form);
+  },
+);

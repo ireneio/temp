@@ -3,6 +3,7 @@
   "modify": "Chỉnh sửa",
   "cancel": "Hủy bỏ'",
   "remember-card": "Tôi đồng ý giữ số thẻ tín dụng, mã bảo mật và thông tin thanh toán khác cho GMO Payment Gateway, Inc., chi nhánh Đài Bắc",
+  "cardNumber": "Số thẻ tín dụng",
   "expire": "Ngày hết hạn",
   "securityCode": "Mã an toàn",
   "cardHolderName": "Tên chủ thẻ",
@@ -12,7 +13,8 @@
   "form": {
     "required": "dòng bắt buộc",
     "cardNumberError": "Không phải số thẻ tín dụng",
-    "securityCodeError": "Không phải mã an toàn"
+    "securityCodeError": "Không phải mã an toàn",
+    "invalidDate": "Ngày không hợp lệ"
   },
   "not-gmo-bank": "Ngân hàng phát hành thẻ này không cung cấp trả góp, vui lòng sử dụng thẻ tín dụng của các ngân hàng sau hoặc thay đổi phương thức thanh toán của bạn",
   "dot": "、"

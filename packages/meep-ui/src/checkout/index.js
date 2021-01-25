@@ -11,6 +11,7 @@ import FormDataContext from '@meepshop/form-data';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import withContext from '@store/utils/lib/withContext';
 import CheckoutWrapper from '@store/checkout';
+import { formatGmo } from '@meepshop/gmo-credit-card-form';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { LOCATION_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
@@ -200,22 +201,14 @@ export default class Checkout extends React.PureComponent {
                 choosePayment.accountInfo.gmo.paymentType !== 'Credit'
                   ? {}
                   : {
-                      gmo: {
+                      gmo: formatGmo({
                         isRememberCard,
                         cardHolderName,
-                        cardNumber: cardNumber?.join(''),
+                        cardNumber,
                         securityCode,
-                        expireYear: expire?.format('YYYY'),
-                        expireMonth: expire?.format('M'),
-                        ...(!installmentCode
-                          ? {}
-                          : {
-                              installmentCode:
-                                installmentCode instanceof Array
-                                  ? installmentCode[installmentCode.length - 1]
-                                  : installmentCode,
-                            }),
-                      },
+                        expire,
+                        installmentCode,
+                      }),
                     }),
               },
             ],

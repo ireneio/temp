@@ -3,7 +3,8 @@
   "modify": "修改",
   "cancel": "取消",
   "remember-card": "本人同意將信用卡卡號、安全碼等支付資訊予香港商技慕最網金流有限公司台北分公司（GMO Payment Gateway,Inc.）留存，以便下次購買時快速支付結帳。",
-  "expire": "有效期限",
+  "cardNumber": "信用卡卡號",
+  "expire": "有效期限 MM/YY",
   "securityCode": "安全碼",
   "cardHolderName": "持卡人姓名",
   "installment": "期",
@@ -11,8 +12,9 @@
   "bank": "分期銀行",
   "form": {
     "required": "必填",
-    "cardNumberError": "非信用卡卡號",
-    "securityCodeError": "非安全碼"
+    "cardNumberError": "請填入完整卡號",
+    "securityCodeError": "非安全碼",
+    "invalidDate": "無效日期"
   },
   "not-gmo-bank": "此家發卡銀行沒有配合分期，請使用以下銀行的信用卡，或更改付款方式",
   "dot": "、"

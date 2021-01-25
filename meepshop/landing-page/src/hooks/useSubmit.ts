@@ -14,6 +14,7 @@ import useLink from '@meepshop/hooks/lib/useLink';
 import { useRouter } from '@meepshop/link';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
+import { formatGmo } from '@meepshop/gmo-credit-card-form';
 
 import useCreateOrder from './useCreateOrder';
 
@@ -159,24 +160,14 @@ export default ({
                         payment.accountInfo?.gmo?.paymentType !== 'Credit'
                           ? {}
                           : {
-                              gmo: {
+                              gmo: formatGmo({
                                 isRememberCard,
                                 cardHolderName,
-                                cardNumber: cardNumber?.join(''),
+                                cardNumber,
                                 securityCode,
-                                expireYear: expire?.format('YYYY'),
-                                expireMonth: expire?.format('M'),
-                                ...(!installmentCode
-                                  ? {}
-                                  : {
-                                      installmentCode:
-                                        installmentCode instanceof Array
-                                          ? installmentCode[
-                                              installmentCode.length - 1
-                                            ]
-                                          : installmentCode,
-                                    }),
-                              },
+                                expire,
+                                installmentCode,
+                              }),
                             }),
                       },
                     ],

@@ -1,0 +1,12 @@
+diff --git a/node_modules/@types/validator/index.d.ts b/node_modules/@types/validator/index.d.ts
+index bf4c75b..c97d564 100644
+--- a/node_modules/@types/validator/index.d.ts
++++ b/node_modules/@types/validator/index.d.ts
+@@ -1354,4 +1354,6 @@ declare namespace validator {
+      */
+     function toString(input: any): string;
+ }
+-export default validator;
++declare module "validator" {
++  export = validator;
++}

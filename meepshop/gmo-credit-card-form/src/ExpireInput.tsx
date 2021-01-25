@@ -9,24 +9,25 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 interface PropsType {
   forwardedRef?: React.Ref<Input>;
   value?: string;
-  onChange?: (value: string | number) => void;
+  onChange?: (value: string) => void;
 }
 
 // definition
-const CreditCardInput = React.memo(
+const ExpireInput = React.memo(
   ({ value, onChange, forwardedRef, ...props }: PropsType) => {
     const { t } = useTranslation('gmo-credit-card-form');
+
     const rifm = useRifm({
       value: value || '',
       mask: true,
-      onChange: (cardNumber: string): void => {
-        if (onChange) onChange(cardNumber);
+      onChange: (expire: string): void => {
+        if (onChange) onChange(expire);
       },
-      format: (cardNumberFormat: string): string =>
-        cardNumberFormat
-          .replace(/ - /g, '')
-          .match(/\d{1,4}/g)
-          ?.join(' - ') || '',
+      format: (expireFormat: string): string =>
+        expireFormat
+          .replace(/ \/ /g, '')
+          .match(/\d{1,2}/g)
+          ?.join(' / ') || '',
     });
 
     return (
@@ -34,9 +35,9 @@ const CreditCardInput = React.memo(
         {...props}
         ref={forwardedRef}
         value={rifm.value}
-        placeholder={t('cardNumber')}
+        placeholder={t('expire')}
         onChange={rifm.onChange}
-        maxLength={25}
+        maxLength={7}
       />
     );
   },
@@ -44,6 +45,6 @@ const CreditCardInput = React.memo(
 
 export default React.forwardRef(
   (props: Omit<PropsType, 'forwardedRef'>, ref: PropsType['forwardedRef']) => (
-    <CreditCardInput {...props} forwardedRef={ref} />
+    <ExpireInput {...props} forwardedRef={ref} />
   ),
 );
