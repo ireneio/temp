@@ -12,6 +12,8 @@ import {
   getHomePageActionButtonSetting_viewer_store_page as getHomePageActionButtonSettingViewerStorePage,
   getCustomPageActionButtonSetting as getCustomPageActionButtonSettingType,
   getCustomPageActionButtonSettingVariables,
+  getPageManagerPreviewActionButtonSetting as getPageManagerPreviewActionButtonSettingType,
+  getPageManagerPreviewActionButtonSettingVariables,
 } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
@@ -19,6 +21,7 @@ import {
   getActionButtonSetting,
   getHomePageActionButtonSetting,
   getCustomPageActionButtonSetting,
+  getPageManagerPreviewActionButtonSetting,
 } from '../gqls';
 
 // typescript definition
@@ -41,7 +44,7 @@ export default (): ReturnType | null => {
   const { data } = useQuery<getActionButtonSettingType>(
     getActionButtonSetting,
     {
-      skip: pathname === '/' || pathname === '/pages',
+      skip: pathname === '/' || pathname === '/pages' || pathname === '/admin',
     },
   );
 
@@ -61,9 +64,22 @@ export default (): ReturnType | null => {
     },
   });
 
+  const { data: pageManagerPreviewActionButtonSetting } = useQuery<
+    getPageManagerPreviewActionButtonSettingType,
+    getPageManagerPreviewActionButtonSettingVariables
+  >(getPageManagerPreviewActionButtonSetting, {
+    skip: pathname !== '/admin/[pageId]/[token]',
+    variables: {
+      input: {
+        pageId: query.pageId as string,
+      },
+    },
+  });
+
   return (
     homePageActionButtonSetting ||
     customPageActionButtonSetting ||
+    pageManagerPreviewActionButtonSetting ||
     (!data
       ? null
       : {

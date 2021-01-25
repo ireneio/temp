@@ -57,3 +57,22 @@ export const getCustomPageActionButtonSetting = gql`
   ${backToTopFragment}
   ${goToButtonFragment}
 `;
+
+export const getPageManagerPreviewActionButtonSetting = gql`
+  query getPageManagerPreviewActionButtonSetting($input: StorePageFilterInput) {
+    viewer {
+      id
+      store {
+        id
+        ...backToTopFragment
+        page(input: $input) {
+          id
+          ...goToButtonFragment
+        }
+      }
+    }
+  }
+
+  ${backToTopFragment}
+  ${goToButtonFragment}
+`;
