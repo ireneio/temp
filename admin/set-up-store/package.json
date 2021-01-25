@@ -4,12 +4,12 @@
   "description": "Admin set up store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.75.5",
+  "version": "0.75.6",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/tooltip": "^0.75.4",
-    "@meepshop/cookies": "^0.75.5",
+    "@meepshop/cookies": "^0.75.6",
     "@meepshop/images": "^0.75.4",
     "@meepshop/link": "^0.75.5",
     "@meepshop/utils": "^0.75.5"
