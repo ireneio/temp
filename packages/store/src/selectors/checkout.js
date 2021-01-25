@@ -1,13 +1,6 @@
 import { createSelector } from 'reselect';
 import { fixedtop, secondtop, fixedbottom, sidebar } from 'template';
-import {
-  getMenus,
-  getLogoUrl,
-  getMobileLogoUrl,
-  getJoinedPage,
-  getLocaleItemsTemplate,
-  getCurrencyItemsTemplate,
-} from './index';
+import { getMenus, getLogoUrl, getMobileLogoUrl, getJoinedPage } from './index';
 
 const getCheckoutPage = (state, prevProps) => ({
   id: 'page-checkout',
@@ -43,28 +36,6 @@ const getCheckoutPage = (state, prevProps) => ({
 });
 
 export const getJoinedCheckoutPage = createSelector(
-  [
-    getCheckoutPage,
-    getMenus,
-    getLogoUrl,
-    getMobileLogoUrl,
-    getLocaleItemsTemplate,
-    getCurrencyItemsTemplate,
-  ],
-  (
-    page,
-    menus,
-    logoUrl,
-    mobileLogoUrl,
-    localeItemsTemplate,
-    currencyItemsTemplate,
-  ) =>
-    getJoinedPage(
-      page,
-      menus,
-      logoUrl,
-      mobileLogoUrl,
-      localeItemsTemplate,
-      currencyItemsTemplate,
-    ),
+  [getCheckoutPage, getMenus, getLogoUrl, getMobileLogoUrl],
+  getJoinedPage,
 );

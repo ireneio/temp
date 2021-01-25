@@ -17,7 +17,6 @@ const viewerStoreQuery = `
         mobile
         tel
       }
-      locale
       shippableCountries {
         id
       }
@@ -57,8 +56,6 @@ const viewerStoreQuery = `
             type
           }
         }
-        locale
-        currency
         paidMessage
         adRetentionMilliseconds
         adRetentionMillisecondsEnabled

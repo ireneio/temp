@@ -1,11 +1,6 @@
 import * as R from 'ramda';
 import { createSelector } from 'reselect';
 import { getIn, getJoinedModule, setDefaultValueForMenuDesign } from 'utils';
-import {
-  LOCALE_ITEMS_TMPL,
-  CURRENCY_ITEMS_TMPL,
-  MEMBER_ITEMS_TMPL,
-} from 'template';
 import { handlePages } from 'utils/setDefaultValueForMenuDesign';
 
 export const getPages = state => state.pagesReducer;
@@ -29,35 +24,7 @@ export const getQuery = (state, props) => getIn(['url', 'query'])(props) || {};
 
 export const getProductListCache = state => getIn(['listsReducer'])(state);
 
-export const getLocaleItemsTemplate = createSelector(
-  [getLocaleOptions],
-  localeOptions =>
-    LOCALE_ITEMS_TMPL.reduce((items, item) => {
-      if (localeOptions.includes(item.id)) {
-        return items.concat([item]);
-      }
-      return items;
-    }, []),
-);
-
-export const getCurrencyItemsTemplate = createSelector(
-  [getCurrencyOptions],
-  currencyOptions =>
-    currencyOptions.reduce((options, currency) => {
-      const option = CURRENCY_ITEMS_TMPL.find(item => item.id === currency);
-
-      return option ? [...options, option] : options;
-    }, []),
-);
-
-export const getJoinedPage = (
-  page,
-  menus,
-  logoUrl,
-  mobileLogoUrl,
-  localeItemsTemplate,
-  currencyItemsTemplate,
-) => {
+export const getJoinedPage = (page, menus, logoUrl, mobileLogoUrl) => {
   let joinedPage = page;
   ['fixedtop', 'secondtop', 'sidebar', 'fixedbottom'].forEach(ele => {
     let menuId = getIn([ele, 'menuId'])(joinedPage);
@@ -69,32 +36,7 @@ export const getJoinedPage = (
       R.find(R.propEq('menuType', menuId || ele))(menus) ||
       setDefaultValueForMenuDesign([]);
 
-    const menuPages = (getIn(['pages'])(menu) || []).map(menuPage => {
-      switch (menuPage.action) {
-        case 6:
-          // locale(action = 6)
-          return R.pipe(R.assocPath(['pages'], localeItemsTemplate))(menuPage);
-
-        case 7:
-          // currency(action = 7)
-          return R.pipe(R.assocPath(['pages'], currencyItemsTemplate))(
-            menuPage,
-          );
-
-        case 8:
-          // member(action = 8)
-          return R.pipe(
-            R.assocPath(['pages'], MEMBER_ITEMS_TMPL),
-            R.assocPath(
-              ['params', 'displayMemberGroup'],
-              !!menuPage.params?.displayMemberGroup,
-            ),
-          )(menuPage);
-
-        default:
-          return menuPage;
-      }
-    });
+    const menuPages = getIn(['pages'])(menu) || [];
 
     if (ele === 'fixedbottom') {
       const { background, color, fontSize } = joinedPage.fixedbottom || {};
@@ -166,8 +108,6 @@ export const getJoinedModulePage = createSelector(
     getHomePage,
     getQuery,
     getMenus,
-    getLocaleItemsTemplate,
-    getCurrencyItemsTemplate,
     // getProduct,
     getActivities,
     // getProductListCache
@@ -177,53 +117,30 @@ export const getJoinedModulePage = createSelector(
     page,
     query,
     menus,
-    localeItemsTemplate,
-    currencyItemsTemplate,
     // product,
     activities,
     // productList
     productListCache,
-  ) => {
-    const blocks = page.blocks.map(({ widgets, ...block }) => ({
-      ...block,
-      widgets: getJoinedModule(widgets, {
-        query,
-        menus,
-        localeItemsTemplate,
-        currencyItemsTemplate,
-        // product,
-        activities,
-        // productList
-        productListCache,
-      }),
-    }));
-    return { ...page, blocks };
-  },
+  ) =>
+    !page
+      ? page
+      : {
+          ...page,
+          blocks: page.blocks.map(({ widgets, ...block }) => ({
+            ...block,
+            widgets: getJoinedModule(widgets, {
+              query,
+              menus,
+              // product,
+              activities,
+              // productList
+              productListCache,
+            }),
+          })),
+        },
 );
 
 export const getJoinedHomePage = createSelector(
-  [
-    getJoinedModulePage,
-    getMenus,
-    getLogoUrl,
-    getMobileLogoUrl,
-    getLocaleItemsTemplate,
-    getCurrencyItemsTemplate,
-  ],
-  (
-    homePage,
-    menus,
-    logoUrl,
-    mobileLogoUrl,
-    localeItemsTemplate,
-    currencyItemsTemplate,
-  ) =>
-    getJoinedPage(
-      homePage,
-      menus,
-      logoUrl,
-      mobileLogoUrl,
-      localeItemsTemplate,
-      currencyItemsTemplate,
-    ),
+  [getJoinedModulePage, getMenus, getLogoUrl, getMobileLogoUrl],
+  getJoinedPage,
 );

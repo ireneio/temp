@@ -117,25 +117,8 @@ const mapStateToProps = (state, props) => {
       Selectors.getMenus,
       Selectors.getLogoUrl,
       Selectors.getMobileLogoUrl,
-      Selectors.getLocaleItemsTemplate,
-      Selectors.getCurrencyItemsTemplate,
     ],
-    (
-      page,
-      menus,
-      logoUrl,
-      mobileLogoUrl,
-      localeItemsTemplate,
-      currencyItemsTemplate,
-    ) =>
-      Selectors.getJoinedPage(
-        page,
-        menus,
-        logoUrl,
-        mobileLogoUrl,
-        localeItemsTemplate,
-        currencyItemsTemplate,
-      ),
+    Selectors.getJoinedPage,
   );
 
   return {

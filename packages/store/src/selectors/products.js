@@ -8,8 +8,6 @@ import {
   getLogoUrl,
   getMobileLogoUrl,
   getJoinedPage,
-  getLocaleItemsTemplate,
-  getCurrencyItemsTemplate,
   getQuery,
   getProductListCache,
 } from './index';
@@ -23,8 +21,6 @@ const getProductsCombinedPage = createSelector(
     getProductsPage,
     getQuery,
     getMenus,
-    getLocaleItemsTemplate,
-    getCurrencyItemsTemplate,
     // getProduct,
     getActivities,
     // getProductListCache
@@ -34,8 +30,6 @@ const getProductsCombinedPage = createSelector(
     page,
     query,
     menus,
-    localeItemsTemplate,
-    currencyItemsTemplate,
     // product,
     activities,
     // productList
@@ -46,8 +40,6 @@ const getProductsCombinedPage = createSelector(
       widgets: getJoinedModule(widgets, {
         query,
         menus,
-        localeItemsTemplate,
-        currencyItemsTemplate,
         // product,
         activities,
         // productList
@@ -59,28 +51,6 @@ const getProductsCombinedPage = createSelector(
 );
 
 export const getJoinedProductsPage = createSelector(
-  [
-    getProductsCombinedPage,
-    getMenus,
-    getLogoUrl,
-    getMobileLogoUrl,
-    getLocaleItemsTemplate,
-    getCurrencyItemsTemplate,
-  ],
-  (
-    productsPage,
-    menus,
-    logoUrl,
-    mobileLogoUrl,
-    localeItemsTemplate,
-    currencyItemsTemplate,
-  ) =>
-    getJoinedPage(
-      productsPage,
-      menus,
-      logoUrl,
-      mobileLogoUrl,
-      localeItemsTemplate,
-      currencyItemsTemplate,
-    ),
+  [getProductsCombinedPage, getMenus, getLogoUrl, getMobileLogoUrl],
+  getJoinedPage,
 );

@@ -28,6 +28,14 @@ const query = gql`
         id
         productId
       }
+
+      store {
+        id
+        setting {
+          locale
+          currency
+        }
+      }
     }
 
     getStockNotificationList {

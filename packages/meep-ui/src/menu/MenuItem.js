@@ -7,7 +7,9 @@ import { Menu } from 'antd';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { Currency as CurrencyContext } from '@meepshop/context';
+import { useRouter } from '@meepshop/link';
 import withContext from '@store/utils/lib/withContext';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
@@ -32,14 +34,21 @@ import styles from './styles/menuItem.less';
 
 const { Item: AntdMenuItem, SubMenu } = Menu;
 
-@withTranslation('common')
+@withTranslation(['common', 'menu'])
 @withContext(CurrencyContext)
+@withHook(() => ({
+  router: useRouter(),
+}))
 @enhancer
 export default class MenuItem extends React.PureComponent {
   generateURL = memoizeOne(notMemoizedGenerateURL);
 
-  SubMenu = withTranslation('common')(
-    withContext(CurrencyContext)(enhancer(MenuItem)),
+  SubMenu = withTranslation(['common', 'menu'])(
+    withContext(CurrencyContext)(
+      withHook(() => ({
+        router: useRouter(),
+      }))(enhancer(MenuItem)),
+    ),
   );
 
   static propTypes = {
@@ -170,24 +179,72 @@ export default class MenuItem extends React.PureComponent {
       user,
 
       /** props */
+      t,
       i18n,
+      id,
       action,
       title,
       params,
     } = this.props;
 
-    if (action === 8 && isLogin !== NOTLOGIN)
-      return params.displayMemberGroup && user?.memberGroup?.name
-        ? user.memberGroup.name
-        : null;
+    switch (action) {
+      case 'locale':
+        return t(`menu:${id}`);
 
-    return title[i18n.language] || title.zh_TW;
+      case 'currency':
+        switch (id) {
+          case 'CNY':
+          case 'JPY':
+            return `¥ ${id}`;
+
+          case 'EUR':
+            return '€ EUR';
+
+          case 'VND':
+            return '₫ VND';
+
+          case 'KRW':
+            return '₩ KRW';
+
+          case 'MYR':
+            return 'RM MYR';
+
+          case 'TWD':
+          case 'USD':
+          case 'HKD':
+          default:
+            return `$ ${id}`;
+        }
+
+      case 8:
+        if (isLogin !== NOTLOGIN)
+          return params.displayMemberGroup && user?.memberGroup?.name
+            ? user.memberGroup.name
+            : null;
+
+        return title[i18n.language] || title.zh_TW;
+
+      default:
+        switch (id) {
+          case 'ORDERS':
+          case 'SETTINGS':
+          case 'RECIPIENTS':
+          case 'PASSWORD_CHANGE':
+          case 'WISHLIST':
+          case 'REWARD_POINTS':
+          case 'LOGOUT':
+            return t(`menu:${id}`);
+
+          default:
+            return title[i18n.language] || title.zh_TW;
+        }
+    }
   };
 
   getActive = url => {
     const {
       /** context */
-      location: { pathname, search },
+      router,
       locale,
       currency,
 
@@ -198,14 +255,95 @@ export default class MenuItem extends React.PureComponent {
 
     switch (action) {
       case 8:
-        return /\/login/.test(pathname) ? 'is-active' : '';
+        return /\/login/.test(router.pathname) ? 'is-active' : '';
 
       default:
         if (id === locale || id === currency) return styles.fontBold;
 
-        return url === decodeURIComponent(`${pathname}${search}`)
+        return [
+          router.asPath,
+          `http://${router.domain}${router.asPath}`,
+          `https://${router.domain}${router.asPath}`,
+        ].includes(url)
           ? 'is-active'
           : '';
+    }
+  };
+
+  getPages = () => {
+    const { user, isLogin, hasStoreAppPlugin, action, pages } = this.props;
+
+    switch (action) {
+      case 5:
+        return [];
+
+      case 6:
+        return (user?.store?.setting?.locale || []).map(locale => ({
+          id: locale,
+          title: null,
+          action: 'locale',
+        }));
+
+      case 7:
+        return (user?.store?.setting?.currency || []).map(currency => ({
+          id: currency,
+          title: null,
+          action: 'currency',
+        }));
+
+      case 8:
+        return isLogin === NOTLOGIN
+          ? []
+          : [
+              {
+                id: 'ORDERS',
+                title: null,
+                action: 2,
+                params: { url: '/orders' },
+              },
+              {
+                id: 'SETTINGS',
+                title: null,
+                action: 2,
+                params: { url: '/settings' },
+              },
+              {
+                id: 'RECIPIENTS',
+                title: null,
+                action: 2,
+                params: { url: '/recipients' },
+              },
+              {
+                id: 'PASSWORD_CHANGE',
+                title: null,
+                action: 2,
+                params: { url: '/passwordChange' },
+              },
+              ...(!hasStoreAppPlugin('wishList')
+                ? []
+                : [
+                    {
+                      id: 'WISHLIST',
+                      title: null,
+                      action: 2,
+                      params: { url: '/wishlist' },
+                    },
+                  ]),
+              {
+                id: 'REWARD_POINTS',
+                title: null,
+                action: 2,
+                params: { url: '/rewardPoints' },
+              },
+              {
+                id: 'LOGOUT',
+                title: null,
+                action: 'logout',
+              },
+            ];
+
+      default:
+        return pages;
     }
   };
 
@@ -222,7 +360,6 @@ export default class MenuItem extends React.PureComponent {
       params,
       id: itemId,
       action,
-      pages: propsPages,
       newWindow,
       level,
       isModule,
@@ -258,15 +395,7 @@ export default class MenuItem extends React.PureComponent {
           imagePosition: !title ? 'ONLY' : imagePosition,
         };
 
-    let pages = propsPages;
-    if (action === 8) {
-      if (isLogin === NOTLOGIN) {
-        pages = [];
-      } else if (!hasStoreAppPlugin('wishList')) {
-        pages = pages.filter(item => item.id !== 'favorites');
-      }
-    }
-
+    const pages = this.getPages();
     const menuItemProps = {
       ...removeContextTpyesFromProps({ ...props, id: itemId }),
       hasLevelThree,

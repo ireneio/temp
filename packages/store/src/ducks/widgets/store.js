@@ -35,10 +35,6 @@ export default (state = initialState, { type, payload }) => {
       );
       const store = data?.viewer?.store;
       const storeSettings = data?.viewer?.store?.setting;
-      const {
-        locale: localeOptions,
-        currency: currencyOptions,
-      } = storeSettings;
 
       const settings = {
         ...storeSettings,
@@ -51,8 +47,6 @@ export default (state = initialState, { type, payload }) => {
         logoUrl: store?.logoImage?.scaledSrc.h200 || '',
         mobileLogoUrl: store?.mobileLogoImage?.scaledSrc.w250 || '',
         homePageId: store.homePageId,
-        localeOptions: localeOptions || ['zh_TW'], // 用於語系選單
-        currencyOptions: currencyOptions || ['TWD'], // 用於幣值選單
       };
 
       return {

@@ -1,65 +1,29 @@
 import * as R from 'ramda';
-import { MEMBER_ITEMS_TMPL } from 'template';
 
 import getIn from './getIn';
 import setDefaultValueForMenuDesign from './setDefaultValueForMenuDesign';
 
 const getJoinedModule = (
   widgets,
-  {
-    query = {},
-    menus,
-    localeItemsTemplate,
-    currencyItemsTemplate,
-    product,
-    activities,
-    productListCache,
-  },
+  { query = {}, menus, product, activities, productListCache },
 ) => {
   const mWidgets = widgets.map(widget => {
     if (widget.widgets == null) {
       switch (widget.module) {
         case 'menu': {
           const { menuId } = widget;
-          let menu =
+          const menu =
             R.find(R.propEq('id', menuId))(menus) ||
             R.find(R.propEq('menuType', menuId))(menus) ||
             setDefaultValueForMenuDesign([]);
-          let menuPages = getIn(['pages'])(menu) || [];
-          if (menuPages.length > 0) {
-            menuPages = menuPages.map(menuPage => {
-              let newMenuPage = menuPage;
-              if (menuPage.action === 6) {
-                // insert locale items into locale menu(action = 6)
-                newMenuPage = R.assocPath(
-                  ['pages'],
-                  localeItemsTemplate,
-                  menuPage,
-                );
-              } else if (menuPage.action === 7) {
-                // insert currency items into currency menu(action = 7)
-                newMenuPage = R.assocPath(
-                  ['pages'],
-                  currencyItemsTemplate,
-                  menuPage,
-                );
-              } else if (menuPage.action === 8) {
-                // insert member items into member menu(action = 8)
-                newMenuPage = R.assocPath(
-                  ['pages'],
-                  MEMBER_ITEMS_TMPL,
-                  menuPage,
-                );
-              }
-              return newMenuPage;
-            });
-          }
-          menu = R.assocPath(['pages'], menuPages, menu);
+          const menuPages = getIn(['pages'])(menu) || [];
+
           return {
             ...widget,
-            menu,
+            menu: R.assocPath(['pages'], menuPages, menu),
           };
         }
+
         case 'activity': {
           return {
             ...widget,
@@ -159,8 +123,6 @@ const getJoinedModule = (
       widgets: getJoinedModule(widget.widgets, {
         query,
         menus,
-        localeItemsTemplate,
-        currencyItemsTemplate,
         product,
         activities,
         productListCache,

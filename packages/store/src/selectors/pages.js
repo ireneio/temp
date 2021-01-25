@@ -7,8 +7,6 @@ import {
   getLogoUrl,
   getMobileLogoUrl,
   getJoinedPage,
-  getLocaleItemsTemplate,
-  getCurrencyItemsTemplate,
   getActivities,
   getQuery,
   getProductListCache,
@@ -33,8 +31,6 @@ export const getJoinedModulePage = createSelector(
     getPageByPath,
     getQuery,
     getMenus,
-    getLocaleItemsTemplate,
-    getCurrencyItemsTemplate,
     // getProduct,
     getActivities,
     // getProductListCache
@@ -44,8 +40,6 @@ export const getJoinedModulePage = createSelector(
     page,
     query,
     menus,
-    localeItemsTemplate,
-    currencyItemsTemplate,
     // product,
     activities,
     // productList
@@ -57,8 +51,6 @@ export const getJoinedModulePage = createSelector(
         widgets: getJoinedModule(widgets, {
           query,
           menus,
-          localeItemsTemplate,
-          currencyItemsTemplate,
           // product,
           activities,
           // productList
@@ -72,32 +64,6 @@ export const getJoinedModulePage = createSelector(
 );
 
 export const getJoinedPageInPagesRoute = createSelector(
-  [
-    getJoinedModulePage,
-    getMenus,
-    getLogoUrl,
-    getMobileLogoUrl,
-    getLocaleItemsTemplate,
-    getCurrencyItemsTemplate,
-  ],
-  (
-    page,
-    menus,
-    logoUrl,
-    mobileLogoUrl,
-    localeItemsTemplate,
-    currencyItemsTemplate,
-  ) => {
-    if (page) {
-      return getJoinedPage(
-        page,
-        menus,
-        logoUrl,
-        mobileLogoUrl,
-        localeItemsTemplate,
-        currencyItemsTemplate,
-      );
-    }
-    return page;
-  },
+  [getJoinedModulePage, getMenus, getLogoUrl, getMobileLogoUrl],
+  getJoinedPage,
 );

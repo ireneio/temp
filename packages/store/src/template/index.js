@@ -1,16 +1,45 @@
-import MEMBER_ITEMS_TMPL from './memberItems.tmpl';
-import CURRENCY_ITEMS_TMPL from './currencyItems.tmpl';
-import LOCALE_ITEMS_TMPL from './localeItems.tmpl';
-import MEMBER_SIDEBAR_TMPL from './memberSidebar.tmpl';
-import { fixedtop, sidebar, fixedbottom, secondtop } from './menus.tmpl';
+export const fixedtop = {
+  module: 'fixed-top',
+  height: 60,
+  menuAlign: 'right',
+  useTitle: false,
+  useLogo: false,
+  title: {},
+  color: '',
+  hoverColor: '',
+  background: '',
+  menuId: '',
+  opacity: 100,
+};
 
-export {
-  MEMBER_ITEMS_TMPL,
-  CURRENCY_ITEMS_TMPL,
-  LOCALE_ITEMS_TMPL,
-  MEMBER_SIDEBAR_TMPL,
-  fixedtop,
-  sidebar,
-  fixedbottom,
-  secondtop,
+export const sidebar = {
+  module: 'sidebar',
+  width: 220,
+  alignment: 'left',
+  color: '',
+  background: '',
+  title: {},
+  showTitle: false,
+  menuId: '',
+  fontSize: 18,
+};
+
+export const fixedbottom = {
+  module: 'fixed-bottom',
+  height: 60,
+  menuAlign: 'right',
+  title: 'left',
+  useTitle: false,
+  useLogo: false,
+};
+
+export const secondtop = {
+  module: 'second-top',
+  height: 60,
+  menuAlign: 'right',
+  title: {},
+  useTitle: false,
+  useLogo: false,
+  menuId: '',
+  fontSize: 16,
 };
