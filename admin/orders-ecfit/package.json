@@ -4,16 +4,16 @@
   "description": "Orders ecfit page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.75.4",
+  "version": "0.75.5",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/date-picker": "^0.75.4",
-    "@admin/orders-export": "^0.75.4",
-    "@admin/table": "^0.75.4",
-    "@admin/utils": "^0.75.4",
-    "@meepshop/link": "^0.75.4",
-    "@meepshop/utils": "^0.75.4",
+    "@admin/date-picker": "^0.75.5",
+    "@admin/orders-export": "^0.75.5",
+    "@admin/table": "^0.75.5",
+    "@admin/utils": "^0.75.5",
+    "@meepshop/link": "^0.75.5",
+    "@meepshop/utils": "^0.75.5",
     "moment": "^2.22.1"
   },
   "keywords": ["admin", "ecfit", "orders"]
