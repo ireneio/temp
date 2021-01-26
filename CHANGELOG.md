@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.76.1 (2021-01-26)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#1309](https://github.com/meepshop/meep-lerna/pull/1309) 【優化】商品細節元件，新增「手機版選擇規格彈窗」設定 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#1397](https://github.com/meepshop/meep-lerna/pull/1397) (@meepshop/apollo, @meepshop/cookies) Remove console.error, use console.log in server ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.76.0 (2021-01-26)
 
 #### :rocket: New Feature
