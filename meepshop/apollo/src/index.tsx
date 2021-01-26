@@ -89,7 +89,7 @@ export const buildWithApollo = (config: initApolloConfigType) => (
       } catch (e) {
         if (!shouldIgnoreUnauthorizedError(e.networkError))
           // eslint-disable-next-line no-console
-          console.error(req.logId, 'Error while running `getDataFromTree`', e);
+          console.log(req.logId, 'Error while running `getDataFromTree`', e);
       }
 
       Head.rewind();

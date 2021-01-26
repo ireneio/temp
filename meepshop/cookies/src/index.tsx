@@ -112,7 +112,7 @@ export const withCookies = (getCookies: getCookiesType) => (
     } catch (e) {
       if (!shouldIgnoreUnauthorizedError(e.networkError))
         // eslint-disable-next-line no-console
-        console.error(req?.logId, 'Error while running `getCookies`', e);
+        console.log(req?.logId, 'Error while running `getCookies`', e);
     }
 
     const appProps = await App.getInitialProps(ctx);

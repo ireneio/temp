@@ -26,7 +26,7 @@ export default (errorFilter: errorFilterType): ReturnType<typeof onError> =>
   onError(({ response, graphQLErrors, networkError }) => {
     const errorLog =
       // eslint-disable-next-line no-console
-      typeof window === 'undefined' ? console.error : notification.error;
+      typeof window === 'undefined' ? console.log : notification.error;
 
     if (
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
