@@ -20,6 +20,7 @@
     "@meepshop/link": "^0.75.5",
     "@meepshop/product-amount-select": "^0.75.5",
     "@meepshop/product-draft-text": "^0.75.5",
+    "@meepshop/product-spec-selector": "^0.1.0",
     "@meepshop/product-video": "^0.75.5",
     "@meepshop/smart-conversion": "^0.75.5",
     "@meepshop/thumbnail": "^0.75.5",

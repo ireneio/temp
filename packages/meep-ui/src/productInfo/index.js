@@ -9,6 +9,7 @@ import { withTranslation } from '@meepshop/utils/lib/i18n';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import CartContext from '@meepshop/cart';
+import ProductSpecSelector from '@meepshop/product-spec-selector';
 import withContext from '@store/utils/lib/withContext';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -44,6 +45,8 @@ export default class ProductInfo extends React.PureComponent {
 
     /** props from module */
     showButton: PropTypes.bool.isRequired,
+    drawerOnMobile: PropTypes.bool.isRequired,
+    unfoldedVariantsOnMobile: PropTypes.bool.isRequired,
 
     /** props from context */
     carts: PropTypes.shape({}),
@@ -73,11 +76,16 @@ export default class ProductInfo extends React.PureComponent {
     const initState = {
       isAddingItem: false,
       isModalOpen: false,
+      isDrawerOpen: false,
     };
 
     /** REMAINED productData or JUST setState */
     if (id === prevState.id) {
-      const variant = reformatVariant(prevState.variant, stockNotificationList);
+      const variant = reformatVariant(
+        prevState.variant,
+        stockNotificationList,
+        carts,
+      );
       return {
         variant,
         carts,
@@ -109,7 +117,7 @@ export default class ProductInfo extends React.PureComponent {
       };
     }
 
-    if (specs) {
+    if (specs?.length) {
       // 多規格
       const variantsLeaves = productData.variantsTree.leaves();
       const variantNode =
@@ -123,6 +131,7 @@ export default class ProductInfo extends React.PureComponent {
       const variant = reformatVariant(
         variantNode.data.variant,
         stockNotificationList,
+        carts,
       );
 
       return {
@@ -136,7 +145,7 @@ export default class ProductInfo extends React.PureComponent {
       };
     }
 
-    const variant = reformatVariant(variants[0], stockNotificationList);
+    const variant = reformatVariant(variants[0], stockNotificationList, carts);
     // 單規格
     return {
       id,
@@ -294,6 +303,8 @@ export default class ProductInfo extends React.PureComponent {
       container,
       goTo,
       showButton,
+      drawerOnMobile,
+      unfoldedVariantsOnMobile,
       colors,
       isLogin,
       isMobile,
@@ -305,6 +316,7 @@ export default class ProductInfo extends React.PureComponent {
       orderable,
       isAddingItem,
       isModalOpen,
+      isDrawerOpen,
     } = this.state;
     const {
       name,
@@ -382,6 +394,7 @@ export default class ProductInfo extends React.PureComponent {
             variant={variant}
             orderable={orderable}
             openModal={() => this.setState({ isModalOpen: true })}
+            openDrawer={() => this.setState({ isDrawerOpen: true })}
             addToCart={addToCart}
             addToNotificationList={addToNotificationList}
             colors={colors}
@@ -391,7 +404,25 @@ export default class ProductInfo extends React.PureComponent {
             isAddingItem={isAddingItem}
             mode={mode}
             isMobile={isMobile}
+            drawerOnMobile={drawerOnMobile}
+            hasSpecs={Boolean(productData.specs?.length)}
           />
+
+          {!drawerOnMobile ? null : (
+            <ProductSpecSelector
+              product={productData}
+              variant={variant}
+              unfoldedVariantsOnMobile={unfoldedVariantsOnMobile}
+              visible={isDrawerOpen}
+              coordinates={coordinates}
+              orderable={orderable}
+              quantity={quantity}
+              addToCart={addToCart}
+              onClose={() => this.setState({ isDrawerOpen: false })}
+              onChangeSpec={onChangeSpec}
+              onChangeQuantity={onChangeQuantity}
+            />
+          )}
         </StyleRoot>
       </div>
     );

@@ -115,6 +115,8 @@ export default Form.create<PropsType>()(
       }, 5000);
     }, [product, adTrack]);
 
+    if (!product) return null;
+
     return (
       <>
         <Form
@@ -128,6 +130,7 @@ export default Form.create<PropsType>()(
                 shoppingLandingPageModuleFragment,
                 props,
               )}
+              product={product}
               form={form}
               order={filter(shoppingOrderFragment, order)}
               payment={payment}

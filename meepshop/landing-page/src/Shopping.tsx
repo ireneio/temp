@@ -24,6 +24,7 @@ import styles from './styles/shopping.less';
 // graphql typescript
 import {
   shoppingLandingPageModuleFragment,
+  shoppingLandingPageModuleFragment_product as shoppingLandingPageModuleFragmentProduct,
   shoppingOrderFragment,
 } from '@meepshop/types/gqls/meepshop';
 
@@ -36,6 +37,7 @@ interface PropsType
     Omit<UseComputeOrderType, 'order'> {
   order: shoppingOrderFragment | null;
   form: FormComponentProps['form'];
+  product: shoppingLandingPageModuleFragmentProduct;
 }
 
 // definition
@@ -60,8 +62,6 @@ export default React.memo(
     const apps = useContext(AppsContext);
     const colors = useContext(ColorsContext);
     const variantOptions = useVariantOptions(product);
-
-    if (!product) return null;
 
     const { getFieldDecorator, getFieldValue } = form;
     const { title, variants } = product;

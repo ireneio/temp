@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "@meepshop/product-spec-selector",
+  "description": "Use to select product spec",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/context": "^0.75.5",
+    "@meepshop/hooks": "^0.75.5",
+    "@meepshop/thumbnail": "^0.75.5",
+    "@meepshop/utils": "^0.75.5",
+    "d3-hierarchy": "^1.1.6"
+  },
+  "keywords": ["meepshop", "product spec", "selector"]
+}

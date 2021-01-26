@@ -2,14 +2,13 @@
 import gql from 'graphql-tag';
 
 // graphql import
+import { useVariantsTreeFragment } from '@meepshop/hooks/lib/gqls/useVariantsTree';
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 // definition
 export const useVariantOptionsFragment = gql`
   fragment useVariantOptionsFragment on Product {
-    title {
-      ...localeFragment
-    }
+    id
     variants {
       id
       specs {
@@ -23,16 +22,11 @@ export const useVariantOptionsFragment = gql`
       stock
       maxPurchaseLimit
       minPurchaseItems
-      totalPrice
     }
-    specs {
-      id
-      title {
-        zh_TW
-        en_US
-      }
-    }
+
+    ...useVariantsTreeFragment
   }
 
+  ${useVariantsTreeFragment}
   ${localeFragment}
 `;

@@ -2,44 +2,30 @@
 import { HierarchyNode } from 'd3-hierarchy';
 import { CascaderOptionType } from 'antd/lib/cascader';
 
+import { DefaultLeaf } from '@meepshop/hooks/lib/useVariantsTree';
+
 // import
 import { useMemo } from 'react';
-import { stratify } from 'd3-hierarchy';
 
+import useVariantsTree from '@meepshop/hooks/lib/useVariantsTree';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // graphql typescript
 import {
   useVariantOptionsFragment,
   useVariantOptionsFragment_variants as useVariantOptionsFragmentVariants,
-  useVariantOptionsFragment_specs_title as useVariantOptionsFragmentSpecsTitle,
+  useVariantOptionsFragment_variants_specs_title as useVariantOptionsFragmentVariantsSpecsTitle,
 } from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
-interface Leaf {
-  key: string;
-  parent: string;
-  title: useVariantOptionsFragmentSpecsTitle | null;
+interface Leaf extends DefaultLeaf {
   variant?: useVariantOptionsFragmentVariants;
 }
 
 // definition
-const treemap = stratify<Leaf>()
-  .id(d => d.key)
-  .parentId(d => d.parent);
-
-const generateKey = (
-  title: useVariantOptionsFragmentSpecsTitle | null,
-): string =>
-  title
-    ? Object.keys(title)
-        .map((key: keyof typeof title) => title[key])
-        .join('-')
-    : '';
-
-const getVariantOptions = (
+const generateVariantOptions = (
   children: HierarchyNode<Leaf>[] | undefined,
-  language: keyof useVariantOptionsFragmentSpecsTitle,
+  language: keyof useVariantOptionsFragmentVariantsSpecsTitle,
 ): CascaderOptionType[] | undefined =>
   children?.map(({ children: child, data }) => {
     const { title, variant } = data;
@@ -54,88 +40,36 @@ const getVariantOptions = (
       ...(!child
         ? {}
         : {
-            children: getVariantOptions(child, language),
+            children: generateVariantOptions(child, language),
           }),
     };
   });
 
 export default (
-  product: useVariantOptionsFragment | null,
+  product: useVariantOptionsFragment,
 ): CascaderOptionType[] | undefined => {
   const {
     i18n: { language },
   } = useTranslation('landing-page');
+  const variantsTree = useVariantsTree<Leaf>(product);
 
   return useMemo(() => {
-    if (!product?.variants) return undefined;
+    if (!product.variants) return undefined;
 
-    const { specs, variants } = product;
-
-    if (!specs || variants.length === 1) {
-      const variant = variants[0];
-
+    if (!variantsTree) {
+      const variant = product.variants[0];
       return [
         {
-          value: variants[0]?.id || 'null-id',
+          value: variant?.id || 'null-id',
           label: '',
           disabled: (variant?.stock || 0) < (variant?.minPurchaseItems || 0),
         },
       ];
     }
 
-    const specsStore: {
-      [id: string]: string[];
-    } = specs.reduce(
-      (result, spec) => (spec?.id ? { ...result, [spec.id]: [] } : result),
-      {},
+    return generateVariantOptions(
+      variantsTree,
+      language as keyof useVariantOptionsFragmentVariantsSpecsTitle,
     );
-
-    const leaves = variants.reduce(
-      (variantsResult, variant) => {
-        let preKey = 'root';
-
-        if (!variant?.specs) return variantsResult;
-
-        const variantSpecs = variant.specs;
-
-        return (
-          variantSpecs.reduce((specsResult, spec, index) => {
-            if (!spec?.specId) return specsResult;
-
-            const { title, specId } = spec;
-            const key = `${preKey}_${generateKey(title)}`;
-            const parent = preKey;
-
-            preKey = key;
-
-            if (
-              specsStore[specId].includes(key) &&
-              index !== (variantSpecs.length || 0) - 1
-            )
-              return specsResult;
-
-            specsStore[specId].push(key);
-
-            return [
-              ...specsResult,
-              {
-                ...(index !== (variantSpecs.length || 0) - 1
-                  ? null
-                  : { variant }),
-                key,
-                parent,
-                title,
-              },
-            ];
-          }, variantsResult) || []
-        );
-      },
-      [{ key: 'root' }] as Leaf[],
-    );
-
-    return getVariantOptions(
-      treemap(leaves).children,
-      language as keyof useVariantOptionsFragmentSpecsTitle,
-    );
-  }, [product, language]);
+  }, [product, language, variantsTree]);
 };

@@ -1,0 +1,50 @@
+.root {
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+
+  > div:first-child {
+    margin-bottom: 8px;
+  }
+
+  > div:last-child {
+    display: flex;
+    flex-wrap: wrap;
+
+    .node {
+      padding: 5px 12px;
+      border-radius: 5px;
+      margin-right: 10px;
+      margin-bottom: 8px;
+      transition: 0.3s;
+      cursor: pointer;
+
+      &.selected {
+        transition: 0.5s;
+      }
+    }
+
+    :global(.ant-select) {
+      width: 100%;
+      font-size: 14px;
+    }
+
+    :global(.ant-select-selection) {
+      box-shadow: none;
+
+      &:active,
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.select {
+  font-size: 14px;
+  overflow: hidden;
+
+  :global(.ant-select-dropdown-menu) {
+    padding: 0;
+  }
+}

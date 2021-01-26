@@ -23,6 +23,8 @@ export const SensorProvider = React.memo(({ children }) => {
       );
     };
 
+    resize();
+
     window.addEventListener('resize', resize);
 
     return () => {

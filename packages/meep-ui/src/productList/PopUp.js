@@ -53,6 +53,8 @@ export default class PopUp extends React.PureComponent {
             container={this.rootRef}
             isMobile={isMobile}
             type="pop-up"
+            drawerOnMobile={false}
+            unfoldedVariantsOnMobile={false}
           />
           {['two', 'all'].indexOf(popUpGalleryView) > -1 && (
             <ProductCollection
@@ -203,7 +205,6 @@ export default class PopUp extends React.PureComponent {
               visible={visible}
               onCancel={onCancel}
               footer={null}
-              destroyOnClose
               centered
             >
               {this.generateDetails(product)}

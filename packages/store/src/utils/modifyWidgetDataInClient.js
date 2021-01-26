@@ -78,6 +78,8 @@ export default function modifyWidgetDataInClient(widgets = [], query, page) {
             module: widget.module,
             contentWidth: widget.contentWidth,
             showButton: widget.showButton,
+            drawerOnMobile: widget.drawerOnMobile ?? true,
+            unfoldedVariantsOnMobile: widget.unfoldedVariantsOnMobile ?? true,
           };
         }
         /* 產品照片集 */

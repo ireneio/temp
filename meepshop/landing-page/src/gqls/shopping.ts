@@ -35,6 +35,11 @@ export const shoppingLandingPageModuleFragment = gql`
       title {
         ...localeFragment
       }
+      variants {
+        id
+        totalPrice
+      }
+
       ...useVariantOptionsFragment
     }
   }

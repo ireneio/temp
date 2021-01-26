@@ -10,6 +10,7 @@ import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
+import { PHONE_MEDIA } from 'constants/media';
 
 import styles from './styles/addButton.less';
 import { VARIANT_TYPE, ORDERABLE_TYPE } from './constants';
@@ -19,6 +20,7 @@ import { VARIANT_TYPE, ORDERABLE_TYPE } from './constants';
 export default class AddButton extends React.Component {
   state = {
     loading: false,
+    isMobile: false,
   };
 
   static propTypes = {
@@ -34,6 +36,24 @@ export default class AddButton extends React.Component {
     goTo: PropTypes.func.isRequired,
     mode: PropTypes.oneOf(['list', 'detail']).isRequired,
     isMobile: PropTypes.bool.isRequired,
+    openDrawer: PropTypes.func.isRequired,
+    drawerOnMobile: PropTypes.bool.isRequired,
+    hasSpecs: PropTypes.bool.isRequired,
+  };
+
+  componentDidMount() {
+    this.resize();
+    window.addEventListener('resize', this.resize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+  }
+
+  resize = () => {
+    this.setState({
+      isMobile: window.matchMedia(PHONE_MEDIA.substring(7)).matches,
+    });
   };
 
   generateAddButton = () => {
@@ -49,7 +69,11 @@ export default class AddButton extends React.Component {
       goTo,
       isAddingItem,
       mode,
+      openDrawer,
+      drawerOnMobile,
+      hasSpecs,
     } = this.props;
+    const { isMobile } = this.state;
     const config = {
       className: `color-2 color-2-hover ${styles.item} ${styles[mode]}`,
       style: {
@@ -76,7 +100,10 @@ export default class AddButton extends React.Component {
       return (
         <Button
           {...config}
-          onClick={addToCart}
+          onClick={() => {
+            if (hasSpecs && isMobile && drawerOnMobile) openDrawer();
+            else addToCart();
+          }}
           loading={isAddingItem}
           disabled={isAddingItem}
         >

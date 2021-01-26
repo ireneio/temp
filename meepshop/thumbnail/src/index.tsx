@@ -6,16 +6,17 @@ import { placeholderThumbnail_w120 as placeholderThumbnail } from '@meepshop/ima
 import styles from './styles/index.less';
 
 // graphql typescript
-import { thumbnailFragment as thumbnailFragmentType } from '@meepshop/types/gqls/meepshop';
+import { thumbnailFragment } from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 interface PropsType {
-  image: thumbnailFragmentType | null;
+  image: thumbnailFragment | null;
+  className?: string;
 }
 
 // definition
-export default ({ image }: PropsType): React.ReactElement => (
-  <div className={styles.wrapper}>
+export default ({ image, className }: PropsType): React.ReactElement => (
+  <div className={`${styles.wrapper} ${className || ''}`}>
     <div
       className={styles.image}
       style={{
