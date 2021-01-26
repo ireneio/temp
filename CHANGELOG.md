@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.76.0 (2021-01-26)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#1309](https://github.com/meepshop/meep-lerna/pull/1309) 【優化】商品細節元件，新增「手機版選擇規格彈窗」設定 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.75.6 (2021-01-25)
 
 #### :bug: Bug Fix
