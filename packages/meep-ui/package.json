@@ -4,10 +4,10 @@
   "description": "meep-ui for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.76.0",
+  "version": "0.76.1",
   "dependencies": {
     "@meepshop/address-cascader": "^0.76.0",
-    "@meepshop/apollo": "^0.76.0",
+    "@meepshop/apollo": "^0.76.1",
     "@meepshop/cart": "^0.76.0",
     "@meepshop/context": "^0.76.0",
     "@meepshop/convenience-store-map": "^0.76.0",
