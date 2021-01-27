@@ -22,12 +22,12 @@ export default ({
   securityCode: string;
   installmentCode?: string;
 } => {
-  const [expireMonth, expireYear] = expire.split(' / ');
+  const [expireMonth, expireYear] = expire?.split(' / ') || [];
 
   return {
     isRememberCard,
     cardHolderName,
-    cardNumber: cardNumber.replace(/ - /g, ''),
+    cardNumber: cardNumber?.replace(/ - /g, '') || '',
     securityCode,
     expireYear: `20${expireYear}`,
     expireMonth,
