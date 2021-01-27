@@ -1,6 +1,5 @@
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 
 // graphql typescript
 import { descriptionFragment as descriptionFragmentType } from '@meepshop/types/gqls/store';
@@ -11,24 +10,6 @@ interface PropsType {
 }
 
 // definition
-export const descriptionFragment = gql`
-  fragment descriptionFragment on Order {
-    id
-
-    paidMessage {
-      note
-    }
-
-    paymentInfo {
-      id
-      list {
-        id
-        description
-      }
-    }
-  }
-`;
-
 export default React.memo(({ order }: PropsType) => {
   const paidMessage = order.paidMessage?.slice(-1)[0]?.note || '';
   const description = order.paymentInfo?.list?.[0]?.description || '';

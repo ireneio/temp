@@ -1,6 +1,5 @@
 // import
 import React, { useContext } from 'react';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
 
@@ -17,10 +16,10 @@ import styles from './styles/index.less';
 import { blocksFragment as blocksFragmentType } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { paymentInfoFragment } from './paymentInfo';
-import { shipmentInfoFragment } from './ShipmentInfo';
-import { logisticTrackingFragment } from './LogisticTracking';
-import { invoiceInfoFragment } from './invoiceInfo';
+import { paymentInfoFragment } from './paymentInfo/gqls';
+import { shipmentInfoFragment } from './gqls/shipmentInfo';
+import { logisticTrackingFragment } from './gqls/logisticTracking';
+import { invoiceInfoFragment } from './invoiceInfo/gqls';
 
 // typescript definition
 interface PropsType {
@@ -28,58 +27,6 @@ interface PropsType {
 }
 
 // definition
-export const blocksFragment = gql`
-  fragment blocksFragment on Order {
-    id
-    userInfo {
-      name
-      email
-      mobile
-    }
-    address {
-      fullAddress
-    }
-    shipmentInfo {
-      status
-      list {
-        id
-        name
-        recipient {
-          name
-          email
-          mobile
-          comment
-        }
-        storeShipmentDetails {
-          id
-          searchLink
-        }
-        ...shipmentInfoFragment
-      }
-    }
-    paymentInfo {
-      id
-      status
-      list {
-        id
-        name
-      }
-    }
-    invoices {
-      ...invoiceInfoFragment
-    }
-    status
-    ...paymentInfoFragment
-    latestLogisticTracking {
-      ...logisticTrackingFragment
-    }
-  }
-  ${paymentInfoFragment}
-  ${shipmentInfoFragment}
-  ${logisticTrackingFragment}
-  ${invoiceInfoFragment}
-`;
-
 export default React.memo(
   ({
     order: {

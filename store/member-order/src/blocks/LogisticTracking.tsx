@@ -1,6 +1,5 @@
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import moment from 'moment';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -16,13 +15,6 @@ interface PropsType {
 }
 
 // definition
-export const logisticTrackingFragment = gql`
-  fragment logisticTrackingFragment on OrderLogisticTracking {
-    status
-    updatedAt
-  }
-`;
-
 export default React.memo(
   ({ latestLogisticTracking: { status, updatedAt } }: PropsType) => {
     const { t } = useTranslation('member-order');

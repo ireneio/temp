@@ -1,6 +1,5 @@
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 
 import Description from './Description';
@@ -19,13 +18,13 @@ import {
 } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { descriptionFragment } from './Description';
-import { creditFragment } from './Credit';
-import { allpayFragment } from './Allpay';
-import { ezpayFragment } from './Ezpay';
-import { gmoOrderFragment } from './Gmo';
-import { cathayAtmOrderFragment } from './CathayAtm';
-import { transactionNoFragment } from './TransactionNo';
+import { descriptionFragment } from './gqls/description';
+import { creditFragment } from './gqls/credit';
+import { allpayFragment } from './gqls/allPay';
+import { ezpayFragment } from './gqls/ezpay';
+import { gmoOrderFragment } from './gqls/gmo';
+import { cathayAtmOrderFragment } from './gqls/cathayAtm';
+import { transactionNoFragment } from './gqls/transactionNo';
 
 // typescript definition
 interface PropsType {
@@ -33,54 +32,6 @@ interface PropsType {
 }
 
 // definition
-export const paymentInfoFragment = gql`
-  fragment paymentInfoFragment on Order {
-    ...descriptionFragment
-    ...gmoOrderFragment
-    ...cathayAtmOrderFragment
-
-    paymentInfo {
-      ...creditFragment
-      ...allpayFragment
-      ...ezpayFragment
-      ...transactionNoFragment
-      id
-      list {
-        id
-        template
-        accountInfo {
-          allpay {
-            choosePayment: ChoosePayment
-          }
-          ezpay {
-            choosePayment: ezpayPaymentType
-          }
-          gmo {
-            choosePayment: paymentType
-          }
-          cathay {
-            choosePayment: type
-          }
-          cathay_atm: cathay {
-            choosePayment: type
-          }
-          chinatrust {
-            choosePayment: type
-          }
-        }
-      }
-    }
-  }
-
-  ${descriptionFragment}
-  ${creditFragment}
-  ${allpayFragment}
-  ${ezpayFragment}
-  ${gmoOrderFragment}
-  ${cathayAtmOrderFragment}
-  ${transactionNoFragment}
-`;
-
 export default React.memo(({ order }: PropsType) => {
   const { paymentInfo } = order;
   const template = paymentInfo?.list?.[0]?.template as

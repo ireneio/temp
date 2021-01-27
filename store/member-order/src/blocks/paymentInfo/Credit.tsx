@@ -1,6 +1,5 @@
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
@@ -13,16 +12,6 @@ interface PropsType {
 }
 
 // definition
-export const creditFragment = gql`
-  fragment creditFragment on paymentInfoType {
-    id
-    list {
-      id
-      card4no
-    }
-  }
-`;
-
 export default React.memo(({ paymentInfo }: PropsType) => {
   const { t } = useTranslation('member-order');
   const card4no = paymentInfo?.list?.[0]?.card4no;

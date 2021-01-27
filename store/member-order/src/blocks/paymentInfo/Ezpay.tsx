@@ -1,6 +1,5 @@
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import moment from 'moment';
 
@@ -15,7 +14,7 @@ import {
 } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { creditFragment } from './Credit';
+import { creditFragment } from './gqls/credit';
 
 // typescript definition
 interface PropsType {
@@ -24,24 +23,6 @@ interface PropsType {
 }
 
 // definition
-export const ezpayFragment = gql`
-  fragment ezpayFragment on paymentInfoType {
-    ...creditFragment
-    id
-    list {
-      id
-      memo {
-        ezpay {
-          paycode
-          expireDate
-        }
-      }
-    }
-  }
-
-  ${creditFragment}
-`;
-
 export default React.memo(({ choosePayment, paymentInfo }: PropsType) => {
   const { t } = useTranslation('member-order');
 

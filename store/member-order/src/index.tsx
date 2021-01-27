@@ -31,7 +31,7 @@ import {
 import { notFoundFragment } from './NotFound';
 import { productsFragment } from './Products';
 import { totalSheetFragment } from './TotalSheet';
-import { blocksFragment } from './blocks';
+import { blocksFragment } from './blocks/gqls';
 import { qaOrderMessageFragment } from './Qa';
 
 // typescript definition

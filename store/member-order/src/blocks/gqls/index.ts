@@ -1,0 +1,62 @@
+// import
+import gql from 'graphql-tag';
+
+// graphql import
+import { paymentInfoFragment } from '../paymentInfo/gqls';
+import { shipmentInfoFragment } from './shipmentInfo';
+import { logisticTrackingFragment } from './logisticTracking';
+import { invoiceInfoFragment } from '../invoiceInfo/gqls';
+
+// definition
+export const blocksFragment = gql`
+  fragment blocksFragment on Order {
+    id
+    userInfo {
+      name
+      email
+      mobile
+    }
+    address {
+      fullAddress
+    }
+    shipmentInfo {
+      status
+      list {
+        id
+        name
+        recipient {
+          name
+          email
+          mobile
+          comment
+        }
+        storeShipmentDetails {
+          id
+          searchLink
+        }
+        ...shipmentInfoFragment
+      }
+    }
+    paymentInfo {
+      id
+      status
+      list {
+        id
+        name
+      }
+    }
+    invoices {
+      ...invoiceInfoFragment
+    }
+    status
+    ...paymentInfoFragment
+    latestLogisticTracking {
+      ...logisticTrackingFragment
+    }
+  }
+
+  ${paymentInfoFragment}
+  ${shipmentInfoFragment}
+  ${logisticTrackingFragment}
+  ${invoiceInfoFragment}
+`;

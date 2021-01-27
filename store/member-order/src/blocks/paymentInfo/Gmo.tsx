@@ -1,6 +1,5 @@
 // import
 import React, { useContext } from 'react';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import moment from 'moment';
 
@@ -16,7 +15,7 @@ import {
 } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { creditFragment } from './Credit';
+import { creditFragment } from './gqls/credit';
 
 // typescript definition
 interface PropsType {
@@ -25,34 +24,6 @@ interface PropsType {
 }
 
 // definition
-export const gmoOrderFragment = gql`
-  fragment gmoOrderFragment on Order {
-    id
-    paymentInfo {
-      ...creditFragment
-      id
-      list {
-        id
-        atm {
-          bankCode
-          account
-          expireDate
-        }
-        cvsPayCode {
-          payCode
-          expireDate
-        }
-      }
-    }
-
-    priceInfo {
-      total
-    }
-  }
-
-  ${creditFragment}
-`;
-
 export default React.memo(({ choosePayment, order }: PropsType) => {
   const { t } = useTranslation('member-order');
   const { c } = useContext(CurrencyContext);

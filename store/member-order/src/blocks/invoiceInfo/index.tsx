@@ -1,6 +1,5 @@
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -14,7 +13,7 @@ import {
 } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { numberInfoFragment } from './NumberInfo';
+import { numberInfoFragment } from './gqls/numerInfo';
 
 // typescript definition
 interface PropsType {
@@ -26,25 +25,6 @@ interface PropsType {
 }
 
 // definition
-export const invoiceInfoFragment = gql`
-  fragment invoiceInfoFragment on OrderInvoice {
-    ...numberInfoFragment
-    id
-    type
-    method
-    carrier {
-      carrierType: type
-      carrierCode: code
-    }
-    loveCode
-    title
-    ban
-    address
-  }
-
-  ${numberInfoFragment}
-`;
-
 export default React.memo(({ invoices, children }: PropsType) => {
   const { t } = useTranslation('member-order');
 
