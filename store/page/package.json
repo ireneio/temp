@@ -4,14 +4,14 @@
   "description": "Use to render a page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.76.1",
+  "version": "0.76.2",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/cookies": "^0.76.1",
+    "@meepshop/cookies": "^0.76.2",
     "@meepshop/link": "^0.76.0",
     "@meepshop/page": "^0.76.0",
-    "@store/group": "^0.76.0"
+    "@store/group": "^0.76.2"
   },
   "keywords": ["page", "store"]
 }
