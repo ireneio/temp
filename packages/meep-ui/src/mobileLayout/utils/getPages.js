@@ -1,4 +1,11 @@
-export default (fixedtop, secondtop, sidebar) => {
+import { NOTLOGIN } from 'constants/isLogin';
+
+export default (
+  fixedtop,
+  secondtop,
+  sidebar,
+  { isLogin, hasStoreAppPlugin },
+) => {
   const design =
     fixedtop?.menu.design || secondtop?.menu.design || sidebar?.menu.design;
   const showSearchbar =
@@ -53,6 +60,56 @@ export default (fixedtop, secondtop, sidebar) => {
                   icon: action === 5 ? 'SHOPPING_CART' : 'PERSON',
                 },
                 imagePosition: 'ONLY',
+                pages:
+                  action === 5 || isLogin === NOTLOGIN
+                    ? []
+                    : [
+                        {
+                          id: 'ORDERS',
+                          title: null,
+                          action: 2,
+                          params: { url: '/orders' },
+                        },
+                        {
+                          id: 'SETTINGS',
+                          title: null,
+                          action: 2,
+                          params: { url: '/settings' },
+                        },
+                        {
+                          id: 'RECIPIENTS',
+                          title: null,
+                          action: 2,
+                          params: { url: '/recipients' },
+                        },
+                        {
+                          id: 'PASSWORD_CHANGE',
+                          title: null,
+                          action: 2,
+                          params: { url: '/passwordChange' },
+                        },
+                        ...(!hasStoreAppPlugin('wishList')
+                          ? []
+                          : [
+                              {
+                                id: 'WISHLIST',
+                                title: null,
+                                action: 2,
+                                params: { url: '/wishlist' },
+                              },
+                            ]),
+                        {
+                          id: 'REWARD_POINTS',
+                          title: null,
+                          action: 2,
+                          params: { url: '/rewardPoints' },
+                        },
+                        {
+                          id: 'LOGOUT',
+                          title: null,
+                          action: 'logout',
+                        },
+                      ],
               },
             ].sort((a, b) => b.action - a.action),
           };

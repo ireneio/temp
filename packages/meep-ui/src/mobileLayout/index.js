@@ -78,7 +78,7 @@ export default class MobileLayout extends React.PureComponent {
       pages,
       headerPages,
       design: { expandSubItem, ...design },
-    } = this.getPages(fixedtop, secondtop, sidebar);
+    } = this.getPages(fixedtop, secondtop, sidebar, this.props);
 
     const normal = {
       color: colors[2],
