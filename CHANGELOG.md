@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.76.2 (2021-01-27)
+
+#### :rocket: New Feature
+
+- [#1364](https://github.com/meepshop/meep-lerna/pull/1364) 前端 - OrderInvoice.issuedAt/invalidAt 改 DateTime ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1401](https://github.com/meepshop/meep-lerna/pull/1401) 【BUG】 使用 GMO 金流儲存信用卡號，無法送出訂單 ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`
+  - [#1399](https://github.com/meepshop/meep-lerna/pull/1399) 前台 - 修正選單功能 bug - 手機版 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.76.1 (2021-01-26)
 
 #### :rocket: New Feature
