@@ -31,7 +31,7 @@ export default React.memo(
 
       if (!issuedAt) return t('blocks.invoice.waiting');
 
-      return moment.unix(issuedAt).format('YYYY/MM/DD HH:mm:ss');
+      return moment(issuedAt).format('YYYY/MM/DD HH:mm:ss');
     }, [t, status, issuedAt]);
 
     return (
