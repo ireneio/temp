@@ -6,8 +6,19 @@ import { tutorialSettingObjectTypeFragment } from './tutorial';
 
 // definition
 export const getDashboard = gql`
-  query getDashboard($info: DashboardInfoInput) {
-    getDashboardInfo(getDashboardInfo: $info) {
+  query getDashboard {
+    getDashboardInfo(
+      getDashboardInfo: {
+        pendingOrder: true
+        notShipped: true
+        orderQA: true
+        productQA: true
+        userCount: true
+        orderMonthly: true
+        revenueMonthly: true
+        costMonthly: true
+      }
+    ) {
       pendingOrder
       notShipped
       orderQA
@@ -36,16 +47,4 @@ export const getDashboard = gql`
   }
 
   ${tutorialSettingObjectTypeFragment}
-`;
-
-export const getTimezone = gql`
-  query getTimezone {
-    viewer {
-      id
-      store {
-        id
-        timezone
-      }
-    }
-  }
 `;

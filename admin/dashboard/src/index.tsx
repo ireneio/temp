@@ -7,7 +7,6 @@ import { filter } from 'graphql-anywhere';
 import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
 import { Spin, Icon } from 'antd';
-import moment from 'moment';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { Currency as CurrencyContext } from '@meepshop/context';
@@ -23,14 +22,10 @@ import Tutorial from './Tutorial';
 import styles from './styles/index.less';
 
 // graphql typescript
-import {
-  getTimezone as getTimezoneType,
-  getDashboard as getDashboardType,
-  getDashboardVariables,
-} from '@meepshop/types/gqls/admin';
+import { getDashboard as getDashboardType } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { getDashboard, getTimezone } from './gqls';
+import { getDashboard } from './gqls';
 import { tutorialSettingObjectTypeFragment } from './gqls/tutorial';
 
 // typescript definition
@@ -42,43 +37,12 @@ interface PropsType {
 const Dashboard: NextPage<PropsType> = React.memo(
   (): React.ReactElement => {
     const { c } = useContext(CurrencyContext);
-    const getTimezoneResult = useQuery<getTimezoneType>(getTimezone);
-
-    const timezone = getTimezoneResult.data?.viewer?.store?.timezone;
-
-    const getDashboardResult = useQuery<
-      getDashboardType,
-      getDashboardVariables
-    >(getDashboard, {
-      skip: !timezone,
-      variables: {
-        info: {
-          pendingOrder: true,
-          notShipped: true,
-          orderQA: true,
-          productQA: true,
-          userCount: true,
-          orderMonthly: true,
-          revenueMonthly: true,
-          numberOfReminderSentMonthly: true,
-          timeRange: {
-            start: moment()
-              .utcOffset(parseFloat(timezone || '+8'))
-              .startOf('month')
-              .format('X'),
-            end: moment()
-              .utcOffset(parseFloat(timezone || '+8'))
-              .endOf('month')
-              .format('X'),
-          },
-        },
-      },
-    });
-
     const { t } = useTranslation('dashboard');
-    const { viewer, getDashboardInfo } = getDashboardResult?.data || {};
+    const { data } = useQuery<getDashboardType>(getDashboard);
 
-    if (!viewer || !viewer.id || !getDashboardInfo)
+    const { viewer, getDashboardInfo } = data || {};
+
+    if (!viewer?.id || !getDashboardInfo)
       return <Spin indicator={<Icon type="loading" spin />} />;
 
     const isUnpaidBillsDisplayed =
