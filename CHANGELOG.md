@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.76.3 (2021-01-28)
+
+#### :rocket: New Feature
+
+- [#1395](https://github.com/meepshop/meep-lerna/pull/1395) 【優化】move member-order blocks gqls to gqls folder ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1403](https://github.com/meepshop/meep-lerna/pull/1403) (@meepshop/store): fix widget default value ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.76.2 (2021-01-27)
 
 #### :rocket: New Feature
