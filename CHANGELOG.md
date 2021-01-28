@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.76.4 (2021-01-28)
+
+#### :boom: Breaking Change
+
+- [#1381](https://github.com/meepshop/meep-lerna/pull/1381) T7474 - 前端 - 移除 getDashboardInfo input 的 timeRange ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1386](https://github.com/meepshop/meep-lerna/pull/1386) 【優化】前台/頁面不存在(404)：新增前往商店首頁按鈕 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.76.3 (2021-01-28)
 
 #### :rocket: New Feature
