@@ -25,5 +25,17 @@
     "logout": "logout",
     "reset-password": "Reset Password"
   },
-  "locale": "English"
+  "locale": "English",
+  "page-not-found": {
+    "title": "It looks like the page does not exist",
+    "message": "Please double check that the URL is correct."
+  },
+  "server-error": {
+    "title": "Un oh! It seems that something is broken",
+    "message": "We are working hard to repair, thank you for your patience"
+  },
+  "api-error": {
+    "title": "Oops something went wrong!",
+    "message": "You can try again later."
+  }
 }

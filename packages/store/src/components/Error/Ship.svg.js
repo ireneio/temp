@@ -1,6 +1,9 @@
+// import
 import React from 'react';
+
 import './styles/ship.less';
 
+// definition
 export default () => (
   <div className="server_error_space">
     <svg

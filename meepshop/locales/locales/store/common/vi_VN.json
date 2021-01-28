@@ -25,5 +25,17 @@
     "logout": "logout",
     "reset-password": "Quên mật khẩu"
   },
-  "locale": "tiếng việt"
+  "locale": "tiếng việt",
+  "page-not-found": {
+    "title": "Có vẻ như trang không tồn tại",
+    "message": "Vui lòng kiểm tra lại xem URL có đúng không."
+  },
+  "server-error": {
+    "title": "Un oh! Dường như có thứ gì đó bị hỏng",
+    "message": "Chúng tôi đang làm việc chăm chỉ để sửa chữa, cảm ơn bạn đã kiên nhẫn"
+  },
+  "api-error": {
+    "title": "Rất tiếc, đã xảy ra lỗi!",
+    "message": "Bạn có thể thử lại sau."
+  }
 }

@@ -9,7 +9,7 @@
   },
   "want-to-open-store": "我也想要開店",
   "product-is-discontinued": "抱歉，此商品已下架",
-  "back-to-homepage": "回首頁",
+  "back-to-homepage": "回到商店首頁",
   "title": {
     "order": "訂單明細",
     "order-apply-list": "退換貨查詢",
@@ -25,5 +25,17 @@
     "logout": "登出",
     "reset-password": "重設密碼"
   },
-  "locale": "繁體中文"
+  "locale": "繁體中文",
+  "page-not-found": {
+    "title": "看起來頁面似乎不存在",
+    "message": "請再次檢查網址是否正確。"
+  },
+  "server-error": {
+    "title": "Un oh!好像有些地方壞掉了",
+    "message": "我們正努力修復中，謝謝你們的耐心等待"
+  },
+  "api-error": {
+    "title": "糟糕出錯了！",
+    "message": "可以晚點再回來試試。"
+  }
 }

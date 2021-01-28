@@ -25,5 +25,17 @@
     "logout": "ログアウト",
     "reset-password": "パスワード再設定"
   },
-  "locale": "日本語"
+  "locale": "日本語",
+  "page-not-found": {
+    "title": "ページが存在しないようです",
+    "message": "URLが正しいことを再確認してください。"
+  },
+  "server-error": {
+    "title": "Un oh！何かが壊れているようです",
+    "message": "私たちは修理に一生懸命取り組んでいます、あなたの忍耐に感謝します"
+  },
+  "api-error": {
+    "title": "おっと！何かが間違っていた！",
+    "message": "後で再試行できます。"
+  }
 }

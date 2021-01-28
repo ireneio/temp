@@ -1,3 +1,4 @@
+// import
 import React from 'react';
 
 import { oops_w110 as oops } from '@meepshop/images';
@@ -7,6 +8,7 @@ import ErrorProductNotFound from './ErrorProductNotFound';
 import ApiError from './ApiError';
 import ServerError from './ServerError';
 
+// definition
 // eslint-disable-next-line react/prop-types
 export default ({ error }) => {
   const { status } = error;

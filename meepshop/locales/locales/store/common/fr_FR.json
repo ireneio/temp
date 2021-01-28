@@ -25,5 +25,17 @@
     "logout": "Connectez - Out",
     "reset-password": "réinitialiser le mot de passe"
   },
-  "locale": "Le français"
+  "locale": "Le français",
+  "page-not-found": {
+    "title": "Il semble que la page n'existe pas",
+    "message": "Veuillez vérifier que l'URL est correcte."
+  },
+  "server-error": {
+    "title": "Un oh! Il semble que quelque chose est cassé",
+    "message": "Nous travaillons dur pour réparer, merci pour votre patience"
+  },
+  "api-error": {
+    "title": "Oups, une erreur s'est produite!",
+    "message": "Vous pouvez réessayer plus tard."
+  }
 }

@@ -25,5 +25,17 @@
     "logout": "cerrar sesión",
     "reset-password": "Restablecer la contraseña"
   },
-  "locale": "Espanol"
+  "locale": "Espanol",
+  "page-not-found": {
+    "title": "Parece que la página no existe",
+    "message": "Verifique que la URL sea correcta."
+  },
+  "server-error": {
+    "title": "Un oh! Parece que algo esta roto",
+    "message": "Estamos trabajando duro para reparar, gracias por su paciencia."
+  },
+  "api-error": {
+    "title": "¡Huy! Algo salió mal!",
+    "message": "Puede intentarlo de nuevo más tarde."
+  }
 }
