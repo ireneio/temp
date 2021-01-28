@@ -78,7 +78,7 @@ export default function modifyWidgetDataInClient(widgets = [], query, page) {
             module: widget.module,
             contentWidth: widget.contentWidth,
             showButton: widget.showButton,
-            drawerOnMobile: widget.drawerOnMobile ?? true,
+            drawerOnMobile: widget.drawerOnMobile ?? false,
             unfoldedVariantsOnMobile: widget.unfoldedVariantsOnMobile ?? true,
           };
         }
