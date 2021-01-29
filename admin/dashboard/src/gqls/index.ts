@@ -17,6 +17,7 @@ export const getDashboard = gql`
         orderMonthly: true
         revenueMonthly: true
         costMonthly: true
+        numberOfReminderSentMonthly: true
       }
     ) {
       pendingOrder
@@ -28,6 +29,7 @@ export const getDashboard = gql`
       revenueMonthly
       numberOfReminderSentMonthly
     }
+
     viewer {
       id
       role
