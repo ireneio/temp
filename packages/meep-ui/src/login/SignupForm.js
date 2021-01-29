@@ -49,14 +49,12 @@ class SignupForm extends React.PureComponent {
     const {
       data: {
         viewer: {
-          store: { shippableCountries, memberGroupCodes },
+          store: { shippableCountries, memberGroupPromoRules },
         },
       },
     } = await client.query({
       query: gql`
-        query getMemberGroupCodes(
-          $memberGroupCodeFilterInput: MemberGroupCodeFilterInput
-        ) {
+        query getMemberGroupCodes {
           viewer {
             id
             store {
@@ -64,19 +62,18 @@ class SignupForm extends React.PureComponent {
               shippableCountries {
                 id
               }
-              memberGroupCodes(filter: $memberGroupCodeFilterInput) {
+              memberGroupPromoRules {
                 id
               }
             }
           }
         }
       `,
-      variables: { memberGroupCodeFilterInput: { status: 'EXISTED' } },
     });
 
     this.setState({
       shippableCountries,
-      hasMemberGroupCode: !!memberGroupCodes.length,
+      hasMemberGroupCode: !!memberGroupPromoRules.length,
     });
   };
 
