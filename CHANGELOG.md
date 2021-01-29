@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.76.5 (2021-01-29)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1363](https://github.com/meepshop/meep-lerna/pull/1363) 【優化】特約代碼使用新 API - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- [#1404](https://github.com/meepshop/meep-lerna/pull/1404) 【BUG】dashboard - 本月購物金到期通知信無出現數字 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.76.4 (2021-01-28)
 
 #### :boom: Breaking Change
