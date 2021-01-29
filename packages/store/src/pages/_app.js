@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import 'isomorphic-unfetch';
 import '@store/utils/styles/base.less';
 import React from 'react';
@@ -14,6 +12,7 @@ import moment from 'moment';
 
 import ActionButton from '@meepshop/action-button';
 import { appWithTranslation } from '@meepshop/utils/lib/i18n';
+import { logger } from '@meepshop/utils/lib/logger';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
@@ -117,7 +116,7 @@ class MyApp extends App {
         response.status >= 400 &&
         response.status !== 403
       ) {
-        console.log(
+        logger.log(
           `Check >> ${response.status} (${XMeepshopDomain}) ${JSON.stringify(
             req.headers,
           )}`,
@@ -179,7 +178,7 @@ class MyApp extends App {
         },
       };
     } catch (error) {
-      console.log(error);
+      logger.log(error);
       if (typeof window !== 'undefined') {
         Utils.logToServer({
           type: 'getInitialProps in _app',
@@ -206,7 +205,7 @@ class MyApp extends App {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.error(error);
+    logger.error(error);
     Utils.logToServer({
       type: 'componentDidCatch',
       message: error.message,

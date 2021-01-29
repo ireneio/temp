@@ -1,3 +1,7 @@
+// import
+import { logger } from '@meepshop/utils/lib/logger';
+
+// definition
 export default ({ XMeepshopDomain, url, userAgent }) => {
   try {
     const regex = /^(([^\/?:]+)(:(\d+))?)?(\/?([^\/?#][^?#]*)?)?(\?([^#]+))?(#(.*))?/; // eslint-disable-line
@@ -20,8 +24,7 @@ export default ({ XMeepshopDomain, url, userAgent }) => {
       query: url.query,
     };
   } catch ({ message, stack }) {
-    // eslint-disable-next-line no-console
-    console.error({ message, stack });
+    logger.error({ message, stack });
     return {};
   }
 };

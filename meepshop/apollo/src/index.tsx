@@ -5,6 +5,7 @@ import { ApolloClient } from 'apollo-client';
 import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
 import { NextAppType, NextAppGetInitialPropsType } from '@meepshop/types';
+import { logger } from '@meepshop/utils/lib/logger';
 
 import { ConfigType as initApolloConfigType } from './utils/initApollo';
 
@@ -88,8 +89,7 @@ export const buildWithApollo = (config: initApolloConfigType) => (
         );
       } catch (e) {
         if (!shouldIgnoreUnauthorizedError(e.networkError))
-          // eslint-disable-next-line no-console
-          console.log(req.logId, 'Error while running `getDataFromTree`', e);
+          logger.info(req.logId, 'Error while running `getDataFromTree`', e);
       }
 
       Head.rewind();

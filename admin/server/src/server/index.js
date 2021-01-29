@@ -11,6 +11,7 @@ const uaParser = require('ua-parser-js');
 const { default: nextI18NextMiddleware } = require('next-i18next/middleware');
 
 const { default: nextI18next } = require('@meepshop/utils/lib/i18n');
+const { logger } = require('@meepshop/utils/lib/logger');
 
 const { publicRuntimeConfig } = require('../../next.config');
 
@@ -24,8 +25,7 @@ const handler = app.getRequestHandler();
 
 ['unhandledRejection', 'uncaughtException'].forEach(eventName => {
   process.on(eventName, error => {
-    // eslint-disable-next-line no-console
-    console.log(
+    logger.info(
       `${eventName} => ${JSON.stringify({
         msg: error.message,
         stk: error.stack,
@@ -74,8 +74,7 @@ module.exports = app.prepare().then(
 
       // listen
       server.listen(port, () => {
-        // eslint-disable-next-line no-console
-        console.log(`> Admin ready on http://localhost:${port}`);
+        logger.info(`> Admin ready on http://localhost:${port}`);
         resolve();
       });
     }),

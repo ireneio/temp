@@ -7,6 +7,7 @@ import { UserAgent } from 'fbjs';
 import { notification } from 'antd';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { logger } from '@meepshop/utils/lib/logger';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import {
   AdTrack as AdTrackContext,
@@ -190,8 +191,7 @@ class Container extends React.Component {
           { scope: 'public_profile,email' },
         );
       } catch ({ message, stack }) {
-        // eslint-disable-next-line no-console
-        console.error(`Error: ${message}, Stack: ${JSON.stringify(stack)}`);
+        logger.error(`Error: ${message}, Stack: ${JSON.stringify(stack)}`);
       }
     } else {
       // in-app browser

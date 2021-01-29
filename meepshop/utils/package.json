@@ -8,6 +8,7 @@
   "dependencies": {
     "@meepshop/images": "^0.76.0",
     "next-i18next": "^2.0.0",
+    "pino": "^6.11.0",
     "validator": "^13.5.2"
   },
   "keywords": ["meepshop", "utils"]

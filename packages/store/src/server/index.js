@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 const path = require('path');
 const os = require('os');
 
@@ -16,6 +14,7 @@ const uaParser = require('ua-parser-js');
 const { default: nextI18NextMiddleware } = require('next-i18next/middleware');
 
 const { default: nextI18next } = require('@meepshop/utils/lib/i18n');
+const { logger } = require('@meepshop/utils/lib/logger');
 
 const { publicRuntimeConfig } = require('../../next.config');
 const routes = require('./routes');
@@ -41,7 +40,7 @@ const handler = routes.getRequestHandler(app, ({ req, res, route, query }) => {
 
 ['unhandledRejection', 'uncaughtException'].forEach(eventName => {
   process.on(eventName, error => {
-    console.log(
+    logger.info(
       `${eventName} => ${JSON.stringify({
         msg: error.message,
         stk: error.stack,
@@ -128,7 +127,7 @@ module.exports = app.prepare().then(
         `);
       });
       server.post('/log', (req, res) => {
-        console.log(
+        logger.info(
           `#LOG#(${req.get('host')}) >>>  ${JSON.stringify(req.body)}`,
         );
         res.end();
@@ -180,7 +179,7 @@ module.exports = app.prepare().then(
       // error handler
       // eslint-disable-next-line consistent-return
       server.use((error, req, res, next) => {
-        console.error(`error: ${JSON.stringify(error)} (${os.hostname()})`);
+        logger.error(`error: ${JSON.stringify(error)} (${os.hostname()})`);
         if (res.headersSent) {
           // return to default error handler
           return next(error);
@@ -190,7 +189,7 @@ module.exports = app.prepare().then(
 
       // listen
       server.listen(port, () => {
-        console.log(`> Store ready on http://localhost:${port}`);
+        logger.info(`> Store ready on http://localhost:${port}`);
         resolve();
       });
     }),

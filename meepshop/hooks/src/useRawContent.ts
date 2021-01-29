@@ -4,6 +4,8 @@ import { RawDraftContentState, RawDraftInlineStyleRange } from 'draft-js';
 // import
 import { useMemo } from 'react';
 
+import { logger } from '@meepshop/utils/lib/logger';
+
 import { COLORS, FONTFAMILY } from './constants';
 
 // typescript definition
@@ -133,8 +135,7 @@ export const formatRawContent = (value?: string | null): object | null => {
 
     return rawContent;
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Error: failed to format content', `[${value}]`);
+    logger.error('Error: failed to format content', `[${value}]`);
     return null;
   }
 };

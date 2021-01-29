@@ -1,8 +1,8 @@
-/* eslint-disable no-console */
-
 const os = require('os');
 
 const proxy = require('express-http-proxy');
+
+const { logger } = require('@meepshop/utils/lib/logger');
 
 const { publicRuntimeConfig } = require('../../../next.config');
 
@@ -21,7 +21,7 @@ module.exports = proxy(API_HOST, {
     }
 
     if (proxyRes.statusCode >= 500)
-      console.log(
+      logger.info(
         `<ERROR> ${proxyRes.statusCode}: ${
           proxyRes.statusMessage
         } (${os.hostname()})`,
@@ -49,7 +49,7 @@ module.exports = proxy(API_HOST, {
     try {
       JSON.parse(proxyResData.toString('utf8'));
     } catch (err) {
-      console.log(
+      logger.info(
         `<< /api >> ${err.message} - ${proxyResData.toString('utf8')}`,
       );
     }

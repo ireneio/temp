@@ -6,6 +6,8 @@ import { onError } from 'apollo-link-error';
 import Router from 'next/router';
 import { notification } from 'antd';
 
+import { logger } from '@meepshop/utils/lib/logger';
+
 // typescript definition
 export type errorFilterType = ({ message }: Error) => boolean;
 
@@ -25,8 +27,7 @@ export const shouldIgnoreUnauthorizedError = (
 export default (errorFilter: errorFilterType): ReturnType<typeof onError> =>
   onError(({ response, graphQLErrors, networkError }) => {
     const errorLog =
-      // eslint-disable-next-line no-console
-      typeof window === 'undefined' ? console.log : notification.error;
+      typeof window === 'undefined' ? logger.info : notification.error;
 
     if (
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore

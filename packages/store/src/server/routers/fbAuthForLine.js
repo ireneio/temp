@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+const { logger } = require('@meepshop/utils/lib/logger');
 
 const { publicRuntimeConfig } = require('../../../next.config');
 
@@ -120,7 +120,7 @@ module.exports = async (req, res) => {
     else res.redirect('/login');
     /* Redirect back to website by condition - End */
   } catch (error) {
-    console.log(
+    logger.info(
       `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
     );
     res.redirect(301, `/login?error=${error.message}`);
