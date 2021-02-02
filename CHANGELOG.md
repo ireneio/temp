@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.76.7 (2021-02-02)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1409](https://github.com/meepshop/meep-lerna/pull/1409) Revert 移除 page fixedTop, secondTop, fixedBottom, sidebar menuId ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing)
+
 ## 0.76.6 (2021-02-02)
 
 #### :rocket: New Feature
