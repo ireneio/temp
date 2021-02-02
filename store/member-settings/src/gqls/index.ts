@@ -7,8 +7,8 @@ export const getUserInfo = gql`
     viewer {
       id
       group {
-        startDate
-        expireDate
+        startAt
+        expireAt
         unlimitedDate
       }
       memberGroup {

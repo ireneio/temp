@@ -8,8 +8,13 @@ import { Colors as ColorsContext } from '@meepshop/context';
 import useRemoveGmoCreditCard from './hooks/useRemoveGmoCreditCard';
 import styles from './styles/removeCreditCardInfo.less';
 
+// typescript definition
+interface PropsType {
+  id: string | null;
+}
+
 // definition
-export default React.memo(({ id }: { id: string | null }) => {
+export default React.memo(({ id }: PropsType) => {
   const { t } = useTranslation('member-settings');
   const colors = useContext(ColorsContext);
   const removeGmoCreditCard = useRemoveGmoCreditCard(id);

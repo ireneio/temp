@@ -10,8 +10,8 @@ export const updateUser = gql`
   }
 `;
 
-export const useSubmitUpdateCache = gql`
-  fragment useSubmitUpdateCache on User {
+export const useSubmitUserFragment = gql`
+  fragment useSubmitUserFragment on User {
     id
     name
     gender

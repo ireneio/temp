@@ -41,10 +41,10 @@ export default Form.create<FormComponentProps>()(
   React.memo(({ form }: FormComponentProps) => {
     const { t } = useTranslation('member-settings');
     const colors = useContext(ColorsContext);
-    const validator = useValidator();
     const { data } = useQuery<getUserInfoType>(getUserInfo);
-    const submit = useSubmit(form, data?.viewer?.id || null);
     const viewer = data?.viewer;
+    const submit = useSubmit(viewer?.id || null, form);
+    const validator = useValidator();
 
     if (!viewer) return <Spin indicator={<Icon type="loading" spin />} />;
 
@@ -71,11 +71,8 @@ export default Form.create<FormComponentProps>()(
       street = null,
       zipCode = null,
     } = address || {};
-    const {
-      startDate = moment().unix(),
-      expireDate = moment().unix(),
-      unlimitedDate = false,
-    } = group?.slice(-1)[0] || {};
+    const { startAt = moment(), expireAt = moment(), unlimitedDate = false } =
+      group?.slice(-1)[0] || {};
     const { name: groupName = '', type = 'normal' } = memberGroup || {};
     const { lockedBirthday = null, rewardPointReminder } = store?.setting || {};
     const gmoRememberCardEnabled =
@@ -89,11 +86,11 @@ export default Form.create<FormComponentProps>()(
 
         {type === 'normal' ? null : (
           <div className={styles.groupExpireDate} style={{ color: colors[3] }}>
-            {t('group-expire-date.info')}{' '}
-            {moment.unix(startDate).format('YYYY/MM/DD')} ~{' '}
+            {t('group-expire-date.info')} {moment(startAt).format('YYYY/MM/DD')}{' '}
+            ~{' '}
             {unlimitedDate
               ? t('group-expire-date.forever')
-              : moment.unix(expireDate).format('YYYY/MM/DD')}
+              : moment(expireAt).format('YYYY/MM/DD')}
           </div>
         )}
 

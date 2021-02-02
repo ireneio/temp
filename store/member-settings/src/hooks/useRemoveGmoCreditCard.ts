@@ -11,13 +11,13 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 // graphql typescript
 import {
   removeGmoCreditCard as removeGmoCreditCardType,
-  useRemoveGmoCreditCardUpdateCache as useRemoveGmoCreditCardUpdateCacheType,
+  useRemoveGmoCreditCardFragment as useRemoveGmoCreditCardFragmentType,
 } from '@meepshop/types/gqls/store';
 
 // graphql import
 import {
   removeGmoCreditCard,
-  useRemoveGmoCreditCardUpdateCache,
+  useRemoveGmoCreditCardFragment,
 } from '../gqls/useRemoveGmoCreditCard';
 
 // definition
@@ -26,8 +26,8 @@ export default (
 ): MutationTuple<removeGmoCreditCardType, unknown>[0] => {
   const { t } = useTranslation('member-settings');
   const [mutation] = useMutation<removeGmoCreditCardType>(removeGmoCreditCard, {
-    update: (cache: DataProxy, { data }: { data: removeGmoCreditCardType }) => {
-      if (data.removeGmoCreditCard.status !== 'SUCCESS') {
+    update: (cache: DataProxy, { data }) => {
+      if (data?.removeGmoCreditCard.status !== 'SUCCESS') {
         notification.error({
           message: t('remove-credit-card-info.fail'),
         });
@@ -40,9 +40,9 @@ export default (
 
       if (!id) return;
 
-      cache.writeFragment<useRemoveGmoCreditCardUpdateCacheType>({
+      cache.writeFragment<useRemoveGmoCreditCardFragmentType>({
         id,
-        fragment: useRemoveGmoCreditCardUpdateCache,
+        fragment: useRemoveGmoCreditCardFragment,
         data: {
           __typename: 'User',
           id,

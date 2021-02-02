@@ -6,12 +6,6 @@ const viewer = `
     gender
     email
     locale
-    groupId
-    group {
-      startDate
-      expireDate
-      unlimitedDate
-    }
     additionalInfo {
       mobile
       tel

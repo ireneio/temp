@@ -13,16 +13,16 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   updateUser as updateUserType,
   updateUserVariables,
-  useSubmitUpdateCache as useSubmitUpdateCacheType,
+  useSubmitUserFragment as useSubmitUserFragmentType,
 } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { updateUser, useSubmitUpdateCache } from '../gqls/useSubmit';
+import { updateUser, useSubmitUserFragment } from '../gqls/useSubmit';
 
 // definition
 export default (
-  { validateFieldsAndScroll }: FormComponentProps['form'],
   id: string | null,
+  { validateFieldsAndScroll }: FormComponentProps['form'],
 ): ((e: React.FormEvent<HTMLElement>) => void) => {
   const { t } = useTranslation('member-settings');
   const [mutation] = useMutation<updateUserType, updateUserVariables>(
@@ -99,9 +99,9 @@ export default (
 
             if (!id) return;
 
-            cache.writeFragment<useSubmitUpdateCacheType>({
+            cache.writeFragment<useSubmitUserFragmentType>({
               id,
-              fragment: useSubmitUpdateCache,
+              fragment: useSubmitUserFragment,
               data: {
                 ...input,
                 __typename: 'User',

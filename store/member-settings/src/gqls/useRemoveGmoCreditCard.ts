@@ -10,8 +10,8 @@ export const removeGmoCreditCard = gql`
   }
 `;
 
-export const useRemoveGmoCreditCardUpdateCache = gql`
-  fragment useRemoveGmoCreditCardUpdateCache on User {
+export const useRemoveGmoCreditCardFragment = gql`
+  fragment useRemoveGmoCreditCardFragment on User {
     id
     hasGmoCreditCard
   }
