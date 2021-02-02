@@ -27,15 +27,7 @@ export const getProductListCache = state => getIn(['listsReducer'])(state);
 export const getJoinedPage = (page, menus, logoUrl, mobileLogoUrl) => {
   let joinedPage = page;
   ['fixedtop', 'secondtop', 'sidebar', 'fixedbottom'].forEach(ele => {
-    let menuId = getIn([ele, 'menuId'])(joinedPage);
-    if (menuId === '') {
-      menuId = ele;
-    }
-    let menu =
-      R.find(R.propEq('id', menuId))(menus) ||
-      R.find(R.propEq('menuType', menuId || ele))(menus) ||
-      setDefaultValueForMenuDesign([]);
-
+    let menu = setDefaultValueForMenuDesign(joinedPage[ele].menu || {});
     const menuPages = getIn(['pages'])(menu) || [];
 
     if (ele === 'fixedbottom') {

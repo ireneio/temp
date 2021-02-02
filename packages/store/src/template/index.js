@@ -8,7 +8,6 @@ export const fixedtop = {
   color: '',
   hoverColor: '',
   background: '',
-  menuId: '',
   opacity: 100,
 };
 
@@ -20,7 +19,6 @@ export const sidebar = {
   background: '',
   title: {},
   showTitle: false,
-  menuId: '',
   fontSize: 18,
 };
 
@@ -40,6 +38,5 @@ export const secondtop = {
   title: {},
   useTitle: false,
   useLogo: false,
-  menuId: '',
   fontSize: 16,
 };
