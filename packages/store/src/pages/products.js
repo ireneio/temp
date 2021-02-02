@@ -57,13 +57,13 @@ class Products extends React.Component {
       i18n,
     } = this.props;
     const url = host + pathname;
-    const { addressTitle = '' } = page;
+    const { tabTitle = '' } = page;
     const { keywords, description = storeDescription, image } = page.seo || {};
 
     return (
       <>
         <Head>
-          <title>{addressTitle || storeName}</title>
+          <title>{tabTitle || storeName}</title>
           <meta name="description" content={description || storeDescription} />
           <meta name="keywords" content={keywords} />
           <link rel="icon" type="image/png" href={faviconUrl} />
@@ -72,7 +72,7 @@ class Products extends React.Component {
           {/* <!-- Facebook Open Graph --> */}
           <meta property="og:type" content="website" />
           <meta property="og:url" content={`https://${url}`} />
-          <meta property="og:title" content={addressTitle || storeName} />
+          <meta property="og:title" content={tabTitle || storeName} />
           <meta property="og:image" content={image || `${faviconUrl}?w=400`} />
           <meta property="og:image:width" content="400" />
           <meta property="og:image:height" content="300" />

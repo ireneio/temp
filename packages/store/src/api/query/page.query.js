@@ -80,7 +80,7 @@ const pageQuery = `
   pageType
   useExternalLink
   openNewWindow
-  addressTitle
+  tabTitle
   seo {
     keywords
     description

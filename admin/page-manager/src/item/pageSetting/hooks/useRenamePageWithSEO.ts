@@ -199,7 +199,7 @@ export default (
                   zh_TW
                 }
                 path
-                addressTitle
+                tabTitle
                 seo {
                   keywords
                   description
@@ -216,7 +216,7 @@ export default (
                 zh_TW: input.title || null,
               },
               path: input.path || null,
-              addressTitle: input.tabTitle || null,
+              tabTitle: input.tabTitle || null,
               seo: !input.seo
                 ? null
                 : {

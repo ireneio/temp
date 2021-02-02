@@ -50,7 +50,7 @@ export const editFragment = gql`
     }
     pageType
     path
-    addressTitle
+    tabTitle
     seo {
       keywords
       description
@@ -77,7 +77,7 @@ export default Form.create<PropsType>()(
 
       // props
       offset,
-      page: { id, title, pageType, path, addressTitle, seo },
+      page: { id, title, pageType, path, tabTitle, seo },
       variables,
       onClose,
     }: PropsType) => {
@@ -187,7 +187,7 @@ export default Form.create<PropsType>()(
 
                   {getFieldDecorator('tabTitle', {
                     rules: [{ required: true, message: t('form.required') }],
-                    initialValue: addressTitle,
+                    initialValue: tabTitle,
                   })(<Input placeholder={t('form.tabTitle.placeholder')} />)}
                 </FormItem>
               </>

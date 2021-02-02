@@ -33,7 +33,7 @@ const useCreatePageFragment = gql`
       isDefaultHomePage @client
       isDefaultProductTemplatePage @client
       path
-      addressTitle
+      tabTitle
       seo {
         keywords
         description
