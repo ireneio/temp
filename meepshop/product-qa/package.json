@@ -4,14 +4,14 @@
   "description": "Meepshop product qa",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.76.0",
+  "version": "0.76.6",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.76.0",
-    "@meepshop/hooks": "^0.76.0",
+    "@meepshop/context": "^0.76.6",
+    "@meepshop/hooks": "^0.76.6",
     "@meepshop/icons": "^0.76.0",
-    "@meepshop/utils": "^0.76.0",
+    "@meepshop/utils": "^0.76.6",
     "color": "^3.0.0",
     "validator": "^13.5.2"
   },
