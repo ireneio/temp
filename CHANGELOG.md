@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.76.6 (2021-02-02)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1368](https://github.com/meepshop/meep-lerna/pull/1368) 移除 page fixedTop, secondTop, fixedBottom, sidebar menuId ([@HsuTing](https://github.com/HsuTing))
+  - [#1355](https://github.com/meepshop/meep-lerna/pull/1355) T7278 - 前端 - 改用 UserMemberGroupObjectType.expire/startAt ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#1353](https://github.com/meepshop/meep-lerna/pull/1353) T7148 - 前端 - Use page.tabTitle instead of page.addressTitle ([@HsuTing](https://github.com/HsuTing))
+  - [#1405](https://github.com/meepshop/meep-lerna/pull/1405) 內部開單 - 使用 json log 幫助 server debug ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.76.5 (2021-01-29)
 
 #### :rocket: New Feature
