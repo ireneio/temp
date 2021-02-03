@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.76.8 (2021-02-03)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1413](https://github.com/meepshop/meep-lerna/pull/1413) 移除 page fixedTop, secondTop, fixedBottom, sidebar menuId ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- Other
+  - [#1398](https://github.com/meepshop/meep-lerna/pull/1398) 補回訂單運送狀態 '8 資料有誤' - 前端 ([@happycat6323](https://github.com/happycat6323))
+- `store`
+  - [#1411](https://github.com/meepshop/meep-lerna/pull/1411) Revert Revert Revert 移除 page fixedTop, secondTop, fixedBottom, sidebar menuId ([@HsuTing](https://github.com/HsuTing))
+  - [#1410](https://github.com/meepshop/meep-lerna/pull/1410) Revert Revert 移除 page fixedTop, secondTop, fixedBottom, sidebar menuId ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.76.7 (2021-02-02)
 
 #### :rocket: New Feature
