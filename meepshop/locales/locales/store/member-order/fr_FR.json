@@ -70,7 +70,8 @@
         "3": "Expédié",
         "4": "Pré-commander",
         "5": "Remplacement",
-        "6": "Revenir"
+        "6": "Revenir",
+        "8": "Décalage"
       },
       "type": "Livraison",
       "link": "Suivi de commande",

@@ -64,7 +64,8 @@
     "SHIPPED": "Enviada",
     "PRE_ORDER": "Hacer un pedido",
     "EXCHANGE": "Regreso",
-    "RETURN": "Procesamiento de devolución"
+    "RETURN": "Procesamiento de devolución",
+    "DATA_ERROR": "Información incorrecta"
   },
   "advanced-search": {
     "pre-placeholder": "Por favor seleccione",

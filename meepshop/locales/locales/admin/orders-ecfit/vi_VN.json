@@ -64,7 +64,8 @@
     "SHIPPED": "Vận chuyển",
     "PRE_ORDER": "Đặt hàng trước",
     "EXCHANGE": "Trở về",
-    "RETURN": "Xử lý hoàn trả"
+    "RETURN": "Xử lý hoàn trả",
+    "DATA_ERROR": "Thông tin không chính xác"
   },
   "advanced-search": {
     "pre-placeholder": "Xin hãy lựa chọn",

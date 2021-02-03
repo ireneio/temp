@@ -64,7 +64,8 @@
     "SHIPPED": "発送済み",
     "PRE_ORDER": "予約注文",
     "EXCHANGE": "戻る",
-    "RETURN": "返品の処理"
+    "RETURN": "返品の処理",
+    "DATA_ERROR": "間違った情報"
   },
   "advanced-search": {
     "pre-placeholder": "選んでください",

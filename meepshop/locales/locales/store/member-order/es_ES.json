@@ -70,7 +70,8 @@
         "3": "Enviada",
         "4": "Hacer un pedido",
         "5": "Reemplazo",
-        "6": "Regreso"
+        "6": "Regreso",
+        "8": "Desajuste"
       },
       "type": "Entrega",
       "link": "Orden de pista",

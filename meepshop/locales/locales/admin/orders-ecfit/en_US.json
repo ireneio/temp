@@ -64,7 +64,8 @@
     "SHIPPED": "Shipped",
     "PRE_ORDER": "Pre-order",
     "EXCHANGE": "Return",
-    "RETURN": "Processing return"
+    "RETURN": "Processing return",
+    "DATA_ERROR": "Incorrect information"
   },
   "advanced-search": {
     "pre-placeholder": "Please select",

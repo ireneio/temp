@@ -64,7 +64,8 @@
     "SHIPPED": "Expédié",
     "PRE_ORDER": "Pré-commander",
     "EXCHANGE": "Revenir",
-    "RETURN": "Traitement du retour"
+    "RETURN": "Traitement du retour",
+    "DATA_ERROR": "Information incorrecte"
   },
   "advanced-search": {
     "pre-placeholder": "Veuillez sélectionner",

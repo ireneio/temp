@@ -70,7 +70,8 @@
         "3": "Đã giao",
         "4": "Đặt hàng",
         "5": "Xử lý đổi hàng",
-        "6": "Xử lý trả hàng"
+        "6": "Xử lý trả hàng",
+        "8": "Thông tin không đúng"
       },
       "type": "Phương pháp vận chuyển",
       "link": "Truy vấn tình trạng vận chuyển",

@@ -70,7 +70,8 @@
         "3": "Dikirim",
         "4": "Pesan terlebih dahulu",
         "5": "Penggantian",
-        "6": "Kembali"
+        "6": "Kembali",
+        "8": "Ketidakcocokan"
       },
       "type": "Pengiriman",
       "link": "Lacak Pesanan",

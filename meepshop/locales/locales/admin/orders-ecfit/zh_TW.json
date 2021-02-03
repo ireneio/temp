@@ -64,7 +64,8 @@
     "SHIPPED": "已出貨",
     "PRE_ORDER": "預購",
     "EXCHANGE": "換貨處理",
-    "RETURN": "退貨處理中"
+    "RETURN": "退貨處理中",
+    "DATA_ERROR": "資料有誤"
   },
   "advanced-search": {
     "pre-placeholder": "請選擇",

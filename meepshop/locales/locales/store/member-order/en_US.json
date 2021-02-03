@@ -70,7 +70,8 @@
         "3": "Dispatched",
         "4": "Pre-order",
         "5": "Replacement",
-        "6": "Return"
+        "6": "Return",
+        "8": "Mismatch"
       },
       "type": "Delivery",
       "link": "Track Order",

@@ -64,7 +64,8 @@
     "SHIPPED": "Dikirim",
     "PRE_ORDER": "Pesan terlebih dahulu",
     "EXCHANGE": "Kembali",
-    "RETURN": "Memproses pengembalian"
+    "RETURN": "Memproses pengembalian",
+    "DATA_ERROR": "Informasi salah"
   },
   "advanced-search": {
     "pre-placeholder": "Silahkan pilih",

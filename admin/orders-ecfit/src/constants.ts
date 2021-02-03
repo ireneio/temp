@@ -32,6 +32,8 @@ export const STATUS_LIST = {
     'PRE_ORDER',
     'EXCHANGE',
     'RETURN',
+    '',
+    'DATA_ERROR',
   ],
 };
 

@@ -64,7 +64,8 @@
     "SHIPPED": "การจัดส่ง",
     "PRE_ORDER": "สั่งซื้อล่วงหน้า",
     "EXCHANGE": "กลับ",
-    "RETURN": "กำลังดำเนินการส่งคืน"
+    "RETURN": "กำลังดำเนินการส่งคืน",
+    "DATA_ERROR": "ข้อมูลไม่ถูกต้อง"
   },
   "advanced-search": {
     "pre-placeholder": "โปรดเลือก",
