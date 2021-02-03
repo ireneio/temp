@@ -1,4 +1,5 @@
 import localeQuery from './locale.query';
+import menuQuery from './menu.query';
 
 const fixedtopQuery = `
   module
@@ -13,7 +14,9 @@ const fixedtopQuery = `
   background
   activeColor
   hoverColor
-  menuId
+  menu {
+    ${menuQuery}
+  }
   opacity
   fontSize
 `;
@@ -27,7 +30,9 @@ const secondtopQuery = `
   }
   showTitle
   showLogo
-  menuId
+  menu {
+    ${menuQuery}
+  }
   color
   background
   fontSize
@@ -43,7 +48,9 @@ const sidebarQuery = `
     ${localeQuery}
   }
   showTitle
-  menuId
+  menu {
+    ${menuQuery}
+  }
   fontSize
 `;
 
@@ -52,7 +59,9 @@ const fixedbottomQuery = `
   title {
     ${localeQuery}
   }
-  menuId
+  menu {
+    ${menuQuery}
+  }
   color
   background
   fontSize
