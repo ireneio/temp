@@ -31,10 +31,6 @@ const mappingPackageNames: {
   'store/common': getPackageFolder('meepshop/store'),
 
   // TODO: should remove
-  'admin/orders': path.resolve(
-    getPackageFolder('admin/server'),
-    './locales/orders',
-  ),
   'store/activity': path.resolve(
     getPackageFolder('meepshop/store'),
     './locales/activity',

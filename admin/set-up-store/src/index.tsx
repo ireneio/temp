@@ -2,6 +2,12 @@
 import { NextPage } from 'next';
 import { FormComponentProps } from 'antd/lib/form/Form';
 
+// graphql typescript
+import {
+  isStoreCnameUsable,
+  isStoreCnameUsableVariables,
+} from '@meepshop/types/gqls/admin';
+
 // import
 import React from 'react';
 import gql from 'graphql-tag';
@@ -62,7 +68,10 @@ const SetUpStore: NextPage = Form.create<FormComponentProps>()(
                       data: {
                         isStoreCnameUsable: { result },
                       },
-                    } = await client.query({
+                    } = await client.query<
+                      isStoreCnameUsable,
+                      isStoreCnameUsableVariables
+                    >({
                       query: gql`
                         query isStoreCnameUsable($cname: String!) {
                           isStoreCnameUsable(cname: $cname) {

@@ -56,7 +56,11 @@ const Redirects: NextPage<PropsType> = React.memo(() => {
   if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
 
   return (
-    <Header title={t('title')} prevTitle={t('setting:title')} backTo="/setting">
+    <Header
+      title={t('title')}
+      prevTitle={t('common:setting')}
+      backTo="/setting"
+    >
       <div className={styles.top}>
         <div>
           <p>{t('subTitle')}</p>
@@ -97,7 +101,7 @@ const Redirects: NextPage<PropsType> = React.memo(() => {
 });
 
 Redirects.getInitialProps = async () => ({
-  namespacesRequired: ['setting', 'redirects'],
+  namespacesRequired: ['redirects'],
 });
 
 export default Redirects;

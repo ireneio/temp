@@ -3,6 +3,12 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 
 import { UseComputeOrderType } from '../hooks/useComputeOrder';
 
+// graphql typescript
+import {
+  ConvenienceStoreShipmentTypeEnum,
+  ConvenienceStoreTypeEnum,
+} from '@meepshop/types/gqls/meepshop';
+
 // import
 import React, { useState, useContext } from 'react';
 import { Form, Button, Input } from 'antd';
@@ -85,20 +91,20 @@ export default React.memo(
         {!isMapOpen ? null : (
           <ConvenienceStoreMap
             shipmentType={
-              shipment?.template === 'allpay'
+              (shipment?.template === 'allpay'
                 ? ECPAY_SHIPMENT_TYPE_ENUM(
                     shipment.storeShipmentDetails?.accountInfo?.allpay
                       ?.logisticsSubType || '',
                   )
-                : 'EZSHIP'
+                : 'EZSHIP') as ConvenienceStoreShipmentTypeEnum
             }
             storeTypes={
-              shipment?.template === 'allpay'
+              (shipment?.template === 'allpay'
                 ? ECPAY_CONVENIENCE_STORE_TYPE_ENUM(
                     shipment.storeShipmentDetails?.accountInfo?.allpay
                       ?.logisticsSubType || '',
                   )
-                : EZSHIP_CONVENIENCE_STORE_TYPE_ENUM
+                : EZSHIP_CONVENIENCE_STORE_TYPE_ENUM) as ConvenienceStoreTypeEnum[]
             }
             close={() => setIsMapOpen(false)}
             confirmStore={store => {

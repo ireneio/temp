@@ -20,16 +20,21 @@ import {
   getValidatedConvenienceStoreCities_validatedConvenienceStoreCities as getValidatedConvenienceStoreCitiesValidatedConvenienceStoreCities,
   getValidatedConvenienceStoreCities_validatedConvenienceStoreCities_children as getValidatedConvenienceStoreCitiesValidatedConvenienceStoreCitiesChildren,
   getValidatedConvenienceStoreAreas,
+  getValidatedConvenienceStoreAreasVariables,
+  getValidatedConvenienceStoreStreets,
+  getValidatedConvenienceStoreStreetsVariables,
   addressSelectCityFragment,
   addressSelectAreaFragment,
+  ConvenienceStoreShipmentTypeEnum,
+  ConvenienceStoreTypeEnum,
 } from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 interface PropsType
   extends I18nPropsType,
     Pick<QueryResult<getValidatedConvenienceStoreAreas>, 'client'> {
-  shipmentType: string;
-  storeTypes: string[];
+  shipmentType: ConvenienceStoreShipmentTypeEnum;
+  storeTypes: ConvenienceStoreTypeEnum[];
   cities: getValidatedConvenienceStoreCitiesValidatedConvenienceStoreCities[];
   filterConvenienceStores: (input: {}) => void;
 }
@@ -62,7 +67,10 @@ class AddressSelect extends React.PureComponent<PropsType> {
 
     selectedOption.loading = true;
 
-    const { data } = await client.query({
+    const { data } = await client.query<
+      getValidatedConvenienceStoreAreas,
+      getValidatedConvenienceStoreAreasVariables
+    >({
       query: gql`
         query getValidatedConvenienceStoreAreas(
           $input: ValidatedConvenienceStoreAreasFilterInput!
@@ -134,7 +142,10 @@ class AddressSelect extends React.PureComponent<PropsType> {
       filterConvenienceStores({ cityId: value[0] });
     } else if (value.length === 2) {
       if (!selectedOptions[1].streets.length) {
-        const { data } = await client.query({
+        const { data } = await client.query<
+          getValidatedConvenienceStoreStreets,
+          getValidatedConvenienceStoreStreetsVariables
+        >({
           query: gql`
             query getValidatedConvenienceStoreStreets(
               $input: ValidatedConvenienceStoreStreetsFilterInput!
@@ -266,8 +277,8 @@ export default React.memo(
     storeTypes,
     filterConvenienceStores,
   }: {
-    shipmentType: string;
-    storeTypes: string[];
+    shipmentType: ConvenienceStoreShipmentTypeEnum;
+    storeTypes: ConvenienceStoreTypeEnum[];
   } & Pick<PropsType, 'filterConvenienceStores'>) => (
     <Query<getValidatedConvenienceStoreCities>
       query={gql`

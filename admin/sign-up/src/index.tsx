@@ -2,6 +2,12 @@
 import { NextPage } from 'next';
 import { FormComponentProps } from 'antd/lib/form/Form';
 
+// graphql typescript
+import {
+  isMerchantEmailUsable,
+  isMerchantEmailUsableVariables,
+} from '@meepshop/types/gqls/admin';
+
 // import
 import React from 'react';
 import gql from 'graphql-tag';
@@ -61,7 +67,10 @@ const SignUp: NextPage = Form.create<FormComponentProps>()(
                             data: {
                               isMerchantEmailUsable: { result },
                             },
-                          } = await client.query({
+                          } = await client.query<
+                            isMerchantEmailUsable,
+                            isMerchantEmailUsableVariables
+                          >({
                             query: gql`
                               query isMerchantEmailUsable($email: String!) {
                                 isMerchantEmailUsable(email: $email) {

@@ -54,7 +54,7 @@ class OrdersEcfit extends React.PureComponent<I18nPropsType> {
             defaultValue={t('title')}
             dropdownClassName={styles.options}
             onChange={(value: string) => {
-              if (value === t('orders:title')) Router.push('/orders');
+              if (value === t('common:orders')) Router.push('/orders');
               else Router.push('/orders/ecfit');
             }}
             onMouseEnter={this.openSelect}
@@ -69,7 +69,7 @@ class OrdersEcfit extends React.PureComponent<I18nPropsType> {
             )}
             open={isOpened}
           >
-            <Option value={t('orders:title')}>{t('orders:title')}</Option>
+            <Option value={t('common:orders')}>{t('orders:title')}</Option>
             <Option value={t('title')}>
               <Icon type="profile" />
 
@@ -93,12 +93,7 @@ const OrdersEcfitPage: NextPage<PropsType> = React.memo(
 );
 
 OrdersEcfitPage.getInitialProps = async () => ({
-  namespacesRequired: [
-    'orders-ecfit',
-    'orders',
-    'date-picker',
-    'orders-export',
-  ],
+  namespacesRequired: ['orders-ecfit', 'date-picker', 'orders-export'],
 });
 
 export default OrdersEcfitPage;

@@ -18,14 +18,19 @@ import StoreDetail from './StoreDetail';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getValidatedConvenienceStores } from '@meepshop/types/gqls/meepshop';
+import {
+  getValidatedConvenienceStores,
+  getValidatedConvenienceStoresVariables,
+  ConvenienceStoreShipmentTypeEnum,
+  ConvenienceStoreTypeEnum,
+} from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 interface PropsType
   extends I18nPropsType,
     Pick<QueryResult<getValidatedConvenienceStores>, 'client'> {
-  shipmentType: string;
-  storeTypes: string[];
+  shipmentType: ConvenienceStoreShipmentTypeEnum;
+  storeTypes: ConvenienceStoreTypeEnum[];
   close: () => void;
   confirmStore: (store: {}) => void;
 }
@@ -59,7 +64,10 @@ class ConvenienceStoreMap extends React.PureComponent<PropsType> {
   }): Promise<void> => {
     const { client, shipmentType, storeTypes } = this.props;
 
-    const { data } = await client.query({
+    const { data } = await client.query<
+      getValidatedConvenienceStores,
+      getValidatedConvenienceStoresVariables
+    >({
       query: gql`
         query getValidatedConvenienceStores(
           $input: ValidatedConvenienceStoreFilterInput!
@@ -246,8 +254,8 @@ export default React.memo(
     close,
     confirmStore,
   }: Pick<PropsType, 'close' | 'confirmStore'> & {
-    shipmentType: string;
-    storeTypes: string[];
+    shipmentType: ConvenienceStoreShipmentTypeEnum;
+    storeTypes: ConvenienceStoreTypeEnum[];
   }) => (
     <ApolloConsumer>
       {client => (
