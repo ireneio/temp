@@ -4,7 +4,6 @@ import { NextPage } from 'next';
 // import
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Spin, Input, Icon, Collapse } from 'antd';
 
@@ -21,14 +20,17 @@ import styles from './styles/index.less';
 // graphql typescript
 import {
   PageTypeEnum,
-  getPages,
+  getPages as getPagesType,
   getPagesVariables,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { previewerStoreFragment, previewerPageFragment } from './Previewer';
-import { itemPageFragment } from './item';
-import { usePagesStoreFragment } from './hooks/usePages';
+import { itemPageFragment } from './item/gqls';
+import { getPages } from './gqls';
+import {
+  previewerStoreFragment,
+  previewerPageFragment,
+} from './gqls/previewer';
 
 // typescript definition
 interface PropsType {
@@ -38,33 +40,14 @@ interface PropsType {
 // definition
 const { Search } = Input;
 const { Panel } = Collapse;
-const query = gql`
-  query getPages(
-    $homePagesFilter: StorePagesFilterInput
-    $customPagesFilter: StorePagesFilterInput
-    $productTemplatePageFilter: StorePagesFilterInput
-  ) {
-    viewer {
-      id
-      store {
-        ...previewerStoreFragment
-        ...usePagesStoreFragment
-        id
-      }
-    }
-  }
-
-  ${previewerStoreFragment}
-  ${usePagesStoreFragment}
-`;
 
 const PageManager: NextPage<PropsType> = React.memo(
   (): React.ReactElement => {
     const { t } = useTranslation('page-manager');
     const { loading, error, data, variables, refetch } = useQuery<
-      getPages,
+      getPagesType,
       getPagesVariables
-    >(query, {
+    >(getPages, {
       variables: {
         homePagesFilter: { type: 'HOME' as PageTypeEnum },
         customPagesFilter: { type: 'CUSTOM' as PageTypeEnum },

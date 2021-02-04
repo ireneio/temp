@@ -5,7 +5,6 @@ import { ExecutionResult } from '@apollo/react-common';
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { message } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -15,53 +14,19 @@ import {
   editFragment as editFragmentType,
   renamePageWithSEO as renamePageWithSEOType,
   renamePageWithSEOVariables,
-  useRenamePageWithSEOCache,
+  useRenamePageWithSEOCache as useRenamePageWithSEOCacheType,
   useRenamePageWithSEOCacheVariables,
-  useRenamePageWithSEOFragment,
+  useRenamePageWithSEOFragment as useRenamePageWithSEOFragmentType,
 } from '@meepshop/types/gqls/admin';
 
+// graphql import
+import {
+  useRenamePageWithSEOCache,
+  renamePageWithSEO,
+  useRenamePageWithSEOFragment,
+} from '../gqls/useRenamePageWithSEO';
+
 // definition
-const query = gql`
-  query useRenamePageWithSEOCache(
-    $homePagesFilter: StorePagesFilterInput
-    $customPagesFilter: StorePagesFilterInput
-    $productTemplatePageFilter: StorePagesFilterInput
-  ) {
-    viewer {
-      id
-      store {
-        id
-        homePages: pages(first: 500, filter: $homePagesFilter) {
-          edges {
-            node {
-              id
-            }
-          }
-        }
-
-        customPages: pages(first: 500, filter: $customPagesFilter) {
-          edges {
-            node {
-              id
-            }
-          }
-        }
-
-        productTemplatePage: pages(
-          first: 500
-          filter: $productTemplatePageFilter
-        ) {
-          edges {
-            node {
-              id
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 export default (
   pageType: editFragmentType['pageType'],
   variables: useRenamePageWithSEOCacheVariables,
@@ -69,22 +34,14 @@ export default (
   input: renamePageWithSEOVariables['input'],
 ) => Promise<ExecutionResult<renamePageWithSEOType>>) => {
   const { t } = useTranslation('page-manager');
-  const [renamePageWithSEO] = useMutation<
+  const [mutation] = useMutation<
     renamePageWithSEOType,
     renamePageWithSEOVariables
-  >(
-    gql`
-      mutation renamePageWithSEO($input: RenamePageWithSEOInput!) {
-        renamePageWithSEO(input: $input) {
-          status
-        }
-      }
-    `,
-  );
+  >(renamePageWithSEO);
 
   return useCallback(
     (input: renamePageWithSEOVariables['input']) =>
-      renamePageWithSEO({
+      mutation({
         variables: { input },
         update: (
           cache: DataProxy,
@@ -106,20 +63,20 @@ export default (
           }
 
           const storeData = cache.readQuery<
-            useRenamePageWithSEOCache,
+            useRenamePageWithSEOCacheType,
             useRenamePageWithSEOCacheVariables
           >({
-            query,
+            query: useRenamePageWithSEOCache,
             variables,
           });
 
           if (!storeData) return;
 
           cache.writeQuery<
-            useRenamePageWithSEOCache,
+            useRenamePageWithSEOCacheType,
             useRenamePageWithSEOCacheVariables
           >({
-            query,
+            query: useRenamePageWithSEOCache,
             data: {
               ...storeData,
               viewer: !storeData.viewer
@@ -190,23 +147,9 @@ export default (
             },
             variables,
           });
-          cache.writeFragment<useRenamePageWithSEOFragment>({
+          cache.writeFragment<useRenamePageWithSEOFragmentType>({
             id: input.pageId,
-            fragment: gql`
-              fragment useRenamePageWithSEOFragment on Page {
-                id
-                title {
-                  zh_TW
-                }
-                path
-                tabTitle
-                seo {
-                  keywords
-                  description
-                  image
-                }
-              }
-            `,
+            fragment: useRenamePageWithSEOFragment,
             data: {
               __typename: 'Page',
               id: input.pageId,
@@ -230,6 +173,6 @@ export default (
           message.success(t('rename-page-with-seo.success'));
         },
       }),
-    [pageType, variables, t, renamePageWithSEO],
+    [pageType, variables, t, mutation],
   );
 };

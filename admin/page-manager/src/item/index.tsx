@@ -5,7 +5,6 @@ import useSelectedPageType from '../hooks/useSelectedPage';
 
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Tooltip } from 'antd';
 
@@ -24,13 +23,8 @@ import {
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
-
-import {
-  pageSettingStoreFragment,
-  pageSettingPageFragment,
-} from './pageSetting';
-import { prefixIconStoreFragment, prefixIconPageFragment } from './PrefixIcon';
+import { pageSettingPageFragment } from './pageSetting/gqls';
+import { prefixIconPageFragment } from './gqls/prefixIcon';
 
 // typescript definition
 interface PropsType
@@ -47,32 +41,6 @@ interface PropsType
 }
 
 // definition
-export const itemStoreFragment = gql`
-  fragment itemStoreFragment on Store {
-    id
-    ...pageSettingStoreFragment
-    ...prefixIconStoreFragment
-  }
-
-  ${pageSettingStoreFragment}
-  ${prefixIconStoreFragment}
-`;
-
-export const itemPageFragment = gql`
-  fragment itemPageFragment on Page {
-    ...pageSettingPageFragment
-    ...prefixIconPageFragment
-    id
-    title {
-      ...localeFragment
-    }
-  }
-
-  ${localeFragment}
-  ${pageSettingPageFragment}
-  ${prefixIconPageFragment}
-`;
-
 export default React.memo(
   ({
     page,

@@ -6,7 +6,6 @@ import useSelectedPageType from '../../../hooks/useSelectedPage';
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { message } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -18,74 +17,17 @@ import {
   editFragment as editFragmentType,
   duplicatePage as duplicatePageType,
   duplicatePageVariables,
-  useDuplicatePageReadCache,
+  useDuplicatePageReadCache as useDuplicatePageReadCacheType,
   useDuplicatePageReadCacheVariables,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+import {
+  useDuplicatePageReadCache,
+  duplicatePage,
+} from '../gqls/useDuplicatePage';
 
 // definition
-const useDuplicatePageFragment = gql`
-  fragment useDuplicatePageFragment on PageEdge {
-    node {
-      id
-      pageType
-      title {
-        ...localeFragment
-      }
-      isDefaultHomePage @client
-      isDefaultProductTemplatePage @client
-      path
-      tabTitle
-      seo {
-        keywords
-        description
-        image
-      }
-    }
-  }
-
-  ${localeFragment}
-`;
-
-const query = gql`
-  query useDuplicatePageReadCache(
-    $homePagesFilter: StorePagesFilterInput
-    $customPagesFilter: StorePagesFilterInput
-    $productTemplatePageFilter: StorePagesFilterInput
-  ) {
-    viewer {
-      id
-      store {
-        id
-        homePages: pages(first: 500, filter: $homePagesFilter) {
-          edges {
-            ...useDuplicatePageFragment
-          }
-        }
-
-        customPages: pages(first: 500, filter: $customPagesFilter) {
-          edges {
-            ...useDuplicatePageFragment
-          }
-        }
-
-        productTemplatePage: pages(
-          first: 500
-          filter: $productTemplatePageFilter
-        ) {
-          edges {
-            ...useDuplicatePageFragment
-          }
-        }
-      }
-    }
-  }
-
-  ${useDuplicatePageFragment}
-`;
-
 export default (
   id: string,
   pageType: editFragmentType['pageType'],
@@ -93,22 +35,8 @@ export default (
   setSelectedPage: ReturnType<typeof useSelectedPageType>['setSelectedPage'],
 ): (() => void) => {
   const { t } = useTranslation('page-manager');
-  const [duplicatePage] = useMutation<
-    duplicatePageType,
-    duplicatePageVariables
-  >(
-    gql`
-      mutation duplicatePage($input: DuplicatePageInput!) {
-        duplicatePage(input: $input) {
-          status
-          duplicatedPage {
-            ...useDuplicatePageFragment
-          }
-        }
-      }
-
-      ${useDuplicatePageFragment}
-    `,
+  const [mutation] = useMutation<duplicatePageType, duplicatePageVariables>(
+    duplicatePage,
     {
       update: (cache: DataProxy, { data }: { data: duplicatePageType }) => {
         if (data.duplicatePage?.status !== 'OK') {
@@ -117,10 +45,10 @@ export default (
         }
 
         const storeData = cache.readQuery<
-          useDuplicatePageReadCache,
+          useDuplicatePageReadCacheType,
           useDuplicatePageReadCacheVariables
         >({
-          query,
+          query: useDuplicatePageReadCache,
           variables,
         });
         const duplicatedPage: getPagesViewerStoreHomePagesEdges | null =
@@ -129,10 +57,10 @@ export default (
         if (!storeData || !duplicatedPage) return;
 
         cache.writeQuery<
-          useDuplicatePageReadCache,
+          useDuplicatePageReadCacheType,
           useDuplicatePageReadCacheVariables
         >({
-          query,
+          query: useDuplicatePageReadCache,
           data: {
             ...storeData,
             viewer: !storeData.viewer
@@ -181,7 +109,7 @@ export default (
   );
 
   return useCallback(() => {
-    duplicatePage({
+    mutation({
       variables: {
         input: {
           pageId: id,
@@ -196,5 +124,5 @@ export default (
 
       setSelectedPage(duplicatedPage.node);
     });
-  }, [id, pageType, setSelectedPage, duplicatePage]);
+  }, [id, pageType, setSelectedPage, mutation]);
 };

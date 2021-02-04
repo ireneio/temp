@@ -3,7 +3,6 @@ import { languageType } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { Spin, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -18,9 +17,6 @@ import {
   previewerPageFragment as previewerPageFragmentType,
 } from '@meepshop/types/gqls/admin';
 
-// graphql import
-import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
-
 // typescript definition
 interface PropsType {
   store: previewerStoreFragmentType;
@@ -28,27 +24,6 @@ interface PropsType {
 }
 
 // definition
-export const previewerStoreFragment = gql`
-  fragment previewerStoreFragment on Store {
-    id
-    domain
-    defaultDomain
-  }
-`;
-
-export const previewerPageFragment = gql`
-  fragment previewerPageFragment on Page {
-    id
-    title {
-      ...localeFragment
-    }
-    pageType
-    path
-  }
-
-  ${localeFragment}
-`;
-
 export default React.memo(
   ({
     store: { domain, defaultDomain },

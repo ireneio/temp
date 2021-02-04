@@ -1,6 +1,5 @@
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { Tooltip, Icon } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -17,26 +16,6 @@ interface PropsType {
 }
 
 // definition
-export const prefixIconStoreFragment = gql`
-  fragment prefixIconStoreFragment on Store {
-    id
-    defaultHomePage {
-      id
-    }
-    defaultProductTemplatePage {
-      id
-    }
-  }
-`;
-
-export const prefixIconPageFragment = gql`
-  fragment prefixIconPageFragment on Page {
-    id
-    isDefaultHomePage @client
-    isDefaultProductTemplatePage @client
-  }
-`;
-
 export default React.memo(
   ({
     page: { isDefaultHomePage, isDefaultProductTemplatePage },

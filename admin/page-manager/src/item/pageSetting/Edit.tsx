@@ -6,7 +6,6 @@ import { languageType } from '@meepshop/utils/lib/i18n';
 // import
 import React from 'react';
 import ReactDOM from 'react-dom';
-import gql from 'graphql-tag';
 import { useApolloClient } from '@apollo/react-hooks';
 import { Form, Input, Icon, Button } from 'antd';
 
@@ -25,13 +24,13 @@ import styles from './styles/edit.less';
 // graphql typescript
 import {
   editFragment as editFragmentType,
-  checkIfPageExistsBeforeRenamingSeo,
+  checkIfPageExistsBeforeRenamingSeo as checkIfPageExistsBeforeRenamingSeoType,
   checkIfPageExistsBeforeRenamingSeoVariables,
   useRenamePageWithSEOCacheVariables,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+import { checkIfPageExistsBeforeRenamingSeo } from './gqls/edit';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
@@ -42,31 +41,6 @@ interface PropsType extends FormComponentProps {
 }
 
 // definition
-export const editFragment = gql`
-  fragment editFragment on Page {
-    id
-    title {
-      ...localeFragment
-    }
-    pageType
-    path
-    tabTitle
-    seo {
-      keywords
-      description
-      image
-    }
-  }
-
-  ${localeFragment}
-`;
-
-const query = gql`
-  query checkIfPageExistsBeforeRenamingSeo($input: String!) {
-    isPagePathExists(pagePath: $input)
-  }
-`;
-
 const { Item: FormItem } = Form;
 
 export default Form.create<PropsType>()(
@@ -147,10 +121,10 @@ export default Form.create<PropsType>()(
                           if (!value || value === path) return;
 
                           const { data } = await client.query<
-                            checkIfPageExistsBeforeRenamingSeo,
+                            checkIfPageExistsBeforeRenamingSeoType,
                             checkIfPageExistsBeforeRenamingSeoVariables
                           >({
-                            query,
+                            query: checkIfPageExistsBeforeRenamingSeo,
                             variables: {
                               input: value,
                             },

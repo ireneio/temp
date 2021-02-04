@@ -1,6 +1,5 @@
 // import
 import { useMemo } from 'react';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 
 // graphql typescript
@@ -11,65 +10,9 @@ import {
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
-
-import { previewerPageFragment } from '../Previewer';
-import { itemStoreFragment, itemPageFragment } from '../item';
+import { usePagesStoreFragment } from '../gqls/usePages';
 
 // definition
-export const usePagesPageFragment = gql`
-  fragment usePagesPageFragment on Page {
-    ...itemPageFragment
-    ...previewerPageFragment
-    id
-    title {
-      ...localeFragment
-    }
-  }
-
-  ${localeFragment}
-  ${itemPageFragment}
-  ${previewerPageFragment}
-`;
-
-export const usePagesStoreFragment = gql`
-  fragment usePagesStoreFragment on Store {
-    ...itemStoreFragment
-
-    id
-    homePages: pages(first: 500, filter: $homePagesFilter) {
-      edges {
-        node {
-          ...usePagesPageFragment
-        }
-      }
-    }
-
-    customPages: pages(first: 500, filter: $customPagesFilter) {
-      edges {
-        node {
-          ...usePagesPageFragment
-        }
-      }
-    }
-
-    defaultProductListPage {
-      ...usePagesPageFragment
-    }
-
-    productTemplatePage: pages(first: 500, filter: $productTemplatePageFilter) {
-      edges {
-        node {
-          ...usePagesPageFragment
-        }
-      }
-    }
-  }
-
-  ${usePagesPageFragment}
-  ${itemStoreFragment}
-`;
-
 export default (
   data: getPages | null,
   variables: getPagesVariables,

@@ -4,7 +4,6 @@ import { DataProxy } from 'apollo-cache';
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { message } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -13,122 +12,91 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 import {
   assignDefaultProductTemplatePage as assignDefaultProductTemplatePageType,
   assignDefaultProductTemplatePageVariables,
+  useAssignDefaultProductTemplatePageReadCache as useAssignDefaultProductTemplatePageReadCacheType,
+  useAssignDefaultProductTemplatePageFragment as useAssignDefaultProductTemplatePageFragmentType,
+  useAssignDefaultProductTemplatePageUpdateNewPageFragment as useAssignDefaultProductTemplatePageUpdateNewPageFragmentType,
+  useAssignDefaultProductTemplatePageUpdatePrevPageFragment as useAssignDefaultProductTemplatePageUpdatePrevPageFragmentType,
+} from '@meepshop/types/gqls/admin';
+
+// graphql import
+import {
+  assignDefaultProductTemplatePage,
   useAssignDefaultProductTemplatePageReadCache,
   useAssignDefaultProductTemplatePageFragment,
   useAssignDefaultProductTemplatePageUpdateNewPageFragment,
   useAssignDefaultProductTemplatePageUpdatePrevPageFragment,
-} from '@meepshop/types/gqls/admin';
+} from '../gqls/useAssignDefaultProductTemplatePage';
 
 // definition
 export default (id: string): (() => void) => {
   const { t } = useTranslation('page-manager');
-  const [assignDefaultProductTemplatePage] = useMutation<
+  const [mutation] = useMutation<
     assignDefaultProductTemplatePageType,
     assignDefaultProductTemplatePageVariables
-  >(
-    gql`
-      mutation assignDefaultProductTemplatePage(
-        $input: AssignDefaultProductTemplatePageInput!
-      ) {
-        assignDefaultProductTemplatePage(input: $input) {
-          status
-        }
+  >(assignDefaultProductTemplatePage, {
+    update: (
+      cache: DataProxy,
+      { data }: { data: assignDefaultProductTemplatePageType },
+    ) => {
+      if (data.assignDefaultProductTemplatePage?.status !== 'OK') {
+        message.error(t('assign-default-product-template-page.error'));
+        return;
       }
-    `,
-    {
-      update: (
-        cache: DataProxy,
-        { data }: { data: assignDefaultProductTemplatePageType },
-      ) => {
-        if (data.assignDefaultProductTemplatePage?.status !== 'OK') {
-          message.error(t('assign-default-product-template-page.error'));
-          return;
-        }
 
-        const storeData = cache.readQuery<
-          useAssignDefaultProductTemplatePageReadCache
-        >({
-          query: gql`
-            query useAssignDefaultProductTemplatePageReadCache {
-              viewer {
-                id
-                store {
-                  id
-                  defaultProductTemplatePage {
-                    id
-                  }
-                }
-              }
-            }
-          `,
-        });
-        const storeId = storeData?.viewer?.store?.id;
-        const prevDefaultProductTemplatePageId =
-          storeData?.viewer?.store?.defaultProductTemplatePage.id;
+      const storeData = cache.readQuery<
+        useAssignDefaultProductTemplatePageReadCacheType
+      >({
+        query: useAssignDefaultProductTemplatePageReadCache,
+      });
+      const storeId = storeData?.viewer?.store?.id;
+      const prevDefaultProductTemplatePageId =
+        storeData?.viewer?.store?.defaultProductTemplatePage.id;
 
-        if (!storeId) return;
+      if (!storeId) return;
 
-        cache.writeFragment<useAssignDefaultProductTemplatePageFragment>({
+      cache.writeFragment<useAssignDefaultProductTemplatePageFragmentType>({
+        id: storeId,
+        fragment: useAssignDefaultProductTemplatePageFragment,
+        data: {
+          __typename: 'Store',
           id: storeId,
-          fragment: gql`
-            fragment useAssignDefaultProductTemplatePageFragment on Store {
-              id
-              defaultProductTemplatePage {
-                id
-              }
-            }
-          `,
-          data: {
-            __typename: 'Store',
-            id: storeId,
-            defaultProductTemplatePage: {
-              __typename: 'Page',
-              id,
-            },
-          },
-        });
-
-        cache.writeFragment<
-          useAssignDefaultProductTemplatePageUpdateNewPageFragment
-        >({
-          id,
-          fragment: gql`
-            fragment useAssignDefaultProductTemplatePageUpdateNewPageFragment on Page {
-              id
-              isDefaultProductTemplatePage @client
-            }
-          `,
-          data: {
+          defaultProductTemplatePage: {
             __typename: 'Page',
             id,
-            isDefaultProductTemplatePage: true,
+          },
+        },
+      });
+
+      cache.writeFragment<
+        useAssignDefaultProductTemplatePageUpdateNewPageFragmentType
+      >({
+        id,
+        fragment: useAssignDefaultProductTemplatePageUpdateNewPageFragment,
+        data: {
+          __typename: 'Page',
+          id,
+          isDefaultProductTemplatePage: true,
+        },
+      });
+
+      if (prevDefaultProductTemplatePageId)
+        cache.writeFragment<
+          useAssignDefaultProductTemplatePageUpdatePrevPageFragmentType
+        >({
+          id: prevDefaultProductTemplatePageId,
+          fragment: useAssignDefaultProductTemplatePageUpdatePrevPageFragment,
+          data: {
+            __typename: 'Page',
+            id: prevDefaultProductTemplatePageId,
+            isDefaultProductTemplatePage: false,
           },
         });
 
-        if (prevDefaultProductTemplatePageId)
-          cache.writeFragment<
-            useAssignDefaultProductTemplatePageUpdatePrevPageFragment
-          >({
-            id: prevDefaultProductTemplatePageId,
-            fragment: gql`
-              fragment useAssignDefaultProductTemplatePageUpdatePrevPageFragment on Page {
-                id
-                isDefaultProductTemplatePage @client
-              }
-            `,
-            data: {
-              __typename: 'Page',
-              id: prevDefaultProductTemplatePageId,
-              isDefaultProductTemplatePage: false,
-            },
-          });
-
-        message.success(t('assign-default-product-template-page.success'));
-      },
+      message.success(t('assign-default-product-template-page.success'));
     },
-  );
+  });
 
   return useCallback(() => {
-    assignDefaultProductTemplatePage({ variables: { input: { pageId: id } } });
-  }, [id, assignDefaultProductTemplatePage]);
+    mutation({ variables: { input: { pageId: id } } });
+  }, [id, mutation]);
 };

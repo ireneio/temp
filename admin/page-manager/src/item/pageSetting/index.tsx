@@ -3,14 +3,13 @@ import useSelectedPageType from '../../hooks/useSelectedPage';
 
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Popover, Tooltip, Icon } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { DefaultLayoutIcon } from '@meepshop/icons';
 
-import Edit, { editFragment } from './Edit';
+import Edit from './Edit';
 import usePageSettingItems from './hooks/usePageSettingItems';
 import useEditOffset from './hooks/useEditOffset';
 import styles from './styles/index.less';
@@ -22,10 +21,8 @@ import {
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import {
-  usePageSettingItemsStoreFragment,
-  usePageSettingItemsPageFragment,
-} from './hooks/usePageSettingItems';
+import { editFragment } from './gqls/edit';
+import { usePageSettingItemsPageFragment } from './gqls/usePageSettingItems';
 
 // typescript definition
 interface PropsType {
@@ -40,27 +37,6 @@ interface PropsType {
 }
 
 // definition
-export const pageSettingStoreFragment = gql`
-  fragment pageSettingStoreFragment on Store {
-    id
-    ...usePageSettingItemsStoreFragment
-  }
-
-  ${usePageSettingItemsStoreFragment}
-`;
-
-export const pageSettingPageFragment = gql`
-  fragment pageSettingPageFragment on Page {
-    ...editFragment
-    ...usePageSettingItemsPageFragment
-    id
-    pageType
-  }
-
-  ${editFragment}
-  ${usePageSettingItemsPageFragment}
-`;
-
 export default React.memo(
   ({
     page,

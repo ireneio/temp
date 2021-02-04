@@ -5,7 +5,6 @@ import { useTranslation } from '@meepshop/utils/lib/i18n';
 
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { useApolloClient } from '@apollo/react-hooks';
 import { Form, Modal, Input, Switch, Icon } from 'antd';
 
@@ -21,11 +20,14 @@ import styles from './styles/modal.less';
 
 // graphql typescript
 import {
-  checkIfPageExistsBeforeCreatingPage,
+  checkIfPageExistsBeforeCreatingPage as checkIfPageExistsBeforeCreatingPageType,
   checkIfPageExistsBeforeCreatingPageVariables,
   getPagesVariables,
   usePagesPageFragment as usePagesPageFragmentType,
 } from '@meepshop/types/gqls/admin';
+
+// graphql import
+import { checkIfPageExistsBeforeCreatingPage } from './gqls/modal';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
@@ -36,11 +38,6 @@ interface PropsType extends FormComponentProps {
 
 // definition
 const { Item: FormItem } = Form;
-const query = gql`
-  query checkIfPageExistsBeforeCreatingPage($input: String!) {
-    isPagePathExists(pagePath: $input)
-  }
-`;
 
 export default Form.create<PropsType>()(
   React.memo(
@@ -110,10 +107,10 @@ export default Form.create<PropsType>()(
                           if (!value) return;
 
                           const { data } = await client.query<
-                            checkIfPageExistsBeforeCreatingPage,
+                            checkIfPageExistsBeforeCreatingPageType,
                             checkIfPageExistsBeforeCreatingPageVariables
                           >({
-                            query,
+                            query: checkIfPageExistsBeforeCreatingPage,
                             variables: {
                               input: value,
                             },

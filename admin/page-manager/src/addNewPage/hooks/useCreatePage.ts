@@ -4,7 +4,6 @@ import { MutationTuple } from '@apollo/react-hooks';
 
 // import
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { message } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
@@ -14,91 +13,20 @@ import {
   getPages_viewer_store_homePages_edges as getPagesViewerStoreHomePagesEdges,
   createPage as createPageType,
   createPageVariables,
-  useCreatePageReadCache,
+  useCreatePageReadCache as useCreatePageReadCacheType,
   useCreatePageReadCacheVariables,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+import { useCreatePageReadCache, createPage } from '../gqls/useCreatePage';
 
 // definition
-const useCreatePageFragment = gql`
-  fragment useCreatePageFragment on PageEdge {
-    node {
-      id
-      pageType
-      title {
-        ...localeFragment
-      }
-      isDefaultHomePage @client
-      isDefaultProductTemplatePage @client
-      path
-      tabTitle
-      seo {
-        keywords
-        description
-        image
-      }
-    }
-  }
-
-  ${localeFragment}
-`;
-
-const query = gql`
-  query useCreatePageReadCache(
-    $homePagesFilter: StorePagesFilterInput
-    $customPagesFilter: StorePagesFilterInput
-    $productTemplatePageFilter: StorePagesFilterInput
-  ) {
-    viewer {
-      id
-      store {
-        id
-        homePages: pages(first: 500, filter: $homePagesFilter) {
-          edges {
-            ...useCreatePageFragment
-          }
-        }
-
-        customPages: pages(first: 500, filter: $customPagesFilter) {
-          edges {
-            ...useCreatePageFragment
-          }
-        }
-
-        productTemplatePage: pages(
-          first: 500
-          filter: $productTemplatePageFilter
-        ) {
-          edges {
-            ...useCreatePageFragment
-          }
-        }
-      }
-    }
-  }
-
-  ${useCreatePageFragment}
-`;
-
 export default (
   variables: useCreatePageReadCacheVariables,
 ): MutationTuple<createPageType, createPageVariables>[0] => {
   const { t } = useTranslation('page-manager');
-  const [createPage] = useMutation<createPageType, createPageVariables>(
-    gql`
-      mutation createPage($input: CreatePageInput!) {
-        createPage(input: $input) {
-          status
-          newPage {
-            ...useCreatePageFragment
-          }
-        }
-      }
-
-      ${useCreatePageFragment}
-    `,
+  const [mutation] = useMutation<createPageType, createPageVariables>(
+    createPage,
     {
       update: (cache: DataProxy, { data }: { data: createPageType }) => {
         if (data.createPage?.status !== 'OK') {
@@ -107,10 +35,10 @@ export default (
         }
 
         const storeData = cache.readQuery<
-          useCreatePageReadCache,
+          useCreatePageReadCacheType,
           useCreatePageReadCacheVariables
         >({
-          query,
+          query: useCreatePageReadCache,
           variables,
         });
         const newPage: getPagesViewerStoreHomePagesEdges | null =
@@ -119,10 +47,10 @@ export default (
         if (!storeData || !newPage) return;
 
         cache.writeQuery<
-          useCreatePageReadCache,
+          useCreatePageReadCacheType,
           useCreatePageReadCacheVariables
         >({
-          query,
+          query: useCreatePageReadCache,
           data: {
             ...storeData,
             viewer: !storeData.viewer
@@ -169,5 +97,5 @@ export default (
     },
   );
 
-  return createPage;
+  return mutation;
 };

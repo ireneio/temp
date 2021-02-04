@@ -3,7 +3,6 @@ import useSelectedPageType from '../../../hooks/useSelectedPage';
 
 // import
 import { useMemo } from 'react';
-import gql from 'graphql-tag';
 
 import useAssignDefaultHomePage from './useAssignDefaultHomePage';
 import useAssignDefaultProductTemplatePage from './useAssignDefaultProductTemplatePage';
@@ -17,27 +16,6 @@ import {
 } from '@meepshop/types/gqls/admin';
 
 // definition
-export const usePageSettingItemsStoreFragment = gql`
-  fragment usePageSettingItemsStoreFragment on Store {
-    id
-    defaultHomePage {
-      id
-    }
-    defaultProductTemplatePage {
-      id
-    }
-  }
-`;
-
-export const usePageSettingItemsPageFragment = gql`
-  fragment usePageSettingItemsPageFragment on Page {
-    id
-    pageType
-    isDefaultHomePage @client
-    isDefaultProductTemplatePage @client
-  }
-`;
-
 export default (
   {
     id,
