@@ -3,10 +3,10 @@ import gql from 'graphql-tag';
 
 // definition
 export const orderProductDeltaMockFragment = gql`
-  fragment orderProductDeltaMockFragment on OrderProductDelta {
+  fragment orderProductDeltaMockFragment on OrderProductQuantityDelta {
     sku
     name
-    spec
+    specs
     beforeQuantity
     afterQuantity
   }

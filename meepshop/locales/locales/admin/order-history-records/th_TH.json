@@ -13,10 +13,10 @@
   "detail": {
     "open": "รายละเอียด",
     "close": "ซ่อนรายละเอียด",
-    "productsChangeDelta": "การเปลี่ยนแปลงปริมาณรายการ",
+    "productsQuantityDelta": "การเปลี่ยนแปลงปริมาณรายการ",
     "productsAmountDelta": "สินค้ารวม",
     "adjustAmountDelta": "การเปลี่ยนแปลงจำนวนเงิน",
-    "orderTotalAmountDelta": "จำนวนคำสั่งซื้อทั้งหมด"
+    "totalAmountDelta": "จำนวนคำสั่งซื้อทั้งหมด"
   },
   "merchant": "บัญชีหลัก"
 }

@@ -29,7 +29,7 @@ const { Item } = List;
 
 export default React.memo(
   ({ orderHistoryRecord, isOpened, setIsOpened }: PropsType) => {
-    const { createdAt, actor, orderTotalAmountDelta } = orderHistoryRecord;
+    const { createdAt, operator, totalAmountDelta } = orderHistoryRecord;
     const { t } = useTranslation('order-history-records');
     const { c } = useContext(CurrencyContext);
 
@@ -53,13 +53,11 @@ export default React.memo(
           <div>
             {t('total-changed')}
 
-            <span className={styles.before}>
-              {c(orderTotalAmountDelta.before)}
-            </span>
+            <span className={styles.before}>{c(totalAmountDelta.before)}</span>
 
             {' ＞ '}
 
-            {c(orderTotalAmountDelta.after)}
+            {c(totalAmountDelta.after)}
 
             <span
               className={styles.action}
@@ -69,10 +67,10 @@ export default React.memo(
             </span>
           </div>
 
-          <div className={styles.actor}>
-            {actor.type === 'MERCHANT'
+          <div className={styles.operator}>
+            {operator.type === 'MERCHANT'
               ? t('merchant')
-              : actor.name || actor.email}
+              : operator.name || operator.email}
           </div>
 
           {!isOpened ? null : (

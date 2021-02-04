@@ -46,9 +46,9 @@ import NotificationObjectType from './schemas/NotificationObjectType';
 import nornalParamsObjectType from './schemas/nornalParamsObjectType';
 import Order from './schemas/Order';
 import OrderApplyList from './schemas/OrderApplyList';
+import OrderAuditLogOperator from './schemas/OrderAuditLogOperator';
 import OrderConnection from './schemas/OrderConnection';
-import OrderProductDelta from './schemas/OrderProductDelta';
-import OrderUpdateActor from './schemas/OrderUpdateActor';
+import OrderProductQuantityDelta from './schemas/OrderProductQuantityDelta';
 import Page from './schemas/Page';
 import PageConnection from './schemas/PageConnection';
 import PaymentAccountForCathay from './schemas/PaymentAccountForCathay';
@@ -135,9 +135,9 @@ export default addMocksToSchema({
     nornalParamsObjectType,
     Order,
     OrderApplyList,
+    OrderAuditLogOperator,
     OrderConnection,
-    OrderProductDelta,
-    OrderUpdateActor,
+    OrderProductQuantityDelta,
     Page,
     PageConnection,
     PaymentAccountForCathay,

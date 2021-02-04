@@ -3,11 +3,11 @@ import gql from 'graphql-tag';
 
 // definition
 export const detailFragment = gql`
-  fragment detailFragment on OrderHistoryRecord {
-    productsChangeDelta {
+  fragment detailFragment on OrderAuditLog {
+    orderProductQuantityDelta {
       sku
       name
-      spec
+      specs
       beforeQuantity
       afterQuantity
     }
@@ -19,7 +19,7 @@ export const detailFragment = gql`
       before
       after
     }
-    orderTotalAmountDelta {
+    totalAmountDelta {
       before
       after
     }

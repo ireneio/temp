@@ -11,8 +11,8 @@ export const orderMockFragment = gql`
     paidMessage {
       note
     }
-    orderHistoryRecords {
-      productsChangeDelta {
+    auditLogs {
+      orderProductQuantityDelta {
         __typename
       }
       productsAmountDelta {

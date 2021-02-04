@@ -17,7 +17,7 @@ import styles from './styles/index.less';
 import {
   getOrderHistoryRecords as getOrderHistoryRecordsType,
   getOrderHistoryRecordsVariables,
-  getOrderHistoryRecords_viewer_order_orderHistoryRecords as getOrderHistoryRecordsViewerOrderOrderHistoryRecords,
+  getOrderHistoryRecords_viewer_order_auditLogs as getOrderHistoryRecordsViewerOrderOrderHistoryRecords,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
@@ -74,14 +74,12 @@ const OrderHistoryRecords: NextPage<PropsType> = React.memo(
           <div className={styles.subTitle}>
             <h2>{t('sub-title')}</h2>
 
-            {order.orderHistoryRecords.length === 0 ? null : (
+            {order.auditLogs.length === 0 ? null : (
               <div>
                 <span
                   onClick={() =>
                     setOpenedRecords(
-                      order.orderHistoryRecords
-                        .slice(0, limit)
-                        .map((_, index) => index),
+                      order.auditLogs.slice(0, limit).map((_, index) => index),
                     )
                   }
                 >
@@ -96,7 +94,7 @@ const OrderHistoryRecords: NextPage<PropsType> = React.memo(
           </div>
 
           <List
-            dataSource={order.orderHistoryRecords.slice(0, limit)}
+            dataSource={order.auditLogs.slice(0, limit)}
             renderItem={(
               orderHistoryRecord: getOrderHistoryRecordsViewerOrderOrderHistoryRecords,
               index,
@@ -119,7 +117,7 @@ const OrderHistoryRecords: NextPage<PropsType> = React.memo(
               emptyText: t('empty'),
             }}
             loadMore={
-              order.orderHistoryRecords.length < limit ? null : (
+              order.auditLogs.length < limit ? null : (
                 <div className={styles.loadMore}>
                   <div onClick={() => setLimit(limit + 5)}>
                     <div>{t('load-more')}</div>

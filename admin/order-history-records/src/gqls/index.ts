@@ -13,7 +13,7 @@ export const getOrderHistoryRecords = gql`
         id
         orderNo
         createdAt
-        orderHistoryRecords {
+        auditLogs {
           ...recordFragment
         }
       }

@@ -13,10 +13,10 @@
   "detail": {
     "open": "Details",
     "close": "Hide details",
-    "productsChangeDelta": "Item quantity change",
+    "productsQuantityDelta": "Item quantity change",
     "productsAmountDelta": "Commodity total",
     "adjustAmountDelta": "Amount change",
-    "orderTotalAmountDelta": "The total amount of orders"
+    "totalAmountDelta": "The total amount of orders"
   },
   "merchant": "Master account"
 }

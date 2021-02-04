@@ -13,10 +13,10 @@
   "detail": {
     "open": "Chi tiết",
     "close": "Ẩn chi tiết",
-    "productsChangeDelta": "Thay đổi số lượng mặt hàng",
+    "productsQuantityDelta": "Thay đổi số lượng mặt hàng",
     "productsAmountDelta": "Tổng số hàng hóa",
     "adjustAmountDelta": "Số tiền thay đổi",
-    "orderTotalAmountDelta": "Tổng số lượng đơn đặt hàng"
+    "totalAmountDelta": "Tổng số lượng đơn đặt hàng"
   },
   "merchant": "Tài khoản chủ"
 }

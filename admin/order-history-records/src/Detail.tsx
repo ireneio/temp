@@ -17,30 +17,32 @@ interface PropsType {
 // definition
 export default React.memo(({ orderHistoryRecord }: PropsType) => {
   const {
-    productsChangeDelta,
+    orderProductQuantityDelta,
     productsAmountDelta,
     adjustAmountDelta,
-    orderTotalAmountDelta,
+    totalAmountDelta,
   } = orderHistoryRecord;
   const { t } = useTranslation('order-history-records');
   const { c } = useContext(CurrencyContext);
 
   return (
     <div className={styles.root}>
-      {productsChangeDelta.length === 0 ? null : (
+      {orderProductQuantityDelta.length === 0 ? null : (
         <div>
-          <div>{t('detail.productsChangeDelta')}</div>
+          <div>{t('detail.orderProductQuantityDelta')}</div>
 
-          <div className={styles.productsChangeDelta}>
-            {productsChangeDelta.map(
-              ({ sku, name, spec, beforeQuantity, afterQuantity }) => (
-                <div key={`${sku}${name}${spec}`}>
+          <div className={styles.orderProductQuantityDelta}>
+            {orderProductQuantityDelta.map(
+              ({ sku, name, specs, beforeQuantity, afterQuantity }) => (
+                <div key={`${sku}${name}${specs.join('-')}`}>
                   <div>
                     {!sku ? null : <div className={styles.sku}>{sku}</div>}
 
                     <div>{name}</div>
 
-                    {!spec ? null : <div className={styles.spec}>{spec}</div>}
+                    {specs.length === 0 ? null : (
+                      <div className={styles.specs}>{specs.join(' / ')}</div>
+                    )}
                   </div>
 
                   <div>
@@ -86,17 +88,15 @@ export default React.memo(({ orderHistoryRecord }: PropsType) => {
 
       <div className={styles.border} />
 
-      <div className={styles.orderTotalAmountDelta}>
-        <div>{t('detail.orderTotalAmountDelta')}</div>
+      <div className={styles.totalAmountDelta}>
+        <div>{t('detail.totalAmountDelta')}</div>
 
         <div>
-          <span className={styles.before}>
-            {c(orderTotalAmountDelta.before)}
-          </span>
+          <span className={styles.before}>{c(totalAmountDelta.before)}</span>
 
           {' ＞ '}
 
-          <span className={styles.after}>{c(orderTotalAmountDelta.after)}</span>
+          <span className={styles.after}>{c(totalAmountDelta.after)}</span>
         </div>
       </div>
     </div>

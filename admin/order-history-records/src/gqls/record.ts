@@ -6,15 +6,15 @@ import { detailFragment } from './detail';
 
 // definition
 export const recordFragment = gql`
-  fragment recordFragment on OrderHistoryRecord {
+  fragment recordFragment on OrderAuditLog {
     ...detailFragment
     createdAt
-    actor {
+    operator {
       type
       name
       email
     }
-    orderTotalAmountDelta {
+    totalAmountDelta {
       before
       after
     }

@@ -1,0 +1,31 @@
+extend type Order {
+  auditLogs: [OrderAuditLog!]!
+}
+
+type OrderAuditLog {
+  orderProductQuantityDelta: [OrderProductQuantityDelta!]!
+  productsAmountDelta: PriceDelta
+  adjustAmountDelta: PriceDelta
+  totalAmountDelta: PriceDelta!
+  operator: OrderAuditLogOperator!
+  createdAt: DateTime!
+}
+
+type OrderAuditLogOperator {
+  type: ViewerTypeEnum!
+  name: String!
+  email: String!
+}
+
+type OrderProductQuantityDelta {
+  name: String!
+  sku: String
+  specs: [String!]!
+  beforeQuantity: Int!
+  afterQuantity: Int!
+}
+
+type PriceDelta {
+  before: Float!
+  after: Float!
+}

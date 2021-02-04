@@ -26,18 +26,18 @@ export default mock.add<
         note: 'paid message',
       },
     ],
-    orderHistoryRecords: [
+    auditLogs: [
       {
-        __typename: 'OrderHistoryRecord',
-        productsChangeDelta: [
+        __typename: 'OrderAuditLog',
+        orderProductQuantityDelta: [
           {
-            __typename: 'OrderProductDelta',
+            __typename: 'OrderProductQuantityDelta',
           },
           {
-            __typename: 'OrderProductDelta',
+            __typename: 'OrderProductQuantityDelta',
           },
           {
-            __typename: 'OrderProductDelta',
+            __typename: 'OrderProductQuantityDelta',
           },
         ],
         productsAmountDelta: {
@@ -46,15 +46,15 @@ export default mock.add<
         adjustAmountDelta: null,
       },
       {
-        __typename: 'OrderHistoryRecord',
-        productsChangeDelta: [],
+        __typename: 'OrderAuditLog',
+        orderProductQuantityDelta: [],
         productsAmountDelta: null,
         adjustAmountDelta: {
           __typename: 'PriceDelta',
         },
       },
       ...[].constructor.apply({}, new Array(30)).fill({
-        __typename: 'OrderHistoryRecord',
+        __typename: 'OrderAuditLog',
       }),
     ],
   }),
@@ -65,7 +65,7 @@ export default mock.add<
     status: 1,
     createdAt: moment().toISOString(),
     paidMessage: null,
-    orderHistoryRecords: [],
+    auditLogs: [],
   }),
   (obj, { orderId }) => ({
     __typename: 'Order',
@@ -74,7 +74,7 @@ export default mock.add<
     status: 2,
     createdAt: moment().toISOString(),
     paidMessage: null,
-    orderHistoryRecords: [],
+    auditLogs: [],
   }),
   (obj, { orderId }) => ({
     __typename: 'Order',
@@ -83,6 +83,6 @@ export default mock.add<
     status: 3,
     createdAt: moment().toISOString(),
     paidMessage: null,
-    orderHistoryRecords: [],
+    auditLogs: [],
   }),
 ]);

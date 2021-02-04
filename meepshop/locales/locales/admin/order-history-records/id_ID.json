@@ -13,10 +13,10 @@
   "detail": {
     "open": "Detail",
     "close": "Sembunyikan detail",
-    "productsChangeDelta": "Perubahan kuantitas barang",
+    "productsQuantityDelta": "Perubahan kuantitas barang",
     "productsAmountDelta": "Komoditas total",
     "adjustAmountDelta": "Jumlah perubahan",
-    "orderTotalAmountDelta": "Jumlah total pesanan"
+    "totalAmountDelta": "Jumlah total pesanan"
   },
   "merchant": "Akun master"
 }
