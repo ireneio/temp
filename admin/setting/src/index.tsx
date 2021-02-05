@@ -66,7 +66,7 @@ const Setting: NextPage<PropsType> = React.memo(
       return <Spin indicator={<Icon type="loading" spin />} />;
 
     return (
-      <Header title={t('title')}>
+      <Header title={t('commonn:setting')}>
         {items.map(props => (
           <Item key={props.item} {...props} />
         ))}
