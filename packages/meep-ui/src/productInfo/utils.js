@@ -8,8 +8,7 @@ export const findCoordinates = variantNode =>
         variantNode.parent.children.findIndex(node => node === variantNode),
       ];
 
-export const reformatVariant = (variant, stockNotificationList, carts) => {
-  const { id, stock } = variant;
+export const reformatVariant = (variant, stockNotificationList) => {
   let { maxPurchaseLimit, minPurchaseItems } = variant;
 
   // minPurchaseItems 最小需等於 1
@@ -23,17 +22,10 @@ export const reformatVariant = (variant, stockNotificationList, carts) => {
     maxPurchaseLimit = variant.stock;
   }
 
-  const quantityInCart =
-    carts?.categories.products.find(product => product.variantId === id)
-      ?.quantity || 0;
-
   return {
     ...variant,
-    maxPurchaseLimit:
-      maxPurchaseLimit > quantityInCart ? maxPurchaseLimit - quantityInCart : 0,
-    minPurchaseItems:
-      minPurchaseItems > quantityInCart ? minPurchaseItems - quantityInCart : 1,
-    stock: stock > quantityInCart ? stock - quantityInCart : 0,
+    maxPurchaseLimit,
+    minPurchaseItems,
     productNotice: stockNotificationList.some(
       item => item.variantId === variant.id,
     ),

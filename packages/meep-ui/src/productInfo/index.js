@@ -81,11 +81,7 @@ export default class ProductInfo extends React.PureComponent {
 
     /** REMAINED productData or JUST setState */
     if (id === prevState.id) {
-      const variant = reformatVariant(
-        prevState.variant,
-        stockNotificationList,
-        carts,
-      );
+      const variant = reformatVariant(prevState.variant, stockNotificationList);
       return {
         variant,
         carts,
@@ -131,7 +127,6 @@ export default class ProductInfo extends React.PureComponent {
       const variant = reformatVariant(
         variantNode.data.variant,
         stockNotificationList,
-        carts,
       );
 
       return {
@@ -145,7 +140,7 @@ export default class ProductInfo extends React.PureComponent {
       };
     }
 
-    const variant = reformatVariant(variants[0], stockNotificationList, carts);
+    const variant = reformatVariant(variants[0], stockNotificationList);
     // 單規格
     return {
       id,
@@ -302,6 +297,7 @@ export default class ProductInfo extends React.PureComponent {
       hasStoreAppPlugin,
       container,
       goTo,
+      carts,
       showButton,
       drawerOnMobile,
       unfoldedVariantsOnMobile,
@@ -312,7 +308,7 @@ export default class ProductInfo extends React.PureComponent {
     const {
       coordinates,
       quantity,
-      variant,
+      variant: originVariant,
       orderable,
       isAddingItem,
       isModalOpen,
@@ -325,6 +321,24 @@ export default class ProductInfo extends React.PureComponent {
       addToCart,
       addToNotificationList,
     } = this;
+    const { id, stock, maxPurchaseLimit, minPurchaseItems } = originVariant;
+
+    const quantityInCart =
+      carts?.categories.products.find(product => product.variantId === id)
+        ?.quantity || 0;
+
+    const variant = {
+      ...originVariant,
+      maxPurchaseLimit:
+        maxPurchaseLimit > quantityInCart
+          ? maxPurchaseLimit - quantityInCart
+          : 0,
+      minPurchaseItems:
+        minPurchaseItems > quantityInCart
+          ? minPurchaseItems - quantityInCart
+          : 1,
+      stock: stock > quantityInCart ? stock - quantityInCart : 0,
+    };
 
     if (!productData || !productData.status) {
       warning(
