@@ -1,5 +1,39 @@
 # CHANGELOG
 
+## 0.77.0 (2021-02-09)
+
+#### :boom: Breaking Change
+
+- `mock-types`
+  - [#1402](https://github.com/meepshop/meep-lerna/pull/1402) (@admin/order-history-records) Modify schemas ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1340](https://github.com/meepshop/meep-lerna/pull/1340) T7125 - 新增 email validator ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#1396](https://github.com/meepshop/meep-lerna/pull/1396) 內部開單 - STAGE k8s 資源調整 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1416](https://github.com/meepshop/meep-lerna/pull/1416) /checkout 錯誤訊息標題：付款失敗改成「結帳失敗」 ([@HsuTing](https://github.com/HsuTing))
+  - [#1423](https://github.com/meepshop/meep-lerna/pull/1423) (@admin/setting) Fix typo error ([@HsuTing](https://github.com/HsuTing))
+  - [#1422](https://github.com/meepshop/meep-lerna/pull/1422) (@admin/setting) Fix title locale ([@HsuTing](https://github.com/HsuTing))
+  - [#1419](https://github.com/meepshop/meep-lerna/pull/1419) (@meepshop/frontend) Add more types and move locales ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#1418](https://github.com/meepshop/meep-lerna/pull/1418) 【BUG】在 checkout 頁，若商品超出購買量，沒有阻擋提示 ([@HsuTing](https://github.com/HsuTing))
+  - [#1414](https://github.com/meepshop/meep-lerna/pull/1414) 【BUG】 商品頁顯示「已售完」，購物車卻還可以繼續選擇數量 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- [#1417](https://github.com/meepshop/meep-lerna/pull/1417) skip - (@admin/page-manager) Move gqls ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.76.8 (2021-02-03)
 
 #### :boom: Breaking Change
