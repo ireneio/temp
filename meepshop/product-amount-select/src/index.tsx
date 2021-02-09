@@ -8,7 +8,7 @@ import { Select } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 
-import useOptions from './hooks/useOptions';
+import useOptions, { getQuantityRange } from './hooks/useOptions';
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -67,6 +67,8 @@ const ProductAmountSelect = React.memo(
     );
   },
 );
+
+export { getQuantityRange };
 
 export default React.forwardRef(
   (props: Omit<PropsType, 'forwardedRef'>, ref: PropsType['forwardedRef']) => (

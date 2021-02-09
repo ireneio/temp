@@ -4,11 +4,11 @@
   "product-not-online-warning": "โปรดลบรายการนี้",
   "product-sold-out": "สินค้าหมด",
   "product-sold-out-warning": "โปรดลบรายการนี้",
-  "product-over-stock": "สินค้ามีจำนวน จำกัด",
   "not-found-content": "จำนวนรายการที่ซื้อได้อาจเกินขีด จำกัด หรือรูปแบบไม่ถูกต้อง",
   "more-options": "... หรือป้อนจำนวนที่ต้องการ",
   "gift": "ของขวัญฟรี",
   "gift-out-of-stock": "สินค้าหมด",
   "remove-product-from-cart": "อัปเดตรายการในรถเข็นแล้ว",
-  "update-product-in-cart": "อัปเดตรายการในรถเข็นแล้ว"
+  "update-product-in-cart": "อัปเดตรายการในรถเข็นแล้ว",
+  "quantity-out-of-range": "เกินปริมาณที่ซื้อได้"
 }

@@ -21,32 +21,35 @@ interface OptionsType {
 const formatNumber = (value: number | null | undefined): number =>
   !value ? 0 : value;
 
+// FIXME: should check minPurchaseItems, maxPurchaseLimit, stock in the backend
+export const getQuantityRange = (
+  variant: useOptionsVariantFragmentType | null,
+): { min: number; max: number } => {
+  const minPurchaseItems = formatNumber(variant?.minPurchaseItems);
+  const maxPurchaseLimit = formatNumber(variant?.maxPurchaseLimit);
+  const stock = formatNumber(variant?.stock);
+
+  if (stock < 1)
+    return {
+      min: 0,
+      max: 0,
+    };
+
+  return {
+    min: minPurchaseItems > 0 ? minPurchaseItems : 1,
+    max: (() => {
+      if (minPurchaseItems > maxPurchaseLimit)
+        return minPurchaseItems < stock ? minPurchaseItems : stock;
+
+      return maxPurchaseLimit < stock ? maxPurchaseLimit : stock;
+    })(),
+  };
+};
+
 export default (variant: useOptionsVariantFragmentType | null): OptionsType => {
   const { t } = useTranslation('product-amount-select');
   const [searchValue, setSearchValue] = useState<number | null>(null);
-
-  // FIXME: should check minPurchaseItems, maxPurchaseLimit, stock in the backend
-  const { min, max } = useMemo(() => {
-    const minPurchaseItems = formatNumber(variant?.minPurchaseItems);
-    const maxPurchaseLimit = formatNumber(variant?.maxPurchaseLimit);
-    const stock = formatNumber(variant?.stock);
-
-    if (stock < 1)
-      return {
-        min: 0,
-        max: 0,
-      };
-
-    return {
-      min: minPurchaseItems > 0 ? minPurchaseItems : 1,
-      max: (() => {
-        if (minPurchaseItems > maxPurchaseLimit)
-          return minPurchaseItems < stock ? minPurchaseItems : stock;
-
-        return maxPurchaseLimit < stock ? maxPurchaseLimit : stock;
-      })(),
-    };
-  }, [variant]);
+  const { min, max } = useMemo(() => getQuantityRange(variant), [variant]);
 
   return {
     options: useMemo(() => {

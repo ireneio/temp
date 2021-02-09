@@ -11,7 +11,9 @@ import CartContext from '@meepshop/cart';
 import { CartDeleteIcon } from '@meepshop/icons';
 import { placeholderThumbnail_w120 as placeholderThumbnail } from '@meepshop/images';
 import Link from '@meepshop/link';
-import ProductAmountSelect from '@meepshop/product-amount-select';
+import ProductAmountSelect, {
+  getQuantityRange,
+} from '@meepshop/product-amount-select';
 
 import styles from './styles/useColumns.less';
 
@@ -91,107 +93,132 @@ export default ({ productHasError, updateCart, onChange }) => {
             cartId,
             ...variant
           },
-        ) => (
-          <div
-            className={styles.title}
-            style={{
-              color: transformColor(colors[3]).alpha(
-                error !== 'PRODUCT_NOT_ONLINE' ? 1 : 0.25,
-              ),
-            }}
-          >
-            {title[i18n.language] || title.zh_TW}
+        ) => {
+          const { min, max } = getQuantityRange(variant);
+          const hasError = quantity < min || quantity > max;
 
-            {!specs ? null : (
-              <div
-                style={{
-                  color: transformColor(colors[3]).alpha(
-                    error !== 'PRODUCT_NOT_ONLINE' ? 0.65 : 0.25,
-                  ),
-                }}
-              >
-                {specs
-                  .map(
-                    ({ title: specTitle }) =>
-                      specTitle[i18n.language] || specTitle.zh_TW,
-                  )
-                  .join('/')}
-              </div>
-            )}
+          return (
+            <div
+              className={styles.title}
+              style={{
+                color: transformColor(colors[3]).alpha(
+                  error !== 'PRODUCT_NOT_ONLINE' ? 1 : 0.25,
+                ),
+              }}
+            >
+              {title[i18n.language] || title.zh_TW}
 
-            {(activityInfo || []).length === 0 ? null : (
-              <div className={styles.tags}>
-                {activityInfo.map(({ id, title: activityTitle }) => (
-                  <Tag
-                    key={id}
-                    style={{
-                      color: transformColor(colors[3]).alpha(0.85),
-                      opacity: error !== 'PRODUCT_NOT_ONLINE' ? 1 : 0.45,
-                    }}
-                    color={transformColor(colors[5]).alpha(0.3)}
-                  >
-                    <Icon type="tag" />
+              {!specs ? null : (
+                <div
+                  style={{
+                    color: transformColor(colors[3]).alpha(
+                      error !== 'PRODUCT_NOT_ONLINE' ? 0.65 : 0.25,
+                    ),
+                  }}
+                >
+                  {specs
+                    .map(
+                      ({ title: specTitle }) =>
+                        specTitle[i18n.language] || specTitle.zh_TW,
+                    )
+                    .join('/')}
+                </div>
+              )}
 
-                    <span>
-                      {activityTitle[i18n.language] || activityTitle.zh_TW}
-                    </span>
-                  </Tag>
-                ))}
-              </div>
-            )}
+              {(activityInfo || []).length === 0 ? null : (
+                <div className={styles.tags}>
+                  {activityInfo.map(({ id, title: activityTitle }) => (
+                    <Tag
+                      key={id}
+                      style={{
+                        color: transformColor(colors[3]).alpha(0.85),
+                        opacity: error !== 'PRODUCT_NOT_ONLINE' ? 1 : 0.45,
+                      }}
+                      color={transformColor(colors[5]).alpha(0.3)}
+                    >
+                      <Icon type="tag" />
 
-            {type !== 'product' ? null : (
-              <div
-                className={error ? '' : styles.price}
-                style={
-                  !error
-                    ? {}
+                      <span>
+                        {activityTitle[i18n.language] || activityTitle.zh_TW}
+                      </span>
+                    </Tag>
+                  ))}
+                </div>
+              )}
+
+              {type !== 'product' ? null : (
+                <div
+                  className={error ? '' : styles.price}
+                  style={
+                    !error
+                      ? {}
+                      : {
+                          color: productHasError
+                            ? '#d0011b'
+                            : transformColor(colors[3]).alpha(0.25),
+                        }
+                  }
+                >
+                  {!error
+                    ? c(retailPrice * quantity)
                     : {
-                        color: productHasError
-                          ? '#d0011b'
-                          : transformColor(colors[3]).alpha(0.25),
-                      }
-                }
-              >
-                {!error
-                  ? c(retailPrice * quantity)
-                  : {
-                      PRODUCT_NOT_ONLINE: t(
-                        `product-not-online${
-                          !productHasError ? '' : '-warning'
-                        }`,
-                      ),
-                      PRODUCT_SOLD_OUT: t(
-                        `product-sold-out${!productHasError ? '' : '-warning'}`,
-                      ),
-                    }[error]}
-              </div>
-            )}
+                        PRODUCT_NOT_ONLINE: t(
+                          `product-not-online${
+                            !productHasError ? '' : '-warning'
+                          }`,
+                        ),
+                        PRODUCT_SOLD_OUT: t(
+                          `product-sold-out${
+                            !productHasError ? '' : '-warning'
+                          }`,
+                        ),
+                      }[error]}
+                </div>
+              )}
 
-            {error || type !== 'product' ? null : (
-              <ProductAmountSelect
-                className={`${styles.select} ${styles.mobile}`}
-                variant={variant}
-                value={quantity}
-                onChange={changeProduct(cartId)}
-              />
-            )}
-          </div>
-        ),
+              {error || type !== 'product' ? null : (
+                <ProductAmountSelect
+                  className={`${styles.select} ${styles.mobile}`}
+                  variant={variant}
+                  value={quantity}
+                  onChange={changeProduct(cartId)}
+                />
+              )}
+
+              {!hasError ? null : (
+                <div className={`${styles.hasError} ${styles.mobile}`}>
+                  {t('quantity-out-of-range')}
+                </div>
+              )}
+            </div>
+          );
+        },
       },
       {
         dataIndex: 'quantity',
-        render: (quantity, { error, type, cartId, ...variant }) =>
-          error || type !== 'product' ? null : (
-            <div>
+        render: (quantity, { error, type, cartId, ...variant }) => {
+          if (error || type !== 'product') return null;
+
+          const { min, max } = getQuantityRange(variant);
+          const hasError = quantity < min || quantity > max;
+
+          return (
+            <div
+              className={`${styles.quantity} ${
+                !hasError ? '' : styles.hasError
+              }`}
+            >
               <ProductAmountSelect
                 className={styles.select}
                 variant={variant}
                 value={quantity}
                 onChange={changeProduct(cartId)}
               />
+
+              {!hasError ? null : <div>{t('quantity-out-of-range')}</div>}
             </div>
-          ),
+          );
+        },
       },
       {
         dataIndex: 'cartId',

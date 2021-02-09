@@ -4,11 +4,11 @@
   "product-not-online-warning": "Por favor elimine este artículo",
   "product-sold-out": "Agotado",
   "product-sold-out-warning": "Por favor elimine este artículo",
-  "product-over-stock": "Sobre el número limitado de artículos que se pueden comprar",
   "not-found-content": "El número de artículos que se pueden comprar puede superar su límite o el formato no es válido.",
   "more-options": "... o ingrese la CANTIDAD deseada",
   "gift": "Regalo gratis",
   "gift-out-of-stock": "Agotado",
   "remove-product-from-cart": "Los artículos en el carrito han sido actualizados.",
-  "update-product-in-cart": "Los artículos en el carrito han sido actualizados."
+  "update-product-in-cart": "Los artículos en el carrito han sido actualizados.",
+  "quantity-out-of-range": "Supere la cantidad comprable"
 }

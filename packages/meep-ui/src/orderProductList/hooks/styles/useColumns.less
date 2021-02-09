@@ -63,6 +63,26 @@
   }
 }
 
+.quantity {
+  display: block !important;
+}
+
+.hasError {
+  color: #cf132d;
+
+  & > div:last-child {
+    margin: 4px 0px 0px;
+  }
+
+  &.mobile {
+    display: none;
+
+    @media (max-width: @screen-sm-max) {
+      display: block;
+    }
+  }
+}
+
 .select {
   font-size: 16px;
 
