@@ -11,6 +11,7 @@ import { filter } from 'graphql-anywhere';
 
 import FormDataContext from '@meepshop/form-data';
 import useLink from '@meepshop/hooks/lib/useLink';
+import { useValidateEmail } from '@meepshop/validator';
 import { useRouter } from '@meepshop/link';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
@@ -20,7 +21,6 @@ import useCreateOrder from './useCreateOrder';
 
 // graphql typescript
 import {
-  useSubmitUserFragment,
   useSubmitOrderFragment,
   useSubmitLandingPageModuleFragment,
   InvoiceMethodEnum,
@@ -33,11 +33,12 @@ import { useLinkFragment } from '@meepshop/hooks/lib/gqls/useLink';
 import { useCreateOrderFragment } from '../gqls/useCreateOrder';
 
 // graphql definition
-interface SubmitArguType extends useSubmitLandingPageModuleFragment {
-  viewer: useSubmitUserFragment | null;
+interface SubmitArguType {
+  landingPageModule: useSubmitLandingPageModuleFragment;
   order: useSubmitOrderFragment | null;
-  form: FormComponentProps['form'];
   payment: UseComputeOrderType['payment'];
+  form: FormComponentProps['form'];
+  setShowLogin: (showLogin: boolean) => void;
 }
 
 interface SubmitReturnType {
@@ -47,12 +48,11 @@ interface SubmitReturnType {
 
 // definition
 export default ({
-  viewer,
-  product,
-  redirectPage,
-  form,
+  landingPageModule: { product, redirectPage, viewer },
   order,
   payment,
+  form,
+  setShowLogin,
 }: SubmitArguType): SubmitReturnType => {
   const [mutation, { loading, client }] = useCreateOrder(
     filter(useCreateOrderFragment, viewer),
@@ -62,6 +62,11 @@ export default ({
   const adTrack = useContext(AdTrackContext);
   const setFormData = useContext(FormDataContext);
   const { href } = useLink(filter(useLinkFragment, redirectPage));
+  const validateEmail = useValidateEmail(message => {
+    setShowLogin(true);
+
+    return message;
+  });
 
   return {
     loading,
@@ -115,7 +120,11 @@ export default ({
               installmentCode,
             },
           ) => {
-            if (err || loading) return;
+            const validateEmailResult = await new Promise(resolve =>
+              validateEmail.validator?.([], userEmail, resolve),
+            );
+
+            if (err || loading || validateEmailResult) return;
 
             const { domain, asPath, push } = router;
             const [variantId] = variant.slice(-1);
@@ -292,6 +301,7 @@ export default ({
         adTrack,
         setFormData,
         href,
+        validateEmail,
       ],
     ),
   };

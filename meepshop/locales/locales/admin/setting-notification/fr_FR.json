@@ -5,7 +5,6 @@
   "auto-email": "Enregistrer l'e-mail de notification automatique",
   "auto-email-description": "Lorsque les notifications sont activées, un e-mail de notification sera envoyé toutes les 20 minutes. Vous pouvez définir une adresse e-mail différente de votre compte de connexion.",
   "email": "Recevoir des e-mails",
-  "email-error": "Format d'e-mail incorrect",
   "required": "Champs obligatoires",
   "auto-email-setting": "Paramètre des notifications",
   "orderCreated": {

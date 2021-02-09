@@ -12,8 +12,8 @@
     "@meepshop/hooks": "^0.76.6",
     "@meepshop/icons": "^0.76.0",
     "@meepshop/utils": "^0.76.6",
-    "color": "^3.0.0",
-    "validator": "^13.5.2"
+    "@meepshop/validator": "^0.1.0",
+    "color": "^3.0.0"
   },
   "keywords": ["meepshop", "product", "qa"]
 }

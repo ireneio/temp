@@ -19,11 +19,13 @@ import {
   ISLOGIN_TYPE,
   CONTENT_WIDTH_TYPE,
 } from 'constants/propTypes';
+import { NOTLOGIN } from 'constants/isLogin';
 import loadData from 'utils/loadData';
 import buildVariantsTree from 'utils/buildVariantsTree';
 
 import PaymentInfo from './paymentInfo';
 import ReceiverInfo from './ReceiverInfo';
+import Login from './Login';
 import { ADDITION_TYPE } from './constants';
 import * as styles from './styles';
 
@@ -33,26 +35,32 @@ import * as styles from './styles';
 @Form.create()
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withHook(({ user, productData, redirectPage, form }) => {
+  const [showLogin, setShowLogin] = useState(false);
   const [storeComputeOrderList, setStoreComputeOrderList] = useState(null);
   const [choosePayment, setChoosePayment] = useState(null);
 
   return {
     ...useSubmit({
-      viewer: user,
-      product: productData,
-      redirectPage: {
-        __typename: 'CustomLink',
-        href: redirectPage,
-        newWindow: false,
-        tracking: null,
+      landingPageModule: {
+        viewer: user,
+        product: productData,
+        redirectPage: {
+          __typename: 'CustomLink',
+          href: redirectPage,
+          newWindow: false,
+          tracking: null,
+        },
       },
-      form,
       order: storeComputeOrderList,
       payment: choosePayment,
+      form,
+      setShowLogin,
     }),
     setStoreComputeOrderList,
     choosePayment,
     setChoosePayment,
+    showLogin,
+    setShowLogin,
   };
 })
 @withTranslation('landing-page')
@@ -133,85 +141,97 @@ export default class LandingPage extends React.PureComponent {
       setStoreComputeOrderList,
       choosePayment,
       setChoosePayment,
+      showLogin,
+      setShowLogin,
       ...props
     } = this.props;
     const { chooseShipmentTemplate } = this.state;
 
-    const { getFieldsError, validateFieldsAndScroll } = form;
+    const { getFieldValue, getFieldsError, validateFieldsAndScroll } = form;
 
     return (
-      <form
-        style={styles.root}
-        id={id}
-        className={`landingPage-${id}`}
-        onSubmit={onSubmit}
-      >
-        <Style
-          scopeSelector={`.landingPage-${id}`}
-          rules={styles.modifyAntdStyle(colors)}
-        />
-
-        <StyleRoot style={styles.content(contentWidth)}>
-          <PaymentInfo
-            {...props}
-            {...productData}
-            moduleId={id}
-            ref={this.paymentInfoRef}
-            form={form}
-            changeChoosePayment={setChoosePayment}
-            changeChooseShipmentTemplate={template =>
-              this.setState({ chooseShipmentTemplate: template })
-            }
-            updateComputeOrderList={setStoreComputeOrderList}
+      <>
+        <form
+          style={styles.root}
+          id={id}
+          className={`landingPage-${id}`}
+          onSubmit={onSubmit}
+        >
+          <Style
+            scopeSelector={`.landingPage-${id}`}
+            rules={styles.modifyAntdStyle(colors)}
           />
 
-          <ReceiverInfo
-            {...props}
-            form={form}
-            choosePaymentTemplate={(choosePayment || {}).template}
-            chooseShipmentTemplate={chooseShipmentTemplate}
-            toggleLogin={this.toggleLogin}
-          />
-
-          {!choosePayment ||
-          choosePayment.template !== 'gmo' ||
-          choosePayment.accountInfo.gmo.paymentType !== 'Credit' ? null : (
-            <GmoCreditCardForm
-              storePaymentId={choosePayment.paymentId}
-              isInstallment={choosePayment.accountInfo.gmo.isInstallment}
+          <StyleRoot style={styles.content(contentWidth)}>
+            <PaymentInfo
+              {...props}
+              {...productData}
+              moduleId={id}
+              ref={this.paymentInfoRef}
               form={form}
+              changeChoosePayment={setChoosePayment}
+              changeChooseShipmentTemplate={template =>
+                this.setState({ chooseShipmentTemplate: template })
+              }
+              updateComputeOrderList={setStoreComputeOrderList}
             />
-          )}
-        </StyleRoot>
 
-        <Divider style={{ ...styles.title(colors), ...styles.argeementText }}>
-          {t('agreement')}
-        </Divider>
+            <ReceiverInfo
+              {...props}
+              form={form}
+              choosePaymentTemplate={(choosePayment || {}).template}
+              chooseShipmentTemplate={chooseShipmentTemplate}
+              toggleLogin={this.toggleLogin}
+              setShowLogin={setShowLogin}
+            />
 
-        <StyleRoot style={styles.content(contentWidth)}>
-          <div style={styles.agreementInfo(colors)}>
-            {agreedMatters.split(/\n/).map((text, index) => (
-              /* eslint-disable react/no-array-index-key */
-              <div key={index}>{text}</div>
-              /* eslint-enable react/no-array-index-key */
-            ))}
-          </div>
-
-          <Button
-            style={styles.submitButton(colors)}
-            type="primary"
-            htmlType="submit"
-            disabled={(fieldsError =>
-              Object.keys(fieldsError).some(field => fieldsError[field]))(
-              getFieldsError(),
+            {!choosePayment ||
+            choosePayment.template !== 'gmo' ||
+            choosePayment.accountInfo.gmo.paymentType !== 'Credit' ? null : (
+              <GmoCreditCardForm
+                storePaymentId={choosePayment.paymentId}
+                isInstallment={choosePayment.accountInfo.gmo.isInstallment}
+                form={form}
+              />
             )}
-            onClick={() => validateFieldsAndScroll()}
-            loading={loading}
-          >
-            {t('agree-submit')}
-          </Button>
-        </StyleRoot>
-      </form>
+          </StyleRoot>
+
+          <Divider style={{ ...styles.title(colors), ...styles.argeementText }}>
+            {t('agreement')}
+          </Divider>
+
+          <StyleRoot style={styles.content(contentWidth)}>
+            <div style={styles.agreementInfo(colors)}>
+              {agreedMatters.split(/\n/).map((text, index) => (
+                /* eslint-disable react/no-array-index-key */
+                <div key={index}>{text}</div>
+                /* eslint-enable react/no-array-index-key */
+              ))}
+            </div>
+
+            <Button
+              style={styles.submitButton(colors)}
+              type="primary"
+              htmlType="submit"
+              disabled={(fieldsError =>
+                Object.keys(fieldsError).some(field => fieldsError[field]))(
+                getFieldsError(),
+              )}
+              onClick={() => validateFieldsAndScroll()}
+              loading={loading}
+            >
+              {t('agree-submit')}
+            </Button>
+          </StyleRoot>
+        </form>
+
+        {isLogin !== NOTLOGIN || !showLogin ? null : (
+          <Login
+            hideLogin={() => setShowLogin(false)}
+            email={getFieldValue('userEmail')}
+          />
+        )}
+      </>
     );
   }
 }

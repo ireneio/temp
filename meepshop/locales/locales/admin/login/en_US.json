@@ -1,6 +1,5 @@
 {
   "email": {
-    "error": "Please enter a valid email address.",
     "placeholder": "Enter registration Email"
   },
   "password": {

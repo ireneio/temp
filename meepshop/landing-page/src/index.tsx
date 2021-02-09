@@ -2,7 +2,7 @@
 import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { Form, Divider, Button } from 'antd';
 import { filter } from 'graphql-anywhere';
 
@@ -19,6 +19,7 @@ import './styles/mixin.less';
 import Price from './Price';
 import Shopping from './Shopping';
 import Receiver from './receiver';
+import Login from './Login';
 import styles from './styles/index.less';
 import useComputeOrder from './hooks/useComputeOrder';
 import useSubmit from './hooks/useSubmit';
@@ -42,7 +43,6 @@ import {
 } from './gqls/shopping';
 import { priceFragment } from './gqls/price';
 import {
-  useSubmitUserFragment,
   useSubmitLandingPageModuleFragment,
   useSubmitOrderFragment,
 } from './gqls/useSubmit';
@@ -69,6 +69,7 @@ export default Form.create<PropsType>()(
       viewer,
     } = props;
 
+    const [showLogin, setShowLogin] = useState(false);
     const { t } = useTranslation('landing-page');
     const adTrack = useContext(AdTrackContext);
     const colors = useContext(ColorsContext);
@@ -87,17 +88,17 @@ export default Form.create<PropsType>()(
       Boolean(quantity?.required),
     );
     const { loading, onSubmit } = useSubmit({
-      ...filter<useSubmitLandingPageModuleFragmentType, PropsType>(
-        useSubmitLandingPageModuleFragment,
-        props,
-      ),
-      viewer: filter(useSubmitUserFragment, viewer),
+      landingPageModule: filter<
+        useSubmitLandingPageModuleFragmentType,
+        PropsType
+      >(useSubmitLandingPageModuleFragment, props),
       order: filter(useSubmitOrderFragment, order),
-      form,
       payment,
+      form,
+      setShowLogin,
     });
 
-    const { getFieldsError, validateFieldsAndScroll } = form;
+    const { getFieldValue, getFieldsError, validateFieldsAndScroll } = form;
 
     useEffect(() => {
       setTimeout(() => {
@@ -143,12 +144,13 @@ export default Form.create<PropsType>()(
             <Price order={filter(priceFragment, order)} />
 
             <Receiver
-              {...filter<receiverLandingPageModuleFragmentType, PropsType>(
-                receiverLandingPageModuleFragment,
-                props,
-              )}
-              viewer={filter(receiverUserFragment, viewer)}
               form={form}
+              setShowLogin={setShowLogin}
+              receiver={filter<
+                receiverLandingPageModuleFragmentType,
+                PropsType
+              >(receiverLandingPageModuleFragment, props)}
+              viewer={filter(receiverUserFragment, viewer)}
               shipment={shipment}
             />
 
@@ -184,6 +186,14 @@ export default Form.create<PropsType>()(
             </Button>
           </div>
         </Form>
+
+        {viewer?.role === 'SHOPPER' || !showLogin ? null : (
+          <Login
+            cname={viewer?.store?.cname || '' /** SHOULD_NOT_BE_NULL */}
+            userEmail={getFieldValue('userEmail') as string}
+            hideLogin={() => setShowLogin(false)}
+          />
+        )}
 
         <style
           dangerouslySetInnerHTML={{

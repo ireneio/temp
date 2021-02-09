@@ -3,12 +3,13 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Button, Modal, notification, Icon } from 'antd';
-import { isFullWidth, isEmail } from 'validator';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
+import { useValidateEmail } from '@meepshop/validator';
 import withContext from '@store/utils/lib/withContext';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -19,7 +20,6 @@ import { formItem as formItemStyle } from './styles';
 
 const { Item: FormItem } = Form;
 const { Password } = Input;
-let storeEmail = null;
 
 @enhancer
 @Form.create({
@@ -29,6 +29,9 @@ let storeEmail = null;
 })
 @withTranslation('landing-page')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
+@withHook(() => ({
+  validateEmail: useValidateEmail(),
+}))
 @radium
 export default class Login extends React.PureComponent {
   static propTypes = {
@@ -46,12 +49,6 @@ export default class Login extends React.PureComponent {
   state = {
     isForgetPassword: false,
   };
-
-  componentWillUnmount() {
-    const { form } = this.props;
-
-    storeEmail = form.getFieldValue('email');
-  }
 
   submit = e => {
     e.preventDefault();
@@ -134,16 +131,18 @@ export default class Login extends React.PureComponent {
       t,
       form,
       hideLogin,
+      validateEmail,
     } = this.props;
     const { isForgetPassword } = this.state;
-    const { resetFields, getFieldDecorator, getFieldValue, setFields } = form;
+    const { resetFields, getFieldDecorator } = form;
 
     return (
       <Modal
         title={t('plz-login')}
         footer={null}
         onCancel={hideLogin}
-        visible={storeEmail !== getFieldValue('email')}
+        maskClosable={false}
+        visible
       >
         <Form style={styles.root} onSubmit={this.submit}>
           <FormItem style={formItemStyle}>
@@ -154,27 +153,12 @@ export default class Login extends React.PureComponent {
                   message: t('is-required'),
                 },
                 {
-                  validator: (rule, value, callback) => {
-                    if (value && (isFullWidth(value) || !isEmail(value)))
-                      callback(t('not-email'));
-                    else callback();
-                  },
+                  validator: validateEmail.validator,
                 },
               ],
-              validateTrigger: false,
-              normalize: value => value.replace(/\s/g, ''),
-            })(
-              <Input
-                placeholder={t('email')}
-                onChange={({ target: { value } }) => {
-                  setFields({
-                    email: {
-                      value,
-                    },
-                  });
-                }}
-              />,
-            )}
+              validateTrigger: 'onBlur',
+              normalize: validateEmail.normalize,
+            })(<Input placeholder={t('email')} />)}
           </FormItem>
 
           {isForgetPassword ? null : (

@@ -1,6 +1,5 @@
 {
   "email": {
-    "error": "Silakan isi alamat email.",
     "placeholder": "Masukkan Email pendaftaran"
   },
   "password": {

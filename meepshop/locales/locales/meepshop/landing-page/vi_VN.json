@@ -19,7 +19,6 @@
   "female": "Nữ",
   "birthday": "Ngày tháng sinh",
   "email": "Email",
-  "not-email": "Hộp thư sai",
   "notes": "Ghi chú đặt hàng",
   "name-too-long": "Cột họ tên không được vượt quá {{amount}} từ",
   "select-product-payment": "Lựa chọn sản phẩm và phương thức mua hàng",

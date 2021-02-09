@@ -7,20 +7,19 @@ import { UseComputeOrderType } from '../hooks/useComputeOrder';
 import React, { useContext } from 'react';
 import { filter } from 'graphql-anywhere';
 import { Form, Select, Cascader, Input, DatePicker } from 'antd';
-import { isAlpha, isFullWidth, isEmail } from 'validator';
+import { isAlpha } from 'validator';
 
+import validateMobile from '@meepshop/utils/lib/validate/mobile';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/address-cascader';
 import { Colors as ColorsContext } from '@meepshop/context';
-import validateMobile from '@meepshop/utils/lib/validate/mobile';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useValidateEmail } from '@meepshop/validator';
 
 import Invoice from './Invoice';
-import Login from './Login';
 import Store from './Store';
 import styles from './styles/index.less';
-import useCheckUser from './hooks/useCheckUser';
 import useInvoiceOptions from './hooks/useInvoiceOptions';
 
 // graphql typescript
@@ -33,8 +32,10 @@ import {
 import { useInvoiceOptionsFragment } from './gqls/useInvoiceOptions';
 
 // typescript definition
-interface PropsType extends receiverLandingPageModuleFragment {
+interface PropsType {
   form: FormComponentProps['form'];
+  setShowLogin: (showLogin: boolean) => void;
+  receiver: receiverLandingPageModuleFragment;
   viewer: receiverUserFragment | null;
   shipment: UseComputeOrderType['shipment'];
 }
@@ -47,11 +48,8 @@ const { Option } = Select;
 export default React.memo(
   ({
     form,
-    gender,
-    birthday,
-    invoice,
-    shippableCountries,
-    note,
+    setShowLogin,
+    receiver: { gender, birthday, invoice, shippableCountries, note },
     viewer,
     shipment,
   }: PropsType) => {
@@ -60,7 +58,7 @@ export default React.memo(
     const invoiceOptions = useInvoiceOptions(
       filter(useInvoiceOptionsFragment, viewer?.store?.setting || null),
     );
-    const { showLogin, setShowLogin, checkUser } = useCheckUser();
+    const validateEmail = useValidateEmail(() => setShowLogin(true));
 
     const isLogin = viewer?.role === 'SHOPPER';
     const { getFieldDecorator, getFieldValue } = form;
@@ -167,21 +165,11 @@ export default React.memo(
                   message: t('is-required'),
                 },
                 {
-                  validator: (_rule, value, callback) => {
-                    if (value && (isFullWidth(value) || !isEmail(value)))
-                      callback(t('not-email'));
-                    else callback();
-                  },
+                  validator: validateEmail.validator,
                 },
               ],
-            })(
-              <Input
-                placeholder={t('email')}
-                onBlur={({ target: { value } }) =>
-                  checkUser({ variables: { email: value } })
-                }
-              />,
-            )}
+              normalize: validateEmail.normalize,
+            })(<Input placeholder={t('email')} />)}
           </Item>
         )}
 
@@ -290,14 +278,6 @@ export default React.memo(
               ],
             })(<TextArea placeholder={t('notes')} rows={4} />)}
           </Item>
-        )}
-
-        {isLogin || !showLogin ? null : (
-          <Login
-            cname={viewer?.store?.cname || '' /** SHOULD_NOT_BE_NULL */}
-            userEmail={getFieldValue('userEmail') as string}
-            hideLogin={() => setShowLogin(false)}
-          />
         )}
 
         <style

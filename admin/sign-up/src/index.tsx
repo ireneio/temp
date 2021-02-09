@@ -17,6 +17,7 @@ import { Form, Input, Button, Icon } from 'antd';
 import Link from '@meepshop/link';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { loginLogo, loginBackground } from '@meepshop/images';
+import { useValidateEmail } from '@meepshop/validator';
 
 import useApplyForStore from './hooks/useApplyForStore';
 
@@ -41,6 +42,7 @@ const SignUp: NextPage = Form.create<FormComponentProps>()(
         isApplyForStoreCompleted,
         applyForStore,
       } = useApplyForStore(form);
+      const validateEmail = useValidateEmail();
 
       return (
         <div
@@ -60,6 +62,9 @@ const SignUp: NextPage = Form.create<FormComponentProps>()(
                       {
                         required: true,
                         message: t('account.error'),
+                      },
+                      {
+                        validator: validateEmail.validator,
                       },
                       {
                         validator: async (_, email, callback) => {
@@ -91,6 +96,7 @@ const SignUp: NextPage = Form.create<FormComponentProps>()(
                     ],
                     validateFirst: true,
                     validateTrigger: 'onBlur',
+                    normalize: validateEmail.normalize,
                   })(
                     <Input
                       placeholder={t('account.placeholder')}

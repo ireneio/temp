@@ -5,7 +5,6 @@
   "auto-email": "Almacenar correo electrónico de notificación automática",
   "auto-email-description": "Cuando se activan las notificaciones, se enviará un correo electrónico de notificación cada 20 minutos. Puede configurar una dirección de correo electrónico diferente de su cuenta de inicio de sesión.",
   "email": "Recibiendo correo electrónico",
-  "email-error": "Formato de correo electrónico incorrecto",
   "required": "Necesaria",
   "auto-email-setting": "Configuración de notificaciones",
   "orderCreated": {

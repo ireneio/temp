@@ -4,7 +4,6 @@ import radium from 'radium';
 import gql from 'graphql-tag';
 import { Query } from '@apollo/react-components';
 import { Form, Input, Button, Icon } from 'antd';
-import { isFullWidth, isEmail } from 'validator';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
@@ -12,7 +11,9 @@ import {
   menuIconsShoppingCart_react as ShoppingCartIcon,
   facebook_react as FacebookIcon,
 } from '@meepshop/images';
+import { useValidateEmail } from '@meepshop/validator';
 import withContext from '@store/utils/lib/withContext';
+import withHook from '@store/utils/lib/withHook';
 
 import DraftText from 'draftText';
 
@@ -40,6 +41,9 @@ const query = gql`
 
 @withTranslation('cart')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
+@withHook(() => ({
+  validateEmail: useValidateEmail(),
+}))
 @Form.create()
 @enhancer
 @radium
@@ -96,8 +100,9 @@ export default class Login extends React.PureComponent {
       form,
       goToInCart,
       storeSetting: { shopperLoginMessageEnabled, shopperLoginMessage },
+      validateEmail,
     } = this.props;
-    const { getFieldDecorator, setFields } = form;
+    const { getFieldDecorator } = form;
 
     return (
       <Query query={query}>
@@ -121,27 +126,13 @@ export default class Login extends React.PureComponent {
                         message: t('email-is-required'),
                       },
                       {
-                        validator: (rule, value, callback) => {
-                          if (value && (isFullWidth(value) || !isEmail(value)))
-                            callback(t('is-invalid-email'));
-                          else callback();
-                        },
+                        validator: validateEmail.validator,
                       },
                     ],
-                    validateTrigger: false,
-                    normalize: value => value.replace(/\s/g, ''),
+                    validateTrigger: 'onBlur',
+                    normalize: validateEmail.normalize,
                   })(
-                    <Input
-                      placeholder={t('email-placeholder')}
-                      onChange={({ target: { value } }) => {
-                        setFields({
-                          email: {
-                            value,
-                          },
-                        });
-                      }}
-                      size="large"
-                    />,
+                    <Input placeholder={t('email-placeholder')} size="large" />,
                   )}
                 </FormItem>
 

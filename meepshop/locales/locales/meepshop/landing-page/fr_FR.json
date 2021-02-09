@@ -19,7 +19,6 @@
   "female": "Féminin",
   "birthday": "Date de naissance",
   "email": "Email",
-  "not-email": "S'il vous plaît, mettez une adresse email valide.",
   "notes": "Notes d'ordre",
   "name-too-long": "Votre nom ne doit pas dépasser {{amount}} mots",
   "select-product-payment": "Sélectionnez l'article et le type de paiement / livraison",

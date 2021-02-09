@@ -3,10 +3,11 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Button, notification } from 'antd';
-import { isFullWidth, isEmail } from 'validator';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
+import { useValidateEmail } from '@meepshop/validator';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -16,6 +17,9 @@ import styles from './styles/forgetPassword.less';
 const { Item: FormItem } = Form;
 
 @withTranslation('cart')
+@withHook(() => ({
+  validateEmail: useValidateEmail(),
+}))
 @Form.create()
 @enhancer
 @radium
@@ -90,7 +94,8 @@ export default class ForgetPassword extends React.PureComponent {
 
       /** props */
       t,
-      form: { getFieldDecorator, setFields },
+      form: { getFieldDecorator },
+      validateEmail,
     } = this.props;
 
     return (
@@ -106,28 +111,12 @@ export default class ForgetPassword extends React.PureComponent {
                   message: t('email-is-required'),
                 },
                 {
-                  validator: (rule, value, callback) => {
-                    if (value && (isFullWidth(value) || !isEmail(value)))
-                      callback(t('is-invalid-email'));
-                    else callback();
-                  },
+                  validator: validateEmail.validator,
                 },
               ],
-              validateTrigger: false,
-              normalize: value => value.replace(/\s/g, ''),
-            })(
-              <Input
-                placeholder={t('email-placeholder')}
-                size="large"
-                onChange={({ target: { value } }) => {
-                  setFields({
-                    email: {
-                      value,
-                    },
-                  });
-                }}
-              />,
-            )}
+              validateTrigger: 'onBlur',
+              normalize: validateEmail.normalize,
+            })(<Input placeholder={t('email-placeholder')} size="large" />)}
           </FormItem>
 
           <div className={styles.buttonRoot}>

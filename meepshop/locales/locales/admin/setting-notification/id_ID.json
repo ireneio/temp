@@ -5,7 +5,6 @@
   "auto-email": "Simpan email pemberitahuan otomatis",
   "auto-email-description": "Saat pemberitahuan diaktifkan, email pemberitahuan akan dikirim setiap 20 menit. Anda dapat mengatur alamat email yang berbeda dari akun login Anda.",
   "email": "Menerima email",
-  "email-error": "Format email salah",
   "required": "Yg dibutuhkan",
   "auto-email-setting": "Pengaturan pemberitahuan",
   "orderCreated": {

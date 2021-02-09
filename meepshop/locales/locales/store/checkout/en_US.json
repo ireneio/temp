@@ -14,8 +14,6 @@
   "check-detail": "Details",
   "user-info": "Member Info",
   "email": "Sign up with your email address",
-  "not-email": "Please enter a valid email address.",
-  "is-register": "This email address is already registered",
   "password": "Password",
   "name": "Full Name",
   "allpay-name-too-long": "Chinese should be 2-5 characters / English should be 4-10 characters. Please don't use symbols/numbers or leave blank",

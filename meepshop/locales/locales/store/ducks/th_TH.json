@@ -6,7 +6,6 @@
   "expired-points-description": "คุณมี {{point}} คะแนนสะสมที่จะหมดอายุในไม่ช้า",
   "signout-success": "คุณออกจากระบบแล้ว",
   "signout-failure-message": "ออกจากระบบ: เกิดข้อผิดพลาด",
-  "email-already-exists": "ที่อยู่อีเมลนี้ได้ลงทะเบียนไปแล้ว",
   "signup-success": "การลงทะเบียนเสร็จสมบูรณ์",
   "signup-failure-message": "สมัครสมาชิก: เกิดข้อผิดพลาด",
   "forget-password-success": "ส่งลิงค์รีเซ็ตรหัสผ่านแล้ว กรุณาตรวจสอบกล่องจดหมายของคุณ",

@@ -1,7 +1,5 @@
 {
   "email-is-required": "請輸入信箱",
-  "is-invalid-email": "無效的信箱",
-  "use-lowercase-letters": "@ 後方請使用小寫字母",
   "email-placeholder": "信箱",
   "password-is-required": "請輸入密碼",
   "password-placeholder": "密碼",

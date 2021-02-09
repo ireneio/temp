@@ -1,0 +1,7 @@
+{
+  "email": {
+    "invalid-format": "メールアドレスに誤りがあります",
+    "use-lowercase-letters": "@小文字を使用してください",
+    "already-exists": "このメールアドレスはすでに使われています"
+  }
+}

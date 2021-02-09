@@ -3,7 +3,6 @@
   "bill": "Check-out",
   "member-login": "Se connecter",
   "email-is-required": "Veuillez saisir un e-mail.",
-  "is-invalid-email": "S'il vous plaît, mettez une adresse email valide.",
   "email-placeholder": "Email",
   "password-is-required": "Veuillez entrer le mot de passe.",
   "password-placeholder": "Mot de passe",

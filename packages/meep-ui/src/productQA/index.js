@@ -2,13 +2,13 @@ import React from 'react';
 import radium, { Style } from 'radium';
 import PropTypes from 'prop-types';
 import { Form, List, Input, Button, message } from 'antd';
-import { isFullWidth, isEmail } from 'validator';
 import moment from 'moment';
 
-import withHook from '@store/utils/lib/withHook';
 import { useAutoLinker } from '@meepshop/hooks';
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import { ViewReplyIcon } from '@meepshop/icons';
+import { useValidateEmail } from '@meepshop/validator';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, ISLOGIN_TYPE, COLOR_TYPE } from 'constants/propTypes';
@@ -25,7 +25,10 @@ const { TextArea } = Input;
 @enhancer
 @Form.create()
 @withTranslation('product-qa')
-@withHook(() => ({ autoLinker: useAutoLinker() }))
+@withHook(() => ({
+  autoLinker: useAutoLinker(),
+  validateEmail: useValidateEmail(),
+}))
 @radium
 export default class PrdoductQA extends React.PureComponent {
   static propTypes = {
@@ -115,6 +118,7 @@ export default class PrdoductQA extends React.PureComponent {
       form: { getFieldDecorator, resetFields },
       contentWidth,
       productId,
+      validateEmail,
       autoLinker,
     } = this.props;
     const { QAList, showQAIndex } = this.state;
@@ -208,13 +212,10 @@ export default class PrdoductQA extends React.PureComponent {
                   message: t('is-required'),
                 },
                 {
-                  validator: (rule, value, callback) => {
-                    if (value && (isFullWidth(value) || !isEmail(value)))
-                      callback(t('not-email'));
-                    else callback();
-                  },
+                  validator: validateEmail.validator,
                 },
               ],
+              normalize: validateEmail.normalize,
             })(<Input placeholder={t('email')} />)}
           </FormItem>
         )}

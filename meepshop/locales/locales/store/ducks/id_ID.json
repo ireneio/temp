@@ -6,7 +6,6 @@
   "expired-points-description": "Anda memiliki {{point}} poin hadiah yang akan segera kedaluwarsa",
   "signout-success": "Anda keluar.",
   "signout-failure-message": "Keluar: Terjadi kesalahan",
-  "email-already-exists": "Alamat email ini sudah terdaftar",
   "signup-success": "Pendaftaran selesai",
   "signup-failure-message": "Daftar: Terjadi kesalahan",
   "forget-password-success": "Tautan ulang kata sandi telah dikirim. Silakan periksa kotak masuk Anda.",

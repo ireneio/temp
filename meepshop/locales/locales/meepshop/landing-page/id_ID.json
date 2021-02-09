@@ -19,7 +19,6 @@
   "female": "Perempuan",
   "birthday": "Tanggal lahir",
   "email": "Surel",
-  "not-email": "Silakan isi alamat email.",
   "notes": "Catatan Pemesanan",
   "name-too-long": "Nama Anda tidak boleh melebihi {{amount}} kata-kata",
   "select-product-payment": "Pilih Barang dan Jenis Pembayaran / Pengiriman",

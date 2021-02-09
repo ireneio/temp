@@ -1,7 +1,5 @@
 {
   "email-is-required": "Xin nhập hộp thư",
-  "is-invalid-email": "Hộp thư sai",
-  "use-lowercase-letters": "@ Vui lòng sử dụng chữ thường",
   "email-placeholder": "Hộp thư",
   "password-is-required": "Xin nhập mật khẩu",
   "password-placeholder": "mật khẩu",

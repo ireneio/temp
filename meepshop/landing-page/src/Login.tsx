@@ -4,12 +4,12 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 // import
 import React, { useState, useContext } from 'react';
 import { Modal, Form, Button, Input, Icon } from 'antd';
-import { isFullWidth, isEmail } from 'validator';
 
-import { Colors as ColorsContext } from '@meepshop/context';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { Colors as ColorsContext } from '@meepshop/context';
+import { useValidateEmail } from '@meepshop/validator';
 
-import styles from './styles/invoice.less';
+import styles from './styles/login.less';
 import useLoginSubmit from './hooks/useLoginSubmit';
 
 export interface PropsType extends FormComponentProps {
@@ -35,11 +35,17 @@ export default Form.create<PropsType>()(
       hideLogin,
       isForgotPassword,
     });
+    const validateEmail = useValidateEmail();
 
     const { getFieldDecorator } = form;
 
     return (
-      <Modal title={t('plz-login')} footer={null} onCancel={hideLogin}>
+      <Modal
+        title={t('plz-login')}
+        footer={null}
+        onCancel={hideLogin}
+        maskClosable={false}
+      >
         <Form className={styles.root} onSubmit={onSubmit}>
           <Item className={styles.formItem}>
             {getFieldDecorator('email', {
@@ -49,15 +55,12 @@ export default Form.create<PropsType>()(
                   message: t('is-required'),
                 },
                 {
-                  validator: (_rule, value, callback) => {
-                    if (value && (isFullWidth(value) || !isEmail(value)))
-                      callback(t('not-email'));
-                    else callback();
-                  },
+                  validator: validateEmail.validator,
                 },
               ],
               validateFirst: true,
               initialValue: userEmail,
+              normalize: validateEmail.normalize,
             })(<Input placeholder={t('email')} />)}
           </Item>
 

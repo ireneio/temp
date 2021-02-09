@@ -6,7 +6,6 @@
   "expired-points-description": "Tienes {{point}} puntos de recompensa que caducarán pronto",
   "signout-success": "Has cerrado sesión.",
   "signout-failure-message": "Cerrar sesión: se produjo un error",
-  "email-already-exists": "Esta dirección de correo electrónico ya está registrada",
   "signup-success": "Registro completo",
   "signup-failure-message": "Registrarse: se produjo un error",
   "forget-password-success": "Se ha enviado el enlace para restablecer la contraseña. Por favor revise su bandeja de entrada.",

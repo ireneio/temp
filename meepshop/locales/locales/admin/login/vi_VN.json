@@ -1,6 +1,5 @@
 {
   "email": {
-    "error": "Email chưa đúng",
     "placeholder": "Nhập Email đăng ký"
   },
   "password": {

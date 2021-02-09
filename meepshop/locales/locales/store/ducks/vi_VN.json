@@ -6,7 +6,6 @@
   "expired-points-description": "Bạn có {{point}} Khoản tiền mua sắm sắp hết hạn",
   "signout-success": "Đã đăng xuất",
   "signout-failure-message": "Đăng xuất : Xảy ra lỗi",
-  "email-already-exists": "Hộp thư này đã được đăng ký",
   "signup-success": "Đã hoàn thành đăng ký",
   "signup-failure-message": "Đăng ký : Xảy ra lỗi",
   "forget-password-success": "Đã gửi đến hộp thư",

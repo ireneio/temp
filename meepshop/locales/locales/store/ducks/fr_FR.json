@@ -6,7 +6,6 @@
   "expired-points-description": "Vous avez {{point}} points de récompense qui expireront bientôt",
   "signout-success": "Vous êtes déconnecté.",
   "signout-failure-message": "Déconnexion: une erreur s'est produite",
-  "email-already-exists": "cette adresse email est déjà enregistrée",
   "signup-success": "Inscription complète",
   "signup-failure-message": "Inscription: une erreur s'est produite",
   "forget-password-success": "Le lien de réinitialisation du mot de passe a été envoyé. Veuillez vérifier votre boîte de réception.",

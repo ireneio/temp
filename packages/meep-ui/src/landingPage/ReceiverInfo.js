@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Select, DatePicker } from 'antd';
-import { isAlpha, isFullWidth, isEmail } from 'validator';
+import { isAlpha } from 'validator';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { useValidateEmail } from '@meepshop/validator';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import ReceiverDefaultFormItem from 'receiverDefaultFormItem';
@@ -16,8 +18,7 @@ import {
 } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
 
-import Login from './Login';
-import { CHECK_USER_EMAIL, ADDITION_TYPE, REQUIRED_TYPE } from './constants';
+import { ADDITION_TYPE, REQUIRED_TYPE } from './constants';
 import * as styles from './styles/receiverInfo';
 import {
   block as blockStyle,
@@ -30,6 +31,9 @@ const { Option } = Select;
 const { TextArea } = Input;
 
 @withTranslation('landing-page')
+@withHook(({ setShowLogin }) => ({
+  validateEmail: useValidateEmail(() => setShowLogin(true)),
+}))
 @enhancer
 @radium
 export default class ReceiverInfo extends React.PureComponent {
@@ -59,10 +63,6 @@ export default class ReceiverInfo extends React.PureComponent {
     chooseShipmentTemplate: null,
   };
 
-  state = {
-    showLogin: false,
-  };
-
   checkedTemplate = null;
 
   componentDidUpdate() {
@@ -82,24 +82,6 @@ export default class ReceiverInfo extends React.PureComponent {
     }
   }
 
-  componentWillUnmount() {
-    this.isUnmounted = true;
-  }
-
-  checkUserEmail = async ({ target }) => {
-    const { getData, form } = this.props;
-    const { getFieldError } = form;
-    const { value: email } = target;
-
-    if (getFieldError('email') || email === '') return;
-
-    const result = await getData(CHECK_USER_EMAIL, { email });
-
-    if (this.isUnmounted) return;
-
-    if (result?.data?.checkUserInfo.exists) this.setState({ showLogin: true });
-  };
-
   render() {
     const {
       /** context */
@@ -114,9 +96,9 @@ export default class ReceiverInfo extends React.PureComponent {
       form,
       addition,
       required,
+      validateEmail,
     } = this.props;
-    const { showLogin } = this.state;
-    const { getFieldDecorator, getFieldValue } = form;
+    const { getFieldDecorator } = form;
 
     return (
       <div style={blockStyle}>
@@ -218,20 +200,11 @@ export default class ReceiverInfo extends React.PureComponent {
                   message: t('is-required'),
                 },
                 {
-                  validator: (rule, value, callback) => {
-                    if (value && (isFullWidth(value) || !isEmail(value)))
-                      callback(t('not-email'));
-                    else callback();
-                  },
+                  validator: validateEmail.validator,
                 },
               ],
-            })(
-              <Input
-                placeholder={t('email')}
-                onChange={() => this.setState({ showLogin: false })}
-                onBlur={this.checkUserEmail}
-              />,
-            )}
+              normalize: validateEmail.normalize,
+            })(<Input placeholder={t('email')} />)}
           </FormItem>
         )}
 
@@ -256,13 +229,6 @@ export default class ReceiverInfo extends React.PureComponent {
               ],
             })(<TextArea placeholder={t('notes')} rows={4} />)}
           </FormItem>
-        )}
-
-        {isLogin !== NOTLOGIN || !showLogin ? null : (
-          <Login
-            hideLogin={() => this.setState({ showLogin: false })}
-            email={getFieldValue('userEmail')}
-          />
         )}
       </div>
     );

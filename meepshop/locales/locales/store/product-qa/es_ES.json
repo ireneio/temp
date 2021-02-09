@@ -5,7 +5,6 @@
   "content": "Investigación",
   "can-not-send": "Error al enviar",
   "is-required": "Necesaria",
-  "not-email": "Por favor, introduce una dirección de correo electrónico válida.",
   "reset": "Limpiar todo",
   "submit": "Enviar"
 }

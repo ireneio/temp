@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form, Input } from 'antd';
-import { isFullWidth, isEmail } from 'validator';
 import { ApolloConsumer } from '@apollo/react-components';
 import gql from 'graphql-tag';
+import { emptyFunction } from 'fbjs';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
-import withContext from '@store/utils/lib/withContext';
 import AddressCascader from '@meepshop/address-cascader';
+import { useValidateEmail } from '@meepshop/validator';
+import withContext from '@store/utils/lib/withContext';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -19,6 +21,9 @@ const { Password } = Input;
 @Form.create()
 @withTranslation('login')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
+@withHook(() => ({
+  validateEmail: useValidateEmail(emptyFunction.thatReturnsArgument),
+}))
 @enhancer
 class SignupForm extends React.PureComponent {
   static propTypes = {
@@ -156,8 +161,9 @@ class SignupForm extends React.PureComponent {
       colors,
 
       /** props */
-      form: { getFieldDecorator, setFields },
+      form: { getFieldDecorator },
       t,
+      validateEmail,
     } = this.props;
     const { shippableCountries, hasMemberGroupCode } = this.state;
 
@@ -173,30 +179,12 @@ class SignupForm extends React.PureComponent {
                 message: t('email-is-required'),
               },
               {
-                validator: (rule, value, callback) => {
-                  if (value && (isFullWidth(value) || !isEmail(value)))
-                    callback(t('is-invalid-email'));
-                  else if (/[A-Z]/.test(value.split('@')[1]))
-                    callback(t('use-lowercase-letters'));
-                  else callback();
-                },
+                validator: validateEmail.validator,
               },
             ],
-            validateTrigger: false,
-            normalize: value => value?.replace(/\s/g, ''),
-          })(
-            <Input
-              placeholder={t('email')}
-              size="large"
-              onChange={({ target: { value } }) => {
-                setFields({
-                  email: {
-                    value,
-                  },
-                });
-              }}
-            />,
-          )}
+            validateTrigger: 'onBlur',
+            normalize: validateEmail.normalize,
+          })(<Input placeholder={t('email')} size="large" />)}
         </FormItem>
 
         <FormItem>
@@ -255,9 +243,7 @@ class SignupForm extends React.PureComponent {
           )}
         </FormItem>
 
-        {!(
-          hasStoreAppPlugin('memberGroupCode') && hasMemberGroupCode
-        ) ? null : (
+        {!hasStoreAppPlugin('memberGroupCode') || !hasMemberGroupCode ? null : (
           <FormItem>
             {getFieldDecorator('registeredCode', {
               rules: [],

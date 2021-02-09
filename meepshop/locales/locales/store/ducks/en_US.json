@@ -6,7 +6,6 @@
   "expired-points-description": "You have {{point}} reward points that will expire soon",
   "signout-success": "You are signed out.",
   "signout-failure-message": "Sign out: Error occurred",
-  "email-already-exists": "This email address is already registered",
   "signup-success": "Registration complete",
   "signup-failure-message": "Sign up: Error occurred",
   "forget-password-success": "Reset password link has been sent. Please check your inbox.",

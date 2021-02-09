@@ -5,11 +5,11 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 // import
 import React from 'react';
 import { Button, Switch, Spin, Input, Icon, Form, Divider } from 'antd';
-import { isFullWidth, isEmail } from 'validator';
 import { filter } from 'graphql-anywhere';
 import { useQuery } from '@apollo/react-hooks';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useValidateEmail } from '@meepshop/validator';
 
 import Header from '@admin/header';
 import Block from '@admin/block';
@@ -77,6 +77,7 @@ const SettingNotificationPage: NextPage<PropsType> = Form.create<PropsType>()(
       form,
       filter(useUpdateNotificationSettingFragment, data?.viewer?.store || null),
     );
+    const validateEmail = useValidateEmail();
 
     if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
 
@@ -122,14 +123,11 @@ const SettingNotificationPage: NextPage<PropsType> = Form.create<PropsType>()(
                       message: t('required'),
                     },
                     {
-                      validator: (_, value, callback) => {
-                        if (value && (isFullWidth(value) || !isEmail(value)))
-                          callback(t('email-error'));
-                        else callback();
-                      },
+                      validator: validateEmail.validator,
                     },
                   ],
                   validateTrigger: 'onBlur',
+                  normalize: validateEmail.normalize,
                 })(<Input />)}
               </Form.Item>
             </div>

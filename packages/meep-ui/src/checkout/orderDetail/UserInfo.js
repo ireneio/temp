@@ -2,20 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input } from 'antd';
-import { isFullWidth, isEmail } from 'validator';
+import { emptyFunction } from 'fbjs';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/address-cascader';
+import { useValidateEmail } from '@meepshop/validator';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ISLOGIN_TYPE } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
 
 import validateMobile from 'utils/validateMobile';
-
-import { CHECK_USER_EMAIL } from './constants';
 
 import {
   block as blockStyle,
@@ -27,38 +27,19 @@ const { Item: FormItem } = Form;
 const { Password } = Input;
 
 @withTranslation(['checkout', 'validate-mobile'])
+@withHook(() => ({
+  validateEmail: useValidateEmail(emptyFunction.thatReturnsArgument),
+}))
 @enhancer
 @radium
 export default class UserInfo extends React.PureComponent {
   static propTypes = {
     /** context */
     isLogin: ISLOGIN_TYPE.isRequired,
-    getData: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
     form: PropTypes.shape({}).isRequired,
-  };
-
-  componentWillUnmount() {
-    this.isUnmounted = true;
-  }
-
-  checkUserEmail = async (rule, value, callback) => {
-    const {
-      /** context */
-      getData,
-
-      /** props */
-      t,
-    } = this.props;
-
-    const result = await getData(CHECK_USER_EMAIL, { email: value });
-
-    if (this.isUnmounted) return;
-
-    if (result?.data?.checkUserInfo.exists) callback(t('is-register'));
-    else callback();
   };
 
   render() {
@@ -71,6 +52,7 @@ export default class UserInfo extends React.PureComponent {
       form,
       user,
       shippableCountries,
+      validateEmail,
     } = this.props;
     const { getFieldDecorator } = form;
 
@@ -82,24 +64,18 @@ export default class UserInfo extends React.PureComponent {
           <>
             <FormItem style={formItemStyle}>
               {getFieldDecorator('userEmail', {
-                validateTrigger: 'onBlur',
-                validateFirst: true,
                 rules: [
                   {
                     required: true,
                     message: t('is-required'),
                   },
                   {
-                    validator: (rule, value, callback) => {
-                      if (value && (isFullWidth(value) || !isEmail(value)))
-                        callback(t('not-email'));
-                      else callback();
-                    },
-                  },
-                  {
-                    validator: this.checkUserEmail,
+                    validator: validateEmail.validator,
                   },
                 ],
+                validateTrigger: 'onBlur',
+                validateFirst: true,
+                normalize: validateEmail.normalize,
               })(<Input placeholder={t('email')} />)}
             </FormItem>
 

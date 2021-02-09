@@ -14,8 +14,6 @@
   "check-detail": "Détails",
   "user-info": "Infos membres",
   "email": "Inscrivez vous avec votre adresse email",
-  "not-email": "S'il vous plaît, mettez une adresse email valide.",
-  "is-register": "cette adresse email est déjà enregistrée",
   "password": "Mot de passe",
   "name": "Nom complet",
   "allpay-name-too-long": "Le chinois doit comporter de 2 à 5 caractères / l'anglais doit comporter de 4 à 10 caractères. Veuillez ne pas utiliser de symboles / chiffres ou laisser vide",

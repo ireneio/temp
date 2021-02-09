@@ -1,7 +1,5 @@
 {
   "email-is-required": "Veuillez saisir un e-mail.",
-  "is-invalid-email": "S'il vous plaît, mettez une adresse email valide.",
-  "use-lowercase-letters": "@ Veuillez utiliser des lettres minuscules",
   "email-placeholder": "Email",
   "password-is-required": "Veuillez entrer le mot de passe.",
   "password-placeholder": "Mot de passe",

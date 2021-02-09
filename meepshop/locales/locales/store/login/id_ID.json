@@ -1,7 +1,5 @@
 {
   "email-is-required": "Silakan masukkan email.",
-  "is-invalid-email": "Silakan isi alamat email.",
-  "use-lowercase-letters": "@ Harap gunakan huruf kecil",
   "email-placeholder": "Surel",
   "password-is-required": "Silakan masukkan kata sandi.",
   "password-placeholder": "Kata sandi",

@@ -5,7 +5,6 @@
   "auto-email": "Lưu trữ email thông báo tự động",
   "auto-email-description": "Khi thông báo được kích hoạt, một email thông báo sẽ được gửi cứ sau 20 phút. Bạn có thể đặt một địa chỉ email khác với tài khoản đăng nhập của bạn.",
   "email": "Nhận email",
-  "email-error": "Định dạng email không chính xác",
   "required": "Cần thiết",
   "auto-email-setting": "Cài đặt thông báo",
   "orderCreated": {

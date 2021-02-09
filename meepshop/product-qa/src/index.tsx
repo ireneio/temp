@@ -6,13 +6,13 @@ import React, { useContext, useState } from 'react';
 import { filter } from 'graphql-anywhere';
 import moment from 'moment';
 import transformColor from 'color';
-import { isFullWidth, isEmail } from 'validator';
 import { Form, Input, Button } from 'antd';
 
 import { useAutoLinker } from '@meepshop/hooks';
 import { ViewReplyIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { Colors as ColorsContext } from '@meepshop/context';
+import { useValidateEmail } from '@meepshop/validator';
 
 import useCreateProductQA from './hooks/useCreateProductQA';
 import styles from './styles/index.less';
@@ -45,6 +45,7 @@ export default Form.create<FormComponentProps>()(
         filter(useCreateProductQAFragment, product),
         resetFields,
       );
+      const validateEmail = useValidateEmail();
       const autoLinker = useAutoLinker();
 
       return (
@@ -141,13 +142,11 @@ export default Form.create<FormComponentProps>()(
                     message: t('is-required'),
                   },
                   {
-                    validator: (_, value, callback) => {
-                      if (value && (isFullWidth(value) || !isEmail(value)))
-                        callback(t('not-email'));
-                      else callback();
-                    },
+                    validator: validateEmail.validator,
                   },
                 ],
+                validateTrigger: 'onBlur',
+                normalize: validateEmail.normalize,
               })(
                 <Input
                   style={{ borderColor: colors[5] }}

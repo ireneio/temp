@@ -19,7 +19,6 @@
   "female": "Female",
   "birthday": "Date of birth",
   "email": "Email",
-  "not-email": "Please enter a valid email address.",
   "notes": "Order Notes",
   "name-too-long": "Your name should not exceed {{amount}} words",
   "select-product-payment": "Select Item and Payment / Delivery Type",

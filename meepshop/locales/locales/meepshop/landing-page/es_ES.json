@@ -19,7 +19,6 @@
   "female": "Hembra",
   "birthday": "Fecha de nacimiento",
   "email": "Email",
-  "not-email": "Por favor, introduce una dirección de correo electrónico válida.",
   "notes": "pedidos",
   "name-too-long": "Su nombre no debe exceder las {{amount}} palabras",
   "select-product-payment": "Seleccionar artículo y tipo de pago / entrega",

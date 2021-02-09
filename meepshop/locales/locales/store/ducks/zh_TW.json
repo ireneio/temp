@@ -6,7 +6,6 @@
   "expired-points-description": "您有 {{point}} 筆購物金即將到期",
   "signout-success": "已登出",
   "signout-failure-message": "登出：發生錯誤",
-  "email-already-exists": "此信箱已註冊",
   "signup-success": "註冊完成",
   "signup-failure-message": "註冊：發生錯誤",
   "forget-password-success": "成功寄送至信箱",

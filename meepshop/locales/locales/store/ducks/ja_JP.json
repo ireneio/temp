@@ -6,7 +6,6 @@
   "expired-points-description": "あなたの {{point}} ポイントがもうすぐ有効期限が切れます",
   "signout-success": "ログアウトしました",
   "signout-failure-message": "ログアウト：エラーが発生しました",
-  "email-already-exists": "このメールアドレスはすでに使われています",
   "signup-success": "会員登録が完了しました",
   "signup-failure-message": "新規登録：エラーが発生しました",
   "forget-password-success": "メールボックスへ送信されました",

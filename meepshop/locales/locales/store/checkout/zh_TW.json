@@ -14,8 +14,6 @@
   "check-detail": "查看明細",
   "user-info": "會員資料",
   "email": "請輸入註冊信箱",
-  "not-email": "信箱格式錯誤",
-  "is-register": "此信箱已註冊",
   "password": "請設定會員密碼",
   "name": "姓名",
   "allpay-name-too-long": "中文須為2~5個字/英文須為4~10個字，不可使用符號/數字/空白",

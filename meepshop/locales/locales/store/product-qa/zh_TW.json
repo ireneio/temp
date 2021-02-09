@@ -5,7 +5,6 @@
   "content": "我要發問",
   "can-not-send": "無法送出",
   "is-required": "必填",
-  "not-email": "信箱格式錯誤",
   "reset": "清除重填",
   "submit": "確認送出"
 }

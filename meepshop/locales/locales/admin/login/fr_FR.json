@@ -1,6 +1,5 @@
 {
   "email": {
-    "error": "S'il vous plaît, mettez une adresse email valide.",
     "placeholder": "Entrez l'e-mail d'inscription"
   },
   "password": {

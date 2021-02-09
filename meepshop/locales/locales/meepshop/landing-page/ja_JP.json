@@ -19,7 +19,6 @@
   "female": "女",
   "birthday": "生年月日",
   "email": "メールアドレス",
-  "not-email": "メールアドレスに誤りがあります",
   "notes": "注文備考",
   "name-too-long": "姓名欄は{{amount}}文字以内",
   "select-product-payment": "商品及び購入方法を選択",

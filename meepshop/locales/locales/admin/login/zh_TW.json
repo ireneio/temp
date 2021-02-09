@@ -1,7 +1,6 @@
 {
   "email": {
-    "error": "信箱格式錯誤",
-    "placeholder": "輸入帳號"
+    "placeholder": "輸入註冊 Email"
   },
   "password": {
     "error": "密碼格式錯誤",

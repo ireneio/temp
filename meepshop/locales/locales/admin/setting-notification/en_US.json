@@ -5,7 +5,6 @@
   "auto-email": "Store automatic notification email",
   "auto-email-description": "When notifications are activated, a notification email will be sent every 20 minutes. You can set an email address different from your login account.",
   "email": "Receiving email",
-  "email-error": "Email format incorrect",
   "required": "Required",
   "auto-email-setting": "Notifications setting",
   "orderCreated": {

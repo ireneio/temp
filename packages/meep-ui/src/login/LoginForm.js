@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { Query } from '@apollo/react-components';
 import { Button, Form, Input } from 'antd';
-import { isFullWidth, isEmail } from 'validator';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { useValidateEmail } from '@meepshop/validator';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 
@@ -30,6 +31,9 @@ const query = gql`
 
 @Form.create()
 @withTranslation('login')
+@withHook(() => ({
+  validateEmail: useValidateEmail(),
+}))
 @enhancer
 export default class LoginForm extends React.PureComponent {
   static propTypes = {
@@ -71,10 +75,11 @@ export default class LoginForm extends React.PureComponent {
       colors,
 
       /** props */
-      form: { getFieldDecorator, setFields },
+      form: { getFieldDecorator },
       t,
       toggleToSignup,
       toggleToForgetPassword,
+      validateEmail,
     } = this.props;
 
     return (
@@ -95,28 +100,12 @@ export default class LoginForm extends React.PureComponent {
                       message: t('email-is-required'),
                     },
                     {
-                      validator: (rule, value, callback) => {
-                        if (value && (isFullWidth(value) || !isEmail(value)))
-                          callback(t('is-invalid-email'));
-                        else callback();
-                      },
+                      validator: validateEmail.validator,
                     },
                   ],
-                  validateTrigger: false,
-                  normalize: value => value?.replace(/\s/g, ''),
-                })(
-                  <Input
-                    placeholder={t('email-placeholder')}
-                    size="large"
-                    onChange={({ target: { value } }) => {
-                      setFields({
-                        email: {
-                          value,
-                        },
-                      });
-                    }}
-                  />,
-                )}
+                  validateTrigger: 'onBlur',
+                  normalize: validateEmail.normalize,
+                })(<Input placeholder={t('email-placeholder')} size="large" />)}
               </FormItem>
 
               <FormItem>

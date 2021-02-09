@@ -105,6 +105,9 @@ module.exports = {
         '@meepshop/hooks': {
           transform: '@meepshop/hooks/lib/${member}',
         },
+        '@meepshop/validator': {
+          transform: '@meepshop/validator/lib/${member}',
+        },
         '@admin/hooks': {
           transform: '@admin/hooks/lib/${member}',
         },

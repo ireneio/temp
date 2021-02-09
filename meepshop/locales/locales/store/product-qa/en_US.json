@@ -5,7 +5,6 @@
   "content": "Inquiry",
   "can-not-send": "Failed to submit",
   "is-required": "Required",
-  "not-email": "Please enter a valid email address.",
   "reset": "Clear All",
   "submit": "Submit"
 }

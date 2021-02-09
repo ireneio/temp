@@ -5,7 +5,6 @@
   "auto-email": "店家自動通知信",
   "auto-email-description": "開啟的通知發生時，每 20 分鐘會發送通知信至收件 Email，您可設置不同於登入帳號的 Email 地址。",
   "email": "收件 Email",
-  "email-error": "Email 格式不正確",
   "required": "必填",
   "auto-email-setting": "通知條件設定",
   "orderCreated": {

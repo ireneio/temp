@@ -19,7 +19,6 @@
   "female": "女",
   "birthday": "生日",
   "email": "信箱",
-  "not-email": "信箱格式錯誤",
   "notes": "訂單備註",
   "name-too-long": "姓名欄位不得超過{{amount}}個字",
   "select-product-payment": "選擇商品與購物方式",

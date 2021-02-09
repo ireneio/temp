@@ -5,7 +5,6 @@
   "auto-email": "自動通知メールを保存する",
   "auto-email-description": "通知がアクティブになると、通知メールが20分ごとに送信されます。 ログインアカウントとは異なるメールアドレスを設定できます。",
   "email": "メールを受信する",
-  "email-error": "メール形式が正しくありません",
   "required": "必須",
   "auto-email-setting": "通知設定",
   "orderCreated": {
