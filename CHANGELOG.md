@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.78.0 (2021-02-17)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1420](https://github.com/meepshop/meep-lerna/pull/1420) 內部開單 - PROD k8s 資源調整 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1427](https://github.com/meepshop/meep-lerna/pull/1427) (@meepshop/frontend) Remove not used schemas ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.77.0 (2021-02-09)
 
 #### :boom: Breaking Change
