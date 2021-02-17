@@ -34,14 +34,14 @@ export default React.memo(({ orderHistoryRecord }: PropsType) => {
           <div className={styles.orderProductQuantityDelta}>
             {orderProductQuantityDelta.map(
               ({ sku, name, specs, beforeQuantity, afterQuantity }) => (
-                <div key={`${sku}${name}${specs.join('-')}`}>
+                <div key={`${sku}${name}${specs?.join('-')}`}>
                   <div>
                     {!sku ? null : <div className={styles.sku}>{sku}</div>}
 
                     <div>{name}</div>
 
-                    {specs.length === 0 ? null : (
-                      <div className={styles.specs}>{specs.join(' / ')}</div>
+                    {(specs || []).length === 0 ? null : (
+                      <div className={styles.specs}>{specs?.join(' / ')}</div>
                     )}
                   </div>
 
