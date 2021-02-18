@@ -7,6 +7,7 @@ import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { message } from 'antd';
 
+import { AdTrackContext } from '@admin/ad-track';
 import CookiesContext from '@meepshop/cookies';
 import { useRouter } from '@meepshop/link';
 
@@ -20,6 +21,7 @@ export default ({
   loading: boolean;
   applicantInitiatesStore: (e: React.MouseEvent<HTMLButtonElement>) => void;
 } => {
+  const adTrack = useContext(AdTrackContext);
   const { setCookie } = useContext(CookiesContext);
   const router = useRouter();
 
@@ -37,6 +39,7 @@ export default ({
     {
       onCompleted: ({ applicantInitiatesStore: { status, token } }) => {
         if (status === 'SUCCESS' && token) {
+          adTrack.custom('點擊', '月租註冊_啟用商店', '月租註冊');
           setCookie('x-meepshop-authorization-token', token);
 
           setTimeout(() => router.push('/'), 100);

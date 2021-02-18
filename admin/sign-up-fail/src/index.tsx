@@ -1,8 +1,9 @@
 // import
 import { NextPage } from 'next';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Button, Icon } from 'antd';
 
+import { AdTrackContext } from '@admin/ad-track';
 import Link from '@meepshop/link';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { loginBackground } from '@meepshop/images';
@@ -12,6 +13,12 @@ import styles from './styles/index.less';
 // definition
 const SignUpFail: NextPage = React.memo(() => {
   const { t } = useTranslation('sign-up-fail');
+  const adTrack = useContext(AdTrackContext);
+
+  useEffect(() => {
+    adTrack.custom('點擊', '月租註冊_驗證失敗', '月租註冊');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div
@@ -26,7 +33,13 @@ const SignUpFail: NextPage = React.memo(() => {
         <div>{t('please-register-again')}</div>
 
         <Link href="/sign-up">
-          <Button type="primary" size="large">
+          <Button
+            type="primary"
+            size="large"
+            onClick={() =>
+              adTrack.custom('點擊', '月租註冊_重新註冊', '月租註冊')
+            }
+          >
             {t('go-to-sign-up')}
           </Button>
         </Link>

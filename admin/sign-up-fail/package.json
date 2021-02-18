@@ -8,6 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@admin/ad-track": "^0.72.0",
     "@meepshop/images": "^0.78.0",
     "@meepshop/link": "^0.78.0",
     "@meepshop/utils": "^0.78.0"

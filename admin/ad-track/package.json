@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "@admin/ad-track",
+  "description": "Use to call gtag and fpq",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.72.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "keywords": ["ad", "fbq", "gtag", "track"]
+}

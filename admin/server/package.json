@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@admin/account-setting": "^0.78.0",
+    "@admin/ad-track": "^0.72.0",
     "@admin/apollo": "^0.78.0",
     "@admin/currency": "^0.78.0",
     "@admin/dashboard": "^0.78.0",

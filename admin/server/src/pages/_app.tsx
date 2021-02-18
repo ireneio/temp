@@ -15,6 +15,7 @@ import { AppsProvider } from '@meepshop/context/lib/Apps';
 import { withDomain } from '@meepshop/link';
 import '@admin/utils/styles/base.less';
 import withApollo from '@admin/apollo';
+import AdTrackProvider from '@admin/ad-track';
 import CurrencyProvider from '@admin/currency';
 
 import withCookies from '../utils/withCookies';
@@ -66,13 +67,17 @@ class App extends NextApp<AppInitialProps> {
           {/login|sign-up|set-up-store|sign-up-fail|reset-password|smart-conversion-analysis/.test(
             pathname,
           ) ? (
-            <Component {...pageProps} />
+            <AdTrackProvider>
+              <Component {...pageProps} />
+            </AdTrackProvider>
           ) : (
             <AppsProvider>
               <CurrencyProvider>
-                <Wrapper>
-                  <Component {...pageProps} />
-                </Wrapper>
+                <AdTrackProvider>
+                  <Wrapper>
+                    <Component {...pageProps} />
+                  </Wrapper>
+                </AdTrackProvider>
               </CurrencyProvider>
             </AppsProvider>
           )}

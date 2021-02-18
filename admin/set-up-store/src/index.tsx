@@ -9,12 +9,13 @@ import {
 } from '@meepshop/types/gqls/admin';
 
 // import
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import gql from 'graphql-tag';
 import { useApolloClient } from '@apollo/react-hooks';
 import { Form, Input, Select, Button, Icon } from 'antd';
 
 import Tooltip from '@admin/tooltip';
+import { AdTrackContext } from '@admin/ad-track';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { meepshopLogo, loginBackground } from '@meepshop/images';
 
@@ -32,9 +33,15 @@ const SetUpStore: NextPage = Form.create<FormComponentProps>()(
   React.memo(({ form, form: { getFieldDecorator } }: FormComponentProps) => {
     const client = useApolloClient();
     const { t } = useTranslation('set-up-store');
+    const adTrack = useContext(AdTrackContext);
     const { loading, applicantInitiatesStore } = useApplicantInitiatesStore(
       form,
     );
+
+    useEffect(() => {
+      adTrack.custom('點擊', '月租註冊_驗證成功', '月租註冊');
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
       <div

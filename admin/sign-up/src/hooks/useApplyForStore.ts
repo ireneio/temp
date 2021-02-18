@@ -2,10 +2,12 @@
 import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
-import React, { useCallback, useState } from 'react';
+import React, { useContext, useCallback, useState } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { message } from 'antd';
+
+import { AdTrackContext } from '@admin/ad-track';
 
 // graphql typescript
 import { applyForStore as applyForStoreType } from '@meepshop/types/gqls/admin';
@@ -18,6 +20,7 @@ export default ({
   isApplyForStoreCompleted: boolean;
   applyForStore: (e: React.MouseEvent<HTMLButtonElement>) => void;
 } => {
+  const adTrack = useContext(AdTrackContext);
   const [isApplyForStoreCompleted, setIsApplyForStoreCompleted] = useState(
     false,
   );
@@ -32,8 +35,10 @@ export default ({
     `,
     {
       onCompleted: ({ applyForStore: { status } }) => {
-        if (status === 'SUCCESS') setIsApplyForStoreCompleted(true);
-        else message.error(status);
+        if (status === 'SUCCESS') {
+          setIsApplyForStoreCompleted(true);
+          adTrack.custom('點擊', '月租註冊_註冊信箱', '月租註冊');
+        } else message.error(status);
       },
     },
   );
