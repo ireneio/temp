@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.79.0 (2021-02-18)
+
+#### :rocket: New Feature
+
+- [#1356](https://github.com/meepshop/meep-lerna/pull/1356) 【功能】月租 - 後台廣告事件追蹤 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.78.0 (2021-02-17)
 
 #### :rocket: New Feature
