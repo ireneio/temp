@@ -1,13 +1,21 @@
 // import
 import gql from 'graphql-tag';
 
+// graphql import
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+
 // definition
 export const detailFragment = gql`
   fragment detailFragment on OrderAuditLog {
     orderProductQuantityDelta {
       sku
       name
-      specs
+      specs {
+        id
+        title {
+          ...localeFragment
+        }
+      }
       beforeQuantity
       afterQuantity
     }
@@ -24,4 +32,6 @@ export const detailFragment = gql`
       after
     }
   }
+
+  ${localeFragment}
 `;

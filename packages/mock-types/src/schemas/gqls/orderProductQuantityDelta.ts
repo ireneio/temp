@@ -6,7 +6,11 @@ export const orderProductDeltaMockFragment = gql`
   fragment orderProductDeltaMockFragment on OrderProductQuantityDelta {
     sku
     name
-    specs
+    specs {
+      title {
+        zh_TW
+      }
+    }
     beforeQuantity
     afterQuantity
   }

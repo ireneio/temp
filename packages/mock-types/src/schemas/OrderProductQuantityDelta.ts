@@ -12,7 +12,24 @@ export default mock.add<orderProductDeltaMockFragment>(
       __typename: 'OrderProductQuantityDelta',
       sku: 'sku',
       name: 'name',
-      specs: ['A', 'B'],
+      specs: [
+        {
+          __typename: 'SpecValue',
+          title: {
+            __typename: 'Locale',
+            // eslint-disable-next-line  @typescript-eslint/camelcase
+            zh_TW: 'A',
+          },
+        },
+        {
+          __typename: 'SpecValue',
+          title: {
+            __typename: 'Locale',
+            // eslint-disable-next-line  @typescript-eslint/camelcase
+            zh_TW: 'B',
+          },
+        },
+      ],
       beforeQuantity: 5,
       afterQuantity: 3,
     }),
