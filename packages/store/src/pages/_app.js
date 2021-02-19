@@ -12,7 +12,7 @@ import moment from 'moment';
 
 import ActionButton from '@meepshop/action-button';
 import { appWithTranslation } from '@meepshop/utils/lib/i18n';
-import { logger } from '@meepshop/utils/lib/logger';
+import logger from '@meepshop/utils/lib/logger';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';
 import { AppsProvider } from '@meepshop/context/lib/Apps';

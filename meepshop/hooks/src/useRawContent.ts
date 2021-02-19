@@ -4,7 +4,7 @@ import { RawDraftContentState, RawDraftInlineStyleRange } from 'draft-js';
 // import
 import { useMemo } from 'react';
 
-import { logger } from '@meepshop/utils/lib/logger';
+import logger from '@meepshop/utils/lib/logger';
 
 import { COLORS, FONTFAMILY } from './constants';
 
@@ -135,7 +135,7 @@ export const formatRawContent = (value?: string | null): object | null => {
 
     return rawContent;
   } catch (error) {
-    logger.error('Error: failed to format content', `[${value}]`);
+    logger.error(`Error: failed to format content, [${value}]`);
     return null;
   }
 };

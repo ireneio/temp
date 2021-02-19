@@ -2,7 +2,7 @@ const os = require('os');
 
 const proxy = require('express-http-proxy');
 
-const { logger } = require('@meepshop/utils/lib/logger');
+const { default: logger } = require('@meepshop/utils/lib/logger');
 
 const { publicRuntimeConfig } = require('../../../next.config');
 

@@ -1,5 +1,5 @@
 // import
-import { logger } from '@meepshop/utils/lib/logger';
+import logger from '@meepshop/utils/lib/logger';
 
 // definition
 export default ({ XMeepshopDomain, url, userAgent }) => {
@@ -24,7 +24,7 @@ export default ({ XMeepshopDomain, url, userAgent }) => {
       query: url.query,
     };
   } catch ({ message, stack }) {
-    logger.error({ message, stack });
+    logger.error(JSON.stringify({ message, stack }));
     return {};
   }
 };

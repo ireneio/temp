@@ -5,7 +5,7 @@ import pino from 'pino';
 export type labelType = 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal';
 
 // definition
-export const logger = pino({
+export default pino({
   level: 'info',
   formatters: {
     level: label => ({

@@ -15,7 +15,7 @@ import { emptyFunction } from 'fbjs';
 import cookie from 'js-cookie';
 
 import { i18n } from '@meepshop/utils/lib/i18n';
-import { logger } from '@meepshop/utils/lib/logger';
+import logger from '@meepshop/utils/lib/logger';
 import { shouldIgnoreUnauthorizedError } from '@meepshop/apollo/lib/utils/errorLink';
 
 import useCookies from './hooks/useCookies';
@@ -112,7 +112,11 @@ export const withCookies = (getCookies: getCookiesType) => (
       );
     } catch (e) {
       if (!shouldIgnoreUnauthorizedError(e.networkError))
-        logger.info(req?.logId, 'Error while running `getCookies`', e);
+        logger.info(
+          `${req?.logId}, Error while running 'getCookies', ${JSON.stringify(
+            e,
+          )}`,
+        );
     }
 
     const appProps = await App.getInitialProps(ctx);
