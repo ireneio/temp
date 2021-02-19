@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.79.1 (2021-02-19)
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1429](https://github.com/meepshop/meep-lerna/pull/1429) 內部開單 - menu logo 點擊無法回到首頁 ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#1428](https://github.com/meepshop/meep-lerna/pull/1428) (@admin/order-history-records) Fix schema types ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.0 (2021-02-18)
 
 #### :rocket: New Feature
