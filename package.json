@@ -134,6 +134,7 @@
     "@types/node": "13.11.1",
     "bizcharts": "4.0.17",
     "query-string": "5.1.1",
+    "url-parse": "1.4.7",
     "next": "9.1.2"
   }
 }
