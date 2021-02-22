@@ -48,18 +48,17 @@ export default (): ColumnProps<useColumnsUserPointsFragment>[] => {
       },
       {
         title: t('start-time'),
-        dataIndex: 'startTime',
-        render: (value: useColumnsUserPointsFragment['startTime']) =>
-          !value ? '-' : moment.unix(value).format('YYYY/MM/DD HH:mm'),
+        dataIndex: 'startAt',
+        render: (value: useColumnsUserPointsFragment['startAt']) =>
+          !value ? '-' : moment(value).format('YYYY/MM/DD HH:mm'),
       },
       {
         title: t('end-time'),
-        dataIndex: 'endTime',
-        render: (value: useColumnsUserPointsFragment['endTime']) =>
+        dataIndex: 'endAt',
+        render: (value: useColumnsUserPointsFragment['endAt']) =>
           !value
             ? '-'
-            : moment
-                .unix(value)
+            : moment(value)
                 .subtract(1, 'seconds')
                 .format('YYYY/MM/DD HH:mm'),
       },

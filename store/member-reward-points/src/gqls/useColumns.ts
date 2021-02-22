@@ -13,7 +13,7 @@ export const useColumnsUserPointsFragment = gql`
     }
     note
     points
-    startTime
-    endTime
+    startAt
+    endAt
   }
 `;

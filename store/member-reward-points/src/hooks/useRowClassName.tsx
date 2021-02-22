@@ -14,19 +14,19 @@ export default (): ((
   useCallback(
     ({
       points,
-      endTime,
+      endAt,
     }: getUserRewardPotinsGetValidUserPointListDataType): string => {
       if (
-        (endTime && moment().diff(moment.unix(endTime)) > 0) ||
+        (endAt && moment().diff(moment(endAt)) > 0) ||
         (points || 0) /** SHOULD_NOT_BE_NULL */ <= 0
       )
         return styles.outdate;
 
       if (
-        endTime &&
+        endAt &&
         moment()
           .add(1, 'months')
-          .diff(moment.unix(endTime)) > 0
+          .diff(moment(endAt)) > 0
       )
         return styles.expireSoon;
 
