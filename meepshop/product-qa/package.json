@@ -4,15 +4,15 @@
   "description": "Meepshop product qa",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.0",
+  "version": "0.79.3",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.79.0",
-    "@meepshop/hooks": "^0.79.0",
+    "@meepshop/context": "^0.79.3",
+    "@meepshop/hooks": "^0.79.3",
     "@meepshop/icons": "^0.79.0",
-    "@meepshop/utils": "^0.79.0",
-    "@meepshop/validator": "^0.79.0",
+    "@meepshop/utils": "^0.79.3",
+    "@meepshop/validator": "^0.79.3",
     "color": "^3.0.0"
   },
   "keywords": ["meepshop", "product", "qa"]
