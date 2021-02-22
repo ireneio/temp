@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.79.2 (2021-02-22)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1354](https://github.com/meepshop/meep-lerna/pull/1354) T7301 - 前端 - Change to use Color.imgInfo.image (Get/Update) ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#1375](https://github.com/meepshop/meep-lerna/pull/1375) 前端 - 改用 UserPoints.start/endAt ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1431](https://github.com/meepshop/meep-lerna/pull/1431) 【BUG】 商品加入購物車後，顯示「超出可購買數量」，但後台庫存足夠 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#1425](https://github.com/meepshop/meep-lerna/pull/1425) skip - Fix pino logger bind ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.1 (2021-02-19)
 
 #### :bug: Bug Fix
