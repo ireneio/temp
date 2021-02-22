@@ -78,8 +78,11 @@ export default async context => {
           used
           repeat
           size
-          files {
-            image
+          image {
+            id
+            scaledSrc {
+              w1920
+            }
           }
         }
       }

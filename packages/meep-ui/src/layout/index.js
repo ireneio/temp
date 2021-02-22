@@ -39,7 +39,6 @@ export default class Layout extends React.PureComponent {
       'TwoTopsContainerWithSidebar',
     ]).isRequired,
     backgroundImage: PropTypes.shape({
-      files: PropTypes.array.isRequired,
       repeat: PropTypes.bool.isRequired,
       size: PropTypes.bool.isRequired,
       used: PropTypes.bool.isRequired,
@@ -69,13 +68,12 @@ export default class Layout extends React.PureComponent {
     const { backgroundImage, colors, background } = this.props;
 
     const colorConfig = (() => {
-      const { files, used, repeat, size } = backgroundImage;
-      const { image } = files?.[0] || {};
+      const { image, used, repeat, size } = backgroundImage;
 
       if (used && image) {
         return `
           ${colors[0]}
-          url(${/^http/.test(image) ? image : `//${image}`})
+          url(${image.scaledSrc.w1920})
           ${repeat ? 'repeat' : 'no-repeat'} top left /
           ${size ? '100%' : 'auto'} auto
         `;
@@ -94,7 +92,6 @@ export default class Layout extends React.PureComponent {
     const { shouldGetFixed } = this.state;
     const {
       cname,
-      backgroundImage,
       colors,
       background,
       blocks,
