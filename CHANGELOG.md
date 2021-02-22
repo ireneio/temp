@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.79.2 (2021-02-22)
+## 0.79.3 (2021-02-22)
 
 #### :boom: Breaking Change
 
