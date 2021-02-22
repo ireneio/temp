@@ -18,16 +18,18 @@ interface OptionsType {
 }
 
 // definition
-const formatNumber = (value: number | null | undefined): number =>
-  !value ? 0 : value;
+const formatNumber = (
+  value: number | null | undefined,
+  initialValue: number,
+): number => (value === null || value === undefined ? initialValue : value);
 
 // FIXME: should check minPurchaseItems, maxPurchaseLimit, stock in the backend
 export const getQuantityRange = (
   variant: useOptionsVariantFragmentType | null,
 ): { min: number; max: number } => {
-  const minPurchaseItems = formatNumber(variant?.minPurchaseItems);
-  const maxPurchaseLimit = formatNumber(variant?.maxPurchaseLimit);
-  const stock = formatNumber(variant?.stock);
+  const stock = formatNumber(variant?.stock, 0);
+  const minPurchaseItems = formatNumber(variant?.minPurchaseItems, 1);
+  const maxPurchaseLimit = formatNumber(variant?.maxPurchaseLimit, stock);
 
   if (stock < 1)
     return {
