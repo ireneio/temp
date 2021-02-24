@@ -65,7 +65,7 @@ class Mock {
 
         if (index !== -1)
           return mockData[this.trackingIndex[index]](
-            root,
+            root || {},
             arg,
             this.getContext(info),
             info,
@@ -74,7 +74,7 @@ class Mock {
         this.tracking.push(schemaName);
         this.trackingIndex.push(0);
 
-        return mockData[0](root, arg, this.getContext(info), info);
+        return mockData[0](root || {}, arg, this.getContext(info), info);
       } catch (e) {
         // eslint-disable-next-line no-console
         console.log(e);

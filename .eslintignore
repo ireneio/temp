@@ -9,3 +9,6 @@ coverage
 
 # add checking other configs
 !.*
+
+# next
+.next
