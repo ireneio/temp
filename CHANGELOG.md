@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.79.5 (2021-02-24)
+
+#### :rocket: New Feature
+
+- [#1436](https://github.com/meepshop/meep-lerna/pull/1436) (circleci) Update circleci config ([@meepshop-bot](https://github.com/meepshop-bot))
+
+#### Committers: 1
+
+- [@meepshop-bot](https://github.com/meepshop-bot)
+
 ## 0.79.4 (2021-02-24)
 
 #### :rocket: New Feature
