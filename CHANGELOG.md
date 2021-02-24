@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.79.4 (2021-02-24)
+
+#### :rocket: New Feature
+
+- `generate`, `meep-ui`, `mock-types`, `store`, `storybook`
+  - [#1377](https://github.com/meepshop/meep-lerna/pull/1377) T7321 - 內部開單 - 前端專案管理工具 @meepshop/meep-cli - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.3 (2021-02-22)
 
 #### :boom: Breaking Change
