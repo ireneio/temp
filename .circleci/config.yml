@@ -133,7 +133,7 @@ commands:
               if ! [[ -z "<< parameters.lerna-package-name >>" ]]; then
                 cd $MEEPSHOP_PACKAGE_PATH
 
-                if [[ v$(grep '"version"' package.json | sed 's/^  "version": "//' | sed 's/",$//') != $MEEPSHOP_IMAGE_VERSION ]]; then
+                if [[ v$(grep '"version"' package.json | sed 's/^  "version": "//' | sed 's/",$//') != $VERSION ]]; then
                   VERSION=skip
                 fi
               fi
@@ -264,7 +264,9 @@ commands:
                 echo "message could not be empty"
                 exit 1
               fi
-            elif [[ $MESSAGE == skip ]]; then
+            fi
+
+            if [[ $MESSAGE == skip ]]; then
               exit
             fi
 
