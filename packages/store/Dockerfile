@@ -1,31 +1,36 @@
-FROM node:10.15.3
+FROM node:14.15.5
 
 # Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /app
+WORKDIR /app
 
-# Copy default files
 COPY ./package.json ./package.json
 COPY ./yarn.lock ./yarn.lock
 COPY ./lerna.json ./lerna.json
-COPY ./Makefile ./Makefile
-COPY ./babel.config.js ./babel.config.js
-COPY ./next.config.js ./next.config.js
-COPY ./node_modules ./node_modules
+COPY ./patches ./patches
+COPY ./temp ./temp
+COPY ./lerna-cache.sh ./lerna-cache.sh
 
+RUN sh lerna-cache.sh ./temp . "package.json"
+RUN yarn
+
+COPY ./next.config.js ./next.config.js
+COPY ./store ./store
+COPY ./meepshop ./meepshop
 # Copy folder
 # TODO: remove
 COPY ./packages/store ./packages/store
 COPY ./packages/meep-ui ./packages/meep-ui
-COPY ./store ./store
-COPY ./meepshop ./meepshop
+COPY ./lib ./lib
 
-RUN yarn lerna link
+RUN sh lerna-cache.sh ./lib . "lib src/.next src/public/locales"
+
+ARG VERSION
 
 EXPOSE 14401
-ENV REPO_VERSION={{ build.tag }}
+ENV VERSION=$VERSION
+ENV API=http://meepshop-api:15265
+ENV EXTERNAL_API=https://api.stage.meepcloud.com
 ENV NODE_ENV=production
-ENV API_HOST=http://meepshop-api:15265
-ENV EXTERNAL_API_HOST=https://api.stage.meepcloud.com
 ENV ENV=stage
-CMD ["yarn", "lerna", "run", "--scope", "@meepshop/store", "start", "--stream"]
+CMD ["yarn", "lerna", "run", "--scope", "@meepshop/next-store", "start", "--stream"]

@@ -2,10 +2,10 @@ const proxy = require('express-http-proxy');
 
 const { publicRuntimeConfig } = require('../../../next.config');
 
-const { API_HOST } = publicRuntimeConfig;
+const { API } = publicRuntimeConfig;
 
 module.exports = redirectPath =>
-  proxy(API_HOST, {
+  proxy(API, {
     proxyReqPathResolver: () => redirectPath,
     userResDecorator: (proxyRes, proxyResData, userReq, userRes) => {
       const newToken = proxyRes.headers['x-meepshop-authorization-token'] || '';

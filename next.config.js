@@ -79,8 +79,8 @@ module.exports = nextConfig =>
         },
         publicRuntimeConfig: {
           ...nextConfig.publicRuntimeConfig,
-          API_HOST: process.env.API_HOST || 'https://api.stage.meepcloud.com',
-          VERSION: process.env.REPO_VERSION || +new Date(),
+          API: process.env.API || 'https://api.stage.meepcloud.com',
+          VERSION: process.env.VERSION || +new Date(),
           ENV: process.env.ENV || 'stage',
         },
         webpack: (config, { dev, isServer }) => {

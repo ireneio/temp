@@ -112,7 +112,7 @@ const generateCompoent = (imageName, path) => {
     .replace(/xlink:href/g, 'xmlns');
 
   outputFileSync(
-    nodePath.resolve(imageFolder, './lib', imageName.replace(/$/, '.js')),
+    nodePath.resolve(__dirname, '../lib', imageName.replace(/$/, '.js')),
     transformSync(
       `import React from 'react';
 
@@ -173,7 +173,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
                 [],
                 t.callExpression(t.import(), [
                   t.stringLiteral(
-                    `@meepshop/images/images/lib/${key.replace(/_react$/, '')}`,
+                    `@meepshop/images/lib/${key.replace(/_react$/, '')}`,
                   ),
                 ]),
               ),
@@ -295,7 +295,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
     if (filename !== nodePath.resolve(__dirname, '../src/types.ts')) return;
 
     outputFileSync(
-      nodePath.resolve(__dirname, './defaultTypes.tsx'),
+      nodePath.resolve(__dirname, '../lib/defaultTypes.tsx'),
       `// Only for typescript, do not import
 // typescript import
 import { CSSProperties } from 'react';

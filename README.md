@@ -9,10 +9,8 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 - `clean`: Remove cache, lib, generated typescript and node_modules.
 - `generate`: Use to generate the new files.
 - `dev`: Run `dev` mode
-- `install:all`: Install the all packages.
 - `lint`, `lint:watch`: Run lint.
 - `prod`: Run `prod` mode.
-- `release`: Release the new version.
 - `storybook:pre`: Run this command before running `storybook` command.
 - `test`: Run testing.
 - `tsc`: Run typescript.
@@ -35,7 +33,7 @@ Before `new schema` can work, you can use `storybook` to write the new component
 #### Write packages with dev server
 
 1. Run `yarn dev`.
-2. Run `yarn lerna run dev --stream --scope @admin/server` or `yarn lerna run dev --stream --scope @meepshop/store`.
+2. Run `yarn lerna run dev --stream --scope @meepshop/next-admin` or `yarn lerna run dev --stream --scope @meepshop/next-store`.
 
 #### Write unit testing
 
@@ -44,8 +42,8 @@ See [@meepshop/mock-types](./packages/mock-types) to learn more detail.
 #### (optional) Build with prod server
 
 1. Run `yarn prod`.
-2. Run `yarn lerna run prod --stream --scope @admin/server` or `yarn lerna run prod --stream --scope @store/server`.
-3. Run `yarn lerna run start --stream --scope @admin/server` or `yarn lerna run start --stream --scope @store/server`.
+2. Run `yarn lerna run prod --stream --scope @meepshop/next-admin` or `yarn lerna run prod --stream --scope @meepshop/next-store`.
+3. Run `yarn lerna run start --stream --scope @meepshop/next-admin` or `yarn lerna run start --stream --scope @meepshop/next-store`.
 
 #### Package architecture
 
@@ -113,7 +111,7 @@ workspace(store, admin...)
 
 ## lerna
 
-In this project, we use `yarn` with `lerna` and `lerna-changelog` to generate `CHANGELOG.md`. You can see [here](https://yarnpkg.com/lang/en/docs/workspaces/) to lerna why we use `yarn`, and `npm` does not support `workspace` directly.
+In this project, we use `yarn` with `lerna`. You can see [here](https://yarnpkg.com/lang/en/docs/workspaces/) to lerna why we use `yarn`, and `npm` does not support `workspace` directly.
 
 #### Relative files
 
@@ -122,7 +120,7 @@ In this project, we use `yarn` with `lerna` and `lerna-changelog` to generate `C
 
 ## babel
 
-In this project, we use `babel` to build the files expect `@store/server` and `@admin/server`. Owing to use `lerna`, we use `babel-plugin-css-modules-transform` to transform `less`, not use `css-module` with `less-loader`. In order to overwrite `antd style`, we use `preprocessCss` in `babel-plugin-css-modules-transform` to add `#meepshop` in the all class names. To make class names more recognizable, we use `generateScopedName` in `babel-plugin-css-modules-transform` to add the package name in each class name.
+In this project, we use `babel` to build the files expect `@meepshop/next-store` and `@meepshop/next-admin`. Owing to use `lerna`, we use `babel-plugin-css-modules-transform` to transform `less`, not use `css-module` with `less-loader`. In order to overwrite `antd style`, we use `preprocessCss` in `babel-plugin-css-modules-transform` to add `#meepshop` in the all class names. To make class names more recognizable, we use `generateScopedName` in `babel-plugin-css-modules-transform` to add the package name in each class name.
 
 #### 3rd Plugins
 
@@ -138,14 +136,14 @@ In this project, we use `babel` to build the files expect `@store/server` and `@
 
 #### Commands
 
-- `babel-all`: Run babel command in the all pacakges without `@store/server` and `@admin/server`.
+- `babel-all`: Run babel command in the all pacakges without `@meepshop/next-store` and `@meepshop/next-admin`.
 
   ```sh
   // basic usage
   make babel-all
 
   // run in the watch mode
-  make babel-all WATCH=-w
+  make babel-all BABEL_OPTION=-w
 
   // run in the package
   make babel-all OPTION="--scope @meepshop/package-name"
@@ -158,7 +156,7 @@ In this project, we use `babel` to build the files expect `@store/server` and `@
   make babel-changed
 
   // run in the watch mode
-  make babel-changed WATCH=-w
+  make babel-changed BABEL_OPTION=-w
 
   // compare the branch
   make babel-changed BRANCH=master
@@ -167,7 +165,6 @@ In this project, we use `babel` to build the files expect `@store/server` and `@
 - `apollo-watch`: Run apollo-tooling in the watch mode.
 - `tsc-basic`, `tsc`, `tsc:watch`: Run `tsc`.
 - `clean`: Remove `cache`, `lib` and `node_modules`.
-- `release`: Generate `CHANGELOG.md` and release the new version with `lerna`.
 
 #### Relative files
 

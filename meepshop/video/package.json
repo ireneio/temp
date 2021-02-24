@@ -10,7 +10,7 @@
   "dependencies": {
     "@meepshop/context": "^0.79.3",
     "@meepshop/hooks": "^0.79.3",
-    "react-player": "^1.14.2"
+    "react-player": "^1.15.3"
   },
   "keywords": ["meepshop", "video"]
 }

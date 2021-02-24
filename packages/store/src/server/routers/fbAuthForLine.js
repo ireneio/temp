@@ -2,12 +2,12 @@ const { default: logger } = require('@meepshop/utils/lib/logger');
 
 const { publicRuntimeConfig } = require('../../../next.config');
 
-const { API_HOST } = publicRuntimeConfig;
+const { API } = publicRuntimeConfig;
 
 module.exports = async (req, res) => {
   try {
     /* Get FB app secret */
-    const appIdResponse = await fetch(`${API_HOST}/graphql`, {
+    const appIdResponse = await fetch(`${API}/graphql`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ module.exports = async (req, res) => {
     if (responseFromFB.status !== 200)
       throw new Error(`${responseFromFB.status}: ${responseFromFB.statusText}`);
 
-    const responseApi = await fetch(`${API_HOST}/facebook/fbLogin`, {
+    const responseApi = await fetch(`${API}/facebook/fbLogin`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

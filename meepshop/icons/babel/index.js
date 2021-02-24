@@ -142,7 +142,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
       generateIcon(nodePath.resolve(__dirname, '../lib'), key, path);
     });
     outputFileSync(
-      nodePath.resolve(__dirname, './defaultTypes.tsx'),
+      nodePath.resolve(__dirname, '../lib/defaultTypes.tsx'),
       `// Only for typescript, do not import
 // typescript import
 import { IconProps, CustomIconComponentProps } from 'antd/lib/icon';

@@ -1,0 +1,13 @@
+admin/server/kustomize
+node_modules
+preReleaseSchemas
+meepshop/**/src
+store
+admin/**/src
+packages
+__mocks__
+lib/store
+lib/packages
+
+!admin/server/src/server
+!admin/server/src/public

@@ -1,0 +1,100 @@
+jobs:
+  upload-images:
+    executor: meep-cli/gcloud
+    steps:
+      - checkout
+      - meep-cli/gcloud-login
+      - run:
+          name: Upload images
+          command: |
+            imageDir=$(pwd);
+            for image in $(find $imageDir); do
+              if [[ $(file -b $image) =~ 'image' ]]; then
+                hash=$(git log -n 1 --pretty=format:%h --abbrev=8 $image)
+                folder=$(dirname -- $image)
+                folder="${folder/$imageDir/}"
+                filename=$(basename -- $image)
+                extension="${filename##*.}"
+                filename="${filename%.*}"
+                gsFilePath=$folder"/"$filename"_"$hash"."$extension
+                echo $image gs://img.meepcloud.com/assets$gsFilePath
+              fi
+            done
+
+workflows:
+  main:
+    jobs:
+      - upload-images:
+          context: org-global
+      - meep-cli/testing:
+          hash: 91a27b9dfd1c
+          other-testing:
+            - meep-cli/lerna-cache:
+                use-lerna: true
+                other-steps:
+                  - run:
+                      name: Set cache key
+                      command: |
+                        # TODO: remove after removing @meesphop/meep-ui
+                        if ! [[ -z "<< pipeline.git.tag >>" ]]; then
+                          git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1) >> ~/.meepshop.lerna-cache
+                        else
+                          git describe --abbrev=0 --tags >> ~/.meepshop.lerna-cache
+                        fi
+
+                        cat ~/.meepshop.lerna-cache
+                  - restore_cache:
+                      keys:
+                        - 91a27b9dfd1c-{{ checksum "~/.meepshop.lerna-cache" }}
+                  - run:
+                      name: Restore lerna cache
+                      command: sh lerna-cache.sh ./lib . "lib src/.next src/public/locales"
+                  - run:
+                      name: Build for eslint
+                      command: |
+                        # TODO: remove after removing @meesphop/meep-ui
+                        yarn prod
+                  - run:
+                      name: Save lerna cache
+                      command: sh lerna-cache.sh . ./lib "lib src/.next src/public/locales"
+                  - save_cache:
+                      key: 91a27b9dfd1c-{{ checksum "~/.meepshop.lerna-cache" }}
+                      paths:
+                        - lib
+
+            - run:
+                name: Apollo codegen
+                command: yarn types codegen all
+            - run:
+                name: Check locale files
+                command: |
+                  # TODO: use meep-cli locales to auto check
+                  yarn locales check-keys
+                  yarn locales link
+          context: org-global
+          filters:
+            branches:
+              ignore: /^test-.*/
+            tags:
+              ignore: /.*/
+      - meep-cli/build:
+          hash: 91a27b9dfd1c
+          use-lerna: true
+          context: org-global
+          filters:
+            branches:
+              only: /^test-.*/
+            tags:
+              only: /^v.*/
+      - meep-cli/deploy:
+          matrix:
+            parameters:
+              lerna-package-name: [next-store, next-admin]
+          requires:
+            - meep-cli/build
+          context: org-global
+          filters:
+            branches:
+              only: /^test-.*/
+            tags:
+              only: /^v.*/

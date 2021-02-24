@@ -37,16 +37,16 @@ spec:
           initialDelaySeconds: 15
           periodSeconds: 3
         env:
-        - name: EXTERNAL_API_HOST
+        - name: EXTERNAL_API
           valueFrom:
             configMapKeyRef:
               name: next-store
-              key: external.api.host
+              key: external.api
         - name: ENV
           valueFrom:
             configMapKeyRef:
               name: next-store
-              key: external.env
+              key: env
         ports:
         - containerPort: 14401
           name: http-port

@@ -12,15 +12,14 @@ import mock from './mock';
 // definition
 const mockEvents = new events.EventEmitter();
 const mockLog = jest.fn();
-
-window.events = {
-  dispatchEvent: (event: Event) => mockEvents.emit(event.toString()),
-  addEventListener: mockEvents.on,
-  removeEventListener: mockEvents.off,
-};
-global.console.error = (...messages: string[]) => {
+const log = (...messages: string[]): void => {
   if (
     /Warning: An update to [\w%]+ inside a test was not wrapped in act/.test(
+      messages.join(''),
+    ) ||
+    // FIXME: enzyme bug
+    /Warning: componentWillMount has been renamed/.test(messages.join('')) ||
+    /Warning: componentWillReceiveProps has been renamed/.test(
       messages.join(''),
     )
   )
@@ -28,7 +27,14 @@ global.console.error = (...messages: string[]) => {
 
   mockLog(...messages);
 };
-global.console.warn = mockLog;
+
+window.events = {
+  dispatchEvent: (event: Event) => mockEvents.emit(event.toString()),
+  addEventListener: mockEvents.on,
+  removeEventListener: mockEvents.off,
+};
+global.console.error = log;
+global.console.warn = log;
 
 export default (
   testType: 'meepshop' | 'store' | 'admin',

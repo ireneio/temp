@@ -1,9 +1,9 @@
 const { publicRuntimeConfig } = require('../../../next.config');
 
-const { API_HOST } = publicRuntimeConfig;
+const { API } = publicRuntimeConfig;
 
 module.exports = async (req, res) => {
-  const response = await fetch(`${API_HOST}/auth/landing_page/access_token`, {
+  const response = await fetch(`${API}/auth/landing_page/access_token`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',

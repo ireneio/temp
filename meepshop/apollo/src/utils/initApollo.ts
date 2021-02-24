@@ -45,7 +45,7 @@ export interface ConfigType {
 // definition
 const { link, useApolloNetworkStatus } = createNetworkStatusNotifier();
 const {
-  publicRuntimeConfig: { API_HOST, VERSION },
+  publicRuntimeConfig: { API, VERSION },
 } = getConfig();
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
@@ -108,10 +108,7 @@ const create = (
       errorLink(errorFilter),
       link,
       new HttpLink({
-        uri:
-          typeof window !== 'undefined'
-            ? '/api/graphql'
-            : `${API_HOST}/graphql`,
+        uri: typeof window !== 'undefined' ? '/api/graphql' : `${API}/graphql`,
         credentials: 'include',
         headers: !ctx
           ? {}

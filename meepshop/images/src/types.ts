@@ -1,8 +1,8 @@
 // Only for typescript, do not import
 // import
-import { mockData } from '../babel/defaultTypes';
+import { mockData } from '../lib/defaultTypes';
 
-export * from '../babel/defaultTypes';
+export * from '../lib/defaultTypes';
 
 // definition
 /* eslint-disable @typescript-eslint/camelcase */

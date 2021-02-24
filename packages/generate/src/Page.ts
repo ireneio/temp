@@ -43,8 +43,8 @@ export default class Page extends Base {
     const serverPackagePath = path.dirname(
       path.resolve(
         workspace === 'store'
-          ? require.resolve('@meepshop/store')
-          : require.resolve('@admin/server'),
+          ? require.resolve('@meepshop/next-store')
+          : require.resolve('@meepshop/next-admin'),
       ),
     );
 

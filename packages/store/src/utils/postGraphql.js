@@ -2,7 +2,7 @@ import { notification } from 'antd';
 import getConfig from 'next/config';
 
 const {
-  publicRuntimeConfig: { API_HOST },
+  publicRuntimeConfig: { API },
 } = getConfig();
 
 export default async ({ res, req, query, variables }) => {
@@ -15,7 +15,7 @@ export default async ({ res, req, query, variables }) => {
     };
 
     const response = await fetch(
-      typeof window === 'undefined' ? `${API_HOST}/graphql` : '/api/graphql',
+      typeof window === 'undefined' ? `${API}/graphql` : '/api/graphql',
       {
         method: 'post',
         headers:

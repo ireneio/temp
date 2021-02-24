@@ -1,27 +1,31 @@
-FROM node:10.15.3
+FROM node:14.15.5
 
 # Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /app
+WORKDIR /app
 
-# Copy default files
 COPY ./package.json ./package.json
 COPY ./yarn.lock ./yarn.lock
 COPY ./lerna.json ./lerna.json
-COPY ./Makefile ./Makefile
-COPY ./babel.config.js ./babel.config.js
-COPY ./next.config.js ./next.config.js
-COPY ./node_modules ./node_modules
+COPY ./patches ./patches
+COPY ./temp ./temp
+COPY ./lerna-cache.sh ./lerna-cache.sh
 
-# Copy folder
+RUN sh lerna-cache.sh ./temp . "package.json"
+RUN yarn
+
+COPY ./next.config.js ./next.config.js
 COPY ./admin ./admin
 COPY ./meepshop ./meepshop
+COPY ./lib ./lib
 
-RUN yarn lerna link
+RUN sh lerna-cache.sh ./lib . "lib src/.next src/public/locales"
+
+ARG VERSION
 
 EXPOSE 14405
-ENV REPO_VERSION={{ build.tag }}
+ENV VERSION=$VERSION
+ENV API=http://meepshop-api:15265
 ENV NODE_ENV=production
-ENV API_HOST=http://meepshop-api:15265
 ENV ENV=stage
-CMD ["yarn", "lerna", "run", "--scope", "@admin/server", "start", "--stream"]
+CMD ["yarn", "lerna", "run", "--scope", "@meepshop/next-admin", "start", "--stream"]

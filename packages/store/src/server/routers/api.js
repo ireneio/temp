@@ -6,9 +6,9 @@ const { default: logger } = require('@meepshop/utils/lib/logger');
 
 const { publicRuntimeConfig } = require('../../../next.config');
 
-const { API_HOST } = publicRuntimeConfig;
+const { API } = publicRuntimeConfig;
 
-module.exports = proxy(API_HOST, {
+module.exports = proxy(API, {
   proxyReqPathResolver: () => '/graphql',
   userResDecorator: (proxyRes, proxyResData, userReq, userRes) => {
     /* Handle token verify failed */

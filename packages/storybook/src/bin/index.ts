@@ -56,9 +56,18 @@ program
       configDir,
       staticDir: [
         {
-          store: path.resolve(__dirname, '../../../store/src/public'),
-          admin: path.resolve(__dirname, '../../../../admin/server/src/public'),
-          meepshop: path.resolve(__dirname, '../../../store/src/public'),
+          store: path.resolve(
+            require.resolve('@meepshop/next-store'),
+            '../src/public',
+          ),
+          admin: path.resolve(
+            require.resolve('@meepshop/next-admin'),
+            '../src/public',
+          ),
+          meepshop: path.resolve(
+            require.resolve('@meepshop/next-store'),
+            '../src/public',
+          ),
         }[workspace],
       ],
       ci: true,

@@ -32,7 +32,7 @@ import * as Actions from 'ducks/actions';
 import withCookies from 'utils/withCookies';
 
 const {
-  publicRuntimeConfig: { API_HOST },
+  publicRuntimeConfig: { API },
 } = getConfig();
 
 notification.config({ placement: 'topRight', duration: 1.5 });
@@ -59,7 +59,7 @@ class MyApp extends App {
 
     try {
       if (typeof window === 'undefined') {
-        const { valid } = await fetch(`${API_HOST}/auth/validate_token`, {
+        const { valid } = await fetch(`${API}/auth/validate_token`, {
           method: 'POST',
           credentials: 'include',
           headers: {
@@ -80,7 +80,7 @@ class MyApp extends App {
       }
 
       const response = await fetch(
-        typeof window === 'undefined' ? `${API_HOST}/graphql` : '/api/graphql',
+        typeof window === 'undefined' ? `${API}/graphql` : '/api/graphql',
         {
           method: 'post',
           headers:

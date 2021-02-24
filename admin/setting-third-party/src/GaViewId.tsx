@@ -45,7 +45,7 @@ export default React.memo(({ form, gaViewId }: PropsType) => {
                 <a
                   href="https://support.google.com/analytics/answer/1009702?hl=zh-Hant&ref_topic=6014099"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                 >
                   {t(`gaViewId.items.0.link`)}
                 </a>
@@ -70,7 +70,7 @@ export default React.memo(({ form, gaViewId }: PropsType) => {
                 <a
                   href="https://support.google.com/analytics/answer/1009714"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                 >
                   {t(`gaViewId.items.1.link`)}
                 </a>

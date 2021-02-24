@@ -36,8 +36,8 @@ jest.mock('fs', () => ({
 
 const checkLinkToPublic = (locale: string): void =>
   [
-    path.dirname(require.resolve('@meepshop/store')),
-    path.dirname(require.resolve('@admin/server')),
+    path.dirname(require.resolve('@meepshop/next-store')),
+    path.dirname(require.resolve('@meepshop/next-admin')),
   ].forEach(targetRepoFolder => {
     const localesFolder = path.resolve(
       targetRepoFolder,

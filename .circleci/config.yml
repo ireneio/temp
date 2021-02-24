@@ -1,209 +1,543 @@
-version: 2
-defaults: &defaults
-  docker:
-    - image: circleci/node:10.15.3-browsers
-      auth:
-        username: meep
-        password: $DOCKERHUB_PASSWORD
-  working_directory: ~/repo
-
-gcloud-defaults: &gcloud-defaults
-  docker:
-    - image: google/cloud-sdk
-      auth:
-        username: meep
-        password: $DOCKERHUB_PASSWORD
-  working_directory: ~/repo
-
-restore-cache: &restore-cache
-  keys:
-    - dependencies-{{ checksum "yarn.lock" }}
-
-save-cache: &save-cache
-  key: dependencies-{{ checksum "yarn.lock" }}
-  paths:
-    - node_modules
-
-gcloud-login: &gcloud-login
-  name: Gcloud login
-  command: |
-    echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
-    gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-    gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-
-deploy-docker: &deploy-docker
-  name: Deploy docker
-  command: |
-    yarn prod
-    yarn types codegen all
-    yarn locales link
-    yarn lerna run prod \
-      --parallel \
-      --stream \
-      --scope @meepshop/store \
-      --scope @admin/server
-    yarn lerna exec \
-      "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/build_docker.sh" \
-      --parallel \
-      --stream \
-      --scope @admin/server \
-      --scope @meepshop/store
-    ./.circleci/bin/install.sh
-    yarn lerna exec \
-      "${CIRCLE_WORKING_DIRECTORY}/.circleci/bin/deploy_k8s.sh" \
-      --parallel \
-      --stream \
-      --scope @admin/server \
-      --scope @meepshop/store
-
-jobs:
-  install:
-    <<: *defaults
+version: 2.1
+executors:
+  gcloud:
+    docker:
+      - image: google/cloud-sdk
+        auth:
+          username: meep
+          password: $DOCKERHUB_PASSWORD
+    working_directory: ~/repo
+  node:
+    docker:
+      - image: circleci/node:14.15.5
+        auth:
+          username: meep
+          password: $DOCKERHUB_PASSWORD
+    working_directory: ~/repo
+commands:
+  gcloud-login:
     steps:
-      - checkout
-
-      - restore_cache: *restore-cache
       - run:
-          name: Install packages
-          command: yarn install:all
-      - save_cache: *save-cache
-
-  lint-and-test:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache: *restore-cache
-      - run: yarn lerna bootstrap
-
-      - run:
-          name: Check locale files
+          name: Gcloud login
           command: |
-            make babel-all OPTION="--scope @meepshop/locales"
-            yarn locales check-keys
+            echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
+            gcloud --quiet config set project $GOOGLE_PROJECT_ID
+            gcloud --quiet config set compute/zone $GOOGLE_COMPUTE_ZONE
+  install-packages:
+    parameters:
+      hash:
+        description: hash key
+        type: string
+      use-yarn:
+        description: use yarn (TODO should remove)
+        type: boolean
+        default: true
+    steps:
+      - when:
+          condition: << parameters.use-yarn >>
+          steps:
+            - restore_cache:
+                keys:
+                  - << parameters.hash >>-{{ checksum "yarn.lock" }}
+            - run:
+                name: Install packages
+                command: yarn --cache-folder ~/.cache/yarn
+            - save_cache:
+                key: << parameters.hash >>-{{ checksum "yarn.lock" }}
+                paths:
+                  - node_modules
+                  - ~/.cache/yarn
+      - unless:
+          condition: << parameters.use-yarn >>
+          steps:
+            - restore_cache:
+                keys:
+                  - << parameters.hash >>-{{ checksum "package-lock.json" }}
+            - run:
+                name: Install packages
+                command: npm i
+            - save_cache:
+                key: << parameters.hash >>-{{ checksum "package-lock.json" }}
+                paths:
+                  - node_modules
+  lerna-cache:
+    parameters:
+      use-lerna:
+        description: use lerna
+        type: boolean
+        default: false
+      other-steps:
+        description: other steps
+        type: steps
+        default: []
+    steps:
+      - when:
+          condition: << parameters.use-lerna >>
+          steps:
+            - run:
+                name: Create lerna-cache.sh
+                command: |
+                  if ! [[ -f lerna-cache.sh ]]; then
+                    echo "#\!/bin/sh -eo pipefail" >> lerna-cache.sh
+                    echo "workspaces=\$(sed -e ':a' -e 'N' -e '\$\!ba' -e \"s|\n||g\" lerna.json | grep -oh '\"packages\": \[.*\]' | sed \"s|\\\"packages\\\":|,|\" | sed \"s|\\\"||g\" | sed \"s|\[||\" | sed \"s|\]||\" | sed \"s| ||g\" | sed \"s|,| \$1/|g\")" >> lerna-cache.sh
+                    echo "if [ -d \$1 ]; then" >> lerna-cache.sh
+                    echo "  for package in \$workspaces; do" >> lerna-cache.sh
+                    echo "    packagePath=\$(echo \$package | sed \"s|\$1/||\")" >> lerna-cache.sh
+                    echo "    for file in \$3; do" >> lerna-cache.sh
+                    echo "      source=\$1/\$packagePath/\$file;" >> lerna-cache.sh
+                    echo "      target=\$2/\$packagePath/\$file;" >> lerna-cache.sh
+                    echo "      if [ -f \$source ] || [ -d \$source ]; then" >> lerna-cache.sh
+                    echo "        targetFolder=\$(echo \$target | sed \"s|/[^/]*$||\")" >> lerna-cache.sh
+                    echo "        if ! [ -d \$targetFolder ]; then" >> lerna-cache.sh
+                    echo "          mkdir -p \$targetFolder;" >> lerna-cache.sh
+                    echo "        fi;" >> lerna-cache.sh
+                    echo "        rm -rf \$target;" >> lerna-cache.sh
+                    echo "        cp -r \$source \$target;" >> lerna-cache.sh
+                    echo "      fi" >> lerna-cache.sh
+                    echo "    done" >> lerna-cache.sh
+                    echo "  done" >> lerna-cache.sh
+                    echo "else" >> lerna-cache.sh
+                    echo "  echo skip;" >> lerna-cache.sh
+                    echo "fi" >> lerna-cache.sh
+                    sed -i 's|\\!|!|g' lerna-cache.sh
+                  fi
+            - steps: << parameters.other-steps >>
+  set-image-env:
+    parameters:
+      lerna-package-name:
+        description: lerna package name
+        type: string
+        default: ""
+    steps:
+      - run:
+          name: Set image path
+          command: |
+            PACKAGE_PATH=.
+            DOCKER_PATH=.
 
+            if ! [[ -z "<< parameters.lerna-package-name >>" ]]; then
+              PACKAGE_PATH=$(git grep -rl '"name": "@meepshop/<< parameters.lerna-package-name >>"' **/package.json | sed 's/\/package.json//')
+              DOCKER_PATH=$(echo $PACKAGE_PATH | sed -r 's/[^/]+/../g')
+            fi
+
+            echo "MEEPSHOP_PACKAGE_PATH=$PACKAGE_PATH" >> ~/repo/.image.env
+            echo "MEEPSHOP_DOCKER_PATH=$DOCKER_PATH" >> ~/repo/.image.env
+      - run:
+          name: Set image version
+          command: |
+            source .image.env
+
+            if [[ "<< pipeline.git.tag >>" =~ ^v ]]; then
+              VERSION=<< pipeline.git.tag >>
+
+              if ! [[ -z "<< parameters.lerna-package-name >>" ]]; then
+                cd $MEEPSHOP_PACKAGE_PATH
+
+                if [[ v$(grep '"version"' package.json | sed 's/^  "version": "//' | sed 's/",$//') != $MEEPSHOP_IMAGE_VERSION ]]; then
+                  VERSION=skip
+                fi
+              fi
+            elif [[ "<< pipeline.git.branch >>" =~ ^test- ]]; then
+              VERSION=<< pipeline.git.branch >>
+            fi
+
+            if [[ -z $VERSION ]]; then
+              exit 1
+            fi
+
+            echo "MEEPSHOP_IMAGE_VERSION=$VERSION" >> ~/repo/.image.env
+      - run:
+          name: Set image name
+          command: |
+            source .image.env
+
+            if [[ -f package.json ]]; then
+              cd $MEEPSHOP_PACKAGE_PATH
+              NAME=$(grep '"name"' package.json | sed 's/^  "name": "@meepshop\///' | sed 's/",$//')
+            else
+              NAME=$CIRCLE_PROJECT_REPONAME
+            fi
+
+            echo "MEEPSHOP_IMAGE_NAME=$NAME" >> ~/repo/.image.env
+  build-docker:
+    parameters:
+      build-args:
+        description: args for build image command
+        type: string
+        default: ""
+    steps:
+      - setup_remote_docker:
+          version: 20.10.2
+          docker_layer_caching: true
+      - run:
+          name: Build docker
+          command: |
+            source .image.env
+
+            if [[ $MEEPSHOP_IMAGE_VERSION == skip ]]; then
+              exit
+            fi
+
+            cd $MEEPSHOP_PACKAGE_PATH
+
+            if [[ $MEEPSHOP_DOCKER_PATH != '.' ]]; then
+              mv .dockerignore $MEEPSHOP_DOCKER_PATH
+            fi
+
+            docker build \
+              -t asia.gcr.io/instant-matter-785/$MEEPSHOP_IMAGE_NAME:latest \
+              -f Dockerfile --build-arg VERSION=$MEEPSHOP_IMAGE_VERSION \
+              << parameters.build-args >> $MEEPSHOP_DOCKER_PATH
+            docker tag \
+              asia.gcr.io/instant-matter-785/$MEEPSHOP_IMAGE_NAME:latest \
+              asia.gcr.io/instant-matter-785/$MEEPSHOP_IMAGE_NAME:$MEEPSHOP_IMAGE_VERSION
+      - run:
+          name: Push docker
+          command: |
+            source .image.env
+
+            if [[ $MEEPSHOP_IMAGE_VERSION == skip ]]; then
+              exit
+            fi
+
+            docker login -u _json_key -p "$GCLOUD_SERVICE_KEY" https://asia.gcr.io
+            docker push asia.gcr.io/instant-matter-785/$MEEPSHOP_IMAGE_NAME:latest
+            docker push asia.gcr.io/instant-matter-785/$MEEPSHOP_IMAGE_NAME:$MEEPSHOP_IMAGE_VERSION
+  deploy-k8s:
+    steps:
+      - run:
+          name: Install kustomize
+          command: |
+            if [[ -d ./kustomize ]]; then
+              mv kustomize kustomize-temp
+            fi
+
+            curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+            mv kustomize /usr/local/bin/kustomize
+            chmod u+x /usr/local/bin/kustomize
+
+            if [[ -d ./kustomize-temp ]]; then
+              mv kustomize-temp kustomize
+            fi
+      - run:
+          name: Auth to gke
+          command: |
+            echo $GKE_KEY > gsa-key.json
+            gcloud auth activate-service-account circle-ci@instant-matter-785.iam.gserviceaccount.com \
+              --key-file=gsa-key.json
+            gcloud config set project instant-matter-785
+            gcloud container clusters get-credentials meepshop-infra-stage \
+              --zone=asia-east1-a
+      - run:
+          name: Deploy k8s
+          command: |
+            source .image.env
+
+            if [[ $MEEPSHOP_IMAGE_VERSION == skip ]]; then
+              exit
+            fi
+
+            cd $MEEPSHOP_PACKAGE_PATH
+            cd ./kustomize/overlays/staging
+            kustomize edit set image \
+              asia.gcr.io/instant-matter-785/$MEEPSHOP_IMAGE_NAME=asia.gcr.io/instant-matter-785/$MEEPSHOP_IMAGE_NAME:$MEEPSHOP_IMAGE_VERSION
+            kustomize build . | kubectl apply -f -
+  send-message-to-zulip:
+    parameters:
+      topic:
+        description: topic name
+        type: string
+      message:
+        description: message
+        type: string
+        default: ""
+    steps:
+      - run:
+          name: Send message
+          command: |
+            MESSAGE=<< parameters.message >>
+
+            if [[ -z $MESSAGE ]]; then
+              MESSAGE=$(cat ZULIP_MESSAGE)
+
+              if [[ -z $MESSAGE ]]; then
+                echo "message could not be empty"
+                exit 1
+              fi
+            elif [[ $MESSAGE == skip ]]; then
+              exit
+            fi
+
+            curl -X POST https://zulip.meepshop.com/api/v1/messages \
+              -u "$ZULIP_BOT_EMAIL:$ZULIP_BOT_API_KEY" \
+              -d "type=stream" \
+              -d "to=dev/deployment" \
+              -d "topic=<< parameters.topic >>" \
+              -d "content=$MESSAGE"
+jobs:
+  upload-images:
+    executor: gcloud
+    steps:
+      - checkout
+      - gcloud-login
+      - run:
+          name: Upload images
+          command: |
+            imageDir=$(pwd);
+            for image in $(find $imageDir); do
+              if [[ $(file -b $image) =~ 'image' ]]; then
+                hash=$(git log -n 1 --pretty=format:%h --abbrev=8 $image)
+                folder=$(dirname -- $image)
+                folder="${folder/$imageDir/}"
+                filename=$(basename -- $image)
+                extension="${filename##*.}"
+                filename="${filename%.*}"
+                gsFilePath=$folder"/"$filename"_"$hash"."$extension
+                echo $image gs://img.meepcloud.com/assets$gsFilePath
+              fi
+            done
+  testing:
+    parameters:
+      hash:
+        description: hash key
+        type: string
+      use-yarn:
+        description: use yarn (TODO should remove)
+        type: boolean
+        default: true
+      other-testing:
+        description: other testing
+        type: steps
+        default: []
+      save-cache:
+        description: save cache
+        type: boolean
+        default: false
+    executor: node
+    steps:
+      - checkout
+      - install-packages:
+          hash: << parameters.hash >>
+          use-yarn: << parameters.use-yarn >>
+      - steps: << parameters.other-testing >>
+      - run:
+          name: Typescript
+          command: |
+            if grep -q '"typescript"' ./package.json; then
+              yarn tsc
+            else
+              echo skip
+            fi
       - run:
           name: Check code style
           command: |
-            #TODO: remove after removing @meesphop/meep-ui
-            yarn prod
-            yarn types codegen all
-            yarn tsc
-            yarn locales link
-            yarn lint .
-
+            if grep -q '"eslint"' ./package.json; then
+              yarn lint
+            else
+              echo skip
+            fi
       - run:
           name: Unit testing
-          command: yarn test
+          command: |
+            if grep -q '"jest"' ./package.json; then
+              yarn test
+            else
+              echo skip
+            fi
       - store_artifacts:
           path: coverage
-
-  upload-storybook:
-    <<: *gcloud-defaults
+      - when:
+          condition: << parameters.save-cache >>
+          steps:
+            - persist_to_workspace:
+                root: ~/repo
+                paths:
+                  - lib
+  build:
+    parameters:
+      hash:
+        description: hash key
+        type: string
+      use-yarn:
+        description: use yarn (TODO should remove)
+        type: boolean
+        default: true
+      use-lerna:
+        description: use lerna
+        type: boolean
+        default: false
+    executor: node
     steps:
       - checkout
-      - run: *gcloud-login
-      - restore_cache: *restore-cache
-      - run:
-          name: Install yarn
-          command: |
-            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-            echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-            apt update -y && apt install yarn -y
-            mv /home/circleci/repo/node_modules ~/repo/node_modules
-      - run:
-          name: Build storybook static
-          command: |
-            yarn lerna bootstrap
-            make babel-all OPTION="--scope @meepshop/locales --scope @meepshop/storybook"
-            yarn storybook:pre
-            yarn storybook generate @meepshop/locales
-            yarn storybook build
-      - run:
-          name: Upload storybook
-          command: |
-            gsutil cp -r ./packages/storybook/docs/* gs://storybook.meepshop.com/
-            gsutil iam ch allUsers:objectViewer gs://storybook.meepshop.com/
+      - install-packages:
+          hash: << parameters.hash >>
+          use-yarn: << parameters.use-yarn >>
+      - lerna-cache:
+          use-lerna: << parameters.use-lerna >>
+          other-steps:
+            - run:
+                name: Set cache key
+                command: |
+                  if ! [[ -z "<< pipeline.git.tag >>" ]]; then
+                    git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1) >> ~/.meepshop.lerna-cache
+                  else
+                    git describe --abbrev=0 --tags >> ~/.meepshop.lerna-cache
+                  fi
 
-  upload-images:
-    <<: *gcloud-defaults
-    steps:
-      - checkout
-      - run: *gcloud-login
-      - run: ./.circleci/bin/upload_images.sh
-
-  deploy-test-branch:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache: *restore-cache
-      - run: yarn lerna bootstrap
-      - setup_remote_docker
-      - run: *deploy-docker
-
+                  cat ~/.meepshop.lerna-cache
+            - restore_cache:
+                keys:
+                  - << parameters.hash >>-{{ checksum "~/.meepshop.lerna-cache" }}
+            - run:
+                name: Restore lerna cache
+                command: sh lerna-cache.sh ./lib . "lib src/.next src/public/locales"
+      - run:
+          name: Build files
+          command: yarn build
+      - lerna-cache:
+          use-lerna: << parameters.use-lerna >>
+          other-steps:
+            - run:
+                name: Set cache key
+                command: |
+                  rm -rf ~/.meepshop.lerna-cache
+                  git describe --abbrev=0 --tags >> ~/.meepshop.lerna-cache
+                  cat ~/.meepshop.lerna-cache
+            - run:
+                name: Save lerna cache
+                command: sh lerna-cache.sh . ./lib "lib src/.next src/public/locales"
+            - save_cache:
+                key: << parameters.hash >>-{{ checksum "~/.meepshop.lerna-cache" }}
+                paths:
+                  - lib
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - lib
   deploy:
-    <<: *defaults
+    parameters:
+      build-args:
+        description: args for build image command
+        type: string
+        default: ""
+      lerna-package-name:
+        description: lerna package name
+        type: string
+        default: ""
+    executor: gcloud
     steps:
       - checkout
-      - restore_cache: *restore-cache
-      - run: yarn lerna bootstrap
-      - setup_remote_docker
-      - run: *deploy-docker
-
-  deploy-test:
-    <<: *defaults
-    steps:
-      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - when:
+          condition: << parameters.lerna-package-name >>
+          steps:
+            - lerna-cache:
+                use-lerna: true
+                other-steps:
+                  - run:
+                      name: Save package.json to temp
+                      command: sh lerna-cache.sh . ./temp "package.json"
+      - set-image-env:
+          lerna-package-name: << parameters.lerna-package-name >>
+      - build-docker:
+          build-args: << parameters.build-args >>
+      - deploy-k8s
       - run:
-          name: Install packages
-          command: yarn install:all
-      - setup_remote_docker
-      - run: *deploy-docker
+          name: Set zulip message
+          command: |
+            source .image.env
 
+            if [[ $MEEPSHOP_IMAGE_VERSION == skip ]]; then
+              echo "skip" >> ZULIP_MESSAGE
+            else
+              echo "Release $MEEPSHOP_IMAGE_NAME: $MEEPSHOP_IMAGE_VERSION" >> ZULIP_MESSAGE
+            fi
+      - when:
+          condition: << pipeline.git.tag >>
+          steps:
+            - send-message-to-zulip:
+                topic: "[stage] frontend"
+      - unless:
+          condition: << pipeline.git.tag >>
+          steps:
+            - send-message-to-zulip:
+                topic: "[stage] QC"
 workflows:
-  version: 2
-  test-and-deploy:
+  main:
     jobs:
-      - install:
-          context: org-global
-          filters:
-            tags:
-              only: /.*/
-
-      - lint-and-test:
-          context: org-global
-          requires:
-            - install
-          filters:
-            branches:
-              ignore: /test-.*/
-            tags:
-              ignore: /.*/
-
-      - upload-storybook:
-          context: org-global
-          requires:
-            - install
-          filters:
-            branches:
-              only: /master/
-
       - upload-images:
           context: org-global
+      - testing:
+          hash: 91a27b9dfd1c
+          other-testing:
+            - lerna-cache:
+                use-lerna: true
+                other-steps:
+                  - run:
+                      name: Set cache key
+                      command: |
+                        # TODO: remove after removing @meesphop/meep-ui
+                        if ! [[ -z "<< pipeline.git.tag >>" ]]; then
+                          git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1) >> ~/.meepshop.lerna-cache
+                        else
+                          git describe --abbrev=0 --tags >> ~/.meepshop.lerna-cache
+                        fi
 
-      - deploy-test-branch:
+                        cat ~/.meepshop.lerna-cache
+                  - restore_cache:
+                      keys:
+                        - 91a27b9dfd1c-{{ checksum "~/.meepshop.lerna-cache" }}
+                  - run:
+                      name: Restore lerna cache
+                      command: sh lerna-cache.sh ./lib . "lib src/.next src/public/locales"
+                  - run:
+                      name: Build for eslint
+                      command: |
+                        # TODO: remove after removing @meesphop/meep-ui
+                        yarn prod
+                  - run:
+                      name: Save lerna cache
+                      command: sh lerna-cache.sh . ./lib "lib src/.next src/public/locales"
+                  - save_cache:
+                      key: 91a27b9dfd1c-{{ checksum "~/.meepshop.lerna-cache" }}
+                      paths:
+                        - lib
+            - run:
+                name: Apollo codegen
+                command: yarn types codegen all
+            - run:
+                name: Check locale files
+                command: |
+                  # TODO: use meep-cli locales to auto check
+                  yarn locales check-keys
+                  yarn locales link
           context: org-global
-          requires:
-            - install
           filters:
             branches:
-              only: /test-.*/
-
-      - deploy:
-          context: org-global
-          requires:
-            - install
-          filters:
-            branches:
+              ignore: /^test-.*/
+            tags:
               ignore: /.*/
+      - build:
+          hash: 91a27b9dfd1c
+          use-lerna: true
+          context: org-global
+          filters:
+            branches:
+              only: /^test-.*/
+            tags:
+              only: /^v.*/
+      - deploy:
+          matrix:
+            parameters:
+              lerna-package-name:
+                - next-store
+                - next-admin
+          requires:
+            - build
+          context: org-global
+          filters:
+            branches:
+              only: /^test-.*/
             tags:
               only: /^v.*/

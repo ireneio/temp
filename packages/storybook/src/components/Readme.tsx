@@ -5,7 +5,6 @@ import gfm from 'remark-gfm';
 import LinkTo from '@storybook/addon-links/react';
 
 import frontEndSource from '../../../../README.md';
-import circleciSource from '../../../../.circleci/README.md';
 import storybookSource from '../../README.md';
 import mockTypesSource from '../../../mock-types/README.md';
 import modulesSource from '../../../../meepshop/modules/README.md';
@@ -14,7 +13,7 @@ import localesSource from '../../../../meepshop/locales/README.md';
 import typesSource from '../../../../meepshop/types/README.md';
 import imagesSource from '../../../../meepshop/images/README.md';
 import iconsSource from '../../../../meepshop/icons/README.md';
-import storeSource from '../../../store/README.md';
+import nextStoreSource from '../../../store/README.md';
 
 // definition
 const gitUrl = 'https://github.com/meepshop/meep-lerna/tree/master';
@@ -23,11 +22,6 @@ const stories = [
     name: '@meepshop/front-end',
     path: '.',
     source: frontEndSource,
-  },
-  {
-    name: '@meepshop/front-end/circleci',
-    path: './.circleci',
-    source: circleciSource,
   },
   {
     name: '@meepshop/storybook',
@@ -70,9 +64,9 @@ const stories = [
     source: iconsSource,
   },
   {
-    name: '@store/server',
+    name: '@meepshop/next-store',
     path: './packages/store',
-    source: storeSource,
+    source: nextStoreSource,
   },
 ].map(({ path, ...data }) => ({
   ...data,
