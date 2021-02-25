@@ -69,7 +69,9 @@ export default ({ samples }: PropsType): React.ReactElement => {
               {
                 offset: 30,
                 content: sample => {
-                  return `${sample.name}\n${sample.transactionPercentage}%`;
+                  return `${
+                    sample.name
+                  }\n${sample.transactionPercentage.toFixed(2)}%`;
                 },
                 style: {
                   fontSize: 16,

@@ -54,7 +54,7 @@ export default ({ samples }: PropsType): React.ReactElement => {
                 <span>{t('conversion')}</span>
                 <p
                   className={isTheBest ? styles.best : ''}
-                >{`${conversionRate}%`}</p>
+                >{`${conversionRate.toFixed(2)}%`}</p>
               </div>
             );
           },
