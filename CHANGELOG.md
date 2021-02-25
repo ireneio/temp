@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.79.6 (2021-02-25)
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1426](https://github.com/meepshop/meep-lerna/pull/1426) 智慧轉換元件 - 後台/信件數據顯示 ([@piovischioh](https://github.com/piovischioh))
+- `mock-types`
+  - [#1438](https://github.com/meepshop/meep-lerna/pull/1438) (@meepshop/frontend) Fix testing error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.79.5 (2021-02-24)
 
 #### :rocket: New Feature
