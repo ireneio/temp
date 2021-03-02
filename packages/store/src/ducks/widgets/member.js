@@ -209,21 +209,11 @@ function* signupFlow({ payload }) {
   const { values, callback } = payload;
 
   try {
-    // 檢查信箱是否已註冊
-    const data = yield call(Api.checkEmailExists, { email: values.email });
+    yield call(Api.signup, values);
+    yield put(signupSuccess());
+    notification.success({ message: i18n.t('ducks:signup-success') });
 
-    if (data) {
-      if (data?.data?.checkUserInfo?.exists) {
-        yield put(signupFailure());
-        notification.error({ message: i18n.t('ducks:email-already-exists') });
-      } else {
-        yield call(Api.signup, values);
-        yield put(signupSuccess());
-        notification.success({ message: i18n.t('ducks:signup-success') });
-
-        if (callback) callback();
-      }
-    }
+    if (callback) callback();
   } catch (error) {
     yield put(signupFailure());
     notification.error({

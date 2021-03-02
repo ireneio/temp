@@ -4,7 +4,6 @@ import getPage from './getPage.api';
 import getProduct from './getProduct.api';
 import getDefaultStoreProduct from './getDefaultStoreProduct.api';
 import signup from './signup.api';
-import checkEmailExists from './checkEmailExists.api';
 import updateMemberData from './updateMemberData.api';
 
 // Server-side rendering
@@ -21,7 +20,6 @@ export {
   getProduct,
   getDefaultStoreProduct,
   signup,
-  checkEmailExists,
   updateMemberData,
   // Server-side rendering
   serverIndexInitial,
