@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.79.7 (2021-03-02)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1400](https://github.com/meepshop/meep-lerna/pull/1400) 前端 - createOrderList input 加上 userId ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1432](https://github.com/meepshop/meep-lerna/pull/1432) 移除不必要的 checkEmail query ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.6 (2021-02-25)
 
 #### :bug: Bug Fix
