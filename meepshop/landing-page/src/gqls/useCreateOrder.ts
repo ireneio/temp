@@ -17,6 +17,7 @@ export const landingPageAccessToken = gql`
   mutation landingPageAccessToken($input: LandingPageAccessTokenInput!) {
     landingPageAccessToken(input: $input) @client {
       status
+      userId
     }
   }
 `;

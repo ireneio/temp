@@ -66,7 +66,6 @@ export default class Checkout extends React.PureComponent {
     const {
       /** context */
       location,
-      user,
       isLogin,
       goTo,
       dispatchAction,
@@ -165,6 +164,8 @@ export default class Checkout extends React.PureComponent {
       });
     }
 
+    const { user } = this.props;
+
     const { error, data } = await createOrder({
       variables: {
         createOrderList: [
@@ -229,6 +230,7 @@ export default class Checkout extends React.PureComponent {
             ],
             cvsType,
             cvsCode,
+            userId: user.id,
             userInfo: {
               name: userName || name,
               email: userEmail || user.email,

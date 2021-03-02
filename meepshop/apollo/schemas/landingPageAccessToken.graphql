@@ -8,6 +8,7 @@ enum LandingPageAccessTokenResponseEnum {
 }
 
 type LandingPageAccessTokenResponse {
+  userId: ID
   status: LandingPageAccessTokenResponseEnum!
   message: String
 }

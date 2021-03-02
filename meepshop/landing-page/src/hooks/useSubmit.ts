@@ -196,6 +196,7 @@ export default ({
                     ],
                     cvsType,
                     cvsCode,
+                    userId: viewer?.id,
                     userInfo: {
                       name: userName || name,
                       email: userEmail || viewer?.email,

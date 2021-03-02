@@ -110,7 +110,15 @@ export default (
                 createOrderInLandingPageType,
                 createOrderInLandingPageVariables
               >({
-                ...options,
+                variables: {
+                  createOrderList: [
+                    {
+                      products: [],
+                      ...options.variables?.createOrderList?.[0],
+                      userId: accessTokenData?.landingPageAccessToken.userId,
+                    },
+                  ],
+                },
                 mutation: createOrderInLandingPage,
                 fetchPolicy: 'no-cache',
               });

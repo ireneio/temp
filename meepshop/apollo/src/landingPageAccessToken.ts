@@ -17,6 +17,7 @@ export const resolvers = {
       const defaultResponse = {
         __typename: 'LandingPageAccessTokenResponse',
         status: 'FAIL',
+        userId: null,
         message: null,
       };
 
@@ -26,9 +27,12 @@ export const resolvers = {
           message: `${res.status} ${res.statusText}`,
         };
 
+      const { userId } = await res.json();
+
       return {
         ...defaultResponse,
         status: 'OK',
+        userId,
       };
     },
   },
