@@ -10,8 +10,7 @@ export const resolvers = {
       stock,
       minPurchaseItems,
     }: productsObjectTypeFragmentType) => {
-      if (error && /Product not online/.test(error))
-        return 'PRODUCT_NOT_ONLINE';
+      if (error && /已下架/.test(error)) return 'PRODUCT_NOT_ONLINE';
 
       if (type !== 'product' && (!stock || stock <= 0 || error))
         return 'GIFT_OUT_OF_STOCK';

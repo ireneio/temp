@@ -281,7 +281,7 @@ export default class OrderDetail extends React.PureComponent {
       products: newProducts.map(product => {
         const { error, type, stock, minPurchaseItems } = product;
 
-        if (error && /Product not online/.test(error))
+        if (error && /已下架/.test(error))
           return {
             ...product,
             error: 'PRODUCT_NOT_ONLINE',
