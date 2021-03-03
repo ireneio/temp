@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.79.8 (2021-03-03)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1440](https://github.com/meepshop/meep-lerna/pull/1440) 【BUG】購物車流程 - 下架商品無顯示相對應提示訊息 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.7 (2021-03-02)
 
 #### :rocket: New Feature
