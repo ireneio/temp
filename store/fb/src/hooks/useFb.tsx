@@ -12,42 +12,48 @@ export default (
   fbScript: React.ReactNode;
 } => {
   const [fb, setFb] = useState<typeof window['FB'] | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const events = useContext(EventsContext);
 
   useEffect(() => {
-    const isLoaded = (): void => {
+    const fbLoaded = (): void => {
       if (!window.FB) return;
 
       setFb(window.FB);
     };
 
-    isLoaded();
-    events.addEventListener('fb-loaded', isLoaded);
+    fbLoaded();
+    events.addEventListener('fb-loaded', fbLoaded);
   }, [events]);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   return {
     fb,
-    fbScript: !appId ? null : (
-      <>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.fbAsyncInit = function() {
-                window.FB.init({
-                  appId: '${appId}',
-                  cookie: true,
-                  xfbml: true,
-                  version: '${version}',
-                });
-                window.FB.AppEvents.logPageView();
-                window.events.dispatchEvent(new Event('fb-loaded'));
-              };
-            `,
-          }}
-        />
+    fbScript:
+      !appId || !isLoaded ? null : (
+        <>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.fbAsyncInit = function() {
+                  window.FB.init({
+                    appId: '${appId}',
+                    cookie: true,
+                    xfbml: true,
+                    version: '${version}',
+                  });
+                  window.FB.AppEvents.logPageView();
+                  window.events.dispatchEvent(new Event('fb-loaded'));
+                };
+              `,
+            }}
+          />
 
-        <script src="https://connect.facebook.net/en_US/sdk.js" async defer />
-      </>
-    ),
+          <script src="https://connect.facebook.net/en_US/sdk.js" async defer />
+        </>
+      ),
   };
 };

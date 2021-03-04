@@ -5,21 +5,21 @@ import { isFragment } from 'react-is';
 import { Helmet } from 'react-helmet';
 
 // definition
+const mergeChild = (children): React.Element =>
+  React.Children.map(children, child => {
+    if (isFragment(child)) return mergeChild(child.props.children);
+
+    if (child?.props.dangerouslySetInnerHTML)
+      return React.cloneElement(
+        child,
+        null,
+        // eslint-disable-next-line no-underscore-dangle
+        child.props.dangerouslySetInnerHTML.__html,
+      );
+
+    return child;
+  });
+
 export default React.memo(({ children }: { children: React.Element }) => (
-  <Helmet>
-    {React.Children.map(children, child =>
-      !isFragment(child)
-        ? child
-        : React.Children.map(child.props.children, fragmentChild =>
-            !fragmentChild.props.dangerouslySetInnerHTML
-              ? fragmentChild
-              : React.cloneElement(
-                  fragmentChild,
-                  null,
-                  // eslint-disable-next-line no-underscore-dangle
-                  fragmentChild.props.dangerouslySetInnerHTML.__html,
-                ),
-          ),
-    )}
-  </Helmet>
+  <Helmet>{mergeChild(children)}</Helmet>
 ));

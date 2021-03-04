@@ -1,5 +1,5 @@
 // import
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 
 import { useRouter } from '@meepshop/link';
@@ -24,6 +24,11 @@ export default React.memo(
     },
   }: PropsType) => {
     const router = useRouter();
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+      setIsLoaded(true);
+    }, []);
 
     return (
       <Head>
@@ -41,37 +46,48 @@ export default React.memo(
                 __html: `
                   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
                   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-                  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-                  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-                  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+                  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];}(window,document,'script');
+
                   fbq('init', '${facebookPixelId}', {}, { agent: 'plmeepShop' });
                   fbq('track', 'PageView');
                 `,
               }}
             />
 
-            <noscript
-              dangerouslySetInnerHTML={{
-                __html: `
-                  <img
-                    src="https://www.facebook.com/tr?id=${facebookPixelId}&ev=PageView&noscript=1"
-                    height="1"
-                    width="1"
-                    style="display:none"
-                  />
-                `,
-              }}
-            />
+            {!isLoaded
+              ? null
+              : [
+                  <script
+                    key="script"
+                    src="https://connect.facebook.net/en_US/fbevents.js"
+                    async
+                  />,
+                  <noscript
+                    key="noscript"
+                    dangerouslySetInnerHTML={{
+                      __html: `
+                        <img
+                          src="https://www.facebook.com/tr?id=${facebookPixelId}&ev=PageView&noscript=1"
+                          height="1"
+                          width="1"
+                          style="display:none"
+                        />
+                      `,
+                    }}
+                  />,
+                ]}
           </>
         )}
 
         {!googleAnalyticsId && !googleAdwordsConfig ? null : (
           <>
-            <script
-              src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId ||
-                googleAdwordsConfig}`}
-              async
-            />
+            {!isLoaded ? null : (
+              <script
+                src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId ||
+                  googleAdwordsConfig}`}
+                async
+              />
+            )}
 
             <script
               dangerouslySetInnerHTML={{
@@ -95,7 +111,7 @@ export default React.memo(
           </>
         )}
 
-        {!googleTagManager ? null : (
+        {!googleTagManager || !isLoaded ? null : (
           <>
             <script
               dangerouslySetInnerHTML={{
