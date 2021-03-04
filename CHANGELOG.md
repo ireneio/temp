@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.79.9 (2021-03-04)
+
+#### :rocket: New Feature
+
+- [#1387](https://github.com/meepshop/meep-lerna/pull/1387) 第三方服務延後載入 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1415](https://github.com/meepshop/meep-lerna/pull/1415) 新增 @admin/orders ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.79.8 (2021-03-03)
 
 #### :bug: Bug Fix
