@@ -4,13 +4,13 @@
   "description": "Use to call gtag and fpq",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.8",
+  "version": "0.79.9",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/apollo": "^0.79.8",
-    "@meepshop/context": "^0.79.4",
-    "@meepshop/link": "^0.79.4"
+    "@meepshop/apollo": "^0.79.9",
+    "@meepshop/context": "^0.79.9",
+    "@meepshop/link": "^0.79.9"
   },
   "keywords": ["ad", "fbq", "gtag", "track"]
 }
