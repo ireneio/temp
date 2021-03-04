@@ -1,0 +1,82 @@
+{
+  "change": "變更",
+  "change-status": {
+    "title": "變更狀態",
+    "paymentStatusList": "帳款狀態",
+    "shipmentStatusList": "運送狀態",
+    "orderStatusList": "訂單狀態",
+    "choose": "請選擇",
+    "cancel": "取消",
+    "confirm": "確認",
+    "error": {
+      "title": "變更狀態失敗",
+      "description": "{{amount}} 筆訂單的{{status}}變更失敗"
+    },
+    "success": {
+      "title": "變更狀態成功",
+      "description": "{{amount}} 筆訂單的{{status}}更新為「{{newStatus}}」"
+    },
+    "order-change": {
+      "cancel": {
+        "title": "注意！取消訂單無法復原",
+        "description": "訂單取消後將無法再編輯訂單，且取消的訂單不列入營收、銷量、行銷統計，確定要取消訂單嗎？"
+      },
+      "closed": {
+        "title": "注意！訂單結案無法復原",
+        "description": "訂單結案後無法再進行變更任何訂單資料（包含退貨），確定要結案嗎？"
+      }
+    }
+  },
+  "more-operating": {
+    "title": "更多操作",
+    "export": "匯出",
+    "print": "列印"
+  },
+  "filter": {
+    "advanced-search": "進階搜尋",
+    "searchTerm": "搜尋關鍵字",
+    "reset": "清空搜尋"
+  },
+  "advanced-search": {
+    "pre-placeholder": "請選擇",
+    "orderStatusList-title": "訂單狀態",
+    "paymentStatusList-title": "帳款狀態",
+    "paymentIdList-title": "付款方式",
+    "shipmentStatusList-title": "運送狀態",
+    "shipmentIdList-title": "運送方式",
+    "reset": "重設",
+    "filter": "篩選"
+  },
+  "orderStatusList": {
+    "PROCESSING": "處理中",
+    "CANCELED": "取消訂單",
+    "RETURN": "退換貨處理",
+    "CLOSED": "訂單結案"
+  },
+  "paymentStatusList": {
+    "WAITING": "等待確認",
+    "NOTIFICATED": "匯款通知",
+    "RECONCILED": "對帳完成",
+    "DATA_ERROR": "資料錯誤",
+    "FAILED": "付款失敗",
+    "REFUND": "退款處理"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "未出貨",
+    "PREPARING": "備貨中",
+    "OUT_OF_STOCK": "缺貨中",
+    "SHIPPED": "已出貨",
+    "PRE_ORDER": "預購",
+    "EXCHANGE": "換貨處理",
+    "RETURN": "退貨處理中",
+    "DATA_ERROR": "資料有誤"
+  },
+  "send": "傳送訂單至{{service}}",
+  "empty-orders": "無訂單資料",
+  "orders-info": {
+    "total": "共 {{total}} 筆",
+    "select": " / 已選取 ",
+    "amount": " 筆"
+  },
+  "page-size": "筆 / 頁"
+}

@@ -1,0 +1,82 @@
+{
+  "change": "changement",
+  "change-status": {
+    "title": "Changer de statut",
+    "paymentStatusList": "Statut du compte",
+    "shipmentStatusList": "Statut d'envoi",
+    "orderStatusList": "Statut de la commande",
+    "choose": "Choisissez s'il vous plaît",
+    "cancel": "Annuler",
+    "confirm": "confirmer",
+    "error": {
+      "title": "Le changement d'état a échoué",
+      "description": "Échec de la modification de {{status}} pour {{amount}} de commande (s)"
+    },
+    "success": {
+      "title": "Changement de statut réussi",
+      "description": "{{status}} pour {{amount}} de commande (s) mis à jour en \"{{newStatus}}\""
+    },
+    "order-change": {
+      "cancel": {
+        "title": "Remarque!",
+        "description": "Une fois la commande annulée, la commande ne peut plus être modifiée et la commande annulée ne sera pas incluse dans les statistiques de revenus, de ventes et de marketing. Voulez-vous vraiment annuler la commande?"
+      },
+      "closed": {
+        "title": "Remarque!",
+        "description": "Une fois la commande clôturée, aucune information relative à la commande (y compris les retours) ne peut être modifiée. Voulez-vous vraiment clôturer le dossier?"
+      }
+    }
+  },
+  "more-operating": {
+    "title": "Plus d'actions",
+    "export": "Exportation",
+    "print": "Impression"
+  },
+  "filter": {
+    "advanced-search": "Recherche Avancée",
+    "searchTerm": "Rechercher des mots-clés",
+    "reset": "Effacer la recherche"
+  },
+  "advanced-search": {
+    "pre-placeholder": "Choisissez s'il vous plaît",
+    "orderStatusList-title": "Statut de la commande",
+    "paymentStatusList-title": "Statut du compte",
+    "paymentIdList-title": "mode de paiement",
+    "shipmentStatusList-title": "Statut d'envoi",
+    "shipmentIdList-title": "Mode de livraison",
+    "reset": "réinitialiser",
+    "filter": "filtre"
+  },
+  "orderStatusList": {
+    "PROCESSING": "En traitement",
+    "CANCELED": "annuler la commande",
+    "RETURN": "Traitement des retours et échanges",
+    "CLOSED": "Clôture de la commande"
+  },
+  "paymentStatusList": {
+    "WAITING": "En attente de confirmation",
+    "NOTIFICATED": "Avis de remise",
+    "RECONCILED": "Réconciliation terminée",
+    "DATA_ERROR": "Erreur de donnée",
+    "FAILED": "Échec du paiement",
+    "REFUND": "Traitement des remboursements"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "Pas livré",
+    "PREPARING": "Stockage",
+    "OUT_OF_STOCK": "Rupture de stock",
+    "SHIPPED": "Expédié",
+    "PRE_ORDER": "Pré-commander",
+    "EXCHANGE": "Traitement d'échange",
+    "RETURN": "Traitement des retours",
+    "DATA_ERROR": "Information incorrecte"
+  },
+  "send": "Envoyer la commande à {{service}}",
+  "empty-orders": "Aucune information de commande",
+  "orders-info": {
+    "total": "{{total}} au total",
+    "select": "/ Sélectionné",
+    "amount": "stylo"
+  },
+  "page-size": "Stylo / page"
+}

@@ -1,0 +1,82 @@
+{
+  "change": "เปลี่ยนแปลง",
+  "change-status": {
+    "title": "เปลี่ยนสถานะ",
+    "paymentStatusList": "สถานะบัญชี",
+    "shipmentStatusList": "สถานะการจัดส่ง",
+    "orderStatusList": "สถานะการสั่งซื้อ",
+    "choose": "โปรดเลือก",
+    "cancel": "ยกเลิก",
+    "confirm": "ยืนยัน",
+    "error": {
+      "title": "การเปลี่ยนสถานะล้มเหลว",
+      "description": "{{status}} การเปลี่ยนแปลงสำหรับ {{amount}}ำสั่งซื้อล้มเหลว"
+    },
+    "success": {
+      "title": "การเปลี่ยนสถานะสำเร็จแล้ว",
+      "description": "{{status}} สำหรับ {{amount}} องคำสั่งที่อัปเดตเป็น \"{{newStatus}}\""
+    },
+    "order-change": {
+      "cancel": {
+        "title": "บันทึก!",
+        "description": "หลังจากยกเลิกคำสั่งซื้อแล้วจะไม่สามารถแก้ไขคำสั่งซื้อได้อีกต่อไปและคำสั่งซื้อที่ถูกยกเลิกจะไม่รวมอยู่ในสถิติรายได้การขายและการตลาดคุณแน่ใจหรือไม่ว่าต้องการยกเลิกคำสั่งซื้อ"
+      },
+      "closed": {
+        "title": "บันทึก!",
+        "description": "หลังจากปิดคำสั่งซื้อแล้วจะไม่สามารถเปลี่ยนแปลงข้อมูลคำสั่งซื้อใด ๆ (รวมถึงการคืนสินค้า) คุณแน่ใจหรือไม่ว่าต้องการปิดเคส"
+      }
+    }
+  },
+  "more-operating": {
+    "title": "การดำเนินการมากขึ้น",
+    "export": "ส่งออก",
+    "print": "พิมพ์"
+  },
+  "filter": {
+    "advanced-search": "การค้นหาขั้นสูง",
+    "searchTerm": "คำค้นหา",
+    "reset": "ล้างการค้นหา"
+  },
+  "advanced-search": {
+    "pre-placeholder": "โปรดเลือก",
+    "orderStatusList-title": "สถานะการสั่งซื้อ",
+    "paymentStatusList-title": "สถานะบัญชี",
+    "paymentIdList-title": "วิธีการชำระเงิน",
+    "shipmentStatusList-title": "สถานะการจัดส่ง",
+    "shipmentIdList-title": "วิธีการส่ง",
+    "reset": "รีเซ็ต",
+    "filter": "กรอง"
+  },
+  "orderStatusList": {
+    "PROCESSING": "กำลังประมวลผล",
+    "CANCELED": "ยกเลิกคำสั่งซื้อ",
+    "RETURN": "การส่งคืนและแลกเปลี่ยนการประมวลผล",
+    "CLOSED": "ปิดออเดอร์"
+  },
+  "paymentStatusList": {
+    "WAITING": "กำลังรอการยืนยัน",
+    "NOTIFICATED": "แจ้งการโอนเงิน",
+    "RECONCILED": "การกระทบยอดเสร็จสมบูรณ์",
+    "DATA_ERROR": "ข้อผิดพลาดของข้อมูล",
+    "FAILED": "การชำระเงินล้มเหลว",
+    "REFUND": "การดำเนินการคืนเงิน"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "ไม่ได้จัดส่ง",
+    "PREPARING": "ถุงน่อง",
+    "OUT_OF_STOCK": "สินค้าหมด",
+    "SHIPPED": "จัดส่งแล้ว",
+    "PRE_ORDER": "สั่งล่วงหน้า",
+    "EXCHANGE": "การประมวลผลการแลกเปลี่ยน",
+    "RETURN": "การประมวลผลย้อนกลับ",
+    "DATA_ERROR": "ข้อมูลไม่ถูกต้อง"
+  },
+  "send": "ส่งคำสั่งซื้อไปที่ {{service}}",
+  "empty-orders": "ไม่มีข้อมูลการสั่งซื้อ",
+  "orders-info": {
+    "total": "รวม {{total}}",
+    "select": "/ เลือกแล้ว",
+    "amount": "ปากกา"
+  },
+  "page-size": "ปากกา / หน้า"
+}

@@ -1,83 +1,11 @@
 {
-  "title": "Manage ECFIT order",
+  "title": "ECFIT order management",
+  "service": "ECFIT",
   "status": {
     "NOT_SENT": "Unsent",
     "SENT_SUCCESSFUL": "Sent",
     "SENT_FAILED": "Sending failed"
   },
-  "change": "Change",
-  "change-status": {
-    "title": "Change status",
-    "paymentStatusList": "Payment status",
-    "shipmentStatusList": "Shipping status",
-    "orderStatusList": "Order status",
-    "choose": "Please select",
-    "cancel": "Cancel",
-    "confirm": "Confirm",
-    "error": {
-      "title": "Status change failed",
-      "description": "{{status}} change for {{amount}} of order(s) failed"
-    },
-    "success": {
-      "title": "Status change successful",
-      "description": " {{status}} for {{amount}} of order(s) updated to \"{{newStatus}}\""
-    },
-    "order-change": {
-      "cancel": {
-        "title": "Attention!Canceled orders cannot be recovered",
-        "description": "A canceled order can no longer be edited and will not be included in the revenue, sales, and marketing statistics. Are you sure you want to cancel?"
-      },
-      "closed": {
-        "title": "Attention!Closed orders cannot be retracted",
-        "description": "The information on a closed order can no longer be changed (including returns). Are you sure you want to close the case?"
-      }
-    }
-  },
-  "more-operating": {
-    "title": "More actions",
-    "export": "Export",
-    "print": "Print"
-  },
-  "filter": {
-    "advanced-search": "Advanced search",
-    "searchTerm": "Search keywords",
-    "reset": "Clear search"
-  },
-  "orderStatusList": {
-    "PROCESSING": "Processing",
-    "CANCELED": "Cancel Order",
-    "RETURN": "Return and refund",
-    "CLOSED": "Closed order"
-  },
-  "paymentStatusList": {
-    "WAITING": "Awaiting confirmation",
-    "NOTIFICATED": "Payment notification",
-    "RECONCILED": "Reconciliation completed",
-    "DATA_ERROR": "Incorrect information",
-    "FAILED": "Payment failed",
-    "REFUND": "Refund"
-  },
-  "shipmentStatusList": {
-    "NOT_YET": "Not shipped",
-    "PREPARING": "Preparing for shipment",
-    "OUT_OF_STOCK": "Out of stock",
-    "SHIPPED": "Shipped",
-    "PRE_ORDER": "Pre-order",
-    "EXCHANGE": "Return",
-    "RETURN": "Processing return",
-    "DATA_ERROR": "Incorrect information"
-  },
-  "advanced-search": {
-    "pre-placeholder": "Please select",
-    "orderStatusList-title": "Order status",
-    "paymentStatusList-title": "Payment status",
-    "paymentIdList-title": "Payment method",
-    "shipmentStatusList-title": "Shipping status",
-    "shipmentIdList-title": "Shipping method",
-    "reset": "Reset",
-    "filter": "Filter"
-  },
-  "send": "Send order to ECFIT",
   "orders": {
     "order-no": "Order number",
     "shipment-name": "Shipping method",
@@ -90,7 +18,30 @@
     "send-time": "Delivery time",
     "fail-reason": "Reason for failure"
   },
-  "empty-orders": "Order information not found",
+  "orderStatusList": {
+    "PROCESSING": "Processing",
+    "CANCELED": "cancel order",
+    "RETURN": "Return and exchange processing",
+    "CLOSED": "Order closing"
+  },
+  "paymentStatusList": {
+    "WAITING": "Waiting for confirmation",
+    "NOTIFICATED": "Remittance notice",
+    "RECONCILED": "Reconciliation completed",
+    "DATA_ERROR": "Data error",
+    "FAILED": "Payment Fail",
+    "REFUND": "Refund processing"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "Not shipped",
+    "PREPARING": "Stocking",
+    "OUT_OF_STOCK": "Out of stock",
+    "SHIPPED": "Shipped",
+    "PRE_ORDER": "pre order",
+    "EXCHANGE": "Exchange processing",
+    "RETURN": "Return processing",
+    "DATA_ERROR": "Incorrect information"
+  },
   "fail-reason": {
     "FAIL_TIMEOUT": "Time out",
     "FAIL_UNKNOWN_ECFIT_ERROR_CODE": "Unknown ECFIT error",
@@ -129,11 +80,5 @@
     "title": "Unable to use ECFIT service",
     "content": "Configuration error. Please check again using the third-party configuration",
     "confirm": "Confirm"
-  },
-  "orders-info": {
-    "total": "Total of {{total}} orders",
-    "select": "/ Selected",
-    "amount": "Order(s)"
-  },
-  "page-size": "Order(s) / page"
+  }
 }

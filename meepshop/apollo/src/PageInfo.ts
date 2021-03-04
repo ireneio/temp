@@ -34,11 +34,11 @@ export const resolvers = {
   },
   PageInfo: {
     currentInfo: (
-      _: unknown,
-      { input: { pageId } }: { input: { pageId: string } },
+      { key }: { key?: string },
+      args?: { input?: { pageId: string } },
     ) => ({
       __typename: 'CurrentInfo',
-      id: pageId,
+      id: key || args?.input?.pageId,
       current: 0,
     }),
   },

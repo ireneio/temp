@@ -1,0 +1,82 @@
+{
+  "change": "perubahan",
+  "change-status": {
+    "title": "Merubah status",
+    "paymentStatusList": "Status akun",
+    "shipmentStatusList": "Status pengiriman",
+    "orderStatusList": "Status pemesanan",
+    "choose": "tolong pilih",
+    "cancel": "membatalkan",
+    "confirm": "Konfirmasi",
+    "error": {
+      "title": "Perubahan status gagal",
+      "description": "{{status}} perubahan untuk {{amount}} pesanan gagal"
+    },
+    "success": {
+      "title": "Perubahan status berhasil",
+      "description": "{{status}} untuk {{amount}} pesanan diperbarui ke \"{{newStatus}}\" \""
+    },
+    "order-change": {
+      "cancel": {
+        "title": "catatan!",
+        "description": "Setelah pesanan dibatalkan, pesanan tidak lagi dapat diedit, dan pesanan yang dibatalkan tidak akan disertakan dalam statistik pendapatan, penjualan, dan pemasaran. Anda yakin ingin membatalkan pesanan?"
+      },
+      "closed": {
+        "title": "catatan!",
+        "description": "Setelah pesanan ditutup, informasi pesanan apa pun (termasuk pengembalian) tidak dapat diubah. Anda yakin ingin menutup kasus ini?"
+      }
+    }
+  },
+  "more-operating": {
+    "title": "Lebih banyak tindakan",
+    "export": "Ekspor",
+    "print": "Mencetak"
+  },
+  "filter": {
+    "advanced-search": "Pencarian lanjutan",
+    "searchTerm": "Mencari kata kunci",
+    "reset": "Bersihkan pencarian"
+  },
+  "advanced-search": {
+    "pre-placeholder": "tolong pilih",
+    "orderStatusList-title": "Status pemesanan",
+    "paymentStatusList-title": "Status akun",
+    "paymentIdList-title": "Cara Pembayaran",
+    "shipmentStatusList-title": "Status pengiriman",
+    "shipmentIdList-title": "Metode pengiriman",
+    "reset": "reset",
+    "filter": "Saring"
+  },
+  "orderStatusList": {
+    "PROCESSING": "Pengolahan",
+    "CANCELED": "Batalkan pesanan",
+    "RETURN": "Proses pengembalian dan penukaran",
+    "CLOSED": "Penutupan pesanan"
+  },
+  "paymentStatusList": {
+    "WAITING": "Menunggu kepastian",
+    "NOTIFICATED": "Pemberitahuan pengiriman uang",
+    "RECONCILED": "Rekonsiliasi selesai",
+    "DATA_ERROR": "Kesalahan data",
+    "FAILED": "Pembayaran Gagal",
+    "REFUND": "Pemrosesan pengembalian dana"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "Tidak dikirim",
+    "PREPARING": "Kaus",
+    "OUT_OF_STOCK": "Kehabisan persediaan",
+    "SHIPPED": "Dikirim",
+    "PRE_ORDER": "pesan terlebih dahulu",
+    "EXCHANGE": "Pemrosesan pertukaran",
+    "RETURN": "Pemrosesan kembali",
+    "DATA_ERROR": "Informasi salah"
+  },
+  "send": "Kirim pesanan ke {{service}}",
+  "empty-orders": "Tidak ada informasi pesanan",
+  "orders-info": {
+    "total": "Total {{total}}",
+    "select": "/ Terpilih",
+    "amount": "pena"
+  },
+  "page-size": "Pena / halaman"
+}

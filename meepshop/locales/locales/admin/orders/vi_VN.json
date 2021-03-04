@@ -1,0 +1,82 @@
+{
+  "change": "thay đổi",
+  "change-status": {
+    "title": "Thay đổi trạng thái",
+    "paymentStatusList": "Tình trạng tài khoản",
+    "shipmentStatusList": "Tình trạng giao hàng",
+    "orderStatusList": "Tình trạng đặt hàng",
+    "choose": "xin vui lòng chọn",
+    "cancel": "hủy bỏ",
+    "confirm": "xác nhận",
+    "error": {
+      "title": "Thay đổi trạng thái không thành công",
+      "description": "{{status}} thay đổi cho {{amount}} của đơn hàng không thành công"
+    },
+    "success": {
+      "title": "Thay đổi trạng thái thành công",
+      "description": "{{status}} cho {{amount}} đơn hàng được cập nhật thành \"{{newStatus}}\""
+    },
+    "order-change": {
+      "cancel": {
+        "title": "Ghi chú!",
+        "description": "Sau khi đơn đặt hàng bị hủy, đơn đặt hàng không thể chỉnh sửa được nữa và đơn đặt hàng đã hủy sẽ không được tính vào thống kê doanh thu, bán hàng và tiếp thị. Bạn có chắc chắn muốn hủy đơn đặt hàng không?"
+      },
+      "closed": {
+        "title": "Ghi chú!",
+        "description": "Sau khi đơn đặt hàng được đóng, mọi thông tin về đơn đặt hàng (bao gồm cả trả lại) không thể thay đổi được. Bạn có chắc chắn muốn đóng đơn hàng không?"
+      }
+    }
+  },
+  "more-operating": {
+    "title": "Nhiêu hanh động hơn",
+    "export": "Xuất khẩu",
+    "print": "In"
+  },
+  "filter": {
+    "advanced-search": "Tìm kiếm nâng cao",
+    "searchTerm": "Tìm kiếm từ khóa",
+    "reset": "Tìm kiếm rõ ràng"
+  },
+  "advanced-search": {
+    "pre-placeholder": "xin vui lòng chọn",
+    "orderStatusList-title": "Tình trạng đặt hàng",
+    "paymentStatusList-title": "Tình trạng tài khoản",
+    "paymentIdList-title": "phương thức thanh toán",
+    "shipmentStatusList-title": "Tình trạng giao hàng",
+    "shipmentIdList-title": "Phương pháp vận chuyển",
+    "reset": "cài lại",
+    "filter": "bộ lọc"
+  },
+  "orderStatusList": {
+    "PROCESSING": "Chế biến",
+    "CANCELED": "hủy đơn hàng",
+    "RETURN": "Xử lý trả lại và trao đổi",
+    "CLOSED": "Đóng đơn hàng"
+  },
+  "paymentStatusList": {
+    "WAITING": "chờ đợi sự xác nhận",
+    "NOTIFICATED": "Thông báo chuyển tiền",
+    "RECONCILED": "Đối chiếu hoàn tất",
+    "DATA_ERROR": "Lỗi dữ liệu",
+    "FAILED": "Thanh toán không thành công",
+    "REFUND": "Xử lý hoàn lại tiền"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "Không vận chuyển",
+    "PREPARING": "Còn hàng",
+    "OUT_OF_STOCK": "Hết hàng",
+    "SHIPPED": "Đã vận chuyển",
+    "PRE_ORDER": "đặt hàng trước",
+    "EXCHANGE": "Xử lý trao đổi",
+    "RETURN": "Xử lý hoàn trả",
+    "DATA_ERROR": "Thông tin không chính xác"
+  },
+  "send": "Gửi đơn đặt hàng đến {{service}}",
+  "empty-orders": "Không có thông tin đặt hàng",
+  "orders-info": {
+    "total": "Tổng {{total}}",
+    "select": "/ Đã chọn",
+    "amount": "cây bút"
+  },
+  "page-size": "Bút / trang"
+}

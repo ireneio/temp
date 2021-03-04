@@ -1,17 +1,20 @@
 {
   "private": true,
-  "name": "@admin/orders-ecfit",
-  "description": "Orders ecfit page for admin",
+  "name": "@admin/orders",
+  "description": "admin orders",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.4",
+  "version": "0.1.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/orders": "^0.1.0",
+    "@admin/date-picker": "^0.79.4",
+    "@admin/orders-export": "^0.79.4",
+    "@admin/table": "^0.79.4",
+    "@admin/utils": "^0.79.4",
     "@meepshop/link": "^0.79.4",
     "@meepshop/utils": "^0.79.4",
     "moment": "^2.22.1"
   },
-  "keywords": ["admin", "ecfit", "orders"]
+  "keywords": ["admin", "orders"]
 }

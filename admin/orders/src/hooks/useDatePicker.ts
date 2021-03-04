@@ -1,7 +1,7 @@
 // typescript import
 import { PropsType as DataPickerPropsType } from '@admin/date-picker';
 
-import { getEcfitListQueryPropsType } from '../constants';
+import { OrdersQueryResult } from '../constants';
 
 // import
 import { useMemo, useCallback } from 'react';
@@ -11,7 +11,7 @@ import moment from 'moment';
 export default ({
   refetch,
   variables,
-}: Pick<getEcfitListQueryPropsType, 'variables' | 'refetch'>): {
+}: Pick<OrdersQueryResult, 'variables' | 'refetch'>): {
   datepickerValue: [moment.Moment, moment.Moment] | undefined;
   changeDatePicker: (timeRange: DataPickerPropsType['value']) => void;
 } => ({

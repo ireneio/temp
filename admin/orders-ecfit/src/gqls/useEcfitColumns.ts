@@ -2,8 +2,8 @@
 import gql from 'graphql-tag';
 
 // definition
-export const useColumnsFragment = gql`
-  fragment useColumnsFragment on OrderConnection {
+export const useEcfitColumnsFragment = gql`
+  fragment useEcfitColumnsFragment on OrderConnection {
     edges {
       node {
         id

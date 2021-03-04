@@ -1,83 +1,11 @@
 {
   "title": "Quản lý đơn hàng ECFIT",
+  "service": "ECFIT",
   "status": {
     "NOT_SENT": "Chưa có",
     "SENT_SUCCESSFUL": "Gởi",
     "SENT_FAILED": "Gửi thất bại"
   },
-  "change": "Thay đổi",
-  "change-status": {
-    "title": "Thay đổi trạng thái",
-    "paymentStatusList": "Tình trạng thanh toán",
-    "shipmentStatusList": "Tình trạng giao hàng",
-    "orderStatusList": "Tình trạng đặt hàng",
-    "choose": "Xin hãy lựa chọn",
-    "cancel": "Hủy bỏ",
-    "confirm": "Xác nhận",
-    "error": {
-      "title": "Thay đổi trạng thái không thành công",
-      "description": "{{status}} thay đổi cho {{amount}} của đơn hàng không thành công"
-    },
-    "success": {
-      "title": "Thay đổi trạng thái thành công",
-      "description": "{{status}} cho {{amount}} đơn hàng được cập nhật thành \"{{newStatus}}\""
-    },
-    "order-change": {
-      "cancel": {
-        "title": "Chú ý! Đơn hàng bị hủy không thể được phục hồi",
-        "description": "Một đơn đặt hàng bị hủy không còn có thể được chỉnh sửa và sẽ không được bao gồm trong thống kê doanh thu, bán hàng và tiếp thị. Bạn có chắc là muốn hủy bỏ?"
-      },
-      "closed": {
-        "title": "Chú ý! Đơn hàng đã đóng không thể rút lại",
-        "description": "Thông tin về một đơn hàng đã đóng không còn có thể thay đổi (bao gồm cả trả về). Bạn có chắc chắn muốn đóng vụ án?"
-      }
-    }
-  },
-  "more-operating": {
-    "title": "Nhiêu hanh động hơn",
-    "export": "Xuất khẩu",
-    "print": "In"
-  },
-  "filter": {
-    "advanced-search": "Tìm kiếm nâng cao",
-    "searchTerm": "Tìm kiếm từ khóa",
-    "reset": "Tìm kiếm rõ ràng"
-  },
-  "orderStatusList": {
-    "PROCESSING": "Chế biến",
-    "CANCELED": "Hủy đơn hàng",
-    "RETURN": "Trả lại và hoàn trả",
-    "CLOSED": "Đơn hàng đã đóng"
-  },
-  "paymentStatusList": {
-    "WAITING": "Đang chờ xác nhận",
-    "NOTIFICATED": "Thông báo thanh toán",
-    "RECONCILED": "Hòa giải hoàn thành",
-    "DATA_ERROR": "Thông tin không chính xác",
-    "FAILED": "Thanh toán không thành công",
-    "REFUND": "Hoàn tiền"
-  },
-  "shipmentStatusList": {
-    "NOT_YET": "Không vận chuyển",
-    "PREPARING": "Chuẩn bị cho chuyến hàng",
-    "OUT_OF_STOCK": "Hết hàng",
-    "SHIPPED": "Vận chuyển",
-    "PRE_ORDER": "Đặt hàng trước",
-    "EXCHANGE": "Trở về",
-    "RETURN": "Xử lý hoàn trả",
-    "DATA_ERROR": "Thông tin không chính xác"
-  },
-  "advanced-search": {
-    "pre-placeholder": "Xin hãy lựa chọn",
-    "orderStatusList-title": "Tình trạng đặt hàng",
-    "paymentStatusList-title": "Tình trạng thanh toán",
-    "paymentIdList-title": "Phương thức thanh toán",
-    "shipmentStatusList-title": "Tình trạng giao hàng",
-    "shipmentIdList-title": "Phương pháp vận chuyển",
-    "reset": "Cài lại",
-    "filter": "Bộ lọc"
-  },
-  "send": "Gửi đơn hàng đến ECFIT",
   "orders": {
     "order-no": "Số thứ tự",
     "shipment-name": "Phương pháp vận chuyển",
@@ -90,7 +18,30 @@
     "send-time": "Thời gian giao hàng",
     "fail-reason": "Lý do thất bại"
   },
-  "empty-orders": "Thông tin đặt hàng không tìm thấy",
+  "orderStatusList": {
+    "PROCESSING": "Chế biến",
+    "CANCELED": "hủy đơn hàng",
+    "RETURN": "Xử lý trả lại và trao đổi",
+    "CLOSED": "Đóng đơn hàng"
+  },
+  "paymentStatusList": {
+    "WAITING": "chờ đợi sự xác nhận",
+    "NOTIFICATED": "Thông báo chuyển tiền",
+    "RECONCILED": "Đối chiếu hoàn tất",
+    "DATA_ERROR": "Lỗi dữ liệu",
+    "FAILED": "Thanh toán không thành công",
+    "REFUND": "Xử lý hoàn lại tiền"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "Không vận chuyển",
+    "PREPARING": "Còn hàng",
+    "OUT_OF_STOCK": "Hết hàng",
+    "SHIPPED": "Đã vận chuyển",
+    "PRE_ORDER": "đặt hàng trước",
+    "EXCHANGE": "Xử lý trao đổi",
+    "RETURN": "Xử lý hoàn trả",
+    "DATA_ERROR": "Thông tin không chính xác"
+  },
   "fail-reason": {
     "FAIL_TIMEOUT": "Hết giờ",
     "FAIL_UNKNOWN_ECFIT_ERROR_CODE": "Lỗi ECFIT không xác định",
@@ -129,11 +80,5 @@
     "title": "Không thể sử dụng dịch vụ ECFIT",
     "content": "Lỗi cấu hình. Vui lòng kiểm tra lại bằng cấu hình của bên thứ ba",
     "confirm": "Xác nhận"
-  },
-  "orders-info": {
-    "total": "Tổng số đơn đặt hàng {{total}}",
-    "select": "/ Đã chọn",
-    "amount": "Đặt hàng"
-  },
-  "page-size": "Đặt hàng / trang"
+  }
 }

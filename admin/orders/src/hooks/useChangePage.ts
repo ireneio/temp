@@ -1,5 +1,5 @@
 // typescript import
-import { getEcfitListQueryPropsType } from '../constants';
+import { OrdersQueryResult } from '../constants';
 
 // import
 import { useCallback, useState } from 'react';
@@ -7,21 +7,18 @@ import { useMutation } from '@apollo/react-hooks';
 
 // graphql typescript
 import {
-  setEcfitOrderCurrent as setEcfitOrderCurrentType,
-  setEcfitOrderCurrentVariables as setEcfitOrderCurrentVariablesType,
+  setOrderCurrent as setOrderCurrentType,
+  setOrderCurrentVariables as setOrderCurrentVariablesType,
   useChangePageFragment as useChangePageFragmentType,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { setEcfitOrderCurrent } from '../gqls/useChangePage';
+import { setOrderCurrent } from '../gqls/useChangePage';
 
 // typescript definition
 interface PropsType
-  extends Pick<
-    getEcfitListQueryPropsType,
-    'variables' | 'fetchMore' | 'refetch'
-  > {
-  user: useChangePageFragmentType | null;
+  extends Pick<OrdersQueryResult, 'variables' | 'fetchMore' | 'refetch'> {
+  user?: useChangePageFragmentType | null;
 }
 
 // definition
@@ -34,12 +31,12 @@ export default ({
   loading: boolean;
   changePage: (newCurrent: number, newPageSize: number) => void;
 } => {
-  const ecfitOrders = user?.ecfitOrders || null;
+  const orders = user?.orders || null;
   const [loading, setLoading] = useState<boolean>(false);
   const [mutation] = useMutation<
-    setEcfitOrderCurrentType,
-    setEcfitOrderCurrentVariablesType
-  >(setEcfitOrderCurrent);
+    setOrderCurrentType,
+    setOrderCurrentVariablesType
+  >(setOrderCurrent);
 
   const changePage = useCallback(
     (newCurrent: number, newPageSize: number): void => {
@@ -53,7 +50,7 @@ export default ({
         return;
       }
 
-      if (!ecfitOrders) return;
+      if (!orders) return;
 
       const {
         edges,
@@ -61,7 +58,7 @@ export default ({
           endCursor,
           currentInfo: { current, ...currentInfo },
         },
-      } = ecfitOrders;
+      } = orders;
 
       if (loading || newCurrent === current) return;
 
@@ -85,26 +82,26 @@ export default ({
         updateQuery: (previousResult, { fetchMoreResult }) => {
           setLoading(false);
 
-          if ((fetchMoreResult?.viewer?.ecfitOrders?.edges || []).length > 0) {
+          if ((fetchMoreResult?.viewer?.orders?.edges || []).length > 0) {
             return {
               ...previousResult,
               viewer: {
                 ...previousResult.viewer,
-                ecfitOrders: {
+                orders: {
                   __typename: 'OrderConnection',
                   edges: [
-                    ...(previousResult?.viewer?.ecfitOrders?.edges || []),
-                    ...(fetchMoreResult?.viewer?.ecfitOrders?.edges || []),
+                    ...(previousResult?.viewer?.orders?.edges || []),
+                    ...(fetchMoreResult?.viewer?.orders?.edges || []),
                   ],
                   pageInfo: {
-                    ...fetchMoreResult?.viewer?.ecfitOrders?.pageInfo,
+                    ...fetchMoreResult?.viewer?.orders?.pageInfo,
                     currentInfo: {
                       ...currentInfo,
                       __typename: 'CurrentInfo',
                       current: newCurrent,
                     },
                   },
-                  total: fetchMoreResult?.viewer?.ecfitOrders?.total,
+                  total: fetchMoreResult?.viewer?.orders?.total,
                 },
               },
             };
@@ -113,7 +110,7 @@ export default ({
         },
       });
     },
-    [loading, ecfitOrders, variables, mutation, fetchMore, refetch],
+    [loading, orders, variables, mutation, fetchMore, refetch],
   );
 
   return { loading, changePage };

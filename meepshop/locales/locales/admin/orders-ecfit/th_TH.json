@@ -1,83 +1,11 @@
 {
-  "title": "จัดการคำสั่งซื้อ ECFIT",
+  "title": "การจัดการคำสั่งซื้อ ECFIT",
+  "service": "ECFIT",
   "status": {
     "NOT_SENT": "ยังไม่ได้ส่ง",
     "SENT_SUCCESSFUL": "ส่ง",
     "SENT_FAILED": "การส่งล้มเหลว"
   },
-  "change": "เปลี่ยนแปลง",
-  "change-status": {
-    "title": "เปลี่ยนสถานะ",
-    "paymentStatusList": "สถานะการชำระเงิน",
-    "shipmentStatusList": "สถานะการจัดส่ง",
-    "orderStatusList": "สถานะการสั่งซื้อ",
-    "choose": "โปรดเลือก",
-    "cancel": "ยกเลิก",
-    "confirm": "ยืนยัน",
-    "error": {
-      "title": "การเปลี่ยนสถานะล้มเหลว",
-      "description": "{{status}} การเปลี่ยนแปลงสำหรับ {{amount}}ำสั่งซื้อล้มเหลว"
-    },
-    "success": {
-      "title": "การเปลี่ยนสถานะสำเร็จแล้ว",
-      "description": "{{status}} สำหรับ {{amount}} องคำสั่งที่อัปเดตเป็น \"{{newStatus}}\""
-    },
-    "order-change": {
-      "cancel": {
-        "title": "โปรดทราบ! คำสั่งซื้อที่ถูกยกเลิกไม่สามารถกู้คืนได้",
-        "description": "คำสั่งซื้อที่ยกเลิกจะไม่สามารถแก้ไขได้อีกต่อไปและจะไม่รวมอยู่ในสถิติรายได้การขายและการตลาด คุณแน่ใจหรือไม่ว่าต้องการยกเลิก"
-      },
-      "closed": {
-        "title": "โปรดทราบ! คำสั่งซื้อที่ปิดไม่สามารถดึงกลับมาได้",
-        "description": "ข้อมูลเกี่ยวกับคำสั่งปิดไม่สามารถเปลี่ยนแปลงได้อีกต่อไป (รวมถึงการส่งคืน) คุณแน่ใจหรือไม่ว่าต้องการปิดเคส"
-      }
-    }
-  },
-  "more-operating": {
-    "title": "การดำเนินการมากขึ้น",
-    "export": "ส่งออก",
-    "print": "พิมพ์"
-  },
-  "filter": {
-    "advanced-search": "การค้นหาขั้นสูง",
-    "searchTerm": "ค้นหาคำสำคัญ",
-    "reset": "ล้างการค้นหา"
-  },
-  "orderStatusList": {
-    "PROCESSING": "การประมวลผล",
-    "CANCELED": "ยกเลิกคำสั่งซื้อ",
-    "RETURN": "ส่งคืนและคืนเงิน",
-    "CLOSED": "สั่งปิด"
-  },
-  "paymentStatusList": {
-    "WAITING": "รอการยืนยัน",
-    "NOTIFICATED": "แจ้งชำระเงิน",
-    "RECONCILED": "การกระทบยอดเสร็จสมบูรณ์",
-    "DATA_ERROR": "ข้อมูลไม่ถูกต้อง",
-    "FAILED": "การชำระเงินล้มเหลว",
-    "REFUND": "คืนเงินให้"
-  },
-  "shipmentStatusList": {
-    "NOT_YET": "ไม่ได้จัดส่ง",
-    "PREPARING": "กำลังเตรียมการเพื่อขนส่ง",
-    "OUT_OF_STOCK": "สินค้าหมด",
-    "SHIPPED": "การจัดส่ง",
-    "PRE_ORDER": "สั่งซื้อล่วงหน้า",
-    "EXCHANGE": "กลับ",
-    "RETURN": "กำลังดำเนินการส่งคืน",
-    "DATA_ERROR": "ข้อมูลไม่ถูกต้อง"
-  },
-  "advanced-search": {
-    "pre-placeholder": "โปรดเลือก",
-    "orderStatusList-title": "สถานะการสั่งซื้อ",
-    "paymentStatusList-title": "สถานะการชำระเงิน",
-    "paymentIdList-title": "วิธีการชำระเงิน",
-    "shipmentStatusList-title": "สถานะการจัดส่ง",
-    "shipmentIdList-title": "วิธีจัดส่ง",
-    "reset": "ตั้งค่าใหม่",
-    "filter": "กรอง"
-  },
-  "send": "ส่งคำสั่งซื้อไปยัง ECFIT",
   "orders": {
     "order-no": "หมายเลขสั่งซื้อ",
     "shipment-name": "วิธีจัดส่ง",
@@ -90,7 +18,30 @@
     "send-time": "เวลาจัดส่ง",
     "fail-reason": "สาเหตุของความล้มเหลว"
   },
-  "empty-orders": "ไม่พบข้อมูลการสั่งซื้อ",
+  "orderStatusList": {
+    "PROCESSING": "กำลังประมวลผล",
+    "CANCELED": "ยกเลิกคำสั่งซื้อ",
+    "RETURN": "การส่งคืนและแลกเปลี่ยนการประมวลผล",
+    "CLOSED": "ปิดออเดอร์"
+  },
+  "paymentStatusList": {
+    "WAITING": "กำลังรอการยืนยัน",
+    "NOTIFICATED": "แจ้งการโอนเงิน",
+    "RECONCILED": "การกระทบยอดเสร็จสมบูรณ์",
+    "DATA_ERROR": "ข้อผิดพลาดของข้อมูล",
+    "FAILED": "การชำระเงินล้มเหลว",
+    "REFUND": "การดำเนินการคืนเงิน"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "ไม่ได้จัดส่ง",
+    "PREPARING": "ถุงน่อง",
+    "OUT_OF_STOCK": "สินค้าหมด",
+    "SHIPPED": "จัดส่งแล้ว",
+    "PRE_ORDER": "สั่งล่วงหน้า",
+    "EXCHANGE": "การประมวลผลการแลกเปลี่ยน",
+    "RETURN": "การประมวลผลย้อนกลับ",
+    "DATA_ERROR": "ข้อมูลไม่ถูกต้อง"
+  },
   "fail-reason": {
     "FAIL_TIMEOUT": "หมดเวลา",
     "FAIL_UNKNOWN_ECFIT_ERROR_CODE": "ข้อผิดพลาด ECFIT ที่ไม่รู้จัก",
@@ -129,11 +80,5 @@
     "title": "ไม่สามารถใช้บริการ ECFIT",
     "content": "ข้อผิดพลาดการกำหนดค่า โปรดตรวจสอบอีกครั้งโดยใช้การกำหนดค่าบุคคลที่สาม",
     "confirm": "ยืนยัน"
-  },
-  "orders-info": {
-    "total": "ยอดรวมคำสั่งซื้อ {{total}} ทั้งหมด",
-    "select": "/ เลือกแล้ว",
-    "amount": "การสั่งซื้อ (s)"
-  },
-  "page-size": "คำสั่งซื้อ / หน้า"
+  }
 }

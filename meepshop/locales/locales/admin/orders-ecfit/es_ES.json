@@ -1,83 +1,11 @@
 {
-  "title": "Gestionar pedido ECFIT",
+  "title": "Gestión de pedidos ECFIT",
+  "service": "ECFIT",
   "status": {
     "NOT_SENT": "No enviado",
     "SENT_SUCCESSFUL": "Expedida",
     "SENT_FAILED": "Envío fallido"
   },
-  "change": "Cambio",
-  "change-status": {
-    "title": "Cambiar Estado",
-    "paymentStatusList": "Estado de pago",
-    "shipmentStatusList": "Estado del envío",
-    "orderStatusList": "Estado del pedido",
-    "choose": "Por favor seleccione",
-    "cancel": "Cancelar",
-    "confirm": "Confirmar",
-    "error": {
-      "title": "Cambio de estado fallido",
-      "description": "{{status}} cambio para {{amount}} de pedidos fallidos"
-    },
-    "success": {
-      "title": "Cambio de estado exitoso",
-      "description": "{{status}} para {{amount}} de pedido (s) actualizado a \"{{newStatus}}\""
-    },
-    "order-change": {
-      "cancel": {
-        "title": "¡Atención! Los pedidos cancelados no se pueden recuperar",
-        "description": "Un pedido cancelado ya no se puede editar y no se incluirá en las estadísticas de ingresos, ventas y marketing. ¿Estas seguro que quieres cancelar?"
-      },
-      "closed": {
-        "title": "¡Atención! Los pedidos cerrados no pueden retirarse",
-        "description": "La información de un pedido cerrado ya no se puede cambiar (incluidas las devoluciones). ¿Seguro que quieres cerrar el caso?"
-      }
-    }
-  },
-  "more-operating": {
-    "title": "Mas acciones",
-    "export": "Exportar",
-    "print": "Impresión"
-  },
-  "filter": {
-    "advanced-search": "Búsqueda Avanzada",
-    "searchTerm": "Buscar palabras clave",
-    "reset": "Borrar búsqueda"
-  },
-  "orderStatusList": {
-    "PROCESSING": "Tratamiento",
-    "CANCELED": "Cancelar orden",
-    "RETURN": "Devolución y reembolso",
-    "CLOSED": "Orden cerrada"
-  },
-  "paymentStatusList": {
-    "WAITING": "Pendiente de confirmación",
-    "NOTIFICATED": "Notificacion de pago",
-    "RECONCILED": "Conciliación completada",
-    "DATA_ERROR": "Información incorrecta",
-    "FAILED": "Pago fallido",
-    "REFUND": "Reembolso"
-  },
-  "shipmentStatusList": {
-    "NOT_YET": "No enviado",
-    "PREPARING": "Preparación para el envío",
-    "OUT_OF_STOCK": "Agotado",
-    "SHIPPED": "Enviada",
-    "PRE_ORDER": "Hacer un pedido",
-    "EXCHANGE": "Regreso",
-    "RETURN": "Procesamiento de devolución",
-    "DATA_ERROR": "Información incorrecta"
-  },
-  "advanced-search": {
-    "pre-placeholder": "Por favor seleccione",
-    "orderStatusList-title": "Estado del pedido",
-    "paymentStatusList-title": "Estado de pago",
-    "paymentIdList-title": "Método de pago",
-    "shipmentStatusList-title": "Estado del envío",
-    "shipmentIdList-title": "Método de envío",
-    "reset": "Reiniciar",
-    "filter": "Filtrar"
-  },
-  "send": "Enviar pedido a ECFIT",
   "orders": {
     "order-no": "Número de orden",
     "shipment-name": "Método de envío",
@@ -90,7 +18,30 @@
     "send-time": "El tiempo de entrega",
     "fail-reason": "Motivo del fracaso"
   },
-  "empty-orders": "Información de pedido no encontrada",
+  "orderStatusList": {
+    "PROCESSING": "Procesando",
+    "CANCELED": "cancelar orden",
+    "RETURN": "Procesamiento de devolución y cambio",
+    "CLOSED": "Cierre de orden"
+  },
+  "paymentStatusList": {
+    "WAITING": "esperando confirmación",
+    "NOTIFICATED": "Aviso de remesa",
+    "RECONCILED": "Conciliación completada",
+    "DATA_ERROR": "Error de datos",
+    "FAILED": "Pago fallido",
+    "REFUND": "Procesamiento de reembolso"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "No enviado",
+    "PREPARING": "Media",
+    "OUT_OF_STOCK": "Agotado",
+    "SHIPPED": "Enviado",
+    "PRE_ORDER": "hacer un pedido",
+    "EXCHANGE": "Procesamiento de cambio",
+    "RETURN": "Procesamiento de devoluciones",
+    "DATA_ERROR": "Información incorrecta"
+  },
   "fail-reason": {
     "FAIL_TIMEOUT": "Se acabó el tiempo",
     "FAIL_UNKNOWN_ECFIT_ERROR_CODE": "Error ECFIT desconocido",
@@ -129,11 +80,5 @@
     "title": "No se puede usar el servicio ECFIT",
     "content": "Error de configuración. Vuelva a verificar utilizando la configuración de terceros",
     "confirm": "Confirmar"
-  },
-  "orders-info": {
-    "total": "Total de {{total}} pedidos",
-    "select": "/ Seleccionado",
-    "amount": "Pedidos)"
-  },
-  "page-size": "Orden (es) / página"
+  }
 }

@@ -1,47 +1,22 @@
 {
   "title": "ECFIT訂單",
+  "service": "ECFIT",
   "status": {
     "NOT_SENT": "未傳送",
     "SENT_SUCCESSFUL": "已傳送",
     "SENT_FAILED": "傳送失敗"
   },
-  "change": "變更",
-  "change-status": {
-    "title": "變更狀態",
-    "paymentStatusList": "帳款狀態",
-    "shipmentStatusList": "運送狀態",
-    "orderStatusList": "訂單狀態",
-    "choose": "請選擇",
-    "cancel": "取消",
-    "confirm": "確認",
-    "error": {
-      "title": "變更狀態失敗",
-      "description": "{{amount}} 筆訂單的{{status}}變更失敗"
-    },
-    "success": {
-      "title": "變更狀態成功",
-      "description": "{{amount}} 筆訂單的{{status}}更新為「{{newStatus}}」"
-    },
-    "order-change": {
-      "cancel": {
-        "title": "注意！取消訂單無法復原",
-        "description": "訂單取消後將無法再編輯訂單，且取消的訂單不列入營收、銷量、行銷統計，確定要取消訂單嗎？"
-      },
-      "closed": {
-        "title": "注意！訂單結案無法復原",
-        "description": "訂單結案後無法再進行變更任何訂單資料（包含退貨），確定要結案嗎？"
-      }
-    }
-  },
-  "more-operating": {
-    "title": "更多操作",
-    "export": "匯出",
-    "print": "列印"
-  },
-  "filter": {
-    "advanced-search": "進階搜尋",
-    "searchTerm": "搜尋關鍵字",
-    "reset": "清空搜尋"
+  "orders": {
+    "order-no": "訂單編號",
+    "shipment-name": "運送方式",
+    "payment-status": "帳款狀態",
+    "shipment-status": "運送狀態",
+    "order-status": "訂單狀態",
+    "recipient": "收件人",
+    "amount": "金額",
+    "create-at": "建立時間",
+    "send-time": "傳送時間",
+    "fail-reason": "失敗原因"
   },
   "orderStatusList": {
     "PROCESSING": "處理中",
@@ -67,30 +42,6 @@
     "RETURN": "退貨處理中",
     "DATA_ERROR": "資料有誤"
   },
-  "advanced-search": {
-    "pre-placeholder": "請選擇",
-    "orderStatusList-title": "訂單狀態",
-    "paymentStatusList-title": "帳款狀態",
-    "paymentIdList-title": "付款方式",
-    "shipmentStatusList-title": "運送狀態",
-    "shipmentIdList-title": "運送方式",
-    "reset": "重設",
-    "filter": "篩選"
-  },
-  "send": "傳送訂單至ECFIT",
-  "orders": {
-    "order-no": "訂單編號",
-    "shipment-name": "運送方式",
-    "payment-status": "帳款狀態",
-    "shipment-status": "運送狀態",
-    "order-status": "訂單狀態",
-    "recipient": "收件人",
-    "amount": "金額",
-    "create-at": "建立時間",
-    "send-time": "傳送時間",
-    "fail-reason": "失敗原因"
-  },
-  "empty-orders": "無訂單資料",
   "fail-reason": {
     "FAIL_TIMEOUT": "超時",
     "FAIL_UNKNOWN_ECFIT_ERROR_CODE": "未知的 ECFIT 錯誤",
@@ -129,11 +80,5 @@
     "title": "無法使用ECFIT服務",
     "content": "設定出現錯誤，請至第三方設定中重新檢查",
     "confirm": "確定"
-  },
-  "orders-info": {
-    "total": "共 {{total}} 筆",
-    "select": " / 已選取 ",
-    "amount": " 筆"
-  },
-  "page-size": "筆 / 頁"
+  }
 }

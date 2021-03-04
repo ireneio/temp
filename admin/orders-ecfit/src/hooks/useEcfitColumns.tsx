@@ -1,8 +1,6 @@
 // typescript import
 import { ColumnProps } from 'antd/lib/table';
 
-import { getEcfitListQueryPropsType } from '../constants';
-
 // import
 import React, { useMemo } from 'react';
 import moment from 'moment';
@@ -15,17 +13,18 @@ import { STATUS_LIST } from '../constants';
 
 // graphql typescript
 import {
-  useColumnsFragment_edges as useColumnsFragmentEdgesType,
-  useColumnsFragment_edges_node as useColumnsFragmentEdgesNodeType,
-  useColumnsFragment_edges_node_lastEcfitRequestRecord as useColumnsFragmentEdgesNodeLastEcfitRequestRecordType,
-  useColumnsFragment_edges_node_paymentInfo as useColumnsFragmentEdgesNodePaymentInfoType,
-  useColumnsFragment_edges_node_shipmentInfo as useColumnsFragmentEdgesNodeShipmentInfoType,
+  useEcfitColumnsFragment_edges as useEcfitColumnsFragmentEdgesType,
+  useEcfitColumnsFragment_edges_node as useEcfitColumnsFragmentEdgesNodeType,
+  useEcfitColumnsFragment_edges_node_lastEcfitRequestRecord as useEcfitColumnsFragmentEdgesNodeLastEcfitRequestRecordType,
+  useEcfitColumnsFragment_edges_node_paymentInfo as useEcfitColumnsFragmentEdgesNodePaymentInfoType,
+  useEcfitColumnsFragment_edges_node_shipmentInfo as useEcfitColumnsFragmentEdgesNodeShipmentInfoType,
+  getEcfitListVariables,
 } from '@meepshop/types/gqls/admin';
 
 // definition
 export default (
-  variables: getEcfitListQueryPropsType['variables'],
-): ColumnProps<useColumnsFragmentEdgesType>[] => {
+  variables: getEcfitListVariables,
+): ColumnProps<useEcfitColumnsFragmentEdgesType>[] => {
   const { t } = useTranslation('orders-ecfit');
 
   return useMemo(
@@ -34,9 +33,9 @@ export default (
         title: t('orders.order-no'),
         dataIndex: 'node.orderNo',
         render: (
-          value: useColumnsFragmentEdgesNodeType['orderNo'],
+          value: useEcfitColumnsFragmentEdgesNodeType['orderNo'],
           // SHOULD_NOT_BE_NULL
-          { node: { id } }: useColumnsFragmentEdgesType,
+          { node: { id } }: useEcfitColumnsFragmentEdgesType,
         ) => (
           <>
             <Spin />
@@ -59,7 +58,9 @@ export default (
         title: t('orders.payment-status'),
         dataIndex: 'node.paymentInfo.status',
         // SHOULD_NOT_BE_NULL
-        render: (value: useColumnsFragmentEdgesNodePaymentInfoType['status']) =>
+        render: (
+          value: useEcfitColumnsFragmentEdgesNodePaymentInfoType['status'],
+        ) =>
           value === null
             ? null
             : t(`paymentStatusList.${STATUS_LIST.paymentStatusList[value]}`),
@@ -69,7 +70,7 @@ export default (
         dataIndex: 'node.shipmentInfo.status',
         // SHOULD_NOT_BE_NULL
         render: (
-          value: useColumnsFragmentEdgesNodeShipmentInfoType['status'],
+          value: useEcfitColumnsFragmentEdgesNodeShipmentInfoType['status'],
         ) =>
           value === null
             ? null
@@ -79,7 +80,7 @@ export default (
         title: t('orders.order-status'),
         dataIndex: 'node.status',
         // SHOULD_NOT_BE_NULL
-        render: (value: useColumnsFragmentEdgesNodeType['status']) =>
+        render: (value: useEcfitColumnsFragmentEdgesNodeType['status']) =>
           value === null
             ? null
             : t(`orderStatusList.${STATUS_LIST.orderStatusList[value]}`),
@@ -95,7 +96,7 @@ export default (
       {
         title: t('orders.create-at'),
         dataIndex: 'node.createdAt',
-        render: (value: useColumnsFragmentEdgesNodeType['createdAt']) =>
+        render: (value: useEcfitColumnsFragmentEdgesNodeType['createdAt']) =>
           !value ? null : moment(value).format('YYYY/MM/DD HH:mm:ss'),
       },
       ...(variables?.filter?.ecfitSentStatus !== 'SENT_SUCCESSFUL'
@@ -105,7 +106,7 @@ export default (
               title: t('orders.send-time'),
               dataIndex: 'node.lastEcfitRequestRecord.createdAt',
               render: (
-                value: useColumnsFragmentEdgesNodeLastEcfitRequestRecordType['createdAt'],
+                value: useEcfitColumnsFragmentEdgesNodeLastEcfitRequestRecordType['createdAt'],
               ) =>
                 !value ? null : moment(value).format('YYYY/MM/DD HH:mm:ss'),
             },
@@ -117,7 +118,7 @@ export default (
               title: t('orders.fail-reason'),
               dataIndex: 'node.lastEcfitRequestRecord.response',
               render: (
-                value: useColumnsFragmentEdgesNodeLastEcfitRequestRecordType['response'],
+                value: useEcfitColumnsFragmentEdgesNodeLastEcfitRequestRecordType['response'],
               ) => (!value ? null : t(`fail-reason.${value}`)),
             },
           ]),

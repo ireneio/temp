@@ -1,5 +1,5 @@
 // typescript import
-import { getEcfitListQueryPropsType } from '../constants';
+import { QueryResult } from '@apollo/react-common';
 
 // import
 import { useCallback, useState, useEffect } from 'react';
@@ -16,6 +16,8 @@ import {
   useUpdateCreateEcfitOrdersOrderConnectionFragment as useUpdateCreateEcfitOrdersOrderConnectionFragmentType,
   useUpdateCreateEciftOrderFragment as useUpdateCreateEciftOrderFragmentType,
   useUpdateCreateEcfitOrdersStoreFragment as useUpdateCreateEcfitOrdersStoreFragmentType,
+  getEcfitList,
+  getEcfitListVariables,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
@@ -26,7 +28,10 @@ import {
 
 // typescript definition
 interface PropsType
-  extends Pick<getEcfitListQueryPropsType, 'variables' | 'fetchMore'> {
+  extends Pick<
+    QueryResult<getEcfitList, getEcfitListVariables>,
+    'variables' | 'fetchMore'
+  > {
   user: useUpdateCreateEciftOrderFragmentType | null;
   selectedOrders: useUpdateCreateEcfitOrdersOrderConnectionFragmentType | null;
 }
@@ -41,7 +46,7 @@ export default ({
   updateCreateEcfitOrder: () => Promise<void>;
 } => {
   const isEnabled = user?.store?.storeEcfitSettings?.isEnabled;
-  const ecfitOrders = user?.ecfitOrders || null;
+  const orders = user?.orders || null;
   const storeId = user?.store?.id || '';
 
   const [runningIds, setRunningIds] = useState<string[]>([]);
@@ -65,7 +70,7 @@ export default ({
   }, [isEnabled, t]);
 
   const updateCreateEcfitOrder = useCallback(async () => {
-    if (!selectedOrders || !ecfitOrders) return;
+    if (!selectedOrders || !orders) return;
 
     const ecfitSentStatus = variables?.filter?.ecfitSentStatus;
     // SHOULD_NOT_BE_NULL
@@ -129,7 +134,7 @@ export default ({
 
     const {
       pageInfo: { endCursor },
-    } = ecfitOrders;
+    } = orders;
 
     await fetchMore({
       variables: {
@@ -143,19 +148,19 @@ export default ({
           ...previousResult,
           viewer: {
             ...previousResult.viewer,
-            ecfitOrders: {
+            orders: {
               __typename: 'OrderConnection',
               edges: [
-                ...(previousResult?.viewer.ecfitOrders?.edges || []).filter(
+                ...(previousResult?.viewer.orders?.edges || []).filter(
                   ({ node: { id } }) =>
                     !successIds.includes(
                       id || 'null id' /** SHOULD_NOT_BE_NULL */,
                     ),
                 ),
-                ...(fetchMoreResult?.viewer?.ecfitOrders?.edges || []),
+                ...(fetchMoreResult?.viewer?.orders?.edges || []),
               ],
-              pageInfo: fetchMoreResult?.viewer?.ecfitOrders?.pageInfo,
-              total: fetchMoreResult?.viewer?.ecfitOrders?.total,
+              pageInfo: fetchMoreResult?.viewer?.orders?.pageInfo,
+              total: fetchMoreResult?.viewer?.orders?.total,
             },
           },
           selectedOrders: {
@@ -176,7 +181,7 @@ export default ({
     isEnabled,
     variables,
     selectedOrders,
-    ecfitOrders,
+    orders,
     fetchMore,
   ]);
 

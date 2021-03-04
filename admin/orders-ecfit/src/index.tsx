@@ -1,17 +1,31 @@
 // typescript import
 import { NextPage } from 'next';
 
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
-
 // import
 import React from 'react';
-import Router from 'next/router';
-import { Select, Icon } from 'antd';
+import { Radio, Badge } from 'antd';
+import { useQuery } from '@apollo/react-hooks';
+import { filter } from 'graphql-anywhere';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import Orders from '@admin/orders';
+import { useTranslation } from '@meepshop/utils/lib/i18n';
 
-import Container from './Container';
-import styles from './styles/index.less';
+import useEcfitColumns from './hooks/useEcfitColumns';
+import useInitVariables, { initVariables } from './hooks/useInitVariables';
+import useUpdateCreateEcfitOrder from './hooks/useUpdateCreateEcfitOrder';
+
+// graphql typescript
+import {
+  getEcfitList as getEcfitListType,
+  getEcfitListVariables as getEcfitListVariablesType,
+} from '@meepshop/types/gqls/admin';
+
+// graphql import
+import { getEcfitList } from './gqls';
+import {
+  useUpdateCreateEciftOrderFragment,
+  useUpdateCreateEcfitOrdersOrderConnectionFragment,
+} from './gqls/useUpdateCreateEcfitOrder';
 
 // typescript definition
 interface PropsType {
@@ -19,81 +33,78 @@ interface PropsType {
 }
 
 // definition
-const { Option } = Select;
+const { Group } = Radio;
 
-class OrdersEcfit extends React.PureComponent<I18nPropsType> {
-  private rootRef = React.createRef<HTMLDivElement>();
+const OrdersEcfit: NextPage<PropsType> = React.memo(() => {
+  const { t } = useTranslation('orders-ecfit');
+  const { data, variables, fetchMore, refetch } = useQuery<
+    getEcfitListType,
+    getEcfitListVariablesType
+  >(getEcfitList, {
+    variables: initVariables,
+    ssr: false,
+  });
+  const selectedOrders = data?.selectedOrders || null;
+  const sentFailedAmount = data?.viewer?.sentFailedList?.total || 0;
 
-  public state = {
-    isOpened: false,
-  };
+  const { runningIds, updateCreateEcfitOrder } = useUpdateCreateEcfitOrder({
+    user: filter(useUpdateCreateEciftOrderFragment, data?.viewer || null),
+    variables,
+    fetchMore,
+    selectedOrders: filter(
+      useUpdateCreateEcfitOrdersOrderConnectionFragment,
+      selectedOrders,
+    ),
+  });
+  const columns = useEcfitColumns(variables);
 
-  private timeout?: NodeJS.Timer;
+  useInitVariables(initVariables);
 
-  private openSelect = (): void => {
-    if (this.timeout) clearTimeout(this.timeout);
-
-    this.setState({ isOpened: true });
-  };
-
-  private closeSelect = (): void => {
-    this.timeout = setTimeout(() => {
-      this.setState({ isOpened: false });
-    }, 100);
-  };
-
-  public render(): React.ReactNode {
-    const { t } = this.props;
-    const { isOpened } = this.state;
-
-    return (
-      <div className={styles.root} ref={this.rootRef}>
-        <div className={styles.wrapper}>
-          <Select
-            className={styles.title}
-            defaultValue={t('title')}
-            dropdownClassName={styles.options}
-            onChange={(value: string) => {
-              if (value === t('common:orders')) Router.push('/orders');
-              else Router.push('/orders/ecfit');
-            }}
-            onMouseEnter={this.openSelect}
-            onMouseLeave={this.closeSelect}
-            dropdownRender={menuNode => (
-              <div
-                onMouseEnter={this.openSelect}
-                onMouseLeave={this.closeSelect}
-              >
-                {menuNode}
-              </div>
+  return (
+    <Orders
+      title={t('title')}
+      service={t('service')}
+      data={data}
+      variables={variables}
+      fetchMore={fetchMore}
+      refetch={refetch}
+      columns={columns}
+      runningIds={runningIds}
+      submitOrders={updateCreateEcfitOrder}
+    >
+      <Group
+        value={variables?.filter?.ecfitSentStatus}
+        onChange={({ target: { value } }) =>
+          refetch({
+            ...variables,
+            filter: {
+              ...variables.filter,
+              ecfitSentStatus: value,
+            },
+          })
+        }
+      >
+        {['NOT_SENT', 'SENT_SUCCESSFUL', 'SENT_FAILED'].map(key => (
+          <Radio key={key} value={key}>
+            {key !== 'SENT_FAILED' ? (
+              t(`status.${key}`)
+            ) : (
+              <Badge dot={sentFailedAmount !== 0}>{t(`status.${key}`)}</Badge>
             )}
-            open={isOpened}
-          >
-            <Option value={t('common:orders')}>{t('orders:title')}</Option>
-            <Option value={t('title')}>
-              <Icon type="profile" />
-
-              {t('title')}
-            </Option>
-          </Select>
-
-          <Container rootRef={this.rootRef} />
-        </div>
-      </div>
-    );
-  }
-}
-
-const EnhancedOrdersEcfit = withTranslation(['orders-ecfit', 'orders'])(
-  OrdersEcfit,
-);
-
-const OrdersEcfitPage: NextPage<PropsType> = React.memo(
-  (): React.ReactElement => <EnhancedOrdersEcfit />,
-);
-
-OrdersEcfitPage.getInitialProps = async () => ({
-  namespacesRequired: ['orders-ecfit', 'date-picker', 'orders-export'],
+          </Radio>
+        ))}
+      </Group>
+    </Orders>
+  );
 });
 
-export default OrdersEcfitPage;
+OrdersEcfit.getInitialProps = async () => ({
+  namespacesRequired: [
+    'orders-ecfit',
+    'orders',
+    'date-picker',
+    'orders-export',
+  ],
+});
+
+export default OrdersEcfit;

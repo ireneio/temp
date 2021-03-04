@@ -1,0 +1,82 @@
+{
+  "change": "変化する",
+  "change-status": {
+    "title": "ステータスを変更する",
+    "paymentStatusList": "アカウントのステータス",
+    "shipmentStatusList": "配送状況",
+    "orderStatusList": "注文の状況",
+    "choose": "選んでください",
+    "cancel": "キャンセル",
+    "confirm": "確認",
+    "error": {
+      "title": "ステータス変更に失敗しました",
+      "description": "注文の{{amount}}の{{status}}の変更に失敗しました"
+    },
+    "success": {
+      "title": "ステータス変更成功",
+      "description": "注文の{{amount}}の{{status}}が「{{newStatus}}」に更新されました"
+    },
+    "order-change": {
+      "cancel": {
+        "title": "注意！",
+        "description": "注文がキャンセルされると、注文を編集できなくなり、キャンセルされた注文は収益、売上、マーケティングの統計に含まれなくなります。注文をキャンセルしてもよろしいですか？"
+      },
+      "closed": {
+        "title": "注意！",
+        "description": "注文がクローズされた後は、注文情報（返品を含む）を変更することはできません。ケースをクローズしてもよろしいですか？"
+      }
+    }
+  },
+  "more-operating": {
+    "title": "その他のアクション",
+    "export": "書き出す",
+    "print": "印刷"
+  },
+  "filter": {
+    "advanced-search": "高度な検索",
+    "searchTerm": "キーワードを検索",
+    "reset": "明確な検索"
+  },
+  "advanced-search": {
+    "pre-placeholder": "選んでください",
+    "orderStatusList-title": "注文の状況",
+    "paymentStatusList-title": "アカウントのステータス",
+    "paymentIdList-title": "支払方法",
+    "shipmentStatusList-title": "配送状況",
+    "shipmentIdList-title": "配送方法",
+    "reset": "リセット",
+    "filter": "フィルタ"
+  },
+  "orderStatusList": {
+    "PROCESSING": "処理",
+    "CANCELED": "注文をキャンセルする",
+    "RETURN": "返品および交換処理",
+    "CLOSED": "注文の締め切り"
+  },
+  "paymentStatusList": {
+    "WAITING": "確認を待ちます",
+    "NOTIFICATED": "送金通知",
+    "RECONCILED": "調整が完了しました",
+    "DATA_ERROR": "データエラー",
+    "FAILED": "支払いが失敗する",
+    "REFUND": "払い戻し処理"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "出荷されていません",
+    "PREPARING": "ストッキング",
+    "OUT_OF_STOCK": "在庫切れ",
+    "SHIPPED": "出荷済み",
+    "PRE_ORDER": "予約注文",
+    "EXCHANGE": "交換処理",
+    "RETURN": "返品処理",
+    "DATA_ERROR": "間違った情報"
+  },
+  "send": "{{service}}に注文を送信します",
+  "empty-orders": "注文情報なし",
+  "orders-info": {
+    "total": "{{total}}合計",
+    "select": "/選択済み",
+    "amount": "ペン"
+  },
+  "page-size": "ペン/ページ"
+}

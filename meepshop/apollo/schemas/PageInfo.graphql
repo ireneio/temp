@@ -8,7 +8,7 @@ input SetCurrentInput {
 }
 
 extend type PageInfo {
-  currentInfo(input: CurrentInfoInput!): CurrentInfo!
+  currentInfo(input: CurrentInfoInput): CurrentInfo!
 }
 
 input CurrentInfoInput {

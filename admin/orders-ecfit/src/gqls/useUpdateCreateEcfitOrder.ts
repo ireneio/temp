@@ -32,7 +32,7 @@ export const useUpdateCreateEcfitOrdersOrderConnectionFragment = gql`
 export const useUpdateCreateEciftOrderFragment = gql`
   fragment useUpdateCreateEciftOrderFragment on User {
     id
-    ecfitOrders(first: $first, after: $cursor, filter: $filter) {
+    orders: ecfitOrders(first: $first, after: $cursor, filter: $filter) {
       edges {
         node {
           id

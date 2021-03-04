@@ -1,83 +1,11 @@
 {
-  "title": "Gérer la commande ECFIT",
+  "title": "Gestion des commandes ECFIT",
+  "service": "ECFIT",
   "status": {
     "NOT_SENT": "Non envoyé",
     "SENT_SUCCESSFUL": "Envoyée",
     "SENT_FAILED": "Envoi échoué"
   },
-  "change": "Changement",
-  "change-status": {
-    "title": "Changer le statut",
-    "paymentStatusList": "Statut de paiement",
-    "shipmentStatusList": "Statut d'envoi",
-    "orderStatusList": "Statut de la commande",
-    "choose": "Veuillez sélectionner",
-    "cancel": "Annuler",
-    "confirm": "Confirmer",
-    "error": {
-      "title": "Le changement d'état a échoué",
-      "description": "Échec de la modification de {{status}} pour {{amount}} de commande (s)"
-    },
-    "success": {
-      "title": "Changement de statut réussi",
-      "description": "{{status}} pour {{amount}} de commande (s) mis à jour en \"{{newStatus}}\""
-    },
-    "order-change": {
-      "cancel": {
-        "title": "Attention, les commandes annulées ne peuvent pas être récupérées",
-        "description": "Une commande annulée ne peut plus être modifiée et ne sera pas incluse dans les statistiques sur les revenus, les ventes et le marketing. Es-tu sûre de vouloir annuler?"
-      },
-      "closed": {
-        "title": "Attention, les commandes fermées ne peuvent pas être rétractées",
-        "description": "Les informations sur une commande clôturée ne peuvent plus être modifiées (y compris les retours). Voulez-vous vraiment fermer le dossier?"
-      }
-    }
-  },
-  "more-operating": {
-    "title": "Plus d'actions",
-    "export": "Exportation",
-    "print": "Impression"
-  },
-  "filter": {
-    "advanced-search": "Recherche Avancée",
-    "searchTerm": "Rechercher des mots-clés",
-    "reset": "Effacer la recherche"
-  },
-  "orderStatusList": {
-    "PROCESSING": "En traitement",
-    "CANCELED": "annuler la commande",
-    "RETURN": "Retour et remboursement",
-    "CLOSED": "Commande fermée"
-  },
-  "paymentStatusList": {
-    "WAITING": "En attente de confirmation",
-    "NOTIFICATED": "Notification de paiement",
-    "RECONCILED": "Rapprochement terminé",
-    "DATA_ERROR": "Information incorrecte",
-    "FAILED": "Paiement échoué",
-    "REFUND": "Rembourser"
-  },
-  "shipmentStatusList": {
-    "NOT_YET": "Pas livré",
-    "PREPARING": "Préparation à l'expédition",
-    "OUT_OF_STOCK": "En rupture de stock",
-    "SHIPPED": "Expédié",
-    "PRE_ORDER": "Pré-commander",
-    "EXCHANGE": "Revenir",
-    "RETURN": "Traitement du retour",
-    "DATA_ERROR": "Information incorrecte"
-  },
-  "advanced-search": {
-    "pre-placeholder": "Veuillez sélectionner",
-    "orderStatusList-title": "Statut de la commande",
-    "paymentStatusList-title": "Statut de paiement",
-    "paymentIdList-title": "Mode de paiement",
-    "shipmentStatusList-title": "Statut d'envoi",
-    "shipmentIdList-title": "Méthode d'envoi",
-    "reset": "Réinitialiser",
-    "filter": "Filtre"
-  },
-  "send": "Envoyer la commande à ECFIT",
   "orders": {
     "order-no": "Numéro de commande",
     "shipment-name": "Méthode d'envoi",
@@ -90,7 +18,30 @@
     "send-time": "Heure de livraison",
     "fail-reason": "Raison de l'échec"
   },
-  "empty-orders": "Informations de commande introuvables",
+  "orderStatusList": {
+    "PROCESSING": "En traitement",
+    "CANCELED": "annuler la commande",
+    "RETURN": "Traitement des retours et échanges",
+    "CLOSED": "Clôture de la commande"
+  },
+  "paymentStatusList": {
+    "WAITING": "En attente de confirmation",
+    "NOTIFICATED": "Avis de remise",
+    "RECONCILED": "Réconciliation terminée",
+    "DATA_ERROR": "Erreur de donnée",
+    "FAILED": "Échec du paiement",
+    "REFUND": "Traitement des remboursements"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "Pas livré",
+    "PREPARING": "Stockage",
+    "OUT_OF_STOCK": "Rupture de stock",
+    "SHIPPED": "Expédié",
+    "PRE_ORDER": "Pré-commander",
+    "EXCHANGE": "Traitement d'échange",
+    "RETURN": "Traitement des retours",
+    "DATA_ERROR": "Information incorrecte"
+  },
   "fail-reason": {
     "FAIL_TIMEOUT": "Temps libre",
     "FAIL_UNKNOWN_ECFIT_ERROR_CODE": "Erreur ECFIT inconnue",
@@ -129,11 +80,5 @@
     "title": "Impossible d'utiliser le service ECFIT",
     "content": "Erreur de configuration. Veuillez vérifier à nouveau en utilisant la configuration tierce",
     "confirm": "Confirmer"
-  },
-  "orders-info": {
-    "total": "Total de {{total}} commandes",
-    "select": "/ Sélectionné",
-    "amount": "Ordres)"
-  },
-  "page-size": "Commande (s) / page"
+  }
 }

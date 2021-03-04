@@ -2,8 +2,8 @@
 import gql from 'graphql-tag';
 
 // definition
-export const setEcfitOrderCurrent = gql`
-  mutation setEcfitOrderCurrent($input: SetCurrentInput!) {
+export const setOrderCurrent = gql`
+  mutation setOrderCurrent($input: SetCurrentInput!) {
     setCurrent(input: $input) @client
   }
 `;
@@ -11,7 +11,7 @@ export const setEcfitOrderCurrent = gql`
 export const useChangePageFragment = gql`
   fragment useChangePageFragment on User {
     id
-    ecfitOrders(first: $first, after: $cursor, filter: $filter) {
+    orders(first: $first, after: $cursor, filter: $filter) {
       edges {
         node {
           id
@@ -19,7 +19,7 @@ export const useChangePageFragment = gql`
       }
       pageInfo {
         endCursor
-        currentInfo(input: { pageId: "orders-ecfit" }) @client {
+        currentInfo(input: { pageId: $page }) @client {
           id
           current
         }

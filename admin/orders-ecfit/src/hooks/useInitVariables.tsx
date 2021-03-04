@@ -1,9 +1,9 @@
-// typescript import
-import { getEcfitListQueryPropsType } from '../constants';
-
 // import
 import { useEffect } from 'react';
 import moment from 'moment';
+
+// graphql typescript
+import { getEcfitListVariables } from '@meepshop/types/gqls/admin';
 
 // definition
 // TODO: remove after print move to next-admin
@@ -35,7 +35,7 @@ export const initVariables = (() => {
   };
 })();
 
-export default (variables: getEcfitListQueryPropsType['variables']): void => {
+export default (variables: getEcfitListVariables): void => {
   useEffect(() => {
     // TODO: remove after print move to next-admin
     if (typeof window !== 'undefined')

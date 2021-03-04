@@ -1,8 +1,84 @@
 @import '~@admin/utils/styles/variables.less';
 
-.sendStatus {
+.root {
+  min-height: 100vh;
+  padding: 56px 32px 48px;
+  background: rgb(240, 242, 245);
+  position: relative;
+  overflow: visible;
+}
+
+.wrapper {
+  max-width: 1520px;
+  margin: 0px auto;
+}
+
+.header {
   display: flex;
-  margin: 24px 0px 16px;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 16px;
+
+  > div:first-child {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.title {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 24px;
+  letter-spacing: 1.2px;
+  line-height: 32px;
+  margin-bottom: 24px;
+
+  i {
+    font-size: 18px;
+    transition: 0.3s;
+    transform: rotate(0deg);
+    margin-left: 5px;
+  }
+
+  &:global(.ant-dropdown-open) {
+    i {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.options {
+  :global(.ant-dropdown) {
+    display: flex;
+  }
+
+  :global(.ant-dropdown-menu-item) {
+    &:hover {
+      background: transparent;
+    }
+
+    i {
+      margin: 0px 4px 0px 0px;
+      font-size: 8px;
+      line-height: 22px;
+      vertical-align: 0px;
+    }
+  }
+
+  :global(.ant-dropdown-menu-item-active) {
+    background: transparent;
+  }
+
+  :global(.ant-dropdown-menu-item-disabled) {
+    background: #d8d8d8;
+
+    &:hover {
+      background: #d8d8d8;
+    }
+  }
+}
+
+.status {
+  display: block;
 
   :global(.ant-radio-group) {
     flex-grow: 1;
@@ -12,12 +88,6 @@
 
 .operating > *:not(:last-child) {
   margin: 0px 16px 0px 0px;
-}
-
-.root {
-  padding: 24px;
-  background: #ffffff;
-  border-radius: 4px;
 }
 
 .filter {

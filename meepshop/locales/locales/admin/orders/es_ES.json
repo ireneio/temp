@@ -1,0 +1,82 @@
+{
+  "change": "cambio",
+  "change-status": {
+    "title": "Cambiar Estado",
+    "paymentStatusList": "Estado de la cuenta",
+    "shipmentStatusList": "Estado del envío",
+    "orderStatusList": "Estado del pedido",
+    "choose": "por favor elige",
+    "cancel": "cancelar",
+    "confirm": "confirmar",
+    "error": {
+      "title": "Cambio de estado fallido",
+      "description": "{{status}} cambio para {{amount}} de pedidos fallidos"
+    },
+    "success": {
+      "title": "Cambio de estado exitoso",
+      "description": "{{status}} para {{amount}} de pedido (s) actualizado a \"{{newStatus}}\""
+    },
+    "order-change": {
+      "cancel": {
+        "title": "¡Nota!",
+        "description": "Una vez cancelado el pedido, ya no se podrá editar y el pedido cancelado no se incluirá en las estadísticas de ingresos, ventas y marketing. ¿Está seguro de que desea cancelar el pedido?"
+      },
+      "closed": {
+        "title": "¡Nota!",
+        "description": "Una vez cerrado el pedido, no se puede cambiar la información del pedido (incluidas las devoluciones). ¿Está seguro de que desea cerrar el caso?"
+      }
+    }
+  },
+  "more-operating": {
+    "title": "Mas acciones",
+    "export": "Exportar",
+    "print": "Impresión"
+  },
+  "filter": {
+    "advanced-search": "Búsqueda Avanzada",
+    "searchTerm": "Buscar palabras clave",
+    "reset": "Borrar búsqueda"
+  },
+  "advanced-search": {
+    "pre-placeholder": "por favor elige",
+    "orderStatusList-title": "Estado del pedido",
+    "paymentStatusList-title": "Estado de la cuenta",
+    "paymentIdList-title": "método de pago",
+    "shipmentStatusList-title": "Estado del envío",
+    "shipmentIdList-title": "Método de envío",
+    "reset": "Reiniciar",
+    "filter": "filtrar"
+  },
+  "orderStatusList": {
+    "PROCESSING": "Procesando",
+    "CANCELED": "cancelar orden",
+    "RETURN": "Procesamiento de devolución y cambio",
+    "CLOSED": "Cierre de orden"
+  },
+  "paymentStatusList": {
+    "WAITING": "esperando confirmación",
+    "NOTIFICATED": "Aviso de remesa",
+    "RECONCILED": "Conciliación completada",
+    "DATA_ERROR": "Error de datos",
+    "FAILED": "Pago fallido",
+    "REFUND": "Procesamiento de reembolso"
+  },
+  "shipmentStatusList": {
+    "NOT_YET": "No enviado",
+    "PREPARING": "Media",
+    "OUT_OF_STOCK": "Agotado",
+    "SHIPPED": "Enviado",
+    "PRE_ORDER": "hacer un pedido",
+    "EXCHANGE": "Procesamiento de cambio",
+    "RETURN": "Procesamiento de devoluciones",
+    "DATA_ERROR": "Información incorrecta"
+  },
+  "send": "Enviar pedido a {{service}}",
+  "empty-orders": "Sin información de pedido",
+  "orders-info": {
+    "total": "{{total}} total",
+    "select": "/ Seleccionado",
+    "amount": "bolígrafo"
+  },
+  "page-size": "Pluma / página"
+}
