@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.79.10 (2021-03-05)
+
+#### :rocket: New Feature
+
+- `mock-types`
+  - [#1391](https://github.com/meepshop/meep-lerna/pull/1391) 前端 - 改用 at timestamp 欄位 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.79.9 (2021-03-04)
 
 #### :rocket: New Feature
