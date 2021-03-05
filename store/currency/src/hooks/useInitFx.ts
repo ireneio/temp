@@ -11,7 +11,7 @@ export const useInitFxFragment = gql`
   fragment useInitFxFragment on ExchangeRate {
     base
     rates
-    timestamp
+    updatedAt
   }
 `;
 
@@ -30,12 +30,12 @@ fx.rates = {
 
 export default (exchangeRates: useInitFxFragmentType | null): void => {
   useEffect(() => {
-    const { base, rates, timestamp } = exchangeRates || {};
+    const { base, rates, updatedAt } = exchangeRates || {};
 
-    if (!base || !rates || !timestamp) return;
+    if (!base || !rates || !updatedAt) return;
 
     fx.base = base;
     fx.rates = rates;
-    fx.timestamp = timestamp.toString();
+    fx.updatedAt = updatedAt;
   }, [exchangeRates]);
 };

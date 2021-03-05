@@ -182,6 +182,6 @@ export default mock.add<exchangeRateMockFragment>('ExchangeRate', [
       ZMW: 12.517677,
       ZWL: 322.000001,
     },
-    timestamp: 1563321600,
+    updatedAt: '2021-01-21T15:59:59.999Z',
   }),
 ]);

@@ -6,6 +6,6 @@ export const exchangeRateMockFragment = gql`
   fragment exchangeRateMockFragment on ExchangeRate {
     base
     rates
-    timestamp
+    updatedAt
   }
 `;

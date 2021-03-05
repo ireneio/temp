@@ -10,7 +10,7 @@ declare module 'money' {
     rates: {
       [key: string]: number;
     };
-    timestamp: string;
+    updatedAt: string;
   };
 
   export default fx;
