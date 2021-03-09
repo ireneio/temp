@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.79.11 (2021-03-09)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`
+  - [#1435](https://github.com/meepshop/meep-lerna/pull/1435) T7763 - 內部開單 - 共用 @meepshop/product-spec-selector ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1446](https://github.com/meepshop/meep-lerna/pull/1446) 【BUG】後台 - 登入頁面警示訊息出現 email.error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.10 (2021-03-05)
 
 #### :rocket: New Feature
