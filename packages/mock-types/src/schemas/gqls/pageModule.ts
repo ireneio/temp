@@ -79,6 +79,11 @@ export const pageModuleMockFragment = gql`
       parentId
     }
 
+    ... on ProductInfoModule {
+      id
+      parentId
+    }
+
     ... on ProductQaModule {
       id
       parentId

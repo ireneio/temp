@@ -83,6 +83,8 @@ export default class AddButton extends React.Component {
       size: 'large',
     };
 
+    if (!variant) return null;
+
     if (hasStoreAppPlugin('memberSeePrice') && isLogin !== ISUSER) {
       return (
         <Button

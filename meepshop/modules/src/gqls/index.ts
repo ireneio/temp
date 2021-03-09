@@ -16,6 +16,7 @@ import { productCarouselFragment } from '@meepshop/product-carousel/gqls';
 import { productCollectionsFragment } from '@meepshop/product-collections/gqls';
 import { productDraftTextFragment } from '@meepshop/product-draft-text/gqls';
 import { productIframeFragment } from '@meepshop/product-iframe/gqls';
+import { productInfoFragment } from '@meepshop/product-info/gqls';
 import { productQaFragment } from '@meepshop/product-qa/gqls';
 import { productVideoFragment } from '@meepshop/product-video/gqls';
 import { smartConversionFragment } from '@meepshop/smart-conversion/gqls';
@@ -162,6 +163,7 @@ export const modulesFragment = gql`
       __typename
       id
       parentId
+      ...productInfoFragment
     }
 
     ... on ProductQaModule {
@@ -241,6 +243,7 @@ export const modulesFragment = gql`
   ${productCollectionsFragment}
   ${productDraftTextFragment}
   ${productIframeFragment}
+  ${productInfoFragment}
   ${productQaFragment}
   ${productVideoFragment}
   ${smartConversionFragment}

@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "@meepshop/product-info",
+  "description": "Meepshop product info module",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/context": "^0.79.4",
+    "@meepshop/draft-text": "^0.79.4",
+    "@meepshop/product-spec-selector": "^0.79.4",
+    "@meepshop/thumbnail": "^0.79.4",
+    "@meepshop/utils": "^0.79.4"
+  },
+  "keywords": ["meepshop", "product info"]
+}

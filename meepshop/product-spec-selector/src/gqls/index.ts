@@ -2,25 +2,24 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { useVariantsTreeFragment } from '@meepshop/hooks/lib/gqls/useVariantsTree';
-
-import { titleProductFragment } from './title';
+import { useCoordinatesFragment } from './useCoordinates';
+import { specsFragment } from './specs';
 
 // definition
-export const productSpecSeletorFragment = gql`
-  fragment productSpecSeletorFragment on Product {
+// NO_FILTER
+export const productSpecSelectorFragment = gql`
+  fragment productSpecSelectorFragment on Product {
     id
-
     variants {
       id
-      minPurchaseItems
-      maxPurchaseLimit
+      specs {
+        id
+        ...specsFragment
+      }
     }
-
-    ...useVariantsTreeFragment
-    ...titleProductFragment
+    ...useCoordinatesFragment
   }
 
-  ${useVariantsTreeFragment}
-  ${titleProductFragment}
+  ${useCoordinatesFragment}
+  ${specsFragment}
 `;

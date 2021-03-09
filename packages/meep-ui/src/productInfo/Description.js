@@ -21,80 +21,81 @@ const Description = ({
   transformCurrency,
   isLogin,
   memberSeePrice,
-}) => (
-  <div style={styles.root(colors)}>
-    {!productData.title ? null : (
-      <h1 style={styles.title}>
-        {productData.title[i18n.language] || productData.title.zh_TW}
-      </h1>
-    )}
-    {mode === 'detail' && variant.sku && (
-      <div style={styles.sku}>{variant.sku}</div>
-    )}
-    {mode === 'detail' && (
-      <DraftText
-        value={
-          productData.description[i18n.language] ||
-          productData.description.zh_TW
-        }
-        style={styles.description}
-      />
-    )}
-    {productData.applicableActivities?.length > 0 && (
-      <div style={styles.activities}>
-        {productData.applicableActivities.map(activity =>
-          !activity.title ? null : (
-            <div
-              key={activity.title[i18n.language] || activity.title.zh_TW}
-              style={styles.activityTag(colors)}
-            >
-              {activity.title[i18n.language] || activity.title.zh_TW}
+}) =>
+  !variant ? null : (
+    <div style={styles.root(colors)}>
+      {!productData.title ? null : (
+        <h1 style={styles.title}>
+          {productData.title[i18n.language] || productData.title.zh_TW}
+        </h1>
+      )}
+      {mode === 'detail' && variant.sku && (
+        <div style={styles.sku}>{variant.sku}</div>
+      )}
+      {mode === 'detail' && (
+        <DraftText
+          value={
+            productData.description[i18n.language] ||
+            productData.description.zh_TW
+          }
+          style={styles.description}
+        />
+      )}
+      {productData.applicableActivities?.length > 0 && (
+        <div style={styles.activities}>
+          {productData.applicableActivities.map(activity =>
+            !activity.title ? null : (
+              <div
+                key={activity.title[i18n.language] || activity.title.zh_TW}
+                style={styles.activityTag(colors)}
+              >
+                {activity.title[i18n.language] || activity.title.zh_TW}
+              </div>
+            ),
+          )}
+        </div>
+      )}
+      {
+        <div style={styles.price}>
+          <div>
+            {mode === 'detail' &&
+            variant.listPrice &&
+            (!memberSeePrice ||
+              productData.showUserPrice?.showListPrice ||
+              isLogin === ISUSER) ? (
+              <span style={styles.otherPrice}>
+                {t('list-price')}
+
+                <s style={styles.strike}>
+                  {transformCurrency(variant.listPrice)}
+                </s>
+              </span>
+            ) : null}
+            {mode === 'detail' &&
+            variant.suggestedPrice &&
+            (!memberSeePrice ||
+              productData.showUserPrice?.showSuggestedPrice ||
+              isLogin === ISUSER) ? (
+              <span style={styles.otherPrice}>
+                {t('suggested-price')}
+
+                <s style={styles.strike}>
+                  {transformCurrency(variant.suggestedPrice)}
+                </s>
+              </span>
+            ) : null}
+          </div>
+          {variant.totalPrice ? (
+            <div style={styles.thePrice}>
+              {memberSeePrice && isLogin !== ISUSER
+                ? t('member-see-price')
+                : transformCurrency(variant.totalPrice)}
             </div>
-          ),
-        )}
-      </div>
-    )}
-    {
-      <div style={styles.price}>
-        <div>
-          {mode === 'detail' &&
-          variant.listPrice &&
-          (!memberSeePrice ||
-            productData.showUserPrice?.showListPrice ||
-            isLogin === ISUSER) ? (
-            <span style={styles.otherPrice}>
-              {t('list-price')}
-
-              <s style={styles.strike}>
-                {transformCurrency(variant.listPrice)}
-              </s>
-            </span>
-          ) : null}
-          {mode === 'detail' &&
-          variant.suggestedPrice &&
-          (!memberSeePrice ||
-            productData.showUserPrice?.showSuggestedPrice ||
-            isLogin === ISUSER) ? (
-            <span style={styles.otherPrice}>
-              {t('suggested-price')}
-
-              <s style={styles.strike}>
-                {transformCurrency(variant.suggestedPrice)}
-              </s>
-            </span>
           ) : null}
         </div>
-        {variant.totalPrice ? (
-          <div style={styles.thePrice}>
-            {memberSeePrice && isLogin !== ISUSER
-              ? t('member-see-price')
-              : transformCurrency(variant.totalPrice)}
-          </div>
-        ) : null}
-      </div>
-    }
-  </div>
-);
+      }
+    </div>
+  );
 
 /* eslint-disable react/no-typos */
 Description.propTypes = {

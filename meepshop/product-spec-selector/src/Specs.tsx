@@ -1,22 +1,21 @@
 // typescript import
 import { HierarchyNode } from 'd3-hierarchy';
 
-import { Colors as ColorsContext } from '@meepshop/context';
-import { DefaultLeaf } from '@meepshop/hooks/lib/useVariantsTree';
+import { Leaf, CoordinatesReturnType } from './hooks/useCoordinates';
 
 // import
 import React, { useContext } from 'react';
 import { Select } from 'antd';
 
+import { Colors as ColorsContext } from '@meepshop/context';
+
 import styles from './styles/specs.less';
 
 // typescript definition
-interface PropsType {
-  nodes: HierarchyNode<DefaultLeaf>[];
+export interface PropsType extends Omit<CoordinatesReturnType, 'variantsTree'> {
+  nodes: HierarchyNode<Leaf>[];
   order?: number;
-  coordinates: number[];
-  unfoldedVariantsOnMobile: boolean;
-  onChangeSpec: (order: number, index: number) => void;
+  unfoldedVariants: boolean;
 }
 
 // definition
@@ -25,12 +24,11 @@ const Specs = React.memo(
     nodes,
     order = 0,
     coordinates,
-    unfoldedVariantsOnMobile,
-    onChangeSpec,
+    setCoordinates,
+    unfoldedVariants,
   }: PropsType) => {
     const colors = useContext(ColorsContext);
-
-    const [coordinate, ...rest] = coordinates;
+    const coordinate = coordinates[order];
     const {
       data: { category },
       children,
@@ -42,7 +40,7 @@ const Specs = React.memo(
           <div>{category.title?.zh_TW}</div>
 
           <div>
-            {unfoldedVariantsOnMobile ? (
+            {unfoldedVariants ? (
               nodes?.map((node, index) => (
                 <div
                   key={node.id}
@@ -50,7 +48,12 @@ const Specs = React.memo(
                     index === coordinate ? styles.selected : ''
                   }`}
                   onClick={() => {
-                    if (index !== coordinate) onChangeSpec(order, index);
+                    if (index === coordinate) return;
+
+                    const newCoordinates = [...coordinates];
+
+                    newCoordinates[order] = index;
+                    setCoordinates(newCoordinates);
                   }}
                 >
                   {node.data.title?.zh_TW}
@@ -63,7 +66,12 @@ const Specs = React.memo(
                 dropdownClassName={styles.select}
                 dropdownMatchSelectWidth={false}
                 onChange={(value: number) => {
-                  if (value !== coordinate) onChangeSpec(order, value);
+                  if (value === coordinate) return;
+
+                  const newCoordinates = [...coordinates];
+
+                  newCoordinates[order] = value;
+                  setCoordinates(newCoordinates);
                 }}
               >
                 {nodes?.map((node, index) => (
@@ -84,13 +92,13 @@ const Specs = React.memo(
           <Specs
             nodes={children}
             order={order + 1}
-            coordinates={rest}
-            unfoldedVariantsOnMobile={unfoldedVariantsOnMobile}
-            onChangeSpec={onChangeSpec}
+            coordinates={coordinates}
+            setCoordinates={setCoordinates}
+            unfoldedVariants={unfoldedVariants}
           />
         )}
 
-        {!order ? (
+        {order ? null : (
           <style
             dangerouslySetInnerHTML={{
               __html: `
@@ -120,7 +128,7 @@ const Specs = React.memo(
             `,
             }}
           />
-        ) : null}
+        )}
       </>
     );
   },

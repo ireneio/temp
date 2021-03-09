@@ -2,8 +2,8 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
-import { warning, areEqual } from 'fbjs';
 import { Modal, notification } from 'antd';
+import memoizeOne from 'memoize-one';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
@@ -11,28 +11,28 @@ import { AdTrack as AdTrackContext } from '@meepshop/context';
 import CartContext from '@meepshop/cart';
 import ProductSpecSelector from '@meepshop/product-spec-selector';
 import withContext from '@store/utils/lib/withContext';
+import MobileSpecSelector from '@meepshop/product-info/lib/mobileSpecSelector';
+import { getQuantityRange } from '@meepshop/product-amount-select/lib/hooks/useOptions';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER, NOTLOGIN, ISADMIN } from 'constants/isLogin';
-import buildVariantsTree from 'utils/buildVariantsTree';
 
 import * as styles from './styles';
 import Description from './Description';
-import SpecList from './SpecList';
 import QuantityButton from './QuantityButton';
 import AddButton from './AddButton';
-import { PRODUCT_TYPE, NO_VARIANTS } from './constants';
-import { findCoordinates, calculateOrderable, reformatVariant } from './utils';
+import { PRODUCT_TYPE, LIMITED, ORDERABLE, OUT_OF_STOCK } from './constants';
 
 @withTranslation('product-info')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withContext(CartContext)
 @enhancer
-@buildVariantsTree('productData')
 @radium
 export default class ProductInfo extends React.PureComponent {
   name = 'product-info';
+
+  isViewProduct = false;
 
   static propTypes = {
     adTrack: PropTypes.shape({}).isRequired,
@@ -49,7 +49,6 @@ export default class ProductInfo extends React.PureComponent {
     unfoldedVariantsOnMobile: PropTypes.bool.isRequired,
 
     /** props from context */
-    carts: PropTypes.shape({}),
     isLogin: ISLOGIN_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
@@ -60,131 +59,69 @@ export default class ProductInfo extends React.PureComponent {
 
   static defaultProps = {
     mode: 'detail',
-    carts: null,
     container: {},
     isMobile: null,
     type: null,
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { productData, carts, stockNotificationList } = nextProps;
-
-    if (!productData) return null;
-
-    const { id, specs, variants } = productData;
-
-    const initState = {
-      isAddingItem: false,
-      isModalOpen: false,
-      isDrawerOpen: false,
-    };
-
-    /** REMAINED productData or JUST setState */
-    if (id === prevState.id) {
-      const variant = reformatVariant(prevState.variant, stockNotificationList);
-      return {
-        variant,
-        carts,
-
-        // check orderable and quantity as well
-        ...calculateOrderable(variant, carts, prevState.quantity),
-
-        // change after addToCart/addToNotificationList
-        ...(!areEqual(carts, prevState.carts) ||
-        !areEqual(variant, prevState.variant)
-          ? {
-              isAddingItem: false,
-            }
-          : {}),
-      };
-    }
-
-    /** UPDATED productData */
-    if (!variants.length) {
-      // 關閉多規格商品全部規格 variants 可為空陣列
-      return {
-        id,
-        quantity: null,
-        coordinates: null,
-        variant: {},
-        orderable: NO_VARIANTS,
-        carts,
-        ...initState,
-      };
-    }
-
-    if (specs?.length) {
-      // 多規格
-      const variantsLeaves = productData.variantsTree.leaves();
-      const variantNode =
-        variantsLeaves.find(
-          ({
-            data: {
-              variant: { stock },
-            },
-          }) => stock > 0,
-        ) || variantsLeaves[0];
-      const variant = reformatVariant(
-        variantNode.data.variant,
-        stockNotificationList,
-      );
-
-      return {
-        id,
-        quantity: variant.minPurchaseItems,
-        coordinates: findCoordinates(variantNode),
-        variant,
-        carts,
-        ...initState,
-        ...calculateOrderable(variant, carts),
-      };
-    }
-
-    const variant = reformatVariant(variants[0], stockNotificationList);
-    // 單規格
-    return {
-      id,
-      quantity: variant.minPurchaseItems,
-      coordinates: null,
-      variant,
-      carts,
-      ...initState,
-      ...calculateOrderable(variant, carts),
-    };
-  }
-
-  componentDidMount() {
-    const { adTrack, productData } = this.props;
-    const { variant } = this.state;
-
-    if (!productData) return;
-
-    adTrack.viewProduct({
-      id: productData.id,
-      title: productData.title,
-      price: variant.totalPrice,
-    });
-  }
-
-  onChangeSpec = (level, value) => {
-    const { coordinates, isAddingItem } = this.state;
-    let {
-      productData: { variantsTree },
-    } = this.props;
-    if (coordinates[level] === value || isAddingItem) return;
-    coordinates[level] = value;
-    const newCoordinates = coordinates.map(depth => {
-      /* eslint-disable no-param-reassign */
-      if (!variantsTree.children[depth]) depth = 0;
-      /* eslint-enable no-param-reassign */
-      variantsTree = variantsTree.children[depth];
-      return depth;
-    });
-    this.setState({
-      coordinates: newCoordinates,
-      variant: variantsTree.data.variant,
-    });
+  state = {
+    quantity: 0,
+    variant: null,
+    isAddingItem: false,
+    isDrawerOpen: false,
+    isModalOpen: false,
   };
+
+  format = memoizeOne((carts, stockNotificationList, variant) => {
+    if (!variant)
+      return {
+        variant,
+        orderable: OUT_OF_STOCK,
+      };
+
+    const { id, stock, maxPurchaseLimit, minPurchaseItems } = variant;
+    const { max } = getQuantityRange(variant);
+    const productNotice = stockNotificationList.some(
+      item => item.variantId === variant.id,
+    );
+    const formatVariant = {
+      ...variant,
+      productNotice,
+    };
+
+    if (max === 0)
+      return {
+        formatVariant,
+        orderable: OUT_OF_STOCK,
+      };
+
+    const variantInCart = carts?.categories.products.find(
+      product => product.variantId === id,
+    );
+    const quantityInCart = variantInCart?.quantity || 0;
+
+    if (quantityInCart > max)
+      return {
+        formatVariant,
+        orderable: LIMITED,
+      };
+
+    return {
+      formatVariant: {
+        ...formatVariant,
+        maxPurchaseLimit:
+          maxPurchaseLimit > quantityInCart
+            ? maxPurchaseLimit - quantityInCart
+            : 0,
+        minPurchaseItems:
+          minPurchaseItems > quantityInCart
+            ? minPurchaseItems - quantityInCart
+            : 1,
+        stock: stock > quantityInCart ? stock - quantityInCart : 0,
+      },
+      orderable: ORDERABLE,
+    };
+  });
 
   onChangeQuantity = value => {
     this.setState({ quantity: value });
@@ -195,7 +132,6 @@ export default class ProductInfo extends React.PureComponent {
     const { variant, quantity } = this.state;
 
     this.setState({ isAddingItem: true });
-
     await addProductToCart({
       variables: {
         search: {
@@ -218,9 +154,10 @@ export default class ProductInfo extends React.PureComponent {
       price: variant.totalPrice,
     });
     notification.success({ message: t('add-product-to-cart') });
+    this.setState({ isAddingItem: false });
   };
 
-  addToNotificationList = () => {
+  addToNotificationList = async () => {
     const { isLogin, stockNotificationList } = this.props;
 
     switch (isLogin) {
@@ -233,7 +170,7 @@ export default class ProductInfo extends React.PureComponent {
         const { variant } = this.state;
 
         this.setState({ isAddingItem: true });
-        initApollo({ name: 'store' }).mutate({
+        await initApollo({ name: 'store' }).mutate({
           mutation: gql`
             mutation addStockNotificationList(
               $updateStockNotificationList: [UpdateStockNotification]
@@ -275,6 +212,7 @@ export default class ProductInfo extends React.PureComponent {
             });
           },
         });
+        this.setState({ isAddingItem: false });
         break;
       }
       default:
@@ -288,6 +226,37 @@ export default class ProductInfo extends React.PureComponent {
     });
   };
 
+  onChangeVariant = variant => {
+    if (!variant) return;
+
+    const { adTrack, productData } = this.props;
+    const { quantity } = this.state;
+    const { min, max } = getQuantityRange(variant);
+    const newQuantity = (() => {
+      if (max === 0) return quantity;
+
+      if (quantity > max) return max;
+
+      if (quantity < min) return min;
+
+      return quantity;
+    })();
+
+    this.setState({
+      variant,
+      quantity: newQuantity,
+    });
+
+    if (this.isViewProduct) return;
+
+    adTrack.viewProduct({
+      id: productData.id,
+      title: productData.title,
+      price: variant.totalPrice,
+    });
+    this.isViewProduct = true;
+  };
+
   render() {
     const {
       t,
@@ -297,61 +266,35 @@ export default class ProductInfo extends React.PureComponent {
       hasStoreAppPlugin,
       container,
       goTo,
-      carts,
       showButton,
       drawerOnMobile,
       unfoldedVariantsOnMobile,
       colors,
       isLogin,
       isMobile,
+      carts,
+      stockNotificationList,
     } = this.props;
     const {
-      coordinates,
       quantity,
-      variant: originVariant,
-      orderable,
+      variant,
       isAddingItem,
       isModalOpen,
       isDrawerOpen,
     } = this.state;
-    const {
-      name,
-      onChangeSpec,
-      onChangeQuantity,
-      addToCart,
-      addToNotificationList,
-    } = this;
-    const { id, stock, maxPurchaseLimit, minPurchaseItems } = originVariant;
-
-    const quantityInCart =
-      carts?.categories.products.find(product => product.variantId === id)
-        ?.quantity || 0;
-
-    const variant = {
-      ...originVariant,
-      maxPurchaseLimit:
-        maxPurchaseLimit > quantityInCart
-          ? maxPurchaseLimit - quantityInCart
-          : 0,
-      minPurchaseItems:
-        minPurchaseItems > quantityInCart
-          ? minPurchaseItems - quantityInCart
-          : 1,
-      stock: stock > quantityInCart ? stock - quantityInCart : 0,
-    };
-
-    if (!productData || !productData.status) {
-      warning(
-        process.env.NODE_ENV === 'production',
-        'Illegal prop: [productData] has been found in ProductInfo.',
-      );
-
-      return null;
-    }
+    const { name, onChangeQuantity, addToCart, addToNotificationList } = this;
+    const { formatVariant, orderable } = this.format(
+      carts,
+      stockNotificationList,
+      variant,
+    );
 
     return (
       <div style={styles.root(mode)} className={name}>
-        <Style scopeSelector={`.${name}`} rules={styles.infoStyle(colors)} />
+        <Style
+          scopeSelector={`.${name}`}
+          rules={styles.infoStyle(colors, showButton)}
+        />
         <Modal
           className={name}
           visible={isModalOpen}
@@ -371,41 +314,36 @@ export default class ProductInfo extends React.PureComponent {
           <div style={styles.wrapper(mode)}>
             <Description
               productData={productData}
-              variant={variant}
+              variant={formatVariant}
               transformCurrency={transformCurrency}
               colors={colors}
               isLogin={isLogin}
               memberSeePrice={hasStoreAppPlugin('memberSeePrice')}
               mode={mode}
             />
-            {coordinates && (
-              <SpecList
-                productData={productData}
-                colors={colors}
-                showButton={showButton}
-                coordinates={coordinates}
-                onChangeSpec={onChangeSpec}
-                mode={mode}
-                name={name}
-                container={container}
-              />
-            )}
-            {quantity !== null && (
-              <QuantityButton
-                variant={variant}
-                orderable={orderable}
-                quantity={quantity}
-                colors={colors}
-                onChangeQuantity={onChangeQuantity}
-                name={name}
-                container={container}
-              />
-            )}
+
+            <ProductSpecSelector
+              product={productData}
+              unfoldedVariants={showButton}
+              value={variant}
+              onChange={this.onChangeVariant}
+            />
+
+            <QuantityButton
+              variant={formatVariant}
+              orderable={orderable}
+              quantity={quantity}
+              colors={colors}
+              onChangeQuantity={onChangeQuantity}
+              name={name}
+              container={container}
+              unfoldedVariants={showButton}
+            />
           </div>
 
           <AddButton
             productId={productData.id}
-            variant={variant}
+            variant={formatVariant}
             orderable={orderable}
             openModal={() => this.setState({ isModalOpen: true })}
             openDrawer={() => this.setState({ isDrawerOpen: true })}
@@ -423,17 +361,16 @@ export default class ProductInfo extends React.PureComponent {
           />
 
           {!drawerOnMobile ? null : (
-            <ProductSpecSelector
+            <MobileSpecSelector
               product={productData}
               variant={variant}
               unfoldedVariantsOnMobile={unfoldedVariantsOnMobile}
               visible={isDrawerOpen}
-              coordinates={coordinates}
               orderable={orderable}
               quantity={quantity}
               addToCart={addToCart}
               onClose={() => this.setState({ isDrawerOpen: false })}
-              onChangeSpec={onChangeSpec}
+              onChangeVariant={this.onChangeVariant}
               onChangeQuantity={onChangeQuantity}
             />
           )}

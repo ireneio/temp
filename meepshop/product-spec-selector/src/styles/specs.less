@@ -1,10 +1,26 @@
+@import '~@meepshop/utils/styles/variables.less';
+
 .root {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media (max-width: @screen-sm-max) {
+    display: block;
+  }
+
   &:not(:last-child) {
     margin-bottom: 16px;
   }
 
   > div:first-child {
-    margin-bottom: 8px;
+    margin: 0px 10px 8px 0px;
+    line-height: 30px;
+
+    @media (max-width: @screen-sm-max) {
+      margin: 0px 0px 8px;
+      line-height: 21px;
+    }
   }
 
   > div:last-child {
@@ -12,12 +28,17 @@
     flex-wrap: wrap;
 
     .node {
-      padding: 5px 12px;
+      margin: 0px 10px 8px 0px;
+      padding: 5px 15px;
+      line-height: 30px;
       border-radius: 5px;
-      margin-right: 10px;
-      margin-bottom: 8px;
       transition: 0.3s;
       cursor: pointer;
+
+      @media (max-width: @screen-sm-max) {
+        padding: 5px 12px;
+        line-height: 21px;
+      }
 
       &.selected {
         transition: 0.5s;

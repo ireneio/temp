@@ -7,7 +7,7 @@ import ProductAmountSelect from '@meepshop/product-amount-select';
 
 import { COLOR_TYPE } from 'constants/propTypes';
 
-import * as styles from './styles/category';
+import * as styles from './styles/quantityButton';
 import {
   VARIANT_TYPE,
   ORDERABLE_TYPE,
@@ -21,7 +21,7 @@ import {
 export default class QuantityButton extends React.Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
-    variant: VARIANT_TYPE.isRequired,
+    variant: VARIANT_TYPE,
     orderable: ORDERABLE_TYPE.isRequired,
     quantity: PropTypes.number.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -39,17 +39,22 @@ export default class QuantityButton extends React.Component {
       onChangeQuantity,
       name,
       container,
+      unfoldedVariants,
     } = this.props;
 
     if (orderable === ORDERABLE) {
       return (
-        <ProductAmountSelect
-          variant={variant}
-          dropdownClassName={name}
-          value={quantity}
-          onChange={onChangeQuantity}
-          getPopupContainer={() => container.current || document.body}
-        />
+        <div>
+          <ProductAmountSelect
+            style={styles.amountSelect(unfoldedVariants)}
+            variant={variant}
+            dropdownClassName={name}
+            value={quantity}
+            onChange={onChangeQuantity}
+            getPopupContainer={() => container.current || document.body}
+            size={unfoldedVariants ? 'default' : 'large'}
+          />
+        </div>
       );
     }
 

@@ -67,10 +67,6 @@ const mappingPackageNames: {
     getPackageFolder('@meepshop/next-store'),
     './locales/payment-default-form-item',
   ),
-  'store/product-info': path.resolve(
-    getPackageFolder('@meepshop/next-store'),
-    './locales/product-info',
-  ),
   'store/product-list': path.resolve(
     getPackageFolder('@meepshop/next-store'),
     './locales/product-list',

@@ -1,6 +1,6 @@
 import { PHONE_MEDIA } from 'constants/media';
 
-export const infoStyle = colors => ({
+export const infoStyle = (colors, unfoldedVariants) => ({
   color: colors[3],
 
   // ant-select
@@ -15,7 +15,6 @@ export const infoStyle = colors => ({
     color: colors[3],
     borderColor: colors[5],
     height: 'unset',
-    margin: '0 6px 6px 0',
   },
   '.ant-select-selection__rendered': {
     overflow: 'hidden',
@@ -43,7 +42,7 @@ export const infoStyle = colors => ({
     whiteSpace: 'unset',
     wordBreak: 'break-all',
     width: '100%',
-    textAlign: 'center',
+    textAlign: unfoldedVariants ? 'center !important' : 'left !important',
   },
 
   // ant-modal

@@ -1,9 +1,13 @@
+import { PHONE_MEDIA } from 'constants/media';
+
 export const root = {
   display: 'flex',
   alignItems: 'center',
   flexWrap: 'wrap',
-  marginBottom: 20,
-  marginRight: 10,
+  margin: '0px 0px 16px',
+  [PHONE_MEDIA]: {
+    display: 'block',
+  },
 };
 
 export const label = colors => ({
@@ -44,3 +48,7 @@ export const overStock = {
   color: '#d0021b',
   margin: '0 6px 6px 0',
 };
+
+export const amountSelect = unfoldedVariants => ({
+  width: unfoldedVariants ? 'auto' : '100%',
+});

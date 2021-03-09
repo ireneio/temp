@@ -22,6 +22,7 @@
     "@meepshop/product-collections": "^0.79.9",
     "@meepshop/product-draft-text": "^0.79.9",
     "@meepshop/product-iframe": "^0.79.9",
+    "@meepshop/product-info": "^0.1.0",
     "@meepshop/product-qa": "^0.79.9",
     "@meepshop/product-video": "^0.79.9",
     "@meepshop/smart-conversion": "^0.79.9",

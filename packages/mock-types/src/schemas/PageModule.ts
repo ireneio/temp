@@ -18,6 +18,7 @@ import ProductCarouselModule from './ProductCarouselModule';
 import ProductCollectionsModule from './ProductCollectionsModule';
 import ProductDraftTextModule from './ProductDraftTextModule';
 import ProductIframeModule from './ProductIframeModule';
+import ProductInfoModule from './ProductInfoModule';
 import ProductQaModule from './ProductQaModule';
 import ProductVideoModule from './ProductVideoModule';
 import SocialMediaModule from './SocialMediaModule';
@@ -91,6 +92,7 @@ export default mock.add<pageModuleMockFragment[]>('PageModule', [
   () => getPageModules(ProductCollectionsModule),
   () => getPageModules(ProductDraftTextModule),
   () => getPageModules(ProductIframeModule),
+  () => getPageModules(ProductInfoModule),
   () => getPageModules(ProductQaModule),
   () => getPageModules(ProductVideoModule),
   () => getPageModules(SocialMediaModule),

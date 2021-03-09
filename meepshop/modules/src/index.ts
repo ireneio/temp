@@ -28,9 +28,7 @@ export default {
   ),
   ProductDraftTextModule: dynamic(() => import('@meepshop/product-draft-text')),
   ProductIframeModule: dynamic(() => import('@meepshop/product-iframe')),
-  ProductInfoModule: () => {
-    throw new Error('Can not use ProductInfoModule');
-  },
+  ProductInfoModule: dynamic(() => import('@meepshop/product-info')),
   ProductQaModule: dynamic(() => import('@meepshop/product-qa')),
   ProductVideoModule: dynamic(() => import('@meepshop/product-video')),
   ProductsModule: () => {

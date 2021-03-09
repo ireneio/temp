@@ -2,6 +2,7 @@
 import gql from 'graphql-tag';
 
 // definition
+// NO_FILTER
 export const useVariantsTreeFragment = gql`
   fragment useVariantsTreeFragment on Product {
     id
