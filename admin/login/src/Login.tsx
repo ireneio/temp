@@ -9,6 +9,7 @@ import { Form, Input, Checkbox, Button } from 'antd';
 // import Link from '@meepshop/link';
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { loginLogo } from '@meepshop/images';
+import { useValidateEmail } from '@meepshop/validator';
 
 import useGrecaptcha from './hooks/useGrecaptcha';
 import useLogin from './hooks/useLogin';
@@ -33,6 +34,7 @@ export default Form.create<PropsType>()(
       const { t } = useTranslation('login');
       const { grecaptchaRef, grecaptchaScript } = useGrecaptcha();
       const { loading, onSubmit } = useLogin(validateFields);
+      const validateEmail = useValidateEmail();
 
       return (
         <>
@@ -47,11 +49,10 @@ export default Form.create<PropsType>()(
                   rules: [
                     {
                       required: true,
-                      message: t('email.error'),
+                      message: t('required'),
                     },
                     {
-                      type: 'email',
-                      message: t('email.error'),
+                      validator: validateEmail.validator,
                     },
                   ],
                   validateTrigger: 'onBlur',

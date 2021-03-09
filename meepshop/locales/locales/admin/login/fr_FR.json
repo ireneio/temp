@@ -1,4 +1,5 @@
 {
+  "required": "Obligatoire",
   "email": {
     "placeholder": "Entrez l'e-mail d'inscription"
   },

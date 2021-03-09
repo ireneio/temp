@@ -1,4 +1,5 @@
 {
+  "required": "Cần thiết",
   "email": {
     "placeholder": "Nhập Email đăng ký"
   },

@@ -1,4 +1,5 @@
 {
+  "required": "必填",
   "email": {
     "placeholder": "輸入註冊 Email"
   },

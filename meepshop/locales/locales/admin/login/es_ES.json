@@ -1,4 +1,5 @@
 {
+  "required": "Requerido",
   "email": {
     "placeholder": "Ingrese el correo electrónico de registro"
   },

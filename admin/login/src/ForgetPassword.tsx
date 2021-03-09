@@ -7,6 +7,7 @@ import { Form, Input, Checkbox, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/utils/lib/i18n';
 import { meepshopLogo } from '@meepshop/images';
+import { useValidateEmail } from '@meepshop/validator';
 
 import useSendResetPasswordEmail from './hooks/useSendResetPasswordEmail';
 
@@ -35,6 +36,7 @@ export default Form.create<PropsType>()(
         countdown,
         sendResetPasswordEmail,
       } = useSendResetPasswordEmail();
+      const validateEmail = useValidateEmail();
 
       return (
         <div className={styles.root}>
@@ -55,11 +57,10 @@ export default Form.create<PropsType>()(
                 rules: [
                   {
                     required: true,
-                    message: t('email.error'),
+                    message: t('required'),
                   },
                   {
-                    type: 'email',
-                    message: t('email.error'),
+                    validator: validateEmail.validator,
                   },
                 ],
                 validateTrigger: 'onBlur',
