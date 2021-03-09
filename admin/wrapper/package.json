@@ -4,19 +4,19 @@
   "description": "Wrapper for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.9",
+  "version": "0.79.11",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/apollo": "^0.79.9",
-    "@admin/utils": "^0.79.9",
-    "@meepshop/context": "^0.79.9",
-    "@meepshop/cookies": "^0.79.9",
-    "@meepshop/icons": "^0.79.9",
-    "@meepshop/images": "^0.79.9",
-    "@meepshop/link": "^0.79.9",
-    "@meepshop/switch": "^0.79.9",
-    "@meepshop/utils": "^0.79.9"
+    "@admin/apollo": "^0.79.11",
+    "@admin/utils": "^0.79.11",
+    "@meepshop/context": "^0.79.11",
+    "@meepshop/cookies": "^0.79.11",
+    "@meepshop/icons": "^0.79.11",
+    "@meepshop/images": "^0.79.11",
+    "@meepshop/link": "^0.79.11",
+    "@meepshop/switch": "^0.79.11",
+    "@meepshop/utils": "^0.79.11"
   },
   "keywords": ["admin", "wrapper"]
 }
