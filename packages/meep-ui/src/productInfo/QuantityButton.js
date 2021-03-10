@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 
 import { withTranslation } from '@meepshop/utils/lib/i18n';
-import ProductAmountSelect from '@meepshop/product-amount-select';
+import ProductAmountSelector from '@meepshop/product-amount-selector';
 
 import { COLOR_TYPE } from 'constants/propTypes';
 
@@ -45,7 +45,7 @@ export default class QuantityButton extends React.Component {
     if (orderable === ORDERABLE) {
       return (
         <div>
-          <ProductAmountSelect
+          <ProductAmountSelector
             style={styles.amountSelect(unfoldedVariants)}
             variant={variant}
             dropdownClassName={name}

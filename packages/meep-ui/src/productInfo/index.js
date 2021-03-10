@@ -12,7 +12,7 @@ import CartContext from '@meepshop/cart';
 import ProductSpecSelector from '@meepshop/product-spec-selector';
 import withContext from '@store/utils/lib/withContext';
 import MobileSpecSelector from '@meepshop/product-info/lib/mobileSpecSelector';
-import { getQuantityRange } from '@meepshop/product-amount-select/lib/hooks/useOptions';
+import { getQuantityRange } from '@meepshop/product-amount-selector/lib/hooks/useOptions';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';

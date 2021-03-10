@@ -18,7 +18,7 @@
     "@meepshop/images": "^0.79.11",
     "@meepshop/landing-page": "^0.79.11",
     "@meepshop/link": "^0.79.11",
-    "@meepshop/product-amount-select": "^0.79.11",
+    "@meepshop/product-amount-selector": "^0.79.11",
     "@meepshop/product-draft-text": "^0.79.11",
     "@meepshop/product-info": "^0.79.11",
     "@meepshop/product-spec-selector": "^0.79.11",

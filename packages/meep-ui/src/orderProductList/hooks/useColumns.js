@@ -11,9 +11,9 @@ import CartContext from '@meepshop/cart';
 import { CartDeleteIcon } from '@meepshop/icons';
 import { placeholderThumbnail_w120 as placeholderThumbnail } from '@meepshop/images';
 import Link from '@meepshop/link';
-import ProductAmountSelect, {
+import ProductAmountSelector, {
   getQuantityRange,
-} from '@meepshop/product-amount-select';
+} from '@meepshop/product-amount-selector';
 
 import styles from './styles/useColumns.less';
 
@@ -177,7 +177,7 @@ export default ({ productHasError, updateCart, onChange }) => {
               )}
 
               {error || type !== 'product' ? null : (
-                <ProductAmountSelect
+                <ProductAmountSelector
                   className={`${styles.select} ${styles.mobile}`}
                   variant={variant}
                   value={quantity}
@@ -208,7 +208,7 @@ export default ({ productHasError, updateCart, onChange }) => {
                 !hasError ? '' : styles.hasError
               }`}
             >
-              <ProductAmountSelect
+              <ProductAmountSelector
                 className={styles.select}
                 variant={variant}
                 value={quantity}

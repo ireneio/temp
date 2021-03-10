@@ -9,7 +9,7 @@ import { filter } from 'graphql-anywhere';
 import { Form, Select, Cascader, Collapse, Input } from 'antd';
 import transformColor from 'color';
 
-import ProductAmountSelect from '@meepshop/product-amount-select';
+import ProductAmountSelector from '@meepshop/product-amount-selector';
 import {
   AdTrack as AdTrackContext,
   Apps as AppsContext,
@@ -130,7 +130,7 @@ export default React.memo(
                 },
               ],
             })(
-              <ProductAmountSelect
+              <ProductAmountSelector
                 variant={variant}
                 onChange={(value: number) => {
                   if (!variant) return;

@@ -12,7 +12,7 @@ import useOptions, { getQuantityRange } from './hooks/useOptions';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { productAmountSelectFragment as productAmountSelectFragmentType } from '@meepshop/types/gqls/meepshop';
+import { productAmountSelectorFragment as productAmountSelectorFragmentType } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { useOptionsVariantFragment } from './gqls/useOptions';
@@ -28,15 +28,15 @@ export interface PropsType
     | 'children'
   > {
   forwardedRef: React.Ref<Select>;
-  variant: productAmountSelectFragmentType | null;
+  variant: productAmountSelectorFragmentType | null;
 }
 
 // definition
 const { Option } = Select;
 
-const ProductAmountSelect = React.memo(
+const ProductAmountSelector = React.memo(
   ({ forwardedRef, variant, onChange, className, ...props }: PropsType) => {
-    const { t } = useTranslation('product-amount-select');
+    const { t } = useTranslation('product-amount-selector');
     const { options, onSearch, setSearchValue } = useOptions(
       filter(useOptionsVariantFragment, variant),
     );
@@ -72,6 +72,6 @@ export { getQuantityRange };
 
 export default React.forwardRef(
   (props: Omit<PropsType, 'forwardedRef'>, ref: PropsType['forwardedRef']) => (
-    <ProductAmountSelect {...props} forwardedRef={ref} />
+    <ProductAmountSelector {...props} forwardedRef={ref} />
   ),
 );

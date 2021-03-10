@@ -49,7 +49,7 @@ export const getQuantityRange = (
 };
 
 export default (variant: useOptionsVariantFragmentType | null): OptionsType => {
-  const { t } = useTranslation('product-amount-select');
+  const { t } = useTranslation('product-amount-selector');
   const [searchValue, setSearchValue] = useState<number | null>(null);
   const { min, max } = useMemo(() => getQuantityRange(variant), [variant]);
 

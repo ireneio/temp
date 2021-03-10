@@ -5,8 +5,8 @@ import gql from 'graphql-tag';
 import { useOptionsVariantFragment } from './useOptions';
 
 // definition
-export const productAmountSelectFragment = gql`
-  fragment productAmountSelectFragment on Variant {
+export const productAmountSelectorFragment = gql`
+  fragment productAmountSelectorFragment on Variant {
     id
     ...useOptionsVariantFragment
   }

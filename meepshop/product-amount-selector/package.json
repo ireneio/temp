@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@meepshop/product-amount-select",
+  "name": "@meepshop/product-amount-selector",
   "description": "Use to select product amount",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
