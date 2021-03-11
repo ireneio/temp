@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.79.12 (2021-03-11)
+
+#### :rocket: New Feature
+
+- [#1322](https://github.com/meepshop/meep-lerna/pull/1322) 【優化】後台/訂單明細新增 & 同步：綠界物流編號、配送單號 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `meep-ui`
+  - [#1451](https://github.com/meepshop/meep-lerna/pull/1451) (@meepshop/product-amount-selector) Rename package name ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.79.11 (2021-03-09)
 
 #### :boom: Breaking Change
