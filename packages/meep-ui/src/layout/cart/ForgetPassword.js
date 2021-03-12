@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Button, notification } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { useValidateEmail } from '@meepshop/validator';
 import withHook from '@store/utils/lib/withHook';

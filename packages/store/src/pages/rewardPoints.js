@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import MemberRewardPoints from '@store/member-reward-points';
 
 import * as Utils from 'utils';

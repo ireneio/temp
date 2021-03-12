@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Radio } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import DraftText from 'draftText';

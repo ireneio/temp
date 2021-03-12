@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { spinner_w100 as spinner } from '@meepshop/images';
 
 export default ({ loading, loadingTip }) => {

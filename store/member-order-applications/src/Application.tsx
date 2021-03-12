@@ -1,7 +1,7 @@
 // typescript import
 import { ColumnProps } from 'antd/lib/table';
 
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/locales';
 import { ColorsType } from '@meepshop/context';
 
 // import
@@ -12,7 +12,7 @@ import { Table } from 'antd';
 import moment from 'moment';
 import memoizeOne from 'memoize-one';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import Thumbnail from '@meepshop/thumbnail';
 
 import styles from './styles/application.less';

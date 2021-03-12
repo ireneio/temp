@@ -1,7 +1,7 @@
 // import
 import React from 'react';
 
-import { appWithTranslation } from '@meepshop/utils/lib/i18n';
+import { appWithTranslation } from '@meepshop/locales';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';
 import { AppsProvider } from '@meepshop/context/lib/Apps';

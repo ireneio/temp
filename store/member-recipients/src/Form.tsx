@@ -10,7 +10,7 @@ import AddressCascader, {
 } from '@meepshop/address-cascader';
 import { Colors as ColorsContext } from '@meepshop/context';
 import validateMobile from '@meepshop/utils/lib/validate/mobile';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import useFormSubmit from './hooks/useFormSubmit';
 import styles from './styles/form.less';

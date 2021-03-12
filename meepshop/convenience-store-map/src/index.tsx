@@ -1,7 +1,7 @@
 // typescript import
 import { QueryResult } from '@apollo/react-common';
 
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/locales';
 
 // import
 import React from 'react';
@@ -9,7 +9,7 @@ import { ApolloConsumer } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Modal, Tabs } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 
 import AddressSelect from './AddressSelect';
 import SearchInput from './SearchInput';

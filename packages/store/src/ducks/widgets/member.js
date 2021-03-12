@@ -3,7 +3,7 @@ import { takeEvery, put, call } from 'redux-saga/effects';
 import * as Utils from 'utils';
 import { notification } from 'antd';
 
-import { i18n } from '@meepshop/utils/lib/i18n';
+import { i18n } from '@meepshop/locales';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 
 import * as Api from 'api';

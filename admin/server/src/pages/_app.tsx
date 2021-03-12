@@ -9,7 +9,7 @@ import Head from 'next/head';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
 
-import { appWithTranslation } from '@meepshop/utils/lib/i18n';
+import { appWithTranslation } from '@meepshop/locales';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
 import { withDomain } from '@meepshop/link';

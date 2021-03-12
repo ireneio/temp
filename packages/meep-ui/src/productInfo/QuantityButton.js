@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import ProductAmountSelector from '@meepshop/product-amount-selector';
 
 import { COLOR_TYPE } from 'constants/propTypes';

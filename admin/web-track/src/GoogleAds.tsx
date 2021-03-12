@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { Button, Modal, Form, Input, Icon } from 'antd';
 
 import Tooltip from '@admin/tooltip';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import {
   webTrackGoogleAds_w172 as webTrackGoogleAds,
   webTrackGoogleAdsInstruction_w890 as webTrackGoogleAdsInstruction,

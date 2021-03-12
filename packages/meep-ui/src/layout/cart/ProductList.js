@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Button } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import OrderProductList from 'orderProductList';

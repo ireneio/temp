@@ -8,7 +8,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
 
 import Orders from '@admin/orders';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import useEcfitColumns from './hooks/useEcfitColumns';
 import useInitVariables, { initVariables } from './hooks/useInitVariables';

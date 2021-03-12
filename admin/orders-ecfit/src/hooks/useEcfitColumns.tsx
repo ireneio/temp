@@ -6,7 +6,7 @@ import React, { useMemo } from 'react';
 import moment from 'moment';
 import { Spin } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import Link from '@meepshop/link';
 
 import { STATUS_LIST } from '../constants';

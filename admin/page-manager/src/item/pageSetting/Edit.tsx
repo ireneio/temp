@@ -1,7 +1,7 @@
 // typescript import
 import { FormComponentProps } from 'antd/lib/form';
 
-import { languageType } from '@meepshop/utils/lib/i18n';
+import { languageType } from '@meepshop/locales';
 
 // import
 import React from 'react';
@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom';
 import { useApolloClient } from '@apollo/react-hooks';
 import { Form, Input, Icon, Button } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import Tooltip from '@admin/tooltip';
 import { usePortalTarget } from '@admin/hooks';
 import {

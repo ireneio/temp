@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { Modal } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript
 import { exportFileService as exportFileServiceType } from '@meepshop/types/gqls/admin';

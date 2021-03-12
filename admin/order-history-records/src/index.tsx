@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon, List } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { meepshopLogo } from '@meepshop/images';
 
 import Record from './Record';

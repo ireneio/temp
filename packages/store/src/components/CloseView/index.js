@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { storeClose } from '@meepshop/images';
 
 import './styles/index.less';

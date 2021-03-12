@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { UserAgent } from 'fbjs';
 import { notification } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import logger from '@meepshop/utils/lib/logger';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import {

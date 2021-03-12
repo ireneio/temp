@@ -1,7 +1,7 @@
 // typescript import
 import { NextPage } from 'next';
 
-import { languageType } from '@meepshop/utils/lib/i18n';
+import { languageType } from '@meepshop/locales';
 
 // import
 import React from 'react';
@@ -10,7 +10,7 @@ import dynamic from 'next/dynamic';
 import { Icon } from 'antd';
 
 import { meepshopLogo } from '@meepshop/images';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import moment from 'moment';
 
 import Error from './Error';

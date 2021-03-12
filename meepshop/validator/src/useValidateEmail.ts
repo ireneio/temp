@@ -6,7 +6,7 @@ import { useCallback } from 'react';
 import { useApolloClient } from '@apollo/react-hooks';
 import { isFullWidth, isEmail } from 'validator';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript
 import {

@@ -9,7 +9,7 @@ import {
   Interaction,
 } from 'bizcharts';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import styles from './styles/chart.less';
 import useColoredSamples from './hooks/useColoredSamples';

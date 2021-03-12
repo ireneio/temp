@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 import { Spin, Icon } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, COLOR_TYPE, LOCALE_TYPE } from 'constants/propTypes';

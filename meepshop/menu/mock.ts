@@ -1,7 +1,7 @@
 // import
 import uuid from 'uuid/v4';
 
-import { languages } from '@meepshop/utils/lib/i18n';
+import { languages } from '@meepshop/locales';
 import { dashboardCost_scaledSrc as dashboardCost } from '@meepshop/images';
 
 // graphql typescript

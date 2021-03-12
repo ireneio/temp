@@ -8,7 +8,7 @@ import { notification } from 'antd';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript
 import {

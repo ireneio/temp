@@ -2,7 +2,7 @@
 import { QueryResult } from '@apollo/react-common';
 import { CascaderOptionType } from 'antd/lib/cascader';
 
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/locales';
 
 // import
 import React from 'react';
@@ -10,7 +10,7 @@ import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Spin, Icon, Cascader, Select } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 
 import styles from './styles/addressSelect.less';
 

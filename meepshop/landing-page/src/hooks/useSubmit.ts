@@ -13,7 +13,7 @@ import FormDataContext from '@meepshop/form-data';
 import useLink from '@meepshop/hooks/lib/useLink';
 import { useValidateEmail } from '@meepshop/validator';
 import { useRouter } from '@meepshop/link';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { formatGmo } from '@meepshop/gmo-credit-card-form';
 

@@ -1,10 +1,10 @@
 // typescript import
-import { languageType } from '@meepshop/utils/lib/i18n';
+import { languageType } from '@meepshop/locales';
 
 // import
 import { useMemo } from 'react';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import { ACION_TYPES } from '../constants';
 

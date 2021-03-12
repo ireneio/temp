@@ -1,7 +1,7 @@
 // typescript import
 import { MutationFunction } from '@apollo/react-common';
 
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/locales';
 import { ColorsType } from '@meepshop/context';
 
 import { PropsType as FormPropsType } from './Form';
@@ -16,7 +16,7 @@ import { Spin, Icon, Button, message } from 'antd';
 import moment from 'moment';
 import transformColor from 'color';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 

@@ -9,7 +9,7 @@ import { filter } from 'graphql-anywhere';
 import Actions from '../Actions';
 import MobileColumn from '../MobileColumn';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import Link from '@meepshop/link';
 
 // graphql typescript

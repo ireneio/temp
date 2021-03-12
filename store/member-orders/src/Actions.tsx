@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import { filter } from 'graphql-anywhere';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { Apps as AppsContext } from '@meepshop/context';
 import Link from '@meepshop/link';
 

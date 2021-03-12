@@ -5,7 +5,7 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 import React from 'react';
 import { Form, Button, Input } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import useValidateBarCode from './hooks/useValidateBarCode';
 import useValidateInvoiceVAT from './hooks/useValidateInvoiceVAT';

@@ -2,7 +2,7 @@
 import React from 'react';
 import Head from 'next/head';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import Ship from './Ship.svg';
 import './styles/serverError.less';

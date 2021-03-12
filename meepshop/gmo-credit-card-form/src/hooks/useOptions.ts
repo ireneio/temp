@@ -1,12 +1,12 @@
 // typescript import
 import { CascaderOptionType } from 'antd/lib/cascader';
 
-import { languageType } from '@meepshop/utils/lib/i18n';
+import { languageType } from '@meepshop/locales';
 
 // import
 import { useMemo } from 'react';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript
 import { useOptionsFragment as useOptionsFragmentType } from '@meepshop/types/gqls/meepshop';

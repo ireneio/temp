@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 
 import { Currency as CurrencyContext } from '@meepshop/context';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import styles from './styles/price.less';
 

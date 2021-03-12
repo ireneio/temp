@@ -7,7 +7,7 @@ import { Icon } from 'antd';
 import { filter } from 'graphql-anywhere';
 import moment from 'moment';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import Thumbnail from '@meepshop/thumbnail';
 
 import useRemove from './useRemove';

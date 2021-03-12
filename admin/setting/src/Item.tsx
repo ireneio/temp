@@ -5,7 +5,7 @@ import { ItemType } from './hooks/useItems';
 import React, { useState, useRef, useCallback } from 'react';
 import { Tooltip } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { useEffectWithCss } from '@admin/hooks';
 import Link from '@meepshop/link';
 

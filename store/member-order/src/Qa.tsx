@@ -1,7 +1,7 @@
 // typescript import
 import { DataProxy } from 'apollo-cache';
 
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/locales';
 import { ColorsType } from '@meepshop/context';
 
 // import
@@ -14,7 +14,7 @@ import moment from 'moment';
 
 import withHook from '@store/utils/lib/withHook';
 import { useAutoLinker } from '@meepshop/hooks';
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 

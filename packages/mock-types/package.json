@@ -20,6 +20,7 @@
     "@meepshop/apollo": "^0.79.12",
     "@meepshop/context": "^0.79.11",
     "@meepshop/images": "^0.79.11",
+    "@meepshop/locales": "^0.79.12",
     "@meepshop/utils": "^0.79.11",
     "@store/ad-track": "^0.79.12",
     "@store/apollo": "^0.79.12",

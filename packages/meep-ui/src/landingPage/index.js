@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium, { Style, StyleRoot } from 'radium';
 import { Form, Button, Divider } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import useSubmit from '@meepshop/landing-page/lib/hooks/useSubmit';
 import withContext from '@store/utils/lib/withContext';

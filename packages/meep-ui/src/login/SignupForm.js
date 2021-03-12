@@ -5,7 +5,7 @@ import { ApolloConsumer } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { emptyFunction } from 'fbjs';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import AddressCascader from '@meepshop/address-cascader';
 import { useValidateEmail } from '@meepshop/validator';

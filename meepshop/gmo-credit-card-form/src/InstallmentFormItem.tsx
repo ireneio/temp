@@ -1,12 +1,12 @@
 // typescript import
-import { languageType } from '@meepshop/utils/lib/i18n';
+import { languageType } from '@meepshop/locales';
 
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Cascader, Select } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import useOptions from './hooks/useOptions';
 import styles from './styles/installmentFormItem.less';

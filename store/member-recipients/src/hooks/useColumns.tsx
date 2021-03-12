@@ -1,13 +1,13 @@
 // typescript import
 import { ColumnProps } from 'antd/lib/table';
 
-import { languageType } from '@meepshop/utils/lib/i18n';
+import { languageType } from '@meepshop/locales';
 
 // import
 import React, { useMemo } from 'react';
 import { Divider } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import Link from '@meepshop/link';
 
 import useDeleteRecipientAddress from './useDeleteRecipientAddress';

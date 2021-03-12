@@ -3,7 +3,7 @@ import React from 'react';
 import { Button } from 'antd';
 
 import { smartConversionError } from '@meepshop/images';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import styles from './styles/error.less';
 

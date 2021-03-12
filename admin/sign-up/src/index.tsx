@@ -15,7 +15,7 @@ import { useApolloClient } from '@apollo/react-hooks';
 import { Form, Input, Button, Icon } from 'antd';
 
 import Link from '@meepshop/link';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { loginLogo, loginBackground } from '@meepshop/images';
 import { useValidateEmail } from '@meepshop/validator';
 

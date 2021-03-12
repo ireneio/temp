@@ -1,7 +1,7 @@
 // typescript import
 import { CascaderOptionType } from 'antd/lib/cascader';
 
-import { I18n, languageType } from '@meepshop/utils/lib/i18n';
+import { I18n, languageType } from '@meepshop/locales';
 
 // import
 import { useMemo } from 'react';

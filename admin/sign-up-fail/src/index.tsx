@@ -5,7 +5,7 @@ import { Button, Icon } from 'antd';
 
 import { AdTrackContext } from '@admin/ad-track';
 import Link from '@meepshop/link';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { loginBackground } from '@meepshop/images';
 
 import styles from './styles/index.less';

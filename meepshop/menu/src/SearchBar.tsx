@@ -2,7 +2,7 @@
 import React from 'react';
 import { Input } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import useSearch from './hooks/useSearch';
 

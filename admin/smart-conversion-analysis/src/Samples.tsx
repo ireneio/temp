@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { placeholderImage, smartConversionBest } from '@meepshop/images';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import styles from './styles/samples.less';
 

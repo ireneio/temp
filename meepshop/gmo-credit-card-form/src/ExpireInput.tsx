@@ -3,7 +3,7 @@ import React from 'react';
 import { useRifm } from 'rifm';
 import { Input } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // typescript definition
 interface PropsType {

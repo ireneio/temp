@@ -6,7 +6,7 @@ import { useCallback } from 'react';
 import moment from 'moment';
 import { isNumeric, isInt, isDate } from 'validator';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // definition
 export default (): {

@@ -4,7 +4,7 @@ import { DatePicker as AntdDatePicker } from 'antd';
 import moment from 'moment';
 import { areEqual } from 'fbjs';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import changeValue from './utils/changeValue';
 import styles from './styles/index.less';

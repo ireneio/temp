@@ -4,7 +4,7 @@ import radium from 'radium';
 import { Form, Input, Select, Checkbox } from 'antd';
 import { isAlpha } from 'validator';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import ReceiverDefaultFormItem from 'receiverDefaultFormItem';

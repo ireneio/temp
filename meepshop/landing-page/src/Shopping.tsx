@@ -15,7 +15,7 @@ import {
   Apps as AppsContext,
   Colors as ColorsContext,
 } from '@meepshop/context';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import CouponStatus from './CouponStatus';
 import useVariantOptions from './hooks/useVariantOptions';

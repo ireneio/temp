@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { Switch, message, Button, InputNumber } from 'antd';
 
 import Tooltip from '@admin/tooltip';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import styles from './styles/advancedSetting.less';
 

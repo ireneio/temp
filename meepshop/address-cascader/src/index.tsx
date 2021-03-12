@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
 import { Cascader, Select, Input } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import ZipCodeInput from './ZipCodeInput';
 import useOptions from './hooks/useOptions';

@@ -6,7 +6,7 @@ import uuid from 'uuid';
 import transformColor from 'color';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import withContext from '@store/utils/lib/withContext';
 import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
 

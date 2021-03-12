@@ -7,7 +7,7 @@ import moment from 'moment';
 import { Icon, Radio, Divider, Button } from 'antd';
 
 import TapPay from '@admin/tap-pay';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import useQuotation from './hooks/useQuotation';
 import usePayment from './hooks/usePayment';

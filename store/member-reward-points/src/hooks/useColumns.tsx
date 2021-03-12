@@ -5,7 +5,7 @@ import { ColumnProps } from 'antd/lib/table';
 import { useMemo, useContext } from 'react';
 import moment from 'moment';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
 
 // graphql typescript

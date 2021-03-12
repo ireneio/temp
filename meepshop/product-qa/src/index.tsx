@@ -10,7 +10,7 @@ import { Form, Input, Button } from 'antd';
 
 import { useAutoLinker } from '@meepshop/hooks';
 import { ViewReplyIcon } from '@meepshop/icons';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 import { useValidateEmail } from '@meepshop/validator';
 

@@ -4,7 +4,7 @@ import Head from 'next/head';
 import * as R from 'ramda';
 import { connect } from 'react-redux';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 
 import * as Utils from 'utils';
 import { Container, Error } from 'components';

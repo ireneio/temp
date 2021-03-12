@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { areEqual } from 'fbjs';
 import radium, { Style } from 'radium';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import { placeholderThumbnail_scaledSrc as placeholderThumbnail } from '@meepshop/images';
 
 import { enhancer } from 'layout/DecoratorsRoot';

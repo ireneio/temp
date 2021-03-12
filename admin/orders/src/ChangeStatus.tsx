@@ -2,7 +2,7 @@
 import React from 'react';
 import { Select } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import useChangeStatus from './hooks/useChangeStatus';
 

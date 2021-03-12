@@ -10,7 +10,7 @@ import { Form, Select, Cascader, Input, DatePicker } from 'antd';
 import { isAlpha } from 'validator';
 
 import validateMobile from '@meepshop/utils/lib/validate/mobile';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/address-cascader';

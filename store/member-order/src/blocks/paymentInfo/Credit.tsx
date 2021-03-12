@@ -1,7 +1,7 @@
 // import
 import React from 'react';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript
 import { creditFragment as creditFragmentType } from '@meepshop/types/gqls/store';

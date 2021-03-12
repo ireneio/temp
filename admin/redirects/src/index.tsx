@@ -7,7 +7,7 @@ import { Spin, Icon } from 'antd';
 import { filter } from 'graphql-anywhere';
 import { useQuery } from '@apollo/react-hooks';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import Header from '@admin/header';
 import Table from '@admin/table';

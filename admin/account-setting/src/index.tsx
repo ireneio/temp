@@ -7,7 +7,7 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Form, Button, Divider } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import Header from '@admin/header';
 
 import Account from './Account';

@@ -6,7 +6,7 @@ import React from 'react';
 import { Icon, Select } from 'antd';
 import { emptyFunction } from 'fbjs';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import styles from './styles/pagination.less';
 

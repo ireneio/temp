@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { Query } from '@apollo/react-components';
 import { Form, Input, Button, Icon } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import {
   menuIconsShoppingCart_react as ShoppingCartIcon,

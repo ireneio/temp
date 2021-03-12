@@ -10,7 +10,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
 
 import { useRouter } from '@meepshop/link';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import DatePicker from '@admin/date-picker';
 import Table from '@admin/table';
 

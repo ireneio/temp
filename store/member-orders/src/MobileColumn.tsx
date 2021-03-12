@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import { Icon, Drawer } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import Link from '@meepshop/link';
 
 import styles from './styles/mobileColumn.less';

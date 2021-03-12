@@ -1,7 +1,7 @@
 // typescript import
 import { ApolloClient } from 'apollo-client';
 
-import { I18nPropsType, languageType } from '@meepshop/utils/lib/i18n';
+import { I18nPropsType, languageType } from '@meepshop/locales';
 
 import { CookiesType } from '../index';
 
@@ -11,7 +11,7 @@ import { useApolloClient } from '@apollo/react-hooks';
 import { areEqual } from 'fbjs';
 import cookie from 'js-cookie';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // typescript definition
 export type getCookiesType = (ctx: {

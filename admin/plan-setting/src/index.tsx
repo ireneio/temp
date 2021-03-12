@@ -5,7 +5,7 @@ import { NextPage } from 'next';
 import React from 'react';
 
 import Plan from '@admin/plan';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // typescript definition
 interface PropsType {

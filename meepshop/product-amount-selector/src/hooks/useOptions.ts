@@ -1,7 +1,7 @@
 // import
 import { useState, useMemo, useCallback } from 'react';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript
 import { useOptionsVariantFragment as useOptionsVariantFragmentType } from '@meepshop/types/gqls/meepshop';

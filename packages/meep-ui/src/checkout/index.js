@@ -8,7 +8,7 @@ import uuid from 'uuid/v4';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import FormDataContext from '@meepshop/form-data';
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import withContext from '@store/utils/lib/withContext';
 import CheckoutWrapper from '@store/checkout';
 import { formatGmo } from '@meepshop/gmo-credit-card-form';

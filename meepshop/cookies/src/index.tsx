@@ -5,7 +5,7 @@ import { AppContext, AppProps } from 'next/app';
 import { CookieAttributes } from 'js-cookie';
 
 import { NextAppType, NextAppGetInitialPropsType } from '@meepshop/types';
-import { I18nPropsType, languageType } from '@meepshop/utils/lib/i18n';
+import { I18nPropsType, languageType } from '@meepshop/locales';
 
 import { getCookiesType } from './hooks/useCookies';
 
@@ -14,7 +14,7 @@ import React from 'react';
 import { emptyFunction } from 'fbjs';
 import cookie from 'js-cookie';
 
-import { i18n } from '@meepshop/utils/lib/i18n';
+import { i18n } from '@meepshop/locales';
 import logger from '@meepshop/utils/lib/logger';
 import { shouldIgnoreUnauthorizedError } from '@meepshop/apollo/lib/utils/errorLink';
 

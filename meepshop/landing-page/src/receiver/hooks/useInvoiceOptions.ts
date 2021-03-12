@@ -3,7 +3,7 @@ import { CascaderOptionType } from 'antd/lib/cascader';
 
 // import
 import { useMemo } from 'react';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript
 import {

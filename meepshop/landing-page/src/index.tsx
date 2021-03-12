@@ -10,7 +10,7 @@ import {
   AdTrack as AdTrackContext,
   Colors as ColorsContext,
 } from '@meepshop/context';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
 
 // Use to copy mixin.less

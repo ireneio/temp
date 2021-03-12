@@ -4,7 +4,7 @@ import radium from 'radium';
 import { Form, Input } from 'antd';
 import { emptyFunction } from 'fbjs';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/address-cascader';

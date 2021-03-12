@@ -4,7 +4,7 @@ import { filter } from 'graphql-anywhere';
 import { List } from 'antd';
 import moment from 'moment';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
 import { HistoryDotIcon } from '@meepshop/icons';
 

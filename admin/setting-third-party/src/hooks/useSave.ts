@@ -6,7 +6,7 @@ import { useState, useCallback } from 'react';
 import gql from 'graphql-tag';
 import { message } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import useUpdateFacebookSetting from './useUpdateFacebookSetting';
 import useUpdateEcfitSettings from './useUpdateEcfitSettings';

@@ -5,7 +5,7 @@ import { ValidationRule } from 'antd/lib/form';
 import { useCallback } from 'react';
 import { useLazyQuery } from '@apollo/react-hooks';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // graphql import
 import { useValidateBarCode } from '../gqls/useValidateBarCode';

@@ -1,7 +1,7 @@
 // import
 import { useCallback } from 'react';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript
 import { getUserInfo_viewer_birthday as getUserInfoViewerBirthday } from '@meepshop/types/gqls/store';

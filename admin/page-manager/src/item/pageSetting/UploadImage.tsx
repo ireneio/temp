@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Icon } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { usePortalTarget } from '@admin/hooks';
 import { uploadImage_w56 as uploadImage } from '@meepshop/images';
 import Gallery from '@admin/gallery';

@@ -18,6 +18,7 @@
     "@meepshop/images": "^0.79.11",
     "@meepshop/landing-page": "^0.79.12",
     "@meepshop/link": "^0.79.11",
+    "@meepshop/locales": "^0.79.12",
     "@meepshop/product-amount-selector": "^0.79.12",
     "@meepshop/product-draft-text": "^0.79.11",
     "@meepshop/product-info": "^0.79.11",

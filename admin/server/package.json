@@ -37,6 +37,7 @@
     "@meepshop/cookies": "^0.79.12",
     "@meepshop/images": "^0.79.11",
     "@meepshop/link": "^0.79.11",
+    "@meepshop/locales": "^0.79.12",
     "@meepshop/utils": "^0.79.11",
     "body-parser": "^1.18.3",
     "compression": "^1.7.2",

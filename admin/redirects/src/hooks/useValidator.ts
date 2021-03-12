@@ -4,7 +4,7 @@ import { ValidationRule } from 'antd/lib/form';
 // import
 import { useCallback } from 'react';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript
 import { useValidatorFragment as useValidatorFragmentType } from '@meepshop/types/gqls/admin';

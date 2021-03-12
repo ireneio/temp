@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Popover, Tooltip, Button, Icon } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { HomePageIcon } from '@meepshop/icons';
 
 import Modal from './Modal';

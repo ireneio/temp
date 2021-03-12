@@ -2,7 +2,7 @@
 import React from 'react';
 import { Menu, Tooltip } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { MoreIcon } from '@meepshop/icons';
 import Switch from '@meepshop/switch';
 import Link from '@meepshop/link';

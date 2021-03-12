@@ -8,7 +8,7 @@ import { DefaultLeaf } from '@meepshop/hooks/lib/useVariantsTree';
 import { useMemo } from 'react';
 
 import useVariantsTree from '@meepshop/hooks/lib/useVariantsTree';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript
 import {

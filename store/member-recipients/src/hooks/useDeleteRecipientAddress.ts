@@ -7,7 +7,7 @@ import { MutationFunction } from '@apollo/react-common';
 import { useMutation } from '@apollo/react-hooks';
 import { notification } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript
 import {

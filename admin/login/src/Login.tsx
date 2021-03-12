@@ -7,7 +7,7 @@ import Head from 'next/head';
 import { Form, Input, Checkbox, Button } from 'antd';
 
 // import Link from '@meepshop/link';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { loginLogo } from '@meepshop/images';
 import { useValidateEmail } from '@meepshop/validator';
 

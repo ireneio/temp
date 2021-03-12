@@ -4,7 +4,7 @@ import { BraftEditorProps } from 'braft-editor';
 // import
 import { useMemo } from 'react';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // definition
 export default (): BraftEditorProps['language'] => {

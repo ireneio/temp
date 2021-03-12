@@ -6,7 +6,7 @@ import React, { useMemo } from 'react';
 import { Button } from 'antd';
 import { filter } from 'graphql-anywhere';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import Tooltip from '@admin/tooltip';
 
 import Modal from '../Modal';

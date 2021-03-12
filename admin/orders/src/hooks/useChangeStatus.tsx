@@ -6,7 +6,7 @@ import React, { useCallback, useRef } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Select, Modal, Icon, notification } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import { STATUS_LIST } from '../constants';
 import styles from '../styles/changeStatus.less';

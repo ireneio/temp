@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react';
 import moment from 'moment';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript
 import { numberInfoFragment as numberInfoFragmentType } from '@meepshop/types/gqls/store';

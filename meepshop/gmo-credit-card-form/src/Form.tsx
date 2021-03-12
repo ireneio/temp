@@ -5,7 +5,7 @@ import { FormComponentProps } from 'antd/lib/form';
 import React from 'react';
 import { Form, Input } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import CreditCardInput from './CreditCardInput';
 import ExpireInput from './ExpireInput';

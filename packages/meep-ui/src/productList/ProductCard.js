@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import { placeholderThumbnail_scaledSrc as placeholderThumbnail } from '@meepshop/images';
 
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';

@@ -1,11 +1,11 @@
 // typescript import
-import { languageType } from '@meepshop/utils/lib/i18n';
+import { languageType } from '@meepshop/locales';
 
 // import
 import React from 'react';
 import { Button } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import Link from '@meepshop/link';
 import Block from '@admin/block';
 

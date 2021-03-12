@@ -7,7 +7,7 @@ import { filter } from 'graphql-anywhere';
 import { useQuery } from '@apollo/react-hooks';
 import { Spin, Icon } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { AdTrackContext } from '@admin/ad-track';
 import { Currency as CurrencyContext } from '@meepshop/context';
 import {

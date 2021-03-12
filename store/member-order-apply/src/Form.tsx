@@ -1,11 +1,11 @@
 // typescript import
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/locales';
 
 // import
 import React from 'react';
 import { Input } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 
 import styles from './styles/replaceForm.less';
 

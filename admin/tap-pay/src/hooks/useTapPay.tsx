@@ -3,7 +3,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { Modal } from 'antd';
 import getConfig from 'next/config';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // typescript definition
 type StatusType = 'number' | 'expiry' | 'ccv';

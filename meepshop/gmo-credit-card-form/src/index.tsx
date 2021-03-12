@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Spin, Icon, Input, Checkbox } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
 
 import Form from './Form';

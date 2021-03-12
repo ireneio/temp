@@ -8,7 +8,7 @@ import { filter } from 'graphql-anywhere';
 import { Spin, Input, Icon, Collapse } from 'antd';
 
 import Tooltip from '@admin/tooltip';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import AddNewPage from './addNewPage';
 import Item from './item';

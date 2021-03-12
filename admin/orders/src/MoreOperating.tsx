@@ -4,7 +4,7 @@ import { Select } from 'antd';
 import moment from 'moment';
 
 import { useRouter } from '@meepshop/link';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import OrdersExport from '@admin/orders-export';
 
 // definition

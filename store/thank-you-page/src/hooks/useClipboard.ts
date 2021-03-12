@@ -4,7 +4,7 @@ import { message } from 'antd';
 import Clipboard from 'clipboard';
 import { emptyFunction } from 'fbjs';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 // definition
 export default (loading: boolean, orderId: string | null): void => {

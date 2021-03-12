@@ -6,7 +6,7 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 import React from 'react';
 import { Form, Spin, Icon, Drawer, Select, Input, Button } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import useOrderExport from './hooks/useOrderExport';
 import styles from './styles/index.less';

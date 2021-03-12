@@ -6,7 +6,7 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Spin, Icon, Divider, Button } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import Link, { useRouter } from '@meepshop/link';
 
 import useUnsubscribe from './hooks/useUnsubscribe';

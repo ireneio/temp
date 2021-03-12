@@ -5,7 +5,7 @@ import radium, { StyleRoot, Style } from 'radium';
 import { Modal, notification } from 'antd';
 import memoizeOne from 'memoize-one';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import CartContext from '@meepshop/cart';

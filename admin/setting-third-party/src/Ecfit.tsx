@@ -6,7 +6,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Form, Select, Input } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import Tooltip from '@admin/tooltip';
 
 import styles from './styles/ecfit.less';

@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { Spin, Icon, Table } from 'antd';
 import { filter } from 'graphql-anywhere';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import {
   Colors as ColorsContext,
   Currency as CurrencyContext,

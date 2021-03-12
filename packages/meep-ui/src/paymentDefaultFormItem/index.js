@@ -4,7 +4,7 @@ import { areEqual, UserAgent } from 'fbjs';
 import radium from 'radium';
 import { Form, Select, Collapse } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';

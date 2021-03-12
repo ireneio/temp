@@ -13,7 +13,7 @@
     "@admin/hooks": "^0.79.11",
     "@meepshop/icons": "^0.79.11",
     "@meepshop/link": "^0.79.11",
-    "@meepshop/utils": "^0.79.11"
+    "@meepshop/locales": "^0.79.12"
   },
   "keywords": ["admin", "setting"]
 }

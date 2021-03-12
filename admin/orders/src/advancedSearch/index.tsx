@@ -5,7 +5,7 @@ import { OrdersQueryResult } from '../constants';
 import React, { useState } from 'react';
 import { Popover, Divider, Button } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import { ADVANCED_SEARCH_ITEMS } from '../constants';
 import Select from './Select';

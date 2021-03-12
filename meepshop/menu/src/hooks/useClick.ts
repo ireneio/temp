@@ -2,7 +2,7 @@
 import { useContext, useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
 import CartContext from '@meepshop/cart';
 

@@ -12,6 +12,7 @@
     "@meepshop/context": "^0.79.11",
     "@meepshop/images": "^0.79.11",
     "@meepshop/link": "^0.79.11",
+    "@meepshop/locales": "^0.79.12",
     "@meepshop/switch": "^0.79.11",
     "@meepshop/utils": "^0.79.11",
     "color": "^3.0.0"

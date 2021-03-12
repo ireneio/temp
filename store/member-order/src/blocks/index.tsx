@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 
 import PaymentInfo from './paymentInfo';

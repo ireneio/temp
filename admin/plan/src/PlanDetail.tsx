@@ -6,7 +6,7 @@ import { SelectedPlanType } from './hooks/usePayment';
 import React, { useState } from 'react';
 import { Popover, Icon, Button } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { planBlueBackground, planGoldBackground } from '@meepshop/images';
 
 import styles from './styles/planDetail.less';

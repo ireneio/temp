@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Button } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { uploadPicture_w100 as uploadPicture } from '@meepshop/images';
 
 import Card from './Card';

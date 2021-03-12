@@ -5,7 +5,7 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 import React from 'react';
 import { Button, Form, Input } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import useResetPassword from './hooks/useResetPassword';
 import styles from './styles/index.less';

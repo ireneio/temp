@@ -1,5 +1,5 @@
 // typescript import
-import { languageType } from '@meepshop/utils/lib/i18n';
+import { languageType } from '@meepshop/locales';
 
 import { OrdersQueryResult } from './constants';
 
@@ -7,7 +7,7 @@ import { OrdersQueryResult } from './constants';
 import React from 'react';
 import { Tag } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import { TAGS_KEYS } from './constants';
 import emptyArrayToUndefined from './utils/emptyArrayToUndefined';

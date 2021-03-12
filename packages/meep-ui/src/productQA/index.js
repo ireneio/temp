@@ -5,7 +5,7 @@ import { Form, List, Input, Button, message } from 'antd';
 import moment from 'moment';
 
 import { useAutoLinker } from '@meepshop/hooks';
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import { ViewReplyIcon } from '@meepshop/icons';
 import { useValidateEmail } from '@meepshop/validator';
 import withHook from '@store/utils/lib/withHook';

@@ -16,7 +16,7 @@ import {
 } from 'antd';
 import moment from 'moment';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 import AddressCascader, {
   validateAddressCascader,

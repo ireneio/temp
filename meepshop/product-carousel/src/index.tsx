@@ -1,5 +1,5 @@
 // typescript import
-import { languageType } from '@meepshop/utils/lib/i18n';
+import { languageType } from '@meepshop/locales';
 import { Carousel as AntdCarousel } from 'antd';
 
 // import
@@ -7,7 +7,7 @@ import React, { useRef } from 'react';
 import { filter } from 'graphql-anywhere';
 
 import Carousel from '@meepshop/carousel';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import useImages from './hooks/useImages';
 import useSlickActive from './hooks/useSlickActive';

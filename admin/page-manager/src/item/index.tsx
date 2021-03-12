@@ -1,5 +1,5 @@
 // typescript import
-import { languageType } from '@meepshop/utils/lib/i18n';
+import { languageType } from '@meepshop/locales';
 
 import useSelectedPageType from '../hooks/useSelectedPage';
 
@@ -8,7 +8,7 @@ import React from 'react';
 import { filter } from 'graphql-anywhere';
 import { Tooltip } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import Switch from '@meepshop/switch';
 
 import PrefixIcon from './PrefixIcon';

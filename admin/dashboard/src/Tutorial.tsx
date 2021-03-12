@@ -3,7 +3,7 @@ import React, { useState, useLayoutEffect } from 'react';
 import { Icon, Tabs, List } from 'antd';
 import { useMutation } from '@apollo/react-hooks';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { meepshopLogo } from '@meepshop/images';
 import Link from '@meepshop/link';
 

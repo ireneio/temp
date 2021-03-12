@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { Query } from '@apollo/react-components';
 import { Button, Form, Input } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import { useValidateEmail } from '@meepshop/validator';
 import withHook from '@store/utils/lib/withHook';
 

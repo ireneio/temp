@@ -6,7 +6,7 @@ import React from 'react';
 import { filter } from 'graphql-anywhere';
 import { Select } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import useOptions, { getQuantityRange } from './hooks/useOptions';
 import styles from './styles/index.less';

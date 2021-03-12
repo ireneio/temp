@@ -5,8 +5,10 @@ const path = require('path');
 require('core-js/modules/es.string.match-all');
 const prettier = require('prettier');
 const outputFileSync = require('output-file-sync');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const execa = require('execa');
 
-const config = require('./.prettierrc');
+const config = require('../.prettierrc');
 
 const getWorkspace = filePath => {
   const workspace = ['store', 'admin', 'meepshop', 'packages'].find(name =>
@@ -18,7 +20,7 @@ const getWorkspace = filePath => {
   return workspace === 'packages' ? 'meepshop' : workspace;
 };
 
-process.argv.slice(2).forEach(filePath => {
+process.argv.slice(2).forEach(async filePath => {
   const absoluteFilePath = path.resolve(filePath);
   const workspace = getWorkspace(absoluteFilePath);
   const content = fs
@@ -56,6 +58,7 @@ import { ${types.join(',')}} from '@meepshop/types/gqls/${workspace}';
         parser: 'typescript',
       }),
     );
+    await execa('git', ['add', absoluteFilePath]);
   } catch (e) {
     throw new Error(`Parser error: ${filePath}, ${content}`);
   }

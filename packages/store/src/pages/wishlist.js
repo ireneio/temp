@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import { Apps as AppsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 import MemberWishlist from '@store/member-wish-list';

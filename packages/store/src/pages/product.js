@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { isEmpty } from 'fbjs';
 import { Spin, Icon } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 
 import * as Utils from 'utils';
 import { Container, Error } from 'components';

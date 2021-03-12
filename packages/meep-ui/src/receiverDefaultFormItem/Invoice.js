@@ -4,7 +4,7 @@ import radium from 'radium';
 import { Form, Input, message, Button } from 'antd';
 import { warning } from 'fbjs';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';

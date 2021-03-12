@@ -3,7 +3,7 @@ import React from 'react';
 import Head from 'next/head';
 
 import { pageNotFound_w635 as pageNotFound } from '@meepshop/images';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 
 import './styles/index.less';
 

@@ -10,7 +10,7 @@ const helmet = require('helmet');
 const uaParser = require('ua-parser-js');
 const { default: nextI18NextMiddleware } = require('next-i18next/middleware');
 
-const { default: nextI18next } = require('@meepshop/utils/lib/i18n');
+const { default: nextI18next } = require('@meepshop/locales');
 const { default: logger } = require('@meepshop/utils/lib/logger');
 
 const { publicRuntimeConfig } = require('../../next.config');

@@ -16,7 +16,7 @@ import { Form, Input, Select, Button, Icon } from 'antd';
 
 import Tooltip from '@admin/tooltip';
 import { AdTrackContext } from '@admin/ad-track';
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { meepshopLogo, loginBackground } from '@meepshop/images';
 
 import useApplicantInitiatesStore from './hooks/useApplicantInitiatesStore';

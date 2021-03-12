@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Button, Icon } from 'antd';
 import gql from 'graphql-tag';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 
 import { enhancer } from 'layout/DecoratorsRoot';

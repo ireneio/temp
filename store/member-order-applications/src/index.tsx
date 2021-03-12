@@ -1,5 +1,5 @@
 // typescript import
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/locales';
 
 // import
 import React, { useContext } from 'react';
@@ -9,7 +9,7 @@ import { Spin, Icon } from 'antd';
 import transformColor from 'color';
 import moment from 'moment';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 
 import Application, { getApplicationStyles } from './Application';

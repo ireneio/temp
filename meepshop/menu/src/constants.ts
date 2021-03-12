@@ -1,5 +1,5 @@
 // import
-import { languages } from '@meepshop/utils/lib/i18n';
+import { languages } from '@meepshop/locales';
 
 // definition
 // TODO: should use enum or union type

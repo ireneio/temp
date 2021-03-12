@@ -11,7 +11,7 @@
     "@meepshop/context": "^0.79.11",
     "@meepshop/images": "^0.79.11",
     "@meepshop/link": "^0.79.11",
-    "@meepshop/utils": "^0.79.11",
+    "@meepshop/locales": "^0.79.12",
     "@store/utils": "^0.79.11",
     "clipboard": "^2.0.1",
     "moment": "^2.22.1"

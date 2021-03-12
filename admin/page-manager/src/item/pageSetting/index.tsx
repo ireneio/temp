@@ -6,7 +6,7 @@ import React from 'react';
 import { filter } from 'graphql-anywhere';
 import { Popover, Tooltip, Icon } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { DefaultLayoutIcon } from '@meepshop/icons';
 
 import Edit from './Edit';

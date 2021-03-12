@@ -3,7 +3,7 @@ import { DataProxy } from 'apollo-cache';
 import { MutationFunction } from '@apollo/react-common';
 import { FormComponentProps } from 'antd/lib/form';
 
-import { I18nPropsType } from '@meepshop/utils/lib/i18n';
+import { I18nPropsType } from '@meepshop/locales';
 import { ColorsType } from '@meepshop/context';
 
 // import
@@ -12,7 +12,7 @@ import { Mutation } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Form, Input, Button, notification } from 'antd';
 
-import { withTranslation } from '@meepshop/utils/lib/i18n';
+import { withTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 

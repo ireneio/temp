@@ -11,7 +11,7 @@ import { notification } from 'antd';
 import moment from 'moment';
 
 import ActionButton from '@meepshop/action-button';
-import { appWithTranslation } from '@meepshop/utils/lib/i18n';
+import { appWithTranslation } from '@meepshop/locales';
 import logger from '@meepshop/utils/lib/logger';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';

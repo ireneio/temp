@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import { Button, Modal, Input, Form, notification } from 'antd';
 import { filter } from 'graphql-anywhere';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import Tooltip from '@admin/tooltip';
 
 import useCreateRoutingRule from './hooks/useCreateRoutingRule';

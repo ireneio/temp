@@ -6,7 +6,7 @@ import React, { useState, useContext } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Spin, Icon, Form, Input, Button, Modal, notification } from 'antd';
 
-import { useTranslation } from '@meepshop/utils/lib/i18n';
+import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 
 import { DEFAULT_MESSAGE } from './constants';
