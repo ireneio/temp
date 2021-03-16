@@ -2,25 +2,26 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { productSpecSelectorFragment } from '@meepshop/product-spec-selector/gqls';
-
-import { titleProductFragment } from './title';
+import { titleProductFragment, titleVariantFragment } from './title';
 
 // definition
-export const mobileSpecSelectorFragment = gql`
-  fragment mobileSpecSelectorFragment on Product {
+export const mobileSpecSelectorProductFragment = gql`
+  fragment mobileSpecSelectorProductFragment on Product {
     id
-
-    variants {
+    specs {
       id
-      minPurchaseItems
-      maxPurchaseLimit
     }
-
-    ...productSpecSelectorFragment
     ...titleProductFragment
   }
 
   ${titleProductFragment}
-  ${productSpecSelectorFragment}
+`;
+
+export const mobileSpecSelectorVariantFragment = gql`
+  fragment mobileSpecSelectorVariantFragment on Variant {
+    id
+    ...titleVariantFragment
+  }
+
+  ${titleVariantFragment}
 `;

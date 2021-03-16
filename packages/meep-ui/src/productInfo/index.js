@@ -11,8 +11,9 @@ import { AdTrack as AdTrackContext } from '@meepshop/context';
 import CartContext from '@meepshop/cart';
 import ProductSpecSelector from '@meepshop/product-spec-selector';
 import withContext from '@store/utils/lib/withContext';
+import withHook from '@store/utils/lib/withHook';
 import MobileSpecSelector from '@meepshop/product-info/lib/mobileSpecSelector';
-import { getQuantityRange } from '@meepshop/product-amount-selector/lib/hooks/useOptions';
+import useVariant from '@meepshop/product-info/lib/hooks/useVariant';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
@@ -27,12 +28,20 @@ import { PRODUCT_TYPE, LIMITED, ORDERABLE, OUT_OF_STOCK } from './constants';
 @withTranslation('product-info')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withContext(CartContext)
+@withHook(({ productData, carts }) =>
+  useVariant(productData, {
+    data: [
+      {
+        ...carts,
+        categories: [carts?.categories],
+      },
+    ],
+  }),
+)
 @enhancer
 @radium
 export default class ProductInfo extends React.PureComponent {
   name = 'product-info';
-
-  isViewProduct = false;
 
   static propTypes = {
     adTrack: PropTypes.shape({}).isRequired,
@@ -65,8 +74,8 @@ export default class ProductInfo extends React.PureComponent {
   };
 
   state = {
-    quantity: 0,
-    variant: null,
+    // eslint-disable-next-line react/destructuring-assignment
+    quantity: this.props.min,
     isAddingItem: false,
     isDrawerOpen: false,
     isModalOpen: false,
@@ -79,14 +88,13 @@ export default class ProductInfo extends React.PureComponent {
         orderable: OUT_OF_STOCK,
       };
 
-    const { id, stock, maxPurchaseLimit, minPurchaseItems } = variant;
-    const { max } = getQuantityRange(variant);
-    const productNotice = stockNotificationList.some(
-      item => item.variantId === variant.id,
-    );
+    const { max, quantityInCart } = this.props;
+    const { stock, maxPurchaseLimit, minPurchaseItems } = variant;
     const formatVariant = {
       ...variant,
-      productNotice,
+      productNotice: stockNotificationList.some(
+        item => item.variantId === variant.id,
+      ),
     };
 
     if (max === 0)
@@ -95,12 +103,7 @@ export default class ProductInfo extends React.PureComponent {
         orderable: OUT_OF_STOCK,
       };
 
-    const variantInCart = carts?.categories.products.find(
-      product => product.variantId === id,
-    );
-    const quantityInCart = variantInCart?.quantity || 0;
-
-    if (quantityInCart > max)
+    if (quantityInCart >= max)
       return {
         formatVariant,
         orderable: LIMITED,
@@ -123,13 +126,31 @@ export default class ProductInfo extends React.PureComponent {
     };
   });
 
+  componentDidMount() {
+    const { adTrack, productData, variant } = this.props;
+
+    if (productData && variant)
+      adTrack.viewProduct({
+        id: productData.id,
+        title: productData.title,
+        price: variant.totalPrice,
+      });
+  }
+
   onChangeQuantity = value => {
     this.setState({ quantity: value });
   };
 
   addToCart = async () => {
-    const { t, adTrack, productData, type, addProductToCart } = this.props;
-    const { variant, quantity } = this.state;
+    const {
+      t,
+      adTrack,
+      productData,
+      type,
+      addProductToCart,
+      variant,
+    } = this.props;
+    const { quantity } = this.state;
 
     this.setState({ isAddingItem: true });
     await addProductToCart({
@@ -229,9 +250,8 @@ export default class ProductInfo extends React.PureComponent {
   onChangeVariant = variant => {
     if (!variant) return;
 
-    const { adTrack, productData } = this.props;
+    const { setVariant, min, max } = this.props;
     const { quantity } = this.state;
-    const { min, max } = getQuantityRange(variant);
     const newQuantity = (() => {
       if (max === 0) return quantity;
 
@@ -242,19 +262,8 @@ export default class ProductInfo extends React.PureComponent {
       return quantity;
     })();
 
-    this.setState({
-      variant,
-      quantity: newQuantity,
-    });
-
-    if (this.isViewProduct) return;
-
-    adTrack.viewProduct({
-      id: productData.id,
-      title: productData.title,
-      price: variant.totalPrice,
-    });
-    this.isViewProduct = true;
+    setVariant(variant);
+    this.setState({ quantity: newQuantity });
   };
 
   render() {
@@ -274,15 +283,12 @@ export default class ProductInfo extends React.PureComponent {
       isMobile,
       carts,
       stockNotificationList,
-    } = this.props;
-    const {
-      quantity,
       variant,
-      isAddingItem,
-      isModalOpen,
-      isDrawerOpen,
-    } = this.state;
-    const { name, onChangeQuantity, addToCart, addToNotificationList } = this;
+      min,
+      max,
+      quantityInCart,
+    } = this.props;
+    const { quantity, isAddingItem, isModalOpen, isDrawerOpen } = this.state;
     const { formatVariant, orderable } = this.format(
       carts,
       stockNotificationList,
@@ -290,13 +296,13 @@ export default class ProductInfo extends React.PureComponent {
     );
 
     return (
-      <div style={styles.root(mode)} className={name}>
+      <div style={styles.root(mode)} className={this.name}>
         <Style
-          scopeSelector={`.${name}`}
+          scopeSelector={`.${this.name}`}
           rules={styles.infoStyle(colors, showButton)}
         />
         <Modal
-          className={name}
+          className={this.name}
           visible={isModalOpen}
           onOk={() => {
             goTo({ pathname: '/login' });
@@ -334,8 +340,8 @@ export default class ProductInfo extends React.PureComponent {
               orderable={orderable}
               quantity={quantity}
               colors={colors}
-              onChangeQuantity={onChangeQuantity}
-              name={name}
+              onChangeQuantity={this.onChangeQuantity}
+              name={this.name}
               container={container}
               unfoldedVariants={showButton}
             />
@@ -347,8 +353,8 @@ export default class ProductInfo extends React.PureComponent {
             orderable={orderable}
             openModal={() => this.setState({ isModalOpen: true })}
             openDrawer={() => this.setState({ isDrawerOpen: true })}
-            addToCart={addToCart}
-            addToNotificationList={addToNotificationList}
+            addToCart={this.addToCart}
+            addToNotificationList={this.addToNotificationList}
             colors={colors}
             hasStoreAppPlugin={hasStoreAppPlugin}
             isLogin={isLogin}
@@ -364,15 +370,21 @@ export default class ProductInfo extends React.PureComponent {
             <MobileSpecSelector
               product={productData}
               variant={variant}
-              unfoldedVariantsOnMobile={unfoldedVariantsOnMobile}
               visible={isDrawerOpen}
-              orderable={orderable}
-              quantity={quantity}
-              addToCart={addToCart}
               onClose={() => this.setState({ isDrawerOpen: false })}
-              onChangeVariant={this.onChangeVariant}
-              onChangeQuantity={onChangeQuantity}
-            />
+              addProductToCart={this.addToCart}
+              min={min > quantityInCart ? min - quantityInCart : 1}
+              max={max > quantityInCart ? max - quantityInCart : 0}
+              quantity={quantity}
+              onChangeQuantity={this.onChangeQuantity}
+            >
+              <ProductSpecSelector
+                product={productData}
+                unfoldedVariants={unfoldedVariantsOnMobile}
+                value={variant}
+                onChange={this.onChangeVariant}
+              />
+            </MobileSpecSelector>
           )}
         </StyleRoot>
       </div>

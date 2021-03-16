@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+import { productAmountSelectorFragment } from '@meepshop/product-amount-selector/gqls';
 
 import { couponStatusFragment } from './couponStatus';
 import { useVariantOptionsFragment } from './useVariantOptions';
@@ -27,6 +28,7 @@ export const shoppingOrderFragment = gql`
 
 export const shoppingLandingPageModuleFragment = gql`
   fragment shoppingLandingPageModuleFragment on LandingPageModule {
+    id
     quantity {
       required
     }
@@ -38,6 +40,7 @@ export const shoppingLandingPageModuleFragment = gql`
       variants {
         id
         totalPrice
+        ...productAmountSelectorFragment
       }
 
       ...useVariantOptionsFragment
@@ -46,4 +49,5 @@ export const shoppingLandingPageModuleFragment = gql`
 
   ${localeFragment}
   ${useVariantOptionsFragment}
+  ${productAmountSelectorFragment}
 `;

@@ -15,7 +15,7 @@ import {
 // typescript definition
 interface PropsType {
   product: titleProductFragment;
-  variant: titleVariantFragment;
+  variant: titleVariantFragment | null;
 }
 
 // definition
@@ -29,13 +29,13 @@ export default React.memo(({ product, variant }: PropsType) => {
       <div className={styles.description}>
         <div className={styles.title}>{product.title?.zh_TW || ''}</div>
         <div className={styles.other}>
-          {!variant.listPrice ? '' : c(variant.listPrice)}
+          {!variant?.listPrice ? '' : c(variant.listPrice)}
         </div>
         <div className={styles.other}>
-          {!variant.suggestedPrice ? '' : c(variant.suggestedPrice)}
+          {!variant?.suggestedPrice ? '' : c(variant.suggestedPrice)}
         </div>
         <div className={styles.price}>
-          {!variant.totalPrice ? '' : c(variant.totalPrice)}
+          {!variant?.totalPrice ? '' : c(variant.totalPrice)}
         </div>
       </div>
     </div>

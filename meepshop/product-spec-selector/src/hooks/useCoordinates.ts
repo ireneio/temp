@@ -4,7 +4,7 @@ import { HierarchyNode } from 'd3-hierarchy';
 import { DefaultLeaf } from '@meepshop/hooks/lib/useVariantsTree';
 
 // import
-import { useRef, useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 
 import useVariantsTree from '@meepshop/hooks/lib/useVariantsTree';
 
@@ -19,10 +19,14 @@ export interface Leaf extends DefaultLeaf {
   variant?: useCoordinatesFragmentVariants;
 }
 
-export interface CoordinatesArguType {
-  product: useCoordinatesFragment;
-  value?: useCoordinatesFragmentVariants | null;
-  onChange?: (value: CoordinatesArguType['value']) => void;
+export interface CoordinatesArguType<
+  P extends useCoordinatesFragment = useCoordinatesFragment
+> {
+  product: P;
+  value?: NonNullable<NonNullable<P['variants']>[number]> | null;
+  onChange?: (
+    value: NonNullable<NonNullable<P['variants']>[number]> | null,
+  ) => void;
 }
 
 export interface CoordinatesReturnType {
@@ -56,7 +60,6 @@ export default ({
   value,
   onChange,
 }: CoordinatesArguType): CoordinatesReturnType => {
-  const isMountedRef = useRef(false);
   const variantsTree = useVariantsTree<Leaf>(product);
   const [coordinatesInState, setCoordinatesInState] = useState<
     CoordinatesReturnType['coordinates']
@@ -79,9 +82,9 @@ export default ({
     (coordinates: CoordinatesReturnType['coordinates']) => {
       if (onChange)
         onChange(
-          !variantsTree
+          (!variantsTree
             ? product?.variants?.[0]
-            : findVariant(variantsTree, coordinates),
+            : findVariant(variantsTree, coordinates)) || null,
         );
     },
     [product, onChange, variantsTree],
@@ -91,8 +94,6 @@ export default ({
     : [coordinatesFromProps, setCoordinatesFromProps];
 
   useEffect(() => {
-    if (!isMountedRef.current && onChange) setCoordinates(coordinates);
-
     if (!variantsTree) {
       if (coordinates.length !== 0) setCoordinates([]);
     } else if (coordinates.length === 0) {
@@ -109,8 +110,6 @@ export default ({
         ),
       );
     }
-
-    isMountedRef.current = true;
   }, [value, onChange, variantsTree, coordinates, setCoordinates]);
 
   return {

@@ -20,7 +20,7 @@ import { useOptionsVariantFragment } from './gqls/useOptions';
 // typescript definition
 export interface PropsType
   extends Omit<
-    SelectProps,
+    SelectProps<number>,
     | 'notFoundContent'
     | 'dropdownMatchSelectWidth'
     | 'showSearch'
@@ -47,7 +47,7 @@ const ProductAmountSelector = React.memo(
         className={`${styles.root} ${className || ''}`}
         ref={forwardedRef}
         onChange={(
-          ...argu: Parameters<NonNullable<SelectProps['onChange']>>
+          ...argu: Parameters<NonNullable<SelectProps<number>['onChange']>>
         ) => {
           if (onChange) onChange(...argu);
 

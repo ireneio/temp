@@ -29,6 +29,8 @@ import {
 } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
+import { productAmountSelectorFragment } from '@meepshop/product-amount-selector/gqls';
+
 import { couponStatusFragment } from './gqls/couponStatus';
 
 // typescript definition
@@ -131,7 +133,7 @@ export default React.memo(
               ],
             })(
               <ProductAmountSelector
-                variant={variant}
+                variant={filter(productAmountSelectorFragment, variant)}
                 onChange={(value: number) => {
                   if (!variant) return;
 
