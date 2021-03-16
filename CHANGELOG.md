@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 0.79.13 (2021-03-16)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1455](https://github.com/meepshop/meep-lerna/pull/1455) (@meepshop/frontend) Move i18n to locales ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1439](https://github.com/meepshop/meep-lerna/pull/1439) 【BUG】訂單管理列表 hover 顏色未按照色彩計畫 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1450](https://github.com/meepshop/meep-lerna/pull/1450) 第三方服務延後載入 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#1453](https://github.com/meepshop/meep-lerna/pull/1453) 【BUG】 商品頁開啟或重整會出現一秒庫存不足，才恢復正常 ([@HsuTing](https://github.com/HsuTing))
+  - [#1445](https://github.com/meepshop/meep-lerna/pull/1445) 【BUG】前台未觸發的 StoreAdTrack ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.79.12 (2021-03-11)
 
 #### :rocket: New Feature
