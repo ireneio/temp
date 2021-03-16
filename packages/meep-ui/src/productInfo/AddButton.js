@@ -6,6 +6,8 @@ import gql from 'graphql-tag';
 
 import { withTranslation } from '@meepshop/locales';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
+import { AdTrack as AdTrackContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
@@ -16,6 +18,7 @@ import styles from './styles/addButton.less';
 import { VARIANT_TYPE, ORDERABLE_TYPE } from './constants';
 
 @withTranslation('product-info')
+@withContext(AdTrackContext, adTrack => ({ adTrack }))
 @enhancer
 export default class AddButton extends React.Component {
   state = {
@@ -150,7 +153,7 @@ export default class AddButton extends React.Component {
   };
 
   addProductLToWishList = () => {
-    const { user, productId } = this.props;
+    const { adTrack, user, productId } = this.props;
 
     return initApollo({ name: 'store' }).mutate({
       mutation: gql`
@@ -193,6 +196,7 @@ export default class AddButton extends React.Component {
             ],
           },
         });
+        adTrack.addToWishList();
       },
     });
   };
