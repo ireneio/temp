@@ -27,7 +27,12 @@ export default React.memo(
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-      setIsLoaded(true);
+      const load = (): void => {
+        setIsLoaded(true);
+        window.removeEventListener('load', load);
+      };
+
+      window.addEventListener('load', load);
     }, []);
 
     return (
