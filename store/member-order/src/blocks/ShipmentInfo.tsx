@@ -9,52 +9,45 @@ import { shipmentInfoFragment as shipmentInfoFragmentType } from '@meepshop/type
 // typescript definition
 interface PropsType {
   shipmentInfo: shipmentInfoFragmentType;
-  cvsShipmentNo?: string | null;
 }
 
 // definition
 export default React.memo(
-  ({
-    shipmentInfo: { template, number, recipient, description },
-    cvsShipmentNo,
-  }: PropsType) => {
+  ({ shipmentInfo: { number, recipient, description } }: PropsType) => {
     const { t } = useTranslation('member-order');
     const receiverStoreName = recipient?.receiverStoreName;
-    const isAllpay = template === 'allpay';
 
     return (
       <>
-        <div>
-          {!number && !cvsShipmentNo ? null : (
+        {!number ? null : (
+          <div>
+            {t('blocks.shipment.number')}
+
+            {number}
+          </div>
+        )}
+
+        {!receiverStoreName ? null : (
+          <div>
             <div>
-              {t('blocks.shipment.number')}
+              {t('blocks.shipment.store.id')}
 
-              {isAllpay ? cvsShipmentNo : number}
+              {recipient?.receiverStoreID}
             </div>
-          )}
 
-          {!receiverStoreName ? null : (
-            <>
-              <div>
-                {t('blocks.shipment.store.id')}
+            <div>
+              {t('blocks.shipment.store.name')}
 
-                {recipient?.receiverStoreID}
-              </div>
+              {receiverStoreName}
+            </div>
 
-              <div>
-                {t('blocks.shipment.store.name')}
+            <div>
+              {t('blocks.shipment.store.address')}
 
-                {receiverStoreName}
-              </div>
-
-              <div>
-                {t('blocks.shipment.store.address')}
-
-                {recipient?.receiverStoreAddress}
-              </div>
-            </>
-          )}
-        </div>
+              {recipient?.receiverStoreAddress}
+            </div>
+          </div>
+        )}
 
         {!description ? null : <pre>{description}</pre>}
       </>

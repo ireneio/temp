@@ -126,9 +126,7 @@ export default React.memo(
             <div className={`${styles.description} ${styles.border}`}>
               <ShipmentInfo
                 shipmentInfo={filter(shipmentInfoFragment, shipmentObj)}
-                cvsShipmentNo={latestLogisticTracking?.cvsShipmentNo}
               />
-
               {!latestLogisticTracking ? null : (
                 <LogisticTracking
                   latestLogisticTracking={filter(

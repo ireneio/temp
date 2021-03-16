@@ -11,21 +11,16 @@ import { invoiceInfoFragment } from '../invoiceInfo/gqls';
 export const blocksFragment = gql`
   fragment blocksFragment on Order {
     id
-    status
-
     userInfo {
       name
       email
       mobile
     }
-
     address {
       fullAddress
     }
-
     shipmentInfo {
       status
-
       list {
         id
         name
@@ -35,37 +30,29 @@ export const blocksFragment = gql`
           mobile
           comment
         }
-
         storeShipmentDetails {
           id
           searchLink
         }
-
         ...shipmentInfoFragment
       }
     }
-
     paymentInfo {
       id
       status
-
       list {
         id
         name
       }
     }
-
     invoices {
       ...invoiceInfoFragment
     }
-
+    status
+    ...paymentInfoFragment
     latestLogisticTracking {
-      cvsShipmentNo
-
       ...logisticTrackingFragment
     }
-
-    ...paymentInfoFragment
   }
 
   ${paymentInfoFragment}
