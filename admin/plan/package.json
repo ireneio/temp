@@ -4,16 +4,16 @@
   "description": "Admin plan list",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.11",
+  "version": "0.79.13",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/tap-pay": "^0.79.11",
-    "@admin/utils": "^0.79.11",
-    "@meepshop/context": "^0.79.11",
+    "@admin/tap-pay": "^0.79.13",
+    "@admin/utils": "^0.79.13",
+    "@meepshop/context": "^0.79.13",
     "@meepshop/images": "^0.79.11",
-    "@meepshop/link": "^0.79.11",
-    "@meepshop/locales": "^0.79.12"
+    "@meepshop/link": "^0.79.13",
+    "@meepshop/locales": "^0.79.13"
   },
   "keywords": ["admin", "plan"]
 }
