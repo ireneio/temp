@@ -67,7 +67,9 @@ export default React.memo(() => {
               color: ${colors[3]};
             }
 
-            .${styles.root} .ant-table-tbody > tr:hover > td {
+            .${
+              styles.root
+            } .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
               background: ${transformColor(colors[4]).alpha(0.1)};
             }
 
