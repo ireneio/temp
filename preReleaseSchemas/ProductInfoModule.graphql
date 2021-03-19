@@ -1,4 +1,0 @@
-extend type ProductInfoModule {
-  stockNotifications: [StockNotification]
-  cart: OrderList
-}
