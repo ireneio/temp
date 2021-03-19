@@ -66,7 +66,7 @@ export default ({ pageId }: { pageId: string }): ReturnType => {
       initService().then(result => {
         const queryId =
           result.data?.requestFetchSmartConversionModuleGAData.queryId;
-        if (queryId) queryService({ variables: { pageId, queryId } });
+        if (queryId) queryService({ variables: { queryId } });
       });
   }, [pageId, isOnGoing, initService, queryService]);
 

@@ -60,10 +60,8 @@ export const requestFetchSmartConversionModuleGAData = gql`
 `;
 
 export const smartConversionModuleProcessorService = gql`
-  query smartConversionModuleProcessorService($pageId: ID!, $queryId: ID!) {
-    smartConversionModuleProcessorService(
-      input: { pageId: $pageId, queryId: $queryId }
-    ) {
+  query smartConversionModuleProcessorService($queryId: ID!) {
+    smartConversionModuleProcessorService(queryId: $queryId) {
       status
       smartConversionModule {
         ...useSmartConversionModuleFragment
