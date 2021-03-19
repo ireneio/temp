@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.79.14 (2021-03-19)
+
+#### :rocket: New Feature
+
+- [#1460](https://github.com/meepshop/meep-lerna/pull/1460) 【優化】後台/訂單明細新增 & 同步：綠界物流編號、配送單號 ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- [#1465](https://github.com/meepshop/meep-lerna/pull/1465) Internal - (@admin/smart-conversion-analysis): fix gqls ([@piovischioh](https://github.com/piovischioh))
+- [#1464](https://github.com/meepshop/meep-lerna/pull/1464) (@meepshop/frontend) Remove pre-release schema ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1465](https://github.com/meepshop/meep-lerna/pull/1465) Internal - (@admin/smart-conversion-analysis): fix gqls ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.79.13 (2021-03-16)
 
 #### :rocket: New Feature
