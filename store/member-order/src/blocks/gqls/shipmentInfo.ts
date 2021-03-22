@@ -5,7 +5,6 @@ import gql from 'graphql-tag';
 export const shipmentInfoFragment = gql`
   fragment shipmentInfoFragment on shipmentObjectType {
     id
-    template
     number
     recipient {
       receiverStoreName
