@@ -27,7 +27,7 @@ import styles from './styles/index.less';
 import notMemoizedGetMenuStyles from './utils/getMenuStyles';
 import notMemoizedGetAllKeys from './utils/getAllKeys';
 
-export handleModuleData from './utils/handleModuleData';
+export { default as handleModuleData } from './utils/handleModuleData';
 
 @enhancer
 export default class Menu extends React.PureComponent {

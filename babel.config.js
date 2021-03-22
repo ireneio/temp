@@ -1,61 +1,9 @@
-const path = require('path');
-
-const findPkgDir = require('find-pkg-dir');
 const kebabCase = require('lodash.kebabcase');
 const { parse: lessParser } = require('postcss-less');
 
-const handleCssRelativePath = (css, filePath) => {
-  if (process.env.NODE_ENV !== 'test') return css;
-
-  return css.replace(/@import ['"](.*)['"];/g, (match, p1) => {
-    try {
-      require.resolve(p1.replace(/~/g, ''));
-
-      return match;
-    } catch (e) {
-      return match.replace(p1, path.resolve(path.dirname(filePath), p1));
-    }
-  });
-};
-
-const preprocessCss = (css, filePath) => {
-  const newCss = handleCssRelativePath(css, filePath);
-
-  if (/ignore meepshop id/.test(newCss)) return newCss;
-
-  if (/@import/.test(newCss))
-    return `${newCss.replace(/(@import.*;\n?)+/, '$&:global(#meepshop) {')}}`;
-
-  return `:global(#meepshop) { ${newCss} }`;
-};
-
-const generateScopedName = (name, filePath) => {
-  const pkgDir = findPkgDir(filePath);
-  // eslint-disable-next-line global-require, import/no-dynamic-require
-  const { name: pkgName } = require(path.resolve(pkgDir, './package.json'));
-
-  return `${pkgName.replace(/^@/, '').replace(/\//g, '-')}__${path
-    .relative(pkgDir, filePath)
-    .replace(/(src\/|styles\/)/g, '')
-    .replace(/\//g, '-')
-    .replace(/\.less$/, '')}__${name}`;
-};
-
-const modulesGqlsAlias = (() => {
-  // eslint-disable-next-line global-require, import/no-dynamic-require
-  const { dependencies } = require(path.resolve(
-    require.resolve('@meepshop/modules'),
-    '../package.json',
-  ));
-
-  return Object.keys(dependencies).reduce(
-    (result, key) => ({
-      ...result,
-      [`${key}/gqls`]: `${key}/lib/gqls`,
-    }),
-    {},
-  );
-})();
+const generateScopedName = require('./babel/generateScopedName');
+const preprocessCss = require('./babel/preprocessCss');
+const addDisplayName = require('./babel/addDisplayName');
 
 module.exports = {
   presets: [
@@ -67,19 +15,20 @@ module.exports = {
       },
     ],
     '@babel/react',
-    '@babel/preset-typescript',
+    '@babel/typescript',
   ],
   plugins: [
+    addDisplayName,
     '@meepshop/images/babel',
     '@meepshop/icons/babel',
     '@babel/transform-runtime',
     '@babel/proposal-optional-chaining',
     '@babel/proposal-nullish-coalescing-operator',
-    '@babel/proposal-export-default-from', // TODO: remove, typescript not support
+    // TODO: remove, typescript not support
     [
       '@babel/proposal-decorators',
       {
-        legacy: true, // TODO: remove, typescript not support
+        legacy: true,
       },
     ],
     '@babel/proposal-class-properties',
@@ -90,48 +39,25 @@ module.exports = {
         antd: {
           transform: key => `antd/lib/${kebabCase(key)}`,
         },
-        fbjs: {
-          transform: 'fbjs/lib/${member}',
+        '^(fbjs|validator)$': {
+          transform: '${1}/lib/${member}',
         },
-        validator: {
-          transform: 'validator/lib/${member}',
+        '^@(meepshop|store|admin)/(icons|context|hooks|validator)$': {
+          transform: '@${1}/${2}/lib/${member}',
         },
-        '@meepshop/icons': {
-          transform: '@meepshop/icons/lib/${member}',
-        },
-        '@meepshop/context': {
-          transform: '@meepshop/context/lib/${member}',
-        },
-        '@meepshop/hooks': {
-          transform: '@meepshop/hooks/lib/${member}',
-        },
-        '@meepshop/validator': {
-          transform: '@meepshop/validator/lib/${member}',
-        },
-        '@admin/hooks': {
-          transform: '@admin/hooks/lib/${member}',
+        '^@(meepshop|store|admin)/([\\w-]+)/gqls$': {
+          transform: '@${1}/${2}/lib/gqls',
+          skipDefaultConversion: true,
         },
         /* eslint-enable no-template-curly-in-string */
       },
     ],
+    // TODO: remove, only for meep-ui
     [
       'module-resolver',
       {
         root: ['./src'],
         cwd: 'packagejson',
-        alias: {
-          ...modulesGqlsAlias,
-          // FIXME: should auto add or checking
-          '@store/group/gqls': '@store/group/lib/gqls',
-          '@meepshop/page/gqls': '@meepshop/page/lib/gqls',
-          '@meepshop/modules/gqls': '@meepshop/modules/lib/gqls',
-          '@meepshop/form-data/gqls': '@meepshop/form-data/lib/gqls',
-          '@meepshop/thumbnail/gqls': '@meepshop/thumbnail/lib/gqls',
-          '@meepshop/product-amount-selector/gqls':
-            '@meepshop/product-amount-selector/lib/gqls',
-          '@meepshop/product-spec-selector/gqls':
-            '@meepshop/product-spec-selector/lib/gqls',
-        },
       },
     ],
     [
@@ -155,8 +81,5 @@ module.exports = {
       },
     ],
   ],
-  ignore: [
-    '**/__generated__/**',
-    ...(process.env.NODE_ENV === 'test' ? [] : ['**/__tests__/**']),
-  ],
+  ignore: process.env.NODE_ENV === 'test' ? [] : ['**/__tests__/**'],
 };

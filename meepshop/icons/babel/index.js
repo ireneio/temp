@@ -10,6 +10,7 @@ const d3 = require('d3-hierarchy');
 const findCacheDir = require('find-cache-dir');
 
 const svgPlugin = require('./svgPlugin');
+const addDisplayName = require('../../../babel/addDisplayName');
 
 // definition
 const iconList = d3
@@ -40,21 +41,23 @@ const generateIcon = (folder, iconName, path) => {
     .replace(/<\?xml version="1.0" encoding="UTF-8"\?>/, '')
     .replace(/<!-- .* -->/, '')
     .replace(/xmlns:xlink/, 'xmlns');
+  const filePath = nodePath.resolve(folder, iconName.replace(/$/, '.js'));
 
   outputFileSync(
-    nodePath.resolve(folder, iconName.replace(/$/, '.js')),
+    filePath,
     transformSync(
       `import React from 'react';
 import Icon from 'antd/lib/icon';
 
-const Component = React.memo(props => (
+const Svg = React.memo(props => (
   ${content}
 ));
 
 export default React.memo(props => (
-  <Icon {...props} component={Component} />
+  <Icon {...props} component={Svg} />
 ));`,
       {
+        filename: filePath.replace(/lib/g, 'src'),
         configFile: false,
         babelrc: false,
         presets: [
@@ -67,7 +70,7 @@ export default React.memo(props => (
           ],
           '@babel/react',
         ],
-        plugins: [svgPlugin],
+        plugins: [addDisplayName, svgPlugin],
       },
     ).code,
   );

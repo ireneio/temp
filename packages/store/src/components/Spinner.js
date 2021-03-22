@@ -3,7 +3,7 @@ import React from 'react';
 import { useTranslation } from '@meepshop/locales';
 import { spinner_w100 as spinner } from '@meepshop/images';
 
-export default ({ loading, loadingTip }) => {
+export default React.memo(({ loading, loadingTip }) => {
   const { t } = useTranslation('spinner');
 
   return (
@@ -32,4 +32,4 @@ export default ({ loading, loadingTip }) => {
       </div>
     </div>
   );
-};
+});

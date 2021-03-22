@@ -1,7 +1,7 @@
 import 'isomorphic-unfetch';
 import '@store/utils/styles/base.less';
 import React from 'react';
-import App from 'next/app';
+import NextApp from 'next/app';
 import Head from 'next/head';
 import getConfig from 'next/config';
 import { Provider } from 'react-redux';
@@ -51,7 +51,7 @@ Router.onRouteChangeComplete = () => {
   }
 };
 
-class MyApp extends App {
+class App extends NextApp {
   static async getInitialProps({ Component, ctx }) {
     const { req, res, store } = ctx;
     let pageProps = {};
@@ -291,6 +291,6 @@ class MyApp extends App {
 
 export default withApollo(
   withRedux(configureStore)(
-    withReduxSaga(appWithTranslation(withCookies(withDomain(MyApp)))),
+    withReduxSaga(appWithTranslation(withCookies(withDomain(App)))),
   ),
 );

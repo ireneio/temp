@@ -35,7 +35,7 @@ const styles = {
   },
 };
 
-export default class extends React.Component {
+export default class Sitemaps extends React.Component {
   static getInitialProps = async context => {
     const { XMeepshopDomain, userAgent, query } = context;
     const { page = 1 } = query;

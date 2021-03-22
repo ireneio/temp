@@ -8,6 +8,7 @@ module.exports = {
     '^.+\\.tsx?$': 'babel-jest',
   },
   testMatch: [
+    '**/babel/__tests__/*.ts',
     '**/meepshop/**/src/**/__tests__/**/*.{ts,tsx}',
     '**/store/**/src/**/__tests__/**/*.{ts,tsx}',
     '**/admin/**/src/**/__tests__/**/*.{ts,tsx}',
@@ -17,9 +18,9 @@ module.exports = {
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: ['/lib/', '/.next/'],
   collectCoverageFrom: [
+    '**/meepshop/**/src/**/*.{ts,tsx}',
     '**/store/**/src/**/*.{ts,tsx}',
     '**/admin/**/src/**/*.{ts,tsx}',
-    '!**/__generated__/**',
   ],
   coverageReporters: ['html', 'text'],
 };

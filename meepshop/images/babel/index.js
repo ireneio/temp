@@ -16,6 +16,7 @@ const outputFileSync = require('output-file-sync');
 const invariant = require('fbjs/lib/invariant');
 
 const svgPlugin = require('@meepshop/icons/babel/svgPlugin');
+const addDisplayName = require('../../../babel/addDisplayName');
 
 [
   'IMGPROXY_KEY_STAGE',
@@ -110,9 +111,14 @@ const generateCompoent = (imageName, path) => {
     .replace(/<!-- .* -->/, '')
     .replace(/xmlns:xlink/g, 'xmlns')
     .replace(/xlink:href/g, 'xmlns');
+  const filePath = nodePath.resolve(
+    __dirname,
+    '../lib',
+    imageName.replace(/$/, '.js'),
+  );
 
   outputFileSync(
-    nodePath.resolve(__dirname, '../lib', imageName.replace(/$/, '.js')),
+    filePath,
     transformSync(
       `import React from 'react';
 
@@ -120,6 +126,8 @@ export default React.memo(props => (
   ${content}
 ));`,
       {
+        cwd: nodePath.resolve(__dirname, '..'),
+        filename: filePath.replace(/lib/g, 'src'),
         configFile: false,
         babelrc: false,
         presets: [
@@ -132,7 +140,7 @@ export default React.memo(props => (
           ],
           '@babel/react',
         ],
-        plugins: [[svgPlugin, { keepSize: true }]],
+        plugins: [addDisplayName, [svgPlugin, { keepSize: true }]],
       },
     ).code,
   );

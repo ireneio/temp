@@ -10,6 +10,9 @@ import outputFileSync from 'output-file-sync';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore need to use js
 import babel from '../../babel';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore need to use js
+import addDisplayName from '../../../../babel/addDisplayName';
 import testings from './__ignore__/testings';
 
 // definition
@@ -54,7 +57,8 @@ describe('babel', () => {
         filePath,
         transformSync(content, {
           ...babelOptions,
-          plugins: [],
+          filename: filePath.replace(/lib/g, 'src'),
+          plugins: [addDisplayName],
         })?.code,
       );
     });

@@ -6,7 +6,7 @@ import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
-export default class extends React.Component {
+export default class ViewTracking extends React.Component {
   static propTypes = {
     customTracking: PropTypes.objectOf({
       eventLabel: PropTypes.string.isRequired,
