@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.79.15 (2021-03-22)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1407](https://github.com/meepshop/meep-lerna/pull/1407) 內部開單 - 優化前台已售完按鈕樣式 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1454](https://github.com/meepshop/meep-lerna/pull/1454) 【優化】 選選樂的商品顯示會員可見價 ([@happycat6323](https://github.com/happycat6323))
+- `store`
+  - [#1456](https://github.com/meepshop/meep-lerna/pull/1456) 內部開單 - 補齊 next-i18next namespacesRequired ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#1461](https://github.com/meepshop/meep-lerna/pull/1461) 內部開單 - component 自動加上 component name ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1468](https://github.com/meepshop/meep-lerna/pull/1468) Revert 【優化】後台/訂單明細新增 & 同步：綠界物流編號、配送單號 ([@meepshop-bot](https://github.com/meepshop-bot))
+
+#### Committers: 4
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@meepshop-bot](https://github.com/meepshop-bot)
+
 ## 0.79.14 (2021-03-19)
 
 #### :rocket: New Feature
