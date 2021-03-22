@@ -4,12 +4,12 @@
   "description": "Meepshop social thumbs module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.13",
+  "version": "0.79.15",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.79.13",
-    "@meepshop/hooks": "^0.79.13"
+    "@meepshop/context": "^0.79.15",
+    "@meepshop/hooks": "^0.79.15"
   },
   "keywords": ["meepshop", "social thumbs"]
 }
