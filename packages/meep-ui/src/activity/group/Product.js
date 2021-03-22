@@ -11,6 +11,7 @@ import Image from 'image';
 import PopUp from 'productList/PopUp';
 import { ID_TYPE, COLOR_TYPE, POSITIVE_NUMBER_TYPE } from 'constants/propTypes';
 import { PHONE_MEDIA } from 'constants/media';
+import { ISUSER } from 'constants/isLogin';
 
 import * as styles from './styles/product';
 
@@ -96,6 +97,8 @@ export default class Product extends React.PureComponent {
       t,
       i18n,
       product,
+      isLogin,
+      hasStoreAppPlugin,
     } = this.props;
     const { openModal, target, isMobile } = this.state;
 
@@ -119,7 +122,11 @@ export default class Product extends React.PureComponent {
           <div style={styles.productTitle}>
             {title[i18n.language] || title.zh_TW}
           </div>
-          <div style={styles.productPrice}>{transformCurrency(totalPrice)}</div>
+          <div style={styles.productPrice}>
+            {hasStoreAppPlugin('memberSeePrice') && isLogin !== ISUSER
+              ? t('member-see-price')
+              : transformCurrency(totalPrice)}
+          </div>
         </div>
         <div
           style={[
