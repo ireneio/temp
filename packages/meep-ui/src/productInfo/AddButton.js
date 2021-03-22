@@ -140,11 +140,8 @@ export default class AddButton extends React.Component {
 
     return (
       <Button
-        {...config}
-        style={{
-          border: `2px solid ${colors[4]}`,
-          background: '#CCC',
-        }}
+        className={`color-2 color-2-hover ${styles.item} ${styles[mode]}`}
+        size="large"
         disabled
       >
         {t('sold-out')}
