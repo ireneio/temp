@@ -86,6 +86,9 @@ const EnhancedMemberOrderApplications = withTranslation(
   'member-order-applications',
 )(MemberOrderApplications);
 
+// TODO: should use getInitialProps
+export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
+
 export default React.memo(({ orderId }: { orderId: string }) => (
   <Query<getMemberOrderApplications, getMemberOrderApplicationsVariables>
     query={gql`

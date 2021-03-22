@@ -13,6 +13,8 @@ migrate-code:
 	@node ./migration/types.js $(shell git grep -rl __generated__ meepshop admin store packages)
 	@echo "TODO: remove migration/locales.js after PRs which number less then 1455 have already been merged."
 	@node ./migration/locales.js $(shell git grep -rl @meepshop/utils/lib/i18n . ':!./migration/**' ':!Makefile')
+	@echo "TODO: remove migration/namespacesRequired.js after PRs which number less then 1456 have already been merged."
+	@node ./migration/namespacesRequired.js $(shell git grep -rin namespacesRequired . ':!Makefile' ':!*.md' ':!**/__tests__/**' ':!meepshop/locales' ':!**/_app.js' ':!**/_app.tsx' | grep -v 'namespacesRequired: \[]' | grep -v 'namespacesRequired: string\[]' | grep -v 'namespacesRequired?: string\[]' | grep -v import | grep -v 'namespacesRequired,' | grep -v "\[\'@meepshop/locales/namespacesRequired\']")
 
 babel-all:
 	@$(call babel-build,$(BABEL_OPTION),--concurrency 16 $(OPTION))

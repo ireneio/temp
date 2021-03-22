@@ -146,7 +146,7 @@ const SettingThirdParty: NextPage<PropsType> = Form.create<PropsType>()(
 );
 
 SettingThirdParty.getInitialProps = async () => ({
-  namespacesRequired: ['setting-third-party'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default SettingThirdParty;

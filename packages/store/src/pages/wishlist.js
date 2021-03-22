@@ -7,7 +7,7 @@ import { createSelector } from 'reselect';
 import { withTranslation } from '@meepshop/locales';
 import { Apps as AppsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
-import MemberWishlist from '@store/member-wish-list';
+import MemberWishlist, { namespacesRequired } from '@store/member-wish-list';
 
 import * as Utils from 'utils';
 import * as Selectors from 'selectors';
@@ -27,7 +27,7 @@ class Wishlist extends Component {
     return {
       userAgent,
       XMeepshopDomain,
-      namespacesRequired: ['member-wish-list'],
+      namespacesRequired,
     };
   };
 

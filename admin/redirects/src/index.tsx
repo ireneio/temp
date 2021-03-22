@@ -101,7 +101,7 @@ const Redirects: NextPage<PropsType> = React.memo(() => {
 });
 
 Redirects.getInitialProps = async () => ({
-  namespacesRequired: ['redirects'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default Redirects;

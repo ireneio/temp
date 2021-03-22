@@ -76,7 +76,7 @@ const Setting: NextPage<PropsType> = React.memo(
 );
 
 Setting.getInitialProps = async () => ({
-  namespacesRequired: ['setting'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default Setting;

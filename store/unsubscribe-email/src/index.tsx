@@ -58,7 +58,7 @@ const UnsubscribeEmail: NextPage<PropsType> = React.memo(() => {
 });
 
 UnsubscribeEmail.getInitialProps = async () => ({
-  namespacesRequired: ['unsubscribe-email'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default UnsubscribeEmail;

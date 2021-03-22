@@ -43,17 +43,9 @@ const mappingPackageNames: {
     getPackageFolder('@meepshop/next-store'),
     './locales/ducks',
   ),
-  'store/landing-page': path.resolve(
-    getPackageFolder('@meepshop/next-store'),
-    './locales/landing-page',
-  ),
   'store/login': path.resolve(
     getPackageFolder('@meepshop/next-store'),
     './locales/login',
-  ),
-  'store/menu': path.resolve(
-    getPackageFolder('@meepshop/next-store'),
-    './locales/menu',
   ),
   'store/order-product-list': path.resolve(
     getPackageFolder('@meepshop/next-store'),
@@ -70,10 +62,6 @@ const mappingPackageNames: {
   'store/product-list': path.resolve(
     getPackageFolder('@meepshop/next-store'),
     './locales/product-list',
-  ),
-  'store/product-qa': path.resolve(
-    getPackageFolder('@meepshop/next-store'),
-    './locales/product-qa',
   ),
   'store/receiver-default-form-item': path.resolve(
     getPackageFolder('@meepshop/next-store'),

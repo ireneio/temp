@@ -173,7 +173,7 @@ class App extends NextApp {
           ...pageProps,
           namespacesRequired: [
             ...(pageProps.namespacesRequired || []),
-            'common',
+            '@meepshop/locales/namespacesRequired',
           ],
         },
       };

@@ -22,6 +22,9 @@ import { formStoreFragment, formRecipientAddressFragment } from './gqls/form';
 import { useColumnsRecipientAddressFragment } from './gqls/useColumns';
 
 // definition
+// TODO: should use getInitialProps
+export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
+
 export default React.memo(() => {
   const colors = useContext(ColorsContext);
   const { data } = useQuery<getUserRecipientsType>(getUserRecipients);

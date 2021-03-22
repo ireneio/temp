@@ -49,7 +49,7 @@ const SignUpFail: NextPage = React.memo(() => {
 });
 
 SignUpFail.getInitialProps = async () => ({
-  namespacesRequired: ['sign-up-fail'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default SignUpFail;

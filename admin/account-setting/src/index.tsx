@@ -65,7 +65,7 @@ const AccountSetting: NextPage<PropsType> = Form.create<PropsType>()(
 );
 
 AccountSetting.getInitialProps = async () => ({
-  namespacesRequired: ['account-setting'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default AccountSetting;

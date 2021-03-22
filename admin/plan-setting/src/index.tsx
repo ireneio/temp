@@ -29,7 +29,7 @@ const PlanSetting: NextPage<PropsType> = React.memo(() => {
 });
 
 PlanSetting.getInitialProps = async () => ({
-  namespacesRequired: ['plan-setting'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default PlanSetting;

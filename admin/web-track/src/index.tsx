@@ -104,7 +104,7 @@ const WebTrack: NextPage<PropsType> = React.memo(
 );
 
 WebTrack.getInitialProps = async () => ({
-  namespacesRequired: ['web-track'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default WebTrack;

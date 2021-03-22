@@ -37,6 +37,9 @@ const query = gql`
   ${useAdTrackFragment}
 `;
 
+// TODO: should use getInitialProps
+export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
+
 export default React.memo(() => {
   const { t } = useTranslation('thank-you-page');
   const router = useRouter();

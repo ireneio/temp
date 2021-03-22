@@ -187,6 +187,9 @@ class MemberPasswordChange extends React.PureComponent<PropsType> {
   }
 }
 
+// TODO: should use getInitialProps
+export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
+
 export default withTranslation('member-password-change')(
   Form.create<Omit<PropsType, 'colors'>>()(
     withContext(ColorsContext, colors => ({ colors }))(MemberPasswordChange),

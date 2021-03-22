@@ -278,6 +278,9 @@ const EnhancedMemberOrderApply = withTranslation('member-order-apply')(
   withContext(ColorsContext, colors => ({ colors }))(MemberOrderApply),
 );
 
+// TODO: should use getInitialProps
+export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
+
 export default React.memo(
   ({ type, orderId }: { type: 'refund' | 'exchange'; orderId: string }) => (
     <Query<getMemberOrderApply, getMemberOrderApplyVariables>

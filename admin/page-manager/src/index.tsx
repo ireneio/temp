@@ -183,7 +183,7 @@ const PageManager: NextPage<PropsType> = React.memo(
 );
 
 PageManager.getInitialProps = async () => ({
-  namespacesRequired: ['page-manager'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default PageManager;

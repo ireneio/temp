@@ -136,7 +136,7 @@ const SmartConversionAnalysis: NextPage<PropsType> = React.memo(
 );
 
 SmartConversionAnalysis.getInitialProps = async ({ query }) => ({
-  namespacesRequired: ['smart-conversion-analysis'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
   pageId: query.pageId as string,
 });
 

@@ -35,7 +35,10 @@ class App extends NextApp<AppInitialProps> {
     return {
       pageProps: {
         ...pageProps,
-        namespacesRequired: [...(pageProps.namespacesRequired || []), 'common'],
+        namespacesRequired: [
+          ...(pageProps.namespacesRequired || []),
+          '@meepshop/locales/namespacesRequired',
+        ],
       },
     };
   };

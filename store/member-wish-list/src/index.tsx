@@ -23,6 +23,9 @@ import {
 } from './gqls/useColumns';
 
 // definition
+// TODO: should use getInitialProps
+export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
+
 export default React.memo(() => {
   const colors = useContext(ColorsContext);
   const { data } = useQuery<getWishlistType>(getWishlist);

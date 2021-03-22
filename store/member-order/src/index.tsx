@@ -100,6 +100,9 @@ const MemberOrder = React.memo(
 
 const EnhancedMemberOrder = withTranslation('member-order')(MemberOrder);
 
+// TODO: should use getInitialProps
+export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
+
 export default ({ orderId }: { orderId: string }): React.ReactElement => (
   <Query<getMemberOrder, getMemberOrderVariables>
     query={gql`

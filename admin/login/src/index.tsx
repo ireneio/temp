@@ -38,7 +38,7 @@ const LoginWrapper: NextPage<PropsType> = React.memo(
 );
 
 LoginWrapper.getInitialProps = async () => ({
-  namespacesRequired: ['login'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default LoginWrapper;

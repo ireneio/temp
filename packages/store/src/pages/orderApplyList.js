@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { withTranslation } from '@meepshop/locales';
-import MemberOrderApplicatons from '@store/member-order-applications';
+import MemberOrderApplicatons, {
+  namespacesRequired,
+} from '@store/member-order-applications';
 
 import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
@@ -31,7 +33,7 @@ class OrderApplyList extends React.Component {
       orderId,
       userAgent,
       XMeepshopDomain,
-      namespacesRequired: ['member-order-applications'],
+      namespacesRequired,
     };
   };
 

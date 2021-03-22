@@ -136,7 +136,7 @@ const OrderHistoryRecords: NextPage<PropsType> = React.memo(
 );
 
 OrderHistoryRecords.getInitialProps = async () => ({
-  namespacesRequired: ['order-history-records'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default OrderHistoryRecords;

@@ -153,7 +153,7 @@ const Dashboard: NextPage<PropsType> = React.memo(
 );
 
 Dashboard.getInitialProps = async () => ({
-  namespacesRequired: ['dashboard'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default Dashboard;

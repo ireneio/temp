@@ -37,6 +37,9 @@ import { getUserInfo } from './gqls';
 const { Item: FormItem } = Form;
 const { Option } = Select;
 
+// TODO: should use getInitialProps
+export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
+
 export default Form.create<FormComponentProps>()(
   React.memo(({ form }: FormComponentProps) => {
     const { t } = useTranslation('member-settings');

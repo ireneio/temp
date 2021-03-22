@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { withTranslation } from '@meepshop/locales';
-import MemberOrderPayNotify from '@store/member-order-pay-notify';
+import MemberOrderPayNotify, {
+  namespacesRequired,
+} from '@store/member-order-pay-notify';
 
 import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
@@ -31,7 +33,7 @@ class OrderPayNotify extends React.Component {
       orderId,
       userAgent,
       XMeepshopDomain,
-      namespacesRequired: ['member-order-pay-notify'],
+      namespacesRequired,
     };
   };
 

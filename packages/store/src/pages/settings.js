@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { withTranslation } from '@meepshop/locales';
-import MemberSettings from '@store/member-settings';
+import MemberSettings, { namespacesRequired } from '@store/member-settings';
 
 import * as Utils from 'utils';
 import * as Selectors from 'selectors';
@@ -25,7 +25,7 @@ class Settings extends Component {
     return {
       userAgent,
       XMeepshopDomain,
-      namespacesRequired: ['member-settings'],
+      namespacesRequired,
     };
   };
 

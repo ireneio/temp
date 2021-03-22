@@ -28,6 +28,9 @@ interface PropsType extends FormComponentProps {
 }
 
 // definition
+// TODO: should use getInitialProps
+export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
+
 export default Form.create<PropsType>()(
   React.memo(({ orderId, form }: PropsType) => {
     const { t } = useTranslation('member-order-pay-notify');

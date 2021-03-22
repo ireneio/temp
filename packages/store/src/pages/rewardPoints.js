@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { withTranslation } from '@meepshop/locales';
-import MemberRewardPoints from '@store/member-reward-points';
+import MemberRewardPoints, {
+  namespacesRequired,
+} from '@store/member-reward-points';
 
 import * as Utils from 'utils';
 import * as Selectors from 'selectors';
@@ -25,7 +27,7 @@ class RewardPoints extends Component {
     return {
       userAgent,
       XMeepshopDomain,
-      namespacesRequired: ['member-reward-points'],
+      namespacesRequired,
     };
   };
 

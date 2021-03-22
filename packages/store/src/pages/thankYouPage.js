@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 
-import ThankYouPageView from '@store/thank-you-page';
+import ThankYouPageView, { namespacesRequired } from '@store/thank-you-page';
 
 import { Error } from 'components';
 import * as Utils from 'utils';
@@ -21,7 +21,7 @@ class ThankYouPage extends React.Component {
     return {
       userAgent,
       XMeepshopDomain,
-      namespacesRequired: ['thank-you-page'],
+      namespacesRequired,
     };
   };
 

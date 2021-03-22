@@ -99,12 +99,7 @@ const OrdersEcfit: NextPage<PropsType> = React.memo(() => {
 });
 
 OrdersEcfit.getInitialProps = async () => ({
-  namespacesRequired: [
-    'orders-ecfit',
-    'orders',
-    'date-picker',
-    'orders-export',
-  ],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default OrdersEcfit;

@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { withTranslation } from '@meepshop/locales';
-import MemberOrderApply from '@store/member-order-apply';
+import MemberOrderApply, {
+  namespacesRequired,
+} from '@store/member-order-apply';
 
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
@@ -31,7 +33,7 @@ class OrderRefund extends React.Component {
       orderId,
       userAgent,
       XMeepshopDomain,
-      namespacesRequired: ['member-order-apply'],
+      namespacesRequired,
     };
   };
 

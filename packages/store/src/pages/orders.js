@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { withTranslation } from '@meepshop/locales';
-import MemberOrders from '@store/member-orders';
+import MemberOrders, { namespacesRequired } from '@store/member-orders';
 
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
@@ -25,7 +25,7 @@ class Orders extends React.Component {
     return {
       userAgent,
       XMeepshopDomain,
-      namespacesRequired: ['member-orders'],
+      namespacesRequired,
     };
   };
 

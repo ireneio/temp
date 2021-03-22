@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { withTranslation } from '@meepshop/locales';
-import MemberPasswordChange from '@store/member-password-change';
+import MemberPasswordChange, {
+  namespacesRequired,
+} from '@store/member-password-change';
 
 import * as Utils from 'utils';
 import * as Selectors from 'selectors';
@@ -25,7 +27,7 @@ class PasswordChange extends Component {
     return {
       userAgent,
       XMeepshopDomain,
-      namespacesRequired: ['member-password-change'],
+      namespacesRequired,
     };
   };
 

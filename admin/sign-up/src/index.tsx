@@ -208,7 +208,7 @@ const SignUp: NextPage = Form.create<FormComponentProps>()(
 );
 
 SignUp.getInitialProps = async () => ({
-  namespacesRequired: ['sign-up'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default SignUp;

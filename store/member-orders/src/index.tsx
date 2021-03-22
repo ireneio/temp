@@ -26,6 +26,9 @@ import { useColumnsOrdersFragment } from './gqls/useColumns';
 import { changePageFragment } from './gqls/useChangePage';
 
 // definition
+// TODO: should use getInitialProps
+export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
+
 export default React.memo(() => {
   const colors = useContext(ColorsContext);
   const columns = useColumns();

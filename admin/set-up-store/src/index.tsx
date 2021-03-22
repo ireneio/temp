@@ -145,7 +145,7 @@ const SetUpStore: NextPage = Form.create<FormComponentProps>()(
 );
 
 SetUpStore.getInitialProps = async () => ({
-  namespacesRequired: ['set-up-store'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default SetUpStore;

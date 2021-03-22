@@ -144,7 +144,7 @@ const ResetPassword: NextPage<PropsType> = Form.create<PropsType>()(
 );
 
 ResetPassword.getInitialProps = async () => ({
-  namespacesRequired: ['reset-password'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default ResetPassword;

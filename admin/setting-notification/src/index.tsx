@@ -166,7 +166,7 @@ const SettingNotificationPage: NextPage<PropsType> = Form.create<PropsType>()(
 );
 
 SettingNotificationPage.getInitialProps = async () => ({
-  namespacesRequired: ['setting-notification'],
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
 export default SettingNotificationPage;

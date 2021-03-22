@@ -21,6 +21,7 @@ module.exports = {
     addDisplayName,
     '@meepshop/images/babel',
     '@meepshop/icons/babel',
+    '@meepshop/locales/babel',
     '@babel/transform-runtime',
     '@babel/proposal-optional-chaining',
     '@babel/proposal-nullish-coalescing-operator',

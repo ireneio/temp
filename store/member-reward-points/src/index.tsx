@@ -25,6 +25,9 @@ import { getUserRewardPotins } from './gqls';
 import { useColumnsUserPointsFragment } from './gqls/useColumns';
 
 // definition
+// TODO: should use getInitialProps
+export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
+
 export default React.memo(() => {
   const { t } = useTranslation('member-reward-points');
   const { c } = useContext(CurrencyContext);
