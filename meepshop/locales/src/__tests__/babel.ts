@@ -13,11 +13,11 @@ test('babel', () => {
   '@meepshop/locales/namespacesRequired',
 ];`,
       {
-        filename: require.resolve('@meepshop/product-info'),
+        filename: require.resolve('@meepshop/next-admin'),
         configFile: false,
         babelrc: false,
         plugins: [babel],
       },
     )?.code,
-  ).toBe(`["product-info", "product-spec-selector"];`);
+  ).toBe(`["common"];`);
 });
