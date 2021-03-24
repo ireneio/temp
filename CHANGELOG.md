@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.79.16 (2021-03-24)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1470](https://github.com/meepshop/meep-lerna/pull/1470) 【BUG】前台 - 商品頁「可訂購時通知我」按鈕，點選之後，一直 loading ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#1471](https://github.com/meepshop/meep-lerna/pull/1471) (@meepshop/locales) Fix testing error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.15 (2021-03-22)
 
 #### :rocket: New Feature
