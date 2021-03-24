@@ -179,7 +179,7 @@ export default class ProductInfo extends React.PureComponent {
   };
 
   addToNotificationList = async () => {
-    const { isLogin, stockNotificationList } = this.props;
+    const { isLogin, stockNotificationList, variant } = this.props;
 
     switch (isLogin) {
       case ISADMIN:
@@ -187,9 +187,7 @@ export default class ProductInfo extends React.PureComponent {
       case NOTLOGIN:
         this.setState({ isModalOpen: true });
         break;
-      case ISUSER: {
-        const { variant } = this.state;
-
+      case ISUSER:
         this.setState({ isAddingItem: true });
         await initApollo({ name: 'store' }).mutate({
           mutation: gql`
@@ -235,7 +233,6 @@ export default class ProductInfo extends React.PureComponent {
         });
         this.setState({ isAddingItem: false });
         break;
-      }
       default:
         break;
     }
