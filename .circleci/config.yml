@@ -33,6 +33,7 @@ commands:
         type: boolean
         default: true
     steps:
+      - set-npmrc
       - when:
           condition: << parameters.use-yarn >>
           steps:
@@ -60,6 +61,13 @@ commands:
                 key: << parameters.hash >>-{{ checksum "package-lock.json" }}
                 paths:
                   - node_modules
+  set-npmrc:
+    steps:
+      - run:
+          name: Set npmrc
+          command: |
+            echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> ~/.npmrc
+            echo "@meepshop:registry=https://npm.pkg.github.com" >> ~/.npmrc
   lerna-cache:
     parameters:
       use-lerna:
