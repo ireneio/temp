@@ -96,7 +96,8 @@ module.exports = declare(({ assertVersion, types: t }) => {
                 t.isFunctionExpression(
                   path.parentPath.parentPath.get('arguments.0').node,
                 )) &&
-              !path.parentPath.parentPath.get('arguments.0.id').node
+              !path.parentPath.parentPath.get('arguments.0.id').node &&
+              path.node.name === 'memo'
             )
               path.parentPath.parentPath
                 .get('arguments.0.id')

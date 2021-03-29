@@ -56,4 +56,32 @@ main.displayName = "FrontEndBabelAddDisplayName"
 var _default = /*#__PURE__*/main;
 exports["default"] = _default;`,
   ],
+  [
+    `import React from 'react';
+
+export const SubComponent = React.forwardRef(() => {});
+
+export default React.forwardRef(() => {})`,
+    `"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = exports.SubComponent = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var SubComponent = /*#__PURE__*/_react["default"].forwardRef(function () {});
+
+exports.SubComponent = SubComponent;
+SubComponent.displayName = "FrontEndBabelAddDisplayNameSubComponent";
+
+var main = /*#__PURE__*/_react["default"].forwardRef(function () {});
+
+main.displayName = "FrontEndBabelAddDisplayName"
+var _default = /*#__PURE__*/main;
+exports["default"] = _default;`,
+  ],
 ];
