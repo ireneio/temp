@@ -4,14 +4,14 @@
   "description": "Member wish list page for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.15",
+  "version": "0.79.17",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.79.15",
+    "@meepshop/context": "^0.79.17",
     "@meepshop/locales": "^0.79.15",
-    "@meepshop/thumbnail": "^0.79.15",
-    "@store/utils": "^0.79.15",
+    "@meepshop/thumbnail": "^0.79.17",
+    "@store/utils": "^0.79.17",
     "moment": "^2.22.1"
   },
   "keywords": ["member wish list page", "store"]

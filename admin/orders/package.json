@@ -4,17 +4,17 @@
   "description": "admin orders",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.15",
+  "version": "0.79.17",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/date-picker": "^0.79.15",
     "@admin/orders-export": "^0.79.15",
-    "@admin/table": "^0.79.15",
-    "@admin/utils": "^0.79.15",
-    "@meepshop/link": "^0.79.15",
+    "@admin/table": "^0.79.17",
+    "@admin/utils": "^0.79.17",
+    "@meepshop/link": "^0.79.17",
     "@meepshop/locales": "^0.79.15",
-    "@meepshop/utils": "^0.79.15",
+    "@meepshop/utils": "^0.79.17",
     "moment": "^2.22.1"
   },
   "keywords": ["admin", "orders"]

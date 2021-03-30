@@ -4,13 +4,13 @@
   "description": "Admin sign up",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.15",
+  "version": "0.79.17",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/ad-track": "^0.79.11",
-    "@meepshop/images": "^0.79.15",
-    "@meepshop/link": "^0.79.15",
+    "@meepshop/images": "^0.79.17",
+    "@meepshop/link": "^0.79.17",
     "@meepshop/locales": "^0.79.15",
     "@meepshop/validator": "^0.79.15"
   },
