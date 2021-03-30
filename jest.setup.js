@@ -3,6 +3,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
+global.fetch = jest.fn();
 process.on('unhandledRejection', error => {
   throw error;
 });

@@ -39,6 +39,8 @@ else
     resources: {},
   });
 
+export const I18n = i18n;
+
 export default class NextI18Next {
   public withTranslation = withTranslation;
 

@@ -57,7 +57,7 @@ export default React.memo(props => (
   <Icon {...props} component={Svg} />
 ));`,
       {
-        filename: filePath.replace(/lib/g, 'src'),
+        filename: filePath.replace(/(lib|node_modules|\.cache)/g, 'src'),
         configFile: false,
         babelrc: false,
         presets: [
