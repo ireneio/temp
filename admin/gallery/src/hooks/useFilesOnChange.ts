@@ -96,7 +96,7 @@ export default (
 
       await uploadImage({
         variables: {
-          createFileList: data.map(({ id, name, type }) => ({
+          createFileList: data.reverse().map(({ id, name, type }) => ({
             id,
             name,
             type,
