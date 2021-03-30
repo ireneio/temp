@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.79.17 (2021-03-30)
+
+#### :rocket: New Feature
+
+- [#1474](https://github.com/meepshop/meep-lerna/pull/1474) (circleci) Update circleci config ([@meepshop-bot](https://github.com/meepshop-bot))
+
+#### :bug: Bug Fix
+
+- [#1447](https://github.com/meepshop/meep-lerna/pull/1447) 【BUG】 從媒體櫃將圖片選入影像 1＆影像 2 內，圖片排序有 bug - 前端 ([@happycat6323](https://github.com/happycat6323))
+- [#1478](https://github.com/meepshop/meep-lerna/pull/1478) (@meepshop/frontend) Fix build error ([@HsuTing](https://github.com/HsuTing))
+- [#1476](https://github.com/meepshop/meep-lerna/pull/1476) (@meepshop/frontend) Fix component name error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@meepshop-bot](https://github.com/meepshop-bot)
+
 ## 0.79.16 (2021-03-24)
 
 #### :bug: Bug Fix
