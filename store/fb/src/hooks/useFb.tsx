@@ -20,10 +20,15 @@ export default (
       if (!window.FB) return;
 
       setFb(window.FB);
+      events.removeEventListener('fb-loaded', fbLoaded);
     };
 
     fbLoaded();
     events.addEventListener('fb-loaded', fbLoaded);
+
+    return () => {
+      events.removeEventListener('fb-loaded', fbLoaded);
+    };
   }, [events]);
 
   useEffect(() => {

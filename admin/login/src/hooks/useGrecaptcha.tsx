@@ -23,10 +23,15 @@ export default (): {
       window.grecaptcha.render(grecaptchaRef.current, {
         sitekey: '6Lf4iDsUAAAAADGIX1WYcChAZrQNEE36rAu3MkOa',
       });
+      events.removeEventListener('recaptcha-loaded', render);
     };
 
     render();
     events.addEventListener('recaptcha-loaded', render);
+
+    return () => {
+      events.removeEventListener('recaptcha-loaded', render);
+    };
   }, [events]);
 
   return {
