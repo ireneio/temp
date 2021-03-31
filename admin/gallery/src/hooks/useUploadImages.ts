@@ -56,7 +56,7 @@ export default (
                     : {
                         ...cacheData.viewer.files,
                         edges: [
-                          ...createFileList.reverse().map((
+                          ...createFileList.map((
                             // SHOULD_NOT_BE_NULL
                             node: useUploadImagesReadCacheViewerFilesEdgesNode,
                           ) => ({
