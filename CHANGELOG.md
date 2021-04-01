@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.79.18 (2021-04-01)
+
+#### :rocket: New Feature
+
+- [#1484](https://github.com/meepshop/meep-lerna/pull/1484) (@admin/login, @store/fb) Add removeEventListener ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1483](https://github.com/meepshop/meep-lerna/pull/1483) 【BUG】 從媒體櫃將圖片選入影像 1＆影像 2 內，圖片排序有 bug - 前端 ([@meepshop-bot](https://github.com/meepshop-bot))
+- [#1482](https://github.com/meepshop/meep-lerna/pull/1482) Revert 【BUG】 從媒體櫃將圖片選入影像 1＆影像 2 內，圖片排序有 bug - 前端 ([@meepshop-bot](https://github.com/meepshop-bot))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@meepshop-bot](https://github.com/meepshop-bot)
+
 ## 0.79.17 (2021-03-30)
 
 #### :rocket: New Feature
