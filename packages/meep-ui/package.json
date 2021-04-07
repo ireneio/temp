@@ -4,7 +4,7 @@
   "description": "meep-ui for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.17",
+  "version": "0.79.19",
   "dependencies": {
     "@meepshop/address-cascader": "^0.79.17",
     "@meepshop/apollo": "^0.79.17",
