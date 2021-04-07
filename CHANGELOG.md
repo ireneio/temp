@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.79.19 (2021-04-07)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1488](https://github.com/meepshop/meep-lerna/pull/1488) 【BUG】 手機版，使用 Chrome 開啟前台「前往結帳」的按鍵會被遮蔽 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `meep-ui`
+  - [#1488](https://github.com/meepshop/meep-lerna/pull/1488) 【BUG】 手機版，使用 Chrome 開啟前台「前往結帳」的按鍵會被遮蔽 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.79.18 (2021-04-01)
 
 #### :rocket: New Feature
