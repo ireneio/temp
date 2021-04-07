@@ -1,4 +1,4 @@
-@import '../../../constants/styles.less';
+@import '~@store/utils/styles/variables.less';
 
 .root {
   :global(.ant-drawer-header) {
@@ -37,7 +37,7 @@
   &.hasMinHeight {
     min-height: 600px;
 
-    @media @PHONE_MEDIA {
+    @media (max-width: @screen-sm-max) {
       min-height: unset;
     }
   }
@@ -50,7 +50,7 @@
   padding: 20px 0px;
   height: 62px;
 
-  @media @PHONE_MEDIA {
+  @media (max-width: @screen-sm-max) {
     margin: 0px;
     padding: 20px 10px;
   }

@@ -10,7 +10,7 @@ import OrderProductList from 'orderProductList';
 import { ISLOGIN_TYPE, LOCATION_TYPE } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
 
-import * as styles from './styles/productList';
+import styles from './styles/productList.less';
 
 @withTranslation('cart')
 @enhancer
@@ -75,7 +75,7 @@ export default class ProductList extends React.PureComponent {
 
     return (
       <OrderProductList
-        style={styles.root}
+        className={styles.root}
         products={products}
         priceInfo={priceInfo}
         activityInfo={activityInfo}

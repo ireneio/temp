@@ -30,7 +30,7 @@ export default enhancer(
       const columns = useColumns({ productHasError, updateCart, onChange });
 
       return (
-        <div className={`${styles.root} ${className}`} style={style}>
+        <div className={`${styles.root} ${className || ''}`} style={style}>
           <div
             className={`${styles.productList} ${
               products.length !== 0 ? '' : styles.empty

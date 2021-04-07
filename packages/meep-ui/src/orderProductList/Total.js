@@ -6,7 +6,7 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import OrderShowTotal from 'orderShowTotal';
 import { COLOR_TYPE } from 'constants/propTypes';
 
-import * as styles from './styles/total';
+import styles from './styles/total.less';
 
 @enhancer
 @radium
@@ -27,17 +27,41 @@ export default class Total extends React.PureComponent {
     const { colors, children, ...props } = this.props;
 
     return (
-      <div style={styles.root(colors)}>
-        <OrderShowTotal {...props} />
+      <>
+        <div className={styles.root}>
+          <OrderShowTotal {...props} />
 
-        {!children ? null : (
-          <div style={styles.buttonRoot}>
-            {React.cloneElement(children, {
-              style: { ...styles.button(colors), ...children.props.style },
-            })}
-          </div>
-        )}
-      </div>
+          {!children ? null : (
+            <div className={styles.wrapper}>
+              {React.cloneElement(children, {
+                className: styles.button,
+              })}
+            </div>
+          )}
+        </div>
+
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              .${styles.root} {
+                color: ${colors[3]};
+                background: ${colors[0]};
+              }
+
+              .${styles.root} .${styles.button} {
+                color: ${colors[2]};
+                background: ${colors[4]};
+              }
+
+              @media (max-width: ${styles.screenSmMax}) {
+                .${styles.root} {
+                  border-top: 1px solid ${colors[5]};
+                }
+              }
+            `,
+          }}
+        />
+      </>
     );
   }
 }

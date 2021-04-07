@@ -1,4 +1,4 @@
-@import '../../../constants/styles.less';
+@import '~@store/utils/styles/variables.less';
 
 .root {
   display: flex;
@@ -7,7 +7,7 @@
   flex-grow: 1;
   padding: 50px 40px;
 
-  @media @PHONE_MEDIA {
+  @media (max-width: @screen-sm-max) {
     padding: 50px 20px;
     justify-content: flex-start;
   }
@@ -54,14 +54,14 @@
   align-items: center;
   margin-top: 40px;
 
-  @media @PHONE_MEDIA {
+  @media (max-width: @screen-sm-max) {
     display: block;
   }
 
   & > div {
     width: calc(50% - 15px);
 
-    @media @PHONE_MEDIA {
+    @media (max-width: @screen-sm-max) {
       margin-bottom: 10px;
       width: 100%;
     }
@@ -106,7 +106,7 @@
   min-height: 1px;
   margin: 32px -24px;
 
-  @media @PHONE_MEDIA {
+  @media (max-width: @screen-sm-max) {
     margin: 32px -12px;
   }
 }
