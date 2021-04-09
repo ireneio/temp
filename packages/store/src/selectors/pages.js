@@ -9,7 +9,6 @@ import {
   getJoinedPage,
   getActivities,
   getQuery,
-  getProductListCache,
 } from './index';
 
 const getPagePath = (state, { path }) => path;
@@ -33,8 +32,6 @@ export const getJoinedModulePage = createSelector(
     getMenus,
     // getProduct,
     getActivities,
-    // getProductListCache
-    getProductListCache,
   ],
   (
     page,
@@ -42,8 +39,6 @@ export const getJoinedModulePage = createSelector(
     menus,
     // product,
     activities,
-    // productList
-    productListCache,
   ) => {
     if (page) {
       const blocks = page.blocks.map(({ widgets, ...block }) => ({
@@ -53,8 +48,6 @@ export const getJoinedModulePage = createSelector(
           menus,
           // product,
           activities,
-          // productList
-          productListCache,
         }),
       }));
       return { ...page, blocks };

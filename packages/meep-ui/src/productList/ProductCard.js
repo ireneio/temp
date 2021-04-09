@@ -11,12 +11,12 @@ import Image from 'image';
 import DraftText from 'draftText';
 
 import ProductLoader from './ProductLoader';
-import { PRODUCT_TYPE } from './constants';
+import { PRODUCT_TYPE, DEFAULT_PRODUCTS } from './constants';
 import * as styles from './styles';
 import lessStyles from './styles/card.less';
 
 const ProductCard = ({
-  isDefaultProducts,
+  loading,
   products,
   limit,
   isGrid,
@@ -51,7 +51,7 @@ const ProductCard = ({
         },
       ]}
     >
-      {!products || products.then ? (
+      {loading ? (
         <ProductLoader
           limit={limit}
           productWidth={productWidth}
@@ -65,124 +65,128 @@ const ProductCard = ({
           colors={colors}
         />
       ) : (
-        products.data.map(product => {
-          const {
-            id,
-            title,
-            description,
-            coverImage,
-            variants,
-            showUserPrice,
-          } = product;
-          const variant = variants[0] || {};
-          const orderable =
-            variants.reduce((prev, { stock }) => prev + (stock || 0), 0) > 0;
-          const productListImagePopUpEnabled = type === 'pop-up';
+        ((products?.total || 0) === 0 ? DEFAULT_PRODUCTS : products).data.map(
+          product => {
+            const {
+              id,
+              title,
+              description,
+              coverImage,
+              variants,
+              showUserPrice,
+            } = product;
+            const variant = variants[0] || {};
+            const orderable =
+              variants.reduce((prev, { stock }) => prev + (stock || 0), 0) > 0;
+            const productListImagePopUpEnabled = type === 'pop-up';
 
-          return (
-            <div
-              key={id}
-              style={[
-                {
-                  width: productWidth,
-                  margin: padding / 2,
-                },
-                styles.productCard(colors, isGrid),
-              ]}
-            >
-              {isDefaultProducts ? (
-                <div className={lessStyles.default}>
-                  <div>{t('product-building')}</div>
-                  {React.createElement(coverImage)}
-                </div>
-              ) : (
-                <div
-                  style={styles.productImage}
-                  {...(productListImagePopUpEnabled
-                    ? { onClick: () => handleModalOpen(id) }
-                    : {})}
-                >
-                  <Image
-                    image={coverImage || { scaledSrc: placeholderThumbnail }}
-                    href={productListImagePopUpEnabled ? '' : `/product/${id}`}
-                    contentWidth={100}
-                    alignment="center"
-                    newWindow={false}
-                    ratio={1}
-                    alt={title[i18n.language] || title.zh_TW}
-                  />
-                </div>
-              )}
-
-              {showTitle && (
-                <div style={styles.productTitle}>
-                  {title[i18n.language] || title.zh_TW}
-                </div>
-              )}
-
-              {showDescription &&
-                (description[i18n.language] || description.zh_TW) && (
-                  <div style={styles.productDescription(colors)}>
-                    <DraftText
-                      value={description[i18n.language] || description.zh_TW}
-                      plainText
+            return (
+              <div
+                key={id}
+                style={[
+                  {
+                    width: productWidth,
+                    margin: padding / 2,
+                  },
+                  styles.productCard(colors, isGrid),
+                ]}
+              >
+                {(products?.total || 0) === 0 ? (
+                  <div className={lessStyles.default}>
+                    <div>{t('product-building')}</div>
+                    {React.createElement(coverImage)}
+                  </div>
+                ) : (
+                  <div
+                    style={styles.productImage}
+                    {...(productListImagePopUpEnabled
+                      ? { onClick: () => handleModalOpen(id) }
+                      : {})}
+                  >
+                    <Image
+                      image={coverImage || { scaledSrc: placeholderThumbnail }}
+                      href={
+                        productListImagePopUpEnabled ? '' : `/product/${id}`
+                      }
+                      contentWidth={100}
+                      alignment="center"
+                      newWindow={false}
+                      ratio={1}
+                      alt={title[i18n.language] || title.zh_TW}
                     />
                   </div>
                 )}
 
-              {showPrice && (
-                <div style={styles.productPrice}>
-                  {variant.listPrice &&
-                  (!memberSeePrice ||
-                    showUserPrice?.showListPrice ||
-                    isLogin === ISUSER) ? (
-                    <div style={styles.otherPrice(colors)}>
-                      <span>
-                        {t('list-price')}
+                {showTitle && (
+                  <div style={styles.productTitle}>
+                    {title[i18n.language] || title.zh_TW}
+                  </div>
+                )}
 
-                        <s style={styles.strike}>
-                          {transformCurrency(variant.listPrice)}
-                        </s>
-                      </span>
+                {showDescription &&
+                  (description[i18n.language] || description.zh_TW) && (
+                    <div style={styles.productDescription(colors)}>
+                      <DraftText
+                        value={description[i18n.language] || description.zh_TW}
+                        plainText
+                      />
                     </div>
-                  ) : null}
-                  {variant.suggestedPrice &&
-                  (!memberSeePrice ||
-                    showUserPrice?.showSuggestedPrice ||
-                    isLogin === ISUSER) ? (
-                    <div style={styles.otherPrice(colors)}>
-                      <span>
-                        {t('suggested-price')}
+                  )}
 
-                        <s style={styles.strike}>
-                          {transformCurrency(variant.suggestedPrice)}
-                        </s>
-                      </span>
-                    </div>
-                  ) : null}
-                  {variant.totalPrice ? (
-                    <div style={styles.thePrice}>
-                      {memberSeePrice && isLogin !== ISUSER
-                        ? t('member-see-price')
-                        : transformCurrency(variant.totalPrice)}
-                    </div>
-                  ) : null}
-                </div>
-              )}
-              {cartButton && !(memberSeePrice && isLogin !== ISUSER) && (
-                <button
-                  key={`${id}-button`}
-                  type="button"
-                  disabled={!orderable || isDefaultProducts}
-                  style={styles.productAddToCart(colors)}
-                  onClick={() => handleModalOpen(id)}
-                >
-                  {t(orderable ? 'add-to-cart' : 'sold-out')}
-                </button>
-              )}
-            </div>
-          );
-        })
+                {showPrice && (
+                  <div style={styles.productPrice}>
+                    {variant.listPrice &&
+                    (!memberSeePrice ||
+                      showUserPrice?.showListPrice ||
+                      isLogin === ISUSER) ? (
+                      <div style={styles.otherPrice(colors)}>
+                        <span>
+                          {t('list-price')}
+
+                          <s style={styles.strike}>
+                            {transformCurrency(variant.listPrice)}
+                          </s>
+                        </span>
+                      </div>
+                    ) : null}
+                    {variant.suggestedPrice &&
+                    (!memberSeePrice ||
+                      showUserPrice?.showSuggestedPrice ||
+                      isLogin === ISUSER) ? (
+                      <div style={styles.otherPrice(colors)}>
+                        <span>
+                          {t('suggested-price')}
+
+                          <s style={styles.strike}>
+                            {transformCurrency(variant.suggestedPrice)}
+                          </s>
+                        </span>
+                      </div>
+                    ) : null}
+                    {variant.totalPrice ? (
+                      <div style={styles.thePrice}>
+                        {memberSeePrice && isLogin !== ISUSER
+                          ? t('member-see-price')
+                          : transformCurrency(variant.totalPrice)}
+                      </div>
+                    ) : null}
+                  </div>
+                )}
+                {cartButton && !(memberSeePrice && isLogin !== ISUSER) && (
+                  <button
+                    key={`${id}-button`}
+                    type="button"
+                    disabled={!orderable || (products?.total || 0) === 0}
+                    style={styles.productAddToCart(colors)}
+                    onClick={() => handleModalOpen(id)}
+                  >
+                    {t(orderable ? 'add-to-cart' : 'sold-out')}
+                  </button>
+                )}
+              </div>
+            );
+          },
+        )
       )}
     </div>
   </StyleRoot>

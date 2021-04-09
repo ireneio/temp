@@ -22,8 +22,6 @@ export const getCurrencyOptions = state =>
 
 export const getQuery = (state, props) => getIn(['url', 'query'])(props) || {};
 
-export const getProductListCache = state => getIn(['listsReducer'])(state);
-
 export const getJoinedPage = (page, menus, logoUrl, mobileLogoUrl) => {
   let joinedPage = page;
   ['fixedtop', 'secondtop', 'sidebar', 'fixedbottom'].forEach(ele => {
@@ -106,8 +104,6 @@ export const getJoinedModulePage = createSelector(
     getMenus,
     // getProduct,
     getActivities,
-    // getProductListCache
-    getProductListCache,
   ],
   (
     page,
@@ -115,8 +111,6 @@ export const getJoinedModulePage = createSelector(
     menus,
     // product,
     activities,
-    // productList
-    productListCache,
   ) =>
     !page
       ? page
@@ -129,8 +123,6 @@ export const getJoinedModulePage = createSelector(
               menus,
               // product,
               activities,
-              // productList
-              productListCache,
             }),
           })),
         },

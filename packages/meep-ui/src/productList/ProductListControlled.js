@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
-import { areEqual } from 'fbjs';
+import { areEqual, emptyFunction } from 'fbjs';
 import queryString from 'query-string';
 import { Pagination, Select, Icon } from 'antd';
-import hash from 'hash.js';
 
 import { withTranslation } from '@meepshop/locales';
-import { AdTrack as AdTrackContext } from '@meepshop/context';
+import { Sensor as SensorContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
@@ -19,20 +19,49 @@ import {
   LOCATION_TYPE,
   STORE_SETTING_TYPE,
 } from 'constants/propTypes';
-import { PHONE_MEDIA } from 'constants/media';
 import Link from 'deprecated/link';
 
 import ProductCard from './ProductCard';
 import PopUp from './PopUp';
-import { SORT_OPTIONS, DEFAULT_PRODUCTS } from './constants';
+import useProducts from './hooks/useProducts';
+import { SORT_OPTIONS } from './constants';
 import * as styles from './styles';
-import getProductsQuery, {
-  getOriginalProductsQuery,
-} from './utils/getProductsQuery';
 
 @withTranslation('product-list')
-@withContext(AdTrackContext, adTrack => ({ adTrack }))
+@withContext(SensorContext)
 @enhancer
+@withHook(
+  ({
+    id,
+    params: { offset = 0, sort = 'createdAt-desc', limit = 20, ...restParams },
+    location: { search },
+  }) => {
+    const params = useMemo(() => {
+      const [pageFromQuery, sortFromQuery] =
+        queryString.parse(search)[id]?.split(',') || [];
+
+      return {
+        offset:
+          pageFromQuery && parseInt(pageFromQuery, 10)
+            ? (parseInt(pageFromQuery, 10) - 1) * limit
+            : offset,
+        sort: sortFromQuery || sort,
+        limit,
+        ...restParams,
+      };
+    }, [id, offset, sort, limit, restParams, search]);
+    const { data, loading } = useProducts(params);
+
+    return {
+      products: data?.computeProductList,
+      loading,
+      params,
+      page: useMemo(() => parseInt(params.offset / params.limit, 10) + 1, [
+        params,
+      ]),
+    };
+  },
+)
 @radium
 export default class ProductList extends React.PureComponent {
   root = React.createRef();
@@ -51,7 +80,6 @@ export default class ProductList extends React.PureComponent {
       sort: PropTypes.string,
       limit: PropTypes.number,
     }).isRequired,
-    productListCache: PropTypes.shape({}).isRequired,
 
     /** props for ProductInfo */
     stockNotificationList: PropTypes.arrayOf(
@@ -63,7 +91,6 @@ export default class ProductList extends React.PureComponent {
     /** props from module */
     id: PropTypes.string.isRequired,
     t: PropTypes.func.isRequired,
-    adTrack: PropTypes.func.isRequired,
     showSort: PropTypes.bool.isRequired,
     alignment: PropTypes.string.isRequired,
     justifyContent: PropTypes.string.isRequired,
@@ -87,7 +114,6 @@ export default class ProductList extends React.PureComponent {
     getData: PropTypes.func.isRequired,
     transformCurrency: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
-    dispatchAction: PropTypes.func.isRequired,
     /* eslint-enable react/no-unused-prop-types */
   };
 
@@ -98,276 +124,37 @@ export default class ProductList extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
+    const { carts, stockNotificationList } = nextProps;
     const {
-      id,
-      // default params
-      params: {
-        offset = 0,
-        sort = 'createdAt-desc',
-        limit = 20,
-        ...restParams
-      },
-      location: { search },
-      isLogin,
-      carts,
-      stockNotificationList,
-      getData,
-    } = nextProps;
-
-    const [pageFromQuery, sortFromQuery] =
-      queryString.parse(search)[id]?.split(',') || [];
-
-    const params = {
-      offset:
-        pageFromQuery && parseInt(pageFromQuery, 10)
-          ? (parseInt(pageFromQuery, 10) - 1) * limit
-          : offset,
-      sort: sortFromQuery || sort,
-      limit,
-      ...restParams,
-    };
-
-    const {
-      params: prevStateParams,
-      isGrid = true,
-      isLogin: prevIsLogin,
       carts: prevCarts,
       stockNotificationList: prevStockNotificationList,
     } = prevState;
 
-    if (areEqual(params, prevStateParams)) {
+    if (
+      !areEqual(carts, prevCarts) ||
+      !areEqual(stockNotificationList, prevStockNotificationList)
+    )
       return {
-        isLogin,
         carts,
         stockNotificationList,
-        // fetchProducts when login status changed
-        ...(isLogin !== prevIsLogin && {
-          products: getData(...getProductsQuery(prevStateParams)),
-          isLoading: true,
-        }),
-        // close modal after adding
-        ...(!areEqual(carts, prevCarts) ||
-        !areEqual(stockNotificationList, prevStockNotificationList)
-          ? {
-              isOpen: false,
-              target: null,
-            }
-          : {}),
+        target: null,
       };
-    }
 
-    // init
-    return {
-      products: null,
-      page:
-        pageFromQuery && parseInt(pageFromQuery, 10)
-          ? parseInt(pageFromQuery, 10)
-          : parseInt(params.offset / params.limit, 10) + 1,
-      params,
-      isLogin,
-      carts,
-      stockNotificationList,
-      isGrid,
-      target: null,
-      isOpen: false,
-      isLoading: true,
-    };
+    return null;
   }
-
-  componentDidMount() {
-    this.reduceProducts();
-    this.resize();
-    window.addEventListener('resize', this.resize);
-  }
-
-  componentDidUpdate() {
-    this.reduceProducts();
-  }
-
-  componentWillUnmount() {
-    this.isUnmounted = true;
-    window.removeEventListener('resize', this.resize);
-  }
-
-  reduceProducts = () => {
-    const { products, params } = this.state;
-    const { adTrack, getData, dispatchAction, productListCache } = this.props;
-
-    // resolved products
-    if (products?.then) {
-      this.resolveProducts();
-      return;
-    }
-
-    // fetch products
-    if (products === null) {
-      const key = JSON.stringify(params);
-      const hashcode = hash
-        .sha256()
-        .update(key)
-        .digest('hex');
-      const cached = productListCache[hashcode];
-      const timestamp = productListCache[`${hashcode}:timestamp`];
-
-      // cached or not
-      if (cached && timestamp) {
-        const age = (Date.now() - timestamp) / 1000;
-        if (age < 600) {
-          this.setState({
-            products: cached,
-            isDefaultProducts: productListCache.isDefaultProducts,
-            isLoading: false,
-          });
-        } else {
-          // get rid of it once expired
-          dispatchAction('saveProductList', {
-            [hashcode]: null,
-            [`${hashcode}:timestamp`]: null,
-          });
-        }
-        return;
-      }
-
-      this.setState({
-        products: getData(...getProductsQuery(params)),
-        isLoading: true,
-      });
-      return;
-    }
-
-    // send adTrack each time with resolved products
-    if (params.search)
-      adTrack.search({ searchString: params.search, products: products.data });
-  };
-
-  resolveProducts = async () => {
-    // prevent over triggered
-    if (this.isResolving) return;
-
-    this.isResolving = true;
-
-    const {
-      products,
-      params: { sort, ids },
-    } = this.state;
-    const { getData, dispatchAction, productListCache } = this.props;
-
-    const result = await products;
-
-    if (this.isUnmounted || !result?.data?.computeProductList) return;
-
-    let isDefaultProducts;
-    if (typeof productListCache.isDefaultProducts === 'boolean') {
-      isDefaultProducts = productListCache.isDefaultProducts;
-    } else {
-      const originalProducts = await getData(...getOriginalProductsQuery());
-      isDefaultProducts = !originalProducts.data.computeProductList.total;
-    }
-
-    const resolvedProducts = isDefaultProducts
-      ? DEFAULT_PRODUCTS
-      : result.data.computeProductList;
-
-    // FIXME: custom sorting workaround
-    if (ids && sort === 'selections') {
-      const order = String(ids).split(',');
-
-      resolvedProducts.data = resolvedProducts.data.sort(
-        (a, b) => order.indexOf(a.id) - order.indexOf(b.id),
-      );
-    }
-
-    this.setState(
-      prevState => {
-        const key = JSON.stringify(prevState.params);
-        const hashcode = hash
-          .sha256()
-          .update(key)
-          .digest('hex');
-        dispatchAction('saveProductList', {
-          [hashcode]: resolvedProducts,
-          isDefaultProducts,
-          [`${hashcode}:timestamp`]: Date.now(),
-        });
-        return {
-          isDefaultProducts,
-          products: resolvedProducts,
-          isLoading: false,
-        };
-      },
-      () => {
-        this.isResolving = false;
-      },
-    );
-  };
-
-  resize = () => {
-    this.setState({
-      isMobile: window.matchMedia(PHONE_MEDIA.substring(7)).matches,
-    });
-  };
 
   handleModalOpen = id => {
     this.setState({
       target: id,
-      isOpen: true,
     });
   };
 
   handleModalClose = () => {
-    this.setState({ isOpen: false, target: null });
+    this.setState({ target: null });
   };
 
   handleDisplaySwitch = () => {
     this.setState(prevState => ({ isGrid: !prevState.isGrid }));
-  };
-
-  handleParamsChange = params => {
-    const { params: prevParams, isMobile } = this.state;
-    const { getData, dispatchAction, productListCache } = this.props;
-    const nextParams = {
-      ...prevParams,
-      ...params,
-    };
-    const key = JSON.stringify(nextParams);
-    const hashcode = hash
-      .sha256()
-      .update(key)
-      .digest('hex');
-    const cached = productListCache[hashcode];
-    const timestamp = productListCache[`${hashcode}:timestamp`];
-
-    // scroll into view
-    this.root.current.scrollIntoView(true);
-    if (!isMobile) window.scrollBy(0, -80);
-
-    // cached or not
-    if (cached && timestamp) {
-      const age = (Date.now() - timestamp) / 1000;
-      if (age < 600) {
-        this.setState({
-          params: nextParams,
-          products: cached,
-          isDefaultProducts: productListCache.isDefaultProducts,
-          page: Math.floor(nextParams.offset / nextParams.limit) + 1,
-          isLoading: false,
-        });
-      } else {
-        // get rid of it once expired
-        dispatchAction('saveProductList', {
-          [hashcode]: null,
-          [`${hashcode}:timestamp`]: null,
-        });
-      }
-      return;
-    }
-
-    this.setState({
-      params: nextParams,
-      products: getData(...getProductsQuery(nextParams)),
-      page: Math.floor(nextParams.offset / nextParams.limit) + 1,
-      isLoading: true,
-    });
   };
 
   renderPagination = (current, type, originalElement) => {
@@ -376,11 +163,9 @@ export default class ProductList extends React.PureComponent {
       t,
       location: { pathname, search },
       colors,
-    } = this.props;
-    const {
       page,
       params: { sort },
-    } = this.state;
+    } = this.props;
     const query = {
       ...queryString.parse(search),
       [id]: `${current},${sort}`,
@@ -468,6 +253,11 @@ export default class ProductList extends React.PureComponent {
       cartButton,
       type,
       popUpGalleryView,
+      products,
+      isMobile,
+      params: { sort, limit, ids },
+      page,
+      loading,
 
       t,
 
@@ -478,17 +268,7 @@ export default class ProductList extends React.PureComponent {
       transformCurrency,
       hasStoreAppPlugin,
     } = this.props;
-    const {
-      isDefaultProducts,
-      products,
-      params: { sort, limit, ids },
-      page,
-      target,
-      isOpen,
-      isGrid,
-      isLoading,
-      isMobile,
-    } = this.state;
+    const { target, isGrid } = this.state;
     // FIXME: custom sorting workaround
     const total =
       sort === 'selections' ? String(ids).split(',').length : products?.total;
@@ -517,13 +297,7 @@ export default class ProductList extends React.PureComponent {
                       : 'createdAt-desc'
                   }
                   size="large"
-                  disabled={isDefaultProducts}
-                  onChange={value => {
-                    this.handleParamsChange({
-                      sort: value,
-                      offset: 0,
-                    });
-                  }}
+                  disabled={(products?.total || 0) === 0}
                   dropdownAlign={{
                     points: isMobile ? ['tl', 'bl'] : ['tr', 'br'],
                   }}
@@ -553,7 +327,7 @@ export default class ProductList extends React.PureComponent {
             </div>
 
             <ProductCard
-              isDefaultProducts={isDefaultProducts}
+              loading={loading}
               products={products}
               limit={limit}
               productWidth={productWidth}
@@ -581,11 +355,7 @@ export default class ProductList extends React.PureComponent {
                 pageSize={limit}
                 current={page}
                 itemRender={this.renderPagination}
-                onChange={current => {
-                  this.handleParamsChange({
-                    offset: (current - 1) * limit,
-                  });
-                }}
+                onChange={emptyFunction}
                 hideOnSinglePage
                 showLessItems
               />
@@ -594,15 +364,14 @@ export default class ProductList extends React.PureComponent {
             <PopUp
               className={this.name}
               title={t('modal-title')}
-              visible={isOpen}
+              visible={Boolean(target)}
               onCancel={this.handleModalClose}
               type={type}
               popUpGalleryView={popUpGalleryView}
               target={target}
-              isMobile={isMobile}
             />
 
-            {isLoading && <div style={styles.loading} />}
+            {loading && <div style={styles.loading} />}
           </div>
         </StyleRoot>
       </div>

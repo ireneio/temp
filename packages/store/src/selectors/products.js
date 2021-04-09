@@ -9,7 +9,6 @@ import {
   getMobileLogoUrl,
   getJoinedPage,
   getQuery,
-  getProductListCache,
 } from './index';
 
 const getProductsPage = createSelector([getPages], pages =>
@@ -23,8 +22,6 @@ const getProductsCombinedPage = createSelector(
     getMenus,
     // getProduct,
     getActivities,
-    // getProductListCache
-    getProductListCache,
   ],
   (
     page,
@@ -32,8 +29,6 @@ const getProductsCombinedPage = createSelector(
     menus,
     // product,
     activities,
-    // productList
-    productListCache,
   ) => {
     const blocks = page.blocks.map(({ widgets, ...block }) => ({
       ...block,
@@ -42,8 +37,6 @@ const getProductsCombinedPage = createSelector(
         menus,
         // product,
         activities,
-        // productList
-        productListCache,
       }),
     }));
     return { ...page, blocks };

@@ -5,7 +5,7 @@ import setDefaultValueForMenuDesign from './setDefaultValueForMenuDesign';
 
 const getJoinedModule = (
   widgets,
-  { query = {}, menus, product, activities, productListCache },
+  { query = {}, menus, product, activities },
 ) => {
   const mWidgets = widgets.map(widget => {
     if (widget.widgets == null) {
@@ -51,7 +51,6 @@ const getJoinedModule = (
                   }
                 : {}),
             },
-            productListCache,
           };
 
         case 'products-controlled':
@@ -73,7 +72,6 @@ const getJoinedModule = (
                     tags: widget.params.tags,
                   }),
             },
-            productListCache,
           };
 
         case 'product': {
@@ -125,7 +123,6 @@ const getJoinedModule = (
         menus,
         product,
         activities,
-        productListCache,
       }),
     };
   });

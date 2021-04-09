@@ -9,7 +9,6 @@ import {
   getMobileLogoUrl,
   getJoinedPage,
   getQuery,
-  getProductListCache,
 } from './index';
 
 const getProductList = ({ productsReducer }) => productsReducer;
@@ -53,24 +52,8 @@ const getPage = createSelector(
 );
 
 const getProductCombinedPage = createSelector(
-  [
-    getPage,
-    getQuery,
-    getMenus,
-    getProduct,
-    getActivities,
-    // getProductListCache
-    getProductListCache,
-  ],
-  (
-    page,
-    query = {},
-    menus,
-    product,
-    activities,
-    // productList
-    productListCache,
-  ) => {
+  [getPage, getQuery, getMenus, getProduct, getActivities],
+  (page, query = {}, menus, product, activities) => {
     const blocks = (page.blocks || []).map(({ widgets, ...block }) => ({
       ...block,
       widgets: getJoinedModule(widgets, {
@@ -78,8 +61,6 @@ const getProductCombinedPage = createSelector(
         menus,
         product,
         activities,
-        // productList
-        productListCache,
       }),
     }));
     return { ...page, blocks };

@@ -9,7 +9,6 @@ import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import * as Api from 'api';
 import { NOTLOGIN, ISUSER } from 'constants';
 
-import { cleanProductList } from './lists';
 import { cleanProduct } from './products';
 
 /* ********************************* 檢查登入狀態 ********************************* */
@@ -121,7 +120,6 @@ export function* loginFlow({ payload }) {
 
       yield put(cleanProduct());
       yield put(loginSuccess(memberData));
-      yield put(cleanProductList());
     } else {
       yield put(loginFailure());
       notification.error({
@@ -171,7 +169,6 @@ function* signoutFlow() {
       const memberData = yield call(Api.updateMemberData);
 
       yield put(signoutSuccess(memberData.data));
-      yield put(cleanProductList());
       notification.success({ message: i18n.t('ducks:signout-success') });
     } else {
       yield put(signoutFailure());

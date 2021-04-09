@@ -4,11 +4,15 @@ import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { Spin, Icon, Modal } from 'antd';
 
+import { Sensor as SensorContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import ProductCarousel from 'productCarousel';
 import ProductInfo from 'productInfo';
 import ProductCollection from 'productCollection';
 
+@withContext(SensorContext)
 @enhancer
 export default class PopUp extends React.PureComponent {
   rootRef = React.createRef();

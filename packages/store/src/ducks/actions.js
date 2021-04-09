@@ -25,8 +25,6 @@ import {
   getProductFailure,
 } from './widgets/products';
 
-import { saveProductList, cleanProductList } from './widgets/lists';
-
 import {
   serverIndexInitial,
   serverPagesInitial,
@@ -63,9 +61,6 @@ export {
   getProduct,
   getProductSuccess,
   getProductFailure,
-  // lists
-  saveProductList,
-  cleanProductList,
   // Initial for server-side rendering
   serverIndexInitial,
   serverPagesInitial,
