@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.79.20 (2021-04-09)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1472](https://github.com/meepshop/meep-lerna/pull/1472) 內部開單 - 部分套用新元件 ([@HsuTing](https://github.com/HsuTing))
+  - [#1467](https://github.com/meepshop/meep-lerna/pull/1467) 內部開單 - productList 改用 apollo-client && SSR ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1441](https://github.com/meepshop/meep-lerna/pull/1441) 前端 - 避免使用 orderproduct 多餘的欄位 ([@HsuTing](https://github.com/HsuTing))
+  - [#1462](https://github.com/meepshop/meep-lerna/pull/1462) 【BUG】 手機版－選單的會員功能及購物車功能，無法收縮於左側選單 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.19 (2021-04-07)
 
 #### :bug: Bug Fix
