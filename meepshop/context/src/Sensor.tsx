@@ -1,7 +1,7 @@
 // import
 import React, { useState, useEffect } from 'react';
 
-import styles from '@meepshop/utils/styles/variables.less';
+import styles from './styles/sensor.less';
 
 // typescript definition
 interface SensorType {
@@ -24,7 +24,6 @@ export const SensorProvider = React.memo(({ children }) => {
     };
 
     resize();
-
     window.addEventListener('resize', resize);
 
     return () => {

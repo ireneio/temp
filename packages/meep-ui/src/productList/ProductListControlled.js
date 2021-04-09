@@ -68,6 +68,10 @@ export default class ProductList extends React.PureComponent {
 
   name = 'product-list';
 
+  state = {
+    isGrid: true,
+  };
+
   static propTypes = {
     /* eslint-disable react/no-unused-prop-types */
     params: PropTypes.shape({

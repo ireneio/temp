@@ -16,6 +16,7 @@ import logger from '@meepshop/utils/lib/logger';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
+import { SensorProvider } from '@meepshop/context/lib/Sensor';
 import { CartProvider } from '@meepshop/cart';
 import { FormDataProvider } from '@meepshop/form-data';
 import { withDomain } from '@meepshop/link';
@@ -261,25 +262,27 @@ class App extends NextApp {
           <FbProvider>
             <ColorsProvider>
               <AppsProvider>
-                <CurrencyProvider>
-                  <AdTrackProvider>
-                    <CartProvider>
-                      <FormDataProvider>
-                        <Provider store={store}>
-                          <Component
-                            {...pageProps}
-                            url={{
-                              asPath: router.asPath,
-                              query: router.query,
-                            }}
-                          />
-                        </Provider>
+                <SensorProvider>
+                  <CurrencyProvider>
+                    <AdTrackProvider>
+                      <CartProvider>
+                        <FormDataProvider>
+                          <Provider store={store}>
+                            <Component
+                              {...pageProps}
+                              url={{
+                                asPath: router.asPath,
+                                query: router.query,
+                              }}
+                            />
+                          </Provider>
 
-                        <ActionButton />
-                      </FormDataProvider>
-                    </CartProvider>
-                  </AdTrackProvider>
-                </CurrencyProvider>
+                          <ActionButton />
+                        </FormDataProvider>
+                      </CartProvider>
+                    </AdTrackProvider>
+                  </CurrencyProvider>
+                </SensorProvider>
               </AppsProvider>
             </ColorsProvider>
           </FbProvider>
