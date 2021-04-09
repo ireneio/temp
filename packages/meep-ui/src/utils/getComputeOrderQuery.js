@@ -78,7 +78,6 @@ export default ({ coupon, points, paymentId, shipmentId, products }) => [
           maxPurchaseLimit
           minPurchaseItems
           quantity
-          discountPrice
           coverImage {
             scaledSrc {
               w60

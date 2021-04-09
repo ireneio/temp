@@ -16,7 +16,6 @@ export const cartFragment = gql`
         productId
         variantId
         quantity
-        discountPrice
         activityInfo {
           id
           title {
@@ -28,7 +27,6 @@ export const cartFragment = gql`
         minPurchaseItems
         maxPurchaseLimit
         retailPrice
-        listPrice
         totalPrice
         specs {
           id
