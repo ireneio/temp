@@ -4,15 +4,15 @@
   "description": "Member orders list for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.20",
+  "version": "0.79.21",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.79.17",
+    "@meepshop/context": "^0.79.21",
     "@meepshop/link": "^0.79.17",
     "@meepshop/locales": "^0.79.15",
     "@meepshop/utils": "^0.79.17",
-    "@store/apollo": "^0.79.20",
+    "@store/apollo": "^0.79.21",
     "@store/utils": "^0.79.17",
     "color": "^3.0.0",
     "moment": "^2.22.1"
