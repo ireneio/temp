@@ -1,5 +1,21 @@
 import { NOTLOGIN } from 'constants/isLogin';
 
+const mergePages = pages =>
+  pages.reduce((result, page) => {
+    const specificMenuItem = page.pages.filter(({ action }) =>
+      [5, 8].includes(action),
+    );
+
+    return [
+      ...result,
+      {
+        ...page,
+        pages: page.pages.filter(({ action }) => ![5, 8].includes(action)),
+      },
+      ...specificMenuItem,
+    ];
+  }, []);
+
 export default (
   fixedtop,
   secondtop,
@@ -14,11 +30,11 @@ export default (
     sidebar?.menu.design?.showSearchbar;
 
   return {
-    ...[
+    ...mergePages([
       ...(fixedtop?.menu.pages || []),
       ...(secondtop?.menu.pages || []),
       ...(sidebar?.menu.pages || []),
-    ].reduce(
+    ]).reduce(
       ({ pages, headerPages }, { id, action, ...page }) => {
         const newPage = {
           ...page,
