@@ -1,17 +1,19 @@
+import divider from '@meepshop/divider';
+import iframe from '@meepshop/iframe';
 import productDraftText from '@meepshop/product-draft-text';
+import productIframe from '@meepshop/product-iframe';
 import productVideo from '@meepshop/product-video';
 import smartConversion from '@meepshop/smart-conversion';
+import socailMedia from '@meepshop/social-media';
+import unavailable from '@meepshop/unavailable';
 
 import image from 'image';
-import iframe from 'iframe';
 import googlemap from 'googleMap';
 import carousel from 'carousel';
-import divider from 'divider';
 import facebookWall from 'facebookWall';
 import landingPage from 'landingPage';
 import socialThumbs from 'socialThumbs';
 import imagetext from 'imageText';
-import socailMedia from 'socialMedia';
 import videoCore from 'videoCore';
 import productCollections from 'productCollection';
 import productCarousell from 'productCarousel';
@@ -23,7 +25,6 @@ import activity from 'activity';
 import checkout from 'checkout';
 import menu, { handleModuleData } from 'menu';
 import productSet from 'productSet';
-import UnavailableComp from 'unavailableComp';
 import viewTracking from 'viewTracking';
 
 export default {
@@ -34,9 +35,9 @@ export default {
   divider,
   'facebook-wall': facebookWall,
   'landing-page': landingPage,
-  'live-video': UnavailableComp,
-  'live-video-comments': UnavailableComp,
-  'product-html': iframe, // data of `htmlCode` from `componentProdutList -> info -> zh_TW`
+  'live-video': unavailable,
+  'live-video-comments': unavailable,
+  'product-html': productIframe,
   'social-thumbs': socialThumbs,
   imagetext,
   'social-media': socailMedia,

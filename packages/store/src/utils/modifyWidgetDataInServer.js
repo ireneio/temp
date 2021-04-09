@@ -1,6 +1,8 @@
 import * as Api from 'api';
 import uuid from 'uuid/v4';
 
+import getJustifyContent from './getJustifyContent';
+
 /**
  * 暫時由前端join與filter各個module欄位
  * 希望以後後端直接處理...
@@ -183,14 +185,16 @@ export default async function modifyWidgetDataInServer(
           }
           /* 分隔線 */
           case 'divider': {
+            const { width, height, alignment, radius, background } = widget;
+
             return {
               id: uuid(),
               module: widget.module,
-              background: widget.background,
-              contentWidth: widget.width,
-              height: widget.height,
-              alignment: widget.alignment,
-              radius: widget.radius,
+              width: width < 1 ? 1 : Math.round(width),
+              height: height < 1 ? 1 : Math.round(height),
+              justifyContent: getJustifyContent(alignment),
+              borderRadius: radius < 0 ? 0 : radius || 0,
+              background: background || '#FFFFFF',
             };
           }
           /* 直播留言 */
@@ -265,6 +269,13 @@ export default async function modifyWidgetDataInServer(
           }
           /* 社群分享 */
           case 'social-media': {
+            const socialMediaTypes = [
+              'NONE',
+              'CIRCLE',
+              'CIRCLE_FILLED',
+              'ORIGIN',
+            ];
+            const toBoolean = value => value || value === null || false;
             const {
               alignItems,
               color,
@@ -274,16 +285,22 @@ export default async function modifyWidgetDataInServer(
               enableWechat,
               enableTwitter,
             } = widget.socialMediaInfo;
+
             return {
               id: uuid(),
               module: widget.module,
-              alignItems: alignItems || 'left',
+              socialMediaType:
+                socialMediaTypes[iconStyle] || socialMediaTypes[0],
+              justifyContent: {
+                left: 'FLEX_START',
+                center: 'CENTER',
+                right: 'FLEX_END',
+              }[alignItems || 'left'],
               color: color || '#757575',
-              iconStyle: iconStyle || 0,
-              enableFacebook: enableFacebook || enableFacebook == null || false,
-              enableLine: enableLine || enableLine == null || false,
-              enableWechat: enableWechat || enableWechat == null || false,
-              enableTwitter: enableTwitter || enableTwitter == null || false,
+              showFacebook: toBoolean(enableFacebook),
+              showLine: toBoolean(enableLine),
+              showWechat: toBoolean(enableWechat),
+              showTwitter: toBoolean(enableTwitter),
             };
           }
           /* 圖文 */

@@ -104,7 +104,7 @@ const getJoinedModule = (
         case 'product-html': {
           return {
             ...widget,
-            htmlCode: (product.info && product.info.zh_TW) || '',
+            product,
           };
         }
         case 'product-service': {

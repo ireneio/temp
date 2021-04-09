@@ -65,16 +65,6 @@ export default (
             ORIGIN: SocialMediaLineOriginIcon,
           }[socialMediaType],
         },
-        showTwitter && {
-          key: 'twitter',
-          url: `https://twitter.com/intent/tweet?text=${url}`,
-          Icon: {
-            NONE: SocialMediaTwitterIcon,
-            CIRCLE: SocialMediaTwitterCircleIcon,
-            CIRCLE_FILLED: SocialMediaTwitterCircleFilledIcon,
-            ORIGIN: SocialMediaTwitterOriginIcon,
-          }[socialMediaType],
-        },
         showWechat && {
           key: 'wechat',
           url: `//api.addthis.com/oexchange/0.8/forward/wechat/offer?url=${url}`,
@@ -83,6 +73,16 @@ export default (
             CIRCLE: SocialMediaWechatCircleIcon,
             CIRCLE_FILLED: SocialMediaWechatCircleFilledIcon,
             ORIGIN: SocialMediaWechatOriginIcon,
+          }[socialMediaType],
+        },
+        showTwitter && {
+          key: 'twitter',
+          url: `https://twitter.com/intent/tweet?text=${url}`,
+          Icon: {
+            NONE: SocialMediaTwitterIcon,
+            CIRCLE: SocialMediaTwitterCircleIcon,
+            CIRCLE_FILLED: SocialMediaTwitterCircleFilledIcon,
+            ORIGIN: SocialMediaTwitterOriginIcon,
           }[socialMediaType],
         },
       ].filter(Boolean) as SocialMediasType,
