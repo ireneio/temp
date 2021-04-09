@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.79.21 (2021-04-09)
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#1491](https://github.com/meepshop/meep-lerna/pull/1491) (@meepshop/frontend) Hotfix C389 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.20 (2021-04-09)
 
 #### :boom: Breaking Change
