@@ -4,11 +4,11 @@
   "description": "Meepshop menu module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.17",
+  "version": "0.79.20",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/cart": "^0.79.17",
+    "@meepshop/cart": "^0.79.20",
     "@meepshop/context": "^0.79.17",
     "@meepshop/images": "^0.79.17",
     "@meepshop/link": "^0.79.17",

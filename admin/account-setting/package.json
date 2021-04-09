@@ -4,12 +4,12 @@
   "description": "Account setting page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.17",
+  "version": "0.79.20",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/block": "^0.79.17",
-    "@admin/header": "^0.79.17",
+    "@admin/block": "^0.79.20",
+    "@admin/header": "^0.79.20",
     "@meepshop/link": "^0.79.17",
     "@meepshop/locales": "^0.79.15",
     "@meepshop/utils": "^0.79.17"
