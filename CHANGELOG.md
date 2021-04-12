@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.79.24 (2021-04-12)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1495](https://github.com/meepshop/meep-lerna/pull/1495) (@meepshop/next-store, @meepshop/next-admin) Hotfix locales link fail ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.23 (2021-04-12)
 
 #### :bug: Bug Fix
