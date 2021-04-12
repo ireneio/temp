@@ -17,6 +17,21 @@
   height: 100%;
   color: rgba(0, 0, 0, 0.85);
   overflow: auto;
+
+  &.disableAffix {
+    padding-top: 24px;
+
+    .header {
+      margin-bottom: -8px;
+      height: auto;
+
+      h1 a {
+        position: initial;
+        margin-bottom: 16px;
+        display: block;
+      }
+    }
+  }
 }
 
 .affix {

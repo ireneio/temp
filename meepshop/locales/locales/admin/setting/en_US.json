@@ -40,6 +40,10 @@
       "title": "Notification Settings",
       "description": "Enable and set notification to receive the latest news of the stores"
     },
+    "redirects": {
+      "title": "URL redirect",
+      "description": "301 Forwarding service settings"
+    },
     "app": {
       "title": "Extension function",
       "description": "Advanced functions such as marketing, discount, and analysis can be installed"

@@ -40,6 +40,10 @@
       "title": "Thiết lập thông báo",
       "description": "Bật và đặt thông báo để nhận tin tức mới nhất của các cửa hàng"
     },
+    "redirects": {
+      "title": "Chuyển hướng URL",
+      "description": "301 Cài đặt dịch vụ chuyển tiếp"
+    },
     "app": {
       "title": "Chức năng mở rộng",
       "description": "Các chức năng nâng cao như tiếp thị, giảm giá và phân tích có thể được cài đặt"

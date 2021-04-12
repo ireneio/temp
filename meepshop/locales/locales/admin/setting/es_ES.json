@@ -40,6 +40,10 @@
       "title": "Configuración de las notificaciones",
       "description": "Habilite y configure notificaciones para recibir las últimas noticias de las tiendas."
     },
+    "redirects": {
+      "title": "Redireccionamiento de URL",
+      "description": "301 Configuración del servicio de reenvío"
+    },
     "app": {
       "title": "Función de extensión",
       "description": "Se pueden instalar funciones avanzadas como marketing, descuento y análisis."

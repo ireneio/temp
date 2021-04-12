@@ -40,6 +40,10 @@
       "title": "Pengaturan pemberitahuan",
       "description": "Aktifkan dan atur notifikasi untuk menerima berita terbaru dari toko"
     },
+    "redirects": {
+      "title": "Pengalihan URL",
+      "description": "301 Pengaturan layanan penerusan"
+    },
     "app": {
       "title": "Fungsi ekstensi",
       "description": "Fungsi-fungsi canggih seperti pemasaran, diskon, dan analisis dapat diinstal"

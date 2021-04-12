@@ -57,25 +57,29 @@ const Redirects: NextPage<PropsType> = React.memo(() => {
 
   return (
     <Header
-      title={t('title')}
+      title={
+        <>
+          {t('title')}
+          <div className={styles.subTitle}>{t('subTitle')}</div>
+        </>
+      }
       prevTitle={t('common:setting')}
       backTo="/setting"
-    >
-      <div className={styles.top}>
-        <div>
-          <p>{t('subTitle')}</p>
-        </div>
+      disableAffix
+      buttons={
         <Modal
           user={filter<modalFragmetType>(
             modalFragmet,
             data.viewer?.store || null,
           )}
           type="primary"
+          className={styles.addBtn}
         >
           {t('actions.add')}
           <Icon type="plus" />
         </Modal>
-      </div>
+      }
+    >
       <div className={styles.root}>
         <Table
           loading={loading}

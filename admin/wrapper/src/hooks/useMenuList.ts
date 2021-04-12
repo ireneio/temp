@@ -76,6 +76,7 @@ export const URLS: { [key: string]: string } = {
   'file-manager': '/file-manager',
   setting: '/setting',
   'setting/notification': '/setting/notification',
+  'setting/redirects': '/setting/redirects',
 };
 
 const getMenuList = (
@@ -128,6 +129,7 @@ export default (
           (permission?.setting?.isEnabled &&
             permission?.setting?.ableToEditNotificationSetting),
       ),
+      'setting/redirects': Boolean(isMerchant),
     }),
     [isMerchant, permission, apps],
   );

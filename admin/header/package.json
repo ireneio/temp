@@ -9,7 +9,8 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/wrapper": "^0.79.21",
-    "@meepshop/link": "^0.79.17"
+    "@meepshop/link": "^0.79.17",
+    "@meepshop/switch": "^0.79.11"
   },
   "keywords": ["admin", "header"]
 }

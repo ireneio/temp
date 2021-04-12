@@ -40,6 +40,10 @@
       "title": "Paramètres de notification",
       "description": "Activer et configurer la notification pour recevoir les dernières nouvelles des magasins"
     },
+    "redirects": {
+      "title": "Redirection d'URL",
+      "description": "301 Paramètres du service de transfert"
+    },
     "app": {
       "title": "Fonction d'extension",
       "description": "Des fonctions avancées telles que marketing, remise et analyse peuvent être installées"

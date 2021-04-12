@@ -2,8 +2,9 @@
 import { IconProps } from 'antd/lib/icon';
 
 // import
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import gql from 'graphql-tag';
+import { Icon } from 'antd';
 
 import {
   ShopOutlineIcon,
@@ -104,6 +105,12 @@ export default (
               storePermission?.index &&
                 storePermission?.ableToEditNotificationSetting,
             ),
+        },
+        {
+          item: 'redirects',
+          path: '/setting/redirects',
+          Icon: React.memo(() => <Icon type="cluster" />),
+          auth: isMerchant,
         },
         {
           item: 'app',

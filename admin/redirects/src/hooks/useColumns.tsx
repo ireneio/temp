@@ -42,7 +42,7 @@ export default (
       {
         dataIndex: 'fromPath',
         title: t('originURL'),
-        width: 300,
+        width: 400,
         textWrap: 'word-break',
         ellipsis: true,
         render: (fromPath: useColumnsRoutingRuleFragmentType['fromPath']) => (
@@ -67,7 +67,15 @@ export default (
             />
           </>
         ),
-        render: (toPath: useColumnsRoutingRuleFragmentType['toPath']) => toPath,
+        render: (toPath: useColumnsRoutingRuleFragmentType['toPath']) => (
+          <Tooltip
+            className={styles.pathTooltip}
+            placement="top"
+            title={toPath}
+          >
+            {toPath}
+          </Tooltip>
+        ),
       },
       {
         dataIndex: 'id',

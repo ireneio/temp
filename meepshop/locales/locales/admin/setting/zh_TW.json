@@ -40,6 +40,10 @@
       "title": "通知設定",
       "description": "開啟及制定通知提醒，幫助您迅速更新商店的狀況"
     },
+    "redirects": {
+      "title": "網址重新導向",
+      "description": "301 轉址服務設定"
+    },
     "app": {
       "title": "擴充功能",
       "description": "行銷、折扣、分析等進階功能可安裝使用"

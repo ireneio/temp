@@ -4,33 +4,52 @@ import { Affix, Icon } from 'antd';
 
 import Link from '@meepshop/link';
 import { CollapsedContext } from '@admin/wrapper';
+import Switch from '@meepshop/switch';
 
 import styles from './styles/index.less';
 
 // typescript definition
 interface PropsType {
-  title: string;
+  title: React.ReactNode;
   prevTitle?: string;
   backTo?: string;
+  disableAffix?: boolean;
   buttons?: React.ReactNode;
   children?: React.ReactNode;
 }
 
 // definition
 export default React.memo(
-  ({ title, prevTitle, backTo, buttons, children }: PropsType) => {
+  ({
+    title,
+    prevTitle,
+    backTo,
+    buttons,
+    disableAffix,
+    children: content,
+  }: PropsType) => {
     const collapsed = useContext(CollapsedContext);
     const rootRef = useRef(null);
     const [isAffixed, setIsAffixed] = useState(false);
 
     return (
-      <div className={styles.root} ref={rootRef}>
-        <Affix
-          className={`${isAffixed ? styles.affix : ''} ${
-            collapsed ? styles.collapsed : ''
-          }`}
-          onChange={affixed => setIsAffixed(affixed || false)}
-          target={() => rootRef.current}
+      <div
+        className={`${styles.root} ${disableAffix ? styles.disableAffix : ''}`}
+        ref={rootRef}
+      >
+        <Switch
+          isTrue={!disableAffix}
+          render={children => (
+            <Affix
+              className={`${isAffixed ? styles.affix : ''} ${
+                collapsed ? styles.collapsed : ''
+              }`}
+              onChange={affixed => setIsAffixed(affixed || false)}
+              target={() => rootRef.current}
+            >
+              <>{children}</>
+            </Affix>
+          )}
         >
           <div className={styles.header}>
             <h1>
@@ -49,9 +68,8 @@ export default React.memo(
 
             {buttons}
           </div>
-        </Affix>
-
-        <div className={styles.content}>{children}</div>
+        </Switch>
+        <div className={styles.content}>{content}</div>
       </div>
     );
   },
