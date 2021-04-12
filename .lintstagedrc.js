@@ -12,5 +12,7 @@ module.exports = {
     'meep-cli locales prettier',
     'meep-cli locales translate',
   ],
-  '*.yml': ['prettier --parser yaml --write', 'meep-cli circleci update'],
+  '*.yml': [
+    'prettier --parser yaml --write' /* FIXME, 'meep-cli update circleci' */,
+  ],
 };

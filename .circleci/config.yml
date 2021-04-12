@@ -115,7 +115,7 @@ commands:
       lerna-package-name:
         description: lerna package name
         type: string
-        default: ""
+        default: ''
     steps:
       - run:
           name: Set image path
@@ -172,11 +172,12 @@ commands:
       build-args:
         description: args for build image command
         type: string
-        default: ""
+        default: ''
     steps:
       - setup_remote_docker:
           version: 20.10.2
           docker_layer_caching: true
+      - set-npmrc
       - run:
           name: Build docker
           command: |
@@ -186,6 +187,7 @@ commands:
               exit
             fi
 
+            cp ~/.npmrc ./.npmrc
             cd $MEEPSHOP_PACKAGE_PATH
 
             if [[ $MEEPSHOP_DOCKER_PATH != '.' ]]; then
@@ -258,7 +260,7 @@ commands:
       message:
         description: message
         type: string
-        default: ""
+        default: ''
     steps:
       - run:
           name: Send message
@@ -429,11 +431,11 @@ jobs:
       build-args:
         description: args for build image command
         type: string
-        default: ""
+        default: ''
       lerna-package-name:
         description: lerna package name
         type: string
-        default: ""
+        default: ''
     executor: gcloud
     steps:
       - checkout
@@ -467,12 +469,12 @@ jobs:
           condition: << pipeline.git.tag >>
           steps:
             - send-message-to-zulip:
-                topic: "[stage] frontend"
+                topic: '[stage] frontend'
       - unless:
           condition: << pipeline.git.tag >>
           steps:
             - send-message-to-zulip:
-                topic: "[stage] QC"
+                topic: '[stage] QC'
 workflows:
   main:
     jobs:

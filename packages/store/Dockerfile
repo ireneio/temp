@@ -4,6 +4,7 @@ FROM node:14.15.5
 RUN mkdir -p /app
 WORKDIR /app
 
+COPY ./.npmrc ./.npmrc
 COPY ./package.json ./package.json
 COPY ./yarn.lock ./yarn.lock
 COPY ./lerna.json ./lerna.json
