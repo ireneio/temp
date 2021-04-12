@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.79.22 (2021-04-12)
+
+#### :boom: Breaking Change
+
+- `generate`, `storybook`
+  - [#1490](https://github.com/meepshop/meep-lerna/pull/1490) (@meepshop/frontend) Use meep-cli locales command ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1369](https://github.com/meepshop/meep-lerna/pull/1369) 【功能】結帳頁 - 會員資料 - 欄位管理 - 前端 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1361](https://github.com/meepshop/meep-lerna/pull/1361) T6870 - 【功能】網址管理工具 - 前端 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.21 (2021-04-09)
 
 #### :bug: Bug Fix
