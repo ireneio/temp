@@ -50,7 +50,6 @@ export default class UserInfo extends React.PureComponent {
       // props
       t,
       form,
-      user,
       shippableCountries,
       checkoutFields,
       validateEmail,
@@ -164,16 +163,15 @@ export default class UserInfo extends React.PureComponent {
             <FormItem style={formItemStyle}>
               {getFieldDecorator('userStreet', {
                 validateTrigger: 'onBlur',
-                ...(user?.address?.street
-                  ? {
-                      rules: [
+                rules:
+                  checkoutFields.address === 'OPTIONAL'
+                    ? []
+                    : [
                         {
                           required: true,
                           message: t('is-required'),
                         },
                       ],
-                    }
-                  : {}),
               })(<Input placeholder={t('address')} />)}
             </FormItem>
           </>

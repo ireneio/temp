@@ -402,7 +402,7 @@ jobs:
                   - << parameters.hash >>-{{ checksum "~/.meepshop.lerna-cache" }}
             - run:
                 name: Restore lerna cache
-                command: sh lerna-cache.sh ./lib . "lib src/.next src/public/locales"
+                command: sh lerna-cache.sh ./lib . "lib src/.next"
       - run:
           name: Build files
           command: yarn build
