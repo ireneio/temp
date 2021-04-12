@@ -11,7 +11,6 @@ import less from 'less';
 import { version } from '../../package.json';
 
 import generateStory from '../utils/generateStory';
-import generateLocales from '../utils/generateLocales';
 
 // typescript definition
 declare let process: {
@@ -36,10 +35,7 @@ program
   .description('generate the package story')
   .action((packageNames: string[]) => {
     packageNames.forEach((packageName: string) => {
-      if (packageName === '@meepshop/locales')
-        // eslint-disable-next-line import/no-extraneous-dependencies, global-require, @typescript-eslint/no-var-requires, import/no-unresolved
-        generateLocales(require('../../locales.json'));
-      else generateStory(packageName);
+      generateStory(packageName);
     });
   });
 

@@ -75,16 +75,6 @@ export default class Package extends Base {
     const { workspace, name } = this.state;
     const packageFolder = `${workspace}/${name}`;
 
-    this.spawnCommandSync('locales', ['create', packageFolder]);
-    this.spawnCommandSync('locales', ['unlink']);
-    this.spawnCommandSync('locales', ['link']);
-    this.spawnCommandSync('git', [
-      'add',
-      packageFolder,
-      `${path.dirname(
-        require.resolve('@meepshop/locales'),
-      )}/locales/${packageFolder}`,
-    ]);
     this.spawnCommandSync('git', [
       'commit',
       '-m',

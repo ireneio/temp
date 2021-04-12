@@ -518,10 +518,7 @@ workflows:
                 command: yarn types codegen all
             - run:
                 name: Check locale files
-                command: |
-                  # TODO: use meep-cli locales to auto check
-                  yarn locales check-keys
-                  yarn locales link
+                command: yarn meep-cli locales check-keys ./meepshop/locales/locales
           context: org-global
           filters:
             branches:

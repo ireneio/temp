@@ -40,7 +40,6 @@ define babel-build
 		--ignore @meepshop/next-admin \
 		$(2)
 	ln -snf $(ROOT)/meepshop/types/lib/bin/index.js ./node_modules/.bin/types
-	ln -snf $(ROOT)/meepshop/locales/lib/bin/index.js ./node_modules/.bin/locales
 	ln -snf $(ROOT)/packages/generate/lib/bin/index.js ./node_modules/.bin/generate
 	ln -snf $(ROOT)/packages/storybook/lib/bin/index.js ./node_modules/.bin/storybook
 endef
