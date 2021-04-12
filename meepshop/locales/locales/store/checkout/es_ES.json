@@ -22,7 +22,7 @@
   "postal-code": "Código postal",
   "address": "Dirección",
   "payment-info": "Pago / Tipo de entrega",
-  "same-as-user-info": "Igual que la información del miembro",
+  "same-as-user-info": "Traer perfil de miembro",
   "receiver-template": "Elija de la libreta de direcciones",
   "save-as-receiver-template": "Agregar este destinatario a la libreta de direcciones",
   "points-limit": "La cantidad máxima que puede canjear es {{point}}.",

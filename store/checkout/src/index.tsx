@@ -12,6 +12,7 @@ import {
   getCheckoutInfo_viewer as getCheckoutInfoViewer,
   getCheckoutInfo_viewer_additionalInfo as getCheckoutInfoViewerAdditionalInfo,
   getCheckoutInfo_viewer_shippableRecipientAddresses as getCheckoutInfoViewerShippableRecipientAddresses,
+  getCheckoutInfo_viewer_store_setting_checkoutFields as getCheckoutInfoViewerStoreSettingCheckoutFields,
 } from '@meepshop/types/gqls/store';
 
 // graphql import
@@ -23,6 +24,7 @@ interface PropsType {
     data: Pick<getCheckoutInfoViewer, 'name' | 'address'> & {
       mobile: getCheckoutInfoViewerAdditionalInfo['mobile'];
       shippableRecipientAddresses: getCheckoutInfoViewerShippableRecipientAddresses[];
+      checkoutFields: getCheckoutInfoViewerStoreSettingCheckoutFields | null;
       createOrder: ReturnType<typeof useCreateOrder>;
       updateUser: ReturnType<typeof useUpdateUser>;
     },
@@ -32,9 +34,9 @@ interface PropsType {
 // definition
 export default React.memo(({ children }: PropsType) => {
   const { data } = useQuery<getCheckoutInfoType>(getCheckoutInfo);
+  const viewer = data?.viewer || null;
   const createOrder = useCreateOrder();
-  const updateUser = useUpdateUser();
-  const viewer = data?.viewer;
+  const updateUser = useUpdateUser(viewer);
 
   if (!viewer) return <Spin indicator={<Icon type="loading" spin />} />;
 
@@ -43,6 +45,7 @@ export default React.memo(({ children }: PropsType) => {
     mobile: viewer.additionalInfo?.mobile || null,
     address: viewer.address,
     shippableRecipientAddresses: viewer.shippableRecipientAddresses,
+    checkoutFields: viewer.store?.setting?.checkoutFields || null,
     createOrder,
     updateUser,
   });

@@ -22,7 +22,7 @@
   "postal-code": "รหัสไปรษณีย์",
   "address": "ที่อยู่",
   "payment-info": "ประเภทการชำระเงิน / การจัดส่ง",
-  "same-as-user-info": "เหมือนกับข้อมูลสมาชิก",
+  "same-as-user-info": "นำโปรไฟล์สมาชิก",
   "receiver-template": "เลือกจากสมุดที่อยู่",
   "save-as-receiver-template": "เพิ่มผู้รับนี้ในสมุดที่อยู่",
   "points-limit": "จำนวนเงินสูงสุดที่คุณสามารถแลกได้คือ {{point}}",

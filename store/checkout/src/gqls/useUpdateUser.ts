@@ -10,14 +10,6 @@ export const updateUserAfterCreatingOrder = gql`
   }
 `;
 
-export const getUserCache = gql`
-  query getUserCache {
-    viewer {
-      id
-    }
-  }
-`;
-
 export const useUpdateUserFragment = gql`
   fragment useUpdateUserFragment on User {
     id
@@ -37,6 +29,16 @@ export const useUpdateUserFragment = gql`
       }
       street
       zipCode
+    }
+    store {
+      id
+      setting {
+        checkoutFields {
+          name
+          mobile
+          address
+        }
+      }
     }
   }
 `;

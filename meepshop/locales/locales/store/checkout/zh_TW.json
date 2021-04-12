@@ -22,7 +22,7 @@
   "postal-code": "郵遞區號",
   "address": "地址",
   "payment-info": "購物方式",
-  "same-as-user-info": "同會員資料",
+  "same-as-user-info": "帶入會員資料",
   "receiver-template": "收件人範本",
   "save-as-receiver-template": "儲存為收件人範本",
   "points-limit": "折抵金額上限為 {{point}} 元",

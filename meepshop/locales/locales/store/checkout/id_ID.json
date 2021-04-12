@@ -22,7 +22,7 @@
   "postal-code": "Kode Pos",
   "address": "Alamat",
   "payment-info": "Jenis Pembayaran / Pengiriman",
-  "same-as-user-info": "Sama seperti info anggota",
+  "same-as-user-info": "Bawa Profil Anggota",
   "receiver-template": "Pilih dari Buku Alamat",
   "save-as-receiver-template": "Tambahkan Penerima ini ke Buku Alamat",
   "points-limit": "Jumlah maksimum yang dapat Anda tebus adalah {{point}}.",

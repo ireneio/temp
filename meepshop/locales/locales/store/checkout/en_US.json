@@ -22,7 +22,7 @@
   "postal-code": "Postal Code",
   "address": "Address",
   "payment-info": "Payment / Delivery Type",
-  "same-as-user-info": "Same as member info",
+  "same-as-user-info": "Bring member profile",
   "receiver-template": "Choose from Address Book",
   "save-as-receiver-template": "Add this Recipient to Address Book",
   "points-limit": "The maximum amount you can redeem is {{point}}.",

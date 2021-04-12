@@ -23,7 +23,8 @@ export default (t, chooseShipmentTemplate) => (rule, value, callback) => {
         if (!isNumber) return callback(t('validate-mobile:not-number'));
         break;
     }
-  } else if (!isPhone) return callback(t('validate-mobile:not-number'));
+  } else if (value && !isPhone)
+    return callback(t('validate-mobile:not-number'));
 
   return callback();
 };

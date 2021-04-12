@@ -18,6 +18,22 @@ const query = gql`
       id
       name
       email
+      additionalInfo {
+        mobile
+      }
+      address {
+        country {
+          id
+        }
+        city {
+          id
+        }
+        area {
+          id
+        }
+        zipCode
+        street
+      }
       role
       memberGroup {
         id

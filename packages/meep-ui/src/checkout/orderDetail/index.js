@@ -37,7 +37,11 @@ const { Item: FormItem } = Form;
       userName: data.userName || userName,
       userMobile: data.userMobile || userMobile,
       userAddressAndZipCode: data.userAddressAndZipCode || {
-        address: [address?.country?.id, address?.city?.id, address?.area?.id],
+        address: [
+          address?.country?.id,
+          address?.city?.id,
+          address?.area?.id,
+        ].filter(Boolean),
         zipCode: address?.zipCode,
       },
       userStreet: data.userStreet || address?.street,
@@ -416,6 +420,7 @@ export default class OrderDetail extends React.PureComponent {
       shippableCountries,
       isSubmitting,
       shippableRecipientAddresses,
+      checkoutFields,
     } = this.props;
     const {
       showDetail,
@@ -534,10 +539,12 @@ export default class OrderDetail extends React.PureComponent {
               form={form}
               user={user}
               shippableCountries={shippableCountries}
+              checkoutFields={checkoutFields}
             />
 
             <ReceiverInfo
               form={form}
+              checkoutFields={checkoutFields}
               shippableCountries={shippableCountries}
               shippableRecipientAddresses={shippableRecipientAddresses}
               choosePaymentTemplate={(choosePayment || {}).template}

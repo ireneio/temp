@@ -22,7 +22,7 @@
   "postal-code": "code postal",
   "address": "Adresse",
   "payment-info": "Type de paiement / livraison",
-  "same-as-user-info": "Identique aux informations sur les membres",
+  "same-as-user-info": "Apportez le profil de membre",
   "receiver-template": "Choisissez dans le carnet d'adresses",
   "save-as-receiver-template": "Ajouter ce destinataire au carnet d'adresses",
   "points-limit": "Le montant maximum que vous pouvez échanger est de {{point}}.",

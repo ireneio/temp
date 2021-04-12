@@ -1,6 +1,9 @@
 // import
 import gql from 'graphql-tag';
 
+// graphql import
+import { useUpdateUserFragment } from './useUpdateUser';
+
 // definition
 export const getCheckoutInfo = gql`
   query getCheckoutInfo {
@@ -39,6 +42,19 @@ export const getCheckoutInfo = gql`
         street
         zipCode
       }
+      store {
+        id
+        setting {
+          checkoutFields {
+            name
+            mobile
+            address
+          }
+        }
+      }
+      ...useUpdateUserFragment
     }
   }
+
+  ${useUpdateUserFragment}
 `;

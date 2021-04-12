@@ -102,10 +102,18 @@ export default class ReceiverInfo extends React.PureComponent {
   };
 
   synchronizeUserInfo = ({ target }) => {
-    const { form, changeSynchronizeUserInfo } = this.props;
+    const {
+      user,
+      form,
+      checkoutFields,
+      changeSynchronizeUserInfo,
+    } = this.props;
 
     if (target.checked) {
       const { getFieldsValue, setFieldsValue, validateFields } = form;
+      const allHidden = Object.keys(checkoutFields).every(
+        key => key === '__typename' || checkoutFields[key] === 'HIDDEN',
+      );
 
       const {
         userName,
@@ -119,12 +127,28 @@ export default class ReceiverInfo extends React.PureComponent {
         'userStreet',
       ]);
 
-      setFieldsValue({
-        name: userName,
-        mobile: userMobile,
-        addressAndZipCode: userAddressAndZipCode,
-        street: userStreet,
-      });
+      setFieldsValue(
+        allHidden
+          ? {
+              name: user?.name,
+              mobile: user?.additionalInfo?.mobile,
+              addressAndZipCode: {
+                address: [
+                  user?.address?.country?.id,
+                  user?.address?.city?.id,
+                  user?.address?.area?.id,
+                ].filter(Boolean),
+                zipCode: user?.address?.zipCode,
+              },
+              street: user?.address?.street,
+            }
+          : {
+              name: userName,
+              mobile: userMobile,
+              addressAndZipCode: userAddressAndZipCode,
+              street: userStreet,
+            },
+      );
 
       validateFields([
         'userName',
@@ -167,6 +191,8 @@ export default class ReceiverInfo extends React.PureComponent {
       /** props */
       t,
       form,
+      isLogin,
+      checkoutFields,
       shippableCountries,
       shippableRecipientAddresses,
       choosePaymentTemplate,
@@ -183,12 +209,17 @@ export default class ReceiverInfo extends React.PureComponent {
         <h3 style={[titleStyle, styles.receiverTitle]}>
           {t('receiver-info')}
 
-          <Checkbox
-            onChange={this.synchronizeUserInfo}
-            checked={isSynchronizeUserInfo}
-          >
-            {t('same-as-user-info')}
-          </Checkbox>
+          {isLogin === NOTLOGIN &&
+          Object.keys(checkoutFields).every(
+            key => key === '__typename' || checkoutFields[key] === 'HIDDEN',
+          ) ? null : (
+            <Checkbox
+              onChange={this.synchronizeUserInfo}
+              checked={isSynchronizeUserInfo}
+            >
+              {t('same-as-user-info')}
+            </Checkbox>
+          )}
         </h3>
 
         {!canSaveAsTemplate ||

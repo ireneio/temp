@@ -22,7 +22,7 @@
   "postal-code": "Mã bưu điện",
   "address": "Địa Chỉ",
   "payment-info": "Cách thức mua hàng",
-  "same-as-user-info": "Giống thông tin hội viên",
+  "same-as-user-info": "Mang theo hồ sơ thành viên",
   "receiver-template": "Mẫu người nhận",
   "save-as-receiver-template": "Lưu mẫu người nhận",
   "points-limit": "Số tiền chiết khấu tối đa là {{point}} tệ",

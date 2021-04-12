@@ -5,6 +5,7 @@ import {
 } from '@apollo/react-common';
 
 // import
+import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
 // graphql typescript
@@ -23,19 +24,22 @@ export default (): MutationFunction<createOrderType, createOrderVariables> => {
     createOrderVariables
   >(createOrder);
 
-  return async ({
-    variables,
-    ...options
-  }: MutationFunctionOptions<createOrderType, createOrderVariables>) => {
-    const result = await mutation({
-      ...options,
+  return useCallback(
+    async ({
       variables,
-    });
+      ...options
+    }: MutationFunctionOptions<createOrderType, createOrderVariables>) => {
+      const result = await mutation({
+        ...options,
+        variables,
+      });
 
-    // FIXME: should update order, orders, hasGmoCreditCard, user, shippableRecipientAddresses
-    if (client && !variables?.createOrderList?.[0]?.userInfo?.password)
-      await client.resetStore();
+      // FIXME: should update order, orders, hasGmoCreditCard, user, shippableRecipientAddresses
+      if (client && !variables?.createOrderList?.[0]?.userInfo?.password)
+        await client.resetStore();
 
-    return result;
-  };
+      return result;
+    },
+    [mutation, client],
+  );
 };

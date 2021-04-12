@@ -58,7 +58,7 @@ export default class Checkout extends React.PureComponent {
     this.isUnmounted = true;
   }
 
-  submit = (createOrder, updateUser) => async (
+  submit = (createOrder, updateUser, checkoutFields) => async (
     isPayment,
     info,
     otherDetailInfo,
@@ -231,11 +231,19 @@ export default class Checkout extends React.PureComponent {
             cvsType,
             cvsCode,
             userId: user.id,
-            userInfo: {
-              name: userName || name,
-              email: userEmail || user.email,
-              mobile: userMobile || mobile,
-            },
+            userInfo: Object.keys(checkoutFields).every(
+              key => key === '__typename' || checkoutFields[key] === 'HIDDEN',
+            )
+              ? {
+                  name: user?.name,
+                  email: user?.email,
+                  mobile: user?.additionalInfo?.mobile,
+                }
+              : {
+                  name: userName,
+                  email: userEmail,
+                  mobile: userMobile,
+                },
             ...(!invoice
               ? {}
               : {
@@ -293,21 +301,44 @@ export default class Checkout extends React.PureComponent {
 
     if (global.window) window.sessionStorage.clear();
 
+    const input = ['name', 'mobile', 'address'].reduce((result, fieldName) => {
+      if (checkoutFields?.[fieldName] === 'HIDDEN') return result;
+
+      switch (fieldName) {
+        case 'name':
+          return {
+            ...result,
+            name: userName,
+          };
+
+        case 'mobile':
+          return {
+            ...result,
+            additionalInfo: {
+              mobile: userMobile,
+            },
+          };
+
+        case 'address':
+          return {
+            ...result,
+            address: {
+              countryId: userAddressAndZipCode.address[0],
+              cityId: userAddressAndZipCode.address[1],
+              areaId: userAddressAndZipCode.address[2],
+              zipCode: userAddressAndZipCode.zipCode,
+              street: userStreet,
+            },
+          };
+
+        default:
+          return result;
+      }
+    }, {});
+
     await updateUser({
       variables: {
-        input: {
-          name: userName,
-          additionalInfo: {
-            mobile: userMobile,
-          },
-          address: {
-            countryId: userAddressAndZipCode.address[0],
-            cityId: userAddressAndZipCode.address[1],
-            areaId: userAddressAndZipCode.address[2],
-            zipCode: userAddressAndZipCode.zipCode,
-            street: userStreet,
-          },
-        },
+        input,
       },
     });
 
@@ -347,6 +378,7 @@ export default class Checkout extends React.PureComponent {
           mobile,
           address,
           shippableRecipientAddresses,
+          checkoutFields,
           createOrder,
           updateUser,
         }) => (
@@ -359,9 +391,10 @@ export default class Checkout extends React.PureComponent {
               address,
             }}
             shippableRecipientAddresses={shippableRecipientAddresses}
+            checkoutFields={checkoutFields}
             errors={errors}
             orderInfo={orderInfo}
-            submit={this.submit(createOrder, updateUser)}
+            submit={this.submit(createOrder, updateUser, checkoutFields)}
             isSubmitting={isSubmitting}
             onChange={data => {
               this.setState(data);

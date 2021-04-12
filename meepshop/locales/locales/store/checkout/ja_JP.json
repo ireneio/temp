@@ -22,7 +22,7 @@
   "postal-code": "郵便番号",
   "address": "住所",
   "payment-info": "支払方法",
-  "same-as-user-info": "会員情報と同じ",
+  "same-as-user-info": "メンバープロファイルをもたらす",
   "receiver-template": "受取人テンプレート",
   "save-as-receiver-template": "受取人テンプレートとして保存",
   "points-limit": "最大で{{point}}元をご利用いただけます",
