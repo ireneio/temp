@@ -72,6 +72,8 @@ module.exports = nextConfig =>
     withLess(
       withBundleAnalyzer({
         ...nextConfig,
+        // FIXME: should move server folder
+        distDir: '../lib',
         pageExtensions: ['js', 'ts', 'tsx'],
         lessLoaderOptions: {
           ...nextConfig.lessLoaderOptions,

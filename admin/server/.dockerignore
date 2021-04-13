@@ -2,6 +2,7 @@ admin/server/kustomize
 node_modules
 preReleaseSchemas
 meepshop/**/src
+meepshop/locales/locales/store
 store
 admin/**/src
 packages

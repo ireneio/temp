@@ -4,7 +4,7 @@
   "license": "ISC",
   "workspaces": ["packages/*", "meepshop/*", "store/*", "admin/*"],
   "scripts": {
-    "build": "yarn prod && types codegen all && meep-cli locales link ./meepshop/locales/locales && lerna run prod --stream",
+    "build": "NODE_ENV=production && make babel-all && types codegen all && meep-cli locales link ./meepshop/locales/locales && lerna run prod --stream",
     "clean": "lerna run clean --stream && lerna exec 'rm -rf ./lib' --stream && lerna clean && make clean",
     "dev": "make babel-changed BABEL_OPTION=\"--delete-dir-on-start -w\"",
     "preinstall": "patch-package --reverse || echo \"no patch packages\"",
@@ -12,7 +12,6 @@
     "lint": "NODE_ENV=test esw --cache --color --ext js,ts,tsx",
     "lint:prettier": "yarn lint --quiet --rule \"prettier/prettier: off\"",
     "lint:watch": "yarn lint:prettier -w",
-    "prod": "NODE_ENV=production make babel-all",
     "storybook:pre": "lerna run client:download-schema --stream",
     "test": "lerna run client:download-schema --stream && jest --silent --runInBand"
   },

@@ -2,6 +2,7 @@ packages/store/kustomize
 node_modules
 preReleaseSchemas
 meepshop/**/src
+meepshop/locales/locales/admin
 store/**/src
 admin
 # TODO: should modify after remove meep-ui and move packages/store

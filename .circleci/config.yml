@@ -87,22 +87,31 @@ commands:
                 command: |
                   if ! [[ -f lerna-cache.sh ]]; then
                     echo "#\!/bin/sh -eo pipefail" >> lerna-cache.sh
-                    echo "workspaces=\$(sed -e ':a' -e 'N' -e '\$\!ba' -e \"s|\n||g\" lerna.json | grep -oh '\"packages\": \[.*\]' | sed \"s|\\\"packages\\\":|,|\" | sed \"s|\\\"||g\" | sed \"s|\[||\" | sed \"s|\]||\" | sed \"s| ||g\" | sed \"s|,| \$1/|g\")" >> lerna-cache.sh
-                    echo "if [ -d \$1 ]; then" >> lerna-cache.sh
+                    echo "if [ -z \$1 ] || [ -z \$2 ]; then" >> lerna-cache.sh
+                    echo "  exit 1;" >> lerna-cache.sh
+                    echo "elif [ \$1 = save ]; then" >> lerna-cache.sh
+                    echo "  sourceFolder=.;" >> lerna-cache.sh
+                    echo "  targetFolder=./\$(echo \$2 | sed \"s|\.|_|g\");" >> lerna-cache.sh
+                    echo "elif [ \$1 = restore ]; then" >> lerna-cache.sh
+                    echo "  sourceFolder=./\$(echo \$2 | sed \"s|\.|_|g\");" >> lerna-cache.sh
+                    echo "  targetFolder=.;" >> lerna-cache.sh
+                    echo "else" >> lerna-cache.sh
+                    echo "  exit 1;" >> lerna-cache.sh
+                    echo "fi" >> lerna-cache.sh
+                    echo "workspaces=\$(sed -e ':a' -e 'N' -e '\$\!ba' -e \"s|\n||g\" lerna.json | grep -oh '\"packages\": \[.*\]' | sed \"s|\\\"packages\\\":|,|\" | sed \"s|\\\"||g\" | sed \"s|\[||\" | sed \"s|\]||\" | sed \"s| ||g\" | sed \"s|,| \$sourceFolder/|g\");" >> lerna-cache.sh
+                    echo "if [ -d \$sourceFolder ]; then" >> lerna-cache.sh
                     echo "  for package in \$workspaces; do" >> lerna-cache.sh
-                    echo "    packagePath=\$(echo \$package | sed \"s|\$1/||\")" >> lerna-cache.sh
-                    echo "    for file in \$3; do" >> lerna-cache.sh
-                    echo "      source=\$1/\$packagePath/\$file;" >> lerna-cache.sh
-                    echo "      target=\$2/\$packagePath/\$file;" >> lerna-cache.sh
-                    echo "      if [ -f \$source ] || [ -d \$source ]; then" >> lerna-cache.sh
-                    echo "        targetFolder=\$(echo \$target | sed \"s|/[^/]*$||\")" >> lerna-cache.sh
-                    echo "        if ! [ -d \$targetFolder ]; then" >> lerna-cache.sh
-                    echo "          mkdir -p \$targetFolder;" >> lerna-cache.sh
-                    echo "        fi;" >> lerna-cache.sh
-                    echo "        rm -rf \$target;" >> lerna-cache.sh
-                    echo "        cp -r \$source \$target;" >> lerna-cache.sh
-                    echo "      fi" >> lerna-cache.sh
-                    echo "    done" >> lerna-cache.sh
+                    echo "    packagePath=\$(echo \$package | sed \"s|\$sourceFolder/||\")" >> lerna-cache.sh
+                    echo "    source=\$sourceFolder/\$packagePath/\$2;" >> lerna-cache.sh
+                    echo "    target=\$targetFolder/\$packagePath/\$2;" >> lerna-cache.sh
+                    echo "    if [ -f \$source ] || [ -d \$source ]; then" >> lerna-cache.sh
+                    echo "      dirname=\$(echo \$target | sed \"s|/[^/]*$||\")" >> lerna-cache.sh
+                    echo "      if ! [ -d \$dirname ]; then" >> lerna-cache.sh
+                    echo "        mkdir -p \$dirname;" >> lerna-cache.sh
+                    echo "      fi;" >> lerna-cache.sh
+                    echo "      rm -rf \$target;" >> lerna-cache.sh
+                    echo "      cp -r \$source \$target;" >> lerna-cache.sh
+                    echo "    fi" >> lerna-cache.sh
                     echo "  done" >> lerna-cache.sh
                     echo "else" >> lerna-cache.sh
                     echo "  echo skip;" >> lerna-cache.sh
@@ -115,7 +124,7 @@ commands:
       lerna-package-name:
         description: lerna package name
         type: string
-        default: ''
+        default: ""
     steps:
       - run:
           name: Set image path
@@ -172,7 +181,7 @@ commands:
       build-args:
         description: args for build image command
         type: string
-        default: ''
+        default: ""
     steps:
       - setup_remote_docker:
           version: 20.10.2
@@ -260,7 +269,7 @@ commands:
       message:
         description: message
         type: string
-        default: ''
+        default: ""
     steps:
       - run:
           name: Send message
@@ -402,7 +411,7 @@ jobs:
                   - << parameters.hash >>-{{ checksum "~/.meepshop.lerna-cache" }}
             - run:
                 name: Restore lerna cache
-                command: sh lerna-cache.sh ./lib . "lib src/.next"
+                command: sh lerna-cache.sh restore lib
       - run:
           name: Build files
           command: yarn build
@@ -417,7 +426,7 @@ jobs:
                   cat ~/.meepshop.lerna-cache
             - run:
                 name: Save lerna cache
-                command: sh lerna-cache.sh . ./lib "lib src/.next src/public/locales"
+                command: sh lerna-cache.sh save lib
             - save_cache:
                 key: << parameters.hash >>-{{ checksum "~/.meepshop.lerna-cache" }}
                 paths:
@@ -431,11 +440,11 @@ jobs:
       build-args:
         description: args for build image command
         type: string
-        default: ''
+        default: ""
       lerna-package-name:
         description: lerna package name
         type: string
-        default: ''
+        default: ""
     executor: gcloud
     steps:
       - checkout
@@ -448,8 +457,8 @@ jobs:
                 use-lerna: true
                 other-steps:
                   - run:
-                      name: Save package.json to temp
-                      command: sh lerna-cache.sh . ./temp "package.json"
+                      name: Save package.json to cache
+                      command: sh lerna-cache.sh save package.json
       - set-image-env:
           lerna-package-name: << parameters.lerna-package-name >>
       - build-docker:
@@ -469,19 +478,19 @@ jobs:
           condition: << pipeline.git.tag >>
           steps:
             - send-message-to-zulip:
-                topic: '[stage] frontend'
+                topic: "[stage] frontend"
       - unless:
           condition: << pipeline.git.tag >>
           steps:
             - send-message-to-zulip:
-                topic: '[stage] QC'
+                topic: "[stage] QC"
 workflows:
   main:
     jobs:
       - upload-images:
           context: org-global
       - testing:
-          hash: 91a27b9dfd1c
+          hash: 9a488d476767
           other-testing:
             - lerna-cache:
                 use-lerna: true
@@ -499,20 +508,20 @@ workflows:
                         cat ~/.meepshop.lerna-cache
                   - restore_cache:
                       keys:
-                        - 91a27b9dfd1c-{{ checksum "~/.meepshop.lerna-cache" }}
+                        - 9a488d476767-{{ checksum "~/.meepshop.lerna-cache" }}
                   - run:
                       name: Restore lerna cache
-                      command: sh lerna-cache.sh ./lib . "lib src/.next src/public/locales"
+                      command: sh lerna-cache.sh restore lib
                   - run:
                       name: Build for eslint
                       command: |
                         # TODO: remove after removing @meesphop/meep-ui
-                        yarn prod
+                        make babel-all
                   - run:
                       name: Save lerna cache
-                      command: sh lerna-cache.sh . ./lib "lib src/.next src/public/locales"
+                      command: sh lerna-cache.sh save lib
                   - save_cache:
-                      key: 91a27b9dfd1c-{{ checksum "~/.meepshop.lerna-cache" }}
+                      key: 9a488d476767-{{ checksum "~/.meepshop.lerna-cache" }}
                       paths:
                         - lib
             - run:
@@ -528,7 +537,7 @@ workflows:
             tags:
               ignore: /.*/
       - build:
-          hash: 91a27b9dfd1c
+          hash: 9a488d476767
           use-lerna: true
           context: org-global
           filters:

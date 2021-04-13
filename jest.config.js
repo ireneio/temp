@@ -16,7 +16,7 @@ module.exports = {
   testPathIgnorePatterns: ['__tests__/__ignore__'],
   collectCoverage: true,
   coverageDirectory: 'coverage',
-  coveragePathIgnorePatterns: ['/lib/', '/.next/'],
+  coveragePathIgnorePatterns: ['/lib/'],
   collectCoverageFrom: [
     '**/meepshop/**/src/**/*.{ts,tsx}',
     '**/store/**/src/**/*.{ts,tsx}',

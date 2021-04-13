@@ -2,8 +2,13 @@
 const path = require('path');
 
 // definition
-const getPkgPath = (name, ...paths) =>
-  path.resolve(require.resolve(name), '..', ...paths);
+const getPkgPath = (name, ...paths) => {
+  try {
+    return path.resolve(require.resolve(name), '..', ...paths);
+  } catch (e) {
+    return '';
+  }
+};
 const mapping = {
   'admin/common': getPkgPath('@meepshop/next-admin'),
   'store/common': getPkgPath('@meepshop/next-store'),
@@ -45,7 +50,7 @@ module.exports = ({ folderPath, locale }) => {
   const [workspace, filename] = folderPath.split(/\//);
   const output = [];
 
-  if (locale === 'zh_TW' && !process.env.CI)
+  if (locale === 'zh_TW' && process.env.NODE_ENV !== 'production')
     output.push(path.resolve(pkgPath, './locale.json'));
 
   if (['meepshop', 'store'].includes(workspace))
@@ -66,5 +71,5 @@ module.exports = ({ folderPath, locale }) => {
       ),
     );
 
-  return output;
+  return output.filter(Boolean);
 };

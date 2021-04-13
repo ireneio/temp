@@ -7,9 +7,8 @@
   "version": "0.79.24",
   "main": "./next.config.js",
   "scripts": {
-    "clean": "rm -rf ./src/.next",
     "dev": "node --inspect=localhost:9230 src/server",
-    "prod": "mkdir ./lib || echo \"not need to mkdir lib\" && next build ./src",
+    "prod": "next build ./src",
     "start": "NODE_ENV=production node src/server"
   },
   "dependencies": {

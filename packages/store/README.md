@@ -4,7 +4,6 @@ This package is `store` server which use `next`.
 
 | command | example    | note                    |
 | ------- | ---------- | ----------------------- |
-| clean   | yarn clean | Clean `.next` folder.   |
 | dev     | yarn dev   | Run the `dev` server.   |
 | prod    | yarn prod  | Build the `prod` files. |
 | start   | yarn start | Run the `prod` server.  |

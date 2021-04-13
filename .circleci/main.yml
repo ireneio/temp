@@ -27,7 +27,7 @@ workflows:
       - upload-images:
           context: org-global
       - meep-cli/testing:
-          hash: 91a27b9dfd1c
+          hash: 9a488d476767
           other-testing:
             - meep-cli/lerna-cache:
                 use-lerna: true
@@ -45,20 +45,20 @@ workflows:
                         cat ~/.meepshop.lerna-cache
                   - restore_cache:
                       keys:
-                        - 91a27b9dfd1c-{{ checksum "~/.meepshop.lerna-cache" }}
+                        - 9a488d476767-{{ checksum "~/.meepshop.lerna-cache" }}
                   - run:
                       name: Restore lerna cache
-                      command: sh lerna-cache.sh ./lib . "lib src/.next src/public/locales"
+                      command: sh lerna-cache.sh restore lib
                   - run:
                       name: Build for eslint
                       command: |
                         # TODO: remove after removing @meesphop/meep-ui
-                        yarn prod
+                        make babel-all
                   - run:
                       name: Save lerna cache
-                      command: sh lerna-cache.sh . ./lib "lib src/.next src/public/locales"
+                      command: sh lerna-cache.sh save lib
                   - save_cache:
-                      key: 91a27b9dfd1c-{{ checksum "~/.meepshop.lerna-cache" }}
+                      key: 9a488d476767-{{ checksum "~/.meepshop.lerna-cache" }}
                       paths:
                         - lib
 
@@ -75,7 +75,7 @@ workflows:
             tags:
               ignore: /.*/
       - meep-cli/build:
-          hash: 91a27b9dfd1c
+          hash: 9a488d476767
           use-lerna: true
           context: org-global
           filters:
