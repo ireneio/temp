@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.79.26 (2021-04-15)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1493](https://github.com/meepshop/meep-lerna/pull/1493) (@meepshop/frontend) Update circleci config ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1498](https://github.com/meepshop/meep-lerna/pull/1498) 【個別店家】分隔線背景色關閉，前台會呈現白色 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#1497](https://github.com/meepshop/meep-lerna/pull/1497) 【BUG】 商品搜尋出現範例商品 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.24 (2021-04-12)
 
 #### :bug: Bug Fix
