@@ -194,7 +194,7 @@ export default async function modifyWidgetDataInServer(
               height: height < 1 ? 1 : Math.round(height),
               justifyContent: getJustifyContent(alignment),
               borderRadius: radius < 0 ? 0 : radius || 0,
-              background: background || '#FFFFFF',
+              background: !background ? null : background,
             };
           }
           /* 直播留言 */
