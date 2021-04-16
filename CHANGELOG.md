@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.79.27 (2021-04-16)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1486](https://github.com/meepshop/meep-lerna/pull/1486) 結帳頁-付款方式說明、運送方式說明預設展開 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.26 (2021-04-15)
 
 #### :boom: Breaking Change
