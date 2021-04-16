@@ -262,8 +262,13 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
           )}
 
           {!choosePayment.description ? null : (
-            <Collapse style={styles.collapse} bordered={false}>
+            <Collapse
+              style={styles.collapse}
+              defaultActiveKey={['description']}
+              bordered={false}
+            >
               <Panel
+                key="description"
                 header={t('payment-description')}
                 style={styles.panel(colors)}
               >
@@ -306,8 +311,13 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
           )}
 
           {!chooseShipment.description ? null : (
-            <Collapse style={styles.collapse} bordered={false}>
+            <Collapse
+              style={styles.collapse}
+              defaultActiveKey={['description']}
+              bordered={false}
+            >
               <Panel
+                key="description"
                 header={t('shipment-description')}
                 style={styles.panel(colors)}
               >
