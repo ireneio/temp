@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.79.28 (2021-04-19)
+
+#### :rocket: New Feature
+
+- [#1502](https://github.com/meepshop/meep-lerna/pull/1502) (root) Update @meepshop/meep-cli ([@meepshop-bot](https://github.com/meepshop-bot))
+
+#### :house: Internal
+
+- [#1448](https://github.com/meepshop/meep-lerna/pull/1448) 【功能】 智慧轉換元件 - 移除白名單 toggle / 修改 ga view id 儲存 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- [@meepshop-bot](https://github.com/meepshop-bot)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.79.27 (2021-04-16)
 
 #### :rocket: New Feature
