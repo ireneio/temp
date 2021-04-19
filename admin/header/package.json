@@ -4,11 +4,11 @@
   "description": "Header for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.26",
+  "version": "0.79.28",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/wrapper": "^0.79.26",
+    "@admin/wrapper": "^0.79.28",
     "@meepshop/link": "^0.79.17",
     "@meepshop/switch": "^0.79.11"
   },

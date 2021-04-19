@@ -4,7 +4,7 @@
   "description": "Use to show order history records",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.26",
+  "version": "0.79.28",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -12,7 +12,7 @@
     "@meepshop/icons": "^0.79.17",
     "@meepshop/images": "^0.79.17",
     "@meepshop/link": "^0.79.17",
-    "@meepshop/locales": "^0.79.26",
+    "@meepshop/locales": "^0.79.28",
     "@meepshop/utils": "^0.79.17"
   },
   "keywords": ["admin", "history records", "order"]
