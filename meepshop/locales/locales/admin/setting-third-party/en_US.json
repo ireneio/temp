@@ -82,6 +82,8 @@
         "caution": "The smart conversion component can only be used after setting the data view ID. It is recommended not to change the settings during the component usage period to maintain data accuracy."
       }
     },
+    "validating": "Data view ID verification ...",
+    "success": "Data view ID verification success",
     "error": "Invalid data view ID"
   }
 }

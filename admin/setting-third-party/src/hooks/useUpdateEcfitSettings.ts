@@ -33,48 +33,44 @@ export default (): ((
   >(mutation);
 
   return useCallback(
-    async (storeId: string, input: updateEcfitSettingsVariables['input']) =>
-      new Promise((resolve, reject) =>
-        updateEcfitSettingsMutation({
-          variables: {
-            input,
-          },
-          update: (
-            cache: DataProxy,
-            { data }: { data: updateEcfitSettingsType },
-          ) => {
-            if (data.setStoreEcfitSettings.status !== 'OK') {
-              reject(new Error('can not update ecfit settings'));
-              return;
-            }
+    async (storeId: string, input: updateEcfitSettingsVariables['input']) => {
+      await updateEcfitSettingsMutation({
+        variables: {
+          input,
+        },
+        update: (
+          cache: DataProxy,
+          { data }: { data: updateEcfitSettingsType },
+        ) => {
+          if (data.setStoreEcfitSettings.status !== 'OK') {
+            throw new Error('can not update ecfit settings');
+          }
 
-            cache.writeFragment<useUpdateEcfitSettingsWriteCache>({
-              id: storeId,
-              fragment: gql`
-                fragment useUpdateEcfitSettingsWriteCache on Store {
-                  id
-                  storeEcfitSettings {
-                    isEnabled
-                    serviceType
-                    companyToken
-                    apiKey
-                  }
+          cache.writeFragment<useUpdateEcfitSettingsWriteCache>({
+            id: storeId,
+            fragment: gql`
+              fragment useUpdateEcfitSettingsWriteCache on Store {
+                id
+                storeEcfitSettings {
+                  isEnabled
+                  serviceType
+                  companyToken
+                  apiKey
                 }
-              `,
-              data: {
-                __typename: 'Store',
-                id: storeId,
-                storeEcfitSettings: {
-                  ...(input as useUpdateEcfitSettingsWriteCacheStoreEcfitSettings),
-                  __typename: 'StoreEcfitSettings',
-                },
+              }
+            `,
+            data: {
+              __typename: 'Store',
+              id: storeId,
+              storeEcfitSettings: {
+                ...(input as useUpdateEcfitSettingsWriteCacheStoreEcfitSettings),
+                __typename: 'StoreEcfitSettings',
               },
-            });
-          },
-        }).then(() => {
-          resolve();
-        }),
-      ),
+            },
+          });
+        },
+      });
+    },
     [updateEcfitSettingsMutation],
   );
 };

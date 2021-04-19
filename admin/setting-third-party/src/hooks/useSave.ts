@@ -26,9 +26,6 @@ interface ReturnType {
 export const useSaveFragment = gql`
   fragment useSaveFragment on Store {
     id
-    experiment {
-      isSmartConversionModuleEnabled
-    }
   }
 `;
 
@@ -41,10 +38,12 @@ export default (
   const updateFacebookSetting = useUpdateFacebookSetting();
   const updateEcfitSettings = useUpdateEcfitSettings();
   const updateGoodDealSettings = useUpdateGoodDealSettings();
-  const setGaViewId = useSetGaViewId();
+  const { setGaViewId, processorStatus } = useSetGaViewId(
+    store?.id || 'null-id', // SHOULD_NOT_BE_NULL
+  );
 
   return {
-    loading,
+    loading: loading || processorStatus === 'PROCESSING',
     save: useCallback(
       e => {
         e.preventDefault();
@@ -85,11 +84,12 @@ export default (
                 },
               ]);
 
-            if (store.experiment?.isSmartConversionModuleEnabled)
-              await setGaViewId(store.id, gaViewId || null);
+            // ga view id 允許清空
+            await setGaViewId(gaViewId || '');
+
+            message.success(t('success'));
 
             resetFields();
-            message.success(t('success'));
           } catch (error) {
             message.error(t('error'));
           }
