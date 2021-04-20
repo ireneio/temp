@@ -82,8 +82,6 @@
         "caution": "Komponen konversi pintar hanya dapat digunakan setelah mengatur ID tampilan data. Disarankan untuk tidak mengubah pengaturan selama periode penggunaan komponen untuk menjaga akurasi data."
       }
     },
-    "validating": "Tampilan Data ID Verifikasi ...",
-    "success": "Tampilan Data Sukses Verifikasi ID",
     "error": "ID tampilan data tidak valid"
   }
 }

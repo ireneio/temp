@@ -43,6 +43,7 @@ export const useBlocksFragment = gql`
     experiment {
       ecfitEnabled
       isGoodDealEnabled
+      isSmartConversionModuleEnabled
     }
 
     facebookSetting {
@@ -130,14 +131,19 @@ export default (
                 />
               ),
             },
-        {
-          key: 'gaViewId',
-          src: webTrackGoogleAnalytics,
-          useToggle: false,
-          component: (
-            <GoogleAnalytics form={form} gaViewId={store?.gaViewId || null} />
-          ),
-        },
+        !store?.experiment?.isSmartConversionModuleEnabled
+          ? null
+          : {
+              key: 'gaViewId',
+              src: webTrackGoogleAnalytics,
+              useToggle: false,
+              component: (
+                <GoogleAnalytics
+                  form={form}
+                  gaViewId={store?.gaViewId || null}
+                />
+              ),
+            },
       ].filter(Boolean) as BlockType[],
     [form, store],
   );

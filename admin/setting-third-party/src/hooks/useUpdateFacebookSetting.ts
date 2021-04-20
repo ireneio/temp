@@ -33,43 +33,47 @@ export default (): ((
   >(mutation);
 
   return useCallback(
-    async (storeId: string, input: updateFacebookSettingVariables['input']) => {
-      await updateFacebookSettingMutation({
-        variables: {
-          input,
-        },
-        update: (
-          cache: DataProxy,
-          { data }: { data: updateFacebookSettingType },
-        ) => {
-          if (data.updateFacebookSetting.status !== 'OK') {
-            throw new Error('can not update facebook setting');
-          }
+    async (storeId: string, input: updateFacebookSettingVariables['input']) =>
+      new Promise((resolve, reject) =>
+        updateFacebookSettingMutation({
+          variables: {
+            input,
+          },
+          update: (
+            cache: DataProxy,
+            { data }: { data: updateFacebookSettingType },
+          ) => {
+            if (data.updateFacebookSetting.status !== 'OK') {
+              reject(new Error('can not update facebook setting'));
+              return;
+            }
 
-          cache.writeFragment<useUpdateFacebookSettingWriteCache>({
-            id: storeId,
-            fragment: gql`
-              fragment useUpdateFacebookSettingWriteCache on Store {
-                id
-                facebookSetting {
-                  isLoginEnabled
-                  appId
-                  appSecret
-                }
-              }
-            `,
-            data: {
-              __typename: 'Store',
+            cache.writeFragment<useUpdateFacebookSettingWriteCache>({
               id: storeId,
-              facebookSetting: {
-                ...(input as useUpdateFacebookSettingWriteCacheFacebookSetting),
-                __typename: 'FacebookSetting',
+              fragment: gql`
+                fragment useUpdateFacebookSettingWriteCache on Store {
+                  id
+                  facebookSetting {
+                    isLoginEnabled
+                    appId
+                    appSecret
+                  }
+                }
+              `,
+              data: {
+                __typename: 'Store',
+                id: storeId,
+                facebookSetting: {
+                  ...(input as useUpdateFacebookSettingWriteCacheFacebookSetting),
+                  __typename: 'FacebookSetting',
+                },
               },
-            },
-          });
-        },
-      });
-    },
+            });
+          },
+        }).then(() => {
+          resolve();
+        }),
+      ),
     [updateFacebookSettingMutation],
   );
 };

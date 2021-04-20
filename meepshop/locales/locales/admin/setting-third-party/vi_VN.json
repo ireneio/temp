@@ -82,8 +82,6 @@
         "caution": "Thành phần chuyển đổi thông minh chỉ có thể được sử dụng sau khi đặt ID chế độ xem dữ liệu. Bạn không nên thay đổi cài đặt trong thời gian sử dụng thành phần để duy trì độ chính xác của dữ liệu."
       }
     },
-    "validating": "Xác minh ID xem dữ liệu ...",
-    "success": "Xem dữ liệu Xác minh ID thành công",
     "error": "ID chế độ xem dữ liệu không hợp lệ"
   }
 }

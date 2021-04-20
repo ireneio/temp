@@ -82,8 +82,6 @@
         "caution": "Le composant de conversion intelligente ne peut être utilisé qu'après avoir défini l'ID de vue des données. Il est recommandé de ne pas modifier les paramètres pendant la période d'utilisation du composant pour maintenir l'exactitude des données."
       }
     },
-    "validating": "Vérification de la vue de données ...",
-    "success": "Vue de données ID Vérification Succès",
     "error": "ID de vue de données non valide"
   }
 }
