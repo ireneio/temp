@@ -11,7 +11,11 @@
   "cart-is-empty": "Su carrito está vacío, regrese a la tienda y continúe comprando.",
   "continue-shopping": "Seguir comprando",
   "total-price": "Total",
-  "check-detail": "Detalles",
+  "cart": "carrito de compras",
+  "cart-has-error": {
+    "0": "Por favor, ajuste primero",
+    "1": "Incapaz de comprar bienes"
+  },
   "user-info": "Información del miembro",
   "email": "Regístrese con su dirección de correo electrónico",
   "password": "Contraseña",

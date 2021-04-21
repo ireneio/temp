@@ -11,7 +11,11 @@
   "cart-is-empty": "Xe hàng không có sản phẩm, xin vui lòng trở về cửa hàng để tiếp tục mua hàng",
   "continue-shopping": "Tiếp tục mua hàng",
   "total-price": "Tổng số đơn hàng",
-  "check-detail": "Xem chi tiết",
+  "cart": "Giỏ hàng",
+  "cart-has-error": {
+    "0": "Vui lòng điều chỉnh trước",
+    "1": "Không thể mua hàng"
+  },
   "user-info": "thông tin hội viên",
   "email": "Xin nhập hộp thư đăng ký",
   "password": "Xin cài đặt mật khẩu hội viên",

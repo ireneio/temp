@@ -11,7 +11,11 @@
   "cart-is-empty": "購物車內沒有商品，請返回商店繼續購物",
   "continue-shopping": "繼續購物",
   "total-price": "訂單總金額",
-  "check-detail": "查看明細",
+  "cart": "購物車",
+  "cart-has-error": {
+    "0": "請先調整",
+    "1": "內無法購買的商品"
+  },
   "user-info": "會員資料",
   "email": "請輸入註冊信箱",
   "password": "請設定會員密碼",

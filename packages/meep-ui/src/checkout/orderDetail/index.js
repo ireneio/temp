@@ -9,6 +9,8 @@ import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/locales';
 import withContext from '@store/utils/lib/withContext';
 import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
+import { ErrorMultiIcon } from '@meepshop/icons';
+import { getQuantityRange } from '@meepshop/product-amount-selector';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
@@ -333,11 +335,19 @@ export default class OrderDetail extends React.PureComponent {
       isSynchronizeUserInfo,
       isSaveAsReceiverTemplate,
     } = this.state;
-    const checkProductError = products.some(
-      ({ type, error }) => error && type === 'product',
-    );
+    const checkProductError = products.some(product => {
+      const { min, max } = getQuantityRange(product);
+      const { error, quantity, type } = product;
 
-    if (checkProductError) return this.setState({ productHasError: true });
+      return (error && type === 'product') || quantity < min || quantity > max;
+    });
+
+    if (checkProductError)
+      return this.setState({ productHasError: true }, () => {
+        const dom = document.querySelector(`.${styles.cartButton}`);
+
+        if (dom) dom.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
 
     const { validateFieldsAndScroll } = form;
     const {
@@ -352,18 +362,18 @@ export default class OrderDetail extends React.PureComponent {
         scroll: { offsetTop: 60 },
       },
       (err, data) => {
-        if (!err) {
-          submit(this.isPayment, data, {
-            priceInfo,
-            activityInfo,
-            paymentList,
-            shipmentList,
-            products,
-            choosePayment,
-            isSynchronizeUserInfo,
-            isSaveAsReceiverTemplate,
-          });
-        }
+        if (err) return;
+
+        submit(this.isPayment, data, {
+          priceInfo,
+          activityInfo,
+          paymentList,
+          shipmentList,
+          products,
+          choosePayment,
+          isSynchronizeUserInfo,
+          isSaveAsReceiverTemplate,
+        });
       },
     );
   };
@@ -468,16 +478,33 @@ export default class OrderDetail extends React.PureComponent {
               {storeName}
 
               <div className={styles.phoneSizeWrapper}>
-                {t('total-price')}：{transformCurrency(total)}
-                <Button
-                  onClick={() =>
-                    this.setState({ showDetail: true }, () => {
-                      document.querySelector('body').style.overflow = 'hidden';
-                    })
-                  }
-                >
-                  {t('check-detail')}
-                </Button>
+                <div>
+                  {t('total-price')}：{transformCurrency(total)}
+                  <div className={styles.cartButton}>
+                    <Button
+                      onClick={() =>
+                        this.setState({ showDetail: true }, () => {
+                          document.querySelector('body').style.overflow =
+                            'hidden';
+                        })
+                      }
+                    >
+                      {t('cart')}
+                    </Button>
+
+                    {!productHasError ? null : <ErrorMultiIcon />}
+                  </div>
+                </div>
+
+                {!productHasError ? null : (
+                  <div className={styles.cartError}>
+                    {t('cart-has-error.0')}
+
+                    <span>{t('cart')}</span>
+
+                    {t('cart-has-error.1')}
+                  </div>
+                )}
               </div>
             </div>
 

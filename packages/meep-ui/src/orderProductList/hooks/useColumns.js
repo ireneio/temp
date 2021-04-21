@@ -185,7 +185,7 @@ export default ({ productHasError, updateCart, onChange }) => {
                 />
               )}
 
-              {!hasError ? null : (
+              {error || type !== 'product' || !hasError ? null : (
                 <div className={`${styles.hasError} ${styles.mobile}`}>
                   {t('quantity-out-of-range')}
                 </div>

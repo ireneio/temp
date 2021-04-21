@@ -11,7 +11,11 @@
   "cart-is-empty": "Keranjang Anda kosong, harap kembali ke toko dan lanjutkan berbelanja.",
   "continue-shopping": "Lanjutkan Belanja",
   "total-price": "Total",
-  "check-detail": "Detail",
+  "cart": "kereta Belanja",
+  "cart-has-error": {
+    "0": "Silakan sesuaikan dulu",
+    "1": "Tidak dapat membeli barang"
+  },
   "user-info": "Info Anggota",
   "email": "Daftar dengan alamat emailmu",
   "password": "Kata sandi",

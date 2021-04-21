@@ -11,7 +11,11 @@
   "cart-is-empty": "Votre panier est vide, veuillez retourner au magasin et continuer vos achats.",
   "continue-shopping": "Continuer vos achats",
   "total-price": "Totale",
-  "check-detail": "Détails",
+  "cart": "Panier",
+  "cart-has-error": {
+    "0": "S'il vous plaît ajuster d'abord",
+    "1": "Impossible d'acheter des biens"
+  },
   "user-info": "Infos membres",
   "email": "Inscrivez vous avec votre adresse email",
   "password": "Mot de passe",

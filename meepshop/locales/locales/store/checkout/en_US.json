@@ -11,7 +11,11 @@
   "cart-is-empty": "Your cart is empty, please return to the store and continue shopping.",
   "continue-shopping": "Continue Shopping",
   "total-price": "Total",
-  "check-detail": "Details",
+  "cart": "shopping cart",
+  "cart-has-error": {
+    "0": "Please adjust first",
+    "1": "Unable to buy goods"
+  },
   "user-info": "Member Info",
   "email": "Sign up with your email address",
   "password": "Password",
