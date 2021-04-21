@@ -51,6 +51,15 @@
     "setting-placeholder": "Please enter the verification code syntax",
     "googleSearchConsoleVerificationHtml": "HTML tag verification code:"
   },
+  "google-merchant-center": {
+    "title": "Google Merchant Center",
+    "sub-title": "Merchant Center",
+    "tip": "How to set Merchant Center",
+    "description": "Provide stores and product information to Google, let shoppers using a variety of Google services have the opportunity to come into contact with these information.",
+    "placeholder": "Please enter the verification code syntax",
+    "googleMerchantCenterVerificationCode": "HTML tag verification code:",
+    "setting": "HTML tag verification"
+  },
   "google-tag-manager": {
     "title": "Code Management Tools",
     "description": "Google Tag Manager is a tag management system that can help you rapidly update your tracking code and snippet through website user interface setting and tag deployment settings.",

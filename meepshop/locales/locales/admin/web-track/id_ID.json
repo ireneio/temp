@@ -51,6 +51,15 @@
     "setting-placeholder": "Harap masukkan sintaks kode verifikasi",
     "googleSearchConsoleVerificationHtml": "Kode verifikasi tag HTML:"
   },
+  "google-merchant-center": {
+    "title": "Google Merchant Center.",
+    "sub-title": "Pedagang pusat",
+    "tip": "Cara mengatur Pusat Merchant",
+    "description": "Berikan toko dan informasi produk ke Google, biarkan pembeli menggunakan berbagai layanan Google memiliki kesempatan untuk bersentuhan dengan informasi ini.",
+    "placeholder": "Silakan masukkan sintaks kode verifikasi",
+    "googleMerchantCenterVerificationCode": "Kode Verifikasi Tag HTML:",
+    "setting": "HTML tag verifikasi"
+  },
   "google-tag-manager": {
     "title": "Alat Manajemen Kode",
     "description": "Google Tag Manager adalah sistem manajemen tag yang dapat membantu Anda dengan cepat memperbarui kode pelacakan dan snippet Anda melalui pengaturan antarmuka pengguna situs web dan pengaturan penempatan tag.",

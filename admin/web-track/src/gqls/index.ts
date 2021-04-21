@@ -6,6 +6,7 @@ import { facebookStoreFragment } from './facebook';
 import { googleAnalyticsFragment } from './googleAnalytics';
 import { googleAdsStoreFragment } from './googleAds';
 import { googleWebmasterFragment } from './googleWebmaster';
+import { googleMerchantCenterFragment } from './googleMerchantCenter';
 import { googleTagManagerFragment } from './googleTagManager';
 import { advancedSettingFragment } from './advancedSetting';
 
@@ -19,6 +20,7 @@ export const getWebTrack = gql`
         ...googleAnalyticsFragment
         ...googleAdsStoreFragment
         ...googleWebmasterFragment
+        ...googleMerchantCenterFragment
         ...googleTagManagerFragment
         ...advancedSettingFragment
       }
@@ -29,6 +31,7 @@ export const getWebTrack = gql`
   ${googleAnalyticsFragment}
   ${googleAdsStoreFragment}
   ${googleWebmasterFragment}
+  ${googleMerchantCenterFragment}
   ${googleTagManagerFragment}
   ${advancedSettingFragment}
 `;

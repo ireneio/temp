@@ -31,6 +31,7 @@ export const webTrackGoogleAdsInstruction_w890 = mockData;
 export const webTrackGoogleAnalytics_w224 = mockData;
 export const webTrackGoogleAnalyticsInstruction_w888 = mockData;
 export const webTrackGoogleTagManager_w172 = mockData;
+export const webTrackGoogleMerchantCenter_w258 = mockData;
 export const webTrackGoogleTagManagerInstruction_w890 = mockData;
 export const webTrackGoogleWebmasterInstruction_w890 = mockData;
 

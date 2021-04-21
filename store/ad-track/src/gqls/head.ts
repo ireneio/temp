@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 export const headFragment = gql`
   fragment headFragment on AdTracks {
     googleSearchConsoleVerificationHtml
+    googleMerchantCenterVerificationCode
     facebookPixelId
     googleAnalyticsId
     googleAdwordsConfig

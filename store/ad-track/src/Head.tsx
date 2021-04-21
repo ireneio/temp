@@ -17,6 +17,7 @@ export default React.memo(
   ({
     adTracks: {
       googleSearchConsoleVerificationHtml,
+      googleMerchantCenterVerificationCode,
       facebookPixelId,
       googleAnalyticsId,
       googleAdwordsConfig,
@@ -40,6 +41,13 @@ export default React.memo(
         {!googleSearchConsoleVerificationHtml ? null : (
           <meta
             content={googleSearchConsoleVerificationHtml}
+            name="google-site-verification"
+          />
+        )}
+
+        {!googleMerchantCenterVerificationCode ? null : (
+          <meta
+            content={googleMerchantCenterVerificationCode}
             name="google-site-verification"
           />
         )}

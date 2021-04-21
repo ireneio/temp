@@ -51,6 +51,15 @@
     "setting-placeholder": "請輸入驗證碼語法",
     "googleSearchConsoleVerificationHtml": "HTML標記驗證碼："
   },
+  "google-merchant-center": {
+    "title": "Google Merchant Center",
+    "sub-title": "Merchant Center",
+    "tip": "如何設定 Merchant Center",
+    "description": "將商店和產品資訊提供給 Google，讓使用各種 Google 服務的購物者有機會接觸到這些資訊。也就是說，無論使用者透過何種 Google 資源進行搜尋，都能看見完整的商店資訊和產品資訊。",
+    "placeholder": "請輸入驗證碼語法",
+    "googleMerchantCenterVerificationCode": "HTML標記驗證碼：",
+    "setting": "HTML標記驗證"
+  },
   "google-tag-manager": {
     "title": "代碼管理工具",
     "description": "Google 代碼管理工具是一套代碼管理系統，透過網頁式使用者介面設置及部署代碼設定，方便您快速更新追蹤程式碼和相關程式碼片段。這樣不但能減少錯誤，想要修改代碼時也不必每次都找開發人員幫忙。",

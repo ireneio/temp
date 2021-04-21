@@ -304,6 +304,7 @@ jobs:
       - run:
           name: Upload images
           command: |
+            cd ./meepshop/images/images
             imageDir=$(pwd);
             for image in $(find $imageDir); do
               if [[ $(file -b $image) =~ 'image' ]]; then
@@ -314,7 +315,7 @@ jobs:
                 extension="${filename##*.}"
                 filename="${filename%.*}"
                 gsFilePath=$folder"/"$filename"_"$hash"."$extension
-                echo $image gs://img.meepcloud.com/assets$gsFilePath
+                gsutil cp $image gs://img.meepcloud.com/assets$gsFilePath
               fi
             done
   testing:

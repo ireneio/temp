@@ -51,6 +51,15 @@
     "setting-placeholder": "Veuillez saisir la syntaxe du code de vérification",
     "googleSearchConsoleVerificationHtml": "Code de vérification de la balise HTML:"
   },
+  "google-merchant-center": {
+    "title": "Google Merchant Center",
+    "sub-title": "Espace marchand",
+    "tip": "Comment mettre le centre marchand",
+    "description": "Fournissez des magasins et des informations sur le produit à Google, laissez les acheteurs à utiliser une variété de services Google ont la possibilité d'entrer en contact avec ces informations.",
+    "placeholder": "Veuillez entrer la syntaxe du code de vérification",
+    "googleMerchantCenterVerificationCode": "Code de vérification de la balise HTML:",
+    "setting": "Vérification de la balise HTML"
+  },
   "google-tag-manager": {
     "title": "Outils de gestion de code",
     "description": "Google Tag Manager est un système de gestion des tags qui peut vous aider à mettre rapidement à jour votre code de suivi et votre extrait de code via les paramètres d'interface utilisateur du site Web et de déploiement des tags.",

@@ -51,6 +51,15 @@
     "setting-placeholder": "Vui lòng nhập cú pháp mã xác minh",
     "googleSearchConsoleVerificationHtml": "Mã xác minh thẻ HTML:"
   },
+  "google-merchant-center": {
+    "title": "Trung tâm Google Merchant.",
+    "sub-title": "TRUNG TÂM MERCHANT.",
+    "tip": "Cách đặt Trung tâm thương mại",
+    "description": "Cung cấp các cửa hàng và thông tin sản phẩm cho Google, hãy để người mua hàng sử dụng nhiều dịch vụ của Google có cơ hội tiếp xúc với những thông tin này.",
+    "placeholder": "Vui lòng nhập cú pháp mã xác minh",
+    "googleMerchantCenterVerificationCode": "Mã xác minh thẻ HTML:",
+    "setting": "Xác minh thẻ HTML"
+  },
   "google-tag-manager": {
     "title": "Công cụ quản lý mã",
     "description": "Trình quản lý thẻ của Google là một hệ thống quản lý thẻ có thể giúp bạn cập nhật nhanh chóng mã theo dõi và đoạn mã thông qua cài đặt giao diện người dùng trang web và cài đặt triển khai thẻ.",

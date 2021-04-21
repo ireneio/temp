@@ -17,6 +17,7 @@ import Facebook from './Facebook';
 import GoogleAnalytics from './GoogleAnalytics';
 import GoogleAds from './GoogleAds';
 import GoogleWebmaster from './GoogleWebmaster';
+import GoogleMerchantCenter from './GoogleMerchantCenter';
 import GoogleTagManager from './GoogleTagManager';
 import AdvancedSetting from './AdvancedSetting';
 
@@ -31,6 +32,7 @@ import { facebookStoreFragment } from './gqls/facebook';
 import { googleAnalyticsFragment } from './gqls/googleAnalytics';
 import { googleAdsStoreFragment } from './gqls/googleAds';
 import { googleWebmasterFragment } from './gqls/googleWebmaster';
+import { googleMerchantCenterFragment } from './gqls/googleMerchantCenter';
 import { googleTagManagerFragment } from './gqls/googleTagManager';
 import { advancedSettingFragment } from './gqls/advancedSetting';
 
@@ -58,6 +60,7 @@ const WebTrack: NextPage<PropsType> = React.memo(
             title={
               <>
                 <AnalyticsSettingIcon />
+
                 <div>{t('track-setting')}</div>
               </>
             }
@@ -66,19 +69,32 @@ const WebTrack: NextPage<PropsType> = React.memo(
               <TabPane tab="Facebook" key="facebook">
                 <Facebook store={filter(facebookStoreFragment, store)} />
               </TabPane>
+
               <TabPane tab="Google Analytics" key="googleAnalytics">
                 <GoogleAnalytics
                   store={filter(googleAnalyticsFragment, store)}
                 />
               </TabPane>
+
               <TabPane tab="Google Ads" key="googleAds">
                 <GoogleAds store={filter(googleAdsStoreFragment, store)} />
               </TabPane>
+
               <TabPane tab={t('google-webmaster.title')} key="googleWebmaster">
                 <GoogleWebmaster
                   store={filter(googleWebmasterFragment, store)}
                 />
               </TabPane>
+
+              <TabPane
+                tab={t('google-merchant-center.title')}
+                key="googleMerchantCenter"
+              >
+                <GoogleMerchantCenter
+                  store={filter(googleMerchantCenterFragment, store)}
+                />
+              </TabPane>
+
               <TabPane tab="Google Tag Manager" key="googleTagManager">
                 <GoogleTagManager
                   store={filter(googleTagManagerFragment, store)}

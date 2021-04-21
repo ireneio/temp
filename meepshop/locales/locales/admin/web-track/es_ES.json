@@ -51,6 +51,15 @@
     "setting-placeholder": "Ingrese la sintaxis del código de verificación",
     "googleSearchConsoleVerificationHtml": "Código de verificación de etiqueta HTML:"
   },
+  "google-merchant-center": {
+    "title": "Google Merchant Center",
+    "sub-title": "Centro mercante",
+    "tip": "Cómo establecer el Centro Mercante",
+    "description": "Proporcionar tiendas y información de productos a Google, deje que los compradores usen una variedad de servicios de Google tienen la oportunidad de entrar en contacto con esta información.",
+    "placeholder": "Por favor ingrese la sintaxis del código de verificación",
+    "googleMerchantCenterVerificationCode": "Código de verificación de etiquetas HTML:",
+    "setting": "Verificación de etiquetas HTML"
+  },
   "google-tag-manager": {
     "title": "Herramientas de gestión de código",
     "description": "Google Tag Manager es un sistema de administración de etiquetas que puede ayudarlo a actualizar rápidamente su código de seguimiento y fragmento a través de la configuración de la interfaz de usuario del sitio web y la configuración de implementación de etiquetas.",

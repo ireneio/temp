@@ -51,6 +51,15 @@
     "setting-placeholder": "確認コードの構文を入力してください",
     "googleSearchConsoleVerificationHtml": "HTMLタグ確認コード："
   },
+  "google-merchant-center": {
+    "title": "グーグルマーチャントセンター",
+    "sub-title": "マーチャントセンター",
+    "tip": "マーチャントセンターを設定する方法",
+    "description": "店舗や製品情報をGoogleに提供し、さまざまなGoogleサービスを使用している買物客にこれらの情報と連絡を取り合う機会があります。",
+    "placeholder": "確認コードの構文を入力してください",
+    "googleMerchantCenterVerificationCode": "HTMLタグ検証コード：",
+    "setting": "HTMLタグの検証"
+  },
   "google-tag-manager": {
     "title": "コード管理ツール",
     "description": "Googleタグマネージャーは、ウェブサイトのユーザーインターフェース設定とタグの展開設定を使用して、トラッキングコードとスニペットをすばやく更新できるタグ管理システムです。",

@@ -51,6 +51,15 @@
     "setting-placeholder": "โปรดป้อนไวยากรณ์รหัสยืนยัน",
     "googleSearchConsoleVerificationHtml": "รหัสยืนยันแท็ก HTML:"
   },
+  "google-merchant-center": {
+    "title": "Google Merchant Center",
+    "sub-title": "ศูนย์การค้า",
+    "tip": "วิธีการตั้งค่า Merchant Center",
+    "description": "ให้ข้อมูลร้านค้าและผลิตภัณฑ์แก่ Google ให้ผู้ซื้อใช้บริการ Google ที่หลากหลายมีโอกาสที่จะติดต่อกับข้อมูลเหล่านี้",
+    "placeholder": "โปรดป้อนไวยากรณ์รหัสยืนยัน",
+    "googleMerchantCenterVerificationCode": "รหัสยืนยันแท็ก HTML:",
+    "setting": "การตรวจสอบแท็ก HTML"
+  },
   "google-tag-manager": {
     "title": "เครื่องมือการจัดการรหัส",
     "description": "Google เครื่องจัดการแท็กเป็นระบบการจัดการแท็กที่สามารถช่วยให้คุณอัปเดตรหัสติดตามและตัวอย่างได้อย่างรวดเร็วผ่านการตั้งค่าส่วนต่อประสานผู้ใช้เว็บไซต์และการตั้งค่าการใช้งานแท็ก",

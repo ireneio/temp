@@ -1,0 +1,43 @@
+@import './mixin.less';
+
+.title {
+  @title();
+}
+
+.description {
+  @description();
+}
+
+.item {
+  display: flex;
+  align-items: center;
+
+  :global(.ant-form-item) {
+    width: 300px;
+    margin: 0px;
+  }
+
+  & > button:nth-child(2) {
+    margin: 0px 8px 0px 16px;
+  }
+}
+
+.googleMerchantCenterVerificationCode {
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+
+  & > div:first-child {
+    color: rgba(0, 0, 0, 0.45);
+    font-weight: normal;
+  }
+
+  & > i {
+    font-size: 14px;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+}
