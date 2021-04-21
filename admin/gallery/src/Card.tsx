@@ -13,6 +13,7 @@ interface PropsType {
   node: getImagesViewerFilesEdgesNodeType;
   selectedImgs: getImagesViewerFilesEdgesNodeType[];
   setSelectedImgs: (selectedImgs: getImagesViewerFilesEdgesNodeType[]) => void;
+  multiple?: boolean;
 }
 
 // definition
@@ -20,6 +21,7 @@ export default ({
   node,
   selectedImgs,
   setSelectedImgs,
+  multiple,
 }: PropsType): React.ReactElement => {
   const { rootRef, height } = useHeight();
   const selected = selectedImgs.some(img => img?.id === node.id);
@@ -36,13 +38,19 @@ export default ({
         setSelectedImgs(
           !selected
             ? [...selectedImgs, node]
-            : selectedImgs.filter(existingIds => existingIds.id !== node.id),
+            : selectedImgs.filter(img => img.id !== node.id),
         );
       }}
     >
       {!selected ? null : (
         <div className={styles.selected}>
-          <Icon type="check-circle" theme="filled" />
+          <div className={styles.icon}>
+            {!multiple ? (
+              <Icon type="check" />
+            ) : (
+              selectedImgs.findIndex(img => img.id === node.id) + 1
+            )}
+          </div>
         </div>
       )}
     </div>

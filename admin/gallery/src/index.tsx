@@ -167,6 +167,7 @@ export default React.memo(
                     setSelectedImgs={imgs => {
                       setSelectedImgs(multiple ? imgs : imgs.slice(-1));
                     }}
+                    multiple={multiple}
                   />
                 ))}
               </div>
