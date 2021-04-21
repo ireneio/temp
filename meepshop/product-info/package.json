@@ -4,18 +4,18 @@
   "description": "Meepshop product info module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.28",
+  "version": "0.79.29",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.79.21",
-    "@meepshop/draft-text": "^0.79.21",
-    "@meepshop/link": "^0.79.17",
-    "@meepshop/locales": "^0.79.28",
-    "@meepshop/product-amount-selector": "^0.79.28",
-    "@meepshop/product-spec-selector": "^0.79.21",
-    "@meepshop/thumbnail": "^0.79.17",
-    "@meepshop/utils": "^0.79.17"
+    "@meepshop/context": "^0.79.29",
+    "@meepshop/draft-text": "^0.79.29",
+    "@meepshop/link": "^0.79.29",
+    "@meepshop/locales": "^0.79.29",
+    "@meepshop/product-amount-selector": "^0.79.29",
+    "@meepshop/product-spec-selector": "^0.79.29",
+    "@meepshop/thumbnail": "^0.79.29",
+    "@meepshop/utils": "^0.79.29"
   },
   "keywords": ["meepshop", "product info"]
 }
