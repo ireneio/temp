@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.79.29 (2021-04-21)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1444](https://github.com/meepshop/meep-lerna/pull/1444) 新增：手機版結帳頁 /checkout，無法結帳商品的明顯提示 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1299](https://github.com/meepshop/meep-lerna/pull/1299) T6897 - 【重構】商店設定 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1487](https://github.com/meepshop/meep-lerna/pull/1487) 【優化】媒體櫃選取圖片順序的數字顯示 - 前端 ([@HsuTing](https://github.com/HsuTing))
+  - [#1485](https://github.com/meepshop/meep-lerna/pull/1485) 【功能】Google Merchant Center 網域驗證 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1504](https://github.com/meepshop/meep-lerna/pull/1504) Revert 【功能】 智慧轉換元件 - 移除白名單 toggle / 修改 ga view id 儲存 ([@meepshop-bot](https://github.com/meepshop-bot))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@meepshop-bot](https://github.com/meepshop-bot)
+
 ## 0.79.28 (2021-04-19)
 
 #### :rocket: New Feature
