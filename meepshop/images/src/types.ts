@@ -7,6 +7,9 @@ export * from '../lib/defaultTypes';
 // definition
 /* eslint-disable @typescript-eslint/camelcase */
 export const adminAppleTouchIcon_w180_h180 = mockData;
+export const adminSettingStoreStoreLogo_h39 = mockData;
+export const adminSettingStoreMobileStoreLogo_h70 = mockData;
+export const adminSettingStoreStoreFavicon_h41 = mockData;
 export const dashboardCost_w40 = mockData;
 export const dashboardLogo_w160 = mockData;
 export const dashboardMember_w40 = mockData;

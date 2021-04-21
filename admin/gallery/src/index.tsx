@@ -24,17 +24,11 @@ import { getImages } from './gqls/index';
 import { useLoadMoreImagesFragment } from './gqls/useLoadMoreImages';
 
 // typescript definition
+export type ImageNodeType = getImagesViewerFilesEdgesNodeType;
 export interface PropsType {
   buttons?: React.ReactNode;
-  value?:
-    | null
-    | getImagesViewerFilesEdgesNodeType
-    | getImagesViewerFilesEdgesNodeType[];
-  onChange?: (
-    imgs:
-      | getImagesViewerFilesEdgesNodeType
-      | getImagesViewerFilesEdgesNodeType[],
-  ) => void;
+  value?: null | ImageNodeType | ImageNodeType[];
+  onChange?: (imgs: ImageNodeType | ImageNodeType[]) => void;
   buttonText?: string;
   multiple?: boolean;
 }

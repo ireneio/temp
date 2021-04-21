@@ -3,9 +3,13 @@ import gql from 'graphql-tag';
 
 // graphql import
 import { useLoadMoreImagesFragment } from './useLoadMoreImages';
-import { useUploadImagesFileFragment } from './useUploadImages';
+import {
+  useUploadImagesFileFragment,
+  useUploadImageOnScaledURLsFragment,
+} from './useUploadImages';
 
 // definition
+export { useUploadImageOnScaledURLsFragment };
 export const getImages = gql`
   query getImages(
     $search: searchInputObjectType

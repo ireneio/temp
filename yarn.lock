@@ -3847,10 +3847,10 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@meepshop/meep-cli@^1.35.0":
-  version "1.35.0"
-  resolved "https://npm.pkg.github.com/download/@meepshop/meep-cli/1.35.0/ca865b6463883656a73dd79403f9e46f2cdc83beed7db24f959fa6e85294d6c8#084198e746d3b142843ade92c3e7f5e1d6de1b49"
-  integrity sha512-drBy+Sn7E9OwJtG36EBWDbLhRtsfQCcIJK9QW5zTvM+ux7hbsZyBDliDJPn0Om35nuel8VGgKe4NSWx74ZZeYg==
+"@meepshop/meep-cli@^1.35.3":
+  version "1.35.3"
+  resolved "https://npm.pkg.github.com/download/@meepshop/meep-cli/1.35.3/ac697a844d3b81936113b30b42091f39688853d1960555a1ce46c1bb7c299f3b#9bd90fc559a29f34acc8b90d169d3114bf01b775"
+  integrity sha512-DBfuQM0O852c0BBc2uQOJa+0iA1G+DOZDiTNBVOq4Ek5fi51bIfCvXuFTkJRQj41a7jK374pWckSELfi2tDgWg==
   dependencies:
     chalk "^4.1.0"
     commander "^7.0.0"

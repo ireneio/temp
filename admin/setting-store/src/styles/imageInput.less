@@ -1,0 +1,59 @@
+.root {
+  height: 90px;
+}
+
+.defaultImage {
+  height: 100%;
+  width: 100%;
+  border: 1px dashed #e0e0e0;
+  border-radius: 3px;
+  background-color: #fcfcfd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px dashed #00c5dc;
+    background-color: #f8feff;
+  }
+
+  &:active {
+    box-shadow: 0 0 0 4px rgba(0, 197, 220, 0.1),
+      0 0 0 1px rgba(0, 197, 220, 0.45), 0 0 0 8px rgba(0, 197, 220, 0.1);
+  }
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+  border-radius: 3px;
+  background-color: #fcfcfd;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+
+  &:hover .removeImage {
+    display: flex;
+  }
+}
+
+.removeImage {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+}

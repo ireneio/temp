@@ -227,7 +227,7 @@ export default Form.create<PropsType>()(
             </FormItem>
           </div>
         </Form>,
-        portalTarget,
+        portalTarget as HTMLDivElement,
       );
     },
   ),

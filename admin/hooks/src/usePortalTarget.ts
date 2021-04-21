@@ -1,15 +1,20 @@
 // import
 import { useRef, useEffect } from 'react';
+import { emptyFunction } from 'fbjs';
 
 // definition
-export default (): HTMLDivElement => {
-  const rootRef = useRef(document.createElement('div'));
+export default (): HTMLDivElement | null => {
+  const rootRef = useRef(
+    typeof window === 'undefined' ? null : document.createElement('div'),
+  );
 
   useEffect(() => {
     const dom = document.getElementById('meepshop');
     const rootDom = rootRef.current;
 
-    if (dom) dom.appendChild(rootRef.current);
+    if (!rootDom) return emptyFunction;
+
+    if (dom) dom.appendChild(rootDom);
 
     return () => {
       rootDom.remove();

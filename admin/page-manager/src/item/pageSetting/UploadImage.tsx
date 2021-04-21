@@ -46,7 +46,7 @@ const UploadImage = React.memo(
           alt="upload"
         />
 
-        {!visible
+        {!visible || !portalTarget
           ? null
           : ReactDOM.createPortal(
               <div className={styles.gallery}>

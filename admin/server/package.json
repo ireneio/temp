@@ -26,6 +26,7 @@
     "@admin/set-up-store": "^0.79.28",
     "@admin/setting": "^0.79.28",
     "@admin/setting-notification": "^0.79.28",
+    "@admin/setting-store": "^0.79.28",
     "@admin/setting-third-party": "^0.79.28",
     "@admin/sign-up": "^0.79.28",
     "@admin/sign-up-fail": "^0.79.28",

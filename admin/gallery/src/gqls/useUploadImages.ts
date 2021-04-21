@@ -2,24 +2,32 @@
 import gql from 'graphql-tag';
 
 // definition
+export const useUploadImageOnScaledURLsFragment = gql`
+  fragment useUploadImageOnScaledURLsFragment on ScaledURLs {
+    h200
+    w60
+    w120
+    w240
+    w250
+    w480
+    w720
+    w960
+    w1200
+    w1440
+    w1680
+    w1920
+  }
+`;
+
 export const useUploadImagesFileFragment = gql`
   fragment useUploadImagesFileFragment on File {
     id
     scaledSrc {
-      h200
-      w60
-      w120
-      w240
-      w250
-      w480
-      w720
-      w960
-      w1200
-      w1440
-      w1680
-      w1920
+      ...useUploadImageOnScaledURLsFragment
     }
   }
+
+  ${useUploadImageOnScaledURLsFragment}
 `;
 
 export const useUploadImagesReadCache = gql`
@@ -56,5 +64,6 @@ export const uploadImages = gql`
       ...useUploadImagesFileFragment
     }
   }
+
   ${useUploadImagesFileFragment}
 `;

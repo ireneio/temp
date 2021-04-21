@@ -35,6 +35,7 @@ module.exports = {
     },
   },
   rules: {
+    'prefer-promise-reject-errors': 'error',
     'no-console': 'error',
     'no-warning-comments': [
       'warn',
