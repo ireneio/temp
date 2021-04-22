@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.79.30 (2021-04-22)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1507](https://github.com/meepshop/meep-lerna/pull/1507) 【BUG】贈品庫存不足，前台無法建立訂單 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.79.29 (2021-04-21)
 
 #### :rocket: New Feature
