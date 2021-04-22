@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.79.31 (2021-04-22)
+
+#### :rocket: New Feature
+
+- [#1443](https://github.com/meepshop/meep-lerna/pull/1443) 前端 - ECFIT 訂單列表篩選建立時間，改使用 EcfitOrderFilterInput.createdAtRange ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1499](https://github.com/meepshop/meep-lerna/pull/1499) 後台 - 網址重新導向，操作按鈕顏色有誤 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1501](https://github.com/meepshop/meep-lerna/pull/1501) 【BUG】 IE 瀏覽器 - 前台無法會員登入 ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`
+  - [#1503](https://github.com/meepshop/meep-lerna/pull/1503) 【BUG】 商品列表跳第二頁，跑到別的元件 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#1406](https://github.com/meepshop/meep-lerna/pull/1406) 內部開單 - express 升級 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.30 (2021-04-22)
 
 #### :bug: Bug Fix
