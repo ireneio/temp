@@ -4,7 +4,7 @@
   "description": "admin orders",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.29",
+  "version": "0.79.31",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
