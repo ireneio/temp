@@ -13,7 +13,7 @@ export default ({
   variables,
 }: Pick<OrdersQueryResult, 'variables' | 'refetch'>): {
   datepickerValue: [moment.Moment, moment.Moment] | undefined;
-  changeDatePicker: (timeRange: DataPickerPropsType['value']) => void;
+  changeDatePicker: (createdAtRange: DataPickerPropsType['value']) => void;
 } => ({
   datepickerValue: useMemo(() => {
     const {
@@ -22,24 +22,24 @@ export default ({
     }: {
       start?: number;
       end?: number;
-    } = variables?.filter?.timeRange || {};
+    } = variables?.filter?.createdAtRange || {};
 
-    return !start || !end ? undefined : [moment.unix(start), moment.unix(end)];
+    return !start || !end ? undefined : [moment(start), moment(end)];
   }, [variables]),
   changeDatePicker: useCallback(
-    (timeRange: DataPickerPropsType['value']) => {
-      const [start = undefined, end = undefined] = timeRange || [];
+    (createdAtRange: DataPickerPropsType['value']) => {
+      const [start = undefined, end = undefined] = createdAtRange || [];
 
       refetch({
         ...variables,
         filter: {
           ...variables.filter,
-          timeRange:
+          createdAtRange:
             !start || !end
               ? undefined
               : {
-                  start: moment(start).format('X'),
-                  end: moment(end).format('X'),
+                  start: start.format(),
+                  end: end.format(),
                 },
         },
       });

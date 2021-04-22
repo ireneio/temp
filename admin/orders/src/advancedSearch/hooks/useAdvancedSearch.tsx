@@ -30,7 +30,7 @@ export default ({
       ...variables,
       filter: {
         ...filter,
-        timeRange: variables?.filter?.timeRange,
+        createdAtRange: variables?.filter?.createdAtRange,
         searchTerm: variables?.filter?.searchTerm,
         ecfitSentStatus: variables?.filter?.ecfitSentStatus,
       },
