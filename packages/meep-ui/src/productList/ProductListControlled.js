@@ -41,6 +41,7 @@ import * as styles from './styles';
         queryString.parse(search)[id]?.split(',') || [];
 
       return {
+        id,
         offset:
           pageFromQuery && parseInt(pageFromQuery, 10)
             ? (parseInt(pageFromQuery, 10) - 1) * limit
@@ -279,7 +280,7 @@ export default class ProductList extends React.PureComponent {
     const sortOptions = SORT_OPTIONS(ids, sort);
 
     return (
-      <div style={styles.root} ref={this.root} className={this.name}>
+      <div id={id} style={styles.root} ref={this.root} className={this.name}>
         <Style
           scopeSelector={`.${this.name}`}
           rules={styles.listStyle(colors, isGrid)}

@@ -31,18 +31,21 @@ import * as styles from './styles';
 @enhancer
 @withHook(
   ({
+    id,
     params: { offset = 0, sort = 'createdAt-desc', limit = 20, ...restParams },
     location: { search },
   }) => {
-    const params = useMemo(() => {
-      return {
+    const params = useMemo(
+      () => ({
+        id,
         offset,
         sort,
         limit,
         ...restParams,
         ...queryString.parse(search),
-      };
-    }, [offset, sort, limit, restParams, search]);
+      }),
+      [id, offset, sort, limit, restParams, search],
+    );
     const { data, loading } = useProducts(params);
 
     return {
@@ -233,6 +236,7 @@ export default class ProductList extends React.PureComponent {
 
   render() {
     const {
+      id,
       showSort,
       alignment,
       justifyContent,
@@ -266,7 +270,7 @@ export default class ProductList extends React.PureComponent {
     const sortOptions = SORT_OPTIONS(ids, sort);
 
     return (
-      <div style={styles.root} className={this.name}>
+      <div id={id} style={styles.root} className={this.name}>
         <Style
           scopeSelector={`.${this.name}`}
           rules={styles.listStyle(colors, isGrid)}

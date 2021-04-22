@@ -6,6 +6,7 @@ import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { getProducts } from '../gqls/useProducts';
 
 export default ({
+  id,
   ids,
   tags,
   price,
@@ -107,12 +108,18 @@ export default ({
   const { data, loading } = useQuery(getProducts, { variables });
 
   useEffect(() => {
+    if (data?.computeProductList?.data) {
+      const dom = document.getElementById(id);
+
+      if (dom) dom.scrollIntoView({ behavior: 'smooth' });
+    }
+
     if (search && data?.computeProductList?.data)
       adTrack.search({
         searchString: search,
         products: data.computeProductList.data,
       });
-  }, [adTrack, data, search]);
+  }, [id, adTrack, data, search]);
 
   return {
     data: useMemo(() => {
