@@ -1,0 +1,64 @@
+diff --git a/node_modules/pino/browser.js b/node_modules/pino/browser.js
+index 0d6cc71..370cc37 100644
+--- a/node_modules/pino/browser.js
++++ b/node_modules/pino/browser.js
+@@ -58,10 +58,10 @@ function pino (opts) {
+   })
+ 
+   const setOpts = {
+-    transmit,
+-    serialize,
++    transmit: transmit,
++    serialize: serialize,
+     asObject: opts.browser.asObject,
+-    levels,
++    levels: levels,
+     timestamp: getTimeFunction(opts)
+   }
+   logger.levels = pino.levels
+@@ -161,7 +161,7 @@ pino.levels = {
+ }
+ 
+ pino.stdSerializers = stdSerializers
+-pino.stdTimeFunctions = Object.assign({}, { nullTime, epochTime, unixTime, isoTime })
++pino.stdTimeFunctions = Object.assign({}, { nullTime: nullTime, epochTime: epochTime, unixTime: unixTime, isoTime: isoTime })
+ 
+ function set (opts, logger, level, fallback) {
+   const proto = Object.getPrototypeOf(logger)
+@@ -194,10 +194,10 @@ function wrap (opts, logger, level) {
+         const methodValue = pino.levels.values[level]
+         if (methodValue < transmitValue) return
+         transmit(this, {
+-          ts,
++          ts: ts,
+           methodLevel: level,
+-          methodValue,
+-          transmitLevel,
++          methodValue: methodValue,
++          transmitLevel: transmitLevel,
+           transmitValue: pino.levels.values[opts.transmit.level || logger.level],
+           send: opts.transmit.send,
+           val: logger.levelVal
+@@ -230,11 +230,11 @@ function asObject (logger, level, args, ts) {
+ }
+ 
+ function applySerializers (args, serialize, serializers, stdErrSerialize) {
+-  for (const i in args) {
++  for (var i in args) {
+     if (stdErrSerialize && args[i] instanceof Error) {
+       args[i] = pino.stdSerializers.err(args[i])
+     } else if (typeof args[i] === 'object' && !Array.isArray(args[i])) {
+-      for (const k in args[i]) {
++      for (var k in args[i]) {
+         if (serialize && serialize.indexOf(k) > -1 && k in serializers) {
+           args[i][k] = serializers[k](args[i][k])
+         }
+@@ -297,7 +297,7 @@ function asErrValue (err) {
+     msg: err.message,
+     stack: err.stack
+   }
+-  for (const key in err) {
++  for (var key in err) {
+     if (obj[key] === undefined) {
+       obj[key] = err[key]
+     }

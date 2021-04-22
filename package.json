@@ -8,7 +8,7 @@
     "clean": "lerna run clean --stream && lerna exec 'rm -rf ./lib' --stream && lerna clean && make clean",
     "dev": "make babel-changed BABEL_OPTION=\"--delete-dir-on-start -w\"",
     "preinstall": "patch-package --reverse || echo \"no patch packages\"",
-    "postinstall": "patch-package",
+    "postinstall": "patch-package && echo FIXME && yarn babel ./node_modules/rifm/dist -d ./node_modules/rifm/dist --verbose",
     "lint": "NODE_ENV=test esw --cache --color --ext js,ts,tsx",
     "lint:prettier": "yarn lint --quiet --rule \"prettier/prettier: off\"",
     "lint:watch": "yarn lint:prettier -w",
