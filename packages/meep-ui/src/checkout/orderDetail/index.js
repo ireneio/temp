@@ -339,7 +339,7 @@ export default class OrderDetail extends React.PureComponent {
       const { min, max } = getQuantityRange(product);
       const { error, quantity, type } = product;
 
-      return (error && type === 'product') || quantity < min || quantity > max;
+      return type === 'product' && (error || quantity < min || quantity > max);
     });
 
     if (checkProductError)
