@@ -1,7 +1,8 @@
-import { useMemo, useEffect, useContext } from 'react';
+import { useMemo, useEffect, useContext, useRef } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
+import { useRouter } from '@meepshop/link';
 
 import { getProducts } from '../gqls/useProducts';
 
@@ -16,6 +17,8 @@ export default ({
   search,
   sort,
 }) => {
+  const router = useRouter();
+  const prevAsPathRef = useRef(router.asPath);
   const adTrack = useContext(AdTrackContext);
   const variables = useMemo(() => {
     const [field, order] = String(sort).split('-');
@@ -108,18 +111,23 @@ export default ({
   const { data, loading } = useQuery(getProducts, { variables });
 
   useEffect(() => {
-    if (data?.computeProductList?.data) {
+    if (
+      data?.computeProductList?.data &&
+      prevAsPathRef.current !== router.asPath
+    ) {
       const dom = document.getElementById(id);
 
       if (dom) dom.scrollIntoView({ behavior: 'smooth' });
-    }
 
-    if (search && data?.computeProductList?.data)
-      adTrack.search({
-        searchString: search,
-        products: data.computeProductList.data,
-      });
-  }, [id, adTrack, data, search]);
+      if (search)
+        adTrack.search({
+          searchString: search,
+          products: data.computeProductList.data,
+        });
+
+      prevAsPathRef.current = router.asPath;
+    }
+  }, [id, router, adTrack, data, search]);
 
   return {
     data: useMemo(() => {
