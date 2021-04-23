@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.79.33 (2021-04-23)
+
+#### :boom: Breaking Change
+
+- [#1477](https://github.com/meepshop/meep-lerna/pull/1477) 【功能】Facebook Conversions API 串接 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#1473](https://github.com/meepshop/meep-lerna/pull/1473) 內部開單 - 前台 - Facebook Conversions API 串接 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.32 (2021-04-23)
 
 #### :bug: Bug Fix
