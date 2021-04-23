@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.79.32 (2021-04-23)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1509](https://github.com/meepshop/meep-lerna/pull/1509) T8096 -【BUG】前台 - 頁面自動跳至 productList ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.31 (2021-04-22)
 
 #### :rocket: New Feature
