@@ -5,7 +5,22 @@ declare interface Window {
       parse: (dom: HTMLElement) => void;
     };
   };
-  fbq: (eventName: string, type: string, option?: {}) => void;
+  fbq: (
+    eventName: string,
+    type: string,
+    option?: {
+      content_ids?: string[];
+      content_type?: string;
+      content_name?: string;
+      search_string?: string;
+      value?: number | string;
+      currency?: string;
+    },
+    otherOption?: {
+      eventID?: string;
+      externalID?: string;
+    },
+  ) => void;
   gtag: (eventName: string, type: string, option?: {}) => void;
   grecaptcha: {
     render: (dom: HTMLElement, options: { sitekey: string }) => void;

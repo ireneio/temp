@@ -10,7 +10,6 @@ export const useRetentionFragment = gql`
       adRetentionMillisecondsEnabled
     }
     adTracks {
-      facebookPixelId
       googleAnalyticsId
     }
   }

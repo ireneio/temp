@@ -3,11 +3,11 @@ import gql from 'graphql-tag';
 
 // graphql import
 import { headFragment } from './head';
+import { useFbqFragment } from './useFbq';
 import { useRetentionFragment } from './useRetention';
 import { useAddToCartFragment } from './useAddToCart';
 import { useViewProductFragment } from './useViewProduct';
 import { useSearchFragment } from './useSearch';
-import { useAddToWishListFragment } from './useAddToWishList';
 import { useCompleteRegistrationFragment } from './useCompleteRegistration';
 import { useBeginCheckoutFragment } from './useBeginCheckout';
 import { usePurchaseFragment } from './usePurchase';
@@ -19,6 +19,7 @@ export const getAdTrack = gql`
       id
       store {
         id
+        ...useFbqFragment
         ...useRetentionFragment
         ...usePurchaseFragment
         adTracks {
@@ -26,7 +27,6 @@ export const getAdTrack = gql`
           ...useAddToCartFragment
           ...useViewProductFragment
           ...useSearchFragment
-          ...useAddToWishListFragment
           ...useCompleteRegistrationFragment
           ...useBeginCheckoutFragment
         }
@@ -35,11 +35,11 @@ export const getAdTrack = gql`
   }
 
   ${headFragment}
+  ${useFbqFragment}
   ${useRetentionFragment}
   ${useAddToCartFragment}
   ${useViewProductFragment}
   ${useSearchFragment}
-  ${useAddToWishListFragment}
   ${useCompleteRegistrationFragment}
   ${useBeginCheckoutFragment}
   ${usePurchaseFragment}

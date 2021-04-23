@@ -10,22 +10,18 @@ import { useCompleteRegistrationFragment as useCompleteRegistrationFragmentType 
 // definition
 export default (
   adTracks: useCompleteRegistrationFragmentType | null,
+  fbq: typeof window.fbq,
 ): AdTrackType['completeRegistration'] =>
   useCallback(() => {
     if (!adTracks) return;
 
-    const {
-      facebookPixelId,
-      googleAdwordsConfig,
-      googleAdwordsSignUp,
-    } = adTracks;
+    const { googleAdwordsConfig, googleAdwordsSignUp } = adTracks;
 
-    if (window.fbq && facebookPixelId)
-      window.fbq('track', 'CompleteRegistration');
+    fbq('track', 'CompleteRegistration');
 
     if (window.gtag && googleAdwordsConfig && googleAdwordsSignUp)
       window.gtag('event', 'conversion', {
         // eslint-disable-next-line @typescript-eslint/camelcase
         send_to: googleAdwordsSignUp,
       });
-  }, [adTracks]);
+  }, [adTracks, fbq]);

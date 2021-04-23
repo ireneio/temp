@@ -1,5 +1,5 @@
 // import
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 
 import { useRouter } from '@meepshop/link';
@@ -10,6 +10,7 @@ import { headFragment as headFragmentType } from '@meepshop/types/gqls/store';
 // typescript definition
 interface PropsType {
   adTracks: headFragmentType;
+  fbq: typeof window.fbq;
 }
 
 // definition
@@ -23,8 +24,10 @@ export default React.memo(
       googleAdwordsConfig,
       googleTagManager,
     },
+    fbq,
   }: PropsType) => {
     const router = useRouter();
+    const prevHrefRef = useRef('');
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -35,6 +38,13 @@ export default React.memo(
 
       window.addEventListener('load', load);
     }, []);
+
+    useEffect(() => {
+      if (router.asPath !== prevHrefRef.current) {
+        prevHrefRef.current = router.asPath;
+        fbq('track', 'PageView');
+      }
+    }, [fbq, router.asPath]);
 
     return (
       <Head>
@@ -62,7 +72,6 @@ export default React.memo(
                   n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];}(window,document,'script');
 
                   fbq('init', '${facebookPixelId}', {}, { agent: 'plmeepShop' });
-                  fbq('track', 'PageView');
                 `,
               }}
             />

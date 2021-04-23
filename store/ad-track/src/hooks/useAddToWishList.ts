@@ -4,17 +4,8 @@ import { AdTrackType } from '@meepshop/context';
 // import
 import { useCallback } from 'react';
 
-// graphql typescript
-import { useAddToWishListFragment as useAddToWishListFragmentType } from '@meepshop/types/gqls/store';
-
 // definition
-export default (
-  adTracks: useAddToWishListFragmentType | null,
-): AdTrackType['addToWishList'] =>
+export default (fbq: typeof window.fbq): AdTrackType['addToWishList'] =>
   useCallback(() => {
-    if (!adTracks) return;
-
-    const { facebookPixelId } = adTracks;
-
-    if (window.fbq && facebookPixelId) window.fbq('track', 'AddToWishList');
-  }, [adTracks]);
+    fbq('track', 'AddToWishList');
+  }, [fbq]);

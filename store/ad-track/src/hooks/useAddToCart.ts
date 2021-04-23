@@ -12,6 +12,7 @@ import { useAddToCartFragment as useAddToCartFragmentType } from '@meepshop/type
 // definition
 export default (
   adTracks: useAddToCartFragmentType | null,
+  fbq: typeof window.fbq,
 ): AdTrackType['addToCart'] => {
   const { currency } = useContext(CurrencyContext);
 
@@ -19,21 +20,20 @@ export default (
     ({ eventName, id, title, quantity, specs, price }) => {
       if (!adTracks) return;
 
-      const { facebookPixelId, googleAnalyticsId } = adTracks;
+      const { googleAnalyticsId } = adTracks;
 
-      if (window.fbq && facebookPixelId)
-        window.fbq(
-          eventName === 'ec-popup' ? 'trackCustom' : 'track',
-          eventName === 'ec-popup' ? 'AddToCart_PopUp' : 'AddToCart',
-          {
-            // eslint-disable-next-line @typescript-eslint/camelcase
-            content_ids: [id],
-            // eslint-disable-next-line @typescript-eslint/camelcase
-            content_type: 'product',
-            value: price,
-            currency,
-          },
-        );
+      fbq(
+        eventName === 'ec-popup' ? 'trackCustom' : 'track',
+        eventName === 'ec-popup' ? 'AddToCart_PopUp' : 'AddToCart',
+        {
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          content_ids: [id],
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          content_type: 'product',
+          value: price,
+          currency,
+        },
+      );
 
       if (window.gtag && googleAnalyticsId)
         window.gtag('event', 'add_to_cart', {
@@ -55,6 +55,6 @@ export default (
           ],
         });
     },
-    [adTracks, currency],
+    [adTracks, fbq, currency],
   );
 };

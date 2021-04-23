@@ -12,6 +12,7 @@ import { useViewProductFragment as useViewProductFragmentType } from '@meepshop/
 // definition
 export default (
   adTracks: useViewProductFragmentType | null,
+  fbq: typeof window.fbq,
 ): AdTrackType['viewProduct'] => {
   const { currency } = useContext(CurrencyContext);
 
@@ -19,19 +20,18 @@ export default (
     ({ id, title, price }) => {
       if (!adTracks) return;
 
-      const { facebookPixelId, googleAnalyticsId } = adTracks;
+      const { googleAnalyticsId } = adTracks;
 
-      if (window.fbq && facebookPixelId)
-        window.fbq('track', 'ViewContent', {
-          // eslint-disable-next-line @typescript-eslint/camelcase
-          content_ids: [id],
-          // eslint-disable-next-line @typescript-eslint/camelcase
-          content_type: 'product',
-          // eslint-disable-next-line @typescript-eslint/camelcase
-          content_name: title.zh_TW,
-          value: price,
-          currency,
-        });
+      fbq('track', 'ViewContent', {
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        content_ids: [id],
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        content_type: 'product',
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        content_name: title.zh_TW,
+        value: price,
+        currency,
+      });
 
       if (window.gtag && googleAnalyticsId)
         window.gtag('event', 'view_item', {
@@ -44,6 +44,6 @@ export default (
           ],
         });
     },
-    [adTracks, currency],
+    [adTracks, fbq, currency],
   );
 };

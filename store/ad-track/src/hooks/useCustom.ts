@@ -5,21 +5,24 @@ import { AdTrackType } from '@meepshop/context';
 import { useCallback } from 'react';
 
 // definition
-export default (): AdTrackType['custom'] =>
-  useCallback((action: string, name: string, category: string | null) => {
-    if (window.fbq) window.fbq('track', name);
+export default (fbq: typeof window.fbq): AdTrackType['custom'] =>
+  useCallback(
+    (action: string, name: string, category: string | null) => {
+      fbq('track', name);
 
-    if (window.gtag)
-      window.gtag('event', action, {
-        ...(!category
-          ? {}
-          : {
-              // eslint-disable-next-line @typescript-eslint/camelcase
-              event_category: category,
-            }),
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        event_label: name,
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        non_interaction: true,
-      });
-  }, []);
+      if (window.gtag)
+        window.gtag('event', action, {
+          ...(!category
+            ? {}
+            : {
+                // eslint-disable-next-line @typescript-eslint/camelcase
+                event_category: category,
+              }),
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          event_label: name,
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          non_interaction: true,
+        });
+    },
+    [fbq],
+  );

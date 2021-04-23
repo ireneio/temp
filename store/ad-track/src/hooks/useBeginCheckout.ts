@@ -15,6 +15,7 @@ type productsType = Parameters<AdTrackType['beginCheckout']>[0]['products'];
 // definition
 export default (
   adTracks: useBeginCheckoutFragmentType | null,
+  fbq: typeof window.fbq,
 ): AdTrackType['beginCheckout'] => {
   const { currency } = useContext(CurrencyContext);
 
@@ -23,17 +24,15 @@ export default (
       if (!adTracks) return;
 
       const {
-        facebookPixelId,
         googleAnalyticsId,
         googleAdwordsConfig,
         googleAdwordsBeginCheckout,
       } = adTracks;
 
-      if (window.fbq && facebookPixelId)
-        window.fbq('track', 'InitiateCheckout', {
-          value: total,
-          currency,
-        });
+      fbq('track', 'InitiateCheckout', {
+        value: total,
+        currency,
+      });
 
       if (window.gtag && googleAnalyticsId)
         window.gtag('event', 'begin_checkout', {
@@ -68,6 +67,6 @@ export default (
           send_to: googleAdwordsBeginCheckout,
         });
     },
-    [adTracks, currency],
+    [adTracks, fbq, currency],
   );
 };

@@ -10,6 +10,7 @@
   "dependencies": {
     "@meepshop/apollo": "^0.79.31",
     "@meepshop/context": "^0.79.31",
+    "@meepshop/cookies": "^0.79.31",
     "@meepshop/link": "^0.79.29"
   },
   "keywords": ["ad", "fbq", "gtag", "track"]

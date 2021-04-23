@@ -7,7 +7,6 @@ export const usePurchaseFragment = gql`
     id
     cname
     adTracks {
-      facebookPixelId
       googleAnalyticsId
       googleAdwordsConfig
       googleAdwordsPurchase

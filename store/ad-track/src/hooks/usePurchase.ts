@@ -13,6 +13,7 @@ type productsType = Parameters<AdTrackType['purchase']>[0]['products'];
 // definition
 export default (
   store: usePurchaseFragmentType | null,
+  fbq: typeof window.fbq,
 ): AdTrackType['purchase'] =>
   useCallback(
     ({ orderNo, products, total, currency, shipmentFee, paymentFee }) => {
@@ -21,22 +22,20 @@ export default (
       const {
         cname,
         adTracks: {
-          facebookPixelId,
           googleAnalyticsId,
           googleAdwordsConfig,
           googleAdwordsPurchase,
         },
       } = store;
 
-      if (window.fbq && facebookPixelId)
-        window.fbq('track', 'Purchase', {
-          // eslint-disable-next-line @typescript-eslint/camelcase
-          content_ids: products.map(({ productId }) => productId),
-          // eslint-disable-next-line @typescript-eslint/camelcase
-          content_type: 'product',
-          value: total, // fb pixel record total of order different from GA EC
-          currency,
-        });
+      fbq('track', 'Purchase', {
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        content_ids: products.map(({ productId }) => productId),
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        content_type: 'product',
+        value: total, // fb pixel record total of order different from GA EC
+        currency,
+      });
 
       if (window.gtag && googleAnalyticsId)
         window.gtag('event', 'purchase', {
@@ -75,5 +74,5 @@ export default (
           send_to: googleAdwordsPurchase,
         });
     },
-    [store],
+    [store, fbq],
   );

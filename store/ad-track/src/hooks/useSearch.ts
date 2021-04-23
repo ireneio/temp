@@ -10,16 +10,16 @@ import { useSearchFragment as useSearchFragmentType } from '@meepshop/types/gqls
 // definition
 export default (
   adTracks: useSearchFragmentType | null,
+  fbq: typeof window.fbq,
 ): AdTrackType['search'] =>
   useCallback(
     ({ searchString, products }) => {
       if (!adTracks) return;
 
-      const { facebookPixelId, googleAnalyticsId } = adTracks;
+      const { googleAnalyticsId } = adTracks;
 
-      if (window.fbq && facebookPixelId)
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        window.fbq('track', 'Search', { search_string: searchString });
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      fbq('track', 'Search', { search_string: searchString });
 
       if (window.gtag && googleAnalyticsId && products)
         window.gtag('event', 'view_item_list', {
@@ -31,5 +31,5 @@ export default (
           })),
         });
     },
-    [adTracks],
+    [adTracks, fbq],
   );
