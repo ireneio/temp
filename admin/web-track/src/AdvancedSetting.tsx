@@ -78,8 +78,8 @@ export default React.memo(({ store }: PropsType) => {
             overlayStyle={{ maxWidth: '440px' }}
             title={
               <>
-                <div>{t('retention-milliseconds-track.tip-1')}</div>
-                <div>{t('retention-milliseconds-track.tip-2')}</div>
+                <div>{t('retention-milliseconds-track.tip.0')}</div>
+                <div>{t('retention-milliseconds-track.tip.1')}</div>
               </>
             }
           />

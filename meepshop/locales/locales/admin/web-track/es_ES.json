@@ -2,19 +2,34 @@
   "ad-analytics": "Analítica publicitaria",
   "track-setting": "Configuración de herramientas de seguimiento",
   "tip": "Tutorial de configuración de pantalla",
-  "facebook-pixel": {
-    "title": "Píxeles de Facebook",
-    "setting": "Establecer el número de píxeles",
-    "pixel-no": "Numero de Pixel:",
-    "error": "El error de formato del número de píxeles de Facebook, el espacio o los símbolos no están permitidos en el medio, el frente o el reverso del número, y deben ser de 15 o 16 dígitos.",
-    "dpa": "Anuncios de productos dinámicos (DPA)",
-    "dpa-description-1": "Hora de actualización del diálogo del producto: 5:00 a.m. ~ 6:00 a.m. (GMT + 08: 00)",
-    "dpa-description-2": "Copie la URL dinámica y péguela en la plataforma de administración de anuncios de Facebook. El sistema enviará automáticamente y proporcionará diálogo actualizado del producto a Facebook regularmente.",
-    "copy-dpa-link": "Copiar URL dinámica",
-    "copied": "Copiado al portapapeles",
-    "set-pixel-first": "Por favor, configure el número de píxeles",
-    "dpa-link-tip-1": "Confirme el producto creado o los nombres de la tienda ingresados,",
-    "dpa-link-tip-2": "Si aún no puede generar la URL, póngase en contacto con el servicio al cliente."
+  "facebook": {
+    "empty": "Aún no se establece",
+    "setting": "Establecer codificación de seguimiento",
+    "pixelId": {
+      "title": "Píxel de facebook",
+      "tip": "Cómo establecer píxeles de Facebook",
+      "error": "Error de formato de número de pixel de Facebook, la mitad del número no debe tener símbolos en blanco o especiales antes y después, y deben tener 15 yardas o 16 yardas."
+    },
+    "conversionsAccessToken": {
+      "title": "Convertir accessor API",
+      "tip": "Cómo establecer un accesorio API de Facebook",
+      "placeholder": "Por favor, pierda los controladores de acceso API",
+      "error": "La mitad del número no está en blanco antes y después"
+    },
+    "dpa": {
+      "title": "Publicidad dinámica (DPA)",
+      "description": {
+        "0": "Catálogo de productos actualizado: 5: 00 am ~ 6:00 AM (GMT + 08: 00)",
+        "1": "Copie la URL dinámica, al fondo de gestión de publicidad de Facebook, el sistema enviará automáticamente y actualizará el directorio del producto a Facebook."
+      },
+      "tip": {
+        "0": "Confirme que ha establecido un producto o ingrese el nombre de la tienda.",
+        "1": "Si aún no puede crear una conexión, comuníquese con el servicio al cliente."
+      },
+      "copy-link": "Copiar URL dinámica",
+      "set-pixel-id-first": "Por favor, establezca el número de píxel primero",
+      "copied": "Copia al álbum de recortes"
+    }
   },
   "google-analytics": {
     "title": "Análisis del sitio web de Google Analytics",
@@ -36,8 +51,10 @@
     "event-placeholder": "Por favor, introduzca el fragmento de evento",
     "not-setting": "La configuración no se ha realizado",
     "dpa": "Anuncios de productos dinámicos (DPA)",
-    "dpa-description-1": "Hora de actualización del diálogo del producto: 5:00 a.m. ~ 6:00 a.m. (GMT + 08: 00)",
-    "dpa-description-2": "Copie la URL del archivo dinámico y péguelo en su cuenta de Google Merchant para configurar el feed. Google lo recuperará de acuerdo con el programa establecido.",
+    "dpa-description": {
+      "0": "Hora de actualización del diálogo del producto: 5:00 a.m. ~ 6:00 a.m. (GMT + 08: 00)",
+      "1": "Copie la URL del archivo dinámico y péguelo en su cuenta de Google Merchant para configurar el feed. Google lo recuperará de acuerdo con el programa establecido."
+    },
     "copy-dpa-link": "Copiar URL dinámica",
     "copied": "Copiada al portapapeles",
     "parse-config-fail": "Error de formato de código global",
@@ -73,8 +90,10 @@
   "retention-milliseconds-track": {
     "title": "Personalizar Stay Time Tracker",
     "description": "Esta característica puede rastrear el comportamiento de permanencia del usuario en todas las páginas a través de herramientas de seguimiento de terceros, Facebook Pixel y Google Analytics, y el tiempo de permanencia se puede personalizar.",
-    "tip-1": "Puede rastrear a los usuarios que permanecen en una página durante más de X segundos.",
-    "tip-2": "Nombre del evento: meepShop_retention",
+    "tip": {
+      "0": "Puede rastrear a los usuarios que permanecen en una página durante más de X segundos.",
+      "1": "Nombre del evento: meepShop_retention"
+    },
     "setting": "Configuración del tiempo de permanencia",
     "input-seconds": "Por favor ingrese el número de segundo"
   },

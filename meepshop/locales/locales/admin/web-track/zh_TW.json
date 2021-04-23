@@ -2,19 +2,34 @@
   "ad-analytics": "廣告分析",
   "track-setting": "追蹤工具設定",
   "tip": "顯示設定教學",
-  "facebook-pixel": {
-    "title": "Facebook 像素",
-    "setting": "設定像素編號",
-    "pixel-no": "像素編號：",
-    "error": "Facebook 像素編號格式錯誤，編號中間與前後不得有空白或特殊符號，且須為 15 碼或 16 碼。",
-    "dpa": "動態廣告 (DPA)",
-    "dpa-description-1": "產品目錄更新時間：5:00 AM ~ 6:00 AM (GMT+08:00)",
-    "dpa-description-2": "請複製動態網址，貼至 Facebook 廣告管理後台，系統會自動提交並定時更新產品目錄給 Facebook。",
-    "copy-dpa-link": "複製動態網址",
-    "copied": "已複製到剪貼簿",
-    "set-pixel-first": "請先設定像素編號",
-    "dpa-link-tip-1": "請先確認已建立商品或已輸入商店名稱，",
-    "dpa-link-tip-2": "若依然無法產生連結，請聯繫客服。"
+  "facebook": {
+    "empty": "尚未設定",
+    "setting": "設定追蹤編碼",
+    "pixelId": {
+      "title": "Facebook 像素",
+      "tip": "如何設定 Facebook 像素",
+      "error": "Facebook 像素編號格式錯誤，編號中間與前後不得有空白或特殊符號，且須為 15 碼或 16 碼。"
+    },
+    "conversionsAccessToken": {
+      "title": "轉換 API 存取權杖",
+      "tip": "如何設定 Facebook API 存取權杖",
+      "placeholder": "請輸 API 存取權杖",
+      "error": "編號中間與前後不得有空白"
+    },
+    "dpa": {
+      "title": "動態廣告 (DPA)",
+      "description": {
+        "0": "產品目錄更新時間：5:00 AM ~ 6:00 AM (GMT+08:00)",
+        "1": "請複製動態網址，貼至 Facebook 廣告管理後台，系統會自動提交並定時更新產品目錄給 Facebook。"
+      },
+      "tip": {
+        "0": "請先確認已建立商品或已輸入商店名稱，",
+        "1": "若依然無法產生連結，請聯繫客服。"
+      },
+      "copy-link": "複製動態網址",
+      "set-pixel-id-first": "請先設定像素編號",
+      "copied": "已複製到剪貼簿"
+    }
   },
   "google-analytics": {
     "title": "Google Analytics 網站分析",
@@ -36,8 +51,10 @@
     "event-placeholder": "請輸入事件程式碼片段",
     "not-setting": "未設定",
     "dpa": "動態廣告 (DPA)",
-    "dpa-description-1": "產品目錄更新時間：5:00 AM ~ 6:00 AM (GMT+08:00)",
-    "dpa-description-2": "請複製動態檔案網址，貼至 Google Merchant 帳戶設定動態饋給，Google 會依設定排程擷取。",
+    "dpa-description": {
+      "0": "產品目錄更新時間：5:00 AM ~ 6:00 AM (GMT+08:00)",
+      "1": "請複製動態檔案網址，貼至 Google Merchant 帳戶設定動態饋給，Google 會依設定排程擷取。"
+    },
     "copy-dpa-link": "複製動態檔案網址",
     "copied": "已複製到剪貼簿",
     "parse-config-fail": "全域代碼格式錯誤",
@@ -73,8 +90,10 @@
   "retention-milliseconds-track": {
     "title": "自訂停留秒數追蹤",
     "description": "此功能可以使用第三方追蹤工具 Facebook Pixel 和 Google Analytics 追蹤所有頁面的使用者停留行為，並可自訂停留秒數的門檻。",
-    "tip-1": "可在所有頁面追蹤停留X秒以上的使用者。",
-    "tip-2": "事件名稱：meepShop_retention",
+    "tip": {
+      "0": "可在所有頁面追蹤停留X秒以上的使用者。",
+      "1": "事件名稱：meepShop_retention"
+    },
     "setting": "停留秒數設定",
     "input-seconds": "請輸入秒數"
   },

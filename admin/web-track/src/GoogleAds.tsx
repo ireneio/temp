@@ -308,8 +308,8 @@ export default Form.create<PropsType>()(
         <div className={styles.dpa}>
           {t('google-ads.dpa')}
           <div>
-            <div>{t('google-ads.dpa-description-1')}</div>
-            <div>{t('google-ads.dpa-description-2')}</div>
+            <div>{t('google-ads.dpa-description.0')}</div>
+            <div>{t('google-ads.dpa-description.1')}</div>
           </div>
         </div>
 

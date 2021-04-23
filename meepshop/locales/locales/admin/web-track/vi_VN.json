@@ -2,19 +2,34 @@
   "ad-analytics": "Phân tích quảng cáo",
   "track-setting": "Cài đặt công cụ theo dõi",
   "tip": "Hướng dẫn cài đặt hiển thị",
-  "facebook-pixel": {
-    "title": "Điểm ảnh trên Facebook",
-    "setting": "Đặt số pixel",
-    "pixel-no": "Số pixel:",
-    "error": "Lỗi định dạng, không gian hoặc ký hiệu số pixel của Facebook không được phép ở giữa, trước hoặc sau của số và phải là 15 chữ số hoặc 16 chữ số.",
-    "dpa": "Quảng cáo sản phẩm động (DPA)",
-    "dpa-description-1": "Thời gian cập nhật đối thoại sản phẩm: 5:00 AM ~ 6:00 AM (GMT + 08: 00)",
-    "dpa-description-2": "Vui lòng sao chép url động và dán trên nền tảng back-end quản lý quảng cáo của Facebook. Hệ thống sẽ tự động gửi và cung cấp đối thoại sản phẩm được cập nhật cho Facebook thường xuyên.",
-    "copy-dpa-link": "Sao chép URL động",
-    "copied": "Sao chép vào clipboard",
-    "set-pixel-first": "Vui lòng đặt số Pixel",
-    "dpa-link-tip-1": "Vui lòng xác nhận sản phẩm đã tạo hoặc lưu tên đã nhập,",
-    "dpa-link-tip-2": "nếu bạn vẫn không thể tạo url, vui lòng liên hệ với dịch vụ khách hàng."
+  "facebook": {
+    "empty": "Chưa tập hợp",
+    "setting": "Đặt mã hóa theo dõi",
+    "pixelId": {
+      "title": "Pixel Facebook",
+      "tip": "Cách đặt pixel facebook",
+      "error": "Lỗi định dạng số pixel Facebook, giữa số không được có các ký hiệu trống hoặc đặc biệt trước và sau, và phải là 15 yard hoặc 16 yard."
+    },
+    "conversionsAccessToken": {
+      "title": "Chuyển đổi Api Accessor.",
+      "tip": "Cách đặt bộ truy cập API Facebook",
+      "placeholder": "Vui lòng mất bộ điều khiển truy cập API",
+      "error": "Giữa số không trống trước và sau"
+    },
+    "dpa": {
+      "title": "Quảng cáo năng động (DPA)",
+      "description": {
+        "0": "Danh mục sản phẩm Cập nhật: 5: 00 sáng ~ 6:00 AM (GMT + 08: 00)",
+        "1": "Vui lòng sao chép URL động, vào nền tảng quản lý quảng cáo Facebook, hệ thống sẽ tự động gửi và cập nhật thư mục sản phẩm lên Facebook."
+      },
+      "tip": {
+        "0": "Vui lòng xác nhận rằng bạn đã thiết lập một sản phẩm hoặc nhập tên cửa hàng.",
+        "1": "Nếu bạn vẫn không thể tạo kết nối, vui lòng liên hệ với dịch vụ khách hàng."
+      },
+      "copy-link": "Sao chép URL động",
+      "set-pixel-id-first": "Vui lòng đặt số pixel trước",
+      "copied": "Sao chép vào sổ lưu niệm"
+    }
   },
   "google-analytics": {
     "title": "Phân tích trang web Google Analytics",
@@ -36,8 +51,10 @@
     "event-placeholder": "Vui lòng nhập đoạn sự kiện",
     "not-setting": "Cài đặt chưa được thực hiện",
     "dpa": "Quảng cáo sản phẩm động (DPA)",
-    "dpa-description-1": "Thời gian cập nhật đối thoại sản phẩm: 5:00 AM ~ 6:00 AM (GMT + 08: 00)",
-    "dpa-description-2": "Vui lòng sao chép URL của tệp động và dán vào tài khoản Google Merchant của bạn để thiết lập nguồn cấp dữ liệu. Google sẽ truy xuất tệp đó theo lịch trình đã đặt.",
+    "dpa-description": {
+      "0": "Thời gian cập nhật đối thoại sản phẩm: 5:00 AM ~ 6:00 AM (GMT + 08: 00)",
+      "1": "Vui lòng sao chép URL của tệp động và dán vào tài khoản Google Merchant của bạn để thiết lập nguồn cấp dữ liệu. Google sẽ truy xuất tệp đó theo lịch trình đã đặt."
+    },
     "copy-dpa-link": "Sao chép URL động",
     "copied": "Sao chép vào clipboard",
     "parse-config-fail": "Lỗi định dạng mã toàn cầu",
@@ -73,8 +90,10 @@
   "retention-milliseconds-track": {
     "title": "Tùy chỉnh theo dõi thời gian",
     "description": "Tính năng này có thể theo dõi hành vi cư trú của người dùng trong tất cả các trang thông qua các công cụ theo dõi của bên thứ ba, Facebook Pixel và Google Analytics và thời gian lưu trú có thể được tùy chỉnh.",
-    "tip-1": "Có thể theo dõi người dùng ở lại trên một trang trong hơn X giây.",
-    "tip-2": "Tên sự kiện: meepShop_ret chú ý",
+    "tip": {
+      "0": "Có thể theo dõi người dùng ở lại trên một trang trong hơn X giây.",
+      "1": "Tên sự kiện: meepShop_ret chú ý"
+    },
     "setting": "Cài đặt thời gian",
     "input-seconds": "Vui lòng nhập số thứ hai"
   },

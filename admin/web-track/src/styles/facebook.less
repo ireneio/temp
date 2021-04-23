@@ -1,18 +1,24 @@
 @import './mixin.less';
 
+.img {
+  margin: 0px 0px 36px;
+}
+
+.block {
+  margin: 0px 0px 16px;
+}
+
 .title {
   @title();
-  margin: 32px 0px 16px;
+  margin: 0px 0px 10px;
 }
 
 .item {
   margin: 0px;
-  height: 60px;
 
   :global(.ant-form-item-children) {
     display: flex;
     align-items: center;
-    height: 40px;
 
     & > input {
       width: 300px;
@@ -25,26 +31,18 @@
   }
 }
 
-.pixelNo {
-  display: flex;
-  align-items: center;
-  color: rgba(0, 0, 0, 0.85);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 32px;
+.preview {
+  padding: 12px 20px;
+  background: #fafafa;
+  border-radius: 5px;
+  word-break: break-all;
+}
 
-  & > div:first-child {
-    color: rgba(0, 0, 0, 0.45);
-    font-weight: normal;
-  }
-
-  & > i {
-    font-size: 14px;
-    margin-left: 8px;
-    cursor: pointer;
-  }
+.save {
+  margin: 0px 8px 0px 0px;
 }
 
 .dpa {
   @dpa();
+  margin: 36px 0px 20px;
 }

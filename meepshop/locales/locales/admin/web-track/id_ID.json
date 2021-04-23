@@ -2,19 +2,34 @@
   "ad-analytics": "Analisis Periklanan",
   "track-setting": "Pengaturan Alat Pelacakan",
   "tip": "Tutorial Pengaturan Tampilan",
-  "facebook-pixel": {
-    "title": "Pixel Facebook",
-    "setting": "Atur nomor piksel",
-    "pixel-no": "Nomor Piksel:",
-    "error": "Kesalahan format angka, spasi, atau simbol Facebook Pixel tidak diperbolehkan di tengah, depan atau belakang nomor, dan harus 15 digit atau 16 digit.",
-    "dpa": "Iklan Produk Dinamis (DPA)",
-    "dpa-description-1": "Waktu Pembaruan Dialog Produk: 5:00 AM ~ 6:00 AM (GMT + 08:00)",
-    "dpa-description-2": "Silakan salin url dinamis dan tempel di platform back-end manajemen iklan Facebook. Sistem akan secara otomatis mengirimkan dan menyediakan dialog produk yang diperbarui ke Facebook secara teratur.",
-    "copy-dpa-link": "Salin URL Dinamis",
-    "copied": "Disalin ke papan klip",
-    "set-pixel-first": "Silakan tentukan nomor Pixel",
-    "dpa-link-tip-1": "Harap konfirmasi produk yang dibuat atau nama toko yang dimasukkan,",
-    "dpa-link-tip-2": "jika Anda masih tidak dapat membuat url, silakan hubungi layanan pelanggan."
+  "facebook": {
+    "empty": "Belum diatur",
+    "setting": "Tetapkan pelacakan pengkodean",
+    "pixelId": {
+      "title": "Facebook Pixel.",
+      "tip": "Cara mengatur piksel Facebook",
+      "error": "Kesalahan Format Nomor Pixel Facebook, tengah jumlahnya tidak boleh memiliki simbol kosong atau khusus sebelum dan sesudah, dan harus 15 yard atau 16 yard."
+    },
+    "conversionsAccessToken": {
+      "title": "Konversi Accessor API",
+      "tip": "Cara Mengatur Accessor API Facebook",
+      "placeholder": "Silakan kehilangan pengontrol akses API",
+      "error": "Tengah jumlahnya tidak kosong sebelum dan sesudah"
+    },
+    "dpa": {
+      "title": "Periklanan Dinamis (DPA)",
+      "description": {
+        "0": "Katalog Produk Diperbarui: 5: 00 ~ 6:00 AM (GMT + 08: 00)",
+        "1": "Silakan salin URL dinamis, ke latar belakang manajemen periklanan Facebook, sistem akan secara otomatis mengirimkan dan memperbarui direktori produk ke Facebook."
+      },
+      "tip": {
+        "0": "Harap konfirmasi bahwa Anda telah menetapkan produk atau memasukkan nama toko.",
+        "1": "Jika Anda masih tidak dapat membuat koneksi, silakan hubungi layanan pelanggan."
+      },
+      "copy-link": "Salin URL Dinamis",
+      "set-pixel-id-first": "Silakan atur nomor piksel terlebih dahulu",
+      "copied": "Salin ke Scrapbook"
+    }
   },
   "google-analytics": {
     "title": "Analisis Situs Web Google Analytics",
@@ -36,8 +51,10 @@
     "event-placeholder": "Silakan masukkan cuplikan acara",
     "not-setting": "Pengaturan belum dibuat",
     "dpa": "Iklan Produk Dinamis (DPA)",
-    "dpa-description-1": "Waktu Pembaruan Dialog Produk: 5:00 AM ~ 6:00 AM (GMT + 08:00)",
-    "dpa-description-2": "Salin URL file dinamis dan tempel ke akun Google Merchant Anda untuk menyiapkan feed. Google akan mengambilnya sesuai dengan jadwal yang ditetapkan.",
+    "dpa-description": {
+      "0": "Waktu Pembaruan Dialog Produk: 5:00 AM ~ 6:00 AM (GMT + 08:00)",
+      "1": "Salin URL file dinamis dan tempel ke akun Google Merchant Anda untuk menyiapkan feed. Google akan mengambilnya sesuai dengan jadwal yang ditetapkan."
+    },
     "copy-dpa-link": "Salin URL Dinamis",
     "copied": "Disalin ke papan klip",
     "parse-config-fail": "Kesalahan format kode global",
@@ -73,8 +90,10 @@
   "retention-milliseconds-track": {
     "title": "Kustomisasi Pelacak Waktu Tetap",
     "description": "Fitur ini dapat melacak perilaku tinggal pengguna di semua halaman melalui alat pelacakan pihak ketiga, Facebook Pixel dan Google Analytics, dan waktu tinggal dapat disesuaikan.",
-    "tip-1": "Dapat melacak pengguna yang berada di halaman selama lebih dari X detik.",
-    "tip-2": "Nama Acara: meepShop_retention",
+    "tip": {
+      "0": "Dapat melacak pengguna yang berada di halaman selama lebih dari X detik.",
+      "1": "Nama Acara: meepShop_retention"
+    },
     "setting": "Pengaturan Waktu Tetap",
     "input-seconds": "Silakan masukkan jumlah detik"
   },

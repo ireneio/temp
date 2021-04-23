@@ -2,19 +2,34 @@
   "ad-analytics": "Advertising Analytics",
   "track-setting": "Tracking Tools Settings",
   "tip": "Display Setting Tutorial",
-  "facebook-pixel": {
-    "title": "Facebook Pixels",
-    "setting": "Set the pixel number",
-    "pixel-no": "Pixel Number:",
-    "error": "Facebook Pixel number format error, space or symbols are not allowed in the middle, front or back of the number, and must be 15-digit or 16-digit.",
-    "dpa": "Dynamic Product Ads (DPA)",
-    "dpa-description-1": "Product Dialogue Update Time: 5:00 AM ~ 6:00 AM (GMT+08:00)",
-    "dpa-description-2": "Please copy dynamic url and paste on Facebook advertisement management back-end platform. The system will automatically submit and provide updated product dialogue to Facebook regularly.",
-    "copy-dpa-link": "Copy Dynamic URL",
-    "copied": "Copied to clipboard",
-    "set-pixel-first": "Please set Pixel number",
-    "dpa-link-tip-1": "Please confirm the product created or store names entered,",
-    "dpa-link-tip-2": "if you are still unable to generate url, please contact customer service."
+  "facebook": {
+    "empty": "Not yet set",
+    "setting": "Set tracking coding",
+    "pixelId": {
+      "title": "Facebook pixel",
+      "tip": "How to set Facebook pixels",
+      "error": "Facebook pixel number format error, the middle of the number must not have blank or special symbols before and after, and must be 15 yards or 16 yards."
+    },
+    "conversionsAccessToken": {
+      "title": "Converting API accessor",
+      "tip": "How to set a Facebook API accessor",
+      "placeholder": "Please lose API access controllers",
+      "error": "The middle of the number is not blank before and after"
+    },
+    "dpa": {
+      "title": "Dynamic Advertising (DPA)",
+      "description": {
+        "0": "Product Catalog Updated: 5: 00 AM ~ 6:00 AM (GMT + 08: 00)",
+        "1": "Please copy the dynamic URL, to the Facebook Advertising Management Background, the system will automatically submit and update the product directory to Facebook."
+      },
+      "tip": {
+        "0": "Please confirm that you have established a product or enter the store name.",
+        "1": "If you still can't create a connection, please contact customer service."
+      },
+      "copy-link": "Copy dynamic URL",
+      "set-pixel-id-first": "Please set the pixel number first",
+      "copied": "Copy to the scrapbook"
+    }
   },
   "google-analytics": {
     "title": "Google Analytics Website Analysis",
@@ -36,8 +51,10 @@
     "event-placeholder": "Please enter event snippet",
     "not-setting": "Setting has not been made",
     "dpa": "Dynamic Product Ads (DPA)",
-    "dpa-description-1": "Product Dialogue Update Time: 5:00 AM ~ 6:00 AM (GMT+08:00)",
-    "dpa-description-2": "Please copy the URL of the dynamic file and paste it into your Google Merchant account to set up the feed. Google will retrieve it according to the set schedule.",
+    "dpa-description": {
+      "0": "Product Dialogue Update Time: 5:00 AM ~ 6:00 AM (GMT+08:00)",
+      "1": "Please copy the URL of the dynamic file and paste it into your Google Merchant account to set up the feed. Google will retrieve it according to the set schedule."
+    },
     "copy-dpa-link": "Copy Dynamic URL",
     "copied": "Copied to clipboard",
     "parse-config-fail": "Global code format error",
@@ -73,8 +90,10 @@
   "retention-milliseconds-track": {
     "title": "Customize Stay Time Tracker",
     "description": "This feature can track user staying behavior in all pages through third party tracking tools, Facebook Pixel and Google Analytics, and staying time can be customized.",
-    "tip-1": "Can track users staying on a page for more than X seconds.",
-    "tip-2": "Event Name: meepShop_retention",
+    "tip": {
+      "0": "Can track users staying on a page for more than X seconds.",
+      "1": "Event Name: meepShop_retention"
+    },
     "setting": "Stay Time Settings",
     "input-seconds": "Please enter number of second"
   },

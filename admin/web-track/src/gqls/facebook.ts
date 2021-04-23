@@ -10,6 +10,7 @@ export const facebookStoreFragment = gql`
     }
     adTracks {
       facebookPixelId
+      facebookConversionsAccessToken
     }
   }
 `;

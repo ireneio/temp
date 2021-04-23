@@ -2,19 +2,34 @@
   "ad-analytics": "広告分析",
   "track-setting": "追跡ツールの設定",
   "tip": "表示設定チュートリアル",
-  "facebook-pixel": {
-    "title": " Facebook ピクセル",
-    "setting": "ピクセル数を設定する",
-    "pixel-no": "ピクセル数：",
-    "error": "Facebookピクセル数形式のエラー、スペース、または記号は、番号の中央、前面、または背面に使用できません。15桁または16桁にする必要があります。",
-    "dpa": "動的商品広告（DPA）",
-    "dpa-description-1": "製品ダイアログ更新時間：5:00 AM〜6:00 AM（GMT + 08：00）",
-    "dpa-description-2": "動的なURLをコピーして、Facebook広告管理バックエンドプラットフォームに貼り付けてください。 システムは、更新された製品ダイアログを定期的にFacebookに自動的に送信して提供します。",
-    "copy-dpa-link": "動的URLをコピー",
-    "copied": "クリップボードにコピーしました",
-    "set-pixel-first": "ピクセル数を設定してください",
-    "dpa-link-tip-1": "作成した商品を確認するか、入力した店舗名を確認してください。",
-    "dpa-link-tip-2": "それでもURLを生成できない場合は、カスタマーサービスにお問い合わせください。"
+  "facebook": {
+    "empty": "まだ設定されていません",
+    "setting": "追跡コーディングを設定します",
+    "pixelId": {
+      "title": "Facebookのピクセル",
+      "tip": "Facebookピクセルを設定する方法",
+      "error": "Facebookのピクセル数のフォーマットエラー、数の中央には空白または特別なシンボルを持たず、15ヤードまたは16ヤードでなければなりません。"
+    },
+    "conversionsAccessToken": {
+      "title": "APIアクセサを変換する",
+      "tip": "Facebook APIアクセサーを設定する方法",
+      "placeholder": "APIアクセスコントローラを失ってください",
+      "error": "数の中央は前後に空白ではありません"
+    },
+    "dpa": {
+      "title": "動的広告（DPA）",
+      "description": {
+        "0": "製品カタログを更新しました：5：00 ~6：00 AM（GMT + 08：00）",
+        "1": "動的URLをFacebookの広告管理の背景にコピーしてください。システムは自動的に製品ディレクトリをFacebookに送信して更新します。"
+      },
+      "tip": {
+        "0": "製品を確立したことを確認するか、ストア名を入力してください。",
+        "1": "まだ接続を作成できない場合は、カスタマーサービスに連絡してください。"
+      },
+      "copy-link": "動的なURLをコピーする",
+      "set-pixel-id-first": "ピクセル番号を指してください",
+      "copied": "スクラップブックにコピーします"
+    }
   },
   "google-analytics": {
     "title": "Google Analytics Webサイト分析",
@@ -36,8 +51,10 @@
     "event-placeholder": "イベントスニペットを入力してください",
     "not-setting": "設定されていません",
     "dpa": "動的商品広告（DPA）",
-    "dpa-description-1": "製品ダイアログの更新時間：5:00 AM〜6:00 AM（GMT + 08：00）",
-    "dpa-description-2": "ダイナミックファイルのURLをコピーしてGoogle Merchantアカウントに貼り付け、フィードを設定してください。Googleは設定されたスケジュールに従ってフィードを取得します。",
+    "dpa-description": {
+      "0": "製品ダイアログの更新時間：5:00 AM〜6:00 AM（GMT + 08：00）",
+      "1": "ダイナミックファイルのURLをコピーしてGoogle Merchantアカウントに貼り付け、フィードを設定してください。Googleは設定されたスケジュールに従ってフィードを取得します。"
+    },
     "copy-dpa-link": "動的URLをコピー",
     "copied": "クリップボードにコピーしました",
     "parse-config-fail": "グローバルコードフォーマットエラー",
@@ -73,8 +90,10 @@
   "retention-milliseconds-track": {
     "title": "滞在時間トラッカーをカスタマイズする",
     "description": "この機能は、サードパーティの追跡ツール、Facebook Pixel、Google Analyticsを使用して、すべてのページでのユーザーの滞在行動を追跡でき、滞在時間をカスタマイズできます。",
-    "tip-1": "X秒以上ページに滞在しているユーザーを追跡できます。",
-    "tip-2": "イベント名：meepShop_retention",
+    "tip": {
+      "0": "X秒以上ページに滞在しているユーザーを追跡できます。",
+      "1": "イベント名：meepShop_retention"
+    },
     "setting": "滞在時間の設定",
     "input-seconds": "秒数を入力してください"
   },
