@@ -20,6 +20,6 @@ spec:
           number: 14401
   - route:
     - destination:
-        host: next-store
+        host: storefront-reverse-proxy
         port:
-          number: 14401
+          number: 8080
