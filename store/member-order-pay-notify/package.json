@@ -4,11 +4,11 @@
   "description": "Member order pay notify page for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.33",
+  "version": "0.79.35",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.79.31",
+    "@meepshop/context": "^0.79.35",
     "@meepshop/locales": "^0.79.33"
   },
   "keywords": ["member order pay notify page", "store"]

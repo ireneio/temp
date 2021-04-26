@@ -4,11 +4,11 @@
   "description": "Fb api context",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.31",
+  "version": "0.79.35",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.79.31"
+    "@meepshop/context": "^0.79.35"
   },
   "keywords": ["fb", "store"]
 }
