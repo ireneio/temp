@@ -1,6 +1,6 @@
 // import
 import React from 'react';
-import { emptyFunction } from 'fbjs';
+import { emptyFunction, UserAgent } from 'fbjs';
 
 // definition
 const events =
@@ -13,24 +13,23 @@ const events =
     : window.events;
 const EventsContext = React.createContext<EventTarget>(events);
 
-export const globalEvents = `
-var Event = function Event(type, bubbles, cancelable, target) {
+export const globalEvents = UserAgent.isBrowser('IE')
+  ? 'window.events = new EventTarget();'
+  : `
+var Event = function(type, bubbles, cancelable, target) {
   this.initEvent(type, bubbles, cancelable, target);
 };
 
-Event.prototype = {
-  initEvent: function (type, bubbles, cancelable, target) {
-    this.type = type;
-    this.bubbles = bubbles;
-    this.cancelable = cancelable;
-    this.target = target;
-  },
+Event.prototype.initEvent = function(type, bubbles, cancelable, target) {
+  this.type = type;
+  this.bubbles = bubbles;
+  this.cancelable = cancelable;
+  this.target = target;
+};
 
-  stopPropagation: function () {},
-
-  preventDefault: function () {
-    this.defaultPrevented = true;
-  }
+Event.prototype.stopPropagation = function() {};
+Event.prototype.preventDefault = function() {
+  this.defaultPrevented = true;
 };
 
 var EventTarget = function() {

@@ -40,4 +40,8 @@ declare module 'fbjs' {
   ): { width: number; height: number; x: number; y: number };
 
   export function getScrollPosition(dom: HTMLElement): { x: number; y: number };
+
+  export namespace UserAgent {
+    export function isBrowser(name: string): boolean;
+  }
 }
