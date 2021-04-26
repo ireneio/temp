@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.79.34 (2021-04-26)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1508](https://github.com/meepshop/meep-lerna/pull/1508) next-store to storefront-reverse-proxy ([@nukr](https://github.com/nukr))
+
+#### Committers: 1
+
+- nukr ([@nukr](https://github.com/nukr))
+
 ## 0.79.33 (2021-04-23)
 
 #### :boom: Breaking Change
