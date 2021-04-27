@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.79.36 (2021-04-27)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1512](https://github.com/meepshop/meep-lerna/pull/1512) (@meepshop/next-store, @meepshop/next-admin) Should remove lib after building server ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1505](https://github.com/meepshop/meep-lerna/pull/1505) 【功能】 智慧轉換元件 - 移除白名單 toggle / 修改 ga view id 儲存 ([@meepshop-bot](https://github.com/meepshop-bot))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@meepshop-bot](https://github.com/meepshop-bot)
+
 ## 0.79.35 (2021-04-26)
 
 #### :bug: Bug Fix
