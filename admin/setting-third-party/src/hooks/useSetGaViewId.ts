@@ -1,65 +1,128 @@
 // import
-import { useCallback } from 'react';
-import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import { useState, useEffect, useCallback } from 'react';
+import {
+  useMutation,
+  useLazyQuery,
+  useApolloClient,
+} from '@apollo/react-hooks';
 import { message } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript
 import {
-  useSetGAViewIdWriteCache,
-  setGaViewId as setGaViewIdType,
-  setGaViewIdVariables,
+  useSetGAViewIdFragment as useSetGAViewIdFragmentType,
+  requestSetGAViewIdProcessorService as requestSetGAViewIdProcessorServiceType,
+  requestSetGAViewIdProcessorServiceVariables as requestSetGAViewIdProcessorServiceVariablesType,
+  requestSetGAViewId as requestSetGAViewIdType,
+  requestSetGAViewIdVariables as requestSetGAViewIdVariablesType,
 } from '@meepshop/types/gqls/admin';
 
+// graphql import
+import {
+  requestSetGAViewId,
+  requestSetGAViewIdProcessorService,
+  useSetGAViewIdFragment,
+} from '../gqls/useSetGaViewId';
+
 // definition
-export default (): ((
+export default (
   storeId: string,
-  gaViewId: string | null,
-) => Promise<void>) => {
+): {
+  setGaViewId: (gaViewId: string | null) => Promise<void>;
+  processorStatus?: string | null;
+} => {
   const { t } = useTranslation('setting-third-party');
-  const [setGaViewId] = useMutation<setGaViewIdType, setGaViewIdVariables>(
-    gql`
-      mutation setGaViewId($gaViewId: String) {
-        setGAViewId(gaViewId: $gaViewId)
-      }
-    `,
-  );
+  const [loading, setLoading] = useState(false);
+  const [setGaViewId, setGaViewIdResult] = useMutation<
+    requestSetGAViewIdType,
+    requestSetGAViewIdVariablesType
+  >(requestSetGAViewId);
+  const [
+    queryService,
+    { data, error, startPolling, stopPolling },
+  ] = useLazyQuery<
+    requestSetGAViewIdProcessorServiceType,
+    requestSetGAViewIdProcessorServiceVariablesType
+  >(requestSetGAViewIdProcessorService);
+  const client = useApolloClient();
+  const status = data?.smartConversionModuleProcessorService.status;
+  const result = data?.smartConversionModuleProcessorService.result;
+  const gaViewId = data?.smartConversionModuleProcessorService.gaViewId || null;
+  const key = setGaViewIdResult.data?.requestSetGAViewId.queryId;
 
-  return useCallback(
-    async (storeId: string, gaViewId: string) =>
-      new Promise((resolve, reject) =>
-        setGaViewId({
+  useEffect(() => {
+    if (!key || loading) return () => stopPolling?.();
+
+    if (status === 'PROCESSING') {
+      message.loading({
+        content: t('gaViewId.validating'),
+        key,
+        duration: 0,
+      });
+      startPolling(1000);
+    }
+
+    if (status === 'DONE' && result === 'OK')
+      message.success({ content: t('gaViewId.success'), key });
+
+    if ((status === 'DONE' && result !== 'OK') || error) {
+      message.error({ content: t('gaViewId.error'), key });
+      client.writeFragment<useSetGAViewIdFragmentType>({
+        id: storeId,
+        fragment: useSetGAViewIdFragment,
+        data: {
+          __typename: 'Store',
+          id: storeId,
+          gaViewId,
+        },
+      });
+    }
+
+    return () => stopPolling?.();
+  }, [
+    storeId,
+    client,
+    t,
+    status,
+    result,
+    gaViewId,
+    startPolling,
+    stopPolling,
+    error,
+    key,
+    loading,
+  ]);
+
+  return {
+    setGaViewId: useCallback(
+      async (newGaViewId: string) => {
+        setLoading(true);
+
+        const executionResult = await setGaViewId({
           variables: {
-            gaViewId,
+            gaViewId: newGaViewId,
           },
-          update: (cache, { data }) => {
-            if (data?.setGAViewId !== 'OK') {
-              message.error(t('gaViewId.error'));
-              reject(new Error('can not update ga view id'));
-              return;
-            }
-
-            cache.writeFragment<useSetGAViewIdWriteCache>({
+          update: cache => {
+            cache.writeFragment<useSetGAViewIdFragmentType>({
               id: storeId,
-              fragment: gql`
-                fragment useSetGAViewIdWriteCache on Store {
-                  id
-                  gaViewId
-                }
-              `,
+              fragment: useSetGAViewIdFragment,
               data: {
                 __typename: 'Store',
                 id: storeId,
-                gaViewId,
+                gaViewId: newGaViewId,
               },
             });
           },
-        }).then(() => {
-          resolve();
-        }),
-      ),
-    [setGaViewId, t],
-  );
+        });
+        const queryId = executionResult.data?.requestSetGAViewId.queryId;
+
+        if (queryId) queryService({ variables: { queryId } });
+
+        setLoading(false);
+      },
+      [storeId, setGaViewId, queryService],
+    ),
+    processorStatus: status,
+  };
 };

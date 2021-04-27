@@ -82,6 +82,8 @@
         "caution": "El componente de conversión inteligente solo se puede usar después de configurar el ID de vista de datos. Se recomienda no cambiar la configuración durante el período de uso del componente para mantener la precisión de los datos."
       }
     },
+    "validating": "Verificación de ID de vista de datos ...",
+    "success": "Expediente de verificación de ID de datos",
     "error": "ID de vista de datos no válido"
   }
 }
