@@ -8,7 +8,7 @@
   "main": "./next.config.js",
   "scripts": {
     "dev": "node --inspect=localhost:9229 src/server",
-    "prod": "next build ./src",
+    "prod": "rm -rf ./lib && next build ./src",
     "start": "NODE_ENV=production node src/server"
   },
   "dependencies": {
