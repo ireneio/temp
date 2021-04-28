@@ -36,7 +36,8 @@ export interface PropsType {
     address?: string[];
     zipCode?: string;
   };
-  onChange?: (value: { address?: string[]; zipCode?: string }) => void;
+  onChange?: (value: PropsType['value']) => void;
+  onBlur?: (value: PropsType['value']) => void;
 }
 
 // definition
@@ -57,8 +58,9 @@ const AddressCascader = React.memo(
     size,
     placeholder,
     shippableCountries,
-    onChange,
     value,
+    onChange,
+    onBlur,
   }: PropsType): React.ReactElement => {
     const { i18n } = useTranslation();
     const { data } = useQuery<getCountriesAddressType>(getCountriesAddress);
@@ -92,6 +94,9 @@ const AddressCascader = React.memo(
             size={size}
             placeholder={placeholder[0]}
             value={!address || !isOnlyOneOption ? address : address.slice(1)}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-ignore FIXME: antd type error
+            onBlur={() => onBlur?.(value)}
             onChange={newAddress =>
               onChange?.({
                 address:
@@ -116,6 +121,9 @@ const AddressCascader = React.memo(
             size={size}
             placeholder={placeholder[1]}
             value={zipCode}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-ignore FIXME: antd type error
+            onBlur={() => onBlur?.(value)}
             onChange={newZipCode =>
               onChange?.({ address, zipCode: newZipCode })
             }
