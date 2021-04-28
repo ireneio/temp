@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.79.37 (2021-04-28)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1351](https://github.com/meepshop/meep-lerna/pull/1351) T7406 - 內部開單 - 改用 withHook ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1372](https://github.com/meepshop/meep-lerna/pull/1372) 【優化】member-password-change 改成 function component ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- [#1510](https://github.com/meepshop/meep-lerna/pull/1510) 【BUG】 結帳頁會員資料欄位 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.36 (2021-04-27)
 
 #### :bug: Bug Fix
