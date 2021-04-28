@@ -88,57 +88,55 @@ const handleDataType = (
   };
 };
 
-export const formatRawContent = (value?: string | null): object | null => {
-  try {
-    if (!value || !/entityMap/.test(value)) return null;
-
-    const rawContent = JSON.parse(value) as RawDraftContentState;
-
-    // format blocks
-    rawContent.blocks = rawContent.blocks.map(
-      ({ type, data, inlineStyleRanges, ...block }) => ({
-        ...block,
-        ...handleDataType(type, data),
-        inlineStyleRanges: handleInlineStyleRanges(
-          inlineStyleRanges,
-        ) as RawDraftInlineStyleRange[],
-      }),
-    );
-
-    // format entityMap
-    Object.keys(rawContent.entityMap).forEach(key => {
-      if (rawContent.entityMap[key].type === 'link') {
-        const { ...entity } = rawContent.entityMap[key];
-
-        rawContent.entityMap[key] = {
-          ...entity,
-          type: 'LINK',
-        };
-      }
-
-      if (rawContent.entityMap[key].type === 'LINK') {
-        const {
-          data: { url, targetOption, ...data },
-          ...entity
-        } = rawContent.entityMap[key];
-
-        rawContent.entityMap[key] = {
-          ...entity,
-          data: {
-            ...data,
-            href: url,
-            target: targetOption,
-          },
-        };
-      }
-    });
-
-    return rawContent;
-  } catch (error) {
-    logger.error(`Error: failed to format content, [${value}]`);
-    return null;
-  }
-};
-
 export default (value?: string | null): object | null =>
-  useMemo(() => formatRawContent(value), [value]);
+  useMemo(() => {
+    try {
+      if (!value || !/entityMap/.test(value)) return null;
+
+      const rawContent = JSON.parse(value) as RawDraftContentState;
+
+      // format blocks
+      rawContent.blocks = rawContent.blocks.map(
+        ({ type, data, inlineStyleRanges, ...block }) => ({
+          ...block,
+          ...handleDataType(type, data),
+          inlineStyleRanges: handleInlineStyleRanges(
+            inlineStyleRanges,
+          ) as RawDraftInlineStyleRange[],
+        }),
+      );
+
+      // format entityMap
+      Object.keys(rawContent.entityMap).forEach(key => {
+        if (rawContent.entityMap[key].type === 'link') {
+          const { ...entity } = rawContent.entityMap[key];
+
+          rawContent.entityMap[key] = {
+            ...entity,
+            type: 'LINK',
+          };
+        }
+
+        if (rawContent.entityMap[key].type === 'LINK') {
+          const {
+            data: { url, targetOption, ...data },
+            ...entity
+          } = rawContent.entityMap[key];
+
+          rawContent.entityMap[key] = {
+            ...entity,
+            data: {
+              ...data,
+              href: url,
+              target: targetOption,
+            },
+          };
+        }
+      });
+
+      return rawContent;
+    } catch (error) {
+      logger.error(`Error: failed to format content, [${value}]`);
+      return null;
+    }
+  }, [value]);

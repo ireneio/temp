@@ -1,18 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import memoizeOne from 'memoize-one';
 import { convertFromRaw } from 'draft-js';
 
-import { formatRawContent } from '@meepshop/hooks/lib/useRawContent';
-import { RawToHTML } from '@meepshop/hooks/lib/useHtml';
+import useRawContent from '@meepshop/hooks/lib/useRawContent';
+import useHtml from '@meepshop/hooks/lib/useHtml';
+import withHook from '@store/utils/lib/withHook';
 
 import styles from './styles/index.less';
 
+@withHook(({ value }) => {
+  const rawContent = useRawContent(value);
+  const html = useHtml(rawContent);
+
+  return {
+    rawContent,
+    html,
+  };
+})
 export default class DraftText extends React.PureComponent {
-  formatRawContent = memoizeOne(formatRawContent);
-
-  rawContentToHtml = memoizeOne(RawToHTML);
-
   static propTypes = {
     /** props | testJSON [
      *   "test",
@@ -34,8 +39,7 @@ export default class DraftText extends React.PureComponent {
   };
 
   render() {
-    const { value, plainText, style } = this.props;
-    const rawContent = this.formatRawContent(value);
+    const { value, rawContent, html, plainText, style } = this.props;
 
     if (plainText)
       return (
@@ -52,7 +56,7 @@ export default class DraftText extends React.PureComponent {
         style={style}
         dangerouslySetInnerHTML={{
           // FIXME: value should be remove(大量上架)
-          __html: rawContent ? this.rawContentToHtml(rawContent) : value,
+          __html: rawContent ? html : value,
         }}
       />
     );
