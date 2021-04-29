@@ -25,6 +25,14 @@ spec:
         port:
           number: 8080
   - match:
+    - uri:
+        exact: /fbAuthForLine
+    route:
+    - destination:
+        host: next-store
+        port:
+          number: 14401
+  - match:
     - queryParams:
         resetCart:
           regex: "^(true|false)$"
