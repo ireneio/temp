@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.79.39 (2021-04-29)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1518](https://github.com/meepshop/meep-lerna/pull/1518) 【個別店家】 綠界信用卡刷卡資訊送出後，出現 SSL is not supported ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.38 (2021-04-29)
 
 #### :bug: Bug Fix
