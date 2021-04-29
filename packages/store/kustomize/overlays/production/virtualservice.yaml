@@ -12,6 +12,8 @@ spec:
   - match:
     - uri:
         exact: /fbAuthForLine
+    - uri:
+        prefix: /checkout/thank-you-page
     route:
     - destination:
         host: next-store
