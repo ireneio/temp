@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.79.38 (2021-04-29)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1515](https://github.com/meepshop/meep-lerna/pull/1515) 【BUG】 in app browser(FB / IG / Line) FB 登入異常 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.37 (2021-04-28)
 
 #### :rocket: New Feature
