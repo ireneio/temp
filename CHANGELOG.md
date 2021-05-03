@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.79.40 (2021-05-03)
+
+#### :bug: Bug Fix
+
+- [#1513](https://github.com/meepshop/meep-lerna/pull/1513) 【BUG】 社群分享元件 - 404 Page not found ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.39 (2021-04-29)
 
 #### :bug: Bug Fix
