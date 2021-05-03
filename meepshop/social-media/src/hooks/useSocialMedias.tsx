@@ -39,8 +39,8 @@ export default (
   showTwitter: boolean,
   showWechat: boolean,
 ): SocialMediasType => {
-  const { domain, pathname } = useRouter();
-  const url = `https://${domain}/${pathname}`;
+  const { domain, asPath } = useRouter();
+  const url = `https://${domain}${asPath}`;
 
   return useMemo(
     () =>
