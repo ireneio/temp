@@ -13,6 +13,7 @@ import { appWithTranslation } from '@meepshop/locales';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
 import { withDomain } from '@meepshop/link';
+import Switch from '@meepshop/switch';
 import '@admin/utils/styles/base.less';
 import withApollo from '@admin/apollo';
 import AdTrackProvider from '@admin/ad-track';
@@ -22,6 +23,17 @@ import withCookies from '../utils/withCookies';
 
 // definition
 const Wrapper = dynamic(() => import('@admin/wrapper'));
+const NO_WRAPPER = new RegExp(
+  [
+    'login',
+    'sign-up',
+    'set-up-store',
+    'sign-up-fail',
+    'reset-password',
+    'smart-conversion-analysis',
+    'order/history-records',
+  ].join('|'),
+);
 
 class App extends NextApp<AppInitialProps> {
   public static getInitialProps = async ({
@@ -67,23 +79,20 @@ class App extends NextApp<AppInitialProps> {
         </Head>
 
         <EventsProvider>
-          {/login|sign-up|set-up-store|sign-up-fail|reset-password|smart-conversion-analysis/.test(
-            pathname,
-          ) ? (
-            <AdTrackProvider>
+          <AdTrackProvider>
+            <Switch
+              isTrue={!NO_WRAPPER.test(pathname)}
+              render={children => (
+                <AppsProvider>
+                  <CurrencyProvider>
+                    <Wrapper>{children}</Wrapper>
+                  </CurrencyProvider>
+                </AppsProvider>
+              )}
+            >
               <Component {...pageProps} />
-            </AdTrackProvider>
-          ) : (
-            <AppsProvider>
-              <CurrencyProvider>
-                <AdTrackProvider>
-                  <Wrapper>
-                    <Component {...pageProps} />
-                  </Wrapper>
-                </AdTrackProvider>
-              </CurrencyProvider>
-            </AppsProvider>
-          )}
+            </Switch>
+          </AdTrackProvider>
         </EventsProvider>
       </>
     );

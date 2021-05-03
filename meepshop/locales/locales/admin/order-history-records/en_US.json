@@ -13,7 +13,7 @@
   "detail": {
     "open": "Details",
     "close": "Hide details",
-    "productsQuantityDelta": "Item quantity change",
+    "orderProductQuantityDelta": "Item quantity change",
     "productsAmountDelta": "Commodity total",
     "adjustAmountDelta": "Amount change",
     "totalAmountDelta": "The total amount of orders"

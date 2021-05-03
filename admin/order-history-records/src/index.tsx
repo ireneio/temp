@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon, List } from 'antd';
+import moment from 'moment';
 
 import { useTranslation } from '@meepshop/locales';
 import { meepshopLogo } from '@meepshop/images';
@@ -26,7 +27,7 @@ import { recordFragment } from './gqls/record';
 
 // typescript definition
 interface PropsType {
-  orderId?: string;
+  orderId: string;
   namespacesRequired: string[];
 }
 
@@ -39,7 +40,7 @@ const OrderHistoryRecords: NextPage<PropsType> = React.memo(
       getOrderHistoryRecordsVariables
     >(getOrderHistoryRecords, {
       variables: {
-        orderId: orderId as string,
+        orderId,
       },
     });
     const [limit, setLimit] = useState(5);
@@ -66,7 +67,7 @@ const OrderHistoryRecords: NextPage<PropsType> = React.memo(
           <div>
             <div>{t('createdAt')}</div>
 
-            <div>{order.createdAt}</div>
+            <div>{moment(order.createdAt).format('YYYY/MM/DD HH:mm:ss')}</div>
           </div>
         </div>
 
@@ -135,8 +136,9 @@ const OrderHistoryRecords: NextPage<PropsType> = React.memo(
   },
 );
 
-OrderHistoryRecords.getInitialProps = async () => ({
+OrderHistoryRecords.getInitialProps = async ({ query }) => ({
   namespacesRequired: ['@meepshop/locales/namespacesRequired'],
+  orderId: query.orderId as string,
 });
 
 export default OrderHistoryRecords;

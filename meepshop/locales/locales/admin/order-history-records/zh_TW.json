@@ -13,7 +13,7 @@
   "detail": {
     "open": "細項",
     "close": "隱藏細項",
-    "productsQuantityDelta": "商品數量變更",
+    "orderProductQuantityDelta": "商品數量變更",
     "productsAmountDelta": "商品總計",
     "adjustAmountDelta": "金額變更",
     "totalAmountDelta": "訂單總金額"

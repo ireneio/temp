@@ -13,7 +13,7 @@
   "detail": {
     "open": "詳細",
     "close": "詳細を非表示",
-    "productsQuantityDelta": "アイテム数量変更",
+    "orderProductQuantityDelta": "アイテム数量変更",
     "productsAmountDelta": "商品合計",
     "adjustAmountDelta": "金額変更",
     "totalAmountDelta": "注文の合計額"

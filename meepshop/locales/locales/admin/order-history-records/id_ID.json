@@ -13,7 +13,7 @@
   "detail": {
     "open": "Detail",
     "close": "Sembunyikan detail",
-    "productsQuantityDelta": "Perubahan kuantitas barang",
+    "orderProductQuantityDelta": "Perubahan kuantitas barang",
     "productsAmountDelta": "Komoditas total",
     "adjustAmountDelta": "Jumlah perubahan",
     "totalAmountDelta": "Jumlah total pesanan"

@@ -13,7 +13,7 @@
   "detail": {
     "open": "Chi tiết",
     "close": "Ẩn chi tiết",
-    "productsQuantityDelta": "Thay đổi số lượng mặt hàng",
+    "orderProductQuantityDelta": "Thay đổi số lượng mặt hàng",
     "productsAmountDelta": "Tổng số hàng hóa",
     "adjustAmountDelta": "Số tiền thay đổi",
     "totalAmountDelta": "Tổng số lượng đơn đặt hàng"

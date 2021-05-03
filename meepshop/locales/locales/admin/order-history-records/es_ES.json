@@ -13,7 +13,7 @@
   "detail": {
     "open": "Detalles",
     "close": "Ocultar detalles",
-    "productsQuantityDelta": "Cambio de cantidad de artículo",
+    "orderProductQuantityDelta": "Cambio de cantidad de artículo",
     "productsAmountDelta": "Total de productos básicos",
     "adjustAmountDelta": "Cambio de cantidad",
     "totalAmountDelta": "La cantidad total de pedidos"

@@ -39,7 +39,7 @@ export default React.memo(
           <div>{moment(createdAt).format('YYYY/MM/DD')}</div>
 
           <div className={styles.time}>
-            {moment(createdAt).format('hh:mm:ss')}
+            {moment(createdAt).format('HH:mm:ss')}
           </div>
         </div>
 
