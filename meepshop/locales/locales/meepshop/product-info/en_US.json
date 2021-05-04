@@ -15,6 +15,5 @@
   "sold-out": "Out of Stock",
   "no-variants": "No specifications are available.",
   "not-found-content": "The number of purchasable items might surpass its limit or the format is invalid.",
-  "more-options": "… or key in desired QTY",
-  "add-product-to-cart": "The item has been added to your cart."
+  "more-options": "… or key in desired QTY"
 }

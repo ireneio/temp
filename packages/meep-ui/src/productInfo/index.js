@@ -2,7 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
-import { Modal, notification } from 'antd';
+import { Modal } from 'antd';
 import memoizeOne from 'memoize-one';
 
 import { withTranslation } from '@meepshop/locales';
@@ -10,6 +10,7 @@ import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import CartContext from '@meepshop/cart';
 import ProductSpecSelector from '@meepshop/product-spec-selector';
+import useAddToCartNotification from '@store/notification/lib/hooks/useAddToCartNotification';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
 import MobileSpecSelector from '@meepshop/product-info/lib/mobileSpecSelector';
@@ -38,6 +39,9 @@ import { PRODUCT_TYPE, LIMITED, ORDERABLE, OUT_OF_STOCK } from './constants';
     ],
   }),
 )
+@withHook(() => ({
+  addToCartNotification: useAddToCartNotification(),
+}))
 @enhancer
 @radium
 export default class ProductInfo extends React.PureComponent {
@@ -143,11 +147,11 @@ export default class ProductInfo extends React.PureComponent {
 
   addToCart = async () => {
     const {
-      t,
       adTrack,
       productData,
       type,
       addProductToCart,
+      addToCartNotification,
       variant,
     } = this.props;
     const { quantity } = this.state;
@@ -174,7 +178,7 @@ export default class ProductInfo extends React.PureComponent {
       specs: variant.specs,
       price: variant.totalPrice,
     });
-    notification.success({ message: t('add-product-to-cart') });
+    addToCartNotification();
     this.setState({ isAddingItem: false });
   };
 

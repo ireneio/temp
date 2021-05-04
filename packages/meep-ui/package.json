@@ -34,6 +34,7 @@
     "@meepshop/utils": "^0.79.29",
     "@meepshop/validator": "^0.79.36",
     "@store/checkout": "^0.79.22",
+    "@store/notification": "^0.1.0",
     "@store/utils": "^0.79.29",
     "clipboard": "^2.0.1",
     "color": "^3.0.0",
