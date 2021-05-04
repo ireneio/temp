@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.79.41 (2021-05-04)
+
+#### :rocket: New Feature
+
+- Other
+  - [#1437](https://github.com/meepshop/meep-lerna/pull/1437) 內部開單 - 研究 apollo-client retry 機制 ([@happycat6323](https://github.com/happycat6323))
+  - [#1430](https://github.com/meepshop/meep-lerna/pull/1430) 【優化】member-order-applications 改成 function component ([@Lexiwu](https://github.com/Lexiwu))
+- `meep-ui`
+  - [#1496](https://github.com/meepshop/meep-lerna/pull/1496) 前台 - 商品加入購物車反饋優化 ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- [#1521](https://github.com/meepshop/meep-lerna/pull/1521) Fix 【功能】訂單歷程 - 階段一 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 4
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.79.40 (2021-05-03)
 
 #### :bug: Bug Fix
