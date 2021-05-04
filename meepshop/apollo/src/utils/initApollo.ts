@@ -14,6 +14,7 @@ import {
   IntrospectionFragmentMatcher,
 } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
+import { RetryLink } from 'apollo-link-retry';
 import { ApolloLink } from 'apollo-link';
 import { createNetworkStatusNotifier } from 'react-apollo-network-status';
 import getConfig from 'next/config';
@@ -105,6 +106,17 @@ const create = (
       validatedConvenienceStoreCities.resolvers,
     ].reduce(mergeResolvers, {}),
     link: ApolloLink.from([
+      new RetryLink({
+        delay: {
+          initial: 500,
+          max: Infinity,
+          jitter: true,
+        },
+        attempts: {
+          max: 10,
+          retryIf: error => !!error && ![401, 403].includes(error.statusCode),
+        },
+      }),
       errorLink(errorFilter),
       link,
       new HttpLink({
