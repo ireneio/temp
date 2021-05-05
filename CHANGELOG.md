@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.79.43 (2021-05-05)
+
+#### :rocket: New Feature
+
+- [#1526](https://github.com/meepshop/meep-lerna/pull/1526) (root) Update @meepshop/meep-cli ([@meepshop-bot](https://github.com/meepshop-bot))
+
+#### :bug: Bug Fix
+
+- [#1527](https://github.com/meepshop/meep-lerna/pull/1527) internal - (@admin/page-manager) Fix query input ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- [@meepshop-bot](https://github.com/meepshop-bot)
+
 ## 0.79.42 (2021-05-05)
 
 #### :rocket: New Feature
