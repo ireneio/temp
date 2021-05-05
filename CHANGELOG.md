@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.79.42 (2021-05-05)
+
+#### :rocket: New Feature
+
+- [#1500](https://github.com/meepshop/meep-lerna/pull/1500) 前端 - implement client side 大小檢查 ([@piovischioh](https://github.com/piovischioh))
+- [#1421](https://github.com/meepshop/meep-lerna/pull/1421) 頁面設計 page loading 數量限制 - Design/前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.79.41 (2021-05-04)
 
 #### :rocket: New Feature
