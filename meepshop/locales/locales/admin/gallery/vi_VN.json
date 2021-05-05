@@ -6,5 +6,15 @@
   "add-pictures": "Thêm hình ảnh mới",
   "upload": "Tải lên",
   "save": "Tiết kiệm",
-  "fail": "Thất bại"
+  "fail": "Thất bại",
+  "confirm": "mục đích",
+  "upload-failed": "Một số tải lên tập tin không thành công",
+  "please-check-files": "Vui lòng kiểm tra xem tệp của bạn có nằm trong phạm vi giới hạn không:",
+  "check-failed-files": "Xem tập tin thất bại",
+  "acceptable": {
+    "type": "Chỉ hỗ trợ tải lên JPEG, JPG, PNG, GIF, SVG, định dạng tệp ICO",
+    "size": "Kích thước tệp là 19 MB",
+    "length": "Lưu trữ rộng rộng hoặc hơn 16.000 pixel",
+    "resolution": "Chiều rộng chiều dài lưu trữ không thể vượt quá 50 triệu pixel"
+  }
 }

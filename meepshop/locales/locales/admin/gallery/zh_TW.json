@@ -6,5 +6,15 @@
   "add-pictures": "新增圖片",
   "upload": "上傳",
   "save": "儲存",
-  "fail": "失敗"
+  "fail": "失敗",
+  "confirm": "確定",
+  "upload-failed": "部分檔案上傳失敗",
+  "please-check-files": "請檢查您的檔案是否在限制範圍內：",
+  "check-failed-files": "查看上傳失敗的檔案",
+  "acceptable": {
+    "type": "僅支援上傳 jpeg, jpg, png, gif, svg, ico 的檔案格式",
+    "size": "檔案大小上限為 19 MB",
+    "length": "檔案長寬任一邊不可超過 16000 像素",
+    "resolution": "檔案長寬相乘不可超過 5000 萬像素"
+  }
 }

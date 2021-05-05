@@ -6,5 +6,15 @@
   "add-pictures": "Añadir nueva imagen",
   "upload": "Subir",
   "save": "Salvar",
-  "fail": "Fallida"
+  "fail": "Fallida",
+  "confirm": "determinar",
+  "upload-failed": "Alguna carga de archivos falló",
+  "please-check-files": "Por favor, compruebe si su archivo está dentro del rango de límite:",
+  "check-failed-files": "Ver archivos que fallan",
+  "acceptable": {
+    "type": "Solo Soporte Subir JPEG, JPG, PNG, GIF, SVG, Formato de archivo ICO",
+    "size": "El tamaño del archivo es de 19 MB",
+    "length": "Archivos de largo o más de 16,000 píxeles.",
+    "resolution": "El ancho de longitud del archivo no puede exceder los 50 millones de píxeles."
+  }
 }

@@ -6,5 +6,15 @@
   "add-pictures": "Tambahkan Gambar Baru",
   "upload": "Unggah",
   "save": "Menyimpan",
-  "fail": "Gagal"
+  "fail": "Gagal",
+  "confirm": "menentukan",
+  "upload-failed": "Beberapa file unggahan gagal",
+  "please-check-files": "Silakan periksa apakah file Anda berada dalam batas batas:",
+  "check-failed-files": "Lihat file yang gagal",
+  "acceptable": {
+    "type": "Hanya mendukung Unggah JPEG, JPG, PNG, GIF, SVG, format file ICO",
+    "size": "Ukuran file adalah 19 MB",
+    "length": "Arsip panjang lebar atau lebih dari 16.000 piksel",
+    "resolution": "Lebar panjang arsip tidak dapat melebihi 50 juta piksel"
+  }
 }

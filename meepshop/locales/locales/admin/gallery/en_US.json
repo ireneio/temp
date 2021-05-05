@@ -6,5 +6,15 @@
   "add-pictures": "Add New Image",
   "upload": "Upload",
   "save": "Save",
-  "fail": "Failed"
+  "fail": "Failed",
+  "confirm": "determine",
+  "upload-failed": "Some file upload failed",
+  "please-check-files": "Please check if your file is within the limit range:",
+  "check-failed-files": "View files that fail",
+  "acceptable": {
+    "type": "Only support Upload JPEG, JPG, PNG, GIF, SVG, ICO file format",
+    "size": "File size is 19 MB",
+    "length": "Archives long wide or more than 16,000 pixels",
+    "resolution": "Archive length width can not exceed 50 million pixels"
+  }
 }

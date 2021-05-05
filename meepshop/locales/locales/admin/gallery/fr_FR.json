@@ -6,5 +6,15 @@
   "add-pictures": "Ajouter une nouvelle image",
   "upload": "Télécharger",
   "save": "sauver",
-  "fail": "Échoué"
+  "fail": "Échoué",
+  "confirm": "déterminer",
+  "upload-failed": "Certains téléchargements de fichier ont échoué",
+  "please-check-files": "Veuillez vérifier si votre fichier est dans la limite:",
+  "check-failed-files": "Voir les fichiers qui échouent",
+  "acceptable": {
+    "type": "Seule la prise en charge de JPEG, JPG, PNG, GIF, SVG, Format de fichier ICO",
+    "size": "La taille du fichier est 19 Mo",
+    "length": "Archives longues ou plus de 16 000 pixels",
+    "resolution": "La largeur de la longueur des archives ne peut pas dépasser 50 millions de pixels"
+  }
 }
