@@ -4,7 +4,7 @@
   "description": "admin server",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.42",
+  "version": "0.79.43",
   "main": "./next.config.js",
   "scripts": {
     "dev": "node --inspect=localhost:9229 src/server",
@@ -19,7 +19,7 @@
     "@admin/dashboard": "^0.79.42",
     "@admin/login": "^0.79.42",
     "@admin/orders-ecfit": "^0.79.42",
-    "@admin/page-manager": "^0.79.42",
+    "@admin/page-manager": "^0.79.43",
     "@admin/plan-setting": "^0.79.42",
     "@admin/redirects": "^0.79.42",
     "@admin/reset-password": "^0.79.42",
