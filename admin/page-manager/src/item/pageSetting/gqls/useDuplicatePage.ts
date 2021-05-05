@@ -30,8 +30,11 @@ const useDuplicatePageFragment = gql`
 
 export const useDuplicatePageReadCache = gql`
   query useDuplicatePageReadCache(
+    $homePagesAfter: String
     $homePagesFilter: StorePagesFilterInput
+    $customPagesAfter: String
     $customPagesFilter: StorePagesFilterInput
+    $productTemplatePageAfter: String
     $productTemplatePageFilter: StorePagesFilterInput
   ) {
     viewer {

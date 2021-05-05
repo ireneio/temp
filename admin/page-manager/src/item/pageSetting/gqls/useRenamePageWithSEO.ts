@@ -4,8 +4,11 @@ import gql from 'graphql-tag';
 // definition
 export const useRenamePageWithSEOCache = gql`
   query useRenamePageWithSEOCache(
+    $homePagesAfter: String
     $homePagesFilter: StorePagesFilterInput
+    $customPagesAfter: String
     $customPagesFilter: StorePagesFilterInput
+    $productTemplatePageAfter: String
     $productTemplatePageFilter: StorePagesFilterInput
   ) {
     viewer {
