@@ -3,9 +3,10 @@ import { NextPage } from 'next';
 
 // import
 import React, { useState } from 'react';
+import VisibilitySensor from 'react-visibility-sensor';
 import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
-import { Spin, Input, Icon, Collapse } from 'antd';
+import { Spin, Input, Icon, Collapse, Button } from 'antd';
 
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/locales';
@@ -13,6 +14,7 @@ import { useTranslation } from '@meepshop/locales';
 import AddNewPage from './addNewPage';
 import Item from './item';
 import Previewer from './Previewer';
+import useLoadMorePages from './hooks/useLoadMorePages';
 import usePages from './hooks/usePages';
 import useSelectedPage from './hooks/useSelectedPage';
 import styles from './styles/index.less';
@@ -44,7 +46,7 @@ const { Panel } = Collapse;
 const PageManager: NextPage<PropsType> = React.memo(
   (): React.ReactElement => {
     const { t } = useTranslation('page-manager');
-    const { loading, error, data, variables, refetch } = useQuery<
+    const { loading, error, data, variables, refetch, fetchMore } = useQuery<
       getPagesType,
       getPagesVariables
     >(getPages, {
@@ -55,6 +57,7 @@ const PageManager: NextPage<PropsType> = React.memo(
       },
     });
     const pages = usePages(data || null, variables);
+    const loadMorePages = useLoadMorePages(fetchMore, variables);
     const {
       selectedPage,
       setSelectedPage,
@@ -80,6 +83,7 @@ const PageManager: NextPage<PropsType> = React.memo(
                 if (variables.homePagesFilter?.searchTerm === value) return;
 
                 refetch({
+                  ...variables,
                   homePagesFilter: {
                     ...variables.homePagesFilter,
                     searchTerm: value,
@@ -118,41 +122,71 @@ const PageManager: NextPage<PropsType> = React.memo(
                   }
                   bordered={false}
                 >
-                  {pageData.map(({ key: subKey, data: subData, hint }) => (
-                    <Panel
-                      key={subKey}
-                      header={
-                        <>
-                          {t(`${subKey}.title`)}
+                  {pageData.map(
+                    ({ key: subKey, data: subData, pageInfo, hint }) => (
+                      <Panel
+                        key={subKey}
+                        header={
+                          <>
+                            {t(`${subKey}.title`)}
 
-                          {!variables.homePagesFilter?.searchTerm
-                            ? null
-                            : ` (${subData.length})`}
+                            {!variables.homePagesFilter?.searchTerm
+                              ? null
+                              : ` (${subData.length})`}
 
-                          {!hint ? null : (
-                            <Tooltip title={t(`${subKey}.hint`)} />
-                          )}
-                        </>
-                      }
-                    >
-                      {subData.map(({ id, ...page }) => (
-                        <Item
-                          key={id || 'id' /** SHOULD_NOT_BE_NULL */}
-                          page={filter(itemPageFragment, {
-                            ...page,
-                            id,
-                          })}
-                          variables={variables}
-                          selectedPage={selectedPage}
-                          setSelectedPage={setSelectedPage}
-                          pageSettingId={pageSettingId}
-                          setPageSettingId={setPageSettingId}
-                          editVisibleId={editVisibleId}
-                          setEditVisibleId={setEditVisibleId}
-                        />
-                      ))}
-                    </Panel>
-                  ))}
+                            {!hint ? null : (
+                              <Tooltip title={t(`${subKey}.hint`)} />
+                            )}
+                          </>
+                        }
+                      >
+                        {subData.map(({ id, ...page }) => (
+                          <Item
+                            key={id || 'id' /** SHOULD_NOT_BE_NULL */}
+                            page={filter(itemPageFragment, {
+                              ...page,
+                              id,
+                            })}
+                            variables={variables}
+                            selectedPage={selectedPage}
+                            setSelectedPage={setSelectedPage}
+                            pageSettingId={pageSettingId}
+                            setPageSettingId={setPageSettingId}
+                            editVisibleId={editVisibleId}
+                            setEditVisibleId={setEditVisibleId}
+                          />
+                        ))}
+
+                        {!(
+                          pageInfo?.hasNextPage &&
+                          (subKey === 'home-page' ||
+                            subKey === 'custom-page' ||
+                            subKey === 'template-page')
+                        ) ? null : (
+                          <div className={styles.seeMore}>
+                            {subData.length < 40 ? (
+                              <Button
+                                loading={loading}
+                                onClick={() => loadMorePages(subKey, pageInfo)}
+                              >
+                                {t('see-more')}
+                              </Button>
+                            ) : (
+                              <VisibilitySensor
+                                partialVisibility
+                                onChange={isVisible => {
+                                  if (isVisible)
+                                    loadMorePages(subKey, pageInfo);
+                                }}
+                              >
+                                <Spin />
+                              </VisibilitySensor>
+                            )}
+                          </div>
+                        )}
+                      </Panel>
+                    ),
+                  )}
                 </Collapse>
               </div>
             ))}

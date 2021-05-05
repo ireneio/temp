@@ -19,6 +19,7 @@
     "title": "Product content page",
     "hint": "The product content page is a single product detail page and new products will use the current default layout"
   },
+  "see-more": "see more",
   "edit": "Edit",
   "preview": "Preview this page",
   "add-new-page": {

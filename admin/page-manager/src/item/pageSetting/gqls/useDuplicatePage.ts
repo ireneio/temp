@@ -38,20 +38,29 @@ export const useDuplicatePageReadCache = gql`
       id
       store {
         id
-        homePages: pages(first: 500, filter: $homePagesFilter) {
+        homePages: pages(
+          first: 20
+          after: $homePagesAfter
+          filter: $homePagesFilter
+        ) {
           edges {
             ...useDuplicatePageFragment
           }
         }
 
-        customPages: pages(first: 500, filter: $customPagesFilter) {
+        customPages: pages(
+          first: 20
+          after: $customPagesAfter
+          filter: $customPagesFilter
+        ) {
           edges {
             ...useDuplicatePageFragment
           }
         }
 
         productTemplatePage: pages(
-          first: 500
+          first: 20
+          after: $productTemplatePageAfter
           filter: $productTemplatePageFilter
         ) {
           edges {

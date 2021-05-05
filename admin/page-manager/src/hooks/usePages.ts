@@ -26,6 +26,7 @@ export default (
       | 'template-page';
     hint: boolean;
     data: usePagesPageFragmentType[];
+    pageInfo?: { hasNextPage: boolean; endCursor: string };
   }[];
 }[] =>
   useMemo(() => {
@@ -50,6 +51,7 @@ export default (
             data: homePages.edges.map(
               ({ node }: { node: usePagesPageFragmentType }) => node,
             ),
+            pageInfo: homePages.pageInfo,
           },
           {
             key: 'custom-page',
@@ -57,6 +59,7 @@ export default (
             data: customPages.edges.map(
               ({ node }: { node: usePagesPageFragmentType }) => node,
             ),
+            pageInfo: customPages.pageInfo,
           },
         ],
       },
@@ -80,6 +83,7 @@ export default (
             data: productTemplatePage.edges.map(
               ({ node }: { node: usePagesPageFragmentType }) => node,
             ),
+            pageInfo: productTemplatePage.pageInfo,
           },
         ],
       },

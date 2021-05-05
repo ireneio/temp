@@ -8,8 +8,11 @@ import { usePagesStoreFragment } from './usePages';
 // definition
 export const getPages = gql`
   query getPages(
+    $homePagesAfter: String
     $homePagesFilter: StorePagesFilterInput
+    $customPagesAfter: String
     $customPagesFilter: StorePagesFilterInput
+    $productTemplatePageAfter: String
     $productTemplatePageFilter: StorePagesFilterInput
   ) {
     viewer {
