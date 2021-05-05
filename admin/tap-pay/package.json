@@ -4,13 +4,13 @@
   "description": "Admin tap pay",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.41",
+  "version": "0.79.42",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/utils": "^0.79.41",
     "@meepshop/images": "^0.79.41",
-    "@meepshop/locales": "^0.79.41"
+    "@meepshop/locales": "^0.79.42"
   },
   "keywords": ["admin", "tap pay"]
 }
