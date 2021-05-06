@@ -13,6 +13,7 @@ interface PropsType {
   placeholder: string;
   value?: string;
   onChange: (value: string) => void;
+  onBlur: (value: string) => void;
   options: null | string[];
 }
 
@@ -25,6 +26,7 @@ export default React.memo(
     placeholder,
     value,
     onChange,
+    onBlur,
     options,
   }: PropsType): React.ReactElement => {
     const colors = useContext(ColorsContext);
@@ -40,6 +42,7 @@ export default React.memo(
           placeholder={placeholder}
           value={value}
           onChange={({ target: { value: newValue } }) => onChange(newValue)}
+          onBlur={({ target: { value: newValue } }) => onBlur(newValue)}
         />
       );
 
@@ -66,6 +69,7 @@ export default React.memo(
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
       >
         {options.map(valueValue => (
           <Option key={valueValue}>{valueValue}</Option>
