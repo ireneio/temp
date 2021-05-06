@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.79.44 (2021-05-06)
+
+#### :bug: Bug Fix
+
+- [#1525](https://github.com/meepshop/meep-lerna/pull/1525) 【BUG】結帳頁填國外地址，填完地址及郵遞區號，仍顯示紅字必填 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.43 (2021-05-05)
 
 #### :rocket: New Feature
