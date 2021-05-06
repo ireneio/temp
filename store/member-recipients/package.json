@@ -4,11 +4,11 @@
   "description": "Member recipients for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.42",
+  "version": "0.79.44",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/address-cascader": "^0.79.42",
+    "@meepshop/address-cascader": "^0.79.44",
     "@meepshop/context": "^0.79.41",
     "@meepshop/link": "^0.79.41",
     "@meepshop/locales": "^0.79.42",
