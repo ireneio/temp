@@ -22,7 +22,6 @@ const api = require('./routers/api');
 const signin = require('./routers/signin');
 const fbAuthForLine = require('./routers/fbAuthForLine');
 const landingPageAccessToken = require('./routers/landingPageAccessToken');
-const fbq = require('./routers/fbq');
 const mapCookiesToHeaders = require('./mapCookiesToHeaders');
 
 const { VERSION, STORE_DOMAIN } = publicRuntimeConfig;
@@ -169,9 +168,6 @@ module.exports = app.prepare().then(
       // ecpay
       server.post('/pages/:path', (req, res) => handler(req, res));
       server.post('/products', (req, res) => handler(req, res));
-
-      // fbq
-      server.post('/fbq', fbq);
 
       // others
       server.post('/checkout/thank-you-page/:id', (req, res) => {

@@ -1,7 +1,8 @@
 // import
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 
+import CookiesContext from '@meepshop/cookies';
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
@@ -26,6 +27,7 @@ export default React.memo(
     },
     fbq,
   }: PropsType) => {
+    const { cookies } = useContext(CookiesContext);
     const router = useRouter();
     const prevHrefRef = useRef('');
     const [isLoaded, setIsLoaded] = useState(false);
@@ -71,7 +73,9 @@ export default React.memo(
                   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
                   n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];}(window,document,'script');
 
-                  fbq('init', '${facebookPixelId}', {}, { agent: 'plmeepShop' });
+                  fbq('init', '${facebookPixelId}', {
+                    external_id: '${cookies.identity}'
+                  }, { agent: 'plmeepShop' });
                 `,
               }}
             />

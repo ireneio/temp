@@ -1,6 +1,7 @@
 // import
 import { useCallback, useContext } from 'react';
 import uuid from 'uuid/v4';
+import getConfig from 'next/config';
 
 import CookiesContext from '@meepshop/cookies';
 
@@ -8,6 +9,10 @@ import CookiesContext from '@meepshop/cookies';
 import { useFbqFragment } from '@meepshop/types/gqls/store';
 
 // definition
+const {
+  publicRuntimeConfig: { ENV },
+} = getConfig();
+
 export default (store: useFbqFragment | null): typeof window.fbq => {
   const { cookies } = useContext(CookiesContext);
 
@@ -25,11 +30,15 @@ export default (store: useFbqFragment | null): typeof window.fbq => {
 
       window.fbq(eventType, eventName, options, {
         eventID: eventId,
-        externalID: cookies.identity,
       });
 
-      if (facebookConversionsAccessToken)
-        fetch('/fbq ', {
+      if (facebookConversionsAccessToken) {
+        const domain =
+          ENV === 'stage'
+            ? 'fb-conversions-proxy.meepstage.com'
+            : 'fb-conversions-proxy.meepshop.com';
+
+        fetch(`https://${domain}/send-to-conversions-api`, {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',
@@ -46,6 +55,7 @@ export default (store: useFbqFragment | null): typeof window.fbq => {
             /* eslint-enable @typescript-eslint/camelcase */
           }),
         });
+      }
     },
     [store, cookies],
   );
