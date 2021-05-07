@@ -1,94 +1,101 @@
-// typescript import
-import { I18nPropsType } from '@meepshop/locales';
-
 // import
 import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import { Icon } from 'antd';
-import memoizeOne from 'memoize-one';
 
-import { withTranslation } from '@meepshop/locales';
+import { useTranslation } from '@meepshop/locales';
+import { convenienceStoreMapStore } from '@meepshop/images';
 
-import StoreIcon from './StoreIcon';
+import useCheckStoreDisabled from './hooks/useCheckStoreDisabled';
 import styles from './styles/storeList.less';
 
 // graphql typescript
-import { getValidatedConvenienceStores_validatedConvenienceStores as getValidatedConvenienceStoresValidatedConvenienceStores } from '@meepshop/types/gqls/meepshop';
+import {
+  storeDetailFragment as storeDetailFragmentType,
+  ConvenienceStoreTypeEnum as ConvenienceStoreTypeEnumType,
+  getValidatedConvenienceStores as getValidatedConvenienceStoresType,
+  ConvenienceStoreShipmentTypeEnum as ConvenienceStoreShipmentTypeEnumType,
+  ValidatedConvenienceStoreFilterInput as ValidatedConvenienceStoreFilterInputType,
+  getValidatedConvenienceStoresVariables as getValidatedConvenienceStoresVariablesType,
+} from '@meepshop/types/gqls/meepshop';
+
+// graphql import
+import { getValidatedConvenienceStores } from './gqls/storeList';
 
 // typescript definition
-interface PropsType extends I18nPropsType {
-  shipmentType?: string;
-  stores: getValidatedConvenienceStoresValidatedConvenienceStores[];
+export type ConvenienceStoresInputType = Omit<
+  ValidatedConvenienceStoreFilterInputType,
+  'shipmentType' | 'storeTypes'
+>;
+
+interface PropsType {
+  variables: ConvenienceStoresInputType;
+  storeTypes: ConvenienceStoreTypeEnumType[];
+  shipmentType: ConvenienceStoreShipmentTypeEnumType;
   selectedStoreNumber?: string | null;
-  selectStore?: (
-    store: getValidatedConvenienceStoresValidatedConvenienceStores,
-  ) => void;
+  selectStore: (store: storeDetailFragmentType) => void;
 }
 
 // definition
-class StoreList extends React.PureComponent<PropsType> {
-  private isStoreDisabled = memoizeOne(
-    (store: getValidatedConvenienceStoresValidatedConvenienceStores) => {
-      const { shipmentType } = this.props;
+export default React.memo(
+  ({
+    variables,
+    selectedStoreNumber,
+    shipmentType,
+    storeTypes,
+    selectStore,
+  }: PropsType) => {
+    const { t } = useTranslation('convenience-store-map');
+    const checkStoreDisabled = useCheckStoreDisabled(shipmentType);
+    const { data } = useQuery<
+      getValidatedConvenienceStoresType,
+      getValidatedConvenienceStoresVariablesType
+    >(getValidatedConvenienceStores, {
+      skip: Object.keys(variables).length === 0,
+      variables: { input: { ...variables, shipmentType, storeTypes } },
+      onCompleted: ({ validatedConvenienceStores }) => {
+        if (variables?.storeNumber)
+          selectStore(validatedConvenienceStores[0] || null);
+      },
+    });
 
-      switch (shipmentType) {
-        case 'EZSHIP':
-          return !store.ezshipStoreNumber;
-        default:
-          return !store.ecpayStoreNumber;
-      }
-    },
-  );
+    const stores = data?.validatedConvenienceStores;
 
-  public render(): React.ReactNode {
-    const {
-      // HOC
-      t,
+    if (!stores || (variables?.storeNumber && stores.length)) return null;
 
-      // props
-      stores,
-      selectedStoreNumber,
-      selectStore,
-    } = this.props;
+    if (!stores.length) {
+      return (
+        <div className={styles.noData}>
+          <Icon type="search" />
+          <img src={convenienceStoreMapStore} alt="Store List" />
+          {t('noStore')}
+        </div>
+      );
+    }
 
     return (
-      <div>
-        {!stores.length ? (
-          <div className={styles.noData}>
-            <Icon type="search" />
-            <StoreIcon />
-            {t('noStore')}
-          </div>
-        ) : (
-          <div className={styles.root}>
-            <div className={styles.label}>
-              {t('pleaseChooseStore')}
-              <span>*{t('disabledStore')}</span>
+      <div className={styles.root}>
+        <div className={styles.label}>
+          {t('pleaseChooseStore')}
+          <span>*{t('disabledStore')}</span>
+        </div>
+        <div className={styles.wrapper}>
+          {stores.map(store => (
+            <div
+              key={store.storeNumber}
+              className={`${
+                store.storeNumber === selectedStoreNumber ? styles.selected : ''
+              } ${checkStoreDisabled(store) ? styles.disabled : ''}`}
+              onClick={() =>
+                checkStoreDisabled(store) ? null : selectStore(store)
+              }
+            >
+              {store.name}
+              <div className={styles.address}>{store.address}</div>
             </div>
-            <div className={styles.wrapper}>
-              {stores.map(store => (
-                <div
-                  key={store.storeNumber}
-                  className={`${
-                    store.storeNumber === selectedStoreNumber
-                      ? styles.selected
-                      : ''
-                  } ${this.isStoreDisabled(store) ? styles.disabled : ''}`}
-                  onClick={() =>
-                    this.isStoreDisabled(store) || !selectStore
-                      ? null
-                      : selectStore(store)
-                  }
-                >
-                  {store.name}
-                  <div className={styles.address}>{store.address}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+          ))}
+        </div>
       </div>
     );
-  }
-}
-
-export default withTranslation('convenience-store-map')(StoreList);
+  },
+);

@@ -12,6 +12,10 @@
 
   :global(.ant-cascader-picker) {
     width: 100%;
+
+    @media (max-width: @screen-sm-max) {
+      font-size: 16px;
+    }
   }
 
   :global(.ant-select) {
@@ -54,7 +58,17 @@
 }
 
 .popupClassName {
-  position: fixed;
+  ul {
+    width: calc(224px / 2);
+
+    @media (max-width: @screen-sm-max) {
+      width: calc((720px - 50px) / 2);
+    }
+
+    @media (max-width: 719px) {
+      width: calc((100vw - 50px) / 2);
+    }
+  }
 }
 
 .notFoundContent {

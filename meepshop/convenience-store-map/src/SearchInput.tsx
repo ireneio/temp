@@ -1,57 +1,32 @@
-// typescript import
-import { I18nPropsType } from '@meepshop/locales';
-
 // import
-import React from 'react';
+import React, { useState } from 'react';
 import { Input, Button } from 'antd';
 
-import { withTranslation } from '@meepshop/locales';
+import { useTranslation } from '@meepshop/locales';
 
 import styles from './styles/searchInput.less';
 
 // typescript definition
-interface PropsType extends I18nPropsType {
-  searchKey: string;
+interface PropsType {
   label: string;
-  filterConvenienceStores: (input: {}) => void;
+  setVariables: (value: string) => void;
 }
 
 // definition
-class SearchInput extends React.PureComponent<PropsType> {
-  public state = {
-    inputContent: '',
-  };
+export default React.memo(({ label, setVariables }: PropsType) => {
+  const { t } = useTranslation('convenience-store-map');
+  const [inputContent, setInputContent] = useState<string>('');
 
-  private filterConvenienceStores = (): void => {
-    const { searchKey, filterConvenienceStores } = this.props;
-    const { inputContent } = this.state;
-
-    filterConvenienceStores({ [searchKey]: inputContent });
-  };
-
-  public render(): React.ReactNode {
-    const {
-      // HOC
-      t,
-
-      // props
-      label,
-    } = this.props;
-    const { inputContent } = this.state;
-
-    return (
-      <div className={styles.root}>
-        <div>{label}</div>
-        <Input
-          value={inputContent}
-          onChange={e => this.setState({ inputContent: e.target.value })}
-        />
-        <Button type="primary" onClick={this.filterConvenienceStores}>
-          {t('searchStore')}
-        </Button>
-      </div>
-    );
-  }
-}
-
-export default withTranslation('convenience-store-map')(SearchInput);
+  return (
+    <div className={styles.root}>
+      <div>{label}</div>
+      <Input
+        value={inputContent}
+        onChange={e => setInputContent(e.target.value)}
+      />
+      <Button type="primary" onClick={() => setVariables(inputContent)}>
+        {t('searchStore')}
+      </Button>
+    </div>
+  );
+});

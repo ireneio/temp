@@ -28,9 +28,10 @@
 
     :global(.ant-modal) {
       height: 100%;
-      margin: 0px;
+      margin: 0px auto;
       padding: 0px;
-      max-width: 100% !important;
+      width: 100% !important;
+      max-width: 720px;
       position: initial;
     }
 
@@ -61,14 +62,6 @@
     :global(.ant-modal-body) {
       height: 100%;
       overflow: auto;
-    }
-  }
-}
-
-.overflowHidden {
-  @media (max-width: @screen-sm-max) {
-    :global(.ant-modal-body) {
-      overflow: unset;
     }
   }
 }
