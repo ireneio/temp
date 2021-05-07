@@ -14,7 +14,7 @@ import {
 // graphql import
 import { orderOrderFragment, orderOrderApplyFragment } from './Order';
 import {
-  productsObjectTypeProductsObjectTypeFragment,
+  availableProductsForApplyOrderFragment,
   productsObjectTypeOrderApplyFragment,
 } from './productsObjectType';
 
@@ -33,7 +33,7 @@ export const createOrderApplyWithOrderOrderClientFragment = gql`
     }
     products {
       id
-      unappliedQuantity
+      availableQuantity
     }
     isAvailableForPayLater
     isAvailableForOrderApply
@@ -45,14 +45,11 @@ export const createOrderApplyWithOrderOrderClientFragment = gql`
 export const createOrderApplyWithOrderOrderFragment = gql`
   fragment createOrderApplyWithOrderOrderFragment on Order {
     id
-    products {
-      id
-      ...productsObjectTypeProductsObjectTypeFragment
-    }
+    ...availableProductsForApplyOrderFragment
     ...orderOrderFragment
   }
 
-  ${productsObjectTypeProductsObjectTypeFragment}
+  ${availableProductsForApplyOrderFragment}
   ${orderOrderFragment}
 `;
 

@@ -1,3 +1,7 @@
+extend type Order {
+  availableProductsForApply: [productsObjectType]!
+}
+
 extend type productsObjectType {
-  unappliedQuantity: Int!
+  availableQuantity: Int!
 }

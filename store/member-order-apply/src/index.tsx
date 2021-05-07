@@ -1,170 +1,91 @@
 // typescript import
-import { MutationFunction } from '@apollo/react-common';
+import { FormComponentProps } from 'antd/lib/form/Form';
 
-import { I18nPropsType } from '@meepshop/locales';
-import { ColorsType } from '@meepshop/context';
-
-import { PropsType as FormPropsType } from './Form';
+import { applyType } from './hooks/useCreateOrderApply';
 
 // import
-import React from 'react';
-import { Query, Mutation } from '@apollo/react-components';
-import gql from 'graphql-tag';
+import React, { useContext, useState } from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
-import Router from 'next/router';
-import { Spin, Icon, Button, message } from 'antd';
+import { Spin, Icon, Button, Input, Form, message } from 'antd';
 import moment from 'moment';
 import transformColor from 'color';
 
-import { withTranslation } from '@meepshop/locales';
+import { useRouter } from '@meepshop/link';
+import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
-import withContext from '@store/utils/lib/withContext';
 
 import Products, { getProductsStyles } from './Products';
-import Form from './Form';
+import useCreateOrderApply from './hooks/useCreateOrderApply';
 import styles from './styles/index.less';
 
 // graphql typescript
 import {
-  getMemberOrderApply,
-  getMemberOrderApplyVariables,
-  getMemberOrderApply_viewer_order as getMemberOrderApplyViewerOrder,
-  createOrderApply,
-  createOrderApplyVariables,
+  getMemberOrderApply as getMemberOrderApplyType,
+  getMemberOrderApplyVariables as getMemberOrderApplyVariablesType,
+  useColumnsProductsObjectTypeMemberOrderApplyFragment as useColumnsProductsObjectTypeMemberOrderApplyFragmentType,
 } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { productsObjectTypeOrderApplyFragment } from '@store/apollo/lib/productsObjectType';
-import {
-  createOrderApplyWithOrderOrderClientFragment,
-  createOrderApplyWithOrderOrderFragment,
-  createOrderApplyWithOrderOrderApplyFragment,
-} from '@store/apollo/lib/createOrderApplyWithOrder';
-
-import {
-  productsProductsObjectTypeFragment,
-  SelectedProduct,
-} from './Products';
+import { getMemberOrderApply } from './gqls';
+import { useColumnsProductsObjectTypeMemberOrderApplyFragment } from './gqls/useColumns';
 
 // typescript definition
-interface PropsType extends I18nPropsType {
-  type: 'refund' | 'exchange';
-  order: getMemberOrderApplyViewerOrder;
-  colors: ColorsType;
-}
-
-interface StateType {
-  selectedProducts: SelectedProduct[];
-  checking: boolean;
-  replaceRecipient: FormPropsType['recipient'];
+interface PropsType extends FormComponentProps {
+  type: applyType;
 }
 
 // definition
-class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
-  public state: StateType = {
-    selectedProducts: [],
-    checking: false,
-    replaceRecipient: {
-      // eslint-disable-next-line react/destructuring-assignment
-      name: this.props.order.shipmentInfo?.list?.[0]?.recipient?.name || '',
-      // eslint-disable-next-line react/destructuring-assignment
-      mobile: this.props.order.shipmentInfo?.list?.[0]?.recipient?.mobile || '',
-      address: this.props?.order.address?.fullAddress || '',
-    },
-  };
+// TODO: should use getInitialProps
+export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
 
-  // TODO: createOrderApplyVariables 與實際參數不相符
-  private submit = (
-    createApplication: MutationFunction<createOrderApply>,
-  ) => () => {
+export default Form.create<PropsType>()(
+  React.memo(({ form, type }: PropsType) => {
+    const { getFieldDecorator, getFieldValue } = form;
+    const { t } = useTranslation('member-order-apply');
+    const colors = useContext(ColorsContext);
     const {
-      /** HOC */
-      t,
+      query: { orderId },
+      push,
+    } = useRouter();
 
-      /** props */
-      type,
-      order: { id },
-    } = this.props;
-    const { checking, selectedProducts, replaceRecipient } = this.state;
+    const [checking, setChecking] = useState<boolean>(false);
 
-    if (selectedProducts.length === 0)
-      return message.info(t(`warning.${type}`));
-
-    if (!checking) return this.setState({ checking: true });
-
-    return createApplication({
-      variables: {
-        orderId: id,
-        createOrderApplyList: {
-          applicationType: type === 'refund' ? 'return' : 'replace',
-          orderId: id || 'null id' /** SHOULD_NOT_BE_NULL */,
-          orderProducts: selectedProducts.map(
-            ({
-              id: productId,
-              reason: comment,
-              quantitySelected: quantity,
-            }) => ({
-              id: productId || 'null id' /** SHOULD_NOT_BE_NULL */,
-              quantity,
-              applicationInfo: {
-                comment,
-              },
-            }),
-          ),
-          ...(type !== 'exchange'
-            ? null
-            : {
-                recipient: {
-                  name: replaceRecipient.name,
-                  mobile: replaceRecipient.mobile,
-                  address: {
-                    streetAddress: replaceRecipient.address,
-                  },
-                },
-              }),
-        },
-      },
+    const { data } = useQuery<
+      getMemberOrderApplyType,
+      getMemberOrderApplyVariablesType
+    >(getMemberOrderApply, {
+      variables: { orderId: orderId as string },
     });
-  };
+    const createOrderApply = useCreateOrderApply(type, orderId as string, form);
+    const order = data?.viewer?.order;
 
-  public render(): React.ReactNode {
-    const {
-      /** HOC */
-      t,
-
-      /** props */
-      order: { orderNo, createdAt, ...order },
-      colors,
-      type,
-    } = this.props;
-    const { checking, selectedProducts, replaceRecipient } = this.state;
-
+    if (!order) return <Spin indicator={<Icon type="loading" spin />} />;
     return (
       <div className={styles.root}>
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              @media (max-width: ${styles.screenSmMax}) {
-                .${styles.root} h1 > span:last-child {
-                  color: ${transformColor(colors[3]).alpha(0.5)};
-                }
+            @media (max-width: ${styles.screenSmMax}) {
+              .${styles.root} h1 > span:last-child {
+                color: ${transformColor(colors[3]).alpha(0.5)};
               }
+            }
 
-              ${getProductsStyles(colors)}
-            `,
+            ${getProductsStyles(colors)}
+          `,
           }}
         />
 
         <h1>
           <span>
             {t('order-no')}
-            {orderNo}
+            {order.orderNo}
           </span>
 
           <span>
             <span>{t('created-at')}</span>
-
-            {moment(createdAt).format('YYYY/MM/DD')}
+            {moment(order.createdAt).format('YYYY/MM/DD')}
           </span>
         </h1>
 
@@ -173,20 +94,21 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
             {[
               {
                 key: 'name',
-                children: `${t('recipient.name')}：${replaceRecipient?.name ||
-                  ''}`,
+                children: `${t('recipient.name')}：${getFieldValue(
+                  'replaceRecipient.name',
+                )}`,
               },
               {
                 key: 'mobile',
-                children: `${t(
-                  'recipient.mobile',
-                )}：${replaceRecipient?.mobile || ''}`,
+                children: `${t('recipient.mobile')}：${getFieldValue(
+                  'replaceRecipient.mobile',
+                )}`,
               },
               {
                 key: 'address',
-                children: `${t(
-                  'recipient.address',
-                )}：${replaceRecipient?.address || ''}`,
+                children: `${t('recipient.address')}：${getFieldValue(
+                  'replaceRecipient.address.streetAddress',
+                )}`,
               },
             ].map(props => (
               <p {...props} />
@@ -194,23 +116,41 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
           </div>
         )}
 
-        <Products
-          products={filter(productsProductsObjectTypeFragment, order.products)}
-          type={type}
-          checking={checking}
-          onChange={newProducts =>
-            this.setState({ selectedProducts: newProducts })
-          }
-          selectedProducts={checking ? selectedProducts : []}
-        />
+        {getFieldDecorator('selectedProducts', {
+          initialValue: [],
+        })(
+          <Products
+            availableProductsForApply={filter<
+              useColumnsProductsObjectTypeMemberOrderApplyFragmentType[]
+            >(
+              useColumnsProductsObjectTypeMemberOrderApplyFragment,
+              order.availableProductsForApply,
+            )}
+            checking={checking}
+            form={form}
+          />,
+        )}
 
         {type !== 'exchange' || checking ? null : (
-          <Form
-            recipient={replaceRecipient}
-            onChange={(value: FormPropsType['recipient']) =>
-              this.setState({ replaceRecipient: value })
-            }
-          />
+          <div className={styles.form}>
+            <h3>{t('recipient.title')}</h3>
+            {getFieldDecorator('replaceRecipient.name', {
+              initialValue:
+                order.shipmentInfo?.list?.[0]?.recipient?.name || '',
+              preserve: true,
+            })(<Input placeholder={t('recipient.name')} />)}
+
+            {getFieldDecorator('replaceRecipient.mobile', {
+              initialValue:
+                order.shipmentInfo?.list?.[0]?.recipient?.mobile || '',
+              preserve: true,
+            })(<Input placeholder={t('recipient.mobile')} />)}
+
+            {getFieldDecorator('replaceRecipient.address.streetAddress', {
+              initialValue: order.address?.fullAddress || '',
+              preserve: true,
+            })(<Input placeholder={t('recipient.address')} />)}
+          </div>
         )}
 
         <div className={styles.buttonRoot}>
@@ -219,129 +159,35 @@ class MemberOrderApply extends React.PureComponent<PropsType, StateType> {
               color: colors[3],
               borderColor: colors[3],
             }}
-            onClick={() =>
-              checking
-                ? this.setState({ checking: false })
-                : Router.push('/orders')
-            }
+            onClick={() => (checking ? setChecking(false) : push('/orders'))}
             size="large"
           >
             {t('recede')}
           </Button>
 
-          <Mutation<createOrderApply, createOrderApplyVariables>
-            mutation={gql`
-              mutation createOrderApply(
-                $createOrderApplyList: [NewOrderApply]
-                $orderId: ID!
-              ) {
-                createOrderApplyList(
-                  createOrderApplyList: $createOrderApplyList
-                ) {
-                  id
-                  ...createOrderApplyWithOrderOrderApplyFragment
-                }
-
-                createOrderApplyWithOrder(orderId: $orderId) @client {
-                  id
-                  ...createOrderApplyWithOrderOrderClientFragment
-                }
+          <Button
+            style={{
+              color: colors[3],
+              borderColor: colors[3],
+            }}
+            onClick={() => {
+              if (getFieldValue('selectedProducts').length === 0) {
+                message.info(t(`warning.${type}`));
+                return;
               }
 
-              ${createOrderApplyWithOrderOrderApplyFragment}
-              ${createOrderApplyWithOrderOrderClientFragment}
-            `}
-            update={() => {
-              Router.push('/orders');
+              if (!checking) {
+                setChecking(true);
+                return;
+              }
+              createOrderApply();
             }}
+            size="large"
           >
-            {createApplication => (
-              <Button
-                style={{
-                  color: colors[3],
-                  borderColor: colors[3],
-                }}
-                onClick={this.submit(createApplication)}
-                size="large"
-              >
-                {t('proceed')}
-              </Button>
-            )}
-          </Mutation>
+            {t('proceed')}
+          </Button>
         </div>
       </div>
     );
-  }
-}
-
-const EnhancedMemberOrderApply = withTranslation('member-order-apply')(
-  withContext(ColorsContext, colors => ({ colors }))(MemberOrderApply),
-);
-
-// TODO: should use getInitialProps
-export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
-
-export default React.memo(
-  ({ type, orderId }: { type: 'refund' | 'exchange'; orderId: string }) => (
-    <Query<getMemberOrderApply, getMemberOrderApplyVariables>
-      query={gql`
-        query getMemberOrderApply($orderId: ID!) {
-          viewer {
-            id
-            order(orderId: $orderId) {
-              id
-              orderNo
-              createdAt
-              products {
-                id
-                ...productsProductsObjectTypeFragment
-              }
-              shipmentInfo {
-                list {
-                  id
-                  recipient {
-                    name
-                    mobile
-                  }
-                }
-              }
-              address {
-                fullAddress
-              }
-              ...createOrderApplyWithOrderOrderFragment
-            }
-          }
-
-          # TODO: use new api
-          getOrderApplyList(
-            search: { sort: [{ field: "createdAt", order: "desc" }] }
-          ) {
-            data {
-              ...createOrderApplyWithOrderOrderApplyFragment
-              ...productsObjectTypeOrderApplyFragment
-            }
-          }
-        }
-
-        ${createOrderApplyWithOrderOrderFragment}
-        ${createOrderApplyWithOrderOrderApplyFragment}
-        ${productsObjectTypeOrderApplyFragment}
-        ${productsProductsObjectTypeFragment}
-      `}
-      variables={{
-        orderId,
-      }}
-    >
-      {({ loading, error, data }) => {
-        if (loading || error)
-          return <Spin indicator={<Icon type="loading" spin />} />;
-
-        const order = data?.viewer?.order;
-
-        if (!order) return <Spin indicator={<Icon type="loading" spin />} />;
-
-        return <EnhancedMemberOrderApply type={type} order={order} />;
-      }}
-    </Query>
-  ),
+  }),
 );

@@ -39,4 +39,26 @@
       background: transparent;
     }
   }
+
+  .form {
+    margin: 30px auto 15px;
+    padding: 0px 30px;
+    max-width: 560px;
+
+    @media (max-width: @screen-sm-max) {
+      padding: 0px 15px;
+    }
+
+    h3 {
+      padding: 16px;
+      color: #797979;
+      font-size: 20px;
+      text-align: center;
+      letter-spacing: 1.5px;
+    }
+
+    :global(.ant-input):not(:last-child) {
+      margin: 0px 0px 15px;
+    }
+  }
 }

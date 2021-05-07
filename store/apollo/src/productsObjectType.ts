@@ -3,8 +3,9 @@ import gql from 'graphql-tag';
 
 // graphql typescript
 import {
-  productsObjectTypeProductsObjectTypeFragment as productsObjectTypeProductsObjectTypeFragmentType,
   productsObjectTypeOrderApplyFragment as productsObjectTypeOrderApplyFragmentType,
+  availableProductsForApplyOrderFragment as availableProductsOrderFragmentType,
+  availableProductsForApplyOrderFragment_products as availableProductsOrderFragmentProductsType,
 } from '@meepshop/types/gqls/store';
 
 // typescript definition
@@ -15,13 +16,6 @@ interface DefaultDataType {
 }
 
 // definition
-export const productsObjectTypeProductsObjectTypeFragment = gql`
-  fragment productsObjectTypeProductsObjectTypeFragment on productsObjectType {
-    id
-    quantity
-  }
-`;
-
 export const productsObjectTypeOrderApplyFragment = gql`
   fragment productsObjectTypeOrderApplyFragment on OrderApply {
     id
@@ -31,20 +25,29 @@ export const productsObjectTypeOrderApplyFragment = gql`
   }
 `;
 
+export const availableProductsForApplyOrderFragment = gql`
+  fragment availableProductsForApplyOrderFragment on Order {
+    id
+    products {
+      id
+      type
+      quantity
+    }
+  }
+`;
+
 export const resolvers = {
   productsObjectType: {
-    unappliedQuantity: ({
+    availableQuantity: ({
       id,
       quantity,
       getOrderApplyList,
-    }: DefaultDataType & productsObjectTypeProductsObjectTypeFragmentType) => {
+    }: DefaultDataType & availableProductsOrderFragmentProductsType) => {
       const orderApply = getOrderApplyList?.data?.find(
         getOrderApply => getOrderApply?.orderProductId === id,
       );
 
       if (!orderApply) return quantity || 0;
-
-      if ([0, 3].includes(orderApply.status || 0)) return 0;
 
       return [0, 3].includes(orderApply.status || 0)
         ? 0
@@ -64,6 +67,25 @@ export const resolvers = {
               getOrderApplyList,
             },
       ),
+    availableProductsForApply: ({
+      products,
+      getOrderApplyList,
+    }: DefaultDataType & {
+      products?: availableProductsOrderFragmentType['products'];
+    }) => {
+      const filterProducts = (products || []).filter(
+        product => product?.type !== 'gift',
+      ) as availableProductsOrderFragmentProductsType[];
+
+      return filterProducts.map(product =>
+        !product
+          ? null
+          : {
+              ...product,
+              getOrderApplyList,
+            },
+      );
+    },
   },
   OrderEdge: {
     node: ({ node, getOrderApplyList }: DefaultDataType & { node?: {} }) =>
