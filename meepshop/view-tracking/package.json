@@ -4,11 +4,11 @@
   "description": "Meepshop view tracking module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.41",
+  "version": "0.79.45",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.79.41",
+    "@meepshop/context": "^0.79.45",
     "react-visibility-sensor": "^5.1.1"
   },
   "keywords": ["meepshop", "view tracking"]
