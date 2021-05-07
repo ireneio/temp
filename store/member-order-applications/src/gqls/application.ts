@@ -2,7 +2,10 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { useColumnsFragment, useColumnsOrderApplyFragment } from './useColumns';
+import {
+  useColumnsMemberOrderApplicationsFragment,
+  useColumnsOrderApplyFragment,
+} from './useColumns';
 
 // definition
 export const applicationOrderApplyFragment = gql`
@@ -33,9 +36,9 @@ export const applicationFragment = gql`
         ...applicationOrderApplyFragment
       }
     }
-    ...useColumnsFragment
+    ...useColumnsMemberOrderApplicationsFragment
   }
 
-  ${useColumnsFragment}
+  ${useColumnsMemberOrderApplicationsFragment}
   ${applicationOrderApplyFragment}
 `;

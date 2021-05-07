@@ -15,8 +15,8 @@ import styles from '../styles/application.less';
 // graphql typescript
 import {
   useColumnsOrderApplyFragment as useColumnsOrderApplyFragmentType,
-  useColumnsFragment_applications_extra as useColumnsFragmentApplicationsExtraType,
-  useColumnsFragment_applications_extra_product as useColumnsFragmentApplicationsExtraProductType,
+  useColumnsMemberOrderApplicationsFragment_applications_extra as useColumnsMemberOrderApplicationsFragmentApplicationsExtraType,
+  useColumnsMemberOrderApplicationsFragment_applications_extra_product as useColumnsMemberOrderApplicationsFragmentApplicationsExtraProductType,
 } from '@meepshop/types/gqls/store';
 
 // graphql import
@@ -25,7 +25,9 @@ import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 // definition
 export default (
   applicationType: useColumnsOrderApplyFragmentType['applicationType'],
-): ColumnProps<useColumnsFragmentApplicationsExtraType>[] => {
+): ColumnProps<
+  useColumnsMemberOrderApplicationsFragmentApplicationsExtraType
+>[] => {
   const {
     t,
     i18n: { language },
@@ -40,20 +42,20 @@ export default (
         width: '10%',
         align: 'center',
         render: (
-          value: useColumnsFragmentApplicationsExtraProductType['coverImage'],
+          value: useColumnsMemberOrderApplicationsFragmentApplicationsExtraProductType['coverImage'],
         ) => <Thumbnail image={filter(thumbnailFragment, value || null)} />,
       },
       {
         title: t('product.title'),
         dataIndex: 'product.title',
         render: (
-          value: useColumnsFragmentApplicationsExtraProductType['title'],
+          value: useColumnsMemberOrderApplicationsFragmentApplicationsExtraProductType['title'],
           {
             applicationInfo,
             product,
           }: {
-            applicationInfo: useColumnsFragmentApplicationsExtraType['applicationInfo'];
-            product: useColumnsFragmentApplicationsExtraType['product'];
+            applicationInfo: useColumnsMemberOrderApplicationsFragmentApplicationsExtraType['applicationInfo'];
+            product: useColumnsMemberOrderApplicationsFragmentApplicationsExtraType['product'];
           },
         ) => {
           return (
@@ -94,11 +96,11 @@ export default (
         dataIndex: 'status',
         align: 'center',
         render: (
-          value: useColumnsFragmentApplicationsExtraType['status'],
+          value: useColumnsMemberOrderApplicationsFragmentApplicationsExtraType['status'],
           {
             applicationStatus,
           }: {
-            applicationStatus: useColumnsFragmentApplicationsExtraType['applicationStatus'];
+            applicationStatus: useColumnsMemberOrderApplicationsFragmentApplicationsExtraType['applicationStatus'];
           },
         ) => (
           <div className={styles.tag}>

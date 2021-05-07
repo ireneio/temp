@@ -1,59 +1,70 @@
-// typescript import
-import { I18nPropsType } from '@meepshop/locales';
-
 // import
 import React, { useContext } from 'react';
-import { Query } from '@apollo/react-components';
-import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
-import { Spin, Icon } from 'antd';
+import { Spin, Icon, Table } from 'antd';
 import moment from 'moment';
 import transformColor from 'color';
 
-import { withTranslation } from '@meepshop/locales';
+import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 
 import NotFound from './NotFound';
-import Products from './Products';
 import TotalSheet from './TotalSheet';
 import Blocks from './blocks';
 import Qa from './Qa';
+import useColumns from './hooks/useColumns';
 import styles from './styles/index.less';
 
 // graphql typescript
 import {
-  getMemberOrder,
-  getMemberOrderVariables,
-  getMemberOrder_viewer_order as getMemberOrderViewerOrder,
+  blocksFragment as blocksFragmentType,
+  getMemberOrder as getMemberOrderType,
+  notFoundFragment as notFoundFragmentType,
+  useColumnsMemberOrderFragment as useColumnsMemberOrderFragmentType,
+  totalSheetFragment as totalSheetFragmentType,
+  qaOrderFragment as qaOrderFragmentType,
+  getMemberOrderVariables as getMemberOrderVariablesType,
 } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { notFoundFragment } from './NotFound';
-import { productsFragment } from './Products';
-import { totalSheetFragment } from './TotalSheet';
+import { getMemberOrder } from './gqls';
+import { notFoundFragment } from './gqls/notFound';
+import { totalSheetFragment } from './gqls/totalSheet';
 import { blocksFragment } from './blocks/gqls';
-import { qaOrderMessageFragment } from './Qa';
-
-// typescript definition
-interface PropsType extends I18nPropsType {
-  order: getMemberOrderViewerOrder;
-}
+import { qaOrderFragment } from './gqls/qa';
+import { useColumnsMemberOrderFragment } from './gqls/useColumns';
 
 // definition
-const MemberOrder = React.memo(
-  ({
-    t,
-    order: {
-      orderNo,
-      createdAt,
-      products,
-      environment,
-      id,
-      messages,
-      ...order
-    },
-  }: PropsType) => {
+// TODO: should use getInitialProps
+export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
+export default React.memo(
+  ({ orderId }: { orderId: string }): React.ReactElement => {
+    const { t } = useTranslation('member-order');
     const colors = useContext(ColorsContext);
+    const columns = useColumns();
+
+    const { data } = useQuery<getMemberOrderType, getMemberOrderVariablesType>(
+      getMemberOrder,
+      {
+        variables: {
+          orderId,
+        },
+      },
+    );
+
+    if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
+
+    const order = data.viewer?.order;
+    if (!order) {
+      return (
+        <NotFound
+          user={filter<notFoundFragmentType>(notFoundFragment, data?.viewer)}
+        />
+      );
+    }
+
+    const { orderNo, createdAt, products, environment, id, ...other } = order;
 
     return (
       <div className={styles.root} style={{ color: colors[3] }}>
@@ -68,16 +79,34 @@ const MemberOrder = React.memo(
             </span>
           </h1>
 
-          <Products products={products} />
+          <Table<useColumnsMemberOrderFragmentType>
+            className={styles.table}
+            dataSource={filter<useColumnsMemberOrderFragmentType[]>(
+              useColumnsMemberOrderFragment,
+              products,
+            ).filter(Boolean)}
+            columns={columns}
+            rowKey="id"
+            pagination={false}
+          />
 
-          <TotalSheet order={filter(totalSheetFragment, { ...order, id })} />
+          <TotalSheet
+            order={filter<totalSheetFragmentType>(totalSheetFragment, {
+              ...other,
+              id,
+            })}
+          />
 
-          <Blocks order={filter(blocksFragment, { ...order, id })} />
+          <Blocks
+            order={filter<blocksFragmentType>(blocksFragment, { ...other, id })}
+          />
 
           {environment?.sourcePage === 'lp' ? null : (
             <Qa
-              messages={filter(qaOrderMessageFragment, messages)}
-              orderId={id}
+              order={filter<qaOrderFragmentType>(qaOrderFragment, {
+                ...other,
+                id,
+              })}
             />
           )}
         </div>
@@ -90,64 +119,15 @@ const MemberOrder = React.memo(
                   color: ${transformColor(colors[3]).alpha(0.5)};
                 }
               }
+              .${
+                styles.table
+              } .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
+                background: ${transformColor(colors[4]).alpha(0.1)};
+              }
             `,
           }}
         />
       </div>
     );
   },
-);
-
-const EnhancedMemberOrder = withTranslation('member-order')(MemberOrder);
-
-// TODO: should use getInitialProps
-export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
-
-export default ({ orderId }: { orderId: string }): React.ReactElement => (
-  <Query<getMemberOrder, getMemberOrderVariables>
-    query={gql`
-      query getMemberOrder($orderId: ID!) {
-        viewer {
-          id
-          ...notFoundFragment
-          order(orderId: $orderId) {
-            id
-            orderNo
-            createdAt
-            products {
-              ...productsFragment
-            }
-            environment {
-              sourcePage
-            }
-            messages {
-              ...qaOrderMessageFragment
-            }
-            ...totalSheetFragment
-            ...blocksFragment
-          }
-        }
-      }
-
-      ${notFoundFragment}
-      ${productsFragment}
-      ${totalSheetFragment}
-      ${blocksFragment}
-      ${qaOrderMessageFragment}
-    `}
-    variables={{ orderId }}
-  >
-    {({ loading, error, data }) => {
-      if (loading || error)
-        return <Spin indicator={<Icon type="loading" spin />} />;
-
-      const order = data?.viewer?.order;
-
-      if (!order) {
-        return <NotFound user={filter(notFoundFragment, data?.viewer)} />;
-      }
-
-      return <EnhancedMemberOrder order={order} />;
-    }}
-  </Query>
 );

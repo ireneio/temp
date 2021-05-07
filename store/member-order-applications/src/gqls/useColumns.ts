@@ -40,8 +40,8 @@ export const useColumnsProductsObjectTypeFragment = gql`
   ${localeFragment}
 `;
 
-export const useColumnsFragment = gql`
-  fragment useColumnsFragment on Order {
+export const useColumnsMemberOrderApplicationsFragment = gql`
+  fragment useColumnsMemberOrderApplicationsFragment on Order {
     id
     applications @client {
       id

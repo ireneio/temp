@@ -27,3 +27,71 @@
     }
   }
 }
+
+.table {
+  :global(.ant-table) {
+    color: inherit;
+
+    @media (max-width: @screen-sm-max) {
+      border-top: 1px solid #e8e8e8;
+    }
+
+    :global(.ant-table-thead) > tr > th,
+    :global(.ant-table-tbody) > tr > td {
+      &:nth-child(4),
+      &:nth-child(5),
+      &:nth-child(6) {
+        word-break: keep-all;
+        white-space: nowrap;
+      }
+
+      @media (max-width: @screen-sm-max) {
+        &:nth-child(1) {
+          width: 80px;
+        }
+      }
+    }
+
+    :global(.ant-table-thead) {
+      & > tr {
+        background: transparent;
+
+        & > th {
+          background: transparent;
+          font-size: 16px;
+        }
+      }
+
+      @media (max-width: @screen-sm-max) {
+        display: none;
+      }
+    }
+
+    :global(.ant-table-tbody) > tr > td {
+      @media (max-width: @screen-sm-max) {
+        padding: 10px;
+
+        &:nth-child(3),
+        &:nth-child(4),
+        &:nth-child(5) {
+          display: none;
+        }
+      }
+    }
+
+    :global(.ant-table-tbody) > tr > td:nth-child(2) > div {
+      display: none;
+
+      @media (max-width: @screen-sm-max) {
+        display: block;
+      }
+    }
+
+    :global(.ant-table-body) > table > colgroup > col {
+      @media (max-width: @screen-sm-max) {
+        width: initial !important;
+        min-width: initial !important;
+      }
+    }
+  }
+}
