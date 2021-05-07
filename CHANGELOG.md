@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.79.45 (2021-05-07)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1514](https://github.com/meepshop/meep-lerna/pull/1514) 內部開單 - conversion api 不經過 proxy ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#1489](https://github.com/meepshop/meep-lerna/pull/1489) 【優化】@meepshop/convenience-store-map 改成 function component ([@Lexiwu](https://github.com/Lexiwu))
+- [#1376](https://github.com/meepshop/meep-lerna/pull/1376) 【優化】member-order 改成 function component ([@Lexiwu](https://github.com/Lexiwu))
+- [#1452](https://github.com/meepshop/meep-lerna/pull/1452) 【優化】member-order-apply 改成 function component ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.44 (2021-05-06)
 
 #### :bug: Bug Fix
