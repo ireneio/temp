@@ -3,7 +3,6 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import React, { useContext, useCallback } from 'react';
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { message } from 'antd';
 
@@ -13,6 +12,9 @@ import { useRouter } from '@meepshop/link';
 
 // graphql typescript
 import { applicantInitiatesStore as applicantInitiatesStoreType } from '@meepshop/types/gqls/admin';
+
+// graqphl import
+import { applicantInitiatesStore } from '../gqls/useApplicantInitiatesStore';
 
 // definition
 export default ({
@@ -25,17 +27,8 @@ export default ({
   const { setCookie } = useContext(CookiesContext);
   const router = useRouter();
 
-  const [applicantInitiatesStore, { loading }] = useMutation<
-    applicantInitiatesStoreType
-  >(
-    gql`
-      mutation applicantInitiatesStore($input: ApplicantInitiatesStoreInput!) {
-        applicantInitiatesStore(input: $input) {
-          status
-          token
-        }
-      }
-    `,
+  const [mutation, { loading }] = useMutation<applicantInitiatesStoreType>(
+    applicantInitiatesStore,
     {
       onCompleted: ({ applicantInitiatesStore: { status, token } }) => {
         if (status === 'SUCCESS' && token) {
@@ -56,13 +49,13 @@ export default ({
 
         validateFields((errors, { cname, currency }) => {
           if (!errors) {
-            applicantInitiatesStore({
+            mutation({
               variables: { input: { cname, currency } },
             });
           }
         });
       },
-      [validateFields, applicantInitiatesStore],
+      [validateFields, mutation],
     ),
   };
 };

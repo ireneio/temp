@@ -1,6 +1,5 @@
 // import
 import { useCallback, useMemo } from 'react';
-import gql from 'graphql-tag';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { Modal } from 'antd';
 
@@ -9,16 +8,10 @@ import { useTranslation } from '@meepshop/locales';
 // graphql typescript
 import { exportFileService as exportFileServiceType } from '@meepshop/types/gqls/admin';
 
-// definition
-const query = gql`
-  query exportFileService($queryId: ID!) {
-    exportFileService(queryId: $queryId) {
-      status
-      uri
-    }
-  }
-`;
+// graphql import
+import { exportFileService } from '../gqls/useExportFileService';
 
+// definition
 export default (): {
   exportStatus: string;
   getExportFileService: (queryId: string) => void;
@@ -27,7 +20,7 @@ export default (): {
 
   const [getExportFileService, { data, refetch }] = useLazyQuery<
     exportFileServiceType
-  >(query, {
+  >(exportFileService, {
     fetchPolicy: 'no-cache',
   });
 

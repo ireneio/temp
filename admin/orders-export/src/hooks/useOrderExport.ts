@@ -1,51 +1,20 @@
 // import
 import { useCallback } from 'react';
-import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import useExportFileService from './useExportFileService';
 
 // graphql typescript
 import {
-  getExportFormat,
+  getExportFormat as getExportFormatType,
   requestExportFile as requestExportFileType,
   requestExportFileVariables as requestExportFileVariablesType,
 } from '@meepshop/types/gqls/admin';
 
+// graphql import
+import { getExportFormat, requestExportFile } from '../gqls/useOrderExport';
+
 // definition
-const query = gql`
-  query getExportFormat {
-    getExportFormatList(
-      search: {
-        filter: {
-          or: [
-            { type: "exact", field: "type", query: "order_custom" }
-            { type: "exact", field: "type", query: "order_system_default" }
-          ]
-        }
-      }
-    ) {
-      data {
-        id
-        name
-      }
-    }
-
-    orderDefaultExportFormats {
-      id
-      name
-    }
-
-    selectedOrders @client {
-      edges {
-        node {
-          id
-        }
-      }
-    }
-  }
-`;
-
 export default (): {
   loading: boolean;
   options: {
@@ -54,22 +23,15 @@ export default (): {
   exportStatus: string;
   requestExportFile: (input: requestExportFileVariablesType) => void;
 } => {
-  const { data, loading } = useQuery<getExportFormat>(query);
+  const { data, loading } = useQuery<getExportFormatType>(getExportFormat);
   const { exportStatus, getExportFileService } = useExportFileService();
 
-  const [requestExportFile] = useMutation<requestExportFileType>(
-    gql`
-      mutation requestExportFile($input: RequestExportFileInput!) {
-        requestExportFile(input: $input)
-      }
-    `,
-    {
-      onCompleted: requestExportFileResponse => {
-        if (requestExportFileResponse.requestExportFile)
-          getExportFileService(requestExportFileResponse.requestExportFile);
-      },
+  const [mutation] = useMutation<requestExportFileType>(requestExportFile, {
+    onCompleted: requestExportFileResponse => {
+      if (requestExportFileResponse.requestExportFile)
+        getExportFileService(requestExportFileResponse.requestExportFile);
     },
-  );
+  });
 
   return {
     loading,
@@ -92,7 +54,7 @@ export default (): {
     exportStatus,
     requestExportFile: useCallback(
       (input: requestExportFileVariablesType) => {
-        requestExportFile({
+        mutation({
           variables: {
             input: {
               ...input.input,
@@ -105,7 +67,7 @@ export default (): {
           },
         });
       },
-      [data, requestExportFile],
+      [data, mutation],
     ),
   };
 };

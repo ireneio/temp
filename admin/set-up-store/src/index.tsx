@@ -2,15 +2,8 @@
 import { NextPage } from 'next';
 import { FormComponentProps } from 'antd/lib/form/Form';
 
-// graphql typescript
-import {
-  isStoreCnameUsable,
-  isStoreCnameUsableVariables,
-} from '@meepshop/types/gqls/admin';
-
 // import
 import React, { useContext, useEffect } from 'react';
-import gql from 'graphql-tag';
 import { useApolloClient } from '@apollo/react-hooks';
 import { Form, Input, Select, Button, Icon } from 'antd';
 
@@ -22,6 +15,15 @@ import { meepshopLogo, loginBackground } from '@meepshop/images';
 import useApplicantInitiatesStore from './hooks/useApplicantInitiatesStore';
 
 import styles from './styles/index.less';
+
+// graphql typescript
+import {
+  isStoreCnameUsable as isStoreCnameUsableType,
+  isStoreCnameUsableVariables as isStoreCnameUsableVariablesType,
+} from '@meepshop/types/gqls/admin';
+
+// graphql import
+import { isStoreCnameUsable } from './gqls';
 
 // definition
 const { Item: FormItem } = Form;
@@ -76,16 +78,10 @@ const SetUpStore: NextPage = Form.create<FormComponentProps>()(
                         isStoreCnameUsable: { result },
                       },
                     } = await client.query<
-                      isStoreCnameUsable,
-                      isStoreCnameUsableVariables
+                      isStoreCnameUsableType,
+                      isStoreCnameUsableVariablesType
                     >({
-                      query: gql`
-                        query isStoreCnameUsable($cname: String!) {
-                          isStoreCnameUsable(cname: $cname) {
-                            result
-                          }
-                        }
-                      `,
+                      query: isStoreCnameUsable,
                       variables: { cname },
                     });
 
