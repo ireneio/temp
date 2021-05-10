@@ -3,7 +3,6 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import { useCallback } from 'react';
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { message, notification } from 'antd';
 
@@ -11,7 +10,13 @@ import { useTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
 
 // graphql typescript
-import { login as loginType, loginVariables } from '@meepshop/types/gqls/admin';
+import {
+  login as loginType,
+  loginVariables as loginVariablesType,
+} from '@meepshop/types/gqls/admin';
+
+// graphql import
+import { login } from '../gqls/useLogin';
 
 // definition
 export default (
@@ -22,16 +27,8 @@ export default (
 } => {
   const { t } = useTranslation('login');
   const router = useRouter();
-  const [login, { loading }] = useMutation<loginType, loginVariables>(
-    gql`
-      mutation login($input: LoginInput!) {
-        login(input: $input) @client {
-          status
-          role
-          adminStatus
-        }
-      }
-    `,
+  const [mutation, { loading }] = useMutation<loginType, loginVariablesType>(
+    login,
     {
       onCompleted: ({ login: { status, adminStatus, role } }: loginType) => {
         switch (status) {
@@ -75,7 +72,7 @@ export default (
           const gRecaptchaResponse = window.grecaptcha.getResponse();
 
           window.grecaptcha.reset();
-          await login({
+          await mutation({
             variables: {
               input: {
                 email,
@@ -91,7 +88,7 @@ export default (
           });
         });
       },
-      [validateFields, login],
+      [validateFields, mutation],
     ),
   };
 };
