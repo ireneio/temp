@@ -51,27 +51,17 @@ export default ({
         cache: DataProxy,
         { data: { updateOrder: newOrder } }: { data: updateOrderType },
       ): void => {
-        if (!newOrder) {
+        if (!newOrder?.id) {
           countErrors.current += 1;
           return;
         }
 
-        const fragment = {
-          // SHOULD_NOT_BE_NULL
-          id: newOrder?.id || 'null id',
-          fragment: changeStatusOrderFragment,
-        };
-        const order = cache.readFragment<changeStatusOrderFragmentType>(
-          fragment,
-        );
-
-        if (!order) return;
-
         cache.writeFragment<changeStatusOrderFragmentType>({
-          ...fragment,
+          id: newOrder.id,
+          fragment: changeStatusOrderFragment,
           data: {
             __typename: 'Order',
-            id: fragment.id,
+            id: newOrder.id,
             status: newOrder.status,
             shipmentInfo: {
               __typename: 'shipmentInfoType',
