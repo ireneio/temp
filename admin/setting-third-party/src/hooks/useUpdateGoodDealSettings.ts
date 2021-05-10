@@ -1,45 +1,28 @@
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
 // graphql typescript
 import {
   updateGoodDealSettings as updateGoodDealSettingsType,
-  updateGoodDealSettingsVariables,
+  updateGoodDealSettingsVariables as updateGoodDealSettingsVariablesType,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { goodDealFragment } from '../GoodDeal';
+import { updateGoodDealSettings } from '../gqls/useUpdateGoodDealSettings';
 
 // definition
-const mutation = gql`
-  mutation updateGoodDealSettings($updateStoreList: [UpdateStore]) {
-    updateStoreList(updateStoreList: $updateStoreList) {
-      id
-      setting {
-        storeGoodDealSettings: gooddeal {
-          ...goodDealFragment
-          status
-        }
-      }
-    }
-  }
-
-  ${goodDealFragment}
-`;
-
 export default (): ((
-  updateStoreList: updateGoodDealSettingsVariables['updateStoreList'],
+  updateStoreList: updateGoodDealSettingsVariablesType['updateStoreList'],
 ) => Promise<void>) => {
   const [updateGoodDealSettingsMutation] = useMutation<
     updateGoodDealSettingsType,
-    updateGoodDealSettingsVariables
-  >(mutation);
+    updateGoodDealSettingsVariablesType
+  >(updateGoodDealSettings);
 
   return useCallback(
     async (
-      updateStoreList: updateGoodDealSettingsVariables['updateStoreList'],
+      updateStoreList: updateGoodDealSettingsVariablesType['updateStoreList'],
     ) => {
       await updateGoodDealSettingsMutation({
         variables: {

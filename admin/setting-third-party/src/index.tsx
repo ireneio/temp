@@ -5,7 +5,6 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Form, Button, Switch, Divider } from 'antd';
 
@@ -21,11 +20,12 @@ import useSave from './hooks/useSave';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getThirdPartySetting } from '@meepshop/types/gqls/admin';
+import { getThirdPartySetting as getThirdPartySettingType } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { useBlocksFragment } from './hooks/useBlocks';
-import { useSaveFragment } from './hooks/useSave';
+import { getThirdPartySetting } from './gqls';
+import { useBlocksFragment } from './gqls/useBlocks';
+import { useSaveFragment } from './gqls/useSave';
 
 // typescript definition
 interface PropsType {
@@ -34,27 +34,11 @@ interface PropsType {
 }
 
 // definition
-const query = gql`
-  query getThirdPartySetting {
-    viewer {
-      id
-      store {
-        id
-        ...useBlocksFragment
-        ...useSaveFragment
-      }
-    }
-  }
-
-  ${useBlocksFragment}
-  ${useSaveFragment}
-`;
-
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore FIXME: remove after use antd v4 form hook
 const SettingThirdParty: NextPage<PropsType> = Form.create<PropsType>()(
   React.memo(({ form }: FormComponentProps) => {
-    const { data } = useQuery<getThirdPartySetting>(query);
+    const { data } = useQuery<getThirdPartySettingType>(getThirdPartySetting);
     const { t } = useTranslation('setting-third-party');
 
     const { loading, save } = useSave(

@@ -3,7 +3,6 @@ import { FormComponentProps } from 'antd/lib/form';
 
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { Divider, Form, Input } from 'antd';
 
 import Tooltip from '@admin/tooltip';
@@ -21,12 +20,6 @@ interface PropsType extends FormComponentProps {
 
 // definition
 const { Item: FormItem } = Form;
-
-export const gaViewIdFragment = gql`
-  fragment gaViewIdFragment on Store {
-    gaViewId
-  }
-`;
 
 export default React.memo(({ form, gaViewId }: PropsType) => {
   const { getFieldDecorator } = form;

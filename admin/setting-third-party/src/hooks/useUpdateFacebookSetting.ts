@@ -4,36 +4,36 @@ import { DataProxy } from 'apollo-cache';
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
 // graphql typescript
 import {
   updateFacebookSetting as updateFacebookSettingType,
-  updateFacebookSettingVariables,
-  useUpdateFacebookSettingWriteCache,
-  useUpdateFacebookSettingWriteCache_facebookSetting as useUpdateFacebookSettingWriteCacheFacebookSetting,
+  updateFacebookSettingVariables as updateFacebookSettingVariablesType,
+  useUpdateFacebookSettingFragment as useUpdateFacebookSettingFragmentType,
+  useUpdateFacebookSettingFragment_facebookSetting as useUpdateFacebookSettingFragmentFacebookSettingType,
 } from '@meepshop/types/gqls/admin';
 
-// definition
-const mutation = gql`
-  mutation updateFacebookSetting($input: UpdateFacebookSettingInput!) {
-    updateFacebookSetting(input: $input) {
-      status
-    }
-  }
-`;
+// graphql import
+import {
+  updateFacebookSetting,
+  useUpdateFacebookSettingFragment,
+} from '../gqls/useUpdateFacebookSetting';
 
+// definition
 export default (): ((
   storeId: string,
-  input: updateFacebookSettingVariables['input'],
+  input: updateFacebookSettingVariablesType['input'],
 ) => Promise<void>) => {
   const [updateFacebookSettingMutation] = useMutation<
     updateFacebookSettingType,
-    updateFacebookSettingVariables
-  >(mutation);
+    updateFacebookSettingVariablesType
+  >(updateFacebookSetting);
 
   return useCallback(
-    async (storeId: string, input: updateFacebookSettingVariables['input']) => {
+    async (
+      storeId: string,
+      input: updateFacebookSettingVariablesType['input'],
+    ) => {
       await updateFacebookSettingMutation({
         variables: {
           input,
@@ -46,23 +46,14 @@ export default (): ((
             throw new Error('can not update facebook setting');
           }
 
-          cache.writeFragment<useUpdateFacebookSettingWriteCache>({
+          cache.writeFragment<useUpdateFacebookSettingFragmentType>({
             id: storeId,
-            fragment: gql`
-              fragment useUpdateFacebookSettingWriteCache on Store {
-                id
-                facebookSetting {
-                  isLoginEnabled
-                  appId
-                  appSecret
-                }
-              }
-            `,
+            fragment: useUpdateFacebookSettingFragment,
             data: {
               __typename: 'Store',
               id: storeId,
               facebookSetting: {
-                ...(input as useUpdateFacebookSettingWriteCacheFacebookSetting),
+                ...(input as useUpdateFacebookSettingFragmentFacebookSettingType),
                 __typename: 'FacebookSetting',
               },
             },

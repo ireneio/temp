@@ -3,7 +3,6 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import React, { useMemo } from 'react';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 
 import {
@@ -22,10 +21,9 @@ import GoogleAnalytics from '../GaViewId';
 import { useBlocksFragment as useBlocksFragmentType } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { facebookFacebookSettingFragment } from '../Facebook';
-import { ecfitFragment } from '../Ecfit';
-import { goodDealFragment } from '../GoodDeal';
-import { gaViewIdFragment } from '../GaViewId';
+import { facebookFragment } from '../gqls/facebook';
+import { ecfitFragment } from '../gqls/ecfit';
+import { goodDealFragment } from '../gqls/goodDeal';
 
 // typescript definition
 interface BlockType {
@@ -38,38 +36,6 @@ interface BlockType {
 }
 
 // definition
-export const useBlocksFragment = gql`
-  fragment useBlocksFragment on Store {
-    experiment {
-      ecfitEnabled
-      isGoodDealEnabled
-    }
-
-    facebookSetting {
-      ...facebookFacebookSettingFragment
-      isLoginEnabled
-    }
-
-    storeEcfitSettings {
-      ...ecfitFragment
-      isEnabled
-    }
-
-    setting {
-      storeGoodDealSettings: gooddeal {
-        ...goodDealFragment
-        status
-      }
-    }
-
-    ...gaViewIdFragment
-  }
-
-  ${facebookFacebookSettingFragment}
-  ${ecfitFragment}
-  ${goodDealFragment}
-  ${gaViewIdFragment}
-`;
 
 export default (
   form: FormComponentProps['form'],
@@ -87,10 +53,7 @@ export default (
           component: !store?.facebookSetting ? null : (
             <FaceBook
               form={form}
-              facebookSetting={filter(
-                facebookFacebookSettingFragment,
-                store.facebookSetting,
-              )}
+              facebookSetting={filter(facebookFragment, store.facebookSetting)}
             />
           ),
         },

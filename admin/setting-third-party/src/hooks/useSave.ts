@@ -3,7 +3,6 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import { useState, useCallback } from 'react';
-import gql from 'graphql-tag';
 import { message } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
@@ -23,12 +22,6 @@ interface ReturnType {
 }
 
 // definition
-export const useSaveFragment = gql`
-  fragment useSaveFragment on Store {
-    id
-  }
-`;
-
 export default (
   { validateFields, resetFields }: FormComponentProps['form'],
   store: useSaveFragmentType | null,

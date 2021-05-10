@@ -3,7 +3,6 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { Form, Input } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
@@ -20,14 +19,6 @@ interface PropsType extends FormComponentProps {
 
 // definition
 const { Item: FormItem } = Form;
-
-export const goodDealFragment = gql`
-  fragment goodDealFragment on gooddealObjectType {
-    corporationId
-    apiKey
-  }
-`;
-
 export default React.memo(
   ({
     form: { getFieldDecorator },

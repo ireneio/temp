@@ -4,36 +4,36 @@ import { DataProxy } from 'apollo-cache';
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
 // graphql typescript
 import {
   updateEcfitSettings as updateEcfitSettingsType,
-  updateEcfitSettingsVariables,
-  useUpdateEcfitSettingsWriteCache,
-  useUpdateEcfitSettingsWriteCache_storeEcfitSettings as useUpdateEcfitSettingsWriteCacheStoreEcfitSettings,
+  updateEcfitSettingsVariables as updateEcfitSettingsVariablesType,
+  useUpdateEcfitSettingsFragment as useUpdateEcfitSettingsFragmentType,
+  useUpdateEcfitSettingsFragment_storeEcfitSettings as useUpdateEcfitSettingsFragmentStoreEcfitSettingsType,
 } from '@meepshop/types/gqls/admin';
 
-// definition
-const mutation = gql`
-  mutation updateEcfitSettings($input: SetStoreEcfitSettingsInput!) {
-    setStoreEcfitSettings(input: $input) {
-      status
-    }
-  }
-`;
+// graphql import
+import {
+  updateEcfitSettings,
+  useUpdateEcfitSettingsFragment,
+} from '../gqls/useUpdateEcfitSettings';
 
+// definition
 export default (): ((
   storeId: string,
-  input: updateEcfitSettingsVariables['input'],
+  input: updateEcfitSettingsVariablesType['input'],
 ) => Promise<void>) => {
   const [updateEcfitSettingsMutation] = useMutation<
     updateEcfitSettingsType,
-    updateEcfitSettingsVariables
-  >(mutation);
+    updateEcfitSettingsVariablesType
+  >(updateEcfitSettings);
 
   return useCallback(
-    async (storeId: string, input: updateEcfitSettingsVariables['input']) => {
+    async (
+      storeId: string,
+      input: updateEcfitSettingsVariablesType['input'],
+    ) => {
       await updateEcfitSettingsMutation({
         variables: {
           input,
@@ -46,24 +46,14 @@ export default (): ((
             throw new Error('can not update ecfit settings');
           }
 
-          cache.writeFragment<useUpdateEcfitSettingsWriteCache>({
+          cache.writeFragment<useUpdateEcfitSettingsFragmentType>({
             id: storeId,
-            fragment: gql`
-              fragment useUpdateEcfitSettingsWriteCache on Store {
-                id
-                storeEcfitSettings {
-                  isEnabled
-                  serviceType
-                  companyToken
-                  apiKey
-                }
-              }
-            `,
+            fragment: useUpdateEcfitSettingsFragment,
             data: {
               __typename: 'Store',
               id: storeId,
               storeEcfitSettings: {
-                ...(input as useUpdateEcfitSettingsWriteCacheStoreEcfitSettings),
+                ...(input as useUpdateEcfitSettingsFragmentStoreEcfitSettingsType),
                 __typename: 'StoreEcfitSettings',
               },
             },

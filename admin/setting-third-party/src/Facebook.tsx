@@ -3,7 +3,6 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { Form, Input } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
@@ -12,22 +11,15 @@ import Tooltip from '@admin/tooltip';
 import styles from './styles/facebook.less';
 
 // graphql typescript
-import { facebookFacebookSettingFragment as facebookFacebookSettingFragmentType } from '@meepshop/types/gqls/admin';
+import { facebookFragment as facebookFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
-  facebookSetting: facebookFacebookSettingFragmentType;
+  facebookSetting: facebookFragmentType;
 }
 
 // definition
 const { Item: FormItem } = Form;
-
-export const facebookFacebookSettingFragment = gql`
-  fragment facebookFacebookSettingFragment on FacebookSetting {
-    appId
-    appSecret
-  }
-`;
 
 export default React.memo(
   ({

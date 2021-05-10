@@ -3,7 +3,6 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { Form, Select, Input } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
@@ -22,14 +21,6 @@ interface PropsType extends FormComponentProps {
 // definition
 const { Item: FormItem } = Form;
 const { Option } = Select;
-
-export const ecfitFragment = gql`
-  fragment ecfitFragment on StoreEcfitSettings {
-    serviceType
-    companyToken
-    apiKey
-  }
-`;
 
 export default React.memo(
   ({
