@@ -1,28 +1,16 @@
 // typescript import
-
 import { CookiesType, getCookiesArgumentType } from '@meepshop/cookies';
 
 // import
-import gql from 'graphql-tag';
-
 import { withCookies } from '@meepshop/cookies';
 
 // graphql typescript
-import { initAdminCookies } from '@meepshop/types/gqls/admin';
+import { initAdminCookies as initAdminCookiesType } from '@meepshop/types/gqls/admin';
+
+// graqphl import
+import { initAdminCookies } from '../gqls/withCookies';
 
 // definition
-const query = gql`
-  query initAdminCookies {
-    viewer {
-      id
-      store {
-        id
-        locale
-      }
-    }
-  }
-`;
-
 export default withCookies(
   async ({
     client,
@@ -30,7 +18,9 @@ export default withCookies(
     language,
     cookie,
   }: getCookiesArgumentType): Promise<CookiesType['cookies']> => {
-    const { data } = await client.query<initAdminCookies>({ query });
+    const { data } = await client.query<initAdminCookiesType>({
+      query: initAdminCookies,
+    });
     const locale = data?.viewer?.store?.locale || 'zh_TW';
 
     if (locale !== language) await i18n.changeLanguage(locale);

@@ -3,7 +3,6 @@ import { IconProps } from 'antd/lib/icon';
 
 // import
 import React, { useMemo } from 'react';
-import gql from 'graphql-tag';
 import { Icon } from 'antd';
 
 import {
@@ -19,18 +18,7 @@ import {
 } from '@meepshop/icons';
 
 // graphql typescript
-import { useItemspermissionStoreObjFragment as useItemspermissionStoreObjFragmentType } from '@meepshop/types/gqls/admin';
-
-// definition
-export const useItemspermissionStoreObjFragment = gql`
-  fragment useItemspermissionStoreObjFragment on permissionStoreObj {
-    index
-    payment
-    shipment
-    exportSetting
-    ableToEditNotificationSetting
-  }
-`;
+import { useItemsFragment as useItemsFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 export interface ItemType {
@@ -40,9 +28,10 @@ export interface ItemType {
   auth: boolean;
 }
 
+// definition
 export default (
   isMerchant: boolean,
-  storePermission: useItemspermissionStoreObjFragmentType | null,
+  storePermission: useItemsFragmentType | null,
 ): ItemType[] =>
   useMemo(
     () =>

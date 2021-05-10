@@ -3,7 +3,6 @@ import { NextPage } from 'next';
 
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { Spin, Icon } from 'antd';
 
@@ -14,15 +13,10 @@ import useItems from './hooks/useItems';
 import Item from './Item';
 
 // graphql typescript
-import { getViewerPermission } from '@meepshop/types/gqls/admin';
+import { getViewerPermission as getViewerPermissionType } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import {
-  userUserFragment,
-  userAuthorityListFragment,
-} from '@admin/apollo/lib/User';
-
-import { useItemspermissionStoreObjFragment } from './hooks/useItems';
+import { getViewerPermission } from './gqls';
 
 // typescript definition
 interface PropsType {
@@ -33,30 +27,8 @@ interface PropsType {
 const Setting: NextPage<PropsType> = React.memo(
   (): React.ReactElement => {
     const { t } = useTranslation('setting');
-    const { loading, error, data } = useQuery<getViewerPermission>(
-      gql`
-        query getViewerPermission {
-          viewer {
-            id
-            role
-            permission @client {
-              store {
-                ...useItemspermissionStoreObjFragment
-              }
-            }
-            ...userUserFragment
-          }
-
-          getAuthorityList {
-            ...userAuthorityListFragment
-          }
-        }
-
-        ${userUserFragment}
-        ${userAuthorityListFragment}
-
-        ${useItemspermissionStoreObjFragment}
-      `,
+    const { loading, error, data } = useQuery<getViewerPermissionType>(
+      getViewerPermission,
     );
     const isMerchant = data?.viewer?.role === 'MERCHANT';
     const storePermission = data?.viewer?.permission?.store;

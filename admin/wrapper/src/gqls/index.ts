@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import {
   userUserFragment,
   userAuthorityListFragment,
-} from '@admin/apollo/lib/User';
+} from '@admin/apollo/lib/gqls/user';
 
 import { useCheckingAdminStatusFragment } from './useCheckingAdminStatus';
 import { useMenuListFragment } from './useMenuList';

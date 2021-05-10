@@ -2,35 +2,18 @@
 import { ContextType } from '@meepshop/apollo';
 
 // import
-import gql from 'graphql-tag';
 import moment from 'moment';
 
 // graphql typescript
 import {
-  SetOrdersToSelectedOrdersInput,
-  initializeSelectedOrders,
+  SetOrdersToSelectedOrdersInput as SetOrdersToSelectedOrdersInputType,
+  initializeSelectedOrders as initializeSelectedOrdersType,
 } from '@meepshop/types/gqls/admin';
 
-// definition
-const query = gql`
-  query initializeSelectedOrders {
-    selectedOrders @client {
-      edges {
-        node {
-          id
-        }
-      }
-      pageInfo {
-        hasNextPage
-        hasPreviousPage
-        startCursor
-        endCursor
-      }
-      total
-    }
-  }
-`;
+// graphpl import
+import { initializeSelectedOrders } from './gqls/selectedOrders';
 
+// definition
 const pageInfo = {
   __typename: 'PageInfo',
   hasNextPage: false,
@@ -56,8 +39,8 @@ export const initializeCache = (cache: ContextType['cache']): void => {
       ? []
       : JSON.parse(localStorage.getItem('selectedOrders') || '[]');
 
-  cache.writeQuery<initializeSelectedOrders>({
-    query,
+  cache.writeQuery<initializeSelectedOrdersType>({
+    query: initializeSelectedOrders,
     data: {
       selectedOrders: {
         __typename: 'OrderConnection',
@@ -82,11 +65,11 @@ export const resolvers = {
   Mutation: {
     setOrdersToSelectedOrders: (
       _: unknown,
-      { input: { ids } }: { input: SetOrdersToSelectedOrdersInput },
+      { input: { ids } }: { input: SetOrdersToSelectedOrdersInputType },
       { cache }: ContextType,
     ) => {
-      cache.writeQuery<initializeSelectedOrders>({
-        query,
+      cache.writeQuery<initializeSelectedOrdersType>({
+        query: initializeSelectedOrders,
         data: {
           selectedOrders: {
             __typename: 'OrderConnection',

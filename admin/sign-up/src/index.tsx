@@ -2,15 +2,8 @@
 import { NextPage } from 'next';
 import { FormComponentProps } from 'antd/lib/form/Form';
 
-// graphql typescript
-import {
-  isMerchantEmailUsable,
-  isMerchantEmailUsableVariables,
-} from '@meepshop/types/gqls/admin';
-
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { useApolloClient } from '@apollo/react-hooks';
 import { Form, Input, Button, Icon } from 'antd';
 
@@ -22,6 +15,15 @@ import { useValidateEmail } from '@meepshop/validator';
 import useApplyForStore from './hooks/useApplyForStore';
 
 import styles from './styles/index.less';
+
+// graphql typescript
+import {
+  isMerchantEmailUsable as isMerchantEmailUsableType,
+  isMerchantEmailUsableVariables as isMerchantEmailUsableVariablesType,
+} from '@meepshop/types/gqls/admin';
+
+// graphql import
+import { isMerchantEmailUsable } from './gqls';
 
 // definition
 const { Item: FormItem } = Form;
@@ -73,16 +75,10 @@ const SignUp: NextPage = Form.create<FormComponentProps>()(
                               isMerchantEmailUsable: { result },
                             },
                           } = await client.query<
-                            isMerchantEmailUsable,
-                            isMerchantEmailUsableVariables
+                            isMerchantEmailUsableType,
+                            isMerchantEmailUsableVariablesType
                           >({
-                            query: gql`
-                              query isMerchantEmailUsable($email: String!) {
-                                isMerchantEmailUsable(email: $email) {
-                                  result
-                                }
-                              }
-                            `,
+                            query: isMerchantEmailUsable,
                             variables: { email },
                           });
 

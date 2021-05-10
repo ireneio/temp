@@ -3,7 +3,6 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import React, { useContext, useCallback, useState } from 'react';
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { message } from 'antd';
 
@@ -11,6 +10,9 @@ import { AdTrackContext } from '@admin/ad-track';
 
 // graphql typescript
 import { applyForStore as applyForStoreType } from '@meepshop/types/gqls/admin';
+
+// graphql import
+import { applyForStore } from '../gqls/useApplyForStore';
 
 // definition
 export default ({
@@ -25,14 +27,8 @@ export default ({
     false,
   );
 
-  const [applyForStore, { loading }] = useMutation<applyForStoreType>(
-    gql`
-      mutation applyForStore($input: ApplyForStoreInput!) {
-        applyForStore(input: $input) {
-          status
-        }
-      }
-    `,
+  const [mutation, { loading }] = useMutation<applyForStoreType>(
+    applyForStore,
     {
       onCompleted: ({ applyForStore: { status } }) => {
         if (status === 'SUCCESS') {
@@ -52,11 +48,11 @@ export default ({
 
         validateFields((errors, { email, password }) => {
           if (!errors) {
-            applyForStore({ variables: { input: { email, password } } });
+            mutation({ variables: { input: { email, password } } });
           }
         });
       },
-      [validateFields, applyForStore],
+      [validateFields, mutation],
     ),
   };
 };
