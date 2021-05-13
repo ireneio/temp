@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.79.46 (2021-05-13)
+
+#### :rocket: New Feature
+
+- [#1524](https://github.com/meepshop/meep-lerna/pull/1524) 【優化】@admin/orders Remove readFragment ([@Lexiwu](https://github.com/Lexiwu))
+- [#1517](https://github.com/meepshop/meep-lerna/pull/1517) 【優化】fragment 搬到 fragments folder - 1 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1540](https://github.com/meepshop/meep-lerna/pull/1540) 【BUG】 有商品權限的頁面在未登入狀態，商品會顯示範例商品列表 ([@piovischioh](https://github.com/piovischioh))
+  - [#1506](https://github.com/meepshop/meep-lerna/pull/1506) 【BUG】 商品上架未填最小/最大購買量，商品頁購買量應要顯示庫存的數量 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.79.45 (2021-05-07)
 
 #### :boom: Breaking Change
