@@ -4,7 +4,7 @@
   "description": "Currency context for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.45",
+  "version": "0.79.46",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
