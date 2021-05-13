@@ -92,8 +92,8 @@ export default class ProductInfo extends React.PureComponent {
         orderable: OUT_OF_STOCK,
       };
 
-    const { max, quantityInCart } = this.props;
-    const { stock, maxPurchaseLimit, minPurchaseItems } = variant;
+    const { min, max, quantityInCart } = this.props;
+    const { stock } = variant;
     const formatVariant = {
       ...variant,
       productNotice: stockNotificationList.some(
@@ -116,14 +116,8 @@ export default class ProductInfo extends React.PureComponent {
     return {
       formatVariant: {
         ...formatVariant,
-        maxPurchaseLimit:
-          maxPurchaseLimit > quantityInCart
-            ? maxPurchaseLimit - quantityInCart
-            : 0,
-        minPurchaseItems:
-          minPurchaseItems > quantityInCart
-            ? minPurchaseItems - quantityInCart
-            : 1,
+        maxPurchaseLimit: max > quantityInCart ? max - quantityInCart : 0,
+        minPurchaseItems: min > quantityInCart ? min - quantityInCart : 1,
         stock: stock > quantityInCart ? stock - quantityInCart : 0,
       },
       orderable: ORDERABLE,
