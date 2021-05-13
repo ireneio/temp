@@ -11,13 +11,11 @@ import Image from 'image';
 import DraftText from 'draftText';
 
 import ProductLoader from './ProductLoader';
-import { PRODUCT_TYPE, DEFAULT_PRODUCTS } from './constants';
+import { PRODUCT_TYPE } from './constants';
 import * as styles from './styles';
-import lessStyles from './styles/card.less';
 
 const ProductCard = ({
   loading,
-  search,
   products,
   limit,
   isGrid,
@@ -66,10 +64,7 @@ const ProductCard = ({
           colors={colors}
         />
       ) : (
-        ((products?.total || 0) === 0 && !search
-          ? DEFAULT_PRODUCTS
-          : products
-        ).data.map(product => {
+        products?.data.map(product => {
           const {
             id,
             title,
@@ -94,29 +89,22 @@ const ProductCard = ({
                 styles.productCard(colors, isGrid),
               ]}
             >
-              {(products?.total || 0) === 0 ? (
-                <div className={lessStyles.default}>
-                  <div>{t('product-building')}</div>
-                  {React.createElement(coverImage)}
-                </div>
-              ) : (
-                <div
-                  style={styles.productImage}
-                  {...(productListImagePopUpEnabled
-                    ? { onClick: () => handleModalOpen(id) }
-                    : {})}
-                >
-                  <Image
-                    image={coverImage || { scaledSrc: placeholderThumbnail }}
-                    href={productListImagePopUpEnabled ? '' : `/product/${id}`}
-                    contentWidth={100}
-                    alignment="center"
-                    newWindow={false}
-                    ratio={1}
-                    alt={title[i18n.language] || title.zh_TW}
-                  />
-                </div>
-              )}
+              <div
+                style={styles.productImage}
+                {...(productListImagePopUpEnabled
+                  ? { onClick: () => handleModalOpen(id) }
+                  : {})}
+              >
+                <Image
+                  image={coverImage || { scaledSrc: placeholderThumbnail }}
+                  href={productListImagePopUpEnabled ? '' : `/product/${id}`}
+                  contentWidth={100}
+                  alignment="center"
+                  newWindow={false}
+                  ratio={1}
+                  alt={title[i18n.language] || title.zh_TW}
+                />
+              </div>
 
               {showTitle && (
                 <div style={styles.productTitle}>
@@ -177,7 +165,7 @@ const ProductCard = ({
                 <button
                   key={`${id}-button`}
                   type="button"
-                  disabled={!orderable || (products?.total || 0) === 0}
+                  disabled={!orderable}
                   style={styles.productAddToCart(colors)}
                   onClick={() => handleModalOpen(id)}
                 >

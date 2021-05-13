@@ -324,7 +324,6 @@ export default class ProductList extends React.PureComponent {
 
             <ProductCard
               loading={loading}
-              search={search}
               products={products}
               limit={limit}
               productWidth={productWidth}
