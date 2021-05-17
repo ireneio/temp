@@ -203,11 +203,7 @@ export default ({ productHasError, updateCart, onChange }) => {
           const hasError = quantity < min || quantity > max;
 
           return (
-            <div
-              className={`${styles.quantity} ${
-                !hasError ? '' : styles.hasError
-              }`}
-            >
+            <div className={!hasError ? '' : styles.hasError}>
               <ProductAmountSelector
                 className={styles.select}
                 variant={variant}
