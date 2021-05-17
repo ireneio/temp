@@ -4,7 +4,7 @@
   "description": "Use to handle the all modules",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.46",
+  "version": "0.79.47",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
@@ -22,7 +22,7 @@
     "@meepshop/product-collections": "^0.79.46",
     "@meepshop/product-draft-text": "^0.79.45",
     "@meepshop/product-iframe": "^0.79.41",
-    "@meepshop/product-info": "^0.79.46",
+    "@meepshop/product-info": "^0.79.47",
     "@meepshop/product-qa": "^0.79.46",
     "@meepshop/product-video": "^0.79.45",
     "@meepshop/smart-conversion": "^0.79.45",
