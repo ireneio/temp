@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.79.47 (2021-05-17)
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1548](https://github.com/meepshop/meep-lerna/pull/1548) 【BUG】 規格無法正常選擇 ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`
+  - [#1546](https://github.com/meepshop/meep-lerna/pull/1546) 【BUG】前台 - 購物車 panel 商品數量位置跑版 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.79.46 (2021-05-13)
 
 #### :rocket: New Feature
