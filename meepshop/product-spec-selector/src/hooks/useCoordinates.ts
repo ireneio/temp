@@ -4,7 +4,7 @@ import { HierarchyNode } from 'd3-hierarchy';
 import { DefaultLeaf } from '@meepshop/hooks/lib/useVariantsTree';
 
 // import
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useEffect, useMemo, useCallback } from 'react';
 
 import useVariantsTree from '@meepshop/hooks/lib/useVariantsTree';
 
@@ -39,11 +39,17 @@ export interface CoordinatesReturnType {
 const findVariant = (
   variantsTree: HierarchyNode<Leaf>[] | undefined,
   [coordinate, ...coordinates]: CoordinatesReturnType['coordinates'],
-): useCoordinatesFragmentVariants | null =>
-  coordinate === undefined
-    ? null
-    : variantsTree?.[coordinate].data.variant ||
-      findVariant(variantsTree?.[coordinate].children, coordinates);
+): useCoordinatesFragmentVariants | null => {
+  if (coordinate === undefined) return null;
+
+  if (coordinate > (variantsTree?.length || 0) - 1)
+    return variantsTree?.[0].data.variant || null;
+
+  return (
+    variantsTree?.[coordinate].data.variant ||
+    findVariant(variantsTree?.[coordinate].children, coordinates)
+  );
+};
 
 const findCoordinates = (
   variantNode: HierarchyNode<Leaf> | null,
@@ -61,10 +67,7 @@ export default ({
   onChange,
 }: CoordinatesArguType): CoordinatesReturnType => {
   const variantsTree = useVariantsTree<Leaf>(product);
-  const [coordinatesInState, setCoordinatesInState] = useState<
-    CoordinatesReturnType['coordinates']
-  >([]);
-  const coordinatesFromProps = useMemo(() => {
+  const coordinates = useMemo(() => {
     if (!value || !onChange || !variantsTree) return [];
 
     const variantsLeaves = variantsTree.reduce(
@@ -78,20 +81,17 @@ export default ({
       ) || variantsLeaves[0],
     );
   }, [value, onChange, variantsTree]);
-  const setCoordinatesFromProps = useCallback(
-    (coordinates: CoordinatesReturnType['coordinates']) => {
+  const setCoordinates = useCallback(
+    (values: CoordinatesReturnType['coordinates']) => {
       if (onChange)
         onChange(
           (!variantsTree
             ? product?.variants?.[0]
-            : findVariant(variantsTree, coordinates)) || null,
+            : findVariant(variantsTree, values)) || null,
         );
     },
     [product, onChange, variantsTree],
   );
-  const [coordinates, setCoordinates] = !onChange
-    ? [coordinatesInState, setCoordinatesInState]
-    : [coordinatesFromProps, setCoordinatesFromProps];
 
   useEffect(() => {
     if (!variantsTree) {
