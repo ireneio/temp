@@ -5,6 +5,7 @@
   "required": "Necesario",
   "success": "Guardado exitosamente",
   "error": "Actualización fallida",
+  "ok": "determinar",
   "selected": "Seleccione",
   "back": "regreso",
   "block-title": {
@@ -66,11 +67,8 @@
     "OPEN": "En la operación",
     "CLOSE": "Suspensión de operaciones",
     "store-status-alert-1": "Cuando se suspende el estado de la tienda, su tienda no podrá navegar ni comprar productos",
-    "store-status-alert-2": "Este estado no restringirá su administración de back-end de la tienda, y la factura por el alquiler del sistema se facturará a tiempo todos los meses."
-  },
-  "err": {
-    "FAIL_NOT_ACCEPTABLE": "Error de identidad",
-    "FAIL_SYSTEM_ERROR": "Otros errores del sistema"
+    "store-status-alert-2": "Este estado no restringirá su administración de back-end de la tienda, y la factura por el alquiler del sistema se facturará a tiempo todos los meses.",
+    "error": "Esta cuenta no tiene suficientes permisos para cambiar la configuración de operación de la tienda"
   },
   "MIT": "(GMT-11: 00) Samoa Americana",
   "HST": "(GMT-10: 00) Hawái",

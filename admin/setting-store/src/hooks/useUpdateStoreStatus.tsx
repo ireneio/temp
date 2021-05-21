@@ -4,6 +4,7 @@ import { DataProxy } from 'apollo-cache';
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
+import { Modal } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -50,7 +51,17 @@ export default (): {
               { data }: { data: setStoreStatusType },
             ) => {
               if (data?.setStoreStatus.result !== 'SUCCESS') {
-                reject(new Error(t(data?.setStoreStatus.result || 'error')));
+                if (data?.setStoreStatus.result === 'FAIL_NOT_ACCEPTABLE') {
+                  Modal.error({
+                    title: t('error'),
+                    content: t('store-status.error'),
+                    okText: t('ok'),
+                  });
+                  reject();
+                } else {
+                  reject(new Error(t('error')));
+                }
+
                 return;
               }
 

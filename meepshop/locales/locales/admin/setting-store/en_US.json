@@ -5,6 +5,7 @@
   "required": "Required",
   "success": "Saved successfully",
   "error": "Update failed",
+  "ok": "determine",
   "selected": "Select",
   "back": "return",
   "block-title": {
@@ -66,11 +67,8 @@
     "OPEN": "In operation",
     "CLOSE": "Suspension of operations",
     "store-status-alert-1": "When the store status is suspended, your store will not be able to browse and purchase goods",
-    "store-status-alert-2": "This status will not restrict your back-end management of the store, and the bill for renting the system will still be billed on time every month."
-  },
-  "err": {
-    "FAIL_NOT_ACCEPTABLE": "Identity error",
-    "FAIL_SYSTEM_ERROR": "Other system errors"
+    "store-status-alert-2": "This status will not restrict your back-end management of the store, and the bill for renting the system will still be billed on time every month.",
+    "error": "This account does not have enough permissions to change the store operating settings"
   },
   "MIT": "(GMT-11:00) American Samoa",
   "HST": "(GMT-10:00) Hawaii",

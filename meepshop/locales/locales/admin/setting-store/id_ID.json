@@ -5,6 +5,7 @@
   "required": "Yg dibutuhkan",
   "success": "Berhasil disimpan",
   "error": "Pembaharuan gagal",
+  "ok": "menentukan",
   "selected": "Pilih",
   "back": "kembali",
   "block-title": {
@@ -66,11 +67,8 @@
     "OPEN": "Dalam operasi",
     "CLOSE": "Penangguhan operasi",
     "store-status-alert-1": "Saat status toko ditangguhkan, toko Anda tidak akan dapat melihat-lihat dan membeli barang",
-    "store-status-alert-2": "Status ini tidak akan membatasi pengelolaan back-end toko Anda, dan tagihan untuk menyewa sistem akan tetap ditagih tepat waktu setiap bulan."
-  },
-  "err": {
-    "FAIL_NOT_ACCEPTABLE": "Kesalahan identitas",
-    "FAIL_SYSTEM_ERROR": "Kesalahan sistem lainnya"
+    "store-status-alert-2": "Status ini tidak akan membatasi pengelolaan back-end toko Anda, dan tagihan untuk menyewa sistem akan tetap ditagih tepat waktu setiap bulan.",
+    "error": "Akun ini tidak memiliki izin yang cukup untuk mengubah pengaturan operasi toko"
   },
   "MIT": "(GMT-11.00) Samoa Amerika",
   "HST": "(GMT-10.00) Hawaii",

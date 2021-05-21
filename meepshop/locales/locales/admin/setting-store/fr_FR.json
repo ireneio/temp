@@ -5,6 +5,7 @@
   "required": "Obligatoire",
   "success": "Enregistré avec succès",
   "error": "Mise à jour a échoué",
+  "ok": "déterminer",
   "selected": "Sélectionner",
   "back": "revenir",
   "block-title": {
@@ -66,11 +67,8 @@
     "OPEN": "En opération",
     "CLOSE": "Suspension des opérations",
     "store-status-alert-1": "Lorsque le statut du magasin est suspendu, votre magasin ne pourra pas parcourir et acheter des produits",
-    "store-status-alert-2": "Ce statut ne restreindra pas votre gestion back-end du magasin, et la facture de location du système sera toujours facturée à temps chaque mois."
-  },
-  "err": {
-    "FAIL_NOT_ACCEPTABLE": "Erreur d'identité",
-    "FAIL_SYSTEM_ERROR": "Autres erreurs système"
+    "store-status-alert-2": "Ce statut ne restreindra pas votre gestion back-end du magasin, et la facture de location du système sera toujours facturée à temps chaque mois.",
+    "error": "Ce compte n'a pas assez d'autorisations pour modifier les paramètres de fonctionnement du magasin."
   },
   "MIT": "(GMT-11: 00) Samoa américaines",
   "HST": "(GMT-10: 00) Hawaï",

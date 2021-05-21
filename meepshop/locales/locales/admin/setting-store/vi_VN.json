@@ -5,6 +5,7 @@
   "required": "Cần thiết",
   "success": "đã lưu thành công",
   "error": "Cập nhật không thành công",
+  "ok": "mục đích",
   "selected": "Lựa chọn",
   "back": "trở về",
   "block-title": {
@@ -66,11 +67,8 @@
     "OPEN": "Đi vào hoạt động",
     "CLOSE": "Đình chỉ hoạt động",
     "store-status-alert-1": "Khi trạng thái cửa hàng bị treo, cửa hàng của bạn sẽ không thể duyệt và mua hàng",
-    "store-status-alert-2": "Sẽ vẫn được thanh toán đúng hạn hàng tháng."
-  },
-  "err": {
-    "FAIL_NOT_ACCEPTABLE": "Lỗi nhận dạng",
-    "FAIL_SYSTEM_ERROR": "Các lỗi hệ thống khác"
+    "store-status-alert-2": "Sẽ vẫn được thanh toán đúng hạn hàng tháng.",
+    "error": "Tài khoản này không có đủ quyền để thay đổi cài đặt hoạt động của cửa hàng"
   },
   "MIT": "(GMT-11: 00) Samoa thuộc Mỹ",
   "HST": "(GMT-10: 00) Hawaii",

@@ -38,8 +38,10 @@ const SettingStorePage: NextPage<PropsType> = Form.create<PropsType>()(
     const { resetFields, isFieldsTouched } = form;
     const { data } = useQuery<getStoreSettingType>(getStoreSetting);
 
-    const storeId = data?.viewer?.store?.id || null;
-    const { loading, updateStore } = useUpdateStore(form, storeId);
+    const { loading, updateStore } = useUpdateStore(
+      form,
+      filter(useBlockFragment, data?.viewer?.store || null),
+    );
     const blocks = useBlock(
       form,
       filter(useBlockFragment, data?.viewer?.store || null),

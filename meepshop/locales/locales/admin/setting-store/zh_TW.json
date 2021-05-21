@@ -5,6 +5,7 @@
   "required": "必填",
   "success": "儲存成功",
   "error": "更新失敗",
+  "ok": "確定",
   "selected": "選取",
   "back": "返回",
   "block-title": {
@@ -66,11 +67,8 @@
     "OPEN": "營運中",
     "CLOSE": "暫停營運",
     "store-status-alert-1": "商店狀態為暫停營運時，您的商店將無法瀏覽與購買商品",
-    "store-status-alert-2": "此狀態不會限制您管理商店後台的操作，租用系統的帳單仍會於每月按時出帳。"
-  },
-  "err": {
-    "FAIL_NOT_ACCEPTABLE": "身分錯誤",
-    "FAIL_SYSTEM_ERROR": "其他系統錯誤"
+    "store-status-alert-2": "此狀態不會限制您管理商店後台的操作，租用系統的帳單仍會於每月按時出帳。",
+    "error": "此帳號沒有足夠權限更改商店營運設定"
   },
   "MIT": "（GMT-11：00）美屬薩摩亞",
   "HST": "（GMT-10：00）夏威夷",
