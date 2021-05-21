@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.79.48 (2021-05-21)
+
+#### :rocket: New Feature
+
+- [#1557](https://github.com/meepshop/meep-lerna/pull/1557) 【優化】小幫手修改營運設定的錯誤訊息文字 - Design / 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.79.47 (2021-05-17)
 
 #### :bug: Bug Fix
