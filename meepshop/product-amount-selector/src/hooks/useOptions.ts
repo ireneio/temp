@@ -66,7 +66,7 @@ export default (variant: useOptionsVariantFragmentType | null): OptionsType => {
           },
         ];
 
-      const amount = max - min + 1;
+      const amount = max > min ? max - min + 1 : 0;
 
       return [].constructor
         .apply({}, new Array(amount >= 100 ? 101 : amount))
