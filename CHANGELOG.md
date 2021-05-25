@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.79.49 (2021-05-25)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1545](https://github.com/meepshop/meep-lerna/pull/1545) 【功能】新增幣別：新加坡幣 SGD ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1567](https://github.com/meepshop/meep-lerna/pull/1567) 【個別店家】 產品頁 - 500 Internal Server Error. ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.48 (2021-05-21)
 
 #### :rocket: New Feature
