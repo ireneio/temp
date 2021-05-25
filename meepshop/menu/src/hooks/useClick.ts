@@ -95,6 +95,7 @@ export default (
       case 'KRW':
       case 'HKD':
       case 'MYR':
+      case 'SGD':
         setCurrency(ACION_TYPES[action || 0]);
         break;
 

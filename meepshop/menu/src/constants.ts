@@ -24,6 +24,7 @@ export const ACION_TYPES = [
   'KRW',
   'HKD',
   'MYR',
+  'SGD',
   'ORDERS',
   'SETTINGS',
   'RECIPIENTS',

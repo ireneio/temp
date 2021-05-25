@@ -154,6 +154,7 @@ export default {
           'KRW',
           'HKD',
           'MYR',
+          'SGD',
         ],
       },
       logoImage: null,

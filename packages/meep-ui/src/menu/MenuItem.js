@@ -212,6 +212,7 @@ export default class MenuItem extends React.PureComponent {
           case 'TWD':
           case 'USD':
           case 'HKD':
+          case 'SGD':
           default:
             return `$ ${id}`;
         }

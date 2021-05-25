@@ -33,6 +33,8 @@ export const format = (currency: string, price: number): string =>
         return `HK$ ${price.toFixed(1)}`;
       case 'MYR':
         return `RM ${price.toFixed(2)}`;
+      case 'SGD':
+        return `S$ ${price.toFixed(2)}`;
       default:
         return price.toString();
     }

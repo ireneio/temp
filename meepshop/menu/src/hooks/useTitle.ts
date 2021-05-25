@@ -56,6 +56,7 @@ export default (
       case 'TWD':
       case 'USD':
       case 'HKD':
+      case 'SGD':
         return `$ ${ACION_TYPES[action || 0]}`;
 
       case 'CNY':
