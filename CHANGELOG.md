@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.79.50 (2021-05-28)
+
+#### :rocket: New Feature
+
+- [#1571](https://github.com/meepshop/meep-lerna/pull/1571) 【優化】修改後台設定自訂網域 - 文字說明 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 1
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.79.49 (2021-05-25)
 
 #### :rocket: New Feature
