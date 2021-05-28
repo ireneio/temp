@@ -60,7 +60,7 @@
     "domain-alert-1": "カスタムドメインがない場合は、URLを入力しないでください",
     "domain-alert-2": "独立したウェブサイトをご利用になりたい場合は、ドメイン購入サービスをご用意しておりますので、お気軽にお問い合わせください。",
     "domain-alert-3": "DNSポインティング設定",
-    "domain-alert-4": "レコードタイプを設定します：CNAME、ホストフィールドにwwwを入力し、値/アドレスフィールドにmeepshopストアのURL（abc.new.meepshop.comなど）を入力してから、上のカスタムドメインフィールドに購入を入力してください URL（www.abc.com.twなど）は、設定後24〜48時間で有効になります。"
+    "domain-alert-4": "レコードタイプを設定します：CNAME、ホストフィールドにwwwを入力し、値/アドレスフィールドにmeepshopストアのURL（abc.meepshop.comなど）を入力してから、上のカスタムドメインフィールドに購入を入力してください URL（www.abc.com.twなど）は、設定後24〜48時間で有効になります。"
   },
   "store-status": {
     "store-sub-title": "ストアステータス",

@@ -60,7 +60,7 @@
     "domain-alert-1": "若未有自訂網域，勿填入任何網址",
     "domain-alert-2": "如欲使用獨立網址，我們有提供購買網域的服務，歡迎您來信洽詢",
     "domain-alert-3": "DNS指向設定",
-    "domain-alert-4": "設定紀錄類型:CNAME，主機欄位請填入www ，值/地址欄位輸入您在meepshop商店網址(如abc.new.meepshop.com)，再於上方自訂網域欄位中輸入您購買的網址 (如www.abc.com.tw)，設定完成後需要24~48小時才能生效。"
+    "domain-alert-4": "設定紀錄類型:CNAME，主機欄位請填入www ，值/地址欄位輸入您在meepshop商店網址(如abc.meepshoper.com)，再於上方自訂網域欄位中輸入您購買的網址 (如www.abc.com.tw)，設定完成後需要24~48小時才能生效。"
   },
   "store-status": {
     "store-sub-title": "商店狀態",

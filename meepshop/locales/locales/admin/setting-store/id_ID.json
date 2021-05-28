@@ -60,7 +60,7 @@
     "domain-alert-1": "Jika tidak ada domain kustom, jangan isi URL apa pun",
     "domain-alert-2": "Jika Anda ingin menggunakan situs web independen, kami menyediakan layanan pembelian domain, Anda dapat menghubungi kami",
     "domain-alert-3": "Pengaturan penunjuk DNS",
-    "domain-alert-4": "Set record type: CNAME, silakan masukkan www di kolom host, masukkan URL toko meepshop Anda (seperti abc.new.meepshop.com) di kolom nilai / alamat, lalu masukkan pembelian Anda di kolom domain kustom di atas URL (seperti www.abc.com.tw), akan memakan waktu 24 ~ 48 jam untuk diterapkan setelah pengaturan."
+    "domain-alert-4": "Set record type: CNAME, silakan masukkan www di kolom host, masukkan URL toko meepshop Anda (seperti abc.meepshop.com) di kolom nilai / alamat, lalu masukkan pembelian Anda di kolom domain kustom di atas URL (seperti www.abc.com.tw), akan memakan waktu 24 ~ 48 jam untuk diterapkan setelah pengaturan."
   },
   "store-status": {
     "store-sub-title": "Status toko",

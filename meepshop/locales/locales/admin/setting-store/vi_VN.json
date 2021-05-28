@@ -60,7 +60,7 @@
     "domain-alert-1": "Nếu không có miền tùy chỉnh, không điền vào bất kỳ URL nào",
     "domain-alert-2": "Nếu bạn muốn sử dụng trang web độc lập, chúng tôi cung cấp dịch vụ mua tên miền, bạn vui lòng liên hệ với chúng tôi",
     "domain-alert-3": "Cài đặt trỏ DNS",
-    "domain-alert-4": "Đặt loại bản ghi: CNAME, vui lòng điền www vào trường máy chủ lưu trữ, nhập URL cửa hàng meepshop của bạn (chẳng hạn như abc.new.meepshop.com) vào trường giá trị / địa chỉ, sau đó nhập giao dịch mua của bạn vào trường miền tùy chỉnh ở trên URL (chẳng hạn như www.abc.com.tw), sẽ mất 24 ~ 48 giờ để có hiệu lực sau khi thiết lập."
+    "domain-alert-4": "Đặt loại bản ghi: CNAME, vui lòng điền www vào trường máy chủ lưu trữ, nhập URL cửa hàng meepshop của bạn (chẳng hạn như abc.meepshop.com) vào trường giá trị / địa chỉ, sau đó nhập giao dịch mua của bạn vào trường miền tùy chỉnh ở trên URL (chẳng hạn như www.abc.com.tw), sẽ mất 24 ~ 48 giờ để có hiệu lực sau khi thiết lập."
   },
   "store-status": {
     "store-sub-title": "Trạng thái cửa hàng",

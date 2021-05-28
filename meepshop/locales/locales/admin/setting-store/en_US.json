@@ -60,7 +60,7 @@
     "domain-alert-1": "If there is no custom domain, do not fill in any URL",
     "domain-alert-2": "If you want to use an independent website, we provide the service of purchasing a domain, you are welcome to contact us",
     "domain-alert-3": "DNS pointing settings",
-    "domain-alert-4": "Set record type: CNAME, please enter www in the host field, enter your meepshop store URL (such as abc.new.meepshop.com) in the value/address field, and then enter your purchase in the custom domain field above URL (such as www.abc.com.tw), it will take 24~48 hours to take effect after setting."
+    "domain-alert-4": "Set record type: CNAME, please enter www in the host field, enter your meepshop store URL (such as abc.meepshop.com) in the value/address field, and then enter your purchase in the custom domain field above URL (such as www.abc.com.tw), it will take 24~48 hours to take effect after setting."
   },
   "store-status": {
     "store-sub-title": "Store status",

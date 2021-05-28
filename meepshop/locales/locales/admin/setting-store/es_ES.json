@@ -60,7 +60,7 @@
     "domain-alert-1": "Si no hay un dominio personalizado, no ingrese ninguna URL",
     "domain-alert-2": "Si desea utilizar un sitio web independiente, proporcionamos el servicio de compra de un dominio, puede contactarnos",
     "domain-alert-3": "Configuración de apuntado de DNS",
-    "domain-alert-4": "Establezca el tipo de registro: CNAME, ingrese www en el campo de host, ingrese la URL de su tienda meepshop (como abc.new.meepshop.com) en el campo de valor / dirección, y luego ingrese su compra en el campo de dominio personalizado arriba URL (como www.abc.com.tw), tardará entre 24 y 48 horas en surtir efecto después de la configuración."
+    "domain-alert-4": "Establezca el tipo de registro: CNAME, ingrese www en el campo de host, ingrese la URL de su tienda meepshop (como abc.meepshop.com) en el campo de valor / dirección, y luego ingrese su compra en el campo de dominio personalizado arriba URL (como www.abc.com.tw), tardará entre 24 y 48 horas en surtir efecto después de la configuración."
   },
   "store-status": {
     "store-sub-title": "Estado de la tienda",
