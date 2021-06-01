@@ -2,11 +2,11 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { productsObjectTypeOrderApplyFragment } from '@store/apollo/lib/productsObjectType';
+import { productsObjectTypeOrderApplyFragment } from '@store/apollo/lib/gqls/productsObjectType';
 import {
   createOrderApplyWithOrderOrderFragment,
   createOrderApplyWithOrderOrderApplyFragment,
-} from '@store/apollo/lib/createOrderApplyWithOrder';
+} from '@store/apollo/lib/gqls/createOrderApplyWithOrder';
 
 import { useColumnsOrderMemberOrderApplyFragment } from './useColumns';
 

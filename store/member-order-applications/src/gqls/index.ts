@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import {
   orderOrderFragment,
   orderOrderApplyFragment,
-} from '@store/apollo/lib/Order';
+} from '@store/apollo/lib/gqls/order';
 
 import { applicationOrderApplyFragment } from './application';
 import { useColumnsProductsObjectTypeFragment } from './useColumns';

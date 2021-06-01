@@ -1,20 +1,11 @@
 // import
 import { useEffect } from 'react';
-import gql from 'graphql-tag';
 import fx from 'money';
 
 // graphql typescript
 import { useInitFxFragment as useInitFxFragmentType } from '@meepshop/types/gqls/store';
 
 // definition
-export const useInitFxFragment = gql`
-  fragment useInitFxFragment on ExchangeRate {
-    base
-    rates
-    updatedAt
-  }
-`;
-
 fx.base = 'USD';
 fx.rates = {
   EUR: 0.902088,

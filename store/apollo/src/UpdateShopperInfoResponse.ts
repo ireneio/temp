@@ -1,14 +1,17 @@
 // typescript import
 import { ContextType } from '@meepshop/apollo';
 
-// import
-import gql from 'graphql-tag';
-
 // graphql typescript
+import {
+  updateShopperInfoResponseReadCache as updateShopperInfoResponseReadCacheType,
+  updateShopperInfoResponseUpdateCache as updateShopperInfoResponseUpdateCacheType,
+} from '@meepshop/types/gqls/store';
+
+// graphql import
 import {
   updateShopperInfoResponseReadCache,
   updateShopperInfoResponseUpdateCache,
-} from '@meepshop/types/gqls/store';
+} from './gqls/updateShopperInfoResponse';
 
 // typescript definition
 // FIXME: should use graphql typescript
@@ -30,27 +33,18 @@ export const resolvers = {
     ) => {
       if (status !== 'OK') return false;
 
-      const userCache = cache.readQuery<updateShopperInfoResponseReadCache>({
-        query: gql`
-          query updateShopperInfoResponseReadCache {
-            viewer {
-              id
-            }
-          }
-        `,
-      });
+      const userCache = cache.readQuery<updateShopperInfoResponseReadCacheType>(
+        {
+          query: updateShopperInfoResponseReadCache,
+        },
+      );
       const userId = userCache?.viewer?.id;
 
       if (!userId) return false;
 
-      cache.writeFragment<updateShopperInfoResponseUpdateCache>({
+      cache.writeFragment<updateShopperInfoResponseUpdateCacheType>({
         id: userId,
-        fragment: gql`
-          fragment updateShopperInfoResponseUpdateCache on User {
-            id
-            locale
-          }
-        `,
+        fragment: updateShopperInfoResponseUpdateCache,
         data: {
           __typename: 'User',
           id: userId,

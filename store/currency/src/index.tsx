@@ -1,7 +1,6 @@
 // import
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon } from 'antd';
 
@@ -13,11 +12,12 @@ import useInitFx from './hooks/useInitFx';
 import useFormat from './hooks/useFormat';
 
 // graphql typescript
-import { getStoreCurrency } from '@meepshop/types/gqls/store';
+import { getStoreCurrency as getStoreCurrencyType } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { useInitFxFragment } from './hooks/useInitFx';
-import { useFormatFragment } from './hooks/useFormat';
+import { getStoreCurrency } from './gqls';
+import { useInitFxFragment } from './gqls/useInitFx';
+import { useFormatFragment } from './gqls/useFormat';
 
 // typescript definition
 interface PropsType {
@@ -25,28 +25,11 @@ interface PropsType {
 }
 
 // definition
-const query = gql`
-  query getStoreCurrency {
-    viewer {
-      id
-      store {
-        id
-        ...useFormatFragment
-      }
-    }
-
-    exchangeRateService {
-      ...useInitFxFragment
-    }
-  }
-
-  ${useFormatFragment}
-  ${useInitFxFragment}
-`;
-
 export default React.memo(({ children }: PropsType) => {
   const { cookies, setCookie } = useContext(CookiesContext);
-  const { loading, error, data } = useQuery<getStoreCurrency>(query);
+  const { loading, error, data } = useQuery<getStoreCurrencyType>(
+    getStoreCurrency,
+  );
   const prevCookiesCurrencyRef = useRef(cookies.currency);
   const [currency, setCurrency] = useState<string>(
     cookies.currency || defaultCurrency,

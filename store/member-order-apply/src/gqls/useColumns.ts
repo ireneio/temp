@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { availableProductsForApplyOrderFragment } from '@store/apollo/lib/productsObjectType';
+import { availableProductsForApplyOrderFragment } from '@store/apollo/lib/gqls/productsObjectType';
 import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 

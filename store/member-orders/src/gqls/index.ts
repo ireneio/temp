@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { orderOrderApplyFragment } from '@store/apollo/lib/Order';
+import { orderOrderApplyFragment } from '@store/apollo/lib/gqls/order';
 
 import { useColumnsOrdersFragment } from './useColumns';
 

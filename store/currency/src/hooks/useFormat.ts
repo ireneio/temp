@@ -3,7 +3,6 @@ import { CurrencyType } from '@meepshop/context';
 
 // import
 import { useCallback } from 'react';
-import gql from 'graphql-tag';
 import fx from 'money';
 
 import { format } from '@meepshop/context/lib/Currency';
@@ -12,13 +11,6 @@ import { format } from '@meepshop/context/lib/Currency';
 import { useFormatFragment as useFormatFragmentType } from '@meepshop/types/gqls/store';
 
 // definition
-export const useFormatFragment = gql`
-  fragment useFormatFragment on Store {
-    id
-    currency
-  }
-`;
-
 export default (
   customerCurrency: string,
   store: useFormatFragmentType | null,

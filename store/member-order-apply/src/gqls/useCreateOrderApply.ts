@@ -3,9 +3,9 @@ import gql from 'graphql-tag';
 
 // graphql import
 import {
-  createOrderApplyWithOrderOrderClientFragment,
   createOrderApplyWithOrderOrderApplyFragment,
-} from '@store/apollo/lib/createOrderApplyWithOrder';
+  createOrderApplyWithOrderOrderClientFragment,
+} from '@store/apollo/lib/gqls/createOrderApplyWithOrder';
 
 // definition
 export const createOrderApply = gql`

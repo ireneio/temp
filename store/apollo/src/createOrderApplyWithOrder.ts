@@ -1,92 +1,20 @@
 // typescript import
 import { ContextType } from '@meepshop/apollo';
 
-// import
-import gql from 'graphql-tag';
-
 // graphql typescript
 import {
   createOrderApplyWithOrderOrderApplyFragment as createOrderApplyWithOrderOrderApplyFragmentType,
-  getOrderCache,
-  updateOrderApplyCache,
+  getOrderCache as getOrderCacheType,
+  updateOrderApplyCache as updateOrderApplyCacheType,
 } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { orderOrderFragment, orderOrderApplyFragment } from './Order';
 import {
-  availableProductsForApplyOrderFragment,
-  productsObjectTypeOrderApplyFragment,
-} from './productsObjectType';
+  getOrderCache,
+  updateOrderApplyCache,
+} from './gqls/createOrderApplyWithOrder';
 
 // definition
-export const createOrderApplyWithOrderOrderClientFragment = gql`
-  fragment createOrderApplyWithOrderOrderClientFragment on Order {
-    id
-    applications {
-      id
-      extra {
-        id
-        product {
-          id
-        }
-      }
-    }
-    products {
-      id
-      availableQuantity
-    }
-    isAvailableForPayLater
-    isAvailableForOrderApply
-    isOrderApplied
-    status
-  }
-`;
-
-export const createOrderApplyWithOrderOrderFragment = gql`
-  fragment createOrderApplyWithOrderOrderFragment on Order {
-    id
-    ...availableProductsForApplyOrderFragment
-    ...orderOrderFragment
-  }
-
-  ${availableProductsForApplyOrderFragment}
-  ${orderOrderFragment}
-`;
-
-export const createOrderApplyWithOrderOrderApplyFragment = gql`
-  fragment createOrderApplyWithOrderOrderApplyFragment on OrderApply {
-    id
-    ...orderOrderApplyFragment
-    ...productsObjectTypeOrderApplyFragment
-  }
-
-  ${orderOrderApplyFragment}
-  ${productsObjectTypeOrderApplyFragment}
-`;
-
-const query = gql`
-  query getOrderCache($orderId: ID!) {
-    viewer {
-      id
-      order(orderId: $orderId) {
-        id
-        ...createOrderApplyWithOrderOrderFragment
-      }
-    }
-
-    getOrderApplyList(
-      search: { sort: [{ field: "createdAt", order: "desc" }] }
-    ) {
-      data {
-        ...createOrderApplyWithOrderOrderApplyFragment
-      }
-    }
-  }
-
-  ${createOrderApplyWithOrderOrderFragment}
-  ${createOrderApplyWithOrderOrderApplyFragment}
-`;
-
 export const resolvers = {
   Mutation: {
     createOrderApplyWithOrder: (
@@ -98,8 +26,8 @@ export const resolvers = {
       { orderId }: { orderId: string },
       { cache }: ContextType,
     ) => {
-      const orderCache = cache.readQuery<getOrderCache>({
-        query,
+      const orderCache = cache.readQuery<getOrderCacheType>({
+        query: getOrderCache,
         variables: {
           orderId,
         },
@@ -111,20 +39,8 @@ export const resolvers = {
         data: [...(createOrderApplyList || []), ...(applications || [])],
       };
 
-      cache.writeQuery<updateOrderApplyCache>({
-        query: gql`
-          query updateOrderApplyCache {
-            getOrderApplyList(
-              search: { sort: [{ field: "createdAt", order: "desc" }] }
-            ) {
-              data {
-                ...createOrderApplyWithOrderOrderApplyFragment
-              }
-            }
-          }
-
-          ${createOrderApplyWithOrderOrderApplyFragment}
-        `,
+      cache.writeQuery<updateOrderApplyCacheType>({
+        query: updateOrderApplyCache,
         data: {
           getOrderApplyList,
         },

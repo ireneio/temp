@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { orderOrderFragment } from '@store/apollo/lib/Order';
+import { orderOrderFragment } from '@store/apollo/lib/gqls/order';
 import { actionsFragment } from './actions';
 
 // definition
