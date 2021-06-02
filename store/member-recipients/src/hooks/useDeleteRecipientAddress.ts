@@ -12,7 +12,7 @@ import { useTranslation } from '@meepshop/locales';
 // graphql typescript
 import {
   deleteRecipientAddress as deleteRecipientAddressType,
-  deleteRecipientAddressVariables,
+  deleteRecipientAddressVariables as deleteRecipientAddressVariablesType,
   useDeleteRecipientAddressGetCache as useDeleteRecipientAddressGetCacheType,
   useDeleteRecipientAddressFragment as useDeleteRecipientAddressFragmentType,
 } from '@meepshop/types/gqls/store';
@@ -27,12 +27,12 @@ import {
 // definition
 export default (): MutationFunction<
   deleteRecipientAddressType,
-  deleteRecipientAddressVariables
+  deleteRecipientAddressVariablesType
 > => {
   const { t } = useTranslation('member-recipients');
   const [mutation] = useMutation<
     deleteRecipientAddressType,
-    deleteRecipientAddressVariables
+    deleteRecipientAddressVariablesType
   >(deleteRecipientAddress);
 
   return ({
@@ -40,7 +40,7 @@ export default (): MutationFunction<
     ...options
   }: MutationHookOptions<
     deleteRecipientAddressType,
-    deleteRecipientAddressVariables
+    deleteRecipientAddressVariablesType
   >) =>
     mutation({
       ...options,

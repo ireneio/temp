@@ -11,30 +11,6 @@ export const addRecipientAddress = gql`
   }
 `;
 
-export const useAddRecipientAddressGetCache = gql`
-  query useAddRecipientAddressGetCache {
-    viewer {
-      id
-      shippableRecipientAddresses {
-        id
-        name
-        mobile
-        country {
-          id
-        }
-        city {
-          id
-        }
-        area {
-          id
-        }
-        zipCode
-        street
-      }
-    }
-  }
-`;
-
 export const useAddRecipientAddressFragment = gql`
   fragment useAddRecipientAddressFragment on User {
     id
@@ -55,4 +31,15 @@ export const useAddRecipientAddressFragment = gql`
       street
     }
   }
+`;
+
+export const useAddRecipientAddressGetCache = gql`
+  query useAddRecipientAddressGetCache {
+    viewer {
+      id
+      ...useAddRecipientAddressFragment
+    }
+  }
+
+  ${useAddRecipientAddressFragment}
 `;

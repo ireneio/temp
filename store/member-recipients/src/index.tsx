@@ -12,7 +12,9 @@ import styles from './styles/index.less';
 
 // graphql typescript
 import {
+  formStoreFragment as formStoreFragmentType,
   getUserRecipients as getUserRecipientsType,
+  formRecipientAddressFragment as formRecipientAddressFragmentType,
   useColumnsRecipientAddressFragment as useColumnsRecipientAddressFragmentType,
 } from '@meepshop/types/gqls/store';
 
@@ -43,7 +45,7 @@ export default React.memo(() => {
       <style
         dangerouslySetInnerHTML={{
           __html: `
-            .${styles.root} .ant-table-tbody > tr:hover > td {
+            .${styles.root} .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
               background: ${colors[4]};
             }
           `,
@@ -53,7 +55,7 @@ export default React.memo(() => {
       <Table<useColumnsRecipientAddressFragmentType>
         rowKey={({ id }) => id}
         columns={columns}
-        dataSource={filter(
+        dataSource={filter<useColumnsRecipientAddressFragmentType[]>(
           useColumnsRecipientAddressFragment,
           shippableRecipientAddresses,
         )}
@@ -61,11 +63,11 @@ export default React.memo(() => {
       />
 
       <Form
-        recipientAddress={filter(
+        recipientAddress={filter<formRecipientAddressFragmentType>(
           formRecipientAddressFragment,
           recipientAddress,
         )}
-        store={filter(formStoreFragment, store)}
+        store={filter<formStoreFragmentType>(formStoreFragment, store)}
         cancel={() => setSelectedId(null)}
       />
     </div>

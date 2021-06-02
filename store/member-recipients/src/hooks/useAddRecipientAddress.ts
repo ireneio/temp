@@ -9,6 +9,15 @@ import { notification } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 
+// graphql typescript
+import {
+  addRecipientAddress as addRecipientAddressType,
+  addRecipientAddressVariables as addRecipientAddressVariablesType,
+  useAddRecipientAddressGetCache as useAddRecipientAddressGetCacheType,
+  useAddRecipientAddressFragment as useAddRecipientAddressFragmentType,
+  useAddRecipientAddressFragment_shippableRecipientAddresses as useAddRecipientAddressFragmentShippableRecipientAddresses,
+} from '@meepshop/types/gqls/store';
+
 // graphql import
 import {
   addRecipientAddress,
@@ -16,24 +25,15 @@ import {
   useAddRecipientAddressFragment,
 } from '../gqls/useAddRecipientAddress';
 
-// graphql typescript
-import {
-  addRecipientAddress as addRecipientAddressType,
-  addRecipientAddressVariables,
-  useAddRecipientAddressGetCache as useAddRecipientAddressGetCacheType,
-  useAddRecipientAddressFragment as useAddRecipientAddressFragmentType,
-  useAddRecipientAddressFragment_shippableRecipientAddresses as useAddRecipientAddressFragmentShippableRecipientAddresses,
-} from '@meepshop/types/gqls/store';
-
 // definition
 export default (): MutationFunction<
   addRecipientAddressType,
-  addRecipientAddressVariables
+  addRecipientAddressVariablesType
 > => {
   const { t } = useTranslation('member-recipients');
   const [mutation] = useMutation<
     addRecipientAddressType,
-    addRecipientAddressVariables
+    addRecipientAddressVariablesType
   >(addRecipientAddress);
 
   return ({
@@ -41,7 +41,7 @@ export default (): MutationFunction<
     ...options
   }: MutationHookOptions<
     addRecipientAddressType,
-    addRecipientAddressVariables
+    addRecipientAddressVariablesType
   >) =>
     mutation({
       ...options,
