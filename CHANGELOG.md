@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.79.51 (2021-06-02)
+
+#### :bug: Bug Fix
+
+- [#1528](https://github.com/meepshop/meep-lerna/pull/1528) 【BUG】@meepshop/recipients 列表 hover 未按照色彩計畫 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 1
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.79.50 (2021-05-28)
 
 #### :rocket: New Feature
