@@ -1,6 +1,5 @@
 // import
 import React from 'react';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
@@ -14,9 +13,9 @@ import styles from './styles/index.less';
 import { infoFragment as infoFragmentType } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { cathayAtmFragment } from './CathayAtm';
-import { gmoAtmFragment } from './GmoAtm';
-import { gmoCvsFragment } from './GmoCvs';
+import { cathayAtmFragment } from './gqls/CathayAtm';
+import { gmoAtmFragment } from './gqls/GmoAtm';
+import { gmoCvsFragment } from './gqls/GmoCvs';
 
 // typescript definition
 interface PropsType {
@@ -24,27 +23,6 @@ interface PropsType {
 }
 
 // definition
-export const infoFragment = gql`
-  fragment infoFragment on Order {
-    id
-    paymentInfo {
-      id
-      list {
-        id
-        template
-      }
-    }
-
-    ...cathayAtmFragment
-    ...gmoAtmFragment
-    ...gmoCvsFragment
-  }
-
-  ${cathayAtmFragment}
-  ${gmoAtmFragment}
-  ${gmoCvsFragment}
-`;
-
 export default React.memo(({ order }: PropsType) => {
   const { t } = useTranslation('thank-you-page');
 

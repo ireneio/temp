@@ -1,7 +1,6 @@
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { filter } from 'graphql-anywhere';
 import { Spin, Icon, Progress, Button } from 'antd';
 
@@ -14,38 +13,26 @@ import useAdTrack from './hooks/useAdTrack';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getOrderInThankYouPage } from '@meepshop/types/gqls/store';
+import { getOrderInThankYouPage as getOrderInThankYouPageType } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { infoFragment } from './info';
-import { useAdTrackFragment } from './hooks/useAdTrack';
+import { getOrderInThankYouPage } from './gqls';
+import { useAdTrackFragment } from './gqls/useAdTrack';
+import { infoFragment } from './info/gqls';
 
 // definition
-const query = gql`
-  query getOrderInThankYouPage($orderId: ID!) {
-    viewer {
-      id
-      order(orderId: $orderId) {
-        id
-        ...infoFragment
-        ...useAdTrackFragment
-      }
-    }
-  }
-
-  ${infoFragment}
-  ${useAdTrackFragment}
-`;
-
 // TODO: should use getInitialProps
 export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
 
 export default React.memo(() => {
   const { t } = useTranslation('thank-you-page');
   const router = useRouter();
-  const { loading, data } = useQuery<getOrderInThankYouPage>(query, {
-    variables: { orderId: router.query.orderId },
-  });
+  const { loading, data } = useQuery<getOrderInThankYouPageType>(
+    getOrderInThankYouPage,
+    {
+      variables: { orderId: router.query.orderId },
+    },
+  );
   const order = data?.viewer?.order || null;
 
   useClipboard(loading, order?.id || null);

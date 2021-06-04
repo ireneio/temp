@@ -1,6 +1,5 @@
 // import
 import React, { useContext } from 'react';
-import gql from 'graphql-tag';
 import moment from 'moment';
 
 import { useTranslation } from '@meepshop/locales';
@@ -19,31 +18,6 @@ interface PropsType {
 }
 
 // definition
-export const gmoCvsFragment = gql`
-  fragment gmoCvsFragment on Order {
-    id
-    paymentInfo {
-      id
-      list {
-        id
-        cvsPayCode {
-          payCode
-          expireDate
-        }
-        accountInfo {
-          gmo {
-            paymentType
-          }
-        }
-      }
-    }
-
-    priceInfo {
-      total
-    }
-  }
-`;
-
 export default React.memo(({ order, children }: PropsType) => {
   const { t } = useTranslation('thank-you-page');
   const { c } = useContext(CurrencyContext);
