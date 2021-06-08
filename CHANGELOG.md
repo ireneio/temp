@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.79.52 (2021-06-08)
+
+#### :boom: Breaking Change
+
+- [#1463](https://github.com/meepshop/meep-lerna/pull/1463) 【功能】 綠界超商 - 大量手動拋單 ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- [#1469](https://github.com/meepshop/meep-lerna/pull/1469) 【優化】後台/訂單明細新增 & 同步：綠界物流編號、配送單號 ([@piovischioh](https://github.com/piovischioh))
+- [#1463](https://github.com/meepshop/meep-lerna/pull/1463) 【功能】 綠界超商 - 大量手動拋單 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.79.51 (2021-06-02)
 
 #### :bug: Bug Fix
