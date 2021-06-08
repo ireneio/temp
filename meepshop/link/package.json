@@ -4,11 +4,11 @@
   "description": "Link wrapper to handle next.js link",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.79.45",
+  "version": "0.79.52",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/utils": "^0.79.45",
+    "@meepshop/utils": "^0.79.52",
     "path-to-regexp": "^3.1.0"
   },
   "keywords": ["link", "meepshop"]
