@@ -1,4 +1,9 @@
 {
+  "title": {
+    "orders": "注文",
+    "ecpay": "グリーン配送管理",
+    "ecfit": "ECFIT注文管理"
+  },
   "change": "変化する",
   "change-status": {
     "title": "ステータスを変更する",
@@ -45,7 +50,18 @@
     "shipmentStatusList-title": "配送状況",
     "shipmentIdList-title": "配送方法",
     "reset": "リセット",
-    "filter": "フィルタ"
+    "filter": "フィルタ",
+    "no-option": "規制されていないプロジェクト"
+  },
+  "orders": {
+    "order-no": "注文番号",
+    "shipment-name": "発送方法",
+    "payment-status": "支払い状況",
+    "shipment-status": "配送状況",
+    "order-status": "注文の状況",
+    "recipient": "受取人",
+    "amount": "量",
+    "create-at": "時間を確立する"
   },
   "orderStatusList": {
     "PROCESSING": "処理",
@@ -71,7 +87,10 @@
     "RETURN": "返品処理",
     "DATA_ERROR": "間違った情報"
   },
-  "send": "{{service}}に注文を送信します",
+  "send": {
+    "ecfit": "ECFITへの転送注文",
+    "ecpay": "グリーンへの転送注文"
+  },
   "empty-orders": "注文情報なし",
   "orders-info": {
     "total": "{{total}}合計",

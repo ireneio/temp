@@ -1,46 +1,12 @@
 {
-  "title": "ECFIT注文管理",
-  "service": "ECFIT",
   "status": {
     "NOT_SENT": "未送信",
     "SENT_SUCCESSFUL": "送信済み",
     "SENT_FAILED": "送信に失敗しました"
   },
   "orders": {
-    "order-no": "注文番号",
-    "shipment-name": "発送方法",
-    "payment-status": "支払い状況",
-    "shipment-status": "配送状況",
-    "order-status": "注文の状況",
-    "recipient": "受取人",
-    "amount": "量",
-    "create-at": "時間を確立する",
     "send-time": "納期",
     "fail-reason": "失敗の理由"
-  },
-  "orderStatusList": {
-    "PROCESSING": "処理",
-    "CANCELED": "注文をキャンセルする",
-    "RETURN": "返品および交換処理",
-    "CLOSED": "注文の締め切り"
-  },
-  "paymentStatusList": {
-    "WAITING": "確認を待ちます",
-    "NOTIFICATED": "送金通知",
-    "RECONCILED": "調整が完了しました",
-    "DATA_ERROR": "データエラー",
-    "FAILED": "支払いが失敗する",
-    "REFUND": "払い戻し処理"
-  },
-  "shipmentStatusList": {
-    "NOT_YET": "出荷されていません",
-    "PREPARING": "ストッキング",
-    "OUT_OF_STOCK": "在庫切れ",
-    "SHIPPED": "出荷済み",
-    "PRE_ORDER": "予約注文",
-    "EXCHANGE": "交換処理",
-    "RETURN": "返品処理",
-    "DATA_ERROR": "間違った情報"
   },
   "fail-reason": {
     "FAIL_TIMEOUT": "タイムアウト",

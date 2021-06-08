@@ -1,0 +1,16 @@
+{
+  "success": "{{金額}}成功しました",
+  "fail": "注文送信に失敗しました",
+  "orderNo": "注文番号",
+  "reason": "間違った理由",
+  "error": "予想されない場合は、カスタマーサービスサポートサービスにお問い合わせください。",
+  "confirm": "判断する",
+  "logistic-status": "貨物のステータス",
+  "logistic-status-tip": "最新の緑色の物流順序に対応してください",
+  "status": {
+    "PROCESSING": "処理",
+    "MANUAL_PROCESSING": "人工治療",
+    "PLACING": "ロジスティクスシングル",
+    "FAIL_TO_PLACE": "ロジスティクスシングルビルドエラー"
+  }
+}

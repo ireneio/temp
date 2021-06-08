@@ -13,8 +13,7 @@ import { useTranslation } from '@meepshop/locales';
 import {
   createEcfitOrder as createEcfitOrderType,
   createEcfitOrderVariables as createEcfitOrderVariablesType,
-  useUpdateCreateEcfitOrdersOrderConnectionFragment as useUpdateCreateEcfitOrdersOrderConnectionFragmentType,
-  useUpdateCreateEciftOrderFragment as useUpdateCreateEciftOrderFragmentType,
+  useUpdateCreateEciftOrderUserFragment as useUpdateCreateEciftOrderUserFragmentFragmentType,
   useUpdateCreateEcfitOrdersStoreFragment as useUpdateCreateEcfitOrdersStoreFragmentType,
   getEcfitList,
   getEcfitListVariables,
@@ -32,21 +31,19 @@ interface PropsType
     QueryResult<getEcfitList, getEcfitListVariables>,
     'variables' | 'fetchMore'
   > {
-  user: useUpdateCreateEciftOrderFragmentType | null;
-  selectedOrders: useUpdateCreateEcfitOrdersOrderConnectionFragmentType | null;
+  user: useUpdateCreateEciftOrderUserFragmentFragmentType | null;
 }
 
 export default ({
   user,
   variables,
-  selectedOrders,
   fetchMore,
 }: PropsType): {
   runningIds: string[];
-  updateCreateEcfitOrder: () => Promise<void>;
+  updateCreateEcfitOrder: (selectedIds: string[]) => Promise<void>;
 } => {
   const isEnabled = user?.store?.storeEcfitSettings?.isEnabled;
-  const orders = user?.orders || null;
+  const orders = user?.orders;
   const storeId = user?.store?.id || '';
 
   const [runningIds, setRunningIds] = useState<string[]>([]);
@@ -69,121 +66,108 @@ export default ({
       });
   }, [isEnabled, t]);
 
-  const updateCreateEcfitOrder = useCallback(async () => {
-    if (!selectedOrders || !orders) return;
+  const updateCreateEcfitOrder = useCallback(
+    async (selectedIds: string[]) => {
+      if (!orders) return;
 
-    const ecfitSentStatus = variables?.filter?.ecfitSentStatus;
-    // SHOULD_NOT_BE_NULL
-    const selectedIds = selectedOrders.edges.map(
-      ({ node: { id } }) => id || 'null-id',
-    );
-    let isFail = false;
+      const ecfitSentStatus = variables?.filter?.ecfitSentStatus;
+      // SHOULD_NOT_BE_NULL
+      let isFail = false;
 
-    setRunningIds(selectedIds);
+      setRunningIds(selectedIds);
 
-    const successIds = (
-      await Promise.all(
-        selectedIds.map(orderId =>
-          mutation({
-            variables: {
-              input: { orderId },
-            },
-          }),
-        ),
-      )
-    ).reduce((result, response, index) => {
-      const status = response?.data?.createEcfitOrder.status;
+      const successIds = (
+        await Promise.all(
+          selectedIds.map(orderId =>
+            mutation({
+              variables: {
+                input: { orderId },
+              },
+            }),
+          ),
+        )
+      ).reduce((result, response, index) => {
+        const status = response?.data?.createEcfitOrder.status;
 
-      if (!status) return result;
+        if (!status) return result;
 
-      if (
-        isEnabled &&
-        ['FAIL_ECFIT_NOT_ENABLED', 'FAIL_ECFIT_NOT_AUTHORIZED'].includes(status)
-      )
-        isFail = true;
+        if (
+          isEnabled &&
+          ['FAIL_ECFIT_NOT_ENABLED', 'FAIL_ECFIT_NOT_AUTHORIZED'].includes(
+            status,
+          )
+        )
+          isFail = true;
 
-      if (
-        ecfitSentStatus === 'NOT_SENT' ||
-        (ecfitSentStatus === 'SENT_FAILED' && status === 'OK')
-      )
-        return [...result, selectedIds[index]];
+        if (
+          ecfitSentStatus === 'NOT_SENT' ||
+          (ecfitSentStatus === 'SENT_FAILED' && status === 'OK')
+        )
+          return [...result, selectedIds[index]];
 
-      return result;
-    }, []);
+        return result;
+      }, []);
 
-    if (isFail) {
-      client.writeFragment<useUpdateCreateEcfitOrdersStoreFragmentType>({
-        id: storeId,
-        fragment: useUpdateCreateEcfitOrdersStoreFragment,
-        data: {
-          __typename: 'Store',
+      if (isFail) {
+        client.writeFragment<useUpdateCreateEcfitOrdersStoreFragmentType>({
           id: storeId,
-          storeEcfitSettings: {
-            __typename: 'StoreEcfitSettings',
-            isEnabled: false,
+          fragment: useUpdateCreateEcfitOrdersStoreFragment,
+          data: {
+            __typename: 'Store',
+            id: storeId,
+            storeEcfitSettings: {
+              __typename: 'StoreEcfitSettings',
+              isEnabled: false,
+            },
           },
+        });
+
+        return;
+      }
+
+      if (successIds.length === 0) {
+        setRunningIds([]);
+      }
+
+      const {
+        pageInfo: { endCursor },
+      } = orders;
+
+      await fetchMore({
+        variables: {
+          cursor: endCursor,
+          first: successIds.length,
+        },
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          if (!previousResult.viewer) return previousResult;
+
+          return {
+            ...previousResult,
+            viewer: {
+              ...previousResult.viewer,
+              orders: {
+                __typename: 'OrderConnection',
+                edges: [
+                  ...(previousResult?.viewer.orders?.edges || []).filter(
+                    ({ node: { id } }) =>
+                      !successIds.includes(
+                        id || 'null id' /** SHOULD_NOT_BE_NULL */,
+                      ),
+                  ),
+                  ...(fetchMoreResult?.viewer?.orders?.edges || []),
+                ],
+                pageInfo: fetchMoreResult?.viewer?.orders?.pageInfo,
+                total: fetchMoreResult?.viewer?.orders?.total,
+              },
+            },
+          };
         },
       });
 
-      return;
-    }
-
-    if (successIds.length === 0) {
       setRunningIds([]);
-    }
-
-    const {
-      pageInfo: { endCursor },
-    } = orders;
-
-    await fetchMore({
-      variables: {
-        cursor: endCursor,
-        first: successIds.length,
-      },
-      updateQuery: (previousResult, { fetchMoreResult }) => {
-        if (!previousResult.viewer) return previousResult;
-
-        return {
-          ...previousResult,
-          viewer: {
-            ...previousResult.viewer,
-            orders: {
-              __typename: 'OrderConnection',
-              edges: [
-                ...(previousResult?.viewer.orders?.edges || []).filter(
-                  ({ node: { id } }) =>
-                    !successIds.includes(
-                      id || 'null id' /** SHOULD_NOT_BE_NULL */,
-                    ),
-                ),
-                ...(fetchMoreResult?.viewer?.orders?.edges || []),
-              ],
-              pageInfo: fetchMoreResult?.viewer?.orders?.pageInfo,
-              total: fetchMoreResult?.viewer?.orders?.total,
-            },
-          },
-          selectedOrders: {
-            ...previousResult.selectedOrders,
-            edges: previousResult.selectedOrders.edges.filter(
-              ({ node: { id } }) => !successIds.includes(id as string),
-            ),
-          },
-        };
-      },
-    });
-
-    setRunningIds([]);
-  }, [
-    mutation,
-    storeId,
-    client,
-    isEnabled,
-    variables,
-    selectedOrders,
-    orders,
-    fetchMore,
-  ]);
+    },
+    [mutation, storeId, client, isEnabled, variables, orders, fetchMore],
+  );
 
   return { runningIds, updateCreateEcfitOrder };
 };

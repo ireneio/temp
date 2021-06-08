@@ -1,46 +1,12 @@
 {
-  "title": "Gestión de pedidos ECFIT",
-  "service": "ECFIT",
   "status": {
     "NOT_SENT": "No enviado",
     "SENT_SUCCESSFUL": "Expedida",
     "SENT_FAILED": "Envío fallido"
   },
   "orders": {
-    "order-no": "Número de orden",
-    "shipment-name": "Método de envío",
-    "payment-status": "Estado de pago",
-    "shipment-status": "Estado del envío",
-    "order-status": "Estado del pedido",
-    "recipient": "Recipiente",
-    "amount": "Cantidad",
-    "create-at": "Establecer tiempo",
     "send-time": "El tiempo de entrega",
     "fail-reason": "Motivo del fracaso"
-  },
-  "orderStatusList": {
-    "PROCESSING": "Procesando",
-    "CANCELED": "cancelar orden",
-    "RETURN": "Procesamiento de devolución y cambio",
-    "CLOSED": "Cierre de orden"
-  },
-  "paymentStatusList": {
-    "WAITING": "esperando confirmación",
-    "NOTIFICATED": "Aviso de remesa",
-    "RECONCILED": "Conciliación completada",
-    "DATA_ERROR": "Error de datos",
-    "FAILED": "Pago fallido",
-    "REFUND": "Procesamiento de reembolso"
-  },
-  "shipmentStatusList": {
-    "NOT_YET": "No enviado",
-    "PREPARING": "Media",
-    "OUT_OF_STOCK": "Agotado",
-    "SHIPPED": "Enviado",
-    "PRE_ORDER": "hacer un pedido",
-    "EXCHANGE": "Procesamiento de cambio",
-    "RETURN": "Procesamiento de devoluciones",
-    "DATA_ERROR": "Información incorrecta"
   },
   "fail-reason": {
     "FAIL_TIMEOUT": "Se acabó el tiempo",

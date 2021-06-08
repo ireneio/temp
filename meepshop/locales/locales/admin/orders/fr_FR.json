@@ -1,4 +1,9 @@
 {
+  "title": {
+    "orders": "Ordre",
+    "ecpay": "Gestion d'expédition verte",
+    "ecfit": "Gestion des commandes ECFIT"
+  },
   "change": "changement",
   "change-status": {
     "title": "Changer de statut",
@@ -45,7 +50,18 @@
     "shipmentStatusList-title": "Statut d'envoi",
     "shipmentIdList-title": "Mode de livraison",
     "reset": "réinitialiser",
-    "filter": "filtre"
+    "filter": "filtre",
+    "no-option": "Projet non réglementé"
+  },
+  "orders": {
+    "order-no": "Numéro de commande",
+    "shipment-name": "Méthode d'envoi",
+    "payment-status": "Statut de paiement",
+    "shipment-status": "Statut d'envoi",
+    "order-status": "Statut de la commande",
+    "recipient": "Bénéficiaire",
+    "amount": "Montante",
+    "create-at": "Établir le temps"
   },
   "orderStatusList": {
     "PROCESSING": "En traitement",
@@ -71,7 +87,10 @@
     "RETURN": "Traitement des retours",
     "DATA_ERROR": "Information incorrecte"
   },
-  "send": "Envoyer la commande à {{service}}",
+  "send": {
+    "ecfit": "Ordre de transfert à ECFIT",
+    "ecpay": "Transférer l'ordre au vert"
+  },
   "empty-orders": "Aucune information de commande",
   "orders-info": {
     "total": "{{total}} au total",

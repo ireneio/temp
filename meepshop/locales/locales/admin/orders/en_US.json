@@ -1,4 +1,9 @@
 {
+  "title": {
+    "orders": "Order",
+    "ecpay": "Green shipping management",
+    "ecfit": "ECFIT orders management"
+  },
   "change": "change",
   "change-status": {
     "title": "Change status",
@@ -45,7 +50,18 @@
     "shipmentStatusList-title": "Shipping status",
     "shipmentIdList-title": "Shipping method",
     "reset": "reset",
-    "filter": "filter"
+    "filter": "filter",
+    "no-option": "Unregulated project"
+  },
+  "orders": {
+    "order-no": "Order number",
+    "shipment-name": "Shipping method",
+    "payment-status": "Payment status",
+    "shipment-status": "Shipping status",
+    "order-status": "Order status",
+    "recipient": "Recipient",
+    "amount": "Amount",
+    "create-at": "Establish time"
   },
   "orderStatusList": {
     "PROCESSING": "Processing",
@@ -71,7 +87,10 @@
     "RETURN": "Return processing",
     "DATA_ERROR": "Incorrect information"
   },
-  "send": "Send order to {{ service }}",
+  "send": {
+    "ecfit": "Transfer order to ECFIT",
+    "ecpay": "Transfer order to the green"
+  },
   "empty-orders": "No order information",
   "orders-info": {
     "total": "{{total}} total",

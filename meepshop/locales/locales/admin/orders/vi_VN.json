@@ -1,4 +1,9 @@
 {
+  "title": {
+    "orders": "Đặt hàng",
+    "ecpay": "Quản lý vận chuyển xanh",
+    "ecfit": "Quản lý đơn hàng ECFIT."
+  },
   "change": "thay đổi",
   "change-status": {
     "title": "Thay đổi trạng thái",
@@ -45,7 +50,18 @@
     "shipmentStatusList-title": "Tình trạng giao hàng",
     "shipmentIdList-title": "Phương pháp vận chuyển",
     "reset": "cài lại",
-    "filter": "bộ lọc"
+    "filter": "bộ lọc",
+    "no-option": "Dự án không được kiểm soát"
+  },
+  "orders": {
+    "order-no": "Số thứ tự",
+    "shipment-name": "Phương pháp vận chuyển",
+    "payment-status": "Tình trạng thanh toán",
+    "shipment-status": "Tình trạng giao hàng",
+    "order-status": "Tình trạng đặt hàng",
+    "recipient": "Người nhận",
+    "amount": "Số tiền",
+    "create-at": "Thiết lập thời gian"
   },
   "orderStatusList": {
     "PROCESSING": "Chế biến",
@@ -71,7 +87,10 @@
     "RETURN": "Xử lý hoàn trả",
     "DATA_ERROR": "Thông tin không chính xác"
   },
-  "send": "Gửi đơn đặt hàng đến {{service}}",
+  "send": {
+    "ecfit": "ĐẶT HÀNG ĐẶT HÀNG ĐẾN ECFIT",
+    "ecpay": "Chuyển lệnh đến màu xanh lá cây"
+  },
   "empty-orders": "Không có thông tin đặt hàng",
   "orders-info": {
     "total": "Tổng {{total}}",

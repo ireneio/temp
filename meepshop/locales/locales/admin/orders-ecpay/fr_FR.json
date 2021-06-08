@@ -1,0 +1,16 @@
+{
+  "success": "{{Montant}} réussi",
+  "fail": "Échec de la transmission de commande",
+  "orderNo": "Numéro de commande",
+  "reason": "raison erronée",
+  "error": "Si vous n'êtes pas prévu, veuillez contacter le service d'assistance du service clientèle.",
+  "confirm": "déterminer",
+  "logistic-status": "État de fret",
+  "logistic-status-tip": "Correspondant à la dernière commande logistique verte",
+  "status": {
+    "PROCESSING": "Traitement",
+    "MANUAL_PROCESSING": "Traitement artificiel",
+    "PLACING": "Logistique unique",
+    "FAIL_TO_PLACE": "Erreur logistique unique construite"
+  }
+}

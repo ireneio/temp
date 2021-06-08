@@ -6,8 +6,8 @@ import {
   advancedSearchStorePaymentFragment,
   advancedSearchStoreShipmentFragment,
 } from '../advancedSearch/gqls';
-import { changeStatusOrderConnectionFragment } from './changeStatus';
 import { tagsStorePaymentFragment, tagsStoreShipmentFragment } from './tags';
+import { useOrdersColumnsFragment } from './useOrdersColumns';
 
 // definition
 export const OrdersOrderConnectionFragment = gql`
@@ -33,9 +33,6 @@ export const OrdersOrderConnectionFragment = gql`
 export const OrdersStoreFragment = gql`
   fragment OrdersStoreFragment on Store {
     id
-    storeEcfitSettings {
-      isEnabled
-    }
     storePayments {
       ...advancedSearchStorePaymentFragment
       ...tagsStorePaymentFragment
@@ -43,6 +40,9 @@ export const OrdersStoreFragment = gql`
     storeShipments {
       ...advancedSearchStoreShipmentFragment
       ...tagsStoreShipmentFragment
+    }
+    storeEcfitSettings {
+      isEnabled
     }
   }
 
@@ -62,6 +62,7 @@ export const getOrders = gql`
       id
       orders(first: $first, after: $cursor, filter: $filter) {
         ...OrdersOrderConnectionFragment
+        ...useOrdersColumnsFragment
       }
 
       store {
@@ -69,19 +70,9 @@ export const getOrders = gql`
         ...OrdersStoreFragment
       }
     }
-
-    selectedOrders @client {
-      ...changeStatusOrderConnectionFragment
-    }
   }
 
-  ${changeStatusOrderConnectionFragment}
   ${OrdersOrderConnectionFragment}
   ${OrdersStoreFragment}
-`;
-
-export const setOrdersToSelectedOrders = gql`
-  mutation setOrdersToSelectedOrders($input: SetOrdersToSelectedOrdersInput!) {
-    setOrdersToSelectedOrders(input: $input) @client
-  }
+  ${useOrdersColumnsFragment}
 `;

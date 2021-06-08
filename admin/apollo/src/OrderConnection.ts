@@ -4,6 +4,8 @@ import { Resolver } from 'apollo-client/core/LocalState';
 // graphql typescript
 import {
   getEcfitList_viewer as getEcfitListViewer,
+  getEcpayList_viewer as getEcpayListViewer,
+  getEcpayListVariables,
   OrdersOrderConnectionFragment_pageInfo as OrdersOrderConnectionFragmentPageInfo,
 } from '@meepshop/types/gqls/admin';
 
@@ -32,8 +34,15 @@ export const resolvers = {
 
       return {
         ...parent[alias],
-        ...(alias === 'orders' ? { key: 'orders-ecfit' } : null),
+        ...(alias === 'orders' ? { key: 'ecfit' } : null),
       };
     },
+    orders: (
+      parent: getEcpayListViewer & { [key: string]: {} },
+      args: getEcpayListVariables,
+    ) => ({
+      ...parent.orders,
+      ...(!args.filter?.logisticTrackingStatus ? null : { key: 'ecpay' }),
+    }),
   },
 };

@@ -16,6 +16,7 @@ import {
   advancedSearchStorePaymentFragment as advancedSearchStorePaymentFragmentType,
   advancedSearchStorePaymentFragment_title as advancedSearchStorePaymentFragmentTitle,
   advancedSearchStoreShipmentFragment as advancedSearchStoreShipmentFragmentType,
+  OrderFilterInput,
   EcfitOrderFilterInput,
 } from '@meepshop/types/gqls/admin';
 
@@ -23,7 +24,7 @@ import {
 interface PropsType {
   storePayments: advancedSearchStorePaymentFragmentType[];
   storeShipments: advancedSearchStoreShipmentFragmentType[];
-  optionsKey: keyof EcfitOrderFilterInput;
+  optionsKey: keyof OrderFilterInput | keyof EcfitOrderFilterInput;
   options: string[];
   filter: OrdersQueryResult['variables']['filter'];
   setFilter: (filter: OrdersQueryResult['variables']['filter']) => void;
@@ -69,6 +70,8 @@ export default ({
 
   return (
     <Select
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       value={(filter?.[optionsKey] || []) as string[]}
       onChange={(value?: string[]) =>
         setFilter({
@@ -80,6 +83,8 @@ export default ({
         `advanced-search.${optionsKey}-title`,
       )}`}
       mode="multiple"
+      optionFilterProp="children"
+      notFoundContent={t('advanced-search.no-option')}
     >
       {Options}
     </Select>

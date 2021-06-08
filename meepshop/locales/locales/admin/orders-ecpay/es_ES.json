@@ -1,0 +1,16 @@
+{
+  "success": "{{Cantidad}} exitosa",
+  "fail": "Falló la transmisión del pedido",
+  "orderNo": "Número de orden",
+  "reason": "razón equivocada",
+  "error": "Si no se espera, comuníquese con el servicio de soporte de servicio al cliente.",
+  "confirm": "determinar",
+  "logistic-status": "Estado de carga",
+  "logistic-status-tip": "Correspondiente a la última orden de logística verde",
+  "status": {
+    "PROCESSING": "Procesando",
+    "MANUAL_PROCESSING": "Tratamiento artificial",
+    "PLACING": "Logística única",
+    "FAIL_TO_PLACE": "Error de logística de una sola construcción"
+  }
+}

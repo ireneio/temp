@@ -1,0 +1,16 @@
+{
+  "success": "{{Số lượng}} thành công",
+  "fail": "Truyền lệnh không thành công",
+  "orderNo": "Thứ tự số",
+  "reason": "sai lý do",
+  "error": "Nếu bạn không mong đợi, xin vui lòng liên hệ với dịch vụ hỗ trợ dịch vụ khách hàng.",
+  "confirm": "mục đích",
+  "logistic-status": "Trạng thái vận chuyển hàng hóa",
+  "logistic-status-tip": "Tương ứng với thứ tự hậu cần xanh mới nhất",
+  "status": {
+    "PROCESSING": "Chế biến",
+    "MANUAL_PROCESSING": "Điều trị nhân tạo",
+    "PLACING": "Logistics đơn",
+    "FAIL_TO_PLACE": "LOGISTICS MÀU SẮC ĐẤT"
+  }
+}

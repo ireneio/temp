@@ -20,6 +20,7 @@ interface PropsType
     Omit<DrawerProps, 'visible' | 'closable' | 'title' | 'onClose'> {
   visible: boolean;
   onClose?: () => void;
+  selectedIds: string[];
 }
 
 // definition
@@ -32,6 +33,7 @@ export default Form.create<PropsType>()(
       onClose,
       className,
       form: { getFieldDecorator, getFieldValue, validateFields },
+      selectedIds,
       ...props
     }: PropsType) => {
       const { t } = useTranslation('orders-export');
@@ -40,7 +42,7 @@ export default Form.create<PropsType>()(
         options,
         exportStatus,
         requestExportFile,
-      } = useOrderExport();
+      } = useOrderExport(selectedIds);
 
       return (
         <Drawer

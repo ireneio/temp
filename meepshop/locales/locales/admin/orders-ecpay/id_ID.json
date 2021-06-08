@@ -1,0 +1,16 @@
+{
+  "success": "{{Jumlah}} berhasil",
+  "fail": "Transmisi pesanan gagal",
+  "orderNo": "Jumlah order",
+  "reason": "alasan yang salah",
+  "error": "Jika Anda tidak diharapkan, silakan hubungi layanan dukungan layanan pelanggan.",
+  "confirm": "menentukan",
+  "logistic-status": "Status Pengiriman",
+  "logistic-status-tip": "Sesuai dengan urutan logistik hijau terbaru",
+  "status": {
+    "PROCESSING": "Pengolahan",
+    "MANUAL_PROCESSING": "Perawatan buatan.",
+    "PLACING": "Logistik Lajang",
+    "FAIL_TO_PLACE": "Logistik kesalahan buatan tunggal"
+  }
+}

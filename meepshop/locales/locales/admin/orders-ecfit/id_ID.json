@@ -1,46 +1,12 @@
 {
-  "title": "ECFIT order management",
-  "service": "ECFIT",
   "status": {
     "NOT_SENT": "Tidak ada",
     "SENT_SUCCESSFUL": "Terkirim",
     "SENT_FAILED": "Pengiriman gagal"
   },
   "orders": {
-    "order-no": "Jumlah order",
-    "shipment-name": "Metode pengiriman",
-    "payment-status": "Status pembayaran",
-    "shipment-status": "Status pengiriman",
-    "order-status": "Status pemesanan",
-    "recipient": "Penerima",
-    "amount": "Jumlah",
-    "create-at": "Tetapkan waktu",
     "send-time": "Waktu pengiriman",
     "fail-reason": "Alasan kegagalan"
-  },
-  "orderStatusList": {
-    "PROCESSING": "Pengolahan",
-    "CANCELED": "Batalkan pesanan",
-    "RETURN": "Proses pengembalian dan penukaran",
-    "CLOSED": "Penutupan pesanan"
-  },
-  "paymentStatusList": {
-    "WAITING": "Menunggu kepastian",
-    "NOTIFICATED": "Pemberitahuan pengiriman uang",
-    "RECONCILED": "Rekonsiliasi selesai",
-    "DATA_ERROR": "Kesalahan data",
-    "FAILED": "Pembayaran Gagal",
-    "REFUND": "Pemrosesan pengembalian dana"
-  },
-  "shipmentStatusList": {
-    "NOT_YET": "Tidak dikirim",
-    "PREPARING": "Kaus",
-    "OUT_OF_STOCK": "Kehabisan persediaan",
-    "SHIPPED": "Dikirim",
-    "PRE_ORDER": "pesan terlebih dahulu",
-    "EXCHANGE": "Pemrosesan pertukaran",
-    "RETURN": "Pemrosesan kembali",
-    "DATA_ERROR": "Informasi salah"
   },
   "fail-reason": {
     "FAIL_TIMEOUT": "Waktu habis",

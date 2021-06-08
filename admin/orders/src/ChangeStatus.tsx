@@ -6,21 +6,18 @@ import { useTranslation } from '@meepshop/locales';
 
 import useChangeStatus from './hooks/useChangeStatus';
 
-// graphql typescript
-import { changeStatusOrderConnectionFragment } from '@meepshop/types/gqls/admin';
-
 // typescript definition
 interface PropsType {
   runningIds: string[];
-  selectedOrders: changeStatusOrderConnectionFragment;
+  selectedIds: string[];
 }
 
 // definition
 const { Option } = Select;
 
-export default React.memo(({ runningIds, selectedOrders }: PropsType) => {
+export default React.memo(({ runningIds, selectedIds }: PropsType) => {
   const { t } = useTranslation('orders');
-  const changeStatus = useChangeStatus({ runningIds, selectedOrders });
+  const changeStatus = useChangeStatus({ runningIds, selectedIds });
 
   return (
     <Select

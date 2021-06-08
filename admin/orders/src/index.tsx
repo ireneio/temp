@@ -4,9 +4,8 @@ import { ColumnProps } from 'antd/lib/table';
 import { OrdersQueryResult } from './constants';
 
 // import
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Dropdown, Menu, Icon, Input, Spin, Button } from 'antd';
-import { useMutation } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
 
 import { useRouter } from '@meepshop/link';
@@ -14,29 +13,27 @@ import { useTranslation } from '@meepshop/locales';
 import DatePicker from '@admin/date-picker';
 import Table from '@admin/table';
 
-import useChangePage from './hooks/useChangePage';
-import useDatePicker from './hooks/useDatePicker';
 import AdvancedSearch from './advancedSearch';
 import ChangeStatus from './ChangeStatus';
 import MoreOperating from './MoreOperating';
 import Tags from './Tags';
-import { ORDERS } from './constants';
+import useChangePage from './hooks/useChangePage';
+import useDatePicker from './hooks/useDatePicker';
+import useOrdersColumns from './hooks/useOrdersColumns';
+import useOrdersMenu from './hooks/useOrdersMenu';
 import styles from './styles/index.less';
 
 // graphql typescript
 import {
-  setOrdersToSelectedOrders as setOrdersToSelectedOrdersType,
-  setOrdersToSelectedOrdersVariables as setOrdersToSelectedOrdersVariablesType,
-  useEcfitColumnsFragment_edges as useEcfitColumnsFragmentEdgesType,
+  useOrdersColumnsFragment_edges as useOrdersColumnsFragmentEdgesType,
+  EcfitSentStatusEnum,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { setOrdersToSelectedOrders } from './gqls';
 import {
   advancedSearchStorePaymentFragment,
   advancedSearchStoreShipmentFragment,
 } from './advancedSearch/gqls';
-import { changeStatusOrderConnectionFragment } from './gqls/changeStatus';
 import { useChangePageFragment } from './gqls/useChangePage';
 import {
   tagsStorePaymentFragment,
@@ -45,11 +42,13 @@ import {
 
 // typescript definition
 interface PropsType extends OrdersQueryResult {
-  title: string;
-  service: string;
-  columns: ColumnProps<useEcfitColumnsFragmentEdgesType>[];
+  pageId: string;
+  reset: () => void;
+  extraColumns?: ColumnProps<unknown>[];
+  ecpayColumn?: ColumnProps<unknown>;
   runningIds: string[];
-  submitOrders: () => Promise<void>;
+  submitOrders: (selectedIds: string[]) => Promise<void>;
+  ecfitSentStatus?: EcfitSentStatusEnum | null;
   children?: React.ReactElement;
 }
 
@@ -59,40 +58,37 @@ const { Search } = Input;
 
 export default React.memo(
   ({
-    title,
-    service,
+    pageId,
     data,
     variables,
     fetchMore,
     refetch,
-    columns,
+    reset,
+    extraColumns,
+    ecpayColumn,
     runningIds,
     submitOrders,
+    ecfitSentStatus,
     children,
   }: PropsType): React.ReactElement => {
     const router = useRouter();
     const { t } = useTranslation('orders');
     const rootRef = useRef<HTMLDivElement>(null);
-
-    const [mutation] = useMutation<
-      setOrdersToSelectedOrdersType,
-      setOrdersToSelectedOrdersVariablesType
-    >(setOrdersToSelectedOrders);
-
     const [searchTerm, setSearchTerm] = useState<string>(
       variables?.filter?.searchTerm || '',
     );
+    const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
     const orders = data?.viewer?.orders || null;
     const storePayments = data?.viewer?.store?.storePayments;
     const storeShipments = data?.viewer?.store?.storeShipments;
-    const selectedOrders = data?.selectedOrders || null;
 
     const { changePage, loading } = useChangePage({
       user: filter(useChangePageFragment, data?.viewer || null),
       variables,
       fetchMore,
       refetch,
+      pageId,
     });
 
     const { datepickerValue, changeDatePicker } = useDatePicker({
@@ -100,7 +96,16 @@ export default React.memo(
       refetch,
     });
 
-    if (!orders || !storePayments || !storeShipments || !selectedOrders)
+    const columns = useOrdersColumns(pageId, extraColumns, ecpayColumn);
+    const ordersMenu = useOrdersMenu(
+      data?.viewer?.store?.storeEcfitSettings?.isEnabled || false,
+    );
+
+    useEffect(() => {
+      setSelectedIds([]);
+    }, [variables]);
+
+    if (!orders || !storePayments || !storeShipments)
       return <Spin indicator={<Icon type="loading" spin />} />;
 
     const { first: pageSize } = variables;
@@ -120,18 +125,18 @@ export default React.memo(
               <Dropdown
                 overlayClassName={styles.options}
                 overlay={
-                  <Menu onClick={({ key }) => router.push(key)}>
-                    {ORDERS.map(({ key, path, useIcon }) => (
-                      <Item key={path} disabled={t(key) === title}>
+                  <Menu onClick={({ key: path }) => router.push(path)}>
+                    {ordersMenu.map(({ key, title, path, useIcon }) => (
+                      <Item key={path} disabled={key === pageId}>
                         {!useIcon ? null : <Icon type="profile" />}
-                        {t(key)}
+                        {title}
                       </Item>
                     ))}
                   </Menu>
                 }
               >
                 <div className={styles.title}>
-                  {title}
+                  {t(`title.${pageId}`)}
                   <Icon type="down" />
                 </div>
               </Dropdown>
@@ -139,23 +144,20 @@ export default React.memo(
               {children}
             </div>
 
-            {selectedOrders.total === 0 ? null : (
+            {selectedIds.length === 0 ? null : (
               <div className={styles.operating}>
                 <ChangeStatus
                   runningIds={runningIds}
-                  selectedOrders={filter(
-                    changeStatusOrderConnectionFragment,
-                    selectedOrders,
-                  )}
+                  selectedIds={selectedIds}
                 />
 
-                <MoreOperating />
+                <MoreOperating pageId={pageId} selectedIds={selectedIds} />
               </div>
             )}
           </div>
 
           <div className={styles.tableContainer}>
-            <Table<useEcfitColumnsFragmentEdgesType>
+            <Table<useOrdersColumnsFragmentEdgesType>
               loading={loading}
               pagination={{
                 total,
@@ -167,11 +169,11 @@ export default React.memo(
                 },
               }}
               optional={
-                selectedOrders.total === 0 ? null : (
+                selectedIds.length === 0 ? null : (
                   <>
                     {t('orders-info.select')}
                     <span className={styles.selected}>
-                      {selectedOrders.total}
+                      {selectedIds.length}
                     </span>
 
                     {t('orders-info.amount')}
@@ -193,14 +195,8 @@ export default React.memo(
                   : ''
               }
               rowSelection={{
-                selectedRowKeys: selectedOrders.edges.map(
-                  ({ node: { id } }) =>
-                    id || 'null-id' /** SHOULD_NOT_BE_NULL */,
-                ),
-                onChange: (ids: string[]) =>
-                  mutation({
-                    variables: { input: { ids } },
-                  }),
+                selectedRowKeys: selectedIds,
+                onChange: (ids: string[]) => setSelectedIds(ids),
               }}
             >
               <div className={styles.filter}>
@@ -246,12 +242,7 @@ export default React.memo(
                     className={styles.reset}
                     onClick={() => {
                       setSearchTerm('');
-                      refetch({
-                        ...variables,
-                        filter: {
-                          ecfitSentStatus: variables?.filter?.ecfitSentStatus,
-                        },
-                      });
+                      reset();
                     }}
                   >
                     {t('filter.reset')}
@@ -260,16 +251,15 @@ export default React.memo(
 
                 <div />
 
-                {(selectedOrders.total === 0 && runningIds.length === 0) ||
-                variables?.filter?.ecfitSentStatus ===
-                  'SENT_SUCCESSFUL' ? null : (
+                {(selectedIds.length === 0 && runningIds.length === 0) ||
+                ecfitSentStatus === 'SENT_SUCCESSFUL' ? null : (
                   <Button
-                    onClick={submitOrders}
+                    onClick={() => submitOrders(selectedIds)}
                     loading={runningIds.length !== 0}
                     type="primary"
                     size="large"
                   >
-                    {t('send', { service })}
+                    {t(`send.${pageId}`)}
                   </Button>
                 )}
               </div>

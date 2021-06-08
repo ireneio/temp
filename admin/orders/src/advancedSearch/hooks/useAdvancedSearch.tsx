@@ -32,10 +32,9 @@ export default ({
         ...filter,
         createdAtRange: variables?.filter?.createdAtRange,
         searchTerm: variables?.filter?.searchTerm,
-        ecfitSentStatus: variables?.filter?.ecfitSentStatus,
       },
     });
-  }, [variables, refetch, filter]);
+  }, [filter, variables, refetch]);
 
   return {
     onVisibleChange: useCallback(

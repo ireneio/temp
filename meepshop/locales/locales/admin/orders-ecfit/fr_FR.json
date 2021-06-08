@@ -1,46 +1,12 @@
 {
-  "title": "Gestion des commandes ECFIT",
-  "service": "ECFIT",
   "status": {
     "NOT_SENT": "Non envoyé",
     "SENT_SUCCESSFUL": "Envoyée",
     "SENT_FAILED": "Envoi échoué"
   },
   "orders": {
-    "order-no": "Numéro de commande",
-    "shipment-name": "Méthode d'envoi",
-    "payment-status": "Statut de paiement",
-    "shipment-status": "Statut d'envoi",
-    "order-status": "Statut de la commande",
-    "recipient": "Bénéficiaire",
-    "amount": "Montante",
-    "create-at": "Établir le temps",
     "send-time": "Heure de livraison",
     "fail-reason": "Raison de l'échec"
-  },
-  "orderStatusList": {
-    "PROCESSING": "En traitement",
-    "CANCELED": "annuler la commande",
-    "RETURN": "Traitement des retours et échanges",
-    "CLOSED": "Clôture de la commande"
-  },
-  "paymentStatusList": {
-    "WAITING": "En attente de confirmation",
-    "NOTIFICATED": "Avis de remise",
-    "RECONCILED": "Réconciliation terminée",
-    "DATA_ERROR": "Erreur de donnée",
-    "FAILED": "Échec du paiement",
-    "REFUND": "Traitement des remboursements"
-  },
-  "shipmentStatusList": {
-    "NOT_YET": "Pas livré",
-    "PREPARING": "Stockage",
-    "OUT_OF_STOCK": "Rupture de stock",
-    "SHIPPED": "Expédié",
-    "PRE_ORDER": "Pré-commander",
-    "EXCHANGE": "Traitement d'échange",
-    "RETURN": "Traitement des retours",
-    "DATA_ERROR": "Information incorrecte"
   },
   "fail-reason": {
     "FAIL_TIMEOUT": "Temps libre",

@@ -13,7 +13,6 @@ import styles from '../styles/changeStatus.less';
 
 // graphql typescript
 import {
-  changeStatusOrderConnectionFragment,
   updateOrder as updateOrderType,
   updateOrderVariables as updateOrderVariablesType,
   changeStatusOrderFragment as changeStatusOrderFragmentType,
@@ -26,7 +25,7 @@ import { changeStatusOrderFragment, updateOrder } from '../gqls/changeStatus';
 // typescript definition
 interface PropsType {
   runningIds: string[];
-  selectedOrders: changeStatusOrderConnectionFragment;
+  selectedIds: string[];
 }
 
 type StatusType =
@@ -39,7 +38,7 @@ const { Option } = Select;
 
 export default ({
   runningIds,
-  selectedOrders,
+  selectedIds,
 }: PropsType): ((statusType: StatusType) => void) => {
   const { t } = useTranslation('orders');
   const newStatus = useRef<string | null>(null);
@@ -78,7 +77,6 @@ export default ({
   );
   const updateOrders = useCallback(
     async (statusType: StatusType): Promise<void> => {
-      const { edges, total } = selectedOrders;
       const newOrderStatus: Pick<
         UpdateOrder,
         'status' | 'paymentInfo' | 'shipmentInfo'
@@ -110,9 +108,8 @@ export default ({
       }
 
       await Promise.all(
-        edges.map(async ({ node: { id } }) => {
-          // SHOULD_NOT_BE_NULL
-          if (!id || runningIds.includes(id)) return;
+        selectedIds.map(async id => {
+          if (runningIds.includes(id)) return;
 
           await mutation({
             variables: {
@@ -134,17 +131,17 @@ export default ({
           }),
         });
 
-      if (total - countErrors.current !== 0)
+      if (selectedIds.length - countErrors.current !== 0)
         notification.success({
           message: t('change-status.success.title'),
           description: t('change-status.success.description', {
-            amount: total - countErrors.current,
+            amount: selectedIds.length - countErrors.current,
             status: t(`change-status.${statusType}`),
             newStatus: t(`${statusType}.${newStatus.current}`),
           }),
         });
     },
-    [t, runningIds, selectedOrders, mutation],
+    [t, runningIds, selectedIds, mutation],
   );
   const changeOrderStatusWarning = useCallback(
     (statusType: StatusType): void => {

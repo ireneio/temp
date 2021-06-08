@@ -5,27 +5,20 @@ import { QueryResult } from '@apollo/react-common';
 import {
   getEcfitList,
   getEcfitListVariables,
+  getEcpayList,
+  getEcpayListVariables,
 } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 export type OrdersQueryResult = Pick<
-  QueryResult<getEcfitList, getEcfitListVariables>,
+  QueryResult<
+    getEcfitList | getEcpayList,
+    getEcfitListVariables | getEcpayListVariables
+  >,
   'data' | 'variables' | 'fetchMore' | 'refetch'
 >;
 
 // definition
-export const ORDERS = [
-  {
-    key: 'common:orders',
-    path: '/orders',
-  },
-  {
-    key: 'orders-ecfit:title',
-    path: '/orders/ecfit',
-    useIcon: true,
-  },
-];
-
 export const STATUS_LIST = {
   orderStatusList: ['PROCESSING', 'CLOSED', 'CANCELED', 'RETURN'],
   paymentStatusList: [

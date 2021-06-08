@@ -1,46 +1,12 @@
 {
-  "title": "การจัดการคำสั่งซื้อ ECFIT",
-  "service": "ECFIT",
   "status": {
     "NOT_SENT": "ยังไม่ได้ส่ง",
     "SENT_SUCCESSFUL": "ส่ง",
     "SENT_FAILED": "การส่งล้มเหลว"
   },
   "orders": {
-    "order-no": "หมายเลขสั่งซื้อ",
-    "shipment-name": "วิธีจัดส่ง",
-    "payment-status": "สถานะการชำระเงิน",
-    "shipment-status": "สถานะการจัดส่ง",
-    "order-status": "สถานะการสั่งซื้อ",
-    "recipient": "ผู้รับ",
-    "amount": "จำนวน",
-    "create-at": "กำหนดเวลา",
     "send-time": "เวลาจัดส่ง",
     "fail-reason": "สาเหตุของความล้มเหลว"
-  },
-  "orderStatusList": {
-    "PROCESSING": "กำลังประมวลผล",
-    "CANCELED": "ยกเลิกคำสั่งซื้อ",
-    "RETURN": "การส่งคืนและแลกเปลี่ยนการประมวลผล",
-    "CLOSED": "ปิดออเดอร์"
-  },
-  "paymentStatusList": {
-    "WAITING": "กำลังรอการยืนยัน",
-    "NOTIFICATED": "แจ้งการโอนเงิน",
-    "RECONCILED": "การกระทบยอดเสร็จสมบูรณ์",
-    "DATA_ERROR": "ข้อผิดพลาดของข้อมูล",
-    "FAILED": "การชำระเงินล้มเหลว",
-    "REFUND": "การดำเนินการคืนเงิน"
-  },
-  "shipmentStatusList": {
-    "NOT_YET": "ไม่ได้จัดส่ง",
-    "PREPARING": "ถุงน่อง",
-    "OUT_OF_STOCK": "สินค้าหมด",
-    "SHIPPED": "จัดส่งแล้ว",
-    "PRE_ORDER": "สั่งล่วงหน้า",
-    "EXCHANGE": "การประมวลผลการแลกเปลี่ยน",
-    "RETURN": "การประมวลผลย้อนกลับ",
-    "DATA_ERROR": "ข้อมูลไม่ถูกต้อง"
   },
   "fail-reason": {
     "FAIL_TIMEOUT": "หมดเวลา",

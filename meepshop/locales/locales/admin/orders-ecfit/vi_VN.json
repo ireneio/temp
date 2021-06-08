@@ -1,46 +1,12 @@
 {
-  "title": "Quản lý đơn hàng ECFIT",
-  "service": "ECFIT",
   "status": {
     "NOT_SENT": "Chưa có",
     "SENT_SUCCESSFUL": "Gởi",
     "SENT_FAILED": "Gửi thất bại"
   },
   "orders": {
-    "order-no": "Số thứ tự",
-    "shipment-name": "Phương pháp vận chuyển",
-    "payment-status": "Tình trạng thanh toán",
-    "shipment-status": "Tình trạng giao hàng",
-    "order-status": "Tình trạng đặt hàng",
-    "recipient": "Người nhận",
-    "amount": "Số tiền",
-    "create-at": "Thiết lập thời gian",
     "send-time": "Thời gian giao hàng",
     "fail-reason": "Lý do thất bại"
-  },
-  "orderStatusList": {
-    "PROCESSING": "Chế biến",
-    "CANCELED": "hủy đơn hàng",
-    "RETURN": "Xử lý trả lại và trao đổi",
-    "CLOSED": "Đóng đơn hàng"
-  },
-  "paymentStatusList": {
-    "WAITING": "chờ đợi sự xác nhận",
-    "NOTIFICATED": "Thông báo chuyển tiền",
-    "RECONCILED": "Đối chiếu hoàn tất",
-    "DATA_ERROR": "Lỗi dữ liệu",
-    "FAILED": "Thanh toán không thành công",
-    "REFUND": "Xử lý hoàn lại tiền"
-  },
-  "shipmentStatusList": {
-    "NOT_YET": "Không vận chuyển",
-    "PREPARING": "Còn hàng",
-    "OUT_OF_STOCK": "Hết hàng",
-    "SHIPPED": "Đã vận chuyển",
-    "PRE_ORDER": "đặt hàng trước",
-    "EXCHANGE": "Xử lý trao đổi",
-    "RETURN": "Xử lý hoàn trả",
-    "DATA_ERROR": "Thông tin không chính xác"
   },
   "fail-reason": {
     "FAIL_TIMEOUT": "Hết giờ",

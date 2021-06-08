@@ -1,38 +1,23 @@
 // import
 import gql from 'graphql-tag';
 
+// graphql import
+import { useOrdersColumnsFragment } from '@admin/orders/lib/gqls/useOrdersColumns';
+
 // definition
 export const useEcfitColumnsFragment = gql`
   fragment useEcfitColumnsFragment on OrderConnection {
+    ...useOrdersColumnsFragment
+
     edges {
       node {
-        id
-        orderNo
-        shipmentInfo {
-          status
-          list {
-            id
-            name
-            recipient {
-              name
-            }
-          }
-        }
-        paymentInfo {
-          id
-          status
-        }
-        status
-        priceInfo {
-          total
-        }
-        createdAt
         lastEcfitRequestRecord {
           createdAt
           response
         }
       }
     }
-    total
   }
+
+  ${useOrdersColumnsFragment}
 `;

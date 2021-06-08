@@ -1,4 +1,9 @@
 {
+  "title": {
+    "orders": "訂單",
+    "ecpay": "綠界出貨管理",
+    "ecfit": "ECFIT訂單管理"
+  },
   "change": "變更",
   "change-status": {
     "title": "變更狀態",
@@ -45,7 +50,18 @@
     "shipmentStatusList-title": "運送狀態",
     "shipmentIdList-title": "運送方式",
     "reset": "重設",
-    "filter": "篩選"
+    "filter": "篩選",
+    "no-option": "無符合項目"
+  },
+  "orders": {
+    "order-no": "訂單編號",
+    "shipment-name": "運送方式",
+    "payment-status": "帳款狀態",
+    "shipment-status": "運送狀態",
+    "order-status": "訂單狀態",
+    "recipient": "收件人",
+    "amount": "金額",
+    "create-at": "建立時間"
   },
   "orderStatusList": {
     "PROCESSING": "處理中",
@@ -71,7 +87,10 @@
     "RETURN": "退貨處理中",
     "DATA_ERROR": "資料有誤"
   },
-  "send": "傳送訂單至{{service}}",
+  "send": {
+    "ecfit": "傳送訂單至 ECFIT",
+    "ecpay": "傳送訂單至綠界"
+  },
   "empty-orders": "無訂單資料",
   "orders-info": {
     "total": "共 {{total}} 筆",

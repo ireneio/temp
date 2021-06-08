@@ -1,46 +1,12 @@
 {
-  "title": "ECFIT訂單",
-  "service": "ECFIT",
   "status": {
     "NOT_SENT": "未傳送",
     "SENT_SUCCESSFUL": "已傳送",
     "SENT_FAILED": "傳送失敗"
   },
   "orders": {
-    "order-no": "訂單編號",
-    "shipment-name": "運送方式",
-    "payment-status": "帳款狀態",
-    "shipment-status": "運送狀態",
-    "order-status": "訂單狀態",
-    "recipient": "收件人",
-    "amount": "金額",
-    "create-at": "建立時間",
     "send-time": "傳送時間",
     "fail-reason": "失敗原因"
-  },
-  "orderStatusList": {
-    "PROCESSING": "處理中",
-    "CANCELED": "取消訂單",
-    "RETURN": "退換貨處理",
-    "CLOSED": "訂單結案"
-  },
-  "paymentStatusList": {
-    "WAITING": "等待確認",
-    "NOTIFICATED": "匯款通知",
-    "RECONCILED": "對帳完成",
-    "DATA_ERROR": "資料錯誤",
-    "FAILED": "付款失敗",
-    "REFUND": "退款處理"
-  },
-  "shipmentStatusList": {
-    "NOT_YET": "未出貨",
-    "PREPARING": "備貨中",
-    "OUT_OF_STOCK": "缺貨中",
-    "SHIPPED": "已出貨",
-    "PRE_ORDER": "預購",
-    "EXCHANGE": "換貨處理",
-    "RETURN": "退貨處理中",
-    "DATA_ERROR": "資料有誤"
   },
   "fail-reason": {
     "FAIL_TIMEOUT": "超時",

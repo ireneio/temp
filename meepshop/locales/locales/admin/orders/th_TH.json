@@ -1,4 +1,9 @@
 {
+  "title": {
+    "orders": "ใบสั่ง",
+    "ecpay": "การจัดการการจัดส่งสีเขียว",
+    "ecfit": "การจัดการคำสั่งซื้อ ECFIT"
+  },
   "change": "เปลี่ยนแปลง",
   "change-status": {
     "title": "เปลี่ยนสถานะ",
@@ -45,7 +50,18 @@
     "shipmentStatusList-title": "สถานะการจัดส่ง",
     "shipmentIdList-title": "วิธีการส่ง",
     "reset": "รีเซ็ต",
-    "filter": "กรอง"
+    "filter": "กรอง",
+    "no-option": "โครงการที่ไม่มีการควบคุม"
+  },
+  "orders": {
+    "order-no": "หมายเลขสั่งซื้อ",
+    "shipment-name": "วิธีจัดส่ง",
+    "payment-status": "สถานะการชำระเงิน",
+    "shipment-status": "สถานะการจัดส่ง",
+    "order-status": "สถานะการสั่งซื้อ",
+    "recipient": "ผู้รับ",
+    "amount": "จำนวน",
+    "create-at": "กำหนดเวลา"
   },
   "orderStatusList": {
     "PROCESSING": "กำลังประมวลผล",
@@ -71,7 +87,10 @@
     "RETURN": "การประมวลผลย้อนกลับ",
     "DATA_ERROR": "ข้อมูลไม่ถูกต้อง"
   },
-  "send": "ส่งคำสั่งซื้อไปที่ {{service}}",
+  "send": {
+    "ecfit": "โอนเงินเพื่อ ECFIT",
+    "ecpay": "โอนคำสั่งไปยังสีเขียว"
+  },
   "empty-orders": "ไม่มีข้อมูลการสั่งซื้อ",
   "orders-info": {
     "total": "รวม {{total}}",

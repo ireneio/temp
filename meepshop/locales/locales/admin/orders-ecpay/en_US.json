@@ -1,0 +1,16 @@
+{
+  "success": "{{Amount}} Successful",
+  "fail": "Order transmission failed",
+  "orderNo": "Order number",
+  "reason": "wrong reason",
+  "error": "If you are not expected, please contact customer service support service.",
+  "confirm": "determine",
+  "logistic-status": "Freight status",
+  "logistic-status-tip": "Corresponding to the latest green logistics order",
+  "status": {
+    "PROCESSING": "Processing",
+    "MANUAL_PROCESSING": "Artificial treatment",
+    "PLACING": "Logistics single",
+    "FAIL_TO_PLACE": "Logistics single built error"
+  }
+}

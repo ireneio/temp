@@ -19,18 +19,8 @@ export const useUpdateCreateEcfitOrdersStoreFragment = gql`
   }
 `;
 
-export const useUpdateCreateEcfitOrdersOrderConnectionFragment = gql`
-  fragment useUpdateCreateEcfitOrdersOrderConnectionFragment on OrderConnection {
-    edges {
-      node {
-        id
-      }
-    }
-  }
-`;
-
-export const useUpdateCreateEciftOrderFragment = gql`
-  fragment useUpdateCreateEciftOrderFragment on User {
+export const useUpdateCreateEciftOrderUserFragment = gql`
+  fragment useUpdateCreateEciftOrderUserFragment on User {
     id
     orders: ecfitOrders(first: $first, after: $cursor, filter: $filter) {
       edges {

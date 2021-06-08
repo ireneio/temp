@@ -1,0 +1,16 @@
+{
+  "success": "{{amount}} 筆訂單傳送成功",
+  "fail": "拋單失敗",
+  "orderNo": "訂單編號",
+  "reason": "錯誤訊息",
+  "error": "未預期的程式錯誤，麻煩請聯繫客服支援服務。",
+  "confirm": "確定",
+  "logistic-status": "貨運狀態",
+  "logistic-status-tip": "對應最新一筆綠界物流單的狀態",
+  "status": {
+    "PROCESSING": "處理中",
+    "MANUAL_PROCESSING": "人工處理中",
+    "PLACING": "物流單建立中",
+    "FAIL_TO_PLACE": "物流單建立錯誤"
+  }
+}

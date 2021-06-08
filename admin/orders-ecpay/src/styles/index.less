@@ -1,0 +1,32 @@
+.status {
+  label + label {
+    margin-left: 10px;
+  }
+
+  :global(.ant-checkbox) {
+    display: none;
+
+    & + span {
+      display: inline-block;
+      border-radius: 5px;
+      padding: 2px 12px;
+      background-color: #d8dde8;
+      color: #626c82;
+
+      &:hover {
+        color: #363b4a;
+      }
+    }
+
+    &:global(.ant-checkbox-checked) {
+      & + span {
+        background-color: #5967c5;
+        color: #ffffff;
+
+        &:hover {
+          background-color: #7783cf;
+        }
+      }
+    }
+  }
+}

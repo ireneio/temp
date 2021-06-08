@@ -9,7 +9,6 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/orders": "^0.79.50",
-    "@meepshop/link": "^0.79.45",
     "@meepshop/locales": "^0.79.50",
     "moment": "^2.22.1"
   },

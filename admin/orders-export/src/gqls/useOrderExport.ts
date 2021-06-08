@@ -24,14 +24,6 @@ export const getExportFormat = gql`
       id
       name
     }
-
-    selectedOrders @client {
-      edges {
-        node {
-          id
-        }
-      }
-    }
   }
 `;
 

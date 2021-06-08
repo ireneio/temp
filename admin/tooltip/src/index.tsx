@@ -10,14 +10,24 @@ import styles from './styles/index.less';
 // typescript definition
 interface PropsType extends AbstractTooltipProps {
   title: React.ReactNode;
+  overlayClassName?: string;
   iconClassName?: string;
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
 // definition
 export default React.memo(
-  ({ iconClassName, onClick, children, ...restProps }: PropsType) => (
-    <Tooltip overlayClassName={styles.overlay} {...restProps}>
+  ({
+    overlayClassName,
+    iconClassName,
+    onClick,
+    children,
+    ...restProps
+  }: PropsType) => (
+    <Tooltip
+      overlayClassName={`${styles.overlay} ${overlayClassName || ''}`}
+      {...restProps}
+    >
       {children || (
         <Icon
           className={`${styles.icon} ${iconClassName || ''}`}

@@ -19,6 +19,7 @@
     "@admin/dashboard": "^0.79.50",
     "@admin/login": "^0.79.50",
     "@admin/orders-ecfit": "^0.79.50",
+    "@admin/orders-ecpay": "^0.1.0",
     "@admin/page-manager": "^0.79.50",
     "@admin/plan-setting": "^0.79.50",
     "@admin/redirects": "^0.79.50",

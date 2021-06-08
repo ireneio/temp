@@ -22,10 +22,7 @@ import {
 
 // graphql import
 import { getEcfitList } from './gqls';
-import {
-  useUpdateCreateEciftOrderFragment,
-  useUpdateCreateEcfitOrdersOrderConnectionFragment,
-} from './gqls/useUpdateCreateEcfitOrder';
+import { useUpdateCreateEciftOrderUserFragment } from './gqls/useUpdateCreateEcfitOrder';
 
 // typescript definition
 interface PropsType {
@@ -44,33 +41,34 @@ const OrdersEcfit: NextPage<PropsType> = React.memo(() => {
     variables: initVariables,
     ssr: false,
   });
-  const selectedOrders = data?.selectedOrders || null;
   const sentFailedAmount = data?.viewer?.sentFailedList?.total || 0;
 
   const { runningIds, updateCreateEcfitOrder } = useUpdateCreateEcfitOrder({
-    user: filter(useUpdateCreateEciftOrderFragment, data?.viewer || null),
+    user: filter(useUpdateCreateEciftOrderUserFragment, data?.viewer || null),
     variables,
     fetchMore,
-    selectedOrders: filter(
-      useUpdateCreateEcfitOrdersOrderConnectionFragment,
-      selectedOrders,
-    ),
   });
   const columns = useEcfitColumns(variables);
 
-  useInitVariables(initVariables);
+  useInitVariables(variables || initVariables);
 
   return (
     <Orders
-      title={t('title')}
-      service={t('service')}
+      pageId="ecfit"
       data={data}
       variables={variables}
       fetchMore={fetchMore}
       refetch={refetch}
-      columns={columns}
+      reset={() => {
+        refetch({
+          ...variables,
+          filter: { ecfitSentStatus: variables.filter?.ecfitSentStatus },
+        });
+      }}
+      extraColumns={columns}
       runningIds={runningIds}
       submitOrders={updateCreateEcfitOrder}
+      ecfitSentStatus={variables?.filter?.ecfitSentStatus}
     >
       <Group
         value={variables?.filter?.ecfitSentStatus}

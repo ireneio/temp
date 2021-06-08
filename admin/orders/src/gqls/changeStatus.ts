@@ -17,17 +17,6 @@ export const updateOrder = gql`
   }
 `;
 
-export const changeStatusOrderConnectionFragment = gql`
-  fragment changeStatusOrderConnectionFragment on OrderConnection {
-    edges {
-      node {
-        id
-      }
-    }
-    total
-  }
-`;
-
 export const changeStatusOrderFragment = gql`
   fragment changeStatusOrderFragment on Order {
     id

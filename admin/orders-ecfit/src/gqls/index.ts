@@ -2,12 +2,13 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { changeStatusOrderConnectionFragment } from '@admin/orders/lib/gqls/changeStatus';
 import {
   OrdersOrderConnectionFragment,
   OrdersStoreFragment,
-} from '@admin/orders/lib/gqls/index';
+} from '@admin/orders/lib/gqls';
+
 import { useEcfitColumnsFragment } from './useEcfitColumns';
+import { useUpdateCreateEcfitOrdersStoreFragment } from './useUpdateCreateEcfitOrder';
 
 // definition
 export const getEcfitList = gql`
@@ -34,17 +35,13 @@ export const getEcfitList = gql`
       store {
         id
         ...OrdersStoreFragment
+        ...useUpdateCreateEcfitOrdersStoreFragment
       }
-    }
-
-    selectedOrders @client {
-      ...changeStatusOrderConnectionFragment
-      ...useEcfitColumnsFragment
     }
   }
 
-  ${changeStatusOrderConnectionFragment}
   ${OrdersOrderConnectionFragment}
   ${OrdersStoreFragment}
   ${useEcfitColumnsFragment}
+  ${useUpdateCreateEcfitOrdersStoreFragment}
 `;

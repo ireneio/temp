@@ -1,46 +1,12 @@
 {
-  "title": "ECFIT order management",
-  "service": "ECFIT",
   "status": {
     "NOT_SENT": "Unsent",
     "SENT_SUCCESSFUL": "Sent",
     "SENT_FAILED": "Sending failed"
   },
   "orders": {
-    "order-no": "Order number",
-    "shipment-name": "Shipping method",
-    "payment-status": "Payment status",
-    "shipment-status": "Shipping status",
-    "order-status": "Order status",
-    "recipient": "Recipient",
-    "amount": "Amount",
-    "create-at": "Establish time",
     "send-time": "Delivery time",
     "fail-reason": "Reason for failure"
-  },
-  "orderStatusList": {
-    "PROCESSING": "Processing",
-    "CANCELED": "cancel order",
-    "RETURN": "Return and exchange processing",
-    "CLOSED": "Order closing"
-  },
-  "paymentStatusList": {
-    "WAITING": "Waiting for confirmation",
-    "NOTIFICATED": "Remittance notice",
-    "RECONCILED": "Reconciliation completed",
-    "DATA_ERROR": "Data error",
-    "FAILED": "Payment Fail",
-    "REFUND": "Refund processing"
-  },
-  "shipmentStatusList": {
-    "NOT_YET": "Not shipped",
-    "PREPARING": "Stocking",
-    "OUT_OF_STOCK": "Out of stock",
-    "SHIPPED": "Shipped",
-    "PRE_ORDER": "pre order",
-    "EXCHANGE": "Exchange processing",
-    "RETURN": "Return processing",
-    "DATA_ERROR": "Incorrect information"
   },
   "fail-reason": {
     "FAIL_TIMEOUT": "Time out",

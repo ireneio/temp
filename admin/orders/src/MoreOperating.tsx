@@ -10,39 +10,46 @@ import OrdersExport from '@admin/orders-export';
 // definition
 const { Option } = Select;
 
-export default React.memo(() => {
-  const { t } = useTranslation('orders');
-  const { push } = useRouter();
-  const [showExport, setShowExport] = useState(false);
-  const changeOperating = useCallback(
-    (type: 'export' | 'print') => {
-      if (type === 'print') {
-        // TODO: remove after orderlist move to next-admin
-        localStorage.setItem('selectedOrders-timeout', moment().format());
-        push('/orders/print?ref=ecfit');
-        return;
-      }
+export default React.memo(
+  ({ pageId, selectedIds }: { pageId: string; selectedIds: string[] }) => {
+    const { t } = useTranslation('orders');
+    const { push } = useRouter();
+    const [showExport, setShowExport] = useState(false);
+    const changeOperating = useCallback(
+      (type: 'export' | 'print') => {
+        if (type === 'print') {
+          // TODO: remove after orderlist move to next-admin
+          localStorage.setItem('selectedOrders', JSON.stringify(selectedIds));
+          localStorage.setItem('selectedOrders-timeout', moment().format());
+          push(`/orders/print?ref=${pageId}`);
+          return;
+        }
 
-      setShowExport(true);
-    },
-    [push],
-  );
+        setShowExport(true);
+      },
+      [pageId, push, selectedIds],
+    );
 
-  return (
-    <>
-      <Select
-        value={t('more-operating.title')}
-        onChange={changeOperating}
-        size="large"
-      >
-        {['export', 'print'].map(status => (
-          <Option key={status} value={status}>
-            {t(`more-operating.${status}`)}
-          </Option>
-        ))}
-      </Select>
+    return (
+      <>
+        <Select
+          value={t('more-operating.title')}
+          onChange={changeOperating}
+          size="large"
+        >
+          {['export', 'print'].map(status => (
+            <Option key={status} value={status}>
+              {t(`more-operating.${status}`)}
+            </Option>
+          ))}
+        </Select>
 
-      <OrdersExport visible={showExport} onClose={() => setShowExport(false)} />
-    </>
-  );
-});
+        <OrdersExport
+          visible={showExport}
+          onClose={() => setShowExport(false)}
+          selectedIds={selectedIds}
+        />
+      </>
+    );
+  },
+);

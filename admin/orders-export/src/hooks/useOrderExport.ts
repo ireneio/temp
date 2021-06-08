@@ -15,7 +15,9 @@ import {
 import { getExportFormat, requestExportFile } from '../gqls/useOrderExport';
 
 // definition
-export default (): {
+export default (
+  selectedIds: string[],
+): {
   loading: boolean;
   options: {
     [key: string]: ({ id: string | null; name: string | null } | null)[];
@@ -58,16 +60,12 @@ export default (): {
           variables: {
             input: {
               ...input.input,
-              ids: !data?.selectedOrders
-                ? []
-                : data.selectedOrders.edges.map(
-                    ({ node: { id } }) => id || 'null-id',
-                  ),
+              ids: selectedIds,
             },
           },
         });
       },
-      [data, mutation],
+      [mutation, selectedIds],
     ),
   };
 };

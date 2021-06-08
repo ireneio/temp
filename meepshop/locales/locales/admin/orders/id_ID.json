@@ -1,4 +1,9 @@
 {
+  "title": {
+    "orders": "Memesan",
+    "ecpay": "Manajemen Pengiriman Hijau",
+    "ecfit": "Manajemen Pesanan ECFIT."
+  },
   "change": "perubahan",
   "change-status": {
     "title": "Merubah status",
@@ -45,7 +50,18 @@
     "shipmentStatusList-title": "Status pengiriman",
     "shipmentIdList-title": "Metode pengiriman",
     "reset": "reset",
-    "filter": "Saring"
+    "filter": "Saring",
+    "no-option": "Proyek yang tidak diatur"
+  },
+  "orders": {
+    "order-no": "Jumlah order",
+    "shipment-name": "Metode pengiriman",
+    "payment-status": "Status pembayaran",
+    "shipment-status": "Status pengiriman",
+    "order-status": "Status pemesanan",
+    "recipient": "Penerima",
+    "amount": "Jumlah",
+    "create-at": "Tetapkan waktu"
   },
   "orderStatusList": {
     "PROCESSING": "Pengolahan",
@@ -71,7 +87,10 @@
     "RETURN": "Pemrosesan kembali",
     "DATA_ERROR": "Informasi salah"
   },
-  "send": "Kirim pesanan ke {{service}}",
+  "send": {
+    "ecfit": "Pesanan transfer ke ECFIT",
+    "ecpay": "Pesanan transfer ke hijau"
+  },
   "empty-orders": "Tidak ada informasi pesanan",
   "orders-info": {
     "total": "Total {{total}}",

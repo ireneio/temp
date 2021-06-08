@@ -19,6 +19,7 @@ import { setOrderCurrent } from '../gqls/useChangePage';
 interface PropsType
   extends Pick<OrdersQueryResult, 'variables' | 'fetchMore' | 'refetch'> {
   user?: useChangePageFragmentType | null;
+  pageId: string;
 }
 
 // definition
@@ -27,6 +28,7 @@ export default ({
   variables,
   fetchMore,
   refetch,
+  pageId,
 }: PropsType): {
   loading: boolean;
   changePage: (newCurrent: number, newPageSize: number) => void;
@@ -68,7 +70,7 @@ export default ({
       ) {
         mutation({
           variables: {
-            input: { pageId: 'orders-ecfit', current: newCurrent },
+            input: { pageId, current: newCurrent },
           },
         });
       }
@@ -110,7 +112,7 @@ export default ({
         },
       });
     },
-    [loading, orders, variables, mutation, fetchMore, refetch],
+    [variables, orders, loading, fetchMore, refetch, mutation, pageId],
   );
 
   return { loading, changePage };
