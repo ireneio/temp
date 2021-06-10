@@ -46,7 +46,7 @@
     "@babel/preset-react": "^7.7.0",
     "@babel/preset-typescript": "^7.7.2",
     "@babel/runtime": "^7.7.2",
-    "@meepshop/meep-cli": "^1.35.4",
+    "@meepshop/meep-cli": "^1.35.5",
     "@next/bundle-analyzer": "^9.1.4",
     "@types/clipboard": "^2.0.1",
     "@types/color": "^3.0.0",
