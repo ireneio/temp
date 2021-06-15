@@ -3,24 +3,23 @@ import { FormComponentProps } from 'antd/lib/form';
 
 // import
 import React, { useState, useContext } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
-import { Spin, Icon, Form, Input, Button, Modal, notification } from 'antd';
+import { useQuery } from '@apollo/react-hooks';
+import { Spin, Icon, Form, Input, Button, Modal } from 'antd';
+import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 
+import useSubmitOrderRemittanceAdvice from './hooks/useSubmitOrderRemittanceAdvice';
 import { DEFAULT_MESSAGE } from './constants';
 import styles from './styles/index.less';
 
 // graphql typescript
-import {
-  getOrderPaidMessage as getOrderPaidMessageType,
-  updateOrderPaidMessage as updateOrderPaidMessageType,
-  updateOrderPaidMessageVariables,
-} from '@meepshop/types/gqls/store';
+import { getOrderPaidMessage as getOrderPaidMessageType } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { getOrderPaidMessage, updateOrderPaidMessage } from './gqls';
+import { getOrderPaidMessage } from './gqls';
+import { useSubmitOrderRemittanceAdviceFragment } from './gqls/useSubmitOrderRemittanceAdvice';
 
 // typescript definition
 interface PropsType extends FormComponentProps {
@@ -43,20 +42,14 @@ export default Form.create<PropsType>()(
     );
     const { viewer } = data || {};
     const setting = viewer?.store?.setting;
-    const order = viewer?.order;
+    const order = viewer?.order || null;
     const [disabledEdit, setDisabledEdit] = useState(
       Boolean(order?.paidMessage?.length),
     );
-
-    const [mutation] = useMutation<
-      updateOrderPaidMessageType,
-      updateOrderPaidMessageVariables
-    >(updateOrderPaidMessage, {
-      update: () => {
-        notification.success({ message: t('send-success') });
-        setDisabledEdit(true);
-      },
-    });
+    const submitOrderRemittanceAdvice = useSubmitOrderRemittanceAdvice(
+      filter(useSubmitOrderRemittanceAdviceFragment, order),
+      setDisabledEdit,
+    );
 
     if (loading || !setting || !order)
       return <Spin indicator={<Icon type="loading" spin />} />;
@@ -101,14 +94,12 @@ export default Form.create<PropsType>()(
                         customDefaultMessage ||
                         DEFAULT_MESSAGE;
 
-                      if (message !== prevMessage)
-                        mutation({
+                      if (message !== prevMessage && id)
+                        submitOrderRemittanceAdvice({
                           variables: {
-                            updateOrder: {
-                              id: id as string,
-                              paidMessage: {
-                                createData: [{ note: message }],
-                              },
+                            input: {
+                              orderId: id,
+                              remittanceAdvice: message,
                             },
                           },
                         });

@@ -1,6 +1,9 @@
 // import
 import gql from 'graphql-tag';
 
+// graphql import
+import { useSubmitOrderRemittanceAdviceFragment } from './useSubmitOrderRemittanceAdvice';
+
 // definition
 export const getOrderPaidMessage = gql`
   query getOrderPaidMessage($orderId: ID!) {
@@ -18,18 +21,11 @@ export const getOrderPaidMessage = gql`
         paidMessage {
           note
         }
-      }
-    }
-  }
-`;
 
-export const updateOrderPaidMessage = gql`
-  mutation updateOrderPaidMessage($updateOrder: UpdateOrder) {
-    updateOrder(updateOrder: $updateOrder) {
-      id
-      paidMessage {
-        note
+        ...useSubmitOrderRemittanceAdviceFragment
       }
     }
   }
+
+  ${useSubmitOrderRemittanceAdviceFragment}
 `;
