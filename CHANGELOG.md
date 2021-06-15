@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.79.53 (2021-06-15)
+
+#### :boom: Breaking Change
+
+- [#1433](https://github.com/meepshop/meep-lerna/pull/1433) T7485 - 重構改用新 api - 消費者對訂單發出匯款通知 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#1590](https://github.com/meepshop/meep-lerna/pull/1590) (root) Update @meepshop/meep-cli ([@meepshop-bot](https://github.com/meepshop-bot))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@meepshop-bot](https://github.com/meepshop-bot)
+
 ## 0.79.52 (2021-06-08)
 
 #### :boom: Breaking Change
