@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.79.54 (2021-06-22)
+
+#### :rocket: New Feature
+
+- [#1598](https://github.com/meepshop/meep-lerna/pull/1598) Add graphql version ([@HsuTing](https://github.com/HsuTing))
+- [#1596](https://github.com/meepshop/meep-lerna/pull/1596) (root) Update @meepshop/meep-cli ([@meepshop-bot](https://github.com/meepshop-bot))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@meepshop-bot](https://github.com/meepshop-bot)
+
 ## 0.79.53 (2021-06-15)
 
 #### :boom: Breaking Change
