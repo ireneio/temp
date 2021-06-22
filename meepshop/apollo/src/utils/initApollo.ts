@@ -90,7 +90,9 @@ const create = (
 
   return new ApolloClient({
     name,
-    version: VERSION,
+    version: `${VERSION}-${
+      typeof window === 'undefined' ? 'server' : 'browser'
+    }`,
     connectToDevTools: typeof window !== 'undefined',
     ssrMode: typeof window === 'undefined',
     cache,
