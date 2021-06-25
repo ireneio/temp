@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.79.55 (2021-06-25)
+
+#### :rocket: New Feature
+
+- [#1586](https://github.com/meepshop/meep-lerna/pull/1586) 訂單退換貨 -- GraphQL API 格式優化/重構 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.79.54 (2021-06-22)
 
 #### :rocket: New Feature
