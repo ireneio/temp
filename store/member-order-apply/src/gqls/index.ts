@@ -4,9 +4,9 @@ import gql from 'graphql-tag';
 // graphql import
 import { productsObjectTypeOrderApplyFragment } from '@store/apollo/lib/gqls/productsObjectType';
 import {
-  createOrderApplyWithOrderOrderFragment,
-  createOrderApplyWithOrderOrderApplyFragment,
-} from '@store/apollo/lib/gqls/createOrderApplyWithOrder';
+  applyForReturnOrExchangeWithOrderOrderFragment,
+  applyForReturnOrExchangeWithOrderOrderApplyFragment,
+} from '@store/apollo/lib/gqls/applyForReturnOrExchangeWithOrder';
 
 import { useColumnsOrderMemberOrderApplyFragment } from './useColumns';
 
@@ -32,7 +32,7 @@ export const getMemberOrderApply = gql`
           fullAddress
         }
         ...useColumnsOrderMemberOrderApplyFragment
-        ...createOrderApplyWithOrderOrderFragment
+        ...applyForReturnOrExchangeWithOrderOrderFragment
       }
     }
 
@@ -41,14 +41,14 @@ export const getMemberOrderApply = gql`
       search: { sort: [{ field: "createdAt", order: "desc" }] }
     ) {
       data {
-        ...createOrderApplyWithOrderOrderApplyFragment
+        ...applyForReturnOrExchangeWithOrderOrderApplyFragment
         ...productsObjectTypeOrderApplyFragment
       }
     }
   }
 
-  ${createOrderApplyWithOrderOrderFragment}
-  ${createOrderApplyWithOrderOrderApplyFragment}
+  ${applyForReturnOrExchangeWithOrderOrderFragment}
+  ${applyForReturnOrExchangeWithOrderOrderApplyFragment}
   ${productsObjectTypeOrderApplyFragment}
   ${useColumnsOrderMemberOrderApplyFragment}
 `;

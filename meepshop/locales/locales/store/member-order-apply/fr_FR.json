@@ -11,6 +11,8 @@
   "reason": "La description",
   "recede": "Retour",
   "proceed": "Prochain",
+  "success": "Mise à jour terminée",
+  "error": "Impossible de demander le retour",
   "warning": {
     "refund": "Veuillez sélectionner un article",
     "exchange": "Veuillez sélectionner l'article et saisir les informations sur le destinataire"

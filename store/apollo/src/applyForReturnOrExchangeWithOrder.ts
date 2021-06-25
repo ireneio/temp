@@ -3,7 +3,7 @@ import { ContextType } from '@meepshop/apollo';
 
 // graphql typescript
 import {
-  createOrderApplyWithOrderOrderApplyFragment as createOrderApplyWithOrderOrderApplyFragmentType,
+  applyForReturnOrExchange_applyForReturnOrExchange as applyForReturnOrExchangeApplyForReturnOrExchangeType,
   getOrderCache as getOrderCacheType,
   updateOrderApplyCache as updateOrderApplyCacheType,
 } from '@meepshop/types/gqls/store';
@@ -12,16 +12,16 @@ import {
 import {
   getOrderCache,
   updateOrderApplyCache,
-} from './gqls/createOrderApplyWithOrder';
+} from './gqls/applyForReturnOrExchangeWithOrder';
 
 // definition
 export const resolvers = {
   Mutation: {
-    createOrderApplyWithOrder: (
+    applyForReturnOrExchangeWithOrder: (
       {
-        createOrderApplyList,
+        applyForReturnOrExchange,
       }: {
-        createOrderApplyList: createOrderApplyWithOrderOrderApplyFragmentType[];
+        applyForReturnOrExchange: applyForReturnOrExchangeApplyForReturnOrExchangeType;
       },
       { orderId }: { orderId: string },
       { cache }: ContextType,
@@ -32,11 +32,30 @@ export const resolvers = {
           orderId,
         },
       });
-      const applications = orderCache?.getOrderApplyList?.data;
       const order = orderCache?.viewer?.order;
+
+      if (
+        applyForReturnOrExchange.__typename !==
+        'OrderProductsAppliedForReturnOrExchange'
+      )
+        return order || null;
+
+      const applications = orderCache?.getOrderApplyList?.data;
       const getOrderApplyList = {
         __typename: 'OrderApplyList' as const,
-        data: [...(createOrderApplyList || []), ...(applications || [])],
+        data: [
+          ...(applyForReturnOrExchange.result || [])
+            .map(orderApply =>
+              orderApply
+                ? {
+                    ...orderApply,
+                    __typename: 'OrderApply' as const,
+                  }
+                : null,
+            )
+            .filter(Boolean),
+          ...(applications || []),
+        ],
       };
 
       cache.writeQuery<updateOrderApplyCacheType>({

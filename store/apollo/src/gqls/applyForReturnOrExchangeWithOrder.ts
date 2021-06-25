@@ -9,8 +9,8 @@ import {
 } from './productsObjectType';
 
 // defintion
-export const createOrderApplyWithOrderOrderClientFragment = gql`
-  fragment createOrderApplyWithOrderOrderClientFragment on Order {
+export const applyForReturnOrExchangeWithOrderOrderClientFragment = gql`
+  fragment applyForReturnOrExchangeWithOrderOrderClientFragment on Order {
     id
     applications {
       id
@@ -32,8 +32,8 @@ export const createOrderApplyWithOrderOrderClientFragment = gql`
   }
 `;
 
-export const createOrderApplyWithOrderOrderFragment = gql`
-  fragment createOrderApplyWithOrderOrderFragment on Order {
+export const applyForReturnOrExchangeWithOrderOrderFragment = gql`
+  fragment applyForReturnOrExchangeWithOrderOrderFragment on Order {
     id
     ...availableProductsForApplyOrderFragment
     ...orderOrderFragment
@@ -43,8 +43,8 @@ export const createOrderApplyWithOrderOrderFragment = gql`
   ${orderOrderFragment}
 `;
 
-export const createOrderApplyWithOrderOrderApplyFragment = gql`
-  fragment createOrderApplyWithOrderOrderApplyFragment on OrderApply {
+export const applyForReturnOrExchangeWithOrderOrderApplyFragment = gql`
+  fragment applyForReturnOrExchangeWithOrderOrderApplyFragment on OrderApply {
     id
     ...orderOrderApplyFragment
     ...productsObjectTypeOrderApplyFragment
@@ -54,13 +54,24 @@ export const createOrderApplyWithOrderOrderApplyFragment = gql`
   ${productsObjectTypeOrderApplyFragment}
 `;
 
+export const applyForReturnOrExchangeWithOrderOrderProductAppliedForReturnOrExchangeFragment = gql`
+  fragment applyForReturnOrExchangeWithOrderOrderProductAppliedForReturnOrExchangeFragment on OrderProductAppliedForReturnOrExchange {
+    id
+    orderId
+    returnId
+    orderProductId
+    status
+    quantity
+  }
+`;
+
 export const getOrderCache = gql`
   query getOrderCache($orderId: ID!) {
     viewer {
       id
       order(orderId: $orderId) {
         id
-        ...createOrderApplyWithOrderOrderFragment
+        ...applyForReturnOrExchangeWithOrderOrderFragment
       }
     }
 
@@ -68,13 +79,13 @@ export const getOrderCache = gql`
       search: { sort: [{ field: "createdAt", order: "desc" }] }
     ) {
       data {
-        ...createOrderApplyWithOrderOrderApplyFragment
+        ...applyForReturnOrExchangeWithOrderOrderApplyFragment
       }
     }
   }
 
-  ${createOrderApplyWithOrderOrderFragment}
-  ${createOrderApplyWithOrderOrderApplyFragment}
+  ${applyForReturnOrExchangeWithOrderOrderFragment}
+  ${applyForReturnOrExchangeWithOrderOrderApplyFragment}
 `;
 
 export const updateOrderApplyCache = gql`
@@ -83,10 +94,10 @@ export const updateOrderApplyCache = gql`
       search: { sort: [{ field: "createdAt", order: "desc" }] }
     ) {
       data {
-        ...createOrderApplyWithOrderOrderApplyFragment
+        ...applyForReturnOrExchangeWithOrderOrderApplyFragment
       }
     }
   }
 
-  ${createOrderApplyWithOrderOrderApplyFragment}
+  ${applyForReturnOrExchangeWithOrderOrderApplyFragment}
 `;

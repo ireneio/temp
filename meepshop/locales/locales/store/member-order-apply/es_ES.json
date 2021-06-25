@@ -11,6 +11,8 @@
   "reason": "Descripción",
   "recede": "atrás",
   "proceed": "Próxima",
+  "success": "actualización completada",
+  "error": "No se puede solicitar la devolución",
   "warning": {
     "refund": "Por favor seleccione un artículo",
     "exchange": "Seleccione el artículo e ingrese la información del destinatario"

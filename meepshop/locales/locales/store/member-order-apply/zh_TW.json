@@ -11,6 +11,8 @@
   "reason": "原因",
   "recede": "返回",
   "proceed": "確認",
+  "success": "更新成功",
+  "error": "無法申請退換貨",
   "warning": {
     "refund": "請選取至少一項商品",
     "exchange": "請選取至少一項商品並填寫完整收件人資訊"

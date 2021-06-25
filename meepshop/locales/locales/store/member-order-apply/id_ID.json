@@ -11,6 +11,8 @@
   "reason": "Deskripsi",
   "recede": "Kembali",
   "proceed": "Lanjut",
+  "success": "Pembaruan selesai",
+  "error": "Tidak dapat mengajukan pengembalian",
   "warning": {
     "refund": "Silakan pilih item",
     "exchange": "Silakan pilih item dan masukkan info penerima"

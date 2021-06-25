@@ -11,6 +11,8 @@
   "reason": "Description",
   "recede": "Back",
   "proceed": "Next",
+  "success": "update completed",
+  "error": "Unable to apply for return",
   "warning": {
     "refund": "Please select item",
     "exchange": "Please select item and enter recipient info"

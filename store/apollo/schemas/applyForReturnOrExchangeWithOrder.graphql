@@ -1,0 +1,3 @@
+extend type Mutation {
+  applyForReturnOrExchangeWithOrder(orderId: ID!): Order
+}

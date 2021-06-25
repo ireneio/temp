@@ -1,7 +1,7 @@
 // typescript import
 import { FormComponentProps } from 'antd/lib/form/Form';
 
-import { applyType } from './hooks/useCreateOrderApply';
+import { applyType } from './hooks/useApplyForReturnOrExchange';
 
 // import
 import React, { useContext, useState } from 'react';
@@ -16,7 +16,7 @@ import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 
 import Products, { getProductsStyles } from './Products';
-import useCreateOrderApply from './hooks/useCreateOrderApply';
+import useApplyForReturnOrExchange from './hooks/useApplyForReturnOrExchange';
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -57,10 +57,15 @@ export default Form.create<PropsType>()(
     >(getMemberOrderApply, {
       variables: { orderId: orderId as string },
     });
-    const createOrderApply = useCreateOrderApply(type, orderId as string, form);
+    const applyForReturnOrExchange = useApplyForReturnOrExchange(
+      type,
+      orderId as string,
+      form,
+    );
     const order = data?.viewer?.order;
 
     if (!order) return <Spin indicator={<Icon type="loading" spin />} />;
+
     return (
       <div className={styles.root}>
         <style
@@ -180,7 +185,7 @@ export default Form.create<PropsType>()(
                 setChecking(true);
                 return;
               }
-              createOrderApply();
+              applyForReturnOrExchange();
             }}
             size="large"
           >

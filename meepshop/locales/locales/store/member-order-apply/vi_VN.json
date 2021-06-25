@@ -11,6 +11,8 @@
   "reason": "Nguyên nhân",
   "recede": "Phản Hồi",
   "proceed": "Bước sau",
+  "success": "hoàn thành cập nhật",
+  "error": "Không thể đăng ký trả lại",
   "warning": {
     "refund": "Xin chọn ít nhất một mục sản phẩm",
     "exchange": "Xin chọn ít nhất một mục sản phẩm Và điền đầy đủ thông tin người nhận"
