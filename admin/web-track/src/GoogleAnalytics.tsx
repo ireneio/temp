@@ -1,9 +1,7 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form';
-
 // import
 import React, { useState } from 'react';
-import { Icon, Button, Modal, Form, Input } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
+import { Form, Button, Modal, Input } from 'antd';
 
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/locales';
@@ -12,135 +10,90 @@ import {
   webTrackGoogleAnalyticsInstruction_w888 as webTrackGoogleAnalyticsInstruction,
 } from '@meepshop/images';
 
-import useSetGtagSettingsList from './hooks/useSetGtagSettingsList';
+import useUpdateGoogleAnalytics from './hooks/useUpdateGoogleAnalytics';
 import styles from './styles/googleAnalytics.less';
 
 // graphql typescript
-import {
-  gtagTypeEnum,
-  gtagEventNameEnum,
-  googleAnalyticsFragment as googleAnalyticsFragmentType,
-} from '@meepshop/types/gqls/admin';
-
-// graphql import
-import { googleAnalyticsFragment } from './gqls/googleAnalytics';
+import { googleAnalyticsFragment as googleAnalyticsFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
-interface PropsType extends FormComponentProps {
+interface PropsType {
   store: googleAnalyticsFragmentType;
 }
 
 // definition
-const { Item } = Form;
+const { Item: FormItem } = Form;
 
-export default Form.create<PropsType>()(
-  React.memo(({ form, store }: PropsType) => {
-    const { getFieldDecorator, validateFields } = form;
-    const {
-      id,
-      adTracks: { googleAnalyticsId },
-    } = store;
-    const { t } = useTranslation('web-track');
-    const setGtagSettingsList = useSetGtagSettingsList((cache, data) => {
-      cache.writeFragment<googleAnalyticsFragmentType>({
-        id: id || 'null-id' /** SHOULD_NOT_BE_NULL */,
-        fragment: googleAnalyticsFragment,
-        data: {
-          __typename: 'Store',
-          id: id || 'null-id' /** SHOULD_NOT_BE_NULL */,
-          adTracks: {
-            __typename: 'AdTracks',
-            googleAnalyticsId:
-              data?.setGtagSettingsList?.[0]?.trackingId || null,
-          },
-        },
-      });
-    });
-    const [isOpen, openModal] = useState(false);
-    const [editMode, setEditMode] = useState(false);
+export default React.memo(({ store }: PropsType) => {
+  const {
+    id,
+    adTracks: { googleAnalyticsId },
+  } = store;
+  const { t } = useTranslation('web-track');
+  const [isOpen, openModal] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const updateGoogleAnalytics = useUpdateGoogleAnalytics(id, setEditMode);
 
-    return (
-      <div>
-        <img src={webTrackGoogleAnalytics} alt="GoogleAnalytics" />
+  return (
+    <div>
+      <img src={webTrackGoogleAnalytics} alt="GoogleAnalytics" />
 
-        <div className={styles.title}>
-          <div>{t('google-analytics.title')}</div>
-          <Tooltip
-            arrowPointAtCenter
-            placement="bottomLeft"
-            title={t('tip')}
-            onClick={() => openModal(true)}
-          />
-        </div>
-
-        <Modal
-          width="fit-content"
-          footer={null}
-          visible={isOpen}
-          onCancel={() => openModal(false)}
-        >
-          <img
-            src={webTrackGoogleAnalyticsInstruction}
-            alt="GoogleAnalyticsInstruction"
-          />
-        </Modal>
-
-        <div className={styles.description}>
-          {t('google-analytics.description')}
-        </div>
-
-        {editMode ? (
-          <div className={styles.item}>
-            <Item>
-              {getFieldDecorator('googleAnalyticsId', {
-                initialValue: googleAnalyticsId,
-              })(
-                <Input
-                  placeholder={t('google-analytics.setting-placeholder')}
-                />,
-              )}
-            </Item>
-            <Button
-              type="primary"
-              onClick={() => {
-                validateFields(async (errors, values) => {
-                  if (errors) return;
-
-                  await setGtagSettingsList({
-                    variables: {
-                      setInput: [
-                        {
-                          type: 'google_analytics' as gtagTypeEnum,
-                          eventName: 'analytics_config' as gtagEventNameEnum,
-                          trackingId: values.googleAnalyticsId,
-                        },
-                      ],
-                    },
-                  });
-                  setEditMode(false);
-                });
-              }}
-            >
-              {t('save')}
-            </Button>
-            <Button onClick={() => setEditMode(false)}>{t('cancel')}</Button>
-          </div>
-        ) : (
-          <>
-            {googleAnalyticsId ? (
-              <div className={styles.googleAnalyticsId}>
-                <div>{t('google-analytics.googleAnalyticsId')}</div>
-                <div>{googleAnalyticsId}</div>
-                <Icon type="edit" onClick={() => setEditMode(true)} />
-              </div>
-            ) : (
-              <Button onClick={() => setEditMode(true)}>
-                {t('google-analytics.setting')}
-              </Button>
-            )}
-          </>
-        )}
+      <div className={styles.title}>
+        <div>{t('google-analytics.title')}</div>
+        <Tooltip
+          arrowPointAtCenter
+          placement="bottomLeft"
+          title={t('tip')}
+          onClick={() => openModal(true)}
+        />
       </div>
-    );
-  }),
-);
+
+      <Modal
+        width="fit-content"
+        footer={null}
+        visible={isOpen}
+        onCancel={() => openModal(false)}
+      >
+        <img
+          src={webTrackGoogleAnalyticsInstruction}
+          alt="GoogleAnalyticsInstruction"
+        />
+      </Modal>
+
+      <div className={styles.description}>
+        {t('google-analytics.description')}
+      </div>
+
+      {editMode ? (
+        <Form className={styles.item} onFinish={updateGoogleAnalytics}>
+          <FormItem
+            name={['googleAnalyticsId']}
+            initialValue={googleAnalyticsId}
+          >
+            <Input placeholder={t('google-analytics.setting-placeholder')} />
+          </FormItem>
+
+          <Button type="primary" htmlType="submit">
+            {t('save')}
+          </Button>
+
+          <Button onClick={() => setEditMode(false)}>{t('cancel')}</Button>
+        </Form>
+      ) : (
+        <>
+          {googleAnalyticsId ? (
+            <div className={styles.googleAnalyticsId}>
+              <div>{t('google-analytics.googleAnalyticsId')}</div>
+              <div>{googleAnalyticsId}</div>
+              <EditOutlined onClick={() => setEditMode(true)} />
+            </div>
+          ) : (
+            <Button onClick={() => setEditMode(true)}>
+              {t('google-analytics.setting')}
+            </Button>
+          )}
+        </>
+      )}
+    </div>
+  );
+});

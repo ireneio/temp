@@ -2,7 +2,7 @@
 import { ColumnProps } from 'antd/lib/table';
 
 // import
-import React, { useMemo } from 'react';
+import React, { useCallback } from 'react';
 
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/locales';
@@ -20,15 +20,15 @@ import {
 // definition
 export default (
   variables: getEcpayListVariables,
-): {
-  ecpayColumn: ColumnProps<useEcpayColumnsFragmentEdgesType>;
-  extraColumns: ColumnProps<useEcpayColumnsFragmentEdgesType>[];
-} => {
+): ((
+  columns: ColumnProps<useEcpayColumnsFragmentEdgesType>[],
+) => ColumnProps<useEcpayColumnsFragmentEdgesType>[]) => {
   const { t } = useTranslation('orders-ecpay');
 
-  return {
-    ecpayColumn: useMemo(
-      () => ({
+  return useCallback(
+    columns => [
+      ...columns.slice(0, 2),
+      {
         title: (
           <>
             {t('logistic-status')}
@@ -39,37 +39,33 @@ export default (
             />
           </>
         ),
-        dataIndex: 'node.latestLogisticTracking.status',
+        dataIndex: ['node', 'latestLogisticTracking', 'status'],
         render: (value: OrderLogisticTrackingStatusEnum) =>
           t(`status.${value}`),
-      }),
-      [t],
-    ),
-    extraColumns: useMemo(
-      () => [
-        ...(!variables?.filter?.logisticTrackingStatus?.includes(
-          'FAIL_TO_PLACE' as OrderLogisticTrackingStatusEnum,
-        )
-          ? []
-          : [
-              {
-                title: t('reason'),
-                dataIndex: 'node.latestLogisticTracking.providerStatusMessage',
-                render: (
-                  value: useEcpayColumnsFragmentEdgesNodeLatestLogisticTrackingType['providerStatusMessage'],
-                  record: useEcpayColumnsFragmentEdgesType,
-                ) => {
-                  if (
-                    record.node.latestLogisticTracking?.status !==
-                    'FAIL_TO_PLACE'
-                  )
-                    return null;
-                  return value || null;
-                },
-              },
-            ]),
-      ],
-      [t, variables],
-    ),
-  };
+      },
+      ...columns.slice(2),
+      ...(!variables?.filter?.logisticTrackingStatus?.includes(
+        'FAIL_TO_PLACE' as OrderLogisticTrackingStatusEnum,
+      )
+        ? []
+        : [
+            {
+              title: t('reason'),
+              dataIndex: [
+                'node',
+                'latestLogisticTracking',
+                'providerStatusMessage',
+              ],
+              render: (
+                value: useEcpayColumnsFragmentEdgesNodeLatestLogisticTrackingType['providerStatusMessage'],
+                record: useEcpayColumnsFragmentEdgesType,
+              ) =>
+                record.node.latestLogisticTracking?.status !== 'FAIL_TO_PLACE'
+                  ? null
+                  : value || null,
+            },
+          ]),
+    ],
+    [t, variables],
+  );
 };

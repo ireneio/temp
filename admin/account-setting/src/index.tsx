@@ -1,18 +1,18 @@
 // typescript import
 import { NextPage } from 'next';
-import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Form, Button, Divider } from 'antd';
+import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
 import Header from '@admin/header';
 
 import Account from './Account';
 import Plan from './Plan';
-import useSave from './hooks/useSave';
+import useUpdateAccountSetting from './hooks/useUpdateAccountSetting';
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -20,49 +20,56 @@ import { getMerchantAccount as getMerchantAccountType } from '@meepshop/types/gq
 
 // graphql import
 import { getMerchantAccount } from './gqls';
+import { accountFragment } from './gqls/account';
+import { planFragment } from './gqls/plan';
 
 // typescript definition
 interface PropsType {
-  form?: FormComponentProps['form'];
   namespacesRequired: string[];
 }
 
 // definition
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore FIXME: remove after use antd v4 form hook
-const AccountSetting: NextPage<PropsType> = Form.create<PropsType>()(
-  React.memo(({ form }: FormComponentProps) => {
-    const { resetFields, isFieldsTouched } = form;
-    const { data } = useQuery<getMerchantAccountType>(getMerchantAccount);
-    const { t } = useTranslation('account-setting');
-    const { loading, save } = useSave(form, data?.viewer?.id || null);
+const { Item: FormItem } = Form;
+const AccountSetting: NextPage<PropsType> = React.memo(() => {
+  const { data } = useQuery<getMerchantAccountType>(getMerchantAccount);
+  const { t } = useTranslation('account-setting');
+  const [form] = Form.useForm();
+  const { loading, updateAccountSetting } = useUpdateAccountSetting(
+    form,
+    data?.viewer?.id || null,
+  );
 
-    return (
+  return (
+    <Form className={styles.root} form={form} onFinish={updateAccountSetting}>
       <Header
         title={t('title')}
         buttons={
-          !isFieldsTouched() ? null : (
-            <div>
-              <Button onClick={() => resetFields()}>{t('cancel')}</Button>
+          <FormItem shouldUpdate noStyle>
+            {({ isFieldsTouched, resetFields, submit }) =>
+              !isFieldsTouched() ? null : (
+                <div>
+                  <Button onClick={() => resetFields()}>{t('cancel')}</Button>
 
-              <Button onClick={save} type="primary" loading={loading}>
-                {t('save')}
-              </Button>
-            </div>
-          )
+                  <Button loading={loading} onClick={submit} type="primary">
+                    {t('save')}
+                  </Button>
+                </div>
+              )
+            }
+          </FormItem>
         }
       >
-        <div className={styles.root}>
-          <Account form={form} viewer={data?.viewer || null} />
+        <div className={styles.form}>
+          <Account viewer={filter(accountFragment, data?.viewer || null)} />
 
           <Divider className={styles.divider} />
 
-          <Plan viewer={data?.viewer || null} />
+          <Plan viewer={filter(planFragment, data?.viewer || null)} />
         </div>
       </Header>
-    );
-  }),
-);
+    </Form>
+  );
+});
 
 AccountSetting.getInitialProps = async () => ({
   namespacesRequired: ['@meepshop/locales/namespacesRequired'],

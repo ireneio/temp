@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from '@apollo/react-components';
 import gql from 'graphql-tag';
-import { Spin, Icon, Modal } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin, Modal } from 'antd';
 
 import { Sensor as SensorContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
@@ -195,12 +196,12 @@ export default class PopUp extends React.PureComponent {
       >
         {({ loading, error, data }) => {
           if (loading || error || !data)
-            return <Spin indicator={<Icon type="loading" spin />} />;
+            return <Spin indicator={<LoadingOutlined spin />} />;
 
           const product = data?.computeProductList?.data[0];
 
           if (!product || !product.id)
-            return <Spin indicator={<Icon type="loading" spin />} />;
+            return <Spin indicator={<LoadingOutlined spin />} />;
 
           return (
             <Modal

@@ -1,8 +1,9 @@
 // typescript import
 import { DataProxy } from 'apollo-cache';
-import { MutationTuple } from '@apollo/react-hooks';
+import { FormInstance } from 'antd/lib/form';
 
 // import
+import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { message } from 'antd';
 
@@ -21,11 +22,17 @@ import {
   useCreateProductQAFragment,
 } from '../gqls/useCreateProductQA';
 
+// typescript definition
+interface ValuesType {
+  userEmail?: string;
+  question: string;
+}
+
 // definition
 export default (
   product: useCreateProductQAFragmentType | null,
-  resetFields: () => void,
-): MutationTuple<createProductQAType, createProductQAVariables>[0] => {
+  { resetFields }: FormInstance,
+): ((values: ValuesType) => void) => {
   const { t } = useTranslation('product-qa');
   const [mutation] = useMutation<createProductQAType, createProductQAVariables>(
     createProductQA,
@@ -55,5 +62,26 @@ export default (
     },
   );
 
-  return mutation;
+  return useCallback(
+    ({ userEmail, question }) => {
+      if (!product?.id) return;
+
+      mutation({
+        variables: {
+          createProductQA: [
+            {
+              productId: product.id,
+              qa: [
+                {
+                  question,
+                },
+              ],
+              ...(!userEmail ? {} : { userEmail }),
+            },
+          ],
+        },
+      });
+    },
+    [product, mutation],
+  );
 };

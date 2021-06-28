@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { Query } from '@apollo/react-components';
-import { Button, Form, Input } from 'antd';
+import { Form, Button, Input } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
 import { useValidateEmail } from '@meepshop/validator';
@@ -29,7 +29,6 @@ const query = gql`
   }
 `;
 
-@Form.create()
 @withTranslation('login')
 @withHook(() => ({
   validateEmail: useValidateEmail(),
@@ -44,27 +43,15 @@ export default class LoginForm extends React.PureComponent {
     fbLogin: PropTypes.func.isRequired,
 
     /** props */
-    form: PropTypes.objectOf(PropTypes.func).isRequired,
     t: PropTypes.func.isRequired,
     toggleToSignup: PropTypes.func.isRequired,
     toggleToForgetPassword: PropTypes.func.isRequired,
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
+  finish = values => {
+    const { dispatchAction } = this.props;
 
-    const {
-      form: { validateFields },
-      dispatchAction,
-    } = this.props;
-
-    validateFields((err, values) => {
-      if (!err) {
-        const { email, password } = values;
-
-        dispatchAction('login', { email, password });
-      }
-    });
+    dispatchAction('login', values);
   };
 
   render() {
@@ -75,7 +62,6 @@ export default class LoginForm extends React.PureComponent {
       colors,
 
       /** props */
-      form: { getFieldDecorator },
       t,
       toggleToSignup,
       toggleToForgetPassword,
@@ -89,39 +75,39 @@ export default class LoginForm extends React.PureComponent {
             data?.viewer?.store?.facebookSetting.isLoginEnabled;
 
           return (
-            <Form onSubmit={this.handleSubmit}>
+            <Form onFinish={this.finish}>
               <h3>{t('login')}</h3>
 
-              <FormItem>
-                {getFieldDecorator('email', {
-                  rules: [
-                    {
-                      required: true,
-                      message: t('email-is-required'),
-                    },
-                    {
-                      validator: validateEmail.validator,
-                    },
-                  ],
-                  validateTrigger: 'onBlur',
-                  normalize: validateEmail.normalize,
-                })(<Input placeholder={t('email-placeholder')} size="large" />)}
+              <FormItem
+                name={['email']}
+                rules={[
+                  {
+                    required: true,
+                    message: t('email-is-required'),
+                  },
+                  {
+                    validator: validateEmail.validator,
+                  },
+                ]}
+                normalize={validateEmail.normalize}
+                validateTrigger="onBlur"
+              >
+                <Input placeholder={t('email-placeholder')} size="large" />
               </FormItem>
 
-              <FormItem>
-                {getFieldDecorator('password', {
-                  rules: [
-                    {
-                      required: true,
-                      message: t('password-is-required'),
-                    },
-                  ],
-                })(
-                  <Password
-                    placeholder={t('password-placeholder')}
-                    size="large"
-                  />,
-                )}
+              <FormItem
+                name={['password']}
+                rules={[
+                  {
+                    required: true,
+                    message: t('password-is-required'),
+                  },
+                ]}
+              >
+                <Password
+                  placeholder={t('password-placeholder')}
+                  size="large"
+                />
               </FormItem>
 
               <div className={styles.optionsWrapper}>

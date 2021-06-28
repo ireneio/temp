@@ -1,6 +1,3 @@
-// typescript import
-import { ColorsType } from '@meepshop/context';
-
 // import
 import React from 'react';
 import { Table } from 'antd';
@@ -64,10 +61,3 @@ export default React.memo(
     );
   },
 );
-
-export const getApplicationStyles = (colors: ColorsType): string => `
-  .${styles.tag} {
-    color: ${colors[2]};
-    background: ${colors[4]};
-  }
-`;

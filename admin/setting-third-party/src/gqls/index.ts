@@ -3,7 +3,6 @@ import gql from 'graphql-tag';
 
 // graphql import
 import { useBlocksFragment } from './useBlocks';
-import { useSaveFragment } from './useSave';
 
 // definition
 export const getThirdPartySetting = gql`
@@ -13,11 +12,9 @@ export const getThirdPartySetting = gql`
       store {
         id
         ...useBlocksFragment
-        ...useSaveFragment
       }
     }
   }
 
   ${useBlocksFragment}
-  ${useSaveFragment}
 `;

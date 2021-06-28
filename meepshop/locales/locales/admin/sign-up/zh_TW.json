@@ -21,7 +21,6 @@
   "had-store": "已有商店？",
   "go-to-login": "前往登入",
   "sign-up-success": "註冊成功！完成驗證即可啟用商店",
-  "email-has-been-sent-1": "驗證信已寄送至 ",
-  "email-has-been-sent-2": "，若您沒有收到驗證信，請您嘗試重新註冊。 ",
+  "email-has-been-sent": "驗證信已寄送至 {{ email }}，若您沒有收到驗證信，請您嘗試重新註冊。 ",
   "back-to-login-page": "返回登入頁"
 }

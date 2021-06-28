@@ -17,10 +17,12 @@
     "refund": "請選取至少一項商品",
     "exchange": "請選取至少一項商品並填寫完整收件人資訊"
   },
-  "recipient": {
+  "replaceRecipient": {
     "title": "換貨收件人資訊",
     "name": "姓名",
     "mobile": "手機",
-    "address": "地址"
+    "address": {
+      "streetAddress": "地址"
+    }
   }
 }

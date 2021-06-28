@@ -14,6 +14,7 @@ export const useDeleteRoutingRuleFragment = gql`
   fragment useDeleteRoutingRuleFragment on Store {
     id
     routingRules {
+      __typename
       id
       fromPath
       toPath

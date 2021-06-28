@@ -1,6 +1,3 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
-
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
@@ -22,12 +19,28 @@ import { applyForReturnOrExchange } from '../gqls/useApplyForReturnOrExchange';
 // typescript definition
 export type applyType = 'refund' | 'exchange';
 
+interface ValuesType {
+  selectedProducts: string[];
+  replaceRecipient: {
+    name?: string;
+    mobile?: string;
+    address?: {
+      streetAddress?: string;
+    };
+  };
+  reason: {
+    [key: string]: string;
+  };
+  quantitySelected: {
+    [key: string]: number;
+  };
+}
+
 // definition
 export default (
   type: applyType,
   orderId: string,
-  { validateFields }: FormComponentProps['form'],
-): (() => void) => {
+): ((values: ValuesType) => void) => {
   const Router = useRouter();
   const { t } = useTranslation('member-order-apply');
 
@@ -59,34 +72,33 @@ export default (
     },
   });
 
-  return useCallback(() => {
-    validateFields(
-      (_, { selectedProducts, replaceRecipient, reason, quantitySelected }) => {
-        mutation({
-          variables: {
+  return useCallback(
+    ({ selectedProducts, replaceRecipient, reason, quantitySelected }) => {
+      mutation({
+        variables: {
+          orderId,
+          input: {
             orderId,
-            input: {
-              orderId,
-              applicationType:
-                type === 'refund'
-                  ? ('RETURN' as ApplicationTypeEnum)
-                  : ('REPLACE' as ApplicationTypeEnum),
-              orderProducts: selectedProducts.map((id: string) => ({
-                id,
-                quantity: quantitySelected[id],
-                applicationInfo: {
-                  comment: reason[id] || '',
-                },
-              })),
-              ...(type !== 'exchange'
-                ? null
-                : {
-                    recipient: replaceRecipient,
-                  }),
-            },
+            applicationType:
+              type === 'refund'
+                ? ('RETURN' as ApplicationTypeEnum)
+                : ('REPLACE' as ApplicationTypeEnum),
+            orderProducts: selectedProducts.map((id: string) => ({
+              id,
+              quantity: quantitySelected[id],
+              applicationInfo: {
+                comment: reason[id] || '',
+              },
+            })),
+            ...(type !== 'exchange'
+              ? null
+              : {
+                  recipient: replaceRecipient,
+                }),
           },
-        });
-      },
-    );
-  }, [mutation, orderId, type, validateFields]);
+        },
+      });
+    },
+    [mutation, orderId, type],
+  );
 };

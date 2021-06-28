@@ -1,6 +1,3 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form';
-
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
@@ -21,11 +18,16 @@ import {
   updateGoogleSearchConsoleVerificationHtml,
 } from '../gqls/useUpdateGoogleSearchConsoleVerificationHtml';
 
+// typescript definition
+interface ValuesType {
+  googleSearchConsoleVerificationHtml: string;
+}
+
 // definition
 export default (
   storeId: string,
-  { validateFields }: FormComponentProps['form'],
-): (() => Promise<boolean>) => {
+  setEditMode: (editMode: boolean) => void,
+): ((values: ValuesType) => void) => {
   const { t } = useTranslation('web-track');
   const [mutation] = useMutation<
     updateGoogleSearchConsoleVerificationHtmlType,
@@ -33,47 +35,36 @@ export default (
   >(updateGoogleSearchConsoleVerificationHtml);
 
   return useCallback(
-    () =>
-      new Promise(resolve => {
-        validateFields((errors, { googleSearchConsoleVerificationHtml }) => {
-          if (errors) {
-            resolve(false);
+    ({ googleSearchConsoleVerificationHtml }) => {
+      mutation({
+        variables: {
+          input: googleSearchConsoleVerificationHtml,
+        },
+        update: (cache, { data }) => {
+          if (data?.setGoogleSearchConsoleVerificationHtml.status !== 'OK') {
+            message.success(t('save-fail'));
             return;
           }
 
-          mutation({
-            variables: {
-              input: googleSearchConsoleVerificationHtml,
-            },
-            update: (cache, { data }) => {
-              if (
-                data?.setGoogleSearchConsoleVerificationHtml.status !== 'OK'
-              ) {
-                message.success(t('save-fail'));
-                resolve(false);
-                return;
-              }
-
-              cache.writeFragment<
-                useUpdateGoogleSearchConsoleVerificationHtmlFragmentType
-              >({
-                id: storeId,
-                fragment: useUpdateGoogleSearchConsoleVerificationHtmlFragment,
-                data: {
-                  __typename: 'Store',
-                  id: storeId,
-                  adTracks: {
-                    __typename: 'AdTracks',
-                    googleSearchConsoleVerificationHtml,
-                  },
-                },
-              });
-              message.success(t('save-success'));
-              resolve(true);
+          cache.writeFragment<
+            useUpdateGoogleSearchConsoleVerificationHtmlFragmentType
+          >({
+            id: storeId,
+            fragment: useUpdateGoogleSearchConsoleVerificationHtmlFragment,
+            data: {
+              __typename: 'Store',
+              id: storeId,
+              adTracks: {
+                __typename: 'AdTracks',
+                googleSearchConsoleVerificationHtml,
+              },
             },
           });
-        });
-      }),
-    [storeId, validateFields, t, mutation],
+          message.success(t('save-success'));
+          setEditMode(false);
+        },
+      });
+    },
+    [storeId, setEditMode, t, mutation],
   );
 };

@@ -1,9 +1,11 @@
 // typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
+import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
 
 // import
 import React, { useState, useContext } from 'react';
-import { Modal, Form, Button, Input, Icon } from 'antd';
+import { LockFilled } from '@ant-design/icons';
+import { Form } from '@ant-design/compatible';
+import { Modal, Button, Input } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
@@ -91,7 +93,7 @@ export default Form.create<PropsType>()(
                 className={styles.forgetPassword}
                 onClick={() => setIsForgotPassword(true)}
               >
-                <Icon type="lock" theme="filled" />
+                <LockFilled />
 
                 {t('forget-password')}
               </div>

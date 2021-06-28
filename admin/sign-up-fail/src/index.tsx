@@ -1,7 +1,8 @@
 // import
 import { NextPage } from 'next';
 import React, { useContext, useEffect } from 'react';
-import { Button, Icon } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 
 import { AdTrackContext } from '@admin/ad-track';
 import Link from '@meepshop/link';
@@ -26,7 +27,7 @@ const SignUpFail: NextPage = React.memo(() => {
       style={{ backgroundImage: `url('${loginBackground}')` }}
     >
       <div className={styles.wrapper}>
-        <Icon type="exclamation-circle" />
+        <ExclamationCircleOutlined />
 
         <div>{t('title')}</div>
         <div>{t('description')}</div>

@@ -1,12 +1,12 @@
 // typescript import
 import { NextPage } from 'next';
-import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
-import { Spin, Icon, Form, Button, Switch, Divider } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Form, Spin, Button, Switch } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import Header from '@admin/header';
@@ -25,109 +25,103 @@ import { getThirdPartySetting as getThirdPartySettingType } from '@meepshop/type
 // graphql import
 import { getThirdPartySetting } from './gqls';
 import { useBlocksFragment } from './gqls/useBlocks';
-import { useSaveFragment } from './gqls/useSave';
 
 // typescript definition
 interface PropsType {
-  form?: FormComponentProps['form'];
   namespacesRequired: string[];
 }
 
 // definition
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore FIXME: remove after use antd v4 form hook
-const SettingThirdParty: NextPage<PropsType> = Form.create<PropsType>()(
-  React.memo(({ form }: FormComponentProps) => {
-    const { data } = useQuery<getThirdPartySettingType>(getThirdPartySetting);
-    const { t } = useTranslation('setting-third-party');
+const { Item: FormItem } = Form;
+const SettingThirdParty: NextPage<PropsType> = React.memo(() => {
+  const { data } = useQuery<getThirdPartySettingType>(getThirdPartySetting);
+  const { t } = useTranslation('setting-third-party');
+  const [form] = Form.useForm();
+  const { loading, save } = useSave(form, data?.viewer?.store?.id || null);
+  const blocks = useBlocks(
+    filter(useBlocksFragment, data?.viewer?.store || null),
+  );
 
-    const { loading, save } = useSave(
-      form,
-      filter(useSaveFragment, data?.viewer?.store || null),
-    );
-    const blocks = useBlocks(
-      form,
-      filter(useBlocksFragment, data?.viewer?.store || null),
-    );
-    const {
-      getFieldDecorator,
-      getFieldValue,
-      resetFields,
-      isFieldsTouched,
-    } = form;
+  if (!data) return <Spin indicator={<LoadingOutlined spin />} />;
 
-    if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
-
-    return (
+  return (
+    <Form className={styles.root} form={form} onFinish={save}>
       <Header
         title={t('title')}
         prevTitle={t('common:setting')}
         backTo="/setting"
         buttons={
-          !isFieldsTouched() ? null : (
-            <div>
-              <Button onClick={() => resetFields()}>{t('cancel')}</Button>
+          <FormItem shouldUpdate noStyle>
+            {({ isFieldsTouched, resetFields, submit }) =>
+              !isFieldsTouched() ? null : (
+                <div>
+                  <Button onClick={() => resetFields()}>{t('cancel')}</Button>
 
-              <Button onClick={save} type="primary" loading={loading}>
-                {t('save')}
-              </Button>
-            </div>
-          )
+                  <Button onClick={submit} loading={loading} type="primary">
+                    {t('save')}
+                  </Button>
+                </div>
+              )
+            }
+          </FormItem>
         }
       >
-        <Form className={styles.root} labelAlign="left">
+        <div className={styles.form}>
           {blocks.map(
-            (
-              {
-                key,
-                src,
-                useToggle,
-                initialValue,
-                useToggleDescription,
-                component,
-              },
-              index,
-            ) => (
-              <React.Fragment key={key}>
-                <Block
-                  title={t(`${key}.title`)}
-                  description={t(`${key}.description`)}
-                >
-                  <img src={src} alt={key} />
+            ({
+              key,
+              src,
+              useToggle,
+              initialValue,
+              useToggleDescription,
+              component,
+            }) => (
+              <Block
+                key={key}
+                className={styles.block}
+                title={t(`${key}.title`)}
+                description={t(`${key}.description`)}
+              >
+                <img src={src} alt={key} />
 
-                  {useToggle ? (
-                    <div className={styles.item}>
-                      {getFieldDecorator(`${key}.status`, {
-                        initialValue,
-                        valuePropName: 'checked',
-                      })(<Switch />)}
+                {useToggle ? (
+                  <div className={styles.item}>
+                    <FormItem
+                      name={[key, 'status']}
+                      initialValue={initialValue}
+                      valuePropName="checked"
+                      noStyle
+                    >
+                      <Switch />
+                    </FormItem>
 
-                      <div>
-                        <h3>{t(`${key}.toggle.title`)}</h3>
+                    <div>
+                      <h3>{t(`${key}.toggle.title`)}</h3>
 
-                        {!useToggleDescription ? null : (
-                          <p>{t(`${key}.toggle.description`)}</p>
-                        )}
+                      {!useToggleDescription ? null : (
+                        <p>{t(`${key}.toggle.description`)}</p>
+                      )}
 
-                        {!getFieldValue(`${key}.status`) ? null : (
-                          <div className={styles.fields}>{component}</div>
-                        )}
-                      </div>
+                      <FormItem dependencies={[[key, 'status']]} noStyle>
+                        {({ getFieldValue }) =>
+                          !getFieldValue([key, 'status']) ? null : (
+                            <div className={styles.fields}>{component}</div>
+                          )
+                        }
+                      </FormItem>
                     </div>
-                  ) : (
-                    component
-                  )}
-                </Block>
-
-                {index === blocks.length - 1 ? null : <Divider />}
-              </React.Fragment>
+                  </div>
+                ) : (
+                  component
+                )}
+              </Block>
             ),
           )}
-        </Form>
+        </div>
       </Header>
-    );
-  }),
-);
+    </Form>
+  );
+});
 
 SettingThirdParty.getInitialProps = async () => ({
   namespacesRequired: ['@meepshop/locales/namespacesRequired'],

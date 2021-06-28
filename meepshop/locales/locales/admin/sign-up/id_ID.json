@@ -21,7 +21,6 @@
   "had-store": "toko?",
   "go-to-login": "Masuk ke login",
   "sign-up-success": "registrasi berhasil!",
-  "email-has-been-sent-1": "Surat verifikasi telah dikirim ke",
-  "email-has-been-sent-2": ", Jika Anda tidak menerima surat verifikasi, silakan coba mendaftar lagi.",
+  "email-has-been-sent": "Surat verifikasi telah dikirim ke {{ email }}, Jika Anda tidak menerima surat verifikasi, silakan coba mendaftar lagi.",
   "back-to-login-page": "Kembali ke halaman login"
 }

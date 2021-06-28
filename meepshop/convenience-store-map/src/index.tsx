@@ -49,6 +49,7 @@ export default React.memo(({ close, ...props }: PropsType) => {
         size="small"
         defaultActiveKey="address"
         destroyInactiveTabPane
+        animated
       >
         <TabPane tab={t('addressSearch')} key="address">
           <StoreAddress {...props} />

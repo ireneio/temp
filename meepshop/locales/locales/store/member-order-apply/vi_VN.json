@@ -17,10 +17,12 @@
     "refund": "Xin chọn ít nhất một mục sản phẩm",
     "exchange": "Xin chọn ít nhất một mục sản phẩm Và điền đầy đủ thông tin người nhận"
   },
-  "recipient": {
+  "replaceRecipient": {
     "title": "Thông tin người nhận",
     "name": "Tên",
     "mobile": "Điện Thoại",
-    "address": "Địa Chỉ"
+    "address": {
+      "streetAddress": "Địa Chỉ"
+    }
   }
 }

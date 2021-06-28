@@ -2,7 +2,7 @@
 import { ColumnProps } from 'antd/lib/table';
 
 // import
-import { useMemo } from 'react';
+import { useCallback } from 'react';
 import moment from 'moment';
 
 import { useTranslation } from '@meepshop/locales';
@@ -17,17 +17,20 @@ import {
 // definition
 export default (
   variables: getEcfitListVariables,
-): ColumnProps<useEcfitColumnsFragmentEdgesType>[] => {
+): ((
+  columns: ColumnProps<useEcfitColumnsFragmentEdgesType>[],
+) => ColumnProps<useEcfitColumnsFragmentEdgesType>[]) => {
   const { t } = useTranslation('orders-ecfit');
 
-  return useMemo(
-    () => [
+  return useCallback(
+    columns => [
+      ...columns,
       ...(variables?.filter?.ecfitSentStatus !== 'SENT_SUCCESSFUL'
         ? []
         : [
             {
               title: t('orders.send-time'),
-              dataIndex: 'node.lastEcfitRequestRecord.createdAt',
+              dataIndex: ['node', 'lastEcfitRequestRecord', 'createdAt'],
               render: (
                 value: useEcfitColumnsFragmentEdgesNodeLastEcfitRequestRecordType['createdAt'],
               ) =>
@@ -39,7 +42,7 @@ export default (
         : [
             {
               title: t('orders.fail-reason'),
-              dataIndex: 'node.lastEcfitRequestRecord.response',
+              dataIndex: ['node', 'lastEcfitRequestRecord', 'response'],
               render: (
                 value: useEcfitColumnsFragmentEdgesNodeLastEcfitRequestRecordType['response'],
               ) => (!value ? null : t(`fail-reason.${value}`)),

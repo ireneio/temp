@@ -77,8 +77,9 @@ export default (): {
                   },
                 },
               });
+              resolve();
             },
-          }).then(() => resolve());
+          });
         }),
       [t, mutation],
     ),

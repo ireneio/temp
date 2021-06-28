@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 // FIXME remove
 import { StyleRoot } from 'radium';
 import { warning } from 'fbjs';
-import { Spin, Drawer, Icon } from 'antd';
+import {
+  ArrowLeftOutlined,
+  CloseOutlined,
+  LoadingOutlined,
+} from '@ant-design/icons';
+import { Spin, Drawer } from 'antd';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -60,7 +65,7 @@ export default class Cart extends React.PureComponent {
         <Spin
           wrapperClassName={styles.spin}
           spinning={isCartUpdating}
-          indicator={<Icon type="loading" spin />}
+          indicator={<LoadingOutlined spin />}
         >
           <StyleRoot
             className={`${styles.body} ${
@@ -79,14 +84,12 @@ export default class Cart extends React.PureComponent {
               {history.length === 0 ? (
                 <div />
               ) : (
-                <Icon
-                  type="arrow-left"
+                <ArrowLeftOutlined
                   className={styles.icon}
                   onClick={this.goBack}
                 />
               )}
-              <Icon
-                type="close"
+              <CloseOutlined
                 className={styles.closeIcon}
                 onClick={() => toggleCart(false)}
               />

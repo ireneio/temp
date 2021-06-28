@@ -1,13 +1,12 @@
 // typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
-
 import { applyType } from './hooks/useApplyForReturnOrExchange';
 
 // import
 import React, { useContext, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
-import { Spin, Icon, Button, Input, Form, message } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Form, Spin, Button, message } from 'antd';
 import moment from 'moment';
 import transformColor from 'color';
 
@@ -15,7 +14,8 @@ import { useRouter } from '@meepshop/link';
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 
-import Products, { getProductsStyles } from './Products';
+import Products from './Products';
+import Recipient from './Recipient';
 import useApplyForReturnOrExchange from './hooks/useApplyForReturnOrExchange';
 import styles from './styles/index.less';
 
@@ -28,171 +28,131 @@ import {
 
 // graphql import
 import { getMemberOrderApply } from './gqls';
+import { recipientFragment } from './gqls/recipient';
 import { useColumnsProductsObjectTypeMemberOrderApplyFragment } from './gqls/useColumns';
 
 // typescript definition
-interface PropsType extends FormComponentProps {
+interface PropsType {
   type: applyType;
 }
 
 // definition
+const { Item: FormItem } = Form;
+
 // TODO: should use getInitialProps
 export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
 
-export default Form.create<PropsType>()(
-  React.memo(({ form, type }: PropsType) => {
-    const { getFieldDecorator, getFieldValue } = form;
-    const { t } = useTranslation('member-order-apply');
-    const colors = useContext(ColorsContext);
-    const {
-      query: { orderId },
-      push,
-    } = useRouter();
+export default React.memo(({ type }: PropsType) => {
+  const { t } = useTranslation('member-order-apply');
+  const colors = useContext(ColorsContext);
+  const {
+    query: { orderId },
+    push,
+  } = useRouter();
 
-    const [checking, setChecking] = useState<boolean>(false);
+  const [checking, setChecking] = useState<boolean>(false);
 
-    const { data } = useQuery<
-      getMemberOrderApplyType,
-      getMemberOrderApplyVariablesType
-    >(getMemberOrderApply, {
-      variables: { orderId: orderId as string },
-    });
-    const applyForReturnOrExchange = useApplyForReturnOrExchange(
-      type,
-      orderId as string,
-      form,
-    );
-    const order = data?.viewer?.order;
+  const { data } = useQuery<
+    getMemberOrderApplyType,
+    getMemberOrderApplyVariablesType
+  >(getMemberOrderApply, {
+    variables: { orderId: orderId as string },
+  });
+  const applyForReturnOrExchange = useApplyForReturnOrExchange(
+    type,
+    orderId as string,
+  );
+  const order = data?.viewer?.order;
 
-    if (!order) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!order) return <Spin indicator={<LoadingOutlined spin />} />;
 
-    return (
-      <div className={styles.root}>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
+  return (
+    <Form className={styles.root} onFinish={applyForReturnOrExchange}>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
             @media (max-width: ${styles.screenSmMax}) {
               .${styles.root} h1 > span:last-child {
                 color: ${transformColor(colors[3]).alpha(0.5)};
               }
             }
-
-            ${getProductsStyles(colors)}
           `,
-          }}
+        }}
+      />
+
+      <h1>
+        <span>
+          {t('order-no')}
+
+          {order.orderNo}
+        </span>
+
+        <span>
+          <span>{t('created-at')}</span>
+
+          {moment(order.createdAt).format('YYYY/MM/DD')}
+        </span>
+      </h1>
+
+      {type !== 'exchange' || !checking ? null : (
+        <Recipient order={filter(recipientFragment, order)} checking />
+      )}
+
+      <FormItem name={['selectedProducts']} initialValue={[]}>
+        <Products
+          availableProductsForApply={filter<
+            useColumnsProductsObjectTypeMemberOrderApplyFragmentType[]
+          >(
+            useColumnsProductsObjectTypeMemberOrderApplyFragment,
+            order.availableProductsForApply,
+          )}
+          checking={checking}
         />
+      </FormItem>
 
-        <h1>
-          <span>
-            {t('order-no')}
-            {order.orderNo}
-          </span>
+      {type !== 'exchange' || checking ? null : (
+        <Recipient order={filter(recipientFragment, order)} checking={false} />
+      )}
 
-          <span>
-            <span>{t('created-at')}</span>
-            {moment(order.createdAt).format('YYYY/MM/DD')}
-          </span>
-        </h1>
+      <div className={styles.buttonRoot}>
+        <Button
+          style={{
+            color: colors[3],
+            borderColor: colors[3],
+          }}
+          onClick={() => (checking ? setChecking(false) : push('/orders'))}
+          size="large"
+        >
+          {t('recede')}
+        </Button>
 
-        {type !== 'exchange' || !checking ? null : (
-          <div className={styles.replaceInfo}>
-            {[
-              {
-                key: 'name',
-                children: `${t('recipient.name')}：${getFieldValue(
-                  'replaceRecipient.name',
-                )}`,
-              },
-              {
-                key: 'mobile',
-                children: `${t('recipient.mobile')}：${getFieldValue(
-                  'replaceRecipient.mobile',
-                )}`,
-              },
-              {
-                key: 'address',
-                children: `${t('recipient.address')}：${getFieldValue(
-                  'replaceRecipient.address.streetAddress',
-                )}`,
-              },
-            ].map(props => (
-              <p {...props} />
-            ))}
-          </div>
-        )}
+        <FormItem shouldUpdate noStyle>
+          {({ getFieldValue, submit }) => (
+            <Button
+              style={{
+                color: colors[3],
+                borderColor: colors[3],
+              }}
+              onClick={() => {
+                if (getFieldValue(['selectedProducts']).length === 0) {
+                  message.info(t(`warning.${type}`));
+                  return;
+                }
 
-        {getFieldDecorator('selectedProducts', {
-          initialValue: [],
-        })(
-          <Products
-            availableProductsForApply={filter<
-              useColumnsProductsObjectTypeMemberOrderApplyFragmentType[]
-            >(
-              useColumnsProductsObjectTypeMemberOrderApplyFragment,
-              order.availableProductsForApply,
-            )}
-            checking={checking}
-            form={form}
-          />,
-        )}
+                if (!checking) {
+                  setChecking(true);
+                  return;
+                }
 
-        {type !== 'exchange' || checking ? null : (
-          <div className={styles.form}>
-            <h3>{t('recipient.title')}</h3>
-            {getFieldDecorator('replaceRecipient.name', {
-              initialValue:
-                order.shipmentInfo?.list?.[0]?.recipient?.name || '',
-              preserve: true,
-            })(<Input placeholder={t('recipient.name')} />)}
-
-            {getFieldDecorator('replaceRecipient.mobile', {
-              initialValue:
-                order.shipmentInfo?.list?.[0]?.recipient?.mobile || '',
-              preserve: true,
-            })(<Input placeholder={t('recipient.mobile')} />)}
-
-            {getFieldDecorator('replaceRecipient.address.streetAddress', {
-              initialValue: order.address?.fullAddress || '',
-              preserve: true,
-            })(<Input placeholder={t('recipient.address')} />)}
-          </div>
-        )}
-
-        <div className={styles.buttonRoot}>
-          <Button
-            style={{
-              color: colors[3],
-              borderColor: colors[3],
-            }}
-            onClick={() => (checking ? setChecking(false) : push('/orders'))}
-            size="large"
-          >
-            {t('recede')}
-          </Button>
-
-          <Button
-            style={{
-              color: colors[3],
-              borderColor: colors[3],
-            }}
-            onClick={() => {
-              if (getFieldValue('selectedProducts').length === 0) {
-                message.info(t(`warning.${type}`));
-                return;
-              }
-
-              if (!checking) {
-                setChecking(true);
-                return;
-              }
-              applyForReturnOrExchange();
-            }}
-            size="large"
-          >
-            {t('proceed')}
-          </Button>
-        </div>
+                submit();
+              }}
+              size="large"
+            >
+              {t('proceed')}
+            </Button>
+          )}
+        </FormItem>
       </div>
-    );
-  }),
-);
+    </Form>
+  );
+});

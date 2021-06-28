@@ -4,10 +4,10 @@ import useSelectedPageType from '../../hooks/useSelectedPage';
 // import
 import React from 'react';
 import { filter } from 'graphql-anywhere';
-import { Popover, Tooltip, Icon } from 'antd';
+import { SettingOutlined } from '@ant-design/icons';
+import { Popover, Tooltip } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
-import { DefaultLayoutIcon } from '@meepshop/icons';
 
 import Edit from './Edit';
 import usePageSettingItems from './hooks/usePageSettingItems';
@@ -48,9 +48,8 @@ export default React.memo(
     variables,
     setSelectedPage,
   }: PropsType) => {
-    const { pageType } = page;
     const { t } = useTranslation('page-manager');
-    const { icons, events } = usePageSettingItems(
+    const pageSettingItems = usePageSettingItems(
       filter(usePageSettingItemsPageFragment, page),
       () => onEditVisibleChange(true),
       variables,
@@ -64,29 +63,17 @@ export default React.memo(
           overlayClassName={styles.root}
           visible={visible}
           onVisibleChange={onVisibleChange}
-          content={icons.map((icon: string) => (
+          content={pageSettingItems.map(({ key, click, Icon }) => (
             <div
-              key={icon}
+              key={key}
               onClick={() => {
-                events[icon]();
+                click();
                 onVisibleChange(false);
               }}
             >
-              {icon === 'template' ? (
-                <DefaultLayoutIcon />
-              ) : (
-                <Icon type={icon} />
-              )}
+              <Icon />
 
-              {t(
-                `page-setting.${
-                  ['home', 'custom', 'products'].includes(
-                    pageType || '' /** SHOULD_NOT_BE_NULL */,
-                  ) && icon === 'edit'
-                    ? 'seo'
-                    : icon
-                }`,
-              )}
+              {t(key)}
             </div>
           ))}
           align={{ offset: [0, -7] }}
@@ -94,7 +81,7 @@ export default React.memo(
           trigger="click"
         >
           <Tooltip title={t('page-setting.hint')}>
-            <Icon className={`${styles.icon} ${className}`} type="setting" />
+            <SettingOutlined className={`${styles.icon} ${className}`} />
           </Tooltip>
         </Popover>
 

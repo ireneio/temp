@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import gql from 'graphql-tag';
 import { Query } from '@apollo/react-components';
-import { Form, Input, Button, Icon } from 'antd';
+import { LockFilled } from '@ant-design/icons';
+import { Form, Input, Button } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
@@ -44,7 +45,6 @@ const query = gql`
 @withHook(() => ({
   validateEmail: useValidateEmail(),
 }))
-@Form.create()
 @enhancer
 @radium
 export default class Login extends React.PureComponent {
@@ -59,31 +59,20 @@ export default class Login extends React.PureComponent {
     /** props */
     t: PropTypes.func.isRequired,
     adTrack: PropTypes.shape({}).isRequired,
-    form: PropTypes.shape({
-      getFieldDecorator: PropTypes.func.isRequired,
-      getFieldsError: PropTypes.func.isRequired,
-      validateFields: PropTypes.func.isRequired,
-    }).isRequired,
     goToInCart: PropTypes.func.isRequired,
     storeSetting: PropTypes.shape({}).isRequired,
   };
 
-  submit = e => {
-    e.preventDefault();
-    const { form, login, adTrack, toggleCart } = this.props;
+  finish = values => {
+    const { login, adTrack, toggleCart } = this.props;
 
-    form.validateFields((err, { email, password }) => {
-      if (!err) {
-        login({
-          email,
-          password,
-          from: 'cart',
-          callback: () => {
-            toggleCart(false);
-            adTrack.completeRegistration();
-          },
-        });
-      }
+    login({
+      ...values,
+      from: 'cart',
+      callback: () => {
+        toggleCart(false);
+        adTrack.completeRegistration();
+      },
     });
   };
 
@@ -97,12 +86,10 @@ export default class Login extends React.PureComponent {
 
       /** props */
       t,
-      form,
       goToInCart,
       storeSetting: { shopperLoginMessageEnabled, shopperLoginMessage },
       validateEmail,
     } = this.props;
-    const { getFieldDecorator } = form;
 
     return (
       <Query query={query}>
@@ -117,44 +104,42 @@ export default class Login extends React.PureComponent {
             >
               <div>{t('member-login')}</div>
 
-              <Form onSubmit={this.submit}>
-                <FormItem>
-                  {getFieldDecorator('email', {
-                    rules: [
-                      {
-                        required: true,
-                        message: t('email-is-required'),
-                      },
-                      {
-                        validator: validateEmail.validator,
-                      },
-                    ],
-                    validateTrigger: 'onBlur',
-                    normalize: validateEmail.normalize,
-                  })(
-                    <Input placeholder={t('email-placeholder')} size="large" />,
-                  )}
+              <Form onFinish={this.finish}>
+                <FormItem
+                  name={['email']}
+                  rules={[
+                    {
+                      required: true,
+                      message: t('email-is-required'),
+                    },
+                    {
+                      validator: validateEmail.validator,
+                    },
+                  ]}
+                  normalize={validateEmail.normalize}
+                  validateTrigger="onBlur"
+                >
+                  <Input placeholder={t('email-placeholder')} size="large" />
                 </FormItem>
 
-                <FormItem>
-                  {getFieldDecorator('password', {
-                    rules: [
-                      {
-                        required: true,
-                        message: t('password-is-required'),
-                      },
-                    ],
-                  })(
-                    <Password
-                      placeholder={t('password-placeholder')}
-                      size="large"
-                    />,
-                  )}
+                <FormItem
+                  name={['password']}
+                  rules={[
+                    {
+                      required: true,
+                      message: t('password-is-required'),
+                    },
+                  ]}
+                >
+                  <Password
+                    placeholder={t('password-placeholder')}
+                    size="large"
+                  />
                 </FormItem>
 
                 <div className={styles.buttonRoot}>
                   <div onClick={() => goToInCart('forget password', 'login')}>
-                    <Icon type="lock" theme="filled" />
+                    <LockFilled />
                     {t('forget-password')}
                   </div>
 

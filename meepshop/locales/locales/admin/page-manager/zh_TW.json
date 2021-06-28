@@ -116,9 +116,6 @@
   },
   "rename-page-with-seo": {
     "success": "更新成功",
-    "error": {
-      "FAIL_PAGE_PATH_DUPLICATE": "網址名稱重複",
-      "default": "更新失敗"
-    }
+    "error": "更新失敗"
   }
 }

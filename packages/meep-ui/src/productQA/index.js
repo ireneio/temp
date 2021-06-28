@@ -23,9 +23,9 @@ const { Meta: ListItemMeta } = ListItem;
 const { TextArea } = Input;
 
 @enhancer
-@Form.create()
 @withTranslation('product-qa')
 @withHook(() => ({
+  form: Form.useForm()[0],
   autoLinker: useAutoLinker(),
   validateEmail: useValidateEmail(),
 }))
@@ -36,9 +36,6 @@ export default class PrdoductQA extends React.PureComponent {
     isLogin: ISLOGIN_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     getData: PropTypes.func.isRequired,
-
-    /** antd */
-    form: PropTypes.shape({}).isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -70,41 +67,34 @@ export default class PrdoductQA extends React.PureComponent {
     this.setState({ QAList: result.data.getProductQAList.data });
   };
 
-  submit = e => {
-    e.preventDefault();
-
+  finish = async ({ userEmail, question }) => {
     const {
       /** context */
       getData,
 
       /** props */
+      form: { resetFields },
       t,
-      form: { validateFields, resetFields },
       productId,
     } = this.props;
-
-    validateFields(async (err, { userEmail, question }) => {
-      if (!err) {
-        const { data: result } = await getData(CREATE_PRODUCT_QA, {
-          createProductQA: {
-            productId,
-            qa: [
-              {
-                question,
-              },
-            ],
-            ...(!userEmail ? {} : { userEmail }),
+    const { data: result } = await getData(CREATE_PRODUCT_QA, {
+      createProductQA: {
+        productId,
+        qa: [
+          {
+            question,
           },
-        });
-
-        if (result) {
-          const { QAList } = this.state;
-
-          resetFields();
-          this.setState({ QAList: [...result.createProductQA, ...QAList] });
-        } else message.error(t('can-not-send'));
-      }
+        ],
+        ...(!userEmail ? {} : { userEmail }),
+      },
     });
+
+    if (result) {
+      const { QAList } = this.state;
+
+      resetFields();
+      this.setState({ QAList: [...result.createProductQA, ...QAList] });
+    } else message.error(t('can-not-send'));
   };
 
   render() {
@@ -114,8 +104,8 @@ export default class PrdoductQA extends React.PureComponent {
       colors,
 
       /** props */
+      form,
       t,
-      form: { getFieldDecorator, resetFields },
       contentWidth,
       productId,
       validateEmail,
@@ -124,7 +114,11 @@ export default class PrdoductQA extends React.PureComponent {
     const { QAList, showQAIndex } = this.state;
 
     return (
-      <Form className={`productQA-${productId}`} onSubmit={this.submit}>
+      <Form
+        className={`productQA-${productId}`}
+        form={form}
+        onFinish={this.finish}
+      >
         <Style
           scopeSelector={`.productQA-${productId}`}
           rules={styles.modifyAntdStyle(colors, contentWidth)}
@@ -204,40 +198,46 @@ export default class PrdoductQA extends React.PureComponent {
         />
 
         {isLogin === ISUSER ? null : (
-          <FormItem>
-            {getFieldDecorator('userEmail', {
-              rules: [
-                {
-                  required: true,
-                  message: t('is-required'),
-                },
-                {
-                  validator: validateEmail.validator,
-                },
-              ],
-              normalize: validateEmail.normalize,
-            })(<Input placeholder={t('email')} />)}
-          </FormItem>
-        )}
-
-        <FormItem>
-          {getFieldDecorator('question', {
-            rules: [
+          <FormItem
+            name={['userEmail']}
+            rules={[
               {
                 required: true,
                 message: t('is-required'),
               },
-            ],
-          })(<TextArea placeholder={t('content')} rows={4} />)}
+              {
+                validator: validateEmail.validator,
+              },
+            ]}
+            normalize={validateEmail.normalize}
+          >
+            <Input placeholder={t('email')} />
+          </FormItem>
+        )}
+
+        <FormItem
+          name={['question']}
+          rules={[
+            {
+              required: true,
+              message: t('is-required'),
+            },
+          ]}
+        >
+          <TextArea placeholder={t('content')} rows={4} />
         </FormItem>
 
         <div style={styles.buttonRoot}>
-          <Button
-            style={styles.resetButton(colors)}
-            onClick={() => resetFields()}
-          >
-            {t('reset')}
-          </Button>
+          <FormItem shouldUpdate noStyle>
+            {({ resetFields }) => (
+              <Button
+                style={styles.resetButton(colors)}
+                onClick={() => resetFields()}
+              >
+                {t('reset')}
+              </Button>
+            )}
+          </FormItem>
 
           <Button style={styles.submitButton(colors)} htmlType="submit">
             {t('submit')}

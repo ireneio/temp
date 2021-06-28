@@ -7,7 +7,7 @@ import { languageType } from '@meepshop/locales';
 import React from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import { Icon } from 'antd';
+import { HistoryOutlined } from '@ant-design/icons';
 
 import { meepshopLogo } from '@meepshop/images';
 import { useTranslation } from '@meepshop/locales';
@@ -117,7 +117,7 @@ const SmartConversionAnalysis: NextPage<PropsType> = React.memo(
                     .format(MOMENT_FORMAT)}
                   {!isStatusEnd ? null : (
                     <span>
-                      <Icon type="history" />
+                      <HistoryOutlined />
                       {t('stop-updating')}
                     </span>
                   )}

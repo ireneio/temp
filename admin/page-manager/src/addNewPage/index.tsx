@@ -1,6 +1,7 @@
 // import
 import React, { useState, useEffect } from 'react';
-import { Popover, Tooltip, Button, Icon } from 'antd';
+import { FileOutlined, LayoutOutlined, PlusOutlined } from '@ant-design/icons';
+import { Popover, Tooltip, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { HomePageIcon } from '@meepshop/icons';
@@ -43,7 +44,7 @@ export default React.memo(({ variables }: { variables: getPagesVariables }) => {
             </div>
 
             <div className={styles.item} onClick={() => setPageType('custom')}>
-              <Icon type="file" />
+              <FileOutlined />
 
               {t('custom-page.title')}
             </div>
@@ -54,7 +55,7 @@ export default React.memo(({ variables }: { variables: getPagesVariables }) => {
               className={styles.item}
               onClick={() => setPageType('template')}
             >
-              <Icon type="layout" />
+              <LayoutOutlined />
 
               {t('template-page.title')}
             </div>
@@ -70,7 +71,7 @@ export default React.memo(({ variables }: { variables: getPagesVariables }) => {
             }`}
             type="primary"
             shape="circle"
-            icon="plus"
+            icon={<PlusOutlined />}
           />
         </Tooltip>
       </Popover>

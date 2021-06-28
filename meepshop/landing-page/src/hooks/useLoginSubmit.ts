@@ -1,5 +1,5 @@
 // typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
+import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
 
 // import
 import { useContext, useCallback } from 'react';

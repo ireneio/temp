@@ -116,9 +116,6 @@
   },
   "rename-page-with-seo": {
     "success": "Mise à jour terminée",
-    "error": {
-      "FAIL_PAGE_PATH_DUPLICATE": "Nom du site dupliqué",
-      "default": "Mise à jour a échoué"
-    }
+    "error": "Mise à jour a échoué"
   }
 }

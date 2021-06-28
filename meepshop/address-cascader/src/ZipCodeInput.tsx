@@ -9,7 +9,7 @@ import styles from './styles/zipCodeInput.less';
 
 // typescript definition
 interface PropsType {
-  size?: 'small' | 'default' | 'large';
+  size?: 'small' | 'middle' | 'large';
   placeholder: string;
   value?: string;
   onChange: (value: string) => void;
@@ -69,10 +69,14 @@ export default React.memo(
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        onBlur={onBlur}
+        onBlur={({
+          target: { value: newValue },
+        }: React.FocusEvent<HTMLSelectElement>) => onBlur(newValue)}
       >
         {options.map(valueValue => (
-          <Option key={valueValue}>{valueValue}</Option>
+          <Option key={valueValue} value={valueValue}>
+            {valueValue}
+          </Option>
         ))}
       </Select>
     );

@@ -4,7 +4,8 @@ import { NextPage } from 'next';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Spin, Icon, Divider, Button } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin, Divider, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import Link, { useRouter } from '@meepshop/link';
@@ -31,7 +32,7 @@ const UnsubscribeEmail: NextPage<PropsType> = React.memo(() => {
   const { loading } = useUnsubscribe();
   const name = data?.viewer?.store?.description?.name;
 
-  if (loading) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (loading) return <Spin indicator={<LoadingOutlined spin />} />;
 
   return (
     <div className={styles.root}>

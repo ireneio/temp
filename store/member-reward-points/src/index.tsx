@@ -1,7 +1,8 @@
 // import
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Spin, Icon, Table } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin, Table } from 'antd';
 import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
@@ -41,19 +42,10 @@ export default React.memo(() => {
   const currentBalance =
     data?.viewer?.rewardPoint?.currentBalance || 0; /** SHOULD_NOT_BE_NULL */
 
-  if (!userPoints) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!userPoints) return <Spin indicator={<LoadingOutlined spin />} />;
 
   return (
     <div className={styles.root}>
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            .${styles.root} .ant-table-tbody > tr:hover > td {
-              background: ${colors[4]};
-            }
-          `,
-        }}
-      />
       <div
         className={styles.total}
         style={{ borderBottom: `3px solid ${colors[5]}` }}

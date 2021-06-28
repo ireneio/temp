@@ -1,5 +1,5 @@
 // typescript import
-import { FormComponentProps } from 'antd/lib/form';
+import { FormInstance } from 'antd/lib/form';
 
 // import
 import { useCallback } from 'react';
@@ -17,11 +17,17 @@ import {
 // graphql import
 import { changeUserPassword } from '../gqls/useMemberChangePassword';
 
+// typescript interface
+export interface ValuesType {
+  currentPassword: string;
+  confirmPassword: string;
+  newPassword: string;
+}
+
 // definition
 export default ({
-  validateFields,
   resetFields,
-}: FormComponentProps['form']): ((e: React.FormEvent<HTMLElement>) => void) => {
+}: FormInstance): ((values: ValuesType) => void) => {
   const { t } = useTranslation('member-password-change');
   const [mutation] = useMutation<
     changeUserPasswordType,
@@ -43,22 +49,13 @@ export default ({
   });
 
   return useCallback(
-    e => {
-      e.preventDefault();
-
-      validateFields((err, { currentPassword, newPassword }) => {
-        if (err) return;
-
-        mutation({
-          variables: {
-            input: {
-              currentPassword,
-              newPassword,
-            },
-          },
-        });
+    ({ confirmPassword: _, ...input }) => {
+      mutation({
+        variables: {
+          input,
+        },
       });
     },
-    [mutation, validateFields],
+    [mutation],
   );
 };

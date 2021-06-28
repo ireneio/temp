@@ -5,8 +5,6 @@ import gql from 'graphql-tag';
 export const interfaceFragment = gql`
   fragment interfaceFragment on Store {
     id
-    locale
     currency
-    timezone
   }
 `;

@@ -1,7 +1,12 @@
 // import
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Spin, Icon, Table } from 'antd';
+import {
+  LeftOutlined,
+  LoadingOutlined,
+  RightOutlined,
+} from '@ant-design/icons';
+import { Spin, Table } from 'antd';
 import { emptyFunction } from 'fbjs';
 import transformColor from 'color';
 import { filter } from 'graphql-anywhere';
@@ -48,7 +53,7 @@ export default React.memo(() => {
     first,
   );
 
-  if (!orders) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!orders) return <Spin indicator={<LoadingOutlined spin />} />;
 
   const {
     total,
@@ -65,17 +70,6 @@ export default React.memo(() => {
       <style
         dangerouslySetInnerHTML={{
           __html: `
-            .${styles.root} .ant-table,
-            .${styles.root} .ant-table-thead > tr > th {
-              color: ${colors[3]};
-            }
-
-            .${
-              styles.root
-            } .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
-              background: ${transformColor(colors[4]).alpha(0.1)};
-            }
-
             .${styles.disabled} {
               color: ${transformColor(colors[3]).alpha(0.3)};
             }
@@ -96,16 +90,14 @@ export default React.memo(() => {
       />
       {endPage === 1 ? null : (
         <div className={styles.pagination}>
-          <Icon
-            type="left"
+          <LeftOutlined
             className={current === 0 ? styles.disabled : ''}
             onClick={
               current === 0 ? emptyFunction : () => changePage(current - 1)
             }
           />
           {current + 1} / {endPage}
-          <Icon
-            type="right"
+          <RightOutlined
             className={current === endPage - 1 ? styles.disabled : ''}
             onClick={
               current === endPage - 1

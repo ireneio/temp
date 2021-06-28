@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import memoizeOne from 'memoize-one';
-import { Menu as AntdMenu, Icon } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+import { Menu as AntdMenu } from 'antd';
 import uuid from 'uuid/v4';
 import transformColor from 'color';
 
@@ -272,14 +273,13 @@ export default class Menu extends React.PureComponent {
           className={`meepshop ${styles.menu} ${styles[`pattern-${pattern}`]}`}
           mode={expandSubItem ? 'inline' : 'vertical'}
           expandIcon={({ eventKey, isOpen }) => (
-            <Icon
+            <DownOutlined
               className={`arrow-icon ${
                 isOpen ||
                 (expandSubItem && openKeys && openKeys.includes(eventKey))
                   ? styles.open
                   : styles.close
               }`}
-              type="down"
             />
           )}
         >

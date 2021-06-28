@@ -1,6 +1,11 @@
 // import
 import React, { useState, useLayoutEffect } from 'react';
-import { Icon, Tabs, List } from 'antd';
+import {
+  InfoCircleOutlined,
+  CloseCircleOutlined,
+  RightCircleOutlined,
+} from '@ant-design/icons';
+import { Tabs, List } from 'antd';
 import { useMutation } from '@apollo/react-hooks';
 
 import { useTranslation } from '@meepshop/locales';
@@ -88,11 +93,19 @@ const Tutorial = ({ name, id, setting }: PropsType): React.ReactElement => {
             }}
           >
             <span>
-              <Icon
-                type={!isTutorialEnabled ? 'info-circle' : 'close-circle'}
-                className={styles.icon}
-              />
-              {!isTutorialEnabled ? t('open-tutorial') : t('close-tutorial')}
+              {!isTutorialEnabled ? (
+                <>
+                  <InfoCircleOutlined className={styles.icon} />
+
+                  {t('open-tutorial')}
+                </>
+              ) : (
+                <>
+                  <CloseCircleOutlined className={styles.icon} />
+
+                  {t('close-tutorial')}
+                </>
+              )}
             </span>
           </p>
         </div>
@@ -136,7 +149,7 @@ const Tutorial = ({ name, id, setting }: PropsType): React.ReactElement => {
                 )}
                 <Link href={tab.link}>
                   <a href={tab.link}>
-                    <Icon type="right-circle" className={styles.link} />
+                    <RightCircleOutlined className={styles.link} />
                   </a>
                 </Link>
               </Tabs.TabPane>

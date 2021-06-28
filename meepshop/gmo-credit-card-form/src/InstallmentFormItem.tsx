@@ -1,5 +1,6 @@
 // typescript import
 import { languageType } from '@meepshop/locales';
+import { RefSelectProps } from 'antd/lib/select';
 
 // import
 import React from 'react';
@@ -22,7 +23,7 @@ import { getGmoAvailableInstallments } from './gqls/installmentFormItem';
 
 // typescript definition
 interface PropsType {
-  forwardedRef: React.Ref<Cascader | Select>;
+  forwardedRef: React.Ref<Cascader | RefSelectProps>;
   cardNumber: string;
   value?: string[];
   onChange?: (value: string[]) => void;
@@ -41,7 +42,6 @@ const InstallmentForm = React.memo(
   }: PropsType) => {
     const { t, i18n } = useTranslation('gmo-credit-card-form');
     const cardNumberFormat = cardNumber.replace(/ - /g, '');
-
     const { data, error, loading } = useQuery<
       getGmoAvailableInstallmentsType,
       getGmoAvailableInstallmentsVariablesType
@@ -58,13 +58,12 @@ const InstallmentForm = React.memo(
     const gmoBankInstallment = data?.gmoBankInstallment || null;
     const disabled =
       cardNumberFormat.length !== 16 || Boolean(loading || error || !data);
-
     const options = useOptions(allGmoBankInstallments);
 
     if (!gmoBankInstallment && !allGmoBankInstallments)
       return (
         <Select
-          ref={forwardedRef as React.Ref<Select>}
+          ref={forwardedRef as React.Ref<RefSelectProps>}
           className={styles.root}
           placeholder={t('installments')}
           disabled
@@ -85,10 +84,11 @@ const InstallmentForm = React.memo(
       );
 
     const { installments, code } = gmoBankInstallment;
+
     return (
       <>
         <Select
-          ref={forwardedRef as React.Ref<Select>}
+          ref={forwardedRef as React.Ref<RefSelectProps>}
           className={styles.root}
           placeholder={t('installments')}
           value={value}

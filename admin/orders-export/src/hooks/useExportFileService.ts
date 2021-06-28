@@ -6,7 +6,10 @@ import { Modal } from 'antd';
 import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript
-import { exportFileService as exportFileServiceType } from '@meepshop/types/gqls/admin';
+import {
+  requestExportFile as requestExportFileType,
+  exportFileService as exportFileServiceType,
+} from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { exportFileService } from '../gqls/useExportFileService';
@@ -14,10 +17,9 @@ import { exportFileService } from '../gqls/useExportFileService';
 // definition
 export default (): {
   exportStatus: string;
-  getExportFileService: (queryId: string) => void;
+  getExportFileService: (data: requestExportFileType) => void;
 } => {
   const { t } = useTranslation('orders-export');
-
   const [getExportFileService, { data, refetch }] = useLazyQuery<
     exportFileServiceType
   >(exportFileService, {
@@ -56,8 +58,8 @@ export default (): {
       return status || '';
     }, [data, refetch, t]),
     getExportFileService: useCallback(
-      (queryId: string) => {
-        getExportFileService({ variables: { queryId } });
+      ({ requestExportFile }) => {
+        getExportFileService({ variables: { queryId: requestExportFile } });
       },
       [getExportFileService],
     ),

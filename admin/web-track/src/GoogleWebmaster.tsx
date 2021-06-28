@@ -1,9 +1,7 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form';
-
 // import
 import React, { useState } from 'react';
-import { Icon, Button, Modal, Form, Input } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
+import { Form, Button, Modal, Input } from 'antd';
 
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/locales';
@@ -19,105 +17,96 @@ import styles from './styles/googleWebmaster.less';
 import { googleWebmasterFragment as googleWebmasterFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
-interface PropsType extends FormComponentProps {
+interface PropsType {
   store: googleWebmasterFragmentType;
 }
 
 // definition
-const { Item } = Form;
+const { Item: FormItem } = Form;
 
-export default Form.create<PropsType>()(
-  React.memo(({ form, store }: PropsType) => {
-    const { getFieldDecorator } = form;
-    const {
-      id,
-      adTracks: { googleSearchConsoleVerificationHtml },
-    } = store;
-    const { t } = useTranslation('web-track');
-    const updateGoogleSearchConsoleVerificationHtml = useUpdateGoogleSearchConsoleVerificationHtml(
-      id || 'null-id' /** SHOULD_NOT_BE_NULL */,
-      form,
-    );
-    const [isOpen, openModal] = useState(false);
-    const [editMode, setEditMode] = useState(false);
+export default React.memo(({ store }: PropsType) => {
+  const {
+    id,
+    adTracks: { googleSearchConsoleVerificationHtml },
+  } = store;
+  const { t } = useTranslation('web-track');
+  const [isOpen, openModal] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const updateGoogleSearchConsoleVerificationHtml = useUpdateGoogleSearchConsoleVerificationHtml(
+    id || 'null-id' /* SHOULD_NOT_BE_NULL */,
+    setEditMode,
+  );
 
-    return (
-      <div>
-        <img
-          className={styles.logo}
-          src={webTrackGoogle}
-          alt="GoogleWebmaster"
+  return (
+    <div>
+      <img className={styles.logo} src={webTrackGoogle} alt="GoogleWebmaster" />
+
+      <span className={styles.logoText}>{t('google-webmaster.webmaster')}</span>
+
+      <div className={styles.title}>
+        <div>{t('google-webmaster.webmaster')}</div>
+
+        <Tooltip
+          arrowPointAtCenter
+          placement="bottomLeft"
+          title={t('tip')}
+          onClick={() => openModal(true)}
         />
-        <span className={styles.logoText}>
-          {t('google-webmaster.webmaster')}
-        </span>
-
-        <div className={styles.title}>
-          <div>{t('google-webmaster.webmaster')}</div>
-          <Tooltip
-            arrowPointAtCenter
-            placement="bottomLeft"
-            title={t('tip')}
-            onClick={() => openModal(true)}
-          />
-        </div>
-
-        <Modal
-          width="fit-content"
-          footer={null}
-          visible={isOpen}
-          onCancel={() => openModal(false)}
-        >
-          <img
-            src={webTrackGoogleWebmasterInstruction}
-            alt="GoogleWebmasterInstruction"
-          />
-        </Modal>
-
-        <div className={styles.description}>
-          {t('google-webmaster.description')}
-        </div>
-
-        {editMode ? (
-          <div className={styles.item}>
-            <Item>
-              {getFieldDecorator('googleSearchConsoleVerificationHtml', {
-                initialValue: googleSearchConsoleVerificationHtml,
-              })(
-                <Input
-                  placeholder={t('google-webmaster.setting-placeholder')}
-                />,
-              )}
-            </Item>
-            <Button
-              type="primary"
-              onClick={async () => {
-                if (await updateGoogleSearchConsoleVerificationHtml())
-                  setEditMode(false);
-              }}
-            >
-              {t('save')}
-            </Button>
-            <Button onClick={() => setEditMode(false)}>{t('cancel')}</Button>
-          </div>
-        ) : (
-          <>
-            {googleSearchConsoleVerificationHtml ? (
-              <div className={styles.googleSearchConsoleVerificationHtml}>
-                <div>
-                  {t('google-webmaster.googleSearchConsoleVerificationHtml')}
-                </div>
-                <div>{googleSearchConsoleVerificationHtml}</div>
-                <Icon type="edit" onClick={() => setEditMode(true)} />
-              </div>
-            ) : (
-              <Button onClick={() => setEditMode(true)}>
-                {t('google-webmaster.setting')}
-              </Button>
-            )}
-          </>
-        )}
       </div>
-    );
-  }),
-);
+
+      <Modal
+        width="fit-content"
+        footer={null}
+        visible={isOpen}
+        onCancel={() => openModal(false)}
+      >
+        <img
+          src={webTrackGoogleWebmasterInstruction}
+          alt="GoogleWebmasterInstruction"
+        />
+      </Modal>
+
+      <div className={styles.description}>
+        {t('google-webmaster.description')}
+      </div>
+
+      {editMode ? (
+        <Form
+          className={styles.item}
+          onFinish={updateGoogleSearchConsoleVerificationHtml}
+        >
+          <FormItem
+            name={['googleSearchConsoleVerificationHtml']}
+            initialValue={googleSearchConsoleVerificationHtml}
+          >
+            <Input placeholder={t('google-webmaster.setting-placeholder')} />
+          </FormItem>
+
+          <Button type="primary" htmlType="submit">
+            {t('save')}
+          </Button>
+
+          <Button onClick={() => setEditMode(false)}>{t('cancel')}</Button>
+        </Form>
+      ) : (
+        <>
+          {googleSearchConsoleVerificationHtml ? (
+            <div className={styles.googleSearchConsoleVerificationHtml}>
+              <div>
+                {t('google-webmaster.googleSearchConsoleVerificationHtml')}
+              </div>
+
+              <div>{googleSearchConsoleVerificationHtml}</div>
+
+              <EditOutlined onClick={() => setEditMode(true)} />
+            </div>
+          ) : (
+            <Button onClick={() => setEditMode(true)}>
+              {t('google-webmaster.setting')}
+            </Button>
+          )}
+        </>
+      )}
+    </div>
+  );
+});

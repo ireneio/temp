@@ -35,10 +35,6 @@ export default class ChooseShipmentStore extends React.PureComponent {
 
     /** props */
     t: PropTypes.func.isRequired,
-    form: PropTypes.shape({
-      getFieldsValue: PropTypes.func.isRequired,
-      getFieldDecorator: PropTypes.func.isRequired,
-    }).isRequired,
     shipmentId: ID_TYPE.isRequired, // eslint-disable-line react/no-unused-prop-types
     shipmentTemplate: SHIPMENT_TEMPLATE_TYPE.isRequired, // eslint-disable-line react/no-unused-prop-types
   };
@@ -62,8 +58,7 @@ export default class ChooseShipmentStore extends React.PureComponent {
       shipmentId !== preState.shipmentId ||
       shipmentTemplate !== preState.shipmentTemplate
     ) {
-      SHIPMENT_STORE_FIELDS.forEach(field => resetFields(field));
-      CONVENIENCE_STORE_FIELDS.forEach(field => resetFields(field));
+      resetFields([...SHIPMENT_STORE_FIELDS, ...CONVENIENCE_STORE_FIELDS]);
 
       return {
         shipmentId,
@@ -127,7 +122,6 @@ export default class ChooseShipmentStore extends React.PureComponent {
     } = this.props;
 
     this.closeConvenienceStoreMap();
-
     setFieldsValue(store);
   };
 
@@ -153,13 +147,10 @@ export default class ChooseShipmentStore extends React.PureComponent {
 
       // props
       t,
-      form,
     } = this.props;
     const { allpay, shipmentTemplate, openConvenienceStoreMap } = this.state;
 
     if (shipmentTemplate === 'allpay' && !allpay) return null;
-
-    const { getFieldDecorator, getFieldValue } = form;
 
     return (
       <>
@@ -178,41 +169,55 @@ export default class ChooseShipmentStore extends React.PureComponent {
             })
           }
         >
-          {SHIPMENT_STORE_FIELDS.map(field => getFieldValue(field)).some(
-            value => value,
-          )
-            ? t('rechoose-store')
-            : t('choose-store')}
+          <FormItem dependencies={SHIPMENT_STORE_FIELDS} noStyle>
+            {({ getFieldsValue }) =>
+              Object.values(getFieldsValue(SHIPMENT_STORE_FIELDS)).some(Boolean)
+                ? t('rechoose-store')
+                : t('choose-store')
+            }
+          </FormItem>
         </Button>
 
-        {SHIPMENT_STORE_FIELDS.map(field =>
-          !getFieldValue(field) ? null : (
-            <div
-              key={getFieldValue(field)}
-              className={styles.convenienceStoreInfo}
-            >
-              {t(`convenience-store.${field}`)}：{getFieldValue(field)}
-            </div>
-          ),
-        )}
+        <FormItem dependencies={SHIPMENT_STORE_FIELDS} noStyle>
+          {({ getFieldValue }) =>
+            SHIPMENT_STORE_FIELDS.map(field => {
+              const value = getFieldValue(field);
+
+              return !value ? null : (
+                <div key={value} className={styles.convenienceStoreInfo}>
+                  {t(`convenience-store.${field}`)}：{value}
+                </div>
+              );
+            })
+          }
+        </FormItem>
 
         {SHIPMENT_STORE_FIELDS.map((fieldName, index) => (
-          <FormItem key={fieldName} className={styles.hideFormItem}>
-            {getFieldDecorator(fieldName, {
-              validateTrigger: 'onBlur',
-              rules: [
-                {
-                  required: true,
-                  message: index !== 0 ? ' ' : t('not-choose-store'),
-                },
-              ],
-            })(<Input type="hidden" />)}
+          <FormItem
+            key={fieldName}
+            className={styles.hideFormItem}
+            name={[fieldName]}
+            rules={[
+              {
+                required: true,
+                message: index !== 0 ? ' ' : t('not-choose-store'),
+              },
+            ]}
+            validateTrigger="onBlur"
+            noStyle
+          >
+            <Input type="hidden" />
           </FormItem>
         ))}
 
         {CONVENIENCE_STORE_FIELDS.map(fieldName => (
-          <FormItem key={fieldName} className={styles.hideFormItem}>
-            {getFieldDecorator(fieldName)(<Input type="hidden" />)}
+          <FormItem
+            key={fieldName}
+            className={styles.hideFormItem}
+            name={[fieldName]}
+            noStyle
+          >
+            <Input type="hidden" />
           </FormItem>
         ))}
 

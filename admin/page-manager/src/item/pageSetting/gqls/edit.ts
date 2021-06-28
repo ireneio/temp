@@ -23,9 +23,3 @@ export const editFragment = gql`
 
   ${localeFragment}
 `;
-
-export const checkIfPageExistsBeforeRenamingSeo = gql`
-  query checkIfPageExistsBeforeRenamingSeo($input: String!) {
-    isPagePathExists(pagePath: $input)
-  }
-`;

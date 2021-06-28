@@ -116,9 +116,6 @@
   },
   "rename-page-with-seo": {
     "success": "pembaruan selesai",
-    "error": {
-      "FAIL_PAGE_PATH_DUPLICATE": "Nama Situs Web Gandakan",
-      "default": "Pembaharuan gagal"
-    }
+    "error": "Pembaharuan gagal"
   }
 }

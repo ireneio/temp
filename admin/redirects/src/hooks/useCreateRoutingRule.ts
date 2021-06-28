@@ -1,5 +1,5 @@
 // typescript import
-import { FormComponentProps } from 'antd/lib/form';
+import { ValuesType } from '../types';
 
 // import
 import { useCallback } from 'react';
@@ -25,51 +25,46 @@ import {
 interface UseCreateRoutingRuleType {
   user: useCreateRoutingRuleFragmentType | null;
   setShowModal: (showModal: boolean) => void;
-  validateFields: FormComponentProps['form']['validateFields'];
 }
 
 // definition
 export default ({
   user,
   setShowModal,
-  validateFields,
-}: UseCreateRoutingRuleType): (() => void) => {
+}: UseCreateRoutingRuleType): ((values: ValuesType) => void) => {
   const { t } = useTranslation('redirects');
   const [mutation] = useMutation<
     createRoutingRuleType,
     createRoutingRuleVariablesType
   >(createRoutingRule);
 
-  return useCallback(() => {
-    validateFields((err, { fromPath, toPath }) => {
-      if (err) return;
-
+  return useCallback(
+    input => {
       mutation({
         variables: {
-          input: { fromPath, toPath },
+          input,
         },
         update: (cache, { data }) => {
-          const storeId = user?.id;
+          const userId = user?.id;
 
           if (data?.createRoutingRule.status !== 'OK') {
             message.error(t(data?.createRoutingRule.status || 'fail'));
             return;
           }
 
-          if (!storeId || !data?.createRoutingRule.routingRule) return;
+          if (!userId || !data?.createRoutingRule.routingRule) return;
 
           cache.writeFragment<useCreateRoutingRuleFragmentType>({
-            id: storeId,
+            id: userId,
             fragment: useCreateRoutingRuleFragment,
             data: {
               __typename: 'Store',
-              id: storeId,
+              id: userId,
               routingRules: [
                 {
+                  ...input,
                   __typename: 'RoutingRule',
                   id: data.createRoutingRule.routingRule.id,
-                  fromPath,
-                  toPath,
                 },
                 ...(user?.routingRules || []),
               ],
@@ -80,6 +75,7 @@ export default ({
           setShowModal(false);
         },
       });
-    });
-  }, [mutation, setShowModal, t, validateFields, user]);
+    },
+    [mutation, setShowModal, t, user],
+  );
 };

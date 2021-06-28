@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { Button, Icon } from 'antd';
+import { Button } from 'antd';
 import gql from 'graphql-tag';
+import { HeartFilled, HeartOutlined, LoadingOutlined } from '@ant-design/icons';
 
 import { withTranslation } from '@meepshop/locales';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
@@ -255,14 +256,18 @@ export default class AddButton extends React.Component {
       ({ productId: wishListProductId }) => wishListProductId === productId,
     );
 
-    return isMobile ? (
-      ReactDOM.createPortal(
+    if (isMobile)
+      return ReactDOM.createPortal(
         <div className={styles.portal}>{this.generateAddButton()}</div>,
         document.querySelector('body'),
-      )
-    ) : (
+      );
+
+    const Icon = isInWishList ? HeartFilled : HeartOutlined;
+
+    return (
       <div className={`${styles.root} ${styles[mode]}`}>
         {this.generateAddButton()}
+
         {mode === 'detail' && hasStoreAppPlugin('wishList') ? (
           <Button
             className={styles.wish}
@@ -284,12 +289,9 @@ export default class AddButton extends React.Component {
 
               this.setState({ loading: false });
             }}
-            loading={loading}
             disabled={loading}
           >
-            {loading ? null : (
-              <Icon type="heart" theme={isInWishList ? 'filled' : 'outlined'} />
-            )}
+            {loading ? <LoadingOutlined /> : <Icon />}
           </Button>
         ) : null}
       </div>

@@ -47,14 +47,14 @@ const generateIcon = (folder, iconName, path) => {
     filePath,
     transformSync(
       `import React from 'react';
-import Icon from 'antd/lib/icon';
+import Icon from '@ant-design/icons/lib/components/Icon';
 
 const Svg = React.memo(props => (
   ${content}
 ));
 
-export default React.memo(props => (
-  <Icon {...props} component={Svg} />
+export default React.forwardRef((props, ref) => (
+  <Icon {...props} ref={ref} component={Svg} />
 ));`,
       {
         filename: filePath.replace(/(lib|node_modules|\.cache)/g, 'src'),
@@ -148,20 +148,23 @@ module.exports = declare(({ assertVersion, types: t }) => {
       nodePath.resolve(__dirname, '../lib/defaultTypes.tsx'),
       `// Only for typescript, do not import
 // typescript import
-import { IconProps, CustomIconComponentProps } from 'antd/lib/icon';
+import { CustomIconComponentProps } from '@ant-design/icons/lib/components/Icon';
+import { AntdIconProps } from '@ant-design/icons/lib/components/AntdIcon';
 
 // import
 import React from 'react';
-import { Icon } from 'antd';
+import Icon from '@ant-design/icons/lib/components/Icon';
 
 // definition
 const Component = React.memo((props: CustomIconComponentProps) => (
   <svg {...props} viewBox="64 64 896 896" />
 ));
 
-const MockIcon = React.memo((props: IconProps) => (
-  <Icon {...props} component={Component} />
-));
+const MockIcon = React.forwardRef(
+  (props: AntdIconProps, ref: React.MutableRefObject<HTMLSpanElement>) => (
+    <Icon {...props} ref={ref} component={Component} />
+  ),
+);
 
 ${Object.keys(iconList)
   .map(key => `export const ${key} = MockIcon;`)

@@ -1,10 +1,11 @@
 // typescript import
-import { SelectProps } from 'antd/lib/select';
+import { SelectProps, RefSelectProps } from 'antd/lib/select';
 
 // import
 import React from 'react';
 import { filter } from 'graphql-anywhere';
 import { Select } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -27,7 +28,7 @@ export interface PropsType
     | 'onSearch'
     | 'children'
   > {
-  forwardedRef: React.Ref<Select>;
+  forwardedRef: React.Ref<RefSelectProps>;
   variant: productAmountSelectorFragmentType | null;
 }
 
@@ -57,6 +58,7 @@ const ProductAmountSelector = React.memo(
         notFoundContent={t('not-found-content')}
         dropdownMatchSelectWidth={false}
         showSearch
+        suffixIcon={<DownOutlined />}
       >
         {options.map(({ value, disabled, text }) => (
           <Option key={value} value={value} disabled={disabled}>

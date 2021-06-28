@@ -5,7 +5,8 @@ import { NextPage } from 'next';
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
-import { Spin, Card, Icon, Tabs } from 'antd';
+import { LineChartOutlined, LoadingOutlined } from '@ant-design/icons';
+import { Spin, Card, Tabs } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { AnalyticsSettingIcon } from '@meepshop/icons';
@@ -30,7 +31,7 @@ import { getWebTrack as getWebTrackType } from '@meepshop/types/gqls/admin';
 import { getWebTrack } from './gqls';
 import { facebookStoreFragment } from './gqls/facebook';
 import { googleAnalyticsFragment } from './gqls/googleAnalytics';
-import { googleAdsStoreFragment } from './gqls/googleAds';
+import { googleAdsFragment } from './gqls/googleAds';
 import { googleWebmasterFragment } from './gqls/googleWebmaster';
 import { googleMerchantCenterFragment } from './gqls/googleMerchantCenter';
 import { googleTagManagerFragment } from './gqls/googleTagManager';
@@ -49,7 +50,7 @@ const WebTrack: NextPage<PropsType> = React.memo(
     const { data } = useQuery<getWebTrackType>(getWebTrack);
     const store = data?.viewer?.store;
 
-    if (!store) return <Spin indicator={<Icon type="loading" spin />} />;
+    if (!store) return <Spin indicator={<LoadingOutlined spin />} />;
 
     return (
       <div className={styles.root}>
@@ -77,7 +78,7 @@ const WebTrack: NextPage<PropsType> = React.memo(
               </TabPane>
 
               <TabPane tab="Google Ads" key="googleAds">
-                <GoogleAds store={filter(googleAdsStoreFragment, store)} />
+                <GoogleAds store={filter(googleAdsFragment, store)} />
               </TabPane>
 
               <TabPane tab={t('google-webmaster.title')} key="googleWebmaster">
@@ -106,7 +107,7 @@ const WebTrack: NextPage<PropsType> = React.memo(
           <Card
             title={
               <>
-                <Icon type="line-chart" />
+                <LineChartOutlined />
                 <div>{t('advanced-customer-track')}</div>
               </>
             }

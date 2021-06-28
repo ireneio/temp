@@ -1,12 +1,13 @@
 // typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
+import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
 
 import { UseComputeOrderType } from '../hooks/useComputeOrder';
 
 // import
 import React, { useContext } from 'react';
 import { filter } from 'graphql-anywhere';
-import { Form, Select, Cascader, Input, DatePicker } from 'antd';
+import { Form } from '@ant-design/compatible';
+import { Select, Cascader, Input, DatePicker } from 'antd';
 import { isAlpha } from 'validator';
 
 import validateMobile from '@meepshop/utils/lib/validate/mobile';

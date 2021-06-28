@@ -17,10 +17,12 @@
     "refund": "商品を一つ以上お選びください",
     "exchange": "商品を一つ以上お選びください、受取人情報をすべてご記入ください"
   },
-  "recipient": {
+  "replaceRecipient": {
     "title": "交換品受取人情報",
     "name": "氏名",
     "mobile": "携帯電話",
-    "address": "住所"
+    "address": {
+      "streetAddress": "住所"
+    }
   }
 }

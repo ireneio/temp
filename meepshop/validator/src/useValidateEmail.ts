@@ -1,5 +1,5 @@
 // typescript import
-import { ValidationRule } from 'antd/lib/form';
+import { FormListProps } from 'antd/lib/form';
 
 // import
 import { useCallback } from 'react';
@@ -22,7 +22,7 @@ export default (
   emailExist?: (message: string) => string | void,
 ): {
   normalize: (value: string) => string;
-  validator: ValidationRule['validator'];
+  validator: NonNullable<FormListProps['rules']>[number]['validator'];
 } => {
   const { t } = useTranslation('validator');
   const client = useApolloClient();
@@ -30,14 +30,14 @@ export default (
   return {
     normalize: value => value?.replace(/\s/g, ''),
     validator: useCallback(
-      async (_, value, callback) => {
+      async (_, value) => {
         if (value && (isFullWidth(value) || !isEmail(value)))
-          return callback(t('email.invalid-format'));
+          throw new Error(t('email.invalid-format'));
 
         if (/@.*[A-Z]+.*$/.test(value))
-          return callback(t('email.use-lowercase-letters'));
+          throw new Error(t('email.use-lowercase-letters'));
 
-        if (!emailExist) return callback();
+        if (!emailExist) return;
 
         const { data } = await client.query<
           checkEmailType,
@@ -66,9 +66,7 @@ export default (
         });
 
         if (data?.checkUserInfo?.exists)
-          return callback(emailExist(t('email.already-exists')));
-
-        return callback();
+          throw new Error(emailExist(t('email.already-exists')) as string);
       },
       [emailExist, t, client],
     ),

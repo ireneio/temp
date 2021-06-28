@@ -1,6 +1,3 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form';
-
 // import
 import React from 'react';
 import { Form, Input } from 'antd';
@@ -14,7 +11,7 @@ import useValidator from './hooks/useValidator';
 import styles from './styles/form.less';
 
 // typescript definition
-interface PropsType extends FormComponentProps {
+interface PropsType {
   isInstallment: boolean;
   storePaymentId: string;
 }
@@ -22,103 +19,104 @@ interface PropsType extends FormComponentProps {
 // definition
 const { Item: FormItem } = Form;
 
-export default React.memo(
-  ({
-    form: { getFieldDecorator, getFieldValue },
-    isInstallment,
-    storePaymentId,
-  }: PropsType) => {
-    const { t } = useTranslation('gmo-credit-card-form');
-    const {
-      validateCardNumber,
-      validateExpire,
-      validateSecurityCode,
-    } = useValidator();
+export default React.memo(({ isInstallment, storePaymentId }: PropsType) => {
+  const { t } = useTranslation('gmo-credit-card-form');
+  const {
+    validateCardNumber,
+    validateExpire,
+    validateSecurityCode,
+  } = useValidator();
 
-    return (
-      <>
-        <FormItem>
-          {getFieldDecorator('cardHolderName', {
-            validateTrigger: 'onBlur',
-            rules: [
-              {
-                required: true,
-                message: t('form.required'),
-              },
-            ],
-          })(<Input placeholder={t('cardHolderName')} />)}
+  return (
+    <>
+      <FormItem
+        name={['cardHolderName']}
+        rules={[
+          {
+            required: true,
+            message: t('form.required'),
+          },
+        ]}
+        validateTrigger="onBlur"
+      >
+        <Input placeholder={t('cardHolderName')} />
+      </FormItem>
+
+      <div className={styles.cardNumber}>
+        <FormItem
+          name={['cardNumber']}
+          rules={[
+            {
+              required: true,
+              message: t('form.required'),
+            },
+            {
+              validator: validateCardNumber,
+            },
+          ]}
+          validateTrigger="onBlur"
+          validateFirst
+        >
+          <CreditCardInput />
+        </FormItem>
+      </div>
+
+      <div className={styles.expireAndSecurityCode}>
+        <FormItem
+          name={['expire']}
+          rules={[
+            {
+              required: true,
+              message: t('form.required'),
+            },
+            {
+              validator: validateExpire,
+            },
+          ]}
+          validateTrigger="onBlur"
+          validateFirst
+        >
+          <ExpireInput />
         </FormItem>
 
-        <div className={styles.cardNumber}>
-          <FormItem>
-            {getFieldDecorator('cardNumber', {
-              validateTrigger: 'onBlur',
-              validateFirst: true,
-              rules: [
-                {
-                  required: true,
-                  message: t('form.required'),
-                },
-                {
-                  validator: validateCardNumber,
-                },
-              ],
-            })(<CreditCardInput />)}
-          </FormItem>
-        </div>
+        <FormItem
+          name={['securityCode']}
+          rules={[
+            {
+              required: true,
+              message: t('form.required'),
+            },
+            {
+              validator: validateSecurityCode,
+            },
+          ]}
+          validateTrigger="onBlur"
+          validateFirst
+        >
+          <Input maxLength={3} placeholder={t('securityCode')} />
+        </FormItem>
+      </div>
 
-        <div className={styles.expireAndSecurityCode}>
-          <FormItem>
-            {getFieldDecorator('expire', {
-              validateTrigger: 'onBlur',
-              validateFirst: true,
-              rules: [
+      {!isInstallment ? null : (
+        <FormItem dependencies={['installmentCode']} noStyle>
+          {({ getFieldValue }) => (
+            <FormItem
+              name={['installmentCode']}
+              rules={[
                 {
                   required: true,
                   message: t('form.required'),
                 },
-                {
-                  validator: validateExpire,
-                },
-              ],
-            })(<ExpireInput />)}
-          </FormItem>
-
-          <FormItem>
-            {getFieldDecorator('securityCode', {
-              validateTrigger: 'onBlur',
-              validateFirst: true,
-              rules: [
-                {
-                  required: true,
-                  message: t('form.required'),
-                },
-                {
-                  validator: validateSecurityCode,
-                },
-              ],
-            })(<Input maxLength={3} placeholder={t('securityCode')} />)}
-          </FormItem>
-        </div>
-
-        {!isInstallment ? null : (
-          <FormItem>
-            {getFieldDecorator('installmentCode', {
-              rules: [
-                {
-                  required: true,
-                  message: t('form.required'),
-                },
-              ],
-            })(
+              ]}
+            >
               <InstallmentFormItem
                 storePaymentId={storePaymentId}
-                cardNumber={getFieldValue('cardNumber') || ''}
-              />,
-            )}
-          </FormItem>
-        )}
-      </>
-    );
-  },
-);
+                cardNumber={getFieldValue(['cardNumber']) || ''}
+              />
+            </FormItem>
+          )}
+        </FormItem>
+      )}
+    </>
+  );
+});

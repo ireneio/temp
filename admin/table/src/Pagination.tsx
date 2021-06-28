@@ -3,7 +3,8 @@ import { PaginationProps } from 'antd/lib/pagination';
 
 // import
 import React from 'react';
-import { Icon, Select } from 'antd';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { Select } from 'antd';
 import { emptyFunction } from 'fbjs';
 
 import { useTranslation } from '@meepshop/locales';
@@ -39,8 +40,7 @@ export default React.memo(
         </div>
 
         <div className={styles.pagination}>
-          <Icon
-            type="left"
+          <LeftOutlined
             className={current === 0 ? styles.disabled : ''}
             onClick={
               current === 0
@@ -49,8 +49,7 @@ export default React.memo(
             }
           />
           {current + 1} / {endPage}
-          <Icon
-            type="right"
+          <RightOutlined
             className={current === endPage - 1 ? styles.disabled : ''}
             onClick={
               current === endPage - 1

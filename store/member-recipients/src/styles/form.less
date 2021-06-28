@@ -3,13 +3,6 @@
 .root {
   margin: 30px auto 0px;
   max-width: 500px;
-
-  :global(.ant-btn) {
-    margin: 0px 16px 0px 0px;
-    height: 45px;
-    width: 100px;
-    background-color: transparent;
-  }
 }
 
 .addressCascader {
@@ -22,8 +15,14 @@
 
 .buttons {
   text-align: center;
-}
 
-.hidden {
-  display: none;
+  :global(.ant-btn) {
+    height: 45px;
+    width: 100px;
+    background-color: transparent;
+
+    &:not(:last-child) {
+      margin: 0px 16px 0px 0px;
+    }
+  }
 }

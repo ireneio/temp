@@ -5,7 +5,12 @@ import { ConvenienceStoresInputType } from './StoreList';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Spin, Icon, Cascader, Select } from 'antd';
+import {
+  FileSearchOutlined,
+  LoadingOutlined,
+  SearchOutlined,
+} from '@ant-design/icons';
+import { Spin, Cascader, Select } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -53,7 +58,7 @@ export default React.memo(
       setVariables,
     });
 
-    if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
+    if (!data) return <Spin indicator={<LoadingOutlined spin />} />;
 
     const cities = data.validatedConvenienceStoreCities;
 
@@ -79,18 +84,18 @@ export default React.memo(
           onChange={getStreets}
           changeOnSelect
         />
-        <Select
+        <Select<string>
           showSearch
-          suffixIcon={<Icon type="search" />}
+          suffixIcon={<SearchOutlined />}
           placeholder={t('pleaseSelectStreet')}
           notFoundContent={
             <div className={styles.notFoundContent}>
-              <Icon type="file-search" />
+              <FileSearchOutlined />
               <div>{t('noStreet')}</div>
             </div>
           }
           disabled={!streets.length}
-          value={variables.street}
+          value={variables.street || undefined}
           onChange={(street: string) =>
             setVariables({
               ...variables,

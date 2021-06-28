@@ -2,7 +2,8 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
-import { Spin, Icon } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 import { Currency as CurrencyContext } from '@meepshop/context';
 import { defaultCurrency } from '@meepshop/context/lib/Currency';
@@ -47,8 +48,7 @@ export default React.memo(({ children }: PropsType) => {
     prevCookiesCurrencyRef.current = cookies.currency;
   }, [cookies]);
 
-  if (loading || error)
-    return <Spin indicator={<Icon type="loading" spin />} />;
+  if (loading || error) return <Spin indicator={<LoadingOutlined spin />} />;
 
   return (
     <CurrencyContext.Provider

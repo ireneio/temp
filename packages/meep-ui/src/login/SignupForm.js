@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, Input } from 'antd';
+import { Form, Button, Input } from 'antd';
 import { ApolloConsumer } from '@apollo/react-components';
 import gql from 'graphql-tag';
 import { emptyFunction } from 'fbjs';
@@ -18,7 +18,6 @@ import { COLOR_TYPE } from 'constants/propTypes';
 const FormItem = Form.Item;
 const { Password } = Input;
 
-@Form.create()
 @withTranslation('login')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withHook(() => ({
@@ -33,7 +32,6 @@ class SignupForm extends React.PureComponent {
     hasStoreAppPlugin: PropTypes.func.isRequired,
 
     /** props */
-    form: PropTypes.objectOf(PropTypes.func).isRequired,
     t: PropTypes.func.isRequired,
     handleTypeChange: PropTypes.func.isRequired,
   };
@@ -90,67 +88,45 @@ class SignupForm extends React.PureComponent {
     });
   };
 
-  compareToFirstPassword = (_, value, callback) => {
-    const { form, t } = this.props;
+  validateConfirmPassword = ({ getFieldValue }) => ({
+    validator: async (_, value) => {
+      const { t } = this.props;
 
-    if (value && value !== form.getFieldValue('password'))
-      callback(t('password-is-no-match'));
-    else callback();
-  };
+      if (value && value !== getFieldValue(['password']))
+        throw new Error(t('password-is-no-match'));
+    },
+  });
 
-  validateToNextPassword = (_, value, callback) => {
-    const { form } = this.props;
-    const { confirmDirty } = this.state;
+  finish = ({
+    email,
+    password,
+    registeredCode,
+    mobile,
+    addressAndZipCode,
+    street,
+  }) => {
+    const { dispatchAction, handleTypeChange, adTrack } = this.props;
 
-    if (value && confirmDirty)
-      form.validateFields(['confirmPassword'], { force: true });
-
-    callback();
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-
-    const {
-      form: { validateFields },
-      dispatchAction,
-      handleTypeChange,
-      adTrack,
-    } = this.props;
-
-    validateFields((err, values) => {
-      if (!err) {
-        const {
-          email,
-          password,
-          registeredCode,
+    dispatchAction('signup', {
+      values: {
+        email,
+        password,
+        registeredCode,
+        additionalInfo: {
           mobile,
-          addressAndZipCode,
+        },
+        address: {
+          countryId: addressAndZipCode?.address[0],
+          cityId: addressAndZipCode?.address[1],
+          areaId: addressAndZipCode?.address[2],
+          zipCode: addressAndZipCode?.zipCode,
           street,
-        } = values;
-
-        dispatchAction('signup', {
-          values: {
-            email,
-            password,
-            registeredCode,
-            additionalInfo: {
-              mobile,
-            },
-            address: {
-              countryId: addressAndZipCode?.address[0],
-              cityId: addressAndZipCode?.address[1],
-              areaId: addressAndZipCode?.address[2],
-              zipCode: addressAndZipCode?.zipCode,
-              street,
-            },
-          },
-          callback: () => {
-            handleTypeChange({ options: 'LOGIN' });
-            adTrack.completeRegistration();
-          },
-        });
-      }
+        },
+      },
+      callback: () => {
+        handleTypeChange({ options: 'LOGIN' });
+        adTrack.completeRegistration();
+      },
     });
   };
 
@@ -161,99 +137,81 @@ class SignupForm extends React.PureComponent {
       colors,
 
       /** props */
-      form: { getFieldDecorator },
       t,
       validateEmail,
     } = this.props;
     const { shippableCountries, hasMemberGroupCode } = this.state;
 
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form onFinish={this.finish}>
         <h3>{t('signup')}</h3>
 
-        <FormItem>
-          {getFieldDecorator('email', {
-            rules: [
-              {
-                required: true,
-                message: t('email-is-required'),
-              },
-              {
-                validator: validateEmail.validator,
-              },
-            ],
-            validateTrigger: 'onBlur',
-            normalize: validateEmail.normalize,
-          })(<Input placeholder={t('email')} size="large" />)}
+        <FormItem
+          name={['email']}
+          rules={[
+            {
+              required: true,
+              message: t('email-is-required'),
+            },
+            {
+              validator: validateEmail.validator,
+            },
+          ]}
+          normalize={validateEmail.normalize}
+          validateTrigger="onBlur"
+        >
+          <Input placeholder={t('email')} size="large" />
         </FormItem>
 
-        <FormItem>
-          {getFieldDecorator('password', {
-            rules: [
-              {
-                required: true,
-                message: t('password-is-required'),
-              },
-              {
-                validator: this.validateToNextPassword,
-              },
-            ],
-          })(
-            <Password
-              placeholder={t('password')}
-              size="large"
-              onBlur={this.handleConfirmBlur}
-            />,
-          )}
+        <FormItem
+          name={['password']}
+          rules={[
+            {
+              required: true,
+              message: t('password-is-required'),
+            },
+          ]}
+        >
+          <Password
+            placeholder={t('password')}
+            size="large"
+            onBlur={this.handleConfirmBlur}
+          />
         </FormItem>
 
-        <FormItem>
-          {getFieldDecorator('confirmPassword', {
-            rules: [
-              {
-                required: true,
-                message: t('password-is-required'),
-              },
-              {
-                validator: this.compareToFirstPassword,
-              },
-            ],
-          })(<Password placeholder={t('confirm-password')} size="large" />)}
+        <FormItem
+          name={['confirmPassword']}
+          rules={[
+            {
+              required: true,
+              message: t('password-is-required'),
+            },
+            this.validateConfirmPassword,
+          ]}
+          dependencies={['password']}
+        >
+          <Password placeholder={t('confirm-password')} size="large" />
         </FormItem>
 
-        <FormItem>
-          {getFieldDecorator('mobile')(
-            <Input size="large" placeholder={t('mobile')} />,
-          )}
+        <FormItem name={['mobile']}>
+          <Input size="large" placeholder={t('mobile')} />
         </FormItem>
 
-        <FormItem>
-          {getFieldDecorator('addressAndZipCode')(
-            <AddressCascader
-              size="large"
-              placeholder={[t('address'), t('zip-code')]}
-              shippableCountries={shippableCountries || []}
-            />,
-          )}
+        <FormItem name={['addressAndZipCode']}>
+          <AddressCascader
+            size="large"
+            placeholder={[t('address'), t('zip-code')]}
+            shippableCountries={shippableCountries || []}
+          />
         </FormItem>
 
-        <FormItem>
-          {getFieldDecorator('street')(
-            <Input size="large" placeholder={t('street')} />,
-          )}
+        <FormItem name={['street']}>
+          <Input size="large" placeholder={t('street')} />
         </FormItem>
 
         {!hasStoreAppPlugin('memberGroupCode') || !hasMemberGroupCode ? null : (
-          <FormItem>
-            {getFieldDecorator('registeredCode', {
-              rules: [],
-            })(
-              <Input
-                type="text"
-                placeholder={t('promotion-code')}
-                size="large"
-              />,
-            )}
+          <FormItem name={['registeredCode']}>
+            <Input placeholder={t('promotion-code')} size="large" />
           </FormItem>
         )}
 

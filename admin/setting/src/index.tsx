@@ -4,7 +4,8 @@ import { NextPage } from 'next';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Spin, Icon } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import Header from '@admin/header';
@@ -34,8 +35,7 @@ const Setting: NextPage<PropsType> = React.memo(
     const storePermission = data?.viewer?.permission?.store;
     const items = useItems(isMerchant, storePermission || null);
 
-    if (loading || error)
-      return <Spin indicator={<Icon type="loading" spin />} />;
+    if (loading || error) return <Spin indicator={<LoadingOutlined spin />} />;
 
     return (
       <Header title={t('common:setting')}>

@@ -1,6 +1,6 @@
 // typescript import
 import { languageType } from '@meepshop/locales';
-import { Carousel as AntdCarousel } from 'antd';
+import { CarouselRef } from 'antd/lib/carousel';
 
 // import
 import React, { useRef } from 'react';
@@ -25,8 +25,8 @@ import { useImagesFragment } from './gqls/useImages';
 export default React.memo(
   ({ id, productCarouselType, autoPlay, product }: productCarouselFragment) => {
     const { i18n } = useTranslation();
-    const carouselRef = useRef<AntdCarousel>(null);
-    const bottomRef = useRef<AntdCarousel>(null);
+    const carouselRef = useRef<CarouselRef>(null);
+    const bottomRef = useRef<CarouselRef>(null);
     const images = useImages(filter(useImagesFragment, product));
     const setSlickActive = useSlickActive(bottomRef);
     const defaultCarouselProps = {

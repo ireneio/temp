@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { Style, StyleRoot } from 'radium';
 import Slider from 'react-slick';
+import { RightCircleOutlined, LeftCircleOutlined } from '@ant-design/icons';
+
 import Lazy from 'image/img/Lazy';
 
 import { placeholderThumbnail_scaledSrc as placeholderThumbnail } from '@meepshop/images';
@@ -96,8 +98,8 @@ export default class ProductCarousel extends React.PureComponent {
               asNavFor={navigator}
               autoplay={autoPlay}
               className="mainSlider"
-              nextArrow={<ArrowIcon type="right-circle" />}
-              prevArrow={<ArrowIcon type="left-circle" />}
+              nextArrow={<ArrowIcon Icon={RightCircleOutlined} />}
+              prevArrow={<ArrowIcon Icon={LeftCircleOutlined} />}
             >
               {images.map(image => (
                 <Lazy key={image.id}>

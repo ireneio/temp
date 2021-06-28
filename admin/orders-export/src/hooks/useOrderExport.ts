@@ -1,5 +1,5 @@
 // import
-import { useCallback } from 'react';
+import { useMemo, useCallback } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import useExportFileService from './useExportFileService';
@@ -8,11 +8,20 @@ import useExportFileService from './useExportFileService';
 import {
   getExportFormat as getExportFormatType,
   requestExportFile as requestExportFileType,
-  requestExportFileVariables as requestExportFileVariablesType,
+  requestExportFileVariables,
+  FileTypeEnum,
+  ExportDataEnum,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { getExportFormat, requestExportFile } from '../gqls/useOrderExport';
+
+// typescript definition
+interface ValuesType {
+  exportFormatId: string;
+  fileType: FileTypeEnum;
+  fileName: string;
+}
 
 // definition
 export default (
@@ -23,44 +32,47 @@ export default (
     [key: string]: ({ id: string | null; name: string | null } | null)[];
   };
   exportStatus: string;
-  requestExportFile: (input: requestExportFileVariablesType) => void;
+  requestExportFile: (value: ValuesType) => void;
 } => {
   const { data, loading } = useQuery<getExportFormatType>(getExportFormat);
   const { exportStatus, getExportFileService } = useExportFileService();
-
-  const [mutation] = useMutation<requestExportFileType>(requestExportFile, {
-    onCompleted: requestExportFileResponse => {
-      if (requestExportFileResponse.requestExportFile)
-        getExportFileService(requestExportFileResponse.requestExportFile);
-    },
+  const [mutation] = useMutation<
+    requestExportFileType,
+    requestExportFileVariables
+  >(requestExportFile, {
+    onCompleted: getExportFileService,
   });
 
   return {
     loading,
-    options: {
-      exportFormatId: [
-        ...(data?.orderDefaultExportFormats || []),
-        ...(data?.getExportFormatList?.data?.filter(Boolean) || []),
-      ],
-      fileType: [
-        {
-          id: 'csv',
-          name: 'CSV',
-        },
-        {
-          id: 'xlsx',
-          name: 'Excel (XLSX)',
-        },
-      ],
-    },
+    options: useMemo(
+      () => ({
+        exportFormatId: [
+          ...(data?.orderDefaultExportFormats || []),
+          ...(data?.getExportFormatList?.data?.filter(Boolean) || []),
+        ],
+        fileType: [
+          {
+            id: 'csv',
+            name: 'CSV',
+          },
+          {
+            id: 'xlsx',
+            name: 'Excel (XLSX)',
+          },
+        ],
+      }),
+      [data],
+    ),
     exportStatus,
     requestExportFile: useCallback(
-      (input: requestExportFileVariablesType) => {
+      input => {
         mutation({
           variables: {
             input: {
-              ...input.input,
+              ...input,
               ids: selectedIds,
+              dataType: 'ORDER' as ExportDataEnum,
             },
           },
         });

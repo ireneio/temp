@@ -1,7 +1,8 @@
 // import
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Spin, Icon } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 // graphql typescript
 import { getApps as getAppsType } from '@meepshop/types/gqls/meepshop';
@@ -103,7 +104,7 @@ export const AppsProvider = React.memo(({ children }) => {
     [data],
   );
 
-  if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!data) return <Spin indicator={<LoadingOutlined spin />} />;
 
   return <AppsContext.Provider value={apps}>{children}</AppsContext.Provider>;
 });

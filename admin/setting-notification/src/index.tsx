@@ -1,11 +1,10 @@
 // typescript import
 import { NextPage } from 'next';
-import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
-import React from 'react';
-import { Button, Switch, Spin, Input, Icon, Form, Divider } from 'antd';
-import { filter } from 'graphql-anywhere';
+import React, { useEffect } from 'react';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Form, Button, Switch, Spin, Input, Divider } from 'antd';
 import { useQuery } from '@apollo/react-hooks';
 
 import { useTranslation } from '@meepshop/locales';
@@ -16,7 +15,6 @@ import Block from '@admin/block';
 import Tooltip from '@admin/tooltip';
 
 import useUpdateNotificationSetting from './hooks/useUpdateNotificationSetting';
-
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -26,16 +24,15 @@ import {
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { getNotificationsSetting } from './gqls/index';
-import { useUpdateNotificationSettingFragment } from './gqls/useUpdateNotificationSetting';
+import { getNotificationsSetting } from './gqls';
 
 // typescript definition
 interface PropsType {
-  form?: FormComponentProps['form'];
   namespacesRequired: string[];
 }
 
 // definition
+const { Item: FormItem } = Form;
 const ITEM_FILEDS: {
   key: Exclude<
     keyof getNotificationsSettingViewerStoreSettingEmailNotificationEventSubscriptionType,
@@ -63,50 +60,50 @@ const ITEM_FILEDS: {
   },
 ];
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore FIXME: remove after use antd v4 form hook
-const SettingNotificationPage: NextPage<PropsType> = Form.create<PropsType>()(
-  React.memo(({ form }: FormComponentProps) => {
-    const { t } = useTranslation('setting-notification');
-    const { getFieldDecorator, resetFields, isFieldsTouched } = form;
-    const { data } = useQuery<getNotificationsSettingType>(
-      getNotificationsSetting,
-    );
+const SettingNotificationPage: NextPage<PropsType> = React.memo(() => {
+  const { t } = useTranslation('setting-notification');
+  const [form] = Form.useForm();
+  const { data } = useQuery<getNotificationsSettingType>(
+    getNotificationsSetting,
+  );
+  const { updateNotification, loading } = useUpdateNotificationSetting(
+    data?.viewer?.store?.id || null,
+  );
+  const validateEmail = useValidateEmail();
 
-    const { updateNotification, loading } = useUpdateNotificationSetting(
-      form,
-      filter(useUpdateNotificationSettingFragment, data?.viewer?.store || null),
-    );
-    const validateEmail = useValidateEmail();
+  useEffect(() => {
+    if (data) form.resetFields();
+  }, [form, data]);
 
-    if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!data) return <Spin indicator={<LoadingOutlined spin />} />;
 
-    const { recipientEmail = '', ...emailNotificationEventSubscription } =
-      data?.viewer?.store?.setting?.emailNotificationEventSubscription ||
-      ({} as getNotificationsSettingViewerStoreSettingEmailNotificationEventSubscriptionType);
+  const { recipientEmail = '', ...emailNotificationEventSubscription } =
+    data?.viewer?.store?.setting?.emailNotificationEventSubscription ||
+    ({} as getNotificationsSettingViewerStoreSettingEmailNotificationEventSubscriptionType);
 
-    return (
+  return (
+    <Form className={styles.root} form={form} onFinish={updateNotification}>
       <Header
         title={t('title')}
         prevTitle={t('common:setting')}
         backTo="/setting"
         buttons={
-          !isFieldsTouched() ? null : (
-            <div>
-              <Button onClick={() => resetFields()}>{t('cancel')}</Button>
+          <FormItem shouldUpdate noStyle>
+            {({ isFieldsTouched, resetFields, submit }) =>
+              !isFieldsTouched() ? null : (
+                <div>
+                  <Button onClick={() => resetFields()}>{t('cancel')}</Button>
 
-              <Button
-                onClick={updateNotification}
-                loading={loading}
-                type="primary"
-              >
-                {t('save')}
-              </Button>
-            </div>
-          )
+                  <Button onClick={submit} loading={loading} type="primary">
+                    {t('save')}
+                  </Button>
+                </div>
+              )
+            }
+          </FormItem>
         }
       >
-        <Form className={styles.root} labelAlign="left">
+        <div className={styles.form}>
           <Block
             title={t('auto-email')}
             description={t('auto-email-description')}
@@ -114,22 +111,23 @@ const SettingNotificationPage: NextPage<PropsType> = Form.create<PropsType>()(
             <div>
               <h3 className={styles.title}>{t('email')}</h3>
 
-              <Form.Item>
-                {getFieldDecorator('recipientEmail', {
-                  initialValue: recipientEmail,
-                  rules: [
-                    {
-                      required: true,
-                      message: t('required'),
-                    },
-                    {
-                      validator: validateEmail.validator,
-                    },
-                  ],
-                  validateTrigger: 'onBlur',
-                  normalize: validateEmail.normalize,
-                })(<Input />)}
-              </Form.Item>
+              <FormItem
+                name={['recipientEmail']}
+                initialValue={recipientEmail}
+                rules={[
+                  {
+                    required: true,
+                    message: t('required'),
+                  },
+                  {
+                    validator: validateEmail.validator,
+                  },
+                ]}
+                normalize={validateEmail.normalize}
+                validateTrigger="onBlur"
+              >
+                <Input />
+              </FormItem>
             </div>
 
             <Divider />
@@ -139,12 +137,16 @@ const SettingNotificationPage: NextPage<PropsType> = Form.create<PropsType>()(
 
               {ITEM_FILEDS.map(({ key, tip }) => (
                 <div key={key} className={styles.item}>
-                  {getFieldDecorator(key, {
-                    initialValue: Boolean(
+                  <FormItem
+                    name={[key]}
+                    initialValue={Boolean(
                       emailNotificationEventSubscription[key],
-                    ),
-                    valuePropName: 'checked',
-                  })(<Switch />)}
+                    )}
+                    valuePropName="checked"
+                    noStyle
+                  >
+                    <Switch />
+                  </FormItem>
 
                   <div>
                     <div>
@@ -159,11 +161,11 @@ const SettingNotificationPage: NextPage<PropsType> = Form.create<PropsType>()(
               ))}
             </div>
           </Block>
-        </Form>
+        </div>
       </Header>
-    );
-  }),
-);
+    </Form>
+  );
+});
 
 SettingNotificationPage.getInitialProps = async () => ({
   namespacesRequired: ['@meepshop/locales/namespacesRequired'],

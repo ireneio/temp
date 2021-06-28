@@ -2,7 +2,8 @@
 import React, { useState, useRef } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
-import { Spin, Icon, Button } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { uploadPicture_w100 as uploadPicture } from '@meepshop/images';
@@ -72,8 +73,7 @@ export default React.memo(
     );
     const tagList = variables.filter?.tagList || [];
 
-    if (error || !data)
-      return <Spin indicator={<Icon type="loading" spin />} />;
+    if (error || !data) return <Spin indicator={<LoadingOutlined spin />} />;
 
     return (
       <div className={styles.root}>

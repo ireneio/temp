@@ -20,7 +20,10 @@ export default {
   IframeModule: dynamic(() => import('@meepshop/iframe')),
   ImageModule: dynamic(() => import('@meepshop/image')),
   ImageTextModule: dynamic(() => import('@meepshop/image-text')),
-  LandingPageModule: dynamic(() => import('@meepshop/landing-page')),
+  LandingPageModule: () => {
+    // TODO dynamic(() => import('@meepshop/landing-page'))
+    throw new Error('Should remove @ant-design/compatible');
+  },
   MenuModule: dynamic(() => import('@meepshop/menu')),
   ProductCarouselModule: dynamic(() => import('@meepshop/product-carousel')),
   ProductCollectionsModule: dynamic(() =>

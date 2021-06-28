@@ -21,7 +21,6 @@
   "had-store": "¿Ya tienes una tienda?",
   "go-to-login": "Ir a iniciar sesión",
   "sign-up-success": "¡registración exitosa!",
-  "email-has-been-sent-1": "La carta de verificación se ha enviado a",
-  "email-has-been-sent-2": ", Si no recibió la carta de verificación, intente registrarse nuevamente.",
+  "email-has-been-sent": "La carta de verificación se ha enviado a {{ email }}, Si no recibió la carta de verificación, intente registrarse nuevamente.",
   "back-to-login-page": "Volver a la página de inicio de sesión"
 }

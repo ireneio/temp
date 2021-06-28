@@ -21,7 +21,6 @@
   "had-store": "Vous avez déjà un magasin?",
   "go-to-login": "Aller à la connexion",
   "sign-up-success": "inscription réussie!",
-  "email-has-been-sent-1": "La lettre de vérification a été envoyée à",
-  "email-has-been-sent-2": ", Si vous n'avez pas reçu la lettre de vérification, veuillez réessayer de vous inscrire.",
+  "email-has-been-sent": "La lettre de vérification a été envoyée à {{ email }}, Si vous n'avez pas reçu la lettre de vérification, veuillez réessayer de vous inscrire.",
   "back-to-login-page": "Retour à la page de connexion"
 }

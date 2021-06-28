@@ -17,6 +17,7 @@ export const useCreateRoutingRuleFragment = gql`
   fragment useCreateRoutingRuleFragment on Store {
     id
     routingRules {
+      __typename
       id
       fromPath
       toPath

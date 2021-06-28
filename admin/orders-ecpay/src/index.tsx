@@ -41,7 +41,7 @@ const OrdersEcpay: NextPage<PropsType> = React.memo(() => {
     variables: initVariables,
     ssr: false,
   });
-  const { ecpayColumn, extraColumns } = useEcpayColumns(variables);
+  const getColumns = useEcpayColumns(variables);
   const { runningIds, submitEcpayOrder } = useSubmitEcpayOrder();
 
   useInitVariables(variables || initVariables);
@@ -61,8 +61,7 @@ const OrdersEcpay: NextPage<PropsType> = React.memo(() => {
           },
         });
       }}
-      extraColumns={extraColumns}
-      ecpayColumn={ecpayColumn}
+      getColumns={getColumns}
       runningIds={runningIds}
       submitOrders={submitEcpayOrder}
     >

@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 
 // graphql import
 import { useBlockFragment } from './useBlock';
+import { useInitialValuesFragment } from './useInitialValues';
 
 // definition
 export const getStoreSetting = gql`
@@ -12,9 +13,11 @@ export const getStoreSetting = gql`
       store {
         id
         ...useBlockFragment
+        ...useInitialValuesFragment
       }
     }
   }
 
   ${useBlockFragment}
+  ${useInitialValuesFragment}
 `;

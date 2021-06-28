@@ -1,7 +1,8 @@
 // import
 import React, { useMemo, useCallback } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Spin, Icon } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 import { emptyFunction } from 'fbjs';
 
 import { Currency as CurrencyContext } from '@meepshop/context';
@@ -21,7 +22,7 @@ export default React.memo(({ children }) => {
   ]);
   const c = useCallback((price: number) => format(currency, price), [currency]);
 
-  if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!data) return <Spin indicator={<LoadingOutlined spin />} />;
 
   return (
     <CurrencyContext.Provider

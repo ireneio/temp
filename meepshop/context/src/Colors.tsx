@@ -1,7 +1,8 @@
 // import
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Spin, Icon } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 // graphql typescript
 import { getColors as getColorsType } from '@meepshop/types/gqls/meepshop';
@@ -24,7 +25,7 @@ export const ColorsProvider = React.memo(({ children }) => {
     return themes?.[parseInt(selected || '0', 10)]?.colors || [];
   }, [data]);
 
-  if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!data) return <Spin indicator={<LoadingOutlined spin />} />;
 
   return (
     <ColorsContext.Provider value={colors as ColorsType}>

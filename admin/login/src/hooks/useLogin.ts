@@ -1,6 +1,3 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
-
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
@@ -18,12 +15,18 @@ import {
 // graphql import
 import { login } from '../gqls/useLogin';
 
+// typescript definition
+interface ValuesType {
+  email: string;
+  password: string;
+  isHelper: boolean;
+  cname?: string;
+}
+
 // definition
-export default (
-  validateFields: FormComponentProps['form']['validateFields'],
-): {
+export default (): {
   loading: boolean;
-  onSubmit: (e: React.FormEvent<HTMLElement>) => void;
+  login: (values: ValuesType) => void;
 } => {
   const { t } = useTranslation('login');
   const router = useRouter();
@@ -63,32 +66,26 @@ export default (
 
   return {
     loading,
-    onSubmit: useCallback(
-      (e: React.FormEvent<HTMLElement>) => {
-        e.preventDefault();
-        validateFields(async (err, { email, password, isHelper, cname }) => {
-          if (err) return;
+    login: useCallback(
+      async ({ isHelper, cname, ...input }) => {
+        const gRecaptchaResponse = window.grecaptcha.getResponse();
 
-          const gRecaptchaResponse = window.grecaptcha.getResponse();
-
-          window.grecaptcha.reset();
-          await mutation({
-            variables: {
-              input: {
-                email,
-                password,
-                gRecaptchaResponse,
-                ...(!isHelper
-                  ? {}
-                  : {
-                      cname,
-                    }),
-              },
+        window.grecaptcha.reset();
+        await mutation({
+          variables: {
+            input: {
+              ...input,
+              ...(!isHelper
+                ? {}
+                : {
+                    cname,
+                  }),
+              gRecaptchaResponse,
             },
-          });
+          },
         });
       },
-      [validateFields, mutation],
+      [mutation],
     ),
   };
 };

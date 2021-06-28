@@ -1,5 +1,5 @@
 // typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
+import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
 
 import { UseComputeOrderType } from './useComputeOrder';
 
@@ -121,7 +121,7 @@ export default ({
             },
           ) => {
             const validateEmailResult = await new Promise(resolve =>
-              validateEmail.validator?.([], userEmail, resolve),
+              validateEmail.validator?.({}, userEmail, resolve),
             );
 
             if (err || loading || validateEmailResult) return;

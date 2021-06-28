@@ -1,5 +1,5 @@
 // typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
+import { FormInstance } from 'antd/lib/form';
 
 // import
 import { useState, useCallback } from 'react';
@@ -13,87 +13,99 @@ import useUpdateGoodDealSettings from './useUpdateGoodDealSettings';
 import useSetGaViewId from './useSetGaViewId';
 
 // graphql typescript
-import { useSaveFragment as useSaveFragmentType } from '@meepshop/types/gqls/admin';
+import { EcfitServiceTypeEnum } from '@meepshop/types/gqls/admin';
 
 // typescript definition
-interface ReturnType {
-  save: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  loading: boolean;
+interface ValuesType {
+  facebook: {
+    status: boolean;
+    appId: string;
+    appSecret: string;
+  };
+  ecfit: {
+    status: boolean;
+    serviceType: EcfitServiceTypeEnum;
+    companyToken: string;
+    apiKey: string;
+  };
+  goodDeal: {
+    status: boolean;
+    corporationId: string;
+    apiKey: string;
+  };
+  gaViewId: string | null;
 }
 
 // definition
 export default (
-  { validateFields, resetFields }: FormComponentProps['form'],
-  store: useSaveFragmentType | null,
-): ReturnType => {
+  { resetFields }: FormInstance,
+  storeId: string | null,
+): {
+  save: (values: ValuesType) => void;
+  loading: boolean;
+} => {
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation('setting-third-party');
   const updateFacebookSetting = useUpdateFacebookSetting();
   const updateEcfitSettings = useUpdateEcfitSettings();
   const updateGoodDealSettings = useUpdateGoodDealSettings();
   const { setGaViewId, processorStatus } = useSetGaViewId(
-    store?.id || 'null-id', // SHOULD_NOT_BE_NULL
+    storeId || 'null-id', // SHOULD_NOT_BE_NULL
   );
 
   return {
     loading: loading || processorStatus === 'PROCESSING',
     save: useCallback(
-      e => {
-        e.preventDefault();
-        validateFields(async (err, { facebook, ecfit, goodDeal, gaViewId }) => {
-          if (err || !store?.id) return;
+      async ({ facebook, ecfit, goodDeal, gaViewId }) => {
+        if (!storeId) return;
 
-          setLoading(true);
+        setLoading(true);
 
-          try {
-            if (facebook) {
-              const { status: isLoginEnabled, ...input } = facebook;
+        try {
+          if (facebook) {
+            const { status: isLoginEnabled, ...input } = facebook;
 
-              await updateFacebookSetting(store.id, {
-                ...input,
-                isLoginEnabled,
-              });
-            }
-
-            if (ecfit) {
-              const { status: isEnabled, ...input } = ecfit;
-
-              await updateEcfitSettings(store.id, {
-                ...input,
-                isEnabled,
-              });
-            }
-
-            if (goodDeal)
-              await updateGoodDealSettings([
-                {
-                  id: store.id,
-                  setting: {
-                    gooddeal: {
-                      ...goodDeal,
-                      status: goodDeal.status ? 1 : 0,
-                    },
-                  },
-                },
-              ]);
-
-            // ga view id 允許清空
-            await setGaViewId(gaViewId || '');
-
-            message.success(t('success'));
-
-            resetFields();
-          } catch (error) {
-            message.error(t('error'));
+            await updateFacebookSetting(storeId, {
+              ...input,
+              isLoginEnabled,
+            });
           }
 
-          setLoading(false);
-        });
+          if (ecfit) {
+            const { status: isEnabled, ...input } = ecfit;
+
+            await updateEcfitSettings(storeId, {
+              ...input,
+              isEnabled,
+            });
+          }
+
+          if (goodDeal)
+            await updateGoodDealSettings([
+              {
+                id: storeId,
+                setting: {
+                  gooddeal: {
+                    ...goodDeal,
+                    status: goodDeal.status ? 1 : 0,
+                  },
+                },
+              },
+            ]);
+
+          // ga view id 允許清空
+          await setGaViewId(gaViewId || '');
+          message.success(t('success'));
+          resetFields();
+        } catch (error) {
+          message.error(t('error'));
+        }
+
+        setLoading(false);
       },
       [
-        validateFields,
         resetFields,
-        store,
+        storeId,
         t,
         updateFacebookSetting,
         updateEcfitSettings,

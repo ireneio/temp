@@ -3,7 +3,7 @@ import { ColumnProps } from 'antd/lib/table';
 
 // import
 import React, { useMemo } from 'react';
-import { Icon } from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
 import { filter } from 'graphql-anywhere';
 import moment from 'moment';
 
@@ -35,7 +35,7 @@ export default (
   return useMemo(
     () => [
       {
-        dataIndex: 'coverImage',
+        dataIndex: ['coverImage'],
         render: (
           value: useColumnsWishlistProductFragment['coverImage'],
           { productId, isAvailableForSale }: useColumnsWishlistProductFragment,
@@ -53,7 +53,7 @@ export default (
           ),
       },
       {
-        dataIndex: 'title.zh_TW',
+        dataIndex: ['title', 'zh_TW'],
         title: t('productTitle'),
         render: (
           value: useColumnsFragmenTitle['zh_TW'],
@@ -75,7 +75,7 @@ export default (
           ),
       },
       {
-        dataIndex: 'createdAt',
+        dataIndex: ['createdAt'],
         title: t('addDate'),
         className: styles.addDate,
         render: (
@@ -88,11 +88,13 @@ export default (
         ),
       },
       {
-        dataIndex: 'productId',
+        dataIndex: ['productId'],
         title: t('cancel'),
-        className: styles.icon,
         render: (value: useColumnsWishlistProductFragment['productId']) => (
-          <Icon type="close" onClick={() => remove({ productId: value })} />
+          <CloseOutlined
+            className={styles.icon}
+            onClick={() => remove({ productId: value })}
+          />
         ),
       },
     ],

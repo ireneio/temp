@@ -33,12 +33,6 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
       errorObj: PropTypes.shape({}),
       activityInfo: PropTypes.arrayOf(PropTypes.shape({}).isRequired),
     }),
-    form: PropTypes.shape({
-      // from parent component with ant.Form.create()
-      getFieldsValue: PropTypes.func.isRequired,
-      getFieldDecorator: PropTypes.func.isRequired,
-      setFieldsValue: PropTypes.func.isRequired,
-    }).isRequired,
     computeOrderList: PropTypes.func.isRequired,
     paymentList: PropTypes.arrayOf(
       PropTypes.shape({
@@ -82,8 +76,12 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
-    const { t, form, paymentList, shipmentList } = nextProps;
-    const { getFieldsValue, setFields } = form;
+    const {
+      form: { getFieldsValue, setFields },
+      t,
+      paymentList,
+      shipmentList,
+    } = nextProps;
     const { paymentId, shipmentId } = getFieldsValue([
       'paymentId',
       'shipmentId',
@@ -100,23 +98,23 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
       !areEqual(paymentIds, preState.paymentIds) ||
       !areEqual(shipmentIds, preState.shipmentIds)
     ) {
-      if (paymentId && !choosePayment.paymentId) {
-        setFields({
-          paymentId: {
+      if (paymentId && !choosePayment.paymentId)
+        setFields([
+          {
+            name: ['paymentId'],
             value: undefined,
             errors: [new Error(t('choose-paymeny-error'))],
           },
-        });
-      }
+        ]);
 
-      if (shipmentId && !chooseShipment.shipmentId) {
-        setFields({
-          shipmentId: {
+      if (shipmentId && !chooseShipment.shipmentId)
+        setFields([
+          {
+            name: ['shipmentId'],
             value: undefined,
             errors: [new Error(t('choose-shipment-error'))],
           },
-        });
-      }
+        ]);
 
       const nextState = {
         paymentIds,
@@ -219,7 +217,6 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
       style,
       couponInfo,
       computeOrderList,
-      form,
     } = this.props;
     const {
       choosePayment,
@@ -227,20 +224,21 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
       paymentList,
       shipmentList,
     } = this.state;
-    const { getFieldDecorator } = form;
 
     return (
       <>
         <FormItem style={style}>
-          {getFieldDecorator('paymentId', {
-            validateTrigger: 'onBlur',
-            rules: [
+          <FormItem
+            name={['paymentId']}
+            rules={[
               {
                 required: true,
                 message: t('is-required'),
               },
-            ],
-          })(
+            ]}
+            validateTrigger="onBlur"
+            noStyle
+          >
             <Select
               placeholder={t('payment')}
               disabled={paymentList.length === 0 || paymentList[0].isFake}
@@ -258,8 +256,8 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
                   {name}
                 </Option>
               ))}
-            </Select>,
-          )}
+            </Select>
+          </FormItem>
 
           {!choosePayment.description ? null : (
             <Collapse
@@ -279,15 +277,17 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
         </FormItem>
 
         <FormItem style={style}>
-          {getFieldDecorator('shipmentId', {
-            validateTrigger: 'onBlur',
-            rules: [
+          <FormItem
+            name={['shipmentId']}
+            rules={[
               {
                 required: true,
                 message: t('is-required'),
               },
-            ],
-          })(
+            ]}
+            validateTrigger="onBlur"
+            noStyle
+          >
             <Select
               placeholder={t('shipment')}
               disabled={shipmentList.length === 0 || shipmentList[0].isFake}
@@ -307,8 +307,8 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
                   {name}
                 </Option>
               ))}
-            </Select>,
-          )}
+            </Select>
+          </FormItem>
 
           {!chooseShipment.description ? null : (
             <Collapse
@@ -328,12 +328,16 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
         </FormItem>
 
         {!hasStoreAppPlugin('coupon') ? null : (
-          <Coupon
-            {...couponInfo}
-            style={style}
-            form={form}
-            computeOrderList={computeOrderList}
-          />
+          <FormItem dependencies={['coupon']} noStyle>
+            {form => (
+              <Coupon
+                {...couponInfo}
+                style={style}
+                form={form}
+                computeOrderList={computeOrderList}
+              />
+            )}
+          </FormItem>
         )}
       </>
     );

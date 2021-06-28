@@ -1,11 +1,13 @@
+// typescript import
+import { CarouselRef } from 'antd/lib/carousel';
+
 // import
 import { useCallback } from 'react';
-import { Carousel } from 'antd';
 
 // definition
 // FIXME: react-slick bug - miss .slick-active class on slides that are visible
 // https://github.com/akiran/react-slick/issues/764
-export default (bottomRef: React.RefObject<Carousel>): (() => void) =>
+export default (bottomRef: React.RefObject<CarouselRef>): (() => void) =>
   useCallback(() => {
     const slickList =
       bottomRef?.current?.innerSlider.list.childNodes[0].childNodes;

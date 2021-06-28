@@ -1,36 +1,28 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form';
-
-import { useTranslation } from '@meepshop/locales';
-
 // import
 import React from 'react';
-import { useApolloClient } from '@apollo/react-hooks';
-import { Form, Modal, Input, Switch, Icon } from 'antd';
+import { InfoCircleOutlined } from '@ant-design/icons';
+import { Form, Modal, Button, Input, Switch } from 'antd';
 
+import { useTranslation } from '@meepshop/locales';
 import Tooltip from '@admin/tooltip';
 import {
   pageManagerPageTipPath_w200 as pageManagerPageTipPath,
   pageManagerPageTipTab_w200 as pageManagerPageTipTab,
 } from '@meepshop/images';
+import { useValidatePagePath } from '@meepshop/validator';
 
 import ContainerSelect from './ContainerSelect';
-import useModalSubmit from './hooks/useModalSubmit';
+import useCreatePage from './hooks/useCreatePage';
 import styles from './styles/modal.less';
 
 // graphql typescript
 import {
-  checkIfPageExistsBeforeCreatingPage as checkIfPageExistsBeforeCreatingPageType,
-  checkIfPageExistsBeforeCreatingPageVariables,
   getPagesVariables,
   usePagesPageFragment as usePagesPageFragmentType,
 } from '@meepshop/types/gqls/admin';
 
-// graphql import
-import { checkIfPageExistsBeforeCreatingPage } from './gqls/modal';
-
 // typescript definition
-interface PropsType extends FormComponentProps {
+interface PropsType {
   pageType: usePagesPageFragmentType['pageType'];
   variables: getPagesVariables;
   onClose: () => void;
@@ -39,148 +31,137 @@ interface PropsType extends FormComponentProps {
 // definition
 const { Item: FormItem } = Form;
 
-export default Form.create<PropsType>()(
-  React.memo(
-    ({
-      // HOC
-      form: { getFieldDecorator, validateFields, getFieldsError },
+export default React.memo(({ pageType, variables, onClose }: PropsType) => {
+  const { t } = useTranslation('page-manager');
+  const validatePagePath = useValidatePagePath();
+  const createPage = useCreatePage(pageType, variables);
 
-      // props
-      pageType,
-      variables,
-      onClose,
-    }: PropsType) => {
-      const client = useApolloClient();
-      const { t } = useTranslation('page-manager');
-      const modalSubmit = useModalSubmit(validateFields, pageType, variables);
-      const error = getFieldsError();
+  return (
+    <Form onFinish={createPage}>
+      <Modal
+        style={{ top: '40px' }}
+        wrapClassName={styles.root}
+        title={`${t('add-new-page.add')}${t(`${pageType}-page.title`)}`}
+        onCancel={onClose}
+        footer={[
+          <Button key="cancel" onClick={onClose}>
+            {t('add-new-page.cancel')}
+          </Button>,
 
-      return (
-        <Modal
-          style={{ top: '40px' }}
-          wrapClassName={styles.root}
-          title={`${t('add-new-page.add')}${t(`${pageType}-page.title`)}`}
-          onOk={modalSubmit}
-          okButtonProps={{
-            disabled: Object.keys(error).some(field => error[field]),
-          }}
-          okText={t('add-new-page.add')}
-          onCancel={onClose}
-          cancelText={t('add-new-page.cancel')}
-          width="530px"
-          visible
+          <FormItem key="submit" shouldUpdate noStyle>
+            {({ getFieldsError, submit }) => (
+              <Button
+                disabled={getFieldsError().some(
+                  ({ errors }) => errors.length !== 0,
+                )}
+                onClick={submit}
+                type="primary"
+              >
+                {t('add-new-page.add')}
+              </Button>
+            )}
+          </FormItem>,
+        ]}
+        width="530px"
+        visible
+      >
+        <span className={styles.title}>{t('form.title.title')}</span>
+
+        <FormItem
+          name={['title']}
+          rules={[{ required: true, message: t('form.required') }]}
         >
-          <Form>
-            <FormItem>
-              <span className={styles.title}>{t('form.title.title')}</span>
+          <Input placeholder={t('form.title.placeholder')} />
+        </FormItem>
 
-              {getFieldDecorator('title', {
-                rules: [{ required: true, message: t('form.required') }],
-              })(<Input placeholder={t('form.title.placeholder')} />)}
+        {pageType !== 'custom' ? null : (
+          <>
+            <span className={styles.title}>
+              {t('form.path.title')}
+
+              <Tooltip
+                title={
+                  <img
+                    className={styles.tooltip}
+                    src={pageManagerPageTipPath}
+                    alt="pageManagerPageTipPath"
+                  />
+                }
+              />
+            </span>
+
+            <FormItem
+              name={['path']}
+              rules={[
+                {
+                  required: true,
+                  message: t('form.required'),
+                },
+                {
+                  validator: validatePagePath,
+                },
+              ]}
+            >
+              <Input placeholder={t('form.path.placeholder')} />
             </FormItem>
 
-            {pageType !== 'custom' ? null : (
-              <>
-                <FormItem>
-                  <span className={styles.title}>
-                    {t('form.path.title')}
+            <span className={styles.title}>
+              {t('form.tabTitle.title')}
 
-                    <Tooltip
-                      title={
-                        <img
-                          className={styles.tooltip}
-                          src={pageManagerPageTipPath}
-                          alt="pageManagerPageTipPath"
-                        />
-                      }
-                    />
-                  </span>
+              <Tooltip
+                title={
+                  <img
+                    className={styles.tooltip}
+                    src={pageManagerPageTipTab}
+                    alt="pageManagerPageTipTab"
+                  />
+                }
+              />
+            </span>
 
-                  {getFieldDecorator('path', {
-                    rules: [
-                      {
-                        required: true,
-                        message: t('form.required'),
-                      },
-                      {
-                        validator: async (_, value) => {
-                          if (!value) return;
-
-                          const { data } = await client.query<
-                            checkIfPageExistsBeforeCreatingPageType,
-                            checkIfPageExistsBeforeCreatingPageVariables
-                          >({
-                            query: checkIfPageExistsBeforeCreatingPage,
-                            variables: {
-                              input: value,
-                            },
-                          });
-
-                          if (data?.isPagePathExists)
-                            throw new Error(
-                              t(
-                                'rename-page-with-seo.error.FAIL_PAGE_PATH_DUPLICATE',
-                              ),
-                            );
-                        },
-                      },
-                    ],
-                  })(<Input placeholder={t('form.path.placeholder')} />)}
-                </FormItem>
-
-                <FormItem>
-                  <span className={styles.title}>
-                    {t('form.tabTitle.title')}
-
-                    <Tooltip
-                      title={
-                        <img
-                          className={styles.tooltip}
-                          src={pageManagerPageTipTab}
-                          alt="pageManagerPageTipTab"
-                        />
-                      }
-                    />
-                  </span>
-
-                  {getFieldDecorator('tabTitle', {
-                    rules: [{ required: true, message: t('form.required') }],
-                  })(<Input placeholder={t('form.tabTitle.placeholder')} />)}
-                </FormItem>
-              </>
-            )}
-
-            <FormItem>
-              <span className={styles.title}>{t('form.templateType')}</span>
-
-              {getFieldDecorator('templateType', {
-                rules: [{ required: true, message: t('form.required') }],
-                initialValue: 'DEFAULT',
-              })(<ContainerSelect />)}
+            <FormItem
+              name={['tabTitle']}
+              rules={[{ required: true, message: t('form.required') }]}
+            >
+              <Input placeholder={t('form.tabTitle.placeholder')} />
             </FormItem>
+          </>
+        )}
 
-            <FormItem className={styles.switch}>
-              {getFieldDecorator('useBottom', {
-                rules: [{ required: true, message: t('form.required') }],
-                initialValue: false,
-                valuePropName: 'checked',
-              })(<Switch />)}
+        <span className={styles.title}>{t('form.templateType')}</span>
 
-              <span>{t('form.use-bottom')}</span>
-            </FormItem>
+        <FormItem
+          name={['templateType']}
+          rules={[{ required: true, message: t('form.required') }]}
+          initialValue="DEFAULT"
+        >
+          <ContainerSelect />
+        </FormItem>
 
-            <div className={styles.notice}>{t('notice')}</div>
+        <div className={styles.switch}>
+          <FormItem
+            className={styles.switch}
+            name={['useBottom']}
+            rules={[{ required: true, message: t('form.required') }]}
+            initialValue={false}
+            valuePropName="checked"
+          >
+            <Switch />
+          </FormItem>
 
-            {pageType !== 'template' ? null : (
-              <div className={styles.templateCanNotDelete}>
-                <Icon type="info-circle" />
+          <span>{t('form.use-bottom')}</span>
+        </div>
 
-                {t('template-can-not-delete')}
-              </div>
-            )}
-          </Form>
-        </Modal>
-      );
-    },
-  ),
-);
+        <div className={styles.notice}>{t('notice')}</div>
+
+        {pageType !== 'template' ? null : (
+          <div className={styles.templateCanNotDelete}>
+            <InfoCircleOutlined />
+
+            {t('template-can-not-delete')}
+          </div>
+        )}
+      </Modal>
+    </Form>
+  );
+});

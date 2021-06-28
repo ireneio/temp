@@ -1,3 +1,6 @@
+// typescript import
+import { RangePickerProps } from 'antd/lib/date-picker';
+
 // import
 import React, { useEffect, useState, useRef } from 'react';
 import { DatePicker as AntdDatePicker } from 'antd';
@@ -12,7 +15,7 @@ import { DATE_TYPE } from './constants';
 
 // typescript definition
 export interface PropsType {
-  value?: [moment.Moment, moment.Moment];
+  value?: moment.Moment[];
   onChange?: (value: PropsType['value']) => void;
 }
 
@@ -34,14 +37,15 @@ export default React.memo(({ onChange, value: propsValue }: PropsType) => {
   return (
     <RangePicker
       className={styles.root}
-      value={value}
+      value={value as RangePickerProps['value']}
+      separator="~"
       dropdownClassName={`${styles.dropdown} ${
         type === 'custom' ? '' : styles.notCustom
       }`}
       placeholder={[t('start-date'), t('end-date')]}
       onChange={newValue => {
         setValue(
-          [newValue[0]?.startOf('day'), newValue[1]?.endOf('day')].filter(
+          [newValue?.[0]?.startOf('day'), newValue?.[1]?.endOf('day')].filter(
             Boolean,
           ) as PropsType['value'],
         );
@@ -50,9 +54,7 @@ export default React.memo(({ onChange, value: propsValue }: PropsType) => {
         DATE_TYPE.map((key: typeof DATE_TYPE[number]) => (
           <div
             key={key}
-            className={`ant-select-dropdown-menu-item ${
-              type !== key ? '' : 'ant-select-dropdown-menu-item-selected'
-            }`}
+            className={`ant-select-item ${type !== key ? '' : styles.selected}`}
             onClick={() => {
               setType(key);
               if (key !== 'custom') setValue(changeValue(key));

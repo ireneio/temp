@@ -4,7 +4,6 @@
   "edit-again": "Edit",
   "send": "Send",
   "pay-message-is-not-updated": "Remittance notification content is the same",
-  "please-edit-paid-message": "The content of the remittance notice has not changed, please edit the content before resending.",
   "confirm": "Confirm",
   "send-success": "Your message has been sent."
 }

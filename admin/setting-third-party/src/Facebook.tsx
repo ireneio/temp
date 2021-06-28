@@ -1,6 +1,3 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
-
 // import
 import React from 'react';
 import { Form, Input } from 'antd';
@@ -14,7 +11,7 @@ import styles from './styles/facebook.less';
 import { facebookFragment as facebookFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
-interface PropsType extends FormComponentProps {
+interface PropsType {
   facebookSetting: facebookFragmentType;
 }
 
@@ -22,10 +19,7 @@ interface PropsType extends FormComponentProps {
 const { Item: FormItem } = Form;
 
 export default React.memo(
-  ({
-    form: { getFieldDecorator },
-    facebookSetting: { appId, appSecret },
-  }: PropsType) => {
+  ({ facebookSetting: { appId, appSecret } }: PropsType) => {
     const { t } = useTranslation('setting-third-party');
 
     return (
@@ -44,16 +38,19 @@ export default React.memo(
             <div key={key}>
               <div className={styles.title}>{t(`facebook.${key}.title`)}</div>
 
-              <FormItem>
-                {getFieldDecorator(`facebook.${key}`, {
-                  initialValue: {
+              <FormItem
+                name={['facebook', key]}
+                initialValue={
+                  {
                     appId,
                     appSecret,
-                  }[key],
-                  rules: [{ required: true, message: t('required') }],
-                  validateTrigger: 'onBlur',
-                  preserve: true,
-                })(<Input placeholder={t(`facebook.${key}.placeholder`)} />)}
+                  }[key]
+                }
+                rules={[{ required: true, message: t('required') }]}
+                validateTrigger="onBlur"
+                preserve
+              >
+                <Input placeholder={t(`facebook.${key}.placeholder`)} />
               </FormItem>
             </div>
           ))}

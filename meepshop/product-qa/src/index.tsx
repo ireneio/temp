@@ -1,6 +1,3 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
-
 // import
 import React, { useContext, useState } from 'react';
 import { filter } from 'graphql-anywhere';
@@ -23,200 +20,176 @@ import { productQaFragment } from '@meepshop/types/gqls/meepshop';
 // graphql import
 import { useCreateProductQAFragment } from './gqls/useCreateProductQA';
 
-// typescript definition
-export interface PropsType extends FormComponentProps, productQaFragment {}
-
 // definition
 const { Item: FormItem } = Form;
 const { TextArea } = Input;
 
-export default Form.create<FormComponentProps>()(
-  React.memo(
-    ({
-      width,
-      product,
-      viewer,
-      form: { getFieldDecorator, resetFields, validateFields },
-    }: PropsType) => {
-      const { t } = useTranslation('product-qa');
-      const colors = useContext(ColorsContext);
-      const [showReplyQAIndex, setShowReplyQAIndex] = useState<number[]>([]);
-      const createProductQA = useCreateProductQA(
-        filter(useCreateProductQAFragment, product),
-        resetFields,
-      );
-      const validateEmail = useValidateEmail();
-      const autoLinker = useAutoLinker();
+export default React.memo(({ width, product, viewer }: productQaFragment) => {
+  const { t } = useTranslation('product-qa');
+  const colors = useContext(ColorsContext);
+  const [showReplyQAIndex, setShowReplyQAIndex] = useState<number[]>([]);
+  const [form] = Form.useForm();
+  const createProductQA = useCreateProductQA(
+    filter(useCreateProductQAFragment, product),
+    form,
+  );
+  const validateEmail = useValidateEmail();
+  const autoLinker = useAutoLinker();
 
-      return (
-        <div className={styles.root} style={{ width: `${width}%` }}>
-          <div className={styles.qa}>
-            {product?.publicViewableQas?.map((productQa, index) => {
-              if (!productQa?.qa) return null;
+  return (
+    <Form
+      className={styles.root}
+      style={{ width: `${width}%` }}
+      form={form}
+      onFinish={createProductQA}
+    >
+      <div className={styles.qa}>
+        {product?.publicViewableQas?.map((productQa, index) => {
+          if (!productQa?.qa) return null;
 
-              const { qa, userEmail } = productQa;
+          const { qa, userEmail } = productQa;
 
-              if (!qa?.[0]) return null;
+          if (!qa?.[0]) return null;
 
-              const [{ question, createdAt, id }, ...reply] = qa;
-              const [email] = (userEmail || '').split(/@/);
+          const [{ question, createdAt, id }, ...reply] = qa;
+          const [email] = (userEmail || '').split(/@/);
 
-              return (
-                <div key={id} style={{ borderColor: colors[3] }}>
-                  <div className={styles.question}>
-                    <pre
-                      dangerouslySetInnerHTML={{
-                        __html: autoLinker.link(question || ''),
-                      }}
-                    />
+          return (
+            <div key={id} style={{ borderColor: colors[3] }}>
+              <div className={styles.question}>
+                <pre
+                  dangerouslySetInnerHTML={{
+                    __html: autoLinker.link(question || ''),
+                  }}
+                />
 
-                    <div>
-                      <div>
-                        {`${email.length > 5 ? email.slice(0, 5) : email}*****`}
-                      </div>
-
-                      <div className={styles.createdAt}>
-                        {moment(createdAt).format('YYYY/MM/DD HH:mm:ss')}
-                      </div>
-                    </div>
+                <div>
+                  <div>
+                    {`${email.length > 5 ? email.slice(0, 5) : email}*****`}
                   </div>
 
-                  {qa.length === 1 ? null : (
-                    <div
-                      className={styles.viewReplyButton}
-                      style={{ color: colors[4] }}
-                      onClick={() =>
-                        setShowReplyQAIndex(
-                          showReplyQAIndex.includes(index)
-                            ? showReplyQAIndex.filter(i => i !== index)
-                            : [...showReplyQAIndex, index],
-                        )
-                      }
-                    >
-                      <ViewReplyIcon />
-                      {showReplyQAIndex.includes(index)
-                        ? t('hide-reply')
-                        : t('view-reply')}
-                    </div>
-                  )}
-
-                  {!showReplyQAIndex.includes(index)
-                    ? null
-                    : reply.map(replyQa => {
-                        if (!replyQa) return null;
-
-                        return (
-                          <div
-                            key={replyQa.id}
-                            className={styles.reply}
-                            style={{
-                              background: `${transformColor(colors[4]).alpha(
-                                0.1,
-                              )}`,
-                            }}
-                          >
-                            <pre
-                              dangerouslySetInnerHTML={{
-                                __html: autoLinker.link(replyQa.question || ''),
-                              }}
-                            />
-                            <div>
-                              {`(${moment(replyQa.createdAt).format(
-                                'YYYY/MM/DD HH:mm:ss',
-                              )})`}
-                            </div>
-                          </div>
-                        );
-                      })}
+                  <div className={styles.createdAt}>
+                    {moment(createdAt).format('YYYY/MM/DD HH:mm:ss')}
+                  </div>
                 </div>
-              );
-            })}
-          </div>
+              </div>
 
-          {viewer?.role !== 'SHOPPER' ? null : (
-            <FormItem>
-              {getFieldDecorator('userEmail', {
-                rules: [
-                  {
-                    required: true,
-                    message: t('is-required'),
-                  },
-                  {
-                    validator: validateEmail.validator,
-                  },
-                ],
-                validateTrigger: 'onBlur',
-                normalize: validateEmail.normalize,
-              })(
-                <Input
-                  style={{ borderColor: colors[5] }}
-                  placeholder={t('email')}
-                />,
-              )}
-            </FormItem>
-          )}
-
-          <FormItem>
-            {getFieldDecorator('question', {
-              rules: [
-                {
-                  required: true,
-                  message: t('is-required'),
-                },
-              ],
-            })(
-              <TextArea
-                style={{ borderColor: colors[5] }}
-                placeholder={t('content')}
-                rows={4}
-              />,
-            )}
-          </FormItem>
-
-          <div className={styles.button}>
-            <Button
-              style={{
-                color: colors[4],
-                borderColor: colors[4],
-              }}
-              onClick={() => resetFields()}
-            >
-              {t('reset')}
-            </Button>
-
-            <Button
-              style={{
-                color: colors[2],
-                borderColor: colors[4],
-                backgroundColor: colors[4],
-              }}
-              onClick={() => {
-                validateFields((errors, { userEmail, question }) => {
-                  if (!errors) {
-                    createProductQA({
-                      variables: {
-                        createProductQA: [
-                          {
-                            productId: product?.id || 'null-id',
-                            qa: [
-                              {
-                                question,
-                              },
-                            ],
-                            ...(!userEmail ? {} : { userEmail }),
-                          },
-                        ],
-                      },
-                    });
+              {qa.length === 1 ? null : (
+                <div
+                  className={styles.viewReplyButton}
+                  style={{ color: colors[4] }}
+                  onClick={() =>
+                    setShowReplyQAIndex(
+                      showReplyQAIndex.includes(index)
+                        ? showReplyQAIndex.filter(i => i !== index)
+                        : [...showReplyQAIndex, index],
+                    )
                   }
-                });
-              }}
-            >
-              {t('submit')}
-            </Button>
-          </div>
-        </div>
-      );
-    },
-  ),
-);
+                >
+                  <ViewReplyIcon />
+                  {showReplyQAIndex.includes(index)
+                    ? t('hide-reply')
+                    : t('view-reply')}
+                </div>
+              )}
+
+              {!showReplyQAIndex.includes(index)
+                ? null
+                : reply.map(replyQa => {
+                    if (!replyQa) return null;
+
+                    return (
+                      <div
+                        key={replyQa.id}
+                        className={styles.reply}
+                        style={{
+                          background: `${transformColor(colors[4]).alpha(0.1)}`,
+                        }}
+                      >
+                        <pre
+                          dangerouslySetInnerHTML={{
+                            __html: autoLinker.link(replyQa.question || ''),
+                          }}
+                        />
+                        <div>
+                          {`(${moment(replyQa.createdAt).format(
+                            'YYYY/MM/DD HH:mm:ss',
+                          )})`}
+                        </div>
+                      </div>
+                    );
+                  })}
+            </div>
+          );
+        })}
+      </div>
+
+      {viewer?.role !== 'SHOPPER' ? null : (
+        <FormItem
+          name={['userEmail']}
+          rules={[
+            {
+              required: true,
+              message: t('is-required'),
+            },
+            {
+              validator: validateEmail.validator,
+            },
+          ]}
+          normalize={validateEmail.normalize}
+          validateTrigger="onBlur"
+        >
+          <Input style={{ borderColor: colors[5] }} placeholder={t('email')} />
+        </FormItem>
+      )}
+
+      <FormItem
+        name={['question']}
+        rules={[
+          {
+            required: true,
+            message: t('is-required'),
+          },
+        ]}
+      >
+        <TextArea
+          style={{ borderColor: colors[5] }}
+          placeholder={t('content')}
+          rows={4}
+        />
+      </FormItem>
+
+      <div className={styles.button}>
+        <FormItem shouldUpdate noStyle>
+          {({ resetFields, getFieldsError }) => (
+            <>
+              <Button
+                style={{
+                  color: colors[4],
+                  borderColor: colors[4],
+                }}
+                onClick={() => resetFields()}
+              >
+                {t('reset')}
+              </Button>
+
+              <Button
+                style={{
+                  color: colors[2],
+                  borderColor: colors[4],
+                  backgroundColor: colors[4],
+                }}
+                disabled={getFieldsError().some(
+                  ({ errors }) => errors.length !== 0,
+                )}
+                htmlType="submit"
+              >
+                {t('submit')}
+              </Button>
+            </>
+          )}
+        </FormItem>
+      </div>
+    </Form>
+  );
+});

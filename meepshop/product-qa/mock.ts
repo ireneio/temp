@@ -1,8 +1,8 @@
-// typescript import
-import { PropsType } from './src';
-
 // import
 import uuid from 'uuid/v4';
+
+// graphql typescript
+import { ViewerTypeEnum } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default {
@@ -54,7 +54,6 @@ export default {
   viewer: {
     __typename: 'User' as const,
     id: uuid(),
-    role: 'SHOPPER',
+    role: 'SHOPPER' as ViewerTypeEnum,
   },
-  // FIXME: after antd upgrade
-} as PropsType;
+};

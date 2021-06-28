@@ -17,10 +17,12 @@
     "refund": "กรุณาเลือกรายการ",
     "exchange": "โปรดเลือกรายการและป้อนข้อมูลผู้รับ"
   },
-  "recipient": {
+  "replaceRecipient": {
     "title": "ข้อมูลผู้รับ",
     "name": "ชื่อเต็ม",
     "mobile": "โทรศัพท์มือถือ",
-    "address": "ที่อยู่"
+    "address": {
+      "streetAddress": "ที่อยู่"
+    }
   }
 }

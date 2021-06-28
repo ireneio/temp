@@ -12,14 +12,6 @@ export const listStyle = (colors, isGrid) => ({
   },
 
   // ant-select
-  '.ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active': {
-    boxShadow: 'none',
-  },
-  '.ant-select-selection': {
-    backgroundColor: 'transparent',
-    color: colors[3],
-    borderColor: colors[3],
-  },
   '.ant-select-disabled .ant-select-selection': {
     borderColor: '#B3B3B3',
     color: '#5C5C5C',
@@ -27,22 +19,6 @@ export const listStyle = (colors, isGrid) => ({
   },
   '.ant-select-selection__rendered': {
     marginRight: '30px',
-  },
-  '.ant-select-arrow': {
-    color: colors[3],
-  },
-  '.ant-select-dropdown-menu': {
-    borderRadius: '4px',
-  },
-  '.ant-select-dropdown-menu li': {
-    backgroundColor: colors[0],
-    color: colors[3],
-  },
-  '.ant-select-dropdown-menu-item:hover': {
-    backgroundColor: colors[4],
-  },
-  '.ant-select-dropdown-menu-item-selected, .ant-select-dropdown-menu-item-selected:hover': {
-    backgroundColor: colors[4],
   },
 
   // ant-spin

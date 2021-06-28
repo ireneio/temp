@@ -4,7 +4,8 @@ import { PropsType as GalleryPropsType } from '@admin/gallery';
 // import
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Button, Icon } from 'antd';
+import { CloseCircleOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { usePortalTarget } from '@admin/hooks';
@@ -33,7 +34,7 @@ const UploadImage = React.memo(
       <div ref={forwardedRef}>
         {!value ? null : (
           <div className={styles.root} onClick={() => onChange?.(null)}>
-            <Icon type="close-circle" />
+            <CloseCircleOutlined />
 
             <img className={styles.image} src={value} alt="previewer" />
           </div>

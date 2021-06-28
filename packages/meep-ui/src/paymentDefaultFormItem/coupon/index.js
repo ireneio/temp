@@ -20,11 +20,6 @@ export default class Coupon extends React.PureComponent {
     /** props */
     t: PropTypes.func.isRequired,
     style: PropTypes.shape({}),
-    form: PropTypes.shape({
-      getFieldValue: PropTypes.func.isRequired,
-      getFieldDecorator: PropTypes.func.isRequired,
-      setFields: PropTypes.func.isRequired,
-    }).isRequired,
     computeOrderList: PropTypes.func.isRequired,
     checkId: ID_TYPE,
     errorObj: PropTypes.shape({}),
@@ -42,24 +37,29 @@ export default class Coupon extends React.PureComponent {
     // eslint-disable-next-line react/destructuring-assignment
     checking: Boolean(this.props.form.getFieldValue('coupon')),
     validateStatus: 'success',
-    help: '',
+    help: undefined,
     nowCheckId: null, // eslint-disable-line react/no-unused-state
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
-    const { form, errorObj, activityInfo, checkId } = nextProps;
+    const {
+      form: { getFieldValue, setFields },
+      errorObj,
+      activityInfo,
+      checkId,
+    } = nextProps;
     const { checking } = preState;
-    const { getFieldValue, setFields } = form;
     const coupon = getFieldValue('coupon');
 
     if (checking || checkId !== preState.nowCheckId) {
       if (errorObj) {
-        setFields({
-          coupon: {
+        setFields([
+          {
+            name: ['coupon'],
             value: coupon,
             errors: [new Error('coupon code error')],
           },
-        });
+        ]);
 
         return {
           nowCheckId: checkId,
@@ -70,92 +70,98 @@ export default class Coupon extends React.PureComponent {
       }
 
       if ((activityInfo || []).length !== 0 || coupon === '') {
-        setFields({
-          coupon: {
+        setFields([
+          {
+            name: ['coupon'],
             value: coupon,
             errors: null,
           },
-        });
+        ]);
 
         return {
           nowCheckId: checkId,
           checking: false,
           validateStatus: 'success',
           help:
-            coupon === '' ? '' : <CouponSuccess activityInfo={activityInfo} />,
+            coupon === '' ? (
+              undefined
+            ) : (
+              <CouponSuccess activityInfo={activityInfo} />
+            ),
         };
       }
 
       return null;
     }
 
-    if (!coupon && preState.help !== '') {
+    if (!coupon && preState.help !== '')
       return {
         validateStatus: 'success',
-        help: '',
+        help: undefined,
       };
-    }
 
     return null;
   }
 
   askConfirmCoupon = ({ target }) => {
-    const { t, form } = this.props;
-    const { setFields } = form;
+    const {
+      t,
+      form: { setFields },
+    } = this.props;
     const { value: coupon } = target;
 
     if (coupon !== '') {
-      setFields({
-        coupon: { errors: [new Error('coupon code does not be confirmed')] },
-      });
-
+      setFields([
+        {
+          name: ['coupon'],
+          value: coupon,
+          errors: [new Error('coupon code does not be confirmed')],
+        },
+      ]);
       this.setState({
         validateStatus: 'warning',
         help: t('coupon.ask-confirm-coupon'),
       });
     } else {
-      setFields({ coupon: { errors: null } });
-
+      setFields([{ name: ['coupon'], value: coupon, errors: [] }]);
       this.setState({
         validateStatus: 'success',
-        help: '',
+        help: undefined,
       });
     }
   };
 
   render() {
-    const { t, style, form, computeOrderList } = this.props;
+    const { t, style, computeOrderList } = this.props;
     const { checking, validateStatus, help } = this.state;
-    const { getFieldDecorator } = form;
 
     return (
       <FormItem
         style={style}
+        name={['coupon']}
         validateStatus={validateStatus}
         help={help}
         hasFeedback={false}
       >
-        {getFieldDecorator('coupon')(
-          <Search
-            placeholder={t('coupon.placeholder')}
-            enterButton={t('coupon.coupon-button')}
-            onChange={this.askConfirmCoupon}
-            onBlur={({ target }) => {
-              if (target.value === '') {
-                this.setState({ checking: true }, () =>
-                  computeOrderList({ coupon: target.value }),
-                );
-              }
-            }}
-            onSearch={coupon => {
-              if (!checking) {
-                this.setState({ checking: true }, () =>
-                  computeOrderList({ coupon }),
-                );
-              }
-            }}
-          />,
-        )}
+        <Search
+          placeholder={t('coupon.placeholder')}
+          enterButton={t('coupon.coupon-button')}
+          onChange={this.askConfirmCoupon}
+          onBlur={({ target }) => {
+            if (target.value === '') {
+              this.setState({ checking: true }, () =>
+                computeOrderList({ coupon: target.value }),
+              );
+            }
+          }}
+          onSearch={coupon => {
+            if (!checking) {
+              this.setState({ checking: true }, () =>
+                computeOrderList({ coupon }),
+              );
+            }
+          }}
+        />
       </FormItem>
     );
   }

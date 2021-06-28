@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Select, Checkbox } from 'antd';
-import { isAlpha } from 'validator';
+import { isAlpha, isLength } from 'validator';
 
 import { withTranslation } from '@meepshop/locales';
 
@@ -40,7 +40,6 @@ export default class ReceiverInfo extends React.PureComponent {
 
     /** props */
     t: PropTypes.func.isRequired,
-    form: PropTypes.shape({}).isRequired,
     choosePaymentTemplate: PAYMENT_TEMPLATE_TYPE,
     chooseShipmentTemplate: SHIPMENT_TEMPLATE_TYPE,
     isSynchronizeUserInfo: PropTypes.bool.isRequired,
@@ -56,28 +55,24 @@ export default class ReceiverInfo extends React.PureComponent {
 
   componentDidUpdate() {
     const {
+      form: { getFieldValue, validateFields },
       chooseShipmentTemplate,
-      form: { validateFields, getFieldValue },
     } = this.props;
 
     if (
       chooseShipmentTemplate !== this.checkedTemplate &&
       getFieldValue('name')
     ) {
-      validateFields(['name'], {
-        force: true,
-      });
+      validateFields(['name']);
       this.checkedTemplate = chooseShipmentTemplate;
     }
   }
 
   setReceiverWithTemplate = async id => {
     const {
-      /** props */
-      form,
+      form: { setFieldsValue },
       shippableRecipientAddresses,
     } = this.props;
-    const { setFieldsValue } = form;
     const {
       name,
       mobile,
@@ -103,14 +98,13 @@ export default class ReceiverInfo extends React.PureComponent {
 
   synchronizeUserInfo = ({ target }) => {
     const {
+      form: { getFieldsValue, setFieldsValue, validateFields },
       user,
-      form,
       checkoutFields,
       changeSynchronizeUserInfo,
     } = this.props;
 
     if (target.checked) {
-      const { getFieldsValue, setFieldsValue, validateFields } = form;
       const allHidden = Object.keys(checkoutFields).every(
         key => key === '__typename' || checkoutFields[key] === 'HIDDEN',
       );
@@ -186,11 +180,42 @@ export default class ReceiverInfo extends React.PureComponent {
     return saveAsTemplate;
   };
 
+  validateName = async (_, value) => {
+    const { t, chooseShipmentTemplate } = this.props;
+
+    if (!value) return;
+
+    switch (chooseShipmentTemplate) {
+      case 'ezship':
+        if (value.length > 60)
+          throw new Error(t('name-too-long', { amount: 60 }));
+        break;
+
+      case 'gmo':
+        if (value.length > 10)
+          throw new Error(t('name-too-long', { amount: 10 }));
+        break;
+
+      case 'allpay':
+        if (/[\^'`!@#%&*+$~\-(){}\\"<>|_[\] ,，\d]/.test(value))
+          throw new Error(t('allpay-name-too-long'));
+
+        if (isAlpha(value)) {
+          if (!isLength(value, { min: 4, max: 10 }))
+            throw new Error(t('allpay-name-too-long'));
+        } else if (!isLength(value, { min: 2, max: 5 }))
+          throw new Error(t('allpay-name-too-long'));
+        break;
+
+      default:
+        break;
+    }
+  };
+
   render() {
     const {
       /** props */
       t,
-      form,
       isLogin,
       checkoutFields,
       shippableCountries,
@@ -201,7 +226,6 @@ export default class ReceiverInfo extends React.PureComponent {
       changeSaveAsReceiverTemplate,
       isSaveAsReceiverTemplate,
     } = this.props;
-    const { getFieldDecorator } = form;
     const canSaveAsTemplate = this.canSaveAsTemplate();
 
     return (
@@ -224,81 +248,52 @@ export default class ReceiverInfo extends React.PureComponent {
 
         {!canSaveAsTemplate ||
         shippableRecipientAddresses.length === 0 ? null : (
-          <FormItem style={formItemStyle}>
-            {getFieldDecorator('receiverTemplate')(
-              <Select
-                placeholder={t('receiver-template')}
-                onChange={this.setReceiverWithTemplate}
-              >
-                {shippableRecipientAddresses.map(({ id, name }) => (
-                  <Option key={id} value={id}>
-                    {name}
-                  </Option>
-                ))}
-              </Select>,
-            )}
+          <FormItem style={formItemStyle} name={['receiverTemplate']}>
+            <Select
+              placeholder={t('receiver-template')}
+              onChange={this.setReceiverWithTemplate}
+            >
+              {shippableRecipientAddresses.map(({ id, name }) => (
+                <Option key={id} value={id}>
+                  {name}
+                </Option>
+              ))}
+            </Select>
           </FormItem>
         )}
 
-        <FormItem style={formItemStyle}>
-          {getFieldDecorator('name', {
-            validateTrigger: 'onBlur',
-            validateFirst: true,
-            rules: [
-              {
-                required: true,
-                message: t('is-required'),
-              },
-              {
-                validator: (rule, value, callback) => {
-                  if (!value) callback();
-
-                  switch (chooseShipmentTemplate) {
-                    case 'ezship':
-                      return callback(
-                        value.length > 60
-                          ? t('name-too-long', { amount: 60 })
-                          : undefined,
-                      );
-
-                    case 'gmo':
-                      return callback(
-                        value.length > 10
-                          ? t('name-too-long', { amount: 10 })
-                          : undefined,
-                      );
-
-                    case 'allpay':
-                      return callback(
-                        /[\^'`!@#%&*+$~\-(){}\\"<>|_[\] ,，\d]/.test(value) ||
-                          (isAlpha(value)
-                            ? value.length > 10 || value.length < 4
-                            : value.length > 5 || value.length < 2)
-                          ? t('allpay-name-too-long')
-                          : undefined,
-                      );
-
-                    default:
-                      return callback();
-                  }
-                },
-              },
-            ],
-          })(<Input placeholder={t('name')} />)}
+        <FormItem
+          style={formItemStyle}
+          name={['name']}
+          rules={[
+            {
+              required: true,
+              message: t('is-required'),
+            },
+            {
+              validator: this.validateName,
+            },
+          ]}
+          validateTrigger="onBlur"
+          validateFirst
+        >
+          <Input placeholder={t('name')} />
         </FormItem>
 
-        <ReceiverDefaultFormItem
-          style={formItemStyle}
-          form={form}
-          chooseShipmentTemplate={chooseShipmentTemplate}
-          shippableCountries={shippableCountries}
-          invoiceIsNeeded={choosePaymentTemplate !== 'paypal'}
-        />
-
-        <FormItem style={formItemStyle}>
-          {getFieldDecorator('notes')(
-            <TextArea placeholder={t('notes')} rows={4} />,
+        <FormItem shouldUpdate noStyle>
+          {form => (
+            <ReceiverDefaultFormItem
+              style={formItemStyle}
+              form={form}
+              chooseShipmentTemplate={chooseShipmentTemplate}
+              shippableCountries={shippableCountries}
+              invoiceIsNeeded={choosePaymentTemplate !== 'paypal'}
+            />
           )}
+        </FormItem>
+
+        <FormItem style={formItemStyle} name={['notes']}>
+          <TextArea placeholder={t('notes')} rows={4} />
         </FormItem>
 
         {!canSaveAsTemplate ? null : (

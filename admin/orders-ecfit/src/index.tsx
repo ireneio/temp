@@ -48,7 +48,7 @@ const OrdersEcfit: NextPage<PropsType> = React.memo(() => {
     variables,
     fetchMore,
   });
-  const columns = useEcfitColumns(variables);
+  const getColumns = useEcfitColumns(variables);
 
   useInitVariables(variables || initVariables);
 
@@ -65,10 +65,10 @@ const OrdersEcfit: NextPage<PropsType> = React.memo(() => {
           filter: { ecfitSentStatus: variables.filter?.ecfitSentStatus },
         });
       }}
-      extraColumns={columns}
+      getColumns={getColumns}
       runningIds={runningIds}
       submitOrders={updateCreateEcfitOrder}
-      ecfitSentStatus={variables?.filter?.ecfitSentStatus}
+      disabledSend={variables?.filter?.ecfitSentStatus === 'SENT_SUCCESSFUL'}
     >
       <Group
         value={variables?.filter?.ecfitSentStatus}

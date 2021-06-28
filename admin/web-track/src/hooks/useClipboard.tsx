@@ -1,6 +1,7 @@
 // import
 import React, { useEffect } from 'react';
-import { Icon, message } from 'antd';
+import { CheckCircleOutlined } from '@ant-design/icons';
+import { message } from 'antd';
 import Clipboard from 'clipboard';
 
 // definition
@@ -12,7 +13,7 @@ export default (text: string, target: string, content: string): void => {
       message.success({
         content,
         duration: 2,
-        icon: <Icon type="check-circle" />,
+        icon: <CheckCircleOutlined />,
       });
     });
 

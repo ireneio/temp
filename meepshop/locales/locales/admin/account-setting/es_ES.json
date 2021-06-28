@@ -15,13 +15,15 @@
       "label": "Nombre",
       "placeholder": "Ingrese el nombre de la persona de contacto"
     },
-    "mobile": {
-      "label": "Detalles de contacto",
-      "placeholder": "Introduzca el número de teléfono móvil utilizado para el contacto."
-    },
-    "tel": {
-      "label": "Número de contacto",
-      "placeholder": "Ingrese el número de teléfono de contacto"
+    "additionalInfo": {
+      "mobile": {
+        "label": "Detalles de contacto",
+        "placeholder": "Introduzca el número de teléfono móvil utilizado para el contacto."
+      },
+      "tel": {
+        "label": "Número de contacto",
+        "placeholder": "Ingrese el número de teléfono de contacto"
+      }
     },
     "current-password": "Contraseña actual",
     "password": {

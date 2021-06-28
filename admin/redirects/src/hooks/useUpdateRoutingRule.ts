@@ -1,5 +1,5 @@
 // typescript import
-import { FormComponentProps } from 'antd/lib/form';
+import { ValuesType } from '../types';
 
 // import
 import { useCallback } from 'react';
@@ -25,28 +25,25 @@ import {
 interface UseUpdateRoutingRuleType {
   id: string | undefined;
   setShowModal: (showModal: boolean) => void;
-  validateFields: FormComponentProps['form']['validateFields'];
 }
 
 // definition
 export default ({
   id,
   setShowModal,
-  validateFields,
-}: UseUpdateRoutingRuleType): (() => void) => {
+}: UseUpdateRoutingRuleType): ((values: ValuesType) => void) => {
   const { t } = useTranslation('redirects');
-
   const [mutation] = useMutation<
     updateRoutingRuleType,
     updateRoutingRuleVariablesType
   >(updateRoutingRule);
 
-  return useCallback(() => {
-    validateFields((err, { fromPath, toPath }) => {
-      if (err || !id) return;
+  return useCallback(
+    input => {
+      if (!id) return;
 
       mutation({
-        variables: { input: { id, fromPath, toPath } },
+        variables: { input: { ...input, id } },
         update: (cache, { data }) => {
           if (data?.updateRoutingRule.status !== 'OK') {
             message.error(t(data?.updateRoutingRule.status || 'fail'));
@@ -57,10 +54,9 @@ export default ({
             id,
             fragment: useUpdateRoutingRuleFragment,
             data: {
+              ...input,
               __typename: 'RoutingRule',
               id,
-              fromPath,
-              toPath,
             },
           });
 
@@ -68,6 +64,7 @@ export default ({
           setShowModal(false);
         },
       });
-    });
-  }, [mutation, setShowModal, t, validateFields, id]);
+    },
+    [mutation, setShowModal, t, id],
+  );
 };

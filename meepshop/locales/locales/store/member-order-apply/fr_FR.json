@@ -17,10 +17,12 @@
     "refund": "Veuillez sélectionner un article",
     "exchange": "Veuillez sélectionner l'article et saisir les informations sur le destinataire"
   },
-  "recipient": {
+  "replaceRecipient": {
     "title": "Informations sur le destinataire",
     "name": "Nom complet",
     "mobile": "Mobile",
-    "address": "Adresse"
+    "address": {
+      "streetAddress": "Adresse"
+    }
   }
 }

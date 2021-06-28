@@ -7,8 +7,14 @@
   padding: 0px 15px;
   text-align: center;
 
-  :global(.ant-form-explain) {
+  :global(.ant-select-selection-item),
+  :global(.ant-select-selection-placeholder),
+  :global(.ant-form-item-explain) {
     text-align: left;
+  }
+
+  :global(.ant-picker) {
+    width: 100%;
   }
 }
 
@@ -90,7 +96,7 @@
   margin: 0px auto 16px;
 
   :global(.ant-checkbox-wrapper) {
-    display: table;
+    display: flex;
     margin: 0px 0px 8px;
   }
 }

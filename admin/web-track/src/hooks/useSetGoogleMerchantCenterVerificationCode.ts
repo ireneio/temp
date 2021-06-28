@@ -1,6 +1,3 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form';
-
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
@@ -21,11 +18,16 @@ import {
   setGoogleMerchantCenterVerificationCode,
 } from '../gqls/useSetGoogleMerchantCenterVerificationCode';
 
+// typescript definition
+interface ValuesType {
+  verificationCode: string;
+}
+
 // definition
 export default (
   storeId: string,
-  { validateFields }: FormComponentProps['form'],
-): (() => Promise<boolean>) => {
+  setEditMode: (editMode: boolean) => void,
+): ((values: ValuesType) => void) => {
   const { t } = useTranslation('web-track');
   const [mutation] = useMutation<
     setGoogleMerchantCenterVerificationCodeType,
@@ -33,49 +35,39 @@ export default (
   >(setGoogleMerchantCenterVerificationCode);
 
   return useCallback(
-    () =>
-      new Promise(resolve => {
-        validateFields((errors, input) => {
-          if (errors) {
-            resolve(false);
+    input => {
+      mutation({
+        variables: {
+          input,
+        },
+        update: (cache, { data }) => {
+          if (
+            data?.setGoogleMerchantCenterVerificationCode.__typename !==
+            'OkResponse'
+          ) {
+            message.error(t('save-fail'));
             return;
           }
 
-          mutation({
-            variables: {
-              input,
-            },
-            update: (cache, { data }) => {
-              if (
-                data?.setGoogleMerchantCenterVerificationCode.__typename !==
-                'OkResponse'
-              ) {
-                message.error(t('save-fail'));
-                resolve(false);
-                return;
-              }
-
-              cache.writeFragment<
-                useSetGoogleMerchantCenterVerificationCodeFragmentType
-              >({
-                id: storeId,
-                fragment: useSetGoogleMerchantCenterVerificationCodeFragment,
-                data: {
-                  __typename: 'Store',
-                  id: storeId,
-                  adTracks: {
-                    __typename: 'AdTracks',
-                    googleMerchantCenterVerificationCode:
-                      input.verificationCode,
-                  },
-                },
-              });
-              message.success(t('save-success'));
-              resolve(true);
+          cache.writeFragment<
+            useSetGoogleMerchantCenterVerificationCodeFragmentType
+          >({
+            id: storeId,
+            fragment: useSetGoogleMerchantCenterVerificationCodeFragment,
+            data: {
+              __typename: 'Store',
+              id: storeId,
+              adTracks: {
+                __typename: 'AdTracks',
+                googleMerchantCenterVerificationCode: input.verificationCode,
+              },
             },
           });
-        });
-      }),
-    [storeId, validateFields, t, mutation],
+          message.success(t('save-success'));
+          setEditMode(false);
+        },
+      });
+    },
+    [storeId, setEditMode, t, mutation],
   );
 };

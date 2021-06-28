@@ -2,7 +2,8 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
-import { Spin, Icon, Progress, Button } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin, Progress, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import Link, { useRouter } from '@meepshop/link';
@@ -38,7 +39,7 @@ export default React.memo(() => {
   useClipboard(loading, order?.id || null);
   useAdTrack(filter(useAdTrackFragment, order));
 
-  if (loading) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (loading) return <Spin indicator={<LoadingOutlined spin />} />;
 
   return (
     <div className={styles.root}>

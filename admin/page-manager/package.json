@@ -19,6 +19,7 @@
     "@meepshop/locales": "^0.79.55",
     "@meepshop/switch": "^0.79.52",
     "@meepshop/utils": "^0.79.52",
+    "@meepshop/validator": "^0.79.52",
     "react-visibility-sensor": "^5.1.1"
   },
   "keywords": ["admin", "page-manager"]

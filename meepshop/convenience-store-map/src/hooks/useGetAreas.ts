@@ -62,7 +62,11 @@ export default ({
 
       getAreas({
         variables: {
-          input: { shipmentType, storeTypes, cityId: selectedOption.value },
+          input: {
+            shipmentType,
+            storeTypes,
+            cityId: selectedOption.value as string,
+          },
         },
       });
     },

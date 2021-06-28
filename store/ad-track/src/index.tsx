@@ -2,7 +2,8 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
-import { Spin, Icon } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 
@@ -65,7 +66,7 @@ export default React.memo(({ children }: PropsType) => {
 
   useRetention(filter(useRetentionFragment, store), fbq);
 
-  if (!adTracks) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!adTracks) return <Spin indicator={<LoadingOutlined spin />} />;
 
   return (
     <>

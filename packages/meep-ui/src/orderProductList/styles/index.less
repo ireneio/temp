@@ -37,41 +37,43 @@
   font-size: 17px;
 }
 
-.table :global(.ant-table-tbody > tr > td) {
-  padding: 16px 8px;
-  background: transparent;
-  vertical-align: top;
+.table {
+  :global(.ant-table-tbody > tr > td) {
+    padding: 16px 8px;
+    background: transparent;
+    vertical-align: top;
 
-  &:first-child {
-    padding-left: 24px;
+    &:first-child {
+      padding-left: 24px;
 
-    @media (max-width: @screen-sm-max) {
-      padding-left: 16px;
+      @media (max-width: @screen-sm-max) {
+        padding-left: 16px;
+      }
     }
-  }
 
-  &:nth-child(3) {
-    @media (max-width: @screen-sm-max) {
-      display: none;
+    &:nth-child(3) {
+      @media (max-width: @screen-sm-max) {
+        display: none;
+      }
     }
-  }
 
-  &:last-child {
-    padding-right: 24px;
+    &:last-child {
+      padding-right: 24px;
 
-    @media (max-width: @screen-sm-max) {
-      padding-right: 16px;
+      @media (max-width: @screen-sm-max) {
+        padding-right: 16px;
+      }
     }
-  }
 
-  & > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 64px;
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 64px;
 
-    @media (max-width: @screen-sm-max) {
-      min-height: 56px;
+      @media (max-width: @screen-sm-max) {
+        min-height: 56px;
+      }
     }
   }
 }

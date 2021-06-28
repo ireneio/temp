@@ -74,9 +74,9 @@ export const wrapper = {
 const antClassName = [
   '.ant-cascader-picker .ant-cascader-input.ant-input',
   '.ant-select .ant-select-selection--single',
-  'input.ant-input',
+  '.ant-input:not([type=password])',
   '.ant-input-number',
-  'textarea.ant-input',
+  '.ant-input-password',
 ];
 export const modifyAntdStyle = colors => ({
   [antClassName

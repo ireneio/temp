@@ -1,9 +1,10 @@
 // typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
+import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
 
 // import
 import React from 'react';
-import { Form, Button, Input } from 'antd';
+import { Form } from '@ant-design/compatible';
+import { Button, Input } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 

@@ -1,6 +1,3 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form';
-
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
@@ -21,11 +18,17 @@ import {
   setFacebookAdTracks,
 } from '../gqls/useSetFacebookAdTracks';
 
+// typescript definition
+interface ValuesType {
+  pixelId: string;
+  conversionsAccessToken: string | null;
+}
+
 // definition
 export default (
   storeId: string,
-  { validateFields }: FormComponentProps['form'],
-): (() => Promise<boolean>) => {
+  setEditMode: (editMode: boolean) => void,
+): ((values: ValuesType) => void) => {
   const { t } = useTranslation('web-track');
   const [mutation] = useMutation<
     setFacebookAdTracksType,
@@ -33,45 +36,36 @@ export default (
   >(setFacebookAdTracks);
 
   return useCallback(
-    () =>
-      new Promise(resolve => {
-        validateFields((errors, input) => {
-          if (errors) {
-            resolve(false);
+    input => {
+      mutation({
+        variables: {
+          input,
+        },
+        update: (cache, { data }) => {
+          if (data?.setFacebookAdTracks.__typename !== 'OkResponse') {
+            message.success(t('save-fail'));
             return;
           }
 
-          mutation({
-            variables: {
-              input,
-            },
-            update: (cache, { data }) => {
-              if (data?.setFacebookAdTracks.__typename !== 'OkResponse') {
-                message.success(t('save-fail'));
-                resolve(false);
-                return;
-              }
-
-              cache.writeFragment<useSetFacebookAdTracksFragmentType>({
-                id: storeId,
-                fragment: useSetFacebookAdTracksFragment,
-                data: {
-                  __typename: 'Store',
-                  id: storeId,
-                  adTracks: {
-                    __typename: 'AdTracks',
-                    facebookPixelId: input.pixelId || null,
-                    facebookConversionsAccessToken:
-                      input.conversionsAccessToken || null,
-                  },
-                },
-              });
-              message.success(t('save-success'));
-              resolve(true);
+          cache.writeFragment<useSetFacebookAdTracksFragmentType>({
+            id: storeId,
+            fragment: useSetFacebookAdTracksFragment,
+            data: {
+              __typename: 'Store',
+              id: storeId,
+              adTracks: {
+                __typename: 'AdTracks',
+                facebookPixelId: input.pixelId || null,
+                facebookConversionsAccessToken:
+                  input.conversionsAccessToken || null,
+              },
             },
           });
-        });
-      }),
-    [storeId, validateFields, mutation, t],
+          message.success(t('save-success'));
+          setEditMode(false);
+        },
+      });
+    },
+    [storeId, setEditMode, mutation, t],
   );
 };

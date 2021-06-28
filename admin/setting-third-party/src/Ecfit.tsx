@@ -1,6 +1,3 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
-
 // import
 import React from 'react';
 import { Form, Select, Input } from 'antd';
@@ -14,7 +11,7 @@ import styles from './styles/ecfit.less';
 import { ecfitFragment as ecfitFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
-interface PropsType extends FormComponentProps {
+interface PropsType {
   storeEcfitSettings: ecfitFragmentType;
 }
 
@@ -24,7 +21,6 @@ const { Option } = Select;
 
 export default React.memo(
   ({
-    form: { getFieldDecorator },
     storeEcfitSettings: { serviceType, companyToken, apiKey },
   }: PropsType) => {
     const { t } = useTranslation('setting-third-party');
@@ -33,21 +29,20 @@ export default React.memo(
       <>
         <div className={styles.title}>{t('ecfit.serviceType.title')}</div>
 
-        <FormItem>
-          {getFieldDecorator('ecfit.serviceType', {
-            initialValue: serviceType,
-            rules: [{ required: true, message: t('required') }],
-            validateTrigger: 'onBlur',
-            preserve: true,
-          })(
-            <Select>
-              {['INTERTIDAL', 'THIRD_PARTY_STORAGE'].map(key => (
-                <Option key={key} value={key}>
-                  {t(`ecfit.serviceType.${key}`)}
-                </Option>
-              ))}
-            </Select>,
-          )}
+        <FormItem
+          name={['ecfit', 'serviceType']}
+          initialValue={serviceType}
+          rules={[{ required: true, message: t('required') }]}
+          validateTrigger="onBlur"
+          preserve
+        >
+          <Select>
+            {['INTERTIDAL', 'THIRD_PARTY_STORAGE'].map(key => (
+              <Option key={key} value={key}>
+                {t(`ecfit.serviceType.${key}`)}
+              </Option>
+            ))}
+          </Select>
         </FormItem>
 
         <div className={styles.horizontal}>
@@ -62,16 +57,19 @@ export default React.memo(
                 />
               </div>
 
-              <FormItem>
-                {getFieldDecorator(`ecfit.${key}`, {
-                  initialValue: {
+              <FormItem
+                name={['ecfit', key]}
+                initialValue={
+                  {
                     companyToken,
                     apiKey,
-                  }[key],
-                  rules: [{ required: true, message: t('required') }],
-                  validateTrigger: 'onBlur',
-                  preserve: true,
-                })(<Input placeholder={t(`ecfit.${key}.placeholder`)} />)}
+                  }[key]
+                }
+                rules={[{ required: true, message: t('required') }]}
+                validateTrigger="onBlur"
+                preserve
+              >
+                <Input placeholder={t(`ecfit.${key}.placeholder`)} />
               </FormItem>
             </div>
           ))}

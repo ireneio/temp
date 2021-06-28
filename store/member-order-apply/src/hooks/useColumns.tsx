@@ -1,13 +1,12 @@
 // typescript import
 import { ColumnProps } from 'antd/lib/table';
-import { FormComponentProps } from 'antd/lib/form/Form';
 
 import { languageType } from '@meepshop/locales';
 
 // import
 import React, { useMemo, useContext } from 'react';
 import { filter } from 'graphql-anywhere';
-import { Select } from 'antd';
+import { Form, Select } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
@@ -23,8 +22,9 @@ import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 
 // definition
 const { Option } = Select;
+const { Item: FormItem } = Form;
+
 export default (
-  { getFieldDecorator, getFieldValue }: FormComponentProps['form'],
   checking: boolean,
 ): ColumnProps<useColumnsProductsObjectTypeMemberOrderApplyFragmentType>[] => {
   const {
@@ -96,22 +96,37 @@ export default (
             id,
           }: useColumnsProductsObjectTypeMemberOrderApplyFragmentType,
         ) => {
-          if (checking) return getFieldValue(`quantitySelected.${id}`);
+          const name = [
+            'quantitySelected',
+            id || 'null id' /** SHOULD_NOT_BE_NULL */,
+          ];
 
-          return getFieldDecorator(`quantitySelected.${id}`, {
-            initialValue: value || 0,
-            preserve: true,
-          })(
-            <Select>
-              {[].constructor
-                .apply({}, new Array(availableQuantity))
-                .map((_: unknown, selectedIndex: number) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <Option key={selectedIndex} value={selectedIndex + 1}>
-                    {selectedIndex + 1}
-                  </Option>
-                ))}
-            </Select>,
+          return (
+            <>
+              <FormItem
+                initialValue={value || 0}
+                name={name}
+                hidden={checking}
+                noStyle
+              >
+                <Select>
+                  {[].constructor
+                    .apply({}, new Array(availableQuantity))
+                    .map((_: unknown, selectedIndex: number) => (
+                      // eslint-disable-next-line react/no-array-index-key
+                      <Option key={selectedIndex} value={selectedIndex + 1}>
+                        {selectedIndex + 1}
+                      </Option>
+                    ))}
+                </Select>
+              </FormItem>
+
+              {!checking ? null : (
+                <FormItem shouldUpdate noStyle>
+                  {({ getFieldValue }) => getFieldValue(name)}
+                </FormItem>
+              )}
+            </>
           );
         },
       },
@@ -131,7 +146,24 @@ export default (
         render: (
           value: useColumnsProductsObjectTypeMemberOrderApplyFragmentType['retailPrice'],
           { id }: useColumnsProductsObjectTypeMemberOrderApplyFragmentType,
-        ) => c((value || 0) * getFieldValue(`quantitySelected.${id}`)),
+        ) => (
+          <FormItem
+            dependencies={[
+              ['quantitySelected', id || 'null id' /** SHOULD_NOT_BE_NULL */],
+            ]}
+            noStyle
+          >
+            {({ getFieldValue }) =>
+              c(
+                (value || 0) *
+                  getFieldValue([
+                    'quantitySelected',
+                    id || 'null id' /** SHOULD_NOT_BE_NULL */,
+                  ]),
+              )
+            }
+          </FormItem>
+        ),
       },
       {
         title: t('reason'),
@@ -139,12 +171,15 @@ export default (
         width: '10%',
         render: (
           id: useColumnsProductsObjectTypeMemberOrderApplyFragmentType['id'],
-        ) =>
-          getFieldDecorator(`reason.${id}`)(
-            <Reason key={id} checking={checking} />,
-          ),
+        ) => (
+          <Reason
+            key={id}
+            id={id || 'null id' /** SHOULD_NOT_BE_NULL */}
+            checking={checking}
+          />
+        ),
       },
     ],
-    [c, checking, getFieldDecorator, getFieldValue, language, t],
+    [c, checking, language, t],
   );
 };

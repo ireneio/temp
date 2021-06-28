@@ -40,6 +40,9 @@ module.exports = {
         antd: {
           transform: key => `antd/lib/${kebabCase(key)}`,
         },
+        '^(@ant-design/icons)$': {
+          transform: '${1}/${member}',
+        },
         '^(fbjs|validator)$': {
           transform: '${1}/lib/${member}',
         },

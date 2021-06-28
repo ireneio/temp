@@ -1,27 +1,21 @@
 .root {
   display: flex;
+  flex-direction: column;
+  margin: 0px auto;
+  width: 100%;
+  max-width: 840px;
+  padding: 56px 30px;
 
-  & > div {
-    margin: 0px auto;
-    width: 100%;
-    max-width: 840px;
-    padding: 56px 30px;
+  h1 {
+    margin: 0px 0px 30px;
+    font-size: 16px;
+    line-height: 15px;
+  }
 
-    h1 {
-      margin: 0px 0px 30px;
-      font-size: 16px;
-      line-height: 15px;
-    }
-
-    & > div:last-child {
-      display: flex;
-
-      :global(.ant-btn) {
-        margin: 11px auto 0px;
-        width: 100px;
-        height: 45px;
-        background: transparent;
-      }
-    }
+  :global(.ant-btn) {
+    margin: 11px auto 0px;
+    width: 100px;
+    height: 45px;
+    background: transparent;
   }
 }

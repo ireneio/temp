@@ -1,6 +1,7 @@
 // import
 import React, { useState, useContext, useRef } from 'react';
-import { Affix, Icon } from 'antd';
+import { LeftOutlined } from '@ant-design/icons';
+import { Affix } from 'antd';
 
 import Link from '@meepshop/link';
 import { CollapsedContext } from '@admin/wrapper';
@@ -56,7 +57,7 @@ export default React.memo(
               {!backTo ? null : (
                 <Link href={backTo}>
                   <a href={backTo}>
-                    <Icon className={styles.leftIcon} type="left" />
+                    <LeftOutlined className={styles.leftIcon} />
 
                     {prevTitle}
                   </a>

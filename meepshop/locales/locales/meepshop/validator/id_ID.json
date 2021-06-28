@@ -3,5 +3,8 @@
     "invalid-format": "Silakan isi alamat email.",
     "use-lowercase-letters": "@ Harap gunakan huruf kecil",
     "already-exists": "Alamat email ini sudah terdaftar"
+  },
+  "page-path": {
+    "same-path": "Nama Situs Web Gandakan"
   }
 }

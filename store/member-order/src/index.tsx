@@ -2,7 +2,8 @@
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
-import { Spin, Icon, Table } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin, Table } from 'antd';
 import moment from 'moment';
 import transformColor from 'color';
 
@@ -53,7 +54,7 @@ export default React.memo(
       },
     );
 
-    if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
+    if (!data) return <Spin indicator={<LoadingOutlined spin />} />;
 
     const order = data.viewer?.order;
     if (!order) {
@@ -67,7 +68,7 @@ export default React.memo(
     const { orderNo, createdAt, products, environment, id, ...other } = order;
 
     return (
-      <div className={styles.root} style={{ color: colors[3] }}>
+      <div className={styles.root}>
         <div className={styles.wrapper}>
           <h1>
             <span>{`${t('order-number')}${orderNo || ''}`}</span>
@@ -118,11 +119,6 @@ export default React.memo(
                 .${styles.root} h1 > span:last-child {
                   color: ${transformColor(colors[3]).alpha(0.5)};
                 }
-              }
-              .${
-                styles.table
-              } .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
-                background: ${transformColor(colors[4]).alpha(0.1)};
               }
             `,
           }}

@@ -20,7 +20,6 @@ const { Item: FormItem } = Form;
 @withHook(() => ({
   validateEmail: useValidateEmail(),
 }))
-@Form.create()
 @enhancer
 @radium
 export default class ForgetPassword extends React.PureComponent {
@@ -30,60 +29,47 @@ export default class ForgetPassword extends React.PureComponent {
 
     /** props */
     t: PropTypes.func.isRequired,
-    form: PropTypes.shape({
-      getFieldDecorator: PropTypes.func.isRequired,
-      validateFields: PropTypes.func.isRequired,
-    }).isRequired,
   };
 
-  submit = e => {
-    e.preventDefault();
-    const {
-      t,
-      cname,
-      form: { validateFields },
-    } = this.props;
+  finish = ({ email }) => {
+    const { t, cname } = this.props;
 
-    validateFields((err, { email }) => {
-      if (err) return;
-
-      initApollo({ name: 'store' }).mutate({
-        mutation: gql`
-          mutation sendResetPasswordEmailFromCart(
-            $input: SendResetPasswordEmailInput!
-          ) {
-            sendResetPasswordEmail(input: $input) {
-              status
-            }
+    initApollo({ name: 'store' }).mutate({
+      mutation: gql`
+        mutation sendResetPasswordEmailFromCart(
+          $input: SendResetPasswordEmailInput!
+        ) {
+          sendResetPasswordEmail(input: $input) {
+            status
           }
-        `,
-        variables: {
-          input: { email, cname, type: 'SHOPPER' },
-        },
-        update: (cache, { data: { sendResetPasswordEmail } }) => {
-          switch (sendResetPasswordEmail.status) {
-            case 'OK':
-              notification.success({
-                message: t('ducks:forget-password-success'),
-              });
-              break;
+        }
+      `,
+      variables: {
+        input: { email, cname, type: 'SHOPPER' },
+      },
+      update: (cache, { data: { sendResetPasswordEmail } }) => {
+        switch (sendResetPasswordEmail.status) {
+          case 'OK':
+            notification.success({
+              message: t('ducks:forget-password-success'),
+            });
+            break;
 
-            case 'FAIL_CANNOT_FIND_USER':
-              notification.error({
-                message: t('ducks:forget-password-failure-message'),
-                description: t('ducks:cannot-find-user'),
-              });
-              break;
+          case 'FAIL_CANNOT_FIND_USER':
+            notification.error({
+              message: t('ducks:forget-password-failure-message'),
+              description: t('ducks:cannot-find-user'),
+            });
+            break;
 
-            default:
-              notification.error({
-                message: t('ducks:forget-password-failure-message'),
-                description: sendResetPasswordEmail.status,
-              });
-              break;
-          }
-        },
-      });
+          default:
+            notification.error({
+              message: t('ducks:forget-password-failure-message'),
+              description: sendResetPasswordEmail.status,
+            });
+            break;
+        }
+      },
     });
   };
 
@@ -94,7 +80,6 @@ export default class ForgetPassword extends React.PureComponent {
 
       /** props */
       t,
-      form: { getFieldDecorator },
       validateEmail,
     } = this.props;
 
@@ -102,21 +87,22 @@ export default class ForgetPassword extends React.PureComponent {
       <div className={styles.root}>
         <div>{t('forget-password')}</div>
 
-        <Form onSubmit={this.submit}>
-          <FormItem>
-            {getFieldDecorator('email', {
-              rules: [
-                {
-                  required: true,
-                  message: t('email-is-required'),
-                },
-                {
-                  validator: validateEmail.validator,
-                },
-              ],
-              validateTrigger: 'onBlur',
-              normalize: validateEmail.normalize,
-            })(<Input placeholder={t('email-placeholder')} size="large" />)}
+        <Form onFinish={this.finish}>
+          <FormItem
+            name={['email']}
+            rules={[
+              {
+                required: true,
+                message: t('email-is-required'),
+              },
+              {
+                validator: validateEmail.validator,
+              },
+            ]}
+            normalize={validateEmail.normalize}
+            validateTrigger="onBlur"
+          >
+            <Input placeholder={t('email-placeholder')} size="large" />
           </FormItem>
 
           <div className={styles.buttonRoot}>

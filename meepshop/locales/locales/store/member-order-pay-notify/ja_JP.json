@@ -4,7 +4,6 @@
   "edit-again": "再編集",
   "send": "送信",
   "pay-message-is-not-updated": "送金通知の内容は同じです",
-  "please-edit-paid-message": "送金通知の内容は変更されていません。再送信する前に内容を編集してください。",
   "confirm": "確認する",
   "send-success": "送信に成功しました"
 }

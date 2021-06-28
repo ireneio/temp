@@ -2,7 +2,8 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { Form, Input, Button, Modal, notification, Icon } from 'antd';
+import { LockFilled } from '@ant-design/icons';
+import { Form, Input, Button, Modal, notification } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
@@ -22,11 +23,6 @@ const { Item: FormItem } = Form;
 const { Password } = Input;
 
 @enhancer
-@Form.create({
-  mapPropsToFields: ({ email }) => ({
-    email: Form.createFormField({ value: email }),
-  }),
-})
 @withTranslation('landing-page')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withHook(() => ({
@@ -42,7 +38,6 @@ export default class Login extends React.PureComponent {
     /** props */
     t: PropTypes.func.isRequired,
     adTrack: PropTypes.shape({}).isRequired,
-    form: PropTypes.shape({}).isRequired,
     hideLogin: PropTypes.func.isRequired,
   };
 
@@ -50,10 +45,7 @@ export default class Login extends React.PureComponent {
     isForgetPassword: false,
   };
 
-  submit = e => {
-    e.preventDefault();
-    e.stopPropagation();
-
+  finish = ({ email, password }) => {
     const {
       /** context */
       cname,
@@ -61,65 +53,60 @@ export default class Login extends React.PureComponent {
 
       /** props */
       t,
-      form: { validateFields },
       hideLogin,
       adTrack,
     } = this.props;
     const { isForgetPassword } = this.state;
 
-    validateFields((err, { email, password }) => {
-      if (err) return;
-
-      if (isForgetPassword)
-        initApollo({ name: 'store' }).mutate({
-          mutation: gql`
-            mutation sendResetPasswordEmailFromLandingPage(
-              $input: SendResetPasswordEmailInput!
-            ) {
-              sendResetPasswordEmail(input: $input) {
-                status
-              }
+    if (isForgetPassword)
+      initApollo({ name: 'store' }).mutate({
+        mutation: gql`
+          mutation sendResetPasswordEmailFromLandingPage(
+            $input: SendResetPasswordEmailInput!
+          ) {
+            sendResetPasswordEmail(input: $input) {
+              status
             }
-          `,
-          variables: {
-            input: { email, cname, type: 'SHOPPER' },
-          },
-          update: (cache, { data: { sendResetPasswordEmail } }) => {
-            switch (sendResetPasswordEmail.status) {
-              case 'OK':
-                notification.success({
-                  message: t('ducks:forget-password-success'),
-                });
-                hideLogin();
-                break;
+          }
+        `,
+        variables: {
+          input: { email, cname, type: 'SHOPPER' },
+        },
+        update: (cache, { data: { sendResetPasswordEmail } }) => {
+          switch (sendResetPasswordEmail.status) {
+            case 'OK':
+              notification.success({
+                message: t('ducks:forget-password-success'),
+              });
+              hideLogin();
+              break;
 
-              case 'FAIL_CANNOT_FIND_USER':
-                notification.error({
-                  message: t('ducks:forget-password-failure-message'),
-                  description: t('ducks:cannot-find-user'),
-                });
-                break;
+            case 'FAIL_CANNOT_FIND_USER':
+              notification.error({
+                message: t('ducks:forget-password-failure-message'),
+                description: t('ducks:cannot-find-user'),
+              });
+              break;
 
-              default:
-                notification.error({
-                  message: t('ducks:forget-password-failure-message'),
-                  description: sendResetPasswordEmail.status,
-                });
-                break;
-            }
-          },
-        });
-      else
-        login({
-          email,
-          password,
-          from: 'landingPage',
-          callback: () => {
-            hideLogin();
-            adTrack.completeRegistration();
-          },
-        });
-    });
+            default:
+              notification.error({
+                message: t('ducks:forget-password-failure-message'),
+                description: sendResetPasswordEmail.status,
+              });
+              break;
+          }
+        },
+      });
+    else
+      login({
+        email,
+        password,
+        from: 'landingPage',
+        callback: () => {
+          hideLogin();
+          adTrack.completeRegistration();
+        },
+      });
   };
 
   render() {
@@ -129,12 +116,11 @@ export default class Login extends React.PureComponent {
 
       /** props */
       t,
-      form,
       hideLogin,
       validateEmail,
+      email,
     } = this.props;
     const { isForgetPassword } = this.state;
-    const { resetFields, getFieldDecorator } = form;
 
     return (
       <Modal
@@ -144,33 +130,38 @@ export default class Login extends React.PureComponent {
         maskClosable={false}
         visible
       >
-        <Form style={styles.root} onSubmit={this.submit}>
-          <FormItem style={formItemStyle}>
-            {getFieldDecorator('email', {
-              rules: [
+        <Form style={styles.root} onFinish={this.finish}>
+          <FormItem
+            style={formItemStyle}
+            name={['email']}
+            initialValue={email}
+            rules={[
+              {
+                required: true,
+                message: t('is-required'),
+              },
+              {
+                validator: validateEmail.validator,
+              },
+            ]}
+            normalize={validateEmail.normalize}
+            validateTrigger="onBlur"
+          >
+            <Input placeholder={t('email')} />
+          </FormItem>
+
+          {isForgetPassword ? null : (
+            <FormItem
+              style={formItemStyle}
+              name={['password']}
+              rules={[
                 {
                   required: true,
                   message: t('is-required'),
                 },
-                {
-                  validator: validateEmail.validator,
-                },
-              ],
-              validateTrigger: 'onBlur',
-              normalize: validateEmail.normalize,
-            })(<Input placeholder={t('email')} />)}
-          </FormItem>
-
-          {isForgetPassword ? null : (
-            <FormItem style={formItemStyle}>
-              {getFieldDecorator('password', {
-                rules: [
-                  {
-                    required: true,
-                    message: t('is-required'),
-                  },
-                ],
-              })(<Password placeholder={t('password')} />)}
+              ]}
+            >
+              <Password placeholder={t('password')} />
             </FormItem>
           )}
 
@@ -184,17 +175,21 @@ export default class Login extends React.PureComponent {
                 {t('go-back')}
               </Button>
             ) : (
-              <div
-                style={styles.forgetPassword}
-                onClick={() => {
-                  resetFields('password');
-                  this.setState({ isForgetPassword: true });
-                }}
-              >
-                <Icon type="lock" theme="filled" />
+              <FormItem shouldUpdate noStyle>
+                {({ resetFields }) => (
+                  <div
+                    style={styles.forgetPassword}
+                    onClick={() => {
+                      resetFields(['password']);
+                      this.setState({ isForgetPassword: true });
+                    }}
+                  >
+                    <LockFilled />
 
-                {t('forget-password')}
-              </div>
+                    {t('forget-password')}
+                  </div>
+                )}
+              </FormItem>
             )}
 
             <Button

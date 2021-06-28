@@ -116,9 +116,6 @@
   },
   "rename-page-with-seo": {
     "success": "actualización completada",
-    "error": {
-      "FAIL_PAGE_PATH_DUPLICATE": "Nombre de sitio web duplicado",
-      "default": "Actualización fallida"
-    }
+    "error": "Actualización fallida"
   }
 }

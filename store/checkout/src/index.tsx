@@ -1,7 +1,8 @@
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Spin, Icon } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 import useCreateOrder from './hooks/useCreateOrder';
 import useUpdateUser from './hooks/useUpdateUser';
@@ -38,7 +39,7 @@ export default React.memo(({ children }: PropsType) => {
   const createOrder = useCreateOrder();
   const updateUser = useUpdateUser(viewer);
 
-  if (!viewer) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!viewer) return <Spin indicator={<LoadingOutlined spin />} />;
 
   return children({
     name: viewer.name,

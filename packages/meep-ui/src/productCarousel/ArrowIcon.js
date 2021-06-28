@@ -1,11 +1,10 @@
 import React from 'react';
-import { Icon } from 'antd';
 
 import * as styles from './styles';
 
 /* eslint-disable react/prop-types */
-export default ({ className, onClick, type }) => (
+export default ({ className, onClick, Icon }) => (
   <div className={className} onClick={onClick}>
-    <Icon type={type} style={styles.arrow} />
+    <Icon style={styles.arrow} />
   </div>
 );

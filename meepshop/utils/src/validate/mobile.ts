@@ -1,5 +1,5 @@
 // typescript import
-import { ValidationRule } from 'antd/lib/form';
+import { FormListProps } from 'antd/lib/form';
 
 // import
 import { isMobilePhone, isInt, isLength } from 'validator';
@@ -16,7 +16,11 @@ export default {
       notNumber: string;
     },
     chooseShipmentTemplate?: string | null,
-  ): ValidationRule['validator'] => (_, value, callback) => {
+  ): NonNullable<FormListProps['rules']>[number]['validator'] => (
+    _,
+    value,
+    callback,
+  ) => {
     const isPhone = isMobilePhone(value || '', 'any');
     const isNumber = isInt(value || '');
     const isTenNumber =

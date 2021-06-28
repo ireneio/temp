@@ -4,7 +4,8 @@ import { SelectedPlanType } from './hooks/usePayment';
 // import
 import React, { useState } from 'react';
 import moment from 'moment';
-import { Icon, Radio, Divider, Button } from 'antd';
+import { CheckOutlined, LeftOutlined } from '@ant-design/icons';
+import { Radio, Divider, Button } from 'antd';
 
 import TapPay from '@admin/tap-pay';
 import { useTranslation } from '@meepshop/locales';
@@ -42,7 +43,7 @@ export default React.memo(({ plan, setPlan }: PropsType) => {
   return (
     <>
       <div className={styles.backTo} onClick={() => setPlan(null)}>
-        <Icon type="left" />
+        <LeftOutlined />
         {t('payment.back-to')}
       </div>
 
@@ -122,7 +123,7 @@ export default React.memo(({ plan, setPlan }: PropsType) => {
 
           {!isDiscounted ? null : (
             <div className={styles.discount}>
-              <Icon type="check" />
+              <CheckOutlined />
               {t('payment.discount')}
             </div>
           )}

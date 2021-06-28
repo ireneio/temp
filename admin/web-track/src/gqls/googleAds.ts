@@ -2,9 +2,12 @@
 import gql from 'graphql-tag';
 
 // definition
-export const googleAdsStoreUpdateCacheFragment = gql`
-  fragment googleAdsStoreUpdateCacheFragment on Store {
+export const googleAdsFragment = gql`
+  fragment googleAdsFragment on Store {
     id
+    setting {
+      googleFeedsLink
+    }
     adTracks {
       googleAdwordsConfig
       googleAdwordsSignUp
@@ -12,16 +15,4 @@ export const googleAdsStoreUpdateCacheFragment = gql`
       googleAdwordsPurchase
     }
   }
-`;
-
-export const googleAdsStoreFragment = gql`
-  fragment googleAdsStoreFragment on Store {
-    id
-    setting {
-      googleFeedsLink
-    }
-    ...googleAdsStoreUpdateCacheFragment
-  }
-
-  ${googleAdsStoreUpdateCacheFragment}
 `;

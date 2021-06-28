@@ -39,7 +39,7 @@ export default React.memo(
       <ProductAmountSelector
         {...props}
         variant={filter(productAmountSelectorFragment, variant)}
-        size={unfoldedVariants ? 'default' : 'large'}
+        size={unfoldedVariants ? 'middle' : 'large'}
       />
     );
   },

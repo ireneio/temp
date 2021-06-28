@@ -1,7 +1,15 @@
 .root {
   min-width: 80px;
 
-  :global(.ant-select-selection-selected-value) {
+  :global(.ant-select-arrow) {
+    transition: transform 0.2s;
+  }
+
+  &:global(.ant-select-focused .ant-select-arrow) {
+    transform: rotate(180deg);
+  }
+
+  :global(.ant-select-selection-item) {
     width: 100%;
     text-align: center;
   }

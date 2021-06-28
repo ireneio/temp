@@ -1,6 +1,6 @@
 // import
 import React, { useContext } from 'react';
-import { Icon } from 'antd';
+import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 
 import { Colors as ColorsContext } from '@meepshop/context';
 import { useTranslation } from '@meepshop/locales';
@@ -39,7 +39,7 @@ export default React.memo(
                 if (quantity > min) onChangeQuantity(quantity - 1);
               }}
             >
-              <Icon type="minus" />
+              <MinusOutlined />
             </span>
 
             <span>{quantity}</span>
@@ -49,7 +49,7 @@ export default React.memo(
                 if (quantity < max) onChangeQuantity(quantity + 1);
               }}
             >
-              <Icon type="plus" />
+              <PlusOutlined />
             </span>
           </div>
 
@@ -69,11 +69,11 @@ export default React.memo(
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              .${styles.addToCart} {
-                background-color: ${colors[4]};
-                color: ${colors[2]};
-              }
-            `,
+            .${styles.addToCart} {
+              background-color: ${colors[4]};
+              color: ${colors[2]};
+            }
+          `,
           }}
         />
       </>

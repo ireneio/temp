@@ -1,6 +1,7 @@
 // import
 import React from 'react';
-import { Tooltip, Icon } from 'antd';
+import { HomeOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { DefaultLayoutIcon } from '@meepshop/icons';
@@ -25,7 +26,7 @@ export default React.memo(
     if (isDefaultHomePage)
       return (
         <Tooltip title={t('home-page.icon-hint')}>
-          <Icon className={styles.root} type="home" />
+          <HomeOutlined className={styles.root} />
         </Tooltip>
       );
 

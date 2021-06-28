@@ -1,9 +1,7 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
-
 // import
-import React, { useState } from 'react';
-import { Form, Button, Input, Divider } from 'antd';
+import React from 'react';
+import { Form, Input, Divider } from 'antd';
+import get from 'lodash.get';
 
 import { useTranslation } from '@meepshop/locales';
 import Block from '@admin/block';
@@ -13,52 +11,48 @@ import ChangePassword from './ChangePassword';
 import styles from './styles/account.less';
 
 // graphql typescript
-import { getMerchantAccount_viewer as getMerchantAccountViewer } from '@meepshop/types/gqls/admin';
+import { accountFragment as accountFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
-interface PropsType extends FormComponentProps {
-  viewer: getMerchantAccountViewer | null;
+interface PropsType {
+  viewer: accountFragmentType | null;
 }
 
 // definition
 const { Item: FormItem } = Form;
 
-export default React.memo(
-  ({ form: { getFieldDecorator }, viewer }: PropsType) => {
-    const { t } = useTranslation('account-setting');
-    const [openModal, setOpenModal] = useState(false);
+export default React.memo(({ viewer }: PropsType) => {
+  const { t } = useTranslation('account-setting');
 
-    return (
-      <Block title={t('account.title')} description={t('account.description')}>
-        <div className={styles.root}>
-          <div>{t('account.account')}</div>
-          <div>{viewer?.email}</div>
+  return (
+    <Block title={t('account.title')} description={t('account.description')}>
+      <div className={styles.root}>
+        <div>{t('account.account')}</div>
 
-          <Button onClick={() => setOpenModal(true)}>
-            {t('account.change-password')}
-          </Button>
+        <div>{viewer?.email}</div>
 
-          <ChangePassword openModal={openModal} setOpenModal={setOpenModal} />
+        <ChangePassword />
 
-          <Divider />
+        <Divider />
 
-          {['name', 'mobile', 'tel'].map((key: 'name' | 'mobile' | 'tel') => (
+        {[
+          ['name'],
+          ['additionalInfo', 'mobile'],
+          ['additionalInfo', 'tel'],
+        ].map((name: string[]) => {
+          const key = name.join('.');
+
+          return (
             <React.Fragment key={key}>
               <div className={styles.title}>{t(`account.${key}.label`)}</div>
 
-              <FormItem>
-                {getFieldDecorator(key, {
-                  initialValue: {
-                    name: viewer?.name,
-                    mobile: viewer?.additionalInfo?.mobile,
-                    tel: viewer?.additionalInfo?.tel,
-                  }[key],
-                })(<Input placeholder={t(`account.${key}.placeholder`)} />)}
+              <FormItem initialValue={get(viewer, name)} name={name}>
+                <Input placeholder={t(`account.${key}.placeholder`)} />
               </FormItem>
             </React.Fragment>
-          ))}
-        </div>
-      </Block>
-    );
-  },
-);
+          );
+        })}
+      </div>
+    </Block>
+  );
+});

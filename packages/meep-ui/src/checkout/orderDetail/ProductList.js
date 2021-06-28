@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
-import { Icon } from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
 import transformColor from 'color';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -92,7 +92,7 @@ export default class ProductList extends React.PureComponent {
         {loadAnimation(Object.values(styles.rootAnimation))}
 
         <div style={styles.closeIconRoot(colors)}>
-          <Icon type="close" style={styles.closeIcon} onClick={closeDetail} />
+          <CloseOutlined style={styles.closeIcon} onClick={closeDetail} />
         </div>
 
         <OrderProductList

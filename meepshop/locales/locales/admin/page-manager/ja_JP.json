@@ -116,9 +116,6 @@
   },
   "rename-page-with-seo": {
     "success": "更新が完了しました",
-    "error": {
-      "FAIL_PAGE_PATH_DUPLICATE": "重複したウェブサイト名",
-      "default": "更新に失敗しました"
-    }
+    "error": "更新に失敗しました"
   }
 }

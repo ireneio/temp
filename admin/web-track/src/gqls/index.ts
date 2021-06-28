@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 // graphql import
 import { facebookStoreFragment } from './facebook';
 import { googleAnalyticsFragment } from './googleAnalytics';
-import { googleAdsStoreFragment } from './googleAds';
+import { googleAdsFragment } from './googleAds';
 import { googleWebmasterFragment } from './googleWebmaster';
 import { googleMerchantCenterFragment } from './googleMerchantCenter';
 import { googleTagManagerFragment } from './googleTagManager';
@@ -18,7 +18,7 @@ export const getWebTrack = gql`
       store {
         ...facebookStoreFragment
         ...googleAnalyticsFragment
-        ...googleAdsStoreFragment
+        ...googleAdsFragment
         ...googleWebmasterFragment
         ...googleMerchantCenterFragment
         ...googleTagManagerFragment
@@ -29,7 +29,7 @@ export const getWebTrack = gql`
 
   ${facebookStoreFragment}
   ${googleAnalyticsFragment}
-  ${googleAdsStoreFragment}
+  ${googleAdsFragment}
   ${googleWebmasterFragment}
   ${googleMerchantCenterFragment}
   ${googleTagManagerFragment}

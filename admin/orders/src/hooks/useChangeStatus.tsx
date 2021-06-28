@@ -4,7 +4,8 @@ import { DataProxy } from 'apollo-cache';
 // import
 import React, { useCallback, useRef } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { Select, Modal, Icon, notification } from 'antd';
+import { InfoCircleOutlined } from '@ant-design/icons';
+import { Select, Modal, notification } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -152,7 +153,7 @@ export default ({
           cancelText: t(`change-status.cancel`),
           okText: t(`change-status.confirm`),
           onOk: () => updateOrders(statusType),
-          icon: <Icon type="info-circle" />,
+          icon: <InfoCircleOutlined />,
           centered: true,
         });
       else if (newStatus.current === 'CLOSED')
@@ -162,7 +163,7 @@ export default ({
           cancelText: t(`change-status.cancel`),
           okText: t(`change-status.confirm`),
           onOk: () => updateOrders(statusType),
-          icon: <Icon type="info-circle" />,
+          icon: <InfoCircleOutlined />,
           centered: true,
         });
       else updateOrders(statusType);

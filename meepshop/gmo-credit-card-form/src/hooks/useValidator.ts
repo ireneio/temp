@@ -1,5 +1,5 @@
 // typescript import
-import { ValidationRule } from 'antd/lib/form';
+import { FormListProps } from 'antd/lib/form';
 
 // import
 import { useCallback } from 'react';
@@ -10,9 +10,11 @@ import { useTranslation } from '@meepshop/locales';
 
 // definition
 export default (): {
-  validateCardNumber: ValidationRule['validator'];
-  validateExpire: ValidationRule['validator'];
-  validateSecurityCode: ValidationRule['validator'];
+  validateCardNumber: NonNullable<FormListProps['rules']>[number]['validator'];
+  validateExpire: NonNullable<FormListProps['rules']>[number]['validator'];
+  validateSecurityCode: NonNullable<
+    FormListProps['rules']
+  >[number]['validator'];
 } => {
   const { t } = useTranslation('gmo-credit-card-form');
 

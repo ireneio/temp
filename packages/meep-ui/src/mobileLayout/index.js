@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import memoizeOne from 'memoize-one';
 import { areEqual, emptyFunction } from 'fbjs';
-import { Affix, Drawer, Icon } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
+import { Affix, Drawer } from 'antd';
 import transformColor from 'color';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -91,8 +92,7 @@ export default class MobileLayout extends React.PureComponent {
           <header className={styles.header} style={normal}>
             <div className={styles.barsIcon}>
               {pages.length === 0 ? null : (
-                <Icon
-                  type="menu"
+                <MenuOutlined
                   onClick={() => this.setState({ visible: true })}
                 />
               )}
@@ -166,18 +166,14 @@ export default class MobileLayout extends React.PureComponent {
           <style
             dangerouslySetInnerHTML={{
               __html: `
-              .${styles.member} .${styles.menu} .logo {
-                border-bottom: 2px solid ${transformColor(colors[2]).alpha(
-                  0.1,
-                )};
-              }
+            .${styles.member} .${styles.menu} .logo {
+              border-bottom: 2px solid ${transformColor(colors[2]).alpha(0.1)};
+            }
 
-              .${styles.member} .${styles.menu} .menu-1:not(:last-child) {
-                border-bottom: 2px solid ${transformColor(colors[2]).alpha(
-                  0.2,
-                )};
-              }
-            `,
+            .${styles.member} .${styles.menu} .menu-1:not(:last-child) {
+              border-bottom: 2px solid ${transformColor(colors[2]).alpha(0.2)};
+            }
+          `,
             }}
           />
         </Drawer>
@@ -230,10 +226,10 @@ export default class MobileLayout extends React.PureComponent {
         <style
           dangerouslySetInnerHTML={{
             __html: `
-            .${styles.drawer} .ant-drawer-content {
-              background: ${colors[1]};
-            }
-          `,
+          .${styles.drawer} .ant-drawer-content {
+            background: ${colors[1]};
+          }
+        `,
           }}
         />
       </>

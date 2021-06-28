@@ -1,10 +1,9 @@
 // import
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
-import { Spin, Icon, Table } from 'antd';
-
-import { Colors as ColorsContext } from '@meepshop/context';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin, Table } from 'antd';
 
 import Form from './Form';
 import useColumns from './hooks/useColumns';
@@ -28,13 +27,12 @@ import { useColumnsRecipientAddressFragment } from './gqls/useColumns';
 export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
 
 export default React.memo(() => {
-  const colors = useContext(ColorsContext);
   const { data } = useQuery<getUserRecipientsType>(getUserRecipients);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const columns = useColumns(setSelectedId);
   const viewer = data?.viewer;
 
-  if (!viewer) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!viewer) return <Spin indicator={<LoadingOutlined spin />} />;
 
   const { shippableRecipientAddresses, store } = viewer;
   const recipientAddress =
@@ -42,16 +40,6 @@ export default React.memo(() => {
 
   return (
     <div className={styles.root}>
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            .${styles.root} .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
-              background: ${colors[4]};
-            }
-          `,
-        }}
-      />
-
       <Table<useColumnsRecipientAddressFragmentType>
         rowKey={({ id }) => id}
         columns={columns}

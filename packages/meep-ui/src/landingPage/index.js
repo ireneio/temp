@@ -5,7 +5,7 @@ import { Form, Button, Divider } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
-import useSubmit from '@meepshop/landing-page/lib/hooks/useSubmit';
+import useFinish from '@meepshop/landing-page/lib/hooks/useFinish';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
 import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
@@ -29,18 +29,20 @@ import Login from './Login';
 import { ADDITION_TYPE } from './constants';
 import * as styles from './styles';
 
+const { Item: FormItem } = Form;
+
 @enhancer
 @loadData(['productData'])
 @buildVariantsTree('productData')
-@Form.create()
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
-@withHook(({ user, productData, redirectPage, form }) => {
+@withHook(({ user, productData, redirectPage }) => {
+  const [form] = Form.useForm();
   const [showLogin, setShowLogin] = useState(false);
   const [storeComputeOrderList, setStoreComputeOrderList] = useState(null);
   const [choosePayment, setChoosePayment] = useState(null);
 
   return {
-    ...useSubmit({
+    ...useFinish({
       landingPageModule: {
         viewer: user,
         product: productData,
@@ -61,6 +63,7 @@ import * as styles from './styles';
     setChoosePayment,
     showLogin,
     setShowLogin,
+    form,
   };
 })
 @withTranslation('landing-page')
@@ -78,12 +81,6 @@ export default class LandingPage extends React.PureComponent {
     goTo: PropTypes.func.isRequired,
     getData: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
-
-    /** ant.Form */
-    form: PropTypes.shape({
-      getFieldValue: PropTypes.func.isRequired,
-      getFieldsError: PropTypes.func.isRequired,
-    }).isRequired,
 
     /** @buildVariantsTree moduleProps.productData */
     productData: PropTypes.shape({
@@ -133,31 +130,31 @@ export default class LandingPage extends React.PureComponent {
 
       /** props */
       t,
-      form,
       productData,
       id,
       contentWidth,
       agreedMatters,
       loading,
-      onSubmit,
+      onFinish,
       setStoreComputeOrderList,
       choosePayment,
       setChoosePayment,
       showLogin,
       setShowLogin,
+      form,
       ...props
     } = this.props;
     const { chooseShipmentTemplate } = this.state;
 
-    const { getFieldValue, getFieldsError, validateFieldsAndScroll } = form;
-
     return (
       <>
-        <form
-          style={styles.root}
+        <Form
           id={id}
+          style={styles.root}
           className={`landingPage-${id}`}
-          onSubmit={onSubmit}
+          form={form}
+          onFinish={onFinish}
+          scrollToFirstError
         >
           <Style
             scopeSelector={`.landingPage-${id}`}
@@ -165,27 +162,35 @@ export default class LandingPage extends React.PureComponent {
           />
 
           <StyleRoot style={styles.content(contentWidth)}>
-            <PaymentInfo
-              {...props}
-              {...productData}
-              moduleId={id}
-              ref={this.paymentInfoRef}
-              form={form}
-              changeChoosePayment={setChoosePayment}
-              changeChooseShipmentTemplate={template =>
-                this.setState({ chooseShipmentTemplate: template })
-              }
-              updateComputeOrderList={setStoreComputeOrderList}
-            />
+            <FormItem shouldUpdate noStyle>
+              {subForm => (
+                <PaymentInfo
+                  {...props}
+                  {...productData}
+                  moduleId={id}
+                  ref={this.paymentInfoRef}
+                  form={subForm}
+                  changeChoosePayment={setChoosePayment}
+                  changeChooseShipmentTemplate={template =>
+                    this.setState({ chooseShipmentTemplate: template })
+                  }
+                  updateComputeOrderList={setStoreComputeOrderList}
+                />
+              )}
+            </FormItem>
 
-            <ReceiverInfo
-              {...props}
-              form={form}
-              choosePaymentTemplate={(choosePayment || {}).template}
-              chooseShipmentTemplate={chooseShipmentTemplate}
-              toggleLogin={this.toggleLogin}
-              setShowLogin={setShowLogin}
-            />
+            <FormItem shouldUpdate noStyle>
+              {subForm => (
+                <ReceiverInfo
+                  {...props}
+                  form={subForm}
+                  choosePaymentTemplate={(choosePayment || {}).template}
+                  chooseShipmentTemplate={chooseShipmentTemplate}
+                  toggleLogin={this.toggleLogin}
+                  setShowLogin={setShowLogin}
+                />
+              )}
+            </FormItem>
 
             {!choosePayment ||
             choosePayment.template !== 'gmo' ||
@@ -193,7 +198,6 @@ export default class LandingPage extends React.PureComponent {
               <GmoCreditCardForm
                 storePaymentId={choosePayment.paymentId}
                 isInstallment={choosePayment.accountInfo.gmo.isInstallment}
-                form={form}
               />
             )}
           </StyleRoot>
@@ -211,27 +215,33 @@ export default class LandingPage extends React.PureComponent {
               ))}
             </div>
 
-            <Button
-              style={styles.submitButton(colors)}
-              type="primary"
-              htmlType="submit"
-              disabled={(fieldsError =>
-                Object.keys(fieldsError).some(field => fieldsError[field]))(
-                getFieldsError(),
+            <FormItem shouldUpdate noStyle>
+              {({ getFieldsError }) => (
+                <Button
+                  style={styles.submitButton(colors)}
+                  type="primary"
+                  htmlType="submit"
+                  disabled={getFieldsError().some(
+                    ({ errors }) => errors.length !== 0,
+                  )}
+                  loading={loading}
+                >
+                  {t('agree-submit')}
+                </Button>
               )}
-              onClick={() => validateFieldsAndScroll()}
-              loading={loading}
-            >
-              {t('agree-submit')}
-            </Button>
+            </FormItem>
           </StyleRoot>
-        </form>
+        </Form>
 
         {isLogin !== NOTLOGIN || !showLogin ? null : (
-          <Login
-            hideLogin={() => setShowLogin(false)}
-            email={getFieldValue('userEmail')}
-          />
+          <FormItem dependencies={['userEmail']} noStyle>
+            {({ getFieldValue }) => (
+              <Login
+                hideLogin={() => setShowLogin(false)}
+                email={getFieldValue('userEmail')}
+              />
+            )}
+          </FormItem>
         )}
       </>
     );

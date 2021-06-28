@@ -35,7 +35,6 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
     t: PropTypes.func.isRequired,
     style: PropTypes.shape({}),
     chooseShipmentTemplate: SHIPMENT_TEMPLATE_TYPE,
-    form: PropTypes.shape({}).isRequired, // from LandingPage Form.create()
 
     /** moduleProps */
     invoiceIsNeeded: PropTypes.bool.isRequired,
@@ -47,25 +46,16 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
   };
 
   componentDidUpdate(preProps) {
-    const { t, chooseShipmentTemplate, form } = this.props;
+    const {
+      form: { getFieldValue, validateFields },
+      chooseShipmentTemplate,
+    } = this.props;
 
-    if (chooseShipmentTemplate !== preProps.chooseShipmentTemplate) {
-      const { getFieldValue, setFields, validateFields } = form;
-      const mobileValue = getFieldValue('mobile');
-
-      if (mobileValue)
-        validateMobile(t, chooseShipmentTemplate)(null, mobileValue, error => {
-          if (error) {
-            setFields({
-              mobile: {
-                value: mobileValue,
-                error: [new Error(error)],
-              },
-            });
-            validateFields(['mobile']);
-          }
-        });
-    }
+    if (
+      chooseShipmentTemplate !== preProps.chooseShipmentTemplate &&
+      getFieldValue(['mobile'])
+    )
+      validateFields(['mobile']);
   }
 
   render() {
@@ -77,101 +67,115 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
       t,
       style,
       chooseShipmentTemplate,
-      form,
       shippableCountries,
       invoiceIsNeeded,
     } = this.props;
-
-    const { getFieldValue, getFieldDecorator } = form;
     const invoiceOptions = getInvoiceOptions({ storeSetting, t });
 
     return (
       <>
-        <FormItem
-          style={style}
-          extra={validateTaiwanMobileNumber(t, getFieldValue('mobile') || '')}
-        >
-          {getFieldDecorator('mobile', {
-            validateTrigger: 'onBlur',
-            rules: [
-              {
-                required: true,
-                message: t('is-required'),
-              },
-              {
-                validator: validateMobile(t, chooseShipmentTemplate),
-              },
-            ],
-          })(
-            <Input
-              placeholder={t('mobile')}
-              maxLength={
-                ['allpay', 'ezship'].includes(chooseShipmentTemplate) ? 10 : 20
-              }
-            />,
+        <FormItem dependencies={['mobile']} noStyle>
+          {({ getFieldValue }) => (
+            <FormItem
+              name={['mobile']}
+              style={style}
+              extra={validateTaiwanMobileNumber(
+                t,
+                getFieldValue('mobile') || '',
+              )}
+              rules={[
+                {
+                  required: true,
+                  message: t('is-required'),
+                },
+                {
+                  validator: validateMobile(t, chooseShipmentTemplate),
+                },
+              ]}
+              validateTrigger="onBlur"
+            >
+              <Input
+                placeholder={t('mobile')}
+                maxLength={
+                  ['allpay', 'ezship'].includes(chooseShipmentTemplate)
+                    ? 10
+                    : 20
+                }
+              />
+            </FormItem>
           )}
         </FormItem>
 
         {['allpay', 'ezship'].includes(chooseShipmentTemplate) ? (
           <FormItem style={style}>
-            <ChooseShipmentStore
-              form={form}
-              shipmentId={getFieldValue('shipmentId')}
-              shipmentTemplate={chooseShipmentTemplate}
-            />
+            <FormItem dependencies={['shipmentId']} noStyle>
+              {form => (
+                <ChooseShipmentStore
+                  form={form}
+                  shipmentId={form.getFieldValue(['shipmentId'])}
+                  shipmentTemplate={chooseShipmentTemplate}
+                />
+              )}
+            </FormItem>
           </FormItem>
         ) : (
           <>
-            <FormItem style={style}>
-              {getFieldDecorator('addressAndZipCode', {
-                rules: [
-                  {
-                    validator: validateAddressCascader(t('is-required')),
-                  },
-                ],
-              })(
-                <AddressCascader
-                  placeholder={[t('area'), t('postal-code')]}
-                  shippableCountries={shippableCountries || []}
-                  allowClear={false}
-                />,
-              )}
+            <FormItem
+              style={style}
+              name={['addressAndZipCode']}
+              rules={[
+                {
+                  validator: validateAddressCascader(t('is-required')),
+                },
+              ]}
+            >
+              <AddressCascader
+                placeholder={[t('area'), t('postal-code')]}
+                shippableCountries={shippableCountries || []}
+                allowClear={false}
+              />
             </FormItem>
 
-            <FormItem style={style}>
-              {getFieldDecorator('street', {
-                validateTrigger: 'onBlur',
-                rules: [
-                  {
-                    required: true,
-                    message: t('is-required'),
-                  },
-                ],
-              })(<Input placeholder={t('address')} />)}
+            <FormItem
+              style={style}
+              name={['street']}
+              rules={[
+                {
+                  required: true,
+                  message: t('is-required'),
+                },
+              ]}
+              validateTrigger="onBlur"
+            >
+              <Input placeholder={t('address')} />
             </FormItem>
           </>
         )}
 
         {!invoiceIsNeeded || !invoiceOptions.length ? null : (
           <>
-            <FormItem style={style}>
-              {getFieldDecorator('invoice', {
-                rules: [
-                  {
-                    required: true,
-                    message: t('is-required'),
-                  },
-                ],
-              })(
-                <Cascader
-                  placeholder={t('invoice')}
-                  options={invoiceOptions}
-                  allowClear={false}
-                />,
-              )}
+            <FormItem
+              style={style}
+              name={['invoice']}
+              rules={[
+                {
+                  required: true,
+                  message: t('is-required'),
+                },
+              ]}
+            >
+              <Cascader
+                placeholder={t('invoice')}
+                options={invoiceOptions}
+                allowClear={false}
+              />
             </FormItem>
 
-            <Invoice style={style} form={form} />
+            <FormItem dependencies={['invoice']} noStyle>
+              {({ getFieldValue }) => (
+                <Invoice style={style} invoice={getFieldValue(['invoice'])} />
+              )}
+            </FormItem>
           </>
         )}
       </>

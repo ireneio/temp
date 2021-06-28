@@ -17,10 +17,12 @@
     "refund": "Please select item",
     "exchange": "Please select item and enter recipient info"
   },
-  "recipient": {
+  "replaceRecipient": {
     "title": "Recipient Info",
     "name": "Full Name",
     "mobile": "Mobile",
-    "address": "Address"
+    "address": {
+      "streetAddress": "Address"
+    }
   }
 }

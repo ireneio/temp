@@ -1,16 +1,16 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form';
-
 // import
-import React, { useState, useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Spin, Icon, Form, Input, Button, Modal } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin, Form, Input, Button } from 'antd';
 import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 
 import useSubmitOrderRemittanceAdvice from './hooks/useSubmitOrderRemittanceAdvice';
+import useValidateSameMessage from './hooks/useValidateSameMessage';
+import useEditMode from './hooks/useEditMode';
 import { DEFAULT_MESSAGE } from './constants';
 import styles from './styles/index.less';
 
@@ -22,103 +22,81 @@ import { getOrderPaidMessage } from './gqls';
 import { useSubmitOrderRemittanceAdviceFragment } from './gqls/useSubmitOrderRemittanceAdvice';
 
 // typescript definition
-interface PropsType extends FormComponentProps {
+interface PropsType {
   orderId: string;
 }
 
 // definition
+const { Item: FormItem } = Form;
+const { TextArea } = Input;
+
 // TODO: should use getInitialProps
 export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
 
-export default Form.create<PropsType>()(
-  React.memo(({ orderId, form }: PropsType) => {
-    const { t } = useTranslation('member-order-pay-notify');
-    const colors = useContext(ColorsContext);
-    const { loading, data } = useQuery<getOrderPaidMessageType>(
-      getOrderPaidMessage,
-      {
-        variables: { orderId },
-      },
-    );
-    const { viewer } = data || {};
-    const setting = viewer?.store?.setting;
-    const order = viewer?.order || null;
-    const [disabledEdit, setDisabledEdit] = useState(
-      Boolean(order?.paidMessage?.length),
-    );
-    const submitOrderRemittanceAdvice = useSubmitOrderRemittanceAdvice(
-      filter(useSubmitOrderRemittanceAdviceFragment, order),
-      setDisabledEdit,
-    );
+export default React.memo(({ orderId }: PropsType) => {
+  const { t } = useTranslation('member-order-pay-notify');
+  const colors = useContext(ColorsContext);
+  const { loading, data } = useQuery<getOrderPaidMessageType>(
+    getOrderPaidMessage,
+    {
+      variables: { orderId },
+    },
+  );
+  const order = data?.viewer?.order || null;
+  const { orderNo, paidMessage } = order || {};
+  const [editMode, setEditMode] = useEditMode(paidMessage || null);
+  const submitOrderRemittanceAdvice = useSubmitOrderRemittanceAdvice(
+    filter(useSubmitOrderRemittanceAdviceFragment, order),
+    () => setEditMode(false),
+  );
+  const initialValue = useMemo(
+    () =>
+      paidMessage?.slice(-1)[0]?.note ||
+      data?.viewer?.store?.setting?.paidMessage ||
+      DEFAULT_MESSAGE,
+    [paidMessage, data],
+  );
+  const validateSameMessage = useValidateSameMessage(initialValue);
 
-    if (loading || !setting || !order)
-      return <Spin indicator={<Icon type="loading" spin />} />;
+  if (loading || !orderNo || !initialValue)
+    return <Spin indicator={<LoadingOutlined spin />} />;
 
-    const { paidMessage: customDefaultMessage } = setting;
-    const { id, orderNo, paidMessage } = order;
-    const { getFieldDecorator, getFieldError, validateFields } = form;
+  return (
+    <Form className={styles.root} onFinish={submitOrderRemittanceAdvice}>
+      <h1>
+        {t('order-no')}
 
-    return (
-      <Form className={styles.root}>
-        <div>
-          <h1>
-            {t('order-no')}
-            {orderNo}
-          </h1>
+        {orderNo}
+      </h1>
 
-          <Form.Item>
-            {getFieldDecorator('message', {
-              initialValue:
-                paidMessage?.slice(-1)[0]?.note ||
-                customDefaultMessage ||
-                DEFAULT_MESSAGE,
-              rules: [
-                { required: true, message: t('please-enter-paid-message') },
-              ],
-            })(<Input.TextArea disabled={disabledEdit} rows={12} />)}
-          </Form.Item>
+      <FormItem
+        name={['remittanceAdvice']}
+        initialValue={initialValue}
+        rules={[
+          { required: true, message: t('please-enter-paid-message') },
+          { validator: validateSameMessage },
+        ]}
+      >
+        <TextArea disabled={!editMode} rows={12} />
+      </FormItem>
 
-          <div>
-            <Button
-              size="large"
-              style={{ color: colors[3], borderColor: colors[3] }}
-              disabled={Boolean(getFieldError('message'))}
-              onClick={() => {
-                if (disabledEdit) setDisabledEdit(false);
-                else
-                  validateFields((errors, values) => {
-                    if (!errors) {
-                      const { message } = values;
-                      const prevMessage =
-                        paidMessage?.slice(-1)[0]?.note ||
-                        customDefaultMessage ||
-                        DEFAULT_MESSAGE;
-
-                      if (message !== prevMessage && id)
-                        submitOrderRemittanceAdvice({
-                          variables: {
-                            input: {
-                              orderId: id,
-                              remittanceAdvice: message,
-                            },
-                          },
-                        });
-                      else
-                        Modal.warning({
-                          title: t('pay-message-is-not-updated'),
-                          content: <>{t('please-edit-paid-message')}</>,
-                          okText: t('confirm'),
-                          maskClosable: true,
-                        });
-                    }
-                  });
-              }}
-            >
-              {t(disabledEdit ? 'edit-again' : 'send')}
-            </Button>
-          </div>
-        </div>
-      </Form>
-    );
-  }),
-);
+      <FormItem shouldUpdate noStyle>
+        {({ getFieldsError, submit }) => (
+          <Button
+            style={{ color: colors[3], borderColor: colors[3] }}
+            disabled={getFieldsError().some(
+              ({ errors }) => errors.length !== 0,
+            )}
+            onClick={() => {
+              if (!editMode) setEditMode(true);
+              else submit();
+            }}
+            size="large"
+          >
+            {t(!editMode ? 'edit-again' : 'send')}
+          </Button>
+        )}
+      </FormItem>
+    </Form>
+  );
+});

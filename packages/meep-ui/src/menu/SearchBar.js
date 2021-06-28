@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Input } from 'antd';
+import { Input } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
@@ -61,7 +61,7 @@ export default class SearchBar extends React.PureComponent {
         onClick={() => this.setState({ showSearchBar: !showSearchBar })}
       >
         {!showSearchBar ? null : (
-          <Form className={styles.form} action="">
+          <div className={styles.form}>
             <Input
               className={styles.input}
               type="search"
@@ -72,7 +72,7 @@ export default class SearchBar extends React.PureComponent {
               }
               onPressEnter={this.search}
             />
-          </Form>
+          </div>
         )}
       </Icon>
     );

@@ -1,6 +1,9 @@
 // import
 import gql from 'graphql-tag';
 
+// graphql import
+import { useCreateRoutingRuleFragment } from './useCreateRoutingRule';
+
 // definition
 export const modalFragmet = gql`
   fragment modalFragmet on Store {
@@ -12,5 +15,8 @@ export const modalFragmet = gql`
       fromPath
       toPath
     }
+    ...useCreateRoutingRuleFragment
   }
+
+  ${useCreateRoutingRuleFragment}
 `;

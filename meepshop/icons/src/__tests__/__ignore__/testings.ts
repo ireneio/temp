@@ -6,7 +6,7 @@ export default [
   [
     path.resolve(__dirname, '../../../lib/HomePageIcon.js'),
     `import React from 'react';
-import Icon from 'antd/lib/icon';
+import Icon from '@ant-design/icons/lib/components/Icon';
 
 const Svg = React.memo(props => (
   <svg {...props} viewBox="64 64 896 896">
@@ -18,14 +18,14 @@ const Svg = React.memo(props => (
   </svg>
 ));
 
-export default React.memo(props => (
-  <Icon {...props} component={Svg} />
+export default React.forwardRef((props, ref) => (
+  <Icon {...props} ref={ref} component={Svg} />
 ));`,
   ],
   [
     path.resolve(__dirname, '../../../lib/HomeDeliveryFilledIcon.js'),
     `import React from 'react';
-import Icon from 'antd/lib/icon';
+import Icon from '@ant-design/icons/lib/components/Icon';
 
 const Svg = React.memo(props => (
   <svg {...props} viewBox="0 0 24 24">
@@ -35,8 +35,8 @@ const Svg = React.memo(props => (
   </svg>
 ));
 
-export default React.memo(props => (
-  <Icon {...props} component={Svg} />
+export default React.forwardRef((props, ref) => (
+  <Icon {...props} ref={ref} component={Svg} />
 ));`,
   ],
 ];

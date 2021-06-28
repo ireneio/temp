@@ -1,9 +1,10 @@
 // typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
+import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
 
 // import
 import React, { useEffect, useContext, useState } from 'react';
-import { Form, Divider, Button } from 'antd';
+import { Form } from '@ant-design/compatible';
+import { Divider, Button } from 'antd';
 import { filter } from 'graphql-anywhere';
 
 import {
@@ -161,7 +162,6 @@ export default Form.create<PropsType>()(
                   payment.paymentId || 'null-id' /** SHOULD_NOT_BE_NULL */
                 }
                 isInstallment={payment.accountInfo.gmo.isInstallment || false}
-                form={form}
               />
             )}
           </div>

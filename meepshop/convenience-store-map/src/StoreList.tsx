@@ -1,7 +1,7 @@
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Icon } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 
 import { useTranslation } from '@meepshop/locales';
 import { convenienceStoreMapStore } from '@meepshop/images';
@@ -66,7 +66,7 @@ export default React.memo(
     if (!stores.length) {
       return (
         <div className={styles.noData}>
-          <Icon type="search" />
+          <SearchOutlined />
           <img src={convenienceStoreMapStore} alt="Store List" />
           {t('noStore')}
         </div>

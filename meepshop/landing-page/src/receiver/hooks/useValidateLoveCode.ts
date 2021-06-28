@@ -1,5 +1,5 @@
 // typescript import
-import { ValidationRule } from 'antd/lib/form';
+import { FormListProps } from 'antd/lib/form';
 
 // import
 import { useCallback } from 'react';
@@ -17,7 +17,7 @@ import {
 } from '@meepshop/types/gqls/meepshop';
 
 // definition
-export default (): ValidationRule['validator'] => {
+export default (): NonNullable<FormListProps['rules']>[number]['validator'] => {
   const [validateLoveCode, { data, error }] = useLazyQuery<
     useValidateLoveCodeType,
     useValidateLoveCodeVariables

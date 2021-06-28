@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
-import { Form, InputNumber, Button, Modal, Icon } from 'antd';
+import { LeftOutlined } from '@ant-design/icons';
+import { Form, InputNumber, Button, Modal } from 'antd';
 import uuid from 'uuid';
 import transformColor from 'color';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/locales';
 import withContext from '@store/utils/lib/withContext';
+import withHook from '@store/utils/lib/withHook';
 import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
 import { ErrorMultiIcon } from '@meepshop/icons';
 import { getQuantityRange } from '@meepshop/product-amount-selector';
@@ -31,8 +33,11 @@ import { modifyAntdStyle, formItem as formItemStyle } from './styles';
 
 const { Item: FormItem } = Form;
 
-@Form.create({
-  mapPropsToFields: ({ user, orderInfo, errors }) => {
+@withTranslation('checkout')
+@withContext(AdTrackContext)
+@withHook(({ user, orderInfo, errors }) => ({
+  form: Form.useForm()[0],
+  fields: useMemo(() => {
     const { info, ...data } = orderInfo || {};
     const { name: userName, mobile: userMobile, address } = user || {};
     const fieldsData = {
@@ -52,50 +57,18 @@ const { Item: FormItem } = Form;
     };
 
     return Object.keys(fieldsData).reduce(
-      (fileds, key) => ({
-        ...fileds,
-        [key]: Form.createFormField({
+      (result, key) => [
+        ...result,
+        {
+          name: [key],
           value: fieldsData[key],
           errors: errors[key],
-        }),
-      }),
-      {},
-    );
-  },
-  onFieldsChange: ({ onChange }, changedFields, allFields) => {
-    onChange(
-      Object.keys(allFields).reduce(
-        (result, key) => ({
-          orderInfo: {
-            ...result.orderInfo,
-            [key]: allFields[key].value,
-          },
-          errors: {
-            ...result.errors,
-            [key]: allFields[key].errors,
-          },
-        }),
-        {
-          orderInfo: {},
-          errors: {},
         },
-      ),
+      ],
+      [],
     );
-  },
-  onValuesChange: (_, changedValues, allValues) => {
-    if (!global.window) return;
-
-    PRESERVED_FIELDS.forEach(field => {
-      if (allValues[field]) {
-        window.sessionStorage.setItem(field, allValues[field]);
-      }
-    });
-
-    resetTimer();
-  },
-})
-@withTranslation('checkout')
-@withContext(AdTrackContext)
+  }, [user, orderInfo, errors]),
+}))
 @enhancer
 @radium
 export default class OrderDetail extends React.PureComponent {
@@ -120,7 +93,6 @@ export default class OrderDetail extends React.PureComponent {
     t: PropTypes.func.isRequired,
     isSynchronizeUserInfo: PropTypes.bool,
     isSaveAsReceiverTemplate: PropTypes.bool,
-    form: PropTypes.shape({}).isRequired,
     isSubmitting: PropTypes.bool.isRequired,
   };
 
@@ -148,29 +120,26 @@ export default class OrderDetail extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
-    const { form } = nextProps;
+    const {
+      form: { getFieldsValue },
+    } = nextProps;
+    const { paymentId, shipmentId } = getFieldsValue([
+      'paymentId',
+      'shipmentId',
+    ]);
 
-    if (form) {
-      const { getFieldsValue } = form;
-      const { paymentId, shipmentId } = getFieldsValue([
-        'paymentId',
-        'shipmentId',
-      ]);
-
-      if (
-        paymentId !== (preState.choosePayment || {}).paymentId ||
-        shipmentId !== (preState.chooseShipment || {}).shipmentId
-      ) {
-        return {
-          choosePayment: preState.computeOrderData.paymentList.find(
-            ({ paymentId: id }) => id === paymentId,
-          ),
-          chooseShipment: preState.computeOrderData.shipmentList.find(
-            ({ shipmentId: id }) => id === shipmentId,
-          ),
-        };
-      }
-    }
+    if (
+      paymentId !== (preState.choosePayment || {}).paymentId ||
+      shipmentId !== (preState.chooseShipment || {}).shipmentId
+    )
+      return {
+        choosePayment: preState.computeOrderData.paymentList.find(
+          ({ paymentId: id }) => id === paymentId,
+        ),
+        chooseShipment: preState.computeOrderData.shipmentList.find(
+          ({ shipmentId: id }) => id === shipmentId,
+        ),
+      };
 
     return null;
   }
@@ -187,6 +156,41 @@ export default class OrderDetail extends React.PureComponent {
   componentWillUnmount() {
     this.isUnmounted = true;
   }
+
+  valuesChange = (changedValues, allValues) => {
+    if (!global.window) return;
+
+    PRESERVED_FIELDS.forEach(field => {
+      if (allValues[field]) {
+        window.sessionStorage.setItem(field, allValues[field]);
+      }
+    });
+
+    resetTimer();
+  };
+
+  fieldsChange = (changedFields, allFields) => {
+    const { onChange } = this.props;
+
+    onChange(
+      allFields.reduce(
+        (result, { name: [key], value, errors }) => ({
+          orderInfo: {
+            ...result.orderInfo,
+            [key]: value,
+          },
+          errors: {
+            ...result.errors,
+            [key]: errors,
+          },
+        }),
+        {
+          orderInfo: {},
+          errors: {},
+        },
+      ),
+    );
+  };
 
   checkCartIsEmpty = () => {
     if (this.isUnmounted || this.isEmptyCart) return;
@@ -221,9 +225,11 @@ export default class OrderDetail extends React.PureComponent {
   };
 
   computeOrderList = async (fieldsValue = {}) => {
-    const { getData, form } = this.props;
+    const {
+      getData,
+      form: { getFieldValue },
+    } = this.props;
     const { products } = this.state;
-    const { getFieldValue } = form;
     const [paymentId, shipmentId, coupon, points] = [
       'paymentId',
       'shipmentId',
@@ -322,12 +328,12 @@ export default class OrderDetail extends React.PureComponent {
     });
   };
 
-  submit = e => {
-    if (this.state.isChecking) return null; // eslint-disable-line
+  finish = data => {
+    const { isChecking } = this.state;
 
-    e.preventDefault();
+    if (isChecking) return;
 
-    const { form, submit } = this.props;
+    const { submit } = this.props;
     const {
       computeOrderData,
       products,
@@ -342,14 +348,15 @@ export default class OrderDetail extends React.PureComponent {
       return type === 'product' && (error || quantity < min || quantity > max);
     });
 
-    if (checkProductError)
-      return this.setState({ productHasError: true }, () => {
+    if (checkProductError) {
+      this.setState({ productHasError: true }, () => {
         const dom = document.querySelector(`.${styles.cartButton}`);
 
         if (dom) dom.scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
+      return;
+    }
 
-    const { validateFieldsAndScroll } = form;
     const {
       priceInfo,
       activityInfo,
@@ -357,32 +364,24 @@ export default class OrderDetail extends React.PureComponent {
       shipmentList,
     } = computeOrderData;
 
-    return validateFieldsAndScroll(
-      {
-        scroll: { offsetTop: 60 },
-      },
-      (err, data) => {
-        if (err) return;
-
-        submit(this.isPayment, data, {
-          priceInfo,
-          activityInfo,
-          paymentList,
-          shipmentList,
-          products,
-          choosePayment,
-          isSynchronizeUserInfo,
-          isSaveAsReceiverTemplate,
-        });
-      },
-    );
+    submit(this.isPayment, data, {
+      priceInfo,
+      activityInfo,
+      paymentList,
+      shipmentList,
+      products,
+      choosePayment,
+      isSynchronizeUserInfo,
+      isSaveAsReceiverTemplate,
+    });
   };
 
   restoreInfo = () => {
     if (!global.window) return;
 
-    const { form } = this.props;
-
+    const {
+      form: { setFieldsValue },
+    } = this.props;
     const preservedInfo = PRESERVED_FIELDS.reduce((values, field) => {
       let value = window.sessionStorage.getItem(field);
 
@@ -390,28 +389,39 @@ export default class OrderDetail extends React.PureComponent {
 
       if (field === 'address' || field === 'invoice') value = value.split(',');
 
-      return {
+      return [
         ...values,
-        [field]: value,
-      };
-    }, {});
+        {
+          name: [field],
+          value,
+          errors: [],
+        },
+      ];
+    }, []);
 
-    if (Object.keys(preservedInfo).length !== 0)
-      form.setFieldsValue(preservedInfo, () => {
-        const deferredInfo = DEFERRED_FIELDS.reduce((values, field) => {
-          const value = window.sessionStorage.getItem(field);
+    if (preservedInfo.length !== 0) {
+      setFieldsValue(preservedInfo);
 
-          if (!value && value !== 0) return values;
+      const deferredInfo = DEFERRED_FIELDS.reduce((values, field) => {
+        const value = window.sessionStorage.getItem(field);
 
-          return {
-            ...values,
-            [field]: value,
-          };
-        }, {});
+        if (!value && value !== 0) return values;
 
-        if (Object.keys(deferredInfo).length !== 0)
-          form.setFieldsValue(deferredInfo, resetTimer);
-      });
+        return [
+          ...values,
+          {
+            name: [field],
+            value,
+            errors: [],
+          },
+        ];
+      }, []);
+
+      if (deferredInfo.length !== 0) {
+        setFieldsValue(deferredInfo);
+        resetTimer();
+      }
+    }
   };
 
   render() {
@@ -424,8 +434,9 @@ export default class OrderDetail extends React.PureComponent {
       goTo,
 
       /** props */
-      t,
       form,
+      fields,
+      t,
       user,
       shippableCountries,
       isSubmitting,
@@ -446,12 +457,6 @@ export default class OrderDetail extends React.PureComponent {
 
     const { storeName } = storeSetting;
     const {
-      getFieldDecorator,
-      getFieldsError,
-      getFieldValue,
-      validateFieldsAndScroll,
-    } = form;
-    const {
       total,
       paymentList,
       shipmentList,
@@ -470,7 +475,15 @@ export default class OrderDetail extends React.PureComponent {
           rules={modifyAntdStyle(colors)}
         />
 
-        <Form className={styles.fields} onSubmit={this.submit}>
+        <Form
+          className={styles.fields}
+          form={form}
+          fields={fields}
+          onValuesChange={this.valuesChange}
+          onFieldsChange={this.fieldsChange}
+          onFinish={this.finish}
+          scrollToFirstError
+        >
           <div className={styles.wrapper}>
             <StepHeader />
 
@@ -511,18 +524,22 @@ export default class OrderDetail extends React.PureComponent {
             <div className={styles.block}>
               <h3 className={styles.title}>{t('payment-info')}</h3>
 
-              <PaymentDefaultFormItem
-                style={formItemStyle}
-                form={form}
-                computeOrderList={this.computeOrderList}
-                paymentList={paymentList}
-                shipmentList={shipmentList}
-                couponInfo={couponInfo}
-              />
+              <FormItem shouldUpdate noStyle>
+                {subForm => (
+                  <PaymentDefaultFormItem
+                    style={formItemStyle}
+                    form={subForm}
+                    computeOrderList={this.computeOrderList}
+                    paymentList={paymentList}
+                    shipmentList={shipmentList}
+                    couponInfo={couponInfo}
+                  />
+                )}
+              </FormItem>
 
               {!(hasStoreAppPlugin('points') && userPoints > 0) ? null : (
-                <FormItem className={styles.formItem}>
-                  {getFieldDecorator('points')(
+                <>
+                  <FormItem className={styles.formItem} name={['points']}>
                     <InputNumber
                       min={0}
                       max={canUsePointsLimit || 0}
@@ -535,8 +552,8 @@ export default class OrderDetail extends React.PureComponent {
                               : parseInt(target.value, 10),
                         })
                       }
-                    />,
-                  )}
+                    />
+                  </FormItem>
 
                   <div
                     className={styles.points}
@@ -547,46 +564,55 @@ export default class OrderDetail extends React.PureComponent {
                   >
                     {t('reward-points-can-use', { point: userPoints || 0 })}
 
-                    <font
-                      style={{
-                        color:
-                          getFieldValue('points') > canUsePointsLimit || 0
-                            ? 'red'
-                            : 'inherit',
-                      }}
-                    >
-                      {t('points-limit', { point: canUsePointsLimit || 0 })}
-                    </font>
+                    <FormItem dependencies={['points']} noStyle>
+                      {({ getFieldValue }) => (
+                        <font
+                          style={{
+                            color:
+                              getFieldValue('points') > canUsePointsLimit || 0
+                                ? 'red'
+                                : 'inherit',
+                          }}
+                        >
+                          {t('points-limit', { point: canUsePointsLimit || 0 })}
+                        </font>
+                      )}
+                    </FormItem>
                   </div>
-                </FormItem>
+                </>
               )}
             </div>
 
             <UserInfo
-              form={form}
               user={user}
               shippableCountries={shippableCountries}
               checkoutFields={checkoutFields}
             />
 
-            <ReceiverInfo
-              form={form}
-              checkoutFields={checkoutFields}
-              shippableCountries={shippableCountries}
-              shippableRecipientAddresses={shippableRecipientAddresses}
-              choosePaymentTemplate={(choosePayment || {}).template}
-              chooseShipmentTemplate={(chooseShipment || {}).template}
-              isSynchronizeUserInfo={isSynchronizeUserInfo}
-              changeSynchronizeUserInfo={synchronizeUserInfo => {
-                this.setState({ isSynchronizeUserInfo: synchronizeUserInfo });
-              }}
-              isSaveAsReceiverTemplate={isSaveAsReceiverTemplate}
-              changeSaveAsReceiverTemplate={saveAsReceiverTemplate => {
-                this.setState({
-                  isSaveAsReceiverTemplate: saveAsReceiverTemplate,
-                });
-              }}
-            />
+            <FormItem shouldUpdate noStyle>
+              {subForm => (
+                <ReceiverInfo
+                  form={subForm}
+                  checkoutFields={checkoutFields}
+                  shippableCountries={shippableCountries}
+                  shippableRecipientAddresses={shippableRecipientAddresses}
+                  choosePaymentTemplate={(choosePayment || {}).template}
+                  chooseShipmentTemplate={(chooseShipment || {}).template}
+                  isSynchronizeUserInfo={isSynchronizeUserInfo}
+                  changeSynchronizeUserInfo={synchronizeUserInfo => {
+                    this.setState({
+                      isSynchronizeUserInfo: synchronizeUserInfo,
+                    });
+                  }}
+                  isSaveAsReceiverTemplate={isSaveAsReceiverTemplate}
+                  changeSaveAsReceiverTemplate={saveAsReceiverTemplate => {
+                    this.setState({
+                      isSaveAsReceiverTemplate: saveAsReceiverTemplate,
+                    });
+                  }}
+                />
+              )}
+            </FormItem>
 
             {!choosePayment ||
             choosePayment.template !== 'gmo' ||
@@ -594,7 +620,6 @@ export default class OrderDetail extends React.PureComponent {
               <GmoCreditCardForm
                 storePaymentId={choosePayment.paymentId}
                 isInstallment={choosePayment.accountInfo.gmo.isInstallment}
-                form={form}
               />
             )}
 
@@ -605,63 +630,67 @@ export default class OrderDetail extends React.PureComponent {
                   style={{ color: colors[3] }}
                   onClick={() => goTo({ back: true })}
                 >
-                  <Icon type="left" className={styles.continueShoppingIcon} />
+                  <LeftOutlined className={styles.continueShoppingIcon} />
 
                   {t('continue-shopping')}
                 </div>
 
                 <div className={styles.submitButtonRoot}>
                   {!paymentLater ? null : (
-                    <Button
-                      className={styles.paymentLaterButton}
-                      style={{
-                        color: colors[2],
-                        backgroundColor: colors[1],
-                        borderColor: colors[1],
-                      }}
-                      htmlType="submit"
-                      loading={isChecking || isSubmitting}
-                      disabled={
-                        productHasError ||
-                        (fieldsError =>
-                          Object.keys(fieldsError).some(
-                            field => fieldsError[field],
-                          ))(getFieldsError())
-                      }
-                      onClick={() => {
-                        this.isPayment = false;
-                        validateFieldsAndScroll();
-                      }}
-                    >
-                      {t('confirm')}: {t('pay-later')}
-                    </Button>
+                    <FormItem shouldUpdate noStyle>
+                      {({ getFieldsError }) => (
+                        <Button
+                          className={styles.paymentLaterButton}
+                          style={{
+                            color: colors[2],
+                            backgroundColor: colors[1],
+                            borderColor: colors[1],
+                          }}
+                          htmlType="submit"
+                          loading={isChecking || isSubmitting}
+                          disabled={
+                            productHasError ||
+                            getFieldsError().some(
+                              ({ errors }) => errors.length !== 0,
+                            )
+                          }
+                          onClick={() => {
+                            this.isPayment = false;
+                          }}
+                        >
+                          {t('confirm')}: {t('pay-later')}
+                        </Button>
+                      )}
+                    </FormItem>
                   )}
 
-                  <Button
-                    className={styles.submitButton}
-                    style={{
-                      color: colors[2],
-                      backgroundColor: colors[4],
-                      borderColor: colors[4],
-                    }}
-                    htmlType="submit"
-                    loading={isChecking || isSubmitting}
-                    disabled={
-                      productHasError ||
-                      (fieldsError =>
-                        Object.keys(fieldsError).some(
-                          field => fieldsError[field],
-                        ))(getFieldsError())
-                    }
-                    onClick={() => {
-                      this.isPayment = true;
-                      validateFieldsAndScroll();
-                    }}
-                  >
-                    {paymentLater
-                      ? `${t('confirm')}: ${t('pay-now')}`
-                      : t('confirm')}
-                  </Button>
+                  <FormItem shouldUpdate noStyle>
+                    {({ getFieldsError }) => (
+                      <Button
+                        className={styles.submitButton}
+                        style={{
+                          color: colors[2],
+                          backgroundColor: colors[4],
+                          borderColor: colors[4],
+                        }}
+                        htmlType="submit"
+                        loading={isChecking || isSubmitting}
+                        disabled={
+                          productHasError ||
+                          getFieldsError().some(
+                            ({ errors }) => errors.length !== 0,
+                          )
+                        }
+                        onClick={() => {
+                          this.isPayment = true;
+                        }}
+                      >
+                        {paymentLater
+                          ? `${t('confirm')}: ${t('pay-now')}`
+                          : t('confirm')}
+                      </Button>
+                    )}
+                  </FormItem>
                 </div>
               </div>
             </div>

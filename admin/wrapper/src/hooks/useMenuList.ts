@@ -1,5 +1,5 @@
 // typescript import
-import { IconProps } from 'antd/lib/icon';
+import Icon from '@ant-design/icons/lib/components/Icon';
 
 // import
 import { useMemo, useContext, useEffect } from 'react';
@@ -26,7 +26,7 @@ export type MenuListType = (string | [string, MenuListType])[];
 
 interface MenuType {
   key: string;
-  Icon?: React.ComponentType<IconProps>;
+  Icon?: typeof Icon;
   url?: string;
   items?: MenuType[];
 }

@@ -6,7 +6,8 @@ import React, { useState } from 'react';
 import VisibilitySensor from 'react-visibility-sensor';
 import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
-import { Spin, Input, Icon, Collapse, Button } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin, Input, Collapse, Button } from 'antd';
 
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/locales';
@@ -67,8 +68,7 @@ const PageManager: NextPage<PropsType> = React.memo(
     const [pageSettingId, setPageSettingId] = useState<string | null>(null);
     const [editVisibleId, setEditVisibleId] = useState<string | null>(null);
 
-    if (error || !data)
-      return <Spin indicator={<Icon type="loading" spin />} />;
+    if (error || !data) return <Spin indicator={<LoadingOutlined spin />} />;
 
     return (
       <div className={styles.root}>

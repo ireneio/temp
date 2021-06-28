@@ -12,11 +12,11 @@ import Block from '@admin/block';
 import styles from './styles/plan.less';
 
 // graphql typescript
-import { getMerchantAccount_viewer as getMerchantAccountViewer } from '@meepshop/types/gqls/admin';
+import { planFragment as planFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType {
-  viewer: getMerchantAccountViewer | null;
+  viewer: planFragmentType | null;
 }
 
 // definition

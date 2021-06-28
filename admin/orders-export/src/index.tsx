@@ -1,23 +1,19 @@
 // typescript import
 import { DrawerProps } from 'antd/lib/drawer';
-import { FormComponentProps } from 'antd/lib/form/Form';
 
 // import
 import React from 'react';
-import { Form, Spin, Icon, Drawer, Select, Input, Button } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Form, Spin, Drawer, Select, Input, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 
 import useOrderExport from './hooks/useOrderExport';
 import styles from './styles/index.less';
 
-// graphql typescript
-import { RequestExportFileInput } from '@meepshop/types/gqls/admin';
-
 // typescript definition
 interface PropsType
-  extends FormComponentProps,
-    Omit<DrawerProps, 'visible' | 'closable' | 'title' | 'onClose'> {
+  extends Omit<DrawerProps, 'visible' | 'closable' | 'title' | 'onClose'> {
   visible: boolean;
   onClose?: () => void;
   selectedIds: string[];
@@ -25,26 +21,20 @@ interface PropsType
 
 // definition
 const { Option } = Select;
+const { Item: FormItem } = Form;
 
-export default Form.create<PropsType>()(
-  React.memo(
-    ({
-      visible,
-      onClose,
-      className,
-      form: { getFieldDecorator, getFieldValue, validateFields },
-      selectedIds,
-      ...props
-    }: PropsType) => {
-      const { t } = useTranslation('orders-export');
-      const {
-        loading,
-        options,
-        exportStatus,
-        requestExportFile,
-      } = useOrderExport(selectedIds);
+export default React.memo(
+  ({ visible, onClose, className, selectedIds, ...props }: PropsType) => {
+    const { t } = useTranslation('orders-export');
+    const {
+      loading,
+      options,
+      exportStatus,
+      requestExportFile,
+    } = useOrderExport(selectedIds);
 
-      return (
+    return (
+      <Form onFinish={requestExportFile}>
         <Drawer
           {...props}
           visible={visible}
@@ -55,31 +45,20 @@ export default Form.create<PropsType>()(
               <span>
                 <Button onClick={onClose}>{t('go-back')}</Button>
 
-                {!getFieldValue('exportFormatId') ||
-                !getFieldValue('fileType') ? null : (
-                  <Button
-                    loading={exportStatus === 'PROCESSING'}
-                    onClick={() => {
-                      validateFields(
-                        (errors, { exportFormatId, fileType, fileName }) => {
-                          if (!errors) {
-                            requestExportFile({
-                              input: {
-                                dataType: 'ORDER' as RequestExportFileInput['dataType'],
-                                exportFormatId,
-                                fileType,
-                                fileName,
-                              },
-                            });
-                          }
-                        },
-                      );
-                    }}
-                    type="primary"
-                  >
-                    {t('download')}
-                  </Button>
-                )}
+                <FormItem shouldUpdate noStyle>
+                  {({ getFieldValue, submit }) =>
+                    !getFieldValue(['exportFormatId']) ||
+                    !getFieldValue(['fileType']) ? null : (
+                      <Button
+                        loading={exportStatus === 'PROCESSING'}
+                        onClick={submit}
+                        type="primary"
+                      >
+                        {t('download')}
+                      </Button>
+                    )
+                  }
+                </FormItem>
               </span>
             </div>
           }
@@ -88,15 +67,15 @@ export default Form.create<PropsType>()(
           closable={false}
         >
           {loading ? (
-            <Spin indicator={<Icon type="loading" spin />} />
+            <Spin indicator={<LoadingOutlined spin />} />
           ) : (
             ['exportFormatId', 'fileType', 'fileName'].map(key => (
               <div key={key} className={styles.content}>
                 <span>{t(`${key}.title`)}</span>
 
                 <span>
-                  {getFieldDecorator(`${key}`)(
-                    options[key] ? (
+                  <FormItem name={key} noStyle>
+                    {options[key] ? (
                       <Select placeholder={t(`${key}.placeholder`)}>
                         {options[key].map(
                           ({
@@ -106,20 +85,25 @@ export default Form.create<PropsType>()(
                             id: string | null;
                             name: string | null;
                           }) => (
-                            <Option key={id || 'null-id'}>{name}</Option>
+                            <Option
+                              key={id || 'null-id'}
+                              value={id || 'null-value'}
+                            >
+                              {name}
+                            </Option>
                           ),
                         )}
                       </Select>
                     ) : (
                       <Input placeholder={t(`${key}.placeholder`)} />
-                    ),
-                  )}
+                    )}
+                  </FormItem>
                 </span>
               </div>
             ))
           )}
         </Drawer>
-      );
-    },
-  ),
+      </Form>
+    );
+  },
 );

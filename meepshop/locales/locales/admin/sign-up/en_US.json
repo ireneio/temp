@@ -21,7 +21,6 @@
   "had-store": "Already have a store?",
   "go-to-login": "Go to login",
   "sign-up-success": "registration success!",
-  "email-has-been-sent-1": "The verification letter has been sent to",
-  "email-has-been-sent-2": ", If you did not receive the verification letter, please try to register again.",
+  "email-has-been-sent": "The verification letter has been sent to {{ email }}, If you did not receive the verification letter, please try to register again.",
   "back-to-login-page": "Back to login page"
 }

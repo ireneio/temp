@@ -3,7 +3,8 @@ import { AbstractTooltipProps } from 'antd/lib/tooltip';
 
 // import
 import React from 'react';
-import { Tooltip, Icon } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
 
 import styles from './styles/index.less';
 
@@ -29,9 +30,8 @@ export default React.memo(
       {...restProps}
     >
       {children || (
-        <Icon
+        <QuestionCircleOutlined
           className={`${styles.icon} ${iconClassName || ''}`}
-          type="question-circle"
           onClick={onClick}
         />
       )}

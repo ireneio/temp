@@ -4,7 +4,6 @@
   "edit-again": "modifier",
   "send": "Envoyer",
   "pay-message-is-not-updated": "Le contenu des notifications de versement est le même",
-  "please-edit-paid-message": "Le contenu de l'avis de versement n'a pas changé, veuillez modifier le contenu avant de le renvoyer.",
   "confirm": "Confirmer",
   "send-success": "Votre message a été envoyé."
 }

@@ -3,6 +3,7 @@ import { ColumnProps } from 'antd/lib/table';
 
 // import
 import React, { useMemo } from 'react';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { filter } from 'graphql-anywhere';
 
@@ -91,7 +92,7 @@ export default (
                 user={filter<modalFragmetType>(modalFragmet, user)}
                 editData={value}
                 className={styles.editIcon}
-                icon="edit"
+                icon={<EditOutlined />}
                 shape="circle"
               />
             </Tooltip>
@@ -99,7 +100,7 @@ export default (
             <Tooltip placement="top" title={t('actions.delete')}>
               <Button
                 className={styles.deleteIcon}
-                icon="delete"
+                icon={<DeleteOutlined />}
                 shape="circle"
                 onClick={() => deleteRoutingRule({ id })}
               />

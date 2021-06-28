@@ -4,13 +4,14 @@ import { ColumnProps } from 'antd/lib/table';
 import { languageType } from '@meepshop/locales';
 
 // import
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext } from 'react';
 import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
 import Thumbnail from '@meepshop/thumbnail';
+import { Colors as ColorsContext } from '@meepshop/context';
 
-import styles from '../styles/application.less';
+import styles from '../styles/useColumns.less';
 
 // graphql typescript
 import {
@@ -32,13 +33,13 @@ export default (
     t,
     i18n: { language },
   } = useTranslation('member-order-applications');
-
+  const colors = useContext(ColorsContext);
   const type = t(`type.${applicationType}`);
 
   return useMemo(
     () => [
       {
-        dataIndex: 'product.coverImage',
+        dataIndex: ['product', 'coverImage'],
         width: '10%',
         align: 'center',
         render: (
@@ -47,7 +48,7 @@ export default (
       },
       {
         title: t('product.title'),
-        dataIndex: 'product.title',
+        dataIndex: ['product', 'title'],
         render: (
           value: useColumnsMemberOrderApplicationsFragmentApplicationsExtraProductType['title'],
           {
@@ -84,16 +85,16 @@ export default (
       },
       {
         title: `${type}${t('reason')}`,
-        dataIndex: 'applicationInfo.comment',
+        dataIndex: ['applicationInfo', 'comment'],
       },
       {
         title: t('product.quantity'),
-        dataIndex: 'quantity',
+        dataIndex: ['quantity'],
         align: 'center',
       },
       {
         title: `${type}${t('status.title')}`,
-        dataIndex: 'status',
+        dataIndex: ['status'],
         align: 'center',
         render: (
           value: useColumnsMemberOrderApplicationsFragmentApplicationsExtraType['status'],
@@ -103,7 +104,10 @@ export default (
             applicationStatus: useColumnsMemberOrderApplicationsFragmentApplicationsExtraType['applicationStatus'];
           },
         ) => (
-          <div className={styles.tag}>
+          <div
+            className={styles.tag}
+            style={{ color: colors[2], background: colors[4] }}
+          >
             {[1, 2].includes(value || 0) ? (
               t(`status.${applicationType}.${value}`)
             ) : (
@@ -116,6 +120,6 @@ export default (
         ),
       },
     ],
-    [t, language, type, applicationType],
+    [t, language, colors, type, applicationType],
   );
 };

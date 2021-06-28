@@ -1,5 +1,5 @@
 // typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
+import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
 
 import { UseComputeOrderType } from '../hooks/useComputeOrder';
 
@@ -11,7 +11,8 @@ import {
 
 // import
 import React, { useState, useContext } from 'react';
-import { Form, Button, Input } from 'antd';
+import { Form } from '@ant-design/compatible';
+import { Button, Input } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';

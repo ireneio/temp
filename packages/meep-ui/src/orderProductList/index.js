@@ -60,18 +60,6 @@ export default enhancer(
                   showHeader={false}
                   pagination={false}
                 />
-
-                <style
-                  dangerouslySetInnerHTML={{
-                    __html: `
-                      .${styles.table} .ant-select-selection {
-                        color: ${colors[3]};
-                        border-color: ${colors[5]};
-                        background: transparent;
-                      }
-                    `,
-                  }}
-                />
               </>
             )}
           </div>

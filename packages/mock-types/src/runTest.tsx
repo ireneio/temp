@@ -13,15 +13,14 @@ import mock from './mock';
 const mockEvents = new events.EventEmitter();
 const mockLog = jest.fn();
 const log = (...messages: string[]): void => {
+  const str = messages.join('');
   if (
     /Warning: An update to [\w%]+ inside a test was not wrapped in act/.test(
-      messages.join(''),
+      str,
     ) ||
     // FIXME: enzyme bug
-    /Warning: componentWillMount has been renamed/.test(messages.join('')) ||
-    /Warning: componentWillReceiveProps has been renamed/.test(
-      messages.join(''),
-    )
+    /Warning: componentWillMount has been renamed/.test(str) ||
+    /Warning: componentWillReceiveProps has been renamed/.test(str)
   )
     return;
 

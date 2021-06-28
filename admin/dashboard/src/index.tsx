@@ -5,7 +5,8 @@ import { NextPage } from 'next';
 import React, { useContext, useEffect } from 'react';
 import { filter } from 'graphql-anywhere';
 import { useQuery } from '@apollo/react-hooks';
-import { Spin, Icon } from 'antd';
+import { LoadingOutlined, WarningFilled } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { AdTrackContext } from '@admin/ad-track';
@@ -49,7 +50,7 @@ const Dashboard: NextPage<PropsType> = React.memo(
     }, []);
 
     if (!viewer?.id || !getDashboardInfo)
-      return <Spin indicator={<Icon type="loading" spin />} />;
+      return <Spin indicator={<LoadingOutlined spin />} />;
 
     const isUnpaidBillsDisplayed =
       viewer.role === 'MERCHANT' &&
@@ -79,7 +80,7 @@ const Dashboard: NextPage<PropsType> = React.memo(
           {isUnpaidBillsDisplayed ? (
             <div className={styles.payment}>
               <div className={styles.text}>
-                <Icon type="warning" theme="filled" className={styles.icon} />
+                <WarningFilled className={styles.icon} />
                 <div>
                   <span className={styles.bold}>{t('payment-dealine')}</span>
                   <span>{t('payment-text')}</span>

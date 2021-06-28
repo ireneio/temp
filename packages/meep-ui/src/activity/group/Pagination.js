@@ -50,6 +50,7 @@ export default class Pagination extends React.PureComponent {
           defaultPageSize={limit}
           total={total}
           onChange={this.onChange}
+          showSizeChanger={false}
         />
       </div>
     );

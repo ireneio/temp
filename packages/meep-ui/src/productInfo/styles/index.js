@@ -2,43 +2,25 @@ import { PHONE_MEDIA } from 'constants/media';
 
 export const infoStyle = (colors, unfoldedVariants) => ({
   color: colors[3],
+  borderRadius: '4px',
+  backgroundColor: colors[0],
+  padding: '0px',
 
   // ant-select
   '.ant-select': {
     minWidth: '80px',
   },
-  '.ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active': {
+  '.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector': {
     boxShadow: 'none',
   },
-  '.ant-select-selection': {
-    backgroundColor: 'transparent',
-    color: colors[3],
-    borderColor: colors[5],
+  '.ant-select:not(.ant-select-customize-input) .ant-select-selector': {
     height: 'unset',
   },
-  '.ant-select-selection__rendered': {
-    overflow: 'hidden',
-    marginRight: '30px',
-  },
-  '.ant-select-arrow': {
-    color: colors[3],
-  },
-  '.ant-select-dropdown-menu': {
-    borderRadius: '4px',
-    backgroundColor: colors[0],
-  },
-  '.ant-select-dropdown-menu li': {
-    color: colors[3],
+  '.ant-select-item-option': {
     whiteSpace: 'unset',
     wordBreak: 'break-all',
   },
-  '.ant-select-dropdown-menu-item:hover': {
-    backgroundColor: colors[4],
-  },
-  '.ant-select-dropdown-menu-item-selected, .ant-select-dropdown-menu-item-selected:hover': {
-    backgroundColor: colors[4],
-  },
-  '.ant-select-selection-selected-value': {
+  '.ant-select-selection-item': {
     whiteSpace: 'unset',
     wordBreak: 'break-all',
     width: '100%',

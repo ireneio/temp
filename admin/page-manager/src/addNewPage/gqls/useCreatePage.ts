@@ -38,20 +38,20 @@ export const useCreatePageReadCache = gql`
       id
       store {
         id
-        homePages: pages(first: 500, filter: $homePagesFilter) {
+        homePages: pages(first: 20, filter: $homePagesFilter) {
           edges {
             ...useCreatePageFragment
           }
         }
 
-        customPages: pages(first: 500, filter: $customPagesFilter) {
+        customPages: pages(first: 20, filter: $customPagesFilter) {
           edges {
             ...useCreatePageFragment
           }
         }
 
         productTemplatePage: pages(
-          first: 500
+          first: 20
           filter: $productTemplatePageFilter
         ) {
           edges {

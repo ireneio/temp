@@ -1,6 +1,5 @@
 // typescript import
 import { DataProxy } from 'apollo-cache';
-import { ExecutionResult } from '@apollo/react-common';
 
 // import
 import { useCallback } from 'react';
@@ -17,6 +16,7 @@ import {
   useRenamePageWithSEOCache as useRenamePageWithSEOCacheType,
   useRenamePageWithSEOCacheVariables,
   useRenamePageWithSEOFragment as useRenamePageWithSEOFragmentType,
+  PageTypeEnum,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
@@ -26,23 +26,43 @@ import {
   useRenamePageWithSEOFragment,
 } from '../gqls/useRenamePageWithSEO';
 
+// typescript definition
+interface ValuesType {
+  title: string;
+  path: string | null;
+  tabTitle: string | null;
+  seo?: {
+    keywords: string | null;
+    description: string | null;
+    image: string | null;
+  };
+}
+
 // definition
 export default (
+  id: string,
   pageType: editFragmentType['pageType'],
   variables: useRenamePageWithSEOCacheVariables,
-): ((
-  input: renamePageWithSEOVariables['input'],
-) => Promise<ExecutionResult<renamePageWithSEOType>>) => {
+  onClose: () => void,
+): ((values: ValuesType) => void) => {
   const { t } = useTranslation('page-manager');
   const [mutation] = useMutation<
     renamePageWithSEOType,
     renamePageWithSEOVariables
-  >(renamePageWithSEO);
+  >(renamePageWithSEO, {
+    onCompleted: onClose,
+  });
 
   return useCallback(
-    (input: renamePageWithSEOVariables['input']) =>
+    input => {
       mutation({
-        variables: { input },
+        variables: {
+          input: {
+            ...input,
+            pageId: id,
+            type: (pageType?.toUpperCase() || 'HOME') as PageTypeEnum,
+          },
+        },
         update: (
           cache: DataProxy,
           { data }: { data: renamePageWithSEOType },
@@ -50,13 +70,11 @@ export default (
           if (data.renamePageWithSEO?.status !== 'OK') {
             switch (data.renamePageWithSEO?.status) {
               case 'FAIL_PAGE_PATH_DUPLICATE':
-                message.error(
-                  t('rename-page-with-seo.error.FAIL_PAGE_PATH_DUPLICATE'),
-                );
+                message.error(t('validator:page-path.same-path'));
                 break;
 
               default:
-                message.error(t('rename-page-with-seo.error.default'));
+                message.error(t('rename-page-with-seo.error'));
                 break;
             }
             return;
@@ -92,36 +110,18 @@ export default (
                             edges:
                               pageType !== 'home'
                                 ? storeData.viewer.store.homePages.edges
-                                : [
-                                    {
-                                      __typename: 'PageEdge',
-                                      node: {
-                                        __typename: 'Page',
-                                        id: input.pageId,
-                                      },
-                                    },
-                                    ...storeData.viewer.store.homePages.edges.filter(
-                                      ({ node: { id } }) => id !== input.pageId,
-                                    ),
-                                  ],
+                                : storeData.viewer.store.homePages.edges.sort(
+                                    ({ node }) => (node.id === id ? -1 : 1),
+                                  ),
                           },
                           customPages: {
                             ...storeData.viewer.store.customPages,
                             edges:
                               pageType !== 'custom'
                                 ? storeData.viewer.store.customPages.edges
-                                : [
-                                    {
-                                      __typename: 'PageEdge',
-                                      node: {
-                                        __typename: 'Page',
-                                        id: input.pageId,
-                                      },
-                                    },
-                                    ...storeData.viewer.store.customPages.edges.filter(
-                                      ({ node: { id } }) => id !== input.pageId,
-                                    ),
-                                  ],
+                                : storeData.viewer.store.customPages.edges.sort(
+                                    ({ node }) => (node.id === id ? -1 : 1),
+                                  ),
                           },
                           productTemplatePage: {
                             ...storeData.viewer.store.productTemplatePage,
@@ -129,18 +129,9 @@ export default (
                               pageType !== 'template'
                                 ? storeData.viewer.store.productTemplatePage
                                     .edges
-                                : [
-                                    {
-                                      __typename: 'PageEdge',
-                                      node: {
-                                        __typename: 'Page',
-                                        id: input.pageId,
-                                      },
-                                    },
-                                    ...storeData.viewer.store.productTemplatePage.edges.filter(
-                                      ({ node: { id } }) => id !== input.pageId,
-                                    ),
-                                  ],
+                                : storeData.viewer.store.productTemplatePage.edges.sort(
+                                    ({ node }) => (node.id === id ? -1 : 1),
+                                  ),
                           },
                         },
                   },
@@ -148,11 +139,11 @@ export default (
             variables,
           });
           cache.writeFragment<useRenamePageWithSEOFragmentType>({
-            id: input.pageId,
+            id,
             fragment: useRenamePageWithSEOFragment,
             data: {
               __typename: 'Page',
-              id: input.pageId,
+              id,
               title: {
                 __typename: 'Locale',
                 // eslint-disable-next-line @typescript-eslint/camelcase
@@ -172,7 +163,8 @@ export default (
           });
           message.success(t('rename-page-with-seo.success'));
         },
-      }),
-    [pageType, variables, t, mutation],
+      });
+    },
+    [id, pageType, variables, t, mutation],
   );
 };

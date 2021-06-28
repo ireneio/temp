@@ -1,9 +1,6 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form';
-
 // import
 import React from 'react';
-import { Divider, Form, Input } from 'antd';
+import { Form, Divider, Input } from 'antd';
 
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/locales';
@@ -14,15 +11,14 @@ import styles from './styles/googleAnalytics.less';
 import { gaViewIdFragment as gaViewIdFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
-interface PropsType extends FormComponentProps {
+interface PropsType {
   gaViewId: gaViewIdFragmentType['gaViewId'] | null;
 }
 
 // definition
 const { Item: FormItem } = Form;
 
-export default React.memo(({ form, gaViewId }: PropsType) => {
-  const { getFieldDecorator } = form;
+export default React.memo(({ gaViewId }: PropsType) => {
   const { t } = useTranslation('setting-third-party');
 
   return (
@@ -47,6 +43,7 @@ export default React.memo(({ form, gaViewId }: PropsType) => {
             iconClassName={styles.tip}
           />
         </div>
+
         <div>scm-processor@instant-matter-785.iam.gserviceaccount.com</div>
       </div>
 
@@ -73,11 +70,10 @@ export default React.memo(({ form, gaViewId }: PropsType) => {
           />
         </div>
 
-        <FormItem>
-          {getFieldDecorator('gaViewId', {
-            initialValue: gaViewId,
-          })(<Input placeholder="View ID" />)}
+        <FormItem name={['gaViewId']} initialValue={gaViewId}>
+          <Input placeholder="View ID" />
         </FormItem>
+
         <div className={styles.caution}>{t(`gaViewId.items.1.caution`)}</div>
       </div>
     </>

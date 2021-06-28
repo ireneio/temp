@@ -1,7 +1,8 @@
 // import
 import React from 'react';
 import { filter } from 'graphql-anywhere';
-import { Spin, Icon } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 import Page from '@meepshop/page';
 import Group from '@store/group';
@@ -21,7 +22,7 @@ export default React.memo(() => {
   const data = usePage();
   const page = data?.viewer?.store?.page;
 
-  if (!data || !page) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!data || !page) return <Spin indicator={<LoadingOutlined spin />} />;
 
   return (
     <Page

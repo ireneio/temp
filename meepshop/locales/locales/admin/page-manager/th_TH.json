@@ -116,9 +116,6 @@
   },
   "rename-page-with-seo": {
     "success": "การอัปเดตเสร็จสมบูรณ์",
-    "error": {
-      "FAIL_PAGE_PATH_DUPLICATE": "ชื่อเว็บไซต์ซ้ำ",
-      "default": "การอัพเดทล้มเหลว"
-    }
+    "error": "การอัพเดทล้มเหลว"
   }
 }

@@ -116,9 +116,6 @@
   },
   "rename-page-with-seo": {
     "success": "hoàn thành cập nhật",
-    "error": {
-      "FAIL_PAGE_PATH_DUPLICATE": "Tên trang web trùng lặp",
-      "default": "Cập nhật thất bại"
-    }
+    "error": "Cập nhật thất bại"
   }
 }

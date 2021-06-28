@@ -5,7 +5,8 @@ import { NextPage } from 'next';
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
-import { Spin, Icon, List } from 'antd';
+import { DoubleLeftOutlined, LoadingOutlined } from '@ant-design/icons';
+import { Spin, List } from 'antd';
 import moment from 'moment';
 
 import { useTranslation } from '@meepshop/locales';
@@ -47,7 +48,7 @@ const OrderHistoryRecords: NextPage<PropsType> = React.memo(
     const [openedRecords, setOpenedRecords] = useState<number[]>([]);
     const order = data?.viewer?.order;
 
-    if (!order) return <Spin indicator={<Icon type="loading" spin />} />;
+    if (!order) return <Spin indicator={<LoadingOutlined spin />} />;
 
     return (
       <div className={styles.root}>
@@ -123,7 +124,7 @@ const OrderHistoryRecords: NextPage<PropsType> = React.memo(
                   <div onClick={() => setLimit(limit + 5)}>
                     <div>{t('load-more')}</div>
 
-                    <Icon type="double-left" />
+                    <DoubleLeftOutlined />
                   </div>
                 </div>
               )

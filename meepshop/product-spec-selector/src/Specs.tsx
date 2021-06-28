@@ -102,7 +102,6 @@ const Specs = React.memo(
           <style
             dangerouslySetInnerHTML={{
               __html: `
-                .${styles.root} .ant-select-selection,
                 .${styles.node} {
                   background-color: ${colors[0]};
                   border: 1px solid ${colors[5]};
@@ -112,18 +111,6 @@ const Specs = React.memo(
                   background-color: ${colors[4]};
                   border: 1px solid ${colors[4]};
                   color: ${colors[2]}
-                }
-
-                .${styles.select} .ant-select-dropdown-menu-item {
-                  background-color: ${colors[0]};
-                  color: ${colors[3]};
-                }
-
-                .${styles.select} .ant-select-dropdown-menu-item-selected,
-                .${styles.select} .ant-select-dropdown-menu-item-active,
-                .${styles.select} .ant-select-dropdown-menu-item:hover {
-                  background-color: ${colors[4]};
-                  color: ${colors[2]};
                 }
             `,
             }}

@@ -14,3 +14,32 @@ body,
 :global(#__next) {
   height: 100%;
 }
+
+:global(.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn) {
+  text-shadow: none;
+}
+
+:global(.ant-cascader-picker-arrow) {
+  transition: transform 0.2s;
+
+  &:global(.ant-cascader-picker-arrow-expand) {
+    transform: rotate(180deg);
+  }
+}
+
+:global(.ant-select-arrow) {
+  transition: transform 0.2s;
+}
+
+:global(.ant-select.ant-select-open) :global(.ant-select-arrow) {
+  transform: rotate(180deg);
+}
+
+:global(.ant-table) {
+  background-color: transparent;
+}
+
+:global(.ant-input),
+:global(.ant-select-selection-search-input) {
+  font-size: 16px;
+}

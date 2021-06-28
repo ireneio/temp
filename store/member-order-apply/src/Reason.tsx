@@ -1,6 +1,6 @@
 // import
 import React from 'react';
-import { Input } from 'antd';
+import { Form, Input } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -8,29 +8,30 @@ import styles from './styles/reason.less';
 
 // typescript definition
 interface PropsType {
-  forwardedRef: React.Ref<Input>;
-  value?: string;
+  id: string;
   checking: boolean;
-  onChange?: (value: string) => void;
 }
 
 // definition
-const Reason = React.memo(({ checking, value, onChange }: PropsType) => {
-  const { t } = useTranslation('member-order-apply');
+const { Item: FormItem } = Form;
 
-  if (checking) return <div className={styles.root}>{value}</div>;
+export default React.memo(({ id, checking }: PropsType) => {
+  const { t } = useTranslation('member-order-apply');
+  const name = ['reason', id];
+
   return (
-    <Input
-      className={styles.root}
-      placeholder={t('reason')}
-      value={value || ''}
-      onChange={({ target: { value: reason } }) => onChange?.(reason)}
-    />
+    <>
+      <FormItem name={name} hidden={checking} noStyle>
+        <Input className={styles.root} placeholder={t('reason')} />
+      </FormItem>
+
+      {!checking ? null : (
+        <FormItem shouldUpdate noStyle>
+          {({ getFieldValue }) => (
+            <div className={styles.root}>{getFieldValue(name)}</div>
+          )}
+        </FormItem>
+      )}
+    </>
   );
 });
-
-export default React.forwardRef(
-  (props: Omit<PropsType, 'forwardedRef'>, ref: PropsType['forwardedRef']) => (
-    <Reason {...props} forwardedRef={ref} />
-  ),
-);

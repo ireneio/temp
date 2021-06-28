@@ -1,10 +1,12 @@
 // typescript import
-import { CarouselProps } from 'antd/lib/carousel';
+import IconType from '@ant-design/icons/lib/components/Icon';
+import { CarouselProps, CarouselRef } from 'antd/lib/carousel';
 
 // import
 import React, { useEffect, useState } from 'react';
 import { filter } from 'graphql-anywhere';
-import { Carousel, Icon } from 'antd';
+import { RightOutlined, LeftOutlined } from '@ant-design/icons';
+import { Carousel } from 'antd';
 
 import Image from '@meepshop/image';
 
@@ -24,8 +26,8 @@ import { imageFragment } from '@meepshop/image/gqls';
 export interface PropsType
   extends carouselFragment,
     Omit<CarouselProps, 'asNavFor'> {
-  carouselRef?: React.Ref<Carousel>;
-  asNavFor?: React.RefObject<Carousel>;
+  carouselRef?: React.Ref<CarouselRef>;
+  asNavFor?: React.RefObject<CarouselRef>;
 }
 
 // FIXME: react-slick bug : unknown props `currentSlide`, `slideCount`
@@ -33,15 +35,15 @@ export interface PropsType
 const CustomArrow = ({
   currentSlide, // eslint-disable-line @typescript-eslint/no-unused-vars
   slideCount, // eslint-disable-line @typescript-eslint/no-unused-vars
-  type,
+  Icon,
   ...props
 }: {
   currentSlide?: string;
   slideCount?: string;
-  type: string;
+  Icon: typeof IconType;
 }): React.ReactElement => (
   <span {...props}>
-    <Icon type={type} />
+    <Icon />
   </span>
 );
 
@@ -76,8 +78,8 @@ export default React.memo(
           pauseOnHover={hoverPause}
           dots={showIndicator}
           arrows={showController}
-          nextArrow={<CustomArrow type="right" />}
-          prevArrow={<CustomArrow type="left" />}
+          nextArrow={<CustomArrow Icon={RightOutlined} />}
+          prevArrow={<CustomArrow Icon={LeftOutlined} />}
           adaptiveHeight
         >
           {displayedImages.map(({ image, link }) => (

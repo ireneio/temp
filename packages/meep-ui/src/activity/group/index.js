@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
-import { Spin, Icon } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
 
@@ -208,7 +209,7 @@ export default class Group extends React.PureComponent {
             ) : (
               <Spin
                 indicator={
-                  <Icon type="loading" style={styles.loading(colors)} spin />
+                  <LoadingOutlined style={styles.loading(colors)} spin />
                 }
               />
             )}

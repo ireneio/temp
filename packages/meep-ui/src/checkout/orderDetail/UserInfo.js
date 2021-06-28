@@ -39,7 +39,6 @@ export default class UserInfo extends React.PureComponent {
 
     /** props */
     t: PropTypes.func.isRequired,
-    form: PropTypes.shape({}).isRequired,
   };
 
   render() {
@@ -49,12 +48,10 @@ export default class UserInfo extends React.PureComponent {
 
       // props
       t,
-      form,
       shippableCountries,
       checkoutFields,
       validateEmail,
     } = this.props;
-    const { getFieldDecorator } = form;
 
     if (
       isLogin !== NOTLOGIN &&
@@ -70,109 +67,122 @@ export default class UserInfo extends React.PureComponent {
 
         {isLogin !== NOTLOGIN ? null : (
           <>
-            <FormItem style={formItemStyle}>
-              {getFieldDecorator('userEmail', {
-                rules: [
-                  {
-                    required: true,
-                    message: t('is-required'),
-                  },
-                  {
-                    validator: validateEmail.validator,
-                  },
-                ],
-                validateTrigger: 'onBlur',
-                validateFirst: true,
-                normalize: validateEmail.normalize,
-              })(<Input placeholder={t('email')} />)}
+            <FormItem
+              style={formItemStyle}
+              name={['userEmail']}
+              rules={[
+                {
+                  required: true,
+                  message: t('is-required'),
+                },
+                {
+                  validator: validateEmail.validator,
+                },
+              ]}
+              normalize={validateEmail.normalize}
+              validateTrigger="onBlur"
+              validateFirst
+            >
+              <Input placeholder={t('email')} />
             </FormItem>
 
-            <FormItem style={formItemStyle}>
-              {getFieldDecorator('userPassword', {
-                validateTrigger: 'onBlur',
-                rules: [
-                  {
-                    required: true,
-                    message: t('is-required'),
-                  },
-                ],
-              })(<Password placeholder={t('password')} />)}
+            <FormItem
+              style={formItemStyle}
+              name={['userPassword']}
+              rules={[
+                {
+                  required: true,
+                  message: t('is-required'),
+                },
+              ]}
+              validateTrigger="onBlur"
+            >
+              <Password placeholder={t('password')} />
             </FormItem>
           </>
         )}
 
         {checkoutFields.name === 'HIDDEN' ? null : (
-          <FormItem style={formItemStyle}>
-            {getFieldDecorator('userName', {
-              validateTrigger: 'onBlur',
-              rules:
-                checkoutFields.name === 'OPTIONAL'
-                  ? []
-                  : [
-                      {
-                        required: true,
-                        message: t('is-required'),
-                      },
-                    ],
-            })(<Input placeholder={t('name')} />)}
+          <FormItem
+            style={formItemStyle}
+            name={['userName']}
+            rules={
+              checkoutFields.name === 'OPTIONAL'
+                ? []
+                : [
+                    {
+                      required: true,
+                      message: t('is-required'),
+                    },
+                  ]
+            }
+            validateTrigger="onBlur"
+          >
+            <Input placeholder={t('name')} />
           </FormItem>
         )}
 
         {checkoutFields.mobile === 'HIDDEN' ? null : (
-          <FormItem style={formItemStyle}>
-            {getFieldDecorator('userMobile', {
-              validateTrigger: 'onBlur',
-              rules: [
-                ...(checkoutFields.mobile === 'OPTIONAL'
-                  ? []
-                  : [
-                      {
-                        required: true,
-                        message: t('is-required'),
-                      },
-                    ]),
-                {
-                  validator: validateMobile(t),
-                },
-              ],
-            })(<Input placeholder={t('mobile')} />)}
+          <FormItem
+            style={formItemStyle}
+            name={['userMobile']}
+            rules={[
+              ...(checkoutFields.mobile === 'OPTIONAL'
+                ? []
+                : [
+                    {
+                      required: true,
+                      message: t('is-required'),
+                    },
+                  ]),
+              {
+                validator: validateMobile(t),
+              },
+            ]}
+            validateTrigger="onBlur"
+          >
+            <Input placeholder={t('mobile')} />
           </FormItem>
         )}
 
         {checkoutFields.address === 'HIDDEN' ? null : (
           <>
-            <FormItem style={formItemStyle}>
-              {getFieldDecorator('userAddressAndZipCode', {
-                validateTrigger: 'onBlur',
-                rules:
-                  checkoutFields.address === 'OPTIONAL'
-                    ? []
-                    : [
-                        {
-                          validator: validateAddressCascader(t('is-required')),
-                        },
-                      ],
-              })(
-                <AddressCascader
-                  placeholder={[t('area'), t('postal-code')]}
-                  shippableCountries={shippableCountries || []}
-                />,
-              )}
+            <FormItem
+              style={formItemStyle}
+              name={['userAddressAndZipCode']}
+              rules={
+                checkoutFields.address === 'OPTIONAL'
+                  ? []
+                  : [
+                      {
+                        validator: validateAddressCascader(t('is-required')),
+                      },
+                    ]
+              }
+              validateTrigger="onBlur"
+            >
+              <AddressCascader
+                placeholder={[t('area'), t('postal-code')]}
+                shippableCountries={shippableCountries || []}
+              />
             </FormItem>
 
-            <FormItem style={formItemStyle}>
-              {getFieldDecorator('userStreet', {
-                validateTrigger: 'onBlur',
-                rules:
-                  checkoutFields.address === 'OPTIONAL'
-                    ? []
-                    : [
-                        {
-                          required: true,
-                          message: t('is-required'),
-                        },
-                      ],
-              })(<Input placeholder={t('address')} />)}
+            <FormItem
+              style={formItemStyle}
+              name={['userStreet']}
+              rules={
+                checkoutFields.address === 'OPTIONAL'
+                  ? []
+                  : [
+                      {
+                        required: true,
+                        message: t('is-required'),
+                      },
+                    ]
+              }
+              validateTrigger="onBlur"
+            >
+              <Input placeholder={t('address')} />
             </FormItem>
           </>
         )}

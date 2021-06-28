@@ -1,8 +1,8 @@
 // typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
+import { FormInstance } from 'antd/lib/form';
 
 // import
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { message } from 'antd';
 
@@ -17,21 +17,26 @@ import {
 // graphql import
 import { changeUserPassword } from '../gqls/useChangeUserPassword';
 
+// typescript definition
+export interface ValuesType {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
 // definition
 export default (
-  { validateFields, resetFields }: FormComponentProps['form'],
+  { resetFields }: FormInstance,
   setOpenModal: (value: boolean) => void,
 ): {
-  changeUserPassword: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  changeUserPassword: (values: ValuesType) => void;
   closeModal: () => void;
 } => {
   const { t } = useTranslation('account-setting');
-
   const closeModal = useCallback(() => {
     resetFields();
     setOpenModal(false);
   }, [resetFields, setOpenModal]);
-
   const [mutation] = useMutation<
     changeUserPasswordType,
     changeUserPasswordVariables
@@ -60,18 +65,12 @@ export default (
 
   return {
     changeUserPassword: useCallback(
-      e => {
-        e.preventDefault();
-
-        validateFields((errors, { currentPassword, newPassword }) => {
-          if (!errors) {
-            mutation({
-              variables: { input: { currentPassword, newPassword } },
-            });
-          }
+      ({ confirmPassword: _, ...input }) => {
+        mutation({
+          variables: { input },
         });
       },
-      [validateFields, mutation],
+      [mutation],
     ),
     closeModal,
   };

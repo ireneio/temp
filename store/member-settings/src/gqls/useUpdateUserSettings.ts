@@ -10,8 +10,8 @@ export const updateUser = gql`
   }
 `;
 
-export const useSubmitUserFragment = gql`
-  fragment useSubmitUserFragment on User {
+export const useUpdateUserSettingsFragment = gql`
+  fragment useUpdateUserSettingsFragment on User {
     id
     name
     gender
@@ -39,6 +39,9 @@ export const useSubmitUserFragment = gql`
     }
     notification {
       newsletters {
+        cancelEmail
+      }
+      rewardPointReminderSubscription {
         cancelEmail
       }
     }

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { areEqual, emptyFunction } from 'fbjs';
 import queryString from 'query-string';
-import { Pagination, Select, Icon } from 'antd';
+import { ProfileOutlined, AppstoreOutlined } from '@ant-design/icons';
+import { Pagination, Select } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
 import { Sensor as SensorContext } from '@meepshop/context';
@@ -327,7 +328,7 @@ export default class ProductList extends React.PureComponent {
                 </Select>
               )}
               <div style={styles.display} onClick={this.handleDisplaySwitch}>
-                <Icon type={isGrid ? 'profile' : 'appstore'} />
+                {isGrid ? <ProfileOutlined /> : <AppstoreOutlined />}
               </div>
             </div>
 
@@ -363,6 +364,7 @@ export default class ProductList extends React.PureComponent {
                 onChange={emptyFunction}
                 hideOnSinglePage
                 showLessItems
+                showSizeChanger={false}
               />
             </div>
 

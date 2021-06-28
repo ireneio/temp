@@ -21,7 +21,6 @@
   "had-store": "すでにお店はありますか？",
   "go-to-login": "ログインに移動",
   "sign-up-success": "登録完了！",
-  "email-has-been-sent-1": "確認書がに送信されました",
-  "email-has-been-sent-2": "、確認書が届かない場合は、再度登録してください。",
+  "email-has-been-sent": "確認書がに送信されました {{ email }}、確認書が届かない場合は、再度登録してください。",
   "back-to-login-page": "ログインページに戻る"
 }

@@ -1,5 +1,5 @@
 // typescript import
-import { IconProps } from 'antd/lib/icon';
+import Icon from '@ant-design/icons/lib/components/Icon';
 
 // import
 import { useMemo, useEffect } from 'react';
@@ -19,7 +19,7 @@ interface FooterMenuListType {
   selectedKeys: string[];
   menuList: {
     key: string;
-    Icon: React.ComponentType<IconProps>;
+    Icon: typeof Icon;
     url: string;
     target?: string;
   }[];

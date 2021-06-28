@@ -11,23 +11,6 @@
     overflow: scroll;
   }
 
-  :global(.ant-form-item) {
-    margin: 0px;
-
-    &:not(:first-child) {
-      margin: 24px 0px 0px;
-    }
-
-    &.switch {
-      margin: 16px 0px;
-
-      span {
-        display: inline-block;
-        margin: 0px 0px 0px 8px;
-      }
-    }
-  }
-
   :global(.anticon.anticon-question-circle) {
     margin: 0px 0px 0px 5px;
   }
@@ -37,6 +20,15 @@
   display: block;
   margin: 0px 0px 8px;
   line-height: 14px;
+}
+
+.switch {
+  line-height: 32px;
+
+  :global(.ant-form-item) {
+    display: inline-block;
+    margin: 0px 8px 0px 0px;
+  }
 }
 
 .notice {

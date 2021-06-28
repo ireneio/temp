@@ -4,7 +4,12 @@ import { ColorsType } from '@meepshop/context';
 // import
 import React, { useState } from 'react';
 import moment from 'moment';
-import { Icon, Drawer } from 'antd';
+import {
+  InboxOutlined,
+  PayCircleOutlined,
+  ProfileOutlined,
+} from '@ant-design/icons';
+import { Drawer } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import Link from '@meepshop/link';
@@ -44,7 +49,7 @@ export default React.memo(
 
           <div className={styles.status}>
             <div>
-              <Icon type="pay-circle-o" />
+              <PayCircleOutlined />
 
               {t(
                 `payment.${
@@ -55,7 +60,7 @@ export default React.memo(
             </div>
 
             <div>
-              <Icon type="inbox" />
+              <InboxOutlined />
 
               {t(
                 `shipment.${
@@ -66,7 +71,7 @@ export default React.memo(
             </div>
 
             <div>
-              <Icon type="profile" />
+              <ProfileOutlined />
 
               {t(`status.${status}`)}
             </div>

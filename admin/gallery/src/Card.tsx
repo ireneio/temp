@@ -1,6 +1,6 @@
 // import
 import React from 'react';
-import { Icon } from 'antd';
+import { CheckOutlined } from '@ant-design/icons';
 
 import useHeight from './hooks/useHeight';
 import styles from './styles/card.less';
@@ -46,7 +46,7 @@ export default ({
         <div className={styles.selected}>
           <div className={styles.icon}>
             {!multiple ? (
-              <Icon type="check" />
+              <CheckOutlined />
             ) : (
               selectedImgs.findIndex(img => img.id === node.id) + 1
             )}

@@ -26,19 +26,21 @@
 
 .form {
   padding: 32px;
+}
 
-  :global(.ant-form-item-children) {
-    display: flex;
-    width: 100%;
+.formItem {
+  display: flex;
+  width: 100%;
 
-    & > *:first-child {
+  & > * {
+    &:first-child {
       width: calc(7 / 23 * 100%);
       line-height: 32px;
       text-align: right;
       padding: 0px 12px 0px 0px;
     }
 
-    & > *:last-child {
+    &:last-child {
       width: calc(16 / 23 * 100%);
     }
   }
@@ -53,10 +55,10 @@
   }
 }
 
-.seo {
-  margin: 48px 0px 0px;
-  padding: 48px 0px 0px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+.border {
+  margin: 24px 0px 48px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .tooltip {

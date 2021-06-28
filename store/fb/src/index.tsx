@@ -2,7 +2,8 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
-import { Spin, Icon } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 import { Fb as FbContext } from '@meepshop/context';
 import { version, defaultAppId } from '@meepshop/context/lib/Fb';
@@ -27,7 +28,7 @@ export default React.memo(({ children }) => {
   );
   const { fb, fbScript } = useFb(appId, version);
 
-  if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!data) return <Spin indicator={<LoadingOutlined spin />} />;
 
   return (
     <>

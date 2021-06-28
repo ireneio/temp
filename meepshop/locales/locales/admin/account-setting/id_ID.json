@@ -15,13 +15,15 @@
       "label": "Nama",
       "placeholder": "Harap masukkan nama narahubung"
     },
-    "mobile": {
-      "label": "Rincian Kontak",
-      "placeholder": "Silakan masukkan nomor ponsel yang digunakan untuk kontak"
-    },
-    "tel": {
-      "label": "Nomor kontak",
-      "placeholder": "Silakan masukkan nomor telepon untuk dihubungi"
+    "additionalInfo": {
+      "mobile": {
+        "label": "Rincian Kontak",
+        "placeholder": "Silakan masukkan nomor ponsel yang digunakan untuk kontak"
+      },
+      "tel": {
+        "label": "Nomor kontak",
+        "placeholder": "Silakan masukkan nomor telepon untuk dihubungi"
+      }
     },
     "current-password": "Kata sandi saat ini",
     "password": {

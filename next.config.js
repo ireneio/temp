@@ -1,19 +1,11 @@
 /* eslint-disable no-param-reassign */
 
-const path = require('path');
-
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 const withLess = require('@zeit/next-less');
 const withSourceMaps = require('@zeit/next-source-maps');
-
-const addBabelConfig = config => {
-  config.module.rules.find(
-    ({ use: { loader } }) => loader === 'next-babel-loader',
-  ).use.options.configFile = path.resolve(__dirname, './babel.config.js');
-};
 
 const addIEPolyfill = config => {
   const originalEntry = config.entry;
@@ -50,23 +42,6 @@ const fixCssLoaderError = config => {
   });
 };
 
-const serverCssFileSupport = config => {
-  const originalEntry = config.entry;
-
-  config.entry = async () => {
-    const entries = await originalEntry();
-
-    Object.keys(entries).forEach(filename => {
-      entries[filename] = [
-        '@meepshop/utils/lib/handleCssImport.js',
-        ...entries[filename],
-      ];
-    });
-
-    return entries;
-  };
-};
-
 module.exports = nextConfig =>
   withSourceMaps(
     withLess(
@@ -75,6 +50,9 @@ module.exports = nextConfig =>
         // FIXME: should move server folder
         distDir: '../lib',
         pageExtensions: ['js', 'ts', 'tsx'],
+        typescript: {
+          ignoreBuildErrors: true,
+        },
         lessLoaderOptions: {
           ...nextConfig.lessLoaderOptions,
           javascriptEnabled: true,
@@ -85,15 +63,12 @@ module.exports = nextConfig =>
           VERSION: process.env.VERSION || +new Date(),
           ENV: process.env.ENV || 'stage',
         },
-        webpack: (config, { dev, isServer }) => {
+        webpack: (config, { dev }) => {
           if (!dev) config.devtool = 'source-map';
 
           config.plugins.push(new MomentLocalesPlugin());
-          addBabelConfig(config);
           addIEPolyfill(config);
           fixCssLoaderError(config);
-
-          if (isServer) serverCssFileSupport(config);
 
           return config;
         },

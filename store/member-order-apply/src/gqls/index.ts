@@ -9,6 +9,7 @@ import {
 } from '@store/apollo/lib/gqls/applyForReturnOrExchangeWithOrder';
 
 import { useColumnsOrderMemberOrderApplyFragment } from './useColumns';
+import { recipientFragment } from './recipient';
 
 // definition
 export const getMemberOrderApply = gql`
@@ -19,19 +20,8 @@ export const getMemberOrderApply = gql`
         id
         orderNo
         createdAt
-        shipmentInfo {
-          list {
-            id
-            recipient {
-              name
-              mobile
-            }
-          }
-        }
-        address {
-          fullAddress
-        }
         ...useColumnsOrderMemberOrderApplyFragment
+        ...recipientFragment
         ...applyForReturnOrExchangeWithOrderOrderFragment
       }
     }
@@ -51,4 +41,5 @@ export const getMemberOrderApply = gql`
   ${applyForReturnOrExchangeWithOrderOrderApplyFragment}
   ${productsObjectTypeOrderApplyFragment}
   ${useColumnsOrderMemberOrderApplyFragment}
+  ${recipientFragment}
 `;

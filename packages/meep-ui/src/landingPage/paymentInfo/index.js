@@ -50,7 +50,6 @@ class PayemntInfo extends React.PureComponent {
     t: PropTypes.func.isRequired,
     adTrack: PropTypes.shape({}).isRequired,
     moduleId: ID_TYPE.isRequired,
-    form: PropTypes.shape({}).isRequired,
     changeChoosePayment: PropTypes.func.isRequired,
     changeChooseShipmentTemplate: PropTypes.func.isRequired,
     updateComputeOrderList: PropTypes.func.isRequired,
@@ -151,16 +150,18 @@ class PayemntInfo extends React.PureComponent {
   };
 
   fetchFirst = () => {
-    const { form, variants, addition } = this.props;
+    const {
+      form: { getFieldValue, setFieldsValue },
+      variants,
+      addition,
+    } = this.props;
     const { productId } = this.state;
-
-    const { getFieldValue, setFieldsValue } = form;
     const variant = getFieldValue('variant');
 
     if (variants.length === 1) {
       const [{ id: variantId }] = variants;
 
-      setFieldsValue({ variant: [variantId] });
+      setFieldsValue([{ name: 'variant', value: [variantId] }]);
       this.getVariantPrice([variantId], true);
       this.scrollToLandingPage();
 
@@ -174,13 +175,16 @@ class PayemntInfo extends React.PureComponent {
   };
 
   scrollToLandingPage = () => {
-    const { form, moduleId } = this.props;
+    const {
+      form: { getFieldsValue },
+      moduleId,
+    } = this.props;
     const { y } = getElementPosition(
       document.querySelector(`.landingPage-${moduleId}`),
     );
 
     if (y <= 0 && !this.isTracked) {
-      this.trackAddToCart(form.getFieldsValue(), () =>
+      this.trackAddToCart(getFieldsValue(true), () =>
         window.removeEventListener('scroll', this.scrollToLandingPage),
       );
     }
@@ -212,15 +216,14 @@ class PayemntInfo extends React.PureComponent {
 
   computeOrderList = async (fieldsValue = {}) => {
     const {
+      form: { getFieldValue },
       getData,
-      form,
       paymentFilter,
       shipmentFilter,
       updateComputeOrderList,
       addition,
     } = this.props;
     const { productId } = this.state;
-    const { getFieldValue } = form;
     const [variant = [], quantity, paymentId, shipmentId, coupon] = [
       'variant',
       'quantity',
@@ -292,11 +295,13 @@ class PayemntInfo extends React.PureComponent {
   };
 
   checkQuantity = quantity => {
-    const { form } = this.props;
+    const {
+      form: { getFieldValue },
+    } = this.props;
     const { variantMin, variantMax } = this.state;
 
     clearTimeout(this.checkQuantityTimeout);
-    this.trackAddToCart({ variant: form.getFieldValue('variant'), quantity });
+    this.trackAddToCart({ variant: getFieldValue('variant'), quantity });
 
     if (variantMin <= quantity && quantity <= variantMax) {
       this.checkQuantityTimeout = setTimeout(() => {
@@ -316,7 +321,6 @@ class PayemntInfo extends React.PureComponent {
       title,
       variants,
       variantsTree,
-      form,
       addition,
     } = this.props;
     const {
@@ -329,82 +333,84 @@ class PayemntInfo extends React.PureComponent {
       productInfo,
     } = this.state;
 
-    const { getFieldDecorator } = form;
-
     return (
       <div style={blockStyle}>
         <h3 style={titleStyle(colors)}>{t('select-product-payment')}</h3>
 
-        <FormItem style={formItemStyle}>
-          {getFieldDecorator('variant', {
-            rules: [
-              {
-                type: 'array',
-                required: true,
-                message: t('select-product'),
-              },
-            ],
-          })(
-            variants.length === 1 ? (
-              <Select disabled>
-                <Option value={variants[0].id}>
-                  {title[i18n.language] || title.zh_TW}
-                </Option>
-              </Select>
-            ) : (
-              <Cascader
-                placeholder={
-                  title
-                    ? title[i18n.language] || title.zh_TW
-                    : t('select-product')
-                }
-                options={variantOptions}
-                disabled={variantsTree.children.length === 0}
-                displayRender={label =>
-                  label.length === 0
-                    ? ''
-                    : `${
-                        title ? title[i18n.language] || title.zh_TW : ''
-                      } ${label.join(' / ')}`
-                }
-                allowClear={false}
-                onChange={variantIds => this.getVariantPrice(variantIds)}
-              />
-            ),
+        <FormItem
+          style={formItemStyle}
+          name={['variant']}
+          rules={[
+            {
+              type: 'array',
+              required: true,
+              message: t('select-product'),
+            },
+          ]}
+        >
+          {variants.length === 1 ? (
+            <Select disabled>
+              <Option value={variants[0].id}>
+                {title[i18n.language] || title.zh_TW}
+              </Option>
+            </Select>
+          ) : (
+            <Cascader
+              placeholder={
+                title
+                  ? title[i18n.language] || title.zh_TW
+                  : t('select-product')
+              }
+              options={variantOptions}
+              disabled={variantsTree.children.length === 0}
+              displayRender={label =>
+                label.length === 0
+                  ? ''
+                  : `${
+                      title ? title[i18n.language] || title.zh_TW : ''
+                    } ${label.join(' / ')}`
+              }
+              allowClear={false}
+              onChange={variantIds => this.getVariantPrice(variantIds)}
+            />
           )}
         </FormItem>
 
         {!addition.includes('quantity') ||
         variantMax === 0 ||
         variantMax < variantMin ? null : (
-          <FormItem style={formItemStyle}>
-            {getFieldDecorator('quantity', {
-              rules: [
-                {
-                  required: true,
-                  type: 'number',
-                  message: t('is-required'),
-                },
-              ],
-            })(
-              <InputNumber
-                placeholder={`${t('quantity')} (${variantMin} ~ ${variantMax})`}
-                min={variantMin}
-                max={variantMax}
-                onChange={this.checkQuantity}
-              />,
-            )}
+          <FormItem
+            style={formItemStyle}
+            name={['quantity']}
+            rules={[
+              {
+                required: true,
+                type: 'number',
+                message: t('is-required'),
+              },
+            ]}
+          >
+            <InputNumber
+              placeholder={`${t('quantity')} (${variantMin} ~ ${variantMax})`}
+              min={variantMin}
+              max={variantMax}
+              onChange={this.checkQuantity}
+            />
           </FormItem>
         )}
 
-        <PaymentDefaultFormItem
-          style={formItemStyle}
-          form={form}
-          computeOrderList={this.computeOrderList}
-          paymentList={paymentList}
-          shipmentList={shipmentList}
-          couponInfo={couponInfo}
-        />
+        <FormItem shouldUpdate noStyle>
+          {form => (
+            <PaymentDefaultFormItem
+              style={formItemStyle}
+              form={form}
+              computeOrderList={this.computeOrderList}
+              paymentList={paymentList}
+              shipmentList={shipmentList}
+              couponInfo={couponInfo}
+            />
+          )}
+        </FormItem>
 
         {!productInfo ? null : <PriceInfo {...productInfo} />}
       </div>

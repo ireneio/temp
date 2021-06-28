@@ -3,7 +3,8 @@ import { NextPage } from 'next';
 
 // import
 import React from 'react';
-import { Spin, Icon } from 'antd';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 import { filter } from 'graphql-anywhere';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -53,7 +54,7 @@ const Redirects: NextPage<PropsType> = React.memo(() => {
     ),
   );
 
-  if (!data) return <Spin indicator={<Icon type="loading" spin />} />;
+  if (!data) return <Spin indicator={<LoadingOutlined spin />} />;
 
   return (
     <Header
@@ -76,7 +77,7 @@ const Redirects: NextPage<PropsType> = React.memo(() => {
           className={styles.addBtn}
         >
           {t('actions.add')}
-          <Icon type="plus" />
+          <PlusOutlined />
         </Modal>
       }
     >

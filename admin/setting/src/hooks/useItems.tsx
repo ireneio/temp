@@ -1,9 +1,9 @@
 // typescript import
-import { IconProps } from 'antd/lib/icon';
+import Icon from '@ant-design/icons/lib/components/Icon';
 
 // import
 import React, { useMemo } from 'react';
-import { Icon } from 'antd';
+import { ClusterOutlined } from '@ant-design/icons';
 
 import {
   ShopOutlineIcon,
@@ -24,7 +24,7 @@ import { useItemsFragment as useItemsFragmentType } from '@meepshop/types/gqls/a
 export interface ItemType {
   item: string;
   path: string;
-  Icon: React.MemoExoticComponent<(props: IconProps) => React.ReactElement>;
+  Icon: typeof Icon;
   auth: boolean;
 }
 
@@ -98,7 +98,7 @@ export default (
         {
           item: 'redirects',
           path: '/setting/redirects',
-          Icon: React.memo(() => <Icon type="cluster" />),
+          Icon: React.memo(() => <ClusterOutlined />),
           auth: isMerchant,
         },
         {

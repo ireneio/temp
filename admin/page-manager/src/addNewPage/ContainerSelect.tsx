@@ -1,6 +1,6 @@
 // import
 import React from 'react';
-import { Icon as AntdIcon } from 'antd';
+import { CheckCircleFilled } from '@ant-design/icons';
 
 import { useTranslation } from '@meepshop/locales';
 import {
@@ -56,9 +56,7 @@ const ContainerSelect = React.memo(
             }`}
             onClick={() => onChange?.(itemValue)}
           >
-            {value !== itemValue ? null : (
-              <AntdIcon type="check-circle" theme="filled" />
-            )}
+            {value !== itemValue ? null : <CheckCircleFilled />}
 
             <img className={styles.icon} src={src} alt={itemValue} />
 

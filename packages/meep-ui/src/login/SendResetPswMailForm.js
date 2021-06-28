@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { Button, Form, Input, notification } from 'antd';
+import { Form, Button, Input, notification } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
@@ -13,7 +13,6 @@ import { COLOR_TYPE } from 'constants/propTypes';
 
 const FormItem = Form.Item;
 
-@Form.create()
 @withTranslation('login')
 @withHook(() => ({
   validateEmail: useValidateEmail(),
@@ -30,55 +29,45 @@ export default class SendResetPswMailForm extends React.PureComponent {
     t: PropTypes.func.isRequired,
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
+  finish = ({ email }) => {
+    const { t, cname } = this.props;
 
-    const {
-      t,
-      cname,
-      form: { validateFields },
-    } = this.props;
-
-    validateFields((err, { email }) => {
-      if (err) return;
-
-      initApollo({ name: 'store' }).mutate({
-        mutation: gql`
-          mutation sendResetPasswordEmailFromLogin(
-            $input: SendResetPasswordEmailInput!
-          ) {
-            sendResetPasswordEmail(input: $input) {
-              status
-            }
+    initApollo({ name: 'store' }).mutate({
+      mutation: gql`
+        mutation sendResetPasswordEmailFromLogin(
+          $input: SendResetPasswordEmailInput!
+        ) {
+          sendResetPasswordEmail(input: $input) {
+            status
           }
-        `,
-        variables: {
-          input: { email, cname, type: 'SHOPPER' },
-        },
-        update: (cache, { data: { sendResetPasswordEmail } }) => {
-          switch (sendResetPasswordEmail.status) {
-            case 'OK':
-              notification.success({
-                message: t('ducks:forget-password-success'),
-              });
-              break;
+        }
+      `,
+      variables: {
+        input: { email, cname, type: 'SHOPPER' },
+      },
+      update: (cache, { data: { sendResetPasswordEmail } }) => {
+        switch (sendResetPasswordEmail.status) {
+          case 'OK':
+            notification.success({
+              message: t('ducks:forget-password-success'),
+            });
+            break;
 
-            case 'FAIL_CANNOT_FIND_USER':
-              notification.error({
-                message: t('ducks:forget-password-failure-message'),
-                description: t('ducks:cannot-find-user'),
-              });
-              break;
+          case 'FAIL_CANNOT_FIND_USER':
+            notification.error({
+              message: t('ducks:forget-password-failure-message'),
+              description: t('ducks:cannot-find-user'),
+            });
+            break;
 
-            default:
-              notification.error({
-                message: t('ducks:forget-password-failure-message'),
-                description: sendResetPasswordEmail.status,
-              });
-              break;
-          }
-        },
-      });
+          default:
+            notification.error({
+              message: t('ducks:forget-password-failure-message'),
+              description: sendResetPasswordEmail.status,
+            });
+            break;
+        }
+      },
     });
   };
 
@@ -88,29 +77,29 @@ export default class SendResetPswMailForm extends React.PureComponent {
       colors,
 
       /** props */
-      form: { getFieldDecorator },
       t,
       validateEmail,
     } = this.props;
 
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form onFinish={this.finish}>
         <h3>{t('forget-password')}</h3>
 
-        <FormItem>
-          {getFieldDecorator('email', {
-            rules: [
-              {
-                required: true,
-                message: t('email-is-required'),
-              },
-              {
-                validator: validateEmail.validator,
-              },
-            ],
-            validateTrigger: 'onBlur',
-            normalize: validateEmail.normalize,
-          })(<Input placeholder={t('email-placeholder')} size="large" />)}
+        <FormItem
+          name={['email']}
+          rules={[
+            {
+              required: true,
+              message: t('email-is-required'),
+            },
+            {
+              validator: validateEmail.validator,
+            },
+          ]}
+          normalize={validateEmail.normalize}
+          validateTrigger="onBlur"
+        >
+          <Input placeholder={t('email-placeholder')} size="large" />
         </FormItem>
 
         <div className="button-group">

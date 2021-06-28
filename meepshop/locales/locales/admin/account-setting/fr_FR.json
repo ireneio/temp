@@ -15,13 +15,15 @@
       "label": "prénom",
       "placeholder": "Veuillez saisir le nom de la personne de contact"
     },
-    "mobile": {
-      "label": "Détails du contact",
-      "placeholder": "Veuillez saisir le numéro de téléphone mobile utilisé pour le contact"
-    },
-    "tel": {
-      "label": "Numéro de contact",
-      "placeholder": "Veuillez entrer le numéro de téléphone pour le contact"
+    "additionalInfo": {
+      "mobile": {
+        "label": "Détails du contact",
+        "placeholder": "Veuillez saisir le numéro de téléphone mobile utilisé pour le contact"
+      },
+      "tel": {
+        "label": "Numéro de contact",
+        "placeholder": "Veuillez entrer le numéro de téléphone pour le contact"
+      }
     },
     "current-password": "Mot de passe actuel",
     "password": {

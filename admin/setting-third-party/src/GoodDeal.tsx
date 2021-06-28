@@ -1,6 +1,3 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
-
 // import
 import React from 'react';
 import { Form, Input } from 'antd';
@@ -13,17 +10,15 @@ import styles from './styles/goodDeal.less';
 import { goodDealFragment as goodDealFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
-interface PropsType extends FormComponentProps {
+interface PropsType {
   storeGoodDealSettings: goodDealFragmentType;
 }
 
 // definition
 const { Item: FormItem } = Form;
+
 export default React.memo(
-  ({
-    form: { getFieldDecorator },
-    storeGoodDealSettings: { corporationId, apiKey },
-  }: PropsType) => {
+  ({ storeGoodDealSettings: { corporationId, apiKey } }: PropsType) => {
     const { t } = useTranslation('setting-third-party');
 
     return (
@@ -34,16 +29,19 @@ export default React.memo(
               <div key={key}>
                 <div className={styles.title}>{t(`goodDeal.${key}.title`)}</div>
 
-                <FormItem>
-                  {getFieldDecorator(`goodDeal.${key}`, {
-                    initialValue: {
+                <FormItem
+                  name={['goodDeal', key]}
+                  initialValue={
+                    {
                       corporationId,
                       apiKey,
-                    }[key],
-                    rules: [{ required: true, message: t('required') }],
-                    validateTrigger: 'onBlur',
-                    preserve: true,
-                  })(<Input placeholder={t(`goodDeal.${key}.placeholder`)} />)}
+                    }[key]
+                  }
+                  rules={[{ required: true, message: t('required') }]}
+                  validateTrigger="onBlur"
+                  preserve
+                >
+                  <Input placeholder={t(`goodDeal.${key}.placeholder`)} />
                 </FormItem>
               </div>
             ),

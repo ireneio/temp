@@ -17,10 +17,12 @@
     "refund": "Silakan pilih item",
     "exchange": "Silakan pilih item dan masukkan info penerima"
   },
-  "recipient": {
+  "replaceRecipient": {
     "title": "Info Penerima",
     "name": "Nama lengkap",
     "mobile": "Mobile",
-    "address": "Alamat"
+    "address": {
+      "streetAddress": "Alamat"
+    }
   }
 }

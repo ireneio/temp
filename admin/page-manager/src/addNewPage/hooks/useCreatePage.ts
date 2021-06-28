@@ -1,18 +1,22 @@
 // typescript import
 import { DataProxy } from 'apollo-cache';
-import { MutationTuple } from '@apollo/react-hooks';
 
 // import
+import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { message } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
+import { useRouter } from '@meepshop/link';
 
 // graphql typescript
 import {
   getPages_viewer_store_homePages_edges as getPagesViewerStoreHomePagesEdges,
   createPage as createPageType,
   createPageVariables,
+  PageTypeEnum,
+  PageTemplateTypeEnum,
+  usePagesPageFragment as usePagesPageFragmentType,
   useCreatePageReadCache as useCreatePageReadCacheType,
   useCreatePageReadCacheVariables,
 } from '@meepshop/types/gqls/admin';
@@ -20,11 +24,22 @@ import {
 // graphql import
 import { useCreatePageReadCache, createPage } from '../gqls/useCreatePage';
 
+// typescript definition
+interface ValuesType {
+  title: string;
+  path: string;
+  tabTitle: string;
+  templateType: PageTemplateTypeEnum;
+  useBottom: boolean;
+}
+
 // definition
 export default (
+  pageType: usePagesPageFragmentType['pageType'],
   variables: useCreatePageReadCacheVariables,
-): MutationTuple<createPageType, createPageVariables>[0] => {
+): ((values: ValuesType) => void) => {
   const { t } = useTranslation('page-manager');
+  const router = useRouter();
   const [mutation] = useMutation<createPageType, createPageVariables>(
     createPage,
     {
@@ -93,9 +108,22 @@ export default (
           },
           variables,
         });
+        router.push(`/page-manager/edit/${newPage?.node.id}`);
       },
     },
   );
 
-  return mutation;
+  return useCallback(
+    input => {
+      mutation({
+        variables: {
+          input: {
+            ...input,
+            type: (pageType?.toUpperCase() || 'HOME') as PageTypeEnum,
+          },
+        },
+      });
+    },
+    [pageType, mutation],
+  );
 };

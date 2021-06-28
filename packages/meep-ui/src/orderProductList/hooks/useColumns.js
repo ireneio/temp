@@ -1,5 +1,6 @@
 import React, { useMemo, useContext, useCallback } from 'react';
-import { Tag, Icon, notification } from 'antd';
+import { TagOutlined } from '@ant-design/icons';
+import { Tag, notification } from 'antd';
 import transformColor from 'color';
 
 import { useTranslation } from '@meepshop/locales';
@@ -55,7 +56,7 @@ export default ({ productHasError, updateCart, onChange }) => {
   return useMemo(
     () => [
       {
-        dataIndex: 'coverImage.scaledSrc.w120',
+        dataIndex: ['coverImage', 'scaledSrc', 'w120'],
         width: 80,
         render: (src, { productId, type, error }) => (
           <Link
@@ -79,7 +80,7 @@ export default ({ productHasError, updateCart, onChange }) => {
         ),
       },
       {
-        dataIndex: 'title',
+        dataIndex: ['title'],
         width: '100%',
         render: (
           title,
@@ -136,7 +137,7 @@ export default ({ productHasError, updateCart, onChange }) => {
                       }}
                       color={transformColor(colors[5]).alpha(0.3)}
                     >
-                      <Icon type="tag" />
+                      <TagOutlined />
 
                       <span>
                         {activityTitle[i18n.language] || activityTitle.zh_TW}
@@ -195,7 +196,7 @@ export default ({ productHasError, updateCart, onChange }) => {
         },
       },
       {
-        dataIndex: 'quantity',
+        dataIndex: ['quantity'],
         render: (quantity, { error, type, cartId, ...variant }) => {
           if (error || type !== 'product') return null;
 
@@ -217,7 +218,7 @@ export default ({ productHasError, updateCart, onChange }) => {
         },
       },
       {
-        dataIndex: 'cartId',
+        dataIndex: ['cartId'],
         render: (cartId, { type, error }) => (
           <div
             className={type === 'product' ? '' : styles.gift}

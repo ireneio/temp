@@ -4,7 +4,8 @@ import { SelectedPlanType } from './hooks/usePayment';
 
 // import
 import React, { useState } from 'react';
-import { Popover, Icon, Button } from 'antd';
+import { StarFilled } from '@ant-design/icons';
+import { Popover, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { planBlueBackground, planGoldBackground } from '@meepshop/images';
@@ -60,7 +61,7 @@ export default React.memo(({ data, setPlan }: PropsType) => {
             overlayClassName={styles.popover}
             content={
               <>
-                <Icon type="star" theme="filled" />
+                <StarFilled />
                 <div>{t('plan.yearly-payment-tips')}</div>
               </>
             }
@@ -125,7 +126,7 @@ export default React.memo(({ data, setPlan }: PropsType) => {
             overlayClassName={styles.popover}
             content={
               <>
-                <Icon type="star" theme="filled" />
+                <StarFilled />
                 <div>{t('plan.appointment-tips')}</div>
               </>
             }

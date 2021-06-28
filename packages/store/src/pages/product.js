@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 import { isEmpty } from 'fbjs';
-import { Spin, Icon } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
 
@@ -72,8 +73,7 @@ class Product extends React.Component {
     /* Display Error View */
     if (error) return <Error error={error} />;
 
-    if (isEmpty(product))
-      return <Spin indicator={<Icon type="loading" spin />} />;
+    if (isEmpty(product)) return <Spin indicator={<LoadingOutlined spin />} />;
 
     const {
       storeSetting: { storeName, storeDescription, faviconUrl },

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Select, DatePicker } from 'antd';
-import { isAlpha } from 'validator';
+import { isAlpha, isLength } from 'validator';
 
 import { withTranslation } from '@meepshop/locales';
 import { useValidateEmail } from '@meepshop/validator';
@@ -47,11 +47,6 @@ export default class ReceiverInfo extends React.PureComponent {
     t: PropTypes.func.isRequired,
     choosePaymentTemplate: PAYMENT_TEMPLATE_TYPE,
     chooseShipmentTemplate: SHIPMENT_TEMPLATE_TYPE,
-    form: PropTypes.shape({
-      // from LandingPage Form.create()
-      getFieldError: PropTypes.func.isRequired,
-      getFieldDecorator: PropTypes.func.isRequired,
-    }).isRequired,
 
     /** moduleProps */
     addition: ADDITION_TYPE.isRequired,
@@ -67,20 +62,50 @@ export default class ReceiverInfo extends React.PureComponent {
 
   componentDidUpdate() {
     const {
+      form: { getFieldValue, validateFields },
       chooseShipmentTemplate,
-      form: { validateFields, getFieldValue },
     } = this.props;
 
     if (
       chooseShipmentTemplate !== this.checkedTemplate &&
-      getFieldValue('name')
+      getFieldValue(['name'])
     ) {
-      validateFields(['name'], {
-        force: true,
-      });
+      validateFields(['name']);
       this.checkedTemplate = chooseShipmentTemplate;
     }
   }
+
+  validateName = async (_, value) => {
+    const { t, chooseShipmentTemplate } = this.props;
+
+    if (!value) return;
+
+    switch (chooseShipmentTemplate) {
+      case 'ezship':
+        if (value.length > 60)
+          throw new Error(t('name-too-long', { amount: 60 }));
+        break;
+
+      case 'gmo':
+        if (value.length > 10)
+          throw new Error(t('name-too-long', { amount: 10 }));
+        break;
+
+      case 'allpay':
+        if (/[\^'`!@#%&*+$~\-(){}\\"<>|_[\] ,，\d]/.test(value))
+          throw new Error(t('allpay-name-too-long'));
+
+        if (isAlpha(value)) {
+          if (!isLength(value, { min: 4, max: 10 }))
+            throw new Error(t('allpay-name-too-long'));
+        } else if (!isLength(value, { min: 2, max: 5 }))
+          throw new Error(t('allpay-name-too-long'));
+        break;
+
+      default:
+        break;
+    }
+  };
 
   render() {
     const {
@@ -93,141 +118,116 @@ export default class ReceiverInfo extends React.PureComponent {
       choosePaymentTemplate,
       chooseShipmentTemplate,
       shippableCountries,
-      form,
       addition,
       required,
       validateEmail,
     } = this.props;
-    const { getFieldDecorator } = form;
 
     return (
       <div style={blockStyle}>
         <h3 style={titleStyle(colors)}>{t('receiver-info')}</h3>
 
         <div style={styles.nameRoot}>
-          <FormItem style={formItemStyle}>
-            {getFieldDecorator('name', {
-              validateFirst: true,
-              rules: [
-                {
-                  required: true,
-                  message: t('is-required'),
-                },
-                {
-                  validator: (rule, value, callback) => {
-                    if (!value) callback();
-
-                    switch (chooseShipmentTemplate) {
-                      case 'ezship':
-                        return callback(
-                          value.length > 60
-                            ? t('name-too-long', { amount: 60 })
-                            : undefined,
-                        );
-
-                      case 'gmo':
-                        return callback(
-                          value.length > 10
-                            ? t('name-too-long', { amount: 10 })
-                            : undefined,
-                        );
-
-                      case 'allpay':
-                        return callback(
-                          /[\^'`!@#%&*+$~\-(){}\\"<>|_[\] ,，\d]/.test(value) ||
-                            (isAlpha(value)
-                              ? value.length > 10 || value.length < 4
-                              : value.length > 5 || value.length < 2)
-                            ? t('allpay-name-too-long')
-                            : undefined,
-                        );
-
-                      default:
-                        return callback();
-                    }
-                  },
-                },
-              ],
-            })(<Input placeholder={t('receiver')} />)}
+          <FormItem
+            style={formItemStyle}
+            name={['name']}
+            rules={[
+              {
+                required: true,
+                message: t('is-required'),
+              },
+              {
+                validator: this.validateName,
+              },
+            ]}
+            validateFirst
+          >
+            <Input placeholder={t('receiver')} />
           </FormItem>
 
           {!addition.includes('gender') ? null : (
-            <FormItem style={{ ...formItemStyle, ...styles.gender }}>
-              {getFieldDecorator('gender', {
-                rules: [
-                  {
-                    required: required.includes('gender'),
-                    message: t('is-required'),
-                  },
-                ],
-              })(
-                <Select placeholder={t('gender')}>
-                  {['male', 'female'].map((name, index) => (
-                    <Option key={name} value={index}>
-                      {t(name)}
-                    </Option>
-                  ))}
-                </Select>,
-              )}
+            <FormItem
+              style={{ ...formItemStyle, ...styles.gender }}
+              name={['gender']}
+              rules={[
+                {
+                  required: required.includes('gender'),
+                  message: t('is-required'),
+                },
+              ]}
+            >
+              <Select placeholder={t('gender')}>
+                {['male', 'female'].map((name, index) => (
+                  <Option key={name} value={index}>
+                    {t(name)}
+                  </Option>
+                ))}
+              </Select>
             </FormItem>
           )}
         </div>
 
         {!addition.includes('birthday') ? null : (
-          <FormItem style={formItemStyle}>
-            {getFieldDecorator('birthday', {
-              rules: [
-                {
-                  required: required.includes('birthday'),
-                  message: t('is-required'),
-                },
-              ],
-            })(
-              <DatePicker
-                style={styles.birthday}
-                placeholder={t('birthday')}
-              />,
-            )}
+          <FormItem
+            style={formItemStyle}
+            name={['birthday']}
+            rules={[
+              {
+                required: required.includes('birthday'),
+                message: t('is-required'),
+              },
+            ]}
+          >
+            <DatePicker style={styles.birthday} placeholder={t('birthday')} />
           </FormItem>
         )}
 
         {isLogin !== NOTLOGIN ? null : (
-          <FormItem style={formItemStyle}>
-            {getFieldDecorator('userEmail', {
-              rules: [
-                {
-                  required: true,
-                  message: t('is-required'),
-                },
-                {
-                  validator: validateEmail.validator,
-                },
-              ],
-              normalize: validateEmail.normalize,
-            })(<Input placeholder={t('email')} />)}
+          <FormItem
+            style={formItemStyle}
+            name={['userEmail']}
+            rules={[
+              {
+                required: true,
+                message: t('is-required'),
+              },
+              {
+                validator: validateEmail.validator,
+              },
+            ]}
+            normalize={validateEmail.normalize}
+          >
+            <Input placeholder={t('email')} />
           </FormItem>
         )}
 
-        <ReceiverDefaultFormItem
-          style={formItemStyle}
-          form={form}
-          chooseShipmentTemplate={chooseShipmentTemplate}
-          shippableCountries={shippableCountries}
-          invoiceIsNeeded={
-            addition.includes('invoice') && choosePaymentTemplate !== 'paypal'
-          }
-        />
+        <FormItem shouldUpdate noStyle>
+          {form => (
+            <ReceiverDefaultFormItem
+              style={formItemStyle}
+              form={form}
+              chooseShipmentTemplate={chooseShipmentTemplate}
+              shippableCountries={shippableCountries}
+              invoiceIsNeeded={
+                addition.includes('invoice') &&
+                choosePaymentTemplate !== 'paypal'
+              }
+            />
+          )}
+        </FormItem>
 
         {!addition.includes('notes') ? null : (
-          <FormItem style={formItemStyle}>
-            {getFieldDecorator('notes', {
-              rules: [
-                {
-                  required: required.includes('notes'),
-                  message: t('is-required'),
-                },
-              ],
-            })(<TextArea placeholder={t('notes')} rows={4} />)}
+          <FormItem
+            style={formItemStyle}
+            name={['notes']}
+            rules={[
+              {
+                required: required.includes('notes'),
+                message: t('is-required'),
+              },
+            ]}
+          >
+            <TextArea placeholder={t('notes')} rows={4} />
           </FormItem>
         )}
       </div>

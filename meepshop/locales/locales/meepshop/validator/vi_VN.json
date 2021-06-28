@@ -3,5 +3,8 @@
     "invalid-format": "Email chưa đúng",
     "use-lowercase-letters": "@ Vui lòng sử dụng chữ thường",
     "already-exists": "Hộp thư này đã được đăng ký"
+  },
+  "page-path": {
+    "same-path": "Tên trang web trùng lặp"
   }
 }

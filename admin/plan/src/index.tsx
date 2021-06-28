@@ -3,7 +3,7 @@ import { SelectedPlanType } from './hooks/usePayment';
 
 // import
 import React, { useState } from 'react';
-import { Icon } from 'antd';
+import { LeftOutlined } from '@ant-design/icons';
 
 import Link from '@meepshop/link';
 
@@ -35,7 +35,7 @@ export default React.memo(({ backTo, title, description }: PropsType) => {
             {!backTo ? null : (
               <Link href={backTo.path}>
                 <a href={backTo.path}>
-                  <Icon type="left" />
+                  <LeftOutlined />
                   {backTo.name}
                 </a>
               </Link>

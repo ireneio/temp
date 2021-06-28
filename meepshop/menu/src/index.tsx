@@ -1,7 +1,8 @@
 // import
 import React, { useContext } from 'react';
 import { filter } from 'graphql-anywhere';
-import { Menu, Icon } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+import { Menu } from 'antd';
 import transformColor from 'color';
 
 import { Colors as ColorsContext } from '@meepshop/context';
@@ -75,11 +76,10 @@ export default React.memo(({ menu, cart, viewer }: menuMenuModuleFragment) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore antd does not include rc-menu typescript
         expandIcon={({ isOpen }) => (
-          <Icon
+          <DownOutlined
             className={`${styles.icon} ${
               isOpen ? styles.opened : styles.closed
             }`}
-            type="down"
           />
         )}
       >

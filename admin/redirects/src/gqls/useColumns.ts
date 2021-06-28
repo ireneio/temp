@@ -1,8 +1,10 @@
 // import
 import gql from 'graphql-tag';
 
-// definition
+// graphql import
+import { useDeleteRoutingRuleFragment } from './useDeleteRoutingRule';
 
+// definition
 export const useColumnsRoutingRuleFragment = gql`
   fragment useColumnsRoutingRuleFragment on RoutingRule {
     id
@@ -20,6 +22,9 @@ export const useColumnsStoreFragment = gql`
       id
       ...useColumnsRoutingRuleFragment
     }
+    ...useDeleteRoutingRuleFragment
   }
+
   ${useColumnsRoutingRuleFragment}
+  ${useDeleteRoutingRuleFragment}
 `;

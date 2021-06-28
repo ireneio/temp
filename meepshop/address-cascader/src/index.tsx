@@ -1,6 +1,3 @@
-// typescript import
-import { ValidationRule } from 'antd/lib/form';
-
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
@@ -29,7 +26,7 @@ import { useOptionsAddressServiceFragment } from './gqls/useOptions';
 export interface PropsType {
   forwardedRef: React.Ref<HTMLDivElement>;
   className?: string;
-  size?: 'small' | 'default' | 'large';
+  size?: 'small' | 'middle' | 'large';
   placeholder: [string, string];
   shippableCountries: Pick<getCountriesAddressAddressServiceCountries, 'id'>[];
   value?: {
@@ -42,7 +39,7 @@ export interface PropsType {
 
 // definition
 export const validateAddressCascader = (message: string) => (
-  _: ValidationRule,
+  _: unknown,
   value: { address?: string[]; zipCode?: string },
   callback: (message?: string) => void,
 ) => {
@@ -97,7 +94,7 @@ const AddressCascader = React.memo(
             // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore FIXME: antd type error
             onBlur={() => onBlur?.(value)}
-            onChange={newAddress =>
+            onChange={(newAddress: string[]) =>
               onChange?.({
                 address:
                   !isOnlyOneOption || newAddress.length === 0

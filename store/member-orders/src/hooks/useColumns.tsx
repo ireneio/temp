@@ -31,14 +31,14 @@ export default (): ColumnProps<useColumnsOrdersFragment>[] => {
     () => [
       {
         title: t('date'),
-        dataIndex: 'node.createdAt',
+        dataIndex: ['node', 'createdAt'],
         render: (value: useColumnsOrdersFragmentNode['createdAt']) =>
           moment(value).format('YYYY/MM/DD'),
         width: 130,
       },
       {
         title: t('order.no'),
-        dataIndex: 'node.orderNo',
+        dataIndex: ['node', 'orderNo'],
         render: (
           value: useColumnsOrdersFragmentNode['orderNo'],
           { node: { id } }: useColumnsOrdersFragment,
@@ -51,35 +51,35 @@ export default (): ColumnProps<useColumnsOrdersFragment>[] => {
       },
       {
         title: t('payment.title'),
-        dataIndex: 'node.paymentInfo.status',
+        dataIndex: ['node', 'paymentInfo', 'status'],
         render: (value: useColumnsOrdersFragmentNodePaymentInfo['status']) =>
           t(`payment.${value}`),
         width: 130,
       },
       {
         title: t('shipment.title'),
-        dataIndex: 'node.shipmentInfo.status',
+        dataIndex: ['node', 'shipmentInfo', 'status'],
         render: (value: useColumnsOrdersFragmentNodeShipmentInfo['status']) =>
           t(`shipment.${value}`),
         width: 130,
       },
       {
         title: t('status.title'),
-        dataIndex: 'node.status',
+        dataIndex: ['node', 'status'],
         render: (value: useColumnsOrdersFragmentNode['status']) =>
           t(`status.${value}`),
         width: 130,
       },
       {
         key: 'action',
-        dataIndex: 'node',
+        dataIndex: ['node'],
         render: (value: useColumnsOrdersFragmentNode) => (
           <Actions order={filter(actionsFragment, value)} />
         ),
       },
       {
         key: 'mobileStyle',
-        dataIndex: 'node',
+        dataIndex: ['node'],
         render: (value: useColumnsOrdersFragmentNode) => (
           <MobileColumn {...value}>
             <Actions order={filter(actionsFragment, value)} />

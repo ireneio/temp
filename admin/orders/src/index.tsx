@@ -5,7 +5,12 @@ import { OrdersQueryResult } from './constants';
 
 // import
 import React, { useState, useEffect, useRef } from 'react';
-import { Dropdown, Menu, Icon, Input, Spin, Button } from 'antd';
+import {
+  DownOutlined,
+  LoadingOutlined,
+  ProfileOutlined,
+} from '@ant-design/icons';
+import { Dropdown, Menu, Input, Spin, Button } from 'antd';
 import { filter } from 'graphql-anywhere';
 
 import { useRouter } from '@meepshop/link';
@@ -24,10 +29,7 @@ import useOrdersMenu from './hooks/useOrdersMenu';
 import styles from './styles/index.less';
 
 // graphql typescript
-import {
-  useOrdersColumnsFragment_edges as useOrdersColumnsFragmentEdgesType,
-  EcfitSentStatusEnum,
-} from '@meepshop/types/gqls/admin';
+import { useOrdersColumnsFragment_edges as useOrdersColumnsFragmentEdgesType } from '@meepshop/types/gqls/admin';
 
 // graphql import
 import {
@@ -44,11 +46,12 @@ import {
 interface PropsType extends OrdersQueryResult {
   pageId: string;
   reset: () => void;
+  getColumns?: (columns: ColumnProps<unknown>[]) => ColumnProps<unknown>[];
   extraColumns?: ColumnProps<unknown>[];
   ecpayColumn?: ColumnProps<unknown>;
   runningIds: string[];
   submitOrders: (selectedIds: string[]) => Promise<void>;
-  ecfitSentStatus?: EcfitSentStatusEnum | null;
+  disabledSend?: boolean;
   children?: React.ReactElement;
 }
 
@@ -64,11 +67,10 @@ export default React.memo(
     fetchMore,
     refetch,
     reset,
-    extraColumns,
-    ecpayColumn,
+    getColumns,
     runningIds,
     submitOrders,
-    ecfitSentStatus,
+    disabledSend,
     children,
   }: PropsType): React.ReactElement => {
     const router = useRouter();
@@ -96,7 +98,7 @@ export default React.memo(
       refetch,
     });
 
-    const columns = useOrdersColumns(pageId, extraColumns, ecpayColumn);
+    const columns = useOrdersColumns(pageId, getColumns);
     const ordersMenu = useOrdersMenu(
       data?.viewer?.store?.storeEcfitSettings?.isEnabled || false,
     );
@@ -106,7 +108,7 @@ export default React.memo(
     }, [variables]);
 
     if (!orders || !storePayments || !storeShipments)
-      return <Spin indicator={<Icon type="loading" spin />} />;
+      return <Spin indicator={<LoadingOutlined spin />} />;
 
     const { first: pageSize } = variables;
     const {
@@ -125,10 +127,10 @@ export default React.memo(
               <Dropdown
                 overlayClassName={styles.options}
                 overlay={
-                  <Menu onClick={({ key: path }) => router.push(path)}>
+                  <Menu onClick={({ key }) => router.push(key as string)}>
                     {ordersMenu.map(({ key, title, path, useIcon }) => (
                       <Item key={path} disabled={key === pageId}>
-                        {!useIcon ? null : <Icon type="profile" />}
+                        {!useIcon ? null : <ProfileOutlined />}
                         {title}
                       </Item>
                     ))}
@@ -137,7 +139,7 @@ export default React.memo(
               >
                 <div className={styles.title}>
                   {t(`title.${pageId}`)}
-                  <Icon type="down" />
+                  <DownOutlined />
                 </div>
               </Dropdown>
 
@@ -252,7 +254,7 @@ export default React.memo(
                 <div />
 
                 {(selectedIds.length === 0 && runningIds.length === 0) ||
-                ecfitSentStatus === 'SENT_SUCCESSFUL' ? null : (
+                disabledSend ? null : (
                   <Button
                     onClick={() => submitOrders(selectedIds)}
                     loading={runningIds.length !== 0}

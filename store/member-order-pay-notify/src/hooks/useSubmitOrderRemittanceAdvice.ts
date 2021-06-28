@@ -1,7 +1,3 @@
-// typescript import
-import { MutationHookOptions } from '@apollo/react-hooks';
-import { MutationFunction } from '@apollo/react-common';
-
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
@@ -22,14 +18,16 @@ import {
   useSubmitOrderRemittanceAdviceFragment,
 } from '../gqls/useSubmitOrderRemittanceAdvice';
 
+// typescript definition
+interface ValuesType {
+  remittanceAdvice: string;
+}
+
 // definition
 export default (
   order: useSubmitOrderRemittanceAdviceFragmentType | null,
   setDisabledEdit: (disabledEdit: boolean) => void,
-): MutationFunction<
-  submitOrderRemittanceAdviceType,
-  submitOrderRemittanceAdviceVariables
-> => {
+): ((values: ValuesType) => void) => {
   const { t } = useTranslation('member-order-pay-notify');
   const [mutation] = useMutation<
     submitOrderRemittanceAdviceType,
@@ -37,29 +35,28 @@ export default (
   >(submitOrderRemittanceAdvice);
 
   return useCallback(
-    ({
-      variables,
-      ...options
-    }: MutationHookOptions<
-      submitOrderRemittanceAdviceType,
-      submitOrderRemittanceAdviceVariables
-    >) =>
+    input => {
+      const id = order?.id;
+
+      if (!id) return;
+
       mutation({
-        ...options,
-        variables,
+        variables: {
+          input: {
+            ...input,
+            orderId: id,
+          },
+        },
         update: (cache, { data }) => {
-          if (
-            data?.submitOrderRemittanceAdvice.__typename !== 'OkResponse' ||
-            !variables
-          )
+          if (data?.submitOrderRemittanceAdvice.__typename !== 'OkResponse')
             return;
 
           cache.writeFragment<useSubmitOrderRemittanceAdviceFragmentType>({
-            id: variables.input.orderId,
+            id,
             fragment: useSubmitOrderRemittanceAdviceFragment,
             data: {
               __typename: 'Order',
-              id: variables.input.orderId,
+              id,
               paymentInfo: {
                 __typename: 'paymentInfoType',
                 id: order?.paymentInfo?.id || null, // SHOULD_NOT_BE_NULL
@@ -69,7 +66,7 @@ export default (
                 ...(order?.paidMessage || []),
                 {
                   __typename: 'PaidMessageObject',
-                  note: variables.input.remittanceAdvice,
+                  note: input.remittanceAdvice,
                 },
               ],
             },
@@ -77,7 +74,8 @@ export default (
           notification.success({ message: t('send-success') });
           setDisabledEdit(true);
         },
-      }),
+      });
+    },
     [order, setDisabledEdit, t, mutation],
   );
 };

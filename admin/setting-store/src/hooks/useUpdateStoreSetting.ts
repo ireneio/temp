@@ -24,7 +24,7 @@ import {
 // definition
 export default (): {
   loading: boolean;
-  updateStoreSettingMutation: (id: string, value: UpdateStore) => void;
+  updateStoreSettingMutation: (value: UpdateStore) => void;
 } => {
   const { t, i18n } = useTranslation('setting-store');
 
@@ -36,7 +36,7 @@ export default (): {
   return {
     loading,
     updateStoreSettingMutation: useCallback(
-      (id, value): Promise<void> =>
+      (value): Promise<void> =>
         new Promise((resolve, reject) => {
           mutation({
             variables: {
@@ -52,13 +52,12 @@ export default (): {
               }
 
               i18n.changeLanguage(value.locale || 'zh_TW');
-
               cache.writeFragment<updateStoreSettingFragmentType>({
-                id,
+                id: value.id,
                 fragment: updateStoreSettingFragment,
                 data: {
                   __typename: 'Store' as const,
-                  id,
+                  id: value.id,
                   locale: value.locale || null,
                   timezone: value.timezone || null,
                   domain: value.domain || null,
@@ -102,8 +101,9 @@ export default (): {
                     : null,
                 },
               });
+              resolve();
             },
-          }).then(() => resolve());
+          });
         }),
       [i18n, t, mutation],
     ),

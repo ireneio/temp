@@ -21,7 +21,6 @@
   "had-store": "Đã có một cửa hàng?",
   "go-to-login": "Đi đến đăng nhập",
   "sign-up-success": "đăng ký thành công!",
-  "email-has-been-sent-1": "Thư xác minh đã được gửi đến",
-  "email-has-been-sent-2": ", Nếu bạn không nhận được thư xác minh, vui lòng thử đăng ký lại.",
+  "email-has-been-sent": "Thư xác minh đã được gửi đến {{ email }}, Nếu bạn không nhận được thư xác minh, vui lòng thử đăng ký lại.",
   "back-to-login-page": "Quay lại trang đăng nhập"
 }

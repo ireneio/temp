@@ -26,7 +26,7 @@ interface PropsType {
   storeShipments: advancedSearchStoreShipmentFragmentType[];
   optionsKey: keyof OrderFilterInput | keyof EcfitOrderFilterInput;
   options: string[];
-  filter: OrdersQueryResult['variables']['filter'];
+  filter?: (OrderFilterInput & EcfitOrderFilterInput) | null;
   setFilter: (filter: OrdersQueryResult['variables']['filter']) => void;
 }
 
@@ -57,6 +57,7 @@ export default ({
             {title[i18n.language as languageType] || title.zh_TW}
           </Option>
         ));
+
       default:
         return options.map(key =>
           !key ? null : (
@@ -69,9 +70,7 @@ export default ({
   }, [t, i18n, options, optionsKey, storePayments, storeShipments]);
 
   return (
-    <Select
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
+    <Select<string[]>
       value={(filter?.[optionsKey] || []) as string[]}
       onChange={(value?: string[]) =>
         setFilter({

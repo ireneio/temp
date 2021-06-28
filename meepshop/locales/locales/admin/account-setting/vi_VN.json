@@ -15,13 +15,15 @@
       "label": "Tên",
       "placeholder": "Vui lòng nhập tên của người liên hệ"
     },
-    "mobile": {
-      "label": "Chi tiết liên lạc",
-      "placeholder": "Vui lòng nhập số điện thoại di động được sử dụng để liên hệ"
-    },
-    "tel": {
-      "label": "Số liên lạc",
-      "placeholder": "Vui lòng nhập số điện thoại để liên hệ"
+    "additionalInfo": {
+      "mobile": {
+        "label": "Chi tiết liên lạc",
+        "placeholder": "Vui lòng nhập số điện thoại di động được sử dụng để liên hệ"
+      },
+      "tel": {
+        "label": "Số liên lạc",
+        "placeholder": "Vui lòng nhập số điện thoại để liên hệ"
+      }
     },
     "current-password": "Mật khẩu hiện tại",
     "password": {

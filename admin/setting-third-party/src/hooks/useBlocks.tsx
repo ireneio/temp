@@ -1,6 +1,3 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
-
 // import
 import React, { useMemo } from 'react';
 import { filter } from 'graphql-anywhere';
@@ -37,10 +34,7 @@ interface BlockType {
 
 // definition
 
-export default (
-  form: FormComponentProps['form'],
-  store: useBlocksFragmentType | null,
-): BlockType[] =>
+export default (store: useBlocksFragmentType | null): BlockType[] =>
   useMemo(
     () =>
       [
@@ -52,7 +46,6 @@ export default (
           useToggleDescription: true,
           component: !store?.facebookSetting ? null : (
             <FaceBook
-              form={form}
               facebookSetting={filter(facebookFragment, store.facebookSetting)}
             />
           ),
@@ -67,7 +60,6 @@ export default (
               useToggleDescription: false,
               component: !store?.storeEcfitSettings ? null : (
                 <Ecfit
-                  form={form}
                   storeEcfitSettings={filter(
                     ecfitFragment,
                     store.storeEcfitSettings,
@@ -85,7 +77,6 @@ export default (
               useToggleDescription: false,
               component: !store?.setting?.storeGoodDealSettings ? null : (
                 <GoodDeal
-                  form={form}
                   storeGoodDealSettings={filter(
                     goodDealFragment,
                     store.setting.storeGoodDealSettings,
@@ -97,10 +88,8 @@ export default (
           key: 'gaViewId',
           src: webTrackGoogleAnalytics,
           useToggle: false,
-          component: (
-            <GoogleAnalytics form={form} gaViewId={store?.gaViewId || null} />
-          ),
+          component: <GoogleAnalytics gaViewId={store?.gaViewId || null} />,
         },
       ].filter(Boolean) as BlockType[],
-    [form, store],
+    [store],
   );

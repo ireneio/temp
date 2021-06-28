@@ -1,6 +1,3 @@
-// typescript import
-import { FormComponentProps } from 'antd/lib/form/Form';
-
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
@@ -18,11 +15,13 @@ import {
 // graphql import
 import { resetPassword } from '../gqls/useResetPassword';
 
+// typescript definition
+interface ValuesType {
+  password: string;
+}
+
 // definition
-export default (
-  token: string,
-  { validateFields }: FormComponentProps['form'],
-): ((e: React.FormEvent) => void) => {
+export default (token: string): ((values: ValuesType) => void) => {
   const { t } = useTranslation('forgot-password');
   const router = useRouter();
   const [mutation] = useMutation<resetPasswordType, resetPasswordVariablesType>(
@@ -53,21 +52,16 @@ export default (
   );
 
   return useCallback(
-    (e: React.FormEvent) => {
-      e.preventDefault();
-      validateFields((err, { password }) => {
-        if (err) return;
-
-        mutation({
-          variables: {
-            input: {
-              token,
-              password,
-            },
+    input => {
+      mutation({
+        variables: {
+          input: {
+            ...input,
+            token,
           },
-        });
+        },
       });
     },
-    [token, validateFields, mutation],
+    [token, mutation],
   );
 };

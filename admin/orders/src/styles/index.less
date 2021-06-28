@@ -1,11 +1,11 @@
 @import '~@admin/utils/styles/variables.less';
 
 .root {
-  min-height: 100vh;
+  height: 100vh;
   padding: 56px 32px 48px;
   background: rgb(240, 242, 245);
   position: relative;
-  overflow: visible;
+  overflow: visible auto;
 }
 
 .wrapper {
@@ -32,7 +32,7 @@
   line-height: 32px;
   margin-bottom: 24px;
 
-  i {
+  :global(.anticon) {
     font-size: 18px;
     transition: 0.3s;
     transform: rotate(0deg);
@@ -40,7 +40,7 @@
   }
 
   &:global(.ant-dropdown-open) {
-    i {
+    :global(.anticon) {
       transform: rotate(180deg);
     }
   }

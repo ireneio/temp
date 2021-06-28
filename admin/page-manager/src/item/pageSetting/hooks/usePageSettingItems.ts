@@ -1,8 +1,18 @@
 // typescript import
+import IconType from '@ant-design/icons/lib/components/Icon';
+
 import useSelectedPageType from '../../../hooks/useSelectedPage';
 
 // import
 import { useMemo } from 'react';
+import {
+  HomeOutlined,
+  EditOutlined,
+  CopyOutlined,
+  DeleteOutlined,
+} from '@ant-design/icons';
+
+import { DefaultLayoutIcon } from '@meepshop/icons';
 
 import useAssignDefaultHomePage from './useAssignDefaultHomePage';
 import useAssignDefaultProductTemplatePage from './useAssignDefaultProductTemplatePage';
@@ -14,6 +24,9 @@ import {
   getPagesVariables,
   usePageSettingItemsPageFragment as usePageSettingItemsPageFragmentType,
 } from '@meepshop/types/gqls/admin';
+
+// typescript definition
+export type eventType = 'home' | 'template' | 'edit' | 'copy' | 'delete';
 
 // definition
 export default (
@@ -27,51 +40,99 @@ export default (
   variables: getPagesVariables,
   setSelectedPage: ReturnType<typeof useSelectedPageType>['setSelectedPage'],
 ): {
-  icons: string[];
-  events: {
-    [key: string]: () => void;
-  };
-} => {
-  const icons = useMemo(() => {
+  key: string;
+  click: () => void;
+  Icon: typeof IconType;
+}[] => {
+  const assignDefaultHomePage = useAssignDefaultHomePage(
+    id || 'id' /** SHOULD_NOT_BE_NULL */,
+  );
+  const assignDefaultProductTemplatePage = useAssignDefaultProductTemplatePage(
+    id || 'id' /** SHOULD_NOT_BE_NULL */,
+  );
+  const duplicatePage = useDuplicatePage(
+    id || 'id' /** SHOULD_NOT_BE_NULL */,
+    pageType,
+    variables,
+    setSelectedPage,
+  );
+  const deletePage = useDeletePage(
+    id || 'id' /** SHOULD_NOT_BE_NULL */,
+    variables,
+  );
+
+  return useMemo(() => {
+    const events = [];
+
     switch (pageType) {
       case 'home':
-        return [
+        events.push(
           'edit',
           isDefaultHomePage ? null : 'home',
           'copy',
           isDefaultHomePage ? null : 'delete',
-        ].filter(Boolean) as string[];
+        );
+        break;
 
       case 'custom':
-        return ['edit', 'copy', 'delete'];
+        events.push('edit', 'copy', 'delete');
+        break;
 
       case 'products':
-        return ['edit'];
+        events.push('edit');
+        break;
 
       default:
-        return [
+        events.push(
           'edit',
           'copy',
           isDefaultProductTemplatePage ? null : 'template',
-        ].filter(Boolean) as string[];
+        );
+        break;
     }
-  }, [pageType, isDefaultHomePage, isDefaultProductTemplatePage]);
 
-  return {
-    icons,
-    events: {
-      home: useAssignDefaultHomePage(id || 'id' /** SHOULD_NOT_BE_NULL */),
-      template: useAssignDefaultProductTemplatePage(
-        id || 'id' /** SHOULD_NOT_BE_NULL */,
-      ),
-      edit,
-      copy: useDuplicatePage(
-        id || 'id' /** SHOULD_NOT_BE_NULL */,
-        pageType,
-        variables,
-        setSelectedPage,
-      ),
-      delete: useDeletePage(id || 'id' /** SHOULD_NOT_BE_NULL */, variables),
-    },
-  };
+    return events.filter(Boolean).map(
+      (event: eventType) =>
+        ({
+          home: {
+            key: 'page-setting.home',
+            click: assignDefaultHomePage,
+            Icon: HomeOutlined,
+          },
+          template: {
+            key: 'page-setting.template',
+            click: assignDefaultProductTemplatePage,
+            Icon: DefaultLayoutIcon,
+          },
+          edit: {
+            key: ['home', 'custom', 'products'].includes(
+              pageType || '' /** SHOULD_NOT_BE_NULL */,
+            )
+              ? 'page-setting.seo'
+              : 'page-setting.edit',
+            click: edit,
+            Icon: EditOutlined,
+          },
+          copy: {
+            key: 'page-setting.copy',
+            click: duplicatePage,
+            Icon: CopyOutlined,
+          },
+          delete: {
+            key: 'page-setting.delete',
+            click: deletePage,
+            Icon: DeleteOutlined,
+          },
+        }[event]),
+    );
+  }, [
+    pageType,
+    isDefaultHomePage,
+    isDefaultProductTemplatePage,
+    edit,
+    assignDefaultHomePage,
+    assignDefaultProductTemplatePage,
+    duplicatePage,
+    deletePage,
+  ]);
 };

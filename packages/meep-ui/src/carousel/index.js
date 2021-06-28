@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
-import { Icon } from 'antd';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 import Image from 'image';
 import { CONTENT_WIDTH_TYPE } from 'constants/propTypes';
@@ -175,7 +175,7 @@ export default class Carousel extends React.PureComponent {
             style={styles.control('left')}
             onClick={() => this.setState({ imageIndex: imageIndex - 1 })}
           >
-            <Icon type="left" style={styles.chevronIcon} />
+            <LeftOutlined style={styles.chevronIcon} />
           </StyleRoot>
         )}
 
@@ -185,7 +185,7 @@ export default class Carousel extends React.PureComponent {
             style={styles.control('right')}
             onClick={() => this.setState({ imageIndex: imageIndex + 1 })}
           >
-            <Icon type="right" style={styles.chevronIcon} />
+            <RightOutlined style={styles.chevronIcon} />
           </StyleRoot>
         )}
 
