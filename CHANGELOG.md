@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.0 (2021-06-28)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1481](https://github.com/meepshop/meep-lerna/pull/1481) T8192 - 內部開單 - antd 升級 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.79.55 (2021-06-25)
 
 #### :rocket: New Feature
