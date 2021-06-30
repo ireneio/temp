@@ -15,21 +15,20 @@ interface PropsType {
 // definition
 export default React.memo(
   ({
-    shipmentInfo: { template, number, recipient, description },
+    shipmentInfo: { number, recipient, description },
     cvsShipmentNo,
   }: PropsType) => {
     const { t } = useTranslation('member-order');
     const receiverStoreName = recipient?.receiverStoreName;
-    const isAllpay = template === 'allpay';
 
     return (
       <>
         <div>
-          {!number && !cvsShipmentNo ? null : (
+          {!(number || cvsShipmentNo) ? null : (
             <div>
               {t('blocks.shipment.number')}
 
-              {isAllpay ? cvsShipmentNo : number}
+              {number || cvsShipmentNo}
             </div>
           )}
 

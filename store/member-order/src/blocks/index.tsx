@@ -129,7 +129,7 @@ export default React.memo(
                 cvsShipmentNo={latestLogisticTracking?.cvsShipmentNo}
               />
 
-              {!latestLogisticTracking ? null : (
+              {shipmentObj.number || !latestLogisticTracking ? null : (
                 <LogisticTracking
                   latestLogisticTracking={filter(
                     logisticTrackingFragment,
