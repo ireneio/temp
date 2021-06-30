@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.1 (2021-06-30)
+
+#### :rocket: New Feature
+
+- [#1595](https://github.com/meepshop/meep-lerna/pull/1595) 【功能】 訂單 - 新增「綠界物流編號」欄位 - 前端 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.0 (2021-06-28)
 
 #### :boom: Breaking Change
