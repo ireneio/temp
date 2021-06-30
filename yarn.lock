@@ -3309,7 +3309,7 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@meepshop/meep-cli@^1.35.5":
+"@meepshop/meep-cli@^1.35.6":
   version "1.35.6"
   resolved "https://npm.pkg.github.com/download/@meepshop/meep-cli/1.35.6/e47b2082d956699e20310af94355d3b5f7a640bdc70d9e266602e1a582b0972d#75abcadfda44923a1243b9442a952f8653df6013"
   integrity sha512-yEgT1QlarjR9Yz2jNuxfTpleicNY4kFEpHtARFssOCB4bSKiMvjWUaMfZ1MIsw6qjLAHm56gXyCWukh0WOn4yQ==
