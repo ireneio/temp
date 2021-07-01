@@ -18,7 +18,7 @@
     },
     "payment": {
       "title": "支払い管理",
-      "description": "ECPay、キャセイユナイテッド銀行、HiTRUSTpay、GMO"
+      "description": "ECPay、GMO"
     },
     "shipment": {
       "title": "配送管理",

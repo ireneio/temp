@@ -18,7 +18,7 @@
     },
     "payment": {
       "title": "Manajemen Pembayaran",
-      "description": "ECPay, Cathay United Bank, HiTRUSTpay, GMO"
+      "description": "ECPay, GMO"
     },
     "shipment": {
       "title": "Manajemen Pengiriman",
