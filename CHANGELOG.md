@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.80.2 (2021-07-01)
+
+#### :rocket: New Feature
+
+- [#1605](https://github.com/meepshop/meep-lerna/pull/1605) 【優化】移除隔離金流相關文字 ([@piovischioh](https://github.com/piovischioh))
+- [#1385](https://github.com/meepshop/meep-lerna/pull/1385) 【功能】 開放 User 自行註冊 - 試用期報價 api 調整 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- [#1607](https://github.com/meepshop/meep-lerna/pull/1607) (@meepshop/frontend) Remove code migration ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.1 (2021-06-30)
 
 #### :rocket: New Feature
