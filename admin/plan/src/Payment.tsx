@@ -137,8 +137,11 @@ export default React.memo(({ plan, setPlan }: PropsType) => {
                 : t(`payment.total-for-first-${feeType.toLowerCase()}`)}
             </div>
             <div>
-              {isTWD ? 'TWD ' : 'USD '}
-              {quotation?.total.amount}
+              {isTWD
+                ? `TWD ${(
+                    (quotation?.total.amount || 0) * parseFloat(fxRate)
+                  ).toFixed(0)}`
+                : `USD ${quotation?.total.amount}`}
             </div>
           </div>
 

@@ -54,9 +54,12 @@ export default (
     ]),
     isTWD: useMemo(() => currency === 'TWD', [currency]),
     isDiscounted: useMemo(() => !!quotation?.discount, [quotation]),
-    isNoNeedToPay: useMemo(() => (quotation?.total.amount || 0) <= 11, [
-      quotation,
-    ]),
+    isNoNeedToPay: useMemo(
+      () =>
+        (quotation?.total.amount || 0) * (data?.quotation?.fxRate.twd || 0) <=
+        11,
+      [quotation, data],
+    ),
     refetch,
   };
 };
