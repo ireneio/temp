@@ -161,7 +161,7 @@ class PayemntInfo extends React.PureComponent {
     if (variants.length === 1) {
       const [{ id: variantId }] = variants;
 
-      setFieldsValue([{ name: 'variant', value: [variantId] }]);
+      setFieldsValue({ variant: [variantId] });
       this.getVariantPrice([variantId], true);
       this.scrollToLandingPage();
 
