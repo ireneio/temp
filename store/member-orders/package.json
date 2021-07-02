@@ -4,7 +4,7 @@
   "description": "Member orders list for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.2",
+  "version": "0.80.4",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -12,7 +12,7 @@
     "@meepshop/link": "^0.80.0",
     "@meepshop/locales": "^0.80.2",
     "@meepshop/utils": "^0.80.0",
-    "@store/apollo": "^0.80.2",
+    "@store/apollo": "^0.80.4",
     "@store/utils": "^0.80.0",
     "color": "^3.0.0",
     "moment": "^2.22.1"

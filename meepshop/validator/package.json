@@ -4,7 +4,7 @@
   "description": "Use to validate input",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.2",
+  "version": "0.80.4",
   "main": "./index.js",
   "types": "./src/types.ts",
   "dependencies": {

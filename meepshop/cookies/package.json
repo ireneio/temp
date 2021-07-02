@@ -4,11 +4,11 @@
   "description": "Cookies context for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.2",
+  "version": "0.80.4",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/apollo": "^0.80.2",
+    "@meepshop/apollo": "^0.80.4",
     "@meepshop/locales": "^0.80.2",
     "@meepshop/utils": "^0.80.0",
     "apollo-cache-inmemory": "^1.6.3",
