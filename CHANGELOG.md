@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.80.3 (2021-07-02)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1609](https://github.com/meepshop/meep-lerna/pull/1609) 內部開單 - 前台 - 會員資料生日欄位，input 背景顏色 ([@HsuTing](https://github.com/HsuTing))
+  - [#1610](https://github.com/meepshop/meep-lerna/pull/1610) 【BUG】前台 - 結帳頁面，清空購物金欄位，購物車 panel 顯示錯誤 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.2 (2021-07-01)
 
 #### :rocket: New Feature
