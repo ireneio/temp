@@ -235,7 +235,9 @@ export default class OrderDetail extends React.PureComponent {
       'shipmentId',
       'coupon',
       'points',
-    ].map(key => fieldsValue[key] || getFieldValue(key));
+    ].map(key =>
+      fieldsValue[key] !== undefined ? fieldsValue[key] : getFieldValue(key),
+    );
 
     this.setState({ isChecking: true });
 
