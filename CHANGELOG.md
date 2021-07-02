@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.80.4 (2021-07-02)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1615](https://github.com/meepshop/meep-lerna/pull/1615) 【BUG】一頁式元件 - 無規格商品，前台無法選擇商品。 ([@piovischioh](https://github.com/piovischioh))
+  - [#1614](https://github.com/meepshop/meep-lerna/pull/1614) 【個別店家】一頁式購物車元件 - 輸入 email 會跳空白 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.3 (2021-07-02)
 
 #### :bug: Bug Fix
