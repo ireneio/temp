@@ -54,6 +54,7 @@ export default class GlobalStyles extends React.PureComponent {
             .ant-input-number-input,
             .ant-select:not(.ant-select-customize-input) .ant-select-selector,
             .ant-select:not(.ant-select-customize-input):hover .ant-select-selector,
+            .ant-picker,
             .ant-picker.ant-picker-disabled,
             .ant-cascader-picker  {
               border-color: ${colors[5]};
