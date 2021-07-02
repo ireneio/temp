@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Form, Button, Input } from 'antd';
 import { ApolloConsumer } from '@apollo/react-components';
 import gql from 'graphql-tag';
-import { emptyFunction } from 'fbjs';
 
 import { withTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
@@ -21,7 +20,7 @@ const { Password } = Input;
 @withTranslation('login')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withHook(() => ({
-  validateEmail: useValidateEmail(emptyFunction.thatReturnsArgument),
+  validateEmail: useValidateEmail(true),
 }))
 @enhancer
 class SignupForm extends React.PureComponent {

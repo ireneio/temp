@@ -19,7 +19,7 @@ import { checkEmail } from './gqls/useValidateEmail';
 
 // definition
 export default (
-  emailExist?: (message: string) => string | void,
+  checkShopperEmail = false,
 ): {
   normalize: (value: string) => string;
   validator: NonNullable<FormListProps['rules']>[number]['validator'];
@@ -37,7 +37,7 @@ export default (
         if (/@.*[A-Z]+.*$/.test(value))
           throw new Error(t('email.use-lowercase-letters'));
 
-        if (!emailExist) return;
+        if (!checkShopperEmail) return;
 
         const { data } = await client.query<
           checkEmailType,
@@ -66,9 +66,9 @@ export default (
         });
 
         if (data?.checkUserInfo?.exists)
-          throw new Error(emailExist(t('email.already-exists')) as string);
+          throw new Error(t('email.already-exists') as string);
       },
-      [emailExist, t, client],
+      [checkShopperEmail, t, client],
     ),
   };
 };

@@ -35,7 +35,6 @@ import { useInvoiceOptionsFragment } from './gqls/useInvoiceOptions';
 // typescript definition
 interface PropsType {
   form: FormComponentProps['form'];
-  setShowLogin: (showLogin: boolean) => void;
   receiver: receiverLandingPageModuleFragment;
   viewer: receiverUserFragment | null;
   shipment: UseComputeOrderType['shipment'];
@@ -49,7 +48,6 @@ const { Option } = Select;
 export default React.memo(
   ({
     form,
-    setShowLogin,
     receiver: { gender, birthday, invoice, shippableCountries, note },
     viewer,
     shipment,
@@ -59,7 +57,7 @@ export default React.memo(
     const invoiceOptions = useInvoiceOptions(
       filter(useInvoiceOptionsFragment, viewer?.store?.setting || null),
     );
-    const validateEmail = useValidateEmail(() => setShowLogin(true));
+    const validateEmail = useValidateEmail(true);
 
     const isLogin = viewer?.role === 'SHOPPER';
     const { getFieldDecorator, getFieldValue } = form;

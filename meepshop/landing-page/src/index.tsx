@@ -96,7 +96,6 @@ export default Form.create<PropsType>()(
       order: filter(useSubmitOrderFragment, order),
       payment,
       form,
-      setShowLogin,
     });
 
     const { getFieldValue, getFieldsError, validateFieldsAndScroll } = form;
@@ -146,7 +145,6 @@ export default Form.create<PropsType>()(
 
             <Receiver
               form={form}
-              setShowLogin={setShowLogin}
               receiver={filter<
                 receiverLandingPageModuleFragmentType,
                 PropsType

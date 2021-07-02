@@ -37,7 +37,6 @@ const { Item: FormItem } = Form;
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withHook(({ user, productData, redirectPage }) => {
   const [form] = Form.useForm();
-  const [showLogin, setShowLogin] = useState(false);
   const [storeComputeOrderList, setStoreComputeOrderList] = useState(null);
   const [choosePayment, setChoosePayment] = useState(null);
 
@@ -56,13 +55,10 @@ const { Item: FormItem } = Form;
       order: storeComputeOrderList,
       payment: choosePayment,
       form,
-      setShowLogin,
     }),
     setStoreComputeOrderList,
     choosePayment,
     setChoosePayment,
-    showLogin,
-    setShowLogin,
     form,
   };
 })
@@ -139,111 +135,108 @@ export default class LandingPage extends React.PureComponent {
       setStoreComputeOrderList,
       choosePayment,
       setChoosePayment,
-      showLogin,
-      setShowLogin,
       form,
       ...props
     } = this.props;
     const { chooseShipmentTemplate } = this.state;
 
     return (
-      <>
-        <Form
-          id={id}
-          style={styles.root}
-          className={`landingPage-${id}`}
-          form={form}
-          onFinish={onFinish}
-          scrollToFirstError
-        >
-          <Style
-            scopeSelector={`.landingPage-${id}`}
-            rules={styles.modifyAntdStyle(colors)}
-          />
+      <Form
+        id={id}
+        style={styles.root}
+        className={`landingPage-${id}`}
+        form={form}
+        onFinish={onFinish}
+        scrollToFirstError
+      >
+        <Style
+          scopeSelector={`.landingPage-${id}`}
+          rules={styles.modifyAntdStyle(colors)}
+        />
 
-          <StyleRoot style={styles.content(contentWidth)}>
-            <FormItem shouldUpdate noStyle>
-              {subForm => (
-                <PaymentInfo
-                  {...props}
-                  {...productData}
-                  moduleId={id}
-                  ref={this.paymentInfoRef}
-                  form={subForm}
-                  changeChoosePayment={setChoosePayment}
-                  changeChooseShipmentTemplate={template =>
-                    this.setState({ chooseShipmentTemplate: template })
-                  }
-                  updateComputeOrderList={setStoreComputeOrderList}
-                />
-              )}
-            </FormItem>
-
-            <FormItem shouldUpdate noStyle>
-              {subForm => (
-                <ReceiverInfo
-                  {...props}
-                  form={subForm}
-                  choosePaymentTemplate={(choosePayment || {}).template}
-                  chooseShipmentTemplate={chooseShipmentTemplate}
-                  toggleLogin={this.toggleLogin}
-                  setShowLogin={setShowLogin}
-                />
-              )}
-            </FormItem>
-
-            {!choosePayment ||
-            choosePayment.template !== 'gmo' ||
-            choosePayment.accountInfo.gmo.paymentType !== 'Credit' ? null : (
-              <GmoCreditCardForm
-                storePaymentId={choosePayment.paymentId}
-                isInstallment={choosePayment.accountInfo.gmo.isInstallment}
-              />
-            )}
-          </StyleRoot>
-
-          <Divider style={{ ...styles.title(colors), ...styles.argeementText }}>
-            {t('agreement')}
-          </Divider>
-
-          <StyleRoot style={styles.content(contentWidth)}>
-            <div style={styles.agreementInfo(colors)}>
-              {agreedMatters.split(/\n/).map((text, index) => (
-                /* eslint-disable react/no-array-index-key */
-                <div key={index}>{text}</div>
-                /* eslint-enable react/no-array-index-key */
-              ))}
-            </div>
-
-            <FormItem shouldUpdate noStyle>
-              {({ getFieldsError }) => (
-                <Button
-                  style={styles.submitButton(colors)}
-                  type="primary"
-                  htmlType="submit"
-                  disabled={getFieldsError().some(
-                    ({ errors }) => errors.length !== 0,
-                  )}
-                  loading={loading}
-                >
-                  {t('agree-submit')}
-                </Button>
-              )}
-            </FormItem>
-          </StyleRoot>
-        </Form>
-
-        {isLogin !== NOTLOGIN || !showLogin ? null : (
-          <FormItem dependencies={['userEmail']} noStyle>
-            {({ getFieldValue }) => (
-              <Login
-                hideLogin={() => setShowLogin(false)}
-                email={getFieldValue('userEmail')}
+        <StyleRoot style={styles.content(contentWidth)}>
+          <FormItem shouldUpdate noStyle>
+            {subForm => (
+              <PaymentInfo
+                {...props}
+                {...productData}
+                moduleId={id}
+                ref={this.paymentInfoRef}
+                form={subForm}
+                changeChoosePayment={setChoosePayment}
+                changeChooseShipmentTemplate={template =>
+                  this.setState({ chooseShipmentTemplate: template })
+                }
+                updateComputeOrderList={setStoreComputeOrderList}
               />
             )}
           </FormItem>
+
+          <FormItem shouldUpdate noStyle>
+            {subForm => (
+              <ReceiverInfo
+                {...props}
+                form={subForm}
+                choosePaymentTemplate={(choosePayment || {}).template}
+                chooseShipmentTemplate={chooseShipmentTemplate}
+                toggleLogin={this.toggleLogin}
+              />
+            )}
+          </FormItem>
+
+          {!choosePayment ||
+          choosePayment.template !== 'gmo' ||
+          choosePayment.accountInfo.gmo.paymentType !== 'Credit' ? null : (
+            <GmoCreditCardForm
+              storePaymentId={choosePayment.paymentId}
+              isInstallment={choosePayment.accountInfo.gmo.isInstallment}
+            />
+          )}
+        </StyleRoot>
+
+        <Divider style={{ ...styles.title(colors), ...styles.argeementText }}>
+          {t('agreement')}
+        </Divider>
+
+        <StyleRoot style={styles.content(contentWidth)}>
+          <div style={styles.agreementInfo(colors)}>
+            {agreedMatters.split(/\n/).map((text, index) => (
+              /* eslint-disable react/no-array-index-key */
+              <div key={index}>{text}</div>
+              /* eslint-enable react/no-array-index-key */
+            ))}
+          </div>
+
+          <FormItem shouldUpdate noStyle>
+            {({ getFieldsError }) => (
+              <Button
+                style={styles.submitButton(colors)}
+                type="primary"
+                htmlType="submit"
+                disabled={getFieldsError().some(
+                  ({ errors }) => errors.length !== 0,
+                )}
+                loading={loading}
+              >
+                {t('agree-submit')}
+              </Button>
+            )}
+          </FormItem>
+        </StyleRoot>
+
+        {isLogin !== NOTLOGIN ? null : (
+          // FIXME: https://github.com/ant-design/ant-design/issues/26888
+          <FormItem shouldUpdate noStyle>
+            {({ getFieldValue, getFieldError }) =>
+              !getFieldError(['userEmail']).includes(
+                t('validator:email.already-exists'),
+              ) ? null : (
+                <Login email={getFieldValue('userEmail')} />
+              )
+            }
+          </FormItem>
         )}
-      </>
+      </Form>
     );
   }
 }

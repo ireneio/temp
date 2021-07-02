@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input } from 'antd';
-import { emptyFunction } from 'fbjs';
 
 import { withTranslation } from '@meepshop/locales';
 import AddressCascader, {
@@ -28,7 +27,7 @@ const { Password } = Input;
 
 @withTranslation(['checkout', 'validate-mobile'])
 @withHook(() => ({
-  validateEmail: useValidateEmail(emptyFunction.thatReturnsArgument),
+  validateEmail: useValidateEmail(true),
 }))
 @enhancer
 @radium

@@ -11,7 +11,6 @@ import { filter } from 'graphql-anywhere';
 
 import FormDataContext from '@meepshop/form-data';
 import useLink from '@meepshop/hooks/lib/useLink';
-import { useValidateEmail } from '@meepshop/validator';
 import { useRouter } from '@meepshop/link';
 import { useTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
@@ -38,7 +37,6 @@ interface SubmitArguType {
   order: useSubmitOrderFragment | null;
   payment: UseComputeOrderType['payment'];
   form: FormComponentProps['form'];
-  setShowLogin: (showLogin: boolean) => void;
 }
 
 interface SubmitReturnType {
@@ -52,7 +50,6 @@ export default ({
   order,
   payment,
   form,
-  setShowLogin,
 }: SubmitArguType): SubmitReturnType => {
   const [mutation, { loading, client }] = useCreateOrder(
     filter(useCreateOrderFragment, viewer),
@@ -62,11 +59,6 @@ export default ({
   const adTrack = useContext(AdTrackContext);
   const setFormData = useContext(FormDataContext);
   const { href } = useLink(filter(useLinkFragment, redirectPage));
-  const validateEmail = useValidateEmail(message => {
-    setShowLogin(true);
-
-    return message;
-  });
 
   return {
     loading,
@@ -120,11 +112,7 @@ export default ({
               installmentCode,
             },
           ) => {
-            const validateEmailResult = await new Promise(resolve =>
-              validateEmail.validator?.({}, userEmail, resolve),
-            );
-
-            if (err || loading || validateEmailResult) return;
+            if (err || loading) return;
 
             const { domain, asPath, push } = router;
             const [variantId] = variant.slice(-1);
@@ -302,7 +290,6 @@ export default ({
         adTrack,
         setFormData,
         href,
-        validateEmail,
       ],
     ),
   };

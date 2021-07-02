@@ -31,8 +31,8 @@ const { Option } = Select;
 const { TextArea } = Input;
 
 @withTranslation('landing-page')
-@withHook(({ setShowLogin }) => ({
-  validateEmail: useValidateEmail(() => setShowLogin(true)),
+@withHook(() => ({
+  validateEmail: useValidateEmail(true),
 }))
 @enhancer
 @radium

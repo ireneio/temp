@@ -38,11 +38,11 @@ export default class Login extends React.PureComponent {
     /** props */
     t: PropTypes.func.isRequired,
     adTrack: PropTypes.shape({}).isRequired,
-    hideLogin: PropTypes.func.isRequired,
   };
 
   state = {
     isForgetPassword: false,
+    visible: true,
   };
 
   finish = ({ email, password }) => {
@@ -53,7 +53,6 @@ export default class Login extends React.PureComponent {
 
       /** props */
       t,
-      hideLogin,
       adTrack,
     } = this.props;
     const { isForgetPassword } = this.state;
@@ -78,7 +77,7 @@ export default class Login extends React.PureComponent {
               notification.success({
                 message: t('ducks:forget-password-success'),
               });
-              hideLogin();
+              this.setState({ visible: false });
               break;
 
             case 'FAIL_CANNOT_FIND_USER':
@@ -103,7 +102,7 @@ export default class Login extends React.PureComponent {
         password,
         from: 'landingPage',
         callback: () => {
-          hideLogin();
+          this.setState({ visible: false });
           adTrack.completeRegistration();
         },
       });
@@ -116,19 +115,18 @@ export default class Login extends React.PureComponent {
 
       /** props */
       t,
-      hideLogin,
       validateEmail,
       email,
     } = this.props;
-    const { isForgetPassword } = this.state;
+    const { visible, isForgetPassword } = this.state;
 
     return (
       <Modal
         title={t('plz-login')}
         footer={null}
-        onCancel={hideLogin}
         maskClosable={false}
-        visible
+        visible={visible}
+        onCancel={() => this.setState({ visible: false })}
       >
         <Form style={styles.root} onFinish={this.finish}>
           <FormItem
