@@ -103,7 +103,7 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
           {
             name: ['paymentId'],
             value: undefined,
-            errors: [new Error(t('choose-paymeny-error'))],
+            errors: [t('choose-payment-error')],
           },
         ]);
 
@@ -112,7 +112,7 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
           {
             name: ['shipmentId'],
             value: undefined,
-            errors: [new Error(t('choose-shipment-error'))],
+            errors: [t('choose-shipment-error')],
           },
         ]);
 

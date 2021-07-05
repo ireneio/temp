@@ -4,7 +4,7 @@
   "payment-description": "Hướng dẫn phương thức thanh toán",
   "shipment": "phương pháp giao hàng",
   "shipment-description": "Hướng dẫn phương thức giao hàng",
-  "choose-paymeny-error": "Phương thức thanh toán đã chọn không được áp dụng，vui lòng chọn lại",
+  "choose-payment-error": "Phương thức thanh toán đã chọn không được áp dụng，vui lòng chọn lại",
   "choose-shipment-error": "Phương thức giao hàng đã chọn không được áp dụng，vui lòng chọn lại",
   "coupon": {
     "placeholder": "Nhập mã khuyến mãi",

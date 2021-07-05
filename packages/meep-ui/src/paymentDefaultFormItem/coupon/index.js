@@ -57,7 +57,7 @@ export default class Coupon extends React.PureComponent {
           {
             name: ['coupon'],
             value: coupon,
-            errors: [new Error('coupon code error')],
+            errors: ['coupon code error'],
           },
         ]);
 
@@ -115,7 +115,7 @@ export default class Coupon extends React.PureComponent {
         {
           name: ['coupon'],
           value: coupon,
-          errors: [new Error('coupon code does not be confirmed')],
+          errors: ['coupon code does not be confirmed'],
         },
       ]);
       this.setState({

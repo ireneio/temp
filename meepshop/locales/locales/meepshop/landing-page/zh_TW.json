@@ -34,7 +34,7 @@
   "payment-description": "付款方式說明",
   "shipment": "運送方式",
   "shipment-description": "運送方式說明",
-  "choose-paymeny-error": "已選的付款方式不適用，請重新選取",
+  "choose-payment-error": "已選的付款方式不適用，請重新選取",
   "choose-shipment-error": "已選的運送方式不適用，請重新選取",
   "coupon": {
     "placeholder": "請輸入優惠碼",

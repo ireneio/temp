@@ -4,7 +4,7 @@
   "payment-description": "Descripción",
   "shipment": "Entrega",
   "shipment-description": "Descripción",
-  "choose-paymeny-error": "El método de pago seleccionado no está disponible, seleccione nuevamente.",
+  "choose-payment-error": "El método de pago seleccionado no está disponible, seleccione nuevamente.",
   "choose-shipment-error": "La entrega seleccionada no está disponible, seleccione nuevamente.",
   "coupon": {
     "placeholder": "Código promocional",

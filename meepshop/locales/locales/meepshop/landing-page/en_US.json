@@ -34,7 +34,7 @@
   "payment-description": "Description",
   "shipment": "Delivery",
   "shipment-description": "Description",
-  "choose-paymeny-error": "The selected payment method is not available, please select again.",
+  "choose-payment-error": "The selected payment method is not available, please select again.",
   "choose-shipment-error": "The selected delivery is not available, please select again.",
   "coupon": {
     "placeholder": "Coupon Code",

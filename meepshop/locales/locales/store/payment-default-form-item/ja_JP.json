@@ -4,7 +4,7 @@
   "payment-description": "決済方法のご説明",
   "shipment": "配送方法",
   "shipment-description": "配送方法のご説明",
-  "choose-paymeny-error": "お選びになった決済方法はご利用いただけません。再度お選びください",
+  "choose-payment-error": "お選びになった決済方法はご利用いただけません。再度お選びください",
   "choose-shipment-error": "お選びになった配送方法はご利用いただけません。再度お選びください",
   "coupon": {
     "placeholder": "クーポンコード",

@@ -4,7 +4,7 @@
   "payment-description": "La description",
   "shipment": "Livraison",
   "shipment-description": "La description",
-  "choose-paymeny-error": "Le mode de paiement sélectionné n'est pas disponible, veuillez sélectionner à nouveau.",
+  "choose-payment-error": "Le mode de paiement sélectionné n'est pas disponible, veuillez sélectionner à nouveau.",
   "choose-shipment-error": "La livraison sélectionnée n'est pas disponible, veuillez sélectionner à nouveau.",
   "coupon": {
     "placeholder": "Code promo",

@@ -4,7 +4,7 @@
   "payment-description": "Deskripsi",
   "shipment": "Pengiriman",
   "shipment-description": "Deskripsi",
-  "choose-paymeny-error": "Metode pembayaran yang dipilih tidak tersedia, silakan pilih lagi.",
+  "choose-payment-error": "Metode pembayaran yang dipilih tidak tersedia, silakan pilih lagi.",
   "choose-shipment-error": "Pengiriman yang dipilih tidak tersedia, silakan pilih lagi.",
   "coupon": {
     "placeholder": "Kode Kupon",
