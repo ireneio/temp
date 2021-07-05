@@ -4,7 +4,7 @@
   "description": "admin server",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.4",
+  "version": "0.80.5",
   "main": "./next.config.js",
   "scripts": {
     "dev": "node --inspect=localhost:9229 src/server",
@@ -18,7 +18,7 @@
     "@admin/currency": "^0.80.0",
     "@admin/dashboard": "^0.80.2",
     "@admin/login": "^0.80.4",
-    "@admin/order-history-records": "^0.80.2",
+    "@admin/order-history-records": "^0.80.5",
     "@admin/orders-ecfit": "^0.80.2",
     "@admin/orders-ecpay": "^0.80.2",
     "@admin/page-manager": "^0.80.4",
