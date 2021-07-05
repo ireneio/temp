@@ -4,14 +4,14 @@
   "description": "thank you page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.2",
+  "version": "0.80.6",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/context": "^0.80.0",
     "@meepshop/images": "^0.80.0",
     "@meepshop/link": "^0.80.0",
-    "@meepshop/locales": "^0.80.2",
+    "@meepshop/locales": "^0.80.6",
     "@store/utils": "^0.80.0",
     "clipboard": "^2.0.1",
     "moment": "^2.22.1"
