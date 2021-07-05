@@ -119,7 +119,7 @@ const OrderHistoryRecords: NextPage<PropsType> = React.memo(
               emptyText: t('empty'),
             }}
             loadMore={
-              order.auditLogs.length < limit ? null : (
+              order.auditLogs.length <= limit ? null : (
                 <div className={styles.loadMore}>
                   <div onClick={() => setLimit(limit + 5)}>
                     <div>{t('load-more')}</div>

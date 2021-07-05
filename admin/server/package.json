@@ -18,6 +18,7 @@
     "@admin/currency": "^0.80.0",
     "@admin/dashboard": "^0.80.2",
     "@admin/login": "^0.80.4",
+    "@admin/order-history-records": "^0.80.2",
     "@admin/orders-ecfit": "^0.80.2",
     "@admin/orders-ecpay": "^0.80.2",
     "@admin/page-manager": "^0.80.4",
