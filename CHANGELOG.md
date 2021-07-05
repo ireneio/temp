@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.6 (2021-07-05)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1617](https://github.com/meepshop/meep-lerna/pull/1617) 【個別店家】Checkout 重新選擇金流時，會跳轉到白色畫面 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.5 (2021-07-05)
 
 #### :rocket: New Feature
