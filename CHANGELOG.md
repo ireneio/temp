@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.5 (2021-07-05)
+
+#### :rocket: New Feature
+
+- [#1424](https://github.com/meepshop/meep-lerna/pull/1424) 【功能】訂單歷程 - 階段一 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.4 (2021-07-02)
 
 #### :bug: Bug Fix
