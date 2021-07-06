@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.7 (2021-07-06)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1616](https://github.com/meepshop/meep-lerna/pull/1616) 【BUG】 商品細節元件－前台與後台顯示顏色不一樣 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.6 (2021-07-05)
 
 #### :bug: Bug Fix
