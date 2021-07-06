@@ -331,10 +331,6 @@ jobs:
         description: other testing
         type: steps
         default: []
-      save-cache:
-        description: save cache
-        type: boolean
-        default: false
     executor: node
     steps:
       - checkout
@@ -368,13 +364,6 @@ jobs:
             fi
       - store_artifacts:
           path: coverage
-      - when:
-          condition: << parameters.save-cache >>
-          steps:
-            - persist_to_workspace:
-                root: ~/repo
-                paths:
-                  - lib
   build:
     parameters:
       hash:
