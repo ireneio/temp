@@ -2,9 +2,6 @@ import { PHONE_MEDIA } from 'constants/media';
 
 export const infoStyle = (colors, unfoldedVariants) => ({
   color: colors[3],
-  borderRadius: '4px',
-  backgroundColor: colors[0],
-  padding: '0px',
 
   // ant-select
   '.ant-select': {
