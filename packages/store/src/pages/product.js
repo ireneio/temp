@@ -29,9 +29,7 @@ class Product extends React.Component {
       const { productsReducer } = store.getState();
       const product = productsReducer.find(_product => _product?.id === pId);
 
-      if (!product) {
-        store.dispatch(Actions.getProduct({ id: pId, query }));
-      }
+      if (!product) store.dispatch(Actions.getProduct({ id: pId, query }));
     }
 
     return { pId, userAgent, XMeepshopDomain };

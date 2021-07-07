@@ -30,38 +30,33 @@ export const getPagesFailure = payload => ({
 function* getPagesFlow({ payload }) {
   const { query } = payload;
   try {
-    const data = payload.id
-      ? yield call(Api.getPage, payload)
-      : yield call(Api.getPages, payload);
+    const data = yield call(Api.getPage, payload);
 
     if (data.apiErr) {
       yield put(getPagesFailure(data.apiErr));
     } else {
-      let newPages = payload.id
-        ? [
-            ...(data.data?.viewer?.store?.page
-              ? [{ node: data.data?.viewer?.store?.page }]
-              : []),
-          ]
-        : data?.data?.viewer?.store?.pages.edges || [];
+      const store = data.data?.viewer?.store;
+      const page =
+        store?.defaultHomePage ||
+        store?.defaultProductListPage ||
+        store?.customPage ||
+        store?.page;
 
-      if (newPages.length > 0) {
-        newPages = newPages.map(({ node }) => {
-          const blocks = node.blocks
-            .filter(
-              ({ releaseDateTime }) =>
-                !releaseDateTime ||
-                parseInt(releaseDateTime, 10) * 1000 <= new Date().getTime(),
-            )
-            .map(({ width, componentWidth, widgets, ...block }) => ({
-              ...block,
-              width: width || 100,
-              componentWidth: componentWidth || 0,
-              widgets: modifyWidgetDataInClient(widgets, query, node),
-            }));
-          return { ...node, blocks };
-        });
-        yield put(getPagesSuccess(newPages));
+      if (page) {
+        page.blocks = page.blocks
+          .filter(
+            ({ releaseDateTime }) =>
+              !releaseDateTime ||
+              parseInt(releaseDateTime, 10) * 1000 <= new Date().getTime(),
+          )
+          .map(({ width, componentWidth, widgets, ...block }) => ({
+            ...block,
+            width: width || 100,
+            componentWidth: componentWidth || 0,
+            widgets: modifyWidgetDataInClient(widgets, query, page),
+          }));
+
+        yield put(getPagesSuccess(page));
       } else {
         yield put(getPagesFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
       }

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import * as R from 'ramda';
 import { connect } from 'react-redux';
 
 import { withTranslation } from '@meepshop/locales';
@@ -19,22 +18,12 @@ class Index extends React.Component {
     if (typeof window === 'undefined')
       store.dispatch(Actions.serverIndexInitial(context));
     else {
-      const { storeReducer, pagesReducer } = store.getState();
-      const {
-        settings: { homePageId },
-      } = storeReducer;
-      if (
-        R.isNil(homePageId) &&
-        R.isNil(R.find(R.propEq('pageType', 'home'))(pagesReducer))
-      ) {
+      const { pagesReducer } = store.getState();
+
+      if (!pagesReducer.some(({ pageType }) => pageType === 'home'))
         store.dispatch(Actions.getPages({ pageType: 'HOME', query }));
-      } else if (
-        !R.isNil(homePageId) &&
-        R.isNil(R.find(R.propEq('id', homePageId))(pagesReducer))
-      ) {
-        store.dispatch(Actions.getPages({ id: homePageId, query }));
-      }
     }
+
     return { userAgent, XMeepshopDomain };
   };
 

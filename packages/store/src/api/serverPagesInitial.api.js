@@ -12,21 +12,20 @@ export default async context => {
     query: { path },
     req: { cookies },
   } = context;
+
   if (!path) throw new Error('Page path is not defined.');
+
   const variables = {
     keys: `
-      $pageFilter: StorePagesFilterInput,
-      $menuSearch: searchInputObjectType,
-      $expireBy: Int!,
-      $identity: String,
-      $activitiesFilter: StoreActivitiesFilterInput,
+      $path: String!
+      $menuSearch: searchInputObjectType
+      $expireBy: Int!
+      $identity: String
+      $activitiesFilter: StoreActivitiesFilterInput
     `,
     type: 'query serverPagesInitial',
     values: {
-      pageFilter: {
-        type: 'CUSTOM',
-        path,
-      },
+      path,
       menuSearch: {
         size: 50,
         from: 0,
@@ -54,13 +53,8 @@ export default async context => {
     ${viewerStoreQuery}
     viewer {
       store {
-        pages(first: 1, filter: $pageFilter) {
-          edges {
-            node {
-              ${pageQuery}
-            }
-          }
-          total
+        customPage(path: $path) {
+          ${pageQuery}
         }
 
         activities(filter: $activitiesFilter) {

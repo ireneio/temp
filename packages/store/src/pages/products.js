@@ -19,9 +19,8 @@ class Products extends React.Component {
     else {
       const { pagesReducer } = store.getState();
 
-      if (!pagesReducer.find(page => page.pageType === 'products')) {
+      if (!pagesReducer.find(page => page.pageType === 'products'))
         store.dispatch(Actions.getPages({ pageType: 'PRODUCTS', query }));
-      }
     }
 
     return { XMeepshopDomain, userAgent };

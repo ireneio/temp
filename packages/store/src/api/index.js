@@ -1,4 +1,3 @@
-import getPages from './getPages.api';
 import getPage from './getPage.api';
 
 import getProduct from './getProduct.api';
@@ -14,7 +13,6 @@ import serverProductsInitial from './serverProductsInitial.api';
 import serverOthersInitial from './serverOthersInitial.api';
 
 export {
-  getPages,
   getPage,
   // 商品
   getProduct,

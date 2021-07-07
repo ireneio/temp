@@ -46,7 +46,6 @@ export default (state = initialState, { type, payload }) => {
         faviconUrl: store?.faviconImage?.scaledSrc.w60 || '',
         logoUrl: store?.logoImage?.scaledSrc.h200 || '',
         mobileLogoUrl: store?.mobileLogoImage?.scaledSrc.w250 || '',
-        homePageId: store.homePageId,
       };
 
       return {

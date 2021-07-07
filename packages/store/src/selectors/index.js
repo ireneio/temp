@@ -4,8 +4,6 @@ import { getIn, getJoinedModule, setDefaultValueForMenuDesign } from 'utils';
 import { handlePages } from 'utils/setDefaultValueForMenuDesign';
 
 export const getPages = state => state.pagesReducer;
-export const getHomePageId = state =>
-  getIn(['storeReducer', 'settings', 'homePageId'])(state) || null;
 
 export const getActivities = state =>
   getIn(['storeReducer', 'activities'])(state) || [];
@@ -87,14 +85,8 @@ export const getJoinedPage = (page, menus, logoUrl, mobileLogoUrl) => {
   return joinedPage;
 };
 
-export const getHomePage = createSelector(
-  [getPages, getHomePageId],
-  (pages, homePageId) => {
-    const homePages = pages.filter(page => page.pageType === 'home');
-    if (homePageId)
-      return homePages.find(page => page.id === homePageId) || homePages[0];
-    return homePages[0];
-  },
+export const getHomePage = createSelector([getPages], pages =>
+  pages.find(page => page.pageType === 'home'),
 );
 
 export const getJoinedModulePage = createSelector(

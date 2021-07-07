@@ -24,15 +24,16 @@ function* serverIndexInitialFlow({ payload }) {
     } else {
       yield put(getStoreSuccess(data));
       yield put(getAuthSuccess(data));
-      const homePageId = data?.data?.viewer?.store?.homePageId;
-      const pages = data?.data?.viewer?.store?.pages.edges;
 
-      const page = !homePageId
-        ? pages[0].node
-        : pages.find(({ node }) => node.id === homePageId)?.node;
+      const page = data.data.viewer?.store?.defaultHomePage;
 
-      const modifiedPage = yield Utils.getPageWithModifyWidget(page, payload);
-      yield put(getPagesSuccess(modifiedPage));
+      if (page) {
+        const modifiedPage = yield Utils.getPageWithModifyWidget(page, payload);
+
+        yield put(getPagesSuccess(modifiedPage));
+      } else {
+        yield put(getStoreFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
+      }
     }
   } catch ({ message }) {
     yield put(getStoreFailure({ status: 'SERVER_ERROR', message }));
@@ -60,10 +61,11 @@ function* serverPagesInitialFlow({ payload }) {
       yield put(getStoreSuccess(data));
       yield put(getAuthSuccess(data));
 
-      const page = data?.data?.viewer?.store?.pages.edges[0]?.node;
+      const page = data?.data?.viewer?.store?.customPage;
 
       if (page) {
         const modifiedPage = yield Utils.getPageWithModifyWidget(page, payload);
+
         yield put(getPagesSuccess(modifiedPage));
       } else {
         yield put(getStoreFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
@@ -159,9 +161,12 @@ function* serverProductsInitialFlow({ payload }) {
     } else {
       yield put(getStoreSuccess(data));
       yield put(getAuthSuccess(data));
-      const page = data?.data?.viewer?.store?.pages.edges[0].node;
+
+      const page = data.data?.viewer?.store?.defaultProductListPage;
+
       if (page) {
         const modifiedPage = yield Utils.getPageWithModifyWidget(page, payload);
+
         yield put(getPagesSuccess(modifiedPage));
       } else {
         yield put(getStoreFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));

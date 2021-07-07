@@ -26,14 +26,15 @@ class Pages extends React.Component {
       return {};
     }
 
-    if (typeof window === 'undefined') {
+    if (typeof window === 'undefined')
       store.dispatch(Actions.serverPagesInitial(context));
-    } else {
+    else {
       const { pagesReducer } = store.getState();
-      if (!pagesReducer.find(page => page.path === path)) {
+
+      if (!pagesReducer.find(page => page.path === path))
         store.dispatch(Actions.getPages({ pageType: 'CUSTOM', path, query }));
-      }
     }
+
     return { path, userAgent, XMeepshopDomain };
   };
 

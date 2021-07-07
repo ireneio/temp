@@ -7,13 +7,12 @@ import {
   activityQuery,
 } from './query';
 
-export default async context => {
+export default context => {
   const {
     req: { cookies },
   } = context;
   const variables = {
     keys: `
-      $pageFilter: StorePagesFilterInput,
       $menuSearch: searchInputObjectType,
       $expireBy: Int!,
       $identity: String,
@@ -21,9 +20,6 @@ export default async context => {
     `,
     type: 'query serverIndexInitial',
     values: {
-      pageFilter: {
-        type: 'HOME',
-      },
       menuSearch: {
         size: 50,
         from: 0,
@@ -51,13 +47,8 @@ export default async context => {
     ${viewerStoreQuery}
     viewer {
       store {
-        pages(first: 50, filter: $pageFilter) {
-          edges {
-            node {
-              ${pageQuery}
-            }
-          }
-          total
+        defaultHomePage {
+          ${pageQuery}
         }
 
         activities(filter: $activitiesFilter) {
@@ -90,10 +81,9 @@ export default async context => {
     }
   `;
 
-  const response = await postGraphql({
+  return postGraphql({
     ...context,
     query,
     variables,
   });
-  return response;
 };

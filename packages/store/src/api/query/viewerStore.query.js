@@ -80,7 +80,6 @@ const viewerStoreQuery = `
           w60
         }
       }
-      homePageId
       experiment {
         hiddingMeepshopMaxInFooterEnabled
       }
