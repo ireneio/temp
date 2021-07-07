@@ -3,8 +3,8 @@ import { FormInstance } from 'antd/lib/form';
 
 // import
 import { useState, useCallback } from 'react';
-import { message } from 'antd';
 
+import message from '@admin/message';
 import { useTranslation } from '@meepshop/locales';
 
 import useUpdateFacebookSetting from './useUpdateFacebookSetting';

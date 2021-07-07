@@ -1,8 +1,9 @@
 // import
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { Switch, message, Button, InputNumber } from 'antd';
+import { Switch, Button, InputNumber } from 'antd';
 
+import message from '@admin/message';
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/locales';
 

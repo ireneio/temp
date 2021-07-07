@@ -9,6 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/ad-track": "^0.80.0",
+    "@admin/message": "^0.1.0",
     "@admin/tooltip": "^0.80.0",
     "@meepshop/cookies": "^0.80.6",
     "@meepshop/images": "^0.80.0",

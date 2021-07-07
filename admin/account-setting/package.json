@@ -10,6 +10,7 @@
   "dependencies": {
     "@admin/block": "^0.80.6",
     "@admin/header": "^0.80.6",
+    "@admin/message": "0.1.0",
     "@meepshop/link": "^0.80.0",
     "@meepshop/locales": "^0.80.6",
     "@meepshop/utils": "^0.80.0",

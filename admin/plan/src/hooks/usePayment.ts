@@ -6,8 +6,9 @@ import { PlanType } from './usePlans';
 // import
 import { useState, useCallback, useMemo } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { Modal, message } from 'antd';
+import { Modal } from 'antd';
 
+import message from '@admin/message';
 import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript

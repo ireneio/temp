@@ -3,9 +3,9 @@ import { ValuesType } from './useInitialValues';
 
 // import
 import { useCallback } from 'react';
-import { message } from 'antd';
 import { areEqual } from 'fbjs';
 
+import message from '@admin/message';
 import { useTranslation } from '@meepshop/locales';
 
 import useUpdateStoreSetting from './useUpdateStoreSetting';

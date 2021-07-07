@@ -1,8 +1,9 @@
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { message, notification } from 'antd';
+import { notification } from 'antd';
 
+import message from '@admin/message';
 import { useTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
 

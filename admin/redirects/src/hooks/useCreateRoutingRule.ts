@@ -3,9 +3,9 @@ import { ValuesType } from '../types';
 
 // import
 import { useCallback } from 'react';
-import { message } from 'antd';
 import { useMutation } from '@apollo/react-hooks';
 
+import message from '@admin/message';
 import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript

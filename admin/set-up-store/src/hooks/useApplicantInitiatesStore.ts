@@ -1,9 +1,9 @@
 // import
 import { useContext, useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { message } from 'antd';
 
 import { AdTrackContext } from '@admin/ad-track';
+import message from '@admin/message';
 import CookiesContext from '@meepshop/cookies';
 import { useRouter } from '@meepshop/link';
 

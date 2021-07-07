@@ -8,6 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@admin/message": "^0.1.0",
     "@admin/tap-pay": "^0.80.6",
     "@admin/utils": "^0.80.0",
     "@meepshop/context": "^0.80.0",
