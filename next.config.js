@@ -5,7 +5,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 const withLess = require('@zeit/next-less');
-const withSourceMaps = require('@zeit/next-source-maps');
 
 const addIEPolyfill = config => {
   const originalEntry = config.entry;
@@ -43,35 +42,32 @@ const fixCssLoaderError = config => {
 };
 
 module.exports = nextConfig =>
-  withSourceMaps(
-    withLess(
-      withBundleAnalyzer({
-        ...nextConfig,
-        // FIXME: should move server folder
-        distDir: '../lib',
-        pageExtensions: ['js', 'ts', 'tsx'],
-        typescript: {
-          ignoreBuildErrors: true,
-        },
-        lessLoaderOptions: {
-          ...nextConfig.lessLoaderOptions,
-          javascriptEnabled: true,
-        },
-        publicRuntimeConfig: {
-          ...nextConfig.publicRuntimeConfig,
-          API: process.env.API || 'https://api.stage.meepcloud.com',
-          VERSION: process.env.VERSION || +new Date(),
-          ENV: process.env.ENV || 'stage',
-        },
-        webpack: (config, { dev }) => {
-          if (!dev) config.devtool = 'source-map';
+  withLess(
+    withBundleAnalyzer({
+      ...nextConfig,
+      // FIXME: should move server folder
+      distDir: '../lib',
+      pageExtensions: ['js', 'ts', 'tsx'],
+      productionBrowserSourceMaps: true,
+      typescript: {
+        ignoreBuildErrors: true,
+      },
+      lessLoaderOptions: {
+        ...nextConfig.lessLoaderOptions,
+        javascriptEnabled: true,
+      },
+      publicRuntimeConfig: {
+        ...nextConfig.publicRuntimeConfig,
+        API: process.env.API || 'https://api.stage.meepcloud.com',
+        VERSION: process.env.VERSION || +new Date(),
+        ENV: process.env.ENV || 'stage',
+      },
+      webpack: config => {
+        config.plugins.push(new MomentLocalesPlugin());
+        addIEPolyfill(config);
+        fixCssLoaderError(config);
 
-          config.plugins.push(new MomentLocalesPlugin());
-          addIEPolyfill(config);
-          fixCssLoaderError(config);
-
-          return config;
-        },
-      }),
-    ),
+        return config;
+      },
+    }),
   );

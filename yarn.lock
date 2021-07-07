@@ -3309,10 +3309,10 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@meepshop/meep-cli@^1.35.6":
-  version "1.35.6"
-  resolved "https://npm.pkg.github.com/download/@meepshop/meep-cli/1.35.6/e47b2082d956699e20310af94355d3b5f7a640bdc70d9e266602e1a582b0972d#75abcadfda44923a1243b9442a952f8653df6013"
-  integrity sha512-yEgT1QlarjR9Yz2jNuxfTpleicNY4kFEpHtARFssOCB4bSKiMvjWUaMfZ1MIsw6qjLAHm56gXyCWukh0WOn4yQ==
+"@meepshop/meep-cli@^1.35.8":
+  version "1.35.8"
+  resolved "https://npm.pkg.github.com/download/@meepshop/meep-cli/1.35.8/0df53de27a443333e94bfe73e35df4af3ed9f382733454a492ef4385ad4e02b3#0c3e118e38118245206c84920d461a7dd67cb763"
+  integrity sha512-wtvCzfc8gExUfejaT2ye3llVtkaZib28hhDYMRLZWelhRz8rKlkNNeQA41YUuPBuBNIFveR9JcRoIUsJdLyHrg==
   dependencies:
     "@babel/core" "^7.13.8"
     "@babel/helper-plugin-utils" "^7.13.0"
@@ -5013,11 +5013,6 @@
   dependencies:
     "@zeit/next-css" "1.0.1"
     less-loader "4.1.0"
-
-"@zeit/next-source-maps@0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@zeit/next-source-maps/-/next-source-maps-0.0.3.tgz#d62e93b4f5ccdd542c8530d21f60dd2757d98e3c"
-  integrity sha512-gFDf7yQI8r/fdzTKJG9cp0rhKscRJWs/uebhScj8nZINT16kPTVm23JAi5EivO5pAJmHGzT1A8dwxAhTX0liNw==
 
 "@zkochan/cmd-shim@^3.1.0":
   version "3.1.0"
