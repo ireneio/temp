@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.80.8 (2021-07-07)
+
+#### :rocket: New Feature
+
+- [#1335](https://github.com/meepshop/meep-lerna/pull/1335) 【優化】後台 - Message 全局提示樣式 ([@piovischioh](https://github.com/piovischioh))
+- [#1622](https://github.com/meepshop/meep-lerna/pull/1622) (root) Update @meepshop/meep-cli ([@meepshop-bot](https://github.com/meepshop-bot))
+- [#1620](https://github.com/meepshop/meep-lerna/pull/1620) (circleci) Update circleci config ([@meepshop-bot](https://github.com/meepshop-bot))
+- [#1621](https://github.com/meepshop/meep-lerna/pull/1621) (root) Update @meepshop/meep-cli ([@meepshop-bot](https://github.com/meepshop-bot))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1618](https://github.com/meepshop/meep-lerna/pull/1618) 內部開單 - 減少 SSR 拿 page 的量 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@meepshop-bot](https://github.com/meepshop-bot)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.7 (2021-07-06)
 
 #### :bug: Bug Fix
