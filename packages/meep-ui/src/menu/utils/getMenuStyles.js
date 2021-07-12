@@ -101,7 +101,12 @@ export default (
             color: ${color};
             fill: ${color};
             background: ${background};
-            box-shadow: inset 0px -5px ${borderColor};
+            ${
+              id === 'sidebar'
+                ? `box-shadow: inset 5px 0px ${borderColor}`
+                : `box-shadow: inset 0px -5px ${borderColor}`
+            }
+            
           `;
       }
     })()}
