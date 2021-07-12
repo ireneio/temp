@@ -68,7 +68,7 @@ export default class ReceiverInfo extends React.PureComponent {
     }
   }
 
-  setReceiverWithTemplate = async id => {
+  setReceiverWithTemplate = id => {
     const {
       form: { setFieldsValue },
       shippableRecipientAddresses,
@@ -85,11 +85,11 @@ export default class ReceiverInfo extends React.PureComponent {
       ({ id: recipientId }) => recipientId === id,
     );
 
-    await setFieldsValue({
+    setFieldsValue({
       name,
       mobile,
       addressAndZipCode: {
-        address: [country.id, city?.id, area?.id],
+        address: [country.id, city?.id, area?.id].filter(Boolean),
         zipCode,
       },
       street,
@@ -248,7 +248,7 @@ export default class ReceiverInfo extends React.PureComponent {
 
         {!canSaveAsTemplate ||
         shippableRecipientAddresses.length === 0 ? null : (
-          <FormItem style={formItemStyle} name={['receiverTemplate']}>
+          <FormItem style={formItemStyle}>
             <Select
               placeholder={t('receiver-template')}
               onChange={this.setReceiverWithTemplate}
