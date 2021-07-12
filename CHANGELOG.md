@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.80.9 (2021-07-12)
+
+#### :rocket: New Feature
+
+- [#1623](https://github.com/meepshop/meep-lerna/pull/1623) (@meepshop/frontend) Add source map ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1626](https://github.com/meepshop/meep-lerna/pull/1626) 【BUG】結帳頁 - 收件人資料選擇收件人範本，未帶出資料 ([@HsuTing](https://github.com/HsuTing))
+  - [#1619](https://github.com/meepshop/meep-lerna/pull/1619) 【BUG】側邊選單樣式主題示意圖與實際顯示不同 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.8 (2021-07-07)
 
 #### :rocket: New Feature
