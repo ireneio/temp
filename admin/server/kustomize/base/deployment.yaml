@@ -26,13 +26,13 @@ spec:
         image: asia.gcr.io/instant-matter-785/next-admin:tag
         livenessProbe:
           httpGet:
-            path: /healthz
+            path: /api/healthz
             port: 14405
           initialDelaySeconds: 15
           periodSeconds: 3
         readinessProbe:
           httpGet:
-            path: /healthz
+            path: /api/healthz
             port: 14405
           initialDelaySeconds: 15
           periodSeconds: 3

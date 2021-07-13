@@ -76,7 +76,7 @@ export const buildWithApollo = (config: initApolloConfigType) => (
 
     const appProps = await App.getInitialProps(ctx);
 
-    if (res?.finished) return appProps;
+    if (res?.writableEnded) return appProps;
 
     if (typeof window === 'undefined') {
       try {

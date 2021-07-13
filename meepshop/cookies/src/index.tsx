@@ -21,11 +21,19 @@ import { shouldIgnoreUnauthorizedError } from '@meepshop/apollo/lib/utils/errorL
 import useCookies from './hooks/useCookies';
 
 // typescript definition
+interface CookieAttributesType extends Omit<CookieAttributes, 'expires'> {
+  expires?: Date;
+}
+
 export interface CookiesType {
   cookies: {
     [key: string]: string | undefined;
   };
-  setCookie: (key: string, value: string, options?: CookieAttributes) => void;
+  setCookie: (
+    key: string,
+    value: string,
+    options?: CookieAttributesType,
+  ) => void;
 }
 
 export type getCookiesArgumentType = Parameters<getCookiesType>[0];
@@ -40,7 +48,7 @@ interface CustomCtx extends AppContext {
       cookies: CookiesType['cookies'];
     };
     res: {
-      cookie: (key: string, value: string, options?: CookieAttributes) => void;
+      cookie: CookiesType['setCookie'];
     };
   };
 }
@@ -96,7 +104,7 @@ export const withCookies = (getCookies: getCookiesType) => (
                 set: (
                   key: string,
                   value: string,
-                  options?: CookieAttributes,
+                  options?: CookieAttributesType,
                 ) => {
                   req.cookies[key] = value;
                   res.cookie(key, value, options);

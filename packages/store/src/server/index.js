@@ -11,9 +11,7 @@ const debug = require('debug')('next-store:server');
 const uuid = require('uuid/v4');
 const helmet = require('helmet');
 const uaParser = require('ua-parser-js');
-const { default: nextI18NextMiddleware } = require('next-i18next/middleware');
 
-const { default: nextI18next } = require('@meepshop/locales');
 const { default: logger } = require('@meepshop/utils/lib/logger');
 
 const { publicRuntimeConfig } = require('../../next.config');
@@ -89,7 +87,6 @@ module.exports = app.prepare().then(
         debug(`id=${req.logId}, nextI18next=out`);
       });
       server.use(helmet());
-      server.use(nextI18NextMiddleware(nextI18next));
       server.use(async (req, res, next) => {
         debug(`id=${req.logId}, modifier=in`);
         await next();
