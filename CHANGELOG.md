@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.80.10 (2021-07-13)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1606](https://github.com/meepshop/meep-lerna/pull/1606) 商品選數量改用新欄位 currentMinPurchasableQty / currentMaxPurchasableQty - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1589](https://github.com/meepshop/meep-lerna/pull/1589) Internal - 簡化前端 @admin/server ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1613](https://github.com/meepshop/meep-lerna/pull/1613) 內部開單 - input 欄位 error 的背景顏色 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `store`
+  - [#1608](https://github.com/meepshop/meep-lerna/pull/1608) 內部開單 - 移除沒有再用的 product 元件 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#1589](https://github.com/meepshop/meep-lerna/pull/1589) Internal - 簡化前端 @admin/server ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.9 (2021-07-12)
 
 #### :rocket: New Feature
