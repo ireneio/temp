@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@meepshop/date-picker",
+  "description": "Meepshop datepicker module",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.80.8",
+  "main": "./index.js",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "rc-picker": "^2.5.10"
+  },
+  "keywords": ["date-picker", "meepshop"]
+}
