@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { ID_TYPE, LOCALE_TYPE, PURCHASE_ITEMS_TYPE } from 'constants/propTypes';
+import { ID_TYPE, LOCALE_TYPE } from 'constants/propTypes';
 import { buildD3TreeTypes } from 'utils/buildPropTypes';
 
 const VARIANTS_TYPE_OBJ = {
@@ -10,9 +10,6 @@ const VARIANTS_TYPE_OBJ = {
       title: LOCALE_TYPE.isRequired,
     }).isRequired,
   ),
-  minPurchaseItems: PURCHASE_ITEMS_TYPE.isRequired,
-  maxPurchaseLimit: PURCHASE_ITEMS_TYPE.isRequired,
-  stock: PURCHASE_ITEMS_TYPE.isRequired,
 };
 export const VARIANTS_TYPE = PropTypes.arrayOf(
   PropTypes.shape(VARIANTS_TYPE_OBJ).isRequired,

@@ -3,8 +3,6 @@ import { ID_TYPE, LOCALE_TYPE } from 'constants/propTypes';
 
 export const VARIANT_TYPE = PropTypes.shape({
   id: ID_TYPE.isRequired,
-  maxPurchaseLimit: PropTypes.number.isRequired,
-  minPurchaseItems: PropTypes.number.isRequired,
   listPrice: PropTypes.number,
   suggestedPrice: PropTypes.number,
   retailPrice: PropTypes.number.isRequired,

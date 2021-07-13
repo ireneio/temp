@@ -8,9 +8,9 @@ export const useVariantProductFragment = gql`
     id
     variants {
       id
-      minPurchaseItems
-      maxPurchaseLimit
       stock
+      currentMinPurchasableQty
+      currentMaxPurchasableQty
     }
   }
 `;

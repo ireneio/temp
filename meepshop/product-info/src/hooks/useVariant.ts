@@ -1,8 +1,6 @@
 // import
 import { useState, useMemo } from 'react';
 
-import { getQuantityRange } from '@meepshop/product-amount-selector';
-
 // graphql typecript
 import {
   useVariantProductFragment,
@@ -21,8 +19,6 @@ export default <P extends useVariantProductFragment>(
 ): {
   variant: VariantType<P> | null;
   setVariant: (variant: VariantType<P> | null) => void;
-  min: number;
-  max: number;
   quantityInCart: number;
 } => {
   const [variant, setVariant] = useState<VariantType<P> | null>(
@@ -32,7 +28,6 @@ export default <P extends useVariantProductFragment>(
       product?.variants?.[0] ||
       null) as VariantType<P>,
   );
-  const { min, max } = useMemo(() => getQuantityRange(variant), [variant]);
   const quantityInCart = useMemo(
     () =>
       cart?.data?.[0]?.categories?.[0]?.products?.find(
@@ -44,8 +39,6 @@ export default <P extends useVariantProductFragment>(
   return {
     variant,
     setVariant,
-    min,
-    max,
     quantityInCart,
   };
 };

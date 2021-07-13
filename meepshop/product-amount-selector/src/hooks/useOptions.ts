@@ -18,44 +18,16 @@ interface OptionsType {
 }
 
 // definition
-const formatNumber = (
-  value: number | null | undefined,
-  initialValue: number,
-): number => (value === null || value === undefined ? initialValue : value);
-
-// FIXME: should check minPurchaseItems, maxPurchaseLimit, stock in the backend
-export const getQuantityRange = (
-  variant: useOptionsVariantFragmentType | null,
-): { min: number; max: number } => {
-  const stock = formatNumber(variant?.stock, 0);
-  const minPurchaseItems = formatNumber(variant?.minPurchaseItems, 1);
-  const maxPurchaseLimit = formatNumber(variant?.maxPurchaseLimit, stock);
-
-  if (stock < 1)
-    return {
-      min: 0,
-      max: 0,
-    };
-
-  return {
-    min: minPurchaseItems > 0 ? minPurchaseItems : 1,
-    max: (() => {
-      if (minPurchaseItems > maxPurchaseLimit)
-        return minPurchaseItems < stock ? minPurchaseItems : stock;
-
-      return maxPurchaseLimit < stock ? maxPurchaseLimit : stock;
-    })(),
-  };
-};
-
 export default (variant: useOptionsVariantFragmentType | null): OptionsType => {
   const { t } = useTranslation('product-amount-selector');
   const [searchValue, setSearchValue] = useState<number | null>(null);
-  const { min, max } = useMemo(() => getQuantityRange(variant), [variant]);
+  const currentMinPurchasableQty = variant?.currentMinPurchasableQty || 0;
+  const currentMaxPurchasableQty = variant?.currentMaxPurchasableQty || 0;
 
   return {
     options: useMemo(() => {
-      if (min === 0 && max === 0) return [];
+      if (currentMinPurchasableQty === 0 && currentMaxPurchasableQty === 0)
+        return [];
 
       if (searchValue)
         return [
@@ -66,12 +38,15 @@ export default (variant: useOptionsVariantFragmentType | null): OptionsType => {
           },
         ];
 
-      const amount = max > min ? max - min + 1 : 0;
+      const amount =
+        currentMaxPurchasableQty > currentMinPurchasableQty
+          ? currentMaxPurchasableQty - currentMinPurchasableQty + 1
+          : 0;
 
       return [].constructor
         .apply({}, new Array(amount >= 100 ? 101 : amount))
         .map((_: unknown, index: number) => {
-          const value = index + min;
+          const value = index + currentMinPurchasableQty;
 
           return {
             value,
@@ -79,14 +54,18 @@ export default (variant: useOptionsVariantFragmentType | null): OptionsType => {
             text: index >= 100 ? t('more-options') : value,
           };
         });
-    }, [t, min, max, searchValue]),
+    }, [t, currentMinPurchasableQty, currentMaxPurchasableQty, searchValue]),
     onSearch: useCallback(
       valueStr => {
         const value = parseInt(valueStr, 10);
 
-        setSearchValue(min <= value && value <= max ? value : null);
+        setSearchValue(
+          currentMinPurchasableQty <= value && value <= currentMaxPurchasableQty
+            ? value
+            : null,
+        );
       },
-      [min, max],
+      [currentMinPurchasableQty, currentMaxPurchasableQty],
     ),
     setSearchValue,
   };

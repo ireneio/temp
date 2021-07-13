@@ -12,7 +12,6 @@ import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
 import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
 import { ErrorMultiIcon } from '@meepshop/icons';
-import { getQuantityRange } from '@meepshop/product-amount-selector';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
@@ -293,7 +292,12 @@ export default class OrderDetail extends React.PureComponent {
         priceInfo,
       },
       products: newProducts.map(product => {
-        const { error, type, stock, minPurchaseItems } = product;
+        const {
+          error,
+          type,
+          currentMinPurchasableQty,
+          currentMaxPurchasableQty,
+        } = product;
 
         if (error && /已下架/.test(error))
           return {
@@ -301,17 +305,16 @@ export default class OrderDetail extends React.PureComponent {
             error: 'PRODUCT_NOT_ONLINE',
           };
 
-        if (type !== 'product' && (!stock || stock <= 0 || error))
+        if (
+          type !== 'product' &&
+          (currentMinPurchasableQty >= currentMaxPurchasableQty || error)
+        )
           return {
             ...product,
             error: 'GIFT_OUT_OF_STOCK',
           };
 
-        if (
-          !stock ||
-          stock <= 0 ||
-          (stock > 0 && (minPurchaseItems || 0) > stock)
-        )
+        if (currentMinPurchasableQty >= currentMaxPurchasableQty)
           return {
             ...product,
             error: 'PRODUCT_SOLD_OUT',
@@ -344,10 +347,19 @@ export default class OrderDetail extends React.PureComponent {
       isSaveAsReceiverTemplate,
     } = this.state;
     const checkProductError = products.some(product => {
-      const { min, max } = getQuantityRange(product);
-      const { error, quantity, type } = product;
+      const {
+        error,
+        quantity,
+        type,
+        variant: { currentMinPurchasableQty, currentMaxPurchasableQty },
+      } = product;
 
-      return type === 'product' && (error || quantity < min || quantity > max);
+      return (
+        type === 'product' &&
+        (error ||
+          quantity < currentMinPurchasableQty ||
+          quantity > currentMaxPurchasableQty)
+      );
     });
 
     if (checkProductError) {

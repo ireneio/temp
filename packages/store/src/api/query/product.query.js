@@ -70,13 +70,12 @@ const productQuery = `{
         en_US
       }
     }
-    stock
     cost
     vendorSku
-    maxPurchaseLimit
-    minPurchaseItems
     warehouseNumber
     status
+    currentMinPurchasableQty
+    currentMaxPurchasableQty
   }
   specs {
     id

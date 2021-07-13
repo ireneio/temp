@@ -11,7 +11,7 @@ export const useCoordinatesFragment = gql`
     id
     variants {
       id
-      stock
+      currentMinPurchasableQty
     }
     ...useVariantsTreeFragment
   }

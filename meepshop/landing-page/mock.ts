@@ -63,8 +63,8 @@ export default {
       {
         __typename: 'Variant' as const,
         id: '8f953308-134e-4c48-97c4-dfeb1f101f39',
-        maxPurchaseLimit: 99,
-        minPurchaseItems: 1,
+        currentMinPurchasableQty: 1,
+        currentMaxPurchasableQty: 99,
         totalPrice: 0,
         specs: [
           {
@@ -78,13 +78,12 @@ export default {
             },
           },
         ],
-        stock: 200,
       },
       {
         __typename: 'Variant' as const,
         id: '65650ba2-99b9-4e72-b39c-b5e232ef8102',
-        maxPurchaseLimit: 99,
-        minPurchaseItems: 1,
+        currentMinPurchasableQty: 1,
+        currentMaxPurchasableQty: 99,
         totalPrice: 0,
         specs: [
           {
@@ -98,7 +97,6 @@ export default {
             },
           },
         ],
-        stock: 200,
       },
     ],
     specs: [

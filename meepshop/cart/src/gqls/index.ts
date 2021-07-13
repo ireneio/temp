@@ -23,9 +23,11 @@ export const cartFragment = gql`
           }
           discountPrice
         }
-        stock
-        minPurchaseItems
-        maxPurchaseLimit
+        variant {
+          id
+          currentMinPurchasableQty
+          currentMaxPurchasableQty
+        }
         retailPrice
         totalPrice
         specs {

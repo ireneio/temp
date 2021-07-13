@@ -12,6 +12,8 @@ export const addButtonUserFragment = gql`
 export const addButtonVariantFragment = gql`
   fragment addButtonVariantFragment on Variant {
     id
+    currentMinPurchasableQty
+    currentMaxPurchasableQty
   }
 `;
 

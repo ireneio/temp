@@ -117,9 +117,8 @@ export default class PopUp extends React.PureComponent {
                 }
                 variants {
                   id
-                  stock
-                  maxPurchaseLimit
-                  minPurchaseItems
+                  currentMinPurchasableQty
+                  currentMaxPurchasableQty
                   sku
                   listPrice
                   suggestedPrice

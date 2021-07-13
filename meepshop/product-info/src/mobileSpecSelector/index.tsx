@@ -20,6 +20,7 @@ import {
 
 // graphql import
 import { titleProductFragment, titleVariantFragment } from './gqls/title';
+import { addButtonFragment } from './gqls/addButton';
 
 // typescript definition
 export interface PropsType extends AddButtonPropsType {
@@ -50,7 +51,11 @@ export default React.memo(
         >
           <div className={styles.specs}>{children}</div>
 
-          <AddButton {...props} onClose={onClose} />
+          <AddButton
+            {...props}
+            variant={filter(addButtonFragment, variant)}
+            onClose={onClose}
+          />
         </Drawer>
 
         <style

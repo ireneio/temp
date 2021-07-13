@@ -7,12 +7,15 @@ import { useTranslation } from '@meepshop/locales';
 
 import styles from './styles/addButton.less';
 
+// graphql typescript
+import { addButtonFragment } from '@meepshop/types/gqls/meepshop';
+
 // typescript definition
 export interface PropsType {
+  variant: addButtonFragment | null;
   addProductToCart: () => void;
-  min: number;
-  max: number;
   quantity: number;
+  quantityInCart: number;
   onChangeQuantity: (value: number) => void;
   onClose: () => void;
 }
@@ -20,15 +23,19 @@ export interface PropsType {
 // definition
 export default React.memo(
   ({
+    variant,
     addProductToCart,
-    min,
-    max,
     quantity,
+    quantityInCart,
     onChangeQuantity,
     onClose,
   }: PropsType) => {
     const { t } = useTranslation('product-spec-selector');
     const colors = useContext(ColorsContext);
+    const currentMinPurchasableQty =
+      (variant?.currentMinPurchasableQty || 0) - quantityInCart;
+    const currentMaxPurchasableQty =
+      (variant?.currentMaxPurchasableQty || 0) - quantityInCart;
 
     return (
       <>
@@ -36,7 +43,8 @@ export default React.memo(
           <div>
             <span
               onClick={() => {
-                if (quantity > min) onChangeQuantity(quantity - 1);
+                if (quantity > currentMinPurchasableQty)
+                  onChangeQuantity(quantity - 1);
               }}
             >
               <MinusOutlined />
@@ -46,7 +54,8 @@ export default React.memo(
 
             <span
               onClick={() => {
-                if (quantity < max) onChangeQuantity(quantity + 1);
+                if (quantity < currentMaxPurchasableQty)
+                  onChangeQuantity(quantity + 1);
               }}
             >
               <PlusOutlined />
@@ -56,7 +65,10 @@ export default React.memo(
           <div
             className={styles.addToCart}
             onClick={() => {
-              if (min <= quantity && quantity <= max) {
+              if (
+                currentMinPurchasableQty <= quantity &&
+                quantity <= currentMaxPurchasableQty
+              ) {
                 addProductToCart();
                 onClose();
               }

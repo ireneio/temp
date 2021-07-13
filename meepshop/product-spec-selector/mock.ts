@@ -11,9 +11,7 @@ const variant = {
   listPrice: 399,
   suggestedPrice: 365,
   totalPrice: 320,
-  maxPurchaseLimit: 1,
-  minPurchaseItems: 99,
-  stock: 99,
+  currentMinPurchasableQty: 1,
 };
 
 /* eslint-disable @typescript-eslint/camelcase */

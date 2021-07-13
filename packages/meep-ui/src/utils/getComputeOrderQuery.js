@@ -60,7 +60,6 @@ export default ({ coupon, points, paymentId, shipmentId, products }) => [
         products {
           sku
           type
-          stock
           cartId
           title {
             zh_TW
@@ -75,8 +74,11 @@ export default ({ coupon, points, paymentId, shipmentId, products }) => [
           }
           productId
           variantId
-          maxPurchaseLimit
-          minPurchaseItems
+          variant {
+            id
+            currentMinPurchasableQty
+            currentMaxPurchasableQty
+          }
           quantity
           coverImage {
             scaledSrc {

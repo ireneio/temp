@@ -19,9 +19,8 @@ export const useVariantOptionsFragment = gql`
           en_US
         }
       }
-      stock
-      maxPurchaseLimit
-      minPurchaseItems
+      currentMinPurchasableQty
+      currentMaxPurchasableQty
     }
 
     ...useVariantsTreeFragment

@@ -54,7 +54,7 @@ export default React.memo((props: productInfoFragment) => {
     cart,
   } = props;
   const [quantity, setQuantity] = useState<QuantityPropsType['value']>(0);
-  const { variant, setVariant, min, max, quantityInCart } = useVariant<
+  const { variant, setVariant, quantityInCart } = useVariant<
     productInfoFragmentProduct
   >(product, filter(useVariantOrderListFragment, cart));
   const [visible, setVisible] = useState(false);
@@ -80,7 +80,6 @@ export default React.memo((props: productInfoFragment) => {
           props,
         )}
         variant={filter(quantityVariantFragment, variant)}
-        max={max}
         value={quantity}
         onChange={setQuantity}
         quantityInCart={quantityInCart}
@@ -93,8 +92,6 @@ export default React.memo((props: productInfoFragment) => {
           addButtonStockNotificationFragment,
           stockNotifications,
         )}
-        min={min}
-        max={max}
         quantityInCart={quantityInCart}
       />
 
@@ -105,9 +102,8 @@ export default React.memo((props: productInfoFragment) => {
           visible={visible}
           onClose={() => setVisible(false)}
           addProductToCart={emptyFunction /** TODO */}
-          min={min > quantityInCart ? min - quantityInCart : 1}
-          max={max > quantityInCart ? max - quantityInCart : 0}
           quantity={quantity || 0}
+          quantityInCart={quantityInCart}
           onChangeQuantity={setQuantity}
         >
           <ProductSpecSelector<productInfoFragmentProduct>

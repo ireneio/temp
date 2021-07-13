@@ -12,9 +12,7 @@ import CartContext from '@meepshop/cart';
 import { CartDeleteIcon } from '@meepshop/icons';
 import { placeholderThumbnail_w120 as placeholderThumbnail } from '@meepshop/images';
 import Link from '@meepshop/link';
-import ProductAmountSelector, {
-  getQuantityRange,
-} from '@meepshop/product-amount-selector';
+import ProductAmountSelector from '@meepshop/product-amount-selector';
 
 import styles from './styles/useColumns.less';
 
@@ -92,11 +90,16 @@ export default ({ productHasError, updateCart, onChange }) => {
             quantity,
             type,
             cartId,
-            ...variant
+            variant,
           },
         ) => {
-          const { min, max } = getQuantityRange(variant);
-          const hasError = quantity < min || quantity > max;
+          const {
+            currentMinPurchasableQty,
+            currentMaxPurchasableQty,
+          } = variant;
+          const hasError =
+            quantity < currentMinPurchasableQty ||
+            quantity > currentMaxPurchasableQty;
 
           return (
             <div
@@ -197,11 +200,16 @@ export default ({ productHasError, updateCart, onChange }) => {
       },
       {
         dataIndex: ['quantity'],
-        render: (quantity, { error, type, cartId, ...variant }) => {
+        render: (quantity, { error, type, cartId, variant }) => {
           if (error || type !== 'product') return null;
 
-          const { min, max } = getQuantityRange(variant);
-          const hasError = quantity < min || quantity > max;
+          const {
+            currentMinPurchasableQty,
+            currentMaxPurchasableQty,
+          } = variant;
+          const hasError =
+            quantity < currentMinPurchasableQty ||
+            quantity > currentMaxPurchasableQty;
 
           return (
             <div className={!hasError ? '' : styles.hasError}>

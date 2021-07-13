@@ -9,7 +9,7 @@ import { DownOutlined } from '@ant-design/icons';
 
 import { useTranslation } from '@meepshop/locales';
 
-import useOptions, { getQuantityRange } from './hooks/useOptions';
+import useOptions from './hooks/useOptions';
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -69,8 +69,6 @@ const ProductAmountSelector = React.memo(
     );
   },
 );
-
-export { getQuantityRange };
 
 export default React.forwardRef(
   (props: Omit<PropsType, 'forwardedRef'>, ref: PropsType['forwardedRef']) => (

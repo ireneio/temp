@@ -19,21 +19,12 @@ interface PropsType {
   variant: addButtonVariantFragment | null;
   // SHOULD_NOT_BE_NULL
   stockNotifications: (addButtonStockNotificationFragment | null)[] | null;
-  min: number;
-  max: number;
   quantityInCart: number;
 }
 
 // definition
 export default React.memo(
-  ({
-    viewer,
-    variant,
-    stockNotifications,
-    min,
-    max,
-    quantityInCart,
-  }: PropsType) => {
+  ({ viewer, variant, stockNotifications, quantityInCart }: PropsType) => {
     const { t } = useTranslation('product-info');
     const apps = useContext(AppsContext);
 
@@ -44,7 +35,13 @@ export default React.memo(
         </Link>
       );
 
-    if (min < quantityInCart && quantityInCart < max)
+    const currentMinPurchasableQty = variant?.currentMinPurchasableQty || 0;
+    const currentMaxPurchasableQty = variant?.currentMaxPurchasableQty || 0;
+
+    if (
+      currentMinPurchasableQty < quantityInCart &&
+      quantityInCart < currentMaxPurchasableQty
+    )
       return <Button>{t('add-to-cart')}</Button>;
 
     if (apps.productNotice) {

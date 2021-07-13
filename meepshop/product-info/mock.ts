@@ -7,13 +7,13 @@ import { localeFragment } from '@meepshop/types/gqls/meepshop';
 // definition
 const variant = {
   __typename: 'Variant' as const,
-  maxPurchaseLimit: 99,
-  minPurchaseItems: 1,
   sku: 'sku',
   listPrice: 0,
   suggestedPrice: 0,
   totalPrice: 0,
   stock: 200,
+  currentMinPurchasableQty: 1,
+  currentMaxPurchasableQty: 99,
 };
 
 /* eslint-disable @typescript-eslint/camelcase */

@@ -6,8 +6,7 @@ export default {
   variant: {
     __typename: 'Variant' as const,
     id: uuid(),
-    minPurchaseItems: 0,
-    maxPurchaseLimit: 50,
-    stock: 100,
+    currentMinPurchasableQty: 0,
+    currentMaxPurchasableQty: 50,
   },
 };

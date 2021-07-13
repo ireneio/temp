@@ -1,17 +1,19 @@
-const getVariantOptions = (children, i18n) =>
+const getVariantOptions = (children, t, i18n) =>
   children.map(({ children: child, data }) => {
     const { title, variant = {} } = data;
-    const { id, stock, minPurchaseItems } = variant;
-    const disabled = stock && minPurchaseItems && stock < minPurchaseItems;
+    const { id, currentMinPurchasableQty, currentMaxPurchasableQty } = variant;
+    const disabled = currentMaxPurchasableQty <= currentMinPurchasableQty;
 
     return {
       value: child ? title[i18n.language] || title.zh_TW : id,
-      label: title[i18n.language] || title.zh_TW,
+      label: `${title[i18n.language] || title.zh_TW}${
+        !disabled ? '' : ` (${t('no-variant')})`
+      }`,
       disabled,
       ...(!child
         ? {}
         : {
-            children: getVariantOptions(child, i18n),
+            children: getVariantOptions(child, t, i18n),
           }),
     };
   });

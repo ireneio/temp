@@ -22,18 +22,19 @@ export interface PropsType
   extends quantityProductInfoModuleFragment,
     Pick<ProductAmountSelectorPropsType, 'value' | 'onChange'> {
   variant: quantityVariantFragment | null;
-  max: number;
   quantityInCart: number;
 }
 
 // definition
 export default React.memo(
-  ({ unfoldedVariants, variant, max, quantityInCart, ...props }: PropsType) => {
+  ({ unfoldedVariants, variant, quantityInCart, ...props }: PropsType) => {
     const { t } = useTranslation('product-info');
+    const currentMaxPurchasableQty = variant?.currentMaxPurchasableQty || 0;
 
-    if (max === 0) return <div>{t('out-of-stock')}</div>;
+    if (currentMaxPurchasableQty === 0) return <div>{t('out-of-stock')}</div>;
 
-    if (quantityInCart >= max) return <div>{t('over-stock')}</div>;
+    if (quantityInCart >= currentMaxPurchasableQty)
+      return <div>{t('over-stock')}</div>;
 
     return (
       <ProductAmountSelector

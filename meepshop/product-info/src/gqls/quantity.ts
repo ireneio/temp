@@ -8,6 +8,8 @@ import { productAmountSelectorFragment } from '@meepshop/product-amount-selector
 export const quantityVariantFragment = gql`
   fragment quantityVariantFragment on Variant {
     id
+    currentMinPurchasableQty
+    currentMaxPurchasableQty
     ...productAmountSelectorFragment
   }
 

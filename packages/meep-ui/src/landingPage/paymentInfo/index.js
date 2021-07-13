@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Select, InputNumber, Cascader, Modal } from 'antd';
+import { Form, Select, InputNumber, Cascader } from 'antd';
 import { getElementPosition } from 'fbjs';
 import uuid from 'uuid';
 
@@ -85,13 +85,13 @@ class PayemntInfo extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
-    const { i18n, id, variantsTree, isLogin } = nextProps;
+    const { t, i18n, id, variantsTree, isLogin } = nextProps;
 
     if ((id && id !== preState.productId) || isLogin !== preState.isLogin) {
       return {
         productId: id,
         isLogin,
-        variantOptions: getVariantOptions(variantsTree.children, i18n),
+        variantOptions: getVariantOptions(variantsTree.children, t, i18n),
         variantMax: 0,
         variantMin: 0,
       };
@@ -117,36 +117,19 @@ class PayemntInfo extends React.PureComponent {
   }
 
   getVariantPrice = (variantIds, skipTrack = false) => {
-    const { t, variants, addition } = this.props;
+    const { variants, addition } = this.props;
     const [variantId] = variantIds.slice(-1);
     const variant = variants.find(({ id }) => id === variantId) || {};
-    let { minPurchaseItems, maxPurchaseLimit } = variant;
-
-    // minPurchaseItems 最小需等於 1
-    minPurchaseItems = minPurchaseItems > 0 ? minPurchaseItems : 1;
-
-    // maxPurchaseLimit 最小需等於 minPurchaseItems
-    if (typeof maxPurchaseLimit === 'number') {
-      maxPurchaseLimit =
-        maxPurchaseLimit > minPurchaseItems
-          ? maxPurchaseLimit
-          : minPurchaseItems;
-    } else {
-      maxPurchaseLimit = variant.stock;
-    }
-
-    const variantMin = minPurchaseItems;
-    const variantMax =
-      maxPurchaseLimit > variant.stock ? variant.stock : maxPurchaseLimit;
-
-    if (variantMax === 0 || variantMax < variantMin)
-      Modal.error({ title: t('no-variant') });
+    const { currentMinPurchasableQty, currentMaxPurchasableQty } = variant;
 
     if (!skipTrack && !addition.includes('quantity'))
       this.trackAddToCart({ variant: variantIds, quantity: 1 });
 
     this.computeOrderList({ variant: variantIds });
-    this.setState({ variantMin, variantMax });
+    this.setState({
+      variantMin: currentMinPurchasableQty,
+      variantMax: currentMaxPurchasableQty,
+    });
   };
 
   fetchFirst = () => {
@@ -352,6 +335,9 @@ class PayemntInfo extends React.PureComponent {
             <Select disabled>
               <Option value={variants[0].id}>
                 {title[i18n.language] || title.zh_TW}
+                {variantMax !== 0 && variantMax >= variantMin
+                  ? null
+                  : ` (${t('no-variant')})`}
               </Option>
             </Select>
           ) : (

@@ -105,7 +105,8 @@ export default ({
       setCoordinates(
         findCoordinates(
           variantsLeaves.find(
-            ({ data: { variant } }) => (variant?.stock || 0) > 0,
+            ({ data: { variant } }) =>
+              (variant?.currentMinPurchasableQty || 0) > 0,
           ) || variantsLeaves[0],
         ),
       );

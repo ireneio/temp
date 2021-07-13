@@ -79,7 +79,7 @@ export default class ProductInfo extends React.PureComponent {
 
   state = {
     // eslint-disable-next-line react/destructuring-assignment
-    quantity: this.props.min,
+    quantity: this.props.variant?.currentMinPurchasableQty,
     isAddingItem: false,
     isDrawerOpen: false,
     isModalOpen: false,
@@ -92,8 +92,8 @@ export default class ProductInfo extends React.PureComponent {
         orderable: OUT_OF_STOCK,
       };
 
-    const { min, max, quantityInCart } = this.props;
-    const { stock } = variant;
+    const { quantityInCart } = this.props;
+    const { currentMaxPurchasableQty } = variant;
     const formatVariant = {
       ...variant,
       productNotice: stockNotificationList.some(
@@ -101,25 +101,20 @@ export default class ProductInfo extends React.PureComponent {
       ),
     };
 
-    if (max === 0)
+    if (currentMaxPurchasableQty === 0)
       return {
         formatVariant,
         orderable: OUT_OF_STOCK,
       };
 
-    if (quantityInCart >= max)
+    if (quantityInCart >= currentMaxPurchasableQty)
       return {
         formatVariant,
         orderable: LIMITED,
       };
 
     return {
-      formatVariant: {
-        ...formatVariant,
-        maxPurchaseLimit: max > quantityInCart ? max - quantityInCart : 0,
-        minPurchaseItems: min > quantityInCart ? min - quantityInCart : 1,
-        stock: stock > quantityInCart ? stock - quantityInCart : 0,
-      },
+      formatVariant,
       orderable: ORDERABLE,
     };
   });
@@ -245,14 +240,15 @@ export default class ProductInfo extends React.PureComponent {
   onChangeVariant = variant => {
     if (!variant) return;
 
-    const { setVariant, min, max } = this.props;
+    const { setVariant } = this.props;
     const { quantity } = this.state;
+    const { currentMinPurchasableQty, currentMaxPurchasableQty } = variant;
     const newQuantity = (() => {
-      if (max === 0) return quantity;
+      if (currentMaxPurchasableQty === 0) return quantity;
 
-      if (quantity > max) return max;
+      if (quantity > currentMaxPurchasableQty) return currentMaxPurchasableQty;
 
-      if (quantity < min) return min;
+      if (quantity < currentMinPurchasableQty) return currentMinPurchasableQty;
 
       return quantity;
     })();
@@ -279,8 +275,6 @@ export default class ProductInfo extends React.PureComponent {
       carts,
       stockNotificationList,
       variant,
-      min,
-      max,
       quantityInCart,
     } = this.props;
     const { quantity, isAddingItem, isModalOpen, isDrawerOpen } = this.state;
@@ -368,9 +362,8 @@ export default class ProductInfo extends React.PureComponent {
               visible={isDrawerOpen}
               onClose={() => this.setState({ isDrawerOpen: false })}
               addProductToCart={this.addToCart}
-              min={min > quantityInCart ? min - quantityInCart : 1}
-              max={max > quantityInCart ? max - quantityInCart : 0}
               quantity={quantity}
+              quantityInCart={quantityInCart}
               onChangeQuantity={this.onChangeQuantity}
             >
               <ProductSpecSelector

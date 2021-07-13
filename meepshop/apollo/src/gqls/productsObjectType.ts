@@ -5,9 +5,12 @@ import gql from 'graphql-tag';
 export default gql`
   fragment productsObjectTypeFragment on productsObjectType {
     id
-    _error
+    error: _error
     type
-    stock
-    minPurchaseItems
+    variant {
+      id
+      currentMinPurchasableQty
+      currentMaxPurchasableQty
+    }
   }
 `;
