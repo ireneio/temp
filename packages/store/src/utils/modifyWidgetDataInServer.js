@@ -59,15 +59,6 @@ export default async function modifyWidgetDataInServer(
               popUpGalleryView,
             };
           }
-          /* 產品組合 */
-          case 'product': {
-            return {
-              id: uuid(),
-              module: widget.module,
-              contentWidth: widget.contentWidth,
-              showButton: widget.showButton,
-            };
-          }
           /* 產品主圖 */
           case 'product-carousell': {
             const { module, contentWidth, carouselInfo } = widget;

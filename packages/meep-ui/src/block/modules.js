@@ -24,7 +24,6 @@ import draftText from 'draftText';
 import activity from 'activity';
 import checkout from 'checkout';
 import menu, { handleModuleData } from 'menu';
-import productSet from 'productSet';
 import viewTracking from 'viewTracking';
 
 export default {
@@ -54,7 +53,6 @@ export default {
   activity,
   checkout,
   menu: handleModuleData(menu),
-  product: productSet,
   viewTracking,
   'smart-conversion': smartConversion,
 };
