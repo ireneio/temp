@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.12 (2021-07-14)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1634](https://github.com/meepshop/meep-lerna/pull/1634) 【個別店家】前台 - 會員登入後，購物車顯示一片空白 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.11 (2021-07-14)
 
 #### :bug: Bug Fix
