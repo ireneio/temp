@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.80.11 (2021-07-14)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1633](https://github.com/meepshop/meep-lerna/pull/1633) 【BUG】 前台 - 最大商品購買量為 1 時無法下訂單 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1630](https://github.com/meepshop/meep-lerna/pull/1630) 內部開單 - 修正 next.js dynamic import ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.10 (2021-07-13)
 
 #### :boom: Breaking Change
