@@ -4,7 +4,7 @@
   "description": "member order applications",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.11",
+  "version": "0.80.12",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -13,7 +13,7 @@
     "@meepshop/locales": "^0.80.10",
     "@meepshop/thumbnail": "^0.80.11",
     "@meepshop/utils": "^0.80.11",
-    "@store/apollo": "^0.80.11",
+    "@store/apollo": "^0.80.12",
     "@store/utils": "^0.80.11",
     "color": "^3.0.0",
     "memoize-one": "^5.1.1",
