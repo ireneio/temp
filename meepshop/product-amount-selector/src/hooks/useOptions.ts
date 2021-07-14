@@ -39,7 +39,7 @@ export default (variant: useOptionsVariantFragmentType | null): OptionsType => {
         ];
 
       const amount =
-        currentMaxPurchasableQty > currentMinPurchasableQty
+        currentMaxPurchasableQty >= currentMinPurchasableQty
           ? currentMaxPurchasableQty - currentMinPurchasableQty + 1
           : 0;
 

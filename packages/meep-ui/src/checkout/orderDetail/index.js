@@ -307,14 +307,14 @@ export default class OrderDetail extends React.PureComponent {
 
         if (
           type !== 'product' &&
-          (currentMinPurchasableQty >= currentMaxPurchasableQty || error)
+          (currentMinPurchasableQty > currentMaxPurchasableQty || error)
         )
           return {
             ...product,
             error: 'GIFT_OUT_OF_STOCK',
           };
 
-        if (currentMinPurchasableQty >= currentMaxPurchasableQty)
+        if (currentMinPurchasableQty > currentMaxPurchasableQty)
           return {
             ...product,
             error: 'PRODUCT_SOLD_OUT',

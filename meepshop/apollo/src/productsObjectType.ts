@@ -12,11 +12,11 @@ export const resolvers = {
 
       if (
         type !== 'product' &&
-        (currentMaxPurchasableQty <= currentMinPurchasableQty || error)
+        (currentMaxPurchasableQty < currentMinPurchasableQty || error)
       )
         return 'GIFT_OUT_OF_STOCK';
 
-      if (currentMaxPurchasableQty <= currentMinPurchasableQty)
+      if (currentMaxPurchasableQty < currentMinPurchasableQty)
         return 'PRODUCT_SOLD_OUT';
 
       return null;

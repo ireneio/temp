@@ -36,7 +36,7 @@ const generateVariantOptions = (
       value:
         (child ? title?.[language] || title?.zh_TW : variant?.id) || undefined,
       label: title?.[language] || title?.zh_TW,
-      disabled: currentMaxPurchasableQty <= currentMinPurchasableQty,
+      disabled: currentMaxPurchasableQty < currentMinPurchasableQty,
       ...(!child
         ? {}
         : {
@@ -65,7 +65,7 @@ export default (
         {
           value: variant?.id || 'null-id',
           label: '',
-          disabled: currentMaxPurchasableQty <= currentMinPurchasableQty,
+          disabled: currentMaxPurchasableQty < currentMinPurchasableQty,
         },
       ];
     }
