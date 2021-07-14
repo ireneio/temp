@@ -158,8 +158,7 @@ export default DashboardCost;`,
 
     // output
     `/*compiled by @meepshop/images*/
-const DashboardCost = require("next/dynamic").default(() => import("@meepshop/images/lib/dashboardCost"));
-
+import DashboardCost from "@meepshop/images/lib/dashboardCost";
 export default DashboardCost;`,
   ],
 
@@ -171,7 +170,7 @@ export default DashboardCost;`,
     // output
     `/*compiled by @meepshop/images*/
 import getImage from "@meepshop/images/src/getImage";
-export const DashboardCost = require("next/dynamic").default(() => import("@meepshop/images/lib/dashboardCost"));
+export { default as DashboardCost } from "@meepshop/images/lib/dashboardCost";
 export const dashboardCost = getImage({
   stage: "${stageFixed}",
   production: "${productionFixed}"

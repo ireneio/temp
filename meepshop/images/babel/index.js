@@ -164,35 +164,6 @@ module.exports = declare(({ assertVersion, types: t }) => {
       ]),
     ]);
 
-  const replaceWithComponent = (path, localKey, key) => {
-    path.insertAfter(
-      t.variableDeclaration('const', [
-        t.variableDeclarator(
-          t.identifier(localKey),
-          t.callExpression(
-            t.memberExpression(
-              t.callExpression(t.identifier('require'), [
-                t.stringLiteral('next/dynamic'),
-              ]),
-              t.identifier('default'),
-            ),
-            [
-              t.arrowFunctionExpression(
-                [],
-                t.callExpression(t.import(), [
-                  t.stringLiteral(
-                    `@meepshop/images/lib/${key.replace(/_react$/, '')}`,
-                  ),
-                ]),
-              ),
-            ],
-          ),
-        ),
-      ]),
-    );
-    generateCompoent(key.replace(/_react$/, ''), path);
-  };
-
   const replaceWithGetImage = path => {
     path.replaceWith(
       t.importDeclaration(
@@ -375,8 +346,17 @@ export const ${key}_react = mockComponent;`,
             const key = specifier.get('imported').node.name;
             const localKey = specifier.get('local').node.name;
 
-            if (/_react$/.test(key)) replaceWithComponent(path, localKey, key);
-            else {
+            if (/_react$/.test(key)) {
+              path.insertAfter(
+                t.importDeclaration(
+                  [t.importDefaultSpecifier(t.identifier(localKey))],
+                  t.stringLiteral(
+                    `@meepshop/images/lib/${key.replace(/_react$/, '')}`,
+                  ),
+                ),
+              );
+              generateCompoent(key.replace(/_react$/, ''), path);
+            } else {
               cache.useGetImage = true;
               cache.images.push({ key, localKey });
             }
@@ -411,12 +391,21 @@ export const ${key}_react = mockComponent;`,
           const localKey = specifier.get('exported').node.name;
 
           if (/_react$/.test(key)) {
-            replaceWithComponent(path, localKey, key);
-            path
-              .getNextSibling()
-              .replaceWith(
-                t.exportNamedDeclaration(path.getNextSibling().node, []),
-              );
+            path.insertAfter(
+              t.exportNamedDeclaration(
+                null,
+                [
+                  t.exportSpecifier(
+                    t.identifier('default'),
+                    t.identifier(localKey),
+                  ),
+                ],
+                t.stringLiteral(
+                  `@meepshop/images/lib/${key.replace(/_react$/, '')}`,
+                ),
+              ),
+            );
+            generateCompoent(key.replace(/_react$/, ''), path);
             return;
           }
 

@@ -1,9 +1,11 @@
 const kebabCase = require('lodash.kebabcase');
 const { parse: lessParser } = require('postcss-less');
+const reactLoadablePlugin = require('next/dist/build/babel/plugins/react-loadable-plugin');
 
 const generateScopedName = require('./babel/generateScopedName');
 const preprocessCss = require('./babel/preprocessCss');
 const addDisplayName = require('./babel/addDisplayName');
+const fixLoadable = require('./babel/fixLoadable');
 
 module.exports = {
   presets: [
@@ -12,6 +14,7 @@ module.exports = {
       {
         useBuiltIns: 'usage',
         corejs: 3,
+        exclude: ['@babel/plugin-proposal-dynamic-import'],
       },
     ],
     '@babel/react',
@@ -23,8 +26,6 @@ module.exports = {
     '@meepshop/icons/babel',
     '@meepshop/locales/babel',
     '@babel/transform-runtime',
-    '@babel/proposal-optional-chaining',
-    '@babel/proposal-nullish-coalescing-operator',
     // TODO: remove, typescript not support
     [
       '@babel/proposal-decorators',
@@ -84,6 +85,9 @@ module.exports = {
               },
       },
     ],
+    ...(process.env.NODE_ENV === 'test'
+      ? []
+      : [reactLoadablePlugin, fixLoadable]),
   ],
   ignore: process.env.NODE_ENV === 'test' ? [] : ['**/__tests__/**'],
 };
