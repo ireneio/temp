@@ -2,10 +2,10 @@
 import gql from 'graphql-tag';
 
 // definition
-export default gql`
+export const productsObjectTypeFragment = gql`
   fragment productsObjectTypeFragment on productsObjectType {
     id
-    error: _error
+    serverError: _error
     type
     variant {
       id

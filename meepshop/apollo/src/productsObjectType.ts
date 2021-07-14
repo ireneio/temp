@@ -4,15 +4,16 @@ import { productsObjectTypeFragment as productsObjectTypeFragmentType } from '@m
 // definition
 export const resolvers = {
   productsObjectType: {
-    error: ({ error, type, variant }: productsObjectTypeFragmentType) => {
-      if (error && /已下架/.test(error)) return 'PRODUCT_NOT_ONLINE';
+    error: ({ serverError, type, variant }: productsObjectTypeFragmentType) => {
+      if (serverError && /已下架/.test(serverError))
+        return 'PRODUCT_NOT_ONLINE';
 
       const currentMinPurchasableQty = variant?.currentMinPurchasableQty || 0;
       const currentMaxPurchasableQty = variant?.currentMaxPurchasableQty || 0;
 
       if (
         type !== 'product' &&
-        (currentMaxPurchasableQty < currentMinPurchasableQty || error)
+        (currentMaxPurchasableQty < currentMinPurchasableQty || serverError)
       )
         return 'GIFT_OUT_OF_STOCK';
 

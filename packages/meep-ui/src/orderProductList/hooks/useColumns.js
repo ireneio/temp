@@ -93,10 +93,10 @@ export default ({ productHasError, updateCart, onChange }) => {
             variant,
           },
         ) => {
-          const {
-            currentMinPurchasableQty,
-            currentMaxPurchasableQty,
-          } = variant;
+          const currentMinPurchasableQty =
+            variant?.currentMinPurchasableQty || 0;
+          const currentMaxPurchasableQty =
+            variant?.currentMaxPurchasableQty || 0;
           const hasError =
             quantity < currentMinPurchasableQty ||
             quantity > currentMaxPurchasableQty;
@@ -203,10 +203,10 @@ export default ({ productHasError, updateCart, onChange }) => {
         render: (quantity, { error, type, cartId, variant }) => {
           if (error || type !== 'product') return null;
 
-          const {
-            currentMinPurchasableQty,
-            currentMaxPurchasableQty,
-          } = variant;
+          const currentMaxPurchasableQty =
+            variant?.currentMaxPurchasableQty || 0;
+          const currentMinPurchasableQty =
+            variant?.currentMinPurchasableQty || 0;
           const hasError =
             quantity < currentMinPurchasableQty ||
             quantity > currentMaxPurchasableQty;

@@ -8,6 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@meepshop/apollo": "^0.80.11",
     "@meepshop/utils": "^0.80.11"
   },
   "keywords": ["cart", "meepshop"]
