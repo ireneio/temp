@@ -4,7 +4,7 @@
   "license": "ISC",
   "workspaces": ["packages/*", "meepshop/*", "store/*", "admin/*"],
   "scripts": {
-    "build": "NODE_ENV=production && make babel-all && types codegen all && meep-cli locales link ./meepshop/locales/locales && lerna run prod --stream",
+    "build": "NODE_ENV=production && make babel-all && build-fragment-types && types codegen all && meep-cli locales link ./meepshop/locales/locales && lerna run prod --stream",
     "clean": "lerna run clean --stream && lerna exec 'rm -rf ./lib' --stream && lerna clean && make clean",
     "dev": "make babel-changed BABEL_OPTION=\"--delete-dir-on-start -w\"",
     "preinstall": "patch-package --reverse || echo \"no patch packages\"",

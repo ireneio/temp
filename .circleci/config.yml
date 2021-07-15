@@ -520,6 +520,9 @@ workflows:
             - run:
                 name: Check locale files
                 command: yarn meep-cli locales check-keys ./meepshop/locales/locales
+            - run:
+                name: Generate fragment types
+                command: yarn build-fragment-types
           context: org-global
           filters:
             branches:

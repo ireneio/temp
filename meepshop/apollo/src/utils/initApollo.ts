@@ -5,7 +5,6 @@ import { Resolvers } from 'apollo-client/core/types';
 import { CustomCtxType } from '../index';
 
 import { errorFilterType } from './errorLink';
-import { IntrospectionQueryResultDataType } from './createIntrospectionQueryResultDataType';
 
 // import
 import { ApolloClient } from 'apollo-client';
@@ -19,7 +18,11 @@ import { ApolloLink } from 'apollo-link';
 import { createNetworkStatusNotifier } from 'react-apollo-network-status';
 import getConfig from 'next/config';
 
-import modules from '@meepshop/modules';
+// Generate by build-fragment-types
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+// eslint-disable-next-line import/no-unresolved
+import fragmentTypes from '../../fragmentTypes';
 
 import * as fbLogin from '../fbLogin';
 import * as landingPageAccessToken from '../landingPageAccessToken';
@@ -32,12 +35,10 @@ import * as validatedConvenienceStoreCities from '../validatedConvenienceStoreCi
 
 import mergeResolvers from './mergeResolvers';
 import errorLink from './errorLink';
-import createIntrospectionQueryResultDataType from './createIntrospectionQueryResultDataType';
 
 // typescript definition
 export interface ConfigType {
   name: string;
-  introspectionQueryResultData?: IntrospectionQueryResultDataType;
   initializeCache?: ((cache: InMemoryCache, ctx?: CustomCtxType) => void)[];
   resolvers?: Resolvers[];
   errorFilter?: errorFilterType;
@@ -54,7 +55,6 @@ let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 const create = (
   {
     name,
-    introspectionQueryResultData = {},
     initializeCache = [],
     resolvers = [],
     errorFilter = Boolean,
@@ -65,23 +65,7 @@ const create = (
   const cache = new InMemoryCache({
     dataIdFromObject: ({ id }) => id,
     fragmentMatcher: new IntrospectionFragmentMatcher({
-      introspectionQueryResultData: {
-        __schema: {
-          types: createIntrospectionQueryResultDataType({
-            ...introspectionQueryResultData,
-            PageModule: Object.keys(modules),
-            Link: [
-              'GroupLink',
-              'PageLink',
-              'ProductLink',
-              'ProductsLink',
-              'EmailLink',
-              'PhoneLink',
-              'CustomLink',
-            ],
-          }),
-        },
-      },
+      introspectionQueryResultData: fragmentTypes,
     }),
   }).restore(initialState || {});
 
