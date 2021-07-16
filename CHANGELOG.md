@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.13 (2021-07-16)
+
+#### :rocket: New Feature
+
+- [#1302](https://github.com/meepshop/meep-lerna/pull/1302) 【功能】月租 - 後台付款設定 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- [#1637](https://github.com/meepshop/meep-lerna/pull/1637) (@meepshop/apollo) Fix circular dependency ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.12 (2021-07-14)
 
 #### :bug: Bug Fix
