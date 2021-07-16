@@ -9,7 +9,7 @@
 
   > *:first-child:nth-last-child(2),
   > *:first-child:nth-last-child(2) ~ * {
-    width: calc(50% - 5px);
+    width: calc(50% - 4px);
 
     @media (max-width: @screen-sm-max) {
       width: 100%;
@@ -17,7 +17,7 @@
   }
 
   > *:first-child:nth-last-child(2) {
-    margin: 0px 5px 0px 0px;
+    margin: 0px 4px 0px 0px;
 
     @media (max-width: @screen-sm-max) {
       margin: 0px;
@@ -25,7 +25,7 @@
   }
 
   > *:first-child:nth-last-child(2) ~ * {
-    margin: 0px 0px 0px 5px;
+    margin: 0px 0px 0px 4px;
 
     @media (max-width: @screen-sm-max) {
       margin: 0px;
@@ -34,7 +34,7 @@
 
   &.selectZipCode {
     > *:first-child:nth-last-child(2) {
-      width: calc(80% - 5px);
+      width: calc(80% - 4px);
 
       @media (max-width: @screen-sm-max) {
         width: 100%;
@@ -42,7 +42,7 @@
     }
 
     > *:first-child:nth-last-child(2) ~ * {
-      width: calc(20% - 5px);
+      width: calc(20% - 4px);
 
       @media (max-width: @screen-sm-max) {
         width: 100%;

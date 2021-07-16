@@ -1,0 +1,60 @@
+{
+  "bill-payment": "Facturation et paiement",
+  "title": "Réglage de paiement",
+  "save": "boutique",
+  "cancel": "Annuler",
+  "delete": "Supprimer",
+  "success": "Stockage réussi",
+  "error": "Mise à jour a échoué",
+  "required": "Obligatoire",
+  "invoice": {
+    "complete-invoice-setting": "Veuillez compléter vos informations de facturation afin que nous ayons ouvert une facture avec succès.",
+    "invoice－title": "Facture et avis de compte",
+    "description": "Le système ouvrira une facture électronique en fonction des informations que vous avez remplies et vous vous rappellerez de vos factures.",
+    "email": "Colne Email",
+    "invoice-data": "Vos informations de facturation",
+    "invoice-type": "Type de facturation",
+    "duplicate": "Deux contrats",
+    "triplicate": "Tripler",
+    "name": {
+      "label": "Nom",
+      "placeholder": "S'il vous plaît remplir la charge"
+    },
+    "ban": {
+      "label": "Tenir bon",
+      "placeholder": "S'il vous plaît remplir la société"
+    },
+    "title": {
+      "label": "Chercher",
+      "placeholder": "S'il vous plaît remplir l'entreprise pour rechercher"
+    },
+    "addressV2": {
+      "label": "adresse"
+    },
+    "county-area": "Veuillez sélectionner la zone de comté de la ville",
+    "zip-code": "Code postal",
+    "street": "Veuillez remplir le nom complet de la rue, la section route et le numéro d'allée",
+    "contract-tooltip": "Les informations sont signées pour vous, si vous souhaitez modifier, veuillez contacter votre Consultant en magasin.",
+    "building": "Construction de données"
+  },
+  "payment": {
+    "title": "Méthode de paiement de facturation",
+    "description": "La facture mensuelle facturera des frais dans votre méthode de paiement prédéfini.",
+    "payment-method": "Méthode de paiement prédéfini",
+    "set-payment-method": "Définissez votre méthode de paiement",
+    "CREDIT_CARD": {
+      "title": "carte de crédit",
+      "description": "Lier votre carte de crédit à retenir automatiquement des factures pour protéger votre magasin continue",
+      "create": "Ajouter une carte",
+      "replace": "Remplacer la carte de liaison",
+      "delete": "Enlever la carte",
+      "delete-confirm": "Êtes-vous sûr de vouloir supprimer cette carte de crédit?",
+      "change": "Remplacer la carte de crédit",
+      "expire": "maturité"
+    },
+    "ATM": {
+      "title": "Compte virtuel",
+      "description": "Obtenez un paiement de compte virtuel par mois"
+    }
+  }
+}

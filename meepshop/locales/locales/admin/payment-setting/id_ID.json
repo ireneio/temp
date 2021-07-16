@@ -1,0 +1,60 @@
+{
+  "bill-payment": "Penagihan dan Pembayaran",
+  "title": "Pengaturan pembayaran",
+  "save": "toko",
+  "cancel": "membatalkan",
+  "delete": "Menghapus",
+  "success": "Penyimpanan yang berhasil",
+  "error": "Pembaharuan gagal",
+  "required": "Yg dibutuhkan",
+  "invoice": {
+    "complete-invoice-setting": "Silakan lengkapi informasi faktur Anda sehingga kami telah berhasil membuka faktur kepada Anda.",
+    "invoice－title": "Faktur dan Pemberitahuan Akun",
+    "description": "Sistem akan membuka faktur elektronik sesuai dengan informasi yang Anda isi, dan Anda akan mengingatkan Anda pada tagihan Anda.",
+    "email": "Colne Email.",
+    "invoice-data": "Informasi faktur Anda",
+    "invoice-type": "Faktur Tipe.",
+    "duplicate": "Dua kontrak",
+    "triplicate": "Tiga kali lipat",
+    "name": {
+      "label": "Nama",
+      "placeholder": "Silakan isi tuduhan"
+    },
+    "ban": {
+      "label": "Tahan",
+      "placeholder": "Silakan isi perusahaan"
+    },
+    "title": {
+      "label": "Lihatlah",
+      "placeholder": "Silakan isi perusahaan untuk melihat ke atas"
+    },
+    "addressV2": {
+      "label": "alamat"
+    },
+    "county-area": "Silakan pilih area county city",
+    "zip-code": "Kode Pos",
+    "street": "Silakan isi nama jalan, bagian jalan, dan alley",
+    "contract-tooltip": "Informasi ini ditandatangani untuk Anda, jika Anda ingin berubah, silakan hubungi konsultan toko Anda.",
+    "building": "Konstruksi data"
+  },
+  "payment": {
+    "title": "Metode Pembayaran Penagihan",
+    "description": "Tagihan bulanan akan membebankan biaya dalam metode pembayaran preset Anda",
+    "payment-method": "Metode Pembayaran Preset",
+    "set-payment-method": "Tetapkan metode pembayaran Anda",
+    "CREDIT_CARD": {
+      "title": "kartu kredit",
+      "description": "BIND kartu kredit Anda secara otomatis pemotongan tagihan, untuk melindungi toko Anda berlanjut",
+      "create": "Tambahkan kartu.",
+      "replace": "Ganti Kartu Binding",
+      "delete": "Hapus kartu",
+      "delete-confirm": "Apakah Anda yakin ingin menghapus kartu kredit ini?",
+      "change": "Ganti kartu kredit",
+      "expire": "kematangan"
+    },
+    "ATM": {
+      "title": "Akun virtual",
+      "description": "Dapatkan Pembayaran Akun Virtual per Bulan"
+    }
+  }
+}

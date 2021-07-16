@@ -1,0 +1,60 @@
+{
+  "bill-payment": "Thanh toán và thanh toán",
+  "title": "Cài đặt thanh toán",
+  "save": "cửa hàng",
+  "cancel": "hủy bỏ",
+  "delete": "Tẩy",
+  "success": "Lưu trữ thành công",
+  "error": "Cập nhật thất bại",
+  "required": "Cần thiết",
+  "invoice": {
+    "complete-invoice-setting": "Vui lòng điền thông tin hóa đơn của bạn để chúng tôi đã mở thành công hóa đơn cho bạn.",
+    "invoice－title": "Thông báo hóa đơn và tài khoản",
+    "description": "Hệ thống sẽ mở một hóa đơn điện tử theo thông tin bạn điền và bạn sẽ nhắc bạn về các hóa đơn của bạn.",
+    "email": "Email Colne",
+    "invoice-data": "Thông tin hóa đơn của bạn",
+    "invoice-type": "Loại hoá đơn",
+    "duplicate": "Hai hợp đồng",
+    "triplicate": "Ba.",
+    "name": {
+      "label": "Tên",
+      "placeholder": "Vui lòng điền vào phí"
+    },
+    "ban": {
+      "label": "Giữ",
+      "placeholder": "Vui lòng điền vào công ty"
+    },
+    "title": {
+      "label": "tra cứu",
+      "placeholder": "Vui lòng điền vào công ty để tìm kiếm"
+    },
+    "addressV2": {
+      "label": "Địa chỉ"
+    },
+    "county-area": "Vui lòng chọn khu vực thành phố quận",
+    "zip-code": "mã bưu điện",
+    "street": "Vui lòng điền vào tên đường đầy đủ, phần đường và số hẻm",
+    "contract-tooltip": "Thông tin được ký cho bạn, nếu bạn muốn thay đổi, vui lòng liên hệ với nhà tư vấn cửa hàng của bạn.",
+    "building": "Xây dựng dữ liệu"
+  },
+  "payment": {
+    "title": "Phương thức thanh toán thanh toán",
+    "description": "Hóa đơn hàng tháng sẽ tính phí trong phương thức thanh toán cài sẵn của bạn",
+    "payment-method": "Phương thức thanh toán đặt trước",
+    "set-payment-method": "Đặt phương thức thanh toán của bạn",
+    "CREDIT_CARD": {
+      "title": "thẻ tín dụng",
+      "description": "Liên kết thẻ tín dụng của bạn tự động giữ lại hóa đơn, để bảo vệ cửa hàng của bạn tiếp tục",
+      "create": "Thêm thẻ",
+      "replace": "Thay thế thẻ ràng buộc",
+      "delete": "Xóa thẻ",
+      "delete-confirm": "Bạn có chắc chắn muốn xóa thẻ tín dụng này?",
+      "change": "Thay thế thẻ tín dụng",
+      "expire": "trưởng thành"
+    },
+    "ATM": {
+      "title": "Tài khoản ảo",
+      "description": "Nhận một khoản thanh toán tài khoản ảo mỗi tháng"
+    }
+  }
+}

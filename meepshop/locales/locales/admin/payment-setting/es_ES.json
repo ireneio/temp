@@ -1,0 +1,60 @@
+{
+  "bill-payment": "Facturación y pago",
+  "title": "Configuración de pago",
+  "save": "Tienda",
+  "cancel": "cancelar",
+  "delete": "Eliminar",
+  "success": "Almacenamiento exitoso",
+  "error": "Actualización fallida",
+  "required": "Requerido",
+  "invoice": {
+    "complete-invoice-setting": "Complete su información de factura para que le hayamos abierto con éxito una factura.",
+    "invoice－title": "Factura y aviso de cuenta",
+    "description": "El sistema abrirá una factura electrónica de acuerdo con la información que completó, y usted le recordará sus facturas.",
+    "email": "Email de Colne",
+    "invoice-data": "Su información de factura",
+    "invoice-type": "Tipo de factura",
+    "duplicate": "Dos contratos",
+    "triplicate": "Triple",
+    "name": {
+      "label": "Nombre",
+      "placeholder": "Por favor complete la carga"
+    },
+    "ban": {
+      "label": "Sostener",
+      "placeholder": "Por favor complete la empresa"
+    },
+    "title": {
+      "label": "buscar",
+      "placeholder": "Por favor, complete la empresa para mirar hacia arriba"
+    },
+    "addressV2": {
+      "label": "dirección"
+    },
+    "county-area": "Por favor seleccione el área de la ciudad del condado",
+    "zip-code": "código postal",
+    "street": "Por favor, complete el nombre completo de la calle, la sección de carreteras y el número del callejón",
+    "contract-tooltip": "La información se firma para usted, si desea cambiar, comuníquese con su consultor de la tienda.",
+    "building": "Construcción de datos"
+  },
+  "payment": {
+    "title": "Método de pago de facturación",
+    "description": "La factura mensual cobrará una tarifa en su método de pago preestablecido",
+    "payment-method": "Método de pago preestablecido",
+    "set-payment-method": "Establezca su método de pago",
+    "CREDIT_CARD": {
+      "title": "tarjeta de crédito",
+      "description": "Vincula su tarjeta de crédito que retenga automáticamente las facturas, para proteger su tienda continúa",
+      "create": "Agregar tarjeta",
+      "replace": "Reemplace la tarjeta de enlace",
+      "delete": "Quitar la tarjeta",
+      "delete-confirm": "¿Está seguro de que desea eliminar esta tarjeta de crédito?",
+      "change": "Reemplace la tarjeta de crédito",
+      "expire": "madurez"
+    },
+    "ATM": {
+      "title": "Cuenta virtual",
+      "description": "Obtenga un pago de cuenta virtual por mes"
+    }
+  }
+}

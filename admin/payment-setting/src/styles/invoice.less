@@ -1,0 +1,101 @@
+.root {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 22px;
+
+  .title {
+    color: rgba(0, 0, 0, 0.65);
+    margin-bottom: 16px;
+  }
+
+  .street {
+    margin-top: 24px;
+  }
+
+  .tooltip {
+    margin-left: 5px;
+  }
+
+  .flex {
+    display: flex;
+
+    > div {
+      width: 100%;
+
+      &:first-child {
+        margin-right: 24px;
+      }
+    }
+  }
+
+  :global(.ant-alert-info) {
+    background-color: #e8e9f7;
+    border: 1px solid #9ea6dd;
+  }
+
+  :global(.ant-alert-with-description) {
+    align-items: center;
+  }
+
+  :global(.ant-alert-info .ant-alert-icon) {
+    color: #3342ac;
+  }
+
+  :global(.ant-alert-message) {
+    margin: 0px;
+  }
+
+  :global(.ant-alert-description) {
+    color: rgba(0, 0, 0, 0.85);
+  }
+
+  :global(.ant-radio-group-solid .ant-radio-button-wrapper-checked) {
+    background: #7783cf;
+    border-color: #7783cf;
+    box-shadow: -1px 0 0 0 #7783cf;
+
+    &:hover {
+      color: #ffffff;
+    }
+
+    &:not(.ant-radio-button-wrapper-disabled)::before {
+      background-color: #7783cf;
+    }
+  }
+
+  :global(.ant-radio-button-wrapper) {
+    &:hover {
+      color: #7783cf;
+    }
+
+    &:focus-within {
+      outline: 3px solid rgba(119, 131, 207, 0.06);
+    }
+  }
+
+  :global(.ant-form-item) {
+    margin-top: 8px;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  :global(.ant-row):not(:last-child) {
+    margin-bottom: 12px;
+  }
+
+  :global(.ant-col) {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 14px;
+    line-height: 22px;
+
+    &:last-child {
+      color: rgba(0, 0, 0, 0.65);
+
+      &.building {
+        color: rgba(0, 0, 0, 0.25);
+      }
+    }
+  }
+}

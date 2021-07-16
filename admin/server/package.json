@@ -22,6 +22,7 @@
     "@admin/orders-ecfit": "^0.80.11",
     "@admin/orders-ecpay": "^0.80.11",
     "@admin/page-manager": "^0.80.12",
+    "@admin/payment-setting": "^0.69.0",
     "@admin/plan-setting": "^0.80.11",
     "@admin/redirects": "^0.80.12",
     "@admin/reset-password": "^0.80.11",

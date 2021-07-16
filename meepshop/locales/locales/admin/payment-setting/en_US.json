@@ -1,0 +1,60 @@
+{
+  "bill-payment": "Billing and payment",
+  "title": "Payment setting",
+  "save": "store",
+  "cancel": "cancel",
+  "delete": "Remove",
+  "success": "Successful storage",
+  "error": "Update failed",
+  "required": "Required",
+  "invoice": {
+    "complete-invoice-setting": "Please complete your invoice information so that we have successfully opened an invoice to you.",
+    "invoice－title": "Invoice and account notice",
+    "description": "The system will open an electronic invoice according to the information you filled in, and you will remind you of your bills.",
+    "email": "Colne email",
+    "invoice-data": "Your invoice information",
+    "invoice-type": "invoice type",
+    "duplicate": "Two contract",
+    "triplicate": "Triple",
+    "name": {
+      "label": "Name",
+      "placeholder": "Please fill in the charge"
+    },
+    "ban": {
+      "label": "Hold up",
+      "placeholder": "Please fill in the company"
+    },
+    "title": {
+      "label": "look up",
+      "placeholder": "Please fill in the company to look up"
+    },
+    "addressV2": {
+      "label": "address"
+    },
+    "county-area": "Please select the county city area",
+    "zip-code": "Postal code",
+    "street": "Please fill in the full street name, road section, and alley number",
+    "contract-tooltip": "The information is signed for you, if you want to change, please contact your store consultant.",
+    "building": "Data construction"
+  },
+  "payment": {
+    "title": "Billing payment method",
+    "description": "The monthly bill will charge a fee in your preset payment method",
+    "payment-method": "Preset payment method",
+    "set-payment-method": "Set your payment method",
+    "CREDIT_CARD": {
+      "title": "credit card",
+      "description": "Bind your credit card automatically withholding bills, to protect your store continues",
+      "create": "Add card",
+      "replace": "Replace the binding card",
+      "delete": "Remove card",
+      "delete-confirm": "Are you sure you want to remove this credit card?",
+      "change": "Replace the credit card",
+      "expire": "maturity"
+    },
+    "ATM": {
+      "title": "Virtual account",
+      "description": "Get a virtual account payment per month"
+    }
+  }
+}

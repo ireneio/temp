@@ -51,10 +51,12 @@ export default React.memo(
         <Input
           className={styles.disabled}
           style={{
-            background: transformColor(colors[5])
-              .alpha(0.15)
-              .toString(),
-            color: colors[2],
+            background: colors[5]
+              ? transformColor(colors[5])
+                  .alpha(0.15)
+                  .toString()
+              : '#F5F5F5',
+            color: colors[2] || 'rgba(0,0,0,0.65)',
           }}
           size={size}
           placeholder={placeholder}

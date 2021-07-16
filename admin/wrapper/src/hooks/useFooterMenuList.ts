@@ -35,6 +35,7 @@ export default (
     () => ({
       'account-setting': isMerchant,
       'bill-payment': isMerchant,
+      'bill-payment/setting': isMerchant,
     }),
     [isMerchant],
   );

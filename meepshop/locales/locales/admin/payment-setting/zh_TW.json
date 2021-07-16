@@ -1,0 +1,60 @@
+{
+  "bill-payment": "帳單與付款",
+  "title": "付款設定",
+  "save": "儲存",
+  "cancel": "取消",
+  "delete": "移除",
+  "success": "儲存成功",
+  "error": "更新失敗",
+  "required": "必填",
+  "invoice": {
+    "complete-invoice-setting": "請完成您的發票資料，以便我們成功開立發票給您。",
+    "invoice－title": "發票與帳務通知",
+    "description": "系統將依您填寫的資料開立電子發票，並於每月提醒您帳單相關事宜",
+    "email": "收取通知 Email",
+    "invoice-data": "您的發票資料",
+    "invoice-type": "發票類型",
+    "duplicate": "二聯式",
+    "triplicate": "三聯式",
+    "name": {
+      "label": "姓名",
+      "placeholder": "請填寫收取人姓名"
+    },
+    "ban": {
+      "label": "統編",
+      "placeholder": "請填寫公司統編"
+    },
+    "title": {
+      "label": "抬頭",
+      "placeholder": "請填寫公司抬頭"
+    },
+    "addressV2": {
+      "label": "地址"
+    },
+    "county-area": "請選擇縣市區域",
+    "zip-code": "郵遞區號",
+    "street": "請填寫完整街道名稱、路段、巷弄號碼",
+    "contract-tooltip": "此處資料為您簽約的內容，如欲更改，請與您的開店顧問聯繫。",
+    "building": "資料建置中"
+  },
+  "payment": {
+    "title": "帳單付款方式",
+    "description": "每月帳單會以您預設的付款方式收取費用",
+    "payment-method": "預設付款方式",
+    "set-payment-method": "設定您的付款方式",
+    "CREDIT_CARD": {
+      "title": "信用卡",
+      "description": "綁定您的信用卡每月自動扣繳帳單，保障您的商店延續",
+      "create": "新增卡片",
+      "replace": "更換綁定卡片",
+      "delete": "移除卡片",
+      "delete-confirm": "你確定要移除此張信用卡嗎？",
+      "change": "更換信用卡",
+      "expire": "到期"
+    },
+    "ATM": {
+      "title": "虛擬帳號",
+      "description": "每月於帳單取得虛擬帳號繳款"
+    }
+  }
+}

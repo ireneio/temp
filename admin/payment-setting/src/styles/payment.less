@@ -1,0 +1,138 @@
+.header {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  line-height: 22px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  color: #5967c5;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.setUp {
+  border: 1px dashed #00c5dc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0px;
+  color: #00c5dc;
+  font-size: 16px;
+  line-height: 24px;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px dashed #0099c3;
+    background-color: #fafbfc;
+    color: #0099c3;
+  }
+
+  :global(.anticon-plus-circle) {
+    margin-right: 8px;
+  }
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+
+  .action {
+    display: flex;
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+
+    .lastFourDigit {
+      margin-right: 16px;
+    }
+  }
+
+  :global(.ant-radio-wrapper) {
+    display: flex;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px 8px 0px 0px;
+    padding: 16px 24px;
+
+    > span:last-child {
+      padding: 0px 24px;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 12px;
+      line-height: 20px;
+
+      > div:first-child {
+        display: flex;
+        align-items: center;
+        color: rgba(0, 0, 0, 0.65);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 22px;
+        margin-bottom: 8px;
+      }
+    }
+
+    :global(.anticon) {
+      font-size: 20px;
+      margin-right: 16px;
+    }
+
+    &:last-child {
+      border-top: none;
+      border-radius: 0px 0px 8px 8px;
+    }
+  }
+
+  :global(.ant-radio) {
+    height: fit-content;
+  }
+
+  :global(.ant-radio-checked .ant-radio-inner) {
+    border-color: #5967c5;
+  }
+
+  :global(.ant-radio-inner::after) {
+    background-color: #5967c5;
+  }
+
+  :global(.ant-radio:hover .ant-radio-inner) {
+    border-color: #5967c5;
+  }
+
+  :global(.ant-radio-input:focus + .ant-radio-inner) {
+    box-shadow: 0 0 0 3px rgba(89, 103, 197, 0.08);
+  }
+
+  :global(.ant-radio-checked::after) {
+    border: 1px solid #5967c5;
+  }
+}
+
+.creditCard {
+  display: flex;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  line-height: 22px;
+
+  .icon {
+    display: flex;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    padding: 14px;
+    margin-right: 16px;
+
+    :global(.anticon) {
+      font-size: 20px;
+    }
+  }
+
+  .title {
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 2px;
+  }
+}

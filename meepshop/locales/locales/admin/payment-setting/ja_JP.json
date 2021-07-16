@@ -1,0 +1,60 @@
+{
+  "bill-payment": "請求と支払い",
+  "title": "支払いの設定",
+  "save": "お店",
+  "cancel": "キャンセル",
+  "delete": "削除する",
+  "success": "成功した記憶域",
+  "error": "アップデートに失敗しました",
+  "required": "必須",
+  "invoice": {
+    "complete-invoice-setting": "請求書情報を入力してください。",
+    "invoice－title": "請求書と口座通知",
+    "description": "システムはあなたが記入した情報に従って電子請求書を開き、あなたはあなたの請求書を思い出させるでしょう。",
+    "email": "コルネメール",
+    "invoice-data": "あなたの請求書情報",
+    "invoice-type": "請求書タイプ",
+    "duplicate": "2つの契約",
+    "triplicate": "トリプル",
+    "name": {
+      "label": "名前",
+      "placeholder": "チャージを記入してください"
+    },
+    "ban": {
+      "label": "持続する",
+      "placeholder": "会社に記入してください"
+    },
+    "title": {
+      "label": "見上げる",
+      "placeholder": "調べるために会社に記入してください"
+    },
+    "addressV2": {
+      "label": "住所"
+    },
+    "county-area": "郡の市街地を選択してください",
+    "zip-code": "郵便番号",
+    "street": "フルストリート名、道路区間、路地数を記入してください",
+    "contract-tooltip": "情報はあなたのために署名されます、あなたが変更したいのであれば、あなたの店のコンサルタントに連絡してください。",
+    "building": "データ構築"
+  },
+  "payment": {
+    "title": "請求支払方法",
+    "description": "毎月の請求書はあなたのプリセット支払方法で料金を請求します",
+    "payment-method": "プリセット支払方法",
+    "set-payment-method": "支払い方法を設定してください",
+    "CREDIT_CARD": {
+      "title": "クレジットカード",
+      "description": "あなたの店を保護するために、あなたのクレジットカードを自動的に源泉徴収する請求書を縛ります",
+      "create": "カードを追加します",
+      "replace": "バインディングカードを交換してください",
+      "delete": "カードを取り外す",
+      "delete-confirm": "このクレジットカードを削除してよろしいですか？",
+      "change": "クレジットカードを交換してください",
+      "expire": "成熟"
+    },
+    "ATM": {
+      "title": "仮想アカウント",
+      "description": "月あたりの仮想アカウントの支払いを取得します"
+    }
+  }
+}
