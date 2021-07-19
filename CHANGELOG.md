@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.80.14 (2021-07-19)
+
+#### :rocket: New Feature
+
+- [#1591](https://github.com/meepshop/meep-lerna/pull/1591) 前端 - 一頁式改用 createOrder ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- [#1632](https://github.com/meepshop/meep-lerna/pull/1632) 【BUG】後台 - 帳戶設定 - 顯示儲存反饋訊息後，右上取消＆儲存按鈕未消失 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.13 (2021-07-16)
 
 #### :rocket: New Feature
