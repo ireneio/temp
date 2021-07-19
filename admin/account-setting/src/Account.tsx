@@ -1,7 +1,6 @@
 // import
 import React from 'react';
 import { Form, Input, Divider } from 'antd';
-import get from 'lodash.get';
 
 import { useTranslation } from '@meepshop/locales';
 import Block from '@admin/block';
@@ -46,7 +45,7 @@ export default React.memo(({ viewer }: PropsType) => {
             <React.Fragment key={key}>
               <div className={styles.title}>{t(`account.${key}.label`)}</div>
 
-              <FormItem initialValue={get(viewer, name)} name={name}>
+              <FormItem name={name}>
                 <Input placeholder={t(`account.${key}.placeholder`)} />
               </FormItem>
             </React.Fragment>

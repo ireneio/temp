@@ -2,16 +2,16 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { accountFragment } from './account';
+import { useInitialValuesUserFragment } from './useInitialValues';
 
 // definition
 export const updateUserList = gql`
   mutation updateUserList($updateUserList: [UpdateUser]) {
     updateUserList(updateUserList: $updateUserList) {
       id
-      ...accountFragment
+      ...useInitialValuesUserFragment
     }
   }
 
-  ${accountFragment}
+  ${useInitialValuesUserFragment}
 `;

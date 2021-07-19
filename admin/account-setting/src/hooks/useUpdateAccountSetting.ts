@@ -1,9 +1,10 @@
 // typescript import
-import { FormInstance } from 'antd/lib/form';
+import { ValuesType } from './useInitialValues';
 
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
+import { areEqual } from 'fbjs';
 
 import message from '@admin/message';
 import { useTranslation } from '@meepshop/locales';
@@ -17,18 +18,9 @@ import {
 // graphql import
 import { updateUserList } from '../gqls/useUpdateAccountSetting';
 
-// typescript definition
-interface ValuesType {
-  name: string | null;
-  additionalInfo: {
-    mobile: string | null;
-    tel: string | null;
-  };
-}
-
 // definition
 export default (
-  { resetFields }: FormInstance,
+  initialValues: ValuesType | undefined,
   id: string | null,
 ): {
   updateAccountSetting: (values: ValuesType) => void;
@@ -46,7 +38,6 @@ export default (
       }
 
       message.success(t('success'));
-      resetFields();
     },
   });
 
@@ -54,7 +45,7 @@ export default (
     loading,
     updateAccountSetting: useCallback(
       values => {
-        if (!id) return;
+        if (!id || areEqual(initialValues, values)) return;
 
         mutation({
           variables: {
@@ -67,7 +58,7 @@ export default (
           },
         });
       },
-      [id, mutation],
+      [initialValues, id, mutation],
     ),
   };
 };

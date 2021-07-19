@@ -6,10 +6,5 @@ export const accountFragment = gql`
   fragment accountFragment on User {
     id
     email
-    name
-    additionalInfo {
-      mobile
-      tel
-    }
   }
 `;
