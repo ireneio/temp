@@ -23,15 +23,17 @@ export const landingPageAccessToken = gql`
 `;
 
 export const createOrderInLandingPage = gql`
-  mutation createOrderInLandingPage($createOrderList: [NewOrder]) {
-    createOrderList(createOrderList: $createOrderList) {
-      id
+  mutation createOrderInLandingPage($input: CreateOrderInput!) {
+    createOrder(input: $input) {
+      order {
+        id
 
-      formData {
-        ...formDataFragment
+        formData {
+          ...formDataFragment
+        }
+
+        ...createOrderFragment
       }
-
-      ...createOrderFragment
     }
   }
 

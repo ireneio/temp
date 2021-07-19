@@ -82,8 +82,15 @@ export default (
                 createOrderInLandingPageVariables
               >,
             ) => {
-              const email =
-                options.variables?.createOrderList?.[0]?.userInfo?.email;
+              if (!options.variables?.input) return { errors: [] };
+
+              const {
+                variables: {
+                  input: {
+                    userInfo: { email },
+                  },
+                },
+              } = options;
 
               if (!email) return { errors: [] };
 
@@ -111,13 +118,12 @@ export default (
                 createOrderInLandingPageVariables
               >({
                 variables: {
-                  createOrderList: [
-                    {
-                      products: [],
-                      ...options.variables?.createOrderList?.[0],
-                      userId: accessTokenData?.landingPageAccessToken.userId,
-                    },
-                  ],
+                  input: {
+                    ...options.variables.input,
+                    userId:
+                      accessTokenData?.landingPageAccessToken.userId ||
+                      '' /** SHOULD_NOT_BE_NULL */,
+                  },
                 },
                 mutation: createOrderInLandingPage,
                 fetchPolicy: 'no-cache',

@@ -118,113 +118,107 @@ export default ({
             const [variantId] = variant.slice(-1);
             const { data, errors } = await mutation({
               variables: {
-                createOrderList: [
-                  {
-                    idempotentKey: uuid(),
-                    environment: {
-                      domain,
-                      sourcePage: 'lp' as SourcePageTypeEnum,
+                input: {
+                  idempotentKey: uuid(),
+                  environment: {
+                    domain,
+                    sourcePage: 'lp' as SourcePageTypeEnum,
+                  },
+                  isPayment: true,
+                  products: [
+                    {
+                      productId: product?.id || '' /** SHOULD_NOT_BE_NULL */,
+                      variantId,
+                      quantity,
                     },
-                    isPayment: true,
-                    products: [
-                      {
-                        productId: product?.id,
-                        variantId,
-                        quantity,
-                      },
-                    ],
-                    coupon,
-                    ...(!addressAndZipCode
-                      ? {}
-                      : {
-                          address: {
-                            zipCode: addressAndZipCode.zipCode,
-                            countryId: addressAndZipCode.address[0],
-                            cityId: addressAndZipCode.address[1],
-                            areaId: addressAndZipCode.address[2],
-                            street,
-                          },
-                        }),
-                    payments: [
-                      {
-                        paymentId,
-                        ...(!href
-                          ? {}
-                          : {
-                              redirectUrl: `https://${domain}${href}`,
-                            }),
-                        ...(payment?.template !== 'gmo' ||
-                        payment.accountInfo?.gmo?.paymentType !== 'Credit'
-                          ? {}
-                          : {
-                              gmo: formatGmo({
-                                isRememberCard,
-                                cardHolderName,
-                                cardNumber,
-                                securityCode,
-                                expire,
-                                installmentCode,
-                              }),
-                            }),
-                      },
-                    ],
-                    shipments: [
-                      {
-                        shipmentId,
-                        recipient: {
-                          name,
-                          email: userEmail || viewer?.email,
-                          mobile,
-                          comment: notes,
-                          receiverStoreID: CVSStoreID,
-                          receiverStoreName: CVSStoreName,
-                          receiverStoreAddress: CVSAddress,
+                  ],
+                  coupon,
+                  ...(!addressAndZipCode
+                    ? {}
+                    : {
+                        address: {
+                          zipCode: addressAndZipCode.zipCode,
+                          countryId: addressAndZipCode.address[0],
+                          cityId: addressAndZipCode.address[1],
+                          areaId: addressAndZipCode.address[2],
+                          street,
                         },
-                      },
-                    ],
-                    cvsType,
-                    cvsCode,
-                    userId: viewer?.id,
-                    userInfo: {
-                      name: userName || name,
-                      email: userEmail || viewer?.email,
-                      mobile: userMobile || mobile,
-                    },
-                    ...(!invoice
+                      }),
+                  payment: {
+                    paymentId,
+                    ...(!href
                       ? {}
                       : {
-                          invoice: {
-                            type: invoice[0],
-                            ...(invoice[1] === 'MEMBERSHIP' ||
-                            invoice[1] === 'MOBILE_BARCODE' ||
-                            invoice[1] === 'CITIZEN_DIGITAL_CERTIFICATE'
-                              ? {
-                                  method: 'CARRIER' as InvoiceMethodEnum,
-                                  carrier: {
-                                    type: invoice[1],
-                                    code: invoiceEInvoiceNumber,
-                                  },
-                                }
-                              : {
-                                  method: invoice[1],
-                                }),
-
-                            // method = TRIPLICATE
-                            address: invoiceAddress,
-                            title: invoiceTitle,
-                            ban: invoiceVAT,
-
-                            // method = DONATION
-                            loveCode: invoiceDonate,
-                          },
+                          redirectUrl: `https://${domain}${href}`,
+                        }),
+                    ...(payment?.template !== 'gmo' ||
+                    payment.accountInfo?.gmo?.paymentType !== 'Credit'
+                      ? {}
+                      : {
+                          gmo: formatGmo({
+                            isRememberCard,
+                            cardHolderName,
+                            cardNumber,
+                            securityCode,
+                            expire,
+                            installmentCode,
+                          }),
                         }),
                   },
-                ],
+                  shipment: {
+                    shipmentId,
+                    recipient: {
+                      name,
+                      email: userEmail || viewer?.email,
+                      mobile,
+                      comment: notes,
+                      receiverStoreID: CVSStoreID,
+                      receiverStoreName: CVSStoreName,
+                      receiverStoreAddress: CVSAddress,
+                    },
+                  },
+                  cvsType,
+                  cvsCode,
+                  userId: viewer?.id || '' /** SHOULD_NOT_BE_NULL */,
+                  userInfo: {
+                    name: userName || name,
+                    email: userEmail || viewer?.email,
+                    mobile: userMobile || mobile,
+                  },
+                  ...(!invoice
+                    ? {}
+                    : {
+                        invoice: {
+                          type: invoice[0],
+                          ...(invoice[1] === 'MEMBERSHIP' ||
+                          invoice[1] === 'MOBILE_BARCODE' ||
+                          invoice[1] === 'CITIZEN_DIGITAL_CERTIFICATE'
+                            ? {
+                                method: 'CARRIER' as InvoiceMethodEnum,
+                                carrier: {
+                                  type: invoice[1],
+                                  code: invoiceEInvoiceNumber,
+                                },
+                              }
+                            : {
+                                method: invoice[1],
+                              }),
+
+                          // method = TRIPLICATE
+                          address: invoiceAddress,
+                          title: invoiceTitle,
+                          ban: invoiceVAT,
+
+                          // method = DONATION
+                          loveCode: invoiceDonate,
+                        },
+                      }),
+                },
               },
             });
 
             const { id, orderNo, error: createOrderError, formData } =
-              data?.createOrderList?.[0] || {};
+              data?.createOrder?.order || {};
 
             if (errors || createOrderError || !id) {
               const errorMessage =
