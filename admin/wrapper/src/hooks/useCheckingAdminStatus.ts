@@ -8,7 +8,7 @@ import { useCheckingAdminStatusFragment as useCheckingAdminStatusFragmentType } 
 
 // definition
 export default (store: useCheckingAdminStatusFragmentType | null): boolean => {
-  const router = useRouter();
+  const { pathname, replace } = useRouter();
 
   // FIXME: remove store.adminStatus when complete migration
   const isNotOpened = Boolean(
@@ -16,8 +16,9 @@ export default (store: useCheckingAdminStatusFragmentType | null): boolean => {
   );
 
   useEffect(() => {
-    if (isNotOpened) router.replace('/bill-payment');
-  }, [router, isNotOpened]);
+    if (isNotOpened && !/^\/bill-payment/.test(pathname))
+      replace('/bill-payment');
+  }, [pathname, replace, isNotOpened]);
 
   return isNotOpened;
 };
