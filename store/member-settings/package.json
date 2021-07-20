@@ -4,14 +4,14 @@
   "description": "Member settings for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.13",
+  "version": "0.80.15",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/address-cascader": "^0.80.13",
+    "@meepshop/address-cascader": "^0.80.15",
     "@meepshop/apollo": "^0.80.13",
     "@meepshop/context": "^0.80.13",
-    "@meepshop/locales": "^0.80.13",
+    "@meepshop/locales": "^0.80.15",
     "@store/utils": "^0.80.13",
     "moment": "^2.22.1"
   },
