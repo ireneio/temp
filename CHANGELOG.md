@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.15 (2021-07-20)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1629](https://github.com/meepshop/meep-lerna/pull/1629) 內部開單 - 簡化 activities query ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1588](https://github.com/meepshop/meep-lerna/pull/1588) Merchant/Helper 帳號輸入 email 時，即時轉換全小寫顯示，與移除阻擋警示 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.14 (2021-07-19)
 
 #### :rocket: New Feature
