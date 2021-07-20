@@ -67,7 +67,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
           (str, p1) =>
             `${nodePath.relative(
               pagesFolderPath,
-              p1.replace(/src/, /lib/),
+              p1.replace(/src/, /lib/).replace(/\.tsx?$/, '.js'),
             )} -> `,
         );
 
