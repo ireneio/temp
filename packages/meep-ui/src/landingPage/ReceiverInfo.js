@@ -32,7 +32,7 @@ const { TextArea } = Input;
 
 @withTranslation('landing-page')
 @withHook(() => ({
-  validateEmail: useValidateEmail(true),
+  validateEmail: useValidateEmail(false, true),
 }))
 @enhancer
 @radium

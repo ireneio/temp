@@ -69,7 +69,7 @@ const SettingNotificationPage: NextPage<PropsType> = React.memo(() => {
   const { updateNotification, loading } = useUpdateNotificationSetting(
     data?.viewer?.store?.id || null,
   );
-  const validateEmail = useValidateEmail();
+  const validateEmail = useValidateEmail(true);
 
   useEffect(() => {
     if (data) form.resetFields();

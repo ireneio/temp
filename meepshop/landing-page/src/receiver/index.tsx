@@ -57,7 +57,7 @@ export default React.memo(
     const invoiceOptions = useInvoiceOptions(
       filter(useInvoiceOptionsFragment, viewer?.store?.setting || null),
     );
-    const validateEmail = useValidateEmail(true);
+    const validateEmail = useValidateEmail(false, true);
 
     const isLogin = viewer?.role === 'SHOPPER';
     const { getFieldDecorator, getFieldValue } = form;

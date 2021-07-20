@@ -25,7 +25,7 @@ export default React.memo(({ setAction }: PropsType) => {
     countdown,
     sendResetPasswordEmail,
   } = useSendResetPasswordEmail();
-  const validateEmail = useValidateEmail();
+  const validateEmail = useValidateEmail(true);
 
   return (
     <Form className={styles.root} onFinish={sendResetPasswordEmail}>
@@ -54,6 +54,7 @@ export default React.memo(({ setAction }: PropsType) => {
               validator: validateEmail.validator,
             },
           ]}
+          normalize={validateEmail.normalize}
           validateTrigger="onBlur"
         >
           <Input placeholder={t('email.placeholder')} size="large" />

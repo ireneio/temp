@@ -1,7 +1,6 @@
 {
   "email": {
     "invalid-format": "Please enter a valid email address.",
-    "use-lowercase-letters": "@ Please use lowercase letters",
     "already-exists": "This email address is already registered"
   },
   "page-path": {

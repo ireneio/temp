@@ -27,7 +27,7 @@ const SignUp: NextPage = React.memo(() => {
     isApplyForStoreCompleted,
     applyForStore,
   } = useApplyForStore();
-  const validateEmail = useValidateEmail();
+  const validateEmail = useValidateEmail(true);
   const validateConfirmPassword = useValidateConfirmPassword();
   const validateMerchantEmail = useValidateMerchantEmail();
 

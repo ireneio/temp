@@ -26,7 +26,7 @@ export default React.memo(({ setAction }: PropsType) => {
   const { t } = useTranslation('login');
   const { grecaptchaRef, grecaptchaScript } = useGrecaptcha();
   const { loading, login } = useLogin();
-  const validateEmail = useValidateEmail();
+  const validateEmail = useValidateEmail(true);
 
   return (
     <>
@@ -47,6 +47,7 @@ export default React.memo(({ setAction }: PropsType) => {
                 validator: validateEmail.validator,
               },
             ]}
+            normalize={validateEmail.normalize}
             validateTrigger="onBlur"
           >
             <Input placeholder={t('email.placeholder')} size="large" />

@@ -20,7 +20,7 @@ const { Password } = Input;
 @withTranslation('login')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withHook(() => ({
-  validateEmail: useValidateEmail(true),
+  validateEmail: useValidateEmail(false, true),
 }))
 @enhancer
 class SignupForm extends React.PureComponent {

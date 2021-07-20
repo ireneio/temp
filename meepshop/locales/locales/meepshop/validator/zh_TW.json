@@ -1,7 +1,6 @@
 {
   "email": {
     "invalid-format": "信箱格式錯誤",
-    "use-lowercase-letters": "@ 後方請使用小寫字母",
     "already-exists": "此信箱已註冊"
   },
   "page-path": {

@@ -27,7 +27,7 @@ const { Password } = Input;
 
 @withTranslation(['checkout', 'validate-mobile'])
 @withHook(() => ({
-  validateEmail: useValidateEmail(true),
+  validateEmail: useValidateEmail(false, true),
 }))
 @enhancer
 @radium

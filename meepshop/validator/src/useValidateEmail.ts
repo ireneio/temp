@@ -19,6 +19,7 @@ import { checkEmail } from './gqls/useValidateEmail';
 
 // definition
 export default (
+  isNotShopper = false,
   checkShopperEmail = false,
 ): {
   normalize: (value: string) => string;
@@ -28,14 +29,14 @@ export default (
   const client = useApolloClient();
 
   return {
-    normalize: value => value?.replace(/\s/g, ''),
+    normalize: value =>
+      isNotShopper
+        ? value?.replace(/\s/g, '').toLowerCase()
+        : value?.replace(/\s/g, ''),
     validator: useCallback(
       async (_, value) => {
         if (value && (isFullWidth(value) || !isEmail(value)))
           throw new Error(t('email.invalid-format'));
-
-        if (/@.*[A-Z]+.*$/.test(value))
-          throw new Error(t('email.use-lowercase-letters'));
 
         if (!checkShopperEmail) return;
 
