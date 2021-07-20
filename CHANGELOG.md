@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.16 (2021-07-20)
+
+#### :bug: Bug Fix
+
+- [#1644](https://github.com/meepshop/meep-lerna/pull/1644) 【BUG】prod 測試商店 bella53 帳單與付款頁跟付款設定頁不停切換 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.15 (2021-07-20)
 
 #### :boom: Breaking Change
