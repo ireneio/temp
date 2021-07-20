@@ -18,7 +18,6 @@ export const getStoreFailure = payload => ({
  * @description 存放商店資料，語言，幣值
  */
 const initialState = {
-  activities: [],
   menus: [],
   color: {},
   settings: {},
@@ -29,7 +28,6 @@ export default (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_STORE_SUCCESS: {
       const { data } = payload;
-      const activities = data?.viewer?.store?.activities || [];
       const menus = (data?.getMenuList?.data || []).map(menu =>
         Utils.setDefaultValueForMenuDesign(menu),
       );
@@ -50,7 +48,6 @@ export default (state = initialState, { type, payload }) => {
 
       return {
         shippableCountries: store?.shippableCountries || [],
-        activities, // 折扣活動
         menus, // 選單
         settings,
         experiment: store?.experiment || {},

@@ -7,7 +7,6 @@ import {
   getLogoUrl,
   getMobileLogoUrl,
   getJoinedPage,
-  getActivities,
   getQuery,
 } from './index';
 
@@ -26,28 +25,14 @@ export const getPageByPath = createSelector(
 );
 
 export const getJoinedModulePage = createSelector(
-  [
-    getPageByPath,
-    getQuery,
-    getMenus,
-    // getProduct,
-    getActivities,
-  ],
-  (
-    page,
-    query,
-    menus,
-    // product,
-    activities,
-  ) => {
+  [getPageByPath, getQuery, getMenus],
+  (page, query, menus) => {
     if (page) {
       const blocks = page.blocks.map(({ widgets, ...block }) => ({
         ...block,
         widgets: getJoinedModule(widgets, {
           query,
           menus,
-          // product,
-          activities,
         }),
       }));
       return { ...page, blocks };

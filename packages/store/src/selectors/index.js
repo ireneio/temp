@@ -5,9 +5,6 @@ import { handlePages } from 'utils/setDefaultValueForMenuDesign';
 
 export const getPages = state => state.pagesReducer;
 
-export const getActivities = state =>
-  getIn(['storeReducer', 'activities'])(state) || [];
-
 export const getMenus = state => getIn(['storeReducer', 'menus'])(state);
 export const getLogoUrl = state =>
   getIn(['storeReducer', 'settings', 'logoUrl'])(state);
@@ -90,20 +87,8 @@ export const getHomePage = createSelector([getPages], pages =>
 );
 
 export const getJoinedModulePage = createSelector(
-  [
-    getHomePage,
-    getQuery,
-    getMenus,
-    // getProduct,
-    getActivities,
-  ],
-  (
-    page,
-    query,
-    menus,
-    // product,
-    activities,
-  ) =>
+  [getHomePage, getQuery, getMenus],
+  (page, query, menus) =>
     !page
       ? page
       : {
@@ -113,8 +98,6 @@ export const getJoinedModulePage = createSelector(
             widgets: getJoinedModule(widgets, {
               query,
               menus,
-              // product,
-              activities,
             }),
           })),
         },

@@ -3,10 +3,7 @@ import * as R from 'ramda';
 import getIn from './getIn';
 import setDefaultValueForMenuDesign from './setDefaultValueForMenuDesign';
 
-const getJoinedModule = (
-  widgets,
-  { query = {}, menus, product, activities },
-) => {
+const getJoinedModule = (widgets, { query = {}, menus, product }) => {
   const mWidgets = widgets.map(widget => {
     if (widget.widgets == null) {
       switch (widget.module) {
@@ -21,13 +18,6 @@ const getJoinedModule = (
           return {
             ...widget,
             menu: R.assocPath(['pages'], menuPages, menu),
-          };
-        }
-
-        case 'activity': {
-          return {
-            ...widget,
-            activity: activities.find(activity => activity.id === widget.value),
           };
         }
 
@@ -122,7 +112,6 @@ const getJoinedModule = (
         query,
         menus,
         product,
-        activities,
       }),
     };
   });

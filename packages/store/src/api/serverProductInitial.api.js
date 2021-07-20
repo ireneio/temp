@@ -1,11 +1,5 @@
 import postGraphql from 'utils/postGraphql';
-import {
-  viewer,
-  viewerStoreQuery,
-  productQuery,
-  menuQuery,
-  activityQuery,
-} from './query';
+import { viewer, viewerStoreQuery, productQuery, menuQuery } from './query';
 
 export default async context => {
   const {
@@ -19,7 +13,6 @@ export default async context => {
       $menuSearch: searchInputObjectType,
       $expireBy: Int!,
       $identity: String,
-      $activitiesFilter: StoreActivitiesFilterInput,
     `,
     type: 'query serverProductInitial',
     values: {
@@ -58,10 +51,6 @@ export default async context => {
       },
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
       identity: cookies?.identity,
-      activitiesFilter: {
-        status: 1,
-        plugin: 'groupDiscount',
-      },
     },
   };
 
@@ -94,13 +83,6 @@ export default async context => {
         }
       }
       total
-    }
-    viewer {
-      store {
-        activities(filter: $activitiesFilter) {
-          ${activityQuery}
-        }
-      }
     }
   `;
 

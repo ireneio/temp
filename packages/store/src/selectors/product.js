@@ -5,7 +5,6 @@ import {
   getPages,
   getMenus,
   getLogoUrl,
-  getActivities,
   getMobileLogoUrl,
   getJoinedPage,
   getQuery,
@@ -52,15 +51,14 @@ const getPage = createSelector(
 );
 
 const getProductCombinedPage = createSelector(
-  [getPage, getQuery, getMenus, getProduct, getActivities],
-  (page, query = {}, menus, product, activities) => {
+  [getPage, getQuery, getMenus, getProduct],
+  (page, query = {}, menus, product) => {
     const blocks = (page.blocks || []).map(({ widgets, ...block }) => ({
       ...block,
       widgets: getJoinedModule(widgets, {
         query,
         menus,
         product,
-        activities,
       }),
     }));
     return { ...page, blocks };

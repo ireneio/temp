@@ -1,12 +1,11 @@
 import postGraphql from 'utils/postGraphql';
-import { viewer, viewerStoreQuery, menuQuery, activityQuery } from './query';
+import { viewer, viewerStoreQuery, menuQuery } from './query';
 
 export default async context => {
   const variables = {
     keys: `
       $menuSearch: searchInputObjectType,
       $expireBy: Int!,
-      $activitiesFilter: StoreActivitiesFilterInput,
     `,
     type: 'query serverOthersInitial',
     values: {
@@ -24,10 +23,6 @@ export default async context => {
         ],
       },
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
-      activitiesFilter: {
-        status: 1,
-        plugin: 'groupDiscount',
-      },
     },
   };
 
@@ -56,13 +51,6 @@ export default async context => {
         }
       }
       total
-    }
-    viewer {
-      store {
-        activities(filter: $activitiesFilter) {
-          ${activityQuery}
-        }
-      }
     }
   `;
 
