@@ -41,6 +41,9 @@ module.exports = {
         antd: {
           transform: key => `antd/lib/${kebabCase(key)}`,
         },
+        'date-fns': {
+          transform: 'date-fns/${member}',
+        },
         '^(@ant-design/icons)$': {
           transform: '${1}/${member}',
         },
