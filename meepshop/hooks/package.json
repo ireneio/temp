@@ -13,7 +13,7 @@
     "autolinker": "^3.14.2",
     "braft-convert": "^2.3.0",
     "d3-hierarchy": "^1.1.6",
-    "draft-js": "^0.11.5"
+    "draft-js": "^0.10.3"
   },
   "keywords": ["meepshop", "react hooks"]
 }
