@@ -21,7 +21,7 @@ export default (url: string | undefined): getImageViewerFileType | null => {
           .slice(-1)[0],
       )
         .replace('gs://img.meepcloud.com/', 'https://gc.meepcloud.com/')
-        .replace(/\.[\w]+$/, '')
+        .replace(/\.[\w+]+$/, '')
         .split('/')
         .slice(-1)[0]
     : null;
