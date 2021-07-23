@@ -20,17 +20,17 @@ const ALL_ACTIVE_KEY = [
   'template-page',
 ];
 
-const getFirstPageByHash = (
+const getFirstPageByPId = (
   pages: ReturnType<typeof usePages>,
-  hash: string | null,
+  pId: string | null,
 ): usePagesPageFragmentType | null =>
-  !hash
+  !pId
     ? null
     : pages.reduce(
         (result, { data }) =>
           data.reduce(
             (subResult, { data: subData }) =>
-              subResult || subData.find(({ id }) => hash === id) || null,
+              subResult || subData.find(({ id }) => pId === id) || null,
             result,
           ),
         null,
@@ -55,19 +55,19 @@ export default (
 } => {
   const router = useRouter();
   const prevSearchTerm = useRef<string>(null);
-  const firstPageByHash = useMemo(
-    () => getFirstPageByHash(pages, router.hash),
+  const firstPageByPId = useMemo(
+    () => getFirstPageByPId(pages, router.query.pId as string),
     // Only need to get the first page before the component is mounted
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
   const [collapseActiveKey, setCollapseActiveKey] = useState<string | string[]>(
-    !firstPageByHash ? 'home-page' : getCollapseActiveKey(firstPageByHash),
+    !firstPageByPId ? 'home-page' : getCollapseActiveKey(firstPageByPId),
   );
   const [
     selectedPage,
     setSelectedPage,
-  ] = useState<usePagesPageFragmentType | null>(firstPageByHash);
+  ] = useState<usePagesPageFragmentType | null>(firstPageByPId);
   const setSelectedPageWithCollapseActiveKey = useCallback(page => {
     setSelectedPage(page);
 
@@ -128,7 +128,7 @@ export default (
   useEffect(() => {
     if (!selectedPage?.id) return;
 
-    const url = `${router.pathname}#${selectedPage?.id}`;
+    const url = `${router.pathname}?pId=${selectedPage?.id}`;
 
     if (url === router.asPath) return;
 
