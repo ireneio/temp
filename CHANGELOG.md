@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.80.17 (2021-07-23)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1627](https://github.com/meepshop/meep-lerna/pull/1627) 內部開單 - 統一 draft-js version ([@HsuTing](https://github.com/HsuTing))
+  - [#1641](https://github.com/meepshop/meep-lerna/pull/1641) 【BUG】前台 - 購物車 - 商品金額底下出現「超出可購買數量」提醒文字 ([@Lexiwu](https://github.com/Lexiwu))
+- Other
+  - [#1643](https://github.com/meepshop/meep-lerna/pull/1643) 【個別店家】 首頁 seo 設定 - 錯誤訊息 ([@HsuTing](https://github.com/HsuTing))
+  - [#1642](https://github.com/meepshop/meep-lerna/pull/1642) 【BUG】後台 - 頁面設計，進入編輯頁面，按返回，預覽頁面跑版 ([@HsuTing](https://github.com/HsuTing))
+  - [#1647](https://github.com/meepshop/meep-lerna/pull/1647) (@meepshop/frontend) Fix dynamic import path ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.16 (2021-07-20)
 
 #### :bug: Bug Fix
