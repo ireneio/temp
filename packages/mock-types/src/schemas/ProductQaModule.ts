@@ -8,12 +8,12 @@ import { productQaModuleMockFragment } from '@meepshop/types/gqls/meepshop';
 export default mock.add<productQaModuleMockFragment>('ProductQaModule', [
   () => ({
     __typename: 'ProductQaModule',
-    width: '100',
+    width: 100,
     product: null,
   }),
   () => ({
     __typename: 'ProductQaModule',
-    width: '100',
+    width: 100,
     product: {},
   }),
 ]);

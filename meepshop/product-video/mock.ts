@@ -8,7 +8,7 @@ import { VideoRatio } from '@meepshop/types/gqls/meepshop';
 export default {
   __typename: 'ProductVideoModule' as const,
   id: uuid(),
-  width: '100',
+  width: 100,
   ratio: 'Ratio16to9' as VideoRatio,
   product: {
     __typename: 'Product' as const,

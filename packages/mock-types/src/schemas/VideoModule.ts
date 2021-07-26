@@ -14,7 +14,7 @@ const href =
 export default mock.add<videoModuleMockFragment>('VideoModule', [
   () => ({
     __typename: 'VideoModule',
-    width: '100',
+    width: 100,
     ratio: 'Ratio16to9' as VideoRatio,
     href,
   }),

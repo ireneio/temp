@@ -81,7 +81,9 @@ export default React.memo(
             @media (max-width: ${styles.screenSmMax}) {
               #image-text-${id} .${styles.title} {
                 font-size: ${
-                  title?.fontSize * 0.6 >= 12 ? title?.fontSize * 0.6 : 12
+                  title && title.fontSize * 0.6 >= 12
+                    ? title.fontSize * 0.6
+                    : 12
                 }px;
               }
             }
@@ -93,8 +95,8 @@ export default React.memo(
             @media (max-width: ${styles.screenSmMax}) {
               #image-text-${id} .${styles.description} {
                 font-size: ${
-                  description?.fontSize * 0.6 >= 12
-                    ? description?.fontSize * 0.6
+                  description && description.fontSize * 0.6 >= 12
+                    ? description.fontSize * 0.6
                     : 12
                 }px;
               }
@@ -107,7 +109,9 @@ export default React.memo(
             @media (max-width: ${styles.screenSmMax}) {
               #image-text-${id} .${styles.button} {
                 font-size: ${
-                  button?.fontSize * 0.6 >= 12 ? button?.fontSize * 0.6 : 12
+                  button && button.fontSize * 0.6 >= 12
+                    ? button.fontSize * 0.6
+                    : 12
                 }px;
               }
             }

@@ -110,7 +110,7 @@ export default React.memo(
     if (!orders || !storePayments || !storeShipments)
       return <Spin indicator={<LoadingOutlined spin />} />;
 
-    const { first: pageSize } = variables;
+    const pageSize = variables.first || 10;
     const {
       edges,
       total,

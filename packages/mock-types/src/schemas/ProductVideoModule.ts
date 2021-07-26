@@ -11,13 +11,13 @@ import {
 export default mock.add<productVideoModuleMockFragment>('ProductVideoModule', [
   () => ({
     __typename: 'ProductVideoModule',
-    width: '100',
+    width: 100,
     ratio: 'Ratio16to9' as VideoRatio,
     product: null,
   }),
   () => ({
     __typename: 'ProductVideoModule',
-    width: '100',
+    width: 100,
     ratio: 'Ratio16to9' as VideoRatio,
     product: {},
   }),

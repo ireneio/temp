@@ -50,7 +50,7 @@ export default React.memo(
                   scaledSrc,
                 },
                 link: null,
-                width: percentWidth.replace(/WIDTH/, ''),
+                width: parseInt(percentWidth.replace(/WIDTH/, ''), 10),
                 justifyContent: 'CENTER' as JustifyContent,
                 alt:
                   product?.title?.[i18n.language as languageType] ||
