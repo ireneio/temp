@@ -46,6 +46,9 @@ program
               process.cwd(),
               path.resolve(gqlsFolder, `./${apolloType}.ts`),
             ),
+            '--customScalarsPrefix',
+            'meepshop',
+            '--passthroughCustomScalars',
             ...(!watch ? [] : ['--watch']),
           ],
           {
