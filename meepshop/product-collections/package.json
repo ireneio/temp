@@ -4,7 +4,7 @@
   "description": "Meepshop product collections",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.17",
+  "version": "0.80.18",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
