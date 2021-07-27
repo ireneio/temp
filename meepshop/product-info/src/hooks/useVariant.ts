@@ -23,7 +23,7 @@ export default <P extends useVariantProductFragment>(
 } => {
   const [variant, setVariant] = useState<VariantType<P> | null>(
     (product?.variants?.find(
-      productVariant => (productVariant?.stock || 0) > 0,
+      productVariant => (productVariant?.currentMinPurchasableQty || 0) > 0,
     ) ||
       product?.variants?.[0] ||
       null) as VariantType<P>,
