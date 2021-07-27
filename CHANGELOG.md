@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.80.18 (2021-07-27)
+
+#### :rocket: New Feature
+
+- [#1655](https://github.com/meepshop/meep-lerna/pull/1655) 內部開單 - 導入 graphql scalar typescript type ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1648](https://github.com/meepshop/meep-lerna/pull/1648) 【BUG】商品在有庫存的狀態下，前台應顯示可購買之規格 ([@happycat6323](https://github.com/happycat6323))
+- `mock-types`
+  - [#1656](https://github.com/meepshop/meep-lerna/pull/1656) (@meepshop/types) Fix meepshopPositiveInt types error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.17 (2021-07-23)
 
 #### :bug: Bug Fix
