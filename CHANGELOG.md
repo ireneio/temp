@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.19 (2021-07-28)
+
+#### :bug: Bug Fix
+
+- [#1660](https://github.com/meepshop/meep-lerna/pull/1660) 【BUG】 ＧＭＯ金流 前台使用信用卡付款無法選分期 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.18 (2021-07-27)
 
 #### :rocket: New Feature
