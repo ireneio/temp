@@ -98,7 +98,7 @@ export default React.memo(({ isInstallment, storePaymentId }: PropsType) => {
       </div>
 
       {!isInstallment ? null : (
-        <FormItem dependencies={['installmentCode']} noStyle>
+        <FormItem dependencies={['installmentCode', 'cardNumber']} noStyle>
           {({ getFieldValue }) => (
             <FormItem
               name={['installmentCode']}
