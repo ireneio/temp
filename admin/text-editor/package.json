@@ -9,7 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/utils": "^0.80.13",
-    "@meepshop/hooks": "^0.80.17",
+    "@meepshop/apollo": "^0.80.13",
     "@meepshop/locales": "^0.80.15",
     "braft-editor": "^2.3.9",
     "braft-extensions": "^0.1.0",

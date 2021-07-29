@@ -25,12 +25,14 @@ import getConfig from 'next/config';
 import fragmentTypes from '../../fragmentTypes';
 
 import * as fbLogin from '../fbLogin';
+import * as getDraftText from '../getDraftText';
 import * as landingPageAccessToken from '../landingPageAccessToken';
 import * as log from '../log';
 import * as login from '../login';
 import * as logout from '../logout';
 import * as PageInfo from '../PageInfo';
 import * as productsObjectType from '../productsObjectType';
+import * as settingObjectType from '../settingObjectType';
 import * as validatedConvenienceStoreCities from '../validatedConvenienceStoreCities';
 
 import mergeResolvers from './mergeResolvers';
@@ -89,7 +91,9 @@ const create = (
       logout.resolvers,
       PageInfo.resolvers,
       productsObjectType.resolvers,
+      settingObjectType.resolvers,
       validatedConvenienceStoreCities.resolvers,
+      getDraftText.resolvers,
     ].reduce(mergeResolvers, {}),
     link: ApolloLink.from([
       new RetryLink({

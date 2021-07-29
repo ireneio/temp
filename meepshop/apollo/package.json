@@ -14,6 +14,7 @@
     "apollo-link-error": "^1.1.13",
     "apollo-link-http": "^1.5.17",
     "apollo-link-retry": "^2.2.16",
+    "draft-js": "^0.10.3",
     "isomorphic-unfetch": "^3.0.0",
     "nprogress": "^0.2.0",
     "react-apollo-network-status": "^4.0.1"

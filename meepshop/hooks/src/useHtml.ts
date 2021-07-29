@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 // import
 import { convertRawToHTML } from 'braft-convert';
 
-import { FONTFAMILY } from './constants';
+import { FONTFAMILY } from '@meepshop/apollo/lib/constants';
 
 // definition
 export default (value?: object | null): string =>

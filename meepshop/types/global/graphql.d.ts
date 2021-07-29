@@ -9,3 +9,4 @@ type meepshopPositiveInt = number;
 type meepshopHexColorCode = string;
 type meepshopPhoneNumber = string;
 type meepshopNonNegativeInt = number;
+type meepshopDraftText = any;

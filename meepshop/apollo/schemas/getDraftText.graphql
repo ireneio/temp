@@ -1,0 +1,11 @@
+scalar DraftText
+
+extend type Query {
+  # For useRawContent
+  getDraftText(input: String): DraftText
+}
+
+extend type SettingObjectType {
+  # Should remove after new type created
+  shopperLoginMessageDraft: DraftText
+}
