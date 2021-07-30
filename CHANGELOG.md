@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.20 (2021-07-30)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#1635](https://github.com/meepshop/meep-lerna/pull/1635) 【優化】結帳頁首次購買/一頁式 - 輸入已註冊的會員信箱時，展開視窗讓會員登入 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.19 (2021-07-28)
 
 #### :bug: Bug Fix
