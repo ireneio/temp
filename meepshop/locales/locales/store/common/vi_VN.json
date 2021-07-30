@@ -22,8 +22,7 @@
     "reward-points": "tiền mua hàng",
     "settings": "thông tin hội viên",
     "wishlist": "Tích lũy của tôi",
-    "logout": "logout",
-    "reset-password": "Quên mật khẩu"
+    "logout": "logout"
   },
   "locale": "tiếng việt",
   "page-not-found": {

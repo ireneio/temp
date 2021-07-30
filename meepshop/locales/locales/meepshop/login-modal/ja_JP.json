@@ -1,0 +1,32 @@
+{
+  "member-login": {
+    "title": "会員ログイン",
+    "submit": "サインイン",
+    "forget-password": "パスワードを忘れますか？",
+    "or": "または",
+    "fb-login": "フェイスブックログイン",
+    "success": "合気的にサインインします",
+    "invalid-email-or-password": "メールボックスまたはパスワードエラー"
+  },
+  "forget-password": {
+    "title": "パスワードをお忘れですか",
+    "description": "入力したメールボックスを入力してください登録したら、リセットパスワードを送信します。",
+    "email": "登録メールボックス",
+    "placeholder": "登録メールボックスを入力してください",
+    "error": "メールボックスフォーマットエラー",
+    "submit": "リセットパスワード文字を送信します",
+    "back": "ログインに戻る",
+    "success": "メールボックスに正常に送信されました",
+    "fail": "パスワードを忘れました：エラーが発生しました",
+    "cannot-find-user": "このメールボックスは登録されていません"
+  },
+  "email": {
+    "required": "メールボックスを入力してください",
+    "placeholder": "メールボックスを入力してください"
+  },
+  "password": {
+    "required": "パスワードを入力してください",
+    "placeholder": "パスワードを入力する"
+  },
+  "no-fb-app-id": "FacebookアプリID"
+}

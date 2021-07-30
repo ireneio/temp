@@ -4,6 +4,15 @@ declare interface Window {
     XFBML: {
       parse: (dom: HTMLElement) => void;
     };
+    login: (
+      callback: (response: {
+        status: string;
+        authResponse: { accessToken: string };
+      }) => void,
+      options: {
+        scope: string;
+      },
+    ) => void;
   };
   fbq: (
     eventName: string,

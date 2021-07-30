@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "@meepshop/login-modal",
+  "description": "meepshop login modal",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/context": "^0.80.13",
+    "@meepshop/icons": "^0.80.13",
+    "@meepshop/link": "^0.80.13",
+    "@meepshop/locales": "^0.80.15",
+    "@meepshop/validator": "^0.80.15",
+    "react-redux": "^7.2.4"
+  },
+  "keywords": ["login", "meepshop", "modal"]
+}

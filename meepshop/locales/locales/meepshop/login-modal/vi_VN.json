@@ -1,0 +1,32 @@
+{
+  "member-login": {
+    "title": "Đăng nhập thành viên",
+    "submit": "Đăng nhập",
+    "forget-password": "quên mật khẩu?",
+    "or": "hoặc là",
+    "fb-login": "đăng nhập Facebook",
+    "success": "Đăng nhập một cách nhẹ nhàng",
+    "invalid-email-or-password": "Hộp thư hoặc lỗi mật khẩu"
+  },
+  "forget-password": {
+    "title": "Quên mật khẩu",
+    "description": "Nhập hộp thư của bạn Bạn điền vào khi bạn đăng ký, chúng tôi sẽ gửi cho bạn mật khẩu thiết lập lại.",
+    "email": "Đăng ký hộp thư",
+    "placeholder": "Nhập hộp thư đăng ký",
+    "error": "Lỗi định dạng hộp thư",
+    "submit": "Gửi thư mật khẩu thiết lập lại",
+    "back": "Quay lại đăng nhập",
+    "success": "Đã gửi thành công vào hộp thư",
+    "fail": "Quên mật khẩu của bạn: Đã xảy ra lỗi",
+    "cannot-find-user": "Hộp thư này chưa được đăng ký"
+  },
+  "email": {
+    "required": "Vui lòng nhập hộp thư",
+    "placeholder": "Nhập hộp thư"
+  },
+  "password": {
+    "required": "Vui lòng nhập mật khẩu của bạn",
+    "placeholder": "nhập mật khẩu"
+  },
+  "no-fb-app-id": "ID ứng dụng Facebook"
+}

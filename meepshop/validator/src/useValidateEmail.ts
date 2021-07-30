@@ -21,6 +21,7 @@ import { checkEmail } from './gqls/useValidateEmail';
 export default (
   isNotShopper = false,
   checkShopperEmail = false,
+  errorMessage?: string,
 ): {
   normalize: (value: string) => string;
   validator: NonNullable<FormListProps['rules']>[number]['validator'];
@@ -67,9 +68,11 @@ export default (
         });
 
         if (data?.checkUserInfo?.exists)
-          throw new Error(t('email.already-exists') as string);
+          throw new Error(
+            errorMessage || (t('email.already-exists') as string),
+          );
       },
-      [checkShopperEmail, t, client],
+      [t, checkShopperEmail, client, errorMessage],
     ),
   };
 };

@@ -91,7 +91,7 @@ class Container extends React.Component {
   }
 
   // eslint-disable-next-line consistent-return
-  handleFacebookLogin = ({ from }) => {
+  handleFacebookLogin = ({ to }) => {
     const {
       getAuth,
       userAgent,
@@ -108,8 +108,6 @@ class Container extends React.Component {
         message: '尚未設定 Facebook APP ID',
       });
 
-    dispatchAction('showLoadingStatus');
-
     if (
       !userAgent.match(/Line/gm) &&
       !userAgent.match(/Instagram/gm) &&
@@ -118,6 +116,8 @@ class Container extends React.Component {
     ) {
       // Not in-app browser
       try {
+        dispatchAction('showLoadingStatus');
+
         fb.login(
           async response => {
             if (response.status === 'connected') {
@@ -155,7 +155,7 @@ class Container extends React.Component {
 
                   getAuth();
 
-                  if (from === 'cart') Utils.goTo({ pathname: '/checkout' });
+                  if (to) Utils.goTo({ pathname: to });
                   else if (window.storePreviousPageUrl)
                     Utils.goTo({ pathname: window.storePreviousPageUrl });
                   else Utils.goTo({ pathname: '/' });
@@ -195,7 +195,7 @@ class Container extends React.Component {
       }
     } else {
       // in-app browser
-      window.location.href = `https://www.facebook.com/${version}/dialog/oauth?client_id=${appId}&redirect_uri=https://${window.meepShopStore.XMeepshopDomain}/fbAuthForLine&scope=email&state=meepShopNextStore${from}`;
+      window.location.href = `https://www.facebook.com/${version}/dialog/oauth?client_id=${appId}&redirect_uri=https://${window.meepShopStore.XMeepshopDomain}/fbAuthForLine&scope=email&state=${to}`;
     }
   };
 
@@ -211,7 +211,6 @@ class Container extends React.Component {
       storeSetting,
       experiment,
       /* may change */
-      isLogin,
       location,
       loading,
       loadingTip,
@@ -235,7 +234,6 @@ class Container extends React.Component {
           storeSetting={storeSetting}
           experiment={experiment}
           /* may change */
-          isLogin={isLogin}
           location={location}
           /* func to modify data */
           goTo={Utils.goTo}
@@ -265,7 +263,7 @@ const mapStateToProps = state => {
 
   const {
     storeReducer: { settings, experiment },
-    memberReducer: { isLogin, loading, loadingTip },
+    memberReducer: { loading, loadingTip },
     loadingStatus: { loading: isLoading },
   } = state;
   const { cname, backgroundImage } = settings;
@@ -276,7 +274,6 @@ const mapStateToProps = state => {
     storeSetting: settings,
     experiment,
     /* may chnage */
-    isLogin,
     loading: isLoading || loading,
     loadingTip,
     /* props(not in context) */

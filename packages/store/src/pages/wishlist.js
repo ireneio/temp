@@ -33,7 +33,6 @@ class Wishlist extends Component {
 
   static propTypes = {
     error: PropTypes.string,
-    isLogin: PropTypes.string.isRequired,
     storeSetting: PropTypes.shape({
       storeName: PropTypes.string.isRequired,
       faviconUrl: PropTypes.string.isRequired,
@@ -55,9 +54,7 @@ class Wishlist extends Component {
   }
 
   checkPermission = () => {
-    const { apps, isLogin } = this.props;
-
-    if (isLogin === 'NOTLOGIN') Router.pushRoute('/login');
+    const { apps } = this.props;
 
     if (!apps.wishList.isInstalled) Router.pushRoute('/');
   };
@@ -71,11 +68,8 @@ class Wishlist extends Component {
     const {
       t,
       apps,
-      isLogin,
       storeSetting: { storeName, faviconUrl },
     } = this.props;
-
-    if (isLogin === 'NOTLOGIN') return <div>未登入</div>;
 
     if (!apps.wishList.isInstalled) return null;
 
@@ -123,7 +117,6 @@ const mapStateToProps = (state, props) => {
 
   return {
     storeSetting: state.storeReducer.settings,
-    isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getPage(state, props),
   };

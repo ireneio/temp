@@ -18,6 +18,8 @@
   },
   "user-info": "thông tin hội viên",
   "email": "Xin nhập hộp thư đăng ký",
+  "please-login": "Hộp thư này đã được đăng ký, vui lòng đăng nhập trước",
+  "login": "Đăng nhập thành viên",
   "password": "Xin cài đặt mật khẩu hội viên",
   "name": "tên",
   "allpay-name-too-long": "Tiếng Trung nên là 2-5 ký tự / tiếng Anh nên là 4-10 ký tự. Vui lòng không sử dụng ký hiệu / số hoặc để trống",

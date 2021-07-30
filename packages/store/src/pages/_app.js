@@ -16,6 +16,7 @@ import logger from '@meepshop/utils/lib/logger';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
+import { RoleProvider } from '@meepshop/context/lib/Role';
 import { SensorProvider } from '@meepshop/context/lib/Sensor';
 import { CartProvider } from '@meepshop/cart';
 import { FormDataProvider } from '@meepshop/form-data';
@@ -29,7 +30,6 @@ import { Error, CloseView, StoreNotExistsView } from 'components';
 import { Router } from 'server/routes';
 import * as Utils from 'utils';
 import configureStore from 'ducks/store';
-import * as Actions from 'ducks/actions';
 import withCookies from 'utils/withCookies';
 
 const {
@@ -54,7 +54,7 @@ Router.onRouteChangeComplete = () => {
 
 class App extends NextApp {
   static async getInitialProps({ Component, ctx }) {
-    const { req, res, store } = ctx;
+    const { req, res } = ctx;
     let pageProps = {};
     const { XMeepshopDomain, userAgent } = Utils.getReqArgs(req);
 
@@ -117,7 +117,7 @@ class App extends NextApp {
         response.status >= 400 &&
         response.status !== 403
       ) {
-        logger.log(
+        logger.info(
           `Check >> ${response.status} (${XMeepshopDomain}) ${JSON.stringify(
             req.headers,
           )}`,
@@ -150,12 +150,6 @@ class App extends NextApp {
           res.redirect(302, '/');
           return { pageProps };
         }
-        const {
-          memberReducer: { isLogin },
-        } = store.getState();
-        if (isLogin === 'ISUSER') {
-          store.dispatch(Actions.getAuth());
-        }
       }
 
       /* The store does not exist. */
@@ -179,7 +173,7 @@ class App extends NextApp {
         },
       };
     } catch (error) {
-      logger.log(error);
+      logger.error(error);
       if (typeof window !== 'undefined') {
         Utils.logToServer({
           type: 'getInitialProps in _app',
@@ -257,34 +251,35 @@ class App extends NextApp {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="format-detection" content="telephone=no" />
         </Head>
-
         <EventsProvider>
           <FbProvider>
-            <ColorsProvider>
-              <AppsProvider>
-                <SensorProvider>
-                  <CurrencyProvider>
-                    <AdTrackProvider>
-                      <CartProvider>
-                        <FormDataProvider>
-                          <Provider store={store}>
-                            <Component
-                              {...pageProps}
-                              url={{
-                                asPath: router.asPath,
-                                query: router.query,
-                              }}
-                            />
-                          </Provider>
+            <RoleProvider>
+              <ColorsProvider>
+                <AppsProvider>
+                  <SensorProvider>
+                    <CurrencyProvider>
+                      <AdTrackProvider>
+                        <CartProvider>
+                          <FormDataProvider>
+                            <Provider store={store}>
+                              <Component
+                                {...pageProps}
+                                url={{
+                                  asPath: router.asPath,
+                                  query: router.query,
+                                }}
+                              />
+                            </Provider>
 
-                          <ActionButton />
-                        </FormDataProvider>
-                      </CartProvider>
-                    </AdTrackProvider>
-                  </CurrencyProvider>
-                </SensorProvider>
-              </AppsProvider>
-            </ColorsProvider>
+                            <ActionButton />
+                          </FormDataProvider>
+                        </CartProvider>
+                      </AdTrackProvider>
+                    </CurrencyProvider>
+                  </SensorProvider>
+                </AppsProvider>
+              </ColorsProvider>
+            </RoleProvider>
           </FbProvider>
         </EventsProvider>
       </>

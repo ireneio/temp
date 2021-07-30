@@ -22,8 +22,7 @@
     "reward-points": "ポイント",
     "settings": "会員情報",
     "wishlist": "お気に入りに入れる",
-    "logout": "ログアウト",
-    "reset-password": "パスワード再設定"
+    "logout": "ログアウト"
   },
   "locale": "日本語",
   "page-not-found": {

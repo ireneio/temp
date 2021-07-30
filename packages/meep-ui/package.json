@@ -21,6 +21,7 @@
     "@meepshop/landing-page": "^0.80.19",
     "@meepshop/link": "^0.80.13",
     "@meepshop/locales": "^0.80.15",
+    "@meepshop/login-modal": "^0.1.0",
     "@meepshop/product-amount-selector": "^0.80.15",
     "@meepshop/product-draft-text": "^0.80.17",
     "@meepshop/product-iframe": "^0.80.13",

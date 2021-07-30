@@ -7,9 +7,11 @@ import {
   Apps as AppsContext,
   Currency as CurrencyContext,
   Colors as ColorsContext,
+  Role as RoleContext,
 } from '@meepshop/context';
 import CartContext from '@meepshop/cart';
 import withContext from '@store/utils/lib/withContext';
+import { NOTLOGIN, ISUSER } from 'constants/isLogin';
 
 const EnhancerContext = React.createContext({});
 const query = gql`
@@ -68,7 +70,6 @@ export default React.memo(
   ({
     /** context variables from props */
     cname,
-    isLogin,
     storeSetting,
     location,
 
@@ -87,6 +88,7 @@ export default React.memo(
     const apps = useContext(AppsContext);
     const { c } = useContext(CurrencyContext);
     const { cartIsOpened, toggleCart, carts } = useContext(CartContext);
+    const role = useContext(RoleContext);
     const [isCartUpdating, setIsCartUpdating] = useState(false);
 
     return (
@@ -94,7 +96,6 @@ export default React.memo(
         value={{
           /** context variables from props */
           cname,
-          isLogin,
           storeSetting,
           location,
 
@@ -106,6 +107,7 @@ export default React.memo(
           logout,
           dispatchAction,
 
+          isLogin: role === 'SHOPPER' ? ISUSER : NOTLOGIN,
           user: data?.viewer || null,
           stockNotificationList: data?.getStockNotificationList?.data || [],
           colors,

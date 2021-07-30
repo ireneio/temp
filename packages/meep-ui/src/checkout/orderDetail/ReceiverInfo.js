@@ -15,12 +15,7 @@ import {
 } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
 
-import * as styles from './styles/receiverInfo';
-import {
-  block as blockStyle,
-  title as titleStyle,
-  formItem as formItemStyle,
-} from './styles';
+import styles from './styles/receiverInfo.less';
 
 const { Item: FormItem } = Form;
 const { TextArea } = Input;
@@ -229,8 +224,8 @@ export default class ReceiverInfo extends React.PureComponent {
     const canSaveAsTemplate = this.canSaveAsTemplate();
 
     return (
-      <div style={blockStyle}>
-        <h3 style={[titleStyle, styles.receiverTitle]}>
+      <div className={styles.block}>
+        <h3 className={styles.title}>
           {t('receiver-info')}
 
           {isLogin === NOTLOGIN &&
@@ -248,7 +243,7 @@ export default class ReceiverInfo extends React.PureComponent {
 
         {!canSaveAsTemplate ||
         shippableRecipientAddresses.length === 0 ? null : (
-          <FormItem style={formItemStyle}>
+          <FormItem className={styles.formItem}>
             <Select
               placeholder={t('receiver-template')}
               onChange={this.setReceiverWithTemplate}
@@ -263,7 +258,7 @@ export default class ReceiverInfo extends React.PureComponent {
         )}
 
         <FormItem
-          style={formItemStyle}
+          className={styles.formItem}
           name={['name']}
           rules={[
             {
@@ -283,7 +278,7 @@ export default class ReceiverInfo extends React.PureComponent {
         <FormItem shouldUpdate noStyle>
           {form => (
             <ReceiverDefaultFormItem
-              style={formItemStyle}
+              className={styles.formItem}
               form={form}
               chooseShipmentTemplate={chooseShipmentTemplate}
               shippableCountries={shippableCountries}
@@ -292,12 +287,12 @@ export default class ReceiverInfo extends React.PureComponent {
           )}
         </FormItem>
 
-        <FormItem style={formItemStyle} name={['notes']}>
+        <FormItem className={styles.formItem} name={['notes']}>
           <TextArea placeholder={t('notes')} rows={4} />
         </FormItem>
 
         {!canSaveAsTemplate ? null : (
-          <div style={[formItemStyle, styles.saveAsReceiverTemplate]}>
+          <div className={`${styles.formItem} ${styles.save}`}>
             <Checkbox
               onChange={({ target }) =>
                 changeSaveAsReceiverTemplate(target.checked)

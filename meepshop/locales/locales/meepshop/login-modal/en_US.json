@@ -1,0 +1,32 @@
+{
+  "member-login": {
+    "title": "Member login",
+    "submit": "Sign in",
+    "forget-password": "forget password?",
+    "or": "or",
+    "fb-login": "Facebook login",
+    "success": "sign in suceesfully",
+    "invalid-email-or-password": "Mailbox or password error"
+  },
+  "forget-password": {
+    "title": "Forgot password",
+    "description": "Enter your mailbox you filled in when you register, we will send you a reset password.",
+    "email": "Registration mailbox",
+    "placeholder": "Enter a registration mailbox",
+    "error": "Mailbox format error",
+    "submit": "Send reset password letter",
+    "back": "Back to login",
+    "success": "Successfully sent to the mailbox",
+    "fail": "Forgot your password: an error occurred",
+    "cannot-find-user": "This mailbox is not registered"
+  },
+  "email": {
+    "required": "Please enter the mailbox",
+    "placeholder": "Enter a mailbox"
+  },
+  "password": {
+    "required": "Please enter your password",
+    "placeholder": "enter password"
+  },
+  "no-fb-app-id": "Facebook app ID"
+}

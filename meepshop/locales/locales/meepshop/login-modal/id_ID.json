@@ -1,0 +1,32 @@
+{
+  "member-login": {
+    "title": "Login Anggota",
+    "submit": "Masuk",
+    "forget-password": "lupa Password?",
+    "or": "atau",
+    "fb-login": "Login Facebook.",
+    "success": "Masuk penuh",
+    "invalid-email-or-password": "Kotak surat atau kesalahan kata sandi"
+  },
+  "forget-password": {
+    "title": "Tidak ingat kata sandi",
+    "description": "Masukkan kotak surat Anda, Anda mengisi saat mendaftar, kami akan mengirimkan Anda kata sandi reset.",
+    "email": "Kotak surat pendaftaran",
+    "placeholder": "Masukkan kotak surat pendaftaran",
+    "error": "Kesalahan Format Kotak surat",
+    "submit": "Kirim Setel Ulang Surat Kata Sandi",
+    "back": "Kembali untuk masuk",
+    "success": "Berhasil dikirim ke kotak surat",
+    "fail": "Lupa kata sandi Anda: Terjadi kesalahan",
+    "cannot-find-user": "Kotak surat ini tidak terdaftar"
+  },
+  "email": {
+    "required": "Silakan masukkan kotak surat",
+    "placeholder": "Masukkan kotak surat"
+  },
+  "password": {
+    "required": "Silakan masukkan kata sandi Anda",
+    "placeholder": "Masukkan kata kunci"
+  },
+  "no-fb-app-id": "ID Aplikasi Facebook."
+}

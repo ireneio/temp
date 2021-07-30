@@ -5,6 +5,7 @@ import { Form, Input, Select, DatePicker } from 'antd';
 import { isAlpha, isLength } from 'validator';
 
 import { withTranslation } from '@meepshop/locales';
+import LoginModal from '@meepshop/login-modal';
 import { useValidateEmail } from '@meepshop/validator';
 import withHook from '@store/utils/lib/withHook';
 
@@ -107,6 +108,14 @@ export default class ReceiverInfo extends React.PureComponent {
     }
   };
 
+  onCloseLoginModal = () => {
+    const {
+      form: { setFields },
+    } = this.props;
+
+    setFields([{ name: ['userEmail'], value: '', errors: [] }]);
+  };
+
   render() {
     const {
       /** context */
@@ -183,22 +192,40 @@ export default class ReceiverInfo extends React.PureComponent {
         )}
 
         {isLogin !== NOTLOGIN ? null : (
-          <FormItem
-            style={formItemStyle}
-            name={['userEmail']}
-            rules={[
-              {
-                required: true,
-                message: t('is-required'),
-              },
-              {
-                validator: validateEmail.validator,
-              },
-            ]}
-            normalize={validateEmail.normalize}
-          >
-            <Input placeholder={t('email')} />
-          </FormItem>
+          <>
+            <FormItem
+              style={formItemStyle}
+              name={['userEmail']}
+              rules={[
+                {
+                  required: true,
+                  message: t('is-required'),
+                },
+                {
+                  validator: validateEmail.validator,
+                },
+              ]}
+              normalize={validateEmail.normalize}
+              validateTrigger="onBlur"
+              validateFirst
+            >
+              <Input placeholder={t('email')} />
+            </FormItem>
+
+            {/** FIXME: https://github.com/ant-design/ant-design/issues/26888 */}
+            <FormItem noStyle shouldUpdate>
+              {({ getFieldError, getFieldValue }) =>
+                !getFieldError(['userEmail']).includes(
+                  t('validator:email.already-exists'),
+                ) ? null : (
+                  <LoginModal
+                    onClose={this.onCloseLoginModal}
+                    initialEmail={getFieldValue(['userEmail'])}
+                  />
+                )
+              }
+            </FormItem>
+          </>
         )}
 
         <FormItem shouldUpdate noStyle>

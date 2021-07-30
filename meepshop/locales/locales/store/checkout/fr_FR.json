@@ -18,6 +18,8 @@
   },
   "user-info": "Infos membres",
   "email": "Inscrivez vous avec votre adresse email",
+  "please-login": "Cette boîte aux lettres a été enregistrée, veuillez vous connecter en premier",
+  "login": "Identifiant",
   "password": "Mot de passe",
   "name": "Nom complet",
   "allpay-name-too-long": "Le chinois doit comporter de 2 à 5 caractères / l'anglais doit comporter de 4 à 10 caractères. Veuillez ne pas utiliser de symboles / chiffres ou laisser vide",

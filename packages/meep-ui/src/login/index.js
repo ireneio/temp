@@ -4,6 +4,7 @@ import { Radio } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
 
+import { ISUSER } from 'constants/isLogin';
 import { enhancer } from 'layout/DecoratorsRoot';
 import DraftText from 'draftText';
 
@@ -19,6 +20,7 @@ export default class Login extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+    isLogin: PropTypes.string.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -28,6 +30,13 @@ export default class Login extends React.PureComponent {
   state = {
     options: LOGIN,
   };
+
+  componentDidMount() {
+    const { isLogin, goTo } = this.props;
+
+    if (isLogin === ISUSER)
+      goTo({ pathname: window.storePreviousPageUrl || '/' });
+  }
 
   handleTypeChange = ({ target, options }) => {
     if (options === LOGIN) {
@@ -51,6 +60,7 @@ export default class Login extends React.PureComponent {
       t,
       storeSetting: { shopperLoginMessageEnabled, shopperLoginMessage },
     } = this.props;
+
     const { options } = this.state;
     let optionsComp = null;
 

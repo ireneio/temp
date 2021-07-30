@@ -22,8 +22,7 @@
     "reward-points": "Puntos de recompensa",
     "settings": "Información del miembro",
     "wishlist": "Lista de deseos",
-    "logout": "cerrar sesión",
-    "reset-password": "Restablecer la contraseña"
+    "logout": "cerrar sesión"
   },
   "locale": "Espanol",
   "page-not-found": {

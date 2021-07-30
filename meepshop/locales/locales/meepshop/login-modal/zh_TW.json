@@ -1,0 +1,32 @@
+{
+  "member-login": {
+    "title": "會員登入",
+    "submit": "登入",
+    "forget-password": "忘記密碼？",
+    "or": "或",
+    "fb-login": "Facebook 登入",
+    "success": "登入成功",
+    "invalid-email-or-password": "信箱或密碼錯誤"
+  },
+  "forget-password": {
+    "title": "忘記密碼",
+    "description": "輸入您在註冊時填寫的信箱，我們將會寄送重設密碼連結給您",
+    "email": "註冊信箱",
+    "placeholder": "輸入註冊信箱",
+    "error": "信箱格式錯誤",
+    "submit": "寄送重設密碼信",
+    "back": "回到登入",
+    "success": "成功寄送至信箱",
+    "fail": "忘記密碼：發生錯誤",
+    "cannot-find-user": "此信箱未註冊"
+  },
+  "email": {
+    "required": "請輸入信箱",
+    "placeholder": "輸入信箱"
+  },
+  "password": {
+    "required": "請輸入密碼",
+    "placeholder": "輸入密碼"
+  },
+  "no-fb-app-id": "尚未設定 Facebook APP ID"
+}

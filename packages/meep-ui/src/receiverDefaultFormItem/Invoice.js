@@ -87,7 +87,7 @@ export default class Invoice extends React.PureComponent {
   };
 
   render() {
-    const { colors, t, style, invoice } = this.props;
+    const { colors, t, style, className, invoice } = this.props;
     const isECPAY = invoice?.[0] === 'ECPAY_ELECTRONIC';
 
     switch (invoice?.[1]) {
@@ -96,6 +96,7 @@ export default class Invoice extends React.PureComponent {
           <>
             <div className={styles.itemRoot}>
               <FormItem
+                className={className}
                 style={style}
                 name={['invoiceTitle']}
                 rules={[
@@ -110,6 +111,7 @@ export default class Invoice extends React.PureComponent {
               </FormItem>
 
               <FormItem
+                className={className}
                 style={style}
                 name={['invoiceVAT']}
                 rules={[
@@ -130,6 +132,7 @@ export default class Invoice extends React.PureComponent {
             <FormItem dependencies={['address', 'addressDetail']} noStyle>
               {({ getFieldValue }) => (
                 <FormItem
+                  className={className}
                   style={style}
                   name={['invoiceAddress']}
                   initialValue={[
@@ -157,6 +160,7 @@ export default class Invoice extends React.PureComponent {
         return (
           <div className={styles.donate}>
             <FormItem
+              className={className}
               style={style}
               name={['invoiceDonate']}
               rules={[
@@ -199,6 +203,7 @@ export default class Invoice extends React.PureComponent {
       case 'MOBILE_BARCODE':
         return (
           <FormItem
+            className={className}
             style={style}
             name={['invoiceEInvoiceNumber']}
             rules={[
@@ -224,6 +229,7 @@ export default class Invoice extends React.PureComponent {
       case 'CITIZEN_DIGITAL_CERTIFICATE':
         return (
           <FormItem
+            className={className}
             style={style}
             name={['invoiceEInvoiceNumber']}
             rules={[

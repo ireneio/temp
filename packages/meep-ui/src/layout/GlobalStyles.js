@@ -49,9 +49,13 @@ export default class GlobalStyles extends React.PureComponent {
             }
 
             .ant-input,
+            .ant-input:hover,
+            .ant-input:focus,
             .ant-input[disabled],
             .ant-input-password,
+            .ant-input-password:focus,
             .ant-input-number-input,
+            .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover,
             .ant-select:not(.ant-select-customize-input) .ant-select-selector,
             .ant-select:not(.ant-select-customize-input):hover .ant-select-selector,
             .ant-picker,
@@ -68,6 +72,7 @@ export default class GlobalStyles extends React.PureComponent {
             .ant-form-item-has-error .ant-picker:not([disabled]):hover {
               border-color: ${colors[5]};
               background-color: ${colors[0]};
+              box-shadow: none;
             }
 
             .ant-cascader-picker .ant-input {

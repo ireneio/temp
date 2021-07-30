@@ -1,4 +1,5 @@
 {
+  "title": "パスワードを再設定する",
   "password-is-required": "パスワードを入力してください",
   "password-placeholder": "新しいパスワードを入力",
   "reset-password": "パスワードを確認",

@@ -1,0 +1,22 @@
+@import '~@store/utils/styles/variables.less';
+@import './mixin.less';
+
+.block {
+  @block();
+}
+
+.title {
+  @title();
+  display: flex;
+  justify-content: space-between;
+}
+
+.formItem {
+  @formItem();
+
+  &.save {
+    @media (max-width: @screen-sm-max) {
+      text-align: right;
+    }
+  }
+}

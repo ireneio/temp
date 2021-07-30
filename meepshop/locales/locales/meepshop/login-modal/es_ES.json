@@ -1,0 +1,32 @@
+{
+  "member-login": {
+    "title": "Inicio de sesión",
+    "submit": "Registrarse",
+    "forget-password": "¿contraseña olvidada?",
+    "or": "o",
+    "fb-login": "Iniciar sesión en facebook",
+    "success": "firmemente",
+    "invalid-email-or-password": "Error de buzón o contraseña"
+  },
+  "forget-password": {
+    "title": "Se te olvidó tu contraseña",
+    "description": "Ingrese su buzón que completó cuando se registre, le enviaremos una contraseña de restablecimiento.",
+    "email": "Registro de buzón",
+    "placeholder": "Ingrese un buzón de registro",
+    "error": "Error de formato de buzón",
+    "submit": "Enviar letra de restablecimiento de contraseña",
+    "back": "Atrás para iniciar sesión",
+    "success": "Enviado con éxito al buzón",
+    "fail": "Olvidó su contraseña: se produjo un error",
+    "cannot-find-user": "Este buzón no está registrado"
+  },
+  "email": {
+    "required": "Por favor ingrese el buzón",
+    "placeholder": "Ingrese el buzón"
+  },
+  "password": {
+    "required": "Por favor, introduzca su contraseña",
+    "placeholder": "introducir la contraseña"
+  },
+  "no-fb-app-id": "ID de aplicación de Facebook"
+}

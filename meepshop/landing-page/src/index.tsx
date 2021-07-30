@@ -12,6 +12,7 @@ import {
   Colors as ColorsContext,
 } from '@meepshop/context';
 import { useTranslation } from '@meepshop/locales';
+import LoginModal from '@meepshop/login-modal';
 import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
 
 // Use to copy mixin.less
@@ -20,7 +21,6 @@ import './styles/mixin.less';
 import Price from './Price';
 import Shopping from './Shopping';
 import Receiver from './receiver';
-import Login from './Login';
 import styles from './styles/index.less';
 import useComputeOrder from './hooks/useComputeOrder';
 import useSubmit from './hooks/useSubmit';
@@ -186,10 +186,9 @@ export default Form.create<PropsType>()(
         </Form>
 
         {viewer?.role === 'SHOPPER' || !showLogin ? null : (
-          <Login
-            cname={viewer?.store?.cname || '' /** SHOULD_NOT_BE_NULL */}
-            userEmail={getFieldValue('userEmail') as string}
-            hideLogin={() => setShowLogin(false)}
+          <LoginModal
+            initialEmail={getFieldValue('userEmail')}
+            onClose={() => setShowLogin(false)}
           />
         )}
 

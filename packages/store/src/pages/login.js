@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { connect } from 'react-redux';
-import { Router } from 'server/routes';
 import * as Utils from 'utils';
-import { Container, LoadingPageFromLogin, Error } from 'components';
+import { Container, Error } from 'components';
 import LoginView from '@meepshop/meep-ui/lib/login';
 import { getJoinedLoginPage } from 'selectors/login';
 import * as Actions from 'ducks/actions';
@@ -21,7 +20,6 @@ class Login extends Component {
 
   static propTypes = {
     error: PropTypes.string,
-    isLogin: PropTypes.string.isRequired,
     storeSetting: PropTypes.shape({
       storeName: PropTypes.string.isRequired,
       faviconUrl: PropTypes.string.isRequired,
@@ -33,14 +31,7 @@ class Login extends Component {
 
   static defaultProps = {
     error: null,
-    // login page ONLY
   };
-
-  componentDidMount() {
-    const { isLogin } = this.props;
-
-    if (isLogin === 'ISUSER') Router.pushRoute('/');
-  }
 
   render() {
     const { error } = this.props;
@@ -49,14 +40,10 @@ class Login extends Component {
     if (error) return <Error error={error} />;
 
     const {
-      isLogin,
-      storeSetting,
       storeSetting: { storeName, faviconUrl },
     } = this.props;
 
-    return isLogin === 'ISUSER' ? (
-      <LoadingPageFromLogin />
-    ) : (
+    return (
       <>
         <Head>
           <title>{storeName}</title>
@@ -64,7 +51,7 @@ class Login extends Component {
           <link rel="apple-touch-icon" href={faviconUrl} />
         </Head>
         <Container {...this.props}>
-          <LoginView storeSetting={storeSetting} />
+          <LoginView />
         </Container>
       </>
     );
@@ -78,7 +65,6 @@ const mapStateToProps = (state, props) => {
 
   return {
     storeSetting: state.storeReducer.settings,
-    isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getJoinedLoginPage(state, props),
   };

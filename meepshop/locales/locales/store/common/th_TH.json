@@ -22,8 +22,7 @@
     "reward-points": "คะแนนสะสม",
     "settings": "ข้อมูลสมาชิก",
     "wishlist": "รายการที่ต้องการ",
-    "logout": "ออกจากระบบ",
-    "reset-password": "รีเซ็ตรหัสผ่าน"
+    "logout": "ออกจากระบบ"
   },
   "locale": "อังกฤษ",
   "page-not-found": {

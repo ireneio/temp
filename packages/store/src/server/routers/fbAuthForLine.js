@@ -57,21 +57,17 @@ module.exports = async (req, res) => {
     /* Handle error - End */
 
     /* Parse code & state */
-    const codeArr = req.originalUrl.match(/code=(.*?)(?=&)/gm);
-    const code = codeArr && codeArr[0].split('=')[1];
-    const stateArr = req.originalUrl.match(/&(.*?)$/gm);
-    const state = stateArr && stateArr[0].split('=')[1];
+    const { state, code } = req.query;
 
-    if (!state.match(/meepShopNextStore/gm))
-      throw new Error('State is not matched!');
-
-    const fbApi = `https://graph.facebook.com/v8.0/oauth/access_token?client_id=${appId}&redirect_uri=https://${req.get(
-      'host',
-    )}/fbAuthForLine&client_secret=${appSecret}&code=${code}`;
-    const responseFromFB = await fetch(fbApi, {
-      method: 'get',
-      headers: { 'Content-Type': 'application/json' },
-    });
+    const responseFromFB = await fetch(
+      `https://graph.facebook.com/v8.0/oauth/access_token?client_id=${appId}&redirect_uri=https://${req.get(
+        'host',
+      )}/fbAuthForLine&client_secret=${appSecret}&code=${code}`,
+      {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' },
+      },
+    );
     const dataFromFB = await responseFromFB.json();
 
     if (responseFromFB.status !== 200)
@@ -115,10 +111,7 @@ module.exports = async (req, res) => {
       throw new Error(`${dataApi.code}-${dataApi._error}`); // eslint-disable-line
     }
 
-    /* Redirect back to website by condition */
-    if (state.match(/cart/gm)) res.redirect('/checkout');
-    else res.redirect('/login');
-    /* Redirect back to website by condition - End */
+    res.redirect(!state || state === 'undefined' ? '/' : state);
   } catch (error) {
     logger.info(
       `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,

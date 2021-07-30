@@ -18,7 +18,7 @@ import useVariant from '@meepshop/product-info/lib/hooks/useVariant';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
-import { ISUSER, NOTLOGIN, ISADMIN } from 'constants/isLogin';
+import { ISUSER, NOTLOGIN } from 'constants/isLogin';
 
 import * as styles from './styles';
 import Description from './Description';
@@ -175,8 +175,6 @@ export default class ProductInfo extends React.PureComponent {
     const { isLogin, stockNotificationList, variant } = this.props;
 
     switch (isLogin) {
-      case ISADMIN:
-        return;
       case NOTLOGIN:
         this.setState({ isModalOpen: true });
         break;

@@ -12,6 +12,7 @@ import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
 import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
 import { ErrorMultiIcon } from '@meepshop/icons';
+import logger from '@meepshop/utils/lib/logger';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
@@ -26,6 +27,8 @@ import UserInfo from './UserInfo';
 import ReceiverInfo from './ReceiverInfo';
 import ProductList from './ProductList';
 
+// Use to copy mixin.less
+import './styles/mixin.less';
 import styles from './styles/index.less';
 import { resetTimer } from './utils';
 import { modifyAntdStyle, formItem as formItemStyle } from './styles';
@@ -40,6 +43,8 @@ const { Item: FormItem } = Form;
     const { info, ...data } = orderInfo || {};
     const { name: userName, mobile: userMobile, address } = user || {};
     const fieldsData = {
+      ...data,
+      ...info,
       userName: data.userName || userName,
       userMobile: data.userMobile || userMobile,
       userAddressAndZipCode: data.userAddressAndZipCode || {
@@ -51,8 +56,6 @@ const { Item: FormItem } = Form;
         zipCode: address?.zipCode,
       },
       userStreet: data.userStreet || address?.street,
-      ...data,
-      ...(info || {}),
     };
 
     return Object.keys(fieldsData).reduce(
@@ -145,44 +148,51 @@ export default class OrderDetail extends React.PureComponent {
 
   componentDidMount() {
     this.computeOrderList();
-    this.restoreInfo();
+    try {
+      this.restoreInfo();
+    } catch ({ message }) {
+      logger.error(`Error: ${message}`);
+    }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     this.checkCartIsEmpty();
+
+    const { carts } = this.props;
+
+    if (prevProps.carts?.id !== carts?.id) {
+      this.computeOrderList({ products: carts?.categories.products || [] });
+    }
   }
 
   componentWillUnmount() {
     this.isUnmounted = true;
   }
 
-  valuesChange = (changedValues, allValues) => {
-    if (!global.window) return;
-
-    PRESERVED_FIELDS.forEach(field => {
-      if (allValues[field]) {
-        window.sessionStorage.setItem(field, allValues[field]);
-      }
-    });
-
-    resetTimer();
-  };
-
   fieldsChange = (changedFields, allFields) => {
     const { onChange } = this.props;
 
     onChange(
       allFields.reduce(
-        (result, { name: [key], value, errors }) => ({
-          orderInfo: {
-            ...result.orderInfo,
-            [key]: value,
-          },
-          errors: {
-            ...result.errors,
-            [key]: errors,
-          },
-        }),
+        (result, { name: [key], value, errors }) => {
+          if (value && PRESERVED_FIELDS.includes(key)) {
+            window.sessionStorage.setItem(
+              key,
+              key === 'addressAndZipCode' ? JSON.stringify(value) : value,
+            );
+            resetTimer();
+          }
+          return {
+            orderInfo: {
+              ...result.orderInfo,
+              [key]: value,
+            },
+            errors: {
+              ...result.errors,
+              [key]: errors,
+            },
+          };
+        },
         {
           orderInfo: {},
           errors: {},
@@ -201,8 +211,11 @@ export default class OrderDetail extends React.PureComponent {
       /** props */
       t,
       adTrack,
+      isSubmitting,
     } = this.props;
-    const { products, computeOrderData } = this.state;
+    const { products, computeOrderData, isChecking } = this.state;
+
+    if (isSubmitting || isChecking) return;
 
     if (products.length === 0) {
       this.isEmptyCart = true;
@@ -227,7 +240,11 @@ export default class OrderDetail extends React.PureComponent {
     const {
       getData,
       form: { getFieldValue },
+      isSubmitting,
     } = this.props;
+
+    if (isSubmitting) return;
+
     const { products } = this.state;
     const [paymentId, shipmentId, coupon, points] = [
       'paymentId',
@@ -394,14 +411,16 @@ export default class OrderDetail extends React.PureComponent {
     if (!global.window) return;
 
     const {
-      form: { setFieldsValue },
+      form: { setFields },
     } = this.props;
     const preservedInfo = PRESERVED_FIELDS.reduce((values, field) => {
       let value = window.sessionStorage.getItem(field);
 
       if (!value && value !== 0) return values;
 
-      if (field === 'address' || field === 'invoice') value = value.split(',');
+      if (field === 'addressAndZipCode') value = JSON.parse(value);
+
+      if (field === 'invoice') value = value.split(',');
 
       return [
         ...values,
@@ -414,8 +433,7 @@ export default class OrderDetail extends React.PureComponent {
     }, []);
 
     if (preservedInfo.length !== 0) {
-      setFieldsValue(preservedInfo);
-
+      setFields(preservedInfo);
       const deferredInfo = DEFERRED_FIELDS.reduce((values, field) => {
         const value = window.sessionStorage.getItem(field);
 
@@ -432,9 +450,10 @@ export default class OrderDetail extends React.PureComponent {
       }, []);
 
       if (deferredInfo.length !== 0) {
-        setFieldsValue(deferredInfo);
-        resetTimer();
+        setFields(deferredInfo);
       }
+
+      resetTimer();
     }
   };
 
@@ -493,7 +512,6 @@ export default class OrderDetail extends React.PureComponent {
           className={styles.fields}
           form={form}
           fields={fields}
-          onValuesChange={this.valuesChange}
           onFieldsChange={this.fieldsChange}
           onFinish={this.finish}
           scrollToFirstError
@@ -719,7 +737,6 @@ export default class OrderDetail extends React.PureComponent {
           productHasError={productHasError}
           updateProducts={newProducts => {
             this.computeOrderList({ products: newProducts });
-            this.setState({ products: newProducts });
           }}
           closeDetail={() =>
             this.setState({ showDetail: false }, () => {

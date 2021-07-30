@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { Form, Input } from 'antd';
+import { Form, Input, Button } from 'antd';
 
-import { withTranslation } from '@meepshop/locales';
 import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/address-cascader';
+import { withTranslation } from '@meepshop/locales';
+import LoginModal from '@meepshop/login-modal';
 import { useValidateEmail } from '@meepshop/validator';
 import withHook from '@store/utils/lib/withHook';
 
@@ -16,22 +17,22 @@ import { NOTLOGIN } from 'constants/isLogin';
 
 import validateMobile from 'utils/validateMobile';
 
-import {
-  block as blockStyle,
-  title as titleStyle,
-  formItem as formItemStyle,
-} from './styles';
+import styles from './styles/userInfo.less';
 
 const { Item: FormItem } = Form;
 const { Password } = Input;
 
 @withTranslation(['checkout', 'validate-mobile'])
-@withHook(() => ({
-  validateEmail: useValidateEmail(false, true),
+@withHook(({ t }) => ({
+  validateEmail: useValidateEmail(false, true, t('please-login')),
 }))
 @enhancer
 @radium
 export default class UserInfo extends React.PureComponent {
+  state = {
+    isVisible: false,
+  };
+
   static propTypes = {
     /** context */
     isLogin: ISLOGIN_TYPE.isRequired,
@@ -51,6 +52,7 @@ export default class UserInfo extends React.PureComponent {
       checkoutFields,
       validateEmail,
     } = this.props;
+    const { isVisible } = this.state;
 
     if (
       isLogin !== NOTLOGIN &&
@@ -61,32 +63,61 @@ export default class UserInfo extends React.PureComponent {
       return null;
 
     return (
-      <div style={blockStyle}>
-        <h3 style={titleStyle}>{t('user-info')}</h3>
+      <div className={styles.block}>
+        <h3 className={styles.title}>{t('user-info')}</h3>
 
         {isLogin !== NOTLOGIN ? null : (
           <>
-            <FormItem
-              style={formItemStyle}
-              name={['userEmail']}
-              rules={[
-                {
-                  required: true,
-                  message: t('is-required'),
-                },
-                {
-                  validator: validateEmail.validator,
-                },
-              ]}
-              normalize={validateEmail.normalize}
-              validateTrigger="onBlur"
-              validateFirst
-            >
-              <Input placeholder={t('email')} />
-            </FormItem>
+            <div className={styles.email}>
+              <FormItem
+                className={styles.formItem}
+                name={['userEmail']}
+                rules={[
+                  {
+                    required: true,
+                    message: t('is-required'),
+                  },
+                  {
+                    validator: validateEmail.validator,
+                  },
+                ]}
+                normalize={validateEmail.normalize}
+                validateTrigger="onBlur"
+                validateFirst
+              >
+                <Input placeholder={t('email')} />
+              </FormItem>
+
+              {/** FIXME: https://github.com/ant-design/ant-design/issues/26888 */}
+              <FormItem noStyle shouldUpdate>
+                {({ getFieldError }) =>
+                  !getFieldError(['userEmail']).includes(
+                    t('please-login'),
+                  ) ? null : (
+                    <Button
+                      type="primary"
+                      onClick={() => this.setState({ isVisible: true })}
+                    >
+                      {t('login')}
+                    </Button>
+                  )
+                }
+              </FormItem>
+
+              {!isVisible ? null : (
+                <FormItem noStyle dependencies={[['userEmail']]}>
+                  {({ getFieldValue }) => (
+                    <LoginModal
+                      onClose={() => this.setState({ isVisible: false })}
+                      initialEmail={getFieldValue(['userEmail'])}
+                    />
+                  )}
+                </FormItem>
+              )}
+            </div>
 
             <FormItem
-              style={formItemStyle}
+              className={styles.formItem}
               name={['userPassword']}
               rules={[
                 {
@@ -103,7 +134,7 @@ export default class UserInfo extends React.PureComponent {
 
         {checkoutFields.name === 'HIDDEN' ? null : (
           <FormItem
-            style={formItemStyle}
+            className={styles.formItem}
             name={['userName']}
             rules={
               checkoutFields.name === 'OPTIONAL'
@@ -123,7 +154,7 @@ export default class UserInfo extends React.PureComponent {
 
         {checkoutFields.mobile === 'HIDDEN' ? null : (
           <FormItem
-            style={formItemStyle}
+            className={styles.formItem}
             name={['userMobile']}
             rules={[
               ...(checkoutFields.mobile === 'OPTIONAL'
@@ -147,7 +178,7 @@ export default class UserInfo extends React.PureComponent {
         {checkoutFields.address === 'HIDDEN' ? null : (
           <>
             <FormItem
-              style={formItemStyle}
+              className={styles.formItem}
               name={['userAddressAndZipCode']}
               rules={
                 checkoutFields.address === 'OPTIONAL'
@@ -167,7 +198,7 @@ export default class UserInfo extends React.PureComponent {
             </FormItem>
 
             <FormItem
-              style={formItemStyle}
+              className={styles.formItem}
               name={['userStreet']}
               rules={
                 checkoutFields.address === 'OPTIONAL'

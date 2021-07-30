@@ -19,13 +19,11 @@ import {
   ISLOGIN_TYPE,
   CONTENT_WIDTH_TYPE,
 } from 'constants/propTypes';
-import { NOTLOGIN } from 'constants/isLogin';
 import loadData from 'utils/loadData';
 import buildVariantsTree from 'utils/buildVariantsTree';
 
 import PaymentInfo from './paymentInfo';
 import ReceiverInfo from './ReceiverInfo';
-import Login from './Login';
 import { ADDITION_TYPE } from './constants';
 import * as styles from './styles';
 
@@ -223,19 +221,6 @@ export default class LandingPage extends React.PureComponent {
             )}
           </FormItem>
         </StyleRoot>
-
-        {isLogin !== NOTLOGIN ? null : (
-          // FIXME: https://github.com/ant-design/ant-design/issues/26888
-          <FormItem shouldUpdate noStyle>
-            {({ getFieldValue, getFieldError }) =>
-              !getFieldError(['userEmail']).includes(
-                t('validator:email.already-exists'),
-              ) ? null : (
-                <Login email={getFieldValue('userEmail')} />
-              )
-            }
-          </FormItem>
-        )}
       </Form>
     );
   }

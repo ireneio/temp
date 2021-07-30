@@ -18,6 +18,8 @@
   },
   "user-info": "Info Anggota",
   "email": "Daftar dengan alamat emailmu",
+  "please-login": "Kotak surat ini telah terdaftar, silakan masuk terlebih dahulu",
+  "login": "Login Anggota",
   "password": "Kata sandi",
   "name": "Nama lengkap",
   "allpay-name-too-long": "Bahasa Mandarin harus 2-5 karakter / Bahasa Inggris harus 4-10 karakter. Tolong jangan gunakan simbol / angka atau biarkan kosong",

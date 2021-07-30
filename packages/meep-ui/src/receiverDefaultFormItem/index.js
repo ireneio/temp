@@ -66,6 +66,7 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
       // props
       t,
       style,
+      className,
       chooseShipmentTemplate,
       shippableCountries,
       invoiceIsNeeded,
@@ -78,6 +79,7 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
           {({ getFieldValue }) => (
             <FormItem
               name={['mobile']}
+              className={className}
               style={style}
               extra={validateTaiwanMobileNumber(
                 t,
@@ -107,7 +109,7 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
         </FormItem>
 
         {['allpay', 'ezship'].includes(chooseShipmentTemplate) ? (
-          <FormItem style={style}>
+          <FormItem className={className} style={style}>
             <FormItem dependencies={['shipmentId']} noStyle>
               {form => (
                 <ChooseShipmentStore
@@ -121,6 +123,7 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
         ) : (
           <>
             <FormItem
+              className={className}
               style={style}
               name={['addressAndZipCode']}
               rules={[
@@ -137,6 +140,7 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
             </FormItem>
 
             <FormItem
+              className={className}
               style={style}
               name={['street']}
               rules={[
@@ -155,6 +159,7 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
         {!invoiceIsNeeded || !invoiceOptions.length ? null : (
           <>
             <FormItem
+              className={className}
               style={style}
               name={['invoice']}
               rules={[
@@ -173,7 +178,11 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
 
             <FormItem dependencies={['invoice']} noStyle>
               {({ getFieldValue }) => (
-                <Invoice style={style} invoice={getFieldValue(['invoice'])} />
+                <Invoice
+                  className={className}
+                  style={style}
+                  invoice={getFieldValue(['invoice'])}
+                />
               )}
             </FormItem>
           </>

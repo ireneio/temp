@@ -12,7 +12,6 @@ import * as Selectors from 'selectors';
 import * as Template from 'template';
 import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
-import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
 
 class Recipients extends Component {
@@ -31,7 +30,6 @@ class Recipients extends Component {
 
   static propTypes = {
     error: PropTypes.string,
-    isLogin: PropTypes.string.isRequired,
     storeSetting: PropTypes.shape({
       storeName: PropTypes.string.isRequired,
       faviconUrl: PropTypes.string.isRequired,
@@ -43,22 +41,6 @@ class Recipients extends Component {
 
   static defaultProps = { error: null };
 
-  componentDidMount() {
-    const { isLogin } = this.props;
-
-    if (isLogin === 'NOTLOGIN') {
-      Router.pushRoute('/login');
-    }
-  }
-
-  componentDidUpdate() {
-    const { isLogin } = this.props;
-
-    if (isLogin === 'NOTLOGIN') {
-      Router.pushRoute('/login');
-    }
-  }
-
   render() {
     const { error } = this.props;
 
@@ -66,14 +48,11 @@ class Recipients extends Component {
     if (error) return <Error error={error} />;
 
     const {
-      isLogin,
       storeSetting: { storeName, faviconUrl },
       t,
     } = this.props;
 
-    return isLogin === 'NOTLOGIN' ? (
-      <div>未登入</div>
-    ) : (
+    return (
       <>
         <Head>
           <title>{storeName}</title>
@@ -117,7 +96,6 @@ const mapStateToProps = (state, props) => {
 
   return {
     storeSetting: state.storeReducer.settings,
-    isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     location: Utils.uriParser(props),
     page: getPage(state, props),
   };

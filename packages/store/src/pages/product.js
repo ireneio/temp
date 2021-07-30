@@ -7,6 +7,8 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
+import { Role as RoleContext } from '@meepshop/context';
+import withContext from '@store/utils/lib/withContext';
 
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
@@ -55,14 +57,15 @@ class Product extends React.Component {
 
   static defaultProps = { error: null };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { dispatchAction, isLogin } = nextProps;
-    const query = nextProps.location?.query;
+  componentDidUpdate(prevProps) {
+    const {
+      dispatchAction,
+      role,
+      location: { query },
+    } = this.props;
 
-    if (prevState?.isLogin && prevState.isLogin !== isLogin)
-      dispatchAction('getProduct', { id: query.pId, query });
-
-    return { isLogin };
+    if (prevProps.role !== role)
+      dispatchAction('getProduct', { id: query?.pId, query });
   }
 
   render() {
@@ -133,7 +136,6 @@ const mapStateToProps = (state, props) => {
     storeSetting: state?.storeReducer?.settings,
     location: Utils.uriParser(props),
     page: getJoinedPageInProductRoute(state, props),
-    isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
     // !!Note: product page ONLY
     product: getProduct(state, props),
     productDescription: getProductDescription(state, props),
@@ -144,4 +146,8 @@ export default connect(mapStateToProps, dispatch => ({
   dispatchAction: (actionName, args) => {
     dispatch(Actions[actionName](args));
   },
-}))(withTranslation('common')(Product));
+}))(
+  withTranslation('common')(
+    withContext(RoleContext, role => ({ role }))(Product),
+  ),
+);

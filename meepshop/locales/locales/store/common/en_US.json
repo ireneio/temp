@@ -22,8 +22,7 @@
     "reward-points": "Reward Points",
     "settings": "Member Info",
     "wishlist": "Wish list",
-    "logout": "logout",
-    "reset-password": "Reset Password"
+    "logout": "logout"
   },
   "locale": "English",
   "page-not-found": {

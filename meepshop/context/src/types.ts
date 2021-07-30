@@ -11,6 +11,8 @@ export { default as Events } from './Events';
 export * from './Events';
 export { default as Fb } from './Fb';
 export * from './Fb';
+export { default as Role } from './Role';
+export * from './Role';
 export { default as Sensor } from './Sensor';
 export * from './Sensor';
 

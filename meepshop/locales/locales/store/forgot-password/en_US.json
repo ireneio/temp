@@ -1,4 +1,5 @@
 {
+  "title": "reset Password",
   "password-is-required": "Please enter password.",
   "password-placeholder": "Enter a new password",
   "reset-password": "Confrim Password",

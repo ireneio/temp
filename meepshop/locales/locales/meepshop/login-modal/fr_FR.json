@@ -1,0 +1,32 @@
+{
+  "member-login": {
+    "title": "Identifiant",
+    "submit": "S'identifier",
+    "forget-password": "mot de passe oublié?",
+    "or": "ou alors",
+    "fb-login": "Identifiant Facebook",
+    "success": "Connectez-vous sucablement",
+    "invalid-email-or-password": "Erreur de boîtes aux lettres ou de mot de passe"
+  },
+  "forget-password": {
+    "title": "Mot de passe oublié",
+    "description": "Entrez votre boîte aux lettres que vous avez remplie lors de votre inscription, nous vous enverrons un mot de passe de réinitialisation.",
+    "email": "Boîte aux lettres d'enregistrement",
+    "placeholder": "Entrez une boîte aux lettres d'enregistrement",
+    "error": "Erreur de format de boîte aux lettres",
+    "submit": "Envoyer la lettre de réinitialisation du mot de passe",
+    "back": "Retour connexion",
+    "success": "Envoyé avec succès à la boîte aux lettres",
+    "fail": "Mot de passe oublié: une erreur s'est produite",
+    "cannot-find-user": "Cette boîte aux lettres n'est pas enregistrée"
+  },
+  "email": {
+    "required": "S'il vous plaît entrer la boîte aux lettres",
+    "placeholder": "Entrez la boîte aux lettres"
+  },
+  "password": {
+    "required": "s'il vous plait entrez votre mot de passe",
+    "placeholder": "Entrer le mot de passe"
+  },
+  "no-fb-app-id": "ID de l'application Facebook"
+}

@@ -1,4 +1,5 @@
 @import '../../../constants/styles.less';
+@import './mixin.less';
 
 .root {
   display: flex;
@@ -84,19 +85,15 @@
 }
 
 .block {
-  margin: 0px 0px 60px;
+  @block();
 }
 
 .title {
-  font-size: 18px;
-  margin: 0px 0px 5px;
-  padding: 0px 3px;
+  @title();
 }
 
 .formItem {
-  margin: 0px;
-  padding: 7px 3px;
-  width: 100%;
+  @formItem();
 }
 
 .points {

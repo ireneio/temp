@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import UnsubscribeEmail from '@store/unsubscribe-email';
 
-import * as Utils from 'utils';
 import * as Actions from 'ducks/actions';
 
 class UnsubscribeEmailPage extends React.PureComponent {
@@ -39,7 +38,6 @@ class UnsubscribeEmailPage extends React.PureComponent {
 
 const mapStateToProps = state => ({
   storeSetting: state.storeReducer.settings,
-  isLogin: Utils.getIn(['memberReducer', 'isLogin'])(state),
 });
 
 export default connect(mapStateToProps)(UnsubscribeEmailPage);

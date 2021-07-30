@@ -179,7 +179,10 @@ export default class Login extends React.PureComponent {
                     <Button
                       className={styles.fbButton}
                       ghost
-                      onClick={() => fbLogin({ from: 'cart' })}
+                      onClick={() => {
+                        fbLogin({ to: '/checkout' });
+                        toggleCart(false);
+                      }}
                     >
                       <div>
                         <FacebookIcon className={styles.fbIcon} />
