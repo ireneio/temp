@@ -37,7 +37,7 @@ export default (
   return {
     loading: setInvoiceLoading || setPaymentLoading,
     save: useCallback(
-      async ({ invoice, payment }) => {
+      async ({ invoice, payment = { method: null } }) => {
         const { invoice: initialInvoice, payment: initialPayment } =
           initialValues || {};
 

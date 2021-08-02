@@ -45,7 +45,9 @@ export default React.memo(({ store }: PropsType) => {
       </div>
 
       <FormItem
-        shouldUpdate={(prev, cur) => prev.payment.method !== cur.payment.method}
+        shouldUpdate={(prev, cur) =>
+          prev.payment?.method !== cur.payment?.method
+        }
         noStyle
       >
         {({ getFieldValue, setFieldsValue }) =>

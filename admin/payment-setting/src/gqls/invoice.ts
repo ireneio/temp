@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 export const invoiceFragment = gql`
   fragment invoiceFragment on StoreBillingInvoiceSetting {
     accountType
+    email
     name
     title
     ban
