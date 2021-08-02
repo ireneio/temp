@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.80.21 (2021-08-02)
+
+#### :bug: Bug Fix
+
+- [#1649](https://github.com/meepshop/meep-lerna/pull/1649) 【BUG】後台 - 付款設定頁面，顯示儲存反饋訊息後，右上取消＆儲存按鈕未消失 ([@happycat6323](https://github.com/happycat6323))
+- [#1661](https://github.com/meepshop/meep-lerna/pull/1661) 【BUG】 GA 商品價格抓取參數不同 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.20 (2021-07-30)
 
 #### :rocket: New Feature
