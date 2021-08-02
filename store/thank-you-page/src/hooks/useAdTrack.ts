@@ -18,31 +18,14 @@ export default (order: useAdTrackFragmentType | null): void => {
 
   useEffect(() => {
     if (order)
+      // SHOULD_NOT_BE_NULL
       adTrack.purchase({
-        orderNo: order.orderNo || '', // SHOULD_NOT_BE_NULL
-        products: (order.products || []).reduce(
-          // SHOULD_NOT_BE_NULL
-          (result: productsType, data) => {
-            if (!data) return result;
-
-            const product = result.find(({ id }) => id === data.productId);
-
-            if (!product)
-              return [
-                ...result,
-                { ...data, id: data.productId } as productsType[number],
-              ];
-
-            product.quantity += data.quantity || 0;
-
-            return result;
-          },
-          [],
-        ),
-        total: order.priceInfo?.total || 0, // SHOULD_NOT_BE_NULL
-        currency: order.priceInfo?.currency || 'TWD', // SHOULD_NOT_BE_NULL
-        shipmentFee: order.priceInfo?.shipmentFee || 0, // SHOULD_NOT_BE_NULL
-        paymentFee: order.priceInfo?.paymentFee || 0, // SHOULD_NOT_BE_NULL
+        orderNo: order.orderNo || '',
+        products: order.products as productsType,
+        total: order.priceInfo?.total || 0,
+        currency: order.priceInfo?.currency || 'TWD',
+        shipmentFee: order.priceInfo?.shipmentFee || 0,
+        paymentFee: order.priceInfo?.paymentFee || 0,
       });
   }, [order, adTrack]);
 };

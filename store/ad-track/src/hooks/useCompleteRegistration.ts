@@ -10,7 +10,7 @@ import { useCompleteRegistrationFragment as useCompleteRegistrationFragmentType 
 // definition
 export default (
   adTracks: useCompleteRegistrationFragmentType | null,
-  fbq: typeof window.fbq,
+  fbq: NonNullable<typeof window.fbq>,
 ): AdTrackType['completeRegistration'] =>
   useCallback(() => {
     if (!adTracks) return;

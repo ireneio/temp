@@ -10,7 +10,7 @@ import { useSearchFragment as useSearchFragmentType } from '@meepshop/types/gqls
 // definition
 export default (
   adTracks: useSearchFragmentType | null,
-  fbq: typeof window.fbq,
+  fbq: NonNullable<typeof window.fbq>,
 ): AdTrackType['search'] =>
   useCallback(
     ({ searchString, products }) => {

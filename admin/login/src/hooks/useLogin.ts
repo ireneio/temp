@@ -69,6 +69,8 @@ export default (): {
     loading,
     login: useCallback(
       async ({ isHelper, cname, ...input }) => {
+        if (!window.grecaptcha) return;
+
         const gRecaptchaResponse = window.grecaptcha.getResponse();
 
         window.grecaptcha.reset();

@@ -12,7 +12,7 @@ import { useAddToCartFragment as useAddToCartFragmentType } from '@meepshop/type
 // definition
 export default (
   adTracks: useAddToCartFragmentType | null,
-  fbq: typeof window.fbq,
+  fbq: NonNullable<typeof window.fbq>,
 ): AdTrackType['addToCart'] => {
   const { currency } = useContext(CurrencyContext);
 

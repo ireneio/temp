@@ -5,7 +5,9 @@ import { AdTrackType } from '@meepshop/context';
 import { useCallback } from 'react';
 
 // definition
-export default (fbq: typeof window.fbq): AdTrackType['addToWishList'] =>
+export default (
+  fbq: NonNullable<typeof window.fbq>,
+): AdTrackType['addToWishList'] =>
   useCallback(() => {
     fbq('track', 'AddToWishList');
   }, [fbq]);

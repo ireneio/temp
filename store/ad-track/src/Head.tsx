@@ -11,7 +11,7 @@ import { headFragment as headFragmentType } from '@meepshop/types/gqls/store';
 // typescript definition
 interface PropsType {
   adTracks: headFragmentType;
-  fbq: typeof window.fbq;
+  fbq: NonNullable<typeof window.fbq>;
 }
 
 // definition

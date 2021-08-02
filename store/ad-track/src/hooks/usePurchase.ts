@@ -13,7 +13,7 @@ type productsType = Parameters<AdTrackType['purchase']>[0]['products'];
 // definition
 export default (
   store: usePurchaseFragmentType | null,
-  fbq: typeof window.fbq,
+  fbq: NonNullable<typeof window.fbq>,
 ): AdTrackType['purchase'] =>
   useCallback(
     ({ orderNo, products, total, currency, shipmentFee, paymentFee }) => {
@@ -45,26 +45,39 @@ export default (
           value: total - shipmentFee - paymentFee,
           shipping: shipmentFee,
           items: products
-            .filter(({ type }: productsType[number]) => type === 'product')
-            .map(
-              ({
-                id,
-                title,
-                specs,
-                totalPrice,
-                quantity,
-              }: productsType[number]) => ({
-                id,
-                name: title.zh_TW,
-                variant: (specs || [])
-                  .map(
-                    ({ title: specTitle }: { title: { zh_TW: string } }) =>
-                      specTitle.zh_TW,
-                  )
-                  .join('/'),
-                price: totalPrice,
-                quantity,
-              }),
+            ?.filter(
+              (product: productsType[number]) => product?.type === 'product',
+            )
+            .reduce(
+              (
+                result: productsType,
+                { productId, title, specs, totalPrice, quantity },
+              ) => {
+                const product = result.find(({ id }) => id === productId);
+                if (!product)
+                  return [
+                    ...result,
+                    {
+                      id: productId,
+                      name: title.zh_TW,
+                      variant: specs
+                        ?.map(
+                          ({
+                            title: specTitle,
+                          }: {
+                            title: { zh_TW: string };
+                          }) => specTitle.zh_TW,
+                        )
+                        .join('/'),
+                      price: totalPrice / quantity,
+                      quantity,
+                    },
+                  ];
+                // FIXME: fix for 選選樂
+                product.quantity += quantity || 0;
+                return result;
+              },
+              [],
             ),
         });
 

@@ -9,7 +9,7 @@ import { useRetentionFragment as useRetentionFragmentType } from '@meepshop/type
 // definition
 export default (
   store: useRetentionFragmentType | null,
-  fbq: typeof window.fbq,
+  fbq: NonNullable<typeof window.fbq>,
 ): void => {
   const router = useRouter();
   const prevAsPathRef = useRef('');

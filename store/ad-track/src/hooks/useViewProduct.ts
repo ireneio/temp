@@ -12,7 +12,7 @@ import { useViewProductFragment as useViewProductFragmentType } from '@meepshop/
 // definition
 export default (
   adTracks: useViewProductFragmentType | null,
-  fbq: typeof window.fbq,
+  fbq: NonNullable<typeof window.fbq>,
 ): AdTrackType['viewProduct'] => {
   const { currency } = useContext(CurrencyContext);
 

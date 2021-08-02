@@ -15,7 +15,7 @@ type productsType = Parameters<AdTrackType['beginCheckout']>[0]['products'];
 // definition
 export default (
   adTracks: useBeginCheckoutFragmentType | null,
-  fbq: typeof window.fbq,
+  fbq: NonNullable<typeof window.fbq>,
 ): AdTrackType['beginCheckout'] => {
   const { currency } = useContext(CurrencyContext);
 

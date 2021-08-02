@@ -5,7 +5,7 @@ import { AdTrackType } from '@meepshop/context';
 import { useCallback } from 'react';
 
 // definition
-export default (fbq: typeof window.fbq): AdTrackType['custom'] =>
+export default (fbq: NonNullable<typeof window.fbq>): AdTrackType['custom'] =>
   useCallback(
     (action: string, name: string, category: string | null) => {
       fbq('track', name);

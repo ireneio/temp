@@ -13,7 +13,9 @@ const {
   publicRuntimeConfig: { ENV },
 } = getConfig();
 
-export default (store: useFbqFragment | null): typeof window.fbq => {
+export default (
+  store: useFbqFragment | null,
+): NonNullable<typeof window.fbq> => {
   const { cookies } = useContext(CookiesContext);
 
   return useCallback(

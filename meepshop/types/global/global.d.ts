@@ -1,6 +1,6 @@
 declare interface Window {
   events: EventTarget;
-  FB: {
+  FB?: {
     XFBML: {
       parse: (dom: HTMLElement) => void;
     };
@@ -14,7 +14,7 @@ declare interface Window {
       },
     ) => void;
   };
-  fbq: (
+  fbq?: (
     eventName: string,
     type: string,
     option?: {
@@ -30,13 +30,13 @@ declare interface Window {
       externalID?: string;
     },
   ) => void;
-  gtag: (eventName: string, type: string, option?: {}) => void;
-  grecaptcha: {
+  gtag?: (eventName: string, type: string, option?: {}) => void;
+  grecaptcha?: {
     render: (dom: HTMLElement, options: { sitekey: string }) => void;
     getResponse: () => string;
     reset: () => void;
   };
-  TPDirect: {
+  TPDirect?: {
     setupSDK: (appID: string, appKey: string, serverType: string) => void;
     card: {
       setup: (options: { fields: object; styles: object }) => void;
