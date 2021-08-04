@@ -39,10 +39,6 @@ class Product extends React.Component {
 
   static propTypes = {
     error: PropTypes.string,
-    storeSetting: PropTypes.shape({
-      storeName: PropTypes.string.isRequired,
-      faviconUrl: PropTypes.string.isRequired,
-    }).isRequired,
     location: PropTypes.shape({
       host: PropTypes.string.isRequired,
       pathname: PropTypes.string.isRequired,
@@ -77,13 +73,9 @@ class Product extends React.Component {
     if (isEmpty(product)) return <Spin indicator={<LoadingOutlined spin />} />;
 
     const {
-      storeSetting: { storeName, storeDescription, faviconUrl },
-      location: { host, pathname },
       product: { status, coverImage, title },
       productDescription,
-      i18n,
     } = this.props;
-    const url = host + pathname;
     const productImage = coverImage?.scaledSrc?.w480 || '';
 
     // eslint-disable-next-line camelcase
@@ -92,29 +84,35 @@ class Product extends React.Component {
     return (
       <>
         <Head>
-          <title>{productName || storeName}</title>
-          <meta
-            name="description"
-            content={productDescription || storeDescription}
-          />
-          <meta name="keywords" content={productName || storeName} />
-          <link rel="icon" type="image/png" href={faviconUrl} />
-          <link rel="apple-touch-icon" href={faviconUrl} />
+          {!productName ? null : <title>{productName}</title>}
 
-          {/* <!-- Facebook Open Graph --> */}
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content={`https://${url}`} />
-          <meta property="og:title" content={productName || storeName} />
-          <meta property="og:image" content={productImage || faviconUrl} />
-          <meta property="og:image:width" content="400" />
-          <meta property="og:image:height" content="300" />
-          <meta
-            property="og:description"
-            content={productDescription || storeDescription}
-          />
-          <meta property="og:site_name" content={storeName} />
-          <meta property="og:locale" content={i18n.language} />
-          {/* <!-- End - Facebook Open Graph --> */}
+          {!productDescription ? null : (
+            <meta
+              key="description"
+              name="description"
+              content={productDescription}
+            />
+          )}
+
+          {!productName ? null : (
+            <meta key="keywords" name="keywords" content={productName} />
+          )}
+
+          {!productName ? null : (
+            <meta key="og:title" property="og:title" content={productName} />
+          )}
+
+          {!productImage ? null : (
+            <meta key="og:image" property="og:image" content={productImage} />
+          )}
+
+          {!productDescription ? null : (
+            <meta
+              key="og:description"
+              property="og:description"
+              content={productDescription}
+            />
+          )}
         </Head>
 
         {status ? (
@@ -133,7 +131,6 @@ const mapStateToProps = (state, props) => {
   if (error) return { error };
 
   return {
-    storeSetting: state?.storeReducer?.settings,
     location: Utils.uriParser(props),
     page: getJoinedPageInProductRoute(state, props),
     // !!Note: product page ONLY

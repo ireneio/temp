@@ -1,5 +1,5 @@
 import postGraphql from 'utils/postGraphql';
-import { viewer, viewerStoreQuery, menuQuery } from './query';
+import { viewer, menuQuery } from './query';
 
 export default async context => {
   const variables = {
@@ -28,7 +28,6 @@ export default async context => {
 
   const query = `
     ${viewer}
-    ${viewerStoreQuery}
     getMenuList(search: $menuSearch) {
       data {
         ${menuQuery}

@@ -31,11 +31,6 @@ const { isBrowser } = UserAgent;
 @withContext(FbContext)
 class Container extends React.Component {
   static propTypes = {
-    /* never change */
-    cname: PropTypes.string.isRequired,
-    storeSetting: PropTypes.shape({
-      invoice: PropTypes.object.isRequired,
-    }).isRequired,
     /* may chnage */
     isLogin: PropTypes.string.isRequired,
     location: PropTypes.shape({
@@ -53,13 +48,6 @@ class Container extends React.Component {
     login: PropTypes.func.isRequired,
     signout: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
-    /* props(not in context) */
-    backgroundImage: PropTypes.shape({
-      files: PropTypes.array.isRequired,
-      repeat: PropTypes.bool.isRequired,
-      size: PropTypes.bool.isRequired,
-      used: PropTypes.bool.isRequired,
-    }).isRequired,
 
     page: PropTypes.shape({ id: PropTypes.string }).isRequired,
     // login page usage ONLY
@@ -206,10 +194,6 @@ class Container extends React.Component {
     }
 
     const {
-      /* never change */
-      cname,
-      storeSetting,
-      experiment,
       /* may change */
       location,
       loading,
@@ -219,7 +203,6 @@ class Container extends React.Component {
       signout,
       dispatchAction,
       /* props(not in context) */
-      backgroundImage,
       page,
       product,
       children,
@@ -229,10 +212,6 @@ class Container extends React.Component {
       <>
         <Spinner loading={loading} loadingTip={loadingTip} />
         <Layout
-          /* never change */
-          cname={cname}
-          storeSetting={storeSetting}
-          experiment={experiment}
           /* may change */
           location={location}
           /* func to modify data */
@@ -244,7 +223,6 @@ class Container extends React.Component {
           logout={signout}
           dispatchAction={dispatchAction}
           /* props(not in context) */
-          backgroundImage={backgroundImage} // background-image of page
           product={product}
           radiumConfig={{ userAgent: location.userAgent }} // for radium media query
           {...page}
@@ -259,25 +237,18 @@ class Container extends React.Component {
 const mapStateToProps = state => {
   /* Handle error */
   const error = Utils.getStateError(state);
+
   if (error) return { error };
 
   const {
-    storeReducer: { settings, experiment },
     memberReducer: { loading, loadingTip },
     loadingStatus: { loading: isLoading },
   } = state;
-  const { cname, backgroundImage } = settings;
 
   return {
-    /* never change */
-    cname,
-    storeSetting: settings,
-    experiment,
     /* may chnage */
     loading: isLoading || loading,
     loadingTip,
-    /* props(not in context) */
-    backgroundImage,
   };
 };
 

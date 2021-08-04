@@ -9,9 +9,11 @@ import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import { notification } from 'antd';
 import moment from 'moment';
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 
 import ActionButton from '@meepshop/action-button';
-import { appWithTranslation } from '@meepshop/locales';
+import { appWithTranslation, useTranslation } from '@meepshop/locales';
 import logger from '@meepshop/utils/lib/logger';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';
@@ -20,7 +22,8 @@ import { RoleProvider } from '@meepshop/context/lib/Role';
 import { SensorProvider } from '@meepshop/context/lib/Sensor';
 import { CartProvider } from '@meepshop/cart';
 import { FormDataProvider } from '@meepshop/form-data';
-import { withDomain } from '@meepshop/link';
+import { withDomain, useRouter } from '@meepshop/link';
+import withHook from '@store/utils/lib/withHook';
 import withApollo from '@store/apollo';
 import FbProvider from '@store/fb';
 import CurrencyProvider from '@store/currency';
@@ -235,6 +238,11 @@ class App extends NextApp {
       pageProps,
       router,
       store,
+      storeName,
+      storeDescription,
+      logoImage,
+      faviconImage,
+      i18n,
     } = this.props;
 
     /* Handle error */
@@ -250,6 +258,52 @@ class App extends NextApp {
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="format-detection" content="telephone=no" />
+
+          <title>{storeName}</title>
+
+          <link
+            rel="icon"
+            type="image/png"
+            href={faviconImage?.scaledSrc.w60}
+          />
+          <link rel="apple-touch-icon" href={faviconImage?.scaledSrc.w60} />
+
+          <meta key="keywords" name="keywords" content={storeName} />
+          <meta
+            key="description"
+            name="description"
+            content={storeDescription}
+          />
+
+          <meta key="og:type" property="og:type" content="website" />
+          <meta
+            key="og:url"
+            property="og:url"
+            content={`https://${router.domain}${router.asPath}`}
+          />
+          <meta key="og:title" property="og:title" content={storeName} />
+          <meta
+            key="og:site_name"
+            property="og:site_name"
+            content={storeName}
+          />
+          <meta
+            key="og:description"
+            property="og:description"
+            content={storeDescription}
+          />
+          <meta
+            key="og:image"
+            property="og:image"
+            content={logoImage?.scaledSrc.w240}
+          />
+          <meta key="og:image:width" property="og:image:width" content="400" />
+          <meta
+            key="og:image:height"
+            property="og:image:height"
+            content="300"
+          />
+          <meta key="og:locale" property="og:locale" content={i18n.language} />
         </Head>
         <EventsProvider>
           <FbProvider>
@@ -289,6 +343,53 @@ class App extends NextApp {
 
 export default withApollo(
   withRedux(configureStore)(
-    withReduxSaga(appWithTranslation(withCookies(withDomain(App)))),
+    withReduxSaga(
+      appWithTranslation(
+        withCookies(
+          withDomain(
+            withHook(() => {
+              const router = useRouter();
+              const { i18n } = useTranslation('common');
+              const { data } = useQuery(gql`
+                query getStore {
+                  viewer {
+                    id
+                    store {
+                      id
+                      description {
+                        name
+                        introduction
+                      }
+                      logoImage {
+                        id
+                        scaledSrc {
+                          w240
+                        }
+                      }
+                      faviconImage {
+                        id
+                        scaledSrc {
+                          w60
+                        }
+                      }
+                    }
+                  }
+                }
+              `);
+
+              return {
+                i18n,
+                router,
+                storeName: data?.viewer?.store?.description?.name || '',
+                storeDescription:
+                  data?.viewer?.store?.description?.introduction || '',
+                logoImage: data?.viewer?.store?.logoImage,
+                faviconImage: data?.viewer?.store?.faviconImage,
+              };
+            })(App),
+          ),
+        ),
+      ),
+    ),
   ),
 );

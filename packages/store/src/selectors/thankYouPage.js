@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { sidebar, fixedtop, secondtop, fixedbottom } from 'template';
-import { getMenus, getLogoUrl, getMobileLogoUrl, getJoinedPage } from './index';
+import { getMenus, getJoinedPage } from './index';
 
 const getThankYouPage = () => ({
   id: 'thank-you-page',
@@ -17,6 +17,6 @@ const getThankYouPage = () => ({
 });
 
 export const getJoinedThankYouPage = createSelector(
-  [getThankYouPage, getMenus, getLogoUrl, getMobileLogoUrl],
+  [getThankYouPage, getMenus],
   getJoinedPage,
 );

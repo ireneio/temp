@@ -1,5 +1,5 @@
 import postGraphql from 'utils/postGraphql';
-import { viewer, viewerStoreQuery, pageQuery, menuQuery } from './query';
+import { viewer, pageQuery, menuQuery } from './query';
 
 export default context => {
   const {
@@ -33,7 +33,6 @@ export default context => {
 
   const query = `
     ${viewer}
-    ${viewerStoreQuery}
     viewer {
       store {
         defaultHomePage {

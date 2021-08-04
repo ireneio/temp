@@ -81,7 +81,6 @@ const mapStateToProps = (state, props) => {
           page: getJoinedPageInProductRoute(state, props),
           product: getProduct(state, props),
         }),
-    storeSetting: Utils.getIn(['storeReducer', 'settings'])(state),
     location: Utils.uriParser(props),
   };
 };

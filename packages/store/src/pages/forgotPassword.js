@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Head from 'next/head';
 import { connect } from 'react-redux';
 
 import { withTranslation } from '@meepshop/locales';
@@ -28,10 +27,6 @@ class ForgotPassword extends Component {
 
   static propTypes = {
     error: PropTypes.string,
-    storeSetting: PropTypes.shape({
-      storeName: PropTypes.string.isRequired,
-      faviconUrl: PropTypes.string.isRequired,
-    }).isRequired,
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
@@ -45,22 +40,12 @@ class ForgotPassword extends Component {
     /* Display Error View */
     if (error) return <Error error={error} />;
 
-    const {
-      storeSetting: { storeName, faviconUrl },
-      token,
-    } = this.props;
+    const { token } = this.props;
 
     return (
-      <>
-        <Head>
-          <title>{storeName}</title>
-          <link rel="icon" type="image/png" href={faviconUrl} />
-          <link rel="apple-touch-icon" href={faviconUrl} />
-        </Head>
-        <Container {...this.props}>
-          <ForgotPasswordView token={token} />
-        </Container>
-      </>
+      <Container {...this.props}>
+        <ForgotPasswordView token={token} />
+      </Container>
     );
   }
 }
@@ -71,7 +56,6 @@ const mapStateToProps = (state, props) => {
   if (error) return { error };
 
   return {
-    storeSetting: state.storeReducer.settings,
     location: Utils.uriParser(props),
     page: getJoinedForgotPasswordPage(state, props),
   };

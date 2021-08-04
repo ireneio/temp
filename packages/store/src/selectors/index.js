@@ -6,18 +6,10 @@ import { handlePages } from 'utils/setDefaultValueForMenuDesign';
 export const getPages = state => state.pagesReducer;
 
 export const getMenus = state => getIn(['storeReducer', 'menus'])(state);
-export const getLogoUrl = state =>
-  getIn(['storeReducer', 'settings', 'logoUrl'])(state);
-export const getMobileLogoUrl = state =>
-  getIn(['storeReducer', 'settings', 'mobileLogoUrl'])(state);
-export const getLocaleOptions = state =>
-  getIn(['storeReducer', 'settings', 'localeOptions'])(state);
-export const getCurrencyOptions = state =>
-  getIn(['storeReducer', 'settings', 'currencyOptions'])(state);
 
 export const getQuery = (state, props) => getIn(['url', 'query'])(props) || {};
 
-export const getJoinedPage = (page, menus, logoUrl, mobileLogoUrl) => {
+export const getJoinedPage = (page, menus) => {
   let joinedPage = page;
   ['fixedtop', 'secondtop', 'sidebar', 'fixedbottom'].forEach(ele => {
     let menu = !/page-/.test(page.id)
@@ -72,8 +64,6 @@ export const getJoinedPage = (page, menus, logoUrl, mobileLogoUrl) => {
     joinedPage = R.pipe(
       R.assocPath([ele, 'id'], ele),
       R.assocPath([ele, 'menu'], menu),
-      R.assocPath([ele, 'logo'], logoUrl),
-      R.assocPath([ele, 'mobileLogo'], mobileLogoUrl),
     )(joinedPage);
   });
 
@@ -104,6 +94,6 @@ export const getJoinedModulePage = createSelector(
 );
 
 export const getJoinedHomePage = createSelector(
-  [getJoinedModulePage, getMenus, getLogoUrl, getMobileLogoUrl],
+  [getJoinedModulePage, getMenus],
   getJoinedPage,
 );

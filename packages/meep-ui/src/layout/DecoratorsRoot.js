@@ -1,6 +1,5 @@
 /* eslint-disable max-classes-per-file */
 import React, { useContext, useState } from 'react';
-import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 
 import {
@@ -13,64 +12,15 @@ import CartContext from '@meepshop/cart';
 import withContext from '@store/utils/lib/withContext';
 import { NOTLOGIN, ISUSER } from 'constants/isLogin';
 
+import { getContextData } from './gqls/decoratorsRoot';
+
 const EnhancerContext = React.createContext({});
-const query = gql`
-  query getContextData {
-    viewer {
-      id
-      name
-      email
-      additionalInfo {
-        mobile
-      }
-      address {
-        country {
-          id
-        }
-        city {
-          id
-        }
-        area {
-          id
-        }
-        zipCode
-        street
-      }
-      role
-      memberGroup {
-        id
-        name
-      }
-
-      wishList: wishlist {
-        id
-        productId
-      }
-
-      store {
-        id
-        setting {
-          locale
-          currency
-        }
-      }
-    }
-
-    getStockNotificationList {
-      data {
-        variantId
-      }
-    }
-  }
-`;
 
 export const enhancer = withContext(EnhancerContext);
 
 export default React.memo(
   ({
     /** context variables from props */
-    cname,
-    storeSetting,
     location,
 
     /** context func from props */
@@ -83,7 +33,7 @@ export default React.memo(
 
     children,
   }) => {
-    const { data } = useQuery(query);
+    const { data } = useQuery(getContextData);
     const colors = useContext(ColorsContext);
     const apps = useContext(AppsContext);
     const { c } = useContext(CurrencyContext);
@@ -95,8 +45,15 @@ export default React.memo(
       <EnhancerContext.Provider
         value={{
           /** context variables from props */
-          cname,
-          storeSetting,
+          cname: data?.viewer?.store?.cname || '',
+          storeSetting: {
+            ...data?.viewer?.store?.setting,
+            storeName: data?.viewer?.store?.description?.name || '',
+            logoUrl: data?.viewer?.store?.logoImage?.scaledSrc.h200 || '',
+            mobileLogoUrl:
+              data?.viewer?.store?.mobileLogoImage?.scaledSrc.w250 || '',
+            shippableCountries: data?.viewer?.store?.shippableCountries || [],
+          },
           location,
 
           /** context func from props */
@@ -121,7 +78,11 @@ export default React.memo(
           updateCart: setIsCartUpdating,
         }}
       >
-        {children}
+        {children({
+          backgroundImage: data?.getColorList?.data?.[0]?.imgInfo,
+          hiddingMeepshopMaxInFooterEnabled:
+            data?.viewer?.store?.experiment?.hiddingMeepshopMaxInFooterEnabled,
+        })}
       </EnhancerContext.Provider>
     );
   },

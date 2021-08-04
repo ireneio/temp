@@ -18,7 +18,6 @@ import {
   ONE_OF_LOCALE_TYPE,
   ISLOGIN_TYPE,
   LOCATION_TYPE,
-  STORE_SETTING_TYPE,
 } from 'constants/propTypes';
 import Link from 'deprecated/link';
 
@@ -112,7 +111,6 @@ export default class ProductList extends React.PureComponent {
 
     /** props from context */
     carts: PropTypes.shape({}),
-    storeSetting: STORE_SETTING_TYPE.isRequired,
     locale: ONE_OF_LOCALE_TYPE.isRequired,
     location: LOCATION_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -268,7 +266,6 @@ export default class ProductList extends React.PureComponent {
       t,
 
       location: { pathname, search },
-      storeSetting,
       colors,
       isLogin,
       transformCurrency,
@@ -352,7 +349,6 @@ export default class ProductList extends React.PureComponent {
               isLogin={isLogin}
               transformCurrency={transformCurrency}
               memberSeePrice={hasStoreAppPlugin('memberSeePrice')}
-              storeSetting={storeSetting}
             />
 
             <div style={styles.pagination}>

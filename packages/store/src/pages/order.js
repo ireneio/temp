@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Head from 'next/head';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
@@ -36,10 +35,6 @@ class Order extends React.Component {
 
   static propTypes = {
     error: PropTypes.string,
-    storeSetting: PropTypes.shape({
-      storeName: PropTypes.string.isRequired,
-      faviconUrl: PropTypes.string.isRequired,
-    }).isRequired,
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
@@ -53,26 +48,14 @@ class Order extends React.Component {
     /* Display Error View */
     if (error) return <Error error={error} />;
 
-    const {
-      storeSetting: { storeName, faviconUrl },
-      orderId,
-      t,
-    } = this.props;
+    const { orderId, t } = this.props;
 
     return (
-      <>
-        <Head>
-          <title>{storeName}</title>
-          <link rel="icon" type="image/png" href={faviconUrl} />
-          <link rel="apple-touch-icon" href={faviconUrl} />
-        </Head>
-
-        <Container {...this.props}>
-          <MemberHeader title={t('title.order')} goBackToOrders>
-            <MemberOrder orderId={orderId} />
-          </MemberHeader>
-        </Container>
-      </>
+      <Container {...this.props}>
+        <MemberHeader title={t('title.order')} goBackToOrders>
+          <MemberOrder orderId={orderId} />
+        </MemberHeader>
+      </Container>
     );
   }
 }
@@ -93,17 +76,11 @@ const mapStateToProps = (state, props) => {
   });
 
   const getPage = createSelector(
-    [
-      getOrderPage,
-      Selectors.getMenus,
-      Selectors.getLogoUrl,
-      Selectors.getMobileLogoUrl,
-    ],
+    [getOrderPage, Selectors.getMenus],
     Selectors.getJoinedPage,
   );
 
   return {
-    storeSetting: state.storeReducer.settings,
     location: Utils.uriParser(props),
     page: getPage(state, props),
   };

@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { fixedtop, secondtop, fixedbottom, sidebar } from 'template';
-import { getMenus, getLogoUrl, getMobileLogoUrl, getJoinedPage } from './index';
+import { getMenus, getJoinedPage } from './index';
 
 const loginPage = {
   id: 'page-login',
@@ -18,6 +18,6 @@ const loginPage = {
 const getLoginPage = () => loginPage;
 
 export const getJoinedLoginPage = createSelector(
-  [getLoginPage, getMenus, getLogoUrl, getMobileLogoUrl],
+  [getLoginPage, getMenus],
   getJoinedPage,
 );

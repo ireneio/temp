@@ -1,5 +1,5 @@
 import postGraphql from 'utils/postGraphql';
-import { viewer, viewerStoreQuery, productQuery, menuQuery } from './query';
+import { viewer, productQuery, menuQuery } from './query';
 
 export default async context => {
   const {
@@ -56,7 +56,6 @@ export default async context => {
 
   const query = `
     ${viewer}
-    ${viewerStoreQuery}
     computeProductList(search: $productSearch) {
       data ${productQuery}
       total

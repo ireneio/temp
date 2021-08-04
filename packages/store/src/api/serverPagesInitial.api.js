@@ -1,5 +1,5 @@
 import postGraphql from 'utils/postGraphql';
-import { viewer, viewerStoreQuery, pageQuery, menuQuery } from './query';
+import { viewer, pageQuery, menuQuery } from './query';
 
 export default async context => {
   const {
@@ -39,7 +39,6 @@ export default async context => {
 
   const query = `
     ${viewer}
-    ${viewerStoreQuery}
     viewer {
       store {
         customPage(path: $path) {

@@ -1,14 +1,7 @@
 import * as R from 'ramda';
 import { createSelector } from 'reselect';
 import { getJoinedModule } from 'utils';
-import {
-  getPages,
-  getMenus,
-  getLogoUrl,
-  getMobileLogoUrl,
-  getJoinedPage,
-  getQuery,
-} from './index';
+import { getPages, getMenus, getJoinedPage, getQuery } from './index';
 
 const getPagePath = (state, { path }) => path;
 const getPageId = (state, { pageId }) => pageId;
@@ -42,6 +35,6 @@ export const getJoinedModulePage = createSelector(
 );
 
 export const getJoinedPageInPagesRoute = createSelector(
-  [getJoinedModulePage, getMenus, getLogoUrl, getMobileLogoUrl],
+  [getJoinedModulePage, getMenus],
   getJoinedPage,
 );

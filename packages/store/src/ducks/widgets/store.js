@@ -31,26 +31,9 @@ export default (state = initialState, { type, payload }) => {
       const menus = (data?.getMenuList?.data || []).map(menu =>
         Utils.setDefaultValueForMenuDesign(menu),
       );
-      const store = data?.viewer?.store;
-      const storeSettings = data?.viewer?.store?.setting;
-
-      const settings = {
-        ...storeSettings,
-        backgroundImage: data?.getColorList?.data?.[0]?.imgInfo,
-        storeName: store?.description?.name || '',
-        storeDescription: store?.description?.introduction || '',
-        cname: store.cname,
-        domain: store.domain,
-        faviconUrl: store?.faviconImage?.scaledSrc.w60 || '',
-        logoUrl: store?.logoImage?.scaledSrc.h200 || '',
-        mobileLogoUrl: store?.mobileLogoImage?.scaledSrc.w250 || '',
-      };
 
       return {
-        shippableCountries: store?.shippableCountries || [],
         menus, // 選單
-        settings,
-        experiment: store?.experiment || {},
       };
     }
     case GET_STORE_FAILURE: {

@@ -1,14 +1,7 @@
 import * as R from 'ramda';
 import { createSelector } from 'reselect';
 import { getJoinedModule } from 'utils';
-import {
-  getPages,
-  getMenus,
-  getLogoUrl,
-  getMobileLogoUrl,
-  getJoinedPage,
-  getQuery,
-} from './index';
+import { getPages, getMenus, getJoinedPage, getQuery } from './index';
 
 const getProductsPage = createSelector([getPages], pages =>
   R.findLast(R.propEq('pageType', 'products'))(pages),
@@ -29,6 +22,6 @@ const getProductsCombinedPage = createSelector(
 );
 
 export const getJoinedProductsPage = createSelector(
-  [getProductsCombinedPage, getMenus, getLogoUrl, getMobileLogoUrl],
+  [getProductsCombinedPage, getMenus],
   getJoinedPage,
 );

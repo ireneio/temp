@@ -29,10 +29,6 @@ class Index extends React.Component {
 
   static propTypes = {
     error: PropTypes.string,
-    storeSetting: PropTypes.shape({
-      storeName: PropTypes.string.isRequired,
-      faviconUrl: PropTypes.string.isRequired,
-    }).isRequired,
     location: PropTypes.shape({
       host: PropTypes.string.isRequired,
       pathname: PropTypes.string.isRequired,
@@ -48,40 +44,33 @@ class Index extends React.Component {
     /* Display Error View */
     if (error) return <Error error={error} />;
 
-    const {
-      storeSetting: { storeName, storeDescription, faviconUrl },
-      location: { host, pathname },
-      page,
-      i18n,
-    } = this.props;
-    const url = host + pathname;
-    const { keywords, description = storeDescription, image } = page.seo || {};
+    const { page } = this.props;
+    const { keywords, description, image } = page.seo || {};
 
     return (
       <>
         <Head>
-          <title>{storeName}</title>
-          <meta name="description" content={description || storeDescription} />
-          <meta name="keywords" content={keywords} />
-          <link rel="icon" type="image/png" href={faviconUrl} />
-          <link rel="apple-touch-icon" href={faviconUrl} />
+          {!description ? null : (
+            <meta key="description" name="description" content={description} />
+          )}
 
-          {/* <!-- Facebook Open Graph --> */}
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content={`https://${url}`} />
-          <meta property="og:title" content={storeName} />
-          <meta property="og:image" content={image || `${faviconUrl}?w=400`} />
-          <meta property="og:image:width" content="400" />
-          <meta property="og:image:height" content="300" />
-          <meta
-            property="og:description"
-            content={description || storeDescription}
-          />
-          <meta property="og:site_name" content={storeName} />
-          <meta property="og:locale" content={i18n.language} />
-          {/* <!-- End - Facebook Open Graph --> */}
+          <meta key="keywords" name="keywords" content={keywords} />
+
+          {!image ? null : (
+            <meta key="og:image" property="og:image" content={image} />
+          )}
+
+          {!description ? null : (
+            <meta
+              key="og:description"
+              property="og:description"
+              content={description}
+            />
+          )}
         </Head>
+
         <Container {...this.props} />
+
         {/* eslint-disable */}
         <a href="/sitemaps/v1" />
         {/* eslint-enable */}
@@ -96,7 +85,6 @@ const mapStateToProps = (state, props) => {
   if (error) return { error };
 
   return {
-    storeSetting: state.storeReducer.settings,
     location: Utils.uriParser(props),
     page: getJoinedHomePage(state, props),
   };

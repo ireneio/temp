@@ -45,10 +45,10 @@ export default class UserInfo extends React.PureComponent {
     const {
       // context
       isLogin,
+      storeSetting: { shippableCountries },
 
       // props
       t,
-      shippableCountries,
       checkoutFields,
       validateEmail,
     } = this.props;

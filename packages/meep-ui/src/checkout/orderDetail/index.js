@@ -471,7 +471,6 @@ export default class OrderDetail extends React.PureComponent {
       fields,
       t,
       user,
-      shippableCountries,
       isSubmitting,
       shippableRecipientAddresses,
       checkoutFields,
@@ -615,18 +614,13 @@ export default class OrderDetail extends React.PureComponent {
               )}
             </div>
 
-            <UserInfo
-              user={user}
-              shippableCountries={shippableCountries}
-              checkoutFields={checkoutFields}
-            />
+            <UserInfo user={user} checkoutFields={checkoutFields} />
 
             <FormItem shouldUpdate noStyle>
               {subForm => (
                 <ReceiverInfo
                   form={subForm}
                   checkoutFields={checkoutFields}
-                  shippableCountries={shippableCountries}
                   shippableRecipientAddresses={shippableRecipientAddresses}
                   choosePaymentTemplate={(choosePayment || {}).template}
                   chooseShipmentTemplate={(chooseShipment || {}).template}

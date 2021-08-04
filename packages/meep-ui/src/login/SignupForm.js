@@ -37,7 +37,6 @@ class SignupForm extends React.PureComponent {
 
   state = {
     confirmDirty: false,
-    shippableCountries: [],
     hasMemberGroupCode: false,
   };
 
@@ -51,7 +50,7 @@ class SignupForm extends React.PureComponent {
     const {
       data: {
         viewer: {
-          store: { shippableCountries, memberGroupPromoRules },
+          store: { memberGroupPromoRules },
         },
       },
     } = await client.query({
@@ -61,9 +60,6 @@ class SignupForm extends React.PureComponent {
             id
             store {
               id
-              shippableCountries {
-                id
-              }
               memberGroupPromoRules {
                 id
               }
@@ -74,7 +70,6 @@ class SignupForm extends React.PureComponent {
     });
 
     this.setState({
-      shippableCountries,
       hasMemberGroupCode: !!memberGroupPromoRules.length,
     });
   };
@@ -134,12 +129,13 @@ class SignupForm extends React.PureComponent {
       /** context */
       hasStoreAppPlugin,
       colors,
+      storeSetting: { shippableCountries },
 
       /** props */
       t,
       validateEmail,
     } = this.props;
-    const { shippableCountries, hasMemberGroupCode } = this.state;
+    const { hasMemberGroupCode } = this.state;
 
     return (
       <Form onFinish={this.finish}>
@@ -200,7 +196,7 @@ class SignupForm extends React.PureComponent {
           <AddressCascader
             size="large"
             placeholder={[t('address'), t('zip-code')]}
-            shippableCountries={shippableCountries || []}
+            shippableCountries={shippableCountries}
           />
         </FormItem>
 

@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { sidebar, fixedtop, secondtop, fixedbottom } from 'template';
-import { getMenus, getLogoUrl, getMobileLogoUrl, getJoinedPage } from './index';
+import { getMenus, getJoinedPage } from './index';
 
 const getForgotPasswordPage = () => {
   return {
@@ -18,6 +18,6 @@ const getForgotPasswordPage = () => {
 };
 
 export const getJoinedForgotPasswordPage = createSelector(
-  [getForgotPasswordPage, getMenus, getLogoUrl, getMobileLogoUrl],
+  [getForgotPasswordPage, getMenus],
   getJoinedPage,
 );

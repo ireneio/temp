@@ -213,7 +213,7 @@ export default class ReceiverInfo extends React.PureComponent {
       t,
       isLogin,
       checkoutFields,
-      shippableCountries,
+      storeSetting: { shippableCountries },
       shippableRecipientAddresses,
       choosePaymentTemplate,
       chooseShipmentTemplate,
