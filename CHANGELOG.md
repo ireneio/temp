@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.22 (2021-08-04)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1653](https://github.com/meepshop/meep-lerna/pull/1653) 內部開單 - 移除 storeSetting ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.21 (2021-08-02)
 
 #### :bug: Bug Fix
