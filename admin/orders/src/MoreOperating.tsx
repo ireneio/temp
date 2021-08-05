@@ -1,7 +1,7 @@
 // import
 import React, { useState, useCallback } from 'react';
 import { Select } from 'antd';
-import moment from 'moment';
+import { formatRFC3339 } from 'date-fns';
 
 import { useRouter } from '@meepshop/link';
 import { useTranslation } from '@meepshop/locales';
@@ -20,7 +20,10 @@ export default React.memo(
         if (type === 'print') {
           // TODO: remove after orderlist move to next-admin
           localStorage.setItem('selectedOrders', JSON.stringify(selectedIds));
-          localStorage.setItem('selectedOrders-timeout', moment().format());
+          localStorage.setItem(
+            'selectedOrders-timeout',
+            formatRFC3339(new Date()),
+          );
           push(`/orders/print?ref=${pageId}`);
           return;
         }

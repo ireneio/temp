@@ -1,54 +1,36 @@
 // import
-import moment from 'moment';
+import {
+  sub,
+  startOfToday,
+  endOfToday,
+  startOfYesterday,
+  endOfYesterday,
+  startOfWeek,
+  endOfWeek,
+  startOfMonth,
+  endOfMonth,
+  startOfDay,
+} from 'date-fns';
 
 import { DATE_TYPE } from '../constants';
 
 // typescript definition
-type ValueType = [moment.Moment, moment.Moment];
+type ValueType = [Date, Date];
 
 // definition
 export default (key: typeof DATE_TYPE[number]): ValueType =>
   ({
-    today: [moment().startOf('day'), moment().endOf('day')],
-    yesterday: [
-      moment()
-        .subtract(1, 'days')
-        .startOf('day'),
-      moment()
-        .subtract(1, 'days')
-        .endOf('day'),
-    ],
+    today: [startOfToday(), endOfToday()],
+    yesterday: [startOfYesterday(), endOfYesterday()],
     lastWeek: [
-      moment()
-        .subtract(1, 'weeks')
-        .startOf('week')
-        .startOf('day'),
-      moment()
-        .subtract(1, 'weeks')
-        .endOf('week')
-        .endOf('day'),
+      startOfWeek(sub(new Date(), { weeks: 1 })),
+      endOfWeek(sub(new Date(), { weeks: 1 })),
     ],
     lastMonth: [
-      moment()
-        .subtract(1, 'months')
-        .startOf('month')
-        .startOf('day'),
-      moment()
-        .subtract(1, 'months')
-        .endOf('month')
-        .endOf('day'),
+      startOfMonth(sub(new Date(), { months: 1 })),
+      endOfMonth(sub(new Date(), { months: 1 })),
     ],
-    last7Days: [
-      moment()
-        .subtract(6, 'days')
-        .startOf('day'),
-      moment().endOf('day'),
-    ],
-    last30Days: [
-      moment()
-        .subtract(29, 'days')
-        .startOf('day'),
-      moment().endOf('day'),
-    ],
-    custom: [moment().startOf('day'), moment().endOf('day')],
+    last7Days: [startOfDay(sub(new Date(), { days: 6 })), endOfToday()],
+    last30Days: [startOfDay(sub(new Date(), { days: 29 })), endOfToday()],
+    custom: [startOfToday(), endOfToday()],
   }[key] as ValueType);

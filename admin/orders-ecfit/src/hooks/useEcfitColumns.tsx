@@ -3,7 +3,7 @@ import { ColumnProps } from 'antd/lib/table';
 
 // import
 import { useCallback } from 'react';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -34,7 +34,7 @@ export default (
               render: (
                 value: useEcfitColumnsFragmentEdgesNodeLastEcfitRequestRecordType['createdAt'],
               ) =>
-                !value ? null : moment(value).format('YYYY/MM/DD HH:mm:ss'),
+                !value ? null : format(new Date(value), 'yyyy/MM/dd HH:mm:ss'),
             },
           ]),
       ...(variables?.filter?.ecfitSentStatus !== 'SENT_FAILED'

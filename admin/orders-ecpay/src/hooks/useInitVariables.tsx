@@ -1,19 +1,21 @@
 // import
 import { useEffect } from 'react';
-import moment from 'moment';
+import { differenceInSeconds } from 'date-fns';
 
 // graphql typescript
 import { getEcpayListVariables } from '@meepshop/types/gqls/admin';
 
 // definition
 // TODO: remove after print move to next-admin
-if (
+const selectedOrdersTimeout =
   typeof window !== 'undefined' &&
-  moment().diff(
-    moment(localStorage.getItem('selectedOrders-timeout') || undefined),
-    'minutes',
-    true,
-  ) > 1
+  localStorage.getItem('selectedOrders-timeout')
+    ? localStorage.getItem('selectedOrders-timeout')
+    : null;
+
+if (
+  selectedOrdersTimeout &&
+  differenceInSeconds(new Date(), new Date(selectedOrdersTimeout)) > 60
 )
   localStorage.removeItem('ecpayOrders-variables');
 

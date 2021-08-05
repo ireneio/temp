@@ -5,14 +5,14 @@ import { OrdersQueryResult } from '../constants';
 
 // import
 import { useMemo, useCallback } from 'react';
-import moment from 'moment';
+import { formatRFC3339 } from 'date-fns';
 
 // definition
 export default ({
   refetch,
   variables,
 }: Pick<OrdersQueryResult, 'variables' | 'refetch'>): {
-  datepickerValue: [moment.Moment, moment.Moment] | undefined;
+  datepickerValue: [Date, Date] | undefined;
   changeDatePicker: (createdAtRange: DataPickerPropsType['value']) => void;
 } => ({
   datepickerValue: useMemo(() => {
@@ -24,7 +24,7 @@ export default ({
       end?: number;
     } = variables?.filter?.createdAtRange || {};
 
-    return !start || !end ? undefined : [moment(start), moment(end)];
+    return !start || !end ? undefined : [new Date(start), new Date(end)];
   }, [variables]),
   changeDatePicker: useCallback(
     (createdAtRange: DataPickerPropsType['value']) => {
@@ -38,8 +38,8 @@ export default ({
             !start || !end
               ? undefined
               : {
-                  start: start.format(),
-                  end: end.format(),
+                  start: formatRFC3339(start),
+                  end: formatRFC3339(end),
                 },
         },
       });

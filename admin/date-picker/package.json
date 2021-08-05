@@ -8,8 +8,9 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@meepshop/date-picker": "^0.80.20",
     "@meepshop/locales": "^0.80.20",
-    "moment": "^2.22.1"
+    "date-fns": "^2.15.0"
   },
   "keywords": ["admin", "date picker"]
 }

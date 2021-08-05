@@ -3,7 +3,7 @@ import { ColumnProps } from 'antd/lib/table';
 
 // import
 import React, { useMemo } from 'react';
-import moment from 'moment';
+import { format } from 'date-fns';
 import { Spin } from 'antd';
 import { emptyFunction } from 'fbjs';
 
@@ -102,7 +102,7 @@ export default (
           title: t('orders.create-at'),
           dataIndex: ['node', 'createdAt'],
           render: (value: useOrdersColumnsFragmentEdgesNodeType['createdAt']) =>
-            !value ? null : moment(value).format('YYYY/MM/DD HH:mm:ss'),
+            !value ? null : format(new Date(value), 'yyyy/MM/dd HH:mm:ss'),
         },
       ]),
     [pageId, getColumns, t],
