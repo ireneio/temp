@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.24 (2021-08-05)
+
+#### :bug: Bug Fix
+
+- [#1667](https://github.com/meepshop/meep-lerna/pull/1667) (@meepshop/frontend) Fix circleci cache ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.23 (2021-08-05)
 
 #### :boom: Breaking Change
