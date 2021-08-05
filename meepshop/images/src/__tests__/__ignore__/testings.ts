@@ -22,11 +22,8 @@ const Example = React.memo(() =>
 
     // output
     `import React from 'react';
-
-/*compiled by @meepshop/images*/
-import getImage from "@meepshop/images/src/getImage";
 const Example = /*#__PURE__*/React.memo(() => /*#__PURE__*/React.createElement("img", {
-  src: getImage({
+  src: require("@meepshop/images/src/getImage").default({
     stage: "${stage}",
     production: "${production}"
   })
@@ -41,9 +38,7 @@ const Example = /*#__PURE__*/React.memo(() => /*#__PURE__*/React.createElement("
 export default dashboardCost;`,
 
     // output
-    `/*compiled by @meepshop/images*/
-import getImage from "@meepshop/images/src/getImage";
-export default getImage({
+    `export default require("@meepshop/images/src/getImage").default({
   stage: "${stage}",
   production: "${production}"
 });`,
@@ -62,11 +57,8 @@ const Example = React.memo(() =>
 
     // output
     `import React from 'react';
-
-/*compiled by @meepshop/images*/
-import getImage from "@meepshop/images/src/getImage";
 const Example = /*#__PURE__*/React.memo(() => /*#__PURE__*/React.createElement("img", {
-  src: getImage({
+  src: require("@meepshop/images/src/getImage").default({
     stage: "${stageFixed}",
     production: "${productionFixed}"
   })
@@ -81,9 +73,7 @@ const Example = /*#__PURE__*/React.memo(() => /*#__PURE__*/React.createElement("
 export default dashboardCost;`,
 
     // output
-    `/*compiled by @meepshop/images*/
-import getImage from "@meepshop/images/src/getImage";
-export default getImage({
+    `export default require("@meepshop/images/src/getImage").default({
   stage: "${stageFixed}",
   production: "${productionFixed}"
 });`,
@@ -103,46 +93,44 @@ export default getImage({
 export default dashboardCost;`,
 
     // output
-    `/*compiled by @meepshop/images*/
-import getImage from "@meepshop/images/src/getImage";
-export default {
-  w60: getImage({
+    `export default {
+  w60: require("@meepshop/images/src/getImage").default({
     stage: "https://img.meepstage.com/0i7JS_5yzyu1BDoc4Laq6B3qRxdNx7_3bs4tt_zoaWo/w:60/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg",
     production: "https://img.meepshop.com/5p-2PJ7MaG4noFB0Q71Y97FTFf26pxzmVKRdAJBBBGU/w:60/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg"
   }),
-  w120: getImage({
+  w120: require("@meepshop/images/src/getImage").default({
     stage: "https://img.meepstage.com/NAzgT6TDCcJztr7IVS-Sk-lWYmMqC_s4vJKmNyzFBWA/w:120/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg",
     production: "https://img.meepshop.com/PgoIILB_1VkEWc2Axs23ZY3ACHpsSboPok6AAo1cuCk/w:120/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg"
   }),
-  w240: getImage({
+  w240: require("@meepshop/images/src/getImage").default({
     stage: "https://img.meepstage.com/MeqQ_hvnQbY74ODCqZ6W3EBW5QVcorw1ZJrw6Hfs6mY/w:240/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg",
     production: "https://img.meepshop.com/MNB-WvUFBcVVxmjs8cVW9UoXIu9RX3ZdpgNXv1HAvSs/w:240/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg"
   }),
-  w480: getImage({
+  w480: require("@meepshop/images/src/getImage").default({
     stage: "https://img.meepstage.com/hUL16vk6EEeryGEZUfBL08k8yqF46E_wFi8XMfEnngI/w:480/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg",
     production: "https://img.meepshop.com/M539ijBEBh7DwQloGO63Xo82N0PXrqeg2HKiPj6tDJM/w:480/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg"
   }),
-  w720: getImage({
+  w720: require("@meepshop/images/src/getImage").default({
     stage: "https://img.meepstage.com/2LF4LYWjpIbtxeIBI4PF0gorOEUi-ZaMbvv6MyeWaYc/w:720/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg",
     production: "https://img.meepshop.com/7pbUeLiAUtdLfv3g-NGjXeyp2pWHlhP54Bud7lRAMiY/w:720/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg"
   }),
-  w960: getImage({
+  w960: require("@meepshop/images/src/getImage").default({
     stage: "https://img.meepstage.com/TwOvWC13P52DaKJ_0gzA_vASK9zdRrSZ1ouK5w6gblM/w:960/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg",
     production: "https://img.meepshop.com/wcNCWW1PZ6IHyXY5nVs0fpicVaNkExLFdgI1K-Zu2NQ/w:960/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg"
   }),
-  w1200: getImage({
+  w1200: require("@meepshop/images/src/getImage").default({
     stage: "https://img.meepstage.com/TAyvi_wVRqtfXzMqW0UJseMTKTfFuPxhsYI83VStAvY/w:1200/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg",
     production: "https://img.meepshop.com/AL95jjiLTRaKwyHsXgKIstJXLOAf7mA6GGpuyifbSHw/w:1200/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg"
   }),
-  w1440: getImage({
+  w1440: require("@meepshop/images/src/getImage").default({
     stage: "https://img.meepstage.com/glBzUrlRpaBpY08GsBt2CWZE2xcsIxRrZKtySkxwGWg/w:1440/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg",
     production: "https://img.meepshop.com/XfFyuoaV8CbTO1ArmX3ZU0DiLwuNE8DYHh5GubOaz9Q/w:1440/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg"
   }),
-  w1680: getImage({
+  w1680: require("@meepshop/images/src/getImage").default({
     stage: "https://img.meepstage.com/GM6KG5iktl1KRbABfB7oFjJVMiPyzBlQ35Mt6NM2NBM/w:1680/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg",
     production: "https://img.meepshop.com/Ot3IDLYyvSnPbascXyV012Qtcger42pPx2A8j8503aE/w:1680/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg"
   }),
-  w1920: getImage({
+  w1920: require("@meepshop/images/src/getImage").default({
     stage: "https://img.meepstage.com/CpjTuJ9SO4t-LGUkbUgW8lokxLtIPd1anHDNEuuf1O4/w:1920/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg",
     production: "https://img.meepshop.com/bfj6pexAO2MqqfUVzg0FaDzFcqB_Zp7ZJGtgfMxYkms/w:1920/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg"
   })
@@ -157,8 +145,8 @@ export default {
 export default DashboardCost;`,
 
     // output
-    `/*compiled by @meepshop/images*/
-import DashboardCost from "@meepshop/images/lib/dashboardCost";
+    `const DashboardCost = require("next/dynamic").default(() => import("@meepshop/images/lib/dashboardCost"));
+
 export default DashboardCost;`,
   ],
 
@@ -168,10 +156,11 @@ export default DashboardCost;`,
     `export { dashboardCost_w30_h30 as dashboardCost, dashboardCost_react as DashboardCost } from '@meepshop/images';`,
 
     // output
-    `/*compiled by @meepshop/images*/
-import getImage from "@meepshop/images/src/getImage";
-export { default as DashboardCost } from "@meepshop/images/lib/dashboardCost";
-export const dashboardCost = getImage({
+    `export { dashboardCost, DashboardCost };
+
+const DashboardCost = require("next/dynamic").default(() => import("@meepshop/images/lib/dashboardCost"));
+
+const dashboardCost = require("@meepshop/images/src/getImage").default({
   stage: "${stageFixed}",
   production: "${productionFixed}"
 });`,

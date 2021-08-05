@@ -20,9 +20,6 @@ const babelOptions: TransformOptions = {
   presets: ['@babel/react'],
   plugins: [babel],
 };
-const testingImportNamespaceSpecifier = `import * as images from '@meepshop/images';
-
-export default images;`;
 
 describe('babel', () => {
   test.each(testings)('%s', (content: string, expected: string) => {
@@ -34,18 +31,6 @@ describe('babel', () => {
     // @ts-ignore jest mock
     expect(outputFileSync.mock.calls[0][0]).toBe(
       path.resolve(__dirname, '../../lib/dashboardCost.js'),
-    );
-  });
-
-  test(testingImportNamespaceSpecifier, () => {
-    const result = transformSync(testingImportNamespaceSpecifier, babelOptions)
-      ?.code;
-
-    expect(result).toMatch(
-      /dashboardCost: getImage\({\n[ ]*stage: ".*",\n[ ]*production: ".*"\n.*}\)/,
-    );
-    expect(result).toMatch(
-      /if \(process\.env\.NODE_ENV === "production"\) throw new Error\("Can not use `import \* as images from '@meepshop\/images';` in the production mode\."\);/,
     );
   });
 

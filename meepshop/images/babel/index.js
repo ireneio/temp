@@ -1,7 +1,6 @@
 // import
 const fs = require('fs');
 const nodePath = require('path');
-const crypto = require('crypto');
 
 require('dotenv').config({
   path: nodePath.resolve(__dirname, '../../../.env'),
@@ -28,10 +27,6 @@ const addDisplayName = require('../../../babel/addDisplayName');
 });
 
 // definition
-const hash = crypto
-  .createHash('md5')
-  .update('@meepshop/images')
-  .digest('hex');
 const imgproxy = {
   stage: new Imgproxy({
     baseUrl: 'https://img.meepstage.com/',
@@ -150,8 +145,21 @@ module.exports = declare(({ assertVersion, types: t }) => {
   assertVersion(7);
 
   const cache = {};
+
+  const addRequire = (name, ...nodes) =>
+    t.callExpression(
+      t.memberExpression(
+        t.callExpression(t.identifier('require'), [t.stringLiteral(name)]),
+        t.identifier('default'),
+      ),
+      nodes.filter(Boolean),
+    );
+
   const getScaledSrc = (key, width, height) =>
-    t.callExpression(t.identifier('getImage'), [
+    addRequire(
+      process.env.NODE_ENV === 'test'
+        ? '@meepshop/images/src/getImage'
+        : '@meepshop/images/lib/getImage',
       t.objectExpression([
         t.objectProperty(
           t.identifier('stage'),
@@ -162,54 +170,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
           t.stringLiteral(getUrl(key, 'production', width, height)),
         ),
       ]),
-    ]);
-
-  const replaceWithGetImage = path => {
-    path.replaceWith(
-      t.importDeclaration(
-        [t.importDefaultSpecifier(t.identifier('getImage'))],
-        t.stringLiteral(
-          process.env.NODE_ENV === 'test'
-            ? '@meepshop/images/src/getImage'
-            : '@meepshop/images/lib/getImage',
-        ),
-      ),
     );
-  };
-
-  const replaceWithAllImages = (path, localKey) => {
-    path.addComments('inner', [
-      { type: 'CommentBlock', value: 'compiled by @meepshop/images' },
-    ]);
-    path
-      .getStatementParent()
-      .insertBefore(
-        t.ifStatement(
-          t.binaryExpression(
-            '===',
-            t.memberExpression(
-              t.memberExpression(t.identifier('process'), t.identifier('env')),
-              t.identifier('NODE_ENV'),
-            ),
-            t.stringLiteral('production'),
-          ),
-          t.throwStatement(
-            t.newExpression(t.identifier('Error'), [
-              t.stringLiteral(
-                `Can not use \`import * as ${localKey} from '@meepshop/images';\` in the production mode.`,
-              ),
-            ]),
-          ),
-        ),
-      );
-    path.replaceWith(
-      t.objectExpression(
-        Object.keys(imageList).map(key =>
-          t.objectProperty(t.identifier(key), getScaledSrc(key)),
-        ),
-      ),
-    );
-  };
 
   const replaceWithImage = (path, originalKey) => {
     const { key, width, height, useScaledSrc } = originalKey
@@ -268,6 +229,66 @@ module.exports = declare(({ assertVersion, types: t }) => {
     }
 
     path.replaceWith(getScaledSrc(key, width, height));
+  };
+
+  const addDynamicComponent = (path, localKey, key, filename) => {
+    const componentName = key.replace(/_react$/, '');
+    const componentPath = `@meepshop/images/lib/${componentName}`;
+    const webpackNode = t.objectProperty(
+      t.identifier('webpack'),
+      t.functionExpression(
+        t.identifier('webpack'),
+        [],
+        t.blockStatement([
+          t.returnStatement(
+            t.arrayExpression([
+              t.callExpression(
+                t.memberExpression(
+                  t.identifier('require'),
+                  t.identifier('resolveWeak'),
+                ),
+                [t.stringLiteral(componentPath)],
+              ),
+            ]),
+          ),
+        ]),
+      ),
+    );
+    const modulesNode = t.objectProperty(
+      t.identifier('modules'),
+      t.arrayExpression([
+        t.binaryExpression(
+          '+',
+          t.stringLiteral(`${filename} -> `),
+          t.stringLiteral(componentPath),
+        ),
+      ]),
+    );
+
+    path.insertAfter(
+      t.variableDeclaration('const', [
+        t.variableDeclarator(
+          t.identifier(localKey),
+          addRequire(
+            'next/dynamic',
+            t.arrowFunctionExpression(
+              [],
+              t.callExpression(t.import(), [t.stringLiteral(componentPath)]),
+            ),
+            process.env.NODE_ENV === 'test'
+              ? null
+              : t.objectExpression([
+                  t.objectProperty(
+                    t.identifier('loadableGenerated'),
+                    t.objectExpression([webpackNode, modulesNode]),
+                  ),
+                ]),
+          ),
+        ),
+      ]),
+    );
+    path.scope.registerDeclaration(path.getNextSibling());
+    generateCompoent(componentName, path);
   };
 
   const generateDefaultTypes = (path, filename) => {
@@ -331,122 +352,93 @@ export const ${key}_react = mockComponent;`,
 
   return {
     pre: () => {
-      cache.useGetImage = false;
       cache.images = [];
     },
     visitor: {
-      ImportDeclaration: path => {
+      ImportDeclaration: (
+        path,
+        {
+          file: {
+            opts: { filename },
+          },
+        },
+      ) => {
         if (
           !t.isLiteral(path.get('source').node, { value: '@meepshop/images' })
         )
           return;
 
         path.get('specifiers').forEach(specifier => {
-          if (t.isImportSpecifier(specifier)) {
-            const key = specifier.get('imported').node.name;
-            const localKey = specifier.get('local').node.name;
+          if (!t.isImportSpecifier(specifier)) return;
 
-            if (/_react$/.test(key)) {
-              path.insertAfter(
-                t.importDeclaration(
-                  [t.importDefaultSpecifier(t.identifier(localKey))],
-                  t.stringLiteral(
-                    `@meepshop/images/lib/${key.replace(/_react$/, '')}`,
-                  ),
-                ),
-              );
-              generateCompoent(key.replace(/_react$/, ''), path);
-            } else {
-              cache.useGetImage = true;
-              cache.images.push({ key, localKey });
-            }
-          }
-
-          if (t.isImportNamespaceSpecifier(specifier)) {
-            cache.useGetImage = true;
-            cache.images.push({
-              key: hash,
-              localKey: specifier.get('local').node.name,
-            });
-          }
-        });
-
-        path.addComments('leading', [
-          { type: 'CommentBlock', value: 'compiled by @meepshop/images' },
-        ]);
-
-        if (cache.useGetImage) replaceWithGetImage(path);
-        else path.remove();
-      },
-      ExportNamedDeclaration: path => {
-        if (
-          !t.isLiteral(path.get('source').node, { value: '@meepshop/images' })
-        )
-          return;
-
-        path.get('specifiers').forEach(specifier => {
-          if (!t.isExportSpecifier(specifier)) return;
-
-          const key = specifier.get('local').node.name;
-          const localKey = specifier.get('exported').node.name;
+          const key = specifier.get('imported').node.name;
+          const localKey = specifier.get('local').node.name;
 
           if (/_react$/.test(key)) {
-            path.insertAfter(
-              t.exportNamedDeclaration(
-                null,
-                [
-                  t.exportSpecifier(
-                    t.identifier('default'),
-                    t.identifier(localKey),
-                  ),
-                ],
-                t.stringLiteral(
-                  `@meepshop/images/lib/${key.replace(/_react$/, '')}`,
-                ),
-              ),
-            );
-            generateCompoent(key.replace(/_react$/, ''), path);
-            return;
-          }
-
-          path.insertAfter(
-            t.exportNamedDeclaration(
-              t.variableDeclaration('const', [
-                t.variableDeclarator(
-                  t.identifier(localKey),
-                  t.stringLiteral(hash),
-                ),
-              ]),
-              [],
-            ),
-          );
-
-          const initPath = path
-            .getNextSibling()
-            .get('declaration.declarations.0.init');
-
-          if (initPath.node.value !== hash)
-            throw initPath.buildCodeFrameError(
-              `init path should be hash: ${hash}`,
-            );
-
-          replaceWithImage(initPath, key);
+            specifier.remove();
+            addDynamicComponent(path, localKey, key, filename);
+          } else cache.images.push({ key, localKey });
         });
+        path.remove();
+      },
+      ExportNamedDeclaration: (
+        path,
+        {
+          file: {
+            opts: { filename },
+          },
+        },
+      ) => {
+        if (
+          !t.isLiteral(path.get('source').node, { value: '@meepshop/images' })
+        )
+          return;
 
-        path.addComments('leading', [
-          { type: 'CommentBlock', value: 'compiled by @meepshop/images' },
-        ]);
-        replaceWithGetImage(path);
+        const exportedNodes = path
+          .get('specifiers')
+          .reduce((result, specifier) => {
+            if (!t.isExportSpecifier(specifier)) return result;
+
+            const key = specifier.get('local').node.name;
+            const localKey = specifier.get('exported').node.name;
+
+            if (/_react$/.test(key))
+              addDynamicComponent(path, localKey, key, filename);
+            else {
+              cache.images.push({ key, localKey });
+              path.insertAfter(
+                t.variableDeclaration('const', [
+                  t.variableDeclarator(
+                    t.identifier(localKey),
+                    t.stringLiteral(key),
+                  ),
+                ]),
+              );
+            }
+
+            return [
+              ...result,
+              t.exportSpecifier(t.identifier(localKey), t.identifier(localKey)),
+            ];
+          }, []);
+
+        path.replaceWith(t.exportNamedDeclaration(null, exportedNodes));
       },
       Identifier: path => {
+        if (path.parentPath.isExportSpecifier()) return;
+
         const image = cache.images.find(
           ({ localKey }) => path.node.name === localKey,
         );
 
         if (!image) return;
 
-        if (image.key === hash) replaceWithAllImages(path, image.localKey);
-        else replaceWithImage(path, image.key);
+        replaceWithImage(
+          !path.parentPath.isVariableDeclarator()
+            ? path
+            : path.parentPath.get('init'),
+          image.key,
+        );
       },
     },
     post: ({ opts: { filename }, path }) => {
