@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.80.23 (2021-08-05)
+
+#### :boom: Breaking Change
+
+- `meep-ui`
+  - [#1640](https://github.com/meepshop/meep-lerna/pull/1640) T8750 - 內部開單 - 修改元件的 dynamic import 寫法 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#1636](https://github.com/meepshop/meep-lerna/pull/1636) 內部開單 - @admin/date-picker 改用 @meepshop/date-picker ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `storybook`
+  - [#1646](https://github.com/meepshop/meep-lerna/pull/1646) 內部開單 - 修正 menu icons dynamic import ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1665](https://github.com/meepshop/meep-lerna/pull/1665) chore(deps): bump tar from 4.4.10 to 4.4.15 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.22 (2021-08-04)
 
 #### :boom: Breaking Change
