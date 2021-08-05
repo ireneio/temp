@@ -1,9 +1,11 @@
 {
-  "version": "0.80.24",
+  "version": "0.80.25",
   "command": {
     "publish": {
       "message": "chore(release): publish %s [skip ci]",
-      "allowBranch": ["master"]
+      "allowBranch": [
+        "master"
+      ]
     }
   },
   "changelog": {
@@ -18,8 +20,18 @@
   },
   "lerna": "3.18.4",
   "npmClient": "yarn",
-  "npmClientArgs": ["--no-lockfile"],
-  "ignoreChanges": ["**/__tests__/**", "**/*.md"],
-  "packages": ["packages/*", "meepshop/*", "admin/*", "store/*"],
+  "npmClientArgs": [
+    "--no-lockfile"
+  ],
+  "ignoreChanges": [
+    "**/__tests__/**",
+    "**/*.md"
+  ],
+  "packages": [
+    "packages/*",
+    "meepshop/*",
+    "admin/*",
+    "store/*"
+  ],
   "useWorkspaces": true
 }

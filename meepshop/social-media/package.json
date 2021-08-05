@@ -4,13 +4,13 @@
   "description": "Meepshop social media module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.23",
+  "version": "0.80.25",
   "main": "./index.js",
   "types": "./src/index.ts",
   "devDependencies": {
-    "@meepshop/images": "^0.80.23",
-    "@meepshop/link": "^0.80.23",
-    "@meepshop/utils": "^0.80.23"
+    "@meepshop/images": "^0.80.25",
+    "@meepshop/link": "^0.80.25",
+    "@meepshop/utils": "^0.80.25"
   },
   "keywords": ["meepshop", "social media"]
 }

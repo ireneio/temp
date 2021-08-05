@@ -4,9 +4,9 @@
   "description": "Utils tool for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.23",
+  "version": "0.80.25",
   "dependencies": {
-    "@meepshop/images": "^0.80.23",
+    "@meepshop/images": "^0.80.25",
     "cookie": "^0.4.1",
     "helmet": "^4.6.0",
     "pino": "^6.11.0",
