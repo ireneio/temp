@@ -22,7 +22,7 @@ import {
 // graphql import
 import { imageFragment } from '@meepshop/image/gqls';
 
-// definition
+// typescript definition
 export interface PropsType
   extends carouselFragment,
     Omit<CarouselProps, 'asNavFor'> {
@@ -30,6 +30,7 @@ export interface PropsType
   asNavFor?: React.RefObject<CarouselRef>;
 }
 
+// definition
 // FIXME: react-slick bug : unknown props `currentSlide`, `slideCount`
 // https://github.com/akiran/react-slick/pull/1453
 const CustomArrow = ({

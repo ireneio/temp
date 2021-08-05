@@ -6,6 +6,6 @@
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.80.20",
   "main": "./index.js",
-  "types": "./src/index.tsx",
+  "types": "./src/index.ts",
   "keywords": ["meepshop", "unavailable"]
 }

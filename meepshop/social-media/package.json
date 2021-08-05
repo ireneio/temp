@@ -6,7 +6,7 @@
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.80.20",
   "main": "./index.js",
-  "types": "./src/index.tsx",
+  "types": "./src/index.ts",
   "devDependencies": {
     "@meepshop/images": "^0.80.20",
     "@meepshop/link": "^0.80.20",

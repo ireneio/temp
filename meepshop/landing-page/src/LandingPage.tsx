@@ -49,7 +49,7 @@ import {
 } from './gqls/useSubmit';
 
 // typescript definition
-export interface PropsType
+interface PropsType
   extends landingPageLandingPageModuleFragment,
     FormComponentProps {}
 

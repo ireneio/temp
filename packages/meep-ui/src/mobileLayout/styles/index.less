@@ -51,7 +51,8 @@
   }
 }
 
-.headerMenu {
+// FIXME less dynamic import error
+:global(.meepshop-meep-ui__menu-index__root).headerMenu {
   width: calc(2 * @ICON_WIDTH);
   margin: 0px;
 
@@ -139,7 +140,8 @@
     overflow: scroll;
   }
 
-  .menu {
+  // FIXME less dynamic import error
+  :global(.meepshop-meep-ui__menu-index__root).menu {
     :global(.logo) {
       margin: 0px;
       padding: 10px 0px;
@@ -164,7 +166,8 @@
   }
 }
 
-.sidebar .menu {
+// FIXME less dynamic import error
+.sidebar :global(.meepshop-meep-ui__menu-index__root).menu {
   :global(.logo) {
     width: 100%;
     height: 60px;

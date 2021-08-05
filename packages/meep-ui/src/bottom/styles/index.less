@@ -19,7 +19,9 @@
   }
 }
 
-.menu :global(.ant-menu.ant-menu-inline) {
+// FIXME less dynamic import error
+:global(.meepshop-meep-ui__menu-index__root).menu
+  :global(.ant-menu.ant-menu-inline) {
   @media @PHONE_MEDIA {
     width: 100%;
   }

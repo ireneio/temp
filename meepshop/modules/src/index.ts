@@ -1,5 +1,25 @@
 // import
-import dynamic from 'next/dynamic';
+import carousel from '@meepshop/carousel';
+import divider from '@meepshop/divider';
+import draftText from '@meepshop/draft-text';
+import facebookWall from '@meepshop/facebook-wall';
+import googleMap from '@meepshop/google-map';
+import iframe from '@meepshop/iframe';
+import image from '@meepshop/image';
+import imageText from '@meepshop/image-text';
+import productCarousel from '@meepshop/product-carousel';
+import productCollections from '@meepshop/product-collections';
+import productDraftText from '@meepshop/product-draft-text';
+import productIframe from '@meepshop/product-iframe';
+import productInfo from '@meepshop/product-info';
+import productQa from '@meepshop/product-qa';
+import productvideo from '@meepshop/product-video';
+import smartConversion from '@meepshop/smart-conversion';
+import socialMedia from '@meepshop/social-media';
+import socialThumbs from '@meepshop/social-thumbs';
+import unavailable from '@meepshop/unavailable';
+import video from '@meepshop/video';
+import viewTracking from '@meepshop/view-tracking';
 
 // definition
 export default {
@@ -12,35 +32,36 @@ export default {
   ActivityModule: () => {
     throw new Error('Can not use ActivityModule');
   },
-  CarouselModule: dynamic(() => import('@meepshop/carousel')),
-  DividerModule: dynamic(() => import('@meepshop/divider')),
-  DraftTextModule: dynamic(() => import('@meepshop/draft-text')),
-  FacebookWallModule: dynamic(() => import('@meepshop/facebook-wall')),
-  GoogleMapModule: dynamic(() => import('@meepshop/google-map')),
-  IframeModule: dynamic(() => import('@meepshop/iframe')),
-  ImageModule: dynamic(() => import('@meepshop/image')),
-  ImageTextModule: dynamic(() => import('@meepshop/image-text')),
+  CarouselModule: carousel,
+  DividerModule: divider,
+  DraftTextModule: draftText,
+  FacebookWallModule: facebookWall,
+  GoogleMapModule: googleMap,
+  IframeModule: iframe,
+  ImageModule: image,
+  ImageTextModule: imageText,
   LandingPageModule: () => {
-    // TODO dynamic(() => import('@meepshop/landing-page'))
+    // TODO import '@meepshop/landing-page'
     throw new Error('Should remove @ant-design/compatible');
   },
-  MenuModule: dynamic(() => import('@meepshop/menu')),
-  ProductCarouselModule: dynamic(() => import('@meepshop/product-carousel')),
-  ProductCollectionsModule: dynamic(() =>
-    import('@meepshop/product-collections'),
-  ),
-  ProductDraftTextModule: dynamic(() => import('@meepshop/product-draft-text')),
-  ProductIframeModule: dynamic(() => import('@meepshop/product-iframe')),
-  ProductInfoModule: dynamic(() => import('@meepshop/product-info')),
-  ProductQaModule: dynamic(() => import('@meepshop/product-qa')),
-  ProductVideoModule: dynamic(() => import('@meepshop/product-video')),
+  MenuModule: () => {
+    // TODO import '@meepshop/menu'
+    throw new Error('Can not use MenuModule');
+  },
+  ProductCarouselModule: productCarousel,
+  ProductCollectionsModule: productCollections,
+  ProductDraftTextModule: productDraftText,
+  ProductIframeModule: productIframe,
+  ProductInfoModule: productInfo,
+  ProductQaModule: productQa,
+  ProductVideoModule: productvideo,
   ProductsModule: () => {
     throw new Error('Can not use ProductsModule');
   },
-  SmartConversionModule: dynamic(() => import('@meepshop/smart-conversion')),
-  SocialMediaModule: dynamic(() => import('@meepshop/social-media')),
-  SocialThumbsModule: dynamic(() => import('@meepshop/social-thumbs')),
-  UnavailableModule: dynamic(() => import('@meepshop/unavailable')),
-  VideoModule: dynamic(() => import('@meepshop/video')),
-  ViewTrackingModule: dynamic(() => import('@meepshop/view-tracking')),
+  SmartConversionModule: smartConversion,
+  SocialMediaModule: socialMedia,
+  SocialThumbsModule: socialThumbs,
+  UnavailableModule: unavailable,
+  VideoModule: video,
+  ViewTrackingModule: viewTracking,
 };
