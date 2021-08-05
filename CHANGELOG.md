@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.80.25 (2021-08-05)
+
+Update cache
+
 ## 0.80.24 (2021-08-05)
 
 #### :bug: Bug Fix
