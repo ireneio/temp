@@ -480,7 +480,7 @@ workflows:
       - upload-images:
           context: org-global
       - testing:
-          hash: 9a488d476767
+          hash: fb48b3690912
           other-testing:
             - lerna-cache:
                 use-lerna: true
@@ -498,7 +498,7 @@ workflows:
                         cat ~/.meepshop.lerna-cache
                   - restore_cache:
                       keys:
-                        - 9a488d476767-{{ checksum "~/.meepshop.lerna-cache" }}
+                        - fb48b3690912-{{ checksum "~/.meepshop.lerna-cache" }}
                   - run:
                       name: Restore lerna cache
                       command: sh lerna-cache.sh restore lib
@@ -511,7 +511,7 @@ workflows:
                       name: Save lerna cache
                       command: sh lerna-cache.sh save lib
                   - save_cache:
-                      key: 9a488d476767-{{ checksum "~/.meepshop.lerna-cache" }}
+                      key: fb48b3690912-{{ checksum "~/.meepshop.lerna-cache" }}
                       paths:
                         - lib
             - run:
@@ -530,7 +530,7 @@ workflows:
             tags:
               ignore: /.*/
       - build:
-          hash: 9a488d476767
+          hash: fb48b3690912
           use-lerna: true
           context: org-global
           filters:
