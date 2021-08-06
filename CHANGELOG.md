@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.80.26 (2021-08-06)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1669](https://github.com/meepshop/meep-lerna/pull/1669) 【BUG】 結帳頁面 - 舊有會員姓名無法刪除 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1668](https://github.com/meepshop/meep-lerna/pull/1668) (@meepshop/frontend) Fix testing error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.25 (2021-08-05)
 
 Update cache
