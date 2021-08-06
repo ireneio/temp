@@ -27,7 +27,10 @@ export default React.memo(({ viewer, design }: PropsType) => {
   return !design?.showLogo ? null : (
     <Link href="/" target="_self">
       <a href="/">
-        <img src={logo?.scaledSrc?.w60} alt={logo?.scaledSrc?.w60} />
+        <img
+          src={logo?.scaledSrc?.w60 || ''}
+          alt={logo?.scaledSrc?.w60 || ''}
+        />
       </a>
     </Link>
   );

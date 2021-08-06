@@ -98,18 +98,14 @@ export default React.memo(
                     }}
                     src={
                       (image as titleMenuPageObjectTypeFragmentImageImageType)
-                        .scaledSrc?.w60
+                        .scaledSrc?.w60 || ''
                     }
-                    srcSet={`${
-                      (image as titleMenuPageObjectTypeFragmentImageImageType)
-                        .scaledSrc?.w60
-                    } 1x, ${
-                      (image as titleMenuPageObjectTypeFragmentImageImageType)
-                        .scaledSrc?.w120
-                    } 2x, ${
-                      (image as titleMenuPageObjectTypeFragmentImageImageType)
-                        .scaledSrc?.w240
-                    } 3x`}
+                    srcSet={`${(image as titleMenuPageObjectTypeFragmentImageImageType)
+                      .scaledSrc?.w60 ||
+                      ''} 1x, ${(image as titleMenuPageObjectTypeFragmentImageImageType)
+                      .scaledSrc?.w120 ||
+                      ''} 2x, ${(image as titleMenuPageObjectTypeFragmentImageImageType)
+                      .scaledSrc?.w240 || ''} 3x`}
                     alt={title || ''}
                   />
                 )}

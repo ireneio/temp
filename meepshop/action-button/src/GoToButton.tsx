@@ -43,7 +43,7 @@ export default React.memo(({ goToButton }: PropsType) => {
       {goToButton.icon?.__typename !== 'Image' ? null : (
         <img
           className={styles.icon}
-          src={goToButton.icon.scaledSrc?.w60}
+          src={goToButton.icon.scaledSrc?.w60 || ''}
           alt={goToButton.icon.id}
         />
       )}

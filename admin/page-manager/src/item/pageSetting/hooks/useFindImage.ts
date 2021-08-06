@@ -12,7 +12,7 @@ import {
 import { getImage } from '../gqls/useFindImage';
 
 // definition
-export default (url: string | undefined): getImageViewerFileType | null => {
+export default (url: string | null): getImageViewerFileType | null => {
   const id = url
     ? atob(
         url

@@ -17,8 +17,8 @@ import styles from './styles/uploadImage.less';
 
 // typescript definition
 interface PropsType {
-  value?: string;
-  onChange?: (value: GalleryPropsType['value']) => void;
+  value?: string | null;
+  onChange?: (value: PropsType['value']) => void;
   forwardedRef: React.Ref<HTMLDivElement>;
 }
 
@@ -27,7 +27,7 @@ const UploadImage = React.memo(
   ({ forwardedRef, value, onChange }: PropsType) => {
     const { t } = useTranslation('page-manager');
     const portalTarget = usePortalTarget();
-    const findImage = useFindImage(value);
+    const findImage = useFindImage(value || null);
     const [visible, setVisible] = useState(false);
 
     return (
