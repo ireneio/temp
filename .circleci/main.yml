@@ -54,7 +54,7 @@ workflows:
                       name: Build for eslint
                       command: |
                         # TODO: remove after removing @meesphop/meep-ui
-                        NODE_ENV=test make babel-all
+                        make babel-all
                   - run:
                       name: Save lerna cache
                       command: sh lerna-cache.sh save lib

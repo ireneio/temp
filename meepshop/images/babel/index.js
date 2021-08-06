@@ -152,7 +152,7 @@ module.exports = declare(({ assertVersion, types: t }) => {
         t.callExpression(t.identifier('require'), [t.stringLiteral(name)]),
         t.identifier('default'),
       ),
-      nodes.filter(Boolean),
+      nodes,
     );
 
   const getScaledSrc = (key, width, height) =>
@@ -275,14 +275,12 @@ module.exports = declare(({ assertVersion, types: t }) => {
               [],
               t.callExpression(t.import(), [t.stringLiteral(componentPath)]),
             ),
-            process.env.NODE_ENV === 'test'
-              ? null
-              : t.objectExpression([
-                  t.objectProperty(
-                    t.identifier('loadableGenerated'),
-                    t.objectExpression([webpackNode, modulesNode]),
-                  ),
-                ]),
+            t.objectExpression([
+              t.objectProperty(
+                t.identifier('loadableGenerated'),
+                t.objectExpression([webpackNode, modulesNode]),
+              ),
+            ]),
           ),
         ),
       ]),

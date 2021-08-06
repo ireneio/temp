@@ -17,3 +17,4 @@ window.matchMedia = jest.fn().mockImplementation(query => ({
 process.on('unhandledRejection', error => {
   throw error;
 });
+require.resolveWeak = jest.fn();

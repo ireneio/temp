@@ -1,3 +1,6 @@
+// import
+import path from 'path';
+
 // definition
 const stage =
   'https://img.meepstage.com/DSBUA9FRwA1Ekg7hKZlQEl7YCQz1sdTDf9RunKQplwM/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg';
@@ -7,6 +10,7 @@ const stageFixed =
   'https://img.meepstage.com/dgkFJZ8d41Jft-X2d4SYghIm6fD5yYhB5B-myzb_Vz4/w:30/h:30/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg';
 const productionFixed =
   'https://img.meepshop.com/aAKJ2NTs0hott0ljyaN8nTPAP_PcK3HIqYFKS4L4QNk/w:30/h:30/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvZGFzaGJvYXJkL2Nvc3RfNWUxNjY2ZTguc3Zn.svg';
+const filePath = path.resolve(__dirname, '../babel.ts');
 
 export default [
   // 1.
@@ -145,7 +149,14 @@ export default dashboardCost;`,
 export default DashboardCost;`,
 
     // output
-    `const DashboardCost = require("next/dynamic").default(() => import("@meepshop/images/lib/dashboardCost"));
+    `const DashboardCost = require("next/dynamic").default(() => import("@meepshop/images/lib/dashboardCost"), {
+  loadableGenerated: {
+    webpack: function webpack() {
+      return [require.resolveWeak("@meepshop/images/lib/dashboardCost")];
+    },
+    modules: ["${filePath} -> " + "@meepshop/images/lib/dashboardCost"]
+  }
+});
 
 export default DashboardCost;`,
   ],
@@ -158,7 +169,14 @@ export default DashboardCost;`,
     // output
     `export { dashboardCost, DashboardCost };
 
-const DashboardCost = require("next/dynamic").default(() => import("@meepshop/images/lib/dashboardCost"));
+const DashboardCost = require("next/dynamic").default(() => import("@meepshop/images/lib/dashboardCost"), {
+  loadableGenerated: {
+    webpack: function webpack() {
+      return [require.resolveWeak("@meepshop/images/lib/dashboardCost")];
+    },
+    modules: ["${filePath} -> " + "@meepshop/images/lib/dashboardCost"]
+  }
+});
 
 const dashboardCost = require("@meepshop/images/src/getImage").default({
   stage: "${stageFixed}",
