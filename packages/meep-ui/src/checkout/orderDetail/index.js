@@ -45,9 +45,9 @@ const { Item: FormItem } = Form;
     const fieldsData = {
       ...data,
       ...info,
-      userName: data.userName || userName,
-      userMobile: data.userMobile || userMobile,
-      userAddressAndZipCode: data.userAddressAndZipCode || {
+      userName: data.userName ?? userName,
+      userMobile: data.userMobile ?? userMobile,
+      userAddressAndZipCode: data.userAddressAndZipCode ?? {
         address: [
           address?.country?.id,
           address?.city?.id,
@@ -55,7 +55,7 @@ const { Item: FormItem } = Form;
         ].filter(Boolean),
         zipCode: address?.zipCode,
       },
-      userStreet: data.userStreet || address?.street,
+      userStreet: data.userStreet ?? address?.street,
     };
 
     return Object.keys(fieldsData).reduce(
