@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "@store/ecpay",
+  "description": "ecpay 2.0 page",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.80.8",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/context": "^0.80.26",
+    "@meepshop/hooks": "^0.80.26",
+    "@meepshop/icons": "^0.80.25",
+    "@meepshop/link": "^0.80.26",
+    "@meepshop/locales": "^0.80.25",
+    "@meepshop/switch": "^0.80.25"
+  },
+  "keywords": ["ecpay", "store"]
+}

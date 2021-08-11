@@ -13,6 +13,8 @@ module.exports = routes
   .add('login', '/login', 'login')
   // payment page
   .add('checkout', '/checkout', 'checkout')
+  // ecpay page
+  .add('ecpay/[token]', '/ecpay/:token', 'ecpay/[token]')
   // EC thank-you page
   // !!Note!! Do not change the route because 綠界金流formData
   // 後端redirect url 固定用/checkout/thank-you-page/:orderId

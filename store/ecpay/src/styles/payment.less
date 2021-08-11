@@ -1,0 +1,47 @@
+@import '~@store/utils/styles/variables.less';
+@import './mixin.less';
+
+.root {
+  .title {
+    @title();
+  }
+
+  .affix {
+    width: calc(100% - 48px);
+    position: absolute;
+    bottom: 0;
+  }
+
+  .button {
+    text-align: center;
+  }
+
+  :global(.ant-btn) {
+    border-radius: 4px;
+    color: #ffffff;
+    background-color: #363b4a;
+    border-color: #363b4a;
+    height: auto;
+    margin-top: 24px;
+    padding: 12px 32px;
+    min-width: 192px;
+
+    &.affixed {
+      width: 100%;
+      border-radius: unset;
+    }
+
+    @media (max-width: @screen-sm-max) {
+      width: 100%;
+      padding: 16px 32px;
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+}
+
+.modal {
+  :global(.ant-modal-footer) {
+    border-top: none;
+  }
+}

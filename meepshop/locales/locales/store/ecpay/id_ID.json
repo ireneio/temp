@@ -1,0 +1,20 @@
+{
+  "ok": "menentukan",
+  "cancel": "membatalkan",
+  "warning": {
+    "0": "Untuk menghindari kesalahan transaksi, jangan tutup halaman ini sebelum mendapatkan informasi pembayaran",
+    "1": "Untuk menghindari kesalahan transaksi, membayar sebelum pembayaran, jangan tutup halaman ini"
+  },
+  "payment": {
+    "title": "Cara Pembayaran",
+    "button": "Lanjutkan untuk mendapatkan informasi pembayaran",
+    "immediate-payment": "Pembayaran langsung:",
+    "pay-by-credit-card": "Tentukan penggunaan pembayaran kartu kredit"
+  },
+  "order": {
+    "title": "Informasi pemesanan",
+    "order-number": "Jumlah order",
+    "store-name": "Nama toko",
+    "amount": "jumlah pesanan"
+  }
+}

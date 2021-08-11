@@ -1,0 +1,20 @@
+{
+  "ok": "確定",
+  "cancel": "取消",
+  "warning": {
+    "0": "為避免交易錯誤，取得付款資訊前切勿關閉此頁面",
+    "1": "為避免交易錯誤，付款完成前切勿關閉此頁面"
+  },
+  "payment": {
+    "title": "付款方式",
+    "button": "繼續取得付款資訊",
+    "immediate-payment": "立即付款：",
+    "pay-by-credit-card": "確定使用信用卡支付"
+  },
+  "order": {
+    "title": "訂單資訊",
+    "order-number": "訂單編號",
+    "store-name": "商店名稱",
+    "amount": "訂單金額"
+  }
+}

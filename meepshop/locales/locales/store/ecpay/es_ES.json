@@ -1,0 +1,20 @@
+{
+  "ok": "determinar",
+  "cancel": "cancelar",
+  "warning": {
+    "0": "Para evitar errores de transacción, no cierre esta página antes de obtener información de pago",
+    "1": "Para evitar errores de transacción, pagar antes del pago, no cierre esta página"
+  },
+  "payment": {
+    "title": "método de pago",
+    "button": "Continuar obteniendo información de pago.",
+    "immediate-payment": "Pago inmediato:",
+    "pay-by-credit-card": "Determinar el uso del pago con tarjeta de crédito."
+  },
+  "order": {
+    "title": "Información del pedido",
+    "order-number": "Número de orden",
+    "store-name": "Nombre de la tienda",
+    "amount": "Total de la orden"
+  }
+}

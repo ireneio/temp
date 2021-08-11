@@ -26,6 +26,7 @@
     "@store/ad-track": "^0.80.26",
     "@store/apollo": "^0.80.26",
     "@store/currency": "^0.80.26",
+    "@store/ecpay": "^0.80.8",
     "@store/fb": "^0.80.26",
     "@store/forgot-password": "^0.80.26",
     "@store/member-order": "^0.80.26",

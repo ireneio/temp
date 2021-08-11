@@ -56,4 +56,30 @@ declare interface Window {
       ) => void;
     };
   };
+  ECPay: {
+    initialize: (
+      serverType: string,
+      isLoading: number,
+      callBack: (error: string) => void,
+    ) => void;
+    createPayment: (
+      token: string,
+      language: string,
+      callBack: (error: string) => void,
+    ) => void;
+    getPayToken: (
+      callBack: (
+        paymentInfo: { PayToken: string; PaymentType: string },
+        error: string,
+      ) => void,
+    ) => void;
+    ServerType: {
+      Prod: string;
+      Stage: string;
+    };
+    Language: {
+      zhTW: string;
+      enUS: string;
+    };
+  };
 }

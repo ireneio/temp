@@ -1,0 +1,75 @@
+@import '~@store/utils/styles/variables.less';
+@import './mixin.less';
+
+.root {
+  .title {
+    @title();
+  }
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 12px;
+
+    > div:first-child {
+      min-width: 72px;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 14px;
+      line-height: 22px;
+      margin-right: 16px;
+
+      @media (max-width: @screen-sm-max) {
+        min-width: 80px;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+
+    @media (max-width: @screen-sm-max) {
+      justify-content: flex-start;
+    }
+  }
+
+  .amount {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > div:first-child {
+      min-width: 72px;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 14px;
+      line-height: 22px;
+      margin-right: 24px;
+
+      @media (max-width: @screen-sm-max) {
+        min-width: 80px;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+
+    > div:last-child {
+      color: rgba(0, 0, 0, 0.85);
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 26px;
+
+      @media (max-width: @screen-sm-max) {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+
+    @media (max-width: @screen-sm-max) {
+      justify-content: flex-start;
+    }
+  }
+
+  :global(.ant-divider) {
+    margin: 12px 0px;
+  }
+}

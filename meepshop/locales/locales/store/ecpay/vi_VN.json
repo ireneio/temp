@@ -1,0 +1,20 @@
+{
+  "ok": "mục đích",
+  "cancel": "hủy bỏ",
+  "warning": {
+    "0": "Để tránh lỗi giao dịch, không đóng trang này trước khi có được thông tin thanh toán",
+    "1": "Để tránh lỗi giao dịch, thanh toán trước khi thanh toán không đóng trang này"
+  },
+  "payment": {
+    "title": "Phương thức thanh toán",
+    "button": "Tiếp tục có được thông tin thanh toán",
+    "immediate-payment": "Thanh toán ngay lập tức:",
+    "pay-by-credit-card": "Xác định việc sử dụng thanh toán thẻ tín dụng"
+  },
+  "order": {
+    "title": "Thông tin đặt hàng",
+    "order-number": "Thứ tự số",
+    "store-name": "Tên cửa hàng",
+    "amount": "số lượng đơn đặt hàng"
+  }
+}
