@@ -37,11 +37,6 @@ spec:
           initialDelaySeconds: 15
           periodSeconds: 3
         env:
-        - name: EXTERNAL_API
-          valueFrom:
-            configMapKeyRef:
-              name: next-store
-              key: external.api
         - name: ENV
           valueFrom:
             configMapKeyRef:

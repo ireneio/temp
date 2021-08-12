@@ -12,7 +12,6 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = basicConfig({
   useFileSystemPublicRoutes: false,
   publicRuntimeConfig: {
-    EXTERNAL_API: process.env.EXTERNAL_API || 'https://api.stage.meepcloud.com',
     STORE_DOMAIN: process.env.STORE_DOMAIN,
     ROUTES: [
       {

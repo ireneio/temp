@@ -32,7 +32,6 @@ ARG VERSION
 EXPOSE 14401
 ENV VERSION=$VERSION
 ENV API=http://meepshop-api:15265
-ENV EXTERNAL_API=https://api.stage.meepcloud.com
 ENV NODE_ENV=production
 ENV ENV=stage
 CMD ["yarn", "lerna", "run", "--scope", "@meepshop/next-store", "start", "--stream"]
