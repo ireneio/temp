@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import { filter } from 'graphql-anywhere';
 import { List } from 'antd';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
@@ -36,10 +36,10 @@ export default React.memo(
     return (
       <Item className={styles.root}>
         <div>
-          <div>{moment(createdAt).format('YYYY/MM/DD')}</div>
+          <div>{format(new Date(createdAt), 'yyyy/MM/dd')}</div>
 
           <div className={styles.time}>
-            {moment(createdAt).format('HH:mm:ss')}
+            {format(new Date(createdAt), 'HH:mm:ss')}
           </div>
         </div>
 

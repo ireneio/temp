@@ -11,14 +11,13 @@ import { HistoryOutlined } from '@ant-design/icons';
 
 import { meepshopLogo } from '@meepshop/images';
 import { useTranslation } from '@meepshop/locales';
-import moment from 'moment';
 
 import Error from './Error';
 import Loading from './Loading';
 import Samples from './Samples';
 import useSmartConversionModule from './hooks/useSmartConversionModule';
 import styles from './styles/index.less';
-import { MOMENT_FORMAT } from './constants';
+import formatDate from './utils/formatDate';
 
 // typescript definition
 interface PropsType {
@@ -87,34 +86,25 @@ const SmartConversionAnalysis: NextPage<PropsType> = React.memo(
 
               <div>
                 <span>{t('period')}</span>
-                <div>
-                  {`${moment(startAt)
-                    .utcOffset(timezone)
-                    .format(MOMENT_FORMAT)} ~ ${moment(endAt)
-                    .utcOffset(timezone)
-                    .format(MOMENT_FORMAT)} ${t('day', {
-                    days: durationDays,
-                  })}`}
-                </div>
+                <div>{`${formatDate(startAt, timezone)} ~ ${formatDate(
+                  endAt,
+                  timezone,
+                )} ${t('day', {
+                  days: durationDays,
+                })}`}</div>
               </div>
 
               {!isStatusEnd ? null : (
                 <div>
                   <span>{t('ended-at')}</span>
-                  <div>
-                    {moment(actualEndAt)
-                      .utcOffset(timezone)
-                      .format(MOMENT_FORMAT)}
-                  </div>
+                  <div>{formatDate(actualEndAt, timezone)}</div>
                 </div>
               )}
 
               <div>
                 <span>{t('updated-at')}</span>
                 <div>
-                  {moment(lastGAUpdatedAt)
-                    .utcOffset(timezone)
-                    .format(MOMENT_FORMAT)}
+                  {formatDate(lastGAUpdatedAt, timezone)}
                   {!isStatusEnd ? null : (
                     <span>
                       <HistoryOutlined />

@@ -8,10 +8,12 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@admin/utils": "^0.80.26",
     "@meepshop/images": "^0.80.26",
     "@meepshop/locales": "^0.80.25",
     "@meepshop/utils": "^0.80.26",
-    "bizcharts": "^4.0.14"
+    "bizcharts": "^4.0.14",
+    "date-fns": "^2.15.0"
   },
   "keywords": ["admin", "smart-conversion"]
 }

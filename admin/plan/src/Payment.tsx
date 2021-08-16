@@ -3,7 +3,7 @@ import { SelectedPlanType } from './hooks/usePayment';
 
 // import
 import React, { useState } from 'react';
-import moment from 'moment';
+import { format } from 'date-fns';
 import { CheckOutlined, LeftOutlined } from '@ant-design/icons';
 import { Radio, Divider, Button } from 'antd';
 
@@ -107,7 +107,12 @@ export default React.memo(({ plan, setPlan }: PropsType) => {
 
           <div className={styles.expiryDate}>
             {`${t('payment.expiry')}：`}
-            {moment(quotation?.billingEndAt).format('YYYY/MM/DD')}
+            {format(
+              quotation?.billingEndAt
+                ? new Date(quotation.billingEndAt)
+                : new Date(),
+              'yyyy/MM/dd',
+            )}
           </div>
 
           <Divider />

@@ -16,7 +16,8 @@
     "@meepshop/images": "^0.80.26",
     "@meepshop/link": "^0.80.26",
     "@meepshop/locales": "^0.80.25",
-    "@meepshop/switch": "^0.80.25"
+    "@meepshop/switch": "^0.80.25",
+    "date-fns": "^2.15.0"
   },
   "keywords": ["admin", "wrapper"]
 }

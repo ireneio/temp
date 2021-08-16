@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
 import { DoubleLeftOutlined, LoadingOutlined } from '@ant-design/icons';
 import { Spin, List } from 'antd';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import { meepshopLogo } from '@meepshop/images';
@@ -68,7 +68,9 @@ const OrderHistoryRecords: NextPage<PropsType> = React.memo(
           <div>
             <div>{t('createdAt')}</div>
 
-            <div>{moment(order.createdAt).format('YYYY/MM/DD HH:mm:ss')}</div>
+            <div>
+              {format(new Date(order.createdAt), 'yyyy/MM/dd HH:mm:ss')}
+            </div>
           </div>
         </div>
 

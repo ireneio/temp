@@ -1,7 +1,7 @@
 // import
 import React from 'react';
-import moment from 'moment';
 import { Popover, Button } from 'antd';
+import { differenceInHours, differenceInDays, format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import Link from '@meepshop/link';
@@ -23,7 +23,8 @@ interface PropsType {
 // definition
 export default React.memo(({ trialExpireAt, collapsed }: PropsType) => {
   const { t } = useTranslation('common');
-  const isMoreThanOneDay = moment(trialExpireAt).diff(moment(), 'hours') > 24;
+  const isMoreThanOneDay =
+    differenceInHours(new Date(trialExpireAt), new Date()) > 24;
 
   return (
     <Switch
@@ -48,8 +49,8 @@ export default React.memo(({ trialExpireAt, collapsed }: PropsType) => {
           {t(isMoreThanOneDay ? 'free-trial' : 'free-trial-next-day')}
           <span>
             {isMoreThanOneDay
-              ? moment(trialExpireAt).diff(moment(), 'days')
-              : moment(trialExpireAt).format('HH:mm')}
+              ? differenceInDays(new Date(trialExpireAt), new Date())
+              : format(new Date(trialExpireAt), 'HH:mm')}
           </span>
           {t(isMoreThanOneDay ? 'expire-in-days' : 'expire')}
         </div>
