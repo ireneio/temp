@@ -11,6 +11,7 @@
     "@meepshop/cart": "^0.80.26",
     "@meepshop/context": "^0.80.26",
     "@meepshop/convenience-store-map": "^0.80.26",
+    "@meepshop/date-picker": "^0.80.25",
     "@meepshop/divider": "^0.80.26",
     "@meepshop/form-data": "^0.80.25",
     "@meepshop/gmo-credit-card-form": "^0.80.26",

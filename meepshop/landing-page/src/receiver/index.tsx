@@ -7,9 +7,10 @@ import { UseComputeOrderType } from '../hooks/useComputeOrder';
 import React, { useContext } from 'react';
 import { filter } from 'graphql-anywhere';
 import { Form } from '@ant-design/compatible';
-import { Select, Cascader, Input, DatePicker } from 'antd';
+import { Select, Cascader, Input } from 'antd';
 import { isAlpha } from 'validator';
 
+import DatePicker from '@meepshop/date-picker';
 import validateMobile from '@meepshop/utils/lib/validate/mobile';
 import { useTranslation } from '@meepshop/locales';
 import AddressCascader, {

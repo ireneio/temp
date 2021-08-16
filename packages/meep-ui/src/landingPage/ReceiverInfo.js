@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { Form, Input, Select, DatePicker } from 'antd';
+import { Form, Input, Select } from 'antd';
 import { isAlpha, isLength } from 'validator';
 
+import DatePicker from '@meepshop/date-picker';
 import { withTranslation } from '@meepshop/locales';
 import LoginModal from '@meepshop/login-modal';
 import { useValidateEmail } from '@meepshop/validator';
