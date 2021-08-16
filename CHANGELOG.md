@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## 0.80.27 (2021-08-16)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1645](https://github.com/meepshop/meep-lerna/pull/1645) 內部開單 - landing page 改用 @meephsop/date-picker ([@Lexiwu](https://github.com/Lexiwu))
+- Other
+  - [#1654](https://github.com/meepshop/meep-lerna/pull/1654) 內部開單 - next-admin 改用 date-fns ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1659](https://github.com/meepshop/meep-lerna/pull/1659) 內部開單 - next-store 改用 date-fns 2 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1666](https://github.com/meepshop/meep-lerna/pull/1666) 新增 @store/checkout-steps ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`, `mock-types`, `store`
+  - [#1658](https://github.com/meepshop/meep-lerna/pull/1658) 內部開單 - next-store 改用 date-fns ([@Lexiwu](https://github.com/Lexiwu))
+- `store`
+  - [#1628](https://github.com/meepshop/meep-lerna/pull/1628) internal - (@store/ecpay) Add ecpay page ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1678](https://github.com/meepshop/meep-lerna/pull/1678) (@meepshop/frontend) Remove not used ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#1676](https://github.com/meepshop/meep-lerna/pull/1676) (@meepshop/next-store) Remove not used env ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1664](https://github.com/meepshop/meep-lerna/pull/1664) (URL) 內部開單 - 導入 graphql scalar typescript type ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 4
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.26 (2021-08-06)
 
 #### :bug: Bug Fix
