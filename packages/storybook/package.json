@@ -4,14 +4,14 @@
   "description": "Use storybook to testing compoennt",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.26",
+  "version": "0.80.27",
   "bin": "./lib/bin/index.js",
   "scripts": {
     "clean": "rm -rf ./src/cache ./docs ./.storybook/combined.less"
   },
   "dependencies": {
-    "@meepshop/icons": "^0.80.25",
-    "@meepshop/utils": "^0.80.26",
+    "@meepshop/icons": "^0.80.27",
+    "@meepshop/utils": "^0.80.27",
     "@storybook/addon-actions": "^6.1.15",
     "@storybook/addon-links": "^6.1.15",
     "@storybook/addon-viewport": "^6.1.15",
