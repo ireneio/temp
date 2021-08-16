@@ -3,7 +3,7 @@ import { ColorsType } from '@meepshop/context';
 
 // import
 import React, { useState } from 'react';
-import moment from 'moment';
+import { format } from 'date-fns';
 import {
   InboxOutlined,
   PayCircleOutlined,
@@ -41,7 +41,7 @@ export default React.memo(
     return (
       <>
         <div className={styles.root} onClick={() => toggleDrawer(true)}>
-          <div>{moment(createdAt).format('YYYY/MM/DD')}</div>
+          <div>{format(new Date(createdAt), 'yyyy/MM/dd')}</div>
 
           <h4>
             {t('order.no')}：<div className={styles.link}>{orderNo}</div>

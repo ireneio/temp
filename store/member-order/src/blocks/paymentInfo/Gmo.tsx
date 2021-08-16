@@ -1,7 +1,7 @@
 // import
 import React, { useContext } from 'react';
 import { filter } from 'graphql-anywhere';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
@@ -58,7 +58,7 @@ export default React.memo(({ choosePayment, order }: PropsType) => {
             },
             {
               key: 'expire-date',
-              value: moment(atm.expireDate).format('YYYY/MM/DD HH:mm:ss'),
+              value: format(new Date(atm.expireDate), 'yyyy/MM/dd HH:mm:ss'),
             },
           ].map(({ key, value }) => (
             <div key={key}>
@@ -89,8 +89,9 @@ export default React.memo(({ choosePayment, order }: PropsType) => {
             },
             {
               key: 'expire-date',
-              value: moment(cvsPayCode.expireDate).format(
-                'YYYY/MM/DD HH:mm:ss',
+              value: format(
+                new Date(cvsPayCode.expireDate),
+                'yyyy/MM/dd HH:mm:ss',
               ),
             },
           ].map(({ key, value }) => (

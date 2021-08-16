@@ -4,7 +4,7 @@ import { DataProxy } from 'apollo-cache';
 // import
 import { useCallback, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import moment from 'moment';
+import { formatRFC3339 } from 'date-fns';
 import { notification } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
@@ -86,7 +86,7 @@ export default (
                   __typename: 'OrderMessage',
                   text: newMessage,
                   bearer: 'CUSTOMER' as MessageBearer,
-                  createdAt: moment().format(),
+                  createdAt: formatRFC3339(new Date()),
                 },
               ],
             },

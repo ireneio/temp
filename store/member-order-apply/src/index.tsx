@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Form, Spin, Button, message } from 'antd';
-import moment from 'moment';
+import { format } from 'date-fns';
 import transformColor from 'color';
 
 import { useRouter } from '@meepshop/link';
@@ -90,7 +90,7 @@ export default React.memo(({ type }: PropsType) => {
         <span>
           <span>{t('created-at')}</span>
 
-          {moment(order.createdAt).format('YYYY/MM/DD')}
+          {format(new Date(order.createdAt), 'yyyy/MM/dd')}
         </span>
       </h1>
 

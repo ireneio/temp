@@ -12,7 +12,7 @@
     "@meepshop/locales": "^0.80.25",
     "@meepshop/thumbnail": "^0.80.26",
     "@store/utils": "^0.80.26",
-    "moment": "^2.22.1"
+    "date-fns": "^2.15.0"
   },
   "keywords": ["member wish list page", "store"]
 }

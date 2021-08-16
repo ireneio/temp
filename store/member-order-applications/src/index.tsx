@@ -3,7 +3,7 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
@@ -54,7 +54,7 @@ export default React.memo(() => {
 
           <span>
             <span>{t('order-date')}</span>
-            {moment(createdAt).format('YYYY/MM/DD')}
+            {format(new Date(createdAt), 'yyyy/MM/dd')}
           </span>
         </h1>
 

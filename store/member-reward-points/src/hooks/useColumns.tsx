@@ -3,7 +3,7 @@ import { ColumnProps } from 'antd/lib/table';
 
 // import
 import { useMemo, useContext } from 'react';
-import moment from 'moment';
+import { format, subSeconds } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
@@ -50,7 +50,7 @@ export default (): ColumnProps<useColumnsUserPointsFragment>[] => {
         title: t('start-time'),
         dataIndex: 'startAt',
         render: (value: useColumnsUserPointsFragment['startAt']) =>
-          !value ? '-' : moment(value).format('YYYY/MM/DD HH:mm'),
+          !value ? '-' : format(new Date(value), 'yyyy/MM/dd HH:mm'),
       },
       {
         title: t('end-time'),
@@ -58,9 +58,7 @@ export default (): ColumnProps<useColumnsUserPointsFragment>[] => {
         render: (value: useColumnsUserPointsFragment['endAt']) =>
           !value
             ? '-'
-            : moment(value)
-                .subtract(1, 'seconds')
-                .format('YYYY/MM/DD HH:mm'),
+            : format(subSeconds(new Date(value), 1), 'yyyy/MM/dd HH:mm'),
       },
     ],
     [t, c],

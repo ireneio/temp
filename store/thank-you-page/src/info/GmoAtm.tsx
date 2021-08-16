@@ -1,6 +1,6 @@
 // import
 import React, { useContext } from 'react';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
@@ -44,7 +44,7 @@ export default React.memo(({ order, children }: PropsType) => {
           },
           {
             key: 'expire-date',
-            value: moment(atm.expireDate).format('YYYY/MM/DD HH:mm:ss'),
+            value: format(new Date(atm.expireDate), 'yyyy/MM/dd HH:mm:ss'),
           },
         ].map(({ key, value }) => (
           <div key={key} className={styles.row}>

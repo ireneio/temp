@@ -3,7 +3,7 @@ import { ColumnProps } from 'antd/lib/table';
 
 // import
 import React, { useMemo } from 'react';
-import moment from 'moment';
+import { format } from 'date-fns';
 import { filter } from 'graphql-anywhere';
 
 import Actions from '../Actions';
@@ -33,7 +33,7 @@ export default (): ColumnProps<useColumnsOrdersFragment>[] => {
         title: t('date'),
         dataIndex: ['node', 'createdAt'],
         render: (value: useColumnsOrdersFragmentNode['createdAt']) =>
-          moment(value).format('YYYY/MM/DD'),
+          format(new Date(value), 'yyyy/MM/dd'),
         width: 130,
       },
       {

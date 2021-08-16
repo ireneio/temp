@@ -1,6 +1,6 @@
 // import
 import React, { useMemo } from 'react';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -21,7 +21,7 @@ export default React.memo(
 
       if (!issuedAt) return t('blocks.invoice.waiting');
 
-      return moment(issuedAt).format('YYYY/MM/DD HH:mm:ss');
+      return format(new Date(issuedAt), 'yyyy/MM/dd HH:mm:ss');
     }, [t, status, issuedAt]);
 
     return (

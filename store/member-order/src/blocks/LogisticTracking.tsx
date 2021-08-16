@@ -1,6 +1,6 @@
 // import
 import React from 'react';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -29,7 +29,7 @@ export default React.memo(
         <div>
           {t('blocks.shipment.logistic.updated-at')}
 
-          {moment(updatedAt).format('YYYY/MM/DD HH:mm:ss')}
+          {format(new Date(updatedAt), 'yyyy/MM/dd HH:mm:ss')}
         </div>
 
         <div className={styles.tip}>{t('blocks.shipment.logistic.tip')}</div>

@@ -1,6 +1,6 @@
 // import
 import { useCallback } from 'react';
-import moment from 'moment';
+import { differenceInSeconds, addMonths } from 'date-fns';
 
 import styles from '../styles/useRowClassName.less';
 
@@ -17,16 +17,14 @@ export default (): ((
       endAt,
     }: getUserRewardPotinsGetValidUserPointListDataType): string => {
       if (
-        (endAt && moment().diff(moment(endAt)) > 0) ||
+        (endAt && differenceInSeconds(new Date(), new Date(endAt)) > 0) ||
         (points || 0) /** SHOULD_NOT_BE_NULL */ <= 0
       )
         return styles.outdate;
 
       if (
         endAt &&
-        moment()
-          .add(1, 'months')
-          .diff(moment(endAt)) > 0
+        differenceInSeconds(addMonths(new Date(), 1), new Date(endAt)) > 0
       )
         return styles.expireSoon;
 

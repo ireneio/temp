@@ -3,7 +3,7 @@ import React, { useContext, useRef, useEffect } from 'react';
 import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
 import { Button } from 'antd';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 import { useRouter } from '@meepshop/link';
 import { useAutoLinker } from '@meepshop/hooks';
@@ -89,7 +89,7 @@ export default React.memo(({ order }: PropsType) => {
                     .toString(),
                 }}
               >
-                {moment(createdAt).format('YYYY/MM/DD HH:mm')}
+                {format(new Date(createdAt), 'yyyy/MM/dd HH:mm')}
               </p>
             </div>
           </div>

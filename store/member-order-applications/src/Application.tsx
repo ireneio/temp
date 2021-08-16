@@ -1,7 +1,7 @@
 // import
 import React from 'react';
 import { Table } from 'antd';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -31,7 +31,7 @@ export default React.memo(
           </h4>
           <h4>
             {t('date')}
-            {moment(createdAt).format('YYYY/MM/DD')}
+            {format(new Date(createdAt), 'yyyy/MM/dd')}
           </h4>
           {applicationType === 'return' ? null : (
             <>

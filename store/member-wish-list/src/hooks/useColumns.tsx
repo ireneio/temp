@@ -5,7 +5,7 @@ import { ColumnProps } from 'antd/lib/table';
 import React, { useMemo } from 'react';
 import { CloseOutlined } from '@ant-design/icons';
 import { filter } from 'graphql-anywhere';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import Thumbnail from '@meepshop/thumbnail';
@@ -83,7 +83,7 @@ export default (
           { isAvailableForSale }: useColumnsWishlistProductFragment,
         ) => (
           <span style={{ opacity: isAvailableForSale ? 1 : 0.5 }}>
-            {isAvailableForSale ? moment(value).format('YYYY/MM/DD') : '-'}
+            {isAvailableForSale ? format(new Date(value), 'yyyy/MM/dd') : '-'}
           </span>
         ),
       },

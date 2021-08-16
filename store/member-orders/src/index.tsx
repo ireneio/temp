@@ -79,6 +79,7 @@ export default React.memo(() => {
         }}
       />
       <Table
+        className={styles.table}
         dataSource={filter<useColumnsOrdersFragmentType[]>(
           useColumnsOrdersFragment,
           [...edges].slice(current * first, (current + 1) * first),

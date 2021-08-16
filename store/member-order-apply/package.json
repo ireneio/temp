@@ -16,7 +16,7 @@
     "@store/apollo": "^0.80.26",
     "@store/utils": "^0.80.26",
     "color": "^3.0.0",
-    "moment": "^2.22.1"
+    "date-fns": "^2.15.0"
   },
   "keywords": ["member order apply", "store"]
 }

@@ -1,7 +1,7 @@
 // import
 import React from 'react';
 import { filter } from 'graphql-anywhere';
-import moment from 'moment';
+import { format, fromUnixTime } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -44,9 +44,10 @@ export default React.memo(({ choosePayment, paymentInfo }: PropsType) => {
 
           <div>
             {t('blocks.payment.expire-date')}
-            {moment
-              .unix(expireDate || 0 /** SHOULD_NOT_BE_NULL */)
-              .format('YYYY/M/D')}
+            {format(
+              fromUnixTime(expireDate || 0 /** SHOULD_NOT_BE_NULL */),
+              'yyyy/M/d',
+            )}
           </div>
         </div>
       );
