@@ -2,7 +2,7 @@ import React from 'react';
 import radium, { Style } from 'radium';
 import PropTypes from 'prop-types';
 import { Form, List, Input, Button, message } from 'antd';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 import { useAutoLinker } from '@meepshop/hooks';
 import { withTranslation } from '@meepshop/locales';
@@ -168,8 +168,9 @@ export default class PrdoductQA extends React.PureComponent {
                                   }}
                                 />
                                 <div>
-                                  {`(${moment(replyCreatedAt).format(
-                                    'YYYY/MM/DD HH:mm:ss',
+                                  {`(${format(
+                                    new Date(replyCreatedAt),
+                                    'yyyy/MM/dd HH:mm:ss',
                                   )})`}
                                 </div>
                               </div>
@@ -180,7 +181,7 @@ export default class PrdoductQA extends React.PureComponent {
                 }
                 actions={[
                   `${email.length > 5 ? email.slice(0, 5) : email}*****`,
-                  moment(createdAt).format('YYYY/MM/DD HH:mm:ss'),
+                  format(new Date(createdAt), 'yyyy/MM/dd HH:mm:ss'),
                 ]}
               >
                 <ListItemMeta

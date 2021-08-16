@@ -1,7 +1,7 @@
 // import
 import { buildClientSchema } from 'graphql';
 import { addMocksToSchema } from '@graphql-tools/mock';
-import moment from 'moment';
+import { getUnixTime, addHours, formatRFC3339 } from 'date-fns';
 
 // Generate by command
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -176,13 +176,11 @@ export default addMocksToSchema({
     userObjectType,
     VideoLinkProductCustomField,
     WishlistProduct,
-    Timestamp: () => moment().unix(),
+    Timestamp: () => getUnixTime(new Date()),
     DateTime: (): string => {
       count += 1;
 
-      return moment()
-        .add(count, 'hour')
-        .format();
+      return formatRFC3339(addHours(new Date(), count));
     },
     JSON: (data, _, __, { fieldName }) => data[fieldName],
     URL: (data, _, __, { fieldName }) => data[fieldName],

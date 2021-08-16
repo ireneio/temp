@@ -1,5 +1,5 @@
 // import
-import moment from 'moment';
+import { getUnixTime } from 'date-fns';
 
 import mock from '../mock';
 
@@ -16,7 +16,7 @@ export default mock.add<ezPaymentReturnListObjectTypeMockFragment>(
       storeName: 'storeName',
       orderNumber: 'orderNumber',
       amount: 'amount',
-      expireDate: parseInt(moment().format('X'), 10),
+      expireDate: getUnixTime(new Date()),
     }),
   ],
 );

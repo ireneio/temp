@@ -3,7 +3,7 @@ import { FormListProps } from 'antd/lib/form';
 
 // import
 import { useCallback } from 'react';
-import moment from 'moment';
+import { startOfMonth, isBefore, parse } from 'date-fns';
 import { isNumeric, isInt, isDate } from 'validator';
 
 import { useTranslation } from '@meepshop/locales';
@@ -37,11 +37,13 @@ export default (): {
           return callback(t('form.invalidDate'));
 
         if (
-          !moment()
-            .startOf('month')
-            .isSameOrBefore(moment(formatValue, 'MM/YY'))
-        )
+          isBefore(
+            parse(formatValue, 'MM/yy', new Date()),
+            startOfMonth(new Date()),
+          )
+        ) {
           return callback(t('form.invalidDate'));
+        }
 
         return callback();
       },

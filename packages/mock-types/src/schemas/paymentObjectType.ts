@@ -1,5 +1,5 @@
 // import
-import moment from 'moment';
+import { formatRFC3339 } from 'date-fns';
 
 import mock from '../mock';
 
@@ -63,7 +63,7 @@ export default mock.add<paymentObjectTypeMockFragment>('paymentObjectType', [
       bankName: 'bank name',
       bankCode: '013',
       account: 'xxxxxxxxxxxxx',
-      expireDate: moment().format(),
+      expireDate: formatRFC3339(new Date()),
     },
   }),
 ]);

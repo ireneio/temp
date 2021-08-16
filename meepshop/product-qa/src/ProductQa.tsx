@@ -1,7 +1,7 @@
 // import
 import React, { useContext, useState } from 'react';
 import { filter } from 'graphql-anywhere';
-import moment from 'moment';
+import { format } from 'date-fns';
 import transformColor from 'color';
 import { Form, Input, Button } from 'antd';
 
@@ -69,7 +69,7 @@ export default React.memo(({ width, product, viewer }: productQaFragment) => {
                   </div>
 
                   <div className={styles.createdAt}>
-                    {moment(createdAt).format('YYYY/MM/DD HH:mm:ss')}
+                    {format(new Date(createdAt), 'yyyy/MM/dd HH:mm:ss')}
                   </div>
                 </div>
               </div>
@@ -112,8 +112,9 @@ export default React.memo(({ width, product, viewer }: productQaFragment) => {
                           }}
                         />
                         <div>
-                          {`(${moment(replyQa.createdAt).format(
-                            'YYYY/MM/DD HH:mm:ss',
+                          {`(${format(
+                            new Date(replyQa.createdAt),
+                            'yyyy/MM/dd HH:mm:ss',
                           )})`}
                         </div>
                       </div>

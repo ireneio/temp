@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import { notification } from 'antd';
-import moment from 'moment';
+import { getUnixTime } from 'date-fns';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
@@ -216,7 +216,7 @@ class App extends NextApp {
 
     if (!expiresAt) return;
 
-    const timestamp = moment().unix();
+    const timestamp = getUnixTime(new Date());
 
     if (expiresAt <= timestamp) {
       window.sessionStorage.clear();

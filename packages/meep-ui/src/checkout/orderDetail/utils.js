@@ -1,4 +1,4 @@
-import moment from 'moment';
+import { addHours, getUnixTime } from 'date-fns';
 
 export const resetTimer = () => {
   clearTimeout(window.preservedInfoTimer);
@@ -9,8 +9,6 @@ export const resetTimer = () => {
 
   window.sessionStorage.setItem(
     'expiresAt',
-    moment()
-      .add(2, 'h')
-      .unix(),
+    getUnixTime(addHours(new Date(), 2)),
   );
 };

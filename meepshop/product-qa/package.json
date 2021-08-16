@@ -14,7 +14,8 @@
     "@meepshop/locales": "^0.80.25",
     "@meepshop/utils": "^0.80.26",
     "@meepshop/validator": "^0.80.25",
-    "color": "^3.0.0"
+    "color": "^3.0.0",
+    "date-fns": "^2.15.0"
   },
   "keywords": ["meepshop", "product", "qa"]
 }

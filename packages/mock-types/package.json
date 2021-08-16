@@ -28,8 +28,8 @@
     "@store/fb": "^0.80.26",
     "@store/utils": "^0.80.26",
     "apollo-link-schema": "^1.2.5",
-    "js-combinatorics": "^0.6.1",
-    "moment": "^2.24.0"
+    "date-fns": "^2.15.0",
+    "js-combinatorics": "^0.6.1"
   },
   "keywords": ["graphql", "mock"]
 }

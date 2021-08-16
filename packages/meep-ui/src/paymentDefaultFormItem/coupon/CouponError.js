@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { areEqual } from 'fbjs';
-import moment from 'moment';
+import { format, subDays } from 'date-fns';
 
 import { withTranslation } from '@meepshop/locales';
 
@@ -75,11 +75,11 @@ export default class CouponError extends React.PureComponent {
       case 4016: {
         const { startTime, endTime } = params;
 
-        return `${t('coupon.this-code-activity-period')} ${moment(
-          startTime * 1000,
-        ).format(TIME_FORMAT)}-${moment(endTime * 1000)
-          .subtract(1, 'days')
-          .format(TIME_FORMAT)} ${t('coupon.plz-delete-then-checkout')}`;
+        return `${t('coupon.this-code-activity-period')} ${format(
+          new Date(startTime * 1000),
+          TIME_FORMAT,
+        )}-${format(subDays(new Date(endTime * 1000), 1), TIME_FORMAT)}
+          ${t('coupon.plz-delete-then-checkout')}`;
       }
 
       case 4017:

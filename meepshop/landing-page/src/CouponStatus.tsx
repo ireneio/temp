@@ -1,6 +1,6 @@
 // import
 import React, { useContext } from 'react';
-import moment from 'moment';
+import { format, subDays } from 'date-fns';
 import transformColor from 'color';
 
 import {
@@ -15,7 +15,7 @@ import styles from './styles/couponStatus.less';
 import { couponStatusFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
-const TIME_FORMAT = 'YYYY/MM/DD';
+const TIME_FORMAT = 'yyyy/MM/dd';
 
 export default React.memo(
   ({ order }: { order: couponStatusFragment | null }) => {
@@ -51,13 +51,13 @@ export default React.memo(
 
         case 4016: {
           return (
-            <div>{`${t('coupon.this-code-activity-period')} ${moment(
-              (params?.startTime || 0) * 1000,
-            ).format(TIME_FORMAT)}-${moment((params?.endTime || 0) * 1000)
-              .subtract(1, 'days')
-              .format(TIME_FORMAT)} ${t(
-              'coupon.plz-delete-then-checkout',
-            )}`}</div>
+            <div>{`${t('coupon.this-code-activity-period')} ${format(
+              new Date((params?.startTime || 0) * 1000),
+              TIME_FORMAT,
+            )}-${format(
+              subDays(new Date((params?.endTime || 0) * 1000), 1),
+              TIME_FORMAT,
+            )}  ${t('coupon.plz-delete-then-checkout')}`}</div>
           );
         }
 
@@ -127,11 +127,13 @@ export default React.memo(
           <div>
             {unlimitedDate
               ? ''
-              : `${t('coupon.activity-period-is')} ${moment(
-                  (startTime || 0) * 1000,
-                ).format(TIME_FORMAT)}-${moment((endTime || 0) * 1000)
-                  .subtract(1, 'days')
-                  .format(TIME_FORMAT)}`}
+              : `${t('coupon.activity-period-is')} ${format(
+                  new Date((startTime || 0) * 1000),
+                  TIME_FORMAT,
+                )}-${format(
+                  subDays(new Date((endTime || 0) * 1000), 1),
+                  TIME_FORMAT,
+                )}`}
           </div>
 
           <style
