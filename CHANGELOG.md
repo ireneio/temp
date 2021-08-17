@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.28 (2021-08-17)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1663](https://github.com/meepshop/meep-lerna/pull/1663) 內部開單 - 簡化 menu, activities query ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.27 (2021-08-16)
 
 #### :rocket: New Feature
