@@ -5,7 +5,6 @@ import getIn from './getIn';
 import uriParser from './uriParser';
 import getPageWithModifyWidget from './getPageWithModifyWidget';
 import getReqArgs from './getReqArgs';
-import setDefaultValueForMenuDesign from './setDefaultValueForMenuDesign';
 import getJoinedModule from './getJoinedModule';
 import logToServer from './logToServer';
 
@@ -17,7 +16,6 @@ export {
   uriParser,
   getPageWithModifyWidget,
   getReqArgs,
-  setDefaultValueForMenuDesign,
   getJoinedModule,
   logToServer,
 };

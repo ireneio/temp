@@ -9,24 +9,18 @@ import transformColor from 'color';
 import { logoDesktopDefault } from '@meepshop/images';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import {
-  ID_TYPE,
-  STORE_SETTING_TYPE,
-  ALIGNMENT_TYPE,
-  OPACITY_TYPE,
-  COLOR_TYPE,
-  POSITIVE_NUMBER_TYPE,
-} from 'constants/propTypes';
+import { ID_TYPE, STORE_SETTING_TYPE, COLOR_TYPE } from 'constants/propTypes';
 import { PHONE_MEDIA } from 'constants/media';
 import removeContextTpyesFromProps from 'utils/removeContextTpyesFromProps';
 
 import Link from 'link';
 import MenuItem from './MenuItem';
 import { DEFAULT_COLOR_WITH_PATTERN } from './constants';
-import { FONTSIZE_TYPE } from './propTypes';
 import styles from './styles/index.less';
 import notMemoizedGetMenuStyles from './utils/getMenuStyles';
 import notMemoizedGetAllKeys from './utils/getAllKeys';
+
+export { default as handleModuleData } from './utils/handleModuleData';
 
 @enhancer
 export default class Menu extends React.PureComponent {
@@ -67,41 +61,6 @@ export default class Menu extends React.PureComponent {
     ).isRequired,
     iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
     logoAlignment: PropTypes.oneOf(['LEFT', 'RIGHT']),
-    design: PropTypes.shape({
-      showLogo: PropTypes.bool.isRequired,
-      showSearchbar: PropTypes.bool.isRequired,
-      expandSubItem: PropTypes.bool.isRequired,
-      alignment: ALIGNMENT_TYPE.isRequired,
-      pattern: PropTypes.oneOf([0, 1, 2, 3]).isRequired,
-      opacity: OPACITY_TYPE.isRequired,
-      normal: PropTypes.shape({
-        color: COLOR_TYPE,
-        background: COLOR_TYPE,
-      }).isRequired,
-      active: PropTypes.shape({
-        color: COLOR_TYPE,
-        background: COLOR_TYPE,
-        borderColor: COLOR_TYPE,
-      }).isRequired,
-      hover: PropTypes.shape({
-        color: COLOR_TYPE,
-        background: COLOR_TYPE,
-        borderColor: COLOR_TYPE,
-      }).isRequired,
-      fontSize: FONTSIZE_TYPE.isRequired,
-      font: PropTypes.oneOf([
-        'Arial',
-        'Arial Black',
-        'Coming Sans MS',
-        'Courier',
-        'Courier New',
-        '標楷體',
-        'Helvetica',
-        '黑體',
-      ]).isRequired,
-      width: POSITIVE_NUMBER_TYPE.isRequired,
-      height: POSITIVE_NUMBER_TYPE.isRequired,
-    }).isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
 
     /** ignore */
@@ -138,6 +97,27 @@ export default class Menu extends React.PureComponent {
     });
   };
 
+  initialDesign = () => {
+    const { design } = this.props;
+
+    return {
+      ...design,
+      showLogo: design?.showLogo || false,
+      showSearchbar: design?.showSearchbar || false,
+      expandSubItem: design?.expandSubItem || false,
+      alignment: design?.alignment || 'right',
+      pattern: design?.pattern || 0,
+      opacity: design?.opacity ?? 1,
+      normal: design?.normal || {},
+      active: design?.active || {},
+      hover: design?.hover || {},
+      fontSize: design?.fontSize || 14,
+      font: design?.font || '黑體',
+      width: design?.width ?? 0,
+      height: design?.height ?? 60,
+    };
+  };
+
   render() {
     const {
       /** context */
@@ -149,21 +129,6 @@ export default class Menu extends React.PureComponent {
       pages,
       iconSize,
       logoAlignment,
-      design: {
-        showLogo,
-        showSearchbar,
-        expandSubItem,
-        alignment,
-        pattern,
-        opacity,
-        normal,
-        active,
-        hover,
-        fontSize,
-        font,
-        width,
-        height,
-      },
       openKeys,
       className,
       reverseSearch,
@@ -171,6 +136,21 @@ export default class Menu extends React.PureComponent {
       ...props
     } = this.props;
     const { isMobile } = this.state;
+    const {
+      showLogo,
+      showSearchbar,
+      expandSubItem,
+      alignment,
+      pattern,
+      opacity,
+      normal,
+      active,
+      hover,
+      fontSize,
+      font,
+      width,
+      height,
+    } = this.initialDesign();
 
     const selected = DEFAULT_COLOR_WITH_PATTERN[pattern];
     const style = {

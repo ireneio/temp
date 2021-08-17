@@ -333,14 +333,6 @@ export default async function modifyWidgetDataInServer(
               // activity join in reselector
             };
           }
-          case 'menu': {
-            return {
-              id: uuid(),
-              module: widget.module,
-              contentWidth: widget.contentWidth,
-              menuId: widget.menuId,
-            };
-          }
           /* 智慧轉換 */
           case 'smart-conversion': {
             const { smartConversionModule } = page;

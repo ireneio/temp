@@ -2,8 +2,6 @@ import { getPages, getPagesSuccess, getPagesFailure } from './widgets/pages';
 
 import { showLoadingStatus, hideLoadingStatus } from './widgets/loading';
 
-import { getStoreSuccess, getStoreFailure } from './widgets/store';
-
 import {
   getAuth,
   getAuthSuccess,
@@ -38,9 +36,6 @@ export {
   getPages,
   getPagesSuccess,
   getPagesFailure,
-  // store
-  getStoreSuccess,
-  getStoreFailure,
   // auth
   getAuth,
   getAuthSuccess,

@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { withTranslation } from '@meepshop/locales';
+import withHook from '@store/utils/lib/withHook';
 import ForgotPasswordView from '@store/forgot-password';
 
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
-import { getJoinedForgotPasswordPage } from 'selectors/forgotPassword';
+import * as Template from 'template';
 import * as Actions from 'ducks/actions';
+import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class ForgotPassword extends Component {
   static getInitialProps = async context => {
@@ -53,14 +55,30 @@ class ForgotPassword extends Component {
 const mapStateToProps = (state, props) => {
   /* Handle error */
   const error = Utils.getStateError(state);
+
   if (error) return { error };
 
   return {
     location: Utils.uriParser(props),
-    page: getJoinedForgotPasswordPage(state, props),
+    page: {
+      id: 'page-forgot-password',
+      title: {
+        zh_TW: '重置密碼',
+      },
+      container: 'TwoTopsContainer',
+      blocks: [],
+      fixedtop: Template.fixedtop,
+      secondtop: Template.secondtop,
+      fixedbottom: Template.fixedbottom,
+      sidebar: Template.sidebar,
+    },
   };
 };
 
 export default connect(mapStateToProps)(
-  withTranslation('common')(ForgotPassword),
+  withTranslation('common')(
+    withHook(({ page }) => ({
+      page: useTemplatesMenus(page),
+    }))(ForgotPassword),
+  ),
 );

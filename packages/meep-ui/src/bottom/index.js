@@ -18,7 +18,6 @@ export default class Bottom extends React.PureComponent {
     colors: COLOR_TYPE.isRequired,
 
     /** props */
-    id: ID_TYPE.isRequired,
     menu: PropTypes.shape({
       pages: PropTypes.arrayOf(
         PropTypes.shape({
@@ -64,28 +63,33 @@ export default class Bottom extends React.PureComponent {
     }, 100);
   };
 
+  removeIcon = pages =>
+    (pages || []).map(page => ({
+      ...page,
+      image: null,
+      pages: this.removeIcon(page.pages),
+    }));
+
   render() {
     const {
       /** context */
       colors,
 
       /** props */
-      id,
       menu: {
         pages,
-        design: {
-          normal: { background = '', color },
-          opacity,
-          ...design
-        },
+        design: { opacity, ...design },
       },
+      background,
+      color,
+      fontSize,
     } = this.props;
     const { openKeys, isMobile } = this.state;
 
     const normal = {
       color: color || colors[3],
       background:
-        !background || !isHexColor(background) ? '#ffffff' : background,
+        !background || !isHexColor(background || '') ? '#ffffff' : background,
     };
 
     return (
@@ -97,13 +101,24 @@ export default class Bottom extends React.PureComponent {
           }}
         >
           <Menu
-            id={id}
+            id="bottom"
             className={styles.menu}
-            pages={pages}
+            pages={this.removeIcon(pages)}
             design={{
               ...design,
+              showLogo: false,
+              showSearchbar: false,
+              expandSubItem: true,
+              alignment: 'center',
+              pattern: 0,
               normal,
-              opacity: !background || !isHexColor(background) ? 0 : 1,
+              opacity: !background || !isHexColor(background || '') ? 0 : 1,
+              active: {},
+              hover: {},
+              fontSize: fontSize || 13,
+              font: '黑體',
+              width: 0,
+              height: 0,
             }}
             onOpenChange={newOpenKeys => {
               if (!isMobile) return;

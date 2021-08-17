@@ -22,6 +22,7 @@ const ContainerSwitch = ({
   fixedbottom,
   children,
   product,
+  useBottom,
   ...props
 }) => {
   const fixedTopProps = { ...props, ...fixedtop };
@@ -30,7 +31,8 @@ const ContainerSwitch = ({
   const blockComponent = (
     <>
       {children || <Block width={width} blocks={blocks} product={product} />}
-      {!fixedbottom ? null : <Bottom {...props} {...fixedbottom} />}
+
+      {useBottom === false ? null : <Bottom {...props} {...fixedbottom} />}
     </>
   );
 

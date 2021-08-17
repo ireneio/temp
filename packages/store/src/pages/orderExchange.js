@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import { withTranslation } from '@meepshop/locales';
+import withHook from '@store/utils/lib/withHook';
 import MemberOrderApply, {
   namespacesRequired,
 } from '@store/member-order-apply';
@@ -11,9 +11,9 @@ import MemberOrderApply, {
 import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
 import * as Utils from 'utils';
-import * as Selectors from 'selectors';
 import * as Template from 'template';
 import * as Actions from 'ducks/actions';
+import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class OrderExchange extends Component {
   static getInitialProps = async context => {
@@ -65,29 +65,27 @@ class OrderExchange extends Component {
 const mapStateToProps = (state, props) => {
   /* Handle error */
   const error = Utils.getStateError(state);
+
   if (error) return { error };
-
-  const getOrderApplyListPage = () => ({
-    id: 'page-member-order-apply',
-    container: 'TwoTopsContainer',
-    blocks: [],
-    fixedtop: Template.fixedtop,
-    secondtop: Template.secondtop,
-    fixedbottom: Template.fixedbottom,
-    sidebar: Template.sidebar,
-  });
-
-  const getPage = createSelector(
-    [getOrderApplyListPage, Selectors.getMenus],
-    Selectors.getJoinedPage,
-  );
 
   return {
     location: Utils.uriParser(props),
-    page: getPage(state, props),
+    page: {
+      id: 'page-member-order-apply',
+      container: 'TwoTopsContainer',
+      blocks: [],
+      fixedtop: Template.fixedtop,
+      secondtop: Template.secondtop,
+      fixedbottom: Template.fixedbottom,
+      sidebar: Template.sidebar,
+    },
   };
 };
 
 export default connect(mapStateToProps)(
-  withTranslation('common')(OrderExchange),
+  withTranslation('common')(
+    withHook(({ page }) => ({
+      page: useTemplatesMenus(page),
+    }))(OrderExchange),
+  ),
 );

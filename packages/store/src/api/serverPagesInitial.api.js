@@ -1,5 +1,5 @@
 import postGraphql from 'utils/postGraphql';
-import { viewer, pageQuery, menuQuery } from './query';
+import { viewer, pageQuery } from './query';
 
 export default async context => {
   const {
@@ -12,26 +12,12 @@ export default async context => {
   const variables = {
     keys: `
       $path: String!
-      $menuSearch: searchInputObjectType
       $expireBy: Int!
       $identity: String
     `,
     type: 'query serverPagesInitial',
     values: {
       path,
-      menuSearch: {
-        size: 50,
-        from: 0,
-        filter: {
-          and: [],
-        },
-        sort: [
-          {
-            field: 'createdAt',
-            order: 'desc',
-          },
-        ],
-      },
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
       identity: cookies?.identity,
     },
@@ -45,12 +31,6 @@ export default async context => {
           ${pageQuery}
         }
       }
-    }
-    getMenuList(search: $menuSearch) {
-      data {
-        ${menuQuery}
-      }
-      total
     }
     getColorList {
       data {

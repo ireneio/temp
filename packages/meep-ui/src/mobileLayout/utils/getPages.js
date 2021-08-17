@@ -2,7 +2,7 @@ import { NOTLOGIN } from 'constants/isLogin';
 
 const mergePages = pages =>
   pages.reduce((result, page) => {
-    const specificMenuItem = page.pages.filter(({ action }) =>
+    const specificMenuItem = (page.pages || []).filter(({ action }) =>
       [5, 8].includes(action),
     );
 
@@ -10,7 +10,9 @@ const mergePages = pages =>
       ...result,
       {
         ...page,
-        pages: page.pages.filter(({ action }) => ![5, 8].includes(action)),
+        pages: (page.pages || []).filter(
+          ({ action }) => ![5, 8].includes(action),
+        ),
       },
       ...specificMenuItem,
     ];

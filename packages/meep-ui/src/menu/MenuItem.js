@@ -219,7 +219,7 @@ export default class MenuItem extends React.PureComponent {
 
       case 8:
         if (isLogin !== NOTLOGIN)
-          return params.displayMemberGroup && user?.memberGroup?.name
+          return params?.displayMemberGroup && user?.memberGroup?.name
             ? user.memberGroup.name
             : null;
 
