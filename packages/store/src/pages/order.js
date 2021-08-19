@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 
 import { withTranslation } from '@meepshop/locales';
-import withHook from '@store/utils/lib/withHook';
 import MemberOrder, { namespacesRequired } from '@store/member-order';
 
 import * as Utils from 'utils';
+import * as Selectors from 'selectors';
 import * as Template from 'template';
 import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
 import * as Actions from 'ducks/actions';
-import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class Order extends React.Component {
   static getInitialProps = async context => {
@@ -63,27 +63,27 @@ class Order extends React.Component {
 const mapStateToProps = (state, props) => {
   /* Handle error */
   const error = Utils.getStateError(state);
-
   if (error) return { error };
+
+  const getOrderPage = () => ({
+    id: 'page-member-order-details',
+    container: 'TwoTopsContainer',
+    blocks: [],
+    fixedtop: Template.fixedtop,
+    secondtop: Template.secondtop,
+    fixedbottom: Template.fixedbottom,
+    sidebar: Template.sidebar,
+  });
+
+  const getPage = createSelector(
+    [getOrderPage, Selectors.getMenus],
+    Selectors.getJoinedPage,
+  );
 
   return {
     location: Utils.uriParser(props),
-    page: {
-      id: 'page-member-order-details',
-      container: 'TwoTopsContainer',
-      blocks: [],
-      fixedtop: Template.fixedtop,
-      secondtop: Template.secondtop,
-      fixedbottom: Template.fixedbottom,
-      sidebar: Template.sidebar,
-    },
+    page: getPage(state, props),
   };
 };
 
-export default connect(mapStateToProps)(
-  withTranslation('common')(
-    withHook(({ page }) => ({
-      page: useTemplatesMenus(page),
-    }))(Order),
-  ),
-);
+export default connect(mapStateToProps)(withTranslation('common')(Order));

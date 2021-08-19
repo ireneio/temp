@@ -1,5 +1,5 @@
 import postGraphql from 'utils/postGraphql';
-import { viewer, productQuery } from './query';
+import { viewer, productQuery, menuQuery } from './query';
 
 export default async context => {
   const {
@@ -10,6 +10,7 @@ export default async context => {
   const variables = {
     keys: `
       $productSearch: searchInputObjectType,
+      $menuSearch: searchInputObjectType,
       $expireBy: Int!,
       $identity: String,
     `,
@@ -35,6 +36,19 @@ export default async context => {
         showVariants: true,
         showMainFile: true,
       },
+      menuSearch: {
+        size: 50,
+        from: 0,
+        filter: {
+          and: [],
+        },
+        sort: [
+          {
+            field: 'createdAt',
+            order: 'desc',
+          },
+        ],
+      },
       expireBy: parseInt(new Date() / 1000, 10) + 30 * 24 * 60 * 60, // 30 days
       identity: cookies?.identity,
     },
@@ -44,6 +58,12 @@ export default async context => {
     ${viewer}
     computeProductList(search: $productSearch) {
       data ${productQuery}
+      total
+    }
+    getMenuList(search: $menuSearch) {
+      data {
+        ${menuQuery}
+      }
       total
     }
     getColorList {

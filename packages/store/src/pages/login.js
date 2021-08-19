@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
-import LoginView from '@meepshop/meep-ui/lib/login';
-import withHook from '@store/utils/lib/withHook';
-
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
-import * as Template from 'template';
+import LoginView from '@meepshop/meep-ui/lib/login';
+import { getJoinedLoginPage } from 'selectors/login';
 import * as Actions from 'ducks/actions';
-import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class Login extends Component {
   static getInitialProps = async context => {
@@ -49,28 +45,12 @@ class Login extends Component {
 const mapStateToProps = (state, props) => {
   /* Handle error */
   const error = Utils.getStateError(state);
-
   if (error) return { error };
 
   return {
     location: Utils.uriParser(props),
-    page: {
-      id: 'page-login',
-      title: {
-        zh_TW: '登入',
-      },
-      container: 'TwoTopsContainer',
-      blocks: [],
-      fixedtop: Template.fixedtop,
-      secondtop: Template.secondtop,
-      fixedbottom: Template.fixedbottom,
-      sidebar: Template.sidebar,
-    },
+    page: getJoinedLoginPage(state, props),
   };
 };
 
-export default connect(mapStateToProps)(
-  withHook(({ page }) => ({
-    page: useTemplatesMenus(page),
-  }))(Login),
-);
+export default connect(mapStateToProps)(Login);

@@ -1,28 +1,39 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import PropTypes from 'prop-types';
 
 import { enhancer } from 'layout/DecoratorsRoot';
+import { ID_TYPE } from 'constants/propTypes';
 
-import { getMenu } from '../gqls/handleModuleData';
 import styles from '../styles/handleModuleData.less';
 
-export default Component =>
-  enhancer(
-    React.memo(({ id, menuId }) => {
-      const { data } = useQuery(getMenu, {
-        variables: {
-          menuId,
-        },
-      });
+export default Component => {
+  class MenuWrapper extends React.PureComponent {
+    static propTypes = {
+      /** props */
+      id: ID_TYPE.isRequired,
+      menu: PropTypes.shape({
+        iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
+        logoAlignment: PropTypes.oneOf(['LEFT', 'RIGHT']).isRequired,
+        pages: PropTypes.arrayOf(
+          PropTypes.shape({
+            id: ID_TYPE.isRequired,
+          }).isRequired,
+        ),
+        design: PropTypes.shape({}).isRequired,
+      }).isRequired,
+    };
 
-      if (!data) return null;
-
+    render() {
       const {
-        iconSize,
-        logoAlignment,
-        pages,
-        design: { expandSubItem, ...design },
-      } = data.viewer.store.menu;
+        /** props */
+        id,
+        menu: {
+          iconSize,
+          logoAlignment,
+          pages,
+          design: { expandSubItem, ...design },
+        },
+      } = this.props;
 
       return (
         <Component
@@ -40,5 +51,8 @@ export default Component =>
           isModule
         />
       );
-    }),
-  );
+    }
+  }
+
+  return enhancer(MenuWrapper);
+};

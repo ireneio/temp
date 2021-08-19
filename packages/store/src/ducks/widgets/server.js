@@ -2,7 +2,8 @@ import { takeEvery, put, call } from 'redux-saga/effects';
 import * as Utils from 'utils';
 import * as Api from 'api';
 
-import { getPagesSuccess, getPagesFailure } from './pages';
+import { getStoreSuccess, getStoreFailure } from './store';
+import { getPagesSuccess } from './pages';
 import { getAuthSuccess } from './member';
 import { getProductSuccess } from './products';
 
@@ -19,8 +20,9 @@ function* serverIndexInitialFlow({ payload }) {
     const data = yield call(Api.serverIndexInitial, payload);
 
     if (data.apiErr) {
-      yield put(getPagesFailure(data.apiErr));
+      yield put(getStoreFailure(data.apiErr));
     } else {
+      yield put(getStoreSuccess(data));
       yield put(getAuthSuccess(data));
 
       const page = data.data.viewer?.store?.defaultHomePage;
@@ -30,11 +32,11 @@ function* serverIndexInitialFlow({ payload }) {
 
         yield put(getPagesSuccess(modifiedPage));
       } else {
-        yield put(getPagesFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
+        yield put(getStoreFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
       }
     }
   } catch ({ message }) {
-    yield put(getPagesFailure({ status: 'SERVER_ERROR', message }));
+    yield put(getStoreFailure({ status: 'SERVER_ERROR', message }));
   }
 }
 export function* watchServerIndexInitialFlow() {
@@ -54,8 +56,9 @@ function* serverPagesInitialFlow({ payload }) {
     const data = yield call(Api.serverPagesInitial, payload);
 
     if (data.apiErr) {
-      yield put(getPagesFailure(data.apiErr));
+      yield put(getStoreFailure(data.apiErr));
     } else {
+      yield put(getStoreSuccess(data));
       yield put(getAuthSuccess(data));
 
       const page = data?.data?.viewer?.store?.customPage;
@@ -65,11 +68,11 @@ function* serverPagesInitialFlow({ payload }) {
 
         yield put(getPagesSuccess(modifiedPage));
       } else {
-        yield put(getPagesFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
+        yield put(getStoreFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
       }
     }
   } catch ({ message }) {
-    yield put(getPagesFailure({ status: 'SERVER_ERROR', message }));
+    yield put(getStoreFailure({ status: 'SERVER_ERROR', message }));
   }
 }
 export function* watchServerPagesInitialFlow() {
@@ -106,8 +109,9 @@ function* serverProductInitialFlow({ payload }) {
     }
 
     if (data.apiErr) {
-      yield put(getPagesFailure(data.apiErr));
+      yield put(getStoreFailure(data.apiErr));
     } else {
+      yield put(getStoreSuccess(data));
       yield put(getAuthSuccess(data));
 
       const product = data?.data?.computeProductList?.data?.[0];
@@ -126,14 +130,14 @@ function* serverProductInitialFlow({ payload }) {
             }),
           );
         } else {
-          yield put(getPagesFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
+          yield put(getStoreFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
         }
       } else {
-        yield put(getPagesFailure({ status: 'ERROR_PRODUCT_NOT_FOUND' }));
+        yield put(getStoreFailure({ status: 'ERROR_PRODUCT_NOT_FOUND' }));
       }
     }
   } catch ({ message }) {
-    yield put(getPagesFailure({ status: 'SERVER_ERROR', message }));
+    yield put(getStoreFailure({ status: 'SERVER_ERROR', message }));
   }
 }
 export function* watchServerProductInitialFlow() {
@@ -153,8 +157,9 @@ function* serverProductsInitialFlow({ payload }) {
     const data = yield call(Api.serverProductsInitial, payload);
 
     if (data.apiErr) {
-      yield put(getPagesFailure(data.apiErr));
+      yield put(getStoreFailure(data.apiErr));
     } else {
+      yield put(getStoreSuccess(data));
       yield put(getAuthSuccess(data));
 
       const page = data.data?.viewer?.store?.defaultProductListPage;
@@ -164,11 +169,11 @@ function* serverProductsInitialFlow({ payload }) {
 
         yield put(getPagesSuccess(modifiedPage));
       } else {
-        yield put(getPagesFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
+        yield put(getStoreFailure({ status: 'ERROR_PAGE_NOT_FOUND' }));
       }
     }
   } catch ({ message }) {
-    yield put(getPagesFailure({ status: 'SERVER_ERROR', message }));
+    yield put(getStoreFailure({ status: 'SERVER_ERROR', message }));
   }
 }
 export function* watchServerProductsInitialFlow() {
@@ -188,12 +193,13 @@ function* serverOthersInitialFlow({ payload }) {
     const data = yield call(Api.serverOthersInitial, payload);
 
     if (data.apiErr) {
-      yield put(getPagesFailure(data.apiErr));
+      yield put(getStoreFailure(data.apiErr));
     } else {
+      yield put(getStoreSuccess(data));
       yield put(getAuthSuccess(data));
     }
   } catch ({ message }) {
-    yield put(getPagesFailure({ status: 'SERVER_ERROR', message }));
+    yield put(getStoreFailure({ status: 'SERVER_ERROR', message }));
   }
 }
 export function* watchServerOthersInitialFlow() {

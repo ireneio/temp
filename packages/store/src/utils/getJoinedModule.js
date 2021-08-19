@@ -1,7 +1,26 @@
-const getJoinedModule = (widgets, { query = {}, product }) => {
+import * as R from 'ramda';
+
+import getIn from './getIn';
+import setDefaultValueForMenuDesign from './setDefaultValueForMenuDesign';
+
+const getJoinedModule = (widgets, { query = {}, menus, product }) => {
   const mWidgets = widgets.map(widget => {
     if (widget.widgets == null) {
       switch (widget.module) {
+        case 'menu': {
+          const { menuId } = widget;
+          const menu =
+            R.find(R.propEq('id', menuId))(menus) ||
+            R.find(R.propEq('menuType', menuId))(menus) ||
+            setDefaultValueForMenuDesign([]);
+          const menuPages = getIn(['pages'])(menu) || [];
+
+          return {
+            ...widget,
+            menu: R.assocPath(['pages'], menuPages, menu),
+          };
+        }
+
         case 'products':
           return {
             ...widget,
@@ -91,6 +110,7 @@ const getJoinedModule = (widgets, { query = {}, product }) => {
     return {
       widgets: getJoinedModule(widget.widgets, {
         query,
+        menus,
         product,
       }),
     };

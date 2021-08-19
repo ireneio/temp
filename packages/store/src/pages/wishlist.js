@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 
 import { withTranslation } from '@meepshop/locales';
 import { Apps as AppsContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
-import withHook from '@store/utils/lib/withHook';
 import MemberWishlist, { namespacesRequired } from '@store/member-wish-list';
 
 import * as Utils from 'utils';
+import * as Selectors from 'selectors';
 import * as Template from 'template';
 import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
 import { Router } from 'server/routes';
 import * as Actions from 'ducks/actions';
-import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class Wishlist extends Component {
   static getInitialProps = async context => {
@@ -77,20 +77,26 @@ class Wishlist extends Component {
 const mapStateToProps = (state, props) => {
   /* Handle error */
   const error = Utils.getStateError(state);
-
   if (error) return { error };
+
+  const getWishlistPage = () => ({
+    id: 'page-member-wishList',
+    container: 'TwoTopsContainer',
+    blocks: [],
+    fixedtop: Template.fixedtop,
+    secondtop: Template.secondtop,
+    fixedbottom: Template.fixedbottom,
+    sidebar: Template.sidebar,
+  });
+
+  const getPage = createSelector(
+    [getWishlistPage, Selectors.getMenus],
+    Selectors.getJoinedPage,
+  );
 
   return {
     location: Utils.uriParser(props),
-    page: {
-      id: 'page-member-wishList',
-      container: 'TwoTopsContainer',
-      blocks: [],
-      fixedtop: Template.fixedtop,
-      secondtop: Template.secondtop,
-      fixedbottom: Template.fixedbottom,
-      sidebar: Template.sidebar,
-    },
+    page: getPage(state, props),
   };
 };
 
@@ -100,10 +106,6 @@ export default connect(mapStateToProps, dispatch => ({
   },
 }))(
   withTranslation('common')(
-    withContext(AppsContext, apps => ({ apps }))(
-      withHook(({ page }) => ({
-        page: useTemplatesMenus(page),
-      }))(Wishlist),
-    ),
+    withContext(AppsContext, apps => ({ apps }))(Wishlist),
   ),
 );
