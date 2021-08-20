@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import { withTranslation } from '@meepshop/locales';
+import withHook from '@store/utils/lib/withHook';
 import MemberRecipients, { namespacesRequired } from '@store/member-recipients';
 
 import * as Utils from 'utils';
-import * as Selectors from 'selectors';
 import * as Template from 'template';
 import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
 import * as Actions from 'ducks/actions';
+import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class Recipients extends Component {
   static getInitialProps = async context => {
@@ -57,27 +57,27 @@ class Recipients extends Component {
 const mapStateToProps = (state, props) => {
   /* Handle error */
   const error = Utils.getStateError(state);
+
   if (error) return { error };
-
-  const getRecipientsPage = () => ({
-    id: 'page-member-recipients',
-    container: 'TwoTopsContainer',
-    blocks: [],
-    fixedtop: Template.fixedtop,
-    secondtop: Template.secondtop,
-    fixedbottom: Template.fixedbottom,
-    sidebar: Template.sidebar,
-  });
-
-  const getPage = createSelector(
-    [getRecipientsPage, Selectors.getMenus],
-    Selectors.getJoinedPage,
-  );
 
   return {
     location: Utils.uriParser(props),
-    page: getPage(state, props),
+    page: {
+      id: 'page-member-recipients',
+      container: 'TwoTopsContainer',
+      blocks: [],
+      fixedtop: Template.fixedtop,
+      secondtop: Template.secondtop,
+      fixedbottom: Template.fixedbottom,
+      sidebar: Template.sidebar,
+    },
   };
 };
 
-export default connect(mapStateToProps)(withTranslation('common')(Recipients));
+export default connect(mapStateToProps)(
+  withTranslation('common')(
+    withHook(({ page }) => ({
+      page: useTemplatesMenus(page),
+    }))(Recipients),
+  ),
+);

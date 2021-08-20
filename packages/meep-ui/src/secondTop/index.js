@@ -11,7 +11,6 @@ import styles from './styles/index.less';
 export default class SecondTop extends React.PureComponent {
   static propTypes = {
     /** props */
-    id: ID_TYPE.isRequired,
     menu: PropTypes.shape({
       iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
       logoAlignment: PropTypes.oneOf(['LEFT', 'RIGHT']).isRequired,
@@ -25,20 +24,23 @@ export default class SecondTop extends React.PureComponent {
   };
 
   render() {
-    const {
-      /** props */
-      id,
-      menu: { iconSize, logoAlignment, pages, design },
-    } = this.props;
+    const { menu } = this.props;
+
+    if (!menu) return null;
+
+    const { iconSize, logoAlignment, pages, design } = menu;
 
     return (
       <Menu
-        id={id}
+        id="secondTop"
         className={styles.root}
         iconSize={iconSize}
         logoAlignment={logoAlignment}
         pages={pages}
-        design={design}
+        design={{
+          ...design,
+          width: 0,
+        }}
       />
     );
   }

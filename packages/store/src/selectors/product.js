@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import { createSelector } from 'reselect';
 import { getIn, getJoinedModule } from 'utils';
-import { getPages, getMenus, getJoinedPage, getQuery } from './index';
+import { getPages, getQuery } from './index';
 
 const getProductList = ({ productsReducer }) => productsReducer;
 const getProductId = (_, { pId }) => pId;
@@ -43,22 +43,19 @@ const getPage = createSelector(
     pageId ? R.find(R.propEq('id', pageId))(pages) : pageByProduct,
 );
 
-const getProductCombinedPage = createSelector(
-  [getPage, getQuery, getMenus, getProduct],
-  (page, query = {}, menus, product) => {
-    const blocks = (page.blocks || []).map(({ widgets, ...block }) => ({
-      ...block,
-      widgets: getJoinedModule(widgets, {
-        query,
-        menus,
-        product,
-      }),
-    }));
-    return { ...page, blocks };
-  },
-);
-
 export const getJoinedPageInProductRoute = createSelector(
-  [getProductCombinedPage, getMenus],
-  getJoinedPage,
+  [getPage, getQuery, getProduct],
+  (page, query = {}, product) =>
+    !page
+      ? page
+      : {
+          ...page,
+          blocks: page.blocks.map(({ widgets, ...block }) => ({
+            ...block,
+            widgets: getJoinedModule(widgets, {
+              query,
+              product,
+            }),
+          })),
+        },
 );

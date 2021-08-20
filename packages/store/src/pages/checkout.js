@@ -2,10 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import withHook from '@store/utils/lib/withHook';
+
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
-import { getJoinedCheckoutPage } from 'selectors/checkout';
+import * as Template from 'template';
 import * as Actions from 'ducks/actions';
+import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class Checkout extends React.Component {
   static getInitialProps = async context => {
@@ -46,8 +49,42 @@ const mapStateToProps = (state, props) => {
 
   return {
     location: Utils.uriParser(props),
-    page: getJoinedCheckoutPage(state, props),
+    page: {
+      id: 'page-checkout',
+      title: {
+        zh_TW: '結帳',
+      },
+      container: 'DefaultContainer',
+      blocks: [
+        {
+          id: 'block-checkout',
+          width: 100,
+          componentWidth: 0,
+          padding: 0,
+          widgets: [
+            {
+              widgets: [
+                {
+                  id: 'checkout',
+                  module: 'checkout',
+                  orderInfo: props.orderInfo, // 超商門市
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      fixedtop: Template.fixedtop,
+      secondtop: Template.secondtop,
+      fixedbottom: Template.fixedbottom,
+      sidebar: Template.sidebar,
+      useBottom: false,
+    },
   };
 };
 
-export default connect(mapStateToProps)(Checkout);
+export default connect(mapStateToProps)(
+  withHook(({ page }) => ({
+    page: useTemplatesMenus(page),
+  }))(Checkout),
+);

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import { withTranslation } from '@meepshop/locales';
+import withHook from '@store/utils/lib/withHook';
 import MemberOrderPayNotify, {
   namespacesRequired,
 } from '@store/member-order-pay-notify';
@@ -11,9 +11,9 @@ import MemberOrderPayNotify, {
 import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
 import * as Utils from 'utils';
-import * as Selectors from 'selectors';
 import * as Template from 'template';
 import * as Actions from 'ducks/actions';
+import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class OrderPayNotify extends React.Component {
   static getInitialProps = async context => {
@@ -65,29 +65,27 @@ class OrderPayNotify extends React.Component {
 const mapStateToProps = (state, props) => {
   /* Handle error */
   const error = Utils.getStateError(state);
+
   if (error) return { error };
-
-  const getPayNotifyPage = () => ({
-    id: 'page-member-order-pay-noti',
-    container: 'TwoTopsContainer',
-    blocks: [],
-    fixedtop: Template.fixedtop,
-    secondtop: Template.secondtop,
-    fixedbottom: Template.fixedbottom,
-    sidebar: Template.sidebar,
-  });
-
-  const getPage = createSelector(
-    [getPayNotifyPage, Selectors.getMenus],
-    Selectors.getJoinedPage,
-  );
 
   return {
     location: Utils.uriParser(props),
-    page: getPage(state, props),
+    page: {
+      id: 'page-member-order-pay-noti',
+      container: 'TwoTopsContainer',
+      blocks: [],
+      fixedtop: Template.fixedtop,
+      secondtop: Template.secondtop,
+      fixedbottom: Template.fixedbottom,
+      sidebar: Template.sidebar,
+    },
   };
 };
 
 export default connect(mapStateToProps)(
-  withTranslation('common')(OrderPayNotify),
+  withTranslation('common')(
+    withHook(({ page }) => ({
+      page: useTemplatesMenus(page),
+    }))(OrderPayNotify),
+  ),
 );

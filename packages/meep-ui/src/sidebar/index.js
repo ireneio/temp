@@ -21,7 +21,6 @@ export default class Sidebar extends React.PureComponent {
     isLogin: ISLOGIN_TYPE.isRequired,
 
     /** props */
-    id: ID_TYPE.isRequired,
     menu: PropTypes.shape({
       iconSize: PropTypes.oneOf([24, 32, 48]).isRequired,
       pages: PropTypes.arrayOf(
@@ -57,15 +56,18 @@ export default class Sidebar extends React.PureComponent {
       isLogin,
 
       /** props */
-      id,
-      menu: {
-        iconSize,
-        pages,
-        design: { width, paddingTop, expandSubItem, ...design },
-      },
+      menu,
       children,
     } = this.props;
     const { openKeys } = this.state;
+
+    if (!menu) return children;
+
+    const {
+      iconSize,
+      pages,
+      design: { width, paddingTop, expandSubItem, ...design },
+    } = menu;
 
     return (
       <div className={styles.root}>
@@ -75,7 +77,7 @@ export default class Sidebar extends React.PureComponent {
           }}
         >
           <Menu
-            id={id}
+            id="sidebar"
             className={`${styles.menu} ${
               expandSubItem ? '' : `${styles.showArrow} show-hover`
             } show-border`}
@@ -83,6 +85,7 @@ export default class Sidebar extends React.PureComponent {
             design={{
               ...design,
               width,
+              height: 0,
               expandSubItem: true,
             }}
             openKeys={expandSubItem ? null : openKeys}
@@ -122,7 +125,7 @@ export default class Sidebar extends React.PureComponent {
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              #menu-${id} > .ant-menu {
+              #menu-sidebar > .ant-menu {
                 margin: ${paddingTop}px 0px 0px;
               }
             `,

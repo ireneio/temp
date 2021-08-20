@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import ThankYouPageView, { namespacesRequired } from '@store/thank-you-page';
+import withHook from '@store/utils/lib/withHook';
 
 import { Error } from 'components';
 import * as Utils from 'utils';
-import { getJoinedThankYouPage } from 'selectors/thankYouPage';
+import * as Template from 'template';
 import * as Actions from 'ducks/actions';
+import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class ThankYouPage extends React.Component {
   static getInitialProps = async context => {
@@ -45,12 +47,29 @@ class ThankYouPage extends React.Component {
 const mapStateToProps = (state, props) => {
   /* Handle error */
   const error = Utils.getStateError(state);
+
   if (error) return { error };
 
   return {
     location: Utils.uriParser(props),
-    page: getJoinedThankYouPage(state, props),
+    page: {
+      id: 'thank-you-page',
+      title: {
+        zh_TW: '結帳',
+      },
+      container: 'DefaultContainer',
+      blocks: [],
+      fixedtop: Template.fixedtop,
+      secondtop: Template.secondtop,
+      fixedbottom: Template.fixedbottom,
+      sidebar: Template.sidebar,
+      useBottom: false,
+    },
   };
 };
 
-export default connect(mapStateToProps)(ThankYouPage);
+export default connect(mapStateToProps)(
+  withHook(({ page }) => ({
+    page: useTemplatesMenus(page),
+  }))(ThankYouPage),
+);

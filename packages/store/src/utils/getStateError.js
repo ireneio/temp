@@ -6,10 +6,9 @@
  */
 export default state => {
   const {
-    storeReducer: { error: storeErr },
     memberReducer: { error: memberErr },
     pagesReducer: { error: pagesErr },
     productsReducer: { error: productsErr },
   } = state;
-  return storeErr || memberErr || pagesErr || productsErr;
+  return memberErr || pagesErr || productsErr;
 };

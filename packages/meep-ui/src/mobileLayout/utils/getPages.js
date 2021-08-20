@@ -2,7 +2,7 @@ import { NOTLOGIN } from 'constants/isLogin';
 
 const mergePages = pages =>
   pages.reduce((result, page) => {
-    const specificMenuItem = page.pages.filter(({ action }) =>
+    const specificMenuItem = (page.pages || []).filter(({ action }) =>
       [5, 8].includes(action),
     );
 
@@ -10,7 +10,9 @@ const mergePages = pages =>
       ...result,
       {
         ...page,
-        pages: page.pages.filter(({ action }) => ![5, 8].includes(action)),
+        pages: (page.pages || []).filter(
+          ({ action }) => ![5, 8].includes(action),
+        ),
       },
       ...specificMenuItem,
     ];
@@ -23,17 +25,17 @@ export default (
   { isLogin, hasStoreAppPlugin },
 ) => {
   const design =
-    fixedtop?.menu.design || secondtop?.menu.design || sidebar?.menu.design;
+    fixedtop?.menu?.design || secondtop?.menu?.design || sidebar?.menu?.design;
   const showSearchbar =
-    fixedtop?.menu.design?.showSearchbar ||
-    secondtop?.menu.design?.showSearchbar ||
-    sidebar?.menu.design?.showSearchbar;
+    fixedtop?.menu?.design?.showSearchbar ||
+    secondtop?.menu?.design?.showSearchbar ||
+    sidebar?.menu?.design?.showSearchbar;
 
   return {
     ...mergePages([
-      ...(fixedtop?.menu.pages || []),
-      ...(secondtop?.menu.pages || []),
-      ...(sidebar?.menu.pages || []),
+      ...(fixedtop?.menu?.pages || []),
+      ...(secondtop?.menu?.pages || []),
+      ...(sidebar?.menu?.pages || []),
     ]).reduce(
       ({ pages, headerPages }, { id, action, ...page }) => {
         const newPage = {

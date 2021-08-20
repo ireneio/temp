@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import { createSelector } from 'reselect';
 import { getJoinedModule } from 'utils';
-import { getPages, getMenus, getJoinedPage, getQuery } from './index';
+import { getPages, getQuery } from './index';
 
 const getPagePath = (state, { path }) => path;
 const getPageId = (state, { pageId }) => pageId;
@@ -17,24 +17,18 @@ export const getPageByPath = createSelector(
   },
 );
 
-export const getJoinedModulePage = createSelector(
-  [getPageByPath, getQuery, getMenus],
-  (page, query, menus) => {
-    if (page) {
-      const blocks = page.blocks.map(({ widgets, ...block }) => ({
-        ...block,
-        widgets: getJoinedModule(widgets, {
-          query,
-          menus,
-        }),
-      }));
-      return { ...page, blocks };
-    }
-    return page;
-  },
-);
-
 export const getJoinedPageInPagesRoute = createSelector(
-  [getJoinedModulePage, getMenus],
-  getJoinedPage,
+  [getPageByPath, getQuery],
+  (page, query) =>
+    !page
+      ? page
+      : {
+          ...page,
+          blocks: page.blocks.map(({ widgets, ...block }) => ({
+            ...block,
+            widgets: getJoinedModule(widgets, {
+              query,
+            }),
+          })),
+        },
 );
