@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.80.29 (2021-08-20)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1686](https://github.com/meepshop/meep-lerna/pull/1686) Revert 內部開單 - 簡化 menu, activities query ([@meepshop-bot](https://github.com/meepshop-bot))
+
+#### :rocket: New Feature
+
+- [#1681](https://github.com/meepshop/meep-lerna/pull/1681) (@meepshop/frontend) Add pull request template ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#1683](https://github.com/meepshop/meep-lerna/pull/1683) 【BUG】部分商店前台 500 error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1684](https://github.com/meepshop/meep-lerna/pull/1684) (@meepshop/frontend) Add more information in pull request template ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@meepshop-bot](https://github.com/meepshop-bot)
+
 ## 0.80.28 (2021-08-17)
 
 #### :boom: Breaking Change
