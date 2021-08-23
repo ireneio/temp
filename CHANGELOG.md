@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.80.30 (2021-08-23)
+
+#### :rocket: New Feature
+
+- [#1692](https://github.com/meepshop/meep-lerna/pull/1692) internal - 修改 @admin/block 分隔線 ([@Lexiwu](https://github.com/Lexiwu))
+- [#1691](https://github.com/meepshop/meep-lerna/pull/1691) internal - 新增購物設定 package ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1695](https://github.com/meepshop/meep-lerna/pull/1695) 【BUG】 選單目錄 - 第三層選單消失 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `mock-types`
+  - [#1689](https://github.com/meepshop/meep-lerna/pull/1689) (@meepshop/mock-types): add mock store ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.29 (2021-08-20)
 
 #### :boom: Breaking Change
