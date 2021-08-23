@@ -36,14 +36,23 @@ const handler = routes.getRequestHandler(app, ({ req, res, route, query }) => {
   app.render(req, res, page, query);
 });
 
-['unhandledRejection', 'uncaughtException'].forEach(eventName => {
+[
+  'unhandledRejection',
+  'uncaughtException',
+  'beforeExit',
+  'exit',
+  'SIGTERM',
+  'SIGINT',
+].forEach(eventName => {
   process.on(eventName, error => {
     logger.info(
       `${eventName} => ${JSON.stringify({
-        msg: error.message,
+        msg: error.message || error,
         stk: error.stack,
       })}`,
     );
+
+    if (['exit', 'SIGTERM', 'SIGINT'].includes(eventName)) process.exit(error);
   });
 });
 
