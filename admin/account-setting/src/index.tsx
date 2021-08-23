@@ -4,7 +4,7 @@ import { NextPage } from 'next';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Form, Button, Divider } from 'antd';
+import { Form, Button } from 'antd';
 import { filter } from 'graphql-anywhere';
 import { areEqual } from 'fbjs';
 
@@ -73,8 +73,6 @@ const AccountSetting: NextPage<PropsType> = React.memo(() => {
       >
         <div className={styles.form}>
           <Account viewer={filter(accountFragment, data?.viewer || null)} />
-
-          <Divider className={styles.divider} />
 
           <Plan viewer={filter(planFragment, data?.viewer || null)} />
         </div>
