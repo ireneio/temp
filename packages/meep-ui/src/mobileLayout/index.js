@@ -219,6 +219,7 @@ export default class MobileLayout extends React.PureComponent {
                     }
               }
               reverseSearch
+              hasLevelThree
             />
           </Drawer>
         )}

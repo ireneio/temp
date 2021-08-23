@@ -109,6 +109,7 @@ export default class Sidebar extends React.PureComponent {
             }
             iconSize={iconSize}
             reverseSearch
+            hasLevelThree
           />
         </div>
 

@@ -41,6 +41,7 @@ export default class SecondTop extends React.PureComponent {
           ...design,
           width: 0,
         }}
+        hasLevelThree
       />
     );
   }

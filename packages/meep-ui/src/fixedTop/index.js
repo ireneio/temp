@@ -43,6 +43,7 @@ export default class FixedTop extends React.PureComponent {
             }}
             iconSize={iconSize}
             logoAlignment={logoAlignment}
+            hasLevelThree
           />
         </header>
       </Affix>

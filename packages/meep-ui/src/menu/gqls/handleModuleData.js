@@ -109,7 +109,7 @@ export const handleModuleDataMenuFragment = gql`
 `;
 
 export const getMenu = gql`
-  query getMen($menuId: String) {
+  query getMenu($menuId: String) {
     viewer {
       id
       store {

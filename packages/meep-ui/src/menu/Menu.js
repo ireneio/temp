@@ -133,6 +133,7 @@ export default class Menu extends React.PureComponent {
       className,
       reverseSearch,
       isModule,
+      hasLevelThree,
       ...props
     } = this.props;
     const { isMobile } = this.state;
@@ -270,12 +271,7 @@ export default class Menu extends React.PureComponent {
               key={pageId}
               id={pageId}
               iconSize={iconSize}
-              hasLevelThree={[
-                'fixedtop',
-                'secondtop',
-                'sidebar',
-                'mobile-sidebar',
-              ].includes(id)}
+              hasLevelThree={hasLevelThree}
               menuItemStyle={
                 !expandSubItem
                   ? {}
