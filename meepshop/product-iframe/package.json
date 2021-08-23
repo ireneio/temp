@@ -4,11 +4,11 @@
   "description": "Meepshop product iframe",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.27",
+  "version": "0.80.30",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/iframe": "^0.80.27"
+    "@meepshop/iframe": "^0.80.30"
   },
   "keywords": ["iframe", "meepshop", "product"]
 }

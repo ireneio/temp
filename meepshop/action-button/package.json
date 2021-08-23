@@ -4,13 +4,13 @@
   "description": "Meepshop action button module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.27",
+  "version": "0.80.30",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.27",
-    "@meepshop/link": "^0.80.27",
-    "@meepshop/utils": "^0.80.27"
+    "@meepshop/context": "^0.80.30",
+    "@meepshop/link": "^0.80.30",
+    "@meepshop/utils": "^0.80.30"
   },
   "keywords": ["action button", "meepshop"]
 }
