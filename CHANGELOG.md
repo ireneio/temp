@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.80.31 (2021-08-23)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1672](https://github.com/meepshop/meep-lerna/pull/1672) 修改 currentMinPurchasableQty - 前端 ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#1671](https://github.com/meepshop/meep-lerna/pull/1671) 【BUG】前台 - Page not found 頁面異常 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`
+  - [#1672](https://github.com/meepshop/meep-lerna/pull/1672) 修改 currentMinPurchasableQty - 前端 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.30 (2021-08-23)
 
 #### :rocket: New Feature
