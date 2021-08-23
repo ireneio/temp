@@ -1,8 +1,8 @@
 const getVariantOptions = (children, t, i18n) =>
   children.map(({ children: child, data }) => {
     const { title, variant = {} } = data;
-    const { id, currentMinPurchasableQty, currentMaxPurchasableQty } = variant;
-    const disabled = currentMaxPurchasableQty < currentMinPurchasableQty;
+    const { id, currentMinPurchasableQty } = variant;
+    const disabled = currentMinPurchasableQty === 0;
 
     return {
       value: child ? title[i18n.language] || title.zh_TW : id,

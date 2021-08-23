@@ -29,14 +29,13 @@ const generateVariantOptions = (
 ): CascaderOptionType[] | undefined =>
   children?.map(({ children: child, data }) => {
     const { title, variant } = data;
-    const currentMaxPurchasableQty = variant?.currentMaxPurchasableQty || 0;
     const currentMinPurchasableQty = variant?.currentMinPurchasableQty || 0;
 
     return {
       value:
         (child ? title?.[language] || title?.zh_TW : variant?.id) || undefined,
       label: title?.[language] || title?.zh_TW,
-      disabled: currentMaxPurchasableQty < currentMinPurchasableQty,
+      disabled: currentMinPurchasableQty === 0,
       ...(!child
         ? {}
         : {
@@ -58,14 +57,13 @@ export default (
 
     if (!variantsTree) {
       const variant = product.variants[0];
-      const currentMaxPurchasableQty = variant?.currentMaxPurchasableQty || 0;
       const currentMinPurchasableQty = variant?.currentMinPurchasableQty || 0;
 
       return [
         {
           value: variant?.id || 'null-id',
           label: '',
-          disabled: currentMaxPurchasableQty < currentMinPurchasableQty,
+          disabled: currentMinPurchasableQty === 0,
         },
       ];
     }

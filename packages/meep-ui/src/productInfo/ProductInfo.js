@@ -93,7 +93,7 @@ export default class ProductInfo extends React.PureComponent {
       };
 
     const { quantityInCart } = this.props;
-    const { currentMaxPurchasableQty } = variant;
+    const { currentMinPurchasableQty, currentMaxPurchasableQty } = variant;
     const formatVariant = {
       ...variant,
       productNotice: stockNotificationList.some(
@@ -101,7 +101,7 @@ export default class ProductInfo extends React.PureComponent {
       ),
     };
 
-    if (currentMaxPurchasableQty === 0)
+    if (currentMinPurchasableQty === 0)
       return {
         formatVariant,
         orderable: OUT_OF_STOCK,

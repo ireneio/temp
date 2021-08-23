@@ -20,7 +20,6 @@ export const useVariantOptionsFragment = gql`
         }
       }
       currentMinPurchasableQty
-      currentMaxPurchasableQty
     }
 
     ...useVariantsTreeFragment

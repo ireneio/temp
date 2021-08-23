@@ -38,10 +38,9 @@ export default (variant: useOptionsVariantFragmentType | null): OptionsType => {
           },
         ];
 
-      const amount =
-        currentMaxPurchasableQty >= currentMinPurchasableQty
-          ? currentMaxPurchasableQty - currentMinPurchasableQty + 1
-          : 0;
+      const amount = currentMinPurchasableQty
+        ? currentMaxPurchasableQty - currentMinPurchasableQty + 1
+        : 0;
 
       return [].constructor
         .apply({}, new Array(amount >= 100 ? 101 : amount))

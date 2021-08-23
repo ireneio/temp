@@ -30,8 +30,9 @@ export default React.memo(
   ({ unfoldedVariants, variant, quantityInCart, ...props }: PropsType) => {
     const { t } = useTranslation('product-info');
     const currentMaxPurchasableQty = variant?.currentMaxPurchasableQty || 0;
+    const currentMinPurchasableQty = variant?.currentMinPurchasableQty || 0;
 
-    if (currentMaxPurchasableQty === 0) return <div>{t('out-of-stock')}</div>;
+    if (currentMinPurchasableQty === 0) return <div>{t('out-of-stock')}</div>;
 
     if (quantityInCart >= currentMaxPurchasableQty)
       return <div>{t('over-stock')}</div>;

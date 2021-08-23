@@ -10,7 +10,6 @@ export const productsObjectTypeFragment = gql`
     variant {
       id
       currentMinPurchasableQty
-      currentMaxPurchasableQty
     }
   }
 `;

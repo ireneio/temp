@@ -309,12 +309,7 @@ export default class OrderDetail extends React.PureComponent {
         priceInfo,
       },
       products: newProducts.map(product => {
-        const {
-          error,
-          type,
-          currentMinPurchasableQty,
-          currentMaxPurchasableQty,
-        } = product;
+        const { error, type, currentMinPurchasableQty } = product;
 
         if (error && /已下架/.test(error))
           return {
@@ -322,16 +317,13 @@ export default class OrderDetail extends React.PureComponent {
             error: 'PRODUCT_NOT_ONLINE',
           };
 
-        if (
-          type !== 'product' &&
-          (currentMinPurchasableQty > currentMaxPurchasableQty || error)
-        )
+        if (type !== 'product' && (currentMinPurchasableQty === 0 || error))
           return {
             ...product,
             error: 'GIFT_OUT_OF_STOCK',
           };
 
-        if (currentMinPurchasableQty > currentMaxPurchasableQty)
+        if (currentMinPurchasableQty === 0)
           return {
             ...product,
             error: 'PRODUCT_SOLD_OUT',

@@ -9,16 +9,11 @@ export const resolvers = {
         return 'PRODUCT_NOT_ONLINE';
 
       const currentMinPurchasableQty = variant?.currentMinPurchasableQty || 0;
-      const currentMaxPurchasableQty = variant?.currentMaxPurchasableQty || 0;
 
-      if (
-        type !== 'product' &&
-        (currentMaxPurchasableQty < currentMinPurchasableQty || serverError)
-      )
+      if (type !== 'product' && (currentMinPurchasableQty === 0 || serverError))
         return 'GIFT_OUT_OF_STOCK';
 
-      if (currentMaxPurchasableQty < currentMinPurchasableQty)
-        return 'PRODUCT_SOLD_OUT';
+      if (currentMinPurchasableQty === 0) return 'PRODUCT_SOLD_OUT';
 
       return null;
     },

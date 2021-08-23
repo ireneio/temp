@@ -335,9 +335,7 @@ class PayemntInfo extends React.PureComponent {
             <Select disabled>
               <Option value={variants[0].id}>
                 {title[i18n.language] || title.zh_TW}
-                {variantMax !== 0 && variantMax >= variantMin
-                  ? null
-                  : ` (${t('no-variant')})`}
+                {variantMin !== 0 ? null : ` (${t('no-variant')})`}
               </Option>
             </Select>
           ) : (
@@ -364,7 +362,7 @@ class PayemntInfo extends React.PureComponent {
 
         {!addition.includes('quantity') ||
         variantMax === 0 ||
-        variantMax < variantMin ? null : (
+        variantMin === 0 ? null : (
           <FormItem
             style={formItemStyle}
             name={['quantity']}
