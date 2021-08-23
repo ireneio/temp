@@ -1,5 +1,6 @@
 // import
 import React from 'react';
+import { Provider } from 'react-redux';
 
 import { appWithTranslation } from '@meepshop/locales';
 import { EventsProvider } from '@meepshop/context/lib/Events';
@@ -12,6 +13,7 @@ import CurrencyProvider from '@store/currency';
 import AdTrackProvider from '@store/ad-track';
 
 import MockTypes from './index';
+import mockStore from './mockStore';
 
 // definition
 export default withApollo(
@@ -23,7 +25,9 @@ export default withApollo(
             <ColorsProvider>
               <AppsProvider>
                 <CurrencyProvider>
-                  <AdTrackProvider>{children}</AdTrackProvider>
+                  <AdTrackProvider>
+                    <Provider store={mockStore()}>{children}</Provider>
+                  </AdTrackProvider>
                 </CurrencyProvider>
               </AppsProvider>
             </ColorsProvider>

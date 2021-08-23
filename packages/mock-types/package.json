@@ -29,7 +29,9 @@
     "@store/utils": "^0.80.27",
     "apollo-link-schema": "^1.2.5",
     "date-fns": "^2.15.0",
-    "js-combinatorics": "^0.6.1"
+    "js-combinatorics": "^0.6.1",
+    "react-redux": "^7.2.4",
+    "redux-mock-store": "^1.5.4"
   },
   "keywords": ["graphql", "mock"]
 }
