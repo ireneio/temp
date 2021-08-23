@@ -54,6 +54,10 @@ class Product extends React.Component {
   static defaultProps = { error: null };
 
   componentDidUpdate(prevProps) {
+    const { error } = this.props;
+
+    if (error) return;
+
     const {
       dispatchAction,
       role,
