@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "@admin/setting-apps",
+  "description": "setting apps for admin",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.80.32",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "keywords": ["admin", "apps", "setting"]
+}
