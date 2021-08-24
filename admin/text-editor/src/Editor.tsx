@@ -19,6 +19,8 @@ BraftEditor.use(
   }),
 );
 
+export const { createEditorState } = BraftEditor;
+
 export default React.memo(
   (props: BraftEditorProps): React.ReactElement | null => {
     const language = useLanguage();
@@ -28,14 +30,19 @@ export default React.memo(
     );
 
     return (
-      <BraftEditor
-        {...props}
-        controls={CONTROLS}
-        className={styles.root}
-        language={language}
-        fontSizes={FONTSIZES}
-        fontFamilies={fontFamilies}
-      />
+      <>
+        <BraftEditor
+          {...props}
+          controls={CONTROLS}
+          className={styles.root}
+          language={language}
+          fontSizes={FONTSIZES}
+          fontFamilies={fontFamilies}
+        />
+        <p className={styles.messageLength}>
+          {props.value?.toText().length}/200
+        </p>
+      </>
     );
   },
 );

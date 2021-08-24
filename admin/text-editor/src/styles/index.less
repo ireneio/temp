@@ -12,4 +12,50 @@
     max-height: 200px;
     overflow-y: auto;
   }
+
+  :global(.bf-content) {
+    :global(.bfa-center > div),
+    :global(.bfa-justify > div),
+    :global(.bfa-left > div),
+    :global(.bfa-right > div) {
+      padding: 0 1px;
+    }
+
+    ol,
+    ul {
+      list-style-position: inside;
+
+      :global(li.bftd-1),
+      :global(li.bftd-2),
+      :global(li.bftd-3),
+      :global(li.bftd-4),
+      :global(li.bftd-5),
+      :global(li.bftd-6) {
+        display: list-item;
+      }
+
+      li > div {
+        text-indent: 0;
+        display: inline-block;
+        word-break: break-word;
+        padding-right: 1px;
+      }
+
+      :global(.public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR) {
+        margin-left: 0;
+      }
+    }
+
+    ol
+      :global(.public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-listLTR::before) {
+      position: initial;
+      width: auto;
+    }
+  }
+}
+
+.messageLength {
+  font-size: 1rem;
+  color: #000;
+  margin-bottom: 0;
 }
