@@ -3,6 +3,10 @@
 
   :global(.ant-select-arrow) {
     transition: transform 0.2s;
+
+    :global(.anticon:not(.ant-select-suffix)) {
+      pointer-events: none;
+    }
   }
 
   &:global(.ant-select-focused .ant-select-arrow) {
