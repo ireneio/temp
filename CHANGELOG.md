@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.33 (2021-08-24)
+
+#### :bug: Bug Fix
+
+- [#1700](https://github.com/meepshop/meep-lerna/pull/1700) 【BUG】 購物車數量調整箭頭按鈕 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.32 (2021-08-24)
 
 #### :boom: Breaking Change
