@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## 0.80.32 (2021-08-24)
+
+#### :boom: Breaking Change
+
+- `meep-ui`
+  - [#1651](https://github.com/meepshop/meep-lerna/pull/1651) 內部開單 - 移除 meep-ui 內使用的 getData ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- Other
+  - [#1638](https://github.com/meepshop/meep-lerna/pull/1638) 內部開單 - 前台會員資料改用 @meepshop/date-picker ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1682](https://github.com/meepshop/meep-lerna/pull/1682) 內部開單 - 額外檢查 recaptcha 是否有被 render ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `mock-types`
+  - [#1685](https://github.com/meepshop/meep-lerna/pull/1685) 新增 @store/cart ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#1697](https://github.com/meepshop/meep-lerna/pull/1697) (@meepshop/frontend) Add more process handler ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#1673](https://github.com/meepshop/meep-lerna/pull/1673) 內部開單 - 修正第三方套件 dynamic import ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1696](https://github.com/meepshop/meep-lerna/pull/1696) internal - 增加 code owner ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.31 (2021-08-23)
 
 #### :bug: Bug Fix
