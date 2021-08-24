@@ -4,13 +4,13 @@
   "description": "store notification",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.30",
+  "version": "0.80.32",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.30",
-    "@meepshop/icons": "^0.80.30",
-    "@meepshop/locales": "^0.80.30",
+    "@meepshop/context": "^0.80.32",
+    "@meepshop/icons": "^0.80.32",
+    "@meepshop/locales": "^0.80.32",
     "rc-notification": "^4.5.5"
   },
   "keywords": ["notification", "store"]

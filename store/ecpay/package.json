@@ -4,16 +4,16 @@
   "description": "ecpay 2.0 page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.31",
+  "version": "0.80.32",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.30",
-    "@meepshop/hooks": "^0.80.31",
-    "@meepshop/icons": "^0.80.30",
-    "@meepshop/link": "^0.80.30",
-    "@meepshop/locales": "^0.80.30",
-    "@meepshop/switch": "^0.80.30"
+    "@meepshop/context": "^0.80.32",
+    "@meepshop/hooks": "^0.80.32",
+    "@meepshop/icons": "^0.80.32",
+    "@meepshop/link": "^0.80.32",
+    "@meepshop/locales": "^0.80.32",
+    "@meepshop/switch": "^0.80.32"
   },
   "keywords": ["ecpay", "store"]
 }
