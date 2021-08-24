@@ -24,8 +24,8 @@ const { Password } = Input;
 
 export default React.memo(({ setAction }: PropsType) => {
   const { t } = useTranslation('login');
-  const { grecaptchaRef, grecaptchaScript } = useGrecaptcha();
-  const { loading, login } = useLogin();
+  const { grecaptcha, grecaptchaRef, grecaptchaScript } = useGrecaptcha();
+  const { loading, login } = useLogin(grecaptcha);
   const validateEmail = useValidateEmail(true);
 
   return (

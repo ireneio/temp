@@ -25,7 +25,9 @@ interface ValuesType {
 }
 
 // definition
-export default (): {
+export default (
+  grecaptcha: typeof window['grecaptcha'] | null,
+): {
   loading: boolean;
   login: (values: ValuesType) => void;
 } => {
@@ -69,11 +71,16 @@ export default (): {
     loading,
     login: useCallback(
       async ({ isHelper, cname, ...input }) => {
-        if (!window.grecaptcha) return;
+        if (!grecaptcha) return;
 
-        const gRecaptchaResponse = window.grecaptcha.getResponse();
+        const gRecaptchaResponse = grecaptcha.getResponse();
 
-        window.grecaptcha.reset();
+        if (!gRecaptchaResponse) {
+          message.error('Invalid recaptcha response');
+          return;
+        }
+
+        grecaptcha.reset();
         await mutation({
           variables: {
             input: {
@@ -88,7 +95,7 @@ export default (): {
           },
         });
       },
-      [mutation],
+      [grecaptcha, mutation],
     ),
   };
 };
