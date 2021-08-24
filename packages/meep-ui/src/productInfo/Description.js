@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 
 import { withTranslation } from '@meepshop/locales';
+import DraftText from '@meepshop/draft-text';
 
-import DraftText from 'draftText';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 
 import * as styles from './styles/description';
+import lessStyles from './styles/description.less';
 import { PRODUCT_TYPE, VARIANT_TYPE } from './constants';
 
 const Description = ({
@@ -34,11 +35,11 @@ const Description = ({
       )}
       {mode === 'detail' && (
         <DraftText
-          value={
+          className={lessStyles.description}
+          content={
             productData.description[i18n.language] ||
             productData.description.zh_TW
           }
-          style={styles.description}
         />
       )}
       {productData.applicableActivities?.length > 0 && (

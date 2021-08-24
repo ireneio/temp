@@ -1,5 +1,3 @@
-// typescript import
-
 // import
 import { useMemo } from 'react';
 

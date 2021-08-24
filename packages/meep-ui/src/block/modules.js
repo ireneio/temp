@@ -1,4 +1,5 @@
 import divider from '@meepshop/divider';
+import draftText from '@meepshop/draft-text';
 import iframe from '@meepshop/iframe';
 import productDraftText from '@meepshop/product-draft-text';
 import productIframe from '@meepshop/product-iframe';
@@ -6,6 +7,7 @@ import productVideo from '@meepshop/product-video';
 import smartConversion from '@meepshop/smart-conversion';
 import socailMedia from '@meepshop/social-media';
 import unavailable from '@meepshop/unavailable';
+import video from '@meepshop/video';
 
 import image from 'image';
 import googlemap from 'googleMap';
@@ -14,13 +16,11 @@ import facebookWall from 'facebookWall';
 import landingPage from 'landingPage';
 import socialThumbs from 'socialThumbs';
 import imagetext from 'imageText';
-import videoCore from 'videoCore';
 import productCollections from 'productCollection';
 import productCarousell from 'productCarousel';
 import productInfo from 'productInfo';
 import productList from 'productList';
 import productQA from 'productQA';
-import draftText from 'draftText';
 import activity from 'activity';
 import checkout from 'checkout';
 import menu, { handleModuleData } from 'menu';
@@ -40,7 +40,7 @@ export default {
   'social-thumbs': socialThumbs,
   imagetext,
   'social-media': socailMedia,
-  'video-core': videoCore,
+  'video-core': video,
   'product-collections': productCollections,
   'product-carousell': productCarousell,
   'product-draftText': productDraftText,

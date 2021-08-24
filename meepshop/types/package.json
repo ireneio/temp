@@ -10,6 +10,7 @@
   "types": "./index.ts",
   "dependencies": {
     "commander": "^4.0.1",
+    "draft-js": "^0.10.3",
     "execa": "^4.0.0"
   },
   "keywords": ["apollo-client", "meepshop", "types"]

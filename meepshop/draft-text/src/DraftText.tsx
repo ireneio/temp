@@ -1,5 +1,6 @@
 // import
 import React from 'react';
+import { convertRawToEditorState } from 'braft-convert';
 
 import { useRawContent, useHtml } from '@meepshop/hooks';
 
@@ -8,14 +9,29 @@ import styles from './styles/index.less';
 // graphql typescript
 import { draftTextFragment } from '@meepshop/types/gqls/meepshop';
 
+// typescript definition
+interface PropsType extends draftTextFragment {
+  className?: string;
+  usePlainText?: boolean;
+}
+
 // definition
-export default React.memo(({ content }: draftTextFragment) => {
+export default React.memo(({ className, content, usePlainText }: PropsType) => {
   const rawContent = useRawContent(content);
   const html = useHtml(rawContent);
 
+  if (usePlainText)
+    return (
+      <>
+        {convertRawToEditorState(rawContent || {})
+          .getCurrentContent()
+          .getPlainText()}
+      </>
+    );
+
   return (
     <div
-      className={styles.root}
+      className={`${styles.root} ${className || ''}`}
       dangerouslySetInnerHTML={{
         __html: html,
       }}

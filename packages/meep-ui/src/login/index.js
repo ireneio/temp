@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Radio } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
+import DraftText from '@meepshop/draft-text';
 
 import { ISUSER } from 'constants/isLogin';
 import { enhancer } from 'layout/DecoratorsRoot';
-import DraftText from 'draftText';
 
 import styles from './styles/index.less';
 import LoginForm from './LoginForm';
@@ -103,9 +103,10 @@ export default class Login extends React.PureComponent {
         {!shopperLoginMessageEnabled || !shopperLoginMessage ? null : (
           <>
             <div className={styles.hr} style={{ backgroundColor: colors[5] }} />
+
             <DraftText
-              style={{ marginBottom: 'calc(60px - 5vh)', padding: '0px' }}
-              value={shopperLoginMessage}
+              className={styles.loginMessage}
+              content={shopperLoginMessage}
             />
           </>
         )}

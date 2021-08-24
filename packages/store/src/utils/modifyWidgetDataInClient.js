@@ -2,6 +2,7 @@ import * as Api from 'api';
 import uuid from 'uuid/v4';
 
 import getJustifyContent from './getJustifyContent';
+import parseIframe from './parseIframe';
 
 /**
  * 暫時由前端join與filter各個module欄位
@@ -187,13 +188,19 @@ export default function modifyWidgetDataInClient(widgets = [], query, page) {
           };
         }
         /* 影片嵌入 */
-        case 'videoCore': {
+        case 'video-core': {
           return {
             id: uuid(),
             module: widget.module,
-            contentWidth: widget.contentWidth,
-            aspect: widget.aspect,
-            href: widget.href,
+            width: widget.contentWidth,
+            ratio: {
+              '16:9': 'Ratio16to9',
+              '4:3': 'Ratio4to3',
+              '16:10': 'Ratio16to10',
+            }[widget.aspect],
+            href:
+              parseIframe(widget.href) ||
+              'https://www.youtube.com/watch?v=L8FK64bLJKE&feature=youtu.be',
           };
         }
         /* 臉書按讚 */
@@ -300,7 +307,7 @@ export default function modifyWidgetDataInClient(widgets = [], query, page) {
           return {
             id: uuid(),
             module: widget.module,
-            value: widget.value || '',
+            content: widget.value || '',
           };
         }
         /* 折扣活動 */

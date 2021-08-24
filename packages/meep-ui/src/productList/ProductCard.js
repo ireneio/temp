@@ -4,11 +4,11 @@ import radium, { StyleRoot } from 'radium';
 
 import { withTranslation } from '@meepshop/locales';
 import { placeholderThumbnail_scaledSrc as placeholderThumbnail } from '@meepshop/images';
+import DraftText from '@meepshop/draft-text';
 
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 import Image from 'image';
-import DraftText from 'draftText';
 
 import ProductLoader from './ProductLoader';
 import { PRODUCT_TYPE } from './constants';
@@ -116,8 +116,8 @@ const ProductCard = ({
                 (description[i18n.language] || description.zh_TW) && (
                   <div style={styles.productDescription(colors)}>
                     <DraftText
-                      value={description[i18n.language] || description.zh_TW}
-                      plainText
+                      content={description[i18n.language] || description.zh_TW}
+                      usePlainText
                     />
                   </div>
                 )}

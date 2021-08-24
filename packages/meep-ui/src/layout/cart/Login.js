@@ -12,11 +12,10 @@ import {
   menuIconsShoppingCart_react as ShoppingCartIcon,
   facebook_react as FacebookIcon,
 } from '@meepshop/images';
+import DraftText from '@meepshop/draft-text';
 import { useValidateEmail } from '@meepshop/validator';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
-
-import DraftText from 'draftText';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -199,9 +198,10 @@ export default class Login extends React.PureComponent {
                     className={styles.hr}
                     style={{ backgroundColor: colors[5] }}
                   />
+
                   <DraftText
-                    style={{ padding: '0px 0px 10px 0px' }}
-                    value={shopperLoginMessage}
+                    className={styles.loginMessage}
+                    content={shopperLoginMessage}
                   />
                 </>
               )}

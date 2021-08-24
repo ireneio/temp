@@ -13,7 +13,6 @@
     "@meepshop/locales": "^0.80.30",
     "braft-editor": "^2.3.9",
     "braft-extensions": "^0.1.0",
-    "draft-js": "^0.10.3",
     "react-color": "^2.18.1"
   },
   "keywords": ["admin", "text-editor"]
