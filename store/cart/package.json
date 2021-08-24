@@ -4,7 +4,7 @@
   "description": "store cart page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.32",
+  "version": "0.80.33",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -14,12 +14,12 @@
     "@meepshop/icons": "^0.80.32",
     "@meepshop/images": "^0.80.32",
     "@meepshop/link": "^0.80.32",
-    "@meepshop/locales": "^0.80.32",
-    "@meepshop/login-modal": "^0.80.32",
-    "@meepshop/product-amount-selector": "^0.80.32",
+    "@meepshop/locales": "^0.80.33",
+    "@meepshop/login-modal": "^0.80.33",
+    "@meepshop/product-amount-selector": "^0.80.33",
     "@meepshop/thumbnail": "^0.80.32",
     "@meepshop/utils": "^0.80.32",
-    "@store/checkout-steps": "^0.80.32",
+    "@store/checkout-steps": "^0.80.33",
     "color": "^3.0.0"
   },
   "keywords": ["cart", "store"]

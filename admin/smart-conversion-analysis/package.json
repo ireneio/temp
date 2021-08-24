@@ -4,13 +4,13 @@
   "description": "smart-conversion result",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.32",
+  "version": "0.80.33",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/utils": "^0.80.32",
     "@meepshop/images": "^0.80.32",
-    "@meepshop/locales": "^0.80.32",
+    "@meepshop/locales": "^0.80.33",
     "@meepshop/utils": "^0.80.32",
     "bizcharts": "^4.0.14",
     "date-fns": "^2.15.0"
