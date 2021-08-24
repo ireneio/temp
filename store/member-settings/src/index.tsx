@@ -2,14 +2,15 @@
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { LoadingOutlined } from '@ant-design/icons';
-import { Form, Spin, Input, Select, DatePicker, Checkbox, Button } from 'antd';
-import moment from 'moment';
+import { Form, Spin, Input, Select, Checkbox, Button } from 'antd';
+import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/address-cascader';
+import DatePicker from '@meepshop/date-picker';
 
 import RemoveCreditCardInfo from './RemoveCreditCardInfo';
 import useValidator from './hooks/useValidator';
@@ -61,7 +62,7 @@ export default React.memo(() => {
     street = null,
     zipCode = null,
   } = address || {};
-  const { startAt = moment(), expireAt = moment(), unlimitedDate = false } =
+  const { startAt = new Date(), expireAt = new Date(), unlimitedDate = false } =
     group?.slice(-1)[0] || {};
   const { name: groupName = '', type = 'normal' } = memberGroup || {};
   const { lockedBirthday = null, rewardPointReminder } = store?.setting || {};
@@ -76,10 +77,11 @@ export default React.memo(() => {
 
       {type === 'normal' ? null : (
         <div className={styles.groupExpireDate} style={{ color: colors[3] }}>
-          {t('group-expire-date.info')} {moment(startAt).format('YYYY/MM/DD')} ~{' '}
+          {t('group-expire-date.info')}{' '}
+          {format(new Date(startAt), 'yyyy/MM/dd')} ~{' '}
           {unlimitedDate
             ? t('group-expire-date.forever')
-            : moment(expireAt).format('YYYY/MM/DD')}
+            : format(new Date(expireAt), 'yyyy/MM/dd')}
         </div>
       )}
 
@@ -144,14 +146,10 @@ export default React.memo(() => {
           {...validator(birthday)}
           name={['birthday']}
           initialValue={
-            !birthday
+            // SHOULD_NOT_BE_NULL
+            !birthday?.year || !birthday?.month || !birthday?.day
               ? undefined
-              : moment({
-                  // SHOULD_NOT_BE_NULL
-                  year: birthday.year || undefined,
-                  month: !birthday.month ? undefined : birthday.month - 1,
-                  day: birthday.day || undefined,
-                })
+              : new Date(birthday.year, birthday.month - 1, birthday.day)
           }
         >
           <DatePicker

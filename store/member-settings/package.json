@@ -11,9 +11,10 @@
     "@meepshop/address-cascader": "^0.80.30",
     "@meepshop/apollo": "^0.80.31",
     "@meepshop/context": "^0.80.30",
+    "@meepshop/date-picker": "^0.80.30",
     "@meepshop/locales": "^0.80.30",
     "@store/utils": "^0.80.30",
-    "moment": "^2.22.1"
+    "date-fns": "^2.15.0"
   },
   "keywords": ["member", "settings", "store"]
 }

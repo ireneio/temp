@@ -29,7 +29,7 @@ interface ValuesType {
     tel: string | null;
     mobile: string | null;
   };
-  birthday?: moment.Moment;
+  birthday?: Date;
   addressAndZipCode?: {
     address: string[];
     zipCode: string;
@@ -63,9 +63,9 @@ export default (id: string | null): ((values: ValuesType) => void) => {
         birthday: !birthday
           ? null
           : {
-              year: parseInt(birthday.format('YYYY'), 10),
-              month: parseInt(birthday.format('M'), 10),
-              day: parseInt(birthday.format('D'), 10),
+              year: new Date(birthday).getFullYear(),
+              month: new Date(birthday).getMonth() + 1,
+              day: new Date(birthday).getDate(),
             },
         address: {
           countryId,
