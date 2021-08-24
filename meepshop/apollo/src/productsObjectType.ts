@@ -2,11 +2,14 @@
 import { productsObjectTypeFragment as productsObjectTypeFragmentType } from '@meepshop/types/gqls/meepshop';
 
 // definition
+// TODO: remove after using new cart api
 export const resolvers = {
   productsObjectType: {
     error: ({ serverError, type, variant }: productsObjectTypeFragmentType) => {
       if (serverError && /已下架/.test(serverError))
         return 'PRODUCT_NOT_ONLINE';
+
+      if (serverError && /已刪除/.test(serverError)) return 'PRODUCT_DELETED';
 
       const currentMinPurchasableQty = variant?.currentMinPurchasableQty || 0;
 

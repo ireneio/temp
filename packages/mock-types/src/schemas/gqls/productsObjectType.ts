@@ -14,7 +14,13 @@ export const productsObjectTypeMockFragment = gql`
         zh_TW
       }
     }
+    retailPrice
     totalPrice
     quantity
+    _error
+    variant {
+      currentMaxPurchasableQty
+      currentMinPurchasableQty
+    }
   }
 `;

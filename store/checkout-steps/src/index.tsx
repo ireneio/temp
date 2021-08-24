@@ -17,14 +17,15 @@ import { getStoreLogo } from './gqls';
 
 // typescript definition
 interface PropsType {
-  phase: number;
+  step: typeof STEPS[number];
 }
 
 // definition
-export default React.memo(({ phase }: PropsType) => {
+export default React.memo(({ step }: PropsType) => {
   const colors = useContext(ColorsContext);
   const { t } = useTranslation('checkout-progress');
   const { data } = useQuery<getStoreLogoType>(getStoreLogo);
+  const phase = STEPS.indexOf(step);
 
   return (
     <>
@@ -39,13 +40,13 @@ export default React.memo(({ phase }: PropsType) => {
         </div>
 
         <div className={styles.steps}>
-          {STEPS.map((step, index) => (
+          {STEPS.map((title, index) => (
             <div
-              key={step}
+              key={title}
               className={index > phase ? styles.undone : styles.done}
             >
               <div>{index + 1}</div>
-              <div>{t(step)}</div>
+              <div>{t(title)}</div>
             </div>
           ))}
         </div>

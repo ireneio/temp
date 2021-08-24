@@ -1,4 +1,5 @@
 declare interface Window {
+  storePreviousPageUrl?: string;
   events: EventTarget;
   FB?: {
     XFBML: {

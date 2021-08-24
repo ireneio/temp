@@ -1,4 +1,4 @@
 // definition
 export default {
-  phase: 1,
+  step: 'checkout' as const,
 };

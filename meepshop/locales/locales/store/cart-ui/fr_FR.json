@@ -1,0 +1,14 @@
+{
+  "go-back-to-store": "Continuer vos achats",
+  "bill": "Check-out",
+  "member-login": "Se connecter",
+  "email-is-required": "Veuillez saisir un e-mail.",
+  "email-placeholder": "Email",
+  "password-is-required": "Veuillez entrer le mot de passe.",
+  "password-placeholder": "Mot de passe",
+  "forget-password": "Mot de passe oublié?",
+  "login": "Se connecter",
+  "first-time": "Premier shopping",
+  "fb-login": "Connectez-vous avec Facebook",
+  "send-password": "réinitialiser le mot de passe"
+}

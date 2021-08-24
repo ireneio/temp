@@ -24,7 +24,7 @@ import { getIsFbLoginEnabled } from './gqls/login';
 // typescript definition
 interface PropsType {
   onClose?: () => void;
-  initialEmail: string;
+  initialEmail?: string;
   setIsForgetPassword: (isForgetPassword: boolean) => void;
 }
 

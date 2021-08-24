@@ -1,0 +1,14 @@
+{
+  "go-back-to-store": "ช็อปต่อ",
+  "bill": "เช็คเอาท์",
+  "member-login": "เข้าสู่ระบบ",
+  "email-is-required": "กรุณาใส่อีเมล",
+  "email-placeholder": "อีเมล์",
+  "password-is-required": "กรุณาใส่รหัสผ่าน",
+  "password-placeholder": "รหัสผ่าน",
+  "forget-password": "ลืมรหัสผ่าน?",
+  "login": "เข้าสู่ระบบ",
+  "first-time": "ช้อปปิ้งครั้งแรก",
+  "fb-login": "เข้าสู่ระบบด้วย Facebook",
+  "send-password": "รีเซ็ตรหัสผ่าน"
+}

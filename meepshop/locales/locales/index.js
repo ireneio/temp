@@ -15,7 +15,7 @@ const mapping = {
 
   // TODO: should remove
   'store/activity': getPkgPath('@meepshop/next-store', './locales/activity'),
-  'store/cart': getPkgPath('@meepshop/next-store', './locales/cart'),
+  'store/cart-ui': getPkgPath('@meepshop/next-store', './locales/cart-ui'),
   'store/ducks': getPkgPath('@meepshop/next-store', './locales/ducks'),
   'store/login': getPkgPath('@meepshop/next-store', './locales/login'),
   'store/order-product-list': getPkgPath(

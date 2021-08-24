@@ -14,7 +14,7 @@ import useForgetPassword from './hooks/useForgetPassword';
 
 // typescript definition
 interface PropsType {
-  initialEmail: string;
+  initialEmail?: string;
   setIsForgetPassword: (isForgetPassword: boolean) => void;
 }
 

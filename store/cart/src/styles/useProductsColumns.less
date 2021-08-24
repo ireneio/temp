@@ -1,0 +1,95 @@
+@import '~@store/utils/styles/variables.less';
+
+div.img {
+  width: 100px;
+  height: 100px;
+  border-radius: 3px;
+
+  @media (max-width: @screen-sm-max) {
+    width: 90px;
+    height: 90px;
+  }
+
+  &.link {
+    cursor: pointer;
+  }
+}
+
+.offline {
+  opacity: 0.5;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  margin-bottom: 4px;
+}
+
+.specs {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.tags {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+
+  > span {
+    border-radius: 3px;
+    display: inline-block;
+    padding: 2px 8px 2px 6px;
+    margin: 0 4px 4px 0;
+
+    > span:first-child {
+      margin-right: 5px;
+    }
+  }
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+
+  @media (max-width: @screen-sm-max) {
+    margin-bottom: 12px;
+  }
+}
+
+.select {
+  width: 100%;
+
+  @media (max-width: @screen-sm-max) {
+    width: 40%;
+  }
+}
+
+.delete {
+  font-size: 24px;
+
+  @media (max-width: @screen-sm-max) {
+    font-size: 16px;
+  }
+}
+
+.error {
+  color: #bd373c;
+  font-size: 16px;
+  font-weight: 500;
+
+  span:first-child {
+    font-size: 14px;
+    margin-right: 5px;
+  }
+}
+
+.mobile {
+  display: none;
+
+  @media (max-width: @screen-sm-max) {
+    display: block;
+  }
+}

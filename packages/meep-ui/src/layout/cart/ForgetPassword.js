@@ -16,7 +16,7 @@ import styles from './styles/forgetPassword.less';
 
 const { Item: FormItem } = Form;
 
-@withTranslation('cart')
+@withTranslation('cart-ui')
 @withHook(() => ({
   validateEmail: useValidateEmail(),
 }))

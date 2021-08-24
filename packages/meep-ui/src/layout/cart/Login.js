@@ -40,7 +40,7 @@ const query = gql`
   }
 `;
 
-@withTranslation('cart')
+@withTranslation('cart-ui')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withHook(() => ({
   validateEmail: useValidateEmail(),

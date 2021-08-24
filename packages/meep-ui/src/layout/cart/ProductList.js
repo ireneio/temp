@@ -12,7 +12,7 @@ import { NOTLOGIN } from 'constants/isLogin';
 
 import styles from './styles/productList.less';
 
-@withTranslation('cart')
+@withTranslation('cart-ui')
 @enhancer
 @radium
 export default class ProductList extends React.PureComponent {

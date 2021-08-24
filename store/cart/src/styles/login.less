@@ -1,0 +1,90 @@
+@import '~@store/utils/styles/variables.less';
+
+.login {
+  width: 100%;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 500;
+
+  @media (max-width: @screen-sm-max) {
+    padding: 14px 16px 12px 16px;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  > div:last-child {
+    display: flex;
+
+    @media (max-width: @screen-sm-max) {
+      justify-content: center;
+    }
+  }
+}
+
+.fb {
+  padding: 8px 24px;
+  border-radius: 2px;
+  background-color: #3b5998;
+  cursor: pointer;
+  color: white;
+  margin-right: 16px;
+  font-weight: normal;
+
+  :global(.anticon) {
+    font-size: 16px;
+    margin-right: 8px;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    white-space: nowrap;
+    padding: 7px 18px;
+  }
+}
+
+.member {
+  padding: 8px 40px;
+  border-radius: 2px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.message {
+  width: 100%;
+  padding: 12px 16px 12px 24px;
+  display: flex;
+  margin-bottom: 40px;
+
+  @media (max-width: @screen-sm-max) {
+    padding: 12px 16px 8px 16px;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 24px;
+  }
+
+  &.less > div:first-child {
+    height: 24px;
+    overflow: hidden;
+  }
+
+  > div:first-child {
+    flex: 1;
+    padding: 0;
+    margin-right: 16px;
+  }
+
+  > div:last-child {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    cursor: pointer;
+
+    :global(.anticon) {
+      margin-left: 4px;
+    }
+  }
+}

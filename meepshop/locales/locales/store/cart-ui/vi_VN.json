@@ -1,0 +1,14 @@
+{
+  "go-back-to-store": "Tiếp tục mua hàng",
+  "bill": "Đến thanh toán",
+  "member-login": "Đăng nhập thành viên",
+  "email-is-required": "Xin nhập hộp thư",
+  "email-placeholder": "Email",
+  "password-is-required": "Xin nhập mật khẩu",
+  "password-placeholder": "Mật khẩu",
+  "forget-password": "Quên mật khẩu",
+  "login": "Đăng nhập",
+  "first-time": "Lần đầu mua hàng",
+  "fb-login": "Đăng nhập Facebook",
+  "send-password": "Gửi thư cài đặt lại mật khẩu"
+}

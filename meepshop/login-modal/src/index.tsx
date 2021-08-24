@@ -7,15 +7,18 @@ import { useTranslation } from '@meepshop/locales';
 
 import ForgetPassword from './ForgetPassword';
 import Login from './Login';
+import useFbLogin from './hooks/useFbLogin';
 import styles from './styles/index.less';
 
 // typescript definition
 interface PropsType {
   onClose: () => void;
-  initialEmail: string;
+  initialEmail?: string;
 }
 
 // definition
+export { useFbLogin };
+
 export default React.memo(({ initialEmail, onClose }: PropsType) => {
   const colors = useContext(ColorsContext);
   const { t } = useTranslation('login-modal');
