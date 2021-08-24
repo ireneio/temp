@@ -59,7 +59,6 @@ export default class MenuItem extends React.PureComponent {
     isLogin: ISLOGIN_TYPE.isRequired,
     logout: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
-    getData: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,

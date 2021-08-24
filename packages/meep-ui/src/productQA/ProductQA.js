@@ -3,6 +3,7 @@ import radium, { Style } from 'radium';
 import PropTypes from 'prop-types';
 import { Form, List, Input, Button, message } from 'antd';
 import { format } from 'date-fns';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import { useAutoLinker } from '@meepshop/hooks';
 import { withTranslation } from '@meepshop/locales';
@@ -14,7 +15,7 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, ISLOGIN_TYPE, COLOR_TYPE } from 'constants/propTypes';
 import { ISUSER } from 'constants/isLogin';
 
-import { GET_PRODUCT_QA_LIST, CREATE_PRODUCT_QA } from './constants';
+import { getProductQA, createProductQA } from './gqls';
 import * as styles from './styles';
 
 const { Item: FormItem } = Form;
@@ -24,18 +25,56 @@ const { TextArea } = Input;
 
 @enhancer
 @withTranslation('product-qa')
-@withHook(() => ({
-  form: Form.useForm()[0],
-  autoLinker: useAutoLinker(),
-  validateEmail: useValidateEmail(),
-}))
+@withHook(({ t, productId }) => {
+  const [form] = Form.useForm();
+  const { data } = useQuery(getProductQA, {
+    variables: {
+      productId,
+    },
+  });
+  const qaList = data?.getProductQAList.data || [];
+  const [mutation, { loading }] = useMutation(createProductQA, {
+    update: (cache, { data: createProductQAData }) => {
+      if (!createProductQAData) {
+        message.error(t('can-not-send'));
+        return;
+      }
+
+      cache.writeQuery({
+        query: getProductQA,
+        variables: {
+          productId,
+        },
+        data: {
+          ...data,
+          getProductQAList: {
+            ...data.getProductQAList,
+            data: [
+              ...createProductQAData.createProductQA,
+              ...data.getProductQAList.data,
+            ],
+          },
+        },
+      });
+      form.resetFields();
+    },
+  });
+
+  return {
+    qaList,
+    mutation,
+    form,
+    loading,
+    autoLinker: useAutoLinker(),
+    validateEmail: useValidateEmail(),
+  };
+})
 @radium
 export default class PrdoductQA extends React.PureComponent {
   static propTypes = {
     /** context */
     isLogin: ISLOGIN_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    getData: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -43,58 +82,25 @@ export default class PrdoductQA extends React.PureComponent {
   };
 
   state = {
-    QAList: [],
     showQAIndex: [],
   };
 
-  componentDidMount() {
-    this.getQAList();
-  }
+  finish = ({ userEmail, question }) => {
+    const { productId, mutation } = this.props;
 
-  componentWillUnmount() {
-    this.isUnmounted = true;
-  }
-
-  getQAList = async () => {
-    const { getData, productId } = this.props;
-
-    const result = await getData(GET_PRODUCT_QA_LIST, {
-      productId,
-    });
-
-    if (this.isUnmounted || !result?.data?.getProductQAList) return;
-
-    this.setState({ QAList: result.data.getProductQAList.data });
-  };
-
-  finish = async ({ userEmail, question }) => {
-    const {
-      /** context */
-      getData,
-
-      /** props */
-      form: { resetFields },
-      t,
-      productId,
-    } = this.props;
-    const { data: result } = await getData(CREATE_PRODUCT_QA, {
-      createProductQA: {
-        productId,
-        qa: [
-          {
-            question,
-          },
-        ],
-        ...(!userEmail ? {} : { userEmail }),
+    mutation({
+      variables: {
+        createProductQA: {
+          productId,
+          qa: [
+            {
+              question,
+            },
+          ],
+          ...(!userEmail ? {} : { userEmail }),
+        },
       },
     });
-
-    if (result) {
-      const { QAList } = this.state;
-
-      resetFields();
-      this.setState({ QAList: [...result.createProductQA, ...QAList] });
-    } else message.error(t('can-not-send'));
   };
 
   render() {
@@ -110,8 +116,10 @@ export default class PrdoductQA extends React.PureComponent {
       productId,
       validateEmail,
       autoLinker,
+      qaList,
+      loading,
     } = this.props;
-    const { QAList, showQAIndex } = this.state;
+    const { showQAIndex } = this.state;
 
     return (
       <Form
@@ -127,7 +135,7 @@ export default class PrdoductQA extends React.PureComponent {
         <List
           locale={{ emptyText: ' ' }}
           itemLayout="horizontal"
-          dataSource={QAList}
+          dataSource={qaList}
           renderItem={({ qa, userEmail }, index) => {
             const [{ question, createdAt }, ...reply] = qa;
             const [email] = (userEmail || '').split(/@/);
@@ -240,7 +248,11 @@ export default class PrdoductQA extends React.PureComponent {
             )}
           </FormItem>
 
-          <Button style={styles.submitButton(colors)} htmlType="submit">
+          <Button
+            style={styles.submitButton(colors)}
+            loading={loading}
+            htmlType="submit"
+          >
             {t('submit')}
           </Button>
         </div>

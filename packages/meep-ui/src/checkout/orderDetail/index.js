@@ -5,6 +5,7 @@ import { LeftOutlined } from '@ant-design/icons';
 import { Form, InputNumber, Button, Modal } from 'antd';
 import uuid from 'uuid';
 import transformColor from 'color';
+import { useMutation } from '@apollo/react-hooks';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/locales';
@@ -16,7 +17,7 @@ import logger from '@meepshop/utils/lib/logger';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
-import getComputeOrderQuery from 'utils/getComputeOrderQuery';
+import { computeOrderList, getVariables } from 'utils/getComputeOrderQuery';
 
 import PaymentDefaultFormItem from 'paymentDefaultFormItem';
 
@@ -38,6 +39,7 @@ const { Item: FormItem } = Form;
 @withTranslation('checkout')
 @withContext(AdTrackContext)
 @withHook(({ user, orderInfo, errors }) => ({
+  mutation: useMutation(computeOrderList)[0],
   form: Form.useForm()[0],
   fields: useMemo(() => {
     const { info, ...data } = orderInfo || {};
@@ -80,8 +82,6 @@ export default class OrderDetail extends React.PureComponent {
 
   isTracked = false;
 
-  cacheResult = [];
-
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -89,7 +89,6 @@ export default class OrderDetail extends React.PureComponent {
     transformCurrency: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
-    getData: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -238,8 +237,8 @@ export default class OrderDetail extends React.PureComponent {
 
   computeOrderList = async (fieldsValue = {}) => {
     const {
-      getData,
       form: { getFieldValue },
+      mutation,
       isSubmitting,
     } = this.props;
 
@@ -257,15 +256,8 @@ export default class OrderDetail extends React.PureComponent {
 
     this.setState({ isChecking: true });
 
-    const requestId = uuid();
-
-    this.cacheResult.push({
-      requestId,
-    });
-    this.cacheResult.find(
-      ({ requestId: cacheId }) => cacheId === requestId,
-    ).result = await getData(
-      ...getComputeOrderQuery({
+    const { data } = await mutation(
+      getVariables({
         coupon,
         points,
         paymentId,
@@ -276,21 +268,11 @@ export default class OrderDetail extends React.PureComponent {
       }),
     );
 
-    const [{ result, requestId: currentRequestId }] = this.cacheResult.slice(
-      -1,
-    );
+    if (this.isUnmounted || !data?.computeOrderList) return;
 
-    if (
-      this.isUnmounted ||
-      !result?.data?.computeOrderList ||
-      currentRequestId !== requestId
-    )
-      return;
-
-    const { computeOrderList } = result.data;
     const [
       { activityInfo, priceInfo, categories, errorObj },
-    ] = computeOrderList;
+    ] = data.computeOrderList;
     const [
       { products: newProducts = [], paymentList = [], shipmentList = [] },
     ] = categories || [{}];

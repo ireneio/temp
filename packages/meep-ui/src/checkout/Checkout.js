@@ -1,5 +1,3 @@
-// TODO: rewrite after using relay or apollo client
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { notification } from 'antd';
@@ -32,7 +30,6 @@ export default class Checkout extends React.PureComponent {
     /** context */
     location: LOCATION_TYPE.isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
-    getData: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
 

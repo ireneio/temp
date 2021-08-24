@@ -1,5 +1,6 @@
-export default ({ coupon, points, paymentId, shipmentId, products }) => [
-  `
+import gql from 'graphql-tag';
+
+export const computeOrderList = gql`
   mutation computeOrderList($computeOrderList: [NewOrder]) {
     computeOrderList(computeOrderList: $computeOrderList) {
       activityInfo {
@@ -116,8 +117,16 @@ export default ({ coupon, points, paymentId, shipmentId, products }) => [
       }
     }
   }
-`,
-  {
+`;
+
+export const getVariables = ({
+  coupon,
+  points,
+  paymentId,
+  shipmentId,
+  products,
+}) => ({
+  variables: {
     computeOrderList: {
       computeType: 'cart',
       ...(!coupon ? {} : { coupon }),
@@ -132,4 +141,4 @@ export default ({ coupon, points, paymentId, shipmentId, products }) => [
       ...(!shipmentId ? {} : { shipments: [{ shipmentId }] }),
     },
   },
-];
+});

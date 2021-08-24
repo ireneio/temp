@@ -11,36 +11,38 @@ import * as styles from './styles/pagination';
 @radium
 export default class Pagination extends React.PureComponent {
   static propTypes = {
-    params: PropTypes.shape({
-      limit: POSITIVE_NUMBER_TYPE.isRequired,
-      offset: POSITIVE_NUMBER_TYPE.isRequired,
-    }).isRequired,
     total: POSITIVE_NUMBER_TYPE.isRequired,
     scrollToTop: PropTypes.func.isRequired,
-    getProductsData: PropTypes.func.isRequired,
   };
 
   state = {
-    // eslint-disable-next-line react/destructuring-assignment
-    current: this.props.params.offset / this.props.params.limit + 1,
+    current:
+      // eslint-disable-next-line react/destructuring-assignment
+      this.props.variables.search.from / this.props.variables.search.size + 1,
   };
 
-  onChange = page => {
-    const { params, scrollToTop, getProductsData } = this.props;
+  onChange = async page => {
+    const { variables, refetch, scrollToTop } = this.props;
+    const limit = variables.search.size;
 
     this.setState({
       current: page,
     });
 
-    const offset = (page - 1) * params.limit;
-    getProductsData({ ...params, offset });
+    await refetch({
+      ...variables,
+      search: {
+        ...variables.search,
+        from: (page - 1) * limit,
+      },
+    });
     scrollToTop();
   };
 
   render() {
     const { current } = this.state;
-    const { params, total } = this.props;
-    const { limit } = params;
+    const { variables, total } = this.props;
+    const limit = variables.search.size;
 
     return (
       <div style={styles.root}>

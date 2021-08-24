@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
+import { useQuery } from '@apollo/react-hooks';
 
+import withHook from '@store/utils/lib/withHook';
 import { withTranslation } from '@meepshop/locales';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -12,16 +14,46 @@ import { ID_TYPE, COLOR_TYPE, LOCALE_TYPE } from 'constants/propTypes';
 import Product from './Product';
 import Pagination from './Pagination';
 import SortIcon from './SortIcon';
-
+import { getProductsInActivity } from './gqls';
 import * as styles from './styles';
 
 @withTranslation('activity')
+@withHook(({ group }) =>
+  useQuery(getProductsInActivity, {
+    variables: {
+      search: {
+        size: 20,
+        from: 0,
+        filter: {
+          and: [
+            {
+              type: 'exact',
+              field: 'status',
+              query: '1',
+            },
+            {
+              type: 'ids',
+              ids: group.products.map(product => product.productId),
+            },
+          ],
+          or: [],
+        },
+        sort: [
+          {
+            field: 'variantInfo.minRetailPrice',
+            order: 'asc',
+          },
+        ],
+        showMainFile: true,
+      },
+    },
+  }),
+)
 @enhancer
 @radium
 export default class Group extends React.PureComponent {
   static propTypes = {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    getData: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     background: PropTypes.string.isRequired,
     group: PropTypes.shape({
@@ -32,115 +64,6 @@ export default class Group extends React.PureComponent {
         }).isRequired,
       ),
     }).isRequired,
-  };
-
-  state = {
-    params: {
-      ids: [],
-      limit: 20,
-      offset: 0,
-      sort: 'asc',
-    },
-    products: null,
-    total: 0,
-  };
-
-  componentDidMount() {
-    const { group } = this.props;
-    const { params } = this.state;
-
-    const ids = group.products.map(product => product.productId);
-
-    this.getProductsData({ ...params, ids });
-  }
-
-  componentWillUnmount() {
-    this.isUnmounted = true;
-  }
-
-  getProductsData = async params => {
-    this.setState({
-      params,
-      products: null,
-    });
-
-    const { ids, limit, offset, sort } = params;
-
-    const variables = {
-      search: {
-        size: limit,
-        from: offset,
-        filter: {
-          and: [
-            {
-              type: 'exact',
-              field: 'status',
-              query: '1',
-            },
-            {
-              type: 'ids',
-              ids,
-            },
-          ],
-          or: [],
-        },
-        sort: [
-          {
-            field: 'variantInfo.minRetailPrice',
-            order: sort,
-          },
-        ],
-        showMainFile: true,
-      },
-    };
-
-    // TODO rewrite query
-    const productQuery = `
-      data {
-        id
-        title{
-          zh_TW
-          en_US
-        }
-        coverImage {
-          id
-          scaledSrc {
-            w60
-            w120
-            w240
-            w480
-            w720
-            w960
-            w1200
-            w1440
-            w1680
-            w1920
-          }
-        }
-        variants {
-          id
-          totalPrice
-        }
-      }
-      total
-    `;
-
-    const query = `
-      query computeProduct4Activity($search: searchInputObjectType) {
-        computeProductList(search: $search) {
-          ${productQuery}
-        }
-      }
-    `;
-
-    const { getData } = this.props;
-    const result = await getData(query, variables);
-
-    if (this.isUnmounted || !result?.data?.computeProductList) return;
-
-    const { data: products, total } = result.data.computeProductList;
-
-    this.setState({ products, total });
   };
 
   scrollToTop = () => {
@@ -156,10 +79,17 @@ export default class Group extends React.PureComponent {
       i18n,
       background,
       group,
+      data,
+      variables,
+      refetch,
     } = this.props;
-    const { params, products, total } = this.state;
 
-    const { sort, limit } = params;
+    if (!data) return <Spin indicator={<LoadingOutlined spin />} />;
+
+    const products = data.computeProductList.data || null;
+    const total = data.computeProductList.total || 0;
+    const sort = variables.search.sort[0].order;
+    const limit = variables.search.size;
 
     return (
       <div
@@ -183,9 +113,17 @@ export default class Group extends React.PureComponent {
               sort={sort}
               style={styles.sort}
               onClick={() =>
-                this.getProductsData({
-                  ...params,
-                  sort: sort === 'asc' ? 'desc' : 'asc',
+                refetch({
+                  ...variables,
+                  search: {
+                    ...variables.search,
+                    sort: [
+                      {
+                        ...variables.search.sort[0],
+                        order: sort === 'asc' ? 'desc' : 'asc',
+                      },
+                    ],
+                  },
                 })
               }
             />
@@ -216,10 +154,10 @@ export default class Group extends React.PureComponent {
           </div>
           {total && total > limit && (
             <Pagination
-              params={params}
               total={total}
+              variables={variables}
+              refetch={refetch}
               scrollToTop={this.scrollToTop}
-              getProductsData={this.getProductsData}
             />
           )}
         </StyleRoot>

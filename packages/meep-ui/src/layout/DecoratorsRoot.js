@@ -25,7 +25,6 @@ export default React.memo(
 
     /** context func from props */
     goTo,
-    getData,
     login,
     fbLogin,
     logout,
@@ -58,7 +57,6 @@ export default React.memo(
 
           /** context func from props */
           goTo,
-          getData,
           login,
           fbLogin,
           logout,

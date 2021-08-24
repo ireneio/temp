@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Button } from 'antd';
+import { useApolloClient } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 
 import { withTranslation } from '@meepshop/locales';
 import ConvenienceStoreMap from '@meepshop/convenience-store-map';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
@@ -25,13 +28,15 @@ import styles from './styles/chooseShipmentStore.less';
 const { Item: FormItem } = Form;
 
 @withTranslation('receiver-default-form-item')
+@withHook(() => ({
+  client: useApolloClient(),
+}))
 @enhancer
 @radium
 export default class ChooseShipmentStore extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    getData: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -83,36 +88,46 @@ export default class ChooseShipmentStore extends React.PureComponent {
   }
 
   getAllpaySubType = async () => {
-    const { getData } = this.props;
+    const { client } = this.props;
     const { shipmentId } = this.state;
 
     if (!shipmentId) return;
 
     // TODO: should merge in computeOrder
-    const result = await getData(`
-      query getStoreShipmentListForChooseShipmentStore {
-        viewer {
-          store {
-            storeShipment(storeShipmentId: "${shipmentId}") {
-              accountInfo {
-                allpay: allPay { # TODO rename
-                  logisticsSubType
+    const { data } = await client.query({
+      query: gql`
+        query getStoreShipmentListForChooseShipmentStore(
+          $storeShipmentId: ID!
+        ) {
+          viewer {
+            id
+            store {
+              id
+              storeShipment(storeShipmentId: $storeShipmentId) {
+                id
+                accountInfo {
+                  allpay: allPay {
+                    # TODO rename
+                    logisticsSubType
+                  }
                 }
               }
             }
           }
         }
-      }
-    `);
+      `,
+      variables: {
+        storeShipmentId: shipmentId,
+      },
+    });
 
     if (
-      !result?.data?.viewer?.store?.storeShipment?.accountInfo.allpay
-        ?.logisticsSubType
+      !data?.viewer?.store?.storeShipment?.accountInfo.allpay?.logisticsSubType
     )
       return;
 
     this.setState({
-      ...result.data.viewer.store.storeShipment.accountInfo,
+      ...data.viewer.store.storeShipment.accountInfo,
     });
   };
 

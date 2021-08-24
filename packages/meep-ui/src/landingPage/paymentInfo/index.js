@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 import { Form, Select, InputNumber, Cascader } from 'antd';
 import { getElementPosition } from 'fbjs';
 import uuid from 'uuid';
+import { useMutation } from '@apollo/react-hooks';
 
 import { withTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import PaymentDefaultFormItem from 'paymentDefaultFormItem';
 import { ID_TYPE, LOCALE_TYPE, COLOR_TYPE } from 'constants/propTypes';
-import getComputeOrderQuery from 'utils/getComputeOrderQuery';
+import { computeOrderList, getVariables } from 'utils/getComputeOrderQuery';
 
 import { ADDITION_TYPE } from '../constants';
 import {
@@ -30,6 +32,11 @@ const { Option } = Select;
 
 @withTranslation('landing-page')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
+@withHook(() => {
+  const [mutation] = useMutation(computeOrderList);
+
+  return { mutation };
+})
 @enhancer
 @mockPaymentInfoRef
 class PayemntInfo extends React.PureComponent {
@@ -37,13 +44,10 @@ class PayemntInfo extends React.PureComponent {
 
   checkQuantityTimeout = null;
 
-  cacheResult = [];
-
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     transformCurrency: PropTypes.func.isRequired,
-    getData: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
 
     /** props */
@@ -200,11 +204,11 @@ class PayemntInfo extends React.PureComponent {
   computeOrderList = async (fieldsValue = {}) => {
     const {
       form: { getFieldValue },
-      getData,
       paymentFilter,
       shipmentFilter,
       updateComputeOrderList,
       addition,
+      mutation,
     } = this.props;
     const { productId } = this.state;
     const [variant = [], quantity, paymentId, shipmentId, coupon] = [
@@ -215,15 +219,9 @@ class PayemntInfo extends React.PureComponent {
       'coupon',
     ].map(key => fieldsValue[key] || getFieldValue(key));
     const [variantId] = variant.slice(-1);
-    const requestId = uuid();
 
-    this.cacheResult.push({
-      requestId,
-    });
-    this.cacheResult.find(
-      ({ requestId: cacheId }) => cacheId === requestId,
-    ).result = await getData(
-      ...getComputeOrderQuery({
+    const { data } = await mutation(
+      getVariables({
         coupon,
         paymentId,
         shipmentId,
@@ -237,22 +235,12 @@ class PayemntInfo extends React.PureComponent {
       }),
     );
 
-    const [{ result, requestId: currentRequestId }] = this.cacheResult.slice(
-      -1,
-    );
-
-    if (
-      this.isUnmounted ||
-      !result?.data?.computeOrderList ||
-      currentRequestId !== requestId
-    )
-      return;
+    if (this.isUnmounted || !data?.computeOrderList) return;
 
     const { changeChoosePayment, changeChooseShipmentTemplate } = this.props;
-    const { computeOrderList } = result.data;
     const [
       { categories, activityInfo, priceInfo, errorObj },
-    ] = computeOrderList;
+    ] = data.computeOrderList;
     const [{ paymentList, shipmentList }] = categories || [
       { paymentTemplates: [], shipmentTemplates: [] },
     ];
@@ -263,7 +251,7 @@ class PayemntInfo extends React.PureComponent {
       paymentList.find(({ paymentId: id }) => id === paymentId) || null,
     );
     changeChooseShipmentTemplate(template);
-    updateComputeOrderList(computeOrderList[0]);
+    updateComputeOrderList(data.computeOrderList[0]);
 
     this.setState({
       paymentList: paymentList.filter(({ paymentId: id }) =>

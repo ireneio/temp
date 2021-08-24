@@ -246,7 +246,6 @@ export const CONTEXT_TYPES = {
   /** context func from props */
   goTo: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
-  getData: PropTypes.func.isRequired,
   fbLogin: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   dispatchAction: PropTypes.func.isRequired,

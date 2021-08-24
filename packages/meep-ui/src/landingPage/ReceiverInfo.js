@@ -43,7 +43,6 @@ export default class ReceiverInfo extends React.PureComponent {
     /** context */
     isLogin: ISLOGIN_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    getData: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,

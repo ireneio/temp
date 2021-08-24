@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { Form, Input, message, Button } from 'antd';
-import { warning } from 'fbjs';
+import { Form, Input, Button } from 'antd';
+import { useApolloClient } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 
 import { withTranslation } from '@meepshop/locales';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
@@ -15,13 +17,15 @@ import styles from './styles/invoice.less';
 const { Item: FormItem } = Form;
 
 @withTranslation('receiver-default-form-item')
+@withHook(() => ({
+  client: useApolloClient(),
+}))
 @enhancer
 @radium
 export default class Invoice extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    getData: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -33,55 +37,45 @@ export default class Invoice extends React.PureComponent {
   };
 
   validateInvoiceVAT = async (_, value) => {
-    const { t, getData } = this.props;
-    const { data, errors } = await getData(`
-      query isBANValid {
-        isBANValid(ban: "${value}")
-      }
-    `).catch(() => {
-      throw new Error(t('error'));
+    const { t, client } = this.props;
+    const { data } = await client.query({
+      query: gql`
+        query isBANValid($ban: String!) {
+          isBANValid(ban: $ban)
+        }
+      `,
+      variables: {
+        ban: value,
+      },
     });
-
-    if (errors) {
-      warning(!errors.length, JSON.stringify(errors));
-      message.error(t('error'));
-    }
 
     if (!data?.isBANValid) throw new Error(t('wrong-invoice-number'));
   };
 
   validateLoveCode = async (_, value) => {
-    const { t, getData } = this.props;
-    const { data, errors } = await getData(`
-      query IsEInvoiceLoveCodeValid {
-        isEInvoiceLoveCodeValid(loveCode: "${value}")
-      }
-    `).catch(() => {
-      throw new Error(t('error'));
+    const { t, client } = this.props;
+    const { data } = await client.query({
+      query: gql`
+        query IsEInvoiceLoveCodeValid($loveCode: String!) {
+          isEInvoiceLoveCodeValid(loveCode: $loveCode)
+        }
+      `,
+      variables: { loveCode: value },
     });
-
-    if (errors) {
-      warning(!errors.length, JSON.stringify(errors));
-      message.error(t('error'));
-    }
 
     if (!data?.isEInvoiceLoveCodeValid) throw new Error(t('wrong-donate-code'));
   };
 
   validateBarCode = async (_, value) => {
-    const { t, getData } = this.props;
-    const { data, errors } = await getData(`
-      query isEInvoiceBarCodeValid {
-        isEInvoiceBarCodeValid(barCode: "${value}")
-      }
-    `).catch(() => {
-      throw new Error(t('error'));
+    const { t, client } = this.props;
+    const { data } = await client.query({
+      query: gql`
+        query isEInvoiceBarCodeValid($barCode: String!) {
+          isEInvoiceBarCodeValid(barCode: $barCode)
+        }
+      `,
+      variables: { barCode: value },
     });
-
-    if (errors) {
-      warning(!errors.length, JSON.stringify(errors));
-      message.error(t('error'));
-    }
 
     if (!data?.isEInvoiceBarCodeValid) throw new Error(t('wrong-barcode'));
   };

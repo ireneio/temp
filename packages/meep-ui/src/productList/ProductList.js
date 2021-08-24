@@ -109,7 +109,6 @@ export default class ProductList extends React.PureComponent {
     location: LOCATION_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
-    getData: PropTypes.func.isRequired,
     transformCurrency: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
     /* eslint-enable react/no-unused-prop-types */
