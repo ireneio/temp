@@ -165,119 +165,113 @@ export default class Checkout extends React.PureComponent {
 
     const { error, data } = await createOrder({
       variables: {
-        createOrderList: [
-          {
-            idempotentKey: this.idempotentKey,
-            environment: {
-              domain,
-            },
-            isPayment,
-            products: products
-              .filter(({ type }) => type !== 'gift')
-              .map(({ productId, variantId, quantity = 1 }) => ({
-                productId,
-                variantId,
-                quantity,
-              })),
-            coupon,
-            points,
-            ...(!addressAndZipCode
+        input: {
+          idempotentKey: this.idempotentKey,
+          environment: {
+            domain,
+          },
+          isPayment,
+          products: products
+            .filter(({ type }) => type !== 'gift')
+            .map(({ productId, variantId, quantity = 1 }) => ({
+              productId,
+              variantId,
+              quantity,
+            })),
+          coupon,
+          points,
+          ...(!addressAndZipCode
+            ? {}
+            : {
+                address: {
+                  zipCode: addressAndZipCode.zipCode,
+                  countryId: addressAndZipCode.address[0],
+                  cityId: addressAndZipCode.address[1],
+                  areaId: addressAndZipCode.address[2],
+                  street,
+                },
+              }),
+          payment: {
+            paymentId,
+            ...(choosePayment.template !== 'gmo' ||
+            choosePayment.accountInfo.gmo.paymentType !== 'Credit'
               ? {}
               : {
-                  address: {
-                    zipCode: addressAndZipCode.zipCode,
-                    countryId: addressAndZipCode.address[0],
-                    cityId: addressAndZipCode.address[1],
-                    areaId: addressAndZipCode.address[2],
-                    street,
-                  },
-                }),
-            payments: [
-              {
-                paymentId,
-                ...(choosePayment.template !== 'gmo' ||
-                choosePayment.accountInfo.gmo.paymentType !== 'Credit'
-                  ? {}
-                  : {
-                      gmo: formatGmo({
-                        isRememberCard,
-                        cardHolderName,
-                        cardNumber,
-                        securityCode,
-                        expire,
-                        installmentCode,
-                      }),
-                    }),
-              },
-            ],
-            shipments: [
-              {
-                shipmentId,
-                recipient: {
-                  saveRecipient: isSaveAsReceiverTemplate,
-                  name,
-                  email: userEmail || user.email,
-                  mobile,
-                  comment: notes,
-                  receiverStoreID: CVSStoreID,
-                  receiverStoreName: CVSStoreName,
-                  receiverStoreAddress: CVSAddress,
-                },
-              },
-            ],
-            cvsType,
-            cvsCode,
-            userId: user.id,
-            userInfo: Object.keys(checkoutFields).every(
-              key => key === '__typename' || checkoutFields[key] === 'HIDDEN',
-            )
-              ? {
-                  name: user?.name,
-                  email: user?.email,
-                  mobile: user?.additionalInfo?.mobile,
-                }
-              : {
-                  name: userName,
-                  email: userEmail,
-                  mobile: userMobile,
-                },
-            ...(!invoice
-              ? {}
-              : {
-                  invoice: {
-                    type: invoice[0],
-                    ...(invoice[1] === 'MEMBERSHIP' ||
-                    invoice[1] === 'MOBILE_BARCODE' ||
-                    invoice[1] === 'CITIZEN_DIGITAL_CERTIFICATE'
-                      ? {
-                          method: 'CARRIER',
-                          carrier: {
-                            type: invoice[1],
-                            code: invoiceEInvoiceNumber,
-                          },
-                        }
-                      : {
-                          method: invoice[1],
-                        }),
-
-                    // method = TRIPLICATE
-                    address: invoiceAddress,
-                    title: invoiceTitle,
-                    ban: invoiceVAT,
-
-                    // method = DONATION
-                    loveCode: invoiceDonate,
-                  },
+                  gmo: formatGmo({
+                    isRememberCard,
+                    cardHolderName,
+                    cardNumber,
+                    securityCode,
+                    expire,
+                    installmentCode,
+                  }),
                 }),
           },
-        ],
+          shipment: {
+            shipmentId,
+            recipient: {
+              saveRecipient: isSaveAsReceiverTemplate,
+              name,
+              email: userEmail || user.email,
+              mobile,
+              comment: notes,
+              receiverStoreID: CVSStoreID,
+              receiverStoreName: CVSStoreName,
+              receiverStoreAddress: CVSAddress,
+            },
+          },
+          cvsType,
+          cvsCode,
+          userId: user.id,
+          userInfo: Object.keys(checkoutFields).every(
+            key => key === '__typename' || checkoutFields[key] === 'HIDDEN',
+          )
+            ? {
+                name: user?.name,
+                email: user?.email,
+                mobile: user?.additionalInfo?.mobile,
+              }
+            : {
+                name: userName,
+                email: userEmail,
+                mobile: userMobile,
+              },
+          ...(!invoice
+            ? {}
+            : {
+                invoice: {
+                  type: invoice[0],
+                  ...(invoice[1] === 'MEMBERSHIP' ||
+                  invoice[1] === 'MOBILE_BARCODE' ||
+                  invoice[1] === 'CITIZEN_DIGITAL_CERTIFICATE'
+                    ? {
+                        method: 'CARRIER',
+                        carrier: {
+                          type: invoice[1],
+                          code: invoiceEInvoiceNumber,
+                        },
+                      }
+                    : {
+                        method: invoice[1],
+                      }),
+
+                  // method = TRIPLICATE
+                  address: invoiceAddress,
+                  title: invoiceTitle,
+                  ban: invoiceVAT,
+
+                  // method = DONATION
+                  loveCode: invoiceDonate,
+                },
+              }),
+        },
       },
     });
 
     if (this.isUnmounted) return;
 
     const { id, error: createOrderError, formData } =
-      data?.createOrderList?.[0] || {};
+      data?.createOrder.order || {};
 
     if (error || createOrderError || !id) {
       const errorMessage = error?.[0]?.message || createOrderError || '';

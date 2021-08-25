@@ -6,13 +6,15 @@ import { formDataFragment } from '@meepshop/form-data/gqls';
 
 // definition
 export const createOrder = gql`
-  mutation createOrder($createOrderList: [NewOrder]) {
-    createOrderList(createOrderList: $createOrderList) {
-      id
-      orderNo
-      error: _error
-      formData {
-        ...formDataFragment
+  mutation createOrder($input: CreateOrderInput!) {
+    createOrder(input: $input) {
+      order {
+        id
+        orderNo
+        error: _error
+        formData {
+          ...formDataFragment
+        }
       }
     }
   }

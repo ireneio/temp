@@ -35,8 +35,7 @@ export default (): MutationFunction<createOrderType, createOrderVariables> => {
       });
 
       // FIXME: should update order, orders, hasGmoCreditCard, user, shippableRecipientAddresses
-      if (client && !variables?.createOrderList?.[0]?.userInfo?.password)
-        await client.resetStore();
+      if (client) await client.resetStore();
 
       return result;
     },
