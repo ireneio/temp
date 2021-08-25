@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.80.34 (2021-08-25)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1602](https://github.com/meepshop/meep-lerna/pull/1602) 前端 - 改用 createOrder ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1680](https://github.com/meepshop/meep-lerna/pull/1680) 前端 - getProducts sort method ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.33 (2021-08-24)
 
 #### :bug: Bug Fix
