@@ -6,6 +6,13 @@ import { AdTrack as AdTrackContext } from '@meepshop/context';
 
 import { getProducts } from '../gqls/useProducts';
 
+const SORT_FIELDS = [
+  'createdAt-desc',
+  'title.zh_TW-asc',
+  'variantInfo.firstRetailPrice-asc',
+  'variantInfo.firstRetailPrice-desc',
+];
+
 export default ({
   id,
   ids,
@@ -19,7 +26,9 @@ export default ({
 }) => {
   const adTrack = useContext(AdTrackContext);
   const variables = useMemo(() => {
-    const [field, order] = String(sort).split('-');
+    const [field, order] = String(
+      SORT_FIELDS.includes(sort) ? sort : SORT_FIELDS[0],
+    ).split('-');
     const output = {
       search: {
         size: parseInt(limit, 10),
