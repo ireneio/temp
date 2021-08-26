@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.35 (2021-08-26)
+
+#### :bug: Bug Fix
+
+- [#1698](https://github.com/meepshop/meep-lerna/pull/1698) 內部開單 - 修正 draft-js OOM 問題 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.34 (2021-08-25)
 
 #### :rocket: New Feature
