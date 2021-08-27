@@ -1,27 +1,22 @@
 {
   "private": true,
-  "name": "@store/cart",
-  "description": "store cart page",
+  "name": "@store/cart-previewer",
+  "description": "store cart previewer",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.33",
+  "version": "0.1.0",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/apollo": "^0.80.32",
     "@meepshop/context": "^0.80.32",
-    "@meepshop/draft-text": "^0.80.32",
-    "@meepshop/icons": "^0.80.32",
     "@meepshop/images": "^0.80.32",
     "@meepshop/link": "^0.80.32",
     "@meepshop/locales": "^0.80.33",
-    "@meepshop/login-modal": "^0.80.33",
-    "@meepshop/product-amount-selector": "^0.80.33",
     "@meepshop/thumbnail": "^0.80.32",
     "@meepshop/utils": "^0.80.32",
-    "@store/checkout-steps": "^0.80.33",
     "@store/utils": "^0.80.32",
     "color": "^3.0.0"
   },
-  "keywords": ["cart", "store"]
+  "keywords": ["cart", "previewer", "store"]
 }

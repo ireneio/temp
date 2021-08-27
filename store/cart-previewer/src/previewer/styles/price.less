@@ -1,0 +1,27 @@
+@import '~@store/utils/styles/variables.less';
+
+.root {
+  width: 100%;
+  font-size: 12px;
+  line-height: 20px;
+
+  @media (max-width: @screen-sm-max) {
+    padding-top: 16px;
+    border-top-width: 1px;
+    border-top-style: solid;
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+
+    > div:first-child {
+      max-width: 208px;
+    }
+  }
+}

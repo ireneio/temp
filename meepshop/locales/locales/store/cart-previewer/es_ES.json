@@ -1,0 +1,14 @@
+{
+  "cart": "carrito de compras",
+  "total": "total",
+  "go-to-cart": "Revisa el carrito de compras",
+  "empty-cart": "No has comprado ningún artículo todavía.",
+  "go-back-to-store": "Continuar para ir de compras",
+  "product-total": "Producto total",
+  "product-deleted": "Los productos han sido detenidos.",
+  "gift": "Dar un regalo",
+  "PRODUCT_DELETED": "Parada",
+  "PRODUCT_NOT_ONLINE": "No abierto para comprar",
+  "PRODUCT_SOLD_OUT": "Agotado",
+  "cart-updated": "Actualizar carrito de compra"
+}

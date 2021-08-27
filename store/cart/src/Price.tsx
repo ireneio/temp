@@ -16,23 +16,20 @@ import { useTranslation } from '@meepshop/locales';
 import styles from './styles/price.less';
 
 // graphql typescript
-import {
-  priceFragment_activityInfo as priceFragmentActivityInfoType,
-  priceFragment_priceInfo as priceFragmentPriceInfoType,
-} from '@meepshop/types/gqls/store';
+import { priceFragment as priceFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType {
-  activities: priceFragmentActivityInfoType[];
-  price: priceFragmentPriceInfoType | null;
+  order: priceFragmentType;
   checkErrors: () => void;
 }
 
 // definition
-export default React.memo(({ activities, price, checkErrors }: PropsType) => {
+export default React.memo(({ order, checkErrors }: PropsType) => {
   const colors = useContext(ColorsContext);
   const { c } = useContext(CurrencyContext);
   const { t, i18n } = useTranslation('cart');
+  const { activityInfo, priceInfo } = order;
 
   return (
     <>
@@ -48,23 +45,30 @@ export default React.memo(({ activities, price, checkErrors }: PropsType) => {
           <div className={styles.total}>
             <div>
               <div>{t('product-total')}</div>
-              <div>{c(price?.productPrice || 0)}</div>
+              <div>{c(priceInfo?.productPrice || 0)}</div>
             </div>
 
-            {activities.map(({ activityId, title, discountPrice }) =>
-              (discountPrice || 0) <= 0 ? null : (
+            {activityInfo?.map(activity => {
+              if (!activity) return null;
+
+              const discountPrice = activity.discountPrice || 0;
+              const { activityId, title } = activity;
+
+              if (discountPrice <= 0) return null;
+
+              return (
                 <div key={activityId}>
                   <div>
                     {title?.[i18n.language as languageType] || title?.zh_TW}
                   </div>
-                  <div>- {c(discountPrice || 0)}</div>
+                  <div>- {c(discountPrice)}</div>
                 </div>
-              ),
-            )}
+              );
+            })}
 
             <div>
               <div>{t('total')}</div>
-              <div>{c(price?.total || 0)}</div>
+              <div>{c(priceInfo?.total || 0)}</div>
             </div>
           </div>
 

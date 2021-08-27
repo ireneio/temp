@@ -1,0 +1,14 @@
+{
+  "cart": "ショッピングカート",
+  "total": "合計",
+  "go-to-cart": "ショッピングカートを確認してください",
+  "empty-cart": "あなたはまだアイテムを購入していません。",
+  "go-back-to-store": "買い物に行き続ける",
+  "product-total": "総商品",
+  "product-deleted": "製品が停止しました",
+  "gift": "贈り物をする",
+  "PRODUCT_DELETED": "やめる",
+  "PRODUCT_NOT_ONLINE": "購入に開かないで",
+  "PRODUCT_SOLD_OUT": "在庫切れ",
+  "cart-updated": "ショッピングカートを更新します"
+}

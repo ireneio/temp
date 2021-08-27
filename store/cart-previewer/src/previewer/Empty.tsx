@@ -17,8 +17,10 @@ export default React.memo(() => {
   return (
     <>
       <div className={styles.root}>
+        <div>{t('cart')}</div>
         <Cart className={styles.cart} />
         <p>{t('empty-cart')}</p>
+
         <Link href={window.storePreviousPageUrl || '/'}>
           <div className={styles.button}>{t('go-back-to-store')}</div>
         </Link>
@@ -29,6 +31,10 @@ export default React.memo(() => {
           __html: `
             .${styles.root} {
               color: ${colors[3]};
+            }
+
+            .${styles.root} p {
+              color: ${transformColor(colors[3]).alpha(0.8)};
             }
 
             .${styles.cart} {

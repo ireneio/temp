@@ -1,0 +1,65 @@
+@import '~@store/utils/styles/variables.less';
+
+.root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 24px;
+
+  @media (max-width: @screen-sm-max) {
+    flex-grow: 1;
+    padding: 16px;
+    margin-bottom: 71px;
+  }
+
+  > div:first-child {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-bottom: 6px;
+
+    @media (max-width: @screen-sm-max) {
+      display: none;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    margin: 0;
+
+    @media (max-width: @screen-sm-max) {
+      margin-bottom: 24px;
+    }
+  }
+}
+
+.cart {
+  display: none;
+  width: 30%;
+  height: auto;
+  margin: 0 3% 8px 0;
+
+  @media (max-width: @screen-sm-max) {
+    display: block;
+  }
+}
+
+.button {
+  display: none;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 2px;
+  cursor: pointer;
+
+  @media (max-width: @screen-sm-max) {
+    display: block;
+  }
+}

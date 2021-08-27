@@ -1,0 +1,14 @@
+{
+  "cart": "購物車",
+  "total": "總計",
+  "go-to-cart": "查看購物車",
+  "empty-cart": "您還沒有選購任何商品",
+  "go-back-to-store": "繼續逛逛",
+  "product-total": "商品總計",
+  "product-deleted": "商品已停止販售",
+  "gift": "贈品",
+  "PRODUCT_DELETED": "停售",
+  "PRODUCT_NOT_ONLINE": "尚未開放購買",
+  "PRODUCT_SOLD_OUT": "缺貨中",
+  "cart-updated": "更新購物車完成"
+}

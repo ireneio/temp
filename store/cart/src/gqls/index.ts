@@ -13,6 +13,7 @@ export const cartFragment = gql`
     categories {
       id
       products {
+        id
         ...useProductsColumnsFragment
       }
     }
@@ -29,6 +30,7 @@ export const getCartList = gql`
   query getCartList {
     getCartList {
       data {
+        id
         ...cartFragment
       }
     }

@@ -19,13 +19,15 @@ import useCheckErrors from './hooks/useCheckErrors';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getCartList as getCartListType } from '@meepshop/types/gqls/store';
-import { useProductsColumnsFragment as useProductsColumnsFragmentType } from '@meepshop/types/gqls/store';
-import { priceFragment_activityInfo as priceFragmentActivityInfoType } from '@meepshop/types/gqls/store';
+import {
+  getCartList as getCartListType,
+  getCartList_getCartList_data_categories_products as getCartListGetCartListDataCategoriesProducts,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { getCartList } from './gqls';
 import { useProductsColumnsFragment } from './gqls/useProductsColumns';
+import { priceFragment } from './gqls/price';
 
 // definition
 export default React.memo(() => {
@@ -37,9 +39,6 @@ export default React.memo(() => {
   const { hasError, checkErrors } = useCheckErrors(products);
 
   if (!order) return <Spin indicator={<LoadingOutlined spin />} />;
-
-  const activities = order.activityInfo || [];
-  const price = order.priceInfo;
 
   return (
     <>
@@ -55,16 +54,13 @@ export default React.memo(() => {
             <Products
               products={filter(
                 useProductsColumnsFragment,
-                products.filter(Boolean) as useProductsColumnsFragmentType[],
+                products as getCartListGetCartListDataCategoriesProducts[],
               )}
               hasError={hasError}
             />
 
             <Price
-              activities={
-                activities.filter(Boolean) as priceFragmentActivityInfoType[]
-              }
-              price={price}
+              order={filter(priceFragment, order)}
               checkErrors={checkErrors}
             />
           </>

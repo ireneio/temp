@@ -1,0 +1,14 @@
+{
+  "cart": "Panier",
+  "total": "le total",
+  "go-to-cart": "Vérifiez le panier",
+  "empty-cart": "Vous n'avez pas encore acheté d'articles.",
+  "go-back-to-store": "Continuez à faire du shopping",
+  "product-total": "Total de la marchandise",
+  "product-deleted": "Les produits ont été arrêtés",
+  "gift": "Offrir un cadeau",
+  "PRODUCT_DELETED": "Arrêter",
+  "PRODUCT_NOT_ONLINE": "Pas ouvert à acheter",
+  "PRODUCT_SOLD_OUT": "Rupture de stock",
+  "cart-updated": "Mettre à jour son panier"
+}

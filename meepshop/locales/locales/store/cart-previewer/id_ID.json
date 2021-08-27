@@ -1,0 +1,14 @@
+{
+  "cart": "kereta Belanja",
+  "total": "total",
+  "go-to-cart": "Periksa keranjang belanja",
+  "empty-cart": "Anda belum membeli barang apa pun.",
+  "go-back-to-store": "Terus berbelanja",
+  "product-total": "Total komoditas",
+  "product-deleted": "Produk telah dihentikan",
+  "gift": "Berikan hadiah",
+  "PRODUCT_DELETED": "Berhenti",
+  "PRODUCT_NOT_ONLINE": "Tidak terbuka untuk membeli",
+  "PRODUCT_SOLD_OUT": "Kehabisan persediaan",
+  "cart-updated": "Perbarui keranjang belanja"
+}

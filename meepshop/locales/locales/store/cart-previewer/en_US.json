@@ -1,0 +1,14 @@
+{
+  "cart": "shopping cart",
+  "total": "total",
+  "go-to-cart": "check the shopping cart",
+  "empty-cart": "You haven't purchased any items yet.",
+  "go-back-to-store": "Continue to go shopping",
+  "product-total": "Total commodity",
+  "product-deleted": "Products have been stopped",
+  "gift": "Give a gift",
+  "PRODUCT_DELETED": "Stop",
+  "PRODUCT_NOT_ONLINE": "Not open to buy",
+  "PRODUCT_SOLD_OUT": "Out of stock",
+  "cart-updated": "Update shopping cart"
+}

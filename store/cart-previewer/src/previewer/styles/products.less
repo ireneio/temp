@@ -1,0 +1,29 @@
+@import '~@store/utils/styles/variables.less';
+
+.root {
+  width: 100%;
+  margin-bottom: 16px;
+
+  @media (max-width: @screen-sm-max) {
+    margin-top: -8px;
+  }
+
+  tbody {
+    vertical-align: top;
+  }
+
+  tr {
+    > td {
+      padding: 10px 0;
+
+      @media (max-width: @screen-sm-max) {
+        padding: 8px 0;
+        border-bottom: none;
+      }
+    }
+
+    &:hover > td {
+      background-color: transparent;
+    }
+  }
+}
