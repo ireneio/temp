@@ -34,4 +34,4 @@ ENV VERSION=$VERSION
 ENV API=http://meepshop-api:15265
 ENV NODE_ENV=production
 ENV ENV=stage
-CMD ["yarn", "lerna", "run", "--scope", "@meepshop/next-store", "start", "--stream"]
+CMD ["yarn", "lerna", "run", "--scope", "@meepshop/next-store", "start", "--stream", "--no-prefix"]

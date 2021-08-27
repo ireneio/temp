@@ -23,7 +23,6 @@ const landingPageAccessToken = require('./routers/landingPageAccessToken');
 const mapCookiesToHeaders = require('./mapCookiesToHeaders');
 
 const { VERSION, STORE_DOMAIN } = publicRuntimeConfig;
-const port = parseInt(process.env.PORT, 10) || 14401;
 const app = nextApp({
   dir: path.resolve(__dirname, '..'),
   dev: process.env.NODE_ENV !== 'production',
@@ -56,70 +55,61 @@ const handler = routes.getRequestHandler(app, ({ req, res, route, query }) => {
   });
 });
 
-module.exports = app.prepare().then(
-  () =>
-    new Promise(resolve => {
-      const server = express();
+app.prepare().then(() => {
+  const server = express();
 
-      // middleware
-      server.use(async (req, res, next) => {
-        const id = uuid();
-        const start = Date.now();
+  // middleware
+  server.use(async (req, res, next) => {
+    const id = uuid();
+    const start = Date.now();
 
-        req.logId = id;
+    req.logId = id;
 
-        debug(
-          `id=${id}, info=${req.get('host')} ${req.path} ${req.ip} ${req.ips}`,
-        );
-        debug(`id=${id}, headers=${JSON.stringify(req.headers)}`);
-        debug(`id=${id}, bodyParser=in`);
-        await next();
-        debug(`id=${id}, bodyParser=out`);
-        debug(`id=${id}, time=${Date.now() - start}`);
-      });
-      server.use(bodyParser.json());
-      server.use(async (req, res, next) => {
-        debug(`id=${req.logId}, cookieParser=in`);
-        await next();
-        debug(`id=${req.logId}, cookieParser=out`);
-      });
-      server.use(cookieParser());
-      server.use(async (req, res, next) => {
-        debug(`id=${req.logId}, compression=in`);
-        await next();
-        debug(`id=${req.logId}, compression=out`);
-      });
-      server.use(compression());
-      server.use(async (req, res, next) => {
-        debug(`id=${req.logId}, nextI18next=in`);
-        await next();
-        debug(`id=${req.logId}, nextI18next=out`);
-      });
-      server.use(helmet());
-      server.use(async (req, res, next) => {
-        debug(`id=${req.logId}, modifier=in`);
-        await next();
-        debug(`id=${req.logId}, modifier=out`);
-      });
+    debug(`id=${id}, info=${req.get('host')} ${req.path} ${req.ip} ${req.ips}`);
+    debug(`id=${id}, headers=${JSON.stringify(req.headers)}`);
+    debug(`id=${id}, bodyParser=in`);
+    await next();
+    debug(`id=${id}, bodyParser=out`);
+    debug(`id=${id}, time=${Date.now() - start}`);
+  });
+  server.use(bodyParser.json());
+  server.use(async (req, res, next) => {
+    debug(`id=${req.logId}, cookieParser=in`);
+    await next();
+    debug(`id=${req.logId}, cookieParser=out`);
+  });
+  server.use(cookieParser());
+  server.use(async (req, res, next) => {
+    debug(`id=${req.logId}, compression=in`);
+    await next();
+    debug(`id=${req.logId}, compression=out`);
+  });
+  server.use(compression());
+  server.use(async (req, res, next) => {
+    debug(`id=${req.logId}, helmet=in`);
+    await next();
+    debug(`id=${req.logId}, helmet=out`);
+  });
+  server.use(helmet());
 
-      server.use((req, res, next) => {
-        if (STORE_DOMAIN) req.headers.host = STORE_DOMAIN;
+  server.use(async (req, res, next) => {
+    if (STORE_DOMAIN) req.headers.host = STORE_DOMAIN;
 
-        next();
-      });
+    await next();
+  });
 
-      // routes
-      server.get('/healthz', (req, res) => {
-        res.status(200).end();
-      });
-      server.get('/version', (req, res) => {
-        const {
-          browser,
-          engine,
-          os: _os,
-          device: { type = 'desktop', model = '', vendor = 'unknown' },
-        } = uaParser(req.headers['user-agent']);
-        res.status(200).send(`
+  // routes
+  server.get('/healthz', (req, res) => {
+    res.status(200).end();
+  });
+  server.get('/version', (req, res) => {
+    const {
+      browser,
+      engine,
+      os: _os,
+      device: { type = 'desktop', model = '', vendor = 'unknown' },
+    } = uaParser(req.headers['user-agent']);
+    res.status(200).send(`
           <header>Welcome to next-store ${VERSION}</header>
           <main>
             Your information:
@@ -131,72 +121,64 @@ module.exports = app.prepare().then(
             </ul>
           </main>
         `);
-      });
-      server.post('/log', (req, res) => {
-        logger.info(
-          `#LOG#(${req.get('host')}) >>>  ${JSON.stringify(req.body)}`,
-        );
-        res.end();
-      });
+  });
+  server.post('/log', (req, res) => {
+    logger.info(`#LOG#(${req.get('host')}) >>>  ${JSON.stringify(req.body)}`);
+    res.end();
+  });
 
-      // api
-      server.post('/api/graphql', mapCookiesToHeaders, api);
-      server.post('/api/landing-page/graphql', mapCookiesToHeaders, api);
+  // api
+  server.post('/api/graphql', mapCookiesToHeaders, api);
+  server.post('/api/landing-page/graphql', mapCookiesToHeaders, api);
 
-      // auth
-      server.post(
-        '/api/auth/login',
-        mapCookiesToHeaders,
-        signin('/auth/login'),
-      );
-      server.post(
-        '/api/auth/fbLogin',
-        mapCookiesToHeaders,
-        signin('/facebook/fbLogin'),
-      );
-      server.get('/fbAuthForLine', mapCookiesToHeaders, fbAuthForLine);
-      server.post('/api/auth/logout', (req, res) => {
-        res.cookie('x-meepshop-authorization-token', '', {
-          maxAge: 0,
-          httpOnly: true,
-        });
-        res.status(200).end();
-      });
-      server.post(
-        '/auth/landing_page/access_token',
-        mapCookiesToHeaders,
-        landingPageAccessToken,
-      );
+  // auth
+  server.post('/api/auth/login', mapCookiesToHeaders, signin('/auth/login'));
+  server.post(
+    '/api/auth/fbLogin',
+    mapCookiesToHeaders,
+    signin('/facebook/fbLogin'),
+  );
+  server.get('/fbAuthForLine', mapCookiesToHeaders, fbAuthForLine);
+  server.post('/api/auth/logout', (req, res) => {
+    res.cookie('x-meepshop-authorization-token', '', {
+      maxAge: 0,
+      httpOnly: true,
+    });
+    res.status(200).end();
+  });
+  server.post(
+    '/auth/landing_page/access_token',
+    mapCookiesToHeaders,
+    landingPageAccessToken,
+  );
 
-      // For facebook fan page connect
-      server.post('/', (req, res) => handler(req, res));
+  // For facebook fan page connect
+  server.post('/', (req, res) => handler(req, res));
 
-      // ecpay
-      server.post('/pages/:path', (req, res) => handler(req, res));
-      server.post('/products', (req, res) => handler(req, res));
+  // ecpay
+  server.post('/pages/:path', (req, res) => handler(req, res));
+  server.post('/products', (req, res) => handler(req, res));
 
-      // others
-      server.post('/checkout/thank-you-page/:id', (req, res) => {
-        res.redirect(`https://${req.get('host')}${req.originalUrl}`);
-      });
+  // others
+  server.post('/checkout/thank-you-page/:id', (req, res) => {
+    res.redirect(`https://${req.get('host')}${req.originalUrl}`);
+  });
 
-      server.get('*', (req, res) => handler(req, res));
+  server.get('*', (req, res) => handler(req, res));
 
-      // error handler
-      // eslint-disable-next-line consistent-return
-      server.use((error, req, res, next) => {
-        logger.error(`error: ${JSON.stringify(error)} (${os.hostname()})`);
-        if (res.headersSent) {
-          // return to default error handler
-          return next(error);
-        }
-        res.status(500).json({ error });
-      });
+  // error handler
+  // eslint-disable-next-line consistent-return
+  server.use((error, req, res, next) => {
+    logger.error(`error: ${JSON.stringify(error)} (${os.hostname()})`);
+    if (res.headersSent) {
+      // return to default error handler
+      return next(error);
+    }
+    res.status(500).json({ error });
+  });
 
-      // listen
-      server.listen(port, () => {
-        logger.info(`> Store ready on http://localhost:${port}`);
-        resolve();
-      });
-    }),
-);
+  // listen
+  server.listen(14401, () => {
+    logger.info('> Store ready on http://localhost:14401');
+  });
+});

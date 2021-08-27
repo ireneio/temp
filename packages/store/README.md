@@ -16,4 +16,3 @@ When you run the server, you can use those environment variable:
 | API          | API=https://api.meepshop.tw yarn dev |
 | STORE_DOMAIN | STORE_DOMAIN=test.com yarn dev       |
 | ANALYZE      | ANALYZE=true yarn dev                |
-| PORT         | PORT=8000 yarn dev                   |
