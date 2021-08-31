@@ -4,7 +4,7 @@
   "description": "Use to handle the global apollo-client types",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.32",
+  "version": "0.80.36",
   "main": "./index.js",
   "bin": "./lib/bin/index.js",
   "types": "./index.ts",

@@ -4,7 +4,7 @@
   "description": "custom message for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.32",
+  "version": "0.80.36",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "keywords": ["admin", "message"]
