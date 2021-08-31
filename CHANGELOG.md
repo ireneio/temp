@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 0.80.36 (2021-08-31)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1704](https://github.com/meepshop/meep-lerna/pull/1704) T9089 - 內部開單 - 新的 logger ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#1677](https://github.com/meepshop/meep-lerna/pull/1677) 內部開單 - 修正 rc-picker bundle size 過大 ([@Lexiwu](https://github.com/Lexiwu))
+- [#1703](https://github.com/meepshop/meep-lerna/pull/1703) 新增 @store/cart-previewer ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- Other
+  - [#1677](https://github.com/meepshop/meep-lerna/pull/1677) 內部開單 - 修正 rc-picker bundle size 過大 ([@Lexiwu](https://github.com/Lexiwu))
+- `store`
+  - [#1704](https://github.com/meepshop/meep-lerna/pull/1704) T9089 - 內部開單 - 新的 logger ([@HsuTing](https://github.com/HsuTing))
+  - [#1705](https://github.com/meepshop/meep-lerna/pull/1705) (@meepshop/next-store) Remove unused code in server ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.35 (2021-08-26)
 
 #### :bug: Bug Fix
