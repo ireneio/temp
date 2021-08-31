@@ -1,5 +1,4 @@
 const path = require('path');
-const os = require('os');
 
 require('isomorphic-unfetch');
 const nextApp = require('next');
@@ -7,12 +6,10 @@ const express = require('express');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const debug = require('debug')('next-store:server');
-const uuid = require('uuid/v4');
 const helmet = require('helmet');
 const uaParser = require('ua-parser-js');
 
-const { default: logger } = require('@meepshop/utils/lib/logger');
+const { default: initializeLogger } = require('@meepshop/logger');
 
 const { publicRuntimeConfig } = require('../../next.config');
 const routes = require('./routes');
@@ -43,13 +40,14 @@ const handler = routes.getRequestHandler(app, ({ req, res, route, query }) => {
   'SIGTERM',
   'SIGINT',
 ].forEach(eventName => {
+  const logger = initializeLogger();
+
   process.on(eventName, error => {
-    logger.info(
-      `${eventName} => ${JSON.stringify({
-        msg: error.message || error,
-        stk: error.stack,
-      })}`,
-    );
+    logger.info({
+      eventName,
+      message: error.message || error,
+      stack: error.stack,
+    });
 
     if (['exit', 'SIGTERM', 'SIGINT'].includes(eventName)) process.exit(error);
   });
@@ -60,35 +58,43 @@ app.prepare().then(() => {
 
   // middleware
   server.use(async (req, res, next) => {
-    const id = uuid();
-    const start = Date.now();
+    const logger = initializeLogger();
 
-    req.logId = id;
-
-    debug(`id=${id}, info=${req.get('host')} ${req.path} ${req.ip} ${req.ips}`);
-    debug(`id=${id}, headers=${JSON.stringify(req.headers)}`);
-    debug(`id=${id}, bodyParser=in`);
+    req.logger = logger;
+    logger.debug({
+      host: req.get('host'),
+      path: req.path,
+      ip: req.ip,
+      ips: req.ips,
+      headers: req.headers,
+      message: 'body parser in',
+    });
     await next();
-    debug(`id=${id}, bodyParser=out`);
-    debug(`id=${id}, time=${Date.now() - start}`);
+    logger.debug('body parser out');
   });
   server.use(bodyParser.json());
   server.use(async (req, res, next) => {
-    debug(`id=${req.logId}, cookieParser=in`);
+    const { logger } = req;
+
+    logger.debug('cookie parser in');
     await next();
-    debug(`id=${req.logId}, cookieParser=out`);
+    logger.debug('cookie parser out');
   });
   server.use(cookieParser());
   server.use(async (req, res, next) => {
-    debug(`id=${req.logId}, compression=in`);
+    const { logger } = req;
+
+    logger.debug('compression in');
     await next();
-    debug(`id=${req.logId}, compression=out`);
+    logger.debug('compression out');
   });
   server.use(compression());
   server.use(async (req, res, next) => {
-    debug(`id=${req.logId}, helmet=in`);
+    const { logger } = req;
+
+    logger.debug('helmet in');
     await next();
-    debug(`id=${req.logId}, helmet=out`);
+    logger.debug('helmet out');
   });
   server.use(helmet());
 
@@ -110,20 +116,23 @@ app.prepare().then(() => {
       device: { type = 'desktop', model = '', vendor = 'unknown' },
     } = uaParser(req.headers['user-agent']);
     res.status(200).send(`
-          <header>Welcome to next-store ${VERSION}</header>
-          <main>
-            Your information:
-            <ul>
-              <li>Browser: ${browser.name}(${browser.version})</li>
-              <li>Engine: ${engine.name}</li>
-              <li>OS: ${_os.name}(${_os.version})</li>
-              <li>Device: ${type} - ${model}(${vendor})</li>
-            </ul>
-          </main>
-        `);
+      <header>Welcome to next-store ${VERSION}</header>
+      <main>
+        Your information:
+        <ul>
+          <li>Browser: ${browser.name}(${browser.version})</li>
+          <li>Engine: ${engine.name}</li>
+          <li>OS: ${_os.name}(${_os.version})</li>
+          <li>Device: ${type} - ${model}(${vendor})</li>
+        </ul>
+      </main>
+    `);
   });
   server.post('/log', (req, res) => {
-    logger.info(`#LOG#(${req.get('host')}) >>>  ${JSON.stringify(req.body)}`);
+    const { logger } = req;
+    const { type, ...data } = req.body;
+
+    logger[type || 'info'](data);
     res.end();
   });
 
@@ -169,16 +178,17 @@ app.prepare().then(() => {
   // error handler
   // eslint-disable-next-line consistent-return
   server.use((error, req, res, next) => {
-    logger.error(`error: ${JSON.stringify(error)} (${os.hostname()})`);
-    if (res.headersSent) {
-      // return to default error handler
-      return next(error);
-    }
+    const { logger } = req;
+
+    logger.error(error);
+
+    if (res.headersSent) return next(error);
+
     res.status(500).json({ error });
   });
 
   // listen
   server.listen(14401, () => {
-    logger.info('> Store ready on http://localhost:14401');
+    initializeLogger().info('store ready on http://localhost:14401');
   });
 });

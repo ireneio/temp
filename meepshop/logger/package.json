@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@meepshop/logger",
+  "description": "Create a logger object for debug",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "pino": "^6.11.0"
+  },
+  "keywords": ["debug", "logger", "meepshop"]
+}
