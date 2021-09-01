@@ -41,7 +41,7 @@ interface PropsType {
 
 // definition
 const Redirects: NextPage<PropsType> = React.memo(() => {
-  const { t } = useTranslation('redirects');
+  const { t } = useTranslation('setting-redirects');
   const { data } = useQuery<getRedirectsType>(getRedirects);
   const { loading, pageSize, current, changePage } = useChangePage();
 

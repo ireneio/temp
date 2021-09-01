@@ -32,7 +32,7 @@ export default ({
   id,
   setShowModal,
 }: UseUpdateRoutingRuleType): ((values: ValuesType) => void) => {
-  const { t } = useTranslation('redirects');
+  const { t } = useTranslation('setting-redirects');
   const [mutation] = useMutation<
     updateRoutingRuleType,
     updateRoutingRuleVariablesType

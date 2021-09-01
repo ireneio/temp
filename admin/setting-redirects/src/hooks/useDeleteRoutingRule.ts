@@ -23,7 +23,7 @@ import {
 export default (
   user: useDeleteRoutingRuleFragmentType | null,
 ): ((input: deleteRoutingRuleVariablesType['input']) => void) => {
-  const { t } = useTranslation('redirects');
+  const { t } = useTranslation('setting-redirects');
 
   const [mutation] = useMutation<
     deleteRoutingRuleType,

@@ -30,7 +30,7 @@ import { modalFragmet } from '../gqls/modal';
 export default (
   user: useColumnsStoreFragmentType | null,
 ): ColumnProps<useColumnsRoutingRuleFragmentType>[] => {
-  const { t } = useTranslation('redirects');
+  const { t } = useTranslation('setting-redirects');
   const deleteRoutingRule = useDeleteRoutingRule(
     filter<useDeleteRoutingRuleFragmentType>(
       useDeleteRoutingRuleFragment,
@@ -86,7 +86,7 @@ export default (
           id: useColumnsRoutingRuleFragmentType['id'],
           value: useColumnsRoutingRuleFragmentType,
         ) => (
-          <div className={styles.actions}>
+          <>
             <Tooltip placement="top" title={t('actions.edit')}>
               <Modal
                 user={filter<modalFragmetType>(modalFragmet, user)}
@@ -105,7 +105,7 @@ export default (
                 onClick={() => deleteRoutingRule({ id })}
               />
             </Tooltip>
-          </div>
+          </>
         ),
       },
     ],

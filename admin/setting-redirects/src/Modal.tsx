@@ -35,7 +35,7 @@ interface PropsType extends BaseButtonProps {
 const { Item: FormItem } = Form;
 
 export default React.memo(({ user, editData, ...props }: PropsType) => {
-  const { t } = useTranslation('redirects');
+  const { t } = useTranslation('setting-redirects');
   const [showModal, setShowModal] = useState<boolean>(false);
   const [form] = Form.useForm();
   const { resetFields } = form;

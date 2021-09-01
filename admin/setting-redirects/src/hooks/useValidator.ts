@@ -19,7 +19,7 @@ export default (
   validateFromPath: (_: unknown, value: string) => void;
   validateToPath: NonNullable<FormItemProps<ValuesType>['rules']>[number];
 } => {
-  const { t } = useTranslation('redirects');
+  const { t } = useTranslation('setting-redirects');
 
   return {
     validateFromPath: useCallback(

@@ -1,2 +1,2 @@
 // import
-export { default } from '@admin/redirects';
+export { default } from '@admin/setting-redirects';

@@ -1,12 +1,6 @@
 .root {
   :global(.ant-table-row) {
     height: 65px;
-
-    &:hover {
-      :global(.admin-redirects__useColumns__actions) {
-        display: block;
-      }
-    }
   }
 }
 
@@ -35,6 +29,16 @@
 
     &:nth-child(1) {
       color: rgba(0, 0, 0, 0.65);
+    }
+
+    &:last-child > * {
+      display: none;
+    }
+  }
+
+  &:hover {
+    td:last-child > * {
+      display: inline-block;
     }
   }
 }
