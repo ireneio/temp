@@ -4,7 +4,7 @@
   "description": "ecpay 2.0 page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.36",
+  "version": "0.80.37",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -12,7 +12,7 @@
     "@meepshop/hooks": "^0.80.36",
     "@meepshop/icons": "^0.80.36",
     "@meepshop/link": "^0.80.36",
-    "@meepshop/locales": "^0.80.36",
+    "@meepshop/locales": "^0.80.37",
     "@meepshop/switch": "^0.80.36"
   },
   "keywords": ["ecpay", "store"]
