@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.37 (2021-09-01)
+
+#### :bug: Bug Fix
+
+- [#1690](https://github.com/meepshop/meep-lerna/pull/1690) 內部開單 - 統一 validator version ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1593](https://github.com/meepshop/meep-lerna/pull/1593) Internal - 重新命名 redirects package name ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.36 (2021-08-31)
 
 #### :boom: Breaking Change
