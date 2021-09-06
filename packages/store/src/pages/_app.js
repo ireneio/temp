@@ -9,11 +9,9 @@ import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import { notification } from 'antd';
 import { getUnixTime } from 'date-fns';
-import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
 import ActionButton from '@meepshop/action-button';
-import { appWithTranslation, useTranslation } from '@meepshop/locales';
+import { appWithTranslation } from '@meepshop/locales';
 import logger from '@meepshop/utils/lib/logger';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';
@@ -22,7 +20,7 @@ import { RoleProvider } from '@meepshop/context/lib/Role';
 import { SensorProvider } from '@meepshop/context/lib/Sensor';
 import { CartProvider } from '@meepshop/cart';
 import { FormDataProvider } from '@meepshop/form-data';
-import { withDomain, useRouter } from '@meepshop/link';
+import { withDomain } from '@meepshop/link';
 import withHook from '@store/utils/lib/withHook';
 import withApollo from '@store/apollo';
 import FbProvider from '@store/fb';
@@ -34,6 +32,7 @@ import { Router } from 'server/routes';
 import * as Utils from 'utils';
 import configureStore from 'ducks/store';
 import withCookies from 'utils/withCookies';
+import usePage from 'hooks/usePage';
 
 const {
   publicRuntimeConfig: { API },
@@ -243,6 +242,7 @@ class App extends NextApp {
       logoImage,
       faviconImage,
       i18n,
+      experimentPage,
     } = this.props;
 
     /* Handle error */
@@ -318,6 +318,7 @@ class App extends NextApp {
                             <Provider store={store}>
                               <Component
                                 {...pageProps}
+                                experimentPage={experimentPage}
                                 url={{
                                   asPath: router.asPath,
                                   query: router.query,
@@ -344,52 +345,7 @@ class App extends NextApp {
 export default withApollo(
   withRedux(configureStore)(
     withReduxSaga(
-      appWithTranslation(
-        withCookies(
-          withDomain(
-            withHook(() => {
-              const router = useRouter();
-              const { i18n } = useTranslation('common');
-              const { data } = useQuery(gql`
-                query getStore {
-                  viewer {
-                    id
-                    store {
-                      id
-                      description {
-                        name
-                        introduction
-                      }
-                      logoImage {
-                        id
-                        scaledSrc {
-                          w240
-                        }
-                      }
-                      faviconImage {
-                        id
-                        scaledSrc {
-                          w60
-                        }
-                      }
-                    }
-                  }
-                }
-              `);
-
-              return {
-                i18n,
-                router,
-                storeName: data?.viewer?.store?.description?.name || '',
-                storeDescription:
-                  data?.viewer?.store?.description?.introduction || '',
-                logoImage: data?.viewer?.store?.logoImage,
-                faviconImage: data?.viewer?.store?.faviconImage,
-              };
-            })(App),
-          ),
-        ),
-      ),
+      appWithTranslation(withCookies(withDomain(withHook(usePage)(App)))),
     ),
   ),
 );
