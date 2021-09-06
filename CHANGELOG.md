@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.80.38 (2021-09-06)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1706](https://github.com/meepshop/meep-lerna/pull/1706) T9083 - 內部開單 - 在 我的收藏 頁面裡面不再從 redux 拿資料 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#1708](https://github.com/meepshop/meep-lerna/pull/1708) 內部開單 - 臉書牆、臉書按讚元件、地圖元件 使用新元件 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#1710](https://github.com/meepshop/meep-lerna/pull/1710) 內部開單 - 改用 apollo-client 拿首頁頁面資料 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1717](https://github.com/meepshop/meep-lerna/pull/1717) 【BUG】前台 - 國泰世華虛擬帳號付款 - thank-you-page 顯示空白 ([@piovischioh](https://github.com/piovischioh))
+- [#1715](https://github.com/meepshop/meep-lerna/pull/1715) chore(deps): bump tar from 4.4.15 to 4.4.19 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.37 (2021-09-01)
 
 #### :bug: Bug Fix
