@@ -1,8 +1,10 @@
 import * as Api from 'api';
 import uuid from 'uuid/v4';
 
+import getLink from './getLink';
 import getJustifyContent from './getJustifyContent';
 import parseIframe from './parseIframe';
+import parseGoogleMap from './parseGoogleMap';
 
 /**
  * 暫時由前端join與filter各個module欄位
@@ -152,10 +154,11 @@ export default async function modifyWidgetDataInServer(
             return {
               id: uuid(),
               module: widget.module,
-              contentWidth: widget.contentWidth,
-              href: widget.href,
               width: widget.width,
               height: widget.height,
+              href:
+                parseGoogleMap(widget.href) ||
+                'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.592760581696!2d121.51357035073431!3d25.013950245169866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a9ea5f5c8e0d%3A0x6dda897a7281e0e3!2z6YGU6IqZ5aau!5e0!3m2!1szh-TW!2stw!4v1464849891494',
             };
           }
           /* 輪播圖 */
@@ -219,9 +222,12 @@ export default async function modifyWidgetDataInServer(
             return {
               id: uuid(),
               module: widget.module,
-              contentWidth: widget.contentWidth,
-              alignment: widget.socialMediaInfo.alignItems,
-              href: widget.socialMediaInfo.share.url,
+              href:
+                getLink(widget.socialMediaInfo.share.url) ||
+                'https://www.google.com.tw',
+              justifyContent: getJustifyContent(
+                widget.socialMediaInfo.alignItems,
+              ),
             };
           }
           /* 臉書牆 */
@@ -229,15 +235,13 @@ export default async function modifyWidgetDataInServer(
             return {
               id: uuid(),
               module: widget.module,
-              contentWidth: widget.contentWidth,
-              href: widget.href,
-              alignment: widget.alignment,
-              showPosts: !!widget.show_posts,
-              showFacepile: !!widget.show_facepile,
-              smallHeader: !!widget.small_header,
-              hideCover: !!widget.hide_cover,
-              hideCta: !!widget.hide_cta,
-              adaptContainerWidth: !!widget.adapt_container_width,
+              href: getLink(widget.href) || 'https://www.facebook.com/meepshop',
+              justifyContent: getJustifyContent(widget.alignment),
+              showPosts: Boolean(widget.show_posts),
+              showFacepile: Boolean(widget.show_facepile),
+              smallHeader: Boolean(widget.small_header),
+              hideCover: Boolean(widget.hide_cover),
+              hideCta: Boolean(widget.hide_cta),
             };
           }
           /* 一頁式購物車 */
