@@ -6,7 +6,7 @@ import server from './server';
 import { LOG_TYPES } from './constants';
 
 // typescript definition
-type loggerType = Record<
+export type loggerType = Record<
   typeof LOG_TYPES[number],
   (data: string | Error | object) => void
 >;

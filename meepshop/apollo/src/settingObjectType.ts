@@ -1,3 +1,8 @@
+// typescript import
+import { Resolvers } from 'apollo-client/core/types';
+
+import { loggerType } from '@meepshop/logger';
+
 // import
 import { parseRawContent } from './utils/parseRawContent';
 
@@ -5,10 +10,11 @@ import { parseRawContent } from './utils/parseRawContent';
 import { SettingObjectTypeFragment as SettingObjectTypeFragmentType } from '@meepshop/types/gqls/meepshop';
 
 // definition
-export const resolvers = {
+export const resolvers = (logger: loggerType): Resolvers => ({
   SettingObjectType: {
     shopperLoginMessageDraft: ({
       shopperLoginMessage,
-    }: SettingObjectTypeFragmentType) => parseRawContent(shopperLoginMessage),
+    }: SettingObjectTypeFragmentType) =>
+      parseRawContent(shopperLoginMessage, logger),
   },
-};
+});

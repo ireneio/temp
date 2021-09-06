@@ -1,9 +1,9 @@
 // typescript import
 import { RawDraftContentState, RawDraftInlineStyleRange } from 'draft-js';
 
-// import
-import logger from '@meepshop/utils/lib/logger';
+import { loggerType } from '@meepshop/logger';
 
+// import
 import { COLORS, FONTFAMILY } from '../constants';
 
 // typescript definition
@@ -86,7 +86,10 @@ const handleDataType = (
   };
 };
 
-export const parseRawContent = (value?: string | null): object | null => {
+export const parseRawContent = (
+  value: string | null,
+  logger: loggerType,
+): object | null => {
   try {
     if (!value || !/entityMap/.test(value)) return null;
 
@@ -133,7 +136,12 @@ export const parseRawContent = (value?: string | null): object | null => {
 
     return rawContent;
   } catch (error) {
-    logger.error(`Error: failed to format content, [${value}]`);
+    // FIXME: remove after all draft-js is formatted
+    logger.error({
+      message: 'failed to format draft-js',
+      value,
+    });
+
     return null;
   }
 };

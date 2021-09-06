@@ -1,8 +1,4 @@
-const os = require('os');
-
 const proxy = require('express-http-proxy');
-
-const { default: logger } = require('@meepshop/utils/lib/logger');
 
 const { publicRuntimeConfig } = require('../../../next.config');
 
@@ -21,11 +17,10 @@ module.exports = proxy(API, {
     }
 
     if (proxyRes.statusCode >= 500)
-      logger.info(
-        `<ERROR> ${proxyRes.statusCode}: ${
-          proxyRes.statusMessage
-        } (${os.hostname()})`,
-      );
+      userReq.logger.error({
+        statusCode: proxyRes.statusCode,
+        statusMessage: proxyRes.statusMessage,
+      });
 
     if (!userReq.headers['x-meepshop-authorization-token']) {
       const newToken = proxyRes.headers['x-meepshop-authorization-token'] || '';
@@ -44,14 +39,6 @@ module.exports = proxy(API, {
         maxAge: 86400 * 1000 * 7,
         httpOnly: true,
       });
-    }
-
-    try {
-      JSON.parse(proxyResData.toString('utf8'));
-    } catch (err) {
-      logger.info(
-        `<< /api >> ${err.message} - ${proxyResData.toString('utf8')}`,
-      );
     }
 
     return proxyResData.toString('utf8');

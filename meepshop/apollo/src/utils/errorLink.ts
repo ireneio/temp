@@ -1,13 +1,12 @@
 // typescript import
 import { ErrorResponse } from 'apollo-link-error';
-import { ArgsProps } from 'antd/lib/notification';
+
+import { loggerType } from '@meepshop/logger';
 
 // import
 import { onError } from 'apollo-link-error';
 import Router from 'next/router';
 import { notification } from 'antd';
-
-import logger from '@meepshop/utils/lib/logger';
 
 // typescript definition
 export type errorFilterType = ({ message }: Error) => boolean;
@@ -25,12 +24,19 @@ export const shouldIgnoreUnauthorizedError = (
       networkError.result.msg === 'token verify failed',
   );
 
-export default (errorFilter: errorFilterType): ReturnType<typeof onError> =>
+export default (
+  errorFilter: errorFilterType,
+  logger: loggerType,
+): ReturnType<typeof onError> =>
   onError(({ response, graphQLErrors, networkError }) => {
     const errorLog =
       typeof window === 'undefined'
-        ? (data: ArgsProps) => logger.error(JSON.stringify(data))
-        : notification.error;
+        ? logger.error
+        : ({ type, ...message }: { type: string }) =>
+            notification.error({
+              message: 'Error!',
+              description: `[${type} error]: ${JSON.stringify(message)}`,
+            });
 
     if (
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -61,12 +67,10 @@ export default (errorFilter: errorFilterType): ReturnType<typeof onError> =>
 
       errors.forEach(({ message, locations, path }) => {
         errorLog({
-          message: 'Error!',
-          description: `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
-            locations,
-            null,
-            2,
-          )}, Path: ${JSON.stringify(path, null, 2)}`,
+          type: 'GraphQL',
+          message,
+          locations,
+          path,
         });
       });
     }
@@ -75,12 +79,8 @@ export default (errorFilter: errorFilterType): ReturnType<typeof onError> =>
       if (shouldIgnoreUnauthorizedError(networkError)) return;
 
       errorLog({
-        message: 'Error!',
-        description: `[Network error]: ${JSON.stringify(
-          networkError,
-          null,
-          2,
-        )}`,
+        type: 'Network',
+        networkError,
       });
     }
   });

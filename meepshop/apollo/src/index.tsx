@@ -5,7 +5,7 @@ import { ApolloClient } from 'apollo-client';
 import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
 import { NextAppType, NextAppGetInitialPropsType } from '@meepshop/types';
-import logger from '@meepshop/utils/lib/logger';
+import { loggerType } from '@meepshop/logger';
 
 import { ConfigType as initApolloConfigType } from './utils/initApollo';
 
@@ -30,11 +30,11 @@ export interface CustomCtxType<Req = {}, Res = {}> extends AppContext {
   ctx: AppContext['ctx'] & {
     client: ApolloClient<NormalizedCacheObject>;
     req: Req & {
-      logId: string;
       cookies: {
         'x-meepshop-authorization-token': string;
         'merchant-applicant-verify-token': string;
       };
+      logger: loggerType;
     };
     res: Res;
   };
@@ -89,11 +89,10 @@ export const buildWithApollo = (config: initApolloConfigType) => (
         );
       } catch (e) {
         if (!shouldIgnoreUnauthorizedError(e.networkError))
-          logger.info(
-            `${
-              req.logId
-            }, Error while running 'getDataFromTree', ${JSON.stringify(e)}`,
-          );
+          req.logger.error({
+            ...e,
+            message: 'Error while running getDataFromTree',
+          });
       }
 
       Head.rewind();

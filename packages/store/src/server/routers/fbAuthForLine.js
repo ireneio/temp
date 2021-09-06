@@ -1,5 +1,3 @@
-const { default: logger } = require('@meepshop/utils/lib/logger');
-
 const { publicRuntimeConfig } = require('../../../next.config');
 
 const { API } = publicRuntimeConfig;
@@ -113,9 +111,7 @@ module.exports = async (req, res) => {
 
     res.redirect(!state || state === 'undefined' ? '/' : state);
   } catch (error) {
-    logger.info(
-      `Error: ${error.message}, Stack: ${JSON.stringify(error.stack)}`,
-    );
+    req.logger.error(error);
     res.redirect(301, `/login?error=${error.message}`);
   }
 };

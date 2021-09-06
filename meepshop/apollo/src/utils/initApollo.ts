@@ -3,7 +3,6 @@ import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { Resolvers } from 'apollo-client/core/types';
 
 import { CustomCtxType } from '../index';
-
 import { errorFilterType } from './errorLink';
 
 // import
@@ -17,6 +16,8 @@ import { RetryLink } from 'apollo-link-retry';
 import { ApolloLink } from 'apollo-link';
 import { createNetworkStatusNotifier } from 'react-apollo-network-status';
 import getConfig from 'next/config';
+
+import initialLogger from '@meepshop/logger';
 
 // Generate by build-fragment-types
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -70,6 +71,7 @@ const create = (
       introspectionQueryResultData: fragmentTypes,
     }),
   }).restore(initialState || {});
+  const logger = ctx?.ctx.req.logger || initialLogger();
 
   if (!initialState)
     initializeCache.forEach(initialize => initialize(cache, ctx));
@@ -86,14 +88,14 @@ const create = (
       ...resolvers,
       fbLogin.resolvers,
       landingPageAccessToken.resolvers,
-      log.resolvers,
+      log.resolvers(logger),
       login.resolvers,
       logout.resolvers,
       PageInfo.resolvers,
       productsObjectType.resolvers,
-      settingObjectType.resolvers,
+      settingObjectType.resolvers(logger),
       validatedConvenienceStoreCities.resolvers,
-      getDraftText.resolvers,
+      getDraftText.resolvers(logger),
     ].reduce(mergeResolvers, {}),
     link: ApolloLink.from([
       new RetryLink({
@@ -107,7 +109,7 @@ const create = (
           retryIf: error => !!error && ![401, 403].includes(error.statusCode),
         },
       }),
-      errorLink(errorFilter),
+      errorLink(errorFilter, logger),
       link,
       new HttpLink({
         uri: typeof window !== 'undefined' ? '/api/graphql' : `${API}/graphql`,
