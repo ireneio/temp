@@ -18,10 +18,7 @@ import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class Wishlist extends Component {
   static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent, store } = context;
-
-    if (typeof window === 'undefined')
-      store.dispatch(Actions.serverOthersInitial(context));
+    const { XMeepshopDomain, userAgent } = context;
 
     return {
       userAgent,

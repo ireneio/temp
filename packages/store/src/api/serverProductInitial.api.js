@@ -46,23 +46,6 @@ export default async context => {
       data ${productQuery}
       total
     }
-    getColorList {
-      data {
-        id
-        imgInfo {
-          used
-          repeat
-          size
-          image {
-            id
-            scaledSrc {
-              w1920
-            }
-          }
-        }
-      }
-      total
-    }
   `;
 
   const response = await postGraphql({

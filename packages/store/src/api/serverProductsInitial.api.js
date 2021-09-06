@@ -26,23 +26,6 @@ export default context => {
         }
       }
     }
-    getColorList {
-      data {
-        id
-        imgInfo {
-          used
-          repeat
-          size
-          image {
-            id
-            scaledSrc {
-              w1920
-            }
-          }
-        }
-      }
-      total
-    }
   `;
 
   return postGraphql({
