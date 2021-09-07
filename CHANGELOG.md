@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.80.39 (2021-09-07)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1675](https://github.com/meepshop/meep-lerna/pull/1675) 【功能】串接綠界站內付 2.0 - 前端 ([@happycat6323](https://github.com/happycat6323))
+- `store`
+  - [#1712](https://github.com/meepshop/meep-lerna/pull/1712) T9111 - 內部開單 - client side schema 使用新的 logger ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.38 (2021-09-06)
 
 #### :boom: Breaking Change
