@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.40 (2021-09-07)
+
+#### :bug: Bug Fix
+
+- `storybook`
+  - [#1722](https://github.com/meepshop/meep-lerna/pull/1722) internal - (@meepshop/icons) Remove icons mock ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.39 (2021-09-07)
 
 #### :rocket: New Feature
