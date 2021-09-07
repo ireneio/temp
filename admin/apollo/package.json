@@ -8,8 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/apollo": "^0.80.36",
-    "moment": "^2.22.1"
+    "@meepshop/apollo": "^0.80.36"
   },
   "keywords": ["admin", "apollo client"]
 }

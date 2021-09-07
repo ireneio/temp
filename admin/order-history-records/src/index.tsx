@@ -69,7 +69,10 @@ const OrderHistoryRecords: NextPage<PropsType> = React.memo(
             <div>{t('createdAt')}</div>
 
             <div>
-              {format(new Date(order.createdAt), 'yyyy/MM/dd HH:mm:ss')}
+              {format(
+                new Date(order.createdAt || new Date()),
+                'yyyy/MM/dd HH:mm:ss',
+              )}
             </div>
           </div>
         </div>

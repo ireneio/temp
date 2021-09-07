@@ -29,7 +29,7 @@ export default React.memo(
         <div>
           {t('blocks.shipment.logistic.updated-at')}
 
-          {format(new Date(updatedAt), 'yyyy/MM/dd HH:mm:ss')}
+          {format(new Date(updatedAt || new Date()), 'yyyy/MM/dd HH:mm:ss')}
         </div>
 
         <div className={styles.tip}>{t('blocks.shipment.logistic.tip')}</div>

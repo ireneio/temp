@@ -54,7 +54,7 @@ export default React.memo(() => {
 
           <span>
             <span>{t('order-date')}</span>
-            {format(new Date(createdAt), 'yyyy/MM/dd')}
+            {format(new Date(createdAt || new Date()), 'yyyy/MM/dd')}
           </span>
         </h1>
 

@@ -31,7 +31,7 @@ export default React.memo(
           </h4>
           <h4>
             {t('date')}
-            {format(new Date(createdAt), 'yyyy/MM/dd')}
+            {format(new Date(createdAt || new Date()), 'yyyy/MM/dd')}
           </h4>
           {applicationType === 'return' ? null : (
             <>

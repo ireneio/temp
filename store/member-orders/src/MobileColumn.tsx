@@ -41,7 +41,7 @@ export default React.memo(
     return (
       <>
         <div className={styles.root} onClick={() => toggleDrawer(true)}>
-          <div>{format(new Date(createdAt), 'yyyy/MM/dd')}</div>
+          <div>{format(new Date(createdAt || new Date()), 'yyyy/MM/dd')}</div>
 
           <h4>
             {t('order.no')}：<div className={styles.link}>{orderNo}</div>

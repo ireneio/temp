@@ -33,7 +33,7 @@ export default (): ColumnProps<useColumnsOrdersFragment>[] => {
         title: t('date'),
         dataIndex: ['node', 'createdAt'],
         render: (value: useColumnsOrdersFragmentNode['createdAt']) =>
-          format(new Date(value), 'yyyy/MM/dd'),
+          format(new Date(value || new Date()), 'yyyy/MM/dd'),
         width: 130,
       },
       {

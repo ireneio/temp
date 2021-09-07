@@ -90,7 +90,7 @@ export default React.memo(({ type }: PropsType) => {
         <span>
           <span>{t('created-at')}</span>
 
-          {format(new Date(order.createdAt), 'yyyy/MM/dd')}
+          {format(new Date(order.createdAt || new Date()), 'yyyy/MM/dd')}
         </span>
       </h1>
 

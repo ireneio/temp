@@ -24,7 +24,7 @@ interface PropsType {
 export default React.memo(({ trialExpireAt, collapsed }: PropsType) => {
   const { t } = useTranslation('common');
   const isMoreThanOneDay =
-    differenceInHours(new Date(trialExpireAt), new Date()) > 24;
+    differenceInHours(new Date(trialExpireAt || new Date()), new Date()) > 24;
 
   return (
     <Switch
@@ -49,8 +49,11 @@ export default React.memo(({ trialExpireAt, collapsed }: PropsType) => {
           {t(isMoreThanOneDay ? 'free-trial' : 'free-trial-next-day')}
           <span>
             {isMoreThanOneDay
-              ? differenceInDays(new Date(trialExpireAt), new Date())
-              : format(new Date(trialExpireAt), 'HH:mm')}
+              ? differenceInDays(
+                  new Date(trialExpireAt || new Date()),
+                  new Date(),
+                )
+              : format(new Date(trialExpireAt || new Date()), 'HH:mm')}
           </span>
           {t(isMoreThanOneDay ? 'expire-in-days' : 'expire')}
         </div>

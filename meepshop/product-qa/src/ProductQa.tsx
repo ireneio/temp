@@ -69,7 +69,10 @@ export default React.memo(({ width, product, viewer }: productQaFragment) => {
                   </div>
 
                   <div className={styles.createdAt}>
-                    {format(new Date(createdAt), 'yyyy/MM/dd HH:mm:ss')}
+                    {format(
+                      new Date(createdAt || new Date()),
+                      'yyyy/MM/dd HH:mm:ss',
+                    )}
                   </div>
                 </div>
               </div>
@@ -113,7 +116,7 @@ export default React.memo(({ width, product, viewer }: productQaFragment) => {
                         />
                         <div>
                           {`(${format(
-                            new Date(replyQa.createdAt),
+                            new Date(replyQa.createdAt || new Date()),
                             'yyyy/MM/dd HH:mm:ss',
                           )})`}
                         </div>

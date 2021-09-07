@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
@@ -63,7 +62,6 @@ module.exports = nextConfig =>
         ENV: process.env.ENV || 'stage',
       },
       webpack: config => {
-        config.plugins.push(new MomentLocalesPlugin());
         addIEPolyfill(config);
         fixCssLoaderError(config);
 

@@ -97,7 +97,7 @@ const SmartConversionAnalysis: NextPage<PropsType> = React.memo(
               {!isStatusEnd ? null : (
                 <div>
                   <span>{t('ended-at')}</span>
-                  <div>{formatDate(actualEndAt, timezone)}</div>
+                  <div>{formatDate(actualEndAt || new Date(), timezone)}</div>
                 </div>
               )}
 

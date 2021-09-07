@@ -20,8 +20,8 @@ export default ({
       start = undefined,
       end = undefined,
     }: {
-      start?: number;
-      end?: number;
+      start?: string | null;
+      end?: string | null;
     } = variables?.filter?.createdAtRange || {};
 
     return !start || !end ? undefined : [new Date(start), new Date(end)];

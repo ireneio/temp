@@ -58,7 +58,10 @@ export default React.memo(({ choosePayment, order }: PropsType) => {
             },
             {
               key: 'expire-date',
-              value: format(new Date(atm.expireDate), 'yyyy/MM/dd HH:mm:ss'),
+              value: format(
+                new Date(atm.expireDate || new Date()),
+                'yyyy/MM/dd HH:mm:ss',
+              ),
             },
           ].map(({ key, value }) => (
             <div key={key}>
@@ -90,7 +93,7 @@ export default React.memo(({ choosePayment, order }: PropsType) => {
             {
               key: 'expire-date',
               value: format(
-                new Date(cvsPayCode.expireDate),
+                new Date(cvsPayCode.expireDate || new Date()),
                 'yyyy/MM/dd HH:mm:ss',
               ),
             },

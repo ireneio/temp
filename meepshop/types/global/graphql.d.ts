@@ -1,6 +1,5 @@
 // typescript definition
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type meepshopDateTime = any; // FIXME: T8923
+type meepshopDateTime = string;
 type meepshopEmailAddress = string;
 type meepshopJSON = object;
 type meepshopURL = string;

@@ -43,7 +43,7 @@ export default React.memo(({ order, children }: PropsType) => {
             {
               key: 'expire-date',
               value: format(
-                new Date(cvsPayCode.expireDate),
+                new Date(cvsPayCode.expireDate || new Date()),
                 'yyyy/MM/dd HH:mm:ss',
               ),
             },

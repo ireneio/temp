@@ -42,7 +42,10 @@ export default React.memo(({ order }: PropsType) => {
         },
         {
           key: 'expire-date',
-          value: format(new Date(atm.expireDate), 'yyyy/MM/dd HH:mm:ss'),
+          value: format(
+            new Date(atm.expireDate || new Date()),
+            'yyyy/MM/dd HH:mm:ss',
+          ),
         },
       ].map(({ key, value }) => (
         <div key={key}>

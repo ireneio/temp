@@ -78,10 +78,10 @@ export default React.memo(() => {
       {type === 'normal' ? null : (
         <div className={styles.groupExpireDate} style={{ color: colors[3] }}>
           {t('group-expire-date.info')}{' '}
-          {format(new Date(startAt), 'yyyy/MM/dd')} ~{' '}
+          {format(new Date(startAt || new Date()), 'yyyy/MM/dd')} ~{' '}
           {unlimitedDate
             ? t('group-expire-date.forever')
-            : format(new Date(expireAt), 'yyyy/MM/dd')}
+            : format(new Date(expireAt || new Date()), 'yyyy/MM/dd')}
         </div>
       )}
 
