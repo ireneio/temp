@@ -12,6 +12,7 @@ export const createOrder = gql`
         id
         orderNo
         error: _error
+        paymentServiceTradeToken
         formData {
           ...formDataFragment
         }

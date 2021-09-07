@@ -1,16 +1,19 @@
 {
   "title": {
     "default": "Thank you!",
-    "error": "Oops!"
+    "error": "Oops!",
+    "payment-fail": "Payment Fail"
   },
   "info": {
     "default": "We have received your order. Please check your order for payment status.",
     "atm": "Your order has been received, please make payment within time",
     "cvs": "Your order has been received, please make payment at the Super Business Opportunity Desk within time",
+    "credit": "I have received your order, we will handle you as soon as possible.",
     "error": {
       "0": "There are some problems in the information, please check whether the order was successfully established",
       "1": "You can also click to copy the error message and provide the information to the customer service to handle it for you"
-    }
+    },
+    "payment-fail": "Sorry, there is a mistake when paying, and then you will re-order it."
   },
   "atm": {
     "bank-name": "Payment bank",
@@ -25,9 +28,21 @@
     "expire-date": "Payment period",
     "description": "This code can be printed and paid at 7-11, FamilyMart, OK Supermarket, Lairfu and other super business opportunities"
   },
+  "credit": {
+    "order-number": "Order number",
+    "store-name": "Store name",
+    "payment-method": "payment method",
+    "credit-card": "Credit card payment / installment payment",
+    "price": "order amount",
+    "payment-status": "payment status",
+    "completed": "Payup"
+  },
   "return": "Back to the homepage",
+  "back-to-cart": "Back to cart",
   "order": "Check My Order",
   "copy": "Copy the URL",
   "copied": "URL copied to clipboard.",
-  "data-error": "Data Synchronization Error"
+  "data-error": "Data Synchronization Error",
+  "error-code": "error code:",
+  "hints": "If you still can't complete your payment, you can use other payment methods."
 }

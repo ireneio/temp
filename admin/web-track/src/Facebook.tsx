@@ -1,14 +1,15 @@
 // import
 import React, { useState } from 'react';
-import { Form, Tooltip as AntdTooltip, Button, Input } from 'antd';
+import { Form, Tooltip as AntdTooltip, Button, Input, message } from 'antd';
+import { CheckCircleOutlined } from '@ant-design/icons';
 
 import Tooltip from '@admin/tooltip';
+import { useClipboard } from '@meepshop/hooks';
 import { useTranslation } from '@meepshop/locales';
 import { webTrackFacebook_w130 as webTrackFacebook } from '@meepshop/images';
 import Link from '@meepshop/link';
 
 import useSetFacebookAdTracks from './hooks/useSetFacebookAdTracks';
-import useClipboard from './hooks/useClipboard';
 import styles from './styles/facebook.less';
 
 // graphql typescript
@@ -36,7 +37,17 @@ export default React.memo(({ store }: PropsType) => {
     setEditMode,
   );
 
-  useClipboard(fbDPALink || '', '#fbDPALink', t('facebook.dpa.copied'));
+  useClipboard({
+    target: '#fbDPALink',
+    text: () => fbDPALink || '',
+    success: () => {
+      message.success({
+        content: t('facebook.dpa.copied'),
+        duration: 2,
+        icon: <CheckCircleOutlined />,
+      });
+    },
+  });
 
   return (
     <Form onFinish={setFacebookAdTracks}>

@@ -1,7 +1,8 @@
 // import
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Input, message } from 'antd';
-import Clipboard from 'clipboard';
+
+import { useClipboard } from '@meepshop/hooks';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as icons from '@meepshop/icons';
@@ -14,22 +15,18 @@ const { Search } = Input;
 export default React.memo(() => {
   const [searchKey, setSearchKey] = useState('');
 
-  useEffect(() => {
-    const clipboard = new Clipboard('li', {
-      text: e => e.getAttribute('data-clipboard') || '',
-    }).on('success', ({ text }) => {
+  useClipboard({
+    target: 'li',
+    text: e => e.getAttribute('data-clipboard') || '',
+    success: ({ text }) => {
       message.success(
         <span>
           <span className={styles.message}> {text} </span>
           copied 🎉`
         </span>,
       );
-    });
-
-    return () => {
-      clipboard.destroy();
-    };
-  }, []);
+    },
+  });
 
   return (
     <div className={styles.root}>

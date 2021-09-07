@@ -16,5 +16,37 @@
     "order-number": "หมายเลขสั่งซื้อ",
     "store-name": "ชื่อร้าน",
     "amount": "จำนวนการสั่งซื้อ"
+  },
+  "info": {
+    "title": "ข้อมูลการชำระเงิน",
+    "order-number": "หมายเลขสั่งซื้อ",
+    "store-name": "ชื่อร้าน",
+    "payment-method": "วิธีการชำระเงิน",
+    "expire-date": "การจ่ายเงิน",
+    "amount": "จำนวนเงินที่ต้องจ่าย",
+    "hints": "※ขอแนะนำให้คุณบันทึกภาพหน้าจอข้อมูลและชำระเงินภายในกำหนดเวลา",
+    "button": "ดำเนินการตามลำดับธุรกรรมต่อไป"
+  },
+  "atm": {
+    "title": "ATM",
+    "bank-code": "รหัสธนาคาร",
+    "account": "บัญชีการชำระเงิน"
+  },
+  "cvs": {
+    "title": "รหัสธุรกิจซุปเปอร์",
+    "choose-code": "เลือกการชำระเงินรหัส",
+    "choose-code-1": "เพื่อ Super Business Desk รหัสอินพุตรหัสคอลัมน์การชำระเงิน",
+    "choose-code-2": "(สำหรับ 7-11 / ครอบครัว / Lairofa / Ok Super Business)",
+    "instruction": "คำแนะนำการดำเนินงานของเครื่อง Super Trade Code",
+    "choose-barcode": "เลือกการชำระเงินบาร์โค้ดโทรศัพท์",
+    "choose-barcode-1": "คัดลอกไปยัง Super Business Counter Open Scan Code",
+    "choose-barcode-2": "(สำหรับ 7-11 / ครอบครัว / Lelfu)",
+    "copy": "คัดลอกลิงค์การชำระเงิน",
+    "copy-success": "คัดลอกความสำเร็จ"
+  },
+  "barcode": {
+    "title": "Super Business บาร์โค้ด",
+    "description-1": "เพื่อนำเสนอ Super Business Counter การชำระเงินบาร์โค้ดนี้",
+    "description-2": "(สำหรับ 7-11 / ครอบครัว / Lairofa / Ok Super Business)"
   }
 }

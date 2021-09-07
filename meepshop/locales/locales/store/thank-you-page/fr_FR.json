@@ -1,16 +1,19 @@
 {
   "title": {
     "default": "Merci!",
-    "error": "Oops!"
+    "error": "Oops!",
+    "payment-fail": "Échec du paiement"
   },
   "info": {
     "default": "Nous avons bien reçu votre commande. Veuillez vérifier l'état de votre paiement dans votre commande.",
     "atm": "Votre commande a été reçue, veuillez effectuer le paiement dans les délais",
     "cvs": "Votre commande a été reçue, veuillez effectuer le paiement au Super Business Opportunity Desk dans les délais.",
+    "credit": "J'ai reçu votre commande, nous vous gérerons dès que possible.",
     "error": {
       "0": "Il y a quelques problèmes dans les informations, veuillez vérifier si la commande a été établie avec succès",
       "1": "Vous pouvez également cliquer pour copier le message d'erreur et fournir les informations au service client pour le gérer pour vous"
-    }
+    },
+    "payment-fail": "Désolé, il y a une erreur lorsque vous payez, puis vous l'en commanderez."
   },
   "atm": {
     "bank-name": "Banque de paiement",
@@ -25,9 +28,21 @@
     "expire-date": "Délai de paiement",
     "description": "Ce code peut être imprimé et payé au 7-11, FamilyMart, OK Supermarket, Lairfu et autres super opportunités commerciales"
   },
+  "credit": {
+    "order-number": "Numéro de commande",
+    "store-name": "Nom du magasin",
+    "payment-method": "mode de paiement",
+    "credit-card": "Paiement de carte de crédit / paiement de versement",
+    "price": "montant de la commande",
+    "payment-status": "statut de paiement",
+    "completed": "Payer"
+  },
   "return": "Retour à la page d'accueil",
+  "back-to-cart": "Retour au panier",
   "order": "Vérifier ma commande",
   "copy": "Copiez l'URL",
   "copied": "URL copiée dans le presse-papiers.",
-  "data-error": "Erreur de synchronisation des données"
+  "data-error": "Erreur de synchronisation des données",
+  "error-code": "code d'erreur:",
+  "hints": "Si vous ne pouvez toujours pas terminer votre paiement, vous pouvez utiliser d'autres méthodes de paiement."
 }

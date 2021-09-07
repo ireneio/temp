@@ -1,16 +1,19 @@
 {
   "title": {
     "default": "Terima kasih!",
-    "error": "Ups!"
+    "error": "Ups!",
+    "payment-fail": "Pembayaran gagal"
   },
   "info": {
     "default": "Kami telah menerima pesanan Anda. Silakan periksa pesanan Anda untuk status pembayaran.",
     "atm": "Pesanan Anda telah diterima, silakan lakukan pembayaran dalam waktu singkat",
     "cvs": "Pesanan Anda telah diterima, harap lakukan pembayaran di Super Business Opportunity Desk tepat waktu",
+    "credit": "Saya telah menerima pesanan Anda, kami akan menangani Anda sesegera mungkin.",
     "error": {
       "0": "Ada beberapa masalah dalam informasi, periksa apakah pesanan berhasil dibuat",
       "1": "Anda juga dapat mengklik untuk menyalin pesan kesalahan dan memberikan informasi kepada layanan pelanggan untuk menanganinya untuk Anda"
-    }
+    },
+    "payment-fail": "Maaf, ada kesalahan saat membayar, dan kemudian Anda akan memesan kembali."
   },
   "atm": {
     "bank-name": "Bank pembayaran",
@@ -25,9 +28,21 @@
     "expire-date": "Periode pembayaran",
     "description": "Kode ini dapat dicetak dan dibayar di 7-11, FamilyMart, Supermarket OK, Lairfu dan peluang bisnis super lainnya"
   },
+  "credit": {
+    "order-number": "Jumlah order",
+    "store-name": "Nama toko",
+    "payment-method": "Cara Pembayaran",
+    "credit-card": "Pembayaran Kartu Kredit / Pembayaran Cicilan",
+    "price": "jumlah pesanan",
+    "payment-status": "status pembayaran",
+    "completed": "Pembayaran"
+  },
   "return": "Kembali ke beranda",
+  "back-to-cart": "Kembali ke troli",
   "order": "Periksa Pesanan Saya",
   "copy": "Salin URL",
   "copied": "URL disalin ke papan klip.",
-  "data-error": "Kesalahan Sinkronisasi Data"
+  "data-error": "Kesalahan Sinkronisasi Data",
+  "error-code": "Kode kesalahan:",
+  "hints": "Jika Anda masih belum dapat menyelesaikan pembayaran Anda, Anda dapat menggunakan metode pembayaran lainnya."
 }

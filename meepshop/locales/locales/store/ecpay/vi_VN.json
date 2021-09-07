@@ -16,5 +16,37 @@
     "order-number": "Thứ tự số",
     "store-name": "Tên cửa hàng",
     "amount": "số lượng đơn đặt hàng"
+  },
+  "info": {
+    "title": "Thông tin thanh toán",
+    "order-number": "Thứ tự số",
+    "store-name": "Tên cửa hàng",
+    "payment-method": "Phương thức thanh toán",
+    "expire-date": "hết thời hạn",
+    "amount": "Số tiền phải trả",
+    "hints": "※ Bạn nên lưu thông tin ảnh chụp màn hình và thanh toán trong thời hạn.",
+    "button": "Tiếp tục hoàn thành lệnh giao dịch"
+  },
+  "atm": {
+    "title": "ATM",
+    "bank-code": "Mã ngân hàng",
+    "account": "Tài khoản thanh toán"
+  },
+  "cvs": {
+    "title": "Mã siêu kinh doanh",
+    "choose-code": "Chọn Thanh toán mã",
+    "choose-code-1": "Để Super Business Bàn đầu vào Mã đầu vào Thanh toán prote",
+    "choose-code-2": "(Dành cho 7-11 / gia đình / Lairofa / OK Super Business)",
+    "instruction": "Hướng dẫn vận hành máy siêu thương mại",
+    "choose-barcode": "Chọn thanh toán mã vạch điện thoại",
+    "choose-barcode-1": "Sao chép sang siêu doanh nghiệp Mở mã quét",
+    "choose-barcode-2": "(Trong 7-11 / gia đình / Lelfu)",
+    "copy": "Sao chép liên kết thanh toán",
+    "copy-success": "Sao chép thành công"
+  },
+  "barcode": {
+    "title": "Mã vạch siêu kinh doanh",
+    "description-1": "Để trình bày siêu kinh doanh trình bày thanh toán mã vạch này",
+    "description-2": "(Dành cho 7-11 / gia đình / Lairofa / OK Super Business)"
   }
 }

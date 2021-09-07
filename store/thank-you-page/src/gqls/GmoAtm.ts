@@ -2,24 +2,27 @@
 import gql from 'graphql-tag';
 
 // definition
-export const cathayAtmFragment = gql`
-  fragment cathayAtmFragment on Order {
+export const gmoAtmFragment = gql`
+  fragment gmoAtmFragment on Order {
     id
+    priceInfo {
+      total
+    }
     paymentInfo {
       id
       list {
         id
         atm {
-          bankName
           bankCode
           account
           expireDate
         }
+        accountInfo {
+          gmo {
+            paymentType
+          }
+        }
       }
-    }
-
-    priceInfo {
-      total
     }
   }
 `;

@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 import { descriptionFragment } from './description';
 import { creditFragment } from './credit';
 import { allpayFragment } from './allPay';
+import { ecpayFragment } from './ecpay';
 import { ezpayFragment } from './ezpay';
 import { gmoOrderFragment } from './gmo';
 import { cathayAtmOrderFragment } from './cathayAtm';
@@ -20,6 +21,7 @@ export const paymentInfoFragment = gql`
     paymentInfo {
       ...creditFragment
       ...allpayFragment
+      ...ecpayFragment
       ...ezpayFragment
       ...transactionNoFragment
       id
@@ -28,6 +30,9 @@ export const paymentInfoFragment = gql`
         template
         accountInfo {
           allpay {
+            choosePayment: ChoosePayment
+          }
+          ecpay2 {
             choosePayment: ChoosePayment
           }
           ezpay {
@@ -53,6 +58,7 @@ export const paymentInfoFragment = gql`
   ${descriptionFragment}
   ${creditFragment}
   ${allpayFragment}
+  ${ecpayFragment}
   ${ezpayFragment}
   ${gmoOrderFragment}
   ${cathayAtmOrderFragment}

@@ -11,9 +11,12 @@
     "@meepshop/context": "^0.80.36",
     "@meepshop/hooks": "^0.80.36",
     "@meepshop/icons": "^0.80.36",
+    "@meepshop/images": "^0.80.36",
     "@meepshop/link": "^0.80.36",
     "@meepshop/locales": "^0.80.37",
-    "@meepshop/switch": "^0.80.36"
+    "@meepshop/switch": "^0.80.36",
+    "date-fns": "^2.15.0",
+    "jsbarcode": "^3.11.4"
   },
   "keywords": ["ecpay", "store"]
 }

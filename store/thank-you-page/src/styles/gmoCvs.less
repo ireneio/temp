@@ -1,0 +1,26 @@
+@import '~@store/utils/styles/variables.less';
+@import './mixin.less';
+
+.root {
+  @info();
+}
+
+.block {
+  @block();
+}
+
+.row {
+  @row();
+}
+
+.img {
+  margin: 24px 0px 16px;
+}
+
+.description {
+  margin: 0px -12px;
+
+  @media (max-width: @screen-sm-max) {
+    padding: 0px -24px;
+  }
+}

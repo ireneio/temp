@@ -16,5 +16,37 @@
     "order-number": "Número de orden",
     "store-name": "Nombre de la tienda",
     "amount": "Total de la orden"
+  },
+  "info": {
+    "title": "Información del pago",
+    "order-number": "Número de orden",
+    "store-name": "Nombre de la tienda",
+    "payment-method": "método de pago",
+    "expire-date": "caducidad de pago",
+    "amount": "Cantidades pagaderas",
+    "hints": "※ Se recomienda que guarde las capturas de pantalla de información y pague dentro de la fecha límite.",
+    "button": "Continuar completando la orden de transacción."
+  },
+  "atm": {
+    "title": "Cajero automático",
+    "bank-code": "Codigo bancario",
+    "account": "Cuenta de pago"
+  },
+  "cvs": {
+    "title": "Código Super Business",
+    "choose-code": "Seleccione el pago del código",
+    "choose-code-1": "Para Super Business Desk Code Code Columna Prote Pago Pago",
+    "choose-code-2": "(Para 7-11 / Familia / Lairofa / OK Super Business)",
+    "instruction": "Instrucciones de operación de máquina de código súper comercial",
+    "choose-barcode": "Seleccione el pago del código de la barra de teléfono",
+    "choose-barcode-1": "Copiando a Super Business Counter Open Scan Code",
+    "choose-barcode-2": "(Para 7-11 / Familia / Limbu)",
+    "copy": "Copiar enlace de pago",
+    "copy-success": "Copiar el éxito"
+  },
+  "barcode": {
+    "title": "Código Super Business Barra",
+    "description-1": "To Super Business Counter Presentation este pago de códigos de barras",
+    "description-2": "(Para 7-11 / Familia / Lairofa / OK Super Business)"
   }
 }

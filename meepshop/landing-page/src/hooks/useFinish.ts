@@ -255,8 +255,15 @@ export default ({
           },
         });
 
-        const { id, orderNo, error: createOrderError, formData } =
-          data?.createOrder?.order || {};
+        const {
+          id,
+          orderNo,
+          error: createOrderError,
+          formData,
+          paymentServiceTradeToken,
+          priceInfo,
+          paymentInfo,
+        } = data?.createOrder?.order || {};
 
         if (errors || createOrderError || !id) {
           const errorMessage = errors?.[0]?.message || createOrderError || '';
@@ -298,6 +305,14 @@ export default ({
 
           // hack for linepay in mobile devices
           push(formData.url);
+        }
+
+        // ecpay 2.0
+        if (paymentServiceTradeToken) {
+          push(
+            `/ecpay/${paymentServiceTradeToken}?orderId=${id}&orderNo=${orderNo}&total=${priceInfo?.total}&template=${paymentInfo?.list?.[0]?.template}&choosePayment=${paymentInfo?.list?.[0]?.accountInfo?.ecpay2?.ChoosePayment}`,
+          );
+          return;
         }
 
         if (asPath === href) {

@@ -16,5 +16,37 @@
     "order-number": "Jumlah order",
     "store-name": "Nama toko",
     "amount": "jumlah pesanan"
+  },
+  "info": {
+    "title": "Informasi Pembayaran",
+    "order-number": "Jumlah order",
+    "store-name": "Nama toko",
+    "payment-method": "Cara Pembayaran",
+    "expire-date": "berakhirnya Pay.",
+    "amount": "Jumlah yang dibayarkan",
+    "hints": "※ Disarankan agar Anda menyimpan tangkapan layar informasi dan membayar dalam tenggat waktu.",
+    "button": "Lanjutkan untuk menyelesaikan pesanan transaksi"
+  },
+  "atm": {
+    "title": "ATM",
+    "bank-code": "Kode Bank",
+    "account": "Akun pembayaran"
+  },
+  "cvs": {
+    "title": "Kode Bisnis Super",
+    "choose-code": "Pilih Pembayaran Kode",
+    "choose-code-1": "Untuk Meja Bisnis Super Kode Input Kode Pembayaran Prote",
+    "choose-code-2": "(Untuk bisnis 7-11 / keluarga / Lairofa / OK super)",
+    "instruction": "Instruksi Operasi Kode Perdagangan Super Instruksi",
+    "choose-barcode": "Pilih Pembayaran Kode Bar Telepon",
+    "choose-barcode-1": "Menyalin ke Counter Bisnis Super Open Scan Code",
+    "choose-barcode-2": "(Untuk 7-11 / Keluarga / Lelfu)",
+    "copy": "Salin Tautan Pembayaran",
+    "copy-success": "Salin kesuksesan"
+  },
+  "barcode": {
+    "title": "Kode batang bisnis super",
+    "description-1": "Untuk presentasi konter bisnis super pembayaran kode bar ini",
+    "description-2": "(Untuk bisnis 7-11 / keluarga / Lairofa / OK super)"
   }
 }

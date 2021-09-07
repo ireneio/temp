@@ -7,6 +7,20 @@ export const createOrderFragment = gql`
     id
     orderNo
     error: _error
+    paymentServiceTradeToken
+    priceInfo {
+      total
+    }
+    paymentInfo {
+      list {
+        template
+        accountInfo {
+          ecpay2 {
+            ChoosePayment
+          }
+        }
+      }
+    }
     formData {
       url
       type

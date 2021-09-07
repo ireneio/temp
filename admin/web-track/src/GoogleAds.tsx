@@ -1,16 +1,19 @@
 // import
 import React, { useState } from 'react';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { Form, Button, Modal, Input } from 'antd';
+import {
+  ExclamationCircleOutlined,
+  CheckCircleOutlined,
+} from '@ant-design/icons';
+import { Form, Button, Modal, Input, message } from 'antd';
 
 import Tooltip from '@admin/tooltip';
+import { useClipboard } from '@meepshop/hooks';
 import { useTranslation } from '@meepshop/locales';
 import {
   webTrackGoogleAds_w172 as webTrackGoogleAds,
   webTrackGoogleAdsInstruction_w890 as webTrackGoogleAdsInstruction,
 } from '@meepshop/images';
 
-import useClipboard from './hooks/useClipboard';
 import useUpdateGoogleAds from './hooks/useUpdateGoogleAds';
 import useValidateGoogleAdsCode from './hooks/useValidateGoogleAdsCode';
 import useValidateGoogleAdwordsConfig from './hooks/useValidateGoogleAdwordsConfig';
@@ -46,11 +49,17 @@ export default React.memo(({ store }: PropsType) => {
   const validateGoogleAdsCode = useValidateGoogleAdsCode();
   const validateGoogleAdwordsConfig = useValidateGoogleAdwordsConfig();
 
-  useClipboard(
-    googleFeedsLink || '',
-    '#googleFeedsLink',
-    t('google-ads.copied'),
-  );
+  useClipboard({
+    target: '#googleFeedsLink',
+    text: () => googleFeedsLink || '',
+    success: () => {
+      message.success({
+        content: t('google-ads.copied'),
+        duration: 2,
+        icon: <CheckCircleOutlined />,
+      });
+    },
+  });
 
   return (
     <div>

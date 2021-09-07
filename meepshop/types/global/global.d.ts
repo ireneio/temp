@@ -57,7 +57,7 @@ declare interface Window {
       ) => void;
     };
   };
-  ECPay: {
+  ECPay?: {
     initialize: (
       serverType: string,
       isLoading: number,

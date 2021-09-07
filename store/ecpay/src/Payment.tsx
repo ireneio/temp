@@ -1,6 +1,5 @@
 // import
 import React, { useContext, useState } from 'react';
-import Head from 'next/head';
 import { Affix, Button, Modal } from 'antd';
 
 import {
@@ -16,22 +15,29 @@ import usePayment from './hooks/usePayment';
 import styles from './styles/payment.less';
 
 // graphql typescript
-import { paymentFragment as paymentFragmentType } from '@meepshop/types/gqls/store';
+import {
+  paymentFragment as paymentFragmentType,
+  ecPay2CreatePayment_ecPay2CreatePayment as ecPay2CreatePaymentEcPay2CreatePayment,
+} from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType {
   viewer: paymentFragmentType;
+  setPaymentInfo: (paymentInfo: ecPay2CreatePaymentEcPay2CreatePayment) => void;
 }
 
 // definition
-export default React.memo(({ viewer }: PropsType) => {
+export default React.memo(({ viewer, setPaymentInfo }: PropsType) => {
   const { t } = useTranslation('ecpay');
   const { c } = useContext(CurrencyContext);
   const { isMobile } = useContext(SensorContext);
   const colors = useContext(ColorsContext);
-  const { isCreditPayment, ecpayScript, ecPay2CreatePayment } = usePayment(
-    viewer,
-  );
+  const {
+    ecpayLoading,
+    isCreditPayment,
+    loading,
+    ecPay2CreatePayment,
+  } = usePayment(viewer, setPaymentInfo);
   const [isAffixed, setIsAffixed] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
@@ -39,8 +45,6 @@ export default React.memo(({ viewer }: PropsType) => {
 
   return (
     <div className={styles.root}>
-      <Head>{ecpayScript}</Head>
-
       <div className={styles.title}>
         <WalletIcon />
         {t('payment.title')}
@@ -68,8 +72,7 @@ export default React.memo(({ viewer }: PropsType) => {
         isTrue={isMobile}
         render={children => (
           <Affix
-            className={styles.affix}
-            offsetBottom={72}
+            offsetBottom={0}
             onChange={affixed => setIsAffixed(affixed || false)}
           >
             {children}
@@ -82,7 +85,8 @@ export default React.memo(({ viewer }: PropsType) => {
             onClick={() =>
               isCreditPayment ? setOpenModal(true) : ecPay2CreatePayment()
             }
-            loading={false}
+            loading={loading}
+            disabled={ecpayLoading}
           >
             {isCreditPayment
               ? `${t('payment.immediate-payment')} ${c(amount)}`

@@ -16,5 +16,37 @@
     "order-number": "注文番号",
     "store-name": "店舗名",
     "amount": "注文金額"
+  },
+  "info": {
+    "title": "支払情報",
+    "order-number": "注文番号",
+    "store-name": "店舗名",
+    "payment-method": "支払方法",
+    "expire-date": "給与の満了",
+    "amount": "支払う金額",
+    "hints": "※情報のスクリーンショットを保存して締め切り内で支払うことをお勧めします。",
+    "button": "取引順序を記入し続ける"
+  },
+  "atm": {
+    "title": "atm",
+    "bank-code": "金融機関コード",
+    "account": "支払い口座"
+  },
+  "cvs": {
+    "title": "スーパービジネスコード",
+    "choose-code": "コード支払いを選択してください",
+    "choose-code-1": "スーパービジネスデスク入力コード列Proteの支払いへ",
+    "choose-code-2": "（7-11 /家族/ Lairofa / OKスーパービジネス用）",
+    "instruction": "スーパートレードコードマシン操作手順",
+    "choose-barcode": "電話バーコードの支払いを選択します",
+    "choose-barcode-1": "スーパービジネスカウンタオープンスキャンコードへのコピー",
+    "choose-barcode-2": "（7-11 /ファミリー/レルーレルフ）",
+    "copy": "支払いリンクをコピーする",
+    "copy-success": "成功をコピーします"
+  },
+  "barcode": {
+    "title": "スーパービジネスバーコード",
+    "description-1": "スーパービジネスカウンタープレゼンテーションへのこのバーコードの支払い",
+    "description-2": "（7-11 /家族/ Lairofa / OKスーパービジネス用）"
   }
 }

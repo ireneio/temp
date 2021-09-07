@@ -16,5 +16,37 @@
     "order-number": "Order number",
     "store-name": "Store name",
     "amount": "order amount"
+  },
+  "info": {
+    "title": "Payment information",
+    "order-number": "Order number",
+    "store-name": "Store name",
+    "payment-method": "payment method",
+    "expire-date": "expiration of pay",
+    "amount": "Amounts payable",
+    "hints": "※ It is recommended that you save information screenshots and pay within the deadline.",
+    "button": "Continue to complete the transaction order"
+  },
+  "atm": {
+    "title": "ATM",
+    "bank-code": "Bank Code",
+    "account": "Payment account"
+  },
+  "cvs": {
+    "title": "Super business code",
+    "choose-code": "Select code payment",
+    "choose-code-1": "To Super Business Desk Input Code Column Prote Payment",
+    "choose-code-2": "(For 7-11 / Family / Lairofa / OK Super Business)",
+    "instruction": "Super trade code machine operation instructions",
+    "choose-barcode": "Select the phone bar code payment",
+    "choose-barcode-1": "Copying to Super Business Counter Open Scan Code",
+    "choose-barcode-2": "(For 7-11 / Family / Lelfu)",
+    "copy": "Copy payment link",
+    "copy-success": "Copy success"
+  },
+  "barcode": {
+    "title": "Super business bar code",
+    "description-1": "To Super Business Counter Presentation This bar code payment",
+    "description-2": "(For 7-11 / Family / Lairofa / OK Super Business)"
   }
 }

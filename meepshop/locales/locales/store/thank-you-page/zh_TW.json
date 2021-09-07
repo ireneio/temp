@@ -1,16 +1,19 @@
 {
   "title": {
     "default": "Thank you!",
-    "error": "非常抱歉"
+    "error": "非常抱歉",
+    "payment-fail": "付款失敗"
   },
   "info": {
     "default": "已收到您的訂單，請您檢視訂單，確認您的付款狀態",
     "atm": "已收到您的訂單，請於時間內進行付款",
     "cvs": "已收到您的訂單，請於時間內至超商機台進行付款",
+    "credit": "已收到您的訂單，我們會儘快為您處理",
     "error": {
       "0": "資料出了一些問題，請您查詢訂單是否成功建立",
       "1": "您也可以點擊複製錯誤訊息，提供資料給客服為您處理"
-    }
+    },
+    "payment-fail": "很抱歉，付款時發生錯誤，麻煩您檢查後再重新下訂"
   },
   "atm": {
     "bank-name": "繳款銀行",
@@ -25,9 +28,21 @@
     "expire-date": "繳款期限",
     "description": "此代碼可至 7-11、全家、OK超商、萊爾富 等超商機台列印繳費"
   },
+  "credit": {
+    "order-number": "訂單編號",
+    "store-name": "商店名稱",
+    "payment-method": "付款方式",
+    "credit-card": "信用卡一次付清/分期付款",
+    "price": "訂單金額",
+    "payment-status": "付款狀態",
+    "completed": "對帳完成"
+  },
   "return": "返回首頁",
+  "back-to-cart": "回到購物車",
   "order": "查詢訂單",
   "copy": "複製錯誤訊息",
   "copied": "已複製",
-  "data-error": "資料異常，"
+  "data-error": "資料異常，",
+  "error-code": "錯誤代碼：",
+  "hints": "若重新下訂後仍無法完成付款，建議您使用其他付款方式"
 }

@@ -1,5 +1,5 @@
 // import
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
 import { Spin } from 'antd';
@@ -14,10 +14,18 @@ import './styles/mixin.less';
 
 import Payment from './Payment';
 import OrderInfo from './OrderInfo';
+import ATM from './ATM';
+import CVS from './CVS';
+import Barcode from './Barcode';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { getOrderInEcpay as getOrderInEcpayType } from '@meepshop/types/gqls/store';
+import {
+  getOrderInEcpay as getOrderInEcpayType,
+  ecPay2CreatePayment_ecPay2CreatePayment as ecPay2CreatePaymentEcPay2CreatePayment,
+  PaymentTemplateEnum,
+  ECPay2PaymentTypeEnum,
+} from '@meepshop/types/gqls/store';
 
 // graphql import
 import { getOrderInEcpay } from './gqls';
@@ -31,29 +39,75 @@ export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
 export default React.memo(() => {
   const { t } = useTranslation('ecpay');
   const { query, push } = useRouter();
+  const [paymentInfo, setPaymentInfo] = useState<
+    ecPay2CreatePaymentEcPay2CreatePayment | undefined
+  >();
   const { loading, data } = useQuery<getOrderInEcpayType>(getOrderInEcpay, {
     variables: { orderId: query.orderId },
   });
+
+  // FIXME: landing page issue
+  const viewer = useMemo(
+    () => ({
+      __typename: 'User' as const,
+      id: '',
+      store: null,
+      ...data?.viewer,
+      order: {
+        __typename: 'Order' as const,
+        id: data?.viewer?.order?.id || (query.orderId as string),
+        orderNo: data?.viewer?.order?.orderNo || (query.orderNo as string),
+        priceInfo: {
+          __typename: 'priceObjectType' as const,
+          total:
+            data?.viewer?.order?.priceInfo?.total ||
+            parseFloat(query.total as string),
+        },
+        paymentInfo: {
+          __typename: 'paymentInfoType' as const,
+          list: [
+            {
+              __typename: 'paymentObjectType' as const,
+              template:
+                data?.viewer?.order?.paymentInfo?.list?.[0]?.template ||
+                (query.template as PaymentTemplateEnum),
+              accountInfo: {
+                __typename: 'PaymentAccount' as const,
+                ecpay2: {
+                  __typename: 'PaymentAccountForECPay2' as const,
+                  ChoosePayment:
+                    data?.viewer?.order?.paymentInfo?.list?.[0]?.accountInfo
+                      ?.ecpay2?.ChoosePayment ||
+                    (query.choosePayment as ECPay2PaymentTypeEnum),
+                },
+              },
+            },
+          ],
+        },
+      },
+    }),
+    [data, query],
+  );
+
   const isCreditPayment = useMemo(
     () =>
       /CREDIT/.test(
-        data?.viewer?.order?.paymentInfo?.list?.[0]?.accountInfo?.ecpay2
+        viewer.order?.paymentInfo?.list?.[0]?.accountInfo?.ecpay2
           ?.ChoosePayment || '',
       ),
-    [data],
+    [viewer],
   );
 
   useEffect(() => {
-    if (data?.viewer?.order?.paymentInfo?.list?.[0]?.template !== 'ecpay2')
+    if (data && viewer.order?.paymentInfo?.list?.[0]?.template !== 'ecpay2')
       push('/');
-  }, [data, push]);
+  }, [data, viewer, push]);
 
   if (loading) return <Spin indicator={<LoadingOutlined spin />} />;
 
-  if (data?.viewer?.order?.paymentInfo?.list?.[0]?.template !== 'ecpay2')
-    return null;
+  if (viewer.order?.paymentInfo?.list?.[0]?.template !== 'ecpay2') return null;
 
-  const logoImage = data.viewer.store?.logoImage?.scaledSrc?.h200 || '';
+  const logoImage = viewer.store?.logoImage?.scaledSrc?.h200 || '';
 
   return (
     <div className={styles.root}>
@@ -61,17 +115,36 @@ export default React.memo(() => {
         <img src={logoImage} alt="logoImage" />
       </div>
 
-      <div className={styles.warning}>
-        <ShieldIcon />
+      {!paymentInfo ? (
+        <>
+          <div className={styles.warning}>
+            <ShieldIcon />
 
-        {isCreditPayment ? t('warning.1') : t('warning.0')}
-      </div>
+            {isCreditPayment ? t('warning.1') : t('warning.0')}
+          </div>
 
-      <div className={styles.content}>
-        <Payment viewer={filter(paymentFragment, data.viewer)} />
+          <div className={styles.content}>
+            <Payment
+              viewer={filter(paymentFragment, viewer)}
+              setPaymentInfo={setPaymentInfo}
+            />
 
-        <OrderInfo viewer={filter(orderInfoFragment, data.viewer)} />
-      </div>
+            <OrderInfo viewer={filter(orderInfoFragment, viewer)} />
+          </div>
+        </>
+      ) : null}
+
+      {paymentInfo?.__typename === 'OrderPaymentAtm' ? (
+        <ATM viewer={filter(paymentFragment, viewer)} {...paymentInfo} />
+      ) : null}
+
+      {paymentInfo?.__typename === 'OrderPaymentCVSPayCode' ? (
+        <CVS viewer={filter(paymentFragment, viewer)} {...paymentInfo} />
+      ) : null}
+
+      {paymentInfo?.__typename === 'OrderPaymentBarcode' ? (
+        <Barcode viewer={filter(paymentFragment, viewer)} {...paymentInfo} />
+      ) : null}
     </div>
   );
 });

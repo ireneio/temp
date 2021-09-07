@@ -36,7 +36,7 @@ export default React.memo(({ viewer }: PropsType) => {
         { text: t('order.order-number'), value: orderNo },
         { text: t('order.store-name'), value: storeName },
       ].map(({ text, value }) => (
-        <div className={styles.info}>
+        <div key={value} className={styles.info}>
           <div>{text}</div>
           <div>{value}</div>
         </div>

@@ -5,24 +5,23 @@ import { format } from 'date-fns';
 import { useTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
 
-import styles from './styles/gmoAtm.less';
+import styles from './styles/cathayAtm.less';
 
 // graphql typescript
-import { gmoAtmFragment as gmoAtmFragmentType } from '@meepshop/types/gqls/store';
+import { cathayAtmFragment as cathayAtmFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType {
-  order: gmoAtmFragmentType;
-  children: React.ReactElement;
+  order: cathayAtmFragmentType;
 }
 
 // definition
-export default React.memo(({ order, children }: PropsType) => {
+export default React.memo(({ order }: PropsType) => {
   const { t } = useTranslation('thank-you-page');
   const { c } = useContext(CurrencyContext);
   const atm = order?.paymentInfo?.list?.[0]?.atm;
 
-  if (!atm) return children;
+  if (!atm) return null;
 
   return (
     <div className={styles.root}>
@@ -30,6 +29,10 @@ export default React.memo(({ order, children }: PropsType) => {
 
       <div className={styles.block}>
         {[
+          {
+            key: 'bank-name',
+            value: atm.bankName,
+          },
           {
             key: 'back-code',
             value: atm.bankCode,

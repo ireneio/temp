@@ -1,0 +1,123 @@
+@import '~@store/utils/styles/variables.less';
+
+.root {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 24px 0px;
+  background-color: #fafbfc;
+
+  @media (max-width: @screen-sm-max) {
+    margin: 0px;
+  }
+
+  > div:first-child {
+    width: fit-content;
+    padding: 32px 72px 24px;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    background-color: #ffffff;
+
+    @media (max-width: @screen-sm-max) {
+      padding: 32px 24px 24px;
+      border: none;
+    }
+
+    .title {
+      color: #363b4a;
+      font-size: 20px;
+      line-height: 28px;
+      margin-bottom: 32px;
+      text-align: center;
+
+      :global(.anticon) {
+        margin-right: 8px;
+
+        @media (max-width: @screen-sm-max) {
+          display: none;
+        }
+      }
+
+      @media (max-width: @screen-sm-max) {
+        font-weight: 600;
+        margin-bottom: 24px;
+      }
+    }
+
+    .item {
+      display: flex;
+      color: rgba(0, 0, 0, 0.65);
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 12px;
+
+      > div:first-child {
+        min-width: 72px;
+        color: rgba(0, 0, 0, 0.45);
+        font-size: 14px;
+        line-height: 22px;
+        margin-right: 16px;
+
+        @media (max-width: @screen-sm-max) {
+          font-size: 16px;
+          line-height: 24px;
+        }
+      }
+
+      .value {
+        color: rgba(0, 0, 0, 0.85);
+      }
+
+      .bold {
+        font-weight: 500;
+      }
+    }
+
+    .children {
+      margin-top: 16px;
+      padding: 24px;
+      border: 1px solid #e6ebf1;
+      background-color: #fafbfc;
+      text-align: center;
+      white-space: normal;
+      word-break: break-all;
+
+      @media (max-width: @screen-sm-max) {
+        margin-top: 0px;
+        padding: 32px 24px 0px;
+        border: none;
+        border-top: 1px solid #f5f5f5;
+        background-color: #ffffff;
+      }
+    }
+
+    :global(.ant-divider) {
+      margin: 12px 0px;
+    }
+  }
+
+  .hints {
+    color: #036eb8;
+    font-size: 14px;
+    line-height: 22px;
+    margin: 8px 0px 12px;
+
+    @media (max-width: @screen-sm-max) {
+      margin: 16px 0px;
+    }
+  }
+
+  :global(.ant-btn) {
+    border-radius: 4px;
+    color: #ffffff;
+    background-color: #363b4a;
+    border-color: #363b4a;
+    height: auto;
+    padding: 12px 32px;
+
+    @media (max-width: @screen-sm-max) {
+      width: calc(100% - 48px);
+      margin: 0px 24px 24px;
+    }
+  }
+}

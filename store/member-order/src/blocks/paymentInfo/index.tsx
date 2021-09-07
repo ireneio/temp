@@ -5,6 +5,7 @@ import { filter } from 'graphql-anywhere';
 import Description from './Description';
 import Credit from './Credit';
 import Allpay from './Allpay';
+import Ecpay from './Ecpay';
 import Ezpay from './Ezpay';
 import Gmo from './Gmo';
 import CathayAtm from './CathayAtm';
@@ -21,6 +22,7 @@ import {
 import { descriptionFragment } from './gqls/description';
 import { creditFragment } from './gqls/credit';
 import { allpayFragment } from './gqls/allPay';
+import { ecpayFragment } from './gqls/ecpay';
 import { ezpayFragment } from './gqls/ezpay';
 import { gmoOrderFragment } from './gqls/gmo';
 import { cathayAtmOrderFragment } from './gqls/cathayAtm';
@@ -36,6 +38,7 @@ export default React.memo(({ order }: PropsType) => {
   const { paymentInfo } = order;
   const template = paymentInfo?.list?.[0]?.template as
     | 'allpay'
+    | 'ecpay2'
     | 'ezpay'
     | 'gmo'
     | 'cathay'
@@ -83,6 +86,18 @@ export default React.memo(({ order }: PropsType) => {
           <Allpay
             choosePayment={choosePayment}
             paymentInfo={filter(allpayFragment, paymentInfo)}
+          />
+
+          <Description order={filter(descriptionFragment, order)} />
+        </>
+      );
+
+    case 'ecpay2':
+      return (
+        <>
+          <Ecpay
+            choosePayment={choosePayment}
+            paymentInfo={filter(ecpayFragment, paymentInfo)}
           />
 
           <Description order={filter(descriptionFragment, order)} />

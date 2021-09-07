@@ -2,7 +2,10 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { infoFragment } from '../info/gqls';
+import { cathayAtmFragment } from './CathayAtm';
+import { gmoAtmFragment } from './GmoAtm';
+import { gmoCvsFragment } from './GmoCvs';
+import { ecpayCreditFragment } from './EcpayCredit';
 import { useAdTrackFragment } from './useAdTrack';
 
 // definition
@@ -12,12 +15,26 @@ export const getOrderInThankYouPage = gql`
       id
       order(orderId: $orderId) {
         id
-        ...infoFragment
+        paymentInfo {
+          id
+          list {
+            id
+            template
+          }
+        }
         ...useAdTrackFragment
+        ...cathayAtmFragment
+        ...gmoAtmFragment
+        ...gmoCvsFragment
       }
+
+      ...ecpayCreditFragment
     }
   }
 
-  ${infoFragment}
   ${useAdTrackFragment}
+  ${cathayAtmFragment}
+  ${gmoAtmFragment}
+  ${gmoCvsFragment}
+  ${ecpayCreditFragment}
 `;

@@ -12,11 +12,11 @@
     "@admin/tooltip": "^0.80.36",
     "@admin/utils": "^0.80.36",
     "@meepshop/apollo": "^0.80.36",
+    "@meepshop/hooks": "^0.80.36",
     "@meepshop/icons": "^0.80.36",
     "@meepshop/images": "^0.80.36",
     "@meepshop/link": "^0.80.36",
-    "@meepshop/locales": "^0.80.37",
-    "clipboard": "^2.0.1"
+    "@meepshop/locales": "^0.80.37"
   },
   "keywords": ["admin", "track", "web"]
 }

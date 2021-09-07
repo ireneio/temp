@@ -16,5 +16,37 @@
     "order-number": "訂單編號",
     "store-name": "商店名稱",
     "amount": "訂單金額"
+  },
+  "info": {
+    "title": "付款資訊",
+    "order-number": "訂單編號",
+    "store-name": "商店名稱",
+    "payment-method": "付款方式",
+    "expire-date": "付款期限",
+    "amount": "應付金額",
+    "hints": "※ 建議您將付款資訊截圖保存，並於期限內付款",
+    "button": "繼續完成交易訂購"
+  },
+  "atm": {
+    "title": "自動櫃員機",
+    "bank-code": "銀行代碼",
+    "account": "繳費帳號"
+  },
+  "cvs": {
+    "title": "超商代碼",
+    "choose-code": "選擇代碼付款",
+    "choose-code-1": "至超商機台輸入代碼列印繳費單",
+    "choose-code-2": "（適用於 7-11/全家/萊爾富/OK 超商）",
+    "instruction": "超商代碼機台操作說明",
+    "choose-barcode": "選擇手機條碼付款",
+    "choose-barcode-1": "複製連結至超商櫃檯開啟掃碼",
+    "choose-barcode-2": "（適用於 7-11/全家/萊爾富）",
+    "copy": "複製付款連結",
+    "copy-success": "複製成功"
+  },
+  "barcode": {
+    "title": "超商條碼",
+    "description-1": "至超商櫃台出示此條碼付款",
+    "description-2": "（適用於 7-11/全家/萊爾富/OK 超商）"
   }
 }

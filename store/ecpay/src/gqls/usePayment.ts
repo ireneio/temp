@@ -30,6 +30,7 @@ export const ecPay2CreatePayment = gql`
 
       ... on OrderPaymentCVSPayCode {
         payCode
+        paymentURL
         expireDate
       }
 

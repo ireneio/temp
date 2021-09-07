@@ -14,16 +14,15 @@ import { gmoCvsFragment as gmoCvsFragmentType } from '@meepshop/types/gqls/store
 // typescript definition
 interface PropsType {
   order: gmoCvsFragmentType;
-  children: React.ReactElement;
 }
 
 // definition
-export default React.memo(({ order, children }: PropsType) => {
+export default React.memo(({ order }: PropsType) => {
   const { t } = useTranslation('thank-you-page');
   const { c } = useContext(CurrencyContext);
   const cvsPayCode = order?.paymentInfo?.list?.[0]?.cvsPayCode;
 
-  if (!cvsPayCode) return children;
+  if (!cvsPayCode) return null;
 
   return (
     <div className={styles.root}>
@@ -56,9 +55,9 @@ export default React.memo(({ order, children }: PropsType) => {
           ))}
         </div>
 
-        <img src={gmoCsvLogos} alt="gmo-csv-logos" />
+        <img className={styles.img} src={gmoCsvLogos} alt="gmo-csv-logos" />
 
-        <div>{t('cvs.description')}</div>
+        <div className={styles.description}>{t('cvs.description')}</div>
       </div>
     </div>
   );

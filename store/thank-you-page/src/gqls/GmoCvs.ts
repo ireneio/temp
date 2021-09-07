@@ -5,6 +5,9 @@ import gql from 'graphql-tag';
 export const gmoCvsFragment = gql`
   fragment gmoCvsFragment on Order {
     id
+    priceInfo {
+      total
+    }
     paymentInfo {
       id
       list {
@@ -19,10 +22,6 @@ export const gmoCvsFragment = gql`
           }
         }
       }
-    }
-
-    priceInfo {
-      total
     }
   }
 `;

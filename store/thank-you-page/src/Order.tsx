@@ -2,15 +2,15 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
-import { LoadingOutlined } from '@ant-design/icons';
-import { Spin, Progress, Button } from 'antd';
+import { LoadingOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { Spin, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import Link, { useRouter } from '@meepshop/link';
 
-import Info from './info';
-import useClipboard from './hooks/useClipboard';
+import OrderNotFound from './OrderNotFound';
 import useAdTrack from './hooks/useAdTrack';
+import useInfo from './hooks/useInfo';
 import styles from './styles/order.less';
 
 // graphql typescript
@@ -19,7 +19,6 @@ import { getOrderInThankYouPage as getOrderInThankYouPageType } from '@meepshop/
 // graphql import
 import { getOrderInThankYouPage } from './gqls';
 import { useAdTrackFragment } from './gqls/useAdTrack';
-import { infoFragment } from './info/gqls';
 
 // definition
 export default React.memo(() => {
@@ -31,40 +30,38 @@ export default React.memo(() => {
       variables: { orderId: router.query.orderId },
     },
   );
+  const info = useInfo(data?.viewer || null);
+
   const order = data?.viewer?.order || null;
 
-  useClipboard(loading, order?.id || null);
   useAdTrack(filter(useAdTrackFragment, order));
 
   if (loading) return <Spin indicator={<LoadingOutlined spin />} />;
 
+  if (!order) return <OrderNotFound />;
+
   return (
     <div className={styles.root}>
       <div>
-        <Progress
-          type="circle"
-          percent={100}
-          width={72}
-          {...(!order ? { status: 'exception', format: () => '!' } : {})}
-        />
+        <div className={styles.title}>
+          <CheckCircleOutlined />
+          {t('title.default')}
+        </div>
 
-        <h1>{!order ? t('title.error') : t('title.default')}</h1>
+        {!info ? (
+          <div className={styles.description}>{t('info.default')}</div>
+        ) : (
+          info
+        )}
 
-        <Info order={filter(infoFragment, order)} />
-
-        <div className={styles.buttonRoot}>
-          <Link href={!order ? '/orders' : '/'}>
-            <Button>{!order ? t('order') : t('return')}</Button>
+        <div className={styles.button}>
+          <Link href="/">
+            <Button>{t('return')}</Button>
           </Link>
 
-          {!order ? (
-            // eslint-disable-next-line jsx-a11y/aria-role
-            <Button role="copy">{t('copy')}</Button>
-          ) : (
-            <Link href={`/order/${order.id}`}>
-              <Button>{t('order')}</Button>
-            </Link>
-          )}
+          <Link href={`/order/${order.id}`}>
+            <Button>{t('order')}</Button>
+          </Link>
         </div>
       </div>
     </div>

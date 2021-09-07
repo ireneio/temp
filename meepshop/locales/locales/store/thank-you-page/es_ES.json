@@ -1,16 +1,19 @@
 {
   "title": {
     "default": "¡Gracias!",
-    "error": "¡Uy!"
+    "error": "¡Uy!",
+    "payment-fail": "Pago fallido"
   },
   "info": {
     "default": "Hemos recibido tu pedido. Por favor revise su orden para el estado del pago.",
     "atm": "Su pedido ha sido recibido, realice el pago a tiempo",
     "cvs": "Su pedido ha sido recibido, realice el pago en el Super Business Opportunity Desk dentro del tiempo",
+    "credit": "He recibido su pedido, lo manejaremos lo antes posible.",
     "error": {
       "0": "Hay algunos problemas en la información, verifique si el pedido se estableció correctamente",
       "1": "También puede hacer clic para copiar el mensaje de error y proporcionar la información al servicio al cliente para que lo maneje por usted"
-    }
+    },
+    "payment-fail": "Lo sentimos, hay un error al pagar, y luego lo volverá a ordenar."
   },
   "atm": {
     "bank-name": "Banco de pago",
@@ -25,9 +28,21 @@
     "expire-date": "Periodo de pago",
     "description": "Este código se puede imprimir y pagar en 7-11, FamilyMart, OK Supermarket, Lairfu y otras oportunidades de súper negocios"
   },
+  "credit": {
+    "order-number": "Número de orden",
+    "store-name": "Nombre de la tienda",
+    "payment-method": "método de pago",
+    "credit-card": "Pago con tarjeta de crédito / pago a plazos",
+    "price": "Total de la orden",
+    "payment-status": "estado de pago",
+    "completed": "Paga"
+  },
   "return": "Volver a la página de inicio",
+  "back-to-cart": "Volver al carrito",
   "order": "Verifica mi pedido",
   "copy": "Copia la URL",
   "copied": "URL copiada al portapapeles.",
-  "data-error": "Error de sincronización de datos"
+  "data-error": "Error de sincronización de datos",
+  "error-code": "código de error:",
+  "hints": "Si aún no puede completar su pago, puede usar otros métodos de pago."
 }

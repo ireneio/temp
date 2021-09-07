@@ -1,0 +1,74 @@
+@import '~@store/utils/styles/variables.less';
+
+.root {
+  color: #a4adbb;
+  font-size: 12px;
+  line-height: 20px;
+
+  @media (max-width: @screen-sm-max) {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .title {
+    color: #626c82;
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 4px;
+
+    img {
+      height: 22px;
+      margin-left: 4px;
+    }
+
+    @media (max-width: @screen-sm-max) {
+      font-size: 18px;
+      line-height: 26px;
+      margin-bottom: 2px;
+    }
+  }
+
+  .code {
+    color: #363b4a;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 28px;
+    margin-top: 8px;
+  }
+
+  a {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    display: block;
+    margin: 8px 0px 32px;
+
+    &.link {
+      font-size: 16px;
+      line-height: 24px;
+      margin: 8px 0px 16px;
+    }
+
+    @media (max-width: @screen-sm-max) {
+      margin: 8px 0px 40px;
+    }
+  }
+
+  :global(.ant-btn) {
+    border-radius: 4px;
+    color: #fafbfc;
+    background-color: #626c82;
+    border-color: #626c82;
+    height: auto;
+    padding: 5px 16px;
+
+    @media (max-width: @screen-sm-max) {
+      font-size: 16px;
+      line-height: 24px;
+      width: auto;
+      margin: 0px;
+      padding: 8px 16px;
+    }
+  }
+}

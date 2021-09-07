@@ -6,12 +6,6 @@
     @title();
   }
 
-  .affix {
-    width: calc(100% - 48px);
-    position: absolute;
-    bottom: 0;
-  }
-
   .button {
     text-align: center;
   }
@@ -37,6 +31,11 @@
       font-size: 16px;
       line-height: 24px;
     }
+  }
+
+  :global(.ant-affix) {
+    width: 100% !important;
+    left: 0;
   }
 }
 

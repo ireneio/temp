@@ -270,7 +270,7 @@ export default class Checkout extends React.PureComponent {
 
     if (this.isUnmounted) return;
 
-    const { id, error: createOrderError, formData } =
+    const { id, error: createOrderError, formData, paymentServiceTradeToken } =
       data?.createOrder.order || {};
 
     if (error || createOrderError || !id) {
@@ -346,11 +346,19 @@ export default class Checkout extends React.PureComponent {
       window.location = formData.url;
     }
 
+    // ecpay 2.0
+    if (paymentServiceTradeToken) {
+      goTo({
+        pathname: `/ecpay/${paymentServiceTradeToken}`,
+        params: {
+          search: { orderId: id },
+        },
+      });
+      return;
+    }
+
     goTo({
       pathname: `/checkout/thank-you-page/${id}`,
-      params: {
-        search: { firstPurchase: isLogin === NOTLOGIN },
-      },
     });
   };
 

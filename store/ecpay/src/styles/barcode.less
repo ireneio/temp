@@ -1,0 +1,27 @@
+@import '~@store/utils/styles/variables.less';
+
+.root {
+  color: #a4adbb;
+  font-size: 14px;
+  line-height: 22px;
+
+  img {
+    height: 24px;
+    margin-bottom: 4px;
+
+    @media (max-width: @screen-sm-max) {
+      margin-bottom: 2px;
+    }
+  }
+
+  svg {
+    display: block;
+    box-sizing: content-box;
+    width: 100%;
+    padding-top: 8px;
+
+    &:not(:last-child) {
+      padding-bottom: 16px;
+    }
+  }
+}

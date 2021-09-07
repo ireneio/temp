@@ -1,5 +1,5 @@
 // import
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { notification } from 'antd';
 import getConfig from 'next/config';
 import { emptyFunction } from 'fbjs';
@@ -9,7 +9,6 @@ interface PropsType {
   token: string;
   isNeedDefaultLoading?: boolean;
   language?: 'zhTW' | 'enUS';
-  setInitialized?: (initialized: boolean) => void;
 }
 
 // definition
@@ -21,27 +20,74 @@ export default ({
   token,
   isNeedDefaultLoading,
   language,
-  setInitialized,
 }: PropsType): {
-  ecpayScript: React.ReactNode;
+  ecpayLoading: boolean;
   getPaymentInfo: () => Promise<
     { payToken: string; paymentType: string } | undefined
   >;
 } => {
-  const [countdown, setCountdown] = useState(5);
+  const [countdown, setCountdown] = useState(10);
+  const [ecpayLoading, setEcpayLoading] = useState<boolean>(true);
   const [ecpay, setEcpay] = useState<typeof window['ECPay']>();
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>(
+  const setEcpayTimeout = useRef<ReturnType<typeof setTimeout>>(
     setTimeout(emptyFunction, 0),
+  );
+  const timeout = useRef<ReturnType<typeof setTimeout>>(
+    setTimeout(emptyFunction, 0),
+  );
+  const jqueryRef = useRef(
+    typeof window === 'undefined' ? null : document.createElement('script'),
+  );
+  const forgeRef = useRef(
+    typeof window === 'undefined' ? null : document.createElement('script'),
+  );
+  const ecpayRef = useRef(
+    typeof window === 'undefined' ? null : document.createElement('script'),
   );
 
   useEffect(() => {
-    clearTimeout(timeoutRef.current);
+    const dom = document.getElementById('meepshop');
+    const jqueryDom = jqueryRef.current;
+    const forgeDom = forgeRef.current;
+    const ecpayDom = ecpayRef.current;
+
+    if (jqueryDom)
+      jqueryDom.src = 'https://code.jquery.com/jquery-3.5.1.min.js';
+    if (forgeDom)
+      forgeDom.src =
+        'https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js';
+    if (ecpayDom)
+      ecpayDom.src = `https://${
+        ENV === 'production' ? 'ecpg' : 'ecpg-stage'
+      }.ecpay.com.tw/Scripts/sdk-1.0.0.js?t=20210121100116`;
+
+    if (dom && jqueryDom) dom.appendChild(jqueryDom);
+    if (dom && forgeDom) dom.appendChild(forgeDom);
+
+    clearTimeout(timeout.current);
+
+    if (dom && ecpayDom)
+      timeout.current = setTimeout(() => {
+        dom.appendChild(ecpayDom);
+      }, 500);
+
+    return () => {
+      if (jqueryDom) jqueryDom.remove();
+      if (forgeDom) forgeDom.remove();
+      if (ecpayDom) ecpayDom.remove();
+
+      clearTimeout(timeout.current);
+    };
+  }, [jqueryRef, forgeRef, ecpayRef, timeout]);
+
+  useEffect(() => {
+    clearTimeout(setEcpayTimeout.current);
 
     if (!ecpay && countdown !== 0)
-      timeoutRef.current = setTimeout(() => {
+      setEcpayTimeout.current = setTimeout(() => {
         setEcpay(window.ECPay);
         setCountdown(countdown - 1);
-      }, 200);
+      }, 800);
 
     if (!ecpay && countdown === 0)
       notification.error({
@@ -49,11 +95,11 @@ export default ({
         description: 'ecpay sdk not found',
       });
 
-    return () => clearTimeout(timeoutRef.current);
+    return () => clearTimeout(setEcpayTimeout.current);
   }, [ecpay, countdown]);
 
   useEffect(() => {
-    if (ecpay)
+    if (ecpay && token)
       ecpay.initialize(
         ecpay.ServerType[ENV === 'production' ? 'Prod' : 'Stage'],
         isNeedDefaultLoading ? 1 : 0,
@@ -63,7 +109,7 @@ export default ({
               token,
               ecpay.Language[language || 'zhTW'],
               createPaymentError => {
-                if (setInitialized) setInitialized(true);
+                setEcpayLoading(false);
 
                 if (createPaymentError)
                   notification.error({
@@ -80,16 +126,10 @@ export default ({
           }
         },
       );
-  }, [ecpay, token, isNeedDefaultLoading, language, setInitialized]);
+  }, [ecpay, token, isNeedDefaultLoading, language]);
 
   return {
-    ecpayScript: (
-      <>
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js" />
-        <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js" />
-        <script src="https://ecpg.ecpay.com.tw/Scripts/sdk-1.0.0.js?t=20210121100116" />
-      </>
-    ),
+    ecpayLoading,
     getPaymentInfo: useCallback(
       async () =>
         new Promise(resolve => {

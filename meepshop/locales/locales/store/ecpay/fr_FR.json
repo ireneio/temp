@@ -16,5 +16,37 @@
     "order-number": "Numéro de commande",
     "store-name": "Nom du magasin",
     "amount": "montant de la commande"
+  },
+  "info": {
+    "title": "Informations de paiement",
+    "order-number": "Numéro de commande",
+    "store-name": "Nom du magasin",
+    "payment-method": "mode de paiement",
+    "expire-date": "expiration du salaire",
+    "amount": "Montants payables",
+    "hints": "※ Il est recommandé de sauvegarder des captures d'écran de l'information et de payer dans la date limite.",
+    "button": "Continuer à compléter l'ordre de transaction"
+  },
+  "atm": {
+    "title": "AU M",
+    "bank-code": "Code bancaire",
+    "account": "Compte de paiement"
+  },
+  "cvs": {
+    "title": "Code d'entreprise super",
+    "choose-code": "Sélectionnez Code Paiement",
+    "choose-code-1": "À Super Business Desk Input Code Paiement de la colonne Paiement de la Colonne",
+    "choose-code-2": "(Pour 7-11 / Famille / Lairofa / OK Super Business)",
+    "instruction": "Instructions de fonctionnement de la machine de code super commerce",
+    "choose-barcode": "Sélectionnez le paiement du code à barres du téléphone",
+    "choose-barcode-1": "Copier vers le code de numérisation Open Open Open Open",
+    "choose-barcode-2": "(Pour 7-11 / Famille / Lelfu)",
+    "copy": "Copier le lien de paiement",
+    "copy-success": "Réussir à copier"
+  },
+  "barcode": {
+    "title": "Code à barres super affaires",
+    "description-1": "Au compteur de superficie super ce paiement de code à barres",
+    "description-2": "(Pour 7-11 / Famille / Lairofa / OK Super Business)"
   }
 }
