@@ -4,7 +4,7 @@
   "description": "Web track page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.40",
+  "version": "0.80.41",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -12,7 +12,7 @@
     "@admin/tooltip": "^0.80.36",
     "@admin/utils": "^0.80.40",
     "@meepshop/apollo": "^0.80.40",
-    "@meepshop/hooks": "^0.80.40",
+    "@meepshop/hooks": "^0.80.41",
     "@meepshop/icons": "^0.80.40",
     "@meepshop/images": "^0.80.40",
     "@meepshop/link": "^0.80.40",
