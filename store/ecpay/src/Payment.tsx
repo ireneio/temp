@@ -1,6 +1,8 @@
 // import
 import React, { useContext, useState } from 'react';
 import { Affix, Button, Modal } from 'antd';
+import getConfig from 'next/config';
+import Head from 'next/head';
 
 import {
   Currency as CurrencyContext,
@@ -27,6 +29,10 @@ interface PropsType {
 }
 
 // definition
+const {
+  publicRuntimeConfig: { ENV },
+} = getConfig();
+
 export default React.memo(({ viewer, setPaymentInfo }: PropsType) => {
   const { t } = useTranslation('ecpay');
   const { c } = useContext(CurrencyContext);
@@ -51,6 +57,13 @@ export default React.memo(({ viewer, setPaymentInfo }: PropsType) => {
       </div>
 
       <div id="ECPayPayment" />
+
+      <Head>
+        <script
+          src={ENV === 'production' ? '/ecpay2.js' : '/ecpay2-stage.js'}
+        />
+      </Head>
+      <script src={ENV === 'production' ? '/ecpay2.js' : '/ecpay2-stage.js'} />
 
       <Modal
         className={styles.modal}

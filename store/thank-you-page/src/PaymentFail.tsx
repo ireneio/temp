@@ -4,7 +4,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
-import Link, { useRouter } from '@meepshop/link';
+import { useRouter } from '@meepshop/link';
 
 import styles from './styles/paymentFail.less';
 
@@ -16,6 +16,10 @@ export default React.memo(() => {
   // FIXME: should use client.resetStore and window.storePreviousPageUrl
   const goToCheckout = useCallback(() => {
     window.location.href = '/checkout';
+  }, []);
+
+  const goToHome = useCallback(() => {
+    window.location.href = '/';
   }, []);
 
   return (
@@ -41,9 +45,7 @@ export default React.memo(() => {
         <div className={styles.button}>
           <Button onClick={() => goToCheckout()}>{t('back-to-cart')}</Button>
 
-          <Link href="/">
-            <Button>{t('return')}</Button>
-          </Link>
+          <Button onClick={() => goToHome()}>{t('return')}</Button>
         </div>
 
         <div className={styles.hints}>{t('hints')}</div>
