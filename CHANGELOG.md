@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.41 (2021-09-08)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1727](https://github.com/meepshop/meep-lerna/pull/1727) 【BUG】Ecpay sdk not found ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.40 (2021-09-07)
 
 #### :bug: Bug Fix
