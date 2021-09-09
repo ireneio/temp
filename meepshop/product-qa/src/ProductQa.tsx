@@ -128,7 +128,7 @@ export default React.memo(({ width, product, viewer }: productQaFragment) => {
         })}
       </div>
 
-      {viewer?.role !== 'SHOPPER' ? null : (
+      {viewer?.role === 'SHOPPER' ? null : (
         <FormItem
           name={['userEmail']}
           rules={[

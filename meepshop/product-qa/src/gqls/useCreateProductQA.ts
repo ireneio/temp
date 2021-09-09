@@ -20,8 +20,10 @@ export const useCreateProductQAFragment = gql`
   fragment useCreateProductQAFragment on Product {
     id
     publicViewableQas {
+      __typename
       userEmail
       qa {
+        __typename
         id
         question
         createdAt
