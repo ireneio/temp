@@ -56,9 +56,9 @@ export default React.memo(
             {...filter(carouselFragment, {
               ...defaultCarouselProps,
               showController: true,
-              carouselRef,
-              asNavFor: bottomRef,
             })}
+            carouselRef={carouselRef}
+            asNavFor={bottomRef}
           />
         </div>
 
@@ -68,12 +68,12 @@ export default React.memo(
               {...filter(carouselFragment, {
                 ...defaultCarouselProps,
                 showController: false,
-                focusOnSelect: true,
-                carouselRef: bottomRef,
-                asNavFor: carouselRef,
-                slidesToShow: (images || []).length > 4 ? 4 : images?.length,
-                afterChange: setSlickActive,
               })}
+              carouselRef={bottomRef}
+              asNavFor={carouselRef}
+              slidesToShow={(images || []).length > 4 ? 4 : images?.length}
+              afterChange={setSlickActive}
+              focusOnSelect
             />
           </div>
         )}

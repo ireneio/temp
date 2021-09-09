@@ -3,14 +3,16 @@
 .root {
   margin: auto;
 
-  :global(.ant-carousel) :global(.slick-next) {
-    z-index: 1;
-    right: 25px;
-  }
+  :global(.ant-carousel) {
+    :global(.slick-next) {
+      z-index: 1;
+      right: 15px;
+    }
 
-  :global(.ant-carousel) :global(.slick-prev) {
-    z-index: 1;
-    left: 25px;
+    :global(.slick-prev) {
+      z-index: 1;
+      left: 15px;
+    }
   }
 
   svg {
