@@ -29,15 +29,6 @@ export default (
   logger: loggerType,
 ): ReturnType<typeof onError> =>
   onError(({ response, graphQLErrors, networkError }) => {
-    const errorLog =
-      typeof window === 'undefined'
-        ? logger.error
-        : ({ type, ...message }: { type: string }) =>
-            notification.error({
-              message: 'Error!',
-              description: `[${type} error]: ${JSON.stringify(message)}`,
-            });
-
     if (
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore https://github.com/apollographql/apollo-link/issues/536
@@ -47,7 +38,7 @@ export default (
         window.location.pathname,
       )
     ) {
-      errorLog({
+      notification.error({
         message: '請重新登入',
         duration: 1,
         onClose: () => {
@@ -56,6 +47,15 @@ export default (
       });
       return;
     }
+
+    const errorLog =
+      typeof window === 'undefined'
+        ? logger.error
+        : ({ type, ...message }: { type: string }) =>
+            notification.error({
+              message: 'Error!',
+              description: `[${type} error]: ${JSON.stringify(message)}`,
+            });
 
     if (graphQLErrors) {
       const errors = graphQLErrors.filter(errorFilter);
