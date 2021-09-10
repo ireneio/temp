@@ -4,11 +4,11 @@
   "description": "store cart previewer",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.40",
+  "version": "0.80.42",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/apollo": "^0.80.40",
+    "@meepshop/apollo": "^0.80.42",
     "@meepshop/context": "^0.80.40",
     "@meepshop/images": "^0.80.40",
     "@meepshop/link": "^0.80.40",
