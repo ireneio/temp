@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.43 (2021-09-10)
+
+#### :bug: Bug Fix
+
+- [#1723](https://github.com/meepshop/meep-lerna/pull/1723) 內部開單 - 修正 draft-js warning ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.42 (2021-09-10)
 
 #### :bug: Bug Fix
