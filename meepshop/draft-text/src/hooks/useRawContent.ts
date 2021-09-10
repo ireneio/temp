@@ -10,7 +10,7 @@ import {
 } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
-import { getDraftText } from './gqls/useRawContent';
+import { getDraftText } from '../gqls/useRawContent';
 
 // definition
 export default (value?: string | null): object | null => {

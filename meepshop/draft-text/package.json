@@ -8,7 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/hooks": "^0.80.42",
+    "@meepshop/apollo": "^0.80.42",
     "braft-convert": "^2.3.0"
   },
   "keywords": ["draft text", "meepshop"]

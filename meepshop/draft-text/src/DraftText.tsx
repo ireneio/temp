@@ -2,8 +2,8 @@
 import React from 'react';
 import { convertRawToEditorState } from 'braft-convert';
 
-import { useRawContent, useHtml } from '@meepshop/hooks';
-
+import useRawContent from './hooks/useRawContent';
+import useHtml from './hooks/useHtml';
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -21,9 +21,9 @@ export default React.memo(({ className, content, usePlainText }: PropsType) => {
   const html = useHtml(rawContent);
 
   if (usePlainText)
-    return (
+    return !rawContent ? null : (
       <>
-        {convertRawToEditorState(rawContent || {})
+        {convertRawToEditorState(rawContent)
           .getCurrentContent()
           .getPlainText()}
       </>
