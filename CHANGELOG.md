@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.80.42 (2021-09-10)
+
+#### :bug: Bug Fix
+
+- [#1732](https://github.com/meepshop/meep-lerna/pull/1732) 【BUG】 後台未登入狀態沒有自動跳轉至登入頁 ([@piovischioh](https://github.com/piovischioh))
+- [#1730](https://github.com/meepshop/meep-lerna/pull/1730) (@meepshop/product-carousel) Fix style error ([@HsuTing](https://github.com/HsuTing))
+- [#1731](https://github.com/meepshop/meep-lerna/pull/1731) (@meepshop/product-qa) Fix role error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.41 (2021-09-08)
 
 #### :bug: Bug Fix
