@@ -1,9 +1,24 @@
 enum LogTypeEnum {
+  TRACE
+  DEBUG
+  INFO
+  WARN
+  ERROR
+  FATAL
+}
+
+enum LogNameEnum {
+  GET_DATA_FROM_TREE
+  GET_INITIAIL_PROPS
+  RENDER_ERROR
+  INITIAL_COOOKIES
   CREATE_ORDER_FORM_DATA
+  URI_PARSER
 }
 
 input LogInput {
   type: LogTypeEnum!
+  name: LogNameEnum!
   data: JSON!
 }
 

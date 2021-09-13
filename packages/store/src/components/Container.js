@@ -7,7 +7,6 @@ import { UserAgent } from 'fbjs';
 import { notification } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
-import logger from '@meepshop/utils/lib/logger';
 import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import {
   AdTrack as AdTrackContext,
@@ -102,85 +101,79 @@ class Container extends React.Component {
       !userAgent.match(/FBAN/gm) && // FIXME: T3144
       !userAgent.match(/FBAV/gm)
     ) {
-      // Not in-app browser
-      try {
-        dispatchAction('showLoadingStatus');
-
-        fb.login(
-          async response => {
-            if (response.status === 'connected') {
-              /* Handle login after FB response */
-              const { data } = await initApollo({ name: 'store' }).mutate({
-                mutation: gql`
-                  mutation fbLogin($input: FbLoginInput!) {
-                    fbLogin(input: $input) @client {
-                      status
-                    }
+      dispatchAction('showLoadingStatus');
+      fb.login(
+        async response => {
+          if (response.status === 'connected') {
+            /* Handle login after FB response */
+            const { data } = await initApollo({ name: 'store' }).mutate({
+              mutation: gql`
+                mutation fbLogin($input: FbLoginInput!) {
+                  fbLogin(input: $input) @client {
+                    status
                   }
-                `,
-                variables: {
-                  input: { accessToken: response.authResponse.accessToken },
-                },
-              });
-
-              switch (data.fbLogin.status) {
-                case 'OK':
-                case 'FIRST_LOGIN': {
-                  const member = await Api.updateMemberData();
-                  const numOfExpiredPoints =
-                    member?.data?.viewer?.rewardPoint.expiringPoints.total;
-
-                  if (data.fbLogin.status === 'FIRST_LOGIN')
-                    adTrack.completeRegistration();
-
-                  if (numOfExpiredPoints > 0)
-                    notification.info({
-                      message: t('expired-points-message'),
-                      description: t('expired-points-description', {
-                        point: numOfExpiredPoints,
-                      }),
-                    });
-
-                  getAuth();
-
-                  if (to) Utils.goTo({ pathname: to });
-                  else if (window.storePreviousPageUrl)
-                    Utils.goTo({ pathname: window.storePreviousPageUrl });
-                  else Utils.goTo({ pathname: '/' });
-                  break;
                 }
+              `,
+              variables: {
+                input: { accessToken: response.authResponse.accessToken },
+              },
+            });
 
-                case 'EXPIRED_ACCESS_TOKEN':
-                  notification.error({ message: 'FB Access token 失效' });
-                  break;
+            switch (data.fbLogin.status) {
+              case 'OK':
+              case 'FIRST_LOGIN': {
+                const member = await Api.updateMemberData();
+                const numOfExpiredPoints =
+                  member?.data?.viewer?.rewardPoint.expiringPoints.total;
 
-                case 'CANNOT_GET_EMAIL':
-                  notification.error({ message: 'FB無法取得email' });
-                  break;
+                if (data.fbLogin.status === 'FIRST_LOGIN')
+                  adTrack.completeRegistration();
 
-                case 'INVALID_TOKEN':
-                  notification.error({ message: '無法取得meepShop token' });
-                  break;
+                if (numOfExpiredPoints > 0)
+                  notification.info({
+                    message: t('expired-points-message'),
+                    description: t('expired-points-description', {
+                      point: numOfExpiredPoints,
+                    }),
+                  });
 
-                default:
-                  notification.error({ message: '未知的錯誤' });
-                  break;
+                getAuth();
+
+                if (to) Utils.goTo({ pathname: to });
+                else if (window.storePreviousPageUrl)
+                  Utils.goTo({ pathname: window.storePreviousPageUrl });
+                else Utils.goTo({ pathname: '/' });
+                break;
               }
-              /* Handle login after FB response - End */
-              dispatchAction('hideLoadingStatus');
-            } else {
-              notification.error({
-                message:
-                  'The person is not logged into this app or we are unable to tell.',
-              });
-              dispatchAction('hideLoadingStatus');
+
+              case 'EXPIRED_ACCESS_TOKEN':
+                notification.error({ message: 'FB Access token 失效' });
+                break;
+
+              case 'CANNOT_GET_EMAIL':
+                notification.error({ message: 'FB無法取得email' });
+                break;
+
+              case 'INVALID_TOKEN':
+                notification.error({ message: '無法取得meepShop token' });
+                break;
+
+              default:
+                notification.error({ message: '未知的錯誤' });
+                break;
             }
-          },
-          { scope: 'public_profile,email' },
-        );
-      } catch ({ message, stack }) {
-        logger.error(`Error: ${message}, Stack: ${JSON.stringify(stack)}`);
-      }
+            /* Handle login after FB response - End */
+            dispatchAction('hideLoadingStatus');
+          } else {
+            notification.error({
+              message:
+                'The person is not logged into this app or we are unable to tell.',
+            });
+            dispatchAction('hideLoadingStatus');
+          }
+        },
+        { scope: 'public_profile,email' },
+      );
     } else {
       // in-app browser
       window.location.href = `https://www.facebook.com/${version}/dialog/oauth?client_id=${appId}&redirect_uri=https://${window.meepShopStore.XMeepshopDomain}/fbAuthForLine&scope=email&state=${to}`;

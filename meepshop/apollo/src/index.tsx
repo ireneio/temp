@@ -21,6 +21,17 @@ import ApolloNetworkStatusContext, {
   ApolloNetworkStatusProvider,
 } from './context/ApolloNetworkStatus';
 
+// graphql typescript
+import {
+  log as logType,
+  logVariables,
+  LogTypeEnum,
+  LogNameEnum,
+} from '@meepshop/types/gqls/meepshop';
+
+// graphql import
+import { log } from '@meepshop/logger/lib/gqls/log';
+
 // typescript definition
 interface PropsType extends AppProps {
   apolloState?: NormalizedCacheObject;
@@ -34,6 +45,7 @@ export interface CustomCtxType<Req = {}, Res = {}> extends AppContext {
         'x-meepshop-authorization-token': string;
         'merchant-applicant-verify-token': string;
       };
+      // FIXME: remove after next-store remove express
       logger: loggerType;
     };
     res: Res;
@@ -68,7 +80,7 @@ export const buildWithApollo = (config: initApolloConfigType) => (
     const {
       Component,
       router,
-      ctx: { res, req },
+      ctx: { res },
     } = ctx;
     const client = initApollo(config, undefined, ctx);
 
@@ -89,9 +101,18 @@ export const buildWithApollo = (config: initApolloConfigType) => (
         );
       } catch (e) {
         if (!shouldIgnoreUnauthorizedError(e.networkError))
-          req.logger.error({
-            ...e,
-            message: 'Error while running getDataFromTree',
+          client.mutate<logType, logVariables>({
+            mutation: log,
+            variables: {
+              input: {
+                type: 'ERROR' as LogTypeEnum,
+                name: 'GET_DATA_FROM_TREE' as LogNameEnum,
+                data: {
+                  message: e.message,
+                  stack: e.stack,
+                },
+              },
+            },
           });
       }
 

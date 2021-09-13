@@ -43,6 +43,7 @@
     "@meepshop/images": "^0.80.40",
     "@meepshop/link": "^0.80.44",
     "@meepshop/locales": "^0.80.39",
+    "@meepshop/logger": "^0.80.39",
     "@meepshop/switch": "^0.80.36",
     "@meepshop/utils": "^0.80.40",
     "isomorphic-unfetch": "^3.0.0",

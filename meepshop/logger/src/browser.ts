@@ -15,7 +15,7 @@ export default LOG_TYPES.reduce(
       process.env.NODE_ENV !== 'production'
         ? // eslint-disable-next-line no-console
           console[type === 'fatal' ? 'log' : type](data)
-        : fetch('/log', {
+        : fetch('/api/log', {
             method: 'post',
             headers: { 'content-type': 'application/json' },
             credentials: 'include',

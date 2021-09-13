@@ -10,6 +10,9 @@ const helmet = require('helmet');
 const uaParser = require('ua-parser-js');
 
 const { default: initializeLogger } = require('@meepshop/logger');
+const {
+  default: loggerMiddleware,
+} = require('@meepshop/logger/lib/middleware');
 
 const { publicRuntimeConfig } = require('../../next.config');
 const routes = require('./routes');
@@ -128,13 +131,7 @@ app.prepare().then(() => {
       </main>
     `);
   });
-  server.post('/log', (req, res) => {
-    const { logger } = req;
-    const { type, ...data } = req.body;
-
-    logger[type || 'info'](data);
-    res.end();
-  });
+  server.post('/api/log', loggerMiddleware);
 
   // api
   server.post('/api/graphql', mapCookiesToHeaders, api);

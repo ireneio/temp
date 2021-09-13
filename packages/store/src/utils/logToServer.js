@@ -1,5 +1,5 @@
 export default ({ type, message, stack }) => {
-  fetch('/log', {
+  fetch('/api/log', {
     method: 'post',
     headers: { 'content-type': 'application/json' },
     credentials: 'include',

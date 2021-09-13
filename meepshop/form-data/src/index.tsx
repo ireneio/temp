@@ -8,13 +8,14 @@ import { emptyFunction } from 'fbjs';
 import {
   formDataFragment as formDataFragmentType,
   formDataFragment_params as formDataFragmentParams,
+  log as logType,
+  logVariables,
   LogTypeEnum,
-  logFormData as logFormDataType,
-  logFormDataVariables,
+  LogNameEnum,
 } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
-import { logFormData } from './gqls';
+import { log } from '@meepshop/logger/lib/gqls/log';
 
 // typescript definition
 type formDataType = (formData: formDataFragmentType | null) => void;
@@ -26,14 +27,11 @@ export const FormDataProvider = React.memo(({ children }) => {
   const [formData, setFormData] = useState<formDataFragmentType | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const { effectiveConnectionType } = useNetworkStatus();
-  const [mutation] = useMutation<logFormDataType, logFormDataVariables>(
-    logFormData,
-    {
-      onCompleted: () => {
-        if (formRef.current) formRef.current.submit();
-      },
+  const [mutation] = useMutation<logType, logVariables>(log, {
+    onCompleted: () => {
+      if (formRef.current) formRef.current.submit();
     },
-  );
+  });
 
   useEffect(() => {
     if (formData?.type === 'GET') window.location.href = formData.url || '';
@@ -41,7 +39,8 @@ export const FormDataProvider = React.memo(({ children }) => {
       mutation({
         variables: {
           input: {
-            type: 'CREATE_ORDER_FORM_DATA' as LogTypeEnum,
+            type: 'INFO' as LogTypeEnum,
+            name: 'CREATE_ORDER_FORM_DATA' as LogNameEnum,
             data: {
               formData,
               effectiveConnectionType,

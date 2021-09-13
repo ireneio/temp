@@ -10,7 +10,6 @@
   "dependencies": {
     "@apollo/react-ssr": "^3.1.3",
     "@meepshop/logger": "^0.80.39",
-    "@meepshop/utils": "^0.80.40",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-link-error": "^1.1.13",
     "apollo-link-http": "^1.5.17",

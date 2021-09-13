@@ -1,5 +1,6 @@
 // import
-import logger from '@meepshop/utils/lib/logger';
+import initApollo from '@meepshop/apollo/lib/utils/initApollo';
+import log from '@meepshop/logger/lib/gqls/log';
 
 // definition
 export default ({ XMeepshopDomain, url, userAgent }) => {
@@ -24,7 +25,19 @@ export default ({ XMeepshopDomain, url, userAgent }) => {
       query: url.query,
     };
   } catch ({ message, stack }) {
-    logger.error(JSON.stringify({ message, stack }));
+    initApollo({ name: 'store' }).mutate({
+      mutation: log,
+      variables: {
+        type: 'ERROR',
+        name: 'URI_PARSER',
+        data: {
+          url,
+          message,
+          stack,
+        },
+      },
+    });
+
     return {};
   }
 };

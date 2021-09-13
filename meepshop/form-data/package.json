@@ -8,6 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@meepshop/logger": "^0.80.39",
     "react-adaptive-hooks": "^0.0.8"
   },
   "keywords": ["data", "form", "meepshop"]

@@ -2,12 +2,6 @@
 import gql from 'graphql-tag';
 
 // definition
-export const logFormData = gql`
-  mutation logFormData($input: LogInput!) {
-    log(input: $input) @client
-  }
-`;
-
 export const formDataFragment = gql`
   fragment formDataFragment on outformDataObjectType {
     url

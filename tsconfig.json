@@ -22,7 +22,8 @@
       "@meepshop/utils/lib/*": ["meepshop/utils/src/*"],
       "@meepshop/apollo/lib/*": ["meepshop/apollo/src/*"],
       "@meepshop/hooks/lib/*": ["meepshop/hooks/src/*"],
-      "@meepshop/context/lib/*": ["meepshop/context/src/*"]
+      "@meepshop/context/lib/*": ["meepshop/context/src/*"],
+      "@meepshop/logger/lib/*": ["meepshop/logger/src/*"]
     }
   },
   "include": [

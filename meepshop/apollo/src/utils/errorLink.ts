@@ -51,10 +51,10 @@ export default (
     const errorLog =
       typeof window === 'undefined'
         ? logger.error
-        : ({ type, ...message }: { type: string }) =>
+        : ({ name, ...message }: { name: string }) =>
             notification.error({
               message: 'Error!',
-              description: `[${type} error]: ${JSON.stringify(message)}`,
+              description: `[${name} error]: ${JSON.stringify(message)}`,
             });
 
     if (graphQLErrors) {
@@ -67,7 +67,7 @@ export default (
 
       errors.forEach(({ message, locations, path }) => {
         errorLog({
-          type: 'GraphQL',
+          name: 'GraphQL',
           message,
           locations,
           path,
@@ -79,7 +79,7 @@ export default (
       if (shouldIgnoreUnauthorizedError(networkError)) return;
 
       errorLog({
-        type: 'Network',
+        name: 'Network',
         networkError,
       });
     }

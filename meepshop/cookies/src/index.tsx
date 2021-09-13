@@ -15,10 +15,20 @@ import { emptyFunction } from 'fbjs';
 import cookie from 'js-cookie';
 
 import { i18n } from '@meepshop/locales';
-import logger from '@meepshop/utils/lib/logger';
 import { shouldIgnoreUnauthorizedError } from '@meepshop/apollo/lib/utils/errorLink';
 
 import useCookies from './hooks/useCookies';
+
+// graphql typescript
+import {
+  log as logType,
+  logVariables,
+  LogTypeEnum,
+  LogNameEnum,
+} from '@meepshop/types/gqls/meepshop';
+
+// graphql import
+import { log } from '@meepshop/logger/lib/gqls/log';
 
 // typescript definition
 interface CookieAttributesType extends Omit<CookieAttributes, 'expires'> {
@@ -42,7 +52,6 @@ interface CustomCtx extends AppContext {
   ctx: AppContext['ctx'] & {
     client: ApolloClient<NormalizedCacheObject>;
     req: {
-      logId: string;
       i18n: I18nPropsType['i18n'];
       language: I18nPropsType['i18n']['language'];
       cookies: CookiesType['cookies'];
@@ -120,11 +129,19 @@ export const withCookies = (getCookies: getCookiesType) => (
       );
     } catch (e) {
       if (!shouldIgnoreUnauthorizedError(e.networkError))
-        logger.info(
-          `${req?.logId}, Error while running 'getCookies', ${JSON.stringify(
-            e,
-          )}`,
-        );
+        client.mutate<logType, logVariables>({
+          mutation: log,
+          variables: {
+            input: {
+              type: 'ERROR' as LogTypeEnum,
+              name: 'INITIAL_COOOKIES' as LogNameEnum,
+              data: {
+                message: e.message,
+                stack: e.stack,
+              },
+            },
+          },
+        });
     }
 
     const appProps = await App.getInitialProps(ctx);

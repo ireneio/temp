@@ -13,7 +13,7 @@ import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
 import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
 import { ErrorMultiIcon } from '@meepshop/icons';
-import logger from '@meepshop/utils/lib/logger';
+import { log } from '@meepshop/logger/lib/gqls/log';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
@@ -40,6 +40,7 @@ const { Item: FormItem } = Form;
 @withContext(AdTrackContext)
 @withHook(({ user, orderInfo, errors }) => ({
   mutation: useMutation(computeOrderList)[0],
+  logMutation: useMutation(log)[0],
   form: Form.useForm()[0],
   fields: useMemo(() => {
     const { info, ...data } = orderInfo || {};
@@ -146,11 +147,24 @@ export default class OrderDetail extends React.PureComponent {
   }
 
   componentDidMount() {
+    const { logMutation } = this.props;
+
     this.computeOrderList();
     try {
       this.restoreInfo();
-    } catch ({ message }) {
-      logger.error(`Error: ${message}`);
+    } catch ({ message, stack }) {
+      logMutation({
+        variables: {
+          input: {
+            type: 'ERROR',
+            name: 'CHECKOUT_RESTORE_INFO',
+            data: {
+              message,
+              stack,
+            },
+          },
+        },
+      });
     }
   }
 

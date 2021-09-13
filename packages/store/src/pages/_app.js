@@ -12,7 +12,6 @@ import { getUnixTime } from 'date-fns';
 
 import ActionButton from '@meepshop/action-button';
 import { appWithTranslation } from '@meepshop/locales';
-import logger from '@meepshop/utils/lib/logger';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
@@ -26,6 +25,9 @@ import withApollo from '@store/apollo';
 import FbProvider from '@store/fb';
 import CurrencyProvider from '@store/currency';
 import AdTrackProvider from '@store/ad-track';
+import initApollo from '@meepshop/apollo/lib/utils/initApollo';
+
+import { log } from '@meepshop/logger/lib/gqls/log';
 
 import { Error, CloseView, StoreNotExistsView } from 'components';
 import { Router } from 'server/routes';
@@ -56,7 +58,7 @@ Router.onRouteChangeComplete = () => {
 
 class App extends NextApp {
   static async getInitialProps({ Component, ctx }) {
-    const { req, res } = ctx;
+    const { req, res, client } = ctx;
     let pageProps = {};
     const { XMeepshopDomain, userAgent } = Utils.getReqArgs(req);
 
@@ -114,18 +116,6 @@ class App extends NextApp {
         },
       );
 
-      if (
-        typeof window === 'undefined' &&
-        response.status >= 400 &&
-        response.status !== 403
-      ) {
-        logger.info(
-          `Check >> ${response.status} (${XMeepshopDomain}) ${JSON.stringify(
-            req.headers,
-          )}`,
-        );
-      }
-
       if (response.status < 400) {
         const data = await response.json();
         const storeStatus = data?.data?.viewer.store.metaData.storeStatus;
@@ -175,14 +165,20 @@ class App extends NextApp {
         },
       };
     } catch (error) {
-      logger.error(error);
-      if (typeof window !== 'undefined') {
-        Utils.logToServer({
-          type: 'getInitialProps in _app',
-          message: error.message,
-          stack: error.stack,
-        });
-      }
+      client.mutate({
+        mutation: log,
+        variables: {
+          input: {
+            type: 'ERROR',
+            name: 'GET_INITIAIL_PROPS',
+            data: {
+              message: error.message,
+              stack: error.stack,
+            },
+          },
+        },
+      });
+
       return { error: { status: 'API_ERROR' }, pageProps };
     }
   }
@@ -202,11 +198,18 @@ class App extends NextApp {
   }
 
   componentDidCatch(error, errorInfo) {
-    logger.error(error);
-    Utils.logToServer({
-      type: 'componentDidCatch',
-      message: error.message,
-      stack: errorInfo,
+    initApollo({ name: 'store' }).mutate({
+      mutation: log,
+      variables: {
+        input: {
+          type: 'ERROR',
+          name: 'RENDER_ERROR',
+          data: {
+            error,
+            errorInfo,
+          },
+        },
+      },
     });
   }
 

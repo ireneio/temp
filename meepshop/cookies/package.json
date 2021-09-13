@@ -10,7 +10,7 @@
   "dependencies": {
     "@meepshop/apollo": "^0.80.43",
     "@meepshop/locales": "^0.80.39",
-    "@meepshop/utils": "^0.80.40",
+    "@meepshop/logger": "^0.80.39",
     "apollo-cache-inmemory": "^1.6.3",
     "js-cookie": "^2.2.1"
   },

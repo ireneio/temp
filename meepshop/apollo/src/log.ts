@@ -9,11 +9,14 @@ import { LogInput } from '@meepshop/types/gqls/meepshop';
 // definition
 export const resolvers = (logger: loggerType): Resolvers => ({
   Mutation: {
-    log: async (_: unknown, { input: { type, data } }: { input: LogInput }) => {
+    log: async (
+      _: unknown,
+      { input: { type, name, data } }: { input: LogInput },
+    ) => {
       try {
-        await logger.error({
+        await logger[type.toLowerCase() as keyof loggerType]({
           ...data,
-          type,
+          name,
         });
 
         return 'OK';
