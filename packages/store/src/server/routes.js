@@ -1,64 +1,82 @@
 const routes = require('next-routes')();
 
+/**
+ * add(package name, route pattern, relative path in pages)
+ */
 module.exports = routes
-  // index page
-  .add('index', '/', 'index')
-  // pages page
-  .add('pages', '/pages/:path', 'pages')
-  // product page
-  .add('product', '/product/:pId', 'product')
-  // products page
-  .add('products', '/products', 'products')
-  // login page
+  // root
+  .add('index', '/', '/')
+  .add('@store/unsubscribe-email', '/unsubscribe', '/unsubscribe')
   .add('login', '/login', 'login')
-  // payment page
-  .add('checkout', '/checkout', 'checkout')
-  // ecpay page
-  .add('ecpay/[token]', '/ecpay/:token', 'ecpay/[token]')
-  // EC thank-you page
-  // !!Note!! Do not change the route because 綠界金流formData
-  // 後端redirect url 固定用/checkout/thank-you-page/:orderId
-  .add('thankYouPage', '/checkout/thank-you-page/:orderId', 'thankYouPage')
 
-  // member only
-  // 訂單管理
-  .add('orders', '/orders', 'orders')
-  // 訂單詳細資料
-  .add('order', '/order/:orderId', 'order')
-  .add('myorders', '/myorders/:orderId', 'order') // For email link created by backend
-  // 訂單管理 - 退換貨查詢
-  .add('orderApplyList', '/orderApplyList/:orderId', 'orderApplyList')
-  // 訂單管理 - 退貨申請
-  .add('orderRefund', '/orderRefund/:orderId', 'orderRefund')
-  // 訂單管理 - 換貨申請
-  .add('orderExchange', '/orderExchange/:orderId', 'orderExchange')
-  // 訂單管理 - 匯款通知
-  .add('payNotify', '/payNotify/:orderId', 'orderPayNotify')
-  // 訂單管理 - 訂單問答
-  .add('orderQA', '/orderQA/:orderId', 'orderQA')
+  // pages
+  .add('pages', '/pages/:path', '/pages/[path]')
 
-  // 會員資料
-  .add('settings', '/settings', 'settings')
-  // 通訊錄
-  .add('recipients', '/recipients', 'recipients')
-  // 更改密碼
-  .add('passwordChange', '/passwordChange', 'passwordChange')
-  // 我的收藏
-  .add('wishlist', '/wishlist', 'wishlist')
-  // 購物金
-  .add('rewardPoints', '/rewardPoints', 'rewardPoints')
-  // 忘記密碼
-  .add('forgotPassword', '/forgotPassword/:token', 'forgotPassword')
+  // products
+  .add('product', '/product/:pId', '/products/[pId]')
+  .add('products', '/products', '/products')
 
-  // unsubscribe email
-  .add('unsubscribe', '/unsubscribe', '/unsubscribe')
-
-  // sitemaps(products): for crawler
-  .add('sitemaps/v1', '/sitemaps/v1', 'sitemaps/v1')
-
-  // TODO: admin only, remove
+  // checkout
+  .add('checkout', '/checkout', '/checkout')
+  /**
+   * Do not change this route!
+   * 後端綠界金流固定 redirect url
+   */
   .add(
-    'admin/[pageId]/[token]',
+    '@store/thank-you-page',
+    '/checkout/thank-you-page/:orderId',
+    '/checkout/thank-you-page/[orderId]',
+  )
+
+  // ecpay
+  .add('@store/ecpay', '/ecpay/:token', '/ecpay/[token]')
+
+  // forgot-password
+  .add(
+    '@store/forgot-password',
+    '/forgotPassword/:token',
+    '/forgot-password/[token]',
+  )
+
+  // orders
+  .add('@store/orders', '/orders', '/orders')
+  .add('@store/order', '/order/:orderId', '/orders/[orderId]')
+  .add(
+    '@store/member-order-applications',
+    '/orderApplyList/:orderId',
+    '/orders/[orderId]/applications',
+  )
+  .add(
+    '@store/member-order-apply-refund',
+    '/orderRefund/:orderId',
+    '/orders/[orderId]/refund',
+  )
+  .add(
+    '@store/member-order-apply-exchange',
+    '/orderExchange/:orderId',
+    '/orders/[orderId]/exchange',
+  )
+  .add(
+    '@store/member-order-pay-notify',
+    '/payNotify/:orderId',
+    '/orders/[orderId]/pay-notify',
+  )
+
+  // members
+  .add('@store/member-settings', '/settings', '/members/settings')
+  .add('@store/member-recipients', '/recipients', '/members/recipients')
+  .add(
+    '@store/member-password-change',
+    '/passwordChange',
+    '/members/password-change',
+  )
+  .add('@store/member-wish-list', '/wishlist', '/members/wish-list')
+  .add('@store/member-reward-points', '/rewardPoints', '/members/reward-points')
+
+  // TODO: remove
+  .add('sitemaps', '/sitemaps/v1', '/sitemaps/v1')
+  .add(
+    'admin-pages-previewer',
     '/admin/:pageId/:token',
-    'admin/[pageId]/[token]',
+    '/admin/[pageId]/[token]',
   );

@@ -2,14 +2,11 @@
 import { Key } from 'path-to-regexp';
 
 // import
-import getConfig from 'next/config';
 import pathToRegexp from 'path-to-regexp';
 
-// definition
-const {
-  publicRuntimeConfig: { ROUTES },
-} = getConfig();
+import { ROUTES } from '../constants';
 
+// definition
 const routes: {
   regexp: RegExp;
   keys: Key[];
@@ -44,7 +41,7 @@ export default (
       return keys.reduce(
         (prevHrefPath, key, index) =>
           `${prevHrefPath}${key.name}=${values[index]}`,
-        `/${page}?`,
+        `${page}?`,
       );
     },
     false,

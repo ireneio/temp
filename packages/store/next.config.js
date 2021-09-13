@@ -13,52 +13,6 @@ module.exports = basicConfig({
   useFileSystemPublicRoutes: false,
   publicRuntimeConfig: {
     STORE_DOMAIN: process.env.STORE_DOMAIN,
-    ROUTES: [
-      {
-        pattern: '/pages/:path',
-        page: 'pages',
-      },
-      {
-        pattern: '/product/:pId',
-        page: 'product',
-      },
-      {
-        pattern: '/checkout/thank-you-page/:orderId',
-        page: 'thankYouPage',
-      },
-      {
-        pattern: '/order/:orderId',
-        page: 'order',
-      },
-      {
-        pattern: '/myorders/:orderId',
-        page: 'order',
-      },
-      {
-        pattern: '/orderApplyList/:orderId',
-        page: 'orderApplyList',
-      },
-      {
-        pattern: '/orderRefund/:orderId',
-        page: 'orderRefund',
-      },
-      {
-        pattern: '/orderExchange/:orderId',
-        page: 'orderExchange',
-      },
-      {
-        pattern: '/payNotify/:orderId',
-        page: 'orderPayNotify',
-      },
-      {
-        pattern: '/orderQA/:orderId',
-        page: 'orderQA',
-      },
-      {
-        pattern: '/forgotPassword/:token',
-        page: 'forgotPassword',
-      },
-    ],
   },
   lessLoaderOptions: {
     modifyVars: {
