@@ -6,6 +6,7 @@ export const collapse = {
 
 export const panel = colors => ({
   background: transformColor(colors[5]).alpha(0.15),
+  color: colors[3],
   margin: '15px 0px 0px',
   border: '0px',
   borderRadius: '2px',
