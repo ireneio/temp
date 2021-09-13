@@ -4,7 +4,7 @@
   "description": "admin orders",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.40",
+  "version": "0.80.44",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -12,7 +12,7 @@
     "@admin/orders-export": "^0.80.39",
     "@admin/table": "^0.80.40",
     "@admin/utils": "^0.80.40",
-    "@meepshop/link": "^0.80.40",
+    "@meepshop/link": "^0.80.44",
     "@meepshop/locales": "^0.80.39",
     "@meepshop/utils": "^0.80.40",
     "date-fns": "^2.15.0"
