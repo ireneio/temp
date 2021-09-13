@@ -9,20 +9,15 @@ import ForgotPasswordView from '@store/forgot-password';
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
 import * as Template from 'template';
-import * as Actions from 'ducks/actions';
 import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class ForgotPassword extends Component {
   static getInitialProps = async context => {
     const {
-      store,
       req,
       query: { token },
     } = context;
     const { XMeepshopDomain, userAgent } = Utils.getReqArgs(req);
-
-    if (typeof window === 'undefined')
-      store.dispatch(Actions.serverOthersInitial(context));
 
     return { token, userAgent, XMeepshopDomain };
   };
