@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.80.44 (2021-09-13)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1721](https://github.com/meepshop/meep-lerna/pull/1721) 內部開單 - 在部分頁面裡面不再從 redux 拿資料 - part2 ([@HsuTing](https://github.com/HsuTing))
+  - [#1720](https://github.com/meepshop/meep-lerna/pull/1720) 內部開單 - 改用 apollo-client 拿所有頁面資料 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#1725](https://github.com/meepshop/meep-lerna/pull/1725) 【優化】 結帳頁金流說明 - 深色系背景文字顯示 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- `store`
+  - [#1718](https://github.com/meepshop/meep-lerna/pull/1718) 內部開單 - 搬移 pages 檔案位置 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.43 (2021-09-10)
 
 #### :bug: Bug Fix
