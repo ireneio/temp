@@ -7,6 +7,7 @@ import { useRouter } from '@meepshop/link';
 
 import { getPage } from 'gqls/usePage';
 import modifyWidgetDataInClient from 'utils/modifyWidgetDataInClient';
+import getJoinedModule from 'utils/getJoinedModule';
 
 export default () => {
   const { cookies } = useContext(CookiesContext);
@@ -15,14 +16,44 @@ export default () => {
   const { data } = useQuery(getPage, {
     variables: {
       identity: cookies?.identity,
+      path: router.query.path || '',
+      productId: router.query.pId || '',
+      productSearch: {
+        size: 1,
+        from: 0,
+        filter: {
+          and: [
+            {
+              type: 'ids',
+              ids: [router.query.pId || ''],
+            },
+          ],
+        },
+        sort: [
+          {
+            field: 'createdAt',
+            order: 'desc',
+          },
+        ],
+        showVariants: true,
+        showMainFile: true,
+      },
       isHomePage: router.pathname === '/',
+      isCustomPage: router.pathname === '/pages',
+      isProductPage: router.pathname === '/product',
+      isProductsPage: router.pathname === '/products',
     },
   });
   const store = data?.viewer?.store;
+  const product = data?.computeProductList?.data?.[0];
   const experimentPage = useMemo(() => {
-    if (!store?.isNewPageModulesEnabled) return null;
+    if (!store?.experiment?.isNewPageModulesEnabled) return null;
 
-    const page = store?.defaultHomePage;
+    const page =
+      store?.defaultHomePage ||
+      store?.customPage ||
+      store?.product?.page ||
+      store?.defaultProductListPage;
 
     if (!page) return null;
 
@@ -38,10 +69,18 @@ export default () => {
           ...block,
           width: width || 100,
           componentWidth: componentWidth || 0,
-          widgets: modifyWidgetDataInClient(widgets, router.query, page),
+          widgets: !store?.product
+            ? modifyWidgetDataInClient(widgets, router.query, page)
+            : getJoinedModule(
+                modifyWidgetDataInClient(widgets, router.query, page),
+                {
+                  query: router.query,
+                  product,
+                },
+              ),
         })),
     };
-  }, [store, router.query]);
+  }, [store, product, router.query]);
 
   return {
     i18n,

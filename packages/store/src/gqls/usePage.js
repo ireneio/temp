@@ -3,8 +3,106 @@ import gql from 'graphql-tag';
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 import { handleModuleDataMenuFragment } from '@meepshop/meep-ui/lib/menu/gqls/handleModuleData';
 
-const usePageFragment = gql`
-  fragment usePageFragment on Page {
+const usePageProductFragment = gql`
+  fragment usePageProductFragment on Product {
+    id
+    title {
+      ...localeFragment
+    }
+    description {
+      ...localeFragment
+    }
+    info {
+      ...localeFragment
+    }
+    draftText {
+      value
+    }
+    videoLink {
+      value
+    }
+    coverImage {
+      id
+      scaledSrc {
+        w60
+        w120
+        w240
+        w480
+        w720
+        w960
+        w1200
+        w1440
+        w1680
+        w1920
+      }
+    }
+    galleries {
+      images {
+        id
+        isMain
+        scaledSrc {
+          w60
+          w120
+          w240
+          w480
+          w720
+          w960
+          w1200
+          w1440
+          w1680
+          w1920
+        }
+      }
+    }
+    tags
+    variants {
+      id
+      sku
+      listPrice
+      retailPrice
+      suggestedPrice
+      discountPrice
+      totalPrice
+      specs {
+        id
+        specId
+        title {
+          ...localeFragment
+        }
+      }
+      cost
+      vendorSku
+      warehouseNumber
+      status
+      currentMinPurchasableQty
+      currentMaxPurchasableQty
+    }
+    specs {
+      id
+      title {
+        ...localeFragment
+      }
+    }
+    _error
+    status
+    showUserPrice {
+      showListPrice
+      showSuggestedPrice
+    }
+    applicableActivities {
+      title {
+        ...localeFragment
+      }
+      discountPrice
+    }
+  }
+
+  ${localeFragment}
+`;
+
+const usePagePageFragment = gql`
+  fragment usePagePageFragment on Page {
+    __typename # use for checking apollo-client
     id
     title {
       ...localeFragment
@@ -133,7 +231,22 @@ const usePageFragment = gql`
 `;
 
 export const getPage = gql`
-  query getPage($identity: String, $isHomePage: Boolean!) {
+  query getPage(
+    $identity: String
+    $path: String!
+    $productId: ID!
+    $productSearch: searchInputObjectType
+    $isHomePage: Boolean!
+    $isCustomPage: Boolean!
+    $isProductPage: Boolean!
+    $isProductsPage: Boolean!
+  ) {
+    computeProductList(search: $productSearch) @include(if: $isProductPage) {
+      data {
+        id
+        ...usePageProductFragment
+      }
+    }
     viewer {
       id
       store {
@@ -156,7 +269,22 @@ export const getPage = gql`
         }
         defaultHomePage @include(if: $isHomePage) {
           id
-          ...usePageFragment
+          ...usePagePageFragment
+        }
+        customPage(path: $path) @include(if: $isCustomPage) {
+          id
+          ...usePagePageFragment
+        }
+        product(productId: $productId) @include(if: $isProductPage) {
+          id
+          page {
+            id
+            ...usePagePageFragment
+          }
+        }
+        defaultProductListPage @include(if: $isProductsPage) {
+          id
+          ...usePagePageFragment
         }
         experiment {
           isNewPageModulesEnabled
@@ -165,5 +293,6 @@ export const getPage = gql`
     }
   }
 
-  ${usePageFragment}
+  ${usePagePageFragment}
+  ${usePageProductFragment}
 `;

@@ -40,12 +40,13 @@ class Products extends React.Component {
   static defaultProps = { error: null };
 
   render() {
-    const { error } = this.props;
+    const { error, experimentPage } = this.props;
 
     /* Display Error View */
     if (error) return <Error error={error} />;
 
-    const { page } = this.props;
+    const { page: reduxPage } = this.props;
+    const page = experimentPage || reduxPage;
     const { tabTitle = '' } = page;
     const { keywords, description, image } = page.seo || {};
 
@@ -77,7 +78,7 @@ class Products extends React.Component {
           )}
         </Head>
 
-        <Container {...this.props} />
+        <Container {...this.props} page={page} />
       </>
     );
   }

@@ -69,7 +69,7 @@ class Product extends React.Component {
   }
 
   render() {
-    const { error, product } = this.props;
+    const { error, product, experimentPage } = this.props;
 
     /* Display Error View */
     if (error) return <Error error={error} />;
@@ -79,7 +79,9 @@ class Product extends React.Component {
     const {
       product: { status, coverImage, title },
       productDescription,
+      page: reduxPage,
     } = this.props;
+    const page = experimentPage || reduxPage;
     const productImage = coverImage?.scaledSrc?.w480 || '';
 
     // eslint-disable-next-line camelcase
@@ -120,7 +122,7 @@ class Product extends React.Component {
         </Head>
 
         {status ? (
-          <Container {...this.props} />
+          <Container {...this.props} page={page} />
         ) : (
           <ProductDiscontinued productName={productName} />
         )}
