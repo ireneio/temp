@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.80.45 (2021-09-14)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1724](https://github.com/meepshop/meep-lerna/pull/1724) 內部開單 - 商品輪播圖、商品圖片集元件、商品問答元件、瀏覽追蹤元件 使用新元件 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1728](https://github.com/meepshop/meep-lerna/pull/1728) 內部開單 - 將 404.js, 500.js 從 \_error.js 拆出來 ([@Lexiwu](https://github.com/Lexiwu))
+- `meep-ui`, `store`
+  - [#1735](https://github.com/meepshop/meep-lerna/pull/1735) 內部開單 - 統一前端 logger message ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#1728](https://github.com/meepshop/meep-lerna/pull/1728) 內部開單 - 將 404.js, 500.js 從 \_error.js 拆出來 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.44 (2021-09-13)
 
 #### :rocket: New Feature
