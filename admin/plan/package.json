@@ -4,7 +4,7 @@
   "description": "Admin plan list",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.44",
+  "version": "0.80.45",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -13,7 +13,7 @@
     "@admin/utils": "^0.80.40",
     "@meepshop/context": "^0.80.40",
     "@meepshop/images": "^0.80.40",
-    "@meepshop/link": "^0.80.44",
+    "@meepshop/link": "^0.80.45",
     "@meepshop/locales": "^0.80.39",
     "date-fns": "^2.15.0"
   },
