@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.46 (2021-09-14)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1741](https://github.com/meepshop/meep-lerna/pull/1741) 【BUG】 獨立編輯商品頁 - 後台點選預覽，頁面顯示 404 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.45 (2021-09-14)
 
 #### :boom: Breaking Change
