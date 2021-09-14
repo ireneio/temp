@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { connect } from 'react-redux';
 
 import { withTranslation } from '@meepshop/locales';
+import { log } from '@meepshop/logger/lib/gqls/log';
 
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
@@ -13,12 +14,25 @@ import * as CONST from 'constants';
 
 class Pages extends React.Component {
   static getInitialProps = async context => {
-    const { res, XMeepshopDomain, userAgent, store, query } = context;
+    const { res, XMeepshopDomain, userAgent, store, query, client } = context;
     const { path, pId } = query;
 
     if (pId) {
       // Redirect /pages/{PRODUCT-NAME}?pId={PRODUCT-ID} to /product/{PRODUCT-ID}
       if (typeof window === 'undefined') {
+        client.mutate({
+          mutation: log,
+          variables: {
+            input: {
+              type: 'ERROR',
+              name: 'PRODUCT_REDIRECT',
+              data: {
+                domain: XMeepshopDomain,
+                pId,
+              },
+            },
+          },
+        });
         res.redirect(302, `/product/${pId}`);
       } else {
         Utils.goTo({ pathname: `/product/${pId}` });

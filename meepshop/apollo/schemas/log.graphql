@@ -14,6 +14,7 @@ enum LogNameEnum {
   INITIAL_COOOKIES
   CREATE_ORDER_FORM_DATA
   URI_PARSER
+  PRODUCT_REDIRECT
 }
 
 input LogInput {

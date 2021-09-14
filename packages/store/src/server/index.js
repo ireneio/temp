@@ -27,13 +27,7 @@ const app = nextApp({
   dir: path.resolve(__dirname, '..'),
   dev: process.env.NODE_ENV !== 'production',
 });
-const handler = routes.getRequestHandler(app, ({ req, res, route, query }) => {
-  let { page } = route;
-
-  if (route.name === 'pages' && query.pId) page = '/product';
-
-  app.render(req, res, page, query);
-});
+const handler = routes.getRequestHandler(app);
 
 [
   'unhandledRejection',
