@@ -121,3 +121,23 @@ export const getContextData = gql`
     }
   }
 `;
+
+export const getProductInDecoratorsRoot = gql`
+  query getProductInDecoratorsRoot($productSearch: searchInputObjectType) {
+    computeProductList(search: $productSearch) {
+      data {
+        id
+        publicViewableQas {
+          __typename
+          userEmail
+          qa {
+            __typename
+            id
+            question
+            createdAt
+          }
+        }
+      }
+    }
+  }
+`;

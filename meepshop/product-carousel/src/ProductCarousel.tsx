@@ -21,9 +21,14 @@ import { carouselFragment } from '@meepshop/carousel/gqls';
 
 import { useImagesFragment } from './gqls/useImages';
 
+// typescript definition
+interface PropsType extends productCarouselFragment {
+  className?: string;
+}
+
 // definition
 export default React.memo(
-  ({ id, productCarouselType, autoPlay, product }: productCarouselFragment) => {
+  ({ id, className, productCarouselType, autoPlay, product }: PropsType) => {
     const { i18n } = useTranslation();
     const carouselRef = useRef<CarouselRef>(null);
     const bottomRef = useRef<CarouselRef>(null);
@@ -44,7 +49,7 @@ export default React.memo(
     };
 
     return (
-      <div className={styles.root}>
+      <div className={`${styles.root} ${className || ''}`}>
         <div
           className={`${
             images?.[0]?.image?.id !== 'product-carousel-placeholder-id'

@@ -9,10 +9,14 @@ import {
   Role as RoleContext,
 } from '@meepshop/context';
 import CartContext from '@meepshop/cart';
+import { useRouter } from '@meepshop/link';
 import withContext from '@store/utils/lib/withContext';
 import { NOTLOGIN, ISUSER } from 'constants/isLogin';
 
-import { getContextData } from './gqls/decoratorsRoot';
+import {
+  getContextData,
+  getProductInDecoratorsRoot,
+} from './gqls/decoratorsRoot';
 
 const EnhancerContext = React.createContext({});
 
@@ -33,6 +37,32 @@ export default React.memo(
     children,
   }) => {
     const { data } = useQuery(getContextData);
+    const { query } = useRouter();
+    const { data: productInContext } = useQuery(getProductInDecoratorsRoot, {
+      skip: !query.pId,
+      variables: {
+        productSearch: {
+          size: 1,
+          from: 0,
+          filter: {
+            and: [
+              {
+                type: 'ids',
+                ids: [query.pId],
+              },
+            ],
+          },
+          sort: [
+            {
+              field: 'createdAt',
+              order: 'desc',
+            },
+          ],
+          showVariants: true,
+          showMainFile: true,
+        },
+      },
+    });
     const colors = useContext(ColorsContext);
     const apps = useContext(AppsContext);
     const { c } = useContext(CurrencyContext);
@@ -53,6 +83,8 @@ export default React.memo(
               data?.viewer?.store?.mobileLogoImage?.scaledSrc.w250 || '',
             shippableCountries: data?.viewer?.store?.shippableCountries || [],
           },
+          productInContext:
+            productInContext?.computeProductList?.data?.[0] || null,
           location,
 
           /** context func from props */

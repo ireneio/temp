@@ -5,13 +5,15 @@ import gql from 'graphql-tag';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, Modal } from 'antd';
 
+import ProductCarousel from '@meepshop/product-carousel';
+import ProductCollections from '@meepshop/product-collections';
 import { Sensor as SensorContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import ProductCarousel from 'productCarousel';
 import ProductInfo from 'productInfo';
-import ProductCollection from 'productCollection';
+
+import styles from './styles/popUp.less';
 
 @withContext(SensorContext)
 @enhancer
@@ -42,15 +44,15 @@ export default class PopUp extends React.PureComponent {
     if (type === 'pop-up') {
       return (
         <div ref={this.rootRef}>
-          {['one', 'all', undefined].indexOf(popUpGalleryView) > -1 && (
+          {!['one', 'all', undefined].includes(popUpGalleryView) ? null : (
             <ProductCarousel
-              mode="list"
-              coverImage={product.coverImage}
-              galleries={product.galleries}
+              className={styles.carousel}
+              product={product}
               autoPlay={false}
-              thumbsPosition="bottom"
+              carouselInfo="BOTTOM"
             />
           )}
+
           <ProductInfo
             mode="list"
             productData={product}
@@ -61,13 +63,13 @@ export default class PopUp extends React.PureComponent {
             drawerOnMobile={false}
             unfoldedVariantsOnMobile={false}
           />
-          {['two', 'all'].indexOf(popUpGalleryView) > -1 && (
-            <ProductCollection
-              mode="list"
-              galleries={product.galleries}
-              align="original"
-              title={product.title}
-              contentWidth={100}
+
+          {!['two', 'all'].includes(popUpGalleryView) ? null : (
+            <ProductCollections
+              className={styles.collections}
+              product={product}
+              productCollectionsType="ORIGIN"
+              percentWidth="WIDTH100"
             />
           )}
         </div>
@@ -77,12 +79,12 @@ export default class PopUp extends React.PureComponent {
     return (
       <div ref={this.rootRef}>
         <ProductCarousel
-          mode="list"
-          coverImage={product.coverImage}
-          galleries={product.galleries}
+          className={styles.carousel}
+          product={product}
           autoPlay={false}
-          thumbsPosition="bottom"
+          carouselInfo="BOTTOM"
         />
+
         <ProductInfo
           mode="list"
           productData={product}

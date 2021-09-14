@@ -3,6 +3,7 @@ import uuid from 'uuid/v4';
 
 import getLink from './getLink';
 import getJustifyContent from './getJustifyContent';
+import getTracking from './getTracking';
 import parseIframe from './parseIframe';
 import parseGoogleMap from './parseGoogleMap';
 
@@ -58,13 +59,16 @@ export default function modifyWidgetDataInClient(widgets = [], query, page) {
         }
         /* 產品主圖 */
         case 'product-carousell': {
-          const { module, contentWidth, carouselInfo } = widget;
+          const { module, carouselInfo } = widget;
+
           return {
             id: uuid(),
             module,
-            contentWidth,
-            autoPlay: carouselInfo ? carouselInfo.autoPlay : false,
-            thumbsPosition: carouselInfo ? carouselInfo.thumbsPosition : 'none',
+            productCarouselType:
+              carouselInfo && carouselInfo.thumbsPosition === 'bottom'
+                ? 'BOTTOM'
+                : 'NONE',
+            autoPlay: carouselInfo ? Boolean(carouselInfo.autoPlay) : false,
           };
         }
         /* 產品資訊 */
@@ -83,10 +87,8 @@ export default function modifyWidgetDataInClient(widgets = [], query, page) {
           return {
             id: uuid(),
             module: widget.module,
-            align: widget.align || 'original',
-            title: widget.title,
-            files: [],
-            contentWidth: widget.width || 70,
+            productCollectionsType: widget.align === 'side' ? 'SIDE' : 'ORIGIN',
+            percentWidth: `WIDTH${widget.width || 70}`,
           };
         }
         /* 產品語法嵌入 */
@@ -113,8 +115,7 @@ export default function modifyWidgetDataInClient(widgets = [], query, page) {
           return {
             id: uuid(),
             module: widget.module,
-            contentWidth: widget.contentWidth,
-            productId: query.pId,
+            width: widget.contentWidth,
           };
         }
         /* 圖片 */
@@ -334,6 +335,12 @@ export default function modifyWidgetDataInClient(widgets = [], query, page) {
           return {
             ...widget,
             ...smartConversionModule,
+          };
+        }
+        case 'viewTracking': {
+          return {
+            ...widget,
+            tracking: getTracking(widget.customTracking),
           };
         }
         default:

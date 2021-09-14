@@ -20,21 +20,25 @@ import {
 // graphql import
 import { imageFragment } from '@meepshop/image/gqls';
 
+// typescript definition
+interface PropsType extends productCollectionsFragment {
+  className?: string;
+}
+
 // definition
 export default React.memo(
-  ({
-    productCollectionsType,
-    percentWidth,
-    product,
-  }: productCollectionsFragment) => {
+  ({ className, productCollectionsType, percentWidth, product }: PropsType) => {
     const { i18n } = useTranslation();
-
     const images = (product?.galleries?.[1]?.images || []).filter(
       Boolean,
     ) as productCollectionsFragmentProductGalleriesImages[];
 
     return !images.length ? null : (
-      <div className={`${styles.root} ${styles[productCollectionsType]}`}>
+      <div
+        className={`${styles.root} ${
+          styles[productCollectionsType]
+        } ${className || ''}`}
+      >
         {images.map(({ id, scaledSrc }) => (
           <div
             key={id}
