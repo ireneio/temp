@@ -8,7 +8,9 @@ export default class MyDocument extends Document {
   static async getInitialProps({ req, res, renderPage }) {
     const { html, head, errorHtml, chunks } = renderPage();
 
-    res.append('Cache-Control', 'no-cache, no-store, must-revalidate');
+    if (res.append) {
+      res.append('Cache-Control', 'no-cache, no-store, must-revalidate');
+    }
 
     return {
       html,
@@ -41,7 +43,7 @@ export default class MyDocument extends Document {
             dangerouslySetInnerHTML={{
               __html: `
                 window.meepShopStore = {
-                  XMeepshopDomain: ${htmlescape(XMeepshopDomain)}
+                  XMeepshopDomain: ${htmlescape(XMeepshopDomain || '')}
                 };
               `,
             }}

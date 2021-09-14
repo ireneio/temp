@@ -37,7 +37,10 @@ export const withDomain = (App: NextAppType): NextAppType => {
     ...props
   }: PropsType): React.ReactElement => (
     <DomainContext.Provider
-      value={{ domain: domain || window.location.host, serverRouter }}
+      value={{
+        domain: typeof window !== 'undefined' ? window.location.host : domain,
+        serverRouter,
+      }}
     >
       <App {...props} />
     </DomainContext.Provider>

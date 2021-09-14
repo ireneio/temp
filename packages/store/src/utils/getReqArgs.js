@@ -10,7 +10,7 @@ const {
 
 export default req => {
   if (typeof window === 'undefined') {
-    const userAgent = req.get('user-agent');
+    const userAgent = req.get?.('user-agent');
 
     return {
       XMeepshopDomain: req.headers.host,
