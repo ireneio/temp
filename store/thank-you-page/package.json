@@ -4,16 +4,16 @@
   "description": "thank you page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.46",
+  "version": "0.80.47",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.40",
-    "@meepshop/hooks": "^0.80.46",
+    "@meepshop/context": "^0.80.47",
+    "@meepshop/hooks": "^0.80.47",
     "@meepshop/images": "^0.80.40",
-    "@meepshop/link": "^0.80.45",
+    "@meepshop/link": "^0.80.47",
     "@meepshop/locales": "^0.80.39",
-    "@store/utils": "^0.80.40",
+    "@store/utils": "^0.80.47",
     "date-fns": "^2.15.0"
   },
   "keywords": ["store", "thank you page"]

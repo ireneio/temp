@@ -4,11 +4,11 @@
   "description": "admin text-editor",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.46",
+  "version": "0.80.47",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/utils": "^0.80.40",
+    "@admin/utils": "^0.80.47",
     "@meepshop/apollo": "^0.80.46",
     "@meepshop/locales": "^0.80.39",
     "braft-editor": "^2.3.9",
