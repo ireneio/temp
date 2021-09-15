@@ -44,7 +44,10 @@ export default (): ReturnType | null => {
   const { data } = useQuery<getActionButtonSettingType>(
     getActionButtonSetting,
     {
-      skip: pathname === '/' || pathname === '/pages' || pathname === '/admin',
+      skip:
+        pathname === '/' ||
+        pathname === '/pages/[path]' ||
+        pathname === '/admin/[pageId]/[token]',
     },
   );
 
@@ -58,7 +61,7 @@ export default (): ReturnType | null => {
     getCustomPageActionButtonSettingType,
     getCustomPageActionButtonSettingVariables
   >(getCustomPageActionButtonSetting, {
-    skip: pathname !== '/pages',
+    skip: pathname !== '/pages/[path]',
     variables: {
       path: query.path as string,
     },
