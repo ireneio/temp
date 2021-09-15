@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.47 (2021-09-15)
+
+#### :bug: Bug Fix
+
+- [#1744](https://github.com/meepshop/meep-lerna/pull/1744) 【BUG】一般分頁/快速滑動按鈕：前台未顯示 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#1742](https://github.com/meepshop/meep-lerna/pull/1742) T9220 - 內部開單 - 移除 @meepshop/utils/lib/logger ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.46 (2021-09-14)
 
 #### :bug: Bug Fix
