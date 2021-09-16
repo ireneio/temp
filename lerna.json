@@ -20,6 +20,12 @@
   "npmClient": "yarn",
   "npmClientArgs": ["--no-lockfile"],
   "ignoreChanges": ["**/__tests__/**", "**/*.md"],
-  "packages": ["packages/*", "meepshop/*", "admin/*", "store/*"],
+  "packages": [
+    "packages/*",
+    "meepshop/*",
+    "meepshop/modules/*",
+    "admin/*",
+    "store/*"
+  ],
   "useWorkspaces": true
 }

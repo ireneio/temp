@@ -2,7 +2,13 @@
   "private": true,
   "name": "@meepshop/front-end",
   "license": "ISC",
-  "workspaces": ["packages/*", "meepshop/*", "store/*", "admin/*"],
+  "workspaces": [
+    "packages/*",
+    "meepshop/*",
+    "meepshop/modules/*",
+    "store/*",
+    "admin/*"
+  ],
   "scripts": {
     "build": "NODE_ENV=production && make babel-all && build-fragment-types && types codegen all && meep-cli locales link ./meepshop/locales/locales && lerna run prod --stream",
     "clean": "lerna run clean --stream && lerna exec 'rm -rf ./lib' --stream && lerna clean && make clean",

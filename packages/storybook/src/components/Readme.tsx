@@ -7,7 +7,7 @@ import LinkTo from '@storybook/addon-links/react';
 import frontEndSource from '../../../../README.md';
 import storybookSource from '../../README.md';
 import mockTypesSource from '../../../mock-types/README.md';
-import modulesSource from '../../../../meepshop/modules/README.md';
+import modulesSource from '../../../../meepshop/modules/modules/README.md';
 import contextSource from '../../../../meepshop/context/README.md';
 import typesSource from '../../../../meepshop/types/README.md';
 import iconsSource from '../../../../meepshop/icons/README.md';
