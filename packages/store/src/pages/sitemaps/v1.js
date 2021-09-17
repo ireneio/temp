@@ -1,5 +1,8 @@
 import React from 'react';
 import * as Utils from 'utils';
+
+import { log } from '@meepshop/logger/lib/gqls/log';
+
 import { Link } from '../../server/routes';
 import getProducts from './api/getProducts.api';
 
@@ -37,7 +40,23 @@ const styles = {
 
 export default class Sitemaps extends React.Component {
   static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent, query } = context;
+    const { XMeepshopDomain, userAgent, query, client } = context;
+
+    client.mutate({
+      mutation: log,
+      variables: {
+        input: {
+          type: 'INFO',
+          name: 'SITEMAPS',
+          data: {
+            domain: XMeepshopDomain,
+            userAgent,
+            query,
+          },
+        },
+      },
+    });
+
     const { page = 1 } = query;
     const data = await getProducts({
       ...context,
