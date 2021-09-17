@@ -8,7 +8,6 @@ import withContext from '@store/utils/lib/withContext';
 
 import { COLOR_TYPE } from 'constants/propTypes';
 
-import GlobalStyles from './GlobalStyles';
 import Cart from './cart';
 import DecoratorsRoot from './DecoratorsRoot';
 import ContainerSwitch from './ContainerSwitch';
@@ -88,8 +87,6 @@ export default class Layout extends React.PureComponent {
       <DecoratorsRoot {...props}>
         {({ backgroundImage, hiddingMeepshopMaxInFooterEnabled }) => (
           <>
-            <GlobalStyles colors={colors} />
-
             <div
               style={{
                 ...this.getRootStyle(backgroundImage),

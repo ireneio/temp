@@ -79,7 +79,7 @@ export default class AddButton extends React.Component {
     } = this.props;
     const { isMobile } = this.state;
     const config = {
-      className: `color-2 color-2-hover ${styles.item} ${styles[mode]}`,
+      className: `${styles.item} ${styles[mode]}`,
       style: {
         border: `2px solid ${colors[4]}`,
         background: colors[4],
@@ -141,7 +141,7 @@ export default class AddButton extends React.Component {
 
     return (
       <Button
-        className={`color-2 color-2-hover ${styles.item} ${styles[mode]}`}
+        className={`${styles.item} ${styles[mode]}`}
         size="large"
         disabled
       >
@@ -265,36 +265,49 @@ export default class AddButton extends React.Component {
     const Icon = isInWishList ? HeartFilled : HeartOutlined;
 
     return (
-      <div className={`${styles.root} ${styles[mode]}`}>
-        {this.generateAddButton()}
+      <>
+        <div className={`${styles.root} ${styles[mode]}`}>
+          {this.generateAddButton()}
 
-        {mode === 'detail' && hasStoreAppPlugin('wishList') ? (
-          <Button
-            className={styles.wish}
-            size="large"
-            style={{
-              border: `1px solid ${isInWishList ? colors[4] : colors[5]}`,
-              color: isInWishList ? colors[4] : colors[5],
-            }}
-            onClick={async () => {
-              if (user.role === 'GUEST') {
-                openModal();
-                return;
+          {mode === 'detail' && hasStoreAppPlugin('wishList') ? (
+            <Button
+              className={styles.wish}
+              size="large"
+              style={{
+                border: `1px solid ${isInWishList ? colors[4] : colors[5]}`,
+                color: isInWishList ? colors[4] : colors[5],
+              }}
+              onClick={async () => {
+                if (user.role === 'GUEST') {
+                  openModal();
+                  return;
+                }
+
+                this.setState({ loading: true });
+
+                if (isInWishList) await this.removeProductFromWishList();
+                else await this.addProductLToWishList();
+
+                this.setState({ loading: false });
+              }}
+              disabled={loading}
+            >
+              {loading ? <LoadingOutlined /> : <Icon />}
+            </Button>
+          ) : null}
+        </div>
+
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              .${styles.item},
+              .${styles.item}:hover {
+                color: ${colors[2]};
               }
-
-              this.setState({ loading: true });
-
-              if (isInWishList) await this.removeProductFromWishList();
-              else await this.addProductLToWishList();
-
-              this.setState({ loading: false });
-            }}
-            disabled={loading}
-          >
-            {loading ? <LoadingOutlined /> : <Icon />}
-          </Button>
-        ) : null}
-      </div>
+            `,
+          }}
+        />
+      </>
     );
   }
 }
