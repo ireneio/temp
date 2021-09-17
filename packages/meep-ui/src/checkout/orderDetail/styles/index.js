@@ -1,4 +1,13 @@
 // TODO remove
+const antInputClassName = [
+  '.ant-cascader-picker .ant-cascader-input.ant-input',
+  '.ant-select .ant-select-selection--single',
+  '.ant-input:not([type=password]):not(textarea)',
+  '.ant-input-number',
+  '.ant-input-password',
+  '.ant-input',
+];
+
 const antClassName = [
   '.ant-cascader-picker .ant-cascader-input.ant-input',
   '.ant-select .ant-select-selection--single',
@@ -8,6 +17,12 @@ const antClassName = [
 ];
 
 export const modifyAntdStyle = colors => ({
+  [antInputClassName
+    .map(className => `.ant-form-item-control:not(.has-error) ${className}`)
+    .join(', ')]: {
+    color: colors[3],
+  },
+
   [antClassName
     .map(className => `.ant-form-item-control:not(.has-error) ${className}`)
     .join(', ')]: {

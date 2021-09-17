@@ -32,6 +32,15 @@ export const formItem = {
   width: '100%',
 };
 
+const antInputClassName = [
+  '.ant-cascader-picker .ant-cascader-input.ant-input',
+  '.ant-select .ant-select-selection--single',
+  'input.ant-input',
+  '.ant-input-number',
+  'textarea.ant-input',
+  '.ant-input',
+];
+
 const antClassName = [
   '.ant-cascader-picker .ant-cascader-input.ant-input',
   '.ant-select .ant-select-selection--single',
@@ -39,7 +48,14 @@ const antClassName = [
   '.ant-input-number',
   'textarea.ant-input',
 ];
+
 export const modifyAntdStyle = colors => ({
+  [antInputClassName
+    .map(className => `.ant-form-item-control:not(.has-error) ${className}`)
+    .join(', ')]: {
+    color: colors[3],
+  },
+
   [antClassName
     .map(className => `.ant-form-item-control:not(.has-error) ${className}`)
     .join(', ')]: {
