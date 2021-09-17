@@ -4,7 +4,7 @@
   "description": "Meepshop google map module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.36",
+  "version": "0.80.48",
   "main": "./index.js",
   "types": "./src/index.ts",
   "keywords": ["google map", "meepshop"]

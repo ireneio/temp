@@ -4,7 +4,7 @@
   "description": "Use storybook to testing compoennt",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.47",
+  "version": "0.80.48",
   "bin": "./lib/bin/index.js",
   "scripts": {
     "clean": "rm -rf ./src/cache ./docs ./.storybook/combined.less"

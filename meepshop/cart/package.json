@@ -4,11 +4,11 @@
   "description": "Use to control cart cache",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.47",
+  "version": "0.80.48",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/apollo": "^0.80.46",
+    "@meepshop/apollo": "^0.80.48",
     "@meepshop/utils": "^0.80.47"
   },
   "keywords": ["cart", "meepshop"]
