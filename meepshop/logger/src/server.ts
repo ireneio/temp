@@ -1,11 +1,16 @@
 // import
 import pino from 'pino';
+import getConfig from 'next/config';
 
 import { LOG_TYPES } from './constants';
 
 // definition
+// FIXME: remove after removing express
+const LOG_LEVEL =
+  getConfig()?.publicRuntimeConfig.LOG_LEVEL || process.env.LOG_LEVEL || 'info';
+
 export default pino({
-  level: process.env.LOG_LEVEL || 'info',
+  level: LOG_LEVEL,
   formatters: {
     level: (label: typeof LOG_TYPES[number]) => ({
       severity: {

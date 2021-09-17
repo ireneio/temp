@@ -8,7 +8,7 @@ import { LOG_TYPES } from './constants';
 // typescript definition
 export type loggerType = Record<
   typeof LOG_TYPES[number],
-  (data: string | Error | object) => void
+  (data: string | Error | { id?: string; [key: string]: unknown }) => void
 >;
 
 // definition
@@ -24,7 +24,7 @@ export default (): loggerType => {
         if (typeof data === 'string') logger[type]({ id, message: data });
         else if (data instanceof Error)
           logger[type]({ id, message: data.message, stack: data.stack });
-        else logger[type]({ id, ...data });
+        else logger[type]({ ...data, id: data.id || id });
       },
     }),
     {} as loggerType,

@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const uaParser = require('ua-parser-js');
 
-const { default: initializeLogger } = require('@meepshop/logger');
+const { default: initialLogger } = require('@meepshop/logger');
 const {
   default: loggerMiddleware,
 } = require('@meepshop/logger/lib/middleware');
@@ -37,10 +37,10 @@ const handler = routes.getRequestHandler(app);
   'SIGTERM',
   'SIGINT',
 ].forEach(eventName => {
-  const logger = initializeLogger();
+  const logger = initialLogger();
 
   process.on(eventName, error => {
-    logger.info({
+    logger.error({
       eventName,
       message: error.message || error,
       stack: error.stack,
@@ -55,7 +55,7 @@ app.prepare().then(() => {
 
   // middleware
   server.use(async (req, res, next) => {
-    const logger = initializeLogger();
+    const logger = initialLogger();
 
     req.logger = logger;
     logger.debug({
@@ -180,6 +180,6 @@ app.prepare().then(() => {
 
   // listen
   server.listen(14401, () => {
-    initializeLogger().info('store ready on http://localhost:14401');
+    initialLogger().info('store ready on http://localhost:14401');
   });
 });

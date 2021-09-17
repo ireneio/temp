@@ -60,6 +60,7 @@ module.exports = nextConfig =>
         API: process.env.API || 'https://api.stage.meepcloud.com',
         VERSION: process.env.VERSION || +new Date(),
         ENV: process.env.ENV || 'stage',
+        LOG_LEVEL: process.env.LOG_LEVEL || 'info',
       },
       webpack: config => {
         addIEPolyfill(config);
