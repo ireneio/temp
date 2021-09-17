@@ -15,6 +15,7 @@ enum LogNameEnum {
   CREATE_ORDER_FORM_DATA
   URI_PARSER
   PRODUCT_REDIRECT
+  SERVER_ERROR
 }
 
 input LogInput {

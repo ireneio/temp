@@ -1,7 +1,9 @@
 // import
 import React from 'react';
+import { useApolloClient } from '@apollo/react-hooks';
 
 import { oops_w110 as oops } from '@meepshop/images';
+import { log } from '@meepshop/logger/lib/gqls/log';
 
 import ErrorPageNotFound from './ErrorPageNotFound';
 import ErrorProductNotFound from './ErrorProductNotFound';
@@ -11,7 +13,21 @@ import ServerError from './ServerError';
 // definition
 // eslint-disable-next-line react/prop-types
 export default ({ error }) => {
+  const client = useApolloClient();
   const { status } = error;
+
+  client.mutate({
+    mutation: log,
+    variables: {
+      input: {
+        type: 'ERROR',
+        name: 'SERVER_ERROR',
+        data: {
+          status,
+        },
+      },
+    },
+  });
 
   if (status === 'ERROR_PAGE_NOT_FOUND') return <ErrorPageNotFound />;
   if (status === 'ERROR_PRODUCT_NOT_FOUND') return <ErrorProductNotFound />;

@@ -1,7 +1,6 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import modifyWidgetDataInClient from 'utils/modifyWidgetDataInClient';
 import * as Api from 'api';
-import * as Utils from 'utils';
 
 /* ********************************** 取得頁面資料 ********************************** */
 const FETCH_PAGES_REQUEST = 'FETCH_PAGES_REQUEST';
@@ -62,7 +61,6 @@ function* getPagesFlow({ payload }) {
       }
     }
   } catch ({ message }) {
-    Utils.logToServer({ type: 'SAGA_PAGES', message });
     yield put(getPagesFailure({ status: 'SAGA_PAGES', message }));
   }
 }

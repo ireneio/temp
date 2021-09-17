@@ -1,5 +1,4 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
-import * as Utils from 'utils';
 import modifyWidgetDataInClient from 'utils/modifyWidgetDataInClient';
 import * as Api from 'api';
 
@@ -62,7 +61,6 @@ function* getProductFlow({ payload }) {
       }
     }
   } catch ({ message }) {
-    Utils.logToServer({ type: 'SAGA_PRODUCTS', message });
     yield put(getProductFailure({ status: 'SAGA_PRODUCTS', message }));
   }
 }

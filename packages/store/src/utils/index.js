@@ -6,7 +6,6 @@ import uriParser from './uriParser';
 import getPageWithModifyWidget from './getPageWithModifyWidget';
 import getReqArgs from './getReqArgs';
 import getJoinedModule from './getJoinedModule';
-import logToServer from './logToServer';
 
 export {
   getStateError,
@@ -17,5 +16,4 @@ export {
   getPageWithModifyWidget,
   getReqArgs,
   getJoinedModule,
-  logToServer,
 };

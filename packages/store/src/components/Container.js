@@ -66,15 +66,6 @@ class Container extends React.Component {
       resizeEvent.initUIEvent('resize', true, false, window, 0);
       window.dispatchEvent(resizeEvent);
     }
-
-    // handle error
-    window.addEventListener(
-      'unhandledrejection',
-      ({ reason: { message, stack } }) => {
-        if (message === 'Failed to fetch') return;
-        Utils.logToServer({ type: 'unhandledrejection', message, stack });
-      },
-    );
   }
 
   // eslint-disable-next-line consistent-return
