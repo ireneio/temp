@@ -1,5 +1,45 @@
 # CHANGELOG
 
+## 0.80.48 (2021-09-17)
+
+#### :boom: Breaking Change
+
+- Other
+  - [#1751](https://github.com/meepshop/meep-lerna/pull/1751) 內部開單 - 搬 modules 到新位置 ([@happycat6323](https://github.com/happycat6323))
+- `storybook`
+  - [#1750](https://github.com/meepshop/meep-lerna/pull/1750) 內部開單 - 搬 modules 到新位置 - modules 和 divider ([@happycat6323](https://github.com/happycat6323))
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1713](https://github.com/meepshop/meep-lerna/pull/1713) 內部開單 - 搬移 GlobalStyles 至 color context ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#1743](https://github.com/meepshop/meep-lerna/pull/1743) 內部開單 - logToServer 改用新的 logger ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1740](https://github.com/meepshop/meep-lerna/pull/1740) 【BUG】前台 input 輸入文字 - 色彩配置#4 網頁文字色 ([@happycat6323](https://github.com/happycat6323))
+- `store`
+  - [#1752](https://github.com/meepshop/meep-lerna/pull/1752) T9266 - 內部開單 - 修正 logger log level 以及 code style ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`
+  - [#1713](https://github.com/meepshop/meep-lerna/pull/1713) 內部開單 - 搬移 GlobalStyles 至 color context ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#1738](https://github.com/meepshop/meep-lerna/pull/1738) 在 /sitemaps/v1 底下埋 logger ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#1751](https://github.com/meepshop/meep-lerna/pull/1751) 內部開單 - 搬 modules 到新位置 ([@happycat6323](https://github.com/happycat6323))
+- `storybook`
+  - [#1750](https://github.com/meepshop/meep-lerna/pull/1750) 內部開單 - 搬 modules 到新位置 - modules 和 divider ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.47 (2021-09-15)
 
 #### :bug: Bug Fix
