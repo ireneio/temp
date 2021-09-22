@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.49 (2021-09-22)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1754](https://github.com/meepshop/meep-lerna/pull/1754) 【BUG】商品列表彈窗版型圖庫一跑版 ([@happycat6323](https://github.com/happycat6323))
+- `store`
+  - [#1746](https://github.com/meepshop/meep-lerna/pull/1746) 內部開單 - 修正新的 getPage query ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1755](https://github.com/meepshop/meep-lerna/pull/1755) chore(deps): bump tmpl from 1.0.4 to 1.0.5 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.48 (2021-09-17)
 
 #### :boom: Breaking Change
