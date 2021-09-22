@@ -37,33 +37,43 @@ const getPageModules = (
 ): pageModuleMockFragment[] => [
   {
     ...GroupModule({}, {}),
-    id: 'group-id',
+    id: 'group-id-1',
+    parentId: 'root',
+  },
+  {
+    ...GroupModule({}, {}),
+    id: 'group-id-2',
     parentId: 'root',
   },
   {
     __typename: 'LayoutModule',
     id: 'layout-id-1',
-    parentId: 'group-id',
-  },
-  {
-    __typename: 'LayoutModule',
-    id: 'layout-id-2',
-    parentId: 'group-id',
-  },
-  {
-    __typename: 'LayoutModule',
-    id: 'layout-id-3',
-    parentId: 'layout-id-2',
-  },
-  {
-    __typename: 'LayoutModule',
-    id: 'layout-id-4',
-    parentId: 'layout-id-2',
+    parentId: 'group-id-2',
   },
   {
     ...getModule({}, {}),
     id: uuid(),
     parentId: 'layout-id-1',
+  },
+  {
+    __typename: 'LayoutModule',
+    id: 'layout-id-2',
+    parentId: 'group-id-2',
+  },
+  {
+    ...getModule({}, {}),
+    id: uuid(),
+    parentId: 'layout-id-2',
+  },
+  {
+    ...getModule({}, {}),
+    id: uuid(),
+    parentId: 'layout-id-2',
+  },
+  {
+    __typename: 'LayoutModule',
+    id: 'layout-id-3',
+    parentId: 'layout-id-2',
   },
   {
     ...getModule({}, {}),
@@ -73,7 +83,7 @@ const getPageModules = (
   {
     ...getModule({}, {}),
     id: uuid(),
-    parentId: 'layout-id-4',
+    parentId: 'layout-id-3',
   },
 ];
 

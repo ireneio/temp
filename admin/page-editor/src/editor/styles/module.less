@@ -1,0 +1,107 @@
+.root {
+  width: 100%;
+
+  @hovered: {
+    position: relative;
+
+    &.up.isBorderline,
+    &.down.isBorderline {
+      position: static;
+
+      &::after {
+        background-color: aquamarine;
+      }
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      z-index: 3;
+      background-color: orange;
+    }
+  };
+
+  &.up {
+    @hovered();
+
+    &::after {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+    }
+  }
+
+  &.down {
+    @hovered();
+
+    &::after {
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+    }
+  }
+
+  &.left {
+    @hovered();
+
+    &::after {
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+    }
+  }
+
+  &.right {
+    @hovered();
+
+    &::after {
+      top: 0;
+      right: 0;
+      width: 5px;
+      height: 100%;
+    }
+  }
+
+  &.isDragging {
+    opacity: 0.5;
+  }
+
+  &:hover {
+    .module {
+      outline: 1px solid #00c5dc;
+    }
+
+    .handler {
+      display: block;
+    }
+  }
+
+  .border {
+    position: relative;
+  }
+
+  .handler {
+    display: none;
+    background-color: #00c5dc;
+    position: absolute;
+    z-index: 2;
+  }
+
+  .mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .module {
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    min-height: 100px;
+  }
+}

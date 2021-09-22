@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "@admin/page-editor",
+  "description": "page editor for admin",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/cookies": "^0.80.46",
+    "@meepshop/locales": "^0.80.39",
+    "@meepshop/modules": "^0.80.47",
+    "@meepshop/page": "^0.80.47",
+    "d3-hierarchy": "^1.1.6",
+    "ramda": "^0.26.1",
+    "react-dnd": "^11.1.3",
+    "react-dnd-html5-backend": "^11.1.3"
+  },
+  "keywords": ["admin", "editor", "page"]
+}
