@@ -17,30 +17,31 @@ export default () => {
     variables: {
       identity: cookies?.identity,
       path: router.query.path || '',
-      productId: router.query.pId || '',
-      productSearch: {
-        size: 1,
-        from: 0,
-        filter: {
-          and: [
-            {
-              type: 'ids',
-              ids: [router.query.pId || ''],
+      productSearch: !router.query.pId
+        ? undefined
+        : {
+            size: 1,
+            from: 0,
+            filter: {
+              and: [
+                {
+                  type: 'ids',
+                  ids: [router.query.pId],
+                },
+              ],
             },
-          ],
-        },
-        sort: [
-          {
-            field: 'createdAt',
-            order: 'desc',
+            sort: [
+              {
+                field: 'createdAt',
+                order: 'desc',
+              },
+            ],
+            showVariants: true,
+            showMainFile: true,
           },
-        ],
-        showVariants: true,
-        showMainFile: true,
-      },
       isHomePage: router.pathname === '/',
-      isCustomPage: router.pathname === '/pages',
-      isProductPage: router.pathname === '/product',
+      isCustomPage: router.pathname === '/pages/[path]',
+      isProductPage: router.pathname === '/products/[pId]',
       isProductsPage: router.pathname === '/products',
     },
   });
@@ -52,7 +53,7 @@ export default () => {
     const page =
       store?.defaultHomePage ||
       store?.customPage ||
-      store?.product?.page ||
+      product?.page ||
       store?.defaultProductListPage;
 
     if (!page) return null;
@@ -69,7 +70,7 @@ export default () => {
           ...block,
           width: width || 100,
           componentWidth: componentWidth || 0,
-          widgets: !store?.product
+          widgets: !product
             ? modifyWidgetDataInClient(widgets, router.query, page)
             : getJoinedModule(
                 modifyWidgetDataInClient(widgets, router.query, page),

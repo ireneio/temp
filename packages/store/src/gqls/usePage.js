@@ -234,7 +234,6 @@ export const getPage = gql`
   query getPage(
     $identity: String
     $path: String!
-    $productId: ID!
     $productSearch: searchInputObjectType
     $isHomePage: Boolean!
     $isCustomPage: Boolean!
@@ -244,6 +243,10 @@ export const getPage = gql`
     computeProductList(search: $productSearch) @include(if: $isProductPage) {
       data {
         id
+        page {
+          id
+          ...usePagePageFragment
+        }
         ...usePageProductFragment
       }
     }
@@ -274,13 +277,6 @@ export const getPage = gql`
         customPage(path: $path) @include(if: $isCustomPage) {
           id
           ...usePagePageFragment
-        }
-        product(productId: $productId) @include(if: $isProductPage) {
-          id
-          page {
-            id
-            ...usePagePageFragment
-          }
         }
         defaultProductListPage @include(if: $isProductsPage) {
           id
