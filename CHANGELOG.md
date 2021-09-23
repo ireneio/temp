@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.80.50 (2021-09-23)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1657](https://github.com/meepshop/meep-lerna/pull/1657) 內部開單 - 簡化 fb login in app browser 流程 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `mock-types`
+  - [#1748](https://github.com/meepshop/meep-lerna/pull/1748) 新增 @admin/page-editor ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.49 (2021-09-22)
 
 #### :bug: Bug Fix
