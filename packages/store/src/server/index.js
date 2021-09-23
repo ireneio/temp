@@ -18,7 +18,6 @@ const { publicRuntimeConfig } = require('../../next.config');
 const routes = require('./routes');
 const api = require('./routers/api');
 const signin = require('./routers/signin');
-const fbAuthForLine = require('./routers/fbAuthForLine');
 const landingPageAccessToken = require('./routers/landingPageAccessToken');
 const mapCookiesToHeaders = require('./mapCookiesToHeaders');
 
@@ -138,7 +137,6 @@ app.prepare().then(() => {
     mapCookiesToHeaders,
     signin('/facebook/fbLogin'),
   );
-  server.get('/fbAuthForLine', mapCookiesToHeaders, fbAuthForLine);
   server.post('/api/auth/logout', (req, res) => {
     res.cookie('x-meepshop-authorization-token', '', {
       maxAge: 0,

@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import gql from 'graphql-tag';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { UserAgent } from 'fbjs';
 import { notification } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
-import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import {
   AdTrack as AdTrackContext,
   Fb as FbContext,
   Currency as CurrencyContext,
+  Role as RoleContext,
 } from '@meepshop/context';
 import Layout from '@meepshop/meep-ui/lib/layout';
 import withContext from '@store/utils/lib/withContext';
@@ -28,6 +27,7 @@ const { isBrowser } = UserAgent;
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withContext(CurrencyContext)
 @withContext(FbContext)
+@withContext(RoleContext, role => ({ role }))
 class Container extends React.Component {
   static propTypes = {
     /* may chnage */
@@ -59,6 +59,10 @@ class Container extends React.Component {
     children: null,
   };
 
+  state = {
+    isFbLogin: false,
+  };
+
   componentDidMount() {
     // Fix IE layout bug
     if (isBrowser('IE')) {
@@ -68,107 +72,38 @@ class Container extends React.Component {
     }
   }
 
-  // eslint-disable-next-line consistent-return
-  handleFacebookLogin = ({ to }) => {
-    const {
-      getAuth,
-      userAgent,
-      dispatchAction,
-      fb,
-      appId,
-      version,
-      adTrack,
-      t,
-    } = this.props;
+  componentDidUpdate() {
+    const { isFbLogin } = this.state;
+    const { t, getAuth, role } = this.props;
 
-    if (!appId)
-      return notification.error({
-        message: '尚未設定 Facebook APP ID',
-      });
+    if (isFbLogin && role === 'SHOPPER') {
+      (async () => {
+        const member = await Api.updateMemberData();
+        const numOfExpiredPoints =
+          member?.data?.viewer?.rewardPoint.expiringPoints.total;
 
-    if (
-      !userAgent.match(/Line/gm) &&
-      !userAgent.match(/Instagram/gm) &&
-      !userAgent.match(/FBAN/gm) && // FIXME: T3144
-      !userAgent.match(/FBAV/gm)
-    ) {
-      dispatchAction('showLoadingStatus');
-      fb.login(
-        async response => {
-          if (response.status === 'connected') {
-            /* Handle login after FB response */
-            const { data } = await initApollo({ name: 'store' }).mutate({
-              mutation: gql`
-                mutation fbLogin($input: FbLoginInput!) {
-                  fbLogin(input: $input) @client {
-                    status
-                  }
-                }
-              `,
-              variables: {
-                input: { accessToken: response.authResponse.accessToken },
-              },
-            });
+        if (numOfExpiredPoints > 0)
+          notification.info({
+            message: t('expired-points-message'),
+            description: t('expired-points-description', {
+              point: numOfExpiredPoints,
+            }),
+          });
 
-            switch (data.fbLogin.status) {
-              case 'OK':
-              case 'FIRST_LOGIN': {
-                const member = await Api.updateMemberData();
-                const numOfExpiredPoints =
-                  member?.data?.viewer?.rewardPoint.expiringPoints.total;
-
-                if (data.fbLogin.status === 'FIRST_LOGIN')
-                  adTrack.completeRegistration();
-
-                if (numOfExpiredPoints > 0)
-                  notification.info({
-                    message: t('expired-points-message'),
-                    description: t('expired-points-description', {
-                      point: numOfExpiredPoints,
-                    }),
-                  });
-
-                getAuth();
-
-                if (to) Utils.goTo({ pathname: to });
-                else if (window.storePreviousPageUrl)
-                  Utils.goTo({ pathname: window.storePreviousPageUrl });
-                else Utils.goTo({ pathname: '/' });
-                break;
-              }
-
-              case 'EXPIRED_ACCESS_TOKEN':
-                notification.error({ message: 'FB Access token 失效' });
-                break;
-
-              case 'CANNOT_GET_EMAIL':
-                notification.error({ message: 'FB無法取得email' });
-                break;
-
-              case 'INVALID_TOKEN':
-                notification.error({ message: '無法取得meepShop token' });
-                break;
-
-              default:
-                notification.error({ message: '未知的錯誤' });
-                break;
-            }
-            /* Handle login after FB response - End */
-            dispatchAction('hideLoadingStatus');
-          } else {
-            notification.error({
-              message:
-                'The person is not logged into this app or we are unable to tell.',
-            });
-            dispatchAction('hideLoadingStatus');
-          }
-        },
-        { scope: 'public_profile,email' },
-      );
-    } else {
-      // in-app browser
-      window.location.href = `https://www.facebook.com/${version}/dialog/oauth?client_id=${appId}&redirect_uri=https://${window.meepShopStore.XMeepshopDomain}/fbAuthForLine&scope=email&state=${to}`;
+        getAuth();
+        this.setState({ isFbLogin: false });
+      })();
     }
+  }
+
+  // eslint-disable-next-line consistent-return
+  handleFacebookLogin = async ({ to }) => {
+    const { fb, dispatchAction } = this.props;
+
+    dispatchAction('showLoadingStatus');
+    this.setState({ isFbLogin: true });
+    await fb.login(to || window.storePreviousPageUrl || '/');
+    dispatchAction('hideLoadingStatus');
   };
 
   render() {
@@ -211,7 +146,13 @@ class Container extends React.Component {
           radiumConfig={{ userAgent: location.userAgent }} // for radium media query
           {...page}
         >
-          {children}
+          {!children
+            ? null
+            : React.cloneElement(children, {
+                reduxFbLogin: () => {
+                  this.setState({ isFbLogin: true });
+                },
+              })}
         </Layout>
       </>
     );

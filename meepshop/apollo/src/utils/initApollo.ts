@@ -25,7 +25,6 @@ import initialLogger from '@meepshop/logger';
 // eslint-disable-next-line import/no-unresolved
 import fragmentTypes from '../../fragmentTypes';
 
-import * as fbLogin from '../fbLogin';
 import * as getDraftText from '../getDraftText';
 import * as landingPageAccessToken from '../landingPageAccessToken';
 import * as log from '../log';
@@ -86,7 +85,6 @@ const create = (
     cache,
     resolvers: [
       ...resolvers,
-      fbLogin.resolvers,
       landingPageAccessToken.resolvers,
       log.resolvers(logger),
       login.resolvers,

@@ -1,6 +1,5 @@
 // import
 import { useContext, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import { useMutation } from '@apollo/react-hooks';
 import { notification } from 'antd';
 
@@ -23,8 +22,7 @@ interface ReturnType {
 }
 
 // definition
-export default (onClose?: () => void): ReturnType => {
-  const dispatch = useDispatch();
+export default (): ReturnType => {
   const adTrack = useContext(AdTrackContext);
   const { t } = useTranslation('login-modal');
   const [mutation, { loading }] = useMutation<
@@ -38,9 +36,6 @@ export default (onClose?: () => void): ReturnType => {
             message: t('member-login.success'),
           });
           adTrack.completeRegistration();
-          // FIXME: remove after redux is gone
-          dispatch('CLEAN_PRODUCT');
-          if (onClose) onClose();
           break;
 
         default:

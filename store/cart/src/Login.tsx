@@ -4,11 +4,11 @@ import { useQuery } from '@apollo/react-hooks';
 import { UpOutlined, DownOutlined } from '@ant-design/icons';
 import transformColor from 'color';
 
-import { Colors as ColorsContext } from '@meepshop/context';
+import { Colors as ColorsContext, Fb as FbContext } from '@meepshop/context';
 import DraftText from '@meepshop/draft-text';
 import { FbLoginIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/locales';
-import LoginModal, { useFbLogin } from '@meepshop/login-modal';
+import LoginModal from '@meepshop/login-modal';
 
 import styles from './styles/login.less';
 
@@ -23,14 +23,14 @@ export default React.memo(() => {
   const { data } = useQuery<getLoginMessageType>(getLoginMessage);
   const { t } = useTranslation('cart');
   const colors = useContext(ColorsContext);
+  const { fb, isLoginEnabled } = useContext(FbContext);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
-  const { fbLogin, loading } = useFbLogin();
+  const [loading, setLoading] = useState(false);
   const store = data?.viewer?.store;
 
   if (!store) return null;
 
-  const isFbLoginEnabled = store.facebookSetting.isLoginEnabled;
   const isLoginMessageEnabled = store.setting?.shopperLoginMessageEnabled;
   const loginMessage = store.setting?.shopperLoginMessage;
 
@@ -39,11 +39,15 @@ export default React.memo(() => {
       <div className={styles.login}>
         <div>{t('login-tip')}</div>
         <div>
-          {!isFbLoginEnabled ? null : (
+          {!isLoginEnabled ? null : (
             <div
               className={styles.fb}
-              onClick={() => {
-                if (!loading) fbLogin();
+              onClick={async () => {
+                if (!loading && fb) {
+                  setLoading(true);
+                  await fb.login();
+                  setLoading(false);
+                }
               }}
             >
               <FbLoginIcon />

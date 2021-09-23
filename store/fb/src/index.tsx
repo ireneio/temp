@@ -19,13 +19,18 @@ import { getFbAppId } from './gqls';
 // definition
 export default React.memo(({ children }) => {
   const { data } = useQuery<getFbAppIdType>(getFbAppId);
-  const appId = useMemo(
-    () =>
-      (data?.viewer?.store?.facebookSetting.isLoginEnabled
-        ? data?.viewer?.store?.facebookSetting.appId
-        : null) || defaultAppId,
-    [data],
-  );
+  const { isLoginEnabled, appId } = useMemo(() => {
+    const storeIsLoginEnabled =
+      data?.viewer?.store?.facebookSetting.isLoginEnabled;
+    const storeAppId = storeIsLoginEnabled
+      ? data?.viewer?.store?.facebookSetting.appId
+      : null;
+
+    return {
+      isLoginEnabled: Boolean(storeIsLoginEnabled && storeAppId),
+      appId: (storeIsLoginEnabled ? storeAppId : null) || defaultAppId,
+    };
+  }, [data]);
   const { fb, fbScript } = useFb(appId, version);
 
   if (!data) return <Spin indicator={<LoadingOutlined spin />} />;
@@ -34,7 +39,14 @@ export default React.memo(({ children }) => {
     <>
       <Head>{fbScript}</Head>
 
-      <FbContext.Provider value={{ fb, appId, version }}>
+      <FbContext.Provider
+        value={{
+          fb,
+          appId,
+          version,
+          isLoginEnabled,
+        }}
+      >
         {children}
       </FbContext.Provider>
     </>

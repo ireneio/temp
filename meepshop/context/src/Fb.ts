@@ -1,17 +1,26 @@
 // import
 import React from 'react';
 
+// typescript definition
+type windowFBType = NonNullable<typeof window['FB']>;
+
+export interface FbType extends Omit<windowFBType, 'login'> {
+  login: (redirectPath?: string) => void;
+}
+
 // definition
 export const version = 'v8.0';
 
 export const defaultAppId = '286359492558905';
 
 export default React.createContext<{
-  fb: typeof window['FB'] | null;
+  fb: FbType | null;
   appId: string;
-  version: 'v8.0';
+  version: typeof version;
+  isLoginEnabled: boolean;
 }>({
   fb: null,
   appId: defaultAppId,
   version,
+  isLoginEnabled: false,
 });

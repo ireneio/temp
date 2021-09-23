@@ -73,6 +73,10 @@ module.exports = routes
   .add('@store/member-wish-list', '/wishlist', '/members/wish-list')
   .add('@store/member-reward-points', '/rewardPoints', '/members/reward-points')
 
+  // fb login in app browser
+  .add('fbAuthForLine', '/fbAuthForLine', 'fbAuthForLine')
+  .add('fb-login', '/fb-login', 'fb-login')
+
   // TODO: remove
   .add('sitemaps', '/sitemaps/v1', '/sitemaps/v1')
   .add(

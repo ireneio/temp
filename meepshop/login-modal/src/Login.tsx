@@ -1,25 +1,21 @@
 // import
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Form, Input, Button, Divider } from 'antd';
-import { useQuery } from '@apollo/react-hooks';
 
 import {
   Colors as ColorsContext,
   Sensor as SensorContext,
+  Role as RoleContext,
+  Fb as FbContext,
 } from '@meepshop/context';
 import { FbLoginIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/locales';
 import { useValidateEmail } from '@meepshop/validator';
+import { useRouter } from '@meepshop/link';
 
 import styles from './styles/login.less';
 import useLogin from './hooks/useLogin';
-import useFbLogin from './hooks/useFbLogin';
-
-// graphql typescript
-import { getIsFbLoginEnabled as getIsFbLoginEnabledType } from '@meepshop/types/gqls/meepshop';
-
-// graphql import
-import { getIsFbLoginEnabled } from './gqls/login';
 
 // typescript definition
 interface PropsType {
@@ -36,13 +32,22 @@ export default React.memo(
   ({ onClose, initialEmail, setIsForgetPassword }: PropsType) => {
     const colors = useContext(ColorsContext);
     const { isMobile } = useContext(SensorContext);
+    const role = useContext(RoleContext);
+    const dispatch = useDispatch();
     const { t } = useTranslation('login-modal');
+    const { asPath } = useRouter();
     const validateEmail = useValidateEmail();
-    const { login, loading } = useLogin(onClose);
-    const { fbLogin, loading: fbLoginLoading } = useFbLogin(onClose);
-    const { data } = useQuery<getIsFbLoginEnabledType>(getIsFbLoginEnabled);
-    const IsFbLoginEnabled =
-      data?.viewer?.store?.facebookSetting.isLoginEnabled;
+    const { login, loading } = useLogin();
+    const { fb, isLoginEnabled: isFbLoginEnabled } = useContext(FbContext);
+    const [fbLoginLoading, setFbLoginLoading] = useState(false);
+
+    useEffect(() => {
+      if (role === 'SHOPPER') {
+        dispatch('CLEAN_PRODUCT');
+
+        if (onClose) onClose();
+      }
+    }, [onClose, role, dispatch]);
 
     return (
       <div className={styles.root}>
@@ -103,14 +108,20 @@ export default React.memo(
           </FormItem>
         </Form>
 
-        {!IsFbLoginEnabled ? null : (
+        {!isFbLoginEnabled ? null : (
           <>
             <Divider className={styles.or}>{t('member-login.or')}</Divider>
             <Button
               className={styles.fbLogin}
-              size="large"
-              onClick={fbLogin}
+              onClick={async () => {
+                if (!fb) return;
+
+                setFbLoginLoading(true);
+                await fb.login(asPath);
+                setFbLoginLoading(false);
+              }}
               loading={fbLoginLoading}
+              size="large"
             >
               <FbLoginIcon />
               {t('member-login.fb-login')}

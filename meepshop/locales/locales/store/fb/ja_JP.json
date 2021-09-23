@@ -1,0 +1,5 @@
+{
+  "cannot-use": "Facebookのログイン機能を使用できない場合は、店舗の支援に連絡してください",
+  "cannot-get-email": "Facebookはメールボックス情報を取得できません、もう一度やり直してください",
+  "login-fail": "Facebookに失敗しました、もう一度やり直してください"
+}

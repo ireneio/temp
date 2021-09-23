@@ -7,7 +7,7 @@ declare interface Window {
     };
     login: (
       callback: (response: {
-        status: string;
+        status: 'connected';
         authResponse: { accessToken: string };
       }) => void,
       options: {

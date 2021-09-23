@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import gql from 'graphql-tag';
-import { Query } from '@apollo/react-components';
 import { Form, Button, Input } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
 import { useValidateEmail } from '@meepshop/validator';
+import { Fb as FbContext } from '@meepshop/context';
 import withHook from '@store/utils/lib/withHook';
+import withContext from '@store/utils/lib/withContext';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 
@@ -15,21 +15,8 @@ import styles from './styles/login.less';
 const FormItem = Form.Item;
 const { Password } = Input;
 
-const query = gql`
-  query getFbIsLoginEnabled {
-    viewer {
-      id
-      store {
-        id
-        facebookSetting {
-          isLoginEnabled
-        }
-      }
-    }
-  }
-`;
-
 @withTranslation('login')
+@withContext(FbContext)
 @withHook(() => ({
   validateEmail: useValidateEmail(),
 }))
@@ -59,6 +46,7 @@ export default class LoginForm extends React.PureComponent {
       /** context */
       goTo,
       fbLogin,
+      isLoginEnabled,
       colors,
 
       /** props */
@@ -69,92 +57,77 @@ export default class LoginForm extends React.PureComponent {
     } = this.props;
 
     return (
-      <Query query={query}>
-        {({ data }) => {
-          const isFbLoginEnabled =
-            data?.viewer?.store?.facebookSetting.isLoginEnabled;
+      <Form onFinish={this.finish}>
+        <h3>{t('login')}</h3>
 
-          return (
-            <Form onFinish={this.finish}>
-              <h3>{t('login')}</h3>
+        <FormItem
+          name={['email']}
+          rules={[
+            {
+              required: true,
+              message: t('email-is-required'),
+            },
+            {
+              validator: validateEmail.validator,
+            },
+          ]}
+          normalize={validateEmail.normalize}
+          validateTrigger="onBlur"
+        >
+          <Input placeholder={t('email-placeholder')} size="large" />
+        </FormItem>
 
-              <FormItem
-                name={['email']}
-                rules={[
-                  {
-                    required: true,
-                    message: t('email-is-required'),
-                  },
-                  {
-                    validator: validateEmail.validator,
-                  },
-                ]}
-                normalize={validateEmail.normalize}
-                validateTrigger="onBlur"
-              >
-                <Input placeholder={t('email-placeholder')} size="large" />
-              </FormItem>
+        <FormItem
+          name={['password']}
+          rules={[
+            {
+              required: true,
+              message: t('password-is-required'),
+            },
+          ]}
+        >
+          <Password placeholder={t('password-placeholder')} size="large" />
+        </FormItem>
 
-              <FormItem
-                name={['password']}
-                rules={[
-                  {
-                    required: true,
-                    message: t('password-is-required'),
-                  },
-                ]}
-              >
-                <Password
-                  placeholder={t('password-placeholder')}
-                  size="large"
-                />
-              </FormItem>
+        <div className={styles.optionsWrapper}>
+          <div style={{ cursor: 'pointer' }} onClick={toggleToForgetPassword}>
+            {t('forget-password')}
+          </div>
 
-              <div className={styles.optionsWrapper}>
-                <div
-                  style={{ cursor: 'pointer' }}
-                  onClick={toggleToForgetPassword}
-                >
-                  {t('forget-password')}
-                </div>
+          <div style={{ cursor: 'pointer' }} onClick={toggleToSignup}>
+            {t('join-us')}
+          </div>
+        </div>
 
-                <div style={{ cursor: 'pointer' }} onClick={toggleToSignup}>
-                  {t('join-us')}
-                </div>
-              </div>
+        <div className="button-group">
+          <Button
+            style={{ borderColor: colors[5] }}
+            htmlType="submit"
+            size="large"
+          >
+            {t('login')}
+          </Button>
 
-              <div className="button-group">
-                <Button
-                  style={{ borderColor: colors[5] }}
-                  htmlType="submit"
-                  size="large"
-                >
-                  {t('login')}
-                </Button>
+          {!isLoginEnabled ? null : (
+            <Button
+              className={styles.fbLoginButton}
+              onClick={fbLogin}
+              size="large"
+            >
+              {t('fb-login')}
+            </Button>
+          )}
 
-                {isFbLoginEnabled && (
-                  <Button
-                    className={styles.fbLoginButton}
-                    onClick={fbLogin}
-                    size="large"
-                  >
-                    {t('fb-login')}
-                  </Button>
-                )}
-
-                <Button
-                  className={styles.goBackButton}
-                  style={{ borderColor: colors[5] }}
-                  onClick={() => goTo({ back: true })}
-                  size="large"
-                >
-                  {t('go-back')}
-                </Button>
-              </div>
-            </Form>
-          );
-        }}
-      </Query>
+          <Button
+            className={styles.goBackButton}
+            style={{ borderColor: colors[5] }}
+            onClick={() => goTo({ back: true })}
+            size="large"
+          >
+            {t('go-back')}
+          </Button>
+        </div>
+      </Form>
     );
   }
 }

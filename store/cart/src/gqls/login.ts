@@ -8,9 +8,6 @@ export const getLoginMessage = gql`
       id
       store {
         id
-        facebookSetting {
-          isLoginEnabled
-        }
         setting {
           shopperLoginMessageEnabled
           shopperLoginMessage
