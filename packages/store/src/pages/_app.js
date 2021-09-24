@@ -25,7 +25,6 @@ import withApollo from '@store/apollo';
 import FbProvider from '@store/fb';
 import CurrencyProvider from '@store/currency';
 import AdTrackProvider from '@store/ad-track';
-import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 
 import { log } from '@meepshop/logger/lib/gqls/log';
 
@@ -198,7 +197,9 @@ class App extends NextApp {
   }
 
   componentDidCatch(error, errorInfo) {
-    initApollo({ name: 'store' }).mutate({
+    const { client } = this.props;
+
+    client.mutate({
       mutation: log,
       variables: {
         input: {
@@ -246,6 +247,7 @@ class App extends NextApp {
       faviconImage,
       i18n,
       experimentPage,
+      client,
     } = this.props;
 
     /* Handle error */
@@ -322,6 +324,7 @@ class App extends NextApp {
                               <Component
                                 {...pageProps}
                                 experimentPage={experimentPage}
+                                client={client}
                                 url={{
                                   asPath: router.asPath,
                                   query: router.query,

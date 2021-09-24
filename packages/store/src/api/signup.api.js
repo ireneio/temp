@@ -1,5 +1,3 @@
-import initApollo from '@meepshop/apollo/lib/utils/initApollo';
-
 import postGraphql from 'utils/postGraphql';
 import getIn from 'utils/getIn';
 
@@ -42,8 +40,6 @@ export default async values => {
   } else {
     data = { error: 'Unexpected error' };
   }
-
-  await initApollo({ name: 'store' }).resetStore();
 
   return data;
 };

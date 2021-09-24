@@ -2,7 +2,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { connect } from 'react-redux';
 
-import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { defaultAdTrack } from '@meepshop/context/lib/AdTrack';
 
@@ -27,13 +26,13 @@ const Page = React.memo(({ error, ...props }) => {
 });
 
 Page.getInitialProps = async ctx => {
-  const { query, store, XMeepshopDomain, userAgent } = ctx;
+  const { query, store, XMeepshopDomain, userAgent, client } = ctx;
 
   if (typeof window !== 'undefined')
     return { error: { status: 'ERROR_PAGE_NOT_FOUND' } };
 
   const { pageId, token, pId } = query;
-  const { data } = await initApollo({ name: 'store' }, null, { ctx }).query({
+  const { data } = await client.query({
     query: gql`
       query checkAdminToken($token: String!) {
         isAdministratorToken(token: $token)

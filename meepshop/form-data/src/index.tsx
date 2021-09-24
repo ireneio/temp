@@ -27,9 +27,13 @@ export const FormDataProvider = React.memo(({ children }) => {
   const [formData, setFormData] = useState<formDataFragmentType | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const { effectiveConnectionType } = useNetworkStatus();
-  const [mutation] = useMutation<logType, logVariables>(log, {
+  const [mutation, { client }] = useMutation<logType, logVariables>(log, {
     onCompleted: () => {
-      if (formRef.current) formRef.current.submit();
+      if (formRef.current) {
+        if (client) client.stop();
+
+        formRef.current.submit();
+      }
     },
   });
 

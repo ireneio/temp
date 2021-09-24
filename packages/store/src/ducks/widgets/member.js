@@ -4,7 +4,6 @@ import * as Utils from 'utils';
 import { notification } from 'antd';
 
 import { i18n } from '@meepshop/locales';
-import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 
 import * as Api from 'api';
 import { NOTLOGIN, ISUSER } from 'constants';
@@ -70,11 +69,11 @@ export const loginFailure = payload => ({
 });
 
 export function* loginFlow({ payload }) {
-  const { email, password, callback, from } = payload;
+  const { email, password, callback, from, client } = payload;
 
   try {
     const { data } = yield call(() =>
-      initApollo({ name: 'store' }).mutate({
+      client.mutate({
         mutation: gql`
           mutation login($input: LoginInput!) {
             login(input: $input) @client {
@@ -140,8 +139,9 @@ const SIGNOUT_REQUEST = 'SIGNOUT_REQUEST';
 const SIGNOUT_SUCCESS = 'SIGNOUT_SUCCESS';
 const SIGNOUT_FAILURE = 'SIGNOUT_FAILURE';
 
-export const signout = () => ({
+export const signout = payload => ({
   type: SIGNOUT_REQUEST,
+  payload,
 });
 export const signoutSuccess = payload => ({
   type: SIGNOUT_SUCCESS,
@@ -151,10 +151,12 @@ export const signoutFailure = () => ({
   type: SIGNOUT_FAILURE,
 });
 
-function* signoutFlow() {
+function* signoutFlow({ payload }) {
+  const { client } = payload;
+
   try {
     const { data } = yield call(() =>
-      initApollo({ name: 'store' }).mutate({
+      client.mutate({
         mutation: gql`
           mutation logout {
             logout @client {

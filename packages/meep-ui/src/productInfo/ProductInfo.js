@@ -1,12 +1,12 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import { useApolloClient } from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { Modal } from 'antd';
 import memoizeOne from 'memoize-one';
 
 import { withTranslation } from '@meepshop/locales';
-import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import CartContext from '@meepshop/cart';
 import ProductSpecSelector from '@meepshop/product-spec-selector';
@@ -40,6 +40,7 @@ import { PRODUCT_TYPE, LIMITED, ORDERABLE, OUT_OF_STOCK } from './constants';
   }),
 )
 @withHook(() => ({
+  client: useApolloClient(),
   addToCartNotification: useAddToCartNotification(),
 }))
 @enhancer
@@ -172,7 +173,7 @@ export default class ProductInfo extends React.PureComponent {
   };
 
   addToNotificationList = async () => {
-    const { isLogin, stockNotificationList, variant } = this.props;
+    const { client, isLogin, stockNotificationList, variant } = this.props;
 
     switch (isLogin) {
       case NOTLOGIN:
@@ -180,7 +181,7 @@ export default class ProductInfo extends React.PureComponent {
         break;
       case ISUSER:
         this.setState({ isAddingItem: true });
-        await initApollo({ name: 'store' }).mutate({
+        await client.mutate({
           mutation: gql`
             mutation addStockNotificationList(
               $updateStockNotificationList: [UpdateStockNotification]

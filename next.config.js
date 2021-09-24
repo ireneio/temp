@@ -38,6 +38,10 @@ const fixCssLoaderError = config => {
           delete use.options.minimize;
       });
   });
+
+  // FIXME: Remove after next.js upgrade
+  if (config.optimization.splitChunks)
+    config.optimization.splitChunks.cacheGroups.shared.minChunks = 3;
 };
 
 module.exports = nextConfig =>

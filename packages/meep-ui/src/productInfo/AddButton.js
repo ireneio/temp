@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
+import { useApolloClient } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { HeartFilled, HeartOutlined, LoadingOutlined } from '@ant-design/icons';
 
 import { withTranslation } from '@meepshop/locales';
-import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
@@ -20,6 +21,9 @@ import { VARIANT_TYPE, ORDERABLE_TYPE } from './constants';
 
 @withTranslation('product-info')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
+@withHook(() => ({
+  client: useApolloClient(),
+}))
 @enhancer
 export default class AddButton extends React.Component {
   state = {
@@ -151,9 +155,9 @@ export default class AddButton extends React.Component {
   };
 
   addProductLToWishList = () => {
-    const { adTrack, user, productId } = this.props;
+    const { client, adTrack, user, productId } = this.props;
 
-    return initApollo({ name: 'store' }).mutate({
+    return client.mutate({
       mutation: gql`
         mutation addProductLToWishList($input: AddWishlistProductInput!) {
           addWishlistProduct(input: $input) {
@@ -200,9 +204,9 @@ export default class AddButton extends React.Component {
   };
 
   removeProductFromWishList = () => {
-    const { user, productId } = this.props;
+    const { client, user, productId } = this.props;
 
-    return initApollo({ name: 'store' }).mutate({
+    return client.mutate({
       mutation: gql`
         mutation removeProductFromWishList(
           $input: RemoveWishlistProductInput!

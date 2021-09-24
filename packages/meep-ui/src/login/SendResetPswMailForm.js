@@ -1,10 +1,10 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import { useApolloClient } from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
 import { Form, Button, Input, notification } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
-import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { useValidateEmail } from '@meepshop/validator';
 import withHook from '@store/utils/lib/withHook';
 
@@ -16,6 +16,7 @@ const FormItem = Form.Item;
 @withTranslation('login')
 @withHook(() => ({
   validateEmail: useValidateEmail(),
+  client: useApolloClient(),
 }))
 @enhancer
 export default class SendResetPswMailForm extends React.PureComponent {
@@ -30,9 +31,9 @@ export default class SendResetPswMailForm extends React.PureComponent {
   };
 
   finish = ({ email }) => {
-    const { t, cname } = this.props;
+    const { client, t, cname } = this.props;
 
-    initApollo({ name: 'store' }).mutate({
+    client.mutate({
       mutation: gql`
         mutation sendResetPasswordEmailFromLogin(
           $input: SendResetPasswordEmailInput!

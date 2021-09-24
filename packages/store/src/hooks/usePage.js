@@ -13,7 +13,7 @@ export default () => {
   const { cookies } = useContext(CookiesContext);
   const { i18n } = useTranslation('common');
   const router = useRouter();
-  const { data } = useQuery(getPage, {
+  const { data, client } = useQuery(getPage, {
     variables: {
       identity: cookies?.identity,
       path: router.query.path || '',
@@ -91,5 +91,6 @@ export default () => {
     logoImage: store?.logoImage,
     faviconImage: store?.faviconImage,
     experimentPage,
+    client,
   };
 };

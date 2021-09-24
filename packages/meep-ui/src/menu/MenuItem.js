@@ -1,11 +1,11 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import { useApolloClient } from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
 import memoizeOne from 'memoize-one';
 import { Menu } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
-import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { Currency as CurrencyContext } from '@meepshop/context';
 import { useRouter } from '@meepshop/link';
 import withContext from '@store/utils/lib/withContext';
@@ -38,6 +38,7 @@ const { Item: AntdMenuItem, SubMenu } = Menu;
 @withContext(CurrencyContext)
 @withHook(() => ({
   router: useRouter(),
+  client: useApolloClient(),
 }))
 @enhancer
 export default class MenuItem extends React.PureComponent {
@@ -47,6 +48,7 @@ export default class MenuItem extends React.PureComponent {
     withContext(CurrencyContext)(
       withHook(() => ({
         router: useRouter(),
+        client: useApolloClient(),
       }))(enhancer(MenuItem)),
     ),
   );
@@ -129,6 +131,7 @@ export default class MenuItem extends React.PureComponent {
       id,
       action,
       setCurrency,
+      client,
     } = this.props;
 
     switch (action) {
@@ -142,7 +145,7 @@ export default class MenuItem extends React.PureComponent {
 
       case 'locale':
         if (isLogin !== NOTLOGIN)
-          await initApollo({ name: 'store' }).mutate({
+          await client.mutate({
             mutation: gql`
               mutation updateShopperLanguagePreference(
                 $input: UpdateShopperLanguagePreferenceInput!

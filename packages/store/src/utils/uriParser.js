@@ -1,9 +1,8 @@
 // import
-import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import log from '@meepshop/logger/lib/gqls/log';
 
 // definition
-export default ({ XMeepshopDomain, url, userAgent }) => {
+export default ({ XMeepshopDomain, url, userAgent, client }) => {
   try {
     const regex = /^(([^\/?:]+)(:(\d+))?)?(\/?([^\/?#][^?#]*)?)?(\?([^#]+))?(#(.*))?/; // eslint-disable-line
     const matches = regex.exec(url.asPath);
@@ -25,7 +24,7 @@ export default ({ XMeepshopDomain, url, userAgent }) => {
       query: url.query,
     };
   } catch ({ message, stack }) {
-    initApollo({ name: 'store' }).mutate({
+    client.mutate({
       mutation: log,
       variables: {
         type: 'ERROR',

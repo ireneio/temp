@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { notification } from 'antd';
 import uuid from 'uuid/v4';
 
-import initApollo from '@meepshop/apollo/lib/utils/initApollo';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import FormDataContext from '@meepshop/form-data';
 import { withTranslation } from '@meepshop/locales';
@@ -337,7 +336,6 @@ export default class Checkout extends React.PureComponent {
 
     if (formData?.url) {
       if (!formData.url?.startsWith('line')) {
-        initApollo({ name: 'store' }).stop();
         setFormData(formData);
         return;
       }
