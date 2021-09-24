@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.51 (2021-09-24)
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#1753](https://github.com/meepshop/meep-lerna/pull/1753) T9264 - 內部開單 - 前台移除 initApollo ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `store`
+  - [#1753](https://github.com/meepshop/meep-lerna/pull/1753) T9264 - 內部開單 - 前台移除 initApollo ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.50 (2021-09-23)
 
 #### :boom: Breaking Change
