@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.80.52 (2021-09-27)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1745](https://github.com/meepshop/meep-lerna/pull/1745) 內部開單 - 移除 useFileSystemPublicRoutes ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1734](https://github.com/meepshop/meep-lerna/pull/1734) 頁面設計 - 新增教學部落格連結 ([@happycat6323](https://github.com/happycat6323))
+  - [#1756](https://github.com/meepshop/meep-lerna/pull/1756) 【優化】阻擋重複觸發 purchase 事件 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1761](https://github.com/meepshop/meep-lerna/pull/1761) 【個別店家】綠界刷卡 - 出現錯誤訊息畫面 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#1749](https://github.com/meepshop/meep-lerna/pull/1749) 內部開單 - 在部分頁面裡面不再從 redux 拿資料 - part3 ([@HsuTing](https://github.com/HsuTing))
+  - [#1759](https://github.com/meepshop/meep-lerna/pull/1759) 前台 set cookie 的 error ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#1762](https://github.com/meepshop/meep-lerna/pull/1762) (@meepshop/frontend) Fix local dev ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.51 (2021-09-24)
 
 #### :bug: Bug Fix
