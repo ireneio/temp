@@ -23,10 +23,14 @@ export default React.memo(
     iconClassName,
     onClick,
     children,
+    title,
     ...restProps
   }: PropsType) => (
     <Tooltip
-      overlayClassName={`${styles.overlay} ${overlayClassName || ''}`}
+      overlayClassName={`${styles.overlay} ${
+        typeof title === 'string' ? styles.small : ''
+      } ${overlayClassName || ''}`}
+      title={title}
       {...restProps}
     >
       {children || (

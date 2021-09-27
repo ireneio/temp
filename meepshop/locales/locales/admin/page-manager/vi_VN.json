@@ -5,6 +5,7 @@
   "product-page": "Mẫu sản phẩm",
   "home-page": {
     "title": "Nhà",
+    "hint": "Bạn có thể thêm một số thiết kế nhà và chọn một trang chủ như hiện tại tốt nhất.",
     "icon-hint": "Trang chủ hiện tại"
   },
   "custom-page": {
@@ -12,16 +13,26 @@
   },
   "default-product-list-page": {
     "title": "Trang kết quả tìm kiếm",
-    "hint": "Trang kết quả tìm kiếm là màn hình hiển thị sau khi tìm kiếm sản phẩm và trang kết quả tìm kiếm là trang cố định",
-    "icon-hint": "Phiên bản mặc định hiện tại"
+    "hint": "Khách hàng tìm kiếm hàng hóa sau khi cửa hàng, phiên bản này sẽ có sẵn cho tất cả các trang kết quả tìm kiếm",
+    "link": "Cách tạo các mặt hàng cụ thể không tìm kiếm khách hàng",
+    "icon-hint": "Phiên bản đặt trước hiện tại, sẵn sàng để sử dụng phong cách này"
   },
   "template-page": {
     "title": "Trang nội dung sản phẩm",
-    "hint": "Trang nội dung sản phẩm là một trang chi tiết sản phẩm duy nhất và các sản phẩm mới sẽ sử dụng bố cục mặc định hiện tại"
+    "hint": "Bạn có thể sử dụng các phiên bản khác nhau cho các loại hàng hóa khác nhau",
+    "link": "Phiên bản chỉnh sửa giảng dạy"
   },
   "see-more": "xem thêm",
   "edit": "Chỉnh sửa",
   "preview": "Xem trước trang này",
+  "instruction": {
+    "0": "Giới thiệu loại trang",
+    "1": "Thành phần trang Sử dụng và thiết kế",
+    "2": "Thông tin URL và SEO tự đặt hàng",
+    "3": "Thiết kế một trang trang bán hàng",
+    "4": "Tạo một trang sự kiện tiếp thị",
+    "title": "Dạy lưu ý"
+  },
   "add-new-page": {
     "hint": "Thêm trang hoặc bố cục",
     "page": "Danh mục trang mới",

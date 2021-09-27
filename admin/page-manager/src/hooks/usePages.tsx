@@ -1,6 +1,8 @@
 // import
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { filter } from 'graphql-anywhere';
+
+import { useTranslation } from '@meepshop/locales';
 
 // graphql typescript
 import {
@@ -24,12 +26,14 @@ export default (
       | 'custom-page'
       | 'default-product-list-page'
       | 'template-page';
-    hint: boolean;
+    hint: React.ReactNode | null;
     data: usePagesPageFragmentType[];
     pageInfo?: { hasNextPage: boolean; endCursor: string };
   }[];
-}[] =>
-  useMemo(() => {
+}[] => {
+  const { t } = useTranslation('page-manager');
+
+  return useMemo(() => {
     const store = data?.viewer?.store;
 
     if (!store) return [];
@@ -47,7 +51,7 @@ export default (
         data: [
           {
             key: 'home-page',
-            hint: false,
+            hint: t('home-page.hint'),
             data: homePages.edges.map(
               ({ node }: { node: usePagesPageFragmentType }) => node,
             ),
@@ -55,7 +59,7 @@ export default (
           },
           {
             key: 'custom-page',
-            hint: false,
+            hint: null,
             data: customPages.edges.map(
               ({ node }: { node: usePagesPageFragmentType }) => node,
             ),
@@ -68,7 +72,18 @@ export default (
         data: [
           {
             key: 'default-product-list-page',
-            hint: true,
+            hint: (
+              <>
+                <div>{t('default-product-list-page.hint')}</div>
+                <a
+                  href="https://supportmeepshop.com/knowledgebase/%e6%9e%b6%e6%a7%8b%e8%a6%8f%e5%8a%83/#3_sou_xun_jie_guo_ye_yu_she_shang_pin_lie_biao"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t('default-product-list-page.link')}
+                </a>
+              </>
+            ),
             data:
               !variables.homePagesFilter?.searchTerm ||
               new RegExp(variables.homePagesFilter.searchTerm).test(
@@ -79,7 +94,18 @@ export default (
           },
           {
             key: 'template-page',
-            hint: true,
+            hint: (
+              <>
+                <div>{t('template-page.hint')}</div>
+                <a
+                  href="https://supportmeepshop.com/knowledgebase/%e5%95%86%e5%93%81%e9%a0%81%e7%89%88%e5%9e%8b%e7%b7%a8%e8%bc%af/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t('template-page.link')}
+                </a>
+              </>
+            ),
             data: productTemplatePage.edges.map(
               ({ node }: { node: usePagesPageFragmentType }) => node,
             ),
@@ -88,4 +114,5 @@ export default (
         ],
       },
     ];
-  }, [data, variables]);
+  }, [data, variables, t]);
+};

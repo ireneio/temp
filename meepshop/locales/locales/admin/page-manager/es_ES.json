@@ -5,6 +5,7 @@
   "product-page": "Plantilla de producto",
   "home-page": {
     "title": "Casa",
+    "hint": "Puede agregar una serie de diseños domésticos y seleccionar una página de inicio como sea mejor.",
     "icon-hint": "Página principal actual"
   },
   "custom-page": {
@@ -12,16 +13,26 @@
   },
   "default-product-list-page": {
     "title": "Página de resultados de búsqueda",
-    "hint": "La página de resultados de búsqueda es la pantalla de visualización después de buscar el producto y la página de resultados de búsqueda es una página fija.",
-    "icon-hint": "Versión predeterminada actual"
+    "hint": "Los clientes buscan productos después de la tienda, esta versión estará disponible para todas las páginas de resultados de búsqueda",
+    "link": "Cómo hacer artículos específicos no están buscando clientes",
+    "icon-hint": "Versión de preajuste actual, lista para usar este estilo."
   },
   "template-page": {
     "title": "Página de contenido del producto",
-    "hint": "La página de contenido del producto es una página de detalles de un solo producto y los nuevos productos utilizarán el diseño predeterminado actual"
+    "hint": "Puedes usar diferentes versiones para diferentes tipos de mercancías.",
+    "link": "Edición Edición de enseñanza"
   },
   "see-more": "ver más",
   "edit": "Editar",
   "preview": "Vista previa de esta página",
+  "instruction": {
+    "0": "Type de página Introducción",
+    "1": "Componentes de la página Uso y diseño",
+    "2": "Información de URL y SEO de autoayuda.",
+    "3": "Diseño de una página Página de ventas",
+    "4": "Crear una página de evento de marketing",
+    "title": "Nota de enseñanza"
+  },
   "add-new-page": {
     "hint": "Agregar página o diseño",
     "page": "Nueva categoría de página",

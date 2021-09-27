@@ -5,6 +5,7 @@
   "product-page": "Product Template",
   "home-page": {
     "title": "Home",
+    "hint": "You can add a number of home designs and select a home page as currently best.",
     "icon-hint": "Current Homepage"
   },
   "custom-page": {
@@ -12,16 +13,26 @@
   },
   "default-product-list-page": {
     "title": "Search results page",
-    "hint": "The search result page is the display screen after searching for the product and the search result page is a fixed page",
-    "icon-hint": "Current default version"
+    "hint": "Customers search for goods after the store, this version will be available to all search results pages",
+    "link": "How to make specific items are not searching for customers",
+    "icon-hint": "Current preset version, ready to use this style"
   },
   "template-page": {
     "title": "Product content page",
-    "hint": "The product content page is a single product detail page and new products will use the current default layout"
+    "hint": "You can use different versions for different types of merchandise",
+    "link": "Edition editing teaching"
   },
   "see-more": "see more",
   "edit": "Edit",
   "preview": "Preview this page",
+  "instruction": {
+    "0": "Page type introduction",
+    "1": "Page components use and design",
+    "2": "Self-order URL and SEO Information",
+    "3": "Design one page sales page",
+    "4": "Create a marketing event page",
+    "title": "Teaching note"
+  },
   "add-new-page": {
     "hint": "Add page or layout",
     "page": "New page category",

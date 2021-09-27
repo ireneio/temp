@@ -135,7 +135,10 @@ const PageManager: NextPage<PropsType> = React.memo(
                               : ` (${subData.length})`}
 
                             {!hint ? null : (
-                              <Tooltip title={t(`${subKey}.hint`)} />
+                              <Tooltip
+                                overlayClassName={styles.tooltip}
+                                title={hint}
+                              />
                             )}
                           </>
                         }

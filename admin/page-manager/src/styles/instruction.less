@@ -1,0 +1,55 @@
+.icon {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #efefef;
+  }
+}
+
+.popover {
+  :global(.ant-popover-inner-content) {
+    padding: 16px 20px;
+
+    > div:first-child {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.7px;
+      line-height: 22px;
+      margin-bottom: 6px;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      color: rgba(0, 0, 0, 0.65);
+      font-size: 12px;
+      line-height: 20px;
+      padding: 4px 0px;
+
+      &:not(:last-child) {
+        margin-bottom: 4px;
+      }
+
+      &:hover {
+        color: #00b8d6;
+      }
+
+      :global(.anticon) {
+        font-size: 16px;
+        margin-right: 4px;
+      }
+    }
+  }
+}

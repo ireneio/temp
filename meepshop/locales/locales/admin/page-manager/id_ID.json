@@ -5,6 +5,7 @@
   "product-page": "Template Produk",
   "home-page": {
     "title": "Rumah",
+    "hint": "Anda dapat menambahkan sejumlah desain rumah dan memilih beranda seperti yang terbaik saat ini.",
     "icon-hint": "Beranda saat ini"
   },
   "custom-page": {
@@ -12,16 +13,26 @@
   },
   "default-product-list-page": {
     "title": "Halaman hasil pencarian",
-    "hint": "Halaman hasil pencarian adalah tampilan layar setelah mencari produk dan halaman hasil pencarian adalah halaman tetap",
-    "icon-hint": "Versi default saat ini"
+    "hint": "Pelanggan mencari barang setelah toko, versi ini akan tersedia untuk semua halaman hasil pencarian",
+    "link": "Cara membuat barang tertentu tidak mencari pelanggan",
+    "icon-hint": "Versi Preset Saat Ini, Siap Menggunakan Gaya Ini"
   },
   "template-page": {
     "title": "Halaman konten produk",
-    "hint": "Halaman konten produk adalah halaman detail produk tunggal dan produk baru akan menggunakan tata letak default saat ini"
+    "hint": "Anda dapat menggunakan versi yang berbeda untuk berbagai jenis barang dagangan",
+    "link": "Edisi mengedit pengajaran"
   },
   "see-more": "lihat lebih banyak",
   "edit": "Edit",
   "preview": "Pratinjau halaman ini",
+  "instruction": {
+    "0": "Jenis Page Pendahuluan",
+    "1": "Komponen Halaman Penggunaan dan Desain",
+    "2": "Informasi URL dan SEO Pemesanan Self",
+    "3": "Desain satu halaman halaman penjualan",
+    "4": "Buat Halaman Acara Pemasaran",
+    "title": "Catatan Pengajaran"
+  },
   "add-new-page": {
     "hint": "Tambahkan halaman atau tata letak",
     "page": "Kategori halaman baru",

@@ -1,8 +1,8 @@
 // import
 import React from 'react';
 import { HomeOutlined } from '@ant-design/icons';
-import { Tooltip } from 'antd';
 
+import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/locales';
 import { DefaultLayoutIcon } from '@meepshop/icons';
 
@@ -32,7 +32,10 @@ export default React.memo(
 
     if (isDefaultProductTemplatePage)
       return (
-        <Tooltip title={t('default-product-list-page.icon-hint')}>
+        <Tooltip
+          overlayClassName={styles.tooltip}
+          title={t('default-product-list-page.icon-hint')}
+        >
           <DefaultLayoutIcon className={styles.root} />
         </Tooltip>
       );

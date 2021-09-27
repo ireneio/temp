@@ -5,6 +5,7 @@
   "product-page": "Modèle de produit",
   "home-page": {
     "title": "Accueil",
+    "hint": "Vous pouvez ajouter un certain nombre de conceptions à la maison et sélectionner une page d'accueil comme actuellement le mieux.",
     "icon-hint": "Page actuelle"
   },
   "custom-page": {
@@ -12,16 +13,26 @@
   },
   "default-product-list-page": {
     "title": "Page de résultats de recherche",
-    "hint": "La page de résultats de recherche est l'écran d'affichage après la recherche du produit et la page de résultats de recherche est une page fixe",
-    "icon-hint": "Version actuelle par défaut"
+    "hint": "Les clients recherchent des marchandises après le magasin, cette version sera disponible pour toutes les pages de résultats de recherche.",
+    "link": "Comment faire des articles spécifiques ne cherche pas les clients",
+    "icon-hint": "Version prédéfinie actuelle, prêt à utiliser ce style"
   },
   "template-page": {
     "title": "Page de contenu du produit",
-    "hint": "La page de contenu du produit est une page de détail du produit unique et les nouveaux produits utiliseront la mise en page par défaut actuelle"
+    "hint": "Vous pouvez utiliser différentes versions pour différents types de marchandises",
+    "link": "Édition édition d'enseignement"
   },
   "see-more": "voir plus",
   "edit": "modifier",
   "preview": "Aperçu de cette page",
+  "instruction": {
+    "0": "Type de page Introduction",
+    "1": "Composants de page Utilisation et conception",
+    "2": "URL d'auto-commande et informations de référencement",
+    "3": "Concevoir une page de vente d'une page",
+    "4": "Créer une page d'événement marketing",
+    "title": "Note d'enseignement"
+  },
   "add-new-page": {
     "hint": "Ajouter une page ou une mise en page",
     "page": "Nouvelle catégorie de page",

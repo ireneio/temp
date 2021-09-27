@@ -8,6 +8,7 @@ import { Spin, Button } from 'antd';
 import { useTranslation } from '@meepshop/locales';
 import Link from '@meepshop/link';
 
+import Instruction from './Instruction';
 import useIframeLoading from './hooks/useIframeLoading';
 import styles from './styles/previewer.less';
 
@@ -76,6 +77,8 @@ export default React.memo(
             </a>
           )}
         </div>
+
+        <Instruction />
       </div>
     );
   },
