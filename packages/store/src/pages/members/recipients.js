@@ -10,15 +10,11 @@ import * as Utils from 'utils';
 import * as Template from 'template';
 import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
-import * as Actions from 'ducks/actions';
 import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class Recipients extends Component {
   static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent, store } = context;
-
-    if (typeof window === 'undefined')
-      store.dispatch(Actions.serverOthersInitial(context));
+    const { XMeepshopDomain, userAgent } = context;
 
     return {
       userAgent,
