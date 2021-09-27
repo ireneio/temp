@@ -118,6 +118,7 @@ export default class Invoice extends React.PureComponent {
                   },
                 ]}
                 validateTrigger="onBlur"
+                validateFirst
               >
                 <Input placeholder={t('invoice-number')} />
               </FormItem>
