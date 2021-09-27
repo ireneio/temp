@@ -40,7 +40,7 @@ const fixCssLoaderError = config => {
   });
 
   // FIXME: Remove after next.js upgrade
-  if (config.optimization.splitChunks)
+  if (config.optimization.splitChunks.cacheGroups?.shared?.minChunks)
     config.optimization.splitChunks.cacheGroups.shared.minChunks = 3;
 };
 
