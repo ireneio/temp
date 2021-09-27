@@ -2,7 +2,7 @@
 import { AdTrackType } from '@meepshop/context';
 
 // import
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useRef } from 'react';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 
@@ -14,10 +14,11 @@ type productsType = Parameters<AdTrackType['purchase']>[0]['products'];
 
 // definition
 export default (order: useAdTrackFragmentType | null): void => {
+  const triggeredRef = useRef<boolean>(false);
   const adTrack = useContext(AdTrackContext);
 
   useEffect(() => {
-    if (order)
+    if (order && !triggeredRef.current) {
       // SHOULD_NOT_BE_NULL
       adTrack.purchase({
         orderNo: order.orderNo || '',
@@ -27,5 +28,8 @@ export default (order: useAdTrackFragmentType | null): void => {
         shipmentFee: order.priceInfo?.shipmentFee || 0,
         paymentFee: order.priceInfo?.paymentFee || 0,
       });
+
+      triggeredRef.current = true;
+    }
   }, [order, adTrack]);
 };
