@@ -44,7 +44,7 @@ export default React.memo(() => {
   >(getOrders, {
     variables: { first: 10 },
   });
-  const { first } = variables;
+  const first = variables?.first || 10;
   const orders = data?.viewer?.orders || null;
 
   const { changePage, loading } = useChangePage(
