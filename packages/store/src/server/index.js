@@ -6,13 +6,9 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
-const uaParser = require('ua-parser-js');
 
 const { default: initialLogger } = require('@meepshop/logger');
 const { default: serverLogger } = require('@meepshop/logger/lib/server');
-const {
-  default: loggerMiddleware,
-} = require('@meepshop/logger/lib/middleware');
 
 const { publicRuntimeConfig } = require('../../next.config');
 const routes = require('./routes');
@@ -21,7 +17,7 @@ const signin = require('./routers/signin');
 const landingPageAccessToken = require('./routers/landingPageAccessToken');
 const mapCookiesToHeaders = require('./mapCookiesToHeaders');
 
-const { VERSION, STORE_DOMAIN } = publicRuntimeConfig;
+const { STORE_DOMAIN } = publicRuntimeConfig;
 const app = nextApp({
   dir: path.resolve(__dirname, '..'),
   dev: process.env.NODE_ENV !== 'production',
@@ -103,32 +99,6 @@ app.prepare().then(() => {
     await next();
   });
 
-  // routes
-  server.get('/healthz', (req, res) => {
-    res.status(200).end();
-  });
-  server.get('/version', (req, res) => {
-    const {
-      browser,
-      engine,
-      os: _os,
-      device: { type = 'desktop', model = '', vendor = 'unknown' },
-    } = uaParser(req.headers['user-agent']);
-    res.status(200).send(`
-      <header>Welcome to next-store ${VERSION}</header>
-      <main>
-        Your information:
-        <ul>
-          <li>Browser: ${browser.name}(${browser.version})</li>
-          <li>Engine: ${engine.name}</li>
-          <li>OS: ${_os.name}(${_os.version})</li>
-          <li>Device: ${type} - ${model}(${vendor})</li>
-        </ul>
-      </main>
-    `);
-  });
-  server.post('/api/log', loggerMiddleware);
-
   // api
   server.post('/api/graphql', mapCookiesToHeaders, api);
   server.post('/api/landing-page/graphql', mapCookiesToHeaders, api);
@@ -165,7 +135,7 @@ app.prepare().then(() => {
     res.redirect(`https://${req.get('host')}${req.originalUrl}`);
   });
 
-  server.get('*', (req, res) => handler(req, res));
+  server.all('*', (req, res) => handler(req, res));
 
   // error handler
   // eslint-disable-next-line consistent-return
