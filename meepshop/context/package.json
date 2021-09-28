@@ -4,11 +4,11 @@
   "description": "Manage the all context",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.52",
+  "version": "0.80.53",
   "main": "./index.js",
   "types": "./src/types.ts",
   "dependencies": {
-    "@meepshop/utils": "^0.80.52",
+    "@meepshop/utils": "^0.80.53",
     "color": "^3.0.0"
   },
   "keywords": ["context", "meepshop"]

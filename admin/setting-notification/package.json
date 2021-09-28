@@ -4,17 +4,17 @@
   "description": "notification setting for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.52",
+  "version": "0.80.53",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/block": "^0.80.52",
-    "@admin/header": "^0.80.52",
-    "@admin/message": "^0.80.50",
-    "@admin/tooltip": "^0.80.52",
-    "@admin/utils": "^0.80.52",
-    "@meepshop/locales": "^0.80.52",
-    "@meepshop/validator": "^0.80.52"
+    "@admin/block": "^0.80.53",
+    "@admin/header": "^0.80.53",
+    "@admin/message": "^0.80.53",
+    "@admin/tooltip": "^0.80.53",
+    "@admin/utils": "^0.80.53",
+    "@meepshop/locales": "^0.80.53",
+    "@meepshop/validator": "^0.80.53"
   },
   "keywords": ["admin", "notification", "setting"]
 }
