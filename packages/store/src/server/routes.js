@@ -40,26 +40,26 @@ module.exports = routes
 
   // orders
   .add('@store/orders', '/orders', '/orders')
-  .add('@store/order', '/order/:orderId', '/orders/[orderId]')
+  .add('@store/order', '/order/:orderId', '/order/[orderId]')
   .add(
     '@store/member-order-applications',
     '/orderApplyList/:orderId',
-    '/orders/[orderId]/applications',
+    '/orderApplyList/[orderId]',
   )
   .add(
     '@store/member-order-apply-refund',
     '/orderRefund/:orderId',
-    '/orders/[orderId]/refund',
+    '/orderRefund/[orderId]',
   )
   .add(
     '@store/member-order-apply-exchange',
     '/orderExchange/:orderId',
-    '/orders/[orderId]/exchange',
+    '/orderExchange/[orderId]',
   )
   .add(
     '@store/member-order-pay-notify',
     '/payNotify/:orderId',
-    '/orders/[orderId]/pay-notify',
+    '/payNotify/[orderId]',
   )
 
   // members
