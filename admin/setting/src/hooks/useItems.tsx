@@ -103,7 +103,7 @@ export default (
         },
         {
           item: 'app',
-          path: '/app-store',
+          path: '/setting/apps',
           Icon: AppStoreOutlineIcon,
           auth: isMerchant || Boolean(storePermission?.index),
         },

@@ -1,3 +1,70 @@
 {
-  "title": "Mở rộng chức năng."
+  "title": "Mở rộng chức năng.",
+  "subTitle": "Bạn có thể sử dụng các tính năng miễn phí theo cách riêng của mình. Nếu bạn điều chỉnh phương thức sạc trước, bạn không phải lo lắng về việc bị buộc tội trong các điều kiện không đồng ý.",
+  "free": "miễn phí",
+  "per": "Hoàn hảo",
+  "active": "Cho phép",
+  "disable": "Hủy kích hoạt.",
+  "error": "sai lầm, điều sai, ngộ nhận",
+  "detail": "Chi tiết",
+  "analytics": {
+    "title": "Phân tích thống kê",
+    "desc": "Cung cấp các chỉ số thống kê như đơn hàng cửa hàng, bán hàng hóa, giá khách hàng trung bình ⋯."
+  },
+  "webTrack": {
+    "title": "Phân tích quảng cáo.",
+    "desc": "Bạn có thể sử dụng phân tích dữ liệu và quảng cáo và GA và GA, và để theo dõi hành vi duyệt khách hàng với các công cụ phân tích Meepshop để hỗ trợ bạn với các cuộc thăm dò quảng cáo chính xác tiếp theo."
+  },
+  "bulkdiscount": {
+    "title": "Đặt hàng đầy đủ giảm giá",
+    "desc": "Khi khách hàng tiêu thụ số tiền quy định hoặc số lượng hàng hóa, giảm giá đơn hàng được đưa ra, và do đó thu hút khách hàng tăng mặt hàng mua hàng, hãy cải thiện doanh thu của cửa hàng, ví dụ: Kỷ niệm toàn bộ ngôi nhà có đầy đủ 3.000 lần 1 trăm ."
+  },
+  "freeGift": {
+    "title": "Đặt món quà đầy đủ",
+    "desc": "Khi tiêu thụ đơn hàng đạt số lượng quy định hoặc số lượng hàng hóa, quà tặng sẽ được giao để thúc đẩy kỳ vọng mua hàng."
+  },
+  "freeShipping": {
+    "title": "Miễn phí vận chuyển",
+    "desc": "Khi đơn hàng đáp ứng các điều kiện được chỉ định, bạn sẽ được hưởng miễn phí vận chuyển, khuyến khích khách hàng mua nhiều sản phẩm hơn."
+  },
+  "tagDiscount": {
+    "title": "Giảm giá đầy đủ",
+    "desc": "Tiêu thụ sản phẩm cụ thể là một ngưỡng đặc biệt để được hưởng giảm giá, khiến khách hàng mua nhiều loại sản phẩm hơn, chẳng hạn như 2.000 lần gấp hơn 2.000 lần trong mùa thu và mùa đông, và 5 lần."
+  },
+  "productDiscount": {
+    "title": "Giảm giá thương mại",
+    "desc": "Bạn có thể giảm giá cho tất cả hoặc các mặt hàng cụ thể, nâng cao mong muốn mua hàng của khách hàng."
+  },
+  "groupDiscount": {
+    "title": "Sản phẩm được chọn",
+    "desc": "Bạn có thể sử dụng các mặt hàng cộng đồng hoặc nhóm theo nhóm, cung cấp một ưu đãi bán hàng kết hợp hoặc thêm quà tặng, chẳng hạn như: áo tắm + bao gồm và sau đó gửi túi chống nước, 3 miếng sản phẩm mùa hè, giảm giá 8% trên túi mua sắm."
+  },
+  "points": {
+    "title": "Mua sắm",
+    "desc": "Gửi mua sắm trong một tình huống cụ thể, tăng nguyên nhân của khách hàng trở lại mua sắm, cải thiện hiệu quả tỷ lệ repo và sự bám dính thành viên, chẳng hạn như: Thành viên mới mang lại cho việc mua sắm, sinh nhật sinh nhật là 3 trăm."
+  },
+  "coupon": {
+    "title": "Mã khuyến mại",
+    "desc": "Giảm giá cho các mặt hàng cụ thể hoặc đơn đặt hàng hoàn chỉnh, tăng cường mua hàng của khách hàng."
+  },
+  "newsletters": {
+    "title": "Bản tin thành viên",
+    "desc": "Thường xuyên gửi một tờ báo điện tử và khách hàng để duy trì sự tương tác, có thể tăng đáng kể tỷ lệ hoàn vốn và giảm đáng kể chi phí quảng cáo chi phí, chẳng hạn như các chữ cái như danh sách mới, giảm giá."
+  },
+  "memberGroup": {
+    "title": "Thành viên nhóm",
+    "desc": "Bạn có thể đặt điều kiện để tự động xếp lớp các thành viên và cung cấp các ưu đãi độc quyền ở cấp độ và khuyến khích các thành viên mới tham gia trong khi củng cố lòng trung thành thương hiệu của khách hàng, chẳng hạn như giảm giá 10% cho tiêu dùng của VIP cả năm."
+  },
+  "memberGroupCode": {
+    "title": "Mã đặc biệt",
+    "desc": "Bạn có thể cung cấp mã đặc biệt cho các doanh nghiệp quan hệ hoặc người dùng hợp tác và khách hàng sử dụng đăng ký mã đặc biệt sẽ tự động được đưa vào nhóm thành viên được chỉ định, để bạn có thể theo dõi."
+  },
+  "productMassUpdate": {
+    "title": "Cập nhật hàng hóa",
+    "desc": "Cung cấp lô để thay đổi số sản phẩm, giá cả, giá khuyến nghị, giá cả, hàng tồn kho, chi phí, mã vạch sản phẩm, v.v., hỗ trợ bạn chỉnh sửa thông tin sản phẩm hiệu quả hơn."
+  },
+  "productAuthority": {
+    "title": "Cho phép duyệt sản phẩm",
+    "desc": "Để thiết lập quyền duyệt hàng hóa cho hàng hóa, bạn có thể thực hiện trình duyệt và mua hàng bị hạn chế cho các nhóm thành viên khác nhau để giúp bạn dễ dàng phát triển trình độ thành viên, chẳng hạn như túi phước lành năm mới chỉ cung cấp dịch vụ mua VIP."
+  }
 }

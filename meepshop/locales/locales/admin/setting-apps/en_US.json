@@ -1,3 +1,70 @@
 {
-  "title": "Expand function"
+  "title": "Expand function",
+  "subTitle": "You can use free features at your own way. If you adjust the charging method in advance, you don't have to worry about being charged under unknowing conditions.",
+  "free": "free",
+  "per": "Perfect",
+  "active": "Enable",
+  "disable": "Deactivate",
+  "error": "mistake",
+  "detail": "Detail",
+  "analytics": {
+    "title": "Statistical Analysis",
+    "desc": "Provide statistical indicators such as store orders, commodity sales, average customer price ⋯."
+  },
+  "webTrack": {
+    "title": "Advertising analysis",
+    "desc": "You can use data analysis and advertisement and GA and GA, and to track customer browsing behavior with MeepShop analysis tools to assist you with subsequent accurate ad polles."
+  },
+  "bulkdiscount": {
+    "title": "Order full discount",
+    "desc": "When the customer consumes the specified amount or the number of goods, the order discount is given, and thereby attracting customers to increase the purchase item, improve the store revenue, for example: the anniversary of the whole house is full of 3,000 folds 1 hundred."
+  },
+  "freeGift": {
+    "title": "Order full gift",
+    "desc": "When the order consumption reaches the specified amount or the number of goods, the gift will be delivered to promote the purchase expectations."
+  },
+  "freeShipping": {
+    "title": "Free shipping",
+    "desc": "When the order meets the designated conditions, you will enjoy free shipping, encourage customers to purchase more products."
+  },
+  "tagDiscount": {
+    "title": "Full discount",
+    "desc": "Specific product consumption is a special threshold to enjoy the discount, which prompted customers to purchase more types of products, such as 2,000 folds over 2,000 folds in autumn and winter, and 5 fold."
+  },
+  "productDiscount": {
+    "title": "Commercial discount",
+    "desc": "You can give discounts for all or specific items, enhance customer purchase desires."
+  },
+  "groupDiscount": {
+    "title": "Product selected",
+    "desc": "You can use the community or group commodities in groups, provide a combination sales offer, or add gifts, such as: swimsuit + covering and then send waterproof bag, 3 pieces of summer products, 8% discount on shopping bags."
+  },
+  "points": {
+    "title": "Shopping",
+    "desc": "Send shopping in a specific situation, increasing the cause of customers back to shop shopping, effectively improving the repo rate and the membership adhesion, such as: new member gives shopping, the birthday of birthday is 3 hundred."
+  },
+  "coupon": {
+    "title": "Promo Code",
+    "desc": "Give discounts for specific items or complete orders, enhance customer purchase will."
+  },
+  "newsletters": {
+    "title": "Member Newsletter",
+    "desc": "Regularly send an electronic newspaper and customers to maintain interaction, which can significantly increase the return rate and significantly reduce advertising cost spending, such as letters such as new listings, discounts."
+  },
+  "memberGroup": {
+    "title": "Member group",
+    "desc": "You can set the condition to automatically grade the members, and provide exclusive offers at the level, and encourage new members to join while consolidating customer brand loyalty, such as 10% discount on VIP all-year consumption."
+  },
+  "memberGroupCode": {
+    "title": "Special code",
+    "desc": "You can give special code for relational enterprises or cooperation users, and customers who use special code registration will automatically be included in the designated member group, so that you can follow up."
+  },
+  "productMassUpdate": {
+    "title": "Commodity update",
+    "desc": "Provide batch to change product number, pricing, recommended price, price, inventory, cost, product bar code, etc., assist you more efficiently editing product information."
+  },
+  "productAuthority": {
+    "title": "Product browsing permission",
+    "desc": "To set up browsing permissions for the commodity, you can make a restricted browsing and purchase for different membership groups to help you easily develop membership qualifications, such as the New Year's blessing bag only provides VIP purchase."
+  }
 }

@@ -1,3 +1,70 @@
 {
-  "title": "Développer la fonction"
+  "title": "Développer la fonction",
+  "subTitle": "Vous pouvez utiliser des fonctionnalités gratuites à votre manière. Si vous ajustez à l'avance la méthode de charge à l'avance, vous n'avez pas à vous soucier d'être accusés dans des conditions inconnues.",
+  "free": "libre",
+  "per": "Parfait",
+  "active": "Permettre",
+  "disable": "Désactiver",
+  "error": "erreur",
+  "detail": "Détail",
+  "analytics": {
+    "title": "Analyses statistiques",
+    "desc": "Fournir des indicateurs statistiques tels que les commandes de magasins, les ventes de produits de base, le prix moyen des clients ⋯."
+  },
+  "webTrack": {
+    "title": "Analyse publicitaire",
+    "desc": "Vous pouvez utiliser Analyse de données et Publicité et GA et GA, et pour suivre le comportement de navigation client avec les outils d'analyse MEEPSHOP pour vous aider avec des sondages adéquats précis."
+  },
+  "bulkdiscount": {
+    "title": "Commander plein remise",
+    "desc": "Lorsque le client consomme le montant spécifié ou le nombre de biens, le rabais de commande est donné et attirant ainsi les clients pour augmenter l'article d'achat, améliorer les revenus du magasin, par exemple: l'anniversaire de toute la maison est plein de 3 000 plis 1 cent ."
+  },
+  "freeGift": {
+    "title": "Commande Cadeau complet",
+    "desc": "Lorsque la consommation de commande atteint le montant spécifié ou le nombre de marchandises, le cadeau sera livré pour promouvoir les attentes d'achat."
+  },
+  "freeShipping": {
+    "title": "Livraison gratuite",
+    "desc": "Lorsque la commande rencontre les conditions désignées, vous apprécierez la livraison gratuite, encouragez les clients à acheter plus de produits."
+  },
+  "tagDiscount": {
+    "title": "Réduction complète",
+    "desc": "La consommation de produits spécifique est un seuil spécial pour profiter de la réduction, qui a incité les clients à acheter plus de types de produits, tels que 2 000 plis sur 2 000 plis en automne et en hiver et 5 fois."
+  },
+  "productDiscount": {
+    "title": "Réduction commerciale",
+    "desc": "Vous pouvez donner des réductions pour tous ou des éléments spécifiques, améliorer les désirs d'achat client."
+  },
+  "groupDiscount": {
+    "title": "Produit sélectionné",
+    "desc": "Vous pouvez utiliser les produits de la communauté ou du groupe dans les groupes, fournir une offre de vente combinée ou ajouter des cadeaux, tels que: maillot de bain + revêtement, puis envoyer un sac imperméable, 3 pièces d'été, 8% de réduction sur les sacs à provisions."
+  },
+  "points": {
+    "title": "Achats",
+    "desc": "Envoyez des achats dans une situation spécifique, ce qui augmente la cause des clients de la boutique des boutiques, améliorant efficacement le taux de repo et l'adhésion des membres, tels que: le nouveau membre donne des achats, l'anniversaire de l'anniversaire est de 3 cents."
+  },
+  "coupon": {
+    "title": "Code promo",
+    "desc": "Donnez des réductions pour des articles spécifiques ou des commandes complètes, améliorer la volonté d'achat du client."
+  },
+  "newsletters": {
+    "title": "Bulletin membre du membre",
+    "desc": "Envoyez régulièrement un journal électronique et des clients pour maintenir une interaction, ce qui peut augmenter de manière significative le taux de retour et réduire de manière significative les dépenses de coûts publicitaires, telles que des lettres telles que les nouvelles annonces, des rabais."
+  },
+  "memberGroup": {
+    "title": "Groupe membre",
+    "desc": "Vous pouvez définir la condition pour noter automatiquement les membres et fournir des offres exclusives au niveau et encourager les nouveaux membres à se joindre à la consolidation de la fidélité de la marque client, telles que 10% de réduction sur la consommation de VIP d'une année."
+  },
+  "memberGroupCode": {
+    "title": "Code spécial",
+    "desc": "Vous pouvez donner un code spécial pour des entreprises relationnelles ou des utilisateurs de coopération, et les clients qui utilisent l'enregistrement de code spécial seront automatiquement inclus dans le groupe membre désigné afin que vous puissiez suivre."
+  },
+  "productMassUpdate": {
+    "title": "Mise à jour des produits de base",
+    "desc": "Fournir un lot pour changer le numéro de produit, la tarification, le prix recommandé, le prix, l'inventaire, le coût, le code à barres du produit, etc., vous aider à éditer plus efficacement les informations sur les produits."
+  },
+  "productAuthority": {
+    "title": "Permission de la navigation du produit",
+    "desc": "Pour configurer les autorisations de navigation pour la marchandise, vous pouvez faire une navigation et un achat restreints pour différents groupes d'adhésion pour vous aider à développer facilement des qualifications d'adhésion, telles que le sac de bénédiction du Nouvel An fournit uniquement l'achat VIP."
+  }
 }

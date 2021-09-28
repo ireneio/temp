@@ -1,3 +1,70 @@
 {
-  "title": "Expandir la función"
+  "title": "Expandir la función",
+  "subTitle": "Puede usar características gratuitas a su manera. Si ajusta el método de carga con anticipación, no tiene que preocuparse por ser acusado de condiciones desconocidas.",
+  "free": "gratis",
+  "per": "Perfecto",
+  "active": "Habilitar",
+  "disable": "Desactivar",
+  "error": "error",
+  "detail": "Detalle",
+  "analytics": {
+    "title": "Análisis estadístico",
+    "desc": "Proporcionar indicadores estadísticos, como pedidos de la tienda, ventas de productos básicos, precio promedio del cliente ⋯."
+  },
+  "webTrack": {
+    "title": "Análisis de publicidad",
+    "desc": "Puede usar análisis de datos y publicidad y GA y GA, y para rastrear el comportamiento de navegación por los clientes con las herramientas de análisis de MEEPSHOP para ayudarlo con encuestas de publicidad precisas posteriores."
+  },
+  "bulkdiscount": {
+    "title": "Orden de descuento completo",
+    "desc": "Cuando el cliente consume la cantidad especificada o el número de bienes, se da el descuento de la orden y, por lo tanto, atrae a los clientes para aumentar el artículo de compra, mejorar los ingresos de la tienda, por ejemplo: el aniversario de toda la casa está lleno de 3,000 pliegues 1 cien ."
+  },
+  "freeGift": {
+    "title": "Orden de regalo completo",
+    "desc": "Cuando el consumo de pedidos alcanza la cantidad especificada o la cantidad de bienes, el regalo se entregará para promover las expectativas de compra."
+  },
+  "freeShipping": {
+    "title": "Envío gratis",
+    "desc": "Cuando el pedido cumple con las condiciones designadas, disfrutará de envío gratuito, alentará a los clientes a comprar más productos."
+  },
+  "tagDiscount": {
+    "title": "Descuento completo",
+    "desc": "El consumo específico del producto es un umbral especial para disfrutar del descuento, lo que llevó a los clientes a comprar más tipos de productos, como 2,000 pliegues en 2,000 pliegues en otoño e invierno, y 5 veces."
+  },
+  "productDiscount": {
+    "title": "Descuento comercial",
+    "desc": "Puede dar descuentos para todos o artículos específicos, mejorar los deseos de compra de clientes."
+  },
+  "groupDiscount": {
+    "title": "Producto seleccionado",
+    "desc": "Puede usar la comunidad o los productos grupales en grupos, proporcionar una oferta de venta de combinación, o agregar regalos, como: traje de baño + cubierta y luego envíe una bolsa impermeable, 3 piezas de productos de verano, 8% de descuento en bolsas de compras."
+  },
+  "points": {
+    "title": "Compras",
+    "desc": "Envíe de compras en una situación específica, aumentando la causa de los clientes a comprar compras, mejorar efectivamente la tasa de reposición y la adherencia de la membresía, como: el nuevo miembro da compras, el cumpleaños del cumpleaños es de 3 cien."
+  },
+  "coupon": {
+    "title": "Código promocional",
+    "desc": "Dale descuentos para artículos específicos o pedidos completos, mejore la compra de la compra del cliente."
+  },
+  "newsletters": {
+    "title": "Boletín informativo para miembros",
+    "desc": "Envíe regularmente un periódico electrónico y clientes para mantener la interacción, que puede aumentar significativamente la tasa de devolución y reducir significativamente el gasto en costos de publicidad, como las letras como las nuevas listas, los descuentos."
+  },
+  "memberGroup": {
+    "title": "Grupo miembro",
+    "desc": "Puede configurar la condición para calificar automáticamente a los miembros, y proporcionar ofertas exclusivas a nivel y alentar a los nuevos miembros a unirse al consolidar la lealtad de la marca del cliente, como un 10% de descuento en el consumo de VIP todo el año."
+  },
+  "memberGroupCode": {
+    "title": "Código especial",
+    "desc": "Puede proporcionar un código especial para las empresas relacionales o a los usuarios de cooperación, y los clientes que usan el registro de código especial se incluirán automáticamente en el grupo miembro designado, para que pueda hacer un seguimiento."
+  },
+  "productMassUpdate": {
+    "title": "Actualización de productos básicos",
+    "desc": "Proporcionar al lote cambiar el número de producto, los precios, el precio recomendado, el precio, el inventario, el costo, el código de la barra de productos, etc., ayudarlo a editar eficientemente la información del producto."
+  },
+  "productAuthority": {
+    "title": "Permiso de navegación del producto",
+    "desc": "Para configurar los permisos de navegación para la mercancía, puede realizar una navegación y compra restringida para diferentes grupos de membresía para ayudarlo a desarrollar fácilmente las calificaciones de membresía, como la bolsa de bendiciones de Año Nuevo, solo proporciona una compra VIP."
+  }
 }

@@ -1,3 +1,70 @@
 {
-  "title": "Perluas Fungsi"
+  "title": "Perluas Fungsi",
+  "subTitle": "Anda dapat menggunakan fitur gratis dengan cara Anda sendiri. Jika Anda menyesuaikan metode pengisian di muka, Anda tidak perlu khawatir akan dikenakan biaya dalam kondisi yang tidak diketahui.",
+  "free": "Gratis",
+  "per": "Sempurna",
+  "active": "Memungkinkan",
+  "disable": "Menonaktifkan",
+  "error": "kesalahan",
+  "detail": "Detail.",
+  "analytics": {
+    "title": "Analisis statistik",
+    "desc": "Memberikan indikator statistik seperti pesanan toko, penjualan komoditas, harga pelanggan rata-rata ⋯."
+  },
+  "webTrack": {
+    "title": "Analisis Periklanan.",
+    "desc": "Anda dapat menggunakan analisis data dan iklan dan GA dan GA, dan untuk melacak perilaku penelusuran pelanggan dengan alat analisis MEEPSHOP untuk membantu Anda dengan polles iklan yang akurat selanjutnya."
+  },
+  "bulkdiscount": {
+    "title": "Memesan diskon penuh.",
+    "desc": "Ketika pelanggan mengkonsumsi jumlah yang ditentukan atau jumlah barang, diskon pesanan diberikan, dan dengan demikian menarik pelanggan untuk meningkatkan item pembelian, meningkatkan pendapatan toko, misalnya: peringatan seluruh rumah penuh dengan 3.000 lipatan 1 ratus ."
+  },
+  "freeGift": {
+    "title": "Memesan hadiah penuh.",
+    "desc": "Ketika konsumsi pesanan mencapai jumlah yang ditentukan atau jumlah barang, hadiah akan dikirimkan untuk mempromosikan ekspektasi pembelian."
+  },
+  "freeShipping": {
+    "title": "Bebas biaya kirim",
+    "desc": "Ketika pesanan memenuhi kondisi yang ditentukan, Anda akan menikmati pengiriman gratis, mendorong pelanggan untuk membeli lebih banyak produk."
+  },
+  "tagDiscount": {
+    "title": "Diskon penuh",
+    "desc": "Konsumsi produk spesifik adalah ambang khusus untuk menikmati diskon, yang mendorong pelanggan untuk membeli lebih banyak jenis produk, seperti 2.000 kali lipat lebih dari 2.000 lipatan di musim gugur dan musim dingin, dan 5 kali lipat."
+  },
+  "productDiscount": {
+    "title": "Diskon komersial",
+    "desc": "Anda dapat memberikan diskon untuk semua atau item tertentu, meningkatkan keinginan pembelian pelanggan."
+  },
+  "groupDiscount": {
+    "title": "Produk dipilih",
+    "desc": "Anda dapat menggunakan komoditas komunitas atau kelompok dalam kelompok, memberikan penawaran penjualan kombinasi, atau menambahkan hadiah, seperti: baju renang + penutup dan kemudian mengirim tas tahan air, 3 buah produk musim panas, diskon 8% untuk tas belanja."
+  },
+  "points": {
+    "title": "Belanja",
+    "desc": "Kirim belanja dalam situasi tertentu, meningkatkan penyebab pelanggan kembali ke belanja berbelanja, secara efektif meningkatkan tingkat repo dan adhesi keanggotaan, seperti: Anggota baru memberikan belanja, ulang tahun adalah 3 ratus."
+  },
+  "coupon": {
+    "title": "Kode promosi",
+    "desc": "Berikan diskon untuk barang-barang tertentu atau pesanan lengkap, tingkatkan kehendak pembelian pelanggan."
+  },
+  "newsletters": {
+    "title": "Buletin Anggota",
+    "desc": "Secara teratur mengirim surat kabar elektronik dan pelanggan untuk mempertahankan interaksi, yang secara signifikan dapat meningkatkan tingkat pengembalian dan secara signifikan mengurangi pengeluaran biaya iklan, seperti surat-surat seperti daftar baru, diskon."
+  },
+  "memberGroup": {
+    "title": "Grup anggota.",
+    "desc": "Anda dapat mengatur kondisi untuk menilai secara otomatis anggota, dan memberikan penawaran eksklusif di tingkat, dan mendorong anggota baru untuk bergabung saat mengkonsolidasikan loyalitas merek pelanggan, seperti diskon 10% untuk konsumsi sepanjang tahun VIP."
+  },
+  "memberGroupCode": {
+    "title": "Kode Khusus",
+    "desc": "Anda dapat memberikan kode khusus untuk perusahaan relasional atau pengguna kerjasama, dan pelanggan yang menggunakan pendaftaran kode khusus akan secara otomatis dimasukkan dalam grup anggota yang ditunjuk, sehingga Anda dapat menindaklanjuti."
+  },
+  "productMassUpdate": {
+    "title": "Pembaruan komoditas",
+    "desc": "Berikan batch untuk mengubah nomor produk, harga, harga yang disarankan, harga, inventaris, biaya, kode batang produk, dll., Membantu Anda lebih efisien mengedit informasi produk."
+  },
+  "productAuthority": {
+    "title": "Izin penelusuran produk",
+    "desc": "Untuk mengatur izin penelusuran untuk komoditas, Anda dapat membuat penelusuran dan pembelian terbatas untuk berbagai kelompok keanggotaan untuk membantu Anda dengan mudah mengembangkan kualifikasi keanggotaan, seperti Tas Blessing Tahun Baru hanya menyediakan pembelian VIP."
+  }
 }

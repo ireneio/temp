@@ -4,9 +4,12 @@ import { NextPage } from 'next';
 // import
 import React from 'react';
 
-// graphql typescript
+import { useTranslation } from '@meepshop/locales';
+import Header from '@admin/header';
 
-// graphql import
+import Item from './Item';
+import useAppList from './hooks/useAppList';
+import styles from './styles/index.less';
 
 // typescript definition
 interface PropsType {
@@ -14,10 +17,33 @@ interface PropsType {
 }
 
 // definition
-const SettingAppsPage: NextPage<PropsType> = React.memo(() => <div />);
+const SettingApps: NextPage<PropsType> = React.memo(() => {
+  const { t } = useTranslation('setting-apps');
+  const appsList = useAppList();
 
-SettingAppsPage.getInitialProps = async () => ({
+  return (
+    <Header
+      title={
+        <>
+          {t('title')}
+          <div className={styles.subTitle}>{t('subTitle')}</div>
+        </>
+      }
+      prevTitle={t('common:setting')}
+      backTo="/setting"
+      disableAffix
+    >
+      <div className={styles.root}>
+        {appsList.map(app => (
+          <Item key={app.title} {...app} />
+        ))}
+      </div>
+    </Header>
+  );
+});
+
+SettingApps.getInitialProps = async () => ({
   namespacesRequired: ['@meepshop/locales/namespacesRequired'],
 });
 
-export default SettingAppsPage;
+export default SettingApps;

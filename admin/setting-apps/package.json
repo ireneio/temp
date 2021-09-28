@@ -7,5 +7,12 @@
   "version": "0.80.50",
   "main": "./index.js",
   "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/header": "^0.80.37",
+    "@meepshop/context": "^0.80.36",
+    "@meepshop/images": "^0.80.36",
+    "@meepshop/link": "^0.80.36",
+    "@meepshop/locales": "^0.80.37"
+  },
   "keywords": ["admin", "apps", "setting"]
 }
