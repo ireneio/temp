@@ -1,3 +1,30 @@
+declare interface ECP {
+  initialize: (
+    serverType: string,
+    isLoading: number,
+    callBack: (error: string) => void,
+  ) => void;
+  createPayment: (
+    token: string,
+    language: string,
+    callBack: (error: string) => void,
+  ) => void;
+  getPayToken: (
+    callBack: (
+      paymentInfo: { PayToken: string; PaymentType: string },
+      error: string,
+    ) => void,
+  ) => void;
+  ServerType: {
+    Prod: string;
+    Stage: string;
+  };
+  Language: {
+    zhTW: string;
+    enUS: string;
+  };
+}
+
 declare interface Window {
   storePreviousPageUrl?: string;
   events: EventTarget;
@@ -82,5 +109,8 @@ declare interface Window {
       zhTW: string;
       enUS: string;
     };
+  };
+  ECP?: {
+    new (): ECP;
   };
 }

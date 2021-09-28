@@ -1,0 +1,33 @@
+{
+  "title": "Facturation et paiement",
+  "description": "La facture mensuelle est disponible à 12h00 (GMT + 8) à midi (GMT + 8)",
+  "email-to": "S'il y a un problème de compte, veuillez envoyer un courriel à facturation@meepshop.com",
+  "payment-setting": "Réglage de paiement",
+  "empty": "Pas de facturation",
+  "bill-month": "Mois célibataire",
+  "fee-usd": "Montant total USD",
+  "fee-twd": "Montant payable TWD",
+  "payment-status": "statut de paiement",
+  "unpaid": "pas encore payé",
+  "paid": "Payé",
+  "no-need-to-pay": "Pas besoin de payer",
+  "alert": {
+    "go-to-pay": "Passer au paiement",
+    "closed": {
+      "0": "Vous avez une facture pour le paiement en souffrance",
+      "1": "Nous avons temporairement fermer votre magasin."
+    },
+    "unpaid": {
+      "0": "Vous avez des factures n'ont pas été payées",
+      "1": "Rappelez-vous que si vous n'avez pas payé en retard, le magasin sera fermé, veuillez compléter le paiement dès que possible."
+    },
+    "fail": {
+      "0": "Vous avez une défaillance de bouton automatique de facturation",
+      "1": "Rappelez-vous que si vous n'avez pas été payé en retard, le magasin sera fermé, essayez de rembourser."
+    },
+    "invoice": {
+      "0": "Veuillez compléter vos informations de facturation afin que nous ayons ouvert une facture avec succès.",
+      "1": "Aller au réglage d'achèvement"
+    }
+  }
+}

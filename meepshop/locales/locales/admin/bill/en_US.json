@@ -1,0 +1,88 @@
+{
+  "title": "Billing",
+  "other-payment-methods": "Other ways payment",
+  "immediate-payment": "Immediate payment",
+  "get-bank-account": "Get a virtual account",
+  "payment-status": {
+    "noNeedToPay": "No need to pay",
+    "unpaid": "not paid yet",
+    "paid": "Paid"
+  },
+  "info": {
+    "payment-method": "Current payment method",
+    "payment-fee": "Payment amount",
+    "credit-card": "credit card",
+    "atm": "Virtual account",
+    "bank-code": "Bank Code",
+    "bank-account": "Payment account"
+  },
+  "payment": {
+    "choose-payment-method": "Choose your payment method",
+    "save-default-payment-method": "Pay with credit card or virtual account and store as a preset payment method",
+    "credit-card": "credit card",
+    "credit-card-description": "Pay with credit card and store it as a preset payment method.",
+    "default-credit-card": "Preset credit card",
+    "default-credit-card-description": "Use your credit card to automatically deliver bills per month",
+    "add-credit-card": "New credit card",
+    "add-credit-card-description": "Bind your credit card automatically withholding bills, to protect your store continues",
+    "atm": "Virtual account",
+    "default-atm-description": "Pay with the virtual account and store it as a preset payment method",
+    "atm-description": "Get a virtual account payment per month",
+    "get-bank-account": "Virtual account number",
+    "cancel": "Cancel",
+    "save": "Save and pay",
+    "ok": "determine",
+    "success": "Successful payment",
+    "go-back": "Thank you for using meepshop, will jump to the management page ...",
+    "fail": "Payment Fail",
+    "fail-description": "Please try again later or contact your cardboard bank",
+    "atm-fail": "Payment account number failed",
+    "atm-fail-description": "Please try again later."
+  },
+  "header": {
+    "name": "project",
+    "description": "Detail",
+    "month": "Billing month",
+    "fee": "USD"
+  },
+  "plan-item": {
+    "name": "System monthly fee",
+    "paid": "Paid"
+  },
+  "data-item": {
+    "name": "flow",
+    "used": "General use",
+    "free": "free",
+    "over": "Overcharge",
+    "fee": "More than free traffic charge price",
+    "daily-usage": "Daily use",
+    "no-data-fee": "Free flow rate"
+  },
+  "order-item": {
+    "name": "Order transaction fee",
+    "count": "Orders",
+    "sum": "The total amount of orders",
+    "fee": "Effective order transaction fee",
+    "details": "N number details"
+  },
+  "extension-item": {
+    "name": "Expand function",
+    "free": "Free"
+  },
+  "edm-item": {
+    "name": "Newsletter",
+    "count": "Send quantity",
+    "fee": "Calculated according to the number of uses, each"
+  },
+  "point-reminder-item": {
+    "name": "Shopping notification letter",
+    "count": "Send quantity",
+    "fee": "Calculated according to the number of uses, each"
+  },
+  "total": {
+    "usd-rate": "Breakfast exchange rate",
+    "rate-description": "This exchange rate is the average interest rate of the payment time, does not contain any addition",
+    "fee": "total",
+    "locale-fee": "Actual payment amount"
+  }
+}

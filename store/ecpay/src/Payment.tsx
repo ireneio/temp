@@ -63,7 +63,6 @@ export default React.memo(({ viewer, setPaymentInfo }: PropsType) => {
           src={ENV === 'production' ? '/ecpay2.js' : '/ecpay2-stage.js'}
         />
       </Head>
-      <script src={ENV === 'production' ? '/ecpay2.js' : '/ecpay2-stage.js'} />
 
       <Modal
         className={styles.modal}

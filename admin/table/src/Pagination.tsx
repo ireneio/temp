@@ -57,18 +57,20 @@ export default React.memo(
                 : () => onChange(current + 1, pageSize)
             }
           />
-          <Select
-            className={styles.pageSize}
-            value={pageSize}
-            onChange={(newPageSize: number) => onChange(current, newPageSize)}
-          >
-            {pageSizeOptions.map((value: string) => (
-              <Option key={value} value={Number(value)}>
-                {value}
-                {t('page-size')}
-              </Option>
-            ))}
-          </Select>
+          {pageSizeOptions.length === 0 ? null : (
+            <Select
+              className={styles.pageSize}
+              value={pageSize}
+              onChange={(newPageSize: number) => onChange(current, newPageSize)}
+            >
+              {pageSizeOptions.map((value: string) => (
+                <Option key={value} value={Number(value)}>
+                  {value}
+                  {t('page-size')}
+                </Option>
+              ))}
+            </Select>
+          )}
         </div>
       </div>
     );

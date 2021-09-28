@@ -1,0 +1,33 @@
+{
+  "title": "Penagihan dan Pembayaran",
+  "description": "Tagihan bulanan tersedia pada pukul 12:00 siang (GMT + 8) pada siang (GMT + 8)",
+  "email-to": "Jika ada masalah akun, silakan kirim email ke tilling@meepshop.com",
+  "payment-setting": "Pengaturan pembayaran",
+  "empty": "Tidak ada tagihan",
+  "bill-month": "Satu bulan",
+  "fee-usd": "Jumlah total USD.",
+  "fee-twd": "Jumlah Hutang Twd.",
+  "payment-status": "status pembayaran",
+  "unpaid": "belum dibayar",
+  "paid": "Dibayar",
+  "no-need-to-pay": "Tidak perlu membayar",
+  "alert": {
+    "go-to-pay": "Pergi ke Pembayaran",
+    "closed": {
+      "0": "Anda memiliki tagihan untuk pembayaran yang sudah lewat waktu",
+      "1": "Kami telah menutup sementara toko Anda."
+    },
+    "unpaid": {
+      "0": "Anda memiliki tagihan belum dibayar",
+      "1": "Ingatkan Anda bahwa jika Anda belum membayar terlambat, toko akan ditutup, silakan lengkapi pembayaran sesegera mungkin."
+    },
+    "fail": {
+      "0": "Anda memiliki kegagalan tombol penagihan otomatis",
+      "1": "Ingatkan Anda bahwa jika Anda belum membayar terlambat, toko akan ditutup, silakan coba bayar kembali."
+    },
+    "invoice": {
+      "0": "Silakan lengkapi informasi faktur Anda sehingga kami telah berhasil membuka faktur kepada Anda.",
+      "1": "Pergi ke pengaturan penyelesaian"
+    }
+  }
+}

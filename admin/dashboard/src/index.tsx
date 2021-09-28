@@ -5,8 +5,12 @@ import { NextPage } from 'next';
 import React, { useContext, useEffect } from 'react';
 import { filter } from 'graphql-anywhere';
 import { useQuery } from '@apollo/react-hooks';
-import { LoadingOutlined, WarningFilled } from '@ant-design/icons';
-import { Spin } from 'antd';
+import {
+  LoadingOutlined,
+  WarningOutlined,
+  ExclamationCircleOutlined,
+} from '@ant-design/icons';
+import { Spin, Alert } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { AdTrackContext } from '@admin/ad-track';
@@ -55,6 +59,10 @@ const Dashboard: NextPage<PropsType> = React.memo(
     const isUnpaidBillsDisplayed =
       viewer.role === 'MERCHANT' &&
       (viewer.store?.unpaidBills?.totalCount || 0) > 0;
+
+    const paymentStatus =
+      viewer?.store?.bills?.edges?.[0]?.node?.payment?.status;
+
     const {
       pendingOrder = null,
       notShipped = null,
@@ -77,22 +85,29 @@ const Dashboard: NextPage<PropsType> = React.memo(
               viewer.store?.setting,
             )}
           />
-          {isUnpaidBillsDisplayed ? (
-            <div className={styles.payment}>
-              <div className={styles.text}>
-                <WarningFilled className={styles.icon} />
-                <div>
-                  <span className={styles.bold}>{t('payment-dealine')}</span>
-                  <span>{t('payment-text')}</span>
-                </div>
-              </div>
-              <Link href="/bill-payment">
-                <a href="/bill-payment" className={styles.link}>
-                  {t('payment-link')}
-                </a>
-              </Link>
-            </div>
-          ) : null}
+
+          {!isUnpaidBillsDisplayed ? null : (
+            <Alert
+              message={
+                <>
+                  {paymentStatus === 'FAIL' ? t('bill.fail') : t('bill.unpaid')}
+                  <Link href="/bill-payment">
+                    <span>{t('bill.view-bill')}</span>
+                  </Link>
+                </>
+              }
+              type={paymentStatus === 'FAIL' ? 'error' : 'warning'}
+              icon={
+                paymentStatus === 'FAIL' ? (
+                  <WarningOutlined />
+                ) : (
+                  <ExclamationCircleOutlined />
+                )
+              }
+              showIcon
+            />
+          )}
+
           <div className={styles.events}>
             <div>
               <span>{t('pending-order')}</span>

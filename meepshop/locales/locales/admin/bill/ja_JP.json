@@ -1,0 +1,88 @@
+{
+  "title": "請求する",
+  "other-payment-methods": "他の方法での支払い",
+  "immediate-payment": "即納",
+  "get-bank-account": "仮想アカウントを入手してください",
+  "payment-status": {
+    "noNeedToPay": "支払う必要はありません",
+    "unpaid": "まだ支払われていません",
+    "paid": "払わない"
+  },
+  "info": {
+    "payment-method": "現在の支払い方法",
+    "payment-fee": "支払金額",
+    "credit-card": "クレジットカード",
+    "atm": "仮想アカウント",
+    "bank-code": "金融機関コード",
+    "bank-account": "支払い口座"
+  },
+  "payment": {
+    "choose-payment-method": "お支払方法を選択してください",
+    "save-default-payment-method": "プリセット支払方法としてクレジットカードまたは仮想アカウントで支払う",
+    "credit-card": "クレジットカード",
+    "credit-card-description": "クレジットカードで支払い、プリセット支払方法として保存します。",
+    "default-credit-card": "プリセットクレジットカード",
+    "default-credit-card-description": "あなたのクレジットカードを使って自動的に月額請求書を配達する",
+    "add-credit-card": "新しいクレジットカード",
+    "add-credit-card-description": "あなたの店を保護するために、あなたのクレジットカードを自動的に源泉徴収する請求書を縛ります",
+    "atm": "仮想アカウント",
+    "default-atm-description": "仮想アカウントで支払い、プリセット支払方法として保存する",
+    "atm-description": "月あたりの仮想アカウントの支払いを取得します",
+    "get-bank-account": "仮想アカウント番号",
+    "cancel": "キャンセル",
+    "save": "保存して払う",
+    "ok": "決定",
+    "success": "成功した支払い",
+    "go-back": "MeepShopを使っていただきありがとうございます、管理ページにジャンプします...",
+    "fail": "支払いの失敗",
+    "fail-description": "後でもう一度やり直したり、段ボールバンクに連絡してください",
+    "atm-fail": "支払い口座番号に失敗しました",
+    "atm-fail-description": "後でもう一度やり直してください。"
+  },
+  "header": {
+    "name": "事業",
+    "description": "詳細",
+    "month": "請求月",
+    "fee": "米ドル"
+  },
+  "plan-item": {
+    "name": "システム月額料金",
+    "paid": "払わない"
+  },
+  "data-item": {
+    "name": "フロー",
+    "used": "一般的な用途",
+    "free": "自由",
+    "over": "過充電",
+    "fee": "無料の交通費用価格以上",
+    "daily-usage": "日常的に使用",
+    "no-data-fee": "フリーフローレート"
+  },
+  "order-item": {
+    "name": "注文取引料",
+    "count": "命令",
+    "sum": "受注料の総額",
+    "fee": "有効な注文取引料",
+    "details": "n個の詳細"
+  },
+  "extension-item": {
+    "name": "機能を展開します",
+    "free": "無料"
+  },
+  "edm-item": {
+    "name": "ニュースレター",
+    "count": "数量を送信します",
+    "fee": "使用数に応じて計算されます"
+  },
+  "point-reminder-item": {
+    "name": "ショッピング通知レター",
+    "count": "数量を送信します",
+    "fee": "使用数に応じて計算されます"
+  },
+  "total": {
+    "usd-rate": "朝食の為替レート",
+    "rate-description": "この為替レートは支払い時間の平均金利で、追加は含まれていません。",
+    "fee": "合計",
+    "locale-fee": "実際の支払い金額"
+  }
+}

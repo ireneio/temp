@@ -1,0 +1,33 @@
+{
+  "title": "Billing and payment",
+  "description": "The monthly bill is available at 12:00 noon (GMT + 8) at noon (GMT + 8)",
+  "email-to": "If there is an account issue, please email to Billing@meepshop.com",
+  "payment-setting": "Payment setting",
+  "empty": "No billing",
+  "bill-month": "Single month",
+  "fee-usd": "Total amount USD",
+  "fee-twd": "Payable amount TWD",
+  "payment-status": "payment status",
+  "unpaid": "not paid yet",
+  "paid": "Paid",
+  "no-need-to-pay": "No need to pay",
+  "alert": {
+    "go-to-pay": "Go to payment",
+    "closed": {
+      "0": "You have a bill for overdue payment",
+      "1": "We have temporarily close your store."
+    },
+    "unpaid": {
+      "0": "You have bills have not been paid",
+      "1": "Remind you that if you have not paid overdue, the store will be closed, please complete the payment as soon as possible."
+    },
+    "fail": {
+      "0": "You have a billing automatic button failure",
+      "1": "Remind you that if you have not paid overdue, the store will be closed, please try to pay back."
+    },
+    "invoice": {
+      "0": "Please complete your invoice information so that we have successfully opened an invoice to you.",
+      "1": "Go to the completion setting"
+    }
+  }
+}

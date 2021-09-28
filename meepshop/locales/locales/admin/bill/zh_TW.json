@@ -1,0 +1,88 @@
+{
+  "title": "帳單明細",
+  "other-payment-methods": "其他方式付款",
+  "immediate-payment": "立即付款",
+  "get-bank-account": "取得虛擬帳號",
+  "payment-status": {
+    "noNeedToPay": "無需付款",
+    "unpaid": "尚未付款",
+    "paid": "已付款"
+  },
+  "info": {
+    "payment-method": "本期付款方式",
+    "payment-fee": "付款金額",
+    "credit-card": "信用卡",
+    "atm": "虛擬帳號",
+    "bank-code": "銀行代碼",
+    "bank-account": "繳費帳號"
+  },
+  "payment": {
+    "choose-payment-method": "選擇您的付款方式",
+    "save-default-payment-method": "使用信用卡或虛擬帳號進行付款，並儲存為預設付款方式",
+    "credit-card": "信用卡",
+    "credit-card-description": "使用信用卡進行付款，並儲存為預設付款方式。若您已有儲存之信用卡，新增信用卡將會取代原先卡片。",
+    "default-credit-card": "預設信用卡",
+    "default-credit-card-description": "使用您已綁定的信用卡每月自動扣繳帳單",
+    "add-credit-card": "新增信用卡",
+    "add-credit-card-description": "綁定您的信用卡每月自動扣繳帳單，保障您的商店延續",
+    "atm": "虛擬帳號",
+    "default-atm-description": "使用虛擬帳號進行付款，並儲存為預設付款方式",
+    "atm-description": "每月於帳單取得虛擬帳號繳款",
+    "get-bank-account": "虛擬帳號取號",
+    "cancel": "取消",
+    "save": "儲存並付款",
+    "ok": "確定",
+    "success": "付款成功",
+    "go-back": "感謝您使用 meepShop，即將跳轉至管理頁面 ...",
+    "fail": "付款失敗",
+    "fail-description": "請您稍後再試或與您的發卡銀行聯繫",
+    "atm-fail": "繳費帳號取號失敗",
+    "atm-fail-description": "請您稍後再試。若再次取號失敗，請與我們聯繫。客服專線：(02)2925-8922"
+  },
+  "header": {
+    "name": "項目",
+    "description": "明細",
+    "month": "計費月份",
+    "fee": "小計 USD"
+  },
+  "plan-item": {
+    "name": "系統月租費",
+    "paid": "已付款"
+  },
+  "data-item": {
+    "name": "流量",
+    "used": "總使用",
+    "free": "免費",
+    "over": "超量收費",
+    "fee": "超過免費流量收費價格",
+    "daily-usage": "每日用量",
+    "no-data-fee": "免流量費"
+  },
+  "order-item": {
+    "name": "訂單成交手續費",
+    "count": "訂單筆數",
+    "sum": "訂單總金額",
+    "fee": "有效訂單成交手續費",
+    "details": "筆數詳情"
+  },
+  "extension-item": {
+    "name": "擴充功能",
+    "free": "免費期間"
+  },
+  "edm-item": {
+    "name": "電子報",
+    "count": "寄送數量",
+    "fee": "依照使用數量計算，每封"
+  },
+  "point-reminder-item": {
+    "name": "購物金通知信",
+    "count": "寄送數量",
+    "fee": "依照使用數量計算，每封"
+  },
+  "total": {
+    "usd-rate": "本期美金匯率",
+    "rate-description": "本匯率為出帳時間之市場平均利率，不包含任何加成",
+    "fee": "總計",
+    "locale-fee": "實際付款金額"
+  }
+}

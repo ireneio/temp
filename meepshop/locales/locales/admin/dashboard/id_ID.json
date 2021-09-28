@@ -1,7 +1,4 @@
 {
-  "payment-dealine": "Silakan lengkapi pembayaran pada tanggal 6 bulan sebelum pukul 12:00 siang (GMT + 8).",
-  "payment-text": "Dalam hal batas waktu pembayaran jatuh pada hari libur, pembayaran harus dilakukan pada hari kerja berikutnya. Jika ada pembayaran yang terlambat, sistem akan menutup bagian depan / belakang toko Anda.",
-  "payment-link": "Periksa tagihan dan pembayaran",
   "welcome": "Selamat datang di meepShop Platform Toko Online",
   "meepshop": "platform toko online meepShop",
   "welcome-back": "Halo! Selamat datang kembali {{name}}",
@@ -48,6 +45,11 @@
         "2": "Logistik khusus"
       }
     }
+  },
+  "bill": {
+    "view-bill": "Lihat Bill.",
+    "unpaid": "Ingatkan Anda Bulan ini, silakan lengkapi pembayaran sebelum pukul 12:00 NOON (GMT + 8), jika toko akan ditutup jika toko akan ditutup.",
+    "fail": "RUU bulan ini ditahan secara otomatis, silakan pulihkan sebelum 12:00 siang (GMT + 8) pada siang hari, jika toko akan ditutup jika toko akan ditutup."
   },
   "pending-order": "Pesanan yang belum diproses",
   "not-shipped": "belum dikirim",

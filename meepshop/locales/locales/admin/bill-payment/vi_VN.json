@@ -1,0 +1,33 @@
+{
+  "title": "Thanh toán và thanh toán",
+  "description": "Hóa đơn hàng tháng có sẵn vào lúc 12:00 trưa (GMT + 8) vào buổi trưa (GMT + 8)",
+  "email-to": "Nếu có vấn đề về tài khoản, xin vui lòng gửi email đến Billing@meepshop.com",
+  "payment-setting": "Cài đặt thanh toán",
+  "empty": "Không thanh toán",
+  "bill-month": "Tháng duy nhất",
+  "fee-usd": "Tổng số tiền USD.",
+  "fee-twd": "Số tiền phải trả TWD.",
+  "payment-status": "tình trạng thanh toán",
+  "unpaid": "chưa thanh toán",
+  "paid": "Trả",
+  "no-need-to-pay": "Không cần phải trả tiền",
+  "alert": {
+    "go-to-pay": "Đi đến thanh toán",
+    "closed": {
+      "0": "Bạn có một hóa đơn để thanh toán quá hạn",
+      "1": "Chúng tôi đã tạm thời đóng cửa hàng của bạn."
+    },
+    "unpaid": {
+      "0": "Bạn đã được thanh toán chưa được thanh toán",
+      "1": "Nhắc nhở bạn rằng nếu bạn chưa thanh toán quá hạn, cửa hàng sẽ bị đóng, vui lòng hoàn tất thanh toán càng sớm càng tốt."
+    },
+    "fail": {
+      "0": "Bạn có lỗi nút tự động thanh toán",
+      "1": "Nhắc nhở bạn rằng nếu bạn chưa thanh toán quá hạn, cửa hàng sẽ bị đóng, vui lòng thử thanh toán lại."
+    },
+    "invoice": {
+      "0": "Vui lòng điền thông tin hóa đơn của bạn để chúng tôi đã mở thành công hóa đơn cho bạn.",
+      "1": "Chuyển đến cài đặt hoàn thành"
+    }
+  }
+}

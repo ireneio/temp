@@ -1,0 +1,33 @@
+{
+  "title": "Facturación y pago",
+  "description": "La factura mensual está disponible a las 12:00 del mediodía (GMT + 8) al mediodía (GMT + 8)",
+  "email-to": "Si hay un problema de cuenta, envíe un correo electrónico a billing@meepshop.com",
+  "payment-setting": "Configuración de pago",
+  "empty": "Sin facturación",
+  "bill-month": "Un solo mes",
+  "fee-usd": "Cantidad total USD",
+  "fee-twd": "Cantidad pagaderable TWD",
+  "payment-status": "estado de pago",
+  "unpaid": "aún no pagado",
+  "paid": "Pagado",
+  "no-need-to-pay": "No hay necesidad de pagar",
+  "alert": {
+    "go-to-pay": "Ir al pago",
+    "closed": {
+      "0": "Tienes una factura para el pago vencido",
+      "1": "Hemos cerrado temporalmente su tienda."
+    },
+    "unpaid": {
+      "0": "Tienes facturas no se han pagado",
+      "1": "Recuérdete que si no ha pagado vencido, la tienda se cerrará, complete el pago lo antes posible."
+    },
+    "fail": {
+      "0": "Tienes un fallo de botón automático de facturación.",
+      "1": "Recuérdete que si no ha pagado vencido, la tienda se cerrará, intente pagar."
+    },
+    "invoice": {
+      "0": "Complete su información de factura para que le hayamos abierto con éxito una factura.",
+      "1": "Ir a la configuración de finalización"
+    }
+  }
+}

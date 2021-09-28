@@ -1,0 +1,88 @@
+{
+  "title": "Facturación",
+  "other-payment-methods": "Otros formas de pago",
+  "immediate-payment": "Pago inmediato",
+  "get-bank-account": "Obtenga una cuenta virtual",
+  "payment-status": {
+    "noNeedToPay": "No hay necesidad de pagar",
+    "unpaid": "aún no pagado",
+    "paid": "Pagado"
+  },
+  "info": {
+    "payment-method": "Método de pago actual",
+    "payment-fee": "Monto del pago",
+    "credit-card": "tarjeta de crédito",
+    "atm": "Cuenta virtual",
+    "bank-code": "Codigo bancario",
+    "bank-account": "Cuenta de pago"
+  },
+  "payment": {
+    "choose-payment-method": "Escoja su método de pago",
+    "save-default-payment-method": "Pague con tarjeta de crédito o cuenta virtual y almacene como método de pago preestablecido",
+    "credit-card": "tarjeta de crédito",
+    "credit-card-description": "Pague con tarjeta de crédito y guárdelo como un método de pago preestablecido.",
+    "default-credit-card": "Tarjeta de crédito predefinida",
+    "default-credit-card-description": "Use su tarjeta de crédito para entregar automáticamente las facturas al mes",
+    "add-credit-card": "Nueva tarjeta de crédito",
+    "add-credit-card-description": "Vincula su tarjeta de crédito que retenga automáticamente las facturas, para proteger su tienda continúa",
+    "atm": "Cuenta virtual",
+    "default-atm-description": "Pague con la cuenta virtual y guárdela como un método de pago preestablecido",
+    "atm-description": "Obtenga un pago de cuenta virtual por mes",
+    "get-bank-account": "Número de cuenta virtual",
+    "cancel": "Cancelar",
+    "save": "Guardar y pagar",
+    "ok": "determinar",
+    "success": "Pago exitoso",
+    "go-back": "Gracias por usar Meepshop, saltará a la página de administración ...",
+    "fail": "Pago fallido",
+    "fail-description": "Por favor, intente nuevamente más tarde o póngase en contacto con su banco de cartón",
+    "atm-fail": "Número de cuenta de pago fallido",
+    "atm-fail-description": "Por favor, inténtelo de nuevo más tarde."
+  },
+  "header": {
+    "name": "proyecto",
+    "description": "Detalle",
+    "month": "Mes de facturación",
+    "fee": "Dólar estadounidense"
+  },
+  "plan-item": {
+    "name": "Tarifa mensual del sistema",
+    "paid": "Pagado"
+  },
+  "data-item": {
+    "name": "flujo",
+    "used": "Uso general",
+    "free": "libre",
+    "over": "Sobrecargar",
+    "fee": "Más que el precio de carga de tráfico gratis",
+    "daily-usage": "Uso diario",
+    "no-data-fee": "Caudal libre"
+  },
+  "order-item": {
+    "name": "Tarifa de transacción de pedido",
+    "count": "Pedidos",
+    "sum": "La cantidad total de pedidos",
+    "fee": "Tarifa de transacción de orden efectiva",
+    "details": "N Número Detalles"
+  },
+  "extension-item": {
+    "name": "Expandir la función",
+    "free": "Libre"
+  },
+  "edm-item": {
+    "name": "Boletin informativo",
+    "count": "Enviar cantidad",
+    "fee": "Calculado de acuerdo con el número de usos, cada uno"
+  },
+  "point-reminder-item": {
+    "name": "Carta de notificación de compras",
+    "count": "Enviar cantidad",
+    "fee": "Calculado de acuerdo con el número de usos, cada uno"
+  },
+  "total": {
+    "usd-rate": "Tipo de cambio de desayuno",
+    "rate-description": "Este tipo de cambio es la tasa de interés promedio del tiempo de pago, no contiene ninguna adición.",
+    "fee": "total",
+    "locale-fee": "Cantidad de pago real"
+  }
+}

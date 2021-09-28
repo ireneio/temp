@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "name": "@admin/bill",
+  "description": "Bill page for admin",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.79.12",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/header": "^0.80.52",
+    "@admin/tap-pay": "^0.80.52",
+    "@meepshop/context": "^0.80.52",
+    "@meepshop/hooks": "^0.80.52",
+    "@meepshop/link": "^0.80.52",
+    "@meepshop/locales": "^0.80.52",
+    "date-fns": "^2.15.0"
+  },
+  "keywords": ["admin", "bill"]
+}

@@ -1,7 +1,4 @@
 {
-  "payment-dealine": "Vui lòng hoàn tất thanh toán vào ngày 6 của tháng trước 12:00 trưa (GMT + 8).",
-  "payment-text": "Trong trường hợp thời hạn thanh toán rơi vào ngày lễ, thanh toán sẽ được thực hiện vào ngày làm việc tiếp theo. Nếu có thanh toán quá hạn, hệ thống sẽ đóng mặt trước / mặt sau của cửa hàng của bạn.",
-  "payment-link": "Kiểm tra hóa đơn và thanh toán",
   "welcome": "Chào mừng bạn đến với nền tảng cửa hàng trực tuyến meepShop",
   "meepshop": "nền tảng cửa hàng trực tuyến meepShop",
   "welcome-back": "Xin chào! Chào mừng trở lại {{name}}",
@@ -48,6 +45,11 @@
         "2": "Hậu cần tùy chỉnh"
       }
     }
+  },
+  "bill": {
+    "view-bill": "Xem hóa đơn.",
+    "unpaid": "Nhắc nhở bạn về hóa đơn tháng này, vui lòng hoàn tất thanh toán trước 12:00 trưa (GMT + 8), nếu cửa hàng sẽ bị đóng nếu cửa hàng sẽ bị đóng.",
+    "fail": "Bill tháng này được tự động bị giam giữ, vui lòng khôi phục trước 12:00 trưa (GMT + 8) vào buổi trưa, nếu cửa hàng sẽ bị đóng nếu cửa hàng sẽ bị đóng."
   },
   "pending-order": "Đơn hàng chưa xử lý",
   "not-shipped": "Chưa được vận chuyển",

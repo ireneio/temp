@@ -1,0 +1,47 @@
+.root {
+  width: 100%;
+  margin: 8px 0px 24px;
+  padding: 32px 24px;
+  background-color: #ffffff;
+
+  > :global(.ant-row) {
+    border-top: 1px solid #e8e8e8;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    line-height: 22px;
+    display: flex;
+
+    &:nth-child(2) {
+      color: #363b4a;
+      font-weight: 500;
+    }
+
+    &:nth-last-child(2) {
+      border-bottom: 1px solid #e8e8e8;
+      margin-bottom: 24px;
+    }
+
+    > :global(.ant-col) {
+      padding: 16px;
+    }
+
+    > :global(.ant-col):nth-child(1) {
+      width: 26%;
+    }
+
+    > :global(.ant-col):nth-child(2) {
+      width: 38%;
+    }
+
+    > :global(.ant-col):nth-child(3) {
+      width: 18%;
+      text-align: center;
+    }
+
+    > :global(.ant-col):nth-child(4) {
+      width: 18%;
+      text-align: right;
+      color: rgba(0, 0, 0, 0.85);
+    }
+  }
+}

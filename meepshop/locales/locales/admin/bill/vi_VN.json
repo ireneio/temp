@@ -1,0 +1,88 @@
+{
+  "title": "Thanh toán",
+  "other-payment-methods": "Cách khác thanh toán",
+  "immediate-payment": "Thanh toán ngay lập tức",
+  "get-bank-account": "Nhận một tài khoản ảo",
+  "payment-status": {
+    "noNeedToPay": "Không cần phải trả tiền",
+    "unpaid": "chưa thanh toán",
+    "paid": "Trả"
+  },
+  "info": {
+    "payment-method": "Phương thức thanh toán hiện tại",
+    "payment-fee": "Số tiền thanh toán",
+    "credit-card": "thẻ tín dụng",
+    "atm": "Tài khoản ảo",
+    "bank-code": "Mã ngân hàng",
+    "bank-account": "Tài khoản thanh toán"
+  },
+  "payment": {
+    "choose-payment-method": "Chọn phương thức thanh toán của bạn",
+    "save-default-payment-method": "Thanh toán bằng thẻ tín dụng hoặc tài khoản ảo và lưu trữ dưới dạng phương thức thanh toán cài sẵn",
+    "credit-card": "thẻ tín dụng",
+    "credit-card-description": "Thanh toán bằng thẻ tín dụng và lưu trữ nó như một phương thức thanh toán cài sẵn.",
+    "default-credit-card": "Thẻ tín dụng đặt trước",
+    "default-credit-card-description": "Sử dụng thẻ tín dụng của bạn để tự động cung cấp hóa đơn mỗi tháng",
+    "add-credit-card": "Thẻ tín dụng mới",
+    "add-credit-card-description": "Liên kết thẻ tín dụng của bạn tự động giữ lại hóa đơn, để bảo vệ cửa hàng của bạn tiếp tục",
+    "atm": "Tài khoản ảo",
+    "default-atm-description": "Thanh toán bằng tài khoản ảo và lưu trữ nó như một phương thức thanh toán cài sẵn",
+    "atm-description": "Nhận một khoản thanh toán tài khoản ảo mỗi tháng",
+    "get-bank-account": "Số tài khoản ảo",
+    "cancel": "Hủy bỏ",
+    "save": "Lưu và thanh toán",
+    "ok": "mục đích",
+    "success": "Thanh toán thành công",
+    "go-back": "Cảm ơn bạn đã sử dụng meepshop, sẽ chuyển đến trang quản lý ...",
+    "fail": "Thanh toán thất bại",
+    "fail-description": "Vui lòng thử lại sau hoặc liên hệ với ngân hàng bìa cứng của bạn",
+    "atm-fail": "Số tài khoản thanh toán không thành công",
+    "atm-fail-description": "Vui lòng thử lại sau."
+  },
+  "header": {
+    "name": "dự án",
+    "description": "Chi tiết",
+    "month": "Tháng thanh toán",
+    "fee": "đô la Mỹ"
+  },
+  "plan-item": {
+    "name": "Phí hệ thống hàng tháng",
+    "paid": "Trả"
+  },
+  "data-item": {
+    "name": "lưu lượng",
+    "used": "Sử dụng chung",
+    "free": "miễn phí",
+    "over": "Quá mức",
+    "fee": "Hơn cả phí giao thông miễn phí Giá",
+    "daily-usage": "Sử dụng hàng ngày",
+    "no-data-fee": "Tốc độ dòng chảy miễn phí"
+  },
+  "order-item": {
+    "name": "Đặt hàng phí giao dịch",
+    "count": "Đơn đặt hàng",
+    "sum": "Tổng số đơn đặt hàng",
+    "fee": "Phí giao dịch đơn hàng hiệu quả",
+    "details": "Chi tiết số n"
+  },
+  "extension-item": {
+    "name": "Mở rộng chức năng.",
+    "free": "Miễn phí"
+  },
+  "edm-item": {
+    "name": "Bản tin",
+    "count": "Gửi số lượng.",
+    "fee": "Tính theo số lượng sử dụng, mỗi cách"
+  },
+  "point-reminder-item": {
+    "name": "Thư thông báo mua sắm",
+    "count": "Gửi số lượng.",
+    "fee": "Tính theo số lượng sử dụng, mỗi cách"
+  },
+  "total": {
+    "usd-rate": "Tỷ giá hối đoa",
+    "rate-description": "Tỷ giá hối đoái này là lãi suất trung bình của thời gian thanh toán, không chứa bất kỳ sự bổ sung nào",
+    "fee": "toàn bộ",
+    "locale-fee": "Số tiền thanh toán thực tế"
+  }
+}

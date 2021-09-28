@@ -1,0 +1,88 @@
+{
+  "title": "Penagihan",
+  "other-payment-methods": "Cara lain pembayaran",
+  "immediate-payment": "Pembayaran langsung",
+  "get-bank-account": "Dapatkan Akun Virtual",
+  "payment-status": {
+    "noNeedToPay": "Tidak perlu membayar",
+    "unpaid": "belum dibayar",
+    "paid": "Dibayar"
+  },
+  "info": {
+    "payment-method": "Metode Pembayaran Saat Ini",
+    "payment-fee": "Jumlah pembayaran",
+    "credit-card": "kartu kredit",
+    "atm": "Akun virtual",
+    "bank-code": "Kode Bank",
+    "bank-account": "Akun pembayaran"
+  },
+  "payment": {
+    "choose-payment-method": "Pilih metode pembayaran Anda",
+    "save-default-payment-method": "Bayar dengan kartu kredit atau akun virtual dan simpan sebagai metode pembayaran yang telah ditentukan",
+    "credit-card": "kartu kredit",
+    "credit-card-description": "Bayar dengan kartu kredit dan simpan sebagai metode pembayaran yang telah ditentukan.",
+    "default-credit-card": "Kartu Kredit Preset",
+    "default-credit-card-description": "Gunakan kartu kredit Anda untuk secara otomatis memberikan tagihan per bulan",
+    "add-credit-card": "Kartu Kredit Baru",
+    "add-credit-card-description": "BIND kartu kredit Anda secara otomatis pemotongan tagihan, untuk melindungi toko Anda berlanjut",
+    "atm": "Akun virtual",
+    "default-atm-description": "Bayar dengan akun virtual dan simpan sebagai metode pembayaran yang telah ditentukan",
+    "atm-description": "Dapatkan Pembayaran Akun Virtual per Bulan",
+    "get-bank-account": "Nomor Akun Virtual",
+    "cancel": "Membatalkan",
+    "save": "Simpan dan bayar",
+    "ok": "menentukan",
+    "success": "Pembayaran yang berhasil",
+    "go-back": "Terima kasih telah menggunakan Meepshop, akan melompat ke halaman manajemen ...",
+    "fail": "Pembayaran gagal",
+    "fail-description": "Silakan coba lagi nanti atau hubungi kardus Anda",
+    "atm-fail": "Nomor Akun Pembayaran gagal",
+    "atm-fail-description": "Silakan coba lagi nanti."
+  },
+  "header": {
+    "name": "proyek",
+    "description": "Detil",
+    "month": "Bulan Penagihan",
+    "fee": "USD"
+  },
+  "plan-item": {
+    "name": "Sistem Bulanan Sistem",
+    "paid": "Dibayar"
+  },
+  "data-item": {
+    "name": "mengalir",
+    "used": "Penggunaan umum",
+    "free": "Gratis",
+    "over": "Menjual terlalu mahal",
+    "fee": "Lebih dari harga biaya lalu lintas gratis",
+    "daily-usage": "Penggunaan sehari-hari",
+    "no-data-fee": "Laju aliran gratis"
+  },
+  "order-item": {
+    "name": "Memesan biaya transaksi",
+    "count": "Pesanan",
+    "sum": "Jumlah total pesanan",
+    "fee": "Biaya Transaksi Pesanan Efektif",
+    "details": "N number detail."
+  },
+  "extension-item": {
+    "name": "Perluas Fungsi",
+    "free": "Gratis"
+  },
+  "edm-item": {
+    "name": "Newsletter",
+    "count": "Kirim kuantitas",
+    "fee": "Dihitung sesuai dengan jumlah penggunaan, masing-masing"
+  },
+  "point-reminder-item": {
+    "name": "Surat Pemberitahuan Belanja",
+    "count": "Kirim kuantitas",
+    "fee": "Dihitung sesuai dengan jumlah penggunaan, masing-masing"
+  },
+  "total": {
+    "usd-rate": "Nilai Tukar Sarapan",
+    "rate-description": "Nilai tukar ini adalah tingkat bunga rata-rata waktu pembayaran, tidak mengandung tambahan",
+    "fee": "total",
+    "locale-fee": "Jumlah pembayaran aktual"
+  }
+}

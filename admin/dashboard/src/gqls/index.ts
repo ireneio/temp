@@ -41,6 +41,16 @@ export const getDashboard = gql`
         unpaidBills {
           totalCount
         }
+        bills(first: 1) {
+          edges {
+            node {
+              id
+              payment {
+                status
+              }
+            }
+          }
+        }
         setting {
           ...tutorialSettingObjectTypeFragment
         }

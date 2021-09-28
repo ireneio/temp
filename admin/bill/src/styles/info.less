@@ -1,0 +1,82 @@
+.root {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  > div:first-child {
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 30px;
+    line-height: 38px;
+    display: flex;
+    align-items: center;
+
+    > div:first-child {
+      font-weight: 500;
+    }
+  }
+
+  > div:last-child {
+    display: flex;
+    align-items: center;
+  }
+
+  :global(.ant-btn-primary) {
+    margin-left: 16px;
+    background-color: #006C91;
+    border-color: #006C91;
+  }
+}
+
+.paymentStatue {
+  height: 26px;
+  border-radius: 14px;
+  padding: 2px 10px;
+  margin-left: 12px;
+  font-size: 12px;
+  line-height: 22px;
+
+  &.noNeedToPay {
+    background-color: #E6EBF1;
+    color: #626C82;
+  }
+
+  &.paid {
+    background-color: #E8E8E8;
+    color: rgba(0,0,0,0.45);
+  }
+
+  &.unpaid {
+    background-color: #FFECB3;
+    color: #F9A825;
+  }
+}
+
+
+.paymentMethod {
+  height: 171px;
+  border-top: 1px solid #e8e8e8;
+  padding: 24px 16px 48px;
+  display: flex;
+  justify-content: space-between;
+
+  > div {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 14px;
+    line-height: 21px;
+
+    > div:nth-child(1) {
+      color: #363b4a;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    > div:nth-child(2) {
+      color: rgba(0, 0, 0, 0.65);
+      margin-bottom: 4px;
+    }
+  }
+
+  > div:last-child {
+    text-align: right;
+  }
+}

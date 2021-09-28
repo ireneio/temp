@@ -38,7 +38,7 @@ export default ({
 
     if (!ecpay && countdown !== 0)
       setEcpayTimeout.current = setTimeout(() => {
-        setEcpay(window.ECPay);
+        if (window.ECP) setEcpay(new window.ECP());
         setCountdown(countdown - 1);
       }, 800);
 

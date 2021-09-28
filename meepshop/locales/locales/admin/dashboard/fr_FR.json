@@ -1,7 +1,4 @@
 {
-  "payment-dealine": "Veuillez effectuer le paiement le 6 du mois avant 12h00 (GMT + 8).",
-  "payment-text": "Si le délai de paiement tombe un jour férié, les paiements doivent être effectués le jour ouvrable suivant. En cas de retard de paiement, le système fermera l'extrémité avant / arrière de votre magasin.",
-  "payment-link": "Vérifier les factures et le paiement",
   "welcome": "Bienvenue sur la plateforme de boutique en ligne meepShop",
   "meepshop": "plateforme de boutique en ligne meepShop",
   "welcome-back": "salut! Bienvenue à nouveau {{name}}",
@@ -48,6 +45,11 @@
         "2": "Logistique sur mesure"
       }
     }
+  },
+  "bill": {
+    "view-bill": "Vue",
+    "unpaid": "Rappelez-vous la facture de ce mois-ci, veuillez compléter le paiement avant 12h00 (GMT + 8), si le magasin sera fermé si le magasin sera fermé.",
+    "fail": "Le projet de loi de ce mois est automatiquement détenu, veuillez restaurer avant 12h00 (GMT + 8) à midi, si le magasin sera fermé si le magasin sera fermé."
   },
   "pending-order": "Commande non traitée",
   "not-shipped": "Pas encore expédié",

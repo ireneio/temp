@@ -1,0 +1,44 @@
+.root {
+  > :global(.ant-row) {
+    display: flex;
+    flex-wrap: nowrap;
+
+    > :global(.ant-col):nth-child(1) {
+      min-width: 72px;
+    }
+
+    > :global(.ant-col):nth-child(2) {
+      min-width: 56px;
+      margin-left: 8px;
+      font-weight: 500;
+    }
+
+    > :global(.ant-col):nth-child(3) {
+      width: 100%;
+      margin: 0px 16px;
+    }
+  }
+
+  .download {
+    color: #5967c5;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+
+    :global(.anticon-download) {
+      font-size: 16px;
+      margin-right: 5px;
+    }
+  }
+
+  .rate {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 12px;
+    line-height: 20px;
+    margin-top: 4px;
+  }
+}
