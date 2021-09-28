@@ -6,7 +6,7 @@ import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 import uuid from 'uuid/v4';
 
 import { NextAppType, NextAppGetInitialPropsType } from '@meepshop/types';
-import { LoggerInfoType, loggerType } from '@meepshop/logger';
+import { LoggerInfoType } from '@meepshop/logger';
 
 import { ConfigType as initApolloConfigType } from './utils/initApollo';
 
@@ -51,7 +51,6 @@ export interface CustomCtxType<Req = {}, Res = {}> extends AppContext {
       };
       // FIXME: remove after next-store remove express
       loggerInfo: LoggerInfoType;
-      logger: loggerType;
     };
     res: Res;
   };
@@ -99,8 +98,12 @@ export const buildWithApollo = (config: initApolloConfigType) => (
             userAgent: ctx?.ctx.req.headers['user-agent'],
             url: ctx?.ctx.req.url,
           };
-    const logger = ctx?.ctx.req.logger || initialLogger(loggerInfo);
-    const client = initApollo(config, logger, undefined, ctx);
+    const client = initApollo(
+      config,
+      initialLogger(loggerInfo),
+      undefined,
+      ctx,
+    );
 
     ctx.ctx.client = client;
 
