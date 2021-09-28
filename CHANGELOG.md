@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.80.53 (2021-09-28)
+
+#### :rocket: New Feature
+
+- Other
+  - [#1702](https://github.com/meepshop/meep-lerna/pull/1702) 【重構】admin 擴充功能設定 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1458](https://github.com/meepshop/meep-lerna/pull/1458) 【重構】月租 - 後台帳單與付款 - 前端 ([@happycat6323](https://github.com/happycat6323))
+- `store`
+  - [#1737](https://github.com/meepshop/meep-lerna/pull/1737) 內部開單 - 修改 @meepshop/link ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1764](https://github.com/meepshop/meep-lerna/pull/1764) 內部開單 - logger 加入更多資訊 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1760](https://github.com/meepshop/meep-lerna/pull/1760) const { first } = variables error ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :house: Internal
+
+- `store`
+  - [#1736](https://github.com/meepshop/meep-lerna/pull/1736) 內部開單 - 移除 fetch package ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 4
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.52 (2021-09-27)
 
 #### :rocket: New Feature
