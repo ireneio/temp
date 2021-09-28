@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.54 (2021-09-28)
+
+#### :bug: Bug Fix
+
+- [#1766](https://github.com/meepshop/meep-lerna/pull/1766) (@meepshop/frontend) Hotfix logger error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#1765](https://github.com/meepshop/meep-lerna/pull/1765) 內部開單 - 將 next-store /versoin, /healthz, /log 改到 next.js api routes ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.53 (2021-09-28)
 
 #### :rocket: New Feature
