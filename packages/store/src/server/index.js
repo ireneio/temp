@@ -1,6 +1,4 @@
 const path = require('path');
-
-require('isomorphic-unfetch');
 const uuid = require('uuid/v4');
 const nextApp = require('next');
 const express = require('express');

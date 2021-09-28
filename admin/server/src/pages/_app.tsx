@@ -4,7 +4,6 @@ import { AppContext, AppInitialProps } from 'next/app';
 import { CustomCtx } from '@meepshop/utils/lib/handler';
 
 // import
-import 'isomorphic-unfetch';
 import React from 'react';
 import NextApp from 'next/app';
 import Head from 'next/head';

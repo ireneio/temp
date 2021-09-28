@@ -48,7 +48,6 @@
     "@meepshop/logger": "^0.80.50",
     "@meepshop/switch": "^0.80.50",
     "@meepshop/utils": "^0.80.52",
-    "isomorphic-unfetch": "^3.0.0",
     "ua-parser-js": "^0.7.20"
   },
   "devDependencies": {

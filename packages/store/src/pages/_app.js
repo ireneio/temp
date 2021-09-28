@@ -1,4 +1,3 @@
-import 'isomorphic-unfetch';
 import '@store/utils/styles/base.less';
 import React from 'react';
 import NextApp from 'next/app';
