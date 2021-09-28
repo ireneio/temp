@@ -46,12 +46,10 @@ export default class Sitemaps extends React.Component {
       mutation: log,
       variables: {
         input: {
-          type: 'INFO',
+          type: 'WARN',
           name: 'SITEMAPS',
           data: {
-            domain: XMeepshopDomain,
-            userAgent,
-            query,
+            message: 'sitemap error',
           },
         },
       },

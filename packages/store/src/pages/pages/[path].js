@@ -24,7 +24,7 @@ class Pages extends React.Component {
           mutation: log,
           variables: {
             input: {
-              type: 'ERROR',
+              type: 'WARN',
               name: 'PRODUCT_REDIRECT',
               data: {
                 domain: XMeepshopDomain,

@@ -30,6 +30,7 @@ export default LOG_TYPES.reduce(
             credentials: 'include',
             body: JSON.stringify({
               ...data,
+              url: `${window.location.pathname}${window.location.search}`,
               type,
             }),
           });

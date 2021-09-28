@@ -30,7 +30,6 @@ export default ({ XMeepshopDomain, url, userAgent, client }) => {
         type: 'ERROR',
         name: 'URI_PARSER',
         data: {
-          url,
           message,
           stack,
         },

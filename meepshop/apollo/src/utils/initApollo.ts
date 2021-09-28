@@ -2,6 +2,8 @@
 import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { Resolvers } from 'apollo-client/core/types';
 
+import { loggerType } from '@meepshop/logger';
+
 import { CustomCtxType } from '../index';
 import { errorFilterType } from './errorLink';
 
@@ -16,8 +18,6 @@ import { RetryLink } from 'apollo-link-retry';
 import { ApolloLink } from 'apollo-link';
 import { createNetworkStatusNotifier } from 'react-apollo-network-status';
 import getConfig from 'next/config';
-
-import initialLogger from '@meepshop/logger';
 
 // Generate by build-fragment-types
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -61,6 +61,7 @@ const create = (
     resolvers = [],
     errorFilter = Boolean,
   }: ConfigType,
+  logger: loggerType,
   initialState?: NormalizedCacheObject,
   ctx?: CustomCtxType,
 ): ApolloClient<NormalizedCacheObject> => {
@@ -70,7 +71,6 @@ const create = (
       introspectionQueryResultData: fragmentTypes,
     }),
   }).restore(initialState || {});
-  const logger = ctx?.ctx.req.logger || initialLogger();
 
   if (!initialState)
     initializeCache.forEach(initialize => initialize(cache, ctx));
@@ -130,12 +130,14 @@ export { useApolloNetworkStatus };
 
 export default (
   config: ConfigType,
+  logger: loggerType,
   initialState?: NormalizedCacheObject,
   ctx?: CustomCtxType,
 ): ApolloClient<NormalizedCacheObject> => {
-  if (typeof window === 'undefined') return create(config, initialState, ctx);
+  if (typeof window === 'undefined')
+    return create(config, logger, initialState, ctx);
 
-  if (!apolloClient) apolloClient = create(config, initialState, ctx);
+  if (!apolloClient) apolloClient = create(config, logger, initialState, ctx);
 
   return apolloClient;
 };

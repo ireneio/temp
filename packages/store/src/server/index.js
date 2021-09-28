@@ -1,6 +1,7 @@
 const path = require('path');
 
 require('isomorphic-unfetch');
+const uuid = require('uuid/v4');
 const nextApp = require('next');
 const express = require('express');
 const compression = require('compression');
@@ -10,6 +11,7 @@ const helmet = require('helmet');
 const uaParser = require('ua-parser-js');
 
 const { default: initialLogger } = require('@meepshop/logger');
+const { default: serverLogger } = require('@meepshop/logger/lib/server');
 const {
   default: loggerMiddleware,
 } = require('@meepshop/logger/lib/middleware');
@@ -36,10 +38,8 @@ const handler = routes.getRequestHandler(app);
   'SIGTERM',
   'SIGINT',
 ].forEach(eventName => {
-  const logger = initialLogger();
-
   process.on(eventName, error => {
-    logger.error({
+    serverLogger.error({
       eventName,
       message: error.message || error,
       stack: error.stack,
@@ -54,12 +54,17 @@ app.prepare().then(() => {
 
   // middleware
   server.use(async (req, res, next) => {
-    const logger = initialLogger();
+    const loggerInfo = {
+      id: uuid(),
+      host: req.headers.host,
+      userAgent: req.headers['user-agent'],
+      url: req.url,
+    };
+    const logger = initialLogger(loggerInfo);
 
+    req.loggerInfo = loggerInfo;
     req.logger = logger;
     logger.debug({
-      host: req.get('host'),
-      path: req.path,
       ip: req.ip,
       ips: req.ips,
       headers: req.headers,
@@ -178,6 +183,6 @@ app.prepare().then(() => {
 
   // listen
   server.listen(14401, () => {
-    initialLogger().info('store ready on http://localhost:14401');
+    serverLogger.info('store ready on http://localhost:14401');
   });
 });
