@@ -99,6 +99,14 @@ app.prepare().then(() => {
     await next();
   });
 
+  // FIXME: for Loadbalancer
+  server.get('/healthz', (req, res) => {
+    const { logger } = req;
+
+    logger.warn('should use /api/healthz');
+    res.status(200).end();
+  });
+
   // api
   server.post('/api/graphql', mapCookiesToHeaders, api);
   server.post('/api/landing-page/graphql', mapCookiesToHeaders, api);
