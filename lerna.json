@@ -25,7 +25,9 @@
     "meepshop/*",
     "meepshop/modules/*",
     "admin/*",
-    "store/*"
+    "admin/pages/*",
+    "store/*",
+    "store/pages/*"
   ],
   "useWorkspaces": true
 }

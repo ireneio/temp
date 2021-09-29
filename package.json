@@ -7,7 +7,9 @@
     "meepshop/*",
     "meepshop/modules/*",
     "store/*",
-    "admin/*"
+    "store/pages/*",
+    "admin/*",
+    "admin/pages/*"
   ],
   "scripts": {
     "build": "NODE_ENV=production && make babel-all && build-fragment-types && types codegen all && meep-cli locales link ./meepshop/locales/locales && lerna run prod --stream",
