@@ -1,2 +1,7 @@
+// import
+import withRedirectLog from 'utils/withRedirectLog';
+
+import OrdersPayNotify from '../orders/[orderId]/pay-notify';
+
 // definition
-export { default } from '../orders/[orderId]/pay-notify';
+export default withRedirectLog(OrdersPayNotify);

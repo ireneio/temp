@@ -1,2 +1,7 @@
+// import
+import withRedirectLog from 'utils/withRedirectLog';
+
+import OrdersExchange from '../orders/[orderId]/exchange';
+
 // definition
-export { default } from '../orders/[orderId]/exchange';
+export default withRedirectLog(OrdersExchange);

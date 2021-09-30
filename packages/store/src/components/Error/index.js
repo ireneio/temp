@@ -16,6 +16,9 @@ export default ({ error }) => {
   const client = useApolloClient();
   const { status } = error;
 
+  if (status === 'ERROR_PAGE_NOT_FOUND') return <ErrorPageNotFound />;
+  if (status === 'ERROR_PRODUCT_NOT_FOUND') return <ErrorProductNotFound />;
+
   client.mutate({
     mutation: log,
     variables: {
@@ -29,8 +32,6 @@ export default ({ error }) => {
     },
   });
 
-  if (status === 'ERROR_PAGE_NOT_FOUND') return <ErrorPageNotFound />;
-  if (status === 'ERROR_PRODUCT_NOT_FOUND') return <ErrorProductNotFound />;
   if (status === 'API_ERROR') return <ApiError />;
   if (status === 'SERVER_ERROR') return <ServerError />;
   if (status === 'SAGA_PAGES') return <ServerError />;

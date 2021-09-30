@@ -25,10 +25,9 @@ class Pages extends React.Component {
           variables: {
             input: {
               type: 'WARN',
-              name: 'PRODUCT_REDIRECT',
+              name: 'URL_REDIRECT',
               data: {
-                domain: XMeepshopDomain,
-                pId,
+                message: 'product redirect',
               },
             },
           },
