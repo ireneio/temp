@@ -70,15 +70,13 @@ export default () => {
           ...block,
           width: width || 100,
           componentWidth: componentWidth || 0,
-          widgets: !product
-            ? modifyWidgetDataInClient(widgets, router.query, page)
-            : getJoinedModule(
-                modifyWidgetDataInClient(widgets, router.query, page),
-                {
-                  query: router.query,
-                  product,
-                },
-              ),
+          widgets: getJoinedModule(
+            modifyWidgetDataInClient(widgets, router.query, page),
+            {
+              query: router.query,
+              product,
+            },
+          ),
         })),
     };
   }, [store, product, router.query]);
