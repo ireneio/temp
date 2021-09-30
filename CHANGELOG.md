@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## 0.80.55 (2021-09-30)
+
+#### :boom: Breaking Change
+
+- [#1772](https://github.com/meepshop/meep-lerna/pull/1772) 內部開單 - 搬 pages 到新位置 - store ([@happycat6323](https://github.com/happycat6323))
+- [#1770](https://github.com/meepshop/meep-lerna/pull/1770) 內部開單 - 搬 pages 到新位置 - admin ([@happycat6323](https://github.com/happycat6323))
+- [#1767](https://github.com/meepshop/meep-lerna/pull/1767) 內部開單 - 搬 pages 到新位置 - admin account-setting 和 store ecpay ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1768](https://github.com/meepshop/meep-lerna/pull/1768) 內部開單 - 修正商品列表資料問題 ([@HsuTing](https://github.com/HsuTing))
+  - [#1771](https://github.com/meepshop/meep-lerna/pull/1771) (@meepshop/next-store) Add /healthz ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#1763](https://github.com/meepshop/meep-lerna/pull/1763) 內部開單 - 在部分頁面裡面不再從 redux 拿資料 - part4 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1772](https://github.com/meepshop/meep-lerna/pull/1772) 內部開單 - 搬 pages 到新位置 - store ([@happycat6323](https://github.com/happycat6323))
+  - [#1770](https://github.com/meepshop/meep-lerna/pull/1770) 內部開單 - 搬 pages 到新位置 - admin ([@happycat6323](https://github.com/happycat6323))
+  - [#1767](https://github.com/meepshop/meep-lerna/pull/1767) 內部開單 - 搬 pages 到新位置 - admin account-setting 和 store ecpay ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.54 (2021-09-28)
 
 #### :bug: Bug Fix
