@@ -4,7 +4,7 @@
   "description": "Admin sign up",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.53",
+  "version": "0.80.55",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
