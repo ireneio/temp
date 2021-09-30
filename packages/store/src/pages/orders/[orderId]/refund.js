@@ -12,7 +12,6 @@ import * as Utils from 'utils';
 import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
 import * as Template from 'template';
-import * as Actions from 'ducks/actions';
 import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class OrderRefund extends React.Component {
@@ -20,12 +19,8 @@ class OrderRefund extends React.Component {
     const {
       XMeepshopDomain,
       userAgent,
-      store,
       query: { orderId },
     } = context;
-
-    if (typeof window === 'undefined')
-      store.dispatch(Actions.serverOthersInitial(context));
 
     return {
       orderId,

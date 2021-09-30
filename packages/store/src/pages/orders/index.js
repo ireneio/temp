@@ -8,17 +8,13 @@ import MemberOrders, { namespacesRequired } from '@store/member-orders';
 
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
-import * as Actions from 'ducks/actions';
 import * as Template from 'template';
 import MemberHeader from 'components/MemberHeader';
 import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class Orders extends React.Component {
   static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent, store } = context;
-
-    if (typeof window === 'undefined')
-      store.dispatch(Actions.serverOthersInitial(context));
+    const { XMeepshopDomain, userAgent } = context;
 
     return {
       userAgent,

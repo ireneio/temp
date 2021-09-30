@@ -10,7 +10,6 @@ import * as Utils from 'utils';
 import * as Template from 'template';
 import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
-import * as Actions from 'ducks/actions';
 import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class Order extends React.Component {
@@ -18,12 +17,8 @@ class Order extends React.Component {
     const {
       XMeepshopDomain,
       userAgent,
-      store,
       query: { orderId },
     } = context;
-
-    if (typeof window === 'undefined')
-      store.dispatch(Actions.serverOthersInitial(context));
 
     return {
       orderId,
