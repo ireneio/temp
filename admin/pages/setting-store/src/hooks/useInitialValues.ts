@@ -1,7 +1,7 @@
 // typescript import
 import { FormInstance } from 'antd/lib/form';
 
-import { ImageNodeType } from '@admin/gallery';
+import { ImageNodeType } from '@admin/media-gallery';
 
 // import
 import { useMemo, useRef, useEffect } from 'react';

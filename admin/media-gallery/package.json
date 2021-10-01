@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@admin/gallery",
+  "name": "@admin/media-gallery",
   "description": "Use to select the images for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
@@ -12,5 +12,5 @@
     "@meepshop/locales": "^0.80.53",
     "file-type": "^13.1.2"
   },
-  "keywords": ["admin", "gallery"]
+  "keywords": ["admin", "media-gallery"]
 }

@@ -37,7 +37,7 @@ export interface PropsType {
 // definition
 export default React.memo(
   ({ buttons, value, onChange, buttonText, multiple }: PropsType) => {
-    const { t } = useTranslation('gallery');
+    const { t } = useTranslation('media-gallery');
     const { error, data, variables, refetch, fetchMore } = useQuery<
       getImagesType,
       getImagesVariablesType

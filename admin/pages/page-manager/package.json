@@ -8,8 +8,8 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/gallery": "^0.80.53",
     "@admin/hooks": "^0.80.53",
+    "@admin/media-gallery": "^0.80.53",
     "@admin/message": "^0.80.53",
     "@admin/tooltip": "^0.80.53",
     "@admin/utils": "^0.80.53",

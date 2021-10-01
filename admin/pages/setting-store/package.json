@@ -9,9 +9,9 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/block": "^0.80.54",
-    "@admin/gallery": "^0.80.53",
     "@admin/header": "^0.80.54",
     "@admin/hooks": "^0.80.53",
+    "@admin/media-gallery": "^0.80.53",
     "@admin/message": "^0.80.53",
     "@admin/tooltip": "^0.80.53",
     "@meepshop/images": "^0.80.53",

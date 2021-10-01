@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { useUploadImageOnScaledURLsFragment } from '@admin/gallery/gqls';
+import { useUploadImageOnScaledURLsFragment } from '@admin/media-gallery/gqls';
 
 // definition
 export const useInitialValuesFragment = gql`

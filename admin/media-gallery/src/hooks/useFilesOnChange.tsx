@@ -81,7 +81,7 @@ export default (
   variables: getImagesVariablesType,
 ): ((e: React.ChangeEvent<HTMLInputElement>) => Promise<void>) => {
   const uploadImage = useUploadImages(variables);
-  const { t } = useTranslation('gallery');
+  const { t } = useTranslation('media-gallery');
 
   return async ({ target: { files } }: React.ChangeEvent<HTMLInputElement>) => {
     if (!files) return;

@@ -1,5 +1,5 @@
 // typescript import
-import { PropsType as GalleryPropsType } from '@admin/gallery';
+import { PropsType as GalleryPropsType } from '@admin/media-gallery';
 
 // import
 import React, { useState } from 'react';
@@ -10,7 +10,7 @@ import { Button } from 'antd';
 import { useTranslation } from '@meepshop/locales';
 import { usePortalTarget } from '@admin/hooks';
 import { uploadImage_w56 as uploadImage } from '@meepshop/images';
-import Gallery from '@admin/gallery';
+import Gallery from '@admin/media-gallery';
 
 import useFindImage from './hooks/useFindImage';
 import styles from './styles/uploadImage.less';

@@ -1,5 +1,5 @@
 // typescript import
-import { ImageNodeType } from '@admin/gallery';
+import { ImageNodeType } from '@admin/media-gallery';
 
 // import
 import React, { useState } from 'react';
@@ -10,7 +10,7 @@ import {
   adminSettingStoreUploadImageIcon,
   adminSettingStoreProductDetailsRemove,
 } from '@meepshop/images';
-import Gallery from '@admin/gallery';
+import Gallery from '@admin/media-gallery';
 import { usePortalTarget } from '@admin/hooks';
 import { useTranslation } from '@meepshop/locales';
 
