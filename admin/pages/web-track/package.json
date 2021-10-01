@@ -4,19 +4,19 @@
   "description": "Web track page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.55",
+  "version": "0.80.56",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/message": "^0.80.53",
     "@admin/tooltip": "^0.80.53",
     "@admin/utils": "^0.80.53",
-    "@meepshop/apollo": "^0.80.54",
-    "@meepshop/hooks": "^0.80.54",
+    "@meepshop/apollo": "^0.80.56",
+    "@meepshop/hooks": "^0.80.56",
     "@meepshop/icons": "^0.80.53",
     "@meepshop/images": "^0.80.53",
     "@meepshop/link": "^0.80.53",
-    "@meepshop/locales": "^0.80.53"
+    "@meepshop/locales": "^0.80.56"
   },
   "keywords": ["admin", "track", "web"]
 }
