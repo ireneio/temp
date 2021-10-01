@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.80.56 (2021-10-01)
+
+#### :rocket: New Feature
+
+- [#1780](https://github.com/meepshop/meep-lerna/pull/1780) 內部開單 - @admin/gallery 改成 @admin/media-gallery ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- [#1778](https://github.com/meepshop/meep-lerna/pull/1778) 【個別店家】商品主圖：輪播顯示異常 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- `store`
+  - [#1776](https://github.com/meepshop/meep-lerna/pull/1776) 內部開單 - 埋入 redirect warn log ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.55 (2021-09-30)
 
 #### :boom: Breaking Change
