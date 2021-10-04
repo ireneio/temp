@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.57 (2021-10-04)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#1719](https://github.com/meepshop/meep-lerna/pull/1719) 【優化】圖片被刪除的顯示規則 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1783](https://github.com/meepshop/meep-lerna/pull/1783) 內部開單 - convertToHTML Error 需要更多資訊 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.56 (2021-10-01)
 
 #### :rocket: New Feature
