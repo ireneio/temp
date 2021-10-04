@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.58 (2021-10-04)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1782](https://github.com/meepshop/meep-lerna/pull/1782) 【BUG】產品頁圖庫顯示異常 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.57 (2021-10-04)
 
 #### :rocket: New Feature
