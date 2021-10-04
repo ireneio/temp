@@ -22,6 +22,7 @@ export const getProducts = gql`
         }
         coverImage {
           id
+          imageExists
           scaledSrc {
             w60
             w120

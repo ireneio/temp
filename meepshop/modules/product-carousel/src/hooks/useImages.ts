@@ -15,32 +15,41 @@ import {
 // definition
 export default (product: useImagesFragment | null): PropsType['images'] =>
   useMemo(() => {
-    const images: PropsType['images'] = [
-      ...(product?.coverImage?.scaledSrc ? [product.coverImage] : []),
-      ...(product?.galleries?.[0]?.images || []).filter(
-        image => image?.scaledSrc && image.id !== product?.coverImage?.id,
-      ),
-    ].map(({ id, scaledSrc }: useImagesFragmentGalleriesImages) => ({
-      __typename: 'CarouselModuleImage',
-      link: null,
-      image: {
-        __typename: 'Image',
-        id,
-        scaledSrc,
+    const images = (product?.galleries?.[0]?.images || []).reduce(
+      (
+        result,
+        { id, scaledSrc, imageExists }: useImagesFragmentGalleriesImages,
+      ) => {
+        if (!imageExists) return result;
+
+        const image = {
+          __typename: 'CarouselModuleImage' as const,
+          link: null,
+          image: {
+            __typename: 'Image' as const,
+            id,
+            scaledSrc,
+          },
+        };
+
+        return id === product?.coverImage?.id
+          ? [image, ...result]
+          : [...result, image];
       },
-    }));
+      [],
+    );
 
     return images.length
       ? images
       : [
           {
-            __typename: 'CarouselModuleImage',
+            __typename: 'CarouselModuleImage' as const,
             link: null,
             image: {
-              __typename: 'Image',
+              __typename: 'Image' as const,
               id: 'product-carousel-placeholder-id',
               scaledSrc: {
-                __typename: 'ScaledURLs',
+                __typename: 'ScaledURLs' as const,
                 ...placeholderThumbnail,
               },
             },

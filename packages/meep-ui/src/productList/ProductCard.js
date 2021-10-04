@@ -96,7 +96,11 @@ const ProductCard = ({
                   : {})}
               >
                 <Image
-                  image={coverImage || { scaledSrc: placeholderThumbnail }}
+                  image={
+                    coverImage?.imageExists
+                      ? coverImage
+                      : { scaledSrc: placeholderThumbnail }
+                  }
                   href={productListImagePopUpEnabled ? '' : `/product/${id}`}
                   contentWidth={100}
                   alignment="center"

@@ -2,21 +2,19 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import {
-  useImageImageFragment,
-  useImageScaledURLsFragment,
-} from '@meepshop/image/gqls';
+import { useImageScaledURLsFragment } from '@meepshop/image/gqls';
 
 // definition
 export const useImagesFragment = gql`
   fragment useImagesFragment on Product {
     id
     coverImage {
-      ...useImageImageFragment
+      id
     }
     galleries {
       images {
         id
+        imageExists
         scaledSrc {
           ...useImageScaledURLsFragment
         }
@@ -24,6 +22,5 @@ export const useImagesFragment = gql`
     }
   }
 
-  ${useImageImageFragment}
   ${useImageScaledURLsFragment}
 `;

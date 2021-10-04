@@ -19,6 +19,7 @@ export const productCollectionsFragment = gql`
       galleries {
         images {
           id
+          imageExists
           scaledSrc {
             ...useImageScaledURLsFragment
           }

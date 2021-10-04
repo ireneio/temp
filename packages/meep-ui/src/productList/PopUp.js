@@ -172,6 +172,7 @@ export default class PopUp extends React.PureComponent {
                       w1680
                       w1920
                     }
+                    imageExists
                   }
                 }
                 showUserPrice {

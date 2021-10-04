@@ -51,6 +51,7 @@ const productQuery = `{
         w1680
         w1920
       }
+      imageExists
     }
   }
   tags

@@ -39,31 +39,33 @@ export default React.memo(
           styles[productCollectionsType]
         } ${className || ''}`}
       >
-        {images.map(({ id, scaledSrc }) => (
-          <div
-            key={id}
-            className={`${styles.img} ${styles[productCollectionsType]}`}
-          >
-            <Image
-              {...filter(imageFragment, {
-                __typename: 'ImageModule',
-                id,
-                image: {
-                  __typename: 'Image',
+        {images.map(({ id, scaledSrc, imageExists }) =>
+          !imageExists ? null : (
+            <div
+              key={id}
+              className={`${styles.img} ${styles[productCollectionsType]}`}
+            >
+              <Image
+                {...filter(imageFragment, {
+                  __typename: 'ImageModule',
                   id,
-                  scaledSrc,
-                },
-                link: null,
-                width: parseInt(percentWidth.replace(/WIDTH/, ''), 10),
-                justifyContent: 'CENTER' as JustifyContent,
-                alt:
-                  product?.title?.[i18n.language as languageType] ||
-                  product?.title?.zh_TW ||
-                  null,
-              })}
-            />
-          </div>
-        ))}
+                  image: {
+                    __typename: 'Image',
+                    id,
+                    scaledSrc,
+                  },
+                  link: null,
+                  width: parseInt(percentWidth.replace(/WIDTH/, ''), 10),
+                  justifyContent: 'CENTER' as JustifyContent,
+                  alt:
+                    product?.title?.[i18n.language as languageType] ||
+                    product?.title?.zh_TW ||
+                    null,
+                })}
+              />
+            </div>
+          ),
+        )}
       </div>
     );
   },
