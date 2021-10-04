@@ -81,6 +81,7 @@ export default React.memo(
           arrows={showController}
           nextArrow={<CustomArrow Icon={RightOutlined} />}
           prevArrow={<CustomArrow Icon={LeftOutlined} />}
+          lazyLoad="ondemand"
           adaptiveHeight
         >
           {displayedImages.map(({ image, link }) => (
