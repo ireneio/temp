@@ -20,12 +20,22 @@ import { useImageImageFragment } from './gqls/useImage';
 // typescript definition
 interface PropsType extends imageFragment {
   children?: React.ReactElement;
+  onLoad?: () => void;
 }
 
 // definition
 export default React.memo(
-  ({ id, image, link, width, justifyContent, alt, children }: PropsType) => {
-    const { href, setAdTrack } = useLink(filter(useLinkFragment, link));
+  ({
+    id,
+    image,
+    link,
+    width,
+    justifyContent,
+    alt,
+    children,
+    onLoad: propsOnLoad,
+  }: PropsType) => {
+    const { href, trackLink } = useLink(filter(useLinkFragment, link));
     const {
       imageRef,
       imageURL,
@@ -51,10 +61,10 @@ export default React.memo(
             <VisibilitySensor
               active={active}
               offset={{ bottom: -600 }}
-              partialVisibility
               onChange={isVisible => {
                 if (isVisible) setActive(false);
               }}
+              partialVisibility
             >
               <img
                 alt={alt || ''}
@@ -64,15 +74,19 @@ export default React.memo(
                   ${!isPlaceholder ? '' : styles.placeholder}
                 `}
                 src={imageURL}
-                onLoad={() => onLoad()}
+                onLoad={() => {
+                  if (propsOnLoad) propsOnLoad();
+
+                  onLoad();
+                }}
                 onError={() => setActive(false)}
-                onClick={() => setAdTrack()}
+                onClick={trackLink}
               />
             </VisibilitySensor>
 
             {!children
               ? null
-              : React.cloneElement(children, { onClick: () => setAdTrack() })}
+              : React.cloneElement(children, { onClick: trackLink })}
           </div>
         </Link>
       </div>

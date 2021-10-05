@@ -1,12 +1,29 @@
 diff --git a/node_modules/@ant-design/react-slick/es/inner-slider.js b/node_modules/@ant-design/react-slick/es/inner-slider.js
-index 1d1cb55..660108d 100644
+index 1d1cb55..3bd56b8 100644
 --- a/node_modules/@ant-design/react-slick/es/inner-slider.js
 +++ b/node_modules/@ant-design/react-slick/es/inner-slider.js
-@@ -317,6 +317,7 @@ export var InnerSlider = /*#__PURE__*/function (_React$Component) {
-           loadedCount = 0;
-       Array.prototype.forEach.call(images, function (image) {
-         var handler = function handler() {
-+          _this.adaptHeight();
-           return ++loadedCount && loadedCount >= imagesCount && _this.onWindowResized();
-         };
+@@ -139,8 +139,6 @@ export var InnerSlider = /*#__PURE__*/function (_React$Component) {
+     });
+ 
+     _defineProperty(_assertThisInitialized(_this), "componentDidUpdate", function (prevProps) {
+-      _this.checkImagesLoad();
+-
+       _this.props.onReInit && _this.props.onReInit();
+ 
+       if (_this.props.lazyLoad) {
+diff --git a/node_modules/@ant-design/react-slick/es/slider.js b/node_modules/@ant-design/react-slick/es/slider.js
+index 46d39c8..3ced67b 100644
+--- a/node_modules/@ant-design/react-slick/es/slider.js
++++ b/node_modules/@ant-design/react-slick/es/slider.js
+@@ -220,7 +220,10 @@ var Slider = /*#__PURE__*/function (_React$Component) {
+               style: {
+                 width: "".concat(100 / settings.slidesPerRow, "%"),
+                 display: "inline-block"
+-              }
++              },
++              onLoad: function () {
++                _this3.innerSlider.onWindowResized();
++              },
+             }));
+           }
  

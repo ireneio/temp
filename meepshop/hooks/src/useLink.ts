@@ -45,7 +45,7 @@ const generateProductsUrl = ({
 
 export default (
   link: useLinkFragmentLink | null,
-): { href: string | null; setAdTrack: () => void } => {
+): { href: string | null; trackLink: () => void } => {
   const adTrack = useContext(AdTrackContext);
 
   return {
@@ -73,7 +73,7 @@ export default (
             }[link.__typename],
       [link],
     ),
-    setAdTrack: useCallback(() => {
+    trackLink: useCallback(() => {
       if (link?.tracking)
         adTrack.custom(
           'meepShop_click',
