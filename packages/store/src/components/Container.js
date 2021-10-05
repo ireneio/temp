@@ -137,7 +137,6 @@ class Container extends React.Component {
           /* func to modify data */
           goTo={Utils.goTo}
           fbLogin={this.handleFacebookLogin}
-          getData={Utils.getData}
           /* use dispatchAction */
           login={data => login({ ...data, client })}
           logout={() => signout({ client })}
