@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.60 (2021-10-05)
+
+#### :bug: Bug Fix
+
+- [#1787](https://github.com/meepshop/meep-lerna/pull/1787) 【BUG】產品頁圖庫顯示異常 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.59 (2021-10-05)
 
 #### :bug: Bug Fix
