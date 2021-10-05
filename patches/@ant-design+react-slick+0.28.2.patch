@@ -1,0 +1,12 @@
+diff --git a/node_modules/@ant-design/react-slick/es/inner-slider.js b/node_modules/@ant-design/react-slick/es/inner-slider.js
+index 1d1cb55..660108d 100644
+--- a/node_modules/@ant-design/react-slick/es/inner-slider.js
++++ b/node_modules/@ant-design/react-slick/es/inner-slider.js
+@@ -317,6 +317,7 @@ export var InnerSlider = /*#__PURE__*/function (_React$Component) {
+           loadedCount = 0;
+       Array.prototype.forEach.call(images, function (image) {
+         var handler = function handler() {
++          _this.adaptHeight();
+           return ++loadedCount && loadedCount >= imagesCount && _this.onWindowResized();
+         };
+ 
