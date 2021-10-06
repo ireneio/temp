@@ -3,7 +3,6 @@ import React from 'react';
 import { Modal, Popover, Button, notification } from 'antd';
 import fileType from 'file-type/browser';
 import uuid from 'uuid/v4';
-import { fetchWithRetries } from 'fbjs';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -52,7 +51,7 @@ const readImageData = (
 
 const uploadImageToGcd = async (file: File, type?: string): Promise<string> => {
   const id = uuid();
-  const { gcloud } = await fetchWithRetries('/api/upload', {
+  const { gcloud } = await fetch('/api/upload', {
     headers: {
       'content-type': 'application/json',
     },
@@ -70,7 +69,7 @@ const uploadImageToGcd = async (file: File, type?: string): Promise<string> => {
   });
   formData.append('file', file);
 
-  await fetchWithRetries(gcloud.url, {
+  await fetch(gcloud.url, {
     method: 'POST',
     body: formData,
   });

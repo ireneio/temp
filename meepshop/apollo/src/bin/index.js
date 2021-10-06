@@ -3,7 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import { fetchWithRetries } from 'fbjs';
+import fetch from 'isomorphic-unfetch';
 
 // definition
 process.on('unhandledRejection', e => {
@@ -11,7 +11,7 @@ process.on('unhandledRejection', e => {
 });
 
 (async () => {
-  const { data, errors } = await fetchWithRetries(
+  const { data, errors } = await fetch(
     'https://api.stage.meepcloud.com/graphql',
     {
       method: 'POST',
@@ -21,18 +21,18 @@ process.on('unhandledRejection', e => {
       },
       body: JSON.stringify({
         query: `
-          {
-            __schema {
-              types {
-                kind
+        {
+          __schema {
+            types {
+              kind
+              name
+              possibleTypes {
                 name
-                possibleTypes {
-                  name
-                }
               }
             }
           }
-        `,
+        }
+      `,
       }),
     },
   ).then(res => res.json());

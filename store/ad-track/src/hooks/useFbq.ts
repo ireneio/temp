@@ -2,7 +2,6 @@
 import { useCallback, useContext } from 'react';
 import uuid from 'uuid/v4';
 import getConfig from 'next/config';
-import { fetchWithRetries } from 'fbjs';
 
 import CookiesContext from '@meepshop/cookies';
 
@@ -41,7 +40,7 @@ export default (
             ? 'fb-conversions-proxy.meepstage.com'
             : 'fb-conversions-proxy.meepshop.com';
 
-        fetchWithRetries(`https://${domain}/send-to-conversions-api`, {
+        fetch(`https://${domain}/send-to-conversions-api`, {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',
@@ -57,8 +56,6 @@ export default (
             external_id: cookies.identity,
             /* eslint-enable @typescript-eslint/camelcase */
           }),
-        }).catch(() => {
-          /* skip error */
         });
       }
     },

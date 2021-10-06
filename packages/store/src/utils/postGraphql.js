@@ -1,5 +1,4 @@
 import { notification } from 'antd';
-import { fetchWithRetries } from 'fbjs';
 import getConfig from 'next/config';
 
 const {
@@ -15,7 +14,7 @@ export default async ({ res, req, query, variables }) => {
       variables: variables.values,
     };
 
-    const response = await fetchWithRetries(
+    const response = await fetch(
       typeof window === 'undefined' ? `${API}/graphql` : '/api/graphql',
       {
         method: 'post',
@@ -50,7 +49,7 @@ export default async ({ res, req, query, variables }) => {
           return null;
         }
         notification.error({ message: 'Error: unknown user' });
-        await fetchWithRetries('/api/auth/logout', {
+        await fetch('/api/auth/logout', {
           method: 'post',
           credentials: 'same-origin',
         });
