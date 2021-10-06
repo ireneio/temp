@@ -1,7 +1,6 @@
 // import
 import React from 'react';
 import { useApolloClient } from '@apollo/react-hooks';
-import { connect } from 'react-redux';
 
 import { oops_w110 as oops } from '@meepshop/images';
 import { log } from '@meepshop/logger/lib/gqls/log';
@@ -13,7 +12,7 @@ import ServerError from './ServerError';
 
 // definition
 // eslint-disable-next-line react/prop-types
-const Error = ({ error, message }) => {
+export default ({ error }) => {
   const client = useApolloClient();
   const { status } = error;
 
@@ -27,10 +26,7 @@ const Error = ({ error, message }) => {
           ? 'WARN'
           : 'ERROR',
         name: 'SERVER_ERROR',
-        data: {
-          status,
-          message,
-        },
+        data: error,
       },
     },
   });
@@ -60,10 +56,3 @@ const Error = ({ error, message }) => {
     </div>
   );
 };
-
-export default connect(state => ({
-  message:
-    state.memberReducer.error?.message ||
-    state.pagesReducer.error?.message ||
-    state.productsReducer.error?.message,
-}))(Error);
