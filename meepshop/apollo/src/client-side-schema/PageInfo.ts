@@ -1,5 +1,5 @@
 // typescript import
-import { ContextType } from './index';
+import { ContextType } from '../types';
 
 // graphql typescript
 import {
@@ -9,7 +9,7 @@ import {
 /* TODO: should use @meepshop/types/gqls/meepshop */
 
 // graphql import
-import { pageInfoFragment } from './gqls/pageInfo';
+import { pageInfoFragment } from '../gqls/pageInfo';
 
 // definition
 export const resolvers = {

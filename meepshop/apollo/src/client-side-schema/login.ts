@@ -1,5 +1,5 @@
 // typescript import
-import { ContextType } from './index';
+import { ContextType } from '../types';
 
 // import
 import { fetchWithRetries } from 'fbjs';

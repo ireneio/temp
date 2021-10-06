@@ -4,7 +4,7 @@ import { Resolvers } from 'apollo-client/core/types';
 import { loggerType } from '@meepshop/logger';
 
 // import
-import { parseRawContent } from './utils/parseRawContent';
+import { parseRawContent } from '../utils/parseRawContent';
 
 // definition
 export const resolvers = (logger: loggerType): Resolvers => ({

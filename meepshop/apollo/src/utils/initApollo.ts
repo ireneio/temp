@@ -4,7 +4,7 @@ import { Resolvers } from 'apollo-client/core/types';
 
 import { loggerType } from '@meepshop/logger';
 
-import { CustomCtxType } from '../index';
+import { CustomCtxType } from '../types';
 import { errorFilterType } from './errorLink';
 
 // import
@@ -25,15 +25,15 @@ import getConfig from 'next/config';
 // eslint-disable-next-line import/no-unresolved
 import fragmentTypes from '../../fragmentTypes';
 
-import * as getDraftText from '../getDraftText';
-import * as landingPageAccessToken from '../landingPageAccessToken';
-import * as log from '../log';
-import * as login from '../login';
-import * as logout from '../logout';
-import * as PageInfo from '../PageInfo';
-import * as productsObjectType from '../productsObjectType';
-import * as settingObjectType from '../settingObjectType';
-import * as validatedConvenienceStoreCities from '../validatedConvenienceStoreCities';
+import * as getDraftText from '../client-side-schema/getDraftText';
+import * as landingPageAccessToken from '../client-side-schema/landingPageAccessToken';
+import * as log from '../client-side-schema/log';
+import * as login from '../client-side-schema/login';
+import * as logout from '../client-side-schema/logout';
+import * as PageInfo from '../client-side-schema/PageInfo';
+import * as productsObjectType from '../client-side-schema/productsObjectType';
+import * as settingObjectType from '../client-side-schema/settingObjectType';
+import * as validatedConvenienceStoreCities from '../client-side-schema/validatedConvenienceStoreCities';
 
 import mergeResolvers from './mergeResolvers';
 import errorLink from './errorLink';

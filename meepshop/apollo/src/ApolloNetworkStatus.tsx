@@ -5,8 +5,8 @@ import { NetworkStatus } from 'react-apollo-network-status';
 import React, { useEffect, useRef } from 'react';
 import NProgress from 'nprogress';
 
-import '../styles/apolloNetworkStatus.less';
-import { useApolloNetworkStatus } from '../utils/initApollo';
+import './styles/apolloNetworkStatus.less';
+import { useApolloNetworkStatus } from './utils/initApollo';
 
 // definition
 const ApolloNetworkStatusContext = React.createContext<NetworkStatus>({

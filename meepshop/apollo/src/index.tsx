@@ -1,13 +1,11 @@
 // typescript import
-import { AppContext, AppProps } from 'next/app';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloClient } from 'apollo-client';
+import { AppProps } from 'next/app';
 import { NormalizedCacheObject } from 'apollo-cache-inmemory';
-import uuid from 'uuid/v4';
 
 import { NextAppType, NextAppGetInitialPropsType } from '@meepshop/types';
 import { LoggerInfoType } from '@meepshop/logger';
 
+import { ContextType, CustomCtxType } from './types';
 import { ConfigType as initApolloConfigType } from './utils/initApollo';
 
 // import
@@ -15,14 +13,15 @@ import React from 'react';
 import Head from 'next/head';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { getDataFromTree } from '@apollo/react-ssr';
+import uuid from 'uuid/v4';
 
 import initialLogger from '@meepshop/logger';
 
-import initApollo from './utils/initApollo';
-import { shouldIgnoreUnauthorizedError } from './utils/errorLink';
 import ApolloNetworkStatusContext, {
   ApolloNetworkStatusProvider,
-} from './context/ApolloNetworkStatus';
+} from './ApolloNetworkStatus';
+import initApollo from './utils/initApollo';
+import { shouldIgnoreUnauthorizedError } from './utils/errorLink';
 
 // graphql typescript
 import {
@@ -41,28 +40,8 @@ interface PropsType extends AppProps {
   loggerInfo?: LoggerInfoType;
 }
 
-export interface CustomCtxType<Req = {}, Res = {}> extends AppContext {
-  ctx: AppContext['ctx'] & {
-    client: ApolloClient<NormalizedCacheObject>;
-    req: Req & {
-      cookies: {
-        'x-meepshop-authorization-token': string;
-        'merchant-applicant-verify-token': string;
-      };
-      // FIXME: remove after next-store remove express
-      loggerInfo: LoggerInfoType;
-    };
-    res: Res;
-  };
-}
-
-export interface ContextType {
-  cache: InMemoryCache;
-  client: ApolloClient<NormalizedCacheObject>;
-}
-
 // definition
-export { ApolloNetworkStatusContext };
+export { ContextType, ApolloNetworkStatusContext };
 
 export const buildWithApollo = (config: initApolloConfigType) => (
   App: NextAppType,
