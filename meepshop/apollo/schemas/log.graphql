@@ -17,6 +17,7 @@ enum LogNameEnum {
   SITEMAPS
   URL_REDIRECT
   SERVER_ERROR
+  UNHANDLED_REJECTION
 }
 
 input LogInput {

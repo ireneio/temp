@@ -182,8 +182,22 @@ class App extends NextApp {
   }
 
   componentDidMount() {
-    if (!window.meepShopStore.goTo) window.meepShopStore.goTo = Utils.goTo;
+    const { client } = this.props;
+
     window.history.scrollRestoration = 'manual';
+    window.addEventListener('unhandledrejection', event => {
+      client.mutate({
+        mutation: log,
+        variables: {
+          input: {
+            type: 'ERROR',
+            name: 'UNHANDLED_REJECTION',
+            data: event,
+          },
+        },
+      });
+    });
+
     Router.beforePopState(() => {
       window.storeCurrentOffset = window.storePreviousOffset;
       return true;

@@ -15,8 +15,6 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { getDataFromTree } from '@apollo/react-ssr';
 import uuid from 'uuid/v4';
 
-import initialLogger from '@meepshop/logger';
-
 import ApolloNetworkStatusContext, {
   ApolloNetworkStatusProvider,
 } from './ApolloNetworkStatus';
@@ -43,17 +41,15 @@ interface PropsType extends AppProps {
 // definition
 export { ContextType, ApolloNetworkStatusContext };
 
-export const buildWithApollo = (config: initApolloConfigType) => (
-  App: NextAppType,
-): NextAppType => {
+export const buildWithApollo = (
+  config: Omit<initApolloConfigType, 'loggerInfo'>,
+) => (App: NextAppType): NextAppType => {
   const WithApollo = ({
     apolloState,
     loggerInfo,
     ...props
   }: PropsType): React.ReactElement => (
-    <ApolloProvider
-      client={initApollo(config, initialLogger(loggerInfo), apolloState)}
-    >
+    <ApolloProvider client={initApollo({ ...config, loggerInfo }, apolloState)}>
       <ApolloNetworkStatusProvider>
         <App {...props} />
       </ApolloNetworkStatusProvider>
@@ -77,12 +73,7 @@ export const buildWithApollo = (config: initApolloConfigType) => (
             userAgent: ctx?.ctx.req.headers['user-agent'],
             url: ctx?.ctx.req.url,
           };
-    const client = initApollo(
-      config,
-      initialLogger(loggerInfo),
-      undefined,
-      ctx,
-    );
+    const client = initApollo({ ...config, loggerInfo }, undefined, ctx);
 
     ctx.ctx.client = client;
 

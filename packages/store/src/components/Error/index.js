@@ -1,6 +1,7 @@
 // import
 import React from 'react';
 import { useApolloClient } from '@apollo/react-hooks';
+import { connect } from 'react-redux';
 
 import { oops_w110 as oops } from '@meepshop/images';
 import { log } from '@meepshop/logger/lib/gqls/log';
@@ -12,26 +13,30 @@ import ServerError from './ServerError';
 
 // definition
 // eslint-disable-next-line react/prop-types
-export default ({ error }) => {
+const Error = ({ error, message }) => {
   const client = useApolloClient();
   const { status } = error;
-
-  if (status === 'ERROR_PAGE_NOT_FOUND') return <ErrorPageNotFound />;
-  if (status === 'ERROR_PRODUCT_NOT_FOUND') return <ErrorProductNotFound />;
 
   client.mutate({
     mutation: log,
     variables: {
       input: {
-        type: 'ERROR',
+        type: ['ERROR_PAGE_NOT_FOUND', 'ERROR_PRODUCT_NOT_FOUND'].includes(
+          status,
+        )
+          ? 'WARN'
+          : 'ERROR',
         name: 'SERVER_ERROR',
         data: {
           status,
+          message,
         },
       },
     },
   });
 
+  if (status === 'ERROR_PAGE_NOT_FOUND') return <ErrorPageNotFound />;
+  if (status === 'ERROR_PRODUCT_NOT_FOUND') return <ErrorProductNotFound />;
   if (status === 'API_ERROR') return <ApiError />;
   if (status === 'SERVER_ERROR') return <ServerError />;
   if (status === 'SAGA_PAGES') return <ServerError />;
@@ -55,3 +60,10 @@ export default ({ error }) => {
     </div>
   );
 };
+
+export default connect(state => ({
+  message:
+    state.memberReducer.error?.message ||
+    state.pagesReducer.error?.message ||
+    state.productsReducer.error?.message,
+}))(Error);

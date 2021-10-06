@@ -20,7 +20,7 @@ export default (req: NextApiRequest, res: NextApiResponse): void => {
 
   logger[(type || 'info') as keyof loggerType]({
     ...data,
-    isClientError: true,
+    isClient: true,
   });
   res.end();
 };
