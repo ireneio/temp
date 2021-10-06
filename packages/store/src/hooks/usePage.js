@@ -48,7 +48,8 @@ export default () => {
   const store = data?.viewer?.store;
   const product = data?.computeProductList?.data?.[0];
   const experimentPage = useMemo(() => {
-    if (!store?.experiment?.isNewPageModulesEnabled) return null;
+    // TODO: for T9153
+    if (store?.experiment?.isNewPageModulesEnabled) return null;
 
     const page =
       store?.defaultHomePage ||
