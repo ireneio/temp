@@ -8,6 +8,7 @@ import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import { notification } from 'antd';
 import { getUnixTime } from 'date-fns';
+import { fetchWithRetries } from 'fbjs';
 
 import ActionButton from '@meepshop/action-button';
 import { appWithTranslation } from '@meepshop/locales';
@@ -62,7 +63,7 @@ class App extends NextApp {
 
     try {
       if (typeof window === 'undefined') {
-        const { valid } = await fetch(`${API}/auth/validate_token`, {
+        const { valid } = await fetchWithRetries(`${API}/auth/validate_token`, {
           method: 'POST',
           credentials: 'include',
           headers: {
@@ -82,7 +83,7 @@ class App extends NextApp {
         }
       }
 
-      const response = await fetch(
+      const response = await fetchWithRetries(
         typeof window === 'undefined' ? `${API}/graphql` : '/api/graphql',
         {
           method: 'post',

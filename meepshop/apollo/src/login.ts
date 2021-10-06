@@ -1,6 +1,9 @@
 // typescript import
 import { ContextType } from './index';
 
+// import
+import { fetchWithRetries } from 'fbjs';
+
 // graphql typescript
 import { LoginInput } from '@meepshop/types/gqls/meepshop';
 
@@ -14,7 +17,7 @@ export const resolvers = {
       }: { input: LoginInput },
       { client }: ContextType,
     ) => {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetchWithRetries('/api/auth/login', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +34,7 @@ export const resolvers = {
                 cname,
               }),
         }),
-      });
+      }).catch(e => ({ status: 500, statusText: e.message, json: () => null }));
       const defaultResponse = {
         __typename: 'LoginResponse',
         status: 'FAIL',

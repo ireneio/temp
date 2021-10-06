@@ -2,6 +2,7 @@
 import { useCallback, useContext, useRef } from 'react';
 import { useApolloClient } from '@apollo/react-hooks';
 import { notification } from 'antd';
+import { fetchWithRetries } from 'fbjs';
 
 import { useTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
@@ -24,14 +25,17 @@ export default (): ((
 
       prevAccessTokenRef.current = accessToken;
 
-      const res = await fetch('/api/auth/fbLogin', {
+      const res = await fetchWithRetries('/api/auth/fbLogin', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
         },
         credentials: 'same-origin',
         body: JSON.stringify({ accessToken }),
-      });
+      }).catch(() => ({
+        status: 500,
+        json: () => null,
+      }));
 
       if (res.status !== 200) return;
 

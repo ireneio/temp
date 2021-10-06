@@ -1,5 +1,6 @@
 // import
 import getConfig from 'next/config';
+import { fetchWithRetries } from 'fbjs';
 
 import { LOG_TYPES } from './constants';
 
@@ -24,7 +25,7 @@ export default LOG_TYPES.reduce(
       return process.env.NODE_ENV !== 'production'
         ? // eslint-disable-next-line no-console
           console[type === 'fatal' ? 'log' : type](data)
-        : fetch('/api/log', {
+        : fetchWithRetries('/api/log', {
             method: 'post',
             headers: { 'content-type': 'application/json' },
             credentials: 'include',
@@ -33,6 +34,8 @@ export default LOG_TYPES.reduce(
               url: `${window.location.pathname}${window.location.search}`,
               type,
             }),
+          }).catch(() => {
+            /* ignore error */
           });
     },
   }),

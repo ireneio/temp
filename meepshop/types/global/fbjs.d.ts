@@ -44,4 +44,6 @@ declare module 'fbjs' {
   export namespace UserAgent {
     export function isBrowser(name: string): boolean;
   }
+
+  export const fetchWithRetries: typeof fetch;
 }
