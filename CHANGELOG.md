@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.61 (2021-10-06)
+
+#### :rocket: New Feature
+
+- [#1757](https://github.com/meepshop/meep-lerna/pull/1757) 內部開單 - refetch 或 fetchMore 使用 notifyOnNetworkStatusChange 搭配 loading，移除自行定義的 loading state ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#1769](https://github.com/meepshop/meep-lerna/pull/1769) 內部開單 - 前端修改 toggle 邏輯，改成有加入名單的不使用新的 apollo-client ([@HsuTing](https://github.com/HsuTing))
+  - [#1788](https://github.com/meepshop/meep-lerna/pull/1788) (@meepshop/next-store) Remove getData ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.60 (2021-10-05)
 
 #### :bug: Bug Fix
