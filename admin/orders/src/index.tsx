@@ -63,6 +63,7 @@ export default React.memo(
   ({
     pageId,
     data,
+    loading,
     variables,
     fetchMore,
     refetch,
@@ -85,7 +86,7 @@ export default React.memo(
     const storePayments = data?.viewer?.store?.storePayments;
     const storeShipments = data?.viewer?.store?.storeShipments;
 
-    const { changePage, loading } = useChangePage({
+    const changePage = useChangePage({
       user: filter(useChangePageFragment, data?.viewer || null),
       variables,
       fetchMore,

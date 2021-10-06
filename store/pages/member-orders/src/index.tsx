@@ -38,16 +38,17 @@ export default React.memo(() => {
   const colors = useContext(ColorsContext);
   const columns = useColumns();
 
-  const { data, variables, fetchMore } = useQuery<
+  const { data, loading, variables, fetchMore } = useQuery<
     getOrdersType,
     getOrdersVariablesType
   >(getOrders, {
     variables: { first: 10 },
+    notifyOnNetworkStatusChange: true,
   });
   const first = variables?.first || 10;
   const orders = data?.viewer?.orders || null;
 
-  const { changePage, loading } = useChangePage(
+  const changePage = useChangePage(
     filter(changePageFragment, orders),
     fetchMore,
     first,

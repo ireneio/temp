@@ -15,7 +15,7 @@ export type OrdersQueryResult = Pick<
     getEcfitList | getEcpayList,
     getEcfitListVariables | getEcpayListVariables
   >,
-  'data' | 'variables' | 'fetchMore' | 'refetch'
+  'data' | 'loading' | 'variables' | 'fetchMore' | 'refetch'
 >;
 
 // definition

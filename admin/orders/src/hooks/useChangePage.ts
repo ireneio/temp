@@ -2,7 +2,7 @@
 import { OrdersQueryResult } from '../constants';
 
 // import
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
 // graphql typescript
@@ -29,18 +29,14 @@ export default ({
   fetchMore,
   refetch,
   pageId,
-}: PropsType): {
-  loading: boolean;
-  changePage: (newCurrent: number, newPageSize: number) => void;
-} => {
+}: PropsType): ((newCurrent: number, newPageSize: number) => void) => {
   const orders = user?.orders || null;
-  const [loading, setLoading] = useState<boolean>(false);
   const [mutation] = useMutation<
     setOrderCurrentType,
     setOrderCurrentVariablesType
   >(setOrderCurrent);
 
-  const changePage = useCallback(
+  return useCallback(
     (newCurrent: number, newPageSize: number): void => {
       const { first: pageSize } = variables;
 
@@ -62,7 +58,7 @@ export default ({
         },
       } = orders;
 
-      if (loading || newCurrent === current) return;
+      if (newCurrent === current) return;
 
       if (
         newCurrent < current ||
@@ -75,45 +71,37 @@ export default ({
         });
       }
 
-      setLoading(true);
-
       fetchMore({
         variables: {
           cursor: endCursor,
         },
-        updateQuery: (previousResult, { fetchMoreResult }) => {
-          setLoading(false);
-
-          if ((fetchMoreResult?.viewer?.orders?.edges || []).length > 0) {
-            return {
-              ...previousResult,
-              viewer: {
-                ...previousResult.viewer,
-                orders: {
-                  __typename: 'OrderConnection',
-                  edges: [
-                    ...(previousResult?.viewer?.orders?.edges || []),
-                    ...(fetchMoreResult?.viewer?.orders?.edges || []),
-                  ],
-                  pageInfo: {
-                    ...fetchMoreResult?.viewer?.orders?.pageInfo,
-                    currentInfo: {
-                      ...currentInfo,
-                      __typename: 'CurrentInfo',
-                      current: newCurrent,
+        updateQuery: (previousResult, { fetchMoreResult }) =>
+          (fetchMoreResult?.viewer?.orders?.edges || []).length === 0
+            ? previousResult
+            : {
+                ...previousResult,
+                viewer: {
+                  ...previousResult.viewer,
+                  orders: {
+                    __typename: 'OrderConnection',
+                    edges: [
+                      ...(previousResult?.viewer?.orders?.edges || []),
+                      ...(fetchMoreResult?.viewer?.orders?.edges || []),
+                    ],
+                    pageInfo: {
+                      ...fetchMoreResult?.viewer?.orders?.pageInfo,
+                      currentInfo: {
+                        ...currentInfo,
+                        __typename: 'CurrentInfo',
+                        current: newCurrent,
+                      },
                     },
+                    total: fetchMoreResult?.viewer?.orders?.total,
                   },
-                  total: fetchMoreResult?.viewer?.orders?.total,
                 },
               },
-            };
-          }
-          return previousResult;
-        },
       });
     },
-    [variables, orders, loading, fetchMore, refetch, mutation, pageId],
+    [variables, orders, fetchMore, refetch, mutation, pageId],
   );
-
-  return { loading, changePage };
 };

@@ -34,12 +34,13 @@ const { Group } = Checkbox;
 
 const OrdersEcpay: NextPage<PropsType> = React.memo(() => {
   const { t } = useTranslation('orders-ecpay');
-  const { data, variables, fetchMore, refetch } = useQuery<
+  const { data, loading, variables, fetchMore, refetch } = useQuery<
     getEcpayListType,
     getEcpayListVariablesType
   >(getEcpayList, {
     variables: initVariables,
     ssr: false,
+    notifyOnNetworkStatusChange: true,
   });
   const getColumns = useEcpayColumns(variables);
   const { runningIds, submitEcpayOrder } = useSubmitEcpayOrder();
@@ -50,6 +51,7 @@ const OrdersEcpay: NextPage<PropsType> = React.memo(() => {
     <Orders
       pageId="ecpay"
       data={data}
+      loading={loading}
       variables={variables}
       fetchMore={fetchMore}
       refetch={refetch}

@@ -34,12 +34,13 @@ const { Group } = Radio;
 
 const OrdersEcfit: NextPage<PropsType> = React.memo(() => {
   const { t } = useTranslation('orders-ecfit');
-  const { data, variables, fetchMore, refetch } = useQuery<
+  const { data, loading, variables, fetchMore, refetch } = useQuery<
     getEcfitListType,
     getEcfitListVariablesType
   >(getEcfitList, {
     variables: initVariables,
     ssr: false,
+    notifyOnNetworkStatusChange: true,
   });
   const sentFailedAmount = data?.viewer?.sentFailedList?.total || 0;
 
@@ -56,6 +57,7 @@ const OrdersEcfit: NextPage<PropsType> = React.memo(() => {
     <Orders
       pageId="ecfit"
       data={data}
+      loading={loading}
       variables={variables}
       fetchMore={fetchMore}
       refetch={refetch}
