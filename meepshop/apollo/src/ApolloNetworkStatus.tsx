@@ -1,6 +1,3 @@
-// typescript import
-import { NetworkStatus } from 'react-apollo-network-status';
-
 // import
 import React, { useEffect, useRef } from 'react';
 import NProgress from 'nprogress';
@@ -9,12 +6,7 @@ import './styles/apolloNetworkStatus.less';
 import { useApolloNetworkStatus } from './utils/initApollo';
 
 // definition
-const ApolloNetworkStatusContext = React.createContext<NetworkStatus>({
-  numPendingQueries: 0,
-  numPendingMutations: 0,
-});
-
-export const ApolloNetworkStatusProvider = React.memo(({ children }) => {
+export default React.memo(() => {
   const apolloNetworkStatus = useApolloNetworkStatus();
   const { numPendingQueries } = apolloNetworkStatus;
   const maxRef = useRef(0);
@@ -35,11 +27,5 @@ export const ApolloNetworkStatusProvider = React.memo(({ children }) => {
     prevNumPendingQueries.current = numPendingQueries;
   }, [numPendingQueries]);
 
-  return (
-    <ApolloNetworkStatusContext.Provider value={apolloNetworkStatus}>
-      {children}
-    </ApolloNetworkStatusContext.Provider>
-  );
+  return null;
 });
-
-export default ApolloNetworkStatusContext;

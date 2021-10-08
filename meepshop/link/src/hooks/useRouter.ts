@@ -5,12 +5,9 @@ import { useRouter } from 'next/router';
 import DomainContext from '../Domain';
 
 // typescript definition
-interface RouterType
-  extends Omit<ReturnType<typeof useRouter>, 'push' | 'replace'> {
+interface RouterType extends ReturnType<typeof useRouter> {
   domain: string | null;
   hash: string | null;
-  push: (href: string, options?: {}) => void;
-  replace: (href: string, options?: {}) => void;
 }
 
 // definition

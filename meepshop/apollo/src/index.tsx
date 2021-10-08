@@ -15,10 +15,8 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { getDataFromTree } from '@apollo/react-ssr';
 import uuid from 'uuid/v4';
 
-import ApolloNetworkStatusContext, {
-  ApolloNetworkStatusProvider,
-} from './ApolloNetworkStatus';
-import initApollo from './utils/initApollo';
+import ApolloNetworkStatus from './ApolloNetworkStatus';
+import initApollo, { useApolloNetworkStatus } from './utils/initApollo';
 import { shouldIgnoreUnauthorizedError } from './utils/errorLink';
 
 // graphql typescript
@@ -39,7 +37,7 @@ interface PropsType extends AppProps {
 }
 
 // definition
-export { ContextType, ApolloNetworkStatusContext };
+export { ContextType, useApolloNetworkStatus };
 
 export const buildWithApollo = (
   config: Omit<initApolloConfigType, 'loggerInfo'>,
@@ -50,9 +48,9 @@ export const buildWithApollo = (
     ...props
   }: PropsType): React.ReactElement => (
     <ApolloProvider client={initApollo({ ...config, loggerInfo }, apolloState)}>
-      <ApolloNetworkStatusProvider>
-        <App {...props} />
-      </ApolloNetworkStatusProvider>
+      <ApolloNetworkStatus />
+
+      <App {...props} />
     </ApolloProvider>
   );
 
@@ -85,9 +83,7 @@ export const buildWithApollo = (
       try {
         await getDataFromTree(
           <ApolloProvider client={client}>
-            <ApolloNetworkStatusProvider>
-              <App {...appProps} Component={Component} router={router} />
-            </ApolloNetworkStatusProvider>
+            <App {...appProps} Component={Component} router={router} />
           </ApolloProvider>,
         );
       } catch (e) {
