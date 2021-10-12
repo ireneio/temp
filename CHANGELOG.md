@@ -1,5 +1,44 @@
 # CHANGELOG
 
+## 0.80.62 (2021-10-12)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1773](https://github.com/meepshop/meep-lerna/pull/1773) 內部開單 - 在非使用者自訂頁面裡面不再從 redux 拿資料 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- Other
+  - [#1775](https://github.com/meepshop/meep-lerna/pull/1775) 內部開單 - 修改前台訂單列表 code style ([@Lexiwu](https://github.com/Lexiwu))
+- `meep-ui`
+  - [#1789](https://github.com/meepshop/meep-lerna/pull/1789) 【優化】商品列表 - 商品細節描述高度 ([@Lexiwu](https://github.com/Lexiwu))
+- `store`
+  - [#1790](https://github.com/meepshop/meep-lerna/pull/1790) 內部開單 - fetch 改用 fetchWithRetries ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1798](https://github.com/meepshop/meep-lerna/pull/1798) 【BUG】 後台 - 綠界出貨管理頁面出現 Error 彈窗 ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#1795](https://github.com/meepshop/meep-lerna/pull/1795) (@meepshop/next-store) Hotfix error message ([@HsuTing](https://github.com/HsuTing))
+  - [#1794](https://github.com/meepshop/meep-lerna/pull/1794) (@meepshop/frontend) Revert fetchWithRetries ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `mock-types`
+  - [#1800](https://github.com/meepshop/meep-lerna/pull/1800) (@meepshop/frontend) Modify code style ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#1784](https://github.com/meepshop/meep-lerna/pull/1784) 內部開單 - SERVER_ERROR 需要有更多 log 資訊 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1791](https://github.com/meepshop/meep-lerna/pull/1791) (@meepshop/apollo) Add client-side-schema folder ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.61 (2021-10-06)
 
 #### :rocket: New Feature
