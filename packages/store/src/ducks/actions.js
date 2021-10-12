@@ -28,7 +28,6 @@ import {
   serverPagesInitial,
   serverProductInitial,
   serverProductsInitial,
-  serverOthersInitial,
 } from './widgets/server';
 
 export {
@@ -61,7 +60,6 @@ export {
   serverPagesInitial,
   serverProductInitial,
   serverProductsInitial,
-  serverOthersInitial,
   // loading status
   showLoadingStatus,
   hideLoadingStatus,

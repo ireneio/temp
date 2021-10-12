@@ -7,15 +7,11 @@ import withHook from '@store/utils/lib/withHook';
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
 import * as Template from 'template';
-import * as Actions from 'ducks/actions';
 import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class Checkout extends React.Component {
   static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent, store } = context;
-
-    if (typeof window === 'undefined')
-      store.dispatch(Actions.serverOthersInitial(context));
+    const { XMeepshopDomain, userAgent } = context;
 
     return { userAgent, XMeepshopDomain };
   };

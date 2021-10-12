@@ -10,7 +10,6 @@ import serverIndexInitial from './serverIndexInitial.api';
 import serverPagesInitial from './serverPagesInitial.api';
 import serverProductInitial from './serverProductInitial.api';
 import serverProductsInitial from './serverProductsInitial.api';
-import serverOthersInitial from './serverOthersInitial.api';
 
 export {
   getPage,
@@ -24,5 +23,4 @@ export {
   serverPagesInitial,
   serverProductInitial,
   serverProductsInitial,
-  serverOthersInitial,
 };

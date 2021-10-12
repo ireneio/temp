@@ -174,28 +174,3 @@ function* serverProductsInitialFlow({ payload }) {
 export function* watchServerProductsInitialFlow() {
   yield takeEvery(SERVER_PRODUCTS_INITIAL, serverProductsInitialFlow);
 }
-
-/* *********************************** Get data at other routes for SSR *********************************** */
-const SERVER_OTHERS_INITIAL = 'SERVER_OTHERS_INITIAL';
-
-export const serverOthersInitial = payload => ({
-  type: SERVER_OTHERS_INITIAL,
-  payload,
-});
-
-function* serverOthersInitialFlow({ payload }) {
-  try {
-    const data = yield call(Api.serverOthersInitial, payload);
-
-    if (data.apiErr) {
-      yield put(getPagesFailure(data.apiErr));
-    } else {
-      yield put(getAuthSuccess(data));
-    }
-  } catch ({ message }) {
-    yield put(getPagesFailure({ status: 'SERVER_ERROR', message }));
-  }
-}
-export function* watchServerOthersInitialFlow() {
-  yield takeEvery(SERVER_OTHERS_INITIAL, serverOthersInitialFlow);
-}

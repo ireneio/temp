@@ -47,7 +47,6 @@ Page.getInitialProps = async ctx => {
     return { error: { status: 'ERROR_PAGE_NOT_FOUND' } };
 
   if (pId) store.dispatch(Actions.serverProductInitial(ctx));
-  else store.dispatch(Actions.serverOthersInitial(ctx));
 
   const { pagesReducer } = store.getState();
 

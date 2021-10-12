@@ -16,7 +16,6 @@ import {
   watchServerPagesInitialFlow,
   watchServerProductInitialFlow,
   watchServerProductsInitialFlow,
-  watchServerOthersInitialFlow,
 } from './widgets/server';
 
 function* rootSaga() {
@@ -32,7 +31,6 @@ function* rootSaga() {
     watchServerPagesInitialFlow(),
     watchServerProductInitialFlow(),
     watchServerProductsInitialFlow(),
-    watchServerOthersInitialFlow(),
   ]);
 }
 

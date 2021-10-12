@@ -1,3 +1,6 @@
+// typescript import
+import { NextPage } from 'next';
+
 // import
 import React, { useEffect, useMemo, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
@@ -32,11 +35,13 @@ import { getOrderInEcpay } from './gqls';
 import { orderInfoFragment } from './gqls/orderInfo';
 import { paymentFragment } from './gqls/payment';
 
-// definition
-// TODO: should use getInitialProps
-export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
+// typescript definition
+interface PropsType {
+  namespacesRequired: string[];
+}
 
-export default React.memo(() => {
+// definition
+const Ecpay: NextPage<PropsType> = React.memo(() => {
   const { t } = useTranslation('ecpay');
   const { query, push } = useRouter();
   const [paymentInfo, setPaymentInfo] = useState<
@@ -148,3 +153,9 @@ export default React.memo(() => {
     </div>
   );
 });
+
+Ecpay.getInitialProps = async () => ({
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
+});
+
+export default Ecpay;
