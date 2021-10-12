@@ -4,13 +4,13 @@
   "description": "meepshop login modal",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.56",
+  "version": "0.80.62",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.53",
+    "@meepshop/context": "^0.80.62",
     "@meepshop/icons": "^0.80.53",
-    "@meepshop/link": "^0.80.53",
+    "@meepshop/link": "^0.80.62",
     "@meepshop/locales": "^0.80.56",
     "@meepshop/validator": "^0.80.56",
     "react-redux": "^7.2.4"
