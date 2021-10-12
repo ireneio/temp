@@ -69,6 +69,7 @@ export default ({
             input: { pageId, current: newCurrent },
           },
         });
+        return;
       }
 
       fetchMore({
