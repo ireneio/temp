@@ -36,7 +36,7 @@ export default React.memo(
   }: PropsType) => {
     const { t } = useTranslation('member-orders');
     const apps = useContext(AppsContext);
-    const { payOrderAgain, form } = usePayOrderAgain(
+    const payOrderAgain = usePayOrderAgain(
       filter(usePayOrderAgainFragment, {
         __typename: 'Order',
         id,
@@ -50,25 +50,6 @@ export default React.memo(
     const template = paymentInfo?.list?.[0]?.template;
     return (
       <div className={styles.root}>
-        {!form.url ? null : (
-          <form
-            ref={form.ref}
-            action={form.url}
-            acceptCharset={/hitrust/.test(form.url) ? 'big5' : 'utf8'}
-            method="POST"
-          >
-            {form.params.map(([key, value]) => (
-              <input
-                key={key}
-                name={key}
-                value={value}
-                type="hidden"
-                readOnly
-              />
-            ))}
-          </form>
-        )}
-
         {!choosePayLaterWhenPlaced ||
         isSkipOtherAction ||
         !isAvailableForPayLater ||

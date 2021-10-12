@@ -1,21 +1,7 @@
 // import
 import gql from 'graphql-tag';
 
-// graphql import
-import { createOrderFragment } from '@meepshop/utils/lib/gqls/createOrder';
-
 // definition
-export const payOrderAgain = gql`
-  mutation payOrderAgain($paymentAgainOrderList: [PaymentAgainOrder]) {
-    paymentAgainOrderList(paymentAgainOrderList: $paymentAgainOrderList) {
-      id
-      ...createOrderFragment
-    }
-  }
-
-  ${createOrderFragment}
-`;
-
 export const actionsFragment = gql`
   fragment actionsFragment on Order {
     id
