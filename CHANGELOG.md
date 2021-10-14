@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 0.80.63 (2021-10-14)
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1797](https://github.com/meepshop/meep-lerna/pull/1797) 內部開單 - date-picker ssr 會有語系 undefined 問題 ([@Lexiwu](https://github.com/Lexiwu))
+- `meep-ui`
+  - [#1796](https://github.com/meepshop/meep-lerna/pull/1796) 內部開單 - 增加額外檢查 limit ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :house: Internal
+
+- `meep-ui`
+  - [#1809](https://github.com/meepshop/meep-lerna/pull/1809) 內部開單 - 前台 activityId 如果為空字串，不應該發 request ([@Lexiwu](https://github.com/Lexiwu))
+- Other
+  - [#1811](https://github.com/meepshop/meep-lerna/pull/1811) (@meepshop/next-admin) Revert #1810 ([@HsuTing](https://github.com/HsuTing))
+  - [#1810](https://github.com/meepshop/meep-lerna/pull/1810) (@meepshop/next-admin) handle 401 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.62 (2021-10-12)
 
 #### :boom: Breaking Change
