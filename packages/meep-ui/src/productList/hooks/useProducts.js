@@ -24,6 +24,7 @@ export default ({
   search,
   sort,
 }) => {
+  const size = parseInt(limit, 10) > 500 ? 500 : parseInt(limit, 10);
   const adTrack = useContext(AdTrackContext);
   const variables = useMemo(() => {
     const [field, order] = String(
@@ -31,7 +32,7 @@ export default ({
     ).split('-');
     const output = {
       search: {
-        size: parseInt(limit, 10),
+        size,
         // FIXME: custom sorting workaround
         from: sort === 'selections' ? 0 : parseInt(offset, 10),
         filter: {
@@ -62,10 +63,7 @@ export default ({
           type: 'ids',
           ids: ids
             .split(',')
-            .slice(
-              parseInt(offset, 10),
-              parseInt(offset, 10) + parseInt(limit, 10),
-            ),
+            .slice(parseInt(offset, 10), parseInt(offset, 10) + size),
         });
       else
         output.search.filter.and.push({
@@ -114,7 +112,7 @@ export default ({
     }
 
     return output;
-  }, [ids, tags, price, offset, limit, includedAllTags, search, sort]);
+  }, [sort, size, offset, ids, search, tags, price, includedAllTags]);
   const prevVariablesRef = useRef(variables);
   const { data, loading } = useQuery(getProducts, { variables });
 
