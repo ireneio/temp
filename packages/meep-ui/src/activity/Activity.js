@@ -20,6 +20,7 @@ import * as styles from './styles';
         activityId: value,
       },
     },
+    skip: !value,
   });
 
   return { activity: data?.viewer?.store?.activity || null, loading };
