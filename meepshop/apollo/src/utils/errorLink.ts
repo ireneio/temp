@@ -33,10 +33,7 @@ export default (
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore https://github.com/apollographql/apollo-link/issues/536
       networkError?.statusCode === 401 &&
-      typeof window !== 'undefined' &&
-      !/\/(login|sign-up|set-up-store|sign-up-fail|reset-password)/.test(
-        window.location.pathname,
-      )
+      typeof window !== 'undefined'
     ) {
       notification.error({
         message: '請重新登入',

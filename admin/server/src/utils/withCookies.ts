@@ -13,17 +13,24 @@ import { initAdminCookies } from '../gqls/withCookies';
 // definition
 export default withCookies(
   async ({
+    pathname,
     client,
     i18n,
     language,
     cookie,
   }: getCookiesArgumentType): Promise<CookiesType['cookies']> => {
-    const { data } = await client.query<initAdminCookiesType>({
-      query: initAdminCookies,
-    });
-    const locale = data?.viewer?.store?.locale || 'zh_TW';
+    if (
+      !/^\/(login|sign-up|set-up-store|sign-up-fail|reset-password)/.test(
+        pathname,
+      )
+    ) {
+      const { data } = await client.query<initAdminCookiesType>({
+        query: initAdminCookies,
+      });
+      const locale = data?.viewer?.store?.locale || 'zh_TW';
 
-    if (locale !== language) await i18n.changeLanguage(locale);
+      if (locale !== language) await i18n.changeLanguage(locale);
+    }
 
     return {
       menuCollapsed: cookie.get('menu-collapsed'),
