@@ -27,32 +27,10 @@ import {
   format as formatDate,
   parse as parseDate,
 } from 'date-fns';
-import zhTW from 'date-fns/locale/zh-TW';
 import enUS from 'date-fns/locale/en-US';
-import jaJP from 'date-fns/locale/ja';
-import viVN from 'date-fns/locale/vi';
-import frFR from 'date-fns/locale/fr';
-import esES from 'date-fns/locale/es';
-import thTH from 'date-fns/locale/th';
-import idID from 'date-fns/locale/id';
-
-import { i18n } from '@meepshop/locales';
 
 // FIXME: https://github.com/react-component/picker/issues/232
 // definition
-const locales: Record<string, Locale> = {
-  zhTW,
-  enUS,
-  jaJP,
-  viVN,
-  frFR,
-  esES,
-  thTH,
-  idID,
-};
-
-const dealLocal = (str: string): string => str.replace(/_/g, '');
-
 const localeParse = (format: string): string => {
   return format
     .replace(/Y/g, 'y')
@@ -91,52 +69,30 @@ const generateConfig: GenerateConfig<Date> = {
   isValidate,
 
   locale: {
-    getWeekFirstDay: () => {
-      const locale = locales[dealLocal(i18n.language)];
-
-      return locale.options?.weekStartsOn || 1;
-    },
-    getWeekFirstDate: (_, date) => {
-      const locale = locales[dealLocal(i18n.language)];
-
-      return startOfWeek(date, { locale });
-    },
-    getWeek: (_, date) => {
-      const locale = locales[dealLocal(i18n.language)];
-
-      return getWeek(date, { locale });
-    },
-    getShortWeekDays: () => {
-      const locale = locales[dealLocal(i18n.language)];
-
-      return Array.from({ length: 7 }).map((_, i) =>
-        locale.localize?.day(i, { width: 'short' }),
-      );
-    },
-    getShortMonths: () => {
-      const locale = locales[dealLocal(i18n.language)];
-
-      return Array.from({ length: 12 }).map((_, i) =>
-        locale.localize?.month(i, { width: 'abbreviated' }),
-      );
-    },
+    getWeekFirstDay: () => enUS.options?.weekStartsOn || 1,
+    getWeekFirstDate: (_, date) => startOfWeek(date, { locale: enUS }),
+    getWeek: (_, date) => getWeek(date, { locale: enUS }),
+    getShortWeekDays: () =>
+      Array.from({ length: 7 }).map((_, i) =>
+        enUS.localize?.day(i, { width: 'short' }),
+      ),
+    getShortMonths: () =>
+      Array.from({ length: 12 }).map((_, i) =>
+        enUS.localize?.month(i, { width: 'abbreviated' }),
+      ),
     format: (_, date, format) => {
       if (!isValidate(date)) return '';
 
-      const locale = locales[dealLocal(i18n.language)];
-
       return formatDate(date, localeParse(format), {
-        locale,
+        locale: enUS,
       });
     },
     parse: (_, text, formats) => {
-      const locale = locales[dealLocal(i18n.language)];
-
       for (let i = 0; i < formats.length; i += 1) {
         const format = localeParse(formats[i]);
         const formatText = text;
         const date = parseDate(formatText, format, new Date(), {
-          locale,
+          locale: enUS,
         });
 
         if (isValidate(date)) return date;
