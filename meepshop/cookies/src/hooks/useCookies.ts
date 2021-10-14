@@ -12,11 +12,9 @@ import { areEqual } from 'fbjs';
 import cookie from 'js-cookie';
 
 import { useTranslation } from '@meepshop/locales';
-import { useRouter } from '@meepshop/link';
 
 // typescript definition
 export type getCookiesType = (ctx: {
-  pathname: string;
   client: ApolloClient<object>;
   i18n: I18nPropsType['i18n'];
   language: languageType;
@@ -34,7 +32,6 @@ export default (
   cookies: CookiesType['cookies'];
   setCookie: (key: string, value: string) => void;
 } => {
-  const router = useRouter();
   const prevInitialCookies = useRef<CookiesType['cookies']>(initialCookies);
   const client = useApolloClient();
   const { i18n } = useTranslation();
@@ -45,7 +42,6 @@ export default (
       setCookies({});
       setCookies(
         await getCookies({
-          pathname: router.asPath,
           client,
           i18n: i18n as I18nPropsType['i18n'],
           language: i18n.language as languageType,
@@ -58,7 +54,7 @@ export default (
       offResetStore();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.asPath]);
+  }, []);
   useEffect(() => {
     if (!areEqual(prevInitialCookies.current, initialCookies))
       setCookies(initialCookies);

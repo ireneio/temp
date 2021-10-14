@@ -97,7 +97,6 @@ export const withCookies = (getCookies: getCookiesType) => (
     ctx: CustomCtx,
   ): Promise<NextAppGetInitialPropsType<WithCookiesPropsType>> => {
     const {
-      router,
       ctx: { client, res, req },
     } = ctx;
     let initialCookies = {};
@@ -106,7 +105,6 @@ export const withCookies = (getCookies: getCookiesType) => (
       initialCookies = await getCookies(
         typeof window === 'undefined'
           ? {
-              pathname: router.asPath,
               client,
               i18n: req.i18n,
               language: req.language,
@@ -123,7 +121,6 @@ export const withCookies = (getCookies: getCookiesType) => (
               },
             }
           : {
-              pathname: router.asPath,
               client,
               i18n: i18n as I18nPropsType['i18n'],
               language: i18n.language as languageType,
