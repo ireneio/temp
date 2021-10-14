@@ -4,7 +4,7 @@
   "description": "Meepshop landing page module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.62",
+  "version": "0.80.63",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -12,7 +12,7 @@
     "@meepshop/address-cascader": "^0.80.62",
     "@meepshop/context": "^0.80.62",
     "@meepshop/convenience-store-map": "^0.80.62",
-    "@meepshop/date-picker": "^0.80.56",
+    "@meepshop/date-picker": "^0.80.63",
     "@meepshop/form-data": "^0.80.62",
     "@meepshop/gmo-credit-card-form": "^0.80.62",
     "@meepshop/hooks": "^0.80.62",
