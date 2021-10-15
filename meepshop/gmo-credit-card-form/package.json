@@ -4,13 +4,13 @@
   "description": "GMO credit card form for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.62",
+  "version": "0.80.64",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/link": "^0.80.62",
-    "@meepshop/locales": "^0.80.56",
-    "@meepshop/utils": "^0.80.62",
+    "@meepshop/link": "^0.80.64",
+    "@meepshop/locales": "^0.80.64",
+    "@meepshop/utils": "^0.80.64",
     "date-fns": "^2.15.0",
     "rifm": "^0.12.0",
     "validator": "^13.5.2"
