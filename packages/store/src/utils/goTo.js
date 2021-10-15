@@ -1,4 +1,4 @@
-import { Router } from 'server/routes';
+import Router from 'next/router';
 
 /**
  * @name goTo
@@ -17,9 +17,9 @@ export default ({ pathname, params = {}, back = false, isStalled = false }) => {
           )
           .join('&');
 
-        Router.pushRoute(`${pathname}${queryString}${params.hash}`);
+        Router.push(`${pathname}${queryString}${params.hash}`);
       } else
-        Router.pushRoute(
+        Router.push(
           `${window.location.pathname}${window.location.search}${params.hash}`,
         );
     } else {
@@ -43,8 +43,8 @@ export default ({ pathname, params = {}, back = false, isStalled = false }) => {
         /* Hack for fixing Instagram copy url */
         window.open(`${window.location.origin}${pathname}${queryString}`);
       else
-        Router.pushRoute(`${pathname}${queryString}`).then(() => {
-          if (!isStalled) window.scrollTo(0, 0);
+        Router.push(`${pathname}${queryString}`, undefined, {
+          scroll: !isStalled,
         });
     }
   } else {
@@ -61,7 +61,7 @@ export default ({ pathname, params = {}, back = false, isStalled = false }) => {
       /* Hack for fixing Instagram copy url */
       window.open(`${window.location.origin}${previousPage}`);
     } else {
-      Router.pushRoute(previousPage);
+      Router.push(previousPage);
     }
   }
 };

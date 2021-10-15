@@ -16084,13 +16084,6 @@ next-redux-wrapper@^2.0.0-beta.6:
   resolved "https://registry.yarnpkg.com/next-redux-wrapper/-/next-redux-wrapper-2.1.0.tgz#ad5e0abbe3859ea5f9f4c981a76406374c13f64e"
   integrity sha512-9Z/6bfVxVF+npBAhK5AgjanFe2pAP4UOP1hC/d1kXit0z0Lt84FopI1BxYIGgJLGXctLT4ein2F8pYms8QrnYg==
 
-next-routes@^1.2.0:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/next-routes/-/next-routes-1.4.2.tgz#736a382579a792ea69f35ae70b449acdfefa7944"
-  integrity sha512-1Ljs0BEV9IGcJLKxC/WZUtmftSvmkY6DlI8fVs8dClCoR82QRzBGRka/L/XB76wE5814MMeP9qVJYQil0FE9QQ==
-  dependencies:
-    path-to-regexp "^2.1.0"
-
 next@^10.2.3:
   version "10.2.3"
   resolved "https://registry.yarnpkg.com/next/-/next-10.2.3.tgz#5aa058a63626338cea91c198fda8f2715c058394"
@@ -17412,11 +17405,6 @@ path-to-regexp@^1.0.0:
   integrity sha1-Wf3g9DW62suhA6hOnTvGTpa5k30=
   dependencies:
     isarray "0.0.1"
-
-path-to-regexp@^2.1.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-2.4.0.tgz#35ce7f333d5616f1c1e1bfe266c3aba2e5b2e704"
-  integrity sha512-G6zHoVqC6GGTQkZwF4lkuEyMbVOjoBKAEybQUypI1WTkqinCOrq2x6U2+phkJ1XsEMTy4LjtwPI7HW+NVrRR2w==
 
 path-to-regexp@^3.1.0:
   version "3.1.0"

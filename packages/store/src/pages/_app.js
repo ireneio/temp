@@ -28,7 +28,7 @@ import AdTrackProvider from '@store/ad-track';
 import { log } from '@meepshop/logger/lib/gqls/log';
 
 import { Error, CloseView, StoreNotExistsView } from 'components';
-import { Router } from 'server/routes';
+import Router from 'next/router';
 import * as Utils from 'utils';
 import configureStore from 'ducks/store';
 import withCookies from 'utils/withCookies';

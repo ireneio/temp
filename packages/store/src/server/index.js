@@ -11,7 +11,6 @@ const { default: initialLogger } = require('@meepshop/logger');
 const { default: serverLogger } = require('@meepshop/logger/lib/server');
 
 const { publicRuntimeConfig } = require('../../next.config');
-const routes = require('./routes');
 const api = require('./routers/api');
 const signin = require('./routers/signin');
 const landingPageAccessToken = require('./routers/landingPageAccessToken');
@@ -22,7 +21,7 @@ const app = nextApp({
   dir: path.resolve(__dirname, '..'),
   dev: process.env.NODE_ENV !== 'production',
 });
-const handler = routes.getRequestHandler(app);
+const handler = app.getRequestHandler();
 
 [
   'unhandledRejection',

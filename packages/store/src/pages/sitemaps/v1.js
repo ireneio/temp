@@ -1,9 +1,9 @@
 import React from 'react';
-import * as Utils from 'utils';
+import Link from 'next/link';
 
 import { log } from '@meepshop/logger/lib/gqls/log';
 
-import { Link } from '../../server/routes';
+import * as Utils from 'utils';
 import getProducts from './api/getProducts.api';
 
 const LIMIT = 90;

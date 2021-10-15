@@ -12,7 +12,7 @@ import * as Utils from 'utils';
 import * as Template from 'template';
 import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
-import { Router } from 'server/routes';
+import Router from 'next/router';
 import * as Actions from 'ducks/actions';
 import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
@@ -48,7 +48,7 @@ class Wishlist extends Component {
   checkPermission = () => {
     const { apps } = this.props;
 
-    if (!apps.wishList.isInstalled) Router.pushRoute('/');
+    if (!apps.wishList.isInstalled) Router.push('/');
   };
 
   render() {
