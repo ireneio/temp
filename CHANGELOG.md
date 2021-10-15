@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.64 (2021-10-15)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1777](https://github.com/meepshop/meep-lerna/pull/1777) 內部開單 - 移除 next-routes ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#1812](https://github.com/meepshop/meep-lerna/pull/1812) (@meepshop/frontend) Add locales and modify images ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.63 (2021-10-14)
 
 #### :bug: Bug Fix
