@@ -28,13 +28,5 @@
   "page-not-found": {
     "title": "看起來頁面似乎不存在",
     "message": "請再次檢查網址是否正確。"
-  },
-  "server-error": {
-    "title": "Un oh!好像有些地方壞掉了",
-    "message": "我們正努力修復中，謝謝你們的耐心等待"
-  },
-  "api-error": {
-    "title": "糟糕出錯了！",
-    "message": "可以晚點再回來試試。"
   }
 }

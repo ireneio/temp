@@ -92,7 +92,7 @@ const getNamespaces = cwd => {
 module.exports = declare(({ assertVersion, types: t }) => {
   assertVersion(7);
   SKIP_DEPENDENCIES.forEach(name => {
-    if (localeExists(name))
+    if (localeExists(name) && name !== '@meepshop/apollo')
       throw new Error(`Could not use '${name}' locale files`);
   });
 

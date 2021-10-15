@@ -28,13 +28,5 @@
   "page-not-found": {
     "title": "Sepertinya halaman tersebut tidak ada",
     "message": "Harap periksa kembali apakah URL sudah benar."
-  },
-  "server-error": {
-    "title": "Un oh! Sepertinya ada yang rusak",
-    "message": "Kami sedang bekerja keras untuk memperbaiki, terima kasih atas kesabaran Anda"
-  },
-  "api-error": {
-    "title": "Ups! Ada yang tidak beres!",
-    "message": "Anda dapat mencoba lagi nanti."
   }
 }

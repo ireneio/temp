@@ -9,7 +9,7 @@ import './styles/serverError.less';
 
 // definition
 export default () => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('apollo');
 
   return (
     <div className="server_error_root">

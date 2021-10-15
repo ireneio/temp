@@ -1,0 +1,10 @@
+{
+  "server-error": {
+    "title": "PBB! Tampaknya beberapa tempat rusak.",
+    "message": "Kami berusaha memperbaiki, terima kasih atas kesabaran Anda."
+  },
+  "network-error": {
+    "title": "Lebih buruk lagi, salah!",
+    "message": "Saya dapat mencoba lagi nanti."
+  }
+}

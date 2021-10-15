@@ -1,0 +1,10 @@
+{
+  "server-error": {
+    "title": "Ơi ơi! Có vẻ như một số nơi bị phá vỡ.",
+    "message": "Chúng tôi đang cố gắng khắc phục, cảm ơn bạn vì sự kiên nhẫn của bạn."
+  },
+  "network-error": {
+    "title": "Tệ hơn, sai rồi!",
+    "message": "Tôi có thể thử lại sau."
+  }
+}

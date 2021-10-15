@@ -1,0 +1,10 @@
+{
+  "server-error": {
+    "title": "Oh! Il semble que certains endroits soient cassés.",
+    "message": "Nous essayons de réparer, merci pour votre patience."
+  },
+  "network-error": {
+    "title": "Pire mal!",
+    "message": "Je peux essayer à nouveau plus tard."
+  }
+}

@@ -9,7 +9,7 @@ import './styles/serverError.less';
 
 // definition
 export default () => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('apollo');
 
   return (
     <div className="server_error_root">
@@ -19,8 +19,10 @@ export default () => {
       <div className="server_error_row">
         <Ship />
         <div className="server_error_text_section">
-          <div className="server_error_title">{t('api-error.title')}</div>
-          <div className="server_error_message">{t('api-error.message')}</div>
+          <div className="server_error_title">{t('network-error.title')}</div>
+          <div className="server_error_message">
+            {t('network-error.message')}
+          </div>
           <div className="server_error_message">
             Please try again in a few minutes.
           </div>
