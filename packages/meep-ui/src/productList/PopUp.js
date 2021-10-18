@@ -213,6 +213,7 @@ export default class PopUp extends React.PureComponent {
               onCancel={onCancel}
               footer={null}
               centered
+              destroyOnClose
             >
               {this.generateDetails(product)}
             </Modal>
