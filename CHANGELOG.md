@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.80.65 (2021-10-18)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1806](https://github.com/meepshop/meep-lerna/pull/1806) 內部開單 - product page 的 product 改用 apollo-client 資料 ([@HsuTing](https://github.com/HsuTing))
+  - [#1807](https://github.com/meepshop/meep-lerna/pull/1807) 內部開單 - 頁面編輯預覽 改用 apollo-client ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1814](https://github.com/meepshop/meep-lerna/pull/1814) 【BUG】圖片元件寬度調小，網頁版無法顯示（模糊） ([@HsuTing](https://github.com/HsuTing))
+  - [#1813](https://github.com/meepshop/meep-lerna/pull/1813) 【BUG】手機版 - 折扣活動元件加入商品後，加入購物車按鈕會顯示在頁面下方 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.64 (2021-10-15)
 
 #### :boom: Breaking Change
