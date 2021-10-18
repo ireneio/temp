@@ -18,12 +18,13 @@ import {
 import notMemoizedClickTracking from 'utils/notMemoizedClickTracking';
 
 import Lazy from './Lazy';
+import Img from './Img';
 import { IMAGE_SUITABLE_WIDTHS } from '../constants';
 import styles from './styles/index.less';
 
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @enhancer
-class Img extends React.PureComponent {
+class Image extends React.PureComponent {
   clickTracking = memoizeOne(notMemoizedClickTracking, areEqual);
 
   static propTypes = {
@@ -99,7 +100,7 @@ class Img extends React.PureComponent {
           <Link {...linkProps}>
             <Lazy image={image}>
               {({ useLarge, isClear, isError, onLoad, onError }) => (
-                <img
+                <Img
                   style={{
                     width: '100%',
                     filter: !isClear && 'blur(10px) brightness(80%)',
@@ -111,6 +112,7 @@ class Img extends React.PureComponent {
                   onLoad={onLoad}
                   onError={onError}
                   alt={alt}
+                  useLarge={useLarge}
                 />
               )}
             </Lazy>
@@ -123,5 +125,5 @@ class Img extends React.PureComponent {
 
 // eslint-disable-next-line react/no-multi-comp
 export default React.forwardRef((props, ref) => (
-  <Img {...props} forwardedRef={ref} />
+  <Image {...props} forwardedRef={ref} />
 ));
