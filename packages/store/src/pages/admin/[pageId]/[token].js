@@ -10,20 +10,27 @@ import { Container, Error } from 'components';
 import { getJoinedPageInPagesRoute } from 'selectors/pages';
 import { getProduct, getJoinedPageInProductRoute } from 'selectors/product';
 import * as Actions from 'ducks/actions';
+import useAdminPreview from 'hooks/useAdminPreview';
 
-const Page = React.memo(({ error, ...props }) => {
-  if (error) return <Error error={error} />;
+const Page = React.memo(
+  ({ error, product: reduxProduct, page: reduxPage, ...props }) => {
+    const { experimentProduct, experimentPage } = useAdminPreview();
+    const product = experimentProduct || reduxProduct;
+    const page = experimentPage || reduxPage;
 
-  return (
-    <AdTrackContext.Provider value={defaultAdTrack}>
-      <div
-        style={{ userSelect: 'none', pointerEvents: 'none', height: '100%' }}
-      >
-        <Container {...props} />
-      </div>
-    </AdTrackContext.Provider>
-  );
-});
+    if (error) return <Error error={error} />;
+
+    return (
+      <AdTrackContext.Provider value={defaultAdTrack}>
+        <div
+          style={{ userSelect: 'none', pointerEvents: 'none', height: '100%' }}
+        >
+          <Container {...props} product={product} page={page} />
+        </div>
+      </AdTrackContext.Provider>
+    );
+  },
+);
 
 Page.getInitialProps = async ctx => {
   const { query, store, XMeepshopDomain, userAgent, client } = ctx;

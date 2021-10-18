@@ -100,7 +100,7 @@ const usePageProductFragment = gql`
   ${localeFragment}
 `;
 
-const usePagePageFragment = gql`
+export const usePagePageFragment = gql`
   fragment usePagePageFragment on Page {
     __typename # use for checking apollo-client
     id
