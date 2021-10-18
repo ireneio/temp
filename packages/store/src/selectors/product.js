@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 import { createSelector } from 'reselect';
-import { getIn, getJoinedModule } from 'utils';
+import { getJoinedModule } from 'utils';
 import { getPages, getQuery } from './index';
 
 const getProductList = ({ productsReducer }) => productsReducer;
@@ -10,26 +10,6 @@ const getPageId = (_, { pageId }) => pageId;
 export const getProduct = createSelector(
   [getProductList, getProductId],
   (productList, pId) => R.find(R.propEq('id', pId))(productList) || {},
-);
-
-export const getProductDescription = createSelector(
-  [getProduct],
-  ({ description }) => {
-    const descTw = getIn(['zh_TW'])(description) || '';
-
-    try {
-      // DraftJS type
-      if (descTw.match(/entityMap/gm))
-        return JSON.parse(descTw).blocks.reduce(
-          (result, { text }) => `${result} ${text}`,
-          '',
-        );
-
-      return descTw;
-    } catch (error) {
-      return '';
-    }
-  },
 );
 
 const getPageByProduct = createSelector(

@@ -52,6 +52,7 @@ const usePageProductFragment = gql`
           w1680
           w1920
         }
+        imageExists
       }
     }
     tags
@@ -243,6 +244,16 @@ export const getPage = gql`
     computeProductList(search: $productSearch) @include(if: $isProductPage) {
       data {
         id
+        status
+        coverImage {
+          id
+          scaledSrc {
+            w480
+          }
+        }
+        title {
+          ...localeFragment
+        }
         page {
           id
           ...usePagePageFragment
@@ -289,6 +300,7 @@ export const getPage = gql`
     }
   }
 
+  ${localeFragment}
   ${usePagePageFragment}
   ${usePageProductFragment}
 `;

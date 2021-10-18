@@ -13,11 +13,7 @@ import withContext from '@store/utils/lib/withContext';
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
 import ProductDiscontinued from 'components/ProductDiscontinued';
-import {
-  getProduct,
-  getProductDescription,
-  getJoinedPageInProductRoute,
-} from 'selectors/product';
+import { getProduct, getJoinedPageInProductRoute } from 'selectors/product';
 import * as Actions from 'ducks/actions';
 
 class Product extends React.Component {
@@ -48,7 +44,6 @@ class Product extends React.Component {
       title: PropTypes.object,
       status: PropTypes.number.isRequired,
     }).isRequired,
-    productDescription: PropTypes.string.isRequired,
   };
 
   static defaultProps = { error: null };
@@ -69,20 +64,34 @@ class Product extends React.Component {
   }
 
   render() {
-    const { error, product, experimentPage } = this.props;
+    const {
+      error,
+      product: reduxProduct,
+      page: reduxPage,
+      experimentProduct,
+      experimentPage,
+    } = this.props;
+    const product = experimentProduct || reduxProduct;
 
     /* Display Error View */
     if (error) return <Error error={error} />;
 
     if (isEmpty(product)) return <Spin indicator={<LoadingOutlined spin />} />;
 
-    const {
-      product: { status, coverImage, title },
-      productDescription,
-      page: reduxPage,
-    } = this.props;
+    const { status, coverImage, title } = product;
     const page = experimentPage || reduxPage;
     const productImage = coverImage?.scaledSrc?.w480 || '';
+    const productDescription = (() => {
+      try {
+        // eslint-disable-next-line camelcase
+        return JSON.parse(product.description?.zh_TW).blocks.reduce(
+          (result, { text }) => `${result} ${text}`,
+          '',
+        );
+      } catch (e) {
+        return '';
+      }
+    })();
 
     // eslint-disable-next-line camelcase
     const productName = title?.zh_TW;
@@ -122,7 +131,7 @@ class Product extends React.Component {
         </Head>
 
         {status ? (
-          <Container {...this.props} page={page} />
+          <Container {...this.props} page={page} product={product} />
         ) : (
           <ProductDiscontinued productName={productName} />
         )}
@@ -141,7 +150,6 @@ const mapStateToProps = (state, props) => {
     page: getJoinedPageInProductRoute(state, props),
     // !!Note: product page ONLY
     product: getProduct(state, props),
-    productDescription: getProductDescription(state, props),
   };
 };
 

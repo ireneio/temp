@@ -89,6 +89,9 @@ export default () => {
     storeDescription: store?.description?.introduction || '',
     logoImage: store?.logoImage,
     faviconImage: store?.faviconImage,
+    experimentProduct: store?.experiment?.isNewPageModulesEnabled
+      ? null
+      : product,
     experimentPage,
     client,
   };

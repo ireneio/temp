@@ -259,6 +259,7 @@ class App extends NextApp {
       logoImage,
       faviconImage,
       i18n,
+      experimentProduct,
       experimentPage,
       client,
     } = this.props;
@@ -336,6 +337,7 @@ class App extends NextApp {
                             <Provider store={store}>
                               <Component
                                 {...pageProps}
+                                experimentProduct={experimentProduct}
                                 experimentPage={experimentPage}
                                 client={client}
                                 url={{
