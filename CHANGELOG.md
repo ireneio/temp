@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.80.66 (2021-10-19)
+
+#### :house: Internal
+
+- `store`
+  - [#1804](https://github.com/meepshop/meep-lerna/pull/1804) 內部開單 - 修改 location 相關寫法，從 redux mapStateToProps 中移出來 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1816](https://github.com/meepshop/meep-lerna/pull/1816) 內部開單 - 移除 braft-convert patch ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.65 (2021-10-18)
 
 #### :rocket: New Feature
