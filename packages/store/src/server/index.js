@@ -130,15 +130,11 @@ app.prepare().then(() => {
     landingPageAccessToken,
   );
 
-  // For facebook fan page connect
-  server.post('/', (req, res) => handler(req, res));
-
-  // ecpay
-  server.post('/pages/:path', (req, res) => handler(req, res));
-  server.post('/products', (req, res) => handler(req, res));
-
-  // others
+  // FIXME: should remove
   server.post('/checkout/thank-you-page/:id', (req, res) => {
+    const { logger } = req;
+
+    logger.warn('should use /api/checkout/thank-you-page/:id');
     res.redirect(`https://${req.get('host')}${req.originalUrl}`);
   });
 
