@@ -6,7 +6,6 @@ import { oops_w110 as oops } from '@meepshop/images';
 import { log } from '@meepshop/logger/lib/gqls/log';
 
 import ErrorPageNotFound from './ErrorPageNotFound';
-import ErrorProductNotFound from './ErrorProductNotFound';
 import ApiError from './ApiError';
 import ServerError from './ServerError';
 
@@ -32,7 +31,7 @@ export default ({ error }) => {
   });
 
   if (status === 'ERROR_PAGE_NOT_FOUND') return <ErrorPageNotFound />;
-  if (status === 'ERROR_PRODUCT_NOT_FOUND') return <ErrorProductNotFound />;
+  if (status === 'ERROR_PRODUCT_NOT_FOUND') return <ErrorPageNotFound />;
   if (status === 'API_ERROR') return <ApiError />;
   if (status === 'SERVER_ERROR') return <ServerError />;
   if (status === 'SAGA_PAGES') return <ServerError />;

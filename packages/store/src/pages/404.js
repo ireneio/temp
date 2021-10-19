@@ -1,2 +1,2 @@
 // import
-export { default } from 'components/Error/ErrorProductNotFound';
+export { default } from 'components/Error/ErrorPageNotFound';
