@@ -32,9 +32,6 @@ class OrderExchange extends Component {
 
   static propTypes = {
     error: PropTypes.string,
-    location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired,
-    }).isRequired,
   };
 
   static defaultProps = { error: null };
@@ -57,30 +54,27 @@ class OrderExchange extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = state => {
   /* Handle error */
   const error = Utils.getStateError(state);
 
   if (error) return { error };
 
-  return {
-    location: Utils.uriParser(props),
-    page: {
-      id: 'page-member-order-apply',
-      container: 'TwoTopsContainer',
-      blocks: [],
-      fixedtop: Template.fixedtop,
-      secondtop: Template.secondtop,
-      fixedbottom: Template.fixedbottom,
-      sidebar: Template.sidebar,
-    },
-  };
+  return {};
 };
 
 export default connect(mapStateToProps)(
   withTranslation('common')(
-    withHook(({ page }) => ({
-      page: useTemplatesMenus(page),
+    withHook(() => ({
+      page: useTemplatesMenus({
+        id: 'page-member-order-apply',
+        container: 'TwoTopsContainer',
+        blocks: [],
+        fixedtop: Template.fixedtop,
+        secondtop: Template.secondtop,
+        fixedbottom: Template.fixedbottom,
+        sidebar: Template.sidebar,
+      }),
     }))(OrderExchange),
   ),
 );

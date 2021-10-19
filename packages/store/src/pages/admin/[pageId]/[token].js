@@ -77,17 +77,14 @@ const mapStateToProps = (state, props) => {
 
   if (error) return { error };
 
-  return {
-    ...(!props.pId
-      ? {
-          page: getJoinedPageInPagesRoute(state, props),
-        }
-      : {
-          page: getJoinedPageInProductRoute(state, props),
-          product: getProduct(state, props),
-        }),
-    location: Utils.uriParser(props),
-  };
+  return !props.pId
+    ? {
+        page: getJoinedPageInPagesRoute(state, props),
+      }
+    : {
+        page: getJoinedPageInProductRoute(state, props),
+        product: getProduct(state, props),
+      };
 };
 
 export default connect(mapStateToProps)(Page);

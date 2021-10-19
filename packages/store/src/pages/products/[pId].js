@@ -35,10 +35,6 @@ class Product extends React.Component {
 
   static propTypes = {
     error: PropTypes.string,
-    location: PropTypes.shape({
-      host: PropTypes.string.isRequired,
-      pathname: PropTypes.string.isRequired,
-    }).isRequired,
     product: PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.object,
@@ -53,11 +49,8 @@ class Product extends React.Component {
 
     if (error) return;
 
-    const {
-      dispatchAction,
-      role,
-      location: { query },
-    } = this.props;
+    const { query } = Utils.uriParser(this.props);
+    const { dispatchAction, role } = this.props;
 
     if (prevProps.role !== role)
       dispatchAction('getProduct', { id: query?.pId, query });
@@ -146,7 +139,6 @@ const mapStateToProps = (state, props) => {
   if (error) return { error };
 
   return {
-    location: Utils.uriParser(props),
     page: getJoinedPageInProductRoute(state, props),
     // !!Note: product page ONLY
     product: getProduct(state, props),

@@ -18,9 +18,6 @@ class Checkout extends React.Component {
 
   static propTypes = {
     error: PropTypes.string,
-    location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired,
-    }).isRequired,
   };
 
   static defaultProps = {
@@ -37,15 +34,18 @@ class Checkout extends React.Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = state => {
   /* Handle error */
   const error = Utils.getStateError(state);
 
   if (error) return { error };
 
-  return {
-    location: Utils.uriParser(props),
-    page: {
+  return {};
+};
+
+export default connect(mapStateToProps)(
+  withHook(() => ({
+    page: useTemplatesMenus({
       id: 'page-checkout',
       title: {
         zh_TW: '結帳',
@@ -63,7 +63,6 @@ const mapStateToProps = (state, props) => {
                 {
                   id: 'checkout',
                   module: 'checkout',
-                  orderInfo: props.orderInfo, // 超商門市
                 },
               ],
             },
@@ -75,12 +74,6 @@ const mapStateToProps = (state, props) => {
       fixedbottom: Template.fixedbottom,
       sidebar: Template.sidebar,
       useBottom: false,
-    },
-  };
-};
-
-export default connect(mapStateToProps)(
-  withHook(({ page }) => ({
-    page: useTemplatesMenus(page),
+    }),
   }))(Checkout),
 );

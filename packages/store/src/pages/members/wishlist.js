@@ -29,9 +29,6 @@ class Wishlist extends Component {
 
   static propTypes = {
     error: PropTypes.string,
-    location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired,
-    }).isRequired,
     locale: PropTypes.string.isRequired,
   };
 
@@ -71,24 +68,13 @@ class Wishlist extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = state => {
   /* Handle error */
   const error = Utils.getStateError(state);
 
   if (error) return { error };
 
-  return {
-    location: Utils.uriParser(props),
-    page: {
-      id: 'page-member-wishList',
-      container: 'TwoTopsContainer',
-      blocks: [],
-      fixedtop: Template.fixedtop,
-      secondtop: Template.secondtop,
-      fixedbottom: Template.fixedbottom,
-      sidebar: Template.sidebar,
-    },
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, dispatch => ({
@@ -98,8 +84,16 @@ export default connect(mapStateToProps, dispatch => ({
 }))(
   withTranslation('common')(
     withContext(AppsContext, apps => ({ apps }))(
-      withHook(({ page }) => ({
-        page: useTemplatesMenus(page),
+      withHook(() => ({
+        page: useTemplatesMenus({
+          id: 'page-member-wishList',
+          container: 'TwoTopsContainer',
+          blocks: [],
+          fixedtop: Template.fixedtop,
+          secondtop: Template.secondtop,
+          fixedbottom: Template.fixedbottom,
+          sidebar: Template.sidebar,
+        }),
       }))(Wishlist),
     ),
   ),

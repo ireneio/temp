@@ -32,15 +32,6 @@ class Container extends React.Component {
   static propTypes = {
     /* may chnage */
     isLogin: PropTypes.string.isRequired,
-    location: PropTypes.shape({
-      hash: PropTypes.string.isRequired,
-      host: PropTypes.string.isRequired,
-      href: PropTypes.string.isRequired,
-      path: PropTypes.string.isRequired,
-      pathname: PropTypes.string.isRequired,
-      search: PropTypes.string.isRequired,
-      userAgent: PropTypes.string.isRequired,
-    }).isRequired,
     loading: PropTypes.bool.isRequired,
     loadingTip: PropTypes.string.isRequired,
     /* func to modify data */
@@ -112,9 +103,9 @@ class Container extends React.Component {
       window.meepShopStore.debugger = { 'Container-props': this.props };
     }
 
+    const location = Utils.uriParser(this.props);
     const {
       /* may change */
-      location,
       loading,
       loadingTip,
       /* func */

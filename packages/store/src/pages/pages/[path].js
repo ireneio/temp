@@ -53,10 +53,6 @@ class Pages extends React.Component {
 
   static propTypes = {
     error: PropTypes.string,
-    location: PropTypes.shape({
-      host: PropTypes.string.isRequired,
-      pathname: PropTypes.string.isRequired,
-    }).isRequired,
     page: PropTypes.shape(CONST.PAGE_TYPE).isRequired,
   };
 
@@ -113,7 +109,6 @@ const mapStateToProps = (state, props) => {
   if (error) return { error };
 
   return {
-    location: Utils.uriParser(props),
     page: getJoinedPageInPagesRoute(state, props),
   };
 };

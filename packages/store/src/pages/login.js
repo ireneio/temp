@@ -19,9 +19,6 @@ class Login extends Component {
 
   static propTypes = {
     error: PropTypes.string,
-    location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired,
-    }).isRequired,
   };
 
   static defaultProps = {
@@ -42,15 +39,18 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = state => {
   /* Handle error */
   const error = Utils.getStateError(state);
 
   if (error) return { error };
 
-  return {
-    location: Utils.uriParser(props),
-    page: {
+  return {};
+};
+
+export default connect(mapStateToProps)(
+  withHook(() => ({
+    page: useTemplatesMenus({
       id: 'page-login',
       title: {
         zh_TW: '登入',
@@ -61,12 +61,6 @@ const mapStateToProps = (state, props) => {
       secondtop: Template.secondtop,
       fixedbottom: Template.fixedbottom,
       sidebar: Template.sidebar,
-    },
-  };
-};
-
-export default connect(mapStateToProps)(
-  withHook(({ page }) => ({
-    page: useTemplatesMenus(page),
+    }),
   }))(Login),
 );

@@ -28,10 +28,6 @@ class Products extends React.Component {
 
   static propTypes = {
     error: PropTypes.string,
-    location: PropTypes.shape({
-      host: PropTypes.string.isRequired,
-      pathname: PropTypes.string.isRequired,
-    }).isRequired,
     page: PropTypes.shape({
       seo: PropTypes.object,
     }).isRequired,
@@ -90,7 +86,6 @@ const mapStateToProps = (state, props) => {
   if (error) return { error };
 
   return {
-    location: Utils.uriParser(props),
     page: getJoinedProductsPage(state, props),
   };
 };
