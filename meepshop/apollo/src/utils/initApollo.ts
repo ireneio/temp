@@ -27,15 +27,15 @@ import initialLogger from '@meepshop/logger';
 // eslint-disable-next-line import/no-unresolved
 import fragmentTypes from '../../fragmentTypes';
 
-import * as getDraftText from '../client-side-schema/getDraftText';
-import * as landingPageAccessToken from '../client-side-schema/landingPageAccessToken';
-import * as log from '../client-side-schema/log';
-import * as login from '../client-side-schema/login';
-import * as logout from '../client-side-schema/logout';
-import * as PageInfo from '../client-side-schema/PageInfo';
-import * as productsObjectType from '../client-side-schema/productsObjectType';
-import * as settingObjectType from '../client-side-schema/settingObjectType';
-import * as validatedConvenienceStoreCities from '../client-side-schema/validatedConvenienceStoreCities';
+import * as getDraftText from '../clientSideSchema/getDraftText';
+import * as landingPageAccessToken from '../clientSideSchema/landingPageAccessToken';
+import * as log from '../clientSideSchema/log';
+import * as login from '../clientSideSchema/login';
+import * as logout from '../clientSideSchema/logout';
+import * as PageInfo from '../clientSideSchema/PageInfo';
+import * as productsObjectType from '../clientSideSchema/productsObjectType';
+import * as settingObjectType from '../clientSideSchema/settingObjectType';
+import * as validatedConvenienceStoreCities from '../clientSideSchema/validatedConvenienceStoreCities';
 
 import mergeResolvers from './mergeResolvers';
 import errorLink from './errorLink';
