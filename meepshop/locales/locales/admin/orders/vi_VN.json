@@ -1,9 +1,12 @@
 {
   "title": {
     "orders": "Đặt hàng",
+    "archive-orders": "Niêm phong thứ tự",
     "ecpay": "Quản lý vận chuyển xanh",
     "ecfit": "Quản lý đơn hàng ECFIT."
   },
+  "all-orders": "Tất cả các đơn đặt hàng",
+  "shipment-orders": "Đơn đặt hàng hậu cần",
   "change": "thay đổi",
   "change-status": {
     "title": "Thay đổi trạng thái",

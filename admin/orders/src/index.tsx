@@ -5,11 +5,7 @@ import { OrdersQueryResult } from './constants';
 
 // import
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  DownOutlined,
-  LoadingOutlined,
-  ProfileOutlined,
-} from '@ant-design/icons';
+import { DownOutlined, LoadingOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, Input, Spin, Button } from 'antd';
 import { filter } from 'graphql-anywhere';
 
@@ -56,7 +52,7 @@ interface PropsType extends OrdersQueryResult {
 }
 
 // definition
-const { Item } = Menu;
+const { Item, ItemGroup } = Menu;
 const { Search } = Input;
 
 export default React.memo(
@@ -126,14 +122,18 @@ export default React.memo(
           <div className={styles.header}>
             <div>
               <Dropdown
+                placement="bottomRight"
                 overlayClassName={styles.options}
                 overlay={
                   <Menu onClick={({ key }) => router.push(key as string)}>
-                    {ordersMenu.map(({ key, title, path, useIcon }) => (
-                      <Item key={path} disabled={key === pageId}>
-                        {!useIcon ? null : <ProfileOutlined />}
-                        {title}
-                      </Item>
+                    {ordersMenu.map(({ groupTitle, items }) => (
+                      <ItemGroup key={groupTitle} title={t(groupTitle)}>
+                        {items.map(({ key, title, path }) => (
+                          <Item key={path} disabled={key === pageId}>
+                            {title}
+                          </Item>
+                        ))}
+                      </ItemGroup>
                     ))}
                   </Menu>
                 }

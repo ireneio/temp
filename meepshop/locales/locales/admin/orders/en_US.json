@@ -1,9 +1,12 @@
 {
   "title": {
     "orders": "Order",
+    "archive-orders": "Sealing order",
     "ecpay": "Green shipping management",
     "ecfit": "ECFIT orders management"
   },
+  "all-orders": "All orders",
+  "shipment-orders": "Logistics orders",
   "change": "change",
   "change-status": {
     "title": "Change status",

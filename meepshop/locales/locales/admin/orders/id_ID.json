@@ -1,9 +1,12 @@
 {
   "title": {
     "orders": "Memesan",
+    "archive-orders": "Order penyegelan",
     "ecpay": "Manajemen Pengiriman Hijau",
     "ecfit": "Manajemen Pesanan ECFIT."
   },
+  "all-orders": "Semua perintah",
+  "shipment-orders": "Pesanan logistik",
   "change": "perubahan",
   "change-status": {
     "title": "Merubah status",

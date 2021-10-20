@@ -1,9 +1,12 @@
 {
   "title": {
     "orders": "注文",
+    "archive-orders": "シーリング順序",
     "ecpay": "グリーン配送管理",
     "ecfit": "ECFIT注文管理"
   },
+  "all-orders": "すべての命令",
+  "shipment-orders": "物流命令",
   "change": "変化する",
   "change-status": {
     "title": "ステータスを変更する",

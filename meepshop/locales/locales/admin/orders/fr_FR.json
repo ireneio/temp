@@ -1,9 +1,12 @@
 {
   "title": {
     "orders": "Ordre",
+    "archive-orders": "Ordre d'étanchéité",
     "ecpay": "Gestion d'expédition verte",
     "ecfit": "Gestion des commandes ECFIT"
   },
+  "all-orders": "Tous les ordres",
+  "shipment-orders": "Commandes logistiques",
   "change": "changement",
   "change-status": {
     "title": "Changer de statut",

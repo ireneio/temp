@@ -1,9 +1,12 @@
 {
   "title": {
     "orders": "訂單",
+    "archive-orders": "封存訂單",
     "ecpay": "綠界出貨管理",
-    "ecfit": "ECFIT訂單管理"
+    "ecfit": "ECFIT出貨管理"
   },
+  "all-orders": "全部訂單",
+  "shipment-orders": "物流商訂單",
   "change": "變更",
   "change-status": {
     "title": "變更狀態",

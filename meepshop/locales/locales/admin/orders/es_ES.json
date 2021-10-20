@@ -1,9 +1,12 @@
 {
   "title": {
     "orders": "Pedido",
+    "archive-orders": "Orden de sellado",
     "ecpay": "Gestión de envíos verde",
     "ecfit": "Gestión de pedidos de ECFIT"
   },
+  "all-orders": "Todas las órdenes",
+  "shipment-orders": "Órdenes de logística",
   "change": "cambio",
   "change-status": {
     "title": "Cambiar Estado",
