@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.80.67 (2021-10-20)
+
+#### :rocket: New Feature
+
+- [#1711](https://github.com/meepshop/meep-lerna/pull/1711) 【功能】後台 - 訂單管理 - 封存 - 前端 ([@Lexiwu](https://github.com/Lexiwu))
+- [#1819](https://github.com/meepshop/meep-lerna/pull/1819) 內部開單 - 新增 @admin/gallery package ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1820](https://github.com/meepshop/meep-lerna/pull/1820) 內部開單 - 修正 redux error ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `store`
+  - [#1818](https://github.com/meepshop/meep-lerna/pull/1818) 內部開單 - 開新的 api route 並且加上 warn log ([@HsuTing](https://github.com/HsuTing))
+  - [#1817](https://github.com/meepshop/meep-lerna/pull/1817) 內部開單 - 移除 ErrorProductNotFound ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.66 (2021-10-19)
 
 #### :house: Internal
