@@ -57,6 +57,8 @@ Page.getInitialProps = async ctx => {
 
   const { pagesReducer } = store.getState();
 
+  if (pagesReducer.error) return {};
+
   if (!pagesReducer.find(page => page.id === pageId))
     store.dispatch(Actions.getPages({ ...ctx, id: pageId }));
 

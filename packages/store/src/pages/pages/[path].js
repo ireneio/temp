@@ -44,6 +44,8 @@ class Pages extends React.Component {
     else {
       const { pagesReducer } = store.getState();
 
+      if (pagesReducer.error) return {};
+
       if (!pagesReducer.find(page => page.path === path))
         store.dispatch(Actions.getPages({ pageType: 'CUSTOM', path, query }));
     }

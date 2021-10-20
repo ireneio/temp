@@ -20,6 +20,8 @@ class Index extends React.Component {
     else {
       const { pagesReducer } = store.getState();
 
+      if (pagesReducer.error) return {};
+
       if (!pagesReducer.some(({ pageType }) => pageType === 'home'))
         store.dispatch(Actions.getPages({ pageType: 'HOME', query }));
     }

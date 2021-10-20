@@ -25,6 +25,9 @@ class Product extends React.Component {
       store.dispatch(Actions.serverProductInitial(context));
     else {
       const { productsReducer } = store.getState();
+
+      if (productsReducer.error) return {};
+
       const product = productsReducer.find(_product => _product?.id === pId);
 
       if (!product) store.dispatch(Actions.getProduct({ id: pId, query }));
