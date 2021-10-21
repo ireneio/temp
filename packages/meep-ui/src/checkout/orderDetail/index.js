@@ -50,14 +50,18 @@ const { Item: FormItem } = Form;
       ...info,
       userName: data.userName ?? userName,
       userMobile: data.userMobile ?? userMobile,
-      userAddressAndZipCode: data.userAddressAndZipCode ?? {
-        address: [
-          address?.country?.id,
-          address?.city?.id,
-          address?.area?.id,
-        ].filter(Boolean),
-        zipCode: address?.zipCode,
-      },
+      userAddressAndZipCode:
+        data.userAddressAndZipCode ??
+        (!address
+          ? undefined
+          : {
+              address: [
+                address.country?.id,
+                address.city?.id,
+                address.area?.id,
+              ].filter(Boolean),
+              zipCode: address.zipCode,
+            }),
       userStreet: data.userStreet ?? address?.street,
     };
 
