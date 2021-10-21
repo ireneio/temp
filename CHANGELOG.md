@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.80.68 (2021-10-21)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1808](https://github.com/meepshop/meep-lerna/pull/1808) 【BUG】前台 - 結帳頁會員登入彈窗並登入會員，少帶入「地區」資料 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1815](https://github.com/meepshop/meep-lerna/pull/1815) 【BUG】結帳頁 - 重新選擇綠界超取物流後，已選擇門市資料無清空 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- [#1822](https://github.com/meepshop/meep-lerna/pull/1822) (@meepshop/apollo) Rename folder name ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.67 (2021-10-20)
 
 #### :rocket: New Feature
