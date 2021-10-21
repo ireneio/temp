@@ -4,7 +4,7 @@
   "description": "member order apply form",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.67",
+  "version": "0.80.68",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -13,7 +13,7 @@
     "@meepshop/locales": "^0.80.67",
     "@meepshop/thumbnail": "^0.80.67",
     "@meepshop/utils": "^0.80.67",
-    "@store/apollo": "^0.80.67",
+    "@store/apollo": "^0.80.68",
     "@store/utils": "^0.80.67",
     "color": "^3.0.0",
     "date-fns": "^2.15.0"
