@@ -53,24 +53,17 @@ export default class ChooseShipmentStore extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
-    const {
-      form: { resetFields },
-      shipmentId,
-      shipmentTemplate,
-    } = nextProps;
+    const { shipmentId, shipmentTemplate } = nextProps;
 
     if (
       shipmentId !== preState.shipmentId ||
       shipmentTemplate !== preState.shipmentTemplate
-    ) {
-      resetFields([...SHIPMENT_STORE_FIELDS, ...CONVENIENCE_STORE_FIELDS]);
-
+    )
       return {
         shipmentId,
         shipmentTemplate,
         allpay: null,
       };
-    }
 
     return null;
   }
@@ -184,7 +177,7 @@ export default class ChooseShipmentStore extends React.PureComponent {
             })
           }
         >
-          <FormItem dependencies={SHIPMENT_STORE_FIELDS} noStyle>
+          <FormItem shouldUpdate noStyle>
             {({ getFieldsValue }) =>
               Object.values(getFieldsValue(SHIPMENT_STORE_FIELDS)).some(Boolean)
                 ? t('rechoose-store')
@@ -193,7 +186,7 @@ export default class ChooseShipmentStore extends React.PureComponent {
           </FormItem>
         </Button>
 
-        <FormItem dependencies={SHIPMENT_STORE_FIELDS} noStyle>
+        <FormItem shouldUpdate noStyle>
           {({ getFieldValue }) =>
             SHIPMENT_STORE_FIELDS.map(field => {
               const value = getFieldValue(field);

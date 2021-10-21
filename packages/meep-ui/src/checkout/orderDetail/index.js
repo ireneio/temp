@@ -195,10 +195,20 @@ export default class OrderDetail extends React.PureComponent {
             );
             resetTimer();
           }
+
           return {
             orderInfo: {
               ...result.orderInfo,
               [key]: value,
+              ...(changedFields?.[0]?.name?.[0] !== 'shipmentId'
+                ? {}
+                : {
+                    CVSAddress: null,
+                    CVSStoreID: null,
+                    CVSStoreName: null,
+                    cvsCode: null,
+                    cvsType: null,
+                  }),
             },
             errors: {
               ...result.errors,
