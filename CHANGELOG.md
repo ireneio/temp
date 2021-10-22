@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.69 (2021-10-22)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1823](https://github.com/meepshop/meep-lerna/pull/1823) 內部開單 - 搬 登出 以及 一頁式 到 next api routes ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#1824](https://github.com/meepshop/meep-lerna/pull/1824) 【優化】深色系背景文字顯示 - 會員管理 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.68 (2021-10-21)
 
 #### :bug: Bug Fix
