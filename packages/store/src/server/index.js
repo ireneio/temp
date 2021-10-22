@@ -13,7 +13,6 @@ const { default: serverLogger } = require('@meepshop/logger/lib/server');
 const { publicRuntimeConfig } = require('../../next.config');
 const api = require('./routers/api');
 const signin = require('./routers/signin');
-const landingPageAccessToken = require('./routers/landingPageAccessToken');
 const mapCookiesToHeaders = require('./mapCookiesToHeaders');
 
 const { STORE_DOMAIN } = publicRuntimeConfig;
@@ -116,18 +115,6 @@ app.prepare().then(() => {
     '/api/auth/fbLogin',
     mapCookiesToHeaders,
     signin('/facebook/fbLogin'),
-  );
-  server.post('/api/auth/logout', (req, res) => {
-    res.cookie('x-meepshop-authorization-token', '', {
-      maxAge: 0,
-      httpOnly: true,
-    });
-    res.status(200).end();
-  });
-  server.post(
-    '/auth/landing_page/access_token',
-    mapCookiesToHeaders,
-    landingPageAccessToken,
   );
 
   // FIXME: should remove

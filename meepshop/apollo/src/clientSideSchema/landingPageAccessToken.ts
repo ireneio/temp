@@ -6,7 +6,7 @@ export const resolvers = {
       // TODO: should use graphql type
       { input: { email } }: { input: { email: string } },
     ) => {
-      const res = await fetch('/auth/landing_page/access_token', {
+      const res = await fetch('/api/landing-page/access-token', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',

@@ -1,13 +1,17 @@
-const { publicRuntimeConfig } = require('../../../next.config');
+// import
+import getConfig from 'next/config';
 
-const { API } = publicRuntimeConfig;
+// definition
+const {
+  publicRuntimeConfig: { API },
+} = getConfig();
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const response = await fetch(`${API}/auth/landing_page/access_token`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
-      'x-meepshop-domain': req.get('x-meepshop-domain'),
+      'x-meepshop-domain': req.headers.host,
     },
     credentials: 'include',
     body: JSON.stringify({
