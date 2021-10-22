@@ -80,6 +80,7 @@ export const ColorsProvider = React.memo(({ children }) => {
             .ant-input[disabled],
             .ant-input-password,
             .ant-input-password:focus,
+            .ant-input-password .ant-input-suffix .ant-input-password-icon,
             .ant-input-number-input,
             .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover,
             .ant-select:not(.ant-select-customize-input) .ant-select-selector,
@@ -95,7 +96,11 @@ export const ColorsProvider = React.memo(({ children }) => {
             .ant-form-item-has-error .ant-input-number,
             .ant-form-item-has-error .ant-picker,
             .ant-form-item-has-error .ant-input-number:not([disabled]):hover,
-            .ant-form-item-has-error .ant-picker:not([disabled]):hover {
+            .ant-form-item-has-error .ant-picker:not([disabled]):hover,
+            .ant-picker-input > input,
+            .ant-picker-input .ant-picker-suffix,
+            .ant-picker-input .ant-picker-clear {
+              color: ${colors[3]};
               border-color: ${colors[5]};
               background-color: ${colors[0]};
               box-shadow: none;
@@ -114,8 +119,11 @@ export const ColorsProvider = React.memo(({ children }) => {
             }
 
             .ant-cascader-picker .ant-cascader-picker-label,
+            .ant-cascader-picker .ant-cascader-picker-clear,
+            .ant-cascader-picker .ant-cascader-picker-arrow,
             .ant-select:not(.ant-select-customize-input) .ant-select-selection-item,
             .ant-select:not(.ant-select-customize-input) .ant-select-arrow,
+            .ant-select:not(.ant-select-customize-input) .ant-select-clear,
             .ant-cascader-menus .ant-cascader-menu-item,
             .ant-select-item {
               color: ${colors[3]};
