@@ -4,11 +4,11 @@
   "description": "Use to show order history records",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.67",
+  "version": "0.80.69",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.67",
+    "@meepshop/context": "^0.80.69",
     "@meepshop/icons": "^0.80.67",
     "@meepshop/images": "^0.80.67",
     "@meepshop/link": "^0.80.67",
