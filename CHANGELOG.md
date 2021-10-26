@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.80.70 (2021-10-26)
+
+#### :rocket: New Feature
+
+- [#1701](https://github.com/meepshop/meep-lerna/pull/1701) 【重構】admin 購物設定 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1825](https://github.com/meepshop/meep-lerna/pull/1825) 內部開單 - init not called with valid version ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#1826](https://github.com/meepshop/meep-lerna/pull/1826) 【個別店家】商品列表  元件，點選其他頁碼會跳到上方處 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- `store`
+  - [#1821](https://github.com/meepshop/meep-lerna/pull/1821) 內部開單 - 移除 toggle 防呆 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.69 (2021-10-22)
 
 #### :boom: Breaking Change
