@@ -9,7 +9,7 @@ export interface FbType extends Omit<windowFBType, 'login'> {
 }
 
 // definition
-export const version = 'v8.0';
+export const version = 'v12.0';
 
 export const defaultAppId = '286359492558905';
 
