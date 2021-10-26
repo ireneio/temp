@@ -64,10 +64,11 @@ class Product extends React.Component {
       error,
       product: reduxProduct,
       page: reduxPage,
+      isNewPageModulesEnabled,
       experimentProduct,
       experimentPage,
     } = this.props;
-    const product = experimentProduct || reduxProduct;
+    const product = !isNewPageModulesEnabled ? experimentProduct : reduxProduct;
 
     /* Display Error View */
     if (error) return <Error error={error} />;
@@ -75,7 +76,7 @@ class Product extends React.Component {
     if (isEmpty(product)) return <Spin indicator={<LoadingOutlined spin />} />;
 
     const { status, coverImage, title } = product;
-    const page = experimentPage || reduxPage;
+    const page = !isNewPageModulesEnabled ? experimentPage : reduxPage;
     const productImage = coverImage?.scaledSrc?.w480 || '';
     const productDescription = (() => {
       try {

@@ -61,13 +61,13 @@ class Pages extends React.Component {
   static defaultProps = { error: null };
 
   render() {
-    const { error, experimentPage } = this.props;
+    const { error, isNewPageModulesEnabled, experimentPage } = this.props;
 
     /* Display Error View */
     if (error) return <Error error={error} />;
 
     const { page: reduxPage } = this.props;
-    const page = experimentPage || reduxPage;
+    const page = !isNewPageModulesEnabled ? experimentPage : reduxPage;
     const { tabTitle = '' } = page;
     const { keywords, description, image } = page.seo || {};
 

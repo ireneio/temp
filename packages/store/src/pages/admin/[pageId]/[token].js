@@ -13,10 +13,16 @@ import * as Actions from 'ducks/actions';
 import useAdminPreview from 'hooks/useAdminPreview';
 
 const Page = React.memo(
-  ({ error, product: reduxProduct, page: reduxPage, ...props }) => {
+  ({
+    error,
+    isNewPageModulesEnabled,
+    product: reduxProduct,
+    page: reduxPage,
+    ...props
+  }) => {
     const { experimentProduct, experimentPage } = useAdminPreview();
-    const product = experimentProduct || reduxProduct;
-    const page = experimentPage || reduxPage;
+    const product = !isNewPageModulesEnabled ? experimentProduct : reduxProduct;
+    const page = !isNewPageModulesEnabled ? experimentPage : reduxPage;
 
     if (error) return <Error error={error} />;
 
