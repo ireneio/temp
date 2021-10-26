@@ -123,7 +123,9 @@ export default ({
     ) {
       const dom = document.getElementById(id);
 
-      if (dom) dom.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        if (dom) dom.scrollIntoView({ behavior: 'smooth' });
+      }, 500);
 
       if (search)
         adTrack.search({
