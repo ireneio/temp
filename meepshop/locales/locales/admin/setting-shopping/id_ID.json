@@ -1,0 +1,201 @@
+{
+  "title": "Pengaturan belanja",
+  "cancel": "membatalkan",
+  "save": "toko",
+  "required": "Yg dibutuhkan",
+  "success": "Berhasil disimpan",
+  "error": "kesalahan",
+  "required-checkbox": "Periksa setidaknya satu",
+  "halfwidth-only": "Harus berupa karakter alfanumerik",
+  "locales": {
+    "zh_TW": "Cina tradisional",
+    "en_US": "Inggris",
+    "ja_JP": "Jepang",
+    "vi_VN": "Orang Vietnam",
+    "fr_FR": "Perancis",
+    "es_ES": "Orang Spanyol",
+    "th_TH": "Thai",
+    "id_ID": "bahasa Indonesia"
+  },
+  "setting": {
+    "lockedCountry": {
+      "title": "Taiwan terbatas untuk mengirim",
+      "desc": "Konsumen memilih mode transportasi rumah dan mengatur model penerima, membatasi alamat pengiriman domestik Taiwan"
+    },
+    "order": {
+      "useNotPayNow": {
+        "title": "Bayar nanti",
+        "desc": "Di halaman checkout, bekerja sama dengan ATM Internet Hijau dan kartu kredit, konsumen dapat menyelesaikan pesanan, memilih hari untuk membayar lagi"
+      },
+      "afterPaymentFail": {
+        "title": "Pembayaran gagal membatalkan pesanan",
+        "desc": "Ketika pembayaran pesanan gagal, sistem akan secara otomatis membatalkan"
+      },
+      "autoAddStock": {
+        "title": "Batalkan Pesanan Secara Otomatis Menambahkan Inventarisasi Kembali",
+        "desc": "Ketika pesanan dibatalkan, sistem akan secara otomatis mengisi semua barang dalam urutan."
+      }
+    },
+    "invoice": {
+      "paper": {
+        "isEnable": {
+          "title": "Faktur kertas.",
+          "desc": "Berikan opsi untuk menjadi dua faktur, faktur triple, donasi, dan toko dapat memeriksa kebutuhan aktual"
+        }
+      },
+      "electronic": {
+        "isEnable": {
+          "title": "Faktur elektronik.",
+          "desc": "Opsi Penawaran: Keanggotaan / Barcode Seluler / Dokumen / Perusahaan Natural Man / Donasi, toko dapat ditipu dengan kebutuhan penggunaan aktual."
+        }
+      }
+    },
+    "lockedBirthday": {
+      "title": "Mengunci bidang ulang tahun anggota",
+      "desc": "Batasi Keanggotaan tidak boleh mengubah informasi ulang tahun Anda"
+    },
+    "rewardPointReminder": {
+      "isEnabled": {
+        "title": "Pemberitahuan ekspirasi belanja",
+        "desc": "Biarkan anggota menerima pemberitahuan pengingat sebelum pembelian pembelian."
+      }
+    },
+    "backToTopButtonEnabled": {
+      "title": "Kembali ke tombol atas",
+      "desc": "Registrasi Anggota Berlangganan Diri dengan Pesan Halaman Login"
+    },
+    "shopperLoginMessageEnabled": {
+      "title": "Registrasi Anggota Berlangganan Diri dengan Pesan Halaman Login"
+    }
+  },
+  "apps": {
+    "wishList": {
+      "title": "Koleksi Produk",
+      "desc": "Setelah mendaftarkan anggota, Anda dapat mengumpulkan koleksi produk."
+    },
+    "productNotice": {
+      "title": "Barang komersial untuk diperhatikan",
+      "desc": "Anggota dapat berlangganan barang-barang jual pendek di bawah stok, dan akan menerima pemberitahuan yang tersedia setelah Anda pengisian ulang"
+    },
+    "returnOrder": {
+      "title": "Mengembalikan aplikasi",
+      "desc": "Konsumen dapat mengajukan permohonan barang untuk \"dikirim dan tidak disadari\" dalam manajemen pesanan"
+    },
+    "replacement": {
+      "title": "Aplikasi Exchange.",
+      "desc": "Konsumen dapat mengajukan permohonan barang untuk \"dikirim dan pesanan yang tidak dibatasi\" dalam manajemen pesanan"
+    },
+    "memberSeePrice": {
+      "title": "Anggota terlihat Price.",
+      "desc": "Konsumen perlu mendaftarkan anggota untuk masuk untuk melihat harga barang"
+    }
+  },
+  "basic": {
+    "0": {
+      "title": "Pengaturan bahasa",
+      "tip": "Pilih bahasa yang ditampilkan oleh teks default dari sistem latar depan"
+    },
+    "1": {
+      "title": "Kategori mata uang",
+      "tip": "Konversikan jumlah barang di latar depan ke mata uang negara agar konsumen dapat dengan cepat mengonversi jumlahnya, tetapi jumlah transaksi pesanan yang sebenarnya didasarkan pada mata uang yang ditetapkan di latar belakang"
+    },
+    "title": "Pengaturan dasar",
+    "desc": "Atur bahasa dan jenis mata uang yang didukung oleh toko"
+  },
+  "checkout": {
+    "title": "Pengaturan Checkout",
+    "desc": "Pengaturan terkait pembayaran dan pengiriman konsumen"
+  },
+  "checkoutUserSetting": {
+    "column": "Nama kolom",
+    "name": "Nama",
+    "mobile": "Telepon genggam",
+    "address": "Alamat Regional.",
+    "REQUIRED": "Yg dibutuhkan",
+    "OPTIONAL": "Memilih",
+    "HIDDEN": "menyembunyikan",
+    "title": "Halaman checkout bidang informasi anggota",
+    "desc": "Anda dapat mengisi informasi keanggotaan yang Anda butuhkan untuk mengisi konsumen saat memesan akun Anda."
+  },
+  "invoice": {
+    "paper": {
+      "title": "Faktur Tipe.",
+      "duplicate": "In faktur di-dua",
+      "triplicate": "Tiga Faktur",
+      "donation": "Sumbangan"
+    },
+    "electronic": {
+      "0": {
+        "title": "Metode penerbitan",
+        "ECPAY": {
+          "name": "Green World otomatis terbuka",
+          "tip": "Harga jual semua barang di toko sudah termasuk pajak / type track karakter: jumlah pajak umum / kategori kena pajak: kena pajak"
+        },
+        "MANUAL": {
+          "name": "Penerbitan manual",
+          "tip": "Perlu mengekspor informasi yang relevan secara manual dari data pesanan dan menerbitkan faktur ke platform faktur elektronik"
+        }
+      },
+      "1": {
+        "title": "Nomor toko koperasi"
+      },
+      "2": {
+        "title": "Pengaturan waktu penerbitan faktur",
+        "NOW": {
+          "name": "Buka sekarang",
+          "tip": "Ketika status akun pesanan adalah \"rekonsiliasi selesai\", itu akan segera dikeluarkan secara otomatis"
+        },
+        "DELAY": {
+          "1": "1 hari",
+          "10": "10 hari",
+          "name": "Penerbitan tertunda",
+          "tip": {
+            "0": "Jika status akun adalah \"rekonsiliasi selesai\", setel untuk dikeluarkan secara otomatis setelah 1 atau 10 hari",
+            "1": "Jika pesanan dibatalkan dalam jumlah hari yang ditentukan, silakan pergi ke belakang panggung Dunia Hijau untuk secara manual menghapus \"Faktur Tertunda\".",
+            "2": "Jika Anda memiliki pesanan individual yang perlu ditagih lebih awal dari hari yang dijadwalkan, harap buka detail pesanan dan klik tombol \"Dikeluarkan Sekarang\", dan faktur akan segera diterbitkan."
+          }
+        }
+      },
+      "3": {
+        "title": "jenis faktur",
+        "membershipCarrier": "Kendaraan anggota",
+        "mobileBarCodeCarrier": "Kode batang ponsel",
+        "citizenDigitalCertificateCarrier": "Sertifikat perorangan",
+        "triplicate": "Akun Perusahaan",
+        "donation": "Menyumbangkan"
+      }
+    },
+    "title": "Pengaturan faktur",
+    "desc": "Memberikan pilihan kepada konsumen untuk meminta informasi faktur pada saat pembayaran, dibagi menjadi faktur kertas dan faktur elektronik"
+  },
+  "order": {
+    "0": {
+      "title": "Pengaturan otomatisasi pesanan",
+      "tip": "Secara otomatis memproses status pesanan dan jumlah persediaan"
+    },
+    "1": {
+      "title": "Secara otomatis membatalkan pesanan jika pembayaran gagal",
+      "tip": "Mengatur akun setelah mengatur pengiriman uang konsumen",
+      "default": "Akun Akun:"
+    },
+    "title": "Pengaturan manajemen pesanan",
+    "desc": "Kontrol status pemrosesan pesanan otomatis, kuantitas inventaris, dan sesuaikan templat bidang yang diisi ulang setelah pengiriman uang oleh konsumen"
+  },
+  "advanced": {
+    "days-prior": "Pemberitahuan Tianmail",
+    "error": "Yg dibutuhkan",
+    "title": "Pengaturan lanjutan anggota",
+    "desc": "Pengaturan tambahan terkait belanja konsumen"
+  },
+  "accessibility": {
+    "0": {
+      "tip": "Konten pesan yang disesuaikan dapat ditampilkan di halaman pendaftaran dan login anggota toko Anda"
+    },
+    "1": {
+      "desc": "Konten pesan yang disesuaikan dapat ditampilkan di halaman pendaftaran anggota dan login toko Anda",
+      "error": "Batas pesan adalah 200 karakter"
+    },
+    "title": "Aksesibilitas halaman",
+    "desc": "Fungsi pembantu terkait bisa membuat konsumen lebih nyaman berbelanja di toko"
+  }
+}

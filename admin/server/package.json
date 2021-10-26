@@ -32,6 +32,7 @@
     "@admin/setting-apps": "^0.80.69",
     "@admin/setting-notification": "^0.80.69",
     "@admin/setting-redirects": "^0.80.69",
+    "@admin/setting-shopping": "^0.80.69",
     "@admin/setting-store": "^0.80.69",
     "@admin/setting-third-party": "^0.80.69",
     "@admin/sign-up": "^0.80.67",

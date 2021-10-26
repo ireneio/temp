@@ -1,0 +1,201 @@
+{
+  "title": "Cài đặt mua sắm",
+  "cancel": "hủy bỏ",
+  "save": "cửa hàng",
+  "required": "Cần thiết",
+  "success": "đã lưu thành công",
+  "error": "lỗi",
+  "required-checkbox": "Kiểm tra ít nhất một",
+  "halfwidth-only": "Phải là ký tự chữ và số",
+  "locales": {
+    "zh_TW": "truyền thống Trung Quốc",
+    "en_US": "Tiếng Anh",
+    "ja_JP": "tiếng Nhật",
+    "vi_VN": "Tiếng Việt",
+    "fr_FR": "người Pháp",
+    "es_ES": "người Tây Ban Nha",
+    "th_TH": "Thái",
+    "id_ID": "Người Indonesia"
+  },
+  "setting": {
+    "lockedCountry": {
+      "title": "Giới hạn Đài Loan để gửi",
+      "desc": "Người tiêu dùng chọn chế độ vận chuyển của ngôi nhà và thiết lập mô hình người nhận, giới hạn địa chỉ giao hàng của Đài Loan trong nước"
+    },
+    "order": {
+      "useNotPayNow": {
+        "title": "Trả tiền sau",
+        "desc": "Trong trang thanh toán, hợp tác với ATM internet xanh và thẻ tín dụng, người tiêu dùng có thể hoàn thành đơn hàng, chọn ngày để thanh toán lại"
+      },
+      "afterPaymentFail": {
+        "title": "Thanh toán không thể hủy đơn hàng",
+        "desc": "Khi thanh toán đơn hàng bị lỗi, hệ thống sẽ tự động hủy"
+      },
+      "autoAddStock": {
+        "title": "Hủy đơn hàng tự động thêm hàng tồn kho trở lại",
+        "desc": "Khi đơn hàng bị hủy, hệ thống sẽ tự động bổ sung tất cả các hàng hóa theo thứ tự."
+      }
+    },
+    "invoice": {
+      "paper": {
+        "isEnable": {
+          "title": "Hóa đơn giấy",
+          "desc": "Cung cấp các tùy chọn là hai hóa đơn, hóa đơn ba lần, quyên góp và các cửa hàng có thể kiểm tra các nhu cầu thực tế"
+        }
+      },
+      "electronic": {
+        "isEnable": {
+          "title": "Hóa đơn điện tử",
+          "desc": "Tùy chọn cung cấp: Thành viên / Mã vạch di động / Tài liệu người đàn ông tự nhiên / Công ty / Đóng góp, cửa hàng có thể bị lừa về nhu cầu sử dụng thực tế."
+        }
+      }
+    },
+    "lockedBirthday": {
+      "title": "Khóa sinh nhật thành viên",
+      "desc": "Giới hạn thành viên không được thay đổi thông tin sinh nhật của bạn"
+    },
+    "rewardPointReminder": {
+      "isEnabled": {
+        "title": "Thông báo hết hạn mua sắm",
+        "desc": "Hãy để các thành viên nhận được thông báo nhắc nhở trước khi mua mua hàng."
+      }
+    },
+    "backToTopButtonEnabled": {
+      "title": "Quay lại nút trên cùng",
+      "desc": "Tự đăng ký Đăng ký thành viên với tin nhắn trang đăng nhập"
+    },
+    "shopperLoginMessageEnabled": {
+      "title": "Tự đăng ký Đăng ký thành viên với tin nhắn trang đăng nhập"
+    }
+  },
+  "apps": {
+    "wishList": {
+      "title": "Bộ sưu tập sản phẩm",
+      "desc": "Sau khi đăng ký thành viên, bạn có thể thu thập bộ sưu tập sản phẩm."
+    },
+    "productNotice": {
+      "title": "Hàng hóa thương mại để ý",
+      "desc": "Các thành viên có thể đăng ký hàng bán ngắn trong kho, và sẽ nhận được thông báo có sẵn sau khi bạn bổ sung"
+    },
+    "returnOrder": {
+      "title": "Trả lại ứng dụng",
+      "desc": "Người tiêu dùng có thể nộp đơn xin hàng hóa đến \"đơn đặt hàng vận chuyển và vô thức\" trong quản lý thứ tự"
+    },
+    "replacement": {
+      "title": "TRAO ĐỔI ỨNG DỤNG",
+      "desc": "Người tiêu dùng có thể nộp đơn xin hàng hóa cho \"đơn đặt hàng được vận chuyển và không có lệnh\" trong quản lý thứ tự"
+    },
+    "memberSeePrice": {
+      "title": "Thành viên có thể nhìn thấy giá",
+      "desc": "Người tiêu dùng cần đăng ký một thành viên để đăng nhập để xem giá hàng hóa"
+    }
+  },
+  "basic": {
+    "0": {
+      "title": "Cài đặt ngôn ngữ",
+      "tip": "Chọn ngôn ngữ được hiển thị theo văn bản mặc định của hệ thống nền trước"
+    },
+    "1": {
+      "title": "Loại tiền tệ",
+      "tip": "Chuyển đổi số lượng hàng hóa ở nền trước sang đơn vị tiền tệ của quốc gia để người tiêu dùng nhanh chóng chuyển đổi số lượng, nhưng số tiền giao dịch đặt hàng thực tế dựa trên đơn vị tiền tệ được đặt trong nền"
+    },
+    "title": "Cài đặt cơ bản",
+    "desc": "Đặt ngôn ngữ và loại tiền tệ được cửa hàng hỗ trợ"
+  },
+  "checkout": {
+    "title": "Cài đặt thanh toán",
+    "desc": "Cài đặt liên quan đến thanh toán của người tiêu dùng và điều kiện giao hàng"
+  },
+  "checkoutUserSetting": {
+    "column": "Tên cột dọc",
+    "name": "Tên",
+    "mobile": "Điện thoại di động",
+    "address": "Địa chỉ khu vực",
+    "REQUIRED": "Cần thiết",
+    "OPTIONAL": "Chọn",
+    "HIDDEN": "ẩn giấu",
+    "title": "Checkout Trang Thông tin Thành viên",
+    "desc": "Bạn có thể điền thông tin thành viên bạn cần để điền vào người tiêu dùng khi bạn đặt tài khoản của mình."
+  },
+  "invoice": {
+    "paper": {
+      "title": "Loại hoá đơn",
+      "duplicate": "Hóa đơn di-hai",
+      "triplicate": "Hóa đơn ba",
+      "donation": "Quyên góp"
+    },
+    "electronic": {
+      "0": {
+        "title": "Phương thức phát hành",
+        "ECPAY": {
+          "name": "Green World tự động mở",
+          "tip": "Giá bán hàng hóa trong cửa hàng đều đã bao gồm thuế / Loại: Thuế chung / Loại chịu thuế: Có thuế"
+        },
+        "MANUAL": {
+          "name": "Phát hành thủ công",
+          "tip": "Cần xuất thủ công các thông tin liên quan từ dữ liệu đơn hàng và xuất hóa đơn sang nền tảng hóa đơn điện tử"
+        }
+      },
+      "1": {
+        "title": "Số cửa hàng hợp tác"
+      },
+      "2": {
+        "title": "Cài đặt thời gian phát hành hóa đơn",
+        "NOW": {
+          "name": "Mở ngay bây giờ",
+          "tip": "Khi trạng thái tài khoản của đơn hàng là \"hoàn tất đối chiếu\", nó sẽ tự động được cấp ngay lập tức"
+        },
+        "DELAY": {
+          "1": "1 ngày",
+          "10": "10 ngày",
+          "name": "Phát hành chậm trễ",
+          "tip": {
+            "0": "Khi trạng thái tài khoản là \"điều chỉnh hoàn tất\", hãy đặt thành tự động phát hành sau 1 hoặc 10 ngày",
+            "1": "Nếu đơn hàng bị hủy trong số ngày đã định, vui lòng vào hậu trường Thế giới xanh để xóa thủ công \"Hóa đơn chờ xử lý\".",
+            "2": "Nếu bạn có các đơn đặt hàng riêng lẻ cần xuất hóa đơn sớm hơn những ngày đã lên lịch, vui lòng chuyển đến chi tiết đơn hàng và nhấp vào nút \"Đã xuất ngay\", và hóa đơn sẽ được xuất ngay lập tức."
+          }
+        }
+      },
+      "3": {
+        "title": "Loại hoá đơn",
+        "membershipCarrier": "Xe thành viên",
+        "mobileBarCodeCarrier": "Mã vạch điện thoại di động",
+        "citizenDigitalCertificateCarrier": "Giấy chứng nhận thể nhân",
+        "triplicate": "Tài khoản công ty",
+        "donation": "Quyên góp"
+      }
+    },
+    "title": "Cài đặt hóa đơn",
+    "desc": "Cung cấp các tùy chọn để người tiêu dùng yêu cầu thông tin hóa đơn khi thanh toán, được chia thành hóa đơn giấy và hóa đơn điện tử"
+  },
+  "order": {
+    "0": {
+      "title": "Cài đặt tự động hóa đơn hàng",
+      "tip": "Tự động xử lý trạng thái đơn hàng và số lượng hàng tồn kho"
+    },
+    "1": {
+      "title": "Tự động hủy đơn hàng nếu thanh toán không thành công",
+      "tip": "Đặt tài khoản sau khi đặt chuyển tiền tiêu dùng",
+      "default": "Tài khoản tài khoản:"
+    },
+    "title": "Cài đặt quản lý đơn hàng",
+    "desc": "Kiểm soát trạng thái xử lý đơn đặt hàng tự động, số lượng hàng tồn kho và tùy chỉnh mẫu trường được lấp đầy sau khi người tiêu dùng chuyển tiền"
+  },
+  "advanced": {
+    "days-prior": "Thông báo Tianmail.",
+    "error": "Cần thiết",
+    "title": "Cài đặt nâng cao dành cho thành viên",
+    "desc": "Cài đặt phụ trợ liên quan đến mua sắm của người tiêu dùng"
+  },
+  "accessibility": {
+    "0": {
+      "tip": "Nội dung tin nhắn tùy chỉnh có thể được hiển thị trên trang đăng ký thành viên và đăng nhập của cửa hàng của bạn"
+    },
+    "1": {
+      "desc": "Nội dung tin nhắn tùy chỉnh có thể được hiển thị trên trang đăng ký thành viên và đăng nhập của cửa hàng của bạn",
+      "error": "Giới hạn tin nhắn là 200 ký tự"
+    },
+    "title": "Khả năng truy cập trang",
+    "desc": "Các chức năng phụ trợ liên quan có thể giúp người tiêu dùng mua sắm thoải mái hơn trong cửa hàng"
+  }
+}

@@ -119,7 +119,7 @@ export const parseRawContent = (
 
       if (rawContent.entityMap[key].type === 'LINK') {
         const {
-          data: { url, targetOption, ...data },
+          data: { url, href, targetOption, target, ...data },
           ...entity
         } = rawContent.entityMap[key];
 
@@ -127,8 +127,8 @@ export const parseRawContent = (
           ...entity,
           data: {
             ...data,
-            href: url,
-            target: targetOption,
+            href: url || href,
+            target: targetOption || target,
           },
         };
       }

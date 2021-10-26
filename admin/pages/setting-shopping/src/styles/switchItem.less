@@ -1,0 +1,36 @@
+.h4 {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 22px;
+  margin: 0;
+  padding-bottom: 3px;
+}
+
+.item {
+  display: flex;
+  margin-bottom: 24px;
+
+  & > div:last-child {
+    width: 100%;
+    margin-left: 16px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.switchItem {
+  margin-bottom: 0;
+
+  :global(.ant-form-item-control-input-content) {
+    align-self: flex-start;
+  }
+}
+
+.p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 22px;
+  color: rgba(0, 0, 0, 0.35);
+}

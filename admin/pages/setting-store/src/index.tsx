@@ -66,6 +66,7 @@ const SettingStorePage: NextPage<PropsType> = React.memo(() => {
         buttons={
           <FormItem shouldUpdate noStyle>
             {({ resetFields, submit, getFieldsValue }) =>
+              Object.keys(getFieldsValue()).length === 0 ||
               areEqual(initialValues, getFieldsValue()) ? null : (
                 <div>
                   <Button onClick={() => resetFields()}>{t('cancel')}</Button>

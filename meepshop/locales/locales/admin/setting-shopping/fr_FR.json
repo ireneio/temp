@@ -1,0 +1,201 @@
+{
+  "title": "Paramètres d'achat",
+  "cancel": "Annuler",
+  "save": "boutique",
+  "required": "Obligatoire",
+  "success": "Enregistré avec succès",
+  "error": "Erreur",
+  "required-checkbox": "Cochez au moins un",
+  "halfwidth-only": "Doit être des caractères alphanumériques",
+  "locales": {
+    "zh_TW": "chinois traditionnel",
+    "en_US": "Anglais",
+    "ja_JP": "Japonais",
+    "vi_VN": "vietnamien",
+    "fr_FR": "français",
+    "es_ES": "Espagnol",
+    "th_TH": "thaïlandais",
+    "id_ID": "indonésien"
+  },
+  "setting": {
+    "lockedCountry": {
+      "title": "Taiwan limité à envoyer",
+      "desc": "Les consommateurs choisissent le mode de transport de la maison et définissent le modèle de destinataire, limiter l'adresse de livraison de Taiwan domestique"
+    },
+    "order": {
+      "useNotPayNow": {
+        "title": "Payer plus tard",
+        "desc": "Dans la page de paiement, coopérez avec l'ATM Green Internet et la carte de crédit, les consommateurs peuvent compléter la commande, choisir le jour de payer à nouveau."
+      },
+      "afterPaymentFail": {
+        "title": "Le paiement n'a pas réussi à annuler les commandes",
+        "desc": "Lorsque le paiement de la commande échoue, le système annulera automatiquement."
+      },
+      "autoAddStock": {
+        "title": "Annuler les commandes Ajoutez automatiquement l'inventaire",
+        "desc": "Lorsque la commande est annulée, le système reconstituera automatiquement toutes les marchandises dans la commande."
+      }
+    },
+    "invoice": {
+      "paper": {
+        "isEnable": {
+          "title": "Facture de papier",
+          "desc": "Fournir des options pour être deux factures, triple factures, dons et magasins peuvent vérifier les besoins réels"
+        }
+      },
+      "electronic": {
+        "isEnable": {
+          "title": "Facture électronique",
+          "desc": "Options d'offre: Adhésion / Code à barres mobiles / Document de l'homme naturel / Entreprise / Don, le magasin peut être trompé sur les besoins d'utilisation réels."
+        }
+      }
+    },
+    "lockedBirthday": {
+      "title": "LOCK FILE D'anniversaire des membres",
+      "desc": "Limiter l'adhésion ne doit pas changer vos informations d'anniversaire"
+    },
+    "rewardPointReminder": {
+      "isEnabled": {
+        "title": "Avis d'expiration des achats",
+        "desc": "Laissez les membres recevoir un avis de rappel avant l'achat d'achats."
+      }
+    },
+    "backToTopButtonEnabled": {
+      "title": "Retour au bouton supérieur",
+      "desc": "Enregistrement de membre auto-abondant avec les messages de la page de connexion"
+    },
+    "shopperLoginMessageEnabled": {
+      "title": "Enregistrement de membre auto-abondant avec les messages de la page de connexion"
+    }
+  },
+  "apps": {
+    "wishList": {
+      "title": "Collection de produits",
+      "desc": "Après avoir enregistré un membre, vous pouvez collecter la collection de produits."
+    },
+    "productNotice": {
+      "title": "Biens commerciaux à noter",
+      "desc": "Les membres peuvent souscrire aux marchandises de courte vente en stock et recevront un avis disponible après votre reconstitution"
+    },
+    "returnOrder": {
+      "title": "Demande de retour",
+      "desc": "Les consommateurs peuvent demander des marchandises aux «commandes expédiées et inconscientes» dans la gestion de l'ordre"
+    },
+    "replacement": {
+      "title": "Application d'échange",
+      "desc": "Les consommateurs peuvent demander des marchandises aux \"commandes expédiées et non activées\" dans la gestion de l'ordre"
+    },
+    "memberSeePrice": {
+      "title": "Membre visible Price",
+      "desc": "Les consommateurs doivent enregistrer un membre pour se connecter pour voir le prix des biens"
+    }
+  },
+  "basic": {
+    "0": {
+      "title": "Paramètres de langue",
+      "tip": "Sélectionnez la langue affichée par le texte par défaut du système de premier plan"
+    },
+    "1": {
+      "title": "Catégorie de devise",
+      "tip": "Convertissez la quantité de marchandises au premier plan dans la devise du pays pour que les consommateurs convertissent rapidement le montant, mais le montant réel de la transaction de commande est basé sur la devise définie en arrière-plan"
+    },
+    "title": "Paramètres de base",
+    "desc": "Définissez la langue et le type de devise pris en charge par le magasin"
+  },
+  "checkout": {
+    "title": "Paramètres de paiement",
+    "desc": "Paramètres liés aux conditions de paiement et d'expédition des consommateurs"
+  },
+  "checkoutUserSetting": {
+    "column": "Nom de colonne",
+    "name": "Nom",
+    "mobile": "Téléphone mobile",
+    "address": "Adresse régionale",
+    "REQUIRED": "Obligatoire",
+    "OPTIONAL": "Choisir",
+    "HIDDEN": "cacher",
+    "title": "Checkout Page de l'information sur les membres",
+    "desc": "Vous pouvez remplir les informations d'adhésion dont vous avez besoin pour remplir le consommateur lorsque vous réservez votre compte."
+  },
+  "invoice": {
+    "paper": {
+      "title": "Type de facturation",
+      "duplicate": "Facture Di-Deux",
+      "triplicate": "Triple facture",
+      "donation": "Don"
+    },
+    "electronic": {
+      "0": {
+        "title": "Méthode d'émission",
+        "ECPAY": {
+          "name": "Green World ouvert automatiquement",
+          "tip": "Les prix de vente de tous les produits du magasin sont tous TTC / type de piste de caractère: montant général de la taxe / catégorie taxable: taxable"
+        },
+        "MANUAL": {
+          "name": "Édition manuelle",
+          "tip": "Besoin d'exporter manuellement les informations pertinentes à partir des données de commande et d'émettre la facture vers la plateforme de facturation électronique"
+        }
+      },
+      "1": {
+        "title": "Numéro de magasin coopératif"
+      },
+      "2": {
+        "title": "Réglage de l'heure d'émission de la facture",
+        "NOW": {
+          "name": "Ouvrez maintenant",
+          "tip": "Lorsque l'état du compte de la commande est \"rapprochement terminé\", il sera automatiquement émis immédiatement"
+        },
+        "DELAY": {
+          "1": "Un jour",
+          "10": "10 jours",
+          "name": "Délivrance retardée",
+          "tip": {
+            "0": "Lorsque l'état du compte est \"Réconciliation terminée\", défini pour être émis automatiquement après 1 ou 10 jours",
+            "1": "Si la commande est annulée dans le nombre de jours défini, veuillez vous rendre dans les coulisses de Green World pour supprimer manuellement la «facture en attente».",
+            "2": "Si vous avez des commandes individuelles qui doivent être facturées plus tôt que les jours prévus, veuillez accéder aux détails de la commande et cliquez sur le bouton «Émise maintenant», et la facture sera émise immédiatement."
+          }
+        }
+      },
+      "3": {
+        "title": "type de facture",
+        "membershipCarrier": "Véhicule membre",
+        "mobileBarCodeCarrier": "Code-barres du téléphone portable",
+        "citizenDigitalCertificateCarrier": "Certificat de personne physique",
+        "triplicate": "Compte d'entreprise",
+        "donation": "Faire un don"
+      }
+    },
+    "title": "Configuration de la facture",
+    "desc": "Offrir aux consommateurs la possibilité de demander des informations sur la facture à la caisse, divisées en factures papier et factures électroniques"
+  },
+  "order": {
+    "0": {
+      "title": "Paramètres d'automatisation des commandes",
+      "tip": "Traiter automatiquement le statut des commandes et la quantité d'inventaire"
+    },
+    "1": {
+      "title": "Annuler automatiquement la commande si le paiement échoue",
+      "tip": "Définition du compte après avoir défini la remise des consommateurs",
+      "default": "Compte comptes:"
+    },
+    "title": "Paramètres de gestion des commandes",
+    "desc": "Contrôlez le statut du traitement automatisé des commandes, la quantité d'inventaire et personnalisez le modèle de champ rempli après le versement au consommateur"
+  },
+  "advanced": {
+    "days-prior": "Avis de Tianmail",
+    "error": "Obligatoire",
+    "title": "Paramètres avancés des membres",
+    "desc": "Paramètres auxiliaires liés aux achats des consommateurs"
+  },
+  "accessibility": {
+    "0": {
+      "tip": "Le contenu du message personnalisé peut être affiché sur la page d'inscription et de connexion des membres de votre boutique"
+    },
+    "1": {
+      "desc": "Le contenu du message personnalisé peut être affiché sur la page d'inscription et de connexion des membres de votre boutique",
+      "error": "La limite de messages est de 200 caractères"
+    },
+    "title": "Accessibilité de la page",
+    "desc": "Les fonctions auxiliaires associées peuvent rendre les consommateurs plus confortables dans le magasin"
+  }
+}

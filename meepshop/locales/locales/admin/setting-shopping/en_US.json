@@ -1,0 +1,201 @@
+{
+  "title": "Shopping settings",
+  "cancel": "cancel",
+  "save": "store",
+  "required": "Required",
+  "success": "Saved successfully",
+  "error": "error",
+  "required-checkbox": "Check at least one",
+  "halfwidth-only": "Must be alphanumeric characters",
+  "locales": {
+    "zh_TW": "traditional Chinese",
+    "en_US": "English",
+    "ja_JP": "Japanese",
+    "vi_VN": "Vietnamese",
+    "fr_FR": "French",
+    "es_ES": "Spanish",
+    "th_TH": "Thai",
+    "id_ID": "Indonesian"
+  },
+  "setting": {
+    "lockedCountry": {
+      "title": "Limited Taiwan to send",
+      "desc": "Consumers choose the transportation mode of the house and set the recipient model, limit the delivery address of Taiwan's domestic"
+    },
+    "order": {
+      "useNotPayNow": {
+        "title": "Pay later",
+        "desc": "In the checkout page, cooperate with the Green Internet ATM and the credit card, consumers can complete the order, choose the day to pay again"
+      },
+      "afterPaymentFail": {
+        "title": "Payment failed to cancel orders",
+        "desc": "When the order payment fails, the system will automatically cancel"
+      },
+      "autoAddStock": {
+        "title": "Cancel orders automatically add back inventory",
+        "desc": "When the order is canceled, the system will automatically replenish all the goods in the order."
+      }
+    },
+    "invoice": {
+      "paper": {
+        "isEnable": {
+          "title": "Paper invoice",
+          "desc": "Provide options to be two invoices, triple invoices, donations, and stores can check for actual needs"
+        }
+      },
+      "electronic": {
+        "isEnable": {
+          "title": "Electronic invoice",
+          "desc": "Offering options: Membership / Mobile Barcode / Natural Man Document / Company / Donation, the store can be cheated on actual use needs."
+        }
+      }
+    },
+    "lockedBirthday": {
+      "title": "Lock member birthday field",
+      "desc": "Limit membership must not change your birthday information"
+    },
+    "rewardPointReminder": {
+      "isEnabled": {
+        "title": "Shopping expiration notice",
+        "desc": "Let Members receive a reminder notice before the purchase of purchases."
+      }
+    },
+    "backToTopButtonEnabled": {
+      "title": "Back to the top button",
+      "desc": "Self-subscribe member registration with login page messages"
+    },
+    "shopperLoginMessageEnabled": {
+      "title": "Self-subscribe member registration with login page messages"
+    }
+  },
+  "apps": {
+    "wishList": {
+      "title": "Product collection",
+      "desc": "After registering a member, you can collect the product collection."
+    },
+    "productNotice": {
+      "title": "Commercial goods to notice",
+      "desc": "Members can subscribe to the short-selling goods under stock, and will receive a notice available after you replenishment"
+    },
+    "returnOrder": {
+      "title": "Return application",
+      "desc": "Consumers can apply for goods to \"shipped and unconscious orders\" in order management"
+    },
+    "replacement": {
+      "title": "Exchange application",
+      "desc": "Consumers can apply for goods to \"shipped and unscated orders\" in order management"
+    },
+    "memberSeePrice": {
+      "title": "Member visible price",
+      "desc": "Consumers need to register a member to log in to see the price of goods"
+    }
+  },
+  "basic": {
+    "0": {
+      "title": "Language setting",
+      "tip": "Select the language displayed by the default text of the foreground system"
+    },
+    "1": {
+      "title": "Currency category",
+      "tip": "Convert the amount of goods in the foreground to the currency of the country for consumers to quickly convert the amount, but the actual order transaction amount is based on the currency set in the background"
+    },
+    "title": "Basic settings",
+    "desc": "Set the language and currency type supported by the store"
+  },
+  "checkout": {
+    "title": "Checkout settings",
+    "desc": "Consumer checkout and shipping conditions related settings"
+  },
+  "checkoutUserSetting": {
+    "column": "Column name",
+    "name": "Name",
+    "mobile": "Mobile phone",
+    "address": "Regional address",
+    "REQUIRED": "Required",
+    "OPTIONAL": "Choose",
+    "HIDDEN": "hide",
+    "title": "Checkout page Member information field",
+    "desc": "You can fill in which membership information you need to fill in the consumer when you book your account."
+  },
+  "invoice": {
+    "paper": {
+      "title": "invoice type",
+      "duplicate": "Di-two invoice",
+      "triplicate": "Triple invoice",
+      "donation": "Donation"
+    },
+    "electronic": {
+      "0": {
+        "title": "Issuing method",
+        "ECPAY": {
+          "name": "Green World automatically opened",
+          "tip": "The selling price of the goods in the store is all tax-included / type of character track: general tax amount / taxable category: taxable"
+        },
+        "MANUAL": {
+          "name": "Manual issuance",
+          "tip": "Need to manually export the relevant information from the order data and issue the invoice to the electronic invoice platform"
+        }
+      },
+      "1": {
+        "title": "Cooperative store number"
+      },
+      "2": {
+        "title": "Invoice issuance time setting",
+        "NOW": {
+          "name": "Open now",
+          "tip": "When the account status of the order is \"reconciliation completed\", it will be automatically issued immediately"
+        },
+        "DELAY": {
+          "1": "1 day",
+          "10": "10 days",
+          "name": "Delayed issuance",
+          "tip": {
+            "0": "When the account status is \"reconciliation completed\", set to automatically issue after 1 or 10 days",
+            "1": "If the order is cancelled within the set number of days, please go to the Green World backstage to manually delete the \"Pending Invoice\".",
+            "2": "If you have individual orders that need to be invoiced earlier than the scheduled days, please go to the order details and click the \"Issued Now\" button, and the invoice will be issued immediately."
+          }
+        }
+      },
+      "3": {
+        "title": "invoice type",
+        "membershipCarrier": "Member vehicle",
+        "mobileBarCodeCarrier": "Mobile phone barcode",
+        "citizenDigitalCertificateCarrier": "Natural person certificate",
+        "triplicate": "Corporate Account",
+        "donation": "Donate"
+      }
+    },
+    "title": "Invoice setting",
+    "desc": "Provide options for consumers to request invoice information at checkout, divided into paper invoices and electronic invoices"
+  },
+  "order": {
+    "0": {
+      "title": "Order automation setting",
+      "tip": "Automatically process order status and inventory quantity"
+    },
+    "1": {
+      "title": "Automatically cancel the order if payment fails",
+      "tip": "Setting the account after setting the consumer remittance",
+      "default": "Accounts account:"
+    },
+    "title": "Order management settings",
+    "desc": "Control the status of automated order processing, inventory quantity, and customize the field template backfilled after consumer remittance"
+  },
+  "advanced": {
+    "days-prior": "Tianmail notice",
+    "error": "Required",
+    "title": "Member advanced settings",
+    "desc": "Consumer shopping related auxiliary settings"
+  },
+  "accessibility": {
+    "0": {
+      "tip": "Customized message content can be displayed on the member registration and login page of your store"
+    },
+    "1": {
+      "desc": "Customized message content can be displayed on the member registration and login page of your store",
+      "error": "Message limit is 200 characters"
+    },
+    "title": "Page accessibility",
+    "desc": "Related auxiliary functions can make consumers more comfortable shopping in the store"
+  }
+}

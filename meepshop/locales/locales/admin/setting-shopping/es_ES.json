@@ -1,0 +1,201 @@
+{
+  "title": "Configuración de compras",
+  "cancel": "cancelar",
+  "save": "Tienda",
+  "required": "Necesario",
+  "success": "Guardado exitosamente",
+  "error": "error",
+  "required-checkbox": "Marque al menos uno",
+  "halfwidth-only": "Deben ser caracteres alfanuméricos.",
+  "locales": {
+    "zh_TW": "chino tradicional",
+    "en_US": "Inglés",
+    "ja_JP": "japonés",
+    "vi_VN": "vietnamita",
+    "fr_FR": "francés",
+    "es_ES": "Español",
+    "th_TH": "tailandés",
+    "id_ID": "indonesio"
+  },
+  "setting": {
+    "lockedCountry": {
+      "title": "Taiwán limitada para enviar",
+      "desc": "Los consumidores eligen el modo de transporte de la casa y establecen el modelo del destinatario, limitan la dirección de entrega de la doméstica de Taiwan"
+    },
+    "order": {
+      "useNotPayNow": {
+        "title": "Paga después",
+        "desc": "En la página de pago, coopere con el cajero automático de Internet verde y la tarjeta de crédito, los consumidores pueden completar el pedido, elija el día para pagar nuevamente"
+      },
+      "afterPaymentFail": {
+        "title": "El pago no pudo cancelar pedidos",
+        "desc": "Cuando el pago del pedido falla, el sistema cancelará automáticamente"
+      },
+      "autoAddStock": {
+        "title": "Cancelar los pedidos Añadir automáticamente inventario",
+        "desc": "Cuando se cancela el pedido, el sistema reponer automáticamente todas las mercancías en el orden."
+      }
+    },
+    "invoice": {
+      "paper": {
+        "isEnable": {
+          "title": "Factura de papel",
+          "desc": "Proporcionar opciones para ser dos facturas, las facturas triples, las donaciones y las tiendas pueden verificar las necesidades reales"
+        }
+      },
+      "electronic": {
+        "isEnable": {
+          "title": "Factura electrónica",
+          "desc": "Ofertas de ofertas: membresía / código de barras móvil / Documento de hombre natural / Empresa / Donación, la tienda puede ser engañada en las necesidades de uso reales."
+        }
+      }
+    },
+    "lockedBirthday": {
+      "title": "Campo de cumpleaños de miembros de bloqueo",
+      "desc": "Límite de la membresía no debe cambiar su información de cumpleaños"
+    },
+    "rewardPointReminder": {
+      "isEnabled": {
+        "title": "Aviso de caducidad de compras",
+        "desc": "Permita que los miembros reciban un aviso de recordatorio antes de la compra de compras."
+      }
+    },
+    "backToTopButtonEnabled": {
+      "title": "Volver al botón superior",
+      "desc": "Self-Suscribe Registro de Miembros con mensajes de inicio de sesión"
+    },
+    "shopperLoginMessageEnabled": {
+      "title": "Self-Suscribe Registro de Miembros con mensajes de inicio de sesión"
+    }
+  },
+  "apps": {
+    "wishList": {
+      "title": "Colección de productos",
+      "desc": "Después de registrar a un miembro, puede recopilar la colección de productos."
+    },
+    "productNotice": {
+      "title": "Bienes comerciales para notar",
+      "desc": "Los miembros pueden suscribirse a los productos de venta corta en stock, y recibirán un aviso disponible después de la reposición"
+    },
+    "returnOrder": {
+      "title": "Solicitud de retorno",
+      "desc": "Los consumidores pueden solicitar productos a \"órdenes enviadas e inconscientes\" en la gestión de pedidos"
+    },
+    "replacement": {
+      "title": "Aplicación de intercambio",
+      "desc": "Los consumidores pueden solicitar productos a \"órdenes enviadas y sin cesar\" en la gestión de pedidos"
+    },
+    "memberSeePrice": {
+      "title": "Miembro visible precio",
+      "desc": "Los consumidores deben registrar un miembro para iniciar sesión para ver el precio de los productos."
+    }
+  },
+  "basic": {
+    "0": {
+      "title": "Configuración de idioma",
+      "tip": "Seleccione el idioma que se muestra en el texto predeterminado del sistema de primer plano"
+    },
+    "1": {
+      "title": "Categoría de moneda",
+      "tip": "Convierta la cantidad de bienes en primer plano a la moneda del país para que los consumidores conviertan rápidamente la cantidad, pero el monto real de la transacción del pedido se basa en la moneda establecida en segundo plano."
+    },
+    "title": "Ajustes básicos",
+    "desc": "Establecer el idioma y el tipo de moneda admitidos por la tienda"
+  },
+  "checkout": {
+    "title": "Configuración de pago",
+    "desc": "Configuración relacionada con las condiciones de envío y pago del consumidor"
+  },
+  "checkoutUserSetting": {
+    "column": "Nombre de columna",
+    "name": "Nombre",
+    "mobile": "Teléfono móvil",
+    "address": "Dirección regional",
+    "REQUIRED": "Requerido",
+    "OPTIONAL": "Escoger",
+    "HIDDEN": "esconder",
+    "title": "Página de pago FIELE DE INFORMACIÓN DEL MIEMBRO",
+    "desc": "Puede completar qué información de membresía debe completar el consumidor cuando reserve su cuenta."
+  },
+  "invoice": {
+    "paper": {
+      "title": "Tipo de factura",
+      "duplicate": "Di-dos factura",
+      "triplicate": "Factura triple",
+      "donation": "Donación"
+    },
+    "electronic": {
+      "0": {
+        "title": "Método de emisión",
+        "ECPAY": {
+          "name": "Green World se abre automáticamente",
+          "tip": "Los precios de venta de todos los productos en la tienda son impuestos incluidos / tipo de pista de carácter: monto de impuesto general / categoría imponible: imponible"
+        },
+        "MANUAL": {
+          "name": "Emisión manual",
+          "tip": "Necesidad de exportar manualmente la información relevante de los datos del pedido y emitir la factura a la plataforma de factura electrónica"
+        }
+      },
+      "1": {
+        "title": "Número de tienda cooperativa"
+      },
+      "2": {
+        "title": "Configuración del tiempo de emisión de la factura",
+        "NOW": {
+          "name": "Abierto ahora",
+          "tip": "Cuando el estado de la cuenta del pedido sea \"conciliación completada\", se emitirá automáticamente de inmediato."
+        },
+        "DELAY": {
+          "1": "1 día",
+          "10": "10 días",
+          "name": "Emisión retrasada",
+          "tip": {
+            "0": "Cuando el estado de la cuenta sea \"conciliación completada\", configúrelo para que se emita automáticamente después de 1 o 10 días.",
+            "1": "Si el pedido se cancela dentro del número establecido de días, vaya al backstage de Green World para eliminar manualmente la \"Factura pendiente\".",
+            "2": "Si tiene pedidos individuales que deben facturarse antes de los días programados, vaya a los detalles del pedido y haga clic en el botón \"Emitido ahora\", y la factura se emitirá de inmediato."
+          }
+        }
+      },
+      "3": {
+        "title": "tipo de factura",
+        "membershipCarrier": "Vehículo miembro",
+        "mobileBarCodeCarrier": "Código de barras del teléfono móvil",
+        "citizenDigitalCertificateCarrier": "Certificado de persona física",
+        "triplicate": "Cuenta corporativa",
+        "donation": "Donar"
+      }
+    },
+    "title": "Configuración de la factura",
+    "desc": "Brindar opciones para que los consumidores soliciten información de la factura al momento del pago, dividida en facturas en papel y facturas electrónicas."
+  },
+  "order": {
+    "0": {
+      "title": "Configuración de automatización de pedidos",
+      "tip": "Procesar automáticamente el estado del pedido y la cantidad de inventario"
+    },
+    "1": {
+      "title": "Cancelar automáticamente el pedido si el pago falla",
+      "tip": "Configuración de la cuenta después de configurar la remesa al consumidor.",
+      "default": "Cuenta de cuentas:"
+    },
+    "title": "Configuración de gestión de pedidos",
+    "desc": "Controle el estado del procesamiento automatizado de pedidos, la cantidad de inventario y personalice la plantilla de campo rellenada después del envío del consumidor"
+  },
+  "advanced": {
+    "days-prior": "Aviso de Tianmail",
+    "error": "Requerido",
+    "title": "Configuración avanzada de miembros",
+    "desc": "Configuración auxiliar relacionada con las compras del consumidor"
+  },
+  "accessibility": {
+    "0": {
+      "tip": "El contenido del mensaje personalizado se puede mostrar en el registro de miembros y en la página de inicio de sesión de su tienda"
+    },
+    "1": {
+      "desc": "El contenido del mensaje personalizado se puede mostrar en el registro de miembros y en la página de inicio de sesión de su tienda",
+      "error": "El límite de mensajes es de 200 caracteres"
+    },
+    "title": "Accesibilidad de la página",
+    "desc": "Las funciones auxiliares relacionadas pueden hacer que los consumidores se sientan más cómodos comprando en la tienda"
+  }
+}

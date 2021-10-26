@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "@admin/setting-shopping",
+  "description": "shopping setting for admin",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.80.69",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/block": "^0.80.69",
+    "@admin/header": "^0.80.69",
+    "@admin/text-editor": "^0.80.69",
+    "@admin/tooltip": "^0.80.67",
+    "@meepshop/context": "^0.80.69",
+    "@meepshop/locales": "^0.80.67",
+    "@meepshop/utils": "^0.80.67",
+    "braft-editor": "^2.3.9",
+    "validator": "^13.5.2"
+  },
+  "keywords": ["admin", "setting", "shopping"]
+}

@@ -9,6 +9,7 @@
     "@meepshop/images": "^0.80.67",
     "cookie": "^0.4.1",
     "helmet": "^4.6.0",
+    "lodash.mergewith": "^4.6.2",
     "validator": "^13.5.2"
   },
   "keywords": ["meepshop", "utils"]

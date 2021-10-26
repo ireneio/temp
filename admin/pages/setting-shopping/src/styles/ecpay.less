@@ -1,0 +1,50 @@
+@import './mixin.less';
+
+.callout {
+  @callout();
+}
+
+.h5 {
+  @h5();
+}
+
+.ecpay {
+  :global(.ant-form-item) {
+    margin-bottom: 0;
+  }
+
+  :global(.ant-form-item-control-input) {
+    align-items: flex-start;
+  }
+}
+
+.ecpaySetting {
+  margin-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  > div {
+    flex: 0 0 167px;
+    position: relative;
+  }
+
+  input {
+    font-size: 14px;
+  }
+
+  .h5 {
+    @h5();
+    margin: 0 0 8px;
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+
+  > div {
+    flex: none;
+    width: calc(50% - 8px);
+  }
+}

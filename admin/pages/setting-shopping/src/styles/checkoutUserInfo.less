@@ -1,0 +1,66 @@
+.flex {
+  display: flex;
+  line-height: normal;
+}
+
+.columnName {
+  margin: 0px 0px 24px;
+  font-size: 14px;
+}
+
+.column {
+  flex: none;
+  width: 34%;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.options {
+  flex: 1;
+  display: flex;
+
+  > div {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+.border:not(:last-child) {
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.formItem {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.group {
+  display: flex;
+  flex: 1;
+}
+
+.title {
+  flex: none;
+  width: 34%;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.radio {
+  flex: 1;
+  text-align: center;
+  margin-right: 0;
+
+  & > label {
+    margin-right: 0;
+  }
+
+  :global(.ant-radio-inner) {
+    border-color: #5967c5;
+
+    &::after {
+      background-color: #5967c5;
+    }
+  }
+}
