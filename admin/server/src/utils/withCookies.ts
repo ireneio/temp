@@ -11,19 +11,30 @@ import { initAdminCookies as initAdminCookiesType } from '@meepshop/types/gqls/a
 import { initAdminCookies } from '../gqls/withCookies';
 
 // definition
+const IGNORE_PATHNAME = [
+  '/login',
+  '/sign-up/685b65e6791e',
+  '/set-up-store',
+  '/sign-up-fail',
+  '/reset-password/[token]',
+];
+
 export default withCookies(
   async ({
+    pathname,
     client,
     i18n,
     language,
     cookie,
   }: getCookiesArgumentType): Promise<CookiesType['cookies']> => {
-    const { data } = await client.query<initAdminCookiesType>({
-      query: initAdminCookies,
-    });
-    const locale = data?.viewer?.store?.locale || 'zh_TW';
+    if (!IGNORE_PATHNAME.includes(pathname)) {
+      const { data } = await client.query<initAdminCookiesType>({
+        query: initAdminCookies,
+      });
+      const locale = data?.viewer?.store?.locale || 'zh_TW';
 
-    if (locale !== language) await i18n.changeLanguage(locale);
+      if (locale !== language) await i18n.changeLanguage(locale);
+    }
 
     return {
       menuCollapsed: cookie.get('menu-collapsed'),

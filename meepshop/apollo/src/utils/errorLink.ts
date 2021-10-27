@@ -1,53 +1,25 @@
 // typescript import
-import { ErrorResponse } from 'apollo-link-error';
-
 import { loggerType } from '@meepshop/logger';
 
 // import
 import { onError } from 'apollo-link-error';
-import Router from 'next/router';
 import { notification } from 'antd';
 
 // typescript definition
 export type errorFilterType = ({ message }: Error) => boolean;
 
-// definition
-export const shouldIgnoreUnauthorizedError = (
-  networkError: ErrorResponse['networkError'],
-): boolean =>
-  Boolean(
-    networkError &&
-      'statusCode' in networkError &&
-      networkError.statusCode === 401 &&
-      'result' in networkError &&
-      'msg' in networkError.result &&
-      networkError.result.msg === 'token verify failed',
-  );
+export type apolloErrorType = Error & {
+  networkError?: {
+    statusCode: number;
+  };
+};
 
+// definition
 export default (
   errorFilter: errorFilterType,
   logger: loggerType,
 ): ReturnType<typeof onError> =>
   onError(({ response, graphQLErrors, networkError }) => {
-    if (
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore https://github.com/apollographql/apollo-link/issues/536
-      networkError?.statusCode === 401 &&
-      typeof window !== 'undefined' &&
-      !/\/(login|sign-up|set-up-store|sign-up-fail|reset-password)/.test(
-        window.location.pathname,
-      )
-    ) {
-      notification.error({
-        message: '請重新登入',
-        duration: 1,
-        onClose: () => {
-          Router.replace('/login');
-        },
-      });
-      return;
-    }
-
     const errorLog =
       typeof window === 'undefined'
         ? logger.error
@@ -75,12 +47,15 @@ export default (
       });
     }
 
-    if (networkError) {
-      if (shouldIgnoreUnauthorizedError(networkError)) return;
+    if (
+      networkError &&
+      'statusCode' in networkError &&
+      [401, 403].includes(networkError.statusCode)
+    )
+      return;
 
-      errorLog({
-        name: 'Network',
-        networkError,
-      });
-    }
+    errorLog({
+      name: 'Network',
+      networkError,
+    });
   });

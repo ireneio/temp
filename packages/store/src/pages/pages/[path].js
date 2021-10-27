@@ -19,23 +19,22 @@ class Pages extends React.Component {
 
     if (pId) {
       // Redirect /pages/{PRODUCT-NAME}?pId={PRODUCT-ID} to /product/{PRODUCT-ID}
-      if (typeof window === 'undefined') {
-        client.mutate({
-          mutation: log,
-          variables: {
-            input: {
-              type: 'WARN',
-              name: 'URL_REDIRECT',
-              data: {
-                message: 'product redirect',
-              },
+      client.mutate({
+        mutation: log,
+        variables: {
+          input: {
+            type: 'WARN',
+            name: 'URL_REDIRECT',
+            data: {
+              message: 'product redirect',
             },
           },
-        });
-        res.redirect(302, `/product/${pId}`);
-      } else {
-        Utils.goTo({ pathname: `/product/${pId}` });
-      }
+        },
+      });
+
+      if (typeof window === 'undefined') res.redirect(302, `/product/${pId}`);
+      else Utils.goTo({ pathname: `/product/${pId}` });
+
       return {};
     }
 

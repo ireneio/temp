@@ -1,0 +1,109 @@
+@import '~@meepshop/utils/styles/variables.less';
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #e4fafa;
+
+  @media (max-width: @screen-sm-max) {
+    flex-direction: column;
+  }
+}
+
+.image {
+  position: relative;
+  width: 375px;
+  height: 250px;
+
+  img {
+    position: absolute;
+
+    &:nth-child(1) {
+      width: 100%;
+    }
+
+    &:nth-child(2) {
+      top: 90px;
+      left: 290px;
+      width: 25px;
+      transform-origin: -30px -30px;
+      animation: rotate 2s ease-out infinite;
+    }
+
+    &:nth-child(3) {
+      top: 90px;
+      left: 100px;
+      width: 200px;
+      animation: move 6s infinite;
+    }
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: rotate(5deg);
+    top: 70px;
+    left: 100px;
+  }
+  33% {
+    transform: rotate(-10deg);
+    top: 80px;
+    left: 130px;
+  }
+  66% {
+    transform: rotate(10deg);
+    top: 90px;
+    left: 60px;
+  }
+  100% {
+    transform: rotate(5deg);
+    top: 70px;
+    left: 100px;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(45deg) scale(1, 1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(-45deg) scale(1.5, 1.5);
+    opacity: 0;
+  }
+}
+
+.message {
+  margin: 0px 0px 0px 20px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 30px;
+
+  @media (max-width: @screen-sm-max) {
+    margin: 16px 0px 0px;
+    text-align: center;
+  }
+
+  h1 {
+    margin: 0px 0px 20px;
+    font-size: 32px;
+    color: #4a4f5c;
+
+    @media (max-width: @screen-sm-max) {
+      font-size: 20px;
+    }
+  }
+
+  p {
+    margin: 0px;
+    font-size: 18px;
+    color: #757d97;
+
+    @media (max-width: @screen-sm-max) {
+      font-size: 14px;
+    }
+  }
+}

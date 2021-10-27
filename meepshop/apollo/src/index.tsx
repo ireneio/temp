@@ -7,6 +7,7 @@ import { LoggerInfoType } from '@meepshop/logger';
 
 import { ContextType, CustomCtxType } from './types';
 import { ConfigType as initApolloConfigType } from './utils/initApollo';
+import { apolloErrorType } from './utils/errorLink';
 
 // import
 import React from 'react';
@@ -16,8 +17,9 @@ import { getDataFromTree } from '@apollo/react-ssr';
 import uuid from 'uuid/v4';
 
 import ApolloNetworkStatus from './ApolloNetworkStatus';
+import PageError from './PageError';
+import SSR from './SSR';
 import initApollo, { useApolloNetworkStatus } from './utils/initApollo';
-import { shouldIgnoreUnauthorizedError } from './utils/errorLink';
 
 // graphql typescript
 import {
@@ -34,6 +36,7 @@ import { log } from '@meepshop/logger/lib/gqls/log';
 interface PropsType extends AppProps {
   apolloState?: NormalizedCacheObject;
   loggerInfo?: LoggerInfoType;
+  error?: apolloErrorType;
 }
 
 // definition
@@ -45,12 +48,13 @@ export const buildWithApollo = (
   const WithApollo = ({
     apolloState,
     loggerInfo,
+    error,
     ...props
   }: PropsType): React.ReactElement => (
     <ApolloProvider client={initApollo({ ...config, loggerInfo }, apolloState)}>
       <ApolloNetworkStatus />
 
-      <App {...props} />
+      {error ? <PageError error={error} /> : <App {...props} />}
     </ApolloProvider>
   );
 
@@ -72,35 +76,56 @@ export const buildWithApollo = (
             url: ctx?.ctx.req.url,
           };
     const client = initApollo({ ...config, loggerInfo }, undefined, ctx);
+    let appProps: Omit<PropsType, 'Component' | 'router'> = {
+      pageProps: { namespacesRequired: ['apollo'] },
+      loggerInfo,
+    };
 
     ctx.ctx.client = client;
 
-    const appProps = await App.getInitialProps(ctx);
+    try {
+      appProps = await App.getInitialProps(ctx);
+    } catch (e) {
+      return { ...appProps, error: e };
+    }
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore FIXME: fix conflict between withReduxSaga and appWithTranslation
+    if (appProps.initialProps)
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore FIXME: fix conflict between withReduxSaga and appWithTranslation
+      appProps.pageProps = appProps.initialProps.pageProps;
 
     if (res?.writableEnded) return appProps;
 
     if (typeof window === 'undefined') {
       try {
+        const ssrProps = await SSR.getInitialProps(ctx);
+
         await getDataFromTree(
           <ApolloProvider client={client}>
-            <App {...appProps} Component={Component} router={router} />
+            <SSR {...ssrProps}>
+              <App {...appProps} Component={Component} router={router} />
+            </SSR>
           </ApolloProvider>,
         );
       } catch (e) {
-        if (!shouldIgnoreUnauthorizedError(e.networkError))
-          client.mutate<logType, logVariables>({
-            mutation: log,
-            variables: {
-              input: {
-                type: 'ERROR' as LogTypeEnum,
-                name: 'GET_DATA_FROM_TREE' as LogNameEnum,
-                data: {
-                  message: e.message,
-                  stack: e.stack,
-                },
+        if ([401, 403].includes(e.networkError?.statusCode))
+          return { ...appProps, error: e };
+
+        client.mutate<logType, logVariables>({
+          mutation: log,
+          variables: {
+            input: {
+              type: 'ERROR' as LogTypeEnum,
+              name: 'GET_DATA_FROM_TREE' as LogNameEnum,
+              data: {
+                message: e.message,
+                stack: e.stack,
               },
             },
-          });
+          },
+        });
       }
 
       Head.rewind();

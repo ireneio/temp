@@ -15,20 +15,8 @@ import { emptyFunction } from 'fbjs';
 import cookie from 'js-cookie';
 
 import { i18n } from '@meepshop/locales';
-import { shouldIgnoreUnauthorizedError } from '@meepshop/apollo/lib/utils/errorLink';
 
 import useCookies from './hooks/useCookies';
-
-// graphql typescript
-import {
-  log as logType,
-  logVariables,
-  LogTypeEnum,
-  LogNameEnum,
-} from '@meepshop/types/gqls/meepshop';
-
-// graphql import
-import { log } from '@meepshop/logger/lib/gqls/log';
 
 // typescript definition
 interface CookieAttributesType extends Omit<CookieAttributes, 'expires'> {
@@ -97,57 +85,38 @@ export const withCookies = (getCookies: getCookiesType) => (
     ctx: CustomCtx,
   ): Promise<NextAppGetInitialPropsType<WithCookiesPropsType>> => {
     const {
-      ctx: { client, res, req },
+      ctx: { client, res, req, pathname },
     } = ctx;
-    let initialCookies = {};
-
-    try {
-      initialCookies = await getCookies(
-        typeof window === 'undefined'
-          ? {
-              client,
-              i18n: req.i18n,
-              language: req.language,
-              cookie: {
-                get: (key: string) => req.cookies[key],
-                set: (
-                  key: string,
-                  value: string,
-                  options?: CookieAttributesType,
-                ) => {
-                  req.cookies[key] = value;
-                  res.cookie(key, value, options);
-                },
-              },
-            }
-          : {
-              client,
-              i18n: i18n as I18nPropsType['i18n'],
-              language: i18n.language as languageType,
-              cookie,
-            },
-      );
-    } catch (e) {
-      if (!shouldIgnoreUnauthorizedError(e.networkError))
-        client.mutate<logType, logVariables>({
-          mutation: log,
-          variables: {
-            input: {
-              type: 'ERROR' as LogTypeEnum,
-              name: 'INITIAL_COOOKIES' as LogNameEnum,
-              data: {
-                message: e.message,
-                stack: e.stack,
+    const initialCookies = await getCookies(
+      typeof window === 'undefined'
+        ? {
+            pathname,
+            client,
+            i18n: req.i18n,
+            language: req.language,
+            cookie: {
+              get: (key: string) => req.cookies[key],
+              set: (
+                key: string,
+                value: string,
+                options?: CookieAttributesType,
+              ) => {
+                req.cookies[key] = value;
+                res.cookie(key, value, options);
               },
             },
+          }
+        : {
+            pathname,
+            client,
+            i18n: i18n as I18nPropsType['i18n'],
+            language: i18n.language as languageType,
+            cookie,
           },
-        });
-    }
-
-    const appProps = await App.getInitialProps(ctx);
+    );
 
     return {
-      ...appProps,
+      ...(await App.getInitialProps(ctx)),
       initialCookies,
     };
   };

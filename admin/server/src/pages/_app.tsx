@@ -108,4 +108,4 @@ class App extends NextApp<AppInitialProps> {
   }
 }
 
-export default appWithTranslation(withApollo(withCookies(withDomain(App))));
+export default appWithTranslation(withDomain(withApollo(withCookies(App))));
