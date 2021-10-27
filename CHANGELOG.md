@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.71 (2021-10-27)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1793](https://github.com/meepshop/meep-lerna/pull/1793) 內部開單 - store does not exist 加到 warn log ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `store`
+  - [#1793](https://github.com/meepshop/meep-lerna/pull/1793) 內部開單 - store does not exist 加到 warn log ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.70 (2021-10-26)
 
 #### :rocket: New Feature
