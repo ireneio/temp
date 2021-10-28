@@ -1,10 +1,9 @@
 // typescript import
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { loggerType } from './index';
-
 // import
 import initialLogger from './index';
+import { LOG_TYPES } from './constants';
 
 // definition
 export default (req: NextApiRequest, res: NextApiResponse): void => {
@@ -15,10 +14,18 @@ export default (req: NextApiRequest, res: NextApiResponse): void => {
     url: 'will be overridden',
   });
   const { type, ...data } = req.body;
+  const isTypeError = !type || !LOG_TYPES.includes(type);
 
-  logger[(type || 'info') as keyof loggerType]({
-    ...data,
-    isClient: true,
-  });
+  if (isTypeError)
+    logger.warn({
+      ...data,
+      isTypeError,
+    });
+  else
+    logger[type as typeof LOG_TYPES[number]]({
+      ...data,
+      isClient: true,
+    });
+
   res.end();
 };

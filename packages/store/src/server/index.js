@@ -132,7 +132,7 @@ app.prepare().then(() => {
   server.use((error, req, res, next) => {
     const { logger } = req;
 
-    logger.error(error);
+    logger.error({ error });
 
     if (res.headersSent) return next(error);
 
