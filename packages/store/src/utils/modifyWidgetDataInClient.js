@@ -248,7 +248,7 @@ export default function modifyWidgetDataInClient(widgets = [], query, page) {
             productData:
               widget.params && widget.params.ids
                 ? Api.getProduct({ id: widget.params.ids }).then(
-                    ({ data }) => data.computeProductList.data[0],
+                    ({ data }) => data?.computeProductList?.data?.[0],
                   )
                 : null,
             agreedMatters: widget.landingInfo.agreedMatters,

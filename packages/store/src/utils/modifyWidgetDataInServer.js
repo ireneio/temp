@@ -251,7 +251,7 @@ export default async function modifyWidgetDataInServer(
                 ...context,
                 id: productId,
               });
-              [productData] = data.computeProductList.data;
+              productData = data?.computeProductList?.data?.[0];
             }
             return {
               id: uuid(),
