@@ -140,6 +140,7 @@ export const parseRawContent = (
     logger.error({
       message: 'failed to format draft-js',
       value,
+      error,
     });
 
     return null;
