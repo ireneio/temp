@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.80.72 (2021-10-29)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1827](https://github.com/meepshop/meep-lerna/pull/1827) 內部開單 - 修正 stdout maxBuffer exceeded ([@HsuTing](https://github.com/HsuTing))
+  - [#1834](https://github.com/meepshop/meep-lerna/pull/1834) 內部開單 - 修正 logger 錯誤 ([@HsuTing](https://github.com/HsuTing))
+  - [#1832](https://github.com/meepshop/meep-lerna/pull/1832) 內部開單 - 修正 Cannot read property 'computeProductList' of undefined ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#1836](https://github.com/meepshop/meep-lerna/pull/1836) 內部開單 - 修正 UNHANDLED_REJECTION 問題 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1833](https://github.com/meepshop/meep-lerna/pull/1833) (@meepshop/apollo) Add draft-js error ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.71 (2021-10-27)
 
 #### :boom: Breaking Change
