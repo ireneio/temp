@@ -4,11 +4,11 @@
   "description": "Meepshop image text module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.71",
+  "version": "0.80.72",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/image": "^0.80.71",
+    "@meepshop/image": "^0.80.72",
     "@meepshop/utils": "^0.80.70",
     "color": "^3.0.0"
   },

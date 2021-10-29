@@ -4,7 +4,7 @@
   "description": "Apollo client for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.71",
+  "version": "0.80.72",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -12,7 +12,7 @@
     "@meepshop/images": "^0.80.67",
     "@meepshop/link": "^0.80.67",
     "@meepshop/locales": "^0.80.67",
-    "@meepshop/logger": "^0.80.67",
+    "@meepshop/logger": "^0.80.72",
     "@meepshop/utils": "^0.80.67",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-link-error": "^1.1.13",
