@@ -170,7 +170,10 @@ class App extends NextApp {
           input: {
             type: 'ERROR',
             name: 'UNHANDLED_REJECTION',
-            data: event,
+            data: {
+              message: event.reason.message,
+              stack: event.reason.stack,
+            },
           },
         },
       });
@@ -197,7 +200,8 @@ class App extends NextApp {
           type: 'ERROR',
           name: 'RENDER_ERROR',
           data: {
-            error,
+            message: error.message,
+            stack: error.stack,
             errorInfo,
           },
         },

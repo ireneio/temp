@@ -45,6 +45,9 @@ class Products extends React.Component {
 
     const { page: reduxPage } = this.props;
     const page = !isNewPageModulesEnabled ? experimentPage : reduxPage;
+
+    if (!page) return null;
+
     const { tabTitle = '' } = page;
     const { keywords, description, image } = page.seo || {};
 

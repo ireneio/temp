@@ -77,6 +77,9 @@ class Product extends React.Component {
 
     const { status, coverImage, title } = product;
     const page = !isNewPageModulesEnabled ? experimentPage : reduxPage;
+
+    if (!page) return null;
+
     const productImage = coverImage?.scaledSrc?.w480 || '';
     const productDescription = (() => {
       try {

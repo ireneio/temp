@@ -312,13 +312,15 @@ export default class Checkout extends React.PureComponent {
         case 'address':
           return {
             ...result,
-            address: {
-              countryId: userAddressAndZipCode.address[0],
-              cityId: userAddressAndZipCode.address[1],
-              areaId: userAddressAndZipCode.address[2],
-              zipCode: userAddressAndZipCode.zipCode,
-              street: userStreet,
-            },
+            address: !userAddressAndZipCode
+              ? null
+              : {
+                  countryId: userAddressAndZipCode.address[0],
+                  cityId: userAddressAndZipCode.address[1],
+                  areaId: userAddressAndZipCode.address[2],
+                  zipCode: userAddressAndZipCode.zipCode,
+                  street: userStreet,
+                },
           };
 
         default:

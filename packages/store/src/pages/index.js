@@ -44,6 +44,9 @@ class Index extends React.Component {
 
     const { page: reduxPage } = this.props;
     const page = !isNewPageModulesEnabled ? experimentPage : reduxPage;
+
+    if (!page) return null;
+
     const { keywords, description, image } = page.seo || {};
 
     return (
