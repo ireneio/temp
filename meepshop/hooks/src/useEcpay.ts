@@ -1,8 +1,20 @@
 // import
 import { useEffect, useState, useCallback, useRef } from 'react';
+import { useMutation } from '@apollo/react-hooks';
 import { notification } from 'antd';
 import getConfig from 'next/config';
 import { emptyFunction } from 'fbjs';
+
+// graphql typescript
+import {
+  log as logType,
+  logVariables,
+  LogTypeEnum,
+  LogNameEnum,
+} from '@meepshop/types/gqls/meepshop';
+
+// graphql import
+import { log } from '@meepshop/logger/lib/gqls/log';
 
 // typescript definition
 interface PropsType {
@@ -32,6 +44,7 @@ export default ({
   const setEcpayTimeout = useRef<ReturnType<typeof setTimeout>>(
     setTimeout(emptyFunction, 0),
   );
+  const [mutation] = useMutation<logType, logVariables>(log);
 
   useEffect(() => {
     clearTimeout(setEcpayTimeout.current);
@@ -64,6 +77,16 @@ export default ({
               createPaymentError => {
                 setEcpayLoading(false);
 
+                mutation({
+                  variables: {
+                    input: {
+                      type: 'INFO' as LogTypeEnum,
+                      name: 'ECPAY_INIT' as LogNameEnum,
+                      data: {},
+                    },
+                  },
+                });
+
                 if (createPaymentError)
                   notification.error({
                     message: 'ECPay CreatePayment Error',
@@ -79,7 +102,7 @@ export default ({
           }
         },
       );
-  }, [ecpay, token, isNeedDefaultLoading, language]);
+  }, [ecpay, token, isNeedDefaultLoading, language, mutation]);
 
   return {
     ecpayLoading,
@@ -98,12 +121,22 @@ export default ({
               } else if (paymentInfo) {
                 const { PayToken, PaymentType } = paymentInfo;
 
+                mutation({
+                  variables: {
+                    input: {
+                      type: 'INFO' as LogTypeEnum,
+                      name: 'ECPAY_GET_PAY_TOKEN' as LogNameEnum,
+                      data: {},
+                    },
+                  },
+                });
+
                 resolve({ payToken: PayToken, paymentType: PaymentType });
               }
             });
           else resolve();
         }),
-      [ecpay],
+      [ecpay, mutation],
     ),
   };
 };

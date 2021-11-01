@@ -273,7 +273,7 @@ export default ({
             // ecpay 2.0
             if (paymentServiceTradeToken) {
               push(
-                `/ecpay/${paymentServiceTradeToken}?orderId=${id}&orderNo=${orderNo}&total=${priceInfo?.total}&template=${paymentInfo?.list?.[0]?.template}&choosePayment=${paymentInfo?.list?.[0]?.accountInfo?.ecpay2?.ChoosePayment}`,
+                `/ecpay/${paymentServiceTradeToken}/${id}?orderNo=${orderNo}&total=${priceInfo?.total}&template=${paymentInfo?.list?.[0]?.template}&choosePayment=${paymentInfo?.list?.[0]?.accountInfo?.ecpay2?.ChoosePayment}`,
               );
               return;
             }

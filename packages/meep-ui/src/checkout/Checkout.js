@@ -349,10 +349,7 @@ export default class Checkout extends React.PureComponent {
     // ecpay 2.0
     if (paymentServiceTradeToken) {
       goTo({
-        pathname: `/ecpay/${paymentServiceTradeToken}`,
-        params: {
-          search: { orderId: id },
-        },
+        pathname: `/ecpay/${paymentServiceTradeToken}/${id}`,
       });
       return;
     }

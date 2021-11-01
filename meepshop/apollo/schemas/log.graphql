@@ -10,6 +10,8 @@ enum LogTypeEnum {
 enum LogNameEnum {
   # INFO
   CREATE_ORDER_FORM_DATA
+  ECPAY_INIT
+  ECPAY_GET_PAY_TOKEN
 
   # WARN
   SITEMAPS
