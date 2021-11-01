@@ -21,8 +21,9 @@ import formatDate from './utils/formatDate';
 
 // typescript definition
 interface PropsType {
-  pageId: string;
   namespacesRequired: string[];
+  noWrapper: boolean;
+  pageId: string;
 }
 
 // definition
@@ -127,6 +128,7 @@ const SmartConversionAnalysis: NextPage<PropsType> = React.memo(
 
 SmartConversionAnalysis.getInitialProps = async ({ query }) => ({
   namespacesRequired: ['@meepshop/locales/namespacesRequired'],
+  noWrapper: true,
   pageId: query.pageId as string,
 });
 

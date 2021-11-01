@@ -1,5 +1,6 @@
 // definition
 export default {
-  orderId: 'order-id',
   namespacesRequired: [],
+  noWrapper: true,
+  orderId: 'order-id',
 };

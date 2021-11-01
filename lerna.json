@@ -24,10 +24,11 @@
     "packages/*",
     "meepshop/*",
     "meepshop/modules/*",
+    "store/*",
+    "store/pages/*",
     "admin/*",
     "admin/pages/*",
-    "store/*",
-    "store/pages/*"
+    "admin/refactor/*"
   ],
   "useWorkspaces": true
 }

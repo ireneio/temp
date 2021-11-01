@@ -14,6 +14,7 @@ import styles from './styles/index.less';
 // typescript definition
 interface PropsType {
   namespacesRequired: string[];
+  noWrapper: boolean;
 }
 
 // definition
@@ -39,6 +40,7 @@ const LoginWrapper: NextPage<PropsType> = React.memo(
 
 LoginWrapper.getInitialProps = async () => ({
   namespacesRequired: ['@meepshop/locales/namespacesRequired'],
+  noWrapper: true,
 });
 
 export default LoginWrapper;

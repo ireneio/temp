@@ -15,11 +15,17 @@ import useValidateCname from './hooks/useValidateCname';
 import useApplicantInitiatesStore from './hooks/useApplicantInitiatesStore';
 import styles from './styles/index.less';
 
+// typescript definition
+interface PropsType {
+  namespacesRequired: string[];
+  noWrapper: boolean;
+}
+
 // definition
 const { Item: FormItem } = Form;
 const { Option } = Select;
 
-const SetUpStore: NextPage = React.memo(() => {
+const SetUpStore: NextPage<PropsType> = React.memo(() => {
   const { t } = useTranslation('set-up-store');
   const adTrack = useContext(AdTrackContext);
   const validateCname = useValidateCname();
@@ -102,6 +108,7 @@ const SetUpStore: NextPage = React.memo(() => {
 
 SetUpStore.getInitialProps = async () => ({
   namespacesRequired: ['@meepshop/locales/namespacesRequired'],
+  noWrapper: true,
 });
 
 export default SetUpStore;

@@ -16,11 +16,17 @@ import useValidateConfirmPassword from './hooks/useValidateConfirmPassword';
 import useValidateMerchantEmail from './hooks/useValidateMerchantEmail';
 import styles from './styles/index.less';
 
+// typescript definition
+interface PropsType {
+  namespacesRequired: string[];
+  noWrapper: boolean;
+}
+
 // definition
 const { Item: FormItem } = Form;
 const { Password } = Input;
 
-const SignUp: NextPage = React.memo(() => {
+const SignUp: NextPage<PropsType> = React.memo(() => {
   const { t } = useTranslation('sign-up');
   const {
     loading,
@@ -164,6 +170,7 @@ const SignUp: NextPage = React.memo(() => {
 
 SignUp.getInitialProps = async () => ({
   namespacesRequired: ['@meepshop/locales/namespacesRequired'],
+  noWrapper: true,
 });
 
 export default SignUp;

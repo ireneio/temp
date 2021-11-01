@@ -1,5 +1,6 @@
 // definition
 export default {
-  pageId: 'pageId',
   namespacesRequired: [],
+  noWrapper: true,
+  pageId: 'pageId',
 };

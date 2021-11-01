@@ -1,9 +1,10 @@
 // import
 import Router from 'next/router';
 
+// definition
 Router.query.token = 'token';
 
-// definition
 export default {
   namespacesRequired: [],
+  noWrapper: true,
 };

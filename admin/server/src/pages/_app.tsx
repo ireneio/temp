@@ -30,17 +30,6 @@ interface CustomAppContext extends AppContext {
 
 // definition
 const Wrapper = dynamic(() => import('@admin/wrapper'));
-const NO_WRAPPER = new RegExp(
-  [
-    'login',
-    'sign-up',
-    'set-up-store',
-    'sign-up-fail',
-    'reset-password',
-    'smart-conversion-analysis',
-    'order/history-records',
-  ].join('|'),
-);
 
 class App extends NextApp<AppInitialProps> {
   public static getInitialProps = async ({
@@ -75,8 +64,7 @@ class App extends NextApp<AppInitialProps> {
   public render(): React.ReactElement {
     const {
       Component,
-      pageProps,
-      router: { pathname },
+      pageProps: { noWrapper, ...pageProps },
     } = this.props;
 
     return (
@@ -90,7 +78,7 @@ class App extends NextApp<AppInitialProps> {
         <EventsProvider>
           <AdTrackProvider>
             <Switch
-              isTrue={!NO_WRAPPER.test(pathname)}
+              isTrue={!noWrapper}
               render={children => (
                 <AppsProvider>
                   <CurrencyProvider>

@@ -28,8 +28,9 @@ import { recordFragment } from './gqls/record';
 
 // typescript definition
 interface PropsType {
-  orderId: string;
   namespacesRequired: string[];
+  noWrapper: boolean;
+  orderId: string;
 }
 
 // definition
@@ -144,6 +145,7 @@ const OrderHistoryRecords: NextPage<PropsType> = React.memo(
 
 OrderHistoryRecords.getInitialProps = async ({ query }) => ({
   namespacesRequired: ['@meepshop/locales/namespacesRequired'],
+  noWrapper: true,
   orderId: query.orderId as string,
 });
 

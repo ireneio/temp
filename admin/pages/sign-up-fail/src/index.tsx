@@ -11,8 +11,14 @@ import { loginBackground } from '@meepshop/images';
 
 import styles from './styles/index.less';
 
+// typescript definition
+interface PropsType {
+  namespacesRequired: string[];
+  noWrapper: boolean;
+}
+
 // definition
-const SignUpFail: NextPage = React.memo(() => {
+const SignUpFail: NextPage<PropsType> = React.memo(() => {
   const { t } = useTranslation('sign-up-fail');
   const adTrack = useContext(AdTrackContext);
 
@@ -51,6 +57,7 @@ const SignUpFail: NextPage = React.memo(() => {
 
 SignUpFail.getInitialProps = async () => ({
   namespacesRequired: ['@meepshop/locales/namespacesRequired'],
+  noWrapper: true,
 });
 
 export default SignUpFail;

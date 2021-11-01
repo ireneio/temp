@@ -20,6 +20,7 @@ import styles from './styles/index.less';
 // typescript definition
 interface PropsType {
   namespacesRequired: string[];
+  noWrapper: boolean;
 }
 
 // definition
@@ -122,6 +123,7 @@ const ResetPassword: NextPage<PropsType> = React.memo(() => {
 
 ResetPassword.getInitialProps = async () => ({
   namespacesRequired: ['@meepshop/locales/namespacesRequired'],
+  noWrapper: true,
 });
 
 export default ResetPassword;
