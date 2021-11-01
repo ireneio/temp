@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.73 (2021-11-01)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#1830](https://github.com/meepshop/meep-lerna/pull/1830) 【功能】綠界站內附 2.0 埋 log - 前端 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#1802](https://github.com/meepshop/meep-lerna/pull/1802) 【優化】綠界站內付 2.0 - 信用卡感謝頁：付款方式、付款狀態優化 ([@happycat6323](https://github.com/happycat6323))
+  - [#1799](https://github.com/meepshop/meep-lerna/pull/1799) 【優化】綠界站內付 2.0 - 關閉結帳頁提示 ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`
+  - [#1803](https://github.com/meepshop/meep-lerna/pull/1803) 【優化】綠界站內付 2.0 - 結帳頁/會員名稱：格式限制 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.72 (2021-10-29)
 
 #### :bug: Bug Fix
