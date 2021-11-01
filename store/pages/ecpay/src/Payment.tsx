@@ -1,5 +1,5 @@
 // import
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Affix, Button, Modal } from 'antd';
 import getConfig from 'next/config';
 import Head from 'next/head';
@@ -42,10 +42,27 @@ export default React.memo(({ viewer, setPaymentInfo }: PropsType) => {
     ecpayLoading,
     isCreditPayment,
     loading,
+    isRedirecting,
     ecPay2CreatePayment,
   } = usePayment(viewer, setPaymentInfo);
   const [isAffixed, setIsAffixed] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+
+  useEffect(() => {
+    const beforeunload = (e: Event): string => {
+      if (isRedirecting) return '';
+
+      e.preventDefault();
+      e.returnValue = true;
+      return '';
+    };
+
+    window.addEventListener('beforeunload', beforeunload);
+
+    return () => {
+      window.removeEventListener('beforeunload', beforeunload);
+    };
+  });
 
   const amount = viewer.order?.priceInfo?.total || 0;
 

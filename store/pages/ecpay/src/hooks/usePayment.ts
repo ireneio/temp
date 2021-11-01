@@ -1,5 +1,5 @@
 // import
-import { useMemo, useCallback } from 'react';
+import { useMemo, useCallback, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { notification } from 'antd';
 
@@ -26,10 +26,12 @@ export default (
   ecpayLoading: boolean;
   isCreditPayment: boolean;
   loading: boolean;
+  isRedirecting: boolean;
   ecPay2CreatePayment: () => void;
 } => {
   const { i18n } = useTranslation('ecpay');
   const { query, push } = useRouter();
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   const { ecpayLoading, getPaymentInfo } = useEcpay({
     token: query.token as string,
@@ -46,6 +48,7 @@ export default (
 
       switch (data.ecPay2CreatePayment.__typename) {
         case 'ECPay2CreatePaymentRedirect':
+          setIsRedirecting(true);
           window.location.href = data.ecPay2CreatePayment.url || '';
           break;
 
@@ -89,6 +92,7 @@ export default (
       [viewer],
     ),
     loading,
+    isRedirecting,
     ecPay2CreatePayment: useCallback(async () => {
       const paymentInfo = await getPaymentInfo();
       const { payToken } = paymentInfo || {};
