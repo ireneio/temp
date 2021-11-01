@@ -22,6 +22,7 @@
   "login": "Login Anggota",
   "password": "Kata sandi",
   "name": "Nama lengkap",
+  "validate-ecpay-name": "Hanya dukungan, bahasa Inggris ,. () / - et al.",
   "allpay-name-too-long": "Bahasa Mandarin harus 2-5 karakter / Bahasa Inggris harus 4-10 karakter. Tolong jangan gunakan simbol / angka atau biarkan kosong",
   "mobile": "Mobile",
   "area": "Negara",

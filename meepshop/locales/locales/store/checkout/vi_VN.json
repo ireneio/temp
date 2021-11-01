@@ -22,6 +22,7 @@
   "login": "Đăng nhập thành viên",
   "password": "Xin cài đặt mật khẩu hội viên",
   "name": "tên",
+  "validate-ecpay-name": "Chỉ hỗ trợ, tiếng Anh ,. () / - et al.",
   "allpay-name-too-long": "Tiếng Trung nên là 2-5 ký tự / tiếng Anh nên là 4-10 ký tự. Vui lòng không sử dụng ký hiệu / số hoặc để trống",
   "mobile": "Điện Thoại",
   "area": "quốc gia",

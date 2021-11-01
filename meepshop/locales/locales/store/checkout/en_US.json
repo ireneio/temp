@@ -22,6 +22,7 @@
   "login": "Member login",
   "password": "Password",
   "name": "Full Name",
+  "validate-ecpay-name": "Only support, English,. () / - et al.",
   "allpay-name-too-long": "Chinese should be 2-5 characters / English should be 4-10 characters. Please don't use symbols/numbers or leave blank",
   "mobile": "Mobile",
   "area": "Country",

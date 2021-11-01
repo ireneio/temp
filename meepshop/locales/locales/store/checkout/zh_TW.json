@@ -22,6 +22,7 @@
   "login": "會員登入",
   "password": "請設定會員密碼",
   "name": "姓名",
+  "validate-ecpay-name": "僅支援中、英文及 , . ( ) / - 等字元",
   "allpay-name-too-long": "中文須為2~5個字/英文須為4~10個字，不可使用符號/數字/空白",
   "mobile": "手機",
   "area": "地區",

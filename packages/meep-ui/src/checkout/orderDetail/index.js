@@ -616,7 +616,11 @@ export default class OrderDetail extends React.PureComponent {
               )}
             </div>
 
-            <UserInfo user={user} checkoutFields={checkoutFields} />
+            <UserInfo
+              user={user}
+              checkoutFields={checkoutFields}
+              choosePaymentTemplate={(choosePayment || {}).template}
+            />
 
             <FormItem shouldUpdate noStyle>
               {subForm => (

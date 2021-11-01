@@ -50,6 +50,7 @@ export default class UserInfo extends React.PureComponent {
       // props
       t,
       checkoutFields,
+      choosePaymentTemplate,
       validateEmail,
     } = this.props;
     const { isVisible } = this.state;
@@ -136,16 +137,24 @@ export default class UserInfo extends React.PureComponent {
           <FormItem
             className={styles.formItem}
             name={['userName']}
-            rules={
-              checkoutFields.name === 'OPTIONAL'
+            rules={[
+              ...(choosePaymentTemplate !== 'ecpay2'
+                ? []
+                : [
+                    {
+                      pattern: /^[a-zA-Z\u4E00-\u9FFF,.()/-]+$/,
+                      message: t('validate-ecpay-name'),
+                    },
+                  ]),
+              ...(checkoutFields.name === 'OPTIONAL'
                 ? []
                 : [
                     {
                       required: true,
                       message: t('is-required'),
                     },
-                  ]
-            }
+                  ]),
+            ]}
             validateTrigger="onBlur"
           >
             <Input placeholder={t('name')} />

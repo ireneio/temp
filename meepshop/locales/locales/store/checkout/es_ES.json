@@ -22,6 +22,7 @@
   "login": "Inicio de sesión",
   "password": "Contraseña",
   "name": "Nombre completo",
+  "validate-ecpay-name": "SOLO SOPORTE, INGLÉS ,. () / - et al.",
   "allpay-name-too-long": "El chino debe tener de 2 a 5 caracteres / el inglés debe tener de 4 a 10 caracteres. No utilice símbolos / números ni lo deje en blanco.",
   "mobile": "Móvil",
   "area": "País",
