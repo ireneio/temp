@@ -9,6 +9,7 @@ import { useTranslation } from '@meepshop/locales';
 import Link, { useRouter } from '@meepshop/link';
 
 import OrderNotFound from './OrderNotFound';
+import PaymentFail from './PaymentFail';
 import useAdTrack from './hooks/useAdTrack';
 import useInfo from './hooks/useInfo';
 import styles from './styles/order.less';
@@ -33,12 +34,16 @@ export default React.memo(() => {
   const info = useInfo(data?.viewer || null);
 
   const order = data?.viewer?.order || null;
+  const template = order?.paymentInfo?.list?.[0]?.template;
+  const status = order?.paymentInfo?.status;
 
   useAdTrack(filter(useAdTrackFragment, order));
 
   if (loading) return <Spin indicator={<LoadingOutlined spin />} />;
 
   if (!order) return <OrderNotFound />;
+
+  if (template === 'ecpay2' && status === 4) return <PaymentFail />;
 
   return (
     <div className={styles.root}>

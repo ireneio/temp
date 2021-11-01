@@ -24,6 +24,9 @@ export default React.memo(({ viewer }: PropsType) => {
   const storeName = viewer.store?.description?.name || null;
   const orderNo = viewer.order?.orderNo || null;
   const price = viewer.order?.priceInfo?.total || 0;
+  const choosePayment =
+    viewer.order?.paymentInfo?.list?.[0]?.accountInfo?.ecpay2?.ChoosePayment;
+  const status = viewer.order?.paymentInfo?.status;
 
   return (
     <div className={styles.root}>
@@ -42,11 +45,15 @@ export default React.memo(({ viewer }: PropsType) => {
             },
             {
               key: 'payment-method',
-              value: t('credit.credit-card'),
+              value: t(`credit.${choosePayment}`),
             },
             {
               key: 'price',
               value: c(price),
+            },
+            {
+              key: 'payment-status',
+              value: status === 2 ? t('credit.completed') : t('credit.waiting'),
             },
           ].map(({ key, value }) => (
             <div key={key} className={styles.row}>

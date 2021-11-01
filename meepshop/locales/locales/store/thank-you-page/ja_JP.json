@@ -32,9 +32,11 @@
     "order-number": "注文番号",
     "store-name": "店舗名",
     "payment-method": "支払方法",
-    "credit-card": "クレジットカードの支払い/分割払いの支払い",
+    "CREDIT": "クレジットカードの支払い",
+    "CREDIT_INSTALLMENT": "クレジットカードの分割け",
     "price": "注文金額",
     "payment-status": "支払い状況",
+    "waiting": "確認を待ちます",
     "completed": "支払え"
   },
   "return": "ホームへ",

@@ -32,9 +32,11 @@
     "order-number": "Numéro de commande",
     "store-name": "Nom du magasin",
     "payment-method": "mode de paiement",
-    "credit-card": "Paiement de carte de crédit / paiement de versement",
+    "CREDIT": "Carte de crédit payant",
+    "CREDIT_INSTALLMENT": "Pieds de carte de crédit",
     "price": "montant de la commande",
     "payment-status": "statut de paiement",
+    "waiting": "En attente de confirmation",
     "completed": "Payer"
   },
   "return": "Retour à la page d'accueil",

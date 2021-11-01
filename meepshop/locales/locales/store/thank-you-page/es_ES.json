@@ -32,9 +32,11 @@
     "order-number": "Número de orden",
     "store-name": "Nombre de la tienda",
     "payment-method": "método de pago",
-    "credit-card": "Pago con tarjeta de crédito / pago a plazos",
+    "CREDIT": "Tarjeta de crédito pagando",
+    "CREDIT_INSTALLMENT": "Cuotas de tarjetas de crédito",
     "price": "Total de la orden",
     "payment-status": "estado de pago",
+    "waiting": "esperando confirmación",
     "completed": "Paga"
   },
   "return": "Volver a la página de inicio",

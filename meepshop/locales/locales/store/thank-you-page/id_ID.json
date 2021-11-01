@@ -32,9 +32,11 @@
     "order-number": "Jumlah order",
     "store-name": "Nama toko",
     "payment-method": "Cara Pembayaran",
-    "credit-card": "Pembayaran Kartu Kredit / Pembayaran Cicilan",
+    "CREDIT": "Pembayaran Kartu Kredit",
+    "CREDIT_INSTALLMENT": "Angsuran kartu kredit",
     "price": "jumlah pesanan",
     "payment-status": "status pembayaran",
+    "waiting": "Menunggu kepastian",
     "completed": "Pembayaran"
   },
   "return": "Kembali ke beranda",

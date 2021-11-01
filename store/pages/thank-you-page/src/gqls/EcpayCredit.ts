@@ -19,6 +19,7 @@ export const ecpayCreditFragment = gql`
       }
       paymentInfo {
         id
+        status
         list {
           accountInfo {
             ecpay2 {

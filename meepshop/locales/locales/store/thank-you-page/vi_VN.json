@@ -32,9 +32,11 @@
     "order-number": "Thứ tự số",
     "store-name": "Tên cửa hàng",
     "payment-method": "Phương thức thanh toán",
-    "credit-card": "Thanh toán thẻ tín dụng / trả góp",
+    "CREDIT": "Thanh toán thẻ tín dụng",
+    "CREDIT_INSTALLMENT": "Trả góp thẻ tín dụng",
     "price": "số lượng đơn đặt hàng",
     "payment-status": "tình trạng thanh toán",
+    "waiting": "chờ đợi sự xác nhận",
     "completed": "Trả hết"
   },
   "return": "Trở về trang chủ",

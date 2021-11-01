@@ -32,9 +32,11 @@
     "order-number": "Order number",
     "store-name": "Store name",
     "payment-method": "payment method",
-    "credit-card": "Credit card payment / installment payment",
+    "CREDIT": "Credit card paying",
+    "CREDIT_INSTALLMENT": "Credit card installments",
     "price": "order amount",
     "payment-status": "payment status",
+    "waiting": "Waiting for confirmation",
     "completed": "Payup"
   },
   "return": "Back to the homepage",

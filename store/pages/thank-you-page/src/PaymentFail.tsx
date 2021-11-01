@@ -22,6 +22,9 @@ export default React.memo(() => {
     window.location.href = '/';
   }, []);
 
+  const errorCode = query.error || (query.orderId as string).split('=')[1];
+  const errorMessage = query.message;
+
   return (
     <div className={styles.root}>
       <div>
@@ -33,13 +36,15 @@ export default React.memo(() => {
         <div className={styles.info}>
           <p>{t('info.payment-fail')}</p>
 
-          <div className={styles.block}>
-            <div>
-              {t('error-code')}
-              {query.error || (query.orderId as string).split('=')[1]}
+          {!errorCode && !errorMessage ? null : (
+            <div className={styles.block}>
+              <div>
+                {t('error-code')}
+                {errorCode}
+              </div>
+              <div>{errorMessage}</div>
             </div>
-            <div>{query.message}</div>
-          </div>
+          )}
         </div>
 
         <div className={styles.button}>

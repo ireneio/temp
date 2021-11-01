@@ -32,9 +32,11 @@
     "order-number": "訂單編號",
     "store-name": "商店名稱",
     "payment-method": "付款方式",
-    "credit-card": "信用卡一次付清/分期付款",
+    "CREDIT": "信用卡一次付清",
+    "CREDIT_INSTALLMENT": "信用卡分期付款",
     "price": "訂單金額",
     "payment-status": "付款狀態",
+    "waiting": "等待確認",
     "completed": "對帳完成"
   },
   "return": "返回首頁",
