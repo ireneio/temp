@@ -4,7 +4,7 @@
   "description": "Meepshop video module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.73",
+  "version": "0.80.74",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
