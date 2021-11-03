@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.80.74 (2021-11-03)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1829](https://github.com/meepshop/meep-lerna/pull/1829) 內部開單 - 搬 sign api routes ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1831](https://github.com/meepshop/meep-lerna/pull/1831) 【BUG】影片嵌入元件 - 前後台無法正常顯示 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `store`
+  - [#1828](https://github.com/meepshop/meep-lerna/pull/1828) 內部開單 - 移除 /healthz ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1839](https://github.com/meepshop/meep-lerna/pull/1839) 內部開單 - 改用 noWrapper 決定是否要顯示後台側邊選單 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.73 (2021-11-01)
 
 #### :rocket: New Feature
