@@ -46,7 +46,6 @@
     "@store/utils": "^0.80.70",
     "body-parser": "^1.18.3",
     "color": "^3.0.0",
-    "compression": "^1.7.2",
     "cookie-parser": "^1.4.4",
     "date-fns": "^2.15.0",
     "express": "^4.17.1",

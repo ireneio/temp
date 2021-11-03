@@ -2,7 +2,6 @@ const path = require('path');
 const uuid = require('uuid/v4');
 const nextApp = require('next');
 const express = require('express');
-const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
@@ -12,7 +11,6 @@ const { default: serverLogger } = require('@meepshop/logger/lib/server');
 
 const { publicRuntimeConfig } = require('../../next.config');
 const api = require('./routers/api');
-const signin = require('./routers/signin');
 const mapCookiesToHeaders = require('./mapCookiesToHeaders');
 
 const { STORE_DOMAIN } = publicRuntimeConfig;
@@ -77,14 +75,6 @@ app.prepare().then(() => {
   server.use(async (req, res, next) => {
     const { logger } = req;
 
-    logger.debug('compression in');
-    await next();
-    logger.debug('compression out');
-  });
-  server.use(compression());
-  server.use(async (req, res, next) => {
-    const { logger } = req;
-
     logger.debug('helmet in');
     await next();
     logger.debug('helmet out');
@@ -108,14 +98,6 @@ app.prepare().then(() => {
   // api
   server.post('/api/graphql', mapCookiesToHeaders, api);
   server.post('/api/landing-page/graphql', mapCookiesToHeaders, api);
-
-  // auth
-  server.post('/api/auth/login', mapCookiesToHeaders, signin('/auth/login'));
-  server.post(
-    '/api/auth/fbLogin',
-    mapCookiesToHeaders,
-    signin('/facebook/fbLogin'),
-  );
 
   // FIXME: should remove
   server.post('/checkout/thank-you-page/:id', (req, res) => {

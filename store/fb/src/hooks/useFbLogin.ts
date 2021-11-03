@@ -24,7 +24,7 @@ export default (): ((
 
       prevAccessTokenRef.current = accessToken;
 
-      const res = await fetch('/api/auth/fbLogin', {
+      const res = await fetch('/api/auth/fb-login', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',

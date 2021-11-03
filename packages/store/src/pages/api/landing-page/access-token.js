@@ -1,32 +1,23 @@
 // import
 import getConfig from 'next/config';
 
+import proxy from 'utils/proxy';
+
 // definition
 const {
   publicRuntimeConfig: { API },
 } = getConfig();
 
-export default async (req, res) => {
-  const response = await fetch(`${API}/auth/landing_page/access_token`, {
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-meepshop-domain': req.headers.host,
-    },
-    credentials: 'include',
-    body: JSON.stringify({
-      email: req.body.email,
-    }),
-  });
+export default proxy(
+  `${API}/auth/landing_page/access_token`,
+  async (req, res, response) => {
+    const { token, ...data } = await response.json();
 
-  if (response.status >= 400)
-    throw new Error(`${response.status}: ${response.statusText}(${response})`);
+    res.cookie('x-meepshop-authorization-landing-page-token', token, {
+      maxAge: 86400 * 1 * 1000,
+      httpOnly: true,
+    });
 
-  const { token, ...data } = await response.json();
-
-  res.cookie('x-meepshop-authorization-landing-page-token', token, {
-    maxAge: 86400 * 1 * 1000,
-    httpOnly: true,
-  });
-  res.json(data);
-};
+    return JSON.stringify(data);
+  },
+);
