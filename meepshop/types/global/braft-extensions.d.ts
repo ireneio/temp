@@ -7,5 +7,7 @@ declare module 'braft-extensions/dist/color-picker' {
     includeEditors?: string[];
     excludeEditors?: string[];
     theme?: 'light' | 'dark';
+    clearButtonText: string;
+    closeButtonText: string;
   }): object;
 }

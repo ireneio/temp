@@ -69,6 +69,7 @@ const SettingShopping: NextPage<PropsType> = React.memo(
         form={form}
         initialValues={initialValues}
         onFinish={updateShoppingSetting}
+        scrollToFirstError
       >
         <Header
           title={t('title')}
