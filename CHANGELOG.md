@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.75 (2021-11-04)
+
+#### :bug: Bug Fix
+
+- [#1842](https://github.com/meepshop/meep-lerna/pull/1842) 【個別店家】後台 - 購物設定按鈕異常 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.74 (2021-11-03)
 
 #### :boom: Breaking Change
