@@ -103,6 +103,7 @@ export default class ImageText extends React.PureComponent {
       button,
       position,
       textColor,
+      buttonHoverColor,
       overlayBackgroundColor,
       customTracking,
       alt,
@@ -172,7 +173,11 @@ export default class ImageText extends React.PureComponent {
               {!button.show ? null : (
                 <div
                   className={styles.button}
-                  style={buttonStyle(button.fontSize, textColor)}
+                  style={buttonStyle(
+                    button.fontSize,
+                    textColor,
+                    buttonHoverColor,
+                  )}
                 >
                   {button.value}
                 </div>

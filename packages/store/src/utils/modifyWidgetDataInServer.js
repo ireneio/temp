@@ -315,6 +315,7 @@ export default async function modifyWidgetDataInServer(
               overlayBackgroundColor: widget.overlayBackgroundColor,
               position: widget.position,
               textColor: widget.textColor,
+              buttonHoverColor: widget.buttonHoverColor || '#ffffff',
               showOverlay: widget.showOverlay,
               files: widget.files,
               newWindow: widget.newWindow,

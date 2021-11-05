@@ -31,6 +31,7 @@ export default {
   titleBold: true,
   color: '#003380',
   hoverColor: '#cccccc',
+  buttonHoverColor: '#ffffff',
   position: 'LEFT_TOP' as ImageTextModulePosition,
   alt: 'ImageTextModule',
 };

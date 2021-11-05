@@ -26,6 +26,7 @@ export default React.memo(
     titleBold,
     color,
     hoverColor,
+    buttonHoverColor,
     position,
     ...props
   }: imageTextFragment) => (
@@ -118,7 +119,7 @@ export default React.memo(
 
             #image-text-${id} .${styles.button}:hover {
               background: ${color};
-              color: #ffffff;
+              color: ${buttonHoverColor};
             }
           `,
         }}

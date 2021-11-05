@@ -103,12 +103,12 @@ export const descriptionStyle = fontSize => ({
   },
 });
 
-export const buttonStyle = (fontSize, color) => ({
+export const buttonStyle = (fontSize, color, buttonHoverColor) => ({
   fontSize: `${fontSize}px`,
   border: `1px solid ${color}`,
   ':hover': {
     background: color,
-    color: '#ffffff',
+    color: buttonHoverColor,
   },
   [PHONE_MEDIA]: {
     fontSize: `${fontSize * 0.6 >= 12 ? fontSize * 0.6 : 12}px`,

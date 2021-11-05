@@ -20,6 +20,7 @@ export const imageTextModuleMockFragment = gql`
     titleBold
     color
     hoverColor
+    buttonHoverColor
     position
     alt
   }

@@ -30,6 +30,7 @@ export const imageTextFragment = gql`
     titleBold
     color
     hoverColor
+    buttonHoverColor
     position
     alt
   }
