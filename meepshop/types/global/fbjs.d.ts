@@ -8,6 +8,8 @@ declare module 'fbjs' {
     export function thatReturnsArgument<V, P = V>(argu: V): P;
   }
 
+  export function isEmpty(value: unknown): boolean;
+
   export function areEqual(a: unknown, b: unknown): boolean;
 
   export namespace Keys {

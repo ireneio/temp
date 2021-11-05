@@ -1,6 +1,7 @@
 // import
 import { useEffect } from 'react';
 import { differenceInSeconds } from 'date-fns';
+import { isEmpty } from 'fbjs';
 
 // graphql typescript
 import { getEcfitListVariables } from '@meepshop/types/gqls/admin';
@@ -26,7 +27,7 @@ export const initVariables = (() => {
       localStorage.getItem('ecfitOrders-variables') || '{}',
     );
 
-    if (Object.keys(variables).length !== 0) return variables;
+    if (!isEmpty(variables)) return variables;
   }
 
   return {

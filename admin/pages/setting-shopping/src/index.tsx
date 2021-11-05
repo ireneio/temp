@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { filter } from 'graphql-anywhere';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, Form, Button } from 'antd';
-import { areEqual } from 'fbjs';
+import { areEqual, isEmpty } from 'fbjs';
 
 import { useTranslation } from '@meepshop/locales';
 import Header from '@admin/header';
@@ -78,7 +78,7 @@ const SettingShopping: NextPage<PropsType> = React.memo(
           buttons={
             <FormItem noStyle shouldUpdate>
               {({ resetFields, submit, getFieldsValue, getFieldsError }) =>
-                Object.keys(getFieldsValue()).length === 0 ||
+                isEmpty(getFieldsValue()) ||
                 areEqual(initialValues, getFieldsValue()) ? null : (
                   <div>
                     <Button onClick={() => resetFields()}>{t('cancel')}</Button>
