@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 0.80.76 (2021-11-05)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1843](https://github.com/meepshop/meep-lerna/pull/1843) 【優化】移除 /sitemaps/v1 ([@happycat6323](https://github.com/happycat6323))
+
+#### :rocket: New Feature
+
+- Other
+  - [#1840](https://github.com/meepshop/meep-lerna/pull/1840) Object.keys(xxx).length 改用 isEmpty ([@Lexiwu](https://github.com/Lexiwu))
+- `store`
+  - [#1843](https://github.com/meepshop/meep-lerna/pull/1843) 【優化】移除 /sitemaps/v1 ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`, `mock-types`, `store`
+  - [#1844](https://github.com/meepshop/meep-lerna/pull/1844) 【優化】圖片文字元件 - 可選擇 hover 文字顏色 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.75 (2021-11-04)
 
 #### :bug: Bug Fix
