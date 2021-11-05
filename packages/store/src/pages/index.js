@@ -72,10 +72,6 @@ class Index extends React.Component {
         </Head>
 
         <Container {...this.props} page={page} />
-
-        {/* eslint-disable */}
-        <a href="/sitemaps/v1" />
-        {/* eslint-enable */}
       </>
     );
   }

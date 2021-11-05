@@ -14,7 +14,6 @@ enum LogNameEnum {
   ECPAY_GET_PAY_TOKEN
 
   # WARN
-  SITEMAPS
   URL_REDIRECT
   NOT_FONUD
 
