@@ -72,7 +72,7 @@ module.exports = {
       'css-modules-transform',
       {
         extensions: ['.less'],
-        ignore: /(antd|meepshop\/utils)/,
+        ignore: /antd/,
         processorOpts: { parser: lessParser },
         preprocessCss,
         generateScopedName,

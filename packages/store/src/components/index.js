@@ -1,6 +1,7 @@
-import Error from './Error';
-import CloseView from './CloseView';
+import Error from '@store/refactor/lib/Error';
+import CloseView from '@store/refactor/lib/CloseView';
+import Spinner from '@store/refactor/lib/Spinner';
+
 import Container from './Container';
-import Spinner from './Spinner';
 
 export { Error, Container, Spinner, CloseView };

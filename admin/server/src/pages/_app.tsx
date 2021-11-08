@@ -10,13 +10,13 @@ import Head from 'next/head';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
 
+import '@admin/utils/lib/styles';
 import { appWithTranslation } from '@meepshop/locales';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
 import { withDomain } from '@meepshop/link';
 import handler from '@meepshop/utils/lib/handler';
 import Switch from '@meepshop/switch';
-import '@admin/utils/styles/base.less';
 import withApollo from '@admin/apollo';
 import AdTrackProvider from '@admin/ad-track';
 import CurrencyProvider from '@admin/currency';

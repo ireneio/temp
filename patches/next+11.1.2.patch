@@ -1,0 +1,16 @@
+diff --git a/node_modules/next/types/index.d.ts b/node_modules/next/types/index.d.ts
+index b1bc5ea..bff43d1 100644
+--- a/node_modules/next/types/index.d.ts
++++ b/node_modules/next/types/index.d.ts
+@@ -41,10 +41,7 @@ declare module 'react' {
+     nonce?: string
+   }
+ 
+-  // <img loading="lazy"> support
+-  interface ImgHTMLAttributes<T> extends HTMLAttributes<T> {
+-    loading?: 'auto' | 'eager' | 'lazy'
+-  }
++  // next.js has fixed in https://github.com/vercel/next.js/pull/28672
+ }
+ 
+ export type Redirect =

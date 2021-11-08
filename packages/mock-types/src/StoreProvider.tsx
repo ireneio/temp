@@ -2,11 +2,11 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
+import '@store/utils/lib/styles';
 import { appWithTranslation } from '@meepshop/locales';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
-import '@store/utils/styles/base.less';
 import withApollo from '@store/apollo';
 import FbProvider from '@store/fb';
 import CurrencyProvider from '@store/currency';

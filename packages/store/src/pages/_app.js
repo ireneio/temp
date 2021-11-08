@@ -1,4 +1,3 @@
-import '@store/utils/styles/base.less';
 import React from 'react';
 import NextApp from 'next/app';
 import Head from 'next/head';
@@ -9,6 +8,7 @@ import withReduxSaga from 'next-redux-saga';
 import { notification } from 'antd';
 import { getUnixTime } from 'date-fns';
 
+import '@store/utils/lib/styles';
 import ActionButton from '@meepshop/action-button';
 import { appWithTranslation } from '@meepshop/locales';
 import { EventsProvider } from '@meepshop/context/lib/Events';

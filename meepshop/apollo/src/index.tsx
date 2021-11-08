@@ -11,7 +11,6 @@ import { apolloErrorType } from './utils/errorLink';
 
 // import
 import React from 'react';
-import Head from 'next/head';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { getDataFromTree } from '@apollo/react-ssr';
 import uuid from 'uuid/v4';
@@ -98,7 +97,7 @@ export const buildWithApollo = (
 
     if (res?.writableEnded) return appProps;
 
-    if (typeof window === 'undefined') {
+    if (typeof window === 'undefined')
       try {
         const ssrProps = await SSR.getInitialProps(ctx);
 
@@ -127,9 +126,6 @@ export const buildWithApollo = (
           },
         });
       }
-
-      Head.rewind();
-    }
 
     return {
       ...appProps,

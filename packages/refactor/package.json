@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "@store/refactor",
+  "description": "Temporary package for store",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "dependencies": {
+    "@meepshop/apollo": "^0.80.73",
+    "@meepshop/context": "^0.80.70",
+    "@meepshop/images": "^0.80.67",
+    "@meepshop/link": "^0.80.70",
+    "@meepshop/locales": "^0.80.73",
+    "@meepshop/logger": "^0.80.72"
+  },
+  "keywords": ["refactor", "store"]
+}

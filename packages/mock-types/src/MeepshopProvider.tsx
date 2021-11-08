@@ -1,7 +1,7 @@
 // import
 import React from 'react';
 
-import '@meepshop/utils/styles/base.less';
+import '@meepshop/utils/lib/styles';
 import { appWithTranslation } from '@meepshop/locales';
 import withApollo from '@meepshop/apollo';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';

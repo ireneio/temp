@@ -4,13 +4,13 @@ import { Button } from 'antd';
 import { useTranslation } from '@meepshop/locales';
 import { storeClose } from '@meepshop/images';
 
-import './styles/index.less';
+import styles from './styles/index.less';
 
 export default ({ closed }) => {
   const { t } = useTranslation('common');
 
   return (
-    <div className="close-view-root">
+    <div className={styles.root}>
       <img src={storeClose} alt="store-close" />
       <div>{t(`${closed}.title`)}</div>
       <div>{t(`${closed}.description`)}</div>

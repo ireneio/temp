@@ -1,8 +1,7 @@
 /** ignore meepshop id */
-@import '~@meepshop/utils/styles/base.less';
-@import '~@admin/message/styles/index.less';
+@import '~@meepshop/utils/lib/styles/styles.less';
 
-@import './variables.less';
+@import '../../styles/variables.less';
 
 :global(.ant-tag) {
   color: #626c82;
@@ -28,5 +27,23 @@
 
   :global(.ant-select-item-option-active:not(.ant-select-item-option-disabled)) {
     background-color: #e6fffd;
+  }
+}
+
+:global(.ant-message) {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+
+  :global(.ant-message-notice-content) {
+    padding: 12px 24px 12px 16px;
+
+    :global(.anticon) {
+      font-size: 24px;
+      margin-right: 20px;
+    }
+
+    :global(.ant-message-custom-content) > * {
+      vertical-align: middle;
+    }
   }
 }

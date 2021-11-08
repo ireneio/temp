@@ -1,6 +1,6 @@
 if (process.env.STORYBOOK_ENV === 'dev') {
   // eslint-disable-next-line global-require
-  require('@meepshop/utils/styles/base.less');
+  require('@meepshop/utils/lib/styles');
   // eslint-disable-next-line global-require, import/no-unresolved
   require('./combined.less');
 } else {

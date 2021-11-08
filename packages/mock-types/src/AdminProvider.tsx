@@ -1,10 +1,10 @@
 // import
 import React from 'react';
 
+import '@admin/utils/lib/styles';
 import { appWithTranslation } from '@meepshop/locales';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
-import '@admin/utils/styles/base.less';
 import withApollo from '@admin/apollo';
 import CurrencyProvider from '@admin/currency';
 import Wrapper from '@admin/wrapper';

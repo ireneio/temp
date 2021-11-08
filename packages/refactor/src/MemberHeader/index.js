@@ -6,9 +6,7 @@ import {
 } from '@meepshop/context';
 import { useRouter } from '@meepshop/link';
 
-import * as Utils from 'utils';
-
-import './styles/index.less';
+import styles from './styles/index.less';
 
 export default React.memo(({ title = '', goBackToOrders, children }) => {
   const colors = useContext(ColorsContext);
@@ -21,16 +19,13 @@ export default React.memo(({ title = '', goBackToOrders, children }) => {
   }, [isShopper, push]);
 
   return (
-    <div className="member-root">
+    <div className={styles.root}>
       <div
-        className="title"
+        className={styles.title}
         style={{ backgroundColor: colors[4], color: colors[2] }}
       >
         {goBackToOrders && (
-          <div
-            className="arrow"
-            onClick={() => Utils.goTo({ pathname: '/orders' })}
-          >
+          <div className={styles.arrow} onClick={() => push('/orders')}>
             <i style={{ borderColor: colors[2] }} />
           </div>
         )}
