@@ -1,5 +1,0 @@
-# TODO: remove after update schemas
-
-extend type ImageTextModule {
-  buttonHoverColor: HexColorCode!
-}

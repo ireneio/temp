@@ -49,7 +49,12 @@ export default (): {
     applicantInitiatesStore: useCallback(
       input => {
         mutation({
-          variables: { input },
+          variables: {
+            input: {
+              ...input,
+              merchantApplicantToken: 'merchantApplicantToken',
+            },
+          },
         });
       },
       [mutation],
