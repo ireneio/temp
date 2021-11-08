@@ -47,8 +47,8 @@ export default () => {
       isProductsPage: router.pathname === '/products',
     },
   });
-  const store = data?.viewer?.store;
-  const product = data?.computeProductList?.data?.[0];
+  const store = data?.viewer?.store || null;
+  const product = data?.computeProductList?.data?.[0] || null;
   const experimentPage = useMemo(() => {
     const page =
       store?.defaultHomePage ||

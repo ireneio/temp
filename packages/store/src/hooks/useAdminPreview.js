@@ -18,8 +18,8 @@ export default () => {
       isProductPage: router.query.pId === 'preview',
     },
   });
-  const store = data?.viewer?.store;
-  const product = data?.defaultStoreProduct;
+  const store = data?.viewer?.store || null;
+  const product = data?.defaultStoreProduct || null;
   const experimentPage = useMemo(() => {
     const page = store?.page;
 
