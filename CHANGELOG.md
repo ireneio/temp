@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.77 (2021-11-08)
+
+#### :boom: Breaking Change
+
+- `mock-types`, `refactor`, `store`, `storybook`
+  - [#1739](https://github.com/meepshop/meep-lerna/pull/1739) 內部開單 - 研究 next.js 升級 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#1849](https://github.com/meepshop/meep-lerna/pull/1849) (@meepshop/frontend) Fix bug ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.76 (2021-11-05)
 
 #### :boom: Breaking Change
