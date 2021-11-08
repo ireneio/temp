@@ -4,16 +4,16 @@
   "description": "Account setting page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.76",
+  "version": "0.80.77",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/block": "^0.80.76",
-    "@admin/header": "^0.80.76",
-    "@admin/message": "^0.80.67",
-    "@meepshop/link": "^0.80.70",
-    "@meepshop/locales": "^0.80.75",
-    "@meepshop/utils": "^0.80.70",
+    "@admin/block": "^0.80.77",
+    "@admin/header": "^0.80.77",
+    "@admin/message": "^0.80.77",
+    "@meepshop/link": "^0.80.77",
+    "@meepshop/locales": "^0.80.77",
+    "@meepshop/utils": "^0.80.77",
     "lodash.get": "^4.4.2"
   },
   "keywords": ["account", "admin", "setting"]
