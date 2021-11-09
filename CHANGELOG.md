@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.80.78 (2021-11-09)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1854](https://github.com/meepshop/meep-lerna/pull/1854) 【個別店家】商品加入購物車，會員登入後清空 ([@HsuTing](https://github.com/HsuTing))
+  - [#1851](https://github.com/meepshop/meep-lerna/pull/1851) 【調查】error log 會出現的例外問題 - 前端 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.77 (2021-11-08)
 
 #### :boom: Breaking Change
