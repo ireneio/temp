@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.80.79 (2021-11-09)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`
+  - [#1805](https://github.com/meepshop/meep-lerna/pull/1805) 【優化】移除 GoodDeal - 前端 ([@happycat6323](https://github.com/happycat6323))
+- `refactor`
+  - [#1855](https://github.com/meepshop/meep-lerna/pull/1855) 【優化】商店關閉頁 - 按鈕連結更換 ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- [#1853](https://github.com/meepshop/meep-lerna/pull/1853) (@meepshop/next-admin) Fix build types ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1841](https://github.com/meepshop/meep-lerna/pull/1841) 內部開單 - 補上 error ID ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 4
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.78 (2021-11-09)
 
 #### :bug: Bug Fix
