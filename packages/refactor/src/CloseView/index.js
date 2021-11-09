@@ -22,7 +22,7 @@ export default ({ closed }) => {
       <Button
         type="primary"
         shape="round"
-        href="https://www.meepshop.com"
+        href="https://meepshop.cc/61Xeh"
         target="_blank"
       >
         {t('want-to-open-store')}
