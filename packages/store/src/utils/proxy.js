@@ -5,6 +5,12 @@ export default (url, callback) => async (req, res) => {
     headers: {
       'Content-Type': 'application/json',
       'x-meepshop-domain': req.headers.host,
+      'x-meepshop-authorization-token':
+        req.url === '/api/landing-page/graphql'
+          ? req.cookies['x-meepshop-authorization-landing-page-token'] || null
+          : req.cookies['x-meepshop-authorization-token'] || null,
+      'accept-language':
+        (req.cookies['next-i18next'] || '').replace('_', '-') || null,
     },
     credentials: 'include',
     body: JSON.stringify(req.body),
