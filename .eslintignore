@@ -7,5 +7,8 @@ lib
 # jest
 coverage
 
+# next
+next-env.d.ts
+
 # add checking other configs
 !.*
