@@ -4,15 +4,15 @@
   "description": "setting apps for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.77",
+  "version": "0.80.79",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/header": "^0.80.77",
-    "@meepshop/context": "^0.80.77",
+    "@admin/header": "^0.80.79",
+    "@meepshop/context": "^0.80.79",
     "@meepshop/images": "^0.80.77",
     "@meepshop/link": "^0.80.77",
-    "@meepshop/locales": "^0.80.77"
+    "@meepshop/locales": "^0.80.79"
   },
   "keywords": ["admin", "apps", "setting"]
 }

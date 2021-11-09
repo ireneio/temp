@@ -4,15 +4,15 @@
   "description": "redirects setting for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.77",
+  "version": "0.80.79",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/header": "^0.80.77",
+    "@admin/header": "^0.80.79",
     "@admin/message": "^0.80.77",
-    "@admin/table": "^0.80.77",
+    "@admin/table": "^0.80.79",
     "@admin/tooltip": "^0.80.77",
-    "@meepshop/locales": "^0.80.77"
+    "@meepshop/locales": "^0.80.79"
   },
   "keywords": ["admin", "redirects", "setting"]
 }
