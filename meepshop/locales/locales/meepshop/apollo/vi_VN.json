@@ -6,5 +6,13 @@
   "network-error": {
     "title": "Tệ hơn, sai rồi!",
     "message": "Tôi có thể thử lại sau."
-  }
+  },
+  "store": {
+    "title": {
+      "1": "Rất xin lỗi",
+      "2": "Cửa hàng bạn đã truy cập không tồn tại"
+    },
+    "message": "Chúng tôi không thể tìm thấy thông tin lưu trữ, vui lòng kiểm tra xem URL đầu vào có đúng không."
+  },
+  "copy": "Nếu bạn gặp vấn đề tương tự nhiều lần, vui lòng sao chép mã sau để liên hệ với chúng tôi:"
 }

@@ -6,5 +6,13 @@
   "network-error": {
     "title": "Peor, mal!",
     "message": "Puedo intentarlo de nuevo más tarde."
-  }
+  },
+  "store": {
+    "title": {
+      "1": "Lo sentimos mucho",
+      "2": "La tienda que visitó no existe."
+    },
+    "message": "No podemos encontrar la información de la tienda, verifique si la URL de entrada es correcta."
+  },
+  "copy": "Si encuentra el mismo problema varias veces, copie el siguiente código para contactarnos:"
 }

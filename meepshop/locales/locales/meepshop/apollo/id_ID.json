@@ -6,5 +6,13 @@
   "network-error": {
     "title": "Lebih buruk lagi, salah!",
     "message": "Saya dapat mencoba lagi nanti."
-  }
+  },
+  "store": {
+    "title": {
+      "1": "sangat menyesal",
+      "2": "Toko yang Anda kunjungi tidak ada"
+    },
+    "message": "Kami tidak dapat menemukan informasi toko, silakan periksa apakah URL input sudah benar."
+  },
+  "copy": "Jika Anda menemui masalah yang sama beberapa kali, silakan salin kode berikut untuk menghubungi kami:"
 }

@@ -53,7 +53,11 @@ export const buildWithApollo = (
     <ApolloProvider client={initApollo({ ...config, loggerInfo }, apolloState)}>
       <ApolloNetworkStatus />
 
-      {error ? <PageError error={error} /> : <App {...props} />}
+      {error ? (
+        <PageError error={error} loggerInfoId={loggerInfo?.id || ''} />
+      ) : (
+        <App {...props} />
+      )}
     </ApolloProvider>
   );
 

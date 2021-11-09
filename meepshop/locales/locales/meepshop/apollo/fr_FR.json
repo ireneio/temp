@@ -6,5 +6,13 @@
   "network-error": {
     "title": "Pire mal!",
     "message": "Je peux essayer à nouveau plus tard."
-  }
+  },
+  "store": {
+    "title": {
+      "1": "Vraiment désolé",
+      "2": "Le magasin que vous avez visité n'existe pas"
+    },
+    "message": "Nous ne pouvons pas trouver les informations de magasin, veuillez vérifier si l'URL d'entrée est correcte."
+  },
+  "copy": "Si vous rencontrez le même problème, veuillez copier le code suivant pour nous contacter:"
 }

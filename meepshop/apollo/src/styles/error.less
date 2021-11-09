@@ -88,9 +88,15 @@
   }
 
   h1 {
-    margin: 0px 0px 20px;
+    margin: 0px 0px 8px;
     font-size: 32px;
     color: #4a4f5c;
+    line-height: 50.4px;
+    letter-spacing: 2px;
+
+    > span {
+      display: block;
+    }
 
     @media (max-width: @screen-sm-max) {
       font-size: 20px;
@@ -101,9 +107,31 @@
     margin: 0px;
     font-size: 18px;
     color: #757d97;
+    font-weight: 400;
 
     @media (max-width: @screen-sm-max) {
       font-size: 14px;
     }
   }
+}
+
+.errorId {
+  margin-top: 32px;
+
+  p {
+    font-size: 14px;
+    color: #4a4f5c;
+    line-height: 19.6px;
+  }
+}
+
+.id {
+  display: inline-block;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #757d97;
+  margin-top: 16px;
 }
