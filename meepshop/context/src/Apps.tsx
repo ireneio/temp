@@ -31,7 +31,6 @@ export type AppsType = Record<
   | 'returnOrder'
   | 'replacement'
   | 'memberSeePrice'
-  | 'gooddeal'
   | 'wishList',
   {
     id: string;
@@ -61,7 +60,6 @@ const defaultApps = [
   'returnOrder',
   'replacement',
   'memberSeePrice',
-  'gooddeal',
   'wishList',
 ].reduce(
   (result: AppsType, key: keyof AppsType) => ({

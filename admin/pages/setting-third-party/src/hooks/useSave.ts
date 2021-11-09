@@ -9,7 +9,6 @@ import { useTranslation } from '@meepshop/locales';
 
 import useUpdateFacebookSetting from './useUpdateFacebookSetting';
 import useUpdateEcfitSettings from './useUpdateEcfitSettings';
-import useUpdateGoodDealSettings from './useUpdateGoodDealSettings';
 import useSetGaViewId from './useSetGaViewId';
 
 // graphql typescript
@@ -28,11 +27,6 @@ interface ValuesType {
     companyToken: string;
     apiKey: string;
   };
-  goodDeal: {
-    status: boolean;
-    corporationId: string;
-    apiKey: string;
-  };
   gaViewId: string | null;
 }
 
@@ -48,7 +42,6 @@ export default (
   const { t } = useTranslation('setting-third-party');
   const updateFacebookSetting = useUpdateFacebookSetting();
   const updateEcfitSettings = useUpdateEcfitSettings();
-  const updateGoodDealSettings = useUpdateGoodDealSettings();
   const { setGaViewId, processorStatus } = useSetGaViewId(
     storeId || 'null-id', // SHOULD_NOT_BE_NULL
   );
@@ -56,7 +49,7 @@ export default (
   return {
     loading: loading || processorStatus === 'PROCESSING',
     save: useCallback(
-      async ({ facebook, ecfit, goodDeal, gaViewId }) => {
+      async ({ facebook, ecfit, gaViewId }) => {
         if (!storeId) return;
 
         setLoading(true);
@@ -80,19 +73,6 @@ export default (
             });
           }
 
-          if (goodDeal)
-            await updateGoodDealSettings([
-              {
-                id: storeId,
-                setting: {
-                  gooddeal: {
-                    ...goodDeal,
-                    status: goodDeal.status ? 1 : 0,
-                  },
-                },
-              },
-            ]);
-
           // ga view id 允許清空
           await setGaViewId(gaViewId || '');
           message.success(t('success'));
@@ -109,7 +89,6 @@ export default (
         t,
         updateFacebookSetting,
         updateEcfitSettings,
-        updateGoodDealSettings,
         setGaViewId,
       ],
     ),

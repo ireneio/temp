@@ -47,25 +47,6 @@
       "tip": "Puede generarse en el back-end del sistema ECFIT y copiarse y pegarse aquí."
     }
   },
-  "goodDeal": {
-    "title": "Inventario sincronizado de GoodDeal",
-    "description": "Un centro de integración de almacenamiento y logística ofrece un servicio completo que incluye ayudar a la tienda en la entrega del producto. Este servicio debe realizar la configuración de vinculación después de firmar un contrato con GoodDeal.",
-    "toggle": {
-      "title": "Inventario sincronizado de GoodDeal"
-    },
-    "corporationId": {
-      "title": "Código de cliente",
-      "placeholder": "Por favor ingrese el código del cliente"
-    },
-    "apiKey": {
-      "title": "Clave API",
-      "placeholder": "Por favor, introduzca la clave de cifrado"
-    },
-    "alert": {
-      "0": "Ingrese la información de enlace y active la función. Notifíquelo por correo después de completar la configuración.",
-      "1": "El servicio al cliente lo ayudará a activarlo."
-    }
-  },
   "gaViewId": {
     "title": "Lectura de datos de Google Analytics",
     "description": "Debe agregar el ID de la cuenta de servicio meepShop al usuario en Google Analytics y habilitar el permiso \"Ver y análisis\" para leer los datos normalmente.",

@@ -47,25 +47,6 @@
       "tip": "Ini dapat dihasilkan di back-end sistem ECFIT dan disalin dan ditempel di sini."
     }
   },
-  "goodDeal": {
-    "title": "Inventaris Tersinkronisasi GoodDeal",
-    "description": "Pusat integrasi pergudangan dan logistik menawarkan layanan lengkap termasuk membantu toko dalam pengiriman produk. Layanan ini perlu melakukan pengaturan tautan setelah menandatangani kontrak dengan GoodDeal.",
-    "toggle": {
-      "title": "Inventaris Tersinkronisasi GoodDeal"
-    },
-    "corporationId": {
-      "title": "Kode pelanggan",
-      "placeholder": "Silakan masukkan kode pelanggan"
-    },
-    "apiKey": {
-      "title": "Kunci API",
-      "placeholder": "Silakan masukkan kunci enkripsi"
-    },
-    "alert": {
-      "0": "Silakan masukkan informasi tautan dan aktifkan fungsinya. Harap beri tahu melalui surat setelah pengaturan selesai.",
-      "1": "Layanan pelanggan akan membantu Anda mengaktifkannya."
-    }
-  },
   "gaViewId": {
     "title": "Pembacaan data Google Analytics",
     "description": "Anda perlu menambahkan ID akun layanan meepShop untuk pengguna di Google Analytics dan mengaktifkan izin \"Lihat dan Analisis\" untuk membaca data seperti biasa.",

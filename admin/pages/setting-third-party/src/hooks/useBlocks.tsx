@@ -5,13 +5,11 @@ import { filter } from 'graphql-anywhere';
 import {
   adminSettingThirdPartyEcfit,
   adminSettingThirdPartyFacebook,
-  adminSettingThirdPartyGoodDeal,
   webTrackGoogleAnalytics_w224 as webTrackGoogleAnalytics,
 } from '@meepshop/images';
 
 import FaceBook from '../Facebook';
 import Ecfit from '../Ecfit';
-import GoodDeal from '../GoodDeal';
 import GoogleAnalytics from '../GaViewId';
 
 // graphql typescript
@@ -20,7 +18,6 @@ import { useBlocksFragment as useBlocksFragmentType } from '@meepshop/types/gqls
 // graphql import
 import { facebookFragment } from '../gqls/facebook';
 import { ecfitFragment } from '../gqls/ecfit';
-import { goodDealFragment } from '../gqls/goodDeal';
 
 // typescript definition
 interface BlockType {
@@ -63,23 +60,6 @@ export default (store: useBlocksFragmentType | null): BlockType[] =>
                   storeEcfitSettings={filter(
                     ecfitFragment,
                     store.storeEcfitSettings,
-                  )}
-                />
-              ),
-            },
-        !store?.experiment?.isGoodDealEnabled
-          ? null
-          : {
-              key: 'goodDeal',
-              src: adminSettingThirdPartyGoodDeal,
-              useToggle: true,
-              initialValue: store?.setting?.storeGoodDealSettings?.status === 1,
-              useToggleDescription: false,
-              component: !store?.setting?.storeGoodDealSettings ? null : (
-                <GoodDeal
-                  storeGoodDealSettings={filter(
-                    goodDealFragment,
-                    store.setting.storeGoodDealSettings,
                   )}
                 />
               ),

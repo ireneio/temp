@@ -47,25 +47,6 @@
       "tip": "可透過 ECFIT 系統後台產生，並複製到此貼上"
     }
   },
-  "goodDeal": {
-    "title": "GoodDeal 同步庫存",
-    "description": "倉儲物流整合中心，協助店家進出貨等完整服務，此服務需與 GoodDeal 簽約後做串接設定",
-    "toggle": {
-      "title": "GoodDeal 同步庫存"
-    },
-    "corporationId": {
-      "title": "客戶代碼",
-      "placeholder": "請輸入客戶代碼"
-    },
-    "apiKey": {
-      "title": "API 金鑰",
-      "placeholder": "請輸入加密金鑰"
-    },
-    "alert": {
-      "0": "請填入串接資訊並將開關開啟，設定完成後請來信 ",
-      "1": " 由客服為您協助開通"
-    }
-  },
   "gaViewId": {
     "title": "Google Analytics 數據讀取",
     "description": "需先至 Google Analytics 新增 meepShop 服務帳戶 ID 至使用者，並開啟「檢視及分析」 權限才能正常讀取數據。",

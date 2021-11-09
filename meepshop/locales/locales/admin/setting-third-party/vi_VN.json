@@ -47,25 +47,6 @@
       "tip": "Nó có thể được tạo ở mặt sau của hệ thống ECFIT và được sao chép và dán ở đây."
     }
   },
-  "goodDeal": {
-    "title": "Hàng tồn kho được đồng bộ hóa GoodDeal",
-    "description": "Một trung tâm tích hợp kho và hậu cần cung cấp một dịch vụ hoàn chỉnh bao gồm hỗ trợ cửa hàng trong việc giao sản phẩm. Dịch vụ này cần thực hiện cài đặt liên kết sau khi ký hợp đồng với GoodDeal.",
-    "toggle": {
-      "title": "Hàng tồn kho được đồng bộ hóa GoodDeal"
-    },
-    "corporationId": {
-      "title": "Mã khách hàng",
-      "placeholder": "Vui lòng nhập mã khách hàng"
-    },
-    "apiKey": {
-      "title": "Mã API",
-      "placeholder": "Vui lòng nhập khóa mã hóa"
-    },
-    "alert": {
-      "0": "Vui lòng nhập thông tin liên kết và kích hoạt chức năng. Vui lòng thông báo qua thư sau khi cài đặt hoàn tất.",
-      "1": "Dịch vụ khách hàng sẽ giúp bạn kích hoạt nó."
-    }
-  },
   "gaViewId": {
     "title": "Dữ liệu Google Analytics đã đọc",
     "description": "Bạn cần thêm ID tài khoản dịch vụ meepShop cho người dùng trong Google Analytics và bật quyền \"Xem và phân tích\" để đọc dữ liệu bình thường.",

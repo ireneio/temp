@@ -163,7 +163,7 @@ export default class ReceiverInfo extends React.PureComponent {
     const saveAsTemplate =
       isLogin !== NOTLOGIN &&
       chooseShipmentTemplate &&
-      ['gd', 'blackcat', 'overseas', 'chunghwaPost', 'others'].includes(
+      ['blackcat', 'overseas', 'chunghwaPost', 'others'].includes(
         chooseShipmentTemplate,
       );
 

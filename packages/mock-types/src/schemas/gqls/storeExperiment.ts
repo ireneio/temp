@@ -6,6 +6,5 @@ export const storeExperimentMockFragment = gql`
   fragment storeExperimentMockFragment on StoreExperiment {
     ecfitEnabled
     hiddingMeepshopMaxInFooterEnabled
-    isGoodDealEnabled
   }
 `;

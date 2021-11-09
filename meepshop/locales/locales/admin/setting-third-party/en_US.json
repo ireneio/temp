@@ -47,25 +47,6 @@
       "tip": "It can be generated in the back-end of the ECFIT system and copied and pasted here."
     }
   },
-  "goodDeal": {
-    "title": "GoodDeal Synchronized Inventory",
-    "description": "A warehousing and logistics integration center offers a complete service including assisting the store in product delivery. This service needs to do linkage setting after signing a contract with GoodDeal.",
-    "toggle": {
-      "title": "GoodDeal Synchronized Inventory"
-    },
-    "corporationId": {
-      "title": "Customer code",
-      "placeholder": "Please enter the customer code"
-    },
-    "apiKey": {
-      "title": "API key",
-      "placeholder": "Please enter the encryption key"
-    },
-    "alert": {
-      "0": "Please enter the linkage information and activate the function. Please notify by mail after the setting is completed.",
-      "1": "Customer service will help you activate it."
-    }
-  },
   "gaViewId": {
     "title": "Google Analytics data read",
     "description": "You need to add the meepShop service account ID to the user in Google Analytics and enable the \"View and Analysis\" permission to read the data normally.",

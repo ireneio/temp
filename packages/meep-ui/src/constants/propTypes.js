@@ -156,7 +156,6 @@ export const PAYMENT_TEMPLATE_TYPE = PropTypes.oneOf([
 
 export const SHIPMENT_TEMPLATE_TYPE = PropTypes.oneOf([
   'ezship',
-  'gd',
   'gmo',
   'allpay',
   'blackcat',
