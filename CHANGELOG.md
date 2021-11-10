@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.80 (2021-11-10)
+
+#### :rocket: New Feature
+
+- [#1837](https://github.com/meepshop/meep-lerna/pull/1837) 內部開單 - 商品描述改用新元件 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.79 (2021-11-09)
 
 #### :rocket: New Feature
