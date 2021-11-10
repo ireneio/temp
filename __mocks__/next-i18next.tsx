@@ -8,6 +8,7 @@ import {
   useTranslation,
   I18nextProvider,
 } from 'react-i18next';
+import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import nextI18next from 'next-i18next';
 /* eslint-enable import/no-extraneous-dependencies */
@@ -24,6 +25,7 @@ const config = {
 
 if (process.env.STORYBOOK_ENV)
   i18n
+    .use(Backend)
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
