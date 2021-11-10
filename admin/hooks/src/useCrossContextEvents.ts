@@ -21,9 +21,11 @@ export default <P>(
   const RefactorEvent = useMemo(() => createEvent<P | 'init'>(name), [name]);
 
   useEffect((): (() => void) => {
-    const callback = (event: Event<P>): void => {
-      propsRef.current = event.data;
-      setProps(event.data);
+    const callback = ({ data }: Event<P | 'init'>): void => {
+      if (data === 'init') return;
+
+      propsRef.current = data;
+      setProps(data);
     };
 
     useGlobalTransport(
