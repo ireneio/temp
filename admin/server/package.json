@@ -26,6 +26,7 @@
     "@admin/page-manager": "^0.80.79",
     "@admin/payment-setting": "^0.80.79",
     "@admin/plan-setting": "^0.80.79",
+    "@admin/refactor-text-editor": "^0.1.0",
     "@admin/reset-password": "^0.80.79",
     "@admin/set-up-store": "^0.80.79",
     "@admin/setting": "^0.80.79",

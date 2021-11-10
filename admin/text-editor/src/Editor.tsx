@@ -13,11 +13,20 @@ import useLanguage from './hooks/useLanguage';
 import { CONTROLS, FONTSIZES } from './constants';
 import styles from './styles/index.less';
 
+// typescript definition
+export interface PropsType extends BraftEditorProps {
+  wordLimit?: number;
+}
+
 // definition
 export const { createEditorState } = BraftEditor;
 
 export default React.memo(
-  (props: BraftEditorProps): React.ReactElement | null => {
+  ({
+    className = '',
+    wordLimit = 0,
+    ...props
+  }: PropsType): React.ReactElement | null => {
     const { t } = useTranslation('text-editor');
     const language = useLanguage();
     const fontFamilies = useMemo(
@@ -39,16 +48,18 @@ export default React.memo(
       <>
         <BraftEditor
           {...props}
+          className={`${styles.root} ${className}`}
           controls={CONTROLS}
-          className={styles.root}
           language={language}
           fontSizes={FONTSIZES}
           fontFamilies={fontFamilies}
         />
 
-        <p className={styles.messageLength}>
-          {props.value?.toText().replace(/\n/g, '').length}/200
-        </p>
+        {!wordLimit ? null : (
+          <p className={styles.messageLength}>
+            {props.value?.toText().replace(/\n/g, '').length}/{wordLimit}
+          </p>
+        )}
       </>
     );
   },

@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "@admin/refactor-text-editor",
+  "description": "Admin refactor text-editor",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/hooks": "^0.80.77",
+    "@admin/text-editor": "^0.80.79",
+    "@meepshop/apollo": "^0.80.79",
+    "@meepshop/logger": "^0.80.77",
+    "braft-editor": "^2.3.9"
+  },
+  "keywords": ["admin", "refactor", "text editor"]
+}

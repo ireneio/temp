@@ -1,5 +1,5 @@
 // typescript import
-import { BraftEditorProps } from 'braft-editor';
+import { PropsType } from './Editor';
 
 // import
 import React, { useState, useEffect } from 'react';
@@ -16,7 +16,7 @@ const { createEditorState, default: Editor } =
 // definition
 export { createEditorState };
 
-export default React.memo((props: BraftEditorProps) => {
+export default React.memo((props: PropsType) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {

@@ -41,7 +41,7 @@ export default React.memo(() => {
           },
         ]}
       >
-        <TextEditor />
+        <TextEditor wordLimit={200} />
       </FormItem>
     </Block>
   );

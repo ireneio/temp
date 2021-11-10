@@ -8715,6 +8715,11 @@ cron@^1.8.2:
   dependencies:
     moment-timezone "^0.5.x"
 
+cross-context-events@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/cross-context-events/-/cross-context-events-1.0.0.tgz#1cd1e87962b6f00a86037f9596d5faca01e7fd26"
+  integrity sha512-clCnYAwFAicN7D1tCi4VkGKCcdYE0pRRQbHyehv2l8ZpeT1KJ+Gc/X8UCZ4SC9euu8yX5Vyc4kJUVF3i9ySbYg==
+
 cross-fetch@3.1.4, cross-fetch@^3.0.4:
   version "3.1.4"
   resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.4.tgz#9723f3a3a247bf8b89039f3a380a9244e8fa2f39"
