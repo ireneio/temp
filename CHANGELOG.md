@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.81 (2021-11-10)
+
+#### :bug: Bug Fix
+
+- [#1856](https://github.com/meepshop/meep-lerna/pull/1856) 【重構】後台/商品描述：更換新的編輯器 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.80 (2021-11-10)
 
 #### :rocket: New Feature
