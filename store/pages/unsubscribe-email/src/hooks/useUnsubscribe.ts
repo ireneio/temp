@@ -29,11 +29,14 @@ export default (): { loading: boolean } => {
   });
 
   useEffect(() => {
-    if (!Array.isArray(router.query.from))
+    if (
+      typeof router.query.userid === 'string' &&
+      typeof router.query.from === 'string'
+    )
       mutation({
         variables: {
           input: {
-            userId: router.query.userid as string,
+            userId: router.query.userid,
             service: router.query.from
               .replace(/-/g, '_')
               .toUpperCase() as SubscriptionServiceEnum,
