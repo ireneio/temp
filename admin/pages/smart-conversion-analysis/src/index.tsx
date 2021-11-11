@@ -12,7 +12,7 @@ import { HistoryOutlined } from '@ant-design/icons';
 import { meepshopLogo } from '@meepshop/images';
 import { useTranslation } from '@meepshop/locales';
 
-import Error from './Error';
+import NoData from './NoData';
 import Loading from './Loading';
 import Samples from './Samples';
 import useSmartConversionModule from './hooks/useSmartConversionModule';
@@ -60,7 +60,7 @@ const SmartConversionAnalysis: NextPage<PropsType> = React.memo(
     } = smartConversionModule;
 
     // 未曾自 GA 取得數據 lastGAUpdatedAt 會等於 null
-    if (!lastGAUpdatedAt) return <Error />;
+    if (!lastGAUpdatedAt) return <NoData />;
 
     const isStatusEnd = status === 'END';
     const pageTitle =
@@ -126,10 +126,16 @@ const SmartConversionAnalysis: NextPage<PropsType> = React.memo(
   },
 );
 
-SmartConversionAnalysis.getInitialProps = async ({ query }) => ({
-  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
-  noWrapper: true,
-  pageId: query.pageId as string,
-});
+SmartConversionAnalysis.getInitialProps = async ({ query: { pageId } }) => {
+  // FIXME: should use get getServerSideProps return notFound
+  if (typeof pageId !== 'string')
+    throw new Error('[FIXME] pageId is undefined');
+
+  return {
+    namespacesRequired: ['@meepshop/locales/namespacesRequired'],
+    noWrapper: true,
+    pageId,
+  };
+};
 
 export default SmartConversionAnalysis;

@@ -12,6 +12,11 @@ export type apolloErrorType = Error & {
   networkError?: {
     statusCode: number;
   };
+  graphQLErrors?: {
+    message: string;
+    locations: string[];
+    path: string;
+  };
 };
 
 // definition

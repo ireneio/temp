@@ -17,6 +17,9 @@ class Pages extends React.Component {
     const { res, XMeepshopDomain, userAgent, store, query, client } = context;
     const { path, pId } = query;
 
+    // FIXME: should use get getServerSideProps return notFound
+    if (!path) throw new Error('[FIXME] path is undefined');
+
     if (pId) {
       // Redirect /pages/{PRODUCT-NAME}?pId={PRODUCT-ID} to /product/{PRODUCT-ID}
       client.mutate({

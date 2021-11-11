@@ -17,6 +17,10 @@ class ForgotPassword extends Component {
       req,
       query: { token },
     } = context;
+
+    // FIXME: should use get getServerSideProps return notFound
+    if (!token) throw new Error('[FIXME] token is undefined');
+
     const { XMeepshopDomain, userAgent } = Utils.getReqArgs(req);
 
     return { token, userAgent, XMeepshopDomain };

@@ -22,6 +22,9 @@ class OrderExchange extends Component {
       query: { orderId },
     } = context;
 
+    // FIXME: should use get getServerSideProps return notFound
+    if (!orderId) throw new Error('[FIXME] orderId is undefined');
+
     return {
       orderId,
       userAgent,

@@ -11,7 +11,7 @@ import { Role as RoleContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 
 import * as Utils from 'utils';
-import { Container, Error } from 'components';
+import { Container, Error as ErrorComponent } from 'components';
 import ProductDiscontinued from 'components/ProductDiscontinued';
 import { getProduct, getJoinedPageInProductRoute } from 'selectors/product';
 import * as Actions from 'ducks/actions';
@@ -20,6 +20,9 @@ class Product extends React.Component {
   static getInitialProps = async context => {
     const { XMeepshopDomain, userAgent, store, query } = context;
     const { pId } = query;
+
+    // FIXME: should use get getServerSideProps return notFound
+    if (!pId) throw new Error('[FIXME] pId is undefined');
 
     if (typeof window === 'undefined')
       store.dispatch(Actions.serverProductInitial(context));
@@ -71,7 +74,7 @@ class Product extends React.Component {
     const product = !isNewPageModulesEnabled ? experimentProduct : reduxProduct;
 
     /* Display Error View */
-    if (error) return <Error error={error} />;
+    if (error) return <ErrorComponent error={error} />;
 
     if (isEmpty(product)) return <Spin indicator={<LoadingOutlined spin />} />;
 

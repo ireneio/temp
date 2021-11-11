@@ -37,11 +37,18 @@ export default React.memo(({ error, loggerInfoId }: PropsType) => {
       mutation: log,
       variables: {
         input: {
-          type: (error.networkError?.statusCode === 403
+          // FIXME: remove [FIXME] after using getServerSideProps
+          type: (error.networkError?.statusCode === 403 ||
+          /\[FIXME]/.test(error.message)
             ? 'WARN'
             : 'ERROR') as LogTypeEnum,
           name: 'PAGE_ERROR' as LogNameEnum,
-          data: error,
+          data: {
+            message: error.message,
+            stack: error.stack,
+            networkError: error.networkError,
+            graphQLErrors: error.graphQLErrors,
+          },
         },
       },
     });

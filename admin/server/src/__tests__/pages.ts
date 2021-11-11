@@ -18,7 +18,14 @@ describe('check pages has namespacesRequired', () => {
 
         expect(Component.getInitialProps).toBeDefined();
         expect(
-          (await Component.getInitialProps({ query: {} })).namespacesRequired,
+          (
+            await Component.getInitialProps({
+              query: {
+                orderId: 'orderId',
+                pageId: 'pageId',
+              },
+            })
+          ).namespacesRequired,
         ).toBeDefined();
       });
     },

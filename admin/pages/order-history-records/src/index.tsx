@@ -143,10 +143,16 @@ const OrderHistoryRecords: NextPage<PropsType> = React.memo(
   },
 );
 
-OrderHistoryRecords.getInitialProps = async ({ query }) => ({
-  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
-  noWrapper: true,
-  orderId: query.orderId as string,
-});
+OrderHistoryRecords.getInitialProps = async ({ query: { orderId } }) => {
+  // FIXME: should use get getServerSideProps return notFound
+  if (typeof orderId !== 'string')
+    throw new Error('[FIXME] orderId is undefined');
+
+  return {
+    namespacesRequired: ['@meepshop/locales/namespacesRequired'],
+    noWrapper: true,
+    orderId,
+  };
+};
 
 export default OrderHistoryRecords;
