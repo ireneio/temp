@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## 0.80.82 (2021-11-12)
+
+#### :boom: Breaking Change
+
+- `mock-types`, `store`
+  - [#1838](https://github.com/meepshop/meep-lerna/pull/1838) 內部開單 - 移除 toggle，全部改用 apollo-client ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#1850](https://github.com/meepshop/meep-lerna/pull/1850) 內部開單 - /unsubscribe 未考慮 undefined 問題 - 前端 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1861](https://github.com/meepshop/meep-lerna/pull/1861) 內部開單 - 避免使用者直接輸入 regex url 瀏覽頁面 - 前端 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1857](https://github.com/meepshop/meep-lerna/pull/1857) (@meepshop/frontend) Fix i18n error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#1868](https://github.com/meepshop/meep-lerna/pull/1868) (@store/page) Remove package ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.81 (2021-11-10)
 
 #### :bug: Bug Fix
