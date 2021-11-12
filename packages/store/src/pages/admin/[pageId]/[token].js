@@ -7,36 +7,23 @@ import { defaultAdTrack } from '@meepshop/context/lib/AdTrack';
 
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
-import { getJoinedPageInPagesRoute } from 'selectors/pages';
-import { getProduct, getJoinedPageInProductRoute } from 'selectors/product';
-import * as Actions from 'ducks/actions';
 import useAdminPreview from 'hooks/useAdminPreview';
 
-const Page = React.memo(
-  ({
-    error,
-    isNewPageModulesEnabled,
-    product: reduxProduct,
-    page: reduxPage,
-    ...props
-  }) => {
-    const { experimentProduct, experimentPage } = useAdminPreview();
-    const product = !isNewPageModulesEnabled ? experimentProduct : reduxProduct;
-    const page = !isNewPageModulesEnabled ? experimentPage : reduxPage;
+const Page = React.memo(({ error, ...props }) => {
+  const { product, page } = useAdminPreview();
 
-    if (error) return <Error error={error} />;
+  if (error) return <Error error={error} />;
 
-    return (
-      <AdTrackContext.Provider value={defaultAdTrack}>
-        <div
-          style={{ userSelect: 'none', pointerEvents: 'none', height: '100%' }}
-        >
-          <Container {...props} product={product} page={page} />
-        </div>
-      </AdTrackContext.Provider>
-    );
-  },
-);
+  return (
+    <AdTrackContext.Provider value={defaultAdTrack}>
+      <div
+        style={{ userSelect: 'none', pointerEvents: 'none', height: '100%' }}
+      >
+        <Container {...props} product={product} page={page} />
+      </div>
+    </AdTrackContext.Provider>
+  );
+});
 
 Page.getInitialProps = async ctx => {
   const { query, store, XMeepshopDomain, userAgent, client } = ctx;
@@ -59,14 +46,9 @@ Page.getInitialProps = async ctx => {
   if (!data?.isAdministratorToken)
     return { error: { status: 'ERROR_PAGE_NOT_FOUND' } };
 
-  if (pId) store.dispatch(Actions.serverProductInitial(ctx));
-
   const { pagesReducer } = store.getState();
 
   if (pagesReducer.error) return {};
-
-  if (!pagesReducer.find(page => page.id === pageId))
-    store.dispatch(Actions.getPages({ ...ctx, id: pageId }));
 
   ctx.res.header('X-Frame-Options', undefined);
 
@@ -85,14 +67,7 @@ const mapStateToProps = (state, props) => {
 
   if (error) return { error };
 
-  return !props.pId
-    ? {
-        page: getJoinedPageInPagesRoute(state, props),
-      }
-    : {
-        page: getJoinedPageInProductRoute(state, props),
-        product: getProduct(state, props),
-      };
+  return {};
 };
 
 export default connect(mapStateToProps)(Page);

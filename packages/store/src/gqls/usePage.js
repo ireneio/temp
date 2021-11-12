@@ -293,9 +293,6 @@ export const getPage = gql`
           id
           ...usePagePageFragment
         }
-        experiment {
-          isNewPageModulesEnabled
-        }
       }
     }
   }

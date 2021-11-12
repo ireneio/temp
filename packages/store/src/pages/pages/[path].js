@@ -8,13 +8,11 @@ import { log } from '@meepshop/logger/lib/gqls/log';
 
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
-import { getJoinedPageInPagesRoute } from 'selectors/pages';
-import * as Actions from 'ducks/actions';
 import * as CONST from 'constants';
 
 class Pages extends React.Component {
   static getInitialProps = async context => {
-    const { res, XMeepshopDomain, userAgent, store, query, client } = context;
+    const { res, XMeepshopDomain, userAgent, query, client } = context;
     const { path, pId } = query;
 
     // FIXME: should use get getServerSideProps return notFound
@@ -41,17 +39,6 @@ class Pages extends React.Component {
       return {};
     }
 
-    if (typeof window === 'undefined')
-      store.dispatch(Actions.serverPagesInitial(context));
-    else {
-      const { pagesReducer } = store.getState();
-
-      if (pagesReducer.error) return {};
-
-      if (!pagesReducer.find(page => page.path === path))
-        store.dispatch(Actions.getPages({ pageType: 'CUSTOM', path, query }));
-    }
-
     return { path, userAgent, XMeepshopDomain };
   };
 
@@ -63,13 +50,12 @@ class Pages extends React.Component {
   static defaultProps = { error: null };
 
   render() {
-    const { error, isNewPageModulesEnabled, experimentPage } = this.props;
+    const { error } = this.props;
 
     /* Display Error View */
     if (error) return <Error error={error} />;
 
-    const { page: reduxPage } = this.props;
-    const page = !isNewPageModulesEnabled ? experimentPage : reduxPage;
+    const { page } = this.props;
 
     if (!page) return null;
 
@@ -110,14 +96,12 @@ class Pages extends React.Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = state => {
   /* Handle error */
   const error = Utils.getStateError(state);
   if (error) return { error };
 
-  return {
-    page: getJoinedPageInPagesRoute(state, props),
-  };
+  return {};
 };
 
 export default connect(mapStateToProps)(withTranslation('common')(Pages));

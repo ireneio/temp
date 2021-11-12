@@ -1,6 +1,5 @@
 // import
 import React, { useContext, useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { Form, Input, Button, Divider } from 'antd';
 
 import {
@@ -33,7 +32,6 @@ export default React.memo(
     const colors = useContext(ColorsContext);
     const { isMobile } = useContext(SensorContext);
     const role = useContext(RoleContext);
-    const dispatch = useDispatch();
     const { t } = useTranslation('login-modal');
     const { asPath } = useRouter();
     const validateEmail = useValidateEmail();
@@ -42,12 +40,8 @@ export default React.memo(
     const [fbLoginLoading, setFbLoginLoading] = useState(false);
 
     useEffect(() => {
-      if (role === 'SHOPPER') {
-        dispatch('CLEAN_PRODUCT');
-
-        if (onClose) onClose();
-      }
-    }, [onClose, role, dispatch]);
+      if (role === 'SHOPPER' && onClose) onClose();
+    }, [onClose, role]);
 
     return (
       <div className={styles.root}>

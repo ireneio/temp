@@ -13,28 +13,14 @@ import withContext from '@store/utils/lib/withContext';
 import * as Utils from 'utils';
 import { Container, Error as ErrorComponent } from 'components';
 import ProductDiscontinued from 'components/ProductDiscontinued';
-import { getProduct, getJoinedPageInProductRoute } from 'selectors/product';
-import * as Actions from 'ducks/actions';
 
 class Product extends React.Component {
   static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent, store, query } = context;
+    const { XMeepshopDomain, userAgent, query } = context;
     const { pId } = query;
 
     // FIXME: should use get getServerSideProps return notFound
     if (!pId) throw new Error('[FIXME] pId is undefined');
-
-    if (typeof window === 'undefined')
-      store.dispatch(Actions.serverProductInitial(context));
-    else {
-      const { productsReducer } = store.getState();
-
-      if (productsReducer.error) return {};
-
-      const product = productsReducer.find(_product => _product?.id === pId);
-
-      if (!product) store.dispatch(Actions.getProduct({ id: pId, query }));
-    }
 
     return { pId, userAgent, XMeepshopDomain };
   };
@@ -63,15 +49,7 @@ class Product extends React.Component {
   }
 
   render() {
-    const {
-      error,
-      product: reduxProduct,
-      page: reduxPage,
-      isNewPageModulesEnabled,
-      experimentProduct,
-      experimentPage,
-    } = this.props;
-    const product = !isNewPageModulesEnabled ? experimentProduct : reduxProduct;
+    const { error, product, page } = this.props;
 
     /* Display Error View */
     if (error) return <ErrorComponent error={error} />;
@@ -79,7 +57,6 @@ class Product extends React.Component {
     if (isEmpty(product)) return <Spin indicator={<LoadingOutlined spin />} />;
 
     const { status, coverImage, title } = product;
-    const page = !isNewPageModulesEnabled ? experimentPage : reduxPage;
 
     if (!page) return null;
 
@@ -143,23 +120,15 @@ class Product extends React.Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = state => {
   /* Handle error */
   const error = Utils.getStateError(state);
   if (error) return { error };
 
-  return {
-    page: getJoinedPageInProductRoute(state, props),
-    // !!Note: product page ONLY
-    product: getProduct(state, props),
-  };
+  return {};
 };
 
-export default connect(mapStateToProps, dispatch => ({
-  dispatchAction: (actionName, args) => {
-    dispatch(Actions[actionName](args));
-  },
-}))(
+export default connect(mapStateToProps)(
   withTranslation('common')(
     withContext(RoleContext, role => ({ role }))(Product),
   ),

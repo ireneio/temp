@@ -1,5 +1,3 @@
-import { getPages, getPagesSuccess, getPagesFailure } from './widgets/pages';
-
 import { showLoadingStatus, hideLoadingStatus } from './widgets/loading';
 
 import {
@@ -17,24 +15,7 @@ import {
   signoutFailure,
 } from './widgets/member';
 
-import {
-  getProduct,
-  getProductSuccess,
-  getProductFailure,
-} from './widgets/products';
-
-import {
-  serverIndexInitial,
-  serverPagesInitial,
-  serverProductInitial,
-  serverProductsInitial,
-} from './widgets/server';
-
 export {
-  // pages
-  getPages,
-  getPagesSuccess,
-  getPagesFailure,
   // auth
   getAuth,
   getAuthSuccess,
@@ -51,15 +32,6 @@ export {
   signout,
   signoutSuccess,
   signoutFailure,
-  // products
-  getProduct,
-  getProductSuccess,
-  getProductFailure,
-  // Initial for server-side rendering
-  serverIndexInitial,
-  serverPagesInitial,
-  serverProductInitial,
-  serverProductsInitial,
   // loading status
   showLoadingStatus,
   hideLoadingStatus,

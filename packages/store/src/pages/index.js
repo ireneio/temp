@@ -7,24 +7,11 @@ import { withTranslation } from '@meepshop/locales';
 
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
-import { getJoinedHomePage } from 'selectors';
-import * as Actions from 'ducks/actions';
 import * as CONST from 'constants';
 
 class Index extends React.Component {
   static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent, store, query } = context;
-
-    if (typeof window === 'undefined')
-      store.dispatch(Actions.serverIndexInitial(context));
-    else {
-      const { pagesReducer } = store.getState();
-
-      if (pagesReducer.error) return {};
-
-      if (!pagesReducer.some(({ pageType }) => pageType === 'home'))
-        store.dispatch(Actions.getPages({ pageType: 'HOME', query }));
-    }
+    const { XMeepshopDomain, userAgent } = context;
 
     return { userAgent, XMeepshopDomain };
   };
@@ -37,13 +24,12 @@ class Index extends React.Component {
   static defaultProps = { error: null };
 
   render() {
-    const { error, isNewPageModulesEnabled, experimentPage } = this.props;
+    const { error } = this.props;
 
     /* Display Error View */
     if (error) return <Error error={error} />;
 
-    const { page: reduxPage } = this.props;
-    const page = !isNewPageModulesEnabled ? experimentPage : reduxPage;
+    const { page } = this.props;
 
     if (!page) return null;
 
@@ -77,14 +63,12 @@ class Index extends React.Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = state => {
   /* Handle error */
   const error = Utils.getStateError(state);
   if (error) return { error };
 
-  return {
-    page: getJoinedHomePage(state, props),
-  };
+  return {};
 };
 
 export default connect(mapStateToProps)(withTranslation('common')(Index));

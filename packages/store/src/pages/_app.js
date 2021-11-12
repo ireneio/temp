@@ -240,9 +240,8 @@ class App extends NextApp {
       logoImage,
       faviconImage,
       i18n,
-      isNewPageModulesEnabled,
-      experimentProduct,
-      experimentPage,
+      product,
+      page,
       client,
     } = this.props;
 
@@ -317,11 +316,8 @@ class App extends NextApp {
                             <Provider store={store}>
                               <Component
                                 {...pageProps}
-                                isNewPageModulesEnabled={
-                                  isNewPageModulesEnabled
-                                }
-                                experimentProduct={experimentProduct}
-                                experimentPage={experimentPage}
+                                product={product}
+                                page={page}
                                 client={client}
                                 url={{
                                   asPath: router.asPath,

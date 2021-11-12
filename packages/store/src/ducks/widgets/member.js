@@ -8,8 +8,6 @@ import { i18n } from '@meepshop/locales';
 import * as Api from 'api';
 import { NOTLOGIN, ISUSER } from 'constants';
 
-import { cleanProduct } from './products';
-
 /* ********************************* 檢查登入狀態 ********************************* */
 const AUTH_REQUEST = 'AUTH_REQUEST';
 const AUTH_SUCCESS = 'AUTH_SUCCESS';
@@ -117,7 +115,6 @@ export function* loginFlow({ payload }) {
           }),
         });
 
-      yield put(cleanProduct());
       yield put(loginSuccess(memberData));
     } else {
       yield put(loginFailure());

@@ -49,49 +49,46 @@ export default () => {
   });
   const store = data?.viewer?.store || null;
   const product = data?.computeProductList?.data?.[0] || null;
-  const experimentPage = useMemo(() => {
-    const page =
-      store?.defaultHomePage ||
-      store?.customPage ||
-      product?.page ||
-      store?.defaultProductListPage;
-
-    return !page
-      ? null
-      : {
-          ...page,
-          blocks: (page.blocks || [])
-            .filter(
-              ({ releaseDateTime }) =>
-                !releaseDateTime ||
-                parseInt(releaseDateTime, 10) * 1000 <= new Date().getTime(),
-            )
-            .map(({ width, componentWidth, widgets, ...block }) => ({
-              ...block,
-              width: width || 100,
-              componentWidth: componentWidth || 0,
-              widgets: getJoinedModule(
-                modifyWidgetDataInClient(widgets, router.query, page),
-                {
-                  query: router.query,
-                  product,
-                },
-              ),
-            })),
-        };
-  }, [store, product, router.query]);
 
   return {
     i18n,
     router,
+    client,
     storeName: store?.description?.name || '',
     storeDescription: store?.description?.introduction || '',
     logoImage: store?.logoImage,
     faviconImage: store?.faviconImage,
-    // TODO: for T9153
-    isNewPageModulesEnabled: store?.experiment?.isNewPageModulesEnabled,
-    experimentProduct: product,
-    experimentPage,
-    client,
+    product,
+    page: useMemo(() => {
+      const page =
+        store?.defaultHomePage ||
+        store?.customPage ||
+        product?.page ||
+        store?.defaultProductListPage;
+
+      return !page
+        ? null
+        : {
+            ...page,
+            blocks: (page.blocks || [])
+              .filter(
+                ({ releaseDateTime }) =>
+                  !releaseDateTime ||
+                  parseInt(releaseDateTime, 10) * 1000 <= new Date().getTime(),
+              )
+              .map(({ width, componentWidth, widgets, ...block }) => ({
+                ...block,
+                width: width || 100,
+                componentWidth: componentWidth || 0,
+                widgets: getJoinedModule(
+                  modifyWidgetDataInClient(widgets, router.query, page),
+                  {
+                    query: router.query,
+                    product,
+                  },
+                ),
+              })),
+          };
+    }, [store, product, router.query]),
   };
 };

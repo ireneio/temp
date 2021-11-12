@@ -7,23 +7,10 @@ import { withTranslation } from '@meepshop/locales';
 
 import * as Utils from 'utils';
 import { Container, Error } from 'components';
-import { getJoinedProductsPage } from 'selectors/products';
-import * as Actions from 'ducks/actions';
 
 class Products extends React.Component {
   static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent, store, query } = context;
-
-    if (typeof window === 'undefined')
-      store.dispatch(Actions.serverProductsInitial(context));
-    else {
-      const { pagesReducer } = store.getState();
-
-      if (pagesReducer.error) return {};
-
-      if (!pagesReducer.find(page => page.pageType === 'products'))
-        store.dispatch(Actions.getPages({ pageType: 'PRODUCTS', query }));
-    }
+    const { XMeepshopDomain, userAgent } = context;
 
     return { XMeepshopDomain, userAgent };
   };
@@ -38,13 +25,12 @@ class Products extends React.Component {
   static defaultProps = { error: null };
 
   render() {
-    const { error, isNewPageModulesEnabled, experimentPage } = this.props;
+    const { error } = this.props;
 
     /* Display Error View */
     if (error) return <Error error={error} />;
 
-    const { page: reduxPage } = this.props;
-    const page = !isNewPageModulesEnabled ? experimentPage : reduxPage;
+    const { page } = this.props;
 
     if (!page) return null;
 
@@ -85,14 +71,12 @@ class Products extends React.Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = state => {
   /* Handle error */
   const error = Utils.getStateError(state);
   if (error) return { error };
 
-  return {
-    page: getJoinedProductsPage(state, props),
-  };
+  return {};
 };
 
 export default connect(mapStateToProps)(withTranslation('common')(Products));

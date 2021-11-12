@@ -4754,7 +4754,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-redux@^7.1.16", "@types/react-redux@^7.1.18":
+"@types/react-redux@^7.1.16":
   version "7.1.18"
   resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-7.1.18.tgz#2bf8fd56ebaae679a90ebffe48ff73717c438e04"
   integrity sha512-9iwAsPyJ9DLTRH+OFeIrm9cAbIj1i2ANL3sKQFATqnPWRbg+jEFXyZOKHiQK/N86pNRXbb4HRxAxo0SIX1XwzQ==
@@ -4785,13 +4785,6 @@
   integrity sha512-d2gQQ0IL6hXLnoRfVYZukQNWHuVsE75DzFTLPUuyyEhJS8G2VvlE+qfQQ91SJjaMqlURRCNIsX7Jcsw6cEuJlA==
   dependencies:
     "@types/react" "*"
-
-"@types/redux-mock-store@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@types/redux-mock-store/-/redux-mock-store-1.0.3.tgz#895de4a364bc4836661570aec82f2eef5989d1fb"
-  integrity sha512-Wqe3tJa6x9MxMN4DJnMfZoBRBRak1XTPklqj4qkVm5VBpZnC8PSADf4kLuFQ9NAdHaowfWoEeUMz7NWc2GMtnA==
-  dependencies:
-    redux "^4.0.5"
 
 "@types/serve-static@*":
   version "1.13.10"
@@ -19357,13 +19350,6 @@ redeyed@~2.1.0:
   dependencies:
     esprima "~4.0.0"
 
-redux-mock-store@^1.5.4:
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.5.4.tgz#90d02495fd918ddbaa96b83aef626287c9ab5872"
-  integrity sha512-xmcA0O/tjCLXhh9Fuiq6pMrJCwFRaouA8436zcikdIpYWWCjU76CRk+i2bHx8EeiSiMGnB85/lZdU3wIJVXHTA==
-  dependencies:
-    lodash.isplainobject "^4.0.6"
-
 redux-saga@^0.16.0:
   version "0.16.2"
   resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.16.2.tgz#993662e86bc945d8509ac2b8daba3a8c615cc971"
@@ -19384,13 +19370,6 @@ redux@^4.0.4:
   dependencies:
     loose-envify "^1.4.0"
     symbol-observable "^1.2.0"
-
-redux@^4.0.5:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/redux/-/redux-4.1.1.tgz#76f1c439bb42043f985fbd9bf21990e60bd67f47"
-  integrity sha512-hZQZdDEM25UY2P493kPYuKqviVwZ58lEmGQNeQ+gXa+U0gYPUBf7NKYazbe3m+bs/DzM/ahN12DbF+NG8i0CWw==
-  dependencies:
-    "@babel/runtime" "^7.9.2"
 
 referrer-policy@1.2.0:
   version "1.2.0"
@@ -19717,11 +19696,6 @@ reselect@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/reselect/-/reselect-3.0.1.tgz#efdaa98ea7451324d092b2b2163a6a1d7a9a2147"
   integrity sha1-79qpjqdFEyTQkrKyFjpqHXqaIUc=
-
-reselect@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.0.0.tgz#f2529830e5d3d0e021408b246a206ef4ea4437f7"
-  integrity sha512-qUgANli03jjAyGlnbYVAV5vvnOmJnODyABz51RdBN7M4WaVu8mecZWgyQNkG8Yqe3KRGRt0l4K4B3XVEULC4CA==
 
 resize-observer-polyfill@^1.5.0, resize-observer-polyfill@^1.5.1:
   version "1.5.1"
