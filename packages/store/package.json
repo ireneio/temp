@@ -40,7 +40,6 @@
     "@store/member-reward-points": "^0.80.80",
     "@store/member-settings": "^0.80.80",
     "@store/member-wish-list": "^0.80.80",
-    "@store/page": "^0.80.80",
     "@store/refactor": "^0.80.80",
     "@store/thank-you-page": "^0.80.80",
     "@store/unsubscribe-email": "^0.80.80",

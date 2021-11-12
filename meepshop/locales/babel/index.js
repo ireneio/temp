@@ -37,10 +37,6 @@ const findPkg = dirname => {
         },
         '@meepshop/next-store': {
           name: '@store/common',
-          // TODO: should remove
-          dependencies: {
-            '@store/page': '',
-          },
         },
       }[pkg.name];
 
