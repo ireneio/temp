@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.84 (2021-11-15)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1873](https://github.com/meepshop/meep-lerna/pull/1873) 內部開單 - 商品細節頁登入時候，頁面壞掉 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.83 (2021-11-15)
 
 #### :bug: Bug Fix
