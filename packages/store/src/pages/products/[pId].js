@@ -36,18 +36,6 @@ class Product extends React.Component {
 
   static defaultProps = { error: null };
 
-  componentDidUpdate(prevProps) {
-    const { error } = this.props;
-
-    if (error) return;
-
-    const { query } = Utils.uriParser(this.props);
-    const { dispatchAction, role } = this.props;
-
-    if (prevProps.role !== role)
-      dispatchAction('getProduct', { id: query?.pId, query });
-  }
-
   render() {
     const { error, product, page } = this.props;
 
