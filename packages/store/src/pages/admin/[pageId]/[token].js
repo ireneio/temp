@@ -26,7 +26,7 @@ const Page = React.memo(({ error, ...props }) => {
 });
 
 Page.getInitialProps = async ctx => {
-  const { query, store, XMeepshopDomain, userAgent, client } = ctx;
+  const { query, XMeepshopDomain, userAgent, client } = ctx;
 
   if (typeof window !== 'undefined')
     return { error: { status: 'ERROR_PAGE_NOT_FOUND' } };
@@ -45,10 +45,6 @@ Page.getInitialProps = async ctx => {
 
   if (!data?.isAdministratorToken)
     return { error: { status: 'ERROR_PAGE_NOT_FOUND' } };
-
-  const { pagesReducer } = store.getState();
-
-  if (pagesReducer.error) return {};
 
   ctx.res.header('X-Frame-Options', undefined);
 
