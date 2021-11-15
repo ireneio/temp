@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.83 (2021-11-15)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1870](https://github.com/meepshop/meep-lerna/pull/1870) 【BUG】 後台頁面無預覽畫面 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.82 (2021-11-12)
 
 #### :boom: Breaking Change
