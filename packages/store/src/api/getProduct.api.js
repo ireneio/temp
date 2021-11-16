@@ -1,11 +1,9 @@
-import cookie from 'js-cookie';
-
 import postGraphql from 'utils/postGraphql';
 import { productQuery } from './query';
 
 export default async ({ id, ...context }) => {
   const variables = {
-    keys: '$search: searchInputObjectType, $identity: String',
+    keys: '$search: searchInputObjectType',
     type: 'query getProduct',
     values: {
       search: {
@@ -28,7 +26,6 @@ export default async ({ id, ...context }) => {
         showVariants: true,
         showMainFile: true,
       },
-      identity: cookie.get('identity'),
     },
   };
   const query = `

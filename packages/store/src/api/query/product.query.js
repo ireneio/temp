@@ -1,5 +1,3 @@
-import pageQuery from './page.query';
-
 const productQuery = `{
   id
   title{
@@ -90,9 +88,6 @@ const productQuery = `{
   showUserPrice {
     showListPrice
     showSuggestedPrice
-  }
-  page {
-    ${pageQuery}
   }
   applicableActivities {
     title {
