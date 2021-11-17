@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 0.80.85 (2021-11-17)
+
+#### :rocket: New Feature
+
+- [#1852](https://github.com/meepshop/meep-lerna/pull/1852) 內部開單 - 修改註冊 mutation - 前端 ([@happycat6323](https://github.com/happycat6323))
+- [#1876](https://github.com/meepshop/meep-lerna/pull/1876) (@meepshop/hooks) Add usePrevious ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1867](https://github.com/meepshop/meep-lerna/pull/1867) 內部開單 - 店家網址異常導致例外錯誤 - 前端 ([@Lexiwu](https://github.com/Lexiwu))
+- Other
+  - [#1848](https://github.com/meepshop/meep-lerna/pull/1848) 【個別店家】前台 - 生日欄位文字顯示問題 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1878](https://github.com/meepshop/meep-lerna/pull/1878) (@meepshop/next-admin) Fix file extension ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#1874](https://github.com/meepshop/meep-lerna/pull/1874) 內部開單 - 移除沒在使用檔案 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.84 (2021-11-15)
 
 #### :bug: Bug Fix
