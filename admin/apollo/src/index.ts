@@ -1,6 +1,7 @@
 // import
 import { buildWithApollo } from '@meepshop/apollo';
 
+import * as authorizeStore from './authorizeStore';
 import * as OrderConnection from './OrderConnection';
 import * as Page from './Page';
 import * as User from './User';
@@ -43,7 +44,12 @@ const shouldIgnoreErrorMessages = [
 
 export default buildWithApollo({
   name: 'admin',
-  resolvers: [OrderConnection.resolvers, Page.resolvers, User.resolvers],
+  resolvers: [
+    authorizeStore.resolvers,
+    OrderConnection.resolvers,
+    Page.resolvers,
+    User.resolvers,
+  ],
   errorFilter: ({ message }: Error) =>
     !shouldIgnoreErrorMessages.includes(message),
 });

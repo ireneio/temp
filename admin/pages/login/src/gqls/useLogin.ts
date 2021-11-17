@@ -8,6 +8,7 @@ export const login = gql`
       status
       role
       adminStatus
+      token
     }
   }
 `;

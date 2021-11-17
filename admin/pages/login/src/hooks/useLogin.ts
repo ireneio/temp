@@ -36,7 +36,9 @@ export default (
   const [mutation, { loading }] = useMutation<loginType, loginVariablesType>(
     login,
     {
-      onCompleted: ({ login: { status, adminStatus, role } }: loginType) => {
+      onCompleted: ({
+        login: { status, adminStatus, role, token },
+      }: loginType) => {
         switch (status) {
           case 'INVALID_RECAPTCHA_RESPONSE':
             message.error('Invalid recaptcha response');
@@ -47,7 +49,7 @@ export default (
             break;
 
           case 'MERCHANT_APPLICANT':
-            router.push('/set-up-store');
+            router.push(`/set-up-store/${token}`);
             break;
 
           default:

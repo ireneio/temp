@@ -17,6 +17,7 @@ type LoginResponse {
   message: String
   role: ViewerTypeEnum
   adminStatus: AdminStatusEnum
+  token: String
 }
 
 extend type Mutation {

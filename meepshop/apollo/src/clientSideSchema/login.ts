@@ -47,7 +47,7 @@ export const resolvers = {
         };
 
       const data = await res.json();
-      const { type, adminStatus, error } = data;
+      const { type, adminStatus, error, token } = data;
 
       if (error)
         return error === 'Invalid recaptcha response'
@@ -63,6 +63,7 @@ export const resolvers = {
       if (type === 'merchant_applicant') {
         return {
           ...defaultResponse,
+          token,
           status: 'MERCHANT_APPLICANT',
         };
       }

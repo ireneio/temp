@@ -11,7 +11,6 @@
     "@admin/ad-track": "^0.80.80",
     "@admin/message": "^0.80.80",
     "@admin/tooltip": "^0.80.80",
-    "@meepshop/cookies": "^0.80.82",
     "@meepshop/images": "^0.80.80",
     "@meepshop/link": "^0.80.80",
     "@meepshop/locales": "^0.80.82"

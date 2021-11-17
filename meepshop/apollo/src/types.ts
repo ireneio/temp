@@ -13,7 +13,6 @@ export interface CustomCtxType<Req = {}, Res = {}> extends AppContext {
     req: Req & {
       cookies: {
         'x-meepshop-authorization-token': string;
-        'merchant-applicant-verify-token': string;
       };
       // FIXME: remove after next-store remove express
       loggerInfo: LoggerInfoType;

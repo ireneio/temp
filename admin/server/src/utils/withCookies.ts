@@ -14,7 +14,7 @@ import { initAdminCookies } from '../gqls/withCookies';
 const IGNORE_PATHNAME = [
   '/login',
   '/sign-up/685b65e6791e',
-  '/set-up-store',
+  '/set-up-store/[token]',
   '/sign-up-fail',
   '/reset-password/[token]',
 ];
