@@ -98,6 +98,7 @@ export const ColorsProvider = React.memo(({ children }) => {
             .ant-form-item-has-error .ant-input-number:not([disabled]):hover,
             .ant-form-item-has-error .ant-picker:not([disabled]):hover,
             .ant-picker-input > input,
+            .ant-picker-input > input[disabled],
             .ant-picker-input .ant-picker-suffix,
             .ant-picker-input .ant-picker-clear {
               color: ${colors[3]};
