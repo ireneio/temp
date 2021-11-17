@@ -37,8 +37,9 @@ import * as styles from './styles';
     location: { search },
   }) => {
     const params = useMemo(() => {
+      const options = queryString.parse(search)[id];
       const [pageFromQuery, sortFromQuery] =
-        queryString.parse(search)[id]?.split(',') || [];
+        !options || Array.isArray(options) ? [] : options.split(',');
 
       return {
         id,
