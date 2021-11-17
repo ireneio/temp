@@ -4,13 +4,13 @@
   "description": "Admin refactor text-editor",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.82",
+  "version": "0.80.85",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/hooks": "^0.80.81",
-    "@admin/text-editor": "^0.80.82",
-    "@meepshop/apollo": "^0.80.82",
+    "@admin/text-editor": "^0.80.85",
+    "@meepshop/apollo": "^0.80.85",
     "@meepshop/logger": "^0.80.80",
     "braft-editor": "^2.3.9"
   },
