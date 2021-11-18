@@ -190,6 +190,11 @@ export default class Checkout extends React.PureComponent {
               }),
           payment: {
             paymentId,
+            redirectUrl:
+              choosePayment.template === 'allpay' ||
+              choosePayment.template === 'ecpay2'
+                ? `https://${domain}/api/redirect/checkout/thank-you-page/[orderId]`
+                : `https://${domain}/checkout/thank-you-page/[orderId]`,
             ...(choosePayment.template !== 'gmo' ||
             choosePayment.accountInfo.gmo.paymentType !== 'Credit'
               ? {}

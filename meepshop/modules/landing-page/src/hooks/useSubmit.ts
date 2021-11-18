@@ -149,7 +149,16 @@ export default ({
                     ...(!href
                       ? {}
                       : {
-                          redirectUrl: `https://${domain}${href}`,
+                          redirectUrl: (() => {
+                            switch (payment?.template) {
+                              case 'allpay':
+                                return `https://${domain}/api/redircet${href}`;
+                              case 'ecpay2':
+                                return `https://${domain}/api/redirect/landing-page/thank-you-page/[orderId]?redirectUrl=${href}`;
+                              default:
+                                return `https://${domain}${href}`;
+                            }
+                          })(),
                         }),
                     ...(payment?.template !== 'gmo' ||
                     payment.accountInfo?.gmo?.paymentType !== 'Credit'
