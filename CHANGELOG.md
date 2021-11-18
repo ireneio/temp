@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.86 (2021-11-18)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1709](https://github.com/meepshop/meep-lerna/pull/1709) 【功能】購物車獨立頁面 - 前端 ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`, `store`
+  - [#1709](https://github.com/meepshop/meep-lerna/pull/1709) 【功能】購物車獨立頁面 - 前端 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.85 (2021-11-17)
 
 #### :rocket: New Feature
